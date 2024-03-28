@@ -1,0 +1,632 @@
+==Main==
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !! Size  !!  Description
+|-
+|  Stats  ||  $6000  ||  byte  ||  ???
+|-
+|  Stats  ||  $6001  ||  byte  ||  ???
+|-
+!colspan="4"| 🐉 Hero
+|-
+|  Stats  ||  $6002 - $6003  ||  word  ||  📈 Current HP
+|-
+|  Stats  ||  $6004 - $6005  ||  word  ||  📈 Current MP
+|-
+|  Stats  ||  $6006  ||  byte  ||  📈 Level
+|-
+|  Stats  ||  $6007  ||  byte  ||  📈 Strength
+|-
+|  Stats  ||  $6008  ||  byte  ||  📈 Agility
+|-
+|  Stats  ||  $6009  ||  byte  ||  📈 Vitality
+|-
+|  Stats  ||  $600a  ||  byte  ||  📈 Intelligence
+|-
+|  Stats  ||  $600b  ||  byte  ||  📈 Luck
+|-
+|  Stats  ||  $600c  ||  byte  ||  📈 ???
+|-
+|  Stats  ||  $600d - $600e  ||  word  ||  📈 Maximum HP
+|-
+|  Stats  ||  $600f - $6010  ||  word  ||  📈 Maximum MP
+|-
+|  Stats  ||  $6011 - $6013  ||  long  ||  📈 Current XP
+|-
+|  Stats  ||  $6014  ||  byte  ||  📦 Item slot #1
+|-
+|  Stats  ||  $6015  ||  byte  ||  📦 Item slot #2
+|-
+|  Stats  ||  $6016  ||  byte  ||  📦 Item slot #3
+|-
+|  Stats  ||  $6017  ||  byte  ||  📦 Item slot #4
+|-
+|  Stats  ||  $6018  ||  byte  ||  📦 Item slot #5
+|-
+|  Stats  ||  $6019  ||  byte  ||  📦 Item slot #6
+|-
+|  Stats  ||  $601a  ||  byte  ||  📦 Item slot #7
+|-
+|  Stats  ||  $601b  ||  byte  ||  📦 Item slot #8
+|-
+|  Stats  ||  $601c # 00000001  ||  bit  ||  ✨ Battle Spell #1 - Expel
+|- 
+|  Stats  ||  $601c # 00000010  ||  bit  ||  ✨ Battle Spell #2 - Healmore
+|- 
+|  Stats  ||  $601c # 00000100  ||  bit  ||  ✨ Battle Spell #3 - Blaze
+|- 
+|  Stats  ||  $601c # 00001000  ||  bit  ||  ✨ Battle Spell #4 - Return
+|- 
+|  Stats  ||  $601c # 00010000  ||  bit  ||  ✨ Battle Spell #5 - Sleepmore
+|- 
+|  Stats  ||  $601c # 00100000  ||  bit  ||  ✨ Battle Spell #6 - Awake
+|- 
+|  Stats  ||  $601c # 01000000  ||  bit  ||  ✨ Battle Spell #7 - Firebal
+|- 
+|  Stats  ||  $601c # 10000000  ||  bit  ||  ✨ Battle Spell #8 - Healall
+|- 
+|  Stats  ||  $601d # 00000001  ||  bit  ||  ✨ Battle Spell #9 - Ironize
+|- 
+|  Stats  ||  $601d # 00000010  ||  bit  ||  ✨ Battle Spell #10 - FendSpell
+|- 
+|  Stats  ||  $601d # 00000100  ||  bit  ||  ✨ Battle Spell #11 - Zap
+|- 
+|  Stats  ||  $601d # 00001000  ||  bit  ||  ✨ Battle Spell #12 - Transform
+|- 
+|  Stats  ||  $601d # 00010000  ||  bit  ||  ✨ Battle Spell #13 - Boom
+|- 
+|  Stats  ||  $601d # 00100000  ||  bit  ||  ✨ Battle Spell #14 - Healusall
+|- 
+|  Stats  ||  $601d # 01000000  ||  bit  ||  ✨ Battle Spell #15 - Lightning
+|- 
+|  Stats  ||  $601d # 10000000  ||  bit  ||  ✨ Battle Spell #16 - Vivify
+|- 
+|  Stats  ||  $601e # 00000001  ||  bit  ||  ✨ Battle Spell #17 - Thordain
+|- 
+|  Stats  ||  $601e # 00000010  ||  bit  ||  ✨ Battle Spell #18 - Chance
+|- 
+|  Stats  ||  $601e # 00000100  ||  bit  ||  ✨ Overworld Spell #1 - Return
+|- 
+|  Stats  ||  $601e # 00001000  ||  bit  ||  ✨ Overworld Spell #2 - Healmore
+|- 
+|  Stats  ||  $601e # 00010000  ||  bit  ||  ✨ Overworld Spell #3 - Repel
+|- 
+|  Stats  ||  $601e # 00100000  ||  bit  ||  ✨ Overworld Spell #4 - Outside
+|- 
+|  Stats  ||  $601e # 01000000  ||  bit  ||  ✨ Overworld Spell #5 - Healall
+|- 
+|  Stats  ||  $601e # 10000000  ||  bit  ||  ✨ Overworld Spell #6 - Vivify
+|-
+|  ...
+|-
+!colspan="4"| 🙏 Cristo
+|-
+|  Stats  ||  $6020 - $6021  ||  word  ||  📈 Current HP
+|-
+|  Stats  ||  $6022 - $6023  ||  word  ||  📈 Current MP
+|-
+|  Stats  ||  $6024  ||  byte  ||  📈 Level
+|-
+|  Stats  ||  $6025  ||  byte  ||  📈 Strength
+|-
+|  Stats  ||  $6026  ||  byte  ||  📈 Agility
+|-
+|  Stats  ||  $6027  ||  byte  ||  📈 Vitality
+|-
+|  Stats  ||  $6028  ||  byte  ||  📈 Intelligence
+|-
+|  Stats  ||  $6029  ||  byte  ||  📈 Luck
+|-
+|  Stats  ||  $602a  ||  byte  ||  📈 ???
+|-
+|  Stats  ||  $602b - $602c  ||  word  ||  📈 Maximum HP
+|-
+|  Stats  ||  $602d - $602e  ||  word  ||  📈 Maximum MP
+|-
+|  Stats  ||  $602f - $6031  ||  long  ||  📈 Current XP
+|-
+|  Stats  ||  $6032  ||  byte  ||  📦 Item slot #1
+|-
+|  Stats  ||  $6033  ||  byte  ||  📦 Item slot #2
+|-
+|  Stats  ||  $6034  ||  byte  ||  📦 Item slot #3
+|-
+|  Stats  ||  $6035  ||  byte  ||  📦 Item slot #4
+|-
+|  Stats  ||  $6036  ||  byte  ||  📦 Item slot #5
+|-
+|  Stats  ||  $6037  ||  byte  ||  📦 Item slot #6
+|-
+|  Stats  ||  $6038  ||  byte  ||  📦 Item slot #7
+|-
+|  Stats  ||  $6039  ||  byte  ||  📦 Item slot #8
+|-
+|  Stats  ||  $603a # 00000001  ||  bit  ||  ✨ Battle Spell #1 - Upper
+|-
+|  Stats  ||  $603a # 00000010  ||  bit  ||  ✨ Battle Spell #2 - Heal
+|-
+|  Stats  ||  $603a # 00000100  ||  bit  ||  ✨ Battle Spell #3 - Surround
+|-
+|  Stats  ||  $603a # 00001000  ||  bit  ||  ✨ Battle Spell #4 - Healmore
+|-
+|  Stats  ||  $603a # 00010000  ||  bit  ||  ✨ Battle Spell #5 - StopSpell
+|-
+|  Stats  ||  $603a # 00100000  ||  bit  ||  ✨ Battle Spell #6 - Heallall
+|-
+|  Stats  ||  $603a # 01000000  ||  bit  ||  ✨ Battle Spell #7 - Increase
+|-
+|  Stats  ||  $603a # 10000000  ||  bit  ||  ✨ Battle Spell #8 - Healus
+|- 
+|  Stats  ||  $603b # 00000001  ||  bit  ||  ✨ Battle Spell #9 - Beat
+|-
+|  Stats  ||  $603b # 00000010  ||  bit  ||  ✨ Battle Spell #10 - Vivify
+|-
+|  Stats  ||  $603b # 00000100  ||  bit  ||  ✨ Battle Spell #11 - Defeat
+|-
+|  Stats  ||  $603b # 00001000  ||  bit  ||  ✨ Battle Spell #12 - Revive
+|-
+|  Stats  ||  $603b # 00010000  ||  bit  ||  ✨ Battle Spell #13 - n/a
+|-
+|  Stats  ||  $603b # 00100000  ||  bit  ||  ✨ Battle Spell #14 - n/a
+|-
+|  Stats  ||  $603b # 01000000  ||  bit  ||  ✨ Battle Spell #15 - n/a
+|-
+|  Stats  ||  $603b # 10000000  ||  bit  ||  ✨ Battle Spell #16 - n/a
+|- 
+|  Stats  ||  $603c # 00000001  ||  bit  ||  ✨ Overworld Spell #1 - Heal
+|-
+|  Stats  ||  $603c # 00000010  ||  bit  ||  ✨ Overworld Spell #2 - Antidote
+|-
+|  Stats  ||  $603c # 00000100  ||  bit  ||  ✨ Overworld Spell #3 - Healmore
+|-
+|  Stats  ||  $603c # 00001000  ||  bit  ||  ✨ Overworld Spell #4 - Vivify
+|-
+|  Stats  ||  $603c # 00010000  ||  bit  ||  ✨ Overworld Spell #5 - Heallall
+|-
+|  Stats  ||  $603c # 00100000  ||  bit  ||  ✨ Overworld Spell #6 - Healus
+|-
+|  Stats  ||  $603c # 01000000  ||  bit  ||  ✨ Overworld Spell #7 - Revive
+|-
+|  Stats  ||  $603c # 10000000  ||  bit  ||  ✨ Overworld Spell #8 - n/a
+|-
+|  ...
+|-
+!colspan="4"| 🃏 Nara
+|-
+|  Stats  ||  $603e - $603f  ||  word  ||  📈 Current HP
+|-
+|  Stats  ||  $6040 - $6041  ||  word  ||  📈 Current MP
+|-
+|  Stats  ||  $6042  ||  byte  ||  📈 Level
+|-
+|  Stats  ||  $6043  ||  byte  ||  📈 Strength
+|-
+|  Stats  ||  $6044  ||  byte  ||  📈 Agility
+|-
+|  Stats  ||  $6045  ||  byte  ||  📈 Vitality
+|-
+|  Stats  ||  $6046  ||  byte  ||  📈 Intelligence
+|-
+|  Stats  ||  $6047  ||  byte  ||  📈 Luck
+|-
+|  Stats  ||  $6048  ||  byte  ||  📈 ???
+|-
+|  Stats  ||  $6049 - $604a  ||  word  ||  📈 Maximum HP
+|-
+|  Stats  ||  $604b - $604c  ||  word  ||  📈 Maximum MP
+|-
+|  Stats  ||  $604d - $604f  ||  long  ||  📈 Current XP
+|-
+|  Stats  ||  $6050  ||  byte  ||  📦 Item slot #1
+|-
+|  Stats  ||  $6051  ||  byte  ||  📦 Item slot #2
+|-
+|  Stats  ||  $6052  ||  byte  ||  📦 Item slot #3
+|-
+|  Stats  ||  $6053  ||  byte  ||  📦 Item slot #4
+|-
+|  Stats  ||  $6054  ||  byte  ||  📦 Item slot #5
+|-
+|  Stats  ||  $6055  ||  byte  ||  📦 Item slot #6
+|-
+|  Stats  ||  $6056  ||  byte  ||  📦 Item slot #7
+|-
+|  Stats  ||  $6057  ||  byte  ||  📦 Item slot #8
+|-
+|  Stats  ||  $6058 # 00000001  ||  bit  ||  ✨ Battle Spell #1 - Infernos
+|-
+|  Stats  ||  $6058 # 00000010  ||  bit  ||  ✨ Battle Spell #2 - Heal
+|-
+|  Stats  ||  $6058 # 00000100  ||  bit  ||  ✨ Battle Spell #3 - Sleep
+|-
+|  Stats  ||  $6058 # 00001000  ||  bit  ||  ✨ Battle Spell #4 - Healmore
+|-
+|  Stats  ||  $6058 # 00010000  ||  bit  ||  ✨ Battle Spell #5 - NumbOff
+|-
+|  Stats  ||  $6058 # 00100000  ||  bit  ||  ✨ Battle Spell #6 - Healall
+|-
+|  Stats  ||  $6058 # 01000000  ||  bit  ||  ✨ Battle Spell #7 - Infermore
+|-
+|  Stats  ||  $6058 # 10000000  ||  bit  ||  ✨ Battle Spell #8 - Barrior
+|-
+|  Stats  ||  $6059 # 00000001  ||  bit  ||  ✨ Battle Spell #9 - Sleepmore
+|-
+|  Stats  ||  $6059 # 00000010  ||  bit  ||  ✨ Battle Spell #10 - Vivify
+|-
+|  Stats  ||  $6059 # 00000100  ||  bit  ||  ✨ Battle Spell #11 - Infermost
+|-
+|  Stats  ||  $6059 # 00001000  ||  bit  ||  ✨ Battle Spell #12 - Farewell
+|-
+|  Stats  ||  $6059 # 00010000  ||  bit  ||  ✨ Battle Spell #13 - n/a
+|-
+|  Stats  ||  $6059 # 00100000  ||  bit  ||  ✨ Battle Spell #14 - n/a
+|-
+|  Stats  ||  $6059 # 01000000  ||  bit  ||  ✨ Battle Spell #15 - n/a
+|-
+|  Stats  ||  $6059 # 10000000  ||  bit  ||  ✨ Battle Spell #16 - n/a
+|-
+|  Stats  ||  $605a # 00000001  ||  bit  ||  ✨ Overworld Spell #1 - Heal
+|-
+|  Stats  ||  $605a # 00000010  ||  bit  ||  ✨ Overworld Spell #2 - NumbOff
+|-
+|  Stats  ||  $605a # 00000100  ||  bit  ||  ✨ Overworld Spell #3 - Healmore
+|-
+|  Stats  ||  $605a # 00001000  ||  bit  ||  ✨ Overworld Spell #4 - Vivify
+|-
+|  Stats  ||  $605a # 00010000  ||  bit  ||  ✨ Overworld Spell #5 - Healall
+|-
+|  Stats  ||  $605a # 00100000  ||  bit  ||  ✨ Overworld Spell #6 - n/a
+|-
+|  Stats  ||  $605a # 01000000  ||  bit  ||  ✨ Overworld Spell #7 - n/a
+|-
+|  Stats  ||  $605a # 10000000  ||  bit  ||  ✨ Overworld Spell #8 - n/a
+|-
+!colspan="4"| 💃 Mara
+|-
+|  Stats  ||  $650b  ||  byte  ||  💃? Status ailments????????
+|-
+|  Stats  ||  $605c - $605d  ||  word  ||  📈 Current HP
+|-
+|  Stats  ||  $605e - $605f  ||  word  ||  📈 Current MP
+|-
+|  Stats  ||  $6060  ||  byte  ||  📈 Level
+|-
+|  Stats  ||  $6061  ||  byte  ||  📈 Strength
+|-
+|  Stats  ||  $6062  ||  byte  ||  📈 Agility
+|-
+|  Stats  ||  $6063  ||  byte  ||  📈 Vitality
+|-
+|  Stats  ||  $6064  ||  byte  ||  📈 Intelligence
+|-
+|  Stats  ||  $6065  ||  byte  ||  📈 Luck
+|-
+|  Stats  ||  $6066  ||  byte  ||  📈 ???
+|-
+|  Stats  ||  $6067 - $6068  ||  word  ||  📈 Maximum HP
+|-
+|  Stats  ||  $6069 - $606a  ||  word  ||  📈 Maximum MP
+|-
+|  Stats  ||  $606b - $606d  ||  long  ||  📈 Current XP
+|-
+|  Stats  ||  $606e  ||  byte  ||  📦 Item slot #1
+|-
+|  Stats  ||  $606f  ||  byte  ||  📦 Item slot #2
+|-
+|  Stats  ||  $6070  ||  byte  ||  📦 Item slot #3
+|-
+|  Stats  ||  $6071  ||  byte  ||  📦 Item slot #4
+|-
+|  Stats  ||  $6072  ||  byte  ||  📦 Item slot #5
+|-
+|  Stats  ||  $6073  ||  byte  ||  📦 Item slot #6
+|-
+|  Stats  ||  $6074  ||  byte  ||  📦 Item slot #7
+|-
+|  Stats  ||  $6075  ||  byte  ||  📦 Item slot #8
+|-
+|  Stats  ||  $6076 # 00000001  ||  bit  ||  ✨ Battle Spell #1 - Blaze
+|-
+|  Stats  ||  $6076 # 00000010  ||  bit  ||  ✨ Battle Spell #2 - Sap
+|-
+|  Stats  ||  $6076 # 00000100  ||  bit  ||  ✨ Battle Spell #3 - Firebal
+|-
+|  Stats  ||  $6076 # 00001000  ||  bit  ||  ✨ Battle Spell #4 - RobMagic
+|-
+|  Stats  ||  $6076 # 00010000  ||  bit  ||  ✨ Battle Spell #5 - Bang
+|-
+|  Stats  ||  $6076 # 00100000  ||  bit  ||  ✨ Battle Spell #6 - BeDragon
+|-
+|  Stats  ||  $6076 # 01000000  ||  bit  ||  ✨ Battle Spell #7 - Blazemore
+|-
+|  Stats  ||  $6076 # 10000000  ||  bit  ||  ✨ Battle Spell #8 - Blazemost
+|-
+|  Stats  ||  $6077 # 00000001  ||  bit  ||  ✨ Battle Spell #9 - Firebane
+|-
+|  Stats  ||  $6077 # 00000010  ||  bit  ||  ✨ Battle Spell #10 - Firevolt
+|-
+|  Stats  ||  $6077 # 00000100  ||  bit  ||  ✨ Battle Spell #11 - Boom
+|-
+|  Stats  ||  $6077 # 00001000  ||  bit  ||  ✨ Battle Spell #12 - Explodet
+|-
+|  Stats  ||  $6077 # 00010000  ||  bit  ||  ✨ Battle Spell #13 - n/a
+|-
+|  Stats  ||  $6077 # 00100000  ||  bit  ||  ✨ Battle Spell #14 - n/a
+|-
+|  Stats  ||  $6077 # 01000000  ||  bit  ||  ✨ Battle Spell #15 - n/a
+|-
+|  Stats  ||  $6077 # 10000000  ||  bit  ||  ✨ Battle Spell #16 - n/a
+|-
+|  Stats  ||  $6078 # 00000001  ||  bit  ||  ✨ Overworld Spell #1 - Return
+|-
+|  Stats  ||  $6078 # 00000010  ||  bit  ||  ✨ Overworld Spell #2 - Outside
+|-
+|  Stats  ||  $6078 # 00000100  ||  bit  ||  ✨ Overworld Spell #3 - StepGuard
+|-
+|  Stats  ||  $6078 # 00001000  ||  bit  ||  ✨ Overworld Spell #4 - n/a
+|-
+|  Stats  ||  $6078 # 00010000  ||  bit  ||  ✨ Overworld Spell #5 - n/a
+|-
+|  Stats  ||  $6078 # 00100000  ||  bit  ||  ✨ Overworld Spell #6 - n/a
+|-
+|  Stats  ||  $6078 # 01000000  ||  bit  ||  ✨ Overworld Spell #7 - n/a
+|-
+|  Stats  ||  $6078 # 10000000  ||  bit  ||  ✨ Overworld Spell #8 - n/a
+|-
+|  ...
+|-
+!colspan="4"| 🧙 Brey
+|-
+|  Stats  ||  $607a - $607b  ||  word  ||  📈 Current HP
+|-
+|  Stats  ||  $607c - $607d  ||  word  ||  📈 Current MP
+|-
+|  Stats  ||  $607e  ||  byte  ||  📈 Level
+|-
+|  Stats  ||  $607f  ||  byte  ||  📈 Strength
+|-
+|  Stats  ||  $6080  ||  byte  ||  📈 Agility
+|-
+|  Stats  ||  $6081  ||  byte  ||  📈 Vitality
+|-
+|  Stats  ||  $6082  ||  byte  ||  📈 Intelligence
+|-
+|  Stats  ||  $6083  ||  byte  ||  📈 Luck
+|-
+|  Stats  ||  $6084  ||  byte  ||  📈 ???
+|-
+|  Stats  ||  $6085 - $6086  ||  word  ||  📈 Maximum HP
+|-
+|  Stats  ||  $6087 - $6088  ||  word  ||  📈 Maximum MP
+|-
+|  Stats  ||  $6089 - $608b  ||  long  ||  📈 Current XP
+|-
+|  Stats  ||  $608c  ||  byte  ||  📦 Item slot #1
+|-
+|  Stats  ||  $608d  ||  byte  ||  📦 Item slot #2
+|-
+|  Stats  ||  $608e  ||  byte  ||  📦 Item slot #3
+|-
+|  Stats  ||  $608f  ||  byte  ||  📦 Item slot #4
+|-
+|  Stats  ||  $6090  ||  byte  ||  📦 Item slot #5
+|-
+|  Stats  ||  $6091  ||  byte  ||  📦 Item slot #6
+|-
+|  Stats  ||  $6092  ||  byte  ||  📦 Item slot #7
+|-
+|  Stats  ||  $6093  ||  byte  ||  📦 Item slot #8
+|-
+|  Stats  ||  $6094 # 00000001  ||  bit  ||  ✨ Battle Spell #1 - IceBolt
+|-
+|  Stats  ||  $6094 # 00000010  ||  bit  ||  ✨ Battle Spell #2 - Sap
+|-
+|  Stats  ||  $6094 # 00000100  ||  bit  ||  ✨ Battle Spell #3 - Snowstorm
+|-
+|  Stats  ||  $6094 # 00001000  ||  bit  ||  ✨ Battle Spell #4 - Bounce
+|-
+|  Stats  ||  $6094 # 00010000  ||  bit  ||  ✨ Battle Spell #5 - Icespears
+|-
+|  Stats  ||  $6094 # 00100000  ||  bit  ||  ✨ Battle Spell #6 - Return
+|-
+|  Stats  ||  $6094 # 01000000  ||  bit  ||  ✨ Battle Spell #7 - RobMagic
+|-
+|  Stats  ||  $6094 # 10000000  ||  bit  ||  ✨ Battle Spell #8 - Defence
+|- 
+|  Stats  ||  $6095 # 00000001  ||  bit  ||  ✨ Battle Spell #9 - Chaos
+|-
+|  Stats  ||  $6095 # 00000010  ||  bit  ||  ✨ Battle Spell #10 - SpeedUp
+|-
+|  Stats  ||  $6095 # 00000100  ||  bit  ||  ✨ Battle Spell #11 - Blizzard
+|-
+|  Stats  ||  $6095 # 00001000  ||  bit  ||  ✨ Battle Spell #12 - Bikill
+|-
+|  Stats  ||  $6095 # 00010000  ||  bit  ||  ✨ Battle Spell #13 - n/a
+|-
+|  Stats  ||  $6095 # 00100000  ||  bit  ||  ✨ Battle Spell #14 - n/a
+|-
+|  Stats  ||  $6095 # 01000000  ||  bit  ||  ✨ Battle Spell #15 - n/a
+|-
+|  Stats  ||  $6095 # 10000000  ||  bit  ||  ✨ Battle Spell #16 - n/a
+|- 
+|  Stats  ||  $6096 # 00000001  ||  bit  ||  ✨ Overworld Spell #1 - Return
+|-
+|  Stats  ||  $6096 # 00000010  ||  bit  ||  ✨ Overworld Spell #2 - Outside
+|-
+|  Stats  ||  $6096 # 00000100  ||  bit  ||  ✨ Overworld Spell #3 - Day-Night
+|-
+|  Stats  ||  $6096 # 00001000  ||  bit  ||  ✨ Overworld Spell #4 - X-Ray
+|-
+|  Stats  ||  $6096 # 00010000  ||  bit  ||  ✨ Overworld Spell #5 - n/a
+|-
+|  Stats  ||  $6096 # 00100000  ||  bit  ||  ✨ Overworld Spell #6 - n/a
+|-
+|  Stats  ||  $6096 # 01000000  ||  bit  ||  ✨ Overworld Spell #7 - n/a
+|-
+|  Stats  ||  $6096 # 10000000  ||  bit  ||  ✨ Overworld Spell #8 - n/a
+|-
+|  ...
+|-
+!colspan="4"|  💰 Taloon
+|-
+|  Stats  ||  $6098 - $6099  ||  word  ||  📈 Current HP
+|-
+|  Stats  ||  $609a - $609b  ||  word  ||  📈 Current MP
+|-
+|  Stats  ||  $609c  ||  byte  ||  📈 Level
+|-
+|  Stats  ||  $609d  ||  byte  ||  📈 Strength
+|-
+|  Stats  ||  $609e  ||  byte  ||  📈 Agility
+|-
+|  Stats  ||  $609f  ||  byte  ||  📈 Vitality
+|-
+|  Stats  ||  $60a0  ||  byte  ||  📈 Intelligence
+|-
+|  Stats  ||  $60a1  ||  byte  ||  📈 Luck
+|-
+|  Stats  ||  $60a2  ||  byte  ||  📈 ???
+|-
+|  Stats  ||  $60a3 - $60a4  ||  word  ||  📈 Maximum HP
+|-
+|  Stats  ||  $60a5 - $60a6  ||  word  ||  📈 Maximum MP
+|-
+|  Stats  ||  $60a7 - $60a9  ||  long  ||  📈 Current XP
+|-
+|  Stats  ||  $60aa  ||  byte  ||  📦 Item slot #1
+|-
+|  Stats  ||  $60ab  ||  byte  ||  📦 Item slot #2
+|-
+|  Stats  ||  $60ac  ||  byte  ||  📦 Item slot #3
+|-
+|  Stats  ||  $60ad  ||  byte  ||  📦 Item slot #4
+|-
+|  Stats  ||  $60ae  ||  byte  ||  📦 Item slot #5
+|-
+|  Stats  ||  $60af  ||  byte  ||  📦 Item slot #6
+|-
+|  Stats  ||  $60b0  ||  byte  ||  📦 Item slot #7
+|-
+|  Stats  ||  $60b1  ||  byte  ||  📦 Item slot #8
+|-
+|  Stats  ||  $60b2  ||  byte  ||  ✨ Battle Spells - n/a
+|-
+|  Stats  ||  $60b3  ||  byte  ||  ✨ Battle Spells - n/a
+|-
+|  Stats  ||  $60b4  ||  byte  ||  ✨ Overworld Spells - n/a
+|-
+|  ...
+|-
+!colspan="4"| 🪖 Ragnar
+|-
+|  Stats  ||  $60b6 - $60b7  ||  word  ||  📈 Current HP
+|-
+|  Stats  ||  $60b8 - $60b9  ||  word  ||  📈 Current MP
+|-
+|  Stats  ||  $60ba  ||  byte  ||  📈 Level
+|-
+|  Stats  ||  $60bb  ||  byte  ||  📈 Strength
+|-
+|  Stats  ||  $60bc  ||  byte  ||  📈 Agility
+|-
+|  Stats  ||  $60bd  ||  byte  ||  📈 Vitality
+|-
+|  Stats  ||  $60be  ||  byte  ||  📈 Intelligence
+|-
+|  Stats  ||  $60bf  ||  byte  ||  📈 Luck
+|-
+|  Stats  ||  $60c0  ||  byte  ||  📈 ???
+|-
+|  Stats  ||  $60c1 - $60c2  ||  word  ||  📈 Maximum HP
+|-
+|  Stats  ||  $60c3 - $60c4  ||  word  ||  📈 Maximum MP
+|-
+|  Stats  ||  $60c5 - $60c7  ||  long  ||  📈 Current XP
+|-
+|  Stats  ||  $60c8  ||  byte  ||  📦 Item slot #1
+|-
+|  Stats  ||  $60c9  ||  byte  ||  📦 Item slot #2
+|-
+|  Stats  ||  $60ca  ||  byte  ||  📦 Item slot #3
+|-
+|  Stats  ||  $60cb  ||  byte  ||  📦 Item slot #4
+|-
+|  Stats  ||  $60cc  ||  byte  ||  📦 Item slot #5
+|-
+|  Stats  ||  $60cd  ||  byte  ||  📦 Item slot #6
+|-
+|  Stats  ||  $60ce  ||  byte  ||  📦 Item slot #7
+|-
+|  Stats  ||  $60cf  ||  byte  ||  📦 Item slot #8
+|-
+|  Stats  ||  $60d0  ||  byte  ||  ✨ Battle Spells - n/a
+|-
+|  Stats  ||  $60d1  ||  byte  ||  ✨ Battle Spells - n/a
+|-
+|  Stats  ||  $60d2  ||  byte  ||  ✨ Overworld Spells - n/a
+|-
+|  ...
+|-
+!colspan="4"| 🪖 Alena
+|-
+|  Stats  ||  $60d4 - $60d5  ||  word  ||  📈 Current HP
+|-
+|  Stats  ||  $60d6 - $60d7  ||  word  ||  📈 Current MP
+|-
+|  Stats  ||  $60d8  ||  byte  ||  📈 Level
+|-
+|  Stats  ||  $60d9  ||  byte  ||  📈 Strength
+|-
+|  Stats  ||  $60da  ||  byte  ||  📈 Agility
+|-
+|  Stats  ||  $60db  ||  byte  ||  📈 Vitality
+|-
+|  Stats  ||  $60dc  ||  byte  ||  📈 Intelligence
+|-
+|  Stats  ||  $60dd  ||  byte  ||  📈 Luck
+|-
+|  Stats  ||  $60de  ||  byte  ||  📈 ???
+|-
+|  Stats  ||  $60df - $60e0  ||  word  ||  📈 Maximum HP
+|-
+|  Stats  ||  $60e1 - $60e2  ||  word  ||  📈 Maximum MP
+|-
+|  Stats  ||  $60e3 - $60e5  ||  long  ||  📈 Current XP
+|-
+|  Stats  ||  $60e6  ||  byte  ||  📦 Item slot #1
+|-
+|  Stats  ||  $60e7  ||  byte  ||  📦 Item slot #2
+|-
+|  Stats  ||  $60e8  ||  byte  ||  📦 Item slot #3
+|-
+|  Stats  ||  $60e9  ||  byte  ||  📦 Item slot #4
+|-
+|  Stats  ||  $60ea  ||  byte  ||  📦 Item slot #5
+|-
+|  Stats  ||  $60eb  ||  byte  ||  📦 Item slot #6
+|-
+|  Stats  ||  $60ec  ||  byte  ||  📦 Item slot #7
+|-
+|  Stats  ||  $60ed  ||  byte  ||  📦 Item slot #8
+|-
+|  Stats  ||  $60ee  ||  byte  ||  ✨ Battle Spells - n/a
+|-
+|  Stats  ||  $60ef  ||  byte  ||  ✨ Battle Spells - n/a
+|-
+|  Stats  ||  $60f0  ||  byte  ||  ✨ Overworld Spells - n/a
+|-
+|  ...
+|-
+!colspan="4"| 🐙 NPC Companion (Healie, Strom, etc)
+|-
+|  Stats  ||  $6110 - $6111 ||  word  ||  📈 Current HP
+|-
+|  Stats  ||  $6112 - $6113 ||  word  ||  📈 Current MP
+|-
+|  ...
+|-
+!colspan="4"| Other
+|-
+|  Stuff  ||  $6157 - $6159  ||  long  ||  🪙 Gold (max 99,999)
+|}
