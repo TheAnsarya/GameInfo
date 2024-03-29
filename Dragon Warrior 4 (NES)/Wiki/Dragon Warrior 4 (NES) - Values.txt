@@ -1,0 +1,290 @@
+
+{{stub}}
+
+=Values=
+
+==Items==
+
+The item index only uses the bottom 7 bits so values range from $00 to $7f.
+
+$51 is a blank item separating the equipment ($00 - $50) and regular items ($52 - $7e). [TODO: does this represent something special?]
+
+$7f represents "no item in slot".
+
+In the item bags, the high bit %10000000 indicates that the item is equipped. So, to get the equipped value add $80 to the item index.
+
+{| class="wikitable sortable"
+|-
+!  Value  !!  Description
+|-
+|  $00  ||  Cypress Stick
+|-
+|  $01  ||  Club
+|-
+|  $02  ||  Copper Sword
+|-
+|  $03  ||  Iron Claw
+|-
+|  $04  ||  Chain Sickle
+|-
+|  $05  ||  Iron Spear
+|-
+|  $06  ||  Broad Sword
+|-
+|  $07  ||  Battle Axe
+|-
+|  $08  ||  Silver Tarot Cards
+|-
+|  $09  ||  Thorn Whip
+|-
+|  $0a  ||  Morning Star
+|-
+|  $0b  ||  Boomerang
+|-
+|  $0c  ||  Abacus of Virtue
+|-
+|  $0d  ||  Iron Fan
+|-
+|  $0e  ||  Metal Babble Sword
+|-
+|  $0f  ||  Poison Needle
+|-
+|  $10  ||  Staff of Force
+|-
+|  $11  ||  Staff of Thunder
+|-
+|  $12  ||  Demon Hammer
+|-
+|  $13  ||  Multi-edge Sword
+|-
+|  $14  ||  Zenithian Sword (1)
+|-
+|  $15  ||  Dragon Killer
+|-
+|  $16  ||  Stilleto Earrings
+|-
+|  $17  ||  Staff of Punishment
+|-
+|  $18  ||  Sword of Lethargy
+|-
+|  $19  ||  Venomous Dagger
+|-
+|  $1a  ||  Fire Claw
+|-
+|  $1b  ||  Ice Blade
+|-
+|  $1c  ||  Sword of Miracles
+|-
+|  $1d  ||  Staff of Antimagic
+|-
+|  $1e  ||  Magma Staff
+|-
+|  $1f  ||  Sword of Decimation
+|-
+|  $20  ||  Staff of Healing
+|-
+|  $21  ||  Zenithian Sword (2)
+|-
+|  $22  ||  Staff of Jubilation
+|-
+|  $23  ||  Sword of Malice
+|-
+|  $24  ||  Basic Clothes
+|-
+|  $25  ||  Wayfarer's Clothes
+|-
+|  $26  ||  Leather Armor
+|-
+|  $27  ||  Chain Mail
+|-
+|  $28  ||  Half Plate Armor
+|-
+|  $29  ||  Iron Apron
+|-
+|  $2a  ||  Full Plate Armor
+|-
+|  $2b  ||  Silk Robe
+|-
+|  $2c  ||  Dancer's Costume
+|-
+|  $2d  ||  Bronze Armor
+|-
+|  $2e  ||  Metal Babble Armor
+|-
+|  $2f  ||  Fur Coat
+|-
+|  $30  ||  Leather Dress
+|-
+|  $31  ||  Pink Leotard
+|-
+|  $32  ||  Dragon Mail
+|-
+|  $33  ||  Cloak of Evasion
+|-
+|  $34  ||  Sacred Robe
+|-
+|  $35  ||  Water Flying Clothes
+|-
+|  $36  ||  Mysterious Bolero
+|-
+|  $37  ||  Zenithian Armor
+|-
+|  $38  ||  Swordedge Armor
+|-
+|  $39  ||  Robe of Serenity
+|-
+|  $3a  ||  Zombie Mail
+|-
+|  $3b  ||  Dress of Radiance
+|-
+|  $3c  ||  Demon Armor
+|-
+|  $3d  ||  Leather Shield
+|-
+|  $3e  ||  Scale Shield
+|-
+|  $3f  ||  Iron Shield
+|-
+|  $40  ||  Shield of Strength
+|-
+|  $41  ||  Mirror Shield
+|-
+|  $42  ||  Aeolus' Shield
+|-
+|  $43  ||  Dragon Shield
+|-
+|  $44  ||  Zenithian Shield
+|-
+|  $45  ||  Metal Babble Shield
+|-
+|  $46  ||  Leather Hat
+|-
+|  $47  ||  Wooden Hat
+|-
+|  $48  ||  Iron Helmet
+|-
+|  $49  ||  Iron Mask
+|-
+|  $4a  ||  Feather Hat
+|-
+|  $4b  ||  Zenithian Helm
+|-
+|  $4c  ||  Mask of Corruption
+|-
+|  $4d  ||  Golden Barrette
+|-
+|  $4e  ||  Hat of Happiness
+|-
+|  $4f  ||  Metal Babble Helm
+|-
+|  $50  ||  Meteorite Armband
+|-
+|  $51  ||  ??? (Blank Name)
+|-
+|  $52  ||  Baron's Horn
+|-
+|  $53  ||  Medical Herb
+|-
+|  $54  ||  Antidote Herb
+|-
+|  $55  ||  Fairy Water
+|-
+|  $56  ||  Wing of Wyvern
+|-
+|  $57  ||  Leaf of World Tree
+|-
+|  $58  ||  Full Moon Herb
+|-
+|  $59  ||  Wizard's Ring
+|-
+|  $5a  ||  Magic Potion
+|-
+|  $5b  ||  Dew of World Tree
+|-
+|  $5c  ||  Flute of Uncovering
+|-
+|  $5d  ||  Sphere of Silence
+|-
+|  $5e  ||  Scent Pouch
+|-
+|  $5f  ||  Sandglass of Regression
+|-
+|  $60  ||  Sage's Stone
+|-
+|  $61  ||  Strength Seed
+|-
+|  $62  ||  Agility Seed
+|-
+|  $63  ||  Luck Seed
+|-
+|  $64  ||  Lifeforce Nuts
+|-
+|  $65  ||  Mystic Acorns
+|-
+|  $66  ||  Mirror of Ra
+|-
+|  $67  ||  Lamp of Darkness
+|-
+|  $68  ||  Staff of Transform
+|-
+|  $69  ||  Small Medal
+|-
+|  $6a  ||  Stone of Drought
+|-
+|  $6b  ||  Iron Safe
+|-
+|  $6c  ||  Flying Shoes
+|-
+|  $6d  ||  Silver Statuette
+|-
+|  $6e  ||  Treasure Map
+|-
+|  $6f  ||  Symbol of Faith
+|-
+|  $70  ||  Gunpowder Jar
+|-
+|  $71  ||  Thief's Key
+|-
+|  $72  ||  Magic Key
+|-
+|  $73  ||  Final Key
+|-
+|  $74  ||  Lunch
+|-
+|  $75  ||  Birdsong Nector
+|-
+|  $76  ||  Golden Bracelet
+|-
+|  $77  ||  Prince's Letter
+|-
+|  $78  ||  Royal Scroll
+|-
+|  $79  ||  Gum Pod
+|-
+|  $7a  ||  Boarding Pass
+|-
+|  $7b  ||  Padequia Root
+|-
+|  $7c  ||  Fire of Serenity
+|-
+|  $7d  ||  Gas Canister
+|-
+|  $7e  ||  Padequia Seed
+|-
+|  $7f  ||  ??? No Item
+|}
+
+
+==Monsters==
+
+[TODO: add list]
+
+==Spells==
+
+[TODO: add list]
+
+==Maps==
+
+[TODO: add list]
+
+
