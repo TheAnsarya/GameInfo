@@ -1,0 +1,106 @@
+
+
+
+{{stub}}
+
+=Values=
+
+==Items==
+
+[TODO: add list]
+
+==Monsters==
+
+{| class="wikitable sortable"
+|-
+!  Value  !!  Description
+|-
+|  $00  ||  Slime
+|-
+|  $01  ||  Red Slime
+|-
+|  $02  ||  Drakee
+|-
+|  $03  ||  Ghost
+|-
+|  $04  ||  Magician
+|-
+|  $05  ||  Magidrakee
+|-
+|  $06  ||  Scorpion
+|-
+|  $07  ||  Druin
+|-
+|  $08  ||  Poltergeist
+|-
+|  $09  ||  Droll
+|-
+|  $0a  ||  Drakeema
+|-
+|  $0b  ||  Skeleton
+|-
+|  $0c  ||  Warlock
+|-
+|  $0d  ||  Metal Scorpion
+|-
+|  $0e  ||  Wolf
+|-
+|  $0f  ||  Wraith
+|-
+|  $10  ||  Metal Slime
+|-
+|  $11  ||  Specter
+|-
+|  $12  ||  Worflord
+|-
+|  $13  ||  Druinlord
+|-
+|  $14  ||  Drollmagi
+|-
+|  $15  ||  Wyvern
+|-
+|  $16  ||  Rogue Scorpion
+|-
+|  $17  ||  Wraith Knight
+|-
+|  $18  ||  Golem
+|-
+|  $19  ||  Goldman
+|-
+|  $1a  ||  Knight
+|-
+|  $1b  ||  Magiwyvern
+|-
+|  $1c  ||  Demon Knight
+|-
+|  $1d  ||  Werewolf
+|-
+|  $1e  ||  Green Dragon
+|-
+|  $1f  ||  Starwyvern
+|-
+|  $20  ||  Wizard
+|-
+|  $21  ||  Axe Knight
+|-
+|  $22  ||  Blue Dragon
+|-
+|  $23  ||  Stoneman
+|-
+|  $24  ||  Armored Knight
+|-
+|  $25  ||  Red Dragon
+|-
+|  $26  ||  Dragonlord
+|-
+|  $27  ||  Dragonlord's True Form
+|}
+
+==Spells==
+
+[TODO: add list]
+
+==Maps==
+
+[TODO: add list]
+
