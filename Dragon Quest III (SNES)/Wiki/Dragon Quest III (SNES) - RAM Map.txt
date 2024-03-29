@@ -1,0 +1,119 @@
+{{rammap|game=Dragon Quest III}}
+==Main==
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !! Size  !!  Description
+|-
+|  Stats  ||  $7e3696  ||  long  ||  🪙 Current amount of Gold
+|-
+|  Bag  ||  $7e3725-$7e3824  ||  256 bytes  ||  📦 Each byte is which item is in bag slot, 0 means empty, game uses values $01-$e4
+|-
+|  Bag  ||  $7e3825-$7e3924  ||  256 bytes  ||  📦 Each byte is amount of the item in the bag slot, game allows up to 99
+|-
+|  Stats  ||  $7e3925  ||  byte  ||  📈 Top 7 bits are Hero's level, bottom bit unknown
+|-
+|  Stats  ||  $7e3926-$7e3928  ||  long  ||  📈 Hero's XP
+|-
+|  Stats  ||  $7e3929-$7e392a  ||  word  ||  📈 Hero's max HP
+|-
+|  Stats  ||  $7e392b-$7e392c  ||  word  ||  📈 Hero's current HP
+|-
+|  Stats  ||  $7e392d-$7e392e  ||  word  ||  📈 Hero's max MP
+|-
+|  Stats  ||  $7e392f-$7e3930  ||  word  ||  📈 Hero's current MP
+|-
+|  Stats  ||  $7e3931  ||  byte  ||  📈 Hero's strength
+|-
+|  Stats  ||  $7e3932  ||  byte  ||  📈 Hero's agility
+|-
+|  Stats  ||  $7e3933  ||  byte  ||  📈 Hero's stamina
+|-
+|  Stats  ||  $7e3934  ||  byte  ||  📈 Hero's wisdom
+|-
+|  Stats  ||  $7e3935  ||  byte  ||  📈 Hero's luck
+|-
+|  Stats  ||  $7e393b-$7e393f  ||  5 bytes  ||  🏷️ Hero's name, 4 characters max followed by $ac (end of string)
+|-
+|  Bag  ||  $7e3953  ||  byte  ||  📦 Hero's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $7e3954  ||  byte  ||  📦 Hero's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $7e3955-$7e3960  ||  12 bytes  ||  📦 Hero's bag: Each byte is which item is in the slot
+|-
+|  Joypad  ||  $7e7ff8  ||  word  ||  🎮 Joypad Buttons - registers $4218 and $4219 are read and stored here
+|}
+
+==VBLANK State Machine==
+The whole graphics state is set every VBLANK interrupt. This is also where VRAM DMA transfers are scheduled.
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !! Size  !!  Description
+|-
+|  Graphics Settings  ||  $7e7f8a  ||  byte  ||  $2101 - 🖼️ OAM object size and object base
+|-
+|  Graphics Settings  ||  $7e7f8c  ||  byte  ||  $2105 - 🖼️ BG mode and BG character size
+|-
+|  Graphics Settings  ||  $7e7f8e  ||  byte  ||  $2106 - 🖼️ Mosaic size and mosaic enable
+|-
+|  Graphics Settings  ||  $7e7f90  ||  byte  ||  $2107 - 🖼️ BG 1 screen base and screen size
+|-
+|  Graphics Settings  ||  $7e7f92  ||  byte  ||  $2108 - 🖼️ BG 2 screen base and screen size
+|-
+|  Graphics Settings  ||  $7e7f94  ||  byte  ||  $2109 - 🖼️ BG 3 screen base and screen size
+|-
+|  Graphics Settings  ||  $7e7f96  ||  byte  ||  $210a - 🖼️ BG 4 screen base and screen size
+|-
+|  Graphics Settings  ||  $7e7f98  ||  byte  ||  $210b - 🖼️ BG 1 & 2 tile base addresses
+|-
+|  Graphics Settings  ||  $7e7f9a  ||  byte  ||  $210c - 🖼️ BG 3 & 4 tile base addresses
+|-
+|  Graphics Settings  ||  $7e7fba  ||  byte  ||  $2123 - 🖼️ Window mask setting, BG 1 & 2
+|-
+|  Graphics Settings  ||  $7e7fbc  ||  byte  ||  $2124 - 🖼️ Window mask setting, BG 3 & 4
+|-
+|  Graphics Settings  ||  $7e7fbe  ||  byte  ||  $2125 - 🖼️ Window mask setting, OBJ
+|-
+|  Graphics Settings  ||  $7e7fc0  ||  byte  ||  $2126 - 🖼️ Window 1 left position
+|-
+|  Graphics Settings  ||  $7e7fc1  ||  byte  ||  $2127 - 🖼️ Window 1 right position
+|-
+|  Graphics Settings  ||  $7e7fc2  ||  byte  ||  $2128 - 🖼️ Window 2 left position
+|-
+|  Graphics Settings  ||  $7e7fc3  ||  byte  ||  $2129 - 🖼️ Window 2 right position
+|-
+|  Graphics Settings  ||  $7e7fc4  ||  byte  ||  $212a - 🖼️ Window 1/2 mask logic, BG 1-4
+|-
+|  Graphics Settings  ||  $7e7fc6  ||  byte  ||  $212b - 🖼️ Window 1/2 mask logic, MATH and OBJ
+|-
+|  Graphics Settings  ||  $7e7fc8  ||  byte  ||  $212c - 🖼️ Main screen designation
+|-
+|  Graphics Settings  ||  $7e7fca  ||  byte  ||  $212d - 🖼️ Sub screen designation
+|-
+|  Graphics Settings  ||  $7e7fcc  ||  byte  ||  $212e - 🖼️ Window area main screen disable
+|-
+|  Graphics Settings  ||  $7e7fce  ||  byte  ||  $212f - 🖼️ Window area sub screen disable
+|-
+|  Graphics Settings  ||  $7e7fd0  ||  byte  ||  $2130 - 🎨 Color math control A
+|-
+|  Graphics Settings  ||  $7e7fd2  ||  byte  ||  $2131 - 🎨 Color math control B
+|-
+|  Graphics Settings  ||  $7e7fd4  ||  word  ||  $2132 - 🎨 Color math sub screen backdrop color, RGB intensities stored as 0bbbbbgggggrrrrr
+|-
+|  Graphics Settings  ||  $7e7fda  ||  byte  ||  $2133 - 🖼️ Screen mode/video select
+|-
+|  Graphics Loading  ||  $7e8bae - $7e8dad  ||  $100 words  ||  $4302 - ↔️ DMA source addresses
+|-
+|  Graphics Loading  ||  $7e8dae - $7e8fad  ||  $100 words but only uses low byte  ||  $4304 - ↔️ DMA source address banks
+|-
+|  Graphics Loading  ||  $7e8fae - $7e91ad  ||  $100 words  ||  $2116 - ↔️ VRAM destination addresses
+|-
+|  Graphics Loading  ||  $7e91ae - $7e93ad  ||  $100 words  ||  $4305 - ↔️ DMA transfer sizes
+|-
+|  Graphics Loading  ||  $7e93ae  ||  byte  ||  ↔️ Number of DMA transfers to perform (indexes the preceding arrays)
+|-
+|  Graphics Loading  ||  $7faeea - $7fb0e9  ||  $100 words  ||  ↔️ Tile indexes, which tiles to copy, used to fill the DMA copy scheduler data in $7e8bae - $7e93ae
+|}
+
+{{Internal Data|game=Dragon Quest III}}
