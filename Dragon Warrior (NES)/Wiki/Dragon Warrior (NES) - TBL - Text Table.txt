@@ -1,7 +1,8 @@
-
 === Text Table ===
 
-Space is $5f
+The space (<code>&nbsp;</code>) character is $5f.
+
+$53 is rightquote-space (<code>’&nbsp;</code>) while $54 is space-rightquote (<code>&nbsp;’</code>).
 
 {| class="wikitable" style="text-align: center;"
 |-
@@ -20,15 +21,38 @@ Space is $5f
 |  M  ||  N  ||  O  ||  P  ||  Q  ||  R  ||  S  ||  T  ||  U  ||  V  ||  W  ||  X  ||  Y  ||  Z  ||  “  ||  ”
 |-
 ! scope="row" |  4_ 
-|  ’  ||  ✶  ||  ▶  ||  ▼  ||  :  ||  ..  ||  style="background-color:#EAECF0;"  |  ||  .  ||  ,  ||  -  ||  style="background-color:#EAECF0;"  |  ||  ?  ||  !  ||  ;  ||  )  ||  (
+|  ’  ||  ✱  ||  ▶  ||  ▼  ||  :  ||  ..
+|  style="background-color:#EAECF0;"  |
+|  .  ||  ,  ||  -
+|  style="background-color:#EAECF0;"  |
+|  ?  ||  !  ||  ;  ||  )  ||  (
 |-
 ! scope="row" |  5_
-|  ‘  ||  ‘  ||  .’  ||  ’  ||  <space>’  ||  style="background-color:#EAECF0;"  |  ||  style="background-color:#EAECF0;"  |  ||  style="background-color:#EAECF0;"  |  ||  style="background-color:#EAECF0;"  |  ||  style="background-color:#EAECF0;"  |  ||  style="background-color:#EAECF0;"  |  ||  style="background-color:#EAECF0;"  |  ||  style="background-color:#EAECF0;"  |  ||  style="background-color:#EAECF0;"  |  ||  style="background-color:#EAECF0;"  |  ||   
+|  ‘  ||  ‘  ||  .’  ||  ’&nbsp;  ||  &nbsp;’
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  &nbsp;
 |}
+
+==== As seen in RAM ====
+
+The text table as seen in the RAM viewer of Mesen2.
+
+[[File:Dragon Warrior (NES) - Text Table in RAM.png|none]]
 
 ==== TBL File ====
 
-Quotes and such use basic ASCII values instead of unicode.
+Quotes and such use basic ASCII values instead of Unicode.
+
+<code>Download TBL file: [https://raw.githubusercontent.com/TheAnsarya/DragonWarrior/main/Dragon%20Warrior%20(NES)/Wiki/Files/Dragon%20Warrior%20(NES).tbl Dragon Warrior (NES).tbl]</code>
 
 <pre>
 00=0
