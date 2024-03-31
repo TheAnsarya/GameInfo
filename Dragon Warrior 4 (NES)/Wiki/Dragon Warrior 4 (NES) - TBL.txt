@@ -1,0 +1,112 @@
+{{TBL|game=Dragon Warrior IV (NES)}}
+
+==Text Table==
+
+[TODO: Finish table grid]
+
+The space (<code>&nbsp;</code>) character is $00.
+
+{| class="wikitable" style="text-align: center;"
+|-
+!    !!  _0  !!  _1  !!  _2  !!  _3  !!  _4  !!  _5  !!  _6  !!  _7  !!  _8  !!  _9  !!  _a  !!  _b  !!  _c  !!  _d  !!  _e  !!  _f
+|-
+! scope="row" |  0_
+|  &nbsp;  ||  0  ||  1  ||  2  ||  3  ||  4  ||  5  ||  6  ||  7  ||  8  ||  9  ||  a  ||  b  ||  c  ||  d  ||  e
+|-
+! scope="row" |  1_
+|  f  ||  g  ||  h  ||  i  ||  j  ||  k  ||  l  ||  m  ||  n  ||  o  ||  p  ||  q  ||  r  ||  s  ||  t  ||  u
+|-
+! scope="row" |  2_
+|  v  ||  w  ||  x  ||  y  ||  z  ||  A  ||  B  ||  C  ||  D  ||  E  ||  F  ||  G  ||  H  ||  I  ||  J  ||  K
+|-
+! scope="row" |  3_
+|  L  ||  M  ||  N  ||  O  ||  P  ||  Q  ||  R  ||  S  ||  T  ||  U  ||  V  ||  W  ||  X  ||  Y  ||  Z
+|  style="background-color:#EAECF0;"  |
+|-
+! scope="row" |  4_
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|-
+! scope="row" |  5_
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|-
+! scope="row" |  6_
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  —  ||  “  ||  ”  ||  ‘  ||  ‘  ||  ’  ||  ’  ||  .’  ||  ?  ||  !  ||  -
+|-
+! scope="row" |  7_
+|  ✱  ||  :  ||  …  ||  🪦  ||  💀  ||  (  ||  )  ||  ,  ||  .  || 「
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|-
+! scope="row" |  8_
+|  ▼  ||  ▶
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|  style="background-color:#EAECF0;"  |
+|}
+
+=== As seen in RAM ===
+
+The text table as seen in the RAM viewer of Mesen2.
+
+[[File:Dragon Warrior 4 (NES) - Text Table in RAM.png|none]]
+
+=== TBL File ===
+
+[TODO: Add table file]
+
+=== Control Codes ===
+
+[TODO: Add control codes]
+
+
+{{Internal Data|game=Dragon Warrior IV (NES)}}
