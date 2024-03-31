@@ -1,0 +1,107 @@
+{{rammap|game=Final Fantasy Mystic Quest}}
+
+==SRAM==
+
+The are 9 save slots of $38c bytes each for a total of $1fec bytes.
+
+{| class="wikitable"
+|-
+!  Address  !!  Description
+|-
+|  $0000 - $038b  || Save Slot 1A
+|-
+|  $038c - $0717  || Save Slot 2A
+|-
+|  $0718 - $0aa3  || Save Slot 3A
+|-
+|  $0aa4 - $0e2f  || Save Slot 1B
+|-
+|  $0e30 - $11bb  || Save Slot 2B
+|-
+|  $11bc - $154a  || Save Slot 3B
+|-
+|  $154b - $18d3  || Save Save Slot 1C
+|-
+|  $18d4 - $1c5f  || Save Slot 2C
+|-
+|  $1c60 - $1feb  || Save Slot 3C
+|-
+|  $1fec - $1fff  || $14 unknown bytes
+|}
+
+===Save Slot Structure===
+
+Save Slot Structure, $0x38c bytes.
+
+[Todo: flesh out missing values]
+
+{| class="wikitable"
+!  Offset  !!  Length  !!  Description
+|-
+|  $000  ||  6  ||  "FF0!" + checksum
+|-
+|  $006  ||  $50  ||  Character 1
+|-
+|  $056  ||  $50  ||  Character 2
+|-
+|  $0a6  ||  3  ||  Gold (Max: 9999999)
+|-
+|  $0ab  ||  1  ||  Player X
+|-
+|  $0ac  ||  1  ||  Player Y
+|-
+|  $0ad  ||  1  ||  Player Facing
+|-
+|  $0b3  ||  1  ||  Map ID
+|-
+|  $0b9  ||  3  ||  Play Time (0xSSMMHH)
+|-
+|  $0c1  ||  1  ||  # of cures
+|-
+|  $0c2  ||  $2ca  ||  Unknown [Todo]
+|}
+
+===Character Data Structure===
+
+Character Data Structure, $50 bytes.
+
+[Todo: flesh out missing values]
+
+{| class="wikitable"
+!  Offset  !!  Length  !!  Description
+|-
+|  $00  ||  8  ||  Name
+|-
+|  $10  ||  1  ||  Level (Max: 99)
+|-
+|  $11  ||  3  ||  Exp (Max: 9999999)
+|-
+|  $14  ||  2  ||  Cur HP (Max: $ffff)
+|-
+|  $16  ||  2  ||  Max HP (Max: $ffff)
+|-
+|  $21  ||  1  ||  Status
+|-
+|  $22  ||  1  ||  Curr Attack  (Max: 99)
+|-
+|  $23  ||  1  ||  Curr Defense (Max: 99)
+|-
+|  $24  ||  1  ||  Curr Speed   (Max: 99)
+|-
+|  $25  ||  1  ||  Curr Magic   (Max: 99)
+|-
+|  $26  ||  1  ||  Base Attack  (Max: 99)
+|-
+|  $27  ||  1  ||  Base Defense (Max: 99)
+|-
+|  $28  ||  1  ||  Base Speed   (Max: 99)
+|-
+|  $29  ||  1  ||  Base Magic   (Max: 99)
+|-
+|  $30  ||  1  ||  Weapon Count
+|-
+|  $31  ||  1  ||  Weapon ID
+|}
+
+
+{{Internal Data|game=Final Fantasy Mystic Quest}}
