@@ -303,7 +303,7 @@ The space (<code>&nbsp;</code>) character is $00.
 
 The text table as seen in the RAM viewer of Mesen2.
 
-Represents <code>$1000 - $acff</code> in VRAM.
+Represents <code>$a000 - $acff</code> in VRAM.
 
 [[File:Dragon Quest I & II (SNES) - Text Table in RAM (JP, DQ1).png|none]]
 
@@ -643,7 +643,7 @@ The space (<code>&nbsp;</code>) character is $00.
 
 The text table as seen in the RAM viewer of Mesen2.
 
-Represents <code>$1000 - $acff</code> in VRAM.
+Represents <code>$a000 - $acff</code> in VRAM.
 
 [[File:Dragon Quest I & II (SNES) - Text Table in RAM (ENG, DQ1).png|none]]
 
