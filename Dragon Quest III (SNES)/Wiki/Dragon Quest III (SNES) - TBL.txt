@@ -315,7 +315,7 @@ The text table as seen in the RAM viewer of Mesen2.
 
 Quotes and such use basic ASCII values instead of Unicode.
 
-<code>Download TBL file: [https://raw.githubusercontent.com/TheAnsarya/DragonWarrior/main/Dragon Quest III (SNES)/Wiki/Files/Dragon Quest III (SNES) (JP) - simple.tbl Dragon Quest III (SNES) (JP) - simple.tbl]</code>
+Download TBL file: <code>[https://raw.githubusercontent.com/TheAnsarya/DragonWarrior/main/Dragon%20Quest%20III%20(SNES)/Wiki/Files/Dragon%20Quest%20III%20(SNES)%20(JP)%20-%20simple.tbl Dragon Quest III (SNES) (JP) - simple.tbl]</code>
 
 <pre>
 01= 
@@ -585,6 +585,8 @@ ff=J
 
 This table is based on the English translation by DQ Translations.
 
+[TODO: Where are the numbers? Verify the values in the table]
+
 The space (<code>&nbsp;</code>) character is $3f.
 
 {| class="wikitable" style="text-align: center;"
@@ -702,7 +704,7 @@ The space (<code>&nbsp;</code>) character is $3f.
 
 === TBL File ===
 
-<code>Download TBL file: [https://raw.githubusercontent.com/TheAnsarya/DragonWarrior/main/Dragon Quest III (SNES)/Wiki/Files/Dragon Quest III (SNES) (EN) - simple.tbl Dragon Quest III (SNES) (EN) - simple.tbl]</code>
+Download TBL file: <code>[https://raw.githubusercontent.com/TheAnsarya/DragonWarrior/main/Dragon%20Quest%20III%20(SNES)/Wiki/Files/Dragon%20Quest%20III%20(SNES)%20(EN)%20-%20simple.tbl Dragon Quest III (SNES) (EN) - simple.tbl]</code>
 
 <pre>
 01=A
