@@ -88,7 +88,7 @@ Katakana that don't appear: ヰ ヱ
 |  ぉ
 |  っ
 |-
-! scope="row" |  4_っ
+! scope="row" |  4_
 |  ゃ
 |  ゅ
 |  ょ
@@ -106,7 +106,7 @@ Katakana that don't appear: ヰ ヱ
 |  シ
 |  ス
 |-
-! scope="row" |  5_ス
+! scope="row" |  5_
 |  セ
 |  ソ
 |  タ
@@ -124,7 +124,7 @@ Katakana that don't appear: ヰ ヱ
 |  フ
 |  ヘ
 |-
-! scope="row" |  6_ヘ
+! scope="row" |  6_
 |  ホ
 |  マ
 |  ミ
@@ -312,8 +312,6 @@ The text table as seen in the RAM viewer of Mesen2.
 [[File:Dragon Quest III (SNES) - Text Table in RAM (JP).png|none]]
 
 ==== TBL File ====
-
-Quotes and such use basic ASCII values instead of Unicode.
 
 Download TBL file: <code>[https://raw.githubusercontent.com/TheAnsarya/DragonWarrior/main/Dragon%20Quest%20III%20(SNES)/Wiki/Files/Dragon%20Quest%20III%20(SNES)%20(JP)%20-%20simple.tbl Dragon Quest III (SNES) (JP) - simple.tbl]</code>
 
