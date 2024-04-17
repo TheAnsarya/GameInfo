@@ -1,0 +1,17 @@
+==Known Dumps==
+
+These are the roms as they are listed in [https://www.tosecdev.org/ TOSEC].
+
+{| class="wikitable"
+|-
+!  Description  !!  Size  !!  Hashes
+|-
+|  Dragon Quest II (1987-01-26)(Enix)(JP)  ||  131088  ||  '''CRC32''': 7b3d483f<br />'''MD5''': 5c908061c1ebdabc5a5ea1782f83a2cd<br />'''SHA1''': 036f96215c102475e9ff7c4b89fe744cee069d9e
+|-
+|  Dragon Quest II (1987-01-26)(Enix)(JP)[a]  ||  131088  ||  '''CRC32''': d4aa554f<br />'''MD5''': b5a03566a3ff68dc563e81cf08ced4e8<br />'''SHA1''': 7eefe5e72e88a7f8513a6ac79b8789877d54f2a1
+|-
+|  Dragon Warrior II (1990-09)(Enix)(US)  ||  262160  ||  '''CRC32''': e9f5be99<br />'''MD5''': 3aef63a01d6f57e3bf2c865a1d919d13<br />'''SHA1''': f464c7045a489a248686e92164fde2903cfd013e
+|}
+
+
+{{Dragon Quest Series}}
