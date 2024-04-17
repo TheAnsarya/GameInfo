@@ -1,4 +1,4 @@
-{{rammap|game=Final Fantasy Mystic Quest}}
+{{rammap}}
 
 ==SRAM==
 
@@ -104,4 +104,4 @@ Character Data Structure, $50 bytes.
 |}
 
 
-{{Internal Data|game=Final Fantasy Mystic Quest}}
+{{Internal Data}}
