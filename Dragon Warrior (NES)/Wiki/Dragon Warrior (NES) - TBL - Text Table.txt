@@ -52,7 +52,7 @@ The text table as seen in the RAM viewer of Mesen2.
 
 Quotes and such use basic ASCII values instead of Unicode.
 
-<code>Download TBL file: [https://raw.githubusercontent.com/TheAnsarya/DragonWarrior/main/Dragon%20Warrior%20(NES)/Wiki/Files/Dragon%20Warrior%20(NES).tbl Dragon Warrior (NES).tbl]</code>
+<code>Download TBL file: [https://raw.githubusercontent.com/TheAnsarya/GameInfo/main/Dragon%20Warrior%20(NES)/Wiki/Files/Dragon%20Warrior%20(NES).tbl Dragon Warrior (NES).tbl]</code>
 
 <pre>
 00=0
@@ -140,4 +140,4 @@ Quotes and such use basic ASCII values instead of Unicode.
 5F= 
 </pre>
 
-{{Internal Data|game=Dragon Warrior}}
+{{Internal Data}}
