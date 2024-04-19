@@ -1,3 +1,6 @@
+{{rammap}}
+{{stub}}
+
 ==Main==
 
 {| class="wikitable sortable"
@@ -630,3 +633,23 @@
 |-
 |  Stuff  ||  $6157 - $6159  ||  long  ||  🪙 Gold (max 99,999)
 |}
+
+==Zeropage==
+* 0x63 = Current Map Number  (See: [[Dragon Warrior IV/Map List|Map List]])
+* 0x64 = Current Submap Number
+
+==WRAM==
+* 0x615A = Current Chapter number (00 = chapter 1, 04  = chapter 5)
+* 0x615B = Current Tactics (00 = Normal, 01 = Save MP, 02 = Offensive, 03 = Defensive, 04 = Try Out, 05 = Use No MP)
+* 0x6EFE (0x20 bytes long) = ???  (initialized to FF bytes)
+* 0x6F20 (0x20 bytes long) = 'Smoothing Flags' that determine if walls use the front facing tile, or the regular tile.
+* 0x6F40 (0x40 bytes long) = Behavior of tiles (normal, wall, water, stairs, etc.) for current tile set (see [[Dragon Warrior IV/Tile Behaviors|Tile Behaviors]])
+* 0x7600 (0xC0 bytes long) = Tile numbers for current tileset of 32 tiles (33rd tile is Roof tile)
+* 0x76C0 (0x40 bytes long) = Attribute values for current tile set (33rd tile is Roof tile)
+* 0x7800 (??? bytes long) = Map data for current map.
+** Format: RRRttttt 
+** ttttt = tile number 0-31
+** RRR = roof number  0-7  (0 = no roof)
+
+
+{{Internal Data}}

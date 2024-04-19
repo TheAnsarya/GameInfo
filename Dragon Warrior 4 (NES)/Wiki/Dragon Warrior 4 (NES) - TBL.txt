@@ -1,4 +1,4 @@
-{{TBL|game=Dragon Warrior IV (NES)}}
+{{TBL}}
 
 ==Text Table==
 
@@ -109,4 +109,4 @@ The text table as seen in the RAM viewer of Mesen2.
 [TODO: Add control codes]
 
 
-{{Internal Data|game=Dragon Warrior IV (NES)}}
+{{Internal Data}}

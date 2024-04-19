@@ -1,4 +1,4 @@
-
+{{subpage}}
 {{stub}}
 
 =Values=
@@ -286,5 +286,3 @@ In the item bags, the high bit %10000000 indicates that the item is equipped. So
 ==Maps==
 
 [TODO: add list]
-
-
