@@ -4,9 +4,9 @@
 =Values=
 
 ==Items==
-The item index only uses the bottom 7 bits so values range from $00 to $7f.
+The item index only uses the bottom 7 bits so values range from <code>$00</code> to <code>$7f</code>.
 
-In the item bags, the high bit %10000000 indicates that the item is equipped. So, to get the equipped value add $80 to the item index.
+In the item bags, the high bit <code>%10000000</code> indicates that the item is equipped. So, to get the equipped value add <code>$80</code> to the item index.
 
 * [[ #Items-Weapons | Weapons ]]
 * [[ #Items-Armor | Armor ]]
@@ -297,7 +297,7 @@ In the item bags, the high bit %10000000 indicates that the item is equipped. So
 |-
 |  style="text-align: center;"  |  $7c  ||  Green Orb
 |-
-!  colspan="2" id="Items-GlitchItems"  |  GlitchItems
+!  colspan="2" id="Items-GlitchItems"  |  Glitch Items
 |-
 |  style="text-align: center;"  |  $7d  ||  Stick Slime
 |-

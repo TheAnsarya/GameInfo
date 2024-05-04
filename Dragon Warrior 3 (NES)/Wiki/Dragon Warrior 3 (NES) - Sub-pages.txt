@@ -1,0 +1,4 @@
+==Sub-pages==
+{{namespaces}}
+
+* [[Dragon Warrior III (NES)/Values]]
