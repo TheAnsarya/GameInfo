@@ -1466,7 +1466,6 @@ The value of the current room (see [[{{BASEPAGENAME}}/Notes#Rooms|Notes]]) is us
 |  $25C6F - $25C8B  ||  $001D?  ||  Tileset data - value to subtract from tile # when destroyed/replaced with other tile [always(?) 08]
 |}
 
-
 == Door Data Format ==
 
 Data for each door is stored in 5 bytes as follows:

@@ -2,6 +2,8 @@ I've been working with emulation and ROM hacking since the mid-late '90s.
 
 My name is <code>Andy Hubbard</code>, but currently, I mostly go by <code>Wayness</code> or <code>Ansarya</code>.
 
+If you need to contact me, look me up as <code>Wayness</code> on the the RHDN or TCRF discord servers.
+
 I primarily work on these games:
 
 * Dragon Warrior/Dragon Quest:
