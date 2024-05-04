@@ -6,59 +6,59 @@
 |-
 !  Category  !!  Address  !! Size  !!  Description
 |-
-|  style="background-color:#EAECF0;"  |  Unknown
-|  style="background-color:#EAECF0;"  |  $0000 - $001b
-|  style="background-color:#EAECF0;"  |  28 bytes
-|  style="background-color:#EAECF0;"  |  ...
+|  style="background-color: #eaecf0;"  |  Unknown
+|  style="background-color: #eaecf0;"  |  $0000 - $001b
+|  style="background-color: #eaecf0;"  |  28 bytes
+|  style="background-color: #eaecf0;"  |  ...
 |-
 |  Data  ||  $001c  ||  byte  ||  RNG
 |-
-|  style="background-color:#EAECF0;"  |  Unknown
-|  style="background-color:#EAECF0;"  |  $001d - $002b
-|  style="background-color:#EAECF0;"  |  15 bytes
-|  style="background-color:#EAECF0;"  |  ...
+|  style="background-color: #eaecf0;"  |  Unknown
+|  style="background-color: #eaecf0;"  |  $001d - $002b
+|  style="background-color: #eaecf0;"  |  15 bytes
+|  style="background-color: #eaecf0;"  |  ...
 |-
 |  Data  ||  $002c ||  byte  ||  Party Travel type (ground, ship, air)
 |-
-|  style="background-color:#EAECF0;"  |  Unknown
-|  style="background-color:#EAECF0;"  |  $002d - $004b
-|  style="background-color:#EAECF0;"  |  31 bytes
-|  style="background-color:#EAECF0;"  |  ...
+|  style="background-color: #eaecf0;"  |  Unknown
+|  style="background-color: #eaecf0;"  |  $002d - $004b
+|  style="background-color: #eaecf0;"  |  31 bytes
+|  style="background-color: #eaecf0;"  |  ...
 |-
 |  Data  ||  $004c  ||  byte  ||  RNG
 |-
-|  style="background-color:#EAECF0;"  |  Unknown
-|  style="background-color:#EAECF0;"  |  $004d - $0050
-|  style="background-color:#EAECF0;"  |  4 bytes
-|  style="background-color:#EAECF0;"  |  ...
+|  style="background-color: #eaecf0;"  |  Unknown
+|  style="background-color: #eaecf0;"  |  $004d - $0050
+|  style="background-color: #eaecf0;"  |  4 bytes
+|  style="background-color: #eaecf0;"  |  ...
 |-
 |  Battles  ||  $0051  ||  byte  ||  Whose turn it is
 |-
-|  style="background-color:#EAECF0;"  |  Unknown
-|  style="background-color:#EAECF0;"  |  $0052 - $00a3
-|  style="background-color:#EAECF0;"  |  82 bytes
-|  style="background-color:#EAECF0;"  |  ...
+|  style="background-color: #eaecf0;"  |  Unknown
+|  style="background-color: #eaecf0;"  |  $0052 - $00a3
+|  style="background-color: #eaecf0;"  |  82 bytes
+|  style="background-color: #eaecf0;"  |  ...
 |-
 |  Data  ||  $00a4  ||  byte  ||  RNG
 |-
-|  style="background-color:#EAECF0;"  |  Unknown
-|  style="background-color:#EAECF0;"  |  $00a5 - $00ac
-|  style="background-color:#EAECF0;"  |  8 bytes
-|  style="background-color:#EAECF0;"  |  ...
+|  style="background-color: #eaecf0;"  |  Unknown
+|  style="background-color: #eaecf0;"  |  $00a5 - $00ac
+|  style="background-color: #eaecf0;"  |  8 bytes
+|  style="background-color: #eaecf0;"  |  ...
 |-
 |  Data  ||  $00ad  ||  byte  ||  Fairy Water Counter
 |-
-|  style="background-color:#EAECF0;"  |  Unknown
-|  style="background-color:#EAECF0;"  |  $00ae - $00d7
-|  style="background-color:#EAECF0;"  |  42 bytes
-|  style="background-color:#EAECF0;"  |  ...
+|  style="background-color: #eaecf0;"  |  Unknown
+|  style="background-color: #eaecf0;"  |  $00ae - $00d7
+|  style="background-color: #eaecf0;"  |  42 bytes
+|  style="background-color: #eaecf0;"  |  ...
 |-
 |  Data  ||  $00d8  ||  byte  ||  Music counter
 |-
-|  style="background-color:#EAECF0;"  |  Unknown
-|  style="background-color:#EAECF0;"  |  $00d9 - $01ff
-|  style="background-color:#EAECF0;"  |  295 bytes
-|  style="background-color:#EAECF0;"  |  ...
+|  style="background-color: #eaecf0;"  |  Unknown
+|  style="background-color: #eaecf0;"  |  $00d9 - $01ff
+|  style="background-color: #eaecf0;"  |  295 bytes
+|  style="background-color: #eaecf0;"  |  ...
 |-
 |  Graphics  ||  $0200 - $020f  ||  16 bytes  ||  Player 1 - On Screen Sprite data
 |-
@@ -70,10 +70,10 @@
 |-
 |  Graphics  ||  $0240 - $02ff  ||  192 bytes  ||  On Screen Sprite data
 |-
-|  style="background-color:#EAECF0;"  |  Unknown
-|  style="background-color:#EAECF0;"  |  $0300 - $04ff
-|  style="background-color:#EAECF0;"  |  512 bytes
-|  style="background-color:#EAECF0;"  |  ...
+|  style="background-color: #eaecf0;"  |  Unknown
+|  style="background-color: #eaecf0;"  |  $0300 - $04ff
+|  style="background-color: #eaecf0;"  |  512 bytes
+|  style="background-color: #eaecf0;"  |  ...
 |-
 |  Battles  ||  $0500 - $0501  ||  word  ||  Enemy 1 - HP
 |-
@@ -155,17 +155,17 @@
 |-
 |  Battles  ||  $053e - $053f  ||  word  ||  Enemy 8 - Status
 |-
-|  style="background-color:#EAECF0;"  |  Unknown
-|  style="background-color:#EAECF0;"  |  $0540 - $0564
-|  style="background-color:#EAECF0;"  |  37 bytes
-|  style="background-color:#EAECF0;"  |  ...
+|  style="background-color: #eaecf0;"  |  Unknown
+|  style="background-color: #eaecf0;"  |  $0540 - $0564
+|  style="background-color: #eaecf0;"  |  37 bytes
+|  style="background-color: #eaecf0;"  |  ...
 |-
 |  Battles  ||  $0565  ||  byte  ||  Bikill flag on Enemy 1 (if 1)
 |-
-|  style="background-color:#EAECF0;"  |  Unknown
-|  style="background-color:#EAECF0;"  |  $0566 - $056c
-|  style="background-color:#EAECF0;"  |  7 bytes
-|  style="background-color:#EAECF0;"  |  ...
+|  style="background-color: #eaecf0;"  |  Unknown
+|  style="background-color: #eaecf0;"  |  $0566 - $056c
+|  style="background-color: #eaecf0;"  |  7 bytes
+|  style="background-color: #eaecf0;"  |  ...
 |-
 |  Battles  ||  $056d  ||  byte  ||  Enemy Group 1 - Type
 |-
@@ -183,19 +183,19 @@
 |-
 |  Battles  ||  $0574  ||  byte  ||  Group 4 - Count
 |-
-|  style="background-color:#EAECF0;"  |  Unknown
-|  style="background-color:#EAECF0;"  |  $0575 - $06dd
-|  style="background-color:#EAECF0;"  |  361 bytes
-|  style="background-color:#EAECF0;"  |  ...
+|  style="background-color: #eaecf0;"  |  Unknown
+|  style="background-color: #eaecf0;"  |  $0575 - $06dd
+|  style="background-color: #eaecf0;"  |  361 bytes
+|  style="background-color: #eaecf0;"  |  ...
 |-
 |  Data  ||  $06de  ||  byte  ||  Level (World?) X Position, Level (World?) Y Position, Time of day (sub bytes)
 |-
 |  Data  ||  $06df  ||  byte  ||  Time of day
 |-
-|  style="background-color:#EAECF0;"  |  Unknown
-|  style="background-color:#EAECF0;"  |  $06e0 - $06ff
-|  style="background-color:#EAECF0;"  |  32 bytes
-|  style="background-color:#EAECF0;"  |  ...
+|  style="background-color: #eaecf0;"  |  Unknown
+|  style="background-color: #eaecf0;"  |  $06e0 - $06ff
+|  style="background-color: #eaecf0;"  |  32 bytes
+|  style="background-color: #eaecf0;"  |  ...
 |-
 |  Stats  ||  $0700  ||  byte  ||  Player 1 - Level
 |-
@@ -245,13 +245,13 @@
 |-
 |  Stats  ||  $0717  ||  byte  ||  Player 4 - Vitality
 |-
-|  Stats  ||  $0718  ||  byte  ||  Player 1 - Class/Gender
+|  Stats  ||  $0718  ||  byte  ||  Player 1 - [[#Character_Classes_/_Gender|Class / Gender]]
 |-
-|  Stats  ||  $0719  ||  byte  ||  Player 2 - Class/Gender
+|  Stats  ||  $0719  ||  byte  ||  Player 2 - [[#Character_Classes_/_Gender|Class / Gender]]
 |-
-|  Stats  ||  $071a  ||  byte  ||  Player 3 - Class/Gender
+|  Stats  ||  $071a  ||  byte  ||  Player 3 - [[#Character_Classes_/_Gender|Class / Gender]]
 |-
-|  Stats  ||  $071b  ||  byte  ||  Player 4 - Class/Gender
+|  Stats  ||  $071b  ||  byte  ||  Player 4 - [[#Character_Classes_/_Gender|Class / Gender]]
 |-
 |  Stats  ||  $071c - $071d  ||  word  ||  Player 1 - HP
 |-
@@ -301,13 +301,13 @@
 |-
 |  Stats  ||  $074d - $074f  ||  long  ||  Player 4 - Experience
 |-
-|  Stats  ||  $0750 - $0752  ||  long  ||  Player 1 - Return List
+|  Stats  ||  $0750 - $0752  ||  long  ||  Player 1 - [[#Return_Destinations|Return Destinations]]
 |-
-|  Stats  ||  $0753 - $0755  ||  long  ||  Player 2 - Return List
+|  Stats  ||  $0753 - $0755  ||  long  ||  Player 2 - [[#Return_Destinations|Return Destinations]]
 |-
-|  Stats  ||  $0756 - $0758  ||  long  ||  Player 3 - Return List
+|  Stats  ||  $0756 - $0758  ||  long  ||  Player 3 - [[#Return_Destinations|Return Destinations]]
 |-
-|  Stats  ||  $0759 - $075b  ||  long  ||  Player 4 - Return List
+|  Stats  ||  $0759 - $075b  ||  long  ||  Player 4 - [[#Return_Destinations|Return Destinations]]
 |-
 |  Stats  ||  $075c - $0763  ||  8 bytes  ||  Player 1 - Name
 |-
@@ -425,10 +425,10 @@
 |-
 |  Stats  ||  $07c4  ||  byte  ||  Player 4 - Character in Storage num
 |-
-|  style="background-color:#EAECF0;"  |  Unused
-|  style="background-color:#EAECF0;"  |  $07c5 - $07ff
-|  style="background-color:#EAECF0;"  |  59 bytes
-|  style="background-color:#EAECF0;"  |  Unused
+|  style="background-color: #eaecf0;"  |  Unused
+|  style="background-color: #eaecf0;"  |  $07c5 - $07ff
+|  style="background-color: #eaecf0;"  |  59 bytes
+|  style="background-color: #eaecf0;"  |  Unused
 |}
 
 =Additional Information=
@@ -450,7 +450,7 @@ These are addresses for the first party member.  Add 1*the ally number to the ad
 * Intelligence: 0x70C
 * Vitality: 0x710
 * Luck: 0x714
-* Job Class/Sex: 0x718  ([[#Character_Classes|Character Classes Table]])
+* Character Class / Gender: 0x718  ([[#Character_Classes_/_Gender|Character Classes / Gender]])
 
 ===16-bit values===
 Addresses for first party member. Add 2*Ally Number for other characters.  Little endian byte order.
@@ -475,53 +475,123 @@ Addresses for first party member.  Add 8*Ally number for other characters.
 Address for player's gold pieces (GP) (24-bit)
 *Gold: 0x7BC
 
-==Character Classes==
+==Character Classes / Gender==
+
 This is located at 0x718 + character number.
- ....x... = 0 if male, 1 if female
- .....xxx = Character Class
-* 0 = Hero
-* 1 = Wizard
-* 2 = Pilgrim
-* 3 = Sage
-* 4 = Soldier
-* 5 = Merchant
-* 6 = Fighter
-* 7 = Goof-off
+
+{| class="wikitable"
+!    !!  Mask  !!  Value  !!  Description
+|-
+!  rowspan="8"  |  Class
+|  rowspan="8"  |  %00000111
+|  style="text-align: center;"  |  $00  ||  Hero
+|-
+|  style="text-align: center;"  |  $01  ||  Wizard
+|-
+|  style="text-align: center;"  |  $02  ||  Pilgrim
+|-
+|  style="text-align: center;"  |  $03  ||  Sage
+|-
+|  style="text-align: center;"  |  $04  ||  Soldier
+|-
+|  style="text-align: center;"  |  $05  ||  Merchant
+|-
+|  style="text-align: center;"  |  $06  ||  Fighter
+|-
+|  style="text-align: center;"  |  $07  ||  Goof-off
+|-
+!  rowspan="2"  |  Gender
+|  rowspan="2"  |  %00001000
+|  style="text-align: center;"  |  $00  ||  Male
+|-
+|  style="text-align: center;"  |  $08  ||  Female
+|-
+!  rowspan="4" style="background-color: #eaecf0;"  |  Unused
+|  style="background-color: #eaecf0;"  |  %00010000
+|  style="background-color: #eaecf0; text-align: center;"  |  ...
+|  style="background-color: #eaecf0;"  |  Unused
+|-
+|  style="background-color: #eaecf0;"  |  %00100000
+|  style="background-color: #eaecf0; text-align: center;"  |  ...
+|  style="background-color: #eaecf0;"  |  Unused
+|-
+|  style="background-color: #eaecf0;"  |  %01000000
+|  style="background-color: #eaecf0; text-align: center;"  |  ...
+|  style="background-color: #eaecf0;"  |  Unused
+|-
+|  style="background-color: #eaecf0;"  |  %10000000
+|  style="background-color: #eaecf0; text-align: center;"  |  ...
+|  style="background-color: #eaecf0;"  |  Unused
+|}
 
 ==Return Destinations==
+
 This is located at 0x750 + character number * 3.
 
 The 3 bytes of Return Destinations store one bit per location visited.  The upper 4 bits of the third byte are not used.
 
-These go from least significant bit to most significant bit.
+{| class="wikitable"
+!    !!  Bit !!  Mask  !!  Destination
+|-
+!  rowspan="8"  |  Byte 0
+|  %00000001  ||  style="text-align: center;"  |  $01  ||  Aliahan
+|-
+|  %00000010  ||  style="text-align: center;"  |  $02  ||  Reeve
+|-
+|  %00000100  ||  style="text-align: center;"  |  $04  ||  Romally
+|-
+|  %00001000  ||  style="text-align: center;"  |  $08  ||  Kanave
+|-
+|  %00010000  ||  style="text-align: center;"  |  $10  ||  Noaniels
+|-
+|  %00100000  ||  style="text-align: center;"  |  $20  ||  Assaram
+|-
+|  %01000000  ||  style="text-align: center;"  |  $40  ||  Isis
+|-
+|  %10000000  ||  style="text-align: center;"  |  $80  ||  Portoga
+|-
+!  rowspan="8"  |  Byte 1
+|  %00000001  ||  style="text-align: center;"  |  $01  ||  Baharata
+|-
+|  %00000010  ||  style="text-align: center;"  |  $02  ||  Dhama
+|-
+|  %00000100  ||  style="text-align: center;"  |  $04  ||  Lancel
+|-
+|  %00001000  ||  style="text-align: center;"  |  $08  ||  Jipang
+|-
+|  %00010000  ||  style="text-align: center;"  |  $10  ||  Eginbear
+|-
+|  %00100000  ||  style="text-align: center;"  |  $20  ||  Samano
+|-
+|  %01000000  ||  style="text-align: center;"  |  $40  ||  Soo
+|-
+|  %10000000  ||  style="text-align: center;"  |  $80  ||  Tantegel
+|-
+!  rowspan="8"  |  Byte 2
+|  %00000001  ||  style="text-align: center;"  |  $01  ||  Hauksness
+|-
+|  %00000010  ||  style="text-align: center;"  |  $02  ||  Cantlin
+|-
+|  %00000100  ||  style="text-align: center;"  |  $04  ||  Kol
+|-
+|  %00001000  ||  style="text-align: center;"  |  $08  ||  Rimuldar
+|-
+|  style="background-color: #eaecf0;"  |  %00010000
+|  style="text-align: center; background-color: #eaecf0;"  |  $10
+|  rowspan="4" style="background-color: #eaecf0;"  |  Unused
+|-
+|  style="background-color: #eaecf0;"  |  %00100000
+|  style="text-align: center; background-color: #eaecf0;"  |  $20
+|-
+|  style="background-color: #eaecf0;"  |  %01000000
+|  style="text-align: center; background-color: #eaecf0;"  |  $40
+|-
+|  style="background-color: #eaecf0;"  |  %10000000
+|  style="text-align: center; background-color: #eaecf0;"  |  $80
+|}
 
-===Byte 0===
-*Aliahan
-*Reeve
-*Romally
-*Kanave
-*Noaniels
-*Assaram
-*Isis
-*Portoga
+==Spell Flags List==
 
-===Byte 1===
-*Baharata
-*Dhama
-*Lancel
-*Jipang
-*Eginbear
-*Samano
-*Soo
-*Tantegel
-
-===Byte 2===
-*Hauksness
-*Cantlin
-*Kol
-*Rimuldar
-
-==Spell List==
 First character's magic list begins at 0x79C.  Add 8 * ally number for other characters.
 
 *Byte 0-2: Wizard Spells (in battle)
@@ -530,88 +600,152 @@ First character's magic list begins at 0x79C.  Add 8 * ally number for other cha
 *Byte 7: Pilgrim Spells (field)
 Note: Hero uses location of Wizard spells.
 
-===Wizard Battle Spells===
-Byte 0
-* Blaze
-* Upper
-* IceBolt
-* Increase
-* Firebal
-* Return
-* Bang
-* Slow
+'''Note:''' The Index column refers to the spell's value in the [[Dragon_Warrior_III_(NES)/Values#Spells|List of Spells]]
 
-Byte 1
-* Blazemore
-* RobMagic
-* Snowblast
-* IceSpears
-* Firebane
-* Bikill
-* Boom
-* Bounce
-
-Byte 2
-* Blazemost
-* Chaos
-* Snowstorm
-* BeDragon
-* Firevolt
-* Transform
-* Explodet
-* Chance
-
-===Wizard Field Spells===
-Byte 3
-* Outside
-* Return
-* X-Ray
-* StepGuard
-* Day-Night
-* CurseOff
-* Invisible
-* Open
-
-===Pilgrim Battle Spells===
-Byte 4
-* Sap
-* Heal
-* Expel
-* Antidote
-* Infernos
-* SpeedUP
-* Surround
-* Sleep
-
-Byte 5
-* Defence
-* Healmore
-* Beat
-* NumbOff
-* Infermore
-* StopSpell
-* Limbo
-* Awake
-
-Byte 6
-* Barrier
-* Healall
-* Defeat
-* Healus
-* Infermost
-* Vivify
-* Sacrifice
-* Revive
-
-===Pilgrim Field Spells===
-Byte 7
-* Heal
-* Antidote
-* Healmore
-* NumbOff
-* Vivify
-* Healall
-* Healus
-* Revive
+{| class="wikitable"
+!    !!  Class  !!  Type !!  Bit !!  Index  !!  Spell
+|-
+!  rowspan="8"  |  Byte 0
+|  rowspan="32"  |  Wizard
+|  rowspan="24"  |  Battle
+|  %00000001  ||  style="text-align: center;"  |  $00  ||  Blaze
+|-
+|  %00000010  ||  style="text-align: center;"  |  $2d  ||  Upper
+|-
+|  %00000100  ||  style="text-align: center;"  |  $09  ||  IceBolt
+|-
+|  %00001000  ||  style="text-align: center;"  |  $2e  ||  Increase
+|-
+|  %00010000  ||  style="text-align: center;"  |  $03  ||  Firebal
+|-
+|  %00100000  ||  style="text-align: center;"  |  $26  ||  Return
+|-
+|  %01000000  ||  style="text-align: center;"  |  $06  ||  Bang
+|-
+|  %10000000  ||  style="text-align: center;"  |  $18  ||  Slow
+|-
+!  rowspan="8"  |  Byte 1
+|  %00000001  ||  style="text-align: center;"  |  $01  ||  Blazemore
+|-
+|  %00000010  ||  style="text-align: center;"  |  $17  ||  RobMagic
+|-
+|  %00000100  ||  style="text-align: center;"  |  $0a  ||  SnowBlast
+|-
+|  %00001000  ||  style="text-align: center;"  |  $0c  ||  IceSpears
+|-
+|  %00010000  ||  style="text-align: center;"  |  $04  ||  Firebane
+|-
+|  %00100000  ||  style="text-align: center;"  |  $32  ||  Bikill
+|-
+|  %01000000  ||  style="text-align: center;"  |  $07  ||  Boom
+|-
+|  %10000000  ||  style="text-align: center;"  |  $30  ||  Bounce
+|-
+!  rowspan="8"  |  Byte 2
+|  %00000001  ||  style="text-align: center;"  |  $02  ||  Blazemost
+|-
+|  %00000010  ||  style="text-align: center;"  |  $27  ||  Chaos
+|-
+|  %00000100  ||  style="text-align: center;"  |  $0b  ||  Snowstorm
+|-
+|  %00001000  ||  style="text-align: center;"  |  $29  ||  BeDragon
+|-
+|  %00010000  ||  style="text-align: center;"  |  $05  ||  Firevolt
+|-
+|  %00100000  ||  style="text-align: center;"  |  $28  ||  Transform
+|-
+|  %01000000  ||  style="text-align: center;"  |  $08  ||  Explodet
+|-
+|  %10000000  ||  style="text-align: center;"  |  $33  ||  Chance
+|-
+!  rowspan="8"  |  Byte 3
+|  rowspan="8"  |  Field
+|  %00000001  ||  style="text-align: center;"  |  $3b  ||  Outside
+|-
+|  %00000010  ||  style="text-align: center;"  |  $26  ||  Return
+|-
+|  %00000100  ||  style="text-align: center;"  |  $3a  ||  X-Ray
+|-
+|  %00001000  ||  style="text-align: center;"  |  $3d  ||  StepGuard
+|-
+|  %00010000  ||  style="text-align: center;"  |  $38  ||  Day-Night
+|-
+|  %00100000  ||  style="text-align: center;"  |  $36  ||  CurseOff
+|-
+|  %01000000  ||  style="text-align: center;"  |  $3c  ||  Invisible
+|-
+|  %10000000  ||  style="text-align: center;"  |  $39  ||  Open
+|-
+!  rowspan="8"  |  Byte 4
+|  rowspan="32"  |  Pilgrim
+|  rowspan="24"  |  Battle
+|  %00000001  ||  style="text-align: center;"  |  $2b  ||  Sap
+|-
+|  %00000010  ||  style="text-align: center;"  |  $1a  ||  Heal
+|-
+|  %00000100  ||  style="text-align: center;"  |  $15  ||  Expel
+|-
+|  %00001000  ||  style="text-align: center;"  |  $34  ||  Antidote
+|-
+|  %00010000  ||  style="text-align: center;"  |  $0d  ||  Infernos
+|-
+|  %00100000  ||  style="text-align: center;"  |  $19  ||  SpeedUp
+|-
+|  %01000000  ||  style="text-align: center;"  |  $25  ||  Surround
+|-
+|  %10000000  ||  style="text-align: center;"  |  $22  ||  Sleep
+|-
+!  rowspan="8"  |  Byte 5
+|  %00000001  ||  style="text-align: center;"  |  $2c  ||  Defence
+|-
+|  %00000010  ||  style="text-align: center;"  |  $1b  ||  Healmore
+|-
+|  %00000100  ||  style="text-align: center;"  |  $12  ||  Beat
+|-
+|  %00001000  ||  style="text-align: center;"  |  $35  ||  NumbOff
+|-
+|  %00010000  ||  style="text-align: center;"  |  $0e  ||  Infermore
+|-
+|  %00100000  ||  style="text-align: center;"  |  $24  ||  StopSpell
+|-
+|  %01000000  ||  style="text-align: center;"  |  $16  ||  Limbo
+|-
+|  %10000000  ||  style="text-align: center;"  |  $23  ||  Awake
+|-
+!  rowspan="8"  |  Byte 6
+|  %00000001  ||  style="text-align: center;"  |  $31  ||  Barrier
+|-
+|  %00000010  ||  style="text-align: center;"  |  $1c  ||  Healall
+|-
+|  %00000100  ||  style="text-align: center;"  |  $13  ||  Defeat
+|-
+|  %00001000  ||  style="text-align: center;"  |  $1e  ||  Healus
+|-
+|  %00010000  ||  style="text-align: center;"  |  $0f  ||  Infermost
+|-
+|  %00100000  ||  style="text-align: center;"  |  $20  ||  Vivify
+|-
+|  %01000000  ||  style="text-align: center;"  |  $14  ||  Sacrifice
+|-
+|  %10000000  ||  style="text-align: center;"  |  $21  ||  Revive
+|-
+!  rowspan="8"  |  Byte 7
+|  rowspan="8"  |  Field
+|  %00000001  ||  style="text-align: center;"  |  $1a  ||  Heal
+|-
+|  %00000010  ||  style="text-align: center;"  |  $34  ||  Antidote
+|-
+|  %00000100  ||  style="text-align: center;"  |  $1b  ||  Healmore
+|-
+|  %00001000  ||  style="text-align: center;"  |  $35  ||  NumbOff
+|-
+|  %00010000  ||  style="text-align: center;"  |  $20  ||  Vivify
+|-
+|  %00100000  ||  style="text-align: center;"  |  $1c  ||  Healall
+|-
+|  %01000000  ||  style="text-align: center;"  |  $1e  ||  Healus
+|-
+|  %10000000  ||  style="text-align: center;"  |  $21  ||  Revive
+|}
 
 {{Internal Data}}
