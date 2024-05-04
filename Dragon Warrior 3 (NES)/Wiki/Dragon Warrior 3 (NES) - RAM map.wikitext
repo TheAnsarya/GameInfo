@@ -1,0 +1,775 @@
+{{rammap}}
+
+==Main==
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !! Size  !!  Description
+|-
+|  style="background-color:#EAECF0;"  |  Unknown
+|  style="background-color:#EAECF0;"  |  $0000 - $001b
+|  style="background-color:#EAECF0;"  |  28 bytes
+|  style="background-color:#EAECF0;"  |  ...
+|-
+|  Data  ||  $001c  ||  byte  ||  RNG
+|-
+|  style="background-color:#EAECF0;"  |  Unknown
+|  style="background-color:#EAECF0;"  |  $001d - $002b
+|  style="background-color:#EAECF0;"  |  15 bytes
+|  style="background-color:#EAECF0;"  |  ...
+|-
+|  Data  ||  $002c ||  byte  ||  Party Travel type (ground, ship, air)
+|-
+|  style="background-color:#EAECF0;"  |  Unknown
+|  style="background-color:#EAECF0;"  |  $002d - $004b
+|  style="background-color:#EAECF0;"  |  31 bytes
+|  style="background-color:#EAECF0;"  |  ...
+|-
+|  Data  ||  $004c  ||  byte  ||  RNG
+|-
+|  style="background-color:#EAECF0;"  |  Unknown
+|  style="background-color:#EAECF0;"  |  $004d - $0050
+|  style="background-color:#EAECF0;"  |  4 bytes
+|  style="background-color:#EAECF0;"  |  ...
+|-
+|  Battles  ||  $0051  ||  byte  ||  Whose turn it is
+|-
+|  style="background-color:#EAECF0;"  |  Unknown
+|  style="background-color:#EAECF0;"  |  $0052 - $00a3
+|  style="background-color:#EAECF0;"  |  82 bytes
+|  style="background-color:#EAECF0;"  |  ...
+|-
+|  Data  ||  $00a4  ||  byte  ||  RNG
+|-
+|  style="background-color:#EAECF0;"  |  Unknown
+|  style="background-color:#EAECF0;"  |  $00a5 - $00ac
+|  style="background-color:#EAECF0;"  |  8 bytes
+|  style="background-color:#EAECF0;"  |  ...
+|-
+|  Data  ||  $00ad  ||  byte  ||  Fairy Water Counter
+|-
+|  style="background-color:#EAECF0;"  |  Unknown
+|  style="background-color:#EAECF0;"  |  $00ae - $00d7
+|  style="background-color:#EAECF0;"  |  42 bytes
+|  style="background-color:#EAECF0;"  |  ...
+|-
+|  Data  ||  $00d8  ||  byte  ||  Music counter
+|-
+|  style="background-color:#EAECF0;"  |  Unknown
+|  style="background-color:#EAECF0;"  |  $00d9 - $01ff
+|  style="background-color:#EAECF0;"  |  295 bytes
+|  style="background-color:#EAECF0;"  |  ...
+|-
+|  Graphics  ||  $0200 - $020f  ||  16 bytes  ||  Player 1 - On Screen Sprite data
+|-
+|  Graphics  ||  $0210 - $021f  ||  16 bytes  ||  Player 2 - On Screen Sprite data
+|-
+|  Graphics  ||  $0220 - $022f  ||  16 bytes  ||  Player 3 - On Screen Sprite data
+|-
+|  Graphics  ||  $0230 - $023f  ||  16 bytes  ||  Player 4 - On Screen Sprite data
+|-
+|  Graphics  ||  $0240 - $02ff  ||  192 bytes  ||  On Screen Sprite data
+|-
+|  style="background-color:#EAECF0;"  |  Unknown
+|  style="background-color:#EAECF0;"  |  $0300 - $04ff
+|  style="background-color:#EAECF0;"  |  512 bytes
+|  style="background-color:#EAECF0;"  |  ...
+|-
+|  Battles  ||  $0500 - $0501  ||  word  ||  Enemy 1 - HP
+|-
+|  Battles  ||  $0502 - $0503  ||  word  ||  Enemy 2 - HP
+|-
+|  Battles  ||  $0504 - $0505  ||  word  ||  Enemy 3 - HP
+|-
+|  Battles  ||  $0506 - $0507  ||  word  ||  Enemy 4 - HP
+|-
+|  Battles  ||  $0508 - $0509  ||  word  ||  Enemy 5 - HP
+|-
+|  Battles  ||  $050a - $050b  ||  word  ||  Enemy 6 - HP
+|-
+|  Battles  ||  $050c - $050d  ||  word  ||  Enemy 7 - HP
+|-
+|  Battles  ||  $050e - $050f  ||  word  ||  Enemy 8 - HP
+|-
+|  Battles  ||  $0510  ||  byte  ||  Enemy 1 - MP
+|-
+|  Battles  ||  $0511  ||  byte  ||  Enemy 2 - MP
+|-
+|  Battles  ||  $0512  ||  byte  ||  Enemy 3 - MP
+|-
+|  Battles  ||  $0513  ||  byte  ||  Enemy 4 - MP
+|-
+|  Battles  ||  $0514  ||  byte  ||  Enemy 5 - MP
+|-
+|  Battles  ||  $0515  ||  byte  ||  Enemy 6 - MP
+|-
+|  Battles  ||  $0516  ||  byte  ||  Enemy 7 - MP
+|-
+|  Battles  ||  $0517  ||  byte  ||  Enemy 8 - MP
+|-
+|  Battles  ||  $0518  ||  byte  ||  Enemy 1 - Agility
+|-
+|  Battles  ||  $0519  ||  byte  ||  Enemy 2 - Agility
+|-
+|  Battles  ||  $051a  ||  byte  ||  Enemy 3 - Agility
+|-
+|  Battles  ||  $051b  ||  byte  ||  Enemy 4 - Agility
+|-
+|  Battles  ||  $051c  ||  byte  ||  Enemy 5 - Agility
+|-
+|  Battles  ||  $051d  ||  byte  ||  Enemy 6 - Agility
+|-
+|  Battles  ||  $051e  ||  byte  ||  Enemy 7 - Agility
+|-
+|  Battles  ||  $051f  ||  byte  ||  Enemy 8 - Agility
+|-
+|  Battles  ||  $0520 - $0521  ||  word  ||  Enemy 1 - Defense
+|-
+|  Battles  ||  $0522 - $0523  ||  word  ||  Enemy 2 - Defense
+|-
+|  Battles  ||  $0524 - $0525  ||  word  ||  Enemy 3 - Defense
+|-
+|  Battles  ||  $0526 - $0527  ||  word  ||  Enemy 4 - Defense
+|-
+|  Battles  ||  $0528 - $0529  ||  word  ||  Enemy 5 - Defense
+|-
+|  Battles  ||  $052a - $052b  ||  word  ||  Enemy 6 - Defense
+|-
+|  Battles  ||  $052c - $052d  ||  word  ||  Enemy 7 - Defense
+|-
+|  Battles  ||  $052e - $052f  ||  word  ||  Enemy 8 - Defense
+|-
+|  Battles  ||  $0530 - $0531  ||  word  ||  Enemy 1 - Status
+|-
+|  Battles  ||  $0532 - $0533  ||  word  ||  Enemy 2 - Status
+|-
+|  Battles  ||  $0534 - $0535  ||  word  ||  Enemy 3 - Status
+|-
+|  Battles  ||  $0536 - $0537  ||  word  ||  Enemy 4 - Status
+|-
+|  Battles  ||  $0538 - $0539  ||  word  ||  Enemy 5 - Status
+|-
+|  Battles  ||  $053a - $053b  ||  word  ||  Enemy 6 - Status
+|-
+|  Battles  ||  $053c - $053d  ||  word  ||  Enemy 7 - Status
+|-
+|  Battles  ||  $053e - $053f  ||  word  ||  Enemy 8 - Status
+|-
+|  style="background-color:#EAECF0;"  |  Unknown
+|  style="background-color:#EAECF0;"  |  $0540 - $0564
+|  style="background-color:#EAECF0;"  |  37 bytes
+|  style="background-color:#EAECF0;"  |  ...
+|-
+|  Battles  ||  $0565  ||  byte  ||  Bikill flag on Enemy 1 (if 1)
+|-
+|  style="background-color:#EAECF0;"  |  Unknown
+|  style="background-color:#EAECF0;"  |  $0566 - $056c
+|  style="background-color:#EAECF0;"  |  7 bytes
+|  style="background-color:#EAECF0;"  |  ...
+|-
+|  Battles  ||  $056d  ||  byte  ||  Enemy Group 1 - Type
+|-
+|  Battles  ||  $056e  ||  byte  ||  Enemy Group 2 - Type
+|-
+|  Battles  ||  $056f  ||  byte  ||  Enemy Group 3 - Type
+|-
+|  Battles  ||  $0570  ||  byte  ||  Enemy Group 4 - Type
+|-
+|  Battles  ||  $0571  ||  byte  ||  Group 1 - Count
+|-
+|  Battles  ||  $0572  ||  byte  ||  Group 2 - Count
+|-
+|  Battles  ||  $0573  ||  byte  ||  Group 3 - Count
+|-
+|  Battles  ||  $0574  ||  byte  ||  Group 4 - Count
+|-
+|  style="background-color:#EAECF0;"  |  Unknown
+|  style="background-color:#EAECF0;"  |  $0575 - $06dd
+|  style="background-color:#EAECF0;"  |  361 bytes
+|  style="background-color:#EAECF0;"  |  ...
+|-
+|  Data  ||  $06de  ||  byte  ||  Level (World?) X Position, Level (World?) Y Position, Time of day (sub bytes)
+|-
+|  Data  ||  $06df  ||  byte  ||  Time of day
+|-
+|  style="background-color:#EAECF0;"  |  Unknown
+|  style="background-color:#EAECF0;"  |  $06e0 - $06ff
+|  style="background-color:#EAECF0;"  |  32 bytes
+|  style="background-color:#EAECF0;"  |  ...
+|-
+|  Stats  ||  $0700  ||  byte  ||  Player 1 - Level
+|-
+|  Stats  ||  $0701  ||  byte  ||  Player 2 - Level
+|-
+|  Stats  ||  $0702  ||  byte  ||  Player 3 - Level
+|-
+|  Stats  ||  $0703  ||  byte  ||  Player 4 - Level
+|-
+|  Stats  ||  $0704  ||  byte  ||  Player 1 - Strength
+|-
+|  Stats  ||  $0705  ||  byte  ||  Player 2 - Strength
+|-
+|  Stats  ||  $0706  ||  byte  ||  Player 3 - Strength
+|-
+|  Stats  ||  $0707  ||  byte  ||  Player 4 - Strength
+|-
+|  Stats  ||  $0708  ||  byte  ||  Player 1 - Agility
+|-
+|  Stats  ||  $0709  ||  byte  ||  Player 2 - Agility
+|-
+|  Stats  ||  $070a  ||  byte  ||  Player 3 - Agility
+|-
+|  Stats  ||  $070b  ||  byte  ||  Player 4 - Agility
+|-
+|  Stats  ||  $070c  ||  byte  ||  Player 1 - Intelligence
+|-
+|  Stats  ||  $070d  ||  byte  ||  Player 2 - Intelligence
+|-
+|  Stats  ||  $070e  ||  byte  ||  Player 3 - Intelligence
+|-
+|  Stats  ||  $070f  ||  byte  ||  Player 4 - Intelligence
+|-
+|  Stats  ||  $0710  ||  byte  ||  Player 1 - Luck
+|-
+|  Stats  ||  $0711  ||  byte  ||  Player 2 - Luck
+|-
+|  Stats  ||  $0712  ||  byte  ||  Player 3 - Luck
+|-
+|  Stats  ||  $0713  ||  byte  ||  Player 4 - Luck
+|-
+|  Stats  ||  $0714  ||  byte  ||  Player 1 - Vitality
+|-
+|  Stats  ||  $0715  ||  byte  ||  Player 2 - Vitality
+|-
+|  Stats  ||  $0716  ||  byte  ||  Player 3 - Vitality
+|-
+|  Stats  ||  $0717  ||  byte  ||  Player 4 - Vitality
+|-
+|  Stats  ||  $0718  ||  byte  ||  Player 1 - Class/Gender
+|-
+|  Stats  ||  $0719  ||  byte  ||  Player 2 - Class/Gender
+|-
+|  Stats  ||  $071a  ||  byte  ||  Player 3 - Class/Gender
+|-
+|  Stats  ||  $071b  ||  byte  ||  Player 4 - Class/Gender
+|-
+|  Stats  ||  $071c - $071d  ||  word  ||  Player 1 - HP
+|-
+|  Stats  ||  $071e - $071f  ||  word  ||  Player 2 - HP
+|-
+|  Stats  ||  $0720 - $0721  ||  word  ||  Player 3 - HP
+|-
+|  Stats  ||  $0722 - $0723  ||  word  ||  Player 4 - HP
+|-
+|  Stats  ||  $0724 - $0725  ||  word  ||  Player 1 - Max HP
+|-
+|  Stats  ||  $0726 - $0727  ||  word  ||  Player 2 - Max HP
+|-
+|  Stats  ||  $0728 - $0729  ||  word  ||  Player 3 - Max HP
+|-
+|  Stats  ||  $072a - $072b  ||  word  ||  Player 4 - Max HP
+|-
+|  Stats  ||  $072c - $072d  ||  word  ||  Player 1 - MP
+|-
+|  Stats  ||  $072e - $072f  ||  word  ||  Player 2 - MP
+|-
+|  Stats  ||  $0730 - $0731  ||  word  ||  Player 3 - MP
+|-
+|  Stats  ||  $0732 - $0733  ||  word  ||  Player 4 - MP
+|-
+|  Stats  ||  $0734 - $0735  ||  word  ||  Player 1 - Max MP
+|-
+|  Stats  ||  $0736 - $0737  ||  word  ||  Player 2 - Max MP
+|-
+|  Stats  ||  $0738 - $0739  ||  word  ||  Player 3 - Max MP
+|-
+|  Stats  ||  $073a - $073b  ||  word  ||  Player 4 - Max MP
+|-
+|  Stats  ||  $073c - $073d  ||  word  ||  Player 1 - Status
+|-
+|  Stats  ||  $073e - $073f  ||  word  ||  Player 2 - Status
+|-
+|  Stats  ||  $0740 - $0741  ||  word  ||  Player 3 - Status
+|-
+|  Stats  ||  $0742 - $0743  ||  word  ||  Player 4 - Status
+|-
+|  Stats  ||  $0744 - $0746  ||  long  ||  Player 1 - Experience
+|-
+|  Stats  ||  $0747 - $0749  ||  long  ||  Player 2 - Experience
+|-
+|  Stats  ||  $074a - $074c  ||  long  ||  Player 3 - Experience
+|-
+|  Stats  ||  $074d - $074f  ||  long  ||  Player 4 - Experience
+|-
+|  Stats  ||  $0750 - $0752  ||  long  ||  Player 1 - Return List
+|-
+|  Stats  ||  $0753 - $0755  ||  long  ||  Player 2 - Return List
+|-
+|  Stats  ||  $0756 - $0758  ||  long  ||  Player 3 - Return List
+|-
+|  Stats  ||  $0759 - $075b  ||  long  ||  Player 4 - Return List
+|-
+|  Stats  ||  $075c - $0763  ||  8 bytes  ||  Player 1 - Name
+|-
+|  Stats  ||  $0764 - $076b  ||  8 bytes  ||  Player 2 - Name
+|-
+|  Stats  ||  $076c - $0773  ||  8 bytes  ||  Player 3 - Name
+|-
+|  Stats  ||  $0774 - $077b  ||  8 bytes  ||  Player 4 - Name
+|-
+|  Items  ||  $077c  ||  byte  ||  Player 1 - Item Slot 1
+|-
+|  Items  ||  $077d  ||  byte  ||  Player 1 - Item Slot 2
+|-
+|  Items  ||  $077e  ||  byte  ||  Player 1 - Item Slot 3
+|-
+|  Items  ||  $077f  ||  byte  ||  Player 1 - Item Slot 4
+|-
+|  Items  ||  $0780  ||  byte  ||  Player 1 - Item Slot 5
+|-
+|  Items  ||  $0781  ||  byte  ||  Player 1 - Item Slot 6
+|-
+|  Items  ||  $0782  ||  byte  ||  Player 1 - Item Slot 7
+|-
+|  Items  ||  $0783  ||  byte  ||  Player 1 - Item Slot 8
+|-
+|  Items  ||  $0784  ||  byte  ||  Player 2 - Item Slot 1
+|-
+|  Items  ||  $0785  ||  byte  ||  Player 2 - Item Slot 2
+|-
+|  Items  ||  $0786  ||  byte  ||  Player 2 - Item Slot 3
+|-
+|  Items  ||  $0787  ||  byte  ||  Player 2 - Item Slot 4
+|-
+|  Items  ||  $0788  ||  byte  ||  Player 2 - Item Slot 5
+|-
+|  Items  ||  $0789  ||  byte  ||  Player 2 - Item Slot 6
+|-
+|  Items  ||  $078a  ||  byte  ||  Player 2 - Item Slot 7
+|-
+|  Items  ||  $078b  ||  byte  ||  Player 2 - Item Slot 8
+|-
+|  Items  ||  $078c  ||  byte  ||  Player 3 - Item Slot 1
+|-
+|  Items  ||  $078d  ||  byte  ||  Player 3 - Item Slot 2
+|-
+|  Items  ||  $078e  ||  byte  ||  Player 3 - Item Slot 3
+|-
+|  Items  ||  $078f  ||  byte  ||  Player 3 - Item Slot 4
+|-
+|  Items  ||  $0790  ||  byte  ||  Player 3 - Item Slot 5
+|-
+|  Items  ||  $0791  ||  byte  ||  Player 3 - Item Slot 6
+|-
+|  Items  ||  $0792  ||  byte  ||  Player 3 - Item Slot 7
+|-
+|  Items  ||  $0793  ||  byte  ||  Player 3 - Item Slot 8
+|-
+|  Items  ||  $0794  ||  byte  ||  Player 4 - Item Slot 1
+|-
+|  Items  ||  $0795  ||  byte  ||  Player 4 - Item Slot 2
+|-
+|  Items  ||  $0796  ||  byte  ||  Player 4 - Item Slot 3
+|-
+|  Items  ||  $0797  ||  byte  ||  Player 4 - Item Slot 4
+|-
+|  Items  ||  $0798  ||  byte  ||  Player 4 - Item Slot 5
+|-
+|  Items  ||  $0799  ||  byte  ||  Player 4 - Item Slot 6
+|-
+|  Items  ||  $079a  ||  byte  ||  Player 4 - Item Slot 7
+|-
+|  Items  ||  $079b  ||  byte  ||  Player 4 - Item Slot 8
+|-
+|  Stats  ||  $079c - $079e  ||  long  ||  Player 1 - Wizard Battle Magic
+|-
+|  Stats  ||  $079f  ||  byte  ||  Player 1 - Wizard Field Magic
+|-
+|  Stats  ||  $07a0 - $07a2  ||  long  ||  Player 1 - Pilgram Battle Magic
+|-
+|  Stats  ||  $07a3  ||  byte  ||  Player 1 - Pilgram Field Magic
+|-
+|  Stats  ||  $07a4 - $07a6  ||  long  ||  Player 2 - Wizard Battle Magic
+|-
+|  Stats  ||  $07a7  ||  byte  ||  Player 2 - Wizard Field Magic
+|-
+|  Stats  ||  $07a8 - $07aa  ||  long  ||  Player 2 - Pilgram Battle Magic
+|-
+|  Stats  ||  $07ab  ||  byte  ||  Player 2 - Pilgram Field Magic
+|-
+|  Stats  ||  $07ac - $07ae  ||  long  ||  Player 3 - Wizard Battle Magic
+|-
+|  Stats  ||  $07af  ||  byte  ||  Player 3 - Wizard Field Magic
+|-
+|  Stats  ||  $07b0 - $07b2  ||  long  ||  Player 3 - Pilgram Battle Magic
+|-
+|  Stats  ||  $07b3  ||  byte  ||  Player 3 - Pilgram Field Magic
+|-
+|  Stats  ||  $07b4 - $07b6  ||  long  ||  Player 4 - Wizard Battle Magic
+|-
+|  Stats  ||  $07b7  ||  byte  ||  Player 4 - Wizard Field Magic
+|-
+|  Stats  ||  $07b8 - $07ba  ||  long  ||  Player 4 - Pilgram Battle Magic
+|-
+|  Stats  ||  $07bb  ||  byte  ||  Player 4 - Pilgram Field Magic
+|-
+|  Stats  ||  $07bc - $07be  ||  long  ||  Gold
+|-
+|  Stats  ||  $07bf - $07c0  ||  word  ||  Num Characters Registered
+|-
+|  Stats  ||  $07c1  ||  byte  ||  Player 1 - Character in Storage num
+|-
+|  Stats  ||  $07c2  ||  byte  ||  Player 2 - Character in Storage num
+|-
+|  Stats  ||  $07c3  ||  byte  ||  Player 3 - Character in Storage num
+|-
+|  Stats  ||  $07c4  ||  byte  ||  Player 4 - Character in Storage num
+|-
+|  style="background-color:#EAECF0;"  |  Unused
+|  style="background-color:#EAECF0;"  |  $07c5 - $07ff
+|  style="background-color:#EAECF0;"  |  59 bytes
+|  style="background-color:#EAECF0;"  |  Unused
+|}
+
+==Links==
+
+Useful information:
+* http://www.getcheat.com/code_743853.html
+* https://github.com/zeromus/DragonWarrior3/blob/master/symbolic/DW3-RamMap.wch
+
+==Character Stats==
+These are base addresses for the first character in the party.  They are sorted by the size of the data in bytes.
+
+===8-bit values===
+These are addresses for the first party member.  Add 1*the ally number to the address for other characters.
+* Level: 0x700
+* Strength: 0x704
+* Agility: 0x708
+* Intelligence: 0x70C
+* Vitality: 0x710
+* Luck: 0x714
+* Job Class/Sex: 0x718  ([[#Character_Classes|Character Classes Table]])
+
+===16-bit values===
+Addresses for first party member. Add 2*Ally Number for other characters.  Little endian byte order.
+*HP: 0x71C
+*Max HP: 0x724
+*MP: 0x72C
+*Max MP: 0x734
+*'Status': 0x73C
+
+===24-bit values===
+Addresses for first party member. Add 3*Ally Number for other characters.  Little endian byte order.
+*Exp: 0x744
+*Return Destinations: 0x750  ([[#Return Destinations|Return Destinations List]])
+
+===8-byte values===
+Addresses for first party member.  Add 8*Ally number for other characters.
+*Name: 0x75C
+*Inventory: 0x77C  ([[#Items|Item List]])
+*Magic spells known: 0x79C  ([[#Spell List|Spell List]])
+
+===Gold pieces===
+Address for player's gold pieces (GP) (24-bit)
+*Gold: 0x7BC
+
+==Character Classes==
+This is located at 0x718 + character number.
+ ....x... = 0 if male, 1 if female
+ .....xxx = Character Class
+* 0 = Hero
+* 1 = Wizard
+* 2 = Pilgrim
+* 3 = Sage
+* 4 = Soldier
+* 5 = Merchant
+* 6 = Fighter
+* 7 = Goof-off
+
+==Return Destinations==
+This is located at 0x750 + character number * 3.
+
+The 3 bytes of Return Destinations store one bit per location visited.  The upper 4 bits of the third byte are not used.
+
+These go from least significant bit to most significant bit.
+
+===Byte 0===
+*Aliahan
+*Reeve
+*Romally
+*Kanave
+*Noaniels
+*Assaram
+*Isis
+*Portoga
+
+===Byte 1===
+*Baharata
+*Dhama
+*Lancel
+*Jipang
+*Eginbear
+*Samano
+*Soo
+*Tantegel
+
+===Byte 2===
+*Hauksness
+*Cantlin
+*Kol
+*Rimuldar
+
+==Items==
+First character's inventory starts at 0x77C, add 8 * ally number for other characters.
+
+*[[#Weapons|Weapons]]
+*[[#Armor|Armor]]
+*[[#Shields|Shields]]
+*[[#Helmets|Helmets]]
+*[[#Items1|Items 1]]
+*[[#Keys|Keys]]
+*[[#Items2|Items 2]]
+*[[#Seeds|Seeds]]
+*[[#Consumables|Consumables]]
+*[[#Items3|Items 3]]
+*[[#Orbs|Orbs]]
+*[[#GlitchItems|Glitch Items]]
+
+===Hexadecimal List of Items===
+<span id="Weapons"></span>
+*00 - Cypress stick
+*01 - Club
+*02 - Copper sword
+*03 - Magic Knife
+*04 - Iron Spear
+*05 - Battle Axe
+*06 - Broad Sword
+*07 - Wizard's Wand
+*08 - Poison Needle
+*09 - Iron Claw
+*0A - Thorn Whip
+*0B - Giant Shears
+*0C - Chain Sickle
+*0D - Thor's Sword
+*0E - Snowblast Sword
+*0F - Demon Axe
+*10 - Staff of Rain
+*11 - Sword of Gaia
+*12 - Staff of Reflection
+*13 - Sword of Destruction
+*14 - Multi-Edge Sword
+*15 - Staff of Force
+*16 - Sword of Illusion
+*17 - Zombie Slasher
+*18 - Falcon Sword
+*19 - Sledge Hammer
+*1A - Thunder Sword
+*1B - Staff of Thunder
+*1C - Sword of Kings
+*1D - Orochi Sword
+*1E - Dragon Killer
+*1F - Staff of Judgement
+<span id="Armor"></span>
+*20 - Clothes
+*21 - Training Suit
+*22 - Leather Armor
+*23 - Flashy Clothes
+*24 - Half Plate Armor
+*25 - Full Plate Armor
+*26 - Magic Armor
+*27 - Cloak of Evasion
+*28 - Armor of Radiance
+*29 - Iron Apron
+*2A - Animal Suit
+*2B - Fightting Suit
+*2C - Sacred Robe
+*2D - Armor of Hades
+*2E - Water Flying Cloth
+*2F - Chain Mail
+*30 - Wayfarers Clothes
+*31 - Revealing Swimsuit
+*32 - Magic Bikini
+*33 - Shell Armor
+*34 - Armor of Terrafirma
+*35 - Dragon Mail
+*36 - Swordedge Armor
+*37 - Angel's Robe
+<span id="Shields"></span>
+*38 - Leather Shield
+*39 - Iron Shield
+*3A - Shield of Strength
+*3B - Shield of Heroes
+*3C - Shield of Sorrow
+*3D - Bronze Shield
+*3E - Silver Shield
+<span id="Helmets"></span>
+*3F - Golden Crown
+*40 - Iron Helmet
+*41 - Mysterious Hat
+*42 - Unlucky Helmet
+*43 - Turban
+*44 - Noh Mask
+*45 - Leather Helmet
+*46 - Iron Mask
+<span id="Items1"></span>
+*47 - Sacred Amulet
+*48 - Ring of Life
+*49 - Shoes of Happiness
+*4A - Golden Claw
+*4B - Meteorite Armband
+*4C - Book of Satori
+*4D - '&nbsp;&nbsp;&nbsp;'
+*4E - Wizard's Ring
+*4F - Black Pepper
+*50 - Sage's Stone
+*51 - Mirror of Ra
+*52 - Vase of Draught
+*53 - Lamp of Darkness
+*54 - Staff of Change
+*55 - Stone of Life
+*56 - Invisibility Herb
+*57 - Magic Ball
+<span id="Keys"></span>
+*58 - Thief's Key
+*59 - Magic Key
+*5A - Final Key
+<span id="Items2"></span>
+*5B - Dream Ruby
+*5C - Wake-up Powder
+*5D - Royal Scroll
+*5E - Oricon
+<span id="Seeds"></span>
+*5F - Strength Seed
+*60 - Agility Seed
+*61 - Vitality Seed
+*62 - Luck Seed
+*63 - Intelligence Seed
+*64 - Acorns of Life
+<span id="Consumables"></span>
+*65 - Medical Herb
+*66 - Antidote Herb
+*67 - Fairy Water
+*68 - Wing of Wyvern
+*69 - Leaf of the World Tree
+<span id="Items3"></span>
+*6A - '&nbsp;&nbsp;&nbsp;'
+*6B - Locket of Love
+*6C - Full Moon Herb
+*6D - Water Blaster
+*6E - Sailors Thigh Bone
+*6F - Echoing Flute
+*70 - Fairy Flute
+*71 - Silver Harp
+*72 - Sphere of Light
+*73 - Poison Moth Powder
+*74 - Spiders Web
+*75 - Stone of Sunlight
+<span id="Orbs"></span>
+*76 - Rainbow Drop
+*77 - Silver Orb
+*78 - Red Orb
+*79 - Yellow Orb
+*7A - Purple Orb
+*7B - Blue Orb
+*7C - Green Orb
+<span id="GlitchItems"></span>
+*7D - Stick Slime
+*7E - Black Raven
+*7F - Sword Horned
+*80-FE  - Equipped versions of items
+*FF - Nothing
+
+==Spell List==
+First character's magic list begins at 0x79C.  Add 8 * ally number for other characters.
+
+*Byte 0-2: Wizard Spells (in battle)
+*Byte 3: Wizard Spells (field)
+*Byte 4-6: Pilgrim Spells (in battle)
+*Byte 7: Pilgrim Spells (field)
+Note: Hero uses location of Wizard spells.
+
+===Wizard Battle Spells===
+Byte 0
+* Blaze
+* Upper
+* IceBolt
+* Increase
+* Firebal
+* Return
+* Bang
+* Slow
+
+Byte 1
+* Blazemore
+* RobMagic
+* Snowblast
+* IceSpears
+* Firebane
+* Bikill
+* Boom
+* Bounce
+
+Byte 2
+* Blazemost
+* Chaos
+* Snowstorm
+* BeDragon
+* Firevolt
+* Transform
+* Explodet
+* Chance
+
+===Wizard Field Spells===
+Byte 3
+* Outside
+* Return
+* X-Ray
+* StepGuard
+* Day-Night
+* CurseOff
+* Invisible
+* Open
+
+===Pilgrim Battle Spells===
+Byte 4
+* Sap
+* Heal
+* Expel
+* Antidote
+* Infernos
+* SpeedUP
+* Surround
+* Sleep
+
+Byte 5
+* Defence
+* Healmore
+* Beat
+* NumbOff
+* Infermore
+* StopSpell
+* Limbo
+* Awake
+
+Byte 6
+* Barrier
+* Healall
+* Defeat
+* Healus
+* Infermost
+* Vivify
+* Sacrifice
+* Revive
+
+===Pilgrim Field Spells===
+Byte 7
+* Heal
+* Antidote
+* Healmore
+* NumbOff
+* Vivify
+* Healall
+* Healus
+* Revive
+
+{{Internal Data}}
