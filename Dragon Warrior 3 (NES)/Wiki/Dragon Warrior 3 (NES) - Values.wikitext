@@ -4,6 +4,7 @@
 =Values=
 
 ==Items==
+
 The item index only uses the bottom 7 bits so values range from <code>$00</code> to <code>$7f</code>.
 
 In the item bags, the high bit <code>%10000000</code> indicates that the item is equipped. So, to get the equipped value add <code>$80</code> to the item index.
@@ -304,6 +305,137 @@ In the item bags, the high bit <code>%10000000</code> indicates that the item is
 |  style="text-align: center;"  |  $7e  ||  Black Raven
 |-
 |  style="text-align: center;"  |  $7f  ||  Sword Horned
+|}
+
+==Spells==
+
+{| class="wikitable sortable"
+|-
+!  Value  !!  Description
+|-
+|  style="text-align: center;"  |  $00  ||  Blaze
+|-
+|  style="text-align: center;"  |  $01  ||  Blazemore
+|-
+|  style="text-align: center;"  |  $02  ||  Blazemost
+|-
+|  style="text-align: center;"  |  $03  ||  Firebal
+|-
+|  style="text-align: center;"  |  $04  ||  Firebane
+|-
+|  style="text-align: center;"  |  $05  ||  Firevolt
+|-
+|  style="text-align: center;"  |  $06  ||  Bang
+|-
+|  style="text-align: center;"  |  $07  ||  Boom
+|-
+|  style="text-align: center;"  |  $08  ||  Explodet
+|-
+|  style="text-align: center;"  |  $09  ||  IceBolt
+|-
+|  style="text-align: center;"  |  $0a  ||  SnowBlast
+|-
+|  style="text-align: center;"  |  $0b  ||  Snowstorm
+|-
+|  style="text-align: center;"  |  $0c  ||  IceSpears
+|-
+|  style="text-align: center;"  |  $0d  ||  Infernos
+|-
+|  style="text-align: center;"  |  $0e  ||  Infermore
+|-
+|  style="text-align: center;"  |  $0f  ||  Infermost
+|-
+|  style="text-align: center;"  |  $10  ||  Zap
+|-
+|  style="text-align: center;"  |  $11  ||  Lightning
+|-
+|  style="text-align: center;"  |  $12  ||  Beat
+|-
+|  style="text-align: center;"  |  $13  ||  Defeat
+|-
+|  style="text-align: center;"  |  $14  ||  Sacrifice
+|-
+|  style="text-align: center;"  |  $15  ||  Expell
+|-
+|  style="text-align: center;"  |  $16  ||  Limbo
+|-
+|  style="text-align: center;"  |  $17  ||  RobMagic
+|-
+|  style="text-align: center;"  |  $18  ||  Slow
+|-
+|  style="text-align: center;"  |  $19  ||  SpeedUp
+|-
+|  style="text-align: center;"  |  $1a  ||  Heal
+|-
+|  style="text-align: center;"  |  $1b  ||  Healmore
+|-
+|  style="text-align: center;"  |  $1c  ||  Heallall
+|-
+|  style="text-align: center; background-color: #EAECF0;"  |  $1d  ||  style="background-color: #EAECF0;"  |  Dummy Spell
+|-
+|  style="text-align: center;"  |  $1e  ||  Healus
+|-
+|  style="text-align: center;"  |  $1f  ||  Healusall
+|-
+|  style="text-align: center;"  |  $20  ||  Vivify
+|-
+|  style="text-align: center;"  |  $21  ||  Revive
+|-
+|  style="text-align: center;"  |  $22  ||  Sleep
+|-
+|  style="text-align: center;"  |  $23  ||  Awake
+|-
+|  style="text-align: center;"  |  $24  ||  StopSpell
+|-
+|  style="text-align: center;"  |  $25  ||  Surround
+|-
+|  style="text-align: center;"  |  $26  ||  Return
+|-
+|  style="text-align: center;"  |  $27  ||  Chaos
+|-
+|  style="text-align: center;"  |  $28  ||  Transform
+|-
+|  style="text-align: center;"  |  $29  ||  BeDragon
+|-
+|  style="text-align: center;"  |  $2a  ||  Ironize
+|-
+|  style="text-align: center;"  |  $2b  ||  Sap
+|-
+|  style="text-align: center;"  |  $2c  ||  Defense
+|-
+|  style="text-align: center;"  |  $2d  ||  Upper
+|-
+|  style="text-align: center;"  |  $2e  ||  Increase
+|-
+|  style="text-align: center;"  |  $2f  ||  Increase 2
+|-
+|  style="text-align: center;"  |  $30  ||  Bounce
+|-
+|  style="text-align: center;"  |  $31  ||  Barrier
+|-
+|  style="text-align: center;"  |  $32  ||  Bikill
+|-
+|  style="text-align: center;"  |  $33  ||  Chance
+|-
+|  style="text-align: center;"  |  $34  ||  Antidote
+|-
+|  style="text-align: center;"  |  $35  ||  Numboff
+|-
+|  style="text-align: center;"  |  $36  ||  CurseOff
+|-
+|  style="text-align: center;"  |  $37  ||  Repel
+|-
+|  style="text-align: center;"  |  $38  ||  Day-Night
+|-
+|  style="text-align: center;"  |  $39  ||  Open
+|-
+|  style="text-align: center;"  |  $3a  ||  X-Ray
+|-
+|  style="text-align: center;"  |  $3b  ||  Outside
+|-
+|  style="text-align: center;"  |  $3c  ||  Invisible
+|-
+|  style="text-align: center;"  |  $3d  ||  Stepguard
 |}
 
 =Links=
