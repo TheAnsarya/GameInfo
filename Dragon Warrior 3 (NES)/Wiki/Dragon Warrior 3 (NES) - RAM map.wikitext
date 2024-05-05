@@ -197,7 +197,7 @@
 |  style="background-color: #eaecf0;"  |  32 bytes
 |  style="background-color: #eaecf0;"  |  ...
 |-
-|  Stats  ||  $0700  ||  byte  ||  Player 1 - Level
+|  id="data-player-level"  |  Stats  ||  $0700  ||  byte  ||  Player 1 - Level
 |-
 |  Stats  ||  $0701  ||  byte  ||  Player 2 - Level
 |-
@@ -205,7 +205,7 @@
 |-
 |  Stats  ||  $0703  ||  byte  ||  Player 4 - Level
 |-
-|  Stats  ||  $0704  ||  byte  ||  Player 1 - Strength
+|  id="data-player-strength"  |  Stats  ||  $0704  ||  byte  ||  Player 1 - Strength
 |-
 |  Stats  ||  $0705  ||  byte  ||  Player 2 - Strength
 |-
@@ -213,7 +213,7 @@
 |-
 |  Stats  ||  $0707  ||  byte  ||  Player 4 - Strength
 |-
-|  Stats  ||  $0708  ||  byte  ||  Player 1 - Agility
+|  id="data-player-agility"  |  Stats  ||  $0708  ||  byte  ||  Player 1 - Agility
 |-
 |  Stats  ||  $0709  ||  byte  ||  Player 2 - Agility
 |-
@@ -221,7 +221,7 @@
 |-
 |  Stats  ||  $070b  ||  byte  ||  Player 4 - Agility
 |-
-|  Stats  ||  $070c  ||  byte  ||  Player 1 - Intelligence
+|  id="data-player-intelligence"  |  Stats  ||  $070c  ||  byte  ||  Player 1 - Intelligence
 |-
 |  Stats  ||  $070d  ||  byte  ||  Player 2 - Intelligence
 |-
@@ -229,7 +229,7 @@
 |-
 |  Stats  ||  $070f  ||  byte  ||  Player 4 - Intelligence
 |-
-|  Stats  ||  $0710  ||  byte  ||  Player 1 - Luck
+|  id="data-player-luck"  |  Stats  ||  $0710  ||  byte  ||  Player 1 - Luck
 |-
 |  Stats  ||  $0711  ||  byte  ||  Player 2 - Luck
 |-
@@ -237,7 +237,7 @@
 |-
 |  Stats  ||  $0713  ||  byte  ||  Player 4 - Luck
 |-
-|  Stats  ||  $0714  ||  byte  ||  Player 1 - Vitality
+|  id="data-player-vitality"  |  Stats  ||  $0714  ||  byte  ||  Player 1 - Vitality
 |-
 |  Stats  ||  $0715  ||  byte  ||  Player 2 - Vitality
 |-
@@ -245,7 +245,7 @@
 |-
 |  Stats  ||  $0717  ||  byte  ||  Player 4 - Vitality
 |-
-|  Stats  ||  $0718  ||  byte  ||  Player 1 - [[#Character_Classes_/_Gender|Class / Gender]]
+|  id="data-player-class-gender"  |  Stats  ||  $0718  ||  byte  ||  Player 1 - [[#Character_Classes_/_Gender|Class / Gender]]
 |-
 |  Stats  ||  $0719  ||  byte  ||  Player 2 - [[#Character_Classes_/_Gender|Class / Gender]]
 |-
@@ -253,7 +253,7 @@
 |-
 |  Stats  ||  $071b  ||  byte  ||  Player 4 - [[#Character_Classes_/_Gender|Class / Gender]]
 |-
-|  Stats  ||  $071c - $071d  ||  word  ||  Player 1 - HP
+|  id="data-player-hp"  |  Stats  ||  $071c - $071d  ||  word  ||  Player 1 - HP
 |-
 |  Stats  ||  $071e - $071f  ||  word  ||  Player 2 - HP
 |-
@@ -261,7 +261,7 @@
 |-
 |  Stats  ||  $0722 - $0723  ||  word  ||  Player 4 - HP
 |-
-|  Stats  ||  $0724 - $0725  ||  word  ||  Player 1 - Max HP
+|  id="data-player-maxhp"  |  Stats  ||  $0724 - $0725  ||  word  ||  Player 1 - Max HP
 |-
 |  Stats  ||  $0726 - $0727  ||  word  ||  Player 2 - Max HP
 |-
@@ -269,7 +269,7 @@
 |-
 |  Stats  ||  $072a - $072b  ||  word  ||  Player 4 - Max HP
 |-
-|  Stats  ||  $072c - $072d  ||  word  ||  Player 1 - MP
+|  id="data-player-mp"  |  Stats  ||  $072c - $072d  ||  word  ||  Player 1 - MP
 |-
 |  Stats  ||  $072e - $072f  ||  word  ||  Player 2 - MP
 |-
@@ -277,7 +277,7 @@
 |-
 |  Stats  ||  $0732 - $0733  ||  word  ||  Player 4 - MP
 |-
-|  Stats  ||  $0734 - $0735  ||  word  ||  Player 1 - Max MP
+|  id="data-player-maxmp"  |  Stats  ||  $0734 - $0735  ||  word  ||  Player 1 - Max MP
 |-
 |  Stats  ||  $0736 - $0737  ||  word  ||  Player 2 - Max MP
 |-
@@ -285,7 +285,7 @@
 |-
 |  Stats  ||  $073a - $073b  ||  word  ||  Player 4 - Max MP
 |-
-|  Stats  ||  $073c - $073d  ||  word  ||  Player 1 - Status
+|  id="data-player-status"  |  Stats  ||  $073c - $073d  ||  word  ||  Player 1 - Status
 |-
 |  Stats  ||  $073e - $073f  ||  word  ||  Player 2 - Status
 |-
@@ -293,7 +293,7 @@
 |-
 |  Stats  ||  $0742 - $0743  ||  word  ||  Player 4 - Status
 |-
-|  Stats  ||  $0744 - $0746  ||  long  ||  Player 1 - Experience
+|  id="data-player-experience"  |  Stats  ||  $0744 - $0746  ||  long  ||  Player 1 - Experience
 |-
 |  Stats  ||  $0747 - $0749  ||  long  ||  Player 2 - Experience
 |-
@@ -301,7 +301,7 @@
 |-
 |  Stats  ||  $074d - $074f  ||  long  ||  Player 4 - Experience
 |-
-|  Stats  ||  $0750 - $0752  ||  long  ||  Player 1 - [[#Return_Destinations|Return Destinations]]
+|  id="data-player-return-destinations"  |  Stats  ||  $0750 - $0752  ||  long  ||  Player 1 - [[#Return_Destinations|Return Destinations]]
 |-
 |  Stats  ||  $0753 - $0755  ||  long  ||  Player 2 - [[#Return_Destinations|Return Destinations]]
 |-
@@ -309,7 +309,7 @@
 |-
 |  Stats  ||  $0759 - $075b  ||  long  ||  Player 4 - [[#Return_Destinations|Return Destinations]]
 |-
-|  Stats  ||  $075c - $0763  ||  8 bytes  ||  Player 1 - Name
+|  id="data-player-name"  |  Stats  ||  $075c - $0763  ||  8 bytes  ||  Player 1 - Name
 |-
 |  Stats  ||  $0764 - $076b  ||  8 bytes  ||  Player 2 - Name
 |-
@@ -317,7 +317,7 @@
 |-
 |  Stats  ||  $0774 - $077b  ||  8 bytes  ||  Player 4 - Name
 |-
-|  Items  ||  $077c  ||  byte  ||  Player 1 - Item Slot 1
+|  id="data-player-item"  |  Items  ||  $077c  ||  byte  ||  Player 1 - Item Slot 1
 |-
 |  Items  ||  $077d  ||  byte  ||  Player 1 - Item Slot 2
 |-
@@ -381,7 +381,7 @@
 |-
 |  Items  ||  $079b  ||  byte  ||  Player 4 - Item Slot 8
 |-
-|  Stats  ||  $079c - $079e  ||  long  ||  Player 1 - Wizard Battle Magic
+|  id="data-player-spells-known"  |  Stats  ||  $079c - $079e  ||  long  ||  Player 1 - Wizard Battle Magic
 |-
 |  Stats  ||  $079f  ||  byte  ||  Player 1 - Wizard Field Magic
 |-
@@ -413,7 +413,7 @@
 |-
 |  Stats  ||  $07bb  ||  byte  ||  Player 4 - Pilgram Field Magic
 |-
-|  Stats  ||  $07bc - $07be  ||  long  ||  Gold
+|  id="data-gold"  |  Stats  ||  $07bc - $07be  ||  long  ||  Gold
 |-
 |  Stats  ||  $07bf - $07c0  ||  word  ||  Num Characters Registered
 |-
@@ -439,45 +439,39 @@ Useful information:
 * http://www.getcheat.com/code_743853.html
 * https://github.com/zeromus/DragonWarrior3/blob/master/symbolic/DW3-RamMap.wch
 
-==Character Stats==
-These are base addresses for the first character in the party.  They are sorted by the size of the data in bytes.
-
-===8-bit values===
-These are addresses for the first party member.  Add 1*the ally number to the address for other characters.
-* Level: 0x700
-* Strength: 0x704
-* Agility: 0x708
-* Intelligence: 0x70C
-* Vitality: 0x710
-* Luck: 0x714
-* Character Class / Gender: 0x718  ([[#Character_Classes_/_Gender|Character Classes / Gender]])
-
-===16-bit values===
-Addresses for first party member. Add 2*Ally Number for other characters.  Little endian byte order.
-*HP: 0x71C
-*Max HP: 0x724
-*MP: 0x72C
-*Max MP: 0x734
-*'Status': 0x73C
-
-===24-bit values===
-Addresses for first party member. Add 3*Ally Number for other characters.  Little endian byte order.
-*Exp: 0x744
-*Return Destinations: 0x750  ([[#Return Destinations|Return Destinations List]])
-
-===8-byte values===
-Addresses for first party member.  Add 8*Ally number for other characters.
-*Name: 0x75C
-*Inventory: 0x77C  ([[Dragon_Warrior_III_(NES)/Values#Items|Item List]])
-*Magic spells known: 0x79C  ([[#Spell List|Spell List]])
+==Party==
 
 ===Gold pieces===
-Address for player's gold pieces (GP) (24-bit)
-*Gold: 0x7BC
 
-==Character Classes / Gender==
+* [[#data-gold|Gold]]: $07bc
 
-This is located at 0x718 + character number.
+==Character Stats==
+
+[TODO: Make sure Luck and Vitality aren't swapped, seen them at both addresses]
+
+* [[#data-player-name|Name]]: $075c
+* [[#data-player-hp|HP]]: $071c
+* [[#data-player-maxhp|Max HP]]: $0724
+* [[#data-player-mp|MP]]: $072c
+* [[#data-player-maxmp|Max MP]]: $0734
+* [[#data-player-status|Status]]: $073c
+* [[#data-player-level|Level]]: $0700
+* [[#data-player-experience|Experience]]: $0744
+* [[#data-player-strength|Strength]]: $0704
+* [[#data-player-agility|Agility]]: $0708
+* [[#data-player-intelligence|Intelligence]]: $070c
+* [[#data-player-vitality|Vitality]]: $0714
+* [[#data-player-luck|Luck]]: $0710
+* [[#data-player-class-gender|Character Class / Gender]]: $0718  ([[#Character_Classes_/_Gender|Character Classes / Gender]])
+* [[#data-player-return-destinations|Return Destinations]]: $0750  ([[#Return Destinations|Return Destinations List]])
+* [[#data-player-spells-known|Magic spells known]]: $079c  ([[#Spell_Flags_List|Spell Flags List]])
+* [[#data-player-item|Inventory]]: $077c  ([[Dragon_Warrior_III_(NES)/Values#Items|Item List]])
+
+==Types==
+
+===Character Classes / Gender===
+
+This is located at $0718 + character number.
 
 {| class="wikitable"
 !    !!  Mask  !!  Value  !!  Description
@@ -524,7 +518,7 @@ This is located at 0x718 + character number.
 |  style="background-color: #eaecf0;"  |  Unused
 |}
 
-==Return Destinations==
+===Return Destinations===
 
 This is located at 0x750 + character number * 3.
 
@@ -590,7 +584,7 @@ The 3 bytes of Return Destinations store one bit per location visited.  The uppe
 |  style="text-align: center; background-color: #eaecf0;"  |  $80
 |}
 
-==Spell Flags List==
+===Spell Flags List===
 
 First character's magic list begins at 0x79C.  Add 8 * ally number for other characters.
 
@@ -747,5 +741,8 @@ Note: Hero uses location of Wizard spells.
 |-
 |  %10000000  ||  style="text-align: center;"  |  $21  ||  Revive
 |}
+
+=Related=
+<br>
 
 {{Internal Data}}
