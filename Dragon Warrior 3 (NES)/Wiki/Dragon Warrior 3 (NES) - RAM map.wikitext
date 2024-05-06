@@ -520,7 +520,7 @@ This is located at $0718 + character number.
 
 ===Return Destinations===
 
-This is located at 0x750 + character number * 3.
+This is located at $0750 + character number * 3.
 
 The 3 bytes of Return Destinations store one bit per location visited.  The upper 4 bits of the third byte are not used.
 
@@ -586,7 +586,7 @@ The 3 bytes of Return Destinations store one bit per location visited.  The uppe
 
 ===Spell Flags List===
 
-First character's magic list begins at 0x79C.  Add 8 * ally number for other characters.
+First character's magic list begins at $079c.  Add 8 * ally number for other characters.
 
 *Byte 0-2: Wizard Spells (in battle)
 *Byte 3: Wizard Spells (field)
@@ -600,8 +600,8 @@ Note: Hero uses location of Wizard spells.
 !    !!  Class  !!  Type !!  Bit !!  Index  !!  Spell
 |-
 !  rowspan="8"  |  Byte 0
-|  rowspan="32"  |  Wizard
-|  rowspan="24"  |  Battle
+|  rowspan="8"  |  Wizard
+|  rowspan="8"  |  Battle
 |  %00000001  ||  style="text-align: center;"  |  $00  ||  Blaze
 |-
 |  %00000010  ||  style="text-align: center;"  |  $2d  ||  Upper
@@ -619,6 +619,8 @@ Note: Hero uses location of Wizard spells.
 |  %10000000  ||  style="text-align: center;"  |  $18  ||  Slow
 |-
 !  rowspan="8"  |  Byte 1
+|  rowspan="8"  |  Wizard
+|  rowspan="8"  |  Battle
 |  %00000001  ||  style="text-align: center;"  |  $01  ||  Blazemore
 |-
 |  %00000010  ||  style="text-align: center;"  |  $17  ||  RobMagic
@@ -636,6 +638,8 @@ Note: Hero uses location of Wizard spells.
 |  %10000000  ||  style="text-align: center;"  |  $30  ||  Bounce
 |-
 !  rowspan="8"  |  Byte 2
+|  rowspan="8"  |  Wizard
+|  rowspan="8"  |  Battle
 |  %00000001  ||  style="text-align: center;"  |  $02  ||  Blazemost
 |-
 |  %00000010  ||  style="text-align: center;"  |  $27  ||  Chaos
@@ -653,6 +657,7 @@ Note: Hero uses location of Wizard spells.
 |  %10000000  ||  style="text-align: center;"  |  $33  ||  Chance
 |-
 !  rowspan="8"  |  Byte 3
+|  rowspan="8"  |  Wizard
 |  rowspan="8"  |  Field
 |  %00000001  ||  style="text-align: center;"  |  $3b  ||  Outside
 |-
@@ -671,8 +676,8 @@ Note: Hero uses location of Wizard spells.
 |  %10000000  ||  style="text-align: center;"  |  $39  ||  Open
 |-
 !  rowspan="8"  |  Byte 4
-|  rowspan="32"  |  Pilgrim
-|  rowspan="24"  |  Battle
+|  rowspan="8"  |  Pilgrim
+|  rowspan="8"  |  Battle
 |  %00000001  ||  style="text-align: center;"  |  $2b  ||  Sap
 |-
 |  %00000010  ||  style="text-align: center;"  |  $1a  ||  Heal
@@ -690,6 +695,8 @@ Note: Hero uses location of Wizard spells.
 |  %10000000  ||  style="text-align: center;"  |  $22  ||  Sleep
 |-
 !  rowspan="8"  |  Byte 5
+|  rowspan="8"  |  Pilgrim
+|  rowspan="8"  |  Battle
 |  %00000001  ||  style="text-align: center;"  |  $2c  ||  Defence
 |-
 |  %00000010  ||  style="text-align: center;"  |  $1b  ||  Healmore
@@ -707,6 +714,8 @@ Note: Hero uses location of Wizard spells.
 |  %10000000  ||  style="text-align: center;"  |  $23  ||  Awake
 |-
 !  rowspan="8"  |  Byte 6
+|  rowspan="8"  |  Pilgrim
+|  rowspan="8"  |  Battle
 |  %00000001  ||  style="text-align: center;"  |  $31  ||  Barrier
 |-
 |  %00000010  ||  style="text-align: center;"  |  $1c  ||  Healall
@@ -724,6 +733,7 @@ Note: Hero uses location of Wizard spells.
 |  %10000000  ||  style="text-align: center;"  |  $21  ||  Revive
 |-
 !  rowspan="8"  |  Byte 7
+|  rowspan="8"  |  Pilgrim
 |  rowspan="8"  |  Field
 |  %00000001  ||  style="text-align: center;"  |  $1a  ||  Heal
 |-

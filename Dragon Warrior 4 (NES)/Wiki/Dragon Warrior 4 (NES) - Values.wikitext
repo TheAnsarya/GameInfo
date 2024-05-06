@@ -5,273 +5,273 @@
 
 ==Items==
 
-The item index only uses the bottom 7 bits so values range from $00 to $7f.
+The item index only uses the bottom 7 bits so values range from <code>$00</code> to <code>$7f</code>.
 
-$51 is a blank item separating the equipment ($00 - $50) and regular items ($52 - $7e). [TODO: does this represent something special?]
+<code>$51</code> is a blank item separating the equipment (<code>$00 - $50</code>) and regular items (<code>$52 - $7e</code>). [TODO: does this represent something special?]
 
-$7f represents "no item in slot".
+<code>$7f</code> represents "no item in slot".
 
-In the item bags, the high bit %10000000 indicates that the item is equipped. So, to get the equipped value add $80 to the item index.
+In the item bags, the high bit <code>%10000000</code> indicates that the item is equipped. So, to get the equipped value add <code>$80</code> to the item index.
 
 {| class="wikitable sortable"
 |-
 !  Value  !!  Description
 |-
-|  $00  ||  Cypress Stick
+|  style="text-align: center;"  |  $00  ||  Cypress Stick
 |-
-|  $01  ||  Club
+|  style="text-align: center;"  |  $01  ||  Club
 |-
-|  $02  ||  Copper Sword
+|  style="text-align: center;"  |  $02  ||  Copper Sword
 |-
-|  $03  ||  Iron Claw
+|  style="text-align: center;"  |  $03  ||  Iron Claw
 |-
-|  $04  ||  Chain Sickle
+|  style="text-align: center;"  |  $04  ||  Chain Sickle
 |-
-|  $05  ||  Iron Spear
+|  style="text-align: center;"  |  $05  ||  Iron Spear
 |-
-|  $06  ||  Broad Sword
+|  style="text-align: center;"  |  $06  ||  Broad Sword
 |-
-|  $07  ||  Battle Axe
+|  style="text-align: center;"  |  $07  ||  Battle Axe
 |-
-|  $08  ||  Silver Tarot Cards
+|  style="text-align: center;"  |  $08  ||  Silver Tarot Cards
 |-
-|  $09  ||  Thorn Whip
+|  style="text-align: center;"  |  $09  ||  Thorn Whip
 |-
-|  $0a  ||  Morning Star
+|  style="text-align: center;"  |  $0a  ||  Morning Star
 |-
-|  $0b  ||  Boomerang
+|  style="text-align: center;"  |  $0b  ||  Boomerang
 |-
-|  $0c  ||  Abacus of Virtue
+|  style="text-align: center;"  |  $0c  ||  Abacus of Virtue
 |-
-|  $0d  ||  Iron Fan
+|  style="text-align: center;"  |  $0d  ||  Iron Fan
 |-
-|  $0e  ||  Metal Babble Sword
+|  style="text-align: center;"  |  $0e  ||  Metal Babble Sword
 |-
-|  $0f  ||  Poison Needle
+|  style="text-align: center;"  |  $0f  ||  Poison Needle
 |-
-|  $10  ||  Staff of Force
+|  style="text-align: center;"  |  $10  ||  Staff of Force
 |-
-|  $11  ||  Staff of Thunder
+|  style="text-align: center;"  |  $11  ||  Staff of Thunder
 |-
-|  $12  ||  Demon Hammer
+|  style="text-align: center;"  |  $12  ||  Demon Hammer
 |-
-|  $13  ||  Multi-edge Sword
+|  style="text-align: center;"  |  $13  ||  Multi-edge Sword
 |-
-|  $14  ||  Zenithian Sword (1)
+|  style="text-align: center;"  |  $14  ||  Zenithian Sword (1)
 |-
-|  $15  ||  Dragon Killer
+|  style="text-align: center;"  |  $15  ||  Dragon Killer
 |-
-|  $16  ||  Stilleto Earrings
+|  style="text-align: center;"  |  $16  ||  Stilleto Earrings
 |-
-|  $17  ||  Staff of Punishment
+|  style="text-align: center;"  |  $17  ||  Staff of Punishment
 |-
-|  $18  ||  Sword of Lethargy
+|  style="text-align: center;"  |  $18  ||  Sword of Lethargy
 |-
-|  $19  ||  Venomous Dagger
+|  style="text-align: center;"  |  $19  ||  Venomous Dagger
 |-
-|  $1a  ||  Fire Claw
+|  style="text-align: center;"  |  $1a  ||  Fire Claw
 |-
-|  $1b  ||  Ice Blade
+|  style="text-align: center;"  |  $1b  ||  Ice Blade
 |-
-|  $1c  ||  Sword of Miracles
+|  style="text-align: center;"  |  $1c  ||  Sword of Miracles
 |-
-|  $1d  ||  Staff of Antimagic
+|  style="text-align: center;"  |  $1d  ||  Staff of Antimagic
 |-
-|  $1e  ||  Magma Staff
+|  style="text-align: center;"  |  $1e  ||  Magma Staff
 |-
-|  $1f  ||  Sword of Decimation
+|  style="text-align: center;"  |  $1f  ||  Sword of Decimation
 |-
-|  $20  ||  Staff of Healing
+|  style="text-align: center;"  |  $20  ||  Staff of Healing
 |-
-|  $21  ||  Zenithian Sword (2)
+|  style="text-align: center;"  |  $21  ||  Zenithian Sword (2)
 |-
-|  $22  ||  Staff of Jubilation
+|  style="text-align: center;"  |  $22  ||  Staff of Jubilation
 |-
-|  $23  ||  Sword of Malice
+|  style="text-align: center;"  |  $23  ||  Sword of Malice
 |-
-|  $24  ||  Basic Clothes
+|  style="text-align: center;"  |  $24  ||  Basic Clothes
 |-
-|  $25  ||  Wayfarer's Clothes
+|  style="text-align: center;"  |  $25  ||  Wayfarer's Clothes
 |-
-|  $26  ||  Leather Armor
+|  style="text-align: center;"  |  $26  ||  Leather Armor
 |-
-|  $27  ||  Chain Mail
+|  style="text-align: center;"  |  $27  ||  Chain Mail
 |-
-|  $28  ||  Half Plate Armor
+|  style="text-align: center;"  |  $28  ||  Half Plate Armor
 |-
-|  $29  ||  Iron Apron
+|  style="text-align: center;"  |  $29  ||  Iron Apron
 |-
-|  $2a  ||  Full Plate Armor
+|  style="text-align: center;"  |  $2a  ||  Full Plate Armor
 |-
-|  $2b  ||  Silk Robe
+|  style="text-align: center;"  |  $2b  ||  Silk Robe
 |-
-|  $2c  ||  Dancer's Costume
+|  style="text-align: center;"  |  $2c  ||  Dancer's Costume
 |-
-|  $2d  ||  Bronze Armor
+|  style="text-align: center;"  |  $2d  ||  Bronze Armor
 |-
-|  $2e  ||  Metal Babble Armor
+|  style="text-align: center;"  |  $2e  ||  Metal Babble Armor
 |-
-|  $2f  ||  Fur Coat
+|  style="text-align: center;"  |  $2f  ||  Fur Coat
 |-
-|  $30  ||  Leather Dress
+|  style="text-align: center;"  |  $30  ||  Leather Dress
 |-
-|  $31  ||  Pink Leotard
+|  style="text-align: center;"  |  $31  ||  Pink Leotard
 |-
-|  $32  ||  Dragon Mail
+|  style="text-align: center;"  |  $32  ||  Dragon Mail
 |-
-|  $33  ||  Cloak of Evasion
+|  style="text-align: center;"  |  $33  ||  Cloak of Evasion
 |-
-|  $34  ||  Sacred Robe
+|  style="text-align: center;"  |  $34  ||  Sacred Robe
 |-
-|  $35  ||  Water Flying Clothes
+|  style="text-align: center;"  |  $35  ||  Water Flying Clothes
 |-
-|  $36  ||  Mysterious Bolero
+|  style="text-align: center;"  |  $36  ||  Mysterious Bolero
 |-
-|  $37  ||  Zenithian Armor
+|  style="text-align: center;"  |  $37  ||  Zenithian Armor
 |-
-|  $38  ||  Swordedge Armor
+|  style="text-align: center;"  |  $38  ||  Swordedge Armor
 |-
-|  $39  ||  Robe of Serenity
+|  style="text-align: center;"  |  $39  ||  Robe of Serenity
 |-
-|  $3a  ||  Zombie Mail
+|  style="text-align: center;"  |  $3a  ||  Zombie Mail
 |-
-|  $3b  ||  Dress of Radiance
+|  style="text-align: center;"  |  $3b  ||  Dress of Radiance
 |-
-|  $3c  ||  Demon Armor
+|  style="text-align: center;"  |  $3c  ||  Demon Armor
 |-
-|  $3d  ||  Leather Shield
+|  style="text-align: center;"  |  $3d  ||  Leather Shield
 |-
-|  $3e  ||  Scale Shield
+|  style="text-align: center;"  |  $3e  ||  Scale Shield
 |-
-|  $3f  ||  Iron Shield
+|  style="text-align: center;"  |  $3f  ||  Iron Shield
 |-
-|  $40  ||  Shield of Strength
+|  style="text-align: center;"  |  $40  ||  Shield of Strength
 |-
-|  $41  ||  Mirror Shield
+|  style="text-align: center;"  |  $41  ||  Mirror Shield
 |-
-|  $42  ||  Aeolus' Shield
+|  style="text-align: center;"  |  $42  ||  Aeolus' Shield
 |-
-|  $43  ||  Dragon Shield
+|  style="text-align: center;"  |  $43  ||  Dragon Shield
 |-
-|  $44  ||  Zenithian Shield
+|  style="text-align: center;"  |  $44  ||  Zenithian Shield
 |-
-|  $45  ||  Metal Babble Shield
+|  style="text-align: center;"  |  $45  ||  Metal Babble Shield
 |-
-|  $46  ||  Leather Hat
+|  style="text-align: center;"  |  $46  ||  Leather Hat
 |-
-|  $47  ||  Wooden Hat
+|  style="text-align: center;"  |  $47  ||  Wooden Hat
 |-
-|  $48  ||  Iron Helmet
+|  style="text-align: center;"  |  $48  ||  Iron Helmet
 |-
-|  $49  ||  Iron Mask
+|  style="text-align: center;"  |  $49  ||  Iron Mask
 |-
-|  $4a  ||  Feather Hat
+|  style="text-align: center;"  |  $4a  ||  Feather Hat
 |-
-|  $4b  ||  Zenithian Helm
+|  style="text-align: center;"  |  $4b  ||  Zenithian Helm
 |-
-|  $4c  ||  Mask of Corruption
+|  style="text-align: center;"  |  $4c  ||  Mask of Corruption
 |-
-|  $4d  ||  Golden Barrette
+|  style="text-align: center;"  |  $4d  ||  Golden Barrette
 |-
-|  $4e  ||  Hat of Happiness
+|  style="text-align: center;"  |  $4e  ||  Hat of Happiness
 |-
-|  $4f  ||  Metal Babble Helm
+|  style="text-align: center;"  |  $4f  ||  Metal Babble Helm
 |-
-|  $50  ||  Meteorite Armband
+|  style="text-align: center;"  |  $50  ||  Meteorite Armband
 |-
-|  $51  ||  ??? (Blank Name)
+|  style="text-align: center;"  |  $51  ||  ??? (Blank Name)
 |-
-|  $52  ||  Baron's Horn
+|  style="text-align: center;"  |  $52  ||  Baron's Horn
 |-
-|  $53  ||  Medical Herb
+|  style="text-align: center;"  |  $53  ||  Medical Herb
 |-
-|  $54  ||  Antidote Herb
+|  style="text-align: center;"  |  $54  ||  Antidote Herb
 |-
-|  $55  ||  Fairy Water
+|  style="text-align: center;"  |  $55  ||  Fairy Water
 |-
-|  $56  ||  Wing of Wyvern
+|  style="text-align: center;"  |  $56  ||  Wing of Wyvern
 |-
-|  $57  ||  Leaf of World Tree
+|  style="text-align: center;"  |  $57  ||  Leaf of World Tree
 |-
-|  $58  ||  Full Moon Herb
+|  style="text-align: center;"  |  $58  ||  Full Moon Herb
 |-
-|  $59  ||  Wizard's Ring
+|  style="text-align: center;"  |  $59  ||  Wizard's Ring
 |-
-|  $5a  ||  Magic Potion
+|  style="text-align: center;"  |  $5a  ||  Magic Potion
 |-
-|  $5b  ||  Dew of World Tree
+|  style="text-align: center;"  |  $5b  ||  Dew of World Tree
 |-
-|  $5c  ||  Flute of Uncovering
+|  style="text-align: center;"  |  $5c  ||  Flute of Uncovering
 |-
-|  $5d  ||  Sphere of Silence
+|  style="text-align: center;"  |  $5d  ||  Sphere of Silence
 |-
-|  $5e  ||  Scent Pouch
+|  style="text-align: center;"  |  $5e  ||  Scent Pouch
 |-
-|  $5f  ||  Sandglass of Regression
+|  style="text-align: center;"  |  $5f  ||  Sandglass of Regression
 |-
-|  $60  ||  Sage's Stone
+|  style="text-align: center;"  |  $60  ||  Sage's Stone
 |-
-|  $61  ||  Strength Seed
+|  style="text-align: center;"  |  $61  ||  Strength Seed
 |-
-|  $62  ||  Agility Seed
+|  style="text-align: center;"  |  $62  ||  Agility Seed
 |-
-|  $63  ||  Luck Seed
+|  style="text-align: center;"  |  $63  ||  Luck Seed
 |-
-|  $64  ||  Lifeforce Nuts
+|  style="text-align: center;"  |  $64  ||  Lifeforce Nuts
 |-
-|  $65  ||  Mystic Acorns
+|  style="text-align: center;"  |  $65  ||  Mystic Acorns
 |-
-|  $66  ||  Mirror of Ra
+|  style="text-align: center;"  |  $66  ||  Mirror of Ra
 |-
-|  $67  ||  Lamp of Darkness
+|  style="text-align: center;"  |  $67  ||  Lamp of Darkness
 |-
-|  $68  ||  Staff of Transform
+|  style="text-align: center;"  |  $68  ||  Staff of Transform
 |-
-|  $69  ||  Small Medal
+|  style="text-align: center;"  |  $69  ||  Small Medal
 |-
-|  $6a  ||  Stone of Drought
+|  style="text-align: center;"  |  $6a  ||  Stone of Drought
 |-
-|  $6b  ||  Iron Safe
+|  style="text-align: center;"  |  $6b  ||  Iron Safe
 |-
-|  $6c  ||  Flying Shoes
+|  style="text-align: center;"  |  $6c  ||  Flying Shoes
 |-
-|  $6d  ||  Silver Statuette
+|  style="text-align: center;"  |  $6d  ||  Silver Statuette
 |-
-|  $6e  ||  Treasure Map
+|  style="text-align: center;"  |  $6e  ||  Treasure Map
 |-
-|  $6f  ||  Symbol of Faith
+|  style="text-align: center;"  |  $6f  ||  Symbol of Faith
 |-
-|  $70  ||  Gunpowder Jar
+|  style="text-align: center;"  |  $70  ||  Gunpowder Jar
 |-
-|  $71  ||  Thief's Key
+|  style="text-align: center;"  |  $71  ||  Thief's Key
 |-
-|  $72  ||  Magic Key
+|  style="text-align: center;"  |  $72  ||  Magic Key
 |-
-|  $73  ||  Final Key
+|  style="text-align: center;"  |  $73  ||  Final Key
 |-
-|  $74  ||  Lunch
+|  style="text-align: center;"  |  $74  ||  Lunch
 |-
-|  $75  ||  Birdsong Nector
+|  style="text-align: center;"  |  $75  ||  Birdsong Nector
 |-
-|  $76  ||  Golden Bracelet
+|  style="text-align: center;"  |  $76  ||  Golden Bracelet
 |-
-|  $77  ||  Prince's Letter
+|  style="text-align: center;"  |  $77  ||  Prince's Letter
 |-
-|  $78  ||  Royal Scroll
+|  style="text-align: center;"  |  $78  ||  Royal Scroll
 |-
-|  $79  ||  Gum Pod
+|  style="text-align: center;"  |  $79  ||  Gum Pod
 |-
-|  $7a  ||  Boarding Pass
+|  style="text-align: center;"  |  $7a  ||  Boarding Pass
 |-
-|  $7b  ||  Padequia Root
+|  style="text-align: center;"  |  $7b  ||  Padequia Root
 |-
-|  $7c  ||  Fire of Serenity
+|  style="text-align: center;"  |  $7c  ||  Fire of Serenity
 |-
-|  $7d  ||  Gas Canister
+|  style="text-align: center;"  |  $7d  ||  Gas Canister
 |-
-|  $7e  ||  Padequia Seed
+|  style="text-align: center;"  |  $7e  ||  Padequia Seed
 |-
-|  $7f  ||  ??? No Item
+|  style="text-align: center;"  |  $7f  ||  ??? No Item
 |}
 
 
