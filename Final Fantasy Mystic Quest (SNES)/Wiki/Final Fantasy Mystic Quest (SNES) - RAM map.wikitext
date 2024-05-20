@@ -8,87 +8,99 @@ The are 9 save slots of $38c bytes each for a total of $1fec bytes.
 |-
 !  Address  !!  Description
 |-
-|  $0000 - $038b  || Save Slot 1A
+|  $0000 - $038b  ||  Save Slot 1A
 |-
-|  $038c - $0717  || Save Slot 2A
+|  $038c - $0717  ||  Save Slot 2A
 |-
-|  $0718 - $0aa3  || Save Slot 3A
+|  $0718 - $0aa3  ||  Save Slot 3A
 |-
-|  $0aa4 - $0e2f  || Save Slot 1B
+|  $0aa4 - $0e2f  ||  Save Slot 1B
 |-
-|  $0e30 - $11bb  || Save Slot 2B
+|  $0e30 - $11bb  ||  Save Slot 2B
 |-
-|  $11bc - $154a  || Save Slot 3B
+|  $11bc - $154a  ||  Save Slot 3B
 |-
-|  $154b - $18d3  || Save Save Slot 1C
+|  $154b - $18d3  ||  Save Slot 1C
 |-
-|  $18d4 - $1c5f  || Save Slot 2C
+|  $18d4 - $1c5f  ||  Save Slot 2C
 |-
-|  $1c60 - $1feb  || Save Slot 3C
-|-
-|  $1fec - $1fff  || $14 unknown bytes
+|  $1c60 - $1feb  ||  Save Slot 3C
+|-  style="background-color:#EAECF0;"
+|  $1fec - $1fff  ||  $14 unknown bytes
 |}
 
 ===Save Slot Structure===
 
 Save Slot Structure, $0x38c bytes.
 
-[Todo: flesh out missing values]
+{{ Todo | flesh out missing values }}
 
 {| class="wikitable"
 !  Offset  !!  Length  !!  Description
 |-
-|  $000  ||  6  ||  "FF0!" + checksum
+|  $000 - $005  ||  6  ||  "FF0!" + checksum (2 bytes)
 |-
-|  $006  ||  $50  ||  Character 1
+|  $006 - $055  ||  $50  ||  Character 1
 |-
-|  $056  ||  $50  ||  Character 2
+|  $056 - $0a5  ||  $50  ||  Character 2
 |-
-|  $0a6  ||  3  ||  Gold (Max: 9999999)
+|  $0a6 - $0a8  ||  3  ||  Gold (Max: 9999999)
+|-  style="background-color:#EAECF0;"
+|  $0a9 - $0aa  ||  2  ||  ???
 |-
 |  $0ab  ||  1  ||  Player X
 |-
 |  $0ac  ||  1  ||  Player Y
 |-
 |  $0ad  ||  1  ||  Player Facing
+|-  style="background-color:#EAECF0;"
+|  $0ae - $0b2  ||  5  ||  ???
 |-
 |  $0b3  ||  1  ||  Map ID
+|-  style="background-color:#EAECF0;"
+|  $0b4 - $0b8  ||  5  ||  ???
 |-
-|  $0b9  ||  3  ||  Play Time (0xSSMMHH)
+|  $0b9 - $0bb  ||  3  ||  Play Time (0xSSMMHH)
+|-  style="background-color:#EAECF0;"
+|  $0bc - $0c0 ||  5  ||  ???
 |-
 |  $0c1  ||  1  ||  # of cures
-|-
-|  $0c2  ||  $2ca  ||  Unknown [Todo]
+|-  style="background-color:#EAECF0;"
+|  $0c2 - $38b  ||  $2ca  ||  ???
 |}
 
 ===Character Data Structure===
 
 Character Data Structure, $50 bytes.
 
-[Todo: flesh out missing values]
+{{ Todo | flesh out missing values }}
 
 {| class="wikitable"
 !  Offset  !!  Length  !!  Description
 |-
-|  $00  ||  8  ||  Name
+|  $00 - $07  ||  8  ||  Name
+|-  style="background-color:#EAECF0;"
+|  $08 - $0f  ||  8  ||  ???
 |-
 |  $10  ||  1  ||  Level (Max: 99)
 |-
-|  $11  ||  3  ||  Exp (Max: 9999999)
+|  $11 - $13  ||  3  ||  Experience (Max: 9999999)
 |-
-|  $14  ||  2  ||  Cur HP (Max: $ffff)
+|  $14 - $15  ||  2  ||  Current HP (Max: $ffff)
 |-
-|  $16  ||  2  ||  Max HP (Max: $ffff)
+|  $16 - $17  ||  2  ||  Max HP (Max: $ffff)
+|-  style="background-color:#EAECF0;"
+|  $18 - $20  ||  9  ||  ???
 |-
 |  $21  ||  1  ||  Status
 |-
-|  $22  ||  1  ||  Curr Attack  (Max: 99)
+|  $22  ||  1  ||  Current Attack  (Max: 99)
 |-
-|  $23  ||  1  ||  Curr Defense (Max: 99)
+|  $23  ||  1  ||  Current Defense (Max: 99)
 |-
-|  $24  ||  1  ||  Curr Speed   (Max: 99)
+|  $24  ||  1  ||  Current Speed   (Max: 99)
 |-
-|  $25  ||  1  ||  Curr Magic   (Max: 99)
+|  $25  ||  1  ||  Current Magic   (Max: 99)
 |-
 |  $26  ||  1  ||  Base Attack  (Max: 99)
 |-
@@ -101,7 +113,11 @@ Character Data Structure, $50 bytes.
 |  $30  ||  1  ||  Weapon Count
 |-
 |  $31  ||  1  ||  Weapon ID
+|-  style="background-color:#EAECF0;"
+|  $32 - $4f  ||  $1e  ||  ???
 |}
 
+=Related=
+<br>
 
 {{Internal Data}}
