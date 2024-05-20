@@ -1,0 +1,11 @@
+<!--<includeonly><div id="catlinks"><blockquote>[[File:Chip_tiny.png]]The following article is an [[SRAM map]] for ''[[{{{game}}}]]''.</blockquote></div>[[Category:SRAM maps]]</includeonly><noinclude>
+--><includeonly><blockquote>'''[[File:Chip_tiny.png]] The following article is an [[SRAM map]] for ''{{ #if: {{{section|}}} | [[{{{1|{{BASEPAGENAME}}#{{{section}}}}}} | {{BASEPAGENAME}} ({{{section}}})]] | [[{{{1|{{BASEPAGENAME}}}}}]]}}''.'''</blockquote>[[Category:SRAM maps]]{{#ifexist: {{BASEPAGENAME}} | | [[Category:Subpages without a parent]]}}<!--{{#ifeq: {{NAMESPACE}} | Data | [[Category:Game data]] | {{#ifeq: {{NAMESPACE}} | User | | [[Category:Namespace templates in the wrong namespace]]}}}}{{UnimportantAwards}}-->{{TalkIndicator}}</includeonly><noinclude><!--
+-->[[Category:Namespace templates]]</noinclude><noinclude>
+
+== Usage ==
+{{srammap|game=Game Title}}
+<pre><nowiki>
+{{srammap|game=Game Title}}
+</nowiki></pre>
+
+</noinclude>

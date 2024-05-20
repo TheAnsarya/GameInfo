@@ -1,0 +1,61 @@
+{{Bob
+| bobscreen= Final_Fantasy_Mystic_Quest_Title_(animated).gif
+| aka= Final Fantasy USA Mystic Quest (JP), Mystic Quest Legend (EU)
+| developer= Square
+| publishers= {{publisher|Squaresoft}} (US), {{publisher|Square}} (JP), {{publisher|Nintendo}} (EU)
+| system= SNES
+| usa= {{date|1992|October|5}}
+| japan= {{date|1993|September|10|nocat=true}}
+| europe= {{date|1993|nocat=true}}
+| tcrf=Final Fantasy: Mystic Quest
+}}
+{{SNES
+|title = Final Fantasy Mystic Quest
+|image = [[File:Final_Fantasy_Mystic_Quest_Title_(animated).gif|center]]
+|name = FF MYSTIC QUEST
+|company = Square
+|header = None
+|bank = LoROM
+|interleaved = No
+|sram = 8 KiB
+|type = Normal + Batt
+|rom = 512 KiB
+|country = USA
+|video = NTSC
+|romspeed = 200ns (SlowROM)
+|revision = 1.0
+|checksum = Good 0x4CDE
+|crc32 = 6B19A2C6
+|game = Final Fantasy Mystic Quest
+}}
+
+==Sub-pages==
+{{namespaces}}
+
+* [[Final Fantasy: Mystic Quest/SRAM map]]
+
+==Utilities==
+* [https://www.romhacking.net/utilities/369/ Mystic Quest Multi Editor], coded by JCE3000GT. This utility edits characters, monsters, items and more.
+* [http://www.jce3000gt.com/spc_editor.php SPC Editor], coded by JCE3000GT. This utility allows the user to edit the instrument sample indexes in various games, including Mystic Quest.
+
+==Hacks==
+* [http://www.jce3000gt.com/mqht.php Mystic Quest HardType], created by JCE3000GT. So far this beta version allows the player to play the hardtype hack up until you beat the Flamerus Rex and get the first crystal. The hack is designed to keep the story and characters intact while increasing the game's difficulty. There are also some extra things like new music which spice up the game as well.
+
+==Translations==
+* [http://www.romhacking.net/trans/1172/ FF:MQ Retranslation] - DarknessSavior has started a retranslation of Final Fantasy: Mystic Quest.
+
+==Miscellaneous==
+* You can check the chip version in your SNES by pressing Start and Select at the same time when on the menu screen.
+
+==Known Dumps==
+* Final Fantasy - Mystic Quest (U) (V1.0) [!]
+* Final Fantasy - Mystic Quest (U) (V1.1)
+* Final Fantasy USA - Mystic Quest (J)
+* Mystic Quest Legend (E)
+* Mystic Quest Legend (F)
+* Mystic Quest Legend (G)
+
+==External links==
+* No external links yet.
+
+{{Final Fantasy series}}
