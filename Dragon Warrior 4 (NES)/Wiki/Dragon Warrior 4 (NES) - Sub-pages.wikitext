@@ -1,7 +1,6 @@
 ==Sub-pages==
 {{namespaces}}
-
-* [[Dragon Warrior IV (NES)/Map Data Format]]
-* [[Dragon Warrior IV (NES)/Map List]]
-* [[Dragon Warrior IV (NES)/Tile Behaviors]]
-* [[Dragon Warrior IV (NES)/Values]]
+{{subpage|Map Data Format}}
+{{subpage|Map List}}
+{{subpage|Tile Behaviors}}
+{{subpage|Values}}

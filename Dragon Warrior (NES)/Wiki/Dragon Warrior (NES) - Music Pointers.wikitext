@@ -1,0 +1,68 @@
+{{subpage}}
+
+==Music at each Location==
+
+{| class="wikitable sortable"
+|-
+!  Address  !!  Value  !!  Description
+|-
+|  $31be  ||  $00  ||  Silence
+|-
+|  $31bf  ||  $05  ||  Overworld
+|-
+|  $31c0  ||  $06  ||  Charlock (Floor 1)
+|-
+|  $31c1  ||  $09  ||  Hauksness
+|-
+|  $31c2  ||  $03  ||  Tantegel Castle (ground floor)
+|-
+|  $31c3  ||  $02  ||  Tantegel Throne Room
+|-
+|  $31c4  ||  $0d  ||  Charlock (Floor 8)
+|-
+|  $31c5  ||  $04  ||  Kol
+|-
+|  $31c6  ||  $04  ||  Brecconary
+|-
+|  $31c7  ||  $04  ||  Garinham
+|-
+|  $31c8  ||  $04  ||  Cantlin
+|-
+|  $31c9  ||  $04  ||  Rimuldar
+|-
+|  $31ca  ||  $03  ||  Tantegel Basement
+|-
+|  $31cb  ||  $03  ||  Northern Cave
+|-
+|  $31cc  ||  $03  ||  Southern Cave
+|-
+|  $31cd  ||  $07  ||  Charlock (Floor 2)
+|-
+|  $31ce  ||  $08  ||  Charlock (Floor 3)
+|-
+|  $31cf  ||  $09  ||  Charlock (Floor 4)
+|-
+|  $31d0  ||  $0a  ||  Charlock (Floor 5)
+|-
+|  $31d1  ||  $0b  ||  Charlock (Floor 6)
+|-
+|  $31d2  ||  $0c  ||  Charlock (Floor 7)
+|-
+|  $31d3  ||  $06  ||  Swamp Cave
+|-
+|  $31d4  ||  $06  ||  Mountain Cave (Floor 1)
+|-
+|  $31d5  ||  $07  ||  Mountain Cave (Floor 2)
+|-
+|  $31d6  ||  $06  ||  Grave at Garinham (Floor 1)
+|-
+|  $31d7  ||  $07  ||  Grave at Garinham (Floor 2)
+|-
+|  $31d8  ||  $08  ||  Grave at Garinham (Floor 3)
+|-
+|  $31d9  ||  $09  ||  Grave at Garinham (Floor 4)
+|-
+|  $31da  ||  $06  ||  Erdrick's Cave (Floor 1)
+|-
+|  $31db  ||  $07  ||  Erdrick's Cave (Floor 2)
+|}

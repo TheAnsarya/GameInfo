@@ -1,17 +1,59 @@
-
-
-
+{{subpage}}
 {{stub}}
 
 =Values=
 
+==Equipment==
+
+{| class="wikitable"
+|-
+!  Category  !!  Value  !!  Description
+|-
+|  rowspan="7"  |  Weapons
+|  $20  ||  Bamboo Pole
+|-
+|  $40  ||  Club
+|-
+|  $60  ||  Copper Sword
+|-
+|  $80  ||  Hand Axe
+|-
+|  $a0  ||  Broad Sword
+|-
+|  $c0  ||  Flame Sword
+|-
+|  $e0  ||  Erdrick's Sword
+|-
+|  rowspan="7"  |  Armor
+|  $04  ||  Clothes
+|-
+|  $08  ||  Leather Armor
+|-
+|  $0c  ||  Chain Mail
+|-
+|  $10  ||  Half Plate Armor
+|-
+|  $14  ||  Full Plate Armor
+|-
+|  $18  ||  Magic Armor
+|-
+|  $1c  ||  Erdrick's Armor
+|-
+|  rowspan="3"  |  Shields
+|  $01  ||  Small Shield
+|-
+|  $02  ||  Large Shield
+|-
+|  $03  ||  Silver Shield
+|}
+
 ==Items==
 
-[TODO: add list]
+{{ Todo | Add items }}
 
 ==Monsters==
 
-{| class="wikitable sortable"
+{| class="wikitable"
 |-
 !  Value  !!  Description
 |-
@@ -98,9 +140,8 @@
 
 ==Spells==
 
-[TODO: add list]
+{{ Todo | add list }}
 
 ==Maps==
 
-[TODO: add list]
-
+{{ Todo | add list }}

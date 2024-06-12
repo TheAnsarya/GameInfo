@@ -31,8 +31,7 @@
 
 ==Sub-pages==
 {{namespaces}}
-
-* [[Final Fantasy: Mystic Quest/SRAM map]]
+{{subpage|SRAM map}}
 
 ==Utilities==
 * [https://www.romhacking.net/utilities/369/ Mystic Quest Multi Editor], coded by JCE3000GT. This utility edits characters, monsters, items and more.
