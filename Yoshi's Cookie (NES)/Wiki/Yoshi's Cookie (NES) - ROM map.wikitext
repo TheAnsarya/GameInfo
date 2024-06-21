@@ -1,0 +1,36 @@
+{{rommap}}
+{{stub}}
+
+==Main==
+
+{| class="wikitable"
+|-
+!  Address  !!  Description
+|-
+|  $8e65  ||  1P menu
+|-
+|  $9a80  ||  title / continue
+|-
+|  $9b76  ||  1P menu starting animation
+|-
+|  $9bf6  ||  1P menu starting animation
+|-
+|  $aa40  ||  stage start / clear
+|-
+|  $aabb  ||  round X
+|-
+|  $b315  ||  mario animation
+|-
+|  $b3c4  ||  paused / game over
+|-
+|  $c7d3  ||  adding column / row
+|-
+|  $c876  ||  playing / demo
+|-
+|  $d06f  ||  playing single columns / rows
+|}
+
+=Related=
+<br>
+
+{{Internal Data}}
