@@ -116,4 +116,16 @@ The whole graphics state is set every VBLANK interrupt. This is also where VRAM 
 |  Graphics Loading  ||  $7faeea - $7fb0e9  ||  $100 words  ||  ↔️ Tile indexes, which tiles to copy, used to fill the DMA copy scheduler data in $7e8bae - $7e93ae
 |}
 
+==Game Events==
+
+===Treasure Chests===
+These flags indicate which chests or treasures have been already taken.
+
+{| class="wikitable sortable"
+|-
+!  Location  !!  Address  !! SRAM  !!  Value  !!  Description
+|-
+|  Aliahan  ||  $0356a  ||  0078  ||  0100 0000  ||  Hero's Bedroom, Drawer - Strength Seed
+|}
+
 {{Internal Data|game=Dragon Quest III}}
