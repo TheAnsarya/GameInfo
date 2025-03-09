@@ -1,0 +1,162 @@
+
+Track which monsters have been killed
+Track how many times each monster has been killed
+Every treasure box/chest
+Every drawer or bush or whatever with a treasure
+Every Event
+Every person talked to
+Items dropped by monsters?
+Quest tracking
+Map percentage (is in dq3r already)
+
+
+-- As in Kingdom Hearts, level up in the middle of the battle when a monster is killed
+Item drops from monters in middle of battle too
+Do we heal on level up?
+Add Bag immediately (1o slots per character until chapter 5? or a full bag? or no bag until Chapter 5?)
+
+One save slot, so the rest of sram can track stats
+-- Find out how much sram space is available
+-- Calculate space needed for items, monsters, spells, etc
+
+Find and document all monster stats on DQ3r
+Find and document all monster stats on DQ3 NES
+Find and document all monster stats on DQ4 NES
+
+Gather all DQ3r monster battle graphics
+Gather all DQ3/4 DS or GBA or PSX graphics for monster battles and actioons
+
+Get help to convert later ports, monster action graphics to SNES
+
+Make utilities that convert graphics and reduce colors
+
+Make utility compression libraries
+
+decompile Casino formulas from NES and SNES games
+
+implement Casino UI in SNES DQ3r
+
+Cut scenes => fast forward (R button)
+
+Also, text messages, faster with R button
+
+L Button is quick A button (or rather run action, which is not always A button)
+
+L+R => run
+-- XP, gold, and items earned before run are kept
+
+
+EXPLORE: can we make enemies show up on the screen, so encounters are not random?
+--avoidable
+--pick battles
+--
+
+
+
+DQ3r:
+Text Speach Drawing:
+Decompile Text drawing
+Find character set graphics
+Genericize to different languages
+
+Text data:
+Find, decompress text data
+Setup build for different languages
+
+
+Menu text:
+Find graphics
+Find text in menus
+Find text in basic bullshit
+Setup for different languages
+Menu size and positions
+Make menus show and hide faster
+
+AI Battle:
+Turn on and off
+
+
+Editors for:
+    World Map
+        World map events
+    Towns
+        Town events
+    Dungeons
+        Dungeon events
+    Script
+        text
+        menus
+        names
+
+Level growth
+Stat growth
+Seed amounts
+Seed locations
+Mini medals
+Mini medal rewards
+
+Where to go next text (party chat)
+Forge/Alchemy Pot?
+
+Costumes, separate from armor
+
+Profile Avatar pictures
+Longer names
+Colors on stat menus baased on HP/Map
+Colors on monster names like the colors on level difference in WoW
+
+Anticipated damage displayed for attack and spells
+
+Enemy hp/mp displayed (Scope in Chrono Trrigger)
+
+Monster animations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Covert routines to C# and interpreter/compiler
+--- Do we need that many DMA transfer slots or can we use that RAM for other things
+-----Play with LUA counters on which slots are not 0
+
+
+Make a compiler?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

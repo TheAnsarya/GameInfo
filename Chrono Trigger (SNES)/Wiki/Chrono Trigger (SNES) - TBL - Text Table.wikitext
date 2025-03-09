@@ -1,0 +1,518 @@
+{{TBL}}
+
+=Text Table=
+
+The space (<code>&nbsp;</code>) character is $ef.
+
+{| class="wikitable" style="text-align: center;"
+|-
+!    !!  _0  !!  _1  !!  _2  !!  _3  !!  _4  !!  _5  !!  _6  !!  _7  !!  _8  !!  _9  !!  _a  !!  _b  !!  _c  !!  _d  !!  _e  !!  _f
+|-
+! scope="row" |  0_
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|-
+! scope="row" |  1_
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  Crono
+|  Marle
+|  Lucca
+|  Robo
+|  Frog
+|  Ayla
+|  Magus
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  Nadia
+|  style="background-color:#eaecf0;"  |
+|-
+! scope="row" |  2_
+|  Epoch
+|  the
+|  th
+|  he
+|  ou
+|  in
+|  er
+|  you
+|  re
+|  ing
+|  on
+|  ha
+|  an
+|  hat
+|  it
+|  at
+|-
+! scope="row" |  3_
+|  her
+|  here
+|  to
+|  en
+|  ng
+|  e t
+|  is
+|  me
+|  or
+|  st
+|  ve
+|  hi
+|  ea
+|  yo
+|  ere
+|  es
+|-
+! scope="row" |  4_
+|  sti
+|  e th
+|  nd
+|  ne
+|  his
+|  ca
+|  t t
+|  ro
+|  be
+|  s t
+|  t th
+|  and
+|  that
+|  al
+|  no
+|  The
+|-
+! scope="row" |  5_
+|  this
+|  s th
+|  's
+|  ight
+|  You
+|  ome
+|  ther
+|  : Th
+|  t's
+|  for
+|  se
+|  la
+|  te
+|  e the
+|  e a
+|  t the
+|-
+! scope="row" |  6_
+|  Th
+|  as
+|  ow
+|  CHANCELLOR:
+|  ed
+|  n the
+|  n't
+|  one
+|  ay
+|  e you
+|  ave
+|  thin
+|  ch
+|  ee
+|  et
+|  n th
+|-
+! scope="row" |  7_
+|  rl
+|  s a
+|  s the
+|  om
+|  tha
+|  ght
+|  all
+|  our
+|  hin
+|  ur
+|  thing
+|  ron
+|  have
+|  ck
+|  : T
+|  n t
+|-
+! scope="row" |  8_
+|  ver
+|  e s
+|  lo
+|  us
+|  el
+|  e w
+|  What
+|  ut
+|  nt
+|  ti
+|  igh
+|  e i
+|  d t
+|  e to
+|  t it
+|  of
+|-
+! scope="row" |  9_
+|  to the
+|  of the
+|  uc
+|  with
+|  rea
+|  your
+|  style="background-color:#eaecf0;"  |
+|  ou're
+|  ce
+|  of th
+|  av
+|  o the
+|  f the
+|  o th
+|  are
+|  in the
+|-
+! scope="row" |  a_
+|  A
+|  B
+|  C
+|  D
+|  E
+|  F
+|  G
+|  H
+|  I
+|  J
+|  K
+|  L
+|  M
+|  N
+|  O
+|  P
+|-
+! scope="row" |  b_
+|  Q
+|  R
+|  S
+|  T
+|  U
+|  V
+|  W
+|  X
+|  Y
+|  Z
+|  a
+|  b
+|  c
+|  d
+|  e
+|  f
+|-
+! scope="row" |  c_
+|  g
+|  h
+|  i
+|  j
+|  k
+|  l
+|  m
+|  n
+|  o
+|  p
+|  q
+|  r
+|  s
+|  t
+|  u
+|  v
+|-
+! scope="row" |  d_
+|  w
+|  x
+|  y
+|  z
+|  0
+|  1
+|  2
+|  3
+|  4
+|  5
+|  6
+|  7
+|  8
+|  9
+|  !
+|  ?
+|-
+! scope="row" |  e_
+|  style="background-color:#eaecf0;"  |
+|  `
+|  '
+|  :
+|  &
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  '
+|  .
+|  ,
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  &nbsp;
+|-
+! scope="row" |  f_
+|  style="background-color:#eaecf0;"  |
+|  …
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|  style="background-color:#eaecf0;"  |
+|}
+
+== TBL File ==
+
+<code>Download TBL file: [https://raw.githubusercontent.com/TheAnsarya/GameInfo/main/Chrono%20Trigger%20(SNES)/Wiki/Files/Chrono%20Trigger%20(SNES).tbl Chrono Trigger (SNES).tbl]</code>
+
+<pre>
+13=Crono
+14=Marle
+15=Lucca
+16=Robo
+17=Frog
+18=Ayla
+19=Magus
+1E=Nadia
+20=Epoch
+21=the
+22=th
+23=he
+24=ou
+25=in
+26=er
+27=you
+28=re
+29=ing
+2A=on
+2B=ha
+2C=an
+2D=hat
+2E=it
+2F=at
+30=her
+31=here
+32=to
+33=en
+34=ng
+35=e t
+36=is
+37=me
+38=or
+39=st
+3A=ve
+3B=hi
+3C=ea
+3D=yo
+3E=ere
+3F=es
+40=sti
+41=e th
+42=nd
+43=ne
+44=his
+45=ca
+46=t t
+47=ro
+48=be
+49=s t
+4A=t th
+4B=and
+4C=that
+4D=al
+4E=no
+4F=The
+50=this
+51=s th
+52='s
+53=ight
+54=You
+55=ome
+56=ther
+57=: Th
+58=t's
+59=for
+5A=se
+5B=la
+5C=te
+5D=e the
+5E=e a
+5F=t the
+60=Th
+61=as
+62=ow
+63=CHANCELLOR:
+64=ed
+65=n the
+66=n't
+67=one
+68=ay
+69=e you
+6A=ave
+6B=thin
+6C=ch
+6D=ee
+6E=et
+6F=n th
+70=rl
+71=s a
+72=s the
+73=om
+74=tha
+75=ght
+76=all
+77=our
+78=hin
+79=ur
+7A=thing
+7B=ron
+7C=have
+7D=ck
+7E=: T
+7F=n t
+80=ver
+81=e s
+82=lo
+83=us
+84=el
+85=e w
+86=What
+87=ut
+88=nt
+89=ti
+8A=igh
+8B=e i
+8C=d t
+8D=e to
+8E=t it
+8F=of
+90=to the
+91=of the
+92=uc
+93=with
+94=rea
+95=your
+97=ou're
+98=ce
+99=of th
+9A=av
+9B=o the
+9C=f the
+9D=o th
+9E=are
+9F=in the
+A0=A
+A1=B
+A2=C
+A3=D
+A4=E
+A5=F
+A6=G
+A7=H
+A8=I
+A9=J
+AA=K
+AB=L
+AC=M
+AD=N
+AE=O
+AF=P
+B0=Q
+B1=R
+B2=S
+B3=T
+B4=U
+B5=V
+B6=W
+B7=X
+B8=Y
+B9=Z
+BA=a
+BB=b
+BC=c
+BD=d
+BE=e
+BF=f
+C0=g
+C1=h
+C2=i
+C3=j
+C4=k
+C5=l
+C6=m
+C7=n
+C8=o
+C9=p
+CA=q
+CB=r
+CC=s
+CD=t
+CE=u
+CF=v
+D0=w
+D1=x
+D2=y
+D3=z
+D4=0
+D5=1
+D6=2
+D7=3
+D8=4
+D9=5
+DA=6
+DB=7
+DC=8
+DD=9
+DE=!
+DF=?
+E1=`
+E2='
+E3=:
+E4=&
+E7='
+E8=.
+E9=,
+EF= 
+F1=...
+</pre>
+
+=Related=
+<br>
+
+{{Internal Data}}
