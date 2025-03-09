@@ -116,4 +116,45 @@ The whole graphics state is set every VBLANK interrupt. This is also where VRAM 
 |  Graphics Loading  ||  $7faeea - $7fb0e9  ||  $100 words  ||  ↔️ Tile indexes, which tiles to copy, used to fill the DMA copy scheduler data in $7e8bae - $7e93ae
 |}
 
+==Game Events==
+
+===Treasure Chests===
+These flags indicate which chests or treasures have been already taken.
+
+{| class="wikitable sortable"
+|-
+!  Location  !! Address  !! SRAM  !!  Value  !!  Description  !!  Item|-
+|  -  ||  $0356a  ||  $0078  ||  0000 0001  ||  ---  ||  
+|-
+|  -  ||  $0356a  ||  $0078  ||  0000 0010  ||  ---  ||  
+|-
+|  -  ||  $0356a  ||  $0078  ||  0000 0100  ||  ---  ||  
+|-
+|  -  ||  $0356a  ||  $0078  ||  0000 1000  ||  ---  ||  
+|-
+|  -  ||  $0356a  ||  $0078  ||  0001 0000  ||  ---  ||  
+|-
+|  -  ||  $0356a  ||  $0078  ||  0010 0000  ||  ---  ||  
+|-
+|  Aliahan  ||  $0356a  ||  $0078  ||  0100 0000  ||  Hero's Bedroom, Drawer  ||  Strength Seed
+|-
+|  -  ||  $0356a  ||  $0078  ||  1000 0000  ||  ---  ||  
+|-
+|  -  ||  $0356b  ||  $0079  ||  0000 0001  ||  ---  ||  
+|-
+|  -  ||  $0356b  ||  $0079  ||  0000 0010  ||  ---  ||  
+|-
+|  -  ||  $0356b  ||  $0079  ||  0000 0100  ||  ---  ||  
+|-
+|  -  ||  $0356b  ||  $0079  ||  0000 1000  ||  ---  ||  
+|-
+|  -  ||  $0356b  ||  $0079  ||  0001 0000  ||  ---  ||  
+|-
+|  Aliahan  ||  $0356b  ||  0079  ||  0010 0000  ||  Castle, Room right of entrance, Left barrel  ||  Small Medal
+|-
+|  -  ||  $0356b  ||  $0079  ||  0100 0000  ||  ---  ||  
+|-
+|  -  ||  $0356b  ||  $0079  ||  1000 0000  ||  ---  ||  
+|}
+
 {{Internal Data|game=Dragon Quest III}}
