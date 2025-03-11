@@ -1,0 +1,48 @@
+
+
+3550 -24 =>14 -- Isis castle, night, 4f, queen -- "Check around my bed"
+
+03550 -  - 0000 0100 - Isis Castle, inside left, cat - [Event] Cat, "I am Baramos's familiar"
+
+03555 - 0063 - 0000 0010 - Norud's Cave - [Event] Norud agrees after hearing the King's Letter
+03555 - 0063 - 0000 0100 - Norud's Cave - [Event] Norud opens the cave path after hearing the King's Letter
+03555 - 0063 - 0000 1000 -  - 3, 7, B, kings letter, yes, open path
+
+
+0355d - 006b - 0000 0100 - Ashalam, bottom-right house at night, drawer - Pachisi Ticket
+
+03569 - 0077 - 0010 0000 - Aliahan, Castle, Top-left treasure room, Top Left Chest - 128 gold pieces
+03569 - 0077 - 0100 0000 - Aliahan, Castle, Top-left treasure room, Top Middle Chest - 336 gold pieces
+03569 - 0077 - 1000 0000 - Aliahan, Castle, Top-left treasure room, Top Right Chest - Hero Ring
+
+0356a - 0078 - 0000 0001 - Aliahan, Castle, Top-left treasure room, Bottom Left Chest - Agility Seed
+0356a - 0078 - 0000 0010 - Aliahan, Castle, Top-left treasure room, Bottom Middle Chest - Strength Seed
+0356a - 0078 - 0000 0100 - Aliahan, Castle, Top-left treasure room, Bottom Right Chest - Rune Staff
+
+0356b - 0079 - 0000 1000 - Aliahan, Prison, Left cell, pot - 500 gold pieces
+0356b - 0079 - 0001 0000 - Aliahan, Prison, Right cell, pot - Strength Seed
+0356b - 0079 - 0100 0000 - Romaly, Castle, bottom-left F1 => B1, left chest - Assassin Dagger
+0356b - 0079 - 1000 0000 - Romaly, Castle, bottom-left F1 => B1, right chest - Expel Shield
+
+0356d - 007b - 0000 0010 - Romaly, Castle, top-left F1 => F4, prison cell sink - Small Medal
+
+0356e - 007c - 0000 0100 - Isis Castle, F1, top-left room, top-left chest - Silk Robe
+0356e - 007c - 0000 1000 - Isis Castle, F1, top-left room, top-right chest - 72 gold pieces
+0356e - 007c - 0001 0000 - Isis Castle, F1, top-left room, bottom-left chest - Ruby Ring
+0356e - 007c - 0010 0000 - Isis Castle, F1, top-left room, bottom-right chest - Wisom Seed
+0356e - 007c - 0100 0000 - Isis Castle, F1, top-right room, top-left chest - Golden Tiara
+0356e - 007c - 1000 0000 - Isis Castle, F1, top-right room, top-right chest - Life Nut
+
+0356f - 007d - 0000 0001 - Isis Castle, F1, top-right room, top-right chest - Small Medal
+0356f - 007d - 0000 0010 - Isis Castle, F1, top-right room, bottom-right chest - 80 gold pieces
+
+03576 - 0084 - 1000 0000 - Cave of Norud the Dwarf, Room, left chest - Training Suit
+
+03577 - 0085 - 0000 0001 - Cave of Norud the Dwarf, Room, right chest - Club
+03577 - 0085 - 0000 0010 - Cave of Norud the Dwarf, well, top-right corner water - Life Nut
+
+
+
+
+
+

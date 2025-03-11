@@ -1,0 +1,229 @@
+{{rammap|game=Dragon Quest III}}
+
+==Treasures==
+These flags indicate which chests or treasures have been already taken.
+
+{| class="wikitable sortable"
+|-
+!  Location  !! Address  !! SRAM  !!  Value  !!  Description  !!  Event
+|-
+|  ---  ||  $03540  ||  ---  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $03540  ||  ---  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $03540  ||  ---  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03540  ||  ---  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03540  ||  ---  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $03540  ||  ---  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $03540  ||  ---  ||  0100 0000  ||  ---  ||  
+|-
+|  Pyramid  ||  $03540  ||  ---  ||  1000 0000  ||  F3, top locked room, right chest  ||  Get Magic Key
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $03541  ||  ---  ||  0000 0001  ||  ---  ||  
+|-
+|  Reeve  ||  $03541  ||  ---  ||  0000 0010  ||  Top-right house, F2, Old Man  ||  Get Magic Ball
+|-
+|  Cave of Enticement  ||  $03541  ||  ---  ||  0000 0100  ||  B1, Chest below exploded wall  ||  Obtain World Map
+|-
+|  Shampane Tower  ||  $03541  ||  ---  ||  0000 1000  ||  F4  ||  Pick up Golden Crown after beating Kandar
+|-
+|  Cave west of Noaniels  ||  $03541  ||  ---  ||  0001 0000  ||  B4, chest  ||  Get the Dream Ruby
+|-
+|  Noaniels  ||  $03541  ||  ---  ||  0010 0000  ||  Queen  ||  Give up Dream Ruby, get Wake-Up Powder
+|-
+|  Isis  ||  $03541  ||  ---  ||  0100 0000  ||  Castle, Outside, top-left entrance => B3, top-middle, chest  ||  Get Starry Ring (pre-skeleton)
+|-
+|  ---  ||  $03541  ||  ---  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+!  colspan="6"  |  ...
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $03545  ||  ---  ||  0000 0001  ||  ---  ||  
+|-
+|  Pyramid  ||  $03545  ||  ---  ||  0000 0010  ||  B2, coffin/chest  ||  Golden Claws
+|-
+|  ---  ||  $03545  ||  ---  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03545  ||  ---  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03545  ||  ---  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $03545  ||  ---  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $03545  ||  ---  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $03545  ||  ---  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+!  colspan="6"  |  ...
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $0354a  ||  ---  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $0354a  ||  ---  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $0354a  ||  ---  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $0354a  ||  ---  ||  0000 1000  ||  ---  ||  
+|-
+|  Noaniels  ||  $0354a  ||  ---  ||  0001 0000  ||  Use Wake-Up Powder  ||  Use Wake-Up Powder(*), Village is awake, part #1
+|-
+|  Noaniels  ||  $0354a  ||  ---  ||  0010 0000  ||  Use Wake-Up Powder  ||  Use Wake-Up Powder, Village is awake(*), part #2
+|-
+|  Ashalam  ||  $0354a  ||  ---  ||  0100 0000  ||  Red-shirt guy to the left of the mid-town water  ||  Talk to him, "items cost more?"
+|-
+|  Ashalam  ||  $0354a  ||  ---  ||  1000 0000  ||  Top-left house, F2, Night  ||  Beat monster
+|-
+!  colspan="6"  |  
+|-
+!  colspan="6"  |  ...
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $0354e  ||  ---  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $0354e  ||  ---  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $0354e  ||  ---  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $0354e  ||  ---  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $0354e  ||  ---  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $0354e  ||  ---  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $0354e  ||  ---  ||  0100 0000  ||  ---  ||  
+|-
+|  Romaly  ||  $0354e  ||  ---  ||  1000 0000  ||  King's Chamber  ||  Talk to King to give Golden Crown to King
+|-
+!  colspan="6"  |  
+|-
+|  Romaly  ||  $0354e  ||  ---  ||  0000 0001  ||  King's Chamber  ||  Give Golden Crown to King
+|-
+|  ---  ||  $0354e  ||  ---  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $0354e  ||  ---  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $0354e  ||  ---  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $0354e  ||  ---  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $0354e  ||  ---  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $0354e  ||  ---  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $0354e  ||  ---  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $0354f  ||  ---  ||  0000 0001  ||  ---  ||  
+|-
+|  Romaly  ||  $0354f  ||  ---  ||  0000 0010  ||  King's Chamber  ||  Accept becoming Romaly's new king, reverts to zero afterwards
+|-
+|  Romaly  ||  $0354f  ||  ---  ||  0000 0100  ||  Monster Arena  ||  Stop being the King
+|-
+|  ---  ||  $0354f  ||  ---  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $0354f  ||  ---  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $0354f  ||  ---  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $0354f  ||  ---  ||  0100 0000  ||  ---  ||  
+|-
+|  Isis Castle  ||  $0354f  ||  ---  ||  1000 0000  ||  Outside, top-left corner guy  ||  Show Starry Ring to guy, he leaves
+|-
+!  colspan="6"  |  
+|-
+|  Isis Castle  ||  $03550  ||  $0063  ||  0000 0001  ||  Throne Room  ||  Talk to Queen
+|-
+|  Isis Castle  ||  $03550  ||  $0063  ||  0000 0010  ||  Outside, top-left entrance => B3, top-middle, chest  ||  Get Starry Ring (say yes, yes)
+|-
+|  ---  ||  $03550  ||  $0063  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03550  ||  $0063  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03550  ||  $0063  ||  0001 0000  ||  ---  ||  
+|-
+|  Isis Castle  ||  $03550  ||  $0063  ||  0010 0000  ||  Throne Room => Top left stairs  ||  Enter Queen's Camber
+|-
+|  ---  ||  $03550  ||  $0063  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $03550  ||  $0063  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+!  colspan="6"  |  ...
+|-
+!  colspan="6"  |  
+|-
+|  Cave of Enticement  ||  $03555  ||  $0063  ||  0000 0001  ||  B1, Wall  ||  Used the Magic Ball to blow up the wall and open the path
+|-
+|  ---  ||  $03555  ||  $0063  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $03555  ||  $0063  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03555  ||  $0063  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03555  ||  $0063  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $03555  ||  $0063  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $03555  ||  $0063  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $03555  ||  $0063  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $03556  ||  $0064  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $03556  ||  $0064  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $03556  ||  $0064  ||  0000 0100  ||  ---  ||  
+|-
+|  Najimi Tower  ||  $03556  ||  $0064  ||  0000 1000  ||  F4, Old Man  ||  Get Thiefs Key
+|-
+|  Shampane Tower  ||  $03556  ||  $0064  ||  0001 0000  ||  F5  ||  Kandar's guys run away, part 2 (see 03586-00000010)
+|-
+|  Shampane Tower  ||  $03556  ||  $0064  ||  0010 0000  ||  F4, Beat Kandar  ||  Defeat Kandar, say yes
+|-
+|  ---  ||  $03556  ||  $0064  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $03556  ||  $0064  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+!  colspan="6"  |  ...
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $03558  ||  $0063  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $03558  ||  $0063  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $03558  ||  $0063  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03558  ||  $0063  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03558  ||  $0063  ||  0001 0000  ||  ---  ||  
+|-
+|  Pyramid  ||  $03558  ||  $0063  ||  0010 0000  ||  B1, top-left, hidden staircase  ||  [Event] Hidden Staircase
+|-
+|  Pyramid  ||  $03558  ||  $0063  ||  0100 0000  ||  F3, puzzle switches  ||  Open stone door from puzzle
+|-
+|  ---  ||  $03558  ||  $0063  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|}
+
+{{Internal Data|game=Dragon Quest III}}
