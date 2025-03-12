@@ -39,7 +39,7 @@ These flags indicate which chests or treasures have been already taken.
 |-
 |  Isis  ||  $03541  ||  ---  ||  0100 0000  ||  Castle, Outside, top-left entrance => B3, top-middle, chest  ||  Get Starry Ring (pre-skeleton)
 |-
-|  ---  ||  $03541  ||  ---  ||  1000 0000  ||  ---  ||  
+|  Portoga  ||  $03541  ||  ---  ||  1000 0000  ||  King  ||  Get the King's Letter
 |-
 !  colspan="6"  |  
 |-
@@ -84,6 +84,24 @@ These flags indicate which chests or treasures have been already taken.
 |  Ashalam  ||  $0354a  ||  ---  ||  0100 0000  ||  Red-shirt guy to the left of the mid-town water  ||  Talk to him, "items cost more?"
 |-
 |  Ashalam  ||  $0354a  ||  ---  ||  1000 0000  ||  Top-left house, F2, Night  ||  Beat monster
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $0354b  ||  ---  ||  0000 0001  ||  ---  ||  
+|-
+|  Baharata  ||  $0354b  ||  ---  ||  0000 0010  ||  Old-man and Gupta  ||  Talk about rescuing Tania, Gupta runs away
+|-
+|  ---  ||  $0354b  ||  ---  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $0354b  ||  ---  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $0354b  ||  ---  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $0354b  ||  ---  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $0354b  ||  ---  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $0354b  ||  ---  ||  1000 0000  ||  ---  ||  
 |-
 !  colspan="6"  |  
 |-
@@ -149,13 +167,13 @@ These flags indicate which chests or treasures have been already taken.
 |-
 |  Isis Castle  ||  $03550  ||  $0063  ||  0000 0010  ||  Outside, top-left entrance => B3, top-middle, chest  ||  Get Starry Ring (say yes, yes)
 |-
-|  ---  ||  $03550  ||  $0063  ||  0000 0100  ||  ---  ||  
+|  Isis Castle  ||  $03550  ||  $0063  ||  0000 0100  ||  Inside, F1, Night, bottom-left corner, cat  ||  Talk to cat, Baramos' familiar
 |-
-|  ---  ||  $03550  ||  $0063  ||  0000 1000  ||  ---  ||  
+|  Isis Castle  ||  $03550  ||  $0063  ||  0000 1000  ||  Queen's Chamber, Night, top-right of bed  ||  Get Wizard Ring
 |-
-|  ---  ||  $03550  ||  $0063  ||  0001 0000  ||  ---  ||  
+|  Isis Castle  ||  $03550  ||  $0063  ||  0001 0000  ||  Queen's Chamber, Night, Queen  ||  Talk to Queen "Check around my bed"?? (02 == been in chamber, 03 == and talked to queen, 01 == both before getting ring)
 |-
-|  Isis Castle  ||  $03550  ||  $0063  ||  0010 0000  ||  Throne Room => Top left stairs  ||  Enter Queen's Camber
+|  Isis Castle  ||  $03550  ||  $0063  ||  0010 0000  ||  Throne Room => Top left stairs  ||  Enter Queen's Chamber?? (02 == been in chamber, 03 == and talked to queen, 01 == both before getting ring) + after getting Wizard Ring
 |-
 |  ---  ||  $03550  ||  $0063  ||  0100 0000  ||  ---  ||  
 |-
@@ -169,11 +187,11 @@ These flags indicate which chests or treasures have been already taken.
 |-
 |  Cave of Enticement  ||  $03555  ||  $0063  ||  0000 0001  ||  B1, Wall  ||  Used the Magic Ball to blow up the wall and open the path
 |-
-|  ---  ||  $03555  ||  $0063  ||  0000 0010  ||  ---  ||  
+|  Cave of Norud the Dwarf  ||  $03555  ||  $0063  ||  0000 0010  ||  Show Norud the King's Letter  ||  Show Norud the King's Letter
 |-
-|  ---  ||  $03555  ||  $0063  ||  0000 0100  ||  ---  ||  
+|  Cave of Norud the Dwarf   ||  $03555  ||  $0063  ||  0000 0100  ||  Show Norud the King's Letter  ||  Say "No" (also say yes? what is this flag), after the cave is open this is zero
 |-
-|  ---  ||  $03555  ||  $0063  ||  0000 1000  ||  ---  ||  
+|  Cave of Norud the Dwarf  ||  $03555  ||  $0063  ||  0000 1000  ||  Norud  ||  Norud opens the cave
 |-
 |  ---  ||  $03555  ||  $0063  ||  0001 0000  ||  ---  ||  
 |-

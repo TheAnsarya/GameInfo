@@ -27,23 +27,23 @@ These flags indicate which chests or treasures have been already taken.
 |-
 |  Reeve  ||  $0355a  ||  $0068  ||  0000 0001  ||  Top-right house, second floor, drawer  ||  Antidote Herb
 |-
-|  ---  ||  $0355a  ||  $0068  ||  0000 0010  ||  ---  ||  
+|  Portoga  ||  $0355a  ||  $0068  ||  0000 0010  ||  Castle, zap area, left chest  ||  Angry Tattoo
 |-
-|  ---  ||  $0355a  ||  $0068  ||  0000 0100  ||  ---  ||  
+|  Portoga  ||  $0355a  ||  $0068  ||  0000 0100  ||  Castle, zap area, middle chest  ||  Stamina Seed
 |-
-|  ---  ||  $0355a  ||  $0068  ||  0000 1000  ||  ---  ||  
+|  Portoga  ||  $0355a  ||  $0068  ||  0000 1000  ||  Castle, zap area, right chest  ||  Mist Staff
 |-
-|  ---  ||  $0355a  ||  $0068  ||  0001 0000  ||  ---  ||  
+|  Portoga  ||  $0355a  ||  $0068  ||  0001 0000  ||  Inn, drawer  ||  Pachisi Ticket
 |-
-|  ---  ||  $0355a  ||  $0068  ||  0010 0000  ||  ---  ||  
+|  Portoga  ||  $0355a  ||  $0068  ||  0010 0000  ||  Horse pasture next to item shop, Top-right corner  ||  Small Medal
 |-
-|  ---  ||  $0355a  ||  $0068  ||  0100 0000  ||  ---  ||  
+|  Portoga  ||  $0355a  ||  $0068  ||  0100 0000  ||  Top-right => Top-left => down-left, stairs => room, right drawer  ||  Tragic Tale
 |-
-|  ---  ||  $0355a  ||  $0068  ||  1000 0000  ||  ---  ||  
+|  Portoga  ||  $0355a  ||  $0068  ||  1000 0000  ||  Top-right => Top-left => down-left, stairs => room, pot  ||  Small Medal
 |-
 !  colspan="6"  |  
 |-
-|  ---  ||  $0355b  ||  $0069  ||  0000 0001  ||  ---  ||  
+|  Portoga  ||  $0355b  ||  $0069  ||  0000 0001  ||  House northwest of Inn, F2, Bottom-left room, left wall bag  ||  Strength Seed
 |-
 |  ---  ||  $0355b  ||  $0069  ||  0000 0010  ||  ---  ||  
 |-
@@ -79,15 +79,15 @@ These flags indicate which chests or treasures have been already taken.
 |-
 !  colspan="6"  |  
 |-
-|  ---  ||  $0355d  ||  $006b  ||  0000 0001  ||  ---  ||  
+|  Ashalam  ||  $0355d  ||  $006b  ||  0000 0001  ||  Top-left house, F2, North-east blue square  ||  Small Medal
 |-
 |  Ashalam  ||  $0355d  ||  $006b  ||  0000 0010  ||  Middle-left house at night, armoire  ||  Pachisi Ticket
 |-
-|  ---  ||  $0355d  ||  $006b  ||  0000 0100  ||  ---  ||  
+|  Baharata  ||  $0355d  ||  $006b  ||  0000 0100  ||  House on bottom-right, drawer  ||  Pachisi Ticket
 |-
-|  ---  ||  $0355d  ||  $006b  ||  0000 1000  ||  ---  ||  
+|  Baharata  ||  $0355d  ||  $006b  ||  0000 1000  ||  House on bottom-left. F2, right drawer  ||  Traveler Clothes
 |-
-|  ---  ||  $0355d  ||  $006b  ||  0001 0000  ||  ---  ||  
+|  Baharata  ||  $0355d  ||  $006b  ||  0001 0000  ||  Inn, right room, drawer  ||  Small Medal
 |-
 |  ---  ||  $0355d  ||  $006b  ||  0010 0000  ||  ---  ||  
 |-
@@ -305,19 +305,19 @@ These flags indicate which chests or treasures have been already taken.
 |-
 |  ---  ||  $03569  ||  $0077  ||  0001 0000  ||  ---  ||  
 |-
-|  ---  ||  $03569  ||  $0077  ||  0010 0000  ||  ---  ||  
+|  Aliahan  ||  $03569  ||  $0077  ||  0010 0000  ||  Castle, Top-left treasure room, Top Left Chest  ||  128 gold pieces
 |-
-|  ---  ||  $03569  ||  $0077  ||  0100 0000  ||  ---  ||  
+|  Aliahan  ||  $03569  ||  $0077  ||  0100 0000  ||   Castle, Top-left treasure room, Top Middle Chest  ||  336 gold pieces
 |-
-|  ---  ||  $03569  ||  $0077  ||  1000 0000  ||  ---  ||  
+|  Aliahan  ||  $03569  ||  $0077  ||  1000 0000  ||  Castle, Top-left treasure room, Top Right Chest  ||  Hero Ring
 |-
 !  colspan="6"  |  
 |-
-|  ---  ||  $0356a  ||  $0078  ||  0000 0001  ||  ---  ||  
+|  Aliahan  ||  $0356a  ||  $0078  ||  0000 0001  ||  Castle, Top-left treasure room, Bottom Left Chest  ||  Agility Seed
 |-
-|  ---  ||  $0356a  ||  $0078  ||  0000 0010  ||  ---  ||  
+|  Aliahan  ||  $0356a  ||  $0078  ||  0000 0010  ||  Castle, Top-left treasure room, Bottom Middle Chest  ||  Strength Seed
 |-
-|  ---  ||  $0356a  ||  $0078  ||  0000 0100  ||  ---  ||  
+|  Aliahan  ||  $0356a  ||  $0078  ||  0000 0100  ||  Castle, Top-left treasure room, Bottom Right Chest  ||  Rune Staff
 |-
 |  Aliahan  ||  $0356a  ||  $0078  ||  0000 1000  ||  Outside Ruida's Tavern, top barrel  ||  25 gold pieces
 |-
@@ -337,15 +337,15 @@ These flags indicate which chests or treasures have been already taken.
 |-
 |  Aliahan  ||  $0356b  ||  $0079  ||  0000 0100  ||  Castle, King's Chamber, Bottom Left Room, Left Drawer  ||  Luck Seed
 |-
-|  ---  ||  $0356b  ||  $0079  ||  0000 1000  ||  ---  ||  
+|  Aliahan  ||  $0356b  ||  $0079  ||  0000 1000  ||  Prison, Left cell, pot  ||  500 gold pieces
 |-
-|  ---  ||  $0356b  ||  $0079  ||  0001 0000  ||  ---  ||  
+|  Aliahan  ||  $0356b  ||  $0079  ||  0001 0000  ||  Prison, Right cell, pot  ||  Strength Seed
 |-
 |  Aliahan  ||  $0356b  ||  0079  ||  0010 0000  ||  Castle, Room right of entrance, Left barrel  ||  Small Medal
 |-
-|  ---  ||  $0356b  ||  $0079  ||  0100 0000  ||  ---  ||  
+|  Romaly  ||  $0356b  ||  $0079  ||  0100 0000  ||  Castle, F1, bottom-left => B1, left chest  ||  Assassin Dagger
 |-
-|  ---  ||  $0356b  ||  $0079  ||  1000 0000  ||  ---  ||  
+|  Romaly  ||  $0356b  ||  $0079  ||  1000 0000  ||  Castle, F1, bottom-left => B1, right chest  ||  Expel Shield
 |-
 !  colspan="6"  |  
 |-
@@ -363,13 +363,13 @@ These flags indicate which chests or treasures have been already taken.
 |-
 |  Romaly  ||  $0356c  ||  $007a  ||  0100 0000  ||  Inn, F2, drawer  ||  Antidote Herb
 |-
-|  ---  ||  $0356c  ||  $007a  ||  1000 0000  ||  ---  ||  
+|  Romaly  ||  $0356c  ||  $007a  ||  1000 0000  ||  Top-middle locked room, East of water, Left bush  ||  Small Medal
 |-
 !  colspan="6"  |  
 |-
 |  Romaly  ||  $0356d  ||  $007b  ||  0000 0001  ||  Castle, bottom-right flower bed  ||  Small Medal
 |-
-|  Romaly  ||  $0356d  ||  $007b  ||  0000 0010  ||  ---  ||  
+|  Romaly  ||  $0356d  ||  $007b  ||  0000 0010  ||  Castle, F1, top-left => F4, prison cell sink  ||  Small Medal
 |-
 |  Romaly  ||  $0356d  ||  $007b  ||  0000 0100  ||  Castle, top-right F1 => F4, drawer  ||  Pachisi Ticket
 |-
@@ -387,25 +387,25 @@ These flags indicate which chests or treasures have been already taken.
 |-
 |  ---  ||  $0356e  ||  $007c  ||  0000 0001  ||  ---  ||  
 |-
-|  ---  ||  $0356e  ||  $007c  ||  0000 0010  ||  ---  ||  
+|  ---  ||  $0356e  ||  $007c  ||  0000 0010  ||  ---  ||  Silk Robe
 |-
-|  ---  ||  $0356e  ||  $007c  ||  0000 0100  ||  ---  ||  
+|  Isis Castle  ||  $0356e  ||  $007c  ||  0000 0100  ||  F1, top-left room, top-left chest  ||  
 |-
-|  ---  ||  $0356e  ||  $007c  ||  0000 1000  ||  ---  ||  
+|  Isis Castle  ||  $0356e  ||  $007c  ||  0000 1000  ||  F1, top-left room, top-right chest  ||  72 gold pieces
 |-
-|  ---  ||  $0356e  ||  $007c  ||  0001 0000  ||  ---  ||  
+|  Isis Castle  ||  $0356e  ||  $007c  ||  0001 0000  ||  F1, top-left room, bottom-left chest  ||  Ruby Ring
 |-
-|  ---  ||  $0356e  ||  $007c  ||  0010 0000  ||  ---  ||  
+|  Isis Castle  ||  $0356e  ||  $007c  ||  0010 0000  ||  F1, top-left room, bottom-right chest  ||  Wisdom Seed
 |-
-|  ---  ||  $0356e  ||  $007c  ||  0100 0000  ||  ---  ||  
+|  Isis Castle  ||  $0356e  ||  $007c  ||  0100 0000  ||  F1, top-right room, top-left chest  ||  Golden Tiara
 |-
-|  ---  ||  $0356e  ||  $007c  ||  1000 0000  ||  ---  ||  
+|  Isis Castle  ||  $0356e  ||  $007c  ||  1000 0000  ||  F1, top-right room, top-right chest  ||  Life Nut
 |-
 !  colspan="6"  |  
 |-
-|  ---  ||  $0356f  ||  $007d  ||  0000 0001  ||  ---  ||  
+|  Isis Castle  ||  $0356f  ||  $007d  ||  0000 0001  ||  F1, top-right room, bottom-left chest  ||  Small Medal
 |-
-|  ---  ||  $0356f  ||  $007d  ||  0000 0010  ||  ---  ||  
+|  Isis Castle  ||  $0356f  ||  $007d  ||  0000 0010  ||  F1, top-right room, bottom-right chest  ||  80 gold pieces
 |-
 |  Isis  ||  $0356f  ||  $007d  ||  0000 0100  ||  Inside Well, chest  ||  Brave Book
 |-
@@ -543,13 +543,13 @@ These flags indicate which chests or treasures have been already taken.
 |-
 |  Cave west of Noaniels  ||  $03576  ||  $0084  ||  0100 0000  ||  B1 bottom-left corner, right stairs, => B3, chest  ||  Small Medal
 |-
-|  ---  ||  $03576  ||  $0084  ||  1000 0000  ||  ---  ||  
+|  Cave of Norud the Dwarf  ||  $03576  ||  $0084  ||  1000 0000  ||  Room, left chest  ||  
 |-
-!  colspan="6"  |  
+!  colspan="6"  |  Training Suit
 |-
-|  ---  ||  $03577  ||  $0085  ||  0000 0001  ||  ---  ||  
+|  Cave of Norud the Dwarf  ||  $03577  ||  $0085  ||  0000 0001  ||  Room, right chest  ||  Club
 |-
-|  ---  ||  $03577  ||  $0085  ||  0000 0010  ||  ---  ||  
+|  Cave of Norud the Dwarf  ||  $03577  ||  $0085  ||  0000 0010  ||  Well, top-right corner water  ||  Life Nut
 |-
 |  ---  ||  $03577  ||  $0085  ||  0000 0100  ||  ---  ||  
 |-
@@ -559,27 +559,27 @@ These flags indicate which chests or treasures have been already taken.
 |-
 |  ---  ||  $03577  ||  $0085  ||  0010 0000  ||  ---  ||  
 |-
-|  ---  ||  $03577  ||  $0085  ||  0100 0000  ||  ---  ||  
+|  Kidnapper's Base Cave  ||  $03577  ||  $0085  ||  0100 0000  ||  B1, bottom-left, chest  ||  Stamina Seed
 |-
-|  ---  ||  $03577  ||  $0085  ||  1000 0000  ||  ---  ||  
+|  Kidnapper's Base Cave  ||  $03577  ||  $0085  ||  1000 0000  ||  B1, top-left, top chest  ||  132 gold pieces
 |-
 !  colspan="6"  |  
 |-
-|  ---  ||  $03578  ||  $0086  ||  0000 0001  ||  ---  ||  
+|  Kidnapper's Base Cave  ||  $03578  ||  $0086  ||  0000 0001  ||  B1, top-middle, chest  ||  Small Medal
 |-
-|  ---  ||  $03578  ||  $0086  ||  0000 0010  ||  ---  ||  
+|  Kidnapper's Base Cave  ||  $03578  ||  $0086  ||  0000 0010  ||  B1, top-right, top chest  ||  Cannibox!
 |-
-|  ---  ||  $03578  ||  $0086  ||  0000 0100  ||  ---  ||  
+|  Kidnapper's Base Cave  ||  $03578  ||  $0086  ||  0000 0100  ||  B1, top-right, right chest  ||  352 gold pieces
 |-
-|  ---  ||  $03578  ||  $0086  ||  0000 1000  ||  ---  ||  
+|  Kidnapper's Base Cave  ||  $03578  ||  $0086  ||  0000 1000  ||  B1, top-left, left chest  ||  Mimic!
 |-
-|  ---  ||  $03578  ||  $0086  ||  0001 0000  ||  ---  ||  
+|  Kidnapper's Base Cave  ||  $03578  ||  $0086  ||  0001 0000  ||  B2, left room chest group, top-left chest  ||  Strength Seed
 |-
-|  ---  ||  $03578  ||  $0086  ||  0010 0000  ||  ---  ||  
+|  Kidnapper's Base Cave  ||  $03578  ||  $0086  ||  0010 0000  ||  B2, left room chest group, top-right chest  ||  Life Nut
 |-
-|  ---  ||  $03578  ||  $0086  ||  0100 0000  ||  ---  ||  
+|  Kidnapper's Base Cave  ||  $03578  ||  $0086  ||  0100 0000  ||  B2, left room chest group, bottom-left chest  ||  Wisdom Seed
 |-
-|  ---  ||  $03578  ||  $0086  ||  1000 0000  ||  ---  ||  
+|  Kidnapper's Base Cave  ||  $03578  ||  $0086  ||  1000 0000  ||  B2, left room chest group, bottom-right chest  ||  Agility Seed
 |-
 !  colspan="6"  |  
 |-
