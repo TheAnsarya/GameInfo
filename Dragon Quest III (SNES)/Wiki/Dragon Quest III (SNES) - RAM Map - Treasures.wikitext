@@ -1,13 +1,19 @@
-{{rammap|game=Dragon Quest III}}
+{{subpage}}
 
 ==Treasures==
 These flags indicate which chests or treasures have been already taken.
+
+The Yggdrasil Leaf on the overworld does not have an event flag in this range.
+
+**All of these need to be re-verified.**
+
+Names are mostly from the fan translation and will be re-checked/normalized.
 
 {| class="wikitable sortable"
 |-
 !  Location  !! Address  !! SRAM  !!  Value  !!  Description  !!  Item
 |-
-|  ---  ||  $03559  ||  $0067  ||  0000 0001  ||  ---  ||  
+|  ---  ||  $03559  ||  $0067  || style="white-space: nowrap;" | 0000 0001  ||  ---  ||  
 |-
 |  ---  ||  $03559  ||  $0067  ||  0000 0010  ||  ---  ||  
 |-
@@ -49,7 +55,7 @@ These flags indicate which chests or treasures have been already taken.
 |-
 |  ---  ||  $0355b  ||  $0069  ||  0000 0100  ||  ---  ||  
 |-
-|  ---  ||  $0355b  ||  $0069  ||  0000 1000  ||  ---  ||  
+|  New Town  ||  $0355b  ||  $0069  ||  0000 1000  ||  Phase 3, right of pond, bottom flower  ||  Pachisi Ticket
 |-
 |  ---  ||  $0355b  ||  $0069  ||  0001 0000  ||  ---  ||  
 |-
@@ -89,15 +95,15 @@ These flags indicate which chests or treasures have been already taken.
 |-
 |  Baharata  ||  $0355d  ||  $006b  ||  0001 0000  ||  Inn, right room, drawer  ||  Small Medal
 |-
-|  ---  ||  $0355d  ||  $006b  ||  0010 0000  ||  ---  ||  
+|  Lancel's Shrine  ||  $0355d  ||  $006b  ||  0010 0000  ||  Right side after going alone, chest  ||  Small Medal
 |-
-|  ---  ||  $0355d  ||  $006b  ||  0100 0000  ||  ---  ||  
+|  Lancel  ||  $0355d  ||  $006b  ||  0100 0000  ||  Top of path between shrine and right building  ||  Small Medal
 |-
-|  ---  ||  $0355d  ||  $006b  ||  1000 0000  ||  ---  ||  
+|  Lancel  ||  $0355d  ||  $006b  ||  1000 0000  ||  Top-left house, drawer   ||  Pachisi Ticket
 |-
 !  colspan="6"  |  
 |-
-|  ---  ||  $0355e  ||  $006c  ||  0000 0001  ||  ---  ||  
+|  Lancel  ||  $0355e  ||  $006c  ||  0000 0001  ||  Top-left house, right pot  ||  5 gold pieces
 |-
 |  ---  ||  $0355e  ||  $006c  ||  0000 0010  ||  ---  ||  
 |-
@@ -175,13 +181,13 @@ These flags indicate which chests or treasures have been already taken.
 |-
 |  Isis  ||  $03562  ||  $0070  ||  0000 0100  ||  House right of the Inn, F1, wall bag  ||  Pachisi Ticket
 |-
-|  ---  ||  $03562  ||  $0070  ||  0000 1000  ||  ---  ||  
+|  Luzami  ||  $03562  ||  $0070  ||  0000 1000  ||  Top left, in front of grave  ||  Luck Seed
 |-
-|  ---  ||  $03562  ||  $0070  ||  0001 0000  ||  ---  ||  
+|  Luzami  ||  $03562  ||  $0070  ||  0001 0000  ||  Top-right corner, crack in red stone floor  ||  Small Medal
 |-
-|  ---  ||  $03562  ||  $0070  ||  0010 0000  ||  ---  ||  
+|  Luzami  ||  $03562  ||  $0070  ||  0010 0000  ||  Top-right house, left bookcase  ||  Muscle Guidebook
 |-
-|  ---  ||  $03562  ||  $0070  ||  0100 0000  ||  ---  ||  
+|  Luzami  ||  $03562  ||  $0070  ||  0100 0000  ||  Top-right house, third bookcase  ||  Lucky Book
 |-
 |  ---  ||  $03562  ||  $0070  ||  1000 0000  ||  ---  ||  
 |-
@@ -205,87 +211,87 @@ These flags indicate which chests or treasures have been already taken.
 |-
 !  colspan="6"  |  
 |-
-|  ---  ||  $03564  ||  $0072  ||  0000 0001  ||  ---  ||  
+|  Tedanki  ||  $03564  ||  $0072  ||  0000 0001  ||  Equipment Shop, F2, chest  ||  Darkness Lamp
 |-
-|  ---  ||  $03564  ||  $0072  ||  0000 0010  ||  ---  ||  
+|  Tedanki  ||  $03564  ||  $0072  ||  0000 0010  ||  Right building => B1, top coffin  ||  Life Nut
 |-
-|  ---  ||  $03564  ||  $0072  ||  0000 0100  ||  ---  ||  
+|  Tedanki  ||  $03564  ||  $0072  ||  0000 0100  ||  Right building, 4 steps left of top pot  ||  Small Medal
 |-
-|  ---  ||  $03564  ||  $0072  ||  0000 1000  ||  ---  ||  
+|  Tedanki  ||  $03564  ||  $0072  ||  0000 1000  ||  Right building, bottom pot  ||  55 gold pieces
 |-
 |  ---  ||  $03564  ||  $0072  ||  0001 0000  ||  ---  ||  
 |-
-|  ---  ||  $03564  ||  $0072  ||  0010 0000  ||  ---  ||  
+|  Tedanki  ||  $03564  ||  $0072  ||  0010 0000  ||  Equipment Shop, F2, drawer  ||  Black Hood
 |-
-|  ---  ||  $03564  ||  $0072  ||  0100 0000  ||  ---  ||  
+|  Muor  ||  $03564  ||  $0072  ||  0100 0000  ||  Top right grass area behind jail door  ||  Small Medal
 |-
-|  ---  ||  $03564  ||  $0072  ||  1000 0000  ||  ---  ||  
-|-
-!  colspan="6"  |  
-|-
-|  ---  ||  $03565  ||  $0073  ||  0000 0001  ||  ---  ||  
-|-
-|  ---  ||  $03565  ||  $0073  ||  0000 0010  ||  ---  ||  
-|-
-|  ---  ||  $03565  ||  $0073  ||  0000 0100  ||  ---  ||  
-|-
-|  ---  ||  $03565  ||  $0073  ||  0000 1000  ||  ---  ||  
-|-
-|  ---  ||  $03565  ||  $0073  ||  0001 0000  ||  ---  ||  
-|-
-|  ---  ||  $03565  ||  $0073  ||  0010 0000  ||  ---  ||  
-|-
-|  ---  ||  $03565  ||  $0073  ||  0100 0000  ||  ---  ||  
-|-
-|  ---  ||  $03565  ||  $0073  ||  1000 0000  ||  ---  ||  
+|  Muor  ||  $03564  ||  $0072  ||  1000 0000  ||  Inn, drawer  ||  Leather Kilt
 |-
 !  colspan="6"  |  
 |-
-|  ---  ||  $03566  ||  $0074  ||  0000 0001  ||  ---  ||  
+|  Muor  ||  $03565  ||  $0073  ||  0000 0001  ||  Chruch, middle of floor tile cross  ||  Life Nut
 |-
-|  ---  ||  $03566  ||  $0074  ||  0000 0010  ||  ---  ||  
+|  Muor  ||  $03565  ||  $0073  ||  0000 0010  ||  Back of top-tight building, F2, bottom pot  ||  Pachisi Ticket
 |-
-|  ---  ||  $03566  ||  $0074  ||  0000 0100  ||  ---  ||  
+|  Muor  ||  $03565  ||  $0073  ||  0000 0100  ||  Back of top-tight building, F2, top pot  ||  Small Medal
 |-
-|  ---  ||  $03566  ||  $0074  ||  0000 1000  ||  ---  ||  
+|  Zipangu  ||  $03565  ||  $0073  ||  0000 1000  ||  Right house, armoire  ||  Wooden Helmut
 |-
-|  ---  ||  $03566  ||  $0074  ||  0001 0000  ||  ---  ||  
+|  Zipangu  ||  $03565  ||  $0073  ||  0001 0000  ||  Bottom-middle house, armoire  ||  Clothes
+|-
+|  Zipangu  ||  $03565  ||  $0073  ||  0010 0000  ||  Left house, bottom pot  ||  Mystic Nut
+|-
+|  Zipangu  ||  $03565  ||  $0073  ||  0100 0000  ||  Bottom left house, B1, top right corner, middle right pot  ||  Small Medal
+|-
+|  Zipangu  ||  $03565  ||  $0073  ||  1000 0000  ||  Bottom left house, B1, bottom left corner, top pot  ||  Strength Seed
+|-
+!  colspan="6"  |  
+|-
+|  Zipangu  ||  $03566  ||  $0074  ||  0000 0001  ||  Himiko's top-left room, top-right pot  ||  Mystic Nut
+|-
+|  Zipangu  ||  $03566  ||  $0074  ||  0000 0010  ||  Himiko's, right-middle room, top-left pot  ||  Strength Seed
+|-
+|  Zipangu  ||  $03566  ||  $0074  ||  0000 0100  ||  Himiko's, right-middle room, right-middle pot  ||  Small Medal
+|-
+|  Zipangu  ||  $03566  ||  $0074  ||  0000 1000  ||  Himiko's, top-right room, armoire #2  ||  Scale Shield
+|-
+|  Zipangu  ||  $03566  ||  $0074  ||  0001 0000  ||  Himiko's, top-right room, armoire #5  ||  Training Suit
 |-
 |  ---  ||  $03566  ||  $0074  ||  0010 0000  ||  ---  ||  
 |-
-|  ---  ||  $03566  ||  $0074  ||  0100 0000  ||  ---  ||  
+|  Zipangu  ||  $03566  ||  $0074  ||  0100 0000  ||  Left house, left wallbag  ||  Moth Powder
 |-
-|  ---  ||  $03566  ||  $0074  ||  1000 0000  ||  ---  ||  
-|-
-!  colspan="6"  |  
-|-
-|  ---  ||  $03567  ||  $0075  ||  0000 0001  ||  ---  ||  
-|-
-|  ---  ||  $03567  ||  $0075  ||  0000 0010  ||  ---  ||  
-|-
-|  ---  ||  $03567  ||  $0075  ||  0000 0100  ||  ---  ||  
-|-
-|  ---  ||  $03567  ||  $0075  ||  0000 1000  ||  ---  ||  
-|-
-|  ---  ||  $03567  ||  $0075  ||  0001 0000  ||  ---  ||  
-|-
-|  ---  ||  $03567  ||  $0075  ||  0010 0000  ||  ---  ||  
-|-
-|  ---  ||  $03567  ||  $0075  ||  0100 0000  ||  ---  ||  
-|-
-|  ---  ||  $03567  ||  $0075  ||  1000 0000  ||  ---  ||  
+|  Pirates' Base  ||  $03566  ||  $0074  ||  1000 0000  ||  Room under top-right rock outside, top-left chest  ||  Strength Seed
 |-
 !  colspan="6"  |  
 |-
-|  ---  ||  $03568  ||  $0076  ||  0000 0001  ||  ---  ||  
+|  Pirates' Base  ||  $03567  ||  $0075  ||  0000 0001  ||  Room under top-right rock outside, right chest  ||  Rockstar Ring
 |-
-|  ---  ||  $03568  ||  $0076  ||  0000 0010  ||  ---  ||  
+|  Pirates' Base  ||  $03567  ||  $0075  ||  0000 0010  ||  Top-middle-left room, left pot  ||  Pachisi Ticket
 |-
-|  ---  ||  $03568  ||  $0076  ||  0000 0100  ||  ---  ||  
+|  Pirates' Base  ||  $03567  ||  $0075  ||  0000 0100  ||  Top-middle-left room, right pot  ||  Pachisi Ticket
 |-
-|  ---  ||  $03568  ||  $0076  ||  0000 1000  ||  ---  ||  
+|  Pirates' Base  ||  $03567  ||  $0075  ||  0000 1000  ||  Top-middle-left room, middle barrel  ||  Small Medal
 |-
-|  ---  ||  $03568  ||  $0076  ||  0001 0000  ||  ---  ||  
+|  Pirates' Base  ||  $03567  ||  $0075  ||  0001 0000  ||  Top-left room, drawer  ||  Tube Socks
+|-
+|  Pirates' Base   ||  $03567  ||  $0075  ||  0010 0000  ||  F1 middle-middle room => B1, inside jail, right of floor crack  ||  Small Medal
+|-
+|  Sioux Village  ||  $03567  ||  $0075  ||  0100 0000  ||  South side of well  ||  Bolt Staff
+|-
+|  Sioux Village  ||  $03567  ||  $0075  ||  1000 0000  ||  North side of well  ||  Small Medal
+|-
+!  colspan="6"  |  
+|-
+|  Sioux Village  ||  $03568  ||  $0076  ||  0000 0001  ||  Bottom right house, right pot  ||  Agility Seed
+|-
+|  Sioux Village  ||  $03568  ||  $0076  ||  0000 0010  ||  Top house, pot  ||  Small Medal
+|-
+|  Sioux Village  ||  $03568  ||  $0076  ||  0000 0100  ||  Inside well, drawer  ||  Pachisi Ticket
+|-
+|  Greenlad Island  ||  $03568  ||  $0076  ||  0000 1000  ||  Old Man's house, left drawer  ||  Small Medal
+|-
+|  Greenlad Island  ||  $03568  ||  $0076  ||  0001 0000  ||  Old Man's house, left drawer  ||  Silk Hat
 |-
 |  ---  ||  $03568  ||  $0076  ||  0010 0000  ||  ---  ||  
 |-
@@ -377,19 +383,19 @@ These flags indicate which chests or treasures have been already taken.
 |-
 |  Romaly  ||  $0356d  ||  $007b  ||  0001 0000  ||  Top-right, at night where the dog was  ||  Pachisi Ticket
 |-
-|  ---  ||  $0356d  ||  $007b  ||  0010 0000  ||  ---  ||  
+|  Edinbear Castle  ||  $0356d  ||  $007b  ||  0010 0000  ||  F1, bottom-left outside grassy area, middle of flower bed  ||  Small Medal
 |-
-|  ---  ||  $0356d  ||  $007b  ||  0100 0000  ||  ---  ||  
+|  Edinbear Castle  ||  $0356d  ||  $007b  ||  0100 0000  ||  F1, bottom-right outside grassy area, bottom-left corner  ||  Small Medal
 |-
-|  ---  ||  $0356d  ||  $007b  ||  1000 0000  ||  ---  ||  
+|  Edinbear Castle  ||  $0356d  ||  $007b  ||  1000 0000  ||  F1, top-right room, bookcase  ||  Lady Manual
 |-
 !  colspan="6"  |  
 |-
-|  ---  ||  $0356e  ||  $007c  ||  0000 0001  ||  ---  ||  
+|  Edinbear Castle  ||  $0356e  ||  $007c  ||  0000 0001  ||  F1, top-right room, left drawer  ||   Slick Suit
 |-
-|  ---  ||  $0356e  ||  $007c  ||  0000 0010  ||  ---  ||  Silk Robe
+|  Edinbear Castle  ||  $0356e  ||  $007c  ||  0000 0010  ||  F1, top-right room, right drawer  ||  Party Dress
 |-
-|  Isis Castle  ||  $0356e  ||  $007c  ||  0000 0100  ||  F1, top-left room, top-left chest  ||  
+|  Isis Castle  ||  $0356e  ||  $007c  ||  0000 0100  ||  F1, top-left room, top-left chest  ||  Silk Robe
 |-
 |  Isis Castle  ||  $0356e  ||  $007c  ||  0000 1000  ||  F1, top-left room, top-right chest  ||  72 gold pieces
 |-
@@ -429,31 +435,31 @@ These flags indicate which chests or treasures have been already taken.
 |-
 |  ---  ||  $03570  ||  $007e  ||  0000 1000  ||  ---  ||  
 |-
-|  ---  ||  $03570  ||  $007e  ||  0001 0000  ||  ---  ||  
+|  Samanosa  ||  $03570  ||  $007e  ||  0001 0000  ||  Barrel next to Inn  ||  Pachisi Ticket
 |-
-|  ---  ||  $03570  ||  $007e  ||  0010 0000  ||  ---  ||  
+|  Samanosa  ||  $03570  ||  $007e  ||  0010 0000  ||  Cemetery, graves, top row, grave #5  ||  Small Medal
 |-
-|  ---  ||  $03570  ||  $007e  ||  0100 0000  ||  ---  ||  
+|  Samanosa  ||  $03570  ||  $007e  ||  0100 0000  ||  Cemetery, graves, top-middle row, grave #2  ||  Agility Seed
 |-
-|  ---  ||  $03570  ||  $007e  ||  1000 0000  ||  ---  ||  
+|  Samanosa  ||  $03570  ||  $007e  ||  1000 0000  ||  Cemetery, graves, bottom-middle row, grave #3  ||  Pachisi Ticket
 |-
 !  colspan="6"  |  
 |-
-|  ---  ||  $03571  ||  $007f  ||  0000 0001  ||  ---  ||  
+|  Samanosa  ||  $03571  ||  $007f  ||  0000 0001  ||  House below cemetery, left pot  ||  Strength Seed
 |-
-|  ---  ||  $03571  ||  $007f  ||  0000 0010  ||  ---  ||  
+|  Samanosa  ||  $03571  ||  $007f  ||  0000 0010  ||  Castle, outside, left side, top-left corner  ||  Small Medal
 |-
-|  ---  ||  $03571  ||  $007f  ||  0000 0100  ||  ---  ||  
+|  Samanosa  ||  $03571  ||  $007f  ||  0000 0100  ||  Castle, F1, middle-right room, barrel  ||  Small Medal
 |-
-|  ---  ||  $03571  ||  $007f  ||  0000 1000  ||  ---  ||  
+|  Samanosa  ||  $03571  ||  $007f  ||  0000 1000  ||  Castle, F1, top grassy room, top-right flower  ||  Life Nut
 |-
-|  ---  ||  $03571  ||  $007f  ||  0001 0000  ||  ---  ||  
+|  Samanosa  ||  $03571  ||  $007f  ||  0001 0000  ||  Castle, B1, Jail, top-left cell, pot  ||  Small Medal
 |-
-|  ---  ||  $03571  ||  $007f  ||  0010 0000  ||  ---  ||  
+|  Samanosa  ||  $03571  ||  $007f  ||  0010 0000  ||  Castle, F2, king's bedroom, bookcase  ||  Cheater Guide
 |-
-|  ---  ||  $03571  ||  $007f  ||  0100 0000  ||  ---  ||  
+|  Samanosa  ||  $03571  ||  $007f  ||  0100 0000  ||  Castle, F2, king's bedroom, right drawer  ||  Club
 |-
-|  ---  ||  $03571  ||  $007f  ||  1000 0000  ||  ---  ||  
+|  Samanosa  ||  $03571  ||  $007f  ||  1000 0000  ||  Castle, B2, Jail, Real king's room, north wall next to bed  ||  Life Stone
 |-
 !  colspan="6"  |  
 |-
@@ -463,7 +469,7 @@ These flags indicate which chests or treasures have been already taken.
 |-
 |  ---  ||  $03572  ||  $0080  ||  0000 0100  ||  ---  ||  
 |-
-|  ---  ||  $03572  ||  $0080  ||  0000 1000  ||  ---  ||  
+|  Dharma Shrine  ||  $03572  ||  $0080  ||  0000 1000  ||  Top right statue, front right  ||  Small Medal
 |-
 |  ---  ||  $03572  ||  $0080  ||  0001 0000  ||  ---  ||  
 |-
@@ -543,9 +549,9 @@ These flags indicate which chests or treasures have been already taken.
 |-
 |  Cave west of Noaniels  ||  $03576  ||  $0084  ||  0100 0000  ||  B1 bottom-left corner, right stairs, => B3, chest  ||  Small Medal
 |-
-|  Cave of Norud the Dwarf  ||  $03576  ||  $0084  ||  1000 0000  ||  Room, left chest  ||  
+|  Cave of Norud the Dwarf  ||  $03576  ||  $0084  ||  1000 0000  ||  Room, left chest  ||  Training Suit
 |-
-!  colspan="6"  |  Training Suit
+!  colspan="6"  |  
 |-
 |  Cave of Norud the Dwarf  ||  $03577  ||  $0085  ||  0000 0001  ||  Room, right chest  ||  Club
 |-
@@ -583,75 +589,75 @@ These flags indicate which chests or treasures have been already taken.
 |-
 !  colspan="6"  |  
 |-
-|  ---  ||  $03579  ||  $0087  ||  0000 0001  ||  ---  ||  
+|  Kidnapper's Base Cave  ||  $03579  ||  $0087  ||  0000 0001  ||  B2, middle room, left jail cell, top-left corner  ||  Luck Seed
 |-
-|  ---  ||  $03579  ||  $0087  ||  0000 0010  ||  ---  ||  
+|  Kidnapper's Base Cave  ||  $03579  ||  $0087  ||  0000 0010  ||  B2, middle room, right jail cell, top-right corner  ||  Mystic Nut
 |-
-|  ---  ||  $03579  ||  $0087  ||  0000 0100  ||  ---  ||  
+|  Kidnapper's Base Cave  ||  $03579  ||  $0087  ||  0000 0100  ||  B2, middle room, left wall bag  ||  Pachisi Ticket
 |-
-|  ---  ||  $03579  ||  $0087  ||  0000 1000  ||  ---  ||  
+|  Orochi's Cave  ||  $03579  ||  $0087  ||  0000 1000  ||  B1, Middle right, chest  ||  All-knowing Mask
 |-
-|  ---  ||  $03579  ||  $0087  ||  0001 0000  ||  ---  ||  
+|  Gaia's Navel  ||  $03579  ||  $0087  ||  0001 0000  ||  B1, south, top-left room  ||  248 gold pieces
 |-
-|  ---  ||  $03579  ||  $0087  ||  0010 0000  ||  ---  ||  
+|  Gaia's Navel  ||  $03579  ||  $0087  ||  0010 0000  ||  B1, south, top-right room  ||  Small Medal
 |-
-|  ---  ||  $03579  ||  $0087  ||  0100 0000  ||  ---  ||  
+|  Gaia's Navel  ||  $03579  ||  $0087  ||  0100 0000  ||  B1, south, bottom-left room  ||  Mimic!
 |-
-|  ---  ||  $03579  ||  $0087  ||  1000 0000  ||  ---  ||  
-|-
-!  colspan="6"  |  
-|-
-|  ---  ||  $0357a  ||  $0088  ||  0000 0001  ||  ---  ||  
-|-
-|  ---  ||  $0357a  ||  $0088  ||  0000 0010  ||  ---  ||  
-|-
-|  ---  ||  $0357a  ||  $0088  ||  0000 0100  ||  ---  ||  
-|-
-|  ---  ||  $0357a  ||  $0088  ||  0000 1000  ||  ---  ||  
-|-
-|  ---  ||  $0357a  ||  $0088  ||  0001 0000  ||  ---  ||  
-|-
-|  ---  ||  $0357a  ||  $0088  ||  0010 0000  ||  ---  ||  
-|-
-|  ---  ||  $0357a  ||  $0088  ||  0100 0000  ||  ---  ||  
-|-
-|  ---  ||  $0357a  ||  $0088  ||  1000 0000  ||  ---  ||  
+|  Gaia's Navel  ||  $03579  ||  $0087  ||  1000 0000  ||  B1, south, bottom-right room  ||  Wisdom Seed
 |-
 !  colspan="6"  |  
 |-
-|  ---  ||  $0357b  ||  $0089  ||  0000 0001  ||  ---  ||  
+|  Gaia's Navel  ||  $0357a  ||  $0088  ||  0000 0001  ||  B2, bottom-right stairs => B1, chest  ||  Terra Armor
 |-
-|  ---  ||  $0357b  ||  $0089  ||  0000 0010  ||  ---  ||  
+|  Gaia's Navel  ||  $0357a  ||  $0088  ||  0000 0010  ||  B3, left chest  ||  Small Medal
 |-
-|  ---  ||  $0357b  ||  $0089  ||  0000 0100  ||  ---  ||  
+|  Cave of Ra  ||  $0357a  ||  $0088  ||  0000 0100  ||  B2, top area, top-right chest group, top-left chest  ||  Mimic!
 |-
-|  ---  ||  $0357b  ||  $0089  ||  0000 1000  ||  ---  ||  
+|  Cave of Ra  ||  $0357a  ||  $0088  ||  0000 1000  ||  B2, top area, top-right chest group, top-right chest  ||  Mimic!
 |-
-|  ---  ||  $0357b  ||  $0089  ||  0001 0000  ||  ---  ||  
+|  Cave of Ra  ||  $0357a  ||  $0088  ||  0001 0000  ||  B2, top area, top-right chest group, bottom-left chest  ||  Mimic!
 |-
-|  ---  ||  $0357b  ||  $0089  ||  0010 0000  ||  ---  ||  
+|  Cave of Ra  ||  $0357a  ||  $0088  ||  0010 0000  ||  B2, top area, top-right chest group, bottom-right chest  ||  Mimic!
 |-
-|  ---  ||  $0357b  ||  $0089  ||  0100 0000  ||  ---  ||  
+|  Cave of Ra  ||  $0357a  ||  $0088  ||  0100 0000  ||  B2, bottom middle room, chest #4  ||  Mimic!
 |-
-|  ---  ||  $0357b  ||  $0089  ||  1000 0000  ||  ---  ||  
+|  Cave of Ra  ||  $0357a  ||  $0088  ||  1000 0000  ||  B2, bottom middle room, chest #5  ||  Small Medal
 |-
 !  colspan="6"  |  
 |-
-|  ---  ||  $0357c  ||  $008a  ||  0000 0001  ||  ---  ||  
+|  Cave of Ra  ||  $0357b  ||  $0089  ||  0000 0001  ||  B2, bottom right room, chest #2  ||  Mimic!
 |-
-|  ---  ||  $0357c  ||  $008a  ||  0000 0010  ||  ---  ||  
+|  Cave of Ra  ||  $0357b  ||  $0089  ||  0000 0010  ||  B2, bottom right room, chest #1  ||  Mimic!
 |-
-|  ---  ||  $0357c  ||  $008a  ||  0000 0100  ||  ---  ||  
+|  Cave of Ra  ||  $0357b  ||  $0089  ||  0000 0100  ||  B2, top area, chest #9  ||  320 gold pieces
 |-
-|  ---  ||  $0357c  ||  $008a  ||  0000 1000  ||  ---  ||  
+|  Cave of Ra  ||  $0357b  ||  $0089  ||  0000 1000  ||  B2, top area, chest #6  ||  24 gold pieces
 |-
-|  ---  ||  $0357c  ||  $008a  ||  0001 0000  ||  ---  ||  
+|  Cave of Ra  ||  $0357b  ||  $0089  ||  0001 0000  ||  B2, top area, chest #5  ||  568 gold pieces
 |-
-|  ---  ||  $0357c  ||  $008a  ||  0010 0000  ||  ---  ||  
+|  Cave of Ra  ||  $0357b  ||  $0089  ||  0010 0000  ||  B2, top area, chest #3  ||  56 gold pieces
 |-
-|  ---  ||  $0357c  ||  $008a  ||  0100 0000  ||  ---  ||  
+|  Cave of Ra  ||  $0357b  ||  $0089  ||  0100 0000  ||  B2, top area, chest #1  ||  128 gold pieces
 |-
-|  ---  ||  $0357c  ||  $008a  ||  1000 0000  ||  ---  ||  
+|  Cave of Ra  ||  $0357b  ||  $0089  ||  1000 0000  ||  B2, bottom middle room, chest #2  ||  24 gold pieces
+|-
+!  colspan="6"  |  
+|-
+|  Cave of Ra  ||  $0357c  ||  $008a  ||  0000 0001  ||  B2, top area, chest #8  ||  Small Medal
+|-
+|  Cave of Ra  ||  $0357c  ||  $008a  ||  0000 0010  ||  B2, top area, chest #7  ||  Life Nut
+|-
+|  Cave of Ra  ||  $0357c  ||  $008a  ||  0000 0100  ||  B2, top area, chest #4  ||  Pachisi Ticket
+|-
+|  Cave of Ra  ||  $0357c  ||  $008a  ||  0000 1000  ||  B2, top area, chest #2  ||  Strength Seed
+|-
+|  Cave of Ra  ||  $0357c  ||  $008a  ||  0001 0000  ||  B2, bottom middle room, chest #1  ||  Stamina Seed
+|-
+|  Cave of Ra  ||  $0357c  ||  $008a  ||  0010 0000  ||  B2, bottom middle room, chest #3  ||  Pachisi Ticket
+|-
+|  Cave of Ra  ||  $0357c  ||  $008a  ||  0100 0000  ||  B2, bottom right room, chest #3  ||  Life Stone
+|-
+|  Cave of Ra   ||  $0357c  ||  $008a  ||  1000 0000  ||  B3, left side, chest  ||  Plush Suit
 |-
 !  colspan="6"  |  
 |-
@@ -735,11 +741,11 @@ These flags indicate which chests or treasures have been already taken.
 |-
 |  ---  ||  $03581  ||  $008f  ||  0000 1000  ||  ---  ||  
 |-
-|  ---  ||  $03581  ||  $008f  ||  0001 0000  ||  ---  ||  
+|  Shrine East of Dharma  ||  $03581  ||  $008f  ||  0001 0000  ||  Top left room, drawer  ||  Cypress Stick
 |-
-|  ---  ||  $03581  ||  $008f  ||  0010 0000  ||  ---  ||  
+|  Shrine East of Dharma  ||  $03581  ||  $008f  ||  0010 0000  ||  Top right room, drawer  ||  Small Medal
 |-
-|  ---  ||  $03581  ||  $008f  ||  0100 0000  ||  ---  ||  
+|  North Icy Shrine  ||  $03581  ||  $008f  ||  0100 0000  ||  Shrine north of Romaly => portal => shrine up north, top-middle blue tile around water  ||  Small Medal
 |-
 |  ---  ||  $03581  ||  $008f  ||  1000 0000  ||  ---  ||  
 |-
@@ -765,15 +771,15 @@ These flags indicate which chests or treasures have been already taken.
 |-
 |  ---  ||  $03583  ||  $0091  ||  0000 0001  ||  ---  ||  
 |-
-|  ---  ||  $03583  ||  $0091  ||  0000 0010  ||  ---  ||  
+|  Shrine north of Romaly  ||  $03583  ||  $0091  ||  0000 0010  ||  B1, south room, water in corner  ||  Small Medal
 |-
-|  ---  ||  $03583  ||  $0091  ||  0000 0100  ||  ---  ||  
+|  Shrunken Shrine  ||  $03583  ||  $0091  ||  0000 0100  ||  5 steps north of chest on northmost floor decoration  ||  Small Medal
 |-
-|  ---  ||  $03583  ||  $0091  ||  0000 1000  ||  ---  ||  
+|  Hobbit Shrine  ||  $03583  ||  $0091  ||  0000 1000  ||  Behind the hobbit's throne  ||  Small Medal
 |-
-|  ---  ||  $03583  ||  $0091  ||  0001 0000  ||  ---  ||  
+|  Olivia's Promontory  ||  $03583  ||  $0091  ||  0001 0000  ||  F1, top right room, west wall between the two portals  ||  Small Medal
 |-
-|  ---  ||  $03583  ||  $0091  ||  0010 0000  ||  ---  ||  
+|  Liamland Altar  ||  $03583  ||  $0091  ||  0010 0000  ||  Outside, right of the stairs  ||  Small Medal
 |-
 |  Najimi Tower  ||  $03583  ||  $0091  ||  0100 0000  ||  F2 top-left, chest  ||  40 gold pieces
 |-
@@ -791,33 +797,33 @@ These flags indicate which chests or treasures have been already taken.
 |-
 |  Najimi Tower  ||  $03584  ||  $0092  ||  0001 0000  ||  F4, left bookcase  ||  Tomboy Book
 |-
-|  ---  ||  $03584  ||  $0092  ||  0010 0000  ||  ---  ||  
+|  Garuna Tower  ||  $03584  ||  $0092  ||  0010 0000  ||  F1, Bottom right, chest  ||  Wisdom Seed
 |-
-|  ---  ||  $03584  ||  $0092  ||  0100 0000  ||  ---  ||  
+|  Garuna Tower  ||  $03584  ||  $0092  ||  0100 0000  ||  F2, middle room with hole (EFGJNOPST)  ||  Zen Book
 |-
-|  ---  ||  $03584  ||  $0092  ||  1000 0000  ||  ---  ||  
-|-
-!  colspan="6"  |  
-|-
-|  ---  ||  $03585  ||  $0093  ||  0000 0001  ||  ---  ||  
-|-
-|  ---  ||  $03585  ||  $0093  ||  0000 0010  ||  ---  ||  
-|-
-|  ---  ||  $03585  ||  $0093  ||  0000 0100  ||  ---  ||  
-|-
-|  ---  ||  $03585  ||  $0093  ||  0000 1000  ||  ---  ||  
-|-
-|  ---  ||  $03585  ||  $0093  ||  0001 0000  ||  ---  ||  
-|-
-|  ---  ||  $03585  ||  $0093  ||  0010 0000  ||  ---  ||  
-|-
-|  ---  ||  $03585  ||  $0093  ||  0100 0000  ||  ---  ||  
-|-
-|  ---  ||  $03585  ||  $0093  ||  1000 0000  ||  ---  ||  
+|  Garuna Tower  ||  $03584  ||  $0092  ||  1000 0000  ||  F3, Top middle room, chest (EFGHK)  ||  448 gold pieces
 |-
 !  colspan="6"  |  
 |-
-|  ---  ||  $03586  ||  $0094  ||  0000 0001  ||  ---  ||  
+|  Garuna Tower  ||  $03585  ||  $0093  ||  0000 0001  ||  F3, Top middle room, chest (EFGIL)  ||  Small Medal
+|-
+|  Garuna Tower  ||  $03585  ||  $0093  ||  0000 0010  ||  F6, chest (EFGJNOPR)  ||  Silver Barrette
+|-
+|  Arp Tower  ||  $03585  ||  $0093  ||  0000 0100  ||  F4, chest group, top-left chest  ||  Echo Flute
+|-
+|  Arp Tower  ||  $03585  ||  $0093  ||  0000 1000  ||  F4, chest group, bottom-left chest  ||  Small Medal
+|-
+|  Arp Tower  ||  $03585  ||  $0093  ||  0001 0000  ||  F4, chest group, bottom-right chest  ||  Life Nut
+|-
+|  Arp Tower  ||  $03585  ||  $0093  ||  0010 0000  ||  F4, chest group, top-right chest  ||  552 gold pieces
+|-
+|  Arp Tower  ||  $03585  ||  $0093  ||  0100 0000  ||  F5, bottom-left, left chest  ||  Benevolent Ring
+|-
+|  Arp Tower  ||  $03585  ||  $0093  ||  1000 0000  ||  F5, bottom-right, chest  ||  Cannibox!
+|-
+!  colspan="6"  |  
+|-
+|  Arp Tower  ||  $03586  ||  $0094  ||  0000 0001  ||  F5, bottom-left, right chest  ||  Small Medal
 |-
 |  Shampane Tower  ||  $03586  ||  $0094  ||  0000 0010  ||  F5  ||  [Event] Holes opens after Kandar's guys run away (see 03556-00010000)
 |-
@@ -994,6 +1000,42 @@ These flags indicate which chests or treasures have been already taken.
 |  ---  ||  $0358f  ||  $009d  ||  0100 0000  ||  ---  ||  
 |-
 |  ---  ||  $0358f  ||  $009d  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $03590  ||  $009e  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $03590  ||  $009e  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $03590  ||  $009e  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03590  ||  $009e  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03590  ||  $009e  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $03590  ||  $009e  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $03590  ||  $009e  ||  0100 0000  ||  ---  ||  
+|-
+|  Pachisi Track #3  ||  $03590  ||  $009e  ||  1000 0000  ||  Cave Entrance, north of guy, south east corner of grass  ||  Small Medal
+|-
+!  colspan="6"  |  
+|-
+|  Pachisi Track #3  ||  $03591  ||  $009f  ||  0000 0001  ||  Cave Entrance, right of guy, middle right of grass, next to water  ||  Pachisi Ticket
+|-
+|  Pachisi Track #3  ||  $03591  ||  $009f  ||  0000 0010  ||  South-west corner, grass on north-east  ||  Small Medal
+|-
+|  ---  ||  $03591  ||  $009f  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03591  ||  $009f  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03591  ||  $009f  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $03591  ||  $009f  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $03591  ||  $009f  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $03591  ||  $009f  ||  1000 0000  ||  ---  ||  
 |-
 !  colspan="6"  |  
 |}

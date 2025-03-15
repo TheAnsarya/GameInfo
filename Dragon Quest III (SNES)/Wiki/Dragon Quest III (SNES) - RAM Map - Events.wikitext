@@ -1,13 +1,15 @@
-{{rammap|game=Dragon Quest III}}
+{{subpage}}
 
-==Treasures==
-These flags indicate which chests or treasures have been already taken.
+==Events==
+These flags indicate which game event triggers have been already set.
+
+**All of these need to be re-verified.**
 
 {| class="wikitable sortable"
 |-
 !  Location  !! Address  !! SRAM  !!  Value  !!  Description  !!  Event
 |-
-|  ---  ||  $03540  ||  ---  ||  0000 0001  ||  ---  ||  
+|  ---  ||  $03540  ||  ---  || style="white-space: nowrap;" | 0000 0001  ||  ---  ||  
 |-
 |  ---  ||  $03540  ||  ---  ||  0000 0010  ||  ---  ||  
 |-
@@ -25,7 +27,7 @@ These flags indicate which chests or treasures have been already taken.
 |-
 !  colspan="6"  |  
 |-
-|  ---  ||  $03541  ||  ---  ||  0000 0001  ||  ---  ||  
+|  Shrunken Shrine  ||  $03541  ||  ---  ||  0000 0001  ||  Chest  ||  Get Final Key
 |-
 |  Reeve  ||  $03541  ||  ---  ||  0000 0010  ||  Top-right house, F2, Old Man  ||  Get Magic Ball
 |-
@@ -43,7 +45,57 @@ These flags indicate which chests or treasures have been already taken.
 |-
 !  colspan="6"  |  
 |-
-!  colspan="6"  |  ...
+|  Baharata  ||  $03542  ||  ---  ||  0000 0001  ||  Black Pepper Store  ||  Talk to Gupta, get Black Pepper
+|-
+|  Orochi's Cave  ||  $03542  ||  ---  ||  0000 0010  ||  Defeat Orochi  ||  Get Orochi's Sword
+|-
+|  Edinbear Castle  ||  $03542  ||  ---  ||  0000 0100  ||  F1, middle left => B1, after rock puzzle, chest  ||  Get Thirsty Pitcher
+|-
+|  Muor  ||  $03542  ||  ---  ||  0000 1000  ||   Back of top-right building, F1, Green guy  ||  Receive Ortega's Helm
+|-
+|  Cave of Ra  ||  $03542  ||  ---  ||  0001 0000  ||  B3, middle island, chest  ||  Get the Mirror of Ra
+|-
+|  ---  ||  $03542  ||  ---  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $03542  ||  ---  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $03542  ||  ---  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $03543  ||  ---  ||  0000 0001  ||  ---  ||  
+|-
+|  Tedanki  ||  $03543  ||  ---  ||  0000 0010  ||  Top-left jail cell, prisoner  ||  Get Green Orb
+|-
+|  Gaia's Navel  ||  $03543  ||  ---  ||  0000 0100  ||  B3, right chest  ||  Get Blue Orb
+|-
+|  Pirates' Base  ||  $03543  ||  ---  ||  0000 1000  ||  Room under top-right rock outside, bottom-left chest  ||  Get Red Orb
+|-
+|  Zipangu  ||  $03543  ||  ---  ||  0001 0000  ||  Himiko's, Top-middle room, chest after Orochi #2  ||  Get Purple Orb
+|-
+|  ---  ||  $03543  ||  ---  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $03543  ||  ---  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $03543  ||  ---  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $03544  ||  ---  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $03544  ||  ---  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $03544  ||  ---  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03544  ||  ---  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03544  ||  ---  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $03544  ||  ---  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $03544  ||  ---  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $03544  ||  ---  ||  1000 0000  ||  ---  ||  
 |-
 !  colspan="6"  |  
 |-
@@ -65,13 +117,81 @@ These flags indicate which chests or treasures have been already taken.
 |-
 !  colspan="6"  |  
 |-
-!  colspan="6"  |  ...
+|  ---  ||  $03546  ||  ---  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $03546  ||  ---  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $03546  ||  ---  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03546  ||  ---  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03546  ||  ---  ||  0001 0000  ||  ---  ||  
+|-
+|  Sunken Shrine  ||  $03546  ||  ---  ||  0010 0000  ||  At the shoal, Use Thirsty Pitcher  ||  Island rises from the water
+|-
+|  ---  ||  $03546  ||  ---  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $03546  ||  ---  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $03547  ||  ---  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $03547  ||  ---  ||  0000 0010  ||  ---  ||  
+|-
+|  Portoga  ||  $03547  ||  ---  ||  0000 0100  ||  King's Chamber  ||  Give King the Black Pepper to get the Ship
+|-
+|  Portoga  ||  $03547  ||  ---  ||  0000 1000  ||  Ship, leave the harbor  ||   Now you have the ship
+|-
+|  ---  ||  $03547  ||  ---  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $03547  ||  ---  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $03547  ||  ---  ||  0100 0000  ||  ---  ||  
+|-
+|  Ship  ||  $03547  ||  ---  ||  1000 0000  ||  Ship  ||   Get on the ship? [todo: what is this? getting off the ship doesn't change it]
+|-
+!  colspan="6"  |  
+|-
+|  New Town  ||  $03548  ||  ---  ||  0000 0001  ||  #5, Leave  ||  Leave after dealer says she's building a shop
+|-
+|  ---  ||  $03548  ||  ---  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $03548  ||  ---  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03548  ||  ---  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03548  ||  ---  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $03548  ||  ---  ||  0010 0000  ||  ---  ||  
+|-
+|  New Town  ||  $03548  ||  ---  ||  0100 0000  ||  Bring Dealer character to New Town  ||  #2, Dealer joins old guy and returns items
+|-
+|  New Town  ||  $03548  ||  ---  ||  1000 0000  ||  Bring Dealer character to New Town  ||  #1, New Town begins! --- Does nothing happen? CB061E  1C 48 35    TRB $3548 (bug?)
+|-
+!  colspan="6"  |  
+|-
+|  New Town  ||  $03549  ||  ---  ||  0000 0001  ||  Bring Dealer character to New Town  ||  #3, After giving dealer, old man tells you about Well in Soo
+|-
+|  New Town  ||  $03549  ||  ---  ||  0000 0010  ||  #4, Talk to dealer  ||  Dealer says she will build a shop
+|-
+|  New Town  ||  $03549  ||  ---  ||  0000 0100  ||  #6, Re-enter New Town  ||  Phase 2 starts, Dealer has built a shop
+|-
+|  New Town  ||  $03549  ||  ---  ||  0000 1000  ||  #7, Re-enter New Town  ||  Phase 3 starts, several businesses
+|-
+|  ---  ||  $03549  ||  ---  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $03549  ||  ---  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $03549  ||  ---  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $03549  ||  ---  ||  1000 0000  ||  ---  ||  
 |-
 !  colspan="6"  |  
 |-
 |  ---  ||  $0354a  ||  ---  ||  0000 0001  ||  ---  ||  
 |-
-|  ---  ||  $0354a  ||  ---  ||  0000 0010  ||  ---  ||  
+|  New Town  ||  $0354a  ||  ---  ||  0000 0010  ||  Enter New Town  ||  Enter New Town
 |-
 |  ---  ||  $0354a  ||  ---  ||  0000 0100  ||  ---  ||  
 |-
@@ -91,11 +211,11 @@ These flags indicate which chests or treasures have been already taken.
 |-
 |  Baharata  ||  $0354b  ||  ---  ||  0000 0010  ||  Old-man and Gupta  ||  Talk about rescuing Tania, Gupta runs away
 |-
-|  ---  ||  $0354b  ||  ---  ||  0000 0100  ||  ---  ||  
+|  Lancel's Shrine  ||  $0354b  ||  ---  ||  0000 0100  ||  Talk to priest after Gaia's Navel  ||  Say you completed the trial ??? 16 to 12?? TODO: recheck
 |-
 |  ---  ||  $0354b  ||  ---  ||  0000 1000  ||  ---  ||  
 |-
-|  ---  ||  $0354b  ||  ---  ||  0001 0000  ||  ---  ||  
+|  Lancel's Shrine  ||  $0354b  ||  ---  ||  0001 0000  ||  Priest in shrine  ||  Agree to go alone
 |-
 |  ---  ||  $0354b  ||  ---  ||  0010 0000  ||  ---  ||  
 |-
@@ -105,25 +225,40 @@ These flags indicate which chests or treasures have been already taken.
 |-
 !  colspan="6"  |  
 |-
-!  colspan="6"  |  ...
+|  ---  ||  $0354c  ||  ---  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $0354c  ||  ---  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $0354c  ||  ---  ||  0000 0100  ||  ---  ||  
+|-
+|  Muor  ||  $0354c  ||  ---  ||  0000 1000  ||  Back of top-tight building, F2  ||  Talk with Minstrel
+|-
+|  Muor  ||  $0354c  ||  ---  ||  0001 0000  ||  Back of top-tight building, F2  ||  Popota gives you permission to take Ortega's Helmut
+|-
+|  Zipangu  ||  $0354c  ||  ---  ||  0010 0000  ||  Bottom left house, B1, top right corner, top middle pot  ||  
+Girl appears in pot ??? Also reset to zero at some point and then set to 1 after Orochi battle #2?
+|-
+|  Zipangu  ||  $0354c  ||  ---  ||  0100 0000  ||  View Himiko injured after Orochi battle #1  ||  Watch her attendent talk about her injury
+|-
+|  Zipangu  ||  $0354c  ||  ---  ||  1000 0000  ||  Defeat Orochi, battle #2  ||  
 |-
 !  colspan="6"  |  
 |-
-|  ---  ||  $0354e  ||  ---  ||  0000 0001  ||  ---  ||  
+|  Zipangu  ||  $0354d  ||  ---  ||  0000 0001  ||  After Orochi battle #2 and narration  ||  
 |-
-|  ---  ||  $0354e  ||  ---  ||  0000 0010  ||  ---  ||  
+|  Zipangu  ||  $0354d  ||  ---  ||  0000 0010  ||  View Himiko injured after Orochi battle #1, part two  ||  Himiko can now be founght in Orochi battle #2
 |-
-|  ---  ||  $0354e  ||  ---  ||  0000 0100  ||  ---  ||  
+|  ---  ||  $0354d  ||  ---  ||  0000 0100  ||  ---  ||  
 |-
-|  ---  ||  $0354e  ||  ---  ||  0000 1000  ||  ---  ||  
+|  ---  ||  $0354d  ||  ---  ||  0000 1000  ||  ---  ||  
 |-
-|  ---  ||  $0354e  ||  ---  ||  0001 0000  ||  ---  ||  
+|  Sioux Village  ||  $0354d  ||  ---  ||  0001 0000  ||  Inside well, old man  ||  Find out the Thirsty Pitcher is in Edinbear
 |-
-|  ---  ||  $0354e  ||  ---  ||  0010 0000  ||  ---  ||  
+|  ---  ||  $0354d  ||  ---  ||  0010 0000  ||  ---  ||  
 |-
-|  ---  ||  $0354e  ||  ---  ||  0100 0000  ||  ---  ||  
+|  ---  ||  $0354d  ||  ---  ||  0100 0000  ||  ---  ||  
 |-
-|  Romaly  ||  $0354e  ||  ---  ||  1000 0000  ||  King's Chamber  ||  Talk to King to give Golden Crown to King
+|  Romaly  ||  $0354d  ||  ---  ||  1000 0000  ||  King's Chamber  ||  Talk to King to give Golden Crown to King
 |-
 !  colspan="6"  |  
 |-
@@ -181,6 +316,42 @@ These flags indicate which chests or treasures have been already taken.
 |-
 !  colspan="6"  |  
 |-
+|  ---  ||  $03551  ||  ---  ||  0000 0001  ||  ---  ||  
+|-
+|  Samanosa  ||  $03551  ||  ---  ||  0000 0010  ||  Castle, Jail, B2  ||  Leave jail via secret passage
+|-
+|  ---  ||  $03551  ||  ---  ||  0000 0100  ||  ---  ||  
+|-
+|  Samanosa  ||  $03551  ||  ---  ||  0000 1000  ||  Cemetery  ||  Talk to priest
+|-
+|  Samanosa  ||  $03551  ||  ---  ||  0001 0000  ||  Cemetery  ||  Talk to top right guy
+|-
+|  Samanosa  ||  $03551  ||  ---  ||  0010 0000  ||  Cemetery  ||  Talk to top left guy
+|-
+|  Samanosa  ||  $03551  ||  ---  ||  0100 0000  ||  Cemetery  ||  Talk to grieving wife (middle woman)
+|-
+|  Samanosa  ||  $03551  ||  ---  ||  1000 0000  ||  Cemetery  ||  Talk to bottom left woman
+|-
+!  colspan="6"  |  
+|-
+|  Samanosa  ||  $03552  ||  ---  ||  0000 0001  ||  Cemetery  ||  Talk to bottom right boy
+|-
+|  Samanosa  ||  $03552  ||  ---  ||  0000 0010  ||  Talk to King  ||  King throws you in prison
+|-
+|  ---  ||  $03552  ||  ---  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03552  ||  ---  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03552  ||  ---  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $03552  ||  ---  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $03552  ||  ---  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $03552  ||  ---  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
 !  colspan="6"  |  ...
 |-
 !  colspan="6"  |  
@@ -197,13 +368,13 @@ These flags indicate which chests or treasures have been already taken.
 |-
 |  ---  ||  $03555  ||  $0063  ||  0010 0000  ||  ---  ||  
 |-
-|  ---  ||  $03555  ||  $0063  ||  0100 0000  ||  ---  ||  
+|  Kidnapper's Base Cave  ||  $03555  ||  $0063  ||  0100 0000  ||  B2, middle room, bottom left  ||  Guys asks you to pull lever
 |-
-|  ---  ||  $03555  ||  $0063  ||  1000 0000  ||  ---  ||  
+|  Kidnapper's Base Cave  ||  $03555  ||  $0063  ||  1000 0000  ||  B2, middle room  ||  Let people out of jail, defeat Kandar
 |-
 !  colspan="6"  |  
 |-
-|  ---  ||  $03556  ||  $0064  ||  0000 0001  ||  ---  ||  
+|  Orochi's Cave  ||  $03556  ||  $0064  ||  0000 0001  ||  Follow Orochi into portal  ||  Setup for Orochi battle #2
 |-
 |  ---  ||  $03556  ||  $0064  ||  0000 0010  ||  ---  ||  
 |-
