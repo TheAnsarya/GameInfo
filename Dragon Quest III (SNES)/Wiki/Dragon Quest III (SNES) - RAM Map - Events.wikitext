@@ -256,13 +256,13 @@ Girl appears in pot ??? Also reset to zero at some point and then set to 1 after
 |-
 |  ---  ||  $0354d  ||  ---  ||  0010 0000  ||  ---  ||  
 |-
-|  ---  ||  $0354d  ||  ---  ||  0100 0000  ||  ---  ||  
+|  Aliahan  ||  $0354d  ||  ---  ||  0100 0000  ||  Castle, Throne room  ||  Talk to King the first time
 |-
 |  Romaly  ||  $0354d  ||  ---  ||  1000 0000  ||  King's Chamber  ||  Talk to King to give Golden Crown to King
 |-
 !  colspan="6"  |  
 |-
-|  Romaly  ||  $0354e  ||  ---  ||  0000 0001  ||  King's Chamber  ||  Give Golden Crown to King
+|  Romaly  ||  $0354e  ||  ---  ||  0000 0001  ||  King's Chamber  ||  Give Golden Crown to King (Aliahan finish talking to King first time? WTH?)
 |-
 |  ---  ||  $0354e  ||  ---  ||  0000 0010  ||  ---  ||  
 |-

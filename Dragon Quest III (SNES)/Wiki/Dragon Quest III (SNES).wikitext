@@ -1,0 +1,72 @@
+{{Bob
+ | bobscreen= Dq3remixts.png
+ | title= Dragon Quest III: Soshite Densetsu e
+ | aka= Dragon Quest III: Soshite Densetsu e... (Boxart)
+ | developer= Heartbeat
+ | publisher= Enix
+ | system= SNES
+ | japan= {{date|1996|December|6}}
+ | tcrf=Dragon Quest III (SNES)
+}}
+{{SNES| title = Dragon Quest III
+|image = [[File:Dq3remixts.jpg|center]]
+|name = DRAGONQUEST3
+|company = Enix
+|header = None
+|bank = HiROM
+|interleaved = No
+|sram = 8 KiB
+|type = Normal + Batt
+|rom = 4 MiB
+|country = Japan
+|video = NTSC
+|romspeed = 120ns (FastROM)
+|revision = 1.0
+|checksum = Good 0x7473
+|crc32 = 13836BD2
+|game = Dragon Quest III
+}}
+
+==Sub-pages==
+{{namespaces}}
+{{subpage|Values}}
+
+==Utilities==
+* None Available
+
+==Hacks==
+* None known.
+
+==Translations==
+* [https://www.romhacking.net/translations/1323/ English translation] v1.1 by [http://www.romhacking.net/community/712/ DQ Translations] (2009-11-19)
+* [https://www.romhacking.net/translations/6944/ Portuguese translation] v1.0 by [http://www.romhacking.net/community/7941/ Dindo] (2023-05-27)
+* [https://www.romhacking.net/translations/6234/ Spanish translation] v1.1 by [http://www.romhacking.net/community/712/ Rod Merida] (2022-09-17)
+
+==Miscellaneous==
+* The [https://web.archive.org/web/20220115061924/https://www.romhacking.net/abandoned/ RHDN Abandoned Projects page] includes [https://web.archive.org/web/20211020093652/https://www.romhacking.net/abandoned/dq3r_toolsbyuu.zip byuu's Dragon Quest III translation tools] which contains useful tools and information.
+
+==Known Dumps==
+
+These are the roms as they are listed in [https://www.tosecdev.org/ TOSEC].
+
+{| class="wikitable"
+|-
+!  Description  !!  Size  !!  Hashes
+|-
+|  Dragon Quest III - The Seeds of Salvation (1996)(Enix)(JP)  ||  4194304<br />$400000  ||  '''CRC32''': 13836bd2<br />'''MD5''': 7c7c7db73b0608a184cc5e1d73d7695b<br />'''SHA1''': b711341e4b1022d7645c5313840874aebc01b7b7
+|-
+|  Dragon Quest III - The Seeds of Salvation (1996)(Enix)(JP)[a] ||  4194304<br />$400000  ||  '''CRC32''': b377006e<br />'''MD5''': c4c95db734c159589e45b93bf397afd1<br />'''SHA1''': 79e41f8a848c0698de1b061eafd2b8d09151a941
+|-
+|  Dragon Quest III - The Seeds of Salvation (1996)(Enix)(JP)[a2]  ||  4194304<br />$400000  ||  '''CRC32''': 672606ec<br />'''MD5''': 4d86aa18f6edbcdf685d7c3dab749af2<br />'''SHA1''': 75dc5fbc9ba0550a15cb77b78e4ce8c650ee7c34
+|-
+|  Dragon Quest III - The Seeds of Salvation (1996)(Enix)(JP)[a3]  ||  4194304<br />$400000  ||  '''CRC32''': 426334c3<br />'''MD5''': 08c955eccda778fbc8cb7ba48079e359<br />'''SHA1''': c25dc32d5093e06e6dafdb7ed259f182f2d9b3d4
+|-
+|  Dragon Quest III - The Seeds of Salvation (1996)(Enix)(JP)[a4]  ||  4194304<br />$400000  ||  '''CRC32''': c2cedc01<br />'''MD5''': 4ef1239a1c5249169045280d2f8e015b<br />'''SHA1''': 3304f47d1bf07fd1b6651dc8b6b959ab6801ad70
+|-
+|  Dragon Quest III - The Seeds of Salvation (1996)(Enix)(JP)[a5]  ||  4194304<br />$400000  ||  '''CRC32''': 3a2a466d<br />'''MD5''': 00597e5b3e6eae5fb24b413e3b857363<br />'''SHA1''': 58fbc9428e73e4834465cdf6784dff70d1503103
+|}
+
+==External links==
+* [https://www.youtube.com/watch?v=aVboEF9zOqE Dragon Quest III intro video]
+
+{{Dragon Quest Series}}
