@@ -13,7 +13,7 @@ Names are mostly from the fan translation and will be re-checked/normalized.
 |-
 !  Location  !! Address  !! SRAM  !!  Value  !!  Description  !!  Item
 |-
-|  ---  ||  $03559  ||  $0067  || style="white-space: nowrap;" | 0000 0001  ||  ---  ||  
+|  ---  ||  $03559  ||  $0067  ||  style="white-space: nowrap;"  |  0000 0001  ||  ---  ||  
 |-
 |  ---  ||  $03559  ||  $0067  ||  0000 0010  ||  ---  ||  
 |-

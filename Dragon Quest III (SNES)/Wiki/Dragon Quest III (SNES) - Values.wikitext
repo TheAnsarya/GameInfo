@@ -2,6 +2,156 @@
 
 =Values=
 
+==Spells==
+[[Dragon Quest III (SNES)/Values/Spells|Spells List]]
+
+==Gender==
+
+{| class="wikitable"
+|-
+!  Value  !!  Description
+|-
+|  style="white-space: nowrap;"  |  0000 0000  ||  Male
+|-
+|  0010 0000  ||  Female
+|}
+
+==Personality==
+
+{| class="wikitable"
+|-
+!  Value  !!  Description
+|-
+|  style="text-align: center;"  |  $00  ||  Jock
+|-
+|  style="text-align: center;"  |  $01  ||  Gourmet
+|-
+|  style="text-align: center;"  |  $02  ||  Lewd
+|-
+|  style="text-align: center;"  |  $03  ||  Ladylike
+|-
+|  style="text-align: center;"  |  $04  ||  Ordinary
+|-
+|  style="text-align: center;"  |  $05  ||  Sharp
+|-
+|  style="text-align: center;"  |  $06  ||  Weepy
+|-
+|  style="text-align: center;"  |  $07  ||  Diligent
+|-
+|  style="text-align: center;"  |  $08  ||  Lazy
+|-
+|  style="text-align: center;"  |  $09  ||  Helpless
+|-
+|  style="text-align: center;"  |  $0a  ||  Solitary
+|-
+|  style="text-align: center;"  |  $0b  ||  Kindly
+|-
+|  style="text-align: center;"  |  $0c  ||  ???
+|-
+|  style="text-align: center;"  |  $0d  ||  ???
+|-
+|  style="text-align: center;"  |  $0e  ||  ???
+|-
+|  style="text-align: center;"  |  $0f  ||  ???
+|-
+|  style="text-align: center;"  |  $10  ||  Bully
+|-
+|  style="text-align: center;"  |  $11  ||  Tomboy
+|-
+|  style="text-align: center;"  |  $12  ||  Defiant
+|-
+|  style="text-align: center;"  |  $13  ||  Ladylike?
+|-
+|  style="text-align: center;"  |  $14  ||  Agile
+|-
+|  style="text-align: center;"  |  $15  ||  Vain
+|-
+|  style="text-align: center;"  |  $16  ||  Tough
+|-
+|  style="text-align: center;"  |  $17  ||  Eager
+|-
+|  style="text-align: center;"  |  $18  ||  Logical
+|-
+|  style="text-align: center;"  |  $19  ||  Happy
+|-
+|  style="text-align: center;"  |  $1a  ||  Silly
+|-
+|  style="text-align: center;"  |  $1b  ||  ???
+|-
+|  style="text-align: center;"  |  $1c  ||  ???
+|-
+|  style="text-align: center;"  |  $1d  ||  ???
+|-
+|  style="text-align: center;"  |  $1e  ||  ???
+|-
+|  style="text-align: center;"  |  $1f  ||  ???
+|-
+|  style="text-align: center;"  |  $20  ||  Bully?
+|-
+|  style="text-align: center;"  |  $21  ||  Tomboy?
+|-
+|  style="text-align: center;"  |  $22  ||  Defiant?
+|-
+|  style="text-align: center;"  |  $23  ||  Ladylike?
+|-
+|  style="text-align: center;"  |  $24  ||  Agile?
+|-
+|  style="text-align: center;"  |  $25  ||  Vain?
+|-
+|  style="text-align: center;"  |  $26  ||  Tough?
+|-
+|  style="text-align: center;"  |  $27  ||  Eager?
+|-
+|  style="text-align: center;"  |  $28  ||  Logical?
+|-
+|  style="text-align: center;"  |  $29  ||  Happy?
+|-
+|  style="text-align: center;"  |  $2a  ||  Silly?
+|-
+|  style="text-align: center;"  |  $2b  ||  ???
+|-
+|  style="text-align: center;"  |  $2c  ||  ???
+|-
+|  style="text-align: center;"  |  $2d  ||  ???
+|-
+|  style="text-align: center;"  |  $2e  ||  ???
+|-
+|  style="text-align: center;"  |  $2f  ||  ???
+|-
+|  style="text-align: center;"  |  $30  ||  
+|-
+|  style="text-align: center;"  |  $31  ||  
+|-
+|  style="text-align: center;"  |  $32  ||  
+|-
+|  style="text-align: center;"  |  $33  ||  
+|}
+
+==Class==
+
+{| class="wikitable"
+|-
+!  Value  !!  Description
+|-
+|  style="text-align: center;"  |  $00  ||  Warrior
+|-
+|  style="text-align: center;"  |  $01  ||  Fighter
+|-
+|  style="text-align: center;"  |  $02  ||  Mage
+|-
+|  style="text-align: center;"  |  $03  ||  Cleric
+|-
+|  style="text-align: center;"  |  $04  ||  Dealer
+|-
+|  style="text-align: center;"  |  $05  ||  Jester
+|-
+|  style="text-align: center;"  |  $06  ||  Thief
+|-
+|  style="text-align: center;"  |  $07  ||  Sage
+|-
+|  style="text-align: center;"  |  $08  ||  Hero
+|}
+
 ==Items==
 
 [TODO: Verify Japanese names with those pulled directly from the ROM]
