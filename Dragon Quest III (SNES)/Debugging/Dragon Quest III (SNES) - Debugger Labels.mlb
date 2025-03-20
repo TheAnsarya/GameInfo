@@ -1,4 +1,5 @@
-﻿SnesWorkRam:3696-3698:Gold_Amount:Party's current amount of gold
+﻿SnesPrgRom:36602C-36603B:Palettes_1_Start:Palette Group #1 - start  36602c/f6602c
+SnesWorkRam:3696-3698:Gold_Amount:Party's current amount of gold
 SnesWorkRam:3725-3824:Bag_Items:Each byte is which item is in bag slot, 0 means empty, game uses values $01-$e4
 SnesWorkRam:3825-3924:Bag_Items_Amounts:Each byte is amount of the item in the bag slot, game allows up to 99 ($63)
 SnesWorkRam:3925:Hero_Level:Hero - Level\nTop 7 bits are Hero's level, bottom bit unknown

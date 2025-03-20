@@ -1,4 +1,5 @@
 {{rammap|game=Dragon Quest III}}
+{{subpage|Party Members}}
 {{subpage|Events}}
 {{subpage|Treasures}}
 
@@ -858,6 +859,8 @@ The whole graphics state is set every VBLANK interrupt. This is also where VRAM 
 |  Graphics Settings  ||  $7e7fd4  ||  word  ||  $2132 - 🎨 Color math sub screen backdrop color, RGB intensities stored as 0bbbbbgggggrrrrr
 |-
 |  Graphics Settings  ||  $7e7fda  ||  byte  ||  $2133 - 🖼️ Screen mode/video select
+|-
+|  Graphics  ||  $7e7ffe-7e81fd  ||  512 bytes  ||  CGRAM mirror, palettes/colors  ||  DMA Copy to CGRAM $c00704-$c00732
 |-
 |  Graphics Loading  ||  $7e8bae - $7e8dad  ||  $100 words  ||  $4302 - ↔️ DMA source addresses
 |-
