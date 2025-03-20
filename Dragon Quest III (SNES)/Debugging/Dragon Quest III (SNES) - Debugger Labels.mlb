@@ -252,11 +252,75 @@ SnesWorkRam:3CB6:Party_16_Agility:Party member #16 - Agility stat
 SnesWorkRam:3CB7:Party_16_Stamina:Party member #16 - Stamina stat
 SnesWorkRam:3CB8:Party_16_Wisdom:Party member #16 - Wisdom stat
 SnesWorkRam:3CB9:Party_16_Luck:Party member #16 - Luck stat, excluding equipment
-SnesWorkRam:3CBF-3C4B:Party_16_Name:Party member #16 - Name, 4 characters max, ends in AC
+SnesWorkRam:3CBF-3CC3:Party_16_Name:Party member #16 - Name, 4 characters max, ends in AC
 SnesWorkRam:3CCD-3CD6:Party_16_Spells:Party member #16 - Spells list
-SnesWorkRam:3CDE:Party_16_Bag_Number_Equiped:Party member #16 - Number of items equipped
-SnesWorkRam:3CDF:Party_16_Bag_Number_Carried:Party member #16 - Number of items in bag
-SnesWorkRam:3CE0-3CEB:Party_16_Bag_Items:Party member #16 - Each byte is which item is in the bag slot
+SnesWorkRam:3CD7:Party_16_Bag_Number_Equiped:Party member #16 - Number of items equipped
+SnesWorkRam:3CD8:Party_16_Bag_Number_Carried:Party member #16 - Number of items in bag
+SnesWorkRam:3CD9-3CE4:Party_16_Bag_Items:Party member #16 - Each byte is which item is in the bag slot
+SnesWorkRam:3CE5:Party_17_Level:Party member #17 - Level\nTop 7 bits are level, bottom bit unknown
+SnesWorkRam:3CE6-3CE8:Party_17_XP:Party member #17 - XP
+SnesWorkRam:3CE9-3CEA:Party_17_HP_Max:Party member #17 - Max HP
+SnesWorkRam:3CEB-3CEC:Party_17_HP:Party member #17 - Current HP
+SnesWorkRam:3CED-3CEE:Party_17_MP_Max:Party member #17 - Max MP
+SnesWorkRam:3CEF-3CF0:Party_17_MP:Party member #17 - Current HP
+SnesWorkRam:3CF1:Party_17_Strength:Party member #17 - Strength stat
+SnesWorkRam:3CF2:Party_17_Agility:Party member #17 - Agility stat
+SnesWorkRam:3CF3:Party_17_Stamina:Party member #17 - Stamina stat
+SnesWorkRam:3CF4:Party_17_Wisdom:Party member #17 - Wisdom stat
+SnesWorkRam:3CF5:Party_17_Luck:Party member #17 - Luck stat, excluding equipment
+SnesWorkRam:3CFB-3CFF:Party_17_Name:Party member #17 - Name, 4 characters max, ends in AC
+SnesWorkRam:3D09-3D12:Party_17_Spells:Party member #17 - Spells list
+SnesWorkRam:3D13:Party_17_Bag_Number_Equiped:Party member #17 - Number of items equipped
+SnesWorkRam:3D14:Party_17_Bag_Number_Carried:Party member #17 - Number of items in bag
+SnesWorkRam:3D15-3D20:Party_17_Bag_Items:Party member #17 - Each byte is which item is in the bag slot
+SnesWorkRam:3D21:Party_18_Level:Party member #18 - Level\nTop 7 bits are level, bottom bit unknown
+SnesWorkRam:3D22-3D24:Party_18_XP:Party member #18 - XP
+SnesWorkRam:3D25-3D26:Party_18_HP_Max:Party member #18 - Max HP
+SnesWorkRam:3D27-3D28:Party_18_HP:Party member #18 - Current HP
+SnesWorkRam:3D29-3D2A:Party_18_MP_Max:Party member #18 - Max MP
+SnesWorkRam:3D2B-3D2C:Party_18_MP:Party member #18 - Current HP
+SnesWorkRam:3D2D:Party_18_Strength:Party member #18 - Strength stat
+SnesWorkRam:3D2E:Party_18_Agility:Party member #18 - Agility stat
+SnesWorkRam:3D2F:Party_18_Stamina:Party member #18 - Stamina stat
+SnesWorkRam:3D30:Party_18_Wisdom:Party member #18 - Wisdom stat
+SnesWorkRam:3D31:Party_18_Luck:Party member #18 - Luck stat, excluding equipment
+SnesWorkRam:3D37-3D3B:Party_18_Name:Party member #18 - Name, 4 characters max, ends in AC
+SnesWorkRam:3D45-3D4E:Party_18_Spells:Party member #18 - Spells list
+SnesWorkRam:3D4F:Party_18_Bag_Number_Equiped:Party member #18 - Number of items equipped
+SnesWorkRam:3D50:Party_18_Bag_Number_Carried:Party member #18 - Number of items in bag
+SnesWorkRam:3D51-3D5C:Party_18_Bag_Items:Party member #18 - Each byte is which item is in the bag slot
+SnesWorkRam:3D5D:Party_19_Level:Party member #19 - Level\nTop 7 bits are level, bottom bit unknown
+SnesWorkRam:3D5E-3D60:Party_19_XP:Party member #19 - XP
+SnesWorkRam:3D61-3D62:Party_19_HP_Max:Party member #19 - Max HP
+SnesWorkRam:3D63-3D64:Party_19_HP:Party member #19 - Current HP
+SnesWorkRam:3D65-3D66:Party_19_MP_Max:Party member #19 - Max MP
+SnesWorkRam:3D67-3D68:Party_19_MP:Party member #19 - Current HP
+SnesWorkRam:3D69:Party_19_Strength:Party member #19 - Strength stat
+SnesWorkRam:3D6A:Party_19_Agility:Party member #19 - Agility stat
+SnesWorkRam:3D6B:Party_19_Stamina:Party member #19 - Stamina stat
+SnesWorkRam:3D6C:Party_19_Wisdom:Party member #19 - Wisdom stat
+SnesWorkRam:3D6D:Party_19_Luck:Party member #19 - Luck stat, excluding equipment
+SnesWorkRam:3D73-3D77:Party_19_Name:Party member #19 - Name, 4 characters max, ends in AC
+SnesWorkRam:3D81-3D8A:Party_19_Spells:Party member #19 - Spells list
+SnesWorkRam:3D8B:Party_19_Bag_Number_Equiped:Party member #19 - Number of items equipped
+SnesWorkRam:3D8C:Party_19_Bag_Number_Carried:Party member #19 - Number of items in bag
+SnesWorkRam:3D8D-3D98:Party_19_Bag_Items:Party member #19 - Each byte is which item is in the bag slot
+SnesWorkRam:3D99:Party_20_Level:Party member #20 - Level\nTop 7 bits are level, bottom bit unknown
+SnesWorkRam:3D9A-3D9C:Party_20_XP:Party member #20 - XP
+SnesWorkRam:3D9D-3D9E:Party_20_HP_Max:Party member #20 - Max HP
+SnesWorkRam:3D9F-3DA0:Party_20_HP:Party member #20 - Current HP
+SnesWorkRam:3DA1-3DA2:Party_20_MP_Max:Party member #20 - Max MP
+SnesWorkRam:3DA3-3DA4:Party_20_MP:Party member #20 - Current HP
+SnesWorkRam:3DA5:Party_20_Strength:Party member #20 - Strength stat
+SnesWorkRam:3DA6:Party_20_Agility:Party member #20 - Agility stat
+SnesWorkRam:3DA7:Party_20_Stamina:Party member #20 - Stamina stat
+SnesWorkRam:3DA8:Party_20_Wisdom:Party member #20 - Wisdom stat
+SnesWorkRam:3DA9:Party_20_Luck:Party member #20 - Luck stat, excluding equipment
+SnesWorkRam:3DAF-3DB3:Party_20_Name:Party member #20 - Name, 4 characters max, ends in AC
+SnesWorkRam:3DBD-3DC6:Party_20_Spells:Party member #20 - Spells list
+SnesWorkRam:3DC7:Party_20_Bag_Number_Equiped:Party member #20 - Number of items equipped
+SnesWorkRam:3DC8:Party_20_Bag_Number_Carried:Party member #20 - Number of items in bag
+SnesWorkRam:3DC9-3DD4:Party_20_Bag_Items:Party member #20 - Each byte is which item is in the bag slot
 SnesRegister:2100:INIDISP:Screen Display Register
 SnesRegister:2101:OBSEL:Object Size and Character Size Register
 SnesRegister:2102:OAMADDL:OAM Address Registers (Low)
