@@ -322,6 +322,18 @@ SnesWorkRam:3DBD-3DC6:Party_20_Spells:Party member #20 - Spells list
 SnesWorkRam:3DC7:Party_20_Bag_Number_Equiped:Party member #20 - Number of items equipped
 SnesWorkRam:3DC8:Party_20_Bag_Number_Carried:Party member #20 - Number of items in bag
 SnesWorkRam:3DC9-3DD4:Party_20_Bag_Items:Party member #20 - Each byte is which item is in the bag slot
+SnesWorkRam:7FF8-7FF9:JOY1_Mirror:Joypad Buttons - registers $4218 and $4219 are read and stored here
+SnesWorkRam:7F7A-7F7D:RNG_Maybe:Maybe this is RNG? it changes like crazySnesWorkRam:7F8A:OBSEL_State:State of $2101\nOAM object size and object base
+SnesWorkRam:7F8C:BGMODE_State:State of $2105\nBG mode and BG character size
+SnesWorkRam:7F8E:MOSAIC_State:State of $2106\nMosaic size and mosaic enable
+SnesWorkRam:7F90:BG1SC_State:State of $2107\nBG 1 screen base and screen size
+SnesWorkRam:7F92:BG2SC_State:State of $2108\nBG 2 screen base and screen size
+SnesWorkRam:7F94:BG3SC_State:State of $2109\nBG 3 screen base and screen size
+SnesWorkRam:7F96:BG4SC_State:State of $210a\nBG 4 screen base and screen size
+SnesWorkRam:7F98:BG12NBA_State:State of $210b\nBG 1 & 2 tile base addresses
+SnesWorkRam:7F9A:BG34NBA_State:State of $210c\nBG 3 & 4 tile base addresses
+SnesWorkRam:7FFC:Goes_Up:Goes up in order constantly
+SnesWorkRam:81FE-8BAD:Temp_Watch
 SnesRegister:2100:INIDISP:Screen Display Register
 SnesRegister:2101:OBSEL:Object Size and Character Size Register
 SnesRegister:2102:OAMADDL:OAM Address Registers (Low)
