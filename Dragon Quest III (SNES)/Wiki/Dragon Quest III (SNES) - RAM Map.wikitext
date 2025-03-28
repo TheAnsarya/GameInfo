@@ -846,7 +846,23 @@ Several bytes are skipped because they are read/written in 16bit mode while the 
 |-
 |  Graphics Settings  ||  $7e7f9a  ||  byte  ||  $210c - 🖼️ BG 3 & 4 tile base addresses
 |-  style="background-color:#eaecf0;"
-|  ...  ||  $7e7f9b - $7e7fb9  ||  $1f bytes  ||  ...
+|  ...  ||  $7e7f9b - $7e...  ||  $ bytes  ||  ...
+|-
+|  Graphics Settings  ||  $7e7fac  ||  byte  ||  $211a - 🖼️ Mode 7 Settings Register
+|-  style="background-color:#eaecf0;"
+|  ...  ||  $7e7fad  ||  byte  ||  Skip!
+|-
+|  Graphics Settings  ||  $7e7fae - $7e7faf  ||  word  ||  $211b - 🖼️ Mode 7 Matrix Registers - A
+|-
+|  Graphics Settings  ||  $7e7fb0 - $7e7fb1  ||  word  ||  $211c - 🖼️ Mode 7 Matrix Registers - B
+|-
+|  Graphics Settings  ||  $7e7fb2 - $7e7fb3  ||  word  ||  $211d - 🖼️ Mode 7 Matrix Registers - C
+|-
+|  Graphics Settings  ||  $7e7fb4 - $7e7fb5  ||  word  ||  $211e - 🖼️ Mode 7 Matrix Registers - D
+|-
+|  Graphics Settings  ||  $7e7fb6 - $7e7fb7  ||  word  ||  $211f - 🖼️ Mode 7 Matrix Registers - X
+|-
+|  Graphics Settings  ||  $7e7fb8 - $7e7fb9  ||  word  ||  $2120 - 🖼️ Mode 7 Matrix Registers - Y
 |-
 |  Graphics Settings  ||  $7e7fba  ||  byte  ||  $2123 - 🖼️ Window mask setting, BG 1 & 2
 |-  style="background-color:#eaecf0;"

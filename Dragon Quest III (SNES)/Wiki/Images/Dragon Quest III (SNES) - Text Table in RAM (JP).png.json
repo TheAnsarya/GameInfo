@@ -2,6 +2,6 @@
 	file: "Dragon Quest III (SNES) - Text Table in RAM (JP).png",
 	origin: "Dragon Quest III (SNES) - Text Table in RAM (JP).xcf",
 	name: "Dragon Quest III (SNES) - Text Table in RAM (JP)",
-	description: "The text table characters as seen in RAM.
-Pulled from \"Dragon Quest III - Soshite Densetsu he... (J).smc\" using Tile Viewer in Mesen2 by myself."
+	description: "The text table characters as seen in RAM for menu and simple text.",
+	source: "Pulled from \"Dragon Quest III - Soshite Densetsu he... (J).smc\" using Tile Viewer in Mesen2 by myself."
 }

@@ -44,6 +44,33 @@ For now, these are rom file addresses
 |  ???  ||  $04246b - $0424b7  ||  $4d bytes  ||  ???
 |}
 
+==Text and Script==
+
+===Dialog Font===
+
+Referenced code: [https://github.com/ButThouMust/dq6-sfc/blob/main/FontDumperDQ3.java on github]
+
+Dialog font lookup table: [https://github.com/ButThouMust/dq6-sfc/blob/main/FontDumperDQ3.java data file]
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !! Size  !!  Description
+|-
+|  Font Data  ||  $c10ed3 - $c1519d++  ||  ?? bytes  || Dialog font data, ending is a little after $c1519d (start of last entry)
+|-
+|  Font Settings  ||  $c151aa - $c152a3  ||  $fa bytes  ||  Dialog font lookup table, 50 structs of 5 bytes each
+|-
+|  Font Settings  ||  $c1bbd5  ||  byte  ||  ROM Bank for the Dialog script font (value = $c1)
+|}
+
+====Dialog font lookup table structure====
+gggggggg ggggwwww oooooooo oooooooo 00hhhh00
+
+g: group size, 12 bits
+w: width, 4 bits
+o: offset, 16 bits (combines with bank to create pointer to data)
+h: height, 4 bits
+
 ==Monsters==
 For now, these are rom file addresses. Placeholder for much more complete monster info.
 The data will be moved out and a more general explanation will be added.

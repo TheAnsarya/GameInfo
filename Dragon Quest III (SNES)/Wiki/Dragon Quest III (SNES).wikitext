@@ -44,6 +44,7 @@
 
 ==Miscellaneous==
 * The [https://web.archive.org/web/20220115061924/https://www.romhacking.net/abandoned/ RHDN Abandoned Projects page] includes [https://web.archive.org/web/20211020093652/https://www.romhacking.net/abandoned/dq3r_toolsbyuu.zip byuu's Dragon Quest III translation tools] which contains useful tools and information.
+* A [https://github.com/TheAnsarya/GameInfo/raw/refs/heads/main/Dragon%20Quest%20III%20(SNES)/Debugging/Dragon%20Quest%20III%20(SNES)%20-%20Debugger%20Labels.mlb Mesen-S code-labels file] for debugging
 
 ==Known Dumps==
 

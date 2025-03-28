@@ -332,7 +332,40 @@ SnesWorkRam:7F94:BG3SC_State:State of $2109\nBG 3 screen base and screen size
 SnesWorkRam:7F96:BG4SC_State:State of $210a\nBG 4 screen base and screen size
 SnesWorkRam:7F98:BG12NBA_State:State of $210b\nBG 1 & 2 tile base addresses
 SnesWorkRam:7F9A:BG34NBA_State:State of $210c\nBG 3 & 4 tile base addresses
+SnesWorkRam:7F9C:BG1HOFS_State:State of $210d\nBG #1 Horizontal Scroll Register
+SnesWorkRam:7F9D:BG1VOFS_State:State of $210e\nBG #1 Vertical Scroll Register
+SnesWorkRam:7F9E:BG2HOFS_State:State of $210f\nBG #2 Horizontal Scroll Register
+SnesWorkRam:7F9F:BG2VOFS_State:State of $2110\nBG #2 Vertical Scroll Register
+SnesWorkRam:7FA0:BG3HOFS_State:State of $2111\nBG #3 Horizontal Scroll Register
+SnesWorkRam:7FA1:BG3VOFS_State:State of $2112\nBG #3 Vertical Scroll Register
+SnesWorkRam:7FA2:BG4HOFS_State:State of $2113\nBG #4 Horizontal Scroll Register\nTODO: Never used, is this RAM spot used for something else?
+SnesWorkRam:7FA3:BG4VOFS_State:State of $2114\nBG #4 Vertical Scroll Register\nTODO: Never used, is this RAM spot used for something else?
+SnesWorkRam:7FAC:M7SEL_State:State of $211a\nMode 7 Settings Register
+SnesWorkRam:7FAE-7FAF:M7A_State:State of $211b\nMode 7 Matrix Registers - A
+SnesWorkRam:7FB0-7FB1:M7B_State:State of $211c\nMode 7 Matrix Registers - B
+SnesWorkRam:7FB2-7FB3:M7C_State:State of $211d\nMode 7 Matrix Registers - C
+SnesWorkRam:7FB4-7FB5:M7D_State:State of $211e\nMode 7 Matrix Registers - D
+SnesWorkRam:7FB6-7FB7:M7X_State:State of $211f\nMode 7 Matrix Registers - X
+SnesWorkRam:7FB8-7FB9:M7Y_State:State of $2120\nMode 7 Matrix Registers - Y
+SnesWorkRam:7FBA:W12SEL_State:State of $2123\nWindow mask setting, BG 1 & 2
+SnesWorkRam:7FBC:W34SEL_State:State of $2124\nWindow mask setting, BG 3 & 4
+SnesWorkRam:7FBE:WOBJSEL_State:State of $2125\nWindow mask setting, OBJ
+SnesWorkRam:7FC0:WH0_State:State of $2126\nWindow 1 left position
+SnesWorkRam:7FC1:WH1_State:State of $2127\nWindow 1 right position
+SnesWorkRam:7FC2:WH2_State:State of $2128\nWindow 2 left position
+SnesWorkRam:7FC3:WH3_State:State of $2129\nWindow 2 right position
+SnesWorkRam:7FC4:WBGLOG_State:State of $212a\nWindow 1/2 mask logic, BG 1-4
+SnesWorkRam:7FC6:WOBJLOG_State:State of $212b\nWindow 1/2 mask logic, MATH and OBJ
+SnesWorkRam:7FC8:TM_State:State of $212c\nMain screen designation
+SnesWorkRam:7FCA:TS_State:State of $212d\nSub screen designation
+SnesWorkRam:7FCC:TMW_State:State of $212e\nWindow area main screen disable
+SnesWorkRam:7FCE:TSW_State:State of $212f\nWindow area sub screen disable
+SnesWorkRam:7FD0:CGWSEL_State:State of $2130\nColor math control A
+SnesWorkRam:7FD2:CGADSUB_State:State of $2131\nColor math control B
+SnesWorkRam:7FD4:COLDATA_State:State of $2132\nColor math sub screen backdrop color, RGB intensities stored as 0bbbbbgggggrrrrr
+SnesWorkRam:7FDA:SETINI_State:State of $2133\nScreen mode/video select
 SnesWorkRam:7FFC:Goes_Up:Goes up in order constantly
+SnesWorkRam:7FFE-81FD:CGRAM_State:CGRAM mirror, palettes/colors
 SnesWorkRam:81FE-8BAD:Temp_Watch
 SnesRegister:2100:INIDISP:Screen Display Register
 SnesRegister:2101:OBSEL:Object Size and Character Size Register
