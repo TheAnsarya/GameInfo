@@ -1,0 +1,118 @@
++$25
+
+01
+Slime
+$3ed958 - $3ed95c
+スライム
+Slime
+-
+$020028 - $020029
+Enemy_01_Slime_EXP
+Enemy - #01 Slime
+Attribute: Experience gained when defeated\
+-
+$02002a
+Enemy_01_Slime_Gold
+Enemy - #01 Slime
+Attribute: Gold gained when defeated
+-
+$020031
+Enemy_01_Slime_Item
+Enemy - #01 Slime
+Item gained
+$b8 - Medical Herb
+-
+$020047 - $020048
+Enemy_01_Slime_HP
+Enemy - #01 Slime
+Attribute: HP
+
+02
+Stark Raven
+$3ed95d - $3ed962
+おおがらす
+Big Crow
+-
+$02004d - $02004e
+Enemy_02_StarkRaven_EXP
+Enemy - #02 Stark Raven
+Attribute: Experience gained when defeated
+$02004f
+Enemy_02_StarkRaven_Gold
+Enemy - #02 Stark Raven
+Attribute: Gold gained when defeated
+-
+$020056
+Enemy_02_StarkRaven_Item
+Enemy - #02 Stark Raven
+Item gained
+$b8 - Medical Herb
+-
+$02006c - $02006d
+Enemy_02_StarkRaven_HP
+Enemy - #02 Stark Raven
+Attribute: HP
+
+03
+Horned Rabbit
+$3ed963 - $3ed96a
+いっかくうさぎ
+Horned Rabbit
+-
+$020072 - $020073
+Enemy_03_HornedRabbit_EXP
+Enemy - #03 Horned Rabbit
+Attribute: Experience gained when defeated
+-
+$020074
+Enemy_03_HornedRabbit_Gold
+Enemy - #03 Horned Rabbit
+Attribute: Gold gained when defeated
+-
+$02007b
+Enemy_03_HornedRabbit_Item
+Enemy - #03 Horned Rabbit
+Item gained
+$b8 - Medical Herb
+-
+$020091 - $020092
+Enemy_03_HornedRabbit_HP
+Enemy - #03 Horned Rabbit
+Attribute: HP
+
+04
+Giant Anteater
+$3ed96b - $3ed971
+おおありくい
+Giant Anteater
+-
+$020097 - $020098
+Enemy_04_GiantAnteater_EXP
+Enemy - #04 Giant Anteater
+Experience gained when defeated
+-
+$020099
+Enemy_04_GiantAnteater_Gold
+Enemy - #04 Giant Anteater
+Gold gained when defeated
+-
+$0200a0
+Enemy_04_GiantAnteater_Item
+Enemy - #04 Giant Anteater
+Item gained
+$79 - Leather Hat
+-
+$0200b6 - $0200b7
+Enemy_04_GiantAnteater_HP
+Enemy - #04 Giant Anteater
+Attribute: HP
+
+
+
+
+
+
+
+
+
+

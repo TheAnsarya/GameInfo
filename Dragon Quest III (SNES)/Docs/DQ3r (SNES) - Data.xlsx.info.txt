@@ -1,0 +1,111 @@
+=IF((IF(ISBLANK(D2),0,HEX2DEC(RIGHT(D2,LEN(D2)-1)))-IF(ISBLANK(C2,0,HEX2DEC(RIGHT(C2,LEN(C2)-1))))=0,0,(HEX2DEC(RIGHT(D2,LEN(D2)-1))-HEX2DEC(RIGHT(C2,LEN(C2)-1)))+1)
+IF(A1=0,"",A1)
+IF(ISBLANK(D6),0,D6)
+
+When it says <ROM> pull the data from the rom
+
+
+
+Monsters
+------------
+ID
+1-255, 155 is max
+<no formula>
+
+ID (hex)
+Hexadecimal version of the ID
+="$" & LOWER(DEC2HEX(A2, 2))
+
+Name start address
+Address of the start of the name of the monster in Japanese
+<no formula>
+
+Name End Address
+Address of the end of the name of the monster in Japanese, value is always $ac
+<no formula>
+
+Name Length
+(NameEnd - NameStart + 1) or 0, includes the $ac
+=IF(OR(D2 = "", C2 = ""), 0, (HEX2DEC(RIGHT(D2, LEN(D2) - 1)) - HEX2DEC(RIGHT(C2, LEN(C2) - 1))) + 1)
+
+Name (Japanese)
+Monster name in Japanese, pulled from the <ROM>
+<no formula>
+
+Name (Japanese - Hex)
+The Hex for the Monster name in Japanese, pulled from the <ROM>
+<no formula>
+
+Name (Alt, non-rom)
+Monster name in Japanese when different on https://strategywiki.org/wiki/Dragon_Warrior_III/Enemies
+<no formula>
+
+DW3 Name (English)
+Monster name in English, pulled from DW3 NES
+<no formula>
+
+Dumb Translation
+Monster name in English, pulled from https://strategywiki.org/wiki/Dragon_Warrior_III/Enemies
+<no formula>
+
+General Name
+Monster name in English, pulled from https://strategywiki.org/wiki/Dragon_Warrior_III/Enemies
+<no formula>
+
+EXP@Start
+Monster Experience start, word length, every $25/37, starts at $020028
+="$" & LOWER(DEC2HEX(HEX2DEC(RIGHT(L2, LEN(L2) - 1)) + 37, 6))
+
+EXP@End
+Monster Experience start, word length, every $25/37, starts at $020029
+="$" & LOWER(DEC2HEX(HEX2DEC(RIGHT(M2, LEN(M2) - 1)) + 37, 6))
+
+EXP Value
+Monster Experience value
+<rom>
+
+Gold Address
+Monster Experience start, word length, every $25/37, starts at $02002a
+="$" & LOWER(DEC2HEX(HEX2DEC(RIGHT(O2, LEN(O2) - 1)) + 37, 6))
+
+Gold Value
+Monster gold gained
+<rom>
+
+Item Address
+Monster Item Reward, byte length, every $25/37, starts at $020031
+="$" & LOWER(DEC2HEX(HEX2DEC(RIGHT(Q2, LEN(Q2) - 1)) + 37, 6))
+
+Item ID Value
+<rom>
+
+
+Item Name
+<rom>
+
+
+HP@Start
+Monster Item Reward, word length, every $25/37, starts at $020047
+="$" & LOWER(DEC2HEX(HEX2DEC(RIGHT(T2, LEN(T2) - 1)) + 37, 6))
+
+
+HP@End
+Monster Item Reward, word length, every $25/37, starts at $020048
+="$" & LOWER(DEC2HEX(HEX2DEC(RIGHT(U2, LEN(U2) - 1)) + 37, 6))
+
+
+HP Value
+<rom>
+
+
+
+
+
+
+
+
+
+
+
+
+

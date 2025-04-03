@@ -1,20 +1,4 @@
 ﻿SnesPrgRom:36602C-36603B:Palettes_1_Start:Palette Group #1 - start  36602c/f6602c
-SnesPrgRom:20028-20029:Enemy_01_Slime_EXP:Enemy - #01 Slime\nAttribute: Experience gained when defeated
-SnesPrgRom:2002A:Enemy_Gold_01_Slime:Enemy - #01 Slime\nAttribute: Gold gained when defeated
-SnesPrgRom:20031:Enemy_01_Slime_Item:Enemy - #01 Slime\nItem gained\n$b8 - Medical Herb
-SnesPrgRom:20047-20048:Enemy_01_Slime_HP:Enemy - #01 Slime\nAttribute: HP
-SnesPrgRom:2004D-2004E:Enemy_02_StarkRaven_EXP:Enemy - #02 Stark Raven\nAttribute: Experience gained when defeated
-SnesPrgRom:2004F:Enemy_Gold_02_Stark_Raven:Enemy - #02 Stark Raven\nAttribute: Gold gained when defeated
-SnesPrgRom:20056:Enemy_02_StarkRaven_Item:Enemy - #02 Stark Raven\nItem gained\n$b8 - Medical Herb
-SnesPrgRom:2006C-2006D:Enemy_02_StarkRaven_HP:Enemy - #02 Stark Raven\nAttribute: HP
-SnesPrgRom:20072-20073:Enemy_03_HornedRabbit_EXP:Enemy - #03 Horned Rabbit\nAttribute: Experience gained when defeated
-SnesPrgRom:20074:Enemy_03_HornedRabbit_Gold:Enemy - #03 Horned Rabbit\nAttribute: Gold gained when defeated
-SnesPrgRom:2007B:Enemy_03_HornedRabbit_Item:Enemy - #03 Horned Rabbit\nItem gained\n$b8 - Medical Herb
-SnesPrgRom:20091-20092:Enemy_03_HornedRabbit_HP:Enemy - #03 Horned Rabbit\nAttribute: HP
-SnesPrgRom:20097-20098:Enemy_04_GiantAnteater_EXP:Enemy - #04 Giant Anteater\nExperience gained when defeated
-SnesPrgRom:20099:Enemy_04_GiantAnteater_Gold:Enemy - #04 Giant Anteater\nGold gained when defeated
-SnesPrgRom:200A0:Enemy_04_GiantAnteater_Item:Enemy - #04 Giant Anteater\nItem gained\n$79 - Leather Hat
-SnesPrgRom:200B6-200B7:Enemy_04_GiantAnteater_HP:Enemy - #04 Giant Anteater\nAttribute: HP
 SnesWorkRam:3696-3698:Gold_Amount:Party's current amount of gold
 SnesWorkRam:3725-3824:Bag_Items:Each byte is which item is in bag slot, 0 means empty, game uses values $01-$e4
 SnesWorkRam:3825-3924:Bag_Items_Amounts:Each byte is amount of the item in the bag slot, game allows up to 99 ($63)

@@ -3,7 +3,7 @@ Dialog font lookup table, 50 structs of 5 bytes each
 Address: $c151aa - $c152a3
 Size: $fa bytes
 
-gggggggg ggggwwww aaaaaaaa aaaaaaaa 00hhhh00
+gggggggg wwwwgggg aaaaaaaa aaaaaaaa 00hhhh00
 
 g: group size, 12 bits
 w: width, 4 bits
