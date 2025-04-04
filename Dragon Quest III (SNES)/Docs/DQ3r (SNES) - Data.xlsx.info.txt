@@ -98,9 +98,25 @@ HP Value
 <rom>
 
 
+Agility
+Monster Agility, byte length, every $25/37, starts at $02002f
+="$" & LOWER(DEC2HEX(HEX2DEC(RIGHT(W2, LEN(W2) - 1)) + 37, 6))
+
+Agility Value
+<rom>
+
+Defense
+Monster Defense, half-byte length, top nibble 1111 0000, every $25/37, starts at $02002f
+="$" & LOWER(DEC2HEX(HEX2DEC(RIGHT(W2, LEN(W2) - 1)) + 37, 6))
+
+Defense Value
+<rom>
 
 
 
+
+$021386
+$020028
 
 
 
