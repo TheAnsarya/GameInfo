@@ -415,4 +415,4 @@ Girl appears in pot ??? Also reset to zero at some point and then set to 1 after
 !  colspan="6"  |  
 |}
 
-{{Internal Data|game=Dragon Quest III}}
+{{Internal Data|game=Dragon Quest III (SNES)}}

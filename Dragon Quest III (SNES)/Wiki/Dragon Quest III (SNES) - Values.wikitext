@@ -11,9 +11,9 @@
 |-
 !  Value  !!  Description
 |-
-|  style="white-space: nowrap;"  |  0000 0000  ||  Male
+|  0  ||  Male
 |-
-|  0010 0000  ||  Female
+|  1  ||  Female
 |}
 
 ==Personality==
@@ -672,6 +672,336 @@
 |-  style="background-color:#eaecf0;"
 |  style="text-align: center;"  |  $ff  ||  colspan="3"  |  ...
 |}
+
+==Monsters==
+
+{| class="wikitable sortable"
+|-
+!  ID  !!  ID (hex)  !!  Name (Japanese)  !!  DW3 Name (English)  !!  Dumb Translation  !!  General Name
+|-
+|  style="text-align: center;"  |  00  ||  style="text-align: center;"  |  $00  ||    ||    ||    ||  
+|-
+|  style="text-align: center;"  |  01  ||  style="text-align: center;"  |  $01  ||  スライム  ||  Slime  ||  Slime  ||  Slime
+|-
+|  style="text-align: center;"  |  02  ||  style="text-align: center;"  |  $02  ||  おおがらす  ||  Black Raven  ||  Big Crow  ||  Stark Raven
+|-
+|  style="text-align: center;"  |  03  ||  style="text-align: center;"  |  $03  ||  いっかくうさぎ  ||  Horned Rabbit  ||  Horned Rabbit  ||  Bunicorn
+|-
+|  style="text-align: center;"  |  04  ||  style="text-align: center;"  |  $04  ||  おおありくい  ||  Giant Anteater  ||  Giant Anteater  ||  Antnibbler
+|-
+|  style="text-align: center;"  |  05  ||  style="text-align: center;"  |  $05  ||  じんめんちょう  ||  Masked Moth  ||  Masked Moth  ||  Batterfly
+|-
+|  style="text-align: center;"  |  06  ||  style="text-align: center;"  |  $06  ||  フロッガー  ||  Froggore  ||  Frogga  ||  Toady
+|-
+|  style="text-align: center;"  |  07  ||  style="text-align: center;"  |  $07  ||  バブルスライム  ||  Babble  ||  Bubble Slime  ||  Bubble Slime
+|-
+|  style="text-align: center;"  |  08  ||  style="text-align: center;"  |  $08  ||  まほうつかい  ||  Magician  ||  Wizard  ||  Prestidigitator
+|-
+|  style="text-align: center;"  |  09  ||  style="text-align: center;"  |  $09  ||  さそりばち  ||  Scorpion Wasp  ||  Scorpion Bee  ||  Waspion
+|-
+|  style="text-align: center;"  |  10  ||  style="text-align: center;"  |  $0a  ||  ホイミスライム  ||  Healer  ||  Heal Slime  ||  Healslime
+|-
+|  style="text-align: center;"  |  11  ||  style="text-align: center;"  |  $0b  ||  おばけありくい  ||  Demon Anteater  ||  Monster Anteater  ||  Antgobbler
+|-
+|  style="text-align: center;"  |  12  ||  style="text-align: center;"  |  $0c  ||  アルミラージ  ||  Spiked Hare  ||  Almiraj  ||  Spiked Hare
+|-
+|  style="text-align: center;"  |  13  ||  style="text-align: center;"  |  $0d  ||  ポイズントード  ||  Poison Toad  ||  Poison Toad  ||  Toxic Toad
+|-
+|  style="text-align: center;"  |  14  ||  style="text-align: center;"  |  $0e  ||  キャタピラー  ||  Caterpillar  ||  Caterpillar  ||  Killerpillar
+|-
+|  style="text-align: center;"  |  15  ||  style="text-align: center;"  |  $0f  ||  こうもりおとこ  ||  Humanabat  ||  Bat Man  ||  Vladdy
+|-
+|  style="text-align: center;"  |  16  ||  style="text-align: center;"  |  $10  ||  アニマルゾンビ  ||  Putrepup  ||  Animal Zombie  ||  Putrefido
+|-
+|  style="text-align: center;"  |  17  ||  style="text-align: center;"  |  $11  ||  キラービー  ||  Killer Bee  ||  Killer Bee  ||  Scornet
+|-
+|  style="text-align: center;"  |  18  ||  style="text-align: center;"  |  $12  ||  ぐんたいガニ  ||  Army Crab  ||  Army Crab  ||  Crabid
+|-
+|  style="text-align: center;"  |  19  ||  style="text-align: center;"  |  $13  ||  ギズモ  ||  Gas Cloud  ||  Gizmo  ||  Cumaulus
+|-
+|  style="text-align: center;"  |  20  ||  style="text-align: center;"  |  $14  ||  おばけキノコ  ||  Demon Toadstool  ||  Monster Mushroom  ||  Funghoul
+|-
+|  style="text-align: center;"  |  21  ||  style="text-align: center;"  |  $15  ||  どくイモムシ  ||  Poison Silkworm  ||  Poison Caterpillar  ||  Illerpillar
+|-
+|  style="text-align: center;"  |  22  ||  style="text-align: center;"  |  $16  ||  デスフラッター  ||  Avenger Raven  ||  Death Flutter  ||  Raven Lunatic
+|-
+|  style="text-align: center;"  |  23  ||  style="text-align: center;"  |  $17  ||  バリイドドッグ  ||  Mad Hound  ||  Buried Dog  ||  Bullmustiff
+|-
+|  style="text-align: center;"  |  24  ||  style="text-align: center;"  |  $18  ||  マタンゴ  ||  Deadly Toadstool  ||  Matango  ||  Morphean Mushroom
+|-
+|  style="text-align: center;"  |  25  ||  style="text-align: center;"  |  $19  ||  あやしいかげ  ||  Shadow  ||  Suspicious Shadow  ||  Shade
+|-
+|  style="text-align: center;"  |  26  ||  style="text-align: center;"  |  $1a  ||  バンパイア  ||  Vampire  ||  Vampire  ||  Drac the Vlad
+|-
+|  style="text-align: center;"  |  27  ||  style="text-align: center;"  |  $1b  ||  ひとくいが  ||  Man-Eater Moth  ||  Cannibal Moth  ||  Betterfly
+|-
+|  style="text-align: center;"  |  28  ||  style="text-align: center;"  |  $1c  ||  さまようよろい  ||  Rogue Knight  ||  Wandering Armor  ||  Restless Armor
+|-
+|  style="text-align: center;"  |  29  ||  style="text-align: center;"  |  $1d  ||  キャットフライ  ||  Vampire Cat  ||  Cat Fly  ||  Vampire Cat
+|-
+|  style="text-align: center;"  |  30  ||  style="text-align: center;"  |  $1e  ||  だいおうガマ  ||  King Froggore  ||  King Toad  ||  Overtoad
+|-
+|  style="text-align: center;"  |  31  ||  style="text-align: center;"  |  $1f  ||  あばれザル  ||  Wild Ape  ||  Wild Ape  ||  Jackanape
+|-
+|  style="text-align: center;"  |  32  ||  style="text-align: center;"  |  $20  ||  わらいぶくろ  ||  Trick Bag  ||  Laugh Bag  ||  Bag o' Laughs
+|-
+|  style="text-align: center;"  |  33  ||  style="text-align: center;"  |  $21  ||  ミイラおとこ  ||  Mummy Man  ||  Mummy Man  ||  Mummy Boy
+|-
+|  style="text-align: center;"  |  34  ||  style="text-align: center;"  |  $22  ||  じごくのハサミ  ||  Infernus Crab  ||  Hell Scissors  ||  Crabber Dabber Doo
+|-
+|  style="text-align: center;"  |  35  ||  style="text-align: center;"  |  $23  ||  ドルイド  ||  Lumpus  ||  Druid  ||  Lump Wizard
+|-
+|  style="text-align: center;"  |  36  ||  style="text-align: center;"  |  $24  ||  かえんムカデ  ||  Flamapede  ||  Flame Centipede  ||  Grillerpillar
+|-
+|  style="text-align: center;"  |  37  ||  style="text-align: center;"  |  $25  ||  マミー  ||  Mummy  ||  Mummy  ||  Mummy
+|-
+|  style="text-align: center;"  |  38  ||  style="text-align: center;"  |  $26  ||  マージマタンゴ  ||  Mage Toadstool  ||  Magi Matango  ||  Mushroom Mage
+|-
+|  style="text-align: center;"  |  39  ||  style="text-align: center;"  |  $27  ||  ハンターフライ  ||  Hunter Fly  ||  Hunter Fly  ||  Rumble Bee
+|-
+|  style="text-align: center;"  |  40  ||  style="text-align: center;"  |  $28  ||  デスジャッカル  ||  Avenger Jackal  ||  Death Jackal  ||  Rottenweiler
+|-
+|  style="text-align: center;"  |  41  ||  style="text-align: center;"  |  $29  ||  げんじゅつし  ||  Nev  ||  Illusion User  ||  Lump Mage
+|-
+|  style="text-align: center;"  |  42  ||  style="text-align: center;"  |  $2a  ||  ヒートギズモ  ||  Heat Cloud  ||  Heat Gas Cloud  ||  Hell Niño
+|-
+|  style="text-align: center;"  |  43  ||  style="text-align: center;"  |  $2b  ||  アントベア  ||  Tonguebear  ||  Antbear  ||  Antguzzler
+|-
+|  style="text-align: center;"  |  44  ||  style="text-align: center;"  |  $2c  ||  ベホマスライム  ||  Curer  ||  Heal-All Slime  ||  Cureslime
+|-
+|  style="text-align: center;"  |  45  ||  style="text-align: center;"  |  $2d  ||  マッドオックス  ||  Rammore  ||  Mad Ox  ||  Ram Raider
+|-
+|  style="text-align: center;"  |  46  ||  style="text-align: center;"  |  $2e  ||  キャットバット  ||  Catula  ||  Cat Bat  ||  Catula
+|-
+|  style="text-align: center;"  |  47  ||  style="text-align: center;"  |  $2f  ||  エビルマージ  ||  Evil Mage  ||  Evil Mage  ||  Leger-de-man
+|-
+|  style="text-align: center;"  |  48  ||  style="text-align: center;"  |  $30  ||  キラーエイプ  ||  Simiac  ||  Killer Ape  ||  Whackanape
+|-
+|  style="text-align: center;"  |  49  ||  style="text-align: center;"  |  $31  ||  ガルーダ  ||  Garuda  ||  Garuda  ||  Garuda
+|-
+|  style="text-align: center;"  |  50  ||  style="text-align: center;"  |  $32  ||  メタルスライム  ||  Metal Slime  ||  Metal Slime  ||  Metal Slime
+|-
+|  style="text-align: center;"  |  51  ||  style="text-align: center;"  |  $33  ||  ゴートドン  ||  Goategon  ||  Goatodon  ||  Rampage
+|-
+|  style="text-align: center;"  |  52  ||  style="text-align: center;"  |  $34  ||  さつじんき  ||  Executioner  ||  Murderer  ||  Hoodie
+|-
+|  style="text-align: center;"  |  53  ||  style="text-align: center;"  |  $35  ||  ベビーサタン  ||  Demonite  ||  Baby Satan  ||  Imp
+|-
+|  style="text-align: center;"  |  54  ||  style="text-align: center;"  |  $36  ||  きめんどうし  ||  Deranger  ||  Devil-Face Priest  ||  Lump Shaman
+|-
+|  style="text-align: center;"  |  55  ||  style="text-align: center;"  |  $37  ||  ひとくいばこ  ||  Man-Eater Chest  ||  Man-Eater Box  ||  Cannibox
+|-
+|  style="text-align: center;"  |  56  ||  style="text-align: center;"  |  $38  ||  エリミネーター  ||  Eliminator  ||  Eliminator  ||  Hoodlum
+|-
+|  style="text-align: center;"  |  57  ||  style="text-align: center;"  |  $39  ||  おおくちばし  ||  Great Beak  ||  Great Beak  ||  Beakon
+|-
+|  style="text-align: center;"  |  58  ||  style="text-align: center;"  |  $3a  ||  スライムつむり  ||  Slime Snail  ||  Slime Snail  ||  Shell Slime
+|-
+|  style="text-align: center;"  |  59  ||  style="text-align: center;"  |  $3b  ||  スカイドラゴン  ||  Sky Dragon  ||  Sky Dragon  ||  Ethereal Serpent
+|-
+|  style="text-align: center;"  |  60  ||  style="text-align: center;"  |  $3c  ||  バーナバス  ||  Barnabas  ||  Barnabas  ||  Vladiator
+|-
+|  style="text-align: center;"  |  61  ||  style="text-align: center;"  |  $3d  ||  まじょ  ||  Witch  ||  Witch  ||  Crone
+|-
+|  style="text-align: center;"  |  62  ||  style="text-align: center;"  |  $3e  ||  デッドペッカー  ||  Avenger Beak  ||  Dead Pecker  ||  Weakon Beakon
+|-
+|  style="text-align: center;"  |  63  ||  style="text-align: center;"  |  $3f  ||  じごくのよろい  ||  Infernus Knight  ||  Hell's Armor  ||  Infernal Armor
+|-
+|  style="text-align: center;"  |  64  ||  style="text-align: center;"  |  $40  ||  マリンスライム  ||  Marine Slime  ||  Marine Slime  ||  Seaslime
+|-
+|  style="text-align: center;"  |  65  ||  style="text-align: center;"  |  $41  ||  しびれくらげ  ||  Man O' War  ||  Numbing Jellyfish  ||  Man O' War
+|-
+|  style="text-align: center;"  |  66  ||  style="text-align: center;"  |  $42  ||  マーマン  ||  Merzon  ||  Merman  ||  Merman
+|-
+|  style="text-align: center;"  |  67  ||  style="text-align: center;"  |  $43  ||  だいおうイカ  ||  King Squid  ||  Great King Squid  ||  King Squid
+|-
+|  style="text-align: center;"  |  68  ||  style="text-align: center;"  |  $44  ||  ガニラス  ||  Crabus  ||  Metal Mesh Crab  ||  Handsome Crab
+|-
+|  style="text-align: center;"  |  69  ||  style="text-align: center;"  |  $45  ||  マーマンダイン  ||  Merzoncian  ||  Mermandine  ||  Mermaniac
+|-
+|  style="text-align: center;"  |  70  ||  style="text-align: center;"  |  $46  ||  ヘルコンドル  ||  Hades' Condor  ||  Hell Condor  ||  Hades' Condor
+|-
+|  style="text-align: center;"  |  71  ||  style="text-align: center;"  |  $47  ||  ごうけつぐま  ||  Fierce Bear  ||  Heroic Bear  ||  Ursa Minor
+|-
+|  style="text-align: center;"  |  72  ||  style="text-align: center;"  |  $48  ||  くさったしたい  ||  Hork  ||  Rotting Corpse  ||  Walking Corpse
+|-
+|  style="text-align: center;"  |  73  ||  style="text-align: center;"  |  $49  ||  ビッグホーン  ||  Bighorn  ||  Big Horn  ||  Battering Ram
+|-
+|  style="text-align: center;"  |  74  ||  style="text-align: center;"  |  $4a  ||  しびれあげは  ||  Stingwing  ||  Numbing Moth  ||  Dread Admiral
+|-
+|  style="text-align: center;"  |  75  ||  style="text-align: center;"  |  $4b  ||  どくどくゾンビ  ||  Venom Zombie  ||  Venomous Zombie  ||  Toxic Zombie
+|-
+|  style="text-align: center;"  |  76  ||  style="text-align: center;"  |  $4c  ||  アカイライ  ||  Blue Beak  ||  Akairai  ||  Belisha Beakon
+|-
+|  style="text-align: center;"  |  77  ||  style="text-align: center;"  |  $4d  ||  キラーアーマー  ||  Lethal Armor  ||  Killer Armor  ||  Lethal Armor
+|-
+|  style="text-align: center;"  |  78  ||  style="text-align: center;"  |  $4e  ||  デスストーカー  ||  Avenger  ||  Death Stalker  ||  Heavy Hood
+|-
+|  style="text-align: center;"  |  79  ||  style="text-align: center;"  |  $4f  ||  ようがんまじん  ||  Lava Basher  ||  Lava Fiend  ||  Magmalice
+|-
+|  style="text-align: center;"  |  80  ||  style="text-align: center;"  |  $50  ||  シャーマン  ||  Witch Doctor  ||  Shaman  ||  Voodoogooder
+|-
+|  style="text-align: center;"  |  81  ||  style="text-align: center;"  |  $51  ||  まほうおばば  ||  Old Hag  ||  Magic Hag  ||  Crone Ranger
+|-
+|  style="text-align: center;"  |  82  ||  style="text-align: center;"  |  $52  ||  シャドー  ||  Terror Shadow  ||  Shadow  ||  Shadow
+|-
+|  style="text-align: center;"  |  83  ||  style="text-align: center;"  |  $53  ||  ひょうがまじん  ||  Glacier Basher  ||  Glacier Fiend  ||  Firn Fiend
+|-
+|  style="text-align: center;"  |  84  ||  style="text-align: center;"  |  $54  ||  キメラ  ||  Wyvern  ||  Chimera  ||  Chimera
+|-
+|  style="text-align: center;"  |  85  ||  style="text-align: center;"  |  $55  ||  コング  ||  Kong  ||  Kong  ||  Smackanape
+|-
+|  style="text-align: center;"  |  86  ||  style="text-align: center;"  |  $56  ||  ガメゴン  ||  Tortragon  ||  Turtle-Dragon  ||  Wyrtle
+|-
+|  style="text-align: center;"  |  87  ||  style="text-align: center;"  |  $57  ||  ごくらくちょう  ||  Elysium Bird  ||  Paradise Bird  ||  Elysium Bird
+|-
+|  style="text-align: center;"  |  88  ||  style="text-align: center;"  |  $58  ||  ばくだんいわ  ||  Bomb Crag  ||  Bomb Crag  ||  Rockbomb
+|-
+|  style="text-align: center;"  |  89  ||  style="text-align: center;"  |  $59  ||  グリズリー  ||  Grizzly  ||  Grizzly  ||  Ursa Major
+|-
+|  style="text-align: center;"  |  90  ||  style="text-align: center;"  |  $5a  ||  ゾンビマスター  ||  Voodoo Shaman  ||  Zombie Master  ||  Heedoo Voodoo
+|-
+|  style="text-align: center;"  |  91  ||  style="text-align: center;"  |  $5b  ||  ガメゴンロード  ||  King Tortragon  ||  Turtle-Dragon Lord  ||  Wyrtoise
+|-
+|  style="text-align: center;"  |  92  ||  style="text-align: center;"  |  $5c  ||  スノードラゴン  ||  Snow Dragon  ||  Snow Dragon  ||  Boreal Serpent
+|-
+|  style="text-align: center;"  |  93  ||  style="text-align: center;"  |  $5d  ||  トロル  ||  Troll  ||  Troll  ||  Troll
+|-
+|  style="text-align: center;"  |  94  ||  style="text-align: center;"  |  $5e  ||  フロストギズモ  ||  Frost Cloud  ||  Frost Gas Cloud  ||  Freezing Fog
+|-
+|  style="text-align: center;"  |  95  ||  style="text-align: center;"  |  $5f  ||  おどるほうせき  ||  Dancing Jewel  ||  Dancing Jewel  ||  Goodybag
+|-
+|  style="text-align: center;"  |  96  ||  style="text-align: center;"  |  $60  ||  ミニデーモン  ||  Minidemon  ||  Mini Demon  ||  Minidemon
+|-
+|  style="text-align: center;"  |  97  ||  style="text-align: center;"  |  $61  ||  テンタクルス  ||  Tentacles  ||  Tentacles  ||  Squidzilla
+|-
+|  style="text-align: center;"  |  98  ||  style="text-align: center;"  |  $62  ||  がいこつけんし  ||  Skeleton  ||  Skeleton Fencer  ||  Skeleton Swordsman
+|-
+|  style="text-align: center;"  |  99  ||  style="text-align: center;"  |  $63  ||  ミミック  ||  Mimic  ||  Mimic  ||  Mimic
+|-
+|  style="text-align: center;"  |  100  ||  style="text-align: center;"  |  $64  ||  じごくのきし  ||  Marauder  ||  Hell's Knight  ||  Armful
+|-
+|  style="text-align: center;"  |  101  ||  style="text-align: center;"  |  $65  ||  ホロゴースト  ||  Hologhost  ||  Hologhost  ||  Silhouette
+|-
+|  style="text-align: center;"  |  102  ||  style="text-align: center;"  |  $66  ||  やまたのおろち  ||  Orochi  ||  Eight-Head Orochi  ||  Orochi
+|-
+|  style="text-align: center;"  |  103  ||  style="text-align: center;"  |  $67  ||  うごくせきぞう  ||  Stone Hulk  ||  Moving Stone Statue  ||  Living Statue
+|-
+|  style="text-align: center;"  |  104  ||  style="text-align: center;"  |  $68  ||  サラマンダー  ||  Salamander  ||  Salamander  ||  Infernal Serpent
+|-
+|  style="text-align: center;"  |  105  ||  style="text-align: center;"  |  $69  ||  スライムベス  ||  Red Slime  ||  Slime Beth  ||  She-Slime
+|-
+|  style="text-align: center;"  |  106  ||  style="text-align: center;"  |  $6a  ||  マドハンド  ||  Goopi  ||  Mud Hand  ||  Muddy Hand
+|-
+|  style="text-align: center;"  |  107  ||  style="text-align: center;"  |  $6b  ||  まおうのかげ  ||  Vile Shadow  ||  Devil Shadow  ||  Umbra
+|-
+|  style="text-align: center;"  |  108  ||  style="text-align: center;"  |  $6c  ||  マクロベータ  ||  Voodoo Warlock  ||  Macro Beta  ||  Darth Voodoo
+|-
+|  style="text-align: center;"  |  109  ||  style="text-align: center;"  |  $6d  ||  はぐれメタル  ||  Metal Babble  ||  Splitting Metal  ||  Liquid Metal Slime
+|-
+|  style="text-align: center;"  |  110  ||  style="text-align: center;"  |  $6e  ||  グール  ||  Ghoul  ||  Ghoul  ||  Ghoul
+|-
+|  style="text-align: center;"  |  111  ||  style="text-align: center;"  |  $6f  ||  ライオンヘッド  ||  Lionhead  ||  Lion Head  ||  Infanticore
+|-
+|  style="text-align: center;"  |  112  ||  style="text-align: center;"  |  $70  ||  ボストロール  ||  Boss Troll  ||  Boss Troll  ||  Boss Troll
+|-
+|  style="text-align: center;"  |  113  ||  style="text-align: center;"  |  $71  ||  ゴールドマン  ||  Gold Basher  ||  Gold Man  ||  Gold Golem
+|-
+|  style="text-align: center;"  |  114  ||  style="text-align: center;"  |  $72  ||  スカルゴン  ||  Scalgon  ||  Skull-Dragon  ||  Skelegon
+|-
+|  style="text-align: center;"  |  115  ||  style="text-align: center;"  |  $73  ||  キングマーマン  ||  King Merzon  ||  King Merman  ||  Merking
+|-
+|  style="text-align: center;"  |  116  ||  style="text-align: center;"  |  $74  ||  クラーゴン  ||  Kragacle  ||  Kraken  ||  Tentacular
+|-
+|  style="text-align: center;"  |  117  ||  style="text-align: center;"  |  $75  ||  ダースリカント  ||  Darthbear  ||  Darth Lycanthrope  ||  Ursa Mega
+|-
+|  style="text-align: center;"  |  118  ||  style="text-align: center;"  |  $76  ||  だいまじん  ||  Granite Titan  ||  Great Spirit  ||  Stone Guardian
+|-
+|  style="text-align: center;"  |  119  ||  style="text-align: center;"  |  $77  ||  ラゴンヌ  ||  Leona  ||  Liogon, Lion-Dragon?  ||  Manticore
+|-
+|  style="text-align: center;"  |  120  ||  style="text-align: center;"  |  $78  ||  アークマージ  ||  Archmage  ||  Archmage  ||  Hocus Poker
+|-
+|  style="text-align: center;"  |  121  ||  style="text-align: center;"  |  $79  ||  メイジキメラ  ||  Magiwyvern  ||  Mage Chimera  ||  Hocus Chimera
+|-
+|  style="text-align: center;"  |  122  ||  style="text-align: center;"  |  $7a  ||  サタンパピー  ||  Winged Demon  ||  Satan Puppy  ||  Flying Flayer
+|-
+|  style="text-align: center;"  |  123  ||  style="text-align: center;"  |  $7b  ||  ヒドラ  ||  Hydra  ||  Hydra  ||  Hydra
+|-
+|  style="text-align: center;"  |  124  ||  style="text-align: center;"  |  $7c  ||  トロルキング  ||  Troll King  ||  Troll King  ||  Great Troll
+|-
+|  style="text-align: center;"  |  125  ||  style="text-align: center;"  |  $7d  ||  ドラゴン  ||  Green Dragon  ||  Dragon  ||  Green Dragon
+|-
+|  style="text-align: center;"  |  126  ||  style="text-align: center;"  |  $7e  ||  バルログ  ||  Barog  ||  Balrog  ||  Soaring Scourger
+|-
+|  style="text-align: center;"  |  127  ||  style="text-align: center;"  |  $7f  ||  ドラゴンゾンビ  ||  Putregon  ||  Dragon Zombie  ||  Dragon Zombie
+|-
+|  style="text-align: center;"  |  128  ||  style="text-align: center;"  |  $80  ||  マントゴーア  ||  Lionroar  ||  Manticora  ||  Franticore
+|-
+|  style="text-align: center;"  |  129  ||  style="text-align: center;"  |  $81  ||  ソードイド  ||  Swordoid  ||  Sword-oid  ||  One Man Army
+|-
+|  style="text-align: center;"  |  130  ||  style="text-align: center;"  |  $82  ||  キングヒドラ  ||  King Hydra  ||  King Hydra  ||  King Hydra
+|-
+|  style="text-align: center;"  |  131  ||  style="text-align: center;"  |  $83  ||  バラモスブロス  ||  Baramos Bomus  ||  Baramos Brother  ||  Soul of Baramos
+|-
+|  style="text-align: center;"  |  132  ||  style="text-align: center;"  |  $84  ||  バラモスゾンビ  ||  Baramos Gonus  ||  Baramos Zombie  ||  Bones of Baramos
+|-
+|  style="text-align: center;"  |  133  ||  style="text-align: center;"  |  $85  ||  バラモス  ||  Baramos  ||  Baramos  ||  Baramos
+|-
+|  style="text-align: center;"  |  134  ||  style="text-align: center;"  |  $86  ||  ゾーマ  ||  Zoma  ||  Zoma  ||  Zoma
+|-
+|  style="text-align: center;"  |  135  ||  style="text-align: center;"  |  $87  ||  オルテガ  ||    ||  Ortega  ||  
+|-
+|  style="text-align: center;"  |  136  ||  style="text-align: center;"  |  $88  ||  カンダタ  ||  Kandar  ||  Kandata  ||  Robbin' Ood
+|-
+|  style="text-align: center;"  |  137  ||  style="text-align: center;"  |  $89  ||  カンダタこぶん  ||  Kandar Henchman  ||  Kandata Henchman  ||  Robbin' Huddle
+|-
+|  style="text-align: center;"  |  138  ||  style="text-align: center;"  |  $8a  ||  けいけんち  ||    ||  Experience Value  ||  
+|-
+|  style="text-align: center;"  |  139  ||  style="text-align: center;"  |  $8b  ||  おかね  ||    ||  Gold  ||  
+|-
+|  style="text-align: center;"  |  140  ||  style="text-align: center;"  |  $8c  ||  せんたくバカ  ||    ||  Selection Idiot  ||  
+|-
+|  style="text-align: center;"  |  141  ||  style="text-align: center;"  |  $8d  ||  せんたくにんげん  ||    ||  Selection Human  ||  
+|-
+|  style="text-align: center;"  |  142  ||  style="text-align: center;"  |  $8e  ||  せんたくかみ  ||    ||  Selection Deity  ||  
+|-
+|  style="text-align: center;"  |  143  ||  style="text-align: center;"  |  $8f  ||  せんたく0  ||    ||  Selection 0  ||  
+|-
+|  style="text-align: center;"  |  144  ||  style="text-align: center;"  |  $90  ||  せんたく1  ||    ||  Selection 1  ||  
+|-
+|  style="text-align: center;"  |  145  ||  style="text-align: center;"  |  $91  ||  せんたく2  ||    ||  Selection 2  ||  
+|-
+|  style="text-align: center;"  |  146  ||  style="text-align: center;"  |  $92  ||  せんたく3  ||    ||  Selection 3  ||  
+|-
+|  style="text-align: center;"  |  147  ||  style="text-align: center;"  |  $93  ||  ほうおう  ||    ||  Phoenix  ||  Phoenix
+|-
+|  style="text-align: center;"  |  148  ||  style="text-align: center;"  |  $94  ||  てんのもんばん  ||    ||  Heaven Gatekeeper  ||  Great Keeper
+|-
+|  style="text-align: center;"  |  149  ||  style="text-align: center;"  |  $95  ||  メタルキメラ  ||    ||  Metal Chimera  ||  Metal Chimera
+|-
+|  style="text-align: center;"  |  150  ||  style="text-align: center;"  |  $96  ||  デビルウィザード  ||    ||  Devil Wizard  ||  Abracadaber
+|-
+|  style="text-align: center;"  |  151  ||  style="text-align: center;"  |  $97  ||  キラークラブ  ||    ||  Killer Crab  ||  King Crab
+|-
+|  style="text-align: center;"  |  152  ||  style="text-align: center;"  |  $98  ||  ダークトロル  ||    ||  Dark Troll  ||  Terror Troll
+|-
+|  style="text-align: center;"  |  153  ||  style="text-align: center;"  |  $99  ||  デーモンソード  ||    ||  Demon Sword  ||  Grievous Bodily Arm
+|-
+|  style="text-align: center;"  |  154  ||  style="text-align: center;"  |  $9a  ||  バラモスエビル  ||    ||  Baramos Evil  ||  Baramonster
+|-
+|  style="text-align: center;"  |  155  ||  style="text-align: center;"  |  $9b  ||  しんりゅう  ||    ||  Divine Dragon  ||  Xenlon
+|-
+|  style="text-align: center;"  |  156  ||  style="text-align: center;"  |  $9c  ||    ||    ||    ||  
+|-
+|  style="text-align: center;"  |  157  ||  style="text-align: center;"  |  $9d  ||    ||    ||    ||  
+|-
+|  style="text-align: center;"  |  158  ||  style="text-align: center;"  |  $9e  ||    ||    ||    ||  
+|-
+|  style="text-align: center;"  |  159  ||  style="text-align: center;"  |  $9f  ||    ||    ||    ||  
+|-
+|  style="text-align: center;"  |  160  ||  style="text-align: center;"  |  $a0  ||    ||    ||    ||  
+|}
+
 
 =Links=
 

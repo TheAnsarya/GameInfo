@@ -1040,4 +1040,4 @@ Names are mostly from the fan translation and will be re-checked/normalized.
 !  colspan="6"  |  
 |}
 
-{{Internal Data|game=Dragon Quest III}}
+{{Internal Data|game=Dragon Quest III (SNES)}}

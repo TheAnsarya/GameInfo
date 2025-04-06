@@ -1,7 +1,135 @@
 {{subpage}}
 
-==Full List==
-Team characters RAM layout, expanded.
+==Main==
+The main data structure starts at <code>$7e3925</code>. Each entry is <code>$3c</code> bytes long.
+
+{| class="wikitable sortable"
+|-
+!  Address  !!  Size  !!  Description
+|-
+|  $7e3925-$7e3960  ||  $3c bytes  ||  Hero's status and information
+|-
+|  $7e3961-$7e399c  ||  $3c bytes  ||  Party member #2's status and information
+|-
+|  $7e399d-$7e39d8  ||  $3c bytes  ||  Party member #3's status and information
+|-
+|  $7e39d9-$7e3a14  ||  $3c bytes  ||  Party member #4's status and information
+|-
+|  $7e3a15-$7e3a50  ||  $3c bytes  ||  Party member #5's status and information
+|-
+|  $7e3a51-$7e3a8c  ||  $3c bytes  ||  Party member #6's status and information
+|-
+|  $7e3a8d-$7e3ac8  ||  $3c bytes  ||  Party member #7's status and information
+|-
+|  $7e3ac9-$7e3b04  ||  $3c bytes  ||  Party member #8's status and information
+|-
+|  $7e3b05-$7e3b40  ||  $3c bytes  ||  Party member #9's status and information
+|-
+|  $7e3b41-$7e3b7c  ||  $3c bytes  ||  Party member #10's status and information
+|-
+|  $7e3b7d-$7e3bb8  ||  $3c bytes  ||  Party member #11's status and information
+|-
+|  $7e3bb9-$7e3bf4  ||  $3c bytes  ||  Party member #12's status and information
+|-
+|  $7e3bf5-$7e3c30  ||  $3c bytes  ||  Party member #13's status and information
+|-
+|  $7e3c31-$7e3c6c  ||  $3c bytes  ||  Party member #14's status and information
+|-
+|  $7e3c6d-$7e3ca8  ||  $3c bytes  ||  Party member #15's status and information
+|-
+|  $7e3ca9-$7e3ce4  ||  $3c bytes  ||  Party member #16's status and information
+|-
+|  $7e3ce5-$7e3d20  ||  $3c bytes  ||  Party member #17's status and information
+|-
+|  $7e3d21-$7e3d5c  ||  $3c bytes  ||  Party member #18's status and information
+|-
+|  $7e3d5d-$7e3d98  ||  $3c bytes  ||  Party member #19's status and information
+|-
+|  $7e3d99-$7e3dd4  ||  $3c bytes  ||  Party member #20's status and information
+|}
+
+===Primary Data Structure===
+Each entry is <code>$3c</code> bytes long.
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Offset  !!  Mask  !!  Size  !!  Description
+|-
+|  Stats  ||  $00  ||  $01  ||  bit  ||  Is there a character in this slot, 0=no, 1=yes
+|-
+|  Stats  ||  $00  ||  $fe  ||  7 bits  ||  📈 Level
+|-
+|  Stats  ||  $01-$03  ||  $ffffff  ||  long  ||  📈 XP
+|-
+|  Stats  ||  $04-$05  ||  $ffff  ||  word  ||  📈 Max HP
+|-
+|  Stats  ||  $06-$07  ||  $ffff  ||  word  ||  📈 Current HP
+|-
+|  Stats  ||  $08-$09  ||  $ffff  ||  word  ||  📈 Max MP
+|-
+|  Stats  ||  $0a-$0b  ||  $ffff  ||  word  ||  📈 Current MP
+|-
+|  Stats  ||  $0c  ||  $ff  ||  byte  ||  📈 Strength, excluding equipment
+|-
+|  Stats  ||  $0d  ||  $ff  ||  byte  ||  📈 Agility, excluding equipment
+|-
+|  Stats  ||  $0e  ||  $ff  ||  byte  ||  📈 Stamina, excluding equipment
+|-
+|  Stats  ||  $0f  ||  $ff  ||  byte  ||  📈 Wisdom, excluding equipment
+|-
+|  Stats  ||  $10  ||  $ff  ||  byte  ||  📈 Luck, excluding equipment
+|-
+|  Stats  ||  $11  ||  $ff  ||  byte  ||  📈 Strength Carryover, Used during leveling up
+|-
+|  Stats  ||  $12  ||  $ff  ||  byte  ||  📈 Agility Carryover, Used during leveling up
+|-
+|  Stats  ||  $13  ||  $ff  ||  byte  ||  📈 Stamina Carryover, Used during leveling up
+|-
+|  Stats  ||  $14  ||  $ff  ||  byte  ||  📈 Wisdom Carryover, Used during leveling up
+|-
+|  Stats  ||  $15  ||  $ff  ||  byte  ||  📈 Luck Carryover, Used during leveling up
+|-
+|  Stats  ||  $16-$1a  ||  n/a  ||  5 bytes  ||  🏷️ Name, 4 characters max followed by $ac (end of string)
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $1b-$1e  ||  n/a  ||  4 bytes   ||  🏷️ Also part of name???
+|-
+|  Stats  ||  $1f  ||  $01  ||  bit  ||  Is Character Poisoned?
+|-
+|  Stats  ||  $1f  ||  $02  ||  bit  ||  Is Character Paralyzed?
+|-
+|  Stats  ||  $1f  ||  $04  ||  bit  ||  Is Character Cursed?
+|-
+|  Stats  ||  $1f  ||  $08  ||  bit  ||  Is Character Dying?, 0 &lt; HP &lt; 25%
+|-
+|  Stats  ||  $1f  ||  $10  ||  bit  ||  Is Character Dead?
+|-
+|  Stats  ||  $1f  ||  $20  ||  bit  ||  Gender - 0: Male, 1: Female
+|-
+|  Stats  ||  $1f-$20  ||  $0fc0  ||  6 bits  ||  Character [[Dragon Quest III (SNES)/Values#Personality|Personality]]
+|-
+|  Stats  ||  $20  ||  $10  ||  bit  ||  Character Type, Is the Hero, exclusive with next attribute
+|-
+|  Stats  ||  $20  ||  $20  ||  bit  ||  Character Type, Is regular party member, exclusive with previous attribute
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $20  ||  $c0  ||  2 bits  ||  (Unused)
+|-
+|  Stats  ||  $21  ||  $ff  ||  byte  ||  Character [[Dragon Quest III (SNES)/Values#Class|Class]]
+|-
+|  Stats  ||  $22  ||  $ff  ||  byte  ||  Menu Cursor Position, when moving, represents last menu selection
+|-
+|  Stats  ||  $23  ||  $ff  ||  byte  ||  Menu Cursor Position, in battle, represents last menu selection
+|-
+|  Spells  ||  $24-$2d  ||  n/a  ||  10 bytes  ||  Character's [[Dragon Quest III (SNES)/Values/Spells|Spells List]] (and Commands???)
+|-
+|  Bag  ||  $2e  ||  $ff  ||  byte  ||  📦 Character's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $2f  ||  $ff  ||  byte  ||  📦 Character's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $30-$3b  ||  n/a  ||  12 bytes  ||  📦 Character's bag: Each byte is which item is in the slot
+|}
+
+===Full List===
+Party Members RAM layout, expanded.
 [TODO: Update according to new data structure]
 
 {| class="wikitable sortable"
@@ -787,4 +915,4 @@ Team characters RAM layout, expanded.
 |}
 
 
-{{Internal Data|game=Dragon Quest III}}
+{{Internal Data|game=Dragon Quest III (SNES)}}

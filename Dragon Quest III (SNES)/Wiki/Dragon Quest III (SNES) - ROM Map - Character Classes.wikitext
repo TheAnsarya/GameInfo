@@ -1,0 +1,206 @@
+{{subpage}}
+
+==Main==
+Character Classes, see [[Dragon Quest III (SNES)/Values#Class|Value List]]
+
+The main data resides from <code>$c4179e-$c424a8</code>. Each entry is <code>$173</code> bytes long. There are <code>9</code> entries.
+
+{| class="wikitable sortable"
+|-
+!  Index  !!  Address  !! Size  !!  Description
+|-
+|  $00  ||  $c4179e-$c41910  ||  $173 bytes  ||  Warrior
+|-
+|  $01  ||  $c41911-$c41a83  ||  $173 bytes  ||  Fighter
+|-
+|  $02  ||  $c41a84-$c41bf6  ||  $173 bytes  ||  Mage
+|-
+|  $03  ||  $c41bf7-$ca1d69  ||  $173 bytes  ||  Cleric
+|-
+|  $04  ||  $ca1d6a-$c41edc  ||  $173 bytes  ||  Dealer
+|-
+|  $05  ||  $c41edd-$c4204f  ||  $173 bytes  ||  Jester
+|-
+|  $06  ||  $c42050-$c421c2  ||  $173 bytes  ||  Thief
+|-
+|  $07  ||  $c421c3-$c42335  ||  $173 bytes  ||  Sage
+|-
+|  $08  ||  $c42336-$c424a8  ||  $173 bytes  ||  Hero
+|}
+
+===Primary Data Structure===
+Each entry is <code>$173</code> bytes long.
+
+{| class="wikitable sortable"
+|-
+!  Offset  !!  Size  !!  Description
+|-
+|  $000-$001  ||  word  ||  Name, index of string
+|-
+|  $002  ||  byte  ||  Sprite Index, male
+|-
+|  $003  ||  byte  ||  Sprite Index, female
+|-
+|  $004  ||  byte  ||  Sprite Index, swimsuit
+|-
+|  $005  ||  byte  ||  Shorthand next to character's level, a single hiragana character
+|-
+|  $006  ||  byte  ||  Initial Personality Condition 0, ([[#Initial_Personality_Condition|data structure]])
+|-
+|  $007  ||  byte  ||  Initial Personality Condition 1, ([[#Initial_Personality_Condition|data structure]])
+|-
+|  $008  ||  byte  ||  Initial Personality Condition 2, ([[#Initial_Personality_Condition|data structure]])
+|-
+|  $009  ||  byte  ||  Initial Personality Condition 3, ([[#Initial_Personality_Condition|data structure]])
+|-
+|  $00a  ||  byte  ||  Initial Personality Condition 4, ([[#Initial_Personality_Condition|data structure]])
+|-
+|  $00b-$00d  ||  long  ||  Mastery Spell Array, address of array of level a spell is probably learned, ([[#Mastery_Spell_Array|definition]])
+|-
+|  $00e  ||  byte  ||  Numbers of spells learned, number of entries in Mastery Spell Array
+|-
+|  $00f-$134  ||  98 longs (294 bytes)  ||  Experience required per level, first value is to reach level 2
+|-
+|  $135  ||  byte  ||  Strength - Initial Value, male
+|-
+|  $136  ||  byte  ||  Strength - Initial Value, female
+|-
+|  $137  ||  byte  ||  Strength - Level 0
+|-
+|  $138  ||  byte  ||  Strength - Increment 0
+|-
+|  $139  ||  byte  ||  Strength - Level 1
+|-
+|  $13a  ||  byte  ||  Strength - Increment 1
+|-
+|  $13b  ||  byte  ||  Strength - Level 2
+|-
+|  $13c  ||  byte  ||  Strength - Increment 2
+|-
+|  $13d  ||  byte  ||  Strength - Level 3
+|-
+|  $13e  ||  byte  ||  Strength - Increment 3
+|-
+|  $13f  ||  byte  ||  Strength - Level 4
+|-
+|  $140  ||  byte  ||  Strength - Increment 4
+|-
+|  $141  ||  byte  ||  Agility Initial Value, male
+|-
+|  $142  ||  byte  ||  Agility Initial Value, female
+|-
+|  $143  ||  byte  ||  Agility Level 0
+|-
+|  $144  ||  byte  ||  Agility Increment 0
+|-
+|  $145  ||  byte  ||  Agility Level 1
+|-
+|  $146  ||  byte  ||  Agility Increment 1
+|-
+|  $147  ||  byte  ||  Agility Level 2
+|-
+|  $148  ||  byte  ||  Agility Increment 2
+|-
+|  $149  ||  byte  ||  Agility Level 3
+|-
+|  $14A  ||  byte  ||  Agility Increment 3
+|-
+|  $14B  ||  byte  ||  Agility Level 4
+|-
+|  $14C  ||  byte  ||  Agility Increment 4
+|-
+|  $14D  ||  byte  ||  Stamina - Initial Value, male
+|-
+|  $14E  ||  byte  ||  Stamina - Initial Value, female
+|-
+|  $14F  ||  byte  ||  Stamina - Level 0
+|-
+|  $150  ||  byte  ||  Stamina - Increment 0
+|-
+|  $151  ||  byte  ||  Stamina - Level 1
+|-
+|  $152  ||  byte  ||  Stamina - Increment 1
+|-
+|  $153  ||  byte  ||  Stamina - Level 2
+|-
+|  $154  ||  byte  ||  Stamina - Increment 2
+|-
+|  $155  ||  byte  ||  Stamina - Level 3
+|-
+|  $156  ||  byte  ||  Stamina - Increment 3
+|-
+|  $157  ||  byte  ||  Stamina - Level 4
+|-
+|  $158  ||  byte  ||  Stamina - Increment 4
+|-
+|  $159  ||  byte  ||  Stamina - Level 5
+|-
+|  $15A  ||  byte  ||  Stamina - Increment 5
+|-
+|  $15B  ||  byte  ||  Wisdom - Initial Value, male
+|-
+|  $15C  ||  byte  ||  Wisdom - Initial Value, female
+|-
+|  $15D  ||  byte  ||  Wisdom - Level 0
+|-
+|  $15E  ||  byte  ||  Wisdom - Increment 0
+|-
+|  $15F  ||  byte  ||  Wisdom - Level 1
+|-
+|  $160  ||  byte  ||  Wisdom - Increment 1
+|-
+|  $161  ||  byte  ||  Wisdom - Level 2
+|-
+|  $162  ||  byte  ||  Wisdom - Increment 2
+|-
+|  $163  ||  byte  ||  Wisdom - Level 3
+|-
+|  $164  ||  byte  ||  Wisdom - Increment 3
+|-
+|  $165  ||  byte  ||  Wisdom - Level 4
+|-
+|  $166  ||  byte  ||  Wisdom - Increment 4
+|-
+|  $167  ||  byte  ||  Luck - Initial Value, male
+|-
+|  $168  ||  byte  ||  Luck - Initial Value, female
+|-
+|  $169  ||  byte  ||  Luck - Level 0
+|-
+|  $16A  ||  byte  ||  Luck - Increment 0
+|-
+|  $16B  ||  byte  ||  Luck - Level 1
+|-
+|  $16C  ||  byte  ||  Luck - Increment 1
+|-
+|  $16D  ||  byte  ||  Luck - Level 2
+|-
+|  $16E  ||  byte  ||  Luck - Increment 2
+|-
+|  $16F  ||  byte  ||  Luck - Level 3
+|-
+|  $170  ||  byte  ||  Luck - Increment 3
+|-
+|  $171  ||  byte  ||  Luck - Level 4
+|-
+|  $172  ||  byte  ||  Luck - Increment 4
+|}
+
+===Initial Personality Condition===
+[Todo: Add [https://showa-yojyo.github.io/dqbook/dq3_registration.html#dq3.registration.structure.C30EFD Information]]
+
+===Mastery Spell Array===
+[Todo: Add]
+
+===Full List===
+Character Classes ROM layout, expanded.
+[TODO: Update according to new data structure]
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !! Size  !!  Description
+|-
+|}
+
+
+{{Internal Data|game=Dragon Quest III (SNES)}}

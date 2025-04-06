@@ -455,10 +455,121 @@ ff=J
 </div>
 
 ===Text box dialogue===
+
 For text outside battles and menus. Adaptation of <code>table.txt</code> from Near's old tools (which had just the identified characters) to the standard table file format. A few control codes are identified.
 
 Download TBL file: <code>[https://raw.githubusercontent.com/ButThouMust/dq6-sfc/refs/heads/main/dq3%20jp.tbl dq3 jp.tbl]</code>
 
+====Dialog Table Commands====
+
+{| class="wikitable"
+|-
+!  Key  ||  Value  ||  Description
+|-
+|  $00ab  ||  &lt;ab - code ab&gt;  ||  
+|-
+|  $00ac  ||  &lt;ac - end of string&gt;  ||  End of String indicator, standard
+|-
+|  $00ad  ||  &lt;ad - line break&gt;  ||  Line break
+|-
+|  $00ae  ||  &lt;ae - end of string&gt;  ||  End of String indicator, what else does it do ???
+|-
+|  $00af  ||  &lt;af - wait&gt;  ||  Wait, Pause the dialog
+|-
+|  $00b0  ||  &lt;b0 - code b0&gt;  ||  
+|-
+|  $00b1  ||  &lt;b1 - code b1&gt;  ||  
+|-
+|  $00b2  ||  &lt;b2 - code b2&gt;  ||  
+|-
+|  $00b3  ||  &lt;b3 - code b3&gt;  ||  
+|-
+|  $00b4  ||  &lt;b4 - code b4&gt;  ||  
+|-
+|  $00b5  ||  &lt;b5 - code b5&gt;  ||  
+|-
+|  $00b6  ||  &lt;b6 - code b6&gt;  ||  
+|-
+|  $00b7  ||  &lt;b7 - code b7&gt;  ||  
+|-
+|  $00b8  ||  &lt;b8 - code b8&gt;  ||  
+|-
+|  $00b9  ||  &lt;b9 - code b9&gt;  ||  
+|-
+|  $00ba  ||  &lt;ba - code ba&gt;  ||  
+|-
+|  $00bb  ||  &lt;bb - code bb&gt;  ||  
+|-
+|  $00bc  ||  &lt;bc - code bc&gt;  ||  
+|-
+|  $00bd  ||  &lt;bd - code bd&gt;  ||  
+|-
+|  $00be  ||  &lt;be - code be&gt;  ||  
+|-
+|  $00bf  ||  &lt;bf - code bf&gt;  ||  
+|-
+|  $00c0  ||  &lt;c0 - code c0&gt;  ||  
+|-
+|  $00c1  ||  &lt;c1 - code c1&gt;  ||  
+|-
+|  $00c2  ||  &lt;c2 - code c2&gt;  ||  
+|-
+|  $00c3  ||  &lt;c3 - code c3&gt;  ||  
+|-
+|  $00c4  ||  &lt;c4 - code c4&gt;  ||  
+|-
+|  $00c5  ||  &lt;c5 - code c5&gt;  ||  
+|-
+|  $00c6  ||  &lt;c6 - code c6&gt;  ||  
+|-
+|  $00c7  ||  &lt;c7 - code c7&gt;  ||  
+|-
+|  $00c8  ||  &lt;c8 - code c8&gt;  ||  
+|-
+|  $00c9  ||  &lt;c9 - code c9&gt;  ||  
+|-
+|  $00ca  ||  &lt;ca - code ca&gt;  ||  
+|-
+|  $00cb  ||  &lt;cb - code cb&gt;  ||  
+|-
+|  $00cc  ||  &lt;cc - code cc&gt;  ||  
+|-
+|  $00cd  ||  &lt;cd - code cd&gt;  ||  
+|-
+|  $00ce  ||  &lt;ce - code ce&gt;  ||  
+|-
+|  $00cf  ||  &lt;cf - code cf&gt;  ||  
+|-
+|  $00d0  ||  &lt;d0 - code d0&gt;  ||  
+|-
+|  $00d1  ||  &lt;d1 - code d1&gt;  ||  
+|-
+|  $00d2  ||  &lt;d2 - code d2&gt;  ||  
+|-
+|  $00d3  ||  &lt;d3 - code d3&gt;  ||  
+|-
+|  $00d4  ||  &lt;d4 - code d4&gt;  ||  
+|-
+|  $00d5  ||  &lt;d5 - code d5&gt;  ||  
+|-
+|  $00d6  ||  &lt;d6 - code d6&gt;  ||  
+|-
+|  $00d7  ||  &lt;d7 - code d7&gt;  ||  
+|-
+|  $00d8  ||  &lt;d8 - code d8&gt;  ||  
+|-
+|  $00d9  ||  &lt;d9 - code d9&gt;  ||  
+|-
+|  $00da  ||  &lt;da - code da&gt;  ||  
+|-
+|  $00db  ||  &lt;db - code db&gt;  ||  
+|-
+|  $00dc  ||  &lt;dc - code dc&gt;  ||  
+|-
+|  $00dd  ||  &lt;dd - code dd&gt;  ||  
+|}
+
+====Dialog Table Characters====
 {| class="wikitable" style="text-align: center;"
 |-
 !    !!  _0  !!  _1  !!  _2  !!  _3  !!  _4  !!  _5  !!  _6  !!  _7  !!  _8  !!  _9  !!  _a  !!  _b  !!  _c  !!  _d  !!  _e  !!  _f

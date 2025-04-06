@@ -1,47 +1,13 @@
 {{rommap}}
 
 ==Main==
-For now, these are rom file addresses
 
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Description
 |-
-|  Levels  ||  $0417ad - $0418d2  ||  98 longs (294 bytes)  ||  Soldier's experience required per level, first value is to reach level 2
+|  Character Class  ||  $c4179e-$c424a8  ||  $d0b bytes  ||  Character Classes ([[Dragon Quest III (SNES)/ROM map/Character Classes|Explanation]])
 |-
-|  ???  ||  $0418d3 - $04191f  ||  $4d bytes  ||  ???
-|-
-|  Levels  ||  $041920 - $041a45  ||  98 longs (294 bytes)  ||  Fighter's experience required per level, first value is to reach level 2
-|-
-|  ???  ||  $041a46 - $041a92  ||  $4d bytes  ||  ???
-|-
-|  Levels  ||  $041a93 - $041bb8  ||  98 longs (294 bytes)  ||  Wizard's experience required per level, first value is to reach level 2
-|-
-|  ???  ||  $041bb9 - $041c05  ||  $4d bytes  ||  ???
-|-
-|  Levels  ||  $041c06 - $041d2b  ||  98 longs (294 bytes)  ||  Pilgrim's experience required per level, first value is to reach level 2
-|-
-|  ???  ||  $041d2c - $041d78  ||  $4d bytes  ||  ???
-|-
-|  Levels  ||  $041d79 - $041e9e  ||  98 longs (294 bytes)  ||  Merchant's experience required per level, first value is to reach level 2
-|-
-|  ???  ||  $041e9f - $041eeb  ||  $4d bytes  ||  ???
-|-
-|  Levels  ||  $041eec - $042011  ||  98 longs (294 bytes)  ||  GoofOff's experience required per level, first value is to reach level 2
-|-
-|  ???  ||  $042012 - $04205e  ||  $4d bytes  ||  ???
-|-
-|  Levels  ||  $04205f - $042184  ||  98 longs (294 bytes)  ||  Thief's experience required per level, first value is to reach level 2
-|-
-|  ???  ||  $042185 - $0421d1  ||  $4d bytes  ||  ???
-|-
-|  Levels  ||  $0421d2 - $0422f7  ||  98 longs (294 bytes)  ||  Sage's experience required per level, first value is to reach level 2
-|-
-|  ???  ||  $0422f8 - $042344  ||  $4d bytes  ||  ???
-|-
-|  Levels  ||  $042345 - $04246a  ||  98 longs (294 bytes)  ||  Hero's experience required per level, first value is to reach level 2
-|-
-|  ???  ||  $04246b - $0424b7  ||  $4d bytes  ||  ???
 |}
 
 ==Text and Script==
@@ -78,137 +44,7 @@ h: height, 4 bits
 For now, these are rom file addresses. Placeholder for much more complete monster info.
 The data will be moved out and a more general explanation will be added.
 
-===Primary Data Structure===
-The main data structure starts at <code>$c20000</code>. Each entry is $25 bytes long.
-
-{| class="wikitable sortable"
-|-
-!  Offset  !!  Mask  !!  Size  !!  Description
-|-
-|  $00-$01  ||  $ffff  ||  word  ||  Name, index of string
-|-
-|  $02  ||  $3f  ||  6 bits  ||  Level
-|-
-|  $02  ||  $40  ||  bit  ||  Is a Dragon
-|-
-|  $02  ||  $80  ||  bit  ||  Is a Zombie, doesn't seem to actually be checked
-|-
-|  $03-$04  ||  $ffff  ||  word  ||  Experience given when beaten
-|-
-|  $05-$06  ||  $03ff  ||  10 bits  ||  Gold given when beaten
-|-
-|  $06-$07  ||  $0ffc  ||  10 bits  ||  Attack Power
-|-
-|  $07-$08  ||  $3ff0  ||  10 bits  ||  Defensive Strength
-|-
-|  $08-$09  ||  $ffc0  ||  10 bits  ||  Palette, index
-|-
-|  $0a  ||  $ff  ||  byte  ||  Agility
-|-
-|  $0b  ||  $ff  ||  byte  ||  MP
-|-
-|  $0c  ||  $ff  ||  byte  ||  Item, can be given when beaten
-|-
-|  $0d  ||  $ff  ||  byte  ||  Sprite, index
-|-
-|  $0e-$0f  ||  $01ff  ||  9 bits  ||  Command 0
-|-
-|  $0f-$10  ||  $03fe  ||  9 bits  ||  Command 1
-|-
-|  $10-$11  ||  $07fc  ||  9 bits  ||  Command 2
-|-
-|  $11-$12  ||  $0ff8  ||  9 bits  ||  Command 3
-|-
-|  $12-$13  ||  $1ff0  ||  9 bits  ||  Command 4
-|-
-|  $13-$14  ||  $3fe0  ||  9 bits  ||  Command 5
-|-
-|  $14-$15  ||  $7fc0  ||  9 bits  ||  Command 6
-|-
-|  $15-$16  ||  $ff80  ||  9 bits  ||  Command 7
-|-
-|  $17  ||  $01  ||  bit  ||  Command 0 Constraint, command can only be used once per group per turn
-|-
-|  $17  ||  $02  ||  bit  ||  Command 1 Constraint, command can only be used once per group per turn
-|-
-|  $17  ||  $04  ||  bit  ||  Command 2 Constraint, command can only be used once per group per turn
-|-
-|  $17  ||  $08  ||  bit  ||  Command 3 Constraint, command can only be used once per group per turn
-|-
-|  $17  ||  $10  ||  bit  ||  Command 4 Constraint, command can only be used once per group per turn
-|-
-|  $17  ||  $20  ||  bit  ||  Command 5 Constraint, command can only be used once per group per turn
-|-
-|  $17  ||  $40  ||  bit  ||  Command 6 Constraint, command can only be used once per group per turn
-|-
-|  $17  ||  $80  ||  bit  ||  Command 7 Constraint, command can only be used once per group per turn
-|-
-|  $18  ||  $0f  ||  nibble  ||  Command 0 Animation
-|-
-|  $18  ||  $f0  ||  nibble  ||  Command 1 Animation
-|-
-|  $19  ||  $0f  ||  nibble  ||  Command 2 Animation
-|-
-|  $19  ||  $f0  ||  nibble  ||  Command 3 Animation
-|-
-|  $1a  ||  $0f  ||  nibble  ||  Command 4 Animation
-|-
-|  $1a  ||  $f0  ||  nibble  ||  Command 5 Animation
-|-
-|  $1b  ||  $0f  ||  nibble  ||  Command 6 Animation
-|-
-|  $1b  ||  $f0  ||  nibble  ||  Command 7 Animation
-|-
-|  $1c  ||  $0f  ||  nibble  ||  Command 8 Animation, default for no-action taken
-|-
-|  $1c  ||  $30  ||  2 bits  ||  Command Selection Judgment, ??
-|-
-|  $1c  ||  $c0  ||  2 bits  ||  Command Decision Strategies, determines probablity table use when picking a command
-|-
-|  $1d  ||  $07  ||  3 bits  ||  Mikawashi ???
-|-
-|  $1d  ||  $38  ||  3 bits  ||  Item drop probability, probabilities are at $c2aa34
-|-
-|  $1d  ||  $c0  ||  2 bits  ||  Run Multiple Commands, 0=Run Once, 1=50% Run Twice, 2=Run 1 to 3 times (random), 3=Run Twice
-|-
-|  $1e  ||  $03  ||  2 bits  ||  Auto-recovery, heals each turn, table at $c2c3a6
-|-
-|  $1e  ||  $0c  ||  2 bits  ||  Concentrated Attacks, enemy group shares the same target
-|-
-|  $1e  ||  $30  ||  2 bits  ||  Resistance $00
-|-
-|  $1e  ||  $c0  ||  2 bits  ||  Resistance $01
-|-
-|  $1f  ||  $03  ||  2 bits  ||  Resistance $02
-|-
-|  $1f  ||  $0c  ||  2 bits  ||  Resistance $03
-|-
-|  $1f  ||  $30  ||  2 bits  ||  Resistance $04
-|-
-|  $1f  ||  $c0  ||  2 bits  ||  Resistance $05
-|-
-|  $20  ||  $03  ||  2 bits  ||  Resistance $06
-|-
-|  $20  ||  $0c  ||  2 bits  ||  Resistance $07
-|-
-|  $20  ||  $30  ||  2 bits  ||  Resistance $08
-|-
-|  $20  ||  $c0  ||  2 bits  ||  Resistance $09
-|-
-|  $21  ||  $03  ||  2 bits  ||  Resistance $0a
-|-
-|  $21  ||  $0c  ||  2 bits  ||  Resistance $0b
-|-
-|  $21  ||  $30  ||  2 bits  ||  Resistance $0c
-|-
-|  $21  ||  $c0  ||  2 bits  ||  Resistance $0d
-|-
-|  $22-$23  ||  $ffff  ||  word  ||  HP
-|-
-|  $24  ||  $01  ||  bit  ||  Is a Metal monster
-|-  style="background-color:#eaecf0;"
-|  $24  ||  $fe  ||  7 bits  ||  (Unused)
-|}
+Details can be found in the [[Dragon Quest III (SNES)/ROM map/Monsters|Monsters]] subpage.
 
 ====Data====
 
@@ -808,6 +644,10 @@ The bank number being $C1 is hard-coded into the <code>LDA #$C1</code> instructi
 
 ===Font data compression format===
 The 1bpp font data for each character is stored as a block of W*H bits in the appropriate range. TODO add more to this.
+
+==Sub Pages==
+{{subpage|Character Classes}}
+{{subpage|Monsters}}
 
 ==Links==
 None currently.
