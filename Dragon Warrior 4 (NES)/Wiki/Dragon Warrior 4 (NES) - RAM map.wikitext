@@ -3,644 +3,989 @@
 
 ==Main==
 
+===System RAM===
+
+System RAM is addressed from <code>$0000</code> to <code>$07ff</code>.
+
 {| class="wikitable sortable"
 |-
-!  Category  !!  Address  !! Size  !!  Description
-|-
-|  Stats  ||  $6000  ||  byte  ||  ???
-|-
-|  Stats  ||  $6001  ||  byte  ||  ???
-|-
-!colspan="4"| 🐉 Hero
-|-
-|  Stats  ||  $6002 - $6003  ||  word  ||  📈 Current HP
-|-
-|  Stats  ||  $6004 - $6005  ||  word  ||  📈 Current MP
-|-
-|  Stats  ||  $6006  ||  byte  ||  📈 Level
-|-
-|  Stats  ||  $6007  ||  byte  ||  📈 Strength
-|-
-|  Stats  ||  $6008  ||  byte  ||  📈 Agility
-|-
-|  Stats  ||  $6009  ||  byte  ||  📈 Vitality
-|-
-|  Stats  ||  $600a  ||  byte  ||  📈 Intelligence
-|-
-|  Stats  ||  $600b  ||  byte  ||  📈 Luck
-|-
-|  Stats  ||  $600c  ||  byte  ||  📈 ???
-|-
-|  Stats  ||  $600d - $600e  ||  word  ||  📈 Maximum HP
-|-
-|  Stats  ||  $600f - $6010  ||  word  ||  📈 Maximum MP
-|-
-|  Stats  ||  $6011 - $6013  ||  long  ||  📈 Current XP
-|-
-|  Stats  ||  $6014  ||  byte  ||  📦 Item slot #1
-|-
-|  Stats  ||  $6015  ||  byte  ||  📦 Item slot #2
-|-
-|  Stats  ||  $6016  ||  byte  ||  📦 Item slot #3
-|-
-|  Stats  ||  $6017  ||  byte  ||  📦 Item slot #4
-|-
-|  Stats  ||  $6018  ||  byte  ||  📦 Item slot #5
-|-
-|  Stats  ||  $6019  ||  byte  ||  📦 Item slot #6
-|-
-|  Stats  ||  $601a  ||  byte  ||  📦 Item slot #7
-|-
-|  Stats  ||  $601b  ||  byte  ||  📦 Item slot #8
-|-
-|  Stats  ||  $601c # 00000001  ||  bit  ||  ✨ Battle Spell #1 - Expel
-|- 
-|  Stats  ||  $601c # 00000010  ||  bit  ||  ✨ Battle Spell #2 - Healmore
-|- 
-|  Stats  ||  $601c # 00000100  ||  bit  ||  ✨ Battle Spell #3 - Blaze
-|- 
-|  Stats  ||  $601c # 00001000  ||  bit  ||  ✨ Battle Spell #4 - Return
-|- 
-|  Stats  ||  $601c # 00010000  ||  bit  ||  ✨ Battle Spell #5 - Sleepmore
-|- 
-|  Stats  ||  $601c # 00100000  ||  bit  ||  ✨ Battle Spell #6 - Awake
-|- 
-|  Stats  ||  $601c # 01000000  ||  bit  ||  ✨ Battle Spell #7 - Firebal
-|- 
-|  Stats  ||  $601c # 10000000  ||  bit  ||  ✨ Battle Spell #8 - Healall
-|- 
-|  Stats  ||  $601d # 00000001  ||  bit  ||  ✨ Battle Spell #9 - Ironize
-|- 
-|  Stats  ||  $601d # 00000010  ||  bit  ||  ✨ Battle Spell #10 - FendSpell
-|- 
-|  Stats  ||  $601d # 00000100  ||  bit  ||  ✨ Battle Spell #11 - Zap
-|- 
-|  Stats  ||  $601d # 00001000  ||  bit  ||  ✨ Battle Spell #12 - Transform
-|- 
-|  Stats  ||  $601d # 00010000  ||  bit  ||  ✨ Battle Spell #13 - Boom
-|- 
-|  Stats  ||  $601d # 00100000  ||  bit  ||  ✨ Battle Spell #14 - Healusall
-|- 
-|  Stats  ||  $601d # 01000000  ||  bit  ||  ✨ Battle Spell #15 - Lightning
-|- 
-|  Stats  ||  $601d # 10000000  ||  bit  ||  ✨ Battle Spell #16 - Vivify
-|- 
-|  Stats  ||  $601e # 00000001  ||  bit  ||  ✨ Battle Spell #17 - Thordain
-|- 
-|  Stats  ||  $601e # 00000010  ||  bit  ||  ✨ Battle Spell #18 - Chance
-|- 
-|  Stats  ||  $601e # 00000100  ||  bit  ||  ✨ Overworld Spell #1 - Return
-|- 
-|  Stats  ||  $601e # 00001000  ||  bit  ||  ✨ Overworld Spell #2 - Healmore
-|- 
-|  Stats  ||  $601e # 00010000  ||  bit  ||  ✨ Overworld Spell #3 - Repel
-|- 
-|  Stats  ||  $601e # 00100000  ||  bit  ||  ✨ Overworld Spell #4 - Outside
-|- 
-|  Stats  ||  $601e # 01000000  ||  bit  ||  ✨ Overworld Spell #5 - Healall
-|- 
-|  Stats  ||  $601e # 10000000  ||  bit  ||  ✨ Overworld Spell #6 - Vivify
-|-
-|  ...
-|-
-!colspan="4"| 🙏 Cristo
-|-
-|  Stats  ||  $6020 - $6021  ||  word  ||  📈 Current HP
-|-
-|  Stats  ||  $6022 - $6023  ||  word  ||  📈 Current MP
-|-
-|  Stats  ||  $6024  ||  byte  ||  📈 Level
-|-
-|  Stats  ||  $6025  ||  byte  ||  📈 Strength
-|-
-|  Stats  ||  $6026  ||  byte  ||  📈 Agility
-|-
-|  Stats  ||  $6027  ||  byte  ||  📈 Vitality
-|-
-|  Stats  ||  $6028  ||  byte  ||  📈 Intelligence
-|-
-|  Stats  ||  $6029  ||  byte  ||  📈 Luck
-|-
-|  Stats  ||  $602a  ||  byte  ||  📈 ???
-|-
-|  Stats  ||  $602b - $602c  ||  word  ||  📈 Maximum HP
-|-
-|  Stats  ||  $602d - $602e  ||  word  ||  📈 Maximum MP
-|-
-|  Stats  ||  $602f - $6031  ||  long  ||  📈 Current XP
-|-
-|  Stats  ||  $6032  ||  byte  ||  📦 Item slot #1
-|-
-|  Stats  ||  $6033  ||  byte  ||  📦 Item slot #2
-|-
-|  Stats  ||  $6034  ||  byte  ||  📦 Item slot #3
-|-
-|  Stats  ||  $6035  ||  byte  ||  📦 Item slot #4
-|-
-|  Stats  ||  $6036  ||  byte  ||  📦 Item slot #5
-|-
-|  Stats  ||  $6037  ||  byte  ||  📦 Item slot #6
-|-
-|  Stats  ||  $6038  ||  byte  ||  📦 Item slot #7
-|-
-|  Stats  ||  $6039  ||  byte  ||  📦 Item slot #8
-|-
-|  Stats  ||  $603a # 00000001  ||  bit  ||  ✨ Battle Spell #1 - Upper
-|-
-|  Stats  ||  $603a # 00000010  ||  bit  ||  ✨ Battle Spell #2 - Heal
-|-
-|  Stats  ||  $603a # 00000100  ||  bit  ||  ✨ Battle Spell #3 - Surround
-|-
-|  Stats  ||  $603a # 00001000  ||  bit  ||  ✨ Battle Spell #4 - Healmore
-|-
-|  Stats  ||  $603a # 00010000  ||  bit  ||  ✨ Battle Spell #5 - StopSpell
-|-
-|  Stats  ||  $603a # 00100000  ||  bit  ||  ✨ Battle Spell #6 - Heallall
-|-
-|  Stats  ||  $603a # 01000000  ||  bit  ||  ✨ Battle Spell #7 - Increase
-|-
-|  Stats  ||  $603a # 10000000  ||  bit  ||  ✨ Battle Spell #8 - Healus
-|- 
-|  Stats  ||  $603b # 00000001  ||  bit  ||  ✨ Battle Spell #9 - Beat
-|-
-|  Stats  ||  $603b # 00000010  ||  bit  ||  ✨ Battle Spell #10 - Vivify
-|-
-|  Stats  ||  $603b # 00000100  ||  bit  ||  ✨ Battle Spell #11 - Defeat
-|-
-|  Stats  ||  $603b # 00001000  ||  bit  ||  ✨ Battle Spell #12 - Revive
-|-
-|  Stats  ||  $603b # 00010000  ||  bit  ||  ✨ Battle Spell #13 - n/a
-|-
-|  Stats  ||  $603b # 00100000  ||  bit  ||  ✨ Battle Spell #14 - n/a
-|-
-|  Stats  ||  $603b # 01000000  ||  bit  ||  ✨ Battle Spell #15 - n/a
-|-
-|  Stats  ||  $603b # 10000000  ||  bit  ||  ✨ Battle Spell #16 - n/a
-|- 
-|  Stats  ||  $603c # 00000001  ||  bit  ||  ✨ Overworld Spell #1 - Heal
-|-
-|  Stats  ||  $603c # 00000010  ||  bit  ||  ✨ Overworld Spell #2 - Antidote
-|-
-|  Stats  ||  $603c # 00000100  ||  bit  ||  ✨ Overworld Spell #3 - Healmore
-|-
-|  Stats  ||  $603c # 00001000  ||  bit  ||  ✨ Overworld Spell #4 - Vivify
-|-
-|  Stats  ||  $603c # 00010000  ||  bit  ||  ✨ Overworld Spell #5 - Heallall
-|-
-|  Stats  ||  $603c # 00100000  ||  bit  ||  ✨ Overworld Spell #6 - Healus
-|-
-|  Stats  ||  $603c # 01000000  ||  bit  ||  ✨ Overworld Spell #7 - Revive
-|-
-|  Stats  ||  $603c # 10000000  ||  bit  ||  ✨ Overworld Spell #8 - n/a
-|-
-|  ...
-|-
-!colspan="4"| 🃏 Nara
-|-
-|  Stats  ||  $603e - $603f  ||  word  ||  📈 Current HP
-|-
-|  Stats  ||  $6040 - $6041  ||  word  ||  📈 Current MP
-|-
-|  Stats  ||  $6042  ||  byte  ||  📈 Level
-|-
-|  Stats  ||  $6043  ||  byte  ||  📈 Strength
-|-
-|  Stats  ||  $6044  ||  byte  ||  📈 Agility
-|-
-|  Stats  ||  $6045  ||  byte  ||  📈 Vitality
-|-
-|  Stats  ||  $6046  ||  byte  ||  📈 Intelligence
-|-
-|  Stats  ||  $6047  ||  byte  ||  📈 Luck
-|-
-|  Stats  ||  $6048  ||  byte  ||  📈 ???
-|-
-|  Stats  ||  $6049 - $604a  ||  word  ||  📈 Maximum HP
-|-
-|  Stats  ||  $604b - $604c  ||  word  ||  📈 Maximum MP
-|-
-|  Stats  ||  $604d - $604f  ||  long  ||  📈 Current XP
-|-
-|  Stats  ||  $6050  ||  byte  ||  📦 Item slot #1
-|-
-|  Stats  ||  $6051  ||  byte  ||  📦 Item slot #2
-|-
-|  Stats  ||  $6052  ||  byte  ||  📦 Item slot #3
-|-
-|  Stats  ||  $6053  ||  byte  ||  📦 Item slot #4
-|-
-|  Stats  ||  $6054  ||  byte  ||  📦 Item slot #5
-|-
-|  Stats  ||  $6055  ||  byte  ||  📦 Item slot #6
-|-
-|  Stats  ||  $6056  ||  byte  ||  📦 Item slot #7
-|-
-|  Stats  ||  $6057  ||  byte  ||  📦 Item slot #8
-|-
-|  Stats  ||  $6058 # 00000001  ||  bit  ||  ✨ Battle Spell #1 - Infernos
-|-
-|  Stats  ||  $6058 # 00000010  ||  bit  ||  ✨ Battle Spell #2 - Heal
-|-
-|  Stats  ||  $6058 # 00000100  ||  bit  ||  ✨ Battle Spell #3 - Sleep
-|-
-|  Stats  ||  $6058 # 00001000  ||  bit  ||  ✨ Battle Spell #4 - Healmore
-|-
-|  Stats  ||  $6058 # 00010000  ||  bit  ||  ✨ Battle Spell #5 - NumbOff
-|-
-|  Stats  ||  $6058 # 00100000  ||  bit  ||  ✨ Battle Spell #6 - Healall
-|-
-|  Stats  ||  $6058 # 01000000  ||  bit  ||  ✨ Battle Spell #7 - Infermore
-|-
-|  Stats  ||  $6058 # 10000000  ||  bit  ||  ✨ Battle Spell #8 - Barrior
-|-
-|  Stats  ||  $6059 # 00000001  ||  bit  ||  ✨ Battle Spell #9 - Sleepmore
-|-
-|  Stats  ||  $6059 # 00000010  ||  bit  ||  ✨ Battle Spell #10 - Vivify
-|-
-|  Stats  ||  $6059 # 00000100  ||  bit  ||  ✨ Battle Spell #11 - Infermost
-|-
-|  Stats  ||  $6059 # 00001000  ||  bit  ||  ✨ Battle Spell #12 - Farewell
-|-
-|  Stats  ||  $6059 # 00010000  ||  bit  ||  ✨ Battle Spell #13 - n/a
-|-
-|  Stats  ||  $6059 # 00100000  ||  bit  ||  ✨ Battle Spell #14 - n/a
-|-
-|  Stats  ||  $6059 # 01000000  ||  bit  ||  ✨ Battle Spell #15 - n/a
-|-
-|  Stats  ||  $6059 # 10000000  ||  bit  ||  ✨ Battle Spell #16 - n/a
-|-
-|  Stats  ||  $605a # 00000001  ||  bit  ||  ✨ Overworld Spell #1 - Heal
-|-
-|  Stats  ||  $605a # 00000010  ||  bit  ||  ✨ Overworld Spell #2 - NumbOff
-|-
-|  Stats  ||  $605a # 00000100  ||  bit  ||  ✨ Overworld Spell #3 - Healmore
-|-
-|  Stats  ||  $605a # 00001000  ||  bit  ||  ✨ Overworld Spell #4 - Vivify
-|-
-|  Stats  ||  $605a # 00010000  ||  bit  ||  ✨ Overworld Spell #5 - Healall
-|-
-|  Stats  ||  $605a # 00100000  ||  bit  ||  ✨ Overworld Spell #6 - n/a
-|-
-|  Stats  ||  $605a # 01000000  ||  bit  ||  ✨ Overworld Spell #7 - n/a
-|-
-|  Stats  ||  $605a # 10000000  ||  bit  ||  ✨ Overworld Spell #8 - n/a
-|-
-!colspan="4"| 💃 Mara
-|-
-|  Stats  ||  $650b  ||  byte  ||  💃? Status ailments????????
-|-
-|  Stats  ||  $605c - $605d  ||  word  ||  📈 Current HP
-|-
-|  Stats  ||  $605e - $605f  ||  word  ||  📈 Current MP
-|-
-|  Stats  ||  $6060  ||  byte  ||  📈 Level
-|-
-|  Stats  ||  $6061  ||  byte  ||  📈 Strength
-|-
-|  Stats  ||  $6062  ||  byte  ||  📈 Agility
-|-
-|  Stats  ||  $6063  ||  byte  ||  📈 Vitality
-|-
-|  Stats  ||  $6064  ||  byte  ||  📈 Intelligence
-|-
-|  Stats  ||  $6065  ||  byte  ||  📈 Luck
-|-
-|  Stats  ||  $6066  ||  byte  ||  📈 ???
-|-
-|  Stats  ||  $6067 - $6068  ||  word  ||  📈 Maximum HP
-|-
-|  Stats  ||  $6069 - $606a  ||  word  ||  📈 Maximum MP
-|-
-|  Stats  ||  $606b - $606d  ||  long  ||  📈 Current XP
-|-
-|  Stats  ||  $606e  ||  byte  ||  📦 Item slot #1
-|-
-|  Stats  ||  $606f  ||  byte  ||  📦 Item slot #2
-|-
-|  Stats  ||  $6070  ||  byte  ||  📦 Item slot #3
-|-
-|  Stats  ||  $6071  ||  byte  ||  📦 Item slot #4
-|-
-|  Stats  ||  $6072  ||  byte  ||  📦 Item slot #5
-|-
-|  Stats  ||  $6073  ||  byte  ||  📦 Item slot #6
-|-
-|  Stats  ||  $6074  ||  byte  ||  📦 Item slot #7
-|-
-|  Stats  ||  $6075  ||  byte  ||  📦 Item slot #8
-|-
-|  Stats  ||  $6076 # 00000001  ||  bit  ||  ✨ Battle Spell #1 - Blaze
-|-
-|  Stats  ||  $6076 # 00000010  ||  bit  ||  ✨ Battle Spell #2 - Sap
-|-
-|  Stats  ||  $6076 # 00000100  ||  bit  ||  ✨ Battle Spell #3 - Firebal
-|-
-|  Stats  ||  $6076 # 00001000  ||  bit  ||  ✨ Battle Spell #4 - RobMagic
-|-
-|  Stats  ||  $6076 # 00010000  ||  bit  ||  ✨ Battle Spell #5 - Bang
-|-
-|  Stats  ||  $6076 # 00100000  ||  bit  ||  ✨ Battle Spell #6 - BeDragon
-|-
-|  Stats  ||  $6076 # 01000000  ||  bit  ||  ✨ Battle Spell #7 - Blazemore
-|-
-|  Stats  ||  $6076 # 10000000  ||  bit  ||  ✨ Battle Spell #8 - Blazemost
-|-
-|  Stats  ||  $6077 # 00000001  ||  bit  ||  ✨ Battle Spell #9 - Firebane
-|-
-|  Stats  ||  $6077 # 00000010  ||  bit  ||  ✨ Battle Spell #10 - Firevolt
-|-
-|  Stats  ||  $6077 # 00000100  ||  bit  ||  ✨ Battle Spell #11 - Boom
-|-
-|  Stats  ||  $6077 # 00001000  ||  bit  ||  ✨ Battle Spell #12 - Explodet
-|-
-|  Stats  ||  $6077 # 00010000  ||  bit  ||  ✨ Battle Spell #13 - n/a
-|-
-|  Stats  ||  $6077 # 00100000  ||  bit  ||  ✨ Battle Spell #14 - n/a
-|-
-|  Stats  ||  $6077 # 01000000  ||  bit  ||  ✨ Battle Spell #15 - n/a
-|-
-|  Stats  ||  $6077 # 10000000  ||  bit  ||  ✨ Battle Spell #16 - n/a
-|-
-|  Stats  ||  $6078 # 00000001  ||  bit  ||  ✨ Overworld Spell #1 - Return
-|-
-|  Stats  ||  $6078 # 00000010  ||  bit  ||  ✨ Overworld Spell #2 - Outside
-|-
-|  Stats  ||  $6078 # 00000100  ||  bit  ||  ✨ Overworld Spell #3 - StepGuard
-|-
-|  Stats  ||  $6078 # 00001000  ||  bit  ||  ✨ Overworld Spell #4 - n/a
-|-
-|  Stats  ||  $6078 # 00010000  ||  bit  ||  ✨ Overworld Spell #5 - n/a
-|-
-|  Stats  ||  $6078 # 00100000  ||  bit  ||  ✨ Overworld Spell #6 - n/a
-|-
-|  Stats  ||  $6078 # 01000000  ||  bit  ||  ✨ Overworld Spell #7 - n/a
-|-
-|  Stats  ||  $6078 # 10000000  ||  bit  ||  ✨ Overworld Spell #8 - n/a
-|-
-|  ...
-|-
-!colspan="4"| 🧙 Brey
-|-
-|  Stats  ||  $607a - $607b  ||  word  ||  📈 Current HP
-|-
-|  Stats  ||  $607c - $607d  ||  word  ||  📈 Current MP
-|-
-|  Stats  ||  $607e  ||  byte  ||  📈 Level
-|-
-|  Stats  ||  $607f  ||  byte  ||  📈 Strength
-|-
-|  Stats  ||  $6080  ||  byte  ||  📈 Agility
-|-
-|  Stats  ||  $6081  ||  byte  ||  📈 Vitality
-|-
-|  Stats  ||  $6082  ||  byte  ||  📈 Intelligence
-|-
-|  Stats  ||  $6083  ||  byte  ||  📈 Luck
-|-
-|  Stats  ||  $6084  ||  byte  ||  📈 ???
-|-
-|  Stats  ||  $6085 - $6086  ||  word  ||  📈 Maximum HP
-|-
-|  Stats  ||  $6087 - $6088  ||  word  ||  📈 Maximum MP
-|-
-|  Stats  ||  $6089 - $608b  ||  long  ||  📈 Current XP
-|-
-|  Stats  ||  $608c  ||  byte  ||  📦 Item slot #1
-|-
-|  Stats  ||  $608d  ||  byte  ||  📦 Item slot #2
-|-
-|  Stats  ||  $608e  ||  byte  ||  📦 Item slot #3
-|-
-|  Stats  ||  $608f  ||  byte  ||  📦 Item slot #4
-|-
-|  Stats  ||  $6090  ||  byte  ||  📦 Item slot #5
-|-
-|  Stats  ||  $6091  ||  byte  ||  📦 Item slot #6
-|-
-|  Stats  ||  $6092  ||  byte  ||  📦 Item slot #7
-|-
-|  Stats  ||  $6093  ||  byte  ||  📦 Item slot #8
-|-
-|  Stats  ||  $6094 # 00000001  ||  bit  ||  ✨ Battle Spell #1 - IceBolt
-|-
-|  Stats  ||  $6094 # 00000010  ||  bit  ||  ✨ Battle Spell #2 - Sap
-|-
-|  Stats  ||  $6094 # 00000100  ||  bit  ||  ✨ Battle Spell #3 - Snowstorm
-|-
-|  Stats  ||  $6094 # 00001000  ||  bit  ||  ✨ Battle Spell #4 - Bounce
-|-
-|  Stats  ||  $6094 # 00010000  ||  bit  ||  ✨ Battle Spell #5 - Icespears
-|-
-|  Stats  ||  $6094 # 00100000  ||  bit  ||  ✨ Battle Spell #6 - Return
-|-
-|  Stats  ||  $6094 # 01000000  ||  bit  ||  ✨ Battle Spell #7 - RobMagic
-|-
-|  Stats  ||  $6094 # 10000000  ||  bit  ||  ✨ Battle Spell #8 - Defence
-|- 
-|  Stats  ||  $6095 # 00000001  ||  bit  ||  ✨ Battle Spell #9 - Chaos
-|-
-|  Stats  ||  $6095 # 00000010  ||  bit  ||  ✨ Battle Spell #10 - SpeedUp
-|-
-|  Stats  ||  $6095 # 00000100  ||  bit  ||  ✨ Battle Spell #11 - Blizzard
-|-
-|  Stats  ||  $6095 # 00001000  ||  bit  ||  ✨ Battle Spell #12 - Bikill
-|-
-|  Stats  ||  $6095 # 00010000  ||  bit  ||  ✨ Battle Spell #13 - n/a
-|-
-|  Stats  ||  $6095 # 00100000  ||  bit  ||  ✨ Battle Spell #14 - n/a
-|-
-|  Stats  ||  $6095 # 01000000  ||  bit  ||  ✨ Battle Spell #15 - n/a
-|-
-|  Stats  ||  $6095 # 10000000  ||  bit  ||  ✨ Battle Spell #16 - n/a
-|- 
-|  Stats  ||  $6096 # 00000001  ||  bit  ||  ✨ Overworld Spell #1 - Return
-|-
-|  Stats  ||  $6096 # 00000010  ||  bit  ||  ✨ Overworld Spell #2 - Outside
-|-
-|  Stats  ||  $6096 # 00000100  ||  bit  ||  ✨ Overworld Spell #3 - Day-Night
-|-
-|  Stats  ||  $6096 # 00001000  ||  bit  ||  ✨ Overworld Spell #4 - X-Ray
-|-
-|  Stats  ||  $6096 # 00010000  ||  bit  ||  ✨ Overworld Spell #5 - n/a
-|-
-|  Stats  ||  $6096 # 00100000  ||  bit  ||  ✨ Overworld Spell #6 - n/a
-|-
-|  Stats  ||  $6096 # 01000000  ||  bit  ||  ✨ Overworld Spell #7 - n/a
-|-
-|  Stats  ||  $6096 # 10000000  ||  bit  ||  ✨ Overworld Spell #8 - n/a
-|-
-|  ...
-|-
-!colspan="4"|  💰 Taloon
-|-
-|  Stats  ||  $6098 - $6099  ||  word  ||  📈 Current HP
-|-
-|  Stats  ||  $609a - $609b  ||  word  ||  📈 Current MP
-|-
-|  Stats  ||  $609c  ||  byte  ||  📈 Level
-|-
-|  Stats  ||  $609d  ||  byte  ||  📈 Strength
-|-
-|  Stats  ||  $609e  ||  byte  ||  📈 Agility
-|-
-|  Stats  ||  $609f  ||  byte  ||  📈 Vitality
-|-
-|  Stats  ||  $60a0  ||  byte  ||  📈 Intelligence
-|-
-|  Stats  ||  $60a1  ||  byte  ||  📈 Luck
-|-
-|  Stats  ||  $60a2  ||  byte  ||  📈 ???
-|-
-|  Stats  ||  $60a3 - $60a4  ||  word  ||  📈 Maximum HP
-|-
-|  Stats  ||  $60a5 - $60a6  ||  word  ||  📈 Maximum MP
-|-
-|  Stats  ||  $60a7 - $60a9  ||  long  ||  📈 Current XP
-|-
-|  Stats  ||  $60aa  ||  byte  ||  📦 Item slot #1
-|-
-|  Stats  ||  $60ab  ||  byte  ||  📦 Item slot #2
-|-
-|  Stats  ||  $60ac  ||  byte  ||  📦 Item slot #3
-|-
-|  Stats  ||  $60ad  ||  byte  ||  📦 Item slot #4
-|-
-|  Stats  ||  $60ae  ||  byte  ||  📦 Item slot #5
-|-
-|  Stats  ||  $60af  ||  byte  ||  📦 Item slot #6
-|-
-|  Stats  ||  $60b0  ||  byte  ||  📦 Item slot #7
-|-
-|  Stats  ||  $60b1  ||  byte  ||  📦 Item slot #8
-|-
-|  Stats  ||  $60b2  ||  byte  ||  ✨ Battle Spells - n/a
-|-
-|  Stats  ||  $60b3  ||  byte  ||  ✨ Battle Spells - n/a
-|-
-|  Stats  ||  $60b4  ||  byte  ||  ✨ Overworld Spells - n/a
-|-
-|  ...
-|-
-!colspan="4"| 🪖 Ragnar
-|-
-|  Stats  ||  $60b6 - $60b7  ||  word  ||  📈 Current HP
-|-
-|  Stats  ||  $60b8 - $60b9  ||  word  ||  📈 Current MP
-|-
-|  Stats  ||  $60ba  ||  byte  ||  📈 Level
-|-
-|  Stats  ||  $60bb  ||  byte  ||  📈 Strength
-|-
-|  Stats  ||  $60bc  ||  byte  ||  📈 Agility
-|-
-|  Stats  ||  $60bd  ||  byte  ||  📈 Vitality
-|-
-|  Stats  ||  $60be  ||  byte  ||  📈 Intelligence
-|-
-|  Stats  ||  $60bf  ||  byte  ||  📈 Luck
-|-
-|  Stats  ||  $60c0  ||  byte  ||  📈 ???
-|-
-|  Stats  ||  $60c1 - $60c2  ||  word  ||  📈 Maximum HP
-|-
-|  Stats  ||  $60c3 - $60c4  ||  word  ||  📈 Maximum MP
-|-
-|  Stats  ||  $60c5 - $60c7  ||  long  ||  📈 Current XP
-|-
-|  Stats  ||  $60c8  ||  byte  ||  📦 Item slot #1
-|-
-|  Stats  ||  $60c9  ||  byte  ||  📦 Item slot #2
-|-
-|  Stats  ||  $60ca  ||  byte  ||  📦 Item slot #3
-|-
-|  Stats  ||  $60cb  ||  byte  ||  📦 Item slot #4
-|-
-|  Stats  ||  $60cc  ||  byte  ||  📦 Item slot #5
-|-
-|  Stats  ||  $60cd  ||  byte  ||  📦 Item slot #6
-|-
-|  Stats  ||  $60ce  ||  byte  ||  📦 Item slot #7
-|-
-|  Stats  ||  $60cf  ||  byte  ||  📦 Item slot #8
-|-
-|  Stats  ||  $60d0  ||  byte  ||  ✨ Battle Spells - n/a
-|-
-|  Stats  ||  $60d1  ||  byte  ||  ✨ Battle Spells - n/a
-|-
-|  Stats  ||  $60d2  ||  byte  ||  ✨ Overworld Spells - n/a
-|-
-|  ...
-|-
-!colspan="4"| 🪖 Alena
-|-
-|  Stats  ||  $60d4 - $60d5  ||  word  ||  📈 Current HP
-|-
-|  Stats  ||  $60d6 - $60d7  ||  word  ||  📈 Current MP
-|-
-|  Stats  ||  $60d8  ||  byte  ||  📈 Level
-|-
-|  Stats  ||  $60d9  ||  byte  ||  📈 Strength
-|-
-|  Stats  ||  $60da  ||  byte  ||  📈 Agility
-|-
-|  Stats  ||  $60db  ||  byte  ||  📈 Vitality
-|-
-|  Stats  ||  $60dc  ||  byte  ||  📈 Intelligence
-|-
-|  Stats  ||  $60dd  ||  byte  ||  📈 Luck
-|-
-|  Stats  ||  $60de  ||  byte  ||  📈 ???
-|-
-|  Stats  ||  $60df - $60e0  ||  word  ||  📈 Maximum HP
-|-
-|  Stats  ||  $60e1 - $60e2  ||  word  ||  📈 Maximum MP
-|-
-|  Stats  ||  $60e3 - $60e5  ||  long  ||  📈 Current XP
-|-
-|  Stats  ||  $60e6  ||  byte  ||  📦 Item slot #1
-|-
-|  Stats  ||  $60e7  ||  byte  ||  📦 Item slot #2
-|-
-|  Stats  ||  $60e8  ||  byte  ||  📦 Item slot #3
-|-
-|  Stats  ||  $60e9  ||  byte  ||  📦 Item slot #4
-|-
-|  Stats  ||  $60ea  ||  byte  ||  📦 Item slot #5
-|-
-|  Stats  ||  $60eb  ||  byte  ||  📦 Item slot #6
-|-
-|  Stats  ||  $60ec  ||  byte  ||  📦 Item slot #7
-|-
-|  Stats  ||  $60ed  ||  byte  ||  📦 Item slot #8
-|-
-|  Stats  ||  $60ee  ||  byte  ||  ✨ Battle Spells - n/a
-|-
-|  Stats  ||  $60ef  ||  byte  ||  ✨ Battle Spells - n/a
-|-
-|  Stats  ||  $60f0  ||  byte  ||  ✨ Overworld Spells - n/a
-|-
-|  ...
-|-
-!colspan="4"| 🐙 NPC Companion (Healie, Strom, etc)
-|-
-|  Stats  ||  $6110 - $6111 ||  word  ||  📈 Current HP
-|-
-|  Stats  ||  $6112 - $6113 ||  word  ||  📈 Current MP
-|-
-|  ...
-|-
-!colspan="4"| Other
-|-
-|  Stuff  ||  $6157 - $6159  ||  long  ||  🪙 Gold (max 99,999)
+!  Category  !!  Address  !!  Size  !!  Description
+|-  style="background-color:#eaecf0;"
+|  ???  ||  $000 - $062  ||  ...  ||  ???
+|-
+|  World  ||  $063  ||  byte  ||  Map Number
+|-
+|  World  ||  $064  ||  byte  ||  Sub-Map Number
+|-  style="background-color:#eaecf0;"
+|  ???  ||  $065 - $7ff  ||  ...  ||  ???
 |}
 
-==Zeropage==
-* 0x63 = Current Map Number  (See: [[Dragon Warrior IV/Map List|Map List]])
-* 0x64 = Current Submap Number
+===WRAM===
+
+WRAM is addressed from <code>$6000</code> to <code>$7fff</code>.
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Description
+|-  style="background-color:#eaecf0;"
+|  ???  ||  $6000  ||  byte  ||  ???
+|-
+|  Party Members  ||  $6001 - $601e  ||  30 bytes  ||  Hero ([[#Hero|details]])
+|-
+|  Party Members  ||  $601f - $603c  ||  30 bytes  ||  Cristo ([[#Cristo|details]])
+|-
+|  Party Members  ||  $603d - $605a  ||  30 bytes  ||  Nara ([[#Nara|details]])
+|-
+|  Party Members  ||  $605b - $6078  ||  30 bytes  ||  Mara ([[#Mara|details]])
+|-
+|  Party Members  ||  $6079 - $6096  ||  30 bytes  ||  Brey ([[#Brey|details]])
+|-
+|  Party Members  ||  $6097 - $60b4  ||  30 bytes  ||  Taloon ([[#Taloon|details]])
+|-
+|  Party Members  ||  $60b5 - $60d2  ||  30 bytes  ||  Ragnar ([[#Ragnar|details]])
+|-
+|  Party Members  ||  $60d3 - $60f0  ||  30 bytes  ||  Alena ([[#Alena|details]])
+|-  style="background-color:#eaecf0;"
+|  ...  ||  $60f1 - $610e  ||  ...  ||  ???
+|-
+|  Party Members  ||  $610f - $xxxx  ||  xxx bytes  ||  Healie ([[#Healie|details]])
+|-  style="background-color:#eaecf0;"
+|  ...  ||  $xxxx - $6156  ||  ...  ||  ???
+|-
+|  General  ||  $6157 - $6159  ||  long  ||  Gold (TODO: verify 3 bytes length)
+|-
+|  General  ||  $615a  ||  byte  ||  Chapter number (0 = chapter 1, ... 4 = chapter 5)
+|-
+|  General  ||  $615b  ||  byte  ||  Current Tactics (00 = Normal, 01 = Save MP, 02 = Offensive, 03 = Defensive, 04 = Try Out, 05 = Use No MP)
+|-  style="background-color:#eaecf0;"
+|  ...  ||  $615c - $6164  ||  ...  ||  ???
+|-
+|  General  ||  $6165 - $6167  ||  long  ||  Return Locations ([[#Return Locations|details]])
+|-  style="background-color:#eaecf0;"
+|  ...  ||  $6168 - $7fff  ||  ...  ||  ???
+|-
+|  General  ||  $616a - $616d  ||  4 bytes  ||  Party Order
+|-  style="background-color:#eaecf0;"
+|  ...  ||  $6168 - $7fff  ||  ...  ||  ???
+|}
+
+==Party Members==
+
+====Notes====
+
+The <code>dead</code>/<code>alive</code> status bit is <code>dead</code> if you haven't used that character yet; they are set to <code>alive</code> when they join the party for the first time.
+
+===Hero===
+
+Index is <code>$00</code>.
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Description
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $6001 # 0000_0001  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $6001 # 0000_0010  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $6001 # 0000_0100  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $6001 # 0000_1000  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $6001 # 0001_0000  ||  bit  ||  ...
+|-
+|  Stats  ||  $6001 # 0010_0000  ||  bit  ||  Poisoned
+|-
+|  Stats  ||  $6001 # 0100_0000  ||  bit  ||  Paralyzed
+|-
+|  Stats  ||  $6001 # 1000_0000  ||  bit  ||  1 = Alive, 0 = Dead
+|-
+|  Stats  ||  $6002 - $6003  ||  word  ||  Current HP
+|-
+|  Stats  ||  $6004 - $6005  ||  word  ||  Current MP
+|-
+|  Stats  ||  $6006  ||  byte  ||  Level
+|-
+|  Stats  ||  $6007  ||  byte  ||  Strength
+|-
+|  Stats  ||  $6008  ||  byte  ||  Agility
+|-
+|  Stats  ||  $6009  ||  byte  ||  Vitality
+|-
+|  Stats  ||  $600a  ||  byte  ||  Intelligence
+|-
+|  Stats  ||  $600b  ||  byte  ||  Luck
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $600c  ||  byte  ||  ???
+|-
+|  Stats  ||  $600d - $600e  ||  word  ||  Maximum HP
+|-
+|  Stats  ||  $600f - $6010  ||  word  ||  Maximum MP
+|-
+|  Stats  ||  $6011 - $6013  ||  long  ||  Current XP
+|-
+|  Stats  ||  $6014  ||  byte  ||  Item slot #1
+|-
+|  Stats  ||  $6015  ||  byte  ||  Item slot #2
+|-
+|  Stats  ||  $6016  ||  byte  ||  Item slot #3
+|-
+|  Stats  ||  $6017  ||  byte  ||  Item slot #4
+|-
+|  Stats  ||  $6018  ||  byte  ||  Item slot #5
+|-
+|  Stats  ||  $6019  ||  byte  ||  Item slot #6
+|-
+|  Stats  ||  $601a  ||  byte  ||  Item slot #7
+|-
+|  Stats  ||  $601b  ||  byte  ||  Item slot #8
+|-
+|  Stats  ||  $601c # 0000_0001  ||  bit  ||  Battle Spell #1 - Expel
+|- 
+|  Stats  ||  $601c # 0000_0010  ||  bit  ||  Battle Spell #2 - Healmore
+|- 
+|  Stats  ||  $601c # 0000_0100  ||  bit  ||  Battle Spell #3 - Blaze
+|- 
+|  Stats  ||  $601c # 0000_1000  ||  bit  ||  Battle Spell #4 - Return
+|- 
+|  Stats  ||  $601c # 0001_0000  ||  bit  ||  Battle Spell #5 - Sleepmore
+|- 
+|  Stats  ||  $601c # 0010_0000  ||  bit  ||  Battle Spell #6 - Awake
+|- 
+|  Stats  ||  $601c # 0100_0000  ||  bit  ||  Battle Spell #7 - Firebal
+|- 
+|  Stats  ||  $601c # 1000_0000  ||  bit  ||  Battle Spell #8 - Healall
+|- 
+|  Stats  ||  $601d # 0000_0001  ||  bit  ||  Battle Spell #9 - Ironize
+|- 
+|  Stats  ||  $601d # 0000_0010  ||  bit  ||  Battle Spell #10 - FendSpell
+|- 
+|  Stats  ||  $601d # 0000_0100  ||  bit  ||  Battle Spell #11 - Zap
+|- 
+|  Stats  ||  $601d # 0000_1000  ||  bit  ||  Battle Spell #12 - Transform
+|- 
+|  Stats  ||  $601d # 0001_0000  ||  bit  ||  Battle Spell #13 - Boom
+|- 
+|  Stats  ||  $601d # 0010_0000  ||  bit  ||  Battle Spell #14 - Healusall
+|- 
+|  Stats  ||  $601d # 0100_0000  ||  bit  ||  Battle Spell #15 - Lightning
+|- 
+|  Stats  ||  $601d # 1000_0000  ||  bit  ||  Battle Spell #16 - Vivify
+|- 
+|  Stats  ||  $601e # 0000_0001  ||  bit  ||  Battle Spell #17 - Thordain
+|- 
+|  Stats  ||  $601e # 0000_0010  ||  bit  ||  Battle Spell #18 - Chance
+|- 
+|  Stats  ||  $601e # 0000_0100  ||  bit  ||  Overworld Spell #1 - Return
+|- 
+|  Stats  ||  $601e # 0000_1000  ||  bit  ||  Overworld Spell #2 - Healmore
+|- 
+|  Stats  ||  $601e # 0001_0000  ||  bit  ||  Overworld Spell #3 - Repel
+|- 
+|  Stats  ||  $601e # 0010_0000  ||  bit  ||  Overworld Spell #4 - Outside
+|- 
+|  Stats  ||  $601e # 0100_0000  ||  bit  ||  Overworld Spell #5 - Healall
+|- 
+|  Stats  ||  $601e # 1000_0000  ||  bit  ||  Overworld Spell #6 - Vivify
+|}
+
+===Cristo===
+
+Index is <code>$01</code>.
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Description
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $601f # 0000_0001  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $601f # 0000_0010  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $601f # 0000_0100  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $601f # 0000_1000  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $601f # 0001_0000  ||  bit  ||  ...
+|-
+|  Stats  ||  $601f # 0010_0000  ||  bit  ||  Poisoned
+|-
+|  Stats  ||  $601f # 0100_0000  ||  bit  ||  Paralyzed
+|-
+|  Stats  ||  $601f # 1000_0000  ||  bit  ||  1 = Alive, 0 = Dead
+|-
+|  Stats  ||  $6020 - $6021  ||  word  ||  Current HP
+|-
+|  Stats  ||  $6022 - $6023  ||  word  ||  Current MP
+|-
+|  Stats  ||  $6024  ||  byte  ||  Level
+|-
+|  Stats  ||  $6025  ||  byte  ||  Strength
+|-
+|  Stats  ||  $6026  ||  byte  ||  Agility
+|-
+|  Stats  ||  $6027  ||  byte  ||  Vitality
+|-
+|  Stats  ||  $6028  ||  byte  ||  Intelligence
+|-
+|  Stats  ||  $6029  ||  byte  ||  Luck
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $602a  ||  byte  ||  ???
+|-
+|  Stats  ||  $602b - $602c  ||  word  ||  Maximum HP
+|-
+|  Stats  ||  $602d - $602e  ||  word  ||  Maximum MP
+|-
+|  Stats  ||  $602f - $6031  ||  long  ||  Current XP
+|-
+|  Stats  ||  $6032  ||  byte  ||  Item slot #1
+|-
+|  Stats  ||  $6033  ||  byte  ||  Item slot #2
+|-
+|  Stats  ||  $6034  ||  byte  ||  Item slot #3
+|-
+|  Stats  ||  $6035  ||  byte  ||  Item slot #4
+|-
+|  Stats  ||  $6036  ||  byte  ||  Item slot #5
+|-
+|  Stats  ||  $6037  ||  byte  ||  Item slot #6
+|-
+|  Stats  ||  $6038  ||  byte  ||  Item slot #7
+|-
+|  Stats  ||  $6039  ||  byte  ||  Item slot #8
+|-
+|  Stats  ||  $603a # 0000_0001  ||  bit  ||  Battle Spell #1 - Upper
+|-
+|  Stats  ||  $603a # 0000_0010  ||  bit  ||  Battle Spell #2 - Heal
+|-
+|  Stats  ||  $603a # 0000_0100  ||  bit  ||  Battle Spell #3 - Surround
+|-
+|  Stats  ||  $603a # 0000_1000  ||  bit  ||  Battle Spell #4 - Healmore
+|-
+|  Stats  ||  $603a # 0001_0000  ||  bit  ||  Battle Spell #5 - StopSpell
+|-
+|  Stats  ||  $603a # 0010_0000  ||  bit  ||  Battle Spell #6 - Heallall
+|-
+|  Stats  ||  $603a # 0100_0000  ||  bit  ||  Battle Spell #7 - Increase
+|-
+|  Stats  ||  $603a # 1000_0000  ||  bit  ||  Battle Spell #8 - Healus
+|- 
+|  Stats  ||  $603b # 0000_0001  ||  bit  ||  Battle Spell #9 - Beat
+|-
+|  Stats  ||  $603b # 0000_0010  ||  bit  ||  Battle Spell #10 - Vivify
+|-
+|  Stats  ||  $603b # 0000_0100  ||  bit  ||  Battle Spell #11 - Defeat
+|-
+|  Stats  ||  $603b # 0000_1000  ||  bit  ||  Battle Spell #12 - Revive
+|-
+|  Stats  ||  $603b # 0001_0000  ||  bit  ||  Battle Spell #13 - n/a
+|-
+|  Stats  ||  $603b # 0010_0000  ||  bit  ||  Battle Spell #14 - n/a
+|-
+|  Stats  ||  $603b # 0100_0000  ||  bit  ||  Battle Spell #15 - n/a
+|-
+|  Stats  ||  $603b # 1000_0000  ||  bit  ||  Battle Spell #16 - n/a
+|- 
+|  Stats  ||  $603c # 0000_0001  ||  bit  ||  Overworld Spell #1 - Heal
+|-
+|  Stats  ||  $603c # 0000_0010  ||  bit  ||  Overworld Spell #2 - Antidote
+|-
+|  Stats  ||  $603c # 0000_0100  ||  bit  ||  Overworld Spell #3 - Healmore
+|-
+|  Stats  ||  $603c # 0000_1000  ||  bit  ||  Overworld Spell #4 - Vivify
+|-
+|  Stats  ||  $603c # 0001_0000  ||  bit  ||  Overworld Spell #5 - Heallall
+|-
+|  Stats  ||  $603c # 0010_0000  ||  bit  ||  Overworld Spell #6 - Healus
+|-
+|  Stats  ||  $603c # 0100_0000  ||  bit  ||  Overworld Spell #7 - Revive
+|-
+|  Stats  ||  $603c # 1000_0000  ||  bit  ||  Overworld Spell #8 - n/a
+|}
+
+===Nara===
+
+Index is <code>$02</code>.
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Description
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $603d # 0000_0001  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $603d # 0000_0010  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $603d # 0000_0100  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $603d # 0000_1000  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $603d # 0001_0000  ||  bit  ||  ...
+|-
+|  Stats  ||  $603d # 0010_0000  ||  bit  ||  Poisoned
+|-
+|  Stats  ||  $603d # 0100_0000  ||  bit  ||  Paralyzed
+|-
+|  Stats  ||  $603d # 1000_0000  ||  bit  ||  1 = Alive, 0 = Dead
+|-
+|  Stats  ||  $603e - $603f  ||  word  ||  Current HP
+|-
+|  Stats  ||  $6040 - $6041  ||  word  ||  Current MP
+|-
+|  Stats  ||  $6042  ||  byte  ||  Level
+|-
+|  Stats  ||  $6043  ||  byte  ||  Strength
+|-
+|  Stats  ||  $6044  ||  byte  ||  Agility
+|-
+|  Stats  ||  $6045  ||  byte  ||  Vitality
+|-
+|  Stats  ||  $6046  ||  byte  ||  Intelligence
+|-
+|  Stats  ||  $6047  ||  byte  ||  Luck
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $6048  ||  byte  ||  ???
+|-
+|  Stats  ||  $6049 - $604a  ||  word  ||  Maximum HP
+|-
+|  Stats  ||  $604b - $604c  ||  word  ||  Maximum MP
+|-
+|  Stats  ||  $604d - $604f  ||  long  ||  Current XP
+|-
+|  Stats  ||  $6050  ||  byte  ||  Item slot #1
+|-
+|  Stats  ||  $6051  ||  byte  ||  Item slot #2
+|-
+|  Stats  ||  $6052  ||  byte  ||  Item slot #3
+|-
+|  Stats  ||  $6053  ||  byte  ||  Item slot #4
+|-
+|  Stats  ||  $6054  ||  byte  ||  Item slot #5
+|-
+|  Stats  ||  $6055  ||  byte  ||  Item slot #6
+|-
+|  Stats  ||  $6056  ||  byte  ||  Item slot #7
+|-
+|  Stats  ||  $6057  ||  byte  ||  Item slot #8
+|-
+|  Stats  ||  $6058 # 0000_0001  ||  bit  ||  Battle Spell #1 - Infernos
+|-
+|  Stats  ||  $6058 # 0000_0010  ||  bit  ||  Battle Spell #2 - Heal
+|-
+|  Stats  ||  $6058 # 0000_0100  ||  bit  ||  Battle Spell #3 - Sleep
+|-
+|  Stats  ||  $6058 # 0000_1000  ||  bit  ||  Battle Spell #4 - Healmore
+|-
+|  Stats  ||  $6058 # 0001_0000  ||  bit  ||  Battle Spell #5 - NumbOff
+|-
+|  Stats  ||  $6058 # 0010_0000  ||  bit  ||  Battle Spell #6 - Healall
+|-
+|  Stats  ||  $6058 # 0100_0000  ||  bit  ||  Battle Spell #7 - Infermore
+|-
+|  Stats  ||  $6058 # 1000_0000  ||  bit  ||  Battle Spell #8 - Barrior
+|-
+|  Stats  ||  $6059 # 0000_0001  ||  bit  ||  Battle Spell #9 - Sleepmore
+|-
+|  Stats  ||  $6059 # 0000_0010  ||  bit  ||  Battle Spell #10 - Vivify
+|-
+|  Stats  ||  $6059 # 0000_0100  ||  bit  ||  Battle Spell #11 - Infermost
+|-
+|  Stats  ||  $6059 # 0000_1000  ||  bit  ||  Battle Spell #12 - Farewell
+|-
+|  Stats  ||  $6059 # 0001_0000  ||  bit  ||  Battle Spell #13 - n/a
+|-
+|  Stats  ||  $6059 # 0010_0000  ||  bit  ||  Battle Spell #14 - n/a
+|-
+|  Stats  ||  $6059 # 0100_0000  ||  bit  ||  Battle Spell #15 - n/a
+|-
+|  Stats  ||  $6059 # 1000_0000  ||  bit  ||  Battle Spell #16 - n/a
+|-
+|  Stats  ||  $605a # 0000_0001  ||  bit  ||  Overworld Spell #1 - Heal
+|-
+|  Stats  ||  $605a # 0000_0010  ||  bit  ||  Overworld Spell #2 - NumbOff
+|-
+|  Stats  ||  $605a # 0000_0100  ||  bit  ||  Overworld Spell #3 - Healmore
+|-
+|  Stats  ||  $605a # 0000_1000  ||  bit  ||  Overworld Spell #4 - Vivify
+|-
+|  Stats  ||  $605a # 0001_0000  ||  bit  ||  Overworld Spell #5 - Healall
+|-
+|  Stats  ||  $605a # 0010_0000  ||  bit  ||  Overworld Spell #6 - n/a
+|-
+|  Stats  ||  $605a # 0100_0000  ||  bit  ||  Overworld Spell #7 - n/a
+|-
+|  Stats  ||  $605a # 1000_0000  ||  bit  ||  Overworld Spell #8 - n/a
+|}
+
+===Mara===
+
+Index is <code>$03</code>.
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Description
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $605b # 0000_0001  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $605b # 0000_0010  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $605b # 0000_0100  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $605b # 0000_1000  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $605b # 0001_0000  ||  bit  ||  ...
+|-
+|  Stats  ||  $605b # 0010_0000  ||  bit  ||  Poisoned
+|-
+|  Stats  ||  $605b # 0100_0000  ||  bit  ||  Paralyzed
+|-
+|  Stats  ||  $605b # 1000_0000  ||  bit  ||  1 = Alive, 0 = Dead
+|-
+|  Stats  ||  $605c - $605d  ||  word  ||  Current HP
+|-
+|  Stats  ||  $605e - $605f  ||  word  ||  Current MP
+|-
+|  Stats  ||  $6060  ||  byte  ||  Level
+|-
+|  Stats  ||  $6061  ||  byte  ||  Strength
+|-
+|  Stats  ||  $6062  ||  byte  ||  Agility
+|-
+|  Stats  ||  $6063  ||  byte  ||  Vitality
+|-
+|  Stats  ||  $6064  ||  byte  ||  Intelligence
+|-
+|  Stats  ||  $6065  ||  byte  ||  Luck
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $6066  ||  byte  ||  ???
+|-
+|  Stats  ||  $6067 - $6068  ||  word  ||  Maximum HP
+|-
+|  Stats  ||  $6069 - $606a  ||  word  ||  Maximum MP
+|-
+|  Stats  ||  $606b - $606d  ||  long  ||  Current XP
+|-
+|  Stats  ||  $606e  ||  byte  ||  Item slot #1
+|-
+|  Stats  ||  $606f  ||  byte  ||  Item slot #2
+|-
+|  Stats  ||  $6070  ||  byte  ||  Item slot #3
+|-
+|  Stats  ||  $6071  ||  byte  ||  Item slot #4
+|-
+|  Stats  ||  $6072  ||  byte  ||  Item slot #5
+|-
+|  Stats  ||  $6073  ||  byte  ||  Item slot #6
+|-
+|  Stats  ||  $6074  ||  byte  ||  Item slot #7
+|-
+|  Stats  ||  $6075  ||  byte  ||  Item slot #8
+|-
+|  Stats  ||  $6076 # 0000_0001  ||  bit  ||  Battle Spell #1 - Blaze
+|-
+|  Stats  ||  $6076 # 0000_0010  ||  bit  ||  Battle Spell #2 - Sap
+|-
+|  Stats  ||  $6076 # 0000_0100  ||  bit  ||  Battle Spell #3 - Firebal
+|-
+|  Stats  ||  $6076 # 0000_1000  ||  bit  ||  Battle Spell #4 - RobMagic
+|-
+|  Stats  ||  $6076 # 0001_0000  ||  bit  ||  Battle Spell #5 - Bang
+|-
+|  Stats  ||  $6076 # 0010_0000  ||  bit  ||  Battle Spell #6 - BeDragon
+|-
+|  Stats  ||  $6076 # 0100_0000  ||  bit  ||  Battle Spell #7 - Blazemore
+|-
+|  Stats  ||  $6076 # 1000_0000  ||  bit  ||  Battle Spell #8 - Blazemost
+|-
+|  Stats  ||  $6077 # 0000_0001  ||  bit  ||  Battle Spell #9 - Firebane
+|-
+|  Stats  ||  $6077 # 0000_0010  ||  bit  ||  Battle Spell #10 - Firevolt
+|-
+|  Stats  ||  $6077 # 0000_0100  ||  bit  ||  Battle Spell #11 - Boom
+|-
+|  Stats  ||  $6077 # 0000_1000  ||  bit  ||  Battle Spell #12 - Explodet
+|-
+|  Stats  ||  $6077 # 0001_0000  ||  bit  ||  Battle Spell #13 - n/a
+|-
+|  Stats  ||  $6077 # 0010_0000  ||  bit  ||  Battle Spell #14 - n/a
+|-
+|  Stats  ||  $6077 # 0100_0000  ||  bit  ||  Battle Spell #15 - n/a
+|-
+|  Stats  ||  $6077 # 1000_0000  ||  bit  ||  Battle Spell #16 - n/a
+|-
+|  Stats  ||  $6078 # 0000_0001  ||  bit  ||  Overworld Spell #1 - Return
+|-
+|  Stats  ||  $6078 # 0000_0010  ||  bit  ||  Overworld Spell #2 - Outside
+|-
+|  Stats  ||  $6078 # 0000_0100  ||  bit  ||  Overworld Spell #3 - StepGuard
+|-
+|  Stats  ||  $6078 # 0000_1000  ||  bit  ||  Overworld Spell #4 - n/a
+|-
+|  Stats  ||  $6078 # 0001_0000  ||  bit  ||  Overworld Spell #5 - n/a
+|-
+|  Stats  ||  $6078 # 0010_0000  ||  bit  ||  Overworld Spell #6 - n/a
+|-
+|  Stats  ||  $6078 # 0100_0000  ||  bit  ||  Overworld Spell #7 - n/a
+|-
+|  Stats  ||  $6078 # 1000_0000  ||  bit  ||  Overworld Spell #8 - n/a
+|}
+
+===Brey===
+
+Index is <code>$04</code>.
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Description
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $6079 # 0000_0001  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $6079 # 0000_0010  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $6079 # 0000_0100  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $6079 # 0000_1000  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $6079 # 0001_0000  ||  bit  ||  ...
+|-
+|  Stats  ||  $6079 # 0010_0000  ||  bit  ||  Poisoned
+|-
+|  Stats  ||  $6079 # 0100_0000  ||  bit  ||  Paralyzed
+|-
+|  Stats  ||  $6079 # 1000_0000  ||  bit  ||  1 = Alive, 0 = Dead
+|-
+|  Stats  ||  $607a - $607b  ||  word  ||  Current HP
+|-
+|  Stats  ||  $607c - $607d  ||  word  ||  Current MP
+|-
+|  Stats  ||  $607e  ||  byte  ||  Level
+|-
+|  Stats  ||  $607f  ||  byte  ||  Strength
+|-
+|  Stats  ||  $6080  ||  byte  ||  Agility
+|-
+|  Stats  ||  $6081  ||  byte  ||  Vitality
+|-
+|  Stats  ||  $6082  ||  byte  ||  Intelligence
+|-
+|  Stats  ||  $6083  ||  byte  ||  Luck
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $6084  ||  byte  ||  ???
+|-
+|  Stats  ||  $6085 - $6086  ||  word  ||  Maximum HP
+|-
+|  Stats  ||  $6087 - $6088  ||  word  ||  Maximum MP
+|-
+|  Stats  ||  $6089 - $608b  ||  long  ||  Current XP
+|-
+|  Stats  ||  $608c  ||  byte  ||  Item slot #1
+|-
+|  Stats  ||  $608d  ||  byte  ||  Item slot #2
+|-
+|  Stats  ||  $608e  ||  byte  ||  Item slot #3
+|-
+|  Stats  ||  $608f  ||  byte  ||  Item slot #4
+|-
+|  Stats  ||  $6090  ||  byte  ||  Item slot #5
+|-
+|  Stats  ||  $6091  ||  byte  ||  Item slot #6
+|-
+|  Stats  ||  $6092  ||  byte  ||  Item slot #7
+|-
+|  Stats  ||  $6093  ||  byte  ||  Item slot #8
+|-
+|  Stats  ||  $6094 # 0000_0001  ||  bit  ||  Battle Spell #1 - IceBolt
+|-
+|  Stats  ||  $6094 # 0000_0010  ||  bit  ||  Battle Spell #2 - Sap
+|-
+|  Stats  ||  $6094 # 0000_0100  ||  bit  ||  Battle Spell #3 - Snowstorm
+|-
+|  Stats  ||  $6094 # 0000_1000  ||  bit  ||  Battle Spell #4 - Bounce
+|-
+|  Stats  ||  $6094 # 0001_0000  ||  bit  ||  Battle Spell #5 - Icespears
+|-
+|  Stats  ||  $6094 # 0010_0000  ||  bit  ||  Battle Spell #6 - Return
+|-
+|  Stats  ||  $6094 # 0100_0000  ||  bit  ||  Battle Spell #7 - RobMagic
+|-
+|  Stats  ||  $6094 # 1000_0000  ||  bit  ||  Battle Spell #8 - Defence
+|- 
+|  Stats  ||  $6095 # 0000_0001  ||  bit  ||  Battle Spell #9 - Chaos
+|-
+|  Stats  ||  $6095 # 0000_0010  ||  bit  ||  Battle Spell #10 - SpeedUp
+|-
+|  Stats  ||  $6095 # 0000_0100  ||  bit  ||  Battle Spell #11 - Blizzard
+|-
+|  Stats  ||  $6095 # 0000_1000  ||  bit  ||  Battle Spell #12 - Bikill
+|-
+|  Stats  ||  $6095 # 0001_0000  ||  bit  ||  Battle Spell #13 - n/a
+|-
+|  Stats  ||  $6095 # 0010_0000  ||  bit  ||  Battle Spell #14 - n/a
+|-
+|  Stats  ||  $6095 # 0100_0000  ||  bit  ||  Battle Spell #15 - n/a
+|-
+|  Stats  ||  $6095 # 1000_0000  ||  bit  ||  Battle Spell #16 - n/a
+|- 
+|  Stats  ||  $6096 # 0000_0001  ||  bit  ||  Overworld Spell #1 - Return
+|-
+|  Stats  ||  $6096 # 0000_0010  ||  bit  ||  Overworld Spell #2 - Outside
+|-
+|  Stats  ||  $6096 # 0000_0100  ||  bit  ||  Overworld Spell #3 - Day-Night
+|-
+|  Stats  ||  $6096 # 0000_1000  ||  bit  ||  Overworld Spell #4 - X-Ray
+|-
+|  Stats  ||  $6096 # 0001_0000  ||  bit  ||  Overworld Spell #5 - n/a
+|-
+|  Stats  ||  $6096 # 0010_0000  ||  bit  ||  Overworld Spell #6 - n/a
+|-
+|  Stats  ||  $6096 # 0100_0000  ||  bit  ||  Overworld Spell #7 - n/a
+|-
+|  Stats  ||  $6096 # 1000_0000  ||  bit  ||  Overworld Spell #8 - n/a
+|}
+
+===Taloon===
+
+Index is <code>$05</code>.
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Description
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $6097 # 0000_0001  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $6097 # 0000_0010  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $6097 # 0000_0100  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $6097 # 0000_1000  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $6097 # 0001_0000  ||  bit  ||  ...
+|-
+|  Stats  ||  $6097 # 0010_0000  ||  bit  ||  Poisoned
+|-
+|  Stats  ||  $6097 # 0100_0000  ||  bit  ||  Paralyzed
+|-
+|  Stats  ||  $6097 # 1000_0000  ||  bit  ||  1 = Alive, 0 = Dead
+|-
+|  Stats  ||  $6098 - $6099  ||  word  ||  Current HP
+|-
+|  Stats  ||  $609a - $609b  ||  word  ||  Current MP
+|-
+|  Stats  ||  $609c  ||  byte  ||  Level
+|-
+|  Stats  ||  $609d  ||  byte  ||  Strength
+|-
+|  Stats  ||  $609e  ||  byte  ||  Agility
+|-
+|  Stats  ||  $609f  ||  byte  ||  Vitality
+|-
+|  Stats  ||  $60a0  ||  byte  ||  Intelligence
+|-
+|  Stats  ||  $60a1  ||  byte  ||  Luck
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $60a2  ||  byte  ||  ???
+|-
+|  Stats  ||  $60a3 - $60a4  ||  word  ||  Maximum HP
+|-
+|  Stats  ||  $60a5 - $60a6  ||  word  ||  Maximum MP
+|-
+|  Stats  ||  $60a7 - $60a9  ||  long  ||  Current XP
+|-
+|  Stats  ||  $60aa  ||  byte  ||  Item slot #1
+|-
+|  Stats  ||  $60ab  ||  byte  ||  Item slot #2
+|-
+|  Stats  ||  $60ac  ||  byte  ||  Item slot #3
+|-
+|  Stats  ||  $60ad  ||  byte  ||  Item slot #4
+|-
+|  Stats  ||  $60ae  ||  byte  ||  Item slot #5
+|-
+|  Stats  ||  $60af  ||  byte  ||  Item slot #6
+|-
+|  Stats  ||  $60b0  ||  byte  ||  Item slot #7
+|-
+|  Stats  ||  $60b1  ||  byte  ||  Item slot #8
+|-
+|  Stats  ||  $60b2  ||  byte  ||  Battle Spells - n/a
+|-
+|  Stats  ||  $60b3  ||  byte  ||  Battle Spells - n/a
+|-
+|  Stats  ||  $60b4  ||  byte  ||  Overworld Spells - n/a
+|}
+
+===Ragnar===
+
+Index is <code>$06</code>.
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Description
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $60b5 # 0000_0001  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $60b5 # 0000_0010  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $60b5 # 0000_0100  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $60b5 # 0000_1000  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $60b5 # 0001_0000  ||  bit  ||  ...
+|-
+|  Stats  ||  $60b5 # 0010_0000  ||  bit  ||  Poisoned
+|-
+|  Stats  ||  $60b5 # 0100_0000  ||  bit  ||  Paralyzed
+|-
+|  Stats  ||  $60b5 # 1000_0000  ||  bit  ||  1 = Alive, 0 = Dead
+|-
+|  Stats  ||  $60b6 - $60b7  ||  word  ||  Current HP
+|-
+|  Stats  ||  $60b8 - $60b9  ||  word  ||  Current MP
+|-
+|  Stats  ||  $60ba  ||  byte  ||  Level
+|-
+|  Stats  ||  $60bb  ||  byte  ||  Strength
+|-
+|  Stats  ||  $60bc  ||  byte  ||  Agility
+|-
+|  Stats  ||  $60bd  ||  byte  ||  Vitality
+|-
+|  Stats  ||  $60be  ||  byte  ||  Intelligence
+|-
+|  Stats  ||  $60bf  ||  byte  ||  Luck
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $60c0  ||  byte  ||  ???
+|-
+|  Stats  ||  $60c1 - $60c2  ||  word  ||  Maximum HP
+|-
+|  Stats  ||  $60c3 - $60c4  ||  word  ||  Maximum MP
+|-
+|  Stats  ||  $60c5 - $60c7  ||  long  ||  Current XP
+|-
+|  Stats  ||  $60c8  ||  byte  ||  Item slot #1
+|-
+|  Stats  ||  $60c9  ||  byte  ||  Item slot #2
+|-
+|  Stats  ||  $60ca  ||  byte  ||  Item slot #3
+|-
+|  Stats  ||  $60cb  ||  byte  ||  Item slot #4
+|-
+|  Stats  ||  $60cc  ||  byte  ||  Item slot #5
+|-
+|  Stats  ||  $60cd  ||  byte  ||  Item slot #6
+|-
+|  Stats  ||  $60ce  ||  byte  ||  Item slot #7
+|-
+|  Stats  ||  $60cf  ||  byte  ||  Item slot #8
+|-
+|  Stats  ||  $60d0  ||  byte  ||  Battle Spells - n/a
+|-
+|  Stats  ||  $60d1  ||  byte  ||  Battle Spells - n/a
+|-
+|  Stats  ||  $60d2  ||  byte  ||  Overworld Spells - n/a
+|}
+
+===Alena===
+
+Index is <code>$07</code>.
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Description
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $60d3 # 0000_0001  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $60d3 # 0000_0010  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $60d3 # 0000_0100  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $60d3 # 0000_1000  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $60d3 # 0001_0000  ||  bit  ||  ...
+|-
+|  Stats  ||  $60d3 # 0010_0000  ||  bit  ||  Poisoned
+|-
+|  Stats  ||  $60d3 # 0100_0000  ||  bit  ||  Paralyzed
+|-
+|  Stats  ||  $60d3 # 1000_0000  ||  bit  ||  1 = Alive, 0 = Dead
+|-
+|  Stats  ||  $60d4 - $60d5  ||  word  ||  Current HP
+|-
+|  Stats  ||  $60d6 - $60d7  ||  word  ||  Current MP
+|-
+|  Stats  ||  $60d8  ||  byte  ||  Level
+|-
+|  Stats  ||  $60d9  ||  byte  ||  Strength
+|-
+|  Stats  ||  $60da  ||  byte  ||  Agility
+|-
+|  Stats  ||  $60db  ||  byte  ||  Vitality
+|-
+|  Stats  ||  $60dc  ||  byte  ||  Intelligence
+|-
+|  Stats  ||  $60dd  ||  byte  ||  Luck
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $60de  ||  byte  ||  ???
+|-
+|  Stats  ||  $60df - $60e0  ||  word  ||  Maximum HP
+|-
+|  Stats  ||  $60e1 - $60e2  ||  word  ||  Maximum MP
+|-
+|  Stats  ||  $60e3 - $60e5  ||  long  ||  Current XP
+|-
+|  Stats  ||  $60e6  ||  byte  ||  Item slot #1
+|-
+|  Stats  ||  $60e7  ||  byte  ||  Item slot #2
+|-
+|  Stats  ||  $60e8  ||  byte  ||  Item slot #3
+|-
+|  Stats  ||  $60e9  ||  byte  ||  Item slot #4
+|-
+|  Stats  ||  $60ea  ||  byte  ||  Item slot #5
+|-
+|  Stats  ||  $60eb  ||  byte  ||  Item slot #6
+|-
+|  Stats  ||  $60ec  ||  byte  ||  Item slot #7
+|-
+|  Stats  ||  $60ed  ||  byte  ||  Item slot #8
+|-
+|  Stats  ||  $60ee  ||  byte  ||  Battle Spells - n/a
+|-
+|  Stats  ||  $60ef  ||  byte  ||  Battle Spells - n/a
+|-
+|  Stats  ||  $60f0  ||  byte  ||  Overworld Spells - n/a
+|}
+
+===Healie===
+
+Index is <code>$09</code>.
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Description
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $610f # 0000_0001  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $610f # 0000_0010  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $610f # 0000_0100  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $610f # 0000_1000  ||  bit  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Stats  ||  $610f # 0001_0000  ||  bit  ||  ...
+|-
+|  Stats  ||  $610f # 0010_0000  ||  bit  ||  Poisoned
+|-
+|  Stats  ||  $610f # 0100_0000  ||  bit  ||  Paralyzed
+|-
+|  Stats  ||  $610f # 1000_0000  ||  bit  ||  1 = Alive, 0 = Dead
+|-
+|  Stats  ||  $6110 - $6111  ||  word  ||  Current HP
+|-
+|  Stats  ||  $6112 - $113  ||  word  ||  Current MP
+|-
+|  Stats  ||  $6114  ||  byte  ||  ??? (value = $c5)
+|}
+
+==Return Locations==
+
+Locations for the <code>Return</code> spell. This uses 3 bytes, one bit for each location. This is reset every chapter.
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Name
+|-
+|  Location  ||  $6165 # 0000_0001  ||  bit  ||  Branca
+|-
+|  Location  ||  $6165 # 0000_0010  ||  bit  ||  Endor
+|-
+|  Location  ||  $6165 # 0000_0100  ||  bit  ||  Bonmalmo
+|-
+|  Location  ||  $6165 # 0000_1000  ||  bit  ||  Aneaux
+|-
+|  Location  ||  $6165 # 0001_0000  ||  bit  ||  Konenber
+|-
+|  Location  ||  $6165 # 0010_0000  ||  bit  ||  Mintos
+|-
+|  Location  ||  $6165 # 0100_0000  ||  bit  ||  Soretta
+|-
+|  Location  ||  $6165 # 1000_0000  ||  bit  ||  Keeleon
+|-
+|  Location  ||  $6166 # 0000_0001  ||  bit  ||  Haville
+|-
+|  Location  ||  $6166 # 0000_0010  ||  bit  ||  Monbaraba
+|-
+|  Location  ||  $6166 # 0000_0100  ||  bit  ||  Santeem
+|-
+|  Location  ||  $6166 # 0000_1000  ||  bit  ||  Tempe
+|-
+|  Location  ||  $6166 # 0001_0000  ||  bit  ||  Stancia
+|-
+|  Location  ||  $6166 # 0010_0000  ||  bit  ||  Burland
+|-
+|  Location  ||  $6166 # 0100_0000  ||  bit  ||  Izmit
+|-
+|  Location  ||  $6166 # 1000_0000  ||  bit  ||  Gardenbur
+|-
+|  Location  ||  $6167 # 0000_0001  ||  bit  ||  Rosaville
+|-
+|  Location  ||  $6167 # 0000_0010  ||  bit  ||  Riverton
+|-
+|  Location  ||  $6167 # 0000_0100  ||  bit  ||  Dire Palace
+|-
+|  Location  ||  $6167 # 0000_1000  ||  bit  ||  Aktemto
+|-
+|  Location  ||  $6167 # 0001_0000  ||  bit  ||  Gottside
+|-
+|  Location  ||  $6167 # 0010_0000  ||  bit  ||  Zenithia
+|-
+|  Location  ||  $6167 # 0100_0000  ||  bit  ||  Last Refuge
+|-  style="background-color:#eaecf0;"
+|  Location  ||  $6167 # 1000_0000  ||  bit  ||  "Infsnip" - Lands in the middle of the ocean, not an actual destination
+|}
+
+==Treasure Chests==
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Map  !!  Sub-Map  !!  Name
+|-  style="background-color:#eaecf0;"
+|  Treasure  ||  $6266 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Treasure  ||  $6266 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $04  ||  Secret Playground Dungeon - B2, middle-right, chest, 600 gold
+|-  style="background-color:#eaecf0;"
+|  Treasure  ||  $6266 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $03  ||  Secret Playground Dungeon - B2, top, chest, Flying Shoes
+|-  style="background-color:#eaecf0;"
+|  Treasure  ||  $6266 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $01  ||  Secret Playground Dungeon - B1, bottom-right, chest, Medical Herb
+|-  style="background-color:#eaecf0;"
+|  Treasure  ||  $6266 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Treasure  ||  $6266 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Treasure  ||  $6266 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Treasure  ||  $6266 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
+   ||  style="text-align: center;"  |  
+$1c  ||  style="text-align: center;"  |  $01
+|-  style="background-color:#eaecf0;"
+|  Treasure  ||  $6276 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Treasure  ||  $6276 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Treasure  ||  $6276 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Treasure  ||  $6276 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Treasure  ||  $6276 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Treasure  ||  $6276 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Treasure  ||  $6276 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
+|-  style="background-color:#eaecf0;"
+|  Treasure  ||  $6276 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
+|}
 
 ==WRAM==
-* 0x615A = Current Chapter number (00 = chapter 1, 04  = chapter 5)
-* 0x615B = Current Tactics (00 = Normal, 01 = Save MP, 02 = Offensive, 03 = Defensive, 04 = Try Out, 05 = Use No MP)
+
+[TODO: move into main area]
+
 * 0x6EFE (0x20 bytes long) = ???  (initialized to FF bytes)
 * 0x6F20 (0x20 bytes long) = 'Smoothing Flags' that determine if walls use the front facing tile, or the regular tile.
 * 0x6F40 (0x40 bytes long) = Behavior of tiles (normal, wall, water, stairs, etc.) for current tile set (see [[Dragon Warrior IV/Tile Behaviors|Tile Behaviors]])
@@ -651,5 +996,6 @@
 ** ttttt = tile number 0-31
 ** RRR = roof number  0-7  (0 = no roof)
 
+=Links=
 
 {{Internal Data}}

@@ -1,5 +1,6 @@
 ==Sub-pages==
 {{namespaces}}
+{{subpage|SRAM map}}
 {{subpage|Map Data Format}}
 {{subpage|Map List}}
 {{subpage|Tile Behaviors}}

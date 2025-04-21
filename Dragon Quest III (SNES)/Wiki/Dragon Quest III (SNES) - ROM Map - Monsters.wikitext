@@ -5,13 +5,6 @@ Monsters, see [[Dragon Quest III (SNES)/Values#Monsters|Value List]]
 
 The main data resides from <code>$c20000-$c2xxxx</code>. Each entry is <code>$25</code> bytes long. There are <code>$a1</code> entries.
 
-{| class="wikitable sortable"
-|-
-!  Index  !!  Address  !! Size  !!  Description
-|-
-|  $00  ||  $xxxx-$xxxx  ||  $xxxx bytes  ||  
-|-
-
 ===Primary Data Structure===
 Each entry is <code>$25</code> bytes long.
 
@@ -157,5 +150,6 @@ Monsters ROM layout, expanded.
 |-
 |}
 
+=Links=
 
 {{Internal Data|game=Dragon Quest III (SNES)}}

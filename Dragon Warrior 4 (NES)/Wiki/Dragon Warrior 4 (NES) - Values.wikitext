@@ -3,6 +3,33 @@
 
 =Values=
 
+==Party Members==
+
+{| class="wikitable sortable"
+|-
+!  Value  !!  Name
+|-
+|  $00  ||  Hero
+|-
+|  $01  ||  Cristo
+|-
+|  $02  ||  Nara
+|-
+|  $03  ||  Mara
+|-
+|  $04  ||  Brey
+|-
+|  $05  ||  Taloon
+|-
+|  $06  ||  Ragnar
+|-
+|  $07  ||  Alena
+|-  style="background-color: #eaecf0;"
+|  $08  ||  ...
+|-
+|  $09  ||  Healie
+|}
+
 ==Items==
 
 The item index only uses the bottom 7 bits so values range from <code>$00</code> to <code>$7f</code>.
@@ -284,5 +311,230 @@ In the item bags, the high bit <code>%10000000</code> indicates that the item is
 [TODO: add list]
 
 ==Maps==
+
+[Todo: finish filling out the sub-map entries]
+
+{| class="wikitable sortable"
+|-
+!  Map  !!  Sub-Map  !!  Description
+|-
+|  style="text-align: center;"  |  $00  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Keeleon
+|-
+|  style="text-align: center;"  |  $01  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Santeem
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+|-
+|  style="text-align: center;"  |  $02  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Burland
+|-
+|  style="text-align: center;"  |  $02  ||  style="text-align: center;"  |  $01  ||  Burland - Castle, F1
+|-
+|  style="text-align: center;"  |  $02  ||  style="text-align: center;"  |  $02  ||  Burland - Castle, F2
+|-
+|  style="text-align: center;"  |  $02  ||  style="text-align: center;"  |  $03  ||  Burland - Flora's House, F2  --  Armor Shop, F2
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+|-
+|  style="text-align: center;"  |  $03  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Dire Palace
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+|-
+|  style="text-align: center;"  |  $04  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Endor
+|-
+|  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $01  ||  Endor - Casino/Monster Arena
+|-
+|  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $02  ||  Endor - Castle, F1
+|-
+|  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $03  ||  Endor - Bottom-right building, F1
+|-
+|  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $04  ||  Endor - Middle-right building, F1
+|-
+|  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $05  ||  Endor - Castle, B1
+|-
+|  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $06  ||  Endor - Castle, F2 (throne room)
+|-
+|  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $07  ||  Endor - Back Castle, Arena
+|-
+|  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $08  ||  Endor - Taloon's Shop, F2
+|-
+|  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $09  ||  Endor - Bottom-right building, F2
+|-
+|  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $0a  ||  Endor - Middle-right building, F2
+|-
+|  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $0b  ||  Endor - Inn, F2
+|-
+|  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $0c  ||  Endor - Castle, F3 (chamber)
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $0d  ||  ???
+|-
+|  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $0e  ||  Endor - Back Castle, F2
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+|-
+|  style="text-align: center;"  |  $05  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Bonmalmo
+|-
+|  style="text-align: center;"  |  $06  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Branca
+|-
+|  style="text-align: center;"  |  $07  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Soretta
+|-
+|  style="text-align: center;"  |  $08  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Gardenbur
+|-
+|  style="text-align: center;"  |  $09  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Stancia
+|-
+|  style="text-align: center;"  |  $0a  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Aktemto
+|-
+|  style="text-align: center;"  |  $0b  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Riverton
+|-
+|  style="text-align: center;"  |  $0c  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Bazaar
+|-
+|  style="text-align: center;"  |  $0d  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Mintos
+|-
+|  style="text-align: center;"  |  $0e  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Tempe
+|-
+|  style="text-align: center;"  |  $0f  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Frenor
+|-
+|  style="text-align: center;"  |  $10  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Aneaux
+|-
+|  style="text-align: center;"  |  $11  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Haville
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+|-
+|  style="text-align: center;"  |  $12  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Izmit
+|-
+|  style="text-align: center;"  |  $12  ||  style="text-align: center;"  |  $01  ||  Izmit - Inn, F2  --  Item Shop, F2  -- Middle-right house, F2
+|-
+|  style="text-align: center;"  |  $12  ||  style="text-align: center;"  |  $02  ||  Izmit - Jail, B1
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+|-
+|  style="text-align: center;"  |  $13  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Surene
+|-
+|  style="text-align: center;"  |  $14  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Hometown
+|-
+|  style="text-align: center;"  |  $15  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Monbaraba
+|-
+|  style="text-align: center;"  |  $16  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Lakanaba
+|-
+|  style="text-align: center;"  |  $17  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Kievs
+|-
+|  style="text-align: center;"  |  $18  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Foxville
+|-
+|  style="text-align: center;"  |  $19  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Seaside Village
+|-
+|  style="text-align: center;"  |  $1a  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Gottside
+|-
+|  style="text-align: center;"  |  $1b  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Rosaville
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+|-
+|  style="text-align: center;"  |  $1c  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Secret Playground Entrance
+|-
+|  style="text-align: center;"  |  $1c  ||  style="text-align: center;"  |  $01  ||  Secret Playground Entrance - B1, Exit
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+|-
+|  style="text-align: center;"  |  $1d  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  House of Prophecy
+|-
+|  style="text-align: center;"  |  $1e  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Shrine to Endor
+|-
+|  style="text-align: center;"  |  $1f  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Shrine northwest of Endor
+|-
+|  style="text-align: center;"  |  $20  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Woodsman's Shack
+|-
+|  style="text-align: center;"  |  $21  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Desert Inn
+|-
+|  style="text-align: center;"  |  $22  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Small Medal King
+|-
+|  style="text-align: center;"  |  $23  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Shrine North of Soretta
+|-
+|  style="text-align: center;"  |  $24  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Small Island Shack
+|-
+|  style="text-align: center;"  |  $25  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Royal Crypt Entrance
+|-
+|  style="text-align: center;"  |  $26  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Last Refuge
+|-
+|  style="text-align: center;"  |  $27  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  SW barrier shrine (Gigademon)
+|-
+|  style="text-align: center;"  |  $28  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  SE barrier shrine (Anderoug)
+|-
+|  style="text-align: center;"  |  $29  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  NW barrier shrine (Infurnus Shadow)
+|-
+|  style="text-align: center;"  |  $2a  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Final Cave (Entrance in underworld)
+|-
+|  style="text-align: center;"  |  $2b  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Travel Door near Riverton
+|-
+|  style="text-align: center;"  |  $2c  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Shrine of Colossus (outside)
+|-
+|  style="text-align: center;"  |  $2d  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Aktemto Mine (Dungeon)
+|-
+|  style="text-align: center;"  |  $2e  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Shrine of Breaking Waves
+|-
+|  style="text-align: center;"  |  $2f  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Padaquea Cave
+|-
+|  style="text-align: center;"  |  $30  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Bakor's Hideout
+|-
+|  style="text-align: center;"  |  $31  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Sphere Of Silence Cave
+|-
+|  style="text-align: center;"  |  $32  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Golden Bracelet Cave
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+|-
+|  style="text-align: center;"  |  $33  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Secret Playground Dungeon - B1, Section #1
+|-
+|  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $01  ||  Secret Playground Dungeon - B1, Section #2
+|-
+|  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $02  ||  Secret Playground Dungeon - B2, Exit
+|-
+|  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $03  ||  Secret Playground Dungeon - B2, Section #1 (left)
+|-
+|  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $04  ||  Secret Playground Dungeon - B2, Section #2 (right)
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $05  ||  Secret Playground Dungeon - B3, left dead-end
+|-
+|  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $06  ||  Secret Playground Dungeon - B3
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+|-
+|  style="text-align: center;"  |  $34  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Cascade Cave
+|-
+|  style="text-align: center;"  |  $35  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Final Cave
+|-
+|  style="text-align: center;"  |  $36  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Iron Safe Cave
+|-
+|  style="text-align: center;"  |  $37  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Cave of Betrayal
+|-
+|  style="text-align: center;"  |  $38  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Silver Statuette Cave
+|-
+|  style="text-align: center;"  |  $39  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Branca-Izmit tunnel
+|-
+|  style="text-align: center;"  |  $3a  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Tunnel between Branca and Endor
+|-
+|  style="text-align: center;"  |  $3b  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Royal Crypt Dungeon
+|-
+|  style="text-align: center;"  |  $3c  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Necrosaro's Lair
+|-
+|  style="text-align: center;"  |  $3d  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Zenethian Tower
+|-
+|  style="text-align: center;"  |  $3e  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Outside Zenethia
+|-
+|  style="text-align: center;"  |  $3f  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Birdsong Tower
+|-
+|  style="text-align: center;"  |  $40  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  World Tree
+|-
+|  style="text-align: center;"  |  $41  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Loch Tower
+|-
+|  style="text-align: center;"  |  $42  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Lighthouse
+|-
+|  style="text-align: center;"  |  $43  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Konenber
+|-
+|  style="text-align: center;"  |  $44  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  NE barrier shrine (Radimvice)
+|-
+|  style="text-align: center;"  |  $45  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Necrosaro's Palace
+|-
+|  style="text-align: center;"  |  $46  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Zenethia
+|-
+|  style="text-align: center;"  |  $47  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Shrine of the Horn
+|-
+|  style="text-align: center;"  |  $48  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Shrine of Colossus (Dungeon)
+|}
 
 [TODO: add list]
