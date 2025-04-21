@@ -17,18 +17,18 @@ Katakana that don't appear: ヰ ヱ
 !    !!  _0  !!  _1  !!  _2  !!  _3  !!  _4  !!  _5  !!  _6  !!  _7  !!  _8  !!  _9  !!  _a  !!  _b  !!  _c  !!  _d  !!  _e  !!  _f
 |-
 ! scope="row" |  0_
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  &nbsp;
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  ＊
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  あ
 |  い
 |  う
@@ -63,18 +63,18 @@ Katakana that don't appear: ヰ ヱ
 |  ャ
 |  ュ
 |  ョ
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  ★
 |  ー
 |  ?
 |  !
 |-
 ! scope="row" |  8_
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  .
 |  「
 |  …
@@ -103,40 +103,40 @@ Katakana that don't appear: ヰ ヱ
 |  X
 |  Y
 |  Z
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  {end of string}
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  b_
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  枚
 |  匹
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  c_
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  が
 |  ぎ
 |  ぐ
@@ -165,9 +165,9 @@ Katakana that don't appear: ヰ ヱ
 |  ペ
 |  ポ
 |  〜
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |}
 
 ==== As seen in RAM ====
@@ -767,7 +767,7 @@ Download TBL file: <code>[https://raw.githubusercontent.com/ButThouMust/dq6-sfc/
 |  て  ||  マ  ||  ン  ||  に  ||  ほ  ||  ：  ||  コ  ||  ス  ||  ソ  ||  ヌ  ||  フ  ||  ロ  ||  暮  ||  ＿  ||  ｛  ||  ェ
 |-
 !  scope="row"  |  060_
-|  ニ  ||  ユ  ||  ヘ  ||  ペ  ||  鍵  ||  極  ||  滅  ||  職  ||  ュ  ||  ョ  ||  ヨ  ||  了  ||  style="background-color:#eaecf0;"  |    ||  style="background-color:#eaecf0;"  |    ||  style="background-color:#eaecf0;"  |    ||  style="background-color:#eaecf0;"  |  
+|  ニ  ||  ユ  ||  ヘ  ||  ペ  ||  鍵  ||  極  ||  滅  ||  職  ||  ュ  ||  ョ  ||  ヨ  ||  了  ||  style="background-color: #eaecf0;"  |    ||  style="background-color: #eaecf0;"  |    ||  style="background-color: #eaecf0;"  |    ||  style="background-color: #eaecf0;"  |  
 |}
 
 ==English Translation==
@@ -791,7 +791,7 @@ The space (<code>&nbsp;</code>) character is $3f.
 !    !!  _0  !!  _1  !!  _2  !!  _3  !!  _4  !!  _5  !!  _6  !!  _7  !!  _8  !!  _9  !!  _a  !!  _b  !!  _c  !!  _d  !!  _e  !!  _f
 |-
 ! scope="row" |  0_
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  A  ||  B  ||  C  ||  D  ||  E  ||  F  ||  G  ||  H  ||  I  ||  J  ||  K  ||  L  ||  M  ||  N  ||  O
 |-
 ! scope="row" |  1_
@@ -806,53 +806,53 @@ The space (<code>&nbsp;</code>) character is $3f.
 |  x
 |  y
 |  z
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  &nbsp;
 |-
 ! scope="row" |  4_
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  !
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  '
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  ,
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  .
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  5_
 |  :
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |}
 
 === TBL File ===

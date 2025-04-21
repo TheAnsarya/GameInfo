@@ -159,7 +159,7 @@
 {| class="wikitable sortable"
 |-
 !  Value  !!  Category  !!  Japanese  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $00  ||  colspan="3"  |  ...
 |-
 |  style="text-align: center;"  |  $01  ||  Weapons  ||  ひのきのぼう  ||  Cypress Stick
@@ -617,59 +617,59 @@
 |  style="text-align: center;"  |  $e3  ||  Books  ||  ずるっこのほん  ||  Cheater Guide
 |-
 |  style="text-align: center;"  |  $e4  ||  Consumables  ||  すごろくけん  ||  Pachisi Ticket
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $e5  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $e6  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $e7  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $e8  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $e9  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $ea  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $eb  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $ec  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $ed  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $ee  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $ef  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $f0  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $f1  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $f2  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $f3  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $f4  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $f5  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $f6  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $f7  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $f8  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $f9  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $fa  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $fb  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $fc  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $fd  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $fe  ||  colspan="3"  |  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  style="text-align: center;"  |  $ff  ||  colspan="3"  |  ...
 |}
 

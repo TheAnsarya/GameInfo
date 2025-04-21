@@ -45,9 +45,9 @@ The space (<code>&nbsp;</code>) character is $23.
 |  V
 |-
 ! scope="row" |  2_
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  &nbsp;
 |  W
 |  X
@@ -55,30 +55,30 @@ The space (<code>&nbsp;</code>) character is $23.
 |  '
 |  -
 |  !
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  ·
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  3_
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  .
 |  ©
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |}
 
 == TBL File ==

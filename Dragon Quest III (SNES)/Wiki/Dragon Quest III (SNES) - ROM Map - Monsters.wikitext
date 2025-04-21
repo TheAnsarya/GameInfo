@@ -133,7 +133,7 @@ Each entry is <code>$25</code> bytes long.
 |  $22-$23  ||  $ffff  ||  word  ||  HP
 |-
 |  $24  ||  $01  ||  bit  ||  Is a Metal monster
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  $24  ||  $fe  ||  7 bits  ||  (Unused)
 |}
 

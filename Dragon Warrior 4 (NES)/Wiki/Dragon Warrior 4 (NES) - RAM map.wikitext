@@ -10,13 +10,13 @@ System RAM is addressed from <code>$0000</code> to <code>$07ff</code>.
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ???  ||  $000 - $062  ||  ...  ||  ???
 |-
 |  World  ||  $063  ||  byte  ||  Map Number
 |-
 |  World  ||  $064  ||  byte  ||  Sub-Map Number
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ???  ||  $065 - $7ff  ||  ...  ||  ???
 |}
 
@@ -27,7 +27,7 @@ WRAM is addressed from <code>$6000</code> to <code>$7fff</code>.
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ???  ||  $6000  ||  byte  ||  ???
 |-
 |  Party Members  ||  $6001 - $601e  ||  30 bytes  ||  Hero ([[#Hero|details]])
@@ -45,11 +45,11 @@ WRAM is addressed from <code>$6000</code> to <code>$7fff</code>.
 |  Party Members  ||  $60b5 - $60d2  ||  30 bytes  ||  Ragnar ([[#Ragnar|details]])
 |-
 |  Party Members  ||  $60d3 - $60f0  ||  30 bytes  ||  Alena ([[#Alena|details]])
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $60f1 - $610e  ||  ...  ||  ???
 |-
 |  Party Members  ||  $610f - $xxxx  ||  xxx bytes  ||  Healie ([[#Healie|details]])
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $xxxx - $6156  ||  ...  ||  ???
 |-
 |  General  ||  $6157 - $6159  ||  long  ||  Gold (TODO: verify 3 bytes length)
@@ -57,15 +57,15 @@ WRAM is addressed from <code>$6000</code> to <code>$7fff</code>.
 |  General  ||  $615a  ||  byte  ||  Chapter number (0 = chapter 1, ... 4 = chapter 5)
 |-
 |  General  ||  $615b  ||  byte  ||  Current Tactics (00 = Normal, 01 = Save MP, 02 = Offensive, 03 = Defensive, 04 = Try Out, 05 = Use No MP)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $615c - $6164  ||  ...  ||  ???
 |-
 |  General  ||  $6165 - $6167  ||  long  ||  Return Locations ([[#Return Locations|details]])
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $6168 - $7fff  ||  ...  ||  ???
 |-
 |  General  ||  $616a - $616d  ||  4 bytes  ||  Party Order
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $6168 - $7fff  ||  ...  ||  ???
 |}
 
@@ -82,15 +82,15 @@ Index is <code>$00</code>.
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $6001 # 0000_0001  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $6001 # 0000_0010  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $6001 # 0000_0100  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $6001 # 0000_1000  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $6001 # 0001_0000  ||  bit  ||  ...
 |-
 |  Stats  ||  $6001 # 0010_0000  ||  bit  ||  Poisoned
@@ -114,7 +114,7 @@ Index is <code>$00</code>.
 |  Stats  ||  $600a  ||  byte  ||  Intelligence
 |-
 |  Stats  ||  $600b  ||  byte  ||  Luck
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $600c  ||  byte  ||  ???
 |-
 |  Stats  ||  $600d - $600e  ||  word  ||  Maximum HP
@@ -195,15 +195,15 @@ Index is <code>$01</code>.
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $601f # 0000_0001  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $601f # 0000_0010  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $601f # 0000_0100  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $601f # 0000_1000  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $601f # 0001_0000  ||  bit  ||  ...
 |-
 |  Stats  ||  $601f # 0010_0000  ||  bit  ||  Poisoned
@@ -227,7 +227,7 @@ Index is <code>$01</code>.
 |  Stats  ||  $6028  ||  byte  ||  Intelligence
 |-
 |  Stats  ||  $6029  ||  byte  ||  Luck
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $602a  ||  byte  ||  ???
 |-
 |  Stats  ||  $602b - $602c  ||  word  ||  Maximum HP
@@ -308,15 +308,15 @@ Index is <code>$02</code>.
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $603d # 0000_0001  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $603d # 0000_0010  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $603d # 0000_0100  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $603d # 0000_1000  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $603d # 0001_0000  ||  bit  ||  ...
 |-
 |  Stats  ||  $603d # 0010_0000  ||  bit  ||  Poisoned
@@ -340,7 +340,7 @@ Index is <code>$02</code>.
 |  Stats  ||  $6046  ||  byte  ||  Intelligence
 |-
 |  Stats  ||  $6047  ||  byte  ||  Luck
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $6048  ||  byte  ||  ???
 |-
 |  Stats  ||  $6049 - $604a  ||  word  ||  Maximum HP
@@ -421,15 +421,15 @@ Index is <code>$03</code>.
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $605b # 0000_0001  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $605b # 0000_0010  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $605b # 0000_0100  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $605b # 0000_1000  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $605b # 0001_0000  ||  bit  ||  ...
 |-
 |  Stats  ||  $605b # 0010_0000  ||  bit  ||  Poisoned
@@ -453,7 +453,7 @@ Index is <code>$03</code>.
 |  Stats  ||  $6064  ||  byte  ||  Intelligence
 |-
 |  Stats  ||  $6065  ||  byte  ||  Luck
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $6066  ||  byte  ||  ???
 |-
 |  Stats  ||  $6067 - $6068  ||  word  ||  Maximum HP
@@ -534,15 +534,15 @@ Index is <code>$04</code>.
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $6079 # 0000_0001  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $6079 # 0000_0010  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $6079 # 0000_0100  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $6079 # 0000_1000  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $6079 # 0001_0000  ||  bit  ||  ...
 |-
 |  Stats  ||  $6079 # 0010_0000  ||  bit  ||  Poisoned
@@ -566,7 +566,7 @@ Index is <code>$04</code>.
 |  Stats  ||  $6082  ||  byte  ||  Intelligence
 |-
 |  Stats  ||  $6083  ||  byte  ||  Luck
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $6084  ||  byte  ||  ???
 |-
 |  Stats  ||  $6085 - $6086  ||  word  ||  Maximum HP
@@ -647,15 +647,15 @@ Index is <code>$05</code>.
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $6097 # 0000_0001  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $6097 # 0000_0010  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $6097 # 0000_0100  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $6097 # 0000_1000  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $6097 # 0001_0000  ||  bit  ||  ...
 |-
 |  Stats  ||  $6097 # 0010_0000  ||  bit  ||  Poisoned
@@ -679,7 +679,7 @@ Index is <code>$05</code>.
 |  Stats  ||  $60a0  ||  byte  ||  Intelligence
 |-
 |  Stats  ||  $60a1  ||  byte  ||  Luck
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $60a2  ||  byte  ||  ???
 |-
 |  Stats  ||  $60a3 - $60a4  ||  word  ||  Maximum HP
@@ -718,15 +718,15 @@ Index is <code>$06</code>.
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $60b5 # 0000_0001  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $60b5 # 0000_0010  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $60b5 # 0000_0100  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $60b5 # 0000_1000  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $60b5 # 0001_0000  ||  bit  ||  ...
 |-
 |  Stats  ||  $60b5 # 0010_0000  ||  bit  ||  Poisoned
@@ -750,7 +750,7 @@ Index is <code>$06</code>.
 |  Stats  ||  $60be  ||  byte  ||  Intelligence
 |-
 |  Stats  ||  $60bf  ||  byte  ||  Luck
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $60c0  ||  byte  ||  ???
 |-
 |  Stats  ||  $60c1 - $60c2  ||  word  ||  Maximum HP
@@ -789,15 +789,15 @@ Index is <code>$07</code>.
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $60d3 # 0000_0001  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $60d3 # 0000_0010  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $60d3 # 0000_0100  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $60d3 # 0000_1000  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $60d3 # 0001_0000  ||  bit  ||  ...
 |-
 |  Stats  ||  $60d3 # 0010_0000  ||  bit  ||  Poisoned
@@ -821,7 +821,7 @@ Index is <code>$07</code>.
 |  Stats  ||  $60dc  ||  byte  ||  Intelligence
 |-
 |  Stats  ||  $60dd  ||  byte  ||  Luck
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $60de  ||  byte  ||  ???
 |-
 |  Stats  ||  $60df - $60e0  ||  word  ||  Maximum HP
@@ -860,15 +860,15 @@ Index is <code>$09</code>.
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $610f # 0000_0001  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $610f # 0000_0010  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $610f # 0000_0100  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $610f # 0000_1000  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $610f # 0001_0000  ||  bit  ||  ...
 |-
 |  Stats  ||  $610f # 0010_0000  ||  bit  ||  Poisoned
@@ -937,7 +937,7 @@ Locations for the <code>Return</code> spell. This uses 3 bytes, one bit for each
 |  Location  ||  $6167 # 0010_0000  ||  bit  ||  Zenithia
 |-
 |  Location  ||  $6167 # 0100_0000  ||  bit  ||  Last Refuge
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Location  ||  $6167 # 1000_0000  ||  bit  ||  "Infsnip" - Lands in the middle of the ocean, not an actual destination
 |}
 
@@ -946,39 +946,39 @@ Locations for the <code>Return</code> spell. This uses 3 bytes, one bit for each
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Map  !!  Sub-Map  !!  Name
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6266 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6266 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $04  ||  Secret Playground Dungeon - B2, middle-right, chest, 600 gold
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6266 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $03  ||  Secret Playground Dungeon - B2, top, chest, Flying Shoes
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6266 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $01  ||  Secret Playground Dungeon - B1, bottom-right, chest, Medical Herb
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6266 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6266 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6266 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6266 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
    ||  style="text-align: center;"  |  
 $1c  ||  style="text-align: center;"  |  $01
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6276 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6276 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6276 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6276 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6276 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6276 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6276 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6276 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
 |}
 

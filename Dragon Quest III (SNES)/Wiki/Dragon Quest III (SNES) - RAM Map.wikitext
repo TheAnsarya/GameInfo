@@ -7,7 +7,7 @@
 !  Category  !!  Address  !!  Size  !!  Description
 |-
 |  Stats  ||  $7e3696  ||  long  ||  🪙 Current amount of Gold
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3699-$7e3724  ||  140 bytes   ||  ...
 |-
 |  Bag  ||  $7e3725-$7e3824  ||  256 bytes  ||  📦 Each byte is which item is in bag slot, 0 means empty, game uses values $01-$e4
@@ -53,7 +53,7 @@
 |  Stats  ||  $7e3d5d-$7e3d98  ||  $3c bytes  ||  Party member #19's status and information ([[Dragon Quest III (SNES)/RAM map/Party Members#Primary_Data_Structure|data structure]])
 |-
 |  Stats  ||  $7e3d99-$7e3dd4  ||  $3c bytes  ||  Party member #20's status and information ([[Dragon Quest III (SNES)/RAM map/Party Members#Primary_Data_Structure|data structure]])
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3dd5-$---  ||  ---   ||  ...
 |-
 |  Joypad  ||  $7e7ff8-$7e7ff9  ||  word  ||  🎮 Joypad Buttons - registers $4218 and $4219 are read and stored here
@@ -67,47 +67,47 @@ Several bytes are skipped because they are read/written in 16bit mode while the 
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !! Size  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  colspan="4"  |  ...
 |-
 |  Graphics Settings  ||  $7e7f8a  ||  byte  ||  $2101 - 🖼️ OAM object size and object base
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e7f8b  ||  byte  ||  Skip!
 |-
 |  Graphics Settings  ||  $7e7f8c  ||  byte  ||  $2105 - 🖼️ BG mode and BG character size
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e7f8d  ||  byte  ||  Skip!
 |-
 |  Graphics Settings  ||  $7e7f8e  ||  byte  ||  $2106 - 🖼️ Mosaic size and mosaic enable
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e7f8f  ||  byte  ||  Skip!
 |-
 |  Graphics Settings  ||  $7e7f90  ||  byte  ||  $2107 - 🖼️ BG 1 screen base and screen size
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e7f91  ||  byte  ||  Skip!
 |-
 |  Graphics Settings  ||  $7e7f92  ||  byte  ||  $2108 - 🖼️ BG 2 screen base and screen size
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e7f93  ||  byte  ||  Skip!
 |-
 |  Graphics Settings  ||  $7e7f94  ||  byte  ||  $2109 - 🖼️ BG 3 screen base and screen size
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e7f95  ||  byte  ||  Skip!
 |-
 |  Graphics Settings  ||  $7e7f96  ||  byte  ||  $210a - 🖼️ BG 4 screen base and screen size
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e7f97  ||  byte  ||  Skip!
 |-
 |  Graphics Settings  ||  $7e7f98  ||  byte  ||  $210b - 🖼️ BG 1 & 2 tile base addresses
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e7f99  ||  byte  ||  Skip!
 |-
 |  Graphics Settings  ||  $7e7f9a  ||  byte  ||  $210c - 🖼️ BG 3 & 4 tile base addresses
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e7f9b - $7e...  ||  $ bytes  ||  ...
 |-
 |  Graphics Settings  ||  $7e7fac  ||  byte  ||  $211a - 🖼️ Mode 7 Settings Register
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e7fad  ||  byte  ||  Skip!
 |-
 |  Graphics Settings  ||  $7e7fae - $7e7faf  ||  word  ||  $211b - 🖼️ Mode 7 Matrix Registers - A
@@ -123,15 +123,15 @@ Several bytes are skipped because they are read/written in 16bit mode while the 
 |  Graphics Settings  ||  $7e7fb8 - $7e7fb9  ||  word  ||  $2120 - 🖼️ Mode 7 Matrix Registers - Y
 |-
 |  Graphics Settings  ||  $7e7fba  ||  byte  ||  $2123 - 🖼️ Window mask setting, BG 1 & 2
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e7fbb  ||  byte  ||  Skip!
 |-
 |  Graphics Settings  ||  $7e7fbc  ||  byte  ||  $2124 - 🖼️ Window mask setting, BG 3 & 4
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e7fbd  ||  byte  ||  Skip!
 |-
 |  Graphics Settings  ||  $7e7fbe  ||  byte  ||  $2125 - 🖼️ Window mask setting, OBJ
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e7fbf  ||  byte  ||  Skip!
 |-
 |  Graphics Settings  ||  $7e7fc0  ||  byte  ||  $2126 - 🖼️ Window 1 left position
@@ -143,47 +143,47 @@ Several bytes are skipped because they are read/written in 16bit mode while the 
 |  Graphics Settings  ||  $7e7fc3  ||  byte  ||  $2129 - 🖼️ Window 2 right position
 |-
 |  Graphics Settings  ||  $7e7fc4  ||  byte  ||  $212a - 🖼️ Window 1/2 mask logic, BG 1-4
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e7fc5  ||  byte  ||  Skip!
 |-
 |  Graphics Settings  ||  $7e7fc6  ||  byte  ||  $212b - 🖼️ Window 1/2 mask logic, MATH and OBJ
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e7fc7  ||  byte  ||  Skip!
 |-
 |  Graphics Settings  ||  $7e7fc8  ||  byte  ||  $212c - 🖼️ Main screen designation
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e7fc9  ||  byte  ||  Skip!
 |-
 |  Graphics Settings  ||  $7e7fca  ||  byte  ||  $212d - 🖼️ Sub screen designation
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e7fcb  ||  byte  ||  Skip!
 |-
 |  Graphics Settings  ||  $7e7fcc  ||  byte  ||  $212e - 🖼️ Window area main screen disable
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e7fcd  ||  byte  ||  Skip!
 |-
 |  Graphics Settings  ||  $7e7fce  ||  byte  ||  $212f - 🖼️ Window area sub screen disable
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e7fcf  ||  byte  ||  Skip!
 |-
 |  Graphics Settings  ||  $7e7fd0  ||  byte  ||  $2130 - 🎨 Color math control A
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e7fd1  ||  byte  ||  Skip!
 |-
 |  Graphics Settings  ||  $7e7fd2  ||  byte  ||  $2131 - 🎨 Color math control B
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e7fd3  ||  byte  ||  Skip!
 |-
 |  Graphics Settings  ||  $7e7fd4  ||  word  ||  $2132 - 🎨 Color math sub screen backdrop color, RGB intensities stored as 0bbbbbgggggrrrrr
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  colspan="4"  |  ...
 |-
 |  Graphics Settings  ||  $7e7fda  ||  byte  ||  $2133 - 🖼️ Screen mode/video select
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  colspan="4"  |  ...
 |-
 |  Graphics Loading  ||  $7e7ffe - $7e81fd  ||  $200 bytes  ||  🎨 CGRAM mirror, palettes/colors
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  colspan="4"  |  ...
 |-
 |  Graphics Loading  ||  $7e8bae - $7e8dad  ||  $100 words  ||  $4302 - ↔️ DMA source addresses
@@ -195,15 +195,15 @@ Several bytes are skipped because they are read/written in 16bit mode while the 
 |  Graphics Loading  ||  $7e91ae - $7e93ad  ||  $100 words  ||  $4305 - ↔️ DMA transfer sizes
 |-
 |  Graphics Loading  ||  $7e93ae  ||  byte  ||  ↔️ Number of DMA transfers to perform (indexes the preceding arrays)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  colspan="4"  |  ...
 |-
 |  Graphics Loading  ||  $7edb1f - $7edd3e  ||  $220 bytes  ||  👾 OAM - Sprite data
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  colspan="4"  |  ...
 |-
 |  Graphics Loading  ||  $7faeea - $7fb0e9  ||  $100 words  ||  ↔️ Tile indexes, which tiles to copy, used to fill the DMA copy scheduler data in $7e8bae - $7e93ae
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  colspan="4"  |  ...
 |-
 |}

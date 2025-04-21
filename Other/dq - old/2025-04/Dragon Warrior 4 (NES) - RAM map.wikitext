@@ -619,7 +619,7 @@
 |-
 |  Stats  ||  $60f0  ||  byte  ||  ✨ Overworld Spells - n/a
 |-
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $60f1 - $010f  ||  ...  ||  ???
 |-
 !  colspan="4"  |  🐙 NPC Companion (Healie, Strom, etc)
@@ -628,7 +628,7 @@
 |-
 |  Stats  ||  $6112 - $6113 ||  word  ||  📈 Current MP
 |-
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $6114 - $0156  ||  ...  ||  ???
 |-
 |  General  ||  $6157 - $0159  ||  long  ||  Gold (TODO: verify 3 bytes length)
@@ -636,7 +636,7 @@
 |  General  ||  $615a  ||  byte  ||  Chapter number (0 = chapter 1, ... 4 = chapter 5)
 |-
 |  General  ||  $615b  ||  byte  ||  Current Tactics (00 = Normal, 01 = Save MP, 02 = Offensive, 03 = Defensive, 04 = Try Out, 05 = Use No MP)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $615c - $6164  ||  ...  ||  ???
 |-
 |  General  ||  $0165 - $0167  ||  long  ||  Return Locations ([[#Return Locations|details]])
@@ -695,7 +695,7 @@ Locations for the <code>Return</code> spell. This uses 3 bytes, one bit for each
 |  Location  ||  $6167 # 00100000  ||  bit  ||  Zenithia
 |-
 |  Location  ||  $6167 # 01000000  ||  bit  ||  Last Refuge
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Location  ||  $6167 # 10000000  ||  bit  ||  "Infsnip" - Lands in the middle of the ocean, not an actual destination
 |}
 

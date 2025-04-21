@@ -149,69 +149,69 @@ The space (<code>&nbsp;</code>) character is $00.
 |  !
 |  ▼
 |  ▶
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  💀
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  8_
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  /
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  :
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  —
 |  ✱
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  .
 |  「
 |  …
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  9_
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  a_
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  b_
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  A
 |  B
 |  C
@@ -230,73 +230,73 @@ The space (<code>&nbsp;</code>) character is $00.
 |  N
 |  O
 |  P
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  d_
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  e_
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  f_
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |}
 
 === As seen in RAM ===
@@ -603,39 +603,39 @@ The space (<code>&nbsp;</code>) character is $00.
 |-
 ! scope="row" |  0_
 |  &nbsp;  ||  0  ||  1  ||  2  ||  3  ||  4  ||  5  ||  6  ||  7  ||  8  ||  9
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  1_
 |  A  ||  B  ||  C  ||  D  ||  E  ||  F  ||  G  ||  H  ||  I  ||  J  ||  K  ||  L  ||  M  ||  N  ||  O  ||  P
 |-
 ! scope="row" |  2_
 |  Q  ||  R  ||  S  ||  T  ||  U  ||  V  ||  W  ||  X  ||  Y  ||  Z
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  3_
 |  a  ||  b  ||  c  ||  d  ||  e  ||  f  ||  g  ||  h  ||  i  ||  j  ||  k  ||  l  ||  m  ||  n  ||  o  ||  p
 |-
 ! scope="row" |  4_
 |  q  ||  r  ||  s  ||  t  ||  u  ||  v  ||  w  ||  x  ||  y  ||  z
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  5_
 |  .  ||  ,  ||  :  ||  ;
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  '  ||  “  ||  ”  ||  !  ||  ?  ||  [  ||  ]  ||  (  ||  )  ||  -  ||  ✱
 |}
 

@@ -90,7 +90,7 @@ Each entry is <code>$3c</code> bytes long.
 |  Stats  ||  $15  ||  $ff  ||  byte  ||  📈 Luck Carryover, Used during leveling up
 |-
 |  Stats  ||  $16-$1a  ||  n/a  ||  5 bytes  ||  🏷️ Name, 4 characters max followed by $ac (end of string)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $1b-$1e  ||  n/a  ||  4 bytes   ||  🏷️ Also part of name???
 |-
 |  Stats  ||  $1f  ||  $01  ||  bit  ||  Is Character Poisoned?
@@ -110,7 +110,7 @@ Each entry is <code>$3c</code> bytes long.
 |  Stats  ||  $20  ||  $10  ||  bit  ||  Character Type, Is the Hero, exclusive with next attribute
 |-
 |  Stats  ||  $20  ||  $20  ||  bit  ||  Character Type, Is regular party member, exclusive with previous attribute
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $20  ||  $c0  ||  2 bits  ||  (Unused)
 |-
 |  Stats  ||  $21  ||  $ff  ||  byte  ||  Character [[Dragon Quest III (SNES)/Values#Class|Class]]
@@ -157,30 +157,30 @@ Party Members RAM layout, expanded.
 |  Stats  ||  $7e3934  ||  byte  ||  📈 Hero's wisdom
 |-
 |  Stats  ||  $7e3935  ||  byte  ||  📈 Hero's luck, excluding equipment
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3936-$7e393a  ||  5 bytes   ||  ...
 |-
 |  Stats  ||  $7e393b-$7e393f  ||  5 bytes  ||  🏷️ Hero's name, 4 characters max followed by $ac (end of string)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3940-$7e3943  ||  4 bytes   ||  ...
 |-
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $7e3944  ||  0000 0001  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $7e3944  ||  0000 0010  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $7e3944  ||  0000 0100  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $7e3944  ||  0000 1000  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $7e3944  ||  0001 0000  ||  ...
 |-
 |  Stats  ||  $7e3944  ||  0010 0000  ||  Hero's Gender - 0: Male, 1: Female
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $7e3944  ||  0100 0000  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $7e3944  ||  1000 0000  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3945-$7e3948  ||  4 bytes   ||  ...
 |-
 |  Spells  ||  $7e3949-$7e3952  ||  10 bytes  ||  Hero's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
@@ -214,11 +214,11 @@ Party Members RAM layout, expanded.
 |  Stats  ||  $7e3970  ||  byte  ||  📈 Party member #2's wisdom
 |-
 |  Stats  ||  $7e3971  ||  byte  ||  📈 Party member #2's luck, excluding equipment
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3972-$7e3976  ||  5 bytes   ||  ...
 |-
 |  Stats  ||  $7e3977-$7e397b  ||  5 bytes  ||  🏷️ Party member #2's name, 4 characters max followed by $ac (end of string)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e397c-$7e3984  ||  9 bytes   ||  ...
 |-
 |  Spells  ||  $7e3985-$7e398e  ||  10 bytes  ||  Party member #2's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
@@ -252,11 +252,11 @@ Party Members RAM layout, expanded.
 |  Stats  ||  $7e39ac  ||  byte  ||  📈 Party member #3's wisdom
 |-
 |  Stats  ||  $7e39ad  ||  byte  ||  📈 Party member #3's luck, excluding equipment
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e39ae-$7e39b2  ||  5 bytes   ||  ...
 |-
 |  Stats  ||  $7e39b3-$7e39b7  ||  5 bytes  ||  🏷️ Party member #3's name, 4 characters max followed by $ac (end of string)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e39b8-$7e39c0  ||  9 bytes   ||  ...
 |-
 |  Spells  ||  $7e39c1-$7e39ca  ||  10 bytes  ||  Party member #3's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
@@ -290,11 +290,11 @@ Party Members RAM layout, expanded.
 |  Stats  ||  $7e39e8  ||  byte  ||  📈 Party member #4's wisdom
 |-
 |  Stats  ||  $7e39e9  ||  byte  ||  📈 Party member #4's luck, excluding equipment
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e39ea-$7e39ee  ||  5 bytes   ||  ...
 |-
 |  Stats  ||  $7e39ef-$7e39f3  ||  5 bytes  ||  🏷️ Party member #4's name, 4 characters max followed by $ac (end of string)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e39f4-$7e39fc  ||  9 bytes   ||  ...
 |-
 |  Spells  ||  $7e39fd-$7e3a06  ||  10 bytes  ||  Party member #4's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
@@ -328,11 +328,11 @@ Party Members RAM layout, expanded.
 |  Stats  ||  $7e3a24  ||  byte  ||  📈 Party member #5's wisdom
 |-
 |  Stats  ||  $7e3a25  ||  byte  ||  📈 Party member #5's luck, excluding equipment
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3a26-$7e3a2a  ||  5 bytes   ||  ...
 |-
 |  Stats  ||  $7e3a2b-$7e3a2f  ||  5 bytes  ||  🏷️ Party member #5's name, 4 characters max followed by $ac (end of string)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3a30-$7e3a38  ||  9 bytes   ||  ...
 |-
 |  Spells  ||  $7e3a39-$7e3a42  ||  10 bytes  ||  Party member #5's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
@@ -366,11 +366,11 @@ Party Members RAM layout, expanded.
 |  Stats  ||  $7e3a60  ||  byte  ||  📈 Party member #6's wisdom
 |-
 |  Stats  ||  $7e3a61  ||  byte  ||  📈 Party member #6's luck, excluding equipment
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3a62-$7e3a66  ||  5 bytes   ||  ...
 |-
 |  Stats  ||  $7e3a67-$7e3a6b  ||  5 bytes  ||  🏷️ Party member #6's name, 4 characters max followed by $ac (end of string)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3a6c-$7e3a74  ||  9 bytes   ||  ...
 |-
 |  Spells  ||  $7e3a75-$7e3a7e  ||  10 bytes  ||  Party member #6's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
@@ -404,11 +404,11 @@ Party Members RAM layout, expanded.
 |  Stats  ||  $7e3a9c  ||  byte  ||  📈 Party member #7's wisdom
 |-
 |  Stats  ||  $7e3a9d  ||  byte  ||  📈 Party member #7's luck, excluding equipment
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3a9e-$7e3aa2  ||  5 bytes   ||  ...
 |-
 |  Stats  ||  $7e3aa3-$7e3aa7  ||  5 bytes  ||  🏷️ Party member #7's name, 4 characters max followed by $ac (end of string)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3aa8-$7e3ab0  ||  9 bytes   ||  ...
 |-
 |  Spells  ||  $7e3ab1-$7e3aba  ||  10 bytes  ||  Party member #7's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
@@ -442,11 +442,11 @@ Party Members RAM layout, expanded.
 |  Stats  ||  $7e3ad8  ||  byte  ||  📈 Party member #8's wisdom
 |-
 |  Stats  ||  $7e3ad9  ||  byte  ||  📈 Party member #8's luck, excluding equipment
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3ada-$7e3ade  ||  5 bytes   ||  ...
 |-
 |  Stats  ||  $7e3adf-$7e3ae3  ||  5 bytes  ||  🏷️ Party member #8's name, 4 characters max followed by $ac (end of string)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3ae4-$7e3aec  ||  9 bytes   ||  ...
 |-
 |  Spells  ||  $7e3aed-$7e3af6  ||  10 bytes  ||  Party member #8's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
@@ -480,11 +480,11 @@ Party Members RAM layout, expanded.
 |  Stats  ||  $7e3b14  ||  byte  ||  📈 Party member #9's wisdom
 |-
 |  Stats  ||  $7e3b15  ||  byte  ||  📈 Party member #9's luck, excluding equipment
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3b16-$7e3b1a  ||  5 bytes   ||  ...
 |-
 |  Stats  ||  $7e3b1b-$7e3b1f  ||  5 bytes  ||  🏷️ Party member #9's name, 4 characters max followed by $ac (end of string)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3b20-$7e3b28  ||  9 bytes   ||  ...
 |-
 |  Spells  ||  $7e3b29-$7e3b32  ||  10 bytes  ||  Party member #9's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
@@ -518,11 +518,11 @@ Party Members RAM layout, expanded.
 |  Stats  ||  $7e3b50  ||  byte  ||  📈 Party member #10's wisdom
 |-
 |  Stats  ||  $7e3b51  ||  byte  ||  📈 Party member #10's luck, excluding equipment
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3b52-$7e3b56  ||  5 bytes   ||  ...
 |-
 |  Stats  ||  $7e3b57-$7e3b5b  ||  5 bytes  ||  🏷️ Party member #10's name, 4 characters max followed by $ac (end of string)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3b5c-$7e3b64  ||  9 bytes   ||  ...
 |-
 |  Spells  ||  $7e3b65-$7e3b6e  ||  10 bytes  ||  Party member #10's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
@@ -556,11 +556,11 @@ Party Members RAM layout, expanded.
 |  Stats  ||  $7e3b8c  ||  byte  ||  📈 Party member #11's wisdom
 |-
 |  Stats  ||  $7e3b8d  ||  byte  ||  📈 Party member #11's luck, excluding equipment
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3b8e-$7e3b92  ||  5 bytes   ||  ...
 |-
 |  Stats  ||  $7e3b93-$7e3b97  ||  5 bytes  ||  🏷️ Party member #11's name, 4 characters max followed by $ac (end of string)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3b98-$7e3ba0  ||  9 bytes   ||  ...
 |-
 |  Spells  ||  $7e3ba1-$7e3baa  ||  10 bytes  ||  Party member #11's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
@@ -594,11 +594,11 @@ Party Members RAM layout, expanded.
 |  Stats  ||  $7e3bc8  ||  byte  ||  📈 Party member #12's wisdom
 |-
 |  Stats  ||  $7e3bc9  ||  byte  ||  📈 Party member #12's luck, excluding equipment
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3bca-$7e3bce  ||  5 bytes   ||  ...
 |-
 |  Stats  ||  $7e3bcf-$7e3bd3  ||  5 bytes  ||  🏷️ Party member #12's name, 4 characters max followed by $ac (end of string)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3bd4-$7e3bdc  ||  9 bytes   ||  ...
 |-
 |  Spells  ||  $7e3bdd-$7e3be6  ||  10 bytes  ||  Party member #12's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
@@ -632,11 +632,11 @@ Party Members RAM layout, expanded.
 |  Stats  ||  $7e3c04  ||  byte  ||  📈 Party member #13's wisdom
 |-
 |  Stats  ||  $7e3c05  ||  byte  ||  📈 Party member #13's luck, excluding equipment
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3c06-$7e3c0a  ||  5 bytes   ||  ...
 |-
 |  Stats  ||  $7e3c0b-$7e3c0f  ||  5 bytes  ||  🏷️ Party member #13's name, 4 characters max followed by $ac (end of string)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3c10-$7e3c18  ||  9 bytes   ||  ...
 |-
 |  Spells  ||  $7e3c19-$7e3c22  ||  10 bytes  ||  Party member #13's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
@@ -670,11 +670,11 @@ Party Members RAM layout, expanded.
 |  Stats  ||  $7e3c40  ||  byte  ||  📈 Party member #14's wisdom
 |-
 |  Stats  ||  $7e3c41  ||  byte  ||  📈 Party member #14's luck, excluding equipment
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3c42-$7e3c46  ||  5 bytes   ||  ...
 |-
 |  Stats  ||  $7e3c47-$7e3c4b  ||  5 bytes  ||  🏷️ Party member #14's name, 4 characters max followed by $ac (end of string)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3c4c-$7e3c54  ||  9 bytes   ||  ...
 |-
 |  Spells  ||  $7e3c55-$7e3c5e  ||  10 bytes  ||  Party member #14's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
@@ -708,11 +708,11 @@ Party Members RAM layout, expanded.
 |  Stats  ||  $7e3c7c  ||  byte  ||  📈 Party member #15's wisdom
 |-
 |  Stats  ||  $7e3c7d  ||  byte  ||  📈 Party member #15's luck, excluding equipment
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3c7e-$7e3c82  ||  5 bytes   ||  ...
 |-
 |  Stats  ||  $7e3c83-$7e3c87  ||  5 bytes  ||  🏷️ Party member #15's name, 4 characters max followed by $ac (end of string)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3c88-$7e3c90  ||  9 bytes   ||  ...
 |-
 |  Spells  ||  $7e3c91-$7e3c9a  ||  10 bytes  ||  Party member #15's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
@@ -746,11 +746,11 @@ Party Members RAM layout, expanded.
 |  Stats  ||  $7e3cb8  ||  byte  ||  📈 Party member #16's wisdom
 |-
 |  Stats  ||  $7e3cb9  ||  byte  ||  📈 Party member #16's luck, excluding equipment
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3cba-$7e3cbe  ||  5 bytes   ||  ...
 |-
 |  Stats  ||  $7e3cbf-$7e3cc3  ||  5 bytes  ||  🏷️ Party member #16's name, 4 characters max followed by $ac (end of string)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3cc4-$7e3ccc  ||  9 bytes   ||  ...
 |-
 |  Spells  ||  $7e3ccd-$7e3cd6  ||  10 bytes  ||  Party member #16's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
@@ -784,11 +784,11 @@ Party Members RAM layout, expanded.
 |  Stats  ||  $7e3cf4  ||  byte  ||  📈 Party member #17's wisdom
 |-
 |  Stats  ||  $7e3cf5  ||  byte  ||  📈 Party member #17's luck, excluding equipment
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3cf6-$7e3cfa  ||  5 bytes   ||  ...
 |-
 |  Stats  ||  $7e3cfb-$7e3cff  ||  5 bytes  ||  🏷️ Party member #17's name, 4 characters max followed by $ac (end of string)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3d00-$7e3d08  ||  9 bytes   ||  ...
 |-
 |  Spells  ||  $7e3d09-$7e3d12  ||  10 bytes  ||  Party member #17's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
@@ -822,11 +822,11 @@ Party Members RAM layout, expanded.
 |  Stats  ||  $7e3d30  ||  byte  ||  📈 Party member #18's wisdom
 |-
 |  Stats  ||  $7e3d31  ||  byte  ||  📈 Party member #18's luck, excluding equipment
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3d32-$7e3d36  ||  5 bytes   ||  ...
 |-
 |  Stats  ||  $7e3d37-$7e3d3b  ||  5 bytes  ||  🏷️ Party member #18's name, 4 characters max followed by $ac (end of string)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3d3c-$7e3d44  ||  9 bytes   ||  ...
 |-
 |  Spells  ||  $7e3d45-$7e3d4e  ||  10 bytes  ||  Party member #18's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
@@ -860,11 +860,11 @@ Party Members RAM layout, expanded.
 |  Stats  ||  $7e3d6c  ||  byte  ||  📈 Party member #19's wisdom
 |-
 |  Stats  ||  $7e3d6d  ||  byte  ||  📈 Party member #19's luck, excluding equipment
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3d6e-$7e3d72  ||  5 bytes   ||  ...
 |-
 |  Stats  ||  $7e3d73-$7e3d77  ||  5 bytes  ||  🏷️ Party member #19's name, 4 characters max followed by $ac (end of string)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3d78-$7e3d80  ||  9 bytes   ||  ...
 |-
 |  Spells  ||  $7e3d81-$7e3d8a  ||  10 bytes  ||  Party member #19's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
@@ -898,11 +898,11 @@ Party Members RAM layout, expanded.
 |  Stats  ||  $7e3da8  ||  byte  ||  📈 Party member #20's wisdom
 |-
 |  Stats  ||  $7e3da9  ||  byte  ||  📈 Party member #20's luck, excluding equipment
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3daa-$7e3dae  ||  5 bytes   ||  ...
 |-
 |  Stats  ||  $7e3daf-$7e3db3  ||  5 bytes  ||  🏷️ Party member #20's name, 4 characters max followed by $ac (end of string)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e3db4-$7e3dbc  ||  9 bytes   ||  ...
 |-
 |  Spells  ||  $7e3dbd-$7e3dc6  ||  10 bytes  ||  Party member #20's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]

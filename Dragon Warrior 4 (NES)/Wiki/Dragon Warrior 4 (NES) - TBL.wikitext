@@ -21,77 +21,77 @@ The space (<code>&nbsp;</code>) character is $00.
 |-
 ! scope="row" |  3_
 |  L  ||  M  ||  N  ||  O  ||  P  ||  Q  ||  R  ||  S  ||  T  ||  U  ||  V  ||  W  ||  X  ||  Y  ||  Z
-|  style="background-color:#EAECF0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  4_
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  5_
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  6_
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  —  ||  “  ||  ”  ||  ‘  ||  ‘  ||  ’  ||  ’  ||  .’  ||  ?  ||  !  ||  -
 |-
 ! scope="row" |  7_
 |  ✱  ||  :  ||  …  ||  🪦  ||  💀  ||  (  ||  )  ||  ,  ||  .  || 「
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  8_
 |  ▼  ||  ▶
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |}
 
 === As seen in RAM ===

@@ -11,22 +11,22 @@ The space (<code>&nbsp;</code>) character is $03.
 !    !!  _0  !!  _1  !!  _2  !!  _3  !!  _4  !!  _5  !!  _6  !!  _7  !!  _8  !!  _9  !!  _a  !!  _b  !!  _c  !!  _d  !!  _e  !!  _f
 |-
 ! scope="row" |  0_
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  &nbsp;
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  1_
 |  A
@@ -57,12 +57,12 @@ The space (<code>&nbsp;</code>) character is $03.
 |  X
 |  Y
 |  Z
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  3_
 |  0
@@ -75,12 +75,12 @@ The space (<code>&nbsp;</code>) character is $03.
 |  7
 |  8
 |  9
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  4_
 |  colspan="16"  style="text-align: center; background-color: #eaecf0;"  |  ...

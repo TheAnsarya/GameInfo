@@ -22,23 +22,23 @@ $53 is rightquote-space (<code>’&nbsp;</code>) while $54 is space-rightquote (
 |-
 ! scope="row" |  4_ 
 |  ’  ||  ✱  ||  ▶  ||  ▼  ||  :  ||  ..
-|  style="background-color:#EAECF0;"  |
+|  style="background-color: #eaecf0;"  |
 |  .  ||  ,  ||  -
-|  style="background-color:#EAECF0;"  |
+|  style="background-color: #eaecf0;"  |
 |  ?  ||  !  ||  ;  ||  )  ||  (
 |-
 ! scope="row" |  5_
 |  ‘  ||  ‘  ||  .’  ||  ’&nbsp;  ||  &nbsp;’
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
-|  style="background-color:#EAECF0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  &nbsp;
 |}
 

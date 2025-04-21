@@ -9,27 +9,27 @@ The space (<code>&nbsp;</code>) character is $ef.
 !    !!  _0  !!  _1  !!  _2  !!  _3  !!  _4  !!  _5  !!  _6  !!  _7  !!  _8  !!  _9  !!  _a  !!  _b  !!  _c  !!  _d  !!  _e  !!  _f
 |-
 ! scope="row" |  0_
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  1_
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  Crono
 |  Marle
 |  Lucca
@@ -37,12 +37,12 @@ The space (<code>&nbsp;</code>) character is $ef.
 |  Frog
 |  Ayla
 |  Magus
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  Nadia
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |-
 ! scope="row" |  2_
 |  Epoch
@@ -177,7 +177,7 @@ The space (<code>&nbsp;</code>) character is $ef.
 |  with
 |  rea
 |  your
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  ou're
 |  ce
 |  of th
@@ -261,40 +261,40 @@ The space (<code>&nbsp;</code>) character is $ef.
 |  ?
 |-
 ! scope="row" |  e_
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  `
 |  '
 |  :
 |  &
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  '
 |  .
 |  ,
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  &nbsp;
 |-
 ! scope="row" |  f_
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |  …
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
-|  style="background-color:#eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
 |}
 
 == TBL File ==

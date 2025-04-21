@@ -67,21 +67,21 @@
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ???  ||  $000 - $xxx  ||  ...  ||  ???
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ???  ||  $xxx - $xxx  ||  ...  ||  ???
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ???  ||  $xxx - $xxx  ||  ...  ||  ???
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ???  ||  $xxx - $xxx  ||  ...  ||  ???
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ???  ||  $xxx - $xxx  ||  ...  ||  ???
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ???  ||  $xxx - $xxx  ||  ...  ||  ???
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ???  ||  $xxx - $xxx  ||  ...  ||  ???
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ???  ||  $xxx - $7ff  ||  ...  ||  ???
 |}
 
@@ -112,21 +112,21 @@
 |  style="text-align: center;"  |  $12  ||  style="text-align: center;"  |  $0e  ||  Izmit - ???
 
 
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6276 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6276 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6276 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6276 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6276 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6276 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6276 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6276 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...
 
 

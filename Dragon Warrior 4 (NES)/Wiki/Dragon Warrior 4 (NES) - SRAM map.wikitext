@@ -9,7 +9,7 @@ Address space is <code>$0000 - $1fff</code>.
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !! Size  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ???  ||  $0000  ||  byte  ||  ???
 |-
 |  Party Members  ||  $0001 - $001e  ||  30 bytes  ||  Hero ([[#Hero|details]])
@@ -27,7 +27,7 @@ Address space is <code>$0000 - $1fff</code>.
 |  Party Members  ||  $00b5 - $00d2  ||  30 bytes  ||  Ragnar ([[#Ragnar|details]])
 |-
 |  Party Members  ||  $00d3 - $00f0  ||  30 bytes  ||  Alena ([[#Alena|details]])
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $00f1 - $0156  ||  ...  ||  ???
 |-
 |  General  ||  $0157 - $0159  ||  long  ||  Gold (TODO: verify 3 bytes length)
@@ -35,11 +35,11 @@ Address space is <code>$0000 - $1fff</code>.
 |  General  ||  $015a  ||  byte  ||  Chapter number (0 = chapter 1, ... 4 = chapter 5)
 |-
 |  General  ||  $015b  ||  byte  ||  Current Tactics (00 = Normal, 01 = Save MP, 02 = Offensive, 03 = Defensive, 04 = Try Out, 05 = Use No MP)
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $015c - $0164  ||  ...  ||  ???
 |-
 |  General  ||  $0165 - $0167  ||  long  ||  Return Locations ([[#Return Locations|details]])
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $0168 - $1fff  ||  ...  ||  ???
 |}
 
@@ -50,15 +50,15 @@ Address space is <code>$0000 - $1fff</code>.
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $0001 # 0000_0001  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $0001 # 0000_0010  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $0001 # 0000_0100  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $0001 # 0000_1000  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $0001 # 0001_0000  ||  bit  ||  ...
 |-
 |  Stats  ||  $0001 # 0010_0000  ||  bit  ||  Poisoned
@@ -82,7 +82,7 @@ Address space is <code>$0000 - $1fff</code>.
 |  Stats  ||  $000a  ||  byte  ||  Intelligence
 |-
 |  Stats  ||  $000b  ||  byte  ||  Luck
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $000c  ||  byte  ||  ???
 |-
 |  Stats  ||  $000d - $000e  ||  word  ||  Maximum HP
@@ -161,15 +161,15 @@ Address space is <code>$0000 - $1fff</code>.
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $001f # 0000_0001  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $001f # 0000_0010  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $001f # 0000_0100  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $001f # 0000_1000  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $001f # 0001_0000  ||  bit  ||  ...
 |-
 |  Stats  ||  $001f # 0010_0000  ||  bit  ||  Poisoned
@@ -193,7 +193,7 @@ Address space is <code>$0000 - $1fff</code>.
 |  Stats  ||  $0028  ||  byte  ||  Intelligence
 |-
 |  Stats  ||  $0029  ||  byte  ||  Luck
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $002a  ||  byte  ||  ???
 |-
 |  Stats  ||  $002b - $002c  ||  word  ||  Maximum HP
@@ -272,15 +272,15 @@ Address space is <code>$0000 - $1fff</code>.
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $003d # 0000_0001  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $003d # 0000_0010  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $003d # 0000_0100  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $003d # 0000_1000  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $003d # 0001_0000  ||  bit  ||  ...
 |-
 |  Stats  ||  $003d # 0010_0000  ||  bit  ||  Poisoned
@@ -304,7 +304,7 @@ Address space is <code>$0000 - $1fff</code>.
 |  Stats  ||  $0046  ||  byte  ||  Intelligence
 |-
 |  Stats  ||  $0047  ||  byte  ||  Luck
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $0048  ||  byte  ||  ???
 |-
 |  Stats  ||  $0049 - $004a  ||  word  ||  Maximum HP
@@ -383,15 +383,15 @@ Address space is <code>$0000 - $1fff</code>.
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $005b # 0000_0001  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $005b # 0000_0010  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $005b # 0000_0100  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $005b # 0000_1000  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $005b # 0001_0000  ||  bit  ||  ...
 |-
 |  Stats  ||  $005b # 0010_0000  ||  bit  ||  Poisoned
@@ -415,7 +415,7 @@ Address space is <code>$0000 - $1fff</code>.
 |  Stats  ||  $0064  ||  byte  ||  Intelligence
 |-
 |  Stats  ||  $0065  ||  byte  ||  Luck
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $0066  ||  byte  ||  ???
 |-
 |  Stats  ||  $0067 - $0068  ||  word  ||  Maximum HP
@@ -494,15 +494,15 @@ Address space is <code>$0000 - $1fff</code>.
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $0079 # 0000_0001  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $0079 # 0000_0010  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $0079 # 0000_0100  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $0079 # 0000_1000  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $0079 # 0001_0000  ||  bit  ||  ...
 |-
 |  Stats  ||  $0079 # 0010_0000  ||  bit  ||  Poisoned
@@ -526,7 +526,7 @@ Address space is <code>$0000 - $1fff</code>.
 |  Stats  ||  $0082  ||  byte  ||  Intelligence
 |-
 |  Stats  ||  $0083  ||  byte  ||  Luck
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $0084  ||  byte  ||  ???
 |-
 |  Stats  ||  $0085 - $0086  ||  word  ||  Maximum HP
@@ -605,15 +605,15 @@ Address space is <code>$0000 - $1fff</code>.
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $0097 # 0000_0001  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $0097 # 0000_0010  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $0097 # 0000_0100  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $0097 # 0000_1000  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $0097 # 0001_0000  ||  bit  ||  ...
 |-
 |  Stats  ||  $0097 # 0010_0000  ||  bit  ||  Poisoned
@@ -637,7 +637,7 @@ Address space is <code>$0000 - $1fff</code>.
 |  Stats  ||  $00a0  ||  byte  ||  Intelligence
 |-
 |  Stats  ||  $00a1  ||  byte  ||  Luck
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $00a2  ||  byte  ||  ???
 |-
 |  Stats  ||  $00a3 - $00a4  ||  word  ||  Maximum HP
@@ -674,15 +674,15 @@ Address space is <code>$0000 - $1fff</code>.
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $00b5 # 0000_0001  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $00b5 # 0000_0010  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $00b5 # 0000_0100  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $00b5 # 0000_1000  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $00b5 # 0001_0000  ||  bit  ||  ...
 |-
 |  Stats  ||  $00b5 # 0010_0000  ||  bit  ||  Poisoned
@@ -706,7 +706,7 @@ Address space is <code>$0000 - $1fff</code>.
 |  Stats  ||  $00be  ||  byte  ||  Intelligence
 |-
 |  Stats  ||  $00bf  ||  byte  ||  Luck
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $00c0  ||  byte  ||  ???
 |-
 |  Stats  ||  $00c1 - $00c2  ||  word  ||  Maximum HP
@@ -743,15 +743,15 @@ Address space is <code>$0000 - $1fff</code>.
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Description
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $00d3 # 0000_0001  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $00d3 # 0000_0010  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $00d3 # 0000_0100  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $00d3 # 0000_1000  ||  bit  ||  ...
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $00d3 # 0001_0000  ||  bit  ||  ...
 |-
 |  Stats  ||  $00d3 # 0010_0000  ||  bit  ||  Poisoned
@@ -775,7 +775,7 @@ Address space is <code>$0000 - $1fff</code>.
 |  Stats  ||  $00dc  ||  byte  ||  Intelligence
 |-
 |  Stats  ||  $00dd  ||  byte  ||  Luck
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Stats  ||  $00de  ||  byte  ||  ???
 |-
 |  Stats  ||  $00df - $00e0  ||  word  ||  Maximum HP
@@ -860,7 +860,7 @@ Locations for the <code>Return</code> spell. This uses 3 bytes, one bit for each
 |  Location  ||  $0167 # 0010_0000  ||  bit  ||  Zenithia
 |-
 |  Location  ||  $0167 # 0100_0000  ||  bit  ||  Last Refuge
-|-  style="background-color:#eaecf0;"
+|-  style="background-color: #eaecf0;"
 |  Location  ||  $0167 # 1000_0000  ||  bit  ||  "Infsnip" - Lands in the middle of the ocean, not an actual destination
 |}
 
