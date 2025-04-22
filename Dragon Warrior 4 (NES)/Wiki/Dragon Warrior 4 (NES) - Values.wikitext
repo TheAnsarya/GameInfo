@@ -301,7 +301,6 @@ In the item bags, the high bit <code>%10000000</code> indicates that the item is
 |  style="text-align: center;"  |  $7f  ||  ??? No Item
 |}
 
-
 ==Monsters==
 
 [TODO: add list]
@@ -319,8 +318,14 @@ In the item bags, the high bit <code>%10000000</code> indicates that the item is
 !  Map  !!  Sub-Map  !!  Description
 |-
 |  style="text-align: center;"  |  $00  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Keeleon
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
 |-
-|  style="text-align: center;"  |  $01  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Santeem
+|  style="text-align: center;"  |  $01  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Santeem - F1
+|-
+|  style="text-align: center;"  |  $01  ||  style="text-align: center;"  |  $01  ||  Santeem - F2
+|-
+|  style="text-align: center;"  |  $01  ||  style="text-align: center;"  |  $02  ||  Santeem - F3
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 |-
@@ -478,9 +483,9 @@ In the item bags, the high bit <code>%10000000</code> indicates that the item is
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 |-
-|  style="text-align: center;"  |  $33  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Secret Playground Dungeon - B1, Section #1
+|  style="text-align: center;"  |  $33  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Secret Playground Dungeon - B1, Section #1 (left)
 |-
-|  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $01  ||  Secret Playground Dungeon - B1, Section #2
+|  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $01  ||  Secret Playground Dungeon - B1, Section #2 (right)
 |-
 |  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $02  ||  Secret Playground Dungeon - B2, Exit
 |-
@@ -504,7 +509,7 @@ In the item bags, the high bit <code>%10000000</code> indicates that the item is
 |-
 |  style="text-align: center;"  |  $38  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Silver Statuette Cave
 |-
-|  style="text-align: center;"  |  $39  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Branca-Izmit tunnel
+|  style="text-align: center;"  |  $39  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Burland-Izmit tunnel
 |-
 |  style="text-align: center;"  |  $3a  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Tunnel between Branca and Endor
 |-
@@ -519,8 +524,22 @@ In the item bags, the high bit <code>%10000000</code> indicates that the item is
 |  style="text-align: center;"  |  $3f  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Birdsong Tower
 |-
 |  style="text-align: center;"  |  $40  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  World Tree
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
 |-
-|  style="text-align: center;"  |  $41  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Loch Tower
+|  style="text-align: center;"  |  $41  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Loch Tower - F4
+|-
+|  style="text-align: center;"  |  $41  ||  style="text-align: center;"  |  $01  ||  Loch Tower - F3
+|-
+|  style="text-align: center;"  |  $41  ||  style="text-align: center;"  |  $02  ||  Loch Tower - F2
+|-
+|  style="text-align: center;"  |  $41  ||  style="text-align: center;"  |  $03  ||  Loch Tower - F1
+|-
+|  style="text-align: center;"  |  $41  ||  style="text-align: center;"  |  $04  ||  Loch Tower - B1, boss room
+|-
+|  style="text-align: center;"  |  $41  ||  style="text-align: center;"  |  $05  ||  Loch Tower - B1, hp/mp refresh room
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
 |-
 |  style="text-align: center;"  |  $42  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Lighthouse
 |-
@@ -537,4 +556,6 @@ In the item bags, the high bit <code>%10000000</code> indicates that the item is
 |  style="text-align: center;"  |  $48  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Shrine of Colossus (Dungeon)
 |}
 
-[TODO: add list]
+=Links=
+
+{{Internal Data}}
