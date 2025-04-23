@@ -52,11 +52,11 @@ WRAM is addressed from <code>$6000</code> to <code>$7fff</code>.
 |-  style="background-color: #eaecf0;"
 |  ...  ||  $xxxx - $6156  ||  ...  ||  ???
 |-
-|  General  ||  $6157 - $6159  ||  long  ||  Gold (TODO: verify 3 bytes length)
+|  General  ||  $6157 - $6159  ||  long  ||  Gold
 |-
-|  General  ||  $615a  ||  byte  ||  Chapter number (0 = chapter 1, ... 4 = chapter 5)
+|  General  ||  $615a  ||  byte  ||  Chapter Number ([[Dragon_Warrior_IV_(NES)/Values#Chapters|values]])
 |-
-|  General  ||  $615b  ||  byte  ||  Current Tactics (00 = Normal, 01 = Save MP, 02 = Offensive, 03 = Defensive, 04 = Try Out, 05 = Use No MP)
+|  General  ||  $615b  ||  byte  ||  Battle Tactics ([[Dragon_Warrior_IV_(NES)/Values#Battle Tactics|values]])
 |-  style="background-color: #eaecf0;"
 |  ...  ||  $615c - $6164  ||  ...  ||  ???
 |-
@@ -947,6 +947,10 @@ Locations for the <code>Return</code> spell. This uses 3 bytes, one bit for each
 
 ==Event Flags==
 
+[TODO: figure out where the real trigggers are or how this makes sense]
+
+===Notes===
+
 618f, 02 = start chapter 1
 62d5, 01 = start chapter 1
 
@@ -1393,8 +1397,8 @@ Locations for the <code>Return</code> spell. This uses 3 bytes, one bit for each
 |  Treasure  ||  $6272 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
 |-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6272 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6272 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $6272 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $0e  ||  style="text-align: center;"  |  $00  ||  Tempe - Top, red monster platform, center, broken tile  ||  Lifeforce Nuts
 |-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6272 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
 |-  style="background-color: #eaecf0;"
