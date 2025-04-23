@@ -349,13 +349,15 @@ In the item bags, the high bit <code>%10000000</code> indicates that the item is
 
 [Todo: finish filling out the sub-map entries]
 
+The primary map for each group has a background of <code style="background-color: #bbccff;">blue</code>.
+
 If the background is <code style="background-color: #dddd80;">yellow</code> then the submaps have not yet been checked.
 
 {| class="wikitable sortable"
 |-
 !  Map  !!  Sub-Map  !!  Description
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $00  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Keeleon
+|  style="text-align: center;"  |  $00  ||  style="text-align: center;"  |  $00  ||  Keeleon
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 |-  style="background-color: #bbccff;"
@@ -366,8 +368,8 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |  style="text-align: center;"  |  $01  ||  style="text-align: center;"  |  $02  ||  Santeem - F3
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
-|-
-|  style="text-align: center;"  |  $02  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Burland
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $02  ||  style="text-align: center;"  |  $00  ||  Burland
 |-
 |  style="text-align: center;"  |  $02  ||  style="text-align: center;"  |  $01  ||  Burland - Castle, F1
 |-
@@ -377,11 +379,11 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $03  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Dire Palace
+|  style="text-align: center;"  |  $03  ||  style="text-align: center;"  |  $00  ||  Dire Palace
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
-|-
-|  style="text-align: center;"  |  $04  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Endor
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $00  ||  Endor
 |-
 |  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $01  ||  Endor - Casino/Monster Arena
 |-
@@ -413,53 +415,55 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $05  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Bonmalmo
+|  style="text-align: center;"  |  $05  ||  style="text-align: center;"  |  $00  ||  Bonmalmo
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $06  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Branca
+|  style="text-align: center;"  |  $06  ||  style="text-align: center;"  |  $00  ||  Branca
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $07  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Soretta
+|  style="text-align: center;"  |  $07  ||  style="text-align: center;"  |  $00  ||  Soretta
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $08  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Gardenbur
+|  style="text-align: center;"  |  $08  ||  style="text-align: center;"  |  $00  ||  Gardenbur
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $09  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Stancia
+|  style="text-align: center;"  |  $09  ||  style="text-align: center;"  |  $00  ||  Stancia
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $0a  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Aktemto
+|  style="text-align: center;"  |  $0a  ||  style="text-align: center;"  |  $00  ||  Aktemto
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $0b  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Riverton
+|  style="text-align: center;"  |  $0b  ||  style="text-align: center;"  |  $00  ||  Riverton
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $0c  ||  style="text-align: center;"  |  $00  ||  Bazaar
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  style="text-align: center;"  |  No sub-maps
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $0c  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Bazaar
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $0d  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Mintos
+|  style="text-align: center;"  |  $0d  ||  style="text-align: center;"  |  $00  ||  Mintos
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
-|-
-|  style="text-align: center;"  |  $0e  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Tempe
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $0e  ||  style="text-align: center;"  |  $00  ||  Tempe
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  style="text-align: center;"  |  No sub-maps
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
-|-
-|  style="text-align: center;"  |  $0f  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Frenor
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $0f  ||  style="text-align: center;"  |  $00  ||  Frenor
 |-
 |  style="text-align: center;"  |  $0f  ||  style="text-align: center;"  |  $01  ||  Frenor - Inn, F2  -- Top-left house, F2
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $10  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Aneaux
+|  style="text-align: center;"  |  $10  ||  style="text-align: center;"  |  $00  ||  Aneaux
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $11  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Haville
+|  style="text-align: center;"  |  $11  ||  style="text-align: center;"  |  $00  ||  Haville
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
-|-
-|  style="text-align: center;"  |  $12  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Izmit
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $12  ||  style="text-align: center;"  |  $00  ||  Izmit
 |-
 |  style="text-align: center;"  |  $12  ||  style="text-align: center;"  |  $01  ||  Izmit - Inn, F2  --  Item Shop, F2  -- Middle-right house, F2
 |-
 |  style="text-align: center;"  |  $12  ||  style="text-align: center;"  |  $02  ||  Izmit - Jail, B1
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
-|-
-|  style="text-align: center;"  |  $13  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Surene
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $13  ||  style="text-align: center;"  |  $00  ||  Surene
 |-
 |  style="text-align: center;"  |  $13  ||  style="text-align: center;"  |  $01  ||  Surene - Inn, F2  --  Far right house, F2
 |-
@@ -471,77 +475,91 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $14  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Hometown
+|  style="text-align: center;"  |  $14  ||  style="text-align: center;"  |  $00  ||  Hometown
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $15  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Monbaraba
+|  style="text-align: center;"  |  $15  ||  style="text-align: center;"  |  $00  ||  Monbaraba
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $16  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Lakanaba
+|  style="text-align: center;"  |  $16  ||  style="text-align: center;"  |  $00  ||  Lakanaba
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $17  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Kievs
+|  style="text-align: center;"  |  $17  ||  style="text-align: center;"  |  $00  ||  Kievs
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $18  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Foxville
+|  style="text-align: center;"  |  $18  ||  style="text-align: center;"  |  $00  ||  Foxville
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $19  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Seaside Village
+|  style="text-align: center;"  |  $19  ||  style="text-align: center;"  |  $00  ||  Seaside Village
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $1a  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Gottside
+|  style="text-align: center;"  |  $1a  ||  style="text-align: center;"  |  $00  ||  Gottside
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $1b  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Rosaville
+|  style="text-align: center;"  |  $1b  ||  style="text-align: center;"  |  $00  ||  Rosaville
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
-|-
-|  style="text-align: center;"  |  $1c  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Secret Playground Entrance
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $1c  ||  style="text-align: center;"  |  $00  ||  Secret Playground Entrance
 |-
 |  style="text-align: center;"  |  $1c  ||  style="text-align: center;"  |  $01  ||  Secret Playground Entrance - B1, Exit
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $1d  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  House of Prophecy
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $1e  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Shrine to Endor
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $1f  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Shrine northwest of Endor
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $20  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Woodsman's Shack
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $21  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Desert Inn
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $22  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Small Medal King
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $23  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Shrine North of Soretta
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $24  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Small Island Shack
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $25  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Royal Crypt Entrance
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $26  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Last Refuge
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $27  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  SW barrier shrine (Gigademon)
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $28  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  SE barrier shrine (Anderoug)
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $29  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  NW barrier shrine (Infurnus Shadow)
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $2a  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Final Cave (Entrance in underworld)
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $2b  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Travel Door near Riverton
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $2c  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Shrine of Colossus (outside)
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $2d  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Aktemto Mine (Dungeon)
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $2e  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Shrine of Breaking Waves
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $2f  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Padaquea Cave
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $30  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Bakor's Hideout
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $31  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Sphere Of Silence Cave
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $32  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Golden Bracelet Cave
+|  style="text-align: center;"  |  $1d  ||  style="text-align: center;"  |  $00  ||  House of Prophecy
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $1e  ||  style="text-align: center;"  |  $00  ||  Shrine from Frenor to Endor
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  style="text-align: center;"  |  No sub-maps
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $1f  ||  style="text-align: center;"  |  $00  ||  Shrine northwest of Endor (to Frenor)
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  style="text-align: center;"  |  No sub-maps
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $20  ||  style="text-align: center;"  |  $00  ||  Woodsman's Shack
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $21  ||  style="text-align: center;"  |  $00  ||  Desert Inn
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $22  ||  style="text-align: center;"  |  $00  ||  Small Medal King
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $23  ||  style="text-align: center;"  |  $00  ||  Shrine North of Soretta
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $24  ||  style="text-align: center;"  |  $00  ||  Small Island Shack
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $25  ||  style="text-align: center;"  |  $00  ||  Royal Crypt Entrance
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $26  ||  style="text-align: center;"  |  $00  ||  Last Refuge
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $27  ||  style="text-align: center;"  |  $00  ||  SW barrier shrine (Gigademon)
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $28  ||  style="text-align: center;"  |  $00  ||  SE barrier shrine (Anderoug)
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $29  ||  style="text-align: center;"  |  $00  ||  NW barrier shrine (Infurnus Shadow)
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $2a  ||  style="text-align: center;"  |  $00  ||  Final Cave (Entrance in underworld)
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $2b  ||  style="text-align: center;"  |  $00  ||  Travel Door near Riverton
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $2c  ||  style="text-align: center;"  |  $00  ||  Shrine of Colossus (outside)
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $2d  ||  style="text-align: center;"  |  $00  ||  Aktemto Mine (Dungeon)
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $2e  ||  style="text-align: center;"  |  $00  ||  Shrine of Breaking Waves
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $00  ||  Padaquea Cave
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $30  ||  style="text-align: center;"  |  $00  ||  Bakor's Hideout
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $00  ||  Sphere Of Silence Cave
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $32  ||  style="text-align: center;"  |  $00  ||  Cave South Of Frenor - B2
 |-
-|  style="text-align: center;"  |  $33  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Secret Playground Dungeon - B1, Section #1 (left)
+|  style="text-align: center;"  |  $32  ||  style="text-align: center;"  |  $01  ||  Cave South Of Frenor - B1
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $00  ||  Secret Playground Dungeon - B1, Section #1 (left)
 |-
 |  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $01  ||  Secret Playground Dungeon - B1, Section #2 (right)
 |-
@@ -550,42 +568,56 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $03  ||  Secret Playground Dungeon - B2, Section #1 (left)
 |-
 |  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $04  ||  Secret Playground Dungeon - B2, Section #2 (right)
-|-  style="background-color: #eaecf0;"
+|-
 |  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $05  ||  Secret Playground Dungeon - B3, left dead-end
 |-
 |  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $06  ||  Secret Playground Dungeon - B3
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $34  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Cascade Cave
+|  style="text-align: center;"  |  $34  ||  style="text-align: center;"  |  $00  ||  Cascade Cave
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $35  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Final Cave
+|  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $00  ||  Final Cave
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $36  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Iron Safe Cave
+|  style="text-align: center;"  |  $36  ||  style="text-align: center;"  |  $00  ||  Iron Safe Cave
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $37  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Cave of Betrayal
+|  style="text-align: center;"  |  $37  ||  style="text-align: center;"  |  $00  ||  Cave of Betrayal
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $38  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Silver Statuette Cave
+|  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $00  ||  Silver Statuette Cave
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $39  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Burland-Izmit tunnel
+|  style="text-align: center;"  |  $39  ||  style="text-align: center;"  |  $00  ||  Burland-Izmit tunnel
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $3a  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Tunnel between Branca and Endor
+|  style="text-align: center;"  |  $3a  ||  style="text-align: center;"  |  $00  ||  Tunnel between Branca and Endor
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $3b  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Royal Crypt Dungeon
+|  style="text-align: center;"  |  $3b  ||  style="text-align: center;"  |  $00  ||  Royal Crypt Dungeon
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $3c  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Necrosaro's Lair
+|  style="text-align: center;"  |  $3c  ||  style="text-align: center;"  |  $00  ||  Necrosaro's Lair
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $3d  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Zenethian Tower
+|  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $00  ||  Zenethian Tower
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $3e  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Outside Zenethia
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $3f  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Birdsong Tower
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $40  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  World Tree
+|  style="text-align: center;"  |  $3e  ||  style="text-align: center;"  |  $00  ||  Outside Zenethia
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $3f  ||  style="text-align: center;"  |  $00  ||  Birdsong Tower - F5
 |-
-|  style="text-align: center;"  |  $41  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Loch Tower - F4
+|  style="text-align: center;"  |  $3f  ||  style="text-align: center;"  |  $01  ||  Birdsong Tower - F3
+|-
+|  style="text-align: center;"  |  $3f  ||  style="text-align: center;"  |  $02  ||  Birdsong Tower - F2
+|-
+|  style="text-align: center;"  |  $3f  ||  style="text-align: center;"  |  $03  ||  Birdsong Tower - F1
+|-
+|  style="text-align: center;"  |  $3f  ||  style="text-align: center;"  |  $04  ||  Birdsong Tower - B1/Inn
+|-
+|  style="text-align: center;"  |  $3f  ||  style="text-align: center;"  |  $05  ||  Birdsong Tower - F4
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $40  ||  style="text-align: center;"  |  $00  ||  World Tree
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $41  ||  style="text-align: center;"  |  $00  ||  Loch Tower - F4
 |-
 |  style="text-align: center;"  |  $41  ||  style="text-align: center;"  |  $01  ||  Loch Tower - F3
 |-
@@ -599,19 +631,19 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $42  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Lighthouse
+|  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $00  ||  Lighthouse
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $43  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Konenber
+|  style="text-align: center;"  |  $43  ||  style="text-align: center;"  |  $00  ||  Konenber
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $44  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  NE barrier shrine (Radimvice)
+|  style="text-align: center;"  |  $44  ||  style="text-align: center;"  |  $00  ||  NE barrier shrine (Radimvice)
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $45  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Necrosaro's Palace
+|  style="text-align: center;"  |  $45  ||  style="text-align: center;"  |  $00  ||  Necrosaro's Palace
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $46  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Zenethia
+|  style="text-align: center;"  |  $46  ||  style="text-align: center;"  |  $00  ||  Zenethia
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $47  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Shrine of the Horn
+|  style="text-align: center;"  |  $47  ||  style="text-align: center;"  |  $00  ||  Shrine of the Horn
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $48  ||  style="text-align: center; background-color: #eaecf0;"  |  $00  ||  Shrine of Colossus (Dungeon)
+|  style="text-align: center;"  |  $48  ||  style="text-align: center;"  |  $00  ||  Shrine of Colossus (Dungeon)
 |}
 
 =Links=

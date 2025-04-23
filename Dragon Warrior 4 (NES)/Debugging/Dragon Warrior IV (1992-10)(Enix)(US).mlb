@@ -164,9 +164,14 @@ NesMemory:60e6-60ed:Alena_Items
 NesMemory:60ee:Alena_Battle_Spells_1
 NesMemory:60ef:Alena_Battle_Spells_2
 NesMemory:60f0:Alena_Overworld_Spells
+NesMemory:6157-6159:General_Gold
+NesMemory:615a:General_Chapter_Number
+NesMemory:615b:General_Battle_Tactics
+NesMemory:6165-6167:General_Return_Locations
+NesMemory:616a:Party_Members_Order_1
+NesMemory:616b:Party_Members_Order_2
+NesMemory:616c:Party_Members_Order_3
+NesMemory:616d:Party_Members_Order_4
+NesMemory:625d-6277:Flags_Treasure_Chests
 NesInternalRam:0063:World_Map_Number:Town/Dungeon map number
 NesInternalRam:0064:World_SubMap_Number:Town/Dungeon sub-map number
-NesSaveRam:016A:PartyMember_1
-NesSaveRam:016B:PartyMember_2
-NesSaveRam:016C:PartyMember_3
-NesSaveRam:016D:PartyMember_4

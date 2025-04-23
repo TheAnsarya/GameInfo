@@ -134,6 +134,8 @@
 
 
 
+The primary map for each group has a background of <code style="background-color: #bbccff;">blue</code>.
+If the background is <code style="background-color: #dddd80;">yellow</code> then the submaps have not yet been checked.
 
 
 

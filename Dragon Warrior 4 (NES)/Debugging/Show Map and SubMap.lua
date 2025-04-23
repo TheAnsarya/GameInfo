@@ -6,8 +6,10 @@ fgColor = 0x30FF4040
 
 function printInfo()
 	--Draw some rectangles and print some text
-	emu.drawRectangle(8, 8, 76, 24, bgColor, true, 1)
-	emu.drawRectangle(8, 8, 76, 24, fgColor, false, 1)
+	--emu.drawRectangle(8, 8, 76, 24, bgColor, true, 1)
+	--emu.drawRectangle(8, 8, 76, 24, fgColor, false, 1)
+	emu.drawRectangle(8, 8, 62, 15, bgColor, true, 1)
+	emu.drawRectangle(8, 8, 62, 15, fgColor, false, 1)
 	
 	Map = emu.read(MapNumberAddress, emu.memType.nesMemory)
 	SubMap = emu.read(SubMapNumberAddress, emu.memType.nesMemory)

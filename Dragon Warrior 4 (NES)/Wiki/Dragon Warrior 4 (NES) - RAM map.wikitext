@@ -68,7 +68,7 @@ WRAM is addressed from <code>$6000</code> to <code>$7fff</code>.
 |-  style="background-color: #eaecf0;"
 |  ...  ||  $6168 - $62ec  ||  ...  ||  ???
 |-
-|  General  ||  $62ed  ||  byte  ||  Step Counter
+|  General  ||  $62ed  ||  byte  ||  Step Counter or Day/Night cycle [TODO: verify which one]
 |-  style="background-color: #eaecf0;"
 |  ...  ||  $62ee - $7fff  ||  ...  ||  ???
 |}
@@ -967,6 +967,14 @@ Locations for the <code>Return</code> spell. This uses 3 bytes, one bit for each
 
 ==Treasure Chests==
 
+These are the flags that indicate if a treaure has already been looted or not. 0 => available, 1 => already taken.
+
+===Notes===
+
+The Chapter 2 item <code>Birdsong Nector</code> is not included here, must be an event.
+
+===Full List===
+
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Map  !!  Sub-Map  !!  Description  !!  Reward
@@ -1131,8 +1139,8 @@ Locations for the <code>Return</code> spell. This uses 3 bytes, one bit for each
 |-  style="background-color: #eaecf0;"
 |  colspan="7"  |  
 
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6265 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $6265 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $32  ||  style="text-align: center;"  |  $00  ||  Cave South Of Frenor - B2, left, chest  ||  Magic Potion
 |-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6265 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
 |-  style="background-color: #eaecf0;"
@@ -1159,14 +1167,14 @@ Locations for the <code>Return</code> spell. This uses 3 bytes, one bit for each
 |  Treasure  ||  $6266 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $03  ||  Secret Playground Dungeon - B2, top, chest  ||  Flying Shoes
 |-
 |  Treasure  ||  $6266 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $01  ||  Secret Playground Dungeon - B1, bottom-right, chest  ||  Medical Herb
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6266 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6266 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6266 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6266 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $6266 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $32  ||  style="text-align: center;"  |  $01  ||  Cave South Of Frenor - B1, bottom-right, chest  ||  Wing of Wyvern
+|-
+|  Treasure  ||  $6266 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $32  ||  style="text-align: center;"  |  $01  ||  Cave South Of Frenor - B1, middle, chest  ||  Agility Seed
+|-
+|  Treasure  ||  $6266 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $32  ||  style="text-align: center;"  |  $01  ||  Cave South Of Frenor - B1, top-left, chest  ||  360 gold
+|-
+|  Treasure  ||  $6266 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $32  ||  style="text-align: center;"  |  $00  ||  Cave South Of Frenor - B2, bottom, chest  ||  Golden Bracelet
 
 |-  style="background-color: #eaecf0;"
 |  colspan="7"  |  
@@ -1281,12 +1289,12 @@ Locations for the <code>Return</code> spell. This uses 3 bytes, one bit for each
 |  Treasure  ||  $626c # 0000_1000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
 |-  style="background-color: #eaecf0;"
 |  Treasure  ||  $626c # 0001_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $626c # 0010_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $626c # 0100_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $626c # 1000_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $626c # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $3f  ||  style="text-align: center;"  |  $01  ||  Birdsong Tower - F3, middle, right chest  ||  1200 gold
+|-
+|  Treasure  ||  $626c # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $3f  ||  style="text-align: center;"  |  $01  ||  Birdsong Tower - F3, middle, left chest  ||  Strength Seed
+|-
+|  Treasure  ||  $626c # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $3f  ||  style="text-align: center;"  |  $01  ||  Birdsong Tower - F3, top-right  ||  Wing of Wyvern
 
 |-  style="background-color: #eaecf0;"
 |  colspan="7"  |  
@@ -1463,10 +1471,10 @@ Locations for the <code>Return</code> spell. This uses 3 bytes, one bit for each
 |  Treasure  ||  $6275 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
 |-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6275 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6275 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6275 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $6275 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $0c  ||  style="text-align: center;"  |  $00  ||  Bazaar - bottom-right, right pot  ||  Gum Pod
+|-
+|  Treasure  ||  $6275 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $0c  ||  style="text-align: center;"  |  $00  ||  Bazaar - bottom-right, left pot  ||  Strength Seed
 
 |-  style="background-color: #eaecf0;"
 |  colspan="7"  |  
