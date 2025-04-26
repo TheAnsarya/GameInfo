@@ -26,51 +26,67 @@ WRAM is addressed from <code>$6000</code> to <code>$7fff</code>.
 
 {| class="wikitable sortable"
 |-
-!  Category  !!  Address  !!  Size  !!  Description
+!  Category  !!  Address  !!  Size  !!  Description  !!  Debug Label
 |-  style="background-color: #eaecf0;"
-|  ???  ||  $6000  ||  byte  ||  ???
+|  ???  ||  $6000  ||  byte  ||  ???  ||  ...
 |-
-|  Party Members  ||  $6001 - $601e  ||  30 bytes  ||  Hero ([[#Hero|details]])
+|  Party Members  ||  $6001 - $601e  ||  30 bytes  ||  Hero ([[#Hero|details]])  ||  Hero_*
 |-
-|  Party Members  ||  $601f - $603c  ||  30 bytes  ||  Cristo ([[#Cristo|details]])
+|  Party Members  ||  $601f - $603c  ||  30 bytes  ||  Cristo ([[#Cristo|details]])  ||  Cristo_*
 |-
-|  Party Members  ||  $603d - $605a  ||  30 bytes  ||  Nara ([[#Nara|details]])
+|  Party Members  ||  $603d - $605a  ||  30 bytes  ||  Nara ([[#Nara|details]])  ||  Nara_*
 |-
-|  Party Members  ||  $605b - $6078  ||  30 bytes  ||  Mara ([[#Mara|details]])
+|  Party Members  ||  $605b - $6078  ||  30 bytes  ||  Mara ([[#Mara|details]])  ||  Mara_*
 |-
-|  Party Members  ||  $6079 - $6096  ||  30 bytes  ||  Brey ([[#Brey|details]])
+|  Party Members  ||  $6079 - $6096  ||  30 bytes  ||  Brey ([[#Brey|details]])  ||  Brey_*
 |-
-|  Party Members  ||  $6097 - $60b4  ||  30 bytes  ||  Taloon ([[#Taloon|details]])
+|  Party Members  ||  $6097 - $60b4  ||  30 bytes  ||  Taloon ([[#Taloon|details]])  ||  Taloon_*
 |-
-|  Party Members  ||  $60b5 - $60d2  ||  30 bytes  ||  Ragnar ([[#Ragnar|details]])
+|  Party Members  ||  $60b5 - $60d2  ||  30 bytes  ||  Ragnar ([[#Ragnar|details]])  ||  Ragnar_*
 |-
-|  Party Members  ||  $60d3 - $60f0  ||  30 bytes  ||  Alena ([[#Alena|details]])
+|  Party Members  ||  $60d3 - $60f0  ||  30 bytes  ||  Alena ([[#Alena|details]])  ||  Alena_*
 |-  style="background-color: #eaecf0;"
-|  ...  ||  $60f1 - $610e  ||  ...  ||  ???
+|  ...  ||  $60f1 - $610e  ||  ...  ||  ???  ||  ...
 |-
-|  Party Members  ||  $610f - $xxxx  ||  xxx bytes  ||  Healie ([[#Healie|details]])
+|  Party Members  ||  $610f - $xxxx  ||  xxx bytes  ||  Healie ([[#Healie|details]])  ||  ...
 |-  style="background-color: #eaecf0;"
-|  ...  ||  $xxxx - $6156  ||  ...  ||  ???
+|  ...  ||  $xxxx - $6156  ||  ...  ||  ???  ||  ...
 |-
-|  General  ||  $6157 - $6159  ||  long  ||  Gold
+|  General  ||  $6157 - $6159  ||  long  ||  Gold  ||  General_Gold
 |-
-|  General  ||  $615a  ||  byte  ||  Chapter Number ([[Dragon_Warrior_IV_(NES)/Values#Chapters|values]])
+|  General  ||  $615a  ||  byte  ||  Chapter Number ([[Dragon_Warrior_IV_(NES)/Values#Chapters|values]])  ||  General_Chapter_Number
 |-
-|  General  ||  $615b  ||  byte  ||  Battle Tactics ([[Dragon_Warrior_IV_(NES)/Values#Battle Tactics|values]])
+|  General  ||  $615b  ||  byte  ||  Battle Tactics ([[Dragon_Warrior_IV_(NES)/Values#Battle Tactics|values]])  ||  General_Battle_Tactics
 |-  style="background-color: #eaecf0;"
-|  ...  ||  $615c - $6164  ||  ...  ||  ???
+|  ...  ||  $615c - $6164  ||  ...  ||  ???  ||  ...
 |-
-|  General  ||  $6165 - $6167  ||  long  ||  Return Locations ([[#Return Locations|details]])
+|  General  ||  $6165 - $6167  ||  long  ||  Return Locations ([[#Return Locations|details]])  ||  General_Return_Locations
 |-  style="background-color: #eaecf0;"
-|  ...  ||  $6168 - $7fff  ||  ...  ||  ???
+|  ...  ||  $6168 - $6169  ||  ...  ||  ???  ||  ...
 |-
-|  General  ||  $616a - $616d  ||  4 bytes  ||  Party Order
+|  General  ||  $616a - $616d  ||  4 bytes  ||  Party Order  ||  Party_Members_Order_*
 |-  style="background-color: #eaecf0;"
-|  ...  ||  $6168 - $62ec  ||  ...  ||  ???
+|  ...  ||  $616e - $625c  ||  ...  ||  ???  ||  ...
 |-
-|  General  ||  $62ed  ||  byte  ||  Step Counter or Day/Night cycle [TODO: verify which one]
+|  General  ||  $625d - $6277  ||  27 bytes  ||  Treasure Chests Flags ([[#Treasure Chests|details]])  ||  Flags_Treasure_Chests
 |-  style="background-color: #eaecf0;"
-|  ...  ||  $62ee - $7fff  ||  ...  ||  ???
+|  ...  ||  $6278 - $62ac  ||  ...  ||  ???  ||  ...
+|-
+|  General  ||  $62ad - $62af  ||  3 bytes  ||  Casino Coins  ||  General_Casino_Coins
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $62b0 - $62e6  ||  ...  ||  ???  ||  ...
+|-
+|  General  ||  $62e7  ||  byte  ||  Chapter 3 - Lakanaba Shop - Number of Boomerang  ||  C3_Lakanaba_Shop_Boomerang_Count
+|-
+|  General  ||  $62e8  ||  byte  ||  Chapter 3 - Lakanaba Shop - Number of Chain Sickle  ||  C3_Lakanaba_Shop_Chain_Sickle_Count
+|-
+|  General  ||  $62e9  ||  byte  ||  Chapter 3 - Lakanaba Shop - Number of Sword of Malice  ||  C3_Lakanaba_Shop_Sword_of_Malice_Count
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $62ea - $62ec  ||  ...  ||  ???  ||  ...
+|-
+|  General  ||  $62ed  ||  byte  ||  Day/Night cycle (28 => Morning after Inn, 84 => night)  ||  General_DayNight_Counter
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $62ee - $7fff  ||  ...  ||  ???  ||  ...
 |}
 
 ==Party Members==
@@ -861,6 +877,9 @@ Index is <code>$07</code>.
 
 Index is <code>$09</code>.
 
+Hector is C9
+
+and also chap 3 mage, 610f to 6115, 80 3A 00 44 00 C7
 {| class="wikitable sortable"
 |-
 !  Category  !!  Address  !!  Size  !!  Description
@@ -883,7 +902,7 @@ Index is <code>$09</code>.
 |-
 |  Stats  ||  $6110 - $6111  ||  word  ||  Current HP
 |-
-|  Stats  ||  $6112 - $113  ||  word  ||  Current MP
+|  Stats  ||  $6112 - $6113  ||  word  ||  Current MP
 |-
 |  Stats  ||  $6114  ||  byte  ||  ??? (value = $c5)
 |}
@@ -952,18 +971,22 @@ Locations for the <code>Return</code> spell. This uses 3 bytes, one bit for each
 ===Notes===
 
 618f, 02 = start chapter 1
+
 62d5, 01 = start chapter 1
 
 6281, Izmit, Night, School, running child, "His name is Alex", $80 (chapter 1)
+
 627e, 10=>30, Burland, talk to flora, Flora follows you, map: 02 03 (chapter 1)
+
 627e, 30=>50, Izmit, bring Flora to Alex, map: 12 02 (chapter 1)
+
 6283, 00=>80, Defeat Saro in Loch Tower (chapter 1)
+
 6288, 00=>80, Talk to Saro after defeating him in Loch Tower (chapter 1)
+
 6283, 80=>a0, Defeat Saro, talk to him, then children are following you in Loch Tower (chapter 1)
+
 6283, a0=>80, Return children to Izmit (chapter 1)
-
-
-
 
 ==Treasure Chests==
 
@@ -993,8 +1016,8 @@ The Chapter 2 item <code>Birdsong Nector</code> is not included here, must be an
 |  Treasure  ||  $625d # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $01  ||  style="text-align: center;"  |  $00  ||  Santeem - F1, top-middle, middle chest  ||  Flute of Uncovering
 |-
 |  Treasure  ||  $625d # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $01  ||  style="text-align: center;"  |  $00  ||  Santeem - F1, top-middle, left chest  ||  Strength Seed
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $625d # 1000_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $625d # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $00  ||  style="text-align: center;"  |  $04  ||  Keeleon - B1, Jail, bottom, chest  ||  Boarding Pass
 
 |-  style="background-color: #eaecf0;"
 |  colspan="7"  |  
@@ -1027,8 +1050,8 @@ The Chapter 2 item <code>Birdsong Nector</code> is not included here, must be an
 |  Treasure  ||  $625f # 0000_0100  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
 |-  style="background-color: #eaecf0;"
 |  Treasure  ||  $625f # 0000_1000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $625f # 0001_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $625f # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $05  ||  Endor - Castle, left side, B1, chest  ||  Lifeforce Nuts
 |-  style="background-color: #eaecf0;"
 |  Treasure  ||  $625f # 0010_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
 |-  style="background-color: #eaecf0;"
@@ -1045,12 +1068,12 @@ The Chapter 2 item <code>Birdsong Nector</code> is not included here, must be an
 |  Treasure  ||  $6260 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
 |-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6260 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6260 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6260 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6260 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $6260 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $06  ||  style="text-align: center;"  |  $00  ||  Branca, top-left, bottom chest  ||  Small Medal
+|-
+|  Treasure  ||  $6260 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $06  ||  style="text-align: center;"  |  $00  ||  Branca, top-left, top-right chest  ||  120 gold
+|-
+|  Treasure  ||  $6260 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $06  ||  style="text-align: center;"  |  $00  ||  Branca, top-left, top-left chest  ||  Mystic Acorns
 |-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6260 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
 |-  style="background-color: #eaecf0;"
@@ -1059,18 +1082,18 @@ The Chapter 2 item <code>Birdsong Nector</code> is not included here, must be an
 |-  style="background-color: #eaecf0;"
 |  colspan="7"  |  
 
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6261 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6261 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6261 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6261 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6261 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6261 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $6261 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $2d  ||  style="text-align: center;"  |  $00  ||  Aktemto Mine - B1, top, chest  ||  Silver Tarot Cards
+|-
+|  Treasure  ||  $6261 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $21  ||  style="text-align: center;"  |  $00  ||  Desert Inn - top, chest  ||  Lunch
+|-
+|  Treasure  ||  $6261 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $17  ||  style="text-align: center;"  |  $01  ||  Kievs - Top-right house, B1, chest  ||  Empty!
+|-
+|  Treasure  ||  $6261 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $16  ||  style="text-align: center;"  |  $02  ||  Lakanaba - Shop, B1, top-left chest group, right chest  ||  Chain Sickle
+|-
+|  Treasure  ||  $6261 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $16  ||  style="text-align: center;"  |  $02  ||  Lakanaba - Shop, B1, top-left chest group, middle chest  ||  Ice Blade
+|-
+|  Treasure  ||  $6261 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $16  ||  style="text-align: center;"  |  $02  ||  Lakanaba - Shop, B1, top-left chest group, left chest  ||  Strength Seed
 |-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6261 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
 |-  style="background-color: #eaecf0;"
@@ -1091,10 +1114,10 @@ The Chapter 2 item <code>Birdsong Nector</code> is not included here, must be an
 |  Treasure  ||  $6262 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
 |-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6262 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6262 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6262 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $6262 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $2d  ||  style="text-align: center;"  |  $02  ||  Aktemto Mine - B3, chest  ||  Gunpowder Jar
+|-
+|  Treasure  ||  $6262 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $2d  ||  style="text-align: center;"  |  $00  ||  Aktemto Mine - B1, bottom right, chest  ||  Mystic Acorns
 
 |-  style="background-color: #eaecf0;"
 |  colspan="7"  |  
@@ -1143,16 +1166,16 @@ The Chapter 2 item <code>Birdsong Nector</code> is not included here, must be an
 |  Treasure  ||  $6265 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $32  ||  style="text-align: center;"  |  $00  ||  Cave South Of Frenor - B2, left, chest  ||  Magic Potion
 |-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6265 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6265 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6265 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6265 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6265 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6265 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $6265 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $03  ||  Cave West of Kievs - B4, middle, chest  ||  Sphere of Silence
+|-
+|  Treasure  ||  $6265 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $03  ||  Cave West of Kievs - B4, middle, chest  ||  Lamp of Darkness
+|-
+|  Treasure  ||  $6265 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $01  ||  Cave West of Kievs - B2, bottom-left, chest  ||  240 gold
+|-
+|  Treasure  ||  $6265 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $01  ||  Cave West of Kievs - B2, right, chest  ||  Lifeforce Nuts
+|-
+|  Treasure  ||  $6265 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $00  ||  Cave West of Kievs - B1, top-left, chest  ||  Wing of Wyvern
 |-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6265 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
 
@@ -1219,20 +1242,20 @@ The Chapter 2 item <code>Birdsong Nector</code> is not included here, must be an
 |-  style="background-color: #eaecf0;"
 |  colspan="7"  |  
 
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6269 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6269 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6269 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6269 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6269 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6269 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6269 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $6269 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $02  ||  Silver Statuette Cave - B2, after water change, bottom, chest  ||  Medical Herb
+|-
+|  Treasure  ||  $6269 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $02  ||  Silver Statuette Cave - B2, after water change, top-left, chest  ||  760 gold
+|-
+|  Treasure  ||  $6269 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $02  ||  Silver Statuette Cave - B2, after water change, middle-left, chest  ||  Morning Star
+|-
+|  Treasure  ||  $6269 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $02  ||  Silver Statuette Cave - B2, after water change, top-right, chest  ||  Iron Spear
+|-
+|  Treasure  ||  $6269 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $37  ||  style="text-align: center;"  |  $02  ||  Cave of Betrayal - B3, chest  ||  Symbol of Faith
+|-
+|  Treasure  ||  $6269 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $36  ||  style="text-align: center;"  |  $06  ||  Cave North of Lakanaba - B5 (left side), top, chest  ||  Iron Safe
+|-
+|  Treasure  ||  $6269 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $36  ||  style="text-align: center;"  |  $01  ||  Cave North of Lakanaba - B2, middle-left, chest  ||  Chain Sickle
 |-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6269 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
 
@@ -1243,18 +1266,18 @@ The Chapter 2 item <code>Birdsong Nector</code> is not included here, must be an
 |  Treasure  ||  $626a # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $39  ||  style="text-align: center;"  |  $00  ||  Burland-Izmit tunnel, bottom-right, chest  ||  Medical Herb
 |-
 |  Treasure  ||  $626a # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $39  ||  style="text-align: center;"  |  $00  ||  Burland-Izmit tunnel, top-left, chest  ||  40 gold
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $626a # 0000_0100  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $626a # 0000_1000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $626a # 0001_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $626a # 0010_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $626a # 0100_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $626a # 1000_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $626a # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $05  ||  Silver Statuette Cave - B4, chest  ||  Silver Statuette
+|-
+|  Treasure  ||  $626a # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $04  ||  Silver Statuette Cave - B3, after water change, bottom-middle, chest  ||  Broad Sword
+|-
+|  Treasure  ||  $626a # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $03  ||  Silver Statuette Cave - B3, before water change, left, chest  ||  Wing of Wyvern
+|-
+|  Treasure  ||  $626a # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $04  ||  Silver Statuette Cave - B3, after water change, top-right, right chest  ||  Empty!
+|-
+|  Treasure  ||  $626a # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $04  ||  Silver Statuette Cave - B3, after water change, top-right, left chest  ||  Empty!
+|-
+|  Treasure  ||  $626a # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $04  ||  Silver Statuette Cave - B3, after water change, top-left, chest  ||  Half Plate Armor
 
 |-  style="background-color: #eaecf0;"
 |  colspan="7"  |  
@@ -1323,8 +1346,8 @@ The Chapter 2 item <code>Birdsong Nector</code> is not included here, must be an
 |  Treasure  ||  $626e # 0000_0001  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
 |-  style="background-color: #eaecf0;"
 |  Treasure  ||  $626e # 0000_0010  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $626e # 0000_0100  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $626e # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $43  ||  style="text-align: center;"  |  $04  ||  Konenber - Inn, F2, top-right room, chest  ||  Sword of Decimation
 |-  style="background-color: #eaecf0;"
 |  Treasure  ||  $626e # 0000_1000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
 |-  style="background-color: #eaecf0;"
@@ -1401,10 +1424,10 @@ The Chapter 2 item <code>Birdsong Nector</code> is not included here, must be an
 
 |-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6272 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6272 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6272 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $6272 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $14  ||  style="text-align: center;"  |  $02  ||  Hometown - Destroyed, middle of flowers, search  ||  Feather Hat
+|-
+|  Treasure  ||  $6272 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $10  ||  style="text-align: center;"  |  $00  ||  Aneaux - Top-left, cemetary, middle tombstone  ||  Strength Seed
 |-
 |  Treasure  ||  $6272 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $0e  ||  style="text-align: center;"  |  $00  ||  Tempe - Top, red monster platform, center, broken tile  ||  Lifeforce Nuts
 |-  style="background-color: #eaecf0;"
@@ -1459,12 +1482,12 @@ The Chapter 2 item <code>Birdsong Nector</code> is not included here, must be an
 |-  style="background-color: #eaecf0;"
 |  colspan="7"  |  
 
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6275 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6275 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6275 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $6275 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $15  ||  style="text-align: center;"  |  $02  ||  Monbaraba - Theater, B1, top room, drawer #2  ||  Strength Seed
+|-
+|  Treasure  ||  $6275 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $15  ||  style="text-align: center;"  |  $00  ||  Monbaraba - top-right, top pot  ||  Medical Herb
+|-
+|  Treasure  ||  $6275 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $14  ||  style="text-align: center;"  |  $01  ||  Hometown - B1, top-left pot  ||  Medical Herb
 |-
 |  Treasure  ||  $6275 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $12  ||  style="text-align: center;"  |  $00  ||  Izmit - middle-right house, right drawer  ||  Medical Herb
 |-  style="background-color: #eaecf0;"
@@ -1487,24 +1510,24 @@ The Chapter 2 item <code>Birdsong Nector</code> is not included here, must be an
 |  Treasure  ||  $6276 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
 |-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6276 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6276 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $6276 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $43  ||  style="text-align: center;"  |  $08  ||  Konenber - Piers on left, Ship, B1, bottom room, drawer  ||  Small Medal
 |-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6276 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6276 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6276 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $6276 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $17  ||  style="text-align: center;"  |  $00  ||  Kievs - top-right house, right pot  ||  Lifeforce Nuts
+|-
+|  Treasure  ||  $6276 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $16  ||  style="text-align: center;"  |  $00  ||  Lakanaba - Taloon's House, F1, left pot  ||  Medical Herb
 
 |-  style="background-color: #eaecf0;"
 |  colspan="7"  |  
 
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6277 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6277 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6277 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $6277 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $20  ||  style="text-align: center;"  |  $00  ||  Woodsman's Shack - right pot  ||  50 gold
+|-
+|  Treasure  ||  $6277 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $20  ||  style="text-align: center;"  |  $00  ||  Woodsman's Shack - middle pot  ||  Medical Herb
+|-
+|  Treasure  ||  $6277 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $20  ||  style="text-align: center;"  |  $00  ||  Woodsman's Shack - left pot  ||  Leather Armor
 |-
 |  Treasure  ||  $6277 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $1c  ||  style="text-align: center;"  |  $01  ||  Secret Playground Entrance - B1, Exit, top-middle pot  ||  Agility Seed
 |-  style="background-color: #eaecf0;"

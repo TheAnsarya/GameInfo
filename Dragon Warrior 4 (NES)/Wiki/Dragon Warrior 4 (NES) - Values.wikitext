@@ -356,18 +356,30 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 {| class="wikitable sortable"
 |-
 !  Map  !!  Sub-Map  !!  Description
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $00  ||  style="text-align: center;"  |  $00  ||  Keeleon
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $00  ||  style="text-align: center;"  |  $00  ||  Keeleon - Outside
+|-
+|  style="text-align: center;"  |  $00  ||  style="text-align: center;"  |  $01  ||  Keeleon - F1
+|-
+|  style="text-align: center;"  |  $00  ||  style="text-align: center;"  |  $02  ||  Keeleon - F2
+|-
+|  style="text-align: center;"  |  $00  ||  style="text-align: center;"  |  $03  ||  Keeleon - F3
+|-
+|  style="text-align: center;"  |  $00  ||  style="text-align: center;"  |  $04  ||  Keeleon - B1, Jail
+
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
+
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $01  ||  style="text-align: center;"  |  $00  ||  Santeem - F1
 |-
 |  style="text-align: center;"  |  $01  ||  style="text-align: center;"  |  $01  ||  Santeem - F2
 |-
 |  style="text-align: center;"  |  $01  ||  style="text-align: center;"  |  $02  ||  Santeem - F3
+
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
+
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $02  ||  style="text-align: center;"  |  $00  ||  Burland
 |-
@@ -376,12 +388,16 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |  style="text-align: center;"  |  $02  ||  style="text-align: center;"  |  $02  ||  Burland - Castle, F2
 |-
 |  style="text-align: center;"  |  $02  ||  style="text-align: center;"  |  $03  ||  Burland - Flora's House, F2  --  Armor Shop, F2
+
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
+
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $03  ||  style="text-align: center;"  |  $00  ||  Dire Palace
+
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
+
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $00  ||  Endor
 |-
@@ -412,56 +428,122 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $0d  ||  ???
 |-
 |  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $0e  ||  Endor - Back Castle, F2
+
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $05  ||  style="text-align: center;"  |  $00  ||  Bonmalmo
-|-  style="background-color: #dddd80;"
+
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $05  ||  style="text-align: center;"  |  $00  ||  Bonmalmo - B1, Jail
+|-
+|  style="text-align: center;"  |  $05  ||  style="text-align: center;"  |  $01  ||  Bonmalmo - Main
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
+|-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $06  ||  style="text-align: center;"  |  $00  ||  Branca
+|-
+|  style="text-align: center;"  |  $06  ||  style="text-align: center;"  |  $01  ||  Branca - Castle, F2, Throne Room
+|-
+|  style="text-align: center;"  |  $06  ||  style="text-align: center;"  |  $02  ||  Branca - Left house, F2
+|-
+|  style="text-align: center;"  |  $06  ||  style="text-align: center;"  |  $03  ||  Branca - Inn, F2
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $07  ||  style="text-align: center;"  |  $00  ||  Soretta
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $08  ||  style="text-align: center;"  |  $00  ||  Gardenbur
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $09  ||  style="text-align: center;"  |  $00  ||  Stancia
-|-  style="background-color: #dddd80;"
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
+|-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $0a  ||  style="text-align: center;"  |  $00  ||  Aktemto
+|-  style="background-color: #eaecf0;"
+|  colspan="3" style="text-align: center;"  |  No sub-maps
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $0b  ||  style="text-align: center;"  |  $00  ||  Riverton
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $0c  ||  style="text-align: center;"  |  $00  ||  Bazaar
 |-  style="background-color: #eaecf0;"
-|  colspan="3"  style="text-align: center;"  |  No sub-maps
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $0d  ||  style="text-align: center;"  |  $00  ||  Mintos
+|  colspan="3" style="text-align: center;"  |  No sub-maps
+
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
+
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $0d  ||  style="text-align: center;"  |  $00  ||  Mintos
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $0e  ||  style="text-align: center;"  |  $00  ||  Tempe
 |-  style="background-color: #eaecf0;"
-|  colspan="3"  style="text-align: center;"  |  No sub-maps
+|  colspan="3" style="text-align: center;"  |  No sub-maps
+
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
+
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $0f  ||  style="text-align: center;"  |  $00  ||  Frenor
 |-
 |  style="text-align: center;"  |  $0f  ||  style="text-align: center;"  |  $01  ||  Frenor - Inn, F2  -- Top-left house, F2
+
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
-|-  style="background-color: #dddd80;"
+
+|-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $10  ||  style="text-align: center;"  |  $00  ||  Aneaux
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $11  ||  style="text-align: center;"  |  $00  ||  Haville
+|-
+|  style="text-align: center;"  |  $10  ||  style="text-align: center;"  |  $01  ||  Aneaux - Bottom-right Inn, F2
+|-
+|  style="text-align: center;"  |  $10  ||  style="text-align: center;"  |  $02  ||  Aneaux - Church, F2
+|-
+|  style="text-align: center;"  |  $10  ||  style="text-align: center;"  |  $03  ||  Aneaux - Top-left house, F2
+
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
+
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $11  ||  style="text-align: center;"  |  $00  ||  Haville
+|-
+|  style="text-align: center;"  |  $11  ||  style="text-align: center;"  |  $01  ||  Haville - Inn, F2  --  Bottom-right building, F2, Restaurant
+|-
+|  style="text-align: center;"  |  $11  ||  style="text-align: center;"  |  $02  ||  Haville - B1, Jail
+|-
+|  style="text-align: center;"  |  $11  ||  style="text-align: center;"  |  $03  ||  Haville - Piers on left
+|-
+|  style="text-align: center;"  |  $11  ||  style="text-align: center;"  |  $04  ||  Haville - Ship, B1
+|-
+|  style="text-align: center;"  |  $11  ||  style="text-align: center;"  |  $05  ||  Haville - Ship's Cabin
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $12  ||  style="text-align: center;"  |  $00  ||  Izmit
 |-
 |  style="text-align: center;"  |  $12  ||  style="text-align: center;"  |  $01  ||  Izmit - Inn, F2  --  Item Shop, F2  -- Middle-right house, F2
 |-
 |  style="text-align: center;"  |  $12  ||  style="text-align: center;"  |  $02  ||  Izmit - Jail, B1
+
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
+
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $13  ||  style="text-align: center;"  |  $00  ||  Surene
 |-
@@ -472,52 +554,116 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |  style="text-align: center;"  |  $13  ||  style="text-align: center;"  |  $03  ||  Surene - Main Building, Sides  --  Main Building, Center F2
 |-
 |  style="text-align: center;"  |  $13  ||  style="text-align: center;"  |  $04  ||  Surene - Main Building, Old man's room under advanced weapon shop
+
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
-|-  style="background-color: #dddd80;"
+
+|-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $14  ||  style="text-align: center;"  |  $00  ||  Hometown
-|-  style="background-color: #dddd80;"
+|-
+|  style="text-align: center;"  |  $14  ||  style="text-align: center;"  |  $01  ||  Hometown - B1
+|-
+|  style="text-align: center;"  |  $14  ||  style="text-align: center;"  |  $02  ||  Hometown - Destroyed
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
+|-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $15  ||  style="text-align: center;"  |  $00  ||  Monbaraba
-|-  style="background-color: #dddd80;"
+|-
+|  style="text-align: center;"  |  $15  ||  style="text-align: center;"  |  $01  ||  Monbaraba - Middle-right house, F2  --  Bottom-left house, F2  --  Restaurant, F2
+|-
+|  style="text-align: center;"  |  $15  ||  style="text-align: center;"  |  $02  ||  Monbaraba - Theater, B1, no crowd
+|-
+|  style="text-align: center;"  |  $15  ||  style="text-align: center;"  |  $03  ||  Monbaraba - Theater, B1, full crowd
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
+|-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $16  ||  style="text-align: center;"  |  $00  ||  Lakanaba
-|-  style="background-color: #dddd80;"
+|-
+|  style="text-align: center;"  |  $16  ||  style="text-align: center;"  |  $01  ||  Lakanaba - Taloon's House, F2  --  Armor Shop, F2
+|-
+|  style="text-align: center;"  |  $16  ||  style="text-align: center;"  |  $02  ||  Lakanaba - Shop, B1
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
+|-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $17  ||  style="text-align: center;"  |  $00  ||  Kievs
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $17  ||  style="text-align: center;"  |  $01  ||  Kievs - Top-right house, B1
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $18  ||  style="text-align: center;"  |  $00  ||  Foxville
+|-
+|  style="text-align: center;"  |  $18  ||  style="text-align: center;"  |  $01  ||  Foxville - Empty field
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $19  ||  style="text-align: center;"  |  $00  ||  Seaside Village
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $1a  ||  style="text-align: center;"  |  $00  ||  Gottside
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $1b  ||  style="text-align: center;"  |  $00  ||  Rosaville
+
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
+
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $1c  ||  style="text-align: center;"  |  $00  ||  Secret Playground Entrance
 |-
 |  style="text-align: center;"  |  $1c  ||  style="text-align: center;"  |  $01  ||  Secret Playground Entrance - B1, Exit
+
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
-|-  style="background-color: #dddd80;"
+
+|-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $1d  ||  style="text-align: center;"  |  $00  ||  House of Prophecy
 |-  style="background-color: #eaecf0;"
+|  colspan="3" style="text-align: center;"  |  No sub-maps
+
+|-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
+
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $1e  ||  style="text-align: center;"  |  $00  ||  Shrine from Frenor to Endor
 |-  style="background-color: #eaecf0;"
-|  colspan="3"  style="text-align: center;"  |  No sub-maps
+|  colspan="3" style="text-align: center;"  |  No sub-maps
+
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
+
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $1f  ||  style="text-align: center;"  |  $00  ||  Shrine northwest of Endor (to Frenor)
 |-  style="background-color: #eaecf0;"
-|  colspan="3"  style="text-align: center;"  |  No sub-maps
+|  colspan="3" style="text-align: center;"  |  No sub-maps
+
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
-|-  style="background-color: #dddd80;"
+
+|-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $20  ||  style="text-align: center;"  |  $00  ||  Woodsman's Shack
-|-  style="background-color: #dddd80;"
+|-  style="background-color: #eaecf0;"
+|  colspan="3" style="text-align: center;"  |  No sub-maps
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
+|-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $21  ||  style="text-align: center;"  |  $00  ||  Desert Inn
+|-  style="background-color: #eaecf0;"
+|  colspan="3" style="text-align: center;"  |  No sub-maps
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $22  ||  style="text-align: center;"  |  $00  ||  Small Medal King
 |-  style="background-color: #dddd80;"
@@ -540,24 +686,52 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |  style="text-align: center;"  |  $2b  ||  style="text-align: center;"  |  $00  ||  Travel Door near Riverton
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $2c  ||  style="text-align: center;"  |  $00  ||  Shrine of Colossus (outside)
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $2d  ||  style="text-align: center;"  |  $00  ||  Aktemto Mine (Dungeon)
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $2d  ||  style="text-align: center;"  |  $00  ||  Aktemto Mine - B1
+|-
+|  style="text-align: center;"  |  $2d  ||  style="text-align: center;"  |  $01  ||  Aktemto Mine - B2
+|-
+|  style="text-align: center;"  |  $2d  ||  style="text-align: center;"  |  $02  ||  Aktemto Mine - B3
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $2e  ||  style="text-align: center;"  |  $00  ||  Shrine of Breaking Waves
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $00  ||  Padaquea Cave
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $30  ||  style="text-align: center;"  |  $00  ||  Bakor's Hideout
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $00  ||  Sphere Of Silence Cave
+
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
+
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $00  ||  Cave West of Kievs - B1
+|-
+|  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $01  ||  Cave West of Kievs - B2
+|-
+|  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $02  ||  Cave West of Kievs - B3, Corridor
+|-
+|  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $03  ||  Cave West of Kievs - B4
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $04  ||  Cave West of Kievs - ???
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $32  ||  style="text-align: center;"  |  $00  ||  Cave South Of Frenor - B2
 |-
 |  style="text-align: center;"  |  $32  ||  style="text-align: center;"  |  $01  ||  Cave South Of Frenor - B1
+
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
+
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $00  ||  Secret Playground Dungeon - B1, Section #1 (left)
 |-
@@ -572,22 +746,76 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $05  ||  Secret Playground Dungeon - B3, left dead-end
 |-
 |  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $06  ||  Secret Playground Dungeon - B3
+
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
+
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $34  ||  style="text-align: center;"  |  $00  ||  Cascade Cave
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $00  ||  Final Cave
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $36  ||  style="text-align: center;"  |  $00  ||  Iron Safe Cave
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $37  ||  style="text-align: center;"  |  $00  ||  Cave of Betrayal
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $00  ||  Silver Statuette Cave
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $36  ||  style="text-align: center;"  |  $00  ||  Cave North of Lakanaba - B1
+|-
+|  style="text-align: center;"  |  $36  ||  style="text-align: center;"  |  $01  ||  Cave North of Lakanaba - B2, before water
+|-
+|  style="text-align: center;"  |  $36  ||  style="text-align: center;"  |  $02  ||  Cave North of Lakanaba - B2, after water
+|-
+|  style="text-align: center;"  |  $36  ||  style="text-align: center;"  |  $03  ||  Cave North of Lakanaba - B3
+|-
+|  style="text-align: center;"  |  $36  ||  style="text-align: center;"  |  $04  ||  Cave North of Lakanaba - B4
+|-
+|  style="text-align: center;"  |  $36  ||  style="text-align: center;"  |  $05  ||  Cave North of Lakanaba - B5 (right side/wrong side)
+|-
+|  style="text-align: center;"  |  $36  ||  style="text-align: center;"  |  $06  ||  Cave North of Lakanaba - B5 (left side)
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $37  ||  style="text-align: center;"  |  $00  ||  Cave of Betrayal - B1
+|-
+|  style="text-align: center;"  |  $37  ||  style="text-align: center;"  |  $01  ||  Cave of Betrayal - B2
+|-
+|  style="text-align: center;"  |  $37  ||  style="text-align: center;"  |  $02  ||  Cave of Betrayal - B3
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $00  ||  Silver Statuette Cave - B1
+|-
+|  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $01  ||  Silver Statuette Cave - B2, before water change
+|-
+|  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $02  ||  Silver Statuette Cave - B2, after water change
+|-
+|  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $03  ||  Silver Statuette Cave - B3, first time, before water change
+|-
+|  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $04  ||  Silver Statuette Cave - B3, after water change
+|-
+|  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $05  ||  Silver Statuette Cave - B4
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $39  ||  style="text-align: center;"  |  $00  ||  Burland-Izmit tunnel
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $3a  ||  style="text-align: center;"  |  $00  ||  Tunnel between Branca and Endor
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $3a  ||  style="text-align: center;"  |  $00  ||  Tunnel between Branca and Endor, before tunnel is built
+|-
+|  style="text-align: center;"  |  $3a  ||  style="text-align: center;"  |  $01  ||  Tunnel between Branca and Endor, after tunnel is built
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $3b  ||  style="text-align: center;"  |  $00  ||  Royal Crypt Dungeon
 |-  style="background-color: #dddd80;"
@@ -596,8 +824,10 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $00  ||  Zenethian Tower
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $3e  ||  style="text-align: center;"  |  $00  ||  Outside Zenethia
+
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
+
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $3f  ||  style="text-align: center;"  |  $00  ||  Birdsong Tower - F5
 |-
@@ -610,12 +840,16 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |  style="text-align: center;"  |  $3f  ||  style="text-align: center;"  |  $04  ||  Birdsong Tower - B1/Inn
 |-
 |  style="text-align: center;"  |  $3f  ||  style="text-align: center;"  |  $05  ||  Birdsong Tower - F4
+
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
+
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $40  ||  style="text-align: center;"  |  $00  ||  World Tree
+
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
+
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $41  ||  style="text-align: center;"  |  $00  ||  Loch Tower - F4
 |-
@@ -628,12 +862,40 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |  style="text-align: center;"  |  $41  ||  style="text-align: center;"  |  $04  ||  Loch Tower - B1, boss room
 |-
 |  style="text-align: center;"  |  $41  ||  style="text-align: center;"  |  $05  ||  Loch Tower - B1, hp/mp refresh room
+
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
+
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $00  ||  Lighthouse
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $43  ||  style="text-align: center;"  |  $00  ||  Konenber
+|  style="text-align: center;"  |  $43  ||  style="text-align: center;"  |  $00  ||  Konenber - Top-left, Ship Building
+|-
+|  style="text-align: center;"  |  $43  ||  style="text-align: center;"  |  $01  ||  Konenber - Top-left, Ship Building, Ship, B1
+|-
+|  style="text-align: center;"  |  $43  ||  style="text-align: center;"  |  $02  ||  Konenber - Top-left, Ship Building, Ship, Cabin
+|-
+|  style="text-align: center;"  |  $43  ||  style="text-align: center;"  |  $03  ||  Konenber - Bottom-left house, F2
+|-
+|  style="text-align: center;"  |  $43  ||  style="text-align: center;"  |  $04  ||  Konenber - Inn, F2
+|-
+|  style="text-align: center;"  |  $43  ||  style="text-align: center;"  |  $05  ||  Konenber - Top-right house, F2
+|-
+|  style="text-align: center;"  |  $43  ||  style="text-align: center;"  |  $06  ||  Konenber - Outside (entrance)
+|-
+|  style="text-align: center;"  |  $43  ||  style="text-align: center;"  |  $07  ||  Konenber - Piers on left, Ship
+|-
+|  style="text-align: center;"  |  $43  ||  style="text-align: center;"  |  $08  ||  Konenber - Piers on left, Ship, B1
+|-
+|  style="text-align: center;"  |  $43  ||  style="text-align: center;"  |  $09  ||  Konenber - Piers on left, Ship, Cabin
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $44  ||  style="text-align: center;"  |  $00  ||  NE barrier shrine (Radimvice)
 |-  style="background-color: #dddd80;"

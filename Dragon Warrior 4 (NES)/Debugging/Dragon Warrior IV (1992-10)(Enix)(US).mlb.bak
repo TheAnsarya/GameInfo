@@ -164,8 +164,6 @@ NesMemory:60e6-60ed:Alena_Items
 NesMemory:60ee:Alena_Battle_Spells_1
 NesMemory:60ef:Alena_Battle_Spells_2
 NesMemory:60f0:Alena_Overworld_Spells
-NesMemory:610f-6114:Party_Member_Other_1
-NesMemory:6115-611a:Party_Member_Other_2
 NesMemory:6157-6159:General_Gold
 NesMemory:615a:General_Chapter_Number
 NesMemory:615b:General_Battle_Tactics
