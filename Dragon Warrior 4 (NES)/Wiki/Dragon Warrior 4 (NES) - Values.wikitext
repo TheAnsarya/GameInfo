@@ -347,15 +347,17 @@ In the item bags, the high bit <code>%10000000</code> indicates that the item is
 
 ==Maps==
 
-[Todo: finish filling out the sub-map entries]
+[TODO: finish filling out the submap entries]
 
 The primary map for each group has a background of <code style="background-color: #bbccff;">blue</code>.
+
+[TODO: Switch `Primary Map` from submap $00 to entry submap]
 
 If the background is <code style="background-color: #dddd80;">yellow</code> then the submaps have not yet been checked.
 
 {| class="wikitable sortable"
 |-
-!  Map  !!  Sub-Map  !!  Description
+!  Map  !!  Submap  !!  Description
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $00  ||  style="text-align: center;"  |  $00  ||  Keeleon - Outside
 |-
@@ -393,7 +395,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |  colspan="3"  |  
 
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $03  ||  style="text-align: center;"  |  $00  ||  Dire Palace
+|  style="text-align: center;"  |  $03  ||  style="text-align: center;"  |  $00  ||  Dire Palace - ???
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
@@ -454,10 +456,24 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $07  ||  style="text-align: center;"  |  $00  ||  Soretta
+|-
+|  style="text-align: center;"  |  $07  ||  style="text-align: center;"  |  $01  ||  Soretta - F2, Throne room
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $07  ||  style="text-align: center;"  |  $02  ||  Soretta - ???
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $07  ||  style="text-align: center;"  |  $03  ||  Soretta - ???
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $07  ||  style="text-align: center;"  |  $04  ||  Soretta - ???
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $07  ||  style="text-align: center;"  |  $05  ||  Soretta - ???
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $08  ||  style="text-align: center;"  |  $00  ||  Gardenbur
+|  style="text-align: center;"  |  $08  ||  style="text-align: center;"  |  $00  ||  Gardenbur - ???
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $09  ||  style="text-align: center;"  |  $00  ||  Stancia
+|  style="text-align: center;"  |  $09  ||  style="text-align: center;"  |  $00  ||  Stancia - ???
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
@@ -465,13 +481,13 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $0a  ||  style="text-align: center;"  |  $00  ||  Aktemto
 |-  style="background-color: #eaecf0;"
-|  colspan="3" style="text-align: center;"  |  No sub-maps
+|  colspan="3" style="text-align: center;"  |  No submaps
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $0b  ||  style="text-align: center;"  |  $00  ||  Riverton
+|  style="text-align: center;"  |  $0b  ||  style="text-align: center;"  |  $00  ||  Riverton - ???
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
@@ -479,13 +495,17 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $0c  ||  style="text-align: center;"  |  $00  ||  Bazaar
 |-  style="background-color: #eaecf0;"
-|  colspan="3" style="text-align: center;"  |  No sub-maps
+|  colspan="3" style="text-align: center;"  |  No submaps
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
-|-  style="background-color: #dddd80;"
+|-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $0d  ||  style="text-align: center;"  |  $00  ||  Mintos
+|-
+|  style="text-align: center;"  |  $0d  ||  style="text-align: center;"  |  $01  ||  Mintos - Inn, F1  --  Inn, F2
+|-
+|  style="text-align: center;"  |  $0d  ||  style="text-align: center;"  |  $02  ||  Mintos - Middle-right house, F2
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
@@ -493,7 +513,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $0e  ||  style="text-align: center;"  |  $00  ||  Tempe
 |-  style="background-color: #eaecf0;"
-|  colspan="3" style="text-align: center;"  |  No sub-maps
+|  colspan="3" style="text-align: center;"  |  No submaps
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
@@ -598,7 +618,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
-|-  style="background-color: #dddd80;"
+|-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $18  ||  style="text-align: center;"  |  $00  ||  Foxville
 |-
 |  style="text-align: center;"  |  $18  ||  style="text-align: center;"  |  $01  ||  Foxville - Empty field
@@ -607,11 +627,11 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |  colspan="3"  |  
 
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $19  ||  style="text-align: center;"  |  $00  ||  Seaside Village
+|  style="text-align: center;"  |  $19  ||  style="text-align: center;"  |  $00  ||  Seaside Village - ???
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $1a  ||  style="text-align: center;"  |  $00  ||  Gottside
+|  style="text-align: center;"  |  $1a  ||  style="text-align: center;"  |  $00  ||  Gottside - ???
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $1b  ||  style="text-align: center;"  |  $00  ||  Rosaville
+|  style="text-align: center;"  |  $1b  ||  style="text-align: center;"  |  $00  ||  Rosaville - ???
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
@@ -627,7 +647,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $1d  ||  style="text-align: center;"  |  $00  ||  House of Prophecy
 |-  style="background-color: #eaecf0;"
-|  colspan="3" style="text-align: center;"  |  No sub-maps
+|  colspan="3" style="text-align: center;"  |  No submaps
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
@@ -635,7 +655,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $1e  ||  style="text-align: center;"  |  $00  ||  Shrine from Frenor to Endor
 |-  style="background-color: #eaecf0;"
-|  colspan="3" style="text-align: center;"  |  No sub-maps
+|  colspan="3" style="text-align: center;"  |  No submaps
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
@@ -643,7 +663,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $1f  ||  style="text-align: center;"  |  $00  ||  Shrine northwest of Endor (to Frenor)
 |-  style="background-color: #eaecf0;"
-|  colspan="3" style="text-align: center;"  |  No sub-maps
+|  colspan="3" style="text-align: center;"  |  No submaps
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
@@ -651,7 +671,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $20  ||  style="text-align: center;"  |  $00  ||  Woodsman's Shack
 |-  style="background-color: #eaecf0;"
-|  colspan="3" style="text-align: center;"  |  No sub-maps
+|  colspan="3" style="text-align: center;"  |  No submaps
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
@@ -659,33 +679,43 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $21  ||  style="text-align: center;"  |  $00  ||  Desert Inn
 |-  style="background-color: #eaecf0;"
-|  colspan="3" style="text-align: center;"  |  No sub-maps
+|  colspan="3" style="text-align: center;"  |  No submaps
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $22  ||  style="text-align: center;"  |  $00  ||  Small Medal King
+|  style="text-align: center;"  |  $22  ||  style="text-align: center;"  |  $00  ||  Small Medal King - ???
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $23  ||  style="text-align: center;"  |  $00  ||  Shrine East of Mintos
+|-  style="background-color: #eaecf0;"
+|  colspan="3" style="text-align: center;"  |  No submaps
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $23  ||  style="text-align: center;"  |  $00  ||  Shrine North of Soretta
+|  style="text-align: center;"  |  $24  ||  style="text-align: center;"  |  $00  ||  Small Island Shack - ???
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $24  ||  style="text-align: center;"  |  $00  ||  Small Island Shack
+|  style="text-align: center;"  |  $25  ||  style="text-align: center;"  |  $00  ||  Royal Crypt Entrance - ???
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $25  ||  style="text-align: center;"  |  $00  ||  Royal Crypt Entrance
+|  style="text-align: center;"  |  $26  ||  style="text-align: center;"  |  $00  ||  Last Refuge - ???
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $26  ||  style="text-align: center;"  |  $00  ||  Last Refuge
+|  style="text-align: center;"  |  $27  ||  style="text-align: center;"  |  $00  ||  SW barrier shrine (Gigademon) - ???
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $27  ||  style="text-align: center;"  |  $00  ||  SW barrier shrine (Gigademon)
+|  style="text-align: center;"  |  $28  ||  style="text-align: center;"  |  $00  ||  SE barrier shrine (Anderoug) - ???
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $28  ||  style="text-align: center;"  |  $00  ||  SE barrier shrine (Anderoug)
+|  style="text-align: center;"  |  $29  ||  style="text-align: center;"  |  $00  ||  NW barrier shrine (Infurnus Shadow) - ???
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $29  ||  style="text-align: center;"  |  $00  ||  NW barrier shrine (Infurnus Shadow)
+|  style="text-align: center;"  |  $2a  ||  style="text-align: center;"  |  $00  ||  Final Cave (Entrance in underworld) - ???
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $2a  ||  style="text-align: center;"  |  $00  ||  Final Cave (Entrance in underworld)
+|  style="text-align: center;"  |  $2b  ||  style="text-align: center;"  |  $00  ||  Travel Door near Riverton - ???
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $2b  ||  style="text-align: center;"  |  $00  ||  Travel Door near Riverton
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $2c  ||  style="text-align: center;"  |  $00  ||  Shrine of Colossus (outside)
+|  style="text-align: center;"  |  $2c  ||  style="text-align: center;"  |  $00  ||  Shrine of Colossus (outside) - ???
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
@@ -701,11 +731,37 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |  colspan="3"  |  
 
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $2e  ||  style="text-align: center;"  |  $00  ||  Shrine of Breaking Waves
+|  style="text-align: center;"  |  $2e  ||  style="text-align: center;"  |  $00  ||  Shrine of Breaking Waves - ???
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $00  ||  Padaquea Cave
+|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $00  ||  Padaquea Cave - ???
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $01  ||  Padaquea Cave - ???
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $02  ||  Padaquea Cave - ???
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $03  ||  Padaquea Cave - ???
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $04  ||  Padaquea Cave - ???
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $05  ||  Padaquea Cave - ???
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $06  ||  Padaquea Cave - ???
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $07  ||  Padaquea Cave - ???
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $08  ||  Padaquea Cave - ???
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $09  ||  Padaquea Cave - ???
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $30  ||  style="text-align: center;"  |  $00  ||  Bakor's Hideout
+|  style="text-align: center;"  |  $30  ||  style="text-align: center;"  |  $00  ||  Bakor's Hideout - ???
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
@@ -751,9 +807,9 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |  colspan="3"  |  
 
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $34  ||  style="text-align: center;"  |  $00  ||  Cascade Cave
+|  style="text-align: center;"  |  $34  ||  style="text-align: center;"  |  $00  ||  Cascade Cave - ???
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $00  ||  Final Cave
+|  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $00  ||  Final Cave - ???
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
@@ -803,7 +859,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |  colspan="3"  |  
 
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $39  ||  style="text-align: center;"  |  $00  ||  Burland-Izmit tunnel
+|  style="text-align: center;"  |  $39  ||  style="text-align: center;"  |  $00  ||  Burland-Izmit tunnel - ???
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
@@ -817,13 +873,13 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |  colspan="3"  |  
 
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $3b  ||  style="text-align: center;"  |  $00  ||  Royal Crypt Dungeon
+|  style="text-align: center;"  |  $3b  ||  style="text-align: center;"  |  $00  ||  Royal Crypt Dungeon - ???
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $3c  ||  style="text-align: center;"  |  $00  ||  Necrosaro's Lair
+|  style="text-align: center;"  |  $3c  ||  style="text-align: center;"  |  $00  ||  Necrosaro's Lair - ???
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $00  ||  Zenethian Tower
+|  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $00  ||  Zenethian Tower - ???
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $3e  ||  style="text-align: center;"  |  $00  ||  Outside Zenethia
+|  style="text-align: center;"  |  $3e  ||  style="text-align: center;"  |  $00  ||  Outside Zenethia - ???
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
@@ -845,7 +901,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |  colspan="3"  |  
 
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $40  ||  style="text-align: center;"  |  $00  ||  World Tree
+|  style="text-align: center;"  |  $40  ||  style="text-align: center;"  |  $00  ||  World Tree - ???
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
@@ -866,13 +922,21 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $00  ||  Lighthouse
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $00  ||  Great Lighthouse - F5
+|-
+|  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $01  ||  Great Lighthouse - F4
+|-
+|  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $02  ||  Great Lighthouse - F3
+|-
+|  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $03  ||  Great Lighthouse - F2
+|-
+|  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $04  ||  Great Lighthouse - F1
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
-|-  style="background-color: #dddd80;"
+|-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $43  ||  style="text-align: center;"  |  $00  ||  Konenber - Top-left, Ship Building
 |-
 |  style="text-align: center;"  |  $43  ||  style="text-align: center;"  |  $01  ||  Konenber - Top-left, Ship Building, Ship, B1
@@ -897,15 +961,15 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |  colspan="3"  |  
 
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $44  ||  style="text-align: center;"  |  $00  ||  NE barrier shrine (Radimvice)
+|  style="text-align: center;"  |  $44  ||  style="text-align: center;"  |  $00  ||  NE barrier shrine (Radimvice) - ???
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $45  ||  style="text-align: center;"  |  $00  ||  Necrosaro's Palace
+|  style="text-align: center;"  |  $45  ||  style="text-align: center;"  |  $00  ||  Necrosaro's Palace - ???
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $46  ||  style="text-align: center;"  |  $00  ||  Zenethia
+|  style="text-align: center;"  |  $46  ||  style="text-align: center;"  |  $00  ||  Zenethia - ???
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $47  ||  style="text-align: center;"  |  $00  ||  Shrine of the Horn
+|  style="text-align: center;"  |  $47  ||  style="text-align: center;"  |  $00  ||  Shrine of the Horn - ???
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $48  ||  style="text-align: center;"  |  $00  ||  Shrine of Colossus (Dungeon)
+|  style="text-align: center;"  |  $48  ||  style="text-align: center;"  |  $00  ||  Shrine of Colossus (Dungeon) - ???
 |}
 
 =Links=

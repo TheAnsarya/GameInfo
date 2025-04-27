@@ -1322,14 +1322,14 @@ The Chapter 2 item <code>Birdsong Nector</code> is not included here, must be an
 |-  style="background-color: #eaecf0;"
 |  colspan="7"  |  
 
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $626d # 0000_0001  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $626d # 0000_0010  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $626d # 0000_0100  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $626d # 0000_1000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $626d # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $02  ||  Great Lighthouse - F3, top-right, chest  ||  Full Moon Herb
+|-
+|  Treasure  ||  $626d # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $02  ||  Great Lighthouse - F3, top-left, chest  ||  Magic Potion
+|-
+|  Treasure  ||  $626d # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $01  ||  Great Lighthouse - F4, middle, chest  ||  Fire of Serenity
+|-
+|  Treasure  ||  $626d # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $00  ||  Great Lighthouse - F5, top-left, chest  ||  Golden Barrette
 |-
 |  Treasure  ||  $626d # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $41  ||  style="text-align: center;"  |  $03  ||  Loch Tower - F1, top-right, chest  ||  Luck Seed
 |-
@@ -1348,16 +1348,16 @@ The Chapter 2 item <code>Birdsong Nector</code> is not included here, must be an
 |  Treasure  ||  $626e # 0000_0010  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
 |-
 |  Treasure  ||  $626e # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $43  ||  style="text-align: center;"  |  $04  ||  Konenber - Inn, F2, top-right room, chest  ||  Sword of Decimation
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $626e # 0000_1000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $626e # 0001_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $626e # 0010_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $626e # 0100_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $626e # 1000_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $626e # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $04  ||  Great Lighthouse - F1, middle, right chest  ||  400 gold
+|-
+|  Treasure  ||  $626e # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $04  ||  Great Lighthouse - F1, middle, left chest  ||  Luck Seed
+|-
+|  Treasure  ||  $626e # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $03  ||  Great Lighthouse - F2, bottom-left, chest  ||  Strength Seed
+|-
+|  Treasure  ||  $626e # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $02  ||  Great Lighthouse - F3, left, right chest  ||  Boomerang
+|-
+|  Treasure  ||  $626e # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $02  ||  Great Lighthouse - F3, left, left chest  ||  Man-Easter Chest!
 
 |-  style="background-color: #eaecf0;"
 |  colspan="7"  |  
@@ -1422,8 +1422,8 @@ The Chapter 2 item <code>Birdsong Nector</code> is not included here, must be an
 |-  style="background-color: #eaecf0;"
 |  colspan="7"  |  
 
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6272 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $6272 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $0d  ||  style="text-align: center;"  |  $00  ||  Mintos - middle, left of well, search  ||  Small Medal
 |-
 |  Treasure  ||  $6272 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $14  ||  style="text-align: center;"  |  $02  ||  Hometown - Destroyed, middle of flowers, search  ||  Feather Hat
 |-
@@ -1444,7 +1444,7 @@ The Chapter 2 item <code>Birdsong Nector</code> is not included here, must be an
 
 |-
 |  Treasure  ||  $6273 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $01  ||  style="text-align: center;"  |  $00  ||  Santeem - F1, right side, room behind chapel, drawer #2  ||  Fairy Water
-|-  style="background-color: #eaecf0;"
+|-
 |  Treasure  ||  $6273 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $01  ||  style="text-align: center;"  |  $00  ||  Santeem - F1, top-left, right drawer  ||  Wing of Wyvern
 |-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6273 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
@@ -1454,8 +1454,8 @@ The Chapter 2 item <code>Birdsong Nector</code> is not included here, must be an
 |  Treasure  ||  $6273 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
 |-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6273 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Treasure  ||  $6273 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $6273 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $23  ||  style="text-align: center;"  |  $00  ||  Shrine East of Mintos - Left-back, middle, search ||  Small Medal
 |-  style="background-color: #eaecf0;"
 |  Treasure  ||  $6273 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
 
