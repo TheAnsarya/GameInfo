@@ -5,7 +5,7 @@
 
 ==Party Members==
 
-{| class="wikitable sortable"
+{| class="wikitable"
 |-
 !  Value  !!  Name
 |-
@@ -32,7 +32,7 @@
 
 ==Battle Tactics==
 
-{| class="wikitable sortable"
+{| class="wikitable"
 |-
 !  Value  !!  Name
 |-
@@ -51,7 +51,7 @@
 
 ==Chapters==
 
-{| class="wikitable sortable"
+{| class="wikitable"
 |-
 !  Value  !!  Name
 |-
@@ -64,6 +64,37 @@
 |  $03  ||  Chapter 4 - Mara &amp; Nara
 |-
 |  $04  ||  Chapter 5 - Hero
+|}
+
+==Day/Night Cycle==
+
+Staying at the Inn sets the time to <code>$28</code>.
+
+The day/night cycle resets after <code>$cb</code>.
+
+{| class="wikitable"
+|-
+!  Value  !!  Length  !!  Description
+|-
+|  $00 - $27  ||  40 ($28)  ||  Day
+|-
+|  $28 - $77  ||  80 ($50)  ||  Day - After staying at Inn
+|-
+|  $78 - $7b  ||  4  ||  Afternoon
+|-
+|  $7c - $7f  ||  4  ||  Dusk
+|-
+|  $80 - $83  ||  4  ||  Evening
+|-
+|  $84 - $bf  ||  60 ($3c)  ||  Night
+|-
+|  $c0 - $c3  ||  4  ||  Pre-dawn
+|-
+|  $c4 - $c7  ||  4  ||  Dawn
+|-
+|  $c8 - $cb  ||  4  ||  Morning
+|-  style="background-color: #eaecf0;"
+|  $cc - $ff  ||  52 ($34)  ||  ...
 |}
 
 ==Items==
@@ -426,8 +457,8 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $0b  ||  Endor - Inn, F2
 |-
 |  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $0c  ||  Endor - Castle, F3 (chamber)
-|-  style="background-color: #eaecf0;"
-|  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $0d  ||  ???
+|-
+|  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $0d  ||  Endor - Castle, Behind center stairs, secret door, F2, F3, F4, F5
 |-
 |  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $0e  ||  Endor - Back Castle, F2
 
@@ -454,18 +485,10 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
-|-  style="background-color: #dddd80;"
+|-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $07  ||  style="text-align: center;"  |  $00  ||  Soretta
 |-
 |  style="text-align: center;"  |  $07  ||  style="text-align: center;"  |  $01  ||  Soretta - F2, Throne room
-|-  style="background-color: #eaecf0;"
-|  style="text-align: center;"  |  $07  ||  style="text-align: center;"  |  $02  ||  Soretta - ???
-|-  style="background-color: #eaecf0;"
-|  style="text-align: center;"  |  $07  ||  style="text-align: center;"  |  $03  ||  Soretta - ???
-|-  style="background-color: #eaecf0;"
-|  style="text-align: center;"  |  $07  ||  style="text-align: center;"  |  $04  ||  Soretta - ???
-|-  style="background-color: #eaecf0;"
-|  style="text-align: center;"  |  $07  ||  style="text-align: center;"  |  $05  ||  Soretta - ???
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
@@ -626,8 +649,16 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $19  ||  style="text-align: center;"  |  $00  ||  Seaside Village - ???
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $19  ||  style="text-align: center;"  |  $00  ||  Seaside Village - Day
+|-
+|  style="text-align: center;"  |  $19  ||  style="text-align: center;"  |  $01  ||  Seaside Village - Night
+|-
+|  style="text-align: center;"  |  $19  ||  style="text-align: center;"  |  $02  ||  Seaside Village - Item Shop, F2
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $1a  ||  style="text-align: center;"  |  $00  ||  Gottside - ???
 |-  style="background-color: #dddd80;"
@@ -698,8 +729,12 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $24  ||  style="text-align: center;"  |  $00  ||  Small Island Shack - ???
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $24  ||  style="text-align: center;"  |  $00  ||  Small Island Shack North of Haville
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $25  ||  style="text-align: center;"  |  $00  ||  Royal Crypt Entrance - ???
 |-  style="background-color: #dddd80;"
@@ -736,26 +771,12 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $00  ||  Padaquea Cave - ???
-|-  style="background-color: #eaecf0;"
-|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $01  ||  Padaquea Cave - ???
-|-  style="background-color: #eaecf0;"
-|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $02  ||  Padaquea Cave - ???
-|-  style="background-color: #eaecf0;"
-|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $03  ||  Padaquea Cave - ???
-|-  style="background-color: #eaecf0;"
-|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $04  ||  Padaquea Cave - ???
-|-  style="background-color: #eaecf0;"
-|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $05  ||  Padaquea Cave - ???
-|-  style="background-color: #eaecf0;"
-|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $06  ||  Padaquea Cave - ???
-|-  style="background-color: #eaecf0;"
-|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $07  ||  Padaquea Cave - ???
-|-  style="background-color: #eaecf0;"
-|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $08  ||  Padaquea Cave - ???
-|-  style="background-color: #eaecf0;"
-|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $09  ||  Padaquea Cave - ???
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $00  ||  Padaquea Cave - B1
+|-
+|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $01  ||  Padaquea Cave - B2
+|-
+|  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $02  ||  Padaquea Cave - B3
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
@@ -766,7 +787,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
-|-  style="background-color: #dddd80;"
+|-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $00  ||  Cave West of Kievs - B1
 |-
 |  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $01  ||  Cave West of Kievs - B2
@@ -774,8 +795,8 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $02  ||  Cave West of Kievs - B3, Corridor
 |-
 |  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $03  ||  Cave West of Kievs - B4
-|-  style="background-color: #eaecf0;"
-|  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $04  ||  Cave West of Kievs - ???
+|-
+|  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $04  ||  Cave West of Kievs - B5
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
