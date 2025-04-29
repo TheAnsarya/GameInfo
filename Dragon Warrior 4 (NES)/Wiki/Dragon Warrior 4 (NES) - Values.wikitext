@@ -27,7 +27,28 @@
 |-  style="background-color: #eaecf0;"
 |  $08  ||  ...
 |-
-|  $09  ||  Healie
+|  $09  ||  Extra Companion #1
+|-
+|  $0a  ||  Extra Companion #2
+|}
+
+==Extra Companions==
+
+{| class="wikitable"
+|-
+!  Value  !!  Name  !!  Chapter  !!  Class
+|-
+|  $c5  ||  Healie  ||  style="text-align: center;"  |  1  ||  Kind Healer
+|-
+|  $c6  ||  Orin  ||  style="text-align: center;"  |  4  ||  Alchemist
+|-
+|  $c7  ||  Laurent  ||  style="text-align: center;"  |  3  ||  Troubadour
+|-
+|  $c8  ||  Strom  ||  style="text-align: center;"  |  3  ||  Guardsman
+|-
+|  $c9  ||  Hector  ||  style="text-align: center;"  |  5  ||  Young Man
+|-
+|  $ca  ||  Panon  ||  style="text-align: center;"  |  5  ||  Jester
 |}
 
 ==Battle Tactics==
@@ -495,8 +516,38 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $08  ||  style="text-align: center;"  |  $00  ||  Gardenbur - ???
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $09  ||  style="text-align: center;"  |  $00  ||  Stancia - ???
+|  style="text-align: center;"  |  $09  ||  style="text-align: center;"  |  $00  ||  Stancia
+|-
+|  style="text-align: center;"  |  $09  ||  style="text-align: center;"  |  $01  ||  Stancia - Castle, Entrance
+|-
+|  style="text-align: center;"  |  $09  ||  style="text-align: center;"  |  $02  ||  Stancia - Castle, F1, Interior
+|-
+|  style="text-align: center;"  |  $09  ||  style="text-align: center;"  |  $03  ||  Stancia - Castle, F1, Front  --  Castle, F2
+|-
+|  style="text-align: center;"  |  $09  ||  style="text-align: center;"  |  $04  ||  Stancia - Castle, F3, Throne Room
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $09  ||  style="text-align: center;"  |  $05  ||  Stancia - Restaurant
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $09  ||  style="text-align: center;"  |  $06  ||  Stancia - Church
+|-
+|  style="text-align: center;"  |  $09  ||  style="text-align: center;"  |  $07  ||  Stancia - Top-right house, F2
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $09  ||  style="text-align: center;"  |  $08  ||  Stancia - ???
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $09  ||  style="text-align: center;"  |  $09  ||  Stancia - ???
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $09  ||  style="text-align: center;"  |  $0a  ||  Stancia - ???
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $09  ||  style="text-align: center;"  |  $0b  ||  Stancia - ???
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $09  ||  style="text-align: center;"  |  $0c  ||  Stancia - ???
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $09  ||  style="text-align: center;"  |  $0d  ||  Stancia - ???
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
@@ -661,8 +712,16 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $1a  ||  style="text-align: center;"  |  $00  ||  Gottside - ???
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
 |-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $1b  ||  style="text-align: center;"  |  $00  ||  Rosaville - ???
+|  style="text-align: center;"  |  $1b  ||  style="text-align: center;"  |  $00  ||  Rosaville - Dream (from Izmit)
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $1b  ||  style="text-align: center;"  |  $01  ||  Rosaville - ???
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $1b  ||  style="text-align: center;"  |  $02  ||  Rosaville - ???
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
