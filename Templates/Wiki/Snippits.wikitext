@@ -138,14 +138,45 @@ The primary map for each group has a background of <code style="background-color
 If the background is <code style="background-color: #dddd80;">yellow</code> then the submaps have not yet been checked.
 
 
-
-
-
 65df  5df  sram  2nd slot?
 
 
+{| class="wikitable sortable"
+|-
+!  Size  !!  Map  !!  Submap  !!  Description  !! Item
+|-
+|  byte  ||  style="text-align: center;"  |  $2d  ||  style="text-align: center;"  |  $00  ||  Mine - B1, chest  ||  Cards
+|-
+|  byte  ||  style="text-align: center;"  |  $21  ||  style="text-align: center;"  |  $00  ||  Desert Inn - top, chest  ||  Lunch
+|-
+|  byte  ||  colspan="2"  |  $01  ||  Town - B1, chest  ||  Empty!
+|}
 
 
+
+Stilleto Earrings
+
+
+00 80 B7 01 25 01 47 FF 66 E1 4F 9C 00 B7 01 35
+01 56 8E 40 94 B7 C4 CB 73 FF FF FF FF FF FF 80
+16 01 06 01 48 4D D9 92 94 B9 00 16 01 06 01 76
+5D 40 8E C5 CF AE FF FF FF FF FF 0F 7F 80 0D 02
+33 02 3E FF FF FF FF FF 00 0D 02 33 02 4E 9A 40
+8E C5 CF AE FF FF FF FF FF 0F 1F 80 17 02 8C 02
+45 FF FF FF FF FF 00 17 02 8C 02 4E 9A 40 96 C5
+CE B5 FF FF FF FF FF 0F 07 80 2D 01 65 01 43 2B
+D2 9C 9D FF 00 2D 01 71 01 2D 6D 40 9E C5 CE B5
+FF FF FF FF FF 0F 0F 80 6E 02 00 00 50 A2 6E FF
+77 60 00 6E 02 00 00 03 64 40 9C C0 CF AE FF FF
+FF FF 00 00 00 80 68 02 00 00 4C FF 35 FF 30 60
+00 68 02 00 00 6D 35 40 9C C2 CF AE FF FF FF FF
+00 00 00 80 04 02 00 00 4B FF FF FF 39 FF 00 04
+02 00 00 76 5D 40 96 B1 CD FF FF FF FF FF 00 00
+00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00
+
+
+
+<span style="-webkit-text-fill-color: yellow; -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: red;">&#x1F7BF;</span>
 
 
 

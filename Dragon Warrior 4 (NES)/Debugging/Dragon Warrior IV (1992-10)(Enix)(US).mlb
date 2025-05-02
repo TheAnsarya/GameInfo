@@ -175,6 +175,7 @@ NesMemory:616b:Party_Members_Order_2
 NesMemory:616c:Party_Members_Order_3
 NesMemory:616d:Party_Members_Order_4
 NesMemory:625d-6277:Flags_Treasure_Chests
+NesMemory:62a2:General_Small_Medals
 NesMemory:62ad-62af:General_Casino_Coins
 NesMemory:62e7:C3_Lakanaba_Shop_Boomerang_Count
 NesMemory:62e8:C3_Lakanaba_Shop_Chain_Sickle_Count
