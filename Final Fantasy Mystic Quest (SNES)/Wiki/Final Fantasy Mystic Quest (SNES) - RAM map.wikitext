@@ -1,10 +1,121 @@
 {{rammap}}
 
-==Main==
+=Main=
 
 {{ Todo | Add notes for RAM map}}
 
 [[Final Fantasy: Mystic Quest/SRAM map]]
+
+==RAM Map==
+
+{| class="wikitable"
+!  Address  !!  Size  !!  Category  !!  Description
+|-
+!  colspan="6"  |  
+|-
+|  $0e9b  ||  byte  ||  Settings  ||  Message Speed - $00-$06 is 1-7
+|-
+|  $0e9c - $0e9d  ||  word  ||  Settings  ||  [[Final Fantasy: Mystic Quest (SNES)/Values/Window_Colors|Window Color]]
+|-
+|  $0e9e  ||  byte  ||  ...  ||  ???
+|-
+|  $0e9f  ||  byte  ||  Items  ||  # of cures
+|-  style="background-color: #eaecf0;"
+|  $0ea0 - $0ec5  ||  ...  ||  ...  !!  ???
+|-
+|  $0ec6 % 0000 0001  ||  bit  ||    ||  
+|-
+|  $0ec6 % 0000 0010  ||  bit  ||    ||  
+|-
+|  $0ec6 % 0000 0100  ||  bit  ||    ||  
+|-
+|  $0ec6 % 0000 1000  ||  bit  ||    ||  
+|-
+|  $0ec6 % 0001 0000  ||  bit  ||    ||  
+|-
+|  $0ec6 % 0010 0000  ||  bit  ||    ||  
+|-
+|  $0ec6 % 0100 0000  ||  bit  ||    ||  
+|-
+|  $0ec6 % 1000 0000  ||  bit  ||  Settings  ||  Life Indicate - 0 => Scale, 1 => Figure
+|-
+|  $1000 - $1007  ||  8 bytes  ||  Character 1  !!  Name
+|-  style="background-color: #eaecf0;"
+|  $1008 - $100f  ||  8 bytes  ||  Character 1  !!  ???
+|-
+|  $1010  ||  byte  ||  Character 1  ||  Level (Max: 99)
+|-
+|  $1011 - $1013  ||  long  ||  Character 1  ||  Experience (Max: 9999999)
+|-
+|  $1014 - $1015  ||  word  ||  Character 1  ||  Current HP (Max: $ffff)
+|-
+|  $1016 - $1017  ||  word  ||  Character 1  ||  Max HP (Max: $ffff)
+|-
+|  $1018  ||  byte  ||  Character 1  || Current White Magic Points
+|-
+|  $1019  ||  byte  ||  Character 1  || Current Black Magic Points
+|-
+|  $101a  ||  byte  ||  Character 1  || Current Wizard Magic Points
+|-
+|  $101b  ||  byte  ||  Character 1  || Max White Magic Points
+|-
+|  $101c  ||  byte  ||  Character 1  || Max Black Magic Points
+|-
+|  $101d  ||  byte  ||  Character 1  || Max Wizard Magic Points
+|-  style="background-color: #eaecf0;"
+|  $101e - $1020  ||  long  ||  Character 1  ||  ???
+|-
+|  $1021  ||  byte  ||  Character 1  ||  Status
+|-
+|  $1022  ||  byte  ||  Character 1  ||  Current Attack (Max: 99) - Not what is shown in Status menu
+|-
+|  $1023  ||  byte  ||  Character 1  ||  Current Defense (Max: 99)
+|-
+|  $1024  ||  byte  ||  Character 1  ||  Current Speed (Max: 99)
+|-
+|  $1025  ||  byte  ||  Character 1  ||  Current Magic (Max: 99)
+|-
+|  $1026  ||  byte  ||  Character 1  ||  Base Attack (Max: 99)
+|-
+|  $1027  ||  byte  ||  Character 1  ||  Base Defense (Max: 99)
+|-
+|  $1028  ||  byte  ||  Character 1  ||  Base Speed (Max: 99)
+|-
+|  $1029  ||  byte  ||  Character 1  ||  Base Magic (Max: 99)
+|-
+|  $1030  ||  byte  ||  Character 1  ||  Weapon Ammo Count
+|-
+|  $1031  ||  byte  ||  Character 1  ||  Weapon ID
+
+
+
+|-
+|  $1050 - $109f  ||  $50  ||  Character 2
+|-
+|  $10a0 - $10a2  ||  3  ||  Gold (Max: 9999999)
+|-  style="background-color:#EAECF0;"
+|  $10a3 - $10a4  ||  2  ||  ???
+|-
+|  $10a5  ||  1  ||  Player X
+|-
+|  $10a6  ||  1  ||  Player Y
+|-
+|  $10a7  ||  1  ||  Player Facing
+|-  style="background-color:#EAECF0;"
+|  $10a8 - $10ac  ||  5  ||  ???
+|-
+|  $10ad  ||  1  ||  Map ID
+|-  style="background-color:#EAECF0;"
+|  $10ae - $10b2  ||  5  ||  ???
+|-
+|  $10b3 - $10b5  ||  3  ||  Play Time (0xSSMMHH)
+|-  style="background-color:#EAECF0;"
+|  $10b6 - $10ba ||  5  ||  ???
+|-
+|  $10bb  ||  1  ||  # of cures
+|-  style="background-color:#EAECF0;"
+|  $10bc - $138b  ||  $2ca  ||  ???
+|}
 
 =Related=
 <br>

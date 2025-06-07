@@ -1,0 +1,11 @@
+{{subpage}}
+
+=Values=
+
+==Window Colors==
+
+[[Final Fantasy: Mystic Quest (SNES)/Values/Window_Colors|Window Colors]]
+
+=Links=
+
+{{Internal Data}}

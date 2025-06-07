@@ -1,0 +1,1469 @@
+{{subpage}}
+
+=Values - Window Colors=
+
+{| class="wikitable"
+!  R  !!  G  !!  B  !!  Value  !!  $9c bits  !!  $9d bits  !!  Color
+|-
+|  0  ||  0  ||  0  ||  $0000  ||  0000 0000  ||  0000 0000  ||  style="color: #ffffff; background-color: #000000;"  |  #000000
+|-
+|  1  ||  0  ||  0  ||  $0004  ||  0000 0100  ||  0000 0000  ||  style="color: #ffffff; background-color: #210000;"  |  #210000
+|-
+|  2  ||  0  ||  0  ||  $0008  ||  0000 1000  ||  0000 0000  ||  style="color: #ffffff; background-color: #420000;"  |  #420000
+|-
+|  3  ||  0  ||  0  ||  $000c  ||  0000 1100  ||  0000 0000  ||  style="color: #ffffff; background-color: #630000;"  |  #630000
+|-
+|  4  ||  0  ||  0  ||  $0010  ||  0001 0000  ||  0000 0000  ||  style="color: #ffffff; background-color: #840000;"  |  #840000
+|-
+|  5  ||  0  ||  0  ||  $0014  ||  0001 0100  ||  0000 0000  ||  style="color: #ffffff; background-color: #a50000;"  |  #a50000
+|-
+|  6  ||  0  ||  0  ||  $0018  ||  0001 1000  ||  0000 0000  ||  style="color: #ffffff; background-color: #c60000;"  |  #c60000
+|-
+|  7  ||  0  ||  0  ||  $001c  ||  0001 1100  ||  0000 0000  ||  style="color: #ffffff; background-color: #e70000;"  |  #e70000
+|-
+|  8  ||  0  ||  0  ||  $001f  ||  0001 1111  ||  0000 0000  ||  style="color: #ffffff; background-color: #ff0000;"  |  #ff0000
+|-
+|  0  ||  1  ||  0  ||  $0080  ||  1000 0000  ||  0000 0000  ||  style="color: #ffffff; background-color: #002100;"  |  #002100
+|-
+|  1  ||  1  ||  0  ||  $0084  ||  1000 0100  ||  0000 0000  ||  style="color: #ffffff; background-color: #212100;"  |  #212100
+|-
+|  2  ||  1  ||  0  ||  $0088  ||  1000 1000  ||  0000 0000  ||  style="color: #ffffff; background-color: #422100;"  |  #422100
+|-
+|  3  ||  1  ||  0  ||  $008c  ||  1000 1100  ||  0000 0000  ||  style="color: #ffffff; background-color: #632100;"  |  #632100
+|-
+|  4  ||  1  ||  0  ||  $0090  ||  1001 0000  ||  0000 0000  ||  style="color: #ffffff; background-color: #842100;"  |  #842100
+|-
+|  5  ||  1  ||  0  ||  $0094  ||  1001 0100  ||  0000 0000  ||  style="color: #ffffff; background-color: #a52100;"  |  #a52100
+|-
+|  6  ||  1  ||  0  ||  $0098  ||  1001 1000  ||  0000 0000  ||  style="color: #ffffff; background-color: #c62100;"  |  #c62100
+|-
+|  7  ||  1  ||  0  ||  $009c  ||  1001 1100  ||  0000 0000  ||  style="color: #ffffff; background-color: #e72100;"  |  #e72100
+|-
+|  8  ||  1  ||  0  ||  $009f  ||  1001 1111  ||  0000 0000  ||  style="color: #ffffff; background-color: #ff2100;"  |  #ff2100
+|-
+|  0  ||  2  ||  0  ||  $0100  ||  0000 0000  ||  0000 0001  ||  style="color: #ffffff; background-color: #004200;"  |  #004200
+|-
+|  1  ||  2  ||  0  ||  $0104  ||  0000 0100  ||  0000 0001  ||  style="color: #ffffff; background-color: #214200;"  |  #214200
+|-
+|  2  ||  2  ||  0  ||  $0108  ||  0000 1000  ||  0000 0001  ||  style="color: #ffffff; background-color: #424200;"  |  #424200
+|-
+|  3  ||  2  ||  0  ||  $010c  ||  0000 1100  ||  0000 0001  ||  style="color: #ffffff; background-color: #634200;"  |  #634200
+|-
+|  4  ||  2  ||  0  ||  $0110  ||  0001 0000  ||  0000 0001  ||  style="color: #ffffff; background-color: #844200;"  |  #844200
+|-
+|  5  ||  2  ||  0  ||  $0114  ||  0001 0100  ||  0000 0001  ||  style="color: #ffffff; background-color: #a54200;"  |  #a54200
+|-
+|  6  ||  2  ||  0  ||  $0118  ||  0001 1000  ||  0000 0001  ||  style="color: #ffffff; background-color: #c64200;"  |  #c64200
+|-
+|  7  ||  2  ||  0  ||  $011c  ||  0001 1100  ||  0000 0001  ||  style="color: #ffffff; background-color: #e74200;"  |  #e74200
+|-
+|  8  ||  2  ||  0  ||  $011f  ||  0001 1111  ||  0000 0001  ||  style="color: #ffffff; background-color: #ff4200;"  |  #ff4200
+|-
+|  0  ||  3  ||  0  ||  $0180  ||  1000 0000  ||  0000 0001  ||  style="color: #ffffff; background-color: #006300;"  |  #006300
+|-
+|  1  ||  3  ||  0  ||  $0184  ||  1000 0100  ||  0000 0001  ||  style="color: #ffffff; background-color: #216300;"  |  #216300
+|-
+|  2  ||  3  ||  0  ||  $0188  ||  1000 1000  ||  0000 0001  ||  style="color: #ffffff; background-color: #426300;"  |  #426300
+|-
+|  3  ||  3  ||  0  ||  $018c  ||  1000 1100  ||  0000 0001  ||  style="color: #ffffff; background-color: #636300;"  |  #636300
+|-
+|  4  ||  3  ||  0  ||  $0190  ||  1001 0000  ||  0000 0001  ||  style="color: #ffffff; background-color: #846300;"  |  #846300
+|-
+|  5  ||  3  ||  0  ||  $0194  ||  1001 0100  ||  0000 0001  ||  style="color: #ffffff; background-color: #a56300;"  |  #a56300
+|-
+|  6  ||  3  ||  0  ||  $0198  ||  1001 1000  ||  0000 0001  ||  style="color: #ffffff; background-color: #c66300;"  |  #c66300
+|-
+|  7  ||  3  ||  0  ||  $019c  ||  1001 1100  ||  0000 0001  ||  style="color: #ffffff; background-color: #e76300;"  |  #e76300
+|-
+|  8  ||  3  ||  0  ||  $019f  ||  1001 1111  ||  0000 0001  ||  style="color: #ffffff; background-color: #ff6300;"  |  #ff6300
+|-
+|  0  ||  4  ||  0  ||  $0200  ||  0000 0000  ||  0000 0010  ||  style="color: #ffffff; background-color: #008400;"  |  #008400
+|-
+|  1  ||  4  ||  0  ||  $0204  ||  0000 0100  ||  0000 0010  ||  style="color: #ffffff; background-color: #218400;"  |  #218400
+|-
+|  2  ||  4  ||  0  ||  $0208  ||  0000 1000  ||  0000 0010  ||  style="color: #ffffff; background-color: #428400;"  |  #428400
+|-
+|  3  ||  4  ||  0  ||  $020c  ||  0000 1100  ||  0000 0010  ||  style="color: #ffffff; background-color: #638400;"  |  #638400
+|-
+|  4  ||  4  ||  0  ||  $0210  ||  0001 0000  ||  0000 0010  ||  style="color: #ffffff; background-color: #848400;"  |  #848400
+|-
+|  5  ||  4  ||  0  ||  $0214  ||  0001 0100  ||  0000 0010  ||  style="color: #000000; background-color: #a58400;"  |  #a58400
+|-
+|  6  ||  4  ||  0  ||  $0218  ||  0001 1000  ||  0000 0010  ||  style="color: #000000; background-color: #c68400;"  |  #c68400
+|-
+|  7  ||  4  ||  0  ||  $021c  ||  0001 1100  ||  0000 0010  ||  style="color: #000000; background-color: #e78400;"  |  #e78400
+|-
+|  8  ||  4  ||  0  ||  $021f  ||  0001 1111  ||  0000 0010  ||  style="color: #000000; background-color: #ff8400;"  |  #ff8400
+|-
+|  0  ||  5  ||  0  ||  $0280  ||  1000 0000  ||  0000 0010  ||  style="color: #ffffff; background-color: #00a500;"  |  #00a500
+|-
+|  1  ||  5  ||  0  ||  $0284  ||  1000 0100  ||  0000 0010  ||  style="color: #ffffff; background-color: #21a500;"  |  #21a500
+|-
+|  2  ||  5  ||  0  ||  $0288  ||  1000 1000  ||  0000 0010  ||  style="color: #000000; background-color: #42a500;"  |  #42a500
+|-
+|  3  ||  5  ||  0  ||  $028c  ||  1000 1100  ||  0000 0010  ||  style="color: #000000; background-color: #63a500;"  |  #63a500
+|-
+|  4  ||  5  ||  0  ||  $0290  ||  1001 0000  ||  0000 0010  ||  style="color: #000000; background-color: #84a500;"  |  #84a500
+|-
+|  5  ||  5  ||  0  ||  $0294  ||  1001 0100  ||  0000 0010  ||  style="color: #000000; background-color: #a5a500;"  |  #a5a500
+|-
+|  6  ||  5  ||  0  ||  $0298  ||  1001 1000  ||  0000 0010  ||  style="color: #000000; background-color: #c6a500;"  |  #c6a500
+|-
+|  7  ||  5  ||  0  ||  $029c  ||  1001 1100  ||  0000 0010  ||  style="color: #000000; background-color: #e7a500;"  |  #e7a500
+|-
+|  8  ||  5  ||  0  ||  $029f  ||  1001 1111  ||  0000 0010  ||  style="color: #000000; background-color: #ffa500;"  |  #ffa500
+|-
+|  0  ||  6  ||  0  ||  $0300  ||  0000 0000  ||  0000 0011  ||  style="color: #000000; background-color: #00c600;"  |  #00c600
+|-
+|  1  ||  6  ||  0  ||  $0304  ||  0000 0100  ||  0000 0011  ||  style="color: #000000; background-color: #21c600;"  |  #21c600
+|-
+|  2  ||  6  ||  0  ||  $0308  ||  0000 1000  ||  0000 0011  ||  style="color: #000000; background-color: #42c600;"  |  #42c600
+|-
+|  3  ||  6  ||  0  ||  $030c  ||  0000 1100  ||  0000 0011  ||  style="color: #000000; background-color: #63c600;"  |  #63c600
+|-
+|  4  ||  6  ||  0  ||  $0310  ||  0001 0000  ||  0000 0011  ||  style="color: #000000; background-color: #84c600;"  |  #84c600
+|-
+|  5  ||  6  ||  0  ||  $0314  ||  0001 0100  ||  0000 0011  ||  style="color: #000000; background-color: #a5c600;"  |  #a5c600
+|-
+|  6  ||  6  ||  0  ||  $0318  ||  0001 1000  ||  0000 0011  ||  style="color: #000000; background-color: #c6c600;"  |  #c6c600
+|-
+|  7  ||  6  ||  0  ||  $031c  ||  0001 1100  ||  0000 0011  ||  style="color: #000000; background-color: #e7c600;"  |  #e7c600
+|-
+|  8  ||  6  ||  0  ||  $031f  ||  0001 1111  ||  0000 0011  ||  style="color: #000000; background-color: #ffc600;"  |  #ffc600
+|-
+|  0  ||  7  ||  0  ||  $0380  ||  1000 0000  ||  0000 0011  ||  style="color: #000000; background-color: #00e700;"  |  #00e700
+|-
+|  1  ||  7  ||  0  ||  $0384  ||  1000 0100  ||  0000 0011  ||  style="color: #000000; background-color: #21e700;"  |  #21e700
+|-
+|  2  ||  7  ||  0  ||  $0388  ||  1000 1000  ||  0000 0011  ||  style="color: #000000; background-color: #42e700;"  |  #42e700
+|-
+|  3  ||  7  ||  0  ||  $038c  ||  1000 1100  ||  0000 0011  ||  style="color: #000000; background-color: #63e700;"  |  #63e700
+|-
+|  4  ||  7  ||  0  ||  $0390  ||  1001 0000  ||  0000 0011  ||  style="color: #000000; background-color: #84e700;"  |  #84e700
+|-
+|  5  ||  7  ||  0  ||  $0394  ||  1001 0100  ||  0000 0011  ||  style="color: #000000; background-color: #a5e700;"  |  #a5e700
+|-
+|  6  ||  7  ||  0  ||  $0398  ||  1001 1000  ||  0000 0011  ||  style="color: #000000; background-color: #c6e700;"  |  #c6e700
+|-
+|  7  ||  7  ||  0  ||  $039c  ||  1001 1100  ||  0000 0011  ||  style="color: #000000; background-color: #e7e700;"  |  #e7e700
+|-
+|  8  ||  7  ||  0  ||  $039f  ||  1001 1111  ||  0000 0011  ||  style="color: #000000; background-color: #ffe700;"  |  #ffe700
+|-
+|  0  ||  8  ||  0  ||  $03e0  ||  1110 0000  ||  0000 0011  ||  style="color: #000000; background-color: #00ff00;"  |  #00ff00
+|-
+|  1  ||  8  ||  0  ||  $03e4  ||  1110 0100  ||  0000 0011  ||  style="color: #000000; background-color: #21ff00;"  |  #21ff00
+|-
+|  2  ||  8  ||  0  ||  $03e8  ||  1110 1000  ||  0000 0011  ||  style="color: #000000; background-color: #42ff00;"  |  #42ff00
+|-
+|  3  ||  8  ||  0  ||  $03ec  ||  1110 1100  ||  0000 0011  ||  style="color: #000000; background-color: #63ff00;"  |  #63ff00
+|-
+|  4  ||  8  ||  0  ||  $03f0  ||  1111 0000  ||  0000 0011  ||  style="color: #000000; background-color: #84ff00;"  |  #84ff00
+|-
+|  5  ||  8  ||  0  ||  $03f4  ||  1111 0100  ||  0000 0011  ||  style="color: #000000; background-color: #a5ff00;"  |  #a5ff00
+|-
+|  6  ||  8  ||  0  ||  $03f8  ||  1111 1000  ||  0000 0011  ||  style="color: #000000; background-color: #c6ff00;"  |  #c6ff00
+|-
+|  7  ||  8  ||  0  ||  $03fc  ||  1111 1100  ||  0000 0011  ||  style="color: #000000; background-color: #e7ff00;"  |  #e7ff00
+|-
+|  8  ||  8  ||  0  ||  $03ff  ||  1111 1111  ||  0000 0011  ||  style="color: #000000; background-color: #ffff00;"  |  #ffff00
+|-
+|  0  ||  0  ||  1  ||  $1000  ||  0000 0000  ||  0001 0000  ||  style="color: #ffffff; background-color: #000021;"  |  #000021
+|-
+|  1  ||  0  ||  1  ||  $1004  ||  0000 0100  ||  0001 0000  ||  style="color: #ffffff; background-color: #210021;"  |  #210021
+|-
+|  2  ||  0  ||  1  ||  $1008  ||  0000 1000  ||  0001 0000  ||  style="color: #ffffff; background-color: #420021;"  |  #420021
+|-
+|  3  ||  0  ||  1  ||  $100c  ||  0000 1100  ||  0001 0000  ||  style="color: #ffffff; background-color: #630021;"  |  #630021
+|-
+|  4  ||  0  ||  1  ||  $1010  ||  0001 0000  ||  0001 0000  ||  style="color: #ffffff; background-color: #840021;"  |  #840021
+|-
+|  5  ||  0  ||  1  ||  $1014  ||  0001 0100  ||  0001 0000  ||  style="color: #ffffff; background-color: #a50021;"  |  #a50021
+|-
+|  6  ||  0  ||  1  ||  $1018  ||  0001 1000  ||  0001 0000  ||  style="color: #ffffff; background-color: #c60021;"  |  #c60021
+|-
+|  7  ||  0  ||  1  ||  $101c  ||  0001 1100  ||  0001 0000  ||  style="color: #ffffff; background-color: #e70021;"  |  #e70021
+|-
+|  8  ||  0  ||  1  ||  $101f  ||  0001 1111  ||  0001 0000  ||  style="color: #ffffff; background-color: #ff0021;"  |  #ff0021
+|-
+|  0  ||  1  ||  1  ||  $1080  ||  1000 0000  ||  0001 0000  ||  style="color: #ffffff; background-color: #002121;"  |  #002121
+|-
+|  1  ||  1  ||  1  ||  $1084  ||  1000 0100  ||  0001 0000  ||  style="color: #ffffff; background-color: #212121;"  |  #212121
+|-
+|  2  ||  1  ||  1  ||  $1088  ||  1000 1000  ||  0001 0000  ||  style="color: #ffffff; background-color: #422121;"  |  #422121
+|-
+|  3  ||  1  ||  1  ||  $108c  ||  1000 1100  ||  0001 0000  ||  style="color: #ffffff; background-color: #632121;"  |  #632121
+|-
+|  4  ||  1  ||  1  ||  $1090  ||  1001 0000  ||  0001 0000  ||  style="color: #ffffff; background-color: #842121;"  |  #842121
+|-
+|  5  ||  1  ||  1  ||  $1094  ||  1001 0100  ||  0001 0000  ||  style="color: #ffffff; background-color: #a52121;"  |  #a52121
+|-
+|  6  ||  1  ||  1  ||  $1098  ||  1001 1000  ||  0001 0000  ||  style="color: #ffffff; background-color: #c62121;"  |  #c62121
+|-
+|  7  ||  1  ||  1  ||  $109c  ||  1001 1100  ||  0001 0000  ||  style="color: #ffffff; background-color: #e72121;"  |  #e72121
+|-
+|  8  ||  1  ||  1  ||  $109f  ||  1001 1111  ||  0001 0000  ||  style="color: #ffffff; background-color: #ff2121;"  |  #ff2121
+|-
+|  0  ||  2  ||  1  ||  $1100  ||  0000 0000  ||  0001 0001  ||  style="color: #ffffff; background-color: #004221;"  |  #004221
+|-
+|  1  ||  2  ||  1  ||  $1104  ||  0000 0100  ||  0001 0001  ||  style="color: #ffffff; background-color: #214221;"  |  #214221
+|-
+|  2  ||  2  ||  1  ||  $1108  ||  0000 1000  ||  0001 0001  ||  style="color: #ffffff; background-color: #424221;"  |  #424221
+|-
+|  3  ||  2  ||  1  ||  $110c  ||  0000 1100  ||  0001 0001  ||  style="color: #ffffff; background-color: #634221;"  |  #634221
+|-
+|  4  ||  2  ||  1  ||  $1110  ||  0001 0000  ||  0001 0001  ||  style="color: #ffffff; background-color: #844221;"  |  #844221
+|-
+|  5  ||  2  ||  1  ||  $1114  ||  0001 0100  ||  0001 0001  ||  style="color: #ffffff; background-color: #a54221;"  |  #a54221
+|-
+|  6  ||  2  ||  1  ||  $1118  ||  0001 1000  ||  0001 0001  ||  style="color: #ffffff; background-color: #c64221;"  |  #c64221
+|-
+|  7  ||  2  ||  1  ||  $111c  ||  0001 1100  ||  0001 0001  ||  style="color: #ffffff; background-color: #e74221;"  |  #e74221
+|-
+|  8  ||  2  ||  1  ||  $111f  ||  0001 1111  ||  0001 0001  ||  style="color: #ffffff; background-color: #ff4221;"  |  #ff4221
+|-
+|  0  ||  3  ||  1  ||  $1180  ||  1000 0000  ||  0001 0001  ||  style="color: #ffffff; background-color: #006321;"  |  #006321
+|-
+|  1  ||  3  ||  1  ||  $1184  ||  1000 0100  ||  0001 0001  ||  style="color: #ffffff; background-color: #216321;"  |  #216321
+|-
+|  2  ||  3  ||  1  ||  $1188  ||  1000 1000  ||  0001 0001  ||  style="color: #ffffff; background-color: #426321;"  |  #426321
+|-
+|  3  ||  3  ||  1  ||  $118c  ||  1000 1100  ||  0001 0001  ||  style="color: #ffffff; background-color: #636321;"  |  #636321
+|-
+|  4  ||  3  ||  1  ||  $1190  ||  1001 0000  ||  0001 0001  ||  style="color: #ffffff; background-color: #846321;"  |  #846321
+|-
+|  5  ||  3  ||  1  ||  $1194  ||  1001 0100  ||  0001 0001  ||  style="color: #ffffff; background-color: #a56321;"  |  #a56321
+|-
+|  6  ||  3  ||  1  ||  $1198  ||  1001 1000  ||  0001 0001  ||  style="color: #ffffff; background-color: #c66321;"  |  #c66321
+|-
+|  7  ||  3  ||  1  ||  $119c  ||  1001 1100  ||  0001 0001  ||  style="color: #ffffff; background-color: #e76321;"  |  #e76321
+|-
+|  8  ||  3  ||  1  ||  $119f  ||  1001 1111  ||  0001 0001  ||  style="color: #ffffff; background-color: #ff6321;"  |  #ff6321
+|-
+|  0  ||  4  ||  1  ||  $1200  ||  0000 0000  ||  0001 0010  ||  style="color: #ffffff; background-color: #008421;"  |  #008421
+|-
+|  1  ||  4  ||  1  ||  $1204  ||  0000 0100  ||  0001 0010  ||  style="color: #ffffff; background-color: #218421;"  |  #218421
+|-
+|  2  ||  4  ||  1  ||  $1208  ||  0000 1000  ||  0001 0010  ||  style="color: #ffffff; background-color: #428421;"  |  #428421
+|-
+|  3  ||  4  ||  1  ||  $120c  ||  0000 1100  ||  0001 0010  ||  style="color: #ffffff; background-color: #638421;"  |  #638421
+|-
+|  4  ||  4  ||  1  ||  $1210  ||  0001 0000  ||  0001 0010  ||  style="color: #ffffff; background-color: #848421;"  |  #848421
+|-
+|  5  ||  4  ||  1  ||  $1214  ||  0001 0100  ||  0001 0010  ||  style="color: #000000; background-color: #a58421;"  |  #a58421
+|-
+|  6  ||  4  ||  1  ||  $1218  ||  0001 1000  ||  0001 0010  ||  style="color: #000000; background-color: #c68421;"  |  #c68421
+|-
+|  7  ||  4  ||  1  ||  $121c  ||  0001 1100  ||  0001 0010  ||  style="color: #000000; background-color: #e78421;"  |  #e78421
+|-
+|  8  ||  4  ||  1  ||  $121f  ||  0001 1111  ||  0001 0010  ||  style="color: #000000; background-color: #ff8421;"  |  #ff8421
+|-
+|  0  ||  5  ||  1  ||  $1280  ||  1000 0000  ||  0001 0010  ||  style="color: #ffffff; background-color: #00a521;"  |  #00a521
+|-
+|  1  ||  5  ||  1  ||  $1284  ||  1000 0100  ||  0001 0010  ||  style="color: #ffffff; background-color: #21a521;"  |  #21a521
+|-
+|  2  ||  5  ||  1  ||  $1288  ||  1000 1000  ||  0001 0010  ||  style="color: #000000; background-color: #42a521;"  |  #42a521
+|-
+|  3  ||  5  ||  1  ||  $128c  ||  1000 1100  ||  0001 0010  ||  style="color: #000000; background-color: #63a521;"  |  #63a521
+|-
+|  4  ||  5  ||  1  ||  $1290  ||  1001 0000  ||  0001 0010  ||  style="color: #000000; background-color: #84a521;"  |  #84a521
+|-
+|  5  ||  5  ||  1  ||  $1294  ||  1001 0100  ||  0001 0010  ||  style="color: #000000; background-color: #a5a521;"  |  #a5a521
+|-
+|  6  ||  5  ||  1  ||  $1298  ||  1001 1000  ||  0001 0010  ||  style="color: #000000; background-color: #c6a521;"  |  #c6a521
+|-
+|  7  ||  5  ||  1  ||  $129c  ||  1001 1100  ||  0001 0010  ||  style="color: #000000; background-color: #e7a521;"  |  #e7a521
+|-
+|  8  ||  5  ||  1  ||  $129f  ||  1001 1111  ||  0001 0010  ||  style="color: #000000; background-color: #ffa521;"  |  #ffa521
+|-
+|  0  ||  6  ||  1  ||  $1300  ||  0000 0000  ||  0001 0011  ||  style="color: #000000; background-color: #00c621;"  |  #00c621
+|-
+|  1  ||  6  ||  1  ||  $1304  ||  0000 0100  ||  0001 0011  ||  style="color: #000000; background-color: #21c621;"  |  #21c621
+|-
+|  2  ||  6  ||  1  ||  $1308  ||  0000 1000  ||  0001 0011  ||  style="color: #000000; background-color: #42c621;"  |  #42c621
+|-
+|  3  ||  6  ||  1  ||  $130c  ||  0000 1100  ||  0001 0011  ||  style="color: #000000; background-color: #63c621;"  |  #63c621
+|-
+|  4  ||  6  ||  1  ||  $1310  ||  0001 0000  ||  0001 0011  ||  style="color: #000000; background-color: #84c621;"  |  #84c621
+|-
+|  5  ||  6  ||  1  ||  $1314  ||  0001 0100  ||  0001 0011  ||  style="color: #000000; background-color: #a5c621;"  |  #a5c621
+|-
+|  6  ||  6  ||  1  ||  $1318  ||  0001 1000  ||  0001 0011  ||  style="color: #000000; background-color: #c6c621;"  |  #c6c621
+|-
+|  7  ||  6  ||  1  ||  $131c  ||  0001 1100  ||  0001 0011  ||  style="color: #000000; background-color: #e7c621;"  |  #e7c621
+|-
+|  8  ||  6  ||  1  ||  $131f  ||  0001 1111  ||  0001 0011  ||  style="color: #000000; background-color: #ffc621;"  |  #ffc621
+|-
+|  0  ||  7  ||  1  ||  $1380  ||  1000 0000  ||  0001 0011  ||  style="color: #000000; background-color: #00e721;"  |  #00e721
+|-
+|  1  ||  7  ||  1  ||  $1384  ||  1000 0100  ||  0001 0011  ||  style="color: #000000; background-color: #21e721;"  |  #21e721
+|-
+|  2  ||  7  ||  1  ||  $1388  ||  1000 1000  ||  0001 0011  ||  style="color: #000000; background-color: #42e721;"  |  #42e721
+|-
+|  3  ||  7  ||  1  ||  $138c  ||  1000 1100  ||  0001 0011  ||  style="color: #000000; background-color: #63e721;"  |  #63e721
+|-
+|  4  ||  7  ||  1  ||  $1390  ||  1001 0000  ||  0001 0011  ||  style="color: #000000; background-color: #84e721;"  |  #84e721
+|-
+|  5  ||  7  ||  1  ||  $1394  ||  1001 0100  ||  0001 0011  ||  style="color: #000000; background-color: #a5e721;"  |  #a5e721
+|-
+|  6  ||  7  ||  1  ||  $1398  ||  1001 1000  ||  0001 0011  ||  style="color: #000000; background-color: #c6e721;"  |  #c6e721
+|-
+|  7  ||  7  ||  1  ||  $139c  ||  1001 1100  ||  0001 0011  ||  style="color: #000000; background-color: #e7e721;"  |  #e7e721
+|-
+|  8  ||  7  ||  1  ||  $139f  ||  1001 1111  ||  0001 0011  ||  style="color: #000000; background-color: #ffe721;"  |  #ffe721
+|-
+|  0  ||  8  ||  1  ||  $13e0  ||  1110 0000  ||  0001 0011  ||  style="color: #000000; background-color: #00ff21;"  |  #00ff21
+|-
+|  1  ||  8  ||  1  ||  $13e4  ||  1110 0100  ||  0001 0011  ||  style="color: #000000; background-color: #21ff21;"  |  #21ff21
+|-
+|  2  ||  8  ||  1  ||  $13e8  ||  1110 1000  ||  0001 0011  ||  style="color: #000000; background-color: #42ff21;"  |  #42ff21
+|-
+|  3  ||  8  ||  1  ||  $13ec  ||  1110 1100  ||  0001 0011  ||  style="color: #000000; background-color: #63ff21;"  |  #63ff21
+|-
+|  4  ||  8  ||  1  ||  $13f0  ||  1111 0000  ||  0001 0011  ||  style="color: #000000; background-color: #84ff21;"  |  #84ff21
+|-
+|  5  ||  8  ||  1  ||  $13f4  ||  1111 0100  ||  0001 0011  ||  style="color: #000000; background-color: #a5ff21;"  |  #a5ff21
+|-
+|  6  ||  8  ||  1  ||  $13f8  ||  1111 1000  ||  0001 0011  ||  style="color: #000000; background-color: #c6ff21;"  |  #c6ff21
+|-
+|  7  ||  8  ||  1  ||  $13fc  ||  1111 1100  ||  0001 0011  ||  style="color: #000000; background-color: #e7ff21;"  |  #e7ff21
+|-
+|  8  ||  8  ||  1  ||  $13ff  ||  1111 1111  ||  0001 0011  ||  style="color: #000000; background-color: #ffff21;"  |  #ffff21
+|-
+|  0  ||  0  ||  2  ||  $2000  ||  0000 0000  ||  0010 0000  ||  style="color: #ffffff; background-color: #000042;"  |  #000042
+|-
+|  1  ||  0  ||  2  ||  $2004  ||  0000 0100  ||  0010 0000  ||  style="color: #ffffff; background-color: #210042;"  |  #210042
+|-
+|  2  ||  0  ||  2  ||  $2008  ||  0000 1000  ||  0010 0000  ||  style="color: #ffffff; background-color: #420042;"  |  #420042
+|-
+|  3  ||  0  ||  2  ||  $200c  ||  0000 1100  ||  0010 0000  ||  style="color: #ffffff; background-color: #630042;"  |  #630042
+|-
+|  4  ||  0  ||  2  ||  $2010  ||  0001 0000  ||  0010 0000  ||  style="color: #ffffff; background-color: #840042;"  |  #840042
+|-
+|  5  ||  0  ||  2  ||  $2014  ||  0001 0100  ||  0010 0000  ||  style="color: #ffffff; background-color: #a50042;"  |  #a50042
+|-
+|  6  ||  0  ||  2  ||  $2018  ||  0001 1000  ||  0010 0000  ||  style="color: #ffffff; background-color: #c60042;"  |  #c60042
+|-
+|  7  ||  0  ||  2  ||  $201c  ||  0001 1100  ||  0010 0000  ||  style="color: #ffffff; background-color: #e70042;"  |  #e70042
+|-
+|  8  ||  0  ||  2  ||  $201f  ||  0001 1111  ||  0010 0000  ||  style="color: #ffffff; background-color: #ff0042;"  |  #ff0042
+|-
+|  0  ||  1  ||  2  ||  $2080  ||  1000 0000  ||  0010 0000  ||  style="color: #ffffff; background-color: #002142;"  |  #002142
+|-
+|  1  ||  1  ||  2  ||  $2084  ||  1000 0100  ||  0010 0000  ||  style="color: #ffffff; background-color: #212142;"  |  #212142
+|-
+|  2  ||  1  ||  2  ||  $2088  ||  1000 1000  ||  0010 0000  ||  style="color: #ffffff; background-color: #422142;"  |  #422142
+|-
+|  3  ||  1  ||  2  ||  $208c  ||  1000 1100  ||  0010 0000  ||  style="color: #ffffff; background-color: #632142;"  |  #632142
+|-
+|  4  ||  1  ||  2  ||  $2090  ||  1001 0000  ||  0010 0000  ||  style="color: #ffffff; background-color: #842142;"  |  #842142
+|-
+|  5  ||  1  ||  2  ||  $2094  ||  1001 0100  ||  0010 0000  ||  style="color: #ffffff; background-color: #a52142;"  |  #a52142
+|-
+|  6  ||  1  ||  2  ||  $2098  ||  1001 1000  ||  0010 0000  ||  style="color: #ffffff; background-color: #c62142;"  |  #c62142
+|-
+|  7  ||  1  ||  2  ||  $209c  ||  1001 1100  ||  0010 0000  ||  style="color: #ffffff; background-color: #e72142;"  |  #e72142
+|-
+|  8  ||  1  ||  2  ||  $209f  ||  1001 1111  ||  0010 0000  ||  style="color: #ffffff; background-color: #ff2142;"  |  #ff2142
+|-
+|  0  ||  2  ||  2  ||  $2100  ||  0000 0000  ||  0010 0001  ||  style="color: #ffffff; background-color: #004242;"  |  #004242
+|-
+|  1  ||  2  ||  2  ||  $2104  ||  0000 0100  ||  0010 0001  ||  style="color: #ffffff; background-color: #214242;"  |  #214242
+|-
+|  2  ||  2  ||  2  ||  $2108  ||  0000 1000  ||  0010 0001  ||  style="color: #ffffff; background-color: #424242;"  |  #424242
+|-
+|  3  ||  2  ||  2  ||  $210c  ||  0000 1100  ||  0010 0001  ||  style="color: #ffffff; background-color: #634242;"  |  #634242
+|-
+|  4  ||  2  ||  2  ||  $2110  ||  0001 0000  ||  0010 0001  ||  style="color: #ffffff; background-color: #844242;"  |  #844242
+|-
+|  5  ||  2  ||  2  ||  $2114  ||  0001 0100  ||  0010 0001  ||  style="color: #ffffff; background-color: #a54242;"  |  #a54242
+|-
+|  6  ||  2  ||  2  ||  $2118  ||  0001 1000  ||  0010 0001  ||  style="color: #ffffff; background-color: #c64242;"  |  #c64242
+|-
+|  7  ||  2  ||  2  ||  $211c  ||  0001 1100  ||  0010 0001  ||  style="color: #ffffff; background-color: #e74242;"  |  #e74242
+|-
+|  8  ||  2  ||  2  ||  $211f  ||  0001 1111  ||  0010 0001  ||  style="color: #ffffff; background-color: #ff4242;"  |  #ff4242
+|-
+|  0  ||  3  ||  2  ||  $2180  ||  1000 0000  ||  0010 0001  ||  style="color: #ffffff; background-color: #006342;"  |  #006342
+|-
+|  1  ||  3  ||  2  ||  $2184  ||  1000 0100  ||  0010 0001  ||  style="color: #ffffff; background-color: #216342;"  |  #216342
+|-
+|  2  ||  3  ||  2  ||  $2188  ||  1000 1000  ||  0010 0001  ||  style="color: #ffffff; background-color: #426342;"  |  #426342
+|-
+|  3  ||  3  ||  2  ||  $218c  ||  1000 1100  ||  0010 0001  ||  style="color: #ffffff; background-color: #636342;"  |  #636342
+|-
+|  4  ||  3  ||  2  ||  $2190  ||  1001 0000  ||  0010 0001  ||  style="color: #ffffff; background-color: #846342;"  |  #846342
+|-
+|  5  ||  3  ||  2  ||  $2194  ||  1001 0100  ||  0010 0001  ||  style="color: #ffffff; background-color: #a56342;"  |  #a56342
+|-
+|  6  ||  3  ||  2  ||  $2198  ||  1001 1000  ||  0010 0001  ||  style="color: #ffffff; background-color: #c66342;"  |  #c66342
+|-
+|  7  ||  3  ||  2  ||  $219c  ||  1001 1100  ||  0010 0001  ||  style="color: #ffffff; background-color: #e76342;"  |  #e76342
+|-
+|  8  ||  3  ||  2  ||  $219f  ||  1001 1111  ||  0010 0001  ||  style="color: #000000; background-color: #ff6342;"  |  #ff6342
+|-
+|  0  ||  4  ||  2  ||  $2200  ||  0000 0000  ||  0010 0010  ||  style="color: #ffffff; background-color: #008442;"  |  #008442
+|-
+|  1  ||  4  ||  2  ||  $2204  ||  0000 0100  ||  0010 0010  ||  style="color: #ffffff; background-color: #218442;"  |  #218442
+|-
+|  2  ||  4  ||  2  ||  $2208  ||  0000 1000  ||  0010 0010  ||  style="color: #ffffff; background-color: #428442;"  |  #428442
+|-
+|  3  ||  4  ||  2  ||  $220c  ||  0000 1100  ||  0010 0010  ||  style="color: #ffffff; background-color: #638442;"  |  #638442
+|-
+|  4  ||  4  ||  2  ||  $2210  ||  0001 0000  ||  0010 0010  ||  style="color: #ffffff; background-color: #848442;"  |  #848442
+|-
+|  5  ||  4  ||  2  ||  $2214  ||  0001 0100  ||  0010 0010  ||  style="color: #000000; background-color: #a58442;"  |  #a58442
+|-
+|  6  ||  4  ||  2  ||  $2218  ||  0001 1000  ||  0010 0010  ||  style="color: #000000; background-color: #c68442;"  |  #c68442
+|-
+|  7  ||  4  ||  2  ||  $221c  ||  0001 1100  ||  0010 0010  ||  style="color: #000000; background-color: #e78442;"  |  #e78442
+|-
+|  8  ||  4  ||  2  ||  $221f  ||  0001 1111  ||  0010 0010  ||  style="color: #000000; background-color: #ff8442;"  |  #ff8442
+|-
+|  0  ||  5  ||  2  ||  $2280  ||  1000 0000  ||  0010 0010  ||  style="color: #ffffff; background-color: #00a542;"  |  #00a542
+|-
+|  1  ||  5  ||  2  ||  $2284  ||  1000 0100  ||  0010 0010  ||  style="color: #000000; background-color: #21a542;"  |  #21a542
+|-
+|  2  ||  5  ||  2  ||  $2288  ||  1000 1000  ||  0010 0010  ||  style="color: #000000; background-color: #42a542;"  |  #42a542
+|-
+|  3  ||  5  ||  2  ||  $228c  ||  1000 1100  ||  0010 0010  ||  style="color: #000000; background-color: #63a542;"  |  #63a542
+|-
+|  4  ||  5  ||  2  ||  $2290  ||  1001 0000  ||  0010 0010  ||  style="color: #000000; background-color: #84a542;"  |  #84a542
+|-
+|  5  ||  5  ||  2  ||  $2294  ||  1001 0100  ||  0010 0010  ||  style="color: #000000; background-color: #a5a542;"  |  #a5a542
+|-
+|  6  ||  5  ||  2  ||  $2298  ||  1001 1000  ||  0010 0010  ||  style="color: #000000; background-color: #c6a542;"  |  #c6a542
+|-
+|  7  ||  5  ||  2  ||  $229c  ||  1001 1100  ||  0010 0010  ||  style="color: #000000; background-color: #e7a542;"  |  #e7a542
+|-
+|  8  ||  5  ||  2  ||  $229f  ||  1001 1111  ||  0010 0010  ||  style="color: #000000; background-color: #ffa542;"  |  #ffa542
+|-
+|  0  ||  6  ||  2  ||  $2300  ||  0000 0000  ||  0010 0011  ||  style="color: #000000; background-color: #00c642;"  |  #00c642
+|-
+|  1  ||  6  ||  2  ||  $2304  ||  0000 0100  ||  0010 0011  ||  style="color: #000000; background-color: #21c642;"  |  #21c642
+|-
+|  2  ||  6  ||  2  ||  $2308  ||  0000 1000  ||  0010 0011  ||  style="color: #000000; background-color: #42c642;"  |  #42c642
+|-
+|  3  ||  6  ||  2  ||  $230c  ||  0000 1100  ||  0010 0011  ||  style="color: #000000; background-color: #63c642;"  |  #63c642
+|-
+|  4  ||  6  ||  2  ||  $2310  ||  0001 0000  ||  0010 0011  ||  style="color: #000000; background-color: #84c642;"  |  #84c642
+|-
+|  5  ||  6  ||  2  ||  $2314  ||  0001 0100  ||  0010 0011  ||  style="color: #000000; background-color: #a5c642;"  |  #a5c642
+|-
+|  6  ||  6  ||  2  ||  $2318  ||  0001 1000  ||  0010 0011  ||  style="color: #000000; background-color: #c6c642;"  |  #c6c642
+|-
+|  7  ||  6  ||  2  ||  $231c  ||  0001 1100  ||  0010 0011  ||  style="color: #000000; background-color: #e7c642;"  |  #e7c642
+|-
+|  8  ||  6  ||  2  ||  $231f  ||  0001 1111  ||  0010 0011  ||  style="color: #000000; background-color: #ffc642;"  |  #ffc642
+|-
+|  0  ||  7  ||  2  ||  $2380  ||  1000 0000  ||  0010 0011  ||  style="color: #000000; background-color: #00e742;"  |  #00e742
+|-
+|  1  ||  7  ||  2  ||  $2384  ||  1000 0100  ||  0010 0011  ||  style="color: #000000; background-color: #21e742;"  |  #21e742
+|-
+|  2  ||  7  ||  2  ||  $2388  ||  1000 1000  ||  0010 0011  ||  style="color: #000000; background-color: #42e742;"  |  #42e742
+|-
+|  3  ||  7  ||  2  ||  $238c  ||  1000 1100  ||  0010 0011  ||  style="color: #000000; background-color: #63e742;"  |  #63e742
+|-
+|  4  ||  7  ||  2  ||  $2390  ||  1001 0000  ||  0010 0011  ||  style="color: #000000; background-color: #84e742;"  |  #84e742
+|-
+|  5  ||  7  ||  2  ||  $2394  ||  1001 0100  ||  0010 0011  ||  style="color: #000000; background-color: #a5e742;"  |  #a5e742
+|-
+|  6  ||  7  ||  2  ||  $2398  ||  1001 1000  ||  0010 0011  ||  style="color: #000000; background-color: #c6e742;"  |  #c6e742
+|-
+|  7  ||  7  ||  2  ||  $239c  ||  1001 1100  ||  0010 0011  ||  style="color: #000000; background-color: #e7e742;"  |  #e7e742
+|-
+|  8  ||  7  ||  2  ||  $239f  ||  1001 1111  ||  0010 0011  ||  style="color: #000000; background-color: #ffe742;"  |  #ffe742
+|-
+|  0  ||  8  ||  2  ||  $23e0  ||  1110 0000  ||  0010 0011  ||  style="color: #000000; background-color: #00ff42;"  |  #00ff42
+|-
+|  1  ||  8  ||  2  ||  $23e4  ||  1110 0100  ||  0010 0011  ||  style="color: #000000; background-color: #21ff42;"  |  #21ff42
+|-
+|  2  ||  8  ||  2  ||  $23e8  ||  1110 1000  ||  0010 0011  ||  style="color: #000000; background-color: #42ff42;"  |  #42ff42
+|-
+|  3  ||  8  ||  2  ||  $23ec  ||  1110 1100  ||  0010 0011  ||  style="color: #000000; background-color: #63ff42;"  |  #63ff42
+|-
+|  4  ||  8  ||  2  ||  $23f0  ||  1111 0000  ||  0010 0011  ||  style="color: #000000; background-color: #84ff42;"  |  #84ff42
+|-
+|  5  ||  8  ||  2  ||  $23f4  ||  1111 0100  ||  0010 0011  ||  style="color: #000000; background-color: #a5ff42;"  |  #a5ff42
+|-
+|  6  ||  8  ||  2  ||  $23f8  ||  1111 1000  ||  0010 0011  ||  style="color: #000000; background-color: #c6ff42;"  |  #c6ff42
+|-
+|  7  ||  8  ||  2  ||  $23fc  ||  1111 1100  ||  0010 0011  ||  style="color: #000000; background-color: #e7ff42;"  |  #e7ff42
+|-
+|  8  ||  8  ||  2  ||  $23ff  ||  1111 1111  ||  0010 0011  ||  style="color: #000000; background-color: #ffff42;"  |  #ffff42
+|-
+|  0  ||  0  ||  3  ||  $3000  ||  0000 0000  ||  0011 0000  ||  style="color: #ffffff; background-color: #000063;"  |  #000063
+|-
+|  1  ||  0  ||  3  ||  $3004  ||  0000 0100  ||  0011 0000  ||  style="color: #ffffff; background-color: #210063;"  |  #210063
+|-
+|  2  ||  0  ||  3  ||  $3008  ||  0000 1000  ||  0011 0000  ||  style="color: #ffffff; background-color: #420063;"  |  #420063
+|-
+|  3  ||  0  ||  3  ||  $300c  ||  0000 1100  ||  0011 0000  ||  style="color: #ffffff; background-color: #630063;"  |  #630063
+|-
+|  4  ||  0  ||  3  ||  $3010  ||  0001 0000  ||  0011 0000  ||  style="color: #ffffff; background-color: #840063;"  |  #840063
+|-
+|  5  ||  0  ||  3  ||  $3014  ||  0001 0100  ||  0011 0000  ||  style="color: #ffffff; background-color: #a50063;"  |  #a50063
+|-
+|  6  ||  0  ||  3  ||  $3018  ||  0001 1000  ||  0011 0000  ||  style="color: #ffffff; background-color: #c60063;"  |  #c60063
+|-
+|  7  ||  0  ||  3  ||  $301c  ||  0001 1100  ||  0011 0000  ||  style="color: #ffffff; background-color: #e70063;"  |  #e70063
+|-
+|  8  ||  0  ||  3  ||  $301f  ||  0001 1111  ||  0011 0000  ||  style="color: #ffffff; background-color: #ff0063;"  |  #ff0063
+|-
+|  0  ||  1  ||  3  ||  $3080  ||  1000 0000  ||  0011 0000  ||  style="color: #ffffff; background-color: #002163;"  |  #002163
+|-
+|  1  ||  1  ||  3  ||  $3084  ||  1000 0100  ||  0011 0000  ||  style="color: #ffffff; background-color: #212163;"  |  #212163
+|-
+|  2  ||  1  ||  3  ||  $3088  ||  1000 1000  ||  0011 0000  ||  style="color: #ffffff; background-color: #422163;"  |  #422163
+|-
+|  3  ||  1  ||  3  ||  $308c  ||  1000 1100  ||  0011 0000  ||  style="color: #ffffff; background-color: #632163;"  |  #632163
+|-
+|  4  ||  1  ||  3  ||  $3090  ||  1001 0000  ||  0011 0000  ||  style="color: #ffffff; background-color: #842163;"  |  #842163
+|-
+|  5  ||  1  ||  3  ||  $3094  ||  1001 0100  ||  0011 0000  ||  style="color: #ffffff; background-color: #a52163;"  |  #a52163
+|-
+|  6  ||  1  ||  3  ||  $3098  ||  1001 1000  ||  0011 0000  ||  style="color: #ffffff; background-color: #c62163;"  |  #c62163
+|-
+|  7  ||  1  ||  3  ||  $309c  ||  1001 1100  ||  0011 0000  ||  style="color: #ffffff; background-color: #e72163;"  |  #e72163
+|-
+|  8  ||  1  ||  3  ||  $309f  ||  1001 1111  ||  0011 0000  ||  style="color: #ffffff; background-color: #ff2163;"  |  #ff2163
+|-
+|  0  ||  2  ||  3  ||  $3100  ||  0000 0000  ||  0011 0001  ||  style="color: #ffffff; background-color: #004263;"  |  #004263
+|-
+|  1  ||  2  ||  3  ||  $3104  ||  0000 0100  ||  0011 0001  ||  style="color: #ffffff; background-color: #214263;"  |  #214263
+|-
+|  2  ||  2  ||  3  ||  $3108  ||  0000 1000  ||  0011 0001  ||  style="color: #ffffff; background-color: #424263;"  |  #424263
+|-
+|  3  ||  2  ||  3  ||  $310c  ||  0000 1100  ||  0011 0001  ||  style="color: #ffffff; background-color: #634263;"  |  #634263
+|-
+|  4  ||  2  ||  3  ||  $3110  ||  0001 0000  ||  0011 0001  ||  style="color: #ffffff; background-color: #844263;"  |  #844263
+|-
+|  5  ||  2  ||  3  ||  $3114  ||  0001 0100  ||  0011 0001  ||  style="color: #ffffff; background-color: #a54263;"  |  #a54263
+|-
+|  6  ||  2  ||  3  ||  $3118  ||  0001 1000  ||  0011 0001  ||  style="color: #ffffff; background-color: #c64263;"  |  #c64263
+|-
+|  7  ||  2  ||  3  ||  $311c  ||  0001 1100  ||  0011 0001  ||  style="color: #ffffff; background-color: #e74263;"  |  #e74263
+|-
+|  8  ||  2  ||  3  ||  $311f  ||  0001 1111  ||  0011 0001  ||  style="color: #ffffff; background-color: #ff4263;"  |  #ff4263
+|-
+|  0  ||  3  ||  3  ||  $3180  ||  1000 0000  ||  0011 0001  ||  style="color: #ffffff; background-color: #006363;"  |  #006363
+|-
+|  1  ||  3  ||  3  ||  $3184  ||  1000 0100  ||  0011 0001  ||  style="color: #ffffff; background-color: #216363;"  |  #216363
+|-
+|  2  ||  3  ||  3  ||  $3188  ||  1000 1000  ||  0011 0001  ||  style="color: #ffffff; background-color: #426363;"  |  #426363
+|-
+|  3  ||  3  ||  3  ||  $318c  ||  1000 1100  ||  0011 0001  ||  style="color: #ffffff; background-color: #636363;"  |  #636363
+|-
+|  4  ||  3  ||  3  ||  $3190  ||  1001 0000  ||  0011 0001  ||  style="color: #ffffff; background-color: #846363;"  |  #846363
+|-
+|  5  ||  3  ||  3  ||  $3194  ||  1001 0100  ||  0011 0001  ||  style="color: #ffffff; background-color: #a56363;"  |  #a56363
+|-
+|  6  ||  3  ||  3  ||  $3198  ||  1001 1000  ||  0011 0001  ||  style="color: #ffffff; background-color: #c66363;"  |  #c66363
+|-
+|  7  ||  3  ||  3  ||  $319c  ||  1001 1100  ||  0011 0001  ||  style="color: #ffffff; background-color: #e76363;"  |  #e76363
+|-
+|  8  ||  3  ||  3  ||  $319f  ||  1001 1111  ||  0011 0001  ||  style="color: #000000; background-color: #ff6363;"  |  #ff6363
+|-
+|  0  ||  4  ||  3  ||  $3200  ||  0000 0000  ||  0011 0010  ||  style="color: #ffffff; background-color: #008463;"  |  #008463
+|-
+|  1  ||  4  ||  3  ||  $3204  ||  0000 0100  ||  0011 0010  ||  style="color: #ffffff; background-color: #218463;"  |  #218463
+|-
+|  2  ||  4  ||  3  ||  $3208  ||  0000 1000  ||  0011 0010  ||  style="color: #ffffff; background-color: #428463;"  |  #428463
+|-
+|  3  ||  4  ||  3  ||  $320c  ||  0000 1100  ||  0011 0010  ||  style="color: #ffffff; background-color: #638463;"  |  #638463
+|-
+|  4  ||  4  ||  3  ||  $3210  ||  0001 0000  ||  0011 0010  ||  style="color: #000000; background-color: #848463;"  |  #848463
+|-
+|  5  ||  4  ||  3  ||  $3214  ||  0001 0100  ||  0011 0010  ||  style="color: #000000; background-color: #a58463;"  |  #a58463
+|-
+|  6  ||  4  ||  3  ||  $3218  ||  0001 1000  ||  0011 0010  ||  style="color: #000000; background-color: #c68463;"  |  #c68463
+|-
+|  7  ||  4  ||  3  ||  $321c  ||  0001 1100  ||  0011 0010  ||  style="color: #000000; background-color: #e78463;"  |  #e78463
+|-
+|  8  ||  4  ||  3  ||  $321f  ||  0001 1111  ||  0011 0010  ||  style="color: #000000; background-color: #ff8463;"  |  #ff8463
+|-
+|  0  ||  5  ||  3  ||  $3280  ||  1000 0000  ||  0011 0010  ||  style="color: #ffffff; background-color: #00a563;"  |  #00a563
+|-
+|  1  ||  5  ||  3  ||  $3284  ||  1000 0100  ||  0011 0010  ||  style="color: #000000; background-color: #21a563;"  |  #21a563
+|-
+|  2  ||  5  ||  3  ||  $3288  ||  1000 1000  ||  0011 0010  ||  style="color: #000000; background-color: #42a563;"  |  #42a563
+|-
+|  3  ||  5  ||  3  ||  $328c  ||  1000 1100  ||  0011 0010  ||  style="color: #000000; background-color: #63a563;"  |  #63a563
+|-
+|  4  ||  5  ||  3  ||  $3290  ||  1001 0000  ||  0011 0010  ||  style="color: #000000; background-color: #84a563;"  |  #84a563
+|-
+|  5  ||  5  ||  3  ||  $3294  ||  1001 0100  ||  0011 0010  ||  style="color: #000000; background-color: #a5a563;"  |  #a5a563
+|-
+|  6  ||  5  ||  3  ||  $3298  ||  1001 1000  ||  0011 0010  ||  style="color: #000000; background-color: #c6a563;"  |  #c6a563
+|-
+|  7  ||  5  ||  3  ||  $329c  ||  1001 1100  ||  0011 0010  ||  style="color: #000000; background-color: #e7a563;"  |  #e7a563
+|-
+|  8  ||  5  ||  3  ||  $329f  ||  1001 1111  ||  0011 0010  ||  style="color: #000000; background-color: #ffa563;"  |  #ffa563
+|-
+|  0  ||  6  ||  3  ||  $3300  ||  0000 0000  ||  0011 0011  ||  style="color: #000000; background-color: #00c663;"  |  #00c663
+|-
+|  1  ||  6  ||  3  ||  $3304  ||  0000 0100  ||  0011 0011  ||  style="color: #000000; background-color: #21c663;"  |  #21c663
+|-
+|  2  ||  6  ||  3  ||  $3308  ||  0000 1000  ||  0011 0011  ||  style="color: #000000; background-color: #42c663;"  |  #42c663
+|-
+|  3  ||  6  ||  3  ||  $330c  ||  0000 1100  ||  0011 0011  ||  style="color: #000000; background-color: #63c663;"  |  #63c663
+|-
+|  4  ||  6  ||  3  ||  $3310  ||  0001 0000  ||  0011 0011  ||  style="color: #000000; background-color: #84c663;"  |  #84c663
+|-
+|  5  ||  6  ||  3  ||  $3314  ||  0001 0100  ||  0011 0011  ||  style="color: #000000; background-color: #a5c663;"  |  #a5c663
+|-
+|  6  ||  6  ||  3  ||  $3318  ||  0001 1000  ||  0011 0011  ||  style="color: #000000; background-color: #c6c663;"  |  #c6c663
+|-
+|  7  ||  6  ||  3  ||  $331c  ||  0001 1100  ||  0011 0011  ||  style="color: #000000; background-color: #e7c663;"  |  #e7c663
+|-
+|  8  ||  6  ||  3  ||  $331f  ||  0001 1111  ||  0011 0011  ||  style="color: #000000; background-color: #ffc663;"  |  #ffc663
+|-
+|  0  ||  7  ||  3  ||  $3380  ||  1000 0000  ||  0011 0011  ||  style="color: #000000; background-color: #00e763;"  |  #00e763
+|-
+|  1  ||  7  ||  3  ||  $3384  ||  1000 0100  ||  0011 0011  ||  style="color: #000000; background-color: #21e763;"  |  #21e763
+|-
+|  2  ||  7  ||  3  ||  $3388  ||  1000 1000  ||  0011 0011  ||  style="color: #000000; background-color: #42e763;"  |  #42e763
+|-
+|  3  ||  7  ||  3  ||  $338c  ||  1000 1100  ||  0011 0011  ||  style="color: #000000; background-color: #63e763;"  |  #63e763
+|-
+|  4  ||  7  ||  3  ||  $3390  ||  1001 0000  ||  0011 0011  ||  style="color: #000000; background-color: #84e763;"  |  #84e763
+|-
+|  5  ||  7  ||  3  ||  $3394  ||  1001 0100  ||  0011 0011  ||  style="color: #000000; background-color: #a5e763;"  |  #a5e763
+|-
+|  6  ||  7  ||  3  ||  $3398  ||  1001 1000  ||  0011 0011  ||  style="color: #000000; background-color: #c6e763;"  |  #c6e763
+|-
+|  7  ||  7  ||  3  ||  $339c  ||  1001 1100  ||  0011 0011  ||  style="color: #000000; background-color: #e7e763;"  |  #e7e763
+|-
+|  8  ||  7  ||  3  ||  $339f  ||  1001 1111  ||  0011 0011  ||  style="color: #000000; background-color: #ffe763;"  |  #ffe763
+|-
+|  0  ||  8  ||  3  ||  $33e0  ||  1110 0000  ||  0011 0011  ||  style="color: #000000; background-color: #00ff63;"  |  #00ff63
+|-
+|  1  ||  8  ||  3  ||  $33e4  ||  1110 0100  ||  0011 0011  ||  style="color: #000000; background-color: #21ff63;"  |  #21ff63
+|-
+|  2  ||  8  ||  3  ||  $33e8  ||  1110 1000  ||  0011 0011  ||  style="color: #000000; background-color: #42ff63;"  |  #42ff63
+|-
+|  3  ||  8  ||  3  ||  $33ec  ||  1110 1100  ||  0011 0011  ||  style="color: #000000; background-color: #63ff63;"  |  #63ff63
+|-
+|  4  ||  8  ||  3  ||  $33f0  ||  1111 0000  ||  0011 0011  ||  style="color: #000000; background-color: #84ff63;"  |  #84ff63
+|-
+|  5  ||  8  ||  3  ||  $33f4  ||  1111 0100  ||  0011 0011  ||  style="color: #000000; background-color: #a5ff63;"  |  #a5ff63
+|-
+|  6  ||  8  ||  3  ||  $33f8  ||  1111 1000  ||  0011 0011  ||  style="color: #000000; background-color: #c6ff63;"  |  #c6ff63
+|-
+|  7  ||  8  ||  3  ||  $33fc  ||  1111 1100  ||  0011 0011  ||  style="color: #000000; background-color: #e7ff63;"  |  #e7ff63
+|-
+|  8  ||  8  ||  3  ||  $33ff  ||  1111 1111  ||  0011 0011  ||  style="color: #000000; background-color: #ffff63;"  |  #ffff63
+|-
+|  0  ||  0  ||  4  ||  $4000  ||  0000 0000  ||  0100 0000  ||  style="color: #ffffff; background-color: #000084;"  |  #000084
+|-
+|  1  ||  0  ||  4  ||  $4004  ||  0000 0100  ||  0100 0000  ||  style="color: #ffffff; background-color: #210084;"  |  #210084
+|-
+|  2  ||  0  ||  4  ||  $4008  ||  0000 1000  ||  0100 0000  ||  style="color: #ffffff; background-color: #420084;"  |  #420084
+|-
+|  3  ||  0  ||  4  ||  $400c  ||  0000 1100  ||  0100 0000  ||  style="color: #ffffff; background-color: #630084;"  |  #630084
+|-
+|  4  ||  0  ||  4  ||  $4010  ||  0001 0000  ||  0100 0000  ||  style="color: #ffffff; background-color: #840084;"  |  #840084
+|-
+|  5  ||  0  ||  4  ||  $4014  ||  0001 0100  ||  0100 0000  ||  style="color: #ffffff; background-color: #a50084;"  |  #a50084
+|-
+|  6  ||  0  ||  4  ||  $4018  ||  0001 1000  ||  0100 0000  ||  style="color: #ffffff; background-color: #c60084;"  |  #c60084
+|-
+|  7  ||  0  ||  4  ||  $401c  ||  0001 1100  ||  0100 0000  ||  style="color: #ffffff; background-color: #e70084;"  |  #e70084
+|-
+|  8  ||  0  ||  4  ||  $401f  ||  0001 1111  ||  0100 0000  ||  style="color: #ffffff; background-color: #ff0084;"  |  #ff0084
+|-
+|  0  ||  1  ||  4  ||  $4080  ||  1000 0000  ||  0100 0000  ||  style="color: #ffffff; background-color: #002184;"  |  #002184
+|-
+|  1  ||  1  ||  4  ||  $4084  ||  1000 0100  ||  0100 0000  ||  style="color: #ffffff; background-color: #212184;"  |  #212184
+|-
+|  2  ||  1  ||  4  ||  $4088  ||  1000 1000  ||  0100 0000  ||  style="color: #ffffff; background-color: #422184;"  |  #422184
+|-
+|  3  ||  1  ||  4  ||  $408c  ||  1000 1100  ||  0100 0000  ||  style="color: #ffffff; background-color: #632184;"  |  #632184
+|-
+|  4  ||  1  ||  4  ||  $4090  ||  1001 0000  ||  0100 0000  ||  style="color: #ffffff; background-color: #842184;"  |  #842184
+|-
+|  5  ||  1  ||  4  ||  $4094  ||  1001 0100  ||  0100 0000  ||  style="color: #ffffff; background-color: #a52184;"  |  #a52184
+|-
+|  6  ||  1  ||  4  ||  $4098  ||  1001 1000  ||  0100 0000  ||  style="color: #ffffff; background-color: #c62184;"  |  #c62184
+|-
+|  7  ||  1  ||  4  ||  $409c  ||  1001 1100  ||  0100 0000  ||  style="color: #ffffff; background-color: #e72184;"  |  #e72184
+|-
+|  8  ||  1  ||  4  ||  $409f  ||  1001 1111  ||  0100 0000  ||  style="color: #ffffff; background-color: #ff2184;"  |  #ff2184
+|-
+|  0  ||  2  ||  4  ||  $4100  ||  0000 0000  ||  0100 0001  ||  style="color: #ffffff; background-color: #004284;"  |  #004284
+|-
+|  1  ||  2  ||  4  ||  $4104  ||  0000 0100  ||  0100 0001  ||  style="color: #ffffff; background-color: #214284;"  |  #214284
+|-
+|  2  ||  2  ||  4  ||  $4108  ||  0000 1000  ||  0100 0001  ||  style="color: #ffffff; background-color: #424284;"  |  #424284
+|-
+|  3  ||  2  ||  4  ||  $410c  ||  0000 1100  ||  0100 0001  ||  style="color: #ffffff; background-color: #634284;"  |  #634284
+|-
+|  4  ||  2  ||  4  ||  $4110  ||  0001 0000  ||  0100 0001  ||  style="color: #ffffff; background-color: #844284;"  |  #844284
+|-
+|  5  ||  2  ||  4  ||  $4114  ||  0001 0100  ||  0100 0001  ||  style="color: #ffffff; background-color: #a54284;"  |  #a54284
+|-
+|  6  ||  2  ||  4  ||  $4118  ||  0001 1000  ||  0100 0001  ||  style="color: #ffffff; background-color: #c64284;"  |  #c64284
+|-
+|  7  ||  2  ||  4  ||  $411c  ||  0001 1100  ||  0100 0001  ||  style="color: #ffffff; background-color: #e74284;"  |  #e74284
+|-
+|  8  ||  2  ||  4  ||  $411f  ||  0001 1111  ||  0100 0001  ||  style="color: #ffffff; background-color: #ff4284;"  |  #ff4284
+|-
+|  0  ||  3  ||  4  ||  $4180  ||  1000 0000  ||  0100 0001  ||  style="color: #ffffff; background-color: #006384;"  |  #006384
+|-
+|  1  ||  3  ||  4  ||  $4184  ||  1000 0100  ||  0100 0001  ||  style="color: #ffffff; background-color: #216384;"  |  #216384
+|-
+|  2  ||  3  ||  4  ||  $4188  ||  1000 1000  ||  0100 0001  ||  style="color: #ffffff; background-color: #426384;"  |  #426384
+|-
+|  3  ||  3  ||  4  ||  $418c  ||  1000 1100  ||  0100 0001  ||  style="color: #ffffff; background-color: #636384;"  |  #636384
+|-
+|  4  ||  3  ||  4  ||  $4190  ||  1001 0000  ||  0100 0001  ||  style="color: #ffffff; background-color: #846384;"  |  #846384
+|-
+|  5  ||  3  ||  4  ||  $4194  ||  1001 0100  ||  0100 0001  ||  style="color: #ffffff; background-color: #a56384;"  |  #a56384
+|-
+|  6  ||  3  ||  4  ||  $4198  ||  1001 1000  ||  0100 0001  ||  style="color: #ffffff; background-color: #c66384;"  |  #c66384
+|-
+|  7  ||  3  ||  4  ||  $419c  ||  1001 1100  ||  0100 0001  ||  style="color: #000000; background-color: #e76384;"  |  #e76384
+|-
+|  8  ||  3  ||  4  ||  $419f  ||  1001 1111  ||  0100 0001  ||  style="color: #000000; background-color: #ff6384;"  |  #ff6384
+|-
+|  0  ||  4  ||  4  ||  $4200  ||  0000 0000  ||  0100 0010  ||  style="color: #ffffff; background-color: #008484;"  |  #008484
+|-
+|  1  ||  4  ||  4  ||  $4204  ||  0000 0100  ||  0100 0010  ||  style="color: #ffffff; background-color: #218484;"  |  #218484
+|-
+|  2  ||  4  ||  4  ||  $4208  ||  0000 1000  ||  0100 0010  ||  style="color: #ffffff; background-color: #428484;"  |  #428484
+|-
+|  3  ||  4  ||  4  ||  $420c  ||  0000 1100  ||  0100 0010  ||  style="color: #ffffff; background-color: #638484;"  |  #638484
+|-
+|  4  ||  4  ||  4  ||  $4210  ||  0001 0000  ||  0100 0010  ||  style="color: #000000; background-color: #848484;"  |  #848484
+|-
+|  5  ||  4  ||  4  ||  $4214  ||  0001 0100  ||  0100 0010  ||  style="color: #000000; background-color: #a58484;"  |  #a58484
+|-
+|  6  ||  4  ||  4  ||  $4218  ||  0001 1000  ||  0100 0010  ||  style="color: #000000; background-color: #c68484;"  |  #c68484
+|-
+|  7  ||  4  ||  4  ||  $421c  ||  0001 1100  ||  0100 0010  ||  style="color: #000000; background-color: #e78484;"  |  #e78484
+|-
+|  8  ||  4  ||  4  ||  $421f  ||  0001 1111  ||  0100 0010  ||  style="color: #000000; background-color: #ff8484;"  |  #ff8484
+|-
+|  0  ||  5  ||  4  ||  $4280  ||  1000 0000  ||  0100 0010  ||  style="color: #ffffff; background-color: #00a584;"  |  #00a584
+|-
+|  1  ||  5  ||  4  ||  $4284  ||  1000 0100  ||  0100 0010  ||  style="color: #000000; background-color: #21a584;"  |  #21a584
+|-
+|  2  ||  5  ||  4  ||  $4288  ||  1000 1000  ||  0100 0010  ||  style="color: #000000; background-color: #42a584;"  |  #42a584
+|-
+|  3  ||  5  ||  4  ||  $428c  ||  1000 1100  ||  0100 0010  ||  style="color: #000000; background-color: #63a584;"  |  #63a584
+|-
+|  4  ||  5  ||  4  ||  $4290  ||  1001 0000  ||  0100 0010  ||  style="color: #000000; background-color: #84a584;"  |  #84a584
+|-
+|  5  ||  5  ||  4  ||  $4294  ||  1001 0100  ||  0100 0010  ||  style="color: #000000; background-color: #a5a584;"  |  #a5a584
+|-
+|  6  ||  5  ||  4  ||  $4298  ||  1001 1000  ||  0100 0010  ||  style="color: #000000; background-color: #c6a584;"  |  #c6a584
+|-
+|  7  ||  5  ||  4  ||  $429c  ||  1001 1100  ||  0100 0010  ||  style="color: #000000; background-color: #e7a584;"  |  #e7a584
+|-
+|  8  ||  5  ||  4  ||  $429f  ||  1001 1111  ||  0100 0010  ||  style="color: #000000; background-color: #ffa584;"  |  #ffa584
+|-
+|  0  ||  6  ||  4  ||  $4300  ||  0000 0000  ||  0100 0011  ||  style="color: #000000; background-color: #00c684;"  |  #00c684
+|-
+|  1  ||  6  ||  4  ||  $4304  ||  0000 0100  ||  0100 0011  ||  style="color: #000000; background-color: #21c684;"  |  #21c684
+|-
+|  2  ||  6  ||  4  ||  $4308  ||  0000 1000  ||  0100 0011  ||  style="color: #000000; background-color: #42c684;"  |  #42c684
+|-
+|  3  ||  6  ||  4  ||  $430c  ||  0000 1100  ||  0100 0011  ||  style="color: #000000; background-color: #63c684;"  |  #63c684
+|-
+|  4  ||  6  ||  4  ||  $4310  ||  0001 0000  ||  0100 0011  ||  style="color: #000000; background-color: #84c684;"  |  #84c684
+|-
+|  5  ||  6  ||  4  ||  $4314  ||  0001 0100  ||  0100 0011  ||  style="color: #000000; background-color: #a5c684;"  |  #a5c684
+|-
+|  6  ||  6  ||  4  ||  $4318  ||  0001 1000  ||  0100 0011  ||  style="color: #000000; background-color: #c6c684;"  |  #c6c684
+|-
+|  7  ||  6  ||  4  ||  $431c  ||  0001 1100  ||  0100 0011  ||  style="color: #000000; background-color: #e7c684;"  |  #e7c684
+|-
+|  8  ||  6  ||  4  ||  $431f  ||  0001 1111  ||  0100 0011  ||  style="color: #000000; background-color: #ffc684;"  |  #ffc684
+|-
+|  0  ||  7  ||  4  ||  $4380  ||  1000 0000  ||  0100 0011  ||  style="color: #000000; background-color: #00e784;"  |  #00e784
+|-
+|  1  ||  7  ||  4  ||  $4384  ||  1000 0100  ||  0100 0011  ||  style="color: #000000; background-color: #21e784;"  |  #21e784
+|-
+|  2  ||  7  ||  4  ||  $4388  ||  1000 1000  ||  0100 0011  ||  style="color: #000000; background-color: #42e784;"  |  #42e784
+|-
+|  3  ||  7  ||  4  ||  $438c  ||  1000 1100  ||  0100 0011  ||  style="color: #000000; background-color: #63e784;"  |  #63e784
+|-
+|  4  ||  7  ||  4  ||  $4390  ||  1001 0000  ||  0100 0011  ||  style="color: #000000; background-color: #84e784;"  |  #84e784
+|-
+|  5  ||  7  ||  4  ||  $4394  ||  1001 0100  ||  0100 0011  ||  style="color: #000000; background-color: #a5e784;"  |  #a5e784
+|-
+|  6  ||  7  ||  4  ||  $4398  ||  1001 1000  ||  0100 0011  ||  style="color: #000000; background-color: #c6e784;"  |  #c6e784
+|-
+|  7  ||  7  ||  4  ||  $439c  ||  1001 1100  ||  0100 0011  ||  style="color: #000000; background-color: #e7e784;"  |  #e7e784
+|-
+|  8  ||  7  ||  4  ||  $439f  ||  1001 1111  ||  0100 0011  ||  style="color: #000000; background-color: #ffe784;"  |  #ffe784
+|-
+|  0  ||  8  ||  4  ||  $43e0  ||  1110 0000  ||  0100 0011  ||  style="color: #000000; background-color: #00ff84;"  |  #00ff84
+|-
+|  1  ||  8  ||  4  ||  $43e4  ||  1110 0100  ||  0100 0011  ||  style="color: #000000; background-color: #21ff84;"  |  #21ff84
+|-
+|  2  ||  8  ||  4  ||  $43e8  ||  1110 1000  ||  0100 0011  ||  style="color: #000000; background-color: #42ff84;"  |  #42ff84
+|-
+|  3  ||  8  ||  4  ||  $43ec  ||  1110 1100  ||  0100 0011  ||  style="color: #000000; background-color: #63ff84;"  |  #63ff84
+|-
+|  4  ||  8  ||  4  ||  $43f0  ||  1111 0000  ||  0100 0011  ||  style="color: #000000; background-color: #84ff84;"  |  #84ff84
+|-
+|  5  ||  8  ||  4  ||  $43f4  ||  1111 0100  ||  0100 0011  ||  style="color: #000000; background-color: #a5ff84;"  |  #a5ff84
+|-
+|  6  ||  8  ||  4  ||  $43f8  ||  1111 1000  ||  0100 0011  ||  style="color: #000000; background-color: #c6ff84;"  |  #c6ff84
+|-
+|  7  ||  8  ||  4  ||  $43fc  ||  1111 1100  ||  0100 0011  ||  style="color: #000000; background-color: #e7ff84;"  |  #e7ff84
+|-
+|  8  ||  8  ||  4  ||  $43ff  ||  1111 1111  ||  0100 0011  ||  style="color: #000000; background-color: #ffff84;"  |  #ffff84
+|-
+|  0  ||  0  ||  5  ||  $5000  ||  0000 0000  ||  0101 0000  ||  style="color: #ffffff; background-color: #0000a5;"  |  #0000a5
+|-
+|  1  ||  0  ||  5  ||  $5004  ||  0000 0100  ||  0101 0000  ||  style="color: #ffffff; background-color: #2100a5;"  |  #2100a5
+|-
+|  2  ||  0  ||  5  ||  $5008  ||  0000 1000  ||  0101 0000  ||  style="color: #ffffff; background-color: #4200a5;"  |  #4200a5
+|-
+|  3  ||  0  ||  5  ||  $500c  ||  0000 1100  ||  0101 0000  ||  style="color: #ffffff; background-color: #6300a5;"  |  #6300a5
+|-
+|  4  ||  0  ||  5  ||  $5010  ||  0001 0000  ||  0101 0000  ||  style="color: #ffffff; background-color: #8400a5;"  |  #8400a5
+|-
+|  5  ||  0  ||  5  ||  $5014  ||  0001 0100  ||  0101 0000  ||  style="color: #ffffff; background-color: #a500a5;"  |  #a500a5
+|-
+|  6  ||  0  ||  5  ||  $5018  ||  0001 1000  ||  0101 0000  ||  style="color: #ffffff; background-color: #c600a5;"  |  #c600a5
+|-
+|  7  ||  0  ||  5  ||  $501c  ||  0001 1100  ||  0101 0000  ||  style="color: #ffffff; background-color: #e700a5;"  |  #e700a5
+|-
+|  8  ||  0  ||  5  ||  $501f  ||  0001 1111  ||  0101 0000  ||  style="color: #ffffff; background-color: #ff00a5;"  |  #ff00a5
+|-
+|  0  ||  1  ||  5  ||  $5080  ||  1000 0000  ||  0101 0000  ||  style="color: #ffffff; background-color: #0021a5;"  |  #0021a5
+|-
+|  1  ||  1  ||  5  ||  $5084  ||  1000 0100  ||  0101 0000  ||  style="color: #ffffff; background-color: #2121a5;"  |  #2121a5
+|-
+|  2  ||  1  ||  5  ||  $5088  ||  1000 1000  ||  0101 0000  ||  style="color: #ffffff; background-color: #4221a5;"  |  #4221a5
+|-
+|  3  ||  1  ||  5  ||  $508c  ||  1000 1100  ||  0101 0000  ||  style="color: #ffffff; background-color: #6321a5;"  |  #6321a5
+|-
+|  4  ||  1  ||  5  ||  $5090  ||  1001 0000  ||  0101 0000  ||  style="color: #ffffff; background-color: #8421a5;"  |  #8421a5
+|-
+|  5  ||  1  ||  5  ||  $5094  ||  1001 0100  ||  0101 0000  ||  style="color: #ffffff; background-color: #a521a5;"  |  #a521a5
+|-
+|  6  ||  1  ||  5  ||  $5098  ||  1001 1000  ||  0101 0000  ||  style="color: #ffffff; background-color: #c621a5;"  |  #c621a5
+|-
+|  7  ||  1  ||  5  ||  $509c  ||  1001 1100  ||  0101 0000  ||  style="color: #ffffff; background-color: #e721a5;"  |  #e721a5
+|-
+|  8  ||  1  ||  5  ||  $509f  ||  1001 1111  ||  0101 0000  ||  style="color: #ffffff; background-color: #ff21a5;"  |  #ff21a5
+|-
+|  0  ||  2  ||  5  ||  $5100  ||  0000 0000  ||  0101 0001  ||  style="color: #ffffff; background-color: #0042a5;"  |  #0042a5
+|-
+|  1  ||  2  ||  5  ||  $5104  ||  0000 0100  ||  0101 0001  ||  style="color: #ffffff; background-color: #2142a5;"  |  #2142a5
+|-
+|  2  ||  2  ||  5  ||  $5108  ||  0000 1000  ||  0101 0001  ||  style="color: #ffffff; background-color: #4242a5;"  |  #4242a5
+|-
+|  3  ||  2  ||  5  ||  $510c  ||  0000 1100  ||  0101 0001  ||  style="color: #ffffff; background-color: #6342a5;"  |  #6342a5
+|-
+|  4  ||  2  ||  5  ||  $5110  ||  0001 0000  ||  0101 0001  ||  style="color: #ffffff; background-color: #8442a5;"  |  #8442a5
+|-
+|  5  ||  2  ||  5  ||  $5114  ||  0001 0100  ||  0101 0001  ||  style="color: #ffffff; background-color: #a542a5;"  |  #a542a5
+|-
+|  6  ||  2  ||  5  ||  $5118  ||  0001 1000  ||  0101 0001  ||  style="color: #ffffff; background-color: #c642a5;"  |  #c642a5
+|-
+|  7  ||  2  ||  5  ||  $511c  ||  0001 1100  ||  0101 0001  ||  style="color: #ffffff; background-color: #e742a5;"  |  #e742a5
+|-
+|  8  ||  2  ||  5  ||  $511f  ||  0001 1111  ||  0101 0001  ||  style="color: #ffffff; background-color: #ff42a5;"  |  #ff42a5
+|-
+|  0  ||  3  ||  5  ||  $5180  ||  1000 0000  ||  0101 0001  ||  style="color: #ffffff; background-color: #0063a5;"  |  #0063a5
+|-
+|  1  ||  3  ||  5  ||  $5184  ||  1000 0100  ||  0101 0001  ||  style="color: #ffffff; background-color: #2163a5;"  |  #2163a5
+|-
+|  2  ||  3  ||  5  ||  $5188  ||  1000 1000  ||  0101 0001  ||  style="color: #ffffff; background-color: #4263a5;"  |  #4263a5
+|-
+|  3  ||  3  ||  5  ||  $518c  ||  1000 1100  ||  0101 0001  ||  style="color: #ffffff; background-color: #6363a5;"  |  #6363a5
+|-
+|  4  ||  3  ||  5  ||  $5190  ||  1001 0000  ||  0101 0001  ||  style="color: #ffffff; background-color: #8463a5;"  |  #8463a5
+|-
+|  5  ||  3  ||  5  ||  $5194  ||  1001 0100  ||  0101 0001  ||  style="color: #ffffff; background-color: #a563a5;"  |  #a563a5
+|-
+|  6  ||  3  ||  5  ||  $5198  ||  1001 1000  ||  0101 0001  ||  style="color: #ffffff; background-color: #c663a5;"  |  #c663a5
+|-
+|  7  ||  3  ||  5  ||  $519c  ||  1001 1100  ||  0101 0001  ||  style="color: #000000; background-color: #e763a5;"  |  #e763a5
+|-
+|  8  ||  3  ||  5  ||  $519f  ||  1001 1111  ||  0101 0001  ||  style="color: #000000; background-color: #ff63a5;"  |  #ff63a5
+|-
+|  0  ||  4  ||  5  ||  $5200  ||  0000 0000  ||  0101 0010  ||  style="color: #ffffff; background-color: #0084a5;"  |  #0084a5
+|-
+|  1  ||  4  ||  5  ||  $5204  ||  0000 0100  ||  0101 0010  ||  style="color: #ffffff; background-color: #2184a5;"  |  #2184a5
+|-
+|  2  ||  4  ||  5  ||  $5208  ||  0000 1000  ||  0101 0010  ||  style="color: #ffffff; background-color: #4284a5;"  |  #4284a5
+|-
+|  3  ||  4  ||  5  ||  $520c  ||  0000 1100  ||  0101 0010  ||  style="color: #ffffff; background-color: #6384a5;"  |  #6384a5
+|-
+|  4  ||  4  ||  5  ||  $5210  ||  0001 0000  ||  0101 0010  ||  style="color: #000000; background-color: #8484a5;"  |  #8484a5
+|-
+|  5  ||  4  ||  5  ||  $5214  ||  0001 0100  ||  0101 0010  ||  style="color: #000000; background-color: #a584a5;"  |  #a584a5
+|-
+|  6  ||  4  ||  5  ||  $5218  ||  0001 1000  ||  0101 0010  ||  style="color: #000000; background-color: #c684a5;"  |  #c684a5
+|-
+|  7  ||  4  ||  5  ||  $521c  ||  0001 1100  ||  0101 0010  ||  style="color: #000000; background-color: #e784a5;"  |  #e784a5
+|-
+|  8  ||  4  ||  5  ||  $521f  ||  0001 1111  ||  0101 0010  ||  style="color: #000000; background-color: #ff84a5;"  |  #ff84a5
+|-
+|  0  ||  5  ||  5  ||  $5280  ||  1000 0000  ||  0101 0010  ||  style="color: #000000; background-color: #00a5a5;"  |  #00a5a5
+|-
+|  1  ||  5  ||  5  ||  $5284  ||  1000 0100  ||  0101 0010  ||  style="color: #000000; background-color: #21a5a5;"  |  #21a5a5
+|-
+|  2  ||  5  ||  5  ||  $5288  ||  1000 1000  ||  0101 0010  ||  style="color: #000000; background-color: #42a5a5;"  |  #42a5a5
+|-
+|  3  ||  5  ||  5  ||  $528c  ||  1000 1100  ||  0101 0010  ||  style="color: #000000; background-color: #63a5a5;"  |  #63a5a5
+|-
+|  4  ||  5  ||  5  ||  $5290  ||  1001 0000  ||  0101 0010  ||  style="color: #000000; background-color: #84a5a5;"  |  #84a5a5
+|-
+|  5  ||  5  ||  5  ||  $5294  ||  1001 0100  ||  0101 0010  ||  style="color: #000000; background-color: #a5a5a5;"  |  #a5a5a5
+|-
+|  6  ||  5  ||  5  ||  $5298  ||  1001 1000  ||  0101 0010  ||  style="color: #000000; background-color: #c6a5a5;"  |  #c6a5a5
+|-
+|  7  ||  5  ||  5  ||  $529c  ||  1001 1100  ||  0101 0010  ||  style="color: #000000; background-color: #e7a5a5;"  |  #e7a5a5
+|-
+|  8  ||  5  ||  5  ||  $529f  ||  1001 1111  ||  0101 0010  ||  style="color: #000000; background-color: #ffa5a5;"  |  #ffa5a5
+|-
+|  0  ||  6  ||  5  ||  $5300  ||  0000 0000  ||  0101 0011  ||  style="color: #000000; background-color: #00c6a5;"  |  #00c6a5
+|-
+|  1  ||  6  ||  5  ||  $5304  ||  0000 0100  ||  0101 0011  ||  style="color: #000000; background-color: #21c6a5;"  |  #21c6a5
+|-
+|  2  ||  6  ||  5  ||  $5308  ||  0000 1000  ||  0101 0011  ||  style="color: #000000; background-color: #42c6a5;"  |  #42c6a5
+|-
+|  3  ||  6  ||  5  ||  $530c  ||  0000 1100  ||  0101 0011  ||  style="color: #000000; background-color: #63c6a5;"  |  #63c6a5
+|-
+|  4  ||  6  ||  5  ||  $5310  ||  0001 0000  ||  0101 0011  ||  style="color: #000000; background-color: #84c6a5;"  |  #84c6a5
+|-
+|  5  ||  6  ||  5  ||  $5314  ||  0001 0100  ||  0101 0011  ||  style="color: #000000; background-color: #a5c6a5;"  |  #a5c6a5
+|-
+|  6  ||  6  ||  5  ||  $5318  ||  0001 1000  ||  0101 0011  ||  style="color: #000000; background-color: #c6c6a5;"  |  #c6c6a5
+|-
+|  7  ||  6  ||  5  ||  $531c  ||  0001 1100  ||  0101 0011  ||  style="color: #000000; background-color: #e7c6a5;"  |  #e7c6a5
+|-
+|  8  ||  6  ||  5  ||  $531f  ||  0001 1111  ||  0101 0011  ||  style="color: #000000; background-color: #ffc6a5;"  |  #ffc6a5
+|-
+|  0  ||  7  ||  5  ||  $5380  ||  1000 0000  ||  0101 0011  ||  style="color: #000000; background-color: #00e7a5;"  |  #00e7a5
+|-
+|  1  ||  7  ||  5  ||  $5384  ||  1000 0100  ||  0101 0011  ||  style="color: #000000; background-color: #21e7a5;"  |  #21e7a5
+|-
+|  2  ||  7  ||  5  ||  $5388  ||  1000 1000  ||  0101 0011  ||  style="color: #000000; background-color: #42e7a5;"  |  #42e7a5
+|-
+|  3  ||  7  ||  5  ||  $538c  ||  1000 1100  ||  0101 0011  ||  style="color: #000000; background-color: #63e7a5;"  |  #63e7a5
+|-
+|  4  ||  7  ||  5  ||  $5390  ||  1001 0000  ||  0101 0011  ||  style="color: #000000; background-color: #84e7a5;"  |  #84e7a5
+|-
+|  5  ||  7  ||  5  ||  $5394  ||  1001 0100  ||  0101 0011  ||  style="color: #000000; background-color: #a5e7a5;"  |  #a5e7a5
+|-
+|  6  ||  7  ||  5  ||  $5398  ||  1001 1000  ||  0101 0011  ||  style="color: #000000; background-color: #c6e7a5;"  |  #c6e7a5
+|-
+|  7  ||  7  ||  5  ||  $539c  ||  1001 1100  ||  0101 0011  ||  style="color: #000000; background-color: #e7e7a5;"  |  #e7e7a5
+|-
+|  8  ||  7  ||  5  ||  $539f  ||  1001 1111  ||  0101 0011  ||  style="color: #000000; background-color: #ffe7a5;"  |  #ffe7a5
+|-
+|  0  ||  8  ||  5  ||  $53e0  ||  1110 0000  ||  0101 0011  ||  style="color: #000000; background-color: #00ffa5;"  |  #00ffa5
+|-
+|  1  ||  8  ||  5  ||  $53e4  ||  1110 0100  ||  0101 0011  ||  style="color: #000000; background-color: #21ffa5;"  |  #21ffa5
+|-
+|  2  ||  8  ||  5  ||  $53e8  ||  1110 1000  ||  0101 0011  ||  style="color: #000000; background-color: #42ffa5;"  |  #42ffa5
+|-
+|  3  ||  8  ||  5  ||  $53ec  ||  1110 1100  ||  0101 0011  ||  style="color: #000000; background-color: #63ffa5;"  |  #63ffa5
+|-
+|  4  ||  8  ||  5  ||  $53f0  ||  1111 0000  ||  0101 0011  ||  style="color: #000000; background-color: #84ffa5;"  |  #84ffa5
+|-
+|  5  ||  8  ||  5  ||  $53f4  ||  1111 0100  ||  0101 0011  ||  style="color: #000000; background-color: #a5ffa5;"  |  #a5ffa5
+|-
+|  6  ||  8  ||  5  ||  $53f8  ||  1111 1000  ||  0101 0011  ||  style="color: #000000; background-color: #c6ffa5;"  |  #c6ffa5
+|-
+|  7  ||  8  ||  5  ||  $53fc  ||  1111 1100  ||  0101 0011  ||  style="color: #000000; background-color: #e7ffa5;"  |  #e7ffa5
+|-
+|  8  ||  8  ||  5  ||  $53ff  ||  1111 1111  ||  0101 0011  ||  style="color: #000000; background-color: #ffffa5;"  |  #ffffa5
+|-
+|  0  ||  0  ||  6  ||  $6000  ||  0000 0000  ||  0110 0000  ||  style="color: #ffffff; background-color: #0000c6;"  |  #0000c6
+|-
+|  1  ||  0  ||  6  ||  $6004  ||  0000 0100  ||  0110 0000  ||  style="color: #ffffff; background-color: #2100c6;"  |  #2100c6
+|-
+|  2  ||  0  ||  6  ||  $6008  ||  0000 1000  ||  0110 0000  ||  style="color: #ffffff; background-color: #4200c6;"  |  #4200c6
+|-
+|  3  ||  0  ||  6  ||  $600c  ||  0000 1100  ||  0110 0000  ||  style="color: #ffffff; background-color: #6300c6;"  |  #6300c6
+|-
+|  4  ||  0  ||  6  ||  $6010  ||  0001 0000  ||  0110 0000  ||  style="color: #ffffff; background-color: #8400c6;"  |  #8400c6
+|-
+|  5  ||  0  ||  6  ||  $6014  ||  0001 0100  ||  0110 0000  ||  style="color: #ffffff; background-color: #a500c6;"  |  #a500c6
+|-
+|  6  ||  0  ||  6  ||  $6018  ||  0001 1000  ||  0110 0000  ||  style="color: #ffffff; background-color: #c600c6;"  |  #c600c6
+|-
+|  7  ||  0  ||  6  ||  $601c  ||  0001 1100  ||  0110 0000  ||  style="color: #ffffff; background-color: #e700c6;"  |  #e700c6
+|-
+|  8  ||  0  ||  6  ||  $601f  ||  0001 1111  ||  0110 0000  ||  style="color: #ffffff; background-color: #ff00c6;"  |  #ff00c6
+|-
+|  0  ||  1  ||  6  ||  $6080  ||  1000 0000  ||  0110 0000  ||  style="color: #ffffff; background-color: #0021c6;"  |  #0021c6
+|-
+|  1  ||  1  ||  6  ||  $6084  ||  1000 0100  ||  0110 0000  ||  style="color: #ffffff; background-color: #2121c6;"  |  #2121c6
+|-
+|  2  ||  1  ||  6  ||  $6088  ||  1000 1000  ||  0110 0000  ||  style="color: #ffffff; background-color: #4221c6;"  |  #4221c6
+|-
+|  3  ||  1  ||  6  ||  $608c  ||  1000 1100  ||  0110 0000  ||  style="color: #ffffff; background-color: #6321c6;"  |  #6321c6
+|-
+|  4  ||  1  ||  6  ||  $6090  ||  1001 0000  ||  0110 0000  ||  style="color: #ffffff; background-color: #8421c6;"  |  #8421c6
+|-
+|  5  ||  1  ||  6  ||  $6094  ||  1001 0100  ||  0110 0000  ||  style="color: #ffffff; background-color: #a521c6;"  |  #a521c6
+|-
+|  6  ||  1  ||  6  ||  $6098  ||  1001 1000  ||  0110 0000  ||  style="color: #ffffff; background-color: #c621c6;"  |  #c621c6
+|-
+|  7  ||  1  ||  6  ||  $609c  ||  1001 1100  ||  0110 0000  ||  style="color: #ffffff; background-color: #e721c6;"  |  #e721c6
+|-
+|  8  ||  1  ||  6  ||  $609f  ||  1001 1111  ||  0110 0000  ||  style="color: #ffffff; background-color: #ff21c6;"  |  #ff21c6
+|-
+|  0  ||  2  ||  6  ||  $6100  ||  0000 0000  ||  0110 0001  ||  style="color: #ffffff; background-color: #0042c6;"  |  #0042c6
+|-
+|  1  ||  2  ||  6  ||  $6104  ||  0000 0100  ||  0110 0001  ||  style="color: #ffffff; background-color: #2142c6;"  |  #2142c6
+|-
+|  2  ||  2  ||  6  ||  $6108  ||  0000 1000  ||  0110 0001  ||  style="color: #ffffff; background-color: #4242c6;"  |  #4242c6
+|-
+|  3  ||  2  ||  6  ||  $610c  ||  0000 1100  ||  0110 0001  ||  style="color: #ffffff; background-color: #6342c6;"  |  #6342c6
+|-
+|  4  ||  2  ||  6  ||  $6110  ||  0001 0000  ||  0110 0001  ||  style="color: #ffffff; background-color: #8442c6;"  |  #8442c6
+|-
+|  5  ||  2  ||  6  ||  $6114  ||  0001 0100  ||  0110 0001  ||  style="color: #ffffff; background-color: #a542c6;"  |  #a542c6
+|-
+|  6  ||  2  ||  6  ||  $6118  ||  0001 1000  ||  0110 0001  ||  style="color: #ffffff; background-color: #c642c6;"  |  #c642c6
+|-
+|  7  ||  2  ||  6  ||  $611c  ||  0001 1100  ||  0110 0001  ||  style="color: #ffffff; background-color: #e742c6;"  |  #e742c6
+|-
+|  8  ||  2  ||  6  ||  $611f  ||  0001 1111  ||  0110 0001  ||  style="color: #ffffff; background-color: #ff42c6;"  |  #ff42c6
+|-
+|  0  ||  3  ||  6  ||  $6180  ||  1000 0000  ||  0110 0001  ||  style="color: #ffffff; background-color: #0063c6;"  |  #0063c6
+|-
+|  1  ||  3  ||  6  ||  $6184  ||  1000 0100  ||  0110 0001  ||  style="color: #ffffff; background-color: #2163c6;"  |  #2163c6
+|-
+|  2  ||  3  ||  6  ||  $6188  ||  1000 1000  ||  0110 0001  ||  style="color: #ffffff; background-color: #4263c6;"  |  #4263c6
+|-
+|  3  ||  3  ||  6  ||  $618c  ||  1000 1100  ||  0110 0001  ||  style="color: #ffffff; background-color: #6363c6;"  |  #6363c6
+|-
+|  4  ||  3  ||  6  ||  $6190  ||  1001 0000  ||  0110 0001  ||  style="color: #ffffff; background-color: #8463c6;"  |  #8463c6
+|-
+|  5  ||  3  ||  6  ||  $6194  ||  1001 0100  ||  0110 0001  ||  style="color: #ffffff; background-color: #a563c6;"  |  #a563c6
+|-
+|  6  ||  3  ||  6  ||  $6198  ||  1001 1000  ||  0110 0001  ||  style="color: #ffffff; background-color: #c663c6;"  |  #c663c6
+|-
+|  7  ||  3  ||  6  ||  $619c  ||  1001 1100  ||  0110 0001  ||  style="color: #000000; background-color: #e763c6;"  |  #e763c6
+|-
+|  8  ||  3  ||  6  ||  $619f  ||  1001 1111  ||  0110 0001  ||  style="color: #000000; background-color: #ff63c6;"  |  #ff63c6
+|-
+|  0  ||  4  ||  6  ||  $6200  ||  0000 0000  ||  0110 0010  ||  style="color: #ffffff; background-color: #0084c6;"  |  #0084c6
+|-
+|  1  ||  4  ||  6  ||  $6204  ||  0000 0100  ||  0110 0010  ||  style="color: #ffffff; background-color: #2184c6;"  |  #2184c6
+|-
+|  2  ||  4  ||  6  ||  $6208  ||  0000 1000  ||  0110 0010  ||  style="color: #ffffff; background-color: #4284c6;"  |  #4284c6
+|-
+|  3  ||  4  ||  6  ||  $620c  ||  0000 1100  ||  0110 0010  ||  style="color: #000000; background-color: #6384c6;"  |  #6384c6
+|-
+|  4  ||  4  ||  6  ||  $6210  ||  0001 0000  ||  0110 0010  ||  style="color: #000000; background-color: #8484c6;"  |  #8484c6
+|-
+|  5  ||  4  ||  6  ||  $6214  ||  0001 0100  ||  0110 0010  ||  style="color: #000000; background-color: #a584c6;"  |  #a584c6
+|-
+|  6  ||  4  ||  6  ||  $6218  ||  0001 1000  ||  0110 0010  ||  style="color: #000000; background-color: #c684c6;"  |  #c684c6
+|-
+|  7  ||  4  ||  6  ||  $621c  ||  0001 1100  ||  0110 0010  ||  style="color: #000000; background-color: #e784c6;"  |  #e784c6
+|-
+|  8  ||  4  ||  6  ||  $621f  ||  0001 1111  ||  0110 0010  ||  style="color: #000000; background-color: #ff84c6;"  |  #ff84c6
+|-
+|  0  ||  5  ||  6  ||  $6280  ||  1000 0000  ||  0110 0010  ||  style="color: #000000; background-color: #00a5c6;"  |  #00a5c6
+|-
+|  1  ||  5  ||  6  ||  $6284  ||  1000 0100  ||  0110 0010  ||  style="color: #000000; background-color: #21a5c6;"  |  #21a5c6
+|-
+|  2  ||  5  ||  6  ||  $6288  ||  1000 1000  ||  0110 0010  ||  style="color: #000000; background-color: #42a5c6;"  |  #42a5c6
+|-
+|  3  ||  5  ||  6  ||  $628c  ||  1000 1100  ||  0110 0010  ||  style="color: #000000; background-color: #63a5c6;"  |  #63a5c6
+|-
+|  4  ||  5  ||  6  ||  $6290  ||  1001 0000  ||  0110 0010  ||  style="color: #000000; background-color: #84a5c6;"  |  #84a5c6
+|-
+|  5  ||  5  ||  6  ||  $6294  ||  1001 0100  ||  0110 0010  ||  style="color: #000000; background-color: #a5a5c6;"  |  #a5a5c6
+|-
+|  6  ||  5  ||  6  ||  $6298  ||  1001 1000  ||  0110 0010  ||  style="color: #000000; background-color: #c6a5c6;"  |  #c6a5c6
+|-
+|  7  ||  5  ||  6  ||  $629c  ||  1001 1100  ||  0110 0010  ||  style="color: #000000; background-color: #e7a5c6;"  |  #e7a5c6
+|-
+|  8  ||  5  ||  6  ||  $629f  ||  1001 1111  ||  0110 0010  ||  style="color: #000000; background-color: #ffa5c6;"  |  #ffa5c6
+|-
+|  0  ||  6  ||  6  ||  $6300  ||  0000 0000  ||  0110 0011  ||  style="color: #000000; background-color: #00c6c6;"  |  #00c6c6
+|-
+|  1  ||  6  ||  6  ||  $6304  ||  0000 0100  ||  0110 0011  ||  style="color: #000000; background-color: #21c6c6;"  |  #21c6c6
+|-
+|  2  ||  6  ||  6  ||  $6308  ||  0000 1000  ||  0110 0011  ||  style="color: #000000; background-color: #42c6c6;"  |  #42c6c6
+|-
+|  3  ||  6  ||  6  ||  $630c  ||  0000 1100  ||  0110 0011  ||  style="color: #000000; background-color: #63c6c6;"  |  #63c6c6
+|-
+|  4  ||  6  ||  6  ||  $6310  ||  0001 0000  ||  0110 0011  ||  style="color: #000000; background-color: #84c6c6;"  |  #84c6c6
+|-
+|  5  ||  6  ||  6  ||  $6314  ||  0001 0100  ||  0110 0011  ||  style="color: #000000; background-color: #a5c6c6;"  |  #a5c6c6
+|-
+|  6  ||  6  ||  6  ||  $6318  ||  0001 1000  ||  0110 0011  ||  style="color: #000000; background-color: #c6c6c6;"  |  #c6c6c6
+|-
+|  7  ||  6  ||  6  ||  $631c  ||  0001 1100  ||  0110 0011  ||  style="color: #000000; background-color: #e7c6c6;"  |  #e7c6c6
+|-
+|  8  ||  6  ||  6  ||  $631f  ||  0001 1111  ||  0110 0011  ||  style="color: #000000; background-color: #ffc6c6;"  |  #ffc6c6
+|-
+|  0  ||  7  ||  6  ||  $6380  ||  1000 0000  ||  0110 0011  ||  style="color: #000000; background-color: #00e7c6;"  |  #00e7c6
+|-
+|  1  ||  7  ||  6  ||  $6384  ||  1000 0100  ||  0110 0011  ||  style="color: #000000; background-color: #21e7c6;"  |  #21e7c6
+|-
+|  2  ||  7  ||  6  ||  $6388  ||  1000 1000  ||  0110 0011  ||  style="color: #000000; background-color: #42e7c6;"  |  #42e7c6
+|-
+|  3  ||  7  ||  6  ||  $638c  ||  1000 1100  ||  0110 0011  ||  style="color: #000000; background-color: #63e7c6;"  |  #63e7c6
+|-
+|  4  ||  7  ||  6  ||  $6390  ||  1001 0000  ||  0110 0011  ||  style="color: #000000; background-color: #84e7c6;"  |  #84e7c6
+|-
+|  5  ||  7  ||  6  ||  $6394  ||  1001 0100  ||  0110 0011  ||  style="color: #000000; background-color: #a5e7c6;"  |  #a5e7c6
+|-
+|  6  ||  7  ||  6  ||  $6398  ||  1001 1000  ||  0110 0011  ||  style="color: #000000; background-color: #c6e7c6;"  |  #c6e7c6
+|-
+|  7  ||  7  ||  6  ||  $639c  ||  1001 1100  ||  0110 0011  ||  style="color: #000000; background-color: #e7e7c6;"  |  #e7e7c6
+|-
+|  8  ||  7  ||  6  ||  $639f  ||  1001 1111  ||  0110 0011  ||  style="color: #000000; background-color: #ffe7c6;"  |  #ffe7c6
+|-
+|  0  ||  8  ||  6  ||  $63e0  ||  1110 0000  ||  0110 0011  ||  style="color: #000000; background-color: #00ffc6;"  |  #00ffc6
+|-
+|  1  ||  8  ||  6  ||  $63e4  ||  1110 0100  ||  0110 0011  ||  style="color: #000000; background-color: #21ffc6;"  |  #21ffc6
+|-
+|  2  ||  8  ||  6  ||  $63e8  ||  1110 1000  ||  0110 0011  ||  style="color: #000000; background-color: #42ffc6;"  |  #42ffc6
+|-
+|  3  ||  8  ||  6  ||  $63ec  ||  1110 1100  ||  0110 0011  ||  style="color: #000000; background-color: #63ffc6;"  |  #63ffc6
+|-
+|  4  ||  8  ||  6  ||  $63f0  ||  1111 0000  ||  0110 0011  ||  style="color: #000000; background-color: #84ffc6;"  |  #84ffc6
+|-
+|  5  ||  8  ||  6  ||  $63f4  ||  1111 0100  ||  0110 0011  ||  style="color: #000000; background-color: #a5ffc6;"  |  #a5ffc6
+|-
+|  6  ||  8  ||  6  ||  $63f8  ||  1111 1000  ||  0110 0011  ||  style="color: #000000; background-color: #c6ffc6;"  |  #c6ffc6
+|-
+|  7  ||  8  ||  6  ||  $63fc  ||  1111 1100  ||  0110 0011  ||  style="color: #000000; background-color: #e7ffc6;"  |  #e7ffc6
+|-
+|  8  ||  8  ||  6  ||  $63ff  ||  1111 1111  ||  0110 0011  ||  style="color: #000000; background-color: #ffffc6;"  |  #ffffc6
+|-
+|  0  ||  0  ||  7  ||  $7000  ||  0000 0000  ||  0111 0000  ||  style="color: #ffffff; background-color: #0000e7;"  |  #0000e7
+|-
+|  1  ||  0  ||  7  ||  $7004  ||  0000 0100  ||  0111 0000  ||  style="color: #ffffff; background-color: #2100e7;"  |  #2100e7
+|-
+|  2  ||  0  ||  7  ||  $7008  ||  0000 1000  ||  0111 0000  ||  style="color: #ffffff; background-color: #4200e7;"  |  #4200e7
+|-
+|  3  ||  0  ||  7  ||  $700c  ||  0000 1100  ||  0111 0000  ||  style="color: #ffffff; background-color: #6300e7;"  |  #6300e7
+|-
+|  4  ||  0  ||  7  ||  $7010  ||  0001 0000  ||  0111 0000  ||  style="color: #ffffff; background-color: #8400e7;"  |  #8400e7
+|-
+|  5  ||  0  ||  7  ||  $7014  ||  0001 0100  ||  0111 0000  ||  style="color: #ffffff; background-color: #a500e7;"  |  #a500e7
+|-
+|  6  ||  0  ||  7  ||  $7018  ||  0001 1000  ||  0111 0000  ||  style="color: #ffffff; background-color: #c600e7;"  |  #c600e7
+|-
+|  7  ||  0  ||  7  ||  $701c  ||  0001 1100  ||  0111 0000  ||  style="color: #ffffff; background-color: #e700e7;"  |  #e700e7
+|-
+|  8  ||  0  ||  7  ||  $701f  ||  0001 1111  ||  0111 0000  ||  style="color: #ffffff; background-color: #ff00e7;"  |  #ff00e7
+|-
+|  0  ||  1  ||  7  ||  $7080  ||  1000 0000  ||  0111 0000  ||  style="color: #ffffff; background-color: #0021e7;"  |  #0021e7
+|-
+|  1  ||  1  ||  7  ||  $7084  ||  1000 0100  ||  0111 0000  ||  style="color: #ffffff; background-color: #2121e7;"  |  #2121e7
+|-
+|  2  ||  1  ||  7  ||  $7088  ||  1000 1000  ||  0111 0000  ||  style="color: #ffffff; background-color: #4221e7;"  |  #4221e7
+|-
+|  3  ||  1  ||  7  ||  $708c  ||  1000 1100  ||  0111 0000  ||  style="color: #ffffff; background-color: #6321e7;"  |  #6321e7
+|-
+|  4  ||  1  ||  7  ||  $7090  ||  1001 0000  ||  0111 0000  ||  style="color: #ffffff; background-color: #8421e7;"  |  #8421e7
+|-
+|  5  ||  1  ||  7  ||  $7094  ||  1001 0100  ||  0111 0000  ||  style="color: #ffffff; background-color: #a521e7;"  |  #a521e7
+|-
+|  6  ||  1  ||  7  ||  $7098  ||  1001 1000  ||  0111 0000  ||  style="color: #ffffff; background-color: #c621e7;"  |  #c621e7
+|-
+|  7  ||  1  ||  7  ||  $709c  ||  1001 1100  ||  0111 0000  ||  style="color: #ffffff; background-color: #e721e7;"  |  #e721e7
+|-
+|  8  ||  1  ||  7  ||  $709f  ||  1001 1111  ||  0111 0000  ||  style="color: #ffffff; background-color: #ff21e7;"  |  #ff21e7
+|-
+|  0  ||  2  ||  7  ||  $7100  ||  0000 0000  ||  0111 0001  ||  style="color: #ffffff; background-color: #0042e7;"  |  #0042e7
+|-
+|  1  ||  2  ||  7  ||  $7104  ||  0000 0100  ||  0111 0001  ||  style="color: #ffffff; background-color: #2142e7;"  |  #2142e7
+|-
+|  2  ||  2  ||  7  ||  $7108  ||  0000 1000  ||  0111 0001  ||  style="color: #ffffff; background-color: #4242e7;"  |  #4242e7
+|-
+|  3  ||  2  ||  7  ||  $710c  ||  0000 1100  ||  0111 0001  ||  style="color: #ffffff; background-color: #6342e7;"  |  #6342e7
+|-
+|  4  ||  2  ||  7  ||  $7110  ||  0001 0000  ||  0111 0001  ||  style="color: #ffffff; background-color: #8442e7;"  |  #8442e7
+|-
+|  5  ||  2  ||  7  ||  $7114  ||  0001 0100  ||  0111 0001  ||  style="color: #ffffff; background-color: #a542e7;"  |  #a542e7
+|-
+|  6  ||  2  ||  7  ||  $7118  ||  0001 1000  ||  0111 0001  ||  style="color: #ffffff; background-color: #c642e7;"  |  #c642e7
+|-
+|  7  ||  2  ||  7  ||  $711c  ||  0001 1100  ||  0111 0001  ||  style="color: #ffffff; background-color: #e742e7;"  |  #e742e7
+|-
+|  8  ||  2  ||  7  ||  $711f  ||  0001 1111  ||  0111 0001  ||  style="color: #ffffff; background-color: #ff42e7;"  |  #ff42e7
+|-
+|  0  ||  3  ||  7  ||  $7180  ||  1000 0000  ||  0111 0001  ||  style="color: #ffffff; background-color: #0063e7;"  |  #0063e7
+|-
+|  1  ||  3  ||  7  ||  $7184  ||  1000 0100  ||  0111 0001  ||  style="color: #ffffff; background-color: #2163e7;"  |  #2163e7
+|-
+|  2  ||  3  ||  7  ||  $7188  ||  1000 1000  ||  0111 0001  ||  style="color: #ffffff; background-color: #4263e7;"  |  #4263e7
+|-
+|  3  ||  3  ||  7  ||  $718c  ||  1000 1100  ||  0111 0001  ||  style="color: #ffffff; background-color: #6363e7;"  |  #6363e7
+|-
+|  4  ||  3  ||  7  ||  $7190  ||  1001 0000  ||  0111 0001  ||  style="color: #ffffff; background-color: #8463e7;"  |  #8463e7
+|-
+|  5  ||  3  ||  7  ||  $7194  ||  1001 0100  ||  0111 0001  ||  style="color: #ffffff; background-color: #a563e7;"  |  #a563e7
+|-
+|  6  ||  3  ||  7  ||  $7198  ||  1001 1000  ||  0111 0001  ||  style="color: #000000; background-color: #c663e7;"  |  #c663e7
+|-
+|  7  ||  3  ||  7  ||  $719c  ||  1001 1100  ||  0111 0001  ||  style="color: #000000; background-color: #e763e7;"  |  #e763e7
+|-
+|  8  ||  3  ||  7  ||  $719f  ||  1001 1111  ||  0111 0001  ||  style="color: #000000; background-color: #ff63e7;"  |  #ff63e7
+|-
+|  0  ||  4  ||  7  ||  $7200  ||  0000 0000  ||  0111 0010  ||  style="color: #ffffff; background-color: #0084e7;"  |  #0084e7
+|-
+|  1  ||  4  ||  7  ||  $7204  ||  0000 0100  ||  0111 0010  ||  style="color: #ffffff; background-color: #2184e7;"  |  #2184e7
+|-
+|  2  ||  4  ||  7  ||  $7208  ||  0000 1000  ||  0111 0010  ||  style="color: #ffffff; background-color: #4284e7;"  |  #4284e7
+|-
+|  3  ||  4  ||  7  ||  $720c  ||  0000 1100  ||  0111 0010  ||  style="color: #000000; background-color: #6384e7;"  |  #6384e7
+|-
+|  4  ||  4  ||  7  ||  $7210  ||  0001 0000  ||  0111 0010  ||  style="color: #000000; background-color: #8484e7;"  |  #8484e7
+|-
+|  5  ||  4  ||  7  ||  $7214  ||  0001 0100  ||  0111 0010  ||  style="color: #000000; background-color: #a584e7;"  |  #a584e7
+|-
+|  6  ||  4  ||  7  ||  $7218  ||  0001 1000  ||  0111 0010  ||  style="color: #000000; background-color: #c684e7;"  |  #c684e7
+|-
+|  7  ||  4  ||  7  ||  $721c  ||  0001 1100  ||  0111 0010  ||  style="color: #000000; background-color: #e784e7;"  |  #e784e7
+|-
+|  8  ||  4  ||  7  ||  $721f  ||  0001 1111  ||  0111 0010  ||  style="color: #000000; background-color: #ff84e7;"  |  #ff84e7
+|-
+|  0  ||  5  ||  7  ||  $7280  ||  1000 0000  ||  0111 0010  ||  style="color: #000000; background-color: #00a5e7;"  |  #00a5e7
+|-
+|  1  ||  5  ||  7  ||  $7284  ||  1000 0100  ||  0111 0010  ||  style="color: #000000; background-color: #21a5e7;"  |  #21a5e7
+|-
+|  2  ||  5  ||  7  ||  $7288  ||  1000 1000  ||  0111 0010  ||  style="color: #000000; background-color: #42a5e7;"  |  #42a5e7
+|-
+|  3  ||  5  ||  7  ||  $728c  ||  1000 1100  ||  0111 0010  ||  style="color: #000000; background-color: #63a5e7;"  |  #63a5e7
+|-
+|  4  ||  5  ||  7  ||  $7290  ||  1001 0000  ||  0111 0010  ||  style="color: #000000; background-color: #84a5e7;"  |  #84a5e7
+|-
+|  5  ||  5  ||  7  ||  $7294  ||  1001 0100  ||  0111 0010  ||  style="color: #000000; background-color: #a5a5e7;"  |  #a5a5e7
+|-
+|  6  ||  5  ||  7  ||  $7298  ||  1001 1000  ||  0111 0010  ||  style="color: #000000; background-color: #c6a5e7;"  |  #c6a5e7
+|-
+|  7  ||  5  ||  7  ||  $729c  ||  1001 1100  ||  0111 0010  ||  style="color: #000000; background-color: #e7a5e7;"  |  #e7a5e7
+|-
+|  8  ||  5  ||  7  ||  $729f  ||  1001 1111  ||  0111 0010  ||  style="color: #000000; background-color: #ffa5e7;"  |  #ffa5e7
+|-
+|  0  ||  6  ||  7  ||  $7300  ||  0000 0000  ||  0111 0011  ||  style="color: #000000; background-color: #00c6e7;"  |  #00c6e7
+|-
+|  1  ||  6  ||  7  ||  $7304  ||  0000 0100  ||  0111 0011  ||  style="color: #000000; background-color: #21c6e7;"  |  #21c6e7
+|-
+|  2  ||  6  ||  7  ||  $7308  ||  0000 1000  ||  0111 0011  ||  style="color: #000000; background-color: #42c6e7;"  |  #42c6e7
+|-
+|  3  ||  6  ||  7  ||  $730c  ||  0000 1100  ||  0111 0011  ||  style="color: #000000; background-color: #63c6e7;"  |  #63c6e7
+|-
+|  4  ||  6  ||  7  ||  $7310  ||  0001 0000  ||  0111 0011  ||  style="color: #000000; background-color: #84c6e7;"  |  #84c6e7
+|-
+|  5  ||  6  ||  7  ||  $7314  ||  0001 0100  ||  0111 0011  ||  style="color: #000000; background-color: #a5c6e7;"  |  #a5c6e7
+|-
+|  6  ||  6  ||  7  ||  $7318  ||  0001 1000  ||  0111 0011  ||  style="color: #000000; background-color: #c6c6e7;"  |  #c6c6e7
+|-
+|  7  ||  6  ||  7  ||  $731c  ||  0001 1100  ||  0111 0011  ||  style="color: #000000; background-color: #e7c6e7;"  |  #e7c6e7
+|-
+|  8  ||  6  ||  7  ||  $731f  ||  0001 1111  ||  0111 0011  ||  style="color: #000000; background-color: #ffc6e7;"  |  #ffc6e7
+|-
+|  0  ||  7  ||  7  ||  $7380  ||  1000 0000  ||  0111 0011  ||  style="color: #000000; background-color: #00e7e7;"  |  #00e7e7
+|-
+|  1  ||  7  ||  7  ||  $7384  ||  1000 0100  ||  0111 0011  ||  style="color: #000000; background-color: #21e7e7;"  |  #21e7e7
+|-
+|  2  ||  7  ||  7  ||  $7388  ||  1000 1000  ||  0111 0011  ||  style="color: #000000; background-color: #42e7e7;"  |  #42e7e7
+|-
+|  3  ||  7  ||  7  ||  $738c  ||  1000 1100  ||  0111 0011  ||  style="color: #000000; background-color: #63e7e7;"  |  #63e7e7
+|-
+|  4  ||  7  ||  7  ||  $7390  ||  1001 0000  ||  0111 0011  ||  style="color: #000000; background-color: #84e7e7;"  |  #84e7e7
+|-
+|  5  ||  7  ||  7  ||  $7394  ||  1001 0100  ||  0111 0011  ||  style="color: #000000; background-color: #a5e7e7;"  |  #a5e7e7
+|-
+|  6  ||  7  ||  7  ||  $7398  ||  1001 1000  ||  0111 0011  ||  style="color: #000000; background-color: #c6e7e7;"  |  #c6e7e7
+|-
+|  7  ||  7  ||  7  ||  $739c  ||  1001 1100  ||  0111 0011  ||  style="color: #000000; background-color: #e7e7e7;"  |  #e7e7e7
+|-
+|  8  ||  7  ||  7  ||  $739f  ||  1001 1111  ||  0111 0011  ||  style="color: #000000; background-color: #ffe7e7;"  |  #ffe7e7
+|-
+|  0  ||  8  ||  7  ||  $73e0  ||  1110 0000  ||  0111 0011  ||  style="color: #000000; background-color: #00ffe7;"  |  #00ffe7
+|-
+|  1  ||  8  ||  7  ||  $73e4  ||  1110 0100  ||  0111 0011  ||  style="color: #000000; background-color: #21ffe7;"  |  #21ffe7
+|-
+|  2  ||  8  ||  7  ||  $73e8  ||  1110 1000  ||  0111 0011  ||  style="color: #000000; background-color: #42ffe7;"  |  #42ffe7
+|-
+|  3  ||  8  ||  7  ||  $73ec  ||  1110 1100  ||  0111 0011  ||  style="color: #000000; background-color: #63ffe7;"  |  #63ffe7
+|-
+|  4  ||  8  ||  7  ||  $73f0  ||  1111 0000  ||  0111 0011  ||  style="color: #000000; background-color: #84ffe7;"  |  #84ffe7
+|-
+|  5  ||  8  ||  7  ||  $73f4  ||  1111 0100  ||  0111 0011  ||  style="color: #000000; background-color: #a5ffe7;"  |  #a5ffe7
+|-
+|  6  ||  8  ||  7  ||  $73f8  ||  1111 1000  ||  0111 0011  ||  style="color: #000000; background-color: #c6ffe7;"  |  #c6ffe7
+|-
+|  7  ||  8  ||  7  ||  $73fc  ||  1111 1100  ||  0111 0011  ||  style="color: #000000; background-color: #e7ffe7;"  |  #e7ffe7
+|-
+|  8  ||  8  ||  7  ||  $73ff  ||  1111 1111  ||  0111 0011  ||  style="color: #000000; background-color: #ffffe7;"  |  #ffffe7
+|-
+|  0  ||  0  ||  8  ||  $7c00  ||  0000 0000  ||  0111 1100  ||  style="color: #ffffff; background-color: #0000ff;"  |  #0000ff
+|-
+|  1  ||  0  ||  8  ||  $7c04  ||  0000 0100  ||  0111 1100  ||  style="color: #ffffff; background-color: #2100ff;"  |  #2100ff
+|-
+|  2  ||  0  ||  8  ||  $7c08  ||  0000 1000  ||  0111 1100  ||  style="color: #ffffff; background-color: #4200ff;"  |  #4200ff
+|-
+|  3  ||  0  ||  8  ||  $7c0c  ||  0000 1100  ||  0111 1100  ||  style="color: #ffffff; background-color: #6300ff;"  |  #6300ff
+|-
+|  4  ||  0  ||  8  ||  $7c10  ||  0001 0000  ||  0111 1100  ||  style="color: #ffffff; background-color: #8400ff;"  |  #8400ff
+|-
+|  5  ||  0  ||  8  ||  $7c14  ||  0001 0100  ||  0111 1100  ||  style="color: #ffffff; background-color: #a500ff;"  |  #a500ff
+|-
+|  6  ||  0  ||  8  ||  $7c18  ||  0001 1000  ||  0111 1100  ||  style="color: #ffffff; background-color: #c600ff;"  |  #c600ff
+|-
+|  7  ||  0  ||  8  ||  $7c1c  ||  0001 1100  ||  0111 1100  ||  style="color: #ffffff; background-color: #e700ff;"  |  #e700ff
+|-
+|  8  ||  0  ||  8  ||  $7c1f  ||  0001 1111  ||  0111 1100  ||  style="color: #ffffff; background-color: #ff00ff;"  |  #ff00ff
+|-
+|  0  ||  1  ||  8  ||  $7c80  ||  1000 0000  ||  0111 1100  ||  style="color: #ffffff; background-color: #0021ff;"  |  #0021ff
+|-
+|  1  ||  1  ||  8  ||  $7c84  ||  1000 0100  ||  0111 1100  ||  style="color: #ffffff; background-color: #2121ff;"  |  #2121ff
+|-
+|  2  ||  1  ||  8  ||  $7c88  ||  1000 1000  ||  0111 1100  ||  style="color: #ffffff; background-color: #4221ff;"  |  #4221ff
+|-
+|  3  ||  1  ||  8  ||  $7c8c  ||  1000 1100  ||  0111 1100  ||  style="color: #ffffff; background-color: #6321ff;"  |  #6321ff
+|-
+|  4  ||  1  ||  8  ||  $7c90  ||  1001 0000  ||  0111 1100  ||  style="color: #ffffff; background-color: #8421ff;"  |  #8421ff
+|-
+|  5  ||  1  ||  8  ||  $7c94  ||  1001 0100  ||  0111 1100  ||  style="color: #ffffff; background-color: #a521ff;"  |  #a521ff
+|-
+|  6  ||  1  ||  8  ||  $7c98  ||  1001 1000  ||  0111 1100  ||  style="color: #ffffff; background-color: #c621ff;"  |  #c621ff
+|-
+|  7  ||  1  ||  8  ||  $7c9c  ||  1001 1100  ||  0111 1100  ||  style="color: #ffffff; background-color: #e721ff;"  |  #e721ff
+|-
+|  8  ||  1  ||  8  ||  $7c9f  ||  1001 1111  ||  0111 1100  ||  style="color: #ffffff; background-color: #ff21ff;"  |  #ff21ff
+|-
+|  0  ||  2  ||  8  ||  $7d00  ||  0000 0000  ||  0111 1101  ||  style="color: #ffffff; background-color: #0042ff;"  |  #0042ff
+|-
+|  1  ||  2  ||  8  ||  $7d04  ||  0000 0100  ||  0111 1101  ||  style="color: #ffffff; background-color: #2142ff;"  |  #2142ff
+|-
+|  2  ||  2  ||  8  ||  $7d08  ||  0000 1000  ||  0111 1101  ||  style="color: #ffffff; background-color: #4242ff;"  |  #4242ff
+|-
+|  3  ||  2  ||  8  ||  $7d0c  ||  0000 1100  ||  0111 1101  ||  style="color: #ffffff; background-color: #6342ff;"  |  #6342ff
+|-
+|  4  ||  2  ||  8  ||  $7d10  ||  0001 0000  ||  0111 1101  ||  style="color: #ffffff; background-color: #8442ff;"  |  #8442ff
+|-
+|  5  ||  2  ||  8  ||  $7d14  ||  0001 0100  ||  0111 1101  ||  style="color: #ffffff; background-color: #a542ff;"  |  #a542ff
+|-
+|  6  ||  2  ||  8  ||  $7d18  ||  0001 1000  ||  0111 1101  ||  style="color: #ffffff; background-color: #c642ff;"  |  #c642ff
+|-
+|  7  ||  2  ||  8  ||  $7d1c  ||  0001 1100  ||  0111 1101  ||  style="color: #ffffff; background-color: #e742ff;"  |  #e742ff
+|-
+|  8  ||  2  ||  8  ||  $7d1f  ||  0001 1111  ||  0111 1101  ||  style="color: #ffffff; background-color: #ff42ff;"  |  #ff42ff
+|-
+|  0  ||  3  ||  8  ||  $7d80  ||  1000 0000  ||  0111 1101  ||  style="color: #ffffff; background-color: #0063ff;"  |  #0063ff
+|-
+|  1  ||  3  ||  8  ||  $7d84  ||  1000 0100  ||  0111 1101  ||  style="color: #ffffff; background-color: #2163ff;"  |  #2163ff
+|-
+|  2  ||  3  ||  8  ||  $7d88  ||  1000 1000  ||  0111 1101  ||  style="color: #ffffff; background-color: #4263ff;"  |  #4263ff
+|-
+|  3  ||  3  ||  8  ||  $7d8c  ||  1000 1100  ||  0111 1101  ||  style="color: #ffffff; background-color: #6363ff;"  |  #6363ff
+|-
+|  4  ||  3  ||  8  ||  $7d90  ||  1001 0000  ||  0111 1101  ||  style="color: #ffffff; background-color: #8463ff;"  |  #8463ff
+|-
+|  5  ||  3  ||  8  ||  $7d94  ||  1001 0100  ||  0111 1101  ||  style="color: #ffffff; background-color: #a563ff;"  |  #a563ff
+|-
+|  6  ||  3  ||  8  ||  $7d98  ||  1001 1000  ||  0111 1101  ||  style="color: #000000; background-color: #c663ff;"  |  #c663ff
+|-
+|  7  ||  3  ||  8  ||  $7d9c  ||  1001 1100  ||  0111 1101  ||  style="color: #000000; background-color: #e763ff;"  |  #e763ff
+|-
+|  8  ||  3  ||  8  ||  $7d9f  ||  1001 1111  ||  0111 1101  ||  style="color: #000000; background-color: #ff63ff;"  |  #ff63ff
+|-
+|  0  ||  4  ||  8  ||  $7e00  ||  0000 0000  ||  0111 1110  ||  style="color: #ffffff; background-color: #0084ff;"  |  #0084ff
+|-
+|  1  ||  4  ||  8  ||  $7e04  ||  0000 0100  ||  0111 1110  ||  style="color: #ffffff; background-color: #2184ff;"  |  #2184ff
+|-
+|  2  ||  4  ||  8  ||  $7e08  ||  0000 1000  ||  0111 1110  ||  style="color: #ffffff; background-color: #4284ff;"  |  #4284ff
+|-
+|  3  ||  4  ||  8  ||  $7e0c  ||  0000 1100  ||  0111 1110  ||  style="color: #000000; background-color: #6384ff;"  |  #6384ff
+|-
+|  4  ||  4  ||  8  ||  $7e10  ||  0001 0000  ||  0111 1110  ||  style="color: #000000; background-color: #8484ff;"  |  #8484ff
+|-
+|  5  ||  4  ||  8  ||  $7e14  ||  0001 0100  ||  0111 1110  ||  style="color: #000000; background-color: #a584ff;"  |  #a584ff
+|-
+|  6  ||  4  ||  8  ||  $7e18  ||  0001 1000  ||  0111 1110  ||  style="color: #000000; background-color: #c684ff;"  |  #c684ff
+|-
+|  7  ||  4  ||  8  ||  $7e1c  ||  0001 1100  ||  0111 1110  ||  style="color: #000000; background-color: #e784ff;"  |  #e784ff
+|-
+|  8  ||  4  ||  8  ||  $7e1f  ||  0001 1111  ||  0111 1110  ||  style="color: #000000; background-color: #ff84ff;"  |  #ff84ff
+|-
+|  0  ||  5  ||  8  ||  $7e80  ||  1000 0000  ||  0111 1110  ||  style="color: #000000; background-color: #00a5ff;"  |  #00a5ff
+|-
+|  1  ||  5  ||  8  ||  $7e84  ||  1000 0100  ||  0111 1110  ||  style="color: #000000; background-color: #21a5ff;"  |  #21a5ff
+|-
+|  2  ||  5  ||  8  ||  $7e88  ||  1000 1000  ||  0111 1110  ||  style="color: #000000; background-color: #42a5ff;"  |  #42a5ff
+|-
+|  3  ||  5  ||  8  ||  $7e8c  ||  1000 1100  ||  0111 1110  ||  style="color: #000000; background-color: #63a5ff;"  |  #63a5ff
+|-
+|  4  ||  5  ||  8  ||  $7e90  ||  1001 0000  ||  0111 1110  ||  style="color: #000000; background-color: #84a5ff;"  |  #84a5ff
+|-
+|  5  ||  5  ||  8  ||  $7e94  ||  1001 0100  ||  0111 1110  ||  style="color: #000000; background-color: #a5a5ff;"  |  #a5a5ff
+|-
+|  6  ||  5  ||  8  ||  $7e98  ||  1001 1000  ||  0111 1110  ||  style="color: #000000; background-color: #c6a5ff;"  |  #c6a5ff
+|-
+|  7  ||  5  ||  8  ||  $7e9c  ||  1001 1100  ||  0111 1110  ||  style="color: #000000; background-color: #e7a5ff;"  |  #e7a5ff
+|-
+|  8  ||  5  ||  8  ||  $7e9f  ||  1001 1111  ||  0111 1110  ||  style="color: #000000; background-color: #ffa5ff;"  |  #ffa5ff
+|-
+|  0  ||  6  ||  8  ||  $7f00  ||  0000 0000  ||  0111 1111  ||  style="color: #000000; background-color: #00c6ff;"  |  #00c6ff
+|-
+|  1  ||  6  ||  8  ||  $7f04  ||  0000 0100  ||  0111 1111  ||  style="color: #000000; background-color: #21c6ff;"  |  #21c6ff
+|-
+|  2  ||  6  ||  8  ||  $7f08  ||  0000 1000  ||  0111 1111  ||  style="color: #000000; background-color: #42c6ff;"  |  #42c6ff
+|-
+|  3  ||  6  ||  8  ||  $7f0c  ||  0000 1100  ||  0111 1111  ||  style="color: #000000; background-color: #63c6ff;"  |  #63c6ff
+|-
+|  4  ||  6  ||  8  ||  $7f10  ||  0001 0000  ||  0111 1111  ||  style="color: #000000; background-color: #84c6ff;"  |  #84c6ff
+|-
+|  5  ||  6  ||  8  ||  $7f14  ||  0001 0100  ||  0111 1111  ||  style="color: #000000; background-color: #a5c6ff;"  |  #a5c6ff
+|-
+|  6  ||  6  ||  8  ||  $7f18  ||  0001 1000  ||  0111 1111  ||  style="color: #000000; background-color: #c6c6ff;"  |  #c6c6ff
+|-
+|  7  ||  6  ||  8  ||  $7f1c  ||  0001 1100  ||  0111 1111  ||  style="color: #000000; background-color: #e7c6ff;"  |  #e7c6ff
+|-
+|  8  ||  6  ||  8  ||  $7f1f  ||  0001 1111  ||  0111 1111  ||  style="color: #000000; background-color: #ffc6ff;"  |  #ffc6ff
+|-
+|  0  ||  7  ||  8  ||  $7f80  ||  1000 0000  ||  0111 1111  ||  style="color: #000000; background-color: #00e7ff;"  |  #00e7ff
+|-
+|  1  ||  7  ||  8  ||  $7f84  ||  1000 0100  ||  0111 1111  ||  style="color: #000000; background-color: #21e7ff;"  |  #21e7ff
+|-
+|  2  ||  7  ||  8  ||  $7f88  ||  1000 1000  ||  0111 1111  ||  style="color: #000000; background-color: #42e7ff;"  |  #42e7ff
+|-
+|  3  ||  7  ||  8  ||  $7f8c  ||  1000 1100  ||  0111 1111  ||  style="color: #000000; background-color: #63e7ff;"  |  #63e7ff
+|-
+|  4  ||  7  ||  8  ||  $7f90  ||  1001 0000  ||  0111 1111  ||  style="color: #000000; background-color: #84e7ff;"  |  #84e7ff
+|-
+|  5  ||  7  ||  8  ||  $7f94  ||  1001 0100  ||  0111 1111  ||  style="color: #000000; background-color: #a5e7ff;"  |  #a5e7ff
+|-
+|  6  ||  7  ||  8  ||  $7f98  ||  1001 1000  ||  0111 1111  ||  style="color: #000000; background-color: #c6e7ff;"  |  #c6e7ff
+|-
+|  7  ||  7  ||  8  ||  $7f9c  ||  1001 1100  ||  0111 1111  ||  style="color: #000000; background-color: #e7e7ff;"  |  #e7e7ff
+|-
+|  8  ||  7  ||  8  ||  $7f9f  ||  1001 1111  ||  0111 1111  ||  style="color: #000000; background-color: #ffe7ff;"  |  #ffe7ff
+|-
+|  0  ||  8  ||  8  ||  $7fe0  ||  1110 0000  ||  0111 1111  ||  style="color: #000000; background-color: #00ffff;"  |  #00ffff
+|-
+|  1  ||  8  ||  8  ||  $7fe4  ||  1110 0100  ||  0111 1111  ||  style="color: #000000; background-color: #21ffff;"  |  #21ffff
+|-
+|  2  ||  8  ||  8  ||  $7fe8  ||  1110 1000  ||  0111 1111  ||  style="color: #000000; background-color: #42ffff;"  |  #42ffff
+|-
+|  3  ||  8  ||  8  ||  $7fec  ||  1110 1100  ||  0111 1111  ||  style="color: #000000; background-color: #63ffff;"  |  #63ffff
+|-
+|  4  ||  8  ||  8  ||  $7ff0  ||  1111 0000  ||  0111 1111  ||  style="color: #000000; background-color: #84ffff;"  |  #84ffff
+|-
+|  5  ||  8  ||  8  ||  $7ff4  ||  1111 0100  ||  0111 1111  ||  style="color: #000000; background-color: #a5ffff;"  |  #a5ffff
+|-
+|  6  ||  8  ||  8  ||  $7ff8  ||  1111 1000  ||  0111 1111  ||  style="color: #000000; background-color: #c6ffff;"  |  #c6ffff
+|-
+|  7  ||  8  ||  8  ||  $7ffc  ||  1111 1100  ||  0111 1111  ||  style="color: #000000; background-color: #e7ffff;"  |  #e7ffff
+|-
+|  8  ||  8  ||  8  ||  $7fff  ||  1111 1111  ||  0111 1111  ||  style="color: #000000; background-color: #ffffff;"  |  #ffffff
+|}
+
+=Links=
+
+{{Internal Data}}
