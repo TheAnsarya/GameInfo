@@ -132,7 +132,7 @@ The item index only uses the bottom 7 bits so values range from <code>$00</code>
 
 <code>$7f</code> represents "no item in slot".
 
-In the item bags, the high bit <code>%10000000</code> indicates that the item is equipped. So, to get the equipped value add <code>$80</code> to the item index.
+In the item bags, the high bit <code>%1000_0000</code> indicates that the item is equipped. So, to get the equipped value add <code>$80</code> to the item index.
 
 {| class="wikitable sortable"
 |-
@@ -416,6 +416,8 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 {| class="wikitable sortable"
 |-
 !  Map  !!  Submap  !!  Description
+
+<!-- bank: $09, map: $00 - Keeleon (5), addresses: 8000 8085 812b 81ae 81c1 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $00  ||  style="text-align: center;"  |  $00  ||  Keeleon - Outside
 |-
@@ -430,6 +432,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $01 - Santeem (3), addresses: 8206 82dd 8344 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $01  ||  style="text-align: center;"  |  $00  ||  Santeem - F1
 |-
@@ -440,6 +443,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $02 - Burland (), addresses: 8398 850c 85de 865d -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $02  ||  style="text-align: center;"  |  $00  ||  Burland
 |-
@@ -452,6 +456,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $03 - Dire Palace (4), addresses: 869b 87b5 8834 88cf -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $03  ||  style="text-align: center;"  |  $00  ||  Dire Palace - F1
 |-
@@ -464,6 +469,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $04 - Endor (15), addresses: 88e7 8a45 8aab 8b7d 8b96 8bb5 8c04 8c77 8dd6 8df4 8e0f 8e2c 8e5a 8e92 8ec9 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $00  ||  Endor
 |-
@@ -498,6 +504,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $05 - Bonmalmo (2), addresses: 8f28 8f62 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $05  ||  style="text-align: center;"  |  $00  ||  Bonmalmo - B1, Jail
 |-
@@ -506,6 +513,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $06 - Branca (4), addresses: 9063 9171 91c3 91d5 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $06  ||  style="text-align: center;"  |  $00  ||  Branca
 |-
@@ -518,6 +526,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $07 - Soretta (2), addresses: 91ed 92cb -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $07  ||  style="text-align: center;"  |  $00  ||  Soretta
 |-
@@ -526,6 +535,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $08 - Gardenbur (5), addresses: 9313 93c9 9492 9506 9544 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $08  ||  style="text-align: center;"  |  $00  ||  Gardenbur - Entrance
 |-
@@ -540,6 +550,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $09 - Stancia (8), addresses: 9563 963a 9728 97a8 984b 98b4 98d8 9931 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $09  ||  style="text-align: center;"  |  $00  ||  Stancia
 |-
@@ -560,6 +571,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $0a - Aktemto (1), addresses: 997d -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $0a  ||  style="text-align: center;"  |  $00  ||  Aktemto
 |-  style="background-color: #eaecf0;"
@@ -568,6 +580,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $0b - Riverton (2), addresses: 9a67 9b5b -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $0b  ||  style="text-align: center;"  |  $00  ||  Riverton
 |-
@@ -576,6 +589,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $0c - Bazaar (1), addresses: 9ba8 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $0c  ||  style="text-align: center;"  |  $00  ||  Bazaar
 |-  style="background-color: #eaecf0;"
@@ -584,6 +598,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $0d - Mintos (3), addresses: 9c47 9d2a 9d86 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $0d  ||  style="text-align: center;"  |  $00  ||  Mintos
 |-
@@ -594,6 +609,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $0e - Tempe (1), addresses: 9dd2 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $0e  ||  style="text-align: center;"  |  $00  ||  Tempe
 |-  style="background-color: #eaecf0;"
@@ -602,6 +618,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $0f - Frenor (2), addresses: 9ee9 9fea -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $0f  ||  style="text-align: center;"  |  $00  ||  Frenor
 |-
@@ -610,6 +627,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $10 - Aneaux (4), addresses: a02f a113 a136 a154 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $10  ||  style="text-align: center;"  |  $00  ||  Aneaux
 |-
@@ -622,6 +640,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $11 - Haville (6), addresses: a179 a2cb a321 a348 a3ea a43a -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $11  ||  style="text-align: center;"  |  $00  ||  Haville
 |-
@@ -638,6 +657,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $12 - Izmit (3), addresses: a45e a548 a597 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $12  ||  style="text-align: center;"  |  $00  ||  Izmit
 |-
@@ -648,6 +668,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $13 - Surene (85), addresses: a5bb a6e6 a73a a774 a7b3 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $13  ||  style="text-align: center;"  |  $00  ||  Surene
 |-
@@ -662,6 +683,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $14 - Hometown (3), addresses: a7d1 a873 a89c -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $14  ||  style="text-align: center;"  |  $00  ||  Hometown
 |-
@@ -672,6 +694,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $15 - Monbaraba (4), addresses: a97f aa95 aae2 ab8a -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $15  ||  style="text-align: center;"  |  $00  ||  Monbaraba
 |-
@@ -684,6 +707,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $16 - Lakanaba (3), addresses: ac9d adc1 ae03 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $16  ||  style="text-align: center;"  |  $00  ||  Lakanaba
 |-
@@ -694,6 +718,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $17 - Kievs (2), addresses: ae2e af1c -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $17  ||  style="text-align: center;"  |  $00  ||  Kievs
 |-
@@ -702,6 +727,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $18 - Foxville (2), addresses: af51 afe8 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $18  ||  style="text-align: center;"  |  $00  ||  Foxville
 |-
@@ -710,6 +736,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $19 - Seaside Village (3), addresses: b013 b0da b194 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $19  ||  style="text-align: center;"  |  $00  ||  Seaside Village - Day
 |-
@@ -720,12 +747,16 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $1a  ||  style="text-align: center;"  |  $00  ||  Gottside - ???
+<!-- bank: $09, map: $1a - Gottside (2), addresses: b1b6 b369 -->
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $1a  ||  style="text-align: center;"  |  $00  ||  Gottside
+|-
+|  style="text-align: center;"  |  $1a  ||  style="text-align: center;"  |  $01  ||  Gottside - Top-right house, B1  --  Top-left house, B1
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $1b - Rosaville (5), addresses: b3aa b4a4 b505 b528 b56b -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $1b  ||  style="text-align: center;"  |  $00  ||  Rosaville
 |-
@@ -738,6 +769,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $1c - Secret Playground Entrance (2), addresses: b570 b5cd -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $1c  ||  style="text-align: center;"  |  $00  ||  Secret Playground Entrance
 |-
@@ -746,6 +778,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $1d - House of Prophecy (1), addresses: b5e6 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $1d  ||  style="text-align: center;"  |  $00  ||  House of Prophecy
 |-  style="background-color: #eaecf0;"
@@ -754,6 +787,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $1e - Shrine from Frenor to Endor (1), addresses: b604 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $1e  ||  style="text-align: center;"  |  $00  ||  Shrine from Frenor to Endor
 |-  style="background-color: #eaecf0;"
@@ -762,6 +796,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $1f - Shrine northwest of Endor (to Frenor) (1), addresses: b62f -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $1f  ||  style="text-align: center;"  |  $00  ||  Shrine northwest of Endor (to Frenor)
 |-  style="background-color: #eaecf0;"
@@ -770,6 +805,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $20 - Woodsman's Shack (1), addresses: b672 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $20  ||  style="text-align: center;"  |  $00  ||  Woodsman's Shack
 |-  style="background-color: #eaecf0;"
@@ -778,6 +814,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $21 - Desert Inn (1), addresses: b6be -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $21  ||  style="text-align: center;"  |  $00  ||  Desert Inn
 |-  style="background-color: #eaecf0;"
@@ -786,6 +823,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $22 - Small Medal King Shrine (2), addresses: b738 b78d -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $22  ||  style="text-align: center;"  |  $00  ||  Small Medal King Shrine
 |-
@@ -794,14 +832,16 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $23 - Shrine East of Mintos (Soretta) (1), addresses: b7ca -->
 |-  style="background-color: #bbccff;"
-|  style="text-align: center;"  |  $23  ||  style="text-align: center;"  |  $00  ||  Shrine East of Mintos
+|  style="text-align: center;"  |  $23  ||  style="text-align: center;"  |  $00  ||  Shrine East of Mintos (Soretta)
 |-  style="background-color: #eaecf0;"
 |  colspan="3" style="text-align: center;"  |  No submaps
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $24 - Small Island Shack North of Haville (1), addresses: b81f -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $24  ||  style="text-align: center;"  |  $00  ||  Small Island Shack North of Haville
 |-  style="background-color: #eaecf0;"
@@ -810,6 +850,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $25 - Royal Crypt Entrance (2), addresses: b854 b88c -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $25  ||  style="text-align: center;"  |  $00  ||  Royal Crypt Entrance - Inside
 |-
@@ -818,20 +859,56 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $26  ||  style="text-align: center;"  |  $00  ||  Last Refuge - ???
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $27  ||  style="text-align: center;"  |  $00  ||  SW barrier shrine (Gigademon) - ???
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $28  ||  style="text-align: center;"  |  $00  ||  SE barrier shrine (Anderoug) - ???
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $29  ||  style="text-align: center;"  |  $00  ||  NW barrier shrine (Infurnus Shadow) - ???
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $2a  ||  style="text-align: center;"  |  $00  ||  Final Cave (Entrance in underworld) - ???
+<!-- bank: $09, map: $26 - Last Refuge (1), addresses: b8d3 -->
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $26  ||  style="text-align: center;"  |  $00  ||  Last Refuge
+|-  style="background-color: #eaecf0;"
+|  colspan="3" style="text-align: center;"  |  No submaps
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $27 - Gigademon Shrine (3), addresses: b947 b9ab b9e5 -->
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $27  ||  style="text-align: center;"  |  $00  ||  SW barrier shrine (Gigademon) - Outside
+|-
+|  style="text-align: center;"  |  $27  ||  style="text-align: center;"  |  $01  ||  SW barrier shrine (Gigademon) - B1
+|-
+|  style="text-align: center;"  |  $27  ||  style="text-align: center;"  |  $02  ||  SW barrier shrine (Gigademon) - B2
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
+<!-- bank: $09, map: $28 - Anderoug Shrine (3), addresses: ba1d ba34 ba4c -->
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $28  ||  style="text-align: center;"  |  $00  ||  SE barrier shrine (Anderoug) - Outside
+|-
+|  style="text-align: center;"  |  $28  ||  style="text-align: center;"  |  $01  ||  SE barrier shrine (Anderoug) - B1
+|-
+|  style="text-align: center;"  |  $28  ||  style="text-align: center;"  |  $02  ||  SE barrier shrine (Anderoug) - B2
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
+<!-- bank: $09, map: $29 - Infurnus Shadow Shrine (2), addresses: baaa bada -->
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $29  ||  style="text-align: center;"  |  $00  ||  NW barrier shrine (Infurnus Shadow) - Outside
+|-
+|  style="text-align: center;"  |  $29  ||  style="text-align: center;"  |  $01  ||  NW barrier shrine (Infurnus Shadow) - B1
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
+<!-- bank: $09, map: $2a - Final Cave (1), addresses: bb11 -->
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $2a  ||  style="text-align: center;"  |  $00  ||  Final Cave (Entrance in underworld)
+|-  style="background-color: #eaecf0;"
+|  colspan="3" style="text-align: center;"  |  No submaps
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
+<!-- bank: $09, map: $2b - Riverton Travel Door (1), addresses: bb41 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $2b  ||  style="text-align: center;"  |  $00  ||  Travel Door near Riverton - To Shrine East of Mintos
 |-  style="background-color: #eaecf0;"
@@ -840,6 +917,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $09, map: $2c - Shrine of Colossus (1), addresses: bb4d -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $2c  ||  style="text-align: center;"  |  $00  ||  Shrine of Colossus, Outside
 |-  style="background-color: #eaecf0;"
@@ -848,6 +926,9 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- This map spans two banks -->
+<!-- bank: $09, map: $2d - Aktemto Mine (8), addresses: bc25 bcbf bd80 bda1 be5e bef7 bf68 bfbb -->
+<!-- bank: $0a, map: $2d - Aktemto Mine (2), addresses: 803e 82ef -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $2d  ||  style="text-align: center;"  |  $00  ||  Aktemto Mine - B1
 |-
@@ -872,6 +953,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $0a, map: $2e - Shrine of Breaking Waves (2), addresses: 830c 847d -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $2e  ||  style="text-align: center;"  |  $00  ||  Shrine of Breaking Waves
 |-
@@ -880,6 +962,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $0a, map: $2f - Padaquea Cave (3), addresses: 84b9 84f1 8616 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $00  ||  Padaquea Cave - B1
 |-
@@ -890,6 +973,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $0a, map: $30 - Bakor's Hideout (3), addresses: 86c8 86f0 88d4 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $30  ||  style="text-align: center;"  |  $00  ||  Bakor's Hideout - B3
 |-
@@ -900,6 +984,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $0a, map: $31 - Sphere Of Silence Cave (5), addresses: 8b0c 8b7e 8c06 8c39 8cb7 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $00  ||  Cave West of Kievs - B1
 |-
@@ -914,6 +999,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $0a, map: $32 - Golden Bracelet Cave (2), addresses: 8cf0 8dbb -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $32  ||  style="text-align: center;"  |  $00  ||  Cave South Of Frenor - B2
 |-
@@ -922,6 +1008,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $0a, map: $33 - Secret Playground Dungeon (7), addresses: 8e5c 8ee9 8f33 8f53 8fbf 900c 902a -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $00  ||  Secret Playground Dungeon - B1, Section #1 (left)
 |-
@@ -940,6 +1027,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $0a, map: $34 - Cascade Cave (5), addresses: 9044 9133 9311 93eb 940c -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $34  ||  style="text-align: center;"  |  $00  ||  Cascade Cave - F1
 |-
@@ -954,12 +1042,32 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $00  ||  Final Cave - ???
+<!-- bank: $0a, map: $35 - Final Cave (10), addresses: 9705 978d 984e 98fb 9988 99ce 99e9 9a0b 9a59 9a80 -->
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $00  ||  Final Cave - B1
+|-
+|  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $01  ||  Final Cave - B2
+|-
+|  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $02  ||  Final Cave - B4
+|-
+|  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $03  ||  Final Cave - B3
+|-
+|  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $04  ||  Final Cave - B5
+|-
+|  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $05  ||  Final Cave - B8
+|-
+|  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $06  ||  Final Cave - B7
+|-
+|  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $07  ||  Final Cave - B6, middle and top
+|-
+|  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $08  ||  Final Cave - B6, bottom
+|-
+|  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $09  ||  Final Cave - B9
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $0a, map: $36 - Iron Safe Cave (7), addresses: 9aa0 9ad2 9b2d 9b86 9bb0 9c4b 9c6a -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $36  ||  style="text-align: center;"  |  $00  ||  Cave North of Lakanaba - B1
 |-
@@ -978,6 +1086,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $0a, map: $37 - Cave of Betrayal (3), addresses: 9c9d 9d02 9d59 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $37  ||  style="text-align: center;"  |  $00  ||  Cave of Betrayal - B1
 |-
@@ -988,6 +1097,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $0a, map: $38 - Silver Statuette Cave (6), addresses: 9dab 9de1 9e5c 9ec0 9f95 a026 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $00  ||  Silver Statuette Cave - B1
 |-
@@ -1004,20 +1114,25 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $39  ||  style="text-align: center;"  |  $00  ||  Burland-Izmit tunnel - ???
-
-|-  style="background-color: #eaecf0;"
-|  colspan="3"  |  
-
+<!-- bank: $0a, map: $39 - Burland-Izmit Tunnel (1), addresses: a070 -->
 |-  style="background-color: #bbccff;"
-|  style="text-align: center;"  |  $3a  ||  style="text-align: center;"  |  $00  ||  Tunnel between Branca and Endor, before tunnel is built
-|-
-|  style="text-align: center;"  |  $3a  ||  style="text-align: center;"  |  $01  ||  Tunnel between Branca and Endor, after tunnel is built
+|  style="text-align: center;"  |  $39  ||  style="text-align: center;"  |  $00  ||  Burland-Izmit Tunnel
+|-  style="background-color: #eaecf0;"
+|  colspan="3" style="text-align: center;"  |  No submaps
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $0a, map: $3a - Branca-Endor tunnel (2), addresses: a0df a111 -->
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $3a  ||  style="text-align: center;"  |  $00  ||  Branca-Endor tunnel, before tunnel is built
+|-
+|  style="text-align: center;"  |  $3a  ||  style="text-align: center;"  |  $01  ||  Branca-Endor tunnel, after tunnel is built
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
+<!-- bank: $0a, map: $3b - Royal Crypt Dungeon (3), addresses: a15a a1e1 a269 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $3b  ||  style="text-align: center;"  |  $00  ||  Royal Crypt Dungeon - B1
 |-
@@ -1028,16 +1143,65 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $0a, map: $3c - Necrosaro's Lair (1), addresses: a2f4 -->
 |-  style="background-color: #dddd80;"
 |  style="text-align: center;"  |  $3c  ||  style="text-align: center;"  |  $00  ||  Necrosaro's Lair - ???
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $00  ||  Zenethian Tower - ???
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $3e  ||  style="text-align: center;"  |  $00  ||  Outside Zenethia - ???
+|-  style="background-color: #eaecf0;"
+|  colspan="3" style="text-align: center;"  |  No submaps
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $0a, map: $3d - Zenithian Tower (15 values/17 maps), addresses: a507 a6ea a79c a7c6 a7f6 a814 a83d a856 a88d a8d5 a904 a94a a979 a9a6 a9cc -->
+<!-- TODO: What about submaps $0f and $10? That's what the map/submap values are for map in the game, but aren't in list? are the documented values wrong?> (export the maps to check every map) -->
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $00  ||  Zenithian Tower - Outside [TODO: Use map to describe each value]
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $01  ||  Zenithian Tower - F1
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $02  ||  Zenithian Tower - F2 (#3)
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $03  ||  Zenithian Tower - F2 (#7)
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $04  ||  Zenithian Tower - F3 (#4)
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $05  ||  Zenithian Tower - F2, (#9)
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $06  ||  Zenithian Tower - F3, (#12)
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $07  ||  Zenithian Tower - F3, (#8)
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $08  ||  Zenithian Tower - ???
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $09  ||  Zenithian Tower - ???
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $0a  ||  Zenithian Tower - ???
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $0b  ||  Zenithian Tower - ???
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $0c  ||  Zenithian Tower - ???
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $0d  ||  Zenithian Tower - ???
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $0e  ||  Zenithian Tower - ???
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $0f  ||  Zenithian Tower - ???
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $10  ||  Zenithian Tower - ???
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
+<!-- bank: $0a, map: $3e - Outside Zenethia (1), addresses: ab0f -->
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $3e  ||  style="text-align: center;"  |  $00  ||  Outside Zenethia
+|-  style="background-color: #eaecf0;"
+|  colspan="3" style="text-align: center;"  |  No submaps
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
+<!-- bank: $0a, map: $3f - Birdsong Tower (6), addresses: abe1 ac2d ac99 acea ad52 ad6c -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $3f  ||  style="text-align: center;"  |  $00  ||  Birdsong Tower - F5
 |-
@@ -1054,6 +1218,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $0a, map: $40 - World Tree (6), addresses: ad92 ae4e af97 b0d8 b212 b327 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $40  ||  style="text-align: center;"  |  $00  ||  World Tree - F3-2
 |-
@@ -1070,6 +1235,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $0a, map: $41 - Loch Tower (6), addresses: b40a b439 b497 b4f7 b577 b5cf -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $41  ||  style="text-align: center;"  |  $00  ||  Loch Tower - F4
 |-
@@ -1086,6 +1252,7 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $0a, map: $42 - Great Lighthouse (5), addresses: b611 b681 b6b2 b71b b784 -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $00  ||  Great Lighthouse - F5
 |-
@@ -1100,6 +1267,8 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- bank: $0a, map: $43 - Konenber (11 values/10 maps), addresses: b7d6 b898 b8dd b904 b91c b953 b96a baa7 bb3a bb8a bbae -->
+<!-- TODO: verify address and maps, there is an off-by-one here -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $43  ||  style="text-align: center;"  |  $00  ||  Konenber - Top-left, Ship Building
 |-
@@ -1124,18 +1293,66 @@ If the background is <code style="background-color: #dddd80;">yellow</code> then
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $44  ||  style="text-align: center;"  |  $00  ||  NE barrier shrine (Radimvice) - ???
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $45  ||  style="text-align: center;"  |  $00  ||  Necrosaro's Palace - ???
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $46  ||  style="text-align: center;"  |  $00  ||  Zenethia - ???
-|-  style="background-color: #dddd80;"
-|  style="text-align: center;"  |  $47  ||  style="text-align: center;"  |  $00  ||  Shrine of the Horn - ???
+<!-- bank: $0a, map: $44 - Radimvice Shrine (4), addresses: bbe4 bbfb bc1b bc59 -->
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $44  ||  style="text-align: center;"  |  $00  ||  NE barrier shrine (Radimvice) - Outside
+|-
+|  style="text-align: center;"  |  $44  ||  style="text-align: center;"  |  $01  ||  NE barrier shrine (Radimvice) - F2
+|-
+|  style="text-align: center;"  |  $44  ||  style="text-align: center;"  |  $02  ||  NE barrier shrine (Radimvice) - F3
+|-
+|  style="text-align: center;"  |  $44  ||  style="text-align: center;"  |  $03  ||  NE barrier shrine (Radimvice) - F4
 
 |-  style="background-color: #eaecf0;"
 |  colspan="3"  |  
 
+<!-- This map spans two banks -->
+<!-- bank: $0a, map: $45 - Necrosaro's Palace (5), addresses: bca5 be6c bf10 bf6a bfa1 -->
+<!-- bank: $0b, map: $45 - Necrosaro's Palace (3), addresses: 8075 80c1 8158 -->
+|-  style="background-color: #dddd80;"
+|  style="text-align: center;"  |  $45  ||  style="text-align: center;"  |  $00  ||  Necrosaro's Palace - Outside
+|-
+|  style="text-align: center;"  |  $45  ||  style="text-align: center;"  |  $01  ||  Necrosaro's Palace - F1
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $45  ||  style="text-align: center;"  |  $02  ||  Necrosaro's Palace - ???
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $45  ||  style="text-align: center;"  |  $03  ||  Necrosaro's Palace - ???
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $45  ||  style="text-align: center;"  |  $04  ||  Necrosaro's Palace - ???
+|-
+|  style="text-align: center;"  |  $45  ||  style="text-align: center;"  |  $05  ||  Necrosaro's Palace - F2
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $45  ||  style="text-align: center;"  |  $06  ||  Necrosaro's Palace - ???
+|-  style="background-color: #eaecf0;"
+|  style="text-align: center;"  |  $45  ||  style="text-align: center;"  |  $07  ||  Necrosaro's Palace - ???
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
+<!-- bank: $0b, map: $46 - Zenethia (4), addresses: 81a8 8313 834d 83b9 -->
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $46  ||  style="text-align: center;"  |  $00  ||  Zenithian Castle - Outside
+|-
+|  style="text-align: center;"  |  $46  ||  style="text-align: center;"  |  $01  ||  Zenithian Castle - B1
+|-
+|  style="text-align: center;"  |  $46  ||  style="text-align: center;"  |  $02  ||  Zenithian Castle - F1
+|-
+|  style="text-align: center;"  |  $46  ||  style="text-align: center;"  |  $03  ||  Zenithian Castle - F2, F3
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
+<!-- bank: $0b, map: $47 - Shrine of the Horn (2), addresses: 84c1 857a -->
+|-  style="background-color: #bbccff;"
+|  style="text-align: center;"  |  $47  ||  style="text-align: center;"  |  $00  ||  Shrine of the Horn - F1, B1, B2
+|-
+|  style="text-align: center;"  |  $47  ||  style="text-align: center;"  |  $01  ||  Shrine of the Horn - B3
+
+|-  style="background-color: #eaecf0;"
+|  colspan="3"  |  
+
+<!-- bank: $0b, map: 48 - Shrine of Colossus (10), addresses: 85a8 8618 875b 8848 8945 89af 8a5b 8b46 8bdc 8c49 -->
+<!-- TODO: missing $09? -->
 |-  style="background-color: #bbccff;"
 |  style="text-align: center;"  |  $48  ||  style="text-align: center;"  |  $00  ||  Shrine of Colossus, Dungeon - Outside
 |-

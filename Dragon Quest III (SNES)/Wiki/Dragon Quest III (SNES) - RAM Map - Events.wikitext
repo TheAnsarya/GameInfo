@@ -9,7 +9,7 @@ These flags indicate which game event triggers have been already set.
 |-
 !  Location  !! Address  !! SRAM  !!  Value  !!  Description  !!  Event
 |-
-|  ---  ||  $03540  ||  ---  || style="white-space: nowrap;" | 0000 0001  ||  ---  ||  
+|  ---  ||  $03540  ||  ---  ||  style="white-space: nowrap;"  |  0000 0001  ||  ---  ||  
 |-
 |  ---  ||  $03540  ||  ---  ||  0000 0010  ||  ---  ||  
 |-
