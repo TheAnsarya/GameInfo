@@ -31,11 +31,21 @@ SnesWorkRam:1028:Player_Base_Speed
 SnesWorkRam:1029:Player_Base_Magic
 SnesWorkRam:1030:Player_Weapon_Ammo_Count
 SnesWorkRam:1031:Player_Weapon_ID
-SnesWorkRam:1032-1033:Player_Flags_Weapons
+SnesWorkRam:1032-1034:Player_Flags_Weapons
 SnesWorkRam:1035-1037:Player_Flags_Armor
 SnesWorkRam:1038-1039:Player_Flags_Magic
+SnesWorkRam:10A1:Companion_Status
+SnesWorkRam:10A2:Companion_Current_Attack
+SnesWorkRam:10A3:Companion_Current_Defense
+SnesWorkRam:10A4:Companion_Current_Speed
+SnesWorkRam:10A5:Companion_Current_Magic
+SnesWorkRam:10A6:Companion_Base_Attack
+SnesWorkRam:10A7:Companion_Base_Defense
+SnesWorkRam:10A8:Companion_Base_Speed
+SnesWorkRam:10A9:Companion_Base_Magic
 SnesWorkRam:10B0:Companion_Weapon_Ammo_Count
 SnesWorkRam:10B1:Companion_Weapon_ID
+SnesWorkRam:10B5-10B7:Companion_Flags_Armor
 SnesWorkRam:10B8-10B9:Companion_Flags_Magic
 SnesRegister:2100:INIDISP:Screen Display Register
 SnesRegister:2101:OBSEL:Object Size and Character Size Register

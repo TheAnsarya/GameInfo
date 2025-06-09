@@ -15,6 +15,7 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 |-  style="background-color: #eaecf0;"
 |  $0000 - $0e87  ||  ...  ||  ...  ||  ???
 |-
+
 |  $0e88  ||  byte  ||  Map  ||  [[Final Fantasy: Mystic Quest/Values#Maps|Map ID]]
 |-
 |  $0e89  ||  byte  ||  Map  ||  Player X coordinate on map
@@ -22,9 +23,11 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 |  $0e8a  ||  byte  ||  Map  ||  Player Y coordinate on map
 |-
 |  $0e8b  ||  byte  ||  Map  ||  [[Final Fantasy: Mystic Quest/Values#Player_Facing_Directions|Player Facing Direction]]
+
 |-  style="background-color: #eaecf0;"
 |  $0e8c - $0e96  ||  ...  ||  ...  ||  ???
 |-
+
 |  $0e97 - $0e9a  ||  4 bytes  ||  Game  ||  Game Play Timer (99:59 - C6 8A 49 01)
 |-
 |  $0e9b  ||  byte  ||  Settings  ||  [[Final Fantasy: Mystic Quest/Values#Message_Speed|Message Speed]]
@@ -48,9 +51,11 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 |  $0ea2  ||  byte  ||  Items  ||  Refresher's [[Final Fantasy: Mystic Quest/Values#Items|Item Number]] ($13)
 |-
 |  $0ea3  ||  byte  ||  Items  ||  Amount of Refreshers
+
 |-  style="background-color: #eaecf0;"
 |  $0ea4 - $0ebc  ||  ...  ||  ...  ||  ???
 |-
+
 |  colspan="4" style="background-color: #eaecf0;"  |  <!-- All: $00 -->
 |-  style="background-color: #eaecf0;"
 |  $0ebd # 0000_0001  ||  bit  ||  Chests  ||  ...
@@ -69,10 +74,12 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 |-  style="background-color: #eaecf0;"
 |  $0ebd # 1000_0000  ||  bit  ||  Chests  ||  ...
 |-
+
 |  colspan="4" style="background-color: #eaecf0;"  |  
 |-  style="background-color: #eaecf0;"
 |  $0ebe - $0ec5  ||  ...  ||  ...  ||  ???
 |-
+
 |  colspan="4" style="background-color: #eaecf0;"  |  <!-- All: $00 -->
 |-
 |  $0ec6 % 0000 0001  ||  bit  ||    ||  
@@ -94,9 +101,11 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 |  colspan="4" style="background-color: #eaecf0;"  |  
 |-
 |  $1000 - $1007  ||  8 bytes  ||  Player  ||  Name
+
 |-  style="background-color: #eaecf0;"
 |  $1008 - $100f  ||  8 bytes  ||  Player  ||  ???
 |-
+
 |  $1010  ||  byte  ||  Player  ||  Level (Max: 99)
 |-
 |  $1011 - $1013  ||  long  ||  Player  ||  Experience (Max: 9999999)
@@ -299,9 +308,10 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 |-
 |  $1039 # 1000_0000  ||  bit  ||  Player  ||  Wizard Magic - Thunder
 |-
+
 |  colspan="4" style="background-color: #eaecf0;"  |  
 |-  style="background-color: #eaecf0;"
-|  $1040 - $10b7  ||  ...  ||  ...  ||  ???
+|  $1040 - $10af  ||  ...  ||  ...  ||  ???
 |-
 
 |  colspan="4" style="background-color: #eaecf0;"  |  
@@ -310,11 +320,81 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 |-
 |  $10b1  ||  byte  ||  Companion  ||  [[Final Fantasy: Mystic Quest/Values#Weapons|Weapon ID]]
 |-
-
-
-
-
-
+|  colspan="4" style="background-color: #eaecf0;"  |  
+<!--
+|  style="text-align: center;"  |    ||  Weapons  ||  Steel Sword ($20)
+|  style="text-align: center;"  |    ||  Weapons  ||  Knight Sword ($21)
+|  style="text-align: center;"  |    ||  Weapons  ||  Excalibur ($22)
+|  style="text-align: center;"  |    ||  Weapons  ||  Axe ($23)
+|  style="text-align: center;"  |    ||  Weapons  ||  Battle Axe ($24)
+|  style="text-align: center;"  |    ||  Weapons  ||  Giant's Axe ($25)
+|  style="text-align: center;"  |    ||  Weapons  ||  Cat Claw ($26)
+|  style="text-align: center;"  |    ||  Weapons  ||  Charm Claw ($27)
+|  style="text-align: center;"  |    ||  Weapons  ||  Dragon Claw ($28)
+|  style="text-align: center;"  |    ||  Weapons  ||  Bomb ($29)
+|  style="text-align: center;"  |    ||  Weapons  ||  Jumbo Bomb ($2a)
+|  style="text-align: center;"  |    ||  Weapons  ||  Mega Grenade ($2b)
+|  style="text-align: center;"  |    ||  Weapons  ||  Morning Star ($2c)
+|  style="text-align: center;"  |    ||  Weapons  ||  Bow of Grace ($2d)
+|  style="text-align: center;"  |    ||  Weapons  ||  Ninja Star ($2e)
+-->
+|-  style="background-color: #eaecf0;"
+|  $10b2 - $10b4  ||  ...  ||  ...  ||  ???
+|-
+|  colspan="4" style="background-color: #eaecf0;"  |  
+|-
+|  $10b5 # 0000_0001  ||  bit  ||  Companion  ||  Armor - Mystic Robe ($36)
+|-
+|  $10b5 # 0000_0010  ||  bit  ||  Companion  ||  Armor - Relica Armor ($35)
+|-
+|  $10b5 # 0000_0100  ||  bit  ||  Companion  ||  Armor - Gaia's Armor ($34)
+|-
+|  $10b5 # 0000_1000  ||  bit  ||  Companion  ||  Armor - Noble Armor ($33)
+|-
+|  $10b5 # 0001_0000  ||  bit  ||  Companion  ||  Armor - Steel Armor ($32)
+|-
+|  $10b5 # 0010_0000  ||  bit  ||  Companion  ||  Armor - Apollo Helm ($31)
+|-
+|  $10b5 # 0100_0000  ||  bit  ||  Companion  ||  Armor - Moon Helm ($30)
+|-
+|  $10b5 # 1000_0000  ||  bit  ||  Companion  ||  Armor - Steel Helm ($2f)
+|-
+|  colspan="4" style="background-color: #eaecf0;"  |  
+|-
+|  $10b6 # 0000_0001  ||  bit  ||  Companion  ||  Armor - Magic Ring ($3e)
+|-
+|  $10b6 # 0000_0010  ||  bit  ||  Companion  ||  Armor - Charm ($3d)
+|-
+|  $10b6 # 0000_0100  ||  bit  ||  Companion  ||  Armor - Ether Shield ($3c)
+|-
+|  $10b6 # 0000_1000  ||  bit  ||  Companion  ||  Armor - Aegis Shield ($3b)
+|-
+|  $10b6 # 0001_0000  ||  bit  ||  Companion  ||  Armor - Venus Shield ($3a)
+|-
+|  $10b6 # 0010_0000  ||  bit  ||  Companion  ||  Armor - Steel Shield ($39)
+|-
+|  $10b6 # 0100_0000  ||  bit  ||  Companion  ||  Armor - Black Robe ($38)
+|-
+|  $10b6 # 1000_0000  ||  bit  ||  Companion  ||  Armor - Flame Armor ($37)
+|-
+|  colspan="4" style="background-color: #eaecf0;"  |  
+|-
+|  $10b7 # 0000_0001  ||  bit  ||  Companion  ||  ...
+|-  style="background-color: #eaecf0;"
+|  $10b7 # 0000_0010  ||  bit  ||  Companion  ||  ...
+|-  style="background-color: #eaecf0;"
+|  $10b7 # 0000_0100  ||  bit  ||  Companion  ||  ...
+|-  style="background-color: #eaecf0;"
+|  $10b7 # 0000_1000  ||  bit  ||  Companion  ||  ...
+|-  style="background-color: #eaecf0;"
+|  $10b7 # 0001_0000  ||  bit  ||  Companion  ||  ...
+|-  style="background-color: #eaecf0;"
+|  $10b7 # 0010_0000  ||  bit  ||  Companion  ||  ...
+|-  style="background-color: #eaecf0;"
+|  $10b7 # 0100_0000  ||  bit  ||  Companion  ||  ...
+|-
+|  $10b7 # 1000_0000  ||  bit  ||  Companion  ||  Armor - Cupid Locket ($3f)
+|-
 |  colspan="4" style="background-color: #eaecf0;"  |  <!-- All: $ff -->
 |-
 |  $10b8 # 0000_0001  ||  bit  ||  Companion  ||  Black Magic - Aero
