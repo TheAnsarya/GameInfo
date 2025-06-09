@@ -23,7 +23,9 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 |-
 |  $0e8b  ||  byte  ||  Map  ||  [[Final Fantasy: Mystic Quest/Values#Player_Facing_Directions|Player Facing Direction]]
 |-  style="background-color: #eaecf0;"
-|  $0e8c - $0e9a  ||  ...  ||  ...  ||  ???
+|  $0e8c - $0e96  ||  ...  ||  ...  ||  ???
+|-
+|  $0e97 - $0e9a  ||  4 bytes  ||  Game  ||  Game Play Timer (99:59 - C6 8A 49 01)
 |-
 |  $0e9b  ||  byte  ||  Settings  ||  [[Final Fantasy: Mystic Quest/Values#Message_Speed|Message Speed]]
 |-
@@ -301,6 +303,18 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 |-  style="background-color: #eaecf0;"
 |  $1040 - $10b7  ||  ...  ||  ...  ||  ???
 |-
+
+|  colspan="4" style="background-color: #eaecf0;"  |  
+|-
+|  $10b0  ||  byte  ||  Companion  ||  Weapon Ammo Count (Max: 99)
+|-
+|  $10b1  ||  byte  ||  Companion  ||  [[Final Fantasy: Mystic Quest/Values#Weapons|Weapon ID]]
+|-
+
+
+
+
+
 |  colspan="4" style="background-color: #eaecf0;"  |  <!-- All: $ff -->
 |-
 |  $10b8 # 0000_0001  ||  bit  ||  Companion  ||  Black Magic - Aero

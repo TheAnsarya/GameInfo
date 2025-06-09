@@ -2,6 +2,7 @@
 SnesWorkRam:0E89:Map_Player_X
 SnesWorkRam:0E8A:Map_Player_Y
 SnesWorkRam:0E8B:Map_Player_Direction
+SnesWorkRam:0E97-0E9A:Game_Play_Timer
 SnesWorkRam:0E9B:Settings_Message_Speed
 SnesWorkRam:0E9C-0E9D:Settings_Window_Color
 SnesWorkRam:0E9E-0E9F:Item_Cure_Potions:byte #1 - cure potion's item number ($10)\nbyte #2 - amount
@@ -33,6 +34,8 @@ SnesWorkRam:1031:Player_Weapon_ID
 SnesWorkRam:1032-1033:Player_Flags_Weapons
 SnesWorkRam:1035-1037:Player_Flags_Armor
 SnesWorkRam:1038-1039:Player_Flags_Magic
+SnesWorkRam:10B0:Companion_Weapon_Ammo_Count
+SnesWorkRam:10B1:Companion_Weapon_ID
 SnesWorkRam:10B8-10B9:Companion_Flags_Magic
 SnesRegister:2100:INIDISP:Screen Display Register
 SnesRegister:2101:OBSEL:Object Size and Character Size Register
