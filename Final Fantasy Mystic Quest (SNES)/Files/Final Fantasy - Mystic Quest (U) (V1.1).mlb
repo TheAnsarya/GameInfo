@@ -9,6 +9,8 @@ SnesWorkRam:0E9E-0E9F:Item_Cure_Potions:byte #1 - cure potion's item number ($10
 SnesWorkRam:0EA0-0EA1:Item_Heal_Potions:byte #1 - heal potion's item number ($11)\nbyte #2 - amount
 SnesWorkRam:0EA2-0EA3:Item_Seeds:byte #1 - seed's item number ($12)\nbyte #2 - amount
 SnesWorkRam:0EA4-0EA5:Item_Refreshers:byte #1 - refresher's item number ($13)\nbyte #2 - amount
+SnesWorkRam:0EBD-0EBF:Map_Chests
+SnesWorkRam:0FD4-0FE7:Battlefields_Rounds_Left
 SnesWorkRam:1000-1007:Player_Name
 SnesWorkRam:1010:Player_Level
 SnesWorkRam:1011-1013:Player_Experience:long
@@ -34,6 +36,16 @@ SnesWorkRam:1031:Player_Weapon_ID
 SnesWorkRam:1032-1034:Player_Flags_Weapons
 SnesWorkRam:1035-1037:Player_Flags_Armor
 SnesWorkRam:1038-1039:Player_Flags_Magic
+SnesWorkRam:1080-1087:Companion_Name
+SnesWorkRam:1090:Companion_Level
+SnesWorkRam:1094-1095:Companion_Current_HP
+SnesWorkRam:1096-1097:Companion_Max_HP
+SnesWorkRam:1098:Companion_White_MP_Current
+SnesWorkRam:1099:Companion_Black_MP_Current
+SnesWorkRam:109A:Companion_Wizard_MP_Current
+SnesWorkRam:109B:Companion_White_MP_Max
+SnesWorkRam:109C:Companion_Black_MP_Max
+SnesWorkRam:109D:Companion_Wizard_MP_Max
 SnesWorkRam:10A1:Companion_Status
 SnesWorkRam:10A2:Companion_Current_Attack
 SnesWorkRam:10A3:Companion_Current_Defense
