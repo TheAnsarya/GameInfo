@@ -1,4 +1,4 @@
-
+﻿
 MapNumberAddress = 0x0063
 SubMapNumberAddress = 0x0064
 bgColor = 0x302060FF
@@ -8,8 +8,8 @@ function printInfo()
 	--Draw some rectangles and print some text
 	--emu.drawRectangle(8, 8, 76, 24, bgColor, true, 1)
 	--emu.drawRectangle(8, 8, 76, 24, fgColor, false, 1)
-	emu.drawRectangle(2, 2, 62, 15, bgColor, true, 1)
-	emu.drawRectangle(2, 2, 62, 15, fgColor, false, 1)
+	emu.drawRectangle(6, 2, 62, 15, bgColor, true, 1)
+	emu.drawRectangle(6, 2, 62, 15, fgColor, false, 1)
 	
 	Map = emu.read(MapNumberAddress, emu.memType.nesMemory)
 	SubMap = emu.read(SubMapNumberAddress, emu.memType.nesMemory)

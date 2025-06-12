@@ -26,8 +26,8 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 
 |-  style="background-color: #eaecf0;"
 |  $0e8c - $0e96  ||  ...  ||  ...  ||  ???
-|-
 
+|-
 |  $0e97 - $0e9a  ||  4 bytes  ||  Game  ||  Game Play Timer (99:59 - C6 8A 49 01)
 |-
 |  $0e9b  ||  byte  ||  Settings  ||  [[Final Fantasy: Mystic Quest/Values#Message_Speed|Message Speed]]
@@ -41,8 +41,10 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 |  $0e9e  ||  byte  ||  Items  ||  Heal Potion's [[Final Fantasy: Mystic Quest/Values#Items|Item Number]] ($11)
 |-
 |  $0e9f  ||  byte  ||  Items  ||  Amount of Heal Potions
+
 |-
 |  colspan="4" style="background-color: #eaecf0;"  |  
+
 |-
 |  $0ea0  ||  byte  ||  Items  ||  Seed's [[Final Fantasy: Mystic Quest/Values#Items|Item Number]] ($12)
 |-
@@ -54,33 +56,91 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 
 |-  style="background-color: #eaecf0;"
 |  $0ea4 - $0ebc  ||  ...  ||  ...  ||  ???
-|-
 
-|  colspan="4" style="background-color: #eaecf0;"  |  <!-- All: $00 -->
-|-  style="background-color: #eaecf0;"
-|  $0ebd # 0000_0001  ||  bit  ||  Chests  ||  ...
 |-
-|  $0ebd # 0000_0010  ||  bit  ||  Chests  ||  Foresta - top right house, red chest - Cure Magic Spell (0=>taken, 1=>available)
-|-  style="background-color: #eaecf0;"
-|  $0ebd # 0000_0100  ||  bit  ||  Chests  ||  ...
-|-  style="background-color: #eaecf0;"
-|  $0ebd # 0000_1000  ||  bit  ||  Chests  ||  ...
-|-  style="background-color: #eaecf0;"
-|  $0ebd # 0001_0000  ||  bit  ||  Chests  ||  ...
+|  colspan="4" style="background-color: #eaecf0;"  |  
+<!-- All: $a0 (1 means chest is available, 0 means chest is gone
+1 means battlefield reward has been taken, 0 means it's available) -->
+|-  
+|  $0ebd # 0000_0001  ||  bit  ||  Chests  ||  Bone Dungeon (19, 34, 23) - Steel Shield
+|-
+|  $0ebd # 0000_0010  ||  bit  ||  Chests  ||  Foresta (, , ) - Magic - Cure
+|-
+|  $0ebd # 0000_0100  ||  bit  ||  Chests  ||  Focus Tower (24, 35, 24) - Armor - Venus Shield
+|-
+|  $0ebd # 0000_1000  ||  bit  ||  Chests  ||  Focus Tower (1a, 2c, 30) - Magic - Fire
+|-
+|  $0ebd # 0001_0000  ||  bit  ||  Chests  ||  Focus Tower (24, 28, 2e) - Magic - Blizzard
 |-  style="background-color: #eaecf0;"
 |  $0ebd # 0010_0000  ||  bit  ||  Chests  ||  ...
-|-  style="background-color: #eaecf0;"
-|  $0ebd # 0100_0000  ||  bit  ||  Chests  ||  ...
-|-  style="background-color: #eaecf0;"
-|  $0ebd # 1000_0000  ||  bit  ||  Chests  ||  ...
 |-
+|  $0ebd # 0100_0000  ||  bit  ||  Chests  ||  Focus Tower (1b, 1e, 28) - Magic - Aero
+|-
+|  $0ebd # 1000_0000  ||  bit  ||  Battlefield Reward  ||  Battlefield #20 Reward - 2700 EXP
+|-
+|  colspan="4" style="background-color: #eaecf0;"  |  <!-- All: $00 (1 means chest is available, 0 means chest is gone) -->
+|-
+|  $0ebe # 0000_0001  ||  bit  ||  Chests  ||  Ice Pyramid (21, 34, 1e) - River Coin
+|-
+|  $0ebe # 0000_0010  ||  bit  ||  Chests  ||  Ice Pyramid (21, 36, 1b) - Magic Mirror
+|-
+|  $0ebe # 0000_0100  ||  bit  ||  Chests  ||  Ice Pyramid (21, 38, 08) - Noble Armor
+|-
+|  $0ebe # 0000_1000  ||  bit  ||  Chests  ||  Ice Pyramid (21, 32, 10) - Knight Sword
+|-
+|  $0ebe # 0001_0000  ||  bit  ||  Chests  ||  Falls Basin (20, 0e, 0a) - Magic - Heal
+|-
+|  $0ebe # 0010_0000  ||  bit  ||  Chests  ||  Wintry Cave (1e, 0d, 1b) - Libra Crest
+|-
+|  $0ebe # 0100_0000  ||  bit  ||  Chests  ||  Bone Dungeon (19, 24, 11) - Sand Coin
+|-
+|  $0ebe # 1000_0000  ||  bit  ||  Chests  ||  Bone Dungeon (19, 3b, 17) - Magic - Quake
 
+|-
+|  colspan="4" style="background-color: #eaecf0;"  |  <!-- All: $80 (1 means chest is available, 0 means chest is gone) -->
+|-
+|  $0ebf # 0000_0001  ||  bit  ||  Chests  ||  Giant Tree (2d, 3b, 2b) - Magic Meteor
+|-
+|  $0ebf # 0000_0010  ||  bit  ||  Chests  ||  Alive Forest (2d, 1b, 3a) - Giant's Axe
+|-
+|  $0ebf # 0000_0100  ||  bit  ||  Chests  ||  Lava Dome (2a, 0c, 20) - Sun Coin
+|-
+|  $0ebf # 0000_1000  ||  bit  ||  Chests  ||  Lava Dome (2a, 08, 04) - Moon Helm
+|-
+|  $0ebf # 0001_0000  ||  bit  ||  Chests  ||  Volcano (29, 24, 0e) - Mask
+|-
+|  $0ebf # 0010_0000  ||  bit  ||  Chests  ||  Volcano (29, 12, 0a) - Magic - White
+|-
+|  $0ebf # 0100_0000  ||  bit  ||  Chests  ||  Mine (27, 14, 2e) - Charm Claw
+|-  style="background-color: #eaecf0;"
+|  $0ebf # 1000_0000  ||  bit  ||  Chests  ||  ...
+
+|-
+|  colspan="4" style="background-color: #eaecf0;"  |  <!-- All: $.. (1 means chest is available, 0 means chest is gone) -->
+|-  style="background-color: #eaecf0;"
+|  $0ec0 # 0000_0001  ||  bit  ||  Chests  ||  ...????????????
+|-  style="background-color: #eaecf0;"
+|  $0ec0 # 0000_0010  ||  bit  ||  Chests  ||  ...????????????
+|-
+|  $0ec0 # 0000_0100  ||  bit  ||  Chests  ||  Lava Dome (2a, 2f, 14) - Magic - Life
+|-  style="background-color: #eaecf0;"
+|  $0ec0 # 0000_1000  ||  bit  ||  Chests  ||  ...
+|-  style="background-color: #eaecf0;"
+|  $0ec0 # 0001_0000  ||  bit  ||  Chests  ||  ...
+|-  style="background-color: #eaecf0;"
+|  $0ec0 # 0010_0000  ||  bit  ||  Chests  ||  ...
+|-  style="background-color: #eaecf0;"
+|  $0ec0 # 0100_0000  ||  bit  ||  Chests  ||  ...
+|-  style="background-color: #eaecf0;"
+|  $0ec0 # 1000_0000  ||  bit  ||  Chests  ||  ...
+
+|-
 |  colspan="4" style="background-color: #eaecf0;"  |  
 |-  style="background-color: #eaecf0;"
-|  $0ebe - $0ec5  ||  ...  ||  ...  ||  ???
-|-
+|  $0ec1 - $0ec5  ||  ...  ||  ...  ||  ???
 
-|  colspan="4" style="background-color: #eaecf0;"  |  <!-- All: $00 -->
+|-
+|  colspan="4" style="background-color: #eaecf0;"  |  
 |-
 |  $0ec6 % 0000 0001  ||  bit  ||    ||  
 |-
@@ -97,6 +157,65 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 |  $0ec6 % 0100 0000  ||  bit  ||    ||  
 |-
 |  $0ec6 % 1000 0000  ||  bit  ||  Settings  ||  Life Indicate - 0 => Scale, 1 => Figure
+
+|-
+|  colspan="4" style="background-color: #eaecf0;"  |  
+|-  style="background-color: #eaecf0;"
+|  $0ec7 - $0fd3  ||  ...  ||  ...  ||  ???
+
+|-
+|  $0fd4  ||  byte  ||  Map  ||  Battlefield #01 - Rounds Left (init => $0a)
+|-
+|  $0fd5  ||  byte  ||  Map  ||  Battlefield #02 - Rounds Left (init => $0a)
+|-
+|  $0fd6  ||  byte  ||  Map  ||  Battlefield #03 - Rounds Left (init => $0a)
+|-
+|  $0fd7  ||  byte  ||  Map  ||  Battlefield #04 - Rounds Left (init => $0a)
+|-
+|  $0fd8  ||  byte  ||  Map  ||  Battlefield #05 - Rounds Left (init => $0a)
+|-
+|  $0fd9  ||  byte  ||  Map  ||  Battlefield #06 - Rounds Left (init => $0a)
+|-
+|  $0fda  ||  byte  ||  Map  ||  Battlefield #07 - Rounds Left (init => $0a)
+|-
+|  $0fdb  ||  byte  ||  Map  ||  Battlefield #08 - Rounds Left (init => $0a)
+|-
+|  $0fdc  ||  byte  ||  Map  ||  Battlefield #09 - Rounds Left (init => $0a)
+|-
+|  $0fdd  ||  byte  ||  Map  ||  Battlefield #10 - Rounds Left (init => $0a)
+|-
+|  $0fde  ||  byte  ||  Map  ||  Battlefield #11 - Rounds Left (init => $0a)
+|-
+|  $0fdf  ||  byte  ||  Map  ||  Battlefield #12 - Rounds Left (init => $0a)
+
+|-
+|  colspan="4" style="background-color: #eaecf0;"  |  
+
+|-
+|  $0fe0  ||  byte  ||  Map  ||  Battlefield #13 - Rounds Left (init => $0a)
+|-
+|  $0fe1  ||  byte  ||  Map  ||  Battlefield #14 - Rounds Left (init => $0a)
+|-
+|  $0fe2  ||  byte  ||  Map  ||  Battlefield #15 - Rounds Left (init => $0a)
+|-
+|  $0fe3  ||  byte  ||  Map  ||  Battlefield #16 - Rounds Left (init => $0a)
+|-
+|  $0fe4  ||  byte  ||  Map  ||  Battlefield #17 - Rounds Left (init => $0a)
+|-
+|  $0fe5  ||  byte  ||  Map  ||  Battlefield #18 - Rounds Left (init => $0a)
+|-
+|  $0fe6  ||  byte  ||  Map  ||  Battlefield #19 - Rounds Left (init => $0a)
+|-
+|  $0fe7  ||  byte  ||  Map  ||  Battlefield #20 - Rounds Left (init => $0a)
+
+
+
+
+|-
+|  colspan="4" style="background-color: #eaecf0;"  |  
+|-  style="background-color: #eaecf0;"
+|  $.... - $0fff  ||  ...  ||  ...  ||  ???
+
 |-
 |  colspan="4" style="background-color: #eaecf0;"  |  
 |-
@@ -104,11 +223,11 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 
 |-  style="background-color: #eaecf0;"
 |  $1008 - $100f  ||  8 bytes  ||  Player  ||  ???
-|-
 
-|  $1010  ||  byte  ||  Player  ||  Level (Max: 99)
 |-
-|  $1011 - $1013  ||  long  ||  Player  ||  Experience (Max: 9999999)
+|  $1010  ||  byte  ||  Player  ||  Level (Max: 41)
+|-
+|  $1011 - $1013  ||  long  ||  Player  ||  Experience (Max: $98967F / 9,999,999)
 |-
 |  $1014 - $1015  ||  word  ||  Player  ||  Current HP (Max: $ffff)
 |-
@@ -307,13 +426,74 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 |  $1039 # 0100_0000  ||  bit  ||  Player  ||  Wizard Magic - White
 |-
 |  $1039 # 1000_0000  ||  bit  ||  Player  ||  Wizard Magic - Thunder
+
+|-
+|  colspan="4" style="background-color: #eaecf0;"  |  
+|-  style="background-color: #eaecf0;"
+|  $1040 - $107f  ||  ...  ||  ...  ||  ???
+
+|-
+|  colspan="4" style="background-color: #eaecf0;"  |  
+
+|-
+|  $1080 - $1087  ||  8 bytes  ||  Companion  ||  Name
+|-  style="background-color: #eaecf0;"
+|  $1088 - $108f  ||  8 bytes  ||  Companion  ||  ???
+
+|-
+|  colspan="4" style="background-color: #eaecf0;"  |  
+
+|-
+|  $1090  ||  byte  ||  Companion  ||  Level (Max: 99)
+|-  style="background-color: #eaecf0;"
+|  $1091 - $1093  ||  long  ||  Companion  ||  ???
+|-
+|  $1094 - $1095  ||  word  ||  Companion  ||  Current HP (Max: $ffff)
+|-
+|  $1096 - $1097  ||  word  ||  Companion  ||  Max HP (Max: $ffff)
+|-
+|  $1098  ||  byte  ||  Companion  ||  Current White Magic Points
+|-
+|  $1099  ||  byte  ||  Companion  ||  Current Black Magic Points
+|-
+|  $109a  ||  byte  ||  Companion  ||  Current Wizard Magic Points
+|-
+|  $109b  ||  byte  ||  Companion  ||  Max White Magic Points
+|-
+|  $109c  ||  byte  ||  Companion  ||  Max Black Magic Points
+|-
+|  $109d  ||  byte  ||  Companion  ||  Max Wizard Magic Points
+
+|-
+|  colspan="4" style="background-color: #eaecf0;"  |  
+|-  style="background-color: #eaecf0;"
+|  $109e - $10a0  ||  ...  ||  ...  ||  ???
+
+|-
+|  $10a1  ||  byte  ||  Companion  ||  [[Final Fantasy: Mystic Quest/Values#Status|Status]]
+|-
+|  $10a2  ||  byte  ||  Companion  ||  Current Attack (Max: 99) - Not what is shown in Status menu
+|-
+|  $10a3  ||  byte  ||  Companion  ||  Current Defense (Max: 99)
+|-
+|  $10a4  ||  byte  ||  Companion  ||  Current Speed (Max: 99)
+|-
+|  $10a5  ||  byte  ||  Companion  ||  Current Magic (Max: 99)
+|-
+|  $10a6  ||  byte  ||  Companion  ||  Base Attack (Max: 99)
+|-
+|  $10a7  ||  byte  ||  Companion  ||  Base Defense (Max: 99)
+|-
+|  $10a8  ||  byte  ||  Companion  ||  Base Speed (Max: 99)
+|-
+|  $10a9  ||  byte  ||  Companion  ||  Base Magic (Max: 99)
 |-
 
 |  colspan="4" style="background-color: #eaecf0;"  |  
 |-  style="background-color: #eaecf0;"
-|  $1040 - $10af  ||  ...  ||  ...  ||  ???
-|-
+|  $10ab - $10af  ||  ...  ||  ...  ||  ???
 
+|-
 |  colspan="4" style="background-color: #eaecf0;"  |  
 |-
 |  $10b0  ||  byte  ||  Companion  ||  Weapon Ammo Count (Max: 99)
