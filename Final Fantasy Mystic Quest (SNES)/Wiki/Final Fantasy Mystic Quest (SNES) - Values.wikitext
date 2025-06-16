@@ -261,7 +261,7 @@
 |-
 |  style="text-align: center;"  |  $32  ||  style="text-align: center;"  |  $3c  ||  style="text-align: center;"  |  $24  ||  Mount Gale
 |-
-|  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $...  ||  style="text-align: center;"  |  $...  ||  
+|  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $1e  ||  Pazuzu's Tower
 |-
 |  style="text-align: center;"  |  $34  ||  style="text-align: center;"  |  $...  ||  style="text-align: center;"  |  $...  ||  
 |-

@@ -1,0 +1,83 @@
+
+
+
+00 00 00 00 20 43 00 00 32 22 18 00 00 00 00 00
+00 4F 05 00 00 00 00 6E E7 1B 00 02 00 51 10 63
+11 63 12 61 13 63 FE 6E F0 43 FB 4F 70 6E 15 8A
+FE 3D 42 9C 4F 27 FF 41 00 00 07 FF FF A0 00 80
+78 40 00 20 F2 00 00 08 00 00 00 00 00 00 00 00
+
+
+
+00 00 00 00 59 43 00 00 32 22 18 00 00 00 00 00
+00 4F 05 00 00 00 00 1C 10 1C 00 02 00 51 10 63
+11 62 12 61 13 63 FE 6E F0 43 FB 4F 70 5E 15 8A
+FE 3D 42 9C 4F 27 FF 41 00 00 07 FF FF A0 00 80
+78 40 00 20 F2 00 00 08 00 00 00 00 00 00 00 00
+
+
+
+00 00 00 00 59 43 00 00 30 09 14 03 00 00 00 00
+00 51 05 00 00 00 00 0F 8F 1C 00 02 00 51 10 63
+11 62 12 61 13 63 FE 6E F0 43 FB 4F 70 5E 15 8E
+FE 35 42 9C 4F 27 FF 41 00 00 07 FF FF A0 00 80
+78 40 00 20 F2 00 00 08 00 00 00 00 00 00 00 00
+
+
+Pazuzu's Tower - F1 - Talk to Norma (33,34,14)
+eaf - 8e => 8f
+eaf - 8f => 8d
+
+Pazuzu's Tower - F1 - Talk to Pazuzu, (33,2f-30,07)
+eb0 - fe => 7e
+eb0 - 7e => 3e
+eb0 - 3e => 1e
+eb0 - 1e => 0e
+eb0 - 0e => 06
+eb0 - 06 => 02
+eb0 - 02 => 00
+"I was waiting for you, little beasts!"
+eb0 - 00 => 08
+
+Pazuzu's Tower - F5 - Talk to Pazuzu, (33,0f-10,27)
+eb0 - 08 => 00
+eb0 - 00 => 40
+
+Pazuzu's Tower - F6 - Flip switch, (33,30,2c)
+eb1 - 35 => 75
+
+Pazuzu's Tower - F4 - Flip switch, (33,2b,07)
+eb1 - 75 => f5
+
+Pazuzu's Tower - F2 - Flip switch, (33,15,07)
+eb0 - 40 => 41
+
+Pazuzu's Tower - F2 - Talk to Pazuzu (33,0f-10,07)
+eb0 - 41 => 41 (same)
+eb0 - 41 => 01
+eb0 - 01 => 21
+
+Pazuzu's Tower - F3 - Talk to Pazuzu (33,0f-10,07)
+"Playtime's over!\nPrepare to meet your doom!"
+(Battle Pazuzu)
+ea9 - 43 => 03
+ec4 - f2 => f6
+ec6 - 80 => 90
+(elevator goes up to F7)
+ec6 - 90 => 80
+(wind/green crystal appears)
+ea8 - f0 => f4
+eb0 - 21 => 20
+eb1 - f5 => 75
+eb1 - 75 => 35
+eb0 - 20 => 00
+
+(open chest)
+ea7 - 6e => 6f
+ec0 - 18 => 08
+
+(cast exit)
+ec6 - 80 => 80
+zero out:
+	ec8 to ee7
+	f28 to f47

@@ -54,8 +54,18 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 |-
 |  $0ea3  ||  byte  ||  Items  ||  Amount of Refreshers
 
+
+
+<!-- $0ead, 6e=>5e, Mount Gale defeat Dullahan-->
+
+
+
 |-  style="background-color: #eaecf0;"
 |  $0ea4 - $0ebc  ||  ...  ||  ...  ||  ???
+
+
+
+
 
 |-
 |  colspan="4" style="background-color: #eaecf0;"  |  
@@ -125,14 +135,14 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 |  $0ec0 # 0000_0100  ||  bit  ||  Chests  ||  Lava Dome (2a, 2f, 14) - Magic - Life
 |-  style="background-color: #eaecf0;"
 |  $0ec0 # 0000_1000  ||  bit  ||  Chests  ||  ...
-|-  style="background-color: #eaecf0;"
-|  $0ec0 # 0001_0000  ||  bit  ||  Chests  ||  ...
-|-  style="background-color: #eaecf0;"
-|  $0ec0 # 0010_0000  ||  bit  ||  Chests  ||  ...
-|-  style="background-color: #eaecf0;"
-|  $0ec0 # 0100_0000  ||  bit  ||  Chests  ||  ...
-|-  style="background-color: #eaecf0;"
-|  $0ec0 # 1000_0000  ||  bit  ||  Chests  ||  ...
+|-
+|  $0ec0 # 0001_0000  ||  bit  ||  Chests  ||  Pazuzu's Tower (33, 11, 25) - Sky Coin
+|-
+|  $0ec0 # 0010_0000  ||  bit  ||  Chests  ||  Pazuzu's Tower (33, 2b, 38) - Magic - Flare
+|-
+|  $0ec0 # 0100_0000  ||  bit  ||  Chests  ||  Pazuzu's Tower (33, 3b, 0f) - Excalibur
+|-
+|  $0ec0 # 1000_0000  ||  bit  ||  Chests  ||  Mount Gale (32, 2b, 06) - Apollo Helm
 
 |-
 |  colspan="4" style="background-color: #eaecf0;"  |  
@@ -211,6 +221,7 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 
 
 
+
 |-
 |  colspan="4" style="background-color: #eaecf0;"  |  
 |-  style="background-color: #eaecf0;"
@@ -229,21 +240,21 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 |-
 |  $1011 - $1013  ||  long  ||  Player  ||  Experience (Max: $98967F / 9,999,999)
 |-
-|  $1014 - $1015  ||  word  ||  Player  ||  Current HP (Max: $ffff)
+|  $1014 - $1015  ||  word  ||  Player  ||  Current HP ("FIGURE" Max: $ffff / 65535, "SCALE" display Max: $0668 / 1640)
 |-
-|  $1016 - $1017  ||  word  ||  Player  ||  Max HP (Max: $ffff)
+|  $1016 - $1017  ||  word  ||  Player  ||  Max HP ("FIGURE" Max: $ffff / 65535, "SCALE" display Max: $0668 / 1640)
 |-
-|  $1018  ||  byte  ||  Player  ||  Current White Magic Points
+|  $1018  ||  byte  ||  Player  ||  Current White Magic Points (Max: 99)
 |-
-|  $1019  ||  byte  ||  Player  ||  Current Black Magic Points
+|  $1019  ||  byte  ||  Player  ||  Current Black Magic Points (Max: 99)
 |-
-|  $101a  ||  byte  ||  Player  ||  Current Wizard Magic Points
+|  $101a  ||  byte  ||  Player  ||  Current Wizard Magic Points (Max: 99)
 |-
-|  $101b  ||  byte  ||  Player  ||  Max White Magic Points
+|  $101b  ||  byte  ||  Player  ||  Max White Magic Points (Max: 99)
 |-
-|  $101c  ||  byte  ||  Player  ||  Max Black Magic Points
+|  $101c  ||  byte  ||  Player  ||  Max Black Magic Points (Max: 99)
 |-
-|  $101d  ||  byte  ||  Player  ||  Max Wizard Magic Points
+|  $101d  ||  byte  ||  Player  ||  Max Wizard Magic Points (Max: 99)
 |-  style="background-color: #eaecf0;"
 |  $101e - $1020  ||  long  ||  Player  ||  ???
 |-
