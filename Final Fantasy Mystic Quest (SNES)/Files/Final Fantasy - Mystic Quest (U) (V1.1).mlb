@@ -1,4 +1,6 @@
-﻿SnesWorkRam:0E88:Maps_MapID
+﻿SnesPrgRom:174E:General_Functions__Set_Bit:TSB Sets bit (A) at address in ($0000)
+SnesPrgRom:1754:General_Functions__Clear_Bit:TRB Clears bit (A) at address in ($0000)
+SnesWorkRam:0E88:Maps_MapID
 SnesWorkRam:0E89:Map_Player_X
 SnesWorkRam:0E8A:Map_Player_Y
 SnesWorkRam:0E8B:Map_Player_Direction
@@ -9,7 +11,7 @@ SnesWorkRam:0E9E-0E9F:Item_Cure_Potions:byte #1 - cure potion's item number ($10
 SnesWorkRam:0EA0-0EA1:Item_Heal_Potions:byte #1 - heal potion's item number ($11)\nbyte #2 - amount
 SnesWorkRam:0EA2-0EA3:Item_Seeds:byte #1 - seed's item number ($12)\nbyte #2 - amount
 SnesWorkRam:0EA4-0EA5:Item_Refreshers:byte #1 - refresher's item number ($13)\nbyte #2 - amount
-SnesWorkRam:0EBD-0EBF:Map_Chests
+SnesWorkRam:0EBD-0EC0:Map_Chests
 SnesWorkRam:0FD4-0FE7:Battlefields_Rounds_Left
 SnesWorkRam:1000-1007:Player_Name
 SnesWorkRam:1010:Player_Level
@@ -59,6 +61,18 @@ SnesWorkRam:10B0:Companion_Weapon_Ammo_Count
 SnesWorkRam:10B1:Companion_Weapon_ID
 SnesWorkRam:10B5-10B7:Companion_Flags_Armor
 SnesWorkRam:10B8-10B9:Companion_Flags_Magic
+SnesWorkRam:1100:Battle_Enemy_01_Start
+SnesWorkRam:1114-1115:Battle_Enemy_01_HP
+SnesWorkRam:1116-1117:Battle_Enemy_01_HP_Max
+SnesWorkRam:117F:Battle_Enemy_01_End
+SnesWorkRam:1180:Battle_Enemy_02_Start
+SnesWorkRam:1194-1195:Battle_Enemy_02_HP
+SnesWorkRam:1196-1197:Battle_Enemy_02_HP_Max
+SnesWorkRam:11FF:Battle_Enemy_01_End2
+SnesWorkRam:1200:Battle_Enemy_03_Start
+SnesWorkRam:1214-1215:Battle_Enemy_03_HP
+SnesWorkRam:1216-1217:Battle_Enemy_03_HP_Max
+SnesWorkRam:127F:Battle_Enemy_03_End
 SnesRegister:2100:INIDISP:Screen Display Register
 SnesRegister:2101:OBSEL:Object Size and Character Size Register
 SnesRegister:2102:OAMADDL:OAM Address Registers (Low)

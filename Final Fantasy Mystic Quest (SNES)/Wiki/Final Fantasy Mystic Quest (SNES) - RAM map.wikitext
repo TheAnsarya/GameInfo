@@ -65,8 +65,6 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 
 
 
-
-
 |-
 |  colspan="4" style="background-color: #eaecf0;"  |  
 <!-- All: $a0 (1 means chest is available, 0 means chest is gone
@@ -81,8 +79,8 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 |  $0ebd # 0000_1000  ||  bit  ||  Chests  ||  Focus Tower (1a, 2c, 30) - Magic - Fire
 |-
 |  $0ebd # 0001_0000  ||  bit  ||  Chests  ||  Focus Tower (24, 28, 2e) - Magic - Blizzard
-|-  style="background-color: #eaecf0;"
-|  $0ebd # 0010_0000  ||  bit  ||  Chests  ||  ...
+|-
+|  $0ebd # 0010_0000  ||  bit  ||  Chests  ||  Focus Tower, Doom Castle, B2 (35, 21, 28) - Aegis Shield
 |-
 |  $0ebd # 0100_0000  ||  bit  ||  Chests  ||  Focus Tower (1b, 1e, 28) - Magic - Aero
 |-
@@ -107,7 +105,7 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 |  $0ebe # 1000_0000  ||  bit  ||  Chests  ||  Bone Dungeon (19, 3b, 17) - Magic - Quake
 
 |-
-|  colspan="4" style="background-color: #eaecf0;"  |  <!-- All: $80 (1 means chest is available, 0 means chest is gone) -->
+|  colspan="4" style="background-color: #eaecf0;"  |  <!-- All: $00 (1 means chest is available, 0 means chest is gone) -->
 |-
 |  $0ebf # 0000_0001  ||  bit  ||  Chests  ||  Giant Tree (2d, 3b, 2b) - Magic Meteor
 |-
@@ -122,8 +120,8 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 |  $0ebf # 0010_0000  ||  bit  ||  Chests  ||  Volcano (29, 12, 0a) - Magic - White
 |-
 |  $0ebf # 0100_0000  ||  bit  ||  Chests  ||  Mine (27, 14, 2e) - Charm Claw
-|-  style="background-color: #eaecf0;"
-|  $0ebf # 1000_0000  ||  bit  ||  Chests  ||  ...
+|-
+|  $0ebf # 1000_0000  ||  bit  ||  Chests  ||  Spencer's Place (22, 12, 04) - Mobius Crest
 
 |-
 |  colspan="4" style="background-color: #eaecf0;"  |  <!-- All: $.. (1 means chest is available, 0 means chest is gone) -->
@@ -133,8 +131,8 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 |  $0ec0 # 0000_0010  ||  bit  ||  Chests  ||  ...????????????
 |-
 |  $0ec0 # 0000_0100  ||  bit  ||  Chests  ||  Lava Dome (2a, 2f, 14) - Magic - Life
-|-  style="background-color: #eaecf0;"
-|  $0ec0 # 0000_1000  ||  bit  ||  Chests  ||  ...
+|-
+|  $0ec0 # 0000_1000  ||  bit  ||  Chests  ||  Mac's Ship (34, 0b, 33) - Gaia's Armor
 |-
 |  $0ec0 # 0001_0000  ||  bit  ||  Chests  ||  Pazuzu's Tower (33, 11, 25) - Sky Coin
 |-
@@ -143,6 +141,13 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 |  $0ec0 # 0100_0000  ||  bit  ||  Chests  ||  Pazuzu's Tower (33, 3b, 0f) - Excalibur
 |-
 |  $0ec0 # 1000_0000  ||  bit  ||  Chests  ||  Mount Gale (32, 2b, 06) - Apollo Helm
+
+
+
+
+
+
+
 
 |-
 |  colspan="4" style="background-color: #eaecf0;"  |  

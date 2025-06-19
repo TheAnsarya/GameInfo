@@ -70,4 +70,6 @@ These are the roms as they are listed in [https://www.tosecdev.org/ TOSEC].
 ==External links==
 * [https://www.youtube.com/watch?v=aVboEF9zOqE Dragon Quest III intro video]
 
+=Related Links=
+
 {{Dragon Quest Series}}
