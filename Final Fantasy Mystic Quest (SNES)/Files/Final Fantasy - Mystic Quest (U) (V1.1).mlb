@@ -1,5 +1,39 @@
-﻿SnesPrgRom:174E:General_Functions__Set_Bit:TSB Sets bit (A) at address in ($0000)
+﻿SnesPrgRom:0000:fn_MainEntryPoint:game entry point (everything starts here)\norg $8000
+SnesPrgRom:0247:fn_BasicInit:ROUTINE: Basic init ($008247)\n	Screen off, no interupts, AXY => 8bit\norg $008247
+SnesPrgRom:0504:fn_Copy8ColorsFromD8E4:ROUTINE: Copy 8 Colors from $d8e4 ($008504)\n	copies $8 colors ($10 bytes)\n	data starts at $d8e4\nparameters:\n	A => starting color index\n	X => source address offset\ndirectpage should be $4300\ndma control $4350 should be set\ndma destination $4351 should be set\ndma databank $4354 should be set\n\norg $008504
+SnesPrgRom:0C1B:fn_DecompressAddress:ROUTINE: DecompressAddress ($008c1b)\n	expands the address stored in A.low\nparameters:\n	A => compressed address\nreturns:\n	X => ((bits 3-5 of A) * 2) + (bits 0-2 of A)\n		so values can be: $00 to $77 (with bit 3 always 0)\n	A => decompressed address\n		(((X * 2) + X) * 16) + $8000 (bottom 4 bits always 0)\n		so values can be: $8000 to $9650\nTODO: maybe rename when other address expanders are found or we figure out what this is for\n\norg $008c1b
+SnesPrgRom:0D8A:fn_DecompressAddressUnlessFF:ROUTINE:  ($008d8a)\nparameters:\n	A => compressed address\n		if $ff then return $ffff\nreturns:\n	X => decompressed address\n		$ffff when A is $ff\n\norg $008d8a
+SnesPrgRom:0D8E:fn_DecompressAddressUnlessFF__NotFF
+SnesPrgRom:0D93:fn_DecompressAddressUnlessFF__IsFF
+SnesPrgRom:0DDF:fn_CopyTilesToVRAM:ROUTINE: Copy tiles to VRAM ($008ddf)\n	loops Y times, writing one tile to VRAM each time\n		copies $10 bytes to vram, then copies $8 bytes as the low byte using the same high byte loaded from $00f0-$00f1\n		so if data for last $8 bytes is = $AA $BB $CC... and $00f0 = $5500, then the second part would write as $55AA $55BB $55CC...\nparameters:\n	databank => source address bank\n	X => source address offset\n	Y => number of times to loop\n	ram $00f0 => high byte (which is at $00f1) will be used as high byte for second half of copies\n$2115-$2117 should be set up with vram options and vram destination address\n\norg $008ddf
+SnesPrgRom:0DE8:fn_CopyTilesToVRAM__Loop
+SnesPrgRom:0EC4:fn_LoadTilesAndColors:ROUTINE: LoadTilesAndColors ($008ec4)\n	loads tiles from $078030 ($038030 in file)\n		viewable in 2bpp, 2 dimensional, 32 blocks wide in TileMolester\n		the 8bit address translation causes this output\nTODO: what are we actually loading? overworld? city? title?\n	text and menu outline and stuff and part of title screen\nTODO: finish code/comment cleanup\nTODO: Better label name\n\norg $008ec4
+SnesPrgRom:0F55:fn_LoadTilesAndColors_Loop
+SnesPrgRom:0FB4:fn_Copy4ColorsToCGRAM:ROUTINE: Copy $4 colors to CGRAM ($008fb4)\nparameters:\n	A => the starting color index\n	X => source address offset\ndirect page => $2100, so the writes are to registers\nAXY => 8bit\n\norg $008fb4
+SnesPrgRom:174E:General_Functions__Set_Bit:TSB Sets bit (A) at address in ($0000)
 SnesPrgRom:1754:General_Functions__Clear_Bit:TRB Clears bit (A) at address in ($0000)
+SnesPrgRom:454B:fn_Clear417BytesAtY:ROUTINE: Clear 417/$1A1 bytes at Y ($00c56b)\n	fills $0d*$20 bytes ($1A0) with $00, starting at Y\n	clears one additional byte, so $1A1 or 417 bytes are cleared\n	the extra byte seems like an error\nparameters:\n	Y => destination offset\n\norg $00c54b
+SnesPrgRom:454F:fn_Clear417BytesAtY__Loop
+SnesPrgRom:8337:fn_Routine018337:ROUTINE: Routine018337 ($018337)\n\norg $018337
+SnesPrgRom:8358:fn_Routine018337__Exit
+SnesPrgRom:835B:fn_Routine018337__JumpTable
+SnesPrgRom:836D:fn_LoadFromDataColors839f:ROUTINE: LoadFromDataColors839f ($01836d)\n	DataColors839f => $20 bytes in $4 byte chunks\n		byte 0 => color index\n		bytes 1-2 => source address\n		byte 3 => dma transfer size\nA => 8bit, XY => 16bit\n\norg $01836d
+SnesPrgRom:8372:fn_LoadFromDataColors839f__Loop
+SnesPrgRom:83BF:fn_CopyTilemapFromWRAMToVRAM:ROUTINE: Copy Tilemap from WRAM to VRAM ($0183bf)\n	copy two sections from WRAM to VRAM through DMA (channel 0)\n	each section can have 4 copys\nparameters:\n	@var_1a4c => if $01 then call second copy routine    TODO: verify\n	ram $19fa - $1a12 => parameters for first copy\n	ram $1a13 - $1a2b => parameters for second copy\n\norg $0183bf
+SnesPrgRom:83CB:fn_CopyTilemapFromWRAMToVRAM__Exit
+SnesPrgRom:83CC:fn_CopyTilemapFromWRAMToVRAM_1:ROUTINE: Copy Tilemap from WRAM to VRAM ($0183cc)\n	copy from WRAM to VRAM through DMA (channel 0) up to 4 times options at $19fa\nparameters:\n	$19fa => 1 byte, VMAIN flags, !tilemap_vram_control\n	$19fb-$1a02 => 8 bytes, 2-byte pairs, 4 of them, each is destination address in VRAM, !tilemap_vram_destination_addresses\n	$1a03-$1a0a => 8 bytes, 2-byte pairs, 4 of them, each is source address offset, !tilemap_wram_source_addresses\n	$1a0b-$1a12 => 8 bytes, 2-byte pairs, 4 of them, each is DMA transfer size in bytes, !tilemap_dma_transfer_sizes\nA => 8bit, XY => 16bit\n\norg $0183cc
+SnesPrgRom:83CF:fn_CopyTilemapFromWRAMToVRAM_1__Loop
+SnesPrgRom:8400:fn_CopyTilemapFromWRAMToVRAM_1__Exit
+SnesPrgRom:8401:fn_CopyTilemapFromWRAMToVRAM_2:ROUTINE:  ($018401)\n	copy from WRAM to VRAM through DMA (channel 0) up to 4 times, options at $1a13\nparameters:\n	$1a13 => 1 byte, VMAIN flags, !tilemap_vram_control_2\n	$1a14-$1a1b => 8 bytes, 2-byte pairs, 4 of them, each is destination address in VRAM, !tilemap_vram_destination_addresses_2\n	$1a1c-$1a23 => 8 bytes, 2-byte pairs, 4 of them, each is source address offset, !tilemap_wram_source_addresses_2\n	$1a24-$1a2b => 8 bytes, 2-byte pairs, 4 of them, each is DMA transfer size in bytes, !tilemap_dma_transfer_sizes_2\nA => 8bit, XY => 16bit\n\norg $018401
+SnesPrgRom:8404:fn_CopyTilemapFromWRAMToVRAM_2__Loop
+SnesPrgRom:8435:fn_CopyTilemapFromWRAMToVRAM_2__Exit
+SnesPrgRom:8436:fn_CopyWram7FD274ToVRAM:ROUTINE: Copy Wram 7FD274 To Vram ($018436)\n	Copy $2000 bytes from WRAM $7fd274 to VRAM $0000 through DMA (channel 0)\nA => 8bit, XY => 16bit\n\norg $018436
+SnesPrgRom:845E:fn_Copy64ColorsFrom7FC588:ROUTINE: Copy 64 colors from c588 ($01845e)\n	Copy $40 colors ($80 bytes) from WRAM $7fc588[X] to CGRAM\nparameters:\n	X => source offset\nA => 8bit, XY => 16bit\n\norg $01845e
+SnesPrgRom:8463:fn_Copy64ColorsFrom7FC588__Loop
+SnesPrgRom:8493:fn_CopyWram7F0000ToVram:ROUTINE: Copy wram 7f0000 to vram ($018493)\n	Copy $2e00 bytes from WRAM $7f0000 to VRAM $6900 through DMA (channel 0)\nA => 8bit, XY => 16bit\n\norg $018493
+SnesPrgRom:84B9:CopyWram7F4000ToVram:ROUTINE:  ($0184b9)\n	copy $0c00 bytes from WRAM $7f4000 to VRAM $6100 through DMA (channel 0)\nA => 8bit, XY => 16bit\n\norg $0184b9
+SnesPrgRom:973A:fn_WriteRamFrom195F:ROUTINE: WriteRamFrom195F ($01973a)\n	!ram_195f => destination address\n	!ram_195f+2 => \n	!ram_195f+4 => \n	!ram_195f+6 => \n	!ram_195f+8 => \n\norg $01973a
+SnesPrgRom:9776:fn_WriteRamFrom195F__Exit
 SnesWorkRam:0E88:Maps_MapID
 SnesWorkRam:0E89:Map_Player_X
 SnesWorkRam:0E8A:Map_Player_Y

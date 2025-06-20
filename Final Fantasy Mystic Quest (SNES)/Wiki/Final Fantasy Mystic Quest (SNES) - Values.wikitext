@@ -197,7 +197,7 @@
 |-
 |  style="text-align: center;"  |  $14  ||  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $28  ||  Battlefield #20 - South of Windia
 |-
-|  style="text-align: center;"  |  $15  ||  style="text-align: center;"  |  $...  ||  style="text-align: center;"  |  $...  ||  
+|  style="text-align: center;"  |  $15  ||  style="text-align: center;"  |  $19  ||  style="text-align: center;"  |  $2a  ||  Hill of Destiny
 |-
 |  style="text-align: center;"  |  $16  ||  style="text-align: center;"  |  $0e  ||  style="text-align: center;"  |  $28  ||  Level Forest
 |-
