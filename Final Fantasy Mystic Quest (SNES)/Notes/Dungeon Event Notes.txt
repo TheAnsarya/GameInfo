@@ -347,6 +347,29 @@ ec6 - 98 =(r20)> 98
 (ship's dock)
 
 
+-----------------------------------------------------------------------------------
 
+battlefields (fd4-fe7): 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A 0A
+0A 0A 0A 0A
+events (ea6-ebc): 00 00 83 C3 C4 40 8F A0 FA 22 FE 2A B2 A1 20 08
+00 79 7F FF F8 00 00
+chests (ebd-ec0): 7F DF FF FD
+stuff (ec1-ec5): 92 00 13 02 00
+
+(Hill of Destiny)
+(go up hill, fight Behemoth)
+1100-117f:
+9B B8 BB B8 C0 C2 C7 BB 03 03 03 03 03 03 03 03
+01 FF FF FF 50 00 50 00 FF FF FF FF FF FF FF FF
+80 00 01 19 0C 01 01 19 0C 01 FF FF FF FF 00 80
+FF FF FF FF FF FF FF FF FF FF 00 00 00 00 01 01
+05 01 FF FF 2D 23 0A 0A 00 00 00 00 01 19 0C 01
+FF FF FF 1C 01 FF 00 00 7C FF FF FF FF FF FF FF
+42 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+"Seems I was right!"
+e91 - 00 =((a=400c)0B815F 8D 91 0E STA $0E91)> 0c
+e8d - 00 =(01C078 9C 8D 0E STZ $0E8D)> 00 (x10)
 
 
