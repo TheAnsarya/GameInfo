@@ -34,6 +34,49 @@ SnesPrgRom:8493:fn_CopyWram7F0000ToVram:ROUTINE: Copy wram 7f0000 to vram ($0184
 SnesPrgRom:84B9:CopyWram7F4000ToVram:ROUTINE:  ($0184b9)\n	copy $0c00 bytes from WRAM $7f4000 to VRAM $6100 through DMA (channel 0)\nA => 8bit, XY => 16bit\n\norg $0184b9
 SnesPrgRom:973A:fn_WriteRamFrom195F:ROUTINE: WriteRamFrom195F ($01973a)\n	!ram_195f => destination address\n	!ram_195f+2 => \n	!ram_195f+4 => \n	!ram_195f+6 => \n	!ram_195f+8 => \n\norg $01973a
 SnesPrgRom:9776:fn_WriteRamFrom195F__Exit
+SnesPrgRom:C83A:fn_Routine01c83a
+SnesPrgRom:C852:fn_Routine01c83a__Loop
+SnesPrgRom:C883:fn_Routine01c83a__Exit
+SnesPrgRom:E90D:fn_CopyOneTileToWRAM:ROUTINE: Copy one tile to WRAM ($01:e90d)\n	$18 bytes from source => $20 bytes destination\n	Copy the first $10 bytes, then copy each of the next $8 bytes followed by a zero byte (so AABBCC... becomes AA00BB00CC00...)\nparameters:\n	Y => source address offset\n$2181-$2183 - should be set to wram destination address\n\norg $01e90d
+SnesPrgRom:E916:fn_CopyOneTileToWRAM__Loop
+SnesPrgRom:E922:fn_CopyOneTileToWRAM__Loop_B
+SnesPrgRom:E947:fn_Clear32bytesOfWRAM:ROUTINE: Clear $20 bytes of WRAM ($01:e947)\n\n$2181-$2183 - should be set to wram destination address\n\norg $01e947
+SnesPrgRom:E950:fn_Clear32bytesOfWRAM__Loop
+SnesPrgRom:F84A:fn_Routine01f84a:ROUTINE: fn_Routine01f84a ($01f84a)\nparameters:\n	ram $19f7 =>\nTODO: name this routine!!!\n\norg $01f84a
+SnesPrgRom:F869:fn_Routine01f84a__Loop
+SnesPrgRom:FA0C:fn_TilemapCopySetup:ROUTINE: TilemapCopySetup ($01fa0c)\n	in JumpTableTilemapCopySetup[]\n	source order: $8000,02,80,82\nparameters:\n	!ram_1924 => \n	!ram_1a31 => \n	!ram_1a33 => \nA => 8bit, XY => 16bit\n\norg $01fa0c
+SnesPrgRom:FA0F:fn_TilemapCopySetup__Loop
+SnesPrgRom:FA16::get values for $1a3d[0..7]
+SnesPrgRom:FAAF:fn_TilemapCopySetupVertical:ROUTINE: fn_TilemapCopySetupVertical ($01faaf)\n	in JumpTableTilemapCopySetup[]\n	source order: $8000,80,02,82\nparameters:\nA => 8bit, XY => 16bit\nTODO: name this routine!!!\n\norg $01faaf
+SnesPrgRom:FAB2:fn_TilemapCopySetupVertical__Loop
+SnesPrgRom:FB4A:fn_TilemapCopySetup_2:ROUTINE: fn_TilemapCopySetup_2 ($01fb4a)\n	in JumpTableTilemapCopySetup_2[]\n	source order: $9000,02,80,82\nparameters:\n	\nA => 8bit, XY => 16bit\n\norg $01fb4a
+SnesPrgRom:FB4D:fn_TilemapCopySetup_2__Loop
+SnesPrgRom:FBF0:fn_TilemapCopySetupVertical_2:ROUTINE:  ($01fbf0)\n	in JumpTableTilemapCopySetup_2[]\n	source order: $9000,80,02,82\nparameters:\n	!ram_1a31\n	!ram_1a32\n	!ram_1a33\n	!ram_1925\nA => 8bit, XY => 16bit\n\norg $01fbf0
+SnesPrgRom:FBF3:fn_TilemapCopySetupVertical_2__Loop
+SnesPrgRom:FC8F:fn_Routine01fc8f:ROUTINE: fn_Routine01fc8f ($01fc8f)\nparameters:\n	A => \n	Y => \n	!ram_1924 => \n	@var_1a2f => \n	!ram_1a34 => \n	$7f8000[] => \n	$7fcef4[] => \n	$7ff274[] => \nreturns:\n	ram $1a3d[] => 8 bytes\nA => 8bit, XY => 16bit\nTODO: name this routine\n\norg $01fc8f
+SnesPrgRom:FCC0:fn_Routine01fc8f__Skip
+SnesPrgRom:FCED:fn_Routine01fc8f__Skip_2
+SnesPrgRom:FCF2:fn_Routine01fc8f__Loop
+SnesPrgRom:FD10:fn_Routine01fc8f__Skip_3
+SnesPrgRom:FD25:fn_CalculateTilemapVramDestination:ROUTINE: Calculate tilemap vram destination address ($01fd25)\n	A => !ram_19bf * $40 + ($4000 or $4400 based on bit 4 of !ram_19bd)\nparameters:\n	!ram_19bf => this * $40 is the base address\n	!ram_19bd => bit 4 determines which offset to use\nreturns:\n	A => vram destination address\n\norg $01fd25
+SnesPrgRom:FD3E:fn_CalculateTilemapVramDestination__Skip
+SnesPrgRom:FD51:fn_Routine01fd51:ROUTINE:  ($01fd51)\n	Y.high => (Y.high < 0) ? (Y.high + @var_1925) : (Y.high - @var_1925)\n	Y.low => (Y.low < 0) ? (Y.low + !ram_1924) : (Y.low - !ram_1924)\nparameters:\n	Y => \n	!ram_1924 => \n	@var_1925 => \nreturns:\n	Y => \nTODO: Name this routine!!!!!!!!!\n\norg $01fd51
+SnesPrgRom:FD56:fn_Routine01fd51__SetHigh
+SnesPrgRom:FD59:fn_Routine01fd51__NegativeHigh
+SnesPrgRom:FD5F:fn_Routine01fd51__PositiveHigh
+SnesPrgRom:FD68:fn_Routine01fd51__SetLow
+SnesPrgRom:FD6B:fn_Routine01fd51__NegativeLow
+SnesPrgRom:FD71:fn_Routine01fd51__PositiveLow
+SnesPrgRom:FD7A:fn_Routine01fd51__End
+SnesPrgRom:FD7C:fn_CopyTileDataToWRAM:ROUTINE: Copy tile data to WRAM ($01fd7c)\n	Copies two sets of tiles into WRAM\n		1. destination => $7f:d274-‭$7f:f273‬ in $400 byte chunks\n			when @var_control is negative, the chunk is all $00\n			else, copy tiles from source address offset => $05:8c80 + ($0300 * @var_control)\n		2. destination => $7f:f274-$7f:f373 in $20 byte chunks\n			source address offset => $05:f280 + (@var_control * $10)\n			bottom 3 bits of each source nibble (low then high) becomes output byte\n				so $42 => $02 $04\n				and $CA => $02 $04\n			TODO: are these tiles?\n	(for certain maps, like first map "Level Forest") TODO: what all calls this?\nparameters:\n	ram $191a-1921 => values for @var_control\nA is 8bit\nTODO: better label?\n\norg $01fd7c
+SnesPrgRom:FD8F:fn_CopyTileDataToWRAM__Loop
+SnesPrgRom:FD97:fn_CopyTileDataToWRAM__Loop_A
+SnesPrgRom:FD9F:fn_CopyTileDataToWRAM__CopyTiles
+SnesPrgRom:FDBC:fn_CopyTileDataToWRAM__Loop_B
+SnesPrgRom:FDC3:fn_CopyTileDataToWRAM__LoopEnd
+SnesPrgRom:FDD6:fn_CopyTileDataToWRAM__Loop_C
+SnesPrgRom:FDEB:fn_CopyTileDataToWRAM__Loop_D
+SnesPrgRom:1634E:fn_Write32ZerosToWram:ROUTINE: Write32ZerosToWram ($02e34e)\n$2181-$2183 should be set to wram destination address\n\norg $02e34e
 SnesWorkRam:0E88:Maps_MapID
 SnesWorkRam:0E89:Map_Player_X
 SnesWorkRam:0E8A:Map_Player_Y
