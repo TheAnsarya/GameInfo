@@ -151,6 +151,18 @@ SnesPrgRom:6120A:fn_DecompressCrystalsChunk__Loop
 SnesPrgRom:61247:fn_ReverseWordArrays:ROUTINE: Reverse word arrays ($0c9247)\n	for bytes $7f0000-$7f0eb9 (size = $3c0)\n	reverses the contents of $3c arrays of $8 words ($10 bytes) each\n	each array stays in place, the words inside reverse order\nAXY => 16bit\n\norg $0c9247
 SnesPrgRom:61255:fn_ReverseWordArrays__Loop
 SnesPrgRom:61260:fn_ReverseWordArray:ROUTINE: Reverse word array ($0c9260)\n	reverses the order of an array of $8 words ($10 bytes)\n	the bytes are not reversed, just words\nparameters:\n	X => address offset\nreturns:\n	X => X + $10 (offset is incremented)\nAXY => 16bit\n\norg $0c9260
+SnesPrgRom:6129E:fn_ReverseBitsAndShiftLeftSection:ROUTINE: Reverse bits and shift left section ($0c929e)\n	for bytes $7f0000-$7f0eb9 (size = $3c0)\n	reverse and shift first $10 bytes\n	then reverse and shift $8 more times skipping every other byte\nXY => 16bit\n\norg $0c929e
+SnesPrgRom:612A9:fn_ReverseBitsAndShiftLeftSection__Loop
+SnesPrgRom:612AD:fn_ReverseBitsAndShiftLeftSection__Loop2
+SnesPrgRom:612B6:fn_ReverseBitsAndShiftLeftSection__Loop3
+SnesPrgRom:612C2:fn_ReverseBitsAndShiftLeft:ROUTINE: Reverse bits in byte and shift left ($0c92c2)\n	turns 12345678 into 76543210\n	carry contains 8 at end\nparameters:\n	X => address offset\n\norg $0c92c2
+SnesPrgRom:612EB:fn_ExpandSecondHalfWithZeros:ROUTINE: Expand second half with zeros ($0c92eb)\n	for bytes $7f0000-$7f0eb9 (size = $3c0)\n	for $20 byte chunks, skip first $10\n	then expand next $8 with zeros between bytes\n	so:			----------------abcdefgh--------\n	becomes:	----------------a0b0c0d0e0f0g0h0\nAXY => 16bit\ndirect page => $0000\n\norg $0c92eb
+SnesPrgRom:612F4:fn_ExpandSecondHalfWithZeros__Loop
+SnesPrgRom:61302:fn_ExpandSecondHalfWithZeros__Loop2
+SnesPrgRom:61318:fn_CopyTitleScreenCrystalsCompressed:ROUTINE: CopyTitleScreenCrystalsCompressed ($0c9318)\n	sources =>\n		$04e220-$04e27f - DataTitleScreenCrystals01 ($60 bytes)\n		$04e490-$‭04e51f - DataTitleScreenCrystals02 ($90 bytes)\n		$04fcc0-$0‭4fe9f - DataTitleScreenCrystals03 ($1E0 bytes)\n	destination => $7f0000-$7f0eb9\n		size => $3c0, chunk size => $20, number of chunks => $1e\n	copies $18 bytes then skips $8 bytes each chunk\nAXY => 16bit\ndirect page => $0000\n\norg $0c9318
+SnesPrgRom:61334:fn_CopyTitleScreenCrystalsCompressed__Entry
+SnesPrgRom:61336:fn_CopyTitleScreenCrystalsCompressed__Loop
+SnesPrgRom:61346:d_DataDecompressCrystalsControl01:DATA: DataDecompressCrystalsControl01 ($0c9346)\n	$0c9346-$0c9391 ($4c bytes)\n	in file: $061346-$061391\n\norg $0c9346
 SnesWorkRam:0E88:Maps_MapID
 SnesWorkRam:0E89:Map_Player_X
 SnesWorkRam:0E8A:Map_Player_Y
