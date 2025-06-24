@@ -75,8 +75,9 @@ These are the roms as they are listed in GoodSNES.
 
 =External links=
 
-* [https://gamefaqs.gamespot.com/snes/532476-final-fantasy-mystic-quest/faqs GameFAQs]
-* [https://mikesrpgcenter.com/ffmq/index.html Mike's RPG Center]
+* [https://gamefaqs.gamespot.com/snes/532476-final-fantasy-mystic-quest/faqs GameFAQs] - Guides and FAQs
+* [https://mikesrpgcenter.com/ffmq/index.html Mike's RPG Center] - Maps and tables and info
+* [https://raw.githubusercontent.com/TheAnsarya/GameInfo/refs/heads/main/Final%20Fantasy%20Mystic%20Quest%20(SNES)/Files/Final%20Fantasy%20-%20Mystic%20Quest%20(U)%20(V1.1).mlb Mesen label file] - Lots of RAM and ROM and code labels
 
 =Related Links=
 
