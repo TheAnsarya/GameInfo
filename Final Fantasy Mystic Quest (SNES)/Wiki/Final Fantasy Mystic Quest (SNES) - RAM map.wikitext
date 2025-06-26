@@ -48,7 +48,7 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 |-
 |  $0ea0  ||  byte  ||  Items  ||  Seed's [[Final Fantasy: Mystic Quest/Values#Items|Item Number]] ($12)
 |-
-|  $0ea1  ||  byte  ||  Items  ||  Amount of Seeds
+|  $0ea1  ||  byte  ||  Items  ||  Amount of Seeds (TODO: bsnes diz capture says ae3)
 |-
 |  $0ea2  ||  byte  ||  Items  ||  Refresher's [[Final Fantasy: Mystic Quest/Values#Items|Item Number]] ($13)
 |-
