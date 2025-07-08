@@ -1,0 +1,384 @@
+﻿018337,fn_Routine018337,"ROUTINE: Routine018337 ($018337)\n\norg $018337"
+018358,fn_Routine018337__Exit,
+01835B,fn_Routine018337__JumpTable,
+01836D,fn_LoadFromDataColors839f,"ROUTINE: LoadFromDataColors839f ($01836d)\n	DataColors839f => $20 bytes in $4 byte chunks\n		byte 0 => color index\n		bytes 1-2 => source address\n		byte 3 => dma transfer size\nA => 8bit, XY => 16bit\n\norg $01836d"
+018372,fn_LoadFromDataColors839f__Loop,
+0183BF,fn_CopyTilemapFromWRAMToVRAM,"ROUTINE: Copy Tilemap from WRAM to VRAM ($0183bf)\n	copy two sections from WRAM to VRAM through DMA (channel 0)\n	each section can have 4 copys\nparameters:\n	@var_1a4c => if $01 then call second copy routine    TODO: verify\n	ram $19fa - $1a12 => parameters for first copy\n	ram $1a13 - $1a2b => parameters for second copy\n\norg $0183bf"
+0183CB,fn_CopyTilemapFromWRAMToVRAM__Exit,
+0183CC,fn_CopyTilemapFromWRAMToVRAM_1,"ROUTINE: Copy Tilemap from WRAM to VRAM ($0183cc)\n	copy from WRAM to VRAM through DMA (channel 0) up to 4 times options at $19fa\nparameters:\n	$19fa => 1 byte, VMAIN flags, !tilemap_vram_control\n	$19fb-$1a02 => 8 bytes, 2-byte pairs, 4 of them, each is destination address in VRAM, !tilemap_vram_destination_addresses\n	$1a03-$1a0a => 8 bytes, 2-byte pairs, 4 of them, each is source address offset, !tilemap_wram_source_addresses\n	$1a0b-$1a12 => 8 bytes, 2-byte pairs, 4 of them, each is DMA transfer size in bytes, !tilemap_dma_transfer_sizes\nA => 8bit, XY => 16bit\n\norg $0183cc"
+0183CF,fn_CopyTilemapFromWRAMToVRAM_1__Loop,
+018400,fn_CopyTilemapFromWRAMToVRAM_1__Exit,
+018401,fn_CopyTilemapFromWRAMToVRAM_2,"ROUTINE:  ($018401)\n	copy from WRAM to VRAM through DMA (channel 0) up to 4 times, options at $1a13\nparameters:\n	$1a13 => 1 byte, VMAIN flags, !tilemap_vram_control_2\n	$1a14-$1a1b => 8 bytes, 2-byte pairs, 4 of them, each is destination address in VRAM, !tilemap_vram_destination_addresses_2\n	$1a1c-$1a23 => 8 bytes, 2-byte pairs, 4 of them, each is source address offset, !tilemap_wram_source_addresses_2\n	$1a24-$1a2b => 8 bytes, 2-byte pairs, 4 of them, each is DMA transfer size in bytes, !tilemap_dma_transfer_sizes_2\nA => 8bit, XY => 16bit\n\norg $018401"
+018404,fn_CopyTilemapFromWRAMToVRAM_2__Loop,
+018435,fn_CopyTilemapFromWRAMToVRAM_2__Exit,
+018436,fn_CopyWram7FD274ToVRAM,"ROUTINE: Copy Wram 7FD274 To Vram ($018436)\n	Copy $2000 bytes from WRAM $7fd274 to VRAM $0000 through DMA (channel 0)\nA => 8bit, XY => 16bit\n\norg $018436"
+01845E,fn_Copy64ColorsFrom7FC588,"ROUTINE: Copy 64 colors from c588 ($01845e)\n	Copy $40 colors ($80 bytes) from WRAM $7fc588[X] to CGRAM\nparameters:\n	X => source offset\nA => 8bit, XY => 16bit\n\norg $01845e"
+018463,fn_Copy64ColorsFrom7FC588__Loop,
+018493,fn_CopyWram7F0000ToVram,"ROUTINE: Copy wram 7f0000 to vram ($018493)\n	Copy $2e00 bytes from WRAM $7f0000 to VRAM $6900 through DMA (channel 0)\nA => 8bit, XY => 16bit\n\norg $018493"
+0184B9,CopyWram7F4000ToVram,"ROUTINE:  ($0184b9)\n	copy $0c00 bytes from WRAM $7f4000 to VRAM $6100 through DMA (channel 0)\nA => 8bit, XY => 16bit\n\norg $0184b9"
+002100,INIDISP,"Screen Display Register"
+002101,OBSEL,"Object Size and Character Size Register"
+002102,OAMADDL,"OAM Address Registers (Low)"
+002103,OAMADDH,"OAM Address Registers (High)"
+002104,OAMDATA,"OAM Data Write Register"
+002105,BGMODE,"BG Mode and Character Size Register"
+002106,MOSAIC,"Mosaic Register"
+002107,BG1SC,"BG Tilemap Address Registers (BG1)"
+002108,BG2SC,"BG Tilemap Address Registers (BG2)"
+002109,BG3SC,"BG Tilemap Address Registers (BG3)"
+00210A,BG4SC,"BG Tilemap Address Registers (BG4)"
+00210B,BG12NBA,"BG Character Address Registers (BG1&2)"
+00210C,BG34NBA,"BG Character Address Registers (BG3&4)"
+00210D,BG1HOFS,"BG Scroll Registers (BG1)"
+00210E,BG1VOFS,"BG Scroll Registers (BG1)"
+00210F,BG2HOFS,"BG Scroll Registers (BG2)"
+002110,BG2VOFS,"BG Scroll Registers (BG2)"
+002111,BG3HOFS,"BG Scroll Registers (BG3)"
+002112,BG3VOFS,"BG Scroll Registers (BG3)"
+002113,BG4HOFS,"BG Scroll Registers (BG4)"
+002114,BG4VOFS,"BG Scroll Registers (BG4)"
+002115,VMAIN,"Video Port Control Register"
+002116,VMADDL,"VRAM Address Registers (Low)"
+002117,VMADDH,"VRAM Address Registers (High)"
+002118,VMDATAL,"VRAM Data Write Registers (Low)"
+002119,VMDATAH,"VRAM Data Write Registers (High)"
+00211A,M7SEL,"Mode 7 Settings Register"
+00211B,M7A,"Mode 7 Matrix Registers"
+00211C,M7B,"Mode 7 Matrix Registers"
+00211D,M7C,"Mode 7 Matrix Registers"
+00211E,M7D,"Mode 7 Matrix Registers"
+00211F,M7X,"Mode 7 Matrix Registers"
+002120,M7Y,"Mode 7 Matrix Registers"
+002121,CGADD,"CGRAM Address Register"
+002122,CGDATA,"CGRAM Data Write Register"
+002123,W12SEL,"Window Mask Settings Registers"
+002124,W34SEL,"Window Mask Settings Registers"
+002125,WOBJSEL,"Window Mask Settings Registers"
+002126,WH0,"Window Position Registers (WH0)"
+002127,WH1,"Window Position Registers (WH1)"
+002128,WH2,"Window Position Registers (WH2)"
+002129,WH3,"Window Position Registers (WH3)"
+00212A,WBGLOG,"Window Mask Logic registers (BG)"
+00212B,WOBJLOG,"Window Mask Logic registers (OBJ)"
+00212C,TM,"Screen Destination Registers"
+00212D,TS,"Screen Destination Registers"
+00212E,TMW,"Window Mask Destination Registers"
+00212F,TSW,"Window Mask Destination Registers"
+002130,CGWSEL,"Color Math Registers"
+002131,CGADSUB,"Color Math Registers"
+002132,COLDATA,"Color Math Registers"
+002133,SETINI,"Screen Mode Select Register"
+002134,MPYL,"Multiplication Result Registers"
+002135,MPYM,"Multiplication Result Registers"
+002136,MPYH,"Multiplication Result Registers"
+002137,SLHV,"Software Latch Register"
+002138,OAMDATAREAD,"OAM Data Read Register"
+002139,VMDATALREAD,"VRAM Data Read Register (Low)"
+00213A,VMDATAHREAD,"VRAM Data Read Register (High)"
+00213B,CGDATAREAD,"CGRAM Data Read Register"
+00213C,OPHCT,"Scanline Location Registers (Horizontal)"
+00213D,OPVCT,"Scanline Location Registers (Vertical)"
+00213E,STAT77,"PPU Status Register"
+00213F,STAT78,"PPU Status Register"
+002140,APUIO0,"APU IO Registers"
+002141,APUIO1,"APU IO Registers"
+002142,APUIO2,"APU IO Registers"
+002143,APUIO3,"APU IO Registers"
+002180,WMDATA,"WRAM Data Register"
+002181,WMADDL,"WRAM Address Registers"
+002182,WMADDM,"WRAM Address Registers"
+002183,WMADDH,"WRAM Address Registers"
+004016,JOYSER0,"Old Style Joypad Registers"
+004017,JOYSER1,"Old Style Joypad Registers"
+004200,NMITIMEN,"Interrupt Enable Register"
+004201,WRIO,"IO Port Write Register"
+004202,WRMPYA,"Multiplicand Registers"
+004203,WRMPYB,"Multiplicand Registers"
+004204,WRDIVL,"Divisor & Dividend Registers"
+004205,WRDIVH,"Divisor & Dividend Registers"
+004206,WRDIVB,"Divisor & Dividend Registers"
+004207,HTIMEL,"IRQ Timer Registers (Horizontal - Low)"
+004208,HTIMEH,"IRQ Timer Registers (Horizontal - High)"
+004209,VTIMEL,"IRQ Timer Registers (Vertical - Low)"
+00420A,VTIMEH,"IRQ Timer Registers (Vertical - High)"
+00420B,MDMAEN,"DMA Enable Register"
+00420C,HDMAEN,"HDMA Enable Register"
+00420D,MEMSEL,"ROM Speed Register"
+004210,RDNMI,"Interrupt Flag Registers"
+004211,TIMEUP,"Interrupt Flag Registers"
+004212,HVBJOY,"PPU Status Register"
+004213,RDIO,"IO Port Read Register"
+004214,RDDIVL,"Multiplication Or Divide Result Registers (Low)"
+004215,RDDIVH,"Multiplication Or Divide Result Registers (High)"
+004216,RDMPYL,"Multiplication Or Divide Result Registers (Low)"
+004217,RDMPYH,"Multiplication Or Divide Result Registers (High)"
+004218,JOY1L,"Controller Port Data Registers (Pad 1 - Low)"
+004219,JOY1H,"Controller Port Data Registers (Pad 1 - High)"
+00421A,JOY2L,"Controller Port Data Registers (Pad 2 - Low)"
+00421B,JOY2H,"Controller Port Data Registers (Pad 2 - High)"
+00421C,JOY3L,"Controller Port Data Registers (Pad 3 - Low)"
+00421D,JOY3H,"Controller Port Data Registers (Pad 3 - High)"
+00421E,JOY4L,"Controller Port Data Registers (Pad 4 - Low)"
+00421F,JOY4H,"Controller Port Data Registers (Pad 4 - High)"
+004300,DMAP0,"(H)DMA Control"
+004301,BBAD0,"(H)DMA B-Bus Address"
+004302,A1T0L,"DMA A-Bus Address / HDMA Table Address (Low)"
+004303,A1T0H,"DMA A-Bus Address / HDMA Table Address (High)"
+004304,A1B0,"DMA A-Bus Address / HDMA Table Address (Bank)"
+004305,DAS0L,"DMA Size / HDMA Indirect Address (Low)"
+004306,DAS0H,"DMA Size / HDMA Indirect Address (High)"
+004307,DAS0B,"HDMA Indirect Address (Bank)"
+004308,A2A0L,"HDMA Mid Frame Table Address (Low)"
+004309,A2A0H,"HDMA Mid Frame Table Address (High)"
+00430A,NTLR0,"HDMA Line Counter"
+004310,DMAP1,"(H)DMA Control"
+004311,BBAD1,"(H)DMA B-Bus Address"
+004312,A1T1L,"DMA A-Bus Address / HDMA Table Address (Low)"
+004313,A1T1H,"DMA A-Bus Address / HDMA Table Address (High)"
+004314,A1B1,"DMA A-Bus Address / HDMA Table Address (Bank)"
+004315,DAS1L,"DMA Size / HDMA Indirect Address (Low)"
+004316,DAS1H,"DMA Size / HDMA Indirect Address (High)"
+004317,DAS1B,"HDMA Indirect Address (Bank)"
+004318,A2A1L,"HDMA Mid Frame Table Address (Low)"
+004319,A2A1H,"HDMA Mid Frame Table Address (High)"
+00431A,NTLR1,"HDMA Line Counter"
+004320,DMAP2,"(H)DMA Control"
+004321,BBAD2,"(H)DMA B-Bus Address"
+004322,A1T2L,"DMA A-Bus Address / HDMA Table Address (Low)"
+004323,A1T2H,"DMA A-Bus Address / HDMA Table Address (High)"
+004324,A1B2,"DMA A-Bus Address / HDMA Table Address (Bank)"
+004325,DAS2L,"DMA Size / HDMA Indirect Address (Low)"
+004326,DAS2H,"DMA Size / HDMA Indirect Address (High)"
+004327,DAS2B,"HDMA Indirect Address (Bank)"
+004328,A2A2L,"HDMA Mid Frame Table Address (Low)"
+004329,A2A2H,"HDMA Mid Frame Table Address (High)"
+00432A,NTLR2,"HDMA Line Counter"
+004330,DMAP3,"(H)DMA Control"
+004331,BBAD3,"(H)DMA B-Bus Address"
+004332,A1T3L,"DMA A-Bus Address / HDMA Table Address (Low)"
+004333,A1T3H,"DMA A-Bus Address / HDMA Table Address (High)"
+004334,A1B3,"DMA A-Bus Address / HDMA Table Address (Bank)"
+004335,DAS3L,"DMA Size / HDMA Indirect Address (Low)"
+004336,DAS3H,"DMA Size / HDMA Indirect Address (High)"
+004337,DAS3B,"HDMA Indirect Address (Bank)"
+004338,A2A3L,"HDMA Mid Frame Table Address (Low)"
+004339,A2A3H,"HDMA Mid Frame Table Address (High)"
+00433A,NTLR3,"HDMA Line Counter"
+004340,DMAP4,"(H)DMA Control"
+004341,BBAD4,"(H)DMA B-Bus Address"
+004342,A1T4L,"DMA A-Bus Address / HDMA Table Address (Low)"
+004343,A1T4H,"DMA A-Bus Address / HDMA Table Address (High)"
+004344,A1B4,"DMA A-Bus Address / HDMA Table Address (Bank)"
+004345,DAS4L,"DMA Size / HDMA Indirect Address (Low)"
+004346,DAS4H,"DMA Size / HDMA Indirect Address (High)"
+004347,DAS4B,"HDMA Indirect Address (Bank)"
+004348,A2A4L,"HDMA Mid Frame Table Address (Low)"
+004349,A2A4H,"HDMA Mid Frame Table Address (High)"
+00434A,NTLR4,"HDMA Line Counter"
+004350,DMAP5,"(H)DMA Control"
+004351,BBAD5,"(H)DMA B-Bus Address"
+004352,A1T5L,"DMA A-Bus Address / HDMA Table Address (Low)"
+004353,A1T5H,"DMA A-Bus Address / HDMA Table Address (High)"
+004354,A1B5,"DMA A-Bus Address / HDMA Table Address (Bank)"
+004355,DAS5L,"DMA Size / HDMA Indirect Address (Low)"
+004356,DAS5H,"DMA Size / HDMA Indirect Address (High)"
+004357,DAS5B,"HDMA Indirect Address (Bank)"
+004358,A2A5L,"HDMA Mid Frame Table Address (Low)"
+004359,A2A5H,"HDMA Mid Frame Table Address (High)"
+00435A,NTLR5,"HDMA Line Counter"
+004360,DMAP6,"(H)DMA Control"
+004361,BBAD6,"(H)DMA B-Bus Address"
+004362,A1T6L,"DMA A-Bus Address / HDMA Table Address (Low)"
+004363,A1T6H,"DMA A-Bus Address / HDMA Table Address (High)"
+004364,A1B6,"DMA A-Bus Address / HDMA Table Address (Bank)"
+004365,DAS6L,"DMA Size / HDMA Indirect Address (Low)"
+004366,DAS6H,"DMA Size / HDMA Indirect Address (High)"
+004367,DAS6B,"HDMA Indirect Address (Bank)"
+004368,A2A6L,"HDMA Mid Frame Table Address (Low)"
+004369,A2A6H,"HDMA Mid Frame Table Address (High)"
+00436A,NTLR6,"HDMA Line Counter"
+004370,DMAP7,"(H)DMA Control"
+004371,BBAD7,"(H)DMA B-Bus Address"
+004372,A1T7L,"DMA A-Bus Address / HDMA Table Address (Low)"
+004373,A1T7H,"DMA A-Bus Address / HDMA Table Address (High)"
+004374,A1B7,"DMA A-Bus Address / HDMA Table Address (Bank)"
+004375,DAS7L,"DMA Size / HDMA Indirect Address (Low)"
+004376,DAS7H,"DMA Size / HDMA Indirect Address (High)"
+004377,DAS7B,"HDMA Indirect Address (Bank)"
+004378,A2A7L,"HDMA Mid Frame Table Address (Low)"
+004379,A2A7H,"HDMA Mid Frame Table Address (High)"
+00437A,NTLR7,"HDMA Line Counter
+7E0E88,Maps_MapID
+7E1000,Player_Name
+7E1010,Player_Level
+7E1011,Player_Experience
+7E1014,Player_Current_HP
+7E1016,Player_Max_HP
+7E1018,Player_White_MP_Current
+7E1019,Player_Black_MP_Current
+7E101A,Player_Wizard_MP_Current
+7E101B,Player_White_MP_Max
+7E101C,Player_Black_MP_Max
+7E101D,Player_Wizard_MP_Max
+7E1021,Player_Status
+7E1022,Player_Current_Attack
+7E1023,Player_Current_Defense
+7E1024,Player_Current_Speed
+7E1025,Player_Current_Magic
+7E1026,Player_Base_Attack
+7E1027,Player_Base_Defense
+7E1028,Player_Base_Speed
+7E1029,Player_Base_Magic
+7E1030,Player_Weapon_Ammo_Count
+7E1031,Player_Weapon_ID
+7E1032,Player_Flags_Weapons
+7E1035,Player_Flags_Armor
+7E1038,Player_Flags_Magic
+7E1080,Companion_Name
+7E1090,Companion_Level
+7E1094,Companion_Current_HP
+7E1096,Companion_Max_HP
+7E1098,Companion_White_MP_Current
+7E1099,Companion_Black_MP_Current
+7E109A,Companion_Wizard_MP_Current
+7E109B,Companion_White_MP_Max
+7E109C,Companion_Black_MP_Max
+7E109D,Companion_Wizard_MP_Max
+7E10A1,Companion_Status
+7E10A2,Companion_Current_Attack
+7E10A3,Companion_Current_Defense
+7E10A4,Companion_Current_Speed
+7E10A5,Companion_Current_Magic
+7E10A6,Companion_Base_Attack
+7E10A7,Companion_Base_Defense
+7E10A8,Companion_Base_Speed
+7E10A9,Companion_Base_Magic
+7E10B0,Companion_Weapon_Ammo_Count
+7E10B1,Companion_Weapon_ID
+7E10B5,Companion_Flags_Armor
+7E10B8,Companion_Flags_Magic
+7E1100,Battle_Enemy_01_Start
+7E1114,Battle_Enemy_01_HP
+7E1116,Battle_Enemy_01_HP_Max
+7E117F,Battle_Enemy_01_End
+7E1180,Battle_Enemy_02_Start
+7E1194,Battle_Enemy_02_HP
+7E1196,Battle_Enemy_02_HP_Max
+7E11FF,Battle_Enemy_01_End2
+7E1200,Battle_Enemy_03_Start
+7E1214,Battle_Enemy_03_HP
+7E1216,Battle_Enemy_03_HP_Max
+7E127F,Battle_Enemy_03_End
+7E0E88,Maps_MapID
+7E0E89,Map_Player_X
+7E0E8A,Map_Player_Y
+7E0E8B,Map_Player_Direction
+7E0E97,Game_Play_Timer
+7E0E9B,Settings_Message_Speed
+7E0E9C,Settings_Window_Color
+7E0E9E,Item_Cure_Potions,"byte #1 - cure potion's item number ($10)\nbyte #2 - amount"
+7E0EA0,Item_Heal_Potions,"byte #1 - heal potion's item number ($11)\nbyte #2 - amount"
+7E0EA2,Item_Seeds,"byte #1 - seed's item number ($12)\nbyte #2 - amount"
+7E0EA4,Item_Refreshers,"byte #1 - refresher's item number ($13)\nbyte #2 - amount"
+7E0EBD,Map_Chests
+7E0FD4,Battlefields_Rounds_Left
+0C8000,fn_IdleUntilInterruptD8,"ROUTINE: Idle until interrupt $d8 ($)\n	loops until bit 6 of !flags_d8 is set by an interrupt\n\norg $0c8000"
+0C8009,fn_IdleUntilInterruptD8__Loop
+0C8948,fn_ClearOAM,"ROUTINE: Clear OAM ($0c8948)\n	fills all $220 bytes of OAM from $000c00+ on DMA channel 5\n	sets data bank to $0c\n	A becomes 8bit\nknown uses:\n	fill OAM with $55 - moves all sprites small and to the left of the screen (can't see any sprites)\nXY => 16bit\n\norg $0c8948"
+0C8F14,d_DataTitleScreenWordsControlCodes,"DATA: DataTitleScreenWordsControlCodes ($0c8f14)\n	$0c8f14-$0c8f97 ($84 bytes)\n	in file: $061f14-$061f97\n	describes graphics stored at $0caa4c ($ca0 bytes)\nlayout:\n	dma transfer size => byte[0] * 20\n	dma source offset => byte[1] * 20 += $aa4c\n	increase vram destination address by => byte[2] * 10\nend when byte[2] is $00\n\norg $0c8f14"
+0C90D7,fn_ClearVRAMLowBytes,"ROUTINE: Clear VRAM low bytes with $00 ($0c90d7)\n	fills vram $0000-$3fff ($4000 bytes)\n		even addresses get value $00\n		odd addresses are not touched\ndirectpage => $4300\nA => 8bit, XY => 16bit\n\norg $0c90d7"
+0C90F9,fn_FillOAM2With_01ff,"ROUTINE: Fill OAM2 with $01ff ($0c90f9)\n	fills vram $c000-$dfff ($2000 bytes)\n		with value $01ff ($ff $01) repeated\n	appears to be first half of OAM2 tile memory\n\norg $0c90f9"
+0C9140,d_DataFillValues9140
+0C9142,fn_CopyAndDecompressCrystals,"ROUTINE: Copy and decompress title screen crystals graphics ($0c9142)\n\norg $0c9142"
+0C9161,fn_DecompressCrystals,"ROUTINE: Decompress title screen crystals ($0c9161)\n	decompresses title screen crystals graphics\n	destination of decompressed data => $7f2000-$7f3fff \nAXY => 16bit\n\norg $0c9161"
+0C9197,fn_DecompressCrystals__Section9197
+0C919F,fn_DecompressCrystals__Section919f
+0C91A7,fn_DecompressCrystals__Section91a7
+0C91AF,fn_DecompressCrystals__Section91af
+0C91B7,fn_DecompressCrystals__Section91b7
+0C91BF,fn_DecompressCrystals__Section91bf
+0C91C7,fn_DecompressCrystals__Section91c7
+0C91CD,fn_DecompressCrystals__MainLoop
+0C91DA,fn_DecompressCrystals__Decompress
+0C91E8,fn_DecompressCrystals__SkipAhead
+0C91FE,fn_DecompressCrystals__Exit
+0C91FF,fn_DecompressCrystalsChunk,"ROUTINE: Decompress chunk ($0c91ff)\n	\nparameters:\n	X => source data offset\n		bits 0-4 are 0, so processed in $20 byte chunks\n		for bytes $10-$1f, odd addresses are not used (eg $11 $13 $15...)\n	Y => transformed data offset\n		for bytes $10-$1f, odd addresses are not set (eg $11 $13 $15...)\nAXY => 16bit\n\norg $0c91ff"
+0C920A,fn_DecompressCrystalsChunk__Loop
+0C9247,fn_ReverseWordArrays,"ROUTINE: Reverse word arrays ($0c9247)\n	for bytes $7f0000-$7f0eb9 (size = $3c0)\n	reverses the contents of $3c arrays of $8 words ($10 bytes) each\n	each array stays in place, the words inside reverse order\nAXY => 16bit\n\norg $0c9247"
+0C9255,fn_ReverseWordArrays__Loop
+0C9260,fn_ReverseWordArray,"ROUTINE: Reverse word array ($0c9260)\n	reverses the order of an array of $8 words ($10 bytes)\n	the bytes are not reversed, just words\nparameters:\n	X => address offset\nreturns:\n	X => X + $10 (offset is incremented)\nAXY => 16bit\n\norg $0c9260"
+0C929E,fn_ReverseBitsAndShiftLeftSection,"ROUTINE: Reverse bits and shift left section ($0c929e)\n	for bytes $7f0000-$7f0eb9 (size = $3c0)\n	reverse and shift first $10 bytes\n	then reverse and shift $8 more times skipping every other byte\nXY => 16bit\n\norg $0c929e"
+0C92A9,fn_ReverseBitsAndShiftLeftSection__Loop
+0C92AD,fn_ReverseBitsAndShiftLeftSection__Loop2
+0C92B6,fn_ReverseBitsAndShiftLeftSection__Loop3
+0C92C2,fn_ReverseBitsAndShiftLeft,"ROUTINE: Reverse bits in byte and shift left ($0c92c2)\n	turns 12345678 into 76543210\n	carry contains 8 at end\nparameters:\n	X => address offset\n\norg $0c92c2"
+0C92EB,fn_ExpandSecondHalfWithZeros,"ROUTINE: Expand second half with zeros ($0c92eb)\n	for bytes $7f0000-$7f0eb9 (size = $3c0)\n	for $20 byte chunks, skip first $10\n	then expand next $8 with zeros between bytes\n	so:			----------------abcdefgh--------\n	becomes:	----------------a0b0c0d0e0f0g0h0\nAXY => 16bit\ndirect page => $0000\n\norg $0c92eb"
+0C92F4,fn_ExpandSecondHalfWithZeros__Loop
+0C9302,fn_ExpandSecondHalfWithZeros__Loop2
+0C9318,fn_CopyTitleScreenCrystalsCompressed,"ROUTINE: CopyTitleScreenCrystalsCompressed ($0c9318)\n	sources =>\n		$04e220-$04e27f - DataTitleScreenCrystals01 ($60 bytes)\n		$04e490-$04e51f - DataTitleScreenCrystals02 ($90 bytes)\n		$04fcc0-$04fe9f - DataTitleScreenCrystals03 ($1E0 bytes)\n	destination => $7f0000-$7f0eb9\n		size => $3c0, chunk size => $20, number of chunks => $1e\n	copies $18 bytes then skips $8 bytes each chunk\nAXY => 16bit\ndirect page => $0000\n\norg $0c9318"
+0C9334,fn_CopyTitleScreenCrystalsCompressed__Entry
+0C9336,fn_CopyTitleScreenCrystalsCompressed__Loop
+0C9346,d_DataDecompressCrystalsControl01,"DATA: DataDecompressCrystalsControl01 ($0c9346)\n	$0c9346-$0c9391 ($4c bytes)\n	in file: $061346-$061391\n\norg $0c9346"
+01973A,fn_WriteRamFrom195F,"ROUTINE: WriteRamFrom195F ($01973a)\n	!ram_195f => destination address\n	!ram_195f+2 => \n	!ram_195f+4 => \n	!ram_195f+6 => \n	!ram_195f+8 => \n\norg $01973a"
+019776,fn_WriteRamFrom195F__Exit,
+01C83A,fn_Routine01c83a,
+01C852,fn_Routine01c83a__Loop,
+01C883,fn_Routine01c83a__Exit,
+01E90D,fn_CopyOneTileToWRAM,"ROUTINE: Copy one tile to WRAM ($01:e90d)\n	$18 bytes from source => $20 bytes destination\n	Copy the first $10 bytes, then copy each of the next $8 bytes followed by a zero byte (so AABBCC... becomes AA00BB00CC00...)\nparameters:\n	Y => source address offset\n$2181-$2183 - should be set to wram destination address\n\norg $01e90d"
+01E916,fn_CopyOneTileToWRAM__Loop,
+01E922,fn_CopyOneTileToWRAM__Loop_B,
+01E947,fn_Clear32bytesOfWRAM,"ROUTINE: Clear $20 bytes of WRAM ($01:e947)\n\n$2181-$2183 - should be set to wram destination address\n\norg $01e947"
+01E950,fn_Clear32bytesOfWRAM__Loop,
+01F84A,fn_Routine01f84a,"ROUTINE: fn_Routine01f84a ($01f84a)\nparameters:\n	ram $19f7 =>\nTODO: name this routine!!!\n\norg $01f84a"
+01F869,fn_Routine01f84a__Loop,
+01FA0C,fn_TilemapCopySetup,"ROUTINE: TilemapCopySetup ($01fa0c)\n	in JumpTableTilemapCopySetup[]\n	source order: $8000,02,80,82\nparameters:\n	!ram_1924 => \n	!ram_1a31 => \n	!ram_1a33 => \nA => 8bit, XY => 16bit\n\norg $01fa0c"
+01FA0F,fn_TilemapCopySetup__Loop,
+01FA16,WHAT_01FA16_1a3d,"get values for $1a3d[0..7]"
+01FAAF,fn_TilemapCopySetupVertical,"ROUTINE: fn_TilemapCopySetupVertical ($01faaf)\n	in JumpTableTilemapCopySetup[]\n	source order: $8000,80,02,82\nparameters:\nA => 8bit, XY => 16bit\nTODO: name this routine!!!\n\norg $01faaf"
+01FAB2,fn_TilemapCopySetupVertical__Loop
+01FB4A,fn_TilemapCopySetup_2,"ROUTINE: fn_TilemapCopySetup_2 ($01fb4a)\n	in JumpTableTilemapCopySetup_2[]\n	source order: $9000,02,80,82\nparameters:\n	\nA => 8bit, XY => 16bit\n\norg $01fb4a"
+01FB4D,fn_TilemapCopySetup_2__Loop
+01FBF0,fn_TilemapCopySetupVertical_2,"ROUTINE:  ($01fbf0)\n	in JumpTableTilemapCopySetup_2[]\n	source order: $9000,80,02,82\nparameters:\n	!ram_1a31\n	!ram_1a32\n	!ram_1a33\n	!ram_1925\nA => 8bit, XY => 16bit\n\norg $01fbf0"
+01FBF3,fn_TilemapCopySetupVertical_2__Loop
+01FC8F,fn_Routine01fc8f,"ROUTINE: fn_Routine01fc8f ($01fc8f)\nparameters:\n	A => \n	Y => \n	!ram_1924 => \n	@var_1a2f => \n	!ram_1a34 => \n	$7f8000[] => \n	$7fcef4[] => \n	$7ff274[] => \nreturns:\n	ram $1a3d[] => 8 bytes\nA => 8bit, XY => 16bit\nTODO: name this routine\n\norg $01fc8f"
+01FCC0,fn_Routine01fc8f__Skip
+01FCED,fn_Routine01fc8f__Skip_2
+01FCF2,fn_Routine01fc8f__Loop
+01FD10,fn_Routine01fc8f__Skip_3
+01FD25,fn_CalculateTilemapVramDestination,"ROUTINE: Calculate tilemap vram destination address ($01fd25)\n	A => !ram_19bf * $40 + ($4000 or $4400 based on bit 4 of !ram_19bd)\nparameters:\n	!ram_19bf => this * $40 is the base address\n	!ram_19bd => bit 4 determines which offset to use\nreturns:\n	A => vram destination address\n\norg $01fd25"
+01FD3E,fn_CalculateTilemapVramDestination__Skip
+01FD51,fn_Routine01fd51,"ROUTINE:  ($01fd51)\n	Y.high => (Y.high < 0) ? (Y.high + @var_1925) : (Y.high - @var_1925)\n	Y.low => (Y.low < 0) ? (Y.low + !ram_1924) : (Y.low - !ram_1924)\nparameters:\n	Y => \n	!ram_1924 => \n	@var_1925 => \nreturns:\n	Y => \nTODO: Name this routine!!!!!!!!!\n\norg $01fd51"
+01FD56,fn_Routine01fd51__SetHigh
+01FD59,fn_Routine01fd51__NegativeHigh
+01FD5F,fn_Routine01fd51__PositiveHigh
+01FD68,fn_Routine01fd51__SetLow
+01FD6B,fn_Routine01fd51__NegativeLow
+01FD71,fn_Routine01fd51__PositiveLow
+01FD7A,fn_Routine01fd51__End
+01FD7C,fn_CopyTileDataToWRAM,"ROUTINE: Copy tile data to WRAM ($01fd7c)\n	Copies two sets of tiles into WRAM\n		1. destination => $7f:d274-$7f:f273 in $400 byte chunks\n			when @var_control is negative, the chunk is all $00\n			else, copy tiles from source address offset => $05:8c80 + ($0300 * @var_control)\n		2. destination => $7f:f274-$7f:f373 in $20 byte chunks\n			source address offset => $05:f280 + (@var_control * $10)\n			bottom 3 bits of each source nibble (low then high) becomes output byte\n				so $42 => $02 $04\n				and $CA => $02 $04\n			TODO: are these tiles?\n	(for certain maps, like first map ""Level Forest"") TODO: what all calls this?\nparameters:\n	ram $191a-1921 => values for @var_control\nA is 8bit\nTODO: better label?\n\norg $01fd7c"
+01FD8F,fn_CopyTileDataToWRAM__Loop
+01FD97,fn_CopyTileDataToWRAM__Loop_A
+01FD9F,fn_CopyTileDataToWRAM__CopyTiles
+01FDBC,fn_CopyTileDataToWRAM__Loop_B
+01FDC3,fn_CopyTileDataToWRAM__LoopEnd
+01FDD6,fn_CopyTileDataToWRAM__Loop_C
+01FDEB,fn_CopyTileDataToWRAM__Loop_D
+02E34E,fn_Write32ZerosToWram,"ROUTINE: Write32ZerosToWram ($02e34e)\n$2181-$2183 should be set to wram destination address\n\norg $02e34e"
+04E220,d_g_DataTitleScreenCrystals01,"DATA: Title screen crystals - compressed graphics part 01 ($04e220)\n	$04e220-$04e27f ($60 bytes)\n	in file: $026220-$02627f\n\norg $04e220"
+04E490,d_g_DataTitleScreenCrystals02,"DATA: Title screen crystals - compressed graphics part 02 ($04e490)\n	$04e490-$04e51f ($60 bytes)\n	in file: $026490-$02651f\n\norg $04e490"
+04FCC0,d_g_DataTitleScreenCrystals03,"DATA: Title screen crystals - compressed graphics part 01 ($04fcc0)\n	$04fcc0-$04fe9f ($60 bytes)\n	in file: $027cc0-$027e9f\n\norg $04fcc0"
+0B8CD9,d_DataTilesets,"DATA:  ($0b8cd9)\n		accessed in $a byte chunks\n	bytes $00-$01 are ??? TODO: what are these\n	bytes $2-$9 of each are indexes into tile graphics data (label = DataTiles)\n		values $00-$21 are indexes, $FF means clear section\n	ends up in $1918-$1921\n\norg $0b8cd9"
+008000,fn_MainEntryPoint,"game entry point (everything starts here)\norg $8000"
+008247,fn_BasicInit,"ROUTINE: Basic init ($008247)\n	Screen off, no interupts, AXY => 8bit\norg $008247"
+008504,fn_Copy8ColorsFromD8E4,"ROUTINE: Copy 8 Colors from $d8e4 ($008504)\n	copies $8 colors ($10 bytes)\n	data starts at $d8e4\nparameters:\n	A => starting color index\n	X => source address offset\ndirectpage should be $4300\ndma control $4350 should be set\ndma destination $4351 should be set\ndma databank $4354 should be set\n\norg $008504"
+008C1B,fn_DecompressAddress,"ROUTINE: DecompressAddress ($008c1b)\n	expands the address stored in A.low\nparameters:\n	A => compressed address\nreturns:\n	X => ((bits 3-5 of A) * 2) + (bits 0-2 of A)\n		so values can be: $00 to $77 (with bit 3 always 0)\n	A => decompressed address\n		(((X * 2) + X) * 16) + $8000 (bottom 4 bits always 0)\n		so values can be: $8000 to $9650\nTODO: maybe rename when other address expanders are found or we figure out what this is for\n\norg $008c1b"
+008D8A,fn_DecompressAddressUnlessFF,"ROUTINE:  ($008d8a)\nparameters:\n	A => compressed address\n		if $ff then return $ffff\nreturns:\n	X => decompressed address\n		$ffff when A is $ff\n\norg $008d8a"
+008D8E,fn_DecompressAddressUnlessFF__NotFF
+008D93,fn_DecompressAddressUnlessFF__IsFF
+008DDF,fn_CopyTilesToVRAM,"ROUTINE: Copy tiles to VRAM ($008ddf)\n	loops Y times, writing one tile to VRAM each time\n		copies $10 bytes to vram, then copies $8 bytes as the low byte using the same high byte loaded from $00f0-$00f1\n		so if data for last $8 bytes is = $AA $BB $CC... and $00f0 = $5500, then the second part would write as $55AA $55BB $55CC...\nparameters:\n	databank => source address bank\n	X => source address offset\n	Y => number of times to loop\n	ram $00f0 => high byte (which is at $00f1) will be used as high byte for second half of copies\n$2115-$2117 should be set up with vram options and vram destination address\n\norg $008ddf"
+008DE8,fn_CopyTilesToVRAM__Loop
+008EC4,fn_LoadTilesAndColors,"ROUTINE: LoadTilesAndColors ($008ec4)\n	loads tiles from $078030 ($038030 in file)\n		viewable in 2bpp, 2 dimensional, 32 blocks wide in TileMolester\n		the 8bit address translation causes this output\nTODO: what are we actually loading? overworld? city? title?\n	text and menu outline and stuff and part of title screen\nTODO: finish code/comment cleanup\nTODO: Better label name\n\norg $008ec4"
+008F55,fn_LoadTilesAndColors_Loop
+008FB4,fn_Copy4ColorsToCGRAM,"ROUTINE: Copy $4 colors to CGRAM ($008fb4)\nparameters:\n	A => the starting color index\n	X => source address offset\ndirect page => $2100, so the writes are to registers\nAXY => 8bit\n\norg $008fb4"
+00c54B,fn_Clear417BytesAtY,"ROUTINE: Clear 417/$1A1 bytes at Y ($00c56b)\n	fills $0d*$20 bytes ($1A0) with $00, starting at Y\n	clears one additional byte, so $1A1 or 417 bytes are cleared\n	the extra byte seems like an error\nparameters:\n	Y => destination offset\n\norg $00c54b"
+00c54F,fn_Clear417BytesAtY__Loop
