@@ -1,0 +1,48 @@
+{{Bob
+| bobscreen= The_7th_Saga_Title.png
+| title= The 7th Saga
+| aka= Elnard (JP)
+| developer= Produce
+| publisher= Enix
+| system= SNES
+| japan= {{date|1993|April|23}}
+| usa= {{date|1993|August|3}}
+|tcrf=The 7th Saga
+}}
+{{SNES| title = The 7th Saga
+|image = [[File:The_7th_Saga_Title.png|center]]
+|name = THE 7TH SAGA
+|company = Enix
+|header = None
+|bank = HiROM
+|interleaved = No
+|sram = 8 KiB
+|type = Normal + Batt
+|rom = 1.5 MiB
+|country = USA
+|video = NTSC
+|romspeed = 120ns (FastROM)
+|revision = 1.0
+|checksum = 0x009E
+|crc32 = B3ABDDE6
+|game = The 7th Saga
+}}
+
+==Sub-pages==
+{{namespaces}}
+
+==Miscellaneous==
+* The game multiplies all experience values from the table by 2.2.  This following line, found in the ROM, loads in the multiplier number of 2.203125  (0234 is an 8.8 fixed point number).  So a monster with 0C (12) as its EXP value actually gives you 1A (26) EXP
+
+<pre>$C2/8044 A9 34 02    LDA #$0234</pre>
+
+You can use either the rom patch or the Game Genie code below to make monsters give 3x the normal EXP:
+
+Rom patch:
+<pre>C28046:06</pre>
+Game Genie Code:
+<pre>D160-7F66</pre>
+
+This makes the monsters give you 6.2x as much exp instead of 2.2x exp.
+
+Credit: Dwedit

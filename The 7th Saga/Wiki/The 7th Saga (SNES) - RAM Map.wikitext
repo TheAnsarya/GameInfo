@@ -1,0 +1,20 @@
+{{rammap|game=The 7th Saga}}
+
+==Main==
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Description
+|-
+|  ...  ||  $000000 - $000000  ||  00 bytes  ||  
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $000000  ||  byte   ||  ...
+
+==Sub Pages==
+{{subpage|Items}}
+{{subpage|Monsters}}
+
+
+=Links=
+
+{{Internal Data}}

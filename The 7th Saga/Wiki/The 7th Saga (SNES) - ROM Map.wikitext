@@ -1,0 +1,23 @@
+{{rommap}}
+
+==Main==
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Description
+|-
+|  ...  ||  $000000 - $000000  ||  $00 bytes  ||  
+|-
+|  ...  ||  $000000 - $000000  ||  $00 bytes  ||  
+|-
+|}
+
+==Sub Pages==
+{{subpage|Items}}
+{{subpage|Monsters}}
+
+==Links==
+None currently.
+
+
+{{Internal Data}}
