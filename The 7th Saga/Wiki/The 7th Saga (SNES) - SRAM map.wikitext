@@ -1,69 +1,126 @@
-{{rammap}}
+{{srammap}}
 
-==Main==
+==SRAM==
 
-{| class="wikitable sortable"
+The are 9 save slots of $38c bytes each for a total of $1fec bytes.
+
+{| class="wikitable"
 |-
-!  Category  !!  Address  !!  Size  !!  Description
+!  Address  !!  Description
+|-
+|  $0000 - $038b  ||  Save Slot 1A
+|-
+|  $038c - $0717  ||  Save Slot 2A
+|-
+|  $0718 - $0aa3  ||  Save Slot 3A
+|-
+|  $0aa4 - $0e2f  ||  Save Slot 1B
+|-
+|  $0e30 - $11bb  ||  Save Slot 2B
+|-
+|  $11bc - $154a  ||  Save Slot 3B
+|-
+|  $154b - $18d3  ||  Save Slot 1C
+|-
+|  $18d4 - $1c5f  ||  Save Slot 2C
+|-
+|  $1c60 - $1feb  ||  Save Slot 3C
 |-  style="background-color: #eaecf0;"
-|  ...  ||  $7e0000 - $7e1dbf  ||  $1dc0 bytes  ||  ...
+|  $1fec - $1fff  ||  $14 unknown bytes
+|}
+
+===Save Slot Structure===
+
+Save Slot Structure, $0x38c bytes.
+
+{{ Todo | flesh out missing values }}
+
+{| class="wikitable"
+!  Offset  !!  Length  !!  Description
+|-
+|  $000 - $005  ||  6  ||  "FF0!" + checksum (2 bytes)
+|-
+|  $006 - $055  ||  $50  ||  Character 1
+|-
+|  $056 - $0a5  ||  $50  ||  Character 2
+|-
+|  $0a6 - $0a8  ||  3  ||  Gold (Max: 9999999)
 |-  style="background-color: #eaecf0;"
-|  ...  ||  $7e1dc0  ||  byte  ||  ...
+|  $0a9 - $0aa  ||  2  ||  ???
+|-
+|  $0ab  ||  1  ||  Player X
+|-
+|  $0ac  ||  1  ||  Player Y
+|-
+|  $0ad  ||  1  ||  Player Facing
 |-  style="background-color: #eaecf0;"
-|  Stats  ||  $7e1dc1  ||  byte  ||  Character Selection, 00=human(warrior), 01=dwarf, 02=elf, 03=alien, 04=tetujin, 05=human(mage), 06=demon [TODO: move these to Values page]
+|  $0ae - $0b2  ||  5  ||  ???
 |-
-|  Stats  ||  $7e1dc2 - $7e1dc3  ||  word  ||  Players's level
-|-
-|  Stats  ||  $7e1dc4 - $7e1dc5  ||  word  ||  Players's current HP
-|-
-|  Stats  ||  $7e1dc6 - $7e1dc7  ||  word  ||  Players's max HP
-|-
-|  Stats  ||  $7e1dc8 - $7e1dc9  ||  word  ||  Players's current MP
-|-
-|  Stats  ||  $7e1dca - $7e1dcb  ||  word  ||  Players's max MP
-|-
-|  Stats  ||  $7e1dcc - $7e1dcd  ||  word  ||  Players's Power (verify?)
-|-
-|  ...  ||  $7e1dce  ||  byte  ||  Players's Magic (verify?)
-|-
-|  ...  ||  $7e1dcf  ||  byte  ||  Players's Speed (verify?)
-|-
-|  ...  ||  $7e1dd0  ||  byte  ||  ...
-|-
-|  ...  ||  $7e1dd1  ||  byte  ||  Players's weapon slot? (verify?)
-|-
-|  ...  ||  $7e1dd2  ||  byte  ||  Players's armor/clock/robe slot? (verify?)
-|-
-|  ...  ||  $7e1dd3  ||  byte  ||  Players's accessory/helmet/shield slot? (verify?)
-|-
-|  ...  ||  $7e1dd4  ||  byte  ||  ...
-
-|-
-|  Stats  ||  $7e1dd5 - $7e1dd7  ||  long  ||  Experience (min = 0, max = 6,777,215)
-|-
-|  Stats  ||  $7e1dd8 - $7e1dda  ||  long  ||  Gold (min = 0, max = 6,777,215)
-
-
-|-
-|  ...  ||  $7e4c00  ||  256 bytes  ||  Inventory slots, byte 1 = item type, byte 2 = quantity (verify?)
-|-
-|  ...  ||  $7e4e00  ||  $20 bytes  ||  Game Flags (verify?)
-|-
-|  ...  ||  $7e4e20  ||  $20 bytes  ||  Treasure Flags (verify?)
+|  $0b3  ||  1  ||  Map ID
 |-  style="background-color: #eaecf0;"
-|  ...  ||  $7e4e40 - $7fffff  ||  $1b1c0 bytes  ||  ...
+|  $0b4 - $0b8  ||  5  ||  ???
+|-
+|  $0b9 - $0bb  ||  3  ||  Play Time (0xSSMMHH)
+|-  style="background-color: #eaecf0;"
+|  $0bc - $0c0 ||  5  ||  ???
+|-
+|  $0c1  ||  1  ||  # of cures
+|-  style="background-color: #eaecf0;"
+|  $0c2 - $38b  ||  $2ca  ||  ???
+|}
 
-==Sub Pages==
-{{subpage|Items}}
-{{subpage|Monsters}}
+===Character Data Structure===
 
+Character Data Structure, $50 bytes.
 
-=Links=
+{{ Todo | flesh out missing values }}
+
+{| class="wikitable"
+!  Offset  !!  Length  !!  Description
+|-
+|  $00 - $07  ||  8  ||  Name
+|-  style="background-color: #eaecf0;"
+|  $08 - $0f  ||  8  ||  ???
+|-
+|  $10  ||  1  ||  Level (Max: 99)
+|-
+|  $11 - $13  ||  3  ||  Experience (Max: 9999999)
+|-
+|  $14 - $15  ||  2  ||  Current HP (Max: $ffff)
+|-
+|  $16 - $17  ||  2  ||  Max HP (Max: $ffff)
+|-  style="background-color: #eaecf0;"
+|  $18 - $20  ||  9  ||  ???
+|-
+|  $21  ||  1  ||  Status
+|-
+|  $22  ||  1  ||  Current Attack  (Max: 99)
+|-
+|  $23  ||  1  ||  Current Defense (Max: 99)
+|-
+|  $24  ||  1  ||  Current Speed   (Max: 99)
+|-
+|  $25  ||  1  ||  Current Magic   (Max: 99)
+|-
+|  $26  ||  1  ||  Base Attack  (Max: 99)
+|-
+|  $27  ||  1  ||  Base Defense (Max: 99)
+|-
+|  $28  ||  1  ||  Base Speed   (Max: 99)
+|-
+|  $29  ||  1  ||  Base Magic   (Max: 99)
+|-
+|  $30  ||  1  ||  Weapon Count
+|-
+|  $31  ||  1  ||  Weapon ID
+|-  style="background-color: #eaecf0;"
+|  $32 - $4f  ||  $1e  ||  ???
+|}
+
+=Related=
+<br>
 
 {{Internal Data}}
-
-
-
 
 
 
