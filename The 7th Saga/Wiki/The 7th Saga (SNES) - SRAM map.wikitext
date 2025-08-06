@@ -1,211 +1,95 @@
 {{srammap}}
 
-==SRAM==
+=SRAM=
 
-The are 9 save slots of $38c bytes each for a total of $1fec bytes.
+There are 3 save slots of $500 bytes each, which are mirrored in a second set of 3 slots.
+
+Default for $0002 - $10ff is 0xff.  Default for $1100 - $1fff is $00.  Unused areas generally follow this pattern.
+
+==Primary Structure==
 
 {| class="wikitable"
 |-
-!  Address  !!  Description
+!  Address  !!  Size  !!  Description
 |-
-|  $0000 - $038b  ||  Save Slot 1A
-|-
-|  $038c - $0717  ||  Save Slot 2A
-|-
-|  $0718 - $0aa3  ||  Save Slot 3A
-|-
-|  $0aa4 - $0e2f  ||  Save Slot 1B
-|-
-|  $0e30 - $11bb  ||  Save Slot 2B
-|-
-|  $11bc - $154a  ||  Save Slot 3B
-|-
-|  $154b - $18d3  ||  Save Slot 1C
-|-
-|  $18d4 - $1c5f  ||  Save Slot 2C
-|-
-|  $1c60 - $1feb  ||  Save Slot 3C
+|  $0000 - $0001  ||  word  ||  Checksum using 16-bit XOR
 |-  style="background-color: #eaecf0;"
-|  $1fec - $1fff  ||  $14 unknown bytes
+|  $0002 - $01ff  ||  $1fe bytes  ||  Unused
+|-
+|  $0200 - $06ff  ||  $500 bytes  ||  Save Slot 1A
+|-
+|  $0700 - $0bff  ||  $500 bytes  ||  Save Slot 2A
+|-
+|  $0c00 - $10ff  ||  $500 bytes  ||  Save Slot 3A
+|-
+|  $1100 - $15ff  ||  $500 bytes  ||  Save Slot 1B
+|-
+|  $1600 - $1aff  ||  $500 bytes  ||  Save Slot 2B
+|-
+|  $1b00 - $1fff  ||  $500 bytes  ||  Save Slot 3B
 |}
 
-===Save Slot Structure===
+==Save Slot Structure==
 
-Save Slot Structure, $0x38c bytes.
+Save Slot Structure, $500 bytes.
 
-{{ Todo | flesh out missing values }}
+{{ Todo | flesh out missing values, verify existing values, fix address ranges, etc. }}
 
 {| class="wikitable"
 !  Offset  !!  Length  !!  Description
 |-
-|  $000 - $005  ||  6  ||  "FF0!" + checksum (2 bytes)
+|  $005  ||  byte  ||  Number of times saved?
 |-
-|  $006 - $055  ||  $50  ||  Character 1
+|  $021  ||  byte  ||  Players's Character Selection, 00=human(warrior), 01=dwarf, 02=elf, 03=alien, 04=tetujin, 05=human(mage), 06=demon [TODO: move these to Values page]
 |-
-|  $056 - $0a5  ||  $50  ||  Character 2
+|  $022 - $023  ||  word  ||  Players's level
 |-
-|  $0a6 - $0a8  ||  3  ||  Gold (Max: 9999999)
+|  $024 - $025  ||  word  ||  Player's current HP
+|-
+|  $026 - $027  ||  word  ||  Player's max HP
+|-
+|  $028 - $029  ||  word  ||  Player's current MP
+|-
+|  $02a - $02b  ||  word  ||  Player's max MP
+|-
+|  $02c - $02d  ||  word  ||  Player's Power
+|-
+|  $02e - $02f  ||  word  ||  Player's Magic
+|-
+|  $030  ||  byte  ||  Player's Speed
+|-
+|  $031  ||  byte  ||  Player's ?????
+|-
+|  $032  ||  byte  ||  Player's weapon slot
+|-
+|  $033  ||  byte  ||  Player's armor/clock/robe slot
+|-
+|  $034  ||  byte  ||  Player's accessory/helmet/shield slot
+|-
+|  $035 - $037  ||  long  ||  Player's XP plus 30
+|-
+|  $038 - $03a  ||  long  ||  Player's Gold plus 27
 |-  style="background-color: #eaecf0;"
-|  $0a9 - $0aa  ||  2  ||  ???
+|  $03b - $04f  ||  $100 bytes  ||  Unused (00)?
 |-
-|  $0ab  ||  1  ||  Player X
+|  $050 - $07f  ||  $30 bytes  ||  Companion's data (identical to Player's data)
 |-
-|  $0ac  ||  1  ||  Player Y
-|-
-|  $0ad  ||  1  ||  Player Facing
+|  $082 - $17d  ||  $7e bytes  ||  Inventory slots, byte 1 = item type, byte 2 = quantity
 |-  style="background-color: #eaecf0;"
-|  $0ae - $0b2  ||  5  ||  ???
-|-
-|  $0b3  ||  1  ||  Map ID
+|  $17e - $17f  ||  word  ||  Inventory ending, unknown purpose, 00 00
 |-  style="background-color: #eaecf0;"
-|  $0b4 - $0b8  ||  5  ||  ???
+|  $180 - $27f  ||  $100 bytes  ||  Unused (00)?
 |-
-|  $0b9 - $0bb  ||  3  ||  Play Time (0xSSMMHH)
+|  $280 - $2fd  ||  $7e bytes  ||  Quest flags?
 |-  style="background-color: #eaecf0;"
-|  $0bc - $0c0 ||  5  ||  ???
+|  $2fe - $3fd  ||  $15 bytes  ||  Unused (00)?
 |-
-|  $0c1  ||  1  ||  # of cures
+|  $3fe - $3ff  ||  word  ||  Checksum using 16-bit XOR
 |-  style="background-color: #eaecf0;"
-|  $0c2 - $38b  ||  $2ca  ||  ???
-|}
-
-===Character Data Structure===
-
-Character Data Structure, $50 bytes.
-
-{{ Todo | flesh out missing values }}
-
-{| class="wikitable"
-!  Offset  !!  Length  !!  Description
-|-
-|  $00 - $07  ||  8  ||  Name
-|-  style="background-color: #eaecf0;"
-|  $08 - $0f  ||  8  ||  ???
-|-
-|  $10  ||  1  ||  Level (Max: 99)
-|-
-|  $11 - $13  ||  3  ||  Experience (Max: 9999999)
-|-
-|  $14 - $15  ||  2  ||  Current HP (Max: $ffff)
-|-
-|  $16 - $17  ||  2  ||  Max HP (Max: $ffff)
-|-  style="background-color: #eaecf0;"
-|  $18 - $20  ||  9  ||  ???
-|-
-|  $21  ||  1  ||  Status
-|-
-|  $22  ||  1  ||  Current Attack  (Max: 99)
-|-
-|  $23  ||  1  ||  Current Defense (Max: 99)
-|-
-|  $24  ||  1  ||  Current Speed   (Max: 99)
-|-
-|  $25  ||  1  ||  Current Magic   (Max: 99)
-|-
-|  $26  ||  1  ||  Base Attack  (Max: 99)
-|-
-|  $27  ||  1  ||  Base Defense (Max: 99)
-|-
-|  $28  ||  1  ||  Base Speed   (Max: 99)
-|-
-|  $29  ||  1  ||  Base Magic   (Max: 99)
-|-
-|  $30  ||  1  ||  Weapon Count
-|-
-|  $31  ||  1  ||  Weapon ID
-|-  style="background-color: #eaecf0;"
-|  $32 - $4f  ||  $1e  ||  ???
+|  $400 - $4ff  ||  $100 bytes  ||  Unused (00)?
 |}
 
 =Related=
 <br>
-
-{{Internal Data}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-== Main ==
-<pre>
-	Offset   |  Len  | Description
-	_________|_______|_____________________
-	0x7E1DC1 |     1 | 1st PC's ?????
-	0x7E1DC2 |     2 | 1st PC's level
-	0x7E1DC4 |     2 | 1st PC's cur HP
-	0x7E1DC6 |     2 | 1st PC's max HP
-	0x7E1DC8 |     2 | 1st PC's cur MP
-	0x7E1DCA |     2 | 1st PC's max HP
-	0x7E1DCC |     2 | 1st PC's Power
-	0x7E1DCE |     1 | 1st PC's Magic
-	0x7E1DCF |     1 | 1st PC's Speed
-	0x7E1DD0 |     1 | 1st PC's ?????
-	0x7E1DD1 |     1 | 1st PC's weapon slot?
-	0x7E1DD2 |     1 | 1st PC's armor/clock/robe slot?
-	0x7E1DD3 |     1 | 1st PC's accessory/helmet/shield slot?
-	0x7E1DD4 |     1 | 1st PC's ?????
-	0x7E4C00 |     1 | Inventory slot 1 item type
-	0x7E4C01 |     1 | Inventory slot 1 item quantity
-	0x7E4C02 |   254 | Inventory slots 2-128
-	0x7E4E00 |    32 | Game Flags
-	0x7E4E20 |    32 | Treasure Flags
-
-==SRAM==
-<pre>
-File Structure (0x2000 = 8192 bytes)
-
-	Offset | Len  | Description
-	_______|______|_____________________
-	0x0000 |    2 | Checksum using 16-bit XOR
-	0x0002 |  510 | Unused
-	0x0200 | 1280 | Save Slot 1
-	0x0700 | 1280 | Save Slot 2
-	0x0C00 | 1280 | Save Slot 1
-	0x1100 | 1280 | Save Slot 1 (Identical contents to 0x200-0x6FF)
-	0x1600 | 1280 | Save Slot 2 (Identical contents to 0x700-0xBFF)
-	0x1B00 | 1280 | Save Slot 3 (Identical contents to 0xC00-0x10FF)
-
-Save Slot Structure (0x500 = 1280 bytes)
-
-	Offset | Len | Description
-	_______|_____|______________________
-	0x0005 |   1 | Number of times saved?
-	0x0021 |   1 | 1st PC's ?????
-	0x0022 |   2 | 1st PC's level
-	0x0024 |   2 | 1st PC's cur HP
-	0x0026 |   2 | 1st PC's max HP
-	0x0028 |   2 | 1st PC's cur MP
-	0x002A |   2 | 1st PC's max MP
-	0x002C |   2 | 1st PC's Power
-	0x002E |   2 | 1st PC's Magic
-	0x0030 |   1 | 1st PC's Speed
-	0x0031 |   1 | 1st PC's ?????
-	0x0032 |   1 | 1st PC's weapon slot
-	0x0033 |   1 | 1st PC's armor/clock/robe slot
-	0x0034 |   1 | 1st PC's accessory/helmet/shield slot
-	0x0035 |   3 | 1st PC's XP plus 30
-	0x0038 |   3 | 1st PC's Gold plus 27
-	0x0050 |   1 | 2nd PC's ?????
-	0x0051 |  47 | 2nd PC's data (identical to 1st PC)
-	0x0080 |   1 | Inventory slot 1 item type
-	0x0081 |   1 | Inventory slot 1 item quantity
-	0x0082 | 254 | Inventory slots 2 through 128
-	0x0180 | 256 | Unused(00)?
-	0x0280 | 126 | Quest flags?
-	0x03FE |   2 | Checksum using 16-bit XOR
-
-Default for 0x0002-0x10FF is 0xFF.  Default for 0x1100-1FFF is 0x00.  Unused areas generally follow this pattern.
-</pre>
 
 {{Internal Data}}

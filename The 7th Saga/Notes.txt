@@ -19,7 +19,6 @@ Table? Name table, not all numbers are there
 
 19=/
 
-
 20=A
 21=B
 22=C
@@ -98,7 +97,7 @@ c0={long right slash}
 e4={TM part 1}
 e5={TM part 2}
 
-f7={end of string/end of name}
+f7={end of string}
 
 
 

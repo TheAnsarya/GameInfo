@@ -1,6 +1,6 @@
 {{rammap}}
 
-==Main==
+=Main=
 
 {| class="wikitable sortable"
 |-
@@ -12,29 +12,29 @@
 |-  style="background-color: #eaecf0;"
 |  Stats  ||  $7e1dc1  ||  byte  ||  Character Selection, 00=human(warrior), 01=dwarf, 02=elf, 03=alien, 04=tetujin, 05=human(mage), 06=demon [TODO: move these to Values page]
 |-
-|  Stats  ||  $7e1dc2 - $7e1dc3  ||  word  ||  Players's level
+|  Stats  ||  $7e1dc2 - $7e1dc3  ||  word  ||  Player's level
 |-
-|  Stats  ||  $7e1dc4 - $7e1dc5  ||  word  ||  Players's current HP
+|  Stats  ||  $7e1dc4 - $7e1dc5  ||  word  ||  Player's current HP
 |-
-|  Stats  ||  $7e1dc6 - $7e1dc7  ||  word  ||  Players's max HP
+|  Stats  ||  $7e1dc6 - $7e1dc7  ||  word  ||  Player's max HP
 |-
-|  Stats  ||  $7e1dc8 - $7e1dc9  ||  word  ||  Players's current MP
+|  Stats  ||  $7e1dc8 - $7e1dc9  ||  word  ||  Player's current MP
 |-
-|  Stats  ||  $7e1dca - $7e1dcb  ||  word  ||  Players's max MP
-|-
-|  Stats  ||  $7e1dcc - $7e1dcd  ||  word  ||  Players's Power (verify?)
-|-
-|  ...  ||  $7e1dce  ||  byte  ||  Players's Magic (verify?)
-|-
-|  ...  ||  $7e1dcf  ||  byte  ||  Players's Speed (verify?)
-|-
+|  Stats  ||  $7e1dca - $7e1dcb  ||  word  ||  Player's max MP
+|-  style="background-color: rgba(202, 109, 109, 0.5);"
+|  Stats  ||  $7e1dcc - $7e1dcd  ||  word  ||  Player's Power (verify?)
+|-  style="background-color: rgba(202, 109, 109, 0.5);"
+|  ...  ||  $7e1dce  ||  byte  ||  Player's Magic (verify?)
+|-  style="background-color: rgba(202, 109, 109, 0.5);"
+|  ...  ||  $7e1dcf  ||  byte  ||  Player's Speed (verify?)
+|-  style="background-color: #eaecf0;"
 |  ...  ||  $7e1dd0  ||  byte  ||  ...
-|-
-|  ...  ||  $7e1dd1  ||  byte  ||  Players's weapon slot? (verify?)
-|-
-|  ...  ||  $7e1dd2  ||  byte  ||  Players's armor/clock/robe slot? (verify?)
-|-
-|  ...  ||  $7e1dd3  ||  byte  ||  Players's accessory/helmet/shield slot? (verify?)
+|-  style="background-color: rgba(202, 109, 109, 0.5);"
+|  ...  ||  $7e1dd1  ||  byte  ||  Player's weapon slot? (verify?)
+|-  style="background-color: rgba(202, 109, 109, 0.5);"
+|  ...  ||  $7e1dd2  ||  byte  ||  Player's armor/clock/robe slot? (verify?)
+|-  style="background-color: rgba(202, 109, 109, 0.5);"
+|  ...  ||  $7e1dd3  ||  byte  ||  Player's accessory/helmet/shield slot? (verify?)
 |-
 |  ...  ||  $7e1dd4  ||  byte  ||  ...
 
@@ -45,110 +45,20 @@
 
 
 |-
-|  ...  ||  $7e4c00  ||  256 bytes  ||  Inventory slots, byte 1 = item type, byte 2 = quantity (verify?)
-|-
-|  ...  ||  $7e4e00  ||  $20 bytes  ||  Game Flags (verify?)
-|-
-|  ...  ||  $7e4e20  ||  $20 bytes  ||  Treasure Flags (verify?)
+|  ...  ||  $7e4c00 - $7e4cfd  ||  254 bytes  ||  Inventory slots, byte 1 = item type, byte 2 = quantity
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e4cfe - $7e4cff  ||  word  ||  Inventory ending, unknown purpose, 00 00
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e4d00 - $7e4dff  ||  256 bytes  ||  ...
+|-  style="background-color: rgba(202, 109, 109, 0.5);"
+|  ...  ||  $7e4e00 - $7e4e1f  ||  $20 bytes  ||  Game Flags (verify?)
+|-  style="background-color: rgba(202, 109, 109, 0.5);"
+|  ...  ||  $7e4e20 - $7e4e3f  ||  $20 bytes  ||  Treasure Flags (verify?)
 |-  style="background-color: #eaecf0;"
 |  ...  ||  $7e4e40 - $7fffff  ||  $1b1c0 bytes  ||  ...
+|}
 
-==Sub Pages==
-{{subpage|Items}}
-{{subpage|Monsters}}
-
-
-=Links=
-
-{{Internal Data}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-== Main ==
-<pre>
-	Offset   |  Len  | Description
-	_________|_______|_____________________
-	0x7E1DC1 |     1 | 1st PC's ?????
-	0x7E1DC2 |     2 | 1st PC's level
-	0x7E1DC4 |     2 | 1st PC's cur HP
-	0x7E1DC6 |     2 | 1st PC's max HP
-	0x7E1DC8 |     2 | 1st PC's cur MP
-	0x7E1DCA |     2 | 1st PC's max HP
-	0x7E1DCC |     2 | 1st PC's Power
-	0x7E1DCE |     1 | 1st PC's Magic
-	0x7E1DCF |     1 | 1st PC's Speed
-	0x7E1DD0 |     1 | 1st PC's ?????
-	0x7E1DD1 |     1 | 1st PC's weapon slot?
-	0x7E1DD2 |     1 | 1st PC's armor/clock/robe slot?
-	0x7E1DD3 |     1 | 1st PC's accessory/helmet/shield slot?
-	0x7E1DD4 |     1 | 1st PC's ?????
-	0x7E4C00 |     1 | Inventory slot 1 item type
-	0x7E4C01 |     1 | Inventory slot 1 item quantity
-	0x7E4C02 |   254 | Inventory slots 2-128
-	0x7E4E00 |    32 | Game Flags
-	0x7E4E20 |    32 | Treasure Flags
-
-==SRAM==
-<pre>
-File Structure (0x2000 = 8192 bytes)
-
-	Offset | Len  | Description
-	_______|______|_____________________
-	0x0000 |    2 | Checksum using 16-bit XOR
-	0x0002 |  510 | Unused
-	0x0200 | 1280 | Save Slot 1
-	0x0700 | 1280 | Save Slot 2
-	0x0C00 | 1280 | Save Slot 1
-	0x1100 | 1280 | Save Slot 1 (Identical contents to 0x200-0x6FF)
-	0x1600 | 1280 | Save Slot 2 (Identical contents to 0x700-0xBFF)
-	0x1B00 | 1280 | Save Slot 3 (Identical contents to 0xC00-0x10FF)
-
-Save Slot Structure (0x500 = 1280 bytes)
-
-	Offset | Len | Description
-	_______|_____|______________________
-	0x0005 |   1 | Number of times saved?
-	0x0021 |   1 | 1st PC's ?????
-	0x0022 |   2 | 1st PC's level
-	0x0024 |   2 | 1st PC's cur HP
-	0x0026 |   2 | 1st PC's max HP
-	0x0028 |   2 | 1st PC's cur MP
-	0x002A |   2 | 1st PC's max MP
-	0x002C |   2 | 1st PC's Power
-	0x002E |   2 | 1st PC's Magic
-	0x0030 |   1 | 1st PC's Speed
-	0x0031 |   1 | 1st PC's ?????
-	0x0032 |   1 | 1st PC's weapon slot
-	0x0033 |   1 | 1st PC's armor/clock/robe slot
-	0x0034 |   1 | 1st PC's accessory/helmet/shield slot
-	0x0035 |   3 | 1st PC's XP plus 30
-	0x0038 |   3 | 1st PC's Gold plus 27
-	0x0050 |   1 | 2nd PC's ?????
-	0x0051 |  47 | 2nd PC's data (identical to 1st PC)
-	0x0080 |   1 | Inventory slot 1 item type
-	0x0081 |   1 | Inventory slot 1 item quantity
-	0x0082 | 254 | Inventory slots 2 through 128
-	0x0180 | 256 | Unused(00)?
-	0x0280 | 126 | Quest flags?
-	0x03FE |   2 | Checksum using 16-bit XOR
-
-Default for 0x0002-0x10FF is 0xFF.  Default for 0x1100-1FFF is 0x00.  Unused areas generally follow this pattern.
-</pre>
+=Related=
+<br>
 
 {{Internal Data}}

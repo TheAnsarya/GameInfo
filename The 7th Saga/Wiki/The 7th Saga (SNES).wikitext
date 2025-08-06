@@ -1,7 +1,7 @@
 {{Bob
 | bobscreen= The_7th_Saga_Title.png
 | title= The 7th Saga
-| aka= Elnard (JP)
+| aka= Elnard (JP), エルナード (JP)
 | developer= Produce
 | publisher= Enix
 | system= SNES
@@ -28,21 +28,32 @@
 |game = The 7th Saga
 }}
 
-==Sub-pages==
+=Sub-pages=
+
 {{namespaces}}
+{{subpage|SRAM map}}
+{{subpage|Values}}
 
-==Miscellaneous==
-* The game multiplies all experience values from the table by 2.2.  This following line, found in the ROM, loads in the multiplier number of 2.203125  (0234 is an 8.8 fixed point number).  So a monster with 0C (12) as its EXP value actually gives you 1A (26) EXP
+=Known Dumps=
 
-<pre>$C2/8044 A9 34 02    LDA #$0234</pre>
+These are the roms as they are listed in [https://no-intro.org/ No-Intro].
 
-You can use either the rom patch or the Game Genie code below to make monsters give 3x the normal EXP:
+{| class="wikitable"
+|-
+!  Description  !!  Size  !!  Hashes
+|-
+|  7th Saga, The (USA)  ||  1572864<br />$180000  ||  '''CRC32''': b3abdde6<br />'''MD5''': a42772a0beaf71f9256a8e1998bfe6e3<br />'''SHA1''': 8d2b8aea636a2239805c99744bf48c0b4df8d96e<br />'''SHA256''': 4dd631433c867ba920997fd3add2c838b62e70e06e0ef55c53884b8b68b0dd27
+|-
+|  Elnard (Japan)  ||  1572864<br />$180000  ||  '''CRC32''': 14320873<br />'''MD5''': 7b5534c75a19f851b0942f1132ca8d78<br />'''SHA1''': 75ef2ada1e7df8e9c3ae7f61b032bf54ff8e798a<br />'''SHA256''': 150034bfbe79794ade75f17f748f3caa7591a8ea6885afa4dacd2e244be3f0bd
+|}
 
-Rom patch:
-<pre>C28046:06</pre>
-Game Genie Code:
-<pre>D160-7F66</pre>
+=External Links=
 
-This makes the monsters give you 6.2x as much exp instead of 2.2x exp.
+* [https://en.wikipedia.org/wiki/The_7th_Saga Wikipedia]
+* [https://gamefaqs.gamespot.com/snes/563501-the-7th-saga/faqs GameFAQs]
+* [https://mikesrpgcenter.com/7thsaga/index.html Mike's RPG Center]
 
-Credit: Dwedit
+=Related=
+<br>
+
+{{Internal Data}}
