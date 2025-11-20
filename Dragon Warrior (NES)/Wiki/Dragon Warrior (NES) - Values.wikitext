@@ -10,46 +10,144 @@
 !  Category  !!  Value  !!  Description
 |-
 |  rowspan="7"  |  Weapons
-|  $20  ||  Bamboo Pole
+|  style="text-align: center;"  |  $20  ||  Bamboo Pole
 |-
-|  $40  ||  Club
+|  style="text-align: center;"  |  $40  ||  Club
 |-
-|  $60  ||  Copper Sword
+|  style="text-align: center;"  |  $60  ||  Copper Sword
 |-
-|  $80  ||  Hand Axe
+|  style="text-align: center;"  |  $80  ||  Hand Axe
 |-
-|  $a0  ||  Broad Sword
+|  style="text-align: center;"  |  $a0  ||  Broad Sword
 |-
-|  $c0  ||  Flame Sword
+|  style="text-align: center;"  |  $c0  ||  Flame Sword
 |-
-|  $e0  ||  Erdrick's Sword
+|  style="text-align: center;"  |  $e0  ||  Erdrick's Sword
 |-
 |  rowspan="7"  |  Armor
-|  $04  ||  Clothes
+|  style="text-align: center;"  |  $04  ||  Clothes
 |-
-|  $08  ||  Leather Armor
+|  style="text-align: center;"  |  $08  ||  Leather Armor
 |-
-|  $0c  ||  Chain Mail
+|  style="text-align: center;"  |  $0c  ||  Chain Mail
 |-
-|  $10  ||  Half Plate Armor
+|  style="text-align: center;"  |  $10  ||  Half Plate Armor
 |-
-|  $14  ||  Full Plate Armor
+|  style="text-align: center;"  |  $14  ||  Full Plate Armor
 |-
-|  $18  ||  Magic Armor
+|  style="text-align: center;"  |  $18  ||  Magic Armor
 |-
-|  $1c  ||  Erdrick's Armor
+|  style="text-align: center;"  |  $1c  ||  Erdrick's Armor
 |-
 |  rowspan="3"  |  Shields
-|  $01  ||  Small Shield
+|  style="text-align: center;"  |  $01  ||  Small Shield
 |-
-|  $02  ||  Large Shield
+|  style="text-align: center;"  |  $02  ||  Large Shield
 |-
-|  $03  ||  Silver Shield
+|  style="text-align: center;"  |  $03  ||  Silver Shield
 |}
 
 ==Items==
 
-{{ Todo | Add items }}
+{| class="wikitable sortable"
+|-
+!  Item ID  !!  Category  !!  Name  !!  Buy Price  !!  Sell Price  !!  Bonus  !!  Notes
+|-
+|  style="text-align: center;"  |  $00  ||  Consumable  ||  Herb  ||  24 GP  ||  12 GP  ||  30-40 HP  ||  Restores health
+|-
+|  style="text-align: center;"  |  $01  ||  Tool  ||  Magic Key  ||  53 GP  ||  26 GP  ||  -  ||  Opens locked doors
+|-
+|  style="text-align: center;"  |  $02  ||  Tool  ||  Torch  ||  8 GP  ||  4 GP  ||  -  ||  Illuminates dark areas
+|-
+|  style="text-align: center;"  |  $03  ||  Tool  ||  Fairy Water  ||  38 GP  ||  19 GP  ||  -  ||  Repels weak monsters
+|-
+|  style="text-align: center;"  |  $04  ||  Tool  ||  Wings  ||  70 GP  ||  35 GP  ||  -  ||  Return to Tantegel Castle
+|-
+|  style="text-align: center;"  |  $05  ||  Tool  ||  Dragon's Scale  ||  20 GP  ||  10 GP  ||  -  ||  Quest item for Flame Sword
+|-
+|  style="text-align: center;"  |  $06  ||  Quest Item  ||  Fairy Flute  ||  -  ||  -  ||  -  ||  Puts Golem to sleep
+|-
+|  style="text-align: center;"  |  $07  ||  Quest Item  ||  Fighter's Ring  ||  30 GP  ||  15 GP  ||  +2 ATK  ||  Attack power bonus
+|-
+|  style="text-align: center;"  |  $08  ||  Quest Item  ||  Erdrick's Token  ||  -  ||  -  ||  -  ||  Proof of heritage
+|-
+|  style="text-align: center;"  |  $09  ||  Quest Item  ||  Gwaelin's Love  ||  -  ||  -  ||  -  ||  Love token from princess
+|-
+|  style="text-align: center;"  |  $0A  ||  Cursed  ||  Cursed Belt  ||  360 GP  ||  180 GP  ||  -2 AGI  ||  Reduces agility
+|-
+|  style="text-align: center;"  |  $0B  ||  Quest Item  ||  Silver Harp  ||  -  ||  -  ||  -  ||  Puts enemies to sleep
+|-
+|  style="text-align: center;"  |  $0C  ||  Cursed  ||  Death Necklace  ||  2400 GP  ||  1200 GP  ||  -  ||  Causes death when used
+|-
+|  style="text-align: center;"  |  $0D  ||  Quest Item  ||  Stones of Sunlight  ||  -  ||  -  ||  -  ||  Component for Rainbow Drop
+|-
+|  style="text-align: center;"  |  $0E  ||  Quest Item  ||  Staff of Rain  ||  -  ||  -  ||  -  ||  Component for Rainbow Drop
+|-
+|  style="text-align: center;"  |  $0F  ||  Quest Item  ||  Rainbow Drop  ||  -  ||  -  ||  -  ||  Creates bridge to Charlock
+|}
+
+=Equipment Values=
+
+==Weapons==
+
+{| class="wikitable sortable"
+|-
+!  Equipment Byte  !!  Item ID  !!  Name  !!  Attack Bonus  !!  Buy Price  !!  Notes
+|-
+|  style="text-align: center;"  |  $00  ||  style="text-align: center;"  |  $00  ||  None  ||  +0  ||  -  ||  No weapon equipped
+|-
+|  style="text-align: center;"  |  $20  ||  style="text-align: center;"  |  $01  ||  Bamboo Pole  ||  +2  ||  10 GP  ||  Starting weapon
+|-
+|  style="text-align: center;"  |  $40  ||  style="text-align: center;"  |  $02  ||  Club  ||  +4  ||  60 GP  ||  Basic upgraded weapon
+|-
+|  style="text-align: center;"  |  $60  ||  style="text-align: center;"  |  $03  ||  Copper Sword  ||  +10  ||  180 GP  ||  First real sword
+|-
+|  style="text-align: center;"  |  $80  ||  style="text-align: center;"  |  $04  ||  Hand Axe  ||  +15  ||  560 GP  ||  Good mid-game weapon
+|-
+|  style="text-align: center;"  |  $A0  ||  style="text-align: center;"  |  $05  ||  Broad Sword  ||  +20  ||  1500 GP  ||  Powerful late-game sword
+|-
+|  style="text-align: center;"  |  $C0  ||  style="text-align: center;"  |  $06  ||  Flame Sword  ||  +28  ||  9800 GP  ||  Requires Dragon's Scale
+|-
+|  style="text-align: center;"  |  $E0  ||  style="text-align: center;"  |  $07  ||  Erdrick's Sword  ||  +40  ||  -  ||  Legendary weapon, quest item
+|}
+
+==Armor==
+
+{| class="wikitable sortable"
+|-
+!  Equipment Byte  !!  Item ID  !!  Name  !!  Defense Bonus  !!  Buy Price  !!  Notes  
+|-
+|  style="text-align: center;"  |  $00  ||  style="text-align: center;"  |  $00  ||  None  ||  +0  ||  -  ||  No armor equipped
+|-
+|  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $01  ||  Clothes  ||  +2  ||  20 GP  ||  Starting armor
+|-
+|  style="text-align: center;"  |  $08  ||  style="text-align: center;"  |  $02  ||  Leather Armor  ||  +4  ||  70 GP  ||  Basic protection
+|-
+|  style="text-align: center;"  |  $0C  ||  style="text-align: center;"  |  $03  ||  Chain Mail  ||  +10  ||  300 GP  ||  Good early armor
+|-
+|  style="text-align: center;"  |  $10  ||  style="text-align: center;"  |  $04  ||  Half Plate  ||  +16  ||  1000 GP  ||  Strong mid-game armor
+|-
+|  style="text-align: center;"  |  $14  ||  style="text-align: center;"  |  $05  ||  Full Plate  ||  +24  ||  3000 GP  ||  Heavy protection
+|-
+|  style="text-align: center;"  |  $18  ||  style="text-align: center;"  |  $06  ||  Magic Armor  ||  +24  ||  7700 GP  ||  Curse resistance
+|-
+|  style="text-align: center;"  |  $1C  ||  style="text-align: center;"  |  $07  ||  Erdrick's Armor  ||  +28  ||  -  ||  Ultimate armor, quest reward
+|}
+
+==Shields==
+
+{| class="wikitable sortable"
+|-
+!  Equipment Byte  !!  Item ID  !!  Name  !!  Defense Bonus  !!  Buy Price  !!  Special Properties
+|-
+|  style="text-align: center;"  |  $00  ||  style="text-align: center;"  |  $00  ||  None  ||  +0  ||  -  ||  No shield equipped
+|-
+|  style="text-align: center;"  |  $01  ||  style="text-align: center;"  |  $01  ||  Small Shield  ||  +4  ||  90 GP  ||  Basic protection
+|-
+|  style="text-align: center;"  |  $02  ||  style="text-align: center;"  |  $02  ||  Large Shield  ||  +10  ||  800 GP  ||  Good defense
+|-
+|  style="text-align: center;"  |  $03  ||  style="text-align: center;"  |  $03  ||  Silver Shield  ||  +20  ||  14800 GP  ||  Blocks breath attacks
+|}
 
 ==Monsters==
 
@@ -57,91 +155,211 @@
 |-
 !  Value  !!  Description
 |-
-|  $00  ||  Slime
+|  style="text-align: center;"  |  $00  ||  Slime
 |-
-|  $01  ||  Red Slime
+|  style="text-align: center;"  |  $01  ||  Red Slime
 |-
-|  $02  ||  Drakee
+|  style="text-align: center;"  |  $02  ||  Drakee
 |-
-|  $03  ||  Ghost
+|  style="text-align: center;"  |  $03  ||  Ghost
 |-
-|  $04  ||  Magician
+|  style="text-align: center;"  |  $04  ||  Magician
 |-
-|  $05  ||  Magidrakee
+|  style="text-align: center;"  |  $05  ||  Magidrakee
 |-
-|  $06  ||  Scorpion
+|  style="text-align: center;"  |  $06  ||  Scorpion
 |-
-|  $07  ||  Druin
+|  style="text-align: center;"  |  $07  ||  Druin
 |-
-|  $08  ||  Poltergeist
+|  style="text-align: center;"  |  $08  ||  Poltergeist
 |-
-|  $09  ||  Droll
+|  style="text-align: center;"  |  $09  ||  Droll
 |-
-|  $0a  ||  Drakeema
+|  style="text-align: center;"  |  $0a  ||  Drakeema
 |-
-|  $0b  ||  Skeleton
+|  style="text-align: center;"  |  $0b  ||  Skeleton
 |-
-|  $0c  ||  Warlock
+|  style="text-align: center;"  |  $0c  ||  Warlock
 |-
-|  $0d  ||  Metal Scorpion
+|  style="text-align: center;"  |  $0d  ||  Metal Scorpion
 |-
-|  $0e  ||  Wolf
+|  style="text-align: center;"  |  $0e  ||  Wolf
 |-
-|  $0f  ||  Wraith
+|  style="text-align: center;"  |  $0f  ||  Wraith
 |-
-|  $10  ||  Metal Slime
+|  style="text-align: center;"  |  $10  ||  Metal Slime
 |-
-|  $11  ||  Specter
+|  style="text-align: center;"  |  $11  ||  Specter
 |-
-|  $12  ||  Worflord
+|  style="text-align: center;"  |  $12  ||  Worflord
 |-
-|  $13  ||  Druinlord
+|  style="text-align: center;"  |  $13  ||  Druinlord
 |-
-|  $14  ||  Drollmagi
+|  style="text-align: center;"  |  $14  ||  Drollmagi
 |-
-|  $15  ||  Wyvern
+|  style="text-align: center;"  |  $15  ||  Wyvern
 |-
-|  $16  ||  Rogue Scorpion
+|  style="text-align: center;"  |  $16  ||  Rogue Scorpion
 |-
-|  $17  ||  Wraith Knight
+|  style="text-align: center;"  |  $17  ||  Wraith Knight
 |-
-|  $18  ||  Golem
+|  style="text-align: center;"  |  $18  ||  Golem
 |-
-|  $19  ||  Goldman
+|  style="text-align: center;"  |  $19  ||  Goldman
 |-
-|  $1a  ||  Knight
+|  style="text-align: center;"  |  $1a  ||  Knight
 |-
-|  $1b  ||  Magiwyvern
+|  style="text-align: center;"  |  $1b  ||  Magiwyvern
 |-
-|  $1c  ||  Demon Knight
+|  style="text-align: center;"  |  $1c  ||  Demon Knight
 |-
-|  $1d  ||  Werewolf
+|  style="text-align: center;"  |  $1d  ||  Werewolf
 |-
-|  $1e  ||  Green Dragon
+|  style="text-align: center;"  |  $1e  ||  Green Dragon
 |-
-|  $1f  ||  Starwyvern
+|  style="text-align: center;"  |  $1f  ||  Starwyvern
 |-
-|  $20  ||  Wizard
+|  style="text-align: center;"  |  $20  ||  Wizard
 |-
-|  $21  ||  Axe Knight
+|  style="text-align: center;"  |  $21  ||  Axe Knight
 |-
-|  $22  ||  Blue Dragon
+|  style="text-align: center;"  |  $22  ||  Blue Dragon
 |-
-|  $23  ||  Stoneman
+|  style="text-align: center;"  |  $23  ||  Stoneman
 |-
-|  $24  ||  Armored Knight
+|  style="text-align: center;"  |  $24  ||  Armored Knight
 |-
-|  $25  ||  Red Dragon
+|  style="text-align: center;"  |  $25  ||  Red Dragon
 |-
-|  $26  ||  Dragonlord
+|  style="text-align: center;"  |  $26  ||  Dragonlord
 |-
-|  $27  ||  Dragonlord's True Form
+|  style="text-align: center;"  |  $27  ||  Dragonlord's True Form
 |}
 
 ==Spells==
 
-{{ Todo | add list }}
+{| class="wikitable sortable"
+|-
+!  Spell ID  !!  Name  !!  MP Cost  !!  Learn Level  !!  Type  !!  Effect
+|-
+|  style="text-align: center;"  |  $00  ||  HEAL  ||  4 MP  ||  Level 3  ||  Restoration  ||  Restores 10-17 HP
+|-
+|  style="text-align: center;"  |  $01  ||  HURT  ||  2 MP  ||  Level 4  ||  Attack  ||  Deals 5-12 damage
+|-
+|  style="text-align: center;"  |  $02  ||  SLEEP  ||  2 MP  ||  Level 7  ||  Status  ||  Puts enemy to sleep
+|-
+|  style="text-align: center;"  |  $03  ||  RADIANT  ||  3 MP  ||  Level 9  ||  Utility  ||  Creates light in darkness
+|-
+|  style="text-align: center;"  |  $04  ||  STOPSPELL  ||  2 MP  ||  Level 10  ||  Status  ||  Prevents enemy spells
+|-
+|  style="text-align: center;"  |  $05  ||  OUTSIDE  ||  6 MP  ||  Level 12  ||  Utility  ||  Exit from caves/dungeons
+|-
+|  style="text-align: center;"  |  $06  ||  RETURN  ||  8 MP  ||  Level 13  ||  Utility  ||  Return to Tantegel Castle
+|-
+|  style="text-align: center;"  |  $07  ||  REPEL  ||  2 MP  ||  Level 15  ||  Utility  ||  Repels weak monsters
+|-
+|  style="text-align: center;"  |  $08  ||  HEALMORE  ||  10 MP  ||  Level 17  ||  Restoration  ||  Restores 85-100 HP
+|-
+|  style="text-align: center;"  |  $09  ||  HURTMORE  ||  5 MP  ||  Level 19  ||  Attack  ||  Deals 58-65 damage
+|}
+
+==MP Cost by Level==
+
+{| class="wikitable"
+|-
+!  Level  !!  Max MP  !!  Spells Available
+|-
+|  1-2  ||  0  ||  None
+|-
+|  3  ||  5  ||  HEAL
+|-
+|  4  ||  10  ||  HEAL, HURT
+|-
+|  7  ||  16  ||  + SLEEP
+|-
+|  9  ||  24  ||  + RADIANT
+|-
+|  10  ||  26  ||  + STOPSPELL
+|-
+|  12  ||  29  ||  + OUTSIDE
+|-
+|  13  ||  36  ||  + RETURN
+|-
+|  15  ||  50  ||  + REPEL
+|-
+|  17  ||  58  ||  + HEALMORE
+|-
+|  19+  ||  65+  ||  + HURTMORE
+|}
 
 ==Maps==
 
-{{ Todo | add list }}
+{| class="wikitable sortable"
+|-
+!  Map ID  !!  Name  !!  Size  !!  Type  !!  Music  !!  Encounters
+|-
+|  style="text-align: center;"  |  $00  ||  Overworld  ||  120x120  ||  World Map  ||  Overworld Theme  ||  Random encounters
+|-
+|  style="text-align: center;"  |  $01  ||  Tantegel Castle  ||  20x20  ||  Castle  ||  Castle Theme  ||  None
+|-
+|  style="text-align: center;"  |  $02  ||  Tantegel Throne Room  ||  16x12  ||  Interior  ||  Castle Theme  ||  None
+|-
+|  style="text-align: center;"  |  $03  ||  Brecconary  ||  20x20  ||  Town  ||  Town Theme  ||  None
+|-
+|  style="text-align: center;"  |  $04  ||  Garinham  ||  20x20  ||  Town  ||  Town Theme  ||  None
+|-
+|  style="text-align: center;"  |  $05  ||  Kol  ||  16x16  ||  Town  ||  Town Theme  ||  None
+|-
+|  style="text-align: center;"  |  $06  ||  Rimuldar  ||  20x20  ||  Town  ||  Town Theme  ||  None
+|-
+|  style="text-align: center;"  |  $07  ||  Cantlin  ||  24x24  ||  Town  ||  Town Theme  ||  None
+|-
+|  style="text-align: center;"  |  $08  ||  Charlock Castle  ||  32x32  ||  Dungeon  ||  Dungeon Theme  ||  Strong encounters
+|-
+|  style="text-align: center;"  |  $09  ||  Erdrick's Cave  ||  16x16  ||  Cave  ||  Cave Theme  ||  Moderate encounters
+|-
+|  style="text-align: center;"  |  $0A  ||  Mountain Cave  ||  16x20  ||  Cave  ||  Cave Theme  ||  Weak encounters
+|-
+|  style="text-align: center;"  |  $0B  ||  Garin's Grave  ||  12x12  ||  Dungeon  ||  Dungeon Theme  ||  Undead encounters
+|-
+|  style="text-align: center;"  |  $0C  ||  Southern Shrine  ||  12x16  ||  Shrine  ||  Shrine Theme  ||  None
+|}
+
+==Terrain Types==
+
+{| class="wikitable"
+|-
+!  Tile ID  !!  Terrain  !!  Movement  !!  Encounter Rate  !!  Description
+|-
+|  $00-$0F  ||  Grass  ||  Normal  ||  8/256  ||  Standard overworld terrain
+|-
+|  $10-$1F  ||  Hills  ||  Normal  ||  8/256  ||  Elevated areas
+|-
+|  $20-$2F  ||  Mountains  ||  Blocked  ||  0/256  ||  Impassable terrain
+|-
+|  $30-$3F  ||  Forest  ||  Normal  ||  16/256  ||  Higher encounter rate
+|-
+|  $40-$4F  ||  Swamp  ||  Slow  ||  16/256  ||  Damage over time
+|-
+|  $50-$5F  ||  Desert  ||  Normal  ||  12/256  ||  Sandy areas
+|-
+|  $60-$6F  ||  Water  ||  Blocked  ||  0/256  ||  Ocean and rivers
+|-
+|  $70-$7F  ||  Shore  ||  Normal  ||  4/256  ||  Beach areas
+|-
+|  $80-$8F  ||  Town  ||  Normal  ||  0/256  ||  Town entrance tiles
+|-
+|  $90-$9F  ||  Castle  ||  Normal  ||  0/256  ||  Castle entrance tiles
+|-
+|  $A0-$AF  ||  Cave  ||  Normal  ||  0/256  ||  Cave entrance tiles
+|-
+|  $B0-$BF  ||  Stairs  ||  Normal  ||  0/256  ||  Dungeon level transitions
+|-
+|  $C0-$CF  ||  Door  ||  Normal  ||  0/256  ||  Building entrances
+|-
+|  $D0-$DF  ||  Treasure  ||  Normal  ||  0/256  ||  Treasure chest locations
+|-
+|  $E0-$EF  ||  Bridge  ||  Normal  ||  4/256  ||  Water crossings
+|-
+|  $F0-$FF  ||  Special  ||  Various  ||  Various  ||  Quest-specific tiles
+|}
