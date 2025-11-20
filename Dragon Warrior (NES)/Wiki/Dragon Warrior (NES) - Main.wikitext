@@ -1,0 +1,122 @@
+{{Bob
+| bobscreen= Dragon_Warrior_Title.png
+| aka= Dragon Quest (JP)
+| developer= ChunSoft
+| publishers= {{publisher|Nintendo}} (US), {{publisher|Enix}} (JP)
+| system= NES
+| usa= {{date|1989|August}}
+| japan= {{date|1986|May|27|nocat=true}}
+| tcrf=Dragon Warrior
+}}
+{{NES
+|title = Dragon Warrior
+|image = [[File:Dragon_Warrior_Title.png|center]]
+|name = DRAGON WARRIOR
+|company = Nintendo
+|header = iNES
+|bank = NROM-256
+|interleaved = No
+|sram = 8 KiB (battery-backed)
+|type = MMC1
+|rom = 64 KiB PRG + 16 KiB CHR
+|country = USA
+|video = NTSC
+|revision = 1.0
+|checksum = Good
+|crc32 = 6A0DD51E
+|game = Dragon Warrior
+}}
+
+'''Dragon Warrior''' (known as '''Dragon Quest''' in Japan) is a role-playing game developed by ChunSoft and published by Nintendo for the Nintendo Entertainment System. It is the first game in the Dragon Quest series and was a landmark title that helped establish the JRPG genre in North America.
+
+The game features turn-based combat, an open world exploration system, and a medieval fantasy setting where the player controls a hero descendant of the legendary Erdrick on a quest to defeat the Dragonlord and rescue Princess Laura.
+
+=Technical Information=
+
+Dragon Warrior uses the MMC1 mapper with 4 banks of 16KB PRG ROM and 2 banks of 8KB CHR ROM. The game features battery-backed SRAM for save game functionality, which was uncommon for early NES titles.
+
+The game's graphics use a 2bpp (4-color) tile system with 8 different palettes for various game modes:
+* Overworld palette
+* Dungeon palette  
+* Town palette
+* Battle palette
+* Menu palette
+* Character palette
+* Monster palette
+* Dialog palette
+
+=Sub-pages=
+
+{{namespaces}}
+{{subpage|ROM map}}
+{{subpage|RAM map}}
+{{subpage|SRAM map}}
+{{subpage|Values}}
+{{subpage|TBL - Text Table}}
+{{subpage|Music Pointers}}
+{{subpage|Monster Data}}
+{{subpage|Item Data}}
+{{subpage|Shop Data}}
+{{subpage|Map Data}}
+{{subpage|Graphics Data}}
+
+=Development Tools=
+
+* '''Dragon Warrior Info Project''' - Complete disassembly and modding tools by TheAnsarya
+* '''Dragon Warrior Editor''' - Monster, item, and map editor tools
+* '''Graphics Extractor''' - Tool for extracting and reinserting CHR ROM graphics
+* '''Text Editor''' - For modifying dialog and text tables
+
+=Utilities=
+
+* [https://github.com/TheAnsarya/dragon-warrior-info Dragon Warrior Info Project] - Complete disassembly with asset extraction/reinsertion tools
+* Dragon Warrior Monster Editor - Edit monster stats, experience, and gold rewards
+* Dragon Warrior Map Editor - Modify overworld and dungeon maps
+* Dragon Warrior Graphics Editor - Extract and edit sprites and background tiles
+* [https://hexed.it/ HexEd.it] - Browser-based hex editor for direct ROM and save file editing
+
+=ROM Hacking Resources=
+
+* Complete 6502 assembly source code available
+* Asset extraction tools for graphics, music, and data
+* Build system using Ophis assembler
+* Comprehensive documentation of ROM structure
+
+=Hacks=
+
+* '''Dragon Warrior Randomizer''' - Randomizes monster locations and item drops
+* '''Dragon Warrior Hard Mode''' - Increases difficulty and rebalances gameplay
+* '''Dragon Warrior MSU-1''' - Enhanced audio using MSU-1 sound expansion
+
+=Translations=
+
+The original Japanese version (Dragon Quest) features different text encoding and some gameplay differences from the North American release.
+
+=Data Structures=
+
+==Monster Data==
+Each monster entry contains:
+* HP, MP, Attack, Defense values
+* Experience and gold rewards
+* Special abilities and resistances
+* Graphics tile references
+
+==Item Data== 
+Items are categorized into:
+* Weapons ($00-$06): Bamboo Pole through Erdrick's Sword
+* Armor ($07-$13): Clothes through Erdrick's Armor  
+* Shields ($14-$16): Small Shield through Silver Shield
+* Tools ($17+): Herbs, Keys, Magic items
+
+==Map Data==
+* 120x120 tile overworld map
+* Multiple dungeon maps of varying sizes
+* Tile-based collision and encounter data
+* NPC placement and dialog references
+
+=Notes=
+
+* This game established many conventions still used in JRPGs today
+* The North American version was given away as a subscription premium by Nintendo Power magazine
+* Features one of the earliest examples of battery-backed save functionality on NES
+* The game's linear progression and encounter system was revolutionary for its time
