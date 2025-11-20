@@ -1,0 +1,197 @@
+{{rommap}}
+{{subpage}}
+
+=Dragon Warrior (NES) ROM Map=
+
+This ROM map is based on the complete disassembly by TheAnsarya and documented memory locations from the Dragon Warrior Info Project.
+
+Addresses are NES CPU addresses ($8000-$FFFF for PRG ROM, $0000-$1FFF for CHR ROM).
+
+==Bank Structure==
+
+Dragon Warrior uses MMC1 mapper with 4 banks of 16KB PRG ROM:
+
+{| class="wikitable"
+!  Bank  !!  CPU Address  !!  File Offset  !!  Description
+|-
+|  Bank 00  ||  $8000-$BFFF  ||  $00010-$04010  ||  Main game code, graphics tables, shop data
+|-
+|  Bank 01  ||  $8000-$BFFF  ||  $04010-$08010  ||  Monster data, music, player stats
+|-
+|  Bank 02  ||  $8000-$BFFF  ||  $08010-$0C010  ||  Text compression, dialog data
+|-
+|  Bank 03  ||  $C000-$FFFF  ||  $0C010-$10010  ||  Fixed bank, core gameplay systems
+|}
+
+==PRG ROM Map==
+
+===Bank 00 ($8000-$BFFF)===
+
+{| class="wikitable sortable"
+!  Address  !!  Size  !!  Category  !!  Description
+|-
+|  $8000-$801F  ||  32 bytes  ||  Vectors  ||  Bank switching and interrupt vectors
+|-
+|  $8020-$80FF  ||  224 bytes  ||  Code  ||  Initialization and bank switching routines
+|-
+|  $8100-$85FF  ||  1280 bytes  ||  Graphics  ||  Overworld map tile definitions
+|-
+|  $8600-$8AFF  ||  1280 bytes  ||  Graphics  ||  Town and dungeon tile definitions
+|-
+|  $8B00-$8FFF  ||  1280 bytes  ||  Graphics  ||  Menu and UI graphics data
+|-
+|  $9000-$97FF  ||  2048 bytes  ||  Data  ||  NPC position and dialog tables
+|-
+|  $9800-$98FF  ||  256 bytes  ||  Data  ||  Map entry direction table
+|-
+|  $9900-$9946  ||  70 bytes  ||  Data  ||  Map entry direction table (continued)
+|-
+|  $9947-$9990  ||  74 bytes  ||  Data  ||  Item cost table
+|-
+|  $9991-$99CE  ||  62 bytes  ||  Data  ||  Shop items table
+|-
+|  $99CF-$99DE  ||  16 bytes  ||  Data  ||  Weapon bonus table
+|-
+|  $99DF-$99EE  ||  16 bytes  ||  Data  ||  Armor bonus table
+|-
+|  $99EF-$99FE  ||  16 bytes  ||  Data  ||  Shield bonus table
+|-
+|  $9A00-$9AFF  ||  256 bytes  ||  Data  ||  Palette and graphics pointers
+|-
+|  $9B00-$BFFF  ||  5376 bytes  ||  Code  ||  Main game logic and subroutines
+|}
+
+===Bank 01 ($8000-$BFFF)===
+
+{| class="wikitable sortable"
+!  Address  !!  Size  !!  Category  !!  Description  
+|-
+|  $8000-$803F  ||  64 bytes  ||  Vectors  ||  Bank 1 function pointers
+|-
+|  $8040-$81FF  ||  448 bytes  ||  Data  ||  Music note frequency table
+|-
+|  $8200-$8FFF  ||  3584 bytes  ||  Data  ||  Music sequence data
+|-
+|  $9000-$94FF  ||  1280 bytes  ||  Data  ||  Monster stat tables
+|-
+|  $9500-$95FF  ||  256 bytes  ||  Data  ||  Experience tables by level
+|-
+|  $9600-$96FF  ||  256 bytes  ||  Data  ||  Player base stats by level
+|-
+|  $9700-$97FF  ||  256 bytes  ||  Data  ||  Spell data and MP costs
+|-
+|  $9800-$9FFF  ||  2048 bytes  ||  Code  ||  Battle system and stat calculation
+|-
+|  $A000-$BFFF  ||  8192 bytes  ||  Code  ||  Music player and sound routines
+|}
+
+===Bank 02 ($8000-$BFFF)===
+
+{| class="wikitable sortable"
+!  Address  !!  Size  !!  Category  !!  Description
+|-
+|  $8000-$8FFF  ||  4096 bytes  ||  Data  ||  Compressed text data
+|-
+|  $9000-$9FFF  ||  4096 bytes  ||  Data  ||  Dialog text tables and pointers
+|-
+|  $A000-$AFFF  ||  4096 bytes  ||  Code  ||  Text decompression routines
+|-
+|  $B000-$BFFF  ||  4096 bytes  ||  Code  ||  Dialog display and text processing
+|}
+
+===Bank 03 ($C000-$FFFF) - Fixed Bank===
+
+{| class="wikitable sortable"
+!  Address  !!  Size  !!  Category  !!  Description
+|-
+|  $C000-$CFFF  ||  4096 bytes  ||  Code  ||  Core game loop and input handling
+|-
+|  $D000-$DFFF  ||  4096 bytes  ||  Code  ||  Map rendering and movement
+|-
+|  $E000-$EFFF  ||  4096 bytes  ||  Code  ||  Menu systems and inventory
+|-
+|  $F000-$FFEF  ||  4080 bytes  ||  Code  ||  System routines and utilities
+|-
+|  $FFF0-$FFFF  ||  16 bytes  ||  Vectors  ||  NMI, Reset, and IRQ vectors
+|}
+
+==CHR ROM Map==
+
+===Bank 0 ($0000-$0FFF)===
+
+{| class="wikitable sortable"
+!  Address  !!  Size  !!  Category  !!  Description
+|-
+|  $0000-$03FF  ||  1024 bytes  ||  Graphics  ||  Hero sprites and animations
+|-
+|  $0400-$07FF  ||  1024 bytes  ||  Graphics  ||  Monster sprites (first 64)
+|-
+|  $0800-$0BFF  ||  1024 bytes  ||  Graphics  ||  NPC sprites and objects
+|-
+|  $0C00-$0FFF  ||  1024 bytes  ||  Graphics  ||  UI elements and text font
+|}
+
+===Bank 1 ($1000-$1FFF)===
+
+{| class="wikitable sortable"
+!  Address  !!  Size  !!  Category  !!  Description
+|-
+|  $1000-$13FF  ||  1024 bytes  ||  Graphics  ||  Monster sprites (continued)
+|-
+|  $1400-$17FF  ||  1024 bytes  ||  Graphics  ||  Background tiles (overworld)
+|-
+|  $1800-$1BFF  ||  1024 bytes  ||  Graphics  ||  Background tiles (dungeons/towns)
+|-
+|  $1C00-$1FFF  ||  1024 bytes  ||  Graphics  ||  Background tiles (special areas)
+|}
+
+==Data Tables==
+
+===Monster Data Structure===
+Each monster entry is 16 bytes:
+* Bytes 0-1: HP (16-bit)
+* Byte 2: Attack power
+* Byte 3: Defense power
+* Bytes 4-5: Experience reward (16-bit)
+* Bytes 6-7: Gold reward (16-bit) 
+* Byte 8: Special abilities flags
+* Byte 9: Resistances
+* Bytes 10-11: Graphics tile ID
+* Bytes 12-15: Reserved/padding
+
+===Item Data Structure===
+Each item entry is 8 bytes:
+* Byte 0: Item ID
+* Byte 1: Item type (weapon/armor/tool)
+* Bytes 2-3: Buy price (16-bit)
+* Bytes 4-5: Sell price (16-bit)
+* Byte 6: Attack/Defense bonus
+* Byte 7: Special properties flags
+
+===Shop Data Structure===
+Shop item lists are variable length, terminated by $FD:
+* Each byte represents an item ID from the item table
+* $FD = End of shop inventory
+* $FC = Link to another shop table
+* $FB = Special shop actions
+
+==Memory-Mapped I/O==
+
+{| class="wikitable"
+!  Address  !!  Description
+|-
+|  $2000-$2007  ||  PPU registers
+|-
+|  $4000-$4017  ||  APU and controller registers
+|-
+|  $4018-$5FFF  ||  MMC1 mapper registers
+|-
+|  $6000-$7FFF  ||  Battery-backed SRAM (8KB)
+|}
+
+=References=
+
+* Complete disassembly by TheAnsarya: [https://github.com/TheAnsarya/dragon-warrior-info Dragon Warrior Info Project]
+* Dragon Warrior Data Crystal pages
+* NES mapper documentation
+* [https://hexed.it/ HexEd.it] - Browser-based hex editor for ROM analysis and modification

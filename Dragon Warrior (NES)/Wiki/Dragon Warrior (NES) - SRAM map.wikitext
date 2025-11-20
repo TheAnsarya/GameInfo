@@ -1,0 +1,239 @@
+{{subpage}}
+
+=Dragon Warrior (NES) SRAM Map=
+
+Dragon Warrior uses 8KB of battery-backed SRAM located at $6000-$7FFF for save game data. The game supports a single save file with comprehensive player progress tracking.
+
+==Save Game Structure==
+
+The save game data begins at $6000 and uses the following structure:
+
+{| class="wikitable sortable"
+!  Offset  !!  Size  !!  Type  !!  Description
+|-
+|  $6000  ||  1 byte  ||  Flag  ||  Save file validity flag ($A5 = valid save)
+|-
+|  $6001  ||  1 byte  ||  Level  ||  Player level (1-30)
+|-
+|  $6002  ||  2 bytes  ||  HP  ||  Current HP (little endian)
+|-
+|  $6004  ||  2 bytes  ||  MP  ||  Current MP (little endian)
+|-
+|  $6006  ||  1 byte  ||  STR  ||  Strength stat
+|-
+|  $6007  ||  1 byte  ||  AGI  ||  Agility stat  
+|-
+|  $6008  ||  2 bytes  ||  EXP  ||  Current experience points (little endian)
+|-
+|  $600A  ||  2 bytes  ||  GOLD  ||  Current gold amount (little endian)
+|-
+|  $600C  ||  1 byte  ||  WEAPON  ||  Equipped weapon ID
+|-
+|  $600D  ||  1 byte  ||  ARMOR  ||  Equipped armor ID
+|-
+|  $600E  ||  1 byte  ||  SHIELD  ||  Equipped shield ID
+|-
+|  $600F  ||  1 byte  ||  MAP  ||  Current map ID
+|-
+|  $6010  ||  1 byte  ||  X_POS  ||  Player X position on map
+|-
+|  $6011  ||  1 byte  ||  Y_POS  ||  Player Y position on map
+|-
+|  $6012  ||  1 byte  ||  DIRECTION  ||  Player facing direction (0=up, 1=right, 2=down, 3=left)
+|-
+|  $6013  ||  8 bytes  ||  NAME  ||  Player name (8 characters, space-padded)
+|-
+|  $601B  ||  32 bytes  ||  ITEMS  ||  Inventory items (item ID per byte, $FF = empty slot)
+|-
+|  $603B  ||  16 bytes  ||  FLAGS  ||  Game progress flags (quest items, story progress)
+|-
+|  $604B  ||  16 bytes  ||  SPELLS  ||  Known spells bitmask
+|-
+|  $605B  ||  1 byte  ||  CHECKSUM  ||  Save data checksum
+|-
+|  $605C-$7FFF  ||  ...  ||  UNUSED  ||  Unused SRAM space
+|}
+
+==Flag Meanings==
+
+===Game Progress Flags ($603B-$604A)===
+
+{| class="wikitable"
+!  Offset  !!  Bit  !!  Description
+|-
+|  $603B  ||  0  ||  Has Gwaelin's Love
+|-
+|  $603B  ||  1  ||  Has Silver Harp
+|-
+|  $603B  ||  2  ||  Has Staff of Rain
+|-
+|  $603B  ||  3  ||  Has Stones of Sunlight
+|-
+|  $603B  ||  4  ||  Has Rainbow Drop
+|-
+|  $603B  ||  5  ||  Has Erdrick's Token
+|-
+|  $603B  ||  6  ||  Rescued Princess Laura (Gwaelin)
+|-
+|  $603B  ||  7  ||  Visited Tantegel Castle
+|-
+|  $603C  ||  0  ||  Tantagel moat drained
+|-
+|  $603C  ||  1  ||  Charlock Castle bridge created
+|-
+|  $603C  ||  2  ||  Defeated Golem
+|-
+|  $603C  ||  3  ||  Defeated Green Dragon
+|-
+|  $603C  ||  4  ||  Defeated Blue Dragon  
+|-
+|  $603C  ||  5  ||  Defeated Red Dragon
+|-
+|  $603C  ||  6  ||  Defeated Dragonlord
+|-
+|  $603C  ||  7  ||  Game completed
+|-
+|  $603D-$604A  ||  ...  ||  Additional quest and location flags
+|}
+
+===Spell Flags ($604B-$605A)===
+
+{| class="wikitable"
+!  Offset  !!  Bit  !!  Spell
+|-
+|  $604B  ||  0  ||  HEAL
+|-
+|  $604B  ||  1  ||  HURT
+|-
+|  $604B  ||  2  ||  SLEEP
+|-
+|  $604B  ||  3  ||  RADIANT
+|-
+|  $604B  ||  4  ||  STOPSPELL
+|-
+|  $604B  ||  5  ||  OUTSIDE
+|-
+|  $604B  ||  6  ||  RETURN
+|-
+|  $604B  ||  7  ||  REPEL
+|-
+|  $604C  ||  0  ||  HEALMORE
+|-
+|  $604C  ||  1  ||  HURTMORE
+|}
+
+==Equipment IDs==
+
+===Weapons===
+{| class="wikitable"
+!  ID  !!  Name  !!  Attack Bonus
+|-
+|  $00  ||  None  ||  +0
+|-
+|  $01  ||  Bamboo Pole  ||  +2
+|-
+|  $02  ||  Club  ||  +4
+|-
+|  $03  ||  Copper Sword  ||  +10
+|-
+|  $04  ||  Hand Axe  ||  +15
+|-
+|  $05  ||  Broad Sword  ||  +20
+|-
+|  $06  ||  Flame Sword  ||  +28
+|-
+|  $07  ||  Erdrick's Sword  ||  +40
+|}
+
+===Armor===
+{| class="wikitable"
+!  ID  !!  Name  !!  Defense Bonus
+|-
+|  $00  ||  None  ||  +0
+|-
+|  $01  ||  Clothes  ||  +2
+|-
+|  $02  ||  Leather Armor  ||  +4
+|-
+|  $03  ||  Chain Mail  ||  +10
+|-
+|  $04  ||  Half Plate  ||  +16
+|-
+|  $05  ||  Full Plate  ||  +24
+|-
+|  $06  ||  Magic Armor  ||  +24 + curse protection
+|-
+|  $07  ||  Erdrick's Armor  ||  +28 + damage reduction
+|}
+
+===Shields===
+{| class="wikitable"
+!  ID  !!  Name  !!  Defense Bonus
+|-
+|  $00  ||  None  ||  +0
+|-
+|  $01  ||  Small Shield  ||  +4
+|-
+|  $02  ||  Large Shield  ||  +10  
+|-
+|  $03  ||  Silver Shield  ||  +20 + breath protection
+|}
+
+==Map IDs==
+
+{| class="wikitable"
+!  ID  !!  Map Name  !!  Type
+|-
+|  $00  ||  Overworld  ||  World Map
+|-
+|  $01  ||  Tantegel Castle  ||  Castle
+|-
+|  $02  ||  Tantegel Throne Room  ||  Castle
+|-
+|  $03  ||  Brecconary  ||  Town
+|-
+|  $04  ||  Garinham  ||  Town
+|-
+|  $05  ||  Kol  ||  Town
+|-
+|  $06  ||  Rimuldar  ||  Town
+|-
+|  $07  ||  Cantlin  ||  Town
+|-
+|  $08  ||  Charlock Castle  ||  Dungeon
+|-
+|  $09  ||  Erdrick's Cave  ||  Cave
+|-
+|  $0A  ||  Mountain Cave  ||  Cave
+|-
+|  $0B  ||  Garin's Grave  ||  Dungeon
+|-
+|  $0C  ||  Southern Shrine  ||  Shrine
+|-
+|  $0D-$FF  ||  Additional areas  ||  Various
+|}
+
+==Save File Validation==
+
+The game validates save files using multiple checks:
+# Validity flag must be $A5
+# Checksum verification of critical data
+# Range checks on stats and position data
+# Equipment ID validation
+
+If validation fails, the game initializes a new save file with default values.
+
+==Technical Notes==
+
+* SRAM is mapped to $6000-$7FFF in CPU address space
+* Battery backup maintains data when power is off
+* Only one save slot is supported
+* Save occurs automatically when talking to certain NPCs or using RETURN spell
+* The MMC1 mapper must be configured to enable SRAM access
+
+=References=
+
+* Dragon Warrior disassembly documentation
+* NES SRAM implementation details
+* Save game hex editing guides
+* [https://hexed.it/ HexEd.it] - Browser-based hex editor for save file modification and analysis
