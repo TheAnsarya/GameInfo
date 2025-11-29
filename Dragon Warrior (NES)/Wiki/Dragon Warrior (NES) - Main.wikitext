@@ -48,6 +48,8 @@ The game's graphics use a 2bpp (4-color) tile system with 8 different palettes f
 =Sub-pages=
 
 {{namespaces}}
+
+==Data Maps and Tables==
 {{subpage|ROM map}}
 {{subpage|RAM map}}
 {{subpage|SRAM map}}
@@ -59,6 +61,10 @@ The game's graphics use a 2bpp (4-color) tile system with 8 different palettes f
 {{subpage|Shop Data}}
 {{subpage|Map Data}}
 {{subpage|Graphics Data}}
+
+==System Documentation==
+{{subpage|Battle System}}
+{{subpage|Experience System}}
 
 =Development Tools=
 
@@ -95,24 +101,165 @@ The original Japanese version (Dragon Quest) features different text encoding an
 =Data Structures=
 
 ==Monster Data==
-Each monster entry contains:
-* HP, MP, Attack, Defense values
-* Experience and gold rewards
-* Special abilities and resistances
-* Graphics tile references
 
-==Item Data== 
-Items are categorized into:
-* Weapons ($00-$06): Bamboo Pole through Erdrick's Sword
-* Armor ($07-$13): Clothes through Erdrick's Armor  
-* Shields ($14-$16): Small Shield through Silver Shield
-* Tools ($17+): Herbs, Keys, Magic items
+Monster data is stored in Bank 01 at approximately $9000-$94FF. Each of 40 monsters uses 16 bytes:
+
+{| class="wikitable"
+!  Offset  !!  Size  !!  Description
+|-
+|  +$00  ||  2 bytes  ||  HP (little-endian, 16-bit)
+|-
+|  +$02  ||  1 byte  ||  Attack Power
+|-
+|  +$03  ||  1 byte  ||  Defense Power
+|-
+|  +$04  ||  2 bytes  ||  Experience Reward (little-endian, 16-bit)
+|-
+|  +$06  ||  2 bytes  ||  Gold Reward (little-endian, 16-bit)
+|-
+|  +$08  ||  1 byte  ||  AI Behavior Flags
+|-
+|  +$09  ||  1 byte  ||  Resistance Flags
+|-
+|  +$0A  ||  2 bytes  ||  Graphics Tile ID
+|-
+|  +$0C  ||  4 bytes  ||  Reserved/Padding
+|}
+
+See [[Dragon Warrior (NES) - Monster Data|Monster Data]] for complete monster stats and encounter information.
+
+==Item Data==
+
+Items are stored in Bank 00 with prices and bonuses in several tables:
+
+'''Item Categories:'''
+* '''Weapons''' ($00-$06): Bamboo Pole (+2 ATK) through Erdrick's Sword (+40 ATK)
+* '''Armor''' ($07-$0D): Clothes (+2 DEF) through Erdrick's Armor (+28 DEF)
+* '''Shields''' ($0E-$10): Small Shield (+4 DEF) through Silver Shield (+20 DEF)
+* '''Tools''' ($11+): Herbs (restore 23-30 HP), Keys, Wings, Magic Items
+
+'''Price Table''' (Bank 00, $9947-$9990):
+* 2 bytes per item (little-endian)
+* Sell price = Buy price / 2
+* Quest items have no price ($0000)
+
+'''Bonus Tables''' (Bank 00, $99CF-$99FE):
+* Weapon Attack Bonuses: $99CF-$99DE (16 bytes)
+* Armor Defense Bonuses: $99DF-$99EE (16 bytes)
+* Shield Defense Bonuses: $99EF-$99FE (16 bytes)
+
+See [[Dragon Warrior (NES) - Values|Values]] for complete item lists and prices.
 
 ==Map Data==
-* 120x120 tile overworld map
-* Multiple dungeon maps of varying sizes
-* Tile-based collision and encounter data
-* NPC placement and dialog references
+
+Map structure varies by type:
+
+'''Overworld:'''
+* Size: 120×120 tiles (14,400 tiles total)
+* Storage: Compressed row pointers (Bank 00, $A653)
+* Tile properties: Walkability, encounter rates, terrain type
+* Special tiles: Town/castle entrances, caves, bridges
+
+'''Interior Maps''' (towns, castles, dungeons):
+* Size: 10×10 to 32×32 tiles
+* Storage: Uncompressed tile data
+* Each map has header: pointer, width, height, boundary block type
+
+'''Map Header Format:'''
+{| class="wikitable"
+!  Offset  !!  Size  !!  Description
+|-
+|  +$00  ||  2 bytes  ||  Pointer to map data
+|-
+|  +$02  ||  1 byte  ||  Width in blocks
+|-
+|  +$03  ||  1 byte  ||  Height in blocks
+|-
+|  +$04  ||  1 byte  ||  Boundary block ID
+|}
+
+'''Map Type Flags''' (stored in RAM $16):
+* $00 = Overworld
+* $10 = Town/Castle
+* $20 = Cave/Dungeon
+
+See [[Dragon Warrior (NES) - ROM map|ROM Map]] for map data locations.
+
+==Game Formulas==
+
+===Battle Formulas===
+
+'''Physical Damage:'''
+* Player → Enemy: (Player ATK / 2) - (Enemy DEF / 4) + Random(0, 4)
+* Enemy → Player: (Enemy STR / 2) - (Player DEF / 4) + Random(0, 4)
+* Minimum damage: 0 (cannot be negative)
+
+'''Critical Hits:'''
+* Chance: Player AGI / 64 (out of 256)
+* Damage: Normal Damage × 2
+
+'''Hit/Miss:'''
+* Player Base: 224/256 (87.5%) - (Enemy AGI / 4)
+* Enemy Base: 192/256 (75%) - (Player AGI / 2)
+
+'''Dodge:'''
+* Chance: Player AGI / 4 (out of 256)
+
+See [[Dragon Warrior (NES) - Battle System|Battle System]] for complete battle mechanics.
+
+===Experience and Level Formulas===
+
+'''Stat Growth:'''
+* HP: Base table value + Random(0, 3) per level
+* MP: Base table value + Random(0, 2) per level
+* STR (even levels): Random(2, 4)
+* STR (odd levels): Random(1, 3)
+* AGI (odd levels): Random(2, 5)
+* AGI (even levels): Random(1, 3)
+
+'''Spell Learning:'''
+* Fixed levels: 3(HEAL), 4(HURT), 7(SLEEP), 9(RADIANT), 10(STOPSPELL), 12(OUTSIDE), 13(RETURN), 15(REPEL), 17(HEALMORE), 19(HURTMORE)
+
+See [[Dragon Warrior (NES) - Experience System|Experience System]] for complete progression tables.
+
+===Spell Formulas===
+
+'''Healing:'''
+* HEAL: Random(10, 17) HP, 4 MP
+* HEALMORE: Random(85, 100) HP, 10 MP
+
+'''Damage:'''
+* HURT: Random(5, 12) - (Enemy DEF / 8), 2 MP, minimum 1
+* HURTMORE: Random(58, 65) - (Enemy DEF / 4), 5 MP, minimum 1
+
+'''Status Effects:'''
+* SLEEP: 160/256 base - (Enemy Level × 2), min 32/256, 2 MP
+* STOPSPELL: 160/256 base - (Enemy Level × 3), min 16/256, 2 MP
+
+'''Utility:'''
+* RADIANT: 3 tile radius, 3 MP, permanent until map change
+* REPEL: 127 steps, 2 MP, zero encounters
+* OUTSIDE: 6 MP, warp to dungeon exit
+* RETURN: 8 MP, warp to Tantegel (43, 43)
+
+See [[Dragon Warrior (NES) - Values|Values]] for all spell data.
+
+===Encounter System===
+
+'''Encounter Rates by Terrain:'''
+* Tantegel area: 16/256 (6.25%), check every 8 steps
+* Grassland: 32/256 (12.5%)
+* Forest: 48/256 (18.75%)
+* Hills: 64/256 (25%)
+* Mountains: 80/256 (31.25%)
+* Swamp: 96/256 (37.5%)
+
+'''Flee Success:'''
+* Base: 192/256 (75%)
+* Bonus: (Player AGI - Enemy AGI) / 4
+* Range: 64/256 (25%) to 224/256 (87.5%)
+
+See [[Dragon Warrior (NES) - Monster Data|Monster Data]] for encounter tables by area.
 
 =Notes=
 
@@ -120,3 +267,4 @@ Items are categorized into:
 * The North American version was given away as a subscription premium by Nintendo Power magazine
 * Features one of the earliest examples of battery-backed save functionality on NES
 * The game's linear progression and encounter system was revolutionary for its time
+* Complete disassembly available in the Dragon Warrior Info Project by TheAnsarya

@@ -141,13 +141,214 @@ Each monster entry is 16 bytes long and located in Bank 1 starting at approximat
 
 ==Encounter Rates by Area==
 
+{| class="wikitable sortable"
+!  Monster  !!  Tantegel Area  !!  Grassland  !!  Forest  !!  Hills  !!  Mountains  !!  Swamp  !!  Charlock
+|-
+|  Slime  ||  Common  ||  Common  ||  Rare  ||  None  ||  None  ||  None  ||  None
+|-
+|  Red Slime  ||  Common  ||  Common  ||  Uncommon  ||  Rare  ||  None  ||  None  ||  None
+|-
+|  Drakee  ||  Common  ||  Common  ||  Common  ||  Uncommon  ||  Rare  ||  None  ||  None
+|-
+|  Ghost  ||  Uncommon  ||  Uncommon  ||  Common  ||  Common  ||  Uncommon  ||  None  ||  None
+|-
+|  Magician  ||  Rare  ||  Uncommon  ||  Common  ||  Common  ||  Common  ||  Uncommon  ||  Rare
+|-
+|  Magidrakee  ||  None  ||  Rare  ||  Uncommon  ||  Common  ||  Common  ||  Common  ||  Uncommon
+|-
+|  Scorpion  ||  None  ||  Rare  ||  Uncommon  ||  Common  ||  Common  ||  Common  ||  Uncommon
+|-
+|  Druin  ||  None  ||  None  ||  Rare  ||  Uncommon  ||  Common  ||  Common  ||  Common
+|-
+|  Poltergeist  ||  None  ||  None  ||  Rare  ||  Uncommon  ||  Common  ||  Common  ||  Common
+|-
+|  Droll  ||  None  ||  None  ||  Rare  ||  Uncommon  ||  Common  ||  Common  ||  Common
+|-
+|  Drakeema  ||  None  ||  None  ||  None  ||  Rare  ||  Uncommon  ||  Common  ||  Common
+|-
+|  Skeleton  ||  None  ||  None  ||  None  ||  Rare  ||  Uncommon  ||  Common  ||  Common
+|-
+|  Warlock  ||  None  ||  None  ||  None  ||  Rare  ||  Uncommon  ||  Common  ||  Common
+|-
+|  Metal Scorpion  ||  None  ||  None  ||  None  ||  Very Rare  ||  Very Rare  ||  Very Rare  ||  Rare
+|-
+|  Wolf  ||  None  ||  None  ||  None  ||  Rare  ||  Common  ||  Common  ||  Common
+|-
+|  Wraith  ||  None  ||  None  ||  None  ||  None  ||  Uncommon  ||  Common  ||  Common
+|-
+|  Metal Slime  ||  None  ||  None  ||  None  ||  Very Rare  ||  Very Rare  ||  Very Rare  ||  Rare
+|-
+|  Specter  ||  None  ||  None  ||  None  ||  None  ||  Uncommon  ||  Common  ||  Common
+|-
+|  Wolflord  ||  None  ||  None  ||  None  ||  None  ||  Rare  ||  Uncommon  ||  Common
+|-
+|  Druinlord  ||  None  ||  None  ||  None  ||  None  ||  Rare  ||  Uncommon  ||  Common
+|-
+|  Drollmagi  ||  None  ||  None  ||  None  ||  None  ||  Rare  ||  Common  ||  Common
+|-
+|  Wyvern  ||  None  ||  None  ||  None  ||  None  ||  Rare  ||  Common  ||  Common
+|-
+|  Rogue Scorpion  ||  None  ||  None  ||  None  ||  None  ||  Rare  ||  Uncommon  ||  Common
+|-
+|  Wraith Knight  ||  None  ||  None  ||  None  ||  None  ||  Rare  ||  Uncommon  ||  Common
+|-
+|  Golem  ||  None  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Special (Boss)
+|-
+|  Goldman  ||  None  ||  None  ||  None  ||  Very Rare  ||  Very Rare  ||  Very Rare  ||  Rare
+|-
+|  Knight  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Rare  ||  Common
+|-
+|  Magiwyvern  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Rare  ||  Common
+|-
+|  Demon Knight  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Rare  ||  Common
+|-
+|  Werewolf  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Uncommon  ||  Common
+|-
+|  Green Dragon  ||  None  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Special (Boss)
+|-
+|  Starwyvern  ||  None  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Common
+|-
+|  Wizard  ||  None  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Common
+|-
+|  Axe Knight  ||  None  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Common
+|-
+|  Blue Dragon  ||  None  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Special (Boss)
+|-
+|  Stoneman  ||  None  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Common
+|-
+|  Armored Knight  ||  None  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Common
+|-
+|  Red Dragon  ||  None  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Special (Boss)
+|-
+|  Dragonlord (Form 1)  ||  None  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Final Boss
+|-
+|  Dragonlord (Form 2)  ||  None  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Final Boss
+|}
+
+==AI Behavior Patterns==
+
+===AI Pattern Flags===
+
+Each monster has an AI byte ($08 in monster data) that determines behavior:
+
 {| class="wikitable"
-!  Monster  !!  Overworld Level 1-3  !!  Overworld Level 4-7  !!  Overworld Level 8+  !!  Dungeons
+!  Bits  !!  Description  !!  Effect
 |-
-|  Slime  ||  Common  ||  Rare  ||  None  ||  None
+|  0-2  ||  Base Behavior  ||  000=Attack only, 001=SLEEP, 010=HURT, 011=STOPSPELL, 100=HEALMORE, 101=HURTMORE, 110=Breath, 111=Special
 |-
-|  Red Slime  ||  Common  ||  Uncommon  ||  Rare  ||  None
+|  3  ||  Can Flee  ||  1=Can run away from battle
 |-
+|  4  ||  Resists SLEEP  ||  1=Immune to SLEEP spell
+|-
+|  5  ||  Resists STOPSPELL  ||  1=Immune to STOPSPELL spell
+|-
+|  6  ||  Resists HURT  ||  1=Reduced damage from HURT spells
+|-
+|  7  ||  Magic Immunity  ||  1=Immune to all magic
+|}
+
+===Spell Casting AI===
+
+Monsters with spell abilities have a 25% (64/256) chance to cast instead of attacking each turn.
+
+'''Enemy Spell Effects:'''
+* '''HURT''': Deals 2-7 damage to player
+* '''HURTMORE''': Deals 15-23 damage to player
+* '''HEAL''': Restores 7-23 HP to self
+* '''HEALMORE''': Restores 75-100 HP to self
+* '''SLEEP''': 50% - (PlayerLevel × 2) chance to put player to sleep (min 12.5%)
+* '''STOPSPELL''': Blocks player from casting spells for 2-5 turns
+* '''Breath Attack''': High damage fire/ice breath (25-60 damage)
+
+===Special AI: Dragonlord===
+
+'''Form 1 (Human):'''
+* 50% chance: Cast HURTMORE (15-23 damage)
+* 25% chance: Cast HURT (2-7 damage)
+* 25% chance: Physical attack
+
+'''Form 2 (Dragon):'''
+* Turn 1: Always use Breath Attack (devastating damage)
+* HP > 50%: 50% Breath Attack, 50% Physical Attack
+* HP ≤ 50%: 75% HEALMORE (75-100 HP), 25% Physical Attack
+
+==Encounter System==
+
+===Base Encounter Rates===
+
+The game checks for encounters every 8 steps. Chance varies by terrain:
+
+{| class="wikitable"
+!  Terrain  !!  Rate  !!  Percentage  !!  Average Steps Between
+|-
+|  Tantegel Area  ||  16/256  ||  6.25%  ||  ~128 steps
+|-
+|  Grassland  ||  32/256  ||  12.5%  ||  ~64 steps
+|-
+|  Forest  ||  48/256  ||  18.75%  ||  ~43 steps
+|-
+|  Hills  ||  64/256  ||  25%  ||  ~32 steps
+|-
+|  Mountains  ||  80/256  ||  31.25%  ||  ~26 steps
+|-
+|  Swamp  ||  96/256  ||  37.5%  ||  ~21 steps
+|}
+
+===Encounter Prevention===
+
+* '''REPEL Spell''': Blocks all encounters for 127 steps (2 MP cost)
+* '''Fairy Water''': Similar to REPEL, consumable item (38 GP)
+* '''Princess Gwaelin's Love''': Reduces encounter rate in certain areas
+
+==Drop Rates and Rewards==
+
+All monsters have fixed EXP and Gold rewards (no randomness). Special monsters:
+
+'''Metal Slime:'''
+* 775 EXP (highest non-boss reward)
+* 6 Gold (low gold)
+* 4 HP, 255 DEF (extremely high defense)
+* Frequently flees (high escape priority)
+
+'''Goldman:'''
+* 6 EXP (lowest)
+* 255 Gold (highest non-boss reward)
+* 6 HP, 40 DEF
+* Frequently flees (high escape priority)
+
+==Technical Data==
+
+===Monster Data Location===
+
+* '''ROM Address:''' Bank 01, approximately $9000-$94FF
+* '''Structure Size:''' 16 bytes per monster
+* '''Total Monsters:''' 40 (IDs $00-$27)
+
+===Data Format===
+
+```
+Offset  Size  Description
++$00    2     HP (little-endian)
++$02    1     Attack Power
++$03    1     Defense Power
++$04    2     Experience Reward (little-endian)
++$06    2     Gold Reward (little-endian)
++$08    1     Special Abilities/AI Flags
++$09    1     Resistance Flags
++$0A    2     Graphics Tile ID
++$0C    4     Reserved/Padding
+```
+
+=References=
+
+* Dragon Warrior complete disassembly by TheAnsarya
+* GAME_FORMULAS.md - Complete formula documentation
+* Monster behavior analysis and testing
+* [https://github.com/TheAnsarya/dragon-warrior-info Dragon Warrior Info Project]
+
+[[Category:Dragon Warrior]]
+[[Category:NES Games]]
+[[Category:Monster Data]]
 |  Drakee  ||  Common  ||  Common  ||  Uncommon  ||  Rare
 |-
 |  Ghost  ||  Uncommon  ||  Common  ||  Uncommon  ||  Common

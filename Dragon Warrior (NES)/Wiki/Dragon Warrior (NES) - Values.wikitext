@@ -325,41 +325,363 @@
 |  style="text-align: center;"  |  $0C  ||  Southern Shrine  ||  12x16  ||  Shrine  ||  Shrine Theme  ||  None
 |}
 
-==Terrain Types==
+==Experience Requirements by Level==
 
-{| class="wikitable"
+{| class="wikitable sortable"
 |-
-!  Tile ID  !!  Terrain  !!  Movement  !!  Encounter Rate  !!  Description
+!  Level  !!  Total EXP  !!  EXP for Next  !!  HP Range  !!  MP Range  !!  Spells Learned
 |-
-|  $00-$0F  ||  Grass  ||  Normal  ||  8/256  ||  Standard overworld terrain
+|  1  ||  0  ||  7  ||  15  ||  0  ||  None
 |-
-|  $10-$1F  ||  Hills  ||  Normal  ||  8/256  ||  Elevated areas
+|  2  ||  7  ||  16  ||  20-23  ||  0-2  ||  None
 |-
-|  $20-$2F  ||  Mountains  ||  Blocked  ||  0/256  ||  Impassable terrain
+|  3  ||  23  ||  24  ||  24-30  ||  5-9  ||  HEAL
 |-
-|  $30-$3F  ||  Forest  ||  Normal  ||  16/256  ||  Higher encounter rate
+|  4  ||  47  ||  63  ||  32-41  ||  8-14  ||  HURT
 |-
-|  $40-$4F  ||  Swamp  ||  Slow  ||  16/256  ||  Damage over time
+|  5  ||  110  ||  110  ||  38-50  ||  14-22  ||  None
 |-
-|  $50-$5F  ||  Desert  ||  Normal  ||  12/256  ||  Sandy areas
+|  6  ||  220  ||  230  ||  48-63  ||  18-28  ||  None
 |-
-|  $60-$6F  ||  Water  ||  Blocked  ||  0/256  ||  Ocean and rivers
+|  7  ||  450  ||  350  ||  56-74  ||  26-38  ||  SLEEP
 |-
-|  $70-$7F  ||  Shore  ||  Normal  ||  4/256  ||  Beach areas
+|  8  ||  800  ||  500  ||  68-89  ||  32-46  ||  None
 |-
-|  $80-$8F  ||  Town  ||  Normal  ||  0/256  ||  Town entrance tiles
+|  9  ||  1,300  ||  700  ||  78-102  ||  42-58  ||  RADIANT
 |-
-|  $90-$9F  ||  Castle  ||  Normal  ||  0/256  ||  Castle entrance tiles
+|  10  ||  2,000  ||  900  ||  93-120  ||  50-68  ||  STOPSPELL
 |-
-|  $A0-$AF  ||  Cave  ||  Normal  ||  0/256  ||  Cave entrance tiles
+|  11  ||  2,900  ||  1,100  ||  105-135  ||  62-82  ||  None
 |-
-|  $B0-$BF  ||  Stairs  ||  Normal  ||  0/256  ||  Dungeon level transitions
+|  12  ||  4,000  ||  1,500  ||  123-156  ||  72-94  ||  OUTSIDE
 |-
-|  $C0-$CF  ||  Door  ||  Normal  ||  0/256  ||  Building entrances
+|  13  ||  5,500  ||  2,000  ||  138-174  ||  87-111  ||  RETURN
 |-
-|  $D0-$DF  ||  Treasure  ||  Normal  ||  0/256  ||  Treasure chest locations
+|  14  ||  7,500  ||  2,500  ||  158-197  ||  99-127  ||  None
 |-
-|  $E0-$EF  ||  Bridge  ||  Normal  ||  4/256  ||  Water crossings
+|  15  ||  10,000  ||  3,000  ||  176-218  ||  117-147  ||  REPEL
 |-
-|  $F0-$FF  ||  Special  ||  Various  ||  Various  ||  Quest-specific tiles
+|  16  ||  13,000  ||  3,500  ||  198-243  ||  132-164  ||  None
+|-
+|  17  ||  16,500  ||  3,500  ||  218-266  ||  152-186  ||  HEALMORE
+|-
+|  18  ||  20,000  ||  4,000  ||  243-291  ||  155-191  ||  None
+|-
+|  19  ||  24,000  ||  4,000  ||  265-316  ||  158-196  ||  HURTMORE
+|-
+|  20  ||  28,000  ||  4,000  ||  293-344  ||  161-201  ||  None
+|-
+|  21  ||  32,000  ||  4,000  ||  298-352  ||  164-206  ||  None
+|-
+|  22  ||  36,000  ||  4,000  ||  303-360  ||  167-211  ||  None
+|-
+|  23  ||  40,000  ||  4,000  ||  308-368  ||  170-216  ||  None
+|-
+|  24  ||  44,000  ||  4,000  ||  313-376  ||  173-221  ||  None
+|-
+|  25  ||  48,000  ||  4,000  ||  318-384  ||  176-226  ||  None
+|-
+|  26  ||  52,000  ||  4,000  ||  323-392  ||  179-231  ||  None
+|-
+|  27  ||  56,000  ||  4,000  ||  328-400  ||  182-236  ||  None
+|-
+|  28  ||  60,000  ||  4,000  ||  333-408  ||  185-241  ||  None
+|-
+|  29  ||  64,000  ||  1,535  ||  338-416  ||  188-246  ||  None
+|-
+|  30  ||  65,535  ||  MAX  ||  343-424  ||  191-251  ||  All spells
 |}
+
+==Battle System Constants==
+
+===Damage Formulas===
+
+'''Player Physical Attack:'''
+* Base Damage = (Player ATK / 2) - (Enemy DEF / 4)
+* Final Damage = Base Damage + Random(0, 4)
+* If Final Damage < 0: Final Damage = 0
+
+'''Enemy Physical Attack:'''
+* Base Damage = (Enemy STR / 2) - (Player DEF / 4)  
+* Final Damage = Base Damage + Random(0, 4)
+* If Final Damage < 0: Final Damage = 0
+
+'''Critical Hits:'''
+* Chance = Player AGI / 64 (out of 256)
+* Critical Damage = Normal Damage × 2
+
+===Hit/Miss Formulas===
+
+'''Player Hit Chance:'''
+* Base = 224/256 (87.5%)
+* Penalty = Enemy AGI / 4
+* Final = Base - Penalty
+
+'''Enemy Hit Chance:'''
+* Base = 192/256 (75%)
+* Penalty = Player AGI / 2
+* Final = Base - Penalty
+
+'''Dodge Chance:'''
+* Chance = Player AGI / 4 (out of 256)
+
+==Spell Effect Values==
+
+{| class="wikitable sortable"
+|-
+!  Spell  !!  MP Cost  !!  Level  !!  Effect Range  !!  Formula Notes
+|-
+|  HEAL  ||  4  ||  3  ||  10-17 HP  ||  Random(10, 17)
+|-
+|  HURT  ||  2  ||  4  ||  5-12 - (DEF/8)  ||  Random(5, 12) - (Enemy DEF / 8), min 1
+|-
+|  SLEEP  ||  2  ||  7  ||  62.5% - (Lvl×2)  ||  160/256 base - (Enemy Level × 2), min 32/256
+|-
+|  RADIANT  ||  3  ||  9  ||  3 tile radius  ||  Permanent until map change
+|-
+|  STOPSPELL  ||  2  ||  10  ||  62.5% - (Lvl×3)  ||  160/256 base - (Enemy Level × 3), min 16/256
+|-
+|  OUTSIDE  ||  6  ||  12  ||  Warp  ||  Exit to dungeon entrance
+|-
+|  RETURN  ||  8  ||  13  ||  Warp (43,43)  ||  Tantegel Castle throne room
+|-
+|  REPEL  ||  2  ||  15  ||  127 steps  ||  Zero encounters for 127 steps
+|-
+|  HEALMORE  ||  10  ||  17  ||  85-100 HP  ||  Random(85, 100)
+|-
+|  HURTMORE  ||  5  ||  19  ||  58-65 - (DEF/4)  ||  Random(58, 65) - (Enemy DEF / 4), min 1
+|}
+
+==Stat Growth Formulas==
+
+===HP Gain Per Level===
+
+{| class="wikitable sortable"
+|-
+!  Level  !!  Base HP Gain  !!  With Random (0-3)  !!  Notes
+|-
+|  2  ||  5  ||  5-8  ||  
+|-
+|  3  ||  4  ||  4-7  ||  
+|-
+|  4  ||  8  ||  8-11  ||  
+|-
+|  5  ||  6  ||  6-9  ||  
+|-
+|  6  ||  10  ||  10-13  ||  
+|-
+|  7  ||  8  ||  8-11  ||  
+|-
+|  8  ||  12  ||  12-15  ||  
+|-
+|  9  ||  10  ||  10-13  ||  
+|-
+|  10  ||  15  ||  15-18  ||  Large gain
+|-
+|  11  ||  12  ||  12-15  ||  
+|-
+|  12  ||  18  ||  18-21  ||  Large gain
+|-
+|  13  ||  15  ||  15-18  ||  
+|-
+|  14  ||  20  ||  20-23  ||  Large gain
+|-
+|  15  ||  18  ||  18-21  ||  
+|-
+|  16  ||  22  ||  22-25  ||  Large gain
+|-
+|  17  ||  20  ||  20-23  ||  
+|-
+|  18  ||  25  ||  25-28  ||  Large gain
+|-
+|  19  ||  22  ||  22-25  ||  
+|-
+|  20  ||  28  ||  28-31  ||  Largest gain
+|-
+|  21-30  ||  5  ||  5-8  ||  Constant low gain
+|}
+
+===MP Gain Per Level===
+
+{| class="wikitable sortable"
+|-
+!  Level  !!  Base MP Gain  !!  With Random (0-2)  !!  Notes
+|-
+|  2  ||  0  ||  0-2  ||  May gain no MP
+|-
+|  3  ||  5  ||  5-7  ||  HEAL learned
+|-
+|  4  ||  3  ||  3-5  ||  HURT learned
+|-
+|  5  ||  6  ||  6-8  ||  
+|-
+|  6  ||  4  ||  4-6  ||  
+|-
+|  7  ||  8  ||  8-10  ||  SLEEP learned
+|-
+|  8  ||  6  ||  6-8  ||  
+|-
+|  9  ||  10  ||  10-12  ||  RADIANT learned
+|-
+|  10  ||  8  ||  8-10  ||  STOPSPELL learned
+|-
+|  11  ||  12  ||  12-14  ||  Large gain
+|-
+|  12  ||  10  ||  10-12  ||  OUTSIDE learned
+|-
+|  13  ||  15  ||  15-17  ||  Largest gain, RETURN learned
+|-
+|  14  ||  12  ||  12-14  ||  
+|-
+|  15  ||  18  ||  18-20  ||  Largest gain, REPEL learned
+|-
+|  16  ||  15  ||  15-17  ||  
+|-
+|  17  ||  20  ||  20-22  ||  Largest gain, HEALMORE learned
+|-
+|  18-30  ||  3  ||  3-5  ||  Constant low gain
+|}
+
+===Strength and Agility Gains===
+
+'''Strength (STR):'''
+* Even levels: Random(2, 4)
+* Odd levels: Random(1, 3)
+
+'''Agility (AGI):'''
+* Odd levels: Random(2, 5)
+* Even levels: Random(1, 3)
+
+==Item Effect Values==
+
+{| class="wikitable sortable"
+|-
+!  Item  !!  Effect  !!  Value/Formula  !!  Notes
+|-
+|  Herb  ||  Heal HP  ||  23-30  ||  Random(23, 30) HP restored
+|-
+|  Torch  ||  Light  ||  3 tile radius  ||  Until next battle or map change
+|-
+|  Fairy Water  ||  Repel  ||  ~100 steps  ||  Similar to REPEL spell
+|-
+|  Wings  ||  Warp  ||  (43, 43)  ||  Tantegel Castle, same as RETURN
+|-
+|  Dragon's Scale  ||  Damage Reduction  ||  -33%  ||  Reduces breath damage by 1/3
+|-
+|  Gwaelin's Love  ||  Location  ||  N/A  ||  Shows distance/direction to Tantegel
+|-
+|  Rainbow Drop  ||  Bridge  ||  (69, 69)  ||  Creates bridge at specific location
+|-
+|  Erdrick's Token  ||  Quest Item  ||  N/A  ||  Proof of Erdrick lineage
+|-
+|  Silver Harp  ||  Sleep  ||  N/A  ||  Puts enemies to sleep in battle
+|-
+|  Fighter's Ring  ||  ATK Bonus  ||  +2  ||  Small attack power increase
+|-
+|  Cursed Belt  ||  AGI Penalty  ||  -2  ||  Cursed item, reduces agility
+|-
+|  Death Necklace  ||  Instant Death  ||  100%  ||  Kills wearer when used
+|}
+
+==Encounter System Values==
+
+===Encounter Rates by Terrain===
+
+{| class="wikitable sortable"
+|-
+!  Terrain Type  !!  Rate (out of 256)  !!  Percentage  !!  Avg Steps Between  !!  Check Frequency
+|-
+|  Tantegel Area  ||  16  ||  6.25%  ||  ~128  ||  Every 8 steps
+|-
+|  Grassland  ||  32  ||  12.5%  ||  ~64  ||  Every 8 steps
+|-
+|  Forest  ||  48  ||  18.75%  ||  ~43  ||  Every 8 steps
+|-
+|  Hills  ||  64  ||  25%  ||  ~32  ||  Every 8 steps
+|-
+|  Mountains  ||  80  ||  31.25%  ||  ~26  ||  Every 8 steps
+|-
+|  Swamp  ||  96  ||  37.5%  ||  ~21  ||  Every 8 steps
+|-
+|  Desert (unused)  ||  112  ||  43.75%  ||  ~18  ||  Every 8 steps
+|}
+
+===Flee Success Rate===
+
+* Base Chance = 192/256 (75%)
+* Agility Bonus = (Player AGI - Enemy AGI) / 4
+* Final = Base + Bonus
+* Minimum = 64/256 (25%)
+* Maximum = 224/256 (87.5%)
+* Special monsters (Metal Slime, Goldman): Always flee successfully
+
+==Technical Limits and Maximums==
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Stat  !!  Maximum Value  !!  Data Type  !!  Notes
+|-
+|  Player  ||  Level  ||  30  ||  Hard cap  ||  Game max level
+|-
+|  Player  ||  HP  ||  255  ||  8-bit  ||  Practical max ~220 at level 30
+|-
+|  Player  ||  MP  ||  255  ||  8-bit  ||  Practical max ~160 at level 30
+|-
+|  Player  ||  STR  ||  255  ||  8-bit  ||  Practical max ~140 with best equipment
+|-
+|  Player  ||  AGI  ||  255  ||  8-bit  ||  Practical max ~150 with best equipment
+|-
+|  Player  ||  ATK  ||  255  ||  8-bit  ||  Base STR + weapon bonuses
+|-
+|  Player  ||  DEF  ||  255  ||  8-bit  ||  Base + armor + shield bonuses
+|-
+|  Currency  ||  Gold  ||  65,535  ||  16-bit  ||  2 bytes, little-endian
+|-
+|  Experience  ||  EXP  ||  65,535  ||  16-bit  ||  Level 30 requires 65,535
+|-
+|  Inventory  ||  Slots  ||  8  ||  Fixed  ||  8 item inventory limit
+|-
+|  Battle  ||  Damage  ||  255  ||  8-bit  ||  Single hit maximum
+|-
+|  Map  ||  Width  ||  120  ||  Overworld  ||  Overworld map size
+|-
+|  Map  ||  Height  ||  120  ||  Overworld  ||  Overworld map size
+|-
+|  Map  ||  Interior  ||  32×32  ||  Dungeons  ||  Maximum interior size
+|}
+
+==ROM Data Locations==
+
+{| class="wikitable sortable"
+|-
+!  Data Type  !!  Bank  !!  Approx Address  !!  Size  !!  Notes
+|-
+|  Monster Stats  ||  Bank 01  ||  $9000-$94FF  ||  1280 bytes  ||  40 monsters × 16 bytes
+|-
+|  Item Costs  ||  Bank 00  ||  $9947-$9990  ||  74 bytes  ||  All shop items
+|-
+|  Weapon Bonuses  ||  Bank 00  ||  $99CF-$99DE  ||  16 bytes  ||  Attack values
+|-
+|  Armor Bonuses  ||  Bank 00  ||  $99DF-$99EE  ||  16 bytes  ||  Defense values
+|-
+|  Shield Bonuses  ||  Bank 00  ||  $99EF-$99FE  ||  16 bytes  ||  Defense values
+|-
+|  EXP Requirements  ||  Bank 01  ||  $9500-$95FF  ||  60 bytes  ||  30 levels × 2 bytes
+|-
+|  HP Gain Table  ||  Bank 03  ||  ~$CB00  ||  30 bytes  ||  Base HP per level
+|-
+|  MP Gain Table  ||  Bank 03  ||  ~$CB80  ||  30 bytes  ||  Base MP per level
+|-
+|  Spell Costs  ||  Bank 01  ||  $9700-$97FF  ||  20 bytes  ||  10 spells × 2 bytes
+|}
+
+=References=
+
+* Dragon Warrior complete disassembly by TheAnsarya
+* GAME_FORMULAS.md - Complete formula documentation  
+* Dragon Warrior Info Project: [https://github.com/TheAnsarya/dragon-warrior-info]
+* DataCrystal Dragon Warrior pages
+
+[[Category:Dragon Warrior]]
+[[Category:NES Games]]
+[[Category:Game Constants]]
