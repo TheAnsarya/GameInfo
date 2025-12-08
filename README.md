@@ -65,14 +65,27 @@ Tools for game text and graphics.
 |------|-------------|
 | `text_extract.py` | Extract game text with TBL support |
 | `tile_viewer.py` | View/extract graphics tiles (NES/SNES/GB) |
+| `pointers.py` | Scan, analyze, and extract via pointer tables |
 
-### Patching
+### Patching and Compression
 
-Tools for ROM patches.
+Tools for ROM patches and compression.
 
 | Tool | Description |
 |------|-------------|
-| `rom_patch.py` | Create/apply IPS and JSON patches |
+| `rom_patch.py` | Create/apply IPS and BPS patches |
+| `compression.py` | Detect/decompress RLE, LZSS compression |
+| `checksum.py` | Calculate and fix ROM checksums |
+
+### Debugging and Tracing
+
+Tools for execution analysis and debugging.
+
+| Tool | Description |
+|------|-------------|
+| `trace_analyzer.py` | Analyze CPU execution traces (Mesen/FCEUX) |
+| `savestate.py` | Analyze and compare emulator save states |
+| `bank_analyzer.py` | Analyze ROM bank content types |
 
 ### Project Management
 
@@ -82,6 +95,7 @@ Tools for managing ROM hacking projects.
 |------|-------------|
 | `config_manager.py` | Manage project configurations |
 | `batch_process.py` | Batch processing for multiple files |
+| `project_gen.py` | Generate project scaffolding |
 | `spaces_to_tabs.py` | Convert indentation to tabs |
 
 ### Usage Examples
@@ -109,6 +123,36 @@ python tools/batch_process.py merge --input cdl_files/ --output merged.cdl
 #### Get ROM information:
 ```bash
 python tools/rom_info.py analyze game.nes --verbose
+```
+
+#### Analyze pointer table:
+```bash
+python tools/pointers.py analyze game.nes --offset 0x8000 --count 20
+```
+
+#### Detect compression:
+```bash
+python tools/compression.py detect game.nes --offset 0x10000
+```
+
+#### Calculate ROM checksums:
+```bash
+python tools/checksum.py calculate game.nes
+```
+
+#### Analyze save states:
+```bash
+python tools/savestate.py compare state1.mss state2.mss --section RAM
+```
+
+#### Analyze ROM banks:
+```bash
+python tools/bank_analyzer.py map game.nes --output bank_map.txt
+```
+
+#### Create new project:
+```bash
+python tools/project_gen.py create "My-Game-Hack" --type nes
 ```
 
 #### Initialize a new project:
