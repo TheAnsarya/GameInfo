@@ -1,0 +1,129 @@
+= CDL File Format (Code/Data Logger) =
+
+== Overview ==
+
+CDL (Code/Data Logger) files are binary files used by NES/SNES emulators (such as FCEUX, Mesen, and others) to track which bytes of a ROM have been accessed during execution and how they were accessed.
+
+== Purpose ==
+
+CDL files serve several purposes in ROM analysis and reverse engineering:
+
+* '''Code Identification''': Marks bytes that have been executed as code
+* '''Data Identification''': Marks bytes that have been read as data
+* '''Graphics Data''': Identifies bytes used as graphics/pattern table data
+* '''Bank Tracking''': Tracks memory bank usage in mapper ROMs
+* '''Disassembly Aid''': Helps create accurate disassemblies by distinguishing code from data
+
+== File Structure ==
+
+=== Header ===
+
+CDL files typically have a header that identifies the file format and version.
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $0000 || 4 bytes || Magic identifier (varies by emulator)
+|-
+| $0004 || Variable || Header data (emulator-specific)
+|}
+
+=== Body ===
+
+The body contains one byte for each byte of the ROM (excluding the iNES header for NES ROMs).
+
+==== FCEUX CDL Format ====
+
+For FCEUX, each byte is a bitfield with the following flags:
+
+{| class="wikitable"
+! Bit !! Hex Value !! Description
+|-
+| 0 || $01 || Code - Byte was executed as code (opcode or operand)
+|-
+| 1 || $02 || Data - Byte was read as data
+|-
+| 2 || $04 || Rendered - Byte was used as graphics data (CHR)
+|-
+| 3 || $08 || Read as indirect data (through $2007)
+|-
+| 4 || $10 || PCM Audio data
+|-
+| 5 || $20 || Indirect Code (jumped to via indirect addressing)
+|-
+| 6 || $40 || Indirect Data (accessed via indirect addressing)
+|-
+| 7 || $80 || ROM Bank marker (for bank-switched ROMs)
+|}
+
+==== Mesen CDL Format ====
+
+Mesen uses a similar but slightly different format:
+
+{| class="wikitable"
+! Bit !! Hex Value !! Description
+|-
+| 0 || $01 || Code
+|-
+| 1 || $02 || Data
+|-
+| 2 || $04 || Jump Target (label target)
+|-
+| 3 || $08 || Sub Entry Point (subroutine entry)
+|-
+| 4-7 || $F0 || PRG Bank number (for bank tracking)
+|}
+
+== File Size Calculation ==
+
+For NES ROMs:
+* PRG ROM CDL Size = PRG ROM Size (excluding 16-byte iNES header)
+* CHR ROM CDL Size = CHR ROM Size (if separate CHR CDL exists)
+
+'''Example:''' A 512KB PRG ROM would have a 524,288 byte CDL file (plus any header).
+
+== Usage Statistics ==
+
+CDL files can be analyzed to determine:
+
+* Percentage of ROM bytes identified as code
+* Percentage of ROM bytes identified as data
+* Percentage of ROM bytes unused/unlogged
+* Bank usage patterns
+
+== Best Practices ==
+
+# '''Comprehensive Gameplay''': Run through all game content to maximize coverage
+# '''Use Debug Features''': Enable debug menus or use cheats to access all areas
+# '''Multiple Sessions''': Merge CDL data from multiple play sessions
+# '''Save Regularly''': Most emulators auto-save CDL data on exit
+# '''Version Control''': Track CDL files in version control to see coverage improvements
+
+== Related Files ==
+
+* '''MLB''' (Mesen Label) - Debug label files
+* '''MSS''' (Mesen Save State) - Save state files
+* '''DBG''' - Debug symbol files
+* '''NL''' (FCEUX Name List) - FCEUX label files
+
+== Tools ==
+
+=== CDL Editor ===
+
+See [[CDL Editor]] for a Python-based tool to view and edit CDL files.
+
+=== CDL Statistics ===
+
+To get statistics from a CDL file, use the CDL analysis tools in the `/tools` directory.
+
+== External Links ==
+
+* [https://fceux.com/web/help/CodeDataLogger.html FCEUX Code/Data Logger Documentation]
+* [https://www.mesen.ca/ Mesen Emulator]
+
+== Categories ==
+
+[[Category:File Formats]]
+[[Category:Debugging]]
+[[Category:NES]]
+[[Category:SNES]]
