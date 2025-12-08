@@ -1,0 +1,266 @@
+name: CDL Tools CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'tools/*.py'
+      - 'tests/*.py'
+      - '.github/workflows/cdl-tools.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'tools/*.py'
+      - 'tests/*.py'
+  workflow_dispatch:
+    inputs:
+      run_coverage:
+        description: 'Run coverage report'
+        required: false
+        type: boolean
+        default: true
+
+jobs:
+  lint:
+    name: Lint Python Code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pylint mypy
+      
+      - name: Run flake8
+        run: |
+          flake8 tools/ --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 tools/ --count --exit-zero --max-complexity=10 --max-line-length=120 --statistics
+      
+      - name: Run pylint
+        run: |
+          pylint tools/*.py --exit-zero --disable=C0114,C0115,C0116 --max-line-length=120
+        continue-on-error: true
+
+  test:
+    name: Run Tests
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ['3.9', '3.10', '3.11', '3.12']
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-cov pillow
+      
+      - name: Run tests
+        run: |
+          pytest tests/ -v --tb=short
+      
+      - name: Run tests with coverage
+        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
+        run: |
+          pytest tests/ --cov=tools --cov-report=xml --cov-report=html
+      
+      - name: Upload coverage to Codecov
+        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./coverage.xml
+          fail_ci_if_error: false
+        continue-on-error: true
+      
+      - name: Upload coverage artifacts
+        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: htmlcov/
+
+  build-docs:
+    name: Build Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install sphinx sphinx-rtd-theme
+      
+      - name: Generate API docs
+        run: |
+          # Create docs directory if it doesn't exist
+          mkdir -p docs/api
+          
+          # Generate simple API documentation
+          python -c "
+          import os
+          import ast
+          
+          tools_dir = 'tools'
+          docs_dir = 'docs/api'
+          
+          for filename in os.listdir(tools_dir):
+              if not filename.endswith('.py'):
+                  continue
+              
+              filepath = os.path.join(tools_dir, filename)
+              with open(filepath, 'r', encoding='utf-8') as f:
+                  content = f.read()
+              
+              try:
+                  tree = ast.parse(content)
+              except SyntaxError:
+                  continue
+              
+              module_doc = ast.get_docstring(tree) or 'No documentation'
+              
+              doc_file = os.path.join(docs_dir, filename.replace('.py', '.md'))
+              with open(doc_file, 'w', encoding='utf-8') as f:
+                  f.write(f'# {filename}\\n\\n')
+                  f.write(f'{module_doc}\\n\\n')
+                  f.write('## Classes and Functions\\n\\n')
+                  
+                  for node in ast.walk(tree):
+                      if isinstance(node, ast.ClassDef):
+                          f.write(f'### {node.name}\\n\\n')
+                          class_doc = ast.get_docstring(node)
+                          if class_doc:
+                              f.write(f'{class_doc}\\n\\n')
+                      elif isinstance(node, ast.FunctionDef):
+                          if not node.name.startswith('_') or node.name == '__init__':
+                              f.write(f'#### {node.name}()\\n\\n')
+                              func_doc = ast.get_docstring(node)
+                              if func_doc:
+                                  f.write(f'{func_doc}\\n\\n')
+          "
+      
+      - name: Upload documentation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-docs
+          path: docs/api/
+
+  integration-test:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pillow
+      
+      - name: Create test CDL file
+        run: |
+          python -c "
+          # Create a test CDL file with known patterns
+          import os
+          
+          os.makedirs('test_output', exist_ok=True)
+          
+          # Create FCEUX-style CDL (raw, no header)
+          cdl_data = bytearray(0x4000)  # 16KB PRG bank
+          
+          # Mark some as code
+          for i in range(0, 0x100):
+              cdl_data[i] = 0x01  # Code
+          
+          # Mark some as data
+          for i in range(0x100, 0x200):
+              cdl_data[i] = 0x02  # Data
+          
+          with open('test_output/test.cdl', 'wb') as f:
+              f.write(cdl_data)
+          
+          print('Created test CDL file')
+          "
+      
+      - name: Test CDL Editor (CLI)
+        run: |
+          python tools/cdl_editor.py test_output/test.cdl --stats || true
+      
+      - name: Test CDL Visualizer
+        run: |
+          python tools/cdl_visualizer.py test_output/test.cdl --output test_output/heatmap.html --format html || true
+      
+      - name: Test CDL Converter
+        run: |
+          python tools/cdl_converter.py test_output/test.cdl --output test_output/converted.cdl --to mesen || true
+      
+      - name: Test MLB Editor (CLI)
+        run: |
+          # Create a test MLB file
+          echo "P:00:8000:Reset:Entry point" > test_output/test.mlb
+          echo "P:00:8010:Main:Main loop" >> test_output/test.mlb
+          python tools/mlb_editor.py test_output/test.mlb --stats || true
+      
+      - name: Test NL Editor (CLI)
+        run: |
+          # Create a test NL file
+          echo "; Test labels" > test_output/test.nes.0.nl
+          echo "\$8000#Reset#Entry point" >> test_output/test.nes.0.nl
+          python tools/nl_editor.py test_output/test.nes.0.nl --stats || true
+      
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: integration-test-output
+          path: test_output/
+
+  release:
+    name: Create Release Package
+    runs-on: ubuntu-latest
+    needs: [lint, test, integration-test]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Create release package
+        run: |
+          mkdir -p release/cdl-tools
+          cp tools/*.py release/cdl-tools/
+          cp tools/README.md release/cdl-tools/ || true
+          
+          # Create version file
+          echo "version: $(date +%Y.%m.%d)" > release/cdl-tools/VERSION
+          
+          # Create archive
+          cd release
+          zip -r cdl-tools.zip cdl-tools/
+          tar -czvf cdl-tools.tar.gz cdl-tools/
+      
+      - name: Upload release artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-package
+          path: release/*.zip

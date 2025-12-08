@@ -1,0 +1,296 @@
+= NL File Format (FCEUX Name List) =
+
+== Overview ==
+
+NL (Name List) files are debug label files used by the FCEUX emulator to provide symbolic debugging information. They allow you to assign names to memory addresses, making the debugger output more readable.
+
+== Purpose ==
+
+NL files serve several purposes:
+
+* '''Address Labeling''': Assign meaningful names to RAM, ROM, and register addresses
+* '''Debugger Enhancement''': Show labels instead of raw addresses in the debugger
+* '''Code Documentation''': Add comments to document code behavior
+* '''Trace Readability''': Make execution traces easier to understand
+* '''Breakpoint Naming''': Name breakpoint locations
+
+== File Naming Convention ==
+
+NL files must be named to match the ROM they describe:
+
+<pre>
+ROM filename: "Game Name (U).nes"
+NL filename:  "Game Name (U).nes.ram.nl"     (for RAM labels)
+NL filename:  "Game Name (U).nes.0.nl"       (for bank 0)
+NL filename:  "Game Name (U).nes.1.nl"       (for bank 1)
+...
+</pre>
+
+=== File Types ===
+
+{| class="wikitable"
+! Extension !! Description !! Address Range
+|-
+| .ram.nl || RAM labels || $0000-$07FF (mirrored to $1FFF)
+|-
+| .0.nl || Bank 0 labels || Depends on mapper
+|-
+| .1.nl || Bank 1 labels || Depends on mapper
+|-
+| ... || Additional banks || ...
+|}
+
+== File Format ==
+
+NL files are '''plain text''' files with a simple line-based format.
+
+=== Basic Syntax ===
+
+<pre>
+$Address#Label#Comment
+</pre>
+
+* '''$Address''': Hexadecimal address (4 digits)
+* '''#''': Separator character
+* '''Label''': Symbol name (no spaces)
+* '''Comment''': Optional description
+
+=== Examples ===
+
+<pre>
+$0000#temp#Temporary variable
+$0010#player_x#Player X position
+$0011#player_y#Player Y position
+$0200#oam_buffer#OAM DMA buffer
+</pre>
+
+== Complete Example ==
+
+=== RAM Labels (game.nes.ram.nl) ===
+
+<pre>
+; Zero Page Variables ($0000-$00FF)
+$0000#zp_temp0#General purpose temp
+$0001#zp_temp1#General purpose temp
+$0002#zp_temp2#General purpose temp
+$0003#zp_ptr_lo#Pointer low byte
+$0004#zp_ptr_hi#Pointer high byte
+
+; Game State ($0010-$001F)
+$0010#game_mode#Current game mode (0=title, 1=game, 2=pause)
+$0011#game_frame#Frame counter
+$0012#game_level#Current level number
+$0013#game_lives#Lives remaining
+
+; Player Variables ($0020-$003F)
+$0020#player_x#Player X position (pixels)
+$0021#player_y#Player Y position (pixels)
+$0022#player_vx#Player X velocity
+$0023#player_vy#Player Y velocity
+$0024#player_state#Player state (0=stand, 1=walk, 2=jump)
+$0025#player_dir#Player direction (0=right, 1=left)
+$0026#player_hp#Player health points
+$0027#player_anim#Animation frame
+
+; Controller Input ($0040-$004F)
+$0040#joy1_state#Controller 1 current state
+$0041#joy1_press#Controller 1 newly pressed
+$0042#joy1_held#Controller 1 held buttons
+$0043#joy2_state#Controller 2 current state
+
+; PPU Variables ($0050-$005F)
+$0050#ppu_ctrl_shadow#Shadow of PPUCTRL
+$0051#ppu_mask_shadow#Shadow of PPUMASK
+$0052#scroll_x#X scroll position
+$0053#scroll_y#Y scroll position
+$0054#nametable#Current nametable
+
+; OAM Buffer ($0200-$02FF)
+$0200#oam_buffer#Sprite OAM buffer (256 bytes)
+
+; General RAM ($0300-$07FF)
+$0300#enemy_data#Enemy data array
+$0400#projectile_data#Projectile data
+$0500#tile_buffer#Tile update buffer
+</pre>
+
+=== Bank 0 Labels (game.nes.0.nl) ===
+
+<pre>
+; Reset and Initialization
+$8000#Reset#Reset vector entry
+$8003#Init_Hardware#Initialize NES hardware
+$8020#Init_PPU#Initialize PPU
+$8040#Init_APU#Initialize APU
+$8060#Init_RAM#Clear RAM
+$8080#Init_Variables#Initialize game variables
+
+; Main Loop
+$8100#MainLoop#Main game loop
+$8103#WaitVBlank#Wait for VBlank
+$8110#ReadInput#Read controllers
+$8130#UpdateLogic#Update game logic
+$8150#UpdateSprites#Update sprite positions
+
+; NMI Handler
+$8200#NMI#NMI handler entry
+$8203#NMI_PushRegs#Save registers
+$8210#NMI_OAM_DMA#Perform OAM DMA
+$8220#NMI_UpdatePPU#Update PPU state
+$8250#NMI_PopRegs#Restore registers
+$8260#NMI_Exit#RTI
+
+; Subroutines
+$8300#ReadJoy#Read single controller
+$8320#MultiplyAY#Multiply A by Y
+$8340#DivideAY#Divide A by Y
+$8360#Random#Generate random number
+
+; Data Tables
+$8400#SinTable#Sine lookup table
+$8500#CosTable#Cosine lookup table
+$8600#LevelPointers#Level data pointers
+</pre>
+
+== Address Ranges ==
+
+=== NES Memory Map for NL Files ===
+
+{| class="wikitable"
+! File Type !! Address Range !! Description
+|-
+| .ram.nl || $0000-$07FF || Work RAM (mirrored 4x to $1FFF)
+|-
+| .ram.nl || $6000-$7FFF || Save RAM (if present)
+|-
+| .#.nl || $8000-$FFFF || PRG ROM (bank dependent)
+|}
+
+=== Bank Numbering ===
+
+For mapper ROMs, banks are numbered based on the PRG ROM organization:
+
+* '''NROM (mapper 0)''': 1-2 banks, use .0.nl
+* '''MMC1 (mapper 1)''': Multiple 16KB banks
+* '''MMC3 (mapper 4)''': Multiple 8KB banks
+* '''Large ROMs''': Banks numbered 0, 1, 2, ...
+
+== Advanced Features ==
+
+=== Multi-Byte Labels ===
+
+For arrays or structures, you can label the start:
+
+<pre>
+$0200#oam_buffer#OAM buffer - 64 sprites x 4 bytes
+$0300#enemy_array#8 enemies x 16 bytes each
+</pre>
+
+=== Conditional Labels ===
+
+Different labels for different game states (manual management):
+
+<pre>
+; These overlap - use appropriate one based on context
+$0100#title_cursor#Title screen cursor position
+$0100#game_score_lo#In-game: Score low byte
+</pre>
+
+=== Register Labels ===
+
+While not officially in NL format, you can document registers in comments:
+
+<pre>
+; PPU Registers (not in NL, but for reference):
+; $2000 = PPUCTRL
+; $2001 = PPUMASK
+; $2002 = PPUSTATUS
+; $2003 = OAMADDR
+; $2004 = OAMDATA
+; $2005 = PPUSCROLL
+; $2006 = PPUADDR
+; $2007 = PPUDATA
+</pre>
+
+== Best Practices ==
+
+=== Naming Conventions ===
+
+# Use lowercase with underscores: <code>player_x_position</code>
+# Use prefixes for clarity:
+#* <code>zp_</code> for zero page
+#* <code>ptr_</code> for pointers
+#* <code>tbl_</code> for tables
+#* <code>sub_</code> for subroutines
+# Keep names concise but descriptive
+# Use consistent abbreviations
+
+=== Organization ===
+
+# Group related labels together
+# Add section comments
+# Document size for arrays/buffers
+# Note any special requirements
+
+=== Maintenance ===
+
+# Keep NL files in sync with code changes
+# Use version control
+# Document label sources (manual analysis, CDL, etc.)
+
+== Integration with Other Tools ==
+
+=== From CDL Files ===
+
+CDL data can help identify code vs data regions:
+* Code flags ($01) → potential subroutine labels
+* Data flags ($02) → potential data table labels
+* Rendered flags ($04) → graphics data
+
+=== To MLB Format ===
+
+NL files can be converted to Mesen MLB format:
+
+<pre>
+NL:  $8000#Reset#Entry point
+MLB: P:8000:Reset:Entry point
+</pre>
+
+=== Symbol Files ===
+
+Some assemblers can export/import NL-compatible formats:
+* ca65: Generate via listing files
+* ASM6: Direct NL output support
+
+== Limitations ==
+
+* No support for bank-specific RAM labels
+* Comments must be on same line as label
+* No data type information (all treated as addresses)
+* File must exactly match ROM filename
+
+== Related Files ==
+
+* '''MLB''' (Mesen Label) - More advanced label format
+* '''CDL''' (Code/Data Logger) - Usage tracking
+* '''SYM''' - Generic symbol files
+* '''DBG''' - Debug info files
+
+== Tools ==
+
+See the tools directory for:
+* '''nl_editor.py''' - View and edit NL files
+* '''nl_to_mlb.py''' - Convert NL to MLB format
+* '''cdl_to_nl.py''' - Generate labels from CDL
+
+== External Links ==
+
+* [https://fceux.com/web/help/Debugger.html FCEUX Debugger Documentation]
+* [https://fceux.com/web/help/NLFilesFormat.html FCEUX NL File Format]
+
+== Categories ==
+
+[[Category:File Formats]]
+[[Category:Debugging]]
+[[Category:NES]]
+[[Category:FCEUX]]

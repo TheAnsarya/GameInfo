@@ -1,0 +1,266 @@
+= MLB File Format (Mesen Label) =
+
+== Overview ==
+
+MLB (Mesen Label) files are debug label files used by the Mesen emulator to provide symbolic debugging information for NES/SNES ROMs. They contain labels, comments, and code/data type information that makes debugging and reverse engineering easier.
+
+== Purpose ==
+
+MLB files serve several purposes:
+
+* '''Symbolic Debugging''': Replace raw addresses with meaningful names
+* '''Code Documentation''': Add comments to explain code functionality
+* '''Type Information''': Mark regions as code, data, or graphics
+* '''Breakpoint Labels''': Name breakpoint locations for easier debugging
+* '''Cross-Reference''': Track relationships between code sections
+
+== File Format ==
+
+MLB files are '''plain text''' files with a simple line-based format.
+
+=== General Structure ===
+
+<pre>
+[SectionType:Address:Label:Comment]
+</pre>
+
+Or in newer versions:
+
+<pre>
+SectionType:Address:Label:Comment
+</pre>
+
+=== Section Types ===
+
+{| class="wikitable"
+! Type Code !! Description !! Notes
+|-
+| P || PRG ROM label || Main program code/data
+|-
+| C || CHR ROM label || Graphics/tile data
+|-
+| G || Register label || Hardware register names
+|-
+| R || RAM label || Work RAM labels
+|-
+| W || Work RAM (alternate) || Same as R
+|-
+| S || Save RAM label || Battery-backed RAM
+|-
+| I || Internal RAM || Zero page and stack
+|}
+
+=== Address Format ===
+
+Addresses can be specified in several formats:
+
+* '''Absolute''': <code>P:8000:Label</code> - CPU address $8000
+* '''Bank:Offset''': <code>P:00:8000:Label</code> - Bank 0, offset $8000
+* '''PRG Offset''': <code>P:$010000:Label</code> - Direct PRG ROM offset
+
+=== Label Format ===
+
+Labels follow standard assembly naming conventions:
+* Alphanumeric characters and underscores
+* Cannot start with a number
+* Case-sensitive
+
+=== Comment Format ===
+
+Comments are optional and follow the label:
+
+<pre>
+P:8000:Reset:Main entry point after power-on
+P:8003:NMI_Handler:Called every VBlank
+</pre>
+
+== Example File ==
+
+<pre>
+; Mesen Label File
+; Game: Example Game
+; Created: 2024-01-01
+
+; Hardware Registers
+G:2000:PPUCTRL:PPU Control Register
+G:2001:PPUMASK:PPU Mask Register
+G:2002:PPUSTATUS:PPU Status Register
+G:2003:OAMADDR:OAM Address
+G:2004:OAMDATA:OAM Data
+G:2005:PPUSCROLL:PPU Scroll Position
+G:2006:PPUADDR:PPU Address
+G:2007:PPUDATA:PPU Data
+
+; Zero Page
+I:00:temp0:Temporary variable 0
+I:01:temp1:Temporary variable 1
+I:10:player_x:Player X position
+I:11:player_y:Player Y position
+I:12:player_hp:Player health
+
+; RAM
+R:0200:sprite_buffer:OAM sprite buffer (256 bytes)
+R:0300:game_state:Current game state
+
+; PRG ROM - Bank 0
+P:00:8000:Reset:Reset vector entry point
+P:00:8003:InitHardware:Initialize NES hardware
+P:00:8050:InitRAM:Clear and initialize RAM
+P:00:8100:MainLoop:Main game loop
+P:00:8150:ReadInput:Read controller input
+P:00:8200:UpdateGame:Update game logic
+P:00:8300:DrawSprites:Update sprite positions
+
+; PRG ROM - Bank 1
+P:01:8000:LoadLevel:Load level data
+P:01:8100:LevelData:Level data table
+
+; Vectors
+P:1F:FFFA:NMI_Vector:NMI vector
+P:1F:FFFC:Reset_Vector:Reset vector
+P:1F:FFFE:IRQ_Vector:IRQ vector
+</pre>
+
+== Advanced Features ==
+
+=== Multi-line Comments ===
+
+Some versions support multi-line comments:
+
+<pre>
+P:8000:ComplexRoutine:This is a complex routine
+:that spans multiple lines
+:and does many things
+</pre>
+
+=== Code/Data Type Markers ===
+
+Mesen 2 adds type markers to indicate how bytes should be interpreted:
+
+{| class="wikitable"
+! Marker !! Description
+|-
+| C || Code (executable)
+|-
+| D || Data (byte values)
+|-
+| W || Word data (16-bit)
+|-
+| T || Text/string data
+|-
+| G || Graphics data
+|}
+
+Example:
+<pre>
+P:8000:Subroutine:C:Function entry point
+P:8100:DataTable:D:Lookup table
+P:8200:StringData:T:Text strings
+</pre>
+
+=== Function Boundaries ===
+
+Mark function start and end:
+
+<pre>
+P:8000:MyFunction:@Start
+P:8050::@End
+</pre>
+
+== Mesen 2 Format ==
+
+Mesen 2 uses a slightly different format with JSON-like structure:
+
+<pre>
+{
+  "Labels": [
+    {
+      "Address": 32768,
+      "AddressType": "PrgRom",
+      "Label": "Reset",
+      "Comment": "Entry point",
+      "Length": 1,
+      "Flags": "None"
+    }
+  ]
+}
+</pre>
+
+=== AddressType Values ===
+
+{| class="wikitable"
+! Value !! Description
+|-
+| PrgRom || PRG ROM address
+|-
+| WorkRam || Work RAM ($0000-$07FF)
+|-
+| SaveRam || Battery-backed SRAM
+|-
+| Register || Hardware registers
+|-
+| InternalRam || Internal/Zero Page RAM
+|}
+
+=== Flags Values ===
+
+{| class="wikitable"
+! Flag !! Description
+|-
+| None || No special flags
+|-
+| AutoJump || Auto-created jump target
+|-
+| SubStart || Subroutine start
+|-
+| SubEnd || Subroutine end
+|}
+
+== Usage Tips ==
+
+=== Creating Labels ===
+
+# Use meaningful, descriptive names
+# Follow consistent naming conventions
+# Add comments for complex routines
+# Mark data tables clearly
+# Label all interrupt vectors
+
+=== Organization ===
+
+Group labels by:
+* Memory region (Zero Page, RAM, ROM)
+* Bank number for bank-switched games
+* Functional area (Input, Graphics, Sound)
+
+=== Integration with CDL ===
+
+CDL files can be used to auto-generate MLB labels:
+* Code regions → function labels
+* Data regions → data table labels
+* Entry points → subroutine markers
+
+== Related Files ==
+
+* '''CDL''' (Code/Data Logger) - Usage tracking
+* '''NL''' (FCEUX Name List) - Similar label format for FCEUX
+* '''DBG''' - Debug symbol files
+* '''SYM''' - Generic symbol files
+
+== Tools ==
+
+See the tools directory for:
+* [[MLB Editor]] - View and edit MLB files
+* [[CDL to MLB Converter]] - Generate labels from CDL data
+
+== External Links ==
+
+* [https://www.mesen.ca/ Mesen Emulator]
+* [https://www.mesen.ca/docs/ Mesen Documentation]
+
+== Categories ==
+
+[[Category:File Formats]]
+[[Category:Debugging]]
+[[Category:NES]]
+[[Category:SNES]]
