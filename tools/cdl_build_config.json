@@ -1,14 +1,14 @@
 {
-    "name": "DragonWarrior4_CDL",
-    "output_dir": "build/cdl",
-    "sources": [
-        {
-            "path": "../Dragon Warrior 4 (NES)/Debugging/*.cdl",
-            "description": "CDL files from debugging sessions"
-        }
-    ],
-    "rom_file": null,
-    "expected_size": 524288,
-    "generate_report": true,
-    "backup_existing": true
+	"name": "DragonWarrior4_CDL",
+	"output_dir": "build/cdl",
+	"sources": [
+		{
+			"path": "../Dragon Warrior 4 (NES)/Debugging/*.cdl",
+			"description": "CDL files from debugging sessions"
+		}
+	],
+	"rom_file": null,
+	"expected_size": 524288,
+	"generate_report": true,
+	"backup_existing": true
 }
