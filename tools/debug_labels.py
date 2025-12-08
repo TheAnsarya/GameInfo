@@ -1,0 +1,675 @@
+#!/usr/bin/env python3
+"""
+NES Debugger Labels Manager - Convert between different debugger formats
+
+Supports:
+- Mesen (.mlb)
+- FCEUX (.nl)
+- Exported symbol files
+- Custom formats
+"""
+
+import argparse
+import json
+import re
+import sys
+from pathlib import Path
+from typing import Dict, List, Optional, Tuple
+
+
+class DebugLabel:
+	"""Represents a single debug label."""
+
+	def __init__(
+		self,
+		name: str,
+		address: int,
+		address_type: str = "cpu",
+		length: int = 1,
+		comment: str = "",
+		label_type: str = "unknown",
+	):
+		self.name = name
+		self.address = address
+		self.address_type = address_type  # "cpu", "ppu", "rom", "ram"
+		self.length = length
+		self.comment = comment
+		self.label_type = label_type  # "code", "data", "ram", "io", "unknown"
+
+	def to_dict(self) -> Dict:
+		"""Convert to dictionary."""
+		return {
+			"name": self.name,
+			"address": f"${self.address:04X}",
+			"address_int": self.address,
+			"type": self.address_type,
+			"length": self.length,
+			"comment": self.comment,
+			"label_type": self.label_type,
+		}
+
+	@classmethod
+	def from_dict(cls, data: Dict) -> "DebugLabel":
+		"""Create from dictionary."""
+		address = data.get("address_int", 0)
+		if not address and "address" in data:
+			addr_str = data["address"].lstrip("$")
+			address = int(addr_str, 16)
+
+		return cls(
+			name=data.get("name", ""),
+			address=address,
+			address_type=data.get("type", "cpu"),
+			length=data.get("length", 1),
+			comment=data.get("comment", ""),
+			label_type=data.get("label_type", "unknown"),
+		)
+
+
+class LabelDatabase:
+	"""Database of debug labels."""
+
+	def __init__(self):
+		self.labels: Dict[str, DebugLabel] = {}  # name -> label
+		self.by_address: Dict[int, List[DebugLabel]] = {}  # address -> labels
+		self.metadata: Dict[str, str] = {}
+
+	def add_label(self, label: DebugLabel):
+		"""Add a label to the database."""
+		self.labels[label.name] = label
+
+		if label.address not in self.by_address:
+			self.by_address[label.address] = []
+		self.by_address[label.address].append(label)
+
+	def get_label(self, name: str) -> Optional[DebugLabel]:
+		"""Get label by name."""
+		return self.labels.get(name)
+
+	def get_labels_at(self, address: int) -> List[DebugLabel]:
+		"""Get all labels at an address."""
+		return self.by_address.get(address, [])
+
+	def remove_label(self, name: str):
+		"""Remove a label by name."""
+		if name in self.labels:
+			label = self.labels[name]
+			del self.labels[name]
+
+			if label.address in self.by_address:
+				self.by_address[label.address] = [
+					l for l in self.by_address[label.address] if l.name != name
+				]
+
+	def merge(self, other: "LabelDatabase", overwrite: bool = False):
+		"""Merge another database into this one."""
+		for label in other.labels.values():
+			if label.name not in self.labels or overwrite:
+				self.add_label(label)
+
+	def filter_by_type(self, address_type: str) -> List[DebugLabel]:
+		"""Filter labels by address type."""
+		return [l for l in self.labels.values() if l.address_type == address_type]
+
+	def filter_by_range(self, start: int, end: int) -> List[DebugLabel]:
+		"""Filter labels by address range."""
+		return [l for l in self.labels.values() if start <= l.address <= end]
+
+
+class MesenMLBFormat:
+	"""Mesen .mlb format handler."""
+
+	# Type characters for Mesen
+	TYPE_MAP = {
+		"G": ("cpu", "code"),     # PRG ROM code
+		"D": ("cpu", "data"),     # PRG ROM data
+		"R": ("ram", "ram"),      # Work RAM
+		"W": ("ram", "ram"),      # Work RAM (write)
+		"N": ("ppu", "ppu"),      # Name table
+		"C": ("ppu", "chr"),      # CHR ROM
+		"S": ("ppu", "sprite"),   # Sprite RAM
+		"P": ("ppu", "palette"),  # Palette
+		"I": ("cpu", "io"),       # Internal RAM
+	}
+
+	@classmethod
+	def load(cls, file_path: Path) -> LabelDatabase:
+		"""Load Mesen .mlb file."""
+		db = LabelDatabase()
+		content = file_path.read_text(encoding="utf-8", errors="replace")
+
+		for line in content.split("\n"):
+			line = line.strip()
+			if not line or line.startswith(";") or line.startswith("#"):
+				continue
+
+			# Format: TYPE:ADDRESS:NAME:COMMENT
+			parts = line.split(":")
+			if len(parts) >= 3:
+				type_char = parts[0]
+				address_str = parts[1]
+				name = parts[2]
+				comment = parts[3] if len(parts) > 3 else ""
+
+				try:
+					address = int(address_str, 16)
+					addr_type, label_type = cls.TYPE_MAP.get(type_char, ("cpu", "unknown"))
+
+					label = DebugLabel(
+						name=name,
+						address=address,
+						address_type=addr_type,
+						comment=comment,
+						label_type=label_type,
+					)
+					db.add_label(label)
+				except ValueError:
+					continue
+
+		return db
+
+	@classmethod
+	def save(cls, db: LabelDatabase, file_path: Path):
+		"""Save to Mesen .mlb file."""
+		# Reverse type map
+		reverse_map = {}
+		for char, (addr_type, label_type) in cls.TYPE_MAP.items():
+			key = (addr_type, label_type)
+			if key not in reverse_map:
+				reverse_map[key] = char
+
+		lines = ["; Mesen Label File", "; Generated by Debug Labels Manager", ""]
+
+		# Sort by address
+		for label in sorted(db.labels.values(), key=lambda l: (l.address_type, l.address)):
+			type_char = reverse_map.get((label.address_type, label.label_type))
+			if not type_char:
+				# Default based on address
+				if label.address < 0x2000:
+					type_char = "R"
+				elif label.address < 0x8000:
+					type_char = "I"
+				else:
+					type_char = "G"
+
+			line = f"{type_char}:{label.address:X}:{label.name}"
+			if label.comment:
+				line += f":{label.comment}"
+			lines.append(line)
+
+		file_path.write_text("\n".join(lines), encoding="utf-8")
+
+
+class FCEUXFormat:
+	"""FCEUX .nl format handler."""
+
+	@classmethod
+	def load(cls, file_path: Path) -> LabelDatabase:
+		"""Load FCEUX .nl file."""
+		db = LabelDatabase()
+		content = file_path.read_text(encoding="utf-8", errors="replace")
+
+		for line in content.split("\n"):
+			line = line.strip()
+			if not line or line.startswith("#"):
+				continue
+
+			# Format: $ADDRESS#NAME#COMMENT
+			match = re.match(r'\$([0-9A-Fa-f]+)#([^#]+)(?:#(.*))?', line)
+			if match:
+				address = int(match.group(1), 16)
+				name = match.group(2)
+				comment = match.group(3) or ""
+
+				# Determine type from address
+				if address < 0x800:
+					addr_type = "ram"
+					label_type = "ram"
+				elif address < 0x2000:
+					addr_type = "ram"
+					label_type = "ram"
+				elif address < 0x4000:
+					addr_type = "cpu"
+					label_type = "io"
+				elif address < 0x8000:
+					addr_type = "cpu"
+					label_type = "data"
+				else:
+					addr_type = "cpu"
+					label_type = "code"
+
+				label = DebugLabel(
+					name=name,
+					address=address,
+					address_type=addr_type,
+					comment=comment,
+					label_type=label_type,
+				)
+				db.add_label(label)
+
+		return db
+
+	@classmethod
+	def save(cls, db: LabelDatabase, file_path: Path):
+		"""Save to FCEUX .nl file."""
+		lines = ["# FCEUX Name List File", "# Generated by Debug Labels Manager", ""]
+
+		# FCEUX uses separate files for different banks
+		# This saves all labels to one file - bank-specific export would need ROM info
+
+		for label in sorted(db.labels.values(), key=lambda l: l.address):
+			if label.address_type != "cpu":
+				continue  # FCEUX .nl is CPU address only
+
+			line = f"${label.address:04X}#{label.name}"
+			if label.comment:
+				line += f"#{label.comment}"
+			lines.append(line)
+
+		file_path.write_text("\n".join(lines), encoding="utf-8")
+
+
+class SymbolFormat:
+	"""Generic symbol file format."""
+
+	@classmethod
+	def load(cls, file_path: Path) -> LabelDatabase:
+		"""Load symbol file."""
+		db = LabelDatabase()
+		content = file_path.read_text(encoding="utf-8", errors="replace")
+
+		for line in content.split("\n"):
+			line = line.strip()
+			if not line or line.startswith(";") or line.startswith("#"):
+				continue
+
+			# Try various formats
+			# Format 1: NAME = $ADDRESS
+			match = re.match(r'([A-Za-z_][A-Za-z0-9_]*)\s*=\s*\$([0-9A-Fa-f]+)', line)
+			if match:
+				name = match.group(1)
+				address = int(match.group(2), 16)
+				db.add_label(DebugLabel(name, address))
+				continue
+
+			# Format 2: $ADDRESS NAME
+			match = re.match(r'\$([0-9A-Fa-f]+)\s+([A-Za-z_][A-Za-z0-9_]*)', line)
+			if match:
+				address = int(match.group(1), 16)
+				name = match.group(2)
+				db.add_label(DebugLabel(name, address))
+				continue
+
+			# Format 3: ADDRESS NAME (hex without $)
+			match = re.match(r'([0-9A-Fa-f]+)\s+([A-Za-z_][A-Za-z0-9_]*)', line)
+			if match:
+				address = int(match.group(1), 16)
+				name = match.group(2)
+				db.add_label(DebugLabel(name, address))
+				continue
+
+		return db
+
+	@classmethod
+	def save(cls, db: LabelDatabase, file_path: Path, format_style: str = "ca65"):
+		"""Save to symbol file."""
+		lines = ["; Symbol File", "; Generated by Debug Labels Manager", ""]
+
+		for label in sorted(db.labels.values(), key=lambda l: l.address):
+			if format_style == "ca65":
+				line = f"{label.name} = ${label.address:04X}"
+			elif format_style == "asm":
+				line = f"${label.address:04X}  {label.name}"
+			else:
+				line = f"{label.address:04X} {label.name}"
+
+			if label.comment:
+				line += f"  ; {label.comment}"
+			lines.append(line)
+
+		file_path.write_text("\n".join(lines), encoding="utf-8")
+
+
+class JSONFormat:
+	"""JSON format handler."""
+
+	@classmethod
+	def load(cls, file_path: Path) -> LabelDatabase:
+		"""Load JSON file."""
+		db = LabelDatabase()
+		data = json.loads(file_path.read_text(encoding="utf-8"))
+
+		db.metadata = data.get("metadata", {})
+
+		for label_data in data.get("labels", []):
+			label = DebugLabel.from_dict(label_data)
+			db.add_label(label)
+
+		return db
+
+	@classmethod
+	def save(cls, db: LabelDatabase, file_path: Path):
+		"""Save to JSON file."""
+		data = {
+			"metadata": db.metadata,
+			"labels": [label.to_dict() for label in sorted(db.labels.values(), key=lambda l: l.address)],
+		}
+
+		file_path.write_text(json.dumps(data, indent="\t"), encoding="utf-8")
+
+
+def detect_format(file_path: Path) -> str:
+	"""Detect file format from extension or content."""
+	ext = file_path.suffix.lower()
+
+	if ext == ".mlb":
+		return "mesen"
+	elif ext == ".nl":
+		return "fceux"
+	elif ext == ".json":
+		return "json"
+	elif ext in {".sym", ".lbl", ".txt"}:
+		# Check content
+		try:
+			content = file_path.read_text(encoding="utf-8", errors="replace")
+			first_line = content.split("\n")[0].strip()
+
+			if first_line.startswith("{"):
+				return "json"
+			elif ":" in first_line and any(c.isalpha() for c in first_line.split(":")[0]):
+				return "mesen"
+			elif first_line.startswith("$") and "#" in first_line:
+				return "fceux"
+		except Exception:
+			pass
+
+		return "symbol"
+
+	return "symbol"
+
+
+def convert_labels(
+	input_path: Path,
+	output_path: Path,
+	input_format: Optional[str] = None,
+	output_format: Optional[str] = None,
+):
+	"""Convert between label formats."""
+	# Detect formats if not specified
+	if not input_format:
+		input_format = detect_format(input_path)
+	if not output_format:
+		output_format = detect_format(output_path)
+
+	# Load
+	if input_format == "mesen":
+		db = MesenMLBFormat.load(input_path)
+	elif input_format == "fceux":
+		db = FCEUXFormat.load(input_path)
+	elif input_format == "json":
+		db = JSONFormat.load(input_path)
+	else:
+		db = SymbolFormat.load(input_path)
+
+	# Save
+	if output_format == "mesen":
+		MesenMLBFormat.save(db, output_path)
+	elif output_format == "fceux":
+		FCEUXFormat.save(db, output_path)
+	elif output_format == "json":
+		JSONFormat.save(db, output_path)
+	else:
+		SymbolFormat.save(db, output_path)
+
+	return len(db.labels)
+
+
+def main():
+	"""Main entry point."""
+	parser = argparse.ArgumentParser(
+		description="Debug Labels Manager - Convert between debugger label formats",
+		formatter_class=argparse.RawDescriptionHelpFormatter,
+		epilog="""
+Formats:
+	mesen   - Mesen .mlb format (TYPE:ADDRESS:NAME:COMMENT)
+	fceux   - FCEUX .nl format ($ADDRESS#NAME#COMMENT)
+	symbol  - Generic symbol format (NAME = $ADDRESS)
+	json    - JSON format
+
+Examples:
+	# Convert Mesen to FCEUX
+	python debug_labels.py convert labels.mlb -o labels.nl
+
+	# Convert to JSON
+	python debug_labels.py convert labels.mlb -o labels.json
+
+	# Merge multiple files
+	python debug_labels.py merge file1.mlb file2.mlb -o merged.mlb
+
+	# Show file info
+	python debug_labels.py info labels.mlb
+
+	# Search labels
+	python debug_labels.py search labels.mlb --name "player"
+
+	# Filter by address range
+	python debug_labels.py filter labels.mlb --start 0x8000 --end 0xFFFF -o prg_labels.mlb
+		""",
+	)
+
+	subparsers = parser.add_subparsers(dest="command", help="Command")
+
+	# Convert command
+	convert_parser = subparsers.add_parser("convert", help="Convert between formats")
+	convert_parser.add_argument("input", help="Input file")
+	convert_parser.add_argument("-o", "--output", required=True, help="Output file")
+	convert_parser.add_argument("--input-format", choices=["mesen", "fceux", "symbol", "json"])
+	convert_parser.add_argument("--output-format", choices=["mesen", "fceux", "symbol", "json"])
+
+	# Merge command
+	merge_parser = subparsers.add_parser("merge", help="Merge label files")
+	merge_parser.add_argument("inputs", nargs="+", help="Input files")
+	merge_parser.add_argument("-o", "--output", required=True, help="Output file")
+	merge_parser.add_argument("--overwrite", action="store_true", help="Overwrite duplicates")
+
+	# Info command
+	info_parser = subparsers.add_parser("info", help="Show file info")
+	info_parser.add_argument("input", help="Input file")
+
+	# Search command
+	search_parser = subparsers.add_parser("search", help="Search labels")
+	search_parser.add_argument("input", help="Input file")
+	search_parser.add_argument("--name", help="Search by name (substring)")
+	search_parser.add_argument("--address", help="Search by address (hex)")
+
+	# Filter command
+	filter_parser = subparsers.add_parser("filter", help="Filter labels")
+	filter_parser.add_argument("input", help="Input file")
+	filter_parser.add_argument("-o", "--output", required=True, help="Output file")
+	filter_parser.add_argument("--start", help="Start address (hex)")
+	filter_parser.add_argument("--end", help="End address (hex)")
+	filter_parser.add_argument("--type", help="Address type (cpu, ram, ppu)")
+
+	args = parser.parse_args()
+
+	if not args.command:
+		parser.print_help()
+		return 1
+
+	try:
+		if args.command == "convert":
+			input_path = Path(args.input)
+			output_path = Path(args.output)
+
+			if not input_path.exists():
+				print(f"Error: Input file not found: {input_path}", file=sys.stderr)
+				return 1
+
+			count = convert_labels(
+				input_path,
+				output_path,
+				args.input_format,
+				args.output_format,
+			)
+			print(f"Converted {count} labels")
+			print(f"Output: {output_path}")
+
+		elif args.command == "merge":
+			merged = LabelDatabase()
+
+			for input_file in args.inputs:
+				input_path = Path(input_file)
+				if not input_path.exists():
+					print(f"Warning: File not found: {input_path}", file=sys.stderr)
+					continue
+
+				format_type = detect_format(input_path)
+				if format_type == "mesen":
+					db = MesenMLBFormat.load(input_path)
+				elif format_type == "fceux":
+					db = FCEUXFormat.load(input_path)
+				elif format_type == "json":
+					db = JSONFormat.load(input_path)
+				else:
+					db = SymbolFormat.load(input_path)
+
+				merged.merge(db, args.overwrite)
+				print(f"Loaded {len(db.labels)} labels from {input_path.name}")
+
+			# Save merged
+			output_path = Path(args.output)
+			output_format = detect_format(output_path)
+
+			if output_format == "mesen":
+				MesenMLBFormat.save(merged, output_path)
+			elif output_format == "fceux":
+				FCEUXFormat.save(merged, output_path)
+			elif output_format == "json":
+				JSONFormat.save(merged, output_path)
+			else:
+				SymbolFormat.save(merged, output_path)
+
+			print(f"Merged {len(merged.labels)} total labels to {output_path}")
+
+		elif args.command == "info":
+			input_path = Path(args.input)
+			if not input_path.exists():
+				print(f"Error: File not found: {input_path}", file=sys.stderr)
+				return 1
+
+			format_type = detect_format(input_path)
+			if format_type == "mesen":
+				db = MesenMLBFormat.load(input_path)
+			elif format_type == "fceux":
+				db = FCEUXFormat.load(input_path)
+			elif format_type == "json":
+				db = JSONFormat.load(input_path)
+			else:
+				db = SymbolFormat.load(input_path)
+
+			# Count by type
+			type_counts = {}
+			for label in db.labels.values():
+				key = label.address_type
+				type_counts[key] = type_counts.get(key, 0) + 1
+
+			print(f"\nFile: {input_path.name}")
+			print(f"Format: {format_type}")
+			print(f"Total labels: {len(db.labels)}")
+			print("\nBy type:")
+			for addr_type, count in sorted(type_counts.items()):
+				print(f"  {addr_type}: {count}")
+
+		elif args.command == "search":
+			input_path = Path(args.input)
+			if not input_path.exists():
+				print(f"Error: File not found: {input_path}", file=sys.stderr)
+				return 1
+
+			format_type = detect_format(input_path)
+			if format_type == "mesen":
+				db = MesenMLBFormat.load(input_path)
+			elif format_type == "fceux":
+				db = FCEUXFormat.load(input_path)
+			elif format_type == "json":
+				db = JSONFormat.load(input_path)
+			else:
+				db = SymbolFormat.load(input_path)
+
+			results = []
+			if args.name:
+				pattern = args.name.lower()
+				results = [l for l in db.labels.values() if pattern in l.name.lower()]
+			elif args.address:
+				addr = int(args.address.lstrip("$").lstrip("0x"), 16)
+				results = db.get_labels_at(addr)
+
+			print(f"\nFound {len(results)} labels:")
+			for label in results:
+				print(f"  ${label.address:04X}  {label.name}")
+				if label.comment:
+					print(f"         ; {label.comment}")
+
+		elif args.command == "filter":
+			input_path = Path(args.input)
+			if not input_path.exists():
+				print(f"Error: File not found: {input_path}", file=sys.stderr)
+				return 1
+
+			format_type = detect_format(input_path)
+			if format_type == "mesen":
+				db = MesenMLBFormat.load(input_path)
+			elif format_type == "fceux":
+				db = FCEUXFormat.load(input_path)
+			elif format_type == "json":
+				db = JSONFormat.load(input_path)
+			else:
+				db = SymbolFormat.load(input_path)
+
+			# Filter
+			filtered = LabelDatabase()
+
+			for label in db.labels.values():
+				include = True
+
+				if args.start:
+					start = int(args.start.lstrip("$").lstrip("0x"), 16)
+					if label.address < start:
+						include = False
+
+				if args.end:
+					end = int(args.end.lstrip("$").lstrip("0x"), 16)
+					if label.address > end:
+						include = False
+
+				if args.type:
+					if label.address_type != args.type:
+						include = False
+
+				if include:
+					filtered.add_label(label)
+
+			# Save
+			output_path = Path(args.output)
+			output_format = detect_format(output_path)
+
+			if output_format == "mesen":
+				MesenMLBFormat.save(filtered, output_path)
+			elif output_format == "fceux":
+				FCEUXFormat.save(filtered, output_path)
+			elif output_format == "json":
+				JSONFormat.save(filtered, output_path)
+			else:
+				SymbolFormat.save(filtered, output_path)
+
+			print(f"Filtered {len(filtered.labels)} labels to {output_path}")
+
+	except Exception as e:
+		print(f"Error: {e}", file=sys.stderr)
+		return 1
+
+	return 0
+
+
+if __name__ == "__main__":
+	sys.exit(main())
