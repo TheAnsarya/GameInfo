@@ -65,15 +65,18 @@ Tools for game text and graphics.
 |------|-------------|
 | `text_extract.py` | Extract game text with TBL support |
 | `tile_viewer.py` | View/extract graphics tiles (NES/SNES/GB) |
+| `sprite_editor.py` | Extract/import sprites and sprite sheets |
 | `pointers.py` | Scan, analyze, and extract via pointer tables |
+| `string_table.py` | Manage string tables for translation |
 
-### Patching and Compression
+### Patching and Comparison
 
-Tools for ROM patches and compression.
+Tools for ROM patches and comparison.
 
 | Tool | Description |
 |------|-------------|
 | `rom_patch.py` | Create/apply IPS and BPS patches |
+| `rom_diff.py` | Compare ROMs and generate diff reports |
 | `compression.py` | Detect/decompress RLE, LZSS compression |
 | `checksum.py` | Calculate and fix ROM checksums |
 
@@ -86,6 +89,7 @@ Tools for execution analysis and debugging.
 | `trace_analyzer.py` | Analyze CPU execution traces (Mesen/FCEUX) |
 | `savestate.py` | Analyze and compare emulator save states |
 | `bank_analyzer.py` | Analyze ROM bank content types |
+| `mapper_info.py` | NES mapper documentation and analysis |
 
 ### Project Management
 
@@ -153,6 +157,26 @@ python tools/bank_analyzer.py map game.nes --output bank_map.txt
 #### Create new project:
 ```bash
 python tools/project_gen.py create "My-Game-Hack" --type nes
+```
+
+#### Look up mapper info:
+```bash
+python tools/mapper_info.py lookup 4
+```
+
+#### Compare ROM versions:
+```bash
+python tools/rom_diff.py report original.nes modified.nes --output diff.html
+```
+
+#### Extract strings with TBL:
+```bash
+python tools/string_table.py extract game.nes --tbl table.tbl --pointer-table 0x8000 --count 100 --output strings.json
+```
+
+#### Create sprite sheet:
+```bash
+python tools/sprite_editor.py sheet game.nes --offset 0x10010 --count 256 --output sprites.png
 ```
 
 #### Initialize a new project:
