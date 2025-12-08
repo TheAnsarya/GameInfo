@@ -54,6 +54,25 @@ Tools for analyzing ROM files and binary data.
 | `rom_info.py` | Extract detailed ROM info (NES/SNES/GB) |
 | `hex_finder.py` | Search for hex patterns and text strings |
 | `disasm_export.py` | Export to IDA, Ghidra, ca65, etc. |
+| `data_table.py` | Detect and analyze data tables |
+| `memory_map.py` | Generate memory map documentation |
+
+### Text and Graphics
+
+Tools for game text and graphics.
+
+| Tool | Description |
+|------|-------------|
+| `text_extract.py` | Extract game text with TBL support |
+| `tile_viewer.py` | View/extract graphics tiles (NES/SNES/GB) |
+
+### Patching
+
+Tools for ROM patches.
+
+| Tool | Description |
+|------|-------------|
+| `rom_patch.py` | Create/apply IPS and JSON patches |
 
 ### Project Management
 
