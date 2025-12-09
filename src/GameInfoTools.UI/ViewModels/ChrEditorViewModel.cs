@@ -5,6 +5,7 @@ using Avalonia.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GameInfoTools.Core;
+using GameInfoTools.Core.Commands;
 using GameInfoTools.Graphics;
 using GameInfoTools.UI.Services;
 
@@ -16,6 +17,12 @@ namespace GameInfoTools.UI.ViewModels;
 public partial class ChrEditorViewModel : ViewModelBase {
 	private readonly RomFile? _rom;
 	private ChrEditor? _chrEditor;
+	private readonly UndoRedoManager _undoRedo = new(maxHistorySize: 100);
+
+	/// <summary>
+	/// Clipboard for tile copy/paste operations.
+	/// </summary>
+	private byte[,]? _clipboardTile;
 
 	[ObservableProperty]
 	private bool _hasRomLoaded;
@@ -56,6 +63,15 @@ public partial class ChrEditorViewModel : ViewModelBase {
 	[ObservableProperty]
 	private int _selectedColorIndex;
 
+	[ObservableProperty]
+	private string _undoDescription = "";
+
+	[ObservableProperty]
+	private string _redoDescription = "";
+
+	[ObservableProperty]
+	private bool _hasClipboard;
+
 	/// <summary>
 	/// Tile preview transformations for flip/rotate preview.
 	/// </summary>
@@ -86,6 +102,16 @@ public partial class ChrEditorViewModel : ViewModelBase {
 	/// </summary>
 	[ObservableProperty]
 	private byte[,]? _selectedTileData;
+
+	/// <summary>
+	/// Gets whether undo is available.
+	/// </summary>
+	public bool CanUndo => _undoRedo.CanUndo;
+
+	/// <summary>
+	/// Gets whether redo is available.
+	/// </summary>
+	public bool CanRedo => _undoRedo.CanRedo;
 
 	/// <summary>
 	/// Available preset palettes.
@@ -429,42 +455,140 @@ public partial class ChrEditorViewModel : ViewModelBase {
 	[RelayCommand]
 	private void ApplyFlipHorizontal() {
 		if (_chrEditor is null || SelectedTileIndex < 0 || PreviewFlipH is null) return;
-		_chrEditor.SetTile(SelectedTileIndex, PreviewFlipH);
-		LoadTilePreview();
-		StatusText = $"Applied horizontal flip to tile {SelectedTileIndex:X2}";
+		ExecuteTileChange(SelectedTileIndex, PreviewFlipH, $"Flip tile {SelectedTileIndex:X2} horizontal");
 	}
 
 	[RelayCommand]
 	private void ApplyFlipVertical() {
 		if (_chrEditor is null || SelectedTileIndex < 0 || PreviewFlipV is null) return;
-		_chrEditor.SetTile(SelectedTileIndex, PreviewFlipV);
-		LoadTilePreview();
-		StatusText = $"Applied vertical flip to tile {SelectedTileIndex:X2}";
+		ExecuteTileChange(SelectedTileIndex, PreviewFlipV, $"Flip tile {SelectedTileIndex:X2} vertical");
 	}
 
 	[RelayCommand]
 	private void ApplyRotate90() {
 		if (_chrEditor is null || SelectedTileIndex < 0 || PreviewRotate90 is null) return;
-		_chrEditor.SetTile(SelectedTileIndex, PreviewRotate90);
-		LoadTilePreview();
-		StatusText = $"Applied 90° rotation to tile {SelectedTileIndex:X2}";
+		ExecuteTileChange(SelectedTileIndex, PreviewRotate90, $"Rotate tile {SelectedTileIndex:X2} 90°");
 	}
 
 	[RelayCommand]
 	private void ApplyRotate180() {
 		if (_chrEditor is null || SelectedTileIndex < 0 || PreviewRotate180 is null) return;
-		_chrEditor.SetTile(SelectedTileIndex, PreviewRotate180);
-		LoadTilePreview();
-		StatusText = $"Applied 180° rotation to tile {SelectedTileIndex:X2}";
+		ExecuteTileChange(SelectedTileIndex, PreviewRotate180, $"Rotate tile {SelectedTileIndex:X2} 180°");
 	}
 
 	[RelayCommand]
 	private void ApplyRotate270() {
 		if (_chrEditor is null || SelectedTileIndex < 0 || PreviewRotate270 is null) return;
-		_chrEditor.SetTile(SelectedTileIndex, PreviewRotate270);
-		LoadTilePreview();
-		StatusText = $"Applied 270° rotation to tile {SelectedTileIndex:X2}";
+		ExecuteTileChange(SelectedTileIndex, PreviewRotate270, $"Rotate tile {SelectedTileIndex:X2} 270°");
 	}
+
+	#region Copy/Paste
+
+	[RelayCommand]
+	private void CopyTile() {
+		if (_chrEditor is null || SelectedTileIndex < 0 || SelectedTileIndex >= TileCount) return;
+
+		_clipboardTile = CloneTile(_chrEditor.GetTile(SelectedTileIndex));
+		HasClipboard = true;
+		StatusText = $"Copied tile {SelectedTileIndex:X2} to clipboard";
+	}
+
+	[RelayCommand]
+	private void PasteTile() {
+		if (_chrEditor is null || SelectedTileIndex < 0 || SelectedTileIndex >= TileCount || _clipboardTile is null) return;
+
+		ExecuteTileChange(SelectedTileIndex, _clipboardTile, $"Paste tile to {SelectedTileIndex:X2}");
+	}
+
+	[RelayCommand]
+	private void SwapTiles(int otherIndex) {
+		if (_chrEditor is null || SelectedTileIndex < 0 || SelectedTileIndex >= TileCount) return;
+		if (otherIndex < 0 || otherIndex >= TileCount || otherIndex == SelectedTileIndex) return;
+
+		var tile1 = CloneTile(_chrEditor.GetTile(SelectedTileIndex));
+		var tile2 = CloneTile(_chrEditor.GetTile(otherIndex));
+
+		var command = new SwapTilesCommand(_chrEditor, SelectedTileIndex, otherIndex, tile1, tile2,
+			$"Swap tiles {SelectedTileIndex:X2} and {otherIndex:X2}");
+		_undoRedo.Execute(command);
+		UpdateUndoRedoState();
+		LoadTilePreview();
+		StatusText = $"Swapped tiles {SelectedTileIndex:X2} and {otherIndex:X2}";
+	}
+
+	[RelayCommand]
+	private void ClearTile() {
+		if (_chrEditor is null || SelectedTileIndex < 0 || SelectedTileIndex >= TileCount) return;
+
+		var emptyTile = new byte[8, 8];
+		ExecuteTileChange(SelectedTileIndex, emptyTile, $"Clear tile {SelectedTileIndex:X2}");
+	}
+
+	[RelayCommand]
+	private void FillTile(byte colorIndex) {
+		if (_chrEditor is null || SelectedTileIndex < 0 || SelectedTileIndex >= TileCount) return;
+
+		var filledTile = new byte[8, 8];
+		for (int y = 0; y < 8; y++)
+			for (int x = 0; x < 8; x++)
+				filledTile[y, x] = colorIndex;
+
+		ExecuteTileChange(SelectedTileIndex, filledTile, $"Fill tile {SelectedTileIndex:X2} with color {colorIndex}");
+	}
+
+	#endregion
+
+	#region Undo/Redo
+
+	[RelayCommand]
+	private void Undo() {
+		if (!_undoRedo.CanUndo) return;
+
+		string description = _undoRedo.NextUndoDescription ?? "last change";
+		_undoRedo.Undo();
+		UpdateUndoRedoState();
+		LoadTilePreview();
+		StatusText = $"Undid: {description}";
+	}
+
+	[RelayCommand]
+	private void Redo() {
+		if (!_undoRedo.CanRedo) return;
+
+		string description = _undoRedo.NextRedoDescription ?? "previous change";
+		_undoRedo.Redo();
+		UpdateUndoRedoState();
+		LoadTilePreview();
+		StatusText = $"Redid: {description}";
+	}
+
+	private void ExecuteTileChange(int tileIndex, byte[,] newTile, string description) {
+		if (_chrEditor is null) return;
+
+		var oldTile = CloneTile(_chrEditor.GetTile(tileIndex));
+		var command = new SetTileCommand(_chrEditor, tileIndex, oldTile, CloneTile(newTile), description);
+		_undoRedo.Execute(command);
+		UpdateUndoRedoState();
+		LoadTilePreview();
+		StatusText = description;
+	}
+
+	private void UpdateUndoRedoState() {
+		UndoDescription = _undoRedo.NextUndoDescription ?? "";
+		RedoDescription = _undoRedo.NextRedoDescription ?? "";
+		OnPropertyChanged(nameof(CanUndo));
+		OnPropertyChanged(nameof(CanRedo));
+	}
+
+	private static byte[,] CloneTile(byte[,] source) {
+		var clone = new byte[8, 8];
+		for (int y = 0; y < 8; y++)
+			for (int x = 0; x < 8; x++)
+				clone[y, x] = source[y, x];
+		return clone;
+	}
+
+	#endregion
 
 	#region Palette Presets
 
@@ -551,3 +675,57 @@ public record TileInfo(int Index, string Name, string Preview);
 /// </summary>
 public record PalettePreset(string Name, Color[] Colors);
 
+/// <summary>
+/// Command for setting tile data with undo support.
+/// </summary>
+internal class SetTileCommand : IUndoableCommand {
+	private readonly ChrEditor _editor;
+	private readonly int _tileIndex;
+	private readonly byte[,] _oldTile;
+	private readonly byte[,] _newTile;
+
+	public string Description { get; }
+
+	public SetTileCommand(ChrEditor editor, int tileIndex, byte[,] oldTile, byte[,] newTile, string description) {
+		_editor = editor;
+		_tileIndex = tileIndex;
+		_oldTile = oldTile;
+		_newTile = newTile;
+		Description = description;
+	}
+
+	public void Execute() => _editor.SetTile(_tileIndex, _newTile);
+	public void Undo() => _editor.SetTile(_tileIndex, _oldTile);
+}
+
+/// <summary>
+/// Command for swapping two tiles with undo support.
+/// </summary>
+internal class SwapTilesCommand : IUndoableCommand {
+	private readonly ChrEditor _editor;
+	private readonly int _index1;
+	private readonly int _index2;
+	private readonly byte[,] _tile1;
+	private readonly byte[,] _tile2;
+
+	public string Description { get; }
+
+	public SwapTilesCommand(ChrEditor editor, int index1, int index2, byte[,] tile1, byte[,] tile2, string description) {
+		_editor = editor;
+		_index1 = index1;
+		_index2 = index2;
+		_tile1 = tile1;
+		_tile2 = tile2;
+		Description = description;
+	}
+
+	public void Execute() {
+		_editor.SetTile(_index1, _tile2);
+		_editor.SetTile(_index2, _tile1);
+	}
+
+	public void Undo() {
+		_editor.SetTile(_index1, _tile1);
+		_editor.SetTile(_index2, _tile2);
+	}
+}
