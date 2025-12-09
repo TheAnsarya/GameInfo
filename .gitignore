@@ -1,1 +1,61 @@
 ~Fonts/*
+
+# .NET Build outputs
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# NuGet
+packages/
+*.nupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Test results
+TestResults/
+[Cc]overage/
+*.trx
+*.coverage
+*.coveragexml
+
+# Build results
+[Bb]uild[Ll]og.*
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Rider
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
