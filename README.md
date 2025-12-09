@@ -33,9 +33,68 @@ Data Crystal-style wikitext documentation:
 
 ---
 
-## 🛠️ Tools
+## 🛠️ GameInfo Tools Suite (.NET)
 
-A collection of tools for ROM hacking, game analysis, and reverse engineering.
+A comprehensive suite of .NET-based tools for ROM hacking, analysis, and documentation.
+
+### Building the Tools
+
+```bash
+dotnet build
+```
+
+### Running the CLI
+
+```bash
+dotnet run --project src/GameInfoTools.Cli -- <command>
+# Or after building:
+./src/GameInfoTools.Cli/bin/Debug/net9.0/git <command>
+```
+
+### Available Commands
+
+| Command | Description |
+|---------|-------------|
+| `rom info <file>` | Display ROM information (header, checksums, system type) |
+| `rom checksum <file>` | Calculate/verify ROM checksums |
+| `rom expand <file> <size>` | Expand ROM to specified size |
+| `text extract <file>` | Extract text using text tables |
+| `text insert <file>` | Insert translated text |
+| `graphics chr <file>` | Extract CHR graphics data |
+| `graphics tiles <file>` | Export/import tile graphics |
+| `analysis opcodes <file>` | Find code by opcode patterns |
+| `analysis map <file>` | Generate ROM content map |
+| `data monsters <file>` | Edit monster statistics |
+| `data items <file>` | Edit item data |
+| `disasm bank <file> <n>` | Disassemble ROM bank |
+| `list` | List available tools |
+
+### Library Architecture
+
+| Library | Purpose |
+|---------|---------|
+| `GameInfoTools.Core` | Core ROM operations, checksums, text tables, patterns |
+| `GameInfoTools.Text` | String extraction, script compilation |
+| `GameInfoTools.Graphics` | CHR editing, sprite extraction, palette management |
+| `GameInfoTools.Data` | Data table editing (monsters, items, etc.) |
+| `GameInfoTools.Analysis` | ROM analysis, cross-referencing |
+| `GameInfoTools.Disassembly` | 6502/65816 disassembler |
+| `GameInfoTools.Rom` | Bank management, IPS/BPS patching |
+| `GameInfoTools.Cli` | Command-line interface |
+
+### Test Suite
+
+993 tests covering all libraries:
+
+```bash
+dotnet test
+```
+
+---
+
+## 🐍 Python Tools
+
+A collection of Python tools for ROM hacking, game analysis, and reverse engineering.
 
 ### CDL Tools
 
@@ -260,8 +319,17 @@ GameInfo/
 - **Indentation:** Tabs only (see `.editorconfig`)
 - **Hex Values:** Always lowercase (`$9d`, `0xca6e`)
 - **Commits:** Use conventional commit messages (`feat:`, `fix:`, `docs:`)
+- **C# Style:** K&R braces, pattern matching, XML documentation
 
 ### Getting Started
+
+#### .NET Tools (Recommended)
+1. Clone the repository
+2. Build: `dotnet build`
+3. Run tests: `dotnet test`
+4. Run CLI: `dotnet run --project src/GameInfoTools.Cli -- --help`
+
+#### Python Tools
 1. Clone the repository
 2. Install Python requirements: `pip install -r requirements.txt`
 3. Run any tool: `python tools/<tool_name>.py --help`
