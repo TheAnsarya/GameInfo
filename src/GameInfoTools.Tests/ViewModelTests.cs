@@ -211,6 +211,97 @@ public class ViewModelTests {
 		}
 	}
 
+	[Fact]
+	public void HexEditorViewModel_WriteByte_CanUndo() {
+		var rom = CreateTestNesRom();
+		var vm = new HexEditorViewModel(rom);
+
+		byte originalValue = rom.Data[0x100];
+		byte newValue = (byte)(originalValue ^ 0xFF);
+
+		vm.WriteByte(0x100, newValue);
+
+		Assert.Equal(newValue, rom.Data[0x100]);
+		Assert.True(vm.CanUndo);
+
+		vm.UndoCommand.Execute(null);
+
+		Assert.Equal(originalValue, rom.Data[0x100]);
+		Assert.False(vm.CanUndo);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_WriteByte_CanRedo() {
+		var rom = CreateTestNesRom();
+		var vm = new HexEditorViewModel(rom);
+
+		byte originalValue = rom.Data[0x100];
+		byte newValue = (byte)(originalValue ^ 0xFF);
+
+		vm.WriteByte(0x100, newValue);
+		vm.UndoCommand.Execute(null);
+
+		Assert.True(vm.CanRedo);
+		Assert.False(vm.CanUndo);
+
+		vm.RedoCommand.Execute(null);
+
+		Assert.Equal(newValue, rom.Data[0x100]);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_WriteBytes_CanUndo() {
+		var rom = CreateTestNesRom();
+		var vm = new HexEditorViewModel(rom);
+
+		byte[] originalValues = new byte[4];
+		Array.Copy(rom.Data, 0x100, originalValues, 0, 4);
+		byte[] newValues = [0xDE, 0xAD, 0xBE, 0xEF];
+
+		vm.WriteBytes(0x100, newValues);
+
+		Assert.Equal(newValues, rom.Data.AsSpan(0x100, 4).ToArray());
+		Assert.True(vm.CanUndo);
+
+		vm.UndoCommand.Execute(null);
+
+		Assert.Equal(originalValues, rom.Data.AsSpan(0x100, 4).ToArray());
+	}
+
+	[Fact]
+	public void HexEditorViewModel_MultipleEdits_UndoInOrder() {
+		var rom = CreateTestNesRom();
+		var vm = new HexEditorViewModel(rom);
+
+		byte original1 = rom.Data[0x100];
+		byte original2 = rom.Data[0x200];
+
+		vm.WriteByte(0x100, 0xAA);
+		vm.WriteByte(0x200, 0xBB);
+
+		// Undo second edit first
+		vm.UndoCommand.Execute(null);
+		Assert.Equal(original2, rom.Data[0x200]);
+		Assert.Equal(0xAA, rom.Data[0x100]);
+
+		// Undo first edit
+		vm.UndoCommand.Execute(null);
+		Assert.Equal(original1, rom.Data[0x100]);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_UndoDescription_UpdatesAfterEdit() {
+		var rom = CreateTestNesRom();
+		var vm = new HexEditorViewModel(rom);
+
+		Assert.Empty(vm.UndoDescription);
+
+		vm.WriteByte(0x100, 0xFF);
+
+		Assert.NotEmpty(vm.UndoDescription);
+		Assert.Contains("000100", vm.UndoDescription, StringComparison.OrdinalIgnoreCase);
+	}
+
 	#endregion
 
 	#region DisassemblerViewModel Tests
@@ -742,6 +833,84 @@ public class ViewModelTests {
 		Assert.Equal(3, vm.Zoom);
 	}
 
+	[Fact]
+	public void MapEditorViewModel_SetTile_CanUndo() {
+		var rom = CreateTestNesRom();
+		var vm = new MapEditorViewModel(rom);
+		vm.MapDataOffset = 0x10;
+		vm.MapWidth = 8;
+		vm.MapHeight = 8;
+		vm.LoadMapCommand.Execute(null);
+
+		// Select a tile
+		var tile = vm.MapTiles[0];
+		vm.SelectTileCommand.Execute(tile);
+
+		byte originalValue = rom.Data[tile.Offset];
+		vm.SelectedTile = (originalValue + 1) % 256;
+
+		vm.SetTileCommand.Execute(null);
+
+		Assert.Equal(vm.SelectedTile, rom.Data[tile.Offset]);
+		Assert.True(vm.CanUndo);
+
+		vm.UndoCommand.Execute(null);
+
+		Assert.Equal(originalValue, rom.Data[tile.Offset]);
+	}
+
+	[Fact]
+	public void MapEditorViewModel_Fill_CanUndo() {
+		var rom = CreateTestNesRom();
+		var vm = new MapEditorViewModel(rom);
+		vm.MapDataOffset = 0x10;
+		vm.MapWidth = 4;
+		vm.MapHeight = 4;
+		vm.LoadMapCommand.Execute(null);
+
+		// Save original values
+		byte[] originalValues = new byte[16];
+		for (int i = 0; i < 16; i++) {
+			originalValues[i] = rom.Data[0x10 + i];
+		}
+
+		vm.SelectedTile = 0xAA;
+		vm.FillCommand.Execute(null);
+
+		// Verify all tiles filled
+		for (int i = 0; i < 16; i++) {
+			Assert.Equal(0xAA, rom.Data[0x10 + i]);
+		}
+
+		Assert.True(vm.CanUndo);
+
+		vm.UndoCommand.Execute(null);
+
+		// Verify original values restored
+		for (int i = 0; i < 16; i++) {
+			Assert.Equal(originalValues[i], rom.Data[0x10 + i]);
+		}
+	}
+
+	[Fact]
+	public void MapEditorViewModel_UndoDescription_UpdatesAfterSetTile() {
+		var rom = CreateTestNesRom();
+		var vm = new MapEditorViewModel(rom);
+		vm.MapDataOffset = 0x10;
+		vm.MapWidth = 4;
+		vm.MapHeight = 4;
+		vm.LoadMapCommand.Execute(null);
+
+		Assert.Empty(vm.UndoDescription);
+
+		vm.SelectTileCommand.Execute(vm.MapTiles[5]);
+		vm.SelectedTile = 0xFF;
+		vm.SetTileCommand.Execute(null);
+
+		Assert.NotEmpty(vm.UndoDescription);
+		Assert.Contains("tile", vm.UndoDescription, StringComparison.OrdinalIgnoreCase);
+	}
+
 	#endregion
 
 	#region ScriptEditorViewModel Tests
@@ -803,6 +972,189 @@ public class ViewModelTests {
 		var cmd = new ScriptCommand(0x1000, 0x09, "MSG", [0x01, 0x00], "Display message");
 		Assert.Contains("MSG", cmd.Disassembly);
 		Assert.Contains("$001000", cmd.Disassembly);
+	}
+
+	[Fact]
+	public void ScriptEditorViewModel_InvalidOffset_ShowsError() {
+		var rom = CreateTestNesRom();
+		var vm = new ScriptEditorViewModel(rom);
+		vm.ScriptOffset = int.MaxValue; // Invalid offset
+
+		vm.LoadScriptCommand.Execute(null);
+
+		Assert.Contains("Invalid", vm.StatusText);
+	}
+
+	[Fact]
+	public void ScriptEditorViewModel_SelectCommand_UpdatesSelectedCommand() {
+		var rom = CreateTestNesRom();
+		var vm = new ScriptEditorViewModel(rom);
+		vm.ScriptOffset = 0x10;
+		vm.ScriptLength = 20;
+		vm.LoadScriptCommand.Execute(null);
+
+		if (vm.Commands.Count > 0) {
+			var cmd = vm.Commands[0];
+			vm.SelectCommandCommand.Execute(cmd);
+
+			Assert.Equal(cmd, vm.SelectedCommand);
+			Assert.Contains(cmd.Name, vm.StatusText);
+		}
+	}
+
+	[Fact]
+	public void ScriptEditorViewModel_DefaultScriptLength() {
+		var vm = new ScriptEditorViewModel();
+		Assert.Equal(256, vm.ScriptLength);
+	}
+
+	[Fact]
+	public void ScriptEditorViewModel_DefaultScriptType() {
+		var vm = new ScriptEditorViewModel();
+		Assert.Equal("Generic Event", vm.SelectedScriptType);
+	}
+
+	[Fact]
+	public void ScriptOpcode_Record_PropertiesCorrect() {
+		var opcode = new ScriptOpcode(0x09, "MSG", 3, "Display message");
+		Assert.Equal(0x09, opcode.Code);
+		Assert.Equal("MSG", opcode.Name);
+		Assert.Equal(3, opcode.Length);
+		Assert.Equal("Display message", opcode.Description);
+	}
+
+	#endregion
+
+	#region MapEditorViewModel Additional Tests
+
+	[Fact]
+	public void MapEditorViewModel_InvalidOffset_ShowsError() {
+		var rom = CreateTestNesRom();
+		var vm = new MapEditorViewModel(rom);
+		vm.MapDataOffset = int.MaxValue; // Invalid offset
+
+		vm.LoadMapCommand.Execute(null);
+
+		Assert.Contains("Invalid", vm.StatusText);
+	}
+
+	[Fact]
+	public void MapEditorViewModel_Fill_SetsAllTilesToSelected() {
+		var rom = CreateTestNesRom();
+		var vm = new MapEditorViewModel(rom);
+		vm.MapDataOffset = 0x10;
+		vm.MapWidth = 4;
+		vm.MapHeight = 4;
+		vm.LoadMapCommand.Execute(null);
+
+		vm.SelectedTile = 0xAB;
+		vm.FillCommand.Execute(null);
+
+		Assert.All(vm.MapTiles, t => Assert.Equal(0xAB, t.TileIndex));
+	}
+
+	[Fact]
+	public void MapEditorViewModel_SetTile_UpdatesSelectedTile() {
+		var rom = CreateTestNesRom();
+		var vm = new MapEditorViewModel(rom);
+		vm.MapDataOffset = 0x10;
+		vm.MapWidth = 4;
+		vm.MapHeight = 4;
+		vm.LoadMapCommand.Execute(null);
+
+		if (vm.MapTiles.Count > 0) {
+			vm.SelectedMapTile = vm.MapTiles[0];
+			vm.SelectedTile = 0x42;
+			vm.SetTileCommand.Execute(null);
+
+			Assert.Equal(0x42, vm.MapTiles[0].TileIndex);
+		}
+	}
+
+	[Fact]
+	public void MapEditorViewModel_NextMap_IncrementsIndex() {
+		var vm = new MapEditorViewModel();
+		int initialIndex = vm.MapIndex;
+
+		vm.NextMapCommand.Execute(null);
+
+		Assert.Equal(initialIndex + 1, vm.MapIndex);
+	}
+
+	[Fact]
+	public void MapEditorViewModel_PreviousMap_DecrementsIndex() {
+		var vm = new MapEditorViewModel();
+		vm.MapIndex = 5;
+
+		vm.PreviousMapCommand.Execute(null);
+
+		Assert.Equal(4, vm.MapIndex);
+	}
+
+	[Fact]
+	public void MapEditorViewModel_PreviousMap_AtZero_StaysAtZero() {
+		var vm = new MapEditorViewModel();
+		vm.MapIndex = 0;
+
+		vm.PreviousMapCommand.Execute(null);
+
+		Assert.Equal(0, vm.MapIndex);
+	}
+
+	[Fact]
+	public void MapEditorViewModel_ZoomIn_MaxAt8() {
+		var vm = new MapEditorViewModel();
+		vm.Zoom = 8;
+
+		vm.ZoomInCommand.Execute(null);
+
+		Assert.Equal(8, vm.Zoom);
+	}
+
+	[Fact]
+	public void MapEditorViewModel_ZoomOut_MinAt1() {
+		var vm = new MapEditorViewModel();
+		vm.Zoom = 1;
+
+		vm.ZoomOutCommand.Execute(null);
+
+		Assert.Equal(1, vm.Zoom);
+	}
+
+	[Fact]
+	public void MapEditorViewModel_SelectTile_UpdatesStatus() {
+		var rom = CreateTestNesRom();
+		var vm = new MapEditorViewModel(rom);
+		vm.MapDataOffset = 0x10;
+		vm.MapWidth = 4;
+		vm.MapHeight = 4;
+		vm.LoadMapCommand.Execute(null);
+
+		if (vm.MapTiles.Count > 0) {
+			var tile = vm.MapTiles[0];
+			vm.SelectTileCommand.Execute(tile);
+
+			Assert.Equal(tile, vm.SelectedMapTile);
+			Assert.Contains("Selected", vm.StatusText);
+		}
+	}
+
+	[Fact]
+	public void MapTile_Record_PropertiesCorrect() {
+		var tile = new MapTile(5, 3, 0x42, 0x1000);
+		Assert.Equal(5, tile.X);
+		Assert.Equal(3, tile.Y);
+		Assert.Equal(0x42, tile.TileIndex);
+		Assert.Equal(0x1000, tile.Offset);
+		Assert.Equal("42", tile.Display);
+	}
+
+	[Fact]
+	public void TilePaletteItem_Record_PropertiesCorrect() {
+		var item = new TilePaletteItem(0xAB, "Tile AB");
+		Assert.Equal(0xAB, item.Index);
+		Assert.Equal("Tile AB", item.Name);
+		Assert.Equal("AB", item.Display);
 	}
 
 	#endregion
