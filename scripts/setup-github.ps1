@@ -27,7 +27,7 @@ function Run-Command($cmd) {
 # ============================================
 if (-not $IssuesOnly) {
     Write-Step "Creating Labels"
-    
+
     $labels = @(
         # Type labels
         @{name="type:epic"; color="7B1FA2"; desc="Major work area tracking multiple issues"},
@@ -35,30 +35,30 @@ if (-not $IssuesOnly) {
         @{name="type:bug"; color="D32F2F"; desc="Bug fix"},
         @{name="type:docs"; color="0097A7"; desc="Documentation improvements"},
         @{name="type:refactor"; color="7B1FA2"; desc="Code refactoring"},
-        
+
         # Priority labels
         @{name="priority:high"; color="D32F2F"; desc="High priority - address soon"},
         @{name="priority:medium"; color="F57C00"; desc="Medium priority - planned work"},
         @{name="priority:low"; color="388E3C"; desc="Low priority - nice to have"},
-        
+
         # Component labels
         @{name="component:tools"; color="1565C0"; desc="Python ROM hacking tools"},
         @{name="component:wiki"; color="6A1B9A"; desc="Data Crystal wikitext content"},
         @{name="component:disasm"; color="00695C"; desc="Disassembly and analysis"},
         @{name="component:assets"; color="E65100"; desc="Asset extraction and conversion"},
         @{name="component:docs"; color="455A64"; desc="Project documentation"},
-        
+
         # Status labels
         @{name="status:blocked"; color="B71C1C"; desc="Blocked by dependency"},
         @{name="status:needs-review"; color="FF8F00"; desc="Ready for review"},
         @{name="status:in-progress"; color="1976D2"; desc="Currently being worked on"}
     )
-    
+
     foreach ($label in $labels) {
         $cmd = "gh label create `"$($label.name)`" --color `"$($label.color)`" --description `"$($label.desc)`" --repo $repo --force"
         Run-Command $cmd
     }
-    
+
     Write-Host "`nLabels created successfully!" -ForegroundColor Green
 }
 
@@ -67,7 +67,7 @@ if (-not $IssuesOnly) {
 # ============================================
 if (-not $LabelsOnly) {
     Write-Step "Creating Epic Issues"
-    
+
     # Epic 1: Data Crystal Wiki Documentation
     $epic1Body = @"
 # Data Crystal Wiki Documentation Epic
@@ -195,20 +195,20 @@ Create tools and workflows for extracting and converting game assets.
         @{title="Epic: Game-Specific Disassemblies"; labels="type:epic,component:disasm,priority:medium"; body=$epic3Body},
         @{title="Epic: Asset Extraction Pipeline"; labels="type:epic,component:assets,priority:medium"; body=$epic4Body}
     )
-    
+
     foreach ($epic in $epics) {
         Write-Host "`nCreating: $($epic.title)" -ForegroundColor Yellow
-        
+
         # Write body to temp file to avoid escaping issues
         $tempFile = [System.IO.Path]::GetTempFileName()
         $epic.body | Out-File -FilePath $tempFile -Encoding utf8
-        
+
         $cmd = "gh issue create --title `"$($epic.title)`" --label `"$($epic.labels)`" --body-file `"$tempFile`" --repo $repo"
         Run-Command $cmd
-        
+
         Remove-Item $tempFile -ErrorAction SilentlyContinue
     }
-    
+
     Write-Host "`nEpic issues created successfully!" -ForegroundColor Green
 }
 
