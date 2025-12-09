@@ -22,6 +22,10 @@
     <ProjectReference Include="..\GameInfoTools.Core\GameInfoTools.Core.csproj" />
     <ProjectReference Include="..\GameInfoTools.Analysis\GameInfoTools.Analysis.csproj" />
     <ProjectReference Include="..\GameInfoTools.Text\GameInfoTools.Text.csproj" />
+    <ProjectReference Include="..\GameInfoTools.Rom\GameInfoTools.Rom.csproj" />
+    <ProjectReference Include="..\GameInfoTools.Graphics\GameInfoTools.Graphics.csproj" />
+    <ProjectReference Include="..\GameInfoTools.Data\GameInfoTools.Data.csproj" />
+    <ProjectReference Include="..\GameInfoTools.Disassembly\GameInfoTools.Disassembly.csproj" />
   </ItemGroup>
 
 </Project>
