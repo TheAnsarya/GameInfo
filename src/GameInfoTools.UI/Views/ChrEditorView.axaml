@@ -4,7 +4,7 @@
 			 xmlns:controls="using:GameInfoTools.UI.Controls"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+			 mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="700"
 			 x:Class="GameInfoTools.UI.Views.ChrEditorView"
 			 x:DataType="vm:ChrEditorViewModel">
 
@@ -28,6 +28,20 @@
 			<Separator/>
 			<CheckBox Content="Grid" IsChecked="{Binding ShowGrid}" VerticalAlignment="Center"/>
 			<Separator/>
+			<TextBlock Text="Palette:" VerticalAlignment="Center"/>
+			<ComboBox ItemsSource="{Binding PalettePresets}"
+					  SelectedIndex="{Binding SelectedPaletteIndex}"
+					  Width="130">
+				<ComboBox.ItemTemplate>
+					<DataTemplate DataType="vm:PalettePreset">
+						<TextBlock Text="{Binding Name}"/>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+			<Button Content="Apply" Command="{Binding SelectPaletteCommand}"
+					CommandParameter="{Binding PalettePresets[0]}"
+					ToolTip.Tip="Apply selected palette"/>
+			<Separator/>
 			<Button Content="Export..." Command="{Binding ExportTilesetCommand}" CommandParameter="{Binding $parent[Window]}" ToolTip.Tip="Export tileset to image"/>
 			<Button Content="Import..." Command="{Binding ImportTilesetCommand}" CommandParameter="{Binding $parent[Window]}" ToolTip.Tip="Import tileset from image"/>
 		</StackPanel>
@@ -49,6 +63,7 @@
 						<controls:TileGridCanvas
 							Tiles="{Binding TileGraphics}"
 							TilesPerRow="16"
+							Palette="{Binding CurrentPalette}"
 							Scale="{Binding Zoom}"
 							ShowGrid="{Binding ShowGrid}"
 							SelectedTileIndex="{Binding SelectedTileIndex, Mode=TwoWay}"
@@ -73,6 +88,7 @@
 							<Border Background="Black" CornerRadius="4" Padding="4" HorizontalAlignment="Left">
 								<controls:TileCanvas
 									TileData="{Binding SelectedTileData}"
+									Palette="{Binding CurrentPalette}"
 									Scale="8"
 									ShowGrid="{Binding ShowGrid}"/>
 							</Border>
@@ -80,13 +96,72 @@
 
 						<Separator/>
 
-						<!-- Tile Operations -->
-						<TextBlock Text="Operations" FontWeight="SemiBold"/>
-						<WrapPanel>
-							<Button Content="↔" Command="{Binding FlipTileHorizontalCommand}" ToolTip.Tip="Flip Horizontal" Margin="2" Width="36" Height="36"/>
-							<Button Content="↕" Command="{Binding FlipTileVerticalCommand}" ToolTip.Tip="Flip Vertical" Margin="2" Width="36" Height="36"/>
-							<Button Content="↻" Command="{Binding RotateTileCommand}" ToolTip.Tip="Rotate 90°" Margin="2" Width="36" Height="36"/>
-						</WrapPanel>
+						<!-- Palette Display -->
+						<StackPanel Spacing="8">
+							<TextBlock Text="Current Palette" FontWeight="SemiBold"/>
+							<controls:PaletteEditor
+								Colors="{Binding CurrentPalette}"
+								SelectedColorIndex="{Binding SelectedColorIndex}"
+								SwatchSize="32"
+								SwatchSpacing="4"
+								IsReadOnly="True"/>
+						</StackPanel>
+
+						<Separator/>
+
+						<!-- Transform Previews -->
+						<TextBlock Text="Transform Previews" FontWeight="SemiBold"/>
+						<TextBlock Text="Click to apply transformation:" Opacity="0.7" FontSize="11"/>
+
+						<Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto,Auto,Auto" HorizontalAlignment="Left">
+							<!-- Row 0: Labels -->
+							<TextBlock Grid.Row="0" Grid.Column="0" Text="Flip H" HorizontalAlignment="Center" FontSize="10" Opacity="0.7"/>
+							<TextBlock Grid.Row="0" Grid.Column="1" Text="Flip V" HorizontalAlignment="Center" FontSize="10" Opacity="0.7"/>
+							<TextBlock Grid.Row="0" Grid.Column="2" Text="90°" HorizontalAlignment="Center" FontSize="10" Opacity="0.7"/>
+
+							<!-- Row 1: Previews -->
+							<Button Grid.Row="1" Grid.Column="0" Command="{Binding ApplyFlipHorizontalCommand}"
+									Background="Transparent" Padding="4" Margin="2">
+								<Border Background="Black" CornerRadius="2" Padding="2">
+									<controls:TileCanvas TileData="{Binding PreviewFlipH}"
+														 Palette="{Binding CurrentPalette}" Scale="4"/>
+								</Border>
+							</Button>
+							<Button Grid.Row="1" Grid.Column="1" Command="{Binding ApplyFlipVerticalCommand}"
+									Background="Transparent" Padding="4" Margin="2">
+								<Border Background="Black" CornerRadius="2" Padding="2">
+									<controls:TileCanvas TileData="{Binding PreviewFlipV}"
+														 Palette="{Binding CurrentPalette}" Scale="4"/>
+								</Border>
+							</Button>
+							<Button Grid.Row="1" Grid.Column="2" Command="{Binding ApplyRotate90Command}"
+									Background="Transparent" Padding="4" Margin="2">
+								<Border Background="Black" CornerRadius="2" Padding="2">
+									<controls:TileCanvas TileData="{Binding PreviewRotate90}"
+														 Palette="{Binding CurrentPalette}" Scale="4"/>
+								</Border>
+							</Button>
+
+							<!-- Row 2: Labels -->
+							<TextBlock Grid.Row="2" Grid.Column="0" Text="180°" HorizontalAlignment="Center" FontSize="10" Opacity="0.7"/>
+							<TextBlock Grid.Row="2" Grid.Column="1" Text="270°" HorizontalAlignment="Center" FontSize="10" Opacity="0.7"/>
+
+							<!-- Row 3: More Previews -->
+							<Button Grid.Row="3" Grid.Column="0" Command="{Binding ApplyRotate180Command}"
+									Background="Transparent" Padding="4" Margin="2">
+								<Border Background="Black" CornerRadius="2" Padding="2">
+									<controls:TileCanvas TileData="{Binding PreviewRotate180}"
+														 Palette="{Binding CurrentPalette}" Scale="4"/>
+								</Border>
+							</Button>
+							<Button Grid.Row="3" Grid.Column="1" Command="{Binding ApplyRotate270Command}"
+									Background="Transparent" Padding="4" Margin="2">
+								<Border Background="Black" CornerRadius="2" Padding="2">
+									<controls:TileCanvas TileData="{Binding PreviewRotate270}"
+														 Palette="{Binding CurrentPalette}" Scale="4"/>
+								</Border>
+							</Button>
+						</Grid>
 
 						<Separator/>
 
