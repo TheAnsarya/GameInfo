@@ -31,12 +31,12 @@ public static class AsmCommands
 				Disassemble65816(rom, outputPath);
 				break;
 
-			case SystemType.Gb:
-			case SystemType.Gbc:
+			case SystemType.GameBoy:
+			case SystemType.GameBoyColor:
 				DisassembleGbZ80(rom, outputPath);
 				break;
 
-			case SystemType.Gba:
+			case SystemType.GameBoyAdvance:
 				DisassembleArm(rom, outputPath);
 				break;
 
@@ -210,8 +210,8 @@ public static class AsmCommands
 				Show65816Opcodes();
 				break;
 
-			case SystemType.Gb:
-			case SystemType.Gbc:
+			case SystemType.GameBoy:
+			case SystemType.GameBoyColor:
 				ShowGbOpcodes();
 				break;
 

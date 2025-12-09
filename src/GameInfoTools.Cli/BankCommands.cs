@@ -66,9 +66,9 @@ public static class BankCommands
 		{
 			SystemType.Nes => 0x4000,        // 16KB PRG banks (typical)
 			SystemType.Snes => 0x8000,       // 32KB banks
-			SystemType.Gb => 0x4000,         // 16KB banks
-			SystemType.Gbc => 0x4000,        // 16KB banks
-			SystemType.Gba => 0x10000,       // 64KB (varies)
+			SystemType.GameBoy => 0x4000,    // 16KB banks
+			SystemType.GameBoyColor => 0x4000, // 16KB banks
+			SystemType.GameBoyAdvance => 0x10000, // 64KB (varies)
 			SystemType.Genesis => 0x10000,   // 64KB
 			_ => 0x4000
 		};
