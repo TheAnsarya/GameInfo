@@ -2,6 +2,10 @@ using GameInfoTools.Core;
 
 namespace GameInfoTools.Tests;
 
+/// <summary>
+/// Unit tests for PatternDetector functionality including pointer table detection,
+/// data pattern recognition, and ROM structure analysis.
+/// </summary>
 public class PatternDetectorTests {
 	[Fact]
 	public void FindPointerTables_FindsNesPointerTable() {

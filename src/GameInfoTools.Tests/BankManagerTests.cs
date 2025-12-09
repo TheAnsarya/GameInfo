@@ -3,6 +3,10 @@ using GameInfoTools.Rom;
 
 namespace GameInfoTools.Tests;
 
+/// <summary>
+/// Unit tests for BankManager functionality including bank extraction,
+/// CPU address mapping, and multi-system ROM bank handling.
+/// </summary>
 public class BankManagerTests {
 	private static byte[] CreateNesRom(int prgBanks = 2, int chrBanks = 1) {
 		// Create iNES header + PRG ROM + CHR ROM

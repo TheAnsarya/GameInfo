@@ -2,6 +2,10 @@ using GameInfoTools.Analysis;
 
 namespace GameInfoTools.Tests;
 
+/// <summary>
+/// Unit tests for CrossReferenceDb including reference tracking,
+/// lookup operations, and cross-reference analysis functionality.
+/// </summary>
 public class CrossReferenceDbTests {
 	[Fact]
 	public void Constructor_CreatesInstance() {

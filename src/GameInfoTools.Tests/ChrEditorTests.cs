@@ -2,6 +2,10 @@ using GameInfoTools.Graphics;
 
 namespace GameInfoTools.Tests;
 
+/// <summary>
+/// Unit tests for ChrEditor including tile manipulation,
+/// CHR bank operations, and NES graphics handling.
+/// </summary>
 public class ChrEditorTests {
 	private byte[] CreateTestChrData(int tileCount = 16) {
 		// Each tile is 16 bytes for NES 2bpp format

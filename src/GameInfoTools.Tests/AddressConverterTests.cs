@@ -2,6 +2,10 @@ using GameInfoTools.Core;
 
 namespace GameInfoTools.Tests;
 
+/// <summary>
+/// Unit tests for AddressConverter, verifying address space conversions
+/// between file offsets and CPU addresses for NES, SNES, and other systems.
+/// </summary>
 public class AddressConverterTests {
 	[Theory]
 	[InlineData(0x8000, 1, 0, 0x10)] // Bank 0, PRG $8000

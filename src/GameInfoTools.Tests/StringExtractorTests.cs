@@ -3,6 +3,10 @@ using GameInfoTools.Text;
 
 namespace GameInfoTools.Tests;
 
+/// <summary>
+/// Unit tests for StringExtractor including text extraction from ROM data,
+/// pointer table parsing, and text search functionality.
+/// </summary>
 public class StringExtractorTests {
 	private TextTable CreateTestTable() {
 		var table = new TextTable { Name = "Test" };

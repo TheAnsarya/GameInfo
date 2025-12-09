@@ -2,6 +2,10 @@ using GameInfoTools.Disassembly;
 
 namespace GameInfoTools.Tests;
 
+/// <summary>
+/// Unit tests for 6502/65816 Disassembler including opcode decoding,
+/// addressing mode parsing, and assembly output formatting.
+/// </summary>
 public class DisassemblerTests {
 	[Fact]
 	public void Constructor_CreatesInstanceFromData() {

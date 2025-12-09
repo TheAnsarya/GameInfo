@@ -2,6 +2,10 @@ using GameInfoTools.Core;
 
 namespace GameInfoTools.Tests;
 
+/// <summary>
+/// Unit tests for CompressionDetector including compression type detection,
+/// decompression algorithms, and confidence scoring.
+/// </summary>
 public class CompressionDetectorTests {
 	[Fact]
 	public void Detect_ReturnsNoneForSmallData() {

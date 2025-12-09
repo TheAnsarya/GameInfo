@@ -2,6 +2,10 @@ using GameInfoTools.Core;
 
 namespace GameInfoTools.Tests;
 
+/// <summary>
+/// Unit tests for RomFile class including ROM loading, header detection,
+/// read/write operations, and system type identification.
+/// </summary>
 public class RomFileTests {
 	[Fact]
 	public void RomFile_NewInstance_IsEmpty() {

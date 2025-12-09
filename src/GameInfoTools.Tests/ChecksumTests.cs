@@ -2,6 +2,10 @@ using GameInfoTools.Core;
 
 namespace GameInfoTools.Tests;
 
+/// <summary>
+/// Unit tests for Checksum calculation methods including CRC32, MD5, SHA1,
+/// and system-specific checksum algorithms for NES, SNES, and Game Boy.
+/// </summary>
 public class ChecksumTests {
 	private readonly byte[] _testData = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08];
 

@@ -2,6 +2,10 @@ using GameInfoTools.Data;
 
 namespace GameInfoTools.Tests;
 
+/// <summary>
+/// Unit tests for DataTableEditor including record manipulation,
+/// field access, and JSON import/export functionality.
+/// </summary>
 public class DataTableEditorTests {
 	private byte[] CreateTestData() {
 		// Create test data with known values

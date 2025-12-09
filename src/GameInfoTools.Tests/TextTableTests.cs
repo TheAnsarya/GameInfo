@@ -2,6 +2,10 @@ using GameInfoTools.Core;
 
 namespace GameInfoTools.Tests;
 
+/// <summary>
+/// Unit tests for TextTable parsing, encoding, and decoding functionality
+/// including TBL file format support and control code handling.
+/// </summary>
 public class TextTableTests {
 	[Fact]
 	public void CreateAscii_GeneratesValidTable() {
