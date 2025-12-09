@@ -175,20 +175,20 @@ OPCODES_6502 = {
 
 class OpcodeAnalyzer:
 	"""Analyze opcode usage in ROM code."""
-	
+
 	def __init__(self, rom_path: str):
 		"""Initialize with ROM path."""
 		self.rom_path = Path(rom_path)
 		self.rom_data = None
 		self.is_snes = False
 		self.header_size = 0
-		
+
 	def load_rom(self) -> bool:
 		"""Load ROM file and detect type."""
 		try:
 			with open(self.rom_path, 'rb') as f:
 				self.rom_data = f.read()
-				
+
 			# Detect ROM type
 			ext = self.rom_path.suffix.lower()
 			if ext in ['.sfc', '.smc']:
@@ -200,59 +200,59 @@ class OpcodeAnalyzer:
 				# NES detection
 				if self.rom_data[:4] == b'NES\x1a':
 					self.header_size = 16
-					
+
 			return True
 		except Exception as e:
 			print(f"Error loading ROM: {e}")
 			return False
-			
+
 	def analyze_bank(self, bank_num: int, bank_size: int = 0x4000) -> dict:
 		"""Analyze opcode usage in a single bank."""
 		offset = self.header_size + (bank_num * bank_size)
-		
+
 		if offset + bank_size > len(self.rom_data):
 			return {'error': 'Bank out of range'}
-			
+
 		bank_data = self.rom_data[offset:offset + bank_size]
-		
+
 		opcode_counts = Counter()
 		mnemonic_counts = Counter()
 		addressing_counts = Counter()
 		invalid_opcodes = Counter()
-		
+
 		# Track opcode sequences (for pattern detection)
 		sequences = defaultdict(int)
-		
+
 		i = 0
 		prev_opcodes = []
 		while i < len(bank_data):
 			opcode = bank_data[i]
-			
+
 			if opcode in OPCODES_6502:
 				mnem, addr_mode, length = OPCODES_6502[opcode]
 				opcode_counts[opcode] += 1
 				mnemonic_counts[mnem] += 1
 				addressing_counts[addr_mode] += 1
-				
+
 				# Track sequences
 				if len(prev_opcodes) >= 2:
 					seq = tuple(prev_opcodes[-2:] + [mnem])
 					sequences[seq] += 1
-					
+
 				prev_opcodes.append(mnem)
 				if len(prev_opcodes) > 3:
 					prev_opcodes.pop(0)
-					
+
 				i += length
 			else:
 				invalid_opcodes[opcode] += 1
 				i += 1
 				prev_opcodes = []
-				
+
 		# Calculate statistics
 		total_instructions = sum(opcode_counts.values())
 		total_invalid = sum(invalid_opcodes.values())
-		
+
 		return {
 			'bank': bank_num,
 			'offset': f"0x{offset:06x}",
@@ -268,12 +268,12 @@ class OpcodeAnalyzer:
 				[(str(k), v) for k, v in sorted(sequences.items(), key=lambda x: -x[1])[:10]]
 			)
 		}
-		
+
 	def analyze_all_banks(self, bank_size: int = 0x4000) -> dict:
 		"""Analyze all banks in the ROM."""
 		data_size = len(self.rom_data) - self.header_size
 		num_banks = data_size // bank_size
-		
+
 		all_stats = {
 			'rom_file': str(self.rom_path),
 			'rom_size': len(self.rom_data),
@@ -288,20 +288,20 @@ class OpcodeAnalyzer:
 				'addressing_totals': Counter()
 			}
 		}
-		
+
 		for bank in range(num_banks):
 			stats = self.analyze_bank(bank, bank_size)
 			all_stats['banks'].append(stats)
-			
+
 			if 'error' not in stats:
 				all_stats['global_stats']['total_instructions'] += stats['total_instructions']
 				all_stats['global_stats']['total_invalid'] += stats['invalid_bytes']
-				
+
 				for mnem, count in stats['mnemonic_counts'].items():
 					all_stats['global_stats']['mnemonic_totals'][mnem] += count
 				for mode, count in stats['addressing_counts'].items():
 					all_stats['global_stats']['addressing_totals'][mode] += count
-					
+
 		# Convert Counters to dicts for JSON
 		all_stats['global_stats']['mnemonic_totals'] = dict(
 			all_stats['global_stats']['mnemonic_totals'].most_common()
@@ -309,20 +309,20 @@ class OpcodeAnalyzer:
 		all_stats['global_stats']['addressing_totals'] = dict(
 			all_stats['global_stats']['addressing_totals']
 		)
-		
+
 		return all_stats
-		
+
 	def detect_code_regions(self, threshold: float = 0.7) -> list:
 		"""Detect regions that look like code vs data."""
 		regions = []
 		window_size = 256
 		step = 64
-		
+
 		data = self.rom_data[self.header_size:]
-		
+
 		for i in range(0, len(data) - window_size, step):
 			window = data[i:i + window_size]
-			
+
 			valid = 0
 			pos = 0
 			while pos < len(window):
@@ -332,24 +332,24 @@ class OpcodeAnalyzer:
 					pos += length
 				else:
 					pos += 1
-					
+
 			ratio = valid / window_size
-			
+
 			regions.append({
 				'offset': i + self.header_size,
 				'code_ratio': ratio,
 				'is_code': ratio >= threshold
 			})
-			
+
 		return regions
-		
+
 	def find_subroutines(self, bank_num: int, bank_size: int = 0x4000) -> list:
 		"""Find likely subroutine entry points."""
 		offset = self.header_size + (bank_num * bank_size)
 		bank_data = self.rom_data[offset:offset + bank_size]
-		
+
 		subroutines = []
-		
+
 		# Find JSR targets
 		jsr_targets = set()
 		i = 0
@@ -368,7 +368,7 @@ class OpcodeAnalyzer:
 				i += length
 			else:
 				i += 1
-				
+
 		# Also find code after RTS/RTI
 		i = 0
 		while i < len(bank_data):
@@ -382,7 +382,7 @@ class OpcodeAnalyzer:
 				i += length
 			else:
 				i += 1
-				
+
 		# Verify targets look like code
 		for target in sorted(jsr_targets):
 			if target < len(bank_data) and bank_data[target] in OPCODES_6502:
@@ -392,9 +392,9 @@ class OpcodeAnalyzer:
 					'cpu_address': f"${0x8000 + target:04x}",
 					'first_opcode': OPCODES_6502[bank_data[target]][0]
 				})
-				
+
 		return subroutines
-		
+
 	def generate_report(self, stats: dict) -> str:
 		"""Generate human-readable report."""
 		lines = []
@@ -405,31 +405,31 @@ class OpcodeAnalyzer:
 		lines.append(f"Size: {stats.get('rom_size', 0):,} bytes")
 		lines.append(f"Banks: {stats.get('num_banks', 0)}")
 		lines.append("")
-		
+
 		global_stats = stats.get('global_stats', {})
 		lines.append("Global Statistics:")
 		lines.append("-" * 40)
 		lines.append(f"Total instructions: {global_stats.get('total_instructions', 0):,}")
 		lines.append(f"Invalid/data bytes: {global_stats.get('total_invalid', 0):,}")
 		lines.append("")
-		
+
 		lines.append("Top 10 Mnemonics:")
 		mnemonics = list(global_stats.get('mnemonic_totals', {}).items())[:10]
 		for mnem, count in mnemonics:
 			lines.append(f"  {mnem:4s}: {count:,}")
 		lines.append("")
-		
+
 		lines.append("Addressing Mode Usage:")
 		for mode, count in global_stats.get('addressing_totals', {}).items():
 			lines.append(f"  {mode:6s}: {count:,}")
 		lines.append("")
-		
+
 		lines.append("Per-Bank Code Ratio:")
 		for bank in stats.get('banks', []):
 			ratio = bank.get('code_ratio', 0)
 			bar = '#' * int(ratio * 20)
 			lines.append(f"  Bank {bank['bank']:2d}: [{bar:20s}] {ratio*100:.1f}%")
-			
+
 		return '\n'.join(lines)
 
 
@@ -451,34 +451,34 @@ def main():
 	parser.add_argument('--output', '-o', help='Output file')
 	parser.add_argument('--json', action='store_true',
 						help='Output as JSON')
-	
+
 	args = parser.parse_args()
-	
+
 	analyzer = OpcodeAnalyzer(args.rom)
-	
+
 	if not analyzer.load_rom():
 		sys.exit(1)
-		
+
 	if args.subroutines:
 		bank = args.bank if args.bank is not None else 0
 		subs = analyzer.find_subroutines(bank, args.bank_size)
-		
+
 		if args.json or args.output:
 			output = json.dumps(subs, indent='\t')
 		else:
 			output = f"Found {len(subs)} subroutines in bank {bank}:\n"
 			for sub in subs:
 				output += f"  {sub['cpu_address']}: {sub['first_opcode']}\n"
-				
+
 		if args.output:
 			with open(args.output, 'w') as f:
 				f.write(output)
 		else:
 			print(output)
-			
+
 	elif args.regions:
 		regions = analyzer.detect_code_regions()
-		
+
 		if args.json or args.output:
 			output = json.dumps(regions, indent='\t')
 		else:
@@ -486,30 +486,30 @@ def main():
 			for r in regions:
 				marker = 'CODE' if r['is_code'] else 'DATA'
 				output += f"  0x{r['offset']:06x}: {r['code_ratio']*100:.1f}% [{marker}]\n"
-				
+
 		if args.output:
 			with open(args.output, 'w') as f:
 				f.write(output)
 		else:
 			print(output)
-			
+
 	elif args.all_banks:
 		stats = analyzer.analyze_all_banks(args.bank_size)
-		
+
 		if args.json or (args.output and args.output.endswith('.json')):
 			output = json.dumps(stats, indent='\t')
 		else:
 			output = analyzer.generate_report(stats)
-			
+
 		if args.output:
 			with open(args.output, 'w') as f:
 				f.write(output)
 		else:
 			print(output)
-			
+
 	elif args.bank is not None:
 		stats = analyzer.analyze_bank(args.bank, args.bank_size)
-		
+
 		if args.json:
 			output = json.dumps(stats, indent='\t')
 		else:
@@ -520,7 +520,7 @@ def main():
 			output += "\nTop mnemonics:\n"
 			for mnem, count in list(stats['mnemonic_counts'].items())[:10]:
 				output += f"  {mnem}: {count}\n"
-				
+
 		if args.output:
 			with open(args.output, 'w') as f:
 				f.write(output)

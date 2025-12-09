@@ -121,63 +121,63 @@ MAPPER_DESCRIPTIONS = {
 
 class INESHeader:
 	"""Parse iNES/NES 2.0 header"""
-	
+
 	def __init__(self, data: bytes):
 		self.data = data
 		self.valid = self._validate()
-		
+
 		if self.valid:
 			self._parse()
-	
+
 	def _validate(self) -> bool:
 		"""Validate header magic"""
 		if len(self.data) < 16:
 			return False
 		return self.data[0:4] == b'NES\x1a'
-	
+
 	def _parse(self):
 		"""Parse header fields"""
 		self.prg_size = self.data[4] * 16384  # 16KB units
 		self.chr_size = self.data[5] * 8192   # 8KB units
-		
+
 		flags6 = self.data[6]
 		flags7 = self.data[7]
-		
+
 		self.mirroring = "vertical" if flags6 & 0x01 else "horizontal"
 		self.battery = bool(flags6 & 0x02)
 		self.trainer = bool(flags6 & 0x04)
 		self.four_screen = bool(flags6 & 0x08)
-		
+
 		# Mapper number
 		self.mapper = ((flags6 >> 4) & 0x0f) | (flags7 & 0xf0)
-		
+
 		# NES 2.0 check
 		self.nes2 = (flags7 & 0x0c) == 0x08
-		
+
 		if self.nes2:
 			flags8 = self.data[8]
 			self.mapper |= (flags8 & 0x0f) << 8
 			self.submapper = (flags8 >> 4) & 0x0f
-			
+
 			# Extended ROM sizes
 			flags9 = self.data[9]
 			prg_msb = flags9 & 0x0f
 			chr_msb = (flags9 >> 4) & 0x0f
-			
+
 			if prg_msb < 0x0f:
 				self.prg_size = ((prg_msb << 8) | self.data[4]) * 16384
 			if chr_msb < 0x0f:
 				self.chr_size = ((chr_msb << 8) | self.data[5]) * 8192
 		else:
 			self.submapper = 0
-		
+
 		self.prg_ram = self.data[8] * 8192 if not self.nes2 else 0
-	
+
 	def to_dict(self) -> dict:
 		"""Export header info as dict"""
 		if not self.valid:
 			return {'valid': False}
-		
+
 		return {
 			'valid': True,
 			'prg_size': self.prg_size,
@@ -194,36 +194,36 @@ class INESHeader:
 
 class MapperAnalyzer:
 	"""Analyze mapper usage in ROM"""
-	
+
 	def __init__(self, rom_data: bytes):
 		self.rom_data = rom_data
 		self.header = INESHeader(rom_data[:16])
 		self.prg_data = self._extract_prg()
 		self.chr_data = self._extract_chr()
 		self.bank_accesses: list[BankSwitchAccess] = []
-	
+
 	def _extract_prg(self) -> bytes:
 		"""Extract PRG ROM data"""
 		if not self.header.valid:
 			return b''
-		
+
 		start = 16
 		if self.header.trainer:
 			start += 512
-		
+
 		return self.rom_data[start:start + self.header.prg_size]
-	
+
 	def _extract_chr(self) -> bytes:
 		"""Extract CHR ROM data"""
 		if not self.header.valid:
 			return b''
-		
+
 		start = 16 + self.header.prg_size
 		if self.header.trainer:
 			start += 512
-		
+
 		return self.rom_data[start:start + self.header.chr_size]
-	
+
 	def get_mapper_info(self) -> MapperInfo:
 		"""Get information about the detected mapper"""
 		if not self.header.valid:
@@ -232,17 +232,17 @@ class MapperAnalyzer:
 				mapper_type=MapperType.UNKNOWN,
 				name="Unknown"
 			)
-		
+
 		mapper_id = self.header.mapper
-		
+
 		try:
 			mapper_type = MapperType(mapper_id)
 		except ValueError:
 			mapper_type = MapperType.UNKNOWN
-		
+
 		name = MAPPER_NAMES.get(mapper_id, f"Mapper {mapper_id}")
 		desc = MAPPER_DESCRIPTIONS.get(mapper_id, "")
-		
+
 		info = MapperInfo(
 			mapper_id=mapper_id,
 			mapper_type=mapper_type,
@@ -254,13 +254,13 @@ class MapperAnalyzer:
 			has_trainer=self.header.trainer,
 			mirroring=self.header.mirroring,
 		)
-		
+
 		# Calculate bank counts based on mapper
 		self._calculate_banks(info)
 		self._add_register_info(info)
-		
+
 		return info
-	
+
 	def _calculate_banks(self, info: MapperInfo):
 		"""Calculate PRG/CHR bank counts"""
 		if info.mapper_type == MapperType.NROM:
@@ -268,34 +268,34 @@ class MapperAnalyzer:
 			info.chr_banks = 1
 			info.prg_bank_size = 16384
 			info.chr_bank_size = 8192
-		
+
 		elif info.mapper_type == MapperType.MMC1:
 			info.prg_bank_size = 16384
 			info.chr_bank_size = 4096
 			info.prg_banks = info.prg_size // info.prg_bank_size
 			info.chr_banks = max(1, info.chr_size // info.chr_bank_size)
-		
+
 		elif info.mapper_type == MapperType.UNROM:
 			info.prg_bank_size = 16384
 			info.prg_banks = info.prg_size // info.prg_bank_size
 			info.chr_banks = 0  # CHR RAM
-		
+
 		elif info.mapper_type == MapperType.CNROM:
 			info.prg_banks = info.prg_size // 16384
 			info.chr_bank_size = 8192
 			info.chr_banks = max(1, info.chr_size // info.chr_bank_size)
-		
+
 		elif info.mapper_type == MapperType.MMC3:
 			info.prg_bank_size = 8192
 			info.chr_bank_size = 1024
 			info.prg_banks = info.prg_size // info.prg_bank_size
 			info.chr_banks = max(1, info.chr_size // info.chr_bank_size)
-		
+
 		else:
 			# Default calculation
 			info.prg_banks = max(1, info.prg_size // 16384)
 			info.chr_banks = max(1, info.chr_size // 8192) if info.chr_size > 0 else 0
-	
+
 	def _add_register_info(self, info: MapperInfo):
 		"""Add mapper register documentation"""
 		if info.mapper_type == MapperType.MMC1:
@@ -306,17 +306,17 @@ class MapperAnalyzer:
 				'$e000-$ffff': 'PRG bank',
 				'note': 'Serial port - write bit 0, shift 5 times'
 			}
-		
+
 		elif info.mapper_type == MapperType.UNROM:
 			info.register_info = {
 				'$8000-$ffff': 'Select 16KB PRG bank at $8000'
 			}
-		
+
 		elif info.mapper_type == MapperType.CNROM:
 			info.register_info = {
 				'$8000-$ffff': 'Select 8KB CHR bank'
 			}
-		
+
 		elif info.mapper_type == MapperType.MMC3:
 			info.register_info = {
 				'$8000': 'Bank select (R:0-7, mode bits 6-7)',
@@ -328,27 +328,27 @@ class MapperAnalyzer:
 				'$e000': 'IRQ disable',
 				'$e001': 'IRQ enable',
 			}
-		
+
 		elif info.mapper_type == MapperType.AXROM:
 			info.register_info = {
 				'$8000-$ffff': 'Select 32KB PRG bank + mirroring'
 			}
-	
+
 	def find_bank_switches(self) -> list[BankSwitchAccess]:
 		"""Scan PRG for bank switching code patterns"""
 		accesses = []
 		mapper_id = self.header.mapper
-		
+
 		# Look for STA to mapper registers
 		# STA absolute: 8D ll hh
 		# STA absolute,X: 9D ll hh
-		
+
 		for i in range(len(self.prg_data) - 3):
 			opcode = self.prg_data[i]
-			
+
 			if opcode in [0x8d, 0x9d, 0x8e, 0x8c]:  # STA, STX, STY absolute
 				addr = struct.unpack_from('<H', self.prg_data, i + 1)[0]
-				
+
 				# Check if writing to mapper range
 				if 0x8000 <= addr <= 0xffff:
 					# Try to find what value is being written
@@ -357,7 +357,7 @@ class MapperAnalyzer:
 					for j in range(max(0, i - 10), i):
 						if self.prg_data[j] == 0xa9:  # LDA immediate
 							value = self.prg_data[j + 1]
-					
+
 					access = BankSwitchAccess(
 						address=addr,
 						value=value if value is not None else -1,
@@ -366,10 +366,10 @@ class MapperAnalyzer:
 						source_offset=i + 16  # Add header offset
 					)
 					accesses.append(access)
-		
+
 		self.bank_accesses = accesses
 		return accesses
-	
+
 	def _classify_register(self, addr: int, mapper_id: int) -> str:
 		"""Classify register as PRG or CHR bank select"""
 		if mapper_id == 1:  # MMC1
@@ -379,7 +379,7 @@ class MapperAnalyzer:
 				return 'chr'
 			else:
 				return 'control'
-		
+
 		elif mapper_id == 4:  # MMC3
 			if addr == 0x8000:
 				return 'select'
@@ -389,15 +389,15 @@ class MapperAnalyzer:
 				return 'irq'
 			else:
 				return 'other'
-		
+
 		elif mapper_id in [2, 7]:  # UxROM, AxROM
 			return 'prg'
-		
+
 		elif mapper_id == 3:  # CNROM
 			return 'chr'
-		
+
 		return 'unknown'
-	
+
 	def _get_bank_slot(self, addr: int, mapper_id: int) -> int:
 		"""Get which bank slot is being set"""
 		if mapper_id == 1:  # MMC1
@@ -407,19 +407,19 @@ class MapperAnalyzer:
 				return 1
 			elif 0xe000 <= addr <= 0xffff:
 				return 0
-		
+
 		return 0
-	
+
 	def generate_report(self) -> str:
 		"""Generate analysis report"""
 		lines = []
 		info = self.get_mapper_info()
-		
+
 		lines.append("=" * 60)
 		lines.append("MAPPER ANALYSIS REPORT")
 		lines.append("=" * 60)
 		lines.append("")
-		
+
 		lines.append("HEADER INFO")
 		lines.append("-" * 40)
 		lines.append(f"  Mapper: #{info.mapper_id} - {info.name}")
@@ -431,48 +431,48 @@ class MapperAnalyzer:
 		lines.append(f"  Battery: {'Yes' if info.has_battery else 'No'}")
 		lines.append(f"  Trainer: {'Yes' if info.has_trainer else 'No'}")
 		lines.append("")
-		
+
 		if info.register_info:
 			lines.append("MAPPER REGISTERS")
 			lines.append("-" * 40)
 			for addr, desc in info.register_info.items():
 				lines.append(f"  {addr}: {desc}")
 			lines.append("")
-		
+
 		# Find bank switches
 		accesses = self.find_bank_switches()
 		if accesses:
 			lines.append("DETECTED BANK SWITCHES")
 			lines.append("-" * 40)
-			
+
 			# Group by address
 			by_addr = {}
 			for access in accesses:
 				if access.address not in by_addr:
 					by_addr[access.address] = []
 				by_addr[access.address].append(access)
-			
+
 			for addr in sorted(by_addr.keys()):
 				addr_accesses = by_addr[addr]
 				lines.append(f"  ${addr:04x} ({addr_accesses[0].bank_type}):")
-				
+
 				# Show unique values
 				values = set(a.value for a in addr_accesses if a.value >= 0)
 				if values:
 					lines.append(f"    Values written: {', '.join(f'${v:02x}' for v in sorted(values))}")
-				
+
 				# Show some source locations
 				locations = [f"${a.source_offset:04x}" for a in addr_accesses[:5]]
 				lines.append(f"    Sources: {', '.join(locations)}")
 				if len(addr_accesses) > 5:
 					lines.append(f"    ... and {len(addr_accesses) - 5} more")
-			
+
 			lines.append("")
-		
+
 		# Bank mapping
 		lines.append("MEMORY MAP")
 		lines.append("-" * 40)
-		
+
 		if info.mapper_type == MapperType.NROM:
 			if info.prg_banks == 1:
 				lines.append("  $8000-$bfff: PRG bank 0 (mirrored)")
@@ -480,33 +480,33 @@ class MapperAnalyzer:
 			else:
 				lines.append("  $8000-$bfff: PRG bank 0")
 				lines.append("  $c000-$ffff: PRG bank 1")
-		
+
 		elif info.mapper_type == MapperType.MMC1:
 			lines.append("  $8000-$bfff: Switchable PRG bank")
 			lines.append("  $c000-$ffff: Fixed to last bank (or switchable)")
-		
+
 		elif info.mapper_type == MapperType.UNROM:
 			lines.append("  $8000-$bfff: Switchable PRG bank")
 			lines.append("  $c000-$ffff: Fixed to last bank")
-		
+
 		elif info.mapper_type == MapperType.MMC3:
 			lines.append("  $8000-$9fff: Switchable PRG (R6 or fixed)")
 			lines.append("  $a000-$bfff: Switchable PRG (R7)")
 			lines.append("  $c000-$dfff: Switchable PRG (R6 or fixed)")
 			lines.append("  $e000-$ffff: Fixed to last bank")
-		
+
 		else:
 			lines.append(f"  (Standard {info.prg_bank_size // 1024}KB bank layout)")
-		
+
 		lines.append("")
-		
+
 		return '\n'.join(lines)
-	
+
 	def to_json(self) -> dict:
 		"""Export analysis as JSON"""
 		info = self.get_mapper_info()
 		accesses = self.find_bank_switches()
-		
+
 		return {
 			'header': self.header.to_dict(),
 			'mapper': {
@@ -549,21 +549,21 @@ def main():
 	parser.add_argument('-o', '--output', help='Output file')
 	parser.add_argument('--json', action='store_true', help='Output as JSON')
 	parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
-	
+
 	args = parser.parse_args()
-	
+
 	# Load ROM
 	rom_data = Path(args.rom).read_bytes()
-	
+
 	# Analyze
 	analyzer = MapperAnalyzer(rom_data)
-	
+
 	if args.json:
 		import json
 		output = json.dumps(analyzer.to_json(), indent='\t')
 	else:
 		output = analyzer.generate_report()
-	
+
 	if args.output:
 		Path(args.output).write_text(output, encoding='utf-8')
 		print(f"Wrote analysis to {args.output}")

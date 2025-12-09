@@ -98,24 +98,24 @@ class NESPaletteColors:
 
 class SpriteAnimationExtractor:
 	"""Extract sprite animations from ROM data"""
-	
+
 	def __init__(self, platform: Platform = Platform.NES):
 		self.platform = platform
 		self.sprite_sheets: list[SpriteSheet] = []
 		self.animations: list[Animation] = []
 		self.palettes: list[Palette] = []
-	
+
 	def load_chr_data(self, data: bytes, bpp: int = 2) -> SpriteSheet:
 		"""Load CHR/tile data into sprite sheet"""
 		sheet = SpriteSheet(bpp=bpp)
-		
+
 		if self.platform == Platform.NES:
 			# NES: 2bpp planar, 16 bytes per 8x8 tile
 			tile_size = 16
 			for i in range(0, len(data), tile_size):
 				if i + tile_size <= len(data):
 					sheet.tiles.append(data[i:i + tile_size])
-		
+
 		elif self.platform == Platform.SNES:
 			# SNES: 4bpp planar, 32 bytes per 8x8 tile
 			if bpp == 4:
@@ -126,54 +126,54 @@ class SpriteAnimationExtractor:
 				tile_size = 64
 			else:
 				tile_size = 16
-			
+
 			for i in range(0, len(data), tile_size):
 				if i + tile_size <= len(data):
 					sheet.tiles.append(data[i:i + tile_size])
-		
+
 		elif self.platform == Platform.GENESIS:
 			# Genesis: 4bpp linear/packed, 32 bytes per 8x8 tile
 			tile_size = 32
 			for i in range(0, len(data), tile_size):
 				if i + tile_size <= len(data):
 					sheet.tiles.append(data[i:i + tile_size])
-		
+
 		elif self.platform in (Platform.GAME_BOY, Platform.GAME_BOY_COLOR):
 			# Game Boy: 2bpp interleaved, 16 bytes per 8x8 tile
 			tile_size = 16
 			for i in range(0, len(data), tile_size):
 				if i + tile_size <= len(data):
 					sheet.tiles.append(data[i:i + tile_size])
-		
+
 		self.sprite_sheets.append(sheet)
 		return sheet
-	
+
 	def decode_nes_tile(self, tile_data: bytes) -> list[list[int]]:
 		"""Decode NES 2bpp planar tile to pixel data"""
 		pixels = [[0] * 8 for _ in range(8)]
-		
+
 		for y in range(8):
 			low_byte = tile_data[y]
 			high_byte = tile_data[y + 8]
-			
+
 			for x in range(8):
 				bit_pos = 7 - x
 				pixel = ((low_byte >> bit_pos) & 1) | (((high_byte >> bit_pos) & 1) << 1)
 				pixels[y][x] = pixel
-		
+
 		return pixels
-	
+
 	def decode_snes_tile_4bpp(self, tile_data: bytes) -> list[list[int]]:
 		"""Decode SNES 4bpp planar tile to pixel data"""
 		pixels = [[0] * 8 for _ in range(8)]
-		
+
 		for y in range(8):
 			# Bitplanes are interleaved in pairs
 			bp0 = tile_data[y * 2]
 			bp1 = tile_data[y * 2 + 1]
 			bp2 = tile_data[16 + y * 2]
 			bp3 = tile_data[16 + y * 2 + 1]
-			
+
 			for x in range(8):
 				bit_pos = 7 - x
 				pixel = ((bp0 >> bit_pos) & 1) | \
@@ -181,37 +181,37 @@ class SpriteAnimationExtractor:
 						(((bp2 >> bit_pos) & 1) << 2) | \
 						(((bp3 >> bit_pos) & 1) << 3)
 				pixels[y][x] = pixel
-		
+
 		return pixels
-	
+
 	def decode_genesis_tile(self, tile_data: bytes) -> list[list[int]]:
 		"""Decode Genesis 4bpp packed tile to pixel data"""
 		pixels = [[0] * 8 for _ in range(8)]
-		
+
 		for y in range(8):
 			for x in range(4):
 				byte_idx = y * 4 + x
 				byte_val = tile_data[byte_idx]
 				pixels[y][x * 2] = (byte_val >> 4) & 0x0f
 				pixels[y][x * 2 + 1] = byte_val & 0x0f
-		
+
 		return pixels
-	
+
 	def decode_gb_tile(self, tile_data: bytes) -> list[list[int]]:
 		"""Decode Game Boy 2bpp interleaved tile to pixel data"""
 		pixels = [[0] * 8 for _ in range(8)]
-		
+
 		for y in range(8):
 			low_byte = tile_data[y * 2]
 			high_byte = tile_data[y * 2 + 1]
-			
+
 			for x in range(8):
 				bit_pos = 7 - x
 				pixel = ((low_byte >> bit_pos) & 1) | (((high_byte >> bit_pos) & 1) << 1)
 				pixels[y][x] = pixel
-		
+
 		return pixels
-	
+
 	def decode_tile(self, tile_data: bytes, bpp: int = 2) -> list[list[int]]:
 		"""Decode tile based on platform"""
 		if self.platform == Platform.NES:
@@ -227,16 +227,16 @@ class SpriteAnimationExtractor:
 			return self.decode_gb_tile(tile_data)
 		else:
 			return self.decode_nes_tile(tile_data)
-	
+
 	def render_tile(self, tile_data: bytes, palette: Palette,
 					bpp: int = 2) -> Optional['Image.Image']:
 		"""Render a single tile to an image"""
 		if not HAS_PIL:
 			return None
-		
+
 		pixels = self.decode_tile(tile_data, bpp)
 		img = Image.new('RGBA', (8, 8))
-		
+
 		for y in range(8):
 			for x in range(8):
 				color_idx = pixels[y][x]
@@ -248,41 +248,41 @@ class SpriteAnimationExtractor:
 					img.putpixel((x, y), (r, g, b, 255))
 				else:
 					img.putpixel((x, y), (255, 0, 255, 255))  # Magenta for invalid
-		
+
 		return img
-	
+
 	def render_sprite_frame(self, frame: SpriteFrame, sheet: SpriteSheet,
 						   palette: Palette) -> Optional['Image.Image']:
 		"""Render a sprite frame to an image"""
 		if not HAS_PIL:
 			return None
-		
+
 		# Calculate frame dimensions
 		width = frame.width
 		height = frame.height
-		
+
 		img = Image.new('RGBA', (width, height))
-		
+
 		# Render each tile
 		tiles_per_row = width // sheet.tile_width
 		for i, tile_idx in enumerate(frame.tile_indices):
 			if tile_idx >= len(sheet.tiles):
 				continue
-			
+
 			tile_x = (i % tiles_per_row) * sheet.tile_width
 			tile_y = (i // tiles_per_row) * sheet.tile_height
-			
+
 			tile_img = self.render_tile(sheet.tiles[tile_idx], palette, sheet.bpp)
 			if tile_img:
 				if frame.flip_h:
 					tile_img = tile_img.transpose(Image.FLIP_LEFT_RIGHT)
 				if frame.flip_v:
 					tile_img = tile_img.transpose(Image.FLIP_TOP_BOTTOM)
-				
+
 				img.paste(tile_img, (tile_x, tile_y), tile_img)
-		
+
 		return img
-	
+
 	def export_animation_gif(self, animation: Animation, sheet: SpriteSheet,
 							palette: Palette, output_path: Path,
 							scale: int = 4):
@@ -290,10 +290,10 @@ class SpriteAnimationExtractor:
 		if not HAS_PIL:
 			print("PIL not available - cannot export GIF")
 			return
-		
+
 		frames = []
 		durations = []
-		
+
 		for frame in animation.frames:
 			img = self.render_sprite_frame(frame, sheet, palette)
 			if img:
@@ -303,7 +303,7 @@ class SpriteAnimationExtractor:
 				frames.append(scaled)
 				# Duration in milliseconds (assume 60fps base)
 				durations.append(int(frame.duration * (1000 / 60)))
-		
+
 		if frames:
 			frames[0].save(
 				output_path,
@@ -314,7 +314,7 @@ class SpriteAnimationExtractor:
 				disposal=2
 			)
 			print(f"Exported animation to {output_path}")
-	
+
 	def export_sprite_sheet_image(self, sheet: SpriteSheet, palette: Palette,
 								 output_path: Path, tiles_per_row: int = 16,
 								 scale: int = 2):
@@ -322,26 +322,26 @@ class SpriteAnimationExtractor:
 		if not HAS_PIL:
 			print("PIL not available - cannot export image")
 			return
-		
+
 		num_tiles = len(sheet.tiles)
 		if num_tiles == 0:
 			print("No tiles to export")
 			return
-		
+
 		rows = (num_tiles + tiles_per_row - 1) // tiles_per_row
 		width = tiles_per_row * sheet.tile_width
 		height = rows * sheet.tile_height
-		
+
 		img = Image.new('RGBA', (width, height))
-		
+
 		for i, tile_data in enumerate(sheet.tiles):
 			x = (i % tiles_per_row) * sheet.tile_width
 			y = (i // tiles_per_row) * sheet.tile_height
-			
+
 			tile_img = self.render_tile(tile_data, palette, sheet.bpp)
 			if tile_img:
 				img.paste(tile_img, (x, y), tile_img)
-		
+
 		# Scale up
 		scaled = img.resize((width * scale, height * scale), Image.NEAREST)
 		scaled.save(output_path)
@@ -350,13 +350,13 @@ class SpriteAnimationExtractor:
 
 class AnimationParser:
 	"""Parse animation data from various game formats"""
-	
+
 	def __init__(self):
 		self.animations: list[Animation] = []
-	
+
 	def parse_simple_format(self, data: bytes, frame_size: int = 4) -> list[Animation]:
 		"""Parse simple sequential animation format
-		
+
 		Common format:
 		- 1 byte: tile index
 		- 1 byte: attributes (flip, palette)
@@ -365,23 +365,23 @@ class AnimationParser:
 		"""
 		animations = []
 		animation = Animation(name="animation_0")
-		
+
 		for i in range(0, len(data), frame_size):
 			if i + frame_size > len(data):
 				break
-			
+
 			tile_idx = data[i]
 			attrs = data[i + 1]
 			x_offset = struct.unpack('b', bytes([data[i + 2]]))[0]
 			y_offset = struct.unpack('b', bytes([data[i + 3]]))[0]
-			
+
 			# Check for animation terminator
 			if tile_idx == 0xff:
 				if animation.frames:
 					animations.append(animation)
 				animation = Animation(name=f"animation_{len(animations)}")
 				continue
-			
+
 			frame = SpriteFrame(
 				tile_indices=[tile_idx],
 				x_offset=x_offset,
@@ -392,16 +392,16 @@ class AnimationParser:
 				priority=(attrs >> 4) & 0x03,
 			)
 			animation.frames.append(frame)
-		
+
 		if animation.frames:
 			animations.append(animation)
-		
+
 		self.animations = animations
 		return animations
-	
+
 	def parse_nes_oam_format(self, data: bytes) -> list[SpriteFrame]:
 		"""Parse NES OAM-style sprite data
-		
+
 		4 bytes per sprite:
 		- Y position
 		- Tile index
@@ -409,17 +409,17 @@ class AnimationParser:
 		- X position
 		"""
 		sprites = []
-		
+
 		for i in range(0, min(len(data), 256), 4):
 			y_pos = data[i]
 			tile_idx = data[i + 1]
 			attrs = data[i + 2]
 			x_pos = data[i + 3]
-			
+
 			# Skip hidden sprites
 			if y_pos >= 0xef:
 				continue
-			
+
 			sprite = SpriteFrame(
 				tile_indices=[tile_idx],
 				x_offset=x_pos,
@@ -430,30 +430,30 @@ class AnimationParser:
 				priority=(attrs >> 5) & 0x01,
 			)
 			sprites.append(sprite)
-		
+
 		return sprites
-	
+
 	def parse_snes_oam_format(self, data: bytes, high_table: bytes = None) -> list[SpriteFrame]:
 		"""Parse SNES OAM-style sprite data
-		
+
 		4 bytes per sprite (low table):
 		- X position (low 8 bits)
 		- Y position
 		- Tile index (low 8 bits)
 		- Attributes
-		
+
 		Plus 1 bit pairs in high table for X sign and size
 		"""
 		sprites = []
 		num_sprites = min(len(data) // 4, 128)
-		
+
 		for i in range(num_sprites):
 			base = i * 4
 			x_pos = data[base]
 			y_pos = data[base + 1]
 			tile_idx = data[base + 2]
 			attrs = data[base + 3]
-			
+
 			# High table data
 			x_sign = False
 			large = False
@@ -464,11 +464,11 @@ class AnimationParser:
 					high_byte = high_table[high_idx]
 					x_sign = bool(high_byte & (1 << bit_pos))
 					large = bool(high_byte & (1 << (bit_pos + 1)))
-			
+
 			# Adjust x position
 			if x_sign:
 				x_pos = x_pos - 256
-			
+
 			sprite = SpriteFrame(
 				tile_indices=[tile_idx + ((attrs & 0x01) << 8)],
 				x_offset=x_pos,
@@ -481,9 +481,9 @@ class AnimationParser:
 				height=16 if large else 8,
 			)
 			sprites.append(sprite)
-		
+
 		return sprites
-	
+
 	def to_json(self) -> dict:
 		"""Export animations to JSON format"""
 		return {
@@ -510,18 +510,18 @@ class AnimationParser:
 				for anim in self.animations
 			]
 		}
-	
+
 	def from_json(self, data: dict):
 		"""Import animations from JSON format"""
 		self.animations = []
-		
+
 		for anim_data in data.get('animations', []):
 			anim = Animation(
 				name=anim_data.get('name', ''),
 				loop=anim_data.get('loop', True),
 				loop_point=anim_data.get('loop_point', 0),
 			)
-			
+
 			for frame_data in anim_data.get('frames', []):
 				frame = SpriteFrame(
 					tile_indices=frame_data.get('tiles', []),
@@ -535,7 +535,7 @@ class AnimationParser:
 					height=frame_data.get('height', 8),
 				)
 				anim.frames.append(frame)
-			
+
 			self.animations.append(anim)
 
 
@@ -596,9 +596,9 @@ def main():
 						help="Export sprite sheet as PNG")
 	parser.add_argument("--tiles-per-row", type=int, default=16,
 						help="Tiles per row in sprite sheet export")
-	
+
 	args = parser.parse_args()
-	
+
 	# Map platform strings
 	platform_map = {
 		'nes': Platform.NES,
@@ -609,22 +609,22 @@ def main():
 		'gba': Platform.GBA,
 	}
 	platform = platform_map.get(args.platform, Platform.NES)
-	
+
 	# Create output directory
 	output_dir = Path(args.output)
 	output_dir.mkdir(parents=True, exist_ok=True)
-	
+
 	# Read input file
 	input_path = Path(args.input)
 	with open(input_path, 'rb') as f:
 		f.seek(args.chr_offset)
 		chr_data = f.read(args.chr_size)
-	
+
 	print(f"Read {len(chr_data)} bytes of CHR data from offset ${args.chr_offset:x}")
-	
+
 	# Create extractor
 	extractor = SpriteAnimationExtractor(platform)
-	
+
 	# Load palette
 	if args.palette:
 		palette_path = Path(args.palette)
@@ -636,11 +636,11 @@ def main():
 		)
 	else:
 		palette = create_default_palette(platform)
-	
+
 	# Load CHR data
 	sheet = extractor.load_chr_data(chr_data, args.bpp)
 	print(f"Loaded {len(sheet.tiles)} tiles")
-	
+
 	# Export sprite sheet
 	if args.export_sheet:
 		sheet_path = output_dir / "spritesheet.png"
@@ -649,7 +649,7 @@ def main():
 			tiles_per_row=args.tiles_per_row,
 			scale=args.scale
 		)
-	
+
 	# Export info
 	info = {
 		'source': str(input_path),
@@ -663,7 +663,7 @@ def main():
 			'colors': [list(c) for c in palette.colors]
 		}
 	}
-	
+
 	info_path = output_dir / "sprite_info.json"
 	with open(info_path, 'w') as f:
 		json.dump(info, f, indent='\t')
