@@ -1,6 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:vm="using:GameInfoTools.UI.ViewModels"
+			 xmlns:controls="using:GameInfoTools.UI.Controls"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
@@ -28,11 +29,17 @@
 			<TextBlock Text="{Binding Zoom, StringFormat={}{0}x}" VerticalAlignment="Center" Width="30" TextAlignment="Center"/>
 			<Button Content="+" Command="{Binding ZoomInCommand}" Width="30"/>
 			<Separator/>
+			<CheckBox Content="Grid" IsChecked="{Binding ShowGrid}" VerticalAlignment="Center"/>
+			<CheckBox Content="Numbers" IsChecked="{Binding ShowTileNumbers}" VerticalAlignment="Center"/>
+			<Separator/>
+			<Button Content="Undo" Command="{Binding UndoCommand}" IsEnabled="{Binding CanUndo}" ToolTip.Tip="{Binding UndoDescription}"/>
+			<Button Content="Redo" Command="{Binding RedoCommand}" IsEnabled="{Binding CanRedo}" ToolTip.Tip="{Binding RedoDescription}"/>
+			<Separator/>
 			<Button Content="Export..." Command="{Binding ExportMapCommand}" CommandParameter="{Binding $parent[Window]}" ToolTip.Tip="Export map to file"/>
 		</StackPanel>
 
 		<!-- Main Content -->
-		<Grid Grid.Row="1" ColumnDefinitions="*,200" Margin="16,8">
+		<Grid Grid.Row="1" ColumnDefinitions="*,220" Margin="16,8">
 			<!-- Map View -->
 			<Border Grid.Column="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
 					CornerRadius="4" Padding="8" Margin="0,0,8,0">
@@ -44,24 +51,17 @@
 						<Button Content="▶" Command="{Binding NextMapCommand}" ToolTip.Tip="Next Map"/>
 					</StackPanel>
 					<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-						<ItemsControl ItemsSource="{Binding MapTiles}">
-							<ItemsControl.ItemsPanel>
-								<ItemsPanelTemplate>
-									<UniformGrid Columns="{Binding MapWidth}"/>
-								</ItemsPanelTemplate>
-							</ItemsControl.ItemsPanel>
-							<ItemsControl.ItemTemplate>
-								<DataTemplate>
-									<Border Width="24" Height="24" Margin="1"
-											Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
-											BorderThickness="1"
-											BorderBrush="{DynamicResource SystemControlForegroundBaseMediumLowBrush}">
-										<TextBlock Text="{Binding Display}" FontFamily="Consolas" FontSize="10"
-												   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-									</Border>
-								</DataTemplate>
-							</ItemsControl.ItemTemplate>
-						</ItemsControl>
+						<!-- Visual Map Canvas using custom control -->
+						<controls:MapCanvas
+							x:Name="MapCanvasControl"
+							MapData="{Binding MapDataArray}"
+							MapWidth="{Binding MapWidth}"
+							MapHeight="{Binding MapHeight}"
+							TileSize="{Binding Zoom, Converter={x:Static controls:MapCanvas.ZoomToTileSizeConverter}}"
+							ShowGrid="{Binding ShowGrid}"
+							ShowTileNumbers="{Binding ShowTileNumbers}"
+							SelectedX="{Binding SelectedX, Mode=TwoWay}"
+							SelectedY="{Binding SelectedY, Mode=TwoWay}"/>
 					</ScrollViewer>
 				</DockPanel>
 			</Border>
@@ -94,33 +94,10 @@
 
 						<Separator/>
 
-						<TextBlock Text="Tile Picker" FontWeight="SemiBold"/>
-						<ItemsControl ItemsSource="{Binding TilePalette}" MaxHeight="200">
-							<ItemsControl.ItemsPanel>
-								<ItemsPanelTemplate>
-									<WrapPanel/>
-								</ItemsPanelTemplate>
-							</ItemsControl.ItemsPanel>
-							<ItemsControl.ItemTemplate>
-								<DataTemplate>
-									<Border Width="20" Height="20" Margin="1"
-											Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
-											BorderThickness="1"
-											BorderBrush="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"
-											ToolTip.Tip="{Binding Name}">
-										<TextBlock Text="{Binding Display}" FontFamily="Consolas" FontSize="8"
-												   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-									</Border>
-								</DataTemplate>
-							</ItemsControl.ItemTemplate>
-						</ItemsControl>
-
-						<Separator/>
-
 						<StackPanel Spacing="4">
 							<TextBlock Text="Selected Tile Info" FontWeight="SemiBold"/>
-							<TextBlock Text="{Binding SelectedMapTile.X, StringFormat=X: {0}, FallbackValue=X: -}" Opacity="0.7"/>
-							<TextBlock Text="{Binding SelectedMapTile.Y, StringFormat=Y: {0}, FallbackValue=Y: -}" Opacity="0.7"/>
+							<TextBlock Text="{Binding SelectedX, StringFormat=X: {0}}" Opacity="0.7"/>
+							<TextBlock Text="{Binding SelectedY, StringFormat=Y: {0}}" Opacity="0.7"/>
 							<TextBlock Text="{Binding SelectedMapTile.TileIndex, StringFormat=Tile: 0x{0:X2}, FallbackValue=Tile: -}" Opacity="0.7"/>
 							<TextBlock Text="{Binding SelectedMapTile.Offset, StringFormat=Offset: 0x{0:X6}, FallbackValue=Offset: -}" Opacity="0.7"/>
 						</StackPanel>

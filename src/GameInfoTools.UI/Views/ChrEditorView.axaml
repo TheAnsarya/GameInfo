@@ -1,6 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:vm="using:GameInfoTools.UI.ViewModels"
+			 xmlns:controls="using:GameInfoTools.UI.Controls"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
@@ -25,12 +26,14 @@
 			<TextBlock Text="{Binding Zoom, StringFormat={}{0}x}" VerticalAlignment="Center" Width="30" TextAlignment="Center"/>
 			<Button Content="+" Command="{Binding ZoomInCommand}" Width="30"/>
 			<Separator/>
+			<CheckBox Content="Grid" IsChecked="{Binding ShowGrid}" VerticalAlignment="Center"/>
+			<Separator/>
 			<Button Content="Export..." Command="{Binding ExportTilesetCommand}" CommandParameter="{Binding $parent[Window]}" ToolTip.Tip="Export tileset to image"/>
 			<Button Content="Import..." Command="{Binding ImportTilesetCommand}" CommandParameter="{Binding $parent[Window]}" ToolTip.Tip="Import tileset from image"/>
 		</StackPanel>
 
 		<!-- Main Content -->
-		<Grid Grid.Row="1" ColumnDefinitions="*,250" Margin="16,8">
+		<Grid Grid.Row="1" ColumnDefinitions="*,280" Margin="16,8">
 			<!-- Tile Grid -->
 			<Border Grid.Column="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
 					CornerRadius="4" Padding="8" Margin="0,0,8,0">
@@ -42,22 +45,14 @@
 						<Button Content="▶" Command="{Binding NextBankCommand}" ToolTip.Tip="Next Bank"/>
 					</StackPanel>
 					<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-						<ItemsControl ItemsSource="{Binding Tiles}">
-							<ItemsControl.ItemsPanel>
-								<ItemsPanelTemplate>
-									<WrapPanel/>
-								</ItemsPanelTemplate>
-							</ItemsControl.ItemsPanel>
-							<ItemsControl.ItemTemplate>
-								<DataTemplate>
-									<Border Padding="1" Margin="1"
-											Background="{DynamicResource SystemControlBackgroundBaseLowBrush}"
-											ToolTip.Tip="{Binding Name}">
-										<TextBlock Text="{Binding Preview}" FontFamily="Consolas" FontSize="10"/>
-									</Border>
-								</DataTemplate>
-							</ItemsControl.ItemTemplate>
-						</ItemsControl>
+						<!-- Visual Tile Grid using custom control -->
+						<controls:TileGridCanvas
+							Tiles="{Binding TileGraphics}"
+							TilesPerRow="16"
+							Scale="{Binding Zoom}"
+							ShowGrid="{Binding ShowGrid}"
+							SelectedTileIndex="{Binding SelectedTileIndex, Mode=TwoWay}"
+							TileSpacing="1"/>
 					</ScrollViewer>
 				</DockPanel>
 			</Border>
@@ -65,33 +60,45 @@
 			<!-- Right Panel - Tile Editor -->
 			<Border Grid.Column="1" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
 					CornerRadius="4" Padding="16">
-				<StackPanel Spacing="16">
-					<TextBlock Text="Tile Editor" FontWeight="SemiBold" FontSize="16"/>
+				<ScrollViewer>
+					<StackPanel Spacing="16">
+						<TextBlock Text="Tile Editor" FontWeight="SemiBold" FontSize="16"/>
 
-					<!-- Selected Tile -->
-					<StackPanel Spacing="4">
-						<TextBlock Text="Selected Tile:"/>
-						<TextBlock Text="{Binding SelectedTileIndex, StringFormat=Tile ${0:X2}}" FontWeight="SemiBold"/>
+						<!-- Selected Tile Preview -->
+						<StackPanel Spacing="8">
+							<TextBlock Text="Selected Tile:"/>
+							<TextBlock Text="{Binding SelectedTileIndex, StringFormat=Tile ${0:X2}}" FontWeight="SemiBold"/>
+
+							<!-- Large tile preview -->
+							<Border Background="Black" CornerRadius="4" Padding="4" HorizontalAlignment="Left">
+								<controls:TileCanvas
+									TileData="{Binding SelectedTileData}"
+									Scale="8"
+									ShowGrid="{Binding ShowGrid}"/>
+							</Border>
+						</StackPanel>
+
+						<Separator/>
+
+						<!-- Tile Operations -->
+						<TextBlock Text="Operations" FontWeight="SemiBold"/>
+						<WrapPanel>
+							<Button Content="↔" Command="{Binding FlipTileHorizontalCommand}" ToolTip.Tip="Flip Horizontal" Margin="2" Width="36" Height="36"/>
+							<Button Content="↕" Command="{Binding FlipTileVerticalCommand}" ToolTip.Tip="Flip Vertical" Margin="2" Width="36" Height="36"/>
+							<Button Content="↻" Command="{Binding RotateTileCommand}" ToolTip.Tip="Rotate 90°" Margin="2" Width="36" Height="36"/>
+						</WrapPanel>
+
+						<Separator/>
+
+						<!-- Statistics -->
+						<TextBlock Text="Statistics" FontWeight="SemiBold"/>
+						<StackPanel Spacing="4">
+							<TextBlock Text="{Binding TileCount, StringFormat=Total Tiles: {0}}" Opacity="0.7"/>
+							<TextBlock Text="{Binding BankCount, StringFormat=Banks: {0}}" Opacity="0.7"/>
+							<TextBlock Text="{Binding TileFormat, StringFormat=Format: {0}}" Opacity="0.7"/>
+						</StackPanel>
 					</StackPanel>
-
-					<Separator/>
-
-					<!-- Tile Operations -->
-					<TextBlock Text="Operations" FontWeight="SemiBold"/>
-					<WrapPanel>
-						<Button Content="↔" Command="{Binding FlipTileHorizontalCommand}" ToolTip.Tip="Flip Horizontal" Margin="2"/>
-						<Button Content="↕" Command="{Binding FlipTileVerticalCommand}" ToolTip.Tip="Flip Vertical" Margin="2"/>
-						<Button Content="↻" Command="{Binding RotateTileCommand}" ToolTip.Tip="Rotate 90°" Margin="2"/>
-					</WrapPanel>
-
-					<Separator/>
-
-					<!-- Statistics -->
-					<TextBlock Text="Statistics" FontWeight="SemiBold"/>
-					<TextBlock Text="{Binding TileCount, StringFormat=Total Tiles: {0}}" Opacity="0.7"/>
-					<TextBlock Text="{Binding BankCount, StringFormat=Banks: {0}}" Opacity="0.7"/>
-					<TextBlock Text="{Binding StatusText}" Opacity="0.7" TextWrapping="Wrap"/>
-				</StackPanel>
+				</ScrollViewer>
 			</Border>
 		</Grid>
 
