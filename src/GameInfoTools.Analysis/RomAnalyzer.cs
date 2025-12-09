@@ -1,4 +1,5 @@
 using System.Text;
+using GameInfoTools.Core;
 
 namespace GameInfoTools.Analysis;
 
@@ -8,7 +9,7 @@ namespace GameInfoTools.Analysis;
 public class RomAnalyzer
 {
 	private readonly byte[] _data;
-	private readonly Core.RomInfo _romInfo;
+	private readonly RomInfo _romInfo;
 
 	public RomAnalyzer(byte[] data)
 	{
@@ -74,10 +75,10 @@ public class RomAnalyzer
 		}
 
 		// Check for compressed data
-		var compressionResult = Core.CompressionDetector.DetectCompression(_data, offset, length);
-		if (compressionResult.Type != Core.CompressionType.None && compressionResult.Confidence > 0.7f)
+		var compressionResult = CompressionDetector.Detect(_data, offset);
+		if (compressionResult.Type != CompressionDetector.CompressionType.None && compressionResult.Confidence > 0.7)
 		{
-			return (BlockType.Compressed, compressionResult.Confidence);
+			return (BlockType.Compressed, (float)compressionResult.Confidence);
 		}
 
 		// Calculate various heuristics

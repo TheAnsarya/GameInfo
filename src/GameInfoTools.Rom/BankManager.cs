@@ -1,4 +1,5 @@
 using System.Text;
+using GameInfoTools.Core;
 
 namespace GameInfoTools.Rom;
 
@@ -8,7 +9,7 @@ namespace GameInfoTools.Rom;
 public class BankManager
 {
 	private readonly byte[] _data;
-	private readonly Core.RomInfo _romInfo;
+	private readonly RomInfo _romInfo;
 
 	public BankManager(byte[] data)
 	{
@@ -30,13 +31,13 @@ public class BankManager
 
 		switch (_romInfo.System)
 		{
-			case Core.RomSystem.Nes:
+			case SystemType.Nes:
 				return GetNesBanks();
 
-			case Core.RomSystem.Snes:
+			case SystemType.Snes:
 				return GetSnesBanks();
 
-			case Core.RomSystem.GameBoy:
+			case SystemType.GameBoy:
 				return GetGameBoyBanks();
 
 			default:
