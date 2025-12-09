@@ -1,23 +1,39 @@
 # GameInfo
 
-All the information I have on the following games:
+ROM hacking tools, game documentation, and Data Crystal wiki content for retro games.
 
-* Dragon Warrior/Dragon Quest:
-	* NES:
-		* Dragon Warrior (NES)
-		* Dragon Warrior II (NES)
-		* Dragon Warrior III (NES)
-		* Dragon Warrior IV (NES)
-	* SNES:
-		* Dragon Quest I & II (SNES)
-		* Dragon Quest III (SNES)
-* Final Fantasy:
-	* SNES:
-		* Final Fantasy: Mystic Quest (SNES)
+## 📚 Documentation
+
+### Game Documentation (`docs/`)
+
+| Game | Platform | Documentation |
+|------|----------|---------------|
+| [Dragon Warrior](docs/dragon-warrior-nes/) | NES | ROM Map, RAM Map, Data Structures |
+| [Dragon Warrior II](docs/dragon-warrior-2-nes/) | NES | ROM Map, RAM Map, Data Structures |
+| [Dragon Warrior III](docs/dragon-warrior-3-nes/) | NES | ROM Map, RAM Map, Data Structures |
+| [Dragon Warrior IV](docs/dragon-warrior-4-nes/) | NES | ROM Map, RAM Map, Data Structures |
+| [Dragon Quest I & II](docs/dragon-quest-1-2-snes/) | SNES | ROM Map, RAM Map, Data Structures |
+| [Dragon Quest III](docs/dragon-quest-3-snes/) | SNES | ROM Map, RAM Map, Data Structures |
+| [Final Fantasy Mystic Quest](docs/ffmq-snes/) | SNES | ROM Map, RAM Map, Data Structures |
+
+### Wiki Content (`*/Wiki/`)
+
+Data Crystal-style wikitext documentation:
+- ROM Maps - Complete memory mapping
+- RAM Maps - Variable and state tracking
+- Data Structures - Table formats and layouts
+- TBL Files - Text encoding tables
+
+### Related Repositories
+
+| Repository | Description |
+|------------|-------------|
+| [ffmq-info](https://github.com/TheAnsarya/ffmq-info) | Final Fantasy Mystic Quest disassembly |
+| [dragon-warrior-4-info](https://github.com/TheAnsarya/dragon-warrior-4-info) | Dragon Warrior IV NES disassembly |
 
 ---
 
-## Tools
+## 🛠️ Tools
 
 A collection of tools for ROM hacking, game analysis, and reverse engineering.
 
@@ -186,16 +202,77 @@ python tools/config_manager.py init "My Game Hack" --type nes
 
 ---
 
-## Wiki Documentation
+## 📖 Wiki Documentation
 
-Each game folder contains wiki-style documentation:
+Each game folder contains Data Crystal-style wikitext documentation:
 
-- **TBL files** - Text table definitions for encoding
-- **Values** - Memory addresses and data structures
-- **Notes** - Game-specific research and findings
+### Available Game Documentation
+
+| Game | Wiki Folder | Content |
+|------|-------------|---------|
+| Dragon Warrior (NES) | [`Dragon Warrior (NES)/Wiki/`](Dragon%20Warrior%20(NES)/Wiki/) | TBL, Notes |
+| Dragon Warrior 2 (NES) | [`Dragon Warrior 2 (NES)/Wiki/`](Dragon%20Warrior%202%20(NES)/Wiki/) | TBL, Notes |
+| Dragon Warrior 3 (NES) | [`Dragon Warrior 3 (NES)/Wiki/`](Dragon%20Warrior%203%20(NES)/Wiki/) | TBL, Notes |
+| Dragon Warrior 4 (NES) | [`Dragon Warrior 4 (NES)/Wiki/`](Dragon%20Warrior%204%20(NES)/Wiki/) | TBL, Debugging |
+| Dragon Quest I & II (SNES) | [`Dragon Quest I & II (SNES)/Wiki/`](Dragon%20Quest%20I%20&%20II%20(SNES)/Wiki/) | TBL, Images |
+| Dragon Quest III (SNES) | [`Dragon Quest III (SNES)/Wiki/`](Dragon%20Quest%20III%20(SNES)/Wiki/) | TBL, Docs, Debugging |
+| Final Fantasy Mystic Quest | [`Final Fantasy Mystic Quest (SNES)/Wiki/`](Final%20Fantasy%20Mystic%20Quest%20(SNES)/Wiki/) | Notes |
+| Chrono Trigger (SNES) | [`Chrono Trigger (SNES)/Wiki/`](Chrono%20Trigger%20(SNES)/Wiki/) | TBL |
+| Final Fantasy IV (SNES) | [`Final Fantasy IV (SNES)/Wiki/`](Final%20Fantasy%20IV%20(SNES)/Wiki/) | Notes |
+
+### Wiki File Types
+
+| Extension | Description |
+|-----------|-------------|
+| `.wikitext` | Data Crystal wiki markup format |
+| `.tbl` | Text encoding table (hex → character mapping) |
+| `.mlb` | Mesen debug label files |
+| `.nl` | FCEUX name list files |
+
+### Template Files
+
+Ready-to-use templates in [`Templates/`](Templates/):
+- `Blank TBL file.wikitext` - Empty text table template
+- `Blank TBL grid.wikitext` - Grid-format TBL template  
+- `Blank Values table.wikitext` - Memory values template
 
 ---
 
-## Contributing
+## 📁 Project Structure
 
-This project uses tabs for indentation. See `.editorconfig` for details.
+```
+GameInfo/
+├── ~docs/              # Development documentation (AI session logs, plans)
+├── docs/               # Project documentation (guides, references)
+├── tools/              # Python ROM hacking tools
+├── Templates/          # Blank templates for new games
+└── [Game Name]/        # Game-specific folders
+    ├── Wiki/           # Data Crystal wikitext files
+    ├── Debugging/      # Debug labels and notes
+    └── Docs/           # Game documentation
+```
+
+---
+
+## 🤝 Contributing
+
+### Code Style
+- **Indentation:** Tabs only (see `.editorconfig`)
+- **Hex Values:** Always lowercase (`$9d`, `0xca6e`)
+- **Commits:** Use conventional commit messages (`feat:`, `fix:`, `docs:`)
+
+### Getting Started
+1. Clone the repository
+2. Install Python requirements: `pip install -r requirements.txt`
+3. Run any tool: `python tools/<tool_name>.py --help`
+
+### Related Work
+See also the game-specific disassembly repositories:
+- [ffmq-info](https://github.com/TheAnsarya/ffmq-info) - Final Fantasy Mystic Quest
+- [dragon-warrior-4-info](https://github.com/TheAnsarya/dragon-warrior-4-info) - Dragon Warrior IV NES
+
+---
+
+## 📋 License
+
+This project is for educational and preservation purposes.
