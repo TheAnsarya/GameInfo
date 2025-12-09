@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Graphics tools - CHR/tile editing, palettes, sprites, animations")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b34a6d959f21297ded452e8bfdf26624eb67da24")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8a9d1d4cee6537fdf3cc7d0717a795da6c460b50")]
 [assembly: System.Reflection.AssemblyProductAttribute("GameInfoTools.Graphics")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GameInfoTools.Graphics")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
