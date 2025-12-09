@@ -42,7 +42,7 @@ public class ScriptCompilerAdvancedTests
 	}
 
 	[Fact]
-	public void Compile_MultipleLables_AllRegistered()
+	public void Compile_MultipleLabels_AllRegistered()
 	{
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
