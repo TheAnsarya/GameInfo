@@ -76,11 +76,11 @@ class DocumentationProject:
 
 class MarkdownGenerator:
 	"""Generate Markdown documentation."""
-	
+
 	def __init__(self, project: DocumentationProject):
 		"""Initialize generator."""
 		self.project = project
-	
+
 	def generate_index(self) -> str:
 		"""Generate index page."""
 		lines = [
@@ -97,7 +97,7 @@ class MarkdownGenerator:
 			"- [Data Tables](data_tables.md)",
 			"",
 		]
-		
+
 		# Add statistics
 		lines.extend([
 			"## Statistics",
@@ -107,7 +107,7 @@ class MarkdownGenerator:
 			f"- Data tables: {len(self.project.data_tables)}",
 			"",
 		])
-		
+
 		# Add notes
 		if self.project.notes:
 			lines.extend([
@@ -119,9 +119,9 @@ class MarkdownGenerator:
 				lines.append("")
 				lines.append(content)
 				lines.append("")
-		
+
 		return '\n'.join(lines)
-	
+
 	def generate_memory_map(self) -> str:
 		"""Generate memory map documentation."""
 		lines = [
@@ -130,7 +130,7 @@ class MarkdownGenerator:
 			"[← Back to Index](index.md)",
 			"",
 		]
-		
+
 		# Group by category
 		categories: Dict[str, List[MemoryEntry]] = {}
 		for entry in sorted(self.project.memory_entries, key=lambda e: e.address):
@@ -138,7 +138,7 @@ class MarkdownGenerator:
 			if cat not in categories:
 				categories[cat] = []
 			categories[cat].append(entry)
-		
+
 		# Generate TOC
 		lines.append("## Contents")
 		lines.append("")
@@ -146,25 +146,25 @@ class MarkdownGenerator:
 			anchor = cat.lower().replace(' ', '-')
 			lines.append(f"- [{cat}](#{anchor})")
 		lines.append("")
-		
+
 		# Generate sections
 		for cat in sorted(categories.keys()):
 			lines.append(f"## {cat}")
 			lines.append("")
 			lines.append("| Address | Size | Name | Description |")
 			lines.append("|---------|------|------|-------------|")
-			
+
 			for entry in categories[cat]:
 				addr_str = f"`${entry.address:04X}`"
 				size_str = f"{entry.size}" if entry.size > 1 else "1"
 				name_str = f"`{entry.name}`"
 				desc = entry.description or "-"
 				lines.append(f"| {addr_str} | {size_str} | {name_str} | {desc} |")
-			
+
 			lines.append("")
-		
+
 		return '\n'.join(lines)
-	
+
 	def generate_routines(self) -> str:
 		"""Generate routines documentation."""
 		lines = [
@@ -173,7 +173,7 @@ class MarkdownGenerator:
 			"[← Back to Index](index.md)",
 			"",
 		]
-		
+
 		# Group by category
 		categories: Dict[str, List[Routine]] = {}
 		for routine in sorted(self.project.routines, key=lambda r: r.address):
@@ -181,7 +181,7 @@ class MarkdownGenerator:
 			if cat not in categories:
 				categories[cat] = []
 			categories[cat].append(routine)
-		
+
 		# Generate TOC
 		lines.append("## Contents")
 		lines.append("")
@@ -189,12 +189,12 @@ class MarkdownGenerator:
 			anchor = cat.lower().replace(' ', '-')
 			lines.append(f"- [{cat}](#{anchor})")
 		lines.append("")
-		
+
 		# Generate sections
 		for cat in sorted(categories.keys()):
 			lines.append(f"## {cat}")
 			lines.append("")
-			
+
 			for routine in categories[cat]:
 				lines.append(f"### {routine.name}")
 				lines.append("")
@@ -202,21 +202,21 @@ class MarkdownGenerator:
 				if routine.size:
 					lines.append(f"**Size:** {routine.size} bytes  ")
 				lines.append("")
-				
+
 				if routine.description:
 					lines.append(routine.description)
 					lines.append("")
-				
+
 				if routine.parameters:
 					lines.append("**Parameters:**")
 					for param in routine.parameters:
 						lines.append(f"- {param}")
 					lines.append("")
-				
+
 				if routine.returns:
 					lines.append(f"**Returns:** {routine.returns}")
 					lines.append("")
-				
+
 				if routine.callers:
 					lines.append("**Called from:**")
 					for caller in routine.callers[:10]:
@@ -224,12 +224,12 @@ class MarkdownGenerator:
 					if len(routine.callers) > 10:
 						lines.append(f"- ... and {len(routine.callers) - 10} more")
 					lines.append("")
-				
+
 				lines.append("---")
 				lines.append("")
-		
+
 		return '\n'.join(lines)
-	
+
 	def generate_data_tables(self) -> str:
 		"""Generate data tables documentation."""
 		lines = [
@@ -238,7 +238,7 @@ class MarkdownGenerator:
 			"[← Back to Index](index.md)",
 			"",
 		]
-		
+
 		# Group by category
 		categories: Dict[str, List[DataTable]] = {}
 		for table in sorted(self.project.data_tables, key=lambda t: t.address):
@@ -246,12 +246,12 @@ class MarkdownGenerator:
 			if cat not in categories:
 				categories[cat] = []
 			categories[cat].append(table)
-		
+
 		# Generate sections
 		for cat in sorted(categories.keys()):
 			lines.append(f"## {cat}")
 			lines.append("")
-			
+
 			for table in categories[cat]:
 				lines.append(f"### {table.name}")
 				lines.append("")
@@ -261,36 +261,36 @@ class MarkdownGenerator:
 				total_size = table.entry_count * table.entry_size
 				lines.append(f"**Total Size:** {total_size} bytes  ")
 				lines.append("")
-				
+
 				if table.description:
 					lines.append(table.description)
 					lines.append("")
-				
+
 				if table.fields:
 					lines.append("**Structure:**")
 					lines.append("")
 					lines.append("| Offset | Size | Name | Description |")
 					lines.append("|--------|------|------|-------------|")
-					
+
 					for field in table.fields:
 						offset = f"`+${field.get('offset', 0):02X}`"
 						size = field.get('size', 1)
 						name = f"`{field.get('name', '?')}`"
 						desc = field.get('description', '-')
 						lines.append(f"| {offset} | {size} | {name} | {desc} |")
-					
+
 					lines.append("")
-				
+
 				lines.append("---")
 				lines.append("")
-		
+
 		return '\n'.join(lines)
-	
+
 	def generate_all(self, output_dir: str) -> None:
 		"""Generate all documentation files."""
 		output = Path(output_dir)
 		output.mkdir(parents=True, exist_ok=True)
-		
+
 		# Generate files
 		(output / "index.md").write_text(self.generate_index(), encoding='utf-8')
 		(output / "memory_map.md").write_text(self.generate_memory_map(), encoding='utf-8')
@@ -300,11 +300,11 @@ class MarkdownGenerator:
 
 class HTMLGenerator:
 	"""Generate HTML documentation."""
-	
+
 	def __init__(self, project: DocumentationProject):
 		"""Initialize generator."""
 		self.project = project
-	
+
 	def _header(self, title: str) -> str:
 		"""Generate HTML header."""
 		return f'''<!DOCTYPE html>
@@ -329,18 +329,18 @@ class HTMLGenerator:
 </head>
 <body>
 '''
-	
+
 	def _footer(self) -> str:
 		"""Generate HTML footer."""
 		return '''
 </body>
 </html>
 '''
-	
+
 	def generate_index(self) -> str:
 		"""Generate index page."""
 		html = self._header(f"{self.project.name} Documentation")
-		
+
 		html += f'''
 <h1>{self.project.name} Documentation</h1>
 <p><strong>Platform:</strong> {self.project.platform}<br>
@@ -365,19 +365,19 @@ class HTMLGenerator:
 </ul>
 </div>
 '''
-		
+
 		html += self._footer()
 		return html
-	
+
 	def generate_memory_map(self) -> str:
 		"""Generate memory map page."""
 		html = self._header(f"{self.project.name} - Memory Map")
-		
+
 		html += f'''
 <div class="nav"><a href="index.html">← Back to Index</a></div>
 <h1>Memory Map</h1>
 '''
-		
+
 		# Group by category
 		categories: Dict[str, List[MemoryEntry]] = {}
 		for entry in sorted(self.project.memory_entries, key=lambda e: e.address):
@@ -385,7 +385,7 @@ class HTMLGenerator:
 			if cat not in categories:
 				categories[cat] = []
 			categories[cat].append(entry)
-		
+
 		for cat in sorted(categories.keys()):
 			html += f'''
 <div class="section">
@@ -396,21 +396,21 @@ class HTMLGenerator:
 			for entry in categories[cat]:
 				desc = entry.description or "-"
 				html += f'	<tr><td><code>${entry.address:04X}</code></td><td>{entry.size}</td><td><code>{entry.name}</code></td><td>{desc}</td></tr>\n'
-			
+
 			html += '</table>\n</div>\n'
-		
+
 		html += self._footer()
 		return html
-	
+
 	def generate_routines(self) -> str:
 		"""Generate routines page."""
 		html = self._header(f"{self.project.name} - Routines")
-		
+
 		html += f'''
 <div class="nav"><a href="index.html">← Back to Index</a></div>
 <h1>Routines</h1>
 '''
-		
+
 		# Group by category
 		categories: Dict[str, List[Routine]] = {}
 		for routine in sorted(self.project.routines, key=lambda r: r.address):
@@ -418,10 +418,10 @@ class HTMLGenerator:
 			if cat not in categories:
 				categories[cat] = []
 			categories[cat].append(routine)
-		
+
 		for cat in sorted(categories.keys()):
 			html += f'<div class="section">\n<h2>{cat}</h2>\n'
-			
+
 			for routine in categories[cat]:
 				html += f'''
 <h3>{routine.name}</h3>
@@ -429,29 +429,29 @@ class HTMLGenerator:
 '''
 				if routine.description:
 					html += f'<p>{routine.description}</p>\n'
-				
+
 				if routine.parameters:
 					html += '<p><strong>Parameters:</strong></p><ul>\n'
 					for param in routine.parameters:
 						html += f'<li>{param}</li>\n'
 					html += '</ul>\n'
-				
+
 				html += '<hr>\n'
-			
+
 			html += '</div>\n'
-		
+
 		html += self._footer()
 		return html
-	
+
 	def generate_data_tables(self) -> str:
 		"""Generate data tables page."""
 		html = self._header(f"{self.project.name} - Data Tables")
-		
+
 		html += f'''
 <div class="nav"><a href="index.html">← Back to Index</a></div>
 <h1>Data Tables</h1>
 '''
-		
+
 		for table in sorted(self.project.data_tables, key=lambda t: t.address):
 			total_size = table.entry_count * table.entry_size
 			html += f'''
@@ -466,7 +466,7 @@ class HTMLGenerator:
 '''
 			if table.description:
 				html += f'<p>{table.description}</p>\n'
-			
+
 			if table.fields:
 				html += '''
 <table>
@@ -479,17 +479,17 @@ class HTMLGenerator:
 					desc = field.get('description', '-')
 					html += f'	<tr><td><code>+${offset:02X}</code></td><td>{size}</td><td><code>{name}</code></td><td>{desc}</td></tr>\n'
 				html += '</table>\n'
-			
+
 			html += '</div>\n'
-		
+
 		html += self._footer()
 		return html
-	
+
 	def generate_all(self, output_dir: str) -> None:
 		"""Generate all documentation files."""
 		output = Path(output_dir)
 		output.mkdir(parents=True, exist_ok=True)
-		
+
 		(output / "index.html").write_text(self.generate_index(), encoding='utf-8')
 		(output / "memory_map.html").write_text(self.generate_memory_map(), encoding='utf-8')
 		(output / "routines.html").write_text(self.generate_routines(), encoding='utf-8')
@@ -500,19 +500,19 @@ def load_project_from_json(path: str) -> DocumentationProject:
 	"""Load project from JSON file."""
 	with open(path, 'r', encoding='utf-8') as f:
 		data = json.load(f)
-	
+
 	project = DocumentationProject(
 		name=data.get("name", "Unknown"),
 		version=data.get("version", "1.0"),
 		platform=data.get("platform", "Unknown"),
 		notes=data.get("notes", {})
 	)
-	
+
 	for entry in data.get("memory_entries", []):
 		addr = entry["address"]
 		if isinstance(addr, str):
 			addr = int(addr, 16)
-		
+
 		project.memory_entries.append(MemoryEntry(
 			address=addr,
 			size=entry.get("size", 1),
@@ -521,12 +521,12 @@ def load_project_from_json(path: str) -> DocumentationProject:
 			type_str=entry.get("type", "byte"),
 			category=entry.get("category", "")
 		))
-	
+
 	for routine in data.get("routines", []):
 		addr = routine["address"]
 		if isinstance(addr, str):
 			addr = int(addr, 16)
-		
+
 		project.routines.append(Routine(
 			address=addr,
 			name=routine.get("name", ""),
@@ -536,12 +536,12 @@ def load_project_from_json(path: str) -> DocumentationProject:
 			returns=routine.get("returns", ""),
 			category=routine.get("category", "")
 		))
-	
+
 	for table in data.get("data_tables", []):
 		addr = table["address"]
 		if isinstance(addr, str):
 			addr = int(addr, 16)
-		
+
 		project.data_tables.append(DataTable(
 			address=addr,
 			name=table.get("name", ""),
@@ -551,7 +551,7 @@ def load_project_from_json(path: str) -> DocumentationProject:
 			fields=table.get("fields", []),
 			category=table.get("category", "")
 		))
-	
+
 	return project
 
 
@@ -598,7 +598,7 @@ def save_project_to_json(project: DocumentationProject, path: str) -> None:
 			for t in project.data_tables
 		]
 	}
-	
+
 	with open(path, 'w', encoding='utf-8') as f:
 		json.dump(data, f, indent='\t')
 
@@ -615,44 +615,44 @@ Examples:
   %(prog)s template -o project.json --name "My Game"
 		"""
 	)
-	
+
 	subparsers = parser.add_subparsers(dest="command", help="Command to execute")
-	
+
 	# Generate command
 	gen_parser = subparsers.add_parser("generate", help="Generate documentation")
 	gen_parser.add_argument("project", help="Project JSON file")
 	gen_parser.add_argument("-o", "--output", required=True, help="Output directory")
 	gen_parser.add_argument("-f", "--format", choices=["markdown", "html", "both"],
 		default="markdown", help="Output format")
-	
+
 	# Template command
 	template_parser = subparsers.add_parser("template", help="Create project template")
 	template_parser.add_argument("-o", "--output", required=True, help="Output JSON file")
 	template_parser.add_argument("-n", "--name", default="Game Name", help="Project name")
 	template_parser.add_argument("-p", "--platform", default="NES", help="Platform")
-	
+
 	args = parser.parse_args()
-	
+
 	if not args.command:
 		parser.print_help()
 		return 1
-	
+
 	try:
 		if args.command == "generate":
 			project = load_project_from_json(args.project)
-			
+
 			if args.format in ("markdown", "both"):
 				md_gen = MarkdownGenerator(project)
 				md_out = Path(args.output) / "markdown" if args.format == "both" else args.output
 				md_gen.generate_all(str(md_out))
 				print(f"Generated Markdown docs: {md_out}")
-			
+
 			if args.format in ("html", "both"):
 				html_gen = HTMLGenerator(project)
 				html_out = Path(args.output) / "html" if args.format == "both" else args.output
 				html_gen.generate_all(str(html_out))
 				print(f"Generated HTML docs: {html_out}")
-		
+
 		elif args.command == "template":
 			project = DocumentationProject(
 				name=args.name,
@@ -675,17 +675,17 @@ Examples:
 					"Credits": "Documentation by..."
 				}
 			)
-			
+
 			save_project_to_json(project, args.output)
 			print(f"Created template: {args.output}")
-	
+
 	except FileNotFoundError as e:
 		print(f"Error: File not found: {e.filename}")
 		return 1
 	except Exception as e:
 		print(f"Error: {e}")
 		return 1
-	
+
 	return 0
 
 

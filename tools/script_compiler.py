@@ -69,18 +69,18 @@ class ScriptConfig:
 
 class TableEncoder:
 	"""Encode text using a table file."""
-	
+
 	def __init__(self, table_path: str):
 		"""Load table file."""
 		self.char_to_byte: Dict[str, bytes] = {}
 		self.byte_to_char: Dict[int, str] = {}
-		
+
 		with open(table_path, 'r', encoding='utf-8') as f:
 			for line in f:
 				line = line.rstrip('\n\r')
 				if not line or line.startswith(';') or line.startswith('#'):
 					continue
-				
+
 				if '=' in line:
 					hex_part, char = line.split('=', 1)
 					try:
@@ -89,12 +89,12 @@ class TableEncoder:
 						self.byte_to_char[byte_val] = char
 					except ValueError:
 						continue
-	
+
 	def encode(self, text: str) -> bytes:
 		"""Encode text to bytes."""
 		result = bytearray()
 		i = 0
-		
+
 		while i < len(text):
 			# Try to match longest sequence first
 			matched = False
@@ -105,15 +105,15 @@ class TableEncoder:
 					i += length
 					matched = True
 					break
-			
+
 			if not matched:
 				# Default to ASCII or skip
 				if text[i].isascii() and ord(text[i]) >= 32:
 					result.append(ord(text[i]))
 				i += 1
-		
+
 		return bytes(result)
-	
+
 	def decode(self, data: bytes) -> str:
 		"""Decode bytes to text."""
 		result = []
@@ -129,48 +129,48 @@ class TableEncoder:
 
 class ScriptLexer:
 	"""Tokenize script files."""
-	
+
 	def __init__(self, config: ScriptConfig):
 		"""Initialize lexer."""
 		self.config = config
-	
+
 	def tokenize(self, source: str) -> List[Token]:
 		"""Tokenize source code."""
 		tokens = []
 		lines = source.split('\n')
-		
+
 		for line_num, line in enumerate(lines, 1):
 			# Skip empty lines and comments
 			stripped = line.strip()
 			if not stripped:
 				tokens.append(Token(TokenType.NEWLINE, '\n', line_num, 0))
 				continue
-			
+
 			if stripped.startswith('//') or stripped.startswith(';'):
 				tokens.append(Token(TokenType.COMMENT, stripped, line_num, 0))
 				continue
-			
+
 			# Parse labels
 			if stripped.startswith('@'):
 				tokens.append(Token(TokenType.LABEL, stripped[1:], line_num, 0))
 				continue
-			
+
 			# Parse directives
 			if stripped.startswith('#') or stripped.startswith('.'):
 				tokens.append(Token(TokenType.DIRECTIVE, stripped, line_num, 0))
 				continue
-			
+
 			# Parse line content
 			self._tokenize_line(stripped, line_num, tokens)
-		
+
 		tokens.append(Token(TokenType.END, None, len(lines), 0))
 		return tokens
-	
+
 	def _tokenize_line(self, line: str, line_num: int, tokens: List[Token]) -> None:
 		"""Tokenize a single line."""
 		i = 0
 		text_buffer = []
-		
+
 		while i < len(line):
 			# Control codes: [CODE] or [CODE:arg1,arg2]
 			if line[i] == '[':
@@ -178,30 +178,30 @@ class ScriptLexer:
 				if text_buffer:
 					tokens.append(Token(TokenType.TEXT, ''.join(text_buffer), line_num, i))
 					text_buffer = []
-				
+
 				# Find closing bracket
 				end = line.find(']', i)
 				if end == -1:
 					end = len(line)
-				
+
 				control = line[i+1:end]
 				tokens.append(Token(TokenType.CONTROL, control, line_num, i))
 				i = end + 1
-			
+
 			# Variables: {VAR} or {VAR:format}
 			elif line[i] == '{':
 				if text_buffer:
 					tokens.append(Token(TokenType.TEXT, ''.join(text_buffer), line_num, i))
 					text_buffer = []
-				
+
 				end = line.find('}', i)
 				if end == -1:
 					end = len(line)
-				
+
 				variable = line[i+1:end]
 				tokens.append(Token(TokenType.VARIABLE, variable, line_num, i))
 				i = end + 1
-			
+
 			# Escape sequences
 			elif line[i] == '\\' and i + 1 < len(line):
 				next_char = line[i + 1]
@@ -216,11 +216,11 @@ class ScriptLexer:
 				else:
 					text_buffer.append(line[i:i+2])
 				i += 2
-			
+
 			else:
 				text_buffer.append(line[i])
 				i += 1
-		
+
 		# Flush remaining text
 		if text_buffer:
 			tokens.append(Token(TokenType.TEXT, ''.join(text_buffer), line_num, len(line)))
@@ -228,7 +228,7 @@ class ScriptLexer:
 
 class ScriptCompiler:
 	"""Compile script tokens to bytecode."""
-	
+
 	def __init__(self, config: ScriptConfig):
 		"""Initialize compiler."""
 		self.config = config
@@ -238,32 +238,32 @@ class ScriptCompiler:
 		self.pointers: List[Tuple[int, str]] = []  # (offset, label)
 		self.errors: List[str] = []
 		self.warnings: List[str] = []
-		
+
 		if config.table_file and os.path.exists(config.table_file):
 			self.encoder = TableEncoder(config.table_file)
-	
+
 	def compile(self, tokens: List[Token]) -> bytes:
 		"""Compile tokens to bytecode."""
 		self.output = bytearray()
 		self.labels = {}
 		self.pointers = []
 		self.errors = []
-		
+
 		# First pass: collect labels
 		self._collect_labels(tokens)
-		
+
 		# Second pass: generate code
 		self._generate_code(tokens)
-		
+
 		# Third pass: resolve pointers
 		self._resolve_pointers()
-		
+
 		return bytes(self.output)
-	
+
 	def _collect_labels(self, tokens: List[Token]) -> None:
 		"""First pass: collect label positions."""
 		position = 0
-		
+
 		for token in tokens:
 			if token.type == TokenType.LABEL:
 				self.labels[token.value] = position
@@ -274,7 +274,7 @@ class ScriptCompiler:
 					position += len(token.value.encode(self.config.encoding))
 			elif token.type == TokenType.CONTROL:
 				position += self._control_size(token.value)
-	
+
 	def _generate_code(self, tokens: List[Token]) -> None:
 		"""Second pass: generate bytecode."""
 		for token in tokens:
@@ -289,7 +289,7 @@ class ScriptCompiler:
 				pass
 			elif token.type == TokenType.DIRECTIVE:
 				self._process_directive(token.value)
-	
+
 	def _resolve_pointers(self) -> None:
 		"""Third pass: resolve label references."""
 		for offset, label in self.pointers:
@@ -303,14 +303,14 @@ class ScriptCompiler:
 					self.output[offset:offset+4] = struct.pack('<I', address)
 			else:
 				self.errors.append(f"Undefined label: {label}")
-	
+
 	def _emit_text(self, text: str) -> None:
 		"""Emit text bytes."""
 		if self.encoder:
 			self.output.extend(self.encoder.encode(text))
 		else:
 			self.output.extend(text.encode(self.config.encoding))
-	
+
 	def _emit_control(self, control: str, line: int) -> None:
 		"""Emit control code bytes."""
 		# Parse control: NAME or NAME:arg1,arg2
@@ -320,9 +320,9 @@ class ScriptCompiler:
 		else:
 			name = control
 			args = []
-		
+
 		name = name.upper()
-		
+
 		# Built-in controls
 		if name == 'NEWLINE' or name == 'NL':
 			self.output.extend(self.config.line_ending)
@@ -363,7 +363,7 @@ class ScriptCompiler:
 			# Custom control code
 			cc = self.config.control_codes[name]
 			self.output.append(cc.byte_value)
-			
+
 			# Emit arguments
 			for i, arg_type in enumerate(cc.args):
 				if i < len(args):
@@ -383,13 +383,13 @@ class ScriptCompiler:
 					self.errors.append(f"Line {line}: Unknown control code: {name}")
 			else:
 				self.errors.append(f"Line {line}: Unknown control code: {name}")
-	
+
 	def _emit_variable(self, variable: str) -> None:
 		"""Emit variable placeholder."""
 		# Variables are typically replaced at runtime
 		# Emit a placeholder control code
 		name = variable.upper()
-		
+
 		if name == 'HERO' or name == 'PLAYER':
 			self.output.extend(b'\xE0')
 		elif name == 'ITEM':
@@ -401,13 +401,13 @@ class ScriptCompiler:
 		else:
 			# Generic variable
 			self.output.extend(b'\xE0')
-	
+
 	def _process_directive(self, directive: str) -> None:
 		"""Process compiler directive."""
 		parts = directive.split(None, 1)
 		cmd = parts[0].lower()
 		arg = parts[1] if len(parts) > 1 else ""
-		
+
 		if cmd in ['#base', '.base', '.org']:
 			self.config.base_address = int(arg, 16) if arg.startswith('$') or arg.startswith('0x') else int(arg)
 		elif cmd in ['#table', '.table']:
@@ -416,7 +416,7 @@ class ScriptCompiler:
 		elif cmd in ['#include', '.include']:
 			# Would load external file
 			pass
-	
+
 	def _control_size(self, control: str) -> int:
 		"""Estimate size of control code."""
 		if ':' in control:
@@ -425,9 +425,9 @@ class ScriptCompiler:
 		else:
 			name = control
 			args = []
-		
+
 		name = name.upper()
-		
+
 		# Built-in sizes
 		sizes = {
 			'NEWLINE': len(self.config.line_ending),
@@ -442,7 +442,7 @@ class ScriptCompiler:
 			'SPEED': 2,
 			'GOTO': 3,
 		}
-		
+
 		if name in sizes:
 			return sizes[name]
 		elif name == 'RAW' or name == 'BYTE':
@@ -456,32 +456,32 @@ class ScriptCompiler:
 
 class ScriptDecompiler:
 	"""Decompile bytecode to script."""
-	
+
 	def __init__(self, config: ScriptConfig):
 		"""Initialize decompiler."""
 		self.config = config
 		self.encoder: Optional[TableEncoder] = None
-		
+
 		if config.table_file and os.path.exists(config.table_file):
 			self.encoder = TableEncoder(config.table_file)
-	
+
 	def decompile(self, data: bytes, start: int = 0, end: int = -1) -> str:
 		"""Decompile bytecode to script."""
 		if end < 0:
 			end = len(data)
-		
+
 		lines = []
 		current_line = []
 		i = start
-		
+
 		# Create reverse lookup for control codes
 		byte_to_control = {}
 		for name, cc in self.config.control_codes.items():
 			byte_to_control[cc.byte_value] = cc
-		
+
 		while i < end:
 			b = data[i]
-			
+
 			# Check for line ending
 			if data[i:i+len(self.config.line_ending)] == self.config.line_ending:
 				current_line.append('[NL]')
@@ -490,7 +490,7 @@ class ScriptDecompiler:
 					current_line = []
 				i += len(self.config.line_ending)
 				continue
-			
+
 			# Check for message end
 			if data[i:i+len(self.config.message_end)] == self.config.message_end:
 				current_line.append('[END]')
@@ -500,7 +500,7 @@ class ScriptDecompiler:
 				lines.append('')  # Blank line between messages
 				i += len(self.config.message_end)
 				continue
-			
+
 			# Check for known control codes
 			if b in byte_to_control:
 				cc = byte_to_control[b]
@@ -518,7 +518,7 @@ class ScriptDecompiler:
 					current_line.append(f'[{cc.name}]')
 					i += 1
 				continue
-			
+
 			# Built-in control codes
 			if b >= 0xF0:
 				if b == 0xFC:
@@ -538,7 +538,7 @@ class ScriptDecompiler:
 					current_line.append(f'[${b:02X}]')
 				i += 1
 				continue
-			
+
 			# Variable placeholders
 			if 0xE0 <= b < 0xF0:
 				vars_map = {
@@ -549,7 +549,7 @@ class ScriptDecompiler:
 				current_line.append(f'{{{var_name}}}')
 				i += 1
 				continue
-			
+
 			# Regular text
 			if self.encoder and b in self.encoder.byte_to_char:
 				current_line.append(self.encoder.byte_to_char[b])
@@ -558,10 +558,10 @@ class ScriptDecompiler:
 			else:
 				current_line.append(f'[${b:02X}]')
 			i += 1
-		
+
 		if current_line:
 			lines.append(''.join(current_line))
-		
+
 		return '\n'.join(lines)
 
 
@@ -569,9 +569,9 @@ def load_config(path: str) -> ScriptConfig:
 	"""Load compiler configuration from JSON."""
 	with open(path, 'r', encoding='utf-8') as f:
 		data = json.load(f)
-	
+
 	config = ScriptConfig(name=data.get('name', 'default'))
-	
+
 	if 'encoding' in data:
 		config.encoding = data['encoding']
 	if 'table_file' in data:
@@ -586,7 +586,7 @@ def load_config(path: str) -> ScriptConfig:
 		config.pointer_size = data['pointer_size']
 	if 'base_address' in data:
 		config.base_address = data['base_address']
-	
+
 	# Load control codes
 	for name, cc_data in data.get('control_codes', {}).items():
 		config.control_codes[name.upper()] = ControlCode(
@@ -595,7 +595,7 @@ def load_config(path: str) -> ScriptConfig:
 			args=cc_data.get('args', []),
 			description=cc_data.get('description', '')
 		)
-	
+
 	return config
 
 
@@ -620,16 +620,16 @@ Examples:
   %(prog)s decompile input.bin -o script.txt --table dw4.tbl
 		"""
 	)
-	
+
 	subparsers = parser.add_subparsers(dest="command", help="Command to execute")
-	
+
 	# Compile command
 	compile_parser = subparsers.add_parser("compile", help="Compile script to binary")
 	compile_parser.add_argument("input", help="Input script file")
 	compile_parser.add_argument("-o", "--output", required=True, help="Output binary file")
 	compile_parser.add_argument("-c", "--config", help="Configuration JSON file")
 	compile_parser.add_argument("-t", "--table", help="Table file for encoding")
-	
+
 	# Decompile command
 	decompile_parser = subparsers.add_parser("decompile", help="Decompile binary to script")
 	decompile_parser.add_argument("input", help="Input binary file")
@@ -638,69 +638,69 @@ Examples:
 	decompile_parser.add_argument("-t", "--table", help="Table file for decoding")
 	decompile_parser.add_argument("-s", "--start", type=lambda x: int(x, 16), default=0)
 	decompile_parser.add_argument("-e", "--end", type=lambda x: int(x, 16), default=-1)
-	
+
 	# Verify command
 	verify_parser = subparsers.add_parser("verify", help="Verify script syntax")
 	verify_parser.add_argument("input", help="Script file to verify")
 	verify_parser.add_argument("-c", "--config", help="Configuration JSON file")
-	
+
 	args = parser.parse_args()
-	
+
 	if not args.command:
 		parser.print_help()
 		return 1
-	
+
 	try:
 		# Load config
 		if hasattr(args, 'config') and args.config:
 			config = load_config(args.config)
 		else:
 			config = ScriptConfig(name="default")
-		
+
 		# Override table if specified
 		if hasattr(args, 'table') and args.table:
 			config.table_file = args.table
-		
+
 		if args.command == "compile":
 			source = Path(args.input).read_text(encoding='utf-8')
-			
+
 			lexer = ScriptLexer(config)
 			tokens = lexer.tokenize(source)
-			
+
 			compiler = ScriptCompiler(config)
 			bytecode = compiler.compile(tokens)
-			
+
 			if compiler.errors:
 				for error in compiler.errors:
 					print(f"Error: {error}", file=sys.stderr)
 				return 1
-			
+
 			Path(args.output).write_bytes(bytecode)
 			print(f"Compiled: {args.output}")
 			print(f"Output size: {len(bytecode)} bytes")
-			
+
 			if compiler.warnings:
 				for warning in compiler.warnings:
 					print(f"Warning: {warning}")
-		
+
 		elif args.command == "decompile":
 			data = Path(args.input).read_bytes()
-			
+
 			decompiler = ScriptDecompiler(config)
 			script = decompiler.decompile(data, args.start, args.end)
-			
+
 			Path(args.output).write_text(script, encoding='utf-8')
 			print(f"Decompiled: {args.output}")
-		
+
 		elif args.command == "verify":
 			source = Path(args.input).read_text(encoding='utf-8')
-			
+
 			lexer = ScriptLexer(config)
 			tokens = lexer.tokenize(source)
-			
+
 			compiler = ScriptCompiler(config)
 			compiler.compile(tokens)
-			
+
 			if compiler.errors:
 				print("Errors found:")
 				for error in compiler.errors:
@@ -708,19 +708,19 @@ Examples:
 				return 1
 			else:
 				print("No errors found")
-			
+
 			if compiler.warnings:
 				print("Warnings:")
 				for warning in compiler.warnings:
 					print(f"  {warning}")
-	
+
 	except FileNotFoundError as e:
 		print(f"Error: File not found: {e.filename}")
 		return 1
 	except Exception as e:
 		print(f"Error: {e}")
 		return 1
-	
+
 	return 0
 
 
