@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Disassembly tools - 6502/65816 disassemblers, label management, CDL processing")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e9e028bb4804406d7985472bc751e311e529e11")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b34a6d959f21297ded452e8bfdf26624eb67da24")]
 [assembly: System.Reflection.AssemblyProductAttribute("GameInfoTools.Disassembly")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GameInfoTools.Disassembly")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

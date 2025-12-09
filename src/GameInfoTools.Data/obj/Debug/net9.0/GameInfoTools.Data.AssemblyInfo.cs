@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Data tools - game data editors (items, monsters, spells, etc.)")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e9e028bb4804406d7985472bc751e311e529e11")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b34a6d959f21297ded452e8bfdf26624eb67da24")]
 [assembly: System.Reflection.AssemblyProductAttribute("GameInfoTools.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GameInfoTools.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

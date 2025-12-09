@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("GameInfo Tools - Command-line interface and meta-tool launcher")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e9e028bb4804406d7985472bc751e311e529e11")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0ca5b37c16fad74faac60f76b3e53a10c83f0ca8")]
 [assembly: System.Reflection.AssemblyProductAttribute("git")]
 [assembly: System.Reflection.AssemblyTitleAttribute("git")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
