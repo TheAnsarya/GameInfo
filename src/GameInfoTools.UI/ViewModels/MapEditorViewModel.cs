@@ -54,12 +54,30 @@ public partial class MapEditorViewModel : ViewModelBase {
 	[ObservableProperty]
 	private string _redoDescription = "";
 
+	[ObservableProperty]
+	private bool _showGrid = true;
+
+	[ObservableProperty]
+	private bool _showTileNumbers = true;
+
+	[ObservableProperty]
+	private int _selectedX = -1;
+
+	[ObservableProperty]
+	private int _selectedY = -1;
+
 	public bool CanUndo => _undoRedo.CanUndo;
 	public bool CanRedo => _undoRedo.CanRedo;
 
 	public ObservableCollection<MapTile> MapTiles { get; } = [];
 
 	public ObservableCollection<TilePaletteItem> TilePalette { get; } = [];
+
+	/// <summary>
+	/// Gets the raw map data as a byte array for visual rendering.
+	/// </summary>
+	[ObservableProperty]
+	private byte[]? _mapDataArray;
 
 	public string[] MapFormats { get; } = [
 		"Linear (tile index only)",
@@ -106,6 +124,10 @@ public partial class MapEditorViewModel : ViewModelBase {
 
 			int mapSize = MapWidth * MapHeight;
 			int endOffset = Math.Min(MapDataOffset + mapSize, _rom.Length);
+			int actualSize = endOffset - MapDataOffset;
+
+			// Create a copy of the map data for visual rendering
+			MapDataArray = data.Slice(MapDataOffset, actualSize).ToArray();
 
 			for (int y = 0; y < MapHeight; y++) {
 				for (int x = 0; x < MapWidth; x++) {
@@ -128,7 +150,22 @@ public partial class MapEditorViewModel : ViewModelBase {
 	private void SelectTile(MapTile? tile) {
 		if (tile is null) return;
 		SelectedMapTile = tile;
+		SelectedX = tile.X;
+		SelectedY = tile.Y;
 		StatusText = $"Selected tile at ({tile.X}, {tile.Y}) = 0x{tile.TileIndex:X2} @ 0x{tile.Offset:X6}";
+	}
+
+	/// <summary>
+	/// Handle tile selection from MapCanvas click event.
+	/// </summary>
+	public void SelectMapPosition(int x, int y) {
+		SelectedX = x;
+		SelectedY = y;
+		int index = (y * MapWidth) + x;
+		if (index >= 0 && index < MapTiles.Count) {
+			SelectedMapTile = MapTiles[index];
+			StatusText = $"Selected tile at ({x}, {y}) = 0x{MapTiles[index].TileIndex:X2}";
+		}
 	}
 
 	[RelayCommand]
@@ -214,6 +251,14 @@ public partial class MapEditorViewModel : ViewModelBase {
 				byte tileIndex = data[tile.Offset];
 				MapTiles[i] = new MapTile(tile.X, tile.Y, tileIndex, tile.Offset);
 			}
+		}
+
+		// Update the MapDataArray for visual rendering
+		if (MapDataArray is not null) {
+			int mapSize = MapWidth * MapHeight;
+			int endOffset = Math.Min(MapDataOffset + mapSize, _rom.Length);
+			int actualSize = endOffset - MapDataOffset;
+			MapDataArray = data.Slice(MapDataOffset, actualSize).ToArray();
 		}
 	}
 

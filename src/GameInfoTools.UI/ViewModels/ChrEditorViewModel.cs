@@ -43,7 +43,21 @@ public partial class ChrEditorViewModel : ViewModelBase {
 	[ObservableProperty]
 	private int _zoom = 2;
 
+	[ObservableProperty]
+	private bool _showGrid = true;
+
 	public ObservableCollection<TileInfo> Tiles { get; } = [];
+
+	/// <summary>
+	/// Gets the tile data for visual rendering.
+	/// </summary>
+	public ObservableCollection<byte[,]> TileGraphics { get; } = [];
+
+	/// <summary>
+	/// Gets the currently selected tile data for the enlarged preview.
+	/// </summary>
+	[ObservableProperty]
+	private byte[,]? _selectedTileData;
 
 	public string[] AvailableFormats { get; } = [
 		"NES 2bpp",
@@ -94,6 +108,7 @@ public partial class ChrEditorViewModel : ViewModelBase {
 
 	private void LoadTilePreview() {
 		Tiles.Clear();
+		TileGraphics.Clear();
 
 		if (_chrEditor is null) return;
 
@@ -102,6 +117,18 @@ public partial class ChrEditorViewModel : ViewModelBase {
 		for (int i = 0; i < count; i++) {
 			var tile = _chrEditor.GetTile(i);
 			Tiles.Add(new TileInfo(i, $"Tile {i:X2}", GetTilePreviewString(tile)));
+			TileGraphics.Add(tile);
+		}
+
+		// Set selected tile data if valid
+		if (SelectedTileIndex >= 0 && SelectedTileIndex < TileGraphics.Count) {
+			SelectedTileData = TileGraphics[SelectedTileIndex];
+		}
+	}
+
+	partial void OnSelectedTileIndexChanged(int value) {
+		if (value >= 0 && value < TileGraphics.Count) {
+			SelectedTileData = TileGraphics[value];
 		}
 	}
 
@@ -159,15 +186,28 @@ public partial class ChrEditorViewModel : ViewModelBase {
 		if (_chrEditor is null) return;
 
 		Tiles.Clear();
+		TileGraphics.Clear();
 		int startTile = SelectedBank * ChrEditor.TilesPerBank;
 		int endTile = Math.Min(startTile + ChrEditor.TilesPerBank, TileCount);
 
 		for (int i = startTile; i < endTile; i++) {
 			var tile = _chrEditor.GetTile(i);
 			Tiles.Add(new TileInfo(i, $"Tile {i:X2}", GetTilePreviewString(tile)));
+			TileGraphics.Add(tile);
 		}
 
 		StatusText = $"Bank {SelectedBank}: Tiles {startTile:X3} - {endTile - 1:X3}";
+	}
+
+	[RelayCommand]
+	private void SelectTile(int index) {
+		if (index >= 0 && index < TileGraphics.Count) {
+			// Adjust for bank offset
+			int startTile = SelectedBank * ChrEditor.TilesPerBank;
+			SelectedTileIndex = startTile + index;
+			SelectedTileData = TileGraphics[index];
+			StatusText = $"Selected tile {SelectedTileIndex:X2}";
+		}
 	}
 
 	[RelayCommand]
