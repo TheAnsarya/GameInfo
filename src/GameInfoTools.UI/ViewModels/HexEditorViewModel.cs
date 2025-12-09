@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GameInfoTools.Core;
+using GameInfoTools.Core.Commands;
 
 namespace GameInfoTools.UI.ViewModels;
 
@@ -10,6 +11,7 @@ namespace GameInfoTools.UI.ViewModels;
 /// </summary>
 public partial class HexEditorViewModel : ViewModelBase {
 	private readonly RomFile? _rom;
+	private readonly UndoRedoManager _undoRedo = new(maxHistorySize: 100);
 
 	[ObservableProperty]
 	private bool _hasRomLoaded;
@@ -34,6 +36,15 @@ public partial class HexEditorViewModel : ViewModelBase {
 
 	[ObservableProperty]
 	private string _addressDisplay = "";
+
+	[ObservableProperty]
+	private string _undoDescription = "";
+
+	[ObservableProperty]
+	private string _redoDescription = "";
+
+	public bool CanUndo => _undoRedo.CanUndo;
+	public bool CanRedo => _undoRedo.CanRedo;
 
 	public ObservableCollection<HexRow> HexRows { get; } = [];
 
@@ -185,12 +196,55 @@ public partial class HexEditorViewModel : ViewModelBase {
 		StatusText = "Pattern not found";
 	}
 
-	public void WriteByte(int offset, byte value) {
+	public void WriteByte(int offset, byte newValue) {
 		if (_rom is null || offset < 0 || offset >= _rom.Length) return;
 
-		_rom.WriteByte(offset, value);
+		var command = new SetByteCommand(_rom.Data, offset, newValue);
+		_undoRedo.Execute(command);
+
 		RefreshView();
-		StatusText = $"Wrote 0x{value:X2} at offset 0x{offset:X6}";
+		UpdateUndoRedoState();
+		StatusText = $"Wrote 0x{newValue:x2} at offset 0x{offset:x6}";
+	}
+
+	public void WriteBytes(int offset, byte[] newValues) {
+		if (_rom is null || offset < 0 || offset + newValues.Length > _rom.Length) return;
+
+		var command = new SetBytesCommand(_rom.Data, offset, newValues);
+		_undoRedo.Execute(command);
+
+		RefreshView();
+		UpdateUndoRedoState();
+		StatusText = $"Wrote {newValues.Length} bytes at offset 0x{offset:x6}";
+	}
+
+	[RelayCommand]
+	private void Undo() {
+		if (!_undoRedo.CanUndo) return;
+
+		string description = _undoRedo.NextUndoDescription ?? "last change";
+		_undoRedo.Undo();
+		RefreshView();
+		UpdateUndoRedoState();
+		StatusText = "Undone: " + description;
+	}
+
+	[RelayCommand]
+	private void Redo() {
+		if (!_undoRedo.CanRedo) return;
+
+		string description = _undoRedo.NextRedoDescription ?? "previous change";
+		_undoRedo.Redo();
+		RefreshView();
+		UpdateUndoRedoState();
+		StatusText = "Redone: " + description;
+	}
+
+	private void UpdateUndoRedoState() {
+		UndoDescription = _undoRedo.NextUndoDescription ?? "";
+		RedoDescription = _undoRedo.NextRedoDescription ?? "";
+		OnPropertyChanged(nameof(CanUndo));
+		OnPropertyChanged(nameof(CanRedo));
 	}
 
 	[RelayCommand]

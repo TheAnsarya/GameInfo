@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GameInfoTools.Core;
+using GameInfoTools.Core.Commands;
 using GameInfoTools.UI.Services;
 
 namespace GameInfoTools.UI.ViewModels;
@@ -12,6 +13,7 @@ namespace GameInfoTools.UI.ViewModels;
 /// </summary>
 public partial class MapEditorViewModel : ViewModelBase {
 	private readonly RomFile? _rom;
+	private readonly UndoRedoManager _undoRedo = new(maxHistorySize: 100);
 
 	[ObservableProperty]
 	private bool _hasRomLoaded;
@@ -45,6 +47,15 @@ public partial class MapEditorViewModel : ViewModelBase {
 
 	[ObservableProperty]
 	private MapTile? _selectedMapTile;
+
+	[ObservableProperty]
+	private string _undoDescription = "";
+
+	[ObservableProperty]
+	private string _redoDescription = "";
+
+	public bool CanUndo => _undoRedo.CanUndo;
+	public bool CanRedo => _undoRedo.CanRedo;
 
 	public ObservableCollection<MapTile> MapTiles { get; } = [];
 
@@ -128,14 +139,18 @@ public partial class MapEditorViewModel : ViewModelBase {
 		}
 
 		var tile = SelectedMapTile;
-		_rom.Data[tile.Offset] = (byte)SelectedTile;
+		var command = new SetByteCommand(_rom.Data, tile.Offset, (byte)SelectedTile,
+			$"Set tile ({tile.X}, {tile.Y}) to 0x{SelectedTile:X2}");
+		_undoRedo.Execute(command);
 
 		// Update the map tile
 		var index = MapTiles.IndexOf(tile);
 		if (index >= 0) {
 			MapTiles[index] = new MapTile(tile.X, tile.Y, (byte)SelectedTile, tile.Offset);
+			SelectedMapTile = MapTiles[index];
 		}
 
+		UpdateUndoRedoState();
 		StatusText = $"Set tile at ({tile.X}, {tile.Y}) to 0x{SelectedTile:X2}";
 	}
 
@@ -146,13 +161,67 @@ public partial class MapEditorViewModel : ViewModelBase {
 			return;
 		}
 
+		// Create a composite command for fill operation
+		var commands = new List<IUndoableCommand>();
 		for (int i = 0; i < MapTiles.Count; i++) {
 			var tile = MapTiles[i];
-			_rom.Data[tile.Offset] = (byte)SelectedTile;
+			commands.Add(new SetByteCommand(_rom.Data, tile.Offset, (byte)SelectedTile));
+		}
+
+		var composite = new CompositeCommand($"Fill map with tile 0x{SelectedTile:X2}", commands);
+		_undoRedo.Execute(composite);
+
+		// Update all tiles in the collection
+		for (int i = 0; i < MapTiles.Count; i++) {
+			var tile = MapTiles[i];
 			MapTiles[i] = new MapTile(tile.X, tile.Y, (byte)SelectedTile, tile.Offset);
 		}
 
+		UpdateUndoRedoState();
 		StatusText = $"Filled map with tile 0x{SelectedTile:X2}";
+	}
+
+	[RelayCommand]
+	private void Undo() {
+		if (!_undoRedo.CanUndo) return;
+
+		string description = _undoRedo.NextUndoDescription ?? "last change";
+		_undoRedo.Undo();
+		ReloadMapTiles();
+		UpdateUndoRedoState();
+		StatusText = "Undone: " + description;
+	}
+
+	[RelayCommand]
+	private void Redo() {
+		if (!_undoRedo.CanRedo) return;
+
+		string description = _undoRedo.NextRedoDescription ?? "previous change";
+		_undoRedo.Redo();
+		ReloadMapTiles();
+		UpdateUndoRedoState();
+		StatusText = "Redone: " + description;
+	}
+
+	private void ReloadMapTiles() {
+		if (_rom is null || !_rom.IsLoaded) return;
+
+		// Reload tile values from ROM data
+		var data = _rom.AsSpan();
+		for (int i = 0; i < MapTiles.Count; i++) {
+			var tile = MapTiles[i];
+			if (tile.Offset < data.Length) {
+				byte tileIndex = data[tile.Offset];
+				MapTiles[i] = new MapTile(tile.X, tile.Y, tileIndex, tile.Offset);
+			}
+		}
+	}
+
+	private void UpdateUndoRedoState() {
+		UndoDescription = _undoRedo.NextUndoDescription ?? "";
+		RedoDescription = _undoRedo.NextRedoDescription ?? "";
+		OnPropertyChanged(nameof(CanUndo));
+		OnPropertyChanged(nameof(CanRedo));
 	}
 
 	[RelayCommand]
