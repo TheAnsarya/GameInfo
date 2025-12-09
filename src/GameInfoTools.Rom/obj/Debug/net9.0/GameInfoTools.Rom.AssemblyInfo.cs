@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("ROM tools - header editing, patching, expansion, checksums, mappers")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8a9d1d4cee6537fdf3cc7d0717a795da6c460b50")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+31f296e34f77247b4d2f8a24db3db07a32f98a96")]
 [assembly: System.Reflection.AssemblyProductAttribute("GameInfoTools.Rom")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GameInfoTools.Rom")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
