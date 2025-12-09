@@ -1,0 +1,370 @@
+{{rommap|game=Dragon Quest I & II (SNES)}}
+
+This is the ROM map for ''Dragon Quest I & II'' (SNES). This compilation contains enhanced remakes of the first two Dragon Quest games on a single cartridge.
+
+==ROM Header==
+The ROM uses the standard SNES header format.
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00ffc0 || 21 || Internal ROM name ("DRAGON QUEST I.II")
+|-
+| $00ffd5 || 1 || ROM makeup byte ($31 = HiROM, FastROM)
+|-
+| $00ffd6 || 1 || ROM type ($02 = ROM + SRAM)
+|-
+| $00ffd7 || 1 || ROM size ($0a = 1MB)
+|-
+| $00ffd8 || 1 || SRAM size ($03 = 8KB)
+|-
+| $00ffd9 || 1 || Region code ($00 = Japan)
+|-
+| $00ffda || 1 || Developer ID ($b2 = Enix)
+|-
+| $00ffdb || 1 || Version ($00)
+|-
+| $00ffdc || 2 || Checksum complement
+|-
+| $00ffde || 2 || Checksum
+|-
+| $00ffe0 || 32 || Native mode vectors
+|}
+
+==Bank Layout==
+Dragon Quest I & II uses HiROM mapping.
+
+{| class="wikitable"
+! Bank(s) !! Address Range !! Description
+|-
+| $c0-$c7 || $c00000-$c7ffff || Game engine, shared code
+|-
+| $c8-$cb || $c80000-$cbffff || Dragon Quest I specific code
+|-
+| $cc-$cf || $cc0000-$cfffff || Dragon Quest II specific code
+|-
+| $d0-$d7 || $d00000-$d7ffff || Map data
+|-
+| $d8-$db || $d80000-$dbffff || Text data (DQ1)
+|-
+| $dc-$df || $dc0000-$dfffff || Text data (DQ2)
+|-
+| $e0-$e7 || $e00000-$e7ffff || Graphics data (shared)
+|-
+| $e8-$eb || $e80000-$ebffff || Graphics data (DQ1)
+|-
+| $ec-$ef || $ec0000-$efffff || Graphics data (DQ2)
+|-
+| $f0-$f7 || $f00000-$f7ffff || Audio data
+|-
+| $f8-$ff || $f80000-$ffffff || Monster/character data
+|}
+
+==Shared Engine ($c0-$c7)==
+{| class="wikitable sortable"
+! Bank !! Offset !! Description
+|-
+| $c0 || $c00000-$c0ffff || Main game loop, menu system
+|-
+| $c1 || $c10000-$c1ffff || Battle engine
+|-
+| $c2 || $c20000-$c2ffff || Field engine, movement
+|-
+| $c3 || $c30000-$c3ffff || Shop/inn system
+|-
+| $c4 || $c40000-$c4ffff || Item management
+|-
+| $c5 || $c50000-$c5ffff || Spell system
+|-
+| $c6 || $c60000-$c6ffff || Event system
+|-
+| $c7 || $c70000-$c7ffff || Sound driver, DMA routines
+|}
+
+==Dragon Quest I Data ($c8-$cb)==
+
+===Character Data===
+{| class="wikitable sortable"
+! Offset !! Size !! Description
+|-
+| $c80000 || $1000 || Hero stat growth table
+|-
+| $c81000 || $400 || Experience table (30 levels)
+|-
+| $c81400 || $200 || Spell learning levels
+|-
+| $c81600 || $200 || Equipment restrictions
+|}
+
+===Monster Data===
+{| class="wikitable sortable"
+! Offset !! Size !! Description
+|-
+| $c90000 || $1400 || Monster stat table (40 monsters × 32 bytes)
+|-
+| $c91400 || $800 || Monster AI patterns
+|-
+| $c91c00 || $400 || Encounter groups
+|-
+| $c92000 || $200 || Boss data
+|}
+
+===Item Data===
+{| class="wikitable sortable"
+! Offset !! Size !! Description
+|-
+| $ca0000 || $400 || Weapon data
+|-
+| $ca0400 || $400 || Armor data
+|-
+| $ca0800 || $200 || Shield data
+|-
+| $ca0a00 || $200 || Accessory data
+|-
+| $ca0c00 || $200 || Consumable items
+|-
+| $ca0e00 || $100 || Key items
+|}
+
+===Spell Data===
+{| class="wikitable sortable"
+! Offset !! Size !! Description
+|-
+| $ca1000 || $200 || Spell effects
+|-
+| $ca1200 || $100 || MP costs
+|-
+| $ca1300 || $100 || Target types
+|}
+
+==Dragon Quest II Data ($cc-$cf)==
+
+===Character Data===
+{| class="wikitable sortable"
+! Offset !! Size !! Description
+|-
+| $cc0000 || $1000 || Hero stat growth
+|-
+| $cc1000 || $1000 || Prince of Cannock stats
+|-
+| $cc2000 || $1000 || Princess of Moonbrooke stats
+|-
+| $cc3000 || $600 || Experience table (50 levels × 3 chars)
+|-
+| $cc3600 || $400 || Spell learning levels
+|}
+
+===Monster Data===
+{| class="wikitable sortable"
+! Offset !! Size !! Description
+|-
+| $cd0000 || $2800 || Monster stat table (80 monsters × 32 bytes)
+|-
+| $cd2800 || $1000 || Monster AI patterns
+|-
+| $cd3800 || $800 || Encounter groups
+|-
+| $cd4000 || $400 || Boss data
+|}
+
+===Item Data===
+{| class="wikitable sortable"
+! Offset !! Size !! Description
+|-
+| $ce0000 || $600 || Weapon data
+|-
+| $ce0600 || $600 || Armor data
+|-
+| $ce0c00 || $300 || Shield data
+|-
+| $ce0f00 || $300 || Helmet data
+|-
+| $ce1200 || $200 || Accessory data
+|-
+| $ce1400 || $200 || Consumable items
+|}
+
+===Spell Data===
+{| class="wikitable sortable"
+! Offset !! Size !! Description
+|-
+| $ce2000 || $400 || Spell effects
+|-
+| $ce2400 || $200 || MP costs
+|-
+| $ce2600 || $200 || Target types
+|}
+
+==Map Data ($d0-$d7)==
+
+===Dragon Quest I Maps===
+{| class="wikitable sortable"
+! Offset !! Size !! Description
+|-
+| $d00000 || $8000 || Alefgard overworld (compressed)
+|-
+| $d08000 || $10000 || Town maps (compressed)
+|-
+| $d18000 || $10000 || Dungeon maps (compressed)
+|-
+| $d28000 || $2000 || Map headers/metadata
+|-
+| $d2a000 || $1000 || Warp points
+|-
+| $d2b000 || $800 || Door data
+|-
+| $d2b800 || $800 || Treasure chest data
+|}
+
+===Dragon Quest II Maps===
+{| class="wikitable sortable"
+! Offset !! Size !! Description
+|-
+| $d40000 || $10000 || Overworld maps (compressed)
+|-
+| $d50000 || $18000 || Town maps (compressed)
+|-
+| $d68000 || $18000 || Dungeon maps (compressed)
+|-
+| $d80000 || $2000 || Map headers/metadata
+|-
+| $d82000 || $1000 || Warp points
+|-
+| $d83000 || $1000 || Door data
+|-
+| $d84000 || $1000 || Treasure chest data
+|}
+
+==Text Data ($d8-$df)==
+
+===Dragon Quest I Text===
+{| class="wikitable sortable"
+! Offset !! Size !! Description
+|-
+| $d80000 || $10000 || Dialogue text (compressed)
+|-
+| $d90000 || $4000 || Item/spell/monster names
+|-
+| $d94000 || $2000 || Location names
+|-
+| $d96000 || $2000 || Menu text
+|}
+
+===Dragon Quest II Text===
+{| class="wikitable sortable"
+! Offset !! Size !! Description
+|-
+| $dc0000 || $18000 || Dialogue text (compressed)
+|-
+| $dd8000 || $4000 || Item/spell/monster names
+|-
+| $ddc000 || $2000 || Location names
+|-
+| $dde000 || $2000 || Menu text
+|}
+
+==Graphics Data ($e0-$ef)==
+
+===Shared Graphics===
+{| class="wikitable sortable"
+! Offset !! Size !! Description
+|-
+| $e00000 || $10000 || Common UI graphics
+|-
+| $e10000 || $10000 || Font graphics
+|-
+| $e20000 || $10000 || Menu/window graphics
+|}
+
+===DQ1 Graphics===
+{| class="wikitable sortable"
+! Offset !! Size !! Description
+|-
+| $e80000 || $10000 || Character sprites
+|-
+| $e90000 || $10000 || Monster sprites
+|-
+| $ea0000 || $10000 || Field tiles
+|-
+| $eb0000 || $10000 || Battle backgrounds
+|}
+
+===DQ2 Graphics===
+{| class="wikitable sortable"
+! Offset !! Size !! Description
+|-
+| $ec0000 || $10000 || Character sprites
+|-
+| $ed0000 || $18000 || Monster sprites
+|-
+| $ee8000 || $10000 || Field tiles
+|-
+| $ef8000 || $8000 || Battle backgrounds
+|}
+
+==Audio Data ($f0-$f7)==
+{| class="wikitable sortable"
+! Offset !! Size !! Description
+|-
+| $f00000 || $20000 || DQ1 music sequences
+|-
+| $f20000 || $20000 || DQ2 music sequences
+|-
+| $f40000 || $10000 || Shared sound effects
+|-
+| $f50000 || $10000 || SPC700 driver and samples
+|}
+
+==Monster Stat Structure==
+Both games use 32 bytes per monster:
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| +$00 || 2 || HP
+|-
+| +$02 || 1 || MP
+|-
+| +$03 || 1 || Strength
+|-
+| +$04 || 1 || Agility
+|-
+| +$05 || 1 || Defense
+|-
+| +$06 || 1 || Intelligence
+|-
+| +$07 || 1 || Luck
+|-
+| +$08 || 2 || Experience
+|-
+| +$0a || 2 || Gold
+|-
+| +$0c || 1 || Attack pattern 1
+|-
+| +$0d || 1 || Attack pattern 2
+|-
+| +$0e || 2 || Spell/ability flags
+|-
+| +$10 || 2 || Resistance flags
+|-
+| +$12 || 1 || Dodge rate
+|-
+| +$13 || 1 || Run chance
+|-
+| +$14 || 2 || Drop item
+|-
+| +$16 || 1 || Drop rate
+|-
+| +$17 || 1 || AI behavior
+|-
+| +$18 || 2 || Sprite pointer
+|-
+| +$1a || 2 || Palette index
+|-
+| +$1c || 4 || Reserved
+|}
+
+==See Also==
+* [[Dragon Quest I & II (SNES):RAM map|RAM Map]]
+* [[Dragon Quest I & II (SNES):TBL|Text Table]]
+
+[[Category:Dragon Quest I & II (SNES)|ROM map]]

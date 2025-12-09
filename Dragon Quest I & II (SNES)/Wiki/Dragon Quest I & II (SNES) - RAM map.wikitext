@@ -1,0 +1,484 @@
+{{rammap|game=Dragon Quest I & II (SNES)}}
+
+This is the RAM map for ''Dragon Quest I & II'' (SNES). The SNES has 128KB of Work RAM (WRAM) at $7e0000-$7fffff.
+
+==Direct Page ($0000-$00ff)==
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0000 || 2 || Temporary variable A
+|-
+| $0002 || 2 || Temporary variable B
+|-
+| $0004 || 3 || Long pointer (24-bit)
+|-
+| $0007 || 1 || Current bank
+|-
+| $0008 || 2 || Frame counter
+|-
+| $000a || 2 || Random seed
+|-
+| $000c || 2 || Controller 1 state (current)
+|-
+| $000e || 2 || Controller 1 state (previous)
+|-
+| $0010 || 2 || Controller 1 state (new press)
+|-
+| $0012 || 2 || Controller 2 state
+|-
+| $0014 || 1 || Game mode
+|-
+| $0015 || 1 || Sub-mode
+|-
+| $0016 || 1 || Active game (0 = DQ1, 1 = DQ2)
+|-
+| $0017 || 1 || Screen brightness
+|-
+| $0018 || 2 || PPU control mirror ($2100)
+|-
+| $001a || 2 || BG mode mirror ($2105)
+|-
+| $001c || 2 || BG scroll X
+|-
+| $001e || 2 || BG scroll Y
+|-
+| $0020 || 1 || NMI flag
+|-
+| $0021 || 1 || HDMA enable
+|-
+| $0022-$002f || 14 || DMA parameters
+|-
+| $0030-$003f || 16 || Math registers (multiplication/division)
+|-
+| $0040-$004f || 16 || Battle calculation temp
+|-
+| $0050-$005f || 16 || Map calculation temp
+|-
+| $0060-$006f || 16 || Menu temp
+|-
+| $0070-$007f || 16 || Text engine temp
+|-
+| $0080-$00ff || 128 || Stack area
+|}
+
+==Low WRAM ($0100-$1fff)==
+
+===System Variables ($0100-$01ff)===
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0100 || 2 || Game state flags
+|-
+| $0102 || 1 || Current location ID
+|-
+| $0103 || 1 || Previous location ID
+|-
+| $0104 || 2 || Player X (16-bit)
+|-
+| $0106 || 2 || Player Y (16-bit)
+|-
+| $0108 || 1 || Player facing
+|-
+| $0109 || 1 || Movement state
+|-
+| $010a || 2 || Step counter
+|-
+| $010c || 1 || Encounter timer
+|-
+| $010d || 1 || Encounter zone
+|-
+| $010e || 1 || Day/night flag
+|-
+| $010f || 1 || Weather flag
+|-
+| $0110 || 2 || In-game time (frames)
+|-
+| $0112 || 2 || In-game time (seconds)
+|-
+| $0114 || 2 || In-game time (minutes)
+|-
+| $0116 || 1 || Current floor (dungeons)
+|-
+| $0117 || 1 || Light radius (torches)
+|-
+| $0118-$011f || 8 || Reserved
+|}
+
+===Dragon Quest I Party ($0120-$01ff)===
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0120 || 8 || Hero name (8 chars max)
+|-
+| $0128 || 2 || Hero current HP
+|-
+| $012a || 2 || Hero max HP
+|-
+| $012c || 2 || Hero current MP
+|-
+| $012e || 2 || Hero max MP
+|-
+| $0130 || 2 || Hero strength
+|-
+| $0132 || 2 || Hero agility
+|-
+| $0134 || 2 || Hero vitality
+|-
+| $0136 || 2 || Hero intelligence
+|-
+| $0138 || 2 || Hero luck
+|-
+| $013a || 2 || Hero attack power
+|-
+| $013c || 2 || Hero defense power
+|-
+| $013e || 1 || Hero level
+|-
+| $013f || 1 || Hero status
+|-
+| $0140 || 4 || Hero experience
+|-
+| $0144 || 1 || Equipped weapon
+|-
+| $0145 || 1 || Equipped armor
+|-
+| $0146 || 1 || Equipped shield
+|-
+| $0147 || 1 || Equipped accessory
+|-
+| $0148-$014f || 8 || Inventory slots 1-8
+|-
+| $0150 || 4 || Gold
+|-
+| $0154 || 2 || Spells learned (bitfield)
+|-
+| $0156-$015f || 10 || Story flags (DQ1)
+|-
+| $0160-$01ff || 160 || Reserved (DQ1 data)
+|}
+
+===Dragon Quest II Party ($0200-$03ff)===
+
+====Hero (Prince of Midenhall) $0200-$024f====
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0200 || 8 || Hero name
+|-
+| $0208 || 2 || Current HP
+|-
+| $020a || 2 || Max HP
+|-
+| $020c || 2 || Current MP
+|-
+| $020e || 2 || Max MP
+|-
+| $0210 || 2 || Strength
+|-
+| $0212 || 2 || Agility
+|-
+| $0214 || 2 || Vitality
+|-
+| $0216 || 2 || Intelligence
+|-
+| $0218 || 2 || Luck
+|-
+| $021a || 2 || Attack power
+|-
+| $021c || 2 || Defense power
+|-
+| $021e || 1 || Level
+|-
+| $021f || 1 || Status
+|-
+| $0220 || 4 || Experience
+|-
+| $0224 || 1 || Equipped weapon
+|-
+| $0225 || 1 || Equipped armor
+|-
+| $0226 || 1 || Equipped shield
+|-
+| $0227 || 1 || Equipped helmet
+|-
+| $0228-$022f || 8 || Inventory
+|-
+| $0230 || 4 || Spells learned
+|-
+| $0234-$024f || 28 || Reserved
+|}
+
+====Prince of Cannock $0250-$029f====
+Same structure as Hero, starting at $0250.
+
+====Princess of Moonbrooke $02a0-$02ef====
+Same structure as Hero, starting at $02a0.
+
+====DQ2 Shared Data ($02f0-$03ff)====
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $02f0 || 1 || Party size (1-3)
+|-
+| $02f1 || 1 || Party order byte
+|-
+| $02f2 || 4 || Gold
+|-
+| $02f6-$02ff || 10 || Key items (bitfield)
+|-
+| $0300-$033f || 64 || Story flags (DQ2)
+|-
+| $0340-$03ff || 192 || Reserved (DQ2 data)
+|}
+
+==Battle Data ($0400-$05ff)==
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0400 || 1 || Battle active flag
+|-
+| $0401 || 1 || Battle type (normal/boss)
+|-
+| $0402 || 1 || Enemy group ID
+|-
+| $0403 || 1 || Number of enemies
+|-
+| $0404 || 2 || Turn counter
+|-
+| $0406 || 1 || Run attempts
+|-
+| $0407 || 1 || Surprise attack flag
+|-
+| $0408-$040f || 8 || Battle state flags
+|-
+| $0410-$041f || 16 || Actor turn order
+|-
+| $0420-$044f || 48 || Enemy 1 battle data
+|-
+| $0450-$047f || 48 || Enemy 2 battle data
+|-
+| $0480-$04af || 48 || Enemy 3 battle data
+|-
+| $04b0-$04df || 48 || Enemy 4 battle data (DQ2)
+|-
+| $04e0-$050f || 48 || Enemy 5 battle data (DQ2)
+|-
+| $0510-$053f || 48 || Enemy 6 battle data (DQ2)
+|-
+| $0540-$057f || 64 || Damage calculation buffer
+|-
+| $0580-$05ff || 128 || Battle animation state
+|}
+
+'''Enemy Battle Data Structure''' (48 bytes):
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| +$00 || 1 || Monster ID
+|-
+| +$01 || 1 || Active flag
+|-
+| +$02 || 2 || Current HP
+|-
+| +$04 || 2 || Max HP
+|-
+| +$06 || 1 || Status flags
+|-
+| +$07 || 1 || AI state
+|-
+| +$08 || 2 || Sprite X position
+|-
+| +$0a || 2 || Sprite Y position
+|-
+| +$0c-$2f || 36 || Animation/behavior data
+|}
+
+==Menu System ($0600-$06ff)==
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0600 || 1 || Menu open flag
+|-
+| $0601 || 1 || Menu type ID
+|-
+| $0602 || 1 || Menu depth (sub-menu level)
+|-
+| $0603 || 1 || Cursor position
+|-
+| $0604 || 1 || Scroll offset
+|-
+| $0605 || 1 || Max options
+|-
+| $0606 || 2 || Menu callback pointer
+|-
+| $0608-$060f || 8 || Menu stack (previous states)
+|-
+| $0610-$061f || 16 || Selection history
+|-
+| $0620-$067f || 96 || Menu option buffer
+|-
+| $0680-$06ff || 128 || Shop/price buffer
+|}
+
+==Text Engine ($0700-$07ff)==
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0700 || 2 || Text pointer (current)
+|-
+| $0702 || 1 || Text bank
+|-
+| $0703 || 1 || Text window ID
+|-
+| $0704 || 1 || Text X position
+|-
+| $0705 || 1 || Text Y position
+|-
+| $0706 || 1 || Text speed
+|-
+| $0707 || 1 || Text color
+|-
+| $0708 || 1 || Auto-advance flag
+|-
+| $0709 || 1 || Control code state
+|-
+| $070a-$070f || 6 || Name insertion buffer
+|-
+| $0710-$077f || 112 || Line buffer (current)
+|-
+| $0780-$07ff || 128 || Decompression buffer
+|}
+
+==Map Engine ($0800-$0fff)==
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0800 || 2 || Map data pointer
+|-
+| $0802 || 1 || Map bank
+|-
+| $0803 || 1 || Map width
+|-
+| $0804 || 1 || Map height
+|-
+| $0805 || 1 || Tile size
+|-
+| $0806-$080f || 10 || Map scroll state
+|-
+| $0810-$081f || 16 || NPC data (current map)
+|-
+| $0820-$08ff || 224 || NPC state array
+|-
+| $0900-$09ff || 256 || Tile cache (visible area)
+|-
+| $0a00-$0aff || 256 || Collision map
+|-
+| $0b00-$0bff || 256 || Event trigger map
+|-
+| $0c00-$0fff || 1024 || Map decompression buffer
+|}
+
+==Sound Engine ($1000-$10ff)==
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $1000 || 1 || Music track ID
+|-
+| $1001 || 1 || Music state
+|-
+| $1002 || 1 || Sound effect queue head
+|-
+| $1003 || 1 || Sound effect queue tail
+|-
+| $1004-$100f || 12 || Sound effect queue (4 slots)
+|-
+| $1010-$101f || 16 || Channel 1 state
+|-
+| $1020-$102f || 16 || Channel 2 state
+|-
+| $1030-$103f || 16 || Channel 3 state
+|-
+| $1040-$104f || 16 || Channel 4 state
+|-
+| $1050-$105f || 16 || Channel 5 state
+|-
+| $1060-$106f || 16 || Channel 6 state
+|-
+| $1070-$107f || 16 || Channel 7 state
+|-
+| $1080-$108f || 16 || Channel 8 state
+|-
+| $1090-$10ff || 112 || Sequence data buffer
+|}
+
+==OAM Buffer ($1100-$12ff)==
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $1100-$11ff || 256 || Low OAM table (64 sprites × 4 bytes)
+|-
+| $1200-$121f || 32 || High OAM table
+|-
+| $1220-$12ff || 224 || OAM work buffer
+|}
+
+==VRAM Buffer ($1300-$1fff)==
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $1300-$17ff || 1280 || VRAM update queue
+|-
+| $1800-$1bff || 1024 || Tilemap buffer (32×32)
+|-
+| $1c00-$1fff || 1024 || Palette buffer
+|}
+
+==High WRAM ($7e2000-$7fffff)==
+
+===Save Data Mirror ($7e2000-$7e3fff)===
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $7e2000-$7e27ff || 2KB || DQ1 save data mirror
+|-
+| $7e2800-$7e3fff || 6KB || DQ2 save data mirror
+|}
+
+===Work Buffers ($7e4000-$7e7fff)===
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $7e4000-$7e5fff || 8KB || Map work area
+|-
+| $7e6000-$7e7fff || 8KB || Graphics work area
+|}
+
+===Extended Data ($7e8000-$7effff)===
+Reserved for expanded game data during runtime.
+
+==Status Flags==
+{| class="wikitable"
+! Bit !! Description
+|-
+| 0 || Poisoned
+|-
+| 1 || Asleep
+|-
+| 2 || Cursed
+|-
+| 3 || Paralyzed
+|-
+| 4 || Dead
+|-
+| 5 || Silenced (DQ2)
+|-
+| 6 || Confused (DQ2)
+|-
+| 7 || Reserved
+|}
+
+==See Also==
+* [[Dragon Quest I & II (SNES):ROM map|ROM Map]]
+* [[Dragon Quest I & II (SNES):TBL|Text Table]]
+
+[[Category:Dragon Quest I & II (SNES)|RAM map]]
