@@ -1,0 +1,23 @@
+
+//** This is a manually user edited file, never alter it from AI **//
+
+git commit all files in logical groups and update git issues (or make git issues and then update them)
+
+#directives: make a directives file and use it: For the GameInfo project; Our home folder is `C:\Users\me\source\repos\GameInfo`; turn on github issues for the project (and make a github project that is always associated with all github issue tracking work and kanban board), during this planning process, and when planning or making new un-planned work, always create todo-lists and create github issues and epics; and update them as you complete work; always create session logs in `~docs\session-logs` and ai chat logs at `~docs\chat-logs\` as markdown (`.md`) log files; At the end of every prompt-response please include a "what's next" section or what's left to do or an example prompt for what we should do next; research and create all the details for each epic issue; update the epics with sub-issues for every detail and sub-effort; `~docs` is for documentation about *making* the project while `docs` is for information about the project itself; make a bunch of github issues and todo-lists for what we're doing with this project; then make a SCRUM board for the issues and make issues and todo-lists and epics for everything we're planning to do to to make this project complete; Remember, file addresses and ROM/code addresses are not always the same; make a ton of documentation about the project; make sure all documentation is reachable from `README.md` in the link-tree and organize all documentation of the project and game in the `docs` folder organized into subfolders by subject or system; please go back and reformat, but all hexadecimal values in code should be lowercase, `$9d` not `$9D` or not `0xCA6E` but rather `0xca6e`; tabs not spaces!; git commit as we go; make sure all issues are tied to a parent issue up to the epics; use labels that have actual meanings, don't use abbreviations in labels for the code; extract all the assets that you can and use `.include`s for all graphics, and stats, and text and dialog and data structures, and effects, and for the build pipeline with transformations to json/png/etc; git commit and push in logical groups, always git commit at the right time; everything should use the `.editorconfig` file, especially the fact that we use TABS not spaces, always tabs, fix all our files, python, py, json, etc., always use tabs!; continue; implement the changes to make it awesome for as long as you can and use up all the tokens for each session, do not waste my money - use the entire token space; ****Main purpose:**** create Data Crystal `*.wikitext` files (ROM map, RAM map, data structures, systems descriptions, ) for a bunch of SNES, NES, and other games, and `*.md` documentation for these games, and disassemblies when we can -- usually as external github repos (`ffmq-info`, `dw4-info`, `dragon-warrior-info`) [with documentation, disassembly, and editors], and a complete rom file verification and separation (header, actual rom) utility; create and update github issues and todo-lists for all work; edit this whole prompt into a directives file and associate it with this AI chat in VSCode and clean it up to be in the correct format; go!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
