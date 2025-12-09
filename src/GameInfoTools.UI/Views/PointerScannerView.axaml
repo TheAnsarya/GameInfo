@@ -1,0 +1,105 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="using:GameInfoTools.UI.ViewModels"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+			 x:Class="GameInfoTools.UI.Views.PointerScannerView"
+			 x:DataType="vm:PointerScannerViewModel">
+
+	<Design.DataContext>
+		<vm:PointerScannerViewModel/>
+	</Design.DataContext>
+
+	<Grid RowDefinitions="Auto,*,Auto">
+		<!-- Toolbar -->
+		<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="16,16,16,8">
+			<Button Content="Scan" Command="{Binding ScanCommand}" ToolTip.Tip="Scan for pointer tables"/>
+			<Button Content="Scan Range..." Command="{Binding ScanRangeCommand}" ToolTip.Tip="Scan specific range"/>
+			<Separator/>
+			<Button Content="Export..." Command="{Binding ExportCommand}" ToolTip.Tip="Export pointer table"/>
+			<Separator/>
+			<TextBlock Text="Format:" VerticalAlignment="Center"/>
+			<ComboBox ItemsSource="{Binding PointerFormats}" SelectedItem="{Binding SelectedFormat}" Width="120"/>
+		</StackPanel>
+
+		<!-- Main Content -->
+		<Grid Grid.Row="1" ColumnDefinitions="*,300" Margin="16,8">
+			<!-- Pointer Tables List -->
+			<Border Grid.Column="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+					CornerRadius="4" Padding="8" Margin="0,0,8,0">
+				<DockPanel>
+					<TextBlock DockPanel.Dock="Top" Text="Detected Pointer Tables" FontWeight="SemiBold" Margin="0,0,0,8"/>
+					<DataGrid ItemsSource="{Binding PointerTables}" SelectedItem="{Binding SelectedTable}"
+							  AutoGenerateColumns="False" IsReadOnly="True"
+							  GridLinesVisibility="Horizontal">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="Offset" Binding="{Binding Offset}" Width="80"/>
+							<DataGridTextColumn Header="Count" Binding="{Binding Count}" Width="60"/>
+							<DataGridTextColumn Header="Format" Binding="{Binding Format}" Width="80"/>
+							<DataGridTextColumn Header="Confidence" Binding="{Binding Confidence, StringFormat=P0}" Width="80"/>
+							<DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*"/>
+						</DataGrid.Columns>
+					</DataGrid>
+				</DockPanel>
+			</Border>
+
+			<!-- Right Panel - Details -->
+			<Border Grid.Column="1" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+					CornerRadius="4" Padding="16">
+				<ScrollViewer>
+					<StackPanel Spacing="16">
+						<TextBlock Text="Scan Settings" FontWeight="SemiBold" FontSize="16"/>
+
+						<StackPanel Spacing="4">
+							<TextBlock Text="Min Table Size:"/>
+							<NumericUpDown Value="{Binding MinTableSize}" Minimum="2" Maximum="1000"/>
+						</StackPanel>
+
+						<StackPanel Spacing="4">
+							<TextBlock Text="Min Confidence:"/>
+							<Slider Value="{Binding MinConfidence}" Minimum="0" Maximum="1"/>
+							<TextBlock Text="{Binding MinConfidence, StringFormat=P0}" Opacity="0.7"/>
+						</StackPanel>
+
+						<Separator/>
+
+						<TextBlock Text="Selected Table" FontWeight="SemiBold"/>
+
+						<StackPanel Spacing="4" IsVisible="{Binding SelectedTable, Converter={x:Static ObjectConverters.IsNotNull}}">
+							<TextBlock Text="{Binding SelectedTable.Offset, StringFormat=Offset: 0x{0:X6}}"/>
+							<TextBlock Text="{Binding SelectedTable.Count, StringFormat=Entries: {0}}"/>
+							<TextBlock Text="{Binding SelectedTable.Format, StringFormat=Format: {0}}"/>
+						</StackPanel>
+
+						<TextBlock Text="No table selected" IsVisible="{Binding SelectedTable, Converter={x:Static ObjectConverters.IsNull}}"
+								   Opacity="0.7"/>
+
+						<Separator/>
+
+						<TextBlock Text="Pointers" FontWeight="SemiBold"/>
+						<ListBox ItemsSource="{Binding SelectedPointers}" MaxHeight="200" FontFamily="Consolas" FontSize="11">
+							<ListBox.ItemTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding}"/>
+								</DataTemplate>
+							</ListBox.ItemTemplate>
+						</ListBox>
+
+						<Separator/>
+
+						<TextBlock Text="{Binding StatusText}" Opacity="0.7" TextWrapping="Wrap"/>
+					</StackPanel>
+				</ScrollViewer>
+			</Border>
+		</Grid>
+
+		<!-- Status Bar -->
+		<Border Grid.Row="2" Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}" Padding="16,8">
+			<Grid ColumnDefinitions="*,Auto">
+				<TextBlock Grid.Column="0" Text="{Binding StatusText}"/>
+				<TextBlock Grid.Column="1" Text="{Binding TableCount, StringFormat={}{0} tables found}"/>
+			</Grid>
+		</Border>
+	</Grid>
+</UserControl>

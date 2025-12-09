@@ -38,9 +38,29 @@ public partial class PointerScannerViewModel : ViewModelBase {
 	[ObservableProperty]
 	private string _statusText = "";
 
+	[ObservableProperty]
+	private PointerTableInfo? _selectedTable;
+
+	[ObservableProperty]
+	private int _minTableSize = 4;
+
+	[ObservableProperty]
+	private double _minConfidence = 0.7;
+
+	public ObservableCollection<PointerTableInfo> PointerTables { get; } = [];
+
+	public ObservableCollection<string> SelectedPointers { get; } = [];
+
 	public ObservableCollection<PointerTableResult> FoundTables { get; } = [];
 
 	public ObservableCollection<PointerEntry> SelectedTablePointers { get; } = [];
+
+	public string[] PointerFormats { get; } = ["16-bit LE", "16-bit BE", "24-bit LE", "24-bit BE"];
+
+	[ObservableProperty]
+	private string _selectedFormat = "16-bit LE";
+
+	public int TableCount => PointerTables.Count;
 
 	public PointerScannerViewModel(RomFile? rom) {
 		_rom = rom;
@@ -226,7 +246,34 @@ public partial class PointerScannerViewModel : ViewModelBase {
 	private void ClearResults() {
 		FoundTables.Clear();
 		SelectedTablePointers.Clear();
+		PointerTables.Clear();
+		SelectedPointers.Clear();
 		StatusText = "Results cleared";
+	}
+
+	[RelayCommand]
+	private void Scan() => ScanForPointerTables();
+
+	[RelayCommand]
+	private void ScanRange() {
+		// TODO: Show dialog for range selection
+		ScanForPointerTables();
+	}
+
+	[RelayCommand]
+	private void Export() => ExportResults();
+
+	partial void OnSelectedTableChanged(PointerTableInfo? value) {
+		SelectedPointers.Clear();
+		if (value is null || _rom is null) return;
+
+		var data = _rom.Data;
+		int offset = int.Parse(value.Offset.Replace("0x", ""), System.Globalization.NumberStyles.HexNumber);
+
+		for (int i = 0; i < value.Count && i < 50; i++) {
+			int ptr = ReadPointer(data, offset + (i * PointerSize));
+			SelectedPointers.Add($"[{i:D3}] 0x{ptr:X4}");
+		}
 	}
 }
 
@@ -239,3 +286,8 @@ public record PointerTableResult(string Offset, int EntryCount, int Size, string
 /// Represents a single pointer entry.
 /// </summary>
 public record PointerEntry(int Index, string TableOffset, string TargetAddress, string DataPreview);
+
+/// <summary>
+/// Pointer table info for UI display.
+/// </summary>
+public record PointerTableInfo(string Offset, int Count, string Format, double Confidence, string Description);

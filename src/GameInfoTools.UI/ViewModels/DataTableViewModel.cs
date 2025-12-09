@@ -216,4 +216,6 @@ public partial class FieldDefinition : ObservableObject {
 /// <summary>
 /// Represents a data record from a table.
 /// </summary>
-public record DataRecord(int Index, Dictionary<string, string> Values);
+public record DataRecord(int Index, Dictionary<string, string> Values) {
+	public string DisplayText => string.Join(", ", Values.Select(kv => $"{kv.Key}: {kv.Value}"));
+}

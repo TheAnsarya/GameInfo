@@ -31,6 +31,7 @@ make sure all the dotnet code we made is using the latest versions of dotnet (10
 
 please note the time at the beginning of every query and response so I know when stuff happens, I don't want to be rate limited despite paying money, so I need to know the time; continue, but avoid being rate-limited (are we really doing that much?)
 
+Update other library projects to .NET 10 (currently .NET 9); Create AXAML View files for each ViewModel (if needed for visual UI); Run dotnet format on new files; Add more tests for the UI ViewModels; Consider adding more tools or improving existing functionality; continue
 
 
 

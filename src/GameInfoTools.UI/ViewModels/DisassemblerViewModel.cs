@@ -138,6 +138,7 @@ public partial class DisassemblerViewModel : ViewModelBase {
 		if (_rom is not null && StartOffset >= _rom.Length) {
 			StartOffset = _rom.Length - Length;
 		}
+
 		Disassemble();
 	}
 
@@ -147,6 +148,7 @@ public partial class DisassemblerViewModel : ViewModelBase {
 		if (StartOffset < 0) {
 			StartOffset = 0;
 		}
+
 		Disassemble();
 	}
 

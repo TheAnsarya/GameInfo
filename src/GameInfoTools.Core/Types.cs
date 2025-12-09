@@ -18,6 +18,17 @@ public enum SystemType {
 }
 
 /// <summary>
+/// NES mirroring modes.
+/// </summary>
+public enum MirroringMode {
+	Horizontal,
+	Vertical,
+	FourScreen,
+	SingleScreen,
+	Unknown
+}
+
+/// <summary>
 /// ROM header information.
 /// </summary>
 public record RomHeader {
@@ -27,6 +38,7 @@ public record RomHeader {
 	public int PrgRomSize { get; init; }
 	public int ChrRomSize { get; init; }
 	public int Mapper { get; init; }
+	public MirroringMode Mirroring { get; init; }
 	public bool HasBattery { get; init; }
 	public bool HasTrainer { get; init; }
 	public byte[] RawHeader { get; init; } = [];

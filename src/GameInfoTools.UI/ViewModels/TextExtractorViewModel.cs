@@ -222,6 +222,18 @@ public partial class TextExtractorViewModel : ViewModelBase {
 		ExtractedStrings.Clear();
 		StatusText = "Results cleared";
 	}
+
+	[RelayCommand]
+	private void LoadTable() {
+		// TODO: Implement file dialog for loading TBL files
+		StatusText = "Load TBL file feature not yet implemented";
+	}
+
+	[RelayCommand]
+	private void Export() {
+		// TODO: Implement export to file
+		StatusText = $"Export feature not yet implemented (would export {ExtractedStrings.Count} strings)";
+	}
 }
 
 /// <summary>

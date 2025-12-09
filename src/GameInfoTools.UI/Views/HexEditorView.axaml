@@ -1,0 +1,71 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="using:GameInfoTools.UI.ViewModels"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+			 x:Class="GameInfoTools.UI.Views.HexEditorView"
+			 x:DataType="vm:HexEditorViewModel">
+
+	<Design.DataContext>
+		<vm:HexEditorViewModel/>
+	</Design.DataContext>
+
+	<Grid RowDefinitions="Auto,*,Auto">
+		<!-- Toolbar -->
+		<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="16,16,16,8">
+			<Button Content="⏮" Command="{Binding GoToStartCommand}" ToolTip.Tip="Go to Start"/>
+			<Button Content="◀" Command="{Binding PreviousPageCommand}" ToolTip.Tip="Previous Page"/>
+			<Button Content="▶" Command="{Binding NextPageCommand}" ToolTip.Tip="Next Page"/>
+			<Button Content="⏭" Command="{Binding GoToEndCommand}" ToolTip.Tip="Go to End"/>
+			<Separator/>
+			<TextBlock Text="Offset:" VerticalAlignment="Center"/>
+			<TextBox Text="{Binding AddressDisplay}" Width="150" IsReadOnly="True" FontFamily="Consolas"/>
+			<Separator/>
+			<TextBlock Text="Search:" VerticalAlignment="Center"/>
+			<TextBox Text="{Binding SearchHex}" Width="150" Watermark="Hex (e.g., A9 00 8D)" FontFamily="Consolas"/>
+			<Button Content="Find" Command="{Binding SearchHexPatternCommand}"/>
+			<Separator/>
+			<Button Content="Copy" Command="{Binding CopySelectionCommand}" ToolTip.Tip="Copy Selection"/>
+			<Button Content="Paste" Command="{Binding PasteAtCursorCommand}" ToolTip.Tip="Paste"/>
+		</StackPanel>
+
+		<!-- Hex View -->
+		<Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+				CornerRadius="4" Margin="16,8" Padding="8">
+			<DockPanel>
+				<!-- Header -->
+				<Grid DockPanel.Dock="Top" ColumnDefinitions="70,*,150" Margin="0,0,0,8">
+					<TextBlock Grid.Column="0" Text="Address" FontWeight="SemiBold" FontFamily="Consolas"/>
+					<TextBlock Grid.Column="1" Text="00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F"
+							   FontFamily="Consolas" Opacity="0.7"/>
+					<TextBlock Grid.Column="2" Text="ASCII" FontWeight="SemiBold" FontFamily="Consolas"/>
+				</Grid>
+
+				<!-- Hex Data -->
+				<ListBox ItemsSource="{Binding HexRows}" FontFamily="Consolas" FontSize="12"
+						 Background="Transparent">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Grid ColumnDefinitions="70,*,150">
+								<TextBlock Grid.Column="0" Text="{Binding Address}" Foreground="DodgerBlue"/>
+								<TextBlock Grid.Column="1" Text="{Binding HexData}"/>
+								<TextBlock Grid.Column="2" Text="{Binding AsciiData}" Opacity="0.7"/>
+							</Grid>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</DockPanel>
+		</Border>
+
+		<!-- Status Bar -->
+		<Border Grid.Row="2" Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}" Padding="16,8">
+			<Grid ColumnDefinitions="*,Auto,Auto">
+				<TextBlock Grid.Column="0" Text="{Binding StatusText}"/>
+				<TextBlock Grid.Column="1" Text="{Binding AddressDisplay}" Margin="16,0" FontFamily="Consolas"/>
+				<TextBlock Grid.Column="2" Text="{Binding SelectedOffset, StringFormat=Selected: 0x{0:X6}}" FontFamily="Consolas"
+						   IsVisible="{Binding SelectedOffset, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+			</Grid>
+		</Border>
+	</Grid>
+</UserControl>

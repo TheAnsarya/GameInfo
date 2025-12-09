@@ -2,10 +2,10 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<LangVersion>latest</LangVersion>
+		<LangVersion>14</LangVersion>
 		<RootNamespace>GameInfoTools.Cli</RootNamespace>
 		<AssemblyName>git</AssemblyName>
 		<Version>1.0.0</Version>

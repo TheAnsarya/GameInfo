@@ -1,0 +1,96 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="using:GameInfoTools.UI.ViewModels"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+			 x:Class="GameInfoTools.UI.Views.DisassemblerView"
+			 x:DataType="vm:DisassemblerViewModel">
+
+	<Design.DataContext>
+		<vm:DisassemblerViewModel/>
+	</Design.DataContext>
+
+	<Grid RowDefinitions="Auto,*,Auto">
+		<!-- Toolbar -->
+		<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="16,16,16,8">
+			<TextBlock Text="CPU:" VerticalAlignment="Center"/>
+			<ComboBox ItemsSource="{Binding AvailableCpuModes}" SelectedItem="{Binding CpuMode}" Width="120"/>
+			<Separator/>
+			<TextBlock Text="Offset:" VerticalAlignment="Center"/>
+			<NumericUpDown Value="{Binding StartOffset}" Minimum="0" Maximum="16777215" Width="100" FormatString="X6"/>
+			<TextBlock Text="Length:" VerticalAlignment="Center"/>
+			<NumericUpDown Value="{Binding Length}" Minimum="16" Maximum="4096" Width="80"/>
+			<Separator/>
+			<Button Content="Disassemble" Command="{Binding DisassembleCommand}"/>
+			<Button Content="◀ Prev" Command="{Binding PreviousPageCommand}"/>
+			<Button Content="Next ▶" Command="{Binding NextPageCommand}"/>
+		</StackPanel>
+
+		<!-- Main Content -->
+		<Grid Grid.Row="1" ColumnDefinitions="*,250" Margin="16,8">
+			<!-- Disassembly View -->
+			<Border Grid.Column="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+					CornerRadius="4" Margin="0,0,8,0">
+				<DockPanel>
+					<Grid DockPanel.Dock="Top" ColumnDefinitions="80,100,*,Auto" Margin="8">
+						<TextBlock Grid.Column="0" Text="Address" FontWeight="SemiBold"/>
+						<TextBlock Grid.Column="1" Text="Bytes" FontWeight="SemiBold"/>
+						<TextBlock Grid.Column="2" Text="Instruction" FontWeight="SemiBold"/>
+						<TextBlock Grid.Column="3" Text="Comment" FontWeight="SemiBold"/>
+					</Grid>
+					<ListBox ItemsSource="{Binding DisassemblyLines}"
+							 FontFamily="Consolas" FontSize="12">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<Grid ColumnDefinitions="80,100,60,*,Auto">
+									<TextBlock Grid.Column="0" Text="{Binding Address}" Foreground="DodgerBlue"/>
+									<TextBlock Grid.Column="1" Text="{Binding Bytes}" Opacity="0.6"/>
+									<TextBlock Grid.Column="2" Text="{Binding Mnemonic}" FontWeight="SemiBold"/>
+									<TextBlock Grid.Column="3" Text="{Binding Operand}"/>
+									<TextBlock Grid.Column="4" Text="{Binding Comment}" Foreground="Green" Opacity="0.8"/>
+								</Grid>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</DockPanel>
+			</Border>
+
+			<!-- Right Panel -->
+			<Border Grid.Column="1" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+					CornerRadius="4" Padding="16">
+				<StackPanel Spacing="16">
+					<TextBlock Text="Options" FontWeight="SemiBold" FontSize="16"/>
+
+					<StackPanel Spacing="4">
+						<TextBlock Text="Base Address:"/>
+						<NumericUpDown Value="{Binding BaseAddress}" Minimum="0" Maximum="65535" FormatString="X4"/>
+					</StackPanel>
+
+					<CheckBox Content="Show Bytes" IsChecked="{Binding ShowBytes}"/>
+					<CheckBox Content="Show Addresses" IsChecked="{Binding ShowAddresses}"/>
+					<CheckBox Content="Lowercase Hex" IsChecked="{Binding LowercaseHex}"/>
+
+					<Separator/>
+
+					<TextBlock Text="Pattern Search" FontWeight="SemiBold"/>
+					<TextBox Name="PatternInput" Watermark="Hex pattern (e.g., A9 00 ??)"/>
+					<Button Content="Find Pattern" Command="{Binding FindPatternCommand}" CommandParameter="{Binding #PatternInput.Text}"/>
+
+					<Separator/>
+
+					<Button Content="Copy to Clipboard" Command="{Binding CopyToClipboardCommand}"/>
+
+					<Separator/>
+
+					<TextBlock Text="{Binding StatusText}" Opacity="0.7" TextWrapping="Wrap"/>
+				</StackPanel>
+			</Border>
+		</Grid>
+
+		<!-- Status Bar -->
+		<Border Grid.Row="2" Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}" Padding="16,8">
+			<TextBlock Text="{Binding StatusText}"/>
+		</Border>
+	</Grid>
+</UserControl>

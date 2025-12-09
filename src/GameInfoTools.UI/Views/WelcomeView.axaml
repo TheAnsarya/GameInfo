@@ -1,0 +1,80 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="using:GameInfoTools.UI.ViewModels"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+			 x:Class="GameInfoTools.UI.Views.WelcomeView"
+			 x:DataType="vm:WelcomeViewModel">
+
+	<Design.DataContext>
+		<vm:WelcomeViewModel/>
+	</Design.DataContext>
+
+	<ScrollViewer>
+		<StackPanel Margin="24" Spacing="16">
+			<!-- Header -->
+			<StackPanel Spacing="8">
+				<TextBlock Text="🎮 GameInfo Tools" FontSize="32" FontWeight="Bold"/>
+				<TextBlock Text="Cross-Platform ROM Hacking Suite" FontSize="18" Opacity="0.7"/>
+			</StackPanel>
+
+			<Separator Margin="0,8"/>
+
+			<!-- Getting Started -->
+			<TextBlock Text="Getting Started" FontSize="20" FontWeight="SemiBold"/>
+			<TextBlock TextWrapping="Wrap" Opacity="0.8">
+				Open a ROM file using File → Open ROM (Ctrl+O) to begin. The tools in the left panel will become active once a ROM is loaded.
+			</TextBlock>
+
+			<Separator Margin="0,8"/>
+
+			<!-- Features -->
+			<TextBlock Text="Features" FontSize="20" FontWeight="SemiBold"/>
+			<ItemsControl ItemsSource="{Binding Features}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<Border Padding="12" Margin="0,4" CornerRadius="4"
+								Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}">
+							<StackPanel Orientation="Horizontal" Spacing="12">
+								<TextBlock Text="{Binding Icon}" FontSize="24" VerticalAlignment="Center"/>
+								<StackPanel>
+									<TextBlock Text="{Binding Title}" FontWeight="SemiBold"/>
+									<TextBlock Text="{Binding Description}" Opacity="0.7" TextWrapping="Wrap"/>
+								</StackPanel>
+							</StackPanel>
+						</Border>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+
+			<Separator Margin="0,8"/>
+
+			<!-- Supported Systems -->
+			<TextBlock Text="Supported Systems" FontSize="20" FontWeight="SemiBold"/>
+			<WrapPanel>
+				<Border Padding="8,4" Margin="4" CornerRadius="4" Background="{DynamicResource SystemAccentColorLight3}">
+					<TextBlock Text="NES" FontWeight="SemiBold"/>
+				</Border>
+				<Border Padding="8,4" Margin="4" CornerRadius="4" Background="{DynamicResource SystemAccentColorLight3}">
+					<TextBlock Text="SNES" FontWeight="SemiBold"/>
+				</Border>
+				<Border Padding="8,4" Margin="4" CornerRadius="4" Background="{DynamicResource SystemAccentColorLight3}">
+					<TextBlock Text="Game Boy" FontWeight="SemiBold"/>
+				</Border>
+				<Border Padding="8,4" Margin="4" CornerRadius="4" Background="{DynamicResource SystemAccentColorLight3}">
+					<TextBlock Text="Game Boy Color" FontWeight="SemiBold"/>
+				</Border>
+				<Border Padding="8,4" Margin="4" CornerRadius="4" Background="{DynamicResource SystemAccentColorLight3}">
+					<TextBlock Text="Game Boy Advance" FontWeight="SemiBold"/>
+				</Border>
+				<Border Padding="8,4" Margin="4" CornerRadius="4" Background="{DynamicResource SystemAccentColorLight3}">
+					<TextBlock Text="Genesis" FontWeight="SemiBold"/>
+				</Border>
+			</WrapPanel>
+
+			<!-- Version -->
+			<TextBlock Text="{Binding Version}" Opacity="0.5" Margin="0,16,0,0"/>
+		</StackPanel>
+	</ScrollViewer>
+</UserControl>

@@ -1,0 +1,77 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="using:GameInfoTools.UI.ViewModels"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+			 x:Class="GameInfoTools.UI.Views.ChecksumView"
+			 x:DataType="vm:ChecksumViewModel">
+
+	<Design.DataContext>
+		<vm:ChecksumViewModel/>
+	</Design.DataContext>
+
+	<ScrollViewer>
+		<StackPanel Margin="16" Spacing="16">
+			<TextBlock Text="Checksum Calculator" FontSize="24" FontWeight="Bold"/>
+
+			<TextBlock Text="Calculate and verify ROM checksums for various systems."
+					   Opacity="0.7" TextWrapping="Wrap"/>
+
+			<Separator Margin="0,8"/>
+
+			<!-- Standard Checksums -->
+			<TextBlock Text="Standard Checksums" FontSize="18" FontWeight="SemiBold"/>
+
+			<Grid ColumnDefinitions="120,*" RowDefinitions="Auto,Auto,Auto" IsVisible="{Binding HasRomLoaded}">
+				<TextBlock Grid.Row="0" Grid.Column="0" Text="CRC32:" FontWeight="SemiBold" VerticalAlignment="Center"/>
+				<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Crc32}" IsReadOnly="True" Margin="8,4"/>
+
+				<TextBlock Grid.Row="1" Grid.Column="0" Text="MD5:" FontWeight="SemiBold" VerticalAlignment="Center"/>
+				<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Md5}" IsReadOnly="True" Margin="8,4"/>
+
+				<TextBlock Grid.Row="2" Grid.Column="0" Text="SHA1:" FontWeight="SemiBold" VerticalAlignment="Center"/>
+				<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Sha1}" IsReadOnly="True" Margin="8,4"/>
+			</Grid>
+
+			<Separator Margin="0,8"/>
+
+			<!-- System-Specific Checksums -->
+			<TextBlock Text="System-Specific Checksums" FontSize="18" FontWeight="SemiBold"/>
+
+			<Grid ColumnDefinitions="160,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" IsVisible="{Binding HasRomLoaded}">
+				<TextBlock Grid.Row="0" Grid.Column="0" Text="Detected System:" FontWeight="SemiBold" VerticalAlignment="Center"/>
+				<TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding DetectedSystem}" Margin="8,4" VerticalAlignment="Center"/>
+
+				<TextBlock Grid.Row="1" Grid.Column="0" Text="NES Checksum:" FontWeight="SemiBold" VerticalAlignment="Center"/>
+				<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NesChecksum}" IsReadOnly="True" Margin="8,4"/>
+
+				<TextBlock Grid.Row="2" Grid.Column="0" Text="SNES Checksum:" FontWeight="SemiBold" VerticalAlignment="Center"/>
+				<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding SnesChecksum}" IsReadOnly="True" Margin="8,4"/>
+
+				<TextBlock Grid.Row="3" Grid.Column="0" Text="SNES Complement:" FontWeight="SemiBold" VerticalAlignment="Center"/>
+				<TextBox Grid.Row="3" Grid.Column="1" Text="{Binding SnesComplement}" IsReadOnly="True" Margin="8,4"/>
+
+				<TextBlock Grid.Row="4" Grid.Column="0" Text="GB Header Checksum:" FontWeight="SemiBold" VerticalAlignment="Center"/>
+				<TextBox Grid.Row="4" Grid.Column="1" Text="{Binding GbHeaderChecksum}" IsReadOnly="True" Margin="8,4"/>
+
+				<TextBlock Grid.Row="5" Grid.Column="0" Text="GB Global Checksum:" FontWeight="SemiBold" VerticalAlignment="Center"/>
+				<TextBox Grid.Row="5" Grid.Column="1" Text="{Binding GbGlobalChecksum}" IsReadOnly="True" Margin="8,4"/>
+			</Grid>
+
+			<TextBlock Text="No ROM loaded. Open a ROM file to calculate checksums."
+					   IsVisible="{Binding !HasRomLoaded}" Opacity="0.7"/>
+
+			<Separator Margin="0,8"/>
+
+			<!-- Verification Result -->
+			<TextBlock Text="{Binding VerificationResult}" FontSize="14" Margin="0,8"/>
+
+			<!-- Actions -->
+			<StackPanel Orientation="Horizontal" Spacing="8">
+				<Button Content="Recalculate All" Command="{Binding CalculateChecksumsCommand}"/>
+				<Button Content="Fix Checksum" Command="{Binding FixChecksumCommand}"/>
+			</StackPanel>
+		</StackPanel>
+	</ScrollViewer>
+</UserControl>

@@ -2,8 +2,8 @@ using Avalonia.Controls;
 
 namespace GameInfoTools.UI.Views;
 
-public partial class MainWindow : Window {
-	public MainWindow() {
+public partial class ChecksumView : UserControl {
+	public ChecksumView() {
 		InitializeComponent();
 	}
 }

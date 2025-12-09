@@ -1,0 +1,73 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="using:GameInfoTools.UI.ViewModels"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+			 x:Class="GameInfoTools.UI.Views.RomInfoView"
+			 x:DataType="vm:RomInfoViewModel">
+
+	<Design.DataContext>
+		<vm:RomInfoViewModel/>
+	</Design.DataContext>
+
+	<ScrollViewer>
+		<StackPanel Margin="16" Spacing="16">
+			<TextBlock Text="ROM Information" FontSize="24" FontWeight="Bold"/>
+
+			<Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+				  IsVisible="{Binding HasRomLoaded}">
+				<TextBlock Grid.Row="0" Grid.Column="0" Text="File Name:" FontWeight="SemiBold" Margin="0,4,16,4"/>
+				<TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding FileName}" Margin="0,4"/>
+
+				<TextBlock Grid.Row="1" Grid.Column="0" Text="System:" FontWeight="SemiBold" Margin="0,4,16,4"/>
+				<TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding SystemType}" Margin="0,4"/>
+
+				<TextBlock Grid.Row="2" Grid.Column="0" Text="Title:" FontWeight="SemiBold" Margin="0,4,16,4"/>
+				<TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Title}" Margin="0,4"/>
+
+				<TextBlock Grid.Row="3" Grid.Column="0" Text="File Size:" FontWeight="SemiBold" Margin="0,4,16,4"/>
+				<TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding FileSize}" Margin="0,4"/>
+
+				<TextBlock Grid.Row="4" Grid.Column="0" Text="Header Size:" FontWeight="SemiBold" Margin="0,4,16,4"/>
+				<TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding HeaderSize}" Margin="0,4"/>
+
+				<TextBlock Grid.Row="5" Grid.Column="0" Text="PRG ROM:" FontWeight="SemiBold" Margin="0,4,16,4"/>
+				<TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding PrgRomSize}" Margin="0,4"/>
+
+				<TextBlock Grid.Row="6" Grid.Column="0" Text="CHR ROM:" FontWeight="SemiBold" Margin="0,4,16,4"/>
+				<TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding ChrRomSize}" Margin="0,4"/>
+
+				<TextBlock Grid.Row="7" Grid.Column="0" Text="Mapper:" FontWeight="SemiBold" Margin="0,4,16,4"/>
+				<TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding Mapper}" Margin="0,4"/>
+
+				<TextBlock Grid.Row="8" Grid.Column="0" Text="Has Battery:" FontWeight="SemiBold" Margin="0,4,16,4"/>
+				<TextBlock Grid.Row="8" Grid.Column="1" Text="{Binding HasBattery}" Margin="0,4"/>
+
+				<TextBlock Grid.Row="9" Grid.Column="0" Text="Mirroring:" FontWeight="SemiBold" Margin="0,4,16,4"/>
+				<TextBlock Grid.Row="9" Grid.Column="1" Text="{Binding Mirroring}" Margin="0,4"/>
+			</Grid>
+
+			<TextBlock Text="No ROM loaded. Open a ROM file to view its information."
+					   IsVisible="{Binding !HasRomLoaded}" Opacity="0.7"/>
+
+			<Separator Margin="0,8"/>
+
+			<!-- Checksums -->
+			<TextBlock Text="Checksums" FontSize="18" FontWeight="SemiBold"/>
+
+			<Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto" IsVisible="{Binding HasRomLoaded}">
+				<TextBlock Grid.Row="0" Grid.Column="0" Text="CRC32:" FontWeight="SemiBold" Margin="0,4,16,4"/>
+				<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Crc32}" IsReadOnly="True" Margin="0,4"/>
+
+				<TextBlock Grid.Row="1" Grid.Column="0" Text="MD5:" FontWeight="SemiBold" Margin="0,4,16,4"/>
+				<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Md5}" IsReadOnly="True" Margin="0,4"/>
+
+				<TextBlock Grid.Row="2" Grid.Column="0" Text="SHA1:" FontWeight="SemiBold" Margin="0,4,16,4"/>
+				<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Sha1}" IsReadOnly="True" Margin="0,4"/>
+			</Grid>
+
+			<Button Content="Refresh" Command="{Binding RefreshCommand}" HorizontalAlignment="Left"/>
+		</StackPanel>
+	</ScrollViewer>
+</UserControl>

@@ -1,0 +1,98 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="using:GameInfoTools.UI.ViewModels"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+			 x:Class="GameInfoTools.UI.Views.DataTableView"
+			 x:DataType="vm:DataTableViewModel">
+
+	<Design.DataContext>
+		<vm:DataTableViewModel/>
+	</Design.DataContext>
+
+	<Grid RowDefinitions="Auto,*,Auto">
+		<!-- Toolbar -->
+		<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="16,16,16,8">
+			<ComboBox ItemsSource="{Binding CommonTableTypes}" Width="150" PlaceholderText="Select Table Type"/>
+			<Button Content="Load Monsters" Command="{Binding LoadMonsterTableCommand}" ToolTip.Tip="Load monster table template"/>
+			<Button Content="Load Items" Command="{Binding LoadItemTableCommand}" ToolTip.Tip="Load item table template"/>
+			<Button Content="Load Weapons" Command="{Binding LoadWeaponTableCommand}" ToolTip.Tip="Load weapon table template"/>
+			<Separator/>
+			<Button Content="Read Table" Command="{Binding ReadTableCommand}" ToolTip.Tip="Read data from ROM"/>
+		</StackPanel>
+
+		<!-- Main Content -->
+		<Grid Grid.Row="1" ColumnDefinitions="250,*" Margin="16,8">
+			<!-- Table Settings -->
+			<Border Grid.Column="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+					CornerRadius="4" Padding="16" Margin="0,0,8,0">
+				<ScrollViewer>
+					<StackPanel Spacing="12">
+						<TextBlock Text="Table Settings" FontWeight="SemiBold" FontSize="16"/>
+
+						<StackPanel Spacing="4">
+							<TextBlock Text="Table Name:"/>
+							<TextBox Text="{Binding TableName}"/>
+						</StackPanel>
+
+						<StackPanel Spacing="4">
+							<TextBlock Text="Offset (hex):"/>
+							<NumericUpDown Value="{Binding TableOffset}" Minimum="0" FormatString="X6"/>
+						</StackPanel>
+
+						<StackPanel Spacing="4">
+							<TextBlock Text="Record Size:"/>
+							<NumericUpDown Value="{Binding RecordSize}" Minimum="1" Maximum="256"/>
+						</StackPanel>
+
+						<StackPanel Spacing="4">
+							<TextBlock Text="Record Count:"/>
+							<NumericUpDown Value="{Binding RecordCount}" Minimum="1" Maximum="65536"/>
+						</StackPanel>
+
+						<Separator/>
+
+						<TextBlock Text="Fields" FontWeight="SemiBold"/>
+						<ItemsControl ItemsSource="{Binding Fields}">
+							<ItemsControl.ItemTemplate>
+								<DataTemplate>
+									<StackPanel Orientation="Horizontal" Spacing="4" Margin="0,2">
+										<TextBlock Text="{Binding Name}" Width="80"/>
+										<TextBlock Text="{Binding Type}" Opacity="0.7"/>
+									</StackPanel>
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+						</ItemsControl>
+					</StackPanel>
+				</ScrollViewer>
+			</Border>
+
+			<!-- Data Grid -->
+			<Border Grid.Column="1" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+					CornerRadius="4" Padding="8">
+				<DockPanel>
+					<TextBlock DockPanel.Dock="Top" Text="{Binding TableName, FallbackValue=Data}" FontWeight="SemiBold" Margin="0,0,0,8"/>
+					<ListBox ItemsSource="{Binding Records}" SelectedIndex="{Binding SelectedRecordIndex}">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal" Spacing="8">
+									<TextBlock Text="{Binding Index, StringFormat=#{0}}" FontWeight="SemiBold" Width="40"/>
+									<TextBlock Text="{Binding DisplayText}"/>
+								</StackPanel>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</DockPanel>
+			</Border>
+		</Grid>
+
+		<!-- Status Bar -->
+		<Border Grid.Row="2" Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}" Padding="16,8">
+			<Grid ColumnDefinitions="*,Auto">
+				<TextBlock Grid.Column="0" Text="{Binding StatusText}"/>
+				<TextBlock Grid.Column="1" Text="{Binding RecordCount, StringFormat={}{0} records}"/>
+			</Grid>
+		</Border>
+	</Grid>
+</UserControl>

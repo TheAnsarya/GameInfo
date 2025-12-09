@@ -114,8 +114,10 @@ public partial class ChrEditorViewModel : ViewModelBase {
 					_ => '█'
 				});
 			}
+
 			if (y < 7) sb.Append('\n');
 		}
+
 		return sb.ToString();
 	}
 

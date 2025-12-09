@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using GameInfoTools.Core;
 
 namespace GameInfoTools.UI.ViewModels;
@@ -19,7 +20,7 @@ public partial class RomInfoViewModel : ViewModelBase {
 	private string _fileSize = "";
 
 	[ObservableProperty]
-	private string _system = "";
+	private string _systemType = "";
 
 	[ObservableProperty]
 	private string _title = "";
@@ -37,10 +38,10 @@ public partial class RomInfoViewModel : ViewModelBase {
 	private string _chrRomSize = "";
 
 	[ObservableProperty]
-	private bool _hasBattery;
+	private string _hasBattery = "";
 
 	[ObservableProperty]
-	private bool _hasTrainer;
+	private string _mirroring = "";
 
 	[ObservableProperty]
 	private string _crc32 = "";
@@ -54,10 +55,13 @@ public partial class RomInfoViewModel : ViewModelBase {
 	[ObservableProperty]
 	private bool _hasRomLoaded;
 
-	public RomInfoViewModel(RomFile? rom) {
+	public RomInfoViewModel(RomFile? rom = null) {
 		_rom = rom;
 		RefreshInfo();
 	}
+
+	[RelayCommand]
+	public void Refresh() => RefreshInfo();
 
 	public void RefreshInfo() {
 		if (_rom is null || !_rom.IsLoaded) {
@@ -72,16 +76,16 @@ public partial class RomInfoViewModel : ViewModelBase {
 		FileName = Path.GetFileName(_rom.FilePath);
 		FilePath = _rom.FilePath;
 		FileSize = $"{_rom.Length:N0} bytes ({_rom.Length / 1024.0:N1} KB)";
-		System = info.System.ToString();
+		SystemType = info.System.ToString();
 		Title = info.Title ?? "(Unknown)";
 		HeaderSize = $"{info.HeaderSize} bytes";
 
 		if (header is not null) {
-			Mapper = header.Mapper.ToString();
+			Mapper = $"{header.Mapper}";
 			PrgRomSize = $"{header.PrgRomSize:N0} bytes ({header.PrgRomSize / 1024} KB)";
 			ChrRomSize = $"{header.ChrRomSize:N0} bytes ({header.ChrRomSize / 1024} KB)";
-			HasBattery = header.HasBattery;
-			HasTrainer = header.HasTrainer;
+			HasBattery = header.HasBattery ? "Yes" : "No";
+			Mirroring = header.Mirroring.ToString();
 		}
 
 		// Calculate checksums

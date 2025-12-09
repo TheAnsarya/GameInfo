@@ -73,6 +73,7 @@ public partial class ChecksumViewModel : ViewModelBase {
 					var nesSum = Checksum.NesChecksum(data, header.HeaderSize, header.PrgRomSize);
 					NesChecksum = $"${nesSum:x4}";
 				}
+
 				break;
 
 			case SystemType.Snes:

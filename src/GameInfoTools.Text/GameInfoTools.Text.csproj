@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<LangVersion>latest</LangVersion>
+		<LangVersion>14</LangVersion>
 		<RootNamespace>GameInfoTools.Text</RootNamespace>
 		<AssemblyName>GameInfoTools.Text</AssemblyName>
 		<Version>1.0.0</Version>

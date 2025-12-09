@@ -2,8 +2,8 @@ using Avalonia.Controls;
 
 namespace GameInfoTools.UI.Views;
 
-public partial class MainWindow : Window {
-	public MainWindow() {
+public partial class ChrEditorView : UserControl {
+	public ChrEditorView() {
 		InitializeComponent();
 	}
 }

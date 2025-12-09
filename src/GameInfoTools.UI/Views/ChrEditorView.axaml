@@ -1,0 +1,100 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="using:GameInfoTools.UI.ViewModels"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+			 x:Class="GameInfoTools.UI.Views.ChrEditorView"
+			 x:DataType="vm:ChrEditorViewModel">
+
+	<Design.DataContext>
+		<vm:ChrEditorViewModel/>
+	</Design.DataContext>
+
+	<Grid RowDefinitions="Auto,*,Auto">
+		<!-- Toolbar -->
+		<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="16,16,16,8">
+			<TextBlock Text="CHR Offset:" VerticalAlignment="Center"/>
+			<NumericUpDown Value="{Binding ChrOffset}" Minimum="0" Maximum="16777215" Width="120" FormatString="X6"/>
+			<Separator/>
+			<TextBlock Text="Format:" VerticalAlignment="Center"/>
+			<ComboBox ItemsSource="{Binding AvailableFormats}" SelectedItem="{Binding TileFormat}" Width="120"/>
+			<Separator/>
+			<TextBlock Text="Zoom:" VerticalAlignment="Center"/>
+			<Button Content="-" Command="{Binding ZoomOutCommand}" Width="30"/>
+			<TextBlock Text="{Binding Zoom, StringFormat={}{0}x}" VerticalAlignment="Center" Width="30" TextAlignment="Center"/>
+			<Button Content="+" Command="{Binding ZoomInCommand}" Width="30"/>
+		</StackPanel>
+
+		<!-- Main Content -->
+		<Grid Grid.Row="1" ColumnDefinitions="*,250" Margin="16,8">
+			<!-- Tile Grid -->
+			<Border Grid.Column="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+					CornerRadius="4" Padding="8" Margin="0,0,8,0">
+				<DockPanel>
+					<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
+						<TextBlock Text="Tile Grid" FontWeight="SemiBold"/>
+						<Button Content="◀" Command="{Binding PreviousBankCommand}" ToolTip.Tip="Previous Bank"/>
+						<TextBlock Text="{Binding SelectedBank, StringFormat=Bank {0}}" VerticalAlignment="Center"/>
+						<Button Content="▶" Command="{Binding NextBankCommand}" ToolTip.Tip="Next Bank"/>
+					</StackPanel>
+					<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+						<ItemsControl ItemsSource="{Binding Tiles}">
+							<ItemsControl.ItemsPanel>
+								<ItemsPanelTemplate>
+									<WrapPanel/>
+								</ItemsPanelTemplate>
+							</ItemsControl.ItemsPanel>
+							<ItemsControl.ItemTemplate>
+								<DataTemplate>
+									<Border Padding="1" Margin="1"
+											Background="{DynamicResource SystemControlBackgroundBaseLowBrush}"
+											ToolTip.Tip="{Binding Name}">
+										<TextBlock Text="{Binding Preview}" FontFamily="Consolas" FontSize="10"/>
+									</Border>
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+						</ItemsControl>
+					</ScrollViewer>
+				</DockPanel>
+			</Border>
+
+			<!-- Right Panel - Tile Editor -->
+			<Border Grid.Column="1" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+					CornerRadius="4" Padding="16">
+				<StackPanel Spacing="16">
+					<TextBlock Text="Tile Editor" FontWeight="SemiBold" FontSize="16"/>
+
+					<!-- Selected Tile -->
+					<StackPanel Spacing="4">
+						<TextBlock Text="Selected Tile:"/>
+						<TextBlock Text="{Binding SelectedTileIndex, StringFormat=Tile ${0:X2}}" FontWeight="SemiBold"/>
+					</StackPanel>
+
+					<Separator/>
+
+					<!-- Tile Operations -->
+					<TextBlock Text="Operations" FontWeight="SemiBold"/>
+					<WrapPanel>
+						<Button Content="↔" Command="{Binding FlipTileHorizontalCommand}" ToolTip.Tip="Flip Horizontal" Margin="2"/>
+						<Button Content="↕" Command="{Binding FlipTileVerticalCommand}" ToolTip.Tip="Flip Vertical" Margin="2"/>
+						<Button Content="↻" Command="{Binding RotateTileCommand}" ToolTip.Tip="Rotate 90°" Margin="2"/>
+					</WrapPanel>
+
+					<Separator/>
+
+					<!-- Statistics -->
+					<TextBlock Text="Statistics" FontWeight="SemiBold"/>
+					<TextBlock Text="{Binding TileCount, StringFormat=Total Tiles: {0}}" Opacity="0.7"/>
+					<TextBlock Text="{Binding BankCount, StringFormat=Banks: {0}}" Opacity="0.7"/>
+					<TextBlock Text="{Binding StatusText}" Opacity="0.7" TextWrapping="Wrap"/>
+				</StackPanel>
+			</Border>
+		</Grid>
+
+		<!-- Status Bar -->
+		<Border Grid.Row="2" Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}" Padding="16,8">
+			<TextBlock Text="{Binding StatusText}"/>
+		</Border>
+	</Grid>
+</UserControl>

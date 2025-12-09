@@ -161,12 +161,19 @@ public class RomFile : IDisposable {
 		var hasBattery = (Data[6] & 0x02) != 0;
 		var hasTrainer = (Data[6] & 0x04) != 0;
 
+		// Mirroring: bit 0 = V/H, bit 3 = four-screen
+		var fourScreen = (Data[6] & 0x08) != 0;
+		var verticalMirror = (Data[6] & 0x01) != 0;
+		var mirroring = fourScreen ? MirroringMode.FourScreen :
+			(verticalMirror ? MirroringMode.Vertical : MirroringMode.Horizontal);
+
 		return new RomHeader {
 			System = SystemType.Nes,
 			HeaderSize = hasTrainer ? 16 + 512 : 16,
 			PrgRomSize = prgSize,
 			ChrRomSize = chrSize,
 			Mapper = mapper,
+			Mirroring = mirroring,
 			HasBattery = hasBattery,
 			HasTrainer = hasTrainer,
 			RawHeader = Data[..16]
