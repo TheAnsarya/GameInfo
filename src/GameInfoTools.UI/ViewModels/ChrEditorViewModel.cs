@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Text;
 using Avalonia.Controls;
+using Avalonia.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GameInfoTools.Core;
@@ -46,6 +47,33 @@ public partial class ChrEditorViewModel : ViewModelBase {
 	[ObservableProperty]
 	private bool _showGrid = true;
 
+	[ObservableProperty]
+	private Color[] _currentPalette = GetDefaultPalette();
+
+	[ObservableProperty]
+	private int _selectedPaletteIndex;
+
+	[ObservableProperty]
+	private int _selectedColorIndex;
+
+	/// <summary>
+	/// Tile preview transformations for flip/rotate preview.
+	/// </summary>
+	[ObservableProperty]
+	private byte[,]? _previewFlipH;
+
+	[ObservableProperty]
+	private byte[,]? _previewFlipV;
+
+	[ObservableProperty]
+	private byte[,]? _previewRotate90;
+
+	[ObservableProperty]
+	private byte[,]? _previewRotate180;
+
+	[ObservableProperty]
+	private byte[,]? _previewRotate270;
+
 	public ObservableCollection<TileInfo> Tiles { get; } = [];
 
 	/// <summary>
@@ -58,6 +86,19 @@ public partial class ChrEditorViewModel : ViewModelBase {
 	/// </summary>
 	[ObservableProperty]
 	private byte[,]? _selectedTileData;
+
+	/// <summary>
+	/// Available preset palettes.
+	/// </summary>
+	public ObservableCollection<PalettePreset> PalettePresets { get; } = [
+		new PalettePreset("Grayscale", GetDefaultPalette()),
+		new PalettePreset("NES Default", GetNesPalette()),
+		new PalettePreset("Game Boy", GetGameBoyPalette()),
+		new PalettePreset("Game Boy Pocket", GetGameBoyPocketPalette()),
+		new PalettePreset("Virtual Boy", GetVirtualBoyPalette()),
+		new PalettePreset("Sepia", GetSepiaPalette()),
+		new PalettePreset("Inverted", GetInvertedPalette()),
+	];
 
 	public string[] AvailableFormats { get; } = [
 		"NES 2bpp",
@@ -123,13 +164,32 @@ public partial class ChrEditorViewModel : ViewModelBase {
 		// Set selected tile data if valid
 		if (SelectedTileIndex >= 0 && SelectedTileIndex < TileGraphics.Count) {
 			SelectedTileData = TileGraphics[SelectedTileIndex];
+			UpdateTransformPreviews();
 		}
 	}
 
 	partial void OnSelectedTileIndexChanged(int value) {
 		if (value >= 0 && value < TileGraphics.Count) {
 			SelectedTileData = TileGraphics[value];
+			UpdateTransformPreviews();
 		}
+	}
+
+	private void UpdateTransformPreviews() {
+		if (SelectedTileData is null) {
+			PreviewFlipH = null;
+			PreviewFlipV = null;
+			PreviewRotate90 = null;
+			PreviewRotate180 = null;
+			PreviewRotate270 = null;
+			return;
+		}
+
+		PreviewFlipH = FlipHorizontal(SelectedTileData);
+		PreviewFlipV = FlipVertical(SelectedTileData);
+		PreviewRotate90 = Rotate90(SelectedTileData);
+		PreviewRotate180 = Rotate90(PreviewRotate90);
+		PreviewRotate270 = Rotate90(PreviewRotate180);
 	}
 
 	private static string GetTilePreviewString(byte[,] tile) {
@@ -358,9 +418,136 @@ public partial class ChrEditorViewModel : ViewModelBase {
 		StatusText = $"Import from {Path.GetFileName(path)} - not yet fully implemented";
 		// TODO: Implement actual import when we have proper image loading
 	}
+
+	[RelayCommand]
+	private void SelectPalette(PalettePreset? preset) {
+		if (preset is null) return;
+		CurrentPalette = preset.Colors;
+		StatusText = $"Palette changed to {preset.Name}";
+	}
+
+	[RelayCommand]
+	private void ApplyFlipHorizontal() {
+		if (_chrEditor is null || SelectedTileIndex < 0 || PreviewFlipH is null) return;
+		_chrEditor.SetTile(SelectedTileIndex, PreviewFlipH);
+		LoadTilePreview();
+		StatusText = $"Applied horizontal flip to tile {SelectedTileIndex:X2}";
+	}
+
+	[RelayCommand]
+	private void ApplyFlipVertical() {
+		if (_chrEditor is null || SelectedTileIndex < 0 || PreviewFlipV is null) return;
+		_chrEditor.SetTile(SelectedTileIndex, PreviewFlipV);
+		LoadTilePreview();
+		StatusText = $"Applied vertical flip to tile {SelectedTileIndex:X2}";
+	}
+
+	[RelayCommand]
+	private void ApplyRotate90() {
+		if (_chrEditor is null || SelectedTileIndex < 0 || PreviewRotate90 is null) return;
+		_chrEditor.SetTile(SelectedTileIndex, PreviewRotate90);
+		LoadTilePreview();
+		StatusText = $"Applied 90° rotation to tile {SelectedTileIndex:X2}";
+	}
+
+	[RelayCommand]
+	private void ApplyRotate180() {
+		if (_chrEditor is null || SelectedTileIndex < 0 || PreviewRotate180 is null) return;
+		_chrEditor.SetTile(SelectedTileIndex, PreviewRotate180);
+		LoadTilePreview();
+		StatusText = $"Applied 180° rotation to tile {SelectedTileIndex:X2}";
+	}
+
+	[RelayCommand]
+	private void ApplyRotate270() {
+		if (_chrEditor is null || SelectedTileIndex < 0 || PreviewRotate270 is null) return;
+		_chrEditor.SetTile(SelectedTileIndex, PreviewRotate270);
+		LoadTilePreview();
+		StatusText = $"Applied 270° rotation to tile {SelectedTileIndex:X2}";
+	}
+
+	#region Palette Presets
+
+	/// <summary>
+	/// Gets the default grayscale palette.
+	/// </summary>
+	public static Color[] GetDefaultPalette() => [
+		Color.FromRgb(0, 0, 0),       // Black
+		Color.FromRgb(85, 85, 85),    // Dark gray
+		Color.FromRgb(170, 170, 170), // Light gray
+		Color.FromRgb(255, 255, 255)  // White
+	];
+
+	/// <summary>
+	/// Gets an NES-inspired palette (using common NES colors).
+	/// </summary>
+	public static Color[] GetNesPalette() => [
+		Color.FromRgb(0, 0, 0),       // Black
+		Color.FromRgb(188, 0, 0),     // Red
+		Color.FromRgb(0, 120, 0),     // Green
+		Color.FromRgb(252, 216, 168)  // Skin tone
+	];
+
+	/// <summary>
+	/// Gets the classic Game Boy green palette.
+	/// </summary>
+	public static Color[] GetGameBoyPalette() => [
+		Color.FromRgb(15, 56, 15),    // Darkest green
+		Color.FromRgb(48, 98, 48),    // Dark green
+		Color.FromRgb(139, 172, 15),  // Light green
+		Color.FromRgb(155, 188, 15)   // Lightest green
+	];
+
+	/// <summary>
+	/// Gets the Game Boy Pocket grayscale palette.
+	/// </summary>
+	public static Color[] GetGameBoyPocketPalette() => [
+		Color.FromRgb(0, 0, 0),       // Black
+		Color.FromRgb(86, 86, 86),    // Dark gray
+		Color.FromRgb(172, 172, 172), // Light gray
+		Color.FromRgb(255, 255, 255)  // White
+	];
+
+	/// <summary>
+	/// Gets a Virtual Boy-inspired red palette.
+	/// </summary>
+	public static Color[] GetVirtualBoyPalette() => [
+		Color.FromRgb(0, 0, 0),       // Black
+		Color.FromRgb(85, 0, 0),      // Dark red
+		Color.FromRgb(170, 0, 0),     // Medium red
+		Color.FromRgb(255, 0, 0)      // Bright red
+	];
+
+	/// <summary>
+	/// Gets a sepia-toned palette.
+	/// </summary>
+	public static Color[] GetSepiaPalette() => [
+		Color.FromRgb(44, 28, 12),    // Dark sepia
+		Color.FromRgb(100, 72, 44),   // Medium-dark sepia
+		Color.FromRgb(180, 148, 108), // Medium-light sepia
+		Color.FromRgb(252, 236, 200)  // Light sepia
+	];
+
+	/// <summary>
+	/// Gets an inverted grayscale palette.
+	/// </summary>
+	public static Color[] GetInvertedPalette() => [
+		Color.FromRgb(255, 255, 255), // White
+		Color.FromRgb(170, 170, 170), // Light gray
+		Color.FromRgb(85, 85, 85),    // Dark gray
+		Color.FromRgb(0, 0, 0)        // Black
+	];
+
+	#endregion
 }
 
 /// <summary>
 /// Represents a tile for display.
 /// </summary>
 public record TileInfo(int Index, string Name, string Preview);
+
+/// <summary>
+/// Represents a palette preset.
+/// </summary>
+public record PalettePreset(string Name, Color[] Colors);
+
