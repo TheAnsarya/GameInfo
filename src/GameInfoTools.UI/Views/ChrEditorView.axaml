@@ -24,6 +24,9 @@
 			<Button Content="-" Command="{Binding ZoomOutCommand}" Width="30"/>
 			<TextBlock Text="{Binding Zoom, StringFormat={}{0}x}" VerticalAlignment="Center" Width="30" TextAlignment="Center"/>
 			<Button Content="+" Command="{Binding ZoomInCommand}" Width="30"/>
+			<Separator/>
+			<Button Content="Export..." Command="{Binding ExportTilesetCommand}" CommandParameter="{Binding $parent[Window]}" ToolTip.Tip="Export tileset to image"/>
+			<Button Content="Import..." Command="{Binding ImportTilesetCommand}" CommandParameter="{Binding $parent[Window]}" ToolTip.Tip="Import tileset from image"/>
 		</StackPanel>
 
 		<!-- Main Content -->

@@ -1,8 +1,11 @@
 using System.Collections.ObjectModel;
+using System.Text;
+using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GameInfoTools.Core;
 using GameInfoTools.Text;
+using GameInfoTools.UI.Services;
 
 namespace GameInfoTools.UI.ViewModels;
 
@@ -224,15 +227,95 @@ public partial class TextExtractorViewModel : ViewModelBase {
 	}
 
 	[RelayCommand]
-	private void LoadTable() {
-		// TODO: Implement file dialog for loading TBL files
-		StatusText = "Load TBL file feature not yet implemented";
+	private async Task LoadTable(Window? window) {
+		if (window is null) {
+			StatusText = "Unable to open file dialog";
+			return;
+		}
+
+		var dialogService = FileDialogService.FromWindow(window);
+		var path = await dialogService.OpenFileAsync(
+			"Load Text Table",
+			FileDialogService.TblFiles,
+			FileDialogService.AllFiles
+		);
+
+		if (path is null) return;
+
+		try {
+			var content = await File.ReadAllTextAsync(path);
+			_textTable = TextTable.FromString(content);
+			_extractor = new StringExtractor(_textTable);
+			HasTableLoaded = true;
+			TableInfo = $"{Path.GetFileName(path)} ({_textTable.EntryCount} entries)";
+			StatusText = $"Loaded table: {path}";
+		} catch (Exception ex) {
+			StatusText = $"Error loading table: {ex.Message}";
+		}
 	}
 
 	[RelayCommand]
-	private void Export() {
-		// TODO: Implement export to file
-		StatusText = $"Export feature not yet implemented (would export {ExtractedStrings.Count} strings)";
+	private async Task Export(Window? window) {
+		if (window is null) {
+			StatusText = "Unable to open file dialog";
+			return;
+		}
+
+		if (ExtractedStrings.Count == 0) {
+			StatusText = "No strings to export";
+			return;
+		}
+
+		var dialogService = FileDialogService.FromWindow(window);
+		var path = await dialogService.SaveFileAsync(
+			"Export Extracted Strings",
+			".txt",
+			"extracted_strings.txt",
+			FileDialogService.TextFiles,
+			FileDialogService.JsonFiles,
+			FileDialogService.AllFiles
+		);
+
+		if (path is null) return;
+
+		try {
+			var sb = new StringBuilder();
+
+			if (path.EndsWith(".json", StringComparison.OrdinalIgnoreCase)) {
+				// Export as JSON
+				sb.AppendLine("[");
+				for (int i = 0; i < ExtractedStrings.Count; i++) {
+					var item = ExtractedStrings[i];
+					sb.Append($"  {{ \"offset\": \"{item.Offset}\", \"text\": \"{EscapeJson(item.Text)}\", \"length\": {item.Length}, \"confidence\": \"{item.Confidence}\" }}");
+					sb.AppendLine(i < ExtractedStrings.Count - 1 ? "," : "");
+				}
+
+				sb.AppendLine("]");
+			} else {
+				// Export as plain text
+				sb.AppendLine($"# Extracted Strings from ROM");
+				sb.AppendLine($"# Total: {ExtractedStrings.Count} strings");
+				sb.AppendLine();
+
+				foreach (var item in ExtractedStrings) {
+					sb.AppendLine($"{item.Offset}: {item.Text}");
+				}
+			}
+
+			await File.WriteAllTextAsync(path, sb.ToString());
+			StatusText = $"Exported {ExtractedStrings.Count} strings to {Path.GetFileName(path)}";
+		} catch (Exception ex) {
+			StatusText = $"Export error: {ex.Message}";
+		}
+	}
+
+	private static string EscapeJson(string text) {
+		return text
+			.Replace("\\", "\\\\")
+			.Replace("\"", "\\\"")
+			.Replace("\n", "\\n")
+			.Replace("\r", "\\r")
+			.Replace("\t", "\\t");
 	}
 }
 

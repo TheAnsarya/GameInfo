@@ -41,6 +41,8 @@ public partial class MainWindowViewModel : ViewModelBase {
 		new ToolCategory("🔍", "Pointer Scanner", "pointers"),
 		new ToolCategory("💾", "Hex Editor", "hex"),
 		new ToolCategory("🗂️", "Bank View", "banks"),
+		new ToolCategory("🗺️", "Map Editor", "maps"),
+		new ToolCategory("📜", "Script Editor", "scripts"),
 	];
 
 	public MainWindowViewModel() {
@@ -61,6 +63,8 @@ public partial class MainWindowViewModel : ViewModelBase {
 			"pointers" => new PointerScannerViewModel(_loadedRom),
 			"hex" => new HexEditorViewModel(_loadedRom),
 			"banks" => new BankViewViewModel(_loadedRom),
+			"maps" => new MapEditorViewModel(_loadedRom),
+			"scripts" => new ScriptEditorViewModel(_loadedRom),
 			_ => new WelcomeViewModel()
 		};
 	}

@@ -1,8 +1,11 @@
 using System.Collections.ObjectModel;
+using System.Text;
+using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GameInfoTools.Core;
 using GameInfoTools.Data;
+using GameInfoTools.UI.Services;
 
 namespace GameInfoTools.UI.ViewModels;
 
@@ -165,19 +168,65 @@ public partial class DataTableViewModel : ViewModelBase {
 	}
 
 	[RelayCommand]
-	private void ExportToJson() {
+	private async Task ExportToJson(Window? window) {
 		if (Records.Count == 0) {
 			StatusText = "No records to export";
 			return;
 		}
 
-		// Generate JSON representation
-		var json = System.Text.Json.JsonSerializer.Serialize(
-			Records.Select(r => r.Values),
-			new System.Text.Json.JsonSerializerOptions { WriteIndented = true }
+		if (window is null) {
+			StatusText = "Unable to open file dialog";
+			return;
+		}
+
+		var dialogService = FileDialogService.FromWindow(window);
+		var path = await dialogService.SaveFileAsync(
+			"Export Data Table",
+			".json",
+			$"{TableName.Replace(" ", "_").ToLowerInvariant()}.json",
+			FileDialogService.JsonFiles,
+			FileDialogService.AllFiles
 		);
 
-		StatusText = $"Generated JSON for {Records.Count} records";
+		if (path is null) return;
+
+		try {
+			var json = System.Text.Json.JsonSerializer.Serialize(
+				new {
+					tableName = TableName,
+					offset = TableOffset,
+					recordSize = RecordSize,
+					recordCount = RecordCount,
+					records = Records.Select(r => r.Values)
+				},
+				new System.Text.Json.JsonSerializerOptions { WriteIndented = true }
+			);
+
+			await File.WriteAllTextAsync(path, json);
+			StatusText = $"Exported {Records.Count} records to {Path.GetFileName(path)}";
+		} catch (Exception ex) {
+			StatusText = $"Export error: {ex.Message}";
+		}
+	}
+
+	[RelayCommand]
+	private async Task ImportFromJson(Window? window) {
+		if (window is null) {
+			StatusText = "Unable to open file dialog";
+			return;
+		}
+
+		var dialogService = FileDialogService.FromWindow(window);
+		var path = await dialogService.OpenFileAsync(
+			"Import Data Table Definition",
+			FileDialogService.JsonFiles,
+			FileDialogService.AllFiles
+		);
+
+		if (path is null) return;
+
+		StatusText = $"Import from {Path.GetFileName(path)} - not yet fully implemented";
+		// TODO: Implement actual import
 	}
 
 	[RelayCommand]

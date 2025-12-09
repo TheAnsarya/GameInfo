@@ -33,7 +33,13 @@ please note the time at the beginning of every query and response so I know when
 
 Update other library projects to .NET 10 (currently .NET 9); Create AXAML View files for each ViewModel (if needed for visual UI); Run dotnet format on new files; Add more tests for the UI ViewModels; Consider adding more tools or improving existing functionality; continue
 
-
+&&&
+yes, do all that `What's Next` : Add UI ViewModel tests - Unit tests for the new ViewModel functionality
+Wire up View navigation - Connect the Views to the MainWindow navigation
+Add file dialogs - Implement Open/Save file dialogs for ROM loading
+Add more tools - Map editor, script editor, etc.
+Update GitHub Issue #8 - Mark UI progress; continue
+&&&
 
 
 

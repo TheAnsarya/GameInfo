@@ -14,13 +14,13 @@
 	<Grid RowDefinitions="Auto,*,Auto">
 		<!-- Toolbar -->
 		<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="16,16,16,8">
-			<Button Content="Load TBL..." Command="{Binding LoadTableCommand}" ToolTip.Tip="Load text table file"/>
+			<Button Content="Load TBL..." Command="{Binding LoadTableCommand}" CommandParameter="{Binding $parent[Window]}" ToolTip.Tip="Load text table file"/>
 			<Button Content="Default ASCII" Command="{Binding LoadDefaultTableCommand}" ToolTip.Tip="Load default ASCII table"/>
 			<Separator/>
 			<Button Content="Extract" Command="{Binding ExtractStringsCommand}" ToolTip.Tip="Extract strings from ROM"/>
 			<Button Content="Search" Command="{Binding SearchCommand}" ToolTip.Tip="Search for pattern"/>
 			<Separator/>
-			<Button Content="Export..." Command="{Binding ExportCommand}" ToolTip.Tip="Export extracted strings"/>
+			<Button Content="Export..." Command="{Binding ExportCommand}" CommandParameter="{Binding $parent[Window]}" ToolTip.Tip="Export extracted strings"/>
 		</StackPanel>
 
 		<!-- Main Content -->

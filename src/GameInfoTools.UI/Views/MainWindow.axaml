@@ -20,9 +20,9 @@
 		<!-- Menu Bar -->
 		<Menu DockPanel.Dock="Top">
 			<MenuItem Header="_File">
-				<MenuItem Header="_Open ROM..." Command="{Binding OpenRomCommand}" InputGesture="Ctrl+O"/>
+				<MenuItem Header="_Open ROM..." Command="{Binding OpenRomCommand}" CommandParameter="{Binding $parent[Window]}" InputGesture="Ctrl+O"/>
 				<MenuItem Header="_Save ROM" Command="{Binding SaveRomCommand}" InputGesture="Ctrl+S"/>
-				<MenuItem Header="Save ROM _As..." Command="{Binding SaveRomAsCommand}" InputGesture="Ctrl+Shift+S"/>
+				<MenuItem Header="Save ROM _As..." Command="{Binding SaveRomAsCommand}" CommandParameter="{Binding $parent[Window]}" InputGesture="Ctrl+Shift+S"/>
 				<Separator/>
 				<MenuItem Header="_Recent Files">
 					<MenuItem Header="(No recent files)"/>

@@ -20,6 +20,9 @@
 			<Button Content="Load Weapons" Command="{Binding LoadWeaponTableCommand}" ToolTip.Tip="Load weapon table template"/>
 			<Separator/>
 			<Button Content="Read Table" Command="{Binding ReadTableCommand}" ToolTip.Tip="Read data from ROM"/>
+			<Separator/>
+			<Button Content="Export..." Command="{Binding ExportToJsonCommand}" CommandParameter="{Binding $parent[Window]}" ToolTip.Tip="Export data to JSON"/>
+			<Button Content="Import..." Command="{Binding ImportFromJsonCommand}" CommandParameter="{Binding $parent[Window]}" ToolTip.Tip="Import table definition"/>
 		</StackPanel>
 
 		<!-- Main Content -->

@@ -1,8 +1,11 @@
 using System.Collections.ObjectModel;
+using System.Text;
+using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GameInfoTools.Core;
 using GameInfoTools.Graphics;
+using GameInfoTools.UI.Services;
 
 namespace GameInfoTools.UI.ViewModels;
 
@@ -233,6 +236,87 @@ public partial class ChrEditorViewModel : ViewModelBase {
 			for (int x = 0; x < 8; x++)
 				result[x, 7 - y] = tile[y, x];
 		return result;
+	}
+
+	[RelayCommand]
+	private async Task ExportTileset(Window? window) {
+		if (window is null || _chrEditor is null) {
+			StatusText = "Unable to export";
+			return;
+		}
+
+		var dialogService = FileDialogService.FromWindow(window);
+		var path = await dialogService.SaveFileAsync(
+			"Export Tileset",
+			".png",
+			$"tileset_bank{SelectedBank:D2}.png",
+			FileDialogService.PngFiles,
+			FileDialogService.AllFiles
+		);
+
+		if (path is null) return;
+
+		try {
+			// Export current bank to raw pixel data (16x16 tiles = 128x128 pixels)
+			int tilesPerRow = 16;
+			int tilesPerColumn = 16;
+			int imageWidth = tilesPerRow * 8;
+			int imageHeight = tilesPerColumn * 8;
+
+			var pixels = new byte[imageWidth * imageHeight];
+
+			int startTile = SelectedBank * ChrEditor.TilesPerBank;
+			int endTile = Math.Min(startTile + ChrEditor.TilesPerBank, TileCount);
+
+			for (int tileIdx = startTile; tileIdx < endTile; tileIdx++) {
+				var tile = _chrEditor.GetTile(tileIdx);
+				int localIdx = tileIdx - startTile;
+				int tileX = localIdx % tilesPerRow;
+				int tileY = localIdx / tilesPerRow;
+
+				for (int y = 0; y < 8; y++) {
+					for (int x = 0; x < 8; x++) {
+						int px = (tileX * 8) + x;
+						int py = (tileY * 8) + y;
+						pixels[(py * imageWidth) + px] = (byte)(tile[y, x] * 85); // Scale 0-3 to grayscale
+					}
+				}
+			}
+
+			// Create PGM file (grayscale, simple format)
+			var pgmPath = Path.ChangeExtension(path, ".pgm");
+			await using var fs = File.Create(pgmPath);
+			await using var sw = new StreamWriter(fs, Encoding.ASCII);
+			await sw.WriteLineAsync("P5"); // PGM binary format
+			await sw.WriteLineAsync($"{imageWidth} {imageHeight}");
+			await sw.WriteLineAsync("255");
+			await sw.FlushAsync();
+			await fs.WriteAsync(pixels);
+
+			StatusText = $"Exported tileset to {Path.GetFileName(pgmPath)}";
+		} catch (Exception ex) {
+			StatusText = $"Export error: {ex.Message}";
+		}
+	}
+
+	[RelayCommand]
+	private async Task ImportTileset(Window? window) {
+		if (window is null || _chrEditor is null) {
+			StatusText = "Unable to import";
+			return;
+		}
+
+		var dialogService = FileDialogService.FromWindow(window);
+		var path = await dialogService.OpenFileAsync(
+			"Import Tileset",
+			FileDialogService.PngFiles,
+			FileDialogService.AllFiles
+		);
+
+		if (path is null) return;
+
+		StatusText = $"Import from {Path.GetFileName(path)} - not yet fully implemented";
+		// TODO: Implement actual import when we have proper image loading
 	}
 }
 

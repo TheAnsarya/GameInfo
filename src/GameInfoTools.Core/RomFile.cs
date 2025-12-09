@@ -50,6 +50,15 @@ public class RomFile : IDisposable {
 	}
 
 	/// <summary>
+	/// Load ROM data directly from a byte array (useful for testing).
+	/// </summary>
+	public void LoadFromBytes(byte[] data, string? path = null) {
+		FilePath = path ?? "memory://rom";
+		Data = data;
+		Header = DetectHeader();
+	}
+
+	/// <summary>
 	/// Save ROM to file.
 	/// </summary>
 	public async Task SaveAsync(string? path = null, CancellationToken cancellationToken = default) {
