@@ -1,17 +1,14 @@
-using Spectre.Console;
 using GameInfoTools.Core;
+using Spectre.Console;
 
 namespace GameInfoTools.Cli;
 
 /// <summary>
 /// Assembly and disassembly related commands.
 /// </summary>
-public static class AsmCommands
-{
-	public static void Disassemble(FileInfo romFile, string outputPath, SystemType system)
-	{
-		if (!romFile.Exists)
-		{
+public static class AsmCommands {
+	public static void Disassemble(FileInfo romFile, string outputPath, SystemType system) {
+		if (!romFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Error: ROM file not found: {romFile.FullName}[/]");
 			return;
 		}
@@ -21,8 +18,7 @@ public static class AsmCommands
 		using var rom = new RomFile();
 		rom.Load(romFile.FullName);
 
-		switch (system)
-		{
+		switch (system) {
 			case SystemType.Nes:
 				Disassemble6502(rom, outputPath);
 				break;
@@ -46,8 +42,7 @@ public static class AsmCommands
 		}
 	}
 
-	private static void Disassemble6502(RomFile rom, string outputPath)
-	{
+	private static void Disassemble6502(RomFile rom, string outputPath) {
 		AnsiConsole.MarkupLine("[cyan]6502/NES Disassembly[/]");
 
 		var table = new Table()
@@ -71,8 +66,7 @@ public static class AsmCommands
 
 		// Create output directory
 		var outDir = Path.GetDirectoryName(outputPath);
-		if (!string.IsNullOrEmpty(outDir))
-		{
+		if (!string.IsNullOrEmpty(outDir)) {
 			Directory.CreateDirectory(outDir);
 		}
 
@@ -80,8 +74,7 @@ public static class AsmCommands
 		AnsiConsole.MarkupLine($"[grey]Output would be written to: {outputPath}[/]");
 	}
 
-	private static void Disassemble65816(RomFile rom, string outputPath)
-	{
+	private static void Disassemble65816(RomFile rom, string outputPath) {
 		AnsiConsole.MarkupLine("[cyan]65816/SNES Disassembly[/]");
 
 		var table = new Table()
@@ -101,8 +94,7 @@ public static class AsmCommands
 		AnsiConsole.MarkupLine($"[yellow]65816 disassembly requires tracking processor state (8/16-bit mode)[/]");
 	}
 
-	private static void DisassembleGbZ80(RomFile rom, string outputPath)
-	{
+	private static void DisassembleGbZ80(RomFile rom, string outputPath) {
 		AnsiConsole.MarkupLine("[cyan]Game Boy Z80 Disassembly[/]");
 
 		var table = new Table()
@@ -120,8 +112,7 @@ public static class AsmCommands
 		AnsiConsole.Write(table);
 	}
 
-	private static void DisassembleArm(RomFile rom, string outputPath)
-	{
+	private static void DisassembleArm(RomFile rom, string outputPath) {
 		AnsiConsole.MarkupLine("[cyan]ARM/Thumb Disassembly (GBA)[/]");
 
 		var table = new Table()
@@ -137,10 +128,8 @@ public static class AsmCommands
 		AnsiConsole.Write(table);
 	}
 
-	public static void Labels(FileInfo labelFile, string operation)
-	{
-		switch (operation.ToLowerInvariant())
-		{
+	public static void Labels(FileInfo labelFile, string operation) {
+		switch (operation.ToLowerInvariant()) {
 			case "import":
 				ImportLabels(labelFile);
 				break;
@@ -160,10 +149,8 @@ public static class AsmCommands
 		}
 	}
 
-	private static void ImportLabels(FileInfo labelFile)
-	{
-		if (!labelFile.Exists)
-		{
+	private static void ImportLabels(FileInfo labelFile) {
+		if (!labelFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Error: Label file not found: {labelFile.FullName}[/]");
 			return;
 		}
@@ -173,8 +160,7 @@ public static class AsmCommands
 		var lines = File.ReadAllLines(labelFile.FullName);
 		int labelCount = 0;
 
-		foreach (var line in lines)
-		{
+		foreach (var line in lines) {
 			if (string.IsNullOrWhiteSpace(line) || line.StartsWith(";") || line.StartsWith("#"))
 				continue;
 
@@ -184,24 +170,20 @@ public static class AsmCommands
 		AnsiConsole.MarkupLine($"[green]Found {labelCount} labels[/]");
 	}
 
-	private static void ExportLabels(FileInfo labelFile)
-	{
+	private static void ExportLabels(FileInfo labelFile) {
 		AnsiConsole.MarkupLine($"[cyan]Exporting labels to {labelFile.FullName}...[/]");
 		AnsiConsole.MarkupLine("[yellow]Label export requires an existing project database[/]");
 	}
 
-	private static void MergeLabels(FileInfo labelFile)
-	{
+	private static void MergeLabels(FileInfo labelFile) {
 		AnsiConsole.MarkupLine($"[cyan]Merging labels from {labelFile.Name}...[/]");
 		AnsiConsole.MarkupLine("[yellow]Merge will combine with existing labels, keeping most specific[/]");
 	}
 
-	public static void ShowOpcodes(SystemType system)
-	{
+	public static void ShowOpcodes(SystemType system) {
 		AnsiConsole.MarkupLine($"[cyan]Opcode Reference for {system}[/]");
 
-		switch (system)
-		{
+		switch (system) {
 			case SystemType.Nes:
 				Show6502Opcodes();
 				break;
@@ -221,8 +203,7 @@ public static class AsmCommands
 		}
 	}
 
-	private static void Show6502Opcodes()
-	{
+	private static void Show6502Opcodes() {
 		var table = new Table()
 			.Border(TableBorder.Rounded)
 			.Title("[cyan]6502 Common Opcodes[/]")
@@ -254,8 +235,7 @@ public static class AsmCommands
 		AnsiConsole.Write(table);
 	}
 
-	private static void Show65816Opcodes()
-	{
+	private static void Show65816Opcodes() {
 		var table = new Table()
 			.Border(TableBorder.Rounded)
 			.Title("[cyan]65816 Extended Opcodes[/]")
@@ -274,8 +254,7 @@ public static class AsmCommands
 		AnsiConsole.Write(table);
 	}
 
-	private static void ShowGbOpcodes()
-	{
+	private static void ShowGbOpcodes() {
 		var table = new Table()
 			.Border(TableBorder.Rounded)
 			.Title("[cyan]Game Boy Z80 Common Opcodes[/]")

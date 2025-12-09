@@ -6,11 +6,9 @@ namespace GameInfoTools.Tests;
 /// <summary>
 /// Tests for PointerTable class.
 /// </summary>
-public class PointerTableTests
-{
+public class PointerTableTests {
 	[Fact]
-	public void Read_Absolute16_ParsesCorrectly()
-	{
+	public void Read_Absolute16_ParsesCorrectly() {
 		// Arrange: 3 little-endian 16-bit pointers
 		byte[] data =
 		[
@@ -30,8 +28,7 @@ public class PointerTableTests
 	}
 
 	[Fact]
-	public void Read_Absolute24_ParsesCorrectly()
-	{
+	public void Read_Absolute24_ParsesCorrectly() {
 		// Arrange: 24-bit pointer (SNES style)
 		byte[] data =
 		[
@@ -47,8 +44,7 @@ public class PointerTableTests
 	}
 
 	[Fact]
-	public void Read_Relative8_ParsesCorrectly()
-	{
+	public void Read_Relative8_ParsesCorrectly() {
 		// Arrange: 8-bit relative offsets
 		byte[] data = [0x10, 0x20, 0x30];
 
@@ -63,8 +59,7 @@ public class PointerTableTests
 	}
 
 	[Fact]
-	public void Read_BankOffset_ParsesCorrectly()
-	{
+	public void Read_BankOffset_ParsesCorrectly() {
 		// Arrange: Bank byte + 16-bit offset
 		byte[] data = [0x02, 0x00, 0x80];  // Bank $02, offset $8000
 
@@ -77,8 +72,7 @@ public class PointerTableTests
 	}
 
 	[Fact]
-	public void Read_WithOffset_StartsAtCorrectPosition()
-	{
+	public void Read_WithOffset_StartsAtCorrectPosition() {
 		// Arrange
 		byte[] data =
 		[
@@ -97,8 +91,7 @@ public class PointerTableTests
 	}
 
 	[Fact]
-	public void DetectTable_ValidPointerTable_ReturnsTable()
-	{
+	public void DetectTable_ValidPointerTable_ReturnsTable() {
 		// Arrange: Valid NES pointer table ($8000-$FFFF range)
 		byte[] data =
 		[
@@ -117,8 +110,7 @@ public class PointerTableTests
 	}
 
 	[Fact]
-	public void DetectTable_InvalidData_ReturnsNull()
-	{
+	public void DetectTable_InvalidData_ReturnsNull() {
 		// Arrange: Random data that doesn't look like pointers
 		byte[] data = [0x01, 0x02, 0x03, 0x04];
 
@@ -130,8 +122,7 @@ public class PointerTableTests
 	}
 
 	[Fact]
-	public void DetectTable_TooShort_ReturnsNull()
-	{
+	public void DetectTable_TooShort_ReturnsNull() {
 		// Arrange: Data too short
 		byte[] data = [0x00, 0x80];
 
@@ -143,8 +134,7 @@ public class PointerTableTests
 	}
 
 	[Fact]
-	public void Read_RecordsCorrectIndex()
-	{
+	public void Read_RecordsCorrectIndex() {
 		// Arrange
 		byte[] data =
 		[
@@ -163,8 +153,7 @@ public class PointerTableTests
 	}
 
 	[Fact]
-	public void DefaultFormat_IsLittleEndian()
-	{
+	public void DefaultFormat_IsLittleEndian() {
 		// Arrange & Act
 		var table = new PointerTable();
 
@@ -174,8 +163,7 @@ public class PointerTableTests
 	}
 
 	[Fact]
-	public void Read_LimitsToAvailableData()
-	{
+	public void Read_LimitsToAvailableData() {
 		// Arrange: Request more entries than available
 		byte[] data = [0x00, 0x80, 0x10, 0x80];  // Only 2 pointers
 

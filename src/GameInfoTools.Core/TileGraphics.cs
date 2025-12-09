@@ -6,13 +6,11 @@ namespace GameInfoTools.Core;
 /// Tile graphics extraction and manipulation.
 /// Supports NES, SNES, Game Boy, and GBA tile formats.
 /// </summary>
-public static class TileGraphics
-{
+public static class TileGraphics {
 	/// <summary>
 	/// Tile format/bit depth options.
 	/// </summary>
-	public enum TileFormat
-	{
+	public enum TileFormat {
 		Nes2Bpp,        // NES CHR format (2bpp planar)
 		Snes2Bpp,       // SNES 2bpp
 		Snes4Bpp,       // SNES 4bpp
@@ -28,10 +26,8 @@ public static class TileGraphics
 	/// <summary>
 	/// Get bytes per tile for a format.
 	/// </summary>
-	public static int GetBytesPerTile(TileFormat format)
-	{
-		return format switch
-		{
+	public static int GetBytesPerTile(TileFormat format) {
+		return format switch {
 			TileFormat.Linear1Bpp => 8,
 			TileFormat.Nes2Bpp or TileFormat.Gb2Bpp or TileFormat.Snes2Bpp or TileFormat.Linear2Bpp => 16,
 			TileFormat.Snes4Bpp or TileFormat.Gba4Bpp or TileFormat.Linear4Bpp => 32,
@@ -43,10 +39,8 @@ public static class TileGraphics
 	/// <summary>
 	/// Get colors per tile for a format.
 	/// </summary>
-	public static int GetColorsPerTile(TileFormat format)
-	{
-		return format switch
-		{
+	public static int GetColorsPerTile(TileFormat format) {
+		return format switch {
 			TileFormat.Linear1Bpp => 2,
 			TileFormat.Nes2Bpp or TileFormat.Gb2Bpp or TileFormat.Snes2Bpp or TileFormat.Linear2Bpp => 4,
 			TileFormat.Snes4Bpp or TileFormat.Gba4Bpp or TileFormat.Linear4Bpp => 16,
@@ -58,12 +52,10 @@ public static class TileGraphics
 	/// <summary>
 	/// Decode a single 8x8 tile to indexed pixel data.
 	/// </summary>
-	public static byte[,] DecodeTile(byte[] data, int offset, TileFormat format)
-	{
+	public static byte[,] DecodeTile(byte[] data, int offset, TileFormat format) {
 		var tile = new byte[8, 8];
 
-		switch (format)
-		{
+		switch (format) {
 			case TileFormat.Nes2Bpp:
 			case TileFormat.Gb2Bpp:
 				DecodeNesTile(data, offset, tile);
@@ -97,17 +89,14 @@ public static class TileGraphics
 		return tile;
 	}
 
-	private static void DecodeNesTile(byte[] data, int offset, byte[,] tile)
-	{
+	private static void DecodeNesTile(byte[] data, int offset, byte[,] tile) {
 		// NES/GB 2bpp planar format
 		// 8 bytes for bit plane 0, 8 bytes for bit plane 1
-		for (int y = 0; y < 8; y++)
-		{
+		for (int y = 0; y < 8; y++) {
 			byte plane0 = offset + y < data.Length ? data[offset + y] : (byte)0;
 			byte plane1 = offset + y + 8 < data.Length ? data[offset + y + 8] : (byte)0;
 
-			for (int x = 0; x < 8; x++)
-			{
+			for (int x = 0; x < 8; x++) {
 				int bit = 7 - x;
 				int color = ((plane0 >> bit) & 1) | (((plane1 >> bit) & 1) << 1);
 				tile[y, x] = (byte)color;
@@ -115,16 +104,13 @@ public static class TileGraphics
 		}
 	}
 
-	private static void DecodeSnes2BppTile(byte[] data, int offset, byte[,] tile)
-	{
+	private static void DecodeSnes2BppTile(byte[] data, int offset, byte[,] tile) {
 		// SNES 2bpp: interleaved bitplanes
-		for (int y = 0; y < 8; y++)
-		{
+		for (int y = 0; y < 8; y++) {
 			byte plane0 = offset + y * 2 < data.Length ? data[offset + y * 2] : (byte)0;
 			byte plane1 = offset + y * 2 + 1 < data.Length ? data[offset + y * 2 + 1] : (byte)0;
 
-			for (int x = 0; x < 8; x++)
-			{
+			for (int x = 0; x < 8; x++) {
 				int bit = 7 - x;
 				int color = ((plane0 >> bit) & 1) | (((plane1 >> bit) & 1) << 1);
 				tile[y, x] = (byte)color;
@@ -132,18 +118,15 @@ public static class TileGraphics
 		}
 	}
 
-	private static void DecodeSnes4BppTile(byte[] data, int offset, byte[,] tile)
-	{
+	private static void DecodeSnes4BppTile(byte[] data, int offset, byte[,] tile) {
 		// SNES 4bpp: two sets of interleaved bitplanes
-		for (int y = 0; y < 8; y++)
-		{
+		for (int y = 0; y < 8; y++) {
 			byte plane0 = offset + y * 2 < data.Length ? data[offset + y * 2] : (byte)0;
 			byte plane1 = offset + y * 2 + 1 < data.Length ? data[offset + y * 2 + 1] : (byte)0;
 			byte plane2 = offset + 16 + y * 2 < data.Length ? data[offset + 16 + y * 2] : (byte)0;
 			byte plane3 = offset + 16 + y * 2 + 1 < data.Length ? data[offset + 16 + y * 2 + 1] : (byte)0;
 
-			for (int x = 0; x < 8; x++)
-			{
+			for (int x = 0; x < 8; x++) {
 				int bit = 7 - x;
 				int color = ((plane0 >> bit) & 1) |
 							(((plane1 >> bit) & 1) << 1) |
@@ -154,14 +137,11 @@ public static class TileGraphics
 		}
 	}
 
-	private static void DecodeGba4BppTile(byte[] data, int offset, byte[,] tile)
-	{
+	private static void DecodeGba4BppTile(byte[] data, int offset, byte[,] tile) {
 		// GBA 4bpp: linear nibbles
 		int idx = 0;
-		for (int y = 0; y < 8; y++)
-		{
-			for (int x = 0; x < 8; x += 2)
-			{
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x += 2) {
 				byte b = offset + idx < data.Length ? data[offset + idx] : (byte)0;
 				tile[y, x] = (byte)(b & 0x0f);
 				tile[y, x + 1] = (byte)((b >> 4) & 0x0f);
@@ -170,27 +150,21 @@ public static class TileGraphics
 		}
 	}
 
-	private static void DecodeGba8BppTile(byte[] data, int offset, byte[,] tile)
-	{
+	private static void DecodeGba8BppTile(byte[] data, int offset, byte[,] tile) {
 		// GBA 8bpp: one byte per pixel
 		int idx = 0;
-		for (int y = 0; y < 8; y++)
-		{
-			for (int x = 0; x < 8; x++)
-			{
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
 				tile[y, x] = offset + idx < data.Length ? data[offset + idx] : (byte)0;
 				idx++;
 			}
 		}
 	}
 
-	private static void DecodeLinear1BppTile(byte[] data, int offset, byte[,] tile)
-	{
-		for (int y = 0; y < 8; y++)
-		{
+	private static void DecodeLinear1BppTile(byte[] data, int offset, byte[,] tile) {
+		for (int y = 0; y < 8; y++) {
 			byte row = offset + y < data.Length ? data[offset + y] : (byte)0;
-			for (int x = 0; x < 8; x++)
-			{
+			for (int x = 0; x < 8; x++) {
 				tile[y, x] = (byte)((row >> (7 - x)) & 1);
 			}
 		}
@@ -199,13 +173,11 @@ public static class TileGraphics
 	/// <summary>
 	/// Encode tile back to ROM format.
 	/// </summary>
-	public static byte[] EncodeTile(byte[,] tile, TileFormat format)
-	{
+	public static byte[] EncodeTile(byte[,] tile, TileFormat format) {
 		int size = GetBytesPerTile(format);
 		var data = new byte[size];
 
-		switch (format)
-		{
+		switch (format) {
 			case TileFormat.Nes2Bpp:
 			case TileFormat.Gb2Bpp:
 				EncodeNesTile(tile, data);
@@ -231,15 +203,12 @@ public static class TileGraphics
 		return data;
 	}
 
-	private static void EncodeNesTile(byte[,] tile, byte[] data)
-	{
-		for (int y = 0; y < 8; y++)
-		{
+	private static void EncodeNesTile(byte[,] tile, byte[] data) {
+		for (int y = 0; y < 8; y++) {
 			byte plane0 = 0;
 			byte plane1 = 0;
 
-			for (int x = 0; x < 8; x++)
-			{
+			for (int x = 0; x < 8; x++) {
 				int bit = 7 - x;
 				int color = tile[y, x];
 				plane0 |= (byte)(((color >> 0) & 1) << bit);
@@ -251,15 +220,12 @@ public static class TileGraphics
 		}
 	}
 
-	private static void EncodeSnes2BppTile(byte[,] tile, byte[] data)
-	{
-		for (int y = 0; y < 8; y++)
-		{
+	private static void EncodeSnes2BppTile(byte[,] tile, byte[] data) {
+		for (int y = 0; y < 8; y++) {
 			byte plane0 = 0;
 			byte plane1 = 0;
 
-			for (int x = 0; x < 8; x++)
-			{
+			for (int x = 0; x < 8; x++) {
 				int bit = 7 - x;
 				int color = tile[y, x];
 				plane0 |= (byte)(((color >> 0) & 1) << bit);
@@ -271,14 +237,11 @@ public static class TileGraphics
 		}
 	}
 
-	private static void EncodeSnes4BppTile(byte[,] tile, byte[] data)
-	{
-		for (int y = 0; y < 8; y++)
-		{
+	private static void EncodeSnes4BppTile(byte[,] tile, byte[] data) {
+		for (int y = 0; y < 8; y++) {
 			byte plane0 = 0, plane1 = 0, plane2 = 0, plane3 = 0;
 
-			for (int x = 0; x < 8; x++)
-			{
+			for (int x = 0; x < 8; x++) {
 				int bit = 7 - x;
 				int color = tile[y, x];
 				plane0 |= (byte)(((color >> 0) & 1) << bit);
@@ -294,13 +257,10 @@ public static class TileGraphics
 		}
 	}
 
-	private static void EncodeGba4BppTile(byte[,] tile, byte[] data)
-	{
+	private static void EncodeGba4BppTile(byte[,] tile, byte[] data) {
 		int idx = 0;
-		for (int y = 0; y < 8; y++)
-		{
-			for (int x = 0; x < 8; x += 2)
-			{
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x += 2) {
 				data[idx] = (byte)((tile[y, x] & 0x0f) | ((tile[y, x + 1] & 0x0f) << 4));
 				idx++;
 			}
@@ -310,13 +270,11 @@ public static class TileGraphics
 	/// <summary>
 	/// Extract multiple tiles from ROM data.
 	/// </summary>
-	public static List<byte[,]> ExtractTiles(byte[] data, int offset, int count, TileFormat format)
-	{
+	public static List<byte[,]> ExtractTiles(byte[] data, int offset, int count, TileFormat format) {
 		var tiles = new List<byte[,]>();
 		int bytesPerTile = GetBytesPerTile(format);
 
-		for (int i = 0; i < count && offset + bytesPerTile <= data.Length; i++)
-		{
+		for (int i = 0; i < count && offset + bytesPerTile <= data.Length; i++) {
 			tiles.Add(DecodeTile(data, offset, format));
 			offset += bytesPerTile;
 		}
@@ -327,8 +285,7 @@ public static class TileGraphics
 	/// <summary>
 	/// Count how many tiles fit in a data range.
 	/// </summary>
-	public static int CountTiles(int dataLength, TileFormat format)
-	{
+	public static int CountTiles(int dataLength, TileFormat format) {
 		return dataLength / GetBytesPerTile(format);
 	}
 }
@@ -336,13 +293,11 @@ public static class TileGraphics
 /// <summary>
 /// Palette handling for retro consoles.
 /// </summary>
-public static class Palette
-{
+public static class Palette {
 	/// <summary>
 	/// Convert NES palette index to RGB color.
 	/// </summary>
-	public static (byte R, byte G, byte B) NesToRgb(byte nesColor)
-	{
+	public static (byte R, byte G, byte B) NesToRgb(byte nesColor) {
 		// Standard NES palette (2C02)
 		var nesPalette = new (byte R, byte G, byte B)[]
 		{
@@ -374,8 +329,7 @@ public static class Palette
 	/// <summary>
 	/// Convert SNES 15-bit color to RGB.
 	/// </summary>
-	public static (byte R, byte G, byte B) SnesColorToRgb(ushort snesColor)
-	{
+	public static (byte R, byte G, byte B) SnesColorToRgb(ushort snesColor) {
 		// SNES: 0BBBBBGG GGGRRRRR
 		int r = (snesColor & 0x1f) << 3;
 		int g = ((snesColor >> 5) & 0x1f) << 3;
@@ -386,16 +340,14 @@ public static class Palette
 	/// <summary>
 	/// Convert RGB to SNES 15-bit color.
 	/// </summary>
-	public static ushort RgbToSnesColor(byte r, byte g, byte b)
-	{
+	public static ushort RgbToSnesColor(byte r, byte g, byte b) {
 		return (ushort)((r >> 3) | ((g >> 3) << 5) | ((b >> 3) << 10));
 	}
 
 	/// <summary>
 	/// Convert GBA 15-bit color to RGB.
 	/// </summary>
-	public static (byte R, byte G, byte B) GbaColorToRgb(ushort gbaColor)
-	{
+	public static (byte R, byte G, byte B) GbaColorToRgb(ushort gbaColor) {
 		// GBA: same as SNES but different byte order in ROM
 		return SnesColorToRgb(gbaColor);
 	}
@@ -403,17 +355,13 @@ public static class Palette
 	/// <summary>
 	/// Convert Game Boy 2-bit color to grayscale RGB.
 	/// </summary>
-	public static (byte R, byte G, byte B) GbColorToRgb(byte gbColor, bool isCgb = false)
-	{
-		if (!isCgb)
-		{
+	public static (byte R, byte G, byte B) GbColorToRgb(byte gbColor, bool isCgb = false) {
+		if (!isCgb) {
 			// Original Game Boy grayscale
 			var shades = new byte[] { 0xff, 0xaa, 0x55, 0x00 };
 			byte shade = shades[gbColor & 3];
 			return (shade, shade, shade);
-		}
-		else
-		{
+		} else {
 			// CGB uses SNES-style 15-bit colors
 			return SnesColorToRgb((ushort)(gbColor & 0x7fff));
 		}
@@ -422,12 +370,10 @@ public static class Palette
 	/// <summary>
 	/// Read a SNES palette from ROM data.
 	/// </summary>
-	public static (byte R, byte G, byte B)[] ReadSnesPalette(byte[] data, int offset, int colorCount)
-	{
+	public static (byte R, byte G, byte B)[] ReadSnesPalette(byte[] data, int offset, int colorCount) {
 		var palette = new (byte R, byte G, byte B)[colorCount];
 
-		for (int i = 0; i < colorCount && offset + 2 <= data.Length; i++)
-		{
+		for (int i = 0; i < colorCount && offset + 2 <= data.Length; i++) {
 			ushort color = (ushort)(data[offset] | (data[offset + 1] << 8));
 			palette[i] = SnesColorToRgb(color);
 			offset += 2;
@@ -439,19 +385,16 @@ public static class Palette
 	/// <summary>
 	/// Read a GBA palette from ROM data.
 	/// </summary>
-	public static (byte R, byte G, byte B)[] ReadGbaPalette(byte[] data, int offset, int colorCount)
-	{
+	public static (byte R, byte G, byte B)[] ReadGbaPalette(byte[] data, int offset, int colorCount) {
 		return ReadSnesPalette(data, offset, colorCount); // Same format
 	}
 
 	/// <summary>
 	/// Write a SNES/GBA palette to byte array.
 	/// </summary>
-	public static byte[] WritePalette((byte R, byte G, byte B)[] palette)
-	{
+	public static byte[] WritePalette((byte R, byte G, byte B)[] palette) {
 		var data = new byte[palette.Length * 2];
-		for (int i = 0; i < palette.Length; i++)
-		{
+		for (int i = 0; i < palette.Length; i++) {
 			ushort color = RgbToSnesColor(palette[i].R, palette[i].G, palette[i].B);
 			data[i * 2] = (byte)(color & 0xff);
 			data[i * 2 + 1] = (byte)((color >> 8) & 0xff);
@@ -462,11 +405,9 @@ public static class Palette
 	/// <summary>
 	/// Generate a grayscale palette.
 	/// </summary>
-	public static (byte R, byte G, byte B)[] CreateGrayscale(int colorCount)
-	{
+	public static (byte R, byte G, byte B)[] CreateGrayscale(int colorCount) {
 		var palette = new (byte R, byte G, byte B)[colorCount];
-		for (int i = 0; i < colorCount; i++)
-		{
+		for (int i = 0; i < colorCount; i++) {
 			byte shade = (byte)(255 * i / (colorCount - 1));
 			palette[i] = (shade, shade, shade);
 		}
@@ -476,8 +417,7 @@ public static class Palette
 	/// <summary>
 	/// Create default NES-style 4-color palette.
 	/// </summary>
-	public static (byte R, byte G, byte B)[] DefaultNesPalette()
-	{
+	public static (byte R, byte G, byte B)[] DefaultNesPalette() {
 		return new (byte R, byte G, byte B)[]
 		{
 			NesToRgb(0x0f), // Black

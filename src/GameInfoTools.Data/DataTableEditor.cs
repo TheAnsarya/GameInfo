@@ -6,13 +6,11 @@ namespace GameInfoTools.Data;
 /// <summary>
 /// Generic data table extraction and editing.
 /// </summary>
-public class DataTableEditor
-{
+public class DataTableEditor {
 	/// <summary>
 	/// Field type in a data table.
 	/// </summary>
-	public enum FieldType
-	{
+	public enum FieldType {
 		Byte,
 		Word,
 		Long,          // 24-bit
@@ -31,8 +29,7 @@ public class DataTableEditor
 	/// <summary>
 	/// Table definition.
 	/// </summary>
-	public class TableDef
-	{
+	public class TableDef {
 		public string Name { get; set; } = "";
 		public int BaseOffset { get; set; }
 		public int RecordSize { get; set; }
@@ -47,24 +44,20 @@ public class DataTableEditor
 
 	private readonly byte[] _data;
 
-	public DataTableEditor(byte[] data)
-	{
+	public DataTableEditor(byte[] data) {
 		_data = data;
 	}
 
 	/// <summary>
 	/// Read a single field value.
 	/// </summary>
-	public object ReadField(int offset, FieldDef field)
-	{
+	public object ReadField(int offset, FieldDef field) {
 		int pos = offset + field.Offset;
-		if (pos >= _data.Length)
-		{
+		if (pos >= _data.Length) {
 			return 0;
 		}
 
-		return field.Type switch
-		{
+		return field.Type switch {
 			FieldType.Byte => _data[pos],
 			FieldType.Word => ReadWord(pos),
 			FieldType.Long => ReadLong(pos),
@@ -80,16 +73,13 @@ public class DataTableEditor
 	/// <summary>
 	/// Write a field value.
 	/// </summary>
-	public void WriteField(int offset, FieldDef field, object value)
-	{
+	public void WriteField(int offset, FieldDef field, object value) {
 		int pos = offset + field.Offset;
-		if (pos >= _data.Length)
-		{
+		if (pos >= _data.Length) {
 			return;
 		}
 
-		switch (field.Type)
-		{
+		switch (field.Type) {
 			case FieldType.Byte:
 			case FieldType.BitFlags:
 				_data[pos] = Convert.ToByte(value);
@@ -121,13 +111,11 @@ public class DataTableEditor
 	/// <summary>
 	/// Read an entire record.
 	/// </summary>
-	public Dictionary<string, object> ReadRecord(TableDef table, int index)
-	{
+	public Dictionary<string, object> ReadRecord(TableDef table, int index) {
 		var record = new Dictionary<string, object>();
 		int offset = table.BaseOffset + index * table.RecordSize;
 
-		foreach (var field in table.Fields)
-		{
+		foreach (var field in table.Fields) {
 			record[field.Name] = ReadField(offset, field);
 		}
 
@@ -137,14 +125,11 @@ public class DataTableEditor
 	/// <summary>
 	/// Write an entire record.
 	/// </summary>
-	public void WriteRecord(TableDef table, int index, Dictionary<string, object> record)
-	{
+	public void WriteRecord(TableDef table, int index, Dictionary<string, object> record) {
 		int offset = table.BaseOffset + index * table.RecordSize;
 
-		foreach (var field in table.Fields)
-		{
-			if (record.TryGetValue(field.Name, out var value))
-			{
+		foreach (var field in table.Fields) {
+			if (record.TryGetValue(field.Name, out var value)) {
 				WriteField(offset, field, value);
 			}
 		}
@@ -153,12 +138,10 @@ public class DataTableEditor
 	/// <summary>
 	/// Read all records from a table.
 	/// </summary>
-	public List<Dictionary<string, object>> ReadAllRecords(TableDef table)
-	{
+	public List<Dictionary<string, object>> ReadAllRecords(TableDef table) {
 		var records = new List<Dictionary<string, object>>();
 
-		for (int i = 0; i < table.RecordCount; i++)
-		{
+		for (int i = 0; i < table.RecordCount; i++) {
 			records.Add(ReadRecord(table, i));
 		}
 
@@ -168,11 +151,9 @@ public class DataTableEditor
 	/// <summary>
 	/// Export table to JSON.
 	/// </summary>
-	public string ExportToJson(TableDef table, bool prettyPrint = true)
-	{
+	public string ExportToJson(TableDef table, bool prettyPrint = true) {
 		var records = ReadAllRecords(table);
-		var options = new JsonSerializerOptions
-		{
+		var options = new JsonSerializerOptions {
 			WriteIndented = prettyPrint
 		};
 		return JsonSerializer.Serialize(records, options);
@@ -181,41 +162,33 @@ public class DataTableEditor
 	/// <summary>
 	/// Import table from JSON.
 	/// </summary>
-	public void ImportFromJson(TableDef table, string json)
-	{
+	public void ImportFromJson(TableDef table, string json) {
 		var records = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(json);
-		if (records == null)
-		{
+		if (records == null) {
 			return;
 		}
 
-		for (int i = 0; i < Math.Min(records.Count, table.RecordCount); i++)
-		{
+		for (int i = 0; i < Math.Min(records.Count, table.RecordCount); i++) {
 			// Convert JsonElement values to proper types
 			var convertedRecord = ConvertJsonRecord(records[i], table);
 			WriteRecord(table, i, convertedRecord);
 		}
 	}
 
-	private Dictionary<string, object> ConvertJsonRecord(Dictionary<string, object> record, TableDef table)
-	{
+	private Dictionary<string, object> ConvertJsonRecord(Dictionary<string, object> record, TableDef table) {
 		var result = new Dictionary<string, object>();
 
-		foreach (var kvp in record)
-		{
+		foreach (var kvp in record) {
 			var field = table.Fields.FirstOrDefault(f => f.Name == kvp.Key);
-			if (field == null)
-			{
+			if (field == null) {
 				continue;
 			}
 
 			object value = kvp.Value;
 
 			// Handle JsonElement from deserialization
-			if (value is JsonElement element)
-			{
-				value = field.Type switch
-				{
+			if (value is JsonElement element) {
+				value = field.Type switch {
 					FieldType.Byte or FieldType.BitFlags => element.GetByte(),
 					FieldType.Word or FieldType.Pointer => element.GetUInt16(),
 					FieldType.Long => element.GetUInt32(),
@@ -235,8 +208,7 @@ public class DataTableEditor
 	/// <summary>
 	/// Export table to CSV.
 	/// </summary>
-	public string ExportToCsv(TableDef table)
-	{
+	public string ExportToCsv(TableDef table) {
 		var sb = new StringBuilder();
 		var records = ReadAllRecords(table);
 
@@ -244,14 +216,10 @@ public class DataTableEditor
 		sb.AppendLine(string.Join(",", table.Fields.Select(f => f.Name)));
 
 		// Data
-		foreach (var record in records)
-		{
-			var values = table.Fields.Select(f =>
-			{
-				if (record.TryGetValue(f.Name, out var value))
-				{
-					if (f.Type == FieldType.FixedString)
-					{
+		foreach (var record in records) {
+			var values = table.Fields.Select(f => {
+				if (record.TryGetValue(f.Name, out var value)) {
+					if (f.Type == FieldType.FixedString) {
 						return $"\"{value}\"";
 					}
 					return value.ToString() ?? "";
@@ -267,35 +235,29 @@ public class DataTableEditor
 	/// <summary>
 	/// Generate assembly data for table.
 	/// </summary>
-	public string GenerateAsm(TableDef table, string label)
-	{
+	public string GenerateAsm(TableDef table, string label) {
 		var sb = new StringBuilder();
 		sb.AppendLine($"; {table.Name} - {table.RecordCount} entries, {table.RecordSize} bytes each");
 		sb.AppendLine($"{label}:");
 
 		var records = ReadAllRecords(table);
 
-		for (int i = 0; i < records.Count; i++)
-		{
+		for (int i = 0; i < records.Count; i++) {
 			sb.Append($"\t.byte ");
 
 			var values = new List<string>();
 			int offset = table.BaseOffset + i * table.RecordSize;
 
-			for (int b = 0; b < table.RecordSize; b++)
-			{
+			for (int b = 0; b < table.RecordSize; b++) {
 				values.Add($"${_data[offset + b]:x2}");
 			}
 
 			sb.Append(string.Join(", ", values));
 
 			// Add comment with field values
-			var fieldComments = table.Fields.Select(f =>
-			{
-				if (records[i].TryGetValue(f.Name, out var value))
-				{
-					if (f.ValueNames != null && f.ValueNames.TryGetValue(Convert.ToInt32(value), out var name))
-					{
+			var fieldComments = table.Fields.Select(f => {
+				if (records[i].TryGetValue(f.Name, out var value)) {
+					if (f.ValueNames != null && f.ValueNames.TryGetValue(Convert.ToInt32(value), out var name)) {
 						return $"{f.Name}={name}";
 					}
 					return $"{f.Name}={value}";
@@ -309,38 +271,30 @@ public class DataTableEditor
 		return sb.ToString();
 	}
 
-	private int ReadWord(int offset)
-	{
-		if (offset + 1 >= _data.Length)
-		{
+	private int ReadWord(int offset) {
+		if (offset + 1 >= _data.Length) {
 			return 0;
 		}
 		return _data[offset] | (_data[offset + 1] << 8);
 	}
 
-	private void WriteWord(int offset, ushort value)
-	{
-		if (offset + 1 >= _data.Length)
-		{
+	private void WriteWord(int offset, ushort value) {
+		if (offset + 1 >= _data.Length) {
 			return;
 		}
 		_data[offset] = (byte)(value & 0xff);
 		_data[offset + 1] = (byte)((value >> 8) & 0xff);
 	}
 
-	private int ReadLong(int offset)
-	{
-		if (offset + 2 >= _data.Length)
-		{
+	private int ReadLong(int offset) {
+		if (offset + 2 >= _data.Length) {
 			return 0;
 		}
 		return _data[offset] | (_data[offset + 1] << 8) | (_data[offset + 2] << 16);
 	}
 
-	private void WriteLong(int offset, uint value)
-	{
-		if (offset + 2 >= _data.Length)
-		{
+	private void WriteLong(int offset, uint value) {
+		if (offset + 2 >= _data.Length) {
 			return;
 		}
 		_data[offset] = (byte)(value & 0xff);
@@ -348,14 +302,11 @@ public class DataTableEditor
 		_data[offset + 2] = (byte)((value >> 16) & 0xff);
 	}
 
-	private string ReadFixedString(int offset, int length)
-	{
+	private string ReadFixedString(int offset, int length) {
 		var sb = new StringBuilder();
-		for (int i = 0; i < length && offset + i < _data.Length; i++)
-		{
+		for (int i = 0; i < length && offset + i < _data.Length; i++) {
 			byte b = _data[offset + i];
-			if (b == 0)
-			{
+			if (b == 0) {
 				break;
 			}
 			sb.Append((char)b);
@@ -363,10 +314,8 @@ public class DataTableEditor
 		return sb.ToString();
 	}
 
-	private void WriteFixedString(int offset, string value, int length)
-	{
-		for (int i = 0; i < length && offset + i < _data.Length; i++)
-		{
+	private void WriteFixedString(int offset, string value, int length) {
+		for (int i = 0; i < length && offset + i < _data.Length; i++) {
 			_data[offset + i] = i < value.Length ? (byte)value[i] : (byte)0;
 		}
 	}
@@ -375,19 +324,15 @@ public class DataTableEditor
 /// <summary>
 /// Monster/enemy data specific editor.
 /// </summary>
-public class MonsterEditor : DataTableEditor
-{
-	public MonsterEditor(byte[] data) : base(data)
-	{
+public class MonsterEditor : DataTableEditor {
+	public MonsterEditor(byte[] data) : base(data) {
 	}
 
 	/// <summary>
 	/// Create a standard NES Dragon Warrior style monster table definition.
 	/// </summary>
-	public static TableDef CreateDragonWarriorMonsterTable(int baseOffset, int count)
-	{
-		return new TableDef
-		{
+	public static TableDef CreateDragonWarriorMonsterTable(int baseOffset, int count) {
+		return new TableDef {
 			Name = "Monster Stats",
 			BaseOffset = baseOffset,
 			RecordSize = 16,
@@ -413,19 +358,15 @@ public class MonsterEditor : DataTableEditor
 /// <summary>
 /// Item data specific editor.
 /// </summary>
-public class ItemEditor : DataTableEditor
-{
-	public ItemEditor(byte[] data) : base(data)
-	{
+public class ItemEditor : DataTableEditor {
+	public ItemEditor(byte[] data) : base(data) {
 	}
 
 	/// <summary>
 	/// Create a standard RPG item table definition.
 	/// </summary>
-	public static TableDef CreateItemTable(int baseOffset, int count, int recordSize = 8)
-	{
-		return new TableDef
-		{
+	public static TableDef CreateItemTable(int baseOffset, int count, int recordSize = 8) {
+		return new TableDef {
 			Name = "Item Data",
 			BaseOffset = baseOffset,
 			RecordSize = recordSize,

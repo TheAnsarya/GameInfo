@@ -6,15 +6,12 @@ namespace GameInfoTools.Tests;
 /// <summary>
 /// Tests for CompressionDetector functionality.
 /// </summary>
-public class CompressionDetectorAdvancedTests
-{
+public class CompressionDetectorAdvancedTests {
 	[Fact]
-	public void Detect_UncompressedData_ReturnsNone()
-	{
+	public void Detect_UncompressedData_ReturnsNone() {
 		// Random-looking data without compression patterns
 		var data = new byte[100];
-		for (int i = 0; i < data.Length; i++)
-		{
+		for (int i = 0; i < data.Length; i++) {
 			data[i] = (byte)((i * 7 + 13) % 256);
 		}
 
@@ -24,16 +21,14 @@ public class CompressionDetectorAdvancedTests
 	}
 
 	[Fact]
-	public void Detect_InsufficientData_ReturnsNone()
-	{
+	public void Detect_InsufficientData_ReturnsNone() {
 		var data = new byte[] { 0x01, 0x02, 0x03 };
 		var result = CompressionDetector.Detect(data, 0);
 		Assert.Equal(CompressionDetector.CompressionType.None, result.Type);
 	}
 
 	[Fact]
-	public void Detect_NintendoLz_DetectsCorrectly()
-	{
+	public void Detect_NintendoLz_DetectsCorrectly() {
 		// Nintendo LZ header: 0x10 + 24-bit decompressed size
 		var data = new byte[] { 0x10, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
@@ -44,8 +39,7 @@ public class CompressionDetectorAdvancedTests
 	}
 
 	[Fact]
-	public void Detect_ReturnsDescriptiveMessage()
-	{
+	public void Detect_ReturnsDescriptiveMessage() {
 		var data = new byte[100];
 		var result = CompressionDetector.Detect(data, 0);
 
@@ -54,8 +48,7 @@ public class CompressionDetectorAdvancedTests
 	}
 
 	[Fact]
-	public void DetectionResult_HasCorrectOffset()
-	{
+	public void DetectionResult_HasCorrectOffset() {
 		var data = new byte[100];
 		var result = CompressionDetector.Detect(data, 50);
 
@@ -63,8 +56,7 @@ public class CompressionDetectorAdvancedTests
 	}
 
 	[Fact]
-	public void ScanForCompression_ReturnsListOfResults()
-	{
+	public void ScanForCompression_ReturnsListOfResults() {
 		var data = new byte[1000];
 
 		var results = CompressionDetector.ScanForCompression(data);
@@ -73,8 +65,7 @@ public class CompressionDetectorAdvancedTests
 	}
 
 	[Fact]
-	public void ScanForCompression_EmptyData_ReturnsEmpty()
-	{
+	public void ScanForCompression_EmptyData_ReturnsEmpty() {
 		var data = new byte[10]; // Less than minSize
 
 		var results = CompressionDetector.ScanForCompression(data);
@@ -83,8 +74,7 @@ public class CompressionDetectorAdvancedTests
 	}
 
 	[Fact]
-	public void CompressionType_HasExpectedValues()
-	{
+	public void CompressionType_HasExpectedValues() {
 		Assert.True(Enum.IsDefined(typeof(CompressionDetector.CompressionType), CompressionDetector.CompressionType.None));
 		Assert.True(Enum.IsDefined(typeof(CompressionDetector.CompressionType), CompressionDetector.CompressionType.Rle));
 		Assert.True(Enum.IsDefined(typeof(CompressionDetector.CompressionType), CompressionDetector.CompressionType.Lz77));
@@ -94,8 +84,7 @@ public class CompressionDetectorAdvancedTests
 	}
 
 	[Fact]
-	public void DecompressNintendoLz_InvalidHeader_ReturnsNull()
-	{
+	public void DecompressNintendoLz_InvalidHeader_ReturnsNull() {
 		// Not a Nintendo LZ header
 		var data = new byte[] { 0x00, 0x00, 0x00, 0x00 };
 
@@ -105,8 +94,7 @@ public class CompressionDetectorAdvancedTests
 	}
 
 	[Fact]
-	public void DecompressNintendoLz_ValidHeader_ReturnsData()
-	{
+	public void DecompressNintendoLz_ValidHeader_ReturnsData() {
 		// Valid Nintendo LZ: 0x10 + size + literal flags
 		var data = new byte[] {
 			0x10, 0x04, 0x00, 0x00, // Header: type 0x10, size = 4
@@ -121,8 +109,7 @@ public class CompressionDetectorAdvancedTests
 	}
 
 	[Fact]
-	public void DecompressNintendoLz_OffsetOutOfBounds_ReturnsNull()
-	{
+	public void DecompressNintendoLz_OffsetOutOfBounds_ReturnsNull() {
 		var data = new byte[] { 0x10 };
 
 		var result = CompressionDetector.DecompressNintendoLz(data, 0);
@@ -131,8 +118,7 @@ public class CompressionDetectorAdvancedTests
 	}
 
 	[Fact]
-	public void Detect_HighEntropyData_ReturnsResult()
-	{
+	public void Detect_HighEntropyData_ReturnsResult() {
 		// Create high-entropy data (looks random/encrypted)
 		var data = new byte[256];
 		var random = new Random(42);
@@ -146,8 +132,7 @@ public class CompressionDetectorAdvancedTests
 	}
 
 	[Fact]
-	public void DetectionResult_Record_HasAllProperties()
-	{
+	public void DetectionResult_Record_HasAllProperties() {
 		var result = new CompressionDetector.DetectionResult(
 			CompressionDetector.CompressionType.Rle,
 			0.85,

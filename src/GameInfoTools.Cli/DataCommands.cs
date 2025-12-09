@@ -1,17 +1,14 @@
-using Spectre.Console;
 using GameInfoTools.Core;
+using Spectre.Console;
 
 namespace GameInfoTools.Cli;
 
 /// <summary>
 /// Game data export/import commands.
 /// </summary>
-public static class DataCommands
-{
-	public static void Export(FileInfo romFile, string dataType)
-	{
-		if (!romFile.Exists)
-		{
+public static class DataCommands {
+	public static void Export(FileInfo romFile, string dataType) {
+		if (!romFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Error: ROM file not found: {romFile.FullName}[/]");
 			return;
 		}
@@ -21,8 +18,7 @@ public static class DataCommands
 		using var rom = new RomFile();
 		rom.Load(romFile.FullName);
 
-		switch (dataType.ToLowerInvariant())
-		{
+		switch (dataType.ToLowerInvariant()) {
 			case "monsters":
 			case "enemies":
 				ExportMonsters(rom);
@@ -52,8 +48,7 @@ public static class DataCommands
 		}
 	}
 
-	private static void ExportMonsters(RomFile rom)
-	{
+	private static void ExportMonsters(RomFile rom) {
 		AnsiConsole.MarkupLine("[yellow]Monster export requires game-specific configuration[/]");
 		AnsiConsole.MarkupLine("[grey]This tool works best with a JSON schema defining data locations[/]");
 
@@ -76,8 +71,7 @@ public static class DataCommands
 		AnsiConsole.Write(table);
 	}
 
-	private static void ExportItems(RomFile rom)
-	{
+	private static void ExportItems(RomFile rom) {
 		AnsiConsole.MarkupLine("[yellow]Item export requires game-specific configuration[/]");
 
 		var table = new Table()
@@ -96,8 +90,7 @@ public static class DataCommands
 		AnsiConsole.Write(table);
 	}
 
-	private static void ExportSpells(RomFile rom)
-	{
+	private static void ExportSpells(RomFile rom) {
 		AnsiConsole.MarkupLine("[yellow]Spell export requires game-specific configuration[/]");
 
 		var table = new Table()
@@ -117,8 +110,7 @@ public static class DataCommands
 		AnsiConsole.Write(table);
 	}
 
-	private static void ExportWeapons(RomFile rom)
-	{
+	private static void ExportWeapons(RomFile rom) {
 		AnsiConsole.MarkupLine("[yellow]Weapon export requires game-specific configuration[/]");
 
 		var table = new Table()
@@ -137,8 +129,7 @@ public static class DataCommands
 		AnsiConsole.Write(table);
 	}
 
-	private static void ExportArmor(RomFile rom)
-	{
+	private static void ExportArmor(RomFile rom) {
 		AnsiConsole.MarkupLine("[yellow]Armor export requires game-specific configuration[/]");
 
 		var table = new Table()
@@ -158,16 +149,13 @@ public static class DataCommands
 		AnsiConsole.Write(table);
 	}
 
-	public static void Import(FileInfo romFile, FileInfo jsonFile)
-	{
-		if (!romFile.Exists)
-		{
+	public static void Import(FileInfo romFile, FileInfo jsonFile) {
+		if (!romFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Error: ROM file not found: {romFile.FullName}[/]");
 			return;
 		}
 
-		if (!jsonFile.Exists)
-		{
+		if (!jsonFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Error: JSON file not found: {jsonFile.FullName}[/]");
 			return;
 		}

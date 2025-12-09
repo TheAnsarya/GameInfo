@@ -1,5 +1,5 @@
-using GameInfoTools.Graphics;
 using GameInfoTools.Core;
+using GameInfoTools.Graphics;
 using Xunit;
 
 namespace GameInfoTools.Tests;
@@ -7,23 +7,19 @@ namespace GameInfoTools.Tests;
 /// <summary>
 /// Comprehensive tests for ChrEditor and sprite manipulation.
 /// </summary>
-public class ChrEditorAdvancedTests
-{
+public class ChrEditorAdvancedTests {
 	[Fact]
-	public void TileSize_IsCorrect()
-	{
+	public void TileSize_IsCorrect() {
 		Assert.Equal(16, ChrEditor.TileSize);
 	}
 
 	[Fact]
-	public void TilesPerBank_IsCorrect()
-	{
+	public void TilesPerBank_IsCorrect() {
 		Assert.Equal(512, ChrEditor.TilesPerBank);
 	}
 
 	[Fact]
-	public void Constructor_CalculatesTileCount()
-	{
+	public void Constructor_CalculatesTileCount() {
 		// 64 bytes = 4 tiles
 		var data = new byte[64];
 		var editor = new ChrEditor(data);
@@ -32,8 +28,7 @@ public class ChrEditorAdvancedTests
 	}
 
 	[Fact]
-	public void Constructor_WithOffset_CalculatesTileCount()
-	{
+	public void Constructor_WithOffset_CalculatesTileCount() {
 		var data = new byte[100];
 		var editor = new ChrEditor(data, offset: 16, length: 32);
 
@@ -42,8 +37,7 @@ public class ChrEditorAdvancedTests
 	}
 
 	[Fact]
-	public void BankCount_CalculatesCorrectly()
-	{
+	public void BankCount_CalculatesCorrectly() {
 		// 512 tiles = 1 bank
 		var data = new byte[512 * 16];
 		var editor = new ChrEditor(data);
@@ -52,8 +46,7 @@ public class ChrEditorAdvancedTests
 	}
 
 	[Fact]
-	public void BankCount_RoundsUp()
-	{
+	public void BankCount_RoundsUp() {
 		// 600 tiles = 2 banks (rounds up from 1.17)
 		var data = new byte[600 * 16];
 		var editor = new ChrEditor(data);
@@ -62,8 +55,7 @@ public class ChrEditorAdvancedTests
 	}
 
 	[Fact]
-	public void GetTile_ReturnsCorrectDimensions()
-	{
+	public void GetTile_ReturnsCorrectDimensions() {
 		var data = new byte[16];
 		var editor = new ChrEditor(data);
 
@@ -74,8 +66,7 @@ public class ChrEditorAdvancedTests
 	}
 
 	[Fact]
-	public void GetTile_ThrowsOnInvalidIndex()
-	{
+	public void GetTile_ThrowsOnInvalidIndex() {
 		var data = new byte[16];
 		var editor = new ChrEditor(data);
 
@@ -84,8 +75,7 @@ public class ChrEditorAdvancedTests
 	}
 
 	[Fact]
-	public void SetTile_AndGetTile_RoundTrip()
-	{
+	public void SetTile_AndGetTile_RoundTrip() {
 		var data = new byte[16];
 		var editor = new ChrEditor(data);
 
@@ -102,8 +92,7 @@ public class ChrEditorAdvancedTests
 	}
 
 	[Fact]
-	public void SetTile_ThrowsOnInvalidIndex()
-	{
+	public void SetTile_ThrowsOnInvalidIndex() {
 		var data = new byte[16];
 		var editor = new ChrEditor(data);
 		var tile = new byte[8, 8];
@@ -113,11 +102,9 @@ public class ChrEditorAdvancedTests
 	}
 
 	[Fact]
-	public void GetTileBytes_ReturnsCorrectLength()
-	{
+	public void GetTileBytes_ReturnsCorrectLength() {
 		var data = new byte[32];
-		for (int i = 0; i < data.Length; i++)
-		{
+		for (int i = 0; i < data.Length; i++) {
 			data[i] = (byte)i;
 		}
 
@@ -128,26 +115,22 @@ public class ChrEditorAdvancedTests
 	}
 
 	[Fact]
-	public void GetTileBytes_ReturnsCorrectData()
-	{
+	public void GetTileBytes_ReturnsCorrectData() {
 		var data = new byte[32];
-		for (int i = 0; i < 16; i++)
-		{
+		for (int i = 0; i < 16; i++) {
 			data[i] = (byte)(i + 1);
 		}
 
 		var editor = new ChrEditor(data);
 		var bytes = editor.GetTileBytes(0);
 
-		for (int i = 0; i < 16; i++)
-		{
+		for (int i = 0; i < 16; i++) {
 			Assert.Equal((byte)(i + 1), bytes[i]);
 		}
 	}
 
 	[Fact]
-	public void SetTileBytes_ThrowsOnInvalidLength()
-	{
+	public void SetTileBytes_ThrowsOnInvalidLength() {
 		var data = new byte[16];
 		var editor = new ChrEditor(data);
 
@@ -156,8 +139,7 @@ public class ChrEditorAdvancedTests
 	}
 
 	[Fact]
-	public void GetTiles_ReturnsCorrectCount()
-	{
+	public void GetTiles_ReturnsCorrectCount() {
 		var data = new byte[64]; // 4 tiles
 		var editor = new ChrEditor(data);
 
@@ -167,8 +149,7 @@ public class ChrEditorAdvancedTests
 	}
 
 	[Fact]
-	public void GetTiles_RespectsLimit()
-	{
+	public void GetTiles_RespectsLimit() {
 		var data = new byte[32]; // 2 tiles
 		var editor = new ChrEditor(data);
 
@@ -179,8 +160,7 @@ public class ChrEditorAdvancedTests
 	}
 
 	[Fact]
-	public void ExportToGrid_ReturnsCorrectDimensions()
-	{
+	public void ExportToGrid_ReturnsCorrectDimensions() {
 		var data = new byte[64]; // 4 tiles
 		var editor = new ChrEditor(data);
 
@@ -192,8 +172,7 @@ public class ChrEditorAdvancedTests
 	}
 
 	[Fact]
-	public void ExtractBank_ReturnsCorrectSize()
-	{
+	public void ExtractBank_ReturnsCorrectSize() {
 		var data = new byte[1024 * 16]; // More than 1 bank
 		var editor = new ChrEditor(data);
 
@@ -204,8 +183,7 @@ public class ChrEditorAdvancedTests
 	}
 
 	[Fact]
-	public void FlipHorizontal_FlipsCorrectly()
-	{
+	public void FlipHorizontal_FlipsCorrectly() {
 		var tile = new byte[8, 8];
 		tile[0, 0] = 1;
 		tile[0, 7] = 2;
@@ -217,8 +195,7 @@ public class ChrEditorAdvancedTests
 	}
 
 	[Fact]
-	public void FlipVertical_FlipsCorrectly()
-	{
+	public void FlipVertical_FlipsCorrectly() {
 		var tile = new byte[8, 8];
 		tile[0, 0] = 1;
 		tile[7, 0] = 2;
@@ -230,8 +207,7 @@ public class ChrEditorAdvancedTests
 	}
 
 	[Fact]
-	public void Rotate90_RotatesCorrectly()
-	{
+	public void Rotate90_RotatesCorrectly() {
 		var tile = new byte[8, 8];
 		tile[0, 0] = 1; // Top-left
 		tile[0, 7] = 2; // Top-right
@@ -252,13 +228,11 @@ public class ChrEditorAdvancedTests
 	}
 
 	[Fact]
-	public void FindDuplicates_FindsDuplicateTiles()
-	{
+	public void FindDuplicates_FindsDuplicateTiles() {
 		// Create data with two identical tiles
 		var data = new byte[48]; // 3 tiles
-		// Tile 0 and tile 2 are the same (all 0xff)
-		for (int i = 0; i < 16; i++)
-		{
+								 // Tile 0 and tile 2 are the same (all 0xff)
+		for (int i = 0; i < 16; i++) {
 			data[i] = 0xff;
 			data[32 + i] = 0xff;
 		}
@@ -274,12 +248,10 @@ public class ChrEditorAdvancedTests
 	}
 
 	[Fact]
-	public void FindDuplicates_ReturnsEmptyWhenNoDuplicates()
-	{
+	public void FindDuplicates_ReturnsEmptyWhenNoDuplicates() {
 		// Create data with all unique tiles
 		var data = new byte[48]; // 3 tiles
-		for (int i = 0; i < data.Length; i++)
-		{
+		for (int i = 0; i < data.Length; i++) {
 			data[i] = (byte)i;
 		}
 
@@ -290,8 +262,7 @@ public class ChrEditorAdvancedTests
 	}
 
 	[Fact]
-	public void ImportFromGrid_AndExportToGrid_RoundTrip()
-	{
+	public void ImportFromGrid_AndExportToGrid_RoundTrip() {
 		var data = new byte[64]; // 4 tiles
 		var editor = new ChrEditor(data);
 

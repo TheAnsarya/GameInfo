@@ -7,17 +7,13 @@ namespace GameInfoTools.Tests;
 /// <summary>
 /// Advanced tests for ScriptCompiler functionality.
 /// </summary>
-public class ScriptCompilerAdvancedTests
-{
-	private TextTable CreateSimpleTable()
-	{
+public class ScriptCompilerAdvancedTests {
+	private TextTable CreateSimpleTable() {
 		var table = new TextTable();
-		for (int i = 0; i < 26; i++)
-		{
+		for (int i = 0; i < 26; i++) {
 			table.AddEntry((byte)(0x80 + i), ((char)('A' + i)).ToString());
 		}
-		for (int i = 0; i < 26; i++)
-		{
+		for (int i = 0; i < 26; i++) {
 			table.AddEntry((byte)(0xa0 + i), ((char)('a' + i)).ToString());
 		}
 		table.AddEntry(0x00, "{END}");
@@ -29,8 +25,7 @@ public class ScriptCompilerAdvancedTests
 	#region Label Tests
 
 	[Fact]
-	public void Compile_LabelDefinition_RegistersLabel()
-	{
+	public void Compile_LabelDefinition_RegistersLabel() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -42,8 +37,7 @@ public class ScriptCompilerAdvancedTests
 	}
 
 	[Fact]
-	public void Compile_MultipleLabels_AllRegistered()
-	{
+	public void Compile_MultipleLabels_AllRegistered() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -65,8 +59,7 @@ Label3:
 	}
 
 	[Fact]
-	public void Compile_LabelAtDifferentPositions_CorrectAddresses()
-	{
+	public void Compile_LabelAtDifferentPositions_CorrectAddresses() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -90,8 +83,7 @@ End:
 	#region Forward Reference Tests
 
 	[Fact]
-	public void Compile_ForwardReference_ResolvesCorrectly()
-	{
+	public void Compile_ForwardReference_ResolvesCorrectly() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -109,8 +101,7 @@ EndLabel:
 	}
 
 	[Fact]
-	public void Compile_BackReference_ResolvesCorrectly()
-	{
+	public void Compile_BackReference_ResolvesCorrectly() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -128,8 +119,7 @@ StartLabel:
 	}
 
 	[Fact]
-	public void Compile_UnresolvedLabel_ReportsError()
-	{
+	public void Compile_UnresolvedLabel_ReportsError() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -144,8 +134,7 @@ StartLabel:
 	#region Directive Tests
 
 	[Fact]
-	public void Compile_ByteDirective_MultipleValues()
-	{
+	public void Compile_ByteDirective_MultipleValues() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -157,8 +146,7 @@ StartLabel:
 	}
 
 	[Fact]
-	public void Compile_DbAlias_WorksLikeByte()
-	{
+	public void Compile_DbAlias_WorksLikeByte() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -169,8 +157,7 @@ StartLabel:
 	}
 
 	[Fact]
-	public void Compile_WordDirective_LittleEndian()
-	{
+	public void Compile_WordDirective_LittleEndian() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -183,8 +170,7 @@ StartLabel:
 	}
 
 	[Fact]
-	public void Compile_WordDirective_MultipleValues()
-	{
+	public void Compile_WordDirective_MultipleValues() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -199,8 +185,7 @@ StartLabel:
 	}
 
 	[Fact]
-	public void Compile_DwAlias_WorksLikeWord()
-	{
+	public void Compile_DwAlias_WorksLikeWord() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -212,8 +197,7 @@ StartLabel:
 	}
 
 	[Fact]
-	public void Compile_EndDirective_AddsTerminator()
-	{
+	public void Compile_EndDirective_AddsTerminator() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -224,8 +208,7 @@ StartLabel:
 	}
 
 	[Fact]
-	public void Compile_NewlineDirective_AddsNewlineFromTable()
-	{
+	public void Compile_NewlineDirective_AddsNewlineFromTable() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -237,8 +220,7 @@ StartLabel:
 	}
 
 	[Fact]
-	public void Compile_BrAlias_AddsNewlineFromTable()
-	{
+	public void Compile_BrAlias_AddsNewlineFromTable() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -250,8 +232,7 @@ StartLabel:
 	}
 
 	[Fact]
-	public void Compile_TextDirective_EncodesString()
-	{
+	public void Compile_TextDirective_EncodesString() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -263,8 +244,7 @@ StartLabel:
 	}
 
 	[Fact]
-	public void Compile_PtrAlias_WorksLikeRef()
-	{
+	public void Compile_PtrAlias_WorksLikeRef() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -280,8 +260,7 @@ Target:
 	}
 
 	[Fact]
-	public void Compile_UnknownDirective_ReportsError()
-	{
+	public void Compile_UnknownDirective_ReportsError() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -296,8 +275,7 @@ Target:
 	#region Comment Tests
 
 	[Fact]
-	public void Compile_SemicolonComment_Ignored()
-	{
+	public void Compile_SemicolonComment_Ignored() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -314,8 +292,7 @@ Target:
 	}
 
 	[Fact]
-	public void Compile_DoubleSlashComment_Ignored()
-	{
+	public void Compile_DoubleSlashComment_Ignored() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -330,8 +307,7 @@ Target:
 	}
 
 	[Fact]
-	public void Compile_EmptyLines_Ignored()
-	{
+	public void Compile_EmptyLines_Ignored() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -353,8 +329,7 @@ Target:
 	#region Hex Format Tests
 
 	[Fact]
-	public void Compile_DollarSignHex_Parses()
-	{
+	public void Compile_DollarSignHex_Parses() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -365,8 +340,7 @@ Target:
 	}
 
 	[Fact]
-	public void Compile_0xPrefixHex_Parses()
-	{
+	public void Compile_0xPrefixHex_Parses() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -377,8 +351,7 @@ Target:
 	}
 
 	[Fact]
-	public void Compile_DecimalValue_Parses()
-	{
+	public void Compile_DecimalValue_Parses() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -389,8 +362,7 @@ Target:
 	}
 
 	[Fact]
-	public void Compile_MixedFormats_AllParse()
-	{
+	public void Compile_MixedFormats_AllParse() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -408,8 +380,7 @@ Target:
 	#region Error Handling Tests
 
 	[Fact]
-	public void Compile_InvalidByteValue_ReportsError()
-	{
+	public void Compile_InvalidByteValue_ReportsError() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -420,8 +391,7 @@ Target:
 	}
 
 	[Fact]
-	public void Compile_InvalidWordValue_ReportsError()
-	{
+	public void Compile_InvalidWordValue_ReportsError() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -432,8 +402,7 @@ Target:
 	}
 
 	[Fact]
-	public void Compile_InvalidDirectiveSyntax_ReportsError()
-	{
+	public void Compile_InvalidDirectiveSyntax_ReportsError() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -447,8 +416,7 @@ Target:
 	#region Complex Script Tests
 
 	[Fact]
-	public void Compile_CompleteScript_ProducesCorrectOutput()
-	{
+	public void Compile_CompleteScript_ProducesCorrectOutput() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -472,8 +440,7 @@ TextStart:
 	}
 
 	[Fact]
-	public void Compile_WordReferenceToLabel_ResolvesCorrectly()
-	{
+	public void Compile_WordReferenceToLabel_ResolvesCorrectly() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -504,8 +471,7 @@ DataEnd:
 	#region Decompile Tests
 
 	[Fact]
-	public void Decompile_SimpleData_ReturnsText()
-	{
+	public void Decompile_SimpleData_ReturnsText() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -520,8 +486,7 @@ DataEnd:
 	}
 
 	[Fact]
-	public void Decompile_WithOffset_StartsAtOffset()
-	{
+	public void Decompile_WithOffset_StartsAtOffset() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -535,8 +500,7 @@ DataEnd:
 	}
 
 	[Fact]
-	public void Decompile_WithLength_LimitsOutput()
-	{
+	public void Decompile_WithLength_LimitsOutput() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -554,8 +518,7 @@ DataEnd:
 	#region CompileResult Tests
 
 	[Fact]
-	public void CompileResult_EmptyScript_HasEmptyData()
-	{
+	public void CompileResult_EmptyScript_HasEmptyData() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -567,8 +530,7 @@ DataEnd:
 	}
 
 	[Fact]
-	public void CompileResult_OnlyComments_HasEmptyData()
-	{
+	public void CompileResult_OnlyComments_HasEmptyData() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 
@@ -579,8 +541,7 @@ DataEnd:
 	}
 
 	[Fact]
-	public void CompileResult_LabelsAreDictionaryCopy()
-	{
+	public void CompileResult_LabelsAreDictionaryCopy() {
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
 

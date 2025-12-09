@@ -2,11 +2,9 @@ using GameInfoTools.Core;
 
 namespace GameInfoTools.Tests;
 
-public class TextTableTests
-{
+public class TextTableTests {
 	[Fact]
-	public void CreateAscii_GeneratesValidTable()
-	{
+	public void CreateAscii_GeneratesValidTable() {
 		var table = TextTable.CreateAscii();
 
 		Assert.Equal("ASCII", table.Name);
@@ -19,8 +17,7 @@ public class TextTableTests
 	}
 
 	[Fact]
-	public void CreateDragonQuest_GeneratesValidTable()
-	{
+	public void CreateDragonQuest_GeneratesValidTable() {
 		var table = TextTable.CreateDragonQuest();
 
 		Assert.Equal("Dragon Quest", table.Name);
@@ -32,8 +29,7 @@ public class TextTableTests
 	}
 
 	[Fact]
-	public void FromString_ParsesTableCorrectly()
-	{
+	public void FromString_ParsesTableCorrectly() {
 		string tblContent = "; Test table\n80=A\n81=B\n82=C\nFF=[END]";
 		var table = TextTable.FromString(tblContent);
 
@@ -44,8 +40,7 @@ public class TextTableTests
 	}
 
 	[Fact]
-	public void Encode_EncodesTextCorrectly()
-	{
+	public void Encode_EncodesTextCorrectly() {
 		var table = TextTable.FromString("80=A\n81=B\n82=C");
 		var encoded = table.Encode("ABC");
 
@@ -56,8 +51,7 @@ public class TextTableTests
 	}
 
 	[Fact]
-	public void Decode_DecodesCorrectly()
-	{
+	public void Decode_DecodesCorrectly() {
 		var table = TextTable.FromString("80=A\n81=B\n82=C");
 		byte[] data = [0x80, 0x81, 0x82];
 		string decoded = table.Decode(data);
@@ -66,8 +60,7 @@ public class TextTableTests
 	}
 
 	[Fact]
-	public void DecodeBlock_StopsAtEndMarker()
-	{
+	public void DecodeBlock_StopsAtEndMarker() {
 		var table = TextTable.FromString("80=A\n81=B\n82=C\nFF=[END]");
 		byte[] data = [0x80, 0x81, 0x82, 0xFF, 0x80, 0x80];
 		var (text, bytesConsumed) = table.DecodeBlock(data, 0, data.Length);
@@ -77,8 +70,7 @@ public class TextTableTests
 	}
 
 	[Fact]
-	public void DecodeBlock_ReturnsEmptyForUnknownFirstByte()
-	{
+	public void DecodeBlock_ReturnsEmptyForUnknownFirstByte() {
 		var table = TextTable.FromString("80=A\n81=B");
 		byte[] data = [0x50, 0x80, 0x81]; // 0x50 is unknown
 		var (text, bytesConsumed) = table.DecodeBlock(data, 0, data.Length);
@@ -88,8 +80,7 @@ public class TextTableTests
 	}
 
 	[Fact]
-	public void DecodeUntil_StopsAtSpecifiedMarker()
-	{
+	public void DecodeUntil_StopsAtSpecifiedMarker() {
 		var table = TextTable.FromString("80=H\n81=i\n82=!\nFE=[STOP]");
 		byte[] data = [0x80, 0x81, 0x82, 0xFE, 0x80];
 		string decoded = table.DecodeUntil(data, 0, 0xFE, out int bytesRead);
@@ -99,8 +90,7 @@ public class TextTableTests
 	}
 
 	[Fact]
-	public void Encode_HandlesControlCodes()
-	{
+	public void Encode_HandlesControlCodes() {
 		var table = TextTable.FromString("80=A\nFF=[END]");
 		var encoded = table.Encode("A[END]");
 
@@ -110,8 +100,7 @@ public class TextTableTests
 	}
 
 	[Fact]
-	public void Encode_HandlesHexLiterals()
-	{
+	public void Encode_HandlesHexLiterals() {
 		var table = TextTable.FromString("80=A");
 		var encoded = table.Encode("A[ff]A");
 
@@ -122,8 +111,7 @@ public class TextTableTests
 	}
 
 	[Fact]
-	public void AddEntry_AddsNewMapping()
-	{
+	public void AddEntry_AddsNewMapping() {
 		var table = new TextTable();
 		table.AddEntry(0x42, "X");
 
@@ -132,15 +120,13 @@ public class TextTableTests
 	}
 
 	[Fact]
-	public void GetCharacter_ReturnsNullForUnknown()
-	{
+	public void GetCharacter_ReturnsNullForUnknown() {
 		var table = new TextTable();
 		Assert.Null(table.GetCharacter(0x99));
 	}
 
 	[Fact]
-	public void GetByte_ReturnsNullForUnknown()
-	{
+	public void GetByte_ReturnsNullForUnknown() {
 		var table = new TextTable();
 		Assert.Null(table.GetByte("unknown"));
 	}

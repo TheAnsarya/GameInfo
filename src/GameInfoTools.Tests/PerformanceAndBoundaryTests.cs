@@ -1,5 +1,5 @@
-using GameInfoTools.Core;
 using GameInfoTools.Analysis;
+using GameInfoTools.Core;
 using GameInfoTools.Text;
 using Xunit;
 
@@ -8,11 +8,9 @@ namespace GameInfoTools.Tests;
 /// <summary>
 /// Performance and stress tests for GameInfo tools.
 /// </summary>
-public class PerformanceTests
-{
+public class PerformanceTests {
 	[Fact]
-	public void Checksum_LargeData_CompletesQuickly()
-	{
+	public void Checksum_LargeData_CompletesQuickly() {
 		// Arrange - 1MB of data
 		var data = new byte[1024 * 1024];
 		var rng = new Random(42);
@@ -29,14 +27,12 @@ public class PerformanceTests
 	}
 
 	[Fact]
-	public void TextTable_LargeTable_LoadsQuickly()
-	{
+	public void TextTable_LargeTable_LoadsQuickly() {
 		// Arrange - Create table with 256 entries
 		var table = new TextTable();
 
 		// Act
-		for (int i = 0; i < 256; i++)
-		{
+		for (int i = 0; i < 256; i++) {
 			table.AddEntry((byte)i, $"CHAR_{i:X2}");
 		}
 
@@ -45,12 +41,10 @@ public class PerformanceTests
 	}
 
 	[Fact]
-	public void TextTable_LargeEncode_CompletesQuickly()
-	{
+	public void TextTable_LargeEncode_CompletesQuickly() {
 		// Arrange
 		var table = new TextTable();
-		for (int i = 0; i < 26; i++)
-		{
+		for (int i = 0; i < 26; i++) {
 			table.AddEntry((byte)(0x80 + i), ((char)('A' + i)).ToString());
 		}
 		table.AddEntry(0xff, " ");
@@ -66,14 +60,12 @@ public class PerformanceTests
 	}
 
 	[Fact]
-	public void CrossReferenceDb_ManyReferences_HandlesWell()
-	{
+	public void CrossReferenceDb_ManyReferences_HandlesWell() {
 		// Arrange
 		var db = new CrossReferenceDb();
 
 		// Act - Add 1000 references
-		for (int i = 0; i < 1000; i++)
-		{
+		for (int i = 0; i < 1000; i++) {
 			db.AddRef(0x8000 + i, 0x9000 + (i % 100), CrossReferenceDb.RefType.Call);
 		}
 
@@ -83,12 +75,10 @@ public class PerformanceTests
 	}
 
 	[Fact]
-	public void PointerTable_LargeTable_ParsesCorrectly()
-	{
+	public void PointerTable_LargeTable_ParsesCorrectly() {
 		// Arrange - 256 entry pointer table
 		var data = new byte[512];
-		for (int i = 0; i < 256; i++)
-		{
+		for (int i = 0; i < 256; i++) {
 			int addr = 0x8000 + (i * 0x10);
 			data[i * 2] = (byte)(addr & 0xff);
 			data[i * 2 + 1] = (byte)((addr >> 8) & 0xff);
@@ -102,16 +92,14 @@ public class PerformanceTests
 	}
 
 	[Fact]
-	public void PatternDetector_LargeRom_FindsPatterns()
-	{
+	public void PatternDetector_LargeRom_FindsPatterns() {
 		// Arrange - Create ROM-like data with pointer tables
 		var data = new byte[32768]; // 32KB
 		var rng = new Random(42);
 		rng.NextBytes(data);
 
 		// Insert a valid pointer table
-		for (int i = 0; i < 16; i++)
-		{
+		for (int i = 0; i < 16; i++) {
 			int addr = 0x8000 + (i * 0x100);
 			data[0x100 + i * 2] = (byte)(addr & 0xff);
 			data[0x100 + i * 2 + 1] = (byte)((addr >> 8) & 0xff);
@@ -125,12 +113,10 @@ public class PerformanceTests
 	}
 
 	[Fact]
-	public void AsmFormatter_LargeFile_FormatsQuickly()
-	{
+	public void AsmFormatter_LargeFile_FormatsQuickly() {
 		// Arrange - Generate large ASM content
 		var sb = new System.Text.StringBuilder();
-		for (int i = 0; i < 1000; i++)
-		{
+		for (int i = 0; i < 1000; i++) {
 			sb.AppendLine($"Label_{i:X4}:");
 			sb.AppendLine($"    LDA #${i:X2}");
 			sb.AppendLine($"    STA $10");
@@ -148,11 +134,9 @@ public class PerformanceTests
 	}
 
 	[Fact]
-	public void AddressConverter_ManyConversions_CompletesQuickly()
-	{
+	public void AddressConverter_ManyConversions_CompletesQuickly() {
 		// Act & Assert - Convert 10000 addresses
-		for (int i = 0; i < 10000; i++)
-		{
+		for (int i = 0; i < 10000; i++) {
 			var hex = AddressConverter.ToHex(i);
 			var back = AddressConverter.ParseHex(hex);
 			Assert.Equal(i, back);
@@ -163,11 +147,9 @@ public class PerformanceTests
 /// <summary>
 /// Additional boundary and edge case tests.
 /// </summary>
-public class BoundaryTests
-{
+public class BoundaryTests {
 	[Fact]
-	public void PointerTable_EmptyData_ReturnsEmptyTable()
-	{
+	public void PointerTable_EmptyData_ReturnsEmptyTable() {
 		// Arrange
 		var data = Array.Empty<byte>();
 
@@ -179,8 +161,7 @@ public class BoundaryTests
 	}
 
 	[Fact]
-	public void TextTable_DuplicateEntry_OverwritesPrevious()
-	{
+	public void TextTable_DuplicateEntry_OverwritesPrevious() {
 		// Arrange
 		var table = new TextTable();
 		table.AddEntry(0x80, "A");
@@ -194,8 +175,7 @@ public class BoundaryTests
 	}
 
 	[Fact]
-	public void CrossReferenceDb_Labels_GetSetCorrectly()
-	{
+	public void CrossReferenceDb_Labels_GetSetCorrectly() {
 		// Arrange
 		var db = new CrossReferenceDb();
 
@@ -209,8 +189,7 @@ public class BoundaryTests
 	}
 
 	[Fact]
-	public void CrossReferenceDb_GetCalleesOf_ReturnsDistinct()
-	{
+	public void CrossReferenceDb_GetCalleesOf_ReturnsDistinct() {
 		// Arrange
 		var db = new CrossReferenceDb();
 		db.AddRef(0x8000, 0x9000, CrossReferenceDb.RefType.Call);
@@ -225,8 +204,7 @@ public class BoundaryTests
 	}
 
 	[Fact]
-	public void AsmFormatter_NullInput_Handled()
-	{
+	public void AsmFormatter_NullInput_Handled() {
 		// Arrange
 		var options = new AsmFormatter.FormatOptions();
 
@@ -238,8 +216,7 @@ public class BoundaryTests
 	}
 
 	[Fact]
-	public void Checksum_EmptyData_ReturnsValidResult()
-	{
+	public void Checksum_EmptyData_ReturnsValidResult() {
 		// Arrange
 		var data = Array.Empty<byte>();
 
@@ -254,8 +231,7 @@ public class BoundaryTests
 	}
 
 	[Fact]
-	public void PatternDetector_EmptyData_ReturnsEmpty()
-	{
+	public void PatternDetector_EmptyData_ReturnsEmpty() {
 		// Arrange
 		var data = Array.Empty<byte>();
 
@@ -267,8 +243,7 @@ public class BoundaryTests
 	}
 
 	[Fact]
-	public void CompressionDetector_SmallData_Handles()
-	{
+	public void CompressionDetector_SmallData_Handles() {
 		// Arrange
 		var data = new byte[] { 0x10, 0x00, 0x01, 0x00 };
 
@@ -280,8 +255,7 @@ public class BoundaryTests
 	}
 
 	[Fact]
-	public void ScriptCompiler_EmptyLabels_Tracked()
-	{
+	public void ScriptCompiler_EmptyLabels_Tracked() {
 		// Arrange
 		var table = new TextTable();
 		var compiler = new ScriptCompiler(table);
@@ -298,8 +272,7 @@ End:";
 	}
 
 	[Fact]
-	public void PointerTable_ReadBeyondData_StopsGracefully()
-	{
+	public void PointerTable_ReadBeyondData_StopsGracefully() {
 		// Arrange
 		var data = new byte[] { 0x00, 0x80, 0x10, 0x80 };
 

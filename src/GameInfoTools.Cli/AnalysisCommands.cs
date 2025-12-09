@@ -1,16 +1,14 @@
-using Spectre.Console;
 using GameInfoTools.Core;
+using Spectre.Console;
 
 namespace GameInfoTools.Cli;
 
 /// <summary>
 /// ROM analysis commands.
 /// </summary>
-public static class AnalysisCommands
-{
+public static class AnalysisCommands {
 	// 6502 opcode table
-	private static readonly Dictionary<byte, (string Mnemonic, string Mode, int Length)> Opcodes6502 = new()
-	{
+	private static readonly Dictionary<byte, (string Mnemonic, string Mode, int Length)> Opcodes6502 = new() {
 		[0x00] = ("BRK", "impl", 1),
 		[0x01] = ("ORA", "indx", 2),
 		[0x05] = ("ORA", "zpg", 2),
@@ -95,10 +93,8 @@ public static class AnalysisCommands
 		[0xf8] = ("SED", "impl", 1),
 	};
 
-	public static void Opcodes(FileInfo romFile, int? bank)
-	{
-		if (!romFile.Exists)
-		{
+	public static void Opcodes(FileInfo romFile, int? bank) {
+		if (!romFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Error: ROM file not found: {romFile.FullName}[/]");
 			return;
 		}
@@ -110,38 +106,31 @@ public static class AnalysisCommands
 		var headerSize = header?.HeaderSize ?? 0;
 		var bankSize = 0x4000; // 16KB default for NES
 
-		if (header?.System == SystemType.Snes)
-		{
+		if (header?.System == SystemType.Snes) {
 			bankSize = 0x8000; // 32KB for SNES
 		}
 
 		var data = rom.GetDataWithoutHeader();
 		var bankCount = data.Length / bankSize;
 
-		if (bank.HasValue)
-		{
-			if (bank.Value >= bankCount)
-			{
+		if (bank.HasValue) {
+			if (bank.Value >= bankCount) {
 				AnsiConsole.MarkupLine($"[red]Bank {bank.Value} out of range (max: {bankCount - 1})[/]");
 				return;
 			}
 
 			var bankData = data.Slice(bank.Value * bankSize, bankSize);
 			AnalyzeBankOpcodes(bankData, bank.Value);
-		}
-		else
-		{
+		} else {
 			AnsiConsole.MarkupLine($"[cyan]Analyzing {bankCount} banks...[/]");
 
 			var globalCounts = new Dictionary<string, int>();
 
-			for (var b = 0; b < bankCount; b++)
-			{
+			for (var b = 0; b < bankCount; b++) {
 				var bankData = data.Slice(b * bankSize, bankSize);
 				var counts = CountOpcodes(bankData);
 
-				foreach (var (mnem, count) in counts)
-				{
+				foreach (var (mnem, count) in counts) {
 					globalCounts.TryGetValue(mnem, out var existing);
 					globalCounts[mnem] = existing + count;
 				}
@@ -151,31 +140,25 @@ public static class AnalysisCommands
 		}
 	}
 
-	private static void AnalyzeBankOpcodes(ReadOnlySpan<byte> data, int bankNum)
-	{
+	private static void AnalyzeBankOpcodes(ReadOnlySpan<byte> data, int bankNum) {
 		var counts = CountOpcodes(data);
 
 		AnsiConsole.Write(new Rule($"[cyan]Bank {bankNum} Opcode Analysis[/]").LeftJustified());
 		DisplayOpcodeSummary(counts);
 	}
 
-	private static Dictionary<string, int> CountOpcodes(ReadOnlySpan<byte> data)
-	{
+	private static Dictionary<string, int> CountOpcodes(ReadOnlySpan<byte> data) {
 		var counts = new Dictionary<string, int>();
 		var i = 0;
 
-		while (i < data.Length)
-		{
+		while (i < data.Length) {
 			var opcode = data[i];
 
-			if (Opcodes6502.TryGetValue(opcode, out var info))
-			{
+			if (Opcodes6502.TryGetValue(opcode, out var info)) {
 				counts.TryGetValue(info.Mnemonic, out var count);
 				counts[info.Mnemonic] = count + 1;
 				i += info.Length;
-			}
-			else
-			{
+			} else {
 				i++;
 			}
 		}
@@ -183,8 +166,7 @@ public static class AnalysisCommands
 		return counts;
 	}
 
-	private static void DisplayOpcodeSummary(Dictionary<string, int> counts)
-	{
+	private static void DisplayOpcodeSummary(Dictionary<string, int> counts) {
 		var total = counts.Values.Sum();
 
 		var table = new Table()
@@ -195,8 +177,7 @@ public static class AnalysisCommands
 
 		var sorted = counts.OrderByDescending(c => c.Value).Take(20);
 
-		foreach (var (mnem, count) in sorted)
-		{
+		foreach (var (mnem, count) in sorted) {
 			var pct = (double)count / total * 100;
 			table.AddRow(mnem, count.ToString("N0"), $"{pct:F1}%");
 		}
@@ -205,10 +186,8 @@ public static class AnalysisCommands
 		AnsiConsole.MarkupLine($"\n[grey]Total instructions: {total:N0}[/]");
 	}
 
-	public static void DetectCompression(FileInfo romFile)
-	{
-		if (!romFile.Exists)
-		{
+	public static void DetectCompression(FileInfo romFile) {
+		if (!romFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Error: ROM file not found: {romFile.FullName}[/]");
 			return;
 		}
@@ -222,8 +201,7 @@ public static class AnalysisCommands
 		var candidates = new List<(int Offset, string Type, double Confidence)>();
 
 		// Scan for compression signatures
-		for (var i = 0; i < data.Length - 16; i += 64)
-		{
+		for (var i = 0; i < data.Length - 16; i += 64) {
 			var window = data.Slice(i, Math.Min(256, data.Length - i));
 
 			// Check entropy
@@ -235,22 +213,16 @@ public static class AnalysisCommands
 			// Check for RLE patterns
 			var rleScore = DetectRlePatterns(window);
 
-			if (entropy > 6.5 && entropy < 7.8)
-			{
+			if (entropy > 6.5 && entropy < 7.8) {
 				candidates.Add((i, "Compressed (high entropy)", entropy / 8.0));
-			}
-			else if (lzScore > 0.3)
-			{
+			} else if (lzScore > 0.3) {
 				candidates.Add((i, "LZ77/LZSS", lzScore));
-			}
-			else if (rleScore > 0.3)
-			{
+			} else if (rleScore > 0.3) {
 				candidates.Add((i, "RLE", rleScore));
 			}
 		}
 
-		if (candidates.Count == 0)
-		{
+		if (candidates.Count == 0) {
 			AnsiConsole.MarkupLine("[yellow]No obvious compression patterns found[/]");
 			return;
 		}
@@ -262,34 +234,28 @@ public static class AnalysisCommands
 			.AddColumn("Type")
 			.AddColumn("Confidence");
 
-		foreach (var (offset, type, conf) in candidates.Take(20))
-		{
+		foreach (var (offset, type, conf) in candidates.Take(20)) {
 			table.AddRow($"${offset:x6}", type, $"{conf:P0}");
 		}
 
 		AnsiConsole.Write(table);
 
-		if (candidates.Count > 20)
-		{
+		if (candidates.Count > 20) {
 			AnsiConsole.MarkupLine($"[grey]... and {candidates.Count - 20} more regions[/]");
 		}
 	}
 
-	private static double CalculateEntropy(ReadOnlySpan<byte> data)
-	{
+	private static double CalculateEntropy(ReadOnlySpan<byte> data) {
 		var counts = new int[256];
-		foreach (var b in data)
-		{
+		foreach (var b in data) {
 			counts[b]++;
 		}
 
 		var entropy = 0.0;
 		var length = (double)data.Length;
 
-		foreach (var count in counts)
-		{
-			if (count > 0)
-			{
+		foreach (var count in counts) {
+			if (count > 0) {
 				var p = count / length;
 				entropy -= p * Math.Log2(p);
 			}
@@ -298,16 +264,13 @@ public static class AnalysisCommands
 		return entropy;
 	}
 
-	private static double DetectLzPatterns(ReadOnlySpan<byte> data)
-	{
+	private static double DetectLzPatterns(ReadOnlySpan<byte> data) {
 		// Look for back-reference patterns
 		var backRefs = 0;
 
-		for (var i = 0; i < data.Length - 2; i++)
-		{
+		for (var i = 0; i < data.Length - 2; i++) {
 			// Common LZ flag byte patterns
-			if ((data[i] & 0x80) != 0 && i > 0)
-			{
+			if ((data[i] & 0x80) != 0 && i > 0) {
 				backRefs++;
 			}
 		}
@@ -315,21 +278,17 @@ public static class AnalysisCommands
 		return (double)backRefs / data.Length;
 	}
 
-	private static double DetectRlePatterns(ReadOnlySpan<byte> data)
-	{
+	private static double DetectRlePatterns(ReadOnlySpan<byte> data) {
 		var runs = 0;
 		var i = 0;
 
-		while (i < data.Length - 1)
-		{
+		while (i < data.Length - 1) {
 			var runLength = 1;
-			while (i + runLength < data.Length && data[i] == data[i + runLength] && runLength < 128)
-			{
+			while (i + runLength < data.Length && data[i] == data[i + runLength] && runLength < 128) {
 				runLength++;
 			}
 
-			if (runLength >= 3)
-			{
+			if (runLength >= 3) {
 				runs++;
 			}
 
@@ -339,10 +298,8 @@ public static class AnalysisCommands
 		return (double)runs / (data.Length / 4);
 	}
 
-	public static void BuildXref(FileInfo romFile, FileInfo? outputFile)
-	{
-		if (!romFile.Exists)
-		{
+	public static void BuildXref(FileInfo romFile, FileInfo? outputFile) {
+		if (!romFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Error: ROM file not found: {romFile.FullName}[/]");
 			return;
 		}
@@ -357,18 +314,15 @@ public static class AnalysisCommands
 
 		// Find JSR/JMP instructions
 		var i = 0;
-		while (i < data.Length)
-		{
+		while (i < data.Length) {
 			var opcode = data[i];
 
 			// JSR absolute
-			if (opcode == 0x20 && i + 2 < data.Length)
-			{
+			if (opcode == 0x20 && i + 2 < data.Length) {
 				var target = data[i + 1] | (data[i + 2] << 8);
 				var source = 0x8000 + i; // Assume standard NES mapping
 
-				if (!xrefs.ContainsKey(target))
-				{
+				if (!xrefs.ContainsKey(target)) {
 					xrefs[target] = [];
 				}
 				xrefs[target].Add(source);
@@ -376,25 +330,19 @@ public static class AnalysisCommands
 				i += 3;
 			}
 			// JMP absolute
-			else if (opcode == 0x4c && i + 2 < data.Length)
-			{
+			else if (opcode == 0x4c && i + 2 < data.Length) {
 				var target = data[i + 1] | (data[i + 2] << 8);
 				var source = 0x8000 + i;
 
-				if (!xrefs.ContainsKey(target))
-				{
+				if (!xrefs.ContainsKey(target)) {
 					xrefs[target] = [];
 				}
 				xrefs[target].Add(source);
 
 				i += 3;
-			}
-			else if (Opcodes6502.TryGetValue(opcode, out var info))
-			{
+			} else if (Opcodes6502.TryGetValue(opcode, out var info)) {
 				i += info.Length;
-			}
-			else
-			{
+			} else {
 				i++;
 			}
 		}
@@ -414,11 +362,9 @@ public static class AnalysisCommands
 			.AddColumn("Call Count")
 			.AddColumn("Callers (first 5)");
 
-		foreach (var (target, callers) in topFunctions)
-		{
+		foreach (var (target, callers) in topFunctions) {
 			var callerStr = string.Join(", ", callers.Take(5).Select(c => $"${c:x4}"));
-			if (callers.Count > 5)
-			{
+			if (callers.Count > 5) {
 				callerStr += $" +{callers.Count - 5} more";
 			}
 
@@ -428,15 +374,13 @@ public static class AnalysisCommands
 		AnsiConsole.Write(table);
 
 		// Save to file if requested
-		if (outputFile != null)
-		{
+		if (outputFile != null) {
 			using var writer = new StreamWriter(outputFile.FullName);
 			writer.WriteLine("; Cross-reference database");
 			writer.WriteLine($"; Generated from: {romFile.Name}");
 			writer.WriteLine();
 
-			foreach (var (target, callers) in xrefs.OrderBy(x => x.Key))
-			{
+			foreach (var (target, callers) in xrefs.OrderBy(x => x.Key)) {
 				writer.WriteLine($"${target:x4}: ; Called from: {string.Join(", ", callers.Select(c => $"${c:x4}"))}");
 			}
 

@@ -6,13 +6,11 @@ namespace GameInfoTools.Tests;
 /// <summary>
 /// Comprehensive tests for Checksum calculations.
 /// </summary>
-public class ChecksumAdvancedTests
-{
+public class ChecksumAdvancedTests {
 	#region CRC32 Tests
 
 	[Fact]
-	public void Crc32_EmptyArray_ReturnsZero()
-	{
+	public void Crc32_EmptyArray_ReturnsZero() {
 		var data = Array.Empty<byte>();
 
 		var result = Checksum.Crc32(data);
@@ -21,8 +19,7 @@ public class ChecksumAdvancedTests
 	}
 
 	[Fact]
-	public void Crc32_SingleByte_ReturnsNonZero()
-	{
+	public void Crc32_SingleByte_ReturnsNonZero() {
 		var data = new byte[] { 0x41 }; // 'A'
 
 		var result = Checksum.Crc32(data);
@@ -31,8 +28,7 @@ public class ChecksumAdvancedTests
 	}
 
 	[Fact]
-	public void Crc32_KnownValue_ReturnsExpected()
-	{
+	public void Crc32_KnownValue_ReturnsExpected() {
 		// "123456789" has a well-known CRC32 value
 		var data = System.Text.Encoding.ASCII.GetBytes("123456789");
 
@@ -43,8 +39,7 @@ public class ChecksumAdvancedTests
 	}
 
 	[Fact]
-	public void Crc32_SameDataSameResult()
-	{
+	public void Crc32_SameDataSameResult() {
 		var data = new byte[] { 0x01, 0x02, 0x03, 0x04 };
 
 		var result1 = Checksum.Crc32(data);
@@ -54,8 +49,7 @@ public class ChecksumAdvancedTests
 	}
 
 	[Fact]
-	public void Crc32_DifferentDataDifferentResult()
-	{
+	public void Crc32_DifferentDataDifferentResult() {
 		var data1 = new byte[] { 0x01, 0x02, 0x03 };
 		var data2 = new byte[] { 0x01, 0x02, 0x04 };
 
@@ -66,8 +60,7 @@ public class ChecksumAdvancedTests
 	}
 
 	[Fact]
-	public void Crc32_WithRange_CalculatesSubset()
-	{
+	public void Crc32_WithRange_CalculatesSubset() {
 		var data = new byte[] { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05 };
 
 		var fullCrc = Checksum.Crc32(data);
@@ -82,8 +75,7 @@ public class ChecksumAdvancedTests
 	#region MD5 Tests
 
 	[Fact]
-	public void Md5_EmptyArray_ReturnsKnownHash()
-	{
+	public void Md5_EmptyArray_ReturnsKnownHash() {
 		var data = Array.Empty<byte>();
 
 		var result = Checksum.Md5(data);
@@ -93,8 +85,7 @@ public class ChecksumAdvancedTests
 	}
 
 	[Fact]
-	public void Md5_KnownValue_ReturnsExpected()
-	{
+	public void Md5_KnownValue_ReturnsExpected() {
 		var data = System.Text.Encoding.ASCII.GetBytes("hello");
 
 		var result = Checksum.Md5(data);
@@ -104,8 +95,7 @@ public class ChecksumAdvancedTests
 	}
 
 	[Fact]
-	public void Md5_ReturnsLowercaseHex()
-	{
+	public void Md5_ReturnsLowercaseHex() {
 		var data = new byte[] { 0x00 };
 
 		var result = Checksum.Md5(data);
@@ -114,8 +104,7 @@ public class ChecksumAdvancedTests
 	}
 
 	[Fact]
-	public void Md5_Returns32Characters()
-	{
+	public void Md5_Returns32Characters() {
 		var data = new byte[] { 0x01, 0x02, 0x03 };
 
 		var result = Checksum.Md5(data);
@@ -128,8 +117,7 @@ public class ChecksumAdvancedTests
 	#region SHA1 Tests
 
 	[Fact]
-	public void Sha1_EmptyArray_ReturnsKnownHash()
-	{
+	public void Sha1_EmptyArray_ReturnsKnownHash() {
 		var data = Array.Empty<byte>();
 
 		var result = Checksum.Sha1(data);
@@ -139,8 +127,7 @@ public class ChecksumAdvancedTests
 	}
 
 	[Fact]
-	public void Sha1_KnownValue_ReturnsExpected()
-	{
+	public void Sha1_KnownValue_ReturnsExpected() {
 		var data = System.Text.Encoding.ASCII.GetBytes("hello");
 
 		var result = Checksum.Sha1(data);
@@ -150,8 +137,7 @@ public class ChecksumAdvancedTests
 	}
 
 	[Fact]
-	public void Sha1_Returns40Characters()
-	{
+	public void Sha1_Returns40Characters() {
 		var data = new byte[] { 0x01 };
 
 		var result = Checksum.Sha1(data);
@@ -164,8 +150,7 @@ public class ChecksumAdvancedTests
 	#region NES Checksum Tests
 
 	[Fact]
-	public void NesChecksum_CalculatesSimpleSum()
-	{
+	public void NesChecksum_CalculatesSimpleSum() {
 		var data = new byte[] { 0x01, 0x02, 0x03 };
 
 		var result = Checksum.NesChecksum(data, 0, data.Length);
@@ -174,12 +159,10 @@ public class ChecksumAdvancedTests
 	}
 
 	[Fact]
-	public void NesChecksum_Wraps65536()
-	{
+	public void NesChecksum_Wraps65536() {
 		// NES checksum is ushort (16-bit), not byte
 		var data = new byte[256];
-		for (int i = 0; i < 256; i++)
-		{
+		for (int i = 0; i < 256; i++) {
 			data[i] = 0xff;
 		}
 
@@ -194,8 +177,7 @@ public class ChecksumAdvancedTests
 	#region SNES Checksum Tests
 
 	[Fact]
-	public void SnesChecksum_CalculatesSum()
-	{
+	public void SnesChecksum_CalculatesSum() {
 		var data = new byte[] { 0x01, 0x02, 0x03, 0x04 };
 
 		var result = Checksum.SnesChecksum(data);
@@ -204,8 +186,7 @@ public class ChecksumAdvancedTests
 	}
 
 	[Fact]
-	public void SnesComplement_ReturnsInverse()
-	{
+	public void SnesComplement_ReturnsInverse() {
 		ushort checksum = 0x1234;
 
 		var result = Checksum.SnesComplement(checksum);
@@ -214,8 +195,7 @@ public class ChecksumAdvancedTests
 	}
 
 	[Fact]
-	public void SnesComplement_Verify_ComplementSumEqualsFFFF()
-	{
+	public void SnesComplement_Verify_ComplementSumEqualsFFFF() {
 		ushort checksum = 0x1234;
 
 		var complement = Checksum.SnesComplement(checksum);
@@ -228,12 +208,10 @@ public class ChecksumAdvancedTests
 	#region GameBoy Checksum Tests
 
 	[Fact]
-	public void GameBoyHeaderChecksum_CalculatesCorrectly()
-	{
+	public void GameBoyHeaderChecksum_CalculatesCorrectly() {
 		// GameBoy header checksum is calculated over bytes 0x134-0x14c
 		var data = new byte[0x150];
-		for (int i = 0x134; i <= 0x14c; i++)
-		{
+		for (int i = 0x134; i <= 0x14c; i++) {
 			data[i] = (byte)i;
 		}
 
@@ -244,8 +222,7 @@ public class ChecksumAdvancedTests
 	}
 
 	[Fact]
-	public void GameBoyGlobalChecksum_CalculatesSum()
-	{
+	public void GameBoyGlobalChecksum_CalculatesSum() {
 		// Global checksum skips bytes 0x14e-0x14f
 		var data = new byte[] { 0x10, 0x20, 0x30 };
 
@@ -255,12 +232,10 @@ public class ChecksumAdvancedTests
 	}
 
 	[Fact]
-	public void GameBoyGlobalChecksum_SkipsChecksumBytes()
-	{
+	public void GameBoyGlobalChecksum_SkipsChecksumBytes() {
 		// Create a larger array that includes checksum byte positions
 		var data = new byte[0x200];
-		for (int i = 0; i < data.Length; i++)
-		{
+		for (int i = 0; i < data.Length; i++) {
 			data[i] = 1;
 		}
 
@@ -277,11 +252,9 @@ public class ChecksumAdvancedTests
 	#region Verify Tests
 
 	[Fact]
-	public void Verify_ReturnsVerificationResult()
-	{
+	public void Verify_ReturnsVerificationResult() {
 		var data = new byte[256];
-		for (int i = 0; i < data.Length; i++)
-		{
+		for (int i = 0; i < data.Length; i++) {
 			data[i] = (byte)i;
 		}
 
@@ -296,8 +269,7 @@ public class ChecksumAdvancedTests
 /// <summary>
 /// Comprehensive tests for AddressConverter.
 /// </summary>
-public class AddressConverterAdvancedTests
-{
+public class AddressConverterAdvancedTests {
 	#region ParseHex Tests
 
 	[Theory]
@@ -308,28 +280,24 @@ public class AddressConverterAdvancedTests
 	[InlineData("$ABCD", 0xabcd)]
 	[InlineData("$abcd", 0xabcd)]
 	[InlineData("0xABCD", 0xabcd)]
-	public void ParseHex_VariousFormats_ParsesCorrectly(string input, int expected)
-	{
+	public void ParseHex_VariousFormats_ParsesCorrectly(string input, int expected) {
 		var result = AddressConverter.ParseHex(input);
 
 		Assert.Equal(expected, result);
 	}
 
 	[Fact]
-	public void ParseHex_EmptyString_ThrowsException()
-	{
+	public void ParseHex_EmptyString_ThrowsException() {
 		Assert.Throws<FormatException>(() => AddressConverter.ParseHex(""));
 	}
 
 	[Fact]
-	public void ParseHex_InvalidHex_ThrowsException()
-	{
+	public void ParseHex_InvalidHex_ThrowsException() {
 		Assert.Throws<FormatException>(() => AddressConverter.ParseHex("$ZZZZ"));
 	}
 
 	[Fact]
-	public void ParseHex_JustPrefix_ThrowsException()
-	{
+	public void ParseHex_JustPrefix_ThrowsException() {
 		Assert.Throws<FormatException>(() => AddressConverter.ParseHex("$"));
 	}
 
@@ -342,24 +310,21 @@ public class AddressConverterAdvancedTests
 	[InlineData(255, 2, "$ff")]
 	[InlineData(0x1234, 4, "$1234")]
 	[InlineData(0xabcdef, 6, "$abcdef")]
-	public void ToHex_FormatsCorrectly(int value, int digits, string expected)
-	{
+	public void ToHex_FormatsCorrectly(int value, int digits, string expected) {
 		var result = AddressConverter.ToHex(value, digits);
 
 		Assert.Equal(expected, result);
 	}
 
 	[Fact]
-	public void ToHex_UsesLowercase()
-	{
+	public void ToHex_UsesLowercase() {
 		var result = AddressConverter.ToHex(0xABCD, 4);
 
 		Assert.Equal("$abcd", result);
 	}
 
 	[Fact]
-	public void ToHex_PadsWithZeros()
-	{
+	public void ToHex_PadsWithZeros() {
 		var result = AddressConverter.ToHex(1, 4);
 
 		Assert.Equal("$0001", result);
@@ -370,8 +335,7 @@ public class AddressConverterAdvancedTests
 	#region NES Address Conversion Tests
 
 	[Fact]
-	public void NesFileToCpu_FirstBank_ReturnsCorrectCpu()
-	{
+	public void NesFileToCpu_FirstBank_ReturnsCorrectCpu() {
 		// File offset 16 (after header) should be $8000 in first bank
 		var (cpuAddr, bank) = AddressConverter.NesFileToCpu(16, 16);
 
@@ -380,8 +344,7 @@ public class AddressConverterAdvancedTests
 	}
 
 	[Fact]
-	public void NesFileToCpu_SecondBank_ReturnsCorrectCpu()
-	{
+	public void NesFileToCpu_SecondBank_ReturnsCorrectCpu() {
 		// File offset 16 + 0x4000 should be in second bank
 		var (cpuAddr, bank) = AddressConverter.NesFileToCpu(16 + 0x4000, 16);
 
@@ -390,16 +353,14 @@ public class AddressConverterAdvancedTests
 	}
 
 	[Fact]
-	public void NesCpuToFile_8000_ReturnsHeaderPlus0()
-	{
+	public void NesCpuToFile_8000_ReturnsHeaderPlus0() {
 		var fileOffset = AddressConverter.NesCpuToFile(0x8000, 2, 0);
 
 		Assert.Equal(16, fileOffset); // 16-byte header offset
 	}
 
 	[Fact]
-	public void NesCpuToFile_C000_ReturnsCorrectOffset()
-	{
+	public void NesCpuToFile_C000_ReturnsCorrectOffset() {
 		// $C000 is 0x4000 into the bank
 		var fileOffset = AddressConverter.NesCpuToFile(0xC000, 2, 0);
 
@@ -411,32 +372,28 @@ public class AddressConverterAdvancedTests
 	#region SNES LoROM Conversion Tests
 
 	[Fact]
-	public void SnesLoRomToFile_Bank00_8000_ReturnsZero()
-	{
+	public void SnesLoRomToFile_Bank00_8000_ReturnsZero() {
 		var fileOffset = AddressConverter.SnesLoRomToFile(0x8000);
 
 		Assert.Equal(0, fileOffset);
 	}
 
 	[Fact]
-	public void SnesLoRomToFile_Bank01_8000_Returns32KB()
-	{
+	public void SnesLoRomToFile_Bank01_8000_Returns32KB() {
 		var fileOffset = AddressConverter.SnesLoRomToFile(0x018000);
 
 		Assert.Equal(0x8000, fileOffset);
 	}
 
 	[Fact]
-	public void SnesFileToLoRom_Zero_Returns8000()
-	{
+	public void SnesFileToLoRom_Zero_Returns8000() {
 		var snesAddr = AddressConverter.SnesFileToLoRom(0);
 
 		Assert.Equal(0x8000, snesAddr);
 	}
 
 	[Fact]
-	public void SnesFileToLoRom_32KB_ReturnsBank1()
-	{
+	public void SnesFileToLoRom_32KB_ReturnsBank1() {
 		var snesAddr = AddressConverter.SnesFileToLoRom(0x8000);
 
 		Assert.Equal(0x018000, snesAddr);
@@ -447,16 +404,14 @@ public class AddressConverterAdvancedTests
 	#region SNES HiROM Conversion Tests
 
 	[Fact]
-	public void SnesHiRomToFile_C00000_ReturnsZero()
-	{
+	public void SnesHiRomToFile_C00000_ReturnsZero() {
 		var fileOffset = AddressConverter.SnesHiRomToFile(0xc00000);
 
 		Assert.Equal(0, fileOffset);
 	}
 
 	[Fact]
-	public void SnesFileToHiRom_Zero_ReturnsC00000()
-	{
+	public void SnesFileToHiRom_Zero_ReturnsC00000() {
 		var snesAddr = AddressConverter.SnesFileToHiRom(0);
 
 		Assert.Equal(0xc00000, snesAddr);
@@ -467,16 +422,14 @@ public class AddressConverterAdvancedTests
 	#region Header Offset Tests
 
 	[Fact]
-	public void SnesLoRomToFile_WithHeader_AddsHeaderOffset()
-	{
+	public void SnesLoRomToFile_WithHeader_AddsHeaderOffset() {
 		var fileOffset = AddressConverter.SnesLoRomToFile(0x8000, 512);
 
 		Assert.Equal(512, fileOffset);
 	}
 
 	[Fact]
-	public void SnesHiRomToFile_WithHeader_AddsHeaderOffset()
-	{
+	public void SnesHiRomToFile_WithHeader_AddsHeaderOffset() {
 		var fileOffset = AddressConverter.SnesHiRomToFile(0xc00000, 512);
 
 		Assert.Equal(512, fileOffset);
@@ -487,8 +440,7 @@ public class AddressConverterAdvancedTests
 	#region Roundtrip Tests
 
 	[Fact]
-	public void NesConversion_RoundTrip_PreservesAddress()
-	{
+	public void NesConversion_RoundTrip_PreservesAddress() {
 		int originalFile = 0x1000;
 
 		var (cpuAddr, bank) = AddressConverter.NesFileToCpu(originalFile, 16);
@@ -498,8 +450,7 @@ public class AddressConverterAdvancedTests
 	}
 
 	[Fact]
-	public void SnesLoRomConversion_RoundTrip_PreservesAddress()
-	{
+	public void SnesLoRomConversion_RoundTrip_PreservesAddress() {
 		int originalFile = 0x10000;
 
 		var snesAddr = AddressConverter.SnesFileToLoRom(originalFile);
@@ -509,8 +460,7 @@ public class AddressConverterAdvancedTests
 	}
 
 	[Fact]
-	public void SnesHiRomConversion_RoundTrip_PreservesAddress()
-	{
+	public void SnesHiRomConversion_RoundTrip_PreservesAddress() {
 		int originalFile = 0x10000;
 
 		var snesAddr = AddressConverter.SnesFileToHiRom(originalFile);

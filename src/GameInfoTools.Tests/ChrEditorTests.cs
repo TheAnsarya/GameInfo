@@ -2,18 +2,14 @@ using GameInfoTools.Graphics;
 
 namespace GameInfoTools.Tests;
 
-public class ChrEditorTests
-{
-	private byte[] CreateTestChrData(int tileCount = 16)
-	{
+public class ChrEditorTests {
+	private byte[] CreateTestChrData(int tileCount = 16) {
 		// Each tile is 16 bytes for NES 2bpp format
 		byte[] data = new byte[tileCount * ChrEditor.TileSize];
 
 		// Fill with identifiable pattern for testing
-		for (int tile = 0; tile < tileCount; tile++)
-		{
-			for (int i = 0; i < ChrEditor.TileSize; i++)
-			{
+		for (int tile = 0; tile < tileCount; tile++) {
+			for (int i = 0; i < ChrEditor.TileSize; i++) {
 				data[tile * ChrEditor.TileSize + i] = (byte)(tile * 16 + i);
 			}
 		}
@@ -22,8 +18,7 @@ public class ChrEditorTests
 	}
 
 	[Fact]
-	public void Constructor_CreatesInstanceFromData()
-	{
+	public void Constructor_CreatesInstanceFromData() {
 		byte[] data = CreateTestChrData();
 		var editor = new ChrEditor(data);
 
@@ -31,8 +26,7 @@ public class ChrEditorTests
 	}
 
 	[Fact]
-	public void TileCount_ReturnsCorrectCount()
-	{
+	public void TileCount_ReturnsCorrectCount() {
 		byte[] data = CreateTestChrData(8);
 		var editor = new ChrEditor(data);
 
@@ -40,8 +34,7 @@ public class ChrEditorTests
 	}
 
 	[Fact]
-	public void BankCount_ReturnsCorrectCount()
-	{
+	public void BankCount_ReturnsCorrectCount() {
 		// 512 tiles per 8KB bank
 		byte[] data = CreateTestChrData(512);
 		var editor = new ChrEditor(data);
@@ -50,8 +43,7 @@ public class ChrEditorTests
 	}
 
 	[Fact]
-	public void GetTileBytes_ReturnsCorrectBytes()
-	{
+	public void GetTileBytes_ReturnsCorrectBytes() {
 		byte[] data = CreateTestChrData(4);
 		var editor = new ChrEditor(data);
 
@@ -63,8 +55,7 @@ public class ChrEditorTests
 	}
 
 	[Fact]
-	public void GetTile_Returns8x8Array()
-	{
+	public void GetTile_Returns8x8Array() {
 		byte[] data = CreateTestChrData(4);
 		var editor = new ChrEditor(data);
 
@@ -75,13 +66,13 @@ public class ChrEditorTests
 	}
 
 	[Fact]
-	public void SetTileBytes_UpdatesData()
-	{
+	public void SetTileBytes_UpdatesData() {
 		byte[] data = CreateTestChrData(4);
 		var editor = new ChrEditor(data);
 
 		byte[] newBytes = new byte[16];
-		for (int i = 0; i < 16; i++) newBytes[i] = 0xFF;
+		for (int i = 0; i < 16; i++)
+			newBytes[i] = 0xFF;
 
 		editor.SetTileBytes(0, newBytes);
 
@@ -90,8 +81,7 @@ public class ChrEditorTests
 	}
 
 	[Fact]
-	public void FlipHorizontal_ReturnsCorrectDimensions()
-	{
+	public void FlipHorizontal_ReturnsCorrectDimensions() {
 		byte[,] tile = new byte[8, 8];
 		tile[0, 0] = 1;
 		tile[0, 7] = 2;
@@ -106,8 +96,7 @@ public class ChrEditorTests
 	}
 
 	[Fact]
-	public void FlipVertical_ReturnsCorrectDimensions()
-	{
+	public void FlipVertical_ReturnsCorrectDimensions() {
 		byte[,] tile = new byte[8, 8];
 		tile[0, 0] = 1;
 		tile[7, 0] = 2;
@@ -122,8 +111,7 @@ public class ChrEditorTests
 	}
 
 	[Fact]
-	public void Rotate90_ReturnsCorrectDimensions()
-	{
+	public void Rotate90_ReturnsCorrectDimensions() {
 		byte[,] tile = new byte[8, 8];
 		tile[0, 0] = 1;
 
@@ -134,8 +122,7 @@ public class ChrEditorTests
 	}
 
 	[Fact]
-	public void GetTile_ThrowsOnInvalidIndex()
-	{
+	public void GetTile_ThrowsOnInvalidIndex() {
 		byte[] data = CreateTestChrData(4);
 		var editor = new ChrEditor(data);
 
@@ -143,14 +130,12 @@ public class ChrEditorTests
 	}
 
 	[Fact]
-	public void TileSize_IsCorrectConstant()
-	{
+	public void TileSize_IsCorrectConstant() {
 		Assert.Equal(16, ChrEditor.TileSize);
 	}
 
 	[Fact]
-	public void TilesPerBank_IsCorrectConstant()
-	{
+	public void TilesPerBank_IsCorrectConstant() {
 		Assert.Equal(512, ChrEditor.TilesPerBank);
 	}
 }

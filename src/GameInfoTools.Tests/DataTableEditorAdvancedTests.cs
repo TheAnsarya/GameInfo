@@ -6,11 +6,9 @@ namespace GameInfoTools.Tests;
 /// <summary>
 /// Comprehensive tests for DataTableEditor functionality.
 /// </summary>
-public class DataTableEditorAdvancedTests
-{
+public class DataTableEditorAdvancedTests {
 	[Fact]
-	public void FieldType_HasAllExpectedValues()
-	{
+	public void FieldType_HasAllExpectedValues() {
 		Assert.True(Enum.IsDefined(typeof(DataTableEditor.FieldType), DataTableEditor.FieldType.Byte));
 		Assert.True(Enum.IsDefined(typeof(DataTableEditor.FieldType), DataTableEditor.FieldType.Word));
 		Assert.True(Enum.IsDefined(typeof(DataTableEditor.FieldType), DataTableEditor.FieldType.Long));
@@ -22,8 +20,7 @@ public class DataTableEditorAdvancedTests
 	}
 
 	[Fact]
-	public void FieldDef_Record_HasCorrectProperties()
-	{
+	public void FieldDef_Record_HasCorrectProperties() {
 		var field = new DataTableEditor.FieldDef("TestField", DataTableEditor.FieldType.Word, 10, 2, null);
 
 		Assert.Equal("TestField", field.Name);
@@ -33,8 +30,7 @@ public class DataTableEditorAdvancedTests
 	}
 
 	[Fact]
-	public void FieldDef_WithValueNames()
-	{
+	public void FieldDef_WithValueNames() {
 		var valueNames = new Dictionary<int, string> { { 0, "None" }, { 1, "Attack" }, { 2, "Magic" } };
 		var field = new DataTableEditor.FieldDef("Action", DataTableEditor.FieldType.Byte, 0, 1, valueNames);
 
@@ -43,8 +39,7 @@ public class DataTableEditorAdvancedTests
 	}
 
 	[Fact]
-	public void TableDef_DefaultProperties()
-	{
+	public void TableDef_DefaultProperties() {
 		var table = new DataTableEditor.TableDef();
 
 		Assert.Equal("", table.Name);
@@ -55,10 +50,8 @@ public class DataTableEditorAdvancedTests
 	}
 
 	[Fact]
-	public void TableDef_TotalSize_CalculatesCorrectly()
-	{
-		var table = new DataTableEditor.TableDef
-		{
+	public void TableDef_TotalSize_CalculatesCorrectly() {
+		var table = new DataTableEditor.TableDef {
 			RecordSize = 16,
 			RecordCount = 10
 		};
@@ -67,8 +60,7 @@ public class DataTableEditorAdvancedTests
 	}
 
 	[Fact]
-	public void ReadField_Byte_ReturnsCorrectValue()
-	{
+	public void ReadField_Byte_ReturnsCorrectValue() {
 		var data = new byte[] { 0x00, 0xAB, 0x00, 0x00 };
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("Test", DataTableEditor.FieldType.Byte, 1);
@@ -79,8 +71,7 @@ public class DataTableEditorAdvancedTests
 	}
 
 	[Fact]
-	public void ReadField_Word_ReturnsLittleEndian()
-	{
+	public void ReadField_Word_ReturnsLittleEndian() {
 		var data = new byte[] { 0x34, 0x12 }; // 0x1234 little-endian
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("Test", DataTableEditor.FieldType.Word, 0);
@@ -91,8 +82,7 @@ public class DataTableEditorAdvancedTests
 	}
 
 	[Fact]
-	public void ReadField_Long_Returns24Bit()
-	{
+	public void ReadField_Long_Returns24Bit() {
 		var data = new byte[] { 0x56, 0x34, 0x12 }; // 0x123456 little-endian
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("Test", DataTableEditor.FieldType.Long, 0);
@@ -103,8 +93,7 @@ public class DataTableEditorAdvancedTests
 	}
 
 	[Fact]
-	public void ReadField_SignedByte_ReturnsNegativeValue()
-	{
+	public void ReadField_SignedByte_ReturnsNegativeValue() {
 		var data = new byte[] { 0xFF }; // -1 as signed byte
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("Test", DataTableEditor.FieldType.SignedByte, 0);
@@ -115,8 +104,7 @@ public class DataTableEditorAdvancedTests
 	}
 
 	[Fact]
-	public void ReadField_SignedWord_ReturnsNegativeValue()
-	{
+	public void ReadField_SignedWord_ReturnsNegativeValue() {
 		var data = new byte[] { 0xFF, 0xFF }; // -1 as signed word
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("Test", DataTableEditor.FieldType.SignedWord, 0);
@@ -127,8 +115,7 @@ public class DataTableEditorAdvancedTests
 	}
 
 	[Fact]
-	public void ReadField_OutOfBounds_ReturnsZero()
-	{
+	public void ReadField_OutOfBounds_ReturnsZero() {
 		var data = new byte[] { 0x00 };
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("Test", DataTableEditor.FieldType.Byte, 100);
@@ -139,8 +126,7 @@ public class DataTableEditorAdvancedTests
 	}
 
 	[Fact]
-	public void WriteField_Byte_WritesCorrectValue()
-	{
+	public void WriteField_Byte_WritesCorrectValue() {
 		var data = new byte[4];
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("Test", DataTableEditor.FieldType.Byte, 1);
@@ -151,8 +137,7 @@ public class DataTableEditorAdvancedTests
 	}
 
 	[Fact]
-	public void WriteField_Word_WritesLittleEndian()
-	{
+	public void WriteField_Word_WritesLittleEndian() {
 		var data = new byte[4];
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("Test", DataTableEditor.FieldType.Word, 0);
@@ -164,8 +149,7 @@ public class DataTableEditorAdvancedTests
 	}
 
 	[Fact]
-	public void WriteField_Long_Writes24Bit()
-	{
+	public void WriteField_Long_Writes24Bit() {
 		var data = new byte[4];
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("Test", DataTableEditor.FieldType.Long, 0);
@@ -178,8 +162,7 @@ public class DataTableEditorAdvancedTests
 	}
 
 	[Fact]
-	public void WriteField_SignedByte_WritesNegativeValue()
-	{
+	public void WriteField_SignedByte_WritesNegativeValue() {
 		var data = new byte[4];
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("Test", DataTableEditor.FieldType.SignedByte, 0);
@@ -190,13 +173,11 @@ public class DataTableEditorAdvancedTests
 	}
 
 	[Fact]
-	public void ReadRecord_ReadsAllFields()
-	{
+	public void ReadRecord_ReadsAllFields() {
 		var data = new byte[] { 0x0A, 0x00, 0x14 }; // HP=10, padding, STR=20
 		var editor = new DataTableEditor(data);
 
-		var table = new DataTableEditor.TableDef
-		{
+		var table = new DataTableEditor.TableDef {
 			Name = "Stats",
 			BaseOffset = 0,
 			RecordSize = 3,
@@ -212,13 +193,11 @@ public class DataTableEditorAdvancedTests
 	}
 
 	[Fact]
-	public void WriteRecord_WritesAllFields()
-	{
+	public void WriteRecord_WritesAllFields() {
 		var data = new byte[4];
 		var editor = new DataTableEditor(data);
 
-		var table = new DataTableEditor.TableDef
-		{
+		var table = new DataTableEditor.TableDef {
 			BaseOffset = 0,
 			RecordSize = 4,
 			RecordCount = 1
@@ -239,13 +218,11 @@ public class DataTableEditorAdvancedTests
 	}
 
 	[Fact]
-	public void ReadRecord_SecondRecord_CalculatesOffset()
-	{
+	public void ReadRecord_SecondRecord_CalculatesOffset() {
 		var data = new byte[] { 0x01, 0x02, 0x03, 0x04 }; // Record 0, Record 1
 		var editor = new DataTableEditor(data);
 
-		var table = new DataTableEditor.TableDef
-		{
+		var table = new DataTableEditor.TableDef {
 			BaseOffset = 0,
 			RecordSize = 2,
 			RecordCount = 2
@@ -258,8 +235,7 @@ public class DataTableEditorAdvancedTests
 	}
 
 	[Fact]
-	public void TableDef_Fields_CanBeAdded()
-	{
+	public void TableDef_Fields_CanBeAdded() {
 		var table = new DataTableEditor.TableDef();
 
 		table.Fields.Add(new DataTableEditor.FieldDef("Field1", DataTableEditor.FieldType.Byte, 0));
@@ -269,8 +245,7 @@ public class DataTableEditorAdvancedTests
 	}
 
 	[Fact]
-	public void WriteField_Pointer_WritesAsWord()
-	{
+	public void WriteField_Pointer_WritesAsWord() {
 		var data = new byte[4];
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("Ptr", DataTableEditor.FieldType.Pointer, 0);
@@ -282,8 +257,7 @@ public class DataTableEditorAdvancedTests
 	}
 
 	[Fact]
-	public void ReadField_BitFlags_ReturnsByte()
-	{
+	public void ReadField_BitFlags_ReturnsByte() {
 		var data = new byte[] { 0b10101010 };
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("Flags", DataTableEditor.FieldType.BitFlags, 0);
@@ -294,8 +268,7 @@ public class DataTableEditorAdvancedTests
 	}
 
 	[Fact]
-	public void WriteField_BitFlags_WritesByte()
-	{
+	public void WriteField_BitFlags_WritesByte() {
 		var data = new byte[1];
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("Flags", DataTableEditor.FieldType.BitFlags, 0);
@@ -306,8 +279,7 @@ public class DataTableEditorAdvancedTests
 	}
 
 	[Fact]
-	public void ReadField_WithOffset_CalculatesCorrectPosition()
-	{
+	public void ReadField_WithOffset_CalculatesCorrectPosition() {
 		var data = new byte[] { 0x00, 0x00, 0x00, 0xAB };
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("Value", DataTableEditor.FieldType.Byte, 1);

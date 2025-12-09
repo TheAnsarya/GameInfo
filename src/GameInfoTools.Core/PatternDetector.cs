@@ -3,8 +3,7 @@ namespace GameInfoTools.Core;
 /// <summary>
 /// Pattern detection utilities for finding data structures in ROMs.
 /// </summary>
-public static class PatternDetector
-{
+public static class PatternDetector {
 	/// <summary>
 	/// A detected pattern with location and confidence.
 	/// </summary>
@@ -19,24 +18,20 @@ public static class PatternDetector
 	/// <summary>
 	/// Find pointer tables in ROM data.
 	/// </summary>
-	public static List<PatternMatch> FindPointerTables(byte[] data, SystemType system)
-	{
+	public static List<PatternMatch> FindPointerTables(byte[] data, SystemType system) {
 		var results = new List<PatternMatch>();
 		int pointerSize = system == SystemType.Snes ? 3 : 2;
 		int minEntries = 4;
 
-		for (int i = 0; i < data.Length - (pointerSize * minEntries); i++)
-		{
+		for (int i = 0; i < data.Length - (pointerSize * minEntries); i++) {
 			int count = CountConsecutivePointers(data, i, pointerSize, system);
-			if (count >= minEntries)
-			{
+			if (count >= minEntries) {
 				results.Add(new PatternMatch(
 					i,
 					count * pointerSize,
 					"PointerTable",
 					Math.Min(1.0, count / 20.0),
-					new Dictionary<string, object>
-					{
+					new Dictionary<string, object> {
 						["entries"] = count,
 						["pointerSize"] = pointerSize
 					}
@@ -50,16 +45,13 @@ public static class PatternDetector
 		return results;
 	}
 
-	private static int CountConsecutivePointers(byte[] data, int start, int pointerSize, SystemType system)
-	{
+	private static int CountConsecutivePointers(byte[] data, int start, int pointerSize, SystemType system) {
 		int count = 0;
 		int pos = start;
 
-		while (pos + pointerSize <= data.Length)
-		{
+		while (pos + pointerSize <= data.Length) {
 			int pointer = 0;
-			for (int j = 0; j < pointerSize; j++)
-			{
+			for (int j = 0; j < pointerSize; j++) {
 				pointer |= data[pos + j] << (j * 8);
 			}
 
@@ -76,10 +68,8 @@ public static class PatternDetector
 		return count;
 	}
 
-	private static bool IsValidPointer(int pointer, int romSize, SystemType system)
-	{
-		return system switch
-		{
+	private static bool IsValidPointer(int pointer, int romSize, SystemType system) {
+		return system switch {
 			SystemType.Nes => pointer >= 0x8000 && pointer <= 0xffff,
 			SystemType.Snes => (pointer & 0xffff) >= 0x8000 || (pointer >> 16) >= 0x40,
 			SystemType.GameBoy or SystemType.GameBoyColor => pointer >= 0x0000 && pointer <= 0x7fff,
@@ -91,22 +81,18 @@ public static class PatternDetector
 	/// <summary>
 	/// Find text data in ROM.
 	/// </summary>
-	public static List<PatternMatch> FindTextRegions(byte[] data, int minLength = 8)
-	{
+	public static List<PatternMatch> FindTextRegions(byte[] data, int minLength = 8) {
 		var results = new List<PatternMatch>();
 
-		for (int i = 0; i < data.Length; i++)
-		{
+		for (int i = 0; i < data.Length; i++) {
 			int textLen = MeasureTextLength(data, i);
-			if (textLen >= minLength)
-			{
+			if (textLen >= minLength) {
 				results.Add(new PatternMatch(
 					i,
 					textLen,
 					"Text",
 					Math.Min(1.0, textLen / 50.0),
-					new Dictionary<string, object>
-					{
+					new Dictionary<string, object> {
 						["encoding"] = DetectTextEncoding(data, i, textLen)
 					}
 				));
@@ -118,13 +104,11 @@ public static class PatternDetector
 		return results;
 	}
 
-	private static int MeasureTextLength(byte[] data, int start)
-	{
+	private static int MeasureTextLength(byte[] data, int start) {
 		int length = 0;
 		int textChars = 0;
 
-		for (int i = start; i < data.Length; i++)
-		{
+		for (int i = start; i < data.Length; i++) {
 			byte b = data[i];
 
 			// Common text byte ranges
@@ -132,28 +116,20 @@ public static class PatternDetector
 						  (b >= 0x80 && b <= 0xdf) ||  // Common Japanese/custom
 						  (b >= 0xa0 && b <= 0xff);    // Extended
 
-			if (isText)
-			{
+			if (isText) {
 				textChars++;
 				length++;
-			}
-			else if (b == 0x00 || b == 0xff)
-			{
+			} else if (b == 0x00 || b == 0xff) {
 				// Potential end marker
-				if (textChars > 0)
-				{
+				if (textChars > 0) {
 					length++;
 					break;
 				}
 				break;
-			}
-			else if (textChars > 0 && length - textChars < 5)
-			{
+			} else if (textChars > 0 && length - textChars < 5) {
 				// Allow some control codes
 				length++;
-			}
-			else
-			{
+			} else {
 				break;
 			}
 		}
@@ -161,55 +137,52 @@ public static class PatternDetector
 		return textChars > length / 2 ? length : 0;
 	}
 
-	private static string DetectTextEncoding(byte[] data, int start, int length)
-	{
+	private static string DetectTextEncoding(byte[] data, int start, int length) {
 		int asciiCount = 0;
 		int jpCount = 0;
 		int customCount = 0;
 
-		for (int i = 0; i < length && start + i < data.Length; i++)
-		{
+		for (int i = 0; i < length && start + i < data.Length; i++) {
 			byte b = data[start + i];
-			if (b >= 0x20 && b <= 0x7e) asciiCount++;
-			else if (b >= 0x80 && b <= 0x9f) jpCount++;
-			else if (b >= 0xa0 && b <= 0xdf) customCount++;
+			if (b >= 0x20 && b <= 0x7e)
+				asciiCount++;
+			else if (b >= 0x80 && b <= 0x9f)
+				jpCount++;
+			else if (b >= 0xa0 && b <= 0xdf)
+				customCount++;
 		}
 
-		if (asciiCount > length * 0.8) return "ASCII";
-		if (jpCount > length * 0.3) return "ShiftJIS";
+		if (asciiCount > length * 0.8)
+			return "ASCII";
+		if (jpCount > length * 0.3)
+			return "ShiftJIS";
 		return "Custom";
 	}
 
 	/// <summary>
 	/// Find graphics data (CHR/tiles).
 	/// </summary>
-	public static List<PatternMatch> FindGraphicsRegions(byte[] data, int tileSize = 16)
-	{
+	public static List<PatternMatch> FindGraphicsRegions(byte[] data, int tileSize = 16) {
 		var results = new List<PatternMatch>();
 
-		for (int i = 0; i < data.Length - tileSize * 8; i += tileSize)
-		{
+		for (int i = 0; i < data.Length - tileSize * 8; i += tileSize) {
 			double graphicsScore = ScoreAsGraphics(data, i, tileSize * 16);
-			if (graphicsScore > 0.6)
-			{
+			if (graphicsScore > 0.6) {
 				// Find extent of graphics region
 				int length = tileSize;
-				while (i + length + tileSize <= data.Length)
-				{
+				while (i + length + tileSize <= data.Length) {
 					if (ScoreAsGraphics(data, i + length, tileSize * 4) < 0.5)
 						break;
 					length += tileSize;
 				}
 
-				if (length >= tileSize * 4)
-				{
+				if (length >= tileSize * 4) {
 					results.Add(new PatternMatch(
 						i,
 						length,
 						"Graphics",
 						graphicsScore,
-						new Dictionary<string, object>
-						{
+						new Dictionary<string, object> {
 							["tileCount"] = length / tileSize,
 							["format"] = tileSize == 16 ? "2bpp" : "unknown"
 						}
@@ -223,8 +196,7 @@ public static class PatternDetector
 		return results;
 	}
 
-	private static double ScoreAsGraphics(byte[] data, int start, int length)
-	{
+	private static double ScoreAsGraphics(byte[] data, int start, int length) {
 		if (start + length > data.Length)
 			return 0;
 
@@ -237,12 +209,14 @@ public static class PatternDetector
 		int full = 0;
 		int varied = 0;
 
-		for (int i = 0; i < length; i++)
-		{
+		for (int i = 0; i < length; i++) {
 			byte b = data[start + i];
-			if (b == 0x00) empty++;
-			else if (b == 0xff) full++;
-			else varied++;
+			if (b == 0x00)
+				empty++;
+			else if (b == 0xff)
+				full++;
+			else
+				varied++;
 		}
 
 		// Good graphics have a mix of values
@@ -261,19 +235,15 @@ public static class PatternDetector
 	/// <summary>
 	/// Find data tables with consistent structure.
 	/// </summary>
-	public static List<PatternMatch> FindDataTables(byte[] data, int entrySize, int minEntries = 4)
-	{
+	public static List<PatternMatch> FindDataTables(byte[] data, int entrySize, int minEntries = 4) {
 		var results = new List<PatternMatch>();
 
-		for (int i = 0; i < data.Length - entrySize * minEntries; i++)
-		{
+		for (int i = 0; i < data.Length - entrySize * minEntries; i++) {
 			double score = ScoreAsDataTable(data, i, entrySize, minEntries);
-			if (score > 0.6)
-			{
+			if (score > 0.6) {
 				// Count entries
 				int count = minEntries;
-				while (i + (count + 1) * entrySize <= data.Length)
-				{
+				while (i + (count + 1) * entrySize <= data.Length) {
 					if (ScoreAsDataTable(data, i + count * entrySize, entrySize, 1) < 0.4)
 						break;
 					count++;
@@ -286,8 +256,7 @@ public static class PatternDetector
 					count * entrySize,
 					"DataTable",
 					score,
-					new Dictionary<string, object>
-					{
+					new Dictionary<string, object> {
 						["entrySize"] = entrySize,
 						["entryCount"] = count
 					}
@@ -300,8 +269,7 @@ public static class PatternDetector
 		return results;
 	}
 
-	private static double ScoreAsDataTable(byte[] data, int start, int entrySize, int minEntries)
-	{
+	private static double ScoreAsDataTable(byte[] data, int start, int entrySize, int minEntries) {
 		if (start + entrySize * minEntries > data.Length)
 			return 0;
 
@@ -312,11 +280,9 @@ public static class PatternDetector
 
 		double similarityScore = 0;
 
-		for (int field = 0; field < entrySize; field++)
-		{
+		for (int field = 0; field < entrySize; field++) {
 			var values = new List<byte>();
-			for (int entry = 0; entry < minEntries; entry++)
-			{
+			for (int entry = 0; entry < minEntries; entry++) {
 				values.Add(data[start + entry * entrySize + field]);
 			}
 
@@ -336,26 +302,21 @@ public static class PatternDetector
 	/// <summary>
 	/// Find code regions (6502/65816).
 	/// </summary>
-	public static List<PatternMatch> FindCodeRegions(byte[] data, SystemType system)
-	{
+	public static List<PatternMatch> FindCodeRegions(byte[] data, SystemType system) {
 		var results = new List<PatternMatch>();
 
-		for (int i = 0; i < data.Length - 16; i++)
-		{
+		for (int i = 0; i < data.Length - 16; i++) {
 			double codeScore = ScoreAsCode(data, i, 32, system);
-			if (codeScore > 0.7)
-			{
+			if (codeScore > 0.7) {
 				// Find extent
 				int length = 32;
-				while (i + length + 16 <= data.Length)
-				{
+				while (i + length + 16 <= data.Length) {
 					if (ScoreAsCode(data, i + length, 16, system) < 0.5)
 						break;
 					length += 16;
 				}
 
-				if (length >= 32)
-				{
+				if (length >= 32) {
 					results.Add(new PatternMatch(
 						i,
 						length,
@@ -372,8 +333,7 @@ public static class PatternDetector
 		return results;
 	}
 
-	private static double ScoreAsCode(byte[] data, int start, int length, SystemType system)
-	{
+	private static double ScoreAsCode(byte[] data, int start, int length, SystemType system) {
 		if (start + length > data.Length)
 			return 0;
 
@@ -404,8 +364,7 @@ public static class PatternDetector
 		};
 
 		int opcodeHits = 0;
-		for (int i = 0; i < length; i++)
-		{
+		for (int i = 0; i < length; i++) {
 			if (commonOpcodes.Contains(data[start + i]))
 				opcodeHits++;
 		}

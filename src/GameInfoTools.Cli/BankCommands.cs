@@ -1,17 +1,14 @@
-using Spectre.Console;
 using GameInfoTools.Core;
+using Spectre.Console;
 
 namespace GameInfoTools.Cli;
 
 /// <summary>
 /// Bank-related commands for managing ROM banks.
 /// </summary>
-public static class BankCommands
-{
-	public static void List(FileInfo romFile)
-	{
-		if (!romFile.Exists)
-		{
+public static class BankCommands {
+	public static void List(FileInfo romFile) {
+		if (!romFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Error: ROM file not found: {romFile.FullName}[/]");
 			return;
 		}
@@ -36,8 +33,7 @@ public static class BankCommands
 			.AddColumn("Usage")
 			.AddColumn("Content Type");
 
-		for (int i = 0; i < Math.Min(bankCount, 32); i++)
-		{
+		for (int i = 0; i < Math.Min(bankCount, 32); i++) {
 			int offset = i * bankSize;
 			string usage = AnalyzeBankUsage(rom, i, bankSize);
 			string contentType = DetectBankContent(rom, offset, bankSize);
@@ -51,8 +47,7 @@ public static class BankCommands
 			);
 		}
 
-		if (bankCount > 32)
-		{
+		if (bankCount > 32) {
 			table.AddRow("...", "...", "...", "...", "...");
 			table.AddRow($"{bankCount - 1:d2}", $"0x{(bankCount - 1) * bankSize:x6}", $"0x{bankSize:x4}", "...", "...");
 		}
@@ -60,10 +55,8 @@ public static class BankCommands
 		AnsiConsole.Write(table);
 	}
 
-	private static int GetBankSize(SystemType system)
-	{
-		return system switch
-		{
+	private static int GetBankSize(SystemType system) {
+		return system switch {
 			SystemType.Nes => 0x4000,        // 16KB PRG banks (typical)
 			SystemType.Snes => 0x8000,       // 32KB banks
 			SystemType.GameBoy => 0x4000,    // 16KB banks
@@ -74,21 +67,17 @@ public static class BankCommands
 		};
 	}
 
-	private static string AnalyzeBankUsage(RomFile rom, int bankNum, int bankSize)
-	{
+	private static string AnalyzeBankUsage(RomFile rom, int bankNum, int bankSize) {
 		int offset = bankNum * bankSize;
 		int end = Math.Min(offset + bankSize, rom.Data.Length);
 		int usedBytes = 0;
 		int ffBytes = 0;
 
-		for (int i = offset; i < end; i++)
-		{
-			if (rom.Data[i] != 0x00 && rom.Data[i] != 0xff)
-			{
+		for (int i = offset; i < end; i++) {
+			if (rom.Data[i] != 0x00 && rom.Data[i] != 0xff) {
 				usedBytes++;
 			}
-			if (rom.Data[i] == 0xff)
-			{
+			if (rom.Data[i] == 0xff) {
 				ffBytes++;
 			}
 		}
@@ -106,8 +95,7 @@ public static class BankCommands
 		return $"[cyan]{usedPercent:f0}%[/]";
 	}
 
-	private static string DetectBankContent(RomFile rom, int offset, int bankSize)
-	{
+	private static string DetectBankContent(RomFile rom, int offset, int bankSize) {
 		// Sample the bank content to guess its type
 		int sampleSize = Math.Min(512, bankSize);
 		var sample = new byte[sampleSize];
@@ -117,22 +105,18 @@ public static class BankCommands
 		int textLikeBytes = 0;
 		int codePatterns = 0;
 
-		for (int i = 0; i < sampleSize; i++)
-		{
+		for (int i = 0; i < sampleSize; i++) {
 			byte b = sample[i];
 
 			// Text-like bytes (common text encodings)
-			if ((b >= 0x41 && b <= 0x5a) || (b >= 0x61 && b <= 0x7a) || (b >= 0x80 && b <= 0xdf))
-			{
+			if ((b >= 0x41 && b <= 0x5a) || (b >= 0x61 && b <= 0x7a) || (b >= 0x80 && b <= 0xdf)) {
 				textLikeBytes++;
 			}
 
 			// Code patterns (6502)
-			if (i < sampleSize - 1)
-			{
+			if (i < sampleSize - 1) {
 				// JSR (0x20), JMP (0x4c), LDA (0xa9, 0xa5, 0xad)
-				if (b == 0x20 || b == 0x4c || b == 0xa9 || b == 0xa5 || b == 0xad)
-				{
+				if (b == 0x20 || b == 0x4c || b == 0xa9 || b == 0xa5 || b == 0xad) {
 					codePatterns++;
 				}
 			}
@@ -148,10 +132,8 @@ public static class BankCommands
 
 		// Check for graphics patterns (repeating structures)
 		bool hasRepeat = false;
-		for (int i = 0; i < sampleSize - 16; i++)
-		{
-			if (sample[i] == sample[i + 8] && sample[i + 1] == sample[i + 9])
-			{
+		for (int i = 0; i < sampleSize - 16; i++) {
+			if (sample[i] == sample[i + 8] && sample[i + 1] == sample[i + 9]) {
 				hasRepeat = true;
 				break;
 			}
@@ -163,10 +145,8 @@ public static class BankCommands
 		return "[grey]Unknown[/]";
 	}
 
-	public static void Extract(FileInfo romFile, int bankNumber, string outputPath)
-	{
-		if (!romFile.Exists)
-		{
+	public static void Extract(FileInfo romFile, int bankNumber, string outputPath) {
+		if (!romFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Error: ROM file not found: {romFile.FullName}[/]");
 			return;
 		}
@@ -178,8 +158,7 @@ public static class BankCommands
 		int bankSize = GetBankSize(info.System);
 		int bankCount = rom.Data.Length / bankSize;
 
-		if (bankNumber < 0 || bankNumber >= bankCount)
-		{
+		if (bankNumber < 0 || bankNumber >= bankCount) {
 			AnsiConsole.MarkupLine($"[red]Error: Invalid bank number. Must be 0-{bankCount - 1}[/]");
 			return;
 		}
@@ -193,16 +172,13 @@ public static class BankCommands
 		AnsiConsole.MarkupLine($"[grey]{bankSize} bytes written[/]");
 	}
 
-	public static void Replace(FileInfo romFile, int bankNumber, FileInfo bankFile)
-	{
-		if (!romFile.Exists)
-		{
+	public static void Replace(FileInfo romFile, int bankNumber, FileInfo bankFile) {
+		if (!romFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Error: ROM file not found: {romFile.FullName}[/]");
 			return;
 		}
 
-		if (!bankFile.Exists)
-		{
+		if (!bankFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Error: Bank file not found: {bankFile.FullName}[/]");
 			return;
 		}
@@ -214,15 +190,13 @@ public static class BankCommands
 		int bankSize = GetBankSize(info.System);
 		int bankCount = rom.Data.Length / bankSize;
 
-		if (bankNumber < 0 || bankNumber >= bankCount)
-		{
+		if (bankNumber < 0 || bankNumber >= bankCount) {
 			AnsiConsole.MarkupLine($"[red]Error: Invalid bank number. Must be 0-{bankCount - 1}[/]");
 			return;
 		}
 
 		var bankData = File.ReadAllBytes(bankFile.FullName);
-		if (bankData.Length != bankSize)
-		{
+		if (bankData.Length != bankSize) {
 			AnsiConsole.MarkupLine($"[red]Error: Bank file size ({bankData.Length}) does not match expected size ({bankSize})[/]");
 			return;
 		}
@@ -234,10 +208,8 @@ public static class BankCommands
 		AnsiConsole.MarkupLine($"[green]Replaced bank {bankNumber} in {romFile.Name}[/]");
 	}
 
-	public static void Compare(FileInfo rom1File, FileInfo rom2File)
-	{
-		if (!rom1File.Exists || !rom2File.Exists)
-		{
+	public static void Compare(FileInfo rom1File, FileInfo rom2File) {
+		if (!rom1File.Exists || !rom2File.Exists) {
 			AnsiConsole.MarkupLine("[red]Error: One or both ROM files not found[/]");
 			return;
 		}
@@ -266,38 +238,30 @@ public static class BankCommands
 		int identicalBanks = 0;
 		int differentBanks = 0;
 
-		for (int i = 0; i < maxBanks; i++)
-		{
+		for (int i = 0; i < maxBanks; i++) {
 			int offset = i * bankSize;
 
-			if (i >= bankCount1)
-			{
+			if (i >= bankCount1) {
 				table.AddRow($"{i}", "[yellow]ROM 2 only[/]", "N/A");
 				continue;
 			}
 
-			if (i >= bankCount2)
-			{
+			if (i >= bankCount2) {
 				table.AddRow($"{i}", "[yellow]ROM 1 only[/]", "N/A");
 				continue;
 			}
 
 			int differences = 0;
-			for (int j = 0; j < bankSize && offset + j < rom1.Data.Length && offset + j < rom2.Data.Length; j++)
-			{
-				if (rom1.Data[offset + j] != rom2.Data[offset + j])
-				{
+			for (int j = 0; j < bankSize && offset + j < rom1.Data.Length && offset + j < rom2.Data.Length; j++) {
+				if (rom1.Data[offset + j] != rom2.Data[offset + j]) {
 					differences++;
 				}
 			}
 
-			if (differences == 0)
-			{
+			if (differences == 0) {
 				identicalBanks++;
 				table.AddRow($"{i}", "[green]Identical[/]", "0");
-			}
-			else
-			{
+			} else {
 				differentBanks++;
 				double pct = (double)differences / bankSize * 100;
 				table.AddRow($"{i}", "[red]Different[/]", $"{differences} ({pct:f1}%)");

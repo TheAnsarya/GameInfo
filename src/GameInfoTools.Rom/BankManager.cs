@@ -6,13 +6,11 @@ namespace GameInfoTools.Rom;
 /// <summary>
 /// Bank management for banked ROM systems.
 /// </summary>
-public class BankManager
-{
+public class BankManager {
 	private readonly byte[] _data;
 	private readonly RomInfo _romInfo;
 
-	public BankManager(byte[] data)
-	{
+	public BankManager(byte[] data) {
 		_data = data;
 		_romInfo = Core.RomFile.GetRomInfo(data);
 	}
@@ -25,12 +23,10 @@ public class BankManager
 	/// <summary>
 	/// Get information about all banks.
 	/// </summary>
-	public List<BankInfo> GetBanks()
-	{
+	public List<BankInfo> GetBanks() {
 		var banks = new List<BankInfo>();
 
-		switch (_romInfo.System)
-		{
+		switch (_romInfo.System) {
 			case SystemType.Nes:
 				return GetNesBanks();
 
@@ -44,8 +40,7 @@ public class BankManager
 				// Treat as flat ROM with 16KB banks
 				int bankSize = 0x4000;
 				int bankCount = (_data.Length - _romInfo.HeaderSize) / bankSize;
-				for (int i = 0; i < bankCount; i++)
-				{
+				for (int i = 0; i < bankCount; i++) {
 					banks.Add(new BankInfo(
 						i,
 						_romInfo.HeaderSize + i * bankSize,
@@ -61,8 +56,7 @@ public class BankManager
 		return banks;
 	}
 
-	private List<BankInfo> GetNesBanks()
-	{
+	private List<BankInfo> GetNesBanks() {
 		var banks = new List<BankInfo>();
 
 		// iNES header: PRG ROM size at byte 4 (in 16KB units)
@@ -74,24 +68,18 @@ public class BankManager
 		int offset = _romInfo.HeaderSize;
 
 		// PRG banks
-		for (int i = 0; i < prgBanks; i++)
-		{
+		for (int i = 0; i < prgBanks; i++) {
 			// Determine CPU mapping based on mapper and bank position
 			int cpuStart, cpuEnd;
-			if (prgBanks == 1)
-			{
+			if (prgBanks == 1) {
 				// Single 16KB bank mirrors or maps to $C000
 				cpuStart = 0xc000;
 				cpuEnd = 0xffff;
-			}
-			else if (i == prgBanks - 1)
-			{
+			} else if (i == prgBanks - 1) {
 				// Last bank typically fixed at $C000
 				cpuStart = 0xc000;
 				cpuEnd = 0xffff;
-			}
-			else
-			{
+			} else {
 				// Switchable bank at $8000
 				cpuStart = 0x8000;
 				cpuEnd = 0xbfff;
@@ -102,8 +90,7 @@ public class BankManager
 		}
 
 		// CHR banks (not CPU addressable directly)
-		for (int i = 0; i < chrBanks; i++)
-		{
+		for (int i = 0; i < chrBanks; i++) {
 			banks.Add(new BankInfo(prgBanks + i, offset, 0x2000, 0x0000, 0x1fff, false));
 			offset += 0x2000;
 		}
@@ -111,8 +98,7 @@ public class BankManager
 		return banks;
 	}
 
-	private List<BankInfo> GetSnesBanks()
-	{
+	private List<BankInfo> GetSnesBanks() {
 		var banks = new List<BankInfo>();
 		int romStart = _romInfo.HeaderSize;
 		int romSize = _data.Length - romStart;
@@ -122,8 +108,7 @@ public class BankManager
 		// HiROM: 64KB banks mapped to $0000-$FFFF
 
 		bool isLoRom = true;
-		if (romStart + 0x7fd5 < _data.Length)
-		{
+		if (romStart + 0x7fd5 < _data.Length) {
 			byte mapMode = _data[romStart + 0x7fd5];
 			isLoRom = (mapMode & 0x01) == 0;
 		}
@@ -131,8 +116,7 @@ public class BankManager
 		int bankSize = isLoRom ? 0x8000 : 0x10000;
 		int bankCount = romSize / bankSize;
 
-		for (int i = 0; i < bankCount; i++)
-		{
+		for (int i = 0; i < bankCount; i++) {
 			int cpuBank = isLoRom ? 0x80 + i * 2 : 0xc0 + i;
 			int cpuStart = isLoRom ? (cpuBank << 16) | 0x8000 : cpuBank << 16;
 			int cpuEnd = cpuStart + bankSize - 1;
@@ -143,8 +127,7 @@ public class BankManager
 		return banks;
 	}
 
-	private List<BankInfo> GetGameBoyBanks()
-	{
+	private List<BankInfo> GetGameBoyBanks() {
 		var banks = new List<BankInfo>();
 		int bankSize = 0x4000;
 		int romSize = _data.Length;
@@ -154,8 +137,7 @@ public class BankManager
 		banks.Add(new BankInfo(0, 0, bankSize, 0x0000, 0x3fff, true));
 
 		// Remaining banks switchable at $4000-$7FFF
-		for (int i = 1; i < bankCount; i++)
-		{
+		for (int i = 1; i < bankCount; i++) {
 			banks.Add(new BankInfo(i, i * bankSize, bankSize, 0x4000, 0x7fff, true));
 		}
 
@@ -165,13 +147,11 @@ public class BankManager
 	/// <summary>
 	/// Extract a single bank.
 	/// </summary>
-	public byte[] ExtractBank(int bankNumber)
-	{
+	public byte[] ExtractBank(int bankNumber) {
 		var banks = GetBanks();
 		var bank = banks.FirstOrDefault(b => b.Number == bankNumber);
 
-		if (bank == null)
-		{
+		if (bank == null) {
 			throw new ArgumentException($"Bank {bankNumber} not found");
 		}
 
@@ -183,18 +163,15 @@ public class BankManager
 	/// <summary>
 	/// Replace a bank's contents.
 	/// </summary>
-	public void ReplaceBank(int bankNumber, byte[] newData)
-	{
+	public void ReplaceBank(int bankNumber, byte[] newData) {
 		var banks = GetBanks();
 		var bank = banks.FirstOrDefault(b => b.Number == bankNumber);
 
-		if (bank == null)
-		{
+		if (bank == null) {
 			throw new ArgumentException($"Bank {bankNumber} not found");
 		}
 
-		if (newData.Length != bank.Size)
-		{
+		if (newData.Length != bank.Size) {
 			throw new ArgumentException($"Data size {newData.Length} doesn't match bank size {bank.Size}");
 		}
 
@@ -204,8 +181,7 @@ public class BankManager
 	/// <summary>
 	/// Get free space in a bank.
 	/// </summary>
-	public (int Start, int Length) FindFreeSpace(int bankNumber, byte fillByte = 0xff, int minSize = 16)
-	{
+	public (int Start, int Length) FindFreeSpace(int bankNumber, byte fillByte = 0xff, int minSize = 16) {
 		var bankData = ExtractBank(bankNumber);
 		int bestStart = -1;
 		int bestLength = 0;
@@ -213,20 +189,14 @@ public class BankManager
 		int currentStart = -1;
 		int currentLength = 0;
 
-		for (int i = 0; i < bankData.Length; i++)
-		{
-			if (bankData[i] == fillByte)
-			{
-				if (currentStart < 0)
-				{
+		for (int i = 0; i < bankData.Length; i++) {
+			if (bankData[i] == fillByte) {
+				if (currentStart < 0) {
 					currentStart = i;
 				}
 				currentLength++;
-			}
-			else
-			{
-				if (currentLength > bestLength && currentLength >= minSize)
-				{
+			} else {
+				if (currentLength > bestLength && currentLength >= minSize) {
 					bestStart = currentStart;
 					bestLength = currentLength;
 				}
@@ -236,8 +206,7 @@ public class BankManager
 		}
 
 		// Check final run
-		if (currentLength > bestLength && currentLength >= minSize)
-		{
+		if (currentLength > bestLength && currentLength >= minSize) {
 			bestStart = currentStart;
 			bestLength = currentLength;
 		}
@@ -248,15 +217,12 @@ public class BankManager
 	/// <summary>
 	/// Calculate bank usage statistics.
 	/// </summary>
-	public (int Used, int Free, float UsagePercent) GetBankUsage(int bankNumber, byte fillByte = 0xff)
-	{
+	public (int Used, int Free, float UsagePercent) GetBankUsage(int bankNumber, byte fillByte = 0xff) {
 		var bankData = ExtractBank(bankNumber);
 		int freeBytes = 0;
 
-		foreach (byte b in bankData)
-		{
-			if (b == fillByte)
-			{
+		foreach (byte b in bankData) {
+			if (b == fillByte) {
 				freeBytes++;
 			}
 		}
@@ -270,8 +236,7 @@ public class BankManager
 	/// <summary>
 	/// Generate a bank map report.
 	/// </summary>
-	public string GenerateBankMap()
-	{
+	public string GenerateBankMap() {
 		var sb = new StringBuilder();
 		var banks = GetBanks();
 
@@ -282,8 +247,7 @@ public class BankManager
 		sb.AppendLine("Bank  | File Offset | CPU Address    | Size   | Type | Usage");
 		sb.AppendLine("------|-------------|----------------|--------|------|-------");
 
-		foreach (var bank in banks)
-		{
+		foreach (var bank in banks) {
 			var usage = GetBankUsage(bank.Number);
 			string typeStr = bank.IsPrgRom ? "PRG" : "CHR";
 

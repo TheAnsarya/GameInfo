@@ -1,23 +1,19 @@
-using Spectre.Console;
 using GameInfoTools.Core;
+using Spectre.Console;
 
 namespace GameInfoTools.Cli;
 
 /// <summary>
 /// Patch creation and application commands.
 /// </summary>
-public static class PatchCommands
-{
-	public static void Create(FileInfo originalFile, FileInfo modifiedFile, string outputPath, string format)
-	{
-		if (!originalFile.Exists)
-		{
+public static class PatchCommands {
+	public static void Create(FileInfo originalFile, FileInfo modifiedFile, string outputPath, string format) {
+		if (!originalFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Error: Original file not found: {originalFile.FullName}[/]");
 			return;
 		}
 
-		if (!modifiedFile.Exists)
-		{
+		if (!modifiedFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Error: Modified file not found: {modifiedFile.FullName}[/]");
 			return;
 		}
@@ -29,8 +25,7 @@ public static class PatchCommands
 		AnsiConsole.MarkupLine($"[grey]Original: {originalFile.Name} ({original.Length} bytes)[/]");
 		AnsiConsole.MarkupLine($"[grey]Modified: {modifiedFile.Name} ({modified.Length} bytes)[/]");
 
-		switch (format.ToLowerInvariant())
-		{
+		switch (format.ToLowerInvariant()) {
 			case "ips":
 				CreateIpsPatch(original, modified, outputPath);
 				break;
@@ -50,8 +45,7 @@ public static class PatchCommands
 		}
 	}
 
-	private static void CreateIpsPatch(byte[] original, byte[] modified, string outputPath)
-	{
+	private static void CreateIpsPatch(byte[] original, byte[] modified, string outputPath) {
 		using var output = new FileStream(outputPath, FileMode.Create);
 		using var writer = new BinaryWriter(output);
 
@@ -61,11 +55,9 @@ public static class PatchCommands
 		int changesCount = 0;
 		int i = 0;
 
-		while (i < modified.Length)
-		{
+		while (i < modified.Length) {
 			// Find start of difference
-			while (i < modified.Length && i < original.Length && original[i] == modified[i])
-			{
+			while (i < modified.Length && i < original.Length && original[i] == modified[i]) {
 				i++;
 			}
 
@@ -76,21 +68,16 @@ public static class PatchCommands
 
 			// Find end of difference (or max 0xffff bytes)
 			int len = 0;
-			while (i < modified.Length && len < 0xffff)
-			{
-				if (i >= original.Length || original[i] != modified[i])
-				{
+			while (i < modified.Length && len < 0xffff) {
+				if (i >= original.Length || original[i] != modified[i]) {
 					i++;
 					len++;
-				}
-				else
-				{
+				} else {
 					// Check if we should continue (small identical run)
 					int identicalRun = 0;
 					int tempI = i;
 					while (tempI < modified.Length && tempI < original.Length &&
-						   original[tempI] == modified[tempI] && identicalRun < 6)
-					{
+						   original[tempI] == modified[tempI] && identicalRun < 6) {
 						tempI++;
 						identicalRun++;
 					}
@@ -103,8 +90,7 @@ public static class PatchCommands
 				}
 			}
 
-			if (len > 0)
-			{
+			if (len > 0) {
 				// Write record
 				// 3-byte offset
 				writer.Write((byte)((start >> 16) & 0xff));
@@ -116,8 +102,7 @@ public static class PatchCommands
 				writer.Write((byte)(len & 0xff));
 
 				// Data
-				for (int j = 0; j < len; j++)
-				{
+				for (int j = 0; j < len; j++) {
 					writer.Write(modified[start + j]);
 				}
 
@@ -126,14 +111,12 @@ public static class PatchCommands
 		}
 
 		// Handle expansion
-		if (modified.Length > original.Length)
-		{
+		if (modified.Length > original.Length) {
 			int start = original.Length;
 			int len = modified.Length - original.Length;
 
 			// May need multiple records for large expansions
-			while (len > 0)
-			{
+			while (len > 0) {
 				int chunkLen = Math.Min(len, 0xffff);
 
 				writer.Write((byte)((start >> 16) & 0xff));
@@ -143,8 +126,7 @@ public static class PatchCommands
 				writer.Write((byte)((chunkLen >> 8) & 0xff));
 				writer.Write((byte)(chunkLen & 0xff));
 
-				for (int j = 0; j < chunkLen; j++)
-				{
+				for (int j = 0; j < chunkLen; j++) {
 					writer.Write(modified[start + j]);
 				}
 
@@ -161,8 +143,7 @@ public static class PatchCommands
 		AnsiConsole.MarkupLine($"[grey]{changesCount} change records written[/]");
 	}
 
-	private static void CreateBpsPatch(byte[] original, byte[] modified, string outputPath)
-	{
+	private static void CreateBpsPatch(byte[] original, byte[] modified, string outputPath) {
 		// BPS is more complex, using delta encoding
 		AnsiConsole.MarkupLine("[yellow]BPS patch creation is experimental[/]");
 
@@ -178,15 +159,13 @@ public static class PatchCommands
 		WriteVarInt(writer, 0); // Metadata size
 
 		// For now, write as simple TargetRead records
-		for (int i = 0; i < modified.Length; i++)
-		{
+		for (int i = 0; i < modified.Length; i++) {
 			// Action 0 = SourceRead (copy from source)
 			// Action 1 = TargetRead (literal data)
 			// Action 2 = SourceCopy
 			// Action 3 = TargetCopy
 
-			if (i < original.Length && original[i] == modified[i])
-			{
+			if (i < original.Length && original[i] == modified[i]) {
 				// Could optimize with SourceRead runs
 				continue;
 			}
@@ -204,8 +183,7 @@ public static class PatchCommands
 		AnsiConsole.MarkupLine($"[green]Created BPS patch: {outputPath}[/]");
 	}
 
-	private static void CreateUpsPatch(byte[] original, byte[] modified, string outputPath)
-	{
+	private static void CreateUpsPatch(byte[] original, byte[] modified, string outputPath) {
 		AnsiConsole.MarkupLine("[yellow]UPS patch creation is experimental[/]");
 
 		using var output = new FileStream(outputPath, FileMode.Create);
@@ -220,14 +198,12 @@ public static class PatchCommands
 
 		// XOR differences
 		long offset = 0;
-		for (int i = 0; i < Math.Max(original.Length, modified.Length); i++)
-		{
+		for (int i = 0; i < Math.Max(original.Length, modified.Length); i++) {
 			byte orig = i < original.Length ? original[i] : (byte)0;
 			byte mod = i < modified.Length ? modified[i] : (byte)0;
 			byte xorVal = (byte)(orig ^ mod);
 
-			if (xorVal != 0)
-			{
+			if (xorVal != 0) {
 				// Write relative offset
 				WriteVarInt(writer, i - offset);
 				offset = i + 1;
@@ -246,14 +222,11 @@ public static class PatchCommands
 		AnsiConsole.MarkupLine($"[green]Created UPS patch: {outputPath}[/]");
 	}
 
-	private static void WriteVarInt(BinaryWriter writer, long value)
-	{
-		while (true)
-		{
+	private static void WriteVarInt(BinaryWriter writer, long value) {
+		while (true) {
 			byte b = (byte)(value & 0x7f);
 			value >>= 7;
-			if (value == 0)
-			{
+			if (value == 0) {
 				writer.Write((byte)(b | 0x80));
 				break;
 			}
@@ -262,16 +235,13 @@ public static class PatchCommands
 		}
 	}
 
-	public static void Apply(FileInfo romFile, FileInfo patchFile, string outputPath)
-	{
-		if (!romFile.Exists)
-		{
+	public static void Apply(FileInfo romFile, FileInfo patchFile, string outputPath) {
+		if (!romFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Error: ROM file not found: {romFile.FullName}[/]");
 			return;
 		}
 
-		if (!patchFile.Exists)
-		{
+		if (!patchFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Error: Patch file not found: {patchFile.FullName}[/]");
 			return;
 		}
@@ -282,16 +252,14 @@ public static class PatchCommands
 		string format = DetectPatchFormat(patchData);
 		AnsiConsole.MarkupLine($"[cyan]Detected patch format: {format}[/]");
 
-		byte[]? result = format switch
-		{
+		byte[]? result = format switch {
 			"IPS" => ApplyIpsPatch(romData, patchData),
 			"BPS" => ApplyBpsPatch(romData, patchData),
 			"UPS" => ApplyUpsPatch(romData, patchData),
 			_ => null
 		};
 
-		if (result == null)
-		{
+		if (result == null) {
 			AnsiConsole.MarkupLine($"[red]Failed to apply patch[/]");
 			return;
 		}
@@ -301,29 +269,27 @@ public static class PatchCommands
 		AnsiConsole.MarkupLine($"[grey]Original: {romData.Length} bytes, Patched: {result.Length} bytes[/]");
 	}
 
-	private static string DetectPatchFormat(byte[] data)
-	{
-		if (data.Length >= 5)
-		{
+	private static string DetectPatchFormat(byte[] data) {
+		if (data.Length >= 5) {
 			string header = System.Text.Encoding.ASCII.GetString(data, 0, 5);
-			if (header == "PATCH") return "IPS";
+			if (header == "PATCH")
+				return "IPS";
 		}
 
-		if (data.Length >= 4)
-		{
+		if (data.Length >= 4) {
 			string header = System.Text.Encoding.ASCII.GetString(data, 0, 4);
-			if (header == "BPS1") return "BPS";
-			if (header == "UPS1") return "UPS";
+			if (header == "BPS1")
+				return "BPS";
+			if (header == "UPS1")
+				return "UPS";
 		}
 
 		return "Unknown";
 	}
 
-	private static byte[] ApplyIpsPatch(byte[] rom, byte[] patch)
-	{
+	private static byte[] ApplyIpsPatch(byte[] rom, byte[] patch) {
 		// Verify header
-		if (patch.Length < 5 || System.Text.Encoding.ASCII.GetString(patch, 0, 5) != "PATCH")
-		{
+		if (patch.Length < 5 || System.Text.Encoding.ASCII.GetString(patch, 0, 5) != "PATCH") {
 			throw new InvalidDataException("Invalid IPS header");
 		}
 
@@ -331,8 +297,7 @@ public static class PatchCommands
 		var output = new List<byte>(rom);
 		int pos = 5;
 
-		while (pos < patch.Length - 3)
-		{
+		while (pos < patch.Length - 3) {
 			// Check for EOF
 			if (patch[pos] == 'E' && patch[pos + 1] == 'O' && patch[pos + 2] == 'F')
 				break;
@@ -346,29 +311,23 @@ public static class PatchCommands
 			pos += 2;
 
 			// Expand output if needed
-			while (output.Count < offset + size)
-			{
+			while (output.Count < offset + size) {
 				output.Add(0);
 			}
 
-			if (size == 0)
-			{
+			if (size == 0) {
 				// RLE record
 				int rleSize = (patch[pos] << 8) | patch[pos + 1];
 				pos += 2;
 				byte rleValue = patch[pos];
 				pos += 1;
 
-				for (int i = 0; i < rleSize; i++)
-				{
+				for (int i = 0; i < rleSize; i++) {
 					output[offset + i] = rleValue;
 				}
-			}
-			else
-			{
+			} else {
 				// Normal record
-				for (int i = 0; i < size; i++)
-				{
+				for (int i = 0; i < size; i++) {
 					output[offset + i] = patch[pos + i];
 				}
 				pos += size;
@@ -378,24 +337,20 @@ public static class PatchCommands
 		return output.ToArray();
 	}
 
-	private static byte[] ApplyBpsPatch(byte[] rom, byte[] patch)
-	{
+	private static byte[] ApplyBpsPatch(byte[] rom, byte[] patch) {
 		// BPS implementation would go here
 		AnsiConsole.MarkupLine("[yellow]BPS patch application not fully implemented[/]");
 		return rom;
 	}
 
-	private static byte[] ApplyUpsPatch(byte[] rom, byte[] patch)
-	{
+	private static byte[] ApplyUpsPatch(byte[] rom, byte[] patch) {
 		// UPS implementation would go here
 		AnsiConsole.MarkupLine("[yellow]UPS patch application not fully implemented[/]");
 		return rom;
 	}
 
-	public static void Info(FileInfo patchFile)
-	{
-		if (!patchFile.Exists)
-		{
+	public static void Info(FileInfo patchFile) {
+		if (!patchFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Error: Patch file not found: {patchFile.FullName}[/]");
 			return;
 		}
@@ -413,8 +368,7 @@ public static class PatchCommands
 		table.AddRow("Format", format);
 		table.AddRow("File Size", $"{data.Length:n0} bytes");
 
-		switch (format)
-		{
+		switch (format) {
 			case "IPS":
 				AnalyzeIpsPatch(data, table);
 				break;
@@ -431,14 +385,12 @@ public static class PatchCommands
 		AnsiConsole.Write(table);
 	}
 
-	private static void AnalyzeIpsPatch(byte[] patch, Table table)
-	{
+	private static void AnalyzeIpsPatch(byte[] patch, Table table) {
 		int pos = 5;
 		int recordCount = 0;
 		int totalDataBytes = 0;
 
-		while (pos < patch.Length - 3)
-		{
+		while (pos < patch.Length - 3) {
 			if (patch[pos] == 'E' && patch[pos + 1] == 'O' && patch[pos + 2] == 'F')
 				break;
 
@@ -446,14 +398,11 @@ public static class PatchCommands
 			int size = (patch[pos] << 8) | patch[pos + 1];
 			pos += 2;
 
-			if (size == 0)
-			{
+			if (size == 0) {
 				int rleSize = (patch[pos] << 8) | patch[pos + 1];
 				pos += 3;
 				totalDataBytes += rleSize;
-			}
-			else
-			{
+			} else {
 				pos += size;
 				totalDataBytes += size;
 			}

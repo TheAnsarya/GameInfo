@@ -7,13 +7,11 @@ namespace GameInfoTools.Tests;
 /// <summary>
 /// Comprehensive tests for IPS and BPS patching functionality.
 /// </summary>
-public class IpsPatchTests
-{
+public class IpsPatchTests {
 	#region IPS Header Tests
 
 	[Fact]
-	public void ReadPatch_ValidHeader_ReturnsEmptyRecords()
-	{
+	public void ReadPatch_ValidHeader_ReturnsEmptyRecords() {
 		// Minimal valid IPS file: header + EOF
 		var patch = new byte[] { (byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H', (byte)'E', (byte)'O', (byte)'F' };
 
@@ -23,16 +21,14 @@ public class IpsPatchTests
 	}
 
 	[Fact]
-	public void ReadPatch_InvalidHeader_ThrowsException()
-	{
+	public void ReadPatch_InvalidHeader_ThrowsException() {
 		var patch = new byte[] { (byte)'I', (byte)'P', (byte)'S', (byte)'X', (byte)'X' };
 
 		Assert.Throws<InvalidDataException>(() => IpsPatch.ReadPatch(patch));
 	}
 
 	[Fact]
-	public void ReadPatch_TooSmall_ThrowsException()
-	{
+	public void ReadPatch_TooSmall_ThrowsException() {
 		var patch = new byte[] { (byte)'P', (byte)'A', (byte)'T' };
 
 		Assert.Throws<InvalidDataException>(() => IpsPatch.ReadPatch(patch));
@@ -43,8 +39,7 @@ public class IpsPatchTests
 	#region Normal Record Tests
 
 	[Fact]
-	public void ReadPatch_SingleRecord_ParsesCorrectly()
-	{
+	public void ReadPatch_SingleRecord_ParsesCorrectly() {
 		// IPS patch: header + offset $000010, size 3, data [01 02 03] + EOF
 		var patch = new byte[]
 		{
@@ -64,8 +59,7 @@ public class IpsPatchTests
 	}
 
 	[Fact]
-	public void ReadPatch_MultipleRecords_ParsesAll()
-	{
+	public void ReadPatch_MultipleRecords_ParsesAll() {
 		var patch = new byte[]
 		{
 			(byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H',
@@ -82,8 +76,7 @@ public class IpsPatchTests
 	}
 
 	[Fact]
-	public void ReadPatch_LargeOffset_ParsesCorrectly()
-	{
+	public void ReadPatch_LargeOffset_ParsesCorrectly() {
 		// Offset 0x123456 (big endian: 12 34 56)
 		var patch = new byte[]
 		{
@@ -105,8 +98,7 @@ public class IpsPatchTests
 	#region RLE Record Tests
 
 	[Fact]
-	public void ReadPatch_RleRecord_ParsesCorrectly()
-	{
+	public void ReadPatch_RleRecord_ParsesCorrectly() {
 		// RLE record: size=0, count=10, value=0xff
 		var patch = new byte[]
 		{
@@ -128,8 +120,7 @@ public class IpsPatchTests
 	}
 
 	[Fact]
-	public void ReadPatch_MixedRecords_ParsesCorrectly()
-	{
+	public void ReadPatch_MixedRecords_ParsesCorrectly() {
 		var patch = new byte[]
 		{
 			(byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H',
@@ -150,8 +141,7 @@ public class IpsPatchTests
 	#region Apply Patch Tests
 
 	[Fact]
-	public void ApplyPatch_NormalRecord_ModifiesData()
-	{
+	public void ApplyPatch_NormalRecord_ModifiesData() {
 		var rom = new byte[256];
 		Array.Fill(rom, (byte)0x00);
 
@@ -173,8 +163,7 @@ public class IpsPatchTests
 	}
 
 	[Fact]
-	public void ApplyPatch_RleRecord_FillsData()
-	{
+	public void ApplyPatch_RleRecord_FillsData() {
 		var rom = new byte[256];
 
 		var patch = new byte[]
@@ -189,15 +178,13 @@ public class IpsPatchTests
 
 		var result = IpsPatch.ApplyPatch(rom, patch);
 
-		for (int i = 0; i < 16; i++)
-		{
+		for (int i = 0; i < 16; i++) {
 			Assert.Equal(0xff, result[0x20 + i]);
 		}
 	}
 
 	[Fact]
-	public void ApplyPatch_ExpansionNeeded_ExpandsRom()
-	{
+	public void ApplyPatch_ExpansionNeeded_ExpandsRom() {
 		var rom = new byte[16];
 
 		var patch = new byte[]
@@ -220,8 +207,7 @@ public class IpsPatchTests
 	#region Create Patch Tests
 
 	[Fact]
-	public void CreatePatch_NoDifferences_ReturnsHeaderEofOnly()
-	{
+	public void CreatePatch_NoDifferences_ReturnsHeaderEofOnly() {
 		var original = new byte[] { 0x01, 0x02, 0x03, 0x04 };
 		var modified = new byte[] { 0x01, 0x02, 0x03, 0x04 };
 
@@ -234,8 +220,7 @@ public class IpsPatchTests
 	}
 
 	[Fact]
-	public void CreatePatch_SingleDifference_CreatesRecord()
-	{
+	public void CreatePatch_SingleDifference_CreatesRecord() {
 		var original = new byte[] { 0x00, 0x00, 0x00, 0x00 };
 		var modified = new byte[] { 0x00, 0xff, 0x00, 0x00 };
 
@@ -247,8 +232,7 @@ public class IpsPatchTests
 	}
 
 	[Fact]
-	public void CreatePatch_RleOpportunity_UsesRle()
-	{
+	public void CreatePatch_RleOpportunity_UsesRle() {
 		var original = new byte[100];
 		var modified = new byte[100];
 		Array.Fill(modified, (byte)0xff, 10, 20); // 20 bytes of 0xff
@@ -262,11 +246,9 @@ public class IpsPatchTests
 	}
 
 	[Fact]
-	public void CreatePatch_RoundTrip_PreservesData()
-	{
+	public void CreatePatch_RoundTrip_PreservesData() {
 		var original = new byte[256];
-		for (int i = 0; i < 256; i++)
-		{
+		for (int i = 0; i < 256; i++) {
 			original[i] = (byte)i;
 		}
 
@@ -286,8 +268,7 @@ public class IpsPatchTests
 	#region Write Patch Tests
 
 	[Fact]
-	public void WritePatch_EmptyRecords_WritesHeaderEof()
-	{
+	public void WritePatch_EmptyRecords_WritesHeaderEof() {
 		var records = new List<IpsPatch.IpsRecord>();
 
 		var patch = IpsPatch.WritePatch(records);
@@ -298,8 +279,7 @@ public class IpsPatchTests
 	}
 
 	[Fact]
-	public void WritePatch_NormalRecord_WritesCorrectFormat()
-	{
+	public void WritePatch_NormalRecord_WritesCorrectFormat() {
 		var records = new List<IpsPatch.IpsRecord>
 		{
 			new(0x100, new byte[] { 0xaa, 0xbb }, false, 0)
@@ -312,8 +292,7 @@ public class IpsPatchTests
 	}
 
 	[Fact]
-	public void WritePatch_RleRecord_WritesCorrectFormat()
-	{
+	public void WritePatch_RleRecord_WritesCorrectFormat() {
 		var records = new List<IpsPatch.IpsRecord>
 		{
 			new(0x200, new byte[] { 0xff }, true, 100)
@@ -330,8 +309,7 @@ public class IpsPatchTests
 	#region GetPatchInfo Tests
 
 	[Fact]
-	public void GetPatchInfo_ValidPatch_ReturnsInfo()
-	{
+	public void GetPatchInfo_ValidPatch_ReturnsInfo() {
 		var patch = new byte[]
 		{
 			(byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H',
@@ -346,8 +324,7 @@ public class IpsPatchTests
 	}
 
 	[Fact]
-	public void GetPatchInfo_RleRecord_ShowsRleInfo()
-	{
+	public void GetPatchInfo_RleRecord_ShowsRleInfo() {
 		var patch = new byte[]
 		{
 			(byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H',
@@ -366,11 +343,9 @@ public class IpsPatchTests
 /// <summary>
 /// Tests for BPS patch format.
 /// </summary>
-public class BpsPatchTests
-{
+public class BpsPatchTests {
 	[Fact]
-	public void ApplyPatch_InvalidHeader_ThrowsException()
-	{
+	public void ApplyPatch_InvalidHeader_ThrowsException() {
 		var source = new byte[16];
 		var patch = new byte[] { (byte)'X', (byte)'P', (byte)'S', (byte)'1' };
 
@@ -378,8 +353,7 @@ public class BpsPatchTests
 	}
 
 	[Fact]
-	public void ApplyPatch_TooSmall_ThrowsException()
-	{
+	public void ApplyPatch_TooSmall_ThrowsException() {
 		var source = new byte[16];
 		var patch = new byte[] { (byte)'B', (byte)'P', (byte)'S' };
 
@@ -387,8 +361,7 @@ public class BpsPatchTests
 	}
 
 	[Fact]
-	public void ApplyPatch_ValidHeader_ProcessesPatch()
-	{
+	public void ApplyPatch_ValidHeader_ProcessesPatch() {
 		// Create minimal valid BPS patch
 		// Header: BPS1
 		// Source size: 16 (varint: 0x10)
@@ -405,8 +378,7 @@ public class BpsPatchTests
 		Assert.NotNull(result);
 	}
 
-	private static byte[] CreateMinimalBpsPatch(int sourceSize, int targetSize)
-	{
+	private static byte[] CreateMinimalBpsPatch(int sourceSize, int targetSize) {
 		using var ms = new MemoryStream();
 
 		// Header
@@ -418,22 +390,18 @@ public class BpsPatchTests
 		WriteVarInt(ms, 0); // metadata size
 
 		// Pad with zeros for CRC32s (normally would be real values)
-		for (int i = 0; i < 12; i++)
-		{
+		for (int i = 0; i < 12; i++) {
 			ms.WriteByte(0);
 		}
 
 		return ms.ToArray();
 	}
 
-	private static void WriteVarInt(MemoryStream ms, long value)
-	{
-		while (true)
-		{
+	private static void WriteVarInt(MemoryStream ms, long value) {
+		while (true) {
 			byte b = (byte)(value & 0x7f);
 			value >>= 7;
-			if (value == 0)
-			{
+			if (value == 0) {
 				ms.WriteByte(b);
 				break;
 			}

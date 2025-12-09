@@ -13,13 +13,11 @@ namespace GameInfoTools.Tests;
 /// Integration tests that verify multi-component workflows.
 /// These tests ensure components work together correctly.
 /// </summary>
-public class WorkflowIntegrationTests
-{
+public class WorkflowIntegrationTests {
 	#region ROM Analysis Workflow
 
 	[Fact]
-	public void RomAnalysisWorkflow_NesRom_ExtractsAllData()
-	{
+	public void RomAnalysisWorkflow_NesRom_ExtractsAllData() {
 		// Create a minimal NES ROM with known content
 		var rom = CreateNesRom(1, 1);
 
@@ -35,8 +33,7 @@ public class WorkflowIntegrationTests
 
 		// 3. Extract CHR data
 		var chrBanks = banks.Where(b => !b.IsPrgRom).ToList();
-		if (chrBanks.Any())
-		{
+		if (chrBanks.Any()) {
 			var chrData = bankManager.ExtractBank(chrBanks[0].Number);
 			Assert.NotEmpty(chrData);
 		}
@@ -49,12 +46,10 @@ public class WorkflowIntegrationTests
 	}
 
 	[Fact]
-	public void RomAnalysisWorkflow_UnknownRom_HandlesGracefully()
-	{
+	public void RomAnalysisWorkflow_UnknownRom_HandlesGracefully() {
 		// Create generic binary data
 		var data = new byte[1024];
-		for (int i = 0; i < data.Length; i++)
-		{
+		for (int i = 0; i < data.Length; i++) {
 			data[i] = (byte)(i % 256);
 		}
 
@@ -74,8 +69,7 @@ public class WorkflowIntegrationTests
 	#region Text Extraction Workflow
 
 	[Fact]
-	public void TextExtractionWorkflow_CreateTable()
-	{
+	public void TextExtractionWorkflow_CreateTable() {
 		// 1. Create text table
 		var tableText = "80=A\n81=B\n82=C\n00={END}";
 		var table = TextTable.FromString(tableText);
@@ -86,8 +80,7 @@ public class WorkflowIntegrationTests
 	}
 
 	[Fact]
-	public void TextExtractionWorkflow_DecodeBytes()
-	{
+	public void TextExtractionWorkflow_DecodeBytes() {
 		var tableText = "80=A\n81=B\n82=C\n00={END}";
 		var table = TextTable.FromString(tableText);
 
@@ -102,8 +95,7 @@ public class WorkflowIntegrationTests
 	}
 
 	[Fact]
-	public void TextExtractionWorkflow_DecodeWithEndMarker()
-	{
+	public void TextExtractionWorkflow_DecodeWithEndMarker() {
 		var tableText = "80=A\n81=B\n82=C\n00={END}";
 		var table = TextTable.FromString(tableText);
 
@@ -123,14 +115,11 @@ public class WorkflowIntegrationTests
 	#region Graphics Workflow
 
 	[Fact]
-	public void GraphicsWorkflow_EncodesAndDecodesNesTile()
-	{
+	public void GraphicsWorkflow_EncodesAndDecodesNesTile() {
 		// 1. Create test tile (8x8 2bpp)
 		var tile = new byte[8, 8];
-		for (int y = 0; y < 8; y++)
-		{
-			for (int x = 0; x < 8; x++)
-			{
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
 				tile[y, x] = (byte)((x + y) % 4);
 			}
 		}
@@ -143,23 +132,18 @@ public class WorkflowIntegrationTests
 		var decoded = TileGraphics.DecodeTile(encoded, 0, TileGraphics.TileFormat.Nes2Bpp);
 
 		// 4. Verify round-trip
-		for (int y = 0; y < 8; y++)
-		{
-			for (int x = 0; x < 8; x++)
-			{
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
 				Assert.Equal(tile[y, x], decoded[y, x]);
 			}
 		}
 	}
 
 	[Fact]
-	public void GraphicsWorkflow_EncodesAndDecodesSnesTile()
-	{
+	public void GraphicsWorkflow_EncodesAndDecodesSnesTile() {
 		var tile = new byte[8, 8];
-		for (int y = 0; y < 8; y++)
-		{
-			for (int x = 0; x < 8; x++)
-			{
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
 				tile[y, x] = (byte)((x + y) % 16); // 4bpp = 16 colors
 			}
 		}
@@ -169,18 +153,15 @@ public class WorkflowIntegrationTests
 
 		var decoded = TileGraphics.DecodeTile(encoded, 0, TileGraphics.TileFormat.Snes4Bpp);
 
-		for (int y = 0; y < 8; y++)
-		{
-			for (int x = 0; x < 8; x++)
-			{
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
 				Assert.Equal(tile[y, x], decoded[y, x]);
 			}
 		}
 	}
 
 	[Fact]
-	public void GraphicsWorkflow_PaletteConversion()
-	{
+	public void GraphicsWorkflow_PaletteConversion() {
 		// NES color 0x12 (blue-ish)
 		var (r, g, b) = Palette.NesToRgb(0x12);
 
@@ -191,8 +172,7 @@ public class WorkflowIntegrationTests
 	}
 
 	[Fact]
-	public void GraphicsWorkflow_SnesPaletteRoundTrip()
-	{
+	public void GraphicsWorkflow_SnesPaletteRoundTrip() {
 		// SNES palette data (2 bytes per color)
 		var snesData = new byte[] { 0x00, 0x00, 0xff, 0x7f }; // Black, White
 
@@ -218,8 +198,7 @@ public class WorkflowIntegrationTests
 	#region Disassembly Workflow
 
 	[Fact]
-	public void DisassemblyWorkflow_DisassembleAndFormat()
-	{
+	public void DisassemblyWorkflow_DisassembleAndFormat() {
 		// 1. Create test code
 		var code = new byte[] {
 			0xa9, 0x00,       // LDA #$00
@@ -246,8 +225,7 @@ public class WorkflowIntegrationTests
 	}
 
 	[Fact]
-	public void DisassemblyWorkflow_WithSymbols()
-	{
+	public void DisassemblyWorkflow_WithSymbols() {
 		var code = new byte[] {
 			0x20, 0x00, 0x90, // JSR $9000
 			0x60              // RTS
@@ -266,8 +244,7 @@ public class WorkflowIntegrationTests
 	}
 
 	[Fact]
-	public void DisassemblyWorkflow_CrossReferenceBuilding()
-	{
+	public void DisassemblyWorkflow_CrossReferenceBuilding() {
 		var code = new byte[] {
 			0x20, 0x10, 0x80, // JSR $8010
 			0x4c, 0x00, 0x80, // JMP $8000
@@ -297,14 +274,12 @@ public class WorkflowIntegrationTests
 	#region Data Table Workflow
 
 	[Fact]
-	public void DataTableWorkflow_ReadWriteRecord()
-	{
+	public void DataTableWorkflow_ReadWriteRecord() {
 		// Create mock ROM data
 		var data = new byte[100];
 
 		// Define a monster stat table
-		var table = new DataTableEditor.TableDef
-		{
+		var table = new DataTableEditor.TableDef {
 			Name = "Monsters",
 			BaseOffset = 0,
 			RecordSize = 8,
@@ -318,8 +293,7 @@ public class WorkflowIntegrationTests
 		var editor = new DataTableEditor(data);
 
 		// Write a record
-		var monster = new Dictionary<string, object>
-		{
+		var monster = new Dictionary<string, object> {
 			["HP"] = (ushort)100,
 			["Attack"] = (byte)25,
 			["Defense"] = (byte)15,
@@ -338,12 +312,10 @@ public class WorkflowIntegrationTests
 	}
 
 	[Fact]
-	public void DataTableWorkflow_JsonExportImport()
-	{
+	public void DataTableWorkflow_JsonExportImport() {
 		var data = new byte[100];
 
-		var table = new DataTableEditor.TableDef
-		{
+		var table = new DataTableEditor.TableDef {
 			Name = "Items",
 			BaseOffset = 0,
 			RecordSize = 4,
@@ -375,12 +347,10 @@ public class WorkflowIntegrationTests
 	}
 
 	[Fact]
-	public void DataTableWorkflow_CsvExport()
-	{
+	public void DataTableWorkflow_CsvExport() {
 		var data = new byte[100];
 
-		var table = new DataTableEditor.TableDef
-		{
+		var table = new DataTableEditor.TableDef {
 			Name = "Test",
 			BaseOffset = 0,
 			RecordSize = 2,
@@ -405,8 +375,7 @@ public class WorkflowIntegrationTests
 	#region Pointer Table Workflow
 
 	[Fact]
-	public void PointerTableWorkflow_ReadAndResolve()
-	{
+	public void PointerTableWorkflow_ReadAndResolve() {
 		// Create pointer table data
 		var data = new byte[] {
 			0x00, 0x80, // Pointer to $8000
@@ -427,8 +396,7 @@ public class WorkflowIntegrationTests
 	}
 
 	[Fact]
-	public void PointerTableWorkflow_WritePointers()
-	{
+	public void PointerTableWorkflow_WritePointers() {
 		var data = new byte[100];
 
 		// Create and write pointer table
@@ -450,8 +418,7 @@ public class WorkflowIntegrationTests
 	#region Complete Analysis Workflow
 
 	[Fact]
-	public void CompleteWorkflow_AnalyzeNesRom()
-	{
+	public void CompleteWorkflow_AnalyzeNesRom() {
 		// Create NES ROM
 		var rom = CreateNesRom(2, 1);
 
@@ -501,8 +468,7 @@ public class WorkflowIntegrationTests
 
 	#region Helper Methods
 
-	private static byte[] CreateNesRom(int prgBanks, int chrBanks)
-	{
+	private static byte[] CreateNesRom(int prgBanks, int chrBanks) {
 		int prgSize = prgBanks * 0x4000;
 		int chrSize = chrBanks * 0x2000;
 		var rom = new byte[16 + prgSize + chrSize];
@@ -516,8 +482,7 @@ public class WorkflowIntegrationTests
 		rom[5] = (byte)chrBanks;
 
 		// Fill with NOPs
-		for (int i = 16; i < 16 + prgSize; i++)
-		{
+		for (int i = 16; i < 16 + prgSize; i++) {
 			rom[i] = 0xea;
 		}
 

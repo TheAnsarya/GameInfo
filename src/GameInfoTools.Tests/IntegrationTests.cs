@@ -7,15 +7,12 @@ namespace GameInfoTools.Tests;
 /// <summary>
 /// Integration tests that verify multiple components work together.
 /// </summary>
-public class IntegrationTests
-{
+public class IntegrationTests {
 	[Fact]
-	public void TextTable_ScriptCompiler_RoundTrip()
-	{
+	public void TextTable_ScriptCompiler_RoundTrip() {
 		// Arrange - Create table with character mappings
 		var table = new TextTable();
-		for (int i = 0; i < 26; i++)
-		{
+		for (int i = 0; i < 26; i++) {
 			table.AddEntry((byte)(0x80 + i), ((char)('A' + i)).ToString());
 		}
 		table.AddEntry(0x00, "{END}");
@@ -38,15 +35,17 @@ public class IntegrationTests
 	}
 
 	[Fact]
-	public void PointerTable_WithRomData_ParsesCorrectly()
-	{
+	public void PointerTable_WithRomData_ParsesCorrectly() {
 		// Arrange - Create simulated ROM with pointer table
 		byte[] romData = new byte[256];
 
 		// Pointer table at offset 0x00
-		romData[0x00] = 0x20; romData[0x01] = 0x80; // $8020
-		romData[0x02] = 0x40; romData[0x03] = 0x80; // $8040
-		romData[0x04] = 0x60; romData[0x05] = 0x80; // $8060
+		romData[0x00] = 0x20;
+		romData[0x01] = 0x80; // $8020
+		romData[0x02] = 0x40;
+		romData[0x03] = 0x80; // $8040
+		romData[0x04] = 0x60;
+		romData[0x05] = 0x80; // $8060
 
 		// Data at the pointer targets
 		romData[0x20] = 0xaa;
@@ -64,8 +63,7 @@ public class IntegrationTests
 	}
 
 	[Fact]
-	public void AddressConverter_WithChecksum_CombinedOperations()
-	{
+	public void AddressConverter_WithChecksum_CombinedOperations() {
 		// Arrange
 		byte[] testData = [0x48, 0x65, 0x6c, 0x6c, 0x6f];  // "Hello"
 
@@ -79,12 +77,10 @@ public class IntegrationTests
 	}
 
 	[Fact]
-	public void TextTable_Encode_Decode_RoundTrip()
-	{
+	public void TextTable_Encode_Decode_RoundTrip() {
 		// Arrange
 		var table = new TextTable();
-		for (int i = 0; i < 26; i++)
-		{
+		for (int i = 0; i < 26; i++) {
 			table.AddEntry((byte)(0x80 + i), ((char)('A' + i)).ToString());
 		}
 		table.AddEntry(0xff, " ");
@@ -99,13 +95,11 @@ public class IntegrationTests
 	}
 
 	[Fact]
-	public void PatternDetector_WithRealPatterns()
-	{
+	public void PatternDetector_WithRealPatterns() {
 		// Arrange - Data with pointer table pattern
 		byte[] data = new byte[256];
 		// Create valid NES pointer table
-		for (int i = 0; i < 8; i++)
-		{
+		for (int i = 0; i < 8; i++) {
 			data[i * 2] = (byte)((0x8000 + i * 0x100) & 0xff);
 			data[i * 2 + 1] = (byte)(((0x8000 + i * 0x100) >> 8) & 0xff);
 		}
@@ -118,12 +112,10 @@ public class IntegrationTests
 	}
 
 	[Fact]
-	public void CompressionDetector_WithPlainData()
-	{
+	public void CompressionDetector_WithPlainData() {
 		// Arrange - Uncompressed data
 		byte[] data = new byte[100];
-		for (int i = 0; i < data.Length; i++)
-		{
+		for (int i = 0; i < data.Length; i++) {
 			data[i] = (byte)(i * 7 % 256);  // Semi-random data
 		}
 
@@ -135,8 +127,7 @@ public class IntegrationTests
 	}
 
 	[Fact]
-	public void AsmFormatter_ValidateSyntax_MultipleStatements()
-	{
+	public void AsmFormatter_ValidateSyntax_MultipleStatements() {
 		// Arrange
 		var content = @"MyLabel:
     lda #$00        ; Load accumulator
@@ -152,8 +143,7 @@ public class IntegrationTests
 	}
 
 	[Fact]
-	public void ScriptCompiler_WithLabels_ResolvesReferences()
-	{
+	public void ScriptCompiler_WithLabels_ResolvesReferences() {
 		// Arrange
 		var table = new TextTable();
 		table.AddEntry(0x00, "{END}");
@@ -177,8 +167,7 @@ Middle:
 	}
 
 	[Fact]
-	public void AddressConverter_AllFormats_ParseCorrectly()
-	{
+	public void AddressConverter_AllFormats_ParseCorrectly() {
 		// Test various hex formats
 		Assert.Equal(0x8000, AddressConverter.ParseHex("$8000"));
 		Assert.Equal(0x8000, AddressConverter.ParseHex("0x8000"));
@@ -186,8 +175,7 @@ Middle:
 	}
 
 	[Fact]
-	public void Checksum_MultipleAlgorithms_SameData()
-	{
+	public void Checksum_MultipleAlgorithms_SameData() {
 		// Arrange
 		byte[] data = [0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x20, 0x57, 0x6f, 0x72, 0x6c, 0x64];
 
@@ -208,8 +196,7 @@ Middle:
 	}
 
 	[Fact]
-	public void PointerTable_AutoDetect_WithValidTable()
-	{
+	public void PointerTable_AutoDetect_WithValidTable() {
 		// Arrange - Valid pointer table pointing to NES ROM addresses
 		byte[] data =
 		[

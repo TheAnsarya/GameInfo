@@ -2,18 +2,15 @@ using GameInfoTools.Analysis;
 
 namespace GameInfoTools.Tests;
 
-public class CrossReferenceDbTests
-{
+public class CrossReferenceDbTests {
 	[Fact]
-	public void Constructor_CreatesInstance()
-	{
+	public void Constructor_CreatesInstance() {
 		var db = new CrossReferenceDb();
 		Assert.NotNull(db);
 	}
 
 	[Fact]
-	public void AddRef_AddsReference()
-	{
+	public void AddRef_AddsReference() {
 		var db = new CrossReferenceDb();
 		db.AddRef(0x8000, 0x9000, CrossReferenceDb.RefType.Call);
 
@@ -26,8 +23,7 @@ public class CrossReferenceDbTests
 	}
 
 	[Fact]
-	public void GetRefsFrom_ReturnsCorrectReferences()
-	{
+	public void GetRefsFrom_ReturnsCorrectReferences() {
 		var db = new CrossReferenceDb();
 		db.AddRef(0x8000, 0x9000, CrossReferenceDb.RefType.Call);
 		db.AddRef(0x8000, 0xA000, CrossReferenceDb.RefType.Jump);
@@ -38,8 +34,7 @@ public class CrossReferenceDbTests
 	}
 
 	[Fact]
-	public void GetRefsTo_EmptyForUnknownAddress()
-	{
+	public void GetRefsTo_EmptyForUnknownAddress() {
 		var db = new CrossReferenceDb();
 
 		var refs = db.GetRefsTo(0xFFFF).ToList();
@@ -48,8 +43,7 @@ public class CrossReferenceDbTests
 	}
 
 	[Fact]
-	public void GetCallersOf_ReturnsDistinctSources()
-	{
+	public void GetCallersOf_ReturnsDistinctSources() {
 		var db = new CrossReferenceDb();
 		db.AddRef(0x8000, 0x9000, CrossReferenceDb.RefType.Call);
 		db.AddRef(0x8100, 0x9000, CrossReferenceDb.RefType.Call);
@@ -63,8 +57,7 @@ public class CrossReferenceDbTests
 	}
 
 	[Fact]
-	public void CrossRef_HasCorrectProperties()
-	{
+	public void CrossRef_HasCorrectProperties() {
 		var xref = new CrossReferenceDb.CrossRef(0x8000, 0x9000, CrossReferenceDb.RefType.Call, "Test comment");
 
 		Assert.Equal(0x8000, xref.SourceAddress);
@@ -74,8 +67,7 @@ public class CrossReferenceDbTests
 	}
 
 	[Fact]
-	public void RefType_HasExpectedValues()
-	{
+	public void RefType_HasExpectedValues() {
 		Assert.True(Enum.IsDefined(typeof(CrossReferenceDb.RefType), "Jump"));
 		Assert.True(Enum.IsDefined(typeof(CrossReferenceDb.RefType), "Call"));
 		Assert.True(Enum.IsDefined(typeof(CrossReferenceDb.RefType), "Branch"));
@@ -86,8 +78,7 @@ public class CrossReferenceDbTests
 	}
 
 	[Fact]
-	public void AddRef_WithComment_PreservesComment()
-	{
+	public void AddRef_WithComment_PreservesComment() {
 		var db = new CrossReferenceDb();
 		db.AddRef(0x8000, 0x9000, CrossReferenceDb.RefType.Call, "Game main loop");
 
@@ -97,8 +88,7 @@ public class CrossReferenceDbTests
 	}
 
 	[Fact]
-	public void MultipleRefs_ToSameAddress_AllPreserved()
-	{
+	public void MultipleRefs_ToSameAddress_AllPreserved() {
 		var db = new CrossReferenceDb();
 		db.AddRef(0x8000, 0x9000, CrossReferenceDb.RefType.Call);
 		db.AddRef(0x8100, 0x9000, CrossReferenceDb.RefType.Jump);

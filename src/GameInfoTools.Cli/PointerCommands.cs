@@ -1,17 +1,14 @@
-using Spectre.Console;
 using GameInfoTools.Core;
+using Spectre.Console;
 
 namespace GameInfoTools.Cli;
 
 /// <summary>
 /// Pointer table management commands.
 /// </summary>
-public static class PointerCommands
-{
-	public static void Scan(FileInfo romFile, int startAddress, int endAddress, SystemType system)
-	{
-		if (!romFile.Exists)
-		{
+public static class PointerCommands {
+	public static void Scan(FileInfo romFile, int startAddress, int endAddress, SystemType system) {
+		if (!romFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Error: ROM file not found: {romFile.FullName}[/]");
 			return;
 		}
@@ -25,8 +22,7 @@ public static class PointerCommands
 
 		var pointers = new List<(int Address, int Target, string Type)>();
 
-		switch (system)
-		{
+		switch (system) {
 			case SystemType.Nes:
 				ScanNesPointers(rom, startAddress, endAddress, pointers);
 				break;
@@ -40,8 +36,7 @@ public static class PointerCommands
 				break;
 		}
 
-		if (pointers.Count == 0)
-		{
+		if (pointers.Count == 0) {
 			AnsiConsole.MarkupLine("[yellow]No pointers found in the specified range[/]");
 			return;
 		}
@@ -54,8 +49,7 @@ public static class PointerCommands
 			.AddColumn("Type")
 			.AddColumn("Target Content");
 
-		foreach (var (addr, target, type) in pointers.Take(50))
-		{
+		foreach (var (addr, target, type) in pointers.Take(50)) {
 			string preview = GetTargetPreview(rom, target, 8);
 			table.AddRow(
 				$"0x{addr:x6}",
@@ -65,43 +59,36 @@ public static class PointerCommands
 			);
 		}
 
-		if (pointers.Count > 50)
-		{
+		if (pointers.Count > 50) {
 			table.AddRow("...", "...", "...", $"... and {pointers.Count - 50} more");
 		}
 
 		AnsiConsole.Write(table);
 	}
 
-	private static void ScanNesPointers(RomFile rom, int start, int end, List<(int, int, string)> pointers)
-	{
+	private static void ScanNesPointers(RomFile rom, int start, int end, List<(int, int, string)> pointers) {
 		// NES uses 16-bit little-endian pointers
 		// Common pointer ranges: $8000-$FFFF (CPU addresses)
-		for (int i = start; i < end - 1 && i < rom.Data.Length - 1; i++)
-		{
+		for (int i = start; i < end - 1 && i < rom.Data.Length - 1; i++) {
 			int lo = rom.Data[i];
 			int hi = rom.Data[i + 1];
 			int target = (hi << 8) | lo;
 
 			// Valid NES ROM address range
-			if (target >= 0x8000 && target <= 0xffff)
-			{
+			if (target >= 0x8000 && target <= 0xffff) {
 				// Convert CPU address to ROM offset (simplified, doesn't account for mapper)
 				int romTarget = target - 0x8000;
-				if (romTarget >= 0 && romTarget < rom.Data.Length)
-				{
+				if (romTarget >= 0 && romTarget < rom.Data.Length) {
 					pointers.Add((i, target, "CPU"));
 				}
 			}
 		}
 	}
 
-	private static void ScanSnesPointers(RomFile rom, int start, int end, List<(int, int, string)> pointers)
-	{
+	private static void ScanSnesPointers(RomFile rom, int start, int end, List<(int, int, string)> pointers) {
 		// SNES can have 16-bit or 24-bit pointers
 		// Check for 24-bit long pointers first
-		for (int i = start; i < end - 2 && i < rom.Data.Length - 2; i++)
-		{
+		for (int i = start; i < end - 2 && i < rom.Data.Length - 2; i++) {
 			int lo = rom.Data[i];
 			int hi = rom.Data[i + 1];
 			int bank = rom.Data[i + 2];
@@ -109,29 +96,25 @@ public static class PointerCommands
 			int target24 = (bank << 16) | (hi << 8) | lo;
 
 			// Check if it looks like a valid SNES address
-			if (IsValidSnesAddress(target24))
-			{
+			if (IsValidSnesAddress(target24)) {
 				pointers.Add((i, target24, "Long"));
 			}
 		}
 
 		// Also check for 16-bit pointers
-		for (int i = start; i < end - 1 && i < rom.Data.Length - 1; i++)
-		{
+		for (int i = start; i < end - 1 && i < rom.Data.Length - 1; i++) {
 			int lo = rom.Data[i];
 			int hi = rom.Data[i + 1];
 			int target = (hi << 8) | lo;
 
 			// Common SNES ROM addresses
-			if (target >= 0x8000 && target <= 0xffff)
-			{
+			if (target >= 0x8000 && target <= 0xffff) {
 				pointers.Add((i, target, "Near"));
 			}
 		}
 	}
 
-	private static bool IsValidSnesAddress(int addr)
-	{
+	private static bool IsValidSnesAddress(int addr) {
 		int bank = (addr >> 16) & 0xff;
 		int offset = addr & 0xffff;
 
@@ -150,50 +133,41 @@ public static class PointerCommands
 		return false;
 	}
 
-	private static void ScanGenericPointers(RomFile rom, int start, int end, List<(int, int, string)> pointers)
-	{
+	private static void ScanGenericPointers(RomFile rom, int start, int end, List<(int, int, string)> pointers) {
 		// Generic 16-bit pointer scan
-		for (int i = start; i < end - 1 && i < rom.Data.Length - 1; i++)
-		{
+		for (int i = start; i < end - 1 && i < rom.Data.Length - 1; i++) {
 			int lo = rom.Data[i];
 			int hi = rom.Data[i + 1];
 			int target = (hi << 8) | lo;
 
 			// If target points within ROM
-			if (target > 0 && target < rom.Data.Length)
-			{
+			if (target > 0 && target < rom.Data.Length) {
 				pointers.Add((i, target, "Generic"));
 			}
 		}
 	}
 
-	private static string GetTargetPreview(RomFile rom, int target, int length)
-	{
+	private static string GetTargetPreview(RomFile rom, int target, int length) {
 		// Convert CPU address to ROM offset if needed
 		int offset = target;
-		if (target >= 0x8000)
-		{
+		if (target >= 0x8000) {
 			offset = target - 0x8000;
 		}
 
-		if (offset < 0 || offset >= rom.Data.Length)
-		{
+		if (offset < 0 || offset >= rom.Data.Length) {
 			return "[grey](out of range)[/]";
 		}
 
 		var sb = new System.Text.StringBuilder();
-		for (int i = 0; i < length && offset + i < rom.Data.Length; i++)
-		{
+		for (int i = 0; i < length && offset + i < rom.Data.Length; i++) {
 			sb.Append($"{rom.Data[offset + i]:x2} ");
 		}
 
 		return sb.ToString().Trim();
 	}
 
-	public static void Extract(FileInfo romFile, int tableAddress, int entryCount, string format, string outputPath)
-	{
-		if (!romFile.Exists)
-		{
+	public static void Extract(FileInfo romFile, int tableAddress, int entryCount, string format, string outputPath) {
+		if (!romFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Error: ROM file not found: {romFile.FullName}[/]");
 			return;
 		}
@@ -205,23 +179,20 @@ public static class PointerCommands
 		AnsiConsole.MarkupLine($"[grey]Entries: {entryCount}, Format: {format}[/]");
 
 		var pointers = new List<int>();
-		int pointerSize = format.ToLowerInvariant() switch
-		{
+		int pointerSize = format.ToLowerInvariant() switch {
 			"16bit" or "word" => 2,
 			"24bit" or "long" => 3,
 			"32bit" or "dword" => 4,
 			_ => 2
 		};
 
-		for (int i = 0; i < entryCount; i++)
-		{
+		for (int i = 0; i < entryCount; i++) {
 			int addr = tableAddress + (i * pointerSize);
 			if (addr + pointerSize > rom.Data.Length)
 				break;
 
 			int pointer = 0;
-			for (int j = 0; j < pointerSize; j++)
-			{
+			for (int j = 0; j < pointerSize; j++) {
 				pointer |= rom.Data[addr + j] << (j * 8);
 			}
 
@@ -234,18 +205,15 @@ public static class PointerCommands
 		writer.WriteLine($"; Format: {format}, Count: {pointers.Count}");
 		writer.WriteLine();
 
-		for (int i = 0; i < pointers.Count; i++)
-		{
+		for (int i = 0; i < pointers.Count; i++) {
 			writer.WriteLine($"ptr_{i:d3} = 0x{pointers[i]:x6}");
 		}
 
 		AnsiConsole.MarkupLine($"[green]Extracted {pointers.Count} pointers to {outputPath}[/]");
 	}
 
-	public static void Repoint(FileInfo romFile, int oldPointer, int newPointer)
-	{
-		if (!romFile.Exists)
-		{
+	public static void Repoint(FileInfo romFile, int oldPointer, int newPointer) {
+		if (!romFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Error: ROM file not found: {romFile.FullName}[/]");
 			return;
 		}
@@ -260,16 +228,13 @@ public static class PointerCommands
 		byte hi = (byte)((oldPointer >> 8) & 0xff);
 
 		var occurrences = new List<int>();
-		for (int i = 0; i < rom.Data.Length - 1; i++)
-		{
-			if (rom.Data[i] == lo && rom.Data[i + 1] == hi)
-			{
+		for (int i = 0; i < rom.Data.Length - 1; i++) {
+			if (rom.Data[i] == lo && rom.Data[i + 1] == hi) {
 				occurrences.Add(i);
 			}
 		}
 
-		if (occurrences.Count == 0)
-		{
+		if (occurrences.Count == 0) {
 			AnsiConsole.MarkupLine($"[yellow]No occurrences of pointer 0x{oldPointer:x4} found[/]");
 			return;
 		}
@@ -282,8 +247,7 @@ public static class PointerCommands
 			.AddColumn("Context (before)")
 			.AddColumn("Context (after)");
 
-		foreach (var addr in occurrences.Take(20))
-		{
+		foreach (var addr in occurrences.Take(20)) {
 			string before = GetTargetPreview(rom, addr - 4, 12);
 			table.AddRow($"0x{addr:x6}", before, "→ will update");
 		}
@@ -295,10 +259,8 @@ public static class PointerCommands
 		AnsiConsole.MarkupLine($"[grey]Would change {occurrences.Count} pointers from 0x{oldPointer:x4} to 0x{newPointer:x4}[/]");
 	}
 
-	public static void Analyze(FileInfo romFile, int tableAddress)
-	{
-		if (!romFile.Exists)
-		{
+	public static void Analyze(FileInfo romFile, int tableAddress) {
+		if (!romFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Error: ROM file not found: {romFile.FullName}[/]");
 			return;
 		}
@@ -313,20 +275,17 @@ public static class PointerCommands
 
 		// Check for 16-bit pointer table
 		int count16 = CountConsecutivePointers(rom, tableAddress, 2);
-		if (count16 > 2)
-		{
+		if (count16 > 2) {
 			candidates.Add((count16, 2, "16-bit word pointers"));
 		}
 
 		// Check for 24-bit pointer table
 		int count24 = CountConsecutivePointers(rom, tableAddress, 3);
-		if (count24 > 2)
-		{
+		if (count24 > 2) {
 			candidates.Add((count24, 3, "24-bit long pointers"));
 		}
 
-		if (candidates.Count == 0)
-		{
+		if (candidates.Count == 0) {
 			AnsiConsole.MarkupLine("[yellow]Could not identify pointer table structure[/]");
 			return;
 		}
@@ -338,30 +297,25 @@ public static class PointerCommands
 			.AddColumn("Entry Count")
 			.AddColumn("Table Size");
 
-		foreach (var (count, size, desc) in candidates)
-		{
+		foreach (var (count, size, desc) in candidates) {
 			table.AddRow(desc, count.ToString(), $"0x{count * size:x4}");
 		}
 
 		AnsiConsole.Write(table);
 	}
 
-	private static int CountConsecutivePointers(RomFile rom, int start, int pointerSize)
-	{
+	private static int CountConsecutivePointers(RomFile rom, int start, int pointerSize) {
 		int count = 0;
 		int addr = start;
 
-		while (addr + pointerSize <= rom.Data.Length)
-		{
+		while (addr + pointerSize <= rom.Data.Length) {
 			int pointer = 0;
-			for (int j = 0; j < pointerSize; j++)
-			{
+			for (int j = 0; j < pointerSize; j++) {
 				pointer |= rom.Data[addr + j] << (j * 8);
 			}
 
 			// Check if this looks like a valid pointer
-			bool valid = pointerSize switch
-			{
+			bool valid = pointerSize switch {
 				2 => pointer >= 0x8000 && pointer <= 0xffff,
 				3 => IsValidSnesAddress(pointer),
 				_ => pointer > 0 && pointer < rom.Data.Length

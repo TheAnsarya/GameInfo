@@ -6,11 +6,9 @@ namespace GameInfoTools.Tests;
 /// <summary>
 /// Tests for AsmFormatter class.
 /// </summary>
-public class AsmFormatterTests
-{
+public class AsmFormatterTests {
 	[Fact]
-	public void FormatLine_BlankLine_ReturnsEmpty()
-	{
+	public void FormatLine_BlankLine_ReturnsEmpty() {
 		// Arrange
 		var options = new AsmFormatter.FormatOptions();
 
@@ -22,8 +20,7 @@ public class AsmFormatterTests
 	}
 
 	[Fact]
-	public void FormatLine_CommentOnly_PreservesComment()
-	{
+	public void FormatLine_CommentOnly_PreservesComment() {
 		// Arrange
 		var options = new AsmFormatter.FormatOptions();
 
@@ -35,11 +32,9 @@ public class AsmFormatterTests
 	}
 
 	[Fact]
-	public void FormatLine_UppercaseOpcodes_ConvertsToUpper()
-	{
+	public void FormatLine_UppercaseOpcodes_ConvertsToUpper() {
 		// Arrange
-		var options = new AsmFormatter.FormatOptions
-		{
+		var options = new AsmFormatter.FormatOptions {
 			UseUppercaseOpcodes = true,
 			UseTabs = false
 		};
@@ -52,11 +47,9 @@ public class AsmFormatterTests
 	}
 
 	[Fact]
-	public void FormatLine_LowercaseOpcodes_ConvertsToLower()
-	{
+	public void FormatLine_LowercaseOpcodes_ConvertsToLower() {
 		// Arrange
-		var options = new AsmFormatter.FormatOptions
-		{
+		var options = new AsmFormatter.FormatOptions {
 			UseUppercaseOpcodes = false,
 			UseTabs = false
 		};
@@ -69,8 +62,7 @@ public class AsmFormatterTests
 	}
 
 	[Fact]
-	public void FormatLine_LabelOnly_PreservesLabel()
-	{
+	public void FormatLine_LabelOnly_PreservesLabel() {
 		// Arrange
 		var options = new AsmFormatter.FormatOptions();
 
@@ -82,11 +74,9 @@ public class AsmFormatterTests
 	}
 
 	[Fact]
-	public void FormatLine_WithComment_IncludesComment()
-	{
+	public void FormatLine_WithComment_IncludesComment() {
 		// Arrange
-		var options = new AsmFormatter.FormatOptions
-		{
+		var options = new AsmFormatter.FormatOptions {
 			UseTabs = false
 		};
 
@@ -98,15 +88,13 @@ public class AsmFormatterTests
 	}
 
 	[Fact]
-	public void FormatFile_MultipleLines_FormatsAll()
-	{
+	public void FormatFile_MultipleLines_FormatsAll() {
 		// Arrange
 		var content = @"Label:
     lda #$00
     sta $10
     rts";
-		var options = new AsmFormatter.FormatOptions
-		{
+		var options = new AsmFormatter.FormatOptions {
 			UseUppercaseOpcodes = true,
 			UseTabs = false
 		};
@@ -121,8 +109,7 @@ public class AsmFormatterTests
 	}
 
 	[Fact]
-	public void FormatFile_PreservesBlankLines()
-	{
+	public void FormatFile_PreservesBlankLines() {
 		// Arrange
 		var content = "Label:\n\n    lda #$00";
 		var options = new AsmFormatter.FormatOptions { PreserveBlankLines = true };
@@ -136,8 +123,7 @@ public class AsmFormatterTests
 	}
 
 	[Fact]
-	public void ValidateSyntax_ValidCode_NoErrors()
-	{
+	public void ValidateSyntax_ValidCode_NoErrors() {
 		// Arrange
 		var content = @"    lda #$00
     sta $10
@@ -151,8 +137,7 @@ public class AsmFormatterTests
 	}
 
 	[Fact]
-	public void ValidateSyntax_UnclosedQuote_ReportsError()
-	{
+	public void ValidateSyntax_UnclosedQuote_ReportsError() {
 		// Arrange
 		var content = "    .byte \"hello";
 
@@ -164,8 +149,7 @@ public class AsmFormatterTests
 	}
 
 	[Fact]
-	public void ValidateSyntax_UnbalancedParens_ReportsError()
-	{
+	public void ValidateSyntax_UnbalancedParens_ReportsError() {
 		// Arrange
 		var content = "    lda ($10";
 
@@ -177,8 +161,7 @@ public class AsmFormatterTests
 	}
 
 	[Fact]
-	public void ValidateSyntax_CommentLines_NoErrors()
-	{
+	public void ValidateSyntax_CommentLines_NoErrors() {
 		// Arrange
 		var content = @"; This is a comment
 * Another comment style
@@ -192,8 +175,7 @@ public class AsmFormatterTests
 	}
 
 	[Fact]
-	public void ValidateSyntax_BlankLines_NoErrors()
-	{
+	public void ValidateSyntax_BlankLines_NoErrors() {
 		// Arrange
 		var content = "\n\n\n";
 
@@ -205,8 +187,7 @@ public class AsmFormatterTests
 	}
 
 	[Fact]
-	public void FormatOptions_DefaultValues_AreCorrect()
-	{
+	public void FormatOptions_DefaultValues_AreCorrect() {
 		// Arrange & Act
 		var options = new AsmFormatter.FormatOptions();
 
@@ -225,8 +206,7 @@ public class AsmFormatterTests
 	}
 
 	[Fact]
-	public void FormatLine_Directives_AreHandled()
-	{
+	public void FormatLine_Directives_AreHandled() {
 		// Arrange
 		var options = new AsmFormatter.FormatOptions { UseTabs = false };
 
@@ -238,8 +218,7 @@ public class AsmFormatterTests
 	}
 
 	[Fact]
-	public void ValidateSyntax_AssemblerDirectives_NoErrors()
-	{
+	public void ValidateSyntax_AssemblerDirectives_NoErrors() {
 		// Arrange
 		var content = @"    .org $8000
     .byte $00

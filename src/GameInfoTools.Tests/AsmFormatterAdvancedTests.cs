@@ -7,13 +7,11 @@ namespace GameInfoTools.Tests;
 /// <summary>
 /// Comprehensive tests for assembly formatting and processing.
 /// </summary>
-public class AsmFormatterAdvancedTests
-{
+public class AsmFormatterAdvancedTests {
 	#region FormatLine Basic Tests
 
 	[Fact]
-	public void FormatLine_EmptyLine_ReturnsEmpty()
-	{
+	public void FormatLine_EmptyLine_ReturnsEmpty() {
 		var options = new AsmFormatter.FormatOptions();
 		var result = AsmFormatter.FormatLine("", options);
 
@@ -21,8 +19,7 @@ public class AsmFormatterAdvancedTests
 	}
 
 	[Fact]
-	public void FormatLine_WhitespaceOnly_ReturnsEmpty()
-	{
+	public void FormatLine_WhitespaceOnly_ReturnsEmpty() {
 		var options = new AsmFormatter.FormatOptions { PreserveBlankLines = true };
 		var result = AsmFormatter.FormatLine("   ", options);
 
@@ -30,8 +27,7 @@ public class AsmFormatterAdvancedTests
 	}
 
 	[Fact]
-	public void FormatLine_CommentOnly_Preserved()
-	{
+	public void FormatLine_CommentOnly_Preserved() {
 		var options = new AsmFormatter.FormatOptions();
 		var result = AsmFormatter.FormatLine("; This is a comment", options);
 
@@ -39,8 +35,7 @@ public class AsmFormatterAdvancedTests
 	}
 
 	[Fact]
-	public void FormatLine_StarComment_Preserved()
-	{
+	public void FormatLine_StarComment_Preserved() {
 		var options = new AsmFormatter.FormatOptions();
 		var result = AsmFormatter.FormatLine("* Old-style comment", options);
 
@@ -52,8 +47,7 @@ public class AsmFormatterAdvancedTests
 	#region Opcode Case Tests
 
 	[Fact]
-	public void FormatLine_UppercaseOpcodes_Applied()
-	{
+	public void FormatLine_UppercaseOpcodes_Applied() {
 		var options = new AsmFormatter.FormatOptions { UseUppercaseOpcodes = true };
 		var result = AsmFormatter.FormatLine("    lda #$00", options);
 
@@ -61,8 +55,7 @@ public class AsmFormatterAdvancedTests
 	}
 
 	[Fact]
-	public void FormatLine_LowercaseOpcodes_Applied()
-	{
+	public void FormatLine_LowercaseOpcodes_Applied() {
 		var options = new AsmFormatter.FormatOptions { UseUppercaseOpcodes = false };
 		var result = AsmFormatter.FormatLine("    LDA #$00", options);
 
@@ -74,8 +67,7 @@ public class AsmFormatterAdvancedTests
 	#region Label Tests
 
 	[Fact]
-	public void FormatLine_LabelWithColon_Preserved()
-	{
+	public void FormatLine_LabelWithColon_Preserved() {
 		var options = new AsmFormatter.FormatOptions();
 		var result = AsmFormatter.FormatLine("MainLoop:", options);
 
@@ -83,8 +75,7 @@ public class AsmFormatterAdvancedTests
 	}
 
 	[Fact]
-	public void FormatLine_LabelWithInstruction_BothFormatted()
-	{
+	public void FormatLine_LabelWithInstruction_BothFormatted() {
 		var options = new AsmFormatter.FormatOptions { UseUppercaseOpcodes = false };
 		var result = AsmFormatter.FormatLine("Loop: LDA #$00", options);
 
@@ -97,10 +88,8 @@ public class AsmFormatterAdvancedTests
 	#region Comment Alignment Tests
 
 	[Fact]
-	public void FormatLine_AlignComments_AppliesAlignment()
-	{
-		var options = new AsmFormatter.FormatOptions
-		{
+	public void FormatLine_AlignComments_AppliesAlignment() {
+		var options = new AsmFormatter.FormatOptions {
 			AlignComments = true,
 			CommentColumn = 40
 		};
@@ -113,8 +102,7 @@ public class AsmFormatterAdvancedTests
 	}
 
 	[Fact]
-	public void FormatLine_NoAlignComments_CommentFollowsInstruction()
-	{
+	public void FormatLine_NoAlignComments_CommentFollowsInstruction() {
 		var options = new AsmFormatter.FormatOptions { AlignComments = false };
 		var result = AsmFormatter.FormatLine("    lda #$00 ; load zero", options);
 
@@ -128,8 +116,7 @@ public class AsmFormatterAdvancedTests
 	#region FormatFile Tests
 
 	[Fact]
-	public void FormatFile_MultipleLines_AllFormatted()
-	{
+	public void FormatFile_MultipleLines_AllFormatted() {
 		var content = @"MainLoop:
     LDA #$00
     STA $0400
@@ -145,8 +132,7 @@ public class AsmFormatterAdvancedTests
 	}
 
 	[Fact]
-	public void FormatFile_PreservesBlankLines()
-	{
+	public void FormatFile_PreservesBlankLines() {
 		var content = "lda #$00\n\nsta $0400";
 		var options = new AsmFormatter.FormatOptions { PreserveBlankLines = true };
 
@@ -157,8 +143,7 @@ public class AsmFormatterAdvancedTests
 	}
 
 	[Fact]
-	public void FormatFile_NullOptions_UsesDefaults()
-	{
+	public void FormatFile_NullOptions_UsesDefaults() {
 		var content = "    LDA #$00";
 
 		var result = AsmFormatter.FormatFile(content, null);
@@ -172,8 +157,7 @@ public class AsmFormatterAdvancedTests
 	#region ValidateSyntax Tests
 
 	[Fact]
-	public void ValidateSyntax_ValidCode_NoErrors()
-	{
+	public void ValidateSyntax_ValidCode_NoErrors() {
 		var content = @"
     lda #$00
     sta $0400
@@ -186,8 +170,7 @@ public class AsmFormatterAdvancedTests
 	}
 
 	[Fact]
-	public void ValidateSyntax_UnclosedString_ReportsError()
-	{
+	public void ValidateSyntax_UnclosedString_ReportsError() {
 		var content = @"    .byte ""Unclosed string";
 
 		var errors = AsmFormatter.ValidateSyntax(content);
@@ -196,8 +179,7 @@ public class AsmFormatterAdvancedTests
 	}
 
 	[Fact]
-	public void ValidateSyntax_UnbalancedParens_ReportsError()
-	{
+	public void ValidateSyntax_UnbalancedParens_ReportsError() {
 		var content = @"    lda ($00,x";
 
 		var errors = AsmFormatter.ValidateSyntax(content);
@@ -206,8 +188,7 @@ public class AsmFormatterAdvancedTests
 	}
 
 	[Fact]
-	public void ValidateSyntax_CommentOnlyLines_NoErrors()
-	{
+	public void ValidateSyntax_CommentOnlyLines_NoErrors() {
 		var content = @"; This is a comment
 * Another comment style
 ";
@@ -218,8 +199,7 @@ public class AsmFormatterAdvancedTests
 	}
 
 	[Fact]
-	public void ValidateSyntax_AllValid6502Opcodes_NoErrors()
-	{
+	public void ValidateSyntax_AllValid6502Opcodes_NoErrors() {
 		var opcodes = new[]
 		{
 			"adc", "and", "asl", "bcc", "bcs", "beq", "bit", "bmi", "bne", "bpl",
@@ -238,8 +218,7 @@ public class AsmFormatterAdvancedTests
 	}
 
 	[Fact]
-	public void ValidateSyntax_65816Opcodes_NoErrors()
-	{
+	public void ValidateSyntax_65816Opcodes_NoErrors() {
 		var opcodes = new[]
 		{
 			"bra", "brl", "jml", "jsl", "mvn", "mvp", "pea", "pei", "per",
@@ -256,8 +235,7 @@ public class AsmFormatterAdvancedTests
 	}
 
 	[Fact]
-	public void ValidateSyntax_Directives_NoErrors()
-	{
+	public void ValidateSyntax_Directives_NoErrors() {
 		var content = @"
     .org $8000
     .byte $00, $01, $02
@@ -275,8 +253,7 @@ public class AsmFormatterAdvancedTests
 	#region FormatOptions Tests
 
 	[Fact]
-	public void FormatOptions_DefaultValues_Correct()
-	{
+	public void FormatOptions_DefaultValues_Correct() {
 		var options = new AsmFormatter.FormatOptions();
 
 		Assert.Equal(0, options.LabelColumn);
@@ -298,13 +275,11 @@ public class AsmFormatterAdvancedTests
 /// <summary>
 /// Comprehensive tests for the SymbolTable class.
 /// </summary>
-public class SymbolTableTests
-{
+public class SymbolTableTests {
 	#region AddSymbol Tests
 
 	[Fact]
-	public void AddSymbol_Basic_Stored()
-	{
+	public void AddSymbol_Basic_Stored() {
 		var table = new SymbolTable();
 
 		table.AddSymbol("MainLoop", 0x8000);
@@ -314,8 +289,7 @@ public class SymbolTableTests
 	}
 
 	[Fact]
-	public void AddSymbol_WithType_TypeStored()
-	{
+	public void AddSymbol_WithType_TypeStored() {
 		var table = new SymbolTable();
 
 		table.AddSymbol("UpdateSprites", 0x8100, SymbolTable.SymbolType.Subroutine);
@@ -324,8 +298,7 @@ public class SymbolTableTests
 	}
 
 	[Fact]
-	public void AddSymbol_WithComment_CommentStored()
-	{
+	public void AddSymbol_WithComment_CommentStored() {
 		var table = new SymbolTable();
 
 		table.AddSymbol("PlayerHealth", 0x0400, SymbolTable.SymbolType.Ram, "Current player HP");
@@ -334,8 +307,7 @@ public class SymbolTableTests
 	}
 
 	[Fact]
-	public void AddSymbol_OverwriteExisting_Updated()
-	{
+	public void AddSymbol_OverwriteExisting_Updated() {
 		var table = new SymbolTable();
 
 		table.AddSymbol("Test", 0x8000);
@@ -349,24 +321,21 @@ public class SymbolTableTests
 	#region GetSymbol/GetAddress Tests
 
 	[Fact]
-	public void GetSymbol_NoSymbol_ReturnsNull()
-	{
+	public void GetSymbol_NoSymbol_ReturnsNull() {
 		var table = new SymbolTable();
 
 		Assert.Null(table.GetSymbol(0x8000));
 	}
 
 	[Fact]
-	public void GetAddress_NoSymbol_ReturnsNull()
-	{
+	public void GetAddress_NoSymbol_ReturnsNull() {
 		var table = new SymbolTable();
 
 		Assert.Null(table.GetAddress("Nonexistent"));
 	}
 
 	[Fact]
-	public void GetAddress_CaseInsensitive()
-	{
+	public void GetAddress_CaseInsensitive() {
 		var table = new SymbolTable();
 
 		table.AddSymbol("MainLoop", 0x8000);
@@ -380,8 +349,7 @@ public class SymbolTableTests
 	#region HasSymbol Tests
 
 	[Fact]
-	public void HasSymbol_Exists_ReturnsTrue()
-	{
+	public void HasSymbol_Exists_ReturnsTrue() {
 		var table = new SymbolTable();
 
 		table.AddSymbol("Test", 0x8000);
@@ -390,8 +358,7 @@ public class SymbolTableTests
 	}
 
 	[Fact]
-	public void HasSymbol_NotExists_ReturnsFalse()
-	{
+	public void HasSymbol_NotExists_ReturnsFalse() {
 		var table = new SymbolTable();
 
 		Assert.False(table.HasSymbol(0x8000));
@@ -402,8 +369,7 @@ public class SymbolTableTests
 	#region GetAllSymbols Tests
 
 	[Fact]
-	public void GetAllSymbols_ReturnsAll()
-	{
+	public void GetAllSymbols_ReturnsAll() {
 		var table = new SymbolTable();
 
 		table.AddSymbol("SymA", 0x8000, SymbolTable.SymbolType.Code);
@@ -423,8 +389,7 @@ public class SymbolTableTests
 	#region GetSymbolsInRange Tests
 
 	[Fact]
-	public void GetSymbolsInRange_ReturnsSymbolsInRange()
-	{
+	public void GetSymbolsInRange_ReturnsSymbolsInRange() {
 		var table = new SymbolTable();
 
 		table.AddSymbol("Before", 0x7000);
@@ -440,8 +405,7 @@ public class SymbolTableTests
 	}
 
 	[Fact]
-	public void GetSymbolsInRange_OrderedByAddress()
-	{
+	public void GetSymbolsInRange_OrderedByAddress() {
 		var table = new SymbolTable();
 
 		table.AddSymbol("Third", 0x8200);
@@ -460,8 +424,7 @@ public class SymbolTableTests
 	#region LoadMlb Tests
 
 	[Fact]
-	public void LoadMlb_ValidFormat_ParsesSymbols()
-	{
+	public void LoadMlb_ValidFormat_ParsesSymbols() {
 		var table = new SymbolTable();
 		var mlb = @"G:008000:MainLoop:Entry point
 P:008100:UpdateSprites:Update all sprites
@@ -475,8 +438,7 @@ R:000400:PlayerHP:Current health";
 	}
 
 	[Fact]
-	public void LoadMlb_TypeCodes_MappedCorrectly()
-	{
+	public void LoadMlb_TypeCodes_MappedCorrectly() {
 		var table = new SymbolTable();
 		var mlb = @"G:008000:General
 P:008100:PrgCode
@@ -496,8 +458,7 @@ S:00C000:SegData";
 	}
 
 	[Fact]
-	public void LoadMlb_IgnoresComments()
-	{
+	public void LoadMlb_IgnoresComments() {
 		var table = new SymbolTable();
 		var mlb = @"# This is a comment
 G:008000:Symbol:Comment
@@ -509,8 +470,7 @@ G:008000:Symbol:Comment
 	}
 
 	[Fact]
-	public void LoadMlb_IgnoresEmptyLines()
-	{
+	public void LoadMlb_IgnoresEmptyLines() {
 		var table = new SymbolTable();
 		var mlb = @"G:008000:First
 
@@ -526,8 +486,7 @@ G:008100:Second";
 	#region LoadLabels Tests
 
 	[Fact]
-	public void LoadLabels_EqualsFormat_Parses()
-	{
+	public void LoadLabels_EqualsFormat_Parses() {
 		var table = new SymbolTable();
 		var labels = @"MainLoop = $8000
 UpdateSprites = $8100";
@@ -539,8 +498,7 @@ UpdateSprites = $8100";
 	}
 
 	[Fact]
-	public void LoadLabels_AddressNameFormat_Parses()
-	{
+	public void LoadLabels_AddressNameFormat_Parses() {
 		var table = new SymbolTable();
 		var labels = @"$8000 MainLoop
 $8100 UpdateSprites";
@@ -552,8 +510,7 @@ $8100 UpdateSprites";
 	}
 
 	[Fact]
-	public void LoadLabels_ColonFormat_Parses()
-	{
+	public void LoadLabels_ColonFormat_Parses() {
 		var table = new SymbolTable();
 		var labels = @"8000:MainLoop
 8100:UpdateSprites";
@@ -565,8 +522,7 @@ $8100 UpdateSprites";
 	}
 
 	[Fact]
-	public void LoadLabels_IgnoresComments()
-	{
+	public void LoadLabels_IgnoresComments() {
 		var table = new SymbolTable();
 		var labels = @"; Comment line
 MainLoop = $8000
@@ -582,8 +538,7 @@ MainLoop = $8000
 	#region Export Tests
 
 	[Fact]
-	public void ExportMlb_FormatsCorrectly()
-	{
+	public void ExportMlb_FormatsCorrectly() {
 		var table = new SymbolTable();
 
 		table.AddSymbol("MainLoop", 0x8000, SymbolTable.SymbolType.Code, "Entry");
@@ -597,8 +552,7 @@ MainLoop = $8000
 	}
 
 	[Fact]
-	public void ExportLabels_FormatsCorrectly()
-	{
+	public void ExportLabels_FormatsCorrectly() {
 		var table = new SymbolTable();
 
 		table.AddSymbol("MainLoop", 0x8000);
@@ -615,8 +569,7 @@ MainLoop = $8000
 	#region Count and Clear Tests
 
 	[Fact]
-	public void Count_TracksSymbols()
-	{
+	public void Count_TracksSymbols() {
 		var table = new SymbolTable();
 
 		Assert.Equal(0, table.Count);
@@ -629,8 +582,7 @@ MainLoop = $8000
 	}
 
 	[Fact]
-	public void Clear_RemovesAllData()
-	{
+	public void Clear_RemovesAllData() {
 		var table = new SymbolTable();
 
 		table.AddSymbol("Test", 0x8000, SymbolTable.SymbolType.Code, "Comment");
@@ -656,8 +608,7 @@ MainLoop = $8000
 	[InlineData(SymbolTable.SymbolType.Subroutine)]
 	[InlineData(SymbolTable.SymbolType.Table)]
 	[InlineData(SymbolTable.SymbolType.Pointer)]
-	public void SymbolType_AllValues_Stored(SymbolTable.SymbolType type)
-	{
+	public void SymbolType_AllValues_Stored(SymbolTable.SymbolType type) {
 		var table = new SymbolTable();
 
 		table.AddSymbol("Test", 0x8000, type);

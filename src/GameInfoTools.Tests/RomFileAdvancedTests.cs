@@ -6,26 +6,21 @@ namespace GameInfoTools.Tests;
 /// <summary>
 /// Advanced tests for RomFile read/write operations.
 /// </summary>
-public class RomFileAdvancedTests : IDisposable
-{
+public class RomFileAdvancedTests : IDisposable {
 	private readonly string _tempFile;
 
-	public RomFileAdvancedTests()
-	{
+	public RomFileAdvancedTests() {
 		_tempFile = Path.GetTempFileName();
 	}
 
-	public void Dispose()
-	{
-		if (File.Exists(_tempFile))
-		{
+	public void Dispose() {
+		if (File.Exists(_tempFile)) {
 			File.Delete(_tempFile);
 		}
 	}
 
 	[Fact]
-	public void Length_ReturnsCorrectValue()
-	{
+	public void Length_ReturnsCorrectValue() {
 		var data = new byte[] { 0x00, 0x01, 0x02, 0x03 };
 		File.WriteAllBytes(_tempFile, data);
 
@@ -36,8 +31,7 @@ public class RomFileAdvancedTests : IDisposable
 	}
 
 	[Fact]
-	public void IsLoaded_IsTrueAfterLoad()
-	{
+	public void IsLoaded_IsTrueAfterLoad() {
 		File.WriteAllBytes(_tempFile, new byte[] { 0x00 });
 
 		var rom = new RomFile();
@@ -47,8 +41,7 @@ public class RomFileAdvancedTests : IDisposable
 	}
 
 	[Fact]
-	public void FilePath_IsSetAfterLoad()
-	{
+	public void FilePath_IsSetAfterLoad() {
 		File.WriteAllBytes(_tempFile, new byte[] { 0x00 });
 
 		var rom = new RomFile();
@@ -58,8 +51,7 @@ public class RomFileAdvancedTests : IDisposable
 	}
 
 	[Fact]
-	public void Data_ReturnsRomBytes()
-	{
+	public void Data_ReturnsRomBytes() {
 		var data = new byte[] { 0xAB, 0xCD, 0xEF };
 		File.WriteAllBytes(_tempFile, data);
 
@@ -70,8 +62,7 @@ public class RomFileAdvancedTests : IDisposable
 	}
 
 	[Fact]
-	public void ReadByte_ReturnsCorrectValue()
-	{
+	public void ReadByte_ReturnsCorrectValue() {
 		var data = new byte[] { 0x00, 0x11, 0x22, 0x33 };
 		File.WriteAllBytes(_tempFile, data);
 
@@ -82,8 +73,7 @@ public class RomFileAdvancedTests : IDisposable
 	}
 
 	[Fact]
-	public void ReadByte_ThrowsOnNegativeOffset()
-	{
+	public void ReadByte_ThrowsOnNegativeOffset() {
 		File.WriteAllBytes(_tempFile, new byte[] { 0x00 });
 
 		var rom = new RomFile();
@@ -93,8 +83,7 @@ public class RomFileAdvancedTests : IDisposable
 	}
 
 	[Fact]
-	public void ReadByte_ThrowsOnOutOfRange()
-	{
+	public void ReadByte_ThrowsOnOutOfRange() {
 		File.WriteAllBytes(_tempFile, new byte[] { 0x00 });
 
 		var rom = new RomFile();
@@ -104,8 +93,7 @@ public class RomFileAdvancedTests : IDisposable
 	}
 
 	[Fact]
-	public void ReadUInt16_ReturnsLittleEndianValue()
-	{
+	public void ReadUInt16_ReturnsLittleEndianValue() {
 		// 0x1234 stored as little-endian: 34 12
 		var data = new byte[] { 0x34, 0x12 };
 		File.WriteAllBytes(_tempFile, data);
@@ -117,8 +105,7 @@ public class RomFileAdvancedTests : IDisposable
 	}
 
 	[Fact]
-	public void ReadUInt24_ReturnsLittleEndianValue()
-	{
+	public void ReadUInt24_ReturnsLittleEndianValue() {
 		// 0x123456 stored as little-endian: 56 34 12
 		var data = new byte[] { 0x56, 0x34, 0x12 };
 		File.WriteAllBytes(_tempFile, data);
@@ -130,8 +117,7 @@ public class RomFileAdvancedTests : IDisposable
 	}
 
 	[Fact]
-	public void Read_ReturnsCorrectSpan()
-	{
+	public void Read_ReturnsCorrectSpan() {
 		var data = new byte[] { 0x00, 0x11, 0x22, 0x33, 0x44 };
 		File.WriteAllBytes(_tempFile, data);
 
@@ -147,8 +133,7 @@ public class RomFileAdvancedTests : IDisposable
 	}
 
 	[Fact]
-	public void WriteByte_ModifiesData()
-	{
+	public void WriteByte_ModifiesData() {
 		File.WriteAllBytes(_tempFile, new byte[] { 0x00, 0x00, 0x00 });
 
 		var rom = new RomFile();
@@ -159,8 +144,7 @@ public class RomFileAdvancedTests : IDisposable
 	}
 
 	[Fact]
-	public void Write_ModifiesData()
-	{
+	public void Write_ModifiesData() {
 		File.WriteAllBytes(_tempFile, new byte[] { 0x00, 0x00, 0x00, 0x00 });
 
 		var rom = new RomFile();
@@ -174,8 +158,7 @@ public class RomFileAdvancedTests : IDisposable
 	}
 
 	[Fact]
-	public void AsSpan_ReturnsEntireData()
-	{
+	public void AsSpan_ReturnsEntireData() {
 		var data = new byte[] { 0x01, 0x02, 0x03 };
 		File.WriteAllBytes(_tempFile, data);
 
@@ -189,8 +172,7 @@ public class RomFileAdvancedTests : IDisposable
 	}
 
 	[Fact]
-	public void Save_WritesDataToFile()
-	{
+	public void Save_WritesDataToFile() {
 		var originalData = new byte[] { 0x01, 0x02, 0x03 };
 		File.WriteAllBytes(_tempFile, originalData);
 
@@ -204,11 +186,9 @@ public class RomFileAdvancedTests : IDisposable
 	}
 
 	[Fact]
-	public void Save_WritesToNewPath()
-	{
+	public void Save_WritesToNewPath() {
 		var tempFile2 = Path.GetTempFileName();
-		try
-		{
+		try {
 			File.WriteAllBytes(_tempFile, new byte[] { 0xAB, 0xCD });
 
 			var rom = new RomFile();
@@ -217,17 +197,14 @@ public class RomFileAdvancedTests : IDisposable
 
 			Assert.True(File.Exists(tempFile2));
 			Assert.Equal(rom.Data, File.ReadAllBytes(tempFile2));
-		}
-		finally
-		{
+		} finally {
 			if (File.Exists(tempFile2))
 				File.Delete(tempFile2);
 		}
 	}
 
 	[Fact]
-	public void DetectsInesHeader()
-	{
+	public void DetectsInesHeader() {
 		// iNES header: NES\x1a + PRG count + CHR count + flags
 		var data = new byte[32];
 		data[0] = (byte)'N';
@@ -251,8 +228,7 @@ public class RomFileAdvancedTests : IDisposable
 	}
 
 	[Fact]
-	public void GetInfo_ReturnsSystemType()
-	{
+	public void GetInfo_ReturnsSystemType() {
 		// Create iNES header
 		var data = new byte[32];
 		data[0] = (byte)'N';
@@ -270,8 +246,7 @@ public class RomFileAdvancedTests : IDisposable
 	}
 
 	[Fact]
-	public async Task LoadAsync_LoadsRom()
-	{
+	public async Task LoadAsync_LoadsRom() {
 		File.WriteAllBytes(_tempFile, new byte[] { 0xAB, 0xCD });
 
 		var rom = new RomFile();
@@ -282,8 +257,7 @@ public class RomFileAdvancedTests : IDisposable
 	}
 
 	[Fact]
-	public async Task SaveAsync_SavesRom()
-	{
+	public async Task SaveAsync_SavesRom() {
 		File.WriteAllBytes(_tempFile, new byte[] { 0x00 });
 
 		var rom = new RomFile();
@@ -296,8 +270,7 @@ public class RomFileAdvancedTests : IDisposable
 	}
 
 	[Fact]
-	public void GetDataWithoutHeader_ReturnsDataAfterHeader()
-	{
+	public void GetDataWithoutHeader_ReturnsDataAfterHeader() {
 		// Create NES ROM with 16-byte header + data
 		var data = new byte[32];
 		data[0] = (byte)'N';

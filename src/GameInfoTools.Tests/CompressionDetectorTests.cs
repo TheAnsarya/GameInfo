@@ -2,11 +2,9 @@ using GameInfoTools.Core;
 
 namespace GameInfoTools.Tests;
 
-public class CompressionDetectorTests
-{
+public class CompressionDetectorTests {
 	[Fact]
-	public void Detect_ReturnsNoneForSmallData()
-	{
+	public void Detect_ReturnsNoneForSmallData() {
 		byte[] data = [0x01, 0x02];
 		var result = CompressionDetector.Detect(data, 0);
 
@@ -14,8 +12,7 @@ public class CompressionDetectorTests
 	}
 
 	[Fact]
-	public void Detect_RecognizesNintendoLz()
-	{
+	public void Detect_RecognizesNintendoLz() {
 		// Nintendo LZ77 header: 0x10 followed by decompressed size (24-bit LE)
 		byte[] data = new byte[0x20];
 		data[0] = 0x10; // LZ77 signature
@@ -30,12 +27,10 @@ public class CompressionDetectorTests
 	}
 
 	[Fact]
-	public void Detect_HandlesRleData()
-	{
+	public void Detect_HandlesRleData() {
 		// RLE-like data with runs
 		byte[] data = new byte[0x40];
-		for (int i = 0; i < data.Length; i++)
-		{
+		for (int i = 0; i < data.Length; i++) {
 			data[i] = (byte)(i < 0x20 ? 0xAA : 0xBB);
 		}
 
@@ -45,8 +40,7 @@ public class CompressionDetectorTests
 	}
 
 	[Fact]
-	public void DetectionResult_HasCorrectProperties()
-	{
+	public void DetectionResult_HasCorrectProperties() {
 		var result = new CompressionDetector.DetectionResult(
 			CompressionDetector.CompressionType.Lz77,
 			0.85,
@@ -61,8 +55,7 @@ public class CompressionDetectorTests
 	}
 
 	[Fact]
-	public void CompressionType_HasExpectedValues()
-	{
+	public void CompressionType_HasExpectedValues() {
 		// Verify the enum has the expected compression types
 		Assert.Equal(0, (int)CompressionDetector.CompressionType.None);
 		Assert.True(Enum.IsDefined(typeof(CompressionDetector.CompressionType), "Lz77"));

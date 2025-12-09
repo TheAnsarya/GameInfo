@@ -6,13 +6,11 @@ namespace GameInfoTools.Disassembly;
 /// <summary>
 /// 6502/65816 disassembler.
 /// </summary>
-public class Disassembler
-{
+public class Disassembler {
 	/// <summary>
 	/// CPU mode.
 	/// </summary>
-	public enum CpuMode
-	{
+	public enum CpuMode {
 		Cpu6502,    // NES, C64, etc.
 		Cpu65C02,   // Apple IIc, etc.
 		Cpu65816,   // SNES
@@ -21,8 +19,7 @@ public class Disassembler
 	/// <summary>
 	/// Disassembly options.
 	/// </summary>
-	public class Options
-	{
+	public class Options {
 		public CpuMode Mode { get; set; } = CpuMode.Cpu6502;
 		public int BaseAddress { get; set; } = 0x8000;
 		public bool ShowBytes { get; set; } = true;
@@ -50,8 +47,7 @@ public class Disassembler
 	// 6502 opcode definitions
 	private static readonly (string Mnemonic, int Length, string Mode)[] Opcodes6502 = CreateOpcodeTable();
 
-	public Disassembler(byte[] data, Options? options = null)
-	{
+	public Disassembler(byte[] data, Options? options = null) {
 		_data = data;
 		_options = options ?? new Options();
 	}
@@ -59,14 +55,12 @@ public class Disassembler
 	/// <summary>
 	/// Disassemble a range of bytes.
 	/// </summary>
-	public List<DisassembledInstruction> Disassemble(int offset, int length)
-	{
+	public List<DisassembledInstruction> Disassemble(int offset, int length) {
 		var instructions = new List<DisassembledInstruction>();
 		int end = offset + length;
 		int pos = offset;
 
-		while (pos < end && pos < _data.Length)
-		{
+		while (pos < end && pos < _data.Length) {
 			var instr = DisassembleOne(pos);
 			instructions.Add(instr);
 			pos += instr.Bytes.Length;
@@ -78,10 +72,8 @@ public class Disassembler
 	/// <summary>
 	/// Disassemble a single instruction.
 	/// </summary>
-	public DisassembledInstruction DisassembleOne(int offset)
-	{
-		if (offset >= _data.Length)
-		{
+	public DisassembledInstruction DisassembleOne(int offset) {
+		if (offset >= _data.Length) {
 			return new DisassembledInstruction(
 				_options.BaseAddress + offset,
 				Array.Empty<byte>(),
@@ -95,8 +87,7 @@ public class Disassembler
 		var (mnemonic, length, mode) = Opcodes6502[opcode];
 
 		// Handle invalid/unknown opcodes
-		if (string.IsNullOrEmpty(mnemonic))
-		{
+		if (string.IsNullOrEmpty(mnemonic)) {
 			return new DisassembledInstruction(
 				_options.BaseAddress + offset,
 				new byte[] { opcode },
@@ -108,8 +99,7 @@ public class Disassembler
 
 		// Read operand bytes
 		var bytes = new byte[length];
-		for (int i = 0; i < length && offset + i < _data.Length; i++)
-		{
+		for (int i = 0; i < length && offset + i < _data.Length; i++) {
 			bytes[i] = _data[offset + i];
 		}
 
@@ -118,26 +108,20 @@ public class Disassembler
 
 		// Check for symbol
 		string? comment = null;
-		if (_options.Symbols != null)
-		{
+		if (_options.Symbols != null) {
 			int targetAddr = GetTargetAddress(mode, bytes, _options.BaseAddress + offset);
-			if (targetAddr >= 0)
-			{
+			if (targetAddr >= 0) {
 				var symbol = _options.Symbols.GetSymbol(targetAddr);
-				if (symbol != null && operand.Contains(FormatWord((ushort)targetAddr)))
-				{
+				if (symbol != null && operand.Contains(FormatWord((ushort)targetAddr))) {
 					operand = operand.Replace(FormatWord((ushort)targetAddr), symbol);
-				}
-				else if (symbol != null)
-				{
+				} else if (symbol != null) {
 					comment = symbol;
 				}
 			}
 		}
 
 		// Apply case preference
-		if (_options.LowercaseMnemonics)
-		{
+		if (_options.LowercaseMnemonics) {
 			mnemonic = mnemonic.ToLowerInvariant();
 		}
 
@@ -150,15 +134,12 @@ public class Disassembler
 		);
 	}
 
-	private string FormatOperand(string mode, byte[] bytes, int instrAddr)
-	{
-		if (bytes.Length < 1)
-		{
+	private string FormatOperand(string mode, byte[] bytes, int instrAddr) {
+		if (bytes.Length < 1) {
 			return "";
 		}
 
-		return mode switch
-		{
+		return mode switch {
 			"imp" => "",
 			"acc" => "a",
 			"imm" => $"#${FormatByte(bytes[1])}",
@@ -176,10 +157,8 @@ public class Disassembler
 		};
 	}
 
-	private int GetTargetAddress(string mode, byte[] bytes, int instrAddr)
-	{
-		return mode switch
-		{
+	private int GetTargetAddress(string mode, byte[] bytes, int instrAddr) {
+		return mode switch {
 			"abs" or "abx" or "aby" or "ind" when bytes.Length >= 3 => bytes[1] | (bytes[2] << 8),
 			"zp" or "zpx" or "zpy" or "inx" or "iny" when bytes.Length >= 2 => bytes[1],
 			"rel" when bytes.Length >= 2 => instrAddr + 2 + (sbyte)bytes[1],
@@ -187,46 +166,38 @@ public class Disassembler
 		};
 	}
 
-	private string FormatRelative(byte offset, int instrAddr)
-	{
+	private string FormatRelative(byte offset, int instrAddr) {
 		int target = instrAddr + 2 + (sbyte)offset;
 		return $"${FormatWord((ushort)target)}";
 	}
 
-	private string FormatByte(byte b)
-	{
+	private string FormatByte(byte b) {
 		return _options.LowercaseHex ? $"{b:x2}" : $"{b:X2}";
 	}
 
-	private string FormatWord(byte lo, byte hi)
-	{
+	private string FormatWord(byte lo, byte hi) {
 		int word = lo | (hi << 8);
 		return FormatWord((ushort)word);
 	}
 
-	private string FormatWord(ushort w)
-	{
+	private string FormatWord(ushort w) {
 		return _options.LowercaseHex ? $"{w:x4}" : $"{w:X4}";
 	}
 
 	/// <summary>
 	/// Format disassembly as text.
 	/// </summary>
-	public string FormatAsText(List<DisassembledInstruction> instructions)
-	{
+	public string FormatAsText(List<DisassembledInstruction> instructions) {
 		var sb = new StringBuilder();
 
-		foreach (var instr in instructions)
-		{
+		foreach (var instr in instructions) {
 			// Address
-			if (_options.ShowAddresses)
-			{
+			if (_options.ShowAddresses) {
 				sb.Append($"${FormatWord((ushort)instr.Address)}:  ");
 			}
 
 			// Bytes
-			if (_options.ShowBytes)
-			{
+			if (_options.ShowBytes) {
 				var bytesStr = string.Join(" ", instr.Bytes.Select(b => FormatByte(b)));
 				sb.Append($"{bytesStr,-9} ");
 			}
@@ -235,8 +206,7 @@ public class Disassembler
 			sb.Append($"{instr.Mnemonic,-4} {instr.Operand}");
 
 			// Comment
-			if (!string.IsNullOrEmpty(instr.Comment))
-			{
+			if (!string.IsNullOrEmpty(instr.Comment)) {
 				int currentLen = sb.Length - sb.ToString().LastIndexOf('\n') - 1;
 				int padding = Math.Max(1, 40 - currentLen);
 				sb.Append(new string(' ', padding));
@@ -252,8 +222,7 @@ public class Disassembler
 	/// <summary>
 	/// Generate an assembly source file.
 	/// </summary>
-	public string GenerateAsmSource(int offset, int length, string? label = null)
-	{
+	public string GenerateAsmSource(int offset, int length, string? label = null) {
 		var sb = new StringBuilder();
 		var instructions = Disassemble(offset, length);
 
@@ -262,18 +231,15 @@ public class Disassembler
 		sb.AppendLine($"; Generated by GameInfoTools Disassembler");
 		sb.AppendLine();
 
-		if (!string.IsNullOrEmpty(label))
-		{
+		if (!string.IsNullOrEmpty(label)) {
 			sb.AppendLine($"{label}:");
 		}
 
 		// Instructions
-		foreach (var instr in instructions)
-		{
+		foreach (var instr in instructions) {
 			// Check for label at this address
 			var symbol = _options.Symbols?.GetSymbol(instr.Address);
-			if (!string.IsNullOrEmpty(symbol))
-			{
+			if (!string.IsNullOrEmpty(symbol)) {
 				sb.AppendLine($"{symbol}:");
 			}
 
@@ -281,20 +247,17 @@ public class Disassembler
 			sb.Append('\t');
 			sb.Append($"{instr.Mnemonic,-4}");
 
-			if (!string.IsNullOrEmpty(instr.Operand))
-			{
+			if (!string.IsNullOrEmpty(instr.Operand)) {
 				sb.Append($" {instr.Operand}");
 			}
 
 			// Comment with bytes
-			if (_options.ShowBytes)
-			{
+			if (_options.ShowBytes) {
 				var bytesStr = string.Join(" ", instr.Bytes.Select(b => FormatByte(b)));
 				sb.Append($"\t\t; ${instr.Address:x4}: {bytesStr}");
 			}
 
-			if (!string.IsNullOrEmpty(instr.Comment))
-			{
+			if (!string.IsNullOrEmpty(instr.Comment)) {
 				sb.Append($" - {instr.Comment}");
 			}
 
@@ -304,13 +267,11 @@ public class Disassembler
 		return sb.ToString();
 	}
 
-	private static (string Mnemonic, int Length, string Mode)[] CreateOpcodeTable()
-	{
+	private static (string Mnemonic, int Length, string Mode)[] CreateOpcodeTable() {
 		var table = new (string, int, string)[256];
 
 		// Initialize all as unknown
-		for (int i = 0; i < 256; i++)
-		{
+		for (int i = 0; i < 256; i++) {
 			table[i] = ("", 1, "imp");
 		}
 

@@ -1,5 +1,5 @@
-using GameInfoTools.Text;
 using GameInfoTools.Core;
+using GameInfoTools.Text;
 using Xunit;
 
 namespace GameInfoTools.Tests;
@@ -7,14 +7,11 @@ namespace GameInfoTools.Tests;
 /// <summary>
 /// Advanced tests for StringExtractor export formats and search functionality.
 /// </summary>
-public class StringExtractorAdvancedTests
-{
-	private static TextTable CreateBasicTable()
-	{
+public class StringExtractorAdvancedTests {
+	private static TextTable CreateBasicTable() {
 		var table = new TextTable();
 		// Basic ASCII mapping
-		for (byte i = 0x20; i <= 0x7e; i++)
-		{
+		for (byte i = 0x20; i <= 0x7e; i++) {
 			table.AddEntry(i, ((char)i).ToString());
 		}
 		table.AddEntry(0x00, "{END}"); // String terminator
@@ -22,8 +19,7 @@ public class StringExtractorAdvancedTests
 	}
 
 	[Fact]
-	public void ExportToCsv_FormatsCorrectly()
-	{
+	public void ExportToCsv_FormatsCorrectly() {
 		var table = CreateBasicTable();
 		var extractor = new StringExtractor(table);
 
@@ -41,8 +37,7 @@ public class StringExtractorAdvancedTests
 	}
 
 	[Fact]
-	public void ExportToCsv_EscapesQuotesInText()
-	{
+	public void ExportToCsv_EscapesQuotesInText() {
 		var table = CreateBasicTable();
 		var extractor = new StringExtractor(table);
 
@@ -58,8 +53,7 @@ public class StringExtractorAdvancedTests
 	}
 
 	[Fact]
-	public void ExportToJson_FormatsCorrectly()
-	{
+	public void ExportToJson_FormatsCorrectly() {
 		var table = CreateBasicTable();
 		var extractor = new StringExtractor(table);
 
@@ -77,8 +71,7 @@ public class StringExtractorAdvancedTests
 	}
 
 	[Fact]
-	public void ExportToJson_EscapesSpecialCharacters()
-	{
+	public void ExportToJson_EscapesSpecialCharacters() {
 		var table = CreateBasicTable();
 		var extractor = new StringExtractor(table);
 
@@ -94,8 +87,7 @@ public class StringExtractorAdvancedTests
 	}
 
 	[Fact]
-	public void ExportToScript_FormatsCorrectly()
-	{
+	public void ExportToScript_FormatsCorrectly() {
 		var table = CreateBasicTable();
 		var extractor = new StringExtractor(table);
 
@@ -112,8 +104,7 @@ public class StringExtractorAdvancedTests
 	}
 
 	[Fact]
-	public void SearchString_FindsExactMatches()
-	{
+	public void SearchString_FindsExactMatches() {
 		var table = CreateBasicTable();
 		var extractor = new StringExtractor(table);
 
@@ -132,8 +123,7 @@ public class StringExtractorAdvancedTests
 	}
 
 	[Fact]
-	public void SearchString_FindsMultipleOccurrences()
-	{
+	public void SearchString_FindsMultipleOccurrences() {
 		var table = CreateBasicTable();
 		var extractor = new StringExtractor(table);
 
@@ -152,8 +142,7 @@ public class StringExtractorAdvancedTests
 	}
 
 	[Fact]
-	public void SearchString_ReturnsEmptyForNoMatch()
-	{
+	public void SearchString_ReturnsEmptyForNoMatch() {
 		var table = CreateBasicTable();
 		var extractor = new StringExtractor(table);
 
@@ -165,8 +154,7 @@ public class StringExtractorAdvancedTests
 	}
 
 	[Fact]
-	public void ExtractedString_RecordHasCorrectProperties()
-	{
+	public void ExtractedString_RecordHasCorrectProperties() {
 		var str = new StringExtractor.ExtractedString(0x1000, "Test", 4, 0.95f);
 
 		Assert.Equal(0x1000, str.Offset);
@@ -176,8 +164,7 @@ public class StringExtractorAdvancedTests
 	}
 
 	[Fact]
-	public void ExtractAllStrings_RespectsMinLength()
-	{
+	public void ExtractAllStrings_RespectsMinLength() {
 		var table = CreateBasicTable();
 		var extractor = new StringExtractor(table);
 

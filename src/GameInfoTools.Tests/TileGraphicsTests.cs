@@ -5,8 +5,7 @@ namespace GameInfoTools.Tests;
 /// <summary>
 /// Tests for TileGraphics - tile encoding/decoding and palette operations.
 /// </summary>
-public class TileGraphicsTests
-{
+public class TileGraphicsTests {
 	#region Tile Format Properties
 
 	[Theory]
@@ -15,8 +14,7 @@ public class TileGraphicsTests
 	[InlineData(TileGraphics.TileFormat.Linear4Bpp, 32)]
 	[InlineData(TileGraphics.TileFormat.Gb2Bpp, 16)]
 	[InlineData(TileGraphics.TileFormat.Gba8Bpp, 64)]
-	public void GetBytesPerTile_ReturnsCorrectSize(TileGraphics.TileFormat format, int expected)
-	{
+	public void GetBytesPerTile_ReturnsCorrectSize(TileGraphics.TileFormat format, int expected) {
 		int result = TileGraphics.GetBytesPerTile(format);
 		Assert.Equal(expected, result);
 	}
@@ -27,15 +25,13 @@ public class TileGraphicsTests
 	[InlineData(TileGraphics.TileFormat.Linear4Bpp, 16)]
 	[InlineData(TileGraphics.TileFormat.Gb2Bpp, 4)]
 	[InlineData(TileGraphics.TileFormat.Gba8Bpp, 256)]
-	public void GetColorsPerTile_ReturnsCorrectCount(TileGraphics.TileFormat format, int expected)
-	{
+	public void GetColorsPerTile_ReturnsCorrectCount(TileGraphics.TileFormat format, int expected) {
 		int result = TileGraphics.GetColorsPerTile(format);
 		Assert.Equal(expected, result);
 	}
 
 	[Fact]
-	public void CountTiles_ReturnsCorrectCount()
-	{
+	public void CountTiles_ReturnsCorrectCount() {
 		// 32 bytes = 2 NES tiles (16 bytes each)
 		int count = TileGraphics.CountTiles(32, TileGraphics.TileFormat.Nes2Bpp);
 		Assert.Equal(2, count);
@@ -46,8 +42,7 @@ public class TileGraphicsTests
 	#region Tile Encoding/Decoding
 
 	[Fact]
-	public void DecodeTile_Returns8x8Array()
-	{
+	public void DecodeTile_Returns8x8Array() {
 		byte[] data = new byte[16]; // NES 2bpp tile
 		var tile = TileGraphics.DecodeTile(data, 0, TileGraphics.TileFormat.Nes2Bpp);
 
@@ -56,12 +51,10 @@ public class TileGraphicsTests
 	}
 
 	[Fact]
-	public void DecodeTile_EncodeTile_RoundTrip()
-	{
+	public void DecodeTile_EncodeTile_RoundTrip() {
 		// Create a test tile with known data
 		byte[] original = new byte[16];
-		for (int i = 0; i < 8; i++)
-		{
+		for (int i = 0; i < 8; i++) {
 			original[i] = (byte)i;       // Plane 0
 			original[i + 8] = (byte)(i * 2); // Plane 1
 		}
@@ -76,8 +69,7 @@ public class TileGraphicsTests
 	}
 
 	[Fact]
-	public void ExtractTiles_ReturnsCorrectCount()
-	{
+	public void ExtractTiles_ReturnsCorrectCount() {
 		byte[] data = new byte[48]; // 3 NES tiles
 		var tiles = TileGraphics.ExtractTiles(data, 0, 3, TileGraphics.TileFormat.Nes2Bpp);
 
@@ -89,8 +81,7 @@ public class TileGraphicsTests
 	#region TileFormat Enum
 
 	[Fact]
-	public void TileFormat_HasExpectedValues()
-	{
+	public void TileFormat_HasExpectedValues() {
 		Assert.True(Enum.IsDefined(typeof(TileGraphics.TileFormat), "Nes2Bpp"));
 		Assert.True(Enum.IsDefined(typeof(TileGraphics.TileFormat), "Snes4Bpp"));
 		Assert.True(Enum.IsDefined(typeof(TileGraphics.TileFormat), "Gb2Bpp"));

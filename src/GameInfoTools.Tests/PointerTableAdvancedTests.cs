@@ -6,13 +6,11 @@ namespace GameInfoTools.Tests;
 /// <summary>
 /// Comprehensive tests for PointerTable functionality.
 /// </summary>
-public class PointerTableAdvancedTests
-{
+public class PointerTableAdvancedTests {
 	#region PointerFormat Enum Tests
 
 	[Fact]
-	public void PointerFormat_HasAllExpectedValues()
-	{
+	public void PointerFormat_HasAllExpectedValues() {
 		var values = Enum.GetValues<PointerTable.PointerFormat>();
 
 		Assert.Contains(PointerTable.PointerFormat.Absolute16, values);
@@ -29,8 +27,7 @@ public class PointerTableAdvancedTests
 	#region Read Absolute16 Tests
 
 	[Fact]
-	public void Read_Absolute16_LittleEndian_ParsesCorrectly()
-	{
+	public void Read_Absolute16_LittleEndian_ParsesCorrectly() {
 		// Two 16-bit little-endian pointers: $8000, $8100
 		var data = new byte[] { 0x00, 0x80, 0x00, 0x81 };
 
@@ -42,8 +39,7 @@ public class PointerTableAdvancedTests
 	}
 
 	[Fact]
-	public void Read_Absolute16_TracksIndex()
-	{
+	public void Read_Absolute16_TracksIndex() {
 		var data = new byte[] { 0x00, 0x80, 0x00, 0x81, 0x00, 0x82 };
 
 		var table = PointerTable.Read(data, 0, 3, PointerTable.PointerFormat.Absolute16);
@@ -54,8 +50,7 @@ public class PointerTableAdvancedTests
 	}
 
 	[Fact]
-	public void Read_Absolute16_TracksTableOffset()
-	{
+	public void Read_Absolute16_TracksTableOffset() {
 		var data = new byte[] { 0x00, 0x80, 0x00, 0x81 };
 
 		var table = PointerTable.Read(data, 0, 2, PointerTable.PointerFormat.Absolute16);
@@ -65,8 +60,7 @@ public class PointerTableAdvancedTests
 	}
 
 	[Fact]
-	public void Read_Absolute16_WithOffset_StartsAtCorrectPosition()
-	{
+	public void Read_Absolute16_WithOffset_StartsAtCorrectPosition() {
 		var data = new byte[] { 0xff, 0xff, 0x00, 0x80, 0x00, 0x81 };
 
 		var table = PointerTable.Read(data, 2, 2, PointerTable.PointerFormat.Absolute16);
@@ -80,8 +74,7 @@ public class PointerTableAdvancedTests
 	#region Read Absolute24 Tests
 
 	[Fact]
-	public void Read_Absolute24_ParsesCorrectly()
-	{
+	public void Read_Absolute24_ParsesCorrectly() {
 		// Two 24-bit pointers: $c08000, $c18000
 		var data = new byte[] { 0x00, 0x80, 0xc0, 0x00, 0x80, 0xc1 };
 
@@ -97,8 +90,7 @@ public class PointerTableAdvancedTests
 	#region Read Relative8 Tests
 
 	[Fact]
-	public void Read_Relative8_ParsesCorrectly()
-	{
+	public void Read_Relative8_ParsesCorrectly() {
 		// Two 8-bit relative offsets
 		var data = new byte[] { 0x10, 0x20 };
 
@@ -114,8 +106,7 @@ public class PointerTableAdvancedTests
 	#region Read BankOffset Tests
 
 	[Fact]
-	public void Read_BankOffset_ParsesCorrectly()
-	{
+	public void Read_BankOffset_ParsesCorrectly() {
 		// Bank byte + 16-bit offset: bank $0c, offset $8000
 		var data = new byte[] { 0x0c, 0x00, 0x80 };
 
@@ -131,8 +122,7 @@ public class PointerTableAdvancedTests
 	#region Read Edge Cases Tests
 
 	[Fact]
-	public void Read_EmptyData_ReturnsEmptyTable()
-	{
+	public void Read_EmptyData_ReturnsEmptyTable() {
 		var data = Array.Empty<byte>();
 
 		var table = PointerTable.Read(data, 0, 10, PointerTable.PointerFormat.Absolute16);
@@ -141,8 +131,7 @@ public class PointerTableAdvancedTests
 	}
 
 	[Fact]
-	public void Read_MoreEntriesThanData_ReadsAvailableOnly()
-	{
+	public void Read_MoreEntriesThanData_ReadsAvailableOnly() {
 		var data = new byte[] { 0x00, 0x80 };
 
 		var table = PointerTable.Read(data, 0, 100, PointerTable.PointerFormat.Absolute16);
@@ -151,8 +140,7 @@ public class PointerTableAdvancedTests
 	}
 
 	[Fact]
-	public void Read_PartialPointerAtEnd_SkipsIncomplete()
-	{
+	public void Read_PartialPointerAtEnd_SkipsIncomplete() {
 		// One complete pointer + one incomplete
 		var data = new byte[] { 0x00, 0x80, 0x00 };
 
@@ -166,8 +154,7 @@ public class PointerTableAdvancedTests
 	#region DetectTable Tests
 
 	[Fact]
-	public void DetectTable_ValidNesPointerTable_DetectsTable()
-	{
+	public void DetectTable_ValidNesPointerTable_DetectsTable() {
 		// Valid NES pointer table (addresses in $8000-$FFFF range)
 		var data = new byte[]
 		{
@@ -184,8 +171,7 @@ public class PointerTableAdvancedTests
 	}
 
 	[Fact]
-	public void DetectTable_InvalidPointers_ReturnsNull()
-	{
+	public void DetectTable_InvalidPointers_ReturnsNull() {
 		// Invalid pointers (all zeros or out of range)
 		var data = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
@@ -195,8 +181,7 @@ public class PointerTableAdvancedTests
 	}
 
 	[Fact]
-	public void DetectTable_TooShortData_ReturnsNull()
-	{
+	public void DetectTable_TooShortData_ReturnsNull() {
 		var data = new byte[] { 0x00, 0x80 };
 
 		var table = PointerTable.DetectTable(data, 0, 10);
@@ -206,8 +191,7 @@ public class PointerTableAdvancedTests
 	}
 
 	[Fact]
-	public void DetectTable_OffsetBeyondData_ReturnsNull()
-	{
+	public void DetectTable_OffsetBeyondData_ReturnsNull() {
 		var data = new byte[] { 0x00, 0x80, 0x10, 0x80 };
 
 		var table = PointerTable.DetectTable(data, 100, 4);
@@ -220,8 +204,7 @@ public class PointerTableAdvancedTests
 	#region PointerEntry Record Tests
 
 	[Fact]
-	public void PointerEntry_AllProperties_Accessible()
-	{
+	public void PointerEntry_AllProperties_Accessible() {
 		var entry = new PointerTable.PointerEntry(0x100, 0x8000, 0x8000, 5);
 
 		Assert.Equal(0x100, entry.TableOffset);
@@ -231,8 +214,7 @@ public class PointerTableAdvancedTests
 	}
 
 	[Fact]
-	public void PointerEntry_Record_SupportsEquality()
-	{
+	public void PointerEntry_Record_SupportsEquality() {
 		var entry1 = new PointerTable.PointerEntry(0x100, 0x8000, 0x8000, 5);
 		var entry2 = new PointerTable.PointerEntry(0x100, 0x8000, 0x8000, 5);
 
@@ -244,8 +226,7 @@ public class PointerTableAdvancedTests
 	#region Table Properties Tests
 
 	[Fact]
-	public void PointerTable_DefaultProperties()
-	{
+	public void PointerTable_DefaultProperties() {
 		var data = new byte[] { 0x00, 0x80 };
 		var table = PointerTable.Read(data, 0, 1, PointerTable.PointerFormat.Absolute16);
 
@@ -256,8 +237,7 @@ public class PointerTableAdvancedTests
 	}
 
 	[Fact]
-	public void PointerTable_WithBank_SetsBank()
-	{
+	public void PointerTable_WithBank_SetsBank() {
 		var data = new byte[] { 0x00, 0x80 };
 		var table = PointerTable.Read(data, 0, 1, PointerTable.PointerFormat.Absolute16, bank: 3);
 
@@ -265,8 +245,7 @@ public class PointerTableAdvancedTests
 	}
 
 	[Fact]
-	public void PointerTable_WithBaseAddress_SetsBaseAddress()
-	{
+	public void PointerTable_WithBaseAddress_SetsBaseAddress() {
 		var data = new byte[] { 0x00, 0x80 };
 		var table = PointerTable.Read(data, 0, 1, PointerTable.PointerFormat.Absolute16, baseAddress: 0xc000);
 
@@ -278,17 +257,21 @@ public class PointerTableAdvancedTests
 	#region FindAllTables Tests
 
 	[Fact]
-	public void FindAllTables_WithValidTables_ReturnsResults()
-	{
+	public void FindAllTables_WithValidTables_ReturnsResults() {
 		// Data with a clear pointer table pattern
 		var data = new byte[256];
 
 		// Insert a valid pointer table at offset 0x10
-		data[0x10] = 0x00; data[0x11] = 0x80;  // $8000
-		data[0x12] = 0x10; data[0x13] = 0x80;  // $8010
-		data[0x14] = 0x20; data[0x15] = 0x80;  // $8020
-		data[0x16] = 0x30; data[0x17] = 0x80;  // $8030
-		data[0x18] = 0x40; data[0x19] = 0x80;  // $8040
+		data[0x10] = 0x00;
+		data[0x11] = 0x80;  // $8000
+		data[0x12] = 0x10;
+		data[0x13] = 0x80;  // $8010
+		data[0x14] = 0x20;
+		data[0x15] = 0x80;  // $8020
+		data[0x16] = 0x30;
+		data[0x17] = 0x80;  // $8030
+		data[0x18] = 0x40;
+		data[0x19] = 0x80;  // $8040
 
 		var tables = PointerTable.FindAllTables(data, minEntries: 4);
 
@@ -297,8 +280,7 @@ public class PointerTableAdvancedTests
 	}
 
 	[Fact]
-	public void FindAllTables_EmptyData_ReturnsEmpty()
-	{
+	public void FindAllTables_EmptyData_ReturnsEmpty() {
 		var data = Array.Empty<byte>();
 
 		var tables = PointerTable.FindAllTables(data);
@@ -307,12 +289,10 @@ public class PointerTableAdvancedTests
 	}
 
 	[Fact]
-	public void FindAllTables_NoValidTables_ReturnsEmpty()
-	{
+	public void FindAllTables_NoValidTables_ReturnsEmpty() {
 		// Random data with no valid pointer patterns
 		var data = new byte[64];
-		for (int i = 0; i < data.Length; i++)
-		{
+		for (int i = 0; i < data.Length; i++) {
 			data[i] = (byte)(i * 7); // Just some pattern that won't look like pointers
 		}
 
@@ -329,21 +309,23 @@ public class PointerTableAdvancedTests
 /// <summary>
 /// Tests for PatternDetector static class.
 /// </summary>
-public class PatternDetectorAdvancedTests
-{
+public class PatternDetectorAdvancedTests {
 	#region FindPointerTables Tests
 
 	[Fact]
-	public void FindPointerTables_ValidData_ReturnsMatches()
-	{
+	public void FindPointerTables_ValidData_ReturnsMatches() {
 		// Create data with a valid NES-style pointer table
 		var data = new byte[128];
 
 		// Valid pointer table starting at offset 0x10
-		data[0x10] = 0x00; data[0x11] = 0x80;
-		data[0x12] = 0x10; data[0x13] = 0x80;
-		data[0x14] = 0x20; data[0x15] = 0x80;
-		data[0x16] = 0x30; data[0x17] = 0x80;
+		data[0x10] = 0x00;
+		data[0x11] = 0x80;
+		data[0x12] = 0x10;
+		data[0x13] = 0x80;
+		data[0x14] = 0x20;
+		data[0x15] = 0x80;
+		data[0x16] = 0x30;
+		data[0x17] = 0x80;
 
 		var matches = PatternDetector.FindPointerTables(data, SystemType.Nes);
 
@@ -352,8 +334,7 @@ public class PatternDetectorAdvancedTests
 	}
 
 	[Fact]
-	public void FindPointerTables_EmptyData_ReturnsEmpty()
-	{
+	public void FindPointerTables_EmptyData_ReturnsEmpty() {
 		var data = Array.Empty<byte>();
 
 		var matches = PatternDetector.FindPointerTables(data, SystemType.Nes);
@@ -366,8 +347,7 @@ public class PatternDetectorAdvancedTests
 	#region FindTextRegions Tests
 
 	[Fact]
-	public void FindTextRegions_AsciiText_FindsRegions()
-	{
+	public void FindTextRegions_AsciiText_FindsRegions() {
 		// Create data with ASCII text region
 		var data = new byte[64];
 		var text = "Hello World! This is a test string.";
@@ -380,12 +360,10 @@ public class PatternDetectorAdvancedTests
 	}
 
 	[Fact]
-	public void FindTextRegions_NoText_MayReturnEmpty()
-	{
+	public void FindTextRegions_NoText_MayReturnEmpty() {
 		// Binary data with no readable text
 		var data = new byte[64];
-		for (int i = 0; i < data.Length; i++)
-		{
+		for (int i = 0; i < data.Length; i++) {
 			data[i] = 0xff;
 		}
 
@@ -400,16 +378,13 @@ public class PatternDetectorAdvancedTests
 	#region FindGraphicsRegions Tests
 
 	[Fact]
-	public void FindGraphicsRegions_TileData_FindsRegions()
-	{
+	public void FindGraphicsRegions_TileData_FindsRegions() {
 		// Create data that looks like NES CHR data (repeating patterns typical of tiles)
 		var data = new byte[256];
 		// Fill with typical tile-like pattern (two bitplanes)
-		for (int tile = 0; tile < 16; tile++)
-		{
+		for (int tile = 0; tile < 16; tile++) {
 			int offset = tile * 16;
-			for (int row = 0; row < 8; row++)
-			{
+			for (int row = 0; row < 8; row++) {
 				data[offset + row] = 0x00;          // Plane 0
 				data[offset + 8 + row] = (byte)row; // Plane 1
 			}
@@ -426,8 +401,7 @@ public class PatternDetectorAdvancedTests
 	#region FindCodeRegions Tests
 
 	[Fact]
-	public void FindCodeRegions_ValidCode_FindsRegions()
-	{
+	public void FindCodeRegions_ValidCode_FindsRegions() {
 		// Create data with valid 6502 code patterns
 		var data = new byte[]
 		{
@@ -452,13 +426,11 @@ public class PatternDetectorAdvancedTests
 	#region FindDataTables Tests
 
 	[Fact]
-	public void FindDataTables_StructuredData_FindsMatches()
-	{
+	public void FindDataTables_StructuredData_FindsMatches() {
 		// Create structured data table (repeating record pattern)
 		var data = new byte[128];
 		// Each record: 2 bytes ID, 2 bytes value, 4 bytes total
-		for (int i = 0; i < 16; i++)
-		{
+		for (int i = 0; i < 16; i++) {
 			int offset = i * 8;
 			data[offset] = (byte)i;        // ID low
 			data[offset + 1] = 0x00;       // ID high
@@ -480,16 +452,14 @@ public class PatternDetectorAdvancedTests
 	#region PatternMatch Record Tests
 
 	[Fact]
-	public void PatternMatch_Properties_AllAccessible()
-	{
+	public void PatternMatch_Properties_AllAccessible() {
 		// Verify PatternMatch structure works correctly
 		var data = new byte[] { 0xa9, 0x00, 0x8d, 0x00, 0x20 };
 
 		var codeRegions = PatternDetector.FindCodeRegions(data, SystemType.Nes);
 
 		// Just verify we can access the results
-		foreach (var match in codeRegions)
-		{
+		foreach (var match in codeRegions) {
 			// Access properties without null reference
 			var offset = match.Offset;
 			var length = match.Length;

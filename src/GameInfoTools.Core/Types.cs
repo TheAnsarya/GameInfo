@@ -3,8 +3,7 @@ namespace GameInfoTools.Core;
 /// <summary>
 /// Supported console/system types.
 /// </summary>
-public enum SystemType
-{
+public enum SystemType {
 	Unknown,
 	Nes,
 	Snes,
@@ -21,8 +20,7 @@ public enum SystemType
 /// <summary>
 /// ROM header information.
 /// </summary>
-public record RomHeader
-{
+public record RomHeader {
 	public SystemType System { get; init; }
 	public string? Title { get; init; }
 	public int HeaderSize { get; init; }
@@ -37,8 +35,7 @@ public record RomHeader
 /// <summary>
 /// Address space types.
 /// </summary>
-public enum AddressSpace
-{
+public enum AddressSpace {
 	File,
 	Cpu,
 	Ppu,
@@ -48,14 +45,12 @@ public enum AddressSpace
 /// <summary>
 /// Represents an address with context about which space it belongs to.
 /// </summary>
-public readonly struct GameAddress : IEquatable<GameAddress>
-{
+public readonly struct GameAddress : IEquatable<GameAddress> {
 	public int Value { get; }
 	public AddressSpace Space { get; }
 	public int Bank { get; }
 
-	public GameAddress(int value, AddressSpace space = AddressSpace.File, int bank = -1)
-	{
+	public GameAddress(int value, AddressSpace space = AddressSpace.File, int bank = -1) {
 		Value = value;
 		Space = space;
 		Bank = bank;
@@ -64,8 +59,7 @@ public readonly struct GameAddress : IEquatable<GameAddress>
 	public string ToHexString() => $"${Value:x6}";
 	public string ToShortHex() => $"${Value:x4}";
 
-	public override string ToString() => Space switch
-	{
+	public override string ToString() => Space switch {
 		AddressSpace.File => $"File:${Value:x6}",
 		AddressSpace.Cpu => Bank >= 0 ? $"CPU:${Value:x4} (Bank {Bank})" : $"CPU:${Value:x4}",
 		AddressSpace.Ppu => $"PPU:${Value:x4}",
@@ -85,8 +79,7 @@ public readonly struct GameAddress : IEquatable<GameAddress>
 /// <summary>
 /// Represents a label/symbol in the ROM.
 /// </summary>
-public record Label
-{
+public record Label {
 	public required string Name { get; init; }
 	public required GameAddress Address { get; init; }
 	public string? Comment { get; init; }
@@ -96,8 +89,7 @@ public record Label
 /// <summary>
 /// Label type classification.
 /// </summary>
-public enum LabelType
-{
+public enum LabelType {
 	Unknown,
 	Code,
 	Data,
@@ -110,8 +102,7 @@ public enum LabelType
 /// <summary>
 /// Basic ROM information.
 /// </summary>
-public record RomInfo
-{
+public record RomInfo {
 	public SystemType System { get; init; }
 	public int HeaderSize { get; init; }
 	public int Size { get; init; }

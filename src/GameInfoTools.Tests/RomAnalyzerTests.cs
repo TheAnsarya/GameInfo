@@ -2,10 +2,8 @@ using GameInfoTools.Analysis;
 
 namespace GameInfoTools.Tests;
 
-public class RomAnalyzerTests
-{
-	private byte[] CreateTestNesRom()
-	{
+public class RomAnalyzerTests {
+	private byte[] CreateTestNesRom() {
 		// Create minimal NES ROM (16 byte header + 16KB PRG)
 		byte[] rom = new byte[0x4010];
 
@@ -18,11 +16,9 @@ public class RomAnalyzerTests
 		rom[5] = 0x00; // 0 CHR banks
 
 		// Fill with semi-realistic code-like data
-		for (int i = 0x10; i < rom.Length; i++)
-		{
+		for (int i = 0x10; i < rom.Length; i++) {
 			// Mix of NES opcodes
-			rom[i] = (byte)((i % 8) switch
-			{
+			rom[i] = (byte)((i % 8) switch {
 				0 => 0xA9, // LDA
 				1 => 0x00, // immediate value
 				2 => 0xEA, // NOP
@@ -39,8 +35,7 @@ public class RomAnalyzerTests
 	}
 
 	[Fact]
-	public void Constructor_CreatesInstanceFromNesRom()
-	{
+	public void Constructor_CreatesInstanceFromNesRom() {
 		byte[] rom = CreateTestNesRom();
 		var analyzer = new RomAnalyzer(rom);
 
@@ -48,8 +43,7 @@ public class RomAnalyzerTests
 	}
 
 	[Fact]
-	public void AnalyzeRom_ReturnsDataBlocks()
-	{
+	public void AnalyzeRom_ReturnsDataBlocks() {
 		byte[] rom = CreateTestNesRom();
 		var analyzer = new RomAnalyzer(rom);
 
@@ -60,8 +54,7 @@ public class RomAnalyzerTests
 	}
 
 	[Fact]
-	public void DataBlock_HasCorrectProperties()
-	{
+	public void DataBlock_HasCorrectProperties() {
 		var block = new RomAnalyzer.DataBlock(0x100, 256, RomAnalyzer.BlockType.Code, 0.85f, "Test block");
 
 		Assert.Equal(0x100, block.Offset);
@@ -72,8 +65,7 @@ public class RomAnalyzerTests
 	}
 
 	[Fact]
-	public void BlockType_HasExpectedValues()
-	{
+	public void BlockType_HasExpectedValues() {
 		Assert.True(Enum.IsDefined(typeof(RomAnalyzer.BlockType), "Unknown"));
 		Assert.True(Enum.IsDefined(typeof(RomAnalyzer.BlockType), "Code"));
 		Assert.True(Enum.IsDefined(typeof(RomAnalyzer.BlockType), "Graphics"));
@@ -86,8 +78,7 @@ public class RomAnalyzerTests
 	}
 
 	[Fact]
-	public void AnalyzeRom_WithSmallBlockSize_ReturnsMoreBlocks()
-	{
+	public void AnalyzeRom_WithSmallBlockSize_ReturnsMoreBlocks() {
 		byte[] rom = CreateTestNesRom();
 		var analyzer = new RomAnalyzer(rom);
 
@@ -100,13 +91,11 @@ public class RomAnalyzerTests
 	}
 
 	[Fact]
-	public void AnalyzeRom_EmptyRegion_DetectsAsEmpty()
-	{
+	public void AnalyzeRom_EmptyRegion_DetectsAsEmpty() {
 		// Create ROM with empty region
 		byte[] rom = CreateTestNesRom();
 		// Fill a section with 0xFF (empty/unused)
-		for (int i = 0x2000; i < 0x3000; i++)
-		{
+		for (int i = 0x2000; i < 0x3000; i++) {
 			rom[i] = 0xFF;
 		}
 

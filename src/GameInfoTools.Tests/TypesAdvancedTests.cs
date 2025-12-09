@@ -7,25 +7,21 @@ namespace GameInfoTools.Tests;
 /// Advanced tests for Core Types including edge cases, equality,
 /// hashing, and string formatting.
 /// </summary>
-public class TypesAdvancedTests
-{
+public class TypesAdvancedTests {
 	#region SystemType Advanced Tests
 
 	[Fact]
-	public void SystemType_EnumValuesAreSequential()
-	{
+	public void SystemType_EnumValuesAreSequential() {
 		var values = Enum.GetValues<SystemType>().Cast<int>().ToList();
 
 		Assert.Equal(0, values[0]);  // Unknown starts at 0
-		for (int i = 1; i < values.Count; i++)
-		{
+		for (int i = 1; i < values.Count; i++) {
 			Assert.Equal(i, values[i]);  // Sequential
 		}
 	}
 
 	[Fact]
-	public void SystemType_CanParseFromString()
-	{
+	public void SystemType_CanParseFromString() {
 		Assert.True(Enum.TryParse<SystemType>("Nes", out var nes));
 		Assert.Equal(SystemType.Nes, nes);
 
@@ -34,8 +30,7 @@ public class TypesAdvancedTests
 	}
 
 	[Fact]
-	public void SystemType_CaseInsensitiveParse()
-	{
+	public void SystemType_CaseInsensitiveParse() {
 		Assert.True(Enum.TryParse<SystemType>("NES", true, out var nes));
 		Assert.Equal(SystemType.Nes, nes);
 
@@ -44,8 +39,7 @@ public class TypesAdvancedTests
 	}
 
 	[Fact]
-	public void SystemType_ToString_ReturnsName()
-	{
+	public void SystemType_ToString_ReturnsName() {
 		Assert.Equal("Nes", SystemType.Nes.ToString());
 		Assert.Equal("GameBoy", SystemType.GameBoy.ToString());
 		Assert.Equal("TurboGrafx16", SystemType.TurboGrafx16.ToString());
@@ -63,8 +57,7 @@ public class TypesAdvancedTests
 	[InlineData(SystemType.GameGear)]
 	[InlineData(SystemType.TurboGrafx16)]
 	[InlineData(SystemType.NeoGeo)]
-	public void SystemType_AllValuesAreDefined(SystemType type)
-	{
+	public void SystemType_AllValuesAreDefined(SystemType type) {
 		Assert.True(Enum.IsDefined(type));
 	}
 
@@ -73,8 +66,7 @@ public class TypesAdvancedTests
 	#region AddressSpace Advanced Tests
 
 	[Fact]
-	public void AddressSpace_FileIsDefault()
-	{
+	public void AddressSpace_FileIsDefault() {
 		Assert.Equal(0, (int)AddressSpace.File);
 	}
 
@@ -83,8 +75,7 @@ public class TypesAdvancedTests
 	[InlineData(AddressSpace.Cpu)]
 	[InlineData(AddressSpace.Ppu)]
 	[InlineData(AddressSpace.Sram)]
-	public void AddressSpace_AllValuesAreDefined(AddressSpace space)
-	{
+	public void AddressSpace_AllValuesAreDefined(AddressSpace space) {
 		Assert.True(Enum.IsDefined(space));
 	}
 
@@ -93,8 +84,7 @@ public class TypesAdvancedTests
 	#region GameAddress Advanced Tests
 
 	[Fact]
-	public void GameAddress_ZeroAddress_WorksCorrectly()
-	{
+	public void GameAddress_ZeroAddress_WorksCorrectly() {
 		var addr = new GameAddress(0);
 
 		Assert.Equal(0, addr.Value);
@@ -103,16 +93,14 @@ public class TypesAdvancedTests
 	}
 
 	[Fact]
-	public void GameAddress_MaxValue_WorksCorrectly()
-	{
+	public void GameAddress_MaxValue_WorksCorrectly() {
 		var addr = new GameAddress(int.MaxValue);
 
 		Assert.Equal(int.MaxValue, addr.Value);
 	}
 
 	[Fact]
-	public void GameAddress_NegativeBank_IndicatesNoBank()
-	{
+	public void GameAddress_NegativeBank_IndicatesNoBank() {
 		var addr = new GameAddress(0x8000, AddressSpace.Cpu, -1);
 
 		Assert.Equal(-1, addr.Bank);
@@ -120,16 +108,14 @@ public class TypesAdvancedTests
 	}
 
 	[Fact]
-	public void GameAddress_ZeroBank_ShowsBank()
-	{
+	public void GameAddress_ZeroBank_ShowsBank() {
 		var addr = new GameAddress(0x8000, AddressSpace.Cpu, 0);
 
 		Assert.Contains("Bank 0", addr.ToString());
 	}
 
 	[Fact]
-	public void GameAddress_ToHexString_FixedWidth()
-	{
+	public void GameAddress_ToHexString_FixedWidth() {
 		Assert.Equal("$000001", new GameAddress(1).ToHexString());
 		Assert.Equal("$0000ff", new GameAddress(0xFF).ToHexString());
 		Assert.Equal("$001000", new GameAddress(0x1000).ToHexString());
@@ -137,16 +123,14 @@ public class TypesAdvancedTests
 	}
 
 	[Fact]
-	public void GameAddress_ToShortHex_FourDigits()
-	{
+	public void GameAddress_ToShortHex_FourDigits() {
 		Assert.Equal("$0001", new GameAddress(1).ToShortHex());
 		Assert.Equal("$00ff", new GameAddress(0xFF).ToShortHex());
 		Assert.Equal("$1000", new GameAddress(0x1000).ToShortHex());
 	}
 
 	[Fact]
-	public void GameAddress_Equality_AllFieldsMustMatch()
-	{
+	public void GameAddress_Equality_AllFieldsMustMatch() {
 		var addr1 = new GameAddress(0x8000, AddressSpace.Cpu, 5);
 		var addr2 = new GameAddress(0x8000, AddressSpace.Cpu, 5);
 		var addr3 = new GameAddress(0x8001, AddressSpace.Cpu, 5);  // Different value
@@ -160,8 +144,7 @@ public class TypesAdvancedTests
 	}
 
 	[Fact]
-	public void GameAddress_HashCode_ConsistentWithEquality()
-	{
+	public void GameAddress_HashCode_ConsistentWithEquality() {
 		var addr1 = new GameAddress(0x8000, AddressSpace.Cpu, 5);
 		var addr2 = new GameAddress(0x8000, AddressSpace.Cpu, 5);
 
@@ -173,8 +156,7 @@ public class TypesAdvancedTests
 	}
 
 	[Fact]
-	public void GameAddress_HashCode_UsableInHashSet()
-	{
+	public void GameAddress_HashCode_UsableInHashSet() {
 		var set = new HashSet<GameAddress>
 		{
 			new GameAddress(0x8000, AddressSpace.Cpu, 0),
@@ -187,8 +169,7 @@ public class TypesAdvancedTests
 	}
 
 	[Fact]
-	public void GameAddress_UsableAsDictionaryKey()
-	{
+	public void GameAddress_UsableAsDictionaryKey() {
 		var dict = new Dictionary<GameAddress, string>
 		{
 			{ new GameAddress(0x8000, AddressSpace.Cpu, 0), "Reset" },
@@ -200,8 +181,7 @@ public class TypesAdvancedTests
 	}
 
 	[Fact]
-	public void GameAddress_Equals_BoxedComparison()
-	{
+	public void GameAddress_Equals_BoxedComparison() {
 		var addr1 = new GameAddress(0x8000);
 		object boxed = new GameAddress(0x8000);
 
@@ -209,16 +189,14 @@ public class TypesAdvancedTests
 	}
 
 	[Fact]
-	public void GameAddress_Equals_NullReturnsFalse()
-	{
+	public void GameAddress_Equals_NullReturnsFalse() {
 		var addr = new GameAddress(0x8000);
 
 		Assert.False(addr.Equals(null));
 	}
 
 	[Fact]
-	public void GameAddress_Equals_WrongTypeReturnsFalse()
-	{
+	public void GameAddress_Equals_WrongTypeReturnsFalse() {
 		var addr = new GameAddress(0x8000);
 
 		Assert.False(addr.Equals(0x8000));
@@ -226,8 +204,7 @@ public class TypesAdvancedTests
 	}
 
 	[Fact]
-	public void GameAddress_InequalityOperator_Works()
-	{
+	public void GameAddress_InequalityOperator_Works() {
 		var addr1 = new GameAddress(0x8000);
 		var addr2 = new GameAddress(0x9000);
 
@@ -240,8 +217,7 @@ public class TypesAdvancedTests
 	#region Label Advanced Tests
 
 	[Fact]
-	public void Label_RecordEquality_Works()
-	{
+	public void Label_RecordEquality_Works() {
 		var addr = new GameAddress(0x8000, AddressSpace.Cpu);
 		var label1 = new Label { Name = "Reset", Address = addr };
 		var label2 = new Label { Name = "Reset", Address = addr };
@@ -251,8 +227,7 @@ public class TypesAdvancedTests
 	}
 
 	[Fact]
-	public void Label_RecordInequality_DifferentName()
-	{
+	public void Label_RecordInequality_DifferentName() {
 		var addr = new GameAddress(0x8000, AddressSpace.Cpu);
 		var label1 = new Label { Name = "Reset", Address = addr };
 		var label2 = new Label { Name = "Start", Address = addr };
@@ -261,8 +236,7 @@ public class TypesAdvancedTests
 	}
 
 	[Fact]
-	public void Label_RecordInequality_DifferentAddress()
-	{
+	public void Label_RecordInequality_DifferentAddress() {
 		var label1 = new Label { Name = "Test", Address = new GameAddress(0x8000) };
 		var label2 = new Label { Name = "Test", Address = new GameAddress(0x9000) };
 
@@ -270,10 +244,8 @@ public class TypesAdvancedTests
 	}
 
 	[Fact]
-	public void Label_WithOperator_CreatesCopy()
-	{
-		var original = new Label
-		{
+	public void Label_WithOperator_CreatesCopy() {
+		var original = new Label {
 			Name = "Original",
 			Address = new GameAddress(0x8000),
 			Comment = "Test comment",
@@ -292,12 +264,10 @@ public class TypesAdvancedTests
 	}
 
 	[Fact]
-	public void Label_AllLabelTypesCanBeAssigned()
-	{
+	public void Label_AllLabelTypesCanBeAssigned() {
 		var addr = new GameAddress(0x8000);
 
-		foreach (var type in Enum.GetValues<LabelType>())
-		{
+		foreach (var type in Enum.GetValues<LabelType>()) {
 			var label = new Label { Name = "Test", Address = addr, Type = type };
 			Assert.Equal(type, label.Type);
 		}
@@ -315,14 +285,12 @@ public class TypesAdvancedTests
 	[InlineData(LabelType.Text)]
 	[InlineData(LabelType.Graphics)]
 	[InlineData(LabelType.Audio)]
-	public void LabelType_AllValuesAreDefined(LabelType type)
-	{
+	public void LabelType_AllValuesAreDefined(LabelType type) {
 		Assert.True(Enum.IsDefined(type));
 	}
 
 	[Fact]
-	public void LabelType_UnknownIsDefault()
-	{
+	public void LabelType_UnknownIsDefault() {
 		Assert.Equal(0, (int)LabelType.Unknown);
 	}
 
@@ -331,8 +299,7 @@ public class TypesAdvancedTests
 	#region RomHeader Advanced Tests
 
 	[Fact]
-	public void RomHeader_RecordEquality_Works()
-	{
+	public void RomHeader_RecordEquality_Works() {
 		var header1 = new RomHeader { System = SystemType.Nes, Title = "Test" };
 		var header2 = new RomHeader { System = SystemType.Nes, Title = "Test" };
 
@@ -340,10 +307,8 @@ public class TypesAdvancedTests
 	}
 
 	[Fact]
-	public void RomHeader_WithOperator_CreatesCopy()
-	{
-		var original = new RomHeader
-		{
+	public void RomHeader_WithOperator_CreatesCopy() {
+		var original = new RomHeader {
 			System = SystemType.Nes,
 			Title = "Original",
 			HeaderSize = 16,
@@ -363,16 +328,14 @@ public class TypesAdvancedTests
 	}
 
 	[Fact]
-	public void RomHeader_RawHeaderDefault_IsEmptyArray()
-	{
+	public void RomHeader_RawHeaderDefault_IsEmptyArray() {
 		var header = new RomHeader();
 		Assert.NotNull(header.RawHeader);
 		Assert.Empty(header.RawHeader);
 	}
 
 	[Fact]
-	public void RomHeader_RawHeader_MutationDoesNotAffectOriginal()
-	{
+	public void RomHeader_RawHeader_MutationDoesNotAffectOriginal() {
 		var data = new byte[] { 1, 2, 3, 4 };
 		var header = new RomHeader { RawHeader = data };
 
@@ -388,8 +351,7 @@ public class TypesAdvancedTests
 	#region RomInfo Advanced Tests
 
 	[Fact]
-	public void RomInfo_RecordEquality_Works()
-	{
+	public void RomInfo_RecordEquality_Works() {
 		var info1 = new RomInfo { System = SystemType.Snes, Size = 0x100000 };
 		var info2 = new RomInfo { System = SystemType.Snes, Size = 0x100000 };
 
@@ -397,10 +359,8 @@ public class TypesAdvancedTests
 	}
 
 	[Fact]
-	public void RomInfo_WithOperator_CreatesCopy()
-	{
-		var original = new RomInfo
-		{
+	public void RomInfo_WithOperator_CreatesCopy() {
+		var original = new RomInfo {
 			System = SystemType.Nes,
 			HeaderSize = 16,
 			Size = 0x8000,
@@ -415,17 +375,14 @@ public class TypesAdvancedTests
 	}
 
 	[Fact]
-	public void RomInfo_TitleDefault_IsNull()
-	{
+	public void RomInfo_TitleDefault_IsNull() {
 		var info = new RomInfo();
 		Assert.Null(info.Title);
 	}
 
 	[Fact]
-	public void RomInfo_ToString_ContainsUsefulInfo()
-	{
-		var info = new RomInfo
-		{
+	public void RomInfo_ToString_ContainsUsefulInfo() {
+		var info = new RomInfo {
 			System = SystemType.Nes,
 			Title = "Super Game"
 		};
@@ -441,15 +398,12 @@ public class TypesAdvancedTests
 	#region Cross-Type Integration Tests
 
 	[Fact]
-	public void Label_CanStoreAllSystemTypes()
-	{
+	public void Label_CanStoreAllSystemTypes() {
 		var labels = new List<Label>();
 
-		foreach (var system in Enum.GetValues<SystemType>())
-		{
+		foreach (var system in Enum.GetValues<SystemType>()) {
 			var addr = new GameAddress(0x8000, AddressSpace.Cpu);
-			labels.Add(new Label
-			{
+			labels.Add(new Label {
 				Name = $"Label_{system}",
 				Address = addr,
 				Comment = $"For {system} system"
@@ -460,12 +414,9 @@ public class TypesAdvancedTests
 	}
 
 	[Fact]
-	public void GameAddress_AllSpacesWorkInLabel()
-	{
-		foreach (var space in Enum.GetValues<AddressSpace>())
-		{
-			var label = new Label
-			{
+	public void GameAddress_AllSpacesWorkInLabel() {
+		foreach (var space in Enum.GetValues<AddressSpace>()) {
+			var label = new Label {
 				Name = $"Label_{space}",
 				Address = new GameAddress(0x1000, space, 0)
 			};

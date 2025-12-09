@@ -6,11 +6,9 @@ namespace GameInfoTools.Tests;
 /// <summary>
 /// Tests for SpriteExtractor functionality.
 /// </summary>
-public class SpriteExtractorTests
-{
+public class SpriteExtractorTests {
 	[Fact]
-	public void NesSprite_Record_HasCorrectProperties()
-	{
+	public void NesSprite_Record_HasCorrectProperties() {
 		var sprite = new SpriteExtractor.NesSprite(0x10, 0x20, 0xE3, 0x40);
 
 		Assert.Equal(0x10, sprite.Y);
@@ -20,8 +18,7 @@ public class SpriteExtractorTests
 	}
 
 	[Fact]
-	public void NesSprite_Palette_ExtractsLower2Bits()
-	{
+	public void NesSprite_Palette_ExtractsLower2Bits() {
 		var sprite = new SpriteExtractor.NesSprite(0, 0, 0x03, 0);
 		Assert.Equal(3, sprite.Palette);
 
@@ -30,8 +27,7 @@ public class SpriteExtractorTests
 	}
 
 	[Fact]
-	public void NesSprite_BehindBackground_ChecksBit5()
-	{
+	public void NesSprite_BehindBackground_ChecksBit5() {
 		var sprite = new SpriteExtractor.NesSprite(0, 0, 0x20, 0);
 		Assert.True(sprite.BehindBackground);
 
@@ -40,8 +36,7 @@ public class SpriteExtractorTests
 	}
 
 	[Fact]
-	public void NesSprite_FlipH_ChecksBit6()
-	{
+	public void NesSprite_FlipH_ChecksBit6() {
 		var sprite = new SpriteExtractor.NesSprite(0, 0, 0x40, 0);
 		Assert.True(sprite.FlipH);
 
@@ -50,8 +45,7 @@ public class SpriteExtractorTests
 	}
 
 	[Fact]
-	public void NesSprite_FlipV_ChecksBit7()
-	{
+	public void NesSprite_FlipV_ChecksBit7() {
 		var sprite = new SpriteExtractor.NesSprite(0, 0, 0x80, 0);
 		Assert.True(sprite.FlipV);
 
@@ -60,8 +54,7 @@ public class SpriteExtractorTests
 	}
 
 	[Fact]
-	public void ParseNesOam_ParsesCorrectFormat()
-	{
+	public void ParseNesOam_ParsesCorrectFormat() {
 		var data = new byte[]
 		{
 			// Sprite 0: Y=10, Tile=20, Attr=03, X=40
@@ -85,8 +78,7 @@ public class SpriteExtractorTests
 	}
 
 	[Fact]
-	public void ParseNesOam_RespectsCount()
-	{
+	public void ParseNesOam_RespectsCount() {
 		var data = new byte[16]; // 4 sprites worth
 		var sprites = SpriteExtractor.ParseNesOam(data, 0, 2);
 
@@ -94,8 +86,7 @@ public class SpriteExtractorTests
 	}
 
 	[Fact]
-	public void ParseNesOam_StopsAtDataEnd()
-	{
+	public void ParseNesOam_StopsAtDataEnd() {
 		var data = new byte[6]; // Less than 2 full sprites
 		var sprites = SpriteExtractor.ParseNesOam(data, 0, 2);
 
@@ -103,8 +94,7 @@ public class SpriteExtractorTests
 	}
 
 	[Fact]
-	public void Metasprite_GetBounds_CalculatesCorrectly()
-	{
+	public void Metasprite_GetBounds_CalculatesCorrectly() {
 		var meta = new SpriteExtractor.Metasprite();
 		meta.Sprites.Add((0, 0, 0, 0));     // Top-left at 0,0
 		meta.Sprites.Add((8, 0, 0, 0));     // Right of first
@@ -119,8 +109,7 @@ public class SpriteExtractorTests
 	}
 
 	[Fact]
-	public void Metasprite_GetBounds_HandlesNegativeOffsets()
-	{
+	public void Metasprite_GetBounds_HandlesNegativeOffsets() {
 		var meta = new SpriteExtractor.Metasprite();
 		meta.Sprites.Add((-8, -8, 0, 0));  // Negative offsets
 		meta.Sprites.Add((0, 0, 0, 0));    // Origin
@@ -134,8 +123,7 @@ public class SpriteExtractorTests
 	}
 
 	[Fact]
-	public void Metasprite_GetBounds_ReturnsZeroForEmpty()
-	{
+	public void Metasprite_GetBounds_ReturnsZeroForEmpty() {
 		var meta = new SpriteExtractor.Metasprite();
 		var bounds = meta.GetBounds();
 
@@ -146,8 +134,7 @@ public class SpriteExtractorTests
 	}
 
 	[Fact]
-	public void ExtractMetasprite_ExtractsCorrectData()
-	{
+	public void ExtractMetasprite_ExtractsCorrectData() {
 		// Metasprite with 2 sprites
 		var data = new byte[]
 		{
@@ -167,8 +154,7 @@ public class SpriteExtractorTests
 	}
 
 	[Fact]
-	public void ExtractMetasprite_HandlesSignedOffsets()
-	{
+	public void ExtractMetasprite_HandlesSignedOffsets() {
 		// Sprite with negative offsets (signed bytes)
 		var data = new byte[]
 		{
@@ -182,8 +168,7 @@ public class SpriteExtractorTests
 	}
 
 	[Fact]
-	public void ExtractMetasprite_CalculatesSize()
-	{
+	public void ExtractMetasprite_CalculatesSize() {
 		var data = new byte[]
 		{
 			0x00, 0x00, 0x10, 0x00,
@@ -197,8 +182,7 @@ public class SpriteExtractorTests
 	}
 
 	[Fact]
-	public void SnesSprite_Record_StoresAllProperties()
-	{
+	public void SnesSprite_Record_StoresAllProperties() {
 		var sprite = new SpriteExtractor.SnesSprite(
 			X: 100, Y: 50, TileIndex: 0x200,
 			Palette: 3, Priority0: true, Priority1: false,
@@ -216,8 +200,7 @@ public class SpriteExtractorTests
 	}
 
 	[Fact]
-	public void Metasprite_Name_CanBeSetAndRetrieved()
-	{
+	public void Metasprite_Name_CanBeSetAndRetrieved() {
 		var meta = new SpriteExtractor.Metasprite();
 		meta.Name = "Player_Walk_01";
 
@@ -225,10 +208,8 @@ public class SpriteExtractorTests
 	}
 
 	[Fact]
-	public void Metasprite_Dimensions_CanBeSet()
-	{
-		var meta = new SpriteExtractor.Metasprite
-		{
+	public void Metasprite_Dimensions_CanBeSet() {
+		var meta = new SpriteExtractor.Metasprite {
 			Width = 32,
 			Height = 48
 		};

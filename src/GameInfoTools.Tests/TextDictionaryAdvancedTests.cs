@@ -1,5 +1,5 @@
-using GameInfoTools.Text;
 using GameInfoTools.Core;
+using GameInfoTools.Text;
 using Xunit;
 
 namespace GameInfoTools.Tests;
@@ -8,13 +8,11 @@ namespace GameInfoTools.Tests;
 /// Advanced tests for TextDictionary functionality including loading,
 /// lookups, edge cases, and JSON export.
 /// </summary>
-public class TextDictionaryAdvancedTests
-{
+public class TextDictionaryAdvancedTests {
 	#region LoadFromPointerTable Tests
 
 	[Fact]
-	public void LoadFromPointerTable_ValidTable_LoadsEntries()
-	{
+	public void LoadFromPointerTable_ValidTable_LoadsEntries() {
 		var dict = new TextDictionary();
 
 		// Create text table
@@ -63,8 +61,7 @@ public class TextDictionaryAdvancedTests
 	}
 
 	[Fact]
-	public void LoadFromPointerTable_InvalidPointer_SkipsEntry()
-	{
+	public void LoadFromPointerTable_InvalidPointer_SkipsEntry() {
 		var dict = new TextDictionary();
 
 		var table = new TextTable();
@@ -94,8 +91,7 @@ public class TextDictionaryAdvancedTests
 	}
 
 	[Fact]
-	public void LoadFromPointerTable_EmptyTable_NoEntries()
-	{
+	public void LoadFromPointerTable_EmptyTable_NoEntries() {
 		var dict = new TextDictionary();
 		var table = new TextTable();
 		var data = new byte[16];
@@ -106,8 +102,7 @@ public class TextDictionaryAdvancedTests
 	}
 
 	[Fact]
-	public void LoadFromPointerTable_PointerBeyondData_SkipsEntry()
-	{
+	public void LoadFromPointerTable_PointerBeyondData_SkipsEntry() {
 		var dict = new TextDictionary();
 		var table = new TextTable();
 		table.AddEntry(0x41, "A");
@@ -125,8 +120,7 @@ public class TextDictionaryAdvancedTests
 	}
 
 	[Fact]
-	public void LoadFromPointerTable_WithBank_CalculatesCorrectOffset()
-	{
+	public void LoadFromPointerTable_WithBank_CalculatesCorrectOffset() {
 		var dict = new TextDictionary();
 
 		var table = new TextTable();
@@ -155,8 +149,7 @@ public class TextDictionaryAdvancedTests
 	#region GetEntry Tests
 
 	[Fact]
-	public void GetEntry_ExistingEntry_ReturnsText()
-	{
+	public void GetEntry_ExistingEntry_ReturnsText() {
 		var dict = CreateTestDictionary();
 
 		Assert.Equal("Hello", dict.GetEntry(0));
@@ -164,8 +157,7 @@ public class TextDictionaryAdvancedTests
 	}
 
 	[Fact]
-	public void GetEntry_NonExistingEntry_ReturnsNull()
-	{
+	public void GetEntry_NonExistingEntry_ReturnsNull() {
 		var dict = CreateTestDictionary();
 
 		Assert.Null(dict.GetEntry(99));
@@ -173,8 +165,7 @@ public class TextDictionaryAdvancedTests
 	}
 
 	[Fact]
-	public void GetEntry_AfterMultipleLoads_ReturnsLatest()
-	{
+	public void GetEntry_AfterMultipleLoads_ReturnsLatest() {
 		var dict = new TextDictionary();
 		var table = new TextTable();
 		table.AddEntry(0x41, "A");
@@ -204,8 +195,7 @@ public class TextDictionaryAdvancedTests
 	#region FindEntry Tests
 
 	[Fact]
-	public void FindEntry_ExistingText_ReturnsIndex()
-	{
+	public void FindEntry_ExistingText_ReturnsIndex() {
 		var dict = CreateTestDictionary();
 
 		Assert.Equal(0, dict.FindEntry("Hello"));
@@ -213,8 +203,7 @@ public class TextDictionaryAdvancedTests
 	}
 
 	[Fact]
-	public void FindEntry_NonExistingText_ReturnsNull()
-	{
+	public void FindEntry_NonExistingText_ReturnsNull() {
 		var dict = CreateTestDictionary();
 
 		Assert.Null(dict.FindEntry("NotInDictionary"));
@@ -222,8 +211,7 @@ public class TextDictionaryAdvancedTests
 	}
 
 	[Fact]
-	public void FindEntry_CaseSensitive_ExactMatch()
-	{
+	public void FindEntry_CaseSensitive_ExactMatch() {
 		var dict = CreateTestDictionary();
 
 		Assert.Equal(0, dict.FindEntry("Hello"));
@@ -236,8 +224,7 @@ public class TextDictionaryAdvancedTests
 	#region GetAllEntries Tests
 
 	[Fact]
-	public void GetAllEntries_ReturnsAllInDictionary()
-	{
+	public void GetAllEntries_ReturnsAllInDictionary() {
 		var dict = CreateTestDictionary();
 
 		var entries = dict.GetAllEntries().ToList();
@@ -248,8 +235,7 @@ public class TextDictionaryAdvancedTests
 	}
 
 	[Fact]
-	public void GetAllEntries_EmptyDictionary_ReturnsEmpty()
-	{
+	public void GetAllEntries_EmptyDictionary_ReturnsEmpty() {
 		var dict = new TextDictionary();
 
 		var entries = dict.GetAllEntries().ToList();
@@ -258,8 +244,7 @@ public class TextDictionaryAdvancedTests
 	}
 
 	[Fact]
-	public void GetAllEntries_CanEnumerateMultipleTimes()
-	{
+	public void GetAllEntries_CanEnumerateMultipleTimes() {
 		var dict = CreateTestDictionary();
 
 		var first = dict.GetAllEntries().ToList();
@@ -273,8 +258,7 @@ public class TextDictionaryAdvancedTests
 	#region ExportToJson Tests
 
 	[Fact]
-	public void ExportToJson_EmptyDictionary_ReturnsValidJson()
-	{
+	public void ExportToJson_EmptyDictionary_ReturnsValidJson() {
 		var dict = new TextDictionary();
 
 		var json = dict.ExportToJson();
@@ -284,8 +268,7 @@ public class TextDictionaryAdvancedTests
 	}
 
 	[Fact]
-	public void ExportToJson_WithEntries_ReturnsFormattedJson()
-	{
+	public void ExportToJson_WithEntries_ReturnsFormattedJson() {
 		var dict = CreateTestDictionary();
 
 		var json = dict.ExportToJson();
@@ -297,8 +280,7 @@ public class TextDictionaryAdvancedTests
 	}
 
 	[Fact]
-	public void ExportToJson_WithSpecialCharacters_EscapesCorrectly()
-	{
+	public void ExportToJson_WithSpecialCharacters_EscapesCorrectly() {
 		var dict = CreateDictionaryWithSpecialChars();
 
 		var json = dict.ExportToJson();
@@ -310,8 +292,7 @@ public class TextDictionaryAdvancedTests
 	}
 
 	[Fact]
-	public void ExportToJson_OrderedByIndex()
-	{
+	public void ExportToJson_OrderedByIndex() {
 		var dict = CreateTestDictionary();
 
 		var json = dict.ExportToJson();
@@ -326,15 +307,13 @@ public class TextDictionaryAdvancedTests
 	#region Count Tests
 
 	[Fact]
-	public void Count_EmptyDictionary_ReturnsZero()
-	{
+	public void Count_EmptyDictionary_ReturnsZero() {
 		var dict = new TextDictionary();
 		Assert.Equal(0, dict.Count);
 	}
 
 	[Fact]
-	public void Count_AfterAddingEntries_ReturnsCorrectCount()
-	{
+	public void Count_AfterAddingEntries_ReturnsCorrectCount() {
 		var dict = CreateTestDictionary();
 		Assert.Equal(2, dict.Count);
 	}
@@ -344,8 +323,7 @@ public class TextDictionaryAdvancedTests
 	#region Edge Cases
 
 	[Fact]
-	public void LoadFromPointerTable_TableOffsetTooLarge_NoEntries()
-	{
+	public void LoadFromPointerTable_TableOffsetTooLarge_NoEntries() {
 		var dict = new TextDictionary();
 		var table = new TextTable();
 		var data = new byte[10];
@@ -357,8 +335,7 @@ public class TextDictionaryAdvancedTests
 	}
 
 	[Fact]
-	public void LoadFromPointerTable_DuplicateText_BothStored()
-	{
+	public void LoadFromPointerTable_DuplicateText_BothStored() {
 		var dict = new TextDictionary();
 		var table = new TextTable();
 		table.AddEntry(0x41, "A");
@@ -387,8 +364,7 @@ public class TextDictionaryAdvancedTests
 	}
 
 	[Fact]
-	public void LoadFromPointerTable_NegativeFileOffset_SkipsEntry()
-	{
+	public void LoadFromPointerTable_NegativeFileOffset_SkipsEntry() {
 		var dict = new TextDictionary();
 		var table = new TextTable();
 		table.AddEntry(0x41, "A");
@@ -410,8 +386,7 @@ public class TextDictionaryAdvancedTests
 
 	#region Helper Methods
 
-	private static TextDictionary CreateTestDictionary()
-	{
+	private static TextDictionary CreateTestDictionary() {
 		var dict = new TextDictionary();
 		var table = new TextTable();
 		table.AddEntry(0x48, "H");
@@ -454,8 +429,7 @@ public class TextDictionaryAdvancedTests
 		return dict;
 	}
 
-	private static TextDictionary CreateDictionaryWithSpecialChars()
-	{
+	private static TextDictionary CreateDictionaryWithSpecialChars() {
 		// Since we can't easily add arbitrary text, we'll need a workaround
 		// Let's use reflection or a different approach
 		var dict = new TextDictionary();

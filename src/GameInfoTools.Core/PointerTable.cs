@@ -3,13 +3,11 @@ namespace GameInfoTools.Core;
 /// <summary>
 /// Pointer table detection, parsing, and manipulation.
 /// </summary>
-public class PointerTable
-{
+public class PointerTable {
 	/// <summary>
 	/// Type of pointer format.
 	/// </summary>
-	public enum PointerFormat
-	{
+	public enum PointerFormat {
 		Absolute16,     // 16-bit absolute address (NES common)
 		Absolute24,     // 24-bit absolute address (SNES)
 		Relative8,      // 8-bit relative offset
@@ -33,25 +31,21 @@ public class PointerTable
 	/// <summary>
 	/// Read a pointer table from ROM data.
 	/// </summary>
-	public static PointerTable Read(byte[] data, int offset, int count, PointerFormat format, int bank = 0, int baseAddress = 0)
-	{
-		var table = new PointerTable
-		{
+	public static PointerTable Read(byte[] data, int offset, int count, PointerFormat format, int bank = 0, int baseAddress = 0) {
+		var table = new PointerTable {
 			BaseAddress = baseAddress,
 			Bank = bank,
 			Format = format,
 		};
 
-		int pointerSize = format switch
-		{
+		int pointerSize = format switch {
 			PointerFormat.Relative8 => 1,
 			PointerFormat.Absolute16 or PointerFormat.Relative16 => 2,
 			PointerFormat.Absolute24 or PointerFormat.BankOffset => 3,
 			_ => 2
 		};
 
-		for (int i = 0; i < count && offset + pointerSize <= data.Length; i++)
-		{
+		for (int i = 0; i < count && offset + pointerSize <= data.Length; i++) {
 			int pointerValue = ReadPointer(data, offset, format, table.IsLittleEndian);
 			int targetAddress = CalculateTarget(pointerValue, format, bank, baseAddress, offset);
 
@@ -65,26 +59,23 @@ public class PointerTable
 	/// <summary>
 	/// Auto-detect a pointer table at a location.
 	/// </summary>
-	public static PointerTable? DetectTable(byte[] data, int offset, int maxEntries, int bank = 0)
-	{
+	public static PointerTable? DetectTable(byte[] data, int offset, int maxEntries, int bank = 0) {
 		// Try to detect based on pattern analysis
-		if (offset + 4 > data.Length)
-		{
+		if (offset + 4 > data.Length) {
 			return null;
 		}
 
 		// Read first few potential pointers
 		var potentialPointers = new List<int>();
-		for (int i = 0; i < Math.Min(maxEntries, 16); i++)
-		{
-			if (offset + i * 2 + 2 > data.Length) break;
+		for (int i = 0; i < Math.Min(maxEntries, 16); i++) {
+			if (offset + i * 2 + 2 > data.Length)
+				break;
 
 			int ptr16 = data[offset + i * 2] | (data[offset + i * 2 + 1] << 8);
 			potentialPointers.Add(ptr16);
 		}
 
-		if (potentialPointers.Count < 2)
-		{
+		if (potentialPointers.Count < 2) {
 			return null;
 		}
 
@@ -93,42 +84,35 @@ public class PointerTable
 		int bankStart = bank * 0x4000;  // NES bank size
 		int bankEnd = bankStart + 0x4000;
 
-		foreach (var ptr in potentialPointers)
-		{
+		foreach (var ptr in potentialPointers) {
 			// For NES, valid ROM pointers typically in $8000-$FFFF range
-			if (ptr >= 0x8000 && ptr <= 0xffff)
-			{
+			if (ptr >= 0x8000 && ptr <= 0xffff) {
 				validCount++;
 			}
 		}
 
 		// If most pointers look valid, create table
-		if (validCount >= potentialPointers.Count * 0.75)
-		{
+		if (validCount >= potentialPointers.Count * 0.75) {
 			return Read(data, offset, potentialPointers.Count, PointerFormat.Absolute16, bank);
 		}
 
 		return null;
 	}
 
-	private static int ReadPointer(byte[] data, int offset, PointerFormat format, bool littleEndian)
-	{
-		switch (format)
-		{
+	private static int ReadPointer(byte[] data, int offset, PointerFormat format, bool littleEndian) {
+		switch (format) {
 			case PointerFormat.Relative8:
 				return data[offset];
 
 			case PointerFormat.Absolute16:
 			case PointerFormat.Relative16:
-				if (littleEndian)
-				{
+				if (littleEndian) {
 					return data[offset] | (data[offset + 1] << 8);
 				}
 				return (data[offset] << 8) | data[offset + 1];
 
 			case PointerFormat.Absolute24:
-				if (littleEndian)
-				{
+				if (littleEndian) {
 					return data[offset] | (data[offset + 1] << 8) | (data[offset + 2] << 16);
 				}
 				return (data[offset] << 16) | (data[offset + 1] << 8) | data[offset + 2];
@@ -144,10 +128,8 @@ public class PointerTable
 		}
 	}
 
-	private static int CalculateTarget(int pointerValue, PointerFormat format, int bank, int baseAddress, int tableOffset)
-	{
-		return format switch
-		{
+	private static int CalculateTarget(int pointerValue, PointerFormat format, int bank, int baseAddress, int tableOffset) {
+		return format switch {
 			PointerFormat.Relative8 => tableOffset + (sbyte)pointerValue,
 			PointerFormat.Relative16 => tableOffset + (short)pointerValue,
 			PointerFormat.Absolute16 => pointerValue,
@@ -160,25 +142,20 @@ public class PointerTable
 	/// <summary>
 	/// Find all potential pointer tables in ROM.
 	/// </summary>
-	public static List<(int Offset, int Count, float Confidence)> FindAllTables(byte[] data, int minEntries = 4)
-	{
+	public static List<(int Offset, int Count, float Confidence)> FindAllTables(byte[] data, int minEntries = 4) {
 		var results = new List<(int Offset, int Count, float Confidence)>();
 		var checked_ = new HashSet<int>();
 
-		for (int offset = 0; offset < data.Length - 4; offset += 2)
-		{
-			if (checked_.Contains(offset))
-			{
+		for (int offset = 0; offset < data.Length - 4; offset += 2) {
+			if (checked_.Contains(offset)) {
 				continue;
 			}
 
 			var result = AnalyzePotentialTable(data, offset, minEntries);
-			if (result.HasValue)
-			{
+			if (result.HasValue) {
 				results.Add(result.Value);
 				// Mark this range as checked
-				for (int i = offset; i < offset + result.Value.Count * 2; i++)
-				{
+				for (int i = offset; i < offset + result.Value.Count * 2; i++) {
 					checked_.Add(i);
 				}
 			}
@@ -187,10 +164,8 @@ public class PointerTable
 		return results.OrderByDescending(r => r.Confidence * r.Count).ToList();
 	}
 
-	private static (int Offset, int Count, float Confidence)? AnalyzePotentialTable(byte[] data, int offset, int minEntries)
-	{
-		if (offset + minEntries * 2 > data.Length)
-		{
+	private static (int Offset, int Count, float Confidence)? AnalyzePotentialTable(byte[] data, int offset, int minEntries) {
+		if (offset + minEntries * 2 > data.Length) {
 			return null;
 		}
 
@@ -198,27 +173,23 @@ public class PointerTable
 		int currentOffset = offset;
 
 		// Read potential pointers
-		while (currentOffset + 2 <= data.Length && pointers.Count < 256)
-		{
+		while (currentOffset + 2 <= data.Length && pointers.Count < 256) {
 			int ptr = data[currentOffset] | (data[currentOffset + 1] << 8);
 			pointers.Add(ptr);
 			currentOffset += 2;
 
 			// Stop if we hit something that looks like end of table
-			if (pointers.Count >= minEntries)
-			{
+			if (pointers.Count >= minEntries) {
 				// Check if recent pointers are drastically different from earlier ones
 				var recent = pointers.Skip(pointers.Count - 2).ToList();
 				var earlier = pointers.Take(pointers.Count - 2).ToList();
 
-				if (earlier.Count > 0)
-				{
+				if (earlier.Count > 0) {
 					int avgEarlier = (int)earlier.Average();
 					int avgRecent = (int)recent.Average();
 
 					// If there's a huge jump, might be end of table
-					if (Math.Abs(avgRecent - avgEarlier) > 0x4000)
-					{
+					if (Math.Abs(avgRecent - avgEarlier) > 0x4000) {
 						pointers.RemoveRange(pointers.Count - 2, 2);
 						break;
 					}
@@ -226,26 +197,22 @@ public class PointerTable
 			}
 		}
 
-		if (pointers.Count < minEntries)
-		{
+		if (pointers.Count < minEntries) {
 			return null;
 		}
 
 		// Calculate confidence based on pointer characteristics
 		float confidence = CalculateTableConfidence(pointers, data);
 
-		if (confidence < 0.5f)
-		{
+		if (confidence < 0.5f) {
 			return null;
 		}
 
 		return (offset, pointers.Count, confidence);
 	}
 
-	private static float CalculateTableConfidence(List<int> pointers, byte[] data)
-	{
-		if (pointers.Count == 0)
-		{
+	private static float CalculateTableConfidence(List<int> pointers, byte[] data) {
+		if (pointers.Count == 0) {
 			return 0;
 		}
 
@@ -259,12 +226,9 @@ public class PointerTable
 		int min = pointers.Min();
 		int max = pointers.Max();
 		int spread = max - min;
-		if (spread < 0x2000)
-		{
+		if (spread < 0x2000) {
 			score += 0.2f;
-		}
-		else if (spread < 0x4000)
-		{
+		} else if (spread < 0x4000) {
 			score += 0.1f;
 		}
 
@@ -274,8 +238,7 @@ public class PointerTable
 		{
 			// Convert to file offset (rough approximation)
 			int fileOffset = ptr - 0x8000;
-			if (fileOffset >= 0 && fileOffset < data.Length)
-			{
+			if (fileOffset >= 0 && fileOffset < data.Length) {
 				validTargets++;
 			}
 		}
@@ -283,15 +246,12 @@ public class PointerTable
 
 		// Check 4: Sequential or near-sequential pointers
 		int sequential = 0;
-		for (int i = 1; i < pointers.Count; i++)
-		{
-			if (pointers[i] > pointers[i - 1] && pointers[i] - pointers[i - 1] < 0x100)
-			{
+		for (int i = 1; i < pointers.Count; i++) {
+			if (pointers[i] > pointers[i - 1] && pointers[i] - pointers[i - 1] < 0x100) {
 				sequential++;
 			}
 		}
-		if (sequential > pointers.Count * 0.7)
-		{
+		if (sequential > pointers.Count * 0.7) {
 			score += 0.1f;
 		}
 
@@ -301,26 +261,20 @@ public class PointerTable
 	/// <summary>
 	/// Update pointers when data is relocated.
 	/// </summary>
-	public static byte[] RelocatePointers(byte[] data, int tableOffset, int count, int delta, PointerFormat format = PointerFormat.Absolute16)
-	{
+	public static byte[] RelocatePointers(byte[] data, int tableOffset, int count, int delta, PointerFormat format = PointerFormat.Absolute16) {
 		var result = (byte[])data.Clone();
 		int pointerSize = format == PointerFormat.Absolute24 ? 3 : 2;
 
-		for (int i = 0; i < count; i++)
-		{
+		for (int i = 0; i < count; i++) {
 			int offset = tableOffset + i * pointerSize;
-			if (offset + pointerSize > result.Length)
-			{
+			if (offset + pointerSize > result.Length) {
 				break;
 			}
 
 			int currentValue;
-			if (format == PointerFormat.Absolute24)
-			{
+			if (format == PointerFormat.Absolute24) {
 				currentValue = result[offset] | (result[offset + 1] << 8) | (result[offset + 2] << 16);
-			}
-			else
-			{
+			} else {
 				currentValue = result[offset] | (result[offset + 1] << 8);
 			}
 
@@ -328,8 +282,7 @@ public class PointerTable
 
 			result[offset] = (byte)(newValue & 0xff);
 			result[offset + 1] = (byte)((newValue >> 8) & 0xff);
-			if (format == PointerFormat.Absolute24)
-			{
+			if (format == PointerFormat.Absolute24) {
 				result[offset + 2] = (byte)((newValue >> 16) & 0xff);
 			}
 		}
@@ -340,20 +293,16 @@ public class PointerTable
 	/// <summary>
 	/// Write a new pointer table to data.
 	/// </summary>
-	public byte[] WriteTable(byte[] data)
-	{
+	public byte[] WriteTable(byte[] data) {
 		var result = (byte[])data.Clone();
-		int pointerSize = Format switch
-		{
+		int pointerSize = Format switch {
 			PointerFormat.Relative8 => 1,
 			PointerFormat.Absolute24 or PointerFormat.BankOffset => 3,
 			_ => 2
 		};
 
-		foreach (var entry in Entries)
-		{
-			if (entry.TableOffset + pointerSize > result.Length)
-			{
+		foreach (var entry in Entries) {
+			if (entry.TableOffset + pointerSize > result.Length) {
 				break;
 			}
 
@@ -363,23 +312,18 @@ public class PointerTable
 		return result;
 	}
 
-	private static void WritePointer(byte[] data, int offset, int value, PointerFormat format, bool littleEndian)
-	{
-		switch (format)
-		{
+	private static void WritePointer(byte[] data, int offset, int value, PointerFormat format, bool littleEndian) {
+		switch (format) {
 			case PointerFormat.Relative8:
 				data[offset] = (byte)value;
 				break;
 
 			case PointerFormat.Absolute16:
 			case PointerFormat.Relative16:
-				if (littleEndian)
-				{
+				if (littleEndian) {
 					data[offset] = (byte)(value & 0xff);
 					data[offset + 1] = (byte)((value >> 8) & 0xff);
-				}
-				else
-				{
+				} else {
 					data[offset] = (byte)((value >> 8) & 0xff);
 					data[offset + 1] = (byte)(value & 0xff);
 				}
@@ -387,14 +331,11 @@ public class PointerTable
 
 			case PointerFormat.Absolute24:
 			case PointerFormat.BankOffset:
-				if (littleEndian)
-				{
+				if (littleEndian) {
 					data[offset] = (byte)(value & 0xff);
 					data[offset + 1] = (byte)((value >> 8) & 0xff);
 					data[offset + 2] = (byte)((value >> 16) & 0xff);
-				}
-				else
-				{
+				} else {
 					data[offset] = (byte)((value >> 16) & 0xff);
 					data[offset + 1] = (byte)((value >> 8) & 0xff);
 					data[offset + 2] = (byte)(value & 0xff);

@@ -7,13 +7,11 @@ namespace GameInfoTools.Tests;
 /// <summary>
 /// Comprehensive tests for cross-reference database functionality.
 /// </summary>
-public class CrossReferenceAdvancedTests
-{
+public class CrossReferenceAdvancedTests {
 	#region Reference Management Tests
 
 	[Fact]
-	public void AddRef_Jump_StoredCorrectly()
-	{
+	public void AddRef_Jump_StoredCorrectly() {
 		var db = new CrossReferenceDb();
 
 		db.AddRef(0x8000, 0x8100, CrossReferenceDb.RefType.Jump);
@@ -25,8 +23,7 @@ public class CrossReferenceAdvancedTests
 	}
 
 	[Fact]
-	public void AddRef_Call_StoredCorrectly()
-	{
+	public void AddRef_Call_StoredCorrectly() {
 		var db = new CrossReferenceDb();
 
 		db.AddRef(0x8050, 0x9000, CrossReferenceDb.RefType.Call, "Main loop call");
@@ -38,8 +35,7 @@ public class CrossReferenceAdvancedTests
 	}
 
 	[Fact]
-	public void AddRef_MultipleToSameTarget_AllStored()
-	{
+	public void AddRef_MultipleToSameTarget_AllStored() {
 		var db = new CrossReferenceDb();
 
 		db.AddRef(0x8000, 0x9000, CrossReferenceDb.RefType.Call);
@@ -51,8 +47,7 @@ public class CrossReferenceAdvancedTests
 	}
 
 	[Fact]
-	public void AddRef_MultipleFromSameSource_AllStored()
-	{
+	public void AddRef_MultipleFromSameSource_AllStored() {
 		var db = new CrossReferenceDb();
 
 		db.AddRef(0x8000, 0x9000, CrossReferenceDb.RefType.Call);
@@ -64,8 +59,7 @@ public class CrossReferenceAdvancedTests
 	}
 
 	[Fact]
-	public void GetRefsTo_NoRefs_ReturnsEmpty()
-	{
+	public void GetRefsTo_NoRefs_ReturnsEmpty() {
 		var db = new CrossReferenceDb();
 
 		var refs = db.GetRefsTo(0x8000);
@@ -74,8 +68,7 @@ public class CrossReferenceAdvancedTests
 	}
 
 	[Fact]
-	public void GetRefsFrom_NoRefs_ReturnsEmpty()
-	{
+	public void GetRefsFrom_NoRefs_ReturnsEmpty() {
 		var db = new CrossReferenceDb();
 
 		var refs = db.GetRefsFrom(0x8000);
@@ -88,8 +81,7 @@ public class CrossReferenceAdvancedTests
 	#region Callers and Callees Tests
 
 	[Fact]
-	public void GetCallersOf_ReturnsDistinctSources()
-	{
+	public void GetCallersOf_ReturnsDistinctSources() {
 		var db = new CrossReferenceDb();
 
 		db.AddRef(0x8000, 0x9000, CrossReferenceDb.RefType.Call);
@@ -104,8 +96,7 @@ public class CrossReferenceAdvancedTests
 	}
 
 	[Fact]
-	public void GetCalleesOf_ReturnsDistinctTargets()
-	{
+	public void GetCalleesOf_ReturnsDistinctTargets() {
 		var db = new CrossReferenceDb();
 
 		db.AddRef(0x8000, 0x9000, CrossReferenceDb.RefType.Call);
@@ -124,8 +115,7 @@ public class CrossReferenceAdvancedTests
 	#region Label and Comment Tests
 
 	[Fact]
-	public void SetLabel_NewLabel_Stored()
-	{
+	public void SetLabel_NewLabel_Stored() {
 		var db = new CrossReferenceDb();
 
 		db.SetLabel(0x8000, "MainLoop");
@@ -134,8 +124,7 @@ public class CrossReferenceAdvancedTests
 	}
 
 	[Fact]
-	public void SetLabel_OverwriteLabel_Updated()
-	{
+	public void SetLabel_OverwriteLabel_Updated() {
 		var db = new CrossReferenceDb();
 
 		db.SetLabel(0x8000, "OldLabel");
@@ -145,16 +134,14 @@ public class CrossReferenceAdvancedTests
 	}
 
 	[Fact]
-	public void GetLabel_NoLabel_ReturnsNull()
-	{
+	public void GetLabel_NoLabel_ReturnsNull() {
 		var db = new CrossReferenceDb();
 
 		Assert.Null(db.GetLabel(0x8000));
 	}
 
 	[Fact]
-	public void SetComment_NewComment_Stored()
-	{
+	public void SetComment_NewComment_Stored() {
 		var db = new CrossReferenceDb();
 
 		db.SetComment(0x8000, "This is the entry point");
@@ -163,8 +150,7 @@ public class CrossReferenceAdvancedTests
 	}
 
 	[Fact]
-	public void SetComment_OverwriteComment_Updated()
-	{
+	public void SetComment_OverwriteComment_Updated() {
 		var db = new CrossReferenceDb();
 
 		db.SetComment(0x8000, "Old comment");
@@ -174,8 +160,7 @@ public class CrossReferenceAdvancedTests
 	}
 
 	[Fact]
-	public void GetComment_NoComment_ReturnsNull()
-	{
+	public void GetComment_NoComment_ReturnsNull() {
 		var db = new CrossReferenceDb();
 
 		Assert.Null(db.GetComment(0x8000));
@@ -186,8 +171,7 @@ public class CrossReferenceAdvancedTests
 	#region BuildFromRom Tests
 
 	[Fact]
-	public void BuildFromRom_JmpAbsolute_CreatesJumpRef()
-	{
+	public void BuildFromRom_JmpAbsolute_CreatesJumpRef() {
 		var db = new CrossReferenceDb();
 		// JMP $9000 = 4C 00 90
 		var data = new byte[] { 0x4c, 0x00, 0x90 };
@@ -201,8 +185,7 @@ public class CrossReferenceAdvancedTests
 	}
 
 	[Fact]
-	public void BuildFromRom_JsrAbsolute_CreatesCallRef()
-	{
+	public void BuildFromRom_JsrAbsolute_CreatesCallRef() {
 		var db = new CrossReferenceDb();
 		// JSR $9000 = 20 00 90
 		var data = new byte[] { 0x20, 0x00, 0x90 };
@@ -215,8 +198,7 @@ public class CrossReferenceAdvancedTests
 	}
 
 	[Fact]
-	public void BuildFromRom_LdaAbsolute_CreatesDataReadRef()
-	{
+	public void BuildFromRom_LdaAbsolute_CreatesDataReadRef() {
 		var db = new CrossReferenceDb();
 		// LDA $0400 = AD 00 04
 		var data = new byte[] { 0xad, 0x00, 0x04 };
@@ -229,8 +211,7 @@ public class CrossReferenceAdvancedTests
 	}
 
 	[Fact]
-	public void BuildFromRom_StaAbsolute_CreatesDataWriteRef()
-	{
+	public void BuildFromRom_StaAbsolute_CreatesDataWriteRef() {
 		var db = new CrossReferenceDb();
 		// STA $0400 = 8D 00 04
 		var data = new byte[] { 0x8d, 0x00, 0x04 };
@@ -243,8 +224,7 @@ public class CrossReferenceAdvancedTests
 	}
 
 	[Fact]
-	public void BuildFromRom_JmpIndirect_CreatesIndirectRef()
-	{
+	public void BuildFromRom_JmpIndirect_CreatesIndirectRef() {
 		var db = new CrossReferenceDb();
 		// JMP ($FFFE) = 6C FE FF
 		var data = new byte[] { 0x6c, 0xfe, 0xff };
@@ -257,8 +237,7 @@ public class CrossReferenceAdvancedTests
 	}
 
 	[Fact]
-	public void BuildFromRom_MultipleInstructions_AllParsed()
-	{
+	public void BuildFromRom_MultipleInstructions_AllParsed() {
 		var db = new CrossReferenceDb();
 		// JSR $9000, LDA $0400, STA $0500, JMP $8000
 		var data = new byte[]
@@ -279,8 +258,7 @@ public class CrossReferenceAdvancedTests
 	}
 
 	[Fact]
-	public void BuildFromRom_WithOffset_UsesCorrectAddresses()
-	{
+	public void BuildFromRom_WithOffset_UsesCorrectAddresses() {
 		var db = new CrossReferenceDb();
 		var data = new byte[0x20];
 		data[0x10] = 0x20; // JSR
@@ -299,8 +277,7 @@ public class CrossReferenceAdvancedTests
 	#region Analysis Tests
 
 	[Fact]
-	public void FindEntryPoints_NoIncomingRefs_ReturnsAddresses()
-	{
+	public void FindEntryPoints_NoIncomingRefs_ReturnsAddresses() {
 		var db = new CrossReferenceDb();
 
 		// 0x8000 calls 0x9000, no refs TO 0x8000
@@ -316,8 +293,7 @@ public class CrossReferenceAdvancedTests
 	}
 
 	[Fact]
-	public void FindSubroutines_WithJsrCalls_ReturnsTargets()
-	{
+	public void FindSubroutines_WithJsrCalls_ReturnsTargets() {
 		var db = new CrossReferenceDb();
 
 		db.AddRef(0x8000, 0x9000, CrossReferenceDb.RefType.Call);
@@ -336,8 +312,7 @@ public class CrossReferenceAdvancedTests
 	#region Export Tests
 
 	[Fact]
-	public void GenerateReport_WithRefs_IncludesAll()
-	{
+	public void GenerateReport_WithRefs_IncludesAll() {
 		var db = new CrossReferenceDb();
 
 		db.AddRef(0x8000, 0x9000, CrossReferenceDb.RefType.Call);
@@ -352,8 +327,7 @@ public class CrossReferenceAdvancedTests
 	}
 
 	[Fact]
-	public void ExportToJson_WithRefs_ValidJson()
-	{
+	public void ExportToJson_WithRefs_ValidJson() {
 		var db = new CrossReferenceDb();
 
 		db.AddRef(0x8000, 0x9000, CrossReferenceDb.RefType.Call);
@@ -369,8 +343,7 @@ public class CrossReferenceAdvancedTests
 	}
 
 	[Fact]
-	public void ExportToJson_EmptyDb_ValidEmptyJson()
-	{
+	public void ExportToJson_EmptyDb_ValidEmptyJson() {
 		var db = new CrossReferenceDb();
 
 		var json = db.ExportToJson();
@@ -385,8 +358,7 @@ public class CrossReferenceAdvancedTests
 	#region Statistics Tests
 
 	[Fact]
-	public void RefCount_TracksAllRefs()
-	{
+	public void RefCount_TracksAllRefs() {
 		var db = new CrossReferenceDb();
 
 		db.AddRef(0x8000, 0x9000, CrossReferenceDb.RefType.Call);
@@ -397,8 +369,7 @@ public class CrossReferenceAdvancedTests
 	}
 
 	[Fact]
-	public void TargetCount_CountsUniqueTargets()
-	{
+	public void TargetCount_CountsUniqueTargets() {
 		var db = new CrossReferenceDb();
 
 		db.AddRef(0x8000, 0x9000, CrossReferenceDb.RefType.Call);
@@ -409,8 +380,7 @@ public class CrossReferenceAdvancedTests
 	}
 
 	[Fact]
-	public void Clear_RemovesAllData()
-	{
+	public void Clear_RemovesAllData() {
 		var db = new CrossReferenceDb();
 
 		db.AddRef(0x8000, 0x9000, CrossReferenceDb.RefType.Call);
@@ -437,8 +407,7 @@ public class CrossReferenceAdvancedTests
 	[InlineData(CrossReferenceDb.RefType.DataWrite)]
 	[InlineData(CrossReferenceDb.RefType.Indirect)]
 	[InlineData(CrossReferenceDb.RefType.Pointer)]
-	public void AddRef_AllRefTypes_Stored(CrossReferenceDb.RefType refType)
-	{
+	public void AddRef_AllRefTypes_Stored(CrossReferenceDb.RefType refType) {
 		var db = new CrossReferenceDb();
 
 		db.AddRef(0x8000, 0x9000, refType);
@@ -453,8 +422,7 @@ public class CrossReferenceAdvancedTests
 	#region Complex Scenarios
 
 	[Fact]
-	public void BuildCallGraph_MultiLevel_TracksAll()
-	{
+	public void BuildCallGraph_MultiLevel_TracksAll() {
 		var db = new CrossReferenceDb();
 
 		// Main -> SubA -> SubB
@@ -474,8 +442,7 @@ public class CrossReferenceAdvancedTests
 	}
 
 	[Fact]
-	public void RecursiveCalls_Handled()
-	{
+	public void RecursiveCalls_Handled() {
 		var db = new CrossReferenceDb();
 
 		// Self-recursive function

@@ -6,10 +6,8 @@ namespace GameInfoTools.Tests;
 /// <summary>
 /// Comprehensive tests for RomAnalyzer functionality.
 /// </summary>
-public class RomAnalyzerAdvancedTests
-{
-	private static byte[] CreateTestRom(int size = 256)
-	{
+public class RomAnalyzerAdvancedTests {
+	private static byte[] CreateTestRom(int size = 256) {
 		// Create minimal iNES header + data
 		var data = new byte[16 + size];
 		data[0] = (byte)'N';
@@ -20,8 +18,7 @@ public class RomAnalyzerAdvancedTests
 	}
 
 	[Fact]
-	public void Constructor_AcceptsData()
-	{
+	public void Constructor_AcceptsData() {
 		var data = CreateTestRom();
 		var analyzer = new RomAnalyzer(data);
 
@@ -29,8 +26,7 @@ public class RomAnalyzerAdvancedTests
 	}
 
 	[Fact]
-	public void BlockType_HasAllExpectedValues()
-	{
+	public void BlockType_HasAllExpectedValues() {
 		Assert.True(Enum.IsDefined(typeof(RomAnalyzer.BlockType), RomAnalyzer.BlockType.Unknown));
 		Assert.True(Enum.IsDefined(typeof(RomAnalyzer.BlockType), RomAnalyzer.BlockType.Code));
 		Assert.True(Enum.IsDefined(typeof(RomAnalyzer.BlockType), RomAnalyzer.BlockType.Graphics));
@@ -43,8 +39,7 @@ public class RomAnalyzerAdvancedTests
 	}
 
 	[Fact]
-	public void DataBlock_Record_HasCorrectProperties()
-	{
+	public void DataBlock_Record_HasCorrectProperties() {
 		var block = new RomAnalyzer.DataBlock(0x1000, 256, RomAnalyzer.BlockType.Code, 0.85f, "Code block");
 
 		Assert.Equal(0x1000, block.Offset);
@@ -55,8 +50,7 @@ public class RomAnalyzerAdvancedTests
 	}
 
 	[Fact]
-	public void AnalyzeRom_ReturnsBlocks()
-	{
+	public void AnalyzeRom_ReturnsBlocks() {
 		var data = CreateTestRom(512);
 		var analyzer = new RomAnalyzer(data);
 
@@ -67,8 +61,7 @@ public class RomAnalyzerAdvancedTests
 	}
 
 	[Fact]
-	public void AnalyzeRom_EmptyRom_IdentifiesEmpty()
-	{
+	public void AnalyzeRom_EmptyRom_IdentifiesEmpty() {
 		var data = CreateTestRom(256);
 		// Data after header is all zeros (empty)
 		var analyzer = new RomAnalyzer(data);
@@ -79,8 +72,7 @@ public class RomAnalyzerAdvancedTests
 	}
 
 	[Fact]
-	public void AnalyzeRom_RespectsBlockSize()
-	{
+	public void AnalyzeRom_RespectsBlockSize() {
 		var data = CreateTestRom(1024);
 		var analyzer = new RomAnalyzer(data);
 
@@ -94,8 +86,7 @@ public class RomAnalyzerAdvancedTests
 	}
 
 	[Fact]
-	public void AnalyzeRom_BlocksSpanEntireRom()
-	{
+	public void AnalyzeRom_BlocksSpanEntireRom() {
 		var data = CreateTestRom(512);
 		var analyzer = new RomAnalyzer(data);
 
@@ -107,15 +98,13 @@ public class RomAnalyzerAdvancedTests
 	}
 
 	[Fact]
-	public void DataBlock_WithoutDescription_IsNull()
-	{
+	public void DataBlock_WithoutDescription_IsNull() {
 		var block = new RomAnalyzer.DataBlock(0, 100, RomAnalyzer.BlockType.Unknown, 0.5f);
 		Assert.Null(block.Description);
 	}
 
 	[Fact]
-	public void AnalyzeRom_IdentifiesCodePatterns()
-	{
+	public void AnalyzeRom_IdentifiesCodePatterns() {
 		var data = CreateTestRom(256);
 		// Add some code-like patterns (NES opcodes)
 		data[16] = 0xa9; // LDA immediate
@@ -134,12 +123,10 @@ public class RomAnalyzerAdvancedTests
 	}
 
 	[Fact]
-	public void AnalyzeRom_IdentifiesPointerTablePatterns()
-	{
+	public void AnalyzeRom_IdentifiesPointerTablePatterns() {
 		var data = CreateTestRom(256);
 		// Add pointer table pattern (sequential pointers in $8000 range)
-		for (int i = 0; i < 10; i++)
-		{
+		for (int i = 0; i < 10; i++) {
 			int offset = 16 + i * 2;
 			int pointer = 0x8000 + i * 0x100;
 			data[offset] = (byte)(pointer & 0xff);

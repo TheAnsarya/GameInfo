@@ -6,13 +6,11 @@ namespace GameInfoTools.Analysis;
 /// <summary>
 /// ROM analysis and mapping tool.
 /// </summary>
-public class RomAnalyzer
-{
+public class RomAnalyzer {
 	private readonly byte[] _data;
 	private readonly RomInfo _romInfo;
 
-	public RomAnalyzer(byte[] data)
-	{
+	public RomAnalyzer(byte[] data) {
 		_data = data;
 		_romInfo = Core.RomFile.GetRomInfo(data);
 	}
@@ -20,8 +18,7 @@ public class RomAnalyzer
 	/// <summary>
 	/// Data block type classification.
 	/// </summary>
-	public enum BlockType
-	{
+	public enum BlockType {
 		Unknown,
 		Code,
 		Graphics,
@@ -41,13 +38,11 @@ public class RomAnalyzer
 	/// <summary>
 	/// Analyze the entire ROM and identify data blocks.
 	/// </summary>
-	public List<DataBlock> AnalyzeRom(int blockSize = 256)
-	{
+	public List<DataBlock> AnalyzeRom(int blockSize = 256) {
 		var blocks = new List<DataBlock>();
 		int offset = _romInfo.HeaderSize;
 
-		while (offset < _data.Length)
-		{
+		while (offset < _data.Length) {
 			int remaining = _data.Length - offset;
 			int size = Math.Min(blockSize, remaining);
 
@@ -61,23 +56,19 @@ public class RomAnalyzer
 		return MergeBlocks(blocks);
 	}
 
-	private (BlockType Type, float Confidence) ClassifyBlock(int offset, int length)
-	{
-		if (length < 4)
-		{
+	private (BlockType Type, float Confidence) ClassifyBlock(int offset, int length) {
+		if (length < 4) {
 			return (BlockType.Unknown, 0);
 		}
 
 		// Check for empty/padding
-		if (IsEmpty(offset, length))
-		{
+		if (IsEmpty(offset, length)) {
 			return (BlockType.Empty, 1.0f);
 		}
 
 		// Check for compressed data
 		var compressionResult = CompressionDetector.Detect(_data, offset);
-		if (compressionResult.Type != CompressionDetector.CompressionType.None && compressionResult.Confidence > 0.7)
-		{
+		if (compressionResult.Type != CompressionDetector.CompressionType.None && compressionResult.Confidence > 0.7) {
 			return (BlockType.Compressed, (float)compressionResult.Confidence);
 		}
 
@@ -102,18 +93,14 @@ public class RomAnalyzer
 		return best.Score > 0.4f ? (best.Type, best.Score) : (BlockType.Unknown, 0);
 	}
 
-	private bool IsEmpty(int offset, int length)
-	{
+	private bool IsEmpty(int offset, int length) {
 		byte first = _data[offset];
-		if (first != 0x00 && first != 0xff)
-		{
+		if (first != 0x00 && first != 0xff) {
 			return false;
 		}
 
-		for (int i = 1; i < length && offset + i < _data.Length; i++)
-		{
-			if (_data[offset + i] != first)
-			{
+		for (int i = 1; i < length && offset + i < _data.Length; i++) {
+			if (_data[offset + i] != first) {
 				return false;
 			}
 		}
@@ -121,8 +108,7 @@ public class RomAnalyzer
 		return true;
 	}
 
-	private float ScoreAsCode(int offset, int length)
-	{
+	private float ScoreAsCode(int offset, int length) {
 		float score = 0;
 		int codeOpcodes = 0;
 		int totalOpcodes = 0;
@@ -139,47 +125,40 @@ public class RomAnalyzer
 			0x18, 0x38, 0xd8, 0x78,                         // CLC, SEC, CLD, SEI
 		};
 
-		for (int i = 0; i < length && offset + i < _data.Length; i++)
-		{
+		for (int i = 0; i < length && offset + i < _data.Length; i++) {
 			byte b = _data[offset + i];
 			totalOpcodes++;
 
-			if (common6502.Contains(b))
-			{
+			if (common6502.Contains(b)) {
 				codeOpcodes++;
 			}
 		}
 
-		if (totalOpcodes > 0)
-		{
+		if (totalOpcodes > 0) {
 			score = (float)codeOpcodes / totalOpcodes;
 		}
 
 		// Bonus for seeing JMP/JSR followed by valid address
 		int jumpCount = 0;
-		for (int i = 0; i < length - 2 && offset + i + 2 < _data.Length; i++)
-		{
+		for (int i = 0; i < length - 2 && offset + i + 2 < _data.Length; i++) {
 			byte b = _data[offset + i];
 			if (b == 0x4c || b == 0x20) // JMP or JSR
 			{
 				int addr = _data[offset + i + 1] | (_data[offset + i + 2] << 8);
-				if (addr >= 0x8000 && addr < 0x10000)
-				{
+				if (addr >= 0x8000 && addr < 0x10000) {
 					jumpCount++;
 				}
 			}
 		}
 
-		if (jumpCount > length / 16)
-		{
+		if (jumpCount > length / 16) {
 			score += 0.2f;
 		}
 
 		return Math.Min(1.0f, score);
 	}
 
-	private float ScoreAsGraphics(int offset, int length)
-	{
+	private float ScoreAsGraphics(int offset, int length) {
 		// CHR tile patterns often have:
 		// - Bitplane patterns (bytes repeat with offset of 8)
 		// - Low byte counts per tile
@@ -187,12 +166,10 @@ public class RomAnalyzer
 		int tilesAnalyzed = 0;
 		float avgEntropyPerTile = 0;
 
-		for (int tileStart = offset; tileStart + 16 <= offset + length && tileStart + 16 <= _data.Length; tileStart += 16)
-		{
+		for (int tileStart = offset; tileStart + 16 <= offset + length && tileStart + 16 <= _data.Length; tileStart += 16) {
 			// Calculate entropy of this 16-byte tile
 			var counts = new int[256];
-			for (int i = 0; i < 16; i++)
-			{
+			for (int i = 0; i < 16; i++) {
 				counts[_data[tileStart + i]]++;
 			}
 
@@ -201,52 +178,44 @@ public class RomAnalyzer
 			tilesAnalyzed++;
 		}
 
-		if (tilesAnalyzed == 0)
-		{
+		if (tilesAnalyzed == 0) {
 			return 0;
 		}
 
 		avgEntropyPerTile /= tilesAnalyzed;
 
 		// Graphics tiles typically have low entropy (2-6 unique bytes per tile)
-		if (avgEntropyPerTile >= 2 && avgEntropyPerTile <= 8)
-		{
+		if (avgEntropyPerTile >= 2 && avgEntropyPerTile <= 8) {
 			return 0.6f + 0.2f * (1 - (avgEntropyPerTile - 2) / 6);
 		}
 
 		return 0.2f;
 	}
 
-	private float ScoreAsText(int offset, int length)
-	{
+	private float ScoreAsText(int offset, int length) {
 		// Check for ASCII-like patterns or common Japanese text encodings
 		int printableCount = 0;
 		int terminatorCount = 0;
 		int controlCount = 0;
 
-		for (int i = 0; i < length && offset + i < _data.Length; i++)
-		{
+		for (int i = 0; i < length && offset + i < _data.Length; i++) {
 			byte b = _data[offset + i];
 
 			// ASCII printable range
-			if (b >= 0x20 && b <= 0x7e)
-			{
+			if (b >= 0x20 && b <= 0x7e) {
 				printableCount++;
 			}
 			// Common terminators
-			else if (b == 0x00 || b == 0xff || b == 0xfe)
-			{
+			else if (b == 0x00 || b == 0xff || b == 0xfe) {
 				terminatorCount++;
 			}
 			// Control characters
-			else if (b < 0x20 && b != 0x00)
-			{
+			else if (b < 0x20 && b != 0x00) {
 				controlCount++;
 			}
 		}
 
-		if (length == 0)
-		{
+		if (length == 0) {
 			return 0;
 		}
 
@@ -254,33 +223,28 @@ public class RomAnalyzer
 		float terminatorRatio = (float)terminatorCount / length;
 
 		// Good text has high printable ratio with occasional terminators
-		if (printableRatio > 0.7f && terminatorRatio < 0.3f)
-		{
+		if (printableRatio > 0.7f && terminatorRatio < 0.3f) {
 			return printableRatio;
 		}
 
 		// Also score DTE/custom encoding patterns
 		// Check for reasonable byte value distribution
 		var counts = new int[256];
-		for (int i = 0; i < length && offset + i < _data.Length; i++)
-		{
+		for (int i = 0; i < length && offset + i < _data.Length; i++) {
 			counts[_data[offset + i]]++;
 		}
 
 		int usedValues = counts.Count(c => c > 0);
 		// Text typically uses 30-100 unique byte values
-		if (usedValues >= 20 && usedValues <= 120)
-		{
+		if (usedValues >= 20 && usedValues <= 120) {
 			return 0.5f;
 		}
 
 		return 0.2f;
 	}
 
-	private float ScoreAsPointerTable(int offset, int length)
-	{
-		if (length < 4)
-		{
+	private float ScoreAsPointerTable(int offset, int length) {
+		if (length < 4) {
 			return 0;
 		}
 
@@ -288,44 +252,36 @@ public class RomAnalyzer
 		int totalPointers = 0;
 
 		// Check for consecutive 16-bit values that look like ROM pointers
-		for (int i = 0; i + 2 <= length && offset + i + 2 <= _data.Length; i += 2)
-		{
+		for (int i = 0; i + 2 <= length && offset + i + 2 <= _data.Length; i += 2) {
 			int ptr = _data[offset + i] | (_data[offset + i + 1] << 8);
 			totalPointers++;
 
 			// Valid NES ROM pointer range
-			if (ptr >= 0x8000 && ptr < 0x10000)
-			{
+			if (ptr >= 0x8000 && ptr < 0x10000) {
 				validPointers++;
 			}
 		}
 
-		if (totalPointers < 2)
-		{
+		if (totalPointers < 2) {
 			return 0;
 		}
 
 		float validRatio = (float)validPointers / totalPointers;
 
 		// Check if pointers are sequential/close together (common for pointer tables)
-		if (validRatio > 0.7f && totalPointers >= 4)
-		{
+		if (validRatio > 0.7f && totalPointers >= 4) {
 			var pointers = new List<int>();
-			for (int i = 0; i + 2 <= length && offset + i + 2 <= _data.Length; i += 2)
-			{
+			for (int i = 0; i + 2 <= length && offset + i + 2 <= _data.Length; i += 2) {
 				int ptr = _data[offset + i] | (_data[offset + i + 1] << 8);
-				if (ptr >= 0x8000 && ptr < 0x10000)
-				{
+				if (ptr >= 0x8000 && ptr < 0x10000) {
 					pointers.Add(ptr);
 				}
 			}
 
-			if (pointers.Count >= 2)
-			{
+			if (pointers.Count >= 2) {
 				int spread = pointers.Max() - pointers.Min();
 				// Pointer tables often point to nearby data
-				if (spread < 0x4000)
-				{
+				if (spread < 0x4000) {
 					return 0.8f;
 				}
 			}
@@ -334,8 +290,7 @@ public class RomAnalyzer
 		return validRatio > 0.5f ? 0.5f : 0.2f;
 	}
 
-	private float ScoreAsDataTable(int offset, int length)
-	{
+	private float ScoreAsDataTable(int offset, int length) {
 		// Data tables often have:
 		// - Repeating record sizes
 		// - Similar value ranges across records
@@ -344,45 +299,38 @@ public class RomAnalyzer
 		int bestRecordSize = 0;
 		float bestScore = 0;
 
-		for (int recordSize = 2; recordSize <= 16 && recordSize * 4 <= length; recordSize++)
-		{
+		for (int recordSize = 2; recordSize <= 16 && recordSize * 4 <= length; recordSize++) {
 			int matchingRecords = 0;
 			int totalRecords = length / recordSize;
 
-			if (totalRecords < 4)
-			{
+			if (totalRecords < 4) {
 				continue;
 			}
 
 			// Compare structure of consecutive records
-			for (int r = 0; r < totalRecords - 1; r++)
-			{
+			for (int r = 0; r < totalRecords - 1; r++) {
 				int rec1 = offset + r * recordSize;
 				int rec2 = offset + (r + 1) * recordSize;
 
 				// Check if value ranges are similar
 				int matches = 0;
-				for (int b = 0; b < recordSize && rec1 + b < _data.Length && rec2 + b < _data.Length; b++)
-				{
+				for (int b = 0; b < recordSize && rec1 + b < _data.Length && rec2 + b < _data.Length; b++) {
 					int v1 = _data[rec1 + b];
 					int v2 = _data[rec2 + b];
 
 					// Similar if within 64 of each other or both in same quarter
-					if (Math.Abs(v1 - v2) < 64 || (v1 >> 6) == (v2 >> 6))
-					{
+					if (Math.Abs(v1 - v2) < 64 || (v1 >> 6) == (v2 >> 6)) {
 						matches++;
 					}
 				}
 
-				if (matches > recordSize * 0.6f)
-				{
+				if (matches > recordSize * 0.6f) {
 					matchingRecords++;
 				}
 			}
 
 			float score = (float)matchingRecords / (totalRecords - 1);
-			if (score > bestScore)
-			{
+			if (score > bestScore) {
 				bestScore = score;
 				bestRecordSize = recordSize;
 			}
@@ -391,31 +339,24 @@ public class RomAnalyzer
 		return bestScore > 0.5f ? bestScore * 0.8f : 0;
 	}
 
-	private List<DataBlock> MergeBlocks(List<DataBlock> blocks)
-	{
-		if (blocks.Count == 0)
-		{
+	private List<DataBlock> MergeBlocks(List<DataBlock> blocks) {
+		if (blocks.Count == 0) {
 			return blocks;
 		}
 
 		var merged = new List<DataBlock>();
 		var current = blocks[0];
 
-		for (int i = 1; i < blocks.Count; i++)
-		{
+		for (int i = 1; i < blocks.Count; i++) {
 			var next = blocks[i];
 
 			// Merge if same type and adjacent
-			if (next.Type == current.Type && next.Offset == current.Offset + current.Length)
-			{
-				current = current with
-				{
+			if (next.Type == current.Type && next.Offset == current.Offset + current.Length) {
+				current = current with {
 					Length = current.Length + next.Length,
 					Confidence = (current.Confidence + next.Confidence) / 2
 				};
-			}
-			else
-			{
+			} else {
 				merged.Add(current);
 				current = next;
 			}
@@ -428,8 +369,7 @@ public class RomAnalyzer
 	/// <summary>
 	/// Generate a ROM map report.
 	/// </summary>
-	public string GenerateMap()
-	{
+	public string GenerateMap() {
 		var sb = new StringBuilder();
 		sb.AppendLine($"ROM Analysis: {_romInfo.System}");
 		sb.AppendLine($"Size: {_data.Length:N0} bytes ({_data.Length / 1024} KB)");
@@ -441,8 +381,7 @@ public class RomAnalyzer
 		sb.AppendLine("=== Data Blocks ===");
 		sb.AppendLine();
 
-		foreach (var block in blocks)
-		{
+		foreach (var block in blocks) {
 			string typeStr = block.Type.ToString().PadRight(12);
 			sb.AppendLine($"${block.Offset:x6}-${block.Offset + block.Length - 1:x6}  {typeStr}  {block.Length,6} bytes  ({block.Confidence:P0})");
 		}
@@ -454,8 +393,7 @@ public class RomAnalyzer
 			.Select(g => new { Type = g.Key, TotalSize = g.Sum(b => b.Length), Count = g.Count() })
 			.OrderByDescending(s => s.TotalSize);
 
-		foreach (var s in summary)
-		{
+		foreach (var s in summary) {
 			sb.AppendLine($"{s.Type,-12}: {s.TotalSize,8:N0} bytes ({s.Count} blocks)");
 		}
 
@@ -465,8 +403,7 @@ public class RomAnalyzer
 	/// <summary>
 	/// Export analysis to JSON.
 	/// </summary>
-	public string ExportToJson()
-	{
+	public string ExportToJson() {
 		var blocks = AnalyzeRom();
 		var sb = new StringBuilder();
 
@@ -476,8 +413,7 @@ public class RomAnalyzer
 		sb.AppendLine($"  \"headerSize\": {_romInfo.HeaderSize},");
 		sb.AppendLine("  \"blocks\": [");
 
-		for (int i = 0; i < blocks.Count; i++)
-		{
+		for (int i = 0; i < blocks.Count; i++) {
 			var b = blocks[i];
 			sb.AppendLine("    {");
 			sb.AppendLine($"      \"offset\": \"0x{b.Offset:x6}\",");

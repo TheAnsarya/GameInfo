@@ -2,11 +2,9 @@ using GameInfoTools.Disassembly;
 
 namespace GameInfoTools.Tests;
 
-public class DisassemblerTests
-{
+public class DisassemblerTests {
 	[Fact]
-	public void Constructor_CreatesInstanceFromData()
-	{
+	public void Constructor_CreatesInstanceFromData() {
 		byte[] data = [0xA9, 0x00]; // LDA #$00
 		var disasm = new Disassembler(data);
 
@@ -14,8 +12,7 @@ public class DisassemblerTests
 	}
 
 	[Fact]
-	public void DisassembleOne_ReturnsInstruction()
-	{
+	public void DisassembleOne_ReturnsInstruction() {
 		byte[] data = [0xA9, 0x42]; // LDA #$42
 		var disasm = new Disassembler(data);
 
@@ -26,8 +23,7 @@ public class DisassemblerTests
 	}
 
 	[Fact]
-	public void DisassembleOne_LdaImmediate()
-	{
+	public void DisassembleOne_LdaImmediate() {
 		byte[] data = [0xA9, 0x42]; // LDA #$42
 		var disasm = new Disassembler(data, new Disassembler.Options { LowercaseMnemonics = true });
 
@@ -38,8 +34,7 @@ public class DisassemblerTests
 	}
 
 	[Fact]
-	public void DisassembleOne_Nop()
-	{
+	public void DisassembleOne_Nop() {
 		byte[] data = [0xEA]; // NOP
 		var disasm = new Disassembler(data, new Disassembler.Options { LowercaseMnemonics = true });
 
@@ -50,8 +45,7 @@ public class DisassemblerTests
 	}
 
 	[Fact]
-	public void DisassembleOne_Jmp()
-	{
+	public void DisassembleOne_Jmp() {
 		byte[] data = [0x4C, 0x00, 0x80]; // JMP $8000
 		var disasm = new Disassembler(data, new Disassembler.Options { LowercaseMnemonics = true });
 
@@ -62,8 +56,7 @@ public class DisassemblerTests
 	}
 
 	[Fact]
-	public void Disassemble_ReturnsMultipleInstructions()
-	{
+	public void Disassemble_ReturnsMultipleInstructions() {
 		byte[] data = [0xA9, 0x00, 0xEA, 0x60]; // LDA #$00, NOP, RTS
 		var disasm = new Disassembler(data);
 
@@ -73,8 +66,7 @@ public class DisassemblerTests
 	}
 
 	[Fact]
-	public void DisassembledInstruction_HasCorrectAddress()
-	{
+	public void DisassembledInstruction_HasCorrectAddress() {
 		byte[] data = [0xA9, 0x00]; // LDA #$00
 		var options = new Disassembler.Options { BaseAddress = 0x8000 };
 		var disasm = new Disassembler(data, options);
@@ -85,8 +77,7 @@ public class DisassemblerTests
 	}
 
 	[Fact]
-	public void Options_HasDefaultValues()
-	{
+	public void Options_HasDefaultValues() {
 		var options = new Disassembler.Options();
 
 		Assert.Equal(Disassembler.CpuMode.Cpu6502, options.Mode);
@@ -98,8 +89,7 @@ public class DisassemblerTests
 	}
 
 	[Fact]
-	public void CpuMode_HasExpectedValues()
-	{
+	public void CpuMode_HasExpectedValues() {
 		Assert.Equal(0, (int)Disassembler.CpuMode.Cpu6502);
 		Assert.True(Enum.IsDefined(typeof(Disassembler.CpuMode), "Cpu65C02"));
 		Assert.True(Enum.IsDefined(typeof(Disassembler.CpuMode), "Cpu65816"));

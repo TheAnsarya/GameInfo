@@ -6,19 +6,16 @@ namespace GameInfoTools.Tests;
 /// <summary>
 /// Comprehensive tests for Disassembler functionality.
 /// </summary>
-public class DisassemblerAdvancedTests
-{
+public class DisassemblerAdvancedTests {
 	[Fact]
-	public void CpuMode_HasAllExpectedValues()
-	{
+	public void CpuMode_HasAllExpectedValues() {
 		Assert.True(Enum.IsDefined(typeof(Disassembler.CpuMode), Disassembler.CpuMode.Cpu6502));
 		Assert.True(Enum.IsDefined(typeof(Disassembler.CpuMode), Disassembler.CpuMode.Cpu65C02));
 		Assert.True(Enum.IsDefined(typeof(Disassembler.CpuMode), Disassembler.CpuMode.Cpu65816));
 	}
 
 	[Fact]
-	public void Options_HasDefaultValues()
-	{
+	public void Options_HasDefaultValues() {
 		var options = new Disassembler.Options();
 
 		Assert.Equal(Disassembler.CpuMode.Cpu6502, options.Mode);
@@ -32,8 +29,7 @@ public class DisassemblerAdvancedTests
 	}
 
 	[Fact]
-	public void DisassembledInstruction_Record_HasCorrectProperties()
-	{
+	public void DisassembledInstruction_Record_HasCorrectProperties() {
 		var bytes = new byte[] { 0xa9, 0x00 };
 		var instr = new Disassembler.DisassembledInstruction(
 			0x8000, bytes, "lda", "#$00", "Load accumulator");
@@ -46,8 +42,7 @@ public class DisassemblerAdvancedTests
 	}
 
 	[Fact]
-	public void Constructor_AcceptsData()
-	{
+	public void Constructor_AcceptsData() {
 		var data = new byte[] { 0xa9, 0x00 };
 		var disasm = new Disassembler(data);
 
@@ -55,8 +50,7 @@ public class DisassemblerAdvancedTests
 	}
 
 	[Fact]
-	public void Constructor_AcceptsOptions()
-	{
+	public void Constructor_AcceptsOptions() {
 		var data = new byte[] { 0xa9, 0x00 };
 		var options = new Disassembler.Options { BaseAddress = 0xC000 };
 		var disasm = new Disassembler(data, options);
@@ -65,8 +59,7 @@ public class DisassemblerAdvancedTests
 	}
 
 	[Fact]
-	public void DisassembleOne_LdaImmediate_ReturnsCorrect()
-	{
+	public void DisassembleOne_LdaImmediate_ReturnsCorrect() {
 		var data = new byte[] { 0xa9, 0x42 }; // LDA #$42
 		var disasm = new Disassembler(data);
 
@@ -77,8 +70,7 @@ public class DisassemblerAdvancedTests
 	}
 
 	[Fact]
-	public void DisassembleOne_Nop_ReturnsCorrect()
-	{
+	public void DisassembleOne_Nop_ReturnsCorrect() {
 		var data = new byte[] { 0xea }; // NOP
 		var disasm = new Disassembler(data);
 
@@ -89,8 +81,7 @@ public class DisassemblerAdvancedTests
 	}
 
 	[Fact]
-	public void DisassembleOne_JmpAbsolute_ReturnsCorrect()
-	{
+	public void DisassembleOne_JmpAbsolute_ReturnsCorrect() {
 		var data = new byte[] { 0x4c, 0x00, 0x80 }; // JMP $8000
 		var disasm = new Disassembler(data);
 
@@ -101,8 +92,7 @@ public class DisassemblerAdvancedTests
 	}
 
 	[Fact]
-	public void DisassembleOne_BeyondData_ReturnsSpecialInstruction()
-	{
+	public void DisassembleOne_BeyondData_ReturnsSpecialInstruction() {
 		var data = new byte[] { 0xa9 };
 		var disasm = new Disassembler(data);
 
@@ -112,8 +102,7 @@ public class DisassemblerAdvancedTests
 	}
 
 	[Fact]
-	public void Disassemble_MultipleInstructions_ReturnsList()
-	{
+	public void Disassemble_MultipleInstructions_ReturnsList() {
 		var data = new byte[] { 0xa9, 0x00, 0xea, 0x60 }; // LDA #$00, NOP, RTS
 		var disasm = new Disassembler(data);
 
@@ -126,8 +115,7 @@ public class DisassemblerAdvancedTests
 	}
 
 	[Fact]
-	public void Disassemble_RespectsLength()
-	{
+	public void Disassemble_RespectsLength() {
 		var data = new byte[] { 0xea, 0xea, 0xea, 0xea }; // 4 NOPs
 		var disasm = new Disassembler(data);
 
@@ -137,8 +125,7 @@ public class DisassemblerAdvancedTests
 	}
 
 	[Fact]
-	public void DisassembleOne_UsesBaseAddress()
-	{
+	public void DisassembleOne_UsesBaseAddress() {
 		var data = new byte[] { 0xea };
 		var options = new Disassembler.Options { BaseAddress = 0xC000 };
 		var disasm = new Disassembler(data, options);
@@ -149,8 +136,7 @@ public class DisassemblerAdvancedTests
 	}
 
 	[Fact]
-	public void DisassembledInstruction_WithoutComment_IsNull()
-	{
+	public void DisassembledInstruction_WithoutComment_IsNull() {
 		var instr = new Disassembler.DisassembledInstruction(
 			0x8000, [0xea], "nop", "");
 
@@ -158,8 +144,7 @@ public class DisassemblerAdvancedTests
 	}
 
 	[Fact]
-	public void Disassemble_StaZeroPage_ReturnsCorrect()
-	{
+	public void Disassemble_StaZeroPage_ReturnsCorrect() {
 		var data = new byte[] { 0x85, 0x10 }; // STA $10
 		var disasm = new Disassembler(data);
 
@@ -170,8 +155,7 @@ public class DisassemblerAdvancedTests
 	}
 
 	[Fact]
-	public void Disassemble_LdxImmediate_ReturnsCorrect()
-	{
+	public void Disassemble_LdxImmediate_ReturnsCorrect() {
 		var data = new byte[] { 0xa2, 0xff }; // LDX #$FF
 		var disasm = new Disassembler(data);
 
@@ -181,8 +165,7 @@ public class DisassemblerAdvancedTests
 	}
 
 	[Fact]
-	public void Disassemble_LdyImmediate_ReturnsCorrect()
-	{
+	public void Disassemble_LdyImmediate_ReturnsCorrect() {
 		var data = new byte[] { 0xa0, 0x10 }; // LDY #$10
 		var disasm = new Disassembler(data);
 
@@ -192,8 +175,7 @@ public class DisassemblerAdvancedTests
 	}
 
 	[Fact]
-	public void Disassemble_Jsr_ReturnsCorrect()
-	{
+	public void Disassemble_Jsr_ReturnsCorrect() {
 		var data = new byte[] { 0x20, 0x00, 0x80 }; // JSR $8000
 		var disasm = new Disassembler(data);
 
@@ -204,8 +186,7 @@ public class DisassemblerAdvancedTests
 	}
 
 	[Fact]
-	public void Disassemble_BranchInstruction_ReturnsCorrect()
-	{
+	public void Disassemble_BranchInstruction_ReturnsCorrect() {
 		var data = new byte[] { 0xd0, 0x10 }; // BNE +16
 		var disasm = new Disassembler(data);
 
@@ -216,10 +197,8 @@ public class DisassemblerAdvancedTests
 	}
 
 	[Fact]
-	public void Options_CanSetAllProperties()
-	{
-		var options = new Disassembler.Options
-		{
+	public void Options_CanSetAllProperties() {
+		var options = new Disassembler.Options {
 			Mode = Disassembler.CpuMode.Cpu65816,
 			BaseAddress = 0x008000,
 			ShowBytes = false,

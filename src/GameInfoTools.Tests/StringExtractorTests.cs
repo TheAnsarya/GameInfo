@@ -1,16 +1,13 @@
-using GameInfoTools.Text;
 using GameInfoTools.Core;
+using GameInfoTools.Text;
 
 namespace GameInfoTools.Tests;
 
-public class StringExtractorTests
-{
-	private TextTable CreateTestTable()
-	{
+public class StringExtractorTests {
+	private TextTable CreateTestTable() {
 		var table = new TextTable { Name = "Test" };
 		// Standard ASCII-like mapping for Dragon Quest style
-		for (int i = 0; i < 26; i++)
-		{
+		for (int i = 0; i < 26; i++) {
 			table.AddEntry((byte)(0x80 + i), ((char)('A' + i)).ToString());
 			table.AddEntry((byte)(0x9A + i), ((char)('a' + i)).ToString());
 		}
@@ -25,16 +22,14 @@ public class StringExtractorTests
 	}
 
 	[Fact]
-	public void StringExtractor_CanBeCreated()
-	{
+	public void StringExtractor_CanBeCreated() {
 		var table = CreateTestTable();
 		var extractor = new StringExtractor(table);
 		Assert.NotNull(extractor);
 	}
 
 	[Fact]
-	public void ExtractedString_HasCorrectProperties()
-	{
+	public void ExtractedString_HasCorrectProperties() {
 		var str = new StringExtractor.ExtractedString(0x100, "Hello", 5, 0.9f);
 		Assert.Equal(0x100, str.Offset);
 		Assert.Equal("Hello", str.Text);
@@ -43,8 +38,7 @@ public class StringExtractorTests
 	}
 
 	[Fact]
-	public void ExtractAllStrings_FindsStringsInData()
-	{
+	public void ExtractAllStrings_FindsStringsInData() {
 		var table = CreateTestTable();
 		var extractor = new StringExtractor(table);
 

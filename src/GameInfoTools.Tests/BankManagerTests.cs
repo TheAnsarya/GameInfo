@@ -3,10 +3,8 @@ using GameInfoTools.Rom;
 
 namespace GameInfoTools.Tests;
 
-public class BankManagerTests
-{
-	private static byte[] CreateNesRom(int prgBanks = 2, int chrBanks = 1)
-	{
+public class BankManagerTests {
+	private static byte[] CreateNesRom(int prgBanks = 2, int chrBanks = 1) {
 		// Create iNES header + PRG ROM + CHR ROM
 		// iNES header: 16 bytes
 		// PRG ROM: 16KB * prgBanks
@@ -26,8 +24,7 @@ public class BankManagerTests
 		rom[7] = 0x00; // Mapper high nibble
 
 		// Fill PRG ROM with pattern for testing
-		for (int i = 0; i < prgSize; i++)
-		{
+		for (int i = 0; i < prgSize; i++) {
 			rom[16 + i] = (byte)(i % 256);
 		}
 
@@ -35,8 +32,7 @@ public class BankManagerTests
 	}
 
 	[Fact]
-	public void Constructor_CreatesInstanceFromNesRom()
-	{
+	public void Constructor_CreatesInstanceFromNesRom() {
 		byte[] rom = CreateNesRom();
 		var manager = new BankManager(rom);
 
@@ -44,8 +40,7 @@ public class BankManagerTests
 	}
 
 	[Fact]
-	public void GetBanks_ReturnsCorrectCountForNes()
-	{
+	public void GetBanks_ReturnsCorrectCountForNes() {
 		byte[] rom = CreateNesRom(prgBanks: 2);
 		var manager = new BankManager(rom);
 
@@ -56,8 +51,7 @@ public class BankManagerTests
 	}
 
 	[Fact]
-	public void ExtractBank_ReturnsCorrectSize()
-	{
+	public void ExtractBank_ReturnsCorrectSize() {
 		byte[] rom = CreateNesRom(prgBanks: 2);
 		var manager = new BankManager(rom);
 
@@ -68,8 +62,7 @@ public class BankManagerTests
 	}
 
 	[Fact]
-	public void ExtractBank_ReturnsCorrectData()
-	{
+	public void ExtractBank_ReturnsCorrectData() {
 		byte[] rom = CreateNesRom(prgBanks: 2);
 		var manager = new BankManager(rom);
 
@@ -82,8 +75,7 @@ public class BankManagerTests
 	}
 
 	[Fact]
-	public void GenerateBankMap_ReturnsNonEmptyString()
-	{
+	public void GenerateBankMap_ReturnsNonEmptyString() {
 		byte[] rom = CreateNesRom(prgBanks: 2);
 		var manager = new BankManager(rom);
 
@@ -93,8 +85,7 @@ public class BankManagerTests
 	}
 
 	[Fact]
-	public void BankInfo_HasCorrectProperties()
-	{
+	public void BankInfo_HasCorrectProperties() {
 		var info = new BankManager.BankInfo(0, 0x10, 0x4000, 0x8000, 0xBFFF, true);
 
 		Assert.Equal(0, info.Number);
@@ -106,8 +97,7 @@ public class BankManagerTests
 	}
 
 	[Fact]
-	public void GetBankUsage_ReturnsValidPercentage()
-	{
+	public void GetBankUsage_ReturnsValidPercentage() {
 		byte[] rom = CreateNesRom(prgBanks: 2);
 		var manager = new BankManager(rom);
 

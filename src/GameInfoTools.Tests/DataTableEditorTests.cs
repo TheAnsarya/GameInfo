@@ -2,10 +2,8 @@ using GameInfoTools.Data;
 
 namespace GameInfoTools.Tests;
 
-public class DataTableEditorTests
-{
-	private byte[] CreateTestData()
-	{
+public class DataTableEditorTests {
+	private byte[] CreateTestData() {
 		// Create test data with known values
 		// 4 records of 8 bytes each
 		return new byte[]
@@ -21,10 +19,8 @@ public class DataTableEditorTests
 		};
 	}
 
-	private DataTableEditor.TableDef CreateTestTableDef()
-	{
-		return new DataTableEditor.TableDef
-		{
+	private DataTableEditor.TableDef CreateTestTableDef() {
+		return new DataTableEditor.TableDef {
 			Name = "TestTable",
 			BaseOffset = 0,
 			RecordSize = 8,
@@ -40,8 +36,7 @@ public class DataTableEditorTests
 	}
 
 	[Fact]
-	public void Constructor_CreatesInstanceFromData()
-	{
+	public void Constructor_CreatesInstanceFromData() {
 		byte[] data = CreateTestData();
 		var editor = new DataTableEditor(data);
 
@@ -49,8 +44,7 @@ public class DataTableEditorTests
 	}
 
 	[Fact]
-	public void ReadField_ByteType()
-	{
+	public void ReadField_ByteType() {
 		byte[] data = CreateTestData();
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("ID", DataTableEditor.FieldType.Byte, 0);
@@ -61,8 +55,7 @@ public class DataTableEditorTests
 	}
 
 	[Fact]
-	public void ReadField_WordType()
-	{
+	public void ReadField_WordType() {
 		byte[] data = CreateTestData();
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("HP", DataTableEditor.FieldType.Word, 1);
@@ -74,8 +67,7 @@ public class DataTableEditorTests
 	}
 
 	[Fact]
-	public void ReadField_BitFlagsType()
-	{
+	public void ReadField_BitFlagsType() {
 		byte[] data = CreateTestData();
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("Status", DataTableEditor.FieldType.BitFlags, 5);
@@ -86,8 +78,7 @@ public class DataTableEditorTests
 	}
 
 	[Fact]
-	public void ReadField_SecondRecord()
-	{
+	public void ReadField_SecondRecord() {
 		byte[] data = CreateTestData();
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("ID", DataTableEditor.FieldType.Byte, 0);
@@ -99,24 +90,21 @@ public class DataTableEditorTests
 	}
 
 	[Fact]
-	public void TableDef_HasCorrectTotalSize()
-	{
+	public void TableDef_HasCorrectTotalSize() {
 		var tableDef = CreateTestTableDef();
 
 		Assert.Equal(32, tableDef.TotalSize); // 8 bytes * 4 records
 	}
 
 	[Fact]
-	public void TableDef_HasCorrectRecordCount()
-	{
+	public void TableDef_HasCorrectRecordCount() {
 		var tableDef = CreateTestTableDef();
 
 		Assert.Equal(4, tableDef.RecordCount);
 	}
 
 	[Fact]
-	public void FieldDef_HasCorrectProperties()
-	{
+	public void FieldDef_HasCorrectProperties() {
 		var field = new DataTableEditor.FieldDef("TestField", DataTableEditor.FieldType.Word, 5, 2);
 
 		Assert.Equal("TestField", field.Name);
@@ -126,8 +114,7 @@ public class DataTableEditorTests
 	}
 
 	[Fact]
-	public void FieldType_HasExpectedValues()
-	{
+	public void FieldType_HasExpectedValues() {
 		Assert.True(Enum.IsDefined(typeof(DataTableEditor.FieldType), "Byte"));
 		Assert.True(Enum.IsDefined(typeof(DataTableEditor.FieldType), "Word"));
 		Assert.True(Enum.IsDefined(typeof(DataTableEditor.FieldType), "Long"));

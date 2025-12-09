@@ -6,19 +6,16 @@ namespace GameInfoTools.Tests;
 /// <summary>
 /// Tests for Type definitions in Core library.
 /// </summary>
-public class TypesTests
-{
+public class TypesTests {
 	// SystemType enum tests
 
 	[Fact]
-	public void SystemType_HasUnknownValue()
-	{
+	public void SystemType_HasUnknownValue() {
 		Assert.Equal(0, (int)SystemType.Unknown);
 	}
 
 	[Fact]
-	public void SystemType_HasAllExpectedValues()
-	{
+	public void SystemType_HasAllExpectedValues() {
 		Assert.True(Enum.IsDefined(typeof(SystemType), SystemType.Nes));
 		Assert.True(Enum.IsDefined(typeof(SystemType), SystemType.Snes));
 		Assert.True(Enum.IsDefined(typeof(SystemType), SystemType.GameBoy));
@@ -34,8 +31,7 @@ public class TypesTests
 	// AddressSpace enum tests
 
 	[Fact]
-	public void AddressSpace_HasAllExpectedValues()
-	{
+	public void AddressSpace_HasAllExpectedValues() {
 		Assert.True(Enum.IsDefined(typeof(AddressSpace), AddressSpace.File));
 		Assert.True(Enum.IsDefined(typeof(AddressSpace), AddressSpace.Cpu));
 		Assert.True(Enum.IsDefined(typeof(AddressSpace), AddressSpace.Ppu));
@@ -45,29 +41,25 @@ public class TypesTests
 	// GameAddress struct tests
 
 	[Fact]
-	public void GameAddress_Constructor_SetsValue()
-	{
+	public void GameAddress_Constructor_SetsValue() {
 		var addr = new GameAddress(0x1234);
 		Assert.Equal(0x1234, addr.Value);
 	}
 
 	[Fact]
-	public void GameAddress_Constructor_DefaultsToFileSpace()
-	{
+	public void GameAddress_Constructor_DefaultsToFileSpace() {
 		var addr = new GameAddress(0x1000);
 		Assert.Equal(AddressSpace.File, addr.Space);
 	}
 
 	[Fact]
-	public void GameAddress_Constructor_DefaultsBankToNegativeOne()
-	{
+	public void GameAddress_Constructor_DefaultsBankToNegativeOne() {
 		var addr = new GameAddress(0x1000);
 		Assert.Equal(-1, addr.Bank);
 	}
 
 	[Fact]
-	public void GameAddress_Constructor_AcceptsAllParameters()
-	{
+	public void GameAddress_Constructor_AcceptsAllParameters() {
 		var addr = new GameAddress(0x8000, AddressSpace.Cpu, 5);
 
 		Assert.Equal(0x8000, addr.Value);
@@ -76,30 +68,26 @@ public class TypesTests
 	}
 
 	[Fact]
-	public void GameAddress_ToHexString_Formats6Digits()
-	{
+	public void GameAddress_ToHexString_Formats6Digits() {
 		var addr = new GameAddress(0x1234);
 		Assert.Equal("$001234", addr.ToHexString());
 	}
 
 	[Fact]
-	public void GameAddress_ToShortHex_Formats4Digits()
-	{
+	public void GameAddress_ToShortHex_Formats4Digits() {
 		var addr = new GameAddress(0x1234);
 		Assert.Equal("$1234", addr.ToShortHex());
 	}
 
 	[Fact]
-	public void GameAddress_ToString_FileSpace()
-	{
+	public void GameAddress_ToString_FileSpace() {
 		var addr = new GameAddress(0x1000, AddressSpace.File);
 		Assert.Contains("File:", addr.ToString());
 		Assert.Contains("$001000", addr.ToString());
 	}
 
 	[Fact]
-	public void GameAddress_ToString_CpuSpace_WithBank()
-	{
+	public void GameAddress_ToString_CpuSpace_WithBank() {
 		var addr = new GameAddress(0x8000, AddressSpace.Cpu, 5);
 		var str = addr.ToString();
 
@@ -109,8 +97,7 @@ public class TypesTests
 	}
 
 	[Fact]
-	public void GameAddress_ToString_CpuSpace_WithoutBank()
-	{
+	public void GameAddress_ToString_CpuSpace_WithoutBank() {
 		var addr = new GameAddress(0x8000, AddressSpace.Cpu, -1);
 		var str = addr.ToString();
 
@@ -120,22 +107,19 @@ public class TypesTests
 	}
 
 	[Fact]
-	public void GameAddress_ToString_PpuSpace()
-	{
+	public void GameAddress_ToString_PpuSpace() {
 		var addr = new GameAddress(0x2000, AddressSpace.Ppu);
 		Assert.Contains("PPU:", addr.ToString());
 	}
 
 	[Fact]
-	public void GameAddress_ToString_SramSpace()
-	{
+	public void GameAddress_ToString_SramSpace() {
 		var addr = new GameAddress(0x6000, AddressSpace.Sram);
 		Assert.Contains("SRAM:", addr.ToString());
 	}
 
 	[Fact]
-	public void GameAddress_Equals_SameValues()
-	{
+	public void GameAddress_Equals_SameValues() {
 		var addr1 = new GameAddress(0x1000, AddressSpace.Cpu, 5);
 		var addr2 = new GameAddress(0x1000, AddressSpace.Cpu, 5);
 
@@ -144,8 +128,7 @@ public class TypesTests
 	}
 
 	[Fact]
-	public void GameAddress_NotEquals_DifferentValue()
-	{
+	public void GameAddress_NotEquals_DifferentValue() {
 		var addr1 = new GameAddress(0x1000);
 		var addr2 = new GameAddress(0x2000);
 
@@ -154,8 +137,7 @@ public class TypesTests
 	}
 
 	[Fact]
-	public void GameAddress_NotEquals_DifferentSpace()
-	{
+	public void GameAddress_NotEquals_DifferentSpace() {
 		var addr1 = new GameAddress(0x1000, AddressSpace.File);
 		var addr2 = new GameAddress(0x1000, AddressSpace.Cpu);
 
@@ -163,8 +145,7 @@ public class TypesTests
 	}
 
 	[Fact]
-	public void GameAddress_NotEquals_DifferentBank()
-	{
+	public void GameAddress_NotEquals_DifferentBank() {
 		var addr1 = new GameAddress(0x8000, AddressSpace.Cpu, 0);
 		var addr2 = new GameAddress(0x8000, AddressSpace.Cpu, 1);
 
@@ -172,8 +153,7 @@ public class TypesTests
 	}
 
 	[Fact]
-	public void GameAddress_GetHashCode_SameForEqualAddresses()
-	{
+	public void GameAddress_GetHashCode_SameForEqualAddresses() {
 		var addr1 = new GameAddress(0x1000, AddressSpace.Cpu, 5);
 		var addr2 = new GameAddress(0x1000, AddressSpace.Cpu, 5);
 
@@ -181,8 +161,7 @@ public class TypesTests
 	}
 
 	[Fact]
-	public void GameAddress_Equals_Object_ReturnsFalseForNonGameAddress()
-	{
+	public void GameAddress_Equals_Object_ReturnsFalseForNonGameAddress() {
 		var addr = new GameAddress(0x1000);
 		Assert.False(addr.Equals("not an address"));
 		Assert.False(addr.Equals(null));
@@ -191,8 +170,7 @@ public class TypesTests
 	// LabelType enum tests
 
 	[Fact]
-	public void LabelType_HasAllExpectedValues()
-	{
+	public void LabelType_HasAllExpectedValues() {
 		Assert.True(Enum.IsDefined(typeof(LabelType), LabelType.Unknown));
 		Assert.True(Enum.IsDefined(typeof(LabelType), LabelType.Code));
 		Assert.True(Enum.IsDefined(typeof(LabelType), LabelType.Data));
@@ -205,11 +183,9 @@ public class TypesTests
 	// Label record tests
 
 	[Fact]
-	public void Label_RequiredProperties_MustBeSet()
-	{
+	public void Label_RequiredProperties_MustBeSet() {
 		var addr = new GameAddress(0x8000, AddressSpace.Cpu);
-		var label = new Label
-		{
+		var label = new Label {
 			Name = "TestLabel",
 			Address = addr
 		};
@@ -219,10 +195,8 @@ public class TypesTests
 	}
 
 	[Fact]
-	public void Label_OptionalProperties_HaveDefaults()
-	{
-		var label = new Label
-		{
+	public void Label_OptionalProperties_HaveDefaults() {
+		var label = new Label {
 			Name = "Test",
 			Address = new GameAddress(0)
 		};
@@ -232,11 +206,9 @@ public class TypesTests
 	}
 
 	[Fact]
-	public void Label_AllProperties_CanBeSet()
-	{
+	public void Label_AllProperties_CanBeSet() {
 		var addr = new GameAddress(0x8000, AddressSpace.Cpu, 0);
-		var label = new Label
-		{
+		var label = new Label {
 			Name = "MainLoop",
 			Address = addr,
 			Comment = "Main game loop entry",
@@ -252,8 +224,7 @@ public class TypesTests
 	// RomHeader record tests
 
 	[Fact]
-	public void RomHeader_DefaultValues()
-	{
+	public void RomHeader_DefaultValues() {
 		var header = new RomHeader();
 
 		Assert.Equal(SystemType.Unknown, header.System);
@@ -268,11 +239,9 @@ public class TypesTests
 	}
 
 	[Fact]
-	public void RomHeader_CanSetAllProperties()
-	{
+	public void RomHeader_CanSetAllProperties() {
 		var rawData = new byte[] { 0x4e, 0x45, 0x53, 0x1a };
-		var header = new RomHeader
-		{
+		var header = new RomHeader {
 			System = SystemType.Nes,
 			Title = "Test Game",
 			HeaderSize = 16,
@@ -298,8 +267,7 @@ public class TypesTests
 	// RomInfo record tests
 
 	[Fact]
-	public void RomInfo_DefaultValues()
-	{
+	public void RomInfo_DefaultValues() {
 		var info = new RomInfo();
 
 		Assert.Equal(SystemType.Unknown, info.System);
@@ -310,10 +278,8 @@ public class TypesTests
 	}
 
 	[Fact]
-	public void RomInfo_CanSetAllProperties()
-	{
-		var info = new RomInfo
-		{
+	public void RomInfo_CanSetAllProperties() {
+		var info = new RomInfo {
 			System = SystemType.Snes,
 			HeaderSize = 512,
 			Size = 0x100000,

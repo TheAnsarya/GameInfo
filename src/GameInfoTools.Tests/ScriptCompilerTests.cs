@@ -7,18 +7,14 @@ namespace GameInfoTools.Tests;
 /// <summary>
 /// Tests for ScriptCompiler class.
 /// </summary>
-public class ScriptCompilerTests
-{
-	private TextTable CreateSimpleTable()
-	{
+public class ScriptCompilerTests {
+	private TextTable CreateSimpleTable() {
 		var table = new TextTable();
 		// Simple ASCII-ish mapping
-		for (int i = 0; i < 26; i++)
-		{
+		for (int i = 0; i < 26; i++) {
 			table.AddEntry((byte)(0x80 + i), ((char)('A' + i)).ToString());
 		}
-		for (int i = 0; i < 26; i++)
-		{
+		for (int i = 0; i < 26; i++) {
 			table.AddEntry((byte)(0xa0 + i), ((char)('a' + i)).ToString());
 		}
 		table.AddEntry(0x00, "{END}");
@@ -28,8 +24,7 @@ public class ScriptCompilerTests
 	}
 
 	[Fact]
-	public void Compile_EmptyScript_ReturnsEmptyData()
-	{
+	public void Compile_EmptyScript_ReturnsEmptyData() {
 		// Arrange
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
@@ -43,8 +38,7 @@ public class ScriptCompilerTests
 	}
 
 	[Fact]
-	public void Compile_CommentOnly_IgnoresComment()
-	{
+	public void Compile_CommentOnly_IgnoresComment() {
 		// Arrange
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
@@ -58,8 +52,7 @@ public class ScriptCompilerTests
 	}
 
 	[Fact]
-	public void Compile_DoubleSlashComment_IgnoresComment()
-	{
+	public void Compile_DoubleSlashComment_IgnoresComment() {
 		// Arrange
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
@@ -73,8 +66,7 @@ public class ScriptCompilerTests
 	}
 
 	[Fact]
-	public void Compile_ByteDirective_HexValue()
-	{
+	public void Compile_ByteDirective_HexValue() {
 		// Arrange
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
@@ -89,8 +81,7 @@ public class ScriptCompilerTests
 	}
 
 	[Fact]
-	public void Compile_ByteDirective_HexPrefix0x()
-	{
+	public void Compile_ByteDirective_HexPrefix0x() {
 		// Arrange
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
@@ -104,8 +95,7 @@ public class ScriptCompilerTests
 	}
 
 	[Fact]
-	public void Compile_ByteDirective_DecimalValue()
-	{
+	public void Compile_ByteDirective_DecimalValue() {
 		// Arrange
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
@@ -119,8 +109,7 @@ public class ScriptCompilerTests
 	}
 
 	[Fact]
-	public void Compile_ByteDirective_MultipleValues()
-	{
+	public void Compile_ByteDirective_MultipleValues() {
 		// Arrange
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
@@ -136,8 +125,7 @@ public class ScriptCompilerTests
 	}
 
 	[Fact]
-	public void Compile_WordDirective_LittleEndian()
-	{
+	public void Compile_WordDirective_LittleEndian() {
 		// Arrange
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
@@ -152,8 +140,7 @@ public class ScriptCompilerTests
 	}
 
 	[Fact]
-	public void Compile_DbDirective_SameAsByte()
-	{
+	public void Compile_DbDirective_SameAsByte() {
 		// Arrange
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
@@ -167,8 +154,7 @@ public class ScriptCompilerTests
 	}
 
 	[Fact]
-	public void Compile_DwDirective_SameAsWord()
-	{
+	public void Compile_DwDirective_SameAsWord() {
 		// Arrange
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
@@ -183,8 +169,7 @@ public class ScriptCompilerTests
 	}
 
 	[Fact]
-	public void Compile_EndDirective_AddsTerminator()
-	{
+	public void Compile_EndDirective_AddsTerminator() {
 		// Arrange
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
@@ -198,8 +183,7 @@ public class ScriptCompilerTests
 	}
 
 	[Fact]
-	public void Compile_Labels_AreTracked()
-	{
+	public void Compile_Labels_AreTracked() {
 		// Arrange
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
@@ -221,8 +205,7 @@ End:
 	}
 
 	[Fact]
-	public void Compile_InvalidDirective_ReportsError()
-	{
+	public void Compile_InvalidDirective_ReportsError() {
 		// Arrange
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
@@ -236,8 +219,7 @@ End:
 	}
 
 	[Fact]
-	public void Compile_InvalidByteValue_ReportsError()
-	{
+	public void Compile_InvalidByteValue_ReportsError() {
 		// Arrange
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
@@ -251,8 +233,7 @@ End:
 	}
 
 	[Fact]
-	public void Compile_MultipleLines_CompileAll()
-	{
+	public void Compile_MultipleLines_CompileAll() {
 		// Arrange
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
@@ -269,8 +250,7 @@ End:
 	}
 
 	[Fact]
-	public void Compile_WordDirective_DecimalValue()
-	{
+	public void Compile_WordDirective_DecimalValue() {
 		// Arrange
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);
@@ -285,8 +265,7 @@ End:
 	}
 
 	[Fact]
-	public void Compile_BlankLines_AreSkipped()
-	{
+	public void Compile_BlankLines_AreSkipped() {
 		// Arrange
 		var table = CreateSimpleTable();
 		var compiler = new ScriptCompiler(table);

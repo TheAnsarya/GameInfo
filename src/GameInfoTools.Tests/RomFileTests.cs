@@ -2,11 +2,9 @@ using GameInfoTools.Core;
 
 namespace GameInfoTools.Tests;
 
-public class RomFileTests
-{
+public class RomFileTests {
 	[Fact]
-	public void RomFile_NewInstance_IsEmpty()
-	{
+	public void RomFile_NewInstance_IsEmpty() {
 		var rom = new RomFile();
 
 		Assert.False(rom.IsLoaded);
@@ -15,8 +13,7 @@ public class RomFileTests
 	}
 
 	[Fact]
-	public void GetRomInfo_DetectsNesRom()
-	{
+	public void GetRomInfo_DetectsNesRom() {
 		byte[] nesRom = new byte[16 + 0x4000]; // Header + 16KB PRG
 		nesRom[0] = (byte)'N';
 		nesRom[1] = (byte)'E';
@@ -31,16 +28,14 @@ public class RomFileTests
 	}
 
 	[Fact]
-	public void GetRomInfo_DetectsSnesRom()
-	{
+	public void GetRomInfo_DetectsSnesRom() {
 		// Create SNES ROM with LoROM header at $7FC0
 		byte[] snesRom = new byte[0x8000];
 		int headerOffset = 0x7FC0;
 
 		// Write internal title (21 bytes)
 		string title = "TEST GAME            "; // 21 chars
-		for (int i = 0; i < 21 && i < title.Length; i++)
-		{
+		for (int i = 0; i < 21 && i < title.Length; i++) {
 			snesRom[headerOffset + i] = (byte)title[i];
 		}
 
@@ -60,10 +55,9 @@ public class RomFileTests
 	}
 
 	[Fact]
-	public void GetRomInfo_DetectsGameBoyRom()
-	{
+	public void GetRomInfo_DetectsGameBoyRom() {
 		byte[] gbRom = new byte[0x8000]; // 32KB ROM
-		// Nintendo logo at $0104-$0133
+										 // Nintendo logo at $0104-$0133
 		byte[] logo =
 		[
 			0xCE, 0xED, 0x66, 0x66, 0xCC, 0x0D, 0x00, 0x0B,
@@ -77,8 +71,7 @@ public class RomFileTests
 
 		// Title at $0134-$0143
 		string title = "TEST";
-		for (int i = 0; i < title.Length; i++)
-		{
+		for (int i = 0; i < title.Length; i++) {
 			gbRom[0x0134 + i] = (byte)title[i];
 		}
 
@@ -89,11 +82,9 @@ public class RomFileTests
 	}
 
 	[Fact]
-	public void GetRomInfo_ReturnsUnknownForUnrecognized()
-	{
+	public void GetRomInfo_ReturnsUnknownForUnrecognized() {
 		byte[] unknownRom = new byte[0x1000];
-		for (int i = 0; i < unknownRom.Length; i++)
-		{
+		for (int i = 0; i < unknownRom.Length; i++) {
 			unknownRom[i] = (byte)(i & 0xFF);
 		}
 
@@ -103,8 +94,7 @@ public class RomFileTests
 	}
 
 	[Fact]
-	public void ReadByte_ReturnsCorrectValue()
-	{
+	public void ReadByte_ReturnsCorrectValue() {
 		var rom = new RomFile();
 		// Use reflection to set internal data for testing
 		var dataField = typeof(RomFile).GetField("_data", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
@@ -116,8 +106,7 @@ public class RomFileTests
 	}
 
 	[Fact]
-	public void ReadUInt16_ReturnsLittleEndianValue()
-	{
+	public void ReadUInt16_ReturnsLittleEndianValue() {
 		var rom = new RomFile();
 		var dataField = typeof(RomFile).GetField("_data", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 		dataField?.SetValue(rom, new byte[] { 0xCD, 0xAB }); // Little-endian $ABCD
@@ -126,8 +115,7 @@ public class RomFileTests
 	}
 
 	[Fact]
-	public void ReadUInt24_ReturnsCorrectValue()
-	{
+	public void ReadUInt24_ReturnsCorrectValue() {
 		var rom = new RomFile();
 		var dataField = typeof(RomFile).GetField("_data", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 		dataField?.SetValue(rom, new byte[] { 0xEF, 0xCD, 0xAB }); // Little-endian $ABCDEF
@@ -136,8 +124,7 @@ public class RomFileTests
 	}
 
 	[Fact]
-	public void Write_ModifiesData()
-	{
+	public void Write_ModifiesData() {
 		var rom = new RomFile();
 		var dataField = typeof(RomFile).GetField("_data", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 		dataField?.SetValue(rom, new byte[] { 0x00, 0x00, 0x00, 0x00 });
@@ -151,8 +138,7 @@ public class RomFileTests
 	}
 
 	[Fact]
-	public void WriteByte_ModifiesSingleByte()
-	{
+	public void WriteByte_ModifiesSingleByte() {
 		var rom = new RomFile();
 		var dataField = typeof(RomFile).GetField("_data", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 		dataField?.SetValue(rom, new byte[] { 0x00, 0x00, 0x00, 0x00 });
@@ -163,8 +149,7 @@ public class RomFileTests
 	}
 
 	[Fact]
-	public void AsSpan_ReturnsFullData()
-	{
+	public void AsSpan_ReturnsFullData() {
 		var rom = new RomFile();
 		var dataField = typeof(RomFile).GetField("_data", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 		byte[] testData = [0x01, 0x02, 0x03, 0x04];
@@ -178,8 +163,7 @@ public class RomFileTests
 	}
 
 	[Fact]
-	public void Dispose_CanBeCalledMultipleTimes()
-	{
+	public void Dispose_CanBeCalledMultipleTimes() {
 		var rom = new RomFile();
 		rom.Dispose();
 		rom.Dispose(); // Should not throw

@@ -6,12 +6,10 @@ namespace GameInfoTools.Tests;
 /// <summary>
 /// Advanced tests for BankManager ROM bank handling.
 /// </summary>
-public class BankManagerAdvancedTests
-{
+public class BankManagerAdvancedTests {
 	#region Helper Methods
 
-	private static byte[] CreateNesRom(int prgBanks, int chrBanks)
-	{
+	private static byte[] CreateNesRom(int prgBanks, int chrBanks) {
 		// iNES header + PRG + CHR
 		int prgSize = prgBanks * 0x4000;
 		int chrSize = chrBanks * 0x2000;
@@ -28,34 +26,29 @@ public class BankManagerAdvancedTests
 		return rom;
 	}
 
-	private static byte[] CreateSnesRom(int sizeKb, bool isHiRom = false)
-	{
+	private static byte[] CreateSnesRom(int sizeKb, bool isHiRom = false) {
 		var rom = new byte[sizeKb * 1024];
 
 		// SNES header at appropriate location
 		int headerOffset = isHiRom ? 0xffc0 : 0x7fc0;
-		if (headerOffset < rom.Length - 32)
-		{
+		if (headerOffset < rom.Length - 32) {
 			rom[headerOffset + 0x15] = (byte)(isHiRom ? 0x21 : 0x20); // Map mode
 		}
 
 		return rom;
 	}
 
-	private static byte[] CreateGameBoyRom(int romBanks)
-	{
+	private static byte[] CreateGameBoyRom(int romBanks) {
 		// GB ROM with header at $100-$14F
 		var rom = new byte[romBanks * 0x4000];
 
-		if (rom.Length > 0x14f)
-		{
+		if (rom.Length > 0x14f) {
 			// Nintendo logo (simplified)
 			rom[0x104] = 0xce;
 			rom[0x105] = 0xed;
 
 			// ROM size code
-			int sizeCode = romBanks switch
-			{
+			int sizeCode = romBanks switch {
 				2 => 0,
 				4 => 1,
 				8 => 2,
@@ -74,8 +67,7 @@ public class BankManagerAdvancedTests
 	#region NES Bank Tests
 
 	[Fact]
-	public void GetBanks_SinglePrgBank_ReturnsOneBank()
-	{
+	public void GetBanks_SinglePrgBank_ReturnsOneBank() {
 		var rom = CreateNesRom(1, 1);
 		var manager = new BankManager(rom);
 
@@ -86,8 +78,7 @@ public class BankManagerAdvancedTests
 	}
 
 	[Fact]
-	public void GetBanks_TwoPrgBanks_ReturnsTwoBanks()
-	{
+	public void GetBanks_TwoPrgBanks_ReturnsTwoBanks() {
 		var rom = CreateNesRom(2, 1);
 		var manager = new BankManager(rom);
 
@@ -98,8 +89,7 @@ public class BankManagerAdvancedTests
 	}
 
 	[Fact]
-	public void GetBanks_Nes_LastBankAtC000()
-	{
+	public void GetBanks_Nes_LastBankAtC000() {
 		var rom = CreateNesRom(2, 1);
 		var manager = new BankManager(rom);
 
@@ -110,53 +100,46 @@ public class BankManagerAdvancedTests
 	}
 
 	[Fact]
-	public void GetBanks_Nes_BankSizeIs16K()
-	{
+	public void GetBanks_Nes_BankSizeIs16K() {
 		var rom = CreateNesRom(2, 1);
 		var manager = new BankManager(rom);
 
 		var banks = manager.GetBanks();
 
-		foreach (var bank in banks.Where(b => b.IsPrgRom))
-		{
+		foreach (var bank in banks.Where(b => b.IsPrgRom)) {
 			Assert.Equal(0x4000, bank.Size);
 		}
 	}
 
 	[Fact]
-	public void GetBanks_Nes_BankNumbersSequential()
-	{
+	public void GetBanks_Nes_BankNumbersSequential() {
 		var rom = CreateNesRom(4, 1);
 		var manager = new BankManager(rom);
 
 		var banks = manager.GetBanks();
 
 		var prgBanks = banks.Where(b => b.IsPrgRom).ToList();
-		for (int i = 0; i < prgBanks.Count; i++)
-		{
+		for (int i = 0; i < prgBanks.Count; i++) {
 			Assert.Equal(i, prgBanks[i].Number);
 		}
 	}
 
 	[Fact]
-	public void GetBanks_Nes_FileOffsetsCorrect()
-	{
+	public void GetBanks_Nes_FileOffsetsCorrect() {
 		var rom = CreateNesRom(4, 1);
 		var manager = new BankManager(rom);
 
 		var banks = manager.GetBanks();
 
 		var prgBanks = banks.Where(b => b.IsPrgRom).ToList();
-		for (int i = 0; i < prgBanks.Count; i++)
-		{
+		for (int i = 0; i < prgBanks.Count; i++) {
 			int expectedOffset = 16 + i * 0x4000; // Header + bank index * bank size
 			Assert.Equal(expectedOffset, prgBanks[i].FileOffset);
 		}
 	}
 
 	[Fact]
-	public void GetBanks_Nes_IncludesChrBanks()
-	{
+	public void GetBanks_Nes_IncludesChrBanks() {
 		var rom = CreateNesRom(2, 2);
 		var manager = new BankManager(rom);
 
@@ -171,8 +154,7 @@ public class BankManagerAdvancedTests
 	#region BankInfo Record Tests
 
 	[Fact]
-	public void BankInfo_AllPropertiesAccessible()
-	{
+	public void BankInfo_AllPropertiesAccessible() {
 		var info = new BankManager.BankInfo(5, 0x8010, 0x4000, 0x8000, 0xbfff, true);
 
 		Assert.Equal(5, info.Number);
@@ -184,8 +166,7 @@ public class BankManagerAdvancedTests
 	}
 
 	[Fact]
-	public void BankInfo_ChrBankFlagWorks()
-	{
+	public void BankInfo_ChrBankFlagWorks() {
 		var prgBank = new BankManager.BankInfo(0, 0, 0x4000, 0x8000, 0xbfff, true);
 		var chrBank = new BankManager.BankInfo(0, 0, 0x2000, 0, 0x1fff, false);
 
@@ -194,8 +175,7 @@ public class BankManagerAdvancedTests
 	}
 
 	[Fact]
-	public void BankInfo_EqualityWorks()
-	{
+	public void BankInfo_EqualityWorks() {
 		var info1 = new BankManager.BankInfo(0, 16, 0x4000, 0x8000, 0xbfff, true);
 		var info2 = new BankManager.BankInfo(0, 16, 0x4000, 0x8000, 0xbfff, true);
 
@@ -203,8 +183,7 @@ public class BankManagerAdvancedTests
 	}
 
 	[Fact]
-	public void BankInfo_InequalityWorks()
-	{
+	public void BankInfo_InequalityWorks() {
 		var info1 = new BankManager.BankInfo(0, 16, 0x4000, 0x8000, 0xbfff, true);
 		var info2 = new BankManager.BankInfo(1, 16, 0x4000, 0x8000, 0xbfff, true);
 
@@ -216,8 +195,7 @@ public class BankManagerAdvancedTests
 	#region Generic/Unknown ROM Tests
 
 	[Fact]
-	public void GetBanks_UnknownSystem_Returns16KBanks()
-	{
+	public void GetBanks_UnknownSystem_Returns16KBanks() {
 		// Create a ROM that doesn't match any known header
 		var rom = new byte[0x10000]; // 64KB
 
@@ -226,8 +204,7 @@ public class BankManagerAdvancedTests
 
 		// Should create 4 banks of 16KB each
 		Assert.Equal(4, banks.Count);
-		foreach (var bank in banks)
-		{
+		foreach (var bank in banks) {
 			Assert.Equal(0x4000, bank.Size);
 		}
 	}
@@ -237,17 +214,14 @@ public class BankManagerAdvancedTests
 	#region ExtractBank and ReplaceBank Tests
 
 	[Fact]
-	public void ExtractBank_ReturnsCorrectData()
-	{
+	public void ExtractBank_ReturnsCorrectData() {
 		var rom = CreateNesRom(2, 0);
 		// Fill bank 0 with pattern
-		for (int i = 16; i < 16 + 0x4000; i++)
-		{
+		for (int i = 16; i < 16 + 0x4000; i++) {
 			rom[i] = 0xaa;
 		}
 		// Fill bank 1 with different pattern
-		for (int i = 16 + 0x4000; i < 16 + 0x8000; i++)
-		{
+		for (int i = 16 + 0x4000; i < 16 + 0x8000; i++) {
 			rom[i] = 0x55;
 		}
 
@@ -263,8 +237,7 @@ public class BankManagerAdvancedTests
 	}
 
 	[Fact]
-	public void ExtractBank_CorrectSize()
-	{
+	public void ExtractBank_CorrectSize() {
 		var rom = CreateNesRom(2, 0);
 		var manager = new BankManager(rom);
 
@@ -280,12 +253,10 @@ public class BankManagerAdvancedTests
 	#region FindFreeSpace Tests
 
 	[Fact]
-	public void FindFreeSpace_EmptyBank_FindsLargeSpace()
-	{
+	public void FindFreeSpace_EmptyBank_FindsLargeSpace() {
 		var rom = CreateNesRom(2, 0);
 		// Fill with $FF (free space)
-		for (int i = 16; i < rom.Length; i++)
-		{
+		for (int i = 16; i < rom.Length; i++) {
 			rom[i] = 0xff;
 		}
 
@@ -297,12 +268,10 @@ public class BankManagerAdvancedTests
 	}
 
 	[Fact]
-	public void FindFreeSpace_NoFreeSpace_ReturnsZeroLength()
-	{
+	public void FindFreeSpace_NoFreeSpace_ReturnsZeroLength() {
 		var rom = CreateNesRom(2, 0);
 		// Fill with code (no free space)
-		for (int i = 16; i < rom.Length; i++)
-		{
+		for (int i = 16; i < rom.Length; i++) {
 			rom[i] = 0xea; // NOP opcodes
 		}
 
@@ -318,12 +287,10 @@ public class BankManagerAdvancedTests
 	#region GetBankUsage Tests
 
 	[Fact]
-	public void GetBankUsage_EmptyBank_ZeroUsage()
-	{
+	public void GetBankUsage_EmptyBank_ZeroUsage() {
 		var rom = CreateNesRom(2, 0);
 		// Fill with $FF (free)
-		for (int i = 16; i < 16 + 0x4000; i++)
-		{
+		for (int i = 16; i < 16 + 0x4000; i++) {
 			rom[i] = 0xff;
 		}
 
@@ -337,12 +304,10 @@ public class BankManagerAdvancedTests
 	}
 
 	[Fact]
-	public void GetBankUsage_FullBank_FullUsage()
-	{
+	public void GetBankUsage_FullBank_FullUsage() {
 		var rom = CreateNesRom(2, 0);
 		// Fill with code
-		for (int i = 16; i < 16 + 0x4000; i++)
-		{
+		for (int i = 16; i < 16 + 0x4000; i++) {
 			rom[i] = 0xea;
 		}
 
@@ -360,8 +325,7 @@ public class BankManagerAdvancedTests
 	#region GenerateBankMap Tests
 
 	[Fact]
-	public void GenerateBankMap_ReturnsNonEmpty()
-	{
+	public void GenerateBankMap_ReturnsNonEmpty() {
 		var rom = CreateNesRom(2, 1);
 		var manager = new BankManager(rom);
 
@@ -371,8 +335,7 @@ public class BankManagerAdvancedTests
 	}
 
 	[Fact]
-	public void GenerateBankMap_ContainsBankInfo()
-	{
+	public void GenerateBankMap_ContainsBankInfo() {
 		var rom = CreateNesRom(2, 1);
 		var manager = new BankManager(rom);
 
@@ -387,8 +350,7 @@ public class BankManagerAdvancedTests
 	#region Edge Cases
 
 	[Fact]
-	public void GetBanks_MinimalNesRom_Works()
-	{
+	public void GetBanks_MinimalNesRom_Works() {
 		var rom = CreateNesRom(1, 0);
 		var manager = new BankManager(rom);
 
@@ -398,8 +360,7 @@ public class BankManagerAdvancedTests
 	}
 
 	[Fact]
-	public void GetBanks_EmptyRom_ReturnsEmptyOrHandles()
-	{
+	public void GetBanks_EmptyRom_ReturnsEmptyOrHandles() {
 		var rom = new byte[16]; // Just header, no data
 		rom[0] = (byte)'N';
 		rom[1] = (byte)'E';

@@ -1,18 +1,15 @@
 using System.CommandLine;
-using Spectre.Console;
 using GameInfoTools.Core;
+using Spectre.Console;
 
 namespace GameInfoTools.Cli;
 
 /// <summary>
 /// GameInfo Tools - Main CLI entry point and meta-tool launcher.
 /// </summary>
-public class Program
-{
-	public static async Task<int> Main(string[] args)
-	{
-		var rootCommand = new RootCommand("GameInfo Tools - ROM hacking and documentation toolkit")
-		{
+public class Program {
+	public static async Task<int> Main(string[] args) {
+		var rootCommand = new RootCommand("GameInfo Tools - ROM hacking and documentation toolkit") {
 			Name = "git"
 		};
 
@@ -26,8 +23,7 @@ public class Program
 		rootCommand.AddCommand(CreateListCommand());
 
 		// Show banner if no args
-		if (args.Length == 0)
-		{
+		if (args.Length == 0) {
 			ShowBanner();
 			ShowHelp();
 			return 0;
@@ -36,8 +32,7 @@ public class Program
 		return await rootCommand.InvokeAsync(args);
 	}
 
-	private static void ShowBanner()
-	{
+	private static void ShowBanner() {
 		AnsiConsole.Write(
 			new FigletText("GameInfo Tools")
 				.LeftJustified()
@@ -48,8 +43,7 @@ public class Program
 		AnsiConsole.WriteLine();
 	}
 
-	private static void ShowHelp()
-	{
+	private static void ShowHelp() {
 		var table = new Table()
 			.Border(TableBorder.Rounded)
 			.AddColumn("Category")
@@ -69,8 +63,7 @@ public class Program
 		AnsiConsole.MarkupLine("Use [cyan]git <category> --help[/] for more information.");
 	}
 
-	private static Command CreateRomCommand()
-	{
+	private static Command CreateRomCommand() {
 		var romCommand = new Command("rom", "ROM file operations");
 
 		// rom info
@@ -105,8 +98,7 @@ public class Program
 		return romCommand;
 	}
 
-	private static Command CreateTextCommand()
-	{
+	private static Command CreateTextCommand() {
 		var textCommand = new Command("text", "Text extraction and insertion");
 
 		// text extract
@@ -138,8 +130,7 @@ public class Program
 		return textCommand;
 	}
 
-	private static Command CreateGraphicsCommand()
-	{
+	private static Command CreateGraphicsCommand() {
 		var graphicsCommand = new Command("graphics", "Graphics and tile operations");
 
 		// graphics chr
@@ -160,8 +151,7 @@ public class Program
 		return graphicsCommand;
 	}
 
-	private static Command CreateAnalysisCommand()
-	{
+	private static Command CreateAnalysisCommand() {
 		var analysisCommand = new Command("analysis", "ROM analysis tools");
 
 		// analysis opcodes
@@ -190,8 +180,7 @@ public class Program
 		return analysisCommand;
 	}
 
-	private static Command CreateDataCommand()
-	{
+	private static Command CreateDataCommand() {
 		var dataCommand = new Command("data", "Game data editing");
 
 		// data export
@@ -214,8 +203,7 @@ public class Program
 		return dataCommand;
 	}
 
-	private static Command CreateDisasmCommand()
-	{
+	private static Command CreateDisasmCommand() {
 		var disasmCommand = new Command("disasm", "Disassembly tools");
 
 		// disasm bank
@@ -245,12 +233,10 @@ public class Program
 		return disasmCommand;
 	}
 
-	private static Command CreateListCommand()
-	{
+	private static Command CreateListCommand() {
 		var listCommand = new Command("list", "List available tools");
 
-		listCommand.SetHandler(() =>
-		{
+		listCommand.SetHandler(() => {
 			var table = new Table()
 				.Border(TableBorder.Rounded)
 				.Title("[cyan]Available Tools[/]")

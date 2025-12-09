@@ -5,18 +5,15 @@ namespace GameInfoTools.Cli;
 /// <summary>
 /// Project management commands.
 /// </summary>
-public static class ProjectCommands
-{
-	public static void Init(string projectName, string projectType, string targetPath)
-	{
+public static class ProjectCommands {
+	public static void Init(string projectName, string projectType, string targetPath) {
 		AnsiConsole.MarkupLine($"[cyan]Initializing new project: {projectName}[/]");
 		AnsiConsole.MarkupLine($"[grey]Type: {projectType}[/]");
 
 		var basePath = Path.Combine(targetPath, projectName);
 		Directory.CreateDirectory(basePath);
 
-		switch (projectType.ToLowerInvariant())
-		{
+		switch (projectType.ToLowerInvariant()) {
 			case "disassembly":
 			case "disasm":
 				CreateDisassemblyProject(basePath, projectName);
@@ -45,8 +42,7 @@ public static class ProjectCommands
 		AnsiConsole.MarkupLine($"[green]Project created at: {basePath}[/]");
 	}
 
-	private static void CreateDisassemblyProject(string basePath, string name)
-	{
+	private static void CreateDisassemblyProject(string basePath, string name) {
 		// Create standard disassembly project structure
 		var dirs = new[]
 		{
@@ -64,8 +60,7 @@ public static class ProjectCommands
 			"roms"
 		};
 
-		foreach (var dir in dirs)
-		{
+		foreach (var dir in dirs) {
 			Directory.CreateDirectory(Path.Combine(basePath, dir));
 		}
 
@@ -146,8 +141,7 @@ Thumbs.db
 		AnsiConsole.MarkupLine("[green]Created disassembly project structure[/]");
 	}
 
-	private static void CreateRomHackProject(string basePath, string name)
-	{
+	private static void CreateRomHackProject(string basePath, string name) {
 		var dirs = new[]
 		{
 			"patches",
@@ -159,8 +153,7 @@ Thumbs.db
 			"roms"
 		};
 
-		foreach (var dir in dirs)
-		{
+		foreach (var dir in dirs) {
 			Directory.CreateDirectory(Path.Combine(basePath, dir));
 		}
 
@@ -186,8 +179,7 @@ A ROM hack project.
 		AnsiConsole.MarkupLine("[green]Created ROM hack project structure[/]");
 	}
 
-	private static void CreateTranslationProject(string basePath, string name)
-	{
+	private static void CreateTranslationProject(string basePath, string name) {
 		var dirs = new[]
 		{
 			"text",
@@ -203,8 +195,7 @@ A ROM hack project.
 			"roms"
 		};
 
-		foreach (var dir in dirs)
-		{
+		foreach (var dir in dirs) {
 			Directory.CreateDirectory(Path.Combine(basePath, dir));
 		}
 
@@ -238,7 +229,7 @@ A translation project.
 
 00=[END]
 01=[NL]
-02= 
+02=
 
 ; Uppercase
 41=A
@@ -252,8 +243,7 @@ A translation project.
 		AnsiConsole.MarkupLine("[green]Created translation project structure[/]");
 	}
 
-	private static void CreateDocumentationProject(string basePath, string name)
-	{
+	private static void CreateDocumentationProject(string basePath, string name) {
 		var dirs = new[]
 		{
 			"wiki",
@@ -263,8 +253,7 @@ A translation project.
 			"tools"
 		};
 
-		foreach (var dir in dirs)
-		{
+		foreach (var dir in dirs) {
 			Directory.CreateDirectory(Path.Combine(basePath, dir));
 		}
 
@@ -294,8 +283,8 @@ Documentation project for game research.
 ! Description
 |-
 | $0000
-| 
-| 
+|
+|
 |}
 
 ==RAM map==
@@ -306,8 +295,8 @@ Documentation project for game research.
 ! Description
 |-
 | $0000
-| 
-| 
+|
+|
 |}
 
 ==Text Table==
@@ -320,12 +309,10 @@ See [[GAME_NAME:TBL|Text Table]]
 		AnsiConsole.MarkupLine("[green]Created documentation project structure[/]");
 	}
 
-	private static void CreateGenericProject(string basePath, string name)
-	{
+	private static void CreateGenericProject(string basePath, string name) {
 		var dirs = new[] { "src", "docs", "tools", "build" };
 
-		foreach (var dir in dirs)
-		{
+		foreach (var dir in dirs) {
 			Directory.CreateDirectory(Path.Combine(basePath, dir));
 		}
 
@@ -339,51 +326,39 @@ A game info project.
 		AnsiConsole.MarkupLine("[green]Created generic project structure[/]");
 	}
 
-	public static void ListProjects(string searchPath)
-	{
+	public static void ListProjects(string searchPath) {
 		AnsiConsole.MarkupLine($"[cyan]Scanning for projects in: {searchPath}[/]");
 
 		var projects = new List<(string Path, string Name, string Type)>();
 
 		// Look for project.json files
-		foreach (var file in Directory.EnumerateFiles(searchPath, "project.json", SearchOption.AllDirectories))
-		{
-			try
-			{
+		foreach (var file in Directory.EnumerateFiles(searchPath, "project.json", SearchOption.AllDirectories)) {
+			try {
 				var dir = Path.GetDirectoryName(file);
 				var name = Path.GetFileName(dir) ?? "Unknown";
 				projects.Add((dir ?? "", name, "Disassembly"));
-			}
-			catch
-			{
+			} catch {
 				// Skip inaccessible directories
 			}
 		}
 
 		// Look for common project indicators
-		foreach (var dir in Directory.EnumerateDirectories(searchPath))
-		{
+		foreach (var dir in Directory.EnumerateDirectories(searchPath)) {
 			var name = Path.GetFileName(dir);
 
-			if (Directory.Exists(Path.Combine(dir, "src", "banks")))
-			{
+			if (Directory.Exists(Path.Combine(dir, "src", "banks"))) {
 				if (!projects.Any(p => p.Path == dir))
 					projects.Add((dir, name, "Disassembly"));
-			}
-			else if (Directory.Exists(Path.Combine(dir, "wiki")))
-			{
+			} else if (Directory.Exists(Path.Combine(dir, "wiki"))) {
 				if (!projects.Any(p => p.Path == dir))
 					projects.Add((dir, name, "Documentation"));
-			}
-			else if (Directory.Exists(Path.Combine(dir, "text", "translated")))
-			{
+			} else if (Directory.Exists(Path.Combine(dir, "text", "translated"))) {
 				if (!projects.Any(p => p.Path == dir))
 					projects.Add((dir, name, "Translation"));
 			}
 		}
 
-		if (projects.Count == 0)
-		{
+		if (projects.Count == 0) {
 			AnsiConsole.MarkupLine("[yellow]No projects found[/]");
 			return;
 		}
@@ -395,18 +370,15 @@ A game info project.
 			.AddColumn("Type")
 			.AddColumn("Path");
 
-		foreach (var (path, name, type) in projects)
-		{
+		foreach (var (path, name, type) in projects) {
 			table.AddRow(name, type, path);
 		}
 
 		AnsiConsole.Write(table);
 	}
 
-	public static void Status(string projectPath)
-	{
-		if (!Directory.Exists(projectPath))
-		{
+	public static void Status(string projectPath) {
+		if (!Directory.Exists(projectPath)) {
 			AnsiConsole.MarkupLine($"[red]Error: Project path not found: {projectPath}[/]");
 			return;
 		}
@@ -416,10 +388,10 @@ A game info project.
 
 		// Count files by type
 		var stats = new Dictionary<string, int>();
-		foreach (var file in Directory.EnumerateFiles(projectPath, "*", SearchOption.AllDirectories))
-		{
+		foreach (var file in Directory.EnumerateFiles(projectPath, "*", SearchOption.AllDirectories)) {
 			var ext = Path.GetExtension(file).ToLowerInvariant();
-			if (string.IsNullOrEmpty(ext)) ext = "(no ext)";
+			if (string.IsNullOrEmpty(ext))
+				ext = "(no ext)";
 
 			if (stats.ContainsKey(ext))
 				stats[ext]++;
@@ -432,8 +404,7 @@ A game info project.
 			.AddColumn("Extension")
 			.AddColumn("Count");
 
-		foreach (var kvp in stats.OrderByDescending(k => k.Value).Take(15))
-		{
+		foreach (var kvp in stats.OrderByDescending(k => k.Value).Take(15)) {
 			table.AddRow(kvp.Key, kvp.Value.ToString());
 		}
 

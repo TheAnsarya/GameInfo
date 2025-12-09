@@ -8,13 +8,11 @@ namespace GameInfoTools.Tests;
 /// Advanced tests for IPS and BPS patching functionality, covering edge cases,
 /// performance scenarios, and comprehensive patch manipulation.
 /// </summary>
-public class PatchingAdvancedTests
-{
+public class PatchingAdvancedTests {
 	#region IPS Record Edge Cases
 
 	[Fact]
-	public void IpsRecord_MaxOffset_Supported()
-	{
+	public void IpsRecord_MaxOffset_Supported() {
 		// IPS supports 24-bit offsets (0-16777215)
 		var record = new IpsPatch.IpsRecord(0xFFFFFF, [0xAA], false, 0);
 
@@ -22,8 +20,7 @@ public class PatchingAdvancedTests
 	}
 
 	[Fact]
-	public void IpsRecord_WithAllProperties_Preserved()
-	{
+	public void IpsRecord_WithAllProperties_Preserved() {
 		var data = new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05 };
 		var record = new IpsPatch.IpsRecord(0x123456, data, false, 0);
 
@@ -34,8 +31,7 @@ public class PatchingAdvancedTests
 	}
 
 	[Fact]
-	public void IpsRecord_RleProperties_Preserved()
-	{
+	public void IpsRecord_RleProperties_Preserved() {
 		var record = new IpsPatch.IpsRecord(0x1000, [0xFF], true, 256);
 
 		Assert.Equal(0x1000, record.Offset);
@@ -49,14 +45,12 @@ public class PatchingAdvancedTests
 	#region IPS Large Patches
 
 	[Fact]
-	public void ReadPatch_ManyRecords_AllParsed()
-	{
+	public void ReadPatch_ManyRecords_AllParsed() {
 		// Create patch with 100 records
 		using var ms = new MemoryStream();
 		ms.Write(new byte[] { (byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H' }, 0, 5);
 
-		for (int i = 0; i < 100; i++)
-		{
+		for (int i = 0; i < 100; i++) {
 			// Offset (i * 0x100)
 			int offset = i * 0x100;
 			ms.WriteByte((byte)((offset >> 16) & 0xff));
@@ -76,16 +70,14 @@ public class PatchingAdvancedTests
 		var records = IpsPatch.ReadPatch(ms.ToArray());
 
 		Assert.Equal(100, records.Count);
-		for (int i = 0; i < 100; i++)
-		{
+		for (int i = 0; i < 100; i++) {
 			Assert.Equal(i * 0x100, records[i].Offset);
 			Assert.Equal((byte)i, records[i].Data[0]);
 		}
 	}
 
 	[Fact]
-	public void ReadPatch_LargeDataRecord_ParsedCorrectly()
-	{
+	public void ReadPatch_LargeDataRecord_ParsedCorrectly() {
 		using var ms = new MemoryStream();
 		ms.Write(new byte[] { (byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H' }, 0, 5);
 
@@ -99,8 +91,7 @@ public class PatchingAdvancedTests
 		ms.WriteByte(0x00);
 
 		// 4096 bytes of data
-		for (int i = 0; i < 0x1000; i++)
-		{
+		for (int i = 0; i < 0x1000; i++) {
 			ms.WriteByte((byte)(i & 0xff));
 		}
 
@@ -114,8 +105,7 @@ public class PatchingAdvancedTests
 	}
 
 	[Fact]
-	public void ReadPatch_MaxSizeRecord_ParsedCorrectly()
-	{
+	public void ReadPatch_MaxSizeRecord_ParsedCorrectly() {
 		// IPS max record size is 0xFFFF (65535 bytes)
 		using var ms = new MemoryStream();
 		ms.Write(new byte[] { (byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H' }, 0, 5);
@@ -146,8 +136,7 @@ public class PatchingAdvancedTests
 	#region IPS RLE Advanced
 
 	[Fact]
-	public void ReadPatch_LargeRle_ParsedCorrectly()
-	{
+	public void ReadPatch_LargeRle_ParsedCorrectly() {
 		// RLE with max count (0xFFFF)
 		var patch = new byte[]
 		{
@@ -168,8 +157,7 @@ public class PatchingAdvancedTests
 	}
 
 	[Fact]
-	public void ApplyPatch_LargeRle_FillsCorrectly()
-	{
+	public void ApplyPatch_LargeRle_FillsCorrectly() {
 		var rom = new byte[0x10000];
 
 		var patch = new byte[]
@@ -185,15 +173,13 @@ public class PatchingAdvancedTests
 		var result = IpsPatch.ApplyPatch(rom, patch);
 
 		// Verify all 4096 bytes are set
-		for (int i = 0; i < 4096; i++)
-		{
+		for (int i = 0; i < 4096; i++) {
 			Assert.Equal(0xFF, result[0x1000 + i]);
 		}
 	}
 
 	[Fact]
-	public void ApplyPatch_MultipleRle_AllApplied()
-	{
+	public void ApplyPatch_MultipleRle_AllApplied() {
 		var rom = new byte[0x1000];
 
 		using var ms = new MemoryStream();
@@ -231,14 +217,12 @@ public class PatchingAdvancedTests
 	#region IPS Create Patch Advanced
 
 	[Fact]
-	public void CreatePatch_LongRunOfDifferences_CreatedAsOneRecord()
-	{
+	public void CreatePatch_LongRunOfDifferences_CreatedAsOneRecord() {
 		var original = new byte[256];
 		var modified = new byte[256];
 
 		// Long continuous change
-		for (int i = 16; i < 200; i++)
-		{
+		for (int i = 16; i < 200; i++) {
 			modified[i] = (byte)(i & 0xFF);
 		}
 
@@ -250,8 +234,7 @@ public class PatchingAdvancedTests
 	}
 
 	[Fact]
-	public void CreatePatch_ScatteredDifferences_CreatedAsSeparateRecords()
-	{
+	public void CreatePatch_ScatteredDifferences_CreatedAsSeparateRecords() {
 		var original = new byte[256];
 		var modified = new byte[256];
 
@@ -271,14 +254,12 @@ public class PatchingAdvancedTests
 	}
 
 	[Fact]
-	public void CreatePatch_ModifiedSmallerThanOriginal_HandlesCorrectly()
-	{
+	public void CreatePatch_ModifiedSmallerThanOriginal_HandlesCorrectly() {
 		var original = new byte[256];
 		var modified = new byte[128];
 
 		// Different values in overlapping region
-		for (int i = 0; i < 64; i++)
-		{
+		for (int i = 0; i < 64; i++) {
 			original[i] = (byte)(i + 1);
 			modified[i] = (byte)(i + 100);
 		}
@@ -290,14 +271,12 @@ public class PatchingAdvancedTests
 	}
 
 	[Fact]
-	public void CreatePatch_ModifiedLargerThanOriginal_IncludesExpansion()
-	{
+	public void CreatePatch_ModifiedLargerThanOriginal_IncludesExpansion() {
 		var original = new byte[128];
 		var modified = new byte[256];
 
 		// Fill extension with data
-		for (int i = 128; i < 256; i++)
-		{
+		for (int i = 128; i < 256; i++) {
 			modified[i] = (byte)i;
 		}
 
@@ -305,8 +284,7 @@ public class PatchingAdvancedTests
 		var result = IpsPatch.ApplyPatch(original, patch);
 
 		Assert.Equal(256, result.Length);
-		for (int i = 128; i < 256; i++)
-		{
+		for (int i = 128; i < 256; i++) {
 			Assert.Equal((byte)i, result[i]);
 		}
 	}
@@ -316,8 +294,7 @@ public class PatchingAdvancedTests
 	#region IPS Write Patch Tests
 
 	[Fact]
-	public void WritePatch_PreservesRecordOrder()
-	{
+	public void WritePatch_PreservesRecordOrder() {
 		var records = new List<IpsPatch.IpsRecord>
 		{
 			new(0x300, [0x03], false, 0),
@@ -335,8 +312,7 @@ public class PatchingAdvancedTests
 	}
 
 	[Fact]
-	public void WritePatch_MixedRecordTypes_WrittenCorrectly()
-	{
+	public void WritePatch_MixedRecordTypes_WrittenCorrectly() {
 		var records = new List<IpsPatch.IpsRecord>
 		{
 			new(0x100, [0x11, 0x22, 0x33], false, 0),
@@ -354,8 +330,7 @@ public class PatchingAdvancedTests
 	}
 
 	[Fact]
-	public void WritePatch_RoundTrip_PreservesAllData()
-	{
+	public void WritePatch_RoundTrip_PreservesAllData() {
 		var records = new List<IpsPatch.IpsRecord>
 		{
 			new(0x123456, [0xDE, 0xAD, 0xBE, 0xEF], false, 0),
@@ -382,8 +357,7 @@ public class PatchingAdvancedTests
 	#region IPS Apply Records Directly
 
 	[Fact]
-	public void ApplyRecords_Empty_ReturnsOriginal()
-	{
+	public void ApplyRecords_Empty_ReturnsOriginal() {
 		var rom = new byte[] { 0x01, 0x02, 0x03, 0x04 };
 		var records = new List<IpsPatch.IpsRecord>();
 
@@ -393,8 +367,7 @@ public class PatchingAdvancedTests
 	}
 
 	[Fact]
-	public void ApplyRecords_OverlappingRecords_LastWins()
-	{
+	public void ApplyRecords_OverlappingRecords_LastWins() {
 		var rom = new byte[16];
 
 		var records = new List<IpsPatch.IpsRecord>
@@ -416,8 +389,7 @@ public class PatchingAdvancedTests
 	#region IPS GetPatchInfo Tests
 
 	[Fact]
-	public void GetPatchInfo_MultipleMixedRecords_ShowsDetails()
-	{
+	public void GetPatchInfo_MultipleMixedRecords_ShowsDetails() {
 		using var ms = new MemoryStream();
 		ms.Write(new byte[] { (byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H' }, 0, 5);
 
@@ -441,8 +413,7 @@ public class PatchingAdvancedTests
 	}
 
 	[Fact]
-	public void GetPatchInfo_EmptyPatch_ShowsZeroRecords()
-	{
+	public void GetPatchInfo_EmptyPatch_ShowsZeroRecords() {
 		var patch = new byte[] { (byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H', (byte)'E', (byte)'O', (byte)'F' };
 
 		var info = IpsPatch.GetPatchInfo(patch);
@@ -455,8 +426,7 @@ public class PatchingAdvancedTests
 	#region IPS EOF Position Edge Cases
 
 	[Fact]
-	public void ReadPatch_EofAsOffset_NotTreatedAsEof()
-	{
+	public void ReadPatch_EofAsOffset_NotTreatedAsEof() {
 		// "EOF" can appear as an offset (0x454F46)
 		// A valid IPS patch at offset 0x454F46 should NOT stop parsing
 		using var ms = new MemoryStream();
@@ -481,8 +451,7 @@ public class PatchingAdvancedTests
 	#region IPS Corruption Handling
 
 	[Fact]
-	public void ReadPatch_TruncatedRecord_StopsParsing()
-	{
+	public void ReadPatch_TruncatedRecord_StopsParsing() {
 		// Patch with incomplete record
 		var patch = new byte[]
 		{
@@ -500,8 +469,7 @@ public class PatchingAdvancedTests
 	}
 
 	[Fact]
-	public void ReadPatch_TruncatedRle_StopsParsing()
-	{
+	public void ReadPatch_TruncatedRle_StopsParsing() {
 		var patch = new byte[]
 		{
 			(byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H',
@@ -520,8 +488,7 @@ public class PatchingAdvancedTests
 	#region BPS Tests
 
 	[Fact]
-	public void BpsPatch_InvalidHeader_ThrowsCorrectException()
-	{
+	public void BpsPatch_InvalidHeader_ThrowsCorrectException() {
 		var source = new byte[16];
 		var patch = new byte[] { (byte)'I', (byte)'P', (byte)'S', (byte)'1' };
 
@@ -530,8 +497,7 @@ public class PatchingAdvancedTests
 	}
 
 	[Fact]
-	public void BpsPatch_EmptyPatch_ThrowsException()
-	{
+	public void BpsPatch_EmptyPatch_ThrowsException() {
 		var source = new byte[16];
 		var patch = Array.Empty<byte>();
 
@@ -539,8 +505,7 @@ public class PatchingAdvancedTests
 	}
 
 	[Fact]
-	public void BpsPatch_HeaderOnly_DoesNotThrow()
-	{
+	public void BpsPatch_HeaderOnly_DoesNotThrow() {
 		var source = new byte[16];
 
 		// Minimal BPS: header + varint sizes + empty actions + checksums
@@ -551,8 +516,7 @@ public class PatchingAdvancedTests
 		Assert.NotNull(result);
 	}
 
-	private static byte[] CreateMinimalBpsPatch(int sourceSize, int targetSize)
-	{
+	private static byte[] CreateMinimalBpsPatch(int sourceSize, int targetSize) {
 		using var ms = new MemoryStream();
 
 		// Header
@@ -564,22 +528,18 @@ public class PatchingAdvancedTests
 		WriteVarInt(ms, 0); // metadata size
 
 		// Pad with zeros for CRC32s (12 bytes)
-		for (int i = 0; i < 12; i++)
-		{
+		for (int i = 0; i < 12; i++) {
 			ms.WriteByte(0);
 		}
 
 		return ms.ToArray();
 	}
 
-	private static void WriteVarInt(MemoryStream ms, long value)
-	{
-		while (true)
-		{
+	private static void WriteVarInt(MemoryStream ms, long value) {
+		while (true) {
 			byte b = (byte)(value & 0x7f);
 			value >>= 7;
-			if (value == 0)
-			{
+			if (value == 0) {
 				ms.WriteByte(b);
 				break;
 			}
@@ -593,12 +553,10 @@ public class PatchingAdvancedTests
 	#region Integration Tests
 
 	[Fact]
-	public void IpsPatch_CompleteWorkflow_CreateApplyVerify()
-	{
+	public void IpsPatch_CompleteWorkflow_CreateApplyVerify() {
 		// Create original ROM
 		var original = new byte[1024];
-		for (int i = 0; i < 1024; i++)
-		{
+		for (int i = 0; i < 1024; i++) {
 			original[i] = (byte)(i & 0xFF);
 		}
 
@@ -607,8 +565,7 @@ public class PatchingAdvancedTests
 
 		// Make various changes
 		modified[0x100] = 0xFF;  // Single byte
-		for (int i = 0; i < 16; i++)
-		{
+		for (int i = 0; i < 16; i++) {
 			modified[0x200 + i] = 0xAA;  // Block of same value
 		}
 		modified[0x300] = 0xDE;  // More single bytes
@@ -624,15 +581,13 @@ public class PatchingAdvancedTests
 
 		// Verify result matches modified
 		Assert.Equal(modified.Length, result.Length);
-		for (int i = 0; i < modified.Length; i++)
-		{
+		for (int i = 0; i < modified.Length; i++) {
 			Assert.True(modified[i] == result[i], $"Mismatch at offset {i:X}");
 		}
 	}
 
 	[Fact]
-	public void IpsPatch_ManualRecords_ApplyCorrectly()
-	{
+	public void IpsPatch_ManualRecords_ApplyCorrectly() {
 		var rom = new byte[512];
 
 		// Create patch from manual records
@@ -651,8 +606,7 @@ public class PatchingAdvancedTests
 		Assert.Equal((byte)'S', result[2]);
 		Assert.Equal(0x1A, result[3]);
 
-		for (int i = 0; i < 16; i++)
-		{
+		for (int i = 0; i < 16; i++) {
 			Assert.Equal(0xFF, result[0x10 + i]);
 		}
 
@@ -668,8 +622,7 @@ public class PatchingAdvancedTests
 	#region Performance-Related Tests
 
 	[Fact]
-	public void CreatePatch_LargeIdenticalFiles_FastAndEmpty()
-	{
+	public void CreatePatch_LargeIdenticalFiles_FastAndEmpty() {
 		// Two identical 64KB files
 		var original = new byte[65536];
 		var modified = new byte[65536];
@@ -684,8 +637,7 @@ public class PatchingAdvancedTests
 	}
 
 	[Fact]
-	public void ApplyPatch_LargeExpansion_HandledCorrectly()
-	{
+	public void ApplyPatch_LargeExpansion_HandledCorrectly() {
 		var rom = new byte[16];  // Small ROM
 
 		// Patch that expands to much larger
