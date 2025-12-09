@@ -1,0 +1,89 @@
+<Window xmlns="https://github.com/avaloniaui"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:vm="using:GameInfoTools.UI.ViewModels"
+		xmlns:views="using:GameInfoTools.UI.Views"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
+		x:Class="GameInfoTools.UI.Views.MainWindow"
+		x:DataType="vm:MainWindowViewModel"
+		Icon="/Assets/avalonia-logo.ico"
+		Title="GameInfo Tools - ROM Hacking Suite"
+		Width="1200" Height="800"
+		MinWidth="800" MinHeight="600">
+
+	<Design.DataContext>
+		<vm:MainWindowViewModel/>
+	</Design.DataContext>
+
+	<DockPanel>
+		<!-- Menu Bar -->
+		<Menu DockPanel.Dock="Top">
+			<MenuItem Header="_File">
+				<MenuItem Header="_Open ROM..." Command="{Binding OpenRomCommand}" InputGesture="Ctrl+O"/>
+				<MenuItem Header="_Save ROM" Command="{Binding SaveRomCommand}" InputGesture="Ctrl+S"/>
+				<MenuItem Header="Save ROM _As..." Command="{Binding SaveRomAsCommand}" InputGesture="Ctrl+Shift+S"/>
+				<Separator/>
+				<MenuItem Header="_Recent Files">
+					<MenuItem Header="(No recent files)"/>
+				</MenuItem>
+				<Separator/>
+				<MenuItem Header="E_xit" Command="{Binding ExitCommand}" InputGesture="Alt+F4"/>
+			</MenuItem>
+			<MenuItem Header="_Tools">
+				<MenuItem Header="_ROM Info" Command="{Binding ShowRomInfoCommand}"/>
+				<MenuItem Header="_Checksum Calculator" Command="{Binding ShowChecksumCommand}"/>
+				<Separator/>
+				<MenuItem Header="_Text Extractor" Command="{Binding ShowTextExtractorCommand}"/>
+				<MenuItem Header="_CHR Editor" Command="{Binding ShowChrEditorCommand}"/>
+				<MenuItem Header="_Disassembler" Command="{Binding ShowDisassemblerCommand}"/>
+				<Separator/>
+				<MenuItem Header="_Data Table Editor" Command="{Binding ShowDataEditorCommand}"/>
+				<MenuItem Header="_Pointer Scanner" Command="{Binding ShowPointerScannerCommand}"/>
+			</MenuItem>
+			<MenuItem Header="_View">
+				<MenuItem Header="Hex _Editor" Command="{Binding ShowHexEditorCommand}"/>
+				<MenuItem Header="_Bank View" Command="{Binding ShowBankViewCommand}"/>
+			</MenuItem>
+			<MenuItem Header="_Help">
+				<MenuItem Header="_About" Command="{Binding ShowAboutCommand}"/>
+				<MenuItem Header="_Documentation" Command="{Binding ShowDocumentationCommand}"/>
+			</MenuItem>
+		</Menu>
+
+		<!-- Status Bar -->
+		<Border DockPanel.Dock="Bottom" Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}" Padding="8,4">
+			<Grid ColumnDefinitions="*,Auto,Auto,Auto">
+				<TextBlock Grid.Column="0" Text="{Binding StatusText}" VerticalAlignment="Center"/>
+				<TextBlock Grid.Column="1" Text="{Binding RomInfo}" Margin="16,0" VerticalAlignment="Center"/>
+				<TextBlock Grid.Column="2" Text="{Binding CurrentOffset, StringFormat='Offset: {0:X6}'}" Margin="16,0" VerticalAlignment="Center"/>
+				<TextBlock Grid.Column="3" Text="{Binding RomSize}" VerticalAlignment="Center"/>
+			</Grid>
+		</Border>
+
+		<!-- Main Content -->
+		<Grid ColumnDefinitions="200,*">
+			<!-- Left Panel - Navigation -->
+			<Border Grid.Column="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}" Padding="8">
+				<DockPanel>
+					<TextBlock DockPanel.Dock="Top" Text="Tools" FontWeight="Bold" FontSize="16" Margin="0,0,0,8"/>
+					<ListBox ItemsSource="{Binding ToolCategories}" SelectedItem="{Binding SelectedCategory}">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal" Spacing="8">
+									<TextBlock Text="{Binding Icon}" FontSize="16"/>
+									<TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+								</StackPanel>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</DockPanel>
+			</Border>
+
+			<!-- Right Panel - Content -->
+			<Border Grid.Column="1" Padding="8">
+				<ContentControl Content="{Binding CurrentView}"/>
+			</Border>
+		</Grid>
+	</DockPanel>
+</Window>

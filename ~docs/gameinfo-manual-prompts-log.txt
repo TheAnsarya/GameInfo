@@ -25,6 +25,12 @@ git commit everything in logical batches, update giuthub issues, update todo-lis
 
 merge `C:\Users\me\source\repos\ReactWebApiBase\.editorconfig` into our `.editorconfig` so we especially have proper c# formatting rules; also update our `gitignore` file to handle c# dotnet projects (maybe reference: `C:\Users\me\source\repos\ReactWebApiBase\.gitignore`); continue
 
+make sure our c# tools are cross platform and use the most modern coding practiuces including pattern matching and spans and other advanced c# features, and make sure that all the files are formatted correctly using the `.editorconfig` and update the guthub issues (including updating the main issue description for each issues, describe the done work and update todolists) and update todo-lists; Create a crossplatform UI in C# dotnet for all of the tools we've made in C# dotnet; continue
+
+make sure all the dotnet code we made is using the latest versions of dotnet (10) and c# (14) and the most modern coding practices (pattern matching!, spans, collection expressions, etc); make sure our c# tools are cross platform and use the most modern coding practiuces including pattern matching and spans and other advanced c# features, and make sure that all the files are formatted correctly using the `.editorconfig` and update the guthub issues (including updating the main issue description for each issues, describe the done work and update todolists) and update todo-lists; Create a crossplatform UI in C# dotnet for all of the tools we've made in C# dotnet; continue
+
+please note the time at the beginning of every query and response so I know when stuff happens, I don't want to be rate limited despite paying money, so I need to know the time; continue, but avoid being rate-limited (are we really doing that much?)
+
 
 
 

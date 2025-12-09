@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net10.0</TargetFramework>
+		<LangVersion>preview</LangVersion>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+		<AssemblyName>GameInfoTools</AssemblyName>
+		<RootNamespace>GameInfoTools.UI</RootNamespace>
+		<ApplicationIcon>Assets/avalonia-logo.ico</ApplicationIcon>
+		<RuntimeIdentifiers>win-x64;linux-x64;osx-x64;osx-arm64</RuntimeIdentifiers>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<AvaloniaResource Include="Assets\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Avalonia" Version="11.3.9" />
+		<PackageReference Include="Avalonia.Desktop" Version="11.3.9" />
+		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.9" />
+		<PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.9" />
+		<PackageReference Include="Avalonia.Diagnostics" Version="11.3.9">
+			<IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+			<PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\GameInfoTools.Core\GameInfoTools.Core.csproj" />
+		<ProjectReference Include="..\GameInfoTools.Analysis\GameInfoTools.Analysis.csproj" />
+		<ProjectReference Include="..\GameInfoTools.Graphics\GameInfoTools.Graphics.csproj" />
+		<ProjectReference Include="..\GameInfoTools.Text\GameInfoTools.Text.csproj" />
+		<ProjectReference Include="..\GameInfoTools.Rom\GameInfoTools.Rom.csproj" />
+		<ProjectReference Include="..\GameInfoTools.Data\GameInfoTools.Data.csproj" />
+		<ProjectReference Include="..\GameInfoTools.Disassembly\GameInfoTools.Disassembly.csproj" />
+	</ItemGroup>
+</Project>
