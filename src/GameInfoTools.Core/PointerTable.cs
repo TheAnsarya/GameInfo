@@ -99,34 +99,21 @@ public class PointerTable {
 		return null;
 	}
 
-	private static int ReadPointer(byte[] data, int offset, PointerFormat format, bool littleEndian) {
-		switch (format) {
-			case PointerFormat.Relative8:
-				return data[offset];
-
-			case PointerFormat.Absolute16:
-			case PointerFormat.Relative16:
-				if (littleEndian) {
-					return data[offset] | (data[offset + 1] << 8);
-				}
-				return (data[offset] << 8) | data[offset + 1];
-
-			case PointerFormat.Absolute24:
-				if (littleEndian) {
-					return data[offset] | (data[offset + 1] << 8) | (data[offset + 2] << 16);
-				}
-				return (data[offset] << 16) | (data[offset + 1] << 8) | data[offset + 2];
-
-			case PointerFormat.BankOffset:
-				// Bank in first byte, 16-bit offset follows
-				int bankByte = data[offset];
-				int off = data[offset + 1] | (data[offset + 2] << 8);
-				return (bankByte << 16) | off;
-
-			default:
-				return data[offset] | (data[offset + 1] << 8);
-		}
-	}
+	private static int ReadPointer(byte[] data, int offset, PointerFormat format, bool littleEndian) =>
+		format switch {
+			PointerFormat.Relative8 => data[offset],
+			PointerFormat.Absolute16 or PointerFormat.Relative16 when littleEndian
+				=> data[offset] | (data[offset + 1] << 8),
+			PointerFormat.Absolute16 or PointerFormat.Relative16
+				=> (data[offset] << 8) | data[offset + 1],
+			PointerFormat.Absolute24 when littleEndian
+				=> data[offset] | (data[offset + 1] << 8) | (data[offset + 2] << 16),
+			PointerFormat.Absolute24
+				=> (data[offset] << 16) | (data[offset + 1] << 8) | data[offset + 2],
+			PointerFormat.BankOffset
+				=> (data[offset] << 16) | data[offset + 1] | (data[offset + 2] << 8),
+			_ => data[offset] | (data[offset + 1] << 8)
+		};
 
 	private static int CalculateTarget(int pointerValue, PointerFormat format, int bank, int baseAddress, int tableOffset) {
 		return format switch {
