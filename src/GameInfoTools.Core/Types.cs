@@ -106,3 +106,15 @@ public enum LabelType
 	Graphics,
 	Audio
 }
+
+/// <summary>
+/// Basic ROM information.
+/// </summary>
+public record RomInfo
+{
+	public SystemType System { get; init; }
+	public int HeaderSize { get; init; }
+	public int Size { get; init; }
+	public string? Title { get; init; }
+	public int Mapper { get; init; }
+}

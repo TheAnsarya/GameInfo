@@ -14,6 +14,27 @@ public class RomFile : IDisposable
 	public bool IsLoaded => _data.Length > 0;
 
 	/// <summary>
+	/// Gets the raw byte data of the ROM.
+	/// </summary>
+	public byte[] Data => _data;
+
+	/// <summary>
+	/// Get ROM information (system type, header size, title).
+	/// </summary>
+	public RomInfo GetInfo() => GetRomInfo(_data);
+
+	/// <summary>
+	/// Save the ROM to disk.
+	/// </summary>
+	public void Save(string? path = null)
+	{
+		var savePath = path ?? FilePath;
+		if (string.IsNullOrEmpty(savePath))
+			throw new InvalidOperationException("No file path specified");
+		File.WriteAllBytes(savePath, _data);
+	}
+
+	/// <summary>
 	/// Load a ROM file from disk.
 	/// </summary>
 	public async Task LoadAsync(string path, CancellationToken cancellationToken = default)
@@ -211,5 +232,88 @@ public class RomFile : IDisposable
 	{
 		Dispose(true);
 		GC.SuppressFinalize(this);
+	}
+
+	/// <summary>
+	/// Get basic ROM information from raw data.
+	/// </summary>
+	public static RomInfo GetRomInfo(byte[] data)
+	{
+		// Check for NES header (iNES)
+		if (data.Length >= 16 && data[0] == 'N' && data[1] == 'E' && data[2] == 'S' && data[3] == 0x1a)
+		{
+			return new RomInfo
+			{
+				System = SystemType.Nes,
+				HeaderSize = 16,
+				Size = data.Length
+			};
+		}
+
+		// Check for SNES (check for header at common locations)
+		if (data.Length >= 0x8000)
+		{
+			// LoROM header location
+			if (data.Length >= 0x7fdc + 4)
+			{
+				int checksum = data[0x7fdc] | (data[0x7fdd] << 8);
+				int complement = data[0x7fde] | (data[0x7fdf] << 8);
+				if ((checksum ^ complement) == 0xffff)
+				{
+					return new RomInfo
+					{
+						System = SystemType.Snes,
+						HeaderSize = (data.Length % 0x8000 == 0x200) ? 0x200 : 0,
+						Size = data.Length
+					};
+				}
+			}
+
+			// HiROM header location
+			if (data.Length >= 0xffdc + 4)
+			{
+				int checksum = data[0xffdc] | (data[0xffdd] << 8);
+				int complement = data[0xffde] | (data[0xffdf] << 8);
+				if ((checksum ^ complement) == 0xffff)
+				{
+					return new RomInfo
+					{
+						System = SystemType.Snes,
+						HeaderSize = (data.Length % 0x8000 == 0x200) ? 0x200 : 0,
+						Size = data.Length
+					};
+				}
+			}
+		}
+
+		// Check for Game Boy
+		if (data.Length >= 0x150 && data[0x104] == 0xce && data[0x105] == 0xed)
+		{
+			bool isGbc = data[0x143] == 0x80 || data[0x143] == 0xc0;
+			return new RomInfo
+			{
+				System = isGbc ? SystemType.GameBoyColor : SystemType.GameBoy,
+				HeaderSize = 0,
+				Size = data.Length
+			};
+		}
+
+		// Check for GBA
+		if (data.Length >= 0xc0 && data[0xb2] == 0x96)
+		{
+			return new RomInfo
+			{
+				System = SystemType.GameBoyAdvance,
+				HeaderSize = 0,
+				Size = data.Length
+			};
+		}
+
+		return new RomInfo
+		{
+			System = SystemType.Unknown,
+			HeaderSize = 0,
+			Size = data.Length
+		};
 	}
 }

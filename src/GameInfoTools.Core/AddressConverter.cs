@@ -32,7 +32,7 @@ public static class AddressConverter
 	/// <summary>
 	/// Convert file offset to NES CPU address.
 	/// </summary>
-	public static (int CpuAddress, int Bank) NesFileToC pu(int fileOffset, int headerSize = 16)
+	public static (int CpuAddress, int Bank) NesFileToCpu(int fileOffset, int headerSize = 16)
 	{
 		const int bankSize = 0x4000;
 		var prgOffset = fileOffset - headerSize;

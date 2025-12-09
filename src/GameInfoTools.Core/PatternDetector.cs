@@ -82,8 +82,8 @@ public static class PatternDetector
 		{
 			SystemType.Nes => pointer >= 0x8000 && pointer <= 0xffff,
 			SystemType.Snes => (pointer & 0xffff) >= 0x8000 || (pointer >> 16) >= 0x40,
-			SystemType.Gb or SystemType.Gbc => pointer >= 0x0000 && pointer <= 0x7fff,
-			SystemType.Gba => pointer >= 0x08000000 && pointer < 0x08000000 + romSize,
+			SystemType.GameBoy or SystemType.GameBoyColor => pointer >= 0x0000 && pointer <= 0x7fff,
+			SystemType.GameBoyAdvance => pointer >= 0x08000000 && pointer < 0x08000000 + romSize,
 			_ => pointer > 0 && pointer < romSize
 		};
 	}

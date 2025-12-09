@@ -165,6 +165,58 @@ public class TextTable
 	}
 
 	/// <summary>
+	/// Decode a block of bytes, stopping at common end markers or after maxLength.
+	/// Returns the decoded text and number of bytes consumed.
+	/// </summary>
+	public (string Text, int BytesConsumed) DecodeBlock(byte[] data, int offset, int maxLength)
+	{
+		var sb = new StringBuilder();
+		int bytesConsumed = 0;
+
+		// Common end markers in retro games
+		byte[] endMarkers = { 0x00, 0xff, 0xfe, 0xfd };
+
+		int end = Math.Min(offset + maxLength, data.Length);
+
+		for (int i = offset; i < end; i++)
+		{
+			byte b = data[i];
+			bytesConsumed++;
+
+			// Check for end markers
+			if (Array.IndexOf(endMarkers, b) >= 0)
+			{
+				// Include known control codes in output
+				if (_decodeTable.TryGetValue(b, out var endStr) &&
+				    (endStr.Contains("[END]") || endStr.Contains("[WAIT]") || endStr.Contains("[CLEAR]")))
+				{
+					sb.Append(endStr);
+				}
+				break;
+			}
+
+			if (_decodeTable.TryGetValue(b, out var str))
+			{
+				sb.Append(str);
+			}
+			else
+			{
+				// Unknown byte - check if we've found valid text so far
+				// If first byte is unknown, return empty
+				if (bytesConsumed == 1)
+				{
+					return (string.Empty, 0);
+				}
+				// If we had valid text, stop here (don't consume this byte)
+				bytesConsumed--;
+				break;
+			}
+		}
+
+		return (sb.ToString(), bytesConsumed);
+	}
+
+	/// <summary>
 	/// Encode string to bytes using this table.
 	/// </summary>
 	public byte[] Encode(string text)

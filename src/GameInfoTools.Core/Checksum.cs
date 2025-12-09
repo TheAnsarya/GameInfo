@@ -198,8 +198,8 @@ public static class Checksum
 		{
 			SystemType.Nes => VerifyNes(data),
 			SystemType.Snes => VerifySnes(data),
-			SystemType.Gb or SystemType.Gbc => VerifyGameBoy(data),
-			SystemType.Gba => VerifyGba(data),
+			SystemType.GameBoy or SystemType.GameBoyColor => VerifyGameBoy(data),
+			SystemType.GameBoyAdvance => VerifyGba(data),
 			_ => new ChecksumResult(false, "Unknown system")
 		};
 	}
