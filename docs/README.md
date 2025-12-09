@@ -25,6 +25,7 @@ Project documentation organized by game and system.
 
 | Guide | Description |
 |-------|-------------|
+| [Getting Started](guides/getting-started.md) | Quick setup and first steps |
 | [CLI Reference](guides/cli-reference.md) | Complete CLI command reference |
 | [Tool Usage Guide](guides/tool-usage.md) | How to use the ROM hacking tools |
 | [CDL Tools Guide](guides/cdl-tools.md) | Working with Code Data Logger files |
