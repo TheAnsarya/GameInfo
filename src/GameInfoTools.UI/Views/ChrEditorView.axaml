@@ -29,18 +29,17 @@
 			<CheckBox Content="Grid" IsChecked="{Binding ShowGrid}" VerticalAlignment="Center"/>
 			<Separator/>
 			<TextBlock Text="Palette:" VerticalAlignment="Center"/>
-			<ComboBox ItemsSource="{Binding PalettePresets}"
+			<ComboBox x:Name="PaletteComboBox"
+					  ItemsSource="{Binding PalettePresets}"
 					  SelectedIndex="{Binding SelectedPaletteIndex}"
-					  Width="130">
+					  Width="130"
+					  SelectionChanged="PaletteComboBox_SelectionChanged">
 				<ComboBox.ItemTemplate>
 					<DataTemplate DataType="vm:PalettePreset">
 						<TextBlock Text="{Binding Name}"/>
 					</DataTemplate>
 				</ComboBox.ItemTemplate>
 			</ComboBox>
-			<Button Content="Apply" Command="{Binding SelectPaletteCommand}"
-					CommandParameter="{Binding PalettePresets[0]}"
-					ToolTip.Tip="Apply selected palette"/>
 			<Separator/>
 			<Button Content="Export..." Command="{Binding ExportTilesetCommand}" CommandParameter="{Binding $parent[Window]}" ToolTip.Tip="Export tileset to image"/>
 			<Button Content="Import..." Command="{Binding ImportTilesetCommand}" CommandParameter="{Binding $parent[Window]}" ToolTip.Tip="Import tileset from image"/>
@@ -57,6 +56,13 @@
 						<Button Content="◀" Command="{Binding PreviousBankCommand}" ToolTip.Tip="Previous Bank"/>
 						<TextBlock Text="{Binding SelectedBank, StringFormat=Bank {0}}" VerticalAlignment="Center"/>
 						<Button Content="▶" Command="{Binding NextBankCommand}" ToolTip.Tip="Next Bank"/>
+						<Separator/>
+						<Button Content="↩" Command="{Binding UndoCommand}" ToolTip.Tip="{Binding UndoDescription, StringFormat=Undo: {0}}" IsEnabled="{Binding CanUndo}" Width="30"/>
+						<Button Content="↪" Command="{Binding RedoCommand}" ToolTip.Tip="{Binding RedoDescription, StringFormat=Redo: {0}}" IsEnabled="{Binding CanRedo}" Width="30"/>
+						<Separator/>
+						<Button Content="📋" Command="{Binding CopyTileCommand}" ToolTip.Tip="Copy Tile" Width="30"/>
+						<Button Content="📄" Command="{Binding PasteTileCommand}" ToolTip.Tip="Paste Tile" Width="30" IsEnabled="{Binding HasClipboard}"/>
+						<Button Content="🗑" Command="{Binding ClearTileCommand}" ToolTip.Tip="Clear Tile" Width="30"/>
 					</StackPanel>
 					<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
 						<!-- Visual Tile Grid using custom control -->
