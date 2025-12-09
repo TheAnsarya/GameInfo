@@ -101,8 +101,8 @@ public class RomFileTests {
 	public void ReadByte_ReturnsCorrectValue() {
 		var rom = new RomFile();
 		// Use reflection to set internal data for testing
-		var dataField = typeof(RomFile).GetField("_data", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-		dataField?.SetValue(rom, new byte[] { 0x12, 0x34, 0x56, 0x78 });
+		var dataProperty = typeof(RomFile).GetProperty("Data", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+		dataProperty?.SetValue(rom, new byte[] { 0x12, 0x34, 0x56, 0x78 });
 
 		Assert.Equal(0x12, rom.ReadByte(0));
 		Assert.Equal(0x34, rom.ReadByte(1));
@@ -112,8 +112,8 @@ public class RomFileTests {
 	[Fact]
 	public void ReadUInt16_ReturnsLittleEndianValue() {
 		var rom = new RomFile();
-		var dataField = typeof(RomFile).GetField("_data", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-		dataField?.SetValue(rom, new byte[] { 0xCD, 0xAB }); // Little-endian $ABCD
+		var dataProperty = typeof(RomFile).GetProperty("Data", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+		dataProperty?.SetValue(rom, new byte[] { 0xCD, 0xAB }); // Little-endian $ABCD
 
 		Assert.Equal((ushort)0xABCD, rom.ReadUInt16(0));
 	}
@@ -121,8 +121,8 @@ public class RomFileTests {
 	[Fact]
 	public void ReadUInt24_ReturnsCorrectValue() {
 		var rom = new RomFile();
-		var dataField = typeof(RomFile).GetField("_data", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-		dataField?.SetValue(rom, new byte[] { 0xEF, 0xCD, 0xAB }); // Little-endian $ABCDEF
+		var dataProperty = typeof(RomFile).GetProperty("Data", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+		dataProperty?.SetValue(rom, new byte[] { 0xEF, 0xCD, 0xAB }); // Little-endian $ABCDEF
 
 		Assert.Equal(0xABCDEFu, rom.ReadUInt24(0));
 	}
@@ -130,8 +130,8 @@ public class RomFileTests {
 	[Fact]
 	public void Write_ModifiesData() {
 		var rom = new RomFile();
-		var dataField = typeof(RomFile).GetField("_data", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-		dataField?.SetValue(rom, new byte[] { 0x00, 0x00, 0x00, 0x00 });
+		var dataProperty = typeof(RomFile).GetProperty("Data", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+		dataProperty?.SetValue(rom, new byte[] { 0x00, 0x00, 0x00, 0x00 });
 
 		rom.Write(1, new byte[] { 0xAB, 0xCD });
 
@@ -144,8 +144,8 @@ public class RomFileTests {
 	[Fact]
 	public void WriteByte_ModifiesSingleByte() {
 		var rom = new RomFile();
-		var dataField = typeof(RomFile).GetField("_data", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-		dataField?.SetValue(rom, new byte[] { 0x00, 0x00, 0x00, 0x00 });
+		var dataProperty = typeof(RomFile).GetProperty("Data", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+		dataProperty?.SetValue(rom, new byte[] { 0x00, 0x00, 0x00, 0x00 });
 
 		rom.WriteByte(2, 0xFF);
 
@@ -155,9 +155,9 @@ public class RomFileTests {
 	[Fact]
 	public void AsSpan_ReturnsFullData() {
 		var rom = new RomFile();
-		var dataField = typeof(RomFile).GetField("_data", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+		var dataProperty = typeof(RomFile).GetProperty("Data", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
 		byte[] testData = [0x01, 0x02, 0x03, 0x04];
-		dataField?.SetValue(rom, testData);
+		dataProperty?.SetValue(rom, testData);
 
 		var span = rom.AsSpan();
 
