@@ -182,20 +182,20 @@ public class PaletteAdvancedTests {
 
 	[Fact]
 	public void GbColorToRgb_Shade0_IsLightest() {
-		var shade0 = Palette.GbColorToRgb(0);
+		var (R, G, B) = Palette.GbColorToRgb(0);
 		var shade3 = Palette.GbColorToRgb(3);
 
-		Assert.True(shade0.R > shade3.R);
+		Assert.True(R > shade3.R);
 	}
 
 	[Fact]
 	public void GbColorToRgb_CgbMode_MayDiffer() {
 		// CGB mode can use different palette
-		var standard = Palette.GbColorToRgb(1, isCgb: false);
+		var (R, G, B) = Palette.GbColorToRgb(1, isCgb: false);
 		var cgb = Palette.GbColorToRgb(1, isCgb: true);
 
 		// Both should be valid colors
-		Assert.True(standard.R >= 0 && standard.R <= 255);
+		Assert.True(R >= 0 && R <= 255);
 		Assert.True(cgb.R >= 0 && cgb.R <= 255);
 	}
 
@@ -321,9 +321,9 @@ public class PaletteAdvancedTests {
 	public void CreateGrayscale_AllGray() {
 		var palette = Palette.CreateGrayscale(16);
 
-		foreach (var color in palette) {
-			Assert.Equal(color.R, color.G);
-			Assert.Equal(color.G, color.B);
+		foreach (var (R, G, B) in palette) {
+			Assert.Equal(R, G);
+			Assert.Equal(G, B);
 		}
 	}
 
@@ -352,10 +352,10 @@ public class PaletteAdvancedTests {
 	public void DefaultNesPalette_AllValidColors() {
 		var palette = Palette.DefaultNesPalette();
 
-		foreach (var color in palette) {
-			Assert.True(color.R >= 0 && color.R <= 255);
-			Assert.True(color.G >= 0 && color.G <= 255);
-			Assert.True(color.B >= 0 && color.B <= 255);
+		foreach (var (R, G, B) in palette) {
+			Assert.True(R >= 0 && R <= 255);
+			Assert.True(G >= 0 && G <= 255);
+			Assert.True(B >= 0 && B <= 255);
 		}
 	}
 
@@ -364,9 +364,9 @@ public class PaletteAdvancedTests {
 		var palette = Palette.DefaultNesPalette();
 
 		// First color (black) should be dark
-		var black = palette[0];
+		var (R, G, B) = palette[0];
 
-		Assert.True(black.R < 50 && black.G < 50 && black.B < 50);
+		Assert.True(R < 50 && G < 50 && B < 50);
 	}
 
 	#endregion

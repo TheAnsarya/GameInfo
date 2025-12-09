@@ -113,7 +113,7 @@ public class DataTableEditor {
 	/// </summary>
 	public Dictionary<string, object> ReadRecord(TableDef table, int index) {
 		var record = new Dictionary<string, object>();
-		int offset = table.BaseOffset + index * table.RecordSize;
+		int offset = table.BaseOffset + (index * table.RecordSize);
 
 		foreach (var field in table.Fields) {
 			record[field.Name] = ReadField(offset, field);
@@ -126,7 +126,7 @@ public class DataTableEditor {
 	/// Write an entire record.
 	/// </summary>
 	public void WriteRecord(TableDef table, int index, Dictionary<string, object> record) {
-		int offset = table.BaseOffset + index * table.RecordSize;
+		int offset = table.BaseOffset + (index * table.RecordSize);
 
 		foreach (var field in table.Fields) {
 			if (record.TryGetValue(field.Name, out var value)) {
@@ -222,8 +222,10 @@ public class DataTableEditor {
 					if (f.Type == FieldType.FixedString) {
 						return $"\"{value}\"";
 					}
+
 					return value.ToString() ?? "";
 				}
+
 				return "";
 			});
 			sb.AppendLine(string.Join(",", values));
@@ -246,7 +248,7 @@ public class DataTableEditor {
 			sb.Append($"\t.byte ");
 
 			var values = new List<string>();
-			int offset = table.BaseOffset + i * table.RecordSize;
+			int offset = table.BaseOffset + (i * table.RecordSize);
 
 			for (int b = 0; b < table.RecordSize; b++) {
 				values.Add($"${_data[offset + b]:x2}");
@@ -260,8 +262,10 @@ public class DataTableEditor {
 					if (f.ValueNames != null && f.ValueNames.TryGetValue(Convert.ToInt32(value), out var name)) {
 						return $"{f.Name}={name}";
 					}
+
 					return $"{f.Name}={value}";
 				}
+
 				return "";
 			}).Where(s => !string.IsNullOrEmpty(s));
 
@@ -275,6 +279,7 @@ public class DataTableEditor {
 		if (offset + 1 >= _data.Length) {
 			return 0;
 		}
+
 		return _data[offset] | (_data[offset + 1] << 8);
 	}
 
@@ -282,6 +287,7 @@ public class DataTableEditor {
 		if (offset + 1 >= _data.Length) {
 			return;
 		}
+
 		_data[offset] = (byte)(value & 0xff);
 		_data[offset + 1] = (byte)((value >> 8) & 0xff);
 	}
@@ -290,6 +296,7 @@ public class DataTableEditor {
 		if (offset + 2 >= _data.Length) {
 			return 0;
 		}
+
 		return _data[offset] | (_data[offset + 1] << 8) | (_data[offset + 2] << 16);
 	}
 
@@ -297,6 +304,7 @@ public class DataTableEditor {
 		if (offset + 2 >= _data.Length) {
 			return;
 		}
+
 		_data[offset] = (byte)(value & 0xff);
 		_data[offset + 1] = (byte)((value >> 8) & 0xff);
 		_data[offset + 2] = (byte)((value >> 16) & 0xff);
@@ -309,8 +317,10 @@ public class DataTableEditor {
 			if (b == 0) {
 				break;
 			}
+
 			sb.Append((char)b);
 		}
+
 		return sb.ToString();
 	}
 

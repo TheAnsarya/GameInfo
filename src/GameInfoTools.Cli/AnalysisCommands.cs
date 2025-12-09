@@ -325,6 +325,7 @@ public static class AnalysisCommands {
 				if (!xrefs.ContainsKey(target)) {
 					xrefs[target] = [];
 				}
+
 				xrefs[target].Add(source);
 
 				i += 3;
@@ -337,6 +338,7 @@ public static class AnalysisCommands {
 				if (!xrefs.ContainsKey(target)) {
 					xrefs[target] = [];
 				}
+
 				xrefs[target].Add(source);
 
 				i += 3;

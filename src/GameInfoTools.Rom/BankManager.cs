@@ -43,13 +43,14 @@ public class BankManager {
 				for (int i = 0; i < bankCount; i++) {
 					banks.Add(new BankInfo(
 						i,
-						_romInfo.HeaderSize + i * bankSize,
+						_romInfo.HeaderSize + (i * bankSize),
 						bankSize,
 						0x8000,
 						0xbfff,
 						true
 					));
 				}
+
 				break;
 		}
 
@@ -117,11 +118,11 @@ public class BankManager {
 		int bankCount = romSize / bankSize;
 
 		for (int i = 0; i < bankCount; i++) {
-			int cpuBank = isLoRom ? 0x80 + i * 2 : 0xc0 + i;
+			int cpuBank = isLoRom ? 0x80 + (i * 2) : 0xc0 + i;
 			int cpuStart = isLoRom ? (cpuBank << 16) | 0x8000 : cpuBank << 16;
 			int cpuEnd = cpuStart + bankSize - 1;
 
-			banks.Add(new BankInfo(i, romStart + i * bankSize, bankSize, cpuStart, cpuEnd, true));
+			banks.Add(new BankInfo(i, romStart + (i * bankSize), bankSize, cpuStart, cpuEnd, true));
 		}
 
 		return banks;
@@ -194,12 +195,14 @@ public class BankManager {
 				if (currentStart < 0) {
 					currentStart = i;
 				}
+
 				currentLength++;
 			} else {
 				if (currentLength > bestLength && currentLength >= minSize) {
 					bestStart = currentStart;
 					bestLength = currentLength;
 				}
+
 				currentStart = -1;
 				currentLength = 0;
 			}
@@ -248,10 +251,10 @@ public class BankManager {
 		sb.AppendLine("------|-------------|----------------|--------|------|-------");
 
 		foreach (var bank in banks) {
-			var usage = GetBankUsage(bank.Number);
+			var (Used, Free, UsagePercent) = GetBankUsage(bank.Number);
 			string typeStr = bank.IsPrgRom ? "PRG" : "CHR";
 
-			sb.AppendLine($"{bank.Number,5} | ${bank.FileOffset:x6}     | ${bank.CpuStart:x4}-${bank.CpuEnd:x4} | {bank.Size,6} | {typeStr}  | {usage.UsagePercent:F1}%");
+			sb.AppendLine($"{bank.Number,5} | ${bank.FileOffset:x6}     | ${bank.CpuStart:x4}-${bank.CpuEnd:x4} | {bank.Size,6} | {typeStr}  | {UsagePercent:F1}%");
 		}
 
 		return sb.ToString();

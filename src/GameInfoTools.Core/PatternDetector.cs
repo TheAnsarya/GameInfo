@@ -38,7 +38,7 @@ public static class PatternDetector {
 				));
 
 				// Skip past this table
-				i += count * pointerSize - 1;
+				i += (count * pointerSize) - 1;
 			}
 		}
 
@@ -125,6 +125,7 @@ public static class PatternDetector {
 					length++;
 					break;
 				}
+
 				break;
 			} else if (textChars > 0 && length - textChars < 5) {
 				// Allow some control codes
@@ -165,7 +166,7 @@ public static class PatternDetector {
 	public static List<PatternMatch> FindGraphicsRegions(byte[] data, int tileSize = 16) {
 		var results = new List<PatternMatch>();
 
-		for (int i = 0; i < data.Length - tileSize * 8; i += tileSize) {
+		for (int i = 0; i < data.Length - (tileSize * 8); i += tileSize) {
 			double graphicsScore = ScoreAsGraphics(data, i, tileSize * 16);
 			if (graphicsScore > 0.6) {
 				// Find extent of graphics region
@@ -229,7 +230,7 @@ public static class PatternDetector {
 			return 0.1;
 
 		// Good score if varied with some empty/full
-		return Math.Min(1.0, variedRatio * 0.5 + (1 - Math.Abs(emptyRatio - 0.3)) * 0.5);
+		return Math.Min(1.0, (variedRatio * 0.5) + ((1 - Math.Abs(emptyRatio - 0.3)) * 0.5));
 	}
 
 	/// <summary>
@@ -238,13 +239,13 @@ public static class PatternDetector {
 	public static List<PatternMatch> FindDataTables(byte[] data, int entrySize, int minEntries = 4) {
 		var results = new List<PatternMatch>();
 
-		for (int i = 0; i < data.Length - entrySize * minEntries; i++) {
+		for (int i = 0; i < data.Length - (entrySize * minEntries); i++) {
 			double score = ScoreAsDataTable(data, i, entrySize, minEntries);
 			if (score > 0.6) {
 				// Count entries
 				int count = minEntries;
-				while (i + (count + 1) * entrySize <= data.Length) {
-					if (ScoreAsDataTable(data, i + count * entrySize, entrySize, 1) < 0.4)
+				while (i + ((count + 1) * entrySize) <= data.Length) {
+					if (ScoreAsDataTable(data, i + (count * entrySize), entrySize, 1) < 0.4)
 						break;
 					count++;
 					if (count > 256)
@@ -262,7 +263,7 @@ public static class PatternDetector {
 					}
 				));
 
-				i += count * entrySize - 1;
+				i += (count * entrySize) - 1;
 			}
 		}
 
@@ -270,7 +271,7 @@ public static class PatternDetector {
 	}
 
 	private static double ScoreAsDataTable(byte[] data, int start, int entrySize, int minEntries) {
-		if (start + entrySize * minEntries > data.Length)
+		if (start + (entrySize * minEntries) > data.Length)
 			return 0;
 
 		// Data tables often have:
@@ -283,7 +284,7 @@ public static class PatternDetector {
 		for (int field = 0; field < entrySize; field++) {
 			var values = new List<byte>();
 			for (int entry = 0; entry < minEntries; entry++) {
-				values.Add(data[start + entry * entrySize + field]);
+				values.Add(data[start + (entry * entrySize) + field]);
 			}
 
 			// Check if field has reasonable variation

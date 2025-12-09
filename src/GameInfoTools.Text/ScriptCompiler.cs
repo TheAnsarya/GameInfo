@@ -137,6 +137,7 @@ public class ScriptCompiler {
 				} else {
 					output.Add(0x00); // Default terminator
 				}
+
 				break;
 
 			case "newline":
@@ -147,6 +148,7 @@ public class ScriptCompiler {
 				} else {
 					output.Add(0x0a); // Default newline
 				}
+
 				break;
 
 			case "ref":
@@ -161,6 +163,7 @@ public class ScriptCompiler {
 					output.Add(0x00);
 					output.Add(0x00);
 				}
+
 				break;
 
 			default:
@@ -305,9 +308,11 @@ public class DialogueTree {
 					if (!string.IsNullOrEmpty(choice.Condition)) {
 						sb.Append($", \"condition\": \"{EscapeJson(choice.Condition)}\"");
 					}
+
 					sb.Append(" }");
 					sb.AppendLine(j < node.Choices.Count - 1 ? "," : "");
 				}
+
 				sb.AppendLine("      ]");
 			} else if (node.NextNodeId.HasValue) {
 				sb.AppendLine($"      \"next\": {node.NextNodeId}");
@@ -377,6 +382,7 @@ public class DialogueTree {
 		if (text.Length <= maxLength) {
 			return text;
 		}
+
 		return text[..(maxLength - 3)] + "...";
 	}
 }

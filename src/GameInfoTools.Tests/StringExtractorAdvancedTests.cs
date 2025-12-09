@@ -14,6 +14,7 @@ public class StringExtractorAdvancedTests {
 		for (byte i = 0x20; i <= 0x7e; i++) {
 			table.AddEntry(i, ((char)i).ToString());
 		}
+
 		table.AddEntry(0x00, "{END}"); // String terminator
 		return table;
 	}

@@ -102,6 +102,7 @@ public static class CompressionDetector {
 					}
 				}
 			}
+
 			i++;
 		}
 

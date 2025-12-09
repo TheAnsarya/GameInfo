@@ -100,12 +100,12 @@ public class SpriteExtractorTests {
 		meta.Sprites.Add((8, 0, 0, 0));     // Right of first
 		meta.Sprites.Add((0, 8, 0, 0));     // Below first
 
-		var bounds = meta.GetBounds(tileHeight: 8);
+		var (MinX, MinY, MaxX, MaxY) = meta.GetBounds(tileHeight: 8);
 
-		Assert.Equal(0, bounds.MinX);
-		Assert.Equal(0, bounds.MinY);
-		Assert.Equal(16, bounds.MaxX); // 8 + 8
-		Assert.Equal(16, bounds.MaxY); // 8 + 8
+		Assert.Equal(0, MinX);
+		Assert.Equal(0, MinY);
+		Assert.Equal(16, MaxX); // 8 + 8
+		Assert.Equal(16, MaxY); // 8 + 8
 	}
 
 	[Fact]
@@ -114,23 +114,23 @@ public class SpriteExtractorTests {
 		meta.Sprites.Add((-8, -8, 0, 0));  // Negative offsets
 		meta.Sprites.Add((0, 0, 0, 0));    // Origin
 
-		var bounds = meta.GetBounds(tileHeight: 8);
+		var (MinX, MinY, MaxX, MaxY) = meta.GetBounds(tileHeight: 8);
 
-		Assert.Equal(-8, bounds.MinX);
-		Assert.Equal(-8, bounds.MinY);
-		Assert.Equal(8, bounds.MaxX);
-		Assert.Equal(8, bounds.MaxY);
+		Assert.Equal(-8, MinX);
+		Assert.Equal(-8, MinY);
+		Assert.Equal(8, MaxX);
+		Assert.Equal(8, MaxY);
 	}
 
 	[Fact]
 	public void Metasprite_GetBounds_ReturnsZeroForEmpty() {
 		var meta = new SpriteExtractor.Metasprite();
-		var bounds = meta.GetBounds();
+		var (MinX, MinY, MaxX, MaxY) = meta.GetBounds();
 
-		Assert.Equal(0, bounds.MinX);
-		Assert.Equal(0, bounds.MinY);
-		Assert.Equal(0, bounds.MaxX);
-		Assert.Equal(0, bounds.MaxY);
+		Assert.Equal(0, MinX);
+		Assert.Equal(0, MinY);
+		Assert.Equal(0, MaxX);
+		Assert.Equal(0, MaxY);
 	}
 
 	[Fact]

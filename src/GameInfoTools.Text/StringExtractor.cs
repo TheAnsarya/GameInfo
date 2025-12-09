@@ -54,7 +54,7 @@ public class StringExtractor {
 		var results = new List<ExtractedString>();
 
 		for (int i = 0; i < count; i++) {
-			int ptrOffset = tableOffset + i * 2;
+			int ptrOffset = tableOffset + (i * 2);
 			if (ptrOffset + 2 > data.Length) {
 				break;
 			}
@@ -255,7 +255,7 @@ public class TextDictionary {
 	/// </summary>
 	public void LoadFromPointerTable(byte[] data, int tableOffset, int count, Core.TextTable table, int bank = 0) {
 		for (int i = 0; i < count; i++) {
-			int ptrOffset = tableOffset + i * 2;
+			int ptrOffset = tableOffset + (i * 2);
 			if (ptrOffset + 2 > data.Length) {
 				break;
 			}

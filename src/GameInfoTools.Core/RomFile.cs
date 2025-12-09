@@ -4,23 +4,22 @@ namespace GameInfoTools.Core;
 /// Base class for ROM file operations.
 /// </summary>
 public class RomFile : IDisposable {
-	private byte[] _data = [];
 	private bool _disposed;
 
 	public string FilePath { get; private set; } = string.Empty;
 	public RomHeader? Header { get; private set; }
-	public int Length => _data.Length;
-	public bool IsLoaded => _data.Length > 0;
+	public int Length => Data.Length;
+	public bool IsLoaded => Data.Length > 0;
 
 	/// <summary>
 	/// Gets the raw byte data of the ROM.
 	/// </summary>
-	public byte[] Data => _data;
+	public byte[] Data { get; private set; } = [];
 
 	/// <summary>
 	/// Get ROM information (system type, header size, title).
 	/// </summary>
-	public RomInfo GetInfo() => GetRomInfo(_data);
+	public RomInfo GetInfo() => GetRomInfo(Data);
 
 	/// <summary>
 	/// Save the ROM to disk.
@@ -29,7 +28,7 @@ public class RomFile : IDisposable {
 		var savePath = path ?? FilePath;
 		if (string.IsNullOrEmpty(savePath))
 			throw new InvalidOperationException("No file path specified");
-		File.WriteAllBytes(savePath, _data);
+		File.WriteAllBytes(savePath, Data);
 	}
 
 	/// <summary>
@@ -37,7 +36,7 @@ public class RomFile : IDisposable {
 	/// </summary>
 	public async Task LoadAsync(string path, CancellationToken cancellationToken = default) {
 		FilePath = path;
-		_data = await File.ReadAllBytesAsync(path, cancellationToken);
+		Data = await File.ReadAllBytesAsync(path, cancellationToken);
 		Header = DetectHeader();
 	}
 
@@ -46,7 +45,7 @@ public class RomFile : IDisposable {
 	/// </summary>
 	public void Load(string path) {
 		FilePath = path;
-		_data = File.ReadAllBytes(path);
+		Data = File.ReadAllBytes(path);
 		Header = DetectHeader();
 	}
 
@@ -55,7 +54,7 @@ public class RomFile : IDisposable {
 	/// </summary>
 	public async Task SaveAsync(string? path = null, CancellationToken cancellationToken = default) {
 		var savePath = path ?? FilePath;
-		await File.WriteAllBytesAsync(savePath, _data, cancellationToken);
+		await File.WriteAllBytesAsync(savePath, Data, cancellationToken);
 	}
 
 	/// <summary>
@@ -63,8 +62,8 @@ public class RomFile : IDisposable {
 	/// </summary>
 	public ReadOnlySpan<byte> Read(int offset, int length) {
 		ArgumentOutOfRangeException.ThrowIfNegative(offset);
-		ArgumentOutOfRangeException.ThrowIfGreaterThan(offset + length, _data.Length);
-		return _data.AsSpan(offset, length);
+		ArgumentOutOfRangeException.ThrowIfGreaterThan(offset + length, Data.Length);
+		return Data.AsSpan(offset, length);
 	}
 
 	/// <summary>
@@ -72,8 +71,8 @@ public class RomFile : IDisposable {
 	/// </summary>
 	public byte ReadByte(int offset) {
 		ArgumentOutOfRangeException.ThrowIfNegative(offset);
-		ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(offset, _data.Length);
-		return _data[offset];
+		ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(offset, Data.Length);
+		return Data[offset];
 	}
 
 	/// <summary>
@@ -97,8 +96,8 @@ public class RomFile : IDisposable {
 	/// </summary>
 	public void Write(int offset, ReadOnlySpan<byte> data) {
 		ArgumentOutOfRangeException.ThrowIfNegative(offset);
-		ArgumentOutOfRangeException.ThrowIfGreaterThan(offset + data.Length, _data.Length);
-		data.CopyTo(_data.AsSpan(offset));
+		ArgumentOutOfRangeException.ThrowIfGreaterThan(offset + data.Length, Data.Length);
+		data.CopyTo(Data.AsSpan(offset));
 	}
 
 	/// <summary>
@@ -106,21 +105,21 @@ public class RomFile : IDisposable {
 	/// </summary>
 	public void WriteByte(int offset, byte value) {
 		ArgumentOutOfRangeException.ThrowIfNegative(offset);
-		ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(offset, _data.Length);
-		_data[offset] = value;
+		ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(offset, Data.Length);
+		Data[offset] = value;
 	}
 
 	/// <summary>
 	/// Get the entire ROM data as a span.
 	/// </summary>
-	public ReadOnlySpan<byte> AsSpan() => _data;
+	public ReadOnlySpan<byte> AsSpan() => Data;
 
 	/// <summary>
 	/// Get ROM data without header.
 	/// </summary>
 	public ReadOnlySpan<byte> GetDataWithoutHeader() {
 		var headerSize = Header?.HeaderSize ?? 0;
-		return _data.AsSpan(headerSize);
+		return Data.AsSpan(headerSize);
 	}
 
 	/// <summary>
@@ -128,21 +127,21 @@ public class RomFile : IDisposable {
 	/// </summary>
 	private RomHeader DetectHeader() {
 		// Check for iNES header (NES)
-		if (_data.Length >= 16 && _data[0] == 'N' && _data[1] == 'E' && _data[2] == 'S' && _data[3] == 0x1a) {
+		if (Data.Length >= 16 && Data[0] == 'N' && Data[1] == 'E' && Data[2] == 'S' && Data[3] == 0x1a) {
 			return ParseInesHeader();
 		}
 
 		// Check for SMC header (SNES with 512-byte header)
-		if (_data.Length % 0x8000 == 0x200) {
+		if (Data.Length % 0x8000 == 0x200) {
 			return new RomHeader {
 				System = SystemType.Snes,
 				HeaderSize = 0x200,
-				RawHeader = _data[..0x200]
+				RawHeader = Data[..0x200]
 			};
 		}
 
 		// Check for SNES internal header
-		if (_data.Length >= 0x8000) {
+		if (Data.Length >= 0x8000) {
 			var loromHeader = TryParseSnesHeader(0x7fc0);
 			var hiromHeader = TryParseSnesHeader(0xffc0);
 
@@ -156,11 +155,11 @@ public class RomFile : IDisposable {
 	}
 
 	private RomHeader ParseInesHeader() {
-		var prgSize = _data[4] * 16384;
-		var chrSize = _data[5] * 8192;
-		var mapper = (_data[6] >> 4) | (_data[7] & 0xf0);
-		var hasBattery = (_data[6] & 0x02) != 0;
-		var hasTrainer = (_data[6] & 0x04) != 0;
+		var prgSize = Data[4] * 16384;
+		var chrSize = Data[5] * 8192;
+		var mapper = (Data[6] >> 4) | (Data[7] & 0xf0);
+		var hasBattery = (Data[6] & 0x02) != 0;
+		var hasTrainer = (Data[6] & 0x04) != 0;
 
 		return new RomHeader {
 			System = SystemType.Nes,
@@ -170,27 +169,27 @@ public class RomFile : IDisposable {
 			Mapper = mapper,
 			HasBattery = hasBattery,
 			HasTrainer = hasTrainer,
-			RawHeader = _data[..16]
+			RawHeader = Data[..16]
 		};
 	}
 
 	private RomHeader? TryParseSnesHeader(int offset) {
-		if (offset + 32 > _data.Length)
+		if (offset + 32 > Data.Length)
 			return null;
 
 		// Check for valid checksum complement
-		var checksum = _data[offset + 0x1e] | (_data[offset + 0x1f] << 8);
-		var complement = _data[offset + 0x1c] | (_data[offset + 0x1d] << 8);
+		var checksum = Data[offset + 0x1e] | (Data[offset + 0x1f] << 8);
+		var complement = Data[offset + 0x1c] | (Data[offset + 0x1d] << 8);
 
 		if ((checksum ^ complement) == 0xffff) {
-			var titleBytes = _data.AsSpan(offset, 21);
+			var titleBytes = Data.AsSpan(offset, 21);
 			var title = System.Text.Encoding.ASCII.GetString(titleBytes).TrimEnd();
 
 			return new RomHeader {
 				System = SystemType.Snes,
 				Title = title,
 				HeaderSize = 0,
-				RawHeader = _data.AsSpan(offset, 32).ToArray()
+				RawHeader = Data.AsSpan(offset, 32).ToArray()
 			};
 		}
 
@@ -200,8 +199,9 @@ public class RomFile : IDisposable {
 	protected virtual void Dispose(bool disposing) {
 		if (!_disposed) {
 			if (disposing) {
-				_data = [];
+				Data = [];
 			}
+
 			_disposed = true;
 		}
 	}

@@ -23,6 +23,8 @@ update, actually create the chat logs, and then continue;
 
 git commit everything in logical batches, update giuthub issues, update todo-lists, all work should have an issue, tie them to those issues; ***format*** all of the c# code and other files using the `.editorconfig` for instance, open braces should be at the end of the last line, not on their own line; make sure all the dotnet code we made is using the latest versions of dotnet and c# and the most modern coding practices (pattern matching!) and make sure unicode support is universal and comment and document all the code and tools and tests, and fix the mispelling of `Lables` in the code; continue
 
+merge `C:\Users\me\source\repos\ReactWebApiBase\.editorconfig` into our `.editorconfig` so we especially have proper c# formatting rules; also update our `gitignore` file to handle c# dotnet projects (maybe reference: `C:\Users\me\source\repos\ReactWebApiBase\.gitignore`); continue
+
 
 
 

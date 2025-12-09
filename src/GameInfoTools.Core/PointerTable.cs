@@ -68,10 +68,10 @@ public class PointerTable {
 		// Read first few potential pointers
 		var potentialPointers = new List<int>();
 		for (int i = 0; i < Math.Min(maxEntries, 16); i++) {
-			if (offset + i * 2 + 2 > data.Length)
+			if (offset + (i * 2) + 2 > data.Length)
 				break;
 
-			int ptr16 = data[offset + i * 2] | (data[offset + i * 2 + 1] << 8);
+			int ptr16 = data[offset + (i * 2)] | (data[offset + (i * 2) + 1] << 8);
 			potentialPointers.Add(ptr16);
 		}
 
@@ -142,7 +142,7 @@ public class PointerTable {
 			if (result.HasValue) {
 				results.Add(result.Value);
 				// Mark this range as checked
-				for (int i = offset; i < offset + result.Value.Count * 2; i++) {
+				for (int i = offset; i < offset + (result.Value.Count * 2); i++) {
 					checked_.Add(i);
 				}
 			}
@@ -152,7 +152,7 @@ public class PointerTable {
 	}
 
 	private static (int Offset, int Count, float Confidence)? AnalyzePotentialTable(byte[] data, int offset, int minEntries) {
-		if (offset + minEntries * 2 > data.Length) {
+		if (offset + (minEntries * 2) > data.Length) {
 			return null;
 		}
 
@@ -229,6 +229,7 @@ public class PointerTable {
 				validTargets++;
 			}
 		}
+
 		score += (float)validTargets / Math.Min(8, pointers.Count) * 0.3f;
 
 		// Check 4: Sequential or near-sequential pointers
@@ -238,6 +239,7 @@ public class PointerTable {
 				sequential++;
 			}
 		}
+
 		if (sequential > pointers.Count * 0.7) {
 			score += 0.1f;
 		}
@@ -253,18 +255,14 @@ public class PointerTable {
 		int pointerSize = format == PointerFormat.Absolute24 ? 3 : 2;
 
 		for (int i = 0; i < count; i++) {
-			int offset = tableOffset + i * pointerSize;
+			int offset = tableOffset + (i * pointerSize);
 			if (offset + pointerSize > result.Length) {
 				break;
 			}
 
-			int currentValue;
-			if (format == PointerFormat.Absolute24) {
-				currentValue = result[offset] | (result[offset + 1] << 8) | (result[offset + 2] << 16);
-			} else {
-				currentValue = result[offset] | (result[offset + 1] << 8);
-			}
-
+			int currentValue = format == PointerFormat.Absolute24
+				? result[offset] | (result[offset + 1] << 8) | (result[offset + 2] << 16)
+				: result[offset] | (result[offset + 1] << 8);
 			int newValue = currentValue + delta;
 
 			result[offset] = (byte)(newValue & 0xff);
@@ -314,6 +312,7 @@ public class PointerTable {
 					data[offset] = (byte)((value >> 8) & 0xff);
 					data[offset + 1] = (byte)(value & 0xff);
 				}
+
 				break;
 
 			case PointerFormat.Absolute24:
@@ -327,6 +326,7 @@ public class PointerTable {
 					data[offset + 1] = (byte)((value >> 8) & 0xff);
 					data[offset + 2] = (byte)(value & 0xff);
 				}
+
 				break;
 		}
 	}

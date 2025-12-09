@@ -11,11 +11,11 @@ public class PaletteTests {
 
 	[Fact]
 	public void NesToRgb_Color0_ReturnsGray() {
-		var color = Palette.NesToRgb(0x00);
+		var (R, G, B) = Palette.NesToRgb(0x00);
 
-		Assert.Equal(0x7c, color.R);
-		Assert.Equal(0x7c, color.G);
-		Assert.Equal(0x7c, color.B);
+		Assert.Equal(0x7c, R);
+		Assert.Equal(0x7c, G);
+		Assert.Equal(0x7c, B);
 	}
 
 	[Fact]
@@ -30,71 +30,71 @@ public class PaletteTests {
 	[Fact]
 	public void NesToRgb_Black_ReturnsBlack() {
 		// 0x0D, 0x0E, 0x0F, 0x1D, etc. are all black on NES
-		var color = Palette.NesToRgb(0x0D);
-		Assert.Equal((byte)0, color.R);
-		Assert.Equal((byte)0, color.G);
-		Assert.Equal((byte)0, color.B);
+		var (R, G, B) = Palette.NesToRgb(0x0D);
+		Assert.Equal((byte)0, R);
+		Assert.Equal((byte)0, G);
+		Assert.Equal((byte)0, B);
 	}
 
 	[Fact]
 	public void NesToRgb_PureBlue_ReturnsBlue() {
-		var color = Palette.NesToRgb(0x01);
+		var (R, G, B) = Palette.NesToRgb(0x01);
 
-		Assert.Equal((byte)0x00, color.R);
-		Assert.Equal((byte)0x00, color.G);
-		Assert.Equal((byte)0xfc, color.B);
+		Assert.Equal((byte)0x00, R);
+		Assert.Equal((byte)0x00, G);
+		Assert.Equal((byte)0xfc, B);
 	}
 
 	// SNES palette tests
 
 	[Fact]
 	public void SnesColorToRgb_Black_ReturnsBlack() {
-		var color = Palette.SnesColorToRgb(0x0000);
+		var (R, G, B) = Palette.SnesColorToRgb(0x0000);
 
-		Assert.Equal((byte)0, color.R);
-		Assert.Equal((byte)0, color.G);
-		Assert.Equal((byte)0, color.B);
+		Assert.Equal((byte)0, R);
+		Assert.Equal((byte)0, G);
+		Assert.Equal((byte)0, B);
 	}
 
 	[Fact]
 	public void SnesColorToRgb_PureRed_ReturnsRed() {
 		// SNES format: 0BBBBBGG GGGRRRRR
 		// Pure red (5 bits) = 0x001F
-		var color = Palette.SnesColorToRgb(0x001F);
+		var (R, G, B) = Palette.SnesColorToRgb(0x001F);
 
-		Assert.Equal((byte)0xF8, color.R); // 31 << 3 = 248
-		Assert.Equal((byte)0, color.G);
-		Assert.Equal((byte)0, color.B);
+		Assert.Equal((byte)0xF8, R); // 31 << 3 = 248
+		Assert.Equal((byte)0, G);
+		Assert.Equal((byte)0, B);
 	}
 
 	[Fact]
 	public void SnesColorToRgb_PureGreen_ReturnsGreen() {
 		// Pure green = 0x03E0 (bits 5-9)
-		var color = Palette.SnesColorToRgb(0x03E0);
+		var (R, G, B) = Palette.SnesColorToRgb(0x03E0);
 
-		Assert.Equal((byte)0, color.R);
-		Assert.Equal((byte)0xF8, color.G);
-		Assert.Equal((byte)0, color.B);
+		Assert.Equal((byte)0, R);
+		Assert.Equal((byte)0xF8, G);
+		Assert.Equal((byte)0, B);
 	}
 
 	[Fact]
 	public void SnesColorToRgb_PureBlue_ReturnsBlue() {
 		// Pure blue = 0x7C00 (bits 10-14)
-		var color = Palette.SnesColorToRgb(0x7C00);
+		var (R, G, B) = Palette.SnesColorToRgb(0x7C00);
 
-		Assert.Equal((byte)0, color.R);
-		Assert.Equal((byte)0, color.G);
-		Assert.Equal((byte)0xF8, color.B);
+		Assert.Equal((byte)0, R);
+		Assert.Equal((byte)0, G);
+		Assert.Equal((byte)0xF8, B);
 	}
 
 	[Fact]
 	public void SnesColorToRgb_White_ReturnsWhite() {
 		// White = 0x7FFF
-		var color = Palette.SnesColorToRgb(0x7FFF);
+		var (R, G, B) = Palette.SnesColorToRgb(0x7FFF);
 
-		Assert.Equal((byte)0xF8, color.R);
-		Assert.Equal((byte)0xF8, color.G);
-		Assert.Equal((byte)0xF8, color.B);
+		Assert.Equal((byte)0xF8, R);
+		Assert.Equal((byte)0xF8, G);
+		Assert.Equal((byte)0xF8, B);
 	}
 
 	[Fact]
@@ -113,8 +113,8 @@ public class PaletteTests {
 	public void SnesColorToRgb_RoundTrip() {
 		// Convert a color to RGB and back
 		ushort original = 0x3DEF; // Some arbitrary color
-		var rgb = Palette.SnesColorToRgb(original);
-		var converted = Palette.RgbToSnesColor(rgb.R, rgb.G, rgb.B);
+		var (R, G, B) = Palette.SnesColorToRgb(original);
+		var converted = Palette.RgbToSnesColor(R, G, B);
 
 		// Should get same value back (within precision loss)
 		Assert.Equal(original, converted);
@@ -135,20 +135,20 @@ public class PaletteTests {
 
 	[Fact]
 	public void GbColorToRgb_Grayscale_Level0_IsWhite() {
-		var color = Palette.GbColorToRgb(0, isCgb: false);
+		var (R, G, B) = Palette.GbColorToRgb(0, isCgb: false);
 
-		Assert.Equal((byte)0xFF, color.R);
-		Assert.Equal((byte)0xFF, color.G);
-		Assert.Equal((byte)0xFF, color.B);
+		Assert.Equal((byte)0xFF, R);
+		Assert.Equal((byte)0xFF, G);
+		Assert.Equal((byte)0xFF, B);
 	}
 
 	[Fact]
 	public void GbColorToRgb_Grayscale_Level3_IsBlack() {
-		var color = Palette.GbColorToRgb(3, isCgb: false);
+		var (R, G, B) = Palette.GbColorToRgb(3, isCgb: false);
 
-		Assert.Equal((byte)0x00, color.R);
-		Assert.Equal((byte)0x00, color.G);
-		Assert.Equal((byte)0x00, color.B);
+		Assert.Equal((byte)0x00, R);
+		Assert.Equal((byte)0x00, G);
+		Assert.Equal((byte)0x00, B);
 	}
 
 	[Fact]
@@ -164,11 +164,11 @@ public class PaletteTests {
 	public void GbColorToRgb_Cgb_UsesSnesFormat() {
 		// In CGB mode, it uses SNES 15-bit color format
 		byte gbColor = 0x1F; // Would be pure red in SNES format
-		var color = Palette.GbColorToRgb(gbColor, isCgb: true);
+		var (R, G, B) = Palette.GbColorToRgb(gbColor, isCgb: true);
 
-		Assert.Equal((byte)0xF8, color.R);
-		Assert.Equal((byte)0, color.G);
-		Assert.Equal((byte)0, color.B);
+		Assert.Equal((byte)0xF8, R);
+		Assert.Equal((byte)0, G);
+		Assert.Equal((byte)0, B);
 	}
 
 	// ReadSnesPalette tests

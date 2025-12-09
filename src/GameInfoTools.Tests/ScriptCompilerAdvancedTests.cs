@@ -13,9 +13,11 @@ public class ScriptCompilerAdvancedTests {
 		for (int i = 0; i < 26; i++) {
 			table.AddEntry((byte)(0x80 + i), ((char)('A' + i)).ToString());
 		}
+
 		for (int i = 0; i < 26; i++) {
 			table.AddEntry((byte)(0xa0 + i), ((char)('a' + i)).ToString());
 		}
+
 		table.AddEntry(0x00, "{END}");
 		table.AddEntry(0x0a, "{NEWLINE}");
 		table.AddEntry(0xff, " ");

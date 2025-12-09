@@ -77,6 +77,7 @@ public static class BankCommands {
 			if (rom.Data[i] != 0x00 && rom.Data[i] != 0xff) {
 				usedBytes++;
 			}
+
 			if (rom.Data[i] == 0xff) {
 				ffBytes++;
 			}

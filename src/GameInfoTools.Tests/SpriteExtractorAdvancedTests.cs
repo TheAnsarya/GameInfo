@@ -126,10 +126,10 @@ public class SpriteExtractorAdvancedTests {
 		// Create full NES OAM (64 sprites * 4 bytes = 256 bytes)
 		var oam = new byte[256];
 		for (int i = 0; i < 64; i++) {
-			oam[i * 4 + 0] = (byte)(i * 3);        // Y
-			oam[i * 4 + 1] = (byte)(i * 2);        // Tile
-			oam[i * 4 + 2] = (byte)(i & 0x03);     // Attributes
-			oam[i * 4 + 3] = (byte)(i * 4);        // X
+			oam[(i * 4) + 0] = (byte)(i * 3);        // Y
+			oam[(i * 4) + 1] = (byte)(i * 2);        // Tile
+			oam[(i * 4) + 2] = (byte)(i & 0x03);     // Attributes
+			oam[(i * 4) + 3] = (byte)(i * 4);        // X
 		}
 
 		var sprites = SpriteExtractor.ParseNesOam(oam, 0, 64);
@@ -201,11 +201,11 @@ public class SpriteExtractorAdvancedTests {
 		var meta = new SpriteExtractor.Metasprite();
 		meta.Sprites.Add((0, 0, 0, 0));  // Single sprite at origin
 
-		var bounds8 = meta.GetBounds(tileHeight: 8);
+		var (MinX, MinY, MaxX, MaxY) = meta.GetBounds(tileHeight: 8);
 		var bounds16 = meta.GetBounds(tileHeight: 16);
 
-		Assert.Equal(8, bounds8.MaxX);
-		Assert.Equal(8, bounds8.MaxY);
+		Assert.Equal(8, MaxX);
+		Assert.Equal(8, MaxY);
 
 		Assert.Equal(8, bounds16.MaxX);
 		Assert.Equal(16, bounds16.MaxY);  // Double height in 8x16 mode
@@ -222,12 +222,12 @@ public class SpriteExtractorAdvancedTests {
 			}
 		}
 
-		var bounds = meta.GetBounds(tileHeight: 8);
+		var (MinX, MinY, MaxX, MaxY) = meta.GetBounds(tileHeight: 8);
 
-		Assert.Equal(0, bounds.MinX);
-		Assert.Equal(0, bounds.MinY);
-		Assert.Equal(32, bounds.MaxX);  // 4 * 8
-		Assert.Equal(32, bounds.MaxY);  // 4 * 8
+		Assert.Equal(0, MinX);
+		Assert.Equal(0, MinY);
+		Assert.Equal(32, MaxX);  // 4 * 8
+		Assert.Equal(32, MaxY);  // 4 * 8
 	}
 
 	[Fact]
@@ -240,12 +240,12 @@ public class SpriteExtractorAdvancedTests {
 		meta.Sprites.Add((-4, 0, 0, 0));
 		meta.Sprites.Add((0, 0, 0, 0));
 
-		var bounds = meta.GetBounds(tileHeight: 8);
+		var (MinX, MinY, MaxX, MaxY) = meta.GetBounds(tileHeight: 8);
 
-		Assert.Equal(-4, bounds.MinX);
-		Assert.Equal(-8, bounds.MinY);
-		Assert.Equal(8, bounds.MaxX);
-		Assert.Equal(8, bounds.MaxY);
+		Assert.Equal(-4, MinX);
+		Assert.Equal(-8, MinY);
+		Assert.Equal(8, MaxX);
+		Assert.Equal(8, MaxY);
 	}
 
 	[Fact]
@@ -658,11 +658,11 @@ public class SpriteExtractorAdvancedTests {
 		meta.Sprites.Add((8, 8, 0x11, 0x00));
 
 		// Verify bounds calculation
-		var bounds = meta.GetBounds(tileHeight: 8);
-		Assert.Equal(0, bounds.MinX);
-		Assert.Equal(0, bounds.MinY);
-		Assert.Equal(16, bounds.MaxX);
-		Assert.Equal(16, bounds.MaxY);
+		var (MinX, MinY, MaxX, MaxY) = meta.GetBounds(tileHeight: 8);
+		Assert.Equal(0, MinX);
+		Assert.Equal(0, MinY);
+		Assert.Equal(16, MaxX);
+		Assert.Equal(16, MaxY);
 
 		// Generate ASM output
 		var asm = SpriteExtractor.GenerateMetaspriteAsm(meta, "hero_stand");
@@ -731,10 +731,10 @@ public class SpriteExtractorAdvancedTests {
 		// Create data for 32 sprites
 		var data = new byte[32 * 4];
 		for (int i = 0; i < 32; i++) {
-			data[i * 4 + 0] = (byte)((i % 4) * 8);   // X in 4-wide grid
-			data[i * 4 + 1] = (byte)((i / 4) * 8);   // Y in 8-tall grid
-			data[i * 4 + 2] = (byte)i;               // Tile index
-			data[i * 4 + 3] = 0x00;                  // Attributes
+			data[(i * 4) + 0] = (byte)(i % 4 * 8);   // X in 4-wide grid
+			data[(i * 4) + 1] = (byte)(i / 4 * 8);   // Y in 8-tall grid
+			data[(i * 4) + 2] = (byte)i;               // Tile index
+			data[(i * 4) + 3] = 0x00;                  // Attributes
 		}
 
 		var meta = SpriteExtractor.ExtractMetasprite(data, 0, 32);
@@ -747,12 +747,12 @@ public class SpriteExtractorAdvancedTests {
 		var meta = new SpriteExtractor.Metasprite();
 		meta.Sprites.Add((0, 0, 0, 0));
 
-		var bounds = meta.GetBounds(tileHeight: 8);
+		var (MinX, MinY, MaxX, MaxY) = meta.GetBounds(tileHeight: 8);
 
-		Assert.Equal(0, bounds.MinX);
-		Assert.Equal(0, bounds.MinY);
-		Assert.Equal(8, bounds.MaxX);
-		Assert.Equal(8, bounds.MaxY);
+		Assert.Equal(0, MinX);
+		Assert.Equal(0, MinY);
+		Assert.Equal(8, MaxX);
+		Assert.Equal(8, MaxY);
 	}
 
 	[Fact]
@@ -761,12 +761,12 @@ public class SpriteExtractorAdvancedTests {
 		meta.Sprites.Add((-100, -100, 0, 0));
 		meta.Sprites.Add((100, 100, 0, 0));
 
-		var bounds = meta.GetBounds(tileHeight: 8);
+		var (MinX, MinY, MaxX, MaxY) = meta.GetBounds(tileHeight: 8);
 
-		Assert.Equal(-100, bounds.MinX);
-		Assert.Equal(-100, bounds.MinY);
-		Assert.Equal(108, bounds.MaxX);  // 100 + 8
-		Assert.Equal(108, bounds.MaxY);
+		Assert.Equal(-100, MinX);
+		Assert.Equal(-100, MinY);
+		Assert.Equal(108, MaxX);  // 100 + 8
+		Assert.Equal(108, MaxY);
 	}
 
 	[Fact]

@@ -102,9 +102,9 @@ public class SpriteExtractor {
 			offset += 4;
 		}
 
-		var bounds = meta.GetBounds(tileHeight);
-		meta.Width = bounds.MaxX - bounds.MinX;
-		meta.Height = bounds.MaxY - bounds.MinY;
+		var (MinX, MinY, MaxX, MaxY) = meta.GetBounds(tileHeight);
+		meta.Width = MaxX - MinX;
+		meta.Height = MaxY - MinY;
 
 		return meta;
 	}
@@ -144,7 +144,7 @@ public class SpriteExtractor {
 	private static int DetectSpriteCount(byte[] data, int offset, int maxSprites = 16) {
 		// Look for common terminator patterns
 		for (int i = 0; i < maxSprites; i++) {
-			int pos = offset + i * 4;
+			int pos = offset + (i * 4);
 			if (pos + 4 > data.Length) {
 				return i;
 			}
@@ -156,9 +156,11 @@ public class SpriteExtractor {
 			if (data[pos] >= 0xf8) {
 				return i;
 			}
+
 			if (data[pos] == 0 && data[pos + 1] == 0 && data[pos + 2] == 0 && data[pos + 3] == 0) {
 				return i;
 			}
+
 			if (data[pos] == 0xff && data[pos + 1] == 0xff) {
 				return i;
 			}
@@ -176,11 +178,11 @@ public class SpriteExtractor {
 		bool is8x16 = false,
 		int? width = null,
 		int? height = null) {
-		var bounds = meta.GetBounds(is8x16 ? 16 : 8);
-		int w = width ?? Math.Max(bounds.MaxX - bounds.MinX, 8);
-		int h = height ?? Math.Max(bounds.MaxY - bounds.MinY, 8);
-		int offsetX = -bounds.MinX;
-		int offsetY = -bounds.MinY;
+		var (MinX, MinY, MaxX, MaxY) = meta.GetBounds(is8x16 ? 16 : 8);
+		int w = width ?? Math.Max(MaxX - MinX, 8);
+		int h = height ?? Math.Max(MaxY - MinY, 8);
+		int offsetX = -MinX;
+		int offsetY = -MinY;
 
 		var result = new byte[h, w];
 

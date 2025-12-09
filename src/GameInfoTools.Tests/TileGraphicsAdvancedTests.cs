@@ -407,6 +407,7 @@ public class TileGraphicsAdvancedTests {
 		for (int i = 0; i < 1000; i++) {
 			TileGraphics.DecodeTile(data, i * 16, TileGraphics.TileFormat.Nes2Bpp);
 		}
+
 		sw.Stop();
 
 		Assert.True(sw.ElapsedMilliseconds < 1000, $"Decoding 1000 tiles took {sw.ElapsedMilliseconds}ms");

@@ -58,6 +58,7 @@ public static class AsmFormatter {
 				if (string.IsNullOrEmpty(opcode) && string.IsNullOrEmpty(comment)) {
 					return sb.ToString();
 				}
+
 				sb.AppendLine();
 			}
 		}
@@ -81,10 +82,12 @@ public static class AsmFormatter {
 			} else {
 				sb.Append(' ');
 			}
+
 			if (!comment.StartsWith(options.CommentPrefix)) {
 				sb.Append(options.CommentPrefix);
 				sb.Append(' ');
 			}
+
 			sb.Append(comment.TrimStart(';', ' '));
 		}
 
@@ -115,6 +118,7 @@ public static class AsmFormatter {
 				pos++;
 			}
 		}
+
 		return pos;
 	}
 
@@ -143,9 +147,11 @@ public static class AsmFormatter {
 			while (labelEnd < line.Length && !char.IsWhiteSpace(line[labelEnd]) && line[labelEnd] != ':') {
 				labelEnd++;
 			}
+
 			if (labelEnd < line.Length && line[labelEnd] == ':') {
 				labelEnd++;
 			}
+
 			label = line[..labelEnd];
 			line = line[labelEnd..].TrimStart();
 		} else {
@@ -161,6 +167,7 @@ public static class AsmFormatter {
 		while (opcodeEnd < line.Length && !char.IsWhiteSpace(line[opcodeEnd])) {
 			opcodeEnd++;
 		}
+
 		opcode = line[..opcodeEnd];
 		operand = line[opcodeEnd..].Trim();
 

@@ -47,6 +47,7 @@ public class PerformanceTests {
 		for (int i = 0; i < 26; i++) {
 			table.AddEntry((byte)(0x80 + i), ((char)('A' + i)).ToString());
 		}
+
 		table.AddEntry(0xff, " ");
 
 		// Create 10KB of text
@@ -81,7 +82,7 @@ public class PerformanceTests {
 		for (int i = 0; i < 256; i++) {
 			int addr = 0x8000 + (i * 0x10);
 			data[i * 2] = (byte)(addr & 0xff);
-			data[i * 2 + 1] = (byte)((addr >> 8) & 0xff);
+			data[(i * 2) + 1] = (byte)((addr >> 8) & 0xff);
 		}
 
 		// Act
@@ -101,8 +102,8 @@ public class PerformanceTests {
 		// Insert a valid pointer table
 		for (int i = 0; i < 16; i++) {
 			int addr = 0x8000 + (i * 0x100);
-			data[0x100 + i * 2] = (byte)(addr & 0xff);
-			data[0x100 + i * 2 + 1] = (byte)((addr >> 8) & 0xff);
+			data[0x100 + (i * 2)] = (byte)(addr & 0xff);
+			data[0x100 + (i * 2) + 1] = (byte)((addr >> 8) & 0xff);
 		}
 
 		// Act
@@ -123,6 +124,7 @@ public class PerformanceTests {
 			sb.AppendLine($"    RTS");
 			sb.AppendLine();
 		}
+
 		var content = sb.ToString();
 
 		// Act

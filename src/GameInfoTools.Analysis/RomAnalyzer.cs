@@ -186,7 +186,7 @@ public class RomAnalyzer {
 
 		// Graphics tiles typically have low entropy (2-6 unique bytes per tile)
 		if (avgEntropyPerTile >= 2 && avgEntropyPerTile <= 8) {
-			return 0.6f + 0.2f * (1 - (avgEntropyPerTile - 2) / 6);
+			return 0.6f + (0.2f * (1 - ((avgEntropyPerTile - 2) / 6)));
 		}
 
 		return 0.2f;
@@ -309,8 +309,8 @@ public class RomAnalyzer {
 
 			// Compare structure of consecutive records
 			for (int r = 0; r < totalRecords - 1; r++) {
-				int rec1 = offset + r * recordSize;
-				int rec2 = offset + (r + 1) * recordSize;
+				int rec1 = offset + (r * recordSize);
+				int rec2 = offset + ((r + 1) * recordSize);
 
 				// Check if value ranges are similar
 				int matches = 0;

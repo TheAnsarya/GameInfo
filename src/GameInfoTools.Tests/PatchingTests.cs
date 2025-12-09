@@ -405,6 +405,7 @@ public class BpsPatchTests {
 				ms.WriteByte(b);
 				break;
 			}
+
 			ms.WriteByte((byte)(b | 0x80));
 			value--;
 		}

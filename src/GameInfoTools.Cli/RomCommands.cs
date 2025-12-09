@@ -163,6 +163,7 @@ public static class RomCommands {
 				crc = (crc >> 1) ^ (0xedb88320 * (crc & 1));
 			}
 		}
+
 		return ~crc;
 	}
 

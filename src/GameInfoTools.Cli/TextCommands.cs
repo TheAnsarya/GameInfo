@@ -38,6 +38,7 @@ public static class TextCommands {
 			foreach (var (offset, text) in strings) {
 				writer.WriteLine($"${offset:x6}: {text}");
 			}
+
 			AnsiConsole.MarkupLine($"[green]Saved to {outputFile.FullName}[/]");
 		} else {
 			// Display first 20 strings
@@ -183,6 +184,7 @@ public static class TextCommands {
 				{
 					strings.Add((stringStart, currentString.ToString()));
 				}
+
 				currentString.Clear();
 				stringStart = -1;
 			}

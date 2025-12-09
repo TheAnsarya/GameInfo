@@ -133,7 +133,7 @@ public class BankManagerAdvancedTests {
 
 		var prgBanks = banks.Where(b => b.IsPrgRom).ToList();
 		for (int i = 0; i < prgBanks.Count; i++) {
-			int expectedOffset = 16 + i * 0x4000; // Header + bank index * bank size
+			int expectedOffset = 16 + (i * 0x4000); // Header + bank index * bank size
 			Assert.Equal(expectedOffset, prgBanks[i].FileOffset);
 		}
 	}

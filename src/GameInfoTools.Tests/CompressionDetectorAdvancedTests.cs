@@ -12,7 +12,7 @@ public class CompressionDetectorAdvancedTests {
 		// Random-looking data without compression patterns
 		var data = new byte[100];
 		for (int i = 0; i < data.Length; i++) {
-			data[i] = (byte)((i * 7 + 13) % 256);
+			data[i] = (byte)(((i * 7) + 13) % 256);
 		}
 
 		var result = CompressionDetector.Detect(data, 0);

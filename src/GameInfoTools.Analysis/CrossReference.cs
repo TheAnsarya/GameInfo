@@ -39,12 +39,14 @@ public class CrossReferenceDb {
 			toList = new List<CrossRef>();
 			_refsTo[target] = toList;
 		}
+
 		toList.Add(xref);
 
 		if (!_refsFrom.TryGetValue(source, out var fromList)) {
 			fromList = new List<CrossRef>();
 			_refsFrom[source] = fromList;
 		}
+
 		fromList.Add(xref);
 	}
 
@@ -202,6 +204,7 @@ public class CrossReferenceDb {
 			if (!string.IsNullOrEmpty(label)) {
 				sb.Append($" ({label})");
 			}
+
 			sb.AppendLine(":");
 
 			foreach (var refGroup in refs.GroupBy(r => r.Type)) {

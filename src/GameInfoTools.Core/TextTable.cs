@@ -33,6 +33,7 @@ public class TextTable {
 		foreach (var line in lines) {
 			table.ParseLine(line);
 		}
+
 		return table;
 	}
 
@@ -82,6 +83,7 @@ public class TextTable {
 			for (int i = 0; i < bytes.Length; i++) {
 				bytes[i] = byte.Parse(hex.Substring(i * 2, 2), System.Globalization.NumberStyles.HexNumber);
 			}
+
 			return true;
 		} catch {
 			bytes = Array.Empty<byte>();
@@ -156,6 +158,7 @@ public class TextTable {
 					(endStr.Contains("[END]") || endStr.Contains("[WAIT]") || endStr.Contains("[CLEAR]"))) {
 					sb.Append(endStr);
 				}
+
 				break;
 			}
 

@@ -230,6 +230,7 @@ public static class PatchCommands {
 				writer.Write((byte)(b | 0x80));
 				break;
 			}
+
 			writer.Write(b);
 			value--;
 		}
@@ -330,6 +331,7 @@ public static class PatchCommands {
 				for (int i = 0; i < size; i++) {
 					output[offset + i] = patch[pos + i];
 				}
+
 				pos += size;
 			}
 		}

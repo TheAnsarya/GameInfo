@@ -107,8 +107,8 @@ public static class TileGraphics {
 	private static void DecodeSnes2BppTile(byte[] data, int offset, byte[,] tile) {
 		// SNES 2bpp: interleaved bitplanes
 		for (int y = 0; y < 8; y++) {
-			byte plane0 = offset + y * 2 < data.Length ? data[offset + y * 2] : (byte)0;
-			byte plane1 = offset + y * 2 + 1 < data.Length ? data[offset + y * 2 + 1] : (byte)0;
+			byte plane0 = offset + (y * 2) < data.Length ? data[offset + (y * 2)] : (byte)0;
+			byte plane1 = offset + (y * 2) + 1 < data.Length ? data[offset + (y * 2) + 1] : (byte)0;
 
 			for (int x = 0; x < 8; x++) {
 				int bit = 7 - x;
@@ -121,10 +121,10 @@ public static class TileGraphics {
 	private static void DecodeSnes4BppTile(byte[] data, int offset, byte[,] tile) {
 		// SNES 4bpp: two sets of interleaved bitplanes
 		for (int y = 0; y < 8; y++) {
-			byte plane0 = offset + y * 2 < data.Length ? data[offset + y * 2] : (byte)0;
-			byte plane1 = offset + y * 2 + 1 < data.Length ? data[offset + y * 2 + 1] : (byte)0;
-			byte plane2 = offset + 16 + y * 2 < data.Length ? data[offset + 16 + y * 2] : (byte)0;
-			byte plane3 = offset + 16 + y * 2 + 1 < data.Length ? data[offset + 16 + y * 2 + 1] : (byte)0;
+			byte plane0 = offset + (y * 2) < data.Length ? data[offset + (y * 2)] : (byte)0;
+			byte plane1 = offset + (y * 2) + 1 < data.Length ? data[offset + (y * 2) + 1] : (byte)0;
+			byte plane2 = offset + 16 + (y * 2) < data.Length ? data[offset + 16 + (y * 2)] : (byte)0;
+			byte plane3 = offset + 16 + (y * 2) + 1 < data.Length ? data[offset + 16 + (y * 2) + 1] : (byte)0;
 
 			for (int x = 0; x < 8; x++) {
 				int bit = 7 - x;
@@ -233,7 +233,7 @@ public static class TileGraphics {
 			}
 
 			data[y * 2] = plane0;
-			data[y * 2 + 1] = plane1;
+			data[(y * 2) + 1] = plane1;
 		}
 	}
 
@@ -251,9 +251,9 @@ public static class TileGraphics {
 			}
 
 			data[y * 2] = plane0;
-			data[y * 2 + 1] = plane1;
-			data[16 + y * 2] = plane2;
-			data[16 + y * 2 + 1] = plane3;
+			data[(y * 2) + 1] = plane1;
+			data[16 + (y * 2)] = plane2;
+			data[16 + (y * 2) + 1] = plane3;
 		}
 	}
 
@@ -397,8 +397,9 @@ public static class Palette {
 		for (int i = 0; i < palette.Length; i++) {
 			ushort color = RgbToSnesColor(palette[i].R, palette[i].G, palette[i].B);
 			data[i * 2] = (byte)(color & 0xff);
-			data[i * 2 + 1] = (byte)((color >> 8) & 0xff);
+			data[(i * 2) + 1] = (byte)((color >> 8) & 0xff);
 		}
+
 		return data;
 	}
 
@@ -411,6 +412,7 @@ public static class Palette {
 			byte shade = (byte)(255 * i / (colorCount - 1));
 			palette[i] = (shade, shade, shade);
 		}
+
 		return palette;
 	}
 

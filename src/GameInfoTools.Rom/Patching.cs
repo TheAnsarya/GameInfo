@@ -197,12 +197,14 @@ public static class IpsPatch {
 		if (data.Length == 0) {
 			return true;
 		}
+
 		byte first = data[0];
 		for (int i = 1; i < data.Length; i++) {
 			if (data[i] != first) {
 				return false;
 			}
 		}
+
 		return true;
 	}
 
@@ -327,6 +329,7 @@ public static class BpsPatch {
 					for (int i = 0; i < length && pos < patchData.Length - 12; i++) {
 						target[outputPos++] = patchData[pos++];
 					}
+
 					break;
 
 				case 2: // SourceCopy
@@ -337,6 +340,7 @@ public static class BpsPatch {
 							target[outputPos++] = sourceData[sourceRelOffset++];
 						}
 					}
+
 					break;
 
 				case 3: // TargetCopy
@@ -347,6 +351,7 @@ public static class BpsPatch {
 							target[outputPos++] = target[targetRelOffset++];
 						}
 					}
+
 					break;
 			}
 		}

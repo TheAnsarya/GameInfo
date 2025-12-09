@@ -34,8 +34,10 @@ public static class Checksum {
 			for (int j = 0; j < 8; j++) {
 				crc = (crc & 1) != 0 ? (crc >> 1) ^ 0xedb88320 : crc >> 1;
 			}
+
 			table[i] = crc;
 		}
+
 		return table;
 	}
 
@@ -65,6 +67,7 @@ public static class Checksum {
 		for (int i = 0; i < prgSize && prgStart + i < data.Length; i++) {
 			sum += data[prgStart + i];
 		}
+
 		return (ushort)(sum & 0xffff);
 	}
 
@@ -77,6 +80,7 @@ public static class Checksum {
 		for (int i = 0; i < data.Length; i++) {
 			sum += data[i];
 		}
+
 		return (ushort)(sum & 0xffff);
 	}
 
@@ -120,6 +124,7 @@ public static class Checksum {
 		for (int i = 0x134; i <= 0x14c && i < data.Length; i++) {
 			checksum = (byte)(checksum - data[i] - 1);
 		}
+
 		return checksum;
 	}
 
@@ -134,6 +139,7 @@ public static class Checksum {
 				continue;
 			sum += data[i];
 		}
+
 		return (ushort)(sum & 0xffff);
 	}
 
@@ -162,7 +168,8 @@ public static class Checksum {
 		for (int i = 0xa0; i <= 0xbc && i < data.Length; i++) {
 			checksum = (byte)(checksum + data[i]);
 		}
-		return (byte)(-(0x19 + checksum));
+
+		return (byte)-(0x19 + checksum);
 	}
 
 	/// <summary>

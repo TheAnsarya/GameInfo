@@ -110,6 +110,7 @@ public static class DisasmCommands {
 					if (mlbParts.Length >= 3) {
 						return (mlbParts[1], mlbParts[2], mlbParts.Length > 3 ? mlbParts[3] : null);
 					}
+
 					break;
 
 				case "nl":
@@ -118,6 +119,7 @@ public static class DisasmCommands {
 					if (nlParts.Length >= 2) {
 						return (nlParts[0], nlParts[1], nlParts.Length > 2 ? nlParts[2] : null);
 					}
+
 					break;
 
 				case "sym":
@@ -131,6 +133,7 @@ public static class DisasmCommands {
 							return (symParts[0], symParts[1], null);
 						}
 					}
+
 					break;
 			}
 		} catch {

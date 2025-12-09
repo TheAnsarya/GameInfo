@@ -14,7 +14,7 @@ public class ChrEditorTests {
 		// Fill with identifiable pattern for testing
 		for (int tile = 0; tile < tileCount; tile++) {
 			for (int i = 0; i < ChrEditor.TileSize; i++) {
-				data[tile * ChrEditor.TileSize + i] = (byte)(tile * 16 + i);
+				data[(tile * ChrEditor.TileSize) + i] = (byte)((tile * 16) + i);
 			}
 		}
 

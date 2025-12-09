@@ -543,6 +543,7 @@ public class PatchingAdvancedTests {
 				ms.WriteByte(b);
 				break;
 			}
+
 			ms.WriteByte((byte)(b | 0x80));
 			value--;
 		}
@@ -568,6 +569,7 @@ public class PatchingAdvancedTests {
 		for (int i = 0; i < 16; i++) {
 			modified[0x200 + i] = 0xAA;  // Block of same value
 		}
+
 		modified[0x300] = 0xDE;  // More single bytes
 		modified[0x301] = 0xAD;
 		modified[0x302] = 0xBE;

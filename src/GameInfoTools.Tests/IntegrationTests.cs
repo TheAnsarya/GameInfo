@@ -15,6 +15,7 @@ public class IntegrationTests {
 		for (int i = 0; i < 26; i++) {
 			table.AddEntry((byte)(0x80 + i), ((char)('A' + i)).ToString());
 		}
+
 		table.AddEntry(0x00, "{END}");
 
 		// Create compiler and decompiler
@@ -83,6 +84,7 @@ public class IntegrationTests {
 		for (int i = 0; i < 26; i++) {
 			table.AddEntry((byte)(0x80 + i), ((char)('A' + i)).ToString());
 		}
+
 		table.AddEntry(0xff, " ");
 
 		// Act - Encode then decode
@@ -100,8 +102,8 @@ public class IntegrationTests {
 		byte[] data = new byte[256];
 		// Create valid NES pointer table
 		for (int i = 0; i < 8; i++) {
-			data[i * 2] = (byte)((0x8000 + i * 0x100) & 0xff);
-			data[i * 2 + 1] = (byte)(((0x8000 + i * 0x100) >> 8) & 0xff);
+			data[i * 2] = (byte)((0x8000 + (i * 0x100)) & 0xff);
+			data[(i * 2) + 1] = (byte)(((0x8000 + (i * 0x100)) >> 8) & 0xff);
 		}
 
 		// Act

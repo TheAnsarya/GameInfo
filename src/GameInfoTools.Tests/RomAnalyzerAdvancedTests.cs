@@ -127,8 +127,8 @@ public class RomAnalyzerAdvancedTests {
 		var data = CreateTestRom(256);
 		// Add pointer table pattern (sequential pointers in $8000 range)
 		for (int i = 0; i < 10; i++) {
-			int offset = 16 + i * 2;
-			int pointer = 0x8000 + i * 0x100;
+			int offset = 16 + (i * 2);
+			int pointer = 0x8000 + (i * 0x100);
 			data[offset] = (byte)(pointer & 0xff);
 			data[offset + 1] = (byte)((pointer >> 8) & 0xff);
 		}

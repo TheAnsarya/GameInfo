@@ -116,8 +116,10 @@ public static class GraphicsCommands {
 						_ => '?'
 					});
 				}
+
 				writer.WriteLine();
 			}
+
 			writer.WriteLine();
 		}
 	}
@@ -207,6 +209,7 @@ public static class GraphicsCommands {
 				var color = data[offset + j] | (data[offset + j + 1] << 8);
 				colors.Append($"{color:x4} ");
 			}
+
 			table.AddRow($"${offset:x6}", colors.ToString());
 		}
 
