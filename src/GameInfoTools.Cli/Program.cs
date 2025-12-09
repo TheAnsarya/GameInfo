@@ -38,8 +38,10 @@ public class Program {
 				.LeftJustified()
 				.Color(Color.Cyan1));
 
-		AnsiConsole.MarkupLine("[grey]ROM Hacking & Documentation Toolkit[/]");
-		AnsiConsole.MarkupLine("[grey]Version 1.0.0 | .NET 9.0[/]");
+		var version = typeof(Program).Assembly.GetName().Version?.ToString(3) ?? "1.0.0";
+		var runtime = System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription;
+		AnsiConsole.MarkupLine($"[grey]ROM Hacking & Documentation Toolkit[/]");
+		AnsiConsole.MarkupLine($"[grey]Version {version} | {runtime}[/]");
 		AnsiConsole.WriteLine();
 	}
 
