@@ -10,7 +10,9 @@ This guide covers the basic startup and navigation testing for the GameInfo Tool
 ## 🎯 Prerequisites
 
 - [ ] .NET 10.0 SDK installed
+
 - [ ] Solution built successfully
+
 - [ ] Sample ROM files available
 
 ---
@@ -18,27 +20,43 @@ This guide covers the basic startup and navigation testing for the GameInfo Tool
 ## ✅ Test Checklist
 
 ### Application Launch
+
 - [ ] TEST-START-001: Launch from command line
+
 - [ ] TEST-START-002: Launch from executable
+
 - [ ] TEST-START-003: Welcome screen displays
+
 - [ ] TEST-START-004: No startup errors
 
 ### Window Behavior
+
 - [ ] TEST-START-005: Window resizable
+
 - [ ] TEST-START-006: Window minimizes
+
 - [ ] TEST-START-007: Window maximizes
+
 - [ ] TEST-START-008: Window restores position
 
 ### Menu System
+
 - [ ] TEST-START-009: File menu functional
+
 - [ ] TEST-START-010: Edit menu functional
+
 - [ ] TEST-START-011: View menu functional
+
 - [ ] TEST-START-012: Tools menu functional
+
 - [ ] TEST-START-013: Help menu functional
 
 ### Navigation
+
 - [ ] TEST-START-014: Sidebar navigation
+
 - [ ] TEST-START-015: Tab-based views
+
 - [ ] TEST-START-016: Keyboard shortcuts
 
 ---
@@ -52,30 +70,39 @@ This guide covers the basic startup and navigation testing for the GameInfo Tool
 **Steps:**
 1. Open PowerShell
 2. Navigate to GameInfo directory:
-   ```powershell
-   cd c:\Users\me\source\repos\GameInfo
-   ```
+```powershell
+cd c:\Users\me\source\repos\GameInfo
+```
+
 3. Run:
-   ```powershell
-   dotnet run --project src/GameInfoTools.UI
-   ```
+```powershell
+dotnet run --project src/GameInfoTools.UI
+```
 
 **Expected Result:**
 - Application window appears
+
 - No error messages in console
+
 - Welcome screen or main interface shown
 
 **Verification:**
+
 - [ ] Window appears within 10 seconds
+
 - [ ] No exceptions in console
+
 - [ ] UI is responsive
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
 
 **Notes:**
+
 ```
+
 Record startup time: ___ seconds
 Any console warnings:
+
 ```
 
 ---
@@ -86,13 +113,14 @@ Any console warnings:
 
 **Steps:**
 1. Navigate to build output:
-   ```powershell
-   cd src\GameInfoTools.UI\bin\Debug\net10.0
-   ```
+```powershell
+cd src\GameInfoTools.UI\bin\Debug\net10.0
+```
+
 2. Double-click `GameInfoTools.UI.exe` or run:
-   ```powershell
-   .\GameInfoTools.UI.exe
-   ```
+```powershell
+.\GameInfoTools.UI.exe
+```
 
 **Expected Result:**
 - Application launches without needing `dotnet run`
@@ -112,13 +140,19 @@ Any console warnings:
 
 **Expected Result:**
 The welcome screen should show:
+
 - Application title/logo
+
 - Quick action buttons (Open ROM, Recent Files, etc.)
+
 - Version information
+
 - Links to documentation (optional)
 
 **Screenshot of Expected Welcome Screen:**
+
 ```
+
 ┌─────────────────────────────────────────────────────────┐
 │  🎮 GameInfo Tools                                      │
 │                                                         │
@@ -133,11 +167,15 @@ The welcome screen should show:
 │                                                         │
 │  Version 1.0.0 | .NET 10.0                             │
 └─────────────────────────────────────────────────────────┘
+
 ```
 
 **Verification:**
+
 - [ ] Title/branding displayed
+
 - [ ] Open ROM button visible
+
 - [ ] Layout is clean and readable
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -150,20 +188,26 @@ The welcome screen should show:
 
 **Steps:**
 1. Launch with verbose output:
-   ```powershell
-   dotnet run --project src/GameInfoTools.UI --verbosity detailed 2>&1 | Tee-Object startup.log
-   ```
+```powershell
+dotnet run --project src/GameInfoTools.UI --verbosity detailed 2>&1 | Tee-Object startup.log
+```
+
 2. Check console output
 3. Check Event Viewer (optional)
 
 **Expected Result:**
 - No exceptions thrown
+
 - No error dialogs
+
 - Application fully functional
 
 **Verification:**
+
 - [ ] No "Unhandled Exception" dialogs
+
 - [ ] No crash reporters
+
 - [ ] Console has no ERROR lines
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -190,7 +234,9 @@ The welcome screen should show:
 
 **Expected Result:**
 - Window resizes smoothly
+
 - Content reflows appropriately
+
 - Minimum size enforced (no truncation of critical UI)
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -207,6 +253,7 @@ The welcome screen should show:
 
 **Expected Result:**
 - Window minimizes to taskbar
+
 - Restores to previous size/position
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -223,7 +270,9 @@ The welcome screen should show:
 
 **Expected Result:**
 - Window fills screen
+
 - Content scales appropriately
+
 - Double-click title bar also maximizes
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -242,6 +291,7 @@ The welcome screen should show:
 
 **Expected Result:**
 - Window appears at saved position
+
 - Window has saved size
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -350,7 +400,9 @@ The welcome screen should show:
 
 **Expected Result:**
 - Clicking item switches view
+
 - Active item is highlighted
+
 - Smooth transition
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -368,7 +420,9 @@ The welcome screen should show:
 
 **Expected Result:**
 - Each view has a tab
+
 - Tabs can be closed (X button)
+
 - Content preserved when switching
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked

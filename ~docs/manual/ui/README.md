@@ -12,8 +12,11 @@ The GameInfo Tools UI is an Avalonia-based desktop application providing graphic
 Before testing:
 
 - [ ] .NET 10.0 SDK installed
+
 - [ ] Solution built (`dotnet build`)
+
 - [ ] Sample ROM files available
+
 - [ ] Display resolution at least 1280x720
 
 ## 🚀 Launching the Application
@@ -21,11 +24,14 @@ Before testing:
 ```powershell
 # From the GameInfo directory
 dotnet run --project src/GameInfoTools.UI
+
 ```
 
 Or run the built executable:
+
 ```powershell
 .\src\GameInfoTools.UI\bin\Debug\net10.0\GameInfoTools.UI.exe
+
 ```
 
 ---
@@ -53,57 +59,93 @@ Or run the built executable:
 ## ✅ Master Test Checklist
 
 ### Application Startup
+
 - [ ] TEST-UI-001: Application launches without errors
+
 - [ ] TEST-UI-002: Welcome screen displayed
+
 - [ ] TEST-UI-003: Menu bar visible and functional
+
 - [ ] TEST-UI-004: Window can be resized
 
 ### File Operations
+
 - [ ] TEST-UI-005: Open ROM file dialog works
+
 - [ ] TEST-UI-006: Recent files list maintained
+
 - [ ] TEST-UI-007: Save/export dialogs work
+
 - [ ] TEST-UI-008: Drag-and-drop file opening
 
 ### View Navigation
+
 - [ ] TEST-UI-009: Navigate between views
+
 - [ ] TEST-UI-010: View tabs work correctly
+
 - [ ] TEST-UI-011: Multiple views open simultaneously
+
 - [ ] TEST-UI-012: Close views properly
 
 ### ROM Info View
+
 - [ ] TEST-UI-013: Displays ROM metadata correctly
+
 - [ ] TEST-UI-014: Header parsing accurate
+
 - [ ] TEST-UI-015: Checksum displayed
 
 ### CHR Editor View
+
 - [ ] TEST-UI-016: Tile grid displays correctly
+
 - [ ] TEST-UI-017: Tile selection works
+
 - [ ] TEST-UI-018: Palette switching works
+
 - [ ] TEST-UI-019: Export tiles to image
 
 ### Hex Editor View
+
 - [ ] TEST-UI-020: Hex display correct
+
 - [ ] TEST-UI-021: ASCII column accurate
+
 - [ ] TEST-UI-022: Navigation (goto address)
+
 - [ ] TEST-UI-023: Edit bytes
+
 - [ ] TEST-UI-024: Search functionality
 
 ### CDL Viewer
+
 - [ ] TEST-UI-025: Load CDL file
+
 - [ ] TEST-UI-026: ASCII heatmap displays
+
 - [ ] TEST-UI-027: Graphical heatmap displays
+
 - [ ] TEST-UI-028: Statistics shown
+
 - [ ] TEST-UI-029: Tab switching works
 
 ### Disassembler View
+
 - [ ] TEST-UI-030: Disassembly displays
+
 - [ ] TEST-UI-031: Navigation works
+
 - [ ] TEST-UI-032: Labels shown (if loaded)
+
 - [ ] TEST-UI-033: Export functionality
 
 ### Performance
+
 - [ ] TEST-UI-034: Large ROM loads in <5 seconds
+
 - [ ] TEST-UI-035: Scrolling smooth
+
 - [ ] TEST-UI-036: No memory leaks (check task manager)
 
 ---
@@ -113,28 +155,38 @@ Or run the built executable:
 Run this quick test to verify basic functionality:
 
 ### 1. Launch Application
+
 ```powershell
 dotnet run --project src/GameInfoTools.UI
+
 ```
+
 ✓ Window appears without errors
 
 ### 2. Open a ROM
+
 - File → Open or Ctrl+O
+
 - Select a NES ROM
 - ✓ ROM loads, info displayed
 
 ### 3. Navigate Views
+
 - Click "CHR Editor" in sidebar or menu
 - ✓ Tiles displayed
+
 - Click "Hex Editor"
 - ✓ Hex view shown
 
 ### 4. Open CDL Viewer
+
 - Tools → CDL Viewer
+
 - Open a .cdl file
 - ✓ Heatmap displays
 
 ### 5. Close Application
+
 - File → Exit or Alt+F4
 - ✓ Closes cleanly
 
@@ -147,8 +199,11 @@ dotnet run --project src/GameInfoTools.UI
 Test with different themes/appearances:
 
 - [ ] Light theme renders correctly
+
 - [ ] Dark theme renders correctly
+
 - [ ] High contrast accessible
+
 - [ ] System theme follows OS setting
 
 ---
@@ -199,6 +254,7 @@ When you find a bug during testing, use this template:
 Brief description of the issue
 
 ### Steps to Reproduce
+
 1. Step one
 2. Step two
 3. Step three
@@ -213,9 +269,12 @@ What actually happens
 (if applicable)
 
 ### Environment
+
 - OS: Windows 11
 - .NET Version: 10.0.x
+
 - Resolution: 1920x1080
+
 ```
 
 ---

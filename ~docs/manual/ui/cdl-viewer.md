@@ -11,7 +11,9 @@ The CDL Viewer displays coverage data from emulator Code/Data Log files with bot
 ## 🎯 Prerequisites
 
 - [ ] GameInfo UI application launches
+
 - [ ] Sample CDL files available (FCEUX, Mesen, or bsnes format)
+
 - [ ] ROM file for context (optional)
 
 ---
@@ -19,30 +21,47 @@ The CDL Viewer displays coverage data from emulator Code/Data Log files with bot
 ## ✅ Test Checklist
 
 ### Loading CDL Files
+
 - [ ] TEST-CDL-UI-001: Open CDL file dialog
+
 - [ ] TEST-CDL-UI-002: Load FCEUX CDL
+
 - [ ] TEST-CDL-UI-003: Load Mesen CDL
+
 - [ ] TEST-CDL-UI-004: Handle invalid file
 
 ### ASCII Heatmap Tab
+
 - [ ] TEST-CDL-UI-005: ASCII heatmap displays
+
 - [ ] TEST-CDL-UI-006: Legend visible
+
 - [ ] TEST-CDL-UI-007: Scrolling works
+
 - [ ] TEST-CDL-UI-008: Bank navigation
 
 ### Graphical Heatmap Tab
+
 - [ ] TEST-CDL-UI-009: Graphical heatmap displays
+
 - [ ] TEST-CDL-UI-010: Colors correct (code=green, data=yellow)
+
 - [ ] TEST-CDL-UI-011: Tooltips show info
+
 - [ ] TEST-CDL-UI-012: Zoom/scale works
 
 ### Statistics Panel
+
 - [ ] TEST-CDL-UI-013: Coverage percentages shown
+
 - [ ] TEST-CDL-UI-014: Byte counts accurate
+
 - [ ] TEST-CDL-UI-015: Progress bar updates
 
 ### Tab Switching
+
 - [ ] TEST-CDL-UI-016: Switch ASCII ↔ Graphical
+
 - [ ] TEST-CDL-UI-017: State preserved on switch
 
 ---
@@ -60,12 +79,17 @@ The CDL Viewer displays coverage data from emulator Code/Data Log files with bot
 
 **Expected Result:**
 - File dialog opens
+
 - Filter shows CDL file types (*.cdl, *.mcdl)
+
 - Can browse to and select files
 
 **Verification:**
+
 - [ ] Dialog opens
+
 - [ ] Filter correct
+
 - [ ] Can navigate directories
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -77,6 +101,7 @@ The CDL Viewer displays coverage data from emulator Code/Data Log files with bot
 **Purpose:** Verify FCEUX format CDL loads correctly.
 
 **Prerequisites:**
+
 - FCEUX .cdl file
 
 **Steps:**
@@ -86,13 +111,19 @@ The CDL Viewer displays coverage data from emulator Code/Data Log files with bot
 
 **Expected Result:**
 - File loads without error
+
 - Format detected as "FCEUX"
+
 - Statistics populate
+
 - Heatmap displays
 
 **Verification:**
+
 - [ ] No error dialog
+
 - [ ] Format shown correctly
+
 - [ ] Coverage data displayed
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -104,6 +135,7 @@ The CDL Viewer displays coverage data from emulator Code/Data Log files with bot
 **Purpose:** Verify Mesen format CDL loads correctly.
 
 **Prerequisites:**
+
 - Mesen .mcdl file
 
 **Steps:**
@@ -112,7 +144,9 @@ The CDL Viewer displays coverage data from emulator Code/Data Log files with bot
 
 **Expected Result:**
 - File loads without error
+
 - Format detected as "Mesen"
+
 - All data displayed correctly
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -129,12 +163,17 @@ The CDL Viewer displays coverage data from emulator Code/Data Log files with bot
 
 **Expected Result:**
 - Clear error message
+
 - No crash
+
 - UI remains functional
 
 **Verification:**
+
 - [ ] Error message helpful
+
 - [ ] No unhandled exception
+
 - [ ] Can try again with valid file
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -150,7 +189,9 @@ The CDL Viewer displays coverage data from emulator Code/Data Log files with bot
 2. Click "ASCII Heatmap" tab (if not default)
 
 **Expected Result:**
+
 ```
+
 CDL Heatmap
 ════════════════════════════════════════════════════════════
 Legend: C=Code  D=Data  #=Both  ░=Unknown
@@ -159,11 +200,15 @@ Bank 0:
 CCCCDDDD####CCCC░░░░DDDDCCCC####████░░░░CCCCDDDD████████░░░░░░░░
 DDDDCCCC████████████CCCCDDDD░░░░░░░░CCCCDDDDCCCC████████░░░░░░░░
 ...
+
 ```
 
 **Verification:**
+
 - [ ] Characters display correctly
+
 - [ ] Monospace font used
+
 - [ ] Readable and aligned
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -180,12 +225,17 @@ DDDDCCCC████████████CCCCDDDD░░░░░░░░CCCC
 
 **Expected Result:**
 - Legend explains symbols
+
 - Clear color/symbol meanings
+
 - Easy to understand
 
 **Verification:**
+
 - [ ] Legend present
+
 - [ ] All symbols explained
+
 - [ ] Positioned clearly
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -203,7 +253,9 @@ DDDDCCCC████████████CCCCDDDD░░░░░░░░CCCC
 
 **Expected Result:**
 - Smooth scrolling
+
 - Content renders correctly at all positions
+
 - No visual glitches
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -221,7 +273,9 @@ DDDDCCCC████████████CCCCDDDD░░░░░░░░CCCC
 
 **Expected Result:**
 - Can view different banks
+
 - Bank labels/headers shown
+
 - Data matches selected bank
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -238,12 +292,17 @@ DDDDCCCC████████████CCCCDDDD░░░░░░░░CCCC
 
 **Expected Result:**
 - Grid of colored cells appears
+
 - Cells colored based on coverage type
+
 - Smooth rendering
 
 **Verification:**
+
 - [ ] Grid displays
+
 - [ ] Colors visible
+
 - [ ] No rendering errors
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -268,9 +327,13 @@ DDDDCCCC████████████CCCCDDDD░░░░░░░░CCCC
 3. Verify colors match expectations
 
 **Verification:**
+
 - [ ] Code regions are green
+
 - [ ] Data regions are yellow
+
 - [ ] Unknown is clearly different
+
 - [ ] Colors are distinguishable
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -288,22 +351,32 @@ DDDDCCCC████████████CCCCDDDD░░░░░░░░CCCC
 
 **Expected Result:**
 Tooltip shows:
+
 - Address range
+
 - Coverage type (Code/Data/Both/Unknown)
+
 - Byte count
+
 - Percentage (optional)
 
 **Example Tooltip:**
+
 ```
+
 Address: $8000-$80FF
 Type: Code
 Bytes: 256
 Coverage: 100%
+
 ```
 
 **Verification:**
+
 - [ ] Tooltip appears on hover
+
 - [ ] Information accurate
+
 - [ ] Readable formatting
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -317,14 +390,19 @@ Coverage: 100%
 **Steps:**
 1. View graphical heatmap
 2. If zoom controls exist:
-   - Zoom in
-   - Zoom out
-   - Reset to default
+
+- Zoom in
+
+- Zoom out
+
+- Reset to default
 3. Or try mouse wheel zoom
 
 **Expected Result:**
 - Can increase detail level
+
 - Can zoom out for overview
+
 - Rendering stays clean at all levels
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -340,7 +418,9 @@ Coverage: 100%
 2. Locate statistics panel/section
 
 **Expected Result:**
+
 ```
+
 Coverage Statistics
 ═══════════════════
 Code:    42.3%
@@ -349,11 +429,15 @@ Both:     5.2%
 Unknown: 24.4%
 
 Total Logged: 75.6%
+
 ```
 
 **Verification:**
+
 - [ ] Percentages displayed
+
 - [ ] Values sum correctly
+
 - [ ] Updates when file changes
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -370,8 +454,11 @@ Total Logged: 75.6%
 
 **Expected Result:**
 - Shows actual byte numbers
+
 - Code bytes: XXXX
+
 - Data bytes: XXXX
+
 - Total matches file size
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -388,7 +475,9 @@ Total Logged: 75.6%
 
 **Expected Result:**
 - Progress bar shows coverage level
+
 - Color-coded sections (optional)
+
 - Updates with data
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -407,12 +496,17 @@ Total Logged: 75.6%
 
 **Expected Result:**
 - Instant or fast switching
+
 - Each view renders correctly
+
 - No data loss between switches
 
 **Verification:**
+
 - [ ] ASCII tab works
+
 - [ ] Graphical tab works
+
 - [ ] No lag or glitches
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -430,7 +524,9 @@ Total Logged: 75.6%
 
 **Expected Result:**
 - Scroll position preserved
+
 - Selected bank preserved (if applicable)
+
 - Settings maintained
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked

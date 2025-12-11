@@ -12,21 +12,31 @@ Data tools handle game data import/export:
 ## 🎯 Prerequisites
 
 - [ ] GameInfo CLI built
+
 - [ ] Sample ROM with known data structures
+
 - [ ] JSON editor (VS Code recommended)
 
 ## ✅ Test Checklist
 
 ### `git data export` - Export to JSON
+
 - [ ] TEST-DATA-001: Export monster data
+
 - [ ] TEST-DATA-002: Export item data
+
 - [ ] TEST-DATA-003: Export spell data
+
 - [ ] TEST-DATA-004: Handle unknown data type
 
 ### `git data import` - Import from JSON
+
 - [ ] TEST-DATA-005: Import modified monster data
+
 - [ ] TEST-DATA-006: Import modified item data
+
 - [ ] TEST-DATA-007: Validate JSON on import
+
 - [ ] TEST-DATA-008: Handle invalid JSON
 
 ---
@@ -39,12 +49,14 @@ Data tools handle game data import/export:
 
 **Steps:**
 1. Run:
-   ```powershell
-   dotnet run --project src/GameInfoTools.Cli -- data export "game.nes" monsters
-   ```
+```powershell
+dotnet run --project src/GameInfoTools.Cli -- data export "game.nes" monsters
+```
 
 **Expected Result:**
+
 ```
+
 Data Export
 ────────────────────────────────────────
 File:         game.nes
@@ -56,22 +68,27 @@ Output:       monsters.json
 
 Sample record:
 {
-  "id": 0,
-  "name": "Slime",
-  "hp": 3,
-  "attack": 2,
-  "defense": 1,
-  "agility": 2,
-  "experience": 1,
-  "gold": 2
+"id": 0,
+"name": "Slime",
+"hp": 3,
+"attack": 2,
+"defense": 1,
+"agility": 2,
+"experience": 1,
+"gold": 2
 }
 ────────────────────────────────────────
+
 ```
 
 **Verification:**
+
 - [ ] JSON file created
+
 - [ ] All monsters exported
+
 - [ ] Values match known data
+
 - [ ] JSON is valid and readable
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -84,18 +101,23 @@ Sample record:
 
 **Steps:**
 1. Run:
-   ```powershell
-   dotnet run --project src/GameInfoTools.Cli -- data export "game.nes" items
-   ```
+```powershell
+dotnet run --project src/GameInfoTools.Cli -- data export "game.nes" items
+```
 
 **Expected Result:**
 - JSON file with item data
+
 - Includes name, price, effects, equip flags
+
 - Matches known item table
 
 **Verification:**
+
 - [ ] All items exported
+
 - [ ] Prices correct
+
 - [ ] Effects encoded properly
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -108,13 +130,15 @@ Sample record:
 
 **Steps:**
 1. Run:
-   ```powershell
-   dotnet run --project src/GameInfoTools.Cli -- data export "game.nes" spells
-   ```
+```powershell
+dotnet run --project src/GameInfoTools.Cli -- data export "game.nes" spells
+```
 
 **Expected Result:**
 - JSON with spell data
+
 - MP cost, power, target type
+
 - Effect flags
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -127,18 +151,23 @@ Sample record:
 
 **Steps:**
 1. Run with invalid type:
-   ```powershell
-   dotnet run --project src/GameInfoTools.Cli -- data export "game.nes" invalid_type
-   ```
+```powershell
+dotnet run --project src/GameInfoTools.Cli -- data export "game.nes" invalid_type
+```
 
 **Expected Result:**
 - Clear error message
+
 - Lists supported data types
+
 - No crash
 
 **Verification:**
+
 - [ ] Error message helpful
+
 - [ ] Shows valid types
+
 - [ ] Suggests closest match
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -150,20 +179,25 @@ Sample record:
 **Purpose:** Verify monster data can be modified and reimported.
 
 **Prerequisites:**
+
 - Working copy of ROM
+
 - Exported monsters.json
 
 **Steps:**
 1. Export monster data
 2. Edit monsters.json - change Slime HP from 3 to 99
 3. Import modified data:
-   ```powershell
-   dotnet run --project src/GameInfoTools.Cli -- data import "copy.nes" "monsters.json"
-   ```
+```powershell
+dotnet run --project src/GameInfoTools.Cli -- data import "copy.nes" "monsters.json"
+```
+
 4. Test in emulator (optional)
 
 **Expected Result:**
+
 ```
+
 Data Import
 ────────────────────────────────────────
 File:         copy.nes
@@ -176,12 +210,17 @@ Importing records... Done!
 Modified: XX records
 ROM updated successfully.
 ────────────────────────────────────────
+
 ```
 
 **Verification:**
+
 - [ ] Import completes without error
+
 - [ ] Changes reflected in ROM
+
 - [ ] ROM still works in emulator
+
 - [ ] Modified values visible in game
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -199,6 +238,7 @@ ROM updated successfully.
 
 **Expected Result:**
 - Changes applied to ROM
+
 - Item data updated correctly
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -211,26 +251,33 @@ ROM updated successfully.
 
 **Steps:**
 1. Create JSON with valid structure but invalid values:
-   ```json
-   {
-     "monsters": [{
-       "id": 0,
-       "name": "Test",
-       "hp": 999999  // Too large for 1-byte value
-     }]
-   }
-   ```
+```json
+{
+"monsters": [{
+"id": 0,
+"name": "Test",
+"hp": 999999  // Too large for 1-byte value
+}]
+}
+```
+
 2. Try to import
 
 **Expected Result:**
 - Validation error shown
+
 - ROM not modified
+
 - Shows which value is invalid
+
 - Shows valid range
 
 **Verification:**
+
 - [ ] Detects out-of-range values
+
 - [ ] Shows helpful error
+
 - [ ] Does not corrupt ROM
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked
@@ -243,22 +290,28 @@ ROM updated successfully.
 
 **Steps:**
 1. Create invalid JSON (syntax error):
-   ```json
-   {
-     "monsters": [
-       { "id": 0, "name": "Test" // missing closing brace
-   }
-   ```
+```json
+{
+"monsters": [
+{ "id": 0, "name": "Test" // missing closing brace
+}
+```
+
 2. Try to import
 
 **Expected Result:**
 - Parse error shown
+
 - Line/column of error indicated
+
 - ROM not modified
 
 **Verification:**
+
 - [ ] JSON parse error caught
+
 - [ ] Error location shown
+
 - [ ] Helpful message
 
 **Result:** ☐ Pass ☐ Fail ☐ Blocked

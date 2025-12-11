@@ -9,9 +9,13 @@ Welcome to the manual testing documentation for GameInfo Tools! This guide provi
 Before you begin testing, make sure you have:
 
 - [ ] .NET 10.0 SDK installed
+
 - [ ] Built the solution (`dotnet build`)
+
 - [ ] Sample ROM files (see [Samples Guide](samples/README.md))
+
 - [ ] Terminal/command prompt ready
+
 - [ ] UI application launches successfully
 
 ## 🗂️ Testing Guides
@@ -54,22 +58,31 @@ Before you begin testing, make sure you have:
 Each testing guide follows a consistent format:
 
 ### 1. Prerequisites
+
 What you need before starting the tests
 
 ### 2. Test Checklist
+
 A todo-list style checklist of all test cases:
+
 ```markdown
+
 - [ ] Test case 1: Description
+
 - [ ] Test case 2: Description
+
 ```
 
 ### 3. Step-by-Step Instructions
+
 Detailed instructions for each test with:
+
 - **Command/Action:** What to do
 - **Expected Result:** What you should see
 - **Troubleshooting:** Common issues and fixes
 
 ### 4. Verification
+
 How to confirm the test passed
 
 ---
@@ -81,6 +94,7 @@ How to confirm the test passed
 ```powershell
 cd c:\Users\me\source\repos\GameInfo
 dotnet build
+
 ```
 
 ### Run CLI Commands
@@ -91,12 +105,14 @@ dotnet run --project src/GameInfoTools.Cli -- <command>
 
 # Or use the built executable
 .\src\GameInfoTools.Cli\bin\Debug\net10.0\git.exe <command>
+
 ```
 
 ### Launch the UI Application
 
 ```powershell
 dotnet run --project src/GameInfoTools.UI
+
 ```
 
 ---
@@ -117,8 +133,9 @@ Track your testing progress here:
 | UI Views | 🔴 Not Started | 0 | 13 |
 
 **Status Legend:**
+
 - 🔴 Not Started
-- 🟡 In Progress  
+- 🟡 In Progress
 - 🟢 Complete
 - ⚠️ Issues Found
 
