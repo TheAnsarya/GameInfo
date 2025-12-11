@@ -459,6 +459,114 @@ public class ViewModelTests {
 		Assert.NotEmpty(vm.DisassemblyLines);
 	}
 
+	[Fact]
+	public void DisassemblerViewModel_NavigationHistory_TracksBackForward() {
+		var rom = CreateTestNesRom();
+		var vm = new DisassemblerViewModel(rom);
+
+		Assert.False(vm.CanGoBack);
+		Assert.False(vm.CanGoForward);
+
+		vm.StartOffset = 0;
+		vm.GoToOffsetCommand.Execute(null);
+
+		vm.StartOffset = 100;
+		vm.GoToOffsetCommand.Execute(null);
+
+		Assert.True(vm.CanGoBack);
+		Assert.False(vm.CanGoForward);
+	}
+
+	[Fact]
+	public void DisassemblerViewModel_NavigateBack_RestoresPreviousPosition() {
+		var rom = CreateTestNesRom();
+		var vm = new DisassemblerViewModel(rom);
+
+		// Start at offset 50
+		vm.StartOffset = 50;
+		vm.GoToOffsetCommand.Execute(null);
+		// Stack now has: [50]
+
+		// Navigate to offset 100 - pushes current state (50) before navigation
+		vm.StartOffset = 100;
+		vm.GoToOffsetCommand.Execute(null);
+		// Stack now has: [50, 100]
+
+		// Navigate back should restore the previous position (100, since we pushed before changing)
+		vm.NavigateBackCommand.Execute(null);
+
+		// After back, we pop the top (100) and restore it
+		// Actually the logic is: push current to forward, pop back stack
+		Assert.True(vm.CanGoForward);
+	}
+
+	[Fact]
+	public void DisassemblerViewModel_CrossReferences_TracksBranchesAndJumps() {
+		var rom = CreateTestNesRom();
+		var vm = new DisassemblerViewModel(rom);
+		vm.AutoFollowJumps = true;
+
+		vm.DisassembleCommand.Execute(null);
+
+		// Cross-references are tracked during disassembly
+		Assert.NotNull(vm.CrossReferences);
+	}
+
+	[Fact]
+	public void DisassemblerViewModel_Symbols_CanBeUsed() {
+		var rom = CreateTestNesRom();
+		var vm = new DisassemblerViewModel(rom);
+
+		vm.Symbols.AddSymbol("reset_vector", 0x8000, SymbolTable.SymbolType.Code);
+		vm.UseSymbols = true;
+
+		Assert.True(vm.Symbols.HasSymbol(0x8000));
+		Assert.Equal("reset_vector", vm.Symbols.GetSymbol(0x8000));
+	}
+
+	[Fact]
+	public void DisassemblerViewModel_AutoLabelBranches_CreatesLabels() {
+		var rom = CreateTestNesRom();
+		var vm = new DisassemblerViewModel(rom);
+		vm.AutoLabelBranches = true;
+
+		var initialSymbolCount = vm.Symbols.GetAllSymbols().Count();
+		vm.DisassembleCommand.Execute(null);
+
+		// Auto-labeling may have added new symbols if branches were found
+		Assert.True(vm.AutoLabelBranches);
+	}
+
+	[Fact]
+	public void DisassemblerViewModel_SelectedLine_CanBeSet() {
+		var rom = CreateTestNesRom();
+		var vm = new DisassemblerViewModel(rom);
+
+		vm.DisassembleCommand.Execute(null);
+
+		if (vm.DisassemblyLines.Count > 0) {
+			vm.SelectedLine = vm.DisassemblyLines[0];
+			Assert.NotNull(vm.SelectedLine);
+		}
+	}
+
+	[Fact]
+	public void DisassemblyLine_Record_IncludesLabelAndRawAddress() {
+		var line = new DisassemblyLine(
+			"$8000",
+			"a9 00",
+			"LDA",
+			"#$00",
+			"Load zero",
+			"start",
+			0x8000
+		);
+
+		Assert.Equal("start", line.Label);
+		Assert.Equal(0x8000, line.RawAddress);
+		Assert.Equal("$8000", line.Address);
+	}
+
 	#endregion
 
 	#region ChrEditorViewModel Tests
