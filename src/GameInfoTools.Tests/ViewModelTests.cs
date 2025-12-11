@@ -302,6 +302,119 @@ public class ViewModelTests {
 		Assert.Contains("000100", vm.UndoDescription, StringComparison.OrdinalIgnoreCase);
 	}
 
+	[Fact]
+	public void HexEditorViewModel_DataInspector_UpdatesOnSelection() {
+		var rom = CreateTestNesRom();
+		rom.Data[0x100] = 0x42;
+		rom.Data[0x101] = 0x01;
+		var vm = new HexEditorViewModel(rom);
+
+		vm.SelectedOffset = 0x100;
+
+		Assert.Contains("66", vm.InspectorByte); // 0x42 = 66 decimal
+		Assert.Contains("01000010", vm.InspectorBinary); // Binary of 0x42
+		Assert.Contains("'B'", vm.InspectorAscii); // ASCII 0x42 = 'B'
+		Assert.Contains("0142", vm.InspectorWordLE); // Little-endian 0x0142
+	}
+
+	[Fact]
+	public void HexEditorViewModel_Bookmarks_AddAndRemove() {
+		var rom = CreateTestNesRom();
+		var vm = new HexEditorViewModel(rom);
+
+		vm.SelectedOffset = 0x200;
+		vm.AddBookmarkCommand.Execute(null);
+
+		Assert.Single(vm.Bookmarks);
+		Assert.Equal(0x200, vm.Bookmarks[0].Offset);
+
+		vm.RemoveBookmarkCommand.Execute(0x200);
+
+		Assert.Empty(vm.Bookmarks);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_Bookmarks_NoDuplicates() {
+		var rom = CreateTestNesRom();
+		var vm = new HexEditorViewModel(rom);
+
+		vm.SelectedOffset = 0x100;
+		vm.AddBookmarkCommand.Execute(null);
+		vm.AddBookmarkCommand.Execute(null); // Try to add same offset
+
+		Assert.Single(vm.Bookmarks);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_GoToBookmark_NavigatesToOffset() {
+		var rom = CreateTestNesRom();
+		var vm = new HexEditorViewModel(rom);
+
+		vm.SelectedOffset = 0x500;
+		vm.AddBookmarkCommand.Execute(null);
+		vm.CurrentOffset = 0; // Navigate away
+
+		vm.GoToBookmarkCommand.Execute(0x500);
+
+		Assert.Equal(0x500, vm.CurrentOffset);
+		Assert.Equal(0x500, vm.SelectedOffset);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_ByteGroupMode_CyclesCorrectly() {
+		var rom = CreateTestNesRom();
+		var vm = new HexEditorViewModel(rom);
+
+		Assert.Equal(ByteGroupMode.Byte, vm.ByteGroup);
+
+		vm.CycleByteGroupCommand.Execute(null);
+		Assert.Equal(ByteGroupMode.Word, vm.ByteGroup);
+
+		vm.CycleByteGroupCommand.Execute(null);
+		Assert.Equal(ByteGroupMode.DWord, vm.ByteGroup);
+
+		vm.CycleByteGroupCommand.Execute(null);
+		Assert.Equal(ByteGroupMode.DWordBE, vm.ByteGroup);
+
+		vm.CycleByteGroupCommand.Execute(null);
+		Assert.Equal(ByteGroupMode.Byte, vm.ByteGroup);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_SelectionRange_SetsCorrectly() {
+		var rom = CreateTestNesRom();
+		var vm = new HexEditorViewModel(rom);
+
+		vm.SetSelection(0x100, 0x10F);
+
+		Assert.True(vm.HasRangeSelection);
+		Assert.Equal(16, vm.SelectionLength);
+		Assert.Equal(0x100, vm.SelectionStart);
+		Assert.Equal(0x10F, vm.SelectionEnd);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_ClearRangeSelection_ClearsSelection() {
+		var rom = CreateTestNesRom();
+		var vm = new HexEditorViewModel(rom);
+
+		vm.SetSelection(0x100, 0x10F);
+		vm.ClearRangeSelectionCommand.Execute(null);
+
+		Assert.False(vm.HasRangeSelection);
+		Assert.Equal(0, vm.SelectionLength);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_NesAddress_CalculatesCorrectly() {
+		var rom = CreateTestNesRom();
+		var vm = new HexEditorViewModel(rom);
+
+		vm.SelectedOffset = 0x4010; // In second PRG bank
+
+		Assert.Contains("Bank 1", vm.InspectorNesAddress);
+	}
+
 	#endregion
 
 	#region DisassemblerViewModel Tests
