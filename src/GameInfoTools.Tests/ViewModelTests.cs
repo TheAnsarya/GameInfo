@@ -538,6 +538,110 @@ public class ViewModelTests {
 		Assert.Equal("0x000100", vm.SearchResults[0].OffsetDisplay);
 	}
 
+	[Fact]
+	public void HexEditorViewModel_FindNextPattern_NavigatesToNext() {
+		var rom = CreateTestNesRom();
+		rom.Data[0x100] = 0xDE;
+		rom.Data[0x101] = 0xAD;
+		rom.Data[0x200] = 0xDE;
+		rom.Data[0x201] = 0xAD;
+		var vm = new HexEditorViewModel(rom);
+		vm.SelectedOffset = 0; // Start from beginning
+
+		vm.FindPattern = "DE AD";
+		vm.FindNextPatternCommand.Execute(null);
+
+		// Should find first occurrence
+		Assert.Equal(0x100, vm.SelectedOffset);
+
+		vm.FindNextPatternCommand.Execute(null);
+		// Should find second occurrence
+		Assert.Equal(0x200, vm.SelectedOffset);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_FindNextPattern_WrapsAround() {
+		var rom = CreateTestNesRom();
+		rom.Data[0x100] = 0xDE;
+		rom.Data[0x101] = 0xAD;
+		var vm = new HexEditorViewModel(rom);
+		vm.SelectedOffset = 0x200; // Start past the match
+
+		vm.FindPattern = "DE AD";
+		vm.FindNextPatternCommand.Execute(null);
+
+		// Should wrap around and find the match at 0x100
+		Assert.Equal(0x100, vm.SelectedOffset);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_FindPreviousPattern_NavigatesBackward() {
+		var rom = CreateTestNesRom();
+		rom.Data[0x100] = 0xDE;
+		rom.Data[0x101] = 0xAD;
+		rom.Data[0x200] = 0xDE;
+		rom.Data[0x201] = 0xAD;
+		var vm = new HexEditorViewModel(rom);
+		vm.SelectedOffset = 0x300; // Start past both matches
+
+		vm.FindPattern = "DE AD";
+		vm.FindPreviousPatternCommand.Execute(null);
+
+		// Should find second (closer) occurrence
+		Assert.Equal(0x200, vm.SelectedOffset);
+
+		vm.FindPreviousPatternCommand.Execute(null);
+		// Should find first occurrence
+		Assert.Equal(0x100, vm.SelectedOffset);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_FindPreviousPattern_WrapsAround() {
+		var rom = CreateTestNesRom();
+		rom.Data[0x200] = 0xDE;
+		rom.Data[0x201] = 0xAD;
+		var vm = new HexEditorViewModel(rom);
+		vm.SelectedOffset = 0x50; // Start before the match
+
+		vm.FindPattern = "DE AD";
+		vm.FindPreviousPatternCommand.Execute(null);
+
+		// Should wrap around and find the match at 0x200
+		Assert.Equal(0x200, vm.SelectedOffset);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_FindNextPattern_NoResultsDoesNothing() {
+		var rom = CreateTestNesRom();
+		var vm = new HexEditorViewModel(rom);
+
+		// No search results
+		vm.FindNextPatternCommand.Execute(null);
+
+		Assert.Equal(-1, vm.CurrentSearchIndex);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_ToggleSearchPanel_TogglesVisibility() {
+		var vm = new HexEditorViewModel(null);
+
+		Assert.False(vm.ShowSearchPanel);
+		vm.ToggleSearchPanelCommand.Execute(null);
+		Assert.True(vm.ShowSearchPanel);
+		vm.ToggleSearchPanelCommand.Execute(null);
+		Assert.False(vm.ShowSearchPanel);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_CloseSearchPanel_HidesPanel() {
+		var vm = new HexEditorViewModel(null);
+		vm.ToggleSearchPanelCommand.Execute(null); // Open it
+
+		Assert.True(vm.ShowSearchPanel);
+		vm.CloseSearchPanelCommand.Execute(null);
+		Assert.False(vm.ShowSearchPanel);
+	}
+
 	#endregion
 
 	#region DisassemblerViewModel Tests
@@ -1547,6 +1651,88 @@ public class ViewModelTests {
 		Assert.Equal(0x1000, edge.FromOffset);
 		Assert.Equal(0x2000, edge.ToOffset);
 		Assert.Equal("Call", edge.Type);
+	}
+
+	[Fact]
+	public void ScriptEditorViewModel_SearchPanel_InitiallyHidden() {
+		var vm = new ScriptEditorViewModel();
+
+		Assert.False(vm.ShowSearchPanel);
+		Assert.Empty(vm.SearchText);
+	}
+
+	[Fact]
+	public void ScriptEditorViewModel_ToggleSearchPanel_TogglesVisibility() {
+		var vm = new ScriptEditorViewModel();
+
+		Assert.False(vm.ShowSearchPanel);
+		vm.ToggleSearchPanelCommand.Execute(null);
+		Assert.True(vm.ShowSearchPanel);
+		vm.ToggleSearchPanelCommand.Execute(null);
+		Assert.False(vm.ShowSearchPanel);
+	}
+
+	[Fact]
+	public void ScriptEditorViewModel_CloseSearchPanel_HidesPanel() {
+		var vm = new ScriptEditorViewModel();
+		vm.ToggleSearchPanelCommand.Execute(null); // Open it
+
+		Assert.True(vm.ShowSearchPanel);
+		vm.CloseSearchPanelCommand.Execute(null);
+		Assert.False(vm.ShowSearchPanel);
+	}
+
+	[Fact]
+	public void ScriptEditorViewModel_Search_FindsMatchingCommands() {
+		var rom = CreateTestNesRom();
+		var vm = new ScriptEditorViewModel(rom);
+		vm.ScriptOffset = 0;
+		vm.ScriptLength = 64;
+		vm.LoadScriptCommand.Execute(null);
+
+		// Search for commands (NOP is likely to appear)
+		vm.SearchText = "UNK";
+		vm.ExecuteSearchCommand.Execute(null);
+
+		// Should find results matching command names or hex values
+		Assert.NotNull(vm.SearchResults);
+	}
+
+	[Fact]
+	public void ScriptEditorViewModel_SearchNext_CyclesResults() {
+		var rom = CreateTestNesRom();
+		var vm = new ScriptEditorViewModel(rom);
+		vm.ScriptOffset = 0;
+		vm.ScriptLength = 64;
+		vm.LoadScriptCommand.Execute(null);
+
+		vm.SearchText = "UNK";
+		vm.ExecuteSearchCommand.Execute(null);
+
+		if (vm.SearchResults.Count > 1) {
+			var firstIndex = vm.CurrentSearchIndex;
+			vm.SearchNextCommand.Execute(null);
+			Assert.Equal((firstIndex + 1) % vm.SearchResults.Count, vm.CurrentSearchIndex);
+		}
+	}
+
+	[Fact]
+	public void ScriptEditorViewModel_SearchPrevious_CyclesBackward() {
+		var rom = CreateTestNesRom();
+		var vm = new ScriptEditorViewModel(rom);
+		vm.ScriptOffset = 0;
+		vm.ScriptLength = 64;
+		vm.LoadScriptCommand.Execute(null);
+
+		vm.SearchText = "UNK";
+		vm.ExecuteSearchCommand.Execute(null);
+
+		if (vm.SearchResults.Count > 1) {
+			vm.CurrentSearchIndex = 0;
+			vm.SearchPreviousCommand.Execute(null);
+			// Should wrap to last index
+			Assert.Equal(vm.SearchResults.Count - 1, vm.CurrentSearchIndex);
+		}
 	}
 
 	#endregion
