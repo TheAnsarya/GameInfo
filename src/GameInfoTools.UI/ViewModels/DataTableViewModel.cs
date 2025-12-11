@@ -197,6 +197,12 @@ public partial class DataTableViewModel : ViewModelBase {
 					offset = TableOffset,
 					recordSize = RecordSize,
 					recordCount = RecordCount,
+					fields = Fields.Select(f => new {
+						name = f.Name,
+						type = f.Type.ToString(),
+						offset = f.Offset,
+						size = f.Size
+					}),
 					records = Records.Select(r => r.Values)
 				},
 				new System.Text.Json.JsonSerializerOptions { WriteIndented = true }
@@ -225,8 +231,57 @@ public partial class DataTableViewModel : ViewModelBase {
 
 		if (path is null) return;
 
-		StatusText = $"Import from {Path.GetFileName(path)} - not yet fully implemented";
-		// TODO: Implement actual import
+		try {
+			var json = await File.ReadAllTextAsync(path);
+			using var doc = System.Text.Json.JsonDocument.Parse(json);
+			var root = doc.RootElement;
+
+			// Read table metadata
+			if (root.TryGetProperty("tableName", out var tableNameElem)) {
+				TableName = tableNameElem.GetString() ?? "";
+			}
+			if (root.TryGetProperty("offset", out var offsetElem)) {
+				TableOffset = offsetElem.GetInt32();
+			}
+			if (root.TryGetProperty("recordSize", out var sizeElem)) {
+				RecordSize = sizeElem.GetInt32();
+			}
+			if (root.TryGetProperty("recordCount", out var countElem)) {
+				RecordCount = countElem.GetInt32();
+			}
+
+			// Read field definitions if present
+			if (root.TryGetProperty("fields", out var fieldsElem) && fieldsElem.ValueKind == System.Text.Json.JsonValueKind.Array) {
+				Fields.Clear();
+				foreach (var fieldElem in fieldsElem.EnumerateArray()) {
+					var fieldName = fieldElem.GetProperty("name").GetString() ?? "Unknown";
+					var fieldType = Enum.TryParse<DataTableEditor.FieldType>(
+						fieldElem.GetProperty("type").GetString(),
+						out var parsed) ? parsed : DataTableEditor.FieldType.Byte;
+					var fieldOffset = fieldElem.GetProperty("offset").GetInt32();
+					var fieldSize = fieldElem.TryGetProperty("size", out var sizeVal) ? sizeVal.GetInt32() : 0;
+
+					Fields.Add(new FieldDefinition(fieldName, fieldType, fieldOffset, fieldSize));
+				}
+			}
+
+			// Read records if present
+			if (root.TryGetProperty("records", out var recordsElem) && recordsElem.ValueKind == System.Text.Json.JsonValueKind.Array) {
+				Records.Clear();
+				int index = 0;
+				foreach (var recordElem in recordsElem.EnumerateArray()) {
+					var values = new Dictionary<string, string>();
+					foreach (var prop in recordElem.EnumerateObject()) {
+						values[prop.Name] = prop.Value.ToString();
+					}
+					Records.Add(new DataRecord(index++, values));
+				}
+			}
+
+			StatusText = $"Imported table '{TableName}' from {Path.GetFileName(path)}";
+		} catch (Exception ex) {
+			StatusText = $"Import error: {ex.Message}";
+		}
 	}
 
 	[RelayCommand]
