@@ -550,6 +550,387 @@ public partial class HexEditorViewModel : ViewModelBase {
 	}
 
 	#endregion
+
+	#region ROM Comparison
+
+	/// <summary>
+	/// Data for comparison ROM (if loaded).
+	/// </summary>
+	private byte[]? _comparisonData;
+
+	/// <summary>
+	/// Whether comparison mode is active.
+	/// </summary>
+	[ObservableProperty]
+	private bool _comparisonMode;
+
+	/// <summary>
+	/// Name/path of comparison ROM.
+	/// </summary>
+	[ObservableProperty]
+	private string _comparisonRomName = "";
+
+	/// <summary>
+	/// List of differences found.
+	/// </summary>
+	public ObservableCollection<DifferenceRecord> Differences { get; } = [];
+
+	/// <summary>
+	/// Whether comparison data is loaded.
+	/// </summary>
+	public bool HasComparisonData => _comparisonData is not null;
+
+	/// <summary>
+	/// Loads comparison ROM data.
+	/// </summary>
+	public void LoadComparisonData(byte[] data, string name) {
+		_comparisonData = data;
+		ComparisonRomName = name;
+		ComparisonMode = true;
+		OnPropertyChanged(nameof(HasComparisonData));
+		StatusText = $"Loaded comparison ROM: {name}";
+	}
+
+	/// <summary>
+	/// Clears comparison data.
+	/// </summary>
+	[RelayCommand]
+	private void ClearComparison() {
+		_comparisonData = null;
+		ComparisonRomName = "";
+		ComparisonMode = false;
+		Differences.Clear();
+		OnPropertyChanged(nameof(HasComparisonData));
+		StatusText = "Comparison cleared";
+	}
+
+	/// <summary>
+	/// Finds all differences between current ROM and comparison ROM.
+	/// </summary>
+	[RelayCommand]
+	private void FindAllDifferences() {
+		if (_rom is null || _comparisonData is null) return;
+
+		Differences.Clear();
+		int minLength = Math.Min(_rom.Length, _comparisonData.Length);
+		int diffCount = 0;
+		int blockStart = -1;
+
+		for (int i = 0; i < minLength; i++) {
+			bool isDifferent = _rom.Data[i] != _comparisonData[i];
+
+			if (isDifferent && blockStart < 0) {
+				blockStart = i;
+			} else if (!isDifferent && blockStart >= 0) {
+				// End of difference block
+				var record = new DifferenceRecord(
+					blockStart,
+					i - blockStart,
+					_rom.Data[blockStart],
+					_comparisonData[blockStart]
+				);
+				Differences.Add(record);
+				diffCount++;
+				blockStart = -1;
+			}
+		}
+
+		// Handle trailing difference
+		if (blockStart >= 0) {
+			var record = new DifferenceRecord(
+				blockStart,
+				minLength - blockStart,
+				_rom.Data[blockStart],
+				_comparisonData[blockStart]
+			);
+			Differences.Add(record);
+			diffCount++;
+		}
+
+		// Handle size difference
+		if (_rom.Length != _comparisonData.Length) {
+			int sizeDiff = Math.Abs(_rom.Length - _comparisonData.Length);
+			StatusText = $"Found {Differences.Count} difference regions. Size differs by {sizeDiff} bytes.";
+		} else {
+			StatusText = $"Found {Differences.Count} difference regions.";
+		}
+	}
+
+	/// <summary>
+	/// Gets byte at offset from comparison ROM.
+	/// </summary>
+	public byte? GetComparisonByte(int offset) {
+		if (_comparisonData is null || offset < 0 || offset >= _comparisonData.Length) {
+			return null;
+		}
+		return _comparisonData[offset];
+	}
+
+	/// <summary>
+	/// Checks if byte at offset differs from comparison.
+	/// </summary>
+	public bool ByteDiffersFromComparison(int offset) {
+		if (_rom is null || _comparisonData is null) return false;
+		if (offset < 0) return false;
+		if (offset >= _rom.Length || offset >= _comparisonData.Length) return true;
+		return _rom.Data[offset] != _comparisonData[offset];
+	}
+
+	/// <summary>
+	/// Go to next difference.
+	/// </summary>
+	[RelayCommand]
+	private void NextDifference() {
+		if (_rom is null || _comparisonData is null) return;
+
+		int minLength = Math.Min(_rom.Length, _comparisonData.Length);
+		int startSearch = SelectedOffset >= 0 ? SelectedOffset + 1 : CurrentOffset;
+
+		for (int i = startSearch; i < minLength; i++) {
+			if (_rom.Data[i] != _comparisonData[i]) {
+				GoToOffset(i);
+				SelectedOffset = i;
+				UpdateDataInspector();
+				StatusText = $"Difference at 0x{i:X6}: ROM=0x{_rom.Data[i]:X2}, Compare=0x{_comparisonData[i]:X2}";
+				return;
+			}
+		}
+
+		StatusText = "No more differences found";
+	}
+
+	/// <summary>
+	/// Go to previous difference.
+	/// </summary>
+	[RelayCommand]
+	private void PreviousDifference() {
+		if (_rom is null || _comparisonData is null) return;
+
+		int minLength = Math.Min(_rom.Length, _comparisonData.Length);
+		int startSearch = SelectedOffset >= 1 ? SelectedOffset - 1 : CurrentOffset;
+		startSearch = Math.Min(startSearch, minLength - 1);
+
+		for (int i = startSearch; i >= 0; i--) {
+			if (_rom.Data[i] != _comparisonData[i]) {
+				GoToOffset(i);
+				SelectedOffset = i;
+				UpdateDataInspector();
+				StatusText = $"Difference at 0x{i:X6}: ROM=0x{_rom.Data[i]:X2}, Compare=0x{_comparisonData[i]:X2}";
+				return;
+			}
+		}
+
+		StatusText = "No more differences found";
+	}
+
+	#endregion
+
+	#region Find and Replace
+
+	[ObservableProperty]
+	private string _findPattern = "";
+
+	[ObservableProperty]
+	private string _replacePattern = "";
+
+	[ObservableProperty]
+	private bool _findAsHex = true;
+
+	/// <summary>
+	/// Search results.
+	/// </summary>
+	public ObservableCollection<SearchResult> SearchResults { get; } = [];
+
+	/// <summary>
+	/// Current search result index.
+	/// </summary>
+	[ObservableProperty]
+	private int _currentSearchIndex = -1;
+
+	/// <summary>
+	/// Find all occurrences of pattern.
+	/// </summary>
+	[RelayCommand]
+	private void FindAllPattern() {
+		if (_rom is null || string.IsNullOrWhiteSpace(FindPattern)) return;
+
+		SearchResults.Clear();
+		CurrentSearchIndex = -1;
+
+		byte[]? pattern = ParsePattern(FindPattern, FindAsHex);
+		if (pattern is null || pattern.Length == 0) {
+			StatusText = "Invalid search pattern";
+			return;
+		}
+
+		// KMP search for efficiency
+		var results = SearchBytes(_rom.Data, pattern);
+		foreach (var offset in results) {
+			SearchResults.Add(new SearchResult(offset, pattern.Length, GetContextPreview(offset, 8)));
+		}
+
+		StatusText = $"Found {SearchResults.Count} occurrences";
+	}
+
+	/// <summary>
+	/// Find next occurrence.
+	/// </summary>
+	[RelayCommand]
+	private void FindNextPattern() {
+		if (_rom is null || string.IsNullOrWhiteSpace(FindPattern)) return;
+
+		byte[]? pattern = ParsePattern(FindPattern, FindAsHex);
+		if (pattern is null || pattern.Length == 0) return;
+
+		int startSearch = SelectedOffset >= 0 ? SelectedOffset + 1 : CurrentOffset;
+
+		for (int i = startSearch; i <= _rom.Length - pattern.Length; i++) {
+			if (MatchesPattern(_rom.Data, i, pattern)) {
+				GoToOffset(i);
+				SelectedOffset = i;
+				SetSelection(i, i + pattern.Length - 1);
+				StatusText = $"Found at 0x{i:X6}";
+				return;
+			}
+		}
+
+		StatusText = "Pattern not found";
+	}
+
+	/// <summary>
+	/// Replace current selection with pattern.
+	/// </summary>
+	[RelayCommand]
+	private void ReplaceCurrent() {
+		if (_rom is null || !HasRangeSelection || string.IsNullOrWhiteSpace(ReplacePattern)) return;
+
+		byte[]? replacement = ParsePattern(ReplacePattern, FindAsHex);
+		if (replacement is null || replacement.Length == 0) return;
+
+		var commands = new List<IUndoableCommand>();
+		int replaceLength = Math.Min(replacement.Length, SelectionLength);
+
+		for (int i = 0; i < replaceLength; i++) {
+			int offset = SelectionStart + i;
+			if (offset < _rom.Length && _rom.Data[offset] != replacement[i]) {
+				commands.Add(new SetByteCommand(_rom.Data, offset, replacement[i]));
+			}
+		}
+
+		if (commands.Count > 0) {
+			var composite = new CompositeCommand($"Replace {replaceLength} bytes", commands);
+			_undoRedo.Execute(composite);
+			RefreshView();
+			UpdateUndoRedoState();
+			StatusText = $"Replaced {replaceLength} bytes";
+		}
+	}
+
+	/// <summary>
+	/// Replace all occurrences.
+	/// </summary>
+	[RelayCommand]
+	private void ReplaceAllPattern() {
+		if (_rom is null || string.IsNullOrWhiteSpace(FindPattern) || string.IsNullOrWhiteSpace(ReplacePattern)) return;
+
+		byte[]? pattern = ParsePattern(FindPattern, FindAsHex);
+		byte[]? replacement = ParsePattern(ReplacePattern, FindAsHex);
+
+		if (pattern is null || pattern.Length == 0 || replacement is null) return;
+
+		var results = SearchBytes(_rom.Data, pattern);
+		if (results.Count == 0) {
+			StatusText = "Pattern not found";
+			return;
+		}
+
+		var commands = new List<IUndoableCommand>();
+		int replaceCount = 0;
+
+		// Replace in reverse order to avoid offset issues
+		foreach (int offset in results.OrderByDescending(x => x)) {
+			int replaceLength = Math.Min(replacement.Length, pattern.Length);
+			for (int i = 0; i < replaceLength; i++) {
+				int targetOffset = offset + i;
+				if (targetOffset < _rom.Length && _rom.Data[targetOffset] != replacement[i]) {
+					commands.Add(new SetByteCommand(_rom.Data, targetOffset, replacement[i]));
+				}
+			}
+			replaceCount++;
+		}
+
+		if (commands.Count > 0) {
+			var composite = new CompositeCommand($"Replace all ({replaceCount} occurrences)", commands);
+			_undoRedo.Execute(composite);
+			RefreshView();
+			UpdateUndoRedoState();
+		}
+
+		StatusText = $"Replaced {replaceCount} occurrences";
+	}
+
+	private byte[]? ParsePattern(string input, bool isHex) {
+		if (string.IsNullOrWhiteSpace(input)) return null;
+
+		if (isHex) {
+			// Parse hex string (with or without spaces)
+			var cleanHex = input.Replace(" ", "").Replace("0x", "").Replace("$", "");
+			if (cleanHex.Length % 2 != 0) return null;
+
+			try {
+				var bytes = new byte[cleanHex.Length / 2];
+				for (int i = 0; i < bytes.Length; i++) {
+					bytes[i] = Convert.ToByte(cleanHex.Substring(i * 2, 2), 16);
+				}
+				return bytes;
+			} catch {
+				return null;
+			}
+		} else {
+			// Parse as ASCII
+			return Encoding.ASCII.GetBytes(input);
+		}
+	}
+
+	private List<int> SearchBytes(byte[] data, byte[] pattern) {
+		var results = new List<int>();
+		if (pattern.Length == 0 || pattern.Length > data.Length) return results;
+
+		// Simple search (could be optimized with KMP for large patterns)
+		for (int i = 0; i <= data.Length - pattern.Length; i++) {
+			if (MatchesPattern(data, i, pattern)) {
+				results.Add(i);
+			}
+		}
+
+		return results;
+	}
+
+	private static bool MatchesPattern(byte[] data, int offset, byte[] pattern) {
+		for (int i = 0; i < pattern.Length; i++) {
+			if (data[offset + i] != pattern[i]) return false;
+		}
+		return true;
+	}
+
+	private string GetContextPreview(int offset, int contextBytes) {
+		if (_rom is null) return "";
+
+		int start = Math.Max(0, offset - contextBytes);
+		int end = Math.Min(_rom.Length, offset + contextBytes);
+		var sb = new StringBuilder();
+
+		for (int i = start; i < end; i++) {
+			if (i == offset) sb.Append('[');
+			sb.Append($"{_rom.Data[i]:X2}");
+			if (i == offset) sb.Append(']');
+			sb.Append(' ');
+		}
+
+		return sb.ToString().TrimEnd();
+	}
+
+	#endregion
 }
 
 /// <summary>
@@ -561,5 +942,22 @@ public record HexRow(string Address, string HexData, string AsciiData, int RawOf
 /// Represents a bookmark in the hex editor.
 /// </summary>
 public record HexBookmark(int Offset, string Name, DateTime Created) {
+	public string OffsetDisplay => $"0x{Offset:X6}";
+}
+
+/// <summary>
+/// Represents a difference between two ROMs.
+/// </summary>
+public record DifferenceRecord(int Offset, int Length, byte OriginalByte, byte ComparisonByte) {
+	public string OffsetDisplay => $"0x{Offset:X6}";
+	public string LengthDisplay => Length > 1 ? $"{Length} bytes" : "1 byte";
+	public string OriginalDisplay => $"0x{OriginalByte:X2}";
+	public string ComparisonDisplay => $"0x{ComparisonByte:X2}";
+}
+
+/// <summary>
+/// Represents a search result.
+/// </summary>
+public record SearchResult(int Offset, int Length, string ContextPreview) {
 	public string OffsetDisplay => $"0x{Offset:X6}";
 }
