@@ -103,3 +103,108 @@ public class CrossReferenceDbTests {
 		Assert.Equal(3, refs.Count);
 	}
 }
+
+/// <summary>
+/// Unit tests for CrossReferenceBuilder which analyzes code
+/// and automatically builds cross-references.
+/// </summary>
+public class CrossReferenceBuilderTests {
+	[Fact]
+	public void Constructor_CreatesInstance() {
+		var builder = new CrossReferenceBuilder();
+		Assert.NotNull(builder);
+		Assert.NotNull(builder.Database);
+	}
+
+	[Fact]
+	public void ProcessCode_JsrInstruction_AddsCallReference() {
+		var rom = new byte[] {
+			0x20, 0x10, 0x80, // JSR $8010
+			0x60              // RTS
+		};
+
+		var builder = new CrossReferenceBuilder();
+		builder.ProcessCode(rom, 0x8000);
+
+		var refs = builder.GetReferencesFrom(0x8000).ToList();
+
+		Assert.Single(refs);
+		Assert.Equal(0x8010, refs[0].Target);
+		Assert.Equal(CrossReferenceDb.RefType.Call, refs[0].Type);
+	}
+
+	[Fact]
+	public void ProcessCode_JmpInstruction_AddsJumpReference() {
+		var rom = new byte[] {
+			0x4c, 0x20, 0x80, // JMP $8020
+		};
+
+		var builder = new CrossReferenceBuilder();
+		builder.ProcessCode(rom, 0x8000);
+
+		var refs = builder.GetReferencesFrom(0x8000).ToList();
+
+		Assert.Single(refs);
+		Assert.Equal(0x8020, refs[0].Target);
+		Assert.Equal(CrossReferenceDb.RefType.Jump, refs[0].Type);
+	}
+
+	[Fact]
+	public void ProcessCode_BranchInstruction_AddsBranchReference() {
+		var rom = new byte[] {
+			0xd0, 0x05, // BNE +5 (relative branch)
+			0xea,       // NOP
+			0xea,       // NOP
+			0xea,       // NOP
+			0xea,       // NOP
+			0xea,       // NOP
+			0x60        // RTS
+		};
+
+		var builder = new CrossReferenceBuilder();
+		builder.ProcessCode(rom, 0x8000);
+
+		var refs = builder.GetReferencesFrom(0x8000).ToList();
+
+		Assert.Single(refs);
+		Assert.Equal(CrossReferenceDb.RefType.Branch, refs[0].Type);
+		// BNE from $8000, +2 for instruction length, +5 for offset = $8007
+		Assert.Equal(0x8007, refs[0].Target);
+	}
+
+	[Fact]
+	public void GetReferencesTo_ReturnsIncomingReferences() {
+		var rom = new byte[] {
+			0x20, 0x10, 0x80, // JSR $8010
+			0x4c, 0x10, 0x80, // JMP $8010
+		};
+
+		var builder = new CrossReferenceBuilder();
+		builder.ProcessCode(rom, 0x8000);
+
+		var refs = builder.GetReferencesTo(0x8010).ToList();
+
+		Assert.Equal(2, refs.Count);
+	}
+
+	[Fact]
+	public void ProcessCode_MultipleInstructions_AnalyzesAll() {
+		var rom = new byte[] {
+			0x20, 0x20, 0x80, // JSR $8020
+			0xa9, 0x42,       // LDA #$42
+			0x4c, 0x30, 0x80, // JMP $8030
+		};
+
+		var builder = new CrossReferenceBuilder();
+		builder.ProcessCode(rom, 0x8000);
+
+		var refs = builder.GetReferencesFrom(0x8000).ToList();
+		Assert.Single(refs);
+		Assert.Equal(0x8020, refs[0].Target);
+
+		// JSR is 3 bytes, LDA is 2 bytes, so JMP is at $8005
+		var jumpRefs = builder.GetReferencesFrom(0x8005).ToList();
+		Assert.Single(jumpRefs);
+		Assert.Equal(0x8030, jumpRefs[0].Target);
+	}
+}
