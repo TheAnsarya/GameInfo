@@ -43,6 +43,7 @@ public partial class MainWindowViewModel : ViewModelBase {
 		new ToolCategory("🗂️", "Bank View", "banks"),
 		new ToolCategory("🗺️", "Map Editor", "maps"),
 		new ToolCategory("📜", "Script Editor", "scripts"),
+		new ToolCategory("🔥", "CDL Viewer", "cdl"),
 	];
 
 	public MainWindowViewModel() {
@@ -65,6 +66,7 @@ public partial class MainWindowViewModel : ViewModelBase {
 			"banks" => new BankViewViewModel(_loadedRom),
 			"maps" => new MapEditorViewModel(_loadedRom),
 			"scripts" => new ScriptEditorViewModel(_loadedRom),
+			"cdl" => new CdlViewerViewModel(),
 			_ => new WelcomeViewModel()
 		};
 	}
@@ -168,6 +170,9 @@ public partial class MainWindowViewModel : ViewModelBase {
 
 	[RelayCommand]
 	private void ShowBankView() => SelectedCategory = ToolCategories[8];
+
+	[RelayCommand]
+	private void ShowCdlViewer() => SelectedCategory = ToolCategories[11];
 
 	[RelayCommand]
 	private void ShowAbout() {

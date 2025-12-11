@@ -486,4 +486,353 @@ public class CdlHeatmapTests {
 	}
 
 	#endregion
+
+	#region Merge Tests
+
+	[Fact]
+	public void Merge_CombinesFlags_FromMultipleFiles() {
+		// First file has code at offset 0
+		var data1 = new byte[] { 0x01, 0x00, 0x00, 0x00 };
+		var cdl1 = new CdlHeatmap(data1);
+
+		// Second file has data at offset 1
+		var data2 = new byte[] { 0x00, 0x02, 0x00, 0x00 };
+		var cdl2 = new CdlHeatmap(data2);
+
+		var merged = CdlHeatmap.Merge(cdl1, cdl2);
+
+		// Should have both
+		Assert.True(merged.IsCode(0));
+		Assert.True(merged.IsData(1));
+		Assert.False(merged.IsCovered(2));
+	}
+
+	[Fact]
+	public void Merge_OrsFlagsAtSameOffset() {
+		// First file has code flag at offset 0
+		var data1 = new byte[] { 0x01, 0x00 };
+		var cdl1 = new CdlHeatmap(data1);
+
+		// Second file has indirect code flag at same offset
+		var data2 = new byte[] { 0x21, 0x00 }; // Code + IndirectCode (0x01 | 0x20)
+		var cdl2 = new CdlHeatmap(data2);
+
+		var merged = CdlHeatmap.Merge(cdl1, cdl2);
+
+		// Should have both flags ORed together
+		var flags = merged.GetFlags(0);
+		Assert.True((flags & CdlHeatmap.CdlFlags.Code) != 0);
+		Assert.True((flags & CdlHeatmap.CdlFlags.IndirectCode) != 0);
+	}
+
+	[Fact]
+	public void Merge_HandlesDifferentSizes() {
+		var data1 = new byte[] { 0x01, 0x01, 0x01, 0x01 };
+		var cdl1 = new CdlHeatmap(data1);
+
+		var data2 = new byte[] { 0x02, 0x02 };
+		var cdl2 = new CdlHeatmap(data2);
+
+		var merged = CdlHeatmap.Merge(cdl1, cdl2);
+
+		// Should use largest size
+		Assert.Equal(4, merged.Size);
+		// First two bytes should have both flags
+		Assert.True(merged.IsCode(0)); // Has code from both
+		Assert.True(merged.IsCode(2)); // Code from data1 only
+	}
+
+	[Fact]
+	public void Merge_WithSingleFile_ReturnsSameFile() {
+		var data = new byte[] { 0x01, 0x02, 0x03 };
+		var cdl = new CdlHeatmap(data);
+
+		var merged = CdlHeatmap.Merge(cdl);
+
+		Assert.Same(cdl, merged);
+	}
+
+	[Fact]
+	public void Merge_WithNoFiles_ThrowsArgumentException() {
+		Assert.Throws<ArgumentException>(() => CdlHeatmap.Merge());
+	}
+
+	[Fact]
+	public void Merge_PreservesFormat() {
+		var data1 = new byte[] { 0x01 };
+		var cdl1 = new CdlHeatmap(data1, CdlHeatmap.CdlFormat.Fceux);
+		var data2 = new byte[] { 0x02 };
+		var cdl2 = new CdlHeatmap(data2, CdlHeatmap.CdlFormat.Mesen);
+
+		var merged = CdlHeatmap.Merge(cdl1, cdl2);
+
+		// Should use format of first file
+		Assert.Equal(CdlHeatmap.CdlFormat.Fceux, merged.Format);
+	}
+
+	[Fact]
+	public void Merge_MultipleFiles_CombinesAll() {
+		var data1 = new byte[] { 0x01, 0x00, 0x00, 0x00 };
+		var data2 = new byte[] { 0x00, 0x02, 0x00, 0x00 };
+		var data3 = new byte[] { 0x00, 0x00, 0x01, 0x00 };
+
+		var merged = CdlHeatmap.Merge(
+			new CdlHeatmap(data1),
+			new CdlHeatmap(data2),
+			new CdlHeatmap(data3)
+		);
+
+		Assert.True(merged.IsCode(0));
+		Assert.True(merged.IsData(1));
+		Assert.True(merged.IsCode(2));
+		Assert.False(merged.IsCovered(3));
+	}
+
+	#endregion
+
+	#region Diff Tests
+
+	[Fact]
+	public void Diff_CalculatesCommonCoverage() {
+		// Both have code at offset 0
+		var data1 = new byte[] { 0x01, 0x01, 0x00 };
+		var cdl1 = new CdlHeatmap(data1);
+
+		var data2 = new byte[] { 0x01, 0x00, 0x02 };
+		var cdl2 = new CdlHeatmap(data2);
+
+		var diff = cdl1.Diff(cdl2);
+
+		// Common should only have offset 0
+		Assert.True(diff.Common.IsCode(0));
+		Assert.False(diff.Common.IsCovered(1));
+		Assert.False(diff.Common.IsCovered(2));
+	}
+
+	[Fact]
+	public void Diff_CalculatesOnlyInFirst() {
+		var data1 = new byte[] { 0x01, 0x01, 0x00 };
+		var cdl1 = new CdlHeatmap(data1);
+
+		var data2 = new byte[] { 0x01, 0x00, 0x02 };
+		var cdl2 = new CdlHeatmap(data2);
+
+		var diff = cdl1.Diff(cdl2);
+
+		// OnlyInFirst should have offset 1 (code in first, nothing in second)
+		Assert.False(diff.OnlyInFirst.IsCovered(0)); // Common
+		Assert.True(diff.OnlyInFirst.IsCode(1));      // Only in first
+		Assert.False(diff.OnlyInFirst.IsCovered(2)); // Only in second
+	}
+
+	[Fact]
+	public void Diff_CalculatesOnlyInSecond() {
+		var data1 = new byte[] { 0x01, 0x01, 0x00 };
+		var cdl1 = new CdlHeatmap(data1);
+
+		var data2 = new byte[] { 0x01, 0x00, 0x02 };
+		var cdl2 = new CdlHeatmap(data2);
+
+		var diff = cdl1.Diff(cdl2);
+
+		// OnlyInSecond should have offset 2
+		Assert.False(diff.OnlyInSecond.IsCovered(0)); // Common
+		Assert.False(diff.OnlyInSecond.IsCovered(1)); // Only in first
+		Assert.True(diff.OnlyInSecond.IsData(2));      // Only in second
+	}
+
+	[Fact]
+	public void Diff_HandlesDifferentSizes() {
+		var data1 = new byte[] { 0x01, 0x01, 0x01, 0x01 };
+		var cdl1 = new CdlHeatmap(data1);
+
+		var data2 = new byte[] { 0x02, 0x02 };
+		var cdl2 = new CdlHeatmap(data2);
+
+		var diff = cdl1.Diff(cdl2);
+
+		// Size should be max of both
+		Assert.Equal(4, diff.Common.Size);
+		Assert.Equal(4, diff.OnlyInFirst.Size);
+		Assert.Equal(4, diff.OnlyInSecond.Size);
+
+		// Offsets 2-3 should only be in first
+		Assert.True(diff.OnlyInFirst.IsCode(2));
+		Assert.True(diff.OnlyInFirst.IsCode(3));
+	}
+
+	[Fact]
+	public void Diff_WithNull_ThrowsArgumentNullException() {
+		var data = new byte[] { 0x01 };
+		var cdl = new CdlHeatmap(data);
+
+		Assert.Throws<ArgumentNullException>(() => cdl.Diff(null!));
+	}
+
+	[Fact]
+	public void Diff_IdenticalFiles_HasNoUniqueContent() {
+		var data = new byte[] { 0x01, 0x02, 0x03 };
+		var cdl1 = new CdlHeatmap(data);
+		var cdl2 = new CdlHeatmap(data);
+
+		var diff = cdl1.Diff(cdl2);
+
+		// Common should have all
+		var commonStats = diff.Common.GetCoverageStats();
+		Assert.Equal(3, commonStats.CodeBytes + commonStats.DataBytes);
+
+		// OnlyInFirst and OnlyInSecond should be empty
+		var onlyFirstStats = diff.OnlyInFirst.GetCoverageStats();
+		Assert.Equal(0, onlyFirstStats.CodeBytes + onlyFirstStats.DataBytes);
+	}
+
+	[Fact]
+	public void GenerateDiffReport_ProducesReport() {
+		var data1 = new byte[] { 0x01, 0x01, 0x00, 0x00 };
+		var cdl1 = new CdlHeatmap(data1);
+
+		var data2 = new byte[] { 0x01, 0x00, 0x02, 0x02 };
+		var cdl2 = new CdlHeatmap(data2);
+
+		var report = cdl1.GenerateDiffReport(cdl2, "Session1", "Session2");
+
+		Assert.Contains("CDL DIFF COMPARISON", report);
+		Assert.Contains("Session1", report);
+		Assert.Contains("Session2", report);
+		Assert.Contains("Common", report);
+	}
+
+	#endregion
+
+	#region MLB Export Tests
+
+	[Fact]
+	public void ExportAsMlb_GeneratesValidMlbFormat() {
+		// Create CDL with code and data regions
+		var data = new byte[32];
+		for (int i = 0; i < 16; i++) data[i] = 0x01; // Code
+		for (int i = 16; i < 32; i++) data[i] = 0x02; // Data
+
+		var heatmap = new CdlHeatmap(data);
+		var mlb = heatmap.ExportAsMlb(minRegionSize: 8);
+
+		Assert.Contains("MLB Labels", mlb);
+		Assert.Contains("P:", mlb);
+		Assert.Contains("cdl_code", mlb);
+		Assert.Contains("cdl_data", mlb);
+	}
+
+	[Fact]
+	public void ExportAsMlb_IncludesComments() {
+		var data = new byte[16];
+		Array.Fill<byte>(data, 0x01);
+
+		var heatmap = new CdlHeatmap(data);
+		var mlb = heatmap.ExportAsMlb(minRegionSize: 8);
+
+		Assert.Contains("CDL:", mlb);
+		Assert.Contains("bytes", mlb);
+	}
+
+	[Fact]
+	public void ExportAsMlb_UsesCustomPrefix() {
+		var data = new byte[16];
+		Array.Fill<byte>(data, 0x01);
+
+		var heatmap = new CdlHeatmap(data);
+		var mlb = heatmap.ExportAsMlb(minRegionSize: 8, labelPrefix: "myrom");
+
+		Assert.Contains("myrom_code", mlb);
+	}
+
+	[Fact]
+	public void ExportAsMlb_RespectsMinRegionSize() {
+		var data = new byte[32];
+		// Small region (4 bytes)
+		for (int i = 0; i < 4; i++) data[i] = 0x01;
+		// Gap
+		// Larger region (16 bytes)
+		for (int i = 10; i < 26; i++) data[i] = 0x01;
+
+		var heatmap = new CdlHeatmap(data);
+		var mlb = heatmap.ExportAsMlb(minRegionSize: 8);
+
+		// Should only have one label (the larger region)
+		var lines = mlb.Split('\n').Where(l => l.StartsWith("P:")).ToList();
+		Assert.Single(lines);
+	}
+
+	#endregion
+
+	#region SYM Export Tests
+
+	[Fact]
+	public void ExportAsSym_GeneratesValidSymFormat() {
+		var data = new byte[32];
+		Array.Fill<byte>(data, 0x01);
+
+		var heatmap = new CdlHeatmap(data);
+		var sym = heatmap.ExportAsSym(minRegionSize: 8);
+
+		Assert.Contains("[labels]", sym);
+		Assert.Contains("cdl_code", sym);
+	}
+
+	[Fact]
+	public void ExportAsSym_IncludesBankNumber() {
+		var data = new byte[0x8000]; // 2 banks
+		// First bank
+		for (int i = 0; i < 32; i++) data[i] = 0x01;
+		// Second bank
+		for (int i = 0x4000; i < 0x4020; i++) data[i] = 0x01;
+
+		var heatmap = new CdlHeatmap(data);
+		var sym = heatmap.ExportAsSym(minRegionSize: 8, bankSize: 0x4000);
+
+		Assert.Contains("00:", sym); // Bank 0
+		Assert.Contains("01:", sym); // Bank 1
+	}
+
+	#endregion
+
+	#region Uncovered Regions Export Tests
+
+	[Fact]
+	public void ExportUncoveredRegions_TxtFormat_ListsRegions() {
+		var data = new byte[256];
+		// Cover first 64 bytes, leave rest uncovered
+		for (int i = 0; i < 64; i++) data[i] = 0x01;
+
+		var heatmap = new CdlHeatmap(data);
+		var txt = heatmap.ExportUncoveredRegions(minSize: 64, format: "txt");
+
+		Assert.Contains("Uncovered Regions", txt);
+		Assert.Contains("0x000040", txt); // Start of uncovered region
+	}
+
+	[Fact]
+	public void ExportUncoveredRegions_MlbFormat_GeneratesLabels() {
+		var data = new byte[256];
+		for (int i = 0; i < 64; i++) data[i] = 0x01;
+
+		var heatmap = new CdlHeatmap(data);
+		var mlb = heatmap.ExportUncoveredRegions(minSize: 64, format: "mlb");
+
+		Assert.Contains("unknown_", mlb);
+		Assert.Contains("P:", mlb);
+	}
+
+	[Fact]
+	public void ExportUncoveredRegions_SymFormat_GeneratesLabels() {
+		var data = new byte[256];
+		for (int i = 0; i < 64; i++) data[i] = 0x01;
+
+		var heatmap = new CdlHeatmap(data);
+		var sym = heatmap.ExportUncoveredRegions(minSize: 64, format: "sym");
+
+		Assert.Contains("[labels]", sym);
+		Assert.Contains("unknown_", sym);
+	}
+
+	#endregion
 }

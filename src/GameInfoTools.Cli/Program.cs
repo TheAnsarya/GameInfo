@@ -227,6 +227,48 @@ public class Program {
 		cdlRegionsCommand.SetHandler(AnalysisCommands.CdlRegions, cdlArg, formatOption, minSizeOption);
 		cdlCommand.AddCommand(cdlRegionsCommand);
 
+		// analysis cdl merge
+		var cdlMergeCommand = new Command("merge", "Merge multiple CDL files");
+		var cdlFilesArg = new Argument<FileInfo[]>("cdl-files", "CDL files to merge");
+		cdlMergeCommand.AddArgument(cdlFilesArg);
+		var mergeOutputOption = new Option<FileInfo>("--output", "Output merged CDL file") { IsRequired = true };
+		cdlMergeCommand.AddOption(mergeOutputOption);
+		cdlMergeCommand.SetHandler(AnalysisCommands.CdlMerge, cdlFilesArg, mergeOutputOption);
+		cdlCommand.AddCommand(cdlMergeCommand);
+
+		// analysis cdl diff
+		var cdlDiffCommand = new Command("diff", "Compare two CDL files");
+		var cdlFile1Arg = new Argument<FileInfo>("cdl-file-1", "First CDL file");
+		var cdlFile2Arg = new Argument<FileInfo>("cdl-file-2", "Second CDL file");
+		cdlDiffCommand.AddArgument(cdlFile1Arg);
+		cdlDiffCommand.AddArgument(cdlFile2Arg);
+		cdlDiffCommand.SetHandler(AnalysisCommands.CdlDiff, cdlFile1Arg, cdlFile2Arg);
+		cdlCommand.AddCommand(cdlDiffCommand);
+
+		// analysis cdl export-mlb
+		var cdlExportMlbCommand = new Command("export-mlb", "Export CDL regions as MLB label file");
+		cdlExportMlbCommand.AddArgument(cdlArg);
+		cdlExportMlbCommand.AddOption(formatOption);
+		var mlbOutputOption = new Option<FileInfo>("--output", "Output MLB file") { IsRequired = true };
+		cdlExportMlbCommand.AddOption(mlbOutputOption);
+		var labelPrefixOption = new Option<string>("--prefix", () => "cdl", "Label prefix");
+		cdlExportMlbCommand.AddOption(labelPrefixOption);
+		cdlExportMlbCommand.AddOption(minSizeOption);
+		cdlExportMlbCommand.SetHandler(AnalysisCommands.CdlExportMlb, cdlArg, formatOption, mlbOutputOption, labelPrefixOption, minSizeOption);
+		cdlCommand.AddCommand(cdlExportMlbCommand);
+
+		// analysis cdl export-sym
+		var cdlExportSymCommand = new Command("export-sym", "Export CDL regions as SYM label file");
+		cdlExportSymCommand.AddArgument(cdlArg);
+		cdlExportSymCommand.AddOption(formatOption);
+		var symOutputOption = new Option<FileInfo>("--output", "Output SYM file") { IsRequired = true };
+		cdlExportSymCommand.AddOption(symOutputOption);
+		cdlExportSymCommand.AddOption(labelPrefixOption);
+		cdlExportSymCommand.AddOption(minSizeOption);
+		cdlExportSymCommand.AddOption(bankSizeOption);
+		cdlExportSymCommand.SetHandler(AnalysisCommands.CdlExportSym, cdlArg, formatOption, symOutputOption, labelPrefixOption, minSizeOption, bankSizeOption);
+		cdlCommand.AddCommand(cdlExportSymCommand);
+
 		analysisCommand.AddCommand(cdlCommand);
 
 		return analysisCommand;

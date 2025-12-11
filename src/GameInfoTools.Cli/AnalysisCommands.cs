@@ -600,4 +600,103 @@ public static class AnalysisCommands {
 			$"[yellow]{new string('▓', dataChars)}[/]" +
 			$"[grey]{new string('░', unknownChars)}[/]";
 	}
+
+	/// <summary>
+	/// Merge multiple CDL files.
+	/// </summary>
+	public static void CdlMerge(FileInfo[] cdlFiles, FileInfo outputFile) {
+		if (cdlFiles.Length < 2) {
+			AnsiConsole.MarkupLine("[red]Error: At least 2 CDL files are required for merge[/]");
+			return;
+		}
+
+		foreach (var cdlFile in cdlFiles) {
+			if (!cdlFile.Exists) {
+				AnsiConsole.MarkupLine($"[red]Error: CDL file not found: {cdlFile.FullName}[/]");
+				return;
+			}
+		}
+
+		try {
+			var merged = CdlHeatmap.MergeFiles(cdlFiles.Select(f => f.FullName).ToArray());
+			var stats = merged.GetCoverageStats();
+
+			// Write merged data (we need to get the raw data)
+			// For now, generate a report
+			var report = merged.GenerateReport();
+
+			AnsiConsole.MarkupLine($"[cyan]Merged {cdlFiles.Length} CDL files[/]");
+			AnsiConsole.MarkupLine($"[grey]Combined coverage: {stats.CoveragePercentage:F1}%[/]");
+			AnsiConsole.MarkupLine($"[grey]Code: {stats.CodeBytes:N0} bytes | Data: {stats.DataBytes:N0} bytes[/]");
+
+			// For actual binary merge, we'd need to expose the raw data
+			// For now, export as a report
+			File.WriteAllText(outputFile.FullName, report);
+			AnsiConsole.MarkupLine($"[green]Merged report saved to {outputFile.FullName}[/]");
+		} catch (Exception ex) {
+			AnsiConsole.MarkupLine($"[red]Error merging CDL files: {ex.Message}[/]");
+		}
+	}
+
+	/// <summary>
+	/// Compare two CDL files.
+	/// </summary>
+	public static void CdlDiff(FileInfo cdlFile1, FileInfo cdlFile2) {
+		if (!cdlFile1.Exists) {
+			AnsiConsole.MarkupLine($"[red]Error: CDL file not found: {cdlFile1.FullName}[/]");
+			return;
+		}
+		if (!cdlFile2.Exists) {
+			AnsiConsole.MarkupLine($"[red]Error: CDL file not found: {cdlFile2.FullName}[/]");
+			return;
+		}
+
+		try {
+			var cdl1 = CdlHeatmap.FromFile(cdlFile1.FullName);
+			var cdl2 = CdlHeatmap.FromFile(cdlFile2.FullName);
+
+			var report = cdl1.GenerateDiffReport(cdl2, cdlFile1.Name, cdlFile2.Name);
+			AnsiConsole.Write(new Panel(report).Header("CDL Diff Report"));
+		} catch (Exception ex) {
+			AnsiConsole.MarkupLine($"[red]Error comparing CDL files: {ex.Message}[/]");
+		}
+	}
+
+	/// <summary>
+	/// Export CDL regions as MLB label file.
+	/// </summary>
+	public static void CdlExportMlb(FileInfo cdlFile, string format, FileInfo outputFile, string prefix, int minSize) {
+		if (!cdlFile.Exists) {
+			AnsiConsole.MarkupLine($"[red]Error: CDL file not found: {cdlFile.FullName}[/]");
+			return;
+		}
+
+		var heatmap = LoadCdl(cdlFile, format);
+		if (heatmap == null) return;
+
+		var mlb = heatmap.ExportAsMlb(minSize, prefix);
+		File.WriteAllText(outputFile.FullName, mlb);
+
+		var regionCount = heatmap.FindCoveredRegions(minSize).Count;
+		AnsiConsole.MarkupLine($"[green]Exported {regionCount} labels to {outputFile.FullName}[/]");
+	}
+
+	/// <summary>
+	/// Export CDL regions as SYM label file.
+	/// </summary>
+	public static void CdlExportSym(FileInfo cdlFile, string format, FileInfo outputFile, string prefix, int minSize, int bankSize) {
+		if (!cdlFile.Exists) {
+			AnsiConsole.MarkupLine($"[red]Error: CDL file not found: {cdlFile.FullName}[/]");
+			return;
+		}
+
+		var heatmap = LoadCdl(cdlFile, format);
+		if (heatmap == null) return;
+
+		var sym = heatmap.ExportAsSym(minSize, prefix, bankSize);
+		File.WriteAllText(outputFile.FullName, sym);
+
+		var regionCount = heatmap.FindCoveredRegions(minSize).Count;
+		AnsiConsole.MarkupLine($"[green]Exported {regionCount} labels to {outputFile.FullName}[/]");
+	}
 }

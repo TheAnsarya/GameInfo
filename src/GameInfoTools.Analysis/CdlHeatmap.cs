@@ -441,4 +441,229 @@ public class CdlHeatmap {
 
 		return sb.ToString();
 	}
+
+	/// <summary>
+	/// Merges multiple CDL files into one, combining coverage from all sessions.
+	/// </summary>
+	/// <param name="cdlFiles">CDL heatmaps to merge.</param>
+	/// <returns>A new CDL heatmap with combined coverage.</returns>
+	public static CdlHeatmap Merge(params CdlHeatmap[] cdlFiles) {
+		if (cdlFiles == null || cdlFiles.Length == 0)
+			throw new ArgumentException("At least one CDL file is required for merge", nameof(cdlFiles));
+
+		if (cdlFiles.Length == 1)
+			return cdlFiles[0];
+
+		// Use the largest size
+		int maxSize = cdlFiles.Max(c => c.Size);
+		byte[] merged = new byte[maxSize];
+
+		// OR all flags together
+		foreach (var cdl in cdlFiles) {
+			for (int i = 0; i < cdl.Size; i++) {
+				merged[i] |= cdl._cdlData[i];
+			}
+		}
+
+		// Use format of first file
+		return new CdlHeatmap(merged, cdlFiles[0].Format);
+	}
+
+	/// <summary>
+	/// Merges CDL files from disk.
+	/// </summary>
+	/// <param name="paths">Paths to CDL files.</param>
+	/// <returns>A new merged CDL heatmap.</returns>
+	public static CdlHeatmap MergeFiles(params string[] paths) {
+		var cdlFiles = paths.Select(p => FromFile(p)).ToArray();
+		return Merge(cdlFiles);
+	}
+
+	/// <summary>
+	/// Computes the difference between two CDL files.
+	/// </summary>
+	/// <param name="other">The CDL to compare against.</param>
+	/// <returns>Diff result showing what's unique to each and what's common.</returns>
+	public CdlDiff Diff(CdlHeatmap other) {
+		if (other == null)
+			throw new ArgumentNullException(nameof(other));
+
+		int size = Math.Max(Size, other.Size);
+		byte[] onlyThis = new byte[size];
+		byte[] onlyOther = new byte[size];
+		byte[] common = new byte[size];
+
+		for (int i = 0; i < size; i++) {
+			byte thisFlags = i < Size ? _cdlData[i] : (byte)0;
+			byte otherFlags = i < other.Size ? other._cdlData[i] : (byte)0;
+
+			common[i] = (byte)(thisFlags & otherFlags);
+			onlyThis[i] = (byte)(thisFlags & ~otherFlags);
+			onlyOther[i] = (byte)(otherFlags & ~thisFlags);
+		}
+
+		return new CdlDiff(
+			new CdlHeatmap(onlyThis, _format),
+			new CdlHeatmap(onlyOther, other._format),
+			new CdlHeatmap(common, _format)
+		);
+	}
+
+	/// <summary>
+	/// Generates a diff report between this CDL and another.
+	/// </summary>
+	/// <param name="other">The CDL to compare against.</param>
+	/// <param name="thisName">Name for this CDL file.</param>
+	/// <param name="otherName">Name for the other CDL file.</param>
+	public string GenerateDiffReport(CdlHeatmap other, string thisName = "File A", string otherName = "File B") {
+		var diff = Diff(other);
+		var sb = new StringBuilder();
+
+		var thisStats = GetCoverageStats();
+		var otherStats = other.GetCoverageStats();
+		var commonStats = diff.Common.GetCoverageStats();
+		var onlyThisStats = diff.OnlyInFirst.GetCoverageStats();
+		var onlyOtherStats = diff.OnlyInSecond.GetCoverageStats();
+
+		sb.AppendLine("╔══════════════════════════════════════════════════════════════╗");
+		sb.AppendLine("║                   CDL DIFF COMPARISON                        ║");
+		sb.AppendLine("╠══════════════════════════════════════════════════════════════╣");
+		sb.AppendLine($"║ {thisName,-30} Coverage: {thisStats.CoveragePercentage,6:F2}%    ║");
+		sb.AppendLine($"║ {otherName,-30} Coverage: {otherStats.CoveragePercentage,6:F2}%    ║");
+		sb.AppendLine("╠══════════════════════════════════════════════════════════════╣");
+		sb.AppendLine($"║ Common coverage:        {commonStats.CodeBytes + commonStats.DataBytes,10:N0} bytes              ║");
+		sb.AppendLine($"║ Only in {thisName,-16}:  {onlyThisStats.CodeBytes + onlyThisStats.DataBytes,10:N0} bytes              ║");
+		sb.AppendLine($"║ Only in {otherName,-16}:  {onlyOtherStats.CodeBytes + onlyOtherStats.DataBytes,10:N0} bytes              ║");
+		sb.AppendLine("╠══════════════════════════════════════════════════════════════╣");
+
+		// Show code breakdown
+		sb.AppendLine($"║ Common code:            {commonStats.CodeBytes,10:N0} bytes              ║");
+		sb.AppendLine($"║ {thisName,-16} only code:   {onlyThisStats.CodeBytes,10:N0} bytes              ║");
+		sb.AppendLine($"║ {otherName,-16} only code:   {onlyOtherStats.CodeBytes,10:N0} bytes              ║");
+		sb.AppendLine("╠══════════════════════════════════════════════════════════════╣");
+
+		// Show data breakdown
+		sb.AppendLine($"║ Common data:            {commonStats.DataBytes,10:N0} bytes              ║");
+		sb.AppendLine($"║ {thisName,-16} only data:   {onlyThisStats.DataBytes,10:N0} bytes              ║");
+		sb.AppendLine($"║ {otherName,-16} only data:   {onlyOtherStats.DataBytes,10:N0} bytes              ║");
+		sb.AppendLine("╚══════════════════════════════════════════════════════════════╝");
+
+		return sb.ToString();
+	}
+
+	/// <summary>
+	/// Result of comparing two CDL files.
+	/// </summary>
+	public record CdlDiff(
+		CdlHeatmap OnlyInFirst,
+		CdlHeatmap OnlyInSecond,
+		CdlHeatmap Common
+	);
+
+	/// <summary>
+	/// Exports covered code regions as MLB (Mesen Label) file format.
+	/// </summary>
+	/// <param name="minRegionSize">Minimum region size to export as a label.</param>
+	/// <param name="labelPrefix">Prefix for auto-generated labels.</param>
+	/// <param name="baseAddress">Base address for PRG ROM (e.g., 0x8000 for NES).</param>
+	public string ExportAsMlb(int minRegionSize = 8, string labelPrefix = "cdl", int baseAddress = 0x8000) {
+		var sb = new StringBuilder();
+		sb.AppendLine("# MLB Labels generated from CDL coverage data");
+		sb.AppendLine($"# Format: {_format}");
+		sb.AppendLine($"# Coverage: {GetCoverageStats().CoveragePercentage:F1}%");
+		sb.AppendLine();
+
+		var codeRegions = FindCoveredRegions(minRegionSize);
+		int labelIndex = 0;
+
+		foreach (var (offset, length, isCode) in codeRegions) {
+			string type = isCode ? "P" : "P"; // Both code and data go to PRG for now
+			int address = baseAddress + (offset % 0x8000); // Handle banking
+			string label = $"{labelPrefix}_{(isCode ? "code" : "data")}_{labelIndex:D4}";
+			string comment = $"CDL: {(isCode ? "Code" : "Data")} region, {length} bytes at file offset 0x{offset:X6}";
+
+			sb.AppendLine($"{type}:{address:X4}:{label}:{comment}");
+			labelIndex++;
+		}
+
+		return sb.ToString();
+	}
+
+	/// <summary>
+	/// Exports covered regions as SYM (Symbol) file format.
+	/// Compatible with various emulators and debuggers.
+	/// </summary>
+	/// <param name="minRegionSize">Minimum region size to export.</param>
+	/// <param name="labelPrefix">Prefix for auto-generated labels.</param>
+	/// <param name="bankSize">Size of each bank for address calculation.</param>
+	public string ExportAsSym(int minRegionSize = 8, string labelPrefix = "cdl", int bankSize = 0x4000) {
+		var sb = new StringBuilder();
+		sb.AppendLine("; SYM Labels generated from CDL coverage data");
+		sb.AppendLine($"; Format: {_format}");
+		sb.AppendLine($"; Coverage: {GetCoverageStats().CoveragePercentage:F1}%");
+		sb.AppendLine();
+		sb.AppendLine("[labels]");
+
+		var regions = FindCoveredRegions(minRegionSize);
+		int labelIndex = 0;
+
+		foreach (var (offset, length, isCode) in regions) {
+			// Calculate bank and offset within bank
+			int bank = offset / bankSize;
+			int bankOffset = offset % bankSize;
+			int address = 0x8000 + bankOffset; // NES PRG ROM starts at $8000
+
+			string label = $"{labelPrefix}_{(isCode ? "code" : "data")}_{labelIndex:D4}";
+			string comment = isCode ? "Code" : "Data";
+
+			sb.AppendLine($"{bank:X2}:{address:X4} {label} ; {comment}, {length} bytes");
+			labelIndex++;
+		}
+
+		return sb.ToString();
+	}
+
+	/// <summary>
+	/// Exports uncovered regions for investigation.
+	/// </summary>
+	/// <param name="minSize">Minimum size of uncovered region to report.</param>
+	/// <param name="format">Output format: "mlb", "sym", or "txt".</param>
+	public string ExportUncoveredRegions(int minSize = 64, string format = "txt") {
+		var regions = FindUncoveredRegions(minSize);
+		var sb = new StringBuilder();
+
+		if (format == "mlb") {
+			sb.AppendLine("# MLB Labels for uncovered regions");
+			sb.AppendLine("# These areas were not accessed during gameplay");
+			sb.AppendLine();
+			int index = 0;
+			foreach (var (offset, length) in regions) {
+				int address = 0x8000 + (offset % 0x8000);
+				sb.AppendLine($"P:{address:X4}:unknown_{index:D4}:Uncovered region, {length} bytes at 0x{offset:X6}");
+				index++;
+			}
+		} else if (format == "sym") {
+			sb.AppendLine("; Uncovered regions for investigation");
+			sb.AppendLine("[labels]");
+			int index = 0;
+			foreach (var (offset, length) in regions) {
+				int bank = offset / 0x4000;
+				int address = 0x8000 + (offset % 0x4000);
+				sb.AppendLine($"{bank:X2}:{address:X4} unknown_{index:D4} ; {length} bytes uncovered");
+				index++;
+			}
+		} else {
+			sb.AppendLine("Uncovered Regions Report");
+			sb.AppendLine("========================");
+			sb.AppendLine();
+			foreach (var (offset, length) in regions) {
+				sb.AppendLine($"Offset: 0x{offset:X6}  Length: {length,6:N0} bytes  (0x{length:X4})");
+			}
+			sb.AppendLine();
+			sb.AppendLine($"Total uncovered regions: {regions.Count}");
+			sb.AppendLine($"Total uncovered bytes: {regions.Sum(r => r.Length):N0}");
+		}
+
+		return sb.ToString();
+	}
 }

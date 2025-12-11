@@ -29,6 +29,7 @@ public class ViewLocator : IDataTemplate {
 		{ typeof(TextExtractorViewModel), typeof(TextExtractorView) },
 		{ typeof(MapEditorViewModel), typeof(MapEditorView) },
 		{ typeof(ScriptEditorViewModel), typeof(ScriptEditorView) },
+		{ typeof(CdlViewerViewModel), typeof(CdlViewerView) },
 	};
 
 	public Control? Build(object? param) {

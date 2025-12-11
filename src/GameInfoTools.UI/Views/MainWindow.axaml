@@ -40,6 +40,8 @@
 				<Separator/>
 				<MenuItem Header="_Data Table Editor" Command="{Binding ShowDataEditorCommand}"/>
 				<MenuItem Header="_Pointer Scanner" Command="{Binding ShowPointerScannerCommand}"/>
+				<Separator/>
+				<MenuItem Header="C_DL Viewer" Command="{Binding ShowCdlViewerCommand}"/>
 			</MenuItem>
 			<MenuItem Header="_View">
 				<MenuItem Header="Hex _Editor" Command="{Binding ShowHexEditorCommand}"/>
