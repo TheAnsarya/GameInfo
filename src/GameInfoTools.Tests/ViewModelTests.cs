@@ -1469,5 +1469,116 @@ public class ViewModelTests {
 		Assert.Equal("AB", item.Display);
 	}
 
+	[Fact]
+	public void MapEditorViewModel_ResizeMap_ChangesMapDimensions() {
+		var vm = new MapEditorViewModel();
+		vm.MapWidth = 8;
+		vm.MapHeight = 8;
+		vm.MapDataArray = new byte[64];
+
+		vm.ResizeMapCommand.Execute("16x16");
+
+		Assert.Equal(16, vm.MapWidth);
+		Assert.Equal(16, vm.MapHeight);
+		Assert.Equal(256, vm.MapDataArray?.Length);
+	}
+
+	[Fact]
+	public void MapEditorViewModel_ResizeMap_PreservesData() {
+		var vm = new MapEditorViewModel();
+		vm.MapWidth = 4;
+		vm.MapHeight = 4;
+		vm.MapDataArray = new byte[16];
+		vm.MapDataArray[0] = 0xAB; // Top-left
+
+		vm.ResizeMapCommand.Execute("8x8");
+
+		Assert.Equal((byte)0xAB, vm.MapDataArray?[0]);
+	}
+
+	[Fact]
+	public void MapEditorViewModel_ShiftMap_ShiftsRight() {
+		var vm = new MapEditorViewModel();
+		vm.MapWidth = 4;
+		vm.MapHeight = 1;
+		vm.MapDataArray = new byte[] { 1, 2, 3, 4 };
+
+		vm.ShiftMapCommand.Execute("RIGHT");
+
+		// Shifted right with wrap-around: [4, 1, 2, 3]
+		Assert.Equal((byte)4, vm.MapDataArray?[0]);
+		Assert.Equal((byte)1, vm.MapDataArray?[1]);
+	}
+
+	[Fact]
+	public void MapEditorViewModel_ShiftMap_ShiftsLeft() {
+		var vm = new MapEditorViewModel();
+		vm.MapWidth = 4;
+		vm.MapHeight = 1;
+		vm.MapDataArray = new byte[] { 1, 2, 3, 4 };
+
+		vm.ShiftMapCommand.Execute("LEFT");
+
+		// Shifted left with wrap-around: [2, 3, 4, 1]
+		Assert.Equal((byte)2, vm.MapDataArray?[0]);
+		Assert.Equal((byte)1, vm.MapDataArray?[3]);
+	}
+
+	[Fact]
+	public void MapEditorViewModel_GeneratePattern_Checkerboard() {
+		var vm = new MapEditorViewModel();
+		vm.MapWidth = 4;
+		vm.MapHeight = 4;
+		vm.MapDataArray = new byte[16];
+
+		vm.GeneratePatternCommand.Execute("CHECKERBOARD");
+
+		// Checkerboard alternates 0 and 255
+		Assert.Equal((byte)0, vm.MapDataArray?[0]); // (0,0)
+		Assert.Equal((byte)255, vm.MapDataArray?[1]); // (1,0)
+		Assert.Equal((byte)255, vm.MapDataArray?[4]); // (0,1)
+		Assert.Equal((byte)0, vm.MapDataArray?[5]); // (1,1)
+	}
+
+	[Fact]
+	public void MapEditorViewModel_GeneratePattern_Clear() {
+		var vm = new MapEditorViewModel();
+		vm.MapWidth = 4;
+		vm.MapHeight = 4;
+		vm.MapDataArray = new byte[16];
+		for (int i = 0; i < 16; i++) vm.MapDataArray[i] = 0xFF;
+
+		vm.GeneratePatternCommand.Execute("CLEAR");
+
+		Assert.All(vm.MapDataArray!, b => Assert.Equal((byte)0, b));
+	}
+
+	[Fact]
+	public void MapEditorViewModel_GeneratePattern_Border() {
+		var vm = new MapEditorViewModel();
+		vm.MapWidth = 4;
+		vm.MapHeight = 4;
+		vm.MapDataArray = new byte[16];
+		vm.SelectedTile = 0xAA;
+
+		vm.GeneratePatternCommand.Execute("BORDER");
+
+		// Corners and edges should be 0xAA
+		Assert.Equal((byte)0xAA, vm.MapDataArray?[0]); // Top-left
+		Assert.Equal((byte)0xAA, vm.MapDataArray?[3]); // Top-right
+		Assert.Equal((byte)0, vm.MapDataArray?[5]); // Interior (1,1)
+	}
+
+	[Fact]
+	public void MapEditorViewModel_ResizeMap_InvalidFormat_ShowsError() {
+		var vm = new MapEditorViewModel();
+		vm.MapWidth = 8;
+		vm.MapHeight = 8;
+
+		vm.ResizeMapCommand.Execute("invalid");
+
+		Assert.Contains("Invalid", vm.StatusText);
+	}
+
 	#endregion
 }
