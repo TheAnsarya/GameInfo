@@ -595,6 +595,97 @@ public class ViewModelTests {
 		Assert.Contains("SNES 4bpp", vm.AvailableFormats);
 	}
 
+	[Fact]
+	public void ChrEditorViewModel_HasAllTileFormats() {
+		var vm = new ChrEditorViewModel(null);
+		Assert.Contains("NES 2bpp", vm.AvailableFormats);
+		Assert.Contains("SNES 2bpp", vm.AvailableFormats);
+		Assert.Contains("SNES 4bpp", vm.AvailableFormats);
+		Assert.Contains("SNES 8bpp", vm.AvailableFormats);
+		Assert.Contains("GB 2bpp", vm.AvailableFormats);
+		Assert.Contains("GBA 4bpp", vm.AvailableFormats);
+		Assert.Contains("GBA 8bpp", vm.AvailableFormats);
+		Assert.Contains("Linear 1bpp", vm.AvailableFormats);
+		Assert.Contains("Linear 2bpp", vm.AvailableFormats);
+		Assert.Contains("Linear 4bpp", vm.AvailableFormats);
+	}
+
+	[Fact]
+	public void ChrEditorViewModel_SetTileFormat_UpdatesCurrentFormat() {
+		var vm = new ChrEditorViewModel(null);
+		vm.SetTileFormatCommand.Execute("SNES 4bpp");
+		Assert.Equal(Core.TileGraphics.TileFormat.Snes4Bpp, vm.CurrentTileFormat);
+		Assert.Equal("SNES 4bpp", vm.TileFormat);
+	}
+
+	[Fact]
+	public void ChrEditorViewModel_SetTileFormat_UpdatesFormatColorCount() {
+		var vm = new ChrEditorViewModel(null);
+
+		vm.SetTileFormatCommand.Execute("NES 2bpp");
+		Assert.Equal(4, vm.FormatColorCount);
+
+		vm.SetTileFormatCommand.Execute("SNES 4bpp");
+		Assert.Equal(16, vm.FormatColorCount);
+
+		vm.SetTileFormatCommand.Execute("SNES 8bpp");
+		Assert.Equal(256, vm.FormatColorCount);
+	}
+
+	[Fact]
+	public void ChrEditorViewModel_SetTileFormat_UpdatesBytesPerTile() {
+		var vm = new ChrEditorViewModel(null);
+
+		vm.SetTileFormatCommand.Execute("NES 2bpp");
+		Assert.Equal(16, vm.FormatBytesPerTile);
+
+		vm.SetTileFormatCommand.Execute("SNES 4bpp");
+		Assert.Equal(32, vm.FormatBytesPerTile);
+
+		vm.SetTileFormatCommand.Execute("SNES 8bpp");
+		Assert.Equal(64, vm.FormatBytesPerTile);
+	}
+
+	[Fact]
+	public void ChrEditorViewModel_SpriteSheetConfiguration_Defaults() {
+		var vm = new ChrEditorViewModel(null);
+		Assert.Equal(16, vm.SpriteSheetTilesPerRow);
+		Assert.Equal(0, vm.SpriteSheetSpacing);
+		Assert.False(vm.SpriteSheetShowGrid);
+	}
+
+	[Fact]
+	public void ChrEditorViewModel_SpriteSheetConfiguration_Settable() {
+		var vm = new ChrEditorViewModel(null);
+		vm.SpriteSheetTilesPerRow = 8;
+		vm.SpriteSheetSpacing = 2;
+		vm.SpriteSheetShowGrid = true;
+
+		Assert.Equal(8, vm.SpriteSheetTilesPerRow);
+		Assert.Equal(2, vm.SpriteSheetSpacing);
+		Assert.True(vm.SpriteSheetShowGrid);
+	}
+
+	[Fact]
+	public void ChrEditorViewModel_AllFormatsHaveCorrectBytesPerTile() {
+		var vm = new ChrEditorViewModel(null);
+
+		vm.SetTileFormatCommand.Execute("Linear 1bpp");
+		Assert.Equal(8, vm.FormatBytesPerTile);
+
+		vm.SetTileFormatCommand.Execute("Linear 2bpp");
+		Assert.Equal(16, vm.FormatBytesPerTile);
+
+		vm.SetTileFormatCommand.Execute("Linear 4bpp");
+		Assert.Equal(32, vm.FormatBytesPerTile);
+
+		vm.SetTileFormatCommand.Execute("GBA 4bpp");
+		Assert.Equal(32, vm.FormatBytesPerTile);
+
+		vm.SetTileFormatCommand.Execute("GBA 8bpp");
+		Assert.Equal(64, vm.FormatBytesPerTile);
+	}
+
 	#endregion
 
 	#region DataTableViewModel Tests
