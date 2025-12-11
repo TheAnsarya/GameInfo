@@ -41,7 +41,7 @@ Add more tools - Map editor, script editor, etc.
 Update GitHub Issue #8 - Mark UI progress; continue
 &&&
 
-git commit everything in logical batches, update giuthub issues, update todo-lists, all work should have an issue, tie them to those issues;always create todo-lists and create github issues and epics; and update them as you complete work; always create session logs in `~docs\session-logs` and ai chat logs at `~docs\chat-logs\` as markdown (`.md`) log files;; Add more ViewModel tests for MapEditor and ScriptEditor; Implement map format parsers for specific games; Add script opcode definitions for popular games (Dragon Warrior, Final Fantasy, etc.); Create visual tile rendering in Map/CHR editors using SkiaSharp or Avalonia drawing; Add undo/redo functionality to editors; continue;
+git commit everything in logical batches, update giuthub issues, update todo-lists, all work should have an issue, tie them to those issues; always create todo-lists and create github issues and epics; and update them as you complete work; always create session logs in `~docs\session-logs` and ai chat logs at `~docs\chat-logs\` as markdown (`.md`) log files;; Add more ViewModel tests for MapEditor and ScriptEditor; Implement map format parsers for specific games; Add script opcode definitions for popular games (Dragon Warrior, Final Fantasy, etc.); Create visual tile rendering in Map/CHR editors using SkiaSharp or Avalonia drawing; Add undo/redo functionality to editors; continue;
 
 Create visual tile rendering using SkiaSharp or Avalonia drawing
 
@@ -85,7 +85,18 @@ do that full `what's next`:; Disassembler UI improvements; Script Editor control
 
 I cannot read the terminal, fix the colors; Views/XAML implementation - Create the actual UI controls to utilize all these ViewModel features; Documentation - Add inline docs for new public APIs; Integration testing - End-to-end tests for editor workflows; continue
 
-update documentation and github issues and plan more with gh issues; update chat logs and session logs for all of our work; create and update todo-lists; git commit and push all uncommited files in logical batches, attach them to issues; always attach commits to a github issue; continue; do github issues work;
+I cannot read the terminal, fix the colors of the text and background; update documentation and github issues and plan more with gh issues; update chat logs and session logs for all of our work; create and update todo-lists; git commit and push all uncommited files in logical batches, attach them to issues; always attach commits to a github issue; continue; do github issues work;
+
+continue
+
+continue
+
+git commit everything in logical batches, update giuthub issues, update todo-lists, all work should have an issue, tie them to those issues; always create todo-lists and create github issues and epics; and update them as you complete work; always create session logs in `~docs\session-logs` and ai chat logs at `~docs\chat-logs\` as markdown (`.md`) log files; fix all `md` documentation formatting errors like `MD032/blanks-around-lists` and `MD022/blanks-around-headings` and other formatting errors and use tabs not spaces for indentation; ***pick a random github issue and work on it***; continue
+
+
+
+
+
 
 
 
