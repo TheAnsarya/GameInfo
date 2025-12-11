@@ -18,8 +18,12 @@
 		"rammap",
 		"rommap",
 		"tileset",
+		"unlogged",
 		"UNROM"
 	],
+	"markdownlint.config": {
+		"MD010": false
+	},
 	"terminal.integrated.fontFamily": "Consolas, 'Courier New', monospace",
 	"terminal.integrated.fontSize": 15,
 	"terminal.integrated.lineHeight": 1.2,

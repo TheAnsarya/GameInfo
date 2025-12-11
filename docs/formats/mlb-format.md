@@ -89,48 +89,48 @@ S:700000:save_data
 
 ```python
 def parse_mlb_line(line):
-    """Parse a single MLB line."""
-    line = line.strip()
-    if not line or line.startswith('#'):
-        return None
-    
-    parts = line.split(':')
-    if len(parts) < 3:
-        return None
-    
-    return {
-        'type': parts[0],
-        'address': int(parts[1], 16),
-        'label': parts[2],
-        'comment': parts[3] if len(parts) > 3 else ''
-    }
+	"""Parse a single MLB line."""
+	line = line.strip()
+	if not line or line.startswith('#'):
+		return None
+
+	parts = line.split(':')
+	if len(parts) < 3:
+		return None
+
+	return {
+		'type': parts[0],
+		'address': int(parts[1], 16),
+		'label': parts[2],
+		'comment': parts[3] if len(parts) > 3 else ''
+	}
 
 def load_mlb_file(filename):
-    """Load all labels from MLB file."""
-    labels = []
-    with open(filename, 'r') as f:
-        for line in f:
-            label = parse_mlb_line(line)
-            if label:
-                labels.append(label)
-    return labels
+	"""Load all labels from MLB file."""
+	labels = []
+	with open(filename, 'r') as f:
+		for line in f:
+			label = parse_mlb_line(line)
+			if label:
+				labels.append(label)
+	return labels
 ```
 
 ### Writing MLB Files
 
 ```python
 def format_mlb_line(label_dict):
-    """Format label dictionary as MLB line."""
-    line = f"{label_dict['type']}:{label_dict['address']:04X}:{label_dict['label']}"
-    if label_dict.get('comment'):
-        line += f":{label_dict['comment']}"
-    return line
+	"""Format label dictionary as MLB line."""
+	line = f"{label_dict['type']}:{label_dict['address']:04X}:{label_dict['label']}"
+	if label_dict.get('comment'):
+		line += f":{label_dict['comment']}"
+	return line
 
 def save_mlb_file(filename, labels):
-    """Save labels to MLB file."""
-    with open(filename, 'w') as f:
-        for label in labels:
-            f.write(format_mlb_line(label) + '\n')
+	"""Save labels to MLB file."""
+	with open(filename, 'w') as f:
+		for label in labels:
+			f.write(format_mlb_line(label) + '\n')
 ```
 
 ## Sorting and Organization
@@ -141,8 +141,8 @@ Labels are typically sorted by:
 
 ```python
 def sort_labels(labels):
-    type_order = {'R': 0, 'W': 1, 'S': 2, 'P': 3, 'C': 4, 'G': 5}
-    return sorted(labels, key=lambda l: (type_order.get(l['type'], 99), l['address']))
+	type_order = {'R': 0, 'W': 1, 'S': 2, 'P': 3, 'C': 4, 'G': 5}
+	return sorted(labels, key=lambda l: (type_order.get(l['type'], 99), l['address']))
 ```
 
 ## Best Practices

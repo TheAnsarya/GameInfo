@@ -89,41 +89,41 @@ bsnes uses a similar single-byte-per-byte format:
 
 ```python
 def is_code(cdl_byte):
-    return (cdl_byte & 0x01) != 0
+	return (cdl_byte & 0x01) != 0
 
 def is_data(cdl_byte):
-    return (cdl_byte & 0x02) != 0
+	return (cdl_byte & 0x02) != 0
 
 def is_unlogged(cdl_byte):
-    return cdl_byte == 0
+	return cdl_byte == 0
 ```
 
 ### Coverage Percentage
 
 ```python
 def calculate_coverage(cdl_data):
-    logged = sum(1 for b in cdl_data if b != 0)
-    return (logged / len(cdl_data)) * 100
+	logged = sum(1 for b in cdl_data if b != 0)
+	return (logged / len(cdl_data)) * 100
 ```
 
 ### Finding Unlogged Regions
 
 ```python
 def find_gaps(cdl_data, min_size=16):
-    gaps = []
-    gap_start = None
-    
-    for i, byte in enumerate(cdl_data):
-        if byte == 0:
-            if gap_start is None:
-                gap_start = i
-        else:
-            if gap_start is not None:
-                if i - gap_start >= min_size:
-                    gaps.append((gap_start, i - 1))
-                gap_start = None
-    
-    return gaps
+	gaps = []
+	gap_start = None
+
+	for i, byte in enumerate(cdl_data):
+		if byte == 0:
+			if gap_start is None:
+				gap_start = i
+		else:
+			if gap_start is not None:
+				if i - gap_start >= min_size:
+					gaps.append((gap_start, i - 1))
+				gap_start = None
+
+	return gaps
 ```
 
 ## Format Conversion
@@ -132,32 +132,32 @@ def find_gaps(cdl_data, min_size=16):
 
 ```python
 def fceux_to_mesen(fceux_byte):
-    mesen_byte = 0
-    if fceux_byte & 0x01:  # Code
-        mesen_byte |= 0x01
-    if fceux_byte & 0x02:  # Data
-        mesen_byte |= 0x02
-    if fceux_byte & 0x10:  # Indirect code
-        mesen_byte |= 0x04
-    if fceux_byte & 0x20:  # Indirect data
-        mesen_byte |= 0x08
-    return mesen_byte
+	mesen_byte = 0
+	if fceux_byte & 0x01:  # Code
+		mesen_byte |= 0x01
+	if fceux_byte & 0x02:  # Data
+		mesen_byte |= 0x02
+	if fceux_byte & 0x10:  # Indirect code
+		mesen_byte |= 0x04
+	if fceux_byte & 0x20:  # Indirect data
+		mesen_byte |= 0x08
+	return mesen_byte
 ```
 
 ### Mesen to FCEUX
 
 ```python
 def mesen_to_fceux(mesen_byte):
-    fceux_byte = 0
-    if mesen_byte & 0x01:  # Code
-        fceux_byte |= 0x01
-    if mesen_byte & 0x02:  # Data
-        fceux_byte |= 0x02
-    if mesen_byte & 0x04:  # Indirect code
-        fceux_byte |= 0x10
-    if mesen_byte & 0x08:  # Indirect data
-        fceux_byte |= 0x20
-    return fceux_byte
+	fceux_byte = 0
+	if mesen_byte & 0x01:  # Code
+		fceux_byte |= 0x01
+	if mesen_byte & 0x02:  # Data
+		fceux_byte |= 0x02
+	if mesen_byte & 0x04:  # Indirect code
+		fceux_byte |= 0x10
+	if mesen_byte & 0x08:  # Indirect data
+		fceux_byte |= 0x20
+	return fceux_byte
 ```
 
 ## References

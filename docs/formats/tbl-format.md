@@ -227,75 +227,75 @@ For wiki documentation:
 
 ```python
 def parse_tbl_file(filename):
-    """Parse TBL file into dictionary."""
-    encoding = {}
-    
-    with open(filename, 'r', encoding='utf-8') as f:
-        for line in f:
-            line = line.strip()
-            
-            # Skip comments and empty lines
-            if not line or line.startswith(';') or line.startswith('//'):
-                continue
-            
-            # Parse XX=C format
-            if '=' in line:
-                parts = line.split('=', 1)
-                hex_value = int(parts[0], 16)
-                char = parts[1]
-                encoding[hex_value] = char
-    
-    return encoding
+	"""Parse TBL file into dictionary."""
+	encoding = {}
+
+	with open(filename, 'r', encoding='utf-8') as f:
+		for line in f:
+			line = line.strip()
+
+			# Skip comments and empty lines
+			if not line or line.startswith(';') or line.startswith('//'):
+				continue
+
+			# Parse XX=C format
+			if '=' in line:
+				parts = line.split('=', 1)
+				hex_value = int(parts[0], 16)
+				char = parts[1]
+				encoding[hex_value] = char
+
+	return encoding
 ```
 
 ### Decoding Text
 
 ```python
 def decode_text(data, tbl):
-    """Decode bytes using TBL encoding."""
-    result = []
-    i = 0
-    
-    while i < len(data):
-        byte = data[i]
-        
-        if byte in tbl:
-            result.append(tbl[byte])
-        else:
-            result.append(f'[{byte:02x}]')
-        
-        i += 1
-    
-    return ''.join(result)
+	"""Decode bytes using TBL encoding."""
+	result = []
+	i = 0
+
+	while i < len(data):
+		byte = data[i]
+
+		if byte in tbl:
+			result.append(tbl[byte])
+		else:
+			result.append(f'[{byte:02x}]')
+
+		i += 1
+
+	return ''.join(result)
 ```
 
 ### Encoding Text
 
 ```python
 def encode_text(text, tbl):
-    """Encode text using TBL encoding."""
-    # Create reverse mapping
-    reverse_tbl = {v: k for k, v in tbl.items()}
-    
-    result = []
-    i = 0
-    
-    while i < len(text):
-        found = False
-        
-        # Try multi-character matches first (longest match)
-        for length in range(min(10, len(text) - i), 0, -1):
-            substr = text[i:i+length]
-            if substr in reverse_tbl:
-                result.append(reverse_tbl[substr])
-                i += length
-                found = True
-                break
-        
-        if not found:
-            raise ValueError(f"Cannot encode character: {text[i]}")
-    
-    return bytes(result)
+	"""Encode text using TBL encoding."""
+	# Create reverse mapping
+	reverse_tbl = {v: k for k, v in tbl.items()}
+
+	result = []
+	i = 0
+
+	while i < len(text):
+		found = False
+
+		# Try multi-character matches first (longest match)
+		for length in range(min(10, len(text) - i), 0, -1):
+			substr = text[i:i+length]
+			if substr in reverse_tbl:
+				result.append(reverse_tbl[substr])
+				i += length
+				found = True
+				break
+
+		if not found:
+			raise ValueError(f"Cannot encode character: {text[i]}")
+
+	return bytes(result)
 ```
 
 ## Multi-Byte Handling
@@ -304,30 +304,30 @@ def encode_text(text, tbl):
 
 ```python
 def decode_variable_width(data, tbl, multi_byte_prefix=0xab):
-    """Decode with multi-byte sequences."""
-    result = []
-    i = 0
-    
-    while i < len(data):
-        byte = data[i]
-        
-        # Check for multi-byte prefix
-        if byte == multi_byte_prefix and i + 1 < len(data):
-            two_byte = (byte << 8) | data[i + 1]
-            if two_byte in tbl:
-                result.append(tbl[two_byte])
-                i += 2
-                continue
-        
-        # Single byte
-        if byte in tbl:
-            result.append(tbl[byte])
-        else:
-            result.append(f'[{byte:02x}]')
-        
-        i += 1
-    
-    return ''.join(result)
+	"""Decode with multi-byte sequences."""
+	result = []
+	i = 0
+
+	while i < len(data):
+		byte = data[i]
+
+		# Check for multi-byte prefix
+		if byte == multi_byte_prefix and i + 1 < len(data):
+			two_byte = (byte << 8) | data[i + 1]
+			if two_byte in tbl:
+				result.append(tbl[two_byte])
+				i += 2
+				continue
+
+		# Single byte
+		if byte in tbl:
+			result.append(tbl[byte])
+		else:
+			result.append(f'[{byte:02x}]')
+
+		i += 1
+
+	return ''.join(result)
 ```
 
 ## Common Control Codes
@@ -388,22 +388,22 @@ Include header comments:
 
 ```python
 def validate_tbl(tbl):
-    """Validate TBL for common issues."""
-    issues = []
-    
-    # Check for duplicate values
-    chars = {}
-    for hex_val, char in tbl.items():
-        if char in chars:
-            issues.append(f"Duplicate character '{char}' at ${hex_val:02x} and ${chars[char]:02x}")
-        chars[char] = hex_val
-    
-    # Check for gaps
-    for i in range(max(tbl.keys()) + 1):
-        if i not in tbl:
-            issues.append(f"Missing entry for ${i:02x}")
-    
-    return issues
+	"""Validate TBL for common issues."""
+	issues = []
+
+	# Check for duplicate values
+	chars = {}
+	for hex_val, char in tbl.items():
+		if char in chars:
+			issues.append(f"Duplicate character '{char}' at ${hex_val:02x} and ${chars[char]:02x}")
+		chars[char] = hex_val
+
+	# Check for gaps
+	for i in range(max(tbl.keys()) + 1):
+		if i not in tbl:
+			issues.append(f"Missing entry for ${i:02x}")
+
+	return issues
 ```
 
 ## References

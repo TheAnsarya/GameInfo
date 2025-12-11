@@ -93,58 +93,58 @@ $FFFE#irq_vector#IRQ vector
 
 ```python
 def parse_nl_line(line):
-    """Parse a single NL line."""
-    line = line.strip()
-    if not line or line.startswith(';'):
-        return None
-    
-    # Remove leading $ and split by #
-    if line.startswith('$'):
-        line = line[1:]
-    
-    parts = line.split('#')
-    if len(parts) < 2:
-        return None
-    
-    return {
-        'address': int(parts[0], 16),
-        'label': parts[1],
-        'comment': parts[2] if len(parts) > 2 else ''
-    }
+	"""Parse a single NL line."""
+	line = line.strip()
+	if not line or line.startswith(';'):
+		return None
+
+	# Remove leading $ and split by #
+	if line.startswith('$'):
+		line = line[1:]
+
+	parts = line.split('#')
+	if len(parts) < 2:
+		return None
+
+	return {
+		'address': int(parts[0], 16),
+		'label': parts[1],
+		'comment': parts[2] if len(parts) > 2 else ''
+	}
 
 def load_nl_file(filename):
-    """Load all labels from NL file."""
-    labels = []
-    with open(filename, 'r', encoding='utf-8') as f:
-        for line in f:
-            label = parse_nl_line(line)
-            if label:
-                labels.append(label)
-    return labels
+	"""Load all labels from NL file."""
+	labels = []
+	with open(filename, 'r', encoding='utf-8') as f:
+		for line in f:
+			label = parse_nl_line(line)
+			if label:
+				labels.append(label)
+	return labels
 ```
 
 ### Writing NL Files
 
 ```python
 def format_nl_line(address, label, comment=''):
-    """Format as NL line."""
-    line = f"${address:04X}#{label}"
-    if comment:
-        line += f"#{comment}"
-    return line
+	"""Format as NL line."""
+	line = f"${address:04X}#{label}"
+	if comment:
+		line += f"#{comment}"
+	return line
 
 def save_nl_file(filename, labels):
-    """Save labels to NL file."""
-    # Sort by address
-    sorted_labels = sorted(labels, key=lambda l: l['address'])
-    
-    with open(filename, 'w', encoding='utf-8') as f:
-        for label in sorted_labels:
-            f.write(format_nl_line(
-                label['address'],
-                label['label'],
-                label.get('comment', '')
-            ) + '\n')
+	"""Save labels to NL file."""
+	# Sort by address
+	sorted_labels = sorted(labels, key=lambda l: l['address'])
+
+	with open(filename, 'w', encoding='utf-8') as f:
+		for label in sorted_labels:
+			f.write(format_nl_line(
+				label['address'],
+				label['label'],
+				label.get('comment', '')
+			) + '\n')
 ```
 
 ## Bank Mapping
@@ -155,18 +155,18 @@ For mappers like MMC1 (16KB banks):
 
 ```python
 def get_bank_number(rom_offset, bank_size=0x4000):
-    """Get bank number from ROM offset."""
-    # Skip header (16 bytes for iNES)
-    offset = rom_offset - 16
-    return offset // bank_size
+	"""Get bank number from ROM offset."""
+	# Skip header (16 bytes for iNES)
+	offset = rom_offset - 16
+	return offset // bank_size
 ```
 
 ### CPU to Bank Address
 
 ```python
 def cpu_to_bank_address(cpu_address, bank_base=0x8000):
-    """Convert CPU address to bank-relative address."""
-    return cpu_address  # NL files use CPU addresses directly
+	"""Convert CPU address to bank-relative address."""
+	return cpu_address  # NL files use CPU addresses directly
 ```
 
 ## Multi-Bank Projects
@@ -190,15 +190,15 @@ labels/
 
 ```python
 def create_nl_files(game_name, num_banks):
-    """Create empty NL files for a game."""
-    # Create RAM file
-    with open(f"{game_name}.ram.nl", 'w') as f:
-        f.write("; RAM labels for {}\n".format(game_name))
-    
-    # Create bank files
-    for bank in range(num_banks):
-        with open(f"{game_name}.{bank}.nl", 'w') as f:
-            f.write(f"; Bank {bank} labels for {game_name}\n")
+	"""Create empty NL files for a game."""
+	# Create RAM file
+	with open(f"{game_name}.ram.nl", 'w') as f:
+		f.write("; RAM labels for {}\n".format(game_name))
+
+	# Create bank files
+	for bank in range(num_banks):
+		with open(f"{game_name}.{bank}.nl", 'w') as f:
+			f.write(f"; Bank {bank} labels for {game_name}\n")
 ```
 
 ## Conversion
@@ -207,59 +207,59 @@ def create_nl_files(game_name, num_banks):
 
 ```python
 def mlb_to_nl(mlb_labels, game_name):
-    """Convert MLB labels to NL files."""
-    ram_labels = []
-    bank_labels = {}
-    
-    for label in mlb_labels:
-        addr = label['address']
-        
-        if label['type'] == 'W':  # Work RAM
-            ram_labels.append(label)
-        elif label['type'] == 'P':  # PRG ROM
-            # Determine bank (simplified - assumes 16KB banks)
-            if addr >= 0xC000:
-                bank = 'fixed'
-            else:
-                bank = (addr - 0x8000) // 0x4000
-            
-            if bank not in bank_labels:
-                bank_labels[bank] = []
-            bank_labels[bank].append(label)
-    
-    # Save RAM file
-    save_nl_file(f"{game_name}.ram.nl", ram_labels)
-    
-    # Save bank files
-    for bank, labels in bank_labels.items():
-        save_nl_file(f"{game_name}.{bank}.nl", labels)
+	"""Convert MLB labels to NL files."""
+	ram_labels = []
+	bank_labels = {}
+
+	for label in mlb_labels:
+		addr = label['address']
+
+		if label['type'] == 'W':  # Work RAM
+			ram_labels.append(label)
+		elif label['type'] == 'P':  # PRG ROM
+			# Determine bank (simplified - assumes 16KB banks)
+			if addr >= 0xC000:
+				bank = 'fixed'
+			else:
+				bank = (addr - 0x8000) // 0x4000
+
+			if bank not in bank_labels:
+				bank_labels[bank] = []
+			bank_labels[bank].append(label)
+
+	# Save RAM file
+	save_nl_file(f"{game_name}.ram.nl", ram_labels)
+
+	# Save bank files
+	for bank, labels in bank_labels.items():
+		save_nl_file(f"{game_name}.{bank}.nl", labels)
 ```
 
 ### NL to MLB
 
 ```python
 def nl_to_mlb(game_name, nl_files):
-    """Convert NL files to MLB format."""
-    mlb_labels = []
-    
-    for nl_file in nl_files:
-        nl_labels = load_nl_file(nl_file)
-        
-        # Determine type from filename
-        if '.ram.' in nl_file:
-            label_type = 'W'
-        else:
-            label_type = 'P'
-        
-        for label in nl_labels:
-            mlb_labels.append({
-                'type': label_type,
-                'address': label['address'],
-                'label': label['label'],
-                'comment': label.get('comment', '')
-            })
-    
-    return mlb_labels
+	"""Convert NL files to MLB format."""
+	mlb_labels = []
+
+	for nl_file in nl_files:
+		nl_labels = load_nl_file(nl_file)
+
+		# Determine type from filename
+		if '.ram.' in nl_file:
+			label_type = 'W'
+		else:
+			label_type = 'P'
+
+		for label in nl_labels:
+			mlb_labels.append({
+				'type': label_type,
+				'address': label['address'],
+				'label': label['label'],
+				'comment': label.get('comment', '')
+			})
+
+	return mlb_labels
 ```
 
 ## Best Practices
