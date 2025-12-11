@@ -666,4 +666,199 @@ public class CdlHeatmap {
 
 		return sb.ToString();
 	}
+
+	#region Format Conversion
+
+	/// <summary>
+	/// Gets the raw CDL data for export or conversion.
+	/// </summary>
+	public byte[] GetRawData() => (byte[])_cdlData.Clone();
+
+	/// <summary>
+	/// Converts CDL data to a different emulator format.
+	/// </summary>
+	/// <param name="targetFormat">Target CDL format.</param>
+	/// <returns>New CdlHeatmap with converted data.</returns>
+	public CdlHeatmap ConvertTo(CdlFormat targetFormat) {
+		if (_format == targetFormat)
+			return this;
+
+		var convertedData = _format switch {
+			CdlFormat.Fceux => targetFormat switch {
+				CdlFormat.Mesen => ConvertFceuxToMesen(_cdlData),
+				CdlFormat.Bsnes => ConvertFceuxToBsnes(_cdlData),
+				_ => _cdlData
+			},
+			CdlFormat.Mesen => targetFormat switch {
+				CdlFormat.Fceux => ConvertMesenToFceux(_cdlData),
+				CdlFormat.Bsnes => ConvertMesenToBsnes(_cdlData),
+				_ => _cdlData
+			},
+			CdlFormat.Bsnes => targetFormat switch {
+				CdlFormat.Fceux => ConvertBsnesToFceux(_cdlData),
+				CdlFormat.Mesen => ConvertBsnesToMesen(_cdlData),
+				_ => _cdlData
+			},
+			_ => _cdlData
+		};
+
+		return new CdlHeatmap(convertedData, targetFormat);
+	}
+
+	/// <summary>
+	/// Saves the CDL data to a file in the specified format.
+	/// </summary>
+	/// <param name="path">Output file path.</param>
+	/// <param name="targetFormat">Target format (uses current format if not specified).</param>
+	public void SaveToFile(string path, CdlFormat? targetFormat = null) {
+		var format = targetFormat ?? _format;
+		var dataToSave = format == _format ? _cdlData : ConvertTo(format).GetRawData();
+		File.WriteAllBytes(path, dataToSave);
+	}
+
+	/// <summary>
+	/// Converts FCEUX CDL format to Mesen CDL format.
+	/// FCEUX and Mesen use similar byte layouts but Mesen may have additional header data.
+	/// </summary>
+	private static byte[] ConvertFceuxToMesen(byte[] fceuxData) {
+		// Mesen CDL format is very similar to FCEUX for basic coverage
+		// The main difference is Mesen includes header information
+		// For NES: Both use 1 byte per ROM byte with similar flag meanings
+		var result = new byte[fceuxData.Length];
+		for (int i = 0; i < fceuxData.Length; i++) {
+			// FCEUX flags: 0x01=Code, 0x02=Data, 0x10=SubEntryPoint, 0x20=ExternalOperand
+			// Mesen flags: 0x01=Code, 0x02=Data, 0x04=JumpTarget, 0x08=SubEntryPoint
+			byte fceux = fceuxData[i];
+			byte mesen = 0;
+
+			// Direct mappings
+			if ((fceux & 0x01) != 0) mesen |= 0x01; // Code
+			if ((fceux & 0x02) != 0) mesen |= 0x02; // Data
+			if ((fceux & 0x10) != 0) mesen |= 0x08; // SubEntryPoint -> SubEntryPoint
+
+			result[i] = mesen;
+		}
+		return result;
+	}
+
+	/// <summary>
+	/// Converts Mesen CDL format to FCEUX CDL format.
+	/// </summary>
+	private static byte[] ConvertMesenToFceux(byte[] mesenData) {
+		var result = new byte[mesenData.Length];
+		for (int i = 0; i < mesenData.Length; i++) {
+			byte mesen = mesenData[i];
+			byte fceux = 0;
+
+			// Mesen flags: 0x01=Code, 0x02=Data, 0x04=JumpTarget, 0x08=SubEntryPoint
+			// FCEUX flags: 0x01=Code, 0x02=Data, 0x10=SubEntryPoint, 0x20=ExternalOperand
+			if ((mesen & 0x01) != 0) fceux |= 0x01; // Code
+			if ((mesen & 0x02) != 0) fceux |= 0x02; // Data
+			if ((mesen & 0x08) != 0) fceux |= 0x10; // SubEntryPoint
+
+			result[i] = fceux;
+		}
+		return result;
+	}
+
+	/// <summary>
+	/// Converts FCEUX CDL format to bsnes/usage map format.
+	/// bsnes uses different flag values for SNES coverage.
+	/// </summary>
+	private static byte[] ConvertFceuxToBsnes(byte[] fceuxData) {
+		// bsnes usage map: 0x80=Executed, 0x40=Read, 0x20=Written
+		var result = new byte[fceuxData.Length];
+		for (int i = 0; i < fceuxData.Length; i++) {
+			byte fceux = fceuxData[i];
+			byte bsnes = 0;
+
+			if ((fceux & 0x01) != 0) bsnes |= 0x80; // Code -> Executed
+			if ((fceux & 0x02) != 0) bsnes |= 0x40; // Data -> Read
+
+			result[i] = bsnes;
+		}
+		return result;
+	}
+
+	/// <summary>
+	/// Converts bsnes usage map format to FCEUX CDL format.
+	/// </summary>
+	private static byte[] ConvertBsnesToFceux(byte[] bsnesData) {
+		var result = new byte[bsnesData.Length];
+		for (int i = 0; i < bsnesData.Length; i++) {
+			byte bsnes = bsnesData[i];
+			byte fceux = 0;
+
+			// bsnes: 0x80=Executed, 0x40=Read, 0x20=Written
+			if ((bsnes & 0x80) != 0) fceux |= 0x01; // Executed -> Code
+			if ((bsnes & 0x40) != 0) fceux |= 0x02; // Read -> Data
+
+			result[i] = fceux;
+		}
+		return result;
+	}
+
+	/// <summary>
+	/// Converts Mesen CDL format to bsnes usage map format.
+	/// </summary>
+	private static byte[] ConvertMesenToBsnes(byte[] mesenData) {
+		var result = new byte[mesenData.Length];
+		for (int i = 0; i < mesenData.Length; i++) {
+			byte mesen = mesenData[i];
+			byte bsnes = 0;
+
+			if ((mesen & 0x01) != 0) bsnes |= 0x80; // Code -> Executed
+			if ((mesen & 0x02) != 0) bsnes |= 0x40; // Data -> Read
+
+			result[i] = bsnes;
+		}
+		return result;
+	}
+
+	/// <summary>
+	/// Converts bsnes usage map format to Mesen CDL format.
+	/// </summary>
+	private static byte[] ConvertBsnesToMesen(byte[] bsnesData) {
+		var result = new byte[bsnesData.Length];
+		for (int i = 0; i < bsnesData.Length; i++) {
+			byte bsnes = bsnesData[i];
+			byte mesen = 0;
+
+			if ((bsnes & 0x80) != 0) mesen |= 0x01; // Executed -> Code
+			if ((bsnes & 0x40) != 0) mesen |= 0x02; // Read -> Data
+
+			result[i] = mesen;
+		}
+		return result;
+	}
+
+	/// <summary>
+	/// Generates a conversion report between two formats.
+	/// </summary>
+	/// <param name="targetFormat">Target format for conversion.</param>
+	public string GenerateConversionReport(CdlFormat targetFormat) {
+		var converted = ConvertTo(targetFormat);
+		var originalStats = GetCoverageStats();
+		var convertedStats = converted.GetCoverageStats();
+
+		var sb = new StringBuilder();
+		sb.AppendLine("╔══════════════════════════════════════════════════════════════╗");
+		sb.AppendLine("║              CDL FORMAT CONVERSION REPORT                    ║");
+		sb.AppendLine("╠══════════════════════════════════════════════════════════════╣");
+		sb.AppendLine($"║ Source Format:   {_format,-20} Size: {Size,10:N0}    ║");
+		sb.AppendLine($"║ Target Format:   {targetFormat,-20} Size: {converted.Size,10:N0}    ║");
+		sb.AppendLine("╠══════════════════════════════════════════════════════════════╣");
+		sb.AppendLine($"║ Original Coverage: {originalStats.CoveragePercentage,7:F2}%                           ║");
+		sb.AppendLine($"║   Code:            {originalStats.CodePercentage,7:F2}% ({originalStats.CodeBytes,10:N0} bytes)    ║");
+		sb.AppendLine($"║   Data:            {originalStats.DataPercentage,7:F2}% ({originalStats.DataBytes,10:N0} bytes)    ║");
+		sb.AppendLine("╠══════════════════════════════════════════════════════════════╣");
+		sb.AppendLine($"║ Converted Coverage: {convertedStats.CoveragePercentage,6:F2}%                           ║");
+		sb.AppendLine($"║   Code:             {convertedStats.CodePercentage,6:F2}% ({convertedStats.CodeBytes,10:N0} bytes)    ║");
+		sb.AppendLine($"║   Data:             {convertedStats.DataPercentage,6:F2}% ({convertedStats.DataBytes,10:N0} bytes)    ║");
+		sb.AppendLine("╚══════════════════════════════════════════════════════════════╝");
+
+		return sb.ToString();
+	}
+
+	#endregion
 }

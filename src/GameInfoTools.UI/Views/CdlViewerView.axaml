@@ -1,6 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:vm="using:GameInfoTools.UI.ViewModels"
+			 xmlns:controls="using:GameInfoTools.UI.Controls"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
@@ -69,18 +70,41 @@
 					</Grid>
 				</Border>
 
-				<!-- ASCII Heatmap Panel -->
+				<!-- Heatmap Panel with Tabs -->
 				<Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
 						CornerRadius="4" Padding="8" Margin="0,0,0,8">
 					<DockPanel>
 						<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="16" Margin="0,0,0,8">
 							<TextBlock Text="Coverage Heatmap" FontWeight="SemiBold"/>
-							<TextBlock Text="█=100% ▓=75%+ ▒=50%+ ░=25%+ .=&lt;25%" Opacity="0.7" FontSize="11"/>
+							<StackPanel Orientation="Horizontal" Spacing="8" Opacity="0.8">
+								<Border Background="#4CAF50" Width="12" Height="12" CornerRadius="2"/>
+								<TextBlock Text="Code" FontSize="11" VerticalAlignment="Center"/>
+								<Border Background="#FFC107" Width="12" Height="12" CornerRadius="2"/>
+								<TextBlock Text="Data" FontSize="11" VerticalAlignment="Center"/>
+								<Border Background="#424242" Width="12" Height="12" CornerRadius="2"/>
+								<TextBlock Text="Unknown" FontSize="11" VerticalAlignment="Center"/>
+							</StackPanel>
 						</StackPanel>
-						<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MaxHeight="200">
-							<TextBlock Text="{Binding AsciiHeatmap}" FontFamily="Consolas" FontSize="11"
-									   IsVisible="{Binding HasCdlLoaded}"/>
-						</ScrollViewer>
+						<TabControl>
+							<!-- Graphical Heatmap Tab -->
+							<TabItem Header="🎨 Graphical">
+								<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MaxHeight="250">
+									<controls:HeatmapControl Cells="{Binding HeatmapCells}" 
+															  Columns="{Binding HeatmapWidth}"
+															  IsVisible="{Binding HasCdlLoaded}"/>
+								</ScrollViewer>
+							</TabItem>
+							<!-- ASCII Heatmap Tab -->
+							<TabItem Header="📝 ASCII">
+								<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MaxHeight="250">
+									<StackPanel>
+										<TextBlock Text="█=100% ▓=75%+ ▒=50%+ ░=25%+ .=&lt;25%" Opacity="0.7" FontSize="11" Margin="0,0,0,4"/>
+										<TextBlock Text="{Binding AsciiHeatmap}" FontFamily="Consolas" FontSize="11"
+												   IsVisible="{Binding HasCdlLoaded}"/>
+									</StackPanel>
+								</ScrollViewer>
+							</TabItem>
+						</TabControl>
 					</DockPanel>
 				</Border>
 

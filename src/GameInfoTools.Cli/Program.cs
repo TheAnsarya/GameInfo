@@ -269,6 +269,17 @@ public class Program {
 		cdlExportSymCommand.SetHandler(AnalysisCommands.CdlExportSym, cdlArg, formatOption, symOutputOption, labelPrefixOption, minSizeOption, bankSizeOption);
 		cdlCommand.AddCommand(cdlExportSymCommand);
 
+		// analysis cdl convert
+		var cdlConvertCommand = new Command("convert", "Convert CDL file between emulator formats");
+		cdlConvertCommand.AddArgument(cdlArg);
+		cdlConvertCommand.AddOption(formatOption);
+		var targetFormatOption = new Option<string>("--target", "Target format (fceux, mesen, bsnes)") { IsRequired = true };
+		cdlConvertCommand.AddOption(targetFormatOption);
+		var convertOutputOption = new Option<FileInfo>("--output", "Output CDL file") { IsRequired = true };
+		cdlConvertCommand.AddOption(convertOutputOption);
+		cdlConvertCommand.SetHandler(AnalysisCommands.CdlConvert, cdlArg, formatOption, targetFormatOption, convertOutputOption);
+		cdlCommand.AddCommand(cdlConvertCommand);
+
 		analysisCommand.AddCommand(cdlCommand);
 
 		return analysisCommand;

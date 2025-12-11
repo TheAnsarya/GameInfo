@@ -699,4 +699,35 @@ public static class AnalysisCommands {
 		var regionCount = heatmap.FindCoveredRegions(minSize).Count;
 		AnsiConsole.MarkupLine($"[green]Exported {regionCount} labels to {outputFile.FullName}[/]");
 	}
+
+	/// <summary>
+	/// Convert CDL file between emulator formats.
+	/// </summary>
+	public static void CdlConvert(FileInfo cdlFile, string format, string targetFormat, FileInfo outputFile) {
+		if (!cdlFile.Exists) {
+			AnsiConsole.MarkupLine($"[red]Error: CDL file not found: {cdlFile.FullName}[/]");
+			return;
+		}
+
+		var heatmap = LoadCdl(cdlFile, format);
+		if (heatmap == null) return;
+
+		var target = targetFormat.ToLowerInvariant() switch {
+			"fceux" => CdlHeatmap.CdlFormat.Fceux,
+			"mesen" => CdlHeatmap.CdlFormat.Mesen,
+			"bsnes" => CdlHeatmap.CdlFormat.Bsnes,
+			_ => CdlHeatmap.CdlFormat.Generic
+		};
+
+		// Show conversion report
+		var report = heatmap.GenerateConversionReport(target);
+		AnsiConsole.Write(new Panel(report).Header("CDL Format Conversion"));
+
+		// Perform conversion and save
+		var converted = heatmap.ConvertTo(target);
+		converted.SaveToFile(outputFile.FullName);
+
+		AnsiConsole.MarkupLine($"[green]Converted {heatmap.Format} → {target}[/]");
+		AnsiConsole.MarkupLine($"[green]Saved to {outputFile.FullName}[/]");
+	}
 }

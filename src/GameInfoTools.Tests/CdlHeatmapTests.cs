@@ -835,4 +835,145 @@ public class CdlHeatmapTests {
 	}
 
 	#endregion
+
+	#region Format Conversion Tests
+
+	[Fact]
+	public void GetRawData_ReturnsClone() {
+		var data = new byte[] { 0x01, 0x02, 0x03 };
+		var heatmap = new CdlHeatmap(data);
+
+		var raw = heatmap.GetRawData();
+
+		Assert.Equal(data, raw);
+		Assert.NotSame(data, raw); // Should be a clone
+	}
+
+	[Fact]
+	public void ConvertTo_SameFormat_ReturnsSame() {
+		var data = new byte[] { 0x01, 0x02 };
+		var heatmap = new CdlHeatmap(data, CdlHeatmap.CdlFormat.Fceux);
+
+		var converted = heatmap.ConvertTo(CdlHeatmap.CdlFormat.Fceux);
+
+		Assert.Same(heatmap, converted);
+	}
+
+	[Fact]
+	public void ConvertTo_FceuxToMesen_PreservesCodeAndData() {
+		// FCEUX: 0x01=Code, 0x02=Data
+		var data = new byte[] { 0x01, 0x02, 0x00 };
+		var heatmap = new CdlHeatmap(data, CdlHeatmap.CdlFormat.Fceux);
+
+		var converted = heatmap.ConvertTo(CdlHeatmap.CdlFormat.Mesen);
+
+		Assert.Equal(CdlHeatmap.CdlFormat.Mesen, converted.Format);
+		Assert.True(converted.IsCode(0));
+		Assert.True(converted.IsData(1));
+		Assert.False(converted.IsCovered(2));
+	}
+
+	[Fact]
+	public void ConvertTo_MesenToFceux_PreservesCodeAndData() {
+		// Mesen: 0x01=Code, 0x02=Data
+		var data = new byte[] { 0x01, 0x02, 0x00 };
+		var heatmap = new CdlHeatmap(data, CdlHeatmap.CdlFormat.Mesen);
+
+		var converted = heatmap.ConvertTo(CdlHeatmap.CdlFormat.Fceux);
+
+		Assert.Equal(CdlHeatmap.CdlFormat.Fceux, converted.Format);
+		Assert.True(converted.IsCode(0));
+		Assert.True(converted.IsData(1));
+		Assert.False(converted.IsCovered(2));
+	}
+
+	[Fact]
+	public void ConvertTo_FceuxToBsnes_MapsFlags() {
+		// FCEUX: 0x01=Code, 0x02=Data
+		// bsnes: 0x80=Executed, 0x40=Read
+		var data = new byte[] { 0x01, 0x02, 0x03 }; // Code, Data, Both
+		var heatmap = new CdlHeatmap(data, CdlHeatmap.CdlFormat.Fceux);
+
+		var converted = heatmap.ConvertTo(CdlHeatmap.CdlFormat.Bsnes);
+		var rawConverted = converted.GetRawData();
+
+		Assert.Equal(0x80, rawConverted[0]); // Code -> Executed
+		Assert.Equal(0x40, rawConverted[1]); // Data -> Read
+		Assert.Equal(0xC0, rawConverted[2]); // Both -> Executed | Read
+	}
+
+	[Fact]
+	public void ConvertTo_BsnesToFceux_MapsFlags() {
+		// bsnes: 0x80=Executed, 0x40=Read
+		// FCEUX: 0x01=Code, 0x02=Data
+		var data = new byte[] { 0x80, 0x40, 0xC0 };
+		var heatmap = new CdlHeatmap(data, CdlHeatmap.CdlFormat.Bsnes);
+
+		var converted = heatmap.ConvertTo(CdlHeatmap.CdlFormat.Fceux);
+		var rawConverted = converted.GetRawData();
+
+		// Check raw flags since IsData returns false when Code is set
+		Assert.Equal(0x01, rawConverted[0]); // Executed -> Code
+		Assert.Equal(0x02, rawConverted[1]); // Read -> Data
+		Assert.Equal(0x03, rawConverted[2]); // Both -> Code | Data
+	}
+
+	[Fact]
+	public void ConvertTo_RoundTrip_PreservesData() {
+		var data = new byte[] { 0x01, 0x02, 0x00, 0x03 };
+		var original = new CdlHeatmap(data, CdlHeatmap.CdlFormat.Fceux);
+
+		// Convert FCEUX -> Mesen -> FCEUX
+		var mesen = original.ConvertTo(CdlHeatmap.CdlFormat.Mesen);
+		var roundTrip = mesen.ConvertTo(CdlHeatmap.CdlFormat.Fceux);
+
+		// Coverage should be preserved
+		Assert.Equal(original.GetCoverageStats().CoveragePercentage, roundTrip.GetCoverageStats().CoveragePercentage);
+	}
+
+	[Fact]
+	public void GenerateConversionReport_ProducesReport() {
+		var data = new byte[] { 0x01, 0x02, 0x00, 0x00 };
+		var heatmap = new CdlHeatmap(data, CdlHeatmap.CdlFormat.Fceux);
+
+		var report = heatmap.GenerateConversionReport(CdlHeatmap.CdlFormat.Mesen);
+
+		Assert.Contains("CDL FORMAT CONVERSION", report);
+		Assert.Contains("Fceux", report);
+		Assert.Contains("Mesen", report);
+	}
+
+	[Fact]
+	public void SaveToFile_WritesData() {
+		var data = new byte[] { 0x01, 0x02, 0x03 };
+		var heatmap = new CdlHeatmap(data, CdlHeatmap.CdlFormat.Fceux);
+
+		var tempFile = Path.GetTempFileName();
+		try {
+			heatmap.SaveToFile(tempFile);
+			var saved = File.ReadAllBytes(tempFile);
+			Assert.Equal(data, saved);
+		} finally {
+			File.Delete(tempFile);
+		}
+	}
+
+	[Fact]
+	public void SaveToFile_WithConversion_WritesConvertedData() {
+		var data = new byte[] { 0x01, 0x02 };
+		var heatmap = new CdlHeatmap(data, CdlHeatmap.CdlFormat.Fceux);
+
+		var tempFile = Path.GetTempFileName();
+		try {
+			heatmap.SaveToFile(tempFile, CdlHeatmap.CdlFormat.Bsnes);
+			var saved = File.ReadAllBytes(tempFile);
+			// bsnes format: Code(0x01) -> Executed(0x80), Data(0x02) -> Read(0x40)
+			Assert.Equal(0x80, saved[0]);
+			Assert.Equal(0x40, saved[1]);
+		} finally {
+			File.Delete(tempFile);
+		}
+	}
+
+	#endregion
 }
