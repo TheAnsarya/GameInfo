@@ -257,11 +257,50 @@ public partial class ChrEditorViewModel : ViewModelBase {
 
 	public string[] AvailableFormats { get; } = [
 		"NES 2bpp",
+		"SNES 2bpp",
 		"SNES 4bpp",
+		"SNES 8bpp",
 		"GB 2bpp",
-		"Linear 4bpp",
-		"GBA 8bpp"
+		"GBA 4bpp",
+		"GBA 8bpp",
+		"Linear 1bpp",
+		"Linear 2bpp",
+		"Linear 4bpp"
 	];
+
+	/// <summary>
+	/// Current tile format for decoding/encoding.
+	/// </summary>
+	[ObservableProperty]
+	private Core.TileGraphics.TileFormat _currentTileFormat = Core.TileGraphics.TileFormat.Nes2Bpp;
+
+	/// <summary>
+	/// Number of colors available in current format.
+	/// </summary>
+	public int FormatColorCount => Core.TileGraphics.GetColorsPerTile(CurrentTileFormat);
+
+	/// <summary>
+	/// Bytes per tile in current format.
+	/// </summary>
+	public int FormatBytesPerTile => Core.TileGraphics.GetBytesPerTile(CurrentTileFormat);
+
+	/// <summary>
+	/// Sprite sheet configuration: tiles per row.
+	/// </summary>
+	[ObservableProperty]
+	private int _spriteSheetTilesPerRow = 16;
+
+	/// <summary>
+	/// Sprite sheet configuration: spacing between tiles.
+	/// </summary>
+	[ObservableProperty]
+	private int _spriteSheetSpacing;
+
+	/// <summary>
+	/// Sprite sheet configuration: include grid lines.
+	/// </summary>
+	[ObservableProperty]
+	private bool _spriteSheetShowGrid;
 
 	public ChrEditorViewModel(RomFile? rom) {
 		_rom = rom;
@@ -329,6 +368,311 @@ public partial class ChrEditorViewModel : ViewModelBase {
 			UpdateTransformPreviews();
 		}
 	}
+
+	/// <summary>
+	/// Called when tile format changes - recalculate tile count and reload.
+	/// </summary>
+	partial void OnCurrentTileFormatChanged(Core.TileGraphics.TileFormat value) {
+		OnPropertyChanged(nameof(FormatColorCount));
+		OnPropertyChanged(nameof(FormatBytesPerTile));
+
+		// Update the string representation
+		TileFormat = value switch {
+			Core.TileGraphics.TileFormat.Nes2Bpp => "NES 2bpp",
+			Core.TileGraphics.TileFormat.Snes2Bpp => "SNES 2bpp",
+			Core.TileGraphics.TileFormat.Snes4Bpp => "SNES 4bpp",
+			Core.TileGraphics.TileFormat.Snes8Bpp => "SNES 8bpp",
+			Core.TileGraphics.TileFormat.Gb2Bpp => "GB 2bpp",
+			Core.TileGraphics.TileFormat.Gba4Bpp => "GBA 4bpp",
+			Core.TileGraphics.TileFormat.Gba8Bpp => "GBA 8bpp",
+			Core.TileGraphics.TileFormat.Linear1Bpp => "Linear 1bpp",
+			Core.TileGraphics.TileFormat.Linear2Bpp => "Linear 2bpp",
+			Core.TileGraphics.TileFormat.Linear4Bpp => "Linear 4bpp",
+			_ => "NES 2bpp"
+		};
+
+		// Recalculate tile count based on new format
+		RecalculateTileCount();
+		LoadTilePreviewWithFormat();
+		StatusText = $"Switched to {TileFormat} ({FormatColorCount} colors, {FormatBytesPerTile} bytes/tile)";
+	}
+
+	/// <summary>
+	/// Sets tile format from string name.
+	/// </summary>
+	[RelayCommand]
+	private void SetTileFormat(string formatName) {
+		CurrentTileFormat = formatName switch {
+			"NES 2bpp" => Core.TileGraphics.TileFormat.Nes2Bpp,
+			"SNES 2bpp" => Core.TileGraphics.TileFormat.Snes2Bpp,
+			"SNES 4bpp" => Core.TileGraphics.TileFormat.Snes4Bpp,
+			"SNES 8bpp" => Core.TileGraphics.TileFormat.Snes8Bpp,
+			"GB 2bpp" => Core.TileGraphics.TileFormat.Gb2Bpp,
+			"GBA 4bpp" => Core.TileGraphics.TileFormat.Gba4Bpp,
+			"GBA 8bpp" => Core.TileGraphics.TileFormat.Gba8Bpp,
+			"Linear 1bpp" => Core.TileGraphics.TileFormat.Linear1Bpp,
+			"Linear 2bpp" => Core.TileGraphics.TileFormat.Linear2Bpp,
+			"Linear 4bpp" => Core.TileGraphics.TileFormat.Linear4Bpp,
+			_ => Core.TileGraphics.TileFormat.Nes2Bpp
+		};
+	}
+
+	/// <summary>
+	/// Recalculates tile count based on current format.
+	/// </summary>
+	private void RecalculateTileCount() {
+		if (_rom is null || !_rom.IsLoaded) return;
+
+		int dataLength = _rom.Length - ChrOffset;
+		int bytesPerTile = FormatBytesPerTile;
+		TileCount = dataLength / bytesPerTile;
+		BankCount = (TileCount + ChrEditor.TilesPerBank - 1) / ChrEditor.TilesPerBank;
+	}
+
+	/// <summary>
+	/// Loads tile preview using current format.
+	/// </summary>
+	private void LoadTilePreviewWithFormat() {
+		Tiles.Clear();
+		TileGraphics.Clear();
+
+		if (_rom is null || !_rom.IsLoaded) return;
+
+		int bytesPerTile = FormatBytesPerTile;
+		int count = Math.Min(256, TileCount);
+
+		for (int i = 0; i < count; i++) {
+			int offset = ChrOffset + (i * bytesPerTile);
+			var tile = Core.TileGraphics.DecodeTile(_rom.Data, offset, CurrentTileFormat);
+			Tiles.Add(new TileInfo(i, $"Tile {i:X2}", GetTilePreviewString(tile)));
+			TileGraphics.Add(tile);
+		}
+
+		if (SelectedTileIndex >= 0 && SelectedTileIndex < TileGraphics.Count) {
+			SelectedTileData = TileGraphics[SelectedTileIndex];
+			UpdateTransformPreviews();
+		}
+	}
+
+	/// <summary>
+	/// Gets a tile using current format.
+	/// </summary>
+	private byte[,] GetTileWithFormat(int index) {
+		if (_rom is null || !_rom.IsLoaded || index < 0 || index >= TileCount) {
+			return new byte[8, 8];
+		}
+
+		int bytesPerTile = FormatBytesPerTile;
+		int offset = ChrOffset + (index * bytesPerTile);
+		return Core.TileGraphics.DecodeTile(_rom.Data, offset, CurrentTileFormat);
+	}
+
+	/// <summary>
+	/// Sets a tile using current format.
+	/// </summary>
+	private void SetTileWithFormat(int index, byte[,] tile) {
+		if (_rom is null || !_rom.IsLoaded || index < 0 || index >= TileCount) return;
+
+		int bytesPerTile = FormatBytesPerTile;
+		int offset = ChrOffset + (index * bytesPerTile);
+		var encoded = Core.TileGraphics.EncodeTile(tile, CurrentTileFormat);
+		Array.Copy(encoded, 0, _rom.Data, offset, bytesPerTile);
+	}
+
+	#region Sprite Sheet Export
+
+	/// <summary>
+	/// Exports selected tiles as a sprite sheet PNG.
+	/// </summary>
+	[RelayCommand]
+	private async Task ExportSpriteSheet(Window? window) {
+		if (window is null || _rom is null || !_rom.IsLoaded) {
+			StatusText = "Unable to export sprite sheet";
+			return;
+		}
+
+		// Use selected tiles if multi-select active, otherwise use current bank
+		var tilesToExport = SelectedTileIndices.Count > 0
+			? SelectedTileIndices.Select(i => (SelectedBank * ChrEditor.TilesPerBank) + i).ToList()
+			: Enumerable.Range(SelectedBank * ChrEditor.TilesPerBank, Math.Min(ChrEditor.TilesPerBank, TileCount - (SelectedBank * ChrEditor.TilesPerBank))).ToList();
+
+		if (tilesToExport.Count == 0) {
+			StatusText = "No tiles to export";
+			return;
+		}
+
+		var dialogService = FileDialogService.FromWindow(window);
+		var path = await dialogService.SaveFileAsync(
+			"Export Sprite Sheet",
+			".png",
+			$"spritesheet_{tilesToExport.Count}tiles.png",
+			FileDialogService.PngFiles,
+			FileDialogService.AllFiles
+		);
+
+		if (path is null) return;
+
+		try {
+			int tilesPerRow = SpriteSheetTilesPerRow;
+			int spacing = SpriteSheetSpacing;
+			int tileSize = 8;
+			int cellSize = tileSize + spacing;
+
+			int rows = (tilesToExport.Count + tilesPerRow - 1) / tilesPerRow;
+			int imageWidth = (tilesPerRow * cellSize) - spacing;
+			int imageHeight = (rows * cellSize) - spacing;
+
+			var pixels = new byte[imageWidth * imageHeight * 4];
+			var palette = CurrentPalette;
+
+			// Fill with transparency or background
+			for (int i = 0; i < pixels.Length; i += 4) {
+				pixels[i + 0] = 0;     // B
+				pixels[i + 1] = 0;     // G
+				pixels[i + 2] = 0;     // R
+				pixels[i + 3] = 0;     // A (transparent)
+			}
+
+			// Draw tiles
+			for (int idx = 0; idx < tilesToExport.Count; idx++) {
+				int tileIndex = tilesToExport[idx];
+				var tile = GetTileWithFormat(tileIndex);
+
+				int tileX = idx % tilesPerRow;
+				int tileY = idx / tilesPerRow;
+				int baseX = tileX * cellSize;
+				int baseY = tileY * cellSize;
+
+				for (int y = 0; y < 8; y++) {
+					for (int x = 0; x < 8; x++) {
+						int px = baseX + x;
+						int py = baseY + y;
+						if (px >= imageWidth || py >= imageHeight) continue;
+
+						int pixelOffset = ((py * imageWidth) + px) * 4;
+						byte colorIndex = tile[y, x];
+						var color = colorIndex < palette.Length ? palette[colorIndex] : Colors.Magenta;
+
+						pixels[pixelOffset + 0] = color.B;
+						pixels[pixelOffset + 1] = color.G;
+						pixels[pixelOffset + 2] = color.R;
+						pixels[pixelOffset + 3] = colorIndex == 0 ? (byte)0 : (byte)255; // Color 0 = transparent
+					}
+				}
+			}
+
+			// Draw grid lines if enabled
+			if (SpriteSheetShowGrid && spacing > 0) {
+				for (int i = 0; i < pixels.Length; i += 4) {
+					int pixelIndex = i / 4;
+					int px = pixelIndex % imageWidth;
+					int py = pixelIndex / imageWidth;
+
+					// Check if this pixel is in a grid line area
+					bool inGridX = (px + 1) % cellSize < spacing && px < imageWidth;
+					bool inGridY = (py + 1) % cellSize < spacing && py < imageHeight;
+
+					if ((inGridX || inGridY) && pixels[i + 3] == 0) {
+						pixels[i + 0] = 64;  // B - dark gray grid
+						pixels[i + 1] = 64;  // G
+						pixels[i + 2] = 64;  // R
+						pixels[i + 3] = 255; // A
+					}
+				}
+			}
+
+			var bitmap = new WriteableBitmap(
+				new Avalonia.PixelSize(imageWidth, imageHeight),
+				new Avalonia.Vector(96, 96),
+				Avalonia.Platform.PixelFormat.Bgra8888,
+				Avalonia.Platform.AlphaFormat.Unpremul);
+
+			using (var fb = bitmap.Lock()) {
+				System.Runtime.InteropServices.Marshal.Copy(pixels, 0, fb.Address, pixels.Length);
+			}
+
+			bitmap.Save(path);
+			StatusText = $"Exported {tilesToExport.Count} tiles to sprite sheet: {Path.GetFileName(path)}";
+		} catch (Exception ex) {
+			StatusText = $"Export error: {ex.Message}";
+		}
+	}
+
+	/// <summary>
+	/// Exports tiles as individual PNG files.
+	/// </summary>
+	[RelayCommand]
+	private async Task ExportTilesIndividually(Window? window) {
+		if (window is null || _rom is null || !_rom.IsLoaded) {
+			StatusText = "Unable to export tiles";
+			return;
+		}
+
+		var tilesToExport = SelectedTileIndices.Count > 0
+			? SelectedTileIndices.Select(i => (SelectedBank * ChrEditor.TilesPerBank) + i).ToList()
+			: [SelectedTileIndex];
+
+		if (tilesToExport.Count == 0 || tilesToExport[0] < 0) {
+			StatusText = "No tiles selected";
+			return;
+		}
+
+		var dialogService = FileDialogService.FromWindow(window);
+		var folder = await dialogService.SelectFolderAsync("Select Export Folder");
+
+		if (folder is null) return;
+
+		try {
+			int zoom = Math.Max(1, Zoom);
+			int tileSize = 8 * zoom;
+			var palette = CurrentPalette;
+
+			foreach (var tileIndex in tilesToExport) {
+				var tile = GetTileWithFormat(tileIndex);
+				var pixels = new byte[tileSize * tileSize * 4];
+
+				for (int y = 0; y < 8; y++) {
+					for (int x = 0; x < 8; x++) {
+						byte colorIndex = tile[y, x];
+						var color = colorIndex < palette.Length ? palette[colorIndex] : Colors.Magenta;
+
+						// Scale up by zoom factor
+						for (int zy = 0; zy < zoom; zy++) {
+							for (int zx = 0; zx < zoom; zx++) {
+								int px = (x * zoom) + zx;
+								int py = (y * zoom) + zy;
+								int pixelOffset = ((py * tileSize) + px) * 4;
+
+								pixels[pixelOffset + 0] = color.B;
+								pixels[pixelOffset + 1] = color.G;
+								pixels[pixelOffset + 2] = color.R;
+								pixels[pixelOffset + 3] = 255;
+							}
+						}
+					}
+				}
+
+				var bitmap = new WriteableBitmap(
+					new Avalonia.PixelSize(tileSize, tileSize),
+					new Avalonia.Vector(96, 96),
+					Avalonia.Platform.PixelFormat.Bgra8888,
+					Avalonia.Platform.AlphaFormat.Unpremul);
+
+				using (var fb = bitmap.Lock()) {
+					System.Runtime.InteropServices.Marshal.Copy(pixels, 0, fb.Address, pixels.Length);
+				}
+
+				var tilePath = Path.Combine(folder, $"tile_{tileIndex:X4}.png");
+				bitmap.Save(tilePath);
+			}
+
+			StatusText = $"Exported {tilesToExport.Count} tiles to {folder}";
+		} catch (Exception ex) {
+			StatusText = $"Export error: {ex.Message}";
+		}
+	}
+
+	#endregion
 
 	private void UpdateTransformPreviews() {
 		if (SelectedTileData is null) {
