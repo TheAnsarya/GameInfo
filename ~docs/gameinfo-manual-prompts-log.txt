@@ -95,6 +95,7 @@ git commit everything in logical batches, update giuthub issues, update todo-lis
 
 the vscode terminal has fucked up colors again, make it legibile, permanantly; fix all `md` documentation formatting errors like `MD032/blanks-around-lists` and `MD022/blanks-around-headings` and other formatting errors and use tabs not spaces for indentation;
 
+do the entire `GameInfo` project and the `dragon-warrior-4` project
 
 
 
