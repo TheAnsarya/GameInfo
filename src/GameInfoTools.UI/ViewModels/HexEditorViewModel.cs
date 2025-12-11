@@ -814,6 +814,54 @@ public partial class HexEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 			}
 		}
 
+		// Wrap around to beginning
+		for (int i = 0; i < startSearch && i <= _rom.Length - pattern.Length; i++) {
+			if (MatchesPattern(_rom.Data, i, pattern)) {
+				GoToOffset(i);
+				SelectedOffset = i;
+				SetSelection(i, i + pattern.Length - 1);
+				StatusText = $"Found at 0x{i:X6} (wrapped)";
+				return;
+			}
+		}
+
+		StatusText = "Pattern not found";
+	}
+
+	/// <summary>
+	/// Find previous occurrence.
+	/// </summary>
+	[RelayCommand]
+	private void FindPreviousPattern() {
+		if (_rom is null || string.IsNullOrWhiteSpace(FindPattern)) return;
+
+		byte[]? pattern = ParsePattern(FindPattern, FindAsHex);
+		if (pattern is null || pattern.Length == 0) return;
+
+		int startSearch = SelectedOffset >= 1 ? SelectedOffset - 1 : CurrentOffset;
+
+		// Search backwards from current position
+		for (int i = startSearch; i >= 0; i--) {
+			if (MatchesPattern(_rom.Data, i, pattern)) {
+				GoToOffset(i);
+				SelectedOffset = i;
+				SetSelection(i, i + pattern.Length - 1);
+				StatusText = $"Found at 0x{i:X6}";
+				return;
+			}
+		}
+
+		// Wrap around to end
+		for (int i = _rom.Length - pattern.Length; i > startSearch; i--) {
+			if (MatchesPattern(_rom.Data, i, pattern)) {
+				GoToOffset(i);
+				SelectedOffset = i;
+				SetSelection(i, i + pattern.Length - 1);
+				StatusText = $"Found at 0x{i:X6} (wrapped)";
+				return;
+			}
+		}
+
 		StatusText = "Pattern not found";
 	}
 
@@ -979,9 +1027,9 @@ public partial class HexEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 			return true;
 		}
 
-		// Find previous (Shift+F3) - uses FindNextPattern from start for now
+		// Find previous (Shift+F3)
 		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.FindPrevious)) {
-			FindNextPattern(); // TODO: Add FindPreviousPattern
+			FindPreviousPattern();
 			e.Handled = true;
 			return true;
 		}
