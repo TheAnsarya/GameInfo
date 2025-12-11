@@ -338,21 +338,105 @@ public partial class HexEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		OnPropertyChanged(nameof(CanRedo));
 	}
 
+	// Internal clipboard for hex data
+	private byte[]? _clipboard;
+
+	/// <summary>
+	/// Whether clipboard has hex data.
+	/// </summary>
+	public bool HasClipboard => _clipboard != null && _clipboard.Length > 0;
+
 	[RelayCommand]
 	private void CopySelection() {
-		// TODO: Implement clipboard copy
-		StatusText = "Copied selection to clipboard";
+		if (_rom is null) {
+			StatusText = "No ROM loaded";
+			return;
+		}
+
+		int start, length;
+		if (HasRangeSelection) {
+			start = SelectionStart;
+			length = SelectionLength;
+		} else if (SelectedOffset >= 0) {
+			start = SelectedOffset;
+			length = 1;
+		} else {
+			StatusText = "No selection to copy";
+			return;
+		}
+
+		if (start < 0 || start + length > _rom.Length) {
+			StatusText = "Invalid selection range";
+			return;
+		}
+
+		_clipboard = new byte[length];
+		Array.Copy(_rom.Data, start, _clipboard, 0, length);
+
+		// Also format as hex string for display
+		var hexString = BitConverter.ToString(_clipboard).Replace("-", " ");
+		StatusText = $"Copied {length} bytes: {(hexString.Length > 50 ? hexString[..50] + "..." : hexString)}";
+		OnPropertyChanged(nameof(HasClipboard));
 	}
 
 	[RelayCommand]
 	private void PasteAtCursor() {
-		// TODO: Implement clipboard paste
-		StatusText = "Pasted from clipboard";
+		if (_rom is null || _clipboard is null || _clipboard.Length == 0) {
+			StatusText = "Nothing to paste";
+			return;
+		}
+
+		int pasteOffset = SelectedOffset >= 0 ? SelectedOffset : CurrentOffset;
+		if (pasteOffset < 0 || pasteOffset >= _rom.Length) {
+			StatusText = "Invalid paste position";
+			return;
+		}
+
+		int pasteLength = Math.Min(_clipboard.Length, _rom.Length - pasteOffset);
+		if (pasteLength <= 0) {
+			StatusText = "Cannot paste beyond ROM boundary";
+			return;
+		}
+
+		var dataToPaste = new byte[pasteLength];
+		Array.Copy(_clipboard, 0, dataToPaste, 0, pasteLength);
+
+		var command = new SetBytesCommand(_rom.Data, pasteOffset, dataToPaste, $"Paste {pasteLength} bytes at 0x{pasteOffset:X6}");
+		_undoRedo.Execute(command);
+
+		RefreshView();
+		UpdateUndoRedoState();
+		StatusText = $"Pasted {pasteLength} bytes at 0x{pasteOffset:X6}";
 	}
 
-	public void FillSelection(byte value) {
-		// TODO: Implement fill selection
-		StatusText = $"Filled selection with 0x{value:X2}";
+	/// <summary>
+	/// Fill the current selection with a specific byte value.
+	/// </summary>
+	[RelayCommand]
+	private void FillSelection(byte value) {
+		if (_rom is null) {
+			StatusText = "No ROM loaded";
+			return;
+		}
+
+		if (!HasRangeSelection) {
+			StatusText = "No range selected";
+			return;
+		}
+
+		int start = SelectionStart;
+		int length = SelectionLength;
+
+		// Create fill data
+		var fillData = new byte[length];
+		Array.Fill(fillData, value);
+
+		var command = new SetBytesCommand(_rom.Data, start, fillData, $"Fill {length} bytes with 0x{value:X2}");
+		_undoRedo.Execute(command);
+
+		RefreshView();
+		UpdateUndoRedoState();
+		StatusText = $"Filled {length} bytes with 0x{value:X2}";
 	}
 
 	#region Data Inspector
