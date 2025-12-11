@@ -163,6 +163,12 @@ public partial class DisassemblerViewModel : ViewModelBase, IKeyboardShortcutHan
 	/// </summary>
 	public ObservableCollection<Bookmark> Bookmarks { get; } = [];
 
+	/// <summary>
+	/// Currently selected bookmark.
+	/// </summary>
+	[ObservableProperty]
+	private Bookmark? _selectedBookmark;
+
 	// === Basic blocks for control flow ===
 	/// <summary>
 	/// Detected basic blocks in current disassembly.
@@ -170,6 +176,12 @@ public partial class DisassemblerViewModel : ViewModelBase, IKeyboardShortcutHan
 	public ObservableCollection<BasicBlock> BasicBlocks { get; } = [];
 
 	// === Search functionality ===
+	/// <summary>
+	/// Whether the search panel is visible.
+	/// </summary>
+	[ObservableProperty]
+	private bool _showSearchPanel;
+
 	/// <summary>
 	/// Search query text.
 	/// </summary>
@@ -211,6 +223,7 @@ public partial class DisassemblerViewModel : ViewModelBase, IKeyboardShortcutHan
 	/// </summary>
 	[ObservableProperty]
 	private string _symbolFilter = "";
+
 
 	/// <summary>
 	/// Filtered symbols list.
@@ -1060,6 +1073,14 @@ public partial class DisassemblerViewModel : ViewModelBase, IKeyboardShortcutHan
 	}
 
 	/// <summary>
+	/// Toggle search panel visibility.
+	/// </summary>
+	[RelayCommand]
+	private void ToggleSearch() {
+		ShowSearchPanel = !ShowSearchPanel;
+	}
+
+	/// <summary>
 	/// Toggle a panel's visibility.
 	/// </summary>
 	[RelayCommand]
@@ -1080,6 +1101,9 @@ public partial class DisassemblerViewModel : ViewModelBase, IKeyboardShortcutHan
 			case "basicblocks":
 				ShowBasicBlocksPanel = !ShowBasicBlocksPanel;
 				if (ShowBasicBlocksPanel) AnalyzeBasicBlocks();
+				break;
+			case "search":
+				ShowSearchPanel = !ShowSearchPanel;
 				break;
 		}
 	}

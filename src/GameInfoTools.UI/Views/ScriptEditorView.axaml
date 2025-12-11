@@ -27,12 +27,69 @@
 			<Separator/>
 			<Button Content="Load Opcodes..." Command="{Binding LoadOpcodeTableCommand}" CommandParameter="{Binding $parent[Window]}" ToolTip.Tip="Load opcode definition table"/>
 			<Button Content="Export..." Command="{Binding ExportScriptCommand}" CommandParameter="{Binding $parent[Window]}" ToolTip.Tip="Export disassembled script"/>
+			<Separator/>
+			<CheckBox Content="Control Flow" IsChecked="{Binding ShowControlFlowGraph}" VerticalAlignment="Center"
+					  ToolTip.Tip="Show control flow graph panel"/>
+			<CheckBox Content="Basic Blocks" IsChecked="{Binding ShowBasicBlocks}" VerticalAlignment="Center"
+					  ToolTip.Tip="Show basic blocks panel"/>
 		</StackPanel>
 
 		<!-- Main Content -->
-		<Grid Grid.Row="1" ColumnDefinitions="*,300" Margin="16,8">
-			<!-- Disassembly View -->
+		<Grid Grid.Row="1" ColumnDefinitions="200,*,300" Margin="16,8">
+			<!-- Left Panel: Basic Blocks / Control Flow -->
 			<Border Grid.Column="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+					CornerRadius="4" Padding="8" Margin="0,0,8,0"
+					IsVisible="{Binding ShowBasicBlocks}">
+				<DockPanel>
+					<TextBlock DockPanel.Dock="Top" Text="📦 Basic Blocks" FontWeight="SemiBold" Margin="0,0,0,8"/>
+					<ListBox ItemsSource="{Binding BasicBlocks}" SelectedItem="{Binding SelectedBasicBlock}">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel Spacing="2">
+									<TextBlock Text="{Binding Label}" FontWeight="SemiBold" FontSize="11"/>
+									<TextBlock FontFamily="Consolas" FontSize="10" Opacity="0.7">
+										<Run Text="0x"/><Run Text="{Binding StartOffset, StringFormat={}{0:X4}}"/>
+										<Run Text=" - 0x"/><Run Text="{Binding EndOffset, StringFormat={}{0:X4}}"/>
+									</TextBlock>
+									<TextBlock Text="{Binding Commands.Count, StringFormat={}{0} commands}"
+											   FontSize="9" Opacity="0.5"/>
+								</StackPanel>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</DockPanel>
+			</Border>
+
+			<!-- Control Flow Edges Panel (overlays basic blocks when visible) -->
+			<Border Grid.Column="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+					CornerRadius="4" Padding="8" Margin="0,0,8,0"
+					IsVisible="{Binding ShowControlFlowGraph}">
+				<DockPanel>
+					<TextBlock DockPanel.Dock="Top" Text="🔀 Control Flow" FontWeight="SemiBold" Margin="0,0,0,8"/>
+					<StackPanel DockPanel.Dock="Top" Spacing="4" Margin="0,0,0,8">
+						<TextBlock Text="{Binding BasicBlocks.Count, StringFormat=Blocks: {0}}" FontSize="11" Opacity="0.7"/>
+						<TextBlock Text="{Binding ControlFlowEdges.Count, StringFormat=Edges: {0}}" FontSize="11" Opacity="0.7"/>
+					</StackPanel>
+					<ListBox ItemsSource="{Binding ControlFlowEdges}">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<Grid ColumnDefinitions="Auto,Auto,*">
+									<TextBlock Grid.Column="0" Text="{Binding FromOffset, StringFormat=0x{0:X4}}"
+											   FontFamily="Consolas" FontSize="10"/>
+									<TextBlock Grid.Column="1" Text=" → " FontSize="10" Margin="2,0"/>
+									<TextBlock Grid.Column="2">
+										<Run Text="{Binding ToOffset, StringFormat=0x{0:X4}}" FontFamily="Consolas"/>
+										<Run Text=" ("/><Run Text="{Binding Type}"/><Run Text=")"/>
+									</TextBlock>
+								</Grid>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</DockPanel>
+			</Border>
+
+			<!-- Disassembly View -->
+			<Border Grid.Column="1" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
 					CornerRadius="4" Padding="8" Margin="0,0,8,0">
 				<DockPanel>
 					<TextBlock DockPanel.Dock="Top" Text="{Binding ScriptName, FallbackValue=Script Disassembly}" FontWeight="SemiBold" Margin="0,0,0,8"/>
@@ -63,7 +120,7 @@
 			</Border>
 
 			<!-- Opcode Reference -->
-			<Border Grid.Column="1" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+			<Border Grid.Column="2" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
 					CornerRadius="4" Padding="16">
 				<ScrollViewer>
 					<StackPanel Spacing="16">

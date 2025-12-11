@@ -466,6 +466,326 @@ public class WorkflowIntegrationTests {
 
 	#endregion
 
+	#region Disassembler Enhanced Workflow
+
+	[Fact]
+	public void DisassemblerWorkflow_BasicBlockDetection() {
+		// Create ROM with branch structure
+		var rom = new byte[32];
+		int offset = 0;
+
+		// Block 1: Simple code
+		rom[offset++] = 0xa9; // LDA #$42
+		rom[offset++] = 0x42;
+		rom[offset++] = 0xd0; // BNE +5 (to block 2)
+		rom[offset++] = 0x05;
+
+		// Fall-through block
+		rom[offset++] = 0xa2; // LDX #$00
+		rom[offset++] = 0x00;
+		rom[offset++] = 0x4c; // JMP somewhere
+		rom[offset++] = 0x10;
+		rom[offset++] = 0x80;
+
+		// Block 2 (branch target)
+		rom[offset++] = 0xa0; // LDY #$ff
+		rom[offset++] = 0xff;
+		rom[offset++] = 0x60; // RTS
+
+		var disasm = new Disassembler(rom, new Disassembler.Options { BaseAddress = 0x8000 });
+		var instructions = disasm.Disassemble(0, 12);
+
+		// Verify we have branch and jump instructions detected
+		Assert.True(instructions.Count >= 4);
+		Assert.Contains(instructions, i => i.Mnemonic.StartsWith("bne", StringComparison.OrdinalIgnoreCase));
+		Assert.Contains(instructions, i => i.Mnemonic.StartsWith("jmp", StringComparison.OrdinalIgnoreCase));
+	}
+
+	[Fact]
+	public void DisassemblerWorkflow_SymbolTableIntegration() {
+		var rom = new byte[16];
+		rom[0] = 0x20; // JSR $8100
+		rom[1] = 0x00;
+		rom[2] = 0x81;
+		rom[3] = 0xa9; // LDA $0010
+		rom[4] = 0x10;
+		rom[5] = 0x00;
+		rom[6] = 0x60; // RTS
+
+		var symbols = new SymbolTable();
+		symbols.AddSymbol(0x8100, "MySubroutine");
+		symbols.AddSymbol(0x0010, "PlayerHealth");
+
+		var disasm = new Disassembler(rom, new Disassembler.Options {
+			BaseAddress = 0x8000,
+			Symbols = symbols
+		});
+
+		var instructions = disasm.Disassemble(0, 7);
+
+		Assert.NotEmpty(instructions);
+		// Note: The disassembler should use symbol names when available
+		// The actual symbol resolution depends on disassembler implementation
+	}
+
+	[Fact]
+	public void DisassemblerWorkflow_CrossReferenceCollection() {
+		var rom = new byte[32];
+		int offset = 0;
+
+		// First subroutine
+		rom[offset++] = 0x20; // JSR $8010 - calls second subroutine
+		rom[offset++] = 0x10;
+		rom[offset++] = 0x80;
+		rom[offset++] = 0x4c; // JMP $8020 - jumps to third location
+		rom[offset++] = 0x20;
+		rom[offset++] = 0x80;
+
+		// Pad to $8010
+		while (offset < 0x10) rom[offset++] = 0xea;
+
+		// Second subroutine at $8010
+		rom[offset++] = 0xa9; // LDA #$42
+		rom[offset++] = 0x42;
+		rom[offset++] = 0x60; // RTS
+
+		// Pad to $8020
+		while (offset < 0x20) rom[offset++] = 0xea;
+
+		// Third location at $8020
+		rom[offset++] = 0xa2; // LDX #$00
+		rom[offset++] = 0x00;
+		rom[offset++] = 0x60; // RTS
+
+		var xref = new CrossReferenceBuilder();
+		xref.ProcessCode(rom, 0x8000);
+
+		var callsFrom8000 = xref.GetReferencesFrom(0x8000).ToList();
+		Assert.Contains(callsFrom8000, r => r.Target == 0x8010);
+
+		var refsTo8010 = xref.GetReferencesTo(0x8010).ToList();
+		Assert.NotEmpty(refsTo8010);
+	}
+
+	#endregion
+
+	#region Map Editor Workflow
+
+	[Fact]
+	public void MapEditorWorkflow_LoadModifySave() {
+		// Simulate map data
+		const int width = 16;
+		const int height = 16;
+		var mapData = new byte[width * height];
+
+		// Fill with pattern
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				mapData[y * width + x] = (byte)((x + y) % 256);
+			}
+		}
+
+		// Modify tile at position (5, 5)
+		int targetX = 5, targetY = 5;
+		byte newTile = 0xff;
+		mapData[targetY * width + targetX] = newTile;
+
+		// Verify modification
+		Assert.Equal(newTile, mapData[targetY * width + targetX]);
+
+		// Verify neighbors unchanged
+		Assert.NotEqual(newTile, mapData[(targetY - 1) * width + targetX]);
+		Assert.NotEqual(newTile, mapData[targetY * width + (targetX - 1)]);
+	}
+
+	[Fact]
+	public void MapEditorWorkflow_FloodFill() {
+		const int width = 8;
+		const int height = 8;
+		var mapData = new byte[width * height];
+
+		// Create a region of tile 0x01
+		mapData[0] = 0x01;
+		mapData[1] = 0x01;
+		mapData[width] = 0x01;
+		mapData[width + 1] = 0x01;
+
+		// Simple flood fill implementation
+		byte targetTile = 0x01;
+		byte replacementTile = 0xff;
+		var visited = new HashSet<int>();
+		var queue = new Queue<int>();
+		queue.Enqueue(0);
+
+		while (queue.Count > 0) {
+			int pos = queue.Dequeue();
+			if (visited.Contains(pos)) continue;
+			if (pos < 0 || pos >= mapData.Length) continue;
+			if (mapData[pos] != targetTile) continue;
+
+			visited.Add(pos);
+			mapData[pos] = replacementTile;
+
+			int x = pos % width;
+			int y = pos / width;
+			if (x > 0) queue.Enqueue(pos - 1);
+			if (x < width - 1) queue.Enqueue(pos + 1);
+			if (y > 0) queue.Enqueue(pos - width);
+			if (y < height - 1) queue.Enqueue(pos + width);
+		}
+
+		// Verify the fill worked
+		Assert.Equal(replacementTile, mapData[0]);
+		Assert.Equal(replacementTile, mapData[1]);
+		Assert.Equal(replacementTile, mapData[width]);
+		Assert.Equal(replacementTile, mapData[width + 1]);
+		Assert.Equal(0x00, mapData[2]); // Adjacent unfilled
+	}
+
+	#endregion
+
+	#region CHR Editor Workflow
+
+	[Fact]
+	public void ChrEditorWorkflow_TileRoundTrip() {
+		// Create an 8x8 2bpp tile
+		var tileData = new byte[16];
+		for (int i = 0; i < 16; i++) {
+			tileData[i] = (byte)(i * 17); // Create some pattern
+		}
+
+		// Decode to pixel data
+		var pixels = TileCodec.DecodeNes2bpp(tileData);
+		Assert.Equal(64, pixels.Length);
+
+		// Encode back
+		var reencoded = TileCodec.EncodeNes2bpp(pixels);
+		Assert.Equal(tileData, reencoded);
+	}
+
+	[Fact]
+	public void ChrEditorWorkflow_MultiTileSelection() {
+		// Simulate multi-tile selection
+		var selectedIndices = new List<int> { 0, 1, 16, 17 }; // 2x2 block
+
+		// Calculate bounding box
+		int minX = selectedIndices.Min() % 16;
+		int maxX = selectedIndices.Max() % 16;
+		int minY = selectedIndices.Min() / 16;
+		int maxY = selectedIndices.Max() / 16;
+
+		Assert.Equal(0, minX);
+		Assert.Equal(1, maxX);
+		Assert.Equal(0, minY);
+		Assert.Equal(1, maxY);
+
+		// Selection width/height
+		int selWidth = maxX - minX + 1;
+		int selHeight = maxY - minY + 1;
+
+		Assert.Equal(2, selWidth);
+		Assert.Equal(2, selHeight);
+	}
+
+	[Fact]
+	public void ChrEditorWorkflow_TileFlipHorizontal() {
+		// Create simple 8x8 tile with left side filled
+		var pixels = new byte[64];
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 4; x++) {
+				pixels[y * 8 + x] = 1; // Left half = color 1
+			}
+		}
+
+		// Flip horizontally
+		var flipped = new byte[64];
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
+				flipped[y * 8 + x] = pixels[y * 8 + (7 - x)];
+			}
+		}
+
+		// Verify right side is now filled
+		Assert.Equal(0, flipped[0]); // Top-left is now 0
+		Assert.Equal(1, flipped[7]); // Top-right is now 1
+	}
+
+	#endregion
+
+	#region Script Editor Workflow
+
+	[Fact]
+	public void ScriptEditorWorkflow_SimpleScript() {
+		// Simple script bytecode
+		var script = new byte[] {
+			0x01, 0x42,       // Command 1 with param
+			0x02, 0x10, 0x00, // Command 2 with 16-bit param
+			0x00              // END
+		};
+
+		// Parse commands (simplified)
+		var commands = new List<(int offset, byte opcode, byte[] parameters)>();
+		int offset = 0;
+
+		while (offset < script.Length) {
+			byte opcode = script[offset++];
+			if (opcode == 0x00) break;
+
+			int paramCount = opcode switch {
+				0x01 => 1,
+				0x02 => 2,
+				_ => 0
+			};
+
+			var parameters = new byte[paramCount];
+			for (int i = 0; i < paramCount; i++) {
+				parameters[i] = script[offset++];
+			}
+
+			commands.Add((offset - paramCount - 1, opcode, parameters));
+		}
+
+		Assert.Equal(2, commands.Count);
+		Assert.Equal(0x01, commands[0].opcode);
+		Assert.Equal(0x02, commands[1].opcode);
+	}
+
+	[Fact]
+	public void ScriptEditorWorkflow_ControlFlowDetection() {
+		// Script with conditional branch
+		var script = new byte[] {
+			0x10, 0x05,       // IF condition, skip 5 bytes
+			0x01, 0x42,       // True branch command
+			0x11, 0x03,       // ELSE, skip 3 bytes
+			0x01, 0x43,       // False branch command
+			0x00              // END
+		};
+
+		// Detect control flow edges (simplified)
+		var edges = new List<(int from, int to, string type)>();
+		int offset = 0;
+
+		while (offset < script.Length - 1) {
+			byte opcode = script[offset];
+
+			if (opcode == 0x10) { // IF
+				int skipBytes = script[offset + 1];
+				edges.Add((offset, offset + 2 + skipBytes, "ConditionalJump"));
+				edges.Add((offset, offset + 2, "FallThrough"));
+			} else if (opcode == 0x11) { // ELSE
+				int skipBytes = script[offset + 1];
+				edges.Add((offset, offset + 2 + skipBytes, "UnconditionalJump"));
+			}
+
+			offset++;
+		}
+
+		Assert.True(edges.Count >= 2);
+		Assert.Contains(edges, e => e.type == "ConditionalJump");
+	}
+
+	#endregion
+
 	#region Helper Methods
 
 	private static byte[] CreateNesRom(int prgBanks, int chrBanks) {

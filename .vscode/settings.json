@@ -18,5 +18,29 @@
         "rommap",
         "tileset",
         "UNROM"
-    ]
+    ],
+    "terminal.integrated.fontFamily": "Consolas, 'Courier New', monospace",
+    "terminal.integrated.fontSize": 14,
+    "workbench.colorCustomizations": {
+        "terminal.foreground": "#E0E0E0",
+        "terminal.background": "#1E1E1E",
+        "terminal.ansiBlack": "#1E1E1E",
+        "terminal.ansiRed": "#F44747",
+        "terminal.ansiGreen": "#6A9955",
+        "terminal.ansiYellow": "#DCDCAA",
+        "terminal.ansiBlue": "#569CD6",
+        "terminal.ansiMagenta": "#C586C0",
+        "terminal.ansiCyan": "#4EC9B0",
+        "terminal.ansiWhite": "#D4D4D4",
+        "terminal.ansiBrightBlack": "#808080",
+        "terminal.ansiBrightRed": "#F14C4C",
+        "terminal.ansiBrightGreen": "#73C991",
+        "terminal.ansiBrightYellow": "#F5F543",
+        "terminal.ansiBrightBlue": "#6796E6",
+        "terminal.ansiBrightMagenta": "#D670D6",
+        "terminal.ansiBrightCyan": "#63D9D9",
+        "terminal.ansiBrightWhite": "#FFFFFF",
+        "terminalCursor.foreground": "#FFFFFF",
+        "terminalCursor.background": "#1E1E1E"
+    }
 }

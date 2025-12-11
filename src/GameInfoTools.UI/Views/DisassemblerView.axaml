@@ -3,7 +3,7 @@
 			 xmlns:vm="using:GameInfoTools.UI.ViewModels"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+			 mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
 			 x:Class="GameInfoTools.UI.Views.DisassemblerView"
 			 x:DataType="vm:DisassemblerViewModel">
 
@@ -11,9 +11,9 @@
 		<vm:DisassemblerViewModel/>
 	</Design.DataContext>
 
-	<Grid RowDefinitions="Auto,*,Auto">
-		<!-- Toolbar -->
-		<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="16,16,16,8">
+	<Grid RowDefinitions="Auto,Auto,*,Auto">
+		<!-- Main Toolbar -->
+		<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="16,16,16,4">
 			<TextBlock Text="CPU:" VerticalAlignment="Center"/>
 			<ComboBox ItemsSource="{Binding AvailableCpuModes}" SelectedItem="{Binding CpuMode}" Width="120"/>
 			<Separator/>
@@ -23,32 +23,48 @@
 			<NumericUpDown Value="{Binding Length}" Minimum="16" Maximum="4096" Width="80"/>
 			<Separator/>
 			<Button Content="Disassemble" Command="{Binding DisassembleCommand}"/>
-			<Button Content="◀ Prev" Command="{Binding PreviousPageCommand}"/>
-			<Button Content="Next ▶" Command="{Binding NextPageCommand}"/>
+			<Button Content="◀" Command="{Binding NavigateBackCommand}" IsEnabled="{Binding CanGoBack}" ToolTip.Tip="Go Back (Alt+Left)" Width="30"/>
+			<Button Content="▶" Command="{Binding NavigateForwardCommand}" IsEnabled="{Binding CanGoForward}" ToolTip.Tip="Go Forward (Alt+Right)" Width="30"/>
+			<Button Content="◀ Prev" Command="{Binding PreviousPageCommand}" ToolTip.Tip="Previous Page"/>
+			<Button Content="Next ▶" Command="{Binding NextPageCommand}" ToolTip.Tip="Next Page"/>
 		</StackPanel>
 
-		<!-- Main Content -->
-		<Grid Grid.Row="1" ColumnDefinitions="*,250" Margin="16,8">
-			<!-- Disassembly View -->
+		<!-- Secondary Toolbar with Panel Toggles -->
+		<Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}"
+				Margin="16,4" Padding="8" CornerRadius="4">
+			<StackPanel Orientation="Horizontal" Spacing="8">
+				<TextBlock Text="Panels:" VerticalAlignment="Center" FontWeight="SemiBold"/>
+				<ToggleButton Content="📑 Symbols" IsChecked="{Binding ShowSymbolsPanel}" ToolTip.Tip="Toggle Symbols Panel (Ctrl+Alt+S)"/>
+				<ToggleButton Content="🔗 XRefs" IsChecked="{Binding ShowCrossReferencesPanel}" ToolTip.Tip="Toggle Cross-References Panel"/>
+				<ToggleButton Content="📌 Bookmarks" IsChecked="{Binding ShowBookmarksPanel}" ToolTip.Tip="Toggle Bookmarks Panel (Ctrl+B to add)"/>
+				<ToggleButton Content="📦 Blocks" IsChecked="{Binding ShowBasicBlocksPanel}" ToolTip.Tip="Toggle Basic Blocks Panel"/>
+				<Separator/>
+				<TextBlock Text="Options:" VerticalAlignment="Center" FontWeight="SemiBold"/>
+				<CheckBox Content="Syntax Highlight" IsChecked="{Binding EnableSyntaxHighlighting}" VerticalAlignment="Center"/>
+				<CheckBox Content="Branch Arrows" IsChecked="{Binding ShowBranchVisualization}" VerticalAlignment="Center"/>
+				<CheckBox Content="Auto-label" IsChecked="{Binding AutoLabelBranches}" VerticalAlignment="Center"/>
+				<Separator/>
+				<Button Content="🔍" Command="{Binding ToggleSearchCommand}" ToolTip.Tip="Search (Ctrl+F)" Width="30"/>
+				<Button Content="📋" Command="{Binding CopyToClipboardCommand}" ToolTip.Tip="Copy to Clipboard" Width="30"/>
+			</StackPanel>
+		</Border>
+
+		<!-- Main Content with Side Panels -->
+		<Grid Grid.Row="2" ColumnDefinitions="200,*,250" Margin="16,8">
+			<!-- Left Panel - Symbols/Bookmarks -->
 			<Border Grid.Column="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
-					CornerRadius="4" Margin="0,0,8,0">
+					CornerRadius="4" Padding="8" Margin="0,0,8,0"
+					IsVisible="{Binding ShowSymbolsPanel}">
 				<DockPanel>
-					<Grid DockPanel.Dock="Top" ColumnDefinitions="80,100,*,Auto" Margin="8">
-						<TextBlock Grid.Column="0" Text="Address" FontWeight="SemiBold"/>
-						<TextBlock Grid.Column="1" Text="Bytes" FontWeight="SemiBold"/>
-						<TextBlock Grid.Column="2" Text="Instruction" FontWeight="SemiBold"/>
-						<TextBlock Grid.Column="3" Text="Comment" FontWeight="SemiBold"/>
-					</Grid>
-					<ListBox ItemsSource="{Binding DisassemblyLines}"
-							 FontFamily="Consolas" FontSize="12">
+					<TextBlock DockPanel.Dock="Top" Text="📑 Symbols" FontWeight="SemiBold" Margin="0,0,0,8"/>
+					<TextBox DockPanel.Dock="Top" Watermark="Filter symbols..." Text="{Binding SymbolFilter}"
+							 Margin="0,0,0,8"/>
+					<ListBox ItemsSource="{Binding FilteredSymbols}" SelectedItem="{Binding SelectedSymbol}">
 						<ListBox.ItemTemplate>
 							<DataTemplate>
-								<Grid ColumnDefinitions="80,100,60,*,Auto">
-									<TextBlock Grid.Column="0" Text="{Binding Address}" Foreground="DodgerBlue"/>
-									<TextBlock Grid.Column="1" Text="{Binding Bytes}" Opacity="0.6"/>
-									<TextBlock Grid.Column="2" Text="{Binding Mnemonic}" FontWeight="SemiBold"/>
-									<TextBlock Grid.Column="3" Text="{Binding Operand}"/>
-									<TextBlock Grid.Column="4" Text="{Binding Comment}" Foreground="Green" Opacity="0.8"/>
+								<Grid ColumnDefinitions="60,*">
+									<TextBlock Grid.Column="0" Text="{Binding Address}" FontFamily="Consolas" FontSize="11" Foreground="#4FC3F7"/>
+									<TextBlock Grid.Column="1" Text="{Binding Name}" FontSize="11"/>
 								</Grid>
 							</DataTemplate>
 						</ListBox.ItemTemplate>
@@ -56,41 +72,150 @@
 				</DockPanel>
 			</Border>
 
-			<!-- Right Panel -->
-			<Border Grid.Column="1" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
-					CornerRadius="4" Padding="16">
-				<StackPanel Spacing="16">
-					<TextBlock Text="Options" FontWeight="SemiBold" FontSize="16"/>
-
-					<StackPanel Spacing="4">
-						<TextBlock Text="Base Address:"/>
-						<NumericUpDown Value="{Binding BaseAddress}" Minimum="0" Maximum="65535" FormatString="X4"/>
+			<!-- Bookmarks Panel (overlays symbols when visible) -->
+			<Border Grid.Column="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+					CornerRadius="4" Padding="8" Margin="0,0,8,0"
+					IsVisible="{Binding ShowBookmarksPanel}">
+				<DockPanel>
+					<TextBlock DockPanel.Dock="Top" Text="📌 Bookmarks" FontWeight="SemiBold" Margin="0,0,0,8"/>
+					<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="4" Margin="0,0,0,8">
+						<Button Content="+" Command="{Binding AddBookmarkCommand}" ToolTip.Tip="Add bookmark at current address" Width="24"/>
+						<Button Content="-" Command="{Binding RemoveBookmarkCommand}" ToolTip.Tip="Remove selected bookmark" Width="24"/>
 					</StackPanel>
+					<ListBox ItemsSource="{Binding Bookmarks}" SelectedItem="{Binding SelectedBookmark}"
+							 DoubleTapped="BookmarkList_DoubleTapped">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel>
+									<TextBlock Text="{Binding Name}" FontWeight="SemiBold" FontSize="11"/>
+									<TextBlock Text="{Binding Address, StringFormat=${0:X4}}" FontFamily="Consolas" FontSize="10" Foreground="#4FC3F7"/>
+									<TextBlock Text="{Binding Comment}" FontSize="9" Opacity="0.7" IsVisible="{Binding Comment, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+								</StackPanel>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</DockPanel>
+			</Border>
 
-					<CheckBox Content="Show Bytes" IsChecked="{Binding ShowBytes}"/>
-					<CheckBox Content="Show Addresses" IsChecked="{Binding ShowAddresses}"/>
-					<CheckBox Content="Lowercase Hex" IsChecked="{Binding LowercaseHex}"/>
+			<!-- Center - Disassembly View -->
+			<Border Grid.Column="1" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+					CornerRadius="4">
+				<DockPanel>
+					<!-- Column Headers -->
+					<Grid DockPanel.Dock="Top" ColumnDefinitions="20,80,100,60,*,Auto" Margin="8" Background="{DynamicResource SystemControlBackgroundChromeLowBrush}">
+						<TextBlock Grid.Column="0" Text="" Width="20"/>
+						<TextBlock Grid.Column="1" Text="Address" FontWeight="SemiBold"/>
+						<TextBlock Grid.Column="2" Text="Bytes" FontWeight="SemiBold" IsVisible="{Binding ShowBytes}"/>
+						<TextBlock Grid.Column="3" Text="Mnemonic" FontWeight="SemiBold"/>
+						<TextBlock Grid.Column="4" Text="Operand" FontWeight="SemiBold"/>
+						<TextBlock Grid.Column="5" Text="Comment" FontWeight="SemiBold"/>
+					</Grid>
 
-					<Separator/>
+					<!-- Disassembly Lines -->
+					<ListBox ItemsSource="{Binding DisassemblyLines}" SelectedItem="{Binding SelectedLine}"
+							 FontFamily="Consolas" FontSize="12">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<Grid ColumnDefinitions="20,80,100,60,*,Auto">
+									<!-- Label indicator -->
+									<TextBlock Grid.Column="0" Text="●" Foreground="#FFA726"
+											   IsVisible="{Binding Label, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+											   ToolTip.Tip="{Binding Label}"/>
+									<!-- Address with custom color -->
+									<TextBlock Grid.Column="1" Text="{Binding Address}" Foreground="#4FC3F7"/>
+									<!-- Bytes -->
+									<TextBlock Grid.Column="2" Text="{Binding Bytes}" Opacity="0.5"/>
+									<!-- Mnemonic with syntax highlighting -->
+									<TextBlock Grid.Column="3" Text="{Binding Mnemonic}" FontWeight="SemiBold"
+											   Foreground="{Binding Mnemonic, Converter={StaticResource MnemonicColorConverter}}"/>
+									<!-- Operand -->
+									<TextBlock Grid.Column="4" Text="{Binding Operand}" Foreground="#CE93D8"/>
+									<!-- Comment -->
+									<TextBlock Grid.Column="5" Text="{Binding Comment}" Foreground="#81C784" Opacity="0.8"/>
+								</Grid>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</DockPanel>
+			</Border>
 
-					<TextBlock Text="Pattern Search" FontWeight="SemiBold"/>
-					<TextBox Name="PatternInput" Watermark="Hex pattern (e.g., A9 00 ??)"/>
-					<Button Content="Find Pattern" Command="{Binding FindPatternCommand}" CommandParameter="{Binding #PatternInput.Text}"/>
+			<!-- Right Panel - Options and XRefs -->
+			<Border Grid.Column="2" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+					CornerRadius="4" Padding="16">
+				<ScrollViewer>
+					<StackPanel Spacing="12">
+						<TextBlock Text="⚙️ Options" FontWeight="SemiBold" FontSize="16"/>
 
-					<Separator/>
+						<StackPanel Spacing="4">
+							<TextBlock Text="Base Address:"/>
+							<NumericUpDown Value="{Binding BaseAddress}" Minimum="0" Maximum="65535" FormatString="X4"/>
+						</StackPanel>
 
-					<Button Content="Copy to Clipboard" Command="{Binding CopyToClipboardCommand}"/>
+						<CheckBox Content="Show Bytes" IsChecked="{Binding ShowBytes}"/>
+						<CheckBox Content="Show Addresses" IsChecked="{Binding ShowAddresses}"/>
+						<CheckBox Content="Lowercase Hex" IsChecked="{Binding LowercaseHex}"/>
+						<CheckBox Content="Use Symbols" IsChecked="{Binding UseSymbols}"/>
 
-					<Separator/>
+						<Separator/>
 
-					<TextBlock Text="{Binding StatusText}" Opacity="0.7" TextWrapping="Wrap"/>
-				</StackPanel>
+						<TextBlock Text="🔍 Pattern Search" FontWeight="SemiBold"/>
+						<TextBox Name="PatternInput" Watermark="Hex pattern (e.g., A9 00 ??)"/>
+						<Button Content="Find Pattern" Command="{Binding FindPatternCommand}" CommandParameter="{Binding #PatternInput.Text}"/>
+
+						<Separator/>
+
+						<!-- Cross-References Panel (inline in right panel) -->
+						<StackPanel IsVisible="{Binding ShowCrossReferencesPanel}" Spacing="4">
+							<TextBlock Text="🔗 Cross-References" FontWeight="SemiBold"/>
+							<ListBox ItemsSource="{Binding CrossReferences}" MaxHeight="150">
+								<ListBox.ItemTemplate>
+									<DataTemplate>
+										<Grid ColumnDefinitions="60,40,*">
+											<TextBlock Grid.Column="0" Text="{Binding FromAddress, StringFormat=${0:X4}}" FontFamily="Consolas" FontSize="10" Foreground="#4FC3F7"/>
+											<TextBlock Grid.Column="1" Text="{Binding Type}" FontSize="10" Opacity="0.7"/>
+											<TextBlock Grid.Column="2" Text="{Binding ToAddress, StringFormat=→ ${0:X4}}" FontFamily="Consolas" FontSize="10"/>
+										</Grid>
+									</DataTemplate>
+								</ListBox.ItemTemplate>
+							</ListBox>
+						</StackPanel>
+
+						<!-- Basic Blocks Panel -->
+						<StackPanel IsVisible="{Binding ShowBasicBlocksPanel}" Spacing="4">
+							<TextBlock Text="📦 Basic Blocks" FontWeight="SemiBold"/>
+							<Button Content="Analyze Blocks" Command="{Binding AnalyzeBasicBlocksCommand}"/>
+							<ListBox ItemsSource="{Binding BasicBlocks}" MaxHeight="150">
+								<ListBox.ItemTemplate>
+									<DataTemplate>
+										<StackPanel>
+											<TextBlock Text="{Binding Label}" FontWeight="SemiBold" FontSize="10"/>
+											<TextBlock FontSize="9" Opacity="0.7">
+												<Run Text="{Binding StartAddress, StringFormat=${0:X4}}"/>
+												<Run Text=" - "/>
+												<Run Text="{Binding EndAddress, StringFormat=${0:X4}}"/>
+											</TextBlock>
+										</StackPanel>
+									</DataTemplate>
+								</ListBox.ItemTemplate>
+							</ListBox>
+						</StackPanel>
+
+						<Separator/>
+
+						<TextBlock Text="{Binding StatusText}" Opacity="0.7" TextWrapping="Wrap"/>
+					</StackPanel>
+				</ScrollViewer>
 			</Border>
 		</Grid>
 
 		<!-- Status Bar -->
-		<Border Grid.Row="2" Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}" Padding="16,8">
-			<TextBlock Text="{Binding StatusText}"/>
+		<Border Grid.Row="3" Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}" Padding="16,8">
+			<Grid ColumnDefinitions="*,Auto,Auto,Auto">
+				<TextBlock Grid.Column="0" Text="{Binding StatusText}"/>
+				<TextBlock Grid.Column="1" Text="{Binding DisassemblyLines.Count, StringFormat={}{0} lines}" Margin="16,0"/>
+				<TextBlock Grid.Column="2" Text="{Binding Bookmarks.Count, StringFormat={}{0} bookmarks}" Margin="16,0"/>
+				<TextBlock Grid.Column="3" Text="{Binding CpuMode}"/>
+			</Grid>
 		</Border>
 	</Grid>
 </UserControl>

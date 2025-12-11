@@ -122,3 +122,111 @@ public class EnumEqualsConverter : IValueConverter {
 		return Avalonia.Data.BindingOperations.DoNothing;
 	}
 }
+
+/// <summary>
+/// Converts 6502/65816 instruction mnemonics to syntax highlighting colors.
+/// Provides distinct colors for branches, jumps, loads, stores, math, etc.
+/// </summary>
+public class MnemonicColorConverter : IValueConverter {
+	public static readonly MnemonicColorConverter Instance = new();
+
+	// Color palette for syntax highlighting (using hex color strings)
+	private static readonly string BranchColor = "#FFD54F";      // Yellow - branches
+	private static readonly string JumpColor = "#FF8A65";        // Orange - jumps
+	private static readonly string CallColor = "#EF5350";        // Red - subroutine calls
+	private static readonly string ReturnColor = "#E57373";      // Light red - returns
+	private static readonly string LoadColor = "#81C784";        // Green - loads
+	private static readonly string StoreColor = "#4DB6AC";       // Teal - stores
+	private static readonly string MathColor = "#64B5F6";        // Blue - arithmetic
+	private static readonly string LogicColor = "#7986CB";       // Indigo - logic
+	private static readonly string CompareColor = "#BA68C8";     // Purple - compares
+	private static readonly string StackColor = "#F48FB1";       // Pink - stack ops
+	private static readonly string ControlColor = "#90A4AE";     // Gray - control
+	private static readonly string DefaultColor = "#E0E0E0";     // White-ish - default
+
+	// Branch instructions
+	private static readonly HashSet<string> BranchMnemonics = new(StringComparer.OrdinalIgnoreCase) {
+		"bcc", "bcs", "beq", "bmi", "bne", "bpl", "bvc", "bvs", "bra", "brl"
+	};
+
+	// Jump instructions
+	private static readonly HashSet<string> JumpMnemonics = new(StringComparer.OrdinalIgnoreCase) {
+		"jmp", "jml"
+	};
+
+	// Call instructions
+	private static readonly HashSet<string> CallMnemonics = new(StringComparer.OrdinalIgnoreCase) {
+		"jsr", "jsl"
+	};
+
+	// Return instructions
+	private static readonly HashSet<string> ReturnMnemonics = new(StringComparer.OrdinalIgnoreCase) {
+		"rts", "rtl", "rti", "brk"
+	};
+
+	// Load instructions
+	private static readonly HashSet<string> LoadMnemonics = new(StringComparer.OrdinalIgnoreCase) {
+		"lda", "ldx", "ldy", "pla", "plx", "ply", "plp", "pld", "plb"
+	};
+
+	// Store instructions
+	private static readonly HashSet<string> StoreMnemonics = new(StringComparer.OrdinalIgnoreCase) {
+		"sta", "stx", "sty", "stz", "pha", "phx", "phy", "php", "phd", "phb", "phk"
+	};
+
+	// Arithmetic instructions
+	private static readonly HashSet<string> MathMnemonics = new(StringComparer.OrdinalIgnoreCase) {
+		"adc", "sbc", "inc", "inx", "iny", "dec", "dex", "dey", "asl", "lsr", "rol", "ror"
+	};
+
+	// Logic instructions
+	private static readonly HashSet<string> LogicMnemonics = new(StringComparer.OrdinalIgnoreCase) {
+		"and", "ora", "eor", "bit", "trb", "tsb"
+	};
+
+	// Compare instructions
+	private static readonly HashSet<string> CompareMnemonics = new(StringComparer.OrdinalIgnoreCase) {
+		"cmp", "cpx", "cpy"
+	};
+
+	// Stack/transfer instructions
+	private static readonly HashSet<string> StackMnemonics = new(StringComparer.OrdinalIgnoreCase) {
+		"tax", "tay", "txa", "tya", "txs", "tsx", "tcd", "tdc", "tcs", "tsc", "txy", "tyx",
+		"xba", "xce"
+	};
+
+	// Control/flag instructions
+	private static readonly HashSet<string> ControlMnemonics = new(StringComparer.OrdinalIgnoreCase) {
+		"nop", "clc", "sec", "cli", "sei", "clv", "cld", "sed", "rep", "sep", "wai", "stp"
+	};
+
+	public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture) {
+		if (value is not string mnemonic || string.IsNullOrWhiteSpace(mnemonic)) {
+			return Avalonia.Media.Brush.Parse(DefaultColor);
+		}
+
+		// Remove any leading/trailing whitespace
+		mnemonic = mnemonic.Trim();
+
+		string colorHex = mnemonic switch {
+			_ when BranchMnemonics.Contains(mnemonic) => BranchColor,
+			_ when JumpMnemonics.Contains(mnemonic) => JumpColor,
+			_ when CallMnemonics.Contains(mnemonic) => CallColor,
+			_ when ReturnMnemonics.Contains(mnemonic) => ReturnColor,
+			_ when LoadMnemonics.Contains(mnemonic) => LoadColor,
+			_ when StoreMnemonics.Contains(mnemonic) => StoreColor,
+			_ when MathMnemonics.Contains(mnemonic) => MathColor,
+			_ when LogicMnemonics.Contains(mnemonic) => LogicColor,
+			_ when CompareMnemonics.Contains(mnemonic) => CompareColor,
+			_ when StackMnemonics.Contains(mnemonic) => StackColor,
+			_ when ControlMnemonics.Contains(mnemonic) => ControlColor,
+			_ => DefaultColor
+		};
+
+		return Avalonia.Media.Brush.Parse(colorHex);
+	}
+
+	public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) {
+		throw new NotSupportedException();
+	}
+}

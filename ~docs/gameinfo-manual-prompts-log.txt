@@ -83,7 +83,9 @@ continue
 
 do that full `what's next`:; Disassembler UI improvements; Script Editor control flow visualization; CHR Editor multi-tile selection improvements; Map Editor tileset loading, layer support; Keyboard shortcuts throughout UI; continue
 
+I cannot read the terminal, fix the colors; Views/XAML implementation - Create the actual UI controls to utilize all these ViewModel features; Documentation - Add inline docs for new public APIs; Integration testing - End-to-end tests for editor workflows; continue
 
+update documentation and github issues and plan more with gh issues; update chat logs and session logs for all of our work; create and update todo-lists; git commit and push all uncommited files in logical batches, attach them to issues; always attach commits to a github issue; continue; do github issues work;
 
 
 

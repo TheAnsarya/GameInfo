@@ -58,6 +58,8 @@
 				<CheckBox Content="Numbers" IsChecked="{Binding ShowTileNumbers}" VerticalAlignment="Center"/>
 				<CheckBox Content="16×16 Grid" IsChecked="{Binding ShowMetatileGrid}" VerticalAlignment="Center"
 						  ToolTip.Tip="Show metatile grid overlay"/>
+				<CheckBox Content="Layers" IsChecked="{Binding ShowLayersPanel}" VerticalAlignment="Center"
+						  ToolTip.Tip="Show layers panel"/>
 				<Separator/>
 				<Button Content="Copy" Command="{Binding CopySelectionCommand}" ToolTip.Tip="Copy selection (Ctrl+C)"/>
 				<Button Content="Paste" Command="{Binding PasteSelectionCommand}" IsEnabled="{Binding HasClipboard}"
@@ -79,9 +81,41 @@
 		</Border>
 
 		<!-- Main Content -->
-		<Grid Grid.Row="2" ColumnDefinitions="*,240" Margin="16,8">
-			<!-- Map View -->
+		<Grid Grid.Row="2" ColumnDefinitions="180,*,240" Margin="16,8">
+			<!-- Left Panel: Layers -->
 			<Border Grid.Column="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+					CornerRadius="4" Padding="8" Margin="0,0,8,0"
+					IsVisible="{Binding ShowLayersPanel}">
+				<DockPanel>
+					<TextBlock DockPanel.Dock="Top" Text="📚 Layers" FontWeight="SemiBold" Margin="0,0,0,8"/>
+					<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="4" Margin="0,8,0,0">
+						<Button Content="➕" Command="{Binding AddLayerCommand}" ToolTip.Tip="Add Layer" Width="28"/>
+						<Button Content="🗑️" Command="{Binding RemoveLayerCommand}" CommandParameter="{Binding ActiveLayerIndex}"
+								ToolTip.Tip="Remove Layer" Width="28"/>
+						<Button Content="⬆️" Command="{Binding MoveLayerUpCommand}" CommandParameter="{Binding ActiveLayerIndex}"
+								ToolTip.Tip="Move Up" Width="28"/>
+						<Button Content="⬇️" Command="{Binding MoveLayerDownCommand}" CommandParameter="{Binding ActiveLayerIndex}"
+								ToolTip.Tip="Move Down" Width="28"/>
+					</StackPanel>
+					<ListBox ItemsSource="{Binding Layers}" SelectedIndex="{Binding ActiveLayerIndex}">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<Grid ColumnDefinitions="Auto,*,Auto">
+									<CheckBox Grid.Column="0" IsChecked="{Binding IsVisible}"
+											  ToolTip.Tip="Toggle Visibility" Margin="0,0,4,0"/>
+									<TextBlock Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center"/>
+									<TextBlock Grid.Column="2" Text="{Binding DataOffset, StringFormat=0x{0:X4}}"
+											   FontFamily="Consolas" FontSize="10" Opacity="0.7"
+											   VerticalAlignment="Center"/>
+								</Grid>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</DockPanel>
+			</Border>
+
+			<!-- Map View -->
+			<Border Grid.Column="1" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
 					CornerRadius="4" Padding="8" Margin="0,0,8,0">
 				<DockPanel>
 					<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
@@ -111,7 +145,7 @@
 			</Border>
 
 			<!-- Right Panel: Tile Palette and Settings -->
-			<Border Grid.Column="1" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+			<Border Grid.Column="2" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
 					CornerRadius="4" Padding="16">
 				<ScrollViewer>
 					<StackPanel Spacing="12">

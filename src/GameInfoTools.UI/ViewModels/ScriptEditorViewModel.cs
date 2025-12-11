@@ -140,6 +140,12 @@ public partial class ScriptEditorViewModel : ViewModelBase {
 	private bool _showControlFlowGraph;
 
 	/// <summary>
+	/// Whether the basic blocks panel is visible.
+	/// </summary>
+	[ObservableProperty]
+	private bool _showBasicBlocks;
+
+	/// <summary>
 	/// The current control flow graph.
 	/// </summary>
 	[ObservableProperty]
