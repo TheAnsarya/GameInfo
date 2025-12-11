@@ -179,6 +179,56 @@ public class Program {
 		xrefCommand.SetHandler(AnalysisCommands.BuildXref, romArg, outputOption);
 		analysisCommand.AddCommand(xrefCommand);
 
+		// analysis cdl - CDL heatmap visualization
+		var cdlCommand = new Command("cdl", "CDL file analysis and heatmap generation");
+
+		// analysis cdl stats
+		var cdlStatsCommand = new Command("stats", "Show CDL coverage statistics");
+		var cdlArg = new Argument<FileInfo>("cdl", "CDL file path");
+		cdlStatsCommand.AddArgument(cdlArg);
+		var formatOption = new Option<string>("--format", () => "fceux", "CDL format (fceux, mesen, bsnes)");
+		cdlStatsCommand.AddOption(formatOption);
+		cdlStatsCommand.SetHandler(AnalysisCommands.CdlStats, cdlArg, formatOption);
+		cdlCommand.AddCommand(cdlStatsCommand);
+
+		// analysis cdl banks
+		var cdlBanksCommand = new Command("banks", "Show bank-level CDL statistics");
+		cdlBanksCommand.AddArgument(cdlArg);
+		cdlBanksCommand.AddOption(formatOption);
+		var bankSizeOption = new Option<int>("--bank-size", () => 0x4000, "Bank size in bytes");
+		cdlBanksCommand.AddOption(bankSizeOption);
+		cdlBanksCommand.SetHandler(AnalysisCommands.CdlBanks, cdlArg, formatOption, bankSizeOption);
+		cdlCommand.AddCommand(cdlBanksCommand);
+
+		// analysis cdl heatmap
+		var cdlHeatmapCommand = new Command("heatmap", "Generate ASCII heatmap");
+		cdlHeatmapCommand.AddArgument(cdlArg);
+		cdlHeatmapCommand.AddOption(formatOption);
+		var widthOption = new Option<int>("--width", () => 64, "Heatmap width in cells");
+		cdlHeatmapCommand.AddOption(widthOption);
+		cdlHeatmapCommand.SetHandler(AnalysisCommands.CdlAsciiHeatmap, cdlArg, formatOption, widthOption);
+		cdlCommand.AddCommand(cdlHeatmapCommand);
+
+		// analysis cdl export
+		var cdlExportCommand = new Command("export", "Export CDL data to CSV");
+		cdlExportCommand.AddArgument(cdlArg);
+		cdlExportCommand.AddOption(formatOption);
+		var csvOutputOption = new Option<FileInfo>("--output", "Output CSV file") { IsRequired = true };
+		cdlExportCommand.AddOption(csvOutputOption);
+		cdlExportCommand.SetHandler(AnalysisCommands.CdlExport, cdlArg, formatOption, csvOutputOption);
+		cdlCommand.AddCommand(cdlExportCommand);
+
+		// analysis cdl regions
+		var cdlRegionsCommand = new Command("regions", "Show contiguous regions");
+		cdlRegionsCommand.AddArgument(cdlArg);
+		cdlRegionsCommand.AddOption(formatOption);
+		var minSizeOption = new Option<int>("--min-size", () => 16, "Minimum region size to display");
+		cdlRegionsCommand.AddOption(minSizeOption);
+		cdlRegionsCommand.SetHandler(AnalysisCommands.CdlRegions, cdlArg, formatOption, minSizeOption);
+		cdlCommand.AddCommand(cdlRegionsCommand);
+
+		analysisCommand.AddCommand(cdlCommand);
+
 		return analysisCommand;
 	}
 

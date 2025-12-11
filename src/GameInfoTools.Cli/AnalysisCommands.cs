@@ -1,3 +1,4 @@
+using GameInfoTools.Analysis;
 using GameInfoTools.Core;
 using Spectre.Console;
 
@@ -388,5 +389,215 @@ public static class AnalysisCommands {
 
 			AnsiConsole.MarkupLine($"[green]Saved to {outputFile.FullName}[/]");
 		}
+	}
+
+	/// <summary>
+	/// Show CDL file coverage statistics.
+	/// </summary>
+	public static void CdlStats(FileInfo cdlFile, string format) {
+		if (!cdlFile.Exists) {
+			AnsiConsole.MarkupLine($"[red]Error: CDL file not found: {cdlFile.FullName}[/]");
+			return;
+		}
+
+		var heatmap = LoadCdl(cdlFile, format);
+		if (heatmap == null) return;
+
+		var stats = heatmap.GetCoverageStats();
+
+		AnsiConsole.MarkupLine($"[cyan]CDL Coverage Statistics[/]");
+		AnsiConsole.MarkupLine($"[grey]File: {cdlFile.Name}[/]");
+		AnsiConsole.WriteLine();
+
+		var table = new Table()
+			.Border(TableBorder.Rounded)
+			.AddColumn("Type")
+			.AddColumn("Bytes")
+			.AddColumn("Percentage");
+
+		table.AddRow("[green]Code[/]", stats.CodeBytes.ToString("N0"), $"{stats.CodePercentage:F2}%");
+		table.AddRow("[yellow]Data[/]", stats.DataBytes.ToString("N0"), $"{stats.DataPercentage:F2}%");
+		table.AddRow("[grey]Unknown[/]", stats.UnknownBytes.ToString("N0"), $"{100 - stats.CoveragePercentage:F2}%");
+		table.AddRow("[bold]Total[/]", stats.TotalBytes.ToString("N0"), "100%");
+
+		AnsiConsole.Write(table);
+	}
+
+	/// <summary>
+	/// Show bank-level CDL statistics.
+	/// </summary>
+	public static void CdlBanks(FileInfo cdlFile, string format, int bankSize) {
+		if (!cdlFile.Exists) {
+			AnsiConsole.MarkupLine($"[red]Error: CDL file not found: {cdlFile.FullName}[/]");
+			return;
+		}
+
+		var heatmap = LoadCdl(cdlFile, format);
+		if (heatmap == null) return;
+
+		var bankCoverage = heatmap.GetBankCoverage(bankSize);
+
+		AnsiConsole.MarkupLine($"[cyan]Bank Coverage Statistics[/]");
+		AnsiConsole.MarkupLine($"[grey]File: {cdlFile.Name} | Bank size: 0x{bankSize:X}[/]");
+		AnsiConsole.WriteLine();
+
+		var table = new Table()
+			.Border(TableBorder.Rounded)
+			.AddColumn("Bank")
+			.AddColumn("Offset")
+			.AddColumn("Code%")
+			.AddColumn("Data%")
+			.AddColumn("Unknown%")
+			.AddColumn("Coverage Bar");
+
+		foreach (var bank in bankCoverage) {
+			var stats = bank.Stats;
+			var coverageBar = GenerateCoverageBar(stats.CodePercentage, stats.DataPercentage, 20);
+			table.AddRow(
+				$"[cyan]${bank.BankIndex:X2}[/]",
+				$"${bank.StartOffset:X6}",
+				$"[green]{stats.CodePercentage:F1}%[/]",
+				$"[yellow]{stats.DataPercentage:F1}%[/]",
+				$"[grey]{100 - stats.CoveragePercentage:F1}%[/]",
+				coverageBar
+			);
+		}
+
+		AnsiConsole.Write(table);
+	}
+
+	/// <summary>
+	/// Generate ASCII heatmap visualization.
+	/// </summary>
+	public static void CdlAsciiHeatmap(FileInfo cdlFile, string format, int width) {
+		if (!cdlFile.Exists) {
+			AnsiConsole.MarkupLine($"[red]Error: CDL file not found: {cdlFile.FullName}[/]");
+			return;
+		}
+
+		var heatmap = LoadCdl(cdlFile, format);
+		if (heatmap == null) return;
+
+		AnsiConsole.MarkupLine($"[cyan]CDL Heatmap[/]");
+		AnsiConsole.MarkupLine($"[grey]File: {cdlFile.Name} | Width: {width}[/]");
+		AnsiConsole.MarkupLine($"[grey]Legend: █=100% ▓=75%+ ▒=50%+ ░=25%+ .=<25%[/]");
+		AnsiConsole.WriteLine();
+
+		var asciiMap = heatmap.GenerateAsciiHeatmap(width);
+		AnsiConsole.WriteLine(asciiMap);
+	}
+
+	/// <summary>
+	/// Export CDL data to CSV.
+	/// </summary>
+	public static void CdlExport(FileInfo cdlFile, string format, FileInfo outputFile) {
+		if (!cdlFile.Exists) {
+			AnsiConsole.MarkupLine($"[red]Error: CDL file not found: {cdlFile.FullName}[/]");
+			return;
+		}
+
+		var heatmap = LoadCdl(cdlFile, format);
+		if (heatmap == null) return;
+
+		var csv = heatmap.ExportAsCsv();
+		File.WriteAllText(outputFile.FullName, csv);
+		AnsiConsole.MarkupLine($"[green]Exported to {outputFile.FullName}[/]");
+	}
+
+	/// <summary>
+	/// Show contiguous regions in CDL data.
+	/// </summary>
+	public static void CdlRegions(FileInfo cdlFile, string format, int minSize) {
+		if (!cdlFile.Exists) {
+			AnsiConsole.MarkupLine($"[red]Error: CDL file not found: {cdlFile.FullName}[/]");
+			return;
+		}
+
+		var heatmap = LoadCdl(cdlFile, format);
+		if (heatmap == null) return;
+
+		var coveredRegions = heatmap.FindCoveredRegions(minSize);
+		var uncoveredRegions = heatmap.FindUncoveredRegions(minSize);
+
+		AnsiConsole.MarkupLine($"[cyan]CDL Regions[/]");
+		AnsiConsole.MarkupLine($"[grey]File: {cdlFile.Name} | Min size: {minSize} bytes[/]");
+		AnsiConsole.WriteLine();
+
+		// Show covered regions
+		AnsiConsole.MarkupLine($"[green]Covered Regions ({coveredRegions.Count})[/]");
+		var coveredTable = new Table()
+			.Border(TableBorder.Rounded)
+			.AddColumn("Start")
+			.AddColumn("End")
+			.AddColumn("Length")
+			.AddColumn("Type");
+
+		foreach (var (offset, length, isCode) in coveredRegions.Take(50)) {
+			var type = isCode ? "[green]Code[/]" : "[yellow]Data[/]";
+			coveredTable.AddRow(
+				$"${offset:X6}",
+				$"${offset + length - 1:X6}",
+				$"{length:N0}",
+				type
+			);
+		}
+		AnsiConsole.Write(coveredTable);
+
+		if (coveredRegions.Count > 50) {
+			AnsiConsole.MarkupLine($"[grey]... and {coveredRegions.Count - 50} more covered regions[/]");
+		}
+
+		// Show uncovered regions
+		AnsiConsole.WriteLine();
+		AnsiConsole.MarkupLine($"[grey]Uncovered Regions ({uncoveredRegions.Count})[/]");
+		var uncoveredTable = new Table()
+			.Border(TableBorder.Rounded)
+			.AddColumn("Start")
+			.AddColumn("End")
+			.AddColumn("Length");
+
+		foreach (var (offset, length) in uncoveredRegions.Take(50)) {
+			uncoveredTable.AddRow(
+				$"${offset:X6}",
+				$"${offset + length - 1:X6}",
+				$"{length:N0}"
+			);
+		}
+		AnsiConsole.Write(uncoveredTable);
+
+		if (uncoveredRegions.Count > 50) {
+			AnsiConsole.MarkupLine($"[grey]... and {uncoveredRegions.Count - 50} more uncovered regions[/]");
+		}
+	}
+
+	/// <summary>
+	/// Load CDL file based on format.
+	/// </summary>
+	private static CdlHeatmap? LoadCdl(FileInfo cdlFile, string format) {
+		try {
+			var cdlFormat = format.ToLowerInvariant() switch {
+				"fceux" => CdlHeatmap.CdlFormat.Fceux,
+				"mesen" => CdlHeatmap.CdlFormat.Mesen,
+				"bsnes" => CdlHeatmap.CdlFormat.Bsnes,
+				_ => CdlHeatmap.CdlFormat.Generic
+			};
+			return CdlHeatmap.FromFile(cdlFile.FullName, cdlFormat);
+		} catch (Exception ex) {
+			AnsiConsole.MarkupLine($"[red]Error loading CDL: {ex.Message}[/]");
+			return null;
+		}
+	}
+
+	/// <summary>
+	/// Generate a colored coverage bar.
+	/// </summary>
+	private static string GenerateCoverageBar(double codePercent, double dataPercent, int width) {
+		var codeChars = (int)(codePercent / 100 * width);
+		var dataChars = (int)(dataPercent / 100 * width);
+		var unknownChars = width - codeChars - dataChars;
+
+		return $"[green]{new string('█', codeChars)}[/]" +
+			$"[yellow]{new string('▓', dataChars)}[/]" +
+			$"[grey]{new string('░', unknownChars)}[/]";
 	}
 }
