@@ -415,6 +415,127 @@ public class ViewModelTests {
 		Assert.Contains("Bank 1", vm.InspectorNesAddress);
 	}
 
+	[Fact]
+	public void HexEditorViewModel_Comparison_InitiallyDisabled() {
+		var rom = CreateTestNesRom();
+		var vm = new HexEditorViewModel(rom);
+
+		Assert.False(vm.ComparisonMode);
+		Assert.False(vm.HasComparisonData);
+		Assert.Empty(vm.ComparisonRomName);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_LoadComparisonData_EnablesComparison() {
+		var rom = CreateTestNesRom();
+		var vm = new HexEditorViewModel(rom);
+		var comparisonData = new byte[rom.Length];
+		Array.Copy(rom.Data, comparisonData, rom.Length);
+
+		vm.LoadComparisonData(comparisonData, "test_comparison.nes");
+
+		Assert.True(vm.ComparisonMode);
+		Assert.True(vm.HasComparisonData);
+		Assert.Equal("test_comparison.nes", vm.ComparisonRomName);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_ClearComparison_DisablesComparison() {
+		var rom = CreateTestNesRom();
+		var vm = new HexEditorViewModel(rom);
+		var comparisonData = new byte[rom.Length];
+
+		vm.LoadComparisonData(comparisonData, "test.nes");
+		vm.ClearComparisonCommand.Execute(null);
+
+		Assert.False(vm.ComparisonMode);
+		Assert.False(vm.HasComparisonData);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_ByteDiffersFromComparison_DetectsDifference() {
+		var rom = CreateTestNesRom();
+		var vm = new HexEditorViewModel(rom);
+		var comparisonData = new byte[rom.Length];
+		Array.Copy(rom.Data, comparisonData, rom.Length);
+		comparisonData[0x100] = (byte)(rom.Data[0x100] ^ 0xFF);
+
+		vm.LoadComparisonData(comparisonData, "test.nes");
+
+		Assert.True(vm.ByteDiffersFromComparison(0x100));
+		Assert.False(vm.ByteDiffersFromComparison(0x101));
+	}
+
+	[Fact]
+	public void HexEditorViewModel_FindAllDifferences_FindsDifferences() {
+		var rom = CreateTestNesRom();
+		var vm = new HexEditorViewModel(rom);
+		var comparisonData = new byte[rom.Length];
+		Array.Copy(rom.Data, comparisonData, rom.Length);
+		comparisonData[0x100] = 0xAA;
+		comparisonData[0x200] = 0xBB;
+
+		vm.LoadComparisonData(comparisonData, "test.nes");
+		vm.FindAllDifferencesCommand.Execute(null);
+
+		Assert.Equal(2, vm.Differences.Count);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_GetComparisonByte_ReturnsCorrectValue() {
+		var rom = CreateTestNesRom();
+		var vm = new HexEditorViewModel(rom);
+		var comparisonData = new byte[rom.Length];
+		comparisonData[0x100] = 0x42;
+
+		vm.LoadComparisonData(comparisonData, "test.nes");
+
+		Assert.Equal((byte)0x42, vm.GetComparisonByte(0x100));
+		Assert.Null(vm.GetComparisonByte(rom.Length + 100)); // Out of bounds
+	}
+
+	[Fact]
+	public void HexEditorViewModel_FindAndReplace_InitialState() {
+		var vm = new HexEditorViewModel(null);
+
+		Assert.Empty(vm.FindPattern);
+		Assert.Empty(vm.ReplacePattern);
+		Assert.True(vm.FindAsHex);
+		Assert.Empty(vm.SearchResults);
+		Assert.Equal(-1, vm.CurrentSearchIndex);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_FindAllPattern_FindsMatches() {
+		var rom = CreateTestNesRom();
+		// Set up a known pattern in the ROM
+		rom.Data[0x100] = 0xDE;
+		rom.Data[0x101] = 0xAD;
+		rom.Data[0x200] = 0xDE;
+		rom.Data[0x201] = 0xAD;
+		var vm = new HexEditorViewModel(rom);
+
+		vm.FindPattern = "DE AD";
+		vm.FindAllPatternCommand.Execute(null);
+
+		Assert.Equal(2, vm.SearchResults.Count);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_SearchResults_HaveContextPreview() {
+		var rom = CreateTestNesRom();
+		rom.Data[0x100] = 0xAB;
+		rom.Data[0x101] = 0xCD;
+		var vm = new HexEditorViewModel(rom);
+
+		vm.FindPattern = "AB CD";
+		vm.FindAllPatternCommand.Execute(null);
+
+		Assert.Single(vm.SearchResults);
+		Assert.NotEmpty(vm.SearchResults[0].ContextPreview);
+		Assert.Equal("0x000100", vm.SearchResults[0].OffsetDisplay);
+	}
+
 	#endregion
 
 	#region DisassemblerViewModel Tests
