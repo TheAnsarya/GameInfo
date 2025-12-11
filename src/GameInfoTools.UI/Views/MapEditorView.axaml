@@ -68,6 +68,13 @@
 						ToolTip.Tip="Export map to JSON"/>
 				<Button Content="Export PNG..." Command="{Binding ExportMapAsPngCommand}" CommandParameter="{Binding $parent[Window]}"
 						ToolTip.Tip="Export map as PNG image"/>
+				<Button Content="Import PNG..." Command="{Binding ImportFromPngCommand}" CommandParameter="{Binding $parent[Window]}"
+						ToolTip.Tip="Import map from PNG image"/>
+				<Separator/>
+				<Button Content="↑" Command="{Binding ShiftMapCommand}" CommandParameter="UP" Width="24" ToolTip.Tip="Shift Up"/>
+				<Button Content="↓" Command="{Binding ShiftMapCommand}" CommandParameter="DOWN" Width="24" ToolTip.Tip="Shift Down"/>
+				<Button Content="←" Command="{Binding ShiftMapCommand}" CommandParameter="LEFT" Width="24" ToolTip.Tip="Shift Left"/>
+				<Button Content="→" Command="{Binding ShiftMapCommand}" CommandParameter="RIGHT" Width="24" ToolTip.Tip="Shift Right"/>
 			</StackPanel>
 		</Border>
 
