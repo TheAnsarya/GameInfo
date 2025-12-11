@@ -530,47 +530,26 @@ public class WorkflowIntegrationTests {
 
 	[Fact]
 	public void DisassemblerWorkflow_CrossReferenceCollection() {
-		// TODO: Implement CrossReferenceBuilder class in GameInfoTools.Analysis
-		// This test is temporarily disabled until the class is available
-		Assert.True(true); // Placeholder
+		// Simple ROM with JSR and JMP instructions
+		var rom = new byte[] {
+			0x20, 0x06, 0x80, // $8000: JSR $8006
+			0x4c, 0x09, 0x80, // $8003: JMP $8009
+			0xa9, 0x42,       // $8006: LDA #$42
+			0x60,             // $8008: RTS
+			0xa2, 0x00,       // $8009: LDX #$00
+			0x60              // $800B: RTS
+		};
 
-		/* Original test code - enable when CrossReferenceBuilder exists:
-		var rom = new byte[32];
-		int offset = 0;
+		var xref = new CrossReferenceBuilder();
+		xref.ProcessCode(rom, 0x8000);
 
-		// First subroutine
-		rom[offset++] = 0x20; // JSR $8010 - calls second subroutine
-		rom[offset++] = 0x10;
-		rom[offset++] = 0x80;
-		rom[offset++] = 0x4c; // JMP $8020 - jumps to third location
-		rom[offset++] = 0x20;
-		rom[offset++] = 0x80;
+		// JSR at $8000 should reference $8006
+		var callsFrom8000 = xref.GetReferencesFrom(0x8000).ToList();
+		Assert.Contains(callsFrom8000, r => r.Target == 0x8006);
 
-		// Pad to $8010
-		while (offset < 0x10) rom[offset++] = 0xea;
-
-		// Second subroutine at $8010
-		rom[offset++] = 0xa9; // LDA #$42
-		rom[offset++] = 0x42;
-		rom[offset++] = 0x60; // RTS
-
-		// Pad to $8020
-		while (offset < 0x20) rom[offset++] = 0xea;
-
-		// Third location at $8020
-		rom[offset++] = 0xa2; // LDX #$00
-		rom[offset++] = 0x00;
-		rom[offset++] = 0x60; // RTS
-
-		// var xref = new CrossReferenceBuilder();
-		// xref.ProcessCode(rom, 0x8000);
-
-		// var callsFrom8000 = xref.GetReferencesFrom(0x8000).ToList();
-		// Assert.Contains(callsFrom8000, r => r.Target == 0x8010);
-
-		// var refsTo8010 = xref.GetReferencesTo(0x8010).ToList();
-		// Assert.NotEmpty(refsTo8010);
-		*/
+		// $8006 should have a reference from $8000
+		var refsTo8006 = xref.GetReferencesTo(0x8006).ToList();
+		Assert.NotEmpty(refsTo8006);
 	}
 
 	#endregion
@@ -654,11 +633,6 @@ public class WorkflowIntegrationTests {
 
 	[Fact]
 	public void ChrEditorWorkflow_TileRoundTrip() {
-		// TODO: Implement TileCodec class in GameInfoTools.Graphics
-		// This test is temporarily disabled until the class is available
-		Assert.True(true); // Placeholder
-
-		/* Original test code - enable when TileCodec exists:
 		// Create an 8x8 2bpp tile
 		var tileData = new byte[16];
 		for (int i = 0; i < 16; i++) {
@@ -672,7 +646,6 @@ public class WorkflowIntegrationTests {
 		// Encode back
 		var reencoded = TileCodec.EncodeNes2bpp(pixels);
 		Assert.Equal(tileData, reencoded);
-		*/
 	}
 
 	[Fact]
