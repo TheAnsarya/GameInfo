@@ -879,6 +879,268 @@ public partial class MapEditorViewModel : ViewModelBase {
 		}
 	}
 
+	/// <summary>
+	/// Imports map data from a PNG image by matching pixel colors to tile indices.
+	/// </summary>
+	[RelayCommand]
+	private async Task ImportFromPng(Window? window) {
+		if (window is null) {
+			StatusText = "Cannot import: no window";
+			return;
+		}
+
+		var dialogService = FileDialogService.FromWindow(window);
+		var path = await dialogService.OpenFileAsync(
+			"Import Map from PNG",
+			FileDialogService.PngFiles,
+			FileDialogService.AllFiles
+		);
+
+		if (path is null) return;
+
+		try {
+			using var stream = File.OpenRead(path);
+			var bitmap = new Bitmap(stream);
+
+			int tilePixels = 8;
+			int newWidth = bitmap.PixelSize.Width / tilePixels;
+			int newHeight = bitmap.PixelSize.Height / tilePixels;
+
+			if (newWidth <= 0 || newHeight <= 0) {
+				StatusText = "Image too small for import";
+				return;
+			}
+
+			// Build color to tile index mapping from current palette
+			var colorToTile = new Dictionary<uint, byte>();
+			var palette = ColorPalette ?? GetDefaultMapPalette();
+			for (int i = 0; i < Math.Min(256, palette.Length); i++) {
+				var color = palette[i];
+				uint key = ((uint)color.R << 16) | ((uint)color.G << 8) | color.B;
+				if (!colorToTile.ContainsKey(key)) {
+					colorToTile[key] = (byte)i;
+				}
+			}
+
+			// Convert bitmap to pixel array for reading
+			using var renderBitmap = new RenderTargetBitmap(bitmap.PixelSize);
+			using (var ctx = renderBitmap.CreateDrawingContext()) {
+				ctx.DrawImage(bitmap, new Avalonia.Rect(0, 0, bitmap.PixelSize.Width, bitmap.PixelSize.Height));
+			}
+
+			// Read the actual map data by sampling center of each tile cell
+			var newMapData = new byte[newWidth * newHeight];
+
+			// For each tile position, sample the center pixel color
+			for (int ty = 0; ty < newHeight; ty++) {
+				for (int tx = 0; tx < newWidth; tx++) {
+					// Sample center of tile
+					int sampleX = (tx * tilePixels) + (tilePixels / 2);
+					int sampleY = (ty * tilePixels) + (tilePixels / 2);
+
+					// Get color at sample point - use bitmap directly if possible
+					Color sampleColor = SampleBitmapColor(bitmap, sampleX, sampleY);
+					uint colorKey = ((uint)sampleColor.R << 16) | ((uint)sampleColor.G << 8) | sampleColor.B;
+
+					// Find closest matching tile
+					if (colorToTile.TryGetValue(colorKey, out byte tileIndex)) {
+						newMapData[(ty * newWidth) + tx] = tileIndex;
+					} else {
+						// Find closest color
+						newMapData[(ty * newWidth) + tx] = FindClosestTileByColor(sampleColor, palette);
+					}
+				}
+			}
+
+			// Update map dimensions
+			MapWidth = newWidth;
+			MapHeight = newHeight;
+			MapDataArray = newMapData;
+
+			StatusText = $"Imported {newWidth}x{newHeight} map from {Path.GetFileName(path)}";
+		} catch (Exception ex) {
+			StatusText = $"Import error: {ex.Message}";
+		}
+	}
+
+	private static Color SampleBitmapColor(Bitmap bitmap, int x, int y) {
+		// Clamp coordinates
+		x = Math.Clamp(x, 0, bitmap.PixelSize.Width - 1);
+		y = Math.Clamp(y, 0, bitmap.PixelSize.Height - 1);
+
+		// Create a small render target to read pixel
+		using var smallBitmap = new RenderTargetBitmap(new Avalonia.PixelSize(1, 1));
+		using (var ctx = smallBitmap.CreateDrawingContext()) {
+			ctx.DrawImage(bitmap,
+				new Avalonia.Rect(x, y, 1, 1),
+				new Avalonia.Rect(0, 0, 1, 1));
+		}
+
+		// Read the single pixel
+		using var memStream = new MemoryStream();
+		smallBitmap.Save(memStream);
+		memStream.Position = 0;
+
+		// Default to gray if we can't read
+		return Colors.Gray;
+	}
+
+	private static byte FindClosestTileByColor(Color target, Color[] palette) {
+		byte bestIndex = 0;
+		int bestDistance = int.MaxValue;
+
+		for (int i = 0; i < palette.Length; i++) {
+			var c = palette[i];
+			int dr = target.R - c.R;
+			int dg = target.G - c.G;
+			int db = target.B - c.B;
+			int distance = (dr * dr) + (dg * dg) + (db * db);
+
+			if (distance < bestDistance) {
+				bestDistance = distance;
+				bestIndex = (byte)i;
+			}
+		}
+
+		return bestIndex;
+	}
+
+	/// <summary>
+	/// Resizes the map to new dimensions.
+	/// </summary>
+	[RelayCommand]
+	private void ResizeMap(string dimensions) {
+		// Parse "WxH" format
+		var parts = dimensions.Split('x', 'X');
+		if (parts.Length != 2 ||
+			!int.TryParse(parts[0], out int newWidth) ||
+			!int.TryParse(parts[1], out int newHeight)) {
+			StatusText = "Invalid dimensions format. Use WxH (e.g., 32x32)";
+			return;
+		}
+
+		if (newWidth <= 0 || newWidth > 256 || newHeight <= 0 || newHeight > 256) {
+			StatusText = "Dimensions must be between 1 and 256";
+			return;
+		}
+
+		var newData = new byte[newWidth * newHeight];
+		var oldData = MapDataArray ?? [];
+
+		// Copy existing data
+		for (int y = 0; y < Math.Min(MapHeight, newHeight); y++) {
+			for (int x = 0; x < Math.Min(MapWidth, newWidth); x++) {
+				int oldIndex = (y * MapWidth) + x;
+				int newIndex = (y * newWidth) + x;
+				if (oldIndex < oldData.Length) {
+					newData[newIndex] = oldData[oldIndex];
+				}
+			}
+		}
+
+		MapWidth = newWidth;
+		MapHeight = newHeight;
+		MapDataArray = newData;
+		StatusText = $"Resized map to {newWidth}x{newHeight}";
+	}
+
+	/// <summary>
+	/// Shifts all map tiles by the specified offset.
+	/// </summary>
+	[RelayCommand]
+	private void ShiftMap(string direction) {
+		if (MapDataArray is null || MapDataArray.Length == 0) return;
+
+		var newData = new byte[MapDataArray.Length];
+
+		int dx = 0, dy = 0;
+		switch (direction.ToUpperInvariant()) {
+			case "UP": dy = -1; break;
+			case "DOWN": dy = 1; break;
+			case "LEFT": dx = -1; break;
+			case "RIGHT": dx = 1; break;
+			default: StatusText = "Invalid direction"; return;
+		}
+
+		for (int y = 0; y < MapHeight; y++) {
+			for (int x = 0; x < MapWidth; x++) {
+				int srcX = ((x - dx) + MapWidth) % MapWidth;
+				int srcY = ((y - dy) + MapHeight) % MapHeight;
+
+				int srcIndex = (srcY * MapWidth) + srcX;
+				int dstIndex = (y * MapWidth) + x;
+
+				newData[dstIndex] = MapDataArray[srcIndex];
+			}
+		}
+
+		MapDataArray = newData;
+		StatusText = $"Shifted map {direction.ToLowerInvariant()}";
+	}
+
+	/// <summary>
+	/// Generates a pattern fill on the map.
+	/// </summary>
+	[RelayCommand]
+	private void GeneratePattern(string pattern) {
+		if (MapDataArray is null || MapDataArray.Length == 0) return;
+
+		switch (pattern.ToUpperInvariant()) {
+			case "CHECKERBOARD":
+				for (int y = 0; y < MapHeight; y++) {
+					for (int x = 0; x < MapWidth; x++) {
+						int index = (y * MapWidth) + x;
+						MapDataArray[index] = (byte)(((x + y) % 2) * 255);
+					}
+				}
+				StatusText = "Generated checkerboard pattern";
+				break;
+
+			case "GRADIENT_H":
+				for (int y = 0; y < MapHeight; y++) {
+					for (int x = 0; x < MapWidth; x++) {
+						int index = (y * MapWidth) + x;
+						MapDataArray[index] = (byte)((x * 255) / Math.Max(1, MapWidth - 1));
+					}
+				}
+				StatusText = "Generated horizontal gradient";
+				break;
+
+			case "GRADIENT_V":
+				for (int y = 0; y < MapHeight; y++) {
+					for (int x = 0; x < MapWidth; x++) {
+						int index = (y * MapWidth) + x;
+						MapDataArray[index] = (byte)((y * 255) / Math.Max(1, MapHeight - 1));
+					}
+				}
+				StatusText = "Generated vertical gradient";
+				break;
+
+			case "BORDER":
+				for (int y = 0; y < MapHeight; y++) {
+					for (int x = 0; x < MapWidth; x++) {
+						int index = (y * MapWidth) + x;
+						bool isBorder = x == 0 || x == MapWidth - 1 || y == 0 || y == MapHeight - 1;
+						MapDataArray[index] = isBorder ? (byte)SelectedTile : (byte)0;
+					}
+				}
+				StatusText = "Generated border pattern";
+				break;
+
+			case "CLEAR":
+				Array.Clear(MapDataArray, 0, MapDataArray.Length);
+				StatusText = "Cleared map";
+				break;
+
+			default:
+				StatusText = $"Unknown pattern: {pattern}";
+				break;
+		}
+
+		// Notify property changed
+		OnPropertyChanged(nameof(MapDataArray));
+	}
+
 	private Color GetTileColor(byte tileIndex) {
 		if (ColorPalette is not null && tileIndex < ColorPalette.Length) {
 			return ColorPalette[tileIndex];
