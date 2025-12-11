@@ -22,9 +22,8 @@
 			<TextBlock Text="Offset:" VerticalAlignment="Center"/>
 			<NumericUpDown Value="{Binding CurrentOffset}" Minimum="0" Maximum="16777215" FormatString="X6" Width="100"/>
 			<Separator/>
-			<TextBlock Text="Search:" VerticalAlignment="Center"/>
-			<TextBox Text="{Binding SearchHex}" Width="150" Watermark="Hex (e.g., A9 00 8D)" FontFamily="Consolas"/>
-			<Button Content="Find" Command="{Binding SearchHexPatternCommand}"/>
+			<Button Content="🔍" Command="{Binding ToggleSearchPanelCommand}" ToolTip.Tip="Search (Ctrl+F)" Width="28" Padding="4"/>
+			<Button Content="📍" Command="{Binding ToggleGotoPanelCommand}" ToolTip.Tip="Go to (Ctrl+G)" Width="28" Padding="4"/>
 			<Separator/>
 			<TextBlock Text="Group:" VerticalAlignment="Center"/>
 			<ComboBox ItemsSource="{Binding ByteGroupModes}" SelectedItem="{Binding ByteGroup}" Width="80"/>
@@ -35,6 +34,42 @@
 			<ToggleButton Content="📊" IsChecked="{Binding ShowDataInspector}" ToolTip.Tip="Data Inspector"/>
 			<Button Content="🔖" Command="{Binding AddBookmarkCommand}" ToolTip.Tip="Add Bookmark"/>
 		</StackPanel>
+
+		<!-- Search Panel -->
+		<Border Grid.Row="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+				CornerRadius="4" Padding="8" Margin="16,52,16,0"
+				IsVisible="{Binding ShowSearchPanel}" VerticalAlignment="Top" ZIndex="100">
+			<StackPanel Orientation="Horizontal" Spacing="8">
+				<TextBlock Text="🔍" VerticalAlignment="Center"/>
+				<TextBox Text="{Binding FindPattern}" Width="200" Watermark="Hex pattern (e.g., A9 00 8D)"
+						 FontFamily="Consolas" ToolTip.Tip="Enter hex bytes to search"/>
+				<CheckBox Content="Hex" IsChecked="{Binding FindAsHex}" VerticalAlignment="Center"/>
+				<Button Content="◀" Command="{Binding FindPreviousPatternCommand}" ToolTip.Tip="Previous (Shift+F3)"
+						Width="28" Padding="4"/>
+				<Button Content="▶" Command="{Binding FindNextPatternCommand}" ToolTip.Tip="Next (F3)"
+						Width="28" Padding="4"/>
+				<Button Content="Find All" Command="{Binding FindAllPatternCommand}" ToolTip.Tip="Find all occurrences"/>
+				<TextBlock VerticalAlignment="Center" Opacity="0.7"
+						   Text="{Binding SearchResults.Count, StringFormat={}{0} found}"/>
+				<Button Content="✕" Width="28" Padding="4" ToolTip.Tip="Close (Esc)"
+						Command="{Binding CloseSearchPanelCommand}"/>
+			</StackPanel>
+		</Border>
+
+		<!-- Go To Panel -->
+		<Border Grid.Row="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+				CornerRadius="4" Padding="8" Margin="16,52,16,0"
+				IsVisible="{Binding ShowGotoPanel}" VerticalAlignment="Top" ZIndex="100">
+			<StackPanel Orientation="Horizontal" Spacing="8">
+				<TextBlock Text="📍" VerticalAlignment="Center"/>
+				<TextBlock Text="Go to offset:" VerticalAlignment="Center"/>
+				<NumericUpDown Value="{Binding CurrentOffset}" Minimum="0" Maximum="16777215"
+							   FormatString="X6" Width="120"/>
+				<Button Content="Go" Command="{Binding GoToOffsetCommand}" ToolTip.Tip="Navigate to offset"/>
+				<Button Content="✕" Width="28" Padding="4" ToolTip.Tip="Close (Esc)"
+						Command="{Binding CloseGotoPanelCommand}"/>
+			</StackPanel>
+		</Border>
 
 		<!-- Main Content -->
 		<Grid Grid.Row="1" ColumnDefinitions="*,Auto" Margin="16,8">

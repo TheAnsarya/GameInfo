@@ -1367,6 +1367,22 @@ public partial class ScriptEditorViewModel : ViewModelBase, IKeyboardShortcutHan
 	}
 
 	/// <summary>
+	/// Close the search panel.
+	/// </summary>
+	[RelayCommand]
+	private void CloseSearchPanel() {
+		ShowSearchPanel = false;
+	}
+
+	/// <summary>
+	/// Toggle the search panel visibility.
+	/// </summary>
+	[RelayCommand]
+	private void ToggleSearchPanel() {
+		ShowSearchPanel = !ShowSearchPanel;
+	}
+
+	/// <summary>
 	/// Called when search text changes.
 	/// </summary>
 	partial void OnSearchTextChanged(string value) {

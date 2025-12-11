@@ -32,7 +32,34 @@
 					  ToolTip.Tip="Show control flow graph panel"/>
 			<CheckBox Content="Basic Blocks" IsChecked="{Binding ShowBasicBlocks}" VerticalAlignment="Center"
 					  ToolTip.Tip="Show basic blocks panel"/>
+			<Button Content="📊 Export DOT" Command="{Binding ExportGraphAsDotCommand}" CommandParameter="{Binding $parent[Window]}"
+					ToolTip.Tip="Export CFG as Graphviz DOT format" IsVisible="{Binding ShowControlFlowGraph}"/>
+			<Separator/>
+			<Button Content="🔍" Command="{Binding ToggleSearchPanelCommand}" ToolTip.Tip="Toggle search (Ctrl+F)"
+					Width="28" Padding="4"/>
 		</StackPanel>
+
+		<!-- Search Panel -->
+		<Border Grid.Row="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+				CornerRadius="4" Padding="8" Margin="16,52,16,0"
+				IsVisible="{Binding ShowSearchPanel}" VerticalAlignment="Top" ZIndex="100">
+			<StackPanel Orientation="Horizontal" Spacing="8">
+				<TextBlock Text="🔍" VerticalAlignment="Center"/>
+				<TextBox Text="{Binding SearchText}" Width="200" Watermark="Search commands..."
+						 ToolTip.Tip="Search by name, opcode, offset, or description"/>
+				<Button Content="◀" Command="{Binding SearchPreviousCommand}" ToolTip.Tip="Previous (Shift+F3)"
+						Width="28" Padding="4"/>
+				<Button Content="▶" Command="{Binding SearchNextCommand}" ToolTip.Tip="Next (F3)"
+						Width="28" Padding="4"/>
+				<TextBlock VerticalAlignment="Center" Opacity="0.7">
+					<Run Text="{Binding CurrentSearchIndex, StringFormat={}{0}}"/>
+					<Run Text="/"/>
+					<Run Text="{Binding SearchMatchCount}"/>
+				</TextBlock>
+				<Button Content="✕" Width="28" Padding="4" ToolTip.Tip="Close (Esc)"
+						Command="{Binding CloseSearchPanelCommand}"/>
+			</StackPanel>
+		</Border>
 
 		<!-- Main Content -->
 		<Grid Grid.Row="1" ColumnDefinitions="200,*,300" Margin="16,8">

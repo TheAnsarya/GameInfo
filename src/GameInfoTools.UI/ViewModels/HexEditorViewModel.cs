@@ -768,6 +768,41 @@ public partial class HexEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 	private int _currentSearchIndex = -1;
 
 	/// <summary>
+	/// Toggle search panel visibility.
+	/// </summary>
+	[RelayCommand]
+	private void ToggleSearchPanel() {
+		ShowSearchPanel = !ShowSearchPanel;
+		if (!ShowSearchPanel) {
+			ShowGotoPanel = false; // Close goto panel too
+		}
+	}
+
+	/// <summary>
+	/// Close search panel.
+	/// </summary>
+	[RelayCommand]
+	private void CloseSearchPanel() {
+		ShowSearchPanel = false;
+	}
+
+	/// <summary>
+	/// Toggle go to panel visibility.
+	/// </summary>
+	[RelayCommand]
+	private void ToggleGotoPanel() {
+		ShowGotoPanel = !ShowGotoPanel;
+	}
+
+	/// <summary>
+	/// Close go to panel.
+	/// </summary>
+	[RelayCommand]
+	private void CloseGotoPanel() {
+		ShowGotoPanel = false;
+	}
+
+	/// <summary>
 	/// Find all occurrences of pattern.
 	/// </summary>
 	[RelayCommand]
