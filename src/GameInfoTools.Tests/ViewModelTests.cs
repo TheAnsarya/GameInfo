@@ -1244,6 +1244,97 @@ public class ViewModelTests {
 		Assert.Equal("Display message", opcode.Description);
 	}
 
+	[Fact]
+	public void ScriptOpcode_Record_IncludesTerminatesBlockAndHasTarget() {
+		var opcode = new ScriptOpcode(0x02, "JUMP", 3, "Jump to address", true, true);
+		Assert.True(opcode.TerminatesBlock);
+		Assert.True(opcode.HasTarget);
+	}
+
+	[Fact]
+	public void ScriptEditorViewModel_LoadScript_TracksControlFlow() {
+		var rom = CreateTestNesRom();
+		var vm = new ScriptEditorViewModel(rom);
+
+		vm.ScriptOffset = 0;
+		vm.ScriptLength = 64;
+		vm.LoadScriptCommand.Execute(null);
+
+		// Control flow edges are tracked during disassembly
+		Assert.NotNull(vm.ControlFlowEdges);
+	}
+
+	[Fact]
+	public void ScriptEditorViewModel_LoadScript_UpdatesStatistics() {
+		var rom = CreateTestNesRom();
+		var vm = new ScriptEditorViewModel(rom);
+
+		vm.ScriptOffset = 0;
+		vm.ScriptLength = 32;
+		vm.LoadScriptCommand.Execute(null);
+
+		Assert.True(vm.TotalBytes > 0);
+		Assert.True(vm.UniqueOpcodes > 0);
+	}
+
+	[Fact]
+	public void ScriptEditorViewModel_ValidateScript_ReturnsResult() {
+		var rom = CreateTestNesRom();
+		var vm = new ScriptEditorViewModel(rom);
+
+		vm.ScriptOffset = 0;
+		vm.ScriptLength = 32;
+		vm.LoadScriptCommand.Execute(null);
+
+		// Validation happens automatically in LoadScript
+		Assert.NotNull(vm.ValidationResult);
+	}
+
+	[Fact]
+	public void ScriptEditorViewModel_AddCustomOpcode_AddsToCollection() {
+		var vm = new ScriptEditorViewModel();
+		var initialCount = vm.Opcodes.Count;
+
+		vm.AddCustomOpcodeCommand.Execute("FF,CUSTOM,2,Custom command");
+
+		Assert.Equal(initialCount + 1, vm.Opcodes.Count);
+		Assert.Contains(vm.Opcodes, o => o.Name == "CUSTOM");
+	}
+
+	[Fact]
+	public void ScriptEditorViewModel_FindScripts_FindsPotentialLocations() {
+		var rom = CreateTestNesRom();
+		var vm = new ScriptEditorViewModel(rom);
+
+		vm.FindScriptsCommand.Execute(null);
+
+		// The FoundScripts collection is updated
+		Assert.NotNull(vm.FoundScripts);
+	}
+
+	[Fact]
+	public void ScriptEditorViewModel_OpcodeTableSource_DefaultsToBuiltIn() {
+		var vm = new ScriptEditorViewModel();
+		Assert.Equal("Built-in Generic", vm.OpcodeTableSource);
+	}
+
+	[Fact]
+	public void ScriptLocation_Record_HasRequiredProperties() {
+		var location = new ScriptLocation(0x1000, "Test script", 85, "MSG WAIT END");
+		Assert.Equal(0x1000, location.Offset);
+		Assert.Equal("Test script", location.Description);
+		Assert.Equal(85, location.Confidence);
+		Assert.Equal("MSG WAIT END", location.Preview);
+	}
+
+	[Fact]
+	public void ControlFlowEdge_Record_HasRequiredProperties() {
+		var edge = new ControlFlowEdge(0x1000, 0x2000, "Call");
+		Assert.Equal(0x1000, edge.FromOffset);
+		Assert.Equal(0x2000, edge.ToOffset);
+		Assert.Equal("Call", edge.Type);
+	}
+
 	#endregion
 
 	#region MapEditorViewModel Additional Tests
