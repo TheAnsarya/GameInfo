@@ -1,7 +1,9 @@
 using System.Collections.ObjectModel;
+using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GameInfoTools.Core;
+using GameInfoTools.UI.Services;
 using SystemType = GameInfoTools.Core.SystemType;
 
 namespace GameInfoTools.UI.ViewModels;
@@ -11,6 +13,16 @@ namespace GameInfoTools.UI.ViewModels;
 /// </summary>
 public partial class BankViewViewModel : ViewModelBase {
 	private readonly RomFile? _rom;
+
+	/// <summary>
+	/// Event raised when user wants to view an offset in hex editor.
+	/// </summary>
+	public event Action<int>? NavigateToHexEditor;
+
+	/// <summary>
+	/// Event raised when user wants to view an offset in disassembler.
+	/// </summary>
+	public event Action<int>? NavigateToDisassembler;
 
 	[ObservableProperty]
 	private bool _hasRomLoaded;
@@ -194,28 +206,58 @@ public partial class BankViewViewModel : ViewModelBase {
 	}
 
 	[RelayCommand]
-	private void ExportBank(int index) {
-		if (index < 0 || index >= Banks.Count || _rom is null) return;
+	private async Task ExportBank(Window? window) {
+		if (SelectedBank is null || _rom is null) {
+			StatusText = "No bank selected";
+			return;
+		}
 
-		var bank = Banks[index];
-		// TODO: Implement file save dialog
-		StatusText = $"Exported {bank.Name} ({bank.Size} bytes)";
+		if (window is null) {
+			StatusText = "Unable to open file dialog";
+			return;
+		}
+
+		var bank = SelectedBank;
+		var dialogService = FileDialogService.FromWindow(window);
+		var path = await dialogService.SaveFileAsync(
+			$"Export {bank.Name}",
+			".bin",
+			$"bank{bank.Index:D2}.bin",
+			FileDialogService.BinaryFiles,
+			FileDialogService.AllFiles
+		);
+
+		if (path is null) return;
+
+		try {
+			// Extract bank data
+			var bankData = new byte[bank.Size];
+			int actualSize = Math.Min(bank.Size, _rom.Length - bank.FileOffset);
+			if (actualSize > 0) {
+				Array.Copy(_rom.Data, bank.FileOffset, bankData, 0, actualSize);
+			}
+
+			await File.WriteAllBytesAsync(path, bankData);
+			StatusText = $"Exported {bank.Name} ({actualSize} bytes) to {Path.GetFileName(path)}";
+		} catch (Exception ex) {
+			StatusText = $"Export error: {ex.Message}";
+		}
 	}
 
 	[RelayCommand]
 	private void ViewInHexEditor() {
 		if (SelectedBank is null) return;
 
-		// TODO: Navigate to hex editor at bank offset
-		StatusText = $"Opening {SelectedBank.Name} in hex editor...";
+		NavigateToHexEditor?.Invoke(SelectedBank.FileOffset);
+		StatusText = $"Opening {SelectedBank.Name} in hex editor at offset 0x{SelectedBank.FileOffset:X6}";
 	}
 
 	[RelayCommand]
 	private void ViewDisassembly() {
 		if (SelectedBank is null) return;
 
-		// TODO: Navigate to disassembler at bank offset
-		StatusText = $"Disassembling {SelectedBank.Name}...";
+		NavigateToDisassembler?.Invoke(SelectedBank.FileOffset);
+		StatusText = $"Disassembling {SelectedBank.Name} from offset 0x{SelectedBank.FileOffset:X6}";
 	}
 }
 

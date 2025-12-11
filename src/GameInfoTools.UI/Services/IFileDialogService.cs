@@ -89,6 +89,13 @@ public class FileDialogService : IFileDialogService {
 	};
 
 	/// <summary>
+	/// Common file type filters for binary files.
+	/// </summary>
+	public static FilePickerFileType BinaryFiles { get; } = new("Binary Files") {
+		Patterns = ["*.bin"]
+	};
+
+	/// <summary>
 	/// All files filter.
 	/// </summary>
 	public static FilePickerFileType AllFiles { get; } = new("All Files") {
