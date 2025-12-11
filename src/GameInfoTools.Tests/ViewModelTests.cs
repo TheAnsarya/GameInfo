@@ -642,6 +642,125 @@ public class ViewModelTests {
 		Assert.False(vm.ShowSearchPanel);
 	}
 
+	[Fact]
+	public void HexEditorViewModel_CopySelection_CopiesSingleByte() {
+		var rom = CreateTestNesRom();
+		rom.Data[0x100] = 0xAB;
+		var vm = new HexEditorViewModel(rom);
+		vm.SelectedOffset = 0x100;
+
+		vm.CopySelectionCommand.Execute(null);
+
+		Assert.True(vm.HasClipboard);
+		Assert.Contains("1 byte", vm.StatusText);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_CopySelection_CopiesRangeSelection() {
+		var rom = CreateTestNesRom();
+		rom.Data[0x100] = 0xAB;
+		rom.Data[0x101] = 0xCD;
+		rom.Data[0x102] = 0xEF;
+		var vm = new HexEditorViewModel(rom);
+		vm.SetSelection(0x100, 0x102);
+
+		vm.CopySelectionCommand.Execute(null);
+
+		Assert.True(vm.HasClipboard);
+		Assert.Contains("3 bytes", vm.StatusText);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_PasteAtCursor_PastesData() {
+		var rom = CreateTestNesRom();
+		rom.Data[0x100] = 0xAB;
+		rom.Data[0x101] = 0xCD;
+		var vm = new HexEditorViewModel(rom);
+
+		// Copy from 0x100
+		vm.SetSelection(0x100, 0x101);
+		vm.CopySelectionCommand.Execute(null);
+
+		// Paste at 0x200
+		vm.SelectedOffset = 0x200;
+		vm.PasteAtCursorCommand.Execute(null);
+
+		// Verify data was pasted
+		Assert.Equal(0xAB, rom.Data[0x200]);
+		Assert.Equal(0xCD, rom.Data[0x201]);
+		Assert.Contains("Pasted 2 bytes", vm.StatusText);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_PasteAtCursor_CanUndo() {
+		var rom = CreateTestNesRom();
+		rom.Data[0x100] = 0xAB;
+		byte originalValue = rom.Data[0x200];
+		var vm = new HexEditorViewModel(rom);
+
+		// Copy and paste
+		vm.SelectedOffset = 0x100;
+		vm.CopySelectionCommand.Execute(null);
+		vm.SelectedOffset = 0x200;
+		vm.PasteAtCursorCommand.Execute(null);
+
+		Assert.Equal(0xAB, rom.Data[0x200]);
+
+		// Undo
+		vm.UndoCommand.Execute(null);
+
+		Assert.Equal(originalValue, rom.Data[0x200]);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_FillSelection_FillsRange() {
+		var rom = CreateTestNesRom();
+		var vm = new HexEditorViewModel(rom);
+		vm.SetSelection(0x100, 0x103);
+
+		vm.FillSelectionCommand.Execute((byte)0xFF);
+
+		Assert.Equal(0xFF, rom.Data[0x100]);
+		Assert.Equal(0xFF, rom.Data[0x101]);
+		Assert.Equal(0xFF, rom.Data[0x102]);
+		Assert.Equal(0xFF, rom.Data[0x103]);
+		Assert.Contains("Filled 4 bytes", vm.StatusText);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_FillSelection_CanUndo() {
+		var rom = CreateTestNesRom();
+		byte originalValue = rom.Data[0x100];
+		var vm = new HexEditorViewModel(rom);
+		vm.SetSelection(0x100, 0x100);
+
+		vm.FillSelectionCommand.Execute((byte)0xFF);
+		Assert.Equal(0xFF, rom.Data[0x100]);
+
+		vm.UndoCommand.Execute(null);
+		Assert.Equal(originalValue, rom.Data[0x100]);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_CopySelection_NoSelectionShowsMessage() {
+		var vm = new HexEditorViewModel(null);
+
+		vm.CopySelectionCommand.Execute(null);
+
+		Assert.False(vm.HasClipboard);
+	}
+
+	[Fact]
+	public void HexEditorViewModel_PasteAtCursor_NoClipboardShowsMessage() {
+		var rom = CreateTestNesRom();
+		var vm = new HexEditorViewModel(rom);
+		vm.SelectedOffset = 0x100;
+
+		vm.PasteAtCursorCommand.Execute(null);
+
+		Assert.Contains("Nothing to paste", vm.StatusText);
+	}
+
 	#endregion
 
 	#region DisassemblerViewModel Tests
