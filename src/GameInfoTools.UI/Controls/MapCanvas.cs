@@ -86,14 +86,61 @@ public class MapCanvas : Control {
 		AvaloniaProperty.Register<MapCanvas, Color[]?>(nameof(ColorPalette), TileCanvas.GetDefaultPalette());
 
 	/// <summary>
+	/// Defines the <see cref="SelectionStartX"/> property.
+	/// </summary>
+	public static readonly StyledProperty<int> SelectionStartXProperty =
+		AvaloniaProperty.Register<MapCanvas, int>(nameof(SelectionStartX), -1);
+
+	/// <summary>
+	/// Defines the <see cref="SelectionStartY"/> property.
+	/// </summary>
+	public static readonly StyledProperty<int> SelectionStartYProperty =
+		AvaloniaProperty.Register<MapCanvas, int>(nameof(SelectionStartY), -1);
+
+	/// <summary>
+	/// Defines the <see cref="SelectionEndX"/> property.
+	/// </summary>
+	public static readonly StyledProperty<int> SelectionEndXProperty =
+		AvaloniaProperty.Register<MapCanvas, int>(nameof(SelectionEndX), -1);
+
+	/// <summary>
+	/// Defines the <see cref="SelectionEndY"/> property.
+	/// </summary>
+	public static readonly StyledProperty<int> SelectionEndYProperty =
+		AvaloniaProperty.Register<MapCanvas, int>(nameof(SelectionEndY), -1);
+
+	/// <summary>
+	/// Defines the <see cref="ShowMetatileGrid"/> property.
+	/// </summary>
+	public static readonly StyledProperty<bool> ShowMetatileGridProperty =
+		AvaloniaProperty.Register<MapCanvas, bool>(nameof(ShowMetatileGrid), false);
+
+	/// <summary>
 	/// Occurs when a map tile is clicked.
 	/// </summary>
 	public event EventHandler<MapTileClickedEventArgs>? MapTileClicked;
 
+	/// <summary>
+	/// Occurs when drawing starts.
+	/// </summary>
+	public event EventHandler<MapTileClickedEventArgs>? DrawStarted;
+
+	/// <summary>
+	/// Occurs when drawing continues (drag).
+	/// </summary>
+	public event EventHandler<MapTileClickedEventArgs>? DrawContinued;
+
+	/// <summary>
+	/// Occurs when drawing ends.
+	/// </summary>
+	public event EventHandler<MapTileClickedEventArgs>? DrawEnded;
+
 	static MapCanvas() {
 		AffectsRender<MapCanvas>(MapDataProperty, MapWidthProperty, MapHeightProperty, TileSizeProperty,
 			ShowGridProperty, ShowTileNumbersProperty, SelectedXProperty, SelectedYProperty,
-			TilePaletteProperty, TilesetProperty, ColorPaletteProperty);
+			TilePaletteProperty, TilesetProperty, ColorPaletteProperty,
+			SelectionStartXProperty, SelectionStartYProperty, SelectionEndXProperty, SelectionEndYProperty,
+			ShowMetatileGridProperty);
 		AffectsMeasure<MapCanvas>(MapWidthProperty, MapHeightProperty, TileSizeProperty);
 	}
 
@@ -184,6 +231,46 @@ public class MapCanvas : Control {
 	public Color[]? ColorPalette {
 		get => GetValue(ColorPaletteProperty);
 		set => SetValue(ColorPaletteProperty, value);
+	}
+
+	/// <summary>
+	/// Gets or sets the selection start X coordinate.
+	/// </summary>
+	public int SelectionStartX {
+		get => GetValue(SelectionStartXProperty);
+		set => SetValue(SelectionStartXProperty, value);
+	}
+
+	/// <summary>
+	/// Gets or sets the selection start Y coordinate.
+	/// </summary>
+	public int SelectionStartY {
+		get => GetValue(SelectionStartYProperty);
+		set => SetValue(SelectionStartYProperty, value);
+	}
+
+	/// <summary>
+	/// Gets or sets the selection end X coordinate.
+	/// </summary>
+	public int SelectionEndX {
+		get => GetValue(SelectionEndXProperty);
+		set => SetValue(SelectionEndXProperty, value);
+	}
+
+	/// <summary>
+	/// Gets or sets the selection end Y coordinate.
+	/// </summary>
+	public int SelectionEndY {
+		get => GetValue(SelectionEndYProperty);
+		set => SetValue(SelectionEndYProperty, value);
+	}
+
+	/// <summary>
+	/// Gets or sets whether to show metatile (16x16) grid overlay.
+	/// </summary>
+	public bool ShowMetatileGrid {
+		get => GetValue(ShowMetatileGridProperty);
+		set => SetValue(ShowMetatileGridProperty, value);
 	}
 
 	protected override Size MeasureOverride(Size availableSize) {
@@ -291,6 +378,51 @@ public class MapCanvas : Control {
 			var selectionRect = new Rect(SelectedX * tileSize, SelectedY * tileSize, tileSize, tileSize);
 			context.DrawRectangle(selectionPen, selectionRect.Deflate(1));
 		}
+
+		// Draw region selection
+		int selStartX = SelectionStartX;
+		int selStartY = SelectionStartY;
+		int selEndX = SelectionEndX;
+		int selEndY = SelectionEndY;
+
+		if (selStartX >= 0 && selStartY >= 0 && selEndX >= selStartX && selEndY >= selStartY) {
+			int minX = Math.Min(selStartX, selEndX);
+			int maxX = Math.Max(selStartX, selEndX);
+			int minY = Math.Min(selStartY, selEndY);
+			int maxY = Math.Max(selStartY, selEndY);
+
+			// Clamp to map bounds
+			minX = Math.Max(0, Math.Min(minX, mapWidth - 1));
+			maxX = Math.Max(0, Math.Min(maxX, mapWidth - 1));
+			minY = Math.Max(0, Math.Min(minY, mapHeight - 1));
+			maxY = Math.Max(0, Math.Min(maxY, mapHeight - 1));
+
+			var selectionPen = new Pen(new SolidColorBrush(Color.FromRgb(0, 200, 255)), 2,
+				new DashStyle([4, 2], 0));
+			var fillBrush = new SolidColorBrush(Color.FromArgb(50, 0, 200, 255));
+
+			var regionRect = new Rect(
+				minX * tileSize,
+				minY * tileSize,
+				((maxX - minX + 1) * tileSize),
+				((maxY - minY + 1) * tileSize));
+
+			context.FillRectangle(fillBrush, regionRect);
+			context.DrawRectangle(selectionPen, regionRect);
+		}
+
+		// Draw metatile grid (16x16)
+		if (ShowMetatileGrid) {
+			var metatilePen = new Pen(new SolidColorBrush(Color.FromRgb(255, 100, 100)), 2);
+
+			for (int x = 0; x <= mapWidth; x += 2) {
+				context.DrawLine(metatilePen, new Point(x * tileSize, 0), new Point(x * tileSize, mapHeight * tileSize));
+			}
+
+			for (int y = 0; y <= mapHeight; y += 2) {
+				context.DrawLine(metatilePen, new Point(0, y * tileSize), new Point(mapWidth * tileSize, y * tileSize));
+			}
+		}
 	}
 
 	private void RenderTile(DrawingContext context, byte[,] tileData, int px, int py, int tileSize, Color[] palette) {
@@ -345,6 +477,8 @@ public class MapCanvas : Control {
 			(byte)((b + m) * 255));
 	}
 
+	private bool _isDrawing;
+
 	protected override void OnPointerPressed(PointerPressedEventArgs e) {
 		base.OnPointerPressed(e);
 
@@ -364,9 +498,65 @@ public class MapCanvas : Control {
 			if (index < mapData.Length) {
 				SelectedX = gridX;
 				SelectedY = gridY;
-				MapTileClicked?.Invoke(this, new MapTileClickedEventArgs(gridX, gridY, index, mapData[index]));
+				_isDrawing = true;
+
+				var args = new MapTileClickedEventArgs(gridX, gridY, index, mapData[index]);
+				MapTileClicked?.Invoke(this, args);
+				DrawStarted?.Invoke(this, args);
 				InvalidateVisual();
 			}
+		}
+
+		// Capture pointer for drag events
+		e.Pointer.Capture(this);
+	}
+
+	protected override void OnPointerMoved(PointerEventArgs e) {
+		base.OnPointerMoved(e);
+
+		if (!_isDrawing) return;
+
+		var mapData = MapData;
+		if (mapData is null || mapData.Length == 0) return;
+
+		var point = e.GetPosition(this);
+		int tileSize = TileSize;
+
+		int gridX = (int)(point.X / tileSize);
+		int gridY = (int)(point.Y / tileSize);
+
+		if (gridX >= 0 && gridX < MapWidth && gridY >= 0 && gridY < MapHeight) {
+			int index = (gridY * MapWidth) + gridX;
+			if (index < mapData.Length) {
+				DrawContinued?.Invoke(this, new MapTileClickedEventArgs(gridX, gridY, index, mapData[index]));
+			}
+		}
+	}
+
+	protected override void OnPointerReleased(PointerReleasedEventArgs e) {
+		base.OnPointerReleased(e);
+
+		if (!_isDrawing) return;
+		_isDrawing = false;
+
+		e.Pointer.Capture(null);
+
+		var mapData = MapData;
+		if (mapData is null || mapData.Length == 0) return;
+
+		var point = e.GetPosition(this);
+		int tileSize = TileSize;
+
+		int gridX = (int)(point.X / tileSize);
+		int gridY = (int)(point.Y / tileSize);
+
+		// Clamp to bounds
+		gridX = Math.Clamp(gridX, 0, MapWidth - 1);
+		gridY = Math.Clamp(gridY, 0, MapHeight - 1);
+
+		int index = (gridY * MapWidth) + gridX;
+		if (index < mapData.Length) {
+			DrawEnded?.Invoke(this, new MapTileClickedEventArgs(gridX, gridY, index, mapData[index]));
 		}
 	}
 }

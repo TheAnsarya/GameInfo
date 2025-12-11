@@ -68,6 +68,20 @@ public class FileDialogService : IFileDialogService {
 	};
 
 	/// <summary>
+	/// Common file type filters for BMP files.
+	/// </summary>
+	public static FilePickerFileType BmpFiles { get; } = new("BMP Images") {
+		Patterns = ["*.bmp"]
+	};
+
+	/// <summary>
+	/// Common file type filters for image files.
+	/// </summary>
+	public static FilePickerFileType ImageFiles { get; } = new("Image Files") {
+		Patterns = ["*.png", "*.bmp", "*.jpg", "*.jpeg", "*.gif"]
+	};
+
+	/// <summary>
 	/// Common file type filters for text files.
 	/// </summary>
 	public static FilePickerFileType TextFiles { get; } = new("Text Files") {

@@ -124,4 +124,18 @@ public class TileGridCanvasTests {
 		// Selected index can be -1 (none selected) or any valid tile index
 		Assert.True(selectedIndex >= -1);
 	}
+
+	[Fact]
+	public void GridOverlayMode_AllValuesAreDefined() {
+		var values = Enum.GetValues<GameInfoTools.UI.Controls.GridOverlayMode>();
+		Assert.Equal(4, values.Length);
+	}
+
+	[Fact]
+	public void GridOverlayMode_HasExpectedValues() {
+		Assert.Equal(0, (int)GameInfoTools.UI.Controls.GridOverlayMode.None);
+		Assert.Equal(1, (int)GameInfoTools.UI.Controls.GridOverlayMode.Grid8x8);
+		Assert.Equal(2, (int)GameInfoTools.UI.Controls.GridOverlayMode.Grid16x16);
+		Assert.Equal(3, (int)GameInfoTools.UI.Controls.GridOverlayMode.Both);
+	}
 }

@@ -1,12 +1,16 @@
 using System.Collections.ObjectModel;
 using System.Text;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GameInfoTools.Core;
 using GameInfoTools.Core.Commands;
 using GameInfoTools.Graphics;
+using GameInfoTools.UI.Controls;
 using GameInfoTools.UI.Services;
 
 namespace GameInfoTools.UI.ViewModels;
@@ -71,6 +75,131 @@ public partial class ChrEditorViewModel : ViewModelBase {
 
 	[ObservableProperty]
 	private bool _hasClipboard;
+
+	/// <summary>
+	/// Whether pixel editing mode is active.
+	/// </summary>
+	[ObservableProperty]
+	private bool _isPixelEditMode;
+
+	/// <summary>
+	/// Current drawing tool.
+	/// </summary>
+	[ObservableProperty]
+	private DrawingTool _currentDrawingTool = DrawingTool.Pencil;
+
+	/// <summary>
+	/// Whether animation is playing.
+	/// </summary>
+	[ObservableProperty]
+	private bool _isAnimationPlaying;
+
+	/// <summary>
+	/// Animation frames for the tile animation preview.
+	/// </summary>
+	[ObservableProperty]
+	private ObservableCollection<byte[,]> _animationFrames = [];
+
+	/// <summary>
+	/// Current animation frame index.
+	/// </summary>
+	[ObservableProperty]
+	private int _animationFrameIndex;
+
+	/// <summary>
+	/// Animation speed in milliseconds per frame.
+	/// </summary>
+	[ObservableProperty]
+	private int _animationSpeedMs = 200;
+
+	/// <summary>
+	/// Whether undo history panel is visible.
+	/// </summary>
+	[ObservableProperty]
+	private bool _showUndoHistory;
+
+	/// <summary>
+	/// List of undo history entries.
+	/// </summary>
+	[ObservableProperty]
+	private ObservableCollection<string> _undoHistoryList = [];
+
+	/// <summary>
+	/// List of redo history entries.
+	/// </summary>
+	[ObservableProperty]
+	private ObservableCollection<string> _redoHistoryList = [];
+
+	/// <summary>
+	/// Whether comparison view is enabled.
+	/// </summary>
+	[ObservableProperty]
+	private bool _showComparisonView;
+
+	/// <summary>
+	/// Original tile data for comparison (before any edits).
+	/// </summary>
+	[ObservableProperty]
+	private byte[,]? _originalTileData;
+
+	/// <summary>
+	/// Whether multi-select mode is enabled.
+	/// </summary>
+	[ObservableProperty]
+	private bool _allowMultiSelect;
+
+	/// <summary>
+	/// Grid overlay mode for the tile grid.
+	/// </summary>
+	[ObservableProperty]
+	private GridOverlayMode _gridOverlayMode = GridOverlayMode.None;
+
+	/// <summary>
+	/// List of selected tile indices in multi-select mode.
+	/// </summary>
+	[ObservableProperty]
+	private ObservableCollection<int> _selectedTileIndices = [];
+
+	/// <summary>
+	/// Pixel selection in the current tile (for copy/paste regions).
+	/// </summary>
+	[ObservableProperty]
+	private Rect? _pixelSelection;
+
+	/// <summary>
+	/// Clipboard for pixel region copy/paste.
+	/// </summary>
+	private byte[,]? _pixelClipboard;
+
+	/// <summary>
+	/// Whether pixel clipboard has content.
+	/// </summary>
+	[ObservableProperty]
+	private bool _hasPixelClipboard;
+
+	/// <summary>
+	/// Whether tile search panel is visible.
+	/// </summary>
+	[ObservableProperty]
+	private bool _showTileSearch;
+
+	/// <summary>
+	/// Tile search results.
+	/// </summary>
+	[ObservableProperty]
+	private ObservableCollection<int> _tileSearchResults = [];
+
+	/// <summary>
+	/// Search by dominant color index (0-3, or -1 for any).
+	/// </summary>
+	[ObservableProperty]
+	private int _searchColorIndex = -1;
+
+	/// <summary>
+	/// Search for tiles similar to current tile.
+	/// </summary>
+	[ObservableProperty]
+	private int _searchSimilarityThreshold = 80;
 
 	/// <summary>
 	/// Tile preview transformations for flip/rotate preview.
@@ -383,13 +512,15 @@ public partial class ChrEditorViewModel : ViewModelBase {
 		if (path is null) return;
 
 		try {
-			// Export current bank to raw pixel data (16x16 tiles = 128x128 pixels)
+			// Export current bank to PNG (16x16 tiles = 128x128 pixels)
 			int tilesPerRow = 16;
 			int tilesPerColumn = 16;
 			int imageWidth = tilesPerRow * 8;
 			int imageHeight = tilesPerColumn * 8;
 
-			var pixels = new byte[imageWidth * imageHeight];
+			// Create BGRA pixel data using current palette
+			var pixels = new byte[imageWidth * imageHeight * 4];
+			var palette = CurrentPalette;
 
 			int startTile = SelectedBank * ChrEditor.TilesPerBank;
 			int endTile = Math.Min(startTile + ChrEditor.TilesPerBank, TileCount);
@@ -404,22 +535,32 @@ public partial class ChrEditorViewModel : ViewModelBase {
 					for (int x = 0; x < 8; x++) {
 						int px = (tileX * 8) + x;
 						int py = (tileY * 8) + y;
-						pixels[(py * imageWidth) + px] = (byte)(tile[y, x] * 85); // Scale 0-3 to grayscale
+						int pixelOffset = ((py * imageWidth) + px) * 4;
+
+						byte colorIndex = tile[y, x];
+						var color = colorIndex < palette.Length ? palette[colorIndex] : Colors.Magenta;
+
+						pixels[pixelOffset + 0] = color.B;
+						pixels[pixelOffset + 1] = color.G;
+						pixels[pixelOffset + 2] = color.R;
+						pixels[pixelOffset + 3] = 255; // Alpha
 					}
 				}
 			}
 
-			// Create PGM file (grayscale, simple format)
-			var pgmPath = Path.ChangeExtension(path, ".pgm");
-			await using var fs = File.Create(pgmPath);
-			await using var sw = new StreamWriter(fs, Encoding.ASCII);
-			await sw.WriteLineAsync("P5"); // PGM binary format
-			await sw.WriteLineAsync($"{imageWidth} {imageHeight}");
-			await sw.WriteLineAsync("255");
-			await sw.FlushAsync();
-			await fs.WriteAsync(pixels);
+			// Create WriteableBitmap and save as PNG
+			var bitmap = new WriteableBitmap(
+				new Avalonia.PixelSize(imageWidth, imageHeight),
+				new Avalonia.Vector(96, 96),
+				Avalonia.Platform.PixelFormat.Bgra8888,
+				Avalonia.Platform.AlphaFormat.Unpremul);
 
-			StatusText = $"Exported tileset to {Path.GetFileName(pgmPath)}";
+			using (var fb = bitmap.Lock()) {
+				System.Runtime.InteropServices.Marshal.Copy(pixels, 0, fb.Address, pixels.Length);
+			}
+
+			bitmap.Save(path);
+			StatusText = $"Exported tileset to {Path.GetFileName(path)}";
 		} catch (Exception ex) {
 			StatusText = $"Export error: {ex.Message}";
 		}
@@ -436,13 +577,92 @@ public partial class ChrEditorViewModel : ViewModelBase {
 		var path = await dialogService.OpenFileAsync(
 			"Import Tileset",
 			FileDialogService.PngFiles,
+			FileDialogService.BmpFiles,
 			FileDialogService.AllFiles
 		);
 
 		if (path is null) return;
 
-		StatusText = $"Import from {Path.GetFileName(path)} - not yet fully implemented";
-		// TODO: Implement actual import when we have proper image loading
+		try {
+			// Load image using Avalonia's built-in bitmap loading
+			using var stream = File.OpenRead(path);
+			var bitmap = new Bitmap(stream);
+
+			// Convert image to tiles
+			int imageWidth = bitmap.PixelSize.Width;
+			int imageHeight = bitmap.PixelSize.Height;
+			int tilesWide = imageWidth / 8;
+			int tilesHigh = imageHeight / 8;
+			int totalTiles = tilesWide * tilesHigh;
+
+			if (totalTiles == 0) {
+				StatusText = "Image too small (must be at least 8x8 pixels)";
+				return;
+			}
+
+			// Convert bitmap to a WriteableBitmap to read pixel data
+			var writeableBitmap = new Avalonia.Media.Imaging.WriteableBitmap(
+				bitmap.PixelSize,
+				bitmap.Dpi,
+				Avalonia.Platform.PixelFormat.Bgra8888,
+				Avalonia.Platform.AlphaFormat.Unpremul);
+
+			using (var fb = writeableBitmap.Lock()) {
+				// Copy from source bitmap - render it to our writable bitmap
+				using var drawContext = new Avalonia.Media.Imaging.RenderTargetBitmap(bitmap.PixelSize, bitmap.Dpi);
+				using var ctx = drawContext.CreateDrawingContext();
+				ctx.DrawImage(bitmap, new Avalonia.Rect(0, 0, imageWidth, imageHeight));
+			}
+
+			// Read pixel data from the writable bitmap
+			int stride = imageWidth * 4; // BGRA = 4 bytes per pixel
+			var pixels = new byte[imageHeight * stride];
+
+			using (var lockedBitmap = writeableBitmap.Lock()) {
+				System.Runtime.InteropServices.Marshal.Copy(lockedBitmap.Address, pixels, 0, pixels.Length);
+			}
+
+			// Import tiles
+			int startTile = SelectedBank * ChrEditor.TilesPerBank;
+			int importedCount = 0;
+
+			for (int tileY = 0; tileY < tilesHigh && (startTile + importedCount) < TileCount; tileY++) {
+				for (int tileX = 0; tileX < tilesWide && (startTile + importedCount) < TileCount; tileX++) {
+					var tile = new byte[8, 8];
+
+					for (int y = 0; y < 8; y++) {
+						for (int x = 0; x < 8; x++) {
+							int px = (tileX * 8) + x;
+							int py = (tileY * 8) + y;
+							int pixelOffset = (py * stride) + (px * 4);
+
+							// BGRA format
+							byte b = pixels[pixelOffset];
+							byte g = pixels[pixelOffset + 1];
+							byte r = pixels[pixelOffset + 2];
+
+							// Convert to grayscale
+							byte gray = (byte)((r + g + b) / 3);
+
+							// Convert to 2-bit value (0-3)
+							tile[y, x] = (byte)(gray / 85);
+						}
+					}
+
+					int tileIndex = startTile + importedCount;
+					var oldTile = CloneTile(_chrEditor.GetTile(tileIndex));
+					var command = new SetTileCommand(_chrEditor, tileIndex, oldTile, tile, $"Import tile {tileIndex:X2}");
+					_undoRedo.Execute(command);
+					importedCount++;
+				}
+			}
+
+			UpdateUndoRedoState();
+			LoadTilePreview();
+			StatusText = $"Imported {importedCount} tiles from {Path.GetFileName(path)}";
+		} catch (Exception ex) {
+			StatusText = $"Import error: {ex.Message}";
+		}
 	}
 
 	[RelayCommand]
@@ -538,6 +758,218 @@ public partial class ChrEditorViewModel : ViewModelBase {
 
 	#endregion
 
+	#region Pixel Editing
+
+	/// <summary>
+	/// Sets a single pixel in the selected tile.
+	/// </summary>
+	[RelayCommand]
+	private void SetPixel(object? parameter) {
+		if (_chrEditor is null || SelectedTileData is null || SelectedTileIndex < 0 || SelectedTileIndex >= TileCount) return;
+
+		// Parameter should be (x, y, colorIndex) tuple
+		if (parameter is not (int x, int y, int colorIndex)) return;
+		if (x < 0 || x >= 8 || y < 0 || y >= 8) return;
+
+		var newTile = CloneTile(SelectedTileData);
+		byte oldValue = newTile[y, x];
+		newTile[y, x] = (byte)colorIndex;
+
+		if (oldValue != colorIndex) {
+			ExecuteTileChange(SelectedTileIndex, newTile, $"Set pixel ({x},{y}) to color {colorIndex}");
+		}
+	}
+
+	/// <summary>
+	/// Called when a pixel is changed via the EditableTileCanvas.
+	/// </summary>
+	public void OnPixelChanged(int x, int y, byte oldValue, byte newValue) {
+		if (_chrEditor is null || SelectedTileData is null || SelectedTileIndex < 0 || SelectedTileIndex >= TileCount) return;
+		if (x < 0 || x >= 8 || y < 0 || y >= 8) return;
+
+		var newTile = CloneTile(SelectedTileData);
+		newTile[y, x] = newValue;
+		ExecuteTileChange(SelectedTileIndex, newTile, $"Set pixel ({x},{y}) to color {newValue}");
+	}
+
+	/// <summary>
+	/// Toggles pixel editing mode.
+	/// </summary>
+	[RelayCommand]
+	private void TogglePixelEditMode() {
+		IsPixelEditMode = !IsPixelEditMode;
+		StatusText = IsPixelEditMode ? "Pixel edit mode enabled" : "Pixel edit mode disabled";
+	}
+
+	/// <summary>
+	/// Sets the current drawing tool.
+	/// </summary>
+	[RelayCommand]
+	private void SetDrawingTool(DrawingTool tool) {
+		CurrentDrawingTool = tool;
+		StatusText = $"Drawing tool: {tool}";
+	}
+
+	/// <summary>
+	/// Called when a color is picked via the eyedropper tool.
+	/// </summary>
+	public void OnColorPicked(int colorIndex) {
+		SelectedColorIndex = colorIndex;
+		// Switch back to pencil after picking
+		CurrentDrawingTool = DrawingTool.Pencil;
+		StatusText = $"Color {colorIndex} selected";
+	}
+
+	#endregion
+
+	#region Animation
+
+	/// <summary>
+	/// Adds the current tile to the animation frames.
+	/// </summary>
+	[RelayCommand]
+	private void AddAnimationFrame() {
+		if (SelectedTileData is null) return;
+
+		AnimationFrames.Add(CloneTile(SelectedTileData));
+		StatusText = $"Added frame {AnimationFrames.Count}";
+	}
+
+	/// <summary>
+	/// Adds a specific tile to the animation frames.
+	/// </summary>
+	[RelayCommand]
+	private void AddTileToAnimation(int tileIndex) {
+		if (_chrEditor is null || tileIndex < 0 || tileIndex >= TileCount) return;
+
+		var tile = _chrEditor.GetTile(tileIndex);
+		AnimationFrames.Add(CloneTile(tile));
+		StatusText = $"Added tile {tileIndex:X2} as frame {AnimationFrames.Count}";
+	}
+
+	/// <summary>
+	/// Removes the last frame from the animation.
+	/// </summary>
+	[RelayCommand]
+	private void RemoveAnimationFrame() {
+		if (AnimationFrames.Count == 0) return;
+
+		AnimationFrames.RemoveAt(AnimationFrames.Count - 1);
+		StatusText = $"Removed frame, {AnimationFrames.Count} frames remaining";
+	}
+
+	/// <summary>
+	/// Clears all animation frames.
+	/// </summary>
+	[RelayCommand]
+	private void ClearAnimationFrames() {
+		AnimationFrames.Clear();
+		AnimationFrameIndex = 0;
+		IsAnimationPlaying = false;
+		StatusText = "Animation frames cleared";
+	}
+
+	/// <summary>
+	/// Toggles animation playback.
+	/// </summary>
+	[RelayCommand]
+	private void ToggleAnimation() {
+		IsAnimationPlaying = !IsAnimationPlaying;
+		StatusText = IsAnimationPlaying ? "Animation playing" : "Animation paused";
+	}
+
+	/// <summary>
+	/// Creates animation from a range of consecutive tiles.
+	/// </summary>
+	[RelayCommand]
+	private void CreateAnimationFromRange(object? parameter) {
+		if (_chrEditor is null) return;
+
+		// Parameter should be (startIndex, count) tuple
+		if (parameter is not (int startIndex, int count)) {
+			// If no parameter, use selected tile and next 3 tiles
+			startIndex = SelectedTileIndex;
+			count = 4;
+		}
+
+		if (startIndex < 0 || startIndex >= TileCount) return;
+
+		AnimationFrames.Clear();
+		for (int i = 0; i < count && (startIndex + i) < TileCount; i++) {
+			var tile = _chrEditor.GetTile(startIndex + i);
+			AnimationFrames.Add(CloneTile(tile));
+		}
+
+		AnimationFrameIndex = 0;
+		StatusText = $"Created animation with {AnimationFrames.Count} frames from tile {startIndex:X2}";
+	}
+
+	/// <summary>
+	/// Moves an animation frame up in the list.
+	/// </summary>
+	[RelayCommand]
+	private void MoveAnimationFrameUp(int index) {
+		if (index <= 0 || index >= AnimationFrames.Count) return;
+
+		var frame = AnimationFrames[index];
+		AnimationFrames.RemoveAt(index);
+		AnimationFrames.Insert(index - 1, frame);
+		StatusText = $"Moved frame {index + 1} up";
+	}
+
+	/// <summary>
+	/// Moves an animation frame down in the list.
+	/// </summary>
+	[RelayCommand]
+	private void MoveAnimationFrameDown(int index) {
+		if (index < 0 || index >= AnimationFrames.Count - 1) return;
+
+		var frame = AnimationFrames[index];
+		AnimationFrames.RemoveAt(index);
+		AnimationFrames.Insert(index + 1, frame);
+		StatusText = $"Moved frame {index + 1} down";
+	}
+
+	/// <summary>
+	/// Removes a specific animation frame by index.
+	/// </summary>
+	[RelayCommand]
+	private void RemoveAnimationFrameAt(int index) {
+		if (index < 0 || index >= AnimationFrames.Count) return;
+
+		AnimationFrames.RemoveAt(index);
+		StatusText = $"Removed frame {index + 1}";
+	}
+
+	/// <summary>
+	/// Duplicates an animation frame.
+	/// </summary>
+	[RelayCommand]
+	private void DuplicateAnimationFrame(int index) {
+		if (index < 0 || index >= AnimationFrames.Count) return;
+
+		var frame = CloneTile(AnimationFrames[index]);
+		AnimationFrames.Insert(index + 1, frame);
+		StatusText = $"Duplicated frame {index + 1}";
+	}
+
+	/// <summary>
+	/// Reverses the animation frame order.
+	/// </summary>
+	[RelayCommand]
+	private void ReverseAnimationFrames() {
+		if (AnimationFrames.Count < 2) return;
+
+		var reversed = AnimationFrames.Reverse().ToList();
+		AnimationFrames.Clear();
+		foreach (var frame in reversed) {
+			AnimationFrames.Add(frame);
+		}
+		StatusText = "Reversed animation frame order";
+	}
+
+	#endregion
+
 	#region Undo/Redo
 
 	[RelayCommand]
@@ -562,6 +994,32 @@ public partial class ChrEditorViewModel : ViewModelBase {
 		StatusText = $"Redid: {description}";
 	}
 
+	/// <summary>
+	/// Toggles visibility of the undo history panel.
+	/// </summary>
+	[RelayCommand]
+	private void ToggleUndoHistory() {
+		ShowUndoHistory = !ShowUndoHistory;
+		if (ShowUndoHistory) {
+			RefreshUndoHistoryLists();
+		}
+	}
+
+	/// <summary>
+	/// Refreshes the undo/redo history display lists.
+	/// </summary>
+	private void RefreshUndoHistoryLists() {
+		UndoHistoryList.Clear();
+		RedoHistoryList.Clear();
+
+		foreach (var desc in _undoRedo.UndoHistory) {
+			UndoHistoryList.Add(desc);
+		}
+		foreach (var desc in _undoRedo.RedoHistory) {
+			RedoHistoryList.Add(desc);
+		}
+	}
+
 	private void ExecuteTileChange(int tileIndex, byte[,] newTile, string description) {
 		if (_chrEditor is null) return;
 
@@ -578,6 +1036,10 @@ public partial class ChrEditorViewModel : ViewModelBase {
 		RedoDescription = _undoRedo.NextRedoDescription ?? "";
 		OnPropertyChanged(nameof(CanUndo));
 		OnPropertyChanged(nameof(CanRedo));
+
+		if (ShowUndoHistory) {
+			RefreshUndoHistoryLists();
+		}
 	}
 
 	private static byte[,] CloneTile(byte[,] source) {
@@ -586,6 +1048,754 @@ public partial class ChrEditorViewModel : ViewModelBase {
 			for (int x = 0; x < 8; x++)
 				clone[y, x] = source[y, x];
 		return clone;
+	}
+
+	#endregion
+
+	#region Comparison View
+
+	/// <summary>
+	/// Toggles the comparison view.
+	/// </summary>
+	[RelayCommand]
+	private void ToggleComparisonView() {
+		ShowComparisonView = !ShowComparisonView;
+		if (ShowComparisonView && SelectedTileData is not null) {
+			// Store original state when comparison view is enabled
+			OriginalTileData = CloneTile(SelectedTileData);
+		}
+		StatusText = ShowComparisonView ? "Comparison view enabled" : "Comparison view disabled";
+	}
+
+	/// <summary>
+	/// Resets the current tile to the original (comparison) state.
+	/// </summary>
+	[RelayCommand]
+	private void ResetToOriginal() {
+		if (_chrEditor is null || OriginalTileData is null || SelectedTileIndex < 0) return;
+
+		ExecuteTileChange(SelectedTileIndex, OriginalTileData, $"Reset tile {SelectedTileIndex:X2} to original");
+	}
+
+	/// <summary>
+	/// Updates the original tile reference to current state.
+	/// </summary>
+	[RelayCommand]
+	private void SetOriginalAsCurrent() {
+		if (SelectedTileData is null) return;
+
+		OriginalTileData = CloneTile(SelectedTileData);
+		StatusText = "Original reference updated to current state";
+	}
+
+	#endregion
+
+	#region Grid Overlay
+
+	/// <summary>
+	/// Cycles through grid overlay modes.
+	/// </summary>
+	[RelayCommand]
+	private void CycleGridOverlay() {
+		GridOverlayMode = GridOverlayMode switch {
+			GridOverlayMode.None => GridOverlayMode.Grid8x8,
+			GridOverlayMode.Grid8x8 => GridOverlayMode.Grid16x16,
+			GridOverlayMode.Grid16x16 => GridOverlayMode.Both,
+			GridOverlayMode.Both => GridOverlayMode.None,
+			_ => GridOverlayMode.None
+		};
+		StatusText = GridOverlayMode switch {
+			GridOverlayMode.None => "Grid overlay: Off",
+			GridOverlayMode.Grid8x8 => "Grid overlay: 8×8",
+			GridOverlayMode.Grid16x16 => "Grid overlay: 16×16",
+			GridOverlayMode.Both => "Grid overlay: 8×8 + 16×16",
+			_ => "Grid overlay: Off"
+		};
+	}
+
+	/// <summary>
+	/// Sets a specific grid overlay mode.
+	/// </summary>
+	[RelayCommand]
+	private void SetGridOverlay(GridOverlayMode mode) {
+		GridOverlayMode = mode;
+	}
+
+	#endregion
+
+	#region Multi-Tile Operations
+
+	/// <summary>
+	/// Toggles multi-select mode.
+	/// </summary>
+	[RelayCommand]
+	private void ToggleMultiSelect() {
+		AllowMultiSelect = !AllowMultiSelect;
+		if (!AllowMultiSelect) {
+			SelectedTileIndices.Clear();
+		}
+		StatusText = AllowMultiSelect ? "Multi-select enabled (Ctrl+Click)" : "Multi-select disabled";
+	}
+
+	/// <summary>
+	/// Updates the selected tile indices from the grid control.
+	/// </summary>
+	public void OnMultiSelectChanged(IReadOnlyList<int> indices) {
+		SelectedTileIndices.Clear();
+		foreach (var idx in indices) {
+			SelectedTileIndices.Add(idx);
+		}
+	}
+
+	/// <summary>
+	/// Applies horizontal flip to all selected tiles.
+	/// </summary>
+	[RelayCommand]
+	private void FlipSelectedTilesHorizontal() {
+		if (_chrEditor is null || SelectedTileIndices.Count == 0) return;
+
+		foreach (var idx in SelectedTileIndices.ToList()) {
+			int actualIndex = (SelectedBank * ChrEditor.TilesPerBank) + idx;
+			if (actualIndex < TileCount) {
+				var tile = _chrEditor.GetTile(actualIndex);
+				var flipped = FlipHorizontal(tile);
+				ExecuteTileChange(actualIndex, flipped, $"Flip tile {actualIndex:X2} horizontal");
+			}
+		}
+		StatusText = $"Flipped {SelectedTileIndices.Count} tiles horizontally";
+	}
+
+	/// <summary>
+	/// Applies vertical flip to all selected tiles.
+	/// </summary>
+	[RelayCommand]
+	private void FlipSelectedTilesVertical() {
+		if (_chrEditor is null || SelectedTileIndices.Count == 0) return;
+
+		foreach (var idx in SelectedTileIndices.ToList()) {
+			int actualIndex = (SelectedBank * ChrEditor.TilesPerBank) + idx;
+			if (actualIndex < TileCount) {
+				var tile = _chrEditor.GetTile(actualIndex);
+				var flipped = FlipVertical(tile);
+				ExecuteTileChange(actualIndex, flipped, $"Flip tile {actualIndex:X2} vertical");
+			}
+		}
+		StatusText = $"Flipped {SelectedTileIndices.Count} tiles vertically";
+	}
+
+	/// <summary>
+	/// Applies 90° rotation to all selected tiles.
+	/// </summary>
+	[RelayCommand]
+	private void RotateSelectedTiles() {
+		if (_chrEditor is null || SelectedTileIndices.Count == 0) return;
+
+		foreach (var idx in SelectedTileIndices.ToList()) {
+			int actualIndex = (SelectedBank * ChrEditor.TilesPerBank) + idx;
+			if (actualIndex < TileCount) {
+				var tile = _chrEditor.GetTile(actualIndex);
+				var rotated = Rotate90(tile);
+				ExecuteTileChange(actualIndex, rotated, $"Rotate tile {actualIndex:X2} 90°");
+			}
+		}
+		StatusText = $"Rotated {SelectedTileIndices.Count} tiles 90°";
+	}
+
+	/// <summary>
+	/// Clears all selected tiles.
+	/// </summary>
+	[RelayCommand]
+	private void ClearSelectedTiles() {
+		if (_chrEditor is null || SelectedTileIndices.Count == 0) return;
+
+		var emptyTile = new byte[8, 8];
+		foreach (var idx in SelectedTileIndices.ToList()) {
+			int actualIndex = (SelectedBank * ChrEditor.TilesPerBank) + idx;
+			if (actualIndex < TileCount) {
+				ExecuteTileChange(actualIndex, emptyTile, $"Clear tile {actualIndex:X2}");
+			}
+		}
+		StatusText = $"Cleared {SelectedTileIndices.Count} tiles";
+	}
+
+	#endregion
+
+	#region Pixel Selection
+
+	/// <summary>
+	/// Called when the pixel selection changes from the UI.
+	/// </summary>
+	public void SetPixelSelection(Rect? selection) {
+		PixelSelection = selection;
+	}
+
+	/// <summary>
+	/// Copies the selected pixel region.
+	/// </summary>
+	[RelayCommand]
+	private void CopyPixelSelection() {
+		if (PixelSelection is null || SelectedTileData is null) return;
+
+		var sel = PixelSelection.Value;
+		int x = (int)sel.X;
+		int y = (int)sel.Y;
+		int width = (int)sel.Width;
+		int height = (int)sel.Height;
+
+		_pixelClipboard = new byte[height, width];
+		for (int py = 0; py < height; py++) {
+			for (int px = 0; px < width; px++) {
+				_pixelClipboard[py, px] = SelectedTileData[y + py, x + px];
+			}
+		}
+		HasPixelClipboard = true;
+		StatusText = $"Copied {width}x{height} pixel region";
+	}
+
+	/// <summary>
+	/// Pastes the pixel clipboard into the selection.
+	/// </summary>
+	[RelayCommand]
+	private void PastePixelSelection() {
+		if (_chrEditor is null || SelectedTileData is null || _pixelClipboard is null || SelectedTileIndex < 0) return;
+
+		var newTile = CloneTile(SelectedTileData);
+		int startX = PixelSelection.HasValue ? (int)PixelSelection.Value.X : 0;
+		int startY = PixelSelection.HasValue ? (int)PixelSelection.Value.Y : 0;
+		int height = _pixelClipboard.GetLength(0);
+		int width = _pixelClipboard.GetLength(1);
+
+		for (int py = 0; py < height && (startY + py) < 8; py++) {
+			for (int px = 0; px < width && (startX + px) < 8; px++) {
+				newTile[startY + py, startX + px] = _pixelClipboard[py, px];
+			}
+		}
+
+		ExecuteTileChange(SelectedTileIndex, newTile, $"Paste {width}x{height} pixels to tile {SelectedTileIndex:X2}");
+	}
+
+	/// <summary>
+	/// Clears the pixel selection.
+	/// </summary>
+	[RelayCommand]
+	private void ClearPixelSelection() {
+		PixelSelection = null;
+		StatusText = "Selection cleared";
+	}
+
+	/// <summary>
+	/// Fills the selected pixel region with the current color.
+	/// </summary>
+	[RelayCommand]
+	private void FillPixelSelection() {
+		if (_chrEditor is null || SelectedTileData is null || PixelSelection is null || SelectedTileIndex < 0) return;
+
+		var sel = PixelSelection.Value;
+		var newTile = CloneTile(SelectedTileData);
+		int x = (int)sel.X;
+		int y = (int)sel.Y;
+		int width = (int)sel.Width;
+		int height = (int)sel.Height;
+
+		for (int py = 0; py < height; py++) {
+			for (int px = 0; px < width; px++) {
+				newTile[y + py, x + px] = (byte)SelectedColorIndex;
+			}
+		}
+
+		ExecuteTileChange(SelectedTileIndex, newTile, $"Fill selection with color {SelectedColorIndex}");
+	}
+
+	#endregion
+
+	#region Tile Search
+
+	/// <summary>
+	/// Toggles tile search panel visibility.
+	/// </summary>
+	[RelayCommand]
+	private void ToggleTileSearch() {
+		ShowTileSearch = !ShowTileSearch;
+		if (!ShowTileSearch) {
+			TileSearchResults.Clear();
+		}
+		StatusText = ShowTileSearch ? "Tile search enabled" : "Tile search disabled";
+	}
+
+	/// <summary>
+	/// Searches for tiles by dominant color.
+	/// </summary>
+	[RelayCommand]
+	private void SearchByColor(int colorIndex) {
+		if (_chrEditor is null) return;
+
+		TileSearchResults.Clear();
+		int searchColor = colorIndex >= 0 && colorIndex <= 3 ? colorIndex : SearchColorIndex;
+		if (searchColor < 0 || searchColor > 3) {
+			StatusText = "Select a color (0-3) to search";
+			return;
+		}
+
+		int startTile = SelectedBank * ChrEditor.TilesPerBank;
+		int endTile = Math.Min(startTile + ChrEditor.TilesPerBank, TileCount);
+
+		for (int i = startTile; i < endTile; i++) {
+			var tile = _chrEditor.GetTile(i);
+			int colorCount = CountColor(tile, (byte)searchColor);
+			// Consider a tile dominant in this color if > 25% of pixels
+			if (colorCount > 16) {
+				TileSearchResults.Add(i - startTile); // Local index within bank
+			}
+		}
+
+		StatusText = $"Found {TileSearchResults.Count} tiles with dominant color {searchColor}";
+	}
+
+	/// <summary>
+	/// Searches for tiles similar to the current tile.
+	/// </summary>
+	[RelayCommand]
+	private void SearchSimilarTiles() {
+		if (_chrEditor is null || SelectedTileData is null) return;
+
+		TileSearchResults.Clear();
+		int threshold = SearchSimilarityThreshold;
+
+		int startTile = SelectedBank * ChrEditor.TilesPerBank;
+		int endTile = Math.Min(startTile + ChrEditor.TilesPerBank, TileCount);
+
+		for (int i = startTile; i < endTile; i++) {
+			if (i == SelectedTileIndex) continue; // Skip self
+
+			var tile = _chrEditor.GetTile(i);
+			int similarity = CalculateSimilarity(SelectedTileData, tile);
+
+			if (similarity >= threshold) {
+				TileSearchResults.Add(i - startTile); // Local index within bank
+			}
+		}
+
+		StatusText = $"Found {TileSearchResults.Count} tiles {threshold}%+ similar";
+	}
+
+	/// <summary>
+	/// Searches for empty (all color 0) tiles.
+	/// </summary>
+	[RelayCommand]
+	private void SearchEmptyTiles() {
+		if (_chrEditor is null) return;
+
+		TileSearchResults.Clear();
+
+		int startTile = SelectedBank * ChrEditor.TilesPerBank;
+		int endTile = Math.Min(startTile + ChrEditor.TilesPerBank, TileCount);
+
+		for (int i = startTile; i < endTile; i++) {
+			var tile = _chrEditor.GetTile(i);
+			if (IsTileEmpty(tile)) {
+				TileSearchResults.Add(i - startTile);
+			}
+		}
+
+		StatusText = $"Found {TileSearchResults.Count} empty tiles";
+	}
+
+	/// <summary>
+	/// Searches for duplicate tiles.
+	/// </summary>
+	[RelayCommand]
+	private void SearchDuplicateTiles() {
+		if (_chrEditor is null) return;
+
+		TileSearchResults.Clear();
+		var seen = new HashSet<string>();
+		var duplicates = new HashSet<int>();
+
+		int startTile = SelectedBank * ChrEditor.TilesPerBank;
+		int endTile = Math.Min(startTile + ChrEditor.TilesPerBank, TileCount);
+
+		for (int i = startTile; i < endTile; i++) {
+			var tile = _chrEditor.GetTile(i);
+			var hash = GetTileHash(tile);
+
+			if (!seen.Add(hash)) {
+				duplicates.Add(i - startTile);
+			}
+		}
+
+		foreach (var idx in duplicates) {
+			TileSearchResults.Add(idx);
+		}
+
+		StatusText = $"Found {TileSearchResults.Count} duplicate tiles";
+	}
+
+	/// <summary>
+	/// Selects all search results in multi-select mode.
+	/// </summary>
+	[RelayCommand]
+	private void SelectSearchResults() {
+		if (TileSearchResults.Count == 0) return;
+
+		AllowMultiSelect = true;
+		SelectedTileIndices.Clear();
+		foreach (var idx in TileSearchResults) {
+			SelectedTileIndices.Add(idx);
+		}
+		StatusText = $"Selected {TileSearchResults.Count} tiles from search";
+	}
+
+	private static int CountColor(byte[,] tile, byte color) {
+		int count = 0;
+		for (int y = 0; y < 8; y++)
+			for (int x = 0; x < 8; x++)
+				if (tile[y, x] == color) count++;
+		return count;
+	}
+
+	private static int CalculateSimilarity(byte[,] tile1, byte[,] tile2) {
+		int matching = 0;
+		for (int y = 0; y < 8; y++)
+			for (int x = 0; x < 8; x++)
+				if (tile1[y, x] == tile2[y, x]) matching++;
+		return (matching * 100) / 64;
+	}
+
+	private static bool IsTileEmpty(byte[,] tile) {
+		for (int y = 0; y < 8; y++)
+			for (int x = 0; x < 8; x++)
+				if (tile[y, x] != 0) return false;
+		return true;
+	}
+
+	private static string GetTileHash(byte[,] tile) {
+		var sb = new StringBuilder(64);
+		for (int y = 0; y < 8; y++)
+			for (int x = 0; x < 8; x++)
+				sb.Append(tile[y, x]);
+		return sb.ToString();
+	}
+
+	#endregion
+
+	#region Export Selection
+
+	/// <summary>
+	/// Exports selected tiles to a CHR file.
+	/// </summary>
+	[RelayCommand]
+	private async Task ExportSelectedTiles(Window? window) {
+		if (window is null || _chrEditor is null) {
+			StatusText = "Unable to export";
+			return;
+		}
+
+		var tilesToExport = SelectedTileIndices.Count > 0
+			? SelectedTileIndices.Select(i => (SelectedBank * ChrEditor.TilesPerBank) + i).ToList()
+			: [SelectedTileIndex];
+
+		if (tilesToExport.Count == 0 || tilesToExport[0] < 0) {
+			StatusText = "No tiles selected to export";
+			return;
+		}
+
+		var dialogService = FileDialogService.FromWindow(window);
+		var path = await dialogService.SaveFileAsync(
+			"Export Selected Tiles",
+			".chr",
+			$"tiles_selection.chr",
+			new FilePickerFileType("CHR File") { Patterns = ["*.chr"] },
+			FileDialogService.AllFiles
+		);
+
+		if (path is null) return;
+
+		try {
+			// Each tile is 16 bytes in NES 2bpp format
+			var chrData = new byte[tilesToExport.Count * 16];
+			int offset = 0;
+
+			foreach (var tileIdx in tilesToExport.OrderBy(i => i)) {
+				var tile = _chrEditor.GetTile(tileIdx);
+				var tileBytes = EncodeTileTo2bpp(tile);
+				Array.Copy(tileBytes, 0, chrData, offset, 16);
+				offset += 16;
+			}
+
+			await File.WriteAllBytesAsync(path, chrData);
+			StatusText = $"Exported {tilesToExport.Count} tiles to {Path.GetFileName(path)}";
+		} catch (Exception ex) {
+			StatusText = $"Export error: {ex.Message}";
+		}
+	}
+
+	/// <summary>
+	/// Exports selected tiles to a PNG image.
+	/// </summary>
+	[RelayCommand]
+	private async Task ExportSelectedTilesToPng(Window? window) {
+		if (window is null || _chrEditor is null) {
+			StatusText = "Unable to export";
+			return;
+		}
+
+		var tilesToExport = SelectedTileIndices.Count > 0
+			? SelectedTileIndices.Select(i => (SelectedBank * ChrEditor.TilesPerBank) + i).ToList()
+			: [SelectedTileIndex];
+
+		if (tilesToExport.Count == 0 || tilesToExport[0] < 0) {
+			StatusText = "No tiles selected to export";
+			return;
+		}
+
+		var dialogService = FileDialogService.FromWindow(window);
+		var path = await dialogService.SaveFileAsync(
+			"Export Selected Tiles as PNG",
+			".png",
+			$"tiles_selection.png",
+			FileDialogService.PngFiles,
+			FileDialogService.AllFiles
+		);
+
+		if (path is null) return;
+
+		try {
+			// Arrange tiles in a row
+			int count = tilesToExport.Count;
+			int imageWidth = count * 8;
+			int imageHeight = 8;
+
+			var pixels = new byte[imageWidth * imageHeight * 4];
+			var palette = CurrentPalette;
+
+			int tileX = 0;
+			foreach (var tileIdx in tilesToExport.OrderBy(i => i)) {
+				var tile = _chrEditor.GetTile(tileIdx);
+
+				for (int y = 0; y < 8; y++) {
+					for (int x = 0; x < 8; x++) {
+						int px = (tileX * 8) + x;
+						int pixelOffset = ((y * imageWidth) + px) * 4;
+
+						byte colorIndex = tile[y, x];
+						var color = colorIndex < palette.Length ? palette[colorIndex] : Colors.Magenta;
+
+						pixels[pixelOffset + 0] = color.B;
+						pixels[pixelOffset + 1] = color.G;
+						pixels[pixelOffset + 2] = color.R;
+						pixels[pixelOffset + 3] = 255;
+					}
+				}
+				tileX++;
+			}
+
+			var bitmap = new WriteableBitmap(
+				new Avalonia.PixelSize(imageWidth, imageHeight),
+				new Avalonia.Vector(96, 96),
+				Avalonia.Platform.PixelFormat.Bgra8888,
+				Avalonia.Platform.AlphaFormat.Unpremul);
+
+			using (var fb = bitmap.Lock()) {
+				System.Runtime.InteropServices.Marshal.Copy(pixels, 0, fb.Address, pixels.Length);
+			}
+
+			bitmap.Save(path);
+			StatusText = $"Exported {tilesToExport.Count} tiles to {Path.GetFileName(path)}";
+		} catch (Exception ex) {
+			StatusText = $"Export error: {ex.Message}";
+		}
+	}
+
+	/// <summary>
+	/// Encodes a tile to NES 2bpp format.
+	/// </summary>
+	private static byte[] EncodeTileTo2bpp(byte[,] tile) {
+		var bytes = new byte[16];
+		for (int y = 0; y < 8; y++) {
+			byte plane0 = 0;
+			byte plane1 = 0;
+			for (int x = 0; x < 8; x++) {
+				byte pixel = tile[y, x];
+				if ((pixel & 1) != 0) plane0 |= (byte)(0x80 >> x);
+				if ((pixel & 2) != 0) plane1 |= (byte)(0x80 >> x);
+			}
+			bytes[y] = plane0;
+			bytes[y + 8] = plane1;
+		}
+		return bytes;
+	}
+
+	#endregion
+
+	#region Palette Editing
+
+	/// <summary>
+	/// Edits a palette color.
+	/// </summary>
+	[RelayCommand]
+	private void EditPaletteColor(int colorIndex) {
+		if (colorIndex < 0 || colorIndex >= CurrentPalette.Length) return;
+
+		// Toggle simple color presets for the selected index
+		// For a full implementation, you'd show a color picker dialog
+		var color = CurrentPalette[colorIndex];
+		var newPalette = (Color[])CurrentPalette.Clone();
+
+		// Cycle through basic colors
+		newPalette[colorIndex] = color switch {
+			{ R: 0, G: 0, B: 0 } => Color.FromRgb(255, 0, 0),
+			{ R: 255, G: 0, B: 0 } => Color.FromRgb(0, 255, 0),
+			{ R: 0, G: 255, B: 0 } => Color.FromRgb(0, 0, 255),
+			{ R: 0, G: 0, B: 255 } => Color.FromRgb(255, 255, 0),
+			{ R: 255, G: 255, B: 0 } => Color.FromRgb(255, 0, 255),
+			{ R: 255, G: 0, B: 255 } => Color.FromRgb(0, 255, 255),
+			{ R: 0, G: 255, B: 255 } => Color.FromRgb(255, 255, 255),
+			{ R: 255, G: 255, B: 255 } => Color.FromRgb(0, 0, 0),
+			_ => Color.FromRgb(0, 0, 0)
+		};
+
+		CurrentPalette = newPalette;
+		StatusText = $"Changed color {colorIndex} to RGB({newPalette[colorIndex].R},{newPalette[colorIndex].G},{newPalette[colorIndex].B})";
+	}
+
+	/// <summary>
+	/// Sets a specific color in the palette via RGB values.
+	/// </summary>
+	public void SetPaletteColor(int colorIndex, byte r, byte g, byte b) {
+		if (colorIndex < 0 || colorIndex >= CurrentPalette.Length) return;
+
+		var newPalette = (Color[])CurrentPalette.Clone();
+		newPalette[colorIndex] = Color.FromRgb(r, g, b);
+		CurrentPalette = newPalette;
+		StatusText = $"Set color {colorIndex} to RGB({r},{g},{b})";
+	}
+
+	#endregion
+
+	#region Import with Palette Matching
+
+	/// <summary>
+	/// Imports tiles from PNG with intelligent palette matching.
+	/// </summary>
+	[RelayCommand]
+	private async Task ImportWithPaletteMatch(Window? window) {
+		if (window is null || _chrEditor is null) {
+			StatusText = "Unable to import";
+			return;
+		}
+
+		var dialogService = FileDialogService.FromWindow(window);
+		var path = await dialogService.OpenFileAsync(
+			"Import Tileset with Palette Matching",
+			FileDialogService.PngFiles,
+			FileDialogService.BmpFiles,
+			FileDialogService.AllFiles
+		);
+
+		if (path is null) return;
+
+		try {
+			using var stream = File.OpenRead(path);
+			var bitmap = new Bitmap(stream);
+
+			int imageWidth = bitmap.PixelSize.Width;
+			int imageHeight = bitmap.PixelSize.Height;
+			int tilesWide = imageWidth / 8;
+			int tilesHigh = imageHeight / 8;
+
+			if (tilesWide == 0 || tilesHigh == 0) {
+				StatusText = "Image too small (must be at least 8x8 pixels)";
+				return;
+			}
+
+			// Create WriteableBitmap and draw source onto it
+			var writeableBitmap = new WriteableBitmap(
+				bitmap.PixelSize,
+				bitmap.Dpi,
+				Avalonia.Platform.PixelFormat.Bgra8888,
+				Avalonia.Platform.AlphaFormat.Unpremul);
+
+			// Use RenderTargetBitmap to draw the source image, then copy to writable
+			using var renderTarget = new RenderTargetBitmap(bitmap.PixelSize, bitmap.Dpi);
+			using (var ctx = renderTarget.CreateDrawingContext()) {
+				ctx.DrawImage(bitmap, new Avalonia.Rect(0, 0, imageWidth, imageHeight));
+			}
+
+			// Read pixel data - for simplicity use the same approach as existing import
+			// by creating a WriteableBitmap and drawing to it
+			int stride = imageWidth * 4;
+			var pixels = new byte[imageHeight * stride];
+
+			// Use Marshal to get pointer for CopyPixels
+			var handle = System.Runtime.InteropServices.GCHandle.Alloc(pixels, System.Runtime.InteropServices.GCHandleType.Pinned);
+			try {
+				renderTarget.CopyPixels(new Avalonia.PixelRect(0, 0, imageWidth, imageHeight), handle.AddrOfPinnedObject(), pixels.Length, stride);
+			} finally {
+				handle.Free();
+			}
+
+			// Build color frequency map and find best palette mapping
+			var palette = CurrentPalette;
+
+			int startTile = SelectedBank * ChrEditor.TilesPerBank;
+			int importedCount = 0;
+
+			for (int tileY = 0; tileY < tilesHigh && (startTile + importedCount) < TileCount; tileY++) {
+				for (int tileX = 0; tileX < tilesWide && (startTile + importedCount) < TileCount; tileX++) {
+					var tile = new byte[8, 8];
+
+					for (int y = 0; y < 8; y++) {
+						for (int x = 0; x < 8; x++) {
+							int px = (tileX * 8) + x;
+							int py = (tileY * 8) + y;
+							int pixelOffset = (py * stride) + (px * 4);
+
+							byte b = pixels[pixelOffset];
+							byte g = pixels[pixelOffset + 1];
+							byte r = pixels[pixelOffset + 2];
+
+							// Find closest palette color
+							tile[y, x] = FindClosestPaletteColor(r, g, b, palette);
+						}
+					}
+
+					int tileIndex = startTile + importedCount;
+					var oldTile = CloneTile(_chrEditor.GetTile(tileIndex));
+					var command = new SetTileCommand(_chrEditor, tileIndex, oldTile, tile, $"Import tile {tileIndex:X2}");
+					_undoRedo.Execute(command);
+					importedCount++;
+				}
+			}
+
+			UpdateUndoRedoState();
+			LoadTilePreview();
+			StatusText = $"Imported {importedCount} tiles with palette matching from {Path.GetFileName(path)}";
+		} catch (Exception ex) {
+			StatusText = $"Import error: {ex.Message}";
+		}
+	}
+
+	/// <summary>
+	/// Finds the closest palette color to the given RGB values.
+	/// </summary>
+	private static byte FindClosestPaletteColor(byte r, byte g, byte b, Color[] palette) {
+		int bestIndex = 0;
+		int bestDistance = int.MaxValue;
+
+		for (int i = 0; i < palette.Length; i++) {
+			var pc = palette[i];
+			int dr = r - pc.R;
+			int dg = g - pc.G;
+			int db = b - pc.B;
+			int distance = (dr * dr) + (dg * dg) + (db * db);
+
+			if (distance < bestDistance) {
+				bestDistance = distance;
+				bestIndex = i;
+			}
+		}
+
+		return (byte)bestIndex;
 	}
 
 	#endregion

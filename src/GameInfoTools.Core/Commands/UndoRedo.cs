@@ -72,6 +72,18 @@ public class UndoRedoManager {
 	public int RedoCount => _redoStack.Count;
 
 	/// <summary>
+	/// Gets the list of undo command descriptions (most recent first).
+	/// </summary>
+	public IReadOnlyList<string> UndoHistory =>
+		_undoStack.Select(c => c.Description).ToList();
+
+	/// <summary>
+	/// Gets the list of redo command descriptions (most recent first).
+	/// </summary>
+	public IReadOnlyList<string> RedoHistory =>
+		_redoStack.Select(c => c.Description).ToList();
+
+	/// <summary>
 	/// Executes a command and adds it to the undo history.
 	/// </summary>
 	/// <param name="command">The command to execute.</param>

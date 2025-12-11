@@ -1,5 +1,9 @@
 using System.Collections.ObjectModel;
+using System.Text;
 using Avalonia.Controls;
+using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GameInfoTools.Core;
@@ -7,6 +11,24 @@ using GameInfoTools.Core.Commands;
 using GameInfoTools.UI.Services;
 
 namespace GameInfoTools.UI.ViewModels;
+
+/// <summary>
+/// Map editing drawing tools.
+/// </summary>
+public enum MapDrawingTool {
+	/// <summary>Single tile pencil.</summary>
+	Pencil,
+	/// <summary>Flood fill tool.</summary>
+	Fill,
+	/// <summary>Rectangle fill tool.</summary>
+	Rectangle,
+	/// <summary>Line drawing tool.</summary>
+	Line,
+	/// <summary>Selection tool.</summary>
+	Selection,
+	/// <summary>Eyedropper tool.</summary>
+	Eyedropper
+}
 
 /// <summary>
 /// View model for viewing and editing game maps.
@@ -65,6 +87,75 @@ public partial class MapEditorViewModel : ViewModelBase {
 
 	[ObservableProperty]
 	private int _selectedY = -1;
+
+	/// <summary>
+	/// Current drawing tool.
+	/// </summary>
+	[ObservableProperty]
+	private MapDrawingTool _currentTool = MapDrawingTool.Pencil;
+
+	/// <summary>
+	/// Whether to draw while dragging.
+	/// </summary>
+	[ObservableProperty]
+	private bool _continuousDraw = true;
+
+	/// <summary>
+	/// Selection rectangle start X.
+	/// </summary>
+	[ObservableProperty]
+	private int _selectionStartX = -1;
+
+	/// <summary>
+	/// Selection rectangle start Y.
+	/// </summary>
+	[ObservableProperty]
+	private int _selectionStartY = -1;
+
+	/// <summary>
+	/// Selection rectangle end X.
+	/// </summary>
+	[ObservableProperty]
+	private int _selectionEndX = -1;
+
+	/// <summary>
+	/// Selection rectangle end Y.
+	/// </summary>
+	[ObservableProperty]
+	private int _selectionEndY = -1;
+
+	/// <summary>
+	/// Clipboard for copy/paste operations.
+	/// </summary>
+	private byte[,]? _clipboard;
+
+	/// <summary>
+	/// Whether clipboard has content.
+	/// </summary>
+	[ObservableProperty]
+	private bool _hasClipboard;
+
+	/// <summary>
+	/// Show 16x16 metatile grid overlay.
+	/// </summary>
+	[ObservableProperty]
+	private bool _showMetatileGrid;
+
+	/// <summary>
+	/// Color palette for visual tile rendering.
+	/// </summary>
+	[ObservableProperty]
+	private Color[] _colorPalette = GetDefaultMapPalette();
+
+	/// <summary>
+	/// Whether drawing is in progress.
+	/// </summary>
+	private bool _isDrawing;
+
+	/// <summary>
+	/// Line/rectangle start point.
+	/// </summary>
+	private (int X, int Y) _drawStart;
 
 	public bool CanUndo => _undoRedo.CanUndo;
 	public bool CanRedo => _undoRedo.CanRedo;
@@ -294,6 +385,391 @@ public partial class MapEditorViewModel : ViewModelBase {
 		}
 	}
 
+	#region Drawing Tools
+
+	/// <summary>
+	/// Sets the current drawing tool.
+	/// </summary>
+	[RelayCommand]
+	private void SetTool(MapDrawingTool tool) {
+		CurrentTool = tool;
+		StatusText = $"Tool: {tool}";
+	}
+
+	/// <summary>
+	/// Starts a drawing operation at the specified position.
+	/// </summary>
+	public void StartDraw(int x, int y) {
+		if (_rom is null || !_rom.IsLoaded || MapTiles.Count == 0) return;
+		if (x < 0 || x >= MapWidth || y < 0 || y >= MapHeight) return;
+
+		_isDrawing = true;
+		_drawStart = (x, y);
+
+		switch (CurrentTool) {
+			case MapDrawingTool.Pencil:
+				DrawTileAt(x, y);
+				break;
+
+			case MapDrawingTool.Fill:
+				FloodFillAt(x, y);
+				break;
+
+			case MapDrawingTool.Eyedropper:
+				PickTileAt(x, y);
+				break;
+
+			case MapDrawingTool.Selection:
+				SelectionStartX = x;
+				SelectionStartY = y;
+				SelectionEndX = x;
+				SelectionEndY = y;
+				break;
+
+			case MapDrawingTool.Rectangle:
+			case MapDrawingTool.Line:
+				// Just record start point, actual drawing happens on end
+				break;
+		}
+	}
+
+	/// <summary>
+	/// Continues a drawing operation (for drag).
+	/// </summary>
+	public void ContinueDraw(int x, int y) {
+		if (!_isDrawing || _rom is null) return;
+		if (x < 0 || x >= MapWidth || y < 0 || y >= MapHeight) return;
+
+		switch (CurrentTool) {
+			case MapDrawingTool.Pencil when ContinuousDraw:
+				DrawTileAt(x, y);
+				break;
+
+			case MapDrawingTool.Selection:
+				SelectionEndX = x;
+				SelectionEndY = y;
+				break;
+		}
+	}
+
+	/// <summary>
+	/// Ends a drawing operation.
+	/// </summary>
+	public void EndDraw(int x, int y) {
+		if (!_isDrawing) return;
+
+		switch (CurrentTool) {
+			case MapDrawingTool.Rectangle:
+				DrawRectangle(_drawStart.X, _drawStart.Y, x, y);
+				break;
+
+			case MapDrawingTool.Line:
+				DrawLine(_drawStart.X, _drawStart.Y, x, y);
+				break;
+
+			case MapDrawingTool.Selection:
+				SelectionEndX = x;
+				SelectionEndY = y;
+				NormalizeSelection();
+				var (sx, sy, ex, ey) = GetSelectionBounds();
+				if (sx >= 0 && sy >= 0) {
+					StatusText = $"Selected {ex - sx + 1}x{ey - sy + 1} tiles";
+				}
+				break;
+		}
+
+		_isDrawing = false;
+	}
+
+	private void DrawTileAt(int x, int y) {
+		if (_rom is null) return;
+
+		int index = (y * MapWidth) + x;
+		if (index < 0 || index >= MapTiles.Count) return;
+
+		var tile = MapTiles[index];
+		if (tile.TileIndex == SelectedTile) return; // No change needed
+
+		var command = new SetByteCommand(_rom.Data, tile.Offset, (byte)SelectedTile,
+			$"Draw tile at ({x}, {y})");
+		_undoRedo.Execute(command);
+
+		MapTiles[index] = new MapTile(x, y, (byte)SelectedTile, tile.Offset);
+		UpdateMapDataArray();
+		UpdateUndoRedoState();
+	}
+
+	private void FloodFillAt(int x, int y) {
+		if (_rom is null) return;
+
+		int index = (y * MapWidth) + x;
+		if (index < 0 || index >= MapTiles.Count) return;
+
+		byte targetTile = MapTiles[index].TileIndex;
+		if (targetTile == SelectedTile) return; // No change needed
+
+		// BFS flood fill
+		var visited = new bool[MapWidth, MapHeight];
+		var queue = new Queue<(int X, int Y)>();
+		var commands = new List<IUndoableCommand>();
+
+		queue.Enqueue((x, y));
+		visited[x, y] = true;
+
+		while (queue.Count > 0) {
+			var (cx, cy) = queue.Dequeue();
+			int ci = (cy * MapWidth) + cx;
+
+			if (MapTiles[ci].TileIndex == targetTile) {
+				commands.Add(new SetByteCommand(_rom.Data, MapTiles[ci].Offset, (byte)SelectedTile));
+
+				// Check neighbors
+				foreach (var (nx, ny) in new[] { (cx - 1, cy), (cx + 1, cy), (cx, cy - 1), (cx, cy + 1) }) {
+					if (nx >= 0 && nx < MapWidth && ny >= 0 && ny < MapHeight && !visited[nx, ny]) {
+						visited[nx, ny] = true;
+						int ni = (ny * MapWidth) + nx;
+						if (MapTiles[ni].TileIndex == targetTile) {
+							queue.Enqueue((nx, ny));
+						}
+					}
+				}
+			}
+		}
+
+		if (commands.Count > 0) {
+			var composite = new CompositeCommand($"Flood fill {commands.Count} tiles with 0x{SelectedTile:X2}", commands);
+			_undoRedo.Execute(composite);
+			ReloadMapTiles();
+			UpdateUndoRedoState();
+			StatusText = $"Filled {commands.Count} tiles";
+		}
+	}
+
+	private void PickTileAt(int x, int y) {
+		int index = (y * MapWidth) + x;
+		if (index < 0 || index >= MapTiles.Count) return;
+
+		SelectedTile = MapTiles[index].TileIndex;
+		CurrentTool = MapDrawingTool.Pencil; // Switch back to pencil after pick
+		StatusText = $"Picked tile 0x{SelectedTile:X2}";
+	}
+
+	private void DrawRectangle(int x1, int y1, int x2, int y2) {
+		if (_rom is null) return;
+
+		int minX = Math.Min(x1, x2);
+		int maxX = Math.Max(x1, x2);
+		int minY = Math.Min(y1, y2);
+		int maxY = Math.Max(y1, y2);
+
+		var commands = new List<IUndoableCommand>();
+
+		for (int y = minY; y <= maxY && y < MapHeight; y++) {
+			for (int x = minX; x <= maxX && x < MapWidth; x++) {
+				int index = (y * MapWidth) + x;
+				if (index < MapTiles.Count && MapTiles[index].TileIndex != SelectedTile) {
+					commands.Add(new SetByteCommand(_rom.Data, MapTiles[index].Offset, (byte)SelectedTile));
+				}
+			}
+		}
+
+		if (commands.Count > 0) {
+			var composite = new CompositeCommand($"Rectangle fill {commands.Count} tiles", commands);
+			_undoRedo.Execute(composite);
+			ReloadMapTiles();
+			UpdateUndoRedoState();
+			StatusText = $"Drew rectangle ({maxX - minX + 1}x{maxY - minY + 1})";
+		}
+	}
+
+	private void DrawLine(int x1, int y1, int x2, int y2) {
+		if (_rom is null) return;
+
+		var commands = new List<IUndoableCommand>();
+
+		// Bresenham's line algorithm
+		int dx = Math.Abs(x2 - x1);
+		int dy = Math.Abs(y2 - y1);
+		int sx = x1 < x2 ? 1 : -1;
+		int sy = y1 < y2 ? 1 : -1;
+		int err = dx - dy;
+
+		int x = x1, y = y1;
+		while (true) {
+			if (x >= 0 && x < MapWidth && y >= 0 && y < MapHeight) {
+				int index = (y * MapWidth) + x;
+				if (index < MapTiles.Count && MapTiles[index].TileIndex != SelectedTile) {
+					commands.Add(new SetByteCommand(_rom.Data, MapTiles[index].Offset, (byte)SelectedTile));
+				}
+			}
+
+			if (x == x2 && y == y2) break;
+
+			int e2 = 2 * err;
+			if (e2 > -dy) { err -= dy; x += sx; }
+			if (e2 < dx) { err += dx; y += sy; }
+		}
+
+		if (commands.Count > 0) {
+			var composite = new CompositeCommand($"Line draw {commands.Count} tiles", commands);
+			_undoRedo.Execute(composite);
+			ReloadMapTiles();
+			UpdateUndoRedoState();
+			StatusText = $"Drew line ({commands.Count} tiles)";
+		}
+	}
+
+	private void UpdateMapDataArray() {
+		if (_rom is null || MapDataArray is null) return;
+
+		var data = _rom.AsSpan();
+		int mapSize = MapWidth * MapHeight;
+		int endOffset = Math.Min(MapDataOffset + mapSize, _rom.Length);
+		int actualSize = endOffset - MapDataOffset;
+		MapDataArray = data.Slice(MapDataOffset, actualSize).ToArray();
+	}
+
+	#endregion
+
+	#region Selection and Copy/Paste
+
+	private void NormalizeSelection() {
+		if (SelectionStartX > SelectionEndX) {
+			(SelectionStartX, SelectionEndX) = (SelectionEndX, SelectionStartX);
+		}
+		if (SelectionStartY > SelectionEndY) {
+			(SelectionStartY, SelectionEndY) = (SelectionEndY, SelectionStartY);
+		}
+	}
+
+	private (int StartX, int StartY, int EndX, int EndY) GetSelectionBounds() {
+		return (
+			Math.Max(0, SelectionStartX),
+			Math.Max(0, SelectionStartY),
+			Math.Min(MapWidth - 1, SelectionEndX),
+			Math.Min(MapHeight - 1, SelectionEndY)
+		);
+	}
+
+	/// <summary>
+	/// Returns whether there is a valid selection.
+	/// </summary>
+	public bool HasSelection => SelectionStartX >= 0 && SelectionStartY >= 0 &&
+		SelectionEndX >= SelectionStartX && SelectionEndY >= SelectionStartY;
+
+	/// <summary>
+	/// Copies the selected region.
+	/// </summary>
+	[RelayCommand]
+	private void CopySelection() {
+		if (!HasSelection || MapTiles.Count == 0) {
+			StatusText = "No selection to copy";
+			return;
+		}
+
+		var (sx, sy, ex, ey) = GetSelectionBounds();
+		int width = ex - sx + 1;
+		int height = ey - sy + 1;
+
+		_clipboard = new byte[height, width];
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				int index = ((sy + y) * MapWidth) + (sx + x);
+				if (index < MapTiles.Count) {
+					_clipboard[y, x] = MapTiles[index].TileIndex;
+				}
+			}
+		}
+
+		HasClipboard = true;
+		StatusText = $"Copied {width}x{height} region";
+	}
+
+	/// <summary>
+	/// Pastes clipboard at current selection or cursor position.
+	/// </summary>
+	[RelayCommand]
+	private void PasteSelection() {
+		if (_rom is null || _clipboard is null || MapTiles.Count == 0) {
+			StatusText = "Nothing to paste";
+			return;
+		}
+
+		int startX = SelectionStartX >= 0 ? SelectionStartX : (SelectedX >= 0 ? SelectedX : 0);
+		int startY = SelectionStartY >= 0 ? SelectionStartY : (SelectedY >= 0 ? SelectedY : 0);
+
+		int height = _clipboard.GetLength(0);
+		int width = _clipboard.GetLength(1);
+
+		var commands = new List<IUndoableCommand>();
+
+		for (int y = 0; y < height && (startY + y) < MapHeight; y++) {
+			for (int x = 0; x < width && (startX + x) < MapWidth; x++) {
+				int index = ((startY + y) * MapWidth) + (startX + x);
+				if (index < MapTiles.Count) {
+					byte newTile = _clipboard[y, x];
+					if (MapTiles[index].TileIndex != newTile) {
+						commands.Add(new SetByteCommand(_rom.Data, MapTiles[index].Offset, newTile));
+					}
+				}
+			}
+		}
+
+		if (commands.Count > 0) {
+			var composite = new CompositeCommand($"Paste {width}x{height} region", commands);
+			_undoRedo.Execute(composite);
+			ReloadMapTiles();
+			UpdateUndoRedoState();
+			StatusText = $"Pasted {width}x{height} region";
+		}
+	}
+
+	/// <summary>
+	/// Clears the selection.
+	/// </summary>
+	[RelayCommand]
+	private void ClearSelection() {
+		SelectionStartX = SelectionStartY = SelectionEndX = SelectionEndY = -1;
+		StatusText = "Selection cleared";
+	}
+
+	/// <summary>
+	/// Fills the selection with the selected tile.
+	/// </summary>
+	[RelayCommand]
+	private void FillSelection() {
+		if (_rom is null || !HasSelection) {
+			StatusText = "No selection to fill";
+			return;
+		}
+
+		var (sx, sy, ex, ey) = GetSelectionBounds();
+		var commands = new List<IUndoableCommand>();
+
+		for (int y = sy; y <= ey; y++) {
+			for (int x = sx; x <= ex; x++) {
+				int index = (y * MapWidth) + x;
+				if (index < MapTiles.Count && MapTiles[index].TileIndex != SelectedTile) {
+					commands.Add(new SetByteCommand(_rom.Data, MapTiles[index].Offset, (byte)SelectedTile));
+				}
+			}
+		}
+
+		if (commands.Count > 0) {
+			int width = ex - sx + 1;
+			int height = ey - sy + 1;
+			var composite = new CompositeCommand($"Fill selection {width}x{height} with 0x{SelectedTile:X2}", commands);
+			_undoRedo.Execute(composite);
+			ReloadMapTiles();
+			UpdateUndoRedoState();
+			StatusText = $"Filled {width}x{height} selection";
+		}
+	}
+
+	#endregion
+
+	#region Import/Export
+
 	[RelayCommand]
 	private async Task ExportMap(Window? window) {
 		if (window is null || MapTiles.Count == 0) {
@@ -331,6 +807,140 @@ public partial class MapEditorViewModel : ViewModelBase {
 			StatusText = $"Export error: {ex.Message}";
 		}
 	}
+
+	[RelayCommand]
+	private async Task ExportMapAsPng(Window? window) {
+		if (window is null || MapDataArray is null || MapDataArray.Length == 0) {
+			StatusText = "Nothing to export";
+			return;
+		}
+
+		var dialogService = FileDialogService.FromWindow(window);
+		var path = await dialogService.SaveFileAsync(
+			"Export Map as PNG",
+			".png",
+			$"map_{MapIndex:D3}.png",
+			FileDialogService.PngFiles,
+			FileDialogService.AllFiles
+		);
+
+		if (path is null) return;
+
+		try {
+			// Create bitmap (8 pixels per tile)
+			int tilePixels = 8;
+			int width = MapWidth * tilePixels;
+			int height = MapHeight * tilePixels;
+
+			using var bitmap = new WriteableBitmap(
+				new Avalonia.PixelSize(width, height),
+				new Avalonia.Vector(96, 96),
+				Avalonia.Platform.PixelFormat.Bgra8888,
+				Avalonia.Platform.AlphaFormat.Opaque);
+
+			using (var fb = bitmap.Lock()) {
+				// Create pixel data array
+				var pixels = new byte[width * height * 4]; // BGRA format
+
+				for (int ty = 0; ty < MapHeight; ty++) {
+					for (int tx = 0; tx < MapWidth; tx++) {
+						int index = (ty * MapWidth) + tx;
+						if (index >= MapDataArray.Length) continue;
+
+						byte tileIndex = MapDataArray[index];
+
+						// Get color for this tile
+						Color color = GetTileColor(tileIndex);
+
+						// Fill tile pixels
+						for (int py = 0; py < tilePixels; py++) {
+							for (int px = 0; px < tilePixels; px++) {
+								int destX = (tx * tilePixels) + px;
+								int destY = (ty * tilePixels) + py;
+								int pixelIndex = ((destY * width) + destX) * 4;
+
+								pixels[pixelIndex + 0] = color.B;     // Blue
+								pixels[pixelIndex + 1] = color.G;     // Green
+								pixels[pixelIndex + 2] = color.R;     // Red
+								pixels[pixelIndex + 3] = 255;         // Alpha
+							}
+						}
+					}
+				}
+
+				// Copy to framebuffer using Marshal
+				System.Runtime.InteropServices.Marshal.Copy(pixels, 0, fb.Address, pixels.Length);
+			}
+
+			bitmap.Save(path);
+			StatusText = $"Exported map to {Path.GetFileName(path)}";
+		} catch (Exception ex) {
+			StatusText = $"Export error: {ex.Message}";
+		}
+	}
+
+	private Color GetTileColor(byte tileIndex) {
+		if (ColorPalette is not null && tileIndex < ColorPalette.Length) {
+			return ColorPalette[tileIndex];
+		}
+
+		// Generate color from tile index using HSV
+		double hue = (tileIndex / 256.0) * 360;
+		double saturation = 0.6;
+		double value = 0.4 + ((tileIndex % 16) / 32.0);
+		return HsvToColor(hue, saturation, value);
+	}
+
+	private static Color HsvToColor(double hue, double saturation, double value) {
+		double c = value * saturation;
+		double x = c * (1 - Math.Abs(((hue / 60) % 2) - 1));
+		double m = value - c;
+
+		double r, g, b;
+		if (hue < 60) { r = c; g = x; b = 0; }
+		else if (hue < 120) { r = x; g = c; b = 0; }
+		else if (hue < 180) { r = 0; g = c; b = x; }
+		else if (hue < 240) { r = 0; g = x; b = c; }
+		else if (hue < 300) { r = x; g = 0; b = c; }
+		else { r = c; g = 0; b = x; }
+
+		return Color.FromRgb(
+			(byte)((r + m) * 255),
+			(byte)((g + m) * 255),
+			(byte)((b + m) * 255));
+	}
+
+	#endregion
+
+	#region Tile Palette
+
+	/// <summary>
+	/// Selects a tile from the palette grid.
+	/// </summary>
+	[RelayCommand]
+	private void SelectPaletteTile(int index) {
+		if (index >= 0 && index < 256) {
+			SelectedTile = index;
+			StatusText = $"Selected palette tile 0x{index:X2}";
+		}
+	}
+
+	/// <summary>
+	/// Gets the default color palette for map rendering.
+	/// </summary>
+	private static Color[] GetDefaultMapPalette() {
+		// Generate a 256-color palette
+		var palette = new Color[256];
+		for (int i = 0; i < 256; i++) {
+			double hue = (i / 256.0) * 360;
+			double sat = 0.6;
+			double val = 0.4 + ((i % 16) / 32.0);
+			palette[i] = HsvToColor(hue, sat, val);
+		}
+		return palette;
+	}
+
+	#endregion
 }
 
 /// <summary>

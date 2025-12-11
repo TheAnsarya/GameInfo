@@ -4,7 +4,7 @@
 			 xmlns:controls="using:GameInfoTools.UI.Controls"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
+			 mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
 			 x:Class="GameInfoTools.UI.Views.MapEditorView"
 			 x:DataType="vm:MapEditorViewModel">
 
@@ -12,9 +12,9 @@
 		<vm:MapEditorViewModel/>
 	</Design.DataContext>
 
-	<Grid RowDefinitions="Auto,*,Auto">
-		<!-- Toolbar -->
-		<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="16,16,16,8">
+	<Grid RowDefinitions="Auto,Auto,*,Auto">
+		<!-- Top Toolbar -->
+		<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="16,16,16,4">
 			<TextBlock Text="Offset:" VerticalAlignment="Center"/>
 			<NumericUpDown Value="{Binding MapDataOffset}" Minimum="0" Maximum="16777215" Width="100" FormatString="X6"/>
 			<TextBlock Text="Width:" VerticalAlignment="Center"/>
@@ -29,17 +29,50 @@
 			<TextBlock Text="{Binding Zoom, StringFormat={}{0}x}" VerticalAlignment="Center" Width="30" TextAlignment="Center"/>
 			<Button Content="+" Command="{Binding ZoomInCommand}" Width="30"/>
 			<Separator/>
-			<CheckBox Content="Grid" IsChecked="{Binding ShowGrid}" VerticalAlignment="Center"/>
-			<CheckBox Content="Numbers" IsChecked="{Binding ShowTileNumbers}" VerticalAlignment="Center"/>
-			<Separator/>
 			<Button Content="Undo" Command="{Binding UndoCommand}" IsEnabled="{Binding CanUndo}" ToolTip.Tip="{Binding UndoDescription}"/>
 			<Button Content="Redo" Command="{Binding RedoCommand}" IsEnabled="{Binding CanRedo}" ToolTip.Tip="{Binding RedoDescription}"/>
-			<Separator/>
-			<Button Content="Export..." Command="{Binding ExportMapCommand}" CommandParameter="{Binding $parent[Window]}" ToolTip.Tip="Export map to file"/>
 		</StackPanel>
 
+		<!-- Drawing Tools Toolbar -->
+		<Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}"
+				Margin="16,4" Padding="8" CornerRadius="4">
+			<StackPanel Orientation="Horizontal" Spacing="8">
+				<TextBlock Text="Tools:" VerticalAlignment="Center" FontWeight="SemiBold"/>
+				<ToggleButton Content="✏️" IsChecked="{Binding CurrentTool, Converter={x:Static vm:EnumConverters.MapToolPencil}}"
+							  ToolTip.Tip="Pencil - Draw single tiles" Width="32"/>
+				<ToggleButton Content="🪣" IsChecked="{Binding CurrentTool, Converter={x:Static vm:EnumConverters.MapToolFill}}"
+							  ToolTip.Tip="Fill - Flood fill area" Width="32"/>
+				<ToggleButton Content="▭" IsChecked="{Binding CurrentTool, Converter={x:Static vm:EnumConverters.MapToolRectangle}}"
+							  ToolTip.Tip="Rectangle - Draw filled rectangle" Width="32"/>
+				<ToggleButton Content="╱" IsChecked="{Binding CurrentTool, Converter={x:Static vm:EnumConverters.MapToolLine}}"
+							  ToolTip.Tip="Line - Draw line" Width="32"/>
+				<ToggleButton Content="⬚" IsChecked="{Binding CurrentTool, Converter={x:Static vm:EnumConverters.MapToolSelection}}"
+							  ToolTip.Tip="Selection - Select region" Width="32"/>
+				<ToggleButton Content="💉" IsChecked="{Binding CurrentTool, Converter={x:Static vm:EnumConverters.MapToolEyedropper}}"
+							  ToolTip.Tip="Eyedropper - Pick tile" Width="32"/>
+				<Separator/>
+				<CheckBox Content="Continuous" IsChecked="{Binding ContinuousDraw}" VerticalAlignment="Center"
+						  ToolTip.Tip="Draw while dragging"/>
+				<Separator/>
+				<CheckBox Content="Grid" IsChecked="{Binding ShowGrid}" VerticalAlignment="Center"/>
+				<CheckBox Content="Numbers" IsChecked="{Binding ShowTileNumbers}" VerticalAlignment="Center"/>
+				<CheckBox Content="16×16 Grid" IsChecked="{Binding ShowMetatileGrid}" VerticalAlignment="Center"
+						  ToolTip.Tip="Show metatile grid overlay"/>
+				<Separator/>
+				<Button Content="Copy" Command="{Binding CopySelectionCommand}" ToolTip.Tip="Copy selection (Ctrl+C)"/>
+				<Button Content="Paste" Command="{Binding PasteSelectionCommand}" IsEnabled="{Binding HasClipboard}"
+						ToolTip.Tip="Paste clipboard (Ctrl+V)"/>
+				<Button Content="Fill Sel." Command="{Binding FillSelectionCommand}" ToolTip.Tip="Fill selection with selected tile"/>
+				<Separator/>
+				<Button Content="Export..." Command="{Binding ExportMapCommand}" CommandParameter="{Binding $parent[Window]}"
+						ToolTip.Tip="Export map to JSON"/>
+				<Button Content="Export PNG..." Command="{Binding ExportMapAsPngCommand}" CommandParameter="{Binding $parent[Window]}"
+						ToolTip.Tip="Export map as PNG image"/>
+			</StackPanel>
+		</Border>
+
 		<!-- Main Content -->
-		<Grid Grid.Row="1" ColumnDefinitions="*,220" Margin="16,8">
+		<Grid Grid.Row="2" ColumnDefinitions="*,240" Margin="16,8">
 			<!-- Map View -->
 			<Border Grid.Column="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
 					CornerRadius="4" Padding="8" Margin="0,0,8,0">
@@ -51,7 +84,6 @@
 						<Button Content="▶" Command="{Binding NextMapCommand}" ToolTip.Tip="Next Map"/>
 					</StackPanel>
 					<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-						<!-- Visual Map Canvas using custom control -->
 						<controls:MapCanvas
 							x:Name="MapCanvasControl"
 							MapData="{Binding MapDataArray}"
@@ -61,16 +93,21 @@
 							ShowGrid="{Binding ShowGrid}"
 							ShowTileNumbers="{Binding ShowTileNumbers}"
 							SelectedX="{Binding SelectedX, Mode=TwoWay}"
-							SelectedY="{Binding SelectedY, Mode=TwoWay}"/>
+							SelectedY="{Binding SelectedY, Mode=TwoWay}"
+							SelectionStartX="{Binding SelectionStartX, Mode=TwoWay}"
+							SelectionStartY="{Binding SelectionStartY, Mode=TwoWay}"
+							SelectionEndX="{Binding SelectionEndX, Mode=TwoWay}"
+							SelectionEndY="{Binding SelectionEndY, Mode=TwoWay}"
+							ShowMetatileGrid="{Binding ShowMetatileGrid}"/>
 					</ScrollViewer>
 				</DockPanel>
 			</Border>
 
-			<!-- Tile Palette and Settings -->
+			<!-- Right Panel: Tile Palette and Settings -->
 			<Border Grid.Column="1" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
 					CornerRadius="4" Padding="16">
 				<ScrollViewer>
-					<StackPanel Spacing="16">
+					<StackPanel Spacing="12">
 						<TextBlock Text="Map Settings" FontWeight="SemiBold" FontSize="16"/>
 
 						<StackPanel Spacing="4">
@@ -80,26 +117,59 @@
 
 						<Separator/>
 
-						<TextBlock Text="Tile Palette" FontWeight="SemiBold"/>
+						<TextBlock Text="Selected Tile" FontWeight="SemiBold"/>
 
 						<StackPanel Spacing="4">
-							<TextBlock Text="Selected Tile:"/>
 							<NumericUpDown Value="{Binding SelectedTile}" Minimum="0" Maximum="255" FormatString="X2"/>
 						</StackPanel>
 
-						<StackPanel Orientation="Horizontal" Spacing="8">
+						<!-- Tile Palette Grid -->
+						<Border Background="{DynamicResource SystemControlBackgroundChromeLowBrush}"
+								CornerRadius="4" Padding="4">
+							<ItemsControl ItemsSource="{Binding TilePalette}">
+								<ItemsControl.ItemsPanel>
+									<ItemsPanelTemplate>
+										<WrapPanel Orientation="Horizontal"/>
+									</ItemsPanelTemplate>
+								</ItemsControl.ItemsPanel>
+								<ItemsControl.ItemTemplate>
+									<DataTemplate>
+										<Button Width="24" Height="24" Padding="0" Margin="1"
+												Content="{Binding Display}" FontSize="8"
+												Command="{Binding $parent[ItemsControl].((vm:MapEditorViewModel)DataContext).SelectPaletteTileCommand}"
+												CommandParameter="{Binding Index}"
+												ToolTip.Tip="{Binding Name}"/>
+									</DataTemplate>
+								</ItemsControl.ItemTemplate>
+							</ItemsControl>
+						</Border>
+
+						<StackPanel Orientation="Horizontal" Spacing="4">
 							<Button Content="Set Tile" Command="{Binding SetTileCommand}" ToolTip.Tip="Set selected map tile"/>
-							<Button Content="Fill" Command="{Binding FillCommand}" ToolTip.Tip="Fill entire map with selected tile"/>
+							<Button Content="Fill All" Command="{Binding FillCommand}" ToolTip.Tip="Fill entire map"/>
 						</StackPanel>
 
 						<Separator/>
 
-						<StackPanel Spacing="4">
-							<TextBlock Text="Selected Tile Info" FontWeight="SemiBold"/>
+						<TextBlock Text="Selected Position" FontWeight="SemiBold"/>
+						<StackPanel Spacing="2">
 							<TextBlock Text="{Binding SelectedX, StringFormat=X: {0}}" Opacity="0.7"/>
 							<TextBlock Text="{Binding SelectedY, StringFormat=Y: {0}}" Opacity="0.7"/>
 							<TextBlock Text="{Binding SelectedMapTile.TileIndex, StringFormat=Tile: 0x{0:X2}, FallbackValue=Tile: -}" Opacity="0.7"/>
 							<TextBlock Text="{Binding SelectedMapTile.Offset, StringFormat=Offset: 0x{0:X6}, FallbackValue=Offset: -}" Opacity="0.7"/>
+						</StackPanel>
+
+						<Separator/>
+
+						<TextBlock Text="Selection" FontWeight="SemiBold"/>
+						<StackPanel Spacing="2">
+							<TextBlock Text="{Binding SelectionStartX, StringFormat=From: ({0}\\,}" Opacity="0.7">
+								<Run Text="{Binding SelectionStartY, StringFormat={}{0})}"/>
+							</TextBlock>
+							<TextBlock Text="{Binding SelectionEndX, StringFormat=To: ({0}\\,}" Opacity="0.7">
+								<Run Text="{Binding SelectionEndY, StringFormat={}{0})}"/>
+							</TextBlock>
+							<Button Content="Clear Selection" Command="{Binding ClearSelectionCommand}" HorizontalAlignment="Left"/>
 						</StackPanel>
 					</StackPanel>
 				</ScrollViewer>
@@ -107,10 +177,11 @@
 		</Grid>
 
 		<!-- Status Bar -->
-		<Border Grid.Row="2" Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}" Padding="16,8">
-			<Grid ColumnDefinitions="*,Auto">
+		<Border Grid.Row="3" Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}" Padding="16,8">
+			<Grid ColumnDefinitions="*,Auto,Auto">
 				<TextBlock Grid.Column="0" Text="{Binding StatusText}"/>
-				<TextBlock Grid.Column="1" Text="{Binding MapTiles.Count, StringFormat={}{0} tiles}"/>
+				<TextBlock Grid.Column="1" Text="{Binding CurrentTool, StringFormat=Tool: {0}}" Margin="16,0"/>
+				<TextBlock Grid.Column="2" Text="{Binding MapTiles.Count, StringFormat={}{0} tiles}"/>
 			</Grid>
 		</Border>
 	</Grid>

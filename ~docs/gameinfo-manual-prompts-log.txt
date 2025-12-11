@@ -43,10 +43,54 @@ Update GitHub Issue #8 - Mark UI progress; continue
 
 git commit everything in logical batches, update giuthub issues, update todo-lists, all work should have an issue, tie them to those issues;always create todo-lists and create github issues and epics; and update them as you complete work; always create session logs in `~docs\session-logs` and ai chat logs at `~docs\chat-logs\` as markdown (`.md`) log files;; Add more ViewModel tests for MapEditor and ScriptEditor; Implement map format parsers for specific games; Add script opcode definitions for popular games (Dragon Warrior, Final Fantasy, etc.); Create visual tile rendering in Map/CHR editors using SkiaSharp or Avalonia drawing; Add undo/redo functionality to editors; continue;
 
+Create visual tile rendering using SkiaSharp or Avalonia drawing
+
+Add unit tests for the new custom controls; adding palette editing/selection; Add tile flipping/rotation preview options; continue
+
+continue
+
+&&&
+Implement tileset import from PNG/BMP images
+Add tile animation preview
+Add pixel-level editing in tile preview
+Add keyboard shortcuts (Ctrl+C, Ctrl+V, Ctrl+Z, Ctrl+Y)
+&&&
+
+continue
+
+&&&
+Selection tool - Select rectangular regions for copy/paste
+Tile flip/rotate in grid - Apply transformations to tiles in the main grid
+Multiple tile selection - Select and edit multiple tiles at once
+Undo history display - Show undo stack in UI
+Animation frame editor - Add/remove/reorder frames in animation preview
+Tile comparison view - Compare original vs modified tiles side-by-side
+&&&
+
+&&&
+Grid overlay options - Toggle 8x8 or 16x16 grid overlays on tile view
+Palette editor - Edit colors directly in the palette display
+Import from image - Import tiles from external PNG with palette matching
+Tile search - Find tiles matching a pattern or color distribution
+Export selection - Export just selected tiles to a new CHR file
+&&&
+
+enhance the map editor
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+continue
 
 
 

@@ -228,3 +228,18 @@ public class ColorEditRequestedEventArgs : EventArgs {
 		CurrentColor = currentColor;
 	}
 }
+
+/// <summary>
+/// Event args for color change events.
+/// </summary>
+public class ColorChangedEventArgs : EventArgs {
+	public int ColorIndex { get; }
+	public Color OldColor { get; }
+	public Color NewColor { get; }
+
+	public ColorChangedEventArgs(int colorIndex, Color oldColor, Color newColor) {
+		ColorIndex = colorIndex;
+		OldColor = oldColor;
+		NewColor = newColor;
+	}
+}
