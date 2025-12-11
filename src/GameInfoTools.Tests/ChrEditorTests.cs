@@ -143,3 +143,146 @@ public class ChrEditorTests {
 		Assert.Equal(512, ChrEditor.TilesPerBank);
 	}
 }
+
+/// <summary>
+/// Unit tests for TileCodec static methods for encoding/decoding tiles.
+/// </summary>
+public class TileCodecTests {
+	[Fact]
+	public void DecodeNes2bpp_ReturnsCorrectLength() {
+		var tileData = new byte[16];
+
+		var pixels = TileCodec.DecodeNes2bpp(tileData);
+
+		Assert.Equal(64, pixels.Length);
+	}
+
+	[Fact]
+	public void EncodeNes2bpp_ReturnsCorrectLength() {
+		var pixels = new byte[64];
+
+		var tileData = TileCodec.EncodeNes2bpp(pixels);
+
+		Assert.Equal(16, tileData.Length);
+	}
+
+	[Fact]
+	public void RoundTrip_Nes2bpp_PreservesData() {
+		var original = new byte[16];
+		for (int i = 0; i < 16; i++) {
+			original[i] = (byte)(i * 17);
+		}
+
+		var pixels = TileCodec.DecodeNes2bpp(original);
+		var reencoded = TileCodec.EncodeNes2bpp(pixels);
+
+		Assert.Equal(original, reencoded);
+	}
+
+	[Fact]
+	public void DecodeNes2bpp_CorrectPixelValues() {
+		// All zeroes should give all 0 pixels
+		var tileData = new byte[16];
+		var pixels = TileCodec.DecodeNes2bpp(tileData);
+
+		Assert.All(pixels, p => Assert.Equal(0, p));
+
+		// All 0xFF should give all 3 pixels
+		for (int i = 0; i < 16; i++) tileData[i] = 0xff;
+		pixels = TileCodec.DecodeNes2bpp(tileData);
+
+		Assert.All(pixels, p => Assert.Equal(3, p));
+	}
+
+	[Fact]
+	public void DecodeSnes4bpp_ReturnsCorrectLength() {
+		var tileData = new byte[32];
+
+		var pixels = TileCodec.DecodeSnes4bpp(tileData);
+
+		Assert.Equal(64, pixels.Length);
+	}
+
+	[Fact]
+	public void EncodeSnes4bpp_ReturnsCorrectLength() {
+		var pixels = new byte[64];
+
+		var tileData = TileCodec.EncodeSnes4bpp(pixels);
+
+		Assert.Equal(32, tileData.Length);
+	}
+
+	[Fact]
+	public void RoundTrip_Snes4bpp_PreservesData() {
+		var original = new byte[32];
+		for (int i = 0; i < 32; i++) {
+			original[i] = (byte)(i * 8);
+		}
+
+		var pixels = TileCodec.DecodeSnes4bpp(original);
+		var reencoded = TileCodec.EncodeSnes4bpp(pixels);
+
+		Assert.Equal(original, reencoded);
+	}
+
+	[Fact]
+	public void FlipHorizontal_ReversesColumns() {
+		var pixels = new byte[64];
+		// Fill first column with 1s
+		for (int row = 0; row < 8; row++) {
+			pixels[row * 8] = 1;
+		}
+
+		var flipped = TileCodec.FlipHorizontal(pixels);
+
+		// After flip, last column should have 1s
+		for (int row = 0; row < 8; row++) {
+			Assert.Equal(1, flipped[row * 8 + 7]);
+			Assert.Equal(0, flipped[row * 8]);
+		}
+	}
+
+	[Fact]
+	public void FlipVertical_ReversesRows() {
+		var pixels = new byte[64];
+		// Fill first row with 1s
+		for (int col = 0; col < 8; col++) {
+			pixels[col] = 1;
+		}
+
+		var flipped = TileCodec.FlipVertical(pixels);
+
+		// After flip, last row should have 1s
+		for (int col = 0; col < 8; col++) {
+			Assert.Equal(1, flipped[56 + col]);
+			Assert.Equal(0, flipped[col]);
+		}
+	}
+
+	[Fact]
+	public void RotateClockwise_RotatesCorrectly() {
+		var pixels = new byte[64];
+		// Put a 1 at top-left (0,0)
+		pixels[0] = 1;
+
+		var rotated = TileCodec.RotateClockwise(pixels);
+
+		// After 90° CW rotation, top-left should go to top-right (0,7)
+		Assert.Equal(1, rotated[7]);
+		Assert.Equal(0, rotated[0]);
+	}
+
+	[Fact]
+	public void DecodeNes2bpp_ThrowsOnShortData() {
+		var tileData = new byte[8]; // Too short
+
+		Assert.Throws<ArgumentException>(() => TileCodec.DecodeNes2bpp(tileData));
+	}
+
+	[Fact]
+	public void EncodeNes2bpp_ThrowsOnShortPixels() {
+		var pixels = new byte[32]; // Too short
+
+		Assert.Throws<ArgumentException>(() => TileCodec.EncodeNes2bpp(pixels));
+	}
+}
