@@ -210,6 +210,37 @@ public partial class ScriptEditorViewModel : ViewModelBase, IKeyboardShortcutHan
 	[ObservableProperty]
 	private bool _showCommandPreview = true;
 
+	// === Search Properties ===
+
+	/// <summary>
+	/// Whether the search panel is visible.
+	/// </summary>
+	[ObservableProperty]
+	private bool _showSearchPanel;
+
+	/// <summary>
+	/// Current search text for command filtering.
+	/// </summary>
+	[ObservableProperty]
+	private string _searchText = "";
+
+	/// <summary>
+	/// Current search result index in filtered commands.
+	/// </summary>
+	[ObservableProperty]
+	private int _currentSearchIndex = -1;
+
+	/// <summary>
+	/// Total matches found.
+	/// </summary>
+	[ObservableProperty]
+	private int _searchMatchCount;
+
+	/// <summary>
+	/// Filtered commands matching search.
+	/// </summary>
+	public ObservableCollection<ScriptCommand> SearchResults { get; } = [];
+
 	public string[] ScriptTypes { get; } = [
 		"Generic Event",
 		"Dialog Script",
@@ -1266,6 +1297,87 @@ public partial class ScriptEditorViewModel : ViewModelBase, IKeyboardShortcutHan
 		}
 	}
 
+	#region Search
+
+	/// <summary>
+	/// Execute search on commands.
+	/// </summary>
+	[RelayCommand]
+	private void ExecuteSearch() {
+		SearchResults.Clear();
+		CurrentSearchIndex = -1;
+
+		if (string.IsNullOrWhiteSpace(SearchText)) {
+			SearchMatchCount = 0;
+			return;
+		}
+
+		var searchLower = SearchText.ToLowerInvariant();
+
+		foreach (var cmd in Commands) {
+			bool matches = cmd.Name.Contains(searchLower, StringComparison.OrdinalIgnoreCase)
+				|| cmd.Description.Contains(searchLower, StringComparison.OrdinalIgnoreCase)
+				|| $"${cmd.Offset:x4}".Contains(searchLower, StringComparison.OrdinalIgnoreCase)
+				|| $"{cmd.Opcode:x2}".Contains(searchLower, StringComparison.OrdinalIgnoreCase);
+
+			if (matches) {
+				SearchResults.Add(cmd);
+			}
+		}
+
+		SearchMatchCount = SearchResults.Count;
+
+		if (SearchResults.Count > 0) {
+			CurrentSearchIndex = 0;
+			SelectedCommand = SearchResults[0];
+			StatusText = $"Found {SearchMatchCount} matches";
+		} else {
+			StatusText = "No matches found";
+		}
+	}
+
+	/// <summary>
+	/// Go to next search result.
+	/// </summary>
+	[RelayCommand]
+	private void SearchNext() {
+		if (SearchResults.Count == 0) {
+			ExecuteSearch();
+			return;
+		}
+
+		CurrentSearchIndex = (CurrentSearchIndex + 1) % SearchResults.Count;
+		SelectedCommand = SearchResults[CurrentSearchIndex];
+		StatusText = $"Match {CurrentSearchIndex + 1} of {SearchMatchCount}";
+	}
+
+	/// <summary>
+	/// Go to previous search result.
+	/// </summary>
+	[RelayCommand]
+	private void SearchPrevious() {
+		if (SearchResults.Count == 0) {
+			ExecuteSearch();
+			return;
+		}
+
+		CurrentSearchIndex = CurrentSearchIndex <= 0 ? SearchResults.Count - 1 : CurrentSearchIndex - 1;
+		SelectedCommand = SearchResults[CurrentSearchIndex];
+		StatusText = $"Match {CurrentSearchIndex + 1} of {SearchMatchCount}";
+	}
+
+	/// <summary>
+	/// Called when search text changes.
+	/// </summary>
+	partial void OnSearchTextChanged(string value) {
+		// Auto-search on text change if panel is visible
+		if (ShowSearchPanel && !string.IsNullOrEmpty(value)) {
+			ExecuteSearch();
+		}
+	}
+
+	#endregion
+
 	#region IKeyboardShortcutHandler
 
 	/// <summary>
@@ -1274,8 +1386,7 @@ public partial class ScriptEditorViewModel : ViewModelBase, IKeyboardShortcutHan
 	public bool HandleKeyDown(KeyEventArgs e) {
 		// Find (Ctrl+F)
 		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Find)) {
-			// TODO: Open search panel
-			StatusText = "Search panel (Ctrl+F) - coming soon";
+			ShowSearchPanel = true;
 			e.Handled = true;
 			return true;
 		}
@@ -1323,18 +1434,27 @@ public partial class ScriptEditorViewModel : ViewModelBase, IKeyboardShortcutHan
 			return true;
 		}
 
-		// Find next (F3) - TODO: Implement command search
+		// Find next (F3)
 		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.FindNext)) {
-			// SearchNextCommand(); // Not yet implemented
+			SearchNext();
 			e.Handled = true;
 			return true;
 		}
 
-		// Find previous (Shift+F3) - TODO: Implement command search
+		// Find previous (Shift+F3)
 		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.FindPrevious)) {
-			// SearchPreviousCommand(); // Not yet implemented
+			SearchPrevious();
 			e.Handled = true;
 			return true;
+		}
+
+		// Escape - close search panel
+		if (e.Key == Key.Escape) {
+			if (ShowSearchPanel) {
+				ShowSearchPanel = false;
+				e.Handled = true;
+				return true;
+			}
 		}
 
 		return false;
