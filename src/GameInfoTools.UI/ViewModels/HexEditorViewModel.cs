@@ -1,10 +1,25 @@
 using System.Collections.ObjectModel;
+using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GameInfoTools.Core;
 using GameInfoTools.Core.Commands;
 
 namespace GameInfoTools.UI.ViewModels;
+
+/// <summary>
+/// Byte grouping modes for hex display.
+/// </summary>
+public enum ByteGroupMode {
+	/// <summary>Individual bytes.</summary>
+	Byte,
+	/// <summary>16-bit words (little-endian).</summary>
+	Word,
+	/// <summary>32-bit double words (little-endian).</summary>
+	DWord,
+	/// <summary>32-bit double words (big-endian).</summary>
+	DWordBE
+}
 
 /// <summary>
 /// View model for hex editing.
@@ -43,10 +58,66 @@ public partial class HexEditorViewModel : ViewModelBase {
 	[ObservableProperty]
 	private string _redoDescription = "";
 
+	/// <summary>
+	/// Current byte grouping mode.
+	/// </summary>
+	[ObservableProperty]
+	private ByteGroupMode _byteGroup = ByteGroupMode.Byte;
+
+	/// <summary>
+	/// Show data inspector panel.
+	/// </summary>
+	[ObservableProperty]
+	private bool _showDataInspector = true;
+
+	#region Data Inspector Values
+
+	[ObservableProperty]
+	private string _inspectorByte = "";
+
+	[ObservableProperty]
+	private string _inspectorSignedByte = "";
+
+	[ObservableProperty]
+	private string _inspectorWordLE = "";
+
+	[ObservableProperty]
+	private string _inspectorWordBE = "";
+
+	[ObservableProperty]
+	private string _inspectorDWordLE = "";
+
+	[ObservableProperty]
+	private string _inspectorDWordBE = "";
+
+	[ObservableProperty]
+	private string _inspectorBinary = "";
+
+	[ObservableProperty]
+	private string _inspectorAscii = "";
+
+	[ObservableProperty]
+	private string _inspectorNesAddress = "";
+
+	[ObservableProperty]
+	private string _inspectorSnesAddress = "";
+
+	#endregion
+
 	public bool CanUndo => _undoRedo.CanUndo;
 	public bool CanRedo => _undoRedo.CanRedo;
 
 	public ObservableCollection<HexRow> HexRows { get; } = [];
+
+	/// <summary>
+	/// Bookmarked offsets.
+	/// </summary>
+	public ObservableCollection<HexBookmark> Bookmarks { get; } = [];
+
+	/// <summary>
+	/// Byte group mode options for binding.
+	/// </summary>
+	public static ByteGroupMode[] ByteGroupModes { get; } = [ByteGroupMode.Byte, ByteGroupMode.Word, ByteGroupMode.DWord, ByteGroupMode.DWordBE];
 
 	public HexEditorViewModel(RomFile? rom) {
 		_rom = rom;
@@ -263,9 +334,232 @@ public partial class HexEditorViewModel : ViewModelBase {
 		// TODO: Implement fill selection
 		StatusText = $"Filled selection with 0x{value:X2}";
 	}
+
+	#region Data Inspector
+
+	/// <summary>
+	/// Update the data inspector based on current selection.
+	/// </summary>
+	partial void OnSelectedOffsetChanged(int value) {
+		UpdateDataInspector();
+	}
+
+	private void UpdateDataInspector() {
+		if (_rom is null || SelectedOffset < 0 || SelectedOffset >= _rom.Length) {
+			ClearDataInspector();
+			return;
+		}
+
+		var data = _rom.Data;
+		int offset = SelectedOffset;
+
+		// Single byte
+		byte b = data[offset];
+		InspectorByte = $"{b} (0x{b:X2})";
+		InspectorSignedByte = $"{(sbyte)b}";
+		InspectorBinary = Convert.ToString(b, 2).PadLeft(8, '0');
+		InspectorAscii = b is >= 0x20 and < 0x7F ? $"'{(char)b}'" : "(non-printable)";
+
+		// Word (16-bit) - Little Endian
+		if (offset + 1 < data.Length) {
+			ushort wordLE = (ushort)(data[offset] | (data[offset + 1] << 8));
+			ushort wordBE = (ushort)((data[offset] << 8) | data[offset + 1]);
+			InspectorWordLE = $"{wordLE} (0x{wordLE:X4})";
+			InspectorWordBE = $"{wordBE} (0x{wordBE:X4})";
+		} else {
+			InspectorWordLE = "N/A";
+			InspectorWordBE = "N/A";
+		}
+
+		// DWord (32-bit)
+		if (offset + 3 < data.Length) {
+			uint dwordLE = (uint)(data[offset] | (data[offset + 1] << 8) | (data[offset + 2] << 16) | (data[offset + 3] << 24));
+			uint dwordBE = (uint)((data[offset] << 24) | (data[offset + 1] << 16) | (data[offset + 2] << 8) | data[offset + 3]);
+			InspectorDWordLE = $"{dwordLE} (0x{dwordLE:X8})";
+			InspectorDWordBE = $"{dwordBE} (0x{dwordBE:X8})";
+		} else {
+			InspectorDWordLE = "N/A";
+			InspectorDWordBE = "N/A";
+		}
+
+		// NES CPU address (assuming PRG bank mapping)
+		int nesAddr = 0x8000 + (offset % 0x4000);
+		int nesBank = offset / 0x4000;
+		InspectorNesAddress = $"${nesAddr:X4} (Bank {nesBank})";
+
+		// SNES LoROM address
+		int snesBank = (offset / 0x8000) + 0x80;
+		int snesOffset = 0x8000 + (offset % 0x8000);
+		InspectorSnesAddress = $"${snesBank:X2}:{snesOffset:X4}";
+	}
+
+	private void ClearDataInspector() {
+		InspectorByte = "";
+		InspectorSignedByte = "";
+		InspectorWordLE = "";
+		InspectorWordBE = "";
+		InspectorDWordLE = "";
+		InspectorDWordBE = "";
+		InspectorBinary = "";
+		InspectorAscii = "";
+		InspectorNesAddress = "";
+		InspectorSnesAddress = "";
+	}
+
+	#endregion
+
+	#region Bookmarks
+
+	/// <summary>
+	/// Add bookmark at current offset.
+	/// </summary>
+	[RelayCommand]
+	private void AddBookmark() {
+		if (SelectedOffset < 0) {
+			StatusText = "Select an offset to bookmark";
+			return;
+		}
+
+		// Check if already bookmarked
+		if (Bookmarks.Any(b => b.Offset == SelectedOffset)) {
+			StatusText = "Offset already bookmarked";
+			return;
+		}
+
+		Bookmarks.Add(new HexBookmark(SelectedOffset, $"Bookmark at 0x{SelectedOffset:X6}", DateTime.Now));
+		StatusText = $"Added bookmark at 0x{SelectedOffset:X6}";
+	}
+
+	/// <summary>
+	/// Remove bookmark at offset.
+	/// </summary>
+	[RelayCommand]
+	private void RemoveBookmark(int offset) {
+		var bookmark = Bookmarks.FirstOrDefault(b => b.Offset == offset);
+		if (bookmark is not null) {
+			Bookmarks.Remove(bookmark);
+			StatusText = $"Removed bookmark at 0x{offset:X6}";
+		}
+	}
+
+	/// <summary>
+	/// Go to bookmarked offset.
+	/// </summary>
+	[RelayCommand]
+	private void GoToBookmark(int offset) {
+		GoToOffset(offset);
+		SelectedOffset = offset;
+		StatusText = $"Jumped to bookmark at 0x{offset:X6}";
+	}
+
+	/// <summary>
+	/// Clear all bookmarks.
+	/// </summary>
+	[RelayCommand]
+	private void ClearBookmarks() {
+		Bookmarks.Clear();
+		StatusText = "Cleared all bookmarks";
+	}
+
+	#endregion
+
+	#region Byte Group Mode
+
+	/// <summary>
+	/// Cycle through byte group modes.
+	/// </summary>
+	[RelayCommand]
+	private void CycleByteGroup() {
+		ByteGroup = ByteGroup switch {
+			ByteGroupMode.Byte => ByteGroupMode.Word,
+			ByteGroupMode.Word => ByteGroupMode.DWord,
+			ByteGroupMode.DWord => ByteGroupMode.DWordBE,
+			_ => ByteGroupMode.Byte
+		};
+		RefreshView();
+		StatusText = $"Byte grouping: {ByteGroup}";
+	}
+
+	#endregion
+
+	#region Selection Range
+
+	[ObservableProperty]
+	private int _selectionStart = -1;
+
+	[ObservableProperty]
+	private int _selectionEnd = -1;
+
+	/// <summary>
+	/// Whether a range is selected.
+	/// </summary>
+	public bool HasRangeSelection => SelectionStart >= 0 && SelectionEnd >= SelectionStart;
+
+	/// <summary>
+	/// Length of current selection.
+	/// </summary>
+	public int SelectionLength => HasRangeSelection ? SelectionEnd - SelectionStart + 1 : 0;
+
+	/// <summary>
+	/// Set selection range.
+	/// </summary>
+	public void SetSelection(int start, int end) {
+		SelectionStart = Math.Min(start, end);
+		SelectionEnd = Math.Max(start, end);
+		OnPropertyChanged(nameof(HasRangeSelection));
+		OnPropertyChanged(nameof(SelectionLength));
+
+		if (HasRangeSelection) {
+			StatusText = $"Selected {SelectionLength} bytes (0x{SelectionStart:X6} - 0x{SelectionEnd:X6})";
+		}
+	}
+
+	/// <summary>
+	/// Clear selection range.
+	/// </summary>
+	[RelayCommand]
+	private void ClearRangeSelection() {
+		SelectionStart = -1;
+		SelectionEnd = -1;
+		OnPropertyChanged(nameof(HasRangeSelection));
+		OnPropertyChanged(nameof(SelectionLength));
+		StatusText = "Selection cleared";
+	}
+
+	/// <summary>
+	/// Fill selection range with a value.
+	/// </summary>
+	[RelayCommand]
+	private void FillSelectionRange(byte value) {
+		if (_rom is null || !HasRangeSelection) return;
+
+		var commands = new List<IUndoableCommand>();
+		for (int i = SelectionStart; i <= SelectionEnd && i < _rom.Length; i++) {
+			if (_rom.Data[i] != value) {
+				commands.Add(new SetByteCommand(_rom.Data, i, value));
+			}
+		}
+
+		if (commands.Count > 0) {
+			var composite = new CompositeCommand($"Fill {SelectionLength} bytes with 0x{value:X2}", commands);
+			_undoRedo.Execute(composite);
+			RefreshView();
+			UpdateUndoRedoState();
+			StatusText = $"Filled {SelectionLength} bytes with 0x{value:X2}";
+		}
+	}
+
+	#endregion
 }
 
 /// <summary>
 /// Represents a row of hex data.
 /// </summary>
 public record HexRow(string Address, string HexData, string AsciiData, int RawOffset);
+
+/// <summary>
+/// Represents a bookmark in the hex editor.
+/// </summary>
+public record HexBookmark(int Offset, string Name, DateTime Created) {
+	public string OffsetDisplay => $"0x{Offset:X6}";
+}

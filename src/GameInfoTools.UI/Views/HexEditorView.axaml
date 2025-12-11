@@ -3,7 +3,7 @@
 			 xmlns:vm="using:GameInfoTools.UI.ViewModels"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+			 mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
 			 x:Class="GameInfoTools.UI.Views.HexEditorView"
 			 x:DataType="vm:HexEditorViewModel">
 
@@ -20,51 +20,148 @@
 			<Button Content="⏭" Command="{Binding GoToEndCommand}" ToolTip.Tip="Go to End"/>
 			<Separator/>
 			<TextBlock Text="Offset:" VerticalAlignment="Center"/>
-			<TextBox Text="{Binding AddressDisplay}" Width="150" IsReadOnly="True" FontFamily="Consolas"/>
+			<NumericUpDown Value="{Binding CurrentOffset}" Minimum="0" Maximum="16777215" FormatString="X6" Width="100"/>
 			<Separator/>
 			<TextBlock Text="Search:" VerticalAlignment="Center"/>
 			<TextBox Text="{Binding SearchHex}" Width="150" Watermark="Hex (e.g., A9 00 8D)" FontFamily="Consolas"/>
 			<Button Content="Find" Command="{Binding SearchHexPatternCommand}"/>
 			<Separator/>
-			<Button Content="Copy" Command="{Binding CopySelectionCommand}" ToolTip.Tip="Copy Selection"/>
-			<Button Content="Paste" Command="{Binding PasteAtCursorCommand}" ToolTip.Tip="Paste"/>
+			<TextBlock Text="Group:" VerticalAlignment="Center"/>
+			<ComboBox ItemsSource="{Binding ByteGroupModes}" SelectedItem="{Binding ByteGroup}" Width="80"/>
+			<Separator/>
+			<Button Content="Undo" Command="{Binding UndoCommand}" IsEnabled="{Binding CanUndo}" ToolTip.Tip="{Binding UndoDescription}"/>
+			<Button Content="Redo" Command="{Binding RedoCommand}" IsEnabled="{Binding CanRedo}" ToolTip.Tip="{Binding RedoDescription}"/>
+			<Separator/>
+			<ToggleButton Content="📊" IsChecked="{Binding ShowDataInspector}" ToolTip.Tip="Data Inspector"/>
+			<Button Content="🔖" Command="{Binding AddBookmarkCommand}" ToolTip.Tip="Add Bookmark"/>
 		</StackPanel>
 
-		<!-- Hex View -->
-		<Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
-				CornerRadius="4" Margin="16,8" Padding="8">
-			<DockPanel>
-				<!-- Header -->
-				<Grid DockPanel.Dock="Top" ColumnDefinitions="70,*,150" Margin="0,0,0,8">
-					<TextBlock Grid.Column="0" Text="Address" FontWeight="SemiBold" FontFamily="Consolas"/>
-					<TextBlock Grid.Column="1" Text="00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F"
-							   FontFamily="Consolas" Opacity="0.7"/>
-					<TextBlock Grid.Column="2" Text="ASCII" FontWeight="SemiBold" FontFamily="Consolas"/>
-				</Grid>
+		<!-- Main Content -->
+		<Grid Grid.Row="1" ColumnDefinitions="*,Auto" Margin="16,8">
+			<!-- Hex View -->
+			<Border Grid.Column="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+					CornerRadius="4" Padding="8" Margin="0,0,8,0">
+				<DockPanel>
+					<!-- Header -->
+					<Grid DockPanel.Dock="Top" ColumnDefinitions="70,*,150" Margin="0,0,0,8">
+						<TextBlock Grid.Column="0" Text="Address" FontWeight="SemiBold" FontFamily="Consolas"/>
+						<TextBlock Grid.Column="1" Text="00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F"
+								   FontFamily="Consolas" Opacity="0.7"/>
+						<TextBlock Grid.Column="2" Text="ASCII" FontWeight="SemiBold" FontFamily="Consolas"/>
+					</Grid>
 
-				<!-- Hex Data -->
-				<ListBox ItemsSource="{Binding HexRows}" FontFamily="Consolas" FontSize="12"
-						 Background="Transparent">
-					<ListBox.ItemTemplate>
-						<DataTemplate>
-							<Grid ColumnDefinitions="70,*,150">
-								<TextBlock Grid.Column="0" Text="{Binding Address}" Foreground="DodgerBlue"/>
-								<TextBlock Grid.Column="1" Text="{Binding HexData}"/>
-								<TextBlock Grid.Column="2" Text="{Binding AsciiData}" Opacity="0.7"/>
+					<!-- Hex Data -->
+					<ListBox ItemsSource="{Binding HexRows}" FontFamily="Consolas" FontSize="12"
+							 Background="Transparent">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<Grid ColumnDefinitions="70,*,150">
+									<TextBlock Grid.Column="0" Text="{Binding Address}" Foreground="DodgerBlue"/>
+									<TextBlock Grid.Column="1" Text="{Binding HexData}"/>
+									<TextBlock Grid.Column="2" Text="{Binding AsciiData}" Opacity="0.7"/>
+								</Grid>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</DockPanel>
+			</Border>
+
+			<!-- Right Panel: Data Inspector and Bookmarks -->
+			<Border Grid.Column="1" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+					CornerRadius="4" Padding="16" Width="220" IsVisible="{Binding ShowDataInspector}">
+				<ScrollViewer>
+					<StackPanel Spacing="12">
+						<!-- Data Inspector -->
+						<TextBlock Text="Data Inspector" FontWeight="SemiBold" FontSize="14"/>
+						<StackPanel Spacing="4">
+							<Grid ColumnDefinitions="80,*">
+								<TextBlock Text="Byte:" Opacity="0.7"/>
+								<TextBlock Grid.Column="1" Text="{Binding InspectorByte}" FontFamily="Consolas"/>
 							</Grid>
-						</DataTemplate>
-					</ListBox.ItemTemplate>
-				</ListBox>
-			</DockPanel>
-		</Border>
+							<Grid ColumnDefinitions="80,*">
+								<TextBlock Text="Signed:" Opacity="0.7"/>
+								<TextBlock Grid.Column="1" Text="{Binding InspectorSignedByte}" FontFamily="Consolas"/>
+							</Grid>
+							<Grid ColumnDefinitions="80,*">
+								<TextBlock Text="Binary:" Opacity="0.7"/>
+								<TextBlock Grid.Column="1" Text="{Binding InspectorBinary}" FontFamily="Consolas"/>
+							</Grid>
+							<Grid ColumnDefinitions="80,*">
+								<TextBlock Text="ASCII:" Opacity="0.7"/>
+								<TextBlock Grid.Column="1" Text="{Binding InspectorAscii}" FontFamily="Consolas"/>
+							</Grid>
+							<Separator Margin="0,4"/>
+							<Grid ColumnDefinitions="80,*">
+								<TextBlock Text="Word LE:" Opacity="0.7"/>
+								<TextBlock Grid.Column="1" Text="{Binding InspectorWordLE}" FontFamily="Consolas"/>
+							</Grid>
+							<Grid ColumnDefinitions="80,*">
+								<TextBlock Text="Word BE:" Opacity="0.7"/>
+								<TextBlock Grid.Column="1" Text="{Binding InspectorWordBE}" FontFamily="Consolas"/>
+							</Grid>
+							<Grid ColumnDefinitions="80,*">
+								<TextBlock Text="DWord LE:" Opacity="0.7"/>
+								<TextBlock Grid.Column="1" Text="{Binding InspectorDWordLE}" FontFamily="Consolas" FontSize="10"/>
+							</Grid>
+							<Grid ColumnDefinitions="80,*">
+								<TextBlock Text="DWord BE:" Opacity="0.7"/>
+								<TextBlock Grid.Column="1" Text="{Binding InspectorDWordBE}" FontFamily="Consolas" FontSize="10"/>
+							</Grid>
+							<Separator Margin="0,4"/>
+							<Grid ColumnDefinitions="80,*">
+								<TextBlock Text="NES:" Opacity="0.7"/>
+								<TextBlock Grid.Column="1" Text="{Binding InspectorNesAddress}" FontFamily="Consolas"/>
+							</Grid>
+							<Grid ColumnDefinitions="80,*">
+								<TextBlock Text="SNES:" Opacity="0.7"/>
+								<TextBlock Grid.Column="1" Text="{Binding InspectorSnesAddress}" FontFamily="Consolas"/>
+							</Grid>
+						</StackPanel>
+
+						<Separator Margin="0,8"/>
+
+						<!-- Bookmarks -->
+						<StackPanel Orientation="Horizontal" Spacing="8">
+							<TextBlock Text="Bookmarks" FontWeight="SemiBold" FontSize="14"/>
+							<Button Content="Clear" Command="{Binding ClearBookmarksCommand}" FontSize="10" Padding="4,2"/>
+						</StackPanel>
+						<ListBox ItemsSource="{Binding Bookmarks}" MaxHeight="150" Background="Transparent">
+							<ListBox.ItemTemplate>
+								<DataTemplate>
+									<Grid ColumnDefinitions="*,Auto">
+										<Button Grid.Column="0" Content="{Binding OffsetDisplay}" 
+												Command="{Binding $parent[ListBox].((vm:HexEditorViewModel)DataContext).GoToBookmarkCommand}"
+												CommandParameter="{Binding Offset}"
+												HorizontalAlignment="Stretch" FontFamily="Consolas" FontSize="11"/>
+										<Button Grid.Column="1" Content="✕" Width="20" Padding="2"
+												Command="{Binding $parent[ListBox].((vm:HexEditorViewModel)DataContext).RemoveBookmarkCommand}"
+												CommandParameter="{Binding Offset}"/>
+									</Grid>
+								</DataTemplate>
+							</ListBox.ItemTemplate>
+						</ListBox>
+
+						<Separator Margin="0,8"/>
+
+						<!-- Selection Info -->
+						<TextBlock Text="Selection" FontWeight="SemiBold" FontSize="14"/>
+						<StackPanel Spacing="2">
+							<TextBlock Text="{Binding SelectedOffset, StringFormat=Cursor: 0x{0:X6}}" FontFamily="Consolas" Opacity="0.7"/>
+							<TextBlock Text="{Binding SelectionLength, StringFormat=Length: {0} bytes}" FontFamily="Consolas" Opacity="0.7"
+									   IsVisible="{Binding HasRangeSelection}"/>
+						</StackPanel>
+					</StackPanel>
+				</ScrollViewer>
+			</Border>
+		</Grid>
 
 		<!-- Status Bar -->
 		<Border Grid.Row="2" Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}" Padding="16,8">
-			<Grid ColumnDefinitions="*,Auto,Auto">
+			<Grid ColumnDefinitions="*,Auto,Auto,Auto">
 				<TextBlock Grid.Column="0" Text="{Binding StatusText}"/>
 				<TextBlock Grid.Column="1" Text="{Binding AddressDisplay}" Margin="16,0" FontFamily="Consolas"/>
-				<TextBlock Grid.Column="2" Text="{Binding SelectedOffset, StringFormat=Selected: 0x{0:X6}}" FontFamily="Consolas"
-						   IsVisible="{Binding SelectedOffset, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+				<TextBlock Grid.Column="2" Text="{Binding ByteGroup, StringFormat=Group: {0}}" Margin="16,0"/>
+				<TextBlock Grid.Column="3" Text="{Binding Bookmarks.Count, StringFormat={}{0} bookmarks}" FontFamily="Consolas"/>
 			</Grid>
 		</Border>
 	</Grid>
