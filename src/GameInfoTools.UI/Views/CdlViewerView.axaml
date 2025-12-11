@@ -1,0 +1,160 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="using:GameInfoTools.UI.ViewModels"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
+			 x:Class="GameInfoTools.UI.Views.CdlViewerView"
+			 x:DataType="vm:CdlViewerViewModel">
+
+	<Design.DataContext>
+		<vm:CdlViewerViewModel/>
+	</Design.DataContext>
+
+	<Grid RowDefinitions="Auto,*,Auto">
+		<!-- Toolbar -->
+		<Border Grid.Row="0" Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}" Padding="8">
+			<StackPanel Orientation="Horizontal" Spacing="8">
+				<Button Content="📂 Open CDL" Command="{Binding LoadCdlFileCommand}" ToolTip.Tip="Load CDL file"/>
+				<Separator/>
+				<TextBlock Text="Bank Size:" VerticalAlignment="Center"/>
+				<NumericUpDown Value="{Binding BankSize}" Minimum="1024" Maximum="65536" Width="100" Increment="4096"/>
+				<Separator/>
+				<TextBlock Text="Heatmap Width:" VerticalAlignment="Center"/>
+				<NumericUpDown Value="{Binding HeatmapWidth}" Minimum="16" Maximum="128" Width="80" Increment="8"/>
+				<Separator/>
+				<Button Content="🔄 Refresh" Command="{Binding RefreshCommand}" ToolTip.Tip="Refresh display"/>
+				<Separator/>
+				<Button Content="📊 CSV" Command="{Binding ExportToCsvCommand}" ToolTip.Tip="Export to CSV"/>
+				<Button Content="📋 JSON" Command="{Binding ExportToJsonCommand}" ToolTip.Tip="Export to JSON"/>
+				<Button Content="📝 Report" Command="{Binding GenerateReportCommand}" ToolTip.Tip="Generate text report"/>
+			</StackPanel>
+		</Border>
+
+		<!-- Main Content -->
+		<Grid Grid.Row="1" ColumnDefinitions="*,300" Margin="8">
+			<!-- Left Panel - Stats and Heatmap -->
+			<Grid Grid.Column="0" RowDefinitions="Auto,Auto,*" Margin="0,0,8,0">
+				<!-- Statistics Panel -->
+				<Border Grid.Row="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+						CornerRadius="4" Padding="16" Margin="0,0,0,8">
+					<Grid ColumnDefinitions="*,*,*,*">
+						<!-- Code Stats -->
+						<StackPanel Grid.Column="0" Spacing="4" HorizontalAlignment="Center">
+							<TextBlock Text="Code" FontWeight="SemiBold" HorizontalAlignment="Center" Foreground="#4CAF50"/>
+							<TextBlock Text="{Binding CodeBytes, StringFormat={}{0:N0}}" FontSize="20" HorizontalAlignment="Center"/>
+							<TextBlock Text="{Binding CodePercentage, StringFormat={}{0:F1}%}" Opacity="0.8" HorizontalAlignment="Center"/>
+						</StackPanel>
+
+						<!-- Data Stats -->
+						<StackPanel Grid.Column="1" Spacing="4" HorizontalAlignment="Center">
+							<TextBlock Text="Data" FontWeight="SemiBold" HorizontalAlignment="Center" Foreground="#FFC107"/>
+							<TextBlock Text="{Binding DataBytes, StringFormat={}{0:N0}}" FontSize="20" HorizontalAlignment="Center"/>
+							<TextBlock Text="{Binding DataPercentage, StringFormat={}{0:F1}%}" Opacity="0.8" HorizontalAlignment="Center"/>
+						</StackPanel>
+
+						<!-- Unknown Stats -->
+						<StackPanel Grid.Column="2" Spacing="4" HorizontalAlignment="Center">
+							<TextBlock Text="Unknown" FontWeight="SemiBold" HorizontalAlignment="Center" Opacity="0.6"/>
+							<TextBlock Text="{Binding UnknownBytes, StringFormat={}{0:N0}}" FontSize="20" HorizontalAlignment="Center"/>
+							<TextBlock Text="{Binding CoveragePercentage, StringFormat={}{0:F1}% covered}" Opacity="0.8" HorizontalAlignment="Center"/>
+						</StackPanel>
+
+						<!-- Total Stats -->
+						<StackPanel Grid.Column="3" Spacing="4" HorizontalAlignment="Center">
+							<TextBlock Text="Total" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+							<TextBlock Text="{Binding TotalBytes, StringFormat={}{0:N0}}" FontSize="20" HorizontalAlignment="Center"/>
+							<TextBlock Text="{Binding FormatName}" Opacity="0.8" HorizontalAlignment="Center"/>
+						</StackPanel>
+					</Grid>
+				</Border>
+
+				<!-- ASCII Heatmap Panel -->
+				<Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+						CornerRadius="4" Padding="8" Margin="0,0,0,8">
+					<DockPanel>
+						<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="16" Margin="0,0,0,8">
+							<TextBlock Text="Coverage Heatmap" FontWeight="SemiBold"/>
+							<TextBlock Text="█=100% ▓=75%+ ▒=50%+ ░=25%+ .=&lt;25%" Opacity="0.7" FontSize="11"/>
+						</StackPanel>
+						<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MaxHeight="200">
+							<TextBlock Text="{Binding AsciiHeatmap}" FontFamily="Consolas" FontSize="11"
+									   IsVisible="{Binding HasCdlLoaded}"/>
+						</ScrollViewer>
+					</DockPanel>
+				</Border>
+
+				<!-- Bank Coverage Grid -->
+				<Border Grid.Row="2" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+						CornerRadius="4" Padding="8">
+					<DockPanel>
+						<TextBlock DockPanel.Dock="Top" Text="Bank Coverage" FontWeight="SemiBold" Margin="0,0,0,8"/>
+						<DataGrid ItemsSource="{Binding Banks}" SelectedIndex="{Binding SelectedBankIndex}"
+								  AutoGenerateColumns="False" IsReadOnly="True"
+								  GridLinesVisibility="Horizontal">
+							<DataGrid.Columns>
+								<DataGridTextColumn Header="Bank" Binding="{Binding BankLabel}" Width="70"/>
+								<DataGridTextColumn Header="Offset" Binding="{Binding OffsetRange}" Width="140"/>
+								<DataGridTextColumn Header="Code" Binding="{Binding CodeDisplay}" Width="60"/>
+								<DataGridTextColumn Header="Data" Binding="{Binding DataDisplay}" Width="60"/>
+								<DataGridTextColumn Header="Coverage" Binding="{Binding CoverageDisplay}" Width="70"/>
+							</DataGrid.Columns>
+						</DataGrid>
+					</DockPanel>
+				</Border>
+			</Grid>
+
+			<!-- Right Panel - Regions -->
+			<Grid Grid.Column="1" RowDefinitions="*,*">
+				<!-- Covered Regions -->
+				<Border Grid.Row="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+						CornerRadius="4" Padding="8" Margin="0,0,0,8">
+					<DockPanel>
+						<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,8">
+							<TextBlock Text="Covered Regions" FontWeight="SemiBold"/>
+							<TextBlock Text="{Binding CoveredRegions.Count, StringFormat= ({0})}" Opacity="0.7"/>
+						</StackPanel>
+						<DataGrid ItemsSource="{Binding CoveredRegions}"
+								  AutoGenerateColumns="False" IsReadOnly="True"
+								  GridLinesVisibility="Horizontal">
+							<DataGrid.Columns>
+								<DataGridTextColumn Header="Start" Binding="{Binding OffsetHex}" Width="75"/>
+								<DataGridTextColumn Header="End" Binding="{Binding EndOffsetHex}" Width="75"/>
+								<DataGridTextColumn Header="Size" Binding="{Binding LengthDisplay}" Width="60"/>
+								<DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="*"/>
+							</DataGrid.Columns>
+						</DataGrid>
+					</DockPanel>
+				</Border>
+
+				<!-- Uncovered Regions -->
+				<Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+						CornerRadius="4" Padding="8">
+					<DockPanel>
+						<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,8">
+							<TextBlock Text="Uncovered Regions" FontWeight="SemiBold" Opacity="0.7"/>
+							<TextBlock Text="{Binding UncoveredRegions.Count, StringFormat= ({0})}" Opacity="0.5"/>
+						</StackPanel>
+						<DataGrid ItemsSource="{Binding UncoveredRegions}"
+								  AutoGenerateColumns="False" IsReadOnly="True"
+								  GridLinesVisibility="Horizontal">
+							<DataGrid.Columns>
+								<DataGridTextColumn Header="Start" Binding="{Binding OffsetHex}" Width="75"/>
+								<DataGridTextColumn Header="End" Binding="{Binding EndOffsetHex}" Width="75"/>
+								<DataGridTextColumn Header="Size" Binding="{Binding LengthDisplay}" Width="*"/>
+							</DataGrid.Columns>
+						</DataGrid>
+					</DockPanel>
+				</Border>
+			</Grid>
+		</Grid>
+
+		<!-- Status Bar -->
+		<Border Grid.Row="2" Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}" Padding="16,8">
+			<Grid ColumnDefinitions="*,Auto">
+				<TextBlock Grid.Column="0" Text="{Binding StatusText}"/>
+				<TextBlock Grid.Column="1" Text="{Binding CdlFilePath}" Opacity="0.7" TextTrimming="CharacterEllipsis"/>
+			</Grid>
+		</Border>
+	</Grid>
+</UserControl>

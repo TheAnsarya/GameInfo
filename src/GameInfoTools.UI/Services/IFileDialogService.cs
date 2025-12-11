@@ -89,6 +89,13 @@ public class FileDialogService : IFileDialogService {
 	};
 
 	/// <summary>
+	/// Common file type filters for CSV files.
+	/// </summary>
+	public static FilePickerFileType CsvFiles { get; } = new("CSV Files") {
+		Patterns = ["*.csv"]
+	};
+
+	/// <summary>
 	/// Common file type filters for binary files.
 	/// </summary>
 	public static FilePickerFileType BinaryFiles { get; } = new("Binary Files") {
