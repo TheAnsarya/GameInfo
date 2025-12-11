@@ -129,7 +129,7 @@
 							<ListBox.ItemTemplate>
 								<DataTemplate>
 									<Grid ColumnDefinitions="*,Auto">
-										<Button Grid.Column="0" Content="{Binding OffsetDisplay}" 
+										<Button Grid.Column="0" Content="{Binding OffsetDisplay}"
 												Command="{Binding $parent[ListBox].((vm:HexEditorViewModel)DataContext).GoToBookmarkCommand}"
 												CommandParameter="{Binding Offset}"
 												HorizontalAlignment="Stretch" FontFamily="Consolas" FontSize="11"/>

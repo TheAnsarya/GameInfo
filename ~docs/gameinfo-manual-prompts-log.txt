@@ -79,6 +79,7 @@ enhance the map editor
 
 update chat logs and session logs for all of our work, not just the map editor; update documentation and github issues and plan more with gh issues and continue tool editing, and create and update todo-lists; git commit and push all uncommited files in logical batches, attach them to issues; always attach commits to a github issue; continue;
 
+continue
 
 
 
