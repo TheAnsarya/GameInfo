@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform.Storage;
@@ -18,7 +19,7 @@ namespace GameInfoTools.UI.ViewModels;
 /// <summary>
 /// View model for CHR tile editing.
 /// </summary>
-public partial class ChrEditorViewModel : ViewModelBase {
+public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandler {
 	private readonly RomFile? _rom;
 	private ChrEditor? _chrEditor;
 	private readonly UndoRedoManager _undoRedo = new(maxHistorySize: 100);
@@ -1492,6 +1493,379 @@ public partial class ChrEditorViewModel : ViewModelBase {
 	}
 
 	/// <summary>
+	/// Selection start point for rectangular selection.
+	/// </summary>
+	private int? _rectangularSelectionStart;
+
+	/// <summary>
+	/// Number of tiles per row in the grid (for rectangular selection).
+	/// </summary>
+	[ObservableProperty]
+	private int _tilesPerRow = 16;
+
+	/// <summary>
+	/// Start a rectangular selection at the given tile index.
+	/// </summary>
+	public void StartRectangularSelection(int tileIndex) {
+		_rectangularSelectionStart = tileIndex;
+		SelectedTileIndices.Clear();
+		SelectedTileIndices.Add(tileIndex);
+	}
+
+	/// <summary>
+	/// Extend rectangular selection to the given tile index.
+	/// </summary>
+	public void ExtendRectangularSelection(int endIndex) {
+		if (_rectangularSelectionStart is null) return;
+
+		int startIdx = _rectangularSelectionStart.Value;
+		SelectedTileIndices.Clear();
+
+		// Calculate rectangular selection
+		int startRow = startIdx / TilesPerRow;
+		int startCol = startIdx % TilesPerRow;
+		int endRow = endIndex / TilesPerRow;
+		int endCol = endIndex % TilesPerRow;
+
+		int minRow = Math.Min(startRow, endRow);
+		int maxRow = Math.Max(startRow, endRow);
+		int minCol = Math.Min(startCol, endCol);
+		int maxCol = Math.Max(startCol, endCol);
+
+		for (int row = minRow; row <= maxRow; row++) {
+			for (int col = minCol; col <= maxCol; col++) {
+				int idx = row * TilesPerRow + col;
+				if (idx < Tiles.Count) {
+					SelectedTileIndices.Add(idx);
+				}
+			}
+		}
+
+		StatusText = $"Selected {SelectedTileIndices.Count} tiles ({maxRow - minRow + 1}x{maxCol - minCol + 1})";
+	}
+
+	/// <summary>
+	/// End rectangular selection.
+	/// </summary>
+	public void EndRectangularSelection() {
+		_rectangularSelectionStart = null;
+	}
+
+	/// <summary>
+	/// Select all tiles in the current bank.
+	/// </summary>
+	[RelayCommand]
+	private void SelectAllTiles() {
+		if (!AllowMultiSelect) AllowMultiSelect = true;
+
+		SelectedTileIndices.Clear();
+		for (int i = 0; i < Tiles.Count; i++) {
+			SelectedTileIndices.Add(i);
+		}
+		StatusText = $"Selected all {Tiles.Count} tiles";
+	}
+
+	/// <summary>
+	/// Invert the current selection.
+	/// </summary>
+	[RelayCommand]
+	private void InvertSelection() {
+		if (!AllowMultiSelect) AllowMultiSelect = true;
+
+		var currentSelection = SelectedTileIndices.ToHashSet();
+		SelectedTileIndices.Clear();
+
+		for (int i = 0; i < Tiles.Count; i++) {
+			if (!currentSelection.Contains(i)) {
+				SelectedTileIndices.Add(i);
+			}
+		}
+		StatusText = $"Inverted selection: {SelectedTileIndices.Count} tiles selected";
+	}
+
+	/// <summary>
+	/// Select a row of tiles.
+	/// </summary>
+	[RelayCommand]
+	private void SelectRow(int row) {
+		if (!AllowMultiSelect) AllowMultiSelect = true;
+
+		SelectedTileIndices.Clear();
+		int startIdx = row * TilesPerRow;
+		for (int col = 0; col < TilesPerRow; col++) {
+			int idx = startIdx + col;
+			if (idx < Tiles.Count) {
+				SelectedTileIndices.Add(idx);
+			}
+		}
+		StatusText = $"Selected row {row}: {SelectedTileIndices.Count} tiles";
+	}
+
+	/// <summary>
+	/// Select a column of tiles.
+	/// </summary>
+	[RelayCommand]
+	private void SelectColumn(int col) {
+		if (!AllowMultiSelect) AllowMultiSelect = true;
+
+		SelectedTileIndices.Clear();
+		int maxRows = (Tiles.Count + TilesPerRow - 1) / TilesPerRow;
+		for (int row = 0; row < maxRows; row++) {
+			int idx = row * TilesPerRow + col;
+			if (idx < Tiles.Count) {
+				SelectedTileIndices.Add(idx);
+			}
+		}
+		StatusText = $"Selected column {col}: {SelectedTileIndices.Count} tiles";
+	}
+
+	/// <summary>
+	/// Select tiles by color (tiles containing the specified color index).
+	/// </summary>
+	[RelayCommand]
+	private void SelectByColor(int colorIndex) {
+		if (_chrEditor is null) return;
+		if (!AllowMultiSelect) AllowMultiSelect = true;
+
+		SelectedTileIndices.Clear();
+		int bankOffset = SelectedBank * ChrEditor.TilesPerBank;
+
+		for (int i = 0; i < Tiles.Count; i++) {
+			int actualIndex = bankOffset + i;
+			if (actualIndex < TileCount) {
+				var tile = _chrEditor.GetTile(actualIndex);
+				bool hasColor = false;
+				for (int y = 0; y < 8 && !hasColor; y++) {
+					for (int x = 0; x < 8; x++) {
+						if (tile[y, x] == colorIndex) {
+							hasColor = true;
+							break;
+						}
+					}
+				}
+				if (hasColor) {
+					SelectedTileIndices.Add(i);
+				}
+			}
+		}
+		StatusText = $"Selected {SelectedTileIndices.Count} tiles containing color {colorIndex}";
+	}
+
+	/// <summary>
+	/// Select non-empty tiles.
+	/// </summary>
+	[RelayCommand]
+	private void SelectNonEmptyTiles() {
+		if (_chrEditor is null) return;
+		if (!AllowMultiSelect) AllowMultiSelect = true;
+
+		SelectedTileIndices.Clear();
+		int bankOffset = SelectedBank * ChrEditor.TilesPerBank;
+
+		for (int i = 0; i < Tiles.Count; i++) {
+			int actualIndex = bankOffset + i;
+			if (actualIndex < TileCount) {
+				var tile = _chrEditor.GetTile(actualIndex);
+				bool isEmpty = true;
+				for (int y = 0; y < 8 && isEmpty; y++) {
+					for (int x = 0; x < 8; x++) {
+						if (tile[y, x] != 0) {
+							isEmpty = false;
+							break;
+						}
+					}
+				}
+				if (!isEmpty) {
+					SelectedTileIndices.Add(i);
+				}
+			}
+		}
+		StatusText = $"Selected {SelectedTileIndices.Count} non-empty tiles";
+	}
+
+	/// <summary>
+	/// Select similar tiles (tiles similar to the current selection).
+	/// </summary>
+	[RelayCommand]
+	private void SelectSimilarTiles() {
+		if (_chrEditor is null || SelectedTileData is null) return;
+		if (!AllowMultiSelect) AllowMultiSelect = true;
+
+		var referenceTile = SelectedTileData;
+		int bankOffset = SelectedBank * ChrEditor.TilesPerBank;
+		var threshold = SearchSimilarityThreshold / 100.0;
+
+		SelectedTileIndices.Clear();
+
+		for (int i = 0; i < Tiles.Count; i++) {
+			int actualIndex = bankOffset + i;
+			if (actualIndex < TileCount) {
+				var tile = _chrEditor.GetTile(actualIndex);
+				int matchCount = 0;
+				int totalPixels = 64;
+
+				for (int y = 0; y < 8; y++) {
+					for (int x = 0; x < 8; x++) {
+						if (tile[y, x] == referenceTile[y, x]) {
+							matchCount++;
+						}
+					}
+				}
+
+				if ((double)matchCount / totalPixels >= threshold) {
+					SelectedTileIndices.Add(i);
+				}
+			}
+		}
+		StatusText = $"Selected {SelectedTileIndices.Count} tiles similar to current ({SearchSimilarityThreshold}% threshold)";
+	}
+
+	/// <summary>
+	/// Copy selected tiles to clipboard.
+	/// </summary>
+	private List<(int Index, byte[,] Data)>? _tileClipboard;
+
+	[RelayCommand]
+	private void CopySelectedTiles() {
+		if (_chrEditor is null || SelectedTileIndices.Count == 0) return;
+
+		_tileClipboard = [];
+		int bankOffset = SelectedBank * ChrEditor.TilesPerBank;
+
+		foreach (var idx in SelectedTileIndices.OrderBy(i => i)) {
+			int actualIndex = bankOffset + idx;
+			if (actualIndex < TileCount) {
+				var tile = _chrEditor.GetTile(actualIndex);
+				var copy = new byte[8, 8];
+				Array.Copy(tile, copy, tile.Length);
+				_tileClipboard.Add((idx, copy));
+			}
+		}
+		StatusText = $"Copied {_tileClipboard.Count} tiles to clipboard";
+	}
+
+	/// <summary>
+	/// Paste tiles from clipboard.
+	/// </summary>
+	[RelayCommand]
+	private void PasteSelectedTiles() {
+		if (_chrEditor is null || _tileClipboard is null || _tileClipboard.Count == 0) return;
+
+		int bankOffset = SelectedBank * ChrEditor.TilesPerBank;
+		int baseIndex = SelectedTileIndices.Count > 0 ? SelectedTileIndices.Min() : 0;
+
+		// Calculate offset from the first tile in clipboard
+		int clipboardBase = _tileClipboard[0].Index;
+
+		foreach (var (relIdx, data) in _tileClipboard) {
+			int targetIdx = baseIndex + (relIdx - clipboardBase);
+			int actualIndex = bankOffset + targetIdx;
+
+			if (actualIndex >= 0 && actualIndex < TileCount) {
+				ExecuteTileChange(actualIndex, data, $"Paste tile at {actualIndex:X2}");
+			}
+		}
+		StatusText = $"Pasted {_tileClipboard.Count} tiles";
+	}
+
+	/// <summary>
+	/// Delete (clear) selected tiles.
+	/// </summary>
+	[RelayCommand]
+	private void DeleteSelectedTiles() {
+		ClearSelectedTiles();
+	}
+
+	/// <summary>
+	/// Swap two selected tiles.
+	/// </summary>
+	[RelayCommand]
+	private void SwapSelectedTiles() {
+		if (_chrEditor is null || SelectedTileIndices.Count != 2) {
+			StatusText = "Select exactly 2 tiles to swap";
+			return;
+		}
+
+		int bankOffset = SelectedBank * ChrEditor.TilesPerBank;
+		int idx1 = bankOffset + SelectedTileIndices[0];
+		int idx2 = bankOffset + SelectedTileIndices[1];
+
+		if (idx1 >= TileCount || idx2 >= TileCount) return;
+
+		var tile1 = _chrEditor.GetTile(idx1);
+		var tile2 = _chrEditor.GetTile(idx2);
+
+		// Copy tiles
+		var tile1Copy = new byte[8, 8];
+		var tile2Copy = new byte[8, 8];
+		Array.Copy(tile1, tile1Copy, tile1.Length);
+		Array.Copy(tile2, tile2Copy, tile2.Length);
+
+		ExecuteTileChange(idx1, tile2Copy, $"Swap tile {idx1:X2} with {idx2:X2}");
+		ExecuteTileChange(idx2, tile1Copy, $"Swap tile {idx2:X2} with {idx1:X2}");
+
+		StatusText = $"Swapped tiles {idx1:X2} and {idx2:X2}";
+	}
+
+	/// <summary>
+	/// Shift colors in selected tiles (remap color indices).
+	/// </summary>
+	[RelayCommand]
+	private void ShiftColorsInSelected(int shift) {
+		if (_chrEditor is null || SelectedTileIndices.Count == 0) return;
+
+		int maxColor = FormatColorCount - 1;
+		int bankOffset = SelectedBank * ChrEditor.TilesPerBank;
+
+		foreach (var idx in SelectedTileIndices.ToList()) {
+			int actualIndex = bankOffset + idx;
+			if (actualIndex < TileCount) {
+				var tile = _chrEditor.GetTile(actualIndex);
+				var modified = new byte[8, 8];
+
+				for (int y = 0; y < 8; y++) {
+					for (int x = 0; x < 8; x++) {
+						int newColor = (tile[y, x] + shift + maxColor + 1) % (maxColor + 1);
+						modified[y, x] = (byte)newColor;
+					}
+				}
+
+				ExecuteTileChange(actualIndex, modified, $"Shift colors in tile {actualIndex:X2}");
+			}
+		}
+		StatusText = $"Shifted colors by {shift} in {SelectedTileIndices.Count} tiles";
+	}
+
+	/// <summary>
+	/// Apply brightness adjustment to selected tiles.
+	/// </summary>
+	[RelayCommand]
+	private void AdjustBrightnessInSelected(int adjustment) {
+		if (_chrEditor is null || SelectedTileIndices.Count == 0) return;
+
+		int maxColor = FormatColorCount - 1;
+		int bankOffset = SelectedBank * ChrEditor.TilesPerBank;
+
+		foreach (var idx in SelectedTileIndices.ToList()) {
+			int actualIndex = bankOffset + idx;
+			if (actualIndex < TileCount) {
+				var tile = _chrEditor.GetTile(actualIndex);
+				var modified = new byte[8, 8];
+
+				for (int y = 0; y < 8; y++) {
+					for (int x = 0; x < 8; x++) {
+						int newColor = Math.Clamp(tile[y, x] + adjustment, 0, maxColor);
+						modified[y, x] = (byte)newColor;
+					}
+				}
+
+				ExecuteTileChange(actualIndex, modified, $"Adjust brightness in tile {actualIndex:X2}");
+			}
+		}
+		StatusText = $"Adjusted brightness by {adjustment} in {SelectedTileIndices.Count} tiles";
+	}
+
+	/// <summary>
 	/// Applies horizontal flip to all selected tiles.
 	/// </summary>
 	[RelayCommand]
@@ -2217,6 +2591,88 @@ public partial class ChrEditorViewModel : ViewModelBase {
 	];
 
 	#endregion
+
+	/// <summary>
+	/// Handle keyboard shortcuts.
+	/// </summary>
+	public bool HandleKeyDown(KeyEventArgs e) {
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Undo)) {
+			if (CanUndo) {
+				Undo();
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Redo) ||
+				   KeyboardShortcuts.Matches(e, KeyboardShortcuts.RedoAlt)) {
+			if (CanRedo) {
+				Redo();
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Copy)) {
+			if (AllowMultiSelect && SelectedTileIndices.Count > 0) {
+				CopySelectedTiles();
+				return true;
+			} else if (PixelSelection.HasValue) {
+				CopyPixelSelection();
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Paste)) {
+			if (_tileClipboard is not null) {
+				PasteSelectedTiles();
+				return true;
+			} else if (HasPixelClipboard) {
+				PastePixelSelection();
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Delete)) {
+			if (AllowMultiSelect && SelectedTileIndices.Count > 0) {
+				ClearSelectedTiles();
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.SelectAll)) {
+			SelectAllTiles();
+			return true;
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.FlipHorizontal)) {
+			if (SelectedTileIndex >= 0) {
+				ApplyFlipHorizontal();
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.FlipVertical)) {
+			if (SelectedTileIndex >= 0) {
+				ApplyFlipVertical();
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Rotate90)) {
+			if (SelectedTileIndex >= 0) {
+				ApplyRotate90();
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.ToggleMultiSelect)) {
+			ToggleMultiSelect();
+			return true;
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.PreviousTile)) {
+			if (SelectedTileIndex > 0) {
+				SelectedTileIndex--;
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.NextTile)) {
+			if (SelectedTileIndex < TileCount - 1) {
+				SelectedTileIndex++;
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.PreviousBank)) {
+			if (SelectedBank > 0) {
+				SelectedBank--;
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.NextBank)) {
+			if (SelectedBank < BankCount - 1) {
+				SelectedBank++;
+				return true;
+			}
+		}
+
+		return false;
+	}
 }
 
 /// <summary>

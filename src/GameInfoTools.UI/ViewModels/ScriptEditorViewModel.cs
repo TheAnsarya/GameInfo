@@ -25,6 +25,50 @@ public record ControlFlowEdge(int FromOffset, int ToOffset, string Type);
 public record ScriptReference(int CallerOffset, int TargetOffset, string ReferenceType);
 
 /// <summary>
+/// Represents a basic block in the control flow graph.
+/// </summary>
+public record ScriptBasicBlock(
+	int Id,
+	int StartOffset,
+	int EndOffset,
+	List<int> SuccessorIds,
+	List<int> PredecessorIds,
+	string Label,
+	List<ScriptCommand> Commands,
+	ScriptBlockType BlockType
+);
+
+/// <summary>
+/// Type of basic block.
+/// </summary>
+public enum ScriptBlockType {
+	Entry,          // First block of script
+	Normal,         // Regular sequential block
+	Conditional,    // Block ending with conditional branch
+	Unconditional,  // Block ending with unconditional jump
+	Call,           // Block ending with call instruction
+	Return,         // Block ending with return
+	Exit,           // Last block (END command)
+	Loop            // Block that is part of a loop
+}
+
+/// <summary>
+/// Control flow graph representation for visualization.
+/// </summary>
+public record ControlFlowGraph(
+	List<ScriptBasicBlock> Blocks,
+	List<ControlFlowEdge> Edges,
+	int EntryBlockId,
+	List<int> ExitBlockIds,
+	List<List<int>> DetectedLoops
+);
+
+/// <summary>
+/// Node position for graph layout.
+/// </summary>
+public record GraphNodePosition(int BlockId, double X, double Y, double Width, double Height);
+
+/// <summary>
 /// View model for viewing and editing game scripts/events.
 /// </summary>
 public partial class ScriptEditorViewModel : ViewModelBase {
@@ -86,6 +130,78 @@ public partial class ScriptEditorViewModel : ViewModelBase {
 
 	[ObservableProperty]
 	private string _selectedScriptType = "Generic Event";
+
+	// === Control Flow Graph Visualization ===
+
+	/// <summary>
+	/// Whether the control flow graph panel is visible.
+	/// </summary>
+	[ObservableProperty]
+	private bool _showControlFlowGraph;
+
+	/// <summary>
+	/// The current control flow graph.
+	/// </summary>
+	[ObservableProperty]
+	private ControlFlowGraph? _controlFlowGraph;
+
+	/// <summary>
+	/// Node positions for graph layout.
+	/// </summary>
+	public ObservableCollection<GraphNodePosition> NodePositions { get; } = [];
+
+	/// <summary>
+	/// Basic blocks from control flow analysis.
+	/// </summary>
+	public ObservableCollection<ScriptBasicBlock> BasicBlocks { get; } = [];
+
+	/// <summary>
+	/// Detected loops in the control flow.
+	/// </summary>
+	public ObservableCollection<string> DetectedLoops { get; } = [];
+
+	/// <summary>
+	/// Currently selected basic block.
+	/// </summary>
+	[ObservableProperty]
+	private ScriptBasicBlock? _selectedBasicBlock;
+
+	/// <summary>
+	/// Graph layout algorithm.
+	/// </summary>
+	[ObservableProperty]
+	private string _layoutAlgorithm = "Hierarchical";
+
+	public string[] LayoutAlgorithms { get; } = [
+		"Hierarchical",
+		"Force-Directed",
+		"Circular",
+		"Tree"
+	];
+
+	/// <summary>
+	/// Zoom level for the graph view.
+	/// </summary>
+	[ObservableProperty]
+	private double _graphZoom = 1.0;
+
+	/// <summary>
+	/// Show edge labels on the graph.
+	/// </summary>
+	[ObservableProperty]
+	private bool _showEdgeLabels = true;
+
+	/// <summary>
+	/// Show block addresses in graph nodes.
+	/// </summary>
+	[ObservableProperty]
+	private bool _showBlockAddresses = true;
+
+	/// <summary>
+	/// Show command preview in graph nodes.
+	/// </summary>
+	[ObservableProperty]
+	private bool _showCommandPreview = true;
 
 	public string[] ScriptTypes { get; } = [
 		"Generic Event",
@@ -595,6 +711,552 @@ public partial class ScriptEditorViewModel : ViewModelBase {
 
 		Opcodes.Add(new ScriptOpcode(code, name, length, description, false, false));
 		StatusText = $"Added opcode 0x{code:X2} = {name}";
+	}
+
+	// === Control Flow Graph Commands ===
+
+	/// <summary>
+	/// Build the control flow graph from the current commands.
+	/// </summary>
+	[RelayCommand]
+	private void BuildControlFlowGraph() {
+		if (Commands.Count == 0) {
+			StatusText = "No script loaded";
+			return;
+		}
+
+		BasicBlocks.Clear();
+		NodePositions.Clear();
+		DetectedLoops.Clear();
+
+		// Step 1: Identify block boundaries
+		var blockStarts = new HashSet<int> { Commands[0].Offset };
+		var blockEnds = new HashSet<int>();
+
+		foreach (var cmd in Commands) {
+			var opcodeInfo = Opcodes.FirstOrDefault(o => o.Code == cmd.Opcode);
+
+			// Commands that end blocks
+			if (opcodeInfo?.TerminatesBlock == true || opcodeInfo?.HasTarget == true) {
+				blockEnds.Add(cmd.Offset);
+
+				// Target of a branch/jump starts a new block
+				if (opcodeInfo?.HasTarget == true && cmd.Operands.Length >= 2) {
+					int target = cmd.Operands[0] | (cmd.Operands[1] << 8);
+					blockStarts.Add(target);
+				}
+
+				// Instruction after a branch/jump starts a new block (for conditional branches)
+				var cmdIndex = Commands.IndexOf(cmd);
+				if (cmdIndex < Commands.Count - 1) {
+					var nextCmd = Commands[cmdIndex + 1];
+					if (opcodeInfo?.Name is not "JUMP" and not "END" and not "RET") {
+						blockStarts.Add(nextCmd.Offset);
+					}
+				}
+			}
+		}
+
+		// Step 2: Create basic blocks
+		var sortedStarts = blockStarts.Where(s => Commands.Any(c => c.Offset == s)).OrderBy(s => s).ToList();
+		int blockId = 0;
+
+		for (int i = 0; i < sortedStarts.Count; i++) {
+			var start = sortedStarts[i];
+			var end = i < sortedStarts.Count - 1 ? sortedStarts[i + 1] : Commands.Last().Offset + 1;
+
+			var blockCommands = Commands.Where(c => c.Offset >= start && c.Offset < end).ToList();
+			if (blockCommands.Count == 0) continue;
+
+			var lastCmd = blockCommands.Last();
+			var lastOpcodeInfo = Opcodes.FirstOrDefault(o => o.Code == lastCmd.Opcode);
+
+			var blockType = DetermineBlockType(lastOpcodeInfo, blockId == 0);
+			var label = blockId == 0 ? "entry" : $"block_{start:x4}";
+
+			BasicBlocks.Add(new ScriptBasicBlock(
+				blockId,
+				start,
+				blockCommands.Last().Offset,
+				new List<int>(),
+				new List<int>(),
+				label,
+				blockCommands,
+				blockType
+			));
+
+			blockId++;
+		}
+
+		// Step 3: Build edges between blocks
+		var edges = new List<ControlFlowEdge>();
+
+		foreach (var block in BasicBlocks) {
+			var lastCmd = block.Commands.LastOrDefault();
+			if (lastCmd is null) continue;
+
+			var opcodeInfo = Opcodes.FirstOrDefault(o => o.Code == lastCmd.Opcode);
+
+			// Find target block for branches/jumps
+			if (opcodeInfo?.HasTarget == true && lastCmd.Operands.Length >= 2) {
+				int targetOffset = lastCmd.Operands[0] | (lastCmd.Operands[1] << 8);
+				var targetBlock = BasicBlocks.FirstOrDefault(b => b.StartOffset == targetOffset);
+
+				if (targetBlock != null) {
+					var edgeType = opcodeInfo.Name switch {
+						"JUMP" => "Unconditional",
+						"CALL" => "Call",
+						_ => "Conditional"
+					};
+
+					edges.Add(new ControlFlowEdge(block.EndOffset, targetOffset, edgeType));
+
+					// Update successors and predecessors
+					UpdateBlockSuccessors(block.Id, targetBlock.Id);
+				}
+			}
+
+			// Fall-through to next block (for conditional branches and calls)
+			if (opcodeInfo is null || (!opcodeInfo.TerminatesBlock && opcodeInfo.Name != "JUMP")) {
+				var nextBlock = BasicBlocks.FirstOrDefault(b => b.StartOffset > block.EndOffset);
+				if (nextBlock != null) {
+					edges.Add(new ControlFlowEdge(block.EndOffset, nextBlock.StartOffset, "Fallthrough"));
+					UpdateBlockSuccessors(block.Id, nextBlock.Id);
+				}
+			}
+		}
+
+		// Step 4: Detect loops
+		var loops = DetectLoopsInGraph();
+		foreach (var loop in loops) {
+			var loopStr = string.Join(" -> ", loop.Select(id => BasicBlocks.FirstOrDefault(b => b.Id == id)?.Label ?? $"block_{id}"));
+			DetectedLoops.Add($"Loop: {loopStr}");
+		}
+
+		// Step 5: Layout the graph
+		LayoutGraph();
+
+		// Create the graph object
+		ControlFlowGraph = new ControlFlowGraph(
+			BasicBlocks.ToList(),
+			edges,
+			BasicBlocks.FirstOrDefault()?.Id ?? 0,
+			BasicBlocks.Where(b => b.BlockType == ScriptBlockType.Exit).Select(b => b.Id).ToList(),
+			loops
+		);
+
+		ShowControlFlowGraph = true;
+		StatusText = $"Built CFG with {BasicBlocks.Count} blocks, {edges.Count} edges, {loops.Count} loops";
+	}
+
+	private static ScriptBlockType DetermineBlockType(ScriptOpcode? opcodeInfo, bool isEntry) {
+		if (isEntry) return ScriptBlockType.Entry;
+		if (opcodeInfo is null) return ScriptBlockType.Normal;
+
+		return opcodeInfo.Name switch {
+			"END" => ScriptBlockType.Exit,
+			"RET" => ScriptBlockType.Return,
+			"JUMP" => ScriptBlockType.Unconditional,
+			"CALL" => ScriptBlockType.Call,
+			"IF" or "CHECK" => ScriptBlockType.Conditional,
+			_ when opcodeInfo.TerminatesBlock => ScriptBlockType.Exit,
+			_ => ScriptBlockType.Normal
+		};
+	}
+
+	private void UpdateBlockSuccessors(int fromId, int toId) {
+		var fromBlock = BasicBlocks.FirstOrDefault(b => b.Id == fromId);
+		var toBlock = BasicBlocks.FirstOrDefault(b => b.Id == toId);
+
+		if (fromBlock != null && toBlock != null) {
+			if (!fromBlock.SuccessorIds.Contains(toId)) {
+				fromBlock.SuccessorIds.Add(toId);
+			}
+
+			if (!toBlock.PredecessorIds.Contains(fromId)) {
+				toBlock.PredecessorIds.Add(fromId);
+			}
+		}
+	}
+
+	private List<List<int>> DetectLoopsInGraph() {
+		var loops = new List<List<int>>();
+		var visited = new HashSet<int>();
+		var inStack = new HashSet<int>();
+		var path = new List<int>();
+
+		void Dfs(int blockId) {
+			if (inStack.Contains(blockId)) {
+				// Found a back edge - this is a loop
+				var loopStart = path.IndexOf(blockId);
+				if (loopStart >= 0) {
+					var loop = path.Skip(loopStart).ToList();
+					loop.Add(blockId); // Complete the cycle
+					loops.Add(loop);
+				}
+
+				return;
+			}
+
+			if (visited.Contains(blockId)) return;
+
+			visited.Add(blockId);
+			inStack.Add(blockId);
+			path.Add(blockId);
+
+			var block = BasicBlocks.FirstOrDefault(b => b.Id == blockId);
+			if (block != null) {
+				foreach (var successorId in block.SuccessorIds) {
+					Dfs(successorId);
+				}
+			}
+
+			path.RemoveAt(path.Count - 1);
+			inStack.Remove(blockId);
+		}
+
+		if (BasicBlocks.Count > 0) {
+			Dfs(BasicBlocks[0].Id);
+		}
+
+		return loops;
+	}
+
+	/// <summary>
+	/// Layout the graph nodes.
+	/// </summary>
+	[RelayCommand]
+	private void LayoutGraph() {
+		NodePositions.Clear();
+
+		if (BasicBlocks.Count == 0) return;
+
+		switch (LayoutAlgorithm) {
+			case "Hierarchical":
+				LayoutHierarchical();
+				break;
+			case "Force-Directed":
+				LayoutForceDirected();
+				break;
+			case "Circular":
+				LayoutCircular();
+				break;
+			case "Tree":
+				LayoutTree();
+				break;
+			default:
+				LayoutHierarchical();
+				break;
+		}
+	}
+
+	private void LayoutHierarchical() {
+		// Simple hierarchical layout based on depth-first traversal
+		const double nodeWidth = 150;
+		const double nodeHeight = 80;
+		const double horizontalSpacing = 50;
+		const double verticalSpacing = 100;
+
+		var visited = new HashSet<int>();
+		var levels = new Dictionary<int, int>();
+		var levelCounts = new Dictionary<int, int>();
+
+		void AssignLevels(int blockId, int level) {
+			if (visited.Contains(blockId)) {
+				// Ensure we're at the deeper level
+				if (levels.ContainsKey(blockId) && levels[blockId] < level) {
+					levels[blockId] = level;
+				}
+
+				return;
+			}
+
+			visited.Add(blockId);
+			levels[blockId] = level;
+
+			if (!levelCounts.ContainsKey(level)) {
+				levelCounts[level] = 0;
+			}
+
+			levelCounts[level]++;
+
+			var block = BasicBlocks.FirstOrDefault(b => b.Id == blockId);
+			if (block != null) {
+				foreach (var successorId in block.SuccessorIds) {
+					AssignLevels(successorId, level + 1);
+				}
+			}
+		}
+
+		if (BasicBlocks.Count > 0) {
+			AssignLevels(BasicBlocks[0].Id, 0);
+		}
+
+		// Position nodes
+		var levelPositions = new Dictionary<int, int>();
+		foreach (var block in BasicBlocks) {
+			int level = levels.ContainsKey(block.Id) ? levels[block.Id] : 0;
+			int levelIndex = levelPositions.ContainsKey(level) ? levelPositions[level]++ : (levelPositions[level] = 1) - 1;
+
+			double x = levelIndex * (nodeWidth + horizontalSpacing);
+			double y = level * (nodeHeight + verticalSpacing);
+
+			NodePositions.Add(new GraphNodePosition(block.Id, x, y, nodeWidth, nodeHeight));
+		}
+	}
+
+	private void LayoutForceDirected() {
+		// Simplified force-directed layout
+		const double nodeWidth = 150;
+		const double nodeHeight = 80;
+		const int iterations = 50;
+		const double repulsion = 10000;
+		const double attraction = 0.05;
+
+		var positions = BasicBlocks.ToDictionary(
+			b => b.Id,
+			b => (X: Random.Shared.NextDouble() * 500, Y: Random.Shared.NextDouble() * 500)
+		);
+
+		for (int iter = 0; iter < iterations; iter++) {
+			var forces = BasicBlocks.ToDictionary(b => b.Id, _ => (X: 0.0, Y: 0.0));
+
+			// Repulsion between all nodes
+			foreach (var b1 in BasicBlocks) {
+				foreach (var b2 in BasicBlocks) {
+					if (b1.Id == b2.Id) continue;
+
+					var dx = positions[b1.Id].X - positions[b2.Id].X;
+					var dy = positions[b1.Id].Y - positions[b2.Id].Y;
+					var dist = Math.Sqrt(dx * dx + dy * dy) + 0.1;
+
+					var force = repulsion / (dist * dist);
+					forces[b1.Id] = (forces[b1.Id].X + force * dx / dist, forces[b1.Id].Y + force * dy / dist);
+				}
+			}
+
+			// Attraction along edges
+			foreach (var block in BasicBlocks) {
+				foreach (var successorId in block.SuccessorIds) {
+					var dx = positions[successorId].X - positions[block.Id].X;
+					var dy = positions[successorId].Y - positions[block.Id].Y;
+
+					forces[block.Id] = (forces[block.Id].X + attraction * dx, forces[block.Id].Y + attraction * dy);
+					forces[successorId] = (forces[successorId].X - attraction * dx, forces[successorId].Y - attraction * dy);
+				}
+			}
+
+			// Apply forces
+			foreach (var block in BasicBlocks) {
+				positions[block.Id] = (
+					positions[block.Id].X + forces[block.Id].X * 0.1,
+					positions[block.Id].Y + forces[block.Id].Y * 0.1
+				);
+			}
+		}
+
+		// Normalize positions to positive coordinates
+		var minX = positions.Values.Min(p => p.X);
+		var minY = positions.Values.Min(p => p.Y);
+
+		foreach (var block in BasicBlocks) {
+			NodePositions.Add(new GraphNodePosition(
+				block.Id,
+				positions[block.Id].X - minX,
+				positions[block.Id].Y - minY,
+				nodeWidth,
+				nodeHeight
+			));
+		}
+	}
+
+	private void LayoutCircular() {
+		const double nodeWidth = 150;
+		const double nodeHeight = 80;
+		double radius = Math.Max(BasicBlocks.Count * 50, 200);
+		double centerX = radius + nodeWidth / 2;
+		double centerY = radius + nodeHeight / 2;
+
+		for (int i = 0; i < BasicBlocks.Count; i++) {
+			var angle = 2 * Math.PI * i / BasicBlocks.Count - Math.PI / 2;
+			var x = centerX + radius * Math.Cos(angle) - nodeWidth / 2;
+			var y = centerY + radius * Math.Sin(angle) - nodeHeight / 2;
+
+			NodePositions.Add(new GraphNodePosition(BasicBlocks[i].Id, x, y, nodeWidth, nodeHeight));
+		}
+	}
+
+	private void LayoutTree() {
+		// Tree layout - similar to hierarchical but with different spacing
+		const double nodeWidth = 150;
+		const double nodeHeight = 80;
+		const double verticalSpacing = 100;
+
+		var visited = new HashSet<int>();
+		var positions = new Dictionary<int, (double X, double Y)>();
+		double nextX = 0;
+
+		void LayoutSubtree(int blockId, int depth) {
+			if (visited.Contains(blockId)) return;
+			visited.Add(blockId);
+
+			var block = BasicBlocks.FirstOrDefault(b => b.Id == blockId);
+			if (block is null) return;
+
+			var children = block.SuccessorIds.Where(id => !visited.Contains(id)).ToList();
+
+			if (children.Count == 0) {
+				positions[blockId] = (nextX, depth * (nodeHeight + verticalSpacing));
+				nextX += nodeWidth + 30;
+			} else {
+				double startX = nextX;
+				foreach (var childId in children) {
+					LayoutSubtree(childId, depth + 1);
+				}
+
+				double endX = nextX;
+				positions[blockId] = ((startX + endX - nodeWidth - 30) / 2, depth * (nodeHeight + verticalSpacing));
+			}
+		}
+
+		if (BasicBlocks.Count > 0) {
+			LayoutSubtree(BasicBlocks[0].Id, 0);
+		}
+
+		foreach (var kvp in positions) {
+			NodePositions.Add(new GraphNodePosition(kvp.Key, kvp.Value.X, kvp.Value.Y, nodeWidth, nodeHeight));
+		}
+	}
+
+	/// <summary>
+	/// Select a basic block.
+	/// </summary>
+	[RelayCommand]
+	private void SelectBasicBlock(ScriptBasicBlock? block) {
+		SelectedBasicBlock = block;
+
+		if (block != null) {
+			// Also select the first command in the block
+			SelectedCommand = block.Commands.FirstOrDefault();
+			StatusText = $"Selected block '{block.Label}' with {block.Commands.Count} commands";
+		}
+	}
+
+	/// <summary>
+	/// Export the control flow graph as DOT format.
+	/// </summary>
+	[RelayCommand]
+	private async Task ExportGraphAsDot(Window? window) {
+		if (window is null || BasicBlocks.Count == 0) {
+			StatusText = "No graph to export";
+			return;
+		}
+
+		var dialogService = FileDialogService.FromWindow(window);
+		var path = await dialogService.SaveFileAsync(
+			"Export Control Flow Graph",
+			".dot",
+			$"cfg_{ScriptOffset:X6}.dot",
+			FileDialogService.AllFiles
+		);
+
+		if (path is null) return;
+
+		try {
+			var sb = new StringBuilder();
+			sb.AppendLine("digraph ControlFlowGraph {");
+			sb.AppendLine("  node [shape=box, fontname=\"Courier\"];");
+			sb.AppendLine("  edge [fontname=\"Arial\"];");
+			sb.AppendLine();
+
+			// Nodes
+			foreach (var block in BasicBlocks) {
+				var color = block.BlockType switch {
+					ScriptBlockType.Entry => "green",
+					ScriptBlockType.Exit => "red",
+					ScriptBlockType.Conditional => "yellow",
+					ScriptBlockType.Loop => "orange",
+					_ => "white"
+				};
+
+				var label = ShowBlockAddresses
+					? $"{block.Label}\\n[{block.StartOffset:X4}-{block.EndOffset:X4}]"
+					: block.Label;
+
+				if (ShowCommandPreview && block.Commands.Count > 0) {
+					var cmdPreview = block.Commands.Take(3).Select(c => c.Name).ToList();
+					label += $"\\n{string.Join(", ", cmdPreview)}";
+					if (block.Commands.Count > 3) label += "...";
+				}
+
+				sb.AppendLine($"  block_{block.Id} [label=\"{label}\", fillcolor=\"{color}\", style=\"filled\"];");
+			}
+
+			sb.AppendLine();
+
+			// Edges
+			if (ControlFlowGraph != null) {
+				foreach (var edge in ControlFlowGraph.Edges) {
+					var fromBlock = BasicBlocks.FirstOrDefault(b => b.EndOffset == edge.FromOffset);
+					var toBlock = BasicBlocks.FirstOrDefault(b => b.StartOffset == edge.ToOffset);
+
+					if (fromBlock != null && toBlock != null) {
+						var edgeStyle = edge.Type switch {
+							"Conditional" => "style=dashed",
+							"Call" => "style=dotted",
+							"Fallthrough" => "color=gray",
+							_ => ""
+						};
+
+						var label = ShowEdgeLabels && edge.Type != "Fallthrough" ? $"label=\"{edge.Type}\"" : "";
+						sb.AppendLine($"  block_{fromBlock.Id} -> block_{toBlock.Id} [{edgeStyle} {label}];");
+					}
+				}
+			}
+
+			sb.AppendLine("}");
+
+			await File.WriteAllTextAsync(path, sb.ToString());
+			StatusText = $"Exported CFG to {Path.GetFileName(path)}";
+		} catch (Exception ex) {
+			StatusText = $"Export error: {ex.Message}";
+		}
+	}
+
+	/// <summary>
+	/// Zoom in on the graph.
+	/// </summary>
+	[RelayCommand]
+	private void ZoomIn() {
+		GraphZoom = Math.Min(GraphZoom * 1.25, 4.0);
+	}
+
+	/// <summary>
+	/// Zoom out on the graph.
+	/// </summary>
+	[RelayCommand]
+	private void ZoomOut() {
+		GraphZoom = Math.Max(GraphZoom / 1.25, 0.25);
+	}
+
+	/// <summary>
+	/// Reset zoom to 100%.
+	/// </summary>
+	[RelayCommand]
+	private void ResetZoom() {
+		GraphZoom = 1.0;
+	}
+
+	/// <summary>
+	/// Toggle the control flow graph panel.
+	/// </summary>
+	[RelayCommand]
+	private void ToggleControlFlowGraph() {
+		ShowControlFlowGraph = !ShowControlFlowGraph;
+
+		if (ShowControlFlowGraph && BasicBlocks.Count == 0 && Commands.Count > 0) {
+			BuildControlFlowGraph();
+		}
 	}
 }
 

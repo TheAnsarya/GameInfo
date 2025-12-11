@@ -1,8 +1,10 @@
 using System.Collections.ObjectModel;
+using Avalonia.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GameInfoTools.Core;
 using GameInfoTools.Disassembly;
+using GameInfoTools.UI.Services;
 
 namespace GameInfoTools.UI.ViewModels;
 
@@ -17,9 +19,43 @@ public record CrossReference(int FromAddress, int ToAddress, string Type, string
 public record NavigationEntry(int Offset, int BaseAddress, DateTime Timestamp);
 
 /// <summary>
+/// Instruction category for syntax highlighting.
+/// </summary>
+public enum InstructionCategory {
+	Unknown,
+	LoadStore,        // LDA, STA, LDX, STX, LDY, STY
+	Arithmetic,       // ADC, SBC, INC, DEC
+	Logic,            // AND, ORA, EOR, BIT
+	Branch,           // BCC, BCS, BEQ, BNE, BMI, BPL, BVC, BVS
+	Jump,             // JMP, JSR, RTS, RTI
+	Stack,            // PHA, PLA, PHP, PLP, PHX, PHY, PLX, PLY
+	Transfer,         // TAX, TAY, TXA, TYA, TXS, TSX
+	Compare,          // CMP, CPX, CPY
+	Shift,            // ASL, LSR, ROL, ROR
+	Flag,             // CLC, SEC, CLI, SEI, CLV, CLD, SED
+	Nop,              // NOP, BRK
+	Illegal           // Undocumented opcodes
+}
+
+/// <summary>
+/// Basic block for control flow analysis.
+/// </summary>
+public record BasicBlock(int StartAddress, int EndAddress, List<int> Successors, List<int> Predecessors, string Label);
+
+/// <summary>
+/// Search result for pattern/text searches.
+/// </summary>
+public record DisassemblySearchResult(int Offset, int Address, string Context, string MatchType);
+
+/// <summary>
+/// Bookmark for saved locations.
+/// </summary>
+public record Bookmark(int Address, int Offset, string Name, string? Comment = null, DateTime? Created = null);
+
+/// <summary>
 /// View model for 6502/65816 disassembly.
 /// </summary>
-public partial class DisassemblerViewModel : ViewModelBase {
+public partial class DisassemblerViewModel : ViewModelBase, IKeyboardShortcutHandler {
 	private readonly RomFile? _rom;
 	private Disassembler? _disassembler;
 	private readonly Stack<NavigationEntry> _backStack = new();
@@ -82,6 +118,104 @@ public partial class DisassemblerViewModel : ViewModelBase {
 
 	[ObservableProperty]
 	private bool _autoLabelBranches = true;
+
+	// === UI Improvements: Panels visibility ===
+	/// <summary>
+	/// Whether the symbols panel is visible.
+	/// </summary>
+	[ObservableProperty]
+	private bool _showSymbolsPanel;
+
+	/// <summary>
+	/// Whether the cross-references panel is visible.
+	/// </summary>
+	[ObservableProperty]
+	private bool _showCrossReferencesPanel;
+
+	/// <summary>
+	/// Whether the bookmarks panel is visible.
+	/// </summary>
+	[ObservableProperty]
+	private bool _showBookmarksPanel;
+
+	/// <summary>
+	/// Whether the basic blocks panel is visible.
+	/// </summary>
+	[ObservableProperty]
+	private bool _showBasicBlocksPanel;
+
+	// === Syntax highlighting ===
+	/// <summary>
+	/// Enable instruction category-based syntax highlighting.
+	/// </summary>
+	[ObservableProperty]
+	private bool _enableSyntaxHighlighting = true;
+
+	/// <summary>
+	/// Show branch arrows/lines in the gutter.
+	/// </summary>
+	[ObservableProperty]
+	private bool _showBranchVisualization = true;
+
+	// === Bookmarks ===
+	/// <summary>
+	/// Collection of saved bookmark locations.
+	/// </summary>
+	public ObservableCollection<Bookmark> Bookmarks { get; } = [];
+
+	// === Basic blocks for control flow ===
+	/// <summary>
+	/// Detected basic blocks in current disassembly.
+	/// </summary>
+	public ObservableCollection<BasicBlock> BasicBlocks { get; } = [];
+
+	// === Search functionality ===
+	/// <summary>
+	/// Search query text.
+	/// </summary>
+	[ObservableProperty]
+	private string _searchQuery = "";
+
+	/// <summary>
+	/// Search results collection.
+	/// </summary>
+	public ObservableCollection<DisassemblySearchResult> SearchResults { get; } = [];
+
+	/// <summary>
+	/// Currently selected search result index.
+	/// </summary>
+	[ObservableProperty]
+	private int _currentSearchResultIndex = -1;
+
+	/// <summary>
+	/// Search in mnemonics.
+	/// </summary>
+	[ObservableProperty]
+	private bool _searchInMnemonics = true;
+
+	/// <summary>
+	/// Search in labels.
+	/// </summary>
+	[ObservableProperty]
+	private bool _searchInLabels = true;
+
+	/// <summary>
+	/// Search in comments.
+	/// </summary>
+	[ObservableProperty]
+	private bool _searchInComments = true;
+
+	// === Symbol filtering ===
+	/// <summary>
+	/// Filter text for symbols panel.
+	/// </summary>
+	[ObservableProperty]
+	private string _symbolFilter = "";
+
+	/// <summary>
+	/// Filtered symbols list.
+	/// </summary>
+	public ObservableCollection<SymbolEntry> FilteredSymbols { get; } = [];
 
 	public ObservableCollection<DisassemblyLine> DisassemblyLines { get; } = [];
 
@@ -538,6 +672,485 @@ public partial class DisassemblerViewModel : ViewModelBase {
 
 		StatusText = "Pattern not found";
 	}
+
+	// === UI Improvement Commands ===
+
+	/// <summary>
+	/// Get the instruction category for syntax highlighting.
+	/// </summary>
+	public static InstructionCategory GetInstructionCategory(string mnemonic) {
+		var upper = mnemonic.ToUpperInvariant();
+		return upper switch {
+			"LDA" or "STA" or "LDX" or "STX" or "LDY" or "STY" or "STZ" => InstructionCategory.LoadStore,
+			"ADC" or "SBC" or "INC" or "DEC" or "INX" or "INY" or "DEX" or "DEY" => InstructionCategory.Arithmetic,
+			"AND" or "ORA" or "EOR" or "BIT" or "TRB" or "TSB" => InstructionCategory.Logic,
+			"BCC" or "BCS" or "BEQ" or "BNE" or "BMI" or "BPL" or "BVC" or "BVS" or "BRA" or "BRL" => InstructionCategory.Branch,
+			"JMP" or "JSR" or "RTS" or "RTI" or "JML" or "JSL" or "RTL" => InstructionCategory.Jump,
+			"PHA" or "PLA" or "PHP" or "PLP" or "PHX" or "PHY" or "PLX" or "PLY" or "PHB" or "PHD" or "PHK" or "PLB" or "PLD" => InstructionCategory.Stack,
+			"TAX" or "TAY" or "TXA" or "TYA" or "TXS" or "TSX" or "TCD" or "TCS" or "TDC" or "TSC" or "TXY" or "TYX" => InstructionCategory.Transfer,
+			"CMP" or "CPX" or "CPY" => InstructionCategory.Compare,
+			"ASL" or "LSR" or "ROL" or "ROR" => InstructionCategory.Shift,
+			"CLC" or "SEC" or "CLI" or "SEI" or "CLV" or "CLD" or "SED" or "REP" or "SEP" or "XCE" => InstructionCategory.Flag,
+			"NOP" or "BRK" or "WAI" or "STP" or "WDM" => InstructionCategory.Nop,
+			_ => InstructionCategory.Unknown
+		};
+	}
+
+	/// <summary>
+	/// Add a bookmark at the current or specified address.
+	/// </summary>
+	[RelayCommand]
+	private void AddBookmark(string? name = null) {
+		var addr = SelectedLine?.RawAddress ?? (BaseAddress + StartOffset);
+		var bookmarkName = name ?? $"bookmark_{addr:x4}";
+
+		// Don't add duplicate bookmarks
+		if (Bookmarks.Any(b => b.Address == addr)) {
+			StatusText = $"Bookmark already exists at ${addr:x4}";
+			return;
+		}
+
+		Bookmarks.Add(new Bookmark(addr, StartOffset, bookmarkName, null, DateTime.Now));
+		StatusText = $"Added bookmark '{bookmarkName}' at ${addr:x4}";
+	}
+
+	/// <summary>
+	/// Add a bookmark with a specific name and comment.
+	/// </summary>
+	public void AddBookmarkWithDetails(string name, string? comment = null) {
+		if (SelectedLine is null) return;
+
+		var addr = SelectedLine.RawAddress;
+		Bookmarks.Add(new Bookmark(addr, StartOffset, name, comment, DateTime.Now));
+		StatusText = $"Added bookmark '{name}' at ${addr:x4}";
+	}
+
+	/// <summary>
+	/// Remove a bookmark.
+	/// </summary>
+	[RelayCommand]
+	private void RemoveBookmark(Bookmark bookmark) {
+		Bookmarks.Remove(bookmark);
+		StatusText = $"Removed bookmark '{bookmark.Name}'";
+	}
+
+	/// <summary>
+	/// Go to a bookmark location.
+	/// </summary>
+	[RelayCommand]
+	private void GoToBookmark(Bookmark bookmark) {
+		PushNavigationHistory();
+		StartOffset = bookmark.Offset;
+		Disassemble();
+		StatusText = $"Jumped to bookmark '{bookmark.Name}'";
+	}
+
+	/// <summary>
+	/// Analyze basic blocks in the current view.
+	/// </summary>
+	[RelayCommand]
+	private void AnalyzeBasicBlocks() {
+		BasicBlocks.Clear();
+
+		if (DisassemblyLines.Count == 0) return;
+
+		var blockStarts = new HashSet<int> { DisassemblyLines[0].RawAddress };
+		var blockEnds = new Dictionary<int, List<int>>(); // Address -> successor addresses
+
+		// First pass: identify block boundaries
+		foreach (var line in DisassemblyLines) {
+			var category = GetInstructionCategory(line.Mnemonic);
+
+			if (category == InstructionCategory.Branch || category == InstructionCategory.Jump) {
+				var targetAddr = ParseTargetAddress(line.Operand);
+				if (targetAddr.HasValue) {
+					blockStarts.Add(targetAddr.Value);
+
+					// Find the next instruction after this one
+					var idx = DisassemblyLines.IndexOf(line);
+					if (idx < DisassemblyLines.Count - 1) {
+						var nextAddr = DisassemblyLines[idx + 1].RawAddress;
+						if (line.Mnemonic.ToUpperInvariant() is not "JMP" and not "RTS" and not "RTI" and not "JML" and not "RTL") {
+							blockStarts.Add(nextAddr);
+						}
+					}
+				}
+			}
+		}
+
+		// Second pass: create blocks
+		var sortedStarts = blockStarts.OrderBy(a => a).ToList();
+		for (int i = 0; i < sortedStarts.Count; i++) {
+			var start = sortedStarts[i];
+			var end = i < sortedStarts.Count - 1 ? sortedStarts[i + 1] - 1 : DisassemblyLines.Last().RawAddress;
+
+			// Find successors
+			var successors = new List<int>();
+			var predecessors = new List<int>();
+			var linesInBlock = DisassemblyLines.Where(l => l.RawAddress >= start && l.RawAddress <= end).ToList();
+
+			if (linesInBlock.Count > 0) {
+				var lastLine = linesInBlock.Last();
+				var category = GetInstructionCategory(lastLine.Mnemonic);
+
+				if (category == InstructionCategory.Branch) {
+					var target = ParseTargetAddress(lastLine.Operand);
+					if (target.HasValue) successors.Add(target.Value);
+					// Branches also fall through (except unconditional)
+					if (lastLine.Mnemonic.ToUpperInvariant() != "BRA") {
+						var nextIdx = DisassemblyLines.IndexOf(lastLine) + 1;
+						if (nextIdx < DisassemblyLines.Count) {
+							successors.Add(DisassemblyLines[nextIdx].RawAddress);
+						}
+					}
+				} else if (category == InstructionCategory.Jump && lastLine.Mnemonic.ToUpperInvariant() is "JSR" or "JSL") {
+					// JSR returns to next instruction
+					var nextIdx = DisassemblyLines.IndexOf(lastLine) + 1;
+					if (nextIdx < DisassemblyLines.Count) {
+						successors.Add(DisassemblyLines[nextIdx].RawAddress);
+					}
+				} else if (category != InstructionCategory.Jump) {
+					// Fall through to next block
+					var nextIdx = DisassemblyLines.IndexOf(lastLine) + 1;
+					if (nextIdx < DisassemblyLines.Count) {
+						successors.Add(DisassemblyLines[nextIdx].RawAddress);
+					}
+				}
+
+				var label = Symbols.GetSymbol(start) ?? $"block_{start:x4}";
+				BasicBlocks.Add(new BasicBlock(start, end, successors, predecessors, label));
+			}
+		}
+
+		// Third pass: compute predecessors
+		foreach (var block in BasicBlocks) {
+			foreach (var successor in block.Successors) {
+				var targetBlock = BasicBlocks.FirstOrDefault(b => b.StartAddress == successor);
+				if (targetBlock != null) {
+					var newPreds = targetBlock.Predecessors.ToList();
+					newPreds.Add(block.StartAddress);
+					var idx = BasicBlocks.IndexOf(targetBlock);
+					BasicBlocks[idx] = targetBlock with { Predecessors = newPreds };
+				}
+			}
+		}
+
+		StatusText = $"Found {BasicBlocks.Count} basic blocks";
+	}
+
+	/// <summary>
+	/// Search disassembly for text/pattern.
+	/// </summary>
+	[RelayCommand]
+	private void SearchDisassembly() {
+		SearchResults.Clear();
+		CurrentSearchResultIndex = -1;
+
+		if (string.IsNullOrWhiteSpace(SearchQuery) || _rom is null) return;
+
+		var query = SearchQuery.ToLowerInvariant();
+		var results = new List<DisassemblySearchResult>();
+
+		// Search in current view
+		foreach (var line in DisassemblyLines) {
+			if (SearchInMnemonics && line.Mnemonic.ToLowerInvariant().Contains(query)) {
+				results.Add(new DisassemblySearchResult(StartOffset, line.RawAddress, $"{line.Mnemonic} {line.Operand}", "Mnemonic"));
+			}
+
+			if (SearchInLabels && !string.IsNullOrEmpty(line.Label) && line.Label.ToLowerInvariant().Contains(query)) {
+				results.Add(new DisassemblySearchResult(StartOffset, line.RawAddress, line.Label, "Label"));
+			}
+
+			if (SearchInComments && !string.IsNullOrEmpty(line.Comment) && line.Comment.ToLowerInvariant().Contains(query)) {
+				results.Add(new DisassemblySearchResult(StartOffset, line.RawAddress, line.Comment, "Comment"));
+			}
+		}
+
+		foreach (var r in results) {
+			SearchResults.Add(r);
+		}
+
+		if (SearchResults.Count > 0) {
+			CurrentSearchResultIndex = 0;
+			StatusText = $"Found {SearchResults.Count} results for '{SearchQuery}'";
+		} else {
+			StatusText = $"No results found for '{SearchQuery}'";
+		}
+	}
+
+	/// <summary>
+	/// Go to the next search result.
+	/// </summary>
+	[RelayCommand]
+	private void NextSearchResult() {
+		if (SearchResults.Count == 0) return;
+
+		CurrentSearchResultIndex = (CurrentSearchResultIndex + 1) % SearchResults.Count;
+		GoToSearchResult(SearchResults[CurrentSearchResultIndex]);
+	}
+
+	/// <summary>
+	/// Go to the previous search result.
+	/// </summary>
+	[RelayCommand]
+	private void PreviousSearchResult() {
+		if (SearchResults.Count == 0) return;
+
+		CurrentSearchResultIndex = CurrentSearchResultIndex <= 0 ? SearchResults.Count - 1 : CurrentSearchResultIndex - 1;
+		GoToSearchResult(SearchResults[CurrentSearchResultIndex]);
+	}
+
+	/// <summary>
+	/// Go to a specific search result.
+	/// </summary>
+	[RelayCommand]
+	private void GoToSearchResult(DisassemblySearchResult result) {
+		var offset = result.Address - BaseAddress;
+		if (offset >= 0 && (_rom is null || offset < _rom.Length)) {
+			PushNavigationHistory();
+			StartOffset = offset;
+			Disassemble();
+		}
+	}
+
+	/// <summary>
+	/// Filter the symbols list.
+	/// </summary>
+	partial void OnSymbolFilterChanged(string value) {
+		UpdateFilteredSymbols();
+	}
+
+	/// <summary>
+	/// Update the filtered symbols list.
+	/// </summary>
+	private void UpdateFilteredSymbols() {
+		FilteredSymbols.Clear();
+
+		var filter = SymbolFilter?.ToLowerInvariant() ?? "";
+		var allSymbols = Symbols.GetAllSymbols();
+
+		foreach (var (name, address, type) in allSymbols) {
+			if (string.IsNullOrEmpty(filter) || name.ToLowerInvariant().Contains(filter)) {
+				FilteredSymbols.Add(new SymbolEntry(name, address, type));
+			}
+		}
+	}
+
+	/// <summary>
+	/// Go to a symbol's address.
+	/// </summary>
+	[RelayCommand]
+	private void GoToSymbol(SymbolEntry symbol) {
+		var offset = symbol.Address - BaseAddress;
+		if (offset >= 0 && (_rom is null || offset < _rom.Length)) {
+			PushNavigationHistory();
+			StartOffset = offset;
+			Disassemble();
+			StatusText = $"Jumped to symbol '{symbol.Name}'";
+		}
+	}
+
+	/// <summary>
+	/// Get branch visualization info for a line.
+	/// </summary>
+	public (bool IsBranch, int TargetAddress, bool IsForward) GetBranchInfo(DisassemblyLine line) {
+		var category = GetInstructionCategory(line.Mnemonic);
+		if (category is not InstructionCategory.Branch and not InstructionCategory.Jump) {
+			return (false, 0, false);
+		}
+
+		var target = ParseTargetAddress(line.Operand);
+		if (!target.HasValue) {
+			return (false, 0, false);
+		}
+
+		return (true, target.Value, target.Value > line.RawAddress);
+	}
+
+	/// <summary>
+	/// Export symbols to a file.
+	/// </summary>
+	[RelayCommand]
+	private void ExportSymbols(string filePath) {
+		if (string.IsNullOrWhiteSpace(filePath)) {
+			StatusText = "No file path specified";
+			return;
+		}
+
+		try {
+			var ext = Path.GetExtension(filePath).ToLowerInvariant();
+			string content;
+
+			if (ext == ".mlb") {
+				content = Symbols.ExportMlb();
+			} else {
+				content = Symbols.ExportLabels();
+			}
+
+			File.WriteAllText(filePath, content);
+			StatusText = $"Exported {Symbols.Count} symbols to {Path.GetFileName(filePath)}";
+		} catch (Exception ex) {
+			StatusText = $"Error exporting symbols: {ex.Message}";
+		}
+	}
+
+	/// <summary>
+	/// Import bookmarks from a file.
+	/// </summary>
+	[RelayCommand]
+	private void ImportBookmarks(string filePath) {
+		if (!File.Exists(filePath)) {
+			StatusText = "Bookmarks file not found";
+			return;
+		}
+
+		try {
+			var lines = File.ReadAllLines(filePath);
+			foreach (var line in lines) {
+				if (string.IsNullOrWhiteSpace(line) || line.StartsWith(";")) continue;
+
+				// Format: address name [comment]
+				var parts = line.Split('\t', ' ');
+				if (parts.Length >= 2) {
+					var addrStr = parts[0].TrimStart('$');
+					if (int.TryParse(addrStr, System.Globalization.NumberStyles.HexNumber, null, out var addr)) {
+						var name = parts[1];
+						var comment = parts.Length > 2 ? string.Join(" ", parts.Skip(2)) : null;
+						var offset = addr - BaseAddress;
+
+						if (!Bookmarks.Any(b => b.Address == addr)) {
+							Bookmarks.Add(new Bookmark(addr, offset, name, comment, DateTime.Now));
+						}
+					}
+				}
+			}
+
+			StatusText = $"Imported {Bookmarks.Count} bookmarks";
+		} catch (Exception ex) {
+			StatusText = $"Error importing bookmarks: {ex.Message}";
+		}
+	}
+
+	/// <summary>
+	/// Export bookmarks to a file.
+	/// </summary>
+	[RelayCommand]
+	private void ExportBookmarks(string filePath) {
+		if (string.IsNullOrWhiteSpace(filePath)) {
+			StatusText = "No file path specified";
+			return;
+		}
+
+		try {
+			var lines = new List<string> { "; GameInfoTools Bookmarks", $"; Generated {DateTime.Now:yyyy-MM-dd HH:mm:ss}", "" };
+
+			foreach (var bm in Bookmarks.OrderBy(b => b.Address)) {
+				var line = $"${bm.Address:x4}\t{bm.Name}";
+				if (!string.IsNullOrEmpty(bm.Comment)) {
+					line += $"\t{bm.Comment}";
+				}
+				lines.Add(line);
+			}
+
+			File.WriteAllText(filePath, string.Join(Environment.NewLine, lines));
+			StatusText = $"Exported {Bookmarks.Count} bookmarks to {Path.GetFileName(filePath)}";
+		} catch (Exception ex) {
+			StatusText = $"Error exporting bookmarks: {ex.Message}";
+		}
+	}
+
+	/// <summary>
+	/// Toggle a panel's visibility.
+	/// </summary>
+	[RelayCommand]
+	private void TogglePanel(string panelName) {
+		switch (panelName.ToLowerInvariant()) {
+			case "symbols":
+				ShowSymbolsPanel = !ShowSymbolsPanel;
+				if (ShowSymbolsPanel) UpdateFilteredSymbols();
+				break;
+			case "xrefs":
+			case "crossreferences":
+				ShowCrossReferencesPanel = !ShowCrossReferencesPanel;
+				break;
+			case "bookmarks":
+				ShowBookmarksPanel = !ShowBookmarksPanel;
+				break;
+			case "blocks":
+			case "basicblocks":
+				ShowBasicBlocksPanel = !ShowBasicBlocksPanel;
+				if (ShowBasicBlocksPanel) AnalyzeBasicBlocks();
+				break;
+		}
+	}
+
+	/// <summary>
+	/// Jump to a cross-reference location.
+	/// </summary>
+	[RelayCommand]
+	private void GoToCrossReference(CrossReference xref) {
+		var offset = xref.FromAddress - BaseAddress;
+		if (offset >= 0 && (_rom is null || offset < _rom.Length)) {
+			PushNavigationHistory();
+			StartOffset = offset;
+			Disassemble();
+			StatusText = $"Jumped to xref from ${xref.FromAddress:x4}";
+		}
+	}
+
+	/// <summary>
+	/// Handle keyboard shortcuts.
+	/// </summary>
+	public bool HandleKeyDown(KeyEventArgs e) {
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.NavigateBack)) {
+			if (CanGoBack) {
+				NavigateBack();
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.NavigateForward)) {
+			if (CanGoForward) {
+				NavigateForward();
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.FollowAddress)) {
+			if (SelectedLine is not null) {
+				FollowAddress();
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.AddLabel)) {
+			if (SelectedLine is not null) {
+				AddLabel();
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.AddBookmark)) {
+			AddBookmark();
+			return true;
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Find)) {
+			// Toggle search - would need UI binding
+			return true;
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.FindNext)) {
+			if (SearchResults.Count > 0) {
+				NextSearchResult();
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.FindPrevious)) {
+			if (SearchResults.Count > 0) {
+				PreviousSearchResult();
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Disassemble)) {
+			Disassemble();
+			return true;
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.ToggleSymbols)) {
+			TogglePanel("symbols");
+			return true;
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.ToggleCrossReferences)) {
+			TogglePanel("xrefs");
+			return true;
+		}
+
+		return false;
+	}
 }
 
 /// <summary>
@@ -551,4 +1164,14 @@ public record DisassemblyLine(
 	string Comment,
 	string Label = "",
 	int RawAddress = 0
-);
+) {
+	/// <summary>
+	/// Get the instruction category for syntax highlighting.
+	/// </summary>
+	public InstructionCategory Category => DisassemblerViewModel.GetInstructionCategory(Mnemonic);
+}
+
+/// <summary>
+/// Symbol entry for display in symbols panel.
+/// </summary>
+public record SymbolEntry(string Name, int Address, SymbolTable.SymbolType Type);

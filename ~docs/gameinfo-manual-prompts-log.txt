@@ -81,6 +81,7 @@ update chat logs and session logs for all of our work, not just the map editor; 
 
 continue
 
+do that full `what's next`:; Disassembler UI improvements; Script Editor control flow visualization; CHR Editor multi-tile selection improvements; Map Editor tileset loading, layer support; Keyboard shortcuts throughout UI; continue
 
 
 

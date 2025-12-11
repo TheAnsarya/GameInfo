@@ -1,4 +1,6 @@
+using Avalonia.Input;
 using GameInfoTools.Core;
+using GameInfoTools.UI.Services;
 using GameInfoTools.UI.ViewModels;
 
 namespace GameInfoTools.Tests;
@@ -1790,6 +1792,90 @@ public class ViewModelTests {
 		vm.ResizeMapCommand.Execute("invalid");
 
 		Assert.Contains("Invalid", vm.StatusText);
+	}
+
+	#endregion
+
+	#region New Feature Tests - KeyboardShortcuts Service
+
+	[Fact]
+	public void KeyboardShortcuts_UndoShortcut_IsControlZ() {
+		Assert.Equal(Key.Z, KeyboardShortcuts.Undo.Key);
+	}
+
+	[Fact]
+	public void KeyboardShortcuts_RedoShortcut_IsControlY() {
+		Assert.Equal(Key.Y, KeyboardShortcuts.Redo.Key);
+	}
+
+	[Fact]
+	public void KeyboardShortcuts_CopyShortcut_IsControlC() {
+		Assert.Equal(Key.C, KeyboardShortcuts.Copy.Key);
+	}
+
+	[Fact]
+	public void KeyboardShortcuts_PasteShortcut_IsControlV() {
+		Assert.Equal(Key.V, KeyboardShortcuts.Paste.Key);
+	}
+
+	[Fact]
+	public void KeyboardShortcuts_SelectAllShortcut_IsControlA() {
+		Assert.Equal(Key.A, KeyboardShortcuts.SelectAll.Key);
+	}
+
+	[Fact]
+	public void KeyboardShortcuts_GoToShortcut_IsControlG() {
+		Assert.Equal(Key.G, KeyboardShortcuts.GoTo.Key);
+	}
+
+	[Fact]
+	public void KeyboardShortcuts_FindShortcut_IsControlF() {
+		Assert.Equal(Key.F, KeyboardShortcuts.Find.Key);
+	}
+
+	[Fact]
+	public void KeyboardShortcuts_FlipHorizontalShortcut_IsControlH() {
+		Assert.Equal(Key.H, KeyboardShortcuts.FlipHorizontal.Key);
+	}
+
+	[Fact]
+	public void KeyboardShortcuts_FlipVerticalShortcut_IsV() {
+		Assert.Equal(Key.V, KeyboardShortcuts.FlipVertical.Key);
+	}
+
+	[Fact]
+	public void KeyboardShortcuts_Rotate90Shortcut_IsControlR() {
+		Assert.Equal(Key.R, KeyboardShortcuts.Rotate90.Key);
+	}
+
+	[Fact]
+	public void KeyboardShortcuts_AddBookmarkShortcut_IsControlB() {
+		Assert.Equal(Key.B, KeyboardShortcuts.AddBookmark.Key);
+	}
+
+	[Fact]
+	public void KeyboardShortcuts_PreviousTileShortcut_IsComma() {
+		Assert.Equal(Key.OemComma, KeyboardShortcuts.PreviousTile.Key);
+	}
+
+	[Fact]
+	public void KeyboardShortcuts_NextTileShortcut_IsPeriod() {
+		Assert.Equal(Key.OemPeriod, KeyboardShortcuts.NextTile.Key);
+	}
+
+	[Fact]
+	public void KeyboardShortcuts_PreviousBankShortcut_IsOpenBracket() {
+		Assert.Equal(Key.OemOpenBrackets, KeyboardShortcuts.PreviousBank.Key);
+	}
+
+	[Fact]
+	public void KeyboardShortcuts_NextBankShortcut_IsCloseBracket() {
+		Assert.Equal(Key.OemCloseBrackets, KeyboardShortcuts.NextBank.Key);
+	}
+
+	[Fact]
+	public void KeyboardShortcuts_DeleteShortcut_IsDelete() {
+		Assert.Equal(Key.Delete, KeyboardShortcuts.Delete.Key);
 	}
 
 	#endregion

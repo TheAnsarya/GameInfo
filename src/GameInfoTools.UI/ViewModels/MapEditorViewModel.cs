@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Text;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform.Storage;
@@ -31,9 +32,60 @@ public enum MapDrawingTool {
 }
 
 /// <summary>
+/// Map layer for multi-layer maps.
+/// </summary>
+public record MapLayer(
+	string Name,
+	int Index,
+	bool IsVisible,
+	bool IsLocked,
+	double Opacity,
+	int DataOffset,
+	byte[]? Data
+);
+
+/// <summary>
+/// Tileset data for visual rendering.
+/// </summary>
+public class TilesetData {
+	public byte[] RawData { get; set; } = [];
+	public int TileWidth { get; set; } = 8;
+	public int TileHeight { get; set; } = 8;
+	public int TileCount { get; set; }
+	public int BytesPerTile { get; set; } = 16; // 2bpp 8x8
+	public string Format { get; set; } = "NES 2bpp";
+	public int Offset { get; set; }
+
+	/// <summary>
+	/// Get decoded tile graphics.
+	/// </summary>
+	public byte[,]? GetTile(int index) {
+		if (index < 0 || index >= TileCount || RawData.Length == 0) return null;
+
+		int offset = index * BytesPerTile;
+		if (offset + BytesPerTile > RawData.Length) return null;
+
+		// Decode 2bpp NES format by default
+		var tile = new byte[TileHeight, TileWidth];
+		for (int y = 0; y < TileHeight; y++) {
+			byte plane0 = RawData[offset + y];
+			byte plane1 = RawData[offset + y + 8];
+
+			for (int x = 0; x < TileWidth; x++) {
+				int bit = 7 - x;
+				int color = ((plane0 >> bit) & 1) | (((plane1 >> bit) & 1) << 1);
+				tile[y, x] = (byte)color;
+			}
+		}
+
+		return tile;
+	}
+}
+
+/// <summary>
 /// View model for viewing and editing game maps.
 /// </summary>
-public partial class MapEditorViewModel : ViewModelBase {
+public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandler {
 	private readonly RomFile? _rom;
 	private readonly UndoRedoManager _undoRedo = new(maxHistorySize: 100);
 
@@ -147,6 +199,84 @@ public partial class MapEditorViewModel : ViewModelBase {
 	[ObservableProperty]
 	private Color[] _colorPalette = GetDefaultMapPalette();
 
+	// === Tileset Support ===
+
+	/// <summary>
+	/// The loaded tileset for visual rendering.
+	/// </summary>
+	[ObservableProperty]
+	private TilesetData? _tileset;
+
+	/// <summary>
+	/// Whether a tileset is loaded.
+	/// </summary>
+	[ObservableProperty]
+	private bool _hasTileset;
+
+	/// <summary>
+	/// Number of tiles in the tileset.
+	/// </summary>
+	[ObservableProperty]
+	private int _tilesetTileCount = 256;
+
+	/// <summary>
+	/// Tileset format.
+	/// </summary>
+	[ObservableProperty]
+	private string _tilesetFormat = "NES 2bpp";
+
+	/// <summary>
+	/// Show tileset panel.
+	/// </summary>
+	[ObservableProperty]
+	private bool _showTilesetPanel = true;
+
+	public string[] TilesetFormats { get; } = [
+		"NES 2bpp",
+		"SNES 2bpp",
+		"SNES 4bpp",
+		"GB 2bpp",
+		"GBA 4bpp",
+		"Linear"
+	];
+
+	// === Layer Support ===
+
+	/// <summary>
+	/// Map layers collection.
+	/// </summary>
+	public ObservableCollection<MapLayer> Layers { get; } = [];
+
+	/// <summary>
+	/// Currently active layer index.
+	/// </summary>
+	[ObservableProperty]
+	private int _activeLayerIndex;
+
+	/// <summary>
+	/// Currently active layer.
+	/// </summary>
+	[ObservableProperty]
+	private MapLayer? _activeLayer;
+
+	/// <summary>
+	/// Show layers panel.
+	/// </summary>
+	[ObservableProperty]
+	private bool _showLayersPanel;
+
+	/// <summary>
+	/// Layer offset between layers (for multi-layer formats).
+	/// </summary>
+	[ObservableProperty]
+	private int _layerOffset = 0x400;
+
+	/// <summary>
+	/// Number of layers.
+	/// </summary>
+	[ObservableProperty]
+	private int _layerCount = 1;
+
 	/// <summary>
 	/// Whether drawing is in progress.
 	/// </summary>
@@ -186,6 +316,7 @@ public partial class MapEditorViewModel : ViewModelBase {
 
 		if (HasRomLoaded) {
 			InitializeTilePalette();
+			InitializeLayers();
 		}
 	}
 
@@ -195,6 +326,325 @@ public partial class MapEditorViewModel : ViewModelBase {
 		for (int i = 0; i < 256; i++) {
 			TilePalette.Add(new TilePaletteItem(i, $"Tile {i:X2}"));
 		}
+	}
+
+	private void InitializeLayers() {
+		Layers.Clear();
+		Layers.Add(new MapLayer("Background", 0, true, false, 1.0, MapDataOffset, null));
+		ActiveLayerIndex = 0;
+		ActiveLayer = Layers[0];
+	}
+
+	// === Tileset Commands ===
+
+	/// <summary>
+	/// Load tileset from ROM.
+	/// </summary>
+	[RelayCommand]
+	private void LoadTileset() {
+		if (_rom is null || !_rom.IsLoaded) {
+			StatusText = "No ROM loaded";
+			return;
+		}
+
+		if (TilesetOffset < 0 || TilesetOffset >= _rom.Length) {
+			StatusText = "Invalid tileset offset";
+			return;
+		}
+
+		try {
+			var bytesPerTile = TilesetFormat switch {
+				"NES 2bpp" => 16,
+				"SNES 2bpp" => 16,
+				"GB 2bpp" => 16,
+				"SNES 4bpp" => 32,
+				"GBA 4bpp" => 32,
+				"Linear" => 64,
+				_ => 16
+			};
+
+			int maxTiles = (_rom.Length - TilesetOffset) / bytesPerTile;
+			int tileCount = Math.Min(TilesetTileCount, maxTiles);
+			int dataSize = tileCount * bytesPerTile;
+
+			var data = new byte[dataSize];
+			Array.Copy(_rom.Data, TilesetOffset, data, 0, dataSize);
+
+			Tileset = new TilesetData {
+				RawData = data,
+				TileCount = tileCount,
+				BytesPerTile = bytesPerTile,
+				Format = TilesetFormat,
+				Offset = TilesetOffset
+			};
+
+			HasTileset = true;
+			StatusText = $"Loaded tileset: {tileCount} tiles ({TilesetFormat}) from 0x{TilesetOffset:X6}";
+
+			// Update tile palette with actual graphics
+			UpdateTilePaletteFromTileset();
+
+		} catch (Exception ex) {
+			StatusText = $"Error loading tileset: {ex.Message}";
+			HasTileset = false;
+		}
+	}
+
+	private void UpdateTilePaletteFromTileset() {
+		if (Tileset is null) return;
+
+		TilePalette.Clear();
+		for (int i = 0; i < Tileset.TileCount && i < 256; i++) {
+			TilePalette.Add(new TilePaletteItem(i, $"Tile {i:X2}"));
+		}
+	}
+
+	/// <summary>
+	/// Load tileset from external file.
+	/// </summary>
+	[RelayCommand]
+	private async Task LoadTilesetFromFile(Window? window) {
+		if (window is null) return;
+
+		var dialogService = FileDialogService.FromWindow(window);
+		var path = await dialogService.OpenFileAsync(
+			"Load Tileset",
+			FileDialogService.AllFiles
+		);
+
+		if (path is null) return;
+
+		try {
+			var data = await File.ReadAllBytesAsync(path);
+			var bytesPerTile = TilesetFormat switch {
+				"NES 2bpp" => 16,
+				"SNES 2bpp" => 16,
+				"GB 2bpp" => 16,
+				"SNES 4bpp" => 32,
+				"GBA 4bpp" => 32,
+				"Linear" => 64,
+				_ => 16
+			};
+
+			int tileCount = data.Length / bytesPerTile;
+
+			Tileset = new TilesetData {
+				RawData = data,
+				TileCount = tileCount,
+				BytesPerTile = bytesPerTile,
+				Format = TilesetFormat,
+				Offset = 0
+			};
+
+			HasTileset = true;
+			TilesetTileCount = tileCount;
+			UpdateTilePaletteFromTileset();
+
+			StatusText = $"Loaded tileset from {Path.GetFileName(path)}: {tileCount} tiles";
+
+		} catch (Exception ex) {
+			StatusText = $"Error loading tileset: {ex.Message}";
+		}
+	}
+
+	/// <summary>
+	/// Clear the loaded tileset.
+	/// </summary>
+	[RelayCommand]
+	private void ClearTileset() {
+		Tileset = null;
+		HasTileset = false;
+		InitializeTilePalette();
+		StatusText = "Tileset cleared";
+	}
+
+	/// <summary>
+	/// Get tile graphics from tileset.
+	/// </summary>
+	public byte[,]? GetTileGraphics(int tileIndex) {
+		return Tileset?.GetTile(tileIndex);
+	}
+
+	// === Layer Commands ===
+
+	/// <summary>
+	/// Add a new layer.
+	/// </summary>
+	[RelayCommand]
+	private void AddLayer() {
+		int newIndex = Layers.Count;
+		int offset = MapDataOffset + (newIndex * LayerOffset);
+		var layer = new MapLayer($"Layer {newIndex}", newIndex, true, false, 1.0, offset, null);
+		Layers.Add(layer);
+		LayerCount = Layers.Count;
+		StatusText = $"Added layer {newIndex}";
+	}
+
+	/// <summary>
+	/// Remove a layer.
+	/// </summary>
+	[RelayCommand]
+	private void RemoveLayer(int index) {
+		if (index < 0 || index >= Layers.Count || Layers.Count <= 1) {
+			StatusText = "Cannot remove layer";
+			return;
+		}
+
+		Layers.RemoveAt(index);
+		LayerCount = Layers.Count;
+
+		// Adjust active layer if needed
+		if (ActiveLayerIndex >= Layers.Count) {
+			ActiveLayerIndex = Layers.Count - 1;
+		}
+
+		ActiveLayer = Layers[ActiveLayerIndex];
+		StatusText = $"Removed layer {index}";
+	}
+
+	/// <summary>
+	/// Set the active layer.
+	/// </summary>
+	[RelayCommand]
+	private void SetActiveLayer(int index) {
+		if (index < 0 || index >= Layers.Count) return;
+
+		ActiveLayerIndex = index;
+		ActiveLayer = Layers[index];
+		StatusText = $"Active layer: {ActiveLayer.Name}";
+	}
+
+	/// <summary>
+	/// Toggle layer visibility.
+	/// </summary>
+	[RelayCommand]
+	private void ToggleLayerVisibility(int index) {
+		if (index < 0 || index >= Layers.Count) return;
+
+		var layer = Layers[index];
+		Layers[index] = layer with { IsVisible = !layer.IsVisible };
+		StatusText = $"Layer {index} visibility: {Layers[index].IsVisible}";
+	}
+
+	/// <summary>
+	/// Toggle layer lock.
+	/// </summary>
+	[RelayCommand]
+	private void ToggleLayerLock(int index) {
+		if (index < 0 || index >= Layers.Count) return;
+
+		var layer = Layers[index];
+		Layers[index] = layer with { IsLocked = !layer.IsLocked };
+		StatusText = $"Layer {index} locked: {Layers[index].IsLocked}";
+	}
+
+	/// <summary>
+	/// Set layer opacity.
+	/// </summary>
+	public void SetLayerOpacity(int index, double opacity) {
+		if (index < 0 || index >= Layers.Count) return;
+
+		var layer = Layers[index];
+		Layers[index] = layer with { Opacity = Math.Clamp(opacity, 0, 1) };
+		StatusText = $"Layer {index} opacity: {Layers[index].Opacity:P0}";
+	}
+
+	/// <summary>
+	/// Rename a layer.
+	/// </summary>
+	public void RenameLayer(int index, string newName) {
+		if (index < 0 || index >= Layers.Count) return;
+
+		var layer = Layers[index];
+		Layers[index] = layer with { Name = newName };
+	}
+
+	/// <summary>
+	/// Move layer up in the stack.
+	/// </summary>
+	[RelayCommand]
+	private void MoveLayerUp(int index) {
+		if (index <= 0 || index >= Layers.Count) return;
+
+		var layer = Layers[index];
+		Layers.RemoveAt(index);
+		Layers.Insert(index - 1, layer);
+
+		// Update indices
+		for (int i = 0; i < Layers.Count; i++) {
+			Layers[i] = Layers[i] with { Index = i };
+		}
+
+		StatusText = $"Moved layer '{layer.Name}' up";
+	}
+
+	/// <summary>
+	/// Move layer down in the stack.
+	/// </summary>
+	[RelayCommand]
+	private void MoveLayerDown(int index) {
+		if (index < 0 || index >= Layers.Count - 1) return;
+
+		var layer = Layers[index];
+		Layers.RemoveAt(index);
+		Layers.Insert(index + 1, layer);
+
+		// Update indices
+		for (int i = 0; i < Layers.Count; i++) {
+			Layers[i] = Layers[i] with { Index = i };
+		}
+
+		StatusText = $"Moved layer '{layer.Name}' down";
+	}
+
+	/// <summary>
+	/// Merge visible layers into one.
+	/// </summary>
+	[RelayCommand]
+	private void MergeVisibleLayers() {
+		if (_rom is null || !_rom.IsLoaded || Layers.Count <= 1) return;
+
+		var visibleLayers = Layers.Where(l => l.IsVisible).ToList();
+		if (visibleLayers.Count <= 1) {
+			StatusText = "Need at least 2 visible layers to merge";
+			return;
+		}
+
+		// TODO: Implement actual merge logic based on map format
+		StatusText = $"Merge {visibleLayers.Count} layers (not yet implemented)";
+	}
+
+	/// <summary>
+	/// Load layer data from ROM.
+	/// </summary>
+	[RelayCommand]
+	private void LoadLayerData(int index) {
+		if (_rom is null || !_rom.IsLoaded || index < 0 || index >= Layers.Count) return;
+
+		var layer = Layers[index];
+		int mapSize = MapWidth * MapHeight;
+
+		if (layer.DataOffset < 0 || layer.DataOffset + mapSize > _rom.Length) {
+			StatusText = $"Invalid layer data offset for layer {index}";
+			return;
+		}
+
+		var data = new byte[mapSize];
+		Array.Copy(_rom.Data, layer.DataOffset, data, 0, mapSize);
+
+		Layers[index] = layer with { Data = data };
+		StatusText = $"Loaded data for layer '{layer.Name}'";
+	}
+
+	/// <summary>
+	/// Load all layers' data.
+	/// </summary>
+	[RelayCommand]
+	private void LoadAllLayersData() {
+		for (int i = 0; i < Layers.Count; i++) {
+			LoadLayerData(i);
+		}
+		StatusText = $"Loaded data for {Layers.Count} layers";
 	}
 
 	[RelayCommand]
@@ -1203,6 +1653,89 @@ public partial class MapEditorViewModel : ViewModelBase {
 	}
 
 	#endregion
+
+	/// <summary>
+	/// Handle keyboard shortcuts.
+	/// </summary>
+	public bool HandleKeyDown(KeyEventArgs e) {
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Undo)) {
+			if (CanUndo) {
+				Undo();
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Redo) ||
+				   KeyboardShortcuts.Matches(e, KeyboardShortcuts.RedoAlt)) {
+			if (CanRedo) {
+				Redo();
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Copy)) {
+			if (HasSelection) {
+				CopySelection();
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Paste)) {
+			if (HasClipboard) {
+				PasteSelection();
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Delete)) {
+			if (HasSelection) {
+				ClearSelection();
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.SelectAll)) {
+			// Select entire map
+			SelectionStartX = 0;
+			SelectionStartY = 0;
+			SelectionEndX = MapWidth - 1;
+			SelectionEndY = MapHeight - 1;
+			StatusText = "Selected entire map";
+			return true;
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.PencilTool)) {
+			CurrentTool = MapDrawingTool.Pencil;
+			StatusText = "Pencil tool selected";
+			return true;
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.FillTool)) {
+			CurrentTool = MapDrawingTool.Fill;
+			StatusText = "Fill tool selected";
+			return true;
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.RectangleTool)) {
+			CurrentTool = MapDrawingTool.Rectangle;
+			StatusText = "Rectangle tool selected";
+			return true;
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.LineTool)) {
+			CurrentTool = MapDrawingTool.Line;
+			StatusText = "Line tool selected";
+			return true;
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.SelectionTool)) {
+			CurrentTool = MapDrawingTool.Selection;
+			StatusText = "Selection tool selected";
+			return true;
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.EyedropperTool)) {
+			CurrentTool = MapDrawingTool.Eyedropper;
+			StatusText = "Eyedropper tool selected";
+			return true;
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.ToggleGrid)) {
+			ShowGrid = !ShowGrid;
+			return true;
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.ZoomIn)) {
+			if (Zoom < 8) {
+				Zoom++;
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.ZoomOut)) {
+			if (Zoom > 1) {
+				Zoom--;
+				return true;
+			}
+		} else if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.ResetZoom)) {
+			Zoom = 2;
+			return true;
+		}
+
+		return false;
+	}
 }
 
 /// <summary>
