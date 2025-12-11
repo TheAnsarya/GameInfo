@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Text.Json;
 using Avalonia.Controls;
+using Avalonia.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GameInfoTools.Core;
@@ -71,7 +72,7 @@ public record GraphNodePosition(int BlockId, double X, double Y, double Width, d
 /// <summary>
 /// View model for viewing and editing game scripts/events.
 /// </summary>
-public partial class ScriptEditorViewModel : ViewModelBase {
+public partial class ScriptEditorViewModel : ViewModelBase, IKeyboardShortcutHandler {
 	private readonly RomFile? _rom;
 
 	[ObservableProperty]
@@ -1264,6 +1265,82 @@ public partial class ScriptEditorViewModel : ViewModelBase {
 			BuildControlFlowGraph();
 		}
 	}
+
+	#region IKeyboardShortcutHandler
+
+	/// <summary>
+	/// Handle keyboard shortcuts for the script editor.
+	/// </summary>
+	public bool HandleKeyDown(KeyEventArgs e) {
+		// Find (Ctrl+F)
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Find)) {
+			// TODO: Open search panel
+			StatusText = "Search panel (Ctrl+F) - coming soon";
+			e.Handled = true;
+			return true;
+		}
+
+		// Go to offset (Ctrl+G)
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.GoTo)) {
+			// TODO: Open go to dialog
+			StatusText = "Go to offset (Ctrl+G) - coming soon";
+			e.Handled = true;
+			return true;
+		}
+
+		// Load script (Ctrl+Enter)
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.LoadScript)) {
+			LoadScript();
+			e.Handled = true;
+			return true;
+		}
+
+		// Build CFG (Ctrl+Shift+G)
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.BuildCFG)) {
+			BuildControlFlowGraph();
+			e.Handled = true;
+			return true;
+		}
+
+		// Validate/Refresh (F5)
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.ValidateScript)) {
+			ValidateScript();
+			e.Handled = true;
+			return true;
+		}
+
+		// Toggle control flow panel (Ctrl+Alt+G)
+		if (e.Key == Key.G && e.KeyModifiers == (KeyModifiers.Control | KeyModifiers.Alt)) {
+			ToggleControlFlowGraph();
+			e.Handled = true;
+			return true;
+		}
+
+		// Toggle basic blocks panel (Ctrl+Alt+B)
+		if (e.Key == Key.B && e.KeyModifiers == (KeyModifiers.Control | KeyModifiers.Alt)) {
+			ShowBasicBlocks = !ShowBasicBlocks;
+			e.Handled = true;
+			return true;
+		}
+
+		// Find next (F3) - TODO: Implement command search
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.FindNext)) {
+			// SearchNextCommand(); // Not yet implemented
+			e.Handled = true;
+			return true;
+		}
+
+		// Find previous (Shift+F3) - TODO: Implement command search
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.FindPrevious)) {
+			// SearchPreviousCommand(); // Not yet implemented
+			e.Handled = true;
+			return true;
+		}
+
+		return false;
+	}
+
+	#endregion
 }
 
 /// <summary>

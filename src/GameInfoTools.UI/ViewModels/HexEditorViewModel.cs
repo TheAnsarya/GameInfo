@@ -1,9 +1,11 @@
 using System.Collections.ObjectModel;
 using System.Text;
+using Avalonia.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GameInfoTools.Core;
 using GameInfoTools.Core.Commands;
+using GameInfoTools.UI.Services;
 
 namespace GameInfoTools.UI.ViewModels;
 
@@ -24,7 +26,7 @@ public enum ByteGroupMode {
 /// <summary>
 /// View model for hex editing.
 /// </summary>
-public partial class HexEditorViewModel : ViewModelBase {
+public partial class HexEditorViewModel : ViewModelBase, IKeyboardShortcutHandler {
 	private readonly RomFile? _rom;
 	private readonly UndoRedoManager _undoRedo = new(maxHistorySize: 100);
 
@@ -69,6 +71,24 @@ public partial class HexEditorViewModel : ViewModelBase {
 	/// </summary>
 	[ObservableProperty]
 	private bool _showDataInspector = true;
+
+	/// <summary>
+	/// Show search panel.
+	/// </summary>
+	[ObservableProperty]
+	private bool _showSearchPanel;
+
+	/// <summary>
+	/// Show go to offset panel.
+	/// </summary>
+	[ObservableProperty]
+	private bool _showGotoPanel;
+
+	/// <summary>
+	/// Show ROM comparison panel.
+	/// </summary>
+	[ObservableProperty]
+	private bool _showComparison;
 
 	#region Data Inspector Values
 
@@ -928,6 +948,107 @@ public partial class HexEditorViewModel : ViewModelBase {
 		}
 
 		return sb.ToString().TrimEnd();
+	}
+
+	#endregion
+
+	#region IKeyboardShortcutHandler
+
+	/// <summary>
+	/// Handle keyboard shortcuts for the hex editor.
+	/// </summary>
+	public bool HandleKeyDown(KeyEventArgs e) {
+		// Find (Ctrl+F)
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Find)) {
+			ShowSearchPanel = true;
+			e.Handled = true;
+			return true;
+		}
+
+		// Go to offset (Ctrl+G)
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.GoTo)) {
+			ShowGotoPanel = true;
+			e.Handled = true;
+			return true;
+		}
+
+		// Find next (F3)
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.FindNext)) {
+			FindNextPattern();
+			e.Handled = true;
+			return true;
+		}
+
+		// Find previous (Shift+F3) - uses FindNextPattern from start for now
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.FindPrevious)) {
+			FindNextPattern(); // TODO: Add FindPreviousPattern
+			e.Handled = true;
+			return true;
+		}
+
+		// Copy (Ctrl+C)
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Copy)) {
+			CopySelection();
+			e.Handled = true;
+			return true;
+		}
+
+		// Paste (Ctrl+V)
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Paste)) {
+			PasteAtCursor();
+			e.Handled = true;
+			return true;
+		}
+
+		// Undo (Ctrl+Z)
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Undo)) {
+			if (CanUndo) Undo();
+			e.Handled = true;
+			return true;
+		}
+
+		// Redo (Ctrl+Y)
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Redo) ||
+			KeyboardShortcuts.Matches(e, KeyboardShortcuts.RedoAlt)) {
+			if (CanRedo) Redo();
+			e.Handled = true;
+			return true;
+		}
+
+		// Toggle compare mode (Ctrl+D)
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.ToggleCompare)) {
+			ShowComparison = !ShowComparison;
+			e.Handled = true;
+			return true;
+		}
+
+		// Page Up/Down navigation
+		if (e.Key == Key.PageUp) {
+			CurrentOffset = Math.Max(0, CurrentOffset - (BytesPerRow * RowCount));
+			e.Handled = true;
+			return true;
+		}
+		if (e.Key == Key.PageDown) {
+			int maxOffset = _rom?.Length ?? 0;
+			CurrentOffset = Math.Min(maxOffset - BytesPerRow, CurrentOffset + (BytesPerRow * RowCount));
+			e.Handled = true;
+			return true;
+		}
+
+		// Home/End
+		if (e.Key == Key.Home && e.KeyModifiers == KeyModifiers.Control) {
+			CurrentOffset = 0;
+			e.Handled = true;
+			return true;
+		}
+		if (e.Key == Key.End && e.KeyModifiers == KeyModifiers.Control) {
+			int maxOffset = (_rom?.Length ?? 0) - BytesPerRow;
+			CurrentOffset = Math.Max(0, maxOffset);
+			e.Handled = true;
+			return true;
+		}
+
+		return false;
 	}
 
 	#endregion
