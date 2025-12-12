@@ -60,6 +60,146 @@ public static class Checksum {
 	}
 
 	/// <summary>
+	/// Calculate SHA256 hash.
+	/// </summary>
+	public static string Sha256(byte[] data) {
+		using var sha256 = SHA256.Create();
+		byte[] hash = sha256.ComputeHash(data);
+		return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+	}
+
+	/// <summary>
+	/// Calculate SHA384 hash.
+	/// </summary>
+	public static string Sha384(byte[] data) {
+		using var sha384 = SHA384.Create();
+		byte[] hash = sha384.ComputeHash(data);
+		return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+	}
+
+	/// <summary>
+	/// Calculate SHA512 hash.
+	/// </summary>
+	public static string Sha512(byte[] data) {
+		using var sha512 = SHA512.Create();
+		byte[] hash = sha512.ComputeHash(data);
+		return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+	}
+
+	/// <summary>
+	/// Calculate all common hashes for a file.
+	/// </summary>
+	public static HashResult CalculateAllHashes(byte[] data) {
+		return new HashResult(
+			Crc32: Crc32(data),
+			Md5: Md5(data),
+			Sha1: Sha1(data),
+			Sha256: Sha256(data),
+			Sha384: Sha384(data),
+			Sha512: Sha512(data)
+		);
+	}
+
+	/// <summary>
+	/// Verify file against expected hash value.
+	/// </summary>
+	public static bool VerifyHash(byte[] data, string expectedHash, HashType hashType) {
+		string actualHash = hashType switch {
+			HashType.Crc32 => Crc32(data).ToString("x8"),
+			HashType.Md5 => Md5(data),
+			HashType.Sha1 => Sha1(data),
+			HashType.Sha256 => Sha256(data),
+			HashType.Sha384 => Sha384(data),
+			HashType.Sha512 => Sha512(data),
+			_ => throw new ArgumentException($"Unknown hash type: {hashType}")
+		};
+
+		return string.Equals(actualHash, expectedHash, StringComparison.OrdinalIgnoreCase);
+	}
+
+	/// <summary>
+	/// Batch verify multiple files against a hash list.
+	/// </summary>
+	public static BatchVerificationResult BatchVerify(IEnumerable<BatchVerificationEntry> entries) {
+		var results = new List<BatchVerificationEntryResult>();
+
+		foreach (var entry in entries) {
+			try {
+				if (!File.Exists(entry.FilePath)) {
+					results.Add(new BatchVerificationEntryResult(
+						entry.FilePath, false, "File not found", entry.ExpectedHash, null));
+					continue;
+				}
+
+				var data = File.ReadAllBytes(entry.FilePath);
+				string actualHash = entry.HashType switch {
+					HashType.Crc32 => Crc32(data).ToString("x8"),
+					HashType.Md5 => Md5(data),
+					HashType.Sha1 => Sha1(data),
+					HashType.Sha256 => Sha256(data),
+					HashType.Sha384 => Sha384(data),
+					HashType.Sha512 => Sha512(data),
+					_ => throw new ArgumentException($"Unknown hash type: {entry.HashType}")
+				};
+
+				bool matches = string.Equals(actualHash, entry.ExpectedHash, StringComparison.OrdinalIgnoreCase);
+				results.Add(new BatchVerificationEntryResult(
+					entry.FilePath, matches,
+					matches ? "OK" : "Hash mismatch",
+					entry.ExpectedHash, actualHash));
+			} catch (Exception ex) {
+				results.Add(new BatchVerificationEntryResult(
+					entry.FilePath, false, $"Error: {ex.Message}", entry.ExpectedHash, null));
+			}
+		}
+
+		int passed = results.Count(r => r.Passed);
+		int failed = results.Count(r => !r.Passed);
+
+		return new BatchVerificationResult(results, passed, failed);
+	}
+
+	/// <summary>
+	/// Parse a hash file (MD5SUMS, SHA256SUMS format).
+	/// </summary>
+	public static List<BatchVerificationEntry> ParseHashFile(string content, HashType hashType) {
+		var entries = new List<BatchVerificationEntry>();
+		var lines = content.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+
+		foreach (var line in lines) {
+			var trimmed = line.Trim();
+			if (string.IsNullOrEmpty(trimmed) || trimmed.StartsWith('#'))
+				continue;
+
+			// Format: "hash  filename" or "hash *filename" (binary mode)
+			var parts = trimmed.Split([' ', '\t'], 2, StringSplitOptions.RemoveEmptyEntries);
+			if (parts.Length < 2)
+				continue;
+
+			var hash = parts[0];
+			var filename = parts[1].TrimStart('*');
+
+			entries.Add(new BatchVerificationEntry(filename, hash, hashType));
+		}
+
+		return entries;
+	}
+
+	/// <summary>
+	/// Generate a hash file in standard format.
+	/// </summary>
+	public static string GenerateHashFile(IEnumerable<(string FilePath, string Hash)> files, bool binary = false) {
+		var sb = new System.Text.StringBuilder();
+		string mode = binary ? "*" : " ";
+
+		foreach (var (filePath, hash) in files) {
+			sb.AppendLine($"{hash} {mode}{Path.GetFileName(filePath)}");
+		}
+
+		return sb.ToString();
+	}
+
+	/// <summary>
 	/// Calculate NES internal checksum (sum of PRG bytes).
 	/// </summary>
 	public static ushort NesChecksum(byte[] data, int prgStart, int prgSize) {
@@ -247,4 +387,41 @@ public static class Checksum {
 	}
 
 	public record ChecksumResult(bool IsValid, string Details);
+
+	public record HashResult(
+		uint Crc32,
+		string Md5,
+		string Sha1,
+		string Sha256,
+		string Sha384,
+		string Sha512
+	);
+
+	public record BatchVerificationEntry(string FilePath, string ExpectedHash, HashType HashType);
+
+	public record BatchVerificationEntryResult(
+		string FilePath,
+		bool Passed,
+		string Status,
+		string ExpectedHash,
+		string? ActualHash
+	);
+
+	public record BatchVerificationResult(
+		List<BatchVerificationEntryResult> Results,
+		int PassedCount,
+		int FailedCount
+	);
+}
+
+/// <summary>
+/// Hash algorithm types.
+/// </summary>
+public enum HashType {
+	Crc32,
+	Md5,
+	Sha1,
+	Sha256,
+	Sha384,
+	Sha512
 }

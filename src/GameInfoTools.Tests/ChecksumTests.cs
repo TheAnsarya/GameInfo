@@ -282,4 +282,202 @@ public class ChecksumTests {
 		Assert.False(result.IsValid);
 		Assert.Contains("Unknown", result.Details);
 	}
+
+	#region SHA256/384/512 Tests
+
+	[Fact]
+	public void Sha256_ReturnsValidHash() {
+		byte[] data = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08];
+		var result = Checksum.Sha256(data);
+		Assert.NotNull(result);
+		Assert.Equal(64, result.Length); // SHA256 produces 32 bytes = 64 hex chars
+	}
+
+	[Fact]
+	public void Sha256_ReturnsLowercaseHex() {
+		byte[] data = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08];
+		var result = Checksum.Sha256(data);
+		Assert.Equal(result.ToLowerInvariant(), result);
+	}
+
+	[Fact]
+	public void Sha256_KnownValue_Correct() {
+		// SHA256 of empty data is a known value
+		byte[] data = [];
+		var result = Checksum.Sha256(data);
+		Assert.Equal("e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", result);
+	}
+
+	[Fact]
+	public void Sha384_ReturnsValidHash() {
+		byte[] data = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08];
+		var result = Checksum.Sha384(data);
+		Assert.NotNull(result);
+		Assert.Equal(96, result.Length); // SHA384 produces 48 bytes = 96 hex chars
+	}
+
+	[Fact]
+	public void Sha512_ReturnsValidHash() {
+		byte[] data = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08];
+		var result = Checksum.Sha512(data);
+		Assert.NotNull(result);
+		Assert.Equal(128, result.Length); // SHA512 produces 64 bytes = 128 hex chars
+	}
+
+	#endregion
+
+	#region CalculateAllHashes Tests
+
+	[Fact]
+	public void CalculateAllHashes_ReturnsAllHashes() {
+		byte[] data = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08];
+		var result = Checksum.CalculateAllHashes(data);
+
+		Assert.NotEqual(0u, result.Crc32);
+		Assert.Equal(32, result.Md5.Length);
+		Assert.Equal(40, result.Sha1.Length);
+		Assert.Equal(64, result.Sha256.Length);
+		Assert.Equal(96, result.Sha384.Length);
+		Assert.Equal(128, result.Sha512.Length);
+	}
+
+	[Fact]
+	public void CalculateAllHashes_EmptyData_ReturnsValidHashes() {
+		byte[] data = [];
+		var result = Checksum.CalculateAllHashes(data);
+
+		Assert.Equal(0u, result.Crc32);
+		Assert.NotNull(result.Md5);
+		Assert.NotNull(result.Sha256);
+	}
+
+	#endregion
+
+	#region VerifyHash Tests
+
+	[Fact]
+	public void VerifyHash_Crc32_CorrectHash_ReturnsTrue() {
+		byte[] data = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08];
+		string expected = Checksum.Crc32(data).ToString("x8");
+
+		Assert.True(Checksum.VerifyHash(data, expected, HashType.Crc32));
+	}
+
+	[Fact]
+	public void VerifyHash_Md5_CorrectHash_ReturnsTrue() {
+		byte[] data = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08];
+		string expected = Checksum.Md5(data);
+
+		Assert.True(Checksum.VerifyHash(data, expected, HashType.Md5));
+	}
+
+	[Fact]
+	public void VerifyHash_Sha256_CorrectHash_ReturnsTrue() {
+		byte[] data = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08];
+		string expected = Checksum.Sha256(data);
+
+		Assert.True(Checksum.VerifyHash(data, expected, HashType.Sha256));
+	}
+
+	[Fact]
+	public void VerifyHash_WrongHash_ReturnsFalse() {
+		byte[] data = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08];
+
+		Assert.False(Checksum.VerifyHash(data, "0000000000000000", HashType.Md5));
+	}
+
+	[Fact]
+	public void VerifyHash_CaseInsensitive() {
+		byte[] data = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08];
+		string expectedLower = Checksum.Sha256(data);
+		string expectedUpper = expectedLower.ToUpperInvariant();
+
+		Assert.True(Checksum.VerifyHash(data, expectedUpper, HashType.Sha256));
+	}
+
+	#endregion
+
+	#region ParseHashFile Tests
+
+	[Fact]
+	public void ParseHashFile_StandardFormat_ParsesCorrectly() {
+		string content = """
+			d41d8cd98f00b204e9800998ecf8427e  file1.rom
+			098f6bcd4621d373cade4e832627b4f6  file2.rom
+			""";
+
+		var entries = Checksum.ParseHashFile(content, HashType.Md5);
+
+		Assert.Equal(2, entries.Count);
+		Assert.Equal("file1.rom", entries[0].FilePath);
+		Assert.Equal("d41d8cd98f00b204e9800998ecf8427e", entries[0].ExpectedHash);
+		Assert.Equal(HashType.Md5, entries[0].HashType);
+	}
+
+	[Fact]
+	public void ParseHashFile_BinaryMode_ParsesCorrectly() {
+		string content = """
+			d41d8cd98f00b204e9800998ecf8427e *file1.rom
+			""";
+
+		var entries = Checksum.ParseHashFile(content, HashType.Md5);
+
+		Assert.Single(entries);
+		Assert.Equal("file1.rom", entries[0].FilePath);
+	}
+
+	[Fact]
+	public void ParseHashFile_WithComments_IgnoresComments() {
+		string content = """
+			# This is a comment
+			d41d8cd98f00b204e9800998ecf8427e  file1.rom
+			""";
+
+		var entries = Checksum.ParseHashFile(content, HashType.Md5);
+
+		Assert.Single(entries);
+	}
+
+	[Fact]
+	public void ParseHashFile_EmptyLines_IgnoresEmptyLines() {
+		string content = """
+			d41d8cd98f00b204e9800998ecf8427e  file1.rom
+
+			098f6bcd4621d373cade4e832627b4f6  file2.rom
+			""";
+
+		var entries = Checksum.ParseHashFile(content, HashType.Md5);
+
+		Assert.Equal(2, entries.Count);
+	}
+
+	#endregion
+
+	#region GenerateHashFile Tests
+
+	[Fact]
+	public void GenerateHashFile_GeneratesCorrectFormat() {
+		var files = new List<(string FilePath, string Hash)> {
+			("file1.rom", "d41d8cd98f00b204e9800998ecf8427e"),
+			("file2.rom", "098f6bcd4621d373cade4e832627b4f6")
+		};
+
+		string result = Checksum.GenerateHashFile(files);
+
+		Assert.Contains("d41d8cd98f00b204e9800998ecf8427e", result);
+		Assert.Contains("file1.rom", result);
+	}
+
+	[Fact]
+	public void GenerateHashFile_BinaryMode_AddsStar() {
+		var files = new List<(string FilePath, string Hash)> {
+			("file1.rom", "d41d8cd98f00b204e9800998ecf8427e")
+		};
+
+		string result = Checksum.GenerateHashFile(files, binary: true);
+
+		Assert.Contains("*file1.rom", result);
+	}
+
+	#endregion
 }
