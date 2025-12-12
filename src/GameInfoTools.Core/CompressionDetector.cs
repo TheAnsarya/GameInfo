@@ -18,6 +18,10 @@ public static class CompressionDetector {
 		LzSquare,      // Square's compression
 		LzCapcom,      // Capcom's compression
 		Dte,           // Dual-tile encoding (text)
+		Lz10,          // GBA LZ10 (same as LzNintendo)
+		Lz11,          // GBA/DS LZ11 (extended)
+		Rle8,          // 8-bit RLE variant
+		Lz4,           // LZ4 format
 		Custom         // Unknown/custom
 	}
 
@@ -27,17 +31,41 @@ public static class CompressionDetector {
 	public record DetectionResult(CompressionType Type, double Confidence, int HeaderOffset, string Description);
 
 	/// <summary>
+	/// Decompression result containing output and statistics.
+	/// </summary>
+	public record DecompressionResult(byte[] Data, int CompressedSize, int DecompressedSize, double Ratio, string Format);
+
+	/// <summary>
+	/// Compression statistics for analysis.
+	/// </summary>
+	public record CompressionStats(
+		double Entropy,
+		int RunCount,
+		int LiteralCount,
+		int BackRefCount,
+		double EstimatedRatio
+	);
+
+	/// <summary>
 	/// Detect compression type at a specific offset.
 	/// </summary>
 	public static DetectionResult Detect(byte[] data, int offset) {
 		if (offset + 4 > data.Length)
 			return new DetectionResult(CompressionType.None, 0, offset, "Insufficient data");
 
-		// Check for Nintendo LZ (0x10 header)
+		// Check for Nintendo LZ10 (0x10 header)
 		if (data[offset] == 0x10) {
 			int size = data[offset + 1] | (data[offset + 2] << 8) | (data[offset + 3] << 16);
-			if (size > 0 && size < 0x100000) {
-				return new DetectionResult(CompressionType.LzNintendo, 0.9, offset, $"Nintendo LZ77, decompressed size: {size}");
+			if (size > 0 && size < 0x1000000) {
+				return new DetectionResult(CompressionType.Lz10, 0.9, offset, $"Nintendo LZ10, decompressed size: {size} bytes");
+			}
+		}
+
+		// Check for Nintendo LZ11 (0x11 header)
+		if (data[offset] == 0x11) {
+			int size = data[offset + 1] | (data[offset + 2] << 8) | (data[offset + 3] << 16);
+			if (size > 0 && size < 0x1000000) {
+				return new DetectionResult(CompressionType.Lz11, 0.9, offset, $"Nintendo LZ11, decompressed size: {size} bytes");
 			}
 		}
 
@@ -275,4 +303,351 @@ public static class CompressionDetector {
 		output.Add(0); // End marker
 		return output.ToArray();
 	}
+
+	#region LZSS Decompression
+
+	/// <summary>
+	/// Decompress generic LZSS data with configurable parameters.
+	/// </summary>
+	/// <param name="data">Compressed data.</param>
+	/// <param name="offset">Start offset.</param>
+	/// <param name="maxOutput">Maximum output size.</param>
+	/// <param name="windowBits">Window size bits (default 12 = 4KB).</param>
+	/// <param name="lengthBits">Length bits (default 4).</param>
+	/// <param name="minMatch">Minimum match length (default 3).</param>
+	/// <returns>Decompressed data or null if failed.</returns>
+	public static byte[]? DecompressLzss(byte[] data, int offset, int maxOutput = 0x10000, int windowBits = 12, int lengthBits = 4, int minMatch = 3) {
+		var output = new List<byte>();
+		int pos = offset;
+		int windowSize = 1 << windowBits;
+
+		while (pos < data.Length && output.Count < maxOutput) {
+			byte flags = data[pos++];
+
+			for (int bit = 0; bit < 8 && pos < data.Length && output.Count < maxOutput; bit++) {
+				if ((flags & (1 << bit)) == 0) {
+					// Literal byte
+					output.Add(data[pos++]);
+				} else {
+					// Back-reference
+					if (pos + 2 > data.Length)
+						break;
+
+					int word = data[pos] | (data[pos + 1] << 8);
+					pos += 2;
+
+					int displacement = word & ((1 << windowBits) - 1);
+					int length = ((word >> windowBits) & ((1 << lengthBits) - 1)) + minMatch;
+
+					if (displacement == 0)
+						displacement = windowSize;
+
+					int srcPos = output.Count - displacement;
+					if (srcPos < 0)
+						return null; // Invalid reference
+
+					for (int j = 0; j < length && output.Count < maxOutput; j++) {
+						output.Add(output[srcPos + (j % displacement)]);
+					}
+				}
+			}
+		}
+
+		return output.ToArray();
+	}
+
+	/// <summary>
+	/// Compress data using LZSS algorithm.
+	/// </summary>
+	/// <param name="data">Data to compress.</param>
+	/// <param name="windowBits">Window size bits (default 12).</param>
+	/// <param name="lengthBits">Length bits (default 4).</param>
+	/// <param name="minMatch">Minimum match length (default 3).</param>
+	/// <returns>Compressed data.</returns>
+	public static byte[] CompressLzss(byte[] data, int windowBits = 12, int lengthBits = 4, int minMatch = 3) {
+		var output = new List<byte>();
+		int windowSize = 1 << windowBits;
+		int maxLength = (1 << lengthBits) - 1 + minMatch;
+		int i = 0;
+
+		while (i < data.Length) {
+			var block = new List<byte>();
+			byte flags = 0;
+
+			for (int bit = 0; bit < 8 && i < data.Length; bit++) {
+				// Find best match in window
+				int bestOffset = 0;
+				int bestLength = 0;
+
+				int searchStart = Math.Max(0, i - windowSize);
+				for (int j = searchStart; j < i; j++) {
+					int matchLen = 0;
+					while (matchLen < maxLength && i + matchLen < data.Length && data[j + matchLen % (i - j)] == data[i + matchLen]) {
+						matchLen++;
+					}
+
+					if (matchLen >= minMatch && matchLen > bestLength) {
+						bestOffset = i - j;
+						bestLength = matchLen;
+					}
+				}
+
+				if (bestLength >= minMatch) {
+					// Back-reference
+					flags |= (byte)(1 << bit);
+					int word = (bestOffset & ((1 << windowBits) - 1)) | (((bestLength - minMatch) & ((1 << lengthBits) - 1)) << windowBits);
+					block.Add((byte)(word & 0xff));
+					block.Add((byte)((word >> 8) & 0xff));
+					i += bestLength;
+				} else {
+					// Literal
+					block.Add(data[i++]);
+				}
+			}
+
+			output.Add(flags);
+			output.AddRange(block);
+		}
+
+		return output.ToArray();
+	}
+
+	#endregion
+
+	#region LZ11 Support
+
+	/// <summary>
+	/// Decompress Nintendo LZ11 format (extended LZ).
+	/// LZ11 uses 0x11 header and supports larger back-references.
+	/// </summary>
+	public static byte[]? DecompressLz11(byte[] data, int offset) {
+		if (offset + 4 > data.Length || data[offset] != 0x11)
+			return null;
+
+		int size = data[offset + 1] | (data[offset + 2] << 8) | (data[offset + 3] << 16);
+		if (size <= 0 || size > 0x1000000)
+			return null;
+
+		var output = new byte[size];
+		int srcPos = offset + 4;
+		int dstPos = 0;
+
+		while (dstPos < size && srcPos < data.Length) {
+			byte flags = data[srcPos++];
+
+			for (int bit = 7; bit >= 0 && dstPos < size; bit--) {
+				if ((flags & (1 << bit)) != 0) {
+					// Compressed block
+					if (srcPos >= data.Length)
+						break;
+
+					byte indicator = data[srcPos];
+
+					int length, displacement;
+
+					if ((indicator >> 4) == 0) {
+						// Extended format (3 bytes)
+						if (srcPos + 3 > data.Length)
+							break;
+						length = ((indicator & 0x0f) << 4) | ((data[srcPos + 1] >> 4) & 0x0f) + 0x11;
+						displacement = ((data[srcPos + 1] & 0x0f) << 8) | data[srcPos + 2] + 1;
+						srcPos += 3;
+					} else if ((indicator >> 4) == 1) {
+						// Extra-extended format (4 bytes)
+						if (srcPos + 4 > data.Length)
+							break;
+						length = ((indicator & 0x0f) << 12) | (data[srcPos + 1] << 4) | ((data[srcPos + 2] >> 4) & 0x0f) + 0x111;
+						displacement = ((data[srcPos + 2] & 0x0f) << 8) | data[srcPos + 3] + 1;
+						srcPos += 4;
+					} else {
+						// Standard format (2 bytes)
+						if (srcPos + 2 > data.Length)
+							break;
+						length = ((indicator >> 4) & 0x0f) + 1;
+						displacement = ((indicator & 0x0f) << 8) | data[srcPos + 1] + 1;
+						srcPos += 2;
+					}
+
+					for (int j = 0; j < length && dstPos < size; j++) {
+						output[dstPos] = output[dstPos - displacement];
+						dstPos++;
+					}
+				} else {
+					// Literal byte
+					if (srcPos >= data.Length)
+						break;
+					output[dstPos++] = data[srcPos++];
+				}
+			}
+		}
+
+		return dstPos == size ? output : null;
+	}
+
+	#endregion
+
+	#region Analysis Methods
+
+	/// <summary>
+	/// Analyze data and return compression statistics.
+	/// </summary>
+	public static CompressionStats Analyze(byte[] data, int offset, int length) {
+		if (offset + length > data.Length)
+			length = data.Length - offset;
+
+		double entropy = CalculateEntropy(data, offset, length);
+		int runCount = CountRuns(data, offset, length);
+		int backRefCount = CountPotentialBackRefs(data, offset, length);
+		int literalCount = length - (runCount * 3); // Rough estimate
+
+		// Estimate compression ratio based on patterns
+		double estimatedRatio = EstimateCompressionRatio(entropy, runCount, backRefCount, length);
+
+		return new CompressionStats(entropy, runCount, literalCount, backRefCount, estimatedRatio);
+	}
+
+	private static int CountRuns(byte[] data, int offset, int length) {
+		int runs = 0;
+		int i = 0;
+
+		while (i < length - 2) {
+			int runLen = 1;
+			while (i + runLen < length && data[offset + i + runLen] == data[offset + i]) {
+				runLen++;
+			}
+			if (runLen >= 3) {
+				runs++;
+				i += runLen;
+			} else {
+				i++;
+			}
+		}
+
+		return runs;
+	}
+
+	private static int CountPotentialBackRefs(byte[] data, int offset, int length) {
+		int refs = 0;
+
+		for (int i = 3; i < length - 2; i++) {
+			// Check for 3+ byte matches in the preceding data
+			for (int j = Math.Max(0, i - 4096); j < i - 2; j++) {
+				if (offset + j + 2 < data.Length &&
+					offset + i + 2 < data.Length &&
+					data[offset + j] == data[offset + i] &&
+					data[offset + j + 1] == data[offset + i + 1] &&
+					data[offset + j + 2] == data[offset + i + 2]) {
+					refs++;
+					break;
+				}
+			}
+		}
+
+		return refs;
+	}
+
+	private static double EstimateCompressionRatio(double entropy, int runs, int backRefs, int length) {
+		// Low entropy and many patterns = good compression
+		double entropyFactor = 1 - (entropy / 8.0);
+		double patternFactor = (runs + backRefs) / (double)length * 10;
+
+		return Math.Max(0.1, Math.Min(1.0, 0.5 + entropyFactor * 0.3 + patternFactor * 0.2));
+	}
+
+	/// <summary>
+	/// Try to auto-decompress data using detected format.
+	/// </summary>
+	public static DecompressionResult? AutoDecompress(byte[] data, int offset) {
+		var detection = Detect(data, offset);
+
+		byte[]? result = detection.Type switch {
+			CompressionType.LzNintendo or CompressionType.Lz10 => DecompressNintendoLz(data, offset),
+			CompressionType.Lz11 => DecompressLz11(data, offset),
+			CompressionType.Rle or CompressionType.Rle8 => DecompressRle(data, offset),
+			CompressionType.Lzss => DecompressLzss(data, offset),
+			_ => null
+		};
+
+		if (result == null)
+			return null;
+
+		// Calculate compressed size (estimate based on decompressed size ratio)
+		int compressedSize = FindCompressedEnd(data, offset, detection.Type);
+
+		return new DecompressionResult(
+			result,
+			compressedSize,
+			result.Length,
+			(double)result.Length / compressedSize,
+			detection.Type.ToString()
+		);
+	}
+
+	private static int FindCompressedEnd(byte[] data, int offset, CompressionType type) {
+		// Rough estimate - actual implementation would track decompression position
+		return type switch {
+			CompressionType.LzNintendo or CompressionType.Lz10 =>
+				Math.Min(data.Length - offset, 4 + (data[offset + 1] | (data[offset + 2] << 8) | (data[offset + 3] << 16)) / 2),
+			CompressionType.Lz11 =>
+				Math.Min(data.Length - offset, 4 + (data[offset + 1] | (data[offset + 2] << 8) | (data[offset + 3] << 16)) / 2),
+			_ => Math.Min(1024, data.Length - offset)
+		};
+	}
+
+	#endregion
+
+	#region Format Identification Helpers
+
+	/// <summary>
+	/// Check if data at offset looks like Nintendo LZ10.
+	/// </summary>
+	public static bool IsNintendoLz10(byte[] data, int offset) {
+		if (offset + 4 > data.Length)
+			return false;
+
+		if (data[offset] != 0x10)
+			return false;
+
+		int size = data[offset + 1] | (data[offset + 2] << 8) | (data[offset + 3] << 16);
+		return size > 0 && size < 0x1000000;
+	}
+
+	/// <summary>
+	/// Check if data at offset looks like Nintendo LZ11.
+	/// </summary>
+	public static bool IsNintendoLz11(byte[] data, int offset) {
+		if (offset + 4 > data.Length)
+			return false;
+
+		if (data[offset] != 0x11)
+			return false;
+
+		int size = data[offset + 1] | (data[offset + 2] << 8) | (data[offset + 3] << 16);
+		return size > 0 && size < 0x1000000;
+	}
+
+	/// <summary>
+	/// Get a description of the compression format.
+	/// </summary>
+	public static string GetFormatDescription(CompressionType type) {
+		return type switch {
+			CompressionType.None => "No compression detected",
+			CompressionType.Lz77 => "LZ77 - Lempel-Ziv 77 sliding window compression",
+			CompressionType.Lzss => "LZSS - Lempel-Ziv-Storer-Szymanski variant",
+			CompressionType.Rle => "RLE - Run Length Encoding",
+			CompressionType.Huffman => "Huffman - Variable-length entropy coding",
+			CompressionType.LzNintendo or CompressionType.Lz10 => "Nintendo LZ10 - GBA/DS standard compression (0x10 header)",
+			CompressionType.Lz11 => "Nintendo LZ11 - Extended LZ with larger references (0x11 header)",
+			CompressionType.LzKonami => "Konami LZ - Custom Konami compression format",
+			CompressionType.LzSquare => "Square LZ - Custom Square/Squaresoft compression",
+			CompressionType.LzCapcom => "Capcom LZ - Custom Capcom compression format",
+			CompressionType.Dte => "DTE - Dual Tile Encoding for text compression",
+			CompressionType.Rle8 => "RLE8 - 8-bit Run Length Encoding variant",
+			CompressionType.Lz4 => "LZ4 - Fast compression algorithm",
+			CompressionType.Custom => "Custom or unknown compression format",
+			_ => "Unknown format"
+		};
+	}
+
+	#endregion
 }
