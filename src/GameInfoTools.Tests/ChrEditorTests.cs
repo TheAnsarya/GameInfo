@@ -285,4 +285,369 @@ public class TileCodecTests {
 
 		Assert.Throws<ArgumentException>(() => TileCodec.EncodeNes2bpp(pixels));
 	}
+
+	#region Mode 7 Tests
+
+	[Fact]
+	public void DecodeMode7_ReturnsCorrectLength() {
+		var tileData = new byte[64];
+
+		var pixels = TileCodec.DecodeMode7(tileData);
+
+		Assert.Equal(64, pixels.Length);
+	}
+
+	[Fact]
+	public void EncodeMode7_ReturnsCorrectLength() {
+		var pixels = new byte[64];
+
+		var tileData = TileCodec.EncodeMode7(pixels);
+
+		Assert.Equal(64, tileData.Length);
+	}
+
+	[Fact]
+	public void RoundTrip_Mode7_PreservesData() {
+		var original = new byte[64];
+		for (int i = 0; i < 64; i++) {
+			original[i] = (byte)(i * 4);
+		}
+
+		var pixels = TileCodec.DecodeMode7(original);
+		var reencoded = TileCodec.EncodeMode7(pixels);
+
+		Assert.Equal(original, reencoded);
+	}
+
+	#endregion
+
+	#region SNES 8bpp Tests
+
+	[Fact]
+	public void DecodeSnes8bpp_ReturnsCorrectLength() {
+		var tileData = new byte[64];
+
+		var pixels = TileCodec.DecodeSnes8bpp(tileData);
+
+		Assert.Equal(64, pixels.Length);
+	}
+
+	[Fact]
+	public void EncodeSnes8bpp_ReturnsCorrectLength() {
+		var pixels = new byte[64];
+
+		var tileData = TileCodec.EncodeSnes8bpp(pixels);
+
+		Assert.Equal(64, tileData.Length);
+	}
+
+	[Fact]
+	public void RoundTrip_Snes8bpp_PreservesData() {
+		var original = new byte[64];
+		for (int i = 0; i < 64; i++) {
+			original[i] = (byte)(i * 4);
+		}
+
+		var pixels = TileCodec.DecodeSnes8bpp(original);
+		var reencoded = TileCodec.EncodeSnes8bpp(pixels);
+
+		Assert.Equal(original, reencoded);
+	}
+
+	[Fact]
+	public void DecodeSnes8bpp_AllZeros_GivesZeroPixels() {
+		var tileData = new byte[64];
+		var pixels = TileCodec.DecodeSnes8bpp(tileData);
+		Assert.All(pixels, p => Assert.Equal(0, p));
+	}
+
+	[Fact]
+	public void DecodeSnes8bpp_AllOnes_GivesMaxPixels() {
+		var tileData = new byte[64];
+		for (int i = 0; i < 64; i++) tileData[i] = 0xff;
+		var pixels = TileCodec.DecodeSnes8bpp(tileData);
+		Assert.All(pixels, p => Assert.Equal(255, p));
+	}
+
+	#endregion
+
+	#region Genesis 4bpp Tests
+
+	[Fact]
+	public void DecodeGenesis4bpp_ReturnsCorrectLength() {
+		var tileData = new byte[32];
+
+		var pixels = TileCodec.DecodeGenesis4bpp(tileData);
+
+		Assert.Equal(64, pixels.Length);
+	}
+
+	[Fact]
+	public void EncodeGenesis4bpp_ReturnsCorrectLength() {
+		var pixels = new byte[64];
+
+		var tileData = TileCodec.EncodeGenesis4bpp(pixels);
+
+		Assert.Equal(32, tileData.Length);
+	}
+
+	[Fact]
+	public void RoundTrip_Genesis4bpp_PreservesData() {
+		var original = new byte[32];
+		for (int i = 0; i < 32; i++) {
+			original[i] = (byte)(i * 8);
+		}
+
+		var pixels = TileCodec.DecodeGenesis4bpp(original);
+		var reencoded = TileCodec.EncodeGenesis4bpp(pixels);
+
+		Assert.Equal(original, reencoded);
+	}
+
+	[Fact]
+	public void DecodeGenesis4bpp_CorrectNibbleOrder() {
+		// Genesis uses high nibble first
+		var tileData = new byte[32];
+		tileData[0] = 0x12; // Should decode to pixels 1, 2
+
+		var pixels = TileCodec.DecodeGenesis4bpp(tileData);
+
+		Assert.Equal(1, pixels[0]); // High nibble
+		Assert.Equal(2, pixels[1]); // Low nibble
+	}
+
+	#endregion
+
+	#region GBA 4bpp Tests
+
+	[Fact]
+	public void DecodeGba4bpp_ReturnsCorrectLength() {
+		var tileData = new byte[32];
+
+		var pixels = TileCodec.DecodeGba4bpp(tileData);
+
+		Assert.Equal(64, pixels.Length);
+	}
+
+	[Fact]
+	public void EncodeGba4bpp_ReturnsCorrectLength() {
+		var pixels = new byte[64];
+
+		var tileData = TileCodec.EncodeGba4bpp(pixels);
+
+		Assert.Equal(32, tileData.Length);
+	}
+
+	[Fact]
+	public void RoundTrip_Gba4bpp_PreservesData() {
+		var original = new byte[32];
+		for (int i = 0; i < 32; i++) {
+			original[i] = (byte)(i * 8);
+		}
+
+		var pixels = TileCodec.DecodeGba4bpp(original);
+		var reencoded = TileCodec.EncodeGba4bpp(pixels);
+
+		Assert.Equal(original, reencoded);
+	}
+
+	[Fact]
+	public void DecodeGba4bpp_CorrectNibbleOrder() {
+		// GBA uses low nibble first (opposite of Genesis)
+		var tileData = new byte[32];
+		tileData[0] = 0x21; // Should decode to pixels 1, 2
+
+		var pixels = TileCodec.DecodeGba4bpp(tileData);
+
+		Assert.Equal(1, pixels[0]); // Low nibble
+		Assert.Equal(2, pixels[1]); // High nibble
+	}
+
+	#endregion
+
+	#region GBA 8bpp Tests
+
+	[Fact]
+	public void DecodeGba8bpp_ReturnsCorrectLength() {
+		var tileData = new byte[64];
+
+		var pixels = TileCodec.DecodeGba8bpp(tileData);
+
+		Assert.Equal(64, pixels.Length);
+	}
+
+	[Fact]
+	public void RoundTrip_Gba8bpp_PreservesData() {
+		var original = new byte[64];
+		for (int i = 0; i < 64; i++) {
+			original[i] = (byte)(i * 4);
+		}
+
+		var pixels = TileCodec.DecodeGba8bpp(original);
+		var reencoded = TileCodec.EncodeGba8bpp(pixels);
+
+		Assert.Equal(original, reencoded);
+	}
+
+	#endregion
+
+	#region Linear 1bpp Tests
+
+	[Fact]
+	public void DecodeLinear1bpp_ReturnsCorrectLength() {
+		var tileData = new byte[8];
+
+		var pixels = TileCodec.DecodeLinear1bpp(tileData);
+
+		Assert.Equal(64, pixels.Length);
+	}
+
+	[Fact]
+	public void RoundTrip_Linear1bpp_PreservesData() {
+		var original = new byte[8];
+		for (int i = 0; i < 8; i++) {
+			original[i] = (byte)(i * 31);
+		}
+
+		var pixels = TileCodec.DecodeLinear1bpp(original);
+		var reencoded = TileCodec.EncodeLinear1bpp(pixels);
+
+		Assert.Equal(original, reencoded);
+	}
+
+	[Fact]
+	public void DecodeLinear1bpp_CorrectBitOrder() {
+		var tileData = new byte[8];
+		tileData[0] = 0x80; // MSB set = first pixel is 1
+
+		var pixels = TileCodec.DecodeLinear1bpp(tileData);
+
+		Assert.Equal(1, pixels[0]);
+		Assert.Equal(0, pixels[1]);
+	}
+
+	#endregion
+
+	#region Generic Decode/Encode Tests
+
+	[Theory]
+	[InlineData(TileFormat.Nes2Bpp, 16)]
+	[InlineData(TileFormat.GameBoy2Bpp, 16)]
+	[InlineData(TileFormat.Snes4Bpp, 32)]
+	[InlineData(TileFormat.Snes8Bpp, 64)]
+	[InlineData(TileFormat.SnesMode7, 64)]
+	[InlineData(TileFormat.Genesis4Bpp, 32)]
+	[InlineData(TileFormat.Gba4Bpp, 32)]
+	[InlineData(TileFormat.Gba8Bpp, 64)]
+	[InlineData(TileFormat.Linear1Bpp, 8)]
+	public void GetTileSize_ReturnsCorrectSize(TileFormat format, int expectedSize) {
+		int size = TileCodec.GetTileSize(format);
+		Assert.Equal(expectedSize, size);
+	}
+
+	[Theory]
+	[InlineData(TileFormat.Linear1Bpp, 1)]
+	[InlineData(TileFormat.Nes2Bpp, 2)]
+	[InlineData(TileFormat.Snes4Bpp, 4)]
+	[InlineData(TileFormat.Snes8Bpp, 8)]
+	public void GetBitsPerPixel_ReturnsCorrectBpp(TileFormat format, int expectedBpp) {
+		int bpp = TileCodec.GetBitsPerPixel(format);
+		Assert.Equal(expectedBpp, bpp);
+	}
+
+	[Theory]
+	[InlineData(TileFormat.Linear1Bpp, 1)]
+	[InlineData(TileFormat.Nes2Bpp, 3)]
+	[InlineData(TileFormat.Snes4Bpp, 15)]
+	[InlineData(TileFormat.Snes8Bpp, 255)]
+	public void GetMaxPaletteIndex_ReturnsCorrectMax(TileFormat format, int expectedMax) {
+		int max = TileCodec.GetMaxPaletteIndex(format);
+		Assert.Equal(expectedMax, max);
+	}
+
+	[Theory]
+	[InlineData(TileFormat.Nes2Bpp)]
+	[InlineData(TileFormat.Snes4Bpp)]
+	[InlineData(TileFormat.Genesis4Bpp)]
+	[InlineData(TileFormat.Gba4Bpp)]
+	[InlineData(TileFormat.Gba8Bpp)]
+	public void GenericDecode_ReturnsCorrectLength(TileFormat format) {
+		int size = TileCodec.GetTileSize(format);
+		var tileData = new byte[size];
+
+		var pixels = TileCodec.Decode(tileData, format);
+
+		Assert.Equal(64, pixels.Length);
+	}
+
+	[Theory]
+	[InlineData(TileFormat.Nes2Bpp)]
+	[InlineData(TileFormat.Snes4Bpp)]
+	[InlineData(TileFormat.Genesis4Bpp)]
+	[InlineData(TileFormat.Gba4Bpp)]
+	public void GenericEncode_ReturnsCorrectLength(TileFormat format) {
+		var pixels = new byte[64];
+		int expectedSize = TileCodec.GetTileSize(format);
+
+		var tileData = TileCodec.Encode(pixels, format);
+
+		Assert.Equal(expectedSize, tileData.Length);
+	}
+
+	#endregion
+
+	#region Batch Operation Tests
+
+	[Fact]
+	public void DecodeTiles_DecodesMultipleTiles() {
+		var data = new byte[32]; // 2 NES tiles
+		for (int i = 0; i < 32; i++) data[i] = (byte)i;
+
+		var tiles = TileCodec.DecodeTiles(data, TileFormat.Nes2Bpp);
+
+		Assert.Equal(2, tiles.Length);
+		Assert.Equal(64, tiles[0].Length);
+		Assert.Equal(64, tiles[1].Length);
+	}
+
+	[Fact]
+	public void EncodeTiles_EncodesMultipleTiles() {
+		var tiles = new byte[][] {
+			new byte[64],
+			new byte[64]
+		};
+
+		var data = TileCodec.EncodeTiles(tiles, TileFormat.Nes2Bpp);
+
+		Assert.Equal(32, data.Length); // 2 tiles × 16 bytes
+	}
+
+	[Fact]
+	public void ConvertFormat_ConvertsBetweenFormats() {
+		// Create some test data in NES format
+		var nesData = new byte[16];
+		for (int i = 0; i < 16; i++) nesData[i] = (byte)(i * 16);
+
+		// Convert to SNES 4bpp
+		var snesData = TileCodec.ConvertFormat(nesData, TileFormat.Nes2Bpp, TileFormat.Snes4Bpp);
+
+		Assert.Equal(32, snesData.Length);
+
+		// Verify by decoding both and comparing (pixel values should be same, just in wider range)
+		var nesPixels = TileCodec.Decode(nesData, TileFormat.Nes2Bpp);
+		var snesPixels = TileCodec.Decode(snesData, TileFormat.Snes4Bpp);
+
+		Assert.Equal(nesPixels, snesPixels);
+	}
+
+	[Fact]
+	public void DecodeTiles_WithLimitedCount() {
+		var data = new byte[64]; // 4 NES tiles
+
+		var tiles = TileCodec.DecodeTiles(data, TileFormat.Nes2Bpp, count: 2);
+
+		Assert.Equal(2, tiles.Length);
+	}
+
+	#endregion
 }
