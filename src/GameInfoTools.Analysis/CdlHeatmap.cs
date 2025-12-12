@@ -94,6 +94,19 @@ public class CdlHeatmap {
 	}
 
 	/// <summary>
+	/// Creates a new editable CDL heatmap analyzer from file with undo support.
+	/// </summary>
+	/// <param name="cdlPath">Path to CDL file.</param>
+	/// <param name="enableUndo">Whether to enable undo/redo support.</param>
+	/// <param name="maxHistory">Maximum undo history size.</param>
+	/// <param name="format">CDL format type (auto-detected if not specified).</param>
+	public static CdlHeatmap FromFileEditable(string cdlPath, bool enableUndo = true, int maxHistory = 100, CdlFormat? format = null) {
+		var data = File.ReadAllBytes(cdlPath);
+		var detectedFormat = format ?? DetectFormat(cdlPath, data);
+		return new CdlHeatmap(data, detectedFormat, enableUndo, maxHistory);
+	}
+
+	/// <summary>
 	/// Auto-detect CDL format from file extension and content.
 	/// </summary>
 	private static CdlFormat DetectFormat(string path, byte[] data) {
@@ -1174,4 +1187,241 @@ public class CdlHeatmap {
 	}
 
 	#endregion
+
+	#region CDL Editing with Undo Support
+
+	private readonly GameInfoTools.Core.EditUndoRedoManager? _undoManager;
+
+	/// <summary>
+	/// Gets whether undo operations are available.
+	/// </summary>
+	public bool CanUndo => _undoManager?.CanUndo ?? false;
+
+	/// <summary>
+	/// Gets whether redo operations are available.
+	/// </summary>
+	public bool CanRedo => _undoManager?.CanRedo ?? false;
+
+	/// <summary>
+	/// Gets the undo manager if available.
+	/// </summary>
+	public GameInfoTools.Core.EditUndoRedoManager? UndoManager => _undoManager;
+
+	/// <summary>
+	/// Creates a new editable CDL heatmap with undo support.
+	/// </summary>
+	/// <param name="cdlData">Raw CDL file data.</param>
+	/// <param name="format">CDL format type.</param>
+	/// <param name="enableUndo">Whether to enable undo/redo support.</param>
+	/// <param name="maxHistory">Maximum undo history size.</param>
+	public CdlHeatmap(byte[] cdlData, CdlFormat format, bool enableUndo, int maxHistory = 100)
+		: this(cdlData, format) {
+		if (enableUndo) {
+			_undoManager = new GameInfoTools.Core.EditUndoRedoManager(ApplyAction, maxHistory);
+		}
+	}
+
+	/// <summary>
+	/// Sets the CDL flags at a specific offset.
+	/// </summary>
+	/// <param name="offset">The offset to modify.</param>
+	/// <param name="flags">The new flags value.</param>
+	/// <param name="recordUndo">Whether to record for undo.</param>
+	public void SetFlags(int offset, CdlFlags flags, bool recordUndo = true) {
+		if (offset < 0 || offset >= _cdlData.Length) {
+			throw new ArgumentOutOfRangeException(nameof(offset));
+		}
+
+		var oldValue = _cdlData[offset];
+		var newValue = (byte)flags;
+
+		if (oldValue == newValue) return;
+
+		if (recordUndo && _undoManager is not null) {
+			var action = GameInfoTools.Core.EditAction.SingleByteEdit(offset, oldValue, newValue,
+				$"Set flags at ${offset:X6} to {flags}");
+			_undoManager.Push(action);
+		}
+
+		_cdlData[offset] = newValue;
+	}
+
+	/// <summary>
+	/// Sets the CDL flags for a range of offsets.
+	/// </summary>
+	/// <param name="startOffset">Start of range.</param>
+	/// <param name="length">Number of bytes.</param>
+	/// <param name="flags">The flags to set.</param>
+	/// <param name="recordUndo">Whether to record for undo.</param>
+	public void SetFlagsRange(int startOffset, int length, CdlFlags flags, bool recordUndo = true) {
+		if (startOffset < 0 || startOffset + length > _cdlData.Length) {
+			throw new ArgumentOutOfRangeException(nameof(startOffset));
+		}
+
+		var oldData = new byte[length];
+		var newData = new byte[length];
+		Array.Copy(_cdlData, startOffset, oldData, 0, length);
+		for (int i = 0; i < length; i++) {
+			newData[i] = (byte)flags;
+		}
+
+		if (recordUndo && _undoManager is not null) {
+			var action = GameInfoTools.Core.EditAction.RangeEdit(startOffset, oldData, newData,
+				$"Set flags ${startOffset:X6}-${startOffset + length - 1:X6} to {flags}");
+			_undoManager.Push(action);
+		}
+
+		for (int i = 0; i < length; i++) {
+			_cdlData[startOffset + i] = (byte)flags;
+		}
+	}
+
+	/// <summary>
+	/// Adds flags to an offset (OR operation).
+	/// </summary>
+	public void AddFlags(int offset, CdlFlags flags, bool recordUndo = true) {
+		var current = GetFlags(offset);
+		SetFlags(offset, current | flags, recordUndo);
+	}
+
+	/// <summary>
+	/// Removes flags from an offset (AND NOT operation).
+	/// </summary>
+	public void RemoveFlags(int offset, CdlFlags flags, bool recordUndo = true) {
+		var current = GetFlags(offset);
+		SetFlags(offset, current & ~flags, recordUndo);
+	}
+
+	/// <summary>
+	/// Clears all coverage at an offset.
+	/// </summary>
+	public void ClearOffset(int offset, bool recordUndo = true) {
+		SetFlags(offset, CdlFlags.None, recordUndo);
+	}
+
+	/// <summary>
+	/// Clears coverage for a range of offsets.
+	/// </summary>
+	public void ClearRange(int startOffset, int length, bool recordUndo = true) {
+		SetFlagsRange(startOffset, length, CdlFlags.None, recordUndo);
+	}
+
+	/// <summary>
+	/// Marks an offset as code.
+	/// </summary>
+	public void MarkAsCode(int offset, bool recordUndo = true) {
+		AddFlags(offset, CdlFlags.Code, recordUndo);
+	}
+
+	/// <summary>
+	/// Marks an offset as data.
+	/// </summary>
+	public void MarkAsData(int offset, bool recordUndo = true) {
+		AddFlags(offset, CdlFlags.Data, recordUndo);
+	}
+
+	/// <summary>
+	/// Marks a range as code.
+	/// </summary>
+	public void MarkRangeAsCode(int startOffset, int length, bool recordUndo = true) {
+		if (startOffset < 0 || startOffset + length > _cdlData.Length) {
+			throw new ArgumentOutOfRangeException(nameof(startOffset));
+		}
+
+		var oldData = new byte[length];
+		var newData = new byte[length];
+		Array.Copy(_cdlData, startOffset, oldData, 0, length);
+
+		for (int i = 0; i < length; i++) {
+			newData[i] = (byte)(_cdlData[startOffset + i] | (byte)CdlFlags.Code);
+		}
+
+		if (recordUndo && _undoManager is not null) {
+			var action = GameInfoTools.Core.EditAction.RangeEdit(startOffset, oldData, newData,
+				$"Mark ${startOffset:X6}-${startOffset + length - 1:X6} as code");
+			_undoManager.Push(action);
+		}
+
+		for (int i = 0; i < length; i++) {
+			_cdlData[startOffset + i] = newData[i];
+		}
+	}
+
+	/// <summary>
+	/// Marks a range as data.
+	/// </summary>
+	public void MarkRangeAsData(int startOffset, int length, bool recordUndo = true) {
+		if (startOffset < 0 || startOffset + length > _cdlData.Length) {
+			throw new ArgumentOutOfRangeException(nameof(startOffset));
+		}
+
+		var oldData = new byte[length];
+		var newData = new byte[length];
+		Array.Copy(_cdlData, startOffset, oldData, 0, length);
+
+		for (int i = 0; i < length; i++) {
+			newData[i] = (byte)(_cdlData[startOffset + i] | (byte)CdlFlags.Data);
+		}
+
+		if (recordUndo && _undoManager is not null) {
+			var action = GameInfoTools.Core.EditAction.RangeEdit(startOffset, oldData, newData,
+				$"Mark ${startOffset:X6}-${startOffset + length - 1:X6} as data");
+			_undoManager.Push(action);
+		}
+
+		for (int i = 0; i < length; i++) {
+			_cdlData[startOffset + i] = newData[i];
+		}
+	}
+
+	/// <summary>
+	/// Performs an undo operation.
+	/// </summary>
+	/// <returns>Description of what was undone, or null if nothing to undo.</returns>
+	public string? Undo() {
+		if (_undoManager is null) return null;
+
+		var action = _undoManager.UndoWithApply();
+		return action?.Description;
+	}
+
+	/// <summary>
+	/// Performs a redo operation.
+	/// </summary>
+	/// <returns>Description of what was redone, or null if nothing to redo.</returns>
+	public string? Redo() {
+		if (_undoManager is null) return null;
+
+		var action = _undoManager.RedoWithApply();
+		return action?.Description;
+	}
+
+	/// <summary>
+	/// Gets description of next undo action.
+	/// </summary>
+	public string? GetUndoDescription() => _undoManager?.GetUndoDescription();
+
+	/// <summary>
+	/// Gets description of next redo action.
+	/// </summary>
+	public string? GetRedoDescription() => _undoManager?.GetRedoDescription();
+
+	/// <summary>
+	/// Clears all undo/redo history.
+	/// </summary>
+	public void ClearUndoHistory() {
+		_undoManager?.Clear();
+	}
+
+	private void ApplyAction(GameInfoTools.Core.EditAction action, bool isRedo) {
+		// For undo, we apply the old data; for redo, we apply the new data
+		var dataToApply = isRedo ? action.NewData : action.OldData;
+
+		for (int i = 0; i < dataToApply.Length; i++) {
+			_cdlData[action.Offset + i] = dataToApply[i];
+		}
+	}
+
+	#endregion
 }
+

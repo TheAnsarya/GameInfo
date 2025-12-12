@@ -90,6 +90,18 @@ public partial class CdlViewerViewModel : ViewModelBase {
 	[ObservableProperty]
 	private double _labelCoveragePercentage;
 
+	[ObservableProperty]
+	private bool _canUndo;
+
+	[ObservableProperty]
+	private bool _canRedo;
+
+	[ObservableProperty]
+	private string _undoDescription = "";
+
+	[ObservableProperty]
+	private string _redoDescription = "";
+
 	/// <summary>
 	/// Available search types.
 	/// </summary>
@@ -164,7 +176,8 @@ public partial class CdlViewerViewModel : ViewModelBase {
 	/// </summary>
 	public void LoadFromFile(string path) {
 		try {
-			_cdlHeatmap = CdlHeatmap.FromFile(path);
+			// Use editable version with undo support
+			_cdlHeatmap = CdlHeatmap.FromFileEditable(path, enableUndo: true);
 			CdlFilePath = path;
 			FormatName = _cdlHeatmap.Format.ToString();
 			HasCdlLoaded = true;
@@ -173,6 +186,7 @@ public partial class CdlViewerViewModel : ViewModelBase {
 			UpdateBankCoverage();
 			UpdateRegions();
 			UpdateHeatmap();
+			UpdateUndoRedoState();
 
 			StatusText = $"Loaded: {Path.GetFileName(path)}";
 		} catch (Exception ex) {
@@ -184,8 +198,8 @@ public partial class CdlViewerViewModel : ViewModelBase {
 	/// <summary>
 	/// Loads CDL data directly from a byte array.
 	/// </summary>
-	public void LoadFromData(byte[] data, CdlHeatmap.CdlFormat format = CdlHeatmap.CdlFormat.Generic) {
-		_cdlHeatmap = new CdlHeatmap(data, format);
+	public void LoadFromData(byte[] data, CdlHeatmap.CdlFormat format = CdlHeatmap.CdlFormat.Generic, bool enableUndo = true) {
+		_cdlHeatmap = new CdlHeatmap(data, format, enableUndo);
 		CdlFilePath = "(loaded from data)";
 		FormatName = format.ToString();
 		HasCdlLoaded = true;
@@ -194,6 +208,7 @@ public partial class CdlViewerViewModel : ViewModelBase {
 		UpdateBankCoverage();
 		UpdateRegions();
 		UpdateHeatmap();
+		UpdateUndoRedoState();
 
 		StatusText = $"Loaded {data.Length:N0} bytes";
 	}
@@ -973,6 +988,120 @@ public partial class CdlViewerViewModel : ViewModelBase {
 				region.Count
 			));
 		}
+	}
+
+	#endregion
+
+	#region Undo/Redo
+
+	/// <summary>
+	/// Performs an undo operation.
+	/// </summary>
+	[RelayCommand]
+	public void PerformUndo() {
+		if (_cdlHeatmap is null || !CanUndo) return;
+
+		var description = _cdlHeatmap.Undo();
+		if (description is not null) {
+			UpdateUndoRedoState();
+			UpdateStatistics();
+			UpdateHeatmap();
+			StatusText = $"Undo: {description}";
+		}
+	}
+
+	/// <summary>
+	/// Performs a redo operation.
+	/// </summary>
+	[RelayCommand]
+	public void PerformRedo() {
+		if (_cdlHeatmap is null || !CanRedo) return;
+
+		var description = _cdlHeatmap.Redo();
+		if (description is not null) {
+			UpdateUndoRedoState();
+			UpdateStatistics();
+			UpdateHeatmap();
+			StatusText = $"Redo: {description}";
+		}
+	}
+
+	/// <summary>
+	/// Marks the current offset as code.
+	/// </summary>
+	[RelayCommand]
+	public void MarkAsCode() {
+		if (_cdlHeatmap is null) return;
+		_cdlHeatmap.MarkAsCode(CurrentOffset);
+		UpdateUndoRedoState();
+		UpdateStatistics();
+		UpdateHeatmap();
+		StatusText = $"Marked ${CurrentOffset:X6} as code";
+	}
+
+	/// <summary>
+	/// Marks the current offset as data.
+	/// </summary>
+	[RelayCommand]
+	public void MarkAsData() {
+		if (_cdlHeatmap is null) return;
+		_cdlHeatmap.MarkAsData(CurrentOffset);
+		UpdateUndoRedoState();
+		UpdateStatistics();
+		UpdateHeatmap();
+		StatusText = $"Marked ${CurrentOffset:X6} as data";
+	}
+
+	/// <summary>
+	/// Clears coverage at the current offset.
+	/// </summary>
+	[RelayCommand]
+	public void ClearOffset() {
+		if (_cdlHeatmap is null) return;
+		_cdlHeatmap.ClearOffset(CurrentOffset);
+		UpdateUndoRedoState();
+		UpdateStatistics();
+		UpdateHeatmap();
+		StatusText = $"Cleared ${CurrentOffset:X6}";
+	}
+
+	/// <summary>
+	/// Sets flags at current offset.
+	/// </summary>
+	public void SetFlagsAt(int offset, CdlHeatmap.CdlFlags flags) {
+		if (_cdlHeatmap is null) return;
+		_cdlHeatmap.SetFlags(offset, flags);
+		UpdateUndoRedoState();
+		UpdateStatistics();
+		UpdateHeatmap();
+	}
+
+	/// <summary>
+	/// Sets flags for a range.
+	/// </summary>
+	public void SetFlagsRange(int startOffset, int length, CdlHeatmap.CdlFlags flags) {
+		if (_cdlHeatmap is null) return;
+		_cdlHeatmap.SetFlagsRange(startOffset, length, flags);
+		UpdateUndoRedoState();
+		UpdateStatistics();
+		UpdateHeatmap();
+	}
+
+	/// <summary>
+	/// Clears the undo history.
+	/// </summary>
+	[RelayCommand]
+	public void ClearUndoHistory() {
+		_cdlHeatmap?.ClearUndoHistory();
+		UpdateUndoRedoState();
+		StatusText = "Undo history cleared";
+	}
+
+	private void UpdateUndoRedoState() {
+		CanUndo = _cdlHeatmap?.CanUndo ?? false;
+		CanRedo = _cdlHeatmap?.CanRedo ?? false;
+		UndoDescription = _cdlHeatmap?.GetUndoDescription() ?? "";
+		RedoDescription = _cdlHeatmap?.GetRedoDescription() ?? "";
 	}
 
 	#endregion
