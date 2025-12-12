@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using Avalonia.Input;
 using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -10,7 +11,7 @@ namespace GameInfoTools.UI.ViewModels;
 /// <summary>
 /// View model for CDL (Code/Data Log) file visualization.
 /// </summary>
-public partial class CdlViewerViewModel : ViewModelBase {
+public partial class CdlViewerViewModel : ViewModelBase, IKeyboardShortcutHandler {
 	private readonly IFileDialogService _fileDialogService;
 	private CdlHeatmap? _cdlHeatmap;
 	private CdlLabelIntegration? _labelIntegration;
@@ -1117,6 +1118,128 @@ public partial class CdlViewerViewModel : ViewModelBase {
 			AsciiHeatmap = _cdlHeatmap.GenerateAsciiHeatmap(value);
 		}
 	}
+
+	#region IKeyboardShortcutHandler
+
+	/// <summary>
+	/// Handle keyboard shortcuts for the CDL viewer.
+	/// </summary>
+	public bool HandleKeyDown(KeyEventArgs e) {
+		// Undo (Ctrl+Z)
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Undo)) {
+			if (CanUndo) {
+				PerformUndo();
+				e.Handled = true;
+				return true;
+			}
+		}
+
+		// Redo (Ctrl+Y or Ctrl+Shift+Z)
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Redo) ||
+			KeyboardShortcuts.Matches(e, KeyboardShortcuts.RedoAlt)) {
+			if (CanRedo) {
+				PerformRedo();
+				e.Handled = true;
+				return true;
+			}
+		}
+
+		// Find (Ctrl+F)
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Find)) {
+			// Execute search to show results
+			ExecuteSearch();
+			e.Handled = true;
+			return true;
+		}
+
+		// Find next (F3)
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.FindNext)) {
+			FindNext();
+			e.Handled = true;
+			return true;
+		}
+
+		// Find previous (Shift+F3)
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.FindPrevious)) {
+			FindPrevious();
+			e.Handled = true;
+			return true;
+		}
+
+		// Go to offset (Ctrl+G)
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.GoTo)) {
+			StatusText = "Go to offset - enter address in search box";
+			e.Handled = true;
+			return true;
+		}
+
+		// Mark as Code (C) - no modifier
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.MarkAsCode)) {
+			if (HasCdlLoaded) {
+				MarkAsCode();
+				e.Handled = true;
+				return true;
+			}
+		}
+
+		// Mark as Data (D) - no modifier
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.MarkAsData)) {
+			if (HasCdlLoaded) {
+				MarkAsData();
+				e.Handled = true;
+				return true;
+			}
+		}
+
+		// Clear Flags (X) - no modifier
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.ClearFlags)) {
+			if (HasCdlLoaded) {
+				ClearOffset();
+				e.Handled = true;
+				return true;
+			}
+		}
+
+		// Next Bank (])
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.CdlNextBank)) {
+			if (SelectedBankIndex < Banks.Count - 1) {
+				SelectedBankIndex++;
+				e.Handled = true;
+				return true;
+			}
+		}
+
+		// Previous Bank ([)
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.CdlPreviousBank)) {
+			if (SelectedBankIndex > 0) {
+				SelectedBankIndex--;
+				e.Handled = true;
+				return true;
+			}
+		}
+
+		// Add Bookmark (Ctrl+B)
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.AddCdlBookmark)) {
+			if (HasCdlLoaded) {
+				AddBookmark();
+				e.Handled = true;
+				return true;
+			}
+		}
+
+		// Refresh (F5)
+		if (KeyboardShortcuts.Matches(e, KeyboardShortcuts.Refresh)) {
+			if (HasCdlLoaded) {
+				Refresh();
+				e.Handled = true;
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	#endregion
 }
 
 /// <summary>

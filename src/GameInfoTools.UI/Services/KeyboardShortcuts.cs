@@ -170,6 +170,41 @@ public static class KeyboardShortcuts {
 	/// <summary>Load Script (Ctrl+Enter)</summary>
 	public static readonly KeyGesture LoadScript = new(Key.Enter, KeyModifiers.Control);
 
+	// === CDL Viewer shortcuts ===
+
+	/// <summary>Mark as Code (C)</summary>
+	public static readonly KeyGesture MarkAsCode = new(Key.C);
+
+	/// <summary>Mark as Data (D)</summary>
+	public static readonly KeyGesture MarkAsData = new(Key.D);
+
+	/// <summary>Clear Flags (X)</summary>
+	public static readonly KeyGesture ClearFlags = new(Key.X);
+
+	/// <summary>Toggle Labels Panel (L)</summary>
+	public static readonly KeyGesture ToggleLabelsPanel = new(Key.L);
+
+	/// <summary>Toggle Regions Panel (R)</summary>
+	public static readonly KeyGesture ToggleRegionsPanel = new(Key.R);
+
+	/// <summary>Toggle Comparison Mode (Ctrl+D)</summary>
+	public static readonly KeyGesture ToggleCdlComparison = new(Key.D, KeyModifiers.Control);
+
+	/// <summary>Next Bank (])</summary>
+	public static readonly KeyGesture CdlNextBank = new(Key.OemCloseBrackets);
+
+	/// <summary>Previous Bank ([)</summary>
+	public static readonly KeyGesture CdlPreviousBank = new(Key.OemOpenBrackets);
+
+	/// <summary>Add CDL Bookmark (Ctrl+B)</summary>
+	public static readonly KeyGesture AddCdlBookmark = new(Key.B, KeyModifiers.Control);
+
+	/// <summary>Navigate Next Difference (N)</summary>
+	public static readonly KeyGesture NextDifference = new(Key.N);
+
+	/// <summary>Navigate Previous Difference (Shift+N)</summary>
+	public static readonly KeyGesture PreviousDifference = new(Key.N, KeyModifiers.Shift);
+
 	// === View shortcuts ===
 
 	/// <summary>Toggle Full Screen (F11)</summary>
