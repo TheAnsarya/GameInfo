@@ -36,6 +36,31 @@ public class RomAnalyzer {
 	public record DataBlock(int Offset, int Length, BlockType Type, float Confidence, string? Description = null);
 
 	/// <summary>
+	/// Bank information for multi-bank ROMs.
+	/// </summary>
+	public record BankInfo(int Index, int Offset, int Size, BlockType DominantType, Dictionary<BlockType, int> TypeBreakdown);
+
+	/// <summary>
+	/// ROM comparison result.
+	/// </summary>
+	public record ComparisonResult(
+		int TotalBytes,
+		int DifferentBytes,
+		double SimilarityPercent,
+		List<DiffRegion> Differences
+	);
+
+	/// <summary>
+	/// A region where two ROMs differ.
+	/// </summary>
+	public record DiffRegion(int Offset, int Length, byte[] Data1, byte[] Data2);
+
+	/// <summary>
+	/// Detected mapper information.
+	/// </summary>
+	public record MapperInfo(int MapperId, string Name, string Description, int PrgBanks, int ChrBanks);
+
+	/// <summary>
 	/// Analyze the entire ROM and identify data blocks.
 	/// </summary>
 	public List<DataBlock> AnalyzeRom(int blockSize = 256) {
@@ -429,4 +454,323 @@ public class RomAnalyzer {
 
 		return sb.ToString();
 	}
+
+	#region Mapper Detection
+
+	/// <summary>
+	/// Detect NES mapper from ROM header.
+	/// </summary>
+	public MapperInfo? DetectMapper() {
+		if (_romInfo.System != SystemType.Nes || _data.Length < 16) {
+			return null;
+		}
+
+		// Check for iNES header
+		if (_data[0] != 0x4e || _data[1] != 0x45 || _data[2] != 0x53 || _data[3] != 0x1a) {
+			return null;
+		}
+
+		int prgBanks = _data[4];
+		int chrBanks = _data[5];
+		int flags6 = _data[6];
+		int flags7 = _data[7];
+
+		// Extract mapper number
+		int mapperLow = (flags6 >> 4) & 0x0f;
+		int mapperHigh = flags7 & 0xf0;
+		int mapperId = mapperLow | mapperHigh;
+
+		// Check for NES 2.0 format
+		if ((flags7 & 0x0c) == 0x08) {
+			// NES 2.0 - mapper can be 12 bits
+			mapperId |= (_data[8] & 0x0f) << 8;
+		}
+
+		string name = GetMapperName(mapperId);
+		string description = GetMapperDescription(mapperId);
+
+		return new MapperInfo(mapperId, name, description, prgBanks, chrBanks);
+	}
+
+	private static string GetMapperName(int mapperId) {
+		return mapperId switch {
+			0 => "NROM",
+			1 => "MMC1/SxROM",
+			2 => "UxROM",
+			3 => "CNROM",
+			4 => "MMC3/TxROM",
+			5 => "MMC5/ExROM",
+			7 => "AxROM",
+			9 => "MMC2/PxROM",
+			10 => "MMC4/FxROM",
+			11 => "Color Dreams",
+			16 => "Bandai",
+			18 => "Jaleco SS 88006",
+			19 => "Namco 163",
+			21 => "VRC4a/VRC4c",
+			22 => "VRC2a",
+			23 => "VRC2b/VRC4e",
+			24 => "VRC6a",
+			25 => "VRC4b/VRC4d",
+			26 => "VRC6b",
+			34 => "BNROM/NINA-001",
+			66 => "GxROM/MHROM",
+			69 => "Sunsoft FME-7",
+			71 => "Camerica/Codemasters",
+			79 => "NINA-003/NINA-006",
+			85 => "VRC7",
+			118 => "TxSROM/MMC3",
+			119 => "TQROM/MMC3",
+			_ => $"Mapper {mapperId}"
+		};
+	}
+
+	private static string GetMapperDescription(int mapperId) {
+		return mapperId switch {
+			0 => "No mapper, 16KB/32KB PRG, optional 8KB CHR",
+			1 => "Nintendo MMC1, bank switching with serial register",
+			2 => "Simple PRG bank switching, 16KB switchable",
+			3 => "Simple CHR bank switching, 8KB switchable",
+			4 => "Nintendo MMC3, popular mapper with IRQ counter",
+			5 => "Nintendo MMC5, advanced mapper with expansion audio",
+			7 => "32KB PRG bank switching",
+			9 => "Nintendo MMC2, CHR latch for Punch-Out!!",
+			10 => "Nintendo MMC4, CHR latch variant",
+			24 or 26 => "Konami VRC6, expansion audio with pulse/sawtooth",
+			85 => "Konami VRC7, expansion FM synthesis audio",
+			69 => "Sunsoft FME-7, expansion audio support",
+			_ => "Standard memory mapper"
+		};
+	}
+
+	#endregion
+
+	#region Bank Analysis
+
+	/// <summary>
+	/// Analyze ROM banks and their contents.
+	/// </summary>
+	/// <param name="bankSize">Size of each bank in bytes (default 16KB for NES PRG).</param>
+	public List<BankInfo> AnalyzeBanks(int bankSize = 0x4000) {
+		var banks = new List<BankInfo>();
+		int dataStart = _romInfo.HeaderSize;
+		int dataLength = _data.Length - dataStart;
+		int bankCount = dataLength / bankSize;
+
+		for (int i = 0; i < bankCount; i++) {
+			int bankOffset = dataStart + (i * bankSize);
+			var blocks = AnalyzeRegion(bankOffset, bankSize);
+
+			var typeBreakdown = blocks
+				.GroupBy(b => b.Type)
+				.ToDictionary(g => g.Key, g => g.Sum(b => b.Length));
+
+			var dominantType = typeBreakdown.OrderByDescending(kvp => kvp.Value).First().Key;
+
+			banks.Add(new BankInfo(i, bankOffset, bankSize, dominantType, typeBreakdown));
+		}
+
+		return banks;
+	}
+
+	/// <summary>
+	/// Analyze a specific region of the ROM.
+	/// </summary>
+	public List<DataBlock> AnalyzeRegion(int offset, int length, int blockSize = 256) {
+		var blocks = new List<DataBlock>();
+		int endOffset = Math.Min(offset + length, _data.Length);
+
+		int currentOffset = offset;
+		while (currentOffset < endOffset) {
+			int remaining = endOffset - currentOffset;
+			int size = Math.Min(blockSize, remaining);
+
+			var (type, confidence) = ClassifyBlock(currentOffset, size);
+			blocks.Add(new DataBlock(currentOffset, size, type, confidence));
+
+			currentOffset += size;
+		}
+
+		return MergeBlocks(blocks);
+	}
+
+	/// <summary>
+	/// Generate a bank-by-bank analysis report.
+	/// </summary>
+	public string GenerateBankReport(int bankSize = 0x4000) {
+		var sb = new StringBuilder();
+		var banks = AnalyzeBanks(bankSize);
+		var mapper = DetectMapper();
+
+		sb.AppendLine($"ROM Bank Analysis: {_romInfo.System}");
+		sb.AppendLine($"Total Size: {_data.Length:N0} bytes");
+
+		if (mapper != null) {
+			sb.AppendLine($"Mapper: {mapper.Name} (#{mapper.MapperId})");
+			sb.AppendLine($"PRG Banks: {mapper.PrgBanks}, CHR Banks: {mapper.ChrBanks}");
+		}
+
+		sb.AppendLine();
+		sb.AppendLine("=== Bank Analysis ===");
+		sb.AppendLine();
+
+		foreach (var bank in banks) {
+			sb.AppendLine($"Bank {bank.Index:D2}: ${bank.Offset:x6}-${bank.Offset + bank.Size - 1:x6}");
+			sb.AppendLine($"  Dominant: {bank.DominantType}");
+
+			foreach (var (type, size) in bank.TypeBreakdown.OrderByDescending(kvp => kvp.Value)) {
+				double percent = (double)size / bank.Size * 100;
+				sb.AppendLine($"    {type,-12}: {size,6} bytes ({percent:F1}%)");
+			}
+
+			sb.AppendLine();
+		}
+
+		return sb.ToString();
+	}
+
+	#endregion
+
+	#region ROM Comparison
+
+	/// <summary>
+	/// Compare this ROM with another ROM.
+	/// </summary>
+	public ComparisonResult CompareWith(byte[] other) {
+		int maxLength = Math.Max(_data.Length, other.Length);
+		int minLength = Math.Min(_data.Length, other.Length);
+		int differentBytes = 0;
+		var differences = new List<DiffRegion>();
+
+		int diffStart = -1;
+		var data1Bytes = new List<byte>();
+		var data2Bytes = new List<byte>();
+
+		for (int i = 0; i < maxLength; i++) {
+			byte b1 = i < _data.Length ? _data[i] : (byte)0;
+			byte b2 = i < other.Length ? other[i] : (byte)0;
+
+			if (b1 != b2) {
+				differentBytes++;
+
+				if (diffStart == -1) {
+					diffStart = i;
+				}
+
+				data1Bytes.Add(b1);
+				data2Bytes.Add(b2);
+			} else if (diffStart != -1) {
+				// End of difference region
+				differences.Add(new DiffRegion(diffStart, i - diffStart, data1Bytes.ToArray(), data2Bytes.ToArray()));
+				diffStart = -1;
+				data1Bytes.Clear();
+				data2Bytes.Clear();
+			}
+		}
+
+		// Handle trailing difference
+		if (diffStart != -1) {
+			differences.Add(new DiffRegion(diffStart, maxLength - diffStart, data1Bytes.ToArray(), data2Bytes.ToArray()));
+		}
+
+		double similarity = maxLength > 0 ? (double)(maxLength - differentBytes) / maxLength * 100 : 100;
+
+		return new ComparisonResult(maxLength, differentBytes, similarity, differences);
+	}
+
+	/// <summary>
+	/// Generate a comparison report between two ROMs.
+	/// </summary>
+	public string GenerateComparisonReport(byte[] other) {
+		var result = CompareWith(other);
+		var sb = new StringBuilder();
+
+		sb.AppendLine("=== ROM Comparison Report ===");
+		sb.AppendLine();
+		sb.AppendLine($"ROM 1 Size: {_data.Length:N0} bytes");
+		sb.AppendLine($"ROM 2 Size: {other.Length:N0} bytes");
+		sb.AppendLine($"Total Bytes Compared: {result.TotalBytes:N0}");
+		sb.AppendLine($"Different Bytes: {result.DifferentBytes:N0}");
+		sb.AppendLine($"Similarity: {result.SimilarityPercent:F2}%");
+		sb.AppendLine();
+
+		if (result.Differences.Count == 0) {
+			sb.AppendLine("ROMs are identical.");
+		} else {
+			sb.AppendLine($"Difference Regions: {result.Differences.Count}");
+			sb.AppendLine();
+
+			int shown = 0;
+			foreach (var diff in result.Differences.Take(20)) {
+				sb.AppendLine($"${diff.Offset:x6}: {diff.Length} bytes differ");
+
+				// Show first few bytes
+				int previewLen = Math.Min(8, diff.Length);
+				string hex1 = string.Join(" ", diff.Data1.Take(previewLen).Select(b => b.ToString("x2")));
+				string hex2 = string.Join(" ", diff.Data2.Take(previewLen).Select(b => b.ToString("x2")));
+				sb.AppendLine($"  ROM 1: {hex1}{(diff.Length > previewLen ? "..." : "")}");
+				sb.AppendLine($"  ROM 2: {hex2}{(diff.Length > previewLen ? "..." : "")}");
+				shown++;
+			}
+
+			if (result.Differences.Count > 20) {
+				sb.AppendLine($"... and {result.Differences.Count - 20} more regions");
+			}
+		}
+
+		return sb.ToString();
+	}
+
+	#endregion
+
+	#region Code vs Data Heuristics
+
+	/// <summary>
+	/// Find likely code entry points in the ROM.
+	/// </summary>
+	public List<int> FindEntryPoints() {
+		var entryPoints = new List<int>();
+		int dataStart = _romInfo.HeaderSize;
+
+		// Check standard vectors for NES
+		if (_romInfo.System == SystemType.Nes && _data.Length >= dataStart + 0x4000) {
+			// NMI, Reset, IRQ vectors at end of PRG
+			int prgEnd = _data.Length - 6;
+			if (prgEnd > 0) {
+				int nmi = _data[prgEnd] | (_data[prgEnd + 1] << 8);
+				int reset = _data[prgEnd + 2] | (_data[prgEnd + 3] << 8);
+				int irq = _data[prgEnd + 4] | (_data[prgEnd + 5] << 8);
+
+				if (nmi >= 0x8000 && nmi < 0x10000) entryPoints.Add(nmi);
+				if (reset >= 0x8000 && reset < 0x10000 && !entryPoints.Contains(reset)) entryPoints.Add(reset);
+				if (irq >= 0x8000 && irq < 0x10000 && !entryPoints.Contains(irq)) entryPoints.Add(irq);
+			}
+		}
+
+		// Find JSR/JMP targets
+		for (int i = dataStart; i < _data.Length - 2; i++) {
+			byte opcode = _data[i];
+			if (opcode == 0x20 || opcode == 0x4c) { // JSR or JMP absolute
+				int target = _data[i + 1] | (_data[i + 2] << 8);
+				if (target >= 0x8000 && target < 0x10000 && !entryPoints.Contains(target)) {
+					entryPoints.Add(target);
+				}
+			}
+		}
+
+		return entryPoints.OrderBy(e => e).ToList();
+	}
+
+	/// <summary>
+	/// Calculate the code density (ratio of code to total data).
+	/// </summary>
+	public double CalculateCodeDensity() {
+		var blocks = AnalyzeRom();
+		int totalSize = blocks.Sum(b => b.Length);
+		int codeSize = blocks.Where(b => b.Type == BlockType.Code).Sum(b => b.Length);
+
+		return totalSize > 0 ? (double)codeSize / totalSize : 0;
+	}
+
+	#endregion
 }
