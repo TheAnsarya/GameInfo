@@ -97,6 +97,26 @@ the vscode terminal has fucked up colors again, make it legibile, permanantly; f
 
 do the entire `GameInfo` project and the `dragon-warrior-4` project
 
+there is too much indentation using spaces in the code and documentation, always use tabs, never use spaces unless the file-format requires it, tabs! see the selected portion of `cdl-format.md` as an example of what should be tabs not spaces;
+
+suppress formatting error `MD010/no-hard-tabs` for `*.md` files, which is nonsense; continue;
+
+suppress formatting error `MD010/no-hard-tabs` for `*.md` files, which is nonsense; format documentaion using tabs, efficiently; continue;
+
+pick a random github issue and work on it;
+
+make manual testing documentation in `\GameInfo\~docs\manual\; `make `*.md` files with todo-lists and descriptions/steps of what to to test all of the GameInfo tools; also make manual testing github issues, and referenece them in the commits and keep them updated; give me a kid-glove easy to follow, fully documented, manual testing experience; and keep this manual testing documentation up to date as you make changes and updates;
+
+fix all `md` documentation formatting errors like `MD032/blanks-around-lists` and `MD022/blanks-around-headings` and `MD031` and other formatting errors and use tabs not spaces for indentation;
+
+Would you like me to run a markdown linter to verify all formatting issues are resolved?
+
+git commit everything in logical batches; pick a random github issue and work on it; continue;
+
+
+
+
+
 
 
 
