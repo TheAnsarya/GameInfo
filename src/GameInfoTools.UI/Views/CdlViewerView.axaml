@@ -89,7 +89,7 @@
 							<!-- Graphical Heatmap Tab -->
 							<TabItem Header="🎨 Graphical">
 								<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MaxHeight="250">
-									<controls:HeatmapControl Cells="{Binding HeatmapCells}" 
+									<controls:HeatmapControl Cells="{Binding HeatmapCells}"
 															  Columns="{Binding HeatmapWidth}"
 															  IsVisible="{Binding HasCdlLoaded}"/>
 								</ScrollViewer>
