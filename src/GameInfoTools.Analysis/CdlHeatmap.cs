@@ -861,4 +861,317 @@ public class CdlHeatmap {
 	}
 
 	#endregion
+
+	#region Search and Pattern Matching
+
+	/// <summary>
+	/// Search result for pattern matching.
+	/// </summary>
+	public record SearchResult(
+		int Offset,
+		CdlFlags Flags,
+		string Type
+	) {
+		public string OffsetHex => $"${Offset:X6}";
+	}
+
+	/// <summary>
+	/// Searches for offsets that match specific CDL flags.
+	/// </summary>
+	/// <param name="flags">Flags to search for.</param>
+	/// <param name="matchAll">If true, offset must have all flags; if false, any matching flag.</param>
+	/// <param name="maxResults">Maximum number of results to return.</param>
+	/// <returns>List of matching offsets.</returns>
+	public List<SearchResult> SearchByFlags(CdlFlags flags, bool matchAll = false, int maxResults = 1000) {
+		var results = new List<SearchResult>();
+
+		for (int i = 0; i < _cdlData.Length && results.Count < maxResults; i++) {
+			var currentFlags = (CdlFlags)_cdlData[i];
+
+			bool matches = matchAll
+				? (currentFlags & flags) == flags
+				: (currentFlags & flags) != CdlFlags.None;
+
+			if (matches) {
+				string type = (currentFlags & CdlFlags.Code) != 0 ? "Code" :
+							  (currentFlags & CdlFlags.Data) != 0 ? "Data" : "Unknown";
+				results.Add(new SearchResult(i, currentFlags, type));
+			}
+		}
+
+		return results;
+	}
+
+	/// <summary>
+	/// Searches for transitions between covered and uncovered regions.
+	/// </summary>
+	/// <param name="maxResults">Maximum number of results to return.</param>
+	/// <returns>List of boundary offsets.</returns>
+	public List<SearchResult> FindCoverageBoundaries(int maxResults = 1000) {
+		var results = new List<SearchResult>();
+		if (_cdlData.Length == 0) return results;
+
+		bool wasCovered = _cdlData[0] != 0;
+
+		for (int i = 1; i < _cdlData.Length && results.Count < maxResults; i++) {
+			bool isCovered = _cdlData[i] != 0;
+
+			if (isCovered != wasCovered) {
+				var flags = (CdlFlags)_cdlData[i];
+				string type = isCovered ? "Start of coverage" : "End of coverage";
+				results.Add(new SearchResult(i, flags, type));
+			}
+
+			wasCovered = isCovered;
+		}
+
+		return results;
+	}
+
+	/// <summary>
+	/// Searches for sub-entry points (function entry points that aren't main entry).
+	/// </summary>
+	/// <param name="maxResults">Maximum number of results to return.</param>
+	public List<SearchResult> FindSubEntryPoints(int maxResults = 1000) {
+		return SearchByFlags(CdlFlags.SubEntryPoint, matchAll: true, maxResults);
+	}
+
+	/// <summary>
+	/// Searches for indirect code jumps (computed jump targets).
+	/// </summary>
+	/// <param name="maxResults">Maximum number of results to return.</param>
+	public List<SearchResult> FindIndirectCode(int maxResults = 1000) {
+		return SearchByFlags(CdlFlags.IndirectCode, matchAll: true, maxResults);
+	}
+
+	/// <summary>
+	/// Searches for bytes at a specific offset range.
+	/// </summary>
+	/// <param name="startOffset">Start of range.</param>
+	/// <param name="endOffset">End of range (exclusive).</param>
+	public List<SearchResult> SearchRange(int startOffset, int endOffset) {
+		var results = new List<SearchResult>();
+		startOffset = Math.Max(0, startOffset);
+		endOffset = Math.Min(_cdlData.Length, endOffset);
+
+		for (int i = startOffset; i < endOffset; i++) {
+			var flags = (CdlFlags)_cdlData[i];
+			string type = (flags & CdlFlags.Code) != 0 ? "Code" :
+						  (flags & CdlFlags.Data) != 0 ? "Data" : "Unknown";
+			results.Add(new SearchResult(i, flags, type));
+		}
+
+		return results;
+	}
+
+	/// <summary>
+	/// Finds the next occurrence of a flag pattern starting from an offset.
+	/// </summary>
+	/// <param name="startOffset">Starting offset for search.</param>
+	/// <param name="flags">Flags to search for.</param>
+	/// <param name="searchBackward">Search backward from start offset.</param>
+	/// <returns>Offset of match, or -1 if not found.</returns>
+	public int FindNext(int startOffset, CdlFlags flags, bool searchBackward = false) {
+		if (searchBackward) {
+			for (int i = Math.Min(startOffset - 1, _cdlData.Length - 1); i >= 0; i--) {
+				if (((CdlFlags)_cdlData[i] & flags) != CdlFlags.None) {
+					return i;
+				}
+			}
+		} else {
+			for (int i = Math.Max(startOffset + 1, 0); i < _cdlData.Length; i++) {
+				if (((CdlFlags)_cdlData[i] & flags) != CdlFlags.None) {
+					return i;
+				}
+			}
+		}
+
+		return -1;
+	}
+
+	#endregion
+
+	#region Bookmarks
+
+	/// <summary>
+	/// A bookmark for marking interesting offsets.
+	/// </summary>
+	public record Bookmark(
+		int Offset,
+		string Label,
+		string? Description = null,
+		string? Category = null
+	) {
+		public string OffsetHex => $"${Offset:X6}";
+	}
+
+	/// <summary>
+	/// Collection of bookmarks for this CDL data.
+	/// </summary>
+	private readonly List<Bookmark> _bookmarks = [];
+
+	/// <summary>
+	/// Gets all bookmarks.
+	/// </summary>
+	public IReadOnlyList<Bookmark> Bookmarks => _bookmarks.AsReadOnly();
+
+	/// <summary>
+	/// Adds a new bookmark.
+	/// </summary>
+	/// <param name="offset">Offset to bookmark.</param>
+	/// <param name="label">Label for the bookmark.</param>
+	/// <param name="description">Optional description.</param>
+	/// <param name="category">Optional category for grouping.</param>
+	public void AddBookmark(int offset, string label, string? description = null, string? category = null) {
+		if (offset < 0 || offset >= _cdlData.Length) {
+			throw new ArgumentOutOfRangeException(nameof(offset), "Offset is outside CDL data range");
+		}
+
+		// Remove existing bookmark at same offset
+		_bookmarks.RemoveAll(b => b.Offset == offset);
+
+		_bookmarks.Add(new Bookmark(offset, label, description, category));
+		_bookmarks.Sort((a, b) => a.Offset.CompareTo(b.Offset));
+	}
+
+	/// <summary>
+	/// Removes a bookmark at the specified offset.
+	/// </summary>
+	public bool RemoveBookmark(int offset) {
+		return _bookmarks.RemoveAll(b => b.Offset == offset) > 0;
+	}
+
+	/// <summary>
+	/// Clears all bookmarks.
+	/// </summary>
+	public void ClearBookmarks() {
+		_bookmarks.Clear();
+	}
+
+	/// <summary>
+	/// Gets bookmarks in a specific category.
+	/// </summary>
+	public IEnumerable<Bookmark> GetBookmarksByCategory(string category) {
+		return _bookmarks.Where(b => b.Category == category);
+	}
+
+	/// <summary>
+	/// Gets the next bookmark after the specified offset.
+	/// </summary>
+	public Bookmark? GetNextBookmark(int currentOffset) {
+		return _bookmarks.FirstOrDefault(b => b.Offset > currentOffset);
+	}
+
+	/// <summary>
+	/// Gets the previous bookmark before the specified offset.
+	/// </summary>
+	public Bookmark? GetPreviousBookmark(int currentOffset) {
+		return _bookmarks.LastOrDefault(b => b.Offset < currentOffset);
+	}
+
+	/// <summary>
+	/// Auto-generates bookmarks for interesting locations.
+	/// </summary>
+	/// <param name="includeSubEntryPoints">Include sub-entry points as bookmarks.</param>
+	/// <param name="includeCoverageBoundaries">Include coverage start/end boundaries.</param>
+	/// <param name="maxBookmarks">Maximum bookmarks to generate.</param>
+	public void AutoGenerateBookmarks(bool includeSubEntryPoints = true, bool includeCoverageBoundaries = true, int maxBookmarks = 100) {
+		int count = 0;
+
+		if (includeSubEntryPoints) {
+			var entryPoints = FindSubEntryPoints(maxBookmarks / 2);
+			foreach (var ep in entryPoints) {
+				if (count >= maxBookmarks) break;
+				AddBookmark(ep.Offset, $"sub_{ep.Offset:X6}", "Sub-entry point", "EntryPoint");
+				count++;
+			}
+		}
+
+		if (includeCoverageBoundaries) {
+			var boundaries = FindCoverageBoundaries(maxBookmarks / 2);
+			foreach (var boundary in boundaries) {
+				if (count >= maxBookmarks) break;
+				if (boundary.Type == "Start of coverage") {
+					AddBookmark(boundary.Offset, $"coverage_start_{boundary.Offset:X6}", "Start of covered region", "Boundary");
+				}
+				count++;
+			}
+		}
+	}
+
+	/// <summary>
+	/// Exports bookmarks to a text file format.
+	/// </summary>
+	public string ExportBookmarks() {
+		var sb = new StringBuilder();
+		sb.AppendLine("; CDL Bookmarks");
+		sb.AppendLine($"; Total: {_bookmarks.Count}");
+		sb.AppendLine();
+
+		foreach (var category in _bookmarks.Select(b => b.Category).Distinct()) {
+			sb.AppendLine($"; === {category ?? "Uncategorized"} ===");
+			foreach (var bookmark in _bookmarks.Where(b => b.Category == category)) {
+				sb.Append($"{bookmark.OffsetHex} = {bookmark.Label}");
+				if (!string.IsNullOrEmpty(bookmark.Description)) {
+					sb.Append($" ; {bookmark.Description}");
+				}
+				sb.AppendLine();
+			}
+			sb.AppendLine();
+		}
+
+		return sb.ToString();
+	}
+
+	/// <summary>
+	/// Imports bookmarks from a text file format.
+	/// </summary>
+	public void ImportBookmarks(string content) {
+		var lines = content.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+		string? currentCategory = null;
+
+		foreach (var line in lines) {
+			var trimmed = line.Trim();
+
+			// Skip empty lines
+			if (string.IsNullOrEmpty(trimmed)) continue;
+
+			// Check for category header
+			if (trimmed.StartsWith("; ===") && trimmed.EndsWith("===")) {
+				currentCategory = trimmed.Trim(';', '=', ' ');
+				if (currentCategory == "Uncategorized") currentCategory = null;
+				continue;
+			}
+
+			// Skip other comments
+			if (trimmed.StartsWith(';')) continue;
+
+			// Parse bookmark: $OFFSET = Label ; Description
+			var parts = trimmed.Split('=', 2);
+			if (parts.Length != 2) continue;
+
+			var offsetStr = parts[0].Trim().TrimStart('$');
+			if (!int.TryParse(offsetStr, System.Globalization.NumberStyles.HexNumber, null, out int offset)) {
+				continue;
+			}
+
+			var labelPart = parts[1].Trim();
+			string label;
+			string? description = null;
+
+			var commentIndex = labelPart.IndexOf(';');
+			if (commentIndex >= 0) {
+				label = labelPart[..commentIndex].Trim();
+				description = labelPart[(commentIndex + 1)..].Trim();
+			} else {
+				label = labelPart;
+			}
+
+			if (offset >= 0 && offset < _cdlData.Length) {
+				AddBookmark(offset, label, description, currentCategory);
+			}
+		}
+	}
+
+	#endregion
 }

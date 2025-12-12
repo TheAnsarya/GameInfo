@@ -59,6 +59,26 @@ public partial class CdlViewerViewModel : ViewModelBase {
 	[ObservableProperty]
 	private int _bankSize = 0x4000;
 
+	[ObservableProperty]
+	private string _searchQuery = "";
+
+	[ObservableProperty]
+	private int _currentOffset;
+
+	[ObservableProperty]
+	private string _bookmarkLabel = "";
+
+	[ObservableProperty]
+	private string _bookmarkDescription = "";
+
+	[ObservableProperty]
+	private string _selectedSearchType = "Code";
+
+	/// <summary>
+	/// Available search types.
+	/// </summary>
+	public static string[] SearchTypes => ["Code", "Data", "SubEntry", "IndirectCode", "Boundaries", "All Coverage"];
+
 	/// <summary>
 	/// Bank-level coverage information.
 	/// </summary>
@@ -78,6 +98,16 @@ public partial class CdlViewerViewModel : ViewModelBase {
 	/// Heatmap cells for visualization.
 	/// </summary>
 	public ObservableCollection<HeatmapCellInfo> HeatmapCells { get; } = [];
+
+	/// <summary>
+	/// Search results.
+	/// </summary>
+	public ObservableCollection<SearchResultInfo> SearchResults { get; } = [];
+
+	/// <summary>
+	/// Bookmarks.
+	/// </summary>
+	public ObservableCollection<BookmarkInfo> Bookmarks { get; } = [];
 
 	/// <summary>
 	/// Event raised when user wants to navigate to a specific offset.
@@ -289,6 +319,260 @@ public partial class CdlViewerViewModel : ViewModelBase {
 		NavigateToOffset?.Invoke(offset);
 	}
 
+	#region Search Commands
+
+	/// <summary>
+	/// Executes a search based on the selected search type.
+	/// </summary>
+	[RelayCommand]
+	public void ExecuteSearch() {
+		if (_cdlHeatmap is null) {
+			StatusText = "No CDL loaded";
+			return;
+		}
+
+		SearchResults.Clear();
+		List<CdlHeatmap.SearchResult> results = SelectedSearchType switch {
+			"Code" => _cdlHeatmap.SearchByFlags(CdlHeatmap.CdlFlags.Code),
+			"Data" => _cdlHeatmap.SearchByFlags(CdlHeatmap.CdlFlags.Data),
+			"SubEntry" => _cdlHeatmap.FindSubEntryPoints(),
+			"IndirectCode" => _cdlHeatmap.FindIndirectCode(),
+			"Boundaries" => _cdlHeatmap.FindCoverageBoundaries(),
+			"All Coverage" => _cdlHeatmap.SearchByFlags(CdlHeatmap.CdlFlags.Code | CdlHeatmap.CdlFlags.Data, matchAll: false),
+			_ => []
+		};
+
+		foreach (var result in results.Take(500)) {
+			SearchResults.Add(new SearchResultInfo(result.Offset, result.Type, result.Flags.ToString()));
+		}
+
+		StatusText = $"Found {results.Count} matches for '{SelectedSearchType}'";
+	}
+
+	/// <summary>
+	/// Navigates to the next occurrence of the selected search type.
+	/// </summary>
+	[RelayCommand]
+	public void FindNext() {
+		if (_cdlHeatmap is null) return;
+
+		var flags = SelectedSearchType switch {
+			"Code" => CdlHeatmap.CdlFlags.Code,
+			"Data" => CdlHeatmap.CdlFlags.Data,
+			"SubEntry" => CdlHeatmap.CdlFlags.SubEntryPoint,
+			"IndirectCode" => CdlHeatmap.CdlFlags.IndirectCode,
+			_ => CdlHeatmap.CdlFlags.Code | CdlHeatmap.CdlFlags.Data
+		};
+
+		int nextOffset = _cdlHeatmap.FindNext(CurrentOffset, flags);
+		if (nextOffset >= 0) {
+			CurrentOffset = nextOffset;
+			NavigateToOffset?.Invoke(nextOffset);
+			StatusText = $"Found at ${nextOffset:X6}";
+		} else {
+			StatusText = "No more matches found";
+		}
+	}
+
+	/// <summary>
+	/// Navigates to the previous occurrence of the selected search type.
+	/// </summary>
+	[RelayCommand]
+	public void FindPrevious() {
+		if (_cdlHeatmap is null) return;
+
+		var flags = SelectedSearchType switch {
+			"Code" => CdlHeatmap.CdlFlags.Code,
+			"Data" => CdlHeatmap.CdlFlags.Data,
+			"SubEntry" => CdlHeatmap.CdlFlags.SubEntryPoint,
+			"IndirectCode" => CdlHeatmap.CdlFlags.IndirectCode,
+			_ => CdlHeatmap.CdlFlags.Code | CdlHeatmap.CdlFlags.Data
+		};
+
+		int prevOffset = _cdlHeatmap.FindNext(CurrentOffset, flags, searchBackward: true);
+		if (prevOffset >= 0) {
+			CurrentOffset = prevOffset;
+			NavigateToOffset?.Invoke(prevOffset);
+			StatusText = $"Found at ${prevOffset:X6}";
+		} else {
+			StatusText = "No more matches found";
+		}
+	}
+
+	/// <summary>
+	/// Navigates to a search result.
+	/// </summary>
+	[RelayCommand]
+	public void GoToSearchResult(SearchResultInfo result) {
+		CurrentOffset = result.Offset;
+		NavigateToOffset?.Invoke(result.Offset);
+	}
+
+	#endregion
+
+	#region Bookmark Commands
+
+	/// <summary>
+	/// Adds a bookmark at the current offset.
+	/// </summary>
+	[RelayCommand]
+	public void AddBookmark() {
+		if (_cdlHeatmap is null) {
+			StatusText = "No CDL loaded";
+			return;
+		}
+
+		if (string.IsNullOrWhiteSpace(BookmarkLabel)) {
+			BookmarkLabel = $"bookmark_{CurrentOffset:X6}";
+		}
+
+		try {
+			_cdlHeatmap.AddBookmark(CurrentOffset, BookmarkLabel, BookmarkDescription);
+			UpdateBookmarks();
+			StatusText = $"Bookmark added at ${CurrentOffset:X6}";
+			BookmarkLabel = "";
+			BookmarkDescription = "";
+		} catch (ArgumentOutOfRangeException) {
+			StatusText = "Invalid offset for bookmark";
+		}
+	}
+
+	/// <summary>
+	/// Removes a bookmark.
+	/// </summary>
+	[RelayCommand]
+	public void RemoveBookmark(BookmarkInfo bookmark) {
+		if (_cdlHeatmap is null) return;
+
+		if (_cdlHeatmap.RemoveBookmark(bookmark.Offset)) {
+			UpdateBookmarks();
+			StatusText = $"Bookmark removed from ${bookmark.Offset:X6}";
+		}
+	}
+
+	/// <summary>
+	/// Navigates to a bookmark.
+	/// </summary>
+	[RelayCommand]
+	public void GoToBookmark(BookmarkInfo bookmark) {
+		CurrentOffset = bookmark.Offset;
+		NavigateToOffset?.Invoke(bookmark.Offset);
+	}
+
+	/// <summary>
+	/// Navigates to the next bookmark.
+	/// </summary>
+	[RelayCommand]
+	public void NextBookmark() {
+		if (_cdlHeatmap is null) return;
+
+		var next = _cdlHeatmap.GetNextBookmark(CurrentOffset);
+		if (next is not null) {
+			CurrentOffset = next.Offset;
+			NavigateToOffset?.Invoke(next.Offset);
+			StatusText = $"Bookmark: {next.Label}";
+		} else {
+			StatusText = "No more bookmarks";
+		}
+	}
+
+	/// <summary>
+	/// Navigates to the previous bookmark.
+	/// </summary>
+	[RelayCommand]
+	public void PreviousBookmark() {
+		if (_cdlHeatmap is null) return;
+
+		var prev = _cdlHeatmap.GetPreviousBookmark(CurrentOffset);
+		if (prev is not null) {
+			CurrentOffset = prev.Offset;
+			NavigateToOffset?.Invoke(prev.Offset);
+			StatusText = $"Bookmark: {prev.Label}";
+		} else {
+			StatusText = "No more bookmarks";
+		}
+	}
+
+	/// <summary>
+	/// Auto-generates bookmarks for interesting locations.
+	/// </summary>
+	[RelayCommand]
+	public void AutoGenerateBookmarks() {
+		if (_cdlHeatmap is null) {
+			StatusText = "No CDL loaded";
+			return;
+		}
+
+		_cdlHeatmap.AutoGenerateBookmarks(includeSubEntryPoints: true, includeCoverageBoundaries: true);
+		UpdateBookmarks();
+		StatusText = $"Generated {_cdlHeatmap.Bookmarks.Count} bookmarks";
+	}
+
+	/// <summary>
+	/// Clears all bookmarks.
+	/// </summary>
+	[RelayCommand]
+	public void ClearBookmarks() {
+		if (_cdlHeatmap is null) return;
+
+		_cdlHeatmap.ClearBookmarks();
+		UpdateBookmarks();
+		StatusText = "Bookmarks cleared";
+	}
+
+	/// <summary>
+	/// Exports bookmarks to a file.
+	/// </summary>
+	[RelayCommand]
+	public async Task ExportBookmarks() {
+		if (_cdlHeatmap is null) {
+			StatusText = "No CDL loaded";
+			return;
+		}
+
+		var path = await _fileDialogService.SaveFileAsync("Export Bookmarks", ".txt", "bookmarks.txt", FileDialogService.TextFiles);
+		if (!string.IsNullOrEmpty(path)) {
+			var content = _cdlHeatmap.ExportBookmarks();
+			await File.WriteAllTextAsync(path, content);
+			StatusText = $"Bookmarks exported to {Path.GetFileName(path)}";
+		}
+	}
+
+	/// <summary>
+	/// Imports bookmarks from a file.
+	/// </summary>
+	[RelayCommand]
+	public async Task ImportBookmarks() {
+		if (_cdlHeatmap is null) {
+			StatusText = "No CDL loaded";
+			return;
+		}
+
+		var path = await _fileDialogService.OpenFileAsync("Import Bookmarks", FileDialogService.TextFiles);
+		if (!string.IsNullOrEmpty(path)) {
+			var content = await File.ReadAllTextAsync(path);
+			_cdlHeatmap.ImportBookmarks(content);
+			UpdateBookmarks();
+			StatusText = $"Imported {_cdlHeatmap.Bookmarks.Count} bookmarks";
+		}
+	}
+
+	private void UpdateBookmarks() {
+		Bookmarks.Clear();
+		if (_cdlHeatmap is null) return;
+
+		foreach (var bookmark in _cdlHeatmap.Bookmarks) {
+			Bookmarks.Add(new BookmarkInfo(
+				bookmark.Offset,
+				bookmark.Label,
+				bookmark.Description,
+				bookmark.Category
+			));
+		}
+	}
+
+	#endregion
+
 	partial void OnBankSizeChanged(int value) {
 		if (_cdlHeatmap is not null) {
 			UpdateBankCoverage();
@@ -346,4 +630,28 @@ public record HeatmapCellInfo(
 	public string OffsetHex => $"${Offset:X6}";
 	public string IntensityDisplay => $"{Intensity:P0}";
 	public string Type => HasCode ? "Code" : (HasData ? "Data" : "Unknown");
+}
+
+/// <summary>
+/// Search result display information.
+/// </summary>
+public record SearchResultInfo(
+	int Offset,
+	string Type,
+	string Flags
+) {
+	public string OffsetHex => $"${Offset:X6}";
+}
+
+/// <summary>
+/// Bookmark display information.
+/// </summary>
+public record BookmarkInfo(
+	int Offset,
+	string Label,
+	string? Description,
+	string? Category
+) {
+	public string OffsetHex => $"${Offset:X6}";
+	public string DisplayName => string.IsNullOrEmpty(Description) ? Label : $"{Label} - {Description}";
 }

@@ -976,4 +976,258 @@ public class CdlHeatmapTests {
 	}
 
 	#endregion
+
+	#region Search Tests
+
+	[Fact]
+	public void SearchByFlags_Code_ReturnsCodeOffsets() {
+		var data = new byte[] { 0x01, 0x00, 0x01, 0x02, 0x01 };
+		var heatmap = new CdlHeatmap(data);
+
+		var results = heatmap.SearchByFlags(CdlHeatmap.CdlFlags.Code);
+
+		Assert.Equal(3, results.Count);
+		Assert.Equal(0, results[0].Offset);
+		Assert.Equal(2, results[1].Offset);
+		Assert.Equal(4, results[2].Offset);
+	}
+
+	[Fact]
+	public void SearchByFlags_Data_ReturnsDataOffsets() {
+		var data = new byte[] { 0x01, 0x02, 0x00, 0x02 };
+		var heatmap = new CdlHeatmap(data);
+
+		var results = heatmap.SearchByFlags(CdlHeatmap.CdlFlags.Data);
+
+		Assert.Equal(2, results.Count);
+		Assert.Equal(1, results[0].Offset);
+		Assert.Equal(3, results[1].Offset);
+	}
+
+	[Fact]
+	public void SearchByFlags_MatchAll_RequiresAllFlags() {
+		var data = new byte[] { 0x01, 0x03, 0x02, 0x03 }; // 0x03 = Code + Data
+		var heatmap = new CdlHeatmap(data);
+
+		var results = heatmap.SearchByFlags(CdlHeatmap.CdlFlags.Code | CdlHeatmap.CdlFlags.Data, matchAll: true);
+
+		Assert.Equal(2, results.Count);
+		Assert.Equal(1, results[0].Offset);
+		Assert.Equal(3, results[1].Offset);
+	}
+
+	[Fact]
+	public void SearchByFlags_WithMaxResults_LimitsResults() {
+		var data = new byte[100];
+		for (int i = 0; i < 100; i++) data[i] = 0x01;
+		var heatmap = new CdlHeatmap(data);
+
+		var results = heatmap.SearchByFlags(CdlHeatmap.CdlFlags.Code, maxResults: 10);
+
+		Assert.Equal(10, results.Count);
+	}
+
+	[Fact]
+	public void FindCoverageBoundaries_FindsTransitions() {
+		var data = new byte[] { 0x00, 0x01, 0x01, 0x00, 0x02 };
+		var heatmap = new CdlHeatmap(data);
+
+		var results = heatmap.FindCoverageBoundaries();
+
+		Assert.Equal(3, results.Count);
+		Assert.Equal(1, results[0].Offset); // Start of coverage
+		Assert.Equal(3, results[1].Offset); // End of coverage
+		Assert.Equal(4, results[2].Offset); // Start of coverage again
+	}
+
+	[Fact]
+	public void FindNext_FromStart_FindsFirstMatch() {
+		var data = new byte[] { 0x00, 0x00, 0x01, 0x00 };
+		var heatmap = new CdlHeatmap(data);
+
+		var offset = heatmap.FindNext(-1, CdlHeatmap.CdlFlags.Code);
+
+		Assert.Equal(2, offset);
+	}
+
+	[Fact]
+	public void FindNext_Backward_FindsPreviousMatch() {
+		var data = new byte[] { 0x01, 0x00, 0x00, 0x01 };
+		var heatmap = new CdlHeatmap(data);
+
+		var offset = heatmap.FindNext(3, CdlHeatmap.CdlFlags.Code, searchBackward: true);
+
+		Assert.Equal(0, offset);
+	}
+
+	[Fact]
+	public void FindNext_NoMatch_ReturnsNegativeOne() {
+		var data = new byte[] { 0x00, 0x00, 0x00 };
+		var heatmap = new CdlHeatmap(data);
+
+		var offset = heatmap.FindNext(0, CdlHeatmap.CdlFlags.Code);
+
+		Assert.Equal(-1, offset);
+	}
+
+	[Fact]
+	public void SearchRange_ReturnsOffsetInfo() {
+		var data = new byte[] { 0x01, 0x02, 0x00, 0x03 };
+		var heatmap = new CdlHeatmap(data);
+
+		var results = heatmap.SearchRange(1, 3);
+
+		Assert.Equal(2, results.Count);
+		Assert.Equal(1, results[0].Offset);
+		Assert.Equal(2, results[1].Offset);
+	}
+
+	#endregion
+
+	#region Bookmark Tests
+
+	[Fact]
+	public void AddBookmark_AddsToCollection() {
+		var data = CreateTestCdlData(100);
+		var heatmap = new CdlHeatmap(data);
+
+		heatmap.AddBookmark(10, "test_label");
+
+		Assert.Single(heatmap.Bookmarks);
+		Assert.Equal(10, heatmap.Bookmarks[0].Offset);
+		Assert.Equal("test_label", heatmap.Bookmarks[0].Label);
+	}
+
+	[Fact]
+	public void AddBookmark_WithDescription_IncludesDescription() {
+		var data = CreateTestCdlData(100);
+		var heatmap = new CdlHeatmap(data);
+
+		heatmap.AddBookmark(10, "label", "description", "category");
+
+		Assert.Equal("description", heatmap.Bookmarks[0].Description);
+		Assert.Equal("category", heatmap.Bookmarks[0].Category);
+	}
+
+	[Fact]
+	public void AddBookmark_OutOfRange_ThrowsException() {
+		var data = CreateTestCdlData(100);
+		var heatmap = new CdlHeatmap(data);
+
+		Assert.Throws<ArgumentOutOfRangeException>(() => heatmap.AddBookmark(200, "test"));
+	}
+
+	[Fact]
+	public void AddBookmark_SameOffset_ReplacesExisting() {
+		var data = CreateTestCdlData(100);
+		var heatmap = new CdlHeatmap(data);
+
+		heatmap.AddBookmark(10, "first");
+		heatmap.AddBookmark(10, "second");
+
+		Assert.Single(heatmap.Bookmarks);
+		Assert.Equal("second", heatmap.Bookmarks[0].Label);
+	}
+
+	[Fact]
+	public void RemoveBookmark_RemovesFromCollection() {
+		var data = CreateTestCdlData(100);
+		var heatmap = new CdlHeatmap(data);
+		heatmap.AddBookmark(10, "test");
+
+		var result = heatmap.RemoveBookmark(10);
+
+		Assert.True(result);
+		Assert.Empty(heatmap.Bookmarks);
+	}
+
+	[Fact]
+	public void RemoveBookmark_NonExistent_ReturnsFalse() {
+		var data = CreateTestCdlData(100);
+		var heatmap = new CdlHeatmap(data);
+
+		var result = heatmap.RemoveBookmark(10);
+
+		Assert.False(result);
+	}
+
+	[Fact]
+	public void ClearBookmarks_RemovesAll() {
+		var data = CreateTestCdlData(100);
+		var heatmap = new CdlHeatmap(data);
+		heatmap.AddBookmark(10, "test1");
+		heatmap.AddBookmark(20, "test2");
+
+		heatmap.ClearBookmarks();
+
+		Assert.Empty(heatmap.Bookmarks);
+	}
+
+	[Fact]
+	public void GetNextBookmark_FindsNext() {
+		var data = CreateTestCdlData(100);
+		var heatmap = new CdlHeatmap(data);
+		heatmap.AddBookmark(10, "first");
+		heatmap.AddBookmark(30, "second");
+
+		var next = heatmap.GetNextBookmark(15);
+
+		Assert.NotNull(next);
+		Assert.Equal(30, next.Offset);
+	}
+
+	[Fact]
+	public void GetPreviousBookmark_FindsPrevious() {
+		var data = CreateTestCdlData(100);
+		var heatmap = new CdlHeatmap(data);
+		heatmap.AddBookmark(10, "first");
+		heatmap.AddBookmark(30, "second");
+
+		var prev = heatmap.GetPreviousBookmark(25);
+
+		Assert.NotNull(prev);
+		Assert.Equal(10, prev.Offset);
+	}
+
+	[Fact]
+	public void ExportBookmarks_ProducesValidFormat() {
+		var data = CreateTestCdlData(100);
+		var heatmap = new CdlHeatmap(data);
+		heatmap.AddBookmark(10, "label1", "desc1", "cat1");
+		heatmap.AddBookmark(20, "label2");
+
+		var exported = heatmap.ExportBookmarks();
+
+		Assert.Contains("$00000A = label1", exported);
+		Assert.Contains("desc1", exported);
+		Assert.Contains("$000014 = label2", exported);
+	}
+
+	[Fact]
+	public void ImportBookmarks_ParsesContent() {
+		var data = CreateTestCdlData(100);
+		var heatmap = new CdlHeatmap(data);
+		var content = "$0A = test1 ; description\n$14 = test2";
+
+		heatmap.ImportBookmarks(content);
+
+		Assert.Equal(2, heatmap.Bookmarks.Count);
+		Assert.Equal(0x0A, heatmap.Bookmarks[0].Offset);
+		Assert.Equal(0x14, heatmap.Bookmarks[1].Offset);
+	}
+
+	[Fact]
+	public void AutoGenerateBookmarks_CreatesBookmarks() {
+		// Create data with sub-entry points
+		var data = new byte[100];
+		data[10] = (byte)CdlHeatmap.CdlFlags.SubEntryPoint;
+		data[50] = (byte)CdlHeatmap.CdlFlags.SubEntryPoint;
+		var heatmap = new CdlHeatmap(data);
+
+		heatmap.AutoGenerateBookmarks(includeSubEntryPoints: true, includeCoverageBoundaries: false);
+
+		Assert.Equal(2, heatmap.Bookmarks.Count);
+	}
+
+	#endregion
 }
