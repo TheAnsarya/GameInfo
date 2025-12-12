@@ -138,4 +138,323 @@ public class PatternDetectorTests {
 		Assert.Equal(0.9, match.Confidence);
 		Assert.Null(match.Metadata);
 	}
+
+	#region Wildcard Pattern Tests
+
+	[Fact]
+	public void ParsePatternString_ParsesSimplePattern() {
+		var pattern = PatternDetector.ParsePatternString("AA BB CC DD");
+
+		Assert.Equal(4, pattern.Length);
+		Assert.Equal((byte)0xAA, pattern[0]);
+		Assert.Equal((byte)0xBB, pattern[1]);
+		Assert.Equal((byte)0xCC, pattern[2]);
+		Assert.Equal((byte)0xDD, pattern[3]);
+	}
+
+	[Fact]
+	public void ParsePatternString_ParsesWildcards() {
+		var pattern = PatternDetector.ParsePatternString("AA ?? CC");
+
+		Assert.Equal(3, pattern.Length);
+		Assert.Equal((byte)0xAA, pattern[0]);
+		Assert.Null(pattern[1]); // Wildcard
+		Assert.Equal((byte)0xCC, pattern[2]);
+	}
+
+	[Fact]
+	public void ParsePatternString_SupportsMultipleWildcardFormats() {
+		var pattern1 = PatternDetector.ParsePatternString("AA ?? BB");
+		var pattern2 = PatternDetector.ParsePatternString("AA ** BB");
+		var pattern3 = PatternDetector.ParsePatternString("AA xx BB");
+		var pattern4 = PatternDetector.ParsePatternString("AA XX BB");
+
+		Assert.Null(pattern1[1]);
+		Assert.Null(pattern2[1]);
+		Assert.Null(pattern3[1]);
+		Assert.Null(pattern4[1]);
+	}
+
+	[Fact]
+	public void ParsePatternString_ThrowsOnInvalidByte() {
+		Assert.Throws<ArgumentException>(() => PatternDetector.ParsePatternString("AA ZZ CC"));
+	}
+
+	[Fact]
+	public void PatternToString_FormatsCorrectly() {
+		var pattern = new byte?[] { 0xAA, null, 0xCC };
+		var result = PatternDetector.PatternToString(pattern);
+
+		Assert.Equal("aa ?? cc", result);
+	}
+
+	[Fact]
+	public void MatchesPattern_ExactMatch_ReturnsTrue() {
+		byte[] data = [0xAA, 0xBB, 0xCC, 0xDD, 0xEE];
+		var pattern = new byte?[] { 0xAA, 0xBB, 0xCC };
+
+		Assert.True(PatternDetector.MatchesPattern(data, 0, pattern));
+	}
+
+	[Fact]
+	public void MatchesPattern_WithWildcard_ReturnsTrue() {
+		byte[] data = [0xAA, 0x00, 0xCC, 0xDD, 0xEE];
+		var pattern = new byte?[] { 0xAA, null, 0xCC };
+
+		Assert.True(PatternDetector.MatchesPattern(data, 0, pattern));
+	}
+
+	[Fact]
+	public void MatchesPattern_NoMatch_ReturnsFalse() {
+		byte[] data = [0xAA, 0xBB, 0xCC, 0xDD, 0xEE];
+		var pattern = new byte?[] { 0xAA, 0xFF, 0xCC };
+
+		Assert.False(PatternDetector.MatchesPattern(data, 0, pattern));
+	}
+
+	[Fact]
+	public void MatchesPattern_OutOfBounds_ReturnsFalse() {
+		byte[] data = [0xAA, 0xBB];
+		var pattern = new byte?[] { 0xAA, 0xBB, 0xCC };
+
+		Assert.False(PatternDetector.MatchesPattern(data, 0, pattern));
+	}
+
+	[Fact]
+	public void ScanForSignature_FindsAllMatches() {
+		byte[] data = [0xAA, 0xBB, 0x00, 0x00, 0xAA, 0xBB, 0x00, 0x00, 0xAA, 0xBB];
+		var pattern = PatternDetector.CreatePattern("Test", "AA BB", "Test pattern");
+
+		var results = PatternDetector.ScanForSignature(data, pattern);
+
+		Assert.Equal(3, results.Count);
+		Assert.Equal(0, results[0].Offset);
+		Assert.Equal(4, results[1].Offset);
+		Assert.Equal(8, results[2].Offset);
+	}
+
+	[Fact]
+	public void ScanForSignature_WithWildcard_FindsMatches() {
+		byte[] data = [0xAA, 0x11, 0xCC, 0x00, 0xAA, 0x22, 0xCC, 0x00, 0xAA, 0x33, 0xCC];
+		var pattern = PatternDetector.CreatePattern("Test", "AA ?? CC", "Wildcard pattern");
+
+		var results = PatternDetector.ScanForSignature(data, pattern);
+
+		Assert.Equal(3, results.Count);
+	}
+
+	[Fact]
+	public void ScanForSignatures_ScansMultiplePatterns() {
+		byte[] data = [0xAA, 0xBB, 0x00, 0xCC, 0xDD, 0x00];
+		var patterns = new[] {
+			PatternDetector.CreatePattern("Pattern1", "AA BB"),
+			PatternDetector.CreatePattern("Pattern2", "CC DD")
+		};
+
+		var results = PatternDetector.ScanForSignatures(data, patterns);
+
+		Assert.Equal(2, results.Count);
+	}
+
+	[Fact]
+	public void GeneratePattern_CreatesPatternFromBytes() {
+		byte[] bytes = [0xAA, 0xBB, 0xCC, 0xDD];
+		var pattern = PatternDetector.GeneratePattern("Test", bytes, [1, 2], "Test desc", "Test cat");
+
+		Assert.Equal("Test", pattern.Name);
+		Assert.Equal((byte)0xAA, pattern.Bytes[0]);
+		Assert.Null(pattern.Bytes[1]); // Wildcard
+		Assert.Null(pattern.Bytes[2]); // Wildcard
+		Assert.Equal((byte)0xDD, pattern.Bytes[3]);
+		Assert.Equal("Test desc", pattern.Description);
+		Assert.Equal("Test cat", pattern.Category);
+	}
+
+	[Fact]
+	public void CreatePattern_CreatesValidPattern() {
+		var pattern = PatternDetector.CreatePattern("NES_JSR", "20 ?? ??", "JSR instruction", "Code");
+
+		Assert.Equal("NES_JSR", pattern.Name);
+		Assert.Equal(3, pattern.Bytes.Length);
+		Assert.Equal((byte)0x20, pattern.Bytes[0]);
+		Assert.Null(pattern.Bytes[1]);
+		Assert.Null(pattern.Bytes[2]);
+	}
+
+	[Fact]
+	public void GetCommonPatterns_ReturnsNesPatterns() {
+		var patterns = PatternDetector.GetCommonPatterns(SystemType.Nes);
+
+		Assert.NotEmpty(patterns);
+		Assert.Contains(patterns, p => p.Category == "Code");
+	}
+
+	[Fact]
+	public void GetCommonPatterns_ReturnsSnesPatterns() {
+		var patterns = PatternDetector.GetCommonPatterns(SystemType.Snes);
+
+		Assert.NotEmpty(patterns);
+	}
+
+	[Fact]
+	public void GetCommonPatterns_ReturnsGameBoyPatterns() {
+		var patterns = PatternDetector.GetCommonPatterns(SystemType.GameBoy);
+
+		Assert.NotEmpty(patterns);
+	}
+
+	[Fact]
+	public void GetCommonPatterns_ReturnsGbaPatterns() {
+		var patterns = PatternDetector.GetCommonPatterns(SystemType.GameBoyAdvance);
+
+		Assert.NotEmpty(patterns);
+	}
+
+	#endregion
+
+	#region Pattern Library Tests
+
+	[Fact]
+	public void PatternLibrary_Add_AddsPattern() {
+		var library = new PatternDetector.PatternLibrary();
+		var pattern = PatternDetector.CreatePattern("Test", "AA BB");
+
+		library.Add(pattern);
+
+		Assert.Single(library.Patterns);
+		Assert.Equal("Test", library.Patterns[0].Name);
+	}
+
+	[Fact]
+	public void PatternLibrary_AddRange_AddsMultiplePatterns() {
+		var library = new PatternDetector.PatternLibrary();
+		var patterns = new[] {
+			PatternDetector.CreatePattern("Test1", "AA BB"),
+			PatternDetector.CreatePattern("Test2", "CC DD")
+		};
+
+		library.AddRange(patterns);
+
+		Assert.Equal(2, library.Patterns.Count);
+	}
+
+	[Fact]
+	public void PatternLibrary_Remove_RemovesPattern() {
+		var library = new PatternDetector.PatternLibrary();
+		library.Add(PatternDetector.CreatePattern("Test1", "AA BB"));
+		library.Add(PatternDetector.CreatePattern("Test2", "CC DD"));
+
+		library.Remove("Test1");
+
+		Assert.Single(library.Patterns);
+		Assert.Equal("Test2", library.Patterns[0].Name);
+	}
+
+	[Fact]
+	public void PatternLibrary_Clear_RemovesAllPatterns() {
+		var library = new PatternDetector.PatternLibrary();
+		library.Add(PatternDetector.CreatePattern("Test1", "AA BB"));
+		library.Add(PatternDetector.CreatePattern("Test2", "CC DD"));
+
+		library.Clear();
+
+		Assert.Empty(library.Patterns);
+	}
+
+	[Fact]
+	public void PatternLibrary_GetByCategory_FiltersPatterns() {
+		var library = new PatternDetector.PatternLibrary();
+		library.Add(PatternDetector.CreatePattern("Test1", "AA BB", category: "Code"));
+		library.Add(PatternDetector.CreatePattern("Test2", "CC DD", category: "Data"));
+		library.Add(PatternDetector.CreatePattern("Test3", "EE FF", category: "Code"));
+
+		var codePatterns = library.GetByCategory("Code");
+
+		Assert.Equal(2, codePatterns.Count);
+	}
+
+	[Fact]
+	public void PatternLibrary_GetByName_ReturnsPattern() {
+		var library = new PatternDetector.PatternLibrary();
+		library.Add(PatternDetector.CreatePattern("Test1", "AA BB"));
+		library.Add(PatternDetector.CreatePattern("Test2", "CC DD"));
+
+		var pattern = library.GetByName("Test2");
+
+		Assert.NotNull(pattern);
+		Assert.Equal("Test2", pattern.Name);
+	}
+
+	[Fact]
+	public void PatternLibrary_GetByName_ReturnsNullIfNotFound() {
+		var library = new PatternDetector.PatternLibrary();
+		library.Add(PatternDetector.CreatePattern("Test1", "AA BB"));
+
+		var pattern = library.GetByName("NonExistent");
+
+		Assert.Null(pattern);
+	}
+
+	[Fact]
+	public void PatternLibrary_ScanAll_ScansAllPatterns() {
+		var library = new PatternDetector.PatternLibrary();
+		library.Add(PatternDetector.CreatePattern("Pattern1", "AA BB"));
+		library.Add(PatternDetector.CreatePattern("Pattern2", "CC DD"));
+
+		byte[] data = [0xAA, 0xBB, 0x00, 0xCC, 0xDD];
+		var results = library.ScanAll(data);
+
+		Assert.Equal(2, results.Count);
+	}
+
+	[Fact]
+	public void PatternLibrary_ExportToJson_CreatesValidJson() {
+		var library = new PatternDetector.PatternLibrary();
+		library.Add(PatternDetector.CreatePattern("Test", "AA ?? BB", "Test desc", "Code"));
+
+		var json = library.ExportToJson();
+
+		Assert.Contains("\"name\": \"Test\"", json);
+		Assert.Contains("\"pattern\": \"aa ?? bb\"", json);
+		Assert.Contains("\"description\": \"Test desc\"", json);
+		Assert.Contains("\"category\": \"Code\"", json);
+	}
+
+	[Fact]
+	public void PatternLibrary_ImportFromJson_LoadsPatterns() {
+		var library = new PatternDetector.PatternLibrary();
+		string json = """
+			[
+			  {
+			    "name": "Test",
+			    "pattern": "AA BB CC",
+			    "description": "Test pattern",
+			    "category": "Code"
+			  }
+			]
+			""";
+
+		library.ImportFromJson(json);
+
+		Assert.Single(library.Patterns);
+		Assert.Equal("Test", library.Patterns[0].Name);
+	}
+
+	[Fact]
+	public void PatternLibrary_ExportImportRoundTrip_PreservesPatterns() {
+		var original = new PatternDetector.PatternLibrary();
+		original.Add(PatternDetector.CreatePattern("Pattern1", "AA BB CC", "Desc1", "Cat1"));
+		original.Add(PatternDetector.CreatePattern("Pattern2", "DD ?? FF", "Desc2", "Cat2"));
+
+		var json = original.ExportToJson();
+
+		var imported = new PatternDetector.PatternLibrary();
+		imported.ImportFromJson(json);
+
+		Assert.Equal(2, imported.Patterns.Count);
+		Assert.Equal("Pattern1", imported.Patterns[0].Name);
+		Assert.Equal("Pattern2", imported.Patterns[1].Name);
+	}
+
+	#endregion
 }

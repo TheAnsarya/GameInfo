@@ -16,6 +16,297 @@ public static class PatternDetector {
 	);
 
 	/// <summary>
+	/// A signature pattern that can include wildcards.
+	/// </summary>
+	public record SignaturePattern(
+		string Name,
+		byte?[] Bytes,
+		string? Description = null,
+		string? Category = null
+	);
+
+	/// <summary>
+	/// Result of a signature scan.
+	/// </summary>
+	public record SignatureScanResult(
+		SignaturePattern Pattern,
+		int Offset,
+		byte[] MatchedBytes
+	);
+
+	/// <summary>
+	/// Parse a pattern string into bytes with wildcards.
+	/// Supports formats: "AA BB ?? CC" or "AA ?? BB" where ?? is wildcard.
+	/// </summary>
+	public static byte?[] ParsePatternString(string pattern) {
+		var parts = pattern.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+		var result = new byte?[parts.Length];
+
+		for (int i = 0; i < parts.Length; i++) {
+			var part = parts[i].Trim();
+			if (part == "??" || part == "**" || part == "xx" || part == "XX") {
+				result[i] = null; // Wildcard
+			} else {
+				try {
+					result[i] = Convert.ToByte(part, 16);
+				} catch {
+					throw new ArgumentException($"Invalid pattern byte: {part}");
+				}
+			}
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Convert pattern bytes back to string format.
+	/// </summary>
+	public static string PatternToString(byte?[] pattern) {
+		return string.Join(" ", pattern.Select(b => b.HasValue ? $"{b.Value:x2}" : "??"));
+	}
+
+	/// <summary>
+	/// Search for a signature pattern in data.
+	/// </summary>
+	public static List<SignatureScanResult> ScanForSignature(byte[] data, SignaturePattern pattern) {
+		var results = new List<SignatureScanResult>();
+		var bytes = pattern.Bytes;
+
+		for (int i = 0; i <= data.Length - bytes.Length; i++) {
+			if (MatchesPattern(data, i, bytes)) {
+				var matchedBytes = new byte[bytes.Length];
+				Array.Copy(data, i, matchedBytes, 0, bytes.Length);
+				results.Add(new SignatureScanResult(pattern, i, matchedBytes));
+			}
+		}
+
+		return results;
+	}
+
+	/// <summary>
+	/// Search for multiple signature patterns in data.
+	/// </summary>
+	public static List<SignatureScanResult> ScanForSignatures(byte[] data, IEnumerable<SignaturePattern> patterns) {
+		var results = new List<SignatureScanResult>();
+
+		foreach (var pattern in patterns) {
+			results.AddRange(ScanForSignature(data, pattern));
+		}
+
+		return results.OrderBy(r => r.Offset).ToList();
+	}
+
+	/// <summary>
+	/// Check if data at offset matches pattern with wildcards.
+	/// </summary>
+	public static bool MatchesPattern(byte[] data, int offset, byte?[] pattern) {
+		if (offset + pattern.Length > data.Length)
+			return false;
+
+		for (int i = 0; i < pattern.Length; i++) {
+			if (pattern[i].HasValue && data[offset + i] != pattern[i].Value)
+				return false;
+		}
+
+		return true;
+	}
+
+	/// <summary>
+	/// Generate a pattern from actual bytes, with optional wildcard positions.
+	/// </summary>
+	public static SignaturePattern GeneratePattern(
+		string name,
+		byte[] bytes,
+		int[]? wildcardPositions = null,
+		string? description = null,
+		string? category = null
+	) {
+		var pattern = new byte?[bytes.Length];
+		for (int i = 0; i < bytes.Length; i++) {
+			if (wildcardPositions?.Contains(i) == true) {
+				pattern[i] = null;
+			} else {
+				pattern[i] = bytes[i];
+			}
+		}
+
+		return new SignaturePattern(name, pattern, description, category);
+	}
+
+	/// <summary>
+	/// Create a pattern from code that detects specific byte sequences.
+	/// </summary>
+	public static SignaturePattern CreatePattern(string name, string patternString, string? description = null, string? category = null) {
+		var bytes = ParsePatternString(patternString);
+		return new SignaturePattern(name, bytes, description, category);
+	}
+
+	/// <summary>
+	/// Get common patterns for a system type.
+	/// </summary>
+	public static List<SignaturePattern> GetCommonPatterns(SystemType system) {
+		var patterns = new List<SignaturePattern>();
+
+		switch (system) {
+			case SystemType.Nes:
+				patterns.AddRange(GetNesPatterns());
+				break;
+			case SystemType.Snes:
+				patterns.AddRange(GetSnesPatterns());
+				break;
+			case SystemType.GameBoy:
+			case SystemType.GameBoyColor:
+				patterns.AddRange(GetGameBoyPatterns());
+				break;
+			case SystemType.GameBoyAdvance:
+				patterns.AddRange(GetGbaPatterns());
+				break;
+		}
+
+		return patterns;
+	}
+
+	private static List<SignaturePattern> GetNesPatterns() {
+		return [
+			CreatePattern("NES_JSR_RTS", "20 ?? ?? 60", "JSR followed by RTS", "Code"),
+			CreatePattern("NES_LDA_STA", "a9 ?? 8d ?? ??", "LDA immediate, STA absolute", "Code"),
+			CreatePattern("NES_NMI_Handler", "48 8a 48 98 48", "NMI handler prologue (PHA, TXA, PHA, TYA, PHA)", "Code"),
+			CreatePattern("NES_Bank_Switch", "8d 00 80", "Bank switch write to $8000", "Code"),
+			CreatePattern("NES_PPU_Write", "8d ?? 20", "Write to PPU registers", "Code"),
+			CreatePattern("NES_APU_Write", "8d ?? 40", "Write to APU registers", "Code"),
+			CreatePattern("NES_Pointer_Table", "?? ?? ?? ?? ?? ??", "Potential 16-bit pointer table", "Data"),
+		];
+	}
+
+	private static List<SignaturePattern> GetSnesPatterns() {
+		return [
+			CreatePattern("SNES_Header", "?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ??", "SNES ROM header area", "Header"),
+			CreatePattern("SNES_JSL_RTL", "22 ?? ?? ?? 6b", "JSL followed by RTL", "Code"),
+			CreatePattern("SNES_REP_SEP", "c2 ?? e2 ??", "REP/SEP register size change", "Code"),
+			CreatePattern("SNES_DMA_Setup", "8d 00 43", "DMA register setup", "Code"),
+			CreatePattern("SNES_HDMA_Setup", "8d 00 42", "HDMA register setup", "Code"),
+			CreatePattern("SNES_Mode7_Setup", "8d 11 21", "Mode 7 register", "Code"),
+		];
+	}
+
+	private static List<SignaturePattern> GetGameBoyPatterns() {
+		return [
+			CreatePattern("GB_Nintendo_Logo", "ce ed 66 66 cc 0d 00 0b 03 73 00 83", "Nintendo logo (partial)", "Header"),
+			CreatePattern("GB_RST_00", "c7", "RST $00", "Code"),
+			CreatePattern("GB_RST_08", "cf", "RST $08", "Code"),
+			CreatePattern("GB_RST_38", "ff", "RST $38", "Code"),
+			CreatePattern("GB_Bank_Switch", "ea ?? ??", "LD (nn), A - potential bank switch", "Code"),
+			CreatePattern("GB_VRAM_Copy", "22", "LD (HL+), A - VRAM copy", "Code"),
+		];
+	}
+
+	private static List<SignaturePattern> GetGbaPatterns() {
+		return [
+			CreatePattern("GBA_Nintendo_Logo", "24 ff ae 51 69 9a a2 21 3d 84 82 0a", "GBA Nintendo logo (partial)", "Header"),
+			CreatePattern("GBA_Branch", "ea ?? ?? ??", "ARM branch instruction", "Code"),
+			CreatePattern("GBA_BX_LR", "1e ff 2f e1", "BX LR (return)", "Code"),
+			CreatePattern("GBA_SWI", "?? 00 00 ef", "Software interrupt", "Code"),
+		];
+	}
+
+	/// <summary>
+	/// Pattern library for storing and managing patterns.
+	/// </summary>
+	public class PatternLibrary {
+		private readonly List<SignaturePattern> _patterns = [];
+
+		public IReadOnlyList<SignaturePattern> Patterns => _patterns;
+
+		public void Add(SignaturePattern pattern) => _patterns.Add(pattern);
+
+		public void AddRange(IEnumerable<SignaturePattern> patterns) => _patterns.AddRange(patterns);
+
+		public void Remove(string name) => _patterns.RemoveAll(p => p.Name == name);
+
+		public void Clear() => _patterns.Clear();
+
+		public List<SignaturePattern> GetByCategory(string category) =>
+			_patterns.Where(p => p.Category == category).ToList();
+
+		public SignaturePattern? GetByName(string name) =>
+			_patterns.FirstOrDefault(p => p.Name == name);
+
+		public List<SignatureScanResult> ScanAll(byte[] data) =>
+			ScanForSignatures(data, _patterns);
+
+		/// <summary>
+		/// Export library to JSON format.
+		/// </summary>
+		public string ExportToJson() {
+			var sb = new System.Text.StringBuilder();
+			sb.AppendLine("[");
+
+			for (int i = 0; i < _patterns.Count; i++) {
+				var p = _patterns[i];
+				sb.AppendLine("  {");
+				sb.AppendLine($"    \"name\": \"{EscapeJson(p.Name)}\",");
+				sb.AppendLine($"    \"pattern\": \"{PatternToString(p.Bytes)}\",");
+				if (p.Description != null)
+					sb.AppendLine($"    \"description\": \"{EscapeJson(p.Description)}\",");
+				if (p.Category != null)
+					sb.AppendLine($"    \"category\": \"{EscapeJson(p.Category)}\"");
+				sb.Append("  }");
+				if (i < _patterns.Count - 1)
+					sb.Append(",");
+				sb.AppendLine();
+			}
+
+			sb.AppendLine("]");
+			return sb.ToString();
+		}
+
+		/// <summary>
+		/// Import patterns from JSON format.
+		/// </summary>
+		public void ImportFromJson(string json) {
+			// Simple JSON parser for pattern objects
+			// This is a basic implementation - in production, use System.Text.Json
+			var lines = json.Split('\n');
+			string? name = null;
+			string? pattern = null;
+			string? description = null;
+			string? category = null;
+
+			foreach (var line in lines) {
+				var trimmed = line.Trim();
+				if (trimmed.Contains("\"name\":")) {
+					name = ExtractJsonValue(trimmed);
+				} else if (trimmed.Contains("\"pattern\":")) {
+					pattern = ExtractJsonValue(trimmed);
+				} else if (trimmed.Contains("\"description\":")) {
+					description = ExtractJsonValue(trimmed);
+				} else if (trimmed.Contains("\"category\":")) {
+					category = ExtractJsonValue(trimmed);
+				} else if (trimmed == "}" || trimmed == "},") {
+					if (name != null && pattern != null) {
+						_patterns.Add(CreatePattern(name, pattern, description, category));
+					}
+
+					name = pattern = description = category = null;
+				}
+			}
+		}
+
+		private static string ExtractJsonValue(string line) {
+			int start = line.IndexOf(':') + 1;
+			int valueStart = line.IndexOf('"', start) + 1;
+			int valueEnd = line.LastIndexOf('"');
+			if (valueStart > 0 && valueEnd > valueStart)
+				return line[valueStart..valueEnd];
+			return "";
+		}
+
+		private static string EscapeJson(string value) {
+			return value.Replace("\\", "\\\\").Replace("\"", "\\\"");
+		}
+	}
+
+	/// <summary>
 	/// Find pointer tables in ROM data.
 	/// </summary>
 	public static List<PatternMatch> FindPointerTables(byte[] data, SystemType system) {
