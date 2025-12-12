@@ -743,6 +743,240 @@ public partial class CdlViewerViewModel : ViewModelBase {
 
 	#endregion
 
+	#region CDL Comparison
+
+	private CdlComparison? _comparison;
+	private CdlHeatmap? _comparisonCdl;
+
+	[ObservableProperty]
+	private bool _hasComparisonLoaded;
+
+	[ObservableProperty]
+	private string _comparisonFilePath = "";
+
+	[ObservableProperty]
+	private int _diffCount;
+
+	[ObservableProperty]
+	private double _similarityPercentage;
+
+	[ObservableProperty]
+	private int _leftOnlyCount;
+
+	[ObservableProperty]
+	private int _rightOnlyCount;
+
+	[ObservableProperty]
+	private int _flagsDifferCount;
+
+	[ObservableProperty]
+	private string _selectedDiffFilter = "All";
+
+	/// <summary>
+	/// Available diff type filters.
+	/// </summary>
+	public static string[] DiffFilters => ["All", "Left Only", "Right Only", "Flags Differ"];
+
+	/// <summary>
+	/// Comparison differences.
+	/// </summary>
+	public ObservableCollection<ComparisonDiffInfo> ComparisonDiffs { get; } = [];
+
+	/// <summary>
+	/// Comparison diff regions.
+	/// </summary>
+	public ObservableCollection<ComparisonRegionInfo> ComparisonRegions { get; } = [];
+
+	/// <summary>
+	/// Loads a second CDL file for comparison.
+	/// </summary>
+	[RelayCommand]
+	public async Task LoadComparisonFile() {
+		if (_cdlHeatmap is null) {
+			StatusText = "Load a CDL file first";
+			return;
+		}
+
+		var path = await _fileDialogService.OpenFileAsync("Open CDL for Comparison", CdlFiles);
+		if (!string.IsNullOrEmpty(path)) {
+			LoadComparisonFromFile(path);
+		}
+	}
+
+	/// <summary>
+	/// Loads comparison CDL from a specific file.
+	/// </summary>
+	public void LoadComparisonFromFile(string path) {
+		if (_cdlHeatmap is null) return;
+
+		try {
+			_comparisonCdl = CdlHeatmap.FromFile(path);
+			_comparison = new CdlComparison(_cdlHeatmap, _comparisonCdl);
+
+			ComparisonFilePath = path;
+			HasComparisonLoaded = true;
+			UpdateComparisonStatistics();
+			UpdateComparisonDiffs();
+
+			StatusText = $"Comparison loaded: {Path.GetFileName(path)}";
+		} catch (Exception ex) {
+			StatusText = $"Error loading comparison: {ex.Message}";
+			HasComparisonLoaded = false;
+		}
+	}
+
+	/// <summary>
+	/// Clears the comparison CDL.
+	/// </summary>
+	[RelayCommand]
+	public void ClearComparison() {
+		_comparison = null;
+		_comparisonCdl = null;
+		HasComparisonLoaded = false;
+		ComparisonFilePath = "";
+		ComparisonDiffs.Clear();
+		ComparisonRegions.Clear();
+		DiffCount = 0;
+		SimilarityPercentage = 0;
+		LeftOnlyCount = 0;
+		RightOnlyCount = 0;
+		FlagsDifferCount = 0;
+		StatusText = "Comparison cleared";
+	}
+
+	/// <summary>
+	/// Creates a merged CDL from the comparison.
+	/// </summary>
+	[RelayCommand]
+	public async Task ExportMergedCdl() {
+		if (_comparison is null) {
+			StatusText = "No comparison loaded";
+			return;
+		}
+
+		var path = await _fileDialogService.SaveFileAsync("Export Merged CDL", ".cdl", "merged.cdl", CdlFiles);
+		if (!string.IsNullOrEmpty(path)) {
+			var merged = _comparison.CreateMerged();
+			merged.SaveToFile(path);
+			StatusText = $"Merged CDL saved to {Path.GetFileName(path)}";
+		}
+	}
+
+	/// <summary>
+	/// Creates a CDL with only intersecting coverage.
+	/// </summary>
+	[RelayCommand]
+	public async Task ExportIntersectionCdl() {
+		if (_comparison is null) {
+			StatusText = "No comparison loaded";
+			return;
+		}
+
+		var path = await _fileDialogService.SaveFileAsync("Export Intersection CDL", ".cdl", "intersection.cdl", CdlFiles);
+		if (!string.IsNullOrEmpty(path)) {
+			var intersection = _comparison.CreateIntersection();
+			intersection.SaveToFile(path);
+			StatusText = $"Intersection CDL saved to {Path.GetFileName(path)}";
+		}
+	}
+
+	/// <summary>
+	/// Navigates to the next difference.
+	/// </summary>
+	[RelayCommand]
+	public void NextDifference() {
+		if (_comparison is null) return;
+
+		var next = _comparison.FindNextDifference(CurrentOffset);
+		if (next.HasValue) {
+			CurrentOffset = next.Value;
+			NavigateToOffset?.Invoke(next.Value);
+			StatusText = $"Navigated to difference at ${next.Value:X6}";
+		} else {
+			StatusText = "No more differences found";
+		}
+	}
+
+	/// <summary>
+	/// Navigates to the previous difference.
+	/// </summary>
+	[RelayCommand]
+	public void PreviousDifference() {
+		if (_comparison is null) return;
+
+		var prev = _comparison.FindPreviousDifference(CurrentOffset);
+		if (prev.HasValue) {
+			CurrentOffset = prev.Value;
+			NavigateToOffset?.Invoke(prev.Value);
+			StatusText = $"Navigated to difference at ${prev.Value:X6}";
+		} else {
+			StatusText = "No more differences found";
+		}
+	}
+
+	/// <summary>
+	/// Filters comparison diffs by type.
+	/// </summary>
+	[RelayCommand]
+	public void FilterDiffs() {
+		UpdateComparisonDiffs();
+	}
+
+	/// <summary>
+	/// Gets the comparison entry at a specific offset.
+	/// </summary>
+	public CdlComparison.DiffEntry? GetComparisonEntryAt(int offset) {
+		return _comparison?.GetEntryAt(offset);
+	}
+
+	private void UpdateComparisonStatistics() {
+		if (_comparison is null) return;
+
+		var summary = _comparison.GetSummary();
+		DiffCount = summary.LeftOnlyBytes + summary.RightOnlyBytes + summary.FlagsDifferBytes;
+		SimilarityPercentage = summary.SimilarityPercentage;
+		LeftOnlyCount = summary.LeftOnlyBytes;
+		RightOnlyCount = summary.RightOnlyBytes;
+		FlagsDifferCount = summary.FlagsDifferBytes;
+	}
+
+	private void UpdateComparisonDiffs() {
+		ComparisonDiffs.Clear();
+		ComparisonRegions.Clear();
+		if (_comparison is null) return;
+
+		// Get diffs based on filter
+		var diffs = SelectedDiffFilter switch {
+			"Left Only" => _comparison.GetDifferencesByType(CdlComparison.DiffType.LeftOnly),
+			"Right Only" => _comparison.GetDifferencesByType(CdlComparison.DiffType.RightOnly),
+			"Flags Differ" => _comparison.GetDifferencesByType(CdlComparison.DiffType.FlagsDiffer),
+			_ => _comparison.GetAllDifferences()
+		};
+
+		// Limit to first 1000 for UI performance
+		foreach (var diff in diffs.Take(1000)) {
+			ComparisonDiffs.Add(new ComparisonDiffInfo(
+				diff.Offset,
+				diff.LeftFlagsString,
+				diff.RightFlagsString,
+				diff.Type.ToString()
+			));
+		}
+
+		// Get diff regions
+		var regions = _comparison.GetDiffRegions(mergeGap: 16);
+		foreach (var region in regions.Take(500)) {
+			ComparisonRegions.Add(new ComparisonRegionInfo(
+				region.StartOffset,
+				region.EndOffset,
+				region.PrimaryType.ToString(),
+				region.Count
+			));
+		}
+	}
+
+	#endregion
+
 	partial void OnBankSizeChanged(int value) {
 		if (_cdlHeatmap is not null) {
 			UpdateBankCoverage();
@@ -840,4 +1074,31 @@ public record LabelDisplayInfo(
 ) {
 	public string AddressHex => $"${Address:X4}";
 	public string DisplayName => string.IsNullOrEmpty(Comment) ? Name : $"{Name} - {Comment}";
+}
+
+/// <summary>
+/// CDL comparison difference display information.
+/// </summary>
+public record ComparisonDiffInfo(
+	int Offset,
+	string LeftFlags,
+	string RightFlags,
+	string DiffType
+) {
+	public string OffsetHex => $"${Offset:X6}";
+}
+
+/// <summary>
+/// CDL comparison region display information.
+/// </summary>
+public record ComparisonRegionInfo(
+	int StartOffset,
+	int EndOffset,
+	string Type,
+	int Count
+) {
+	public string StartHex => $"${StartOffset:X6}";
+	public string EndHex => $"${EndOffset:X6}";
+	public int Length => EndOffset - StartOffset;
+	public string LengthDisplay => $"{Length:N0}";
 }
