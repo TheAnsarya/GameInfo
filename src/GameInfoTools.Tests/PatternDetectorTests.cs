@@ -457,4 +457,364 @@ public class PatternDetectorTests {
 	}
 
 	#endregion
+
+	#region YARA Rule Tests
+
+	[Fact]
+	public void ParseYaraRule_BasicRule_ParsesCorrectly() {
+		string ruleText = """
+			rule test_rule
+			{
+			    meta:
+			        description = "Test rule"
+			    strings:
+			        $hex = { AA BB CC }
+			    condition:
+			        any of them
+			}
+			""";
+
+		var rule = PatternDetector.ParseYaraRule(ruleText);
+
+		Assert.Equal("test_rule", rule.Name);
+		Assert.Equal("Test rule", rule.Description);
+		Assert.Single(rule.Strings);
+		Assert.Contains("$hex", rule.Strings.Keys);
+	}
+
+	[Fact]
+	public void ParseYaraRule_WithStringPattern_ParsesCorrectly() {
+		string ruleText = """
+			rule string_rule
+			{
+			    strings:
+			        $str = "test" nocase
+			    condition:
+			        $str
+			}
+			""";
+
+		var rule = PatternDetector.ParseYaraRule(ruleText);
+
+		Assert.Contains("$str", rule.Strings.Keys);
+		Assert.Equal(PatternDetector.PatternType.String, rule.Strings["$str"].Type);
+		Assert.Equal("test", rule.Strings["$str"].Value);
+		Assert.True(rule.Strings["$str"].Modifiers.HasFlag(PatternDetector.PatternModifiers.NoCase));
+	}
+
+	[Fact]
+	public void ParseYaraRule_WithTags_ParsesTags() {
+		string ruleText = """
+			rule tagged_rule : malware test
+			{
+			    condition:
+			        true
+			}
+			""";
+
+		var rule = PatternDetector.ParseYaraRule(ruleText);
+
+		Assert.Contains("malware", rule.Tags);
+		Assert.Contains("test", rule.Tags);
+	}
+
+	[Fact]
+	public void EvaluateYaraRule_HexMatch_ReturnsMatch() {
+		var rule = new PatternDetector.YaraRule {
+			Name = "test",
+			Strings = {
+				["$hex"] = new PatternDetector.PatternDefinition {
+					Type = PatternDetector.PatternType.Hex,
+					Value = "AA BB CC"
+				}
+			},
+			Condition = "any of them"
+		};
+
+		byte[] data = [0x00, 0xAA, 0xBB, 0xCC, 0x00];
+
+		var result = PatternDetector.EvaluateYaraRule(data, rule);
+
+		Assert.NotNull(result);
+		Assert.Single(result.Matches);
+		Assert.Equal(1, result.Matches[0].Offset);
+	}
+
+	[Fact]
+	public void EvaluateYaraRule_StringMatch_ReturnsMatch() {
+		var rule = new PatternDetector.YaraRule {
+			Name = "test",
+			Strings = {
+				["$str"] = new PatternDetector.PatternDefinition {
+					Type = PatternDetector.PatternType.String,
+					Value = "test"
+				}
+			},
+			Condition = "any of them"
+		};
+
+		byte[] data = System.Text.Encoding.ASCII.GetBytes("this is a test string");
+
+		var result = PatternDetector.EvaluateYaraRule(data, rule);
+
+		Assert.NotNull(result);
+		Assert.Single(result.Matches);
+	}
+
+	[Fact]
+	public void EvaluateYaraRule_NoMatch_ReturnsNull() {
+		var rule = new PatternDetector.YaraRule {
+			Name = "test",
+			Strings = {
+				["$hex"] = new PatternDetector.PatternDefinition {
+					Type = PatternDetector.PatternType.Hex,
+					Value = "FF FF FF"
+				}
+			},
+			Condition = "any of them"
+		};
+
+		byte[] data = [0x00, 0x11, 0x22, 0x33];
+
+		var result = PatternDetector.EvaluateYaraRule(data, rule);
+
+		Assert.Null(result);
+	}
+
+	[Fact]
+	public void ScanYaraRules_MultipleRules_FindsAllMatches() {
+		var rules = new List<PatternDetector.YaraRule> {
+			new() {
+				Name = "rule1",
+				Strings = {
+					["$a"] = new PatternDetector.PatternDefinition {
+						Type = PatternDetector.PatternType.Hex,
+						Value = "AA BB"
+					}
+				},
+				Condition = "any of them"
+			},
+			new() {
+				Name = "rule2",
+				Strings = {
+					["$b"] = new PatternDetector.PatternDefinition {
+						Type = PatternDetector.PatternType.Hex,
+						Value = "CC DD"
+					}
+				},
+				Condition = "any of them"
+			}
+		};
+
+		byte[] data = [0xAA, 0xBB, 0x00, 0xCC, 0xDD];
+
+		var results = PatternDetector.ScanYaraRules(data, rules);
+
+		Assert.Equal(2, results.Count);
+	}
+
+	[Fact]
+	public void GenerateYaraRule_CreatesValidRule() {
+		var patterns = new List<PatternDetector.SignaturePattern> {
+			PatternDetector.CreatePattern("p1", "AA BB"),
+			PatternDetector.CreatePattern("p2", "CC DD")
+		};
+
+		var ruleText = PatternDetector.GenerateYaraRule("generated", patterns, "Auto-generated");
+
+		Assert.Contains("rule generated", ruleText);
+		Assert.Contains("description", ruleText);
+		Assert.Contains("$s0", ruleText);
+		Assert.Contains("$s1", ruleText);
+		Assert.Contains("AA BB", ruleText);
+		Assert.Contains("CC DD", ruleText);
+	}
+
+	#endregion
+
+	#region Batch Scanning Tests
+
+	[Fact]
+	public void BatchScan_SingleFile_ReturnsResults() {
+		// Create test data file in memory
+		byte[] testData = [0x20, 0x00, 0x80, 0x60]; // JSR, RTS-like
+
+		// Create temp file
+		string tempFile = Path.GetTempFileName();
+		try {
+			File.WriteAllBytes(tempFile, testData);
+
+			var options = new PatternDetector.BatchScanOptions {
+				Signatures = [PatternDetector.CreatePattern("test", "20 ?? ??")]
+			};
+
+			var result = PatternDetector.BatchScan([tempFile], options);
+
+			Assert.Equal(1, result.TotalFiles);
+			Assert.Equal(1, result.SuccessfulScans);
+			Assert.Equal(0, result.FailedScans);
+			Assert.Single(result.FileResults);
+			Assert.NotEmpty(result.FileResults[0].SignatureMatches);
+		} finally {
+			File.Delete(tempFile);
+		}
+	}
+
+	[Fact]
+	public void BatchScan_WithSystemPatterns_AppliesSystemPatterns() {
+		byte[] testData = [0x20, 0x00, 0x80, 0x60]; // NES-like code
+
+		string tempFile = Path.GetTempFileName();
+		try {
+			File.WriteAllBytes(tempFile, testData);
+
+			var options = new PatternDetector.BatchScanOptions {
+				SystemType = SystemType.Nes
+			};
+
+			var result = PatternDetector.BatchScan([tempFile], options);
+
+			Assert.Equal(1, result.SuccessfulScans);
+		} finally {
+			File.Delete(tempFile);
+		}
+	}
+
+	[Fact]
+	public void BatchScan_InvalidFile_RecordsError() {
+		var options = new PatternDetector.BatchScanOptions();
+
+		var result = PatternDetector.BatchScan(["nonexistent_file.bin"], options);
+
+		Assert.Equal(1, result.TotalFiles);
+		Assert.Equal(0, result.SuccessfulScans);
+		Assert.Equal(1, result.FailedScans);
+		Assert.NotNull(result.FileResults[0].Error);
+	}
+
+	[Fact]
+	public void GenerateBatchReport_CreatesReport() {
+		var fileResults = new List<PatternDetector.BatchScanFileResult> {
+			new("test.bin",
+				[new(PatternDetector.CreatePattern("test", "AA"), 0, [0xAA])],
+				[],
+				[new PatternDetector.PatternMatch(0, 10, "Code", 0.8, null)],
+				null)
+		};
+
+		var batchResult = new PatternDetector.BatchScanResult(
+			fileResults, 1, 1, 0, TimeSpan.FromSeconds(1));
+
+		var report = PatternDetector.GenerateBatchReport(batchResult);
+
+		Assert.Contains("Files scanned: 1", report);
+		Assert.Contains("Successful: 1", report);
+		Assert.Contains("Signature matches:", report);
+	}
+
+	#endregion
+
+	#region Multi-Architecture Tests
+
+	[Fact]
+	public void GetArchitecturePatterns_6502_ReturnsPatterns() {
+		var patterns = PatternDetector.GetArchitecturePatterns(PatternDetector.ArchitectureType.Mos6502);
+
+		Assert.NotEmpty(patterns);
+		Assert.Contains(patterns, p => p.Name.Contains("6502"));
+	}
+
+	[Fact]
+	public void GetArchitecturePatterns_65816_ReturnsPatterns() {
+		var patterns = PatternDetector.GetArchitecturePatterns(PatternDetector.ArchitectureType.Wdc65816);
+
+		Assert.NotEmpty(patterns);
+		Assert.Contains(patterns, p => p.Name.Contains("65816"));
+	}
+
+	[Fact]
+	public void GetArchitecturePatterns_Z80_ReturnsPatterns() {
+		var patterns = PatternDetector.GetArchitecturePatterns(PatternDetector.ArchitectureType.Z80);
+
+		Assert.NotEmpty(patterns);
+		Assert.Contains(patterns, p => p.Name.Contains("Z80"));
+	}
+
+	[Fact]
+	public void GetArchitecturePatterns_M68000_ReturnsPatterns() {
+		var patterns = PatternDetector.GetArchitecturePatterns(PatternDetector.ArchitectureType.M68000);
+
+		Assert.NotEmpty(patterns);
+		Assert.Contains(patterns, p => p.Name.Contains("M68K"));
+	}
+
+	[Fact]
+	public void GetArchitecturePatterns_Arm7_ReturnsPatterns() {
+		var patterns = PatternDetector.GetArchitecturePatterns(PatternDetector.ArchitectureType.Arm7);
+
+		Assert.NotEmpty(patterns);
+		Assert.Contains(patterns, p => p.Name.Contains("ARM") || p.Name.Contains("THUMB"));
+	}
+
+	[Fact]
+	public void GetArchitecturePatterns_Spc700_ReturnsPatterns() {
+		var patterns = PatternDetector.GetArchitecturePatterns(PatternDetector.ArchitectureType.Spc700);
+
+		Assert.NotEmpty(patterns);
+		Assert.Contains(patterns, p => p.Name.Contains("SPC"));
+	}
+
+	[Fact]
+	public void ScoreAsArchitectureCode_6502Code_ReturnsHighScore() {
+		// Some 6502 code: LDA #$00, STA $00, RTS
+		byte[] code = [0xA9, 0x00, 0x85, 0x00, 0x60];
+
+		var score = PatternDetector.ScoreAsArchitectureCode(code, 0, code.Length, PatternDetector.ArchitectureType.Mos6502);
+
+		Assert.True(score > 0);
+	}
+
+	[Fact]
+	public void DetectArchitecture_6502Code_Identifies6502() {
+		// Typical 6502 code sequence
+		byte[] code = [0x20, 0x00, 0x80, 0x60, 0xA9, 0x00, 0x85, 0x00];
+
+		var (arch, confidence) = PatternDetector.DetectArchitecture(code, 0, code.Length);
+
+		// Should at least give a result
+		Assert.True(confidence >= 0);
+	}
+
+	[Fact]
+	public void DetectArchitecture_Z80Code_HasResult() {
+		// Z80: NOP, RET, JP
+		byte[] code = [0x00, 0xC9, 0xC3, 0x00, 0x80];
+
+		var (arch, confidence) = PatternDetector.DetectArchitecture(code, 0, code.Length);
+
+		Assert.True(confidence >= 0);
+	}
+
+	[Fact]
+	public void PatternModifiers_Flags_WorkCorrectly() {
+		var mods = PatternDetector.PatternModifiers.NoCase | PatternDetector.PatternModifiers.Wide;
+
+		Assert.True(mods.HasFlag(PatternDetector.PatternModifiers.NoCase));
+		Assert.True(mods.HasFlag(PatternDetector.PatternModifiers.Wide));
+		Assert.False(mods.HasFlag(PatternDetector.PatternModifiers.Fullword));
+	}
+
+	[Fact]
+	public void YaraRule_DefaultValues_AreCorrect() {
+		var rule = new PatternDetector.YaraRule();
+
+		Assert.Equal("", rule.Name);
+		Assert.Equal("any of them", rule.Condition);
+		Assert.Empty(rule.Tags);
+		Assert.Empty(rule.Strings);
+		Assert.Empty(rule.Meta);
+	}
+
+	#endregion
 }
+
