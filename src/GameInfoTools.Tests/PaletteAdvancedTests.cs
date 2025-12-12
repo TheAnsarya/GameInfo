@@ -399,4 +399,402 @@ public class PaletteAdvancedTests {
 	}
 
 	#endregion
+
+	#region Genesis Color Tests
+
+	[Fact]
+	public void GenesisColorToRgb_Black_ReturnsBlack() {
+		var (r, g, b) = Palette.GenesisColorToRgb(0x0000);
+		Assert.Equal(0, r);
+		Assert.Equal(0, g);
+		Assert.Equal(0, b);
+	}
+
+	[Fact]
+	public void GenesisColorToRgb_PureRed_ReturnsRed() {
+		// Genesis format: ----BBB- GGG-RRR-
+		// Pure red = 0x000E (bits 1-3)
+		var (r, g, b) = Palette.GenesisColorToRgb(0x000E);
+		Assert.True(r > 200);
+		Assert.True(g < 50);
+		Assert.True(b < 50);
+	}
+
+	[Fact]
+	public void RgbToGenesisColor_Roundtrip() {
+		var original = ((byte)224, (byte)64, (byte)128);
+		ushort genesis = Palette.RgbToGenesisColor(original.Item1, original.Item2, original.Item3);
+		var result = Palette.GenesisColorToRgb(genesis);
+
+		// Genesis has lower color depth, so check within 32 units
+		Assert.True(Math.Abs(result.R - original.Item1) <= 32);
+		Assert.True(Math.Abs(result.G - original.Item2) <= 32);
+		Assert.True(Math.Abs(result.B - original.Item3) <= 32);
+	}
+
+	[Fact]
+	public void ReadGenesisPalette_ValidData_ReturnsPalette() {
+		// Big endian Genesis colors
+		byte[] data = [0x00, 0x00, 0x00, 0x0E, 0x0E, 0x00];  // Black, Red, Green
+		var palette = Palette.ReadGenesisPalette(data, 0, 3);
+
+		Assert.Equal(3, palette.Length);
+	}
+
+	#endregion
+
+	#region HSV Conversion Tests
+
+	[Fact]
+	public void RgbToHsv_Black_ReturnsZeroSaturationAndValue() {
+		var (h, s, v) = Palette.RgbToHsv(0, 0, 0);
+		Assert.Equal(0f, s);
+		Assert.Equal(0f, v);
+	}
+
+	[Fact]
+	public void RgbToHsv_White_ReturnsZeroSaturation() {
+		var (h, s, v) = Palette.RgbToHsv(255, 255, 255);
+		Assert.Equal(0f, s);
+		Assert.Equal(1f, v);
+	}
+
+	[Fact]
+	public void RgbToHsv_PureRed_ReturnsRedHue() {
+		var (h, s, v) = Palette.RgbToHsv(255, 0, 0);
+		Assert.True(h >= 0 && h <= 1 || h >= 359);  // Red is at 0 degrees
+		Assert.Equal(1f, s);
+		Assert.Equal(1f, v);
+	}
+
+	[Fact]
+	public void HsvToRgb_Red_ReturnsRed() {
+		var (r, g, b) = Palette.HsvToRgb(0, 1, 1);
+		Assert.Equal(255, r);
+		Assert.Equal(0, g);
+		Assert.Equal(0, b);
+	}
+
+	[Fact]
+	public void HsvToRgb_RgbToHsv_Roundtrip() {
+		var original = ((byte)128, (byte)64, (byte)192);
+		var (h, s, v) = Palette.RgbToHsv(original.Item1, original.Item2, original.Item3);
+		var result = Palette.HsvToRgb(h, s, v);
+
+		Assert.True(Math.Abs(result.R - original.Item1) <= 2);
+		Assert.True(Math.Abs(result.G - original.Item2) <= 2);
+		Assert.True(Math.Abs(result.B - original.Item3) <= 2);
+	}
+
+	#endregion
+
+	#region Palette Analysis Tests
+
+	[Fact]
+	public void AnalyzePalette_EmptyPalette_ReturnsZeros() {
+		var info = Palette.AnalyzePalette([]);
+		Assert.Equal(0, info.ColorCount);
+		Assert.Equal(0, info.UniqueColors);
+	}
+
+	[Fact]
+	public void AnalyzePalette_SingleColor_ReturnsCorrectStats() {
+		(byte R, byte G, byte B)[] palette = [(255, 0, 0)];
+		var info = Palette.AnalyzePalette(palette);
+
+		Assert.Equal(1, info.ColorCount);
+		Assert.Equal(1, info.UniqueColors);
+		Assert.Equal((255, 0, 0), info.DominantColor);
+	}
+
+	[Fact]
+	public void AnalyzePalette_WithBlack_DetectsTransparency() {
+		(byte R, byte G, byte B)[] palette = [(0, 0, 0), (255, 255, 255)];
+		var info = Palette.AnalyzePalette(palette);
+
+		Assert.True(info.HasTransparency);
+	}
+
+	[Fact]
+	public void AnalyzePalette_NoDuplicates_UniqueEqualsCount() {
+		(byte R, byte G, byte B)[] palette = [(255, 0, 0), (0, 255, 0), (0, 0, 255)];
+		var info = Palette.AnalyzePalette(palette);
+
+		Assert.Equal(3, info.UniqueColors);
+	}
+
+	#endregion
+
+	#region Color Reduction Tests
+
+	[Fact]
+	public void ReduceColors_FewerThanTarget_ReturnsSame() {
+		(byte R, byte G, byte B)[] palette = [(255, 0, 0), (0, 255, 0)];
+		var reduced = Palette.ReduceColors(palette, 4);
+
+		Assert.Equal(2, reduced.Length);
+	}
+
+	[Fact]
+	public void ReduceColors_ToSingleColor_ReturnsOne() {
+		(byte R, byte G, byte B)[] palette = [(255, 0, 0), (0, 255, 0), (0, 0, 255)];
+		var reduced = Palette.ReduceColors(palette, 1);
+
+		Assert.Single(reduced);
+	}
+
+	[Fact]
+	public void ReduceColors_ValidReduction_ReturnsTargetCount() {
+		(byte R, byte G, byte B)[] palette = [
+			(255, 0, 0), (200, 0, 0), (128, 0, 0),
+			(0, 255, 0), (0, 200, 0), (0, 128, 0)
+		];
+		var reduced = Palette.ReduceColors(palette, 2);
+
+		Assert.Equal(2, reduced.Length);
+	}
+
+	#endregion
+
+	#region Gradient Generation Tests
+
+	[Fact]
+	public void GenerateGradient_BlackToWhite_ReturnsGradient() {
+		var gradient = Palette.GenerateGradient((0, 0, 0), (255, 255, 255), 5);
+
+		Assert.Equal(5, gradient.Length);
+		Assert.Equal((0, 0, 0), gradient[0]);
+		Assert.Equal((255, 255, 255), gradient[4]);
+	}
+
+	[Fact]
+	public void GenerateGradient_SingleColor_ReturnsStart() {
+		var gradient = Palette.GenerateGradient((100, 100, 100), (200, 200, 200), 1);
+
+		Assert.Single(gradient);
+		Assert.Equal((100, 100, 100), gradient[0]);
+	}
+
+	#endregion
+
+	#region Color Finding Tests
+
+	[Fact]
+	public void FindClosestColor_ExactMatch_ReturnsIndex() {
+		(byte R, byte G, byte B)[] palette = [(255, 0, 0), (0, 255, 0), (0, 0, 255)];
+		int index = Palette.FindClosestColor(palette, (0, 255, 0));
+
+		Assert.Equal(1, index);
+	}
+
+	[Fact]
+	public void FindClosestColor_NearMatch_ReturnsClosest() {
+		(byte R, byte G, byte B)[] palette = [(255, 0, 0), (0, 0, 255)];
+		// Magenta is between red and blue, but closer to red/blue depending on implementation
+		int index = Palette.FindClosestColor(palette, (250, 0, 0));
+
+		Assert.Equal(0, index);  // Should match red
+	}
+
+	#endregion
+
+	#region Animation Tests
+
+	[Fact]
+	public void GenerateCycleAnimation_SingleFrame_ReturnsOriginal() {
+		(byte R, byte G, byte B)[] palette = [(255, 0, 0), (0, 255, 0)];
+		var frames = Palette.GenerateCycleAnimation(palette, 1, 0, 100);
+
+		Assert.Single(frames);
+		Assert.Equal(0, frames[0].FrameIndex);
+	}
+
+	[Fact]
+	public void GenerateCycleAnimation_MultipleFrames_ReturnsAll() {
+		(byte R, byte G, byte B)[] palette = [(255, 0, 0)];
+		var frames = Palette.GenerateCycleAnimation(palette, 4, 90, 50);
+
+		Assert.Equal(4, frames.Count);
+		Assert.Equal(50, frames[0].DurationMs);
+	}
+
+	#endregion
+
+	#region Color Adjustment Tests
+
+	[Fact]
+	public void AdjustBrightness_Double_Brightens() {
+		(byte R, byte G, byte B)[] palette = [(128, 64, 32)];
+		var adjusted = Palette.AdjustBrightness(palette, 1.5f);
+
+		Assert.True(adjusted[0].R > 128 || adjusted[0].G > 64 || adjusted[0].B > 32);
+	}
+
+	[Fact]
+	public void AdjustSaturation_Zero_ReturnsGrayscale() {
+		(byte R, byte G, byte B)[] palette = [(255, 0, 0)];  // Pure red
+		var adjusted = Palette.AdjustSaturation(palette, 0);
+
+		// When saturation is 0, all channels should be equal (grayscale)
+		Assert.Equal(adjusted[0].R, adjusted[0].G);
+		Assert.Equal(adjusted[0].G, adjusted[0].B);
+	}
+
+	[Fact]
+	public void InvertColors_White_ReturnsBlack() {
+		(byte R, byte G, byte B)[] palette = [(255, 255, 255)];
+		var inverted = Palette.InvertColors(palette);
+
+		Assert.Equal((0, 0, 0), inverted[0]);
+	}
+
+	[Fact]
+	public void InvertColors_Roundtrip_ReturnsOriginal() {
+		(byte R, byte G, byte B)[] palette = [(128, 64, 192)];
+		var inverted = Palette.InvertColors(palette);
+		var restored = Palette.InvertColors(inverted);
+
+		Assert.Equal(palette[0], restored[0]);
+	}
+
+	[Fact]
+	public void ApplySepia_Grayscale_ReturnsSepiaTone() {
+		(byte R, byte G, byte B)[] palette = [(128, 128, 128)];
+		var sepia = Palette.ApplySepia(palette);
+
+		// Sepia adds warm tones: R > G > B
+		Assert.True(sepia[0].R >= sepia[0].G);
+		Assert.True(sepia[0].G >= sepia[0].B);
+	}
+
+	#endregion
+
+	#region Format Detection Tests
+
+	[Fact]
+	public void DetectPaletteFormat_NesRange_ReturnsNes() {
+		byte[] data = [0x0f, 0x15, 0x26, 0x30];  // Valid NES indices
+		var format = Palette.DetectPaletteFormat(data, 0, 4);
+
+		Assert.Equal(Palette.PaletteFormat.Nes, format);
+	}
+
+	[Fact]
+	public void DetectPaletteFormat_15BitColors_ReturnsSnes() {
+		byte[] data = [0x00, 0x00, 0xFF, 0x7F, 0x1F, 0x00];  // Valid 15-bit
+		var format = Palette.DetectPaletteFormat(data, 0, 3);
+
+		Assert.Equal(Palette.PaletteFormat.Snes, format);
+	}
+
+	#endregion
+
+	#region Write Palette Tests
+
+	[Fact]
+	public void WriteGenesisPalette_ValidPalette_ReturnsBigEndian() {
+		(byte R, byte G, byte B)[] palette = [(224, 0, 0)];  // Red
+		var data = Palette.WriteGenesisPalette(palette);
+
+		Assert.Equal(2, data.Length);
+		// Big endian, so high byte first
+	}
+
+	[Fact]
+	public void WriteRgb24Palette_ThreeColors_ReturnsNineBytes() {
+		(byte R, byte G, byte B)[] palette = [(255, 0, 0), (0, 255, 0), (0, 0, 255)];
+		var data = Palette.WriteRgb24Palette(palette);
+
+		Assert.Equal(9, data.Length);
+		Assert.Equal(255, data[0]);  // First color R
+		Assert.Equal(0, data[1]);    // First color G
+		Assert.Equal(0, data[2]);    // First color B
+	}
+
+	[Fact]
+	public void WriteRgba32Palette_WithAlpha_Returns4BytesPerColor() {
+		(byte R, byte G, byte B)[] palette = [(255, 128, 64)];
+		var data = Palette.WriteRgba32Palette(palette, 200);
+
+		Assert.Equal(4, data.Length);
+		Assert.Equal(255, data[0]);  // R
+		Assert.Equal(128, data[1]);  // G
+		Assert.Equal(64, data[2]);   // B
+		Assert.Equal(200, data[3]);  // Alpha
+	}
+
+	#endregion
+
+	#region ReadPalette Format Tests
+
+	[Fact]
+	public void ReadPalette_SnesFormat_ReadsSnesPalette() {
+		byte[] data = [0x00, 0x00, 0xFF, 0x7F];  // Black and White
+		var palette = Palette.ReadPalette(data, 0, 2, Palette.PaletteFormat.Snes);
+
+		Assert.Equal(2, palette.Length);
+	}
+
+	[Fact]
+	public void ReadPalette_GenesisFormat_ReadsGenesisPalette() {
+		byte[] data = [0x00, 0x00, 0x00, 0x0E];
+		var palette = Palette.ReadPalette(data, 0, 2, Palette.PaletteFormat.Genesis);
+
+		Assert.Equal(2, palette.Length);
+	}
+
+	[Fact]
+	public void ReadPalette_Rgb24Format_ReadsRgb24() {
+		byte[] data = [255, 0, 0, 0, 255, 0];
+		var palette = Palette.ReadPalette(data, 0, 2, Palette.PaletteFormat.Rgb24);
+
+		Assert.Equal(2, palette.Length);
+		Assert.Equal((255, 0, 0), palette[0]);
+	}
+
+	#endregion
+
+	#region Palette Info Record Tests
+
+	[Fact]
+	public void PaletteInfo_HasCorrectProperties() {
+		var info = new Palette.PaletteInfo(16, 12, true, (255, 0, 0), 0.8f, 0.6f);
+
+		Assert.Equal(16, info.ColorCount);
+		Assert.Equal(12, info.UniqueColors);
+		Assert.True(info.HasTransparency);
+		Assert.Equal((255, 0, 0), info.DominantColor);
+		Assert.Equal(0.8f, info.Saturation);
+		Assert.Equal(0.6f, info.Brightness);
+	}
+
+	[Fact]
+	public void PaletteAnimationFrame_HasCorrectProperties() {
+		(byte R, byte G, byte B)[] colors = [(255, 0, 0)];
+		var frame = new Palette.PaletteAnimationFrame(5, colors, 100);
+
+		Assert.Equal(5, frame.FrameIndex);
+		Assert.Single(frame.Colors);
+		Assert.Equal(100, frame.DurationMs);
+	}
+
+	#endregion
+
+	#region PaletteFormat Enum Tests
+
+	[Fact]
+	public void PaletteFormat_HasAllValues() {
+		Assert.True(Enum.IsDefined(typeof(Palette.PaletteFormat), Palette.PaletteFormat.Nes));
+		Assert.True(Enum.IsDefined(typeof(Palette.PaletteFormat), Palette.PaletteFormat.Snes));
+		Assert.True(Enum.IsDefined(typeof(Palette.PaletteFormat), Palette.PaletteFormat.Genesis));
+		Assert.True(Enum.IsDefined(typeof(Palette.PaletteFormat), Palette.PaletteFormat.Gb));
+		Assert.True(Enum.IsDefined(typeof(Palette.PaletteFormat), Palette.PaletteFormat.Cgb));
+		Assert.True(Enum.IsDefined(typeof(Palette.PaletteFormat), Palette.PaletteFormat.Gba));
+		Assert.True(Enum.IsDefined(typeof(Palette.PaletteFormat), Palette.PaletteFormat.Rgb24));
+		Assert.True(Enum.IsDefined(typeof(Palette.PaletteFormat), Palette.PaletteFormat.Rgba32));
+		Assert.True(Enum.IsDefined(typeof(Palette.PaletteFormat), Palette.PaletteFormat.Bgr15));
+		Assert.True(Enum.IsDefined(typeof(Palette.PaletteFormat), Palette.PaletteFormat.Bgr16));
+	}
+
+	#endregion
 }
