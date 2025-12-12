@@ -1,4 +1,5 @@
 using GameInfoTools.Core;
+using GameInfoTools.Rom;
 using Spectre.Console;
 
 namespace GameInfoTools.Cli;
@@ -184,42 +185,11 @@ public static class PatchCommands {
 	}
 
 	private static void CreateUpsPatch(byte[] original, byte[] modified, string outputPath) {
-		AnsiConsole.MarkupLine("[yellow]UPS patch creation is experimental[/]");
-
-		using var output = new FileStream(outputPath, FileMode.Create);
-		using var writer = new BinaryWriter(output);
-
-		// UPS header
-		writer.Write(System.Text.Encoding.ASCII.GetBytes("UPS1"));
-
-		// File sizes
-		WriteVarInt(writer, original.Length);
-		WriteVarInt(writer, modified.Length);
-
-		// XOR differences
-		long offset = 0;
-		for (int i = 0; i < Math.Max(original.Length, modified.Length); i++) {
-			byte orig = i < original.Length ? original[i] : (byte)0;
-			byte mod = i < modified.Length ? modified[i] : (byte)0;
-			byte xorVal = (byte)(orig ^ mod);
-
-			if (xorVal != 0) {
-				// Write relative offset
-				WriteVarInt(writer, i - offset);
-				offset = i + 1;
-
-				// Write XOR data until 0x00
-				writer.Write(xorVal);
-				writer.Write((byte)0);
-			}
-		}
-
-		// Checksums
-		writer.Write(0); // Source CRC32
-		writer.Write(0); // Target CRC32
-		writer.Write(0); // Patch CRC32
+		var patchData = UpsPatch.CreatePatch(original, modified);
+		File.WriteAllBytes(outputPath, patchData);
 
 		AnsiConsole.MarkupLine($"[green]Created UPS patch: {outputPath}[/]");
+		AnsiConsole.MarkupLine($"[grey]Patch size: {patchData.Length:n0} bytes[/]");
 	}
 
 	private static void WriteVarInt(BinaryWriter writer, long value) {
@@ -340,15 +310,21 @@ public static class PatchCommands {
 	}
 
 	private static byte[] ApplyBpsPatch(byte[] rom, byte[] patch) {
-		// BPS implementation would go here
-		AnsiConsole.MarkupLine("[yellow]BPS patch application not fully implemented[/]");
-		return rom;
+		try {
+			return BpsPatch.ApplyPatch(rom, patch);
+		} catch (Exception ex) {
+			AnsiConsole.MarkupLine($"[red]BPS patch error: {ex.Message}[/]");
+			return rom;
+		}
 	}
 
 	private static byte[] ApplyUpsPatch(byte[] rom, byte[] patch) {
-		// UPS implementation would go here
-		AnsiConsole.MarkupLine("[yellow]UPS patch application not fully implemented[/]");
-		return rom;
+		try {
+			return UpsPatch.ApplyPatch(rom, patch);
+		} catch (Exception ex) {
+			AnsiConsole.MarkupLine($"[red]UPS patch error: {ex.Message}[/]");
+			return rom;
+		}
 	}
 
 	public static void Info(FileInfo patchFile) {
@@ -377,10 +353,12 @@ public static class PatchCommands {
 
 			case "BPS":
 				table.AddRow("BPS Version", "1");
+				AnalyzeBpsPatch(data, table);
 				break;
 
 			case "UPS":
 				table.AddRow("UPS Version", "1");
+				AnalyzeUpsPatch(data, table);
 				break;
 		}
 
@@ -414,5 +392,60 @@ public static class PatchCommands {
 
 		table.AddRow("Records", recordCount.ToString());
 		table.AddRow("Data Changed", $"{totalDataBytes:n0} bytes");
+	}
+
+	private static void AnalyzeBpsPatch(byte[] patch, Table table) {
+		try {
+			// Parse enough to get source/target sizes
+			int pos = 4;
+			long sourceSize = ReadVarIntAnalysis(patch, ref pos);
+			long targetSize = ReadVarIntAnalysis(patch, ref pos);
+			long metadataSize = ReadVarIntAnalysis(patch, ref pos);
+
+			table.AddRow("Source Size", $"{sourceSize:n0} bytes");
+			table.AddRow("Target Size", $"{targetSize:n0} bytes");
+			if (metadataSize > 0) {
+				table.AddRow("Metadata Size", $"{metadataSize:n0} bytes");
+			}
+		} catch {
+			table.AddRow("Analysis", "Could not parse BPS structure");
+		}
+	}
+
+	private static void AnalyzeUpsPatch(byte[] patch, Table table) {
+		try {
+			var (sourceSize, targetSize, records, sourceCrc, targetCrc, patchCrc) = UpsPatch.ReadPatch(patch);
+
+			table.AddRow("Source Size", $"{sourceSize:n0} bytes");
+			table.AddRow("Target Size", $"{targetSize:n0} bytes");
+			table.AddRow("Records", records.Count.ToString());
+			table.AddRow("Source CRC32", $"0x{sourceCrc:x8}");
+			table.AddRow("Target CRC32", $"0x{targetCrc:x8}");
+			table.AddRow("Patch CRC32", $"0x{patchCrc:x8}");
+
+			int totalXorBytes = records.Sum(r => r.XorData.Length);
+			table.AddRow("Data Changed", $"{totalXorBytes:n0} bytes");
+		} catch {
+			table.AddRow("Analysis", "Could not parse UPS structure");
+		}
+	}
+
+	private static long ReadVarIntAnalysis(byte[] data, ref int pos) {
+		long value = 0;
+		int shift = 0;
+
+		while (pos < data.Length) {
+			byte b = data[pos++];
+			value += (long)(b & 0x7f) << shift;
+
+			if ((b & 0x80) == 0) {
+				break;
+			}
+
+			value += 1L << (shift + 7);
+			shift += 7;
+		}
+
+		return value;
 	}
 }

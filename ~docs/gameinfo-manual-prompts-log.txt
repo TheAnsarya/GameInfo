@@ -113,8 +113,11 @@ Would you like me to run a markdown linter to verify all formatting issues are r
 
 git commit everything in logical batches; pick a random github issue and work on it; continue;
 
+pick a random github issue and work on it; continue;
 
+pick a random github issue and work on it; continue;
 
+Make a github issue for enhancement of each and every tool in our chest and a todo-list; then pick a few random issues and work them; always update the todo-lists and github issues and documentation and chat/session logs; always `git commit` as you go and link issues and git commits to issues; 
 
 
 

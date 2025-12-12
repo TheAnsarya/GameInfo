@@ -378,3 +378,306 @@ public static class BpsPatch {
 		return result;
 	}
 }
+
+/// <summary>
+/// UPS patch format support.
+/// </summary>
+public static class UpsPatch {
+	private static readonly byte[] UpsHeader = { (byte)'U', (byte)'P', (byte)'S', (byte)'1' };
+
+	/// <summary>
+	/// A single UPS patch record with XOR data.
+	/// </summary>
+	public record UpsRecord(int RelativeOffset, byte[] XorData);
+
+	/// <summary>
+	/// Read a UPS patch file.
+	/// </summary>
+	public static (long SourceSize, long TargetSize, List<UpsRecord> Records, uint SourceCrc, uint TargetCrc, uint PatchCrc) ReadPatch(byte[] patchData) {
+		// Verify header
+		if (patchData.Length < 18) {
+			throw new InvalidDataException("UPS file too small");
+		}
+
+		for (int i = 0; i < 4; i++) {
+			if (patchData[i] != UpsHeader[i]) {
+				throw new InvalidDataException("Invalid UPS header");
+			}
+		}
+
+		int pos = 4;
+
+		// Read source and target sizes
+		long sourceSize = ReadVarInt(patchData, ref pos);
+		long targetSize = ReadVarInt(patchData, ref pos);
+
+		var records = new List<UpsRecord>();
+
+		// Read records until we hit the footer (12 bytes: 3 CRC32s)
+		while (pos < patchData.Length - 12) {
+			// Relative offset
+			long relOffset = ReadVarInt(patchData, ref pos);
+
+			// XOR data (null-terminated)
+			var xorData = new List<byte>();
+			while (pos < patchData.Length - 12 && patchData[pos] != 0) {
+				xorData.Add(patchData[pos++]);
+			}
+
+			// Skip null terminator
+			if (pos < patchData.Length - 12) {
+				pos++;
+			}
+
+			records.Add(new UpsRecord((int)relOffset, xorData.ToArray()));
+		}
+
+		// Read footer CRCs
+		uint sourceCrc = ReadUInt32LE(patchData, pos);
+		uint targetCrc = ReadUInt32LE(patchData, pos + 4);
+		uint patchCrc = ReadUInt32LE(patchData, pos + 8);
+
+		return (sourceSize, targetSize, records, sourceCrc, targetCrc, patchCrc);
+	}
+
+	/// <summary>
+	/// Apply a UPS patch to ROM data.
+	/// </summary>
+	public static byte[] ApplyPatch(byte[] sourceData, byte[] patchData) {
+		var (sourceSize, targetSize, records, sourceCrc, targetCrc, patchCrc) = ReadPatch(patchData);
+
+		// Verify source size
+		if (sourceData.Length != sourceSize) {
+			throw new InvalidDataException($"Source size mismatch: expected {sourceSize}, got {sourceData.Length}");
+		}
+
+		// Verify source CRC
+		uint actualSourceCrc = Crc32.Calculate(sourceData);
+		if (actualSourceCrc != sourceCrc) {
+			throw new InvalidDataException($"Source CRC mismatch: expected {sourceCrc:x8}, got {actualSourceCrc:x8}");
+		}
+
+		// Create target buffer
+		var target = new byte[targetSize];
+		Array.Copy(sourceData, target, Math.Min(sourceData.Length, target.Length));
+
+		// Apply XOR patches
+		int outputPos = 0;
+		foreach (var record in records) {
+			outputPos += record.RelativeOffset;
+
+			foreach (byte xorByte in record.XorData) {
+				if (outputPos < target.Length) {
+					byte sourceByte = outputPos < sourceData.Length ? sourceData[outputPos] : (byte)0;
+					target[outputPos] = (byte)(sourceByte ^ xorByte);
+				}
+
+				outputPos++;
+			}
+
+			outputPos++; // Skip the null terminator position
+		}
+
+		// Verify target CRC
+		uint actualTargetCrc = Crc32.Calculate(target);
+		if (actualTargetCrc != targetCrc) {
+			throw new InvalidDataException($"Target CRC mismatch: expected {targetCrc:x8}, got {actualTargetCrc:x8}");
+		}
+
+		return target;
+	}
+
+	/// <summary>
+	/// Create a UPS patch from two ROMs.
+	/// </summary>
+	public static byte[] CreatePatch(byte[] original, byte[] modified) {
+		var records = new List<UpsRecord>();
+		int maxLen = Math.Max(original.Length, modified.Length);
+		int pos = 0;
+		int lastDiffPos = 0;
+
+		while (pos < maxLen) {
+			// Find next difference
+			while (pos < maxLen && GetByte(original, pos) == GetByte(modified, pos)) {
+				pos++;
+			}
+
+			if (pos >= maxLen) {
+				break;
+			}
+
+			// Calculate relative offset
+			int relOffset = pos - lastDiffPos;
+
+			// Collect XOR data until we find matching bytes again
+			var xorData = new List<byte>();
+			while (pos < maxLen && GetByte(original, pos) != GetByte(modified, pos)) {
+				byte xorByte = (byte)(GetByte(original, pos) ^ GetByte(modified, pos));
+				xorData.Add(xorByte);
+				pos++;
+			}
+
+			records.Add(new UpsRecord(relOffset, xorData.ToArray()));
+			lastDiffPos = pos + 1; // +1 for null terminator
+		}
+
+		return WritePatch(original.Length, modified.Length, records,
+			Crc32.Calculate(original), Crc32.Calculate(modified));
+	}
+
+	private static byte GetByte(byte[] data, int index) {
+		return index < data.Length ? data[index] : (byte)0;
+	}
+
+	/// <summary>
+	/// Write UPS records to patch file format.
+	/// </summary>
+	public static byte[] WritePatch(long sourceSize, long targetSize, List<UpsRecord> records, uint sourceCrc, uint targetCrc) {
+		using var ms = new MemoryStream();
+
+		// Header
+		ms.Write(UpsHeader, 0, 4);
+
+		// Source and target sizes
+		WriteVarInt(ms, sourceSize);
+		WriteVarInt(ms, targetSize);
+
+		// Records
+		foreach (var record in records) {
+			WriteVarInt(ms, record.RelativeOffset);
+			ms.Write(record.XorData, 0, record.XorData.Length);
+			ms.WriteByte(0); // Null terminator
+		}
+
+		// Calculate patch CRC (excluding the patch CRC itself)
+		byte[] patchWithoutCrc = ms.ToArray();
+		uint patchCrc = Crc32.Calculate(patchWithoutCrc);
+
+		// Append CRCs
+		WriteUInt32LE(ms, sourceCrc);
+		WriteUInt32LE(ms, targetCrc);
+		WriteUInt32LE(ms, patchCrc);
+
+		return ms.ToArray();
+	}
+
+	/// <summary>
+	/// Get patch information as text.
+	/// </summary>
+	public static string GetPatchInfo(byte[] patchData) {
+		var (sourceSize, targetSize, records, sourceCrc, targetCrc, patchCrc) = ReadPatch(patchData);
+		var sb = new StringBuilder();
+
+		sb.AppendLine($"UPS Patch: {records.Count} records");
+		sb.AppendLine($"Source size: {sourceSize} bytes (CRC: {sourceCrc:x8})");
+		sb.AppendLine($"Target size: {targetSize} bytes (CRC: {targetCrc:x8})");
+		sb.AppendLine($"Patch CRC: {patchCrc:x8}");
+		sb.AppendLine();
+
+		int totalBytes = 0;
+		int currentPos = 0;
+		foreach (var record in records) {
+			currentPos += record.RelativeOffset;
+			totalBytes += record.XorData.Length;
+			sb.AppendLine($"  ${currentPos:x6}: {record.XorData.Length} XOR bytes");
+			currentPos += record.XorData.Length + 1;
+		}
+
+		sb.AppendLine();
+		sb.AppendLine($"Total modified: {totalBytes} bytes");
+
+		return sb.ToString();
+	}
+
+	private static long ReadVarInt(byte[] data, ref int pos) {
+		long value = 0;
+		int shift = 0;
+
+		while (pos < data.Length) {
+			byte b = data[pos++];
+			value += (long)(b & 0x7f) << shift;
+
+			if ((b & 0x80) == 0) {
+				break;
+			}
+
+			value += 1L << (shift + 7);
+			shift += 7;
+		}
+
+		return value;
+	}
+
+	private static void WriteVarInt(MemoryStream ms, long value) {
+		while (true) {
+			byte b = (byte)(value & 0x7f);
+			value >>= 7;
+
+			if (value == 0) {
+				ms.WriteByte(b);
+				break;
+			}
+
+			ms.WriteByte((byte)(b | 0x80));
+			value--;
+		}
+	}
+
+	private static uint ReadUInt32LE(byte[] data, int offset) {
+		return (uint)(data[offset] | (data[offset + 1] << 8) | (data[offset + 2] << 16) | (data[offset + 3] << 24));
+	}
+
+	private static void WriteUInt32LE(MemoryStream ms, uint value) {
+		ms.WriteByte((byte)(value & 0xff));
+		ms.WriteByte((byte)((value >> 8) & 0xff));
+		ms.WriteByte((byte)((value >> 16) & 0xff));
+		ms.WriteByte((byte)((value >> 24) & 0xff));
+	}
+}
+
+/// <summary>
+/// CRC32 calculation (used by UPS format).
+/// </summary>
+public static class Crc32 {
+	private static readonly uint[] Table;
+
+	static Crc32() {
+		Table = new uint[256];
+		const uint polynomial = 0xEDB88320;
+
+		for (uint i = 0; i < 256; i++) {
+			uint crc = i;
+			for (int j = 0; j < 8; j++) {
+				crc = (crc & 1) != 0 ? (crc >> 1) ^ polynomial : crc >> 1;
+			}
+
+			Table[i] = crc;
+		}
+	}
+
+	/// <summary>
+	/// Calculate CRC32 of data.
+	/// </summary>
+	public static uint Calculate(byte[] data) {
+		uint crc = 0xFFFFFFFF;
+
+		foreach (byte b in data) {
+			crc = Table[(crc ^ b) & 0xff] ^ (crc >> 8);
+		}
+
+		return crc ^ 0xFFFFFFFF;
+	}
+
+	/// <summary>
+	/// Calculate CRC32 of a span.
+	/// </summary>
+	public static uint Calculate(ReadOnlySpan<byte> data) {
+		uint crc = 0xFFFFFFFF;
+
+		foreach (byte b in data) {
+			crc = Table[(crc ^ b) & 0xff] ^ (crc >> 8);
+		}
+
+		return crc ^ 0xFFFFFFFF;
+	}
+}
