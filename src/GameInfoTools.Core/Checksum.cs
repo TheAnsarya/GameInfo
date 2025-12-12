@@ -412,6 +412,462 @@ public static class Checksum {
 		int PassedCount,
 		int FailedCount
 	);
+
+	#region Report Generation
+
+	/// <summary>
+	/// Generate checksum report in various formats.
+	/// </summary>
+	public static string GenerateReport(IEnumerable<FileHashReport> files, ReportFormat format) {
+		return format switch {
+			ReportFormat.Txt => GenerateTxtReport(files),
+			ReportFormat.Json => GenerateJsonReport(files),
+			ReportFormat.Xml => GenerateXmlReport(files),
+			ReportFormat.Csv => GenerateCsvReport(files),
+			_ => throw new ArgumentException($"Unknown report format: {format}")
+		};
+	}
+
+	private static string GenerateTxtReport(IEnumerable<FileHashReport> files) {
+		var sb = new System.Text.StringBuilder();
+		sb.AppendLine("=== Checksum Report ===");
+		sb.AppendLine($"Generated: {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
+		sb.AppendLine();
+
+		foreach (var file in files) {
+			sb.AppendLine($"File: {file.FileName}");
+			sb.AppendLine($"  Size: {file.FileSize:N0} bytes");
+			sb.AppendLine($"  CRC32:  {file.Hashes.Crc32:x8}");
+			sb.AppendLine($"  MD5:    {file.Hashes.Md5}");
+			sb.AppendLine($"  SHA1:   {file.Hashes.Sha1}");
+			sb.AppendLine($"  SHA256: {file.Hashes.Sha256}");
+			sb.AppendLine($"  SHA384: {file.Hashes.Sha384}");
+			sb.AppendLine($"  SHA512: {file.Hashes.Sha512}");
+			sb.AppendLine();
+		}
+
+		return sb.ToString();
+	}
+
+	private static string GenerateJsonReport(IEnumerable<FileHashReport> files) {
+		var sb = new System.Text.StringBuilder();
+		sb.AppendLine("{");
+		sb.AppendLine($"  \"generated\": \"{DateTime.Now:yyyy-MM-ddTHH:mm:ss}\",");
+		sb.AppendLine("  \"files\": [");
+
+		var fileList = files.ToList();
+		for (int i = 0; i < fileList.Count; i++) {
+			var file = fileList[i];
+			sb.AppendLine("    {");
+			sb.AppendLine($"      \"name\": \"{EscapeJson(file.FileName)}\",");
+			sb.AppendLine($"      \"size\": {file.FileSize},");
+			sb.AppendLine($"      \"crc32\": \"{file.Hashes.Crc32:x8}\",");
+			sb.AppendLine($"      \"md5\": \"{file.Hashes.Md5}\",");
+			sb.AppendLine($"      \"sha1\": \"{file.Hashes.Sha1}\",");
+			sb.AppendLine($"      \"sha256\": \"{file.Hashes.Sha256}\",");
+			sb.AppendLine($"      \"sha384\": \"{file.Hashes.Sha384}\",");
+			sb.AppendLine($"      \"sha512\": \"{file.Hashes.Sha512}\"");
+			sb.Append("    }");
+			if (i < fileList.Count - 1) sb.Append(",");
+			sb.AppendLine();
+		}
+
+		sb.AppendLine("  ]");
+		sb.AppendLine("}");
+		return sb.ToString();
+	}
+
+	private static string GenerateXmlReport(IEnumerable<FileHashReport> files) {
+		var sb = new System.Text.StringBuilder();
+		sb.AppendLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+		sb.AppendLine("<checksumReport>");
+		sb.AppendLine($"  <generated>{DateTime.Now:yyyy-MM-ddTHH:mm:ss}</generated>");
+		sb.AppendLine("  <files>");
+
+		foreach (var file in files) {
+			sb.AppendLine("    <file>");
+			sb.AppendLine($"      <name>{EscapeXml(file.FileName)}</name>");
+			sb.AppendLine($"      <size>{file.FileSize}</size>");
+			sb.AppendLine($"      <crc32>{file.Hashes.Crc32:x8}</crc32>");
+			sb.AppendLine($"      <md5>{file.Hashes.Md5}</md5>");
+			sb.AppendLine($"      <sha1>{file.Hashes.Sha1}</sha1>");
+			sb.AppendLine($"      <sha256>{file.Hashes.Sha256}</sha256>");
+			sb.AppendLine($"      <sha384>{file.Hashes.Sha384}</sha384>");
+			sb.AppendLine($"      <sha512>{file.Hashes.Sha512}</sha512>");
+			sb.AppendLine("    </file>");
+		}
+
+		sb.AppendLine("  </files>");
+		sb.AppendLine("</checksumReport>");
+		return sb.ToString();
+	}
+
+	private static string GenerateCsvReport(IEnumerable<FileHashReport> files) {
+		var sb = new System.Text.StringBuilder();
+		sb.AppendLine("\"FileName\",\"Size\",\"CRC32\",\"MD5\",\"SHA1\",\"SHA256\",\"SHA384\",\"SHA512\"");
+
+		foreach (var file in files) {
+			sb.AppendLine($"\"{EscapeCsv(file.FileName)}\",{file.FileSize},\"{file.Hashes.Crc32:x8}\",\"{file.Hashes.Md5}\",\"{file.Hashes.Sha1}\",\"{file.Hashes.Sha256}\",\"{file.Hashes.Sha384}\",\"{file.Hashes.Sha512}\"");
+		}
+
+		return sb.ToString();
+	}
+
+	private static string EscapeJson(string value) {
+		return value.Replace("\\", "\\\\").Replace("\"", "\\\"");
+	}
+
+	private static string EscapeXml(string value) {
+		return value.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;");
+	}
+
+	private static string EscapeCsv(string value) {
+		return value.Replace("\"", "\"\"");
+	}
+
+	#endregion
+
+	#region Database Comparison
+
+	/// <summary>
+	/// Compare ROM checksums against a known-good database.
+	/// </summary>
+	public static DatabaseMatchResult CompareToDatabase(byte[] data, RomDatabase database) {
+		var hashes = CalculateAllHashes(data);
+
+		// Try to match by various hash types
+		var crcMatch = database.FindByCrc32(hashes.Crc32);
+		var md5Match = database.FindByMd5(hashes.Md5);
+		var sha1Match = database.FindBySha1(hashes.Sha1);
+
+		// Prefer most specific match
+		var match = sha1Match ?? md5Match ?? crcMatch;
+
+		if (match != null) {
+			return new DatabaseMatchResult(
+				Found: true,
+				Entry: match,
+				MatchedBy: sha1Match != null ? "SHA1" : (md5Match != null ? "MD5" : "CRC32"),
+				CalculatedHashes: hashes
+			);
+		}
+
+		return new DatabaseMatchResult(
+			Found: false,
+			Entry: null,
+			MatchedBy: null,
+			CalculatedHashes: hashes
+		);
+	}
+
+	/// <summary>
+	/// Load a ROM database from DAT file (No-Intro/Redump format).
+	/// </summary>
+	public static RomDatabase LoadDatFile(string content) {
+		var entries = new List<RomDatabaseEntry>();
+		var lines = content.Split('\n');
+
+		bool inGameBlock = false;
+		string? currentGame = null;
+		string? currentDescription = null;
+		uint? currentCrc = null;
+		string? currentMd5 = null;
+		string? currentSha1 = null;
+		long? currentSize = null;
+
+		foreach (var line in lines) {
+			var trimmed = line.Trim();
+
+			if (trimmed.StartsWith("game (")) {
+				// Start of new game entry
+				inGameBlock = true;
+				currentGame = null;
+				currentDescription = null;
+				currentCrc = null;
+				currentMd5 = null;
+				currentSha1 = null;
+				currentSize = null;
+			} else if (!inGameBlock) {
+				// Ignore lines outside game blocks
+				continue;
+			} else if (trimmed.StartsWith("name \"")) {
+				int start = trimmed.IndexOf('"') + 1;
+				int end = trimmed.LastIndexOf('"');
+				if (end > start) {
+					currentGame = trimmed[start..end];
+				}
+			} else if (trimmed.StartsWith("description \"")) {
+				int start = trimmed.IndexOf('"') + 1;
+				int end = trimmed.LastIndexOf('"');
+				if (end > start) {
+					currentDescription = trimmed[start..end];
+				}
+			} else if (trimmed.StartsWith("rom (")) {
+				// Parse ROM details from same line or following lines
+			} else if (trimmed.StartsWith("crc ")) {
+				var value = trimmed[4..].Trim();
+				if (uint.TryParse(value, System.Globalization.NumberStyles.HexNumber, null, out uint crc)) {
+					currentCrc = crc;
+				}
+			} else if (trimmed.StartsWith("md5 ")) {
+				currentMd5 = trimmed[4..].Trim().ToLowerInvariant();
+			} else if (trimmed.StartsWith("sha1 ")) {
+				currentSha1 = trimmed[5..].Trim().ToLowerInvariant();
+			} else if (trimmed.StartsWith("size ")) {
+				if (long.TryParse(trimmed[5..].Trim(), out long size)) {
+					currentSize = size;
+				}
+			} else if (trimmed == ")") {
+				// End of game block
+				if (inGameBlock && currentGame != null) {
+					entries.Add(new RomDatabaseEntry(
+						Name: currentGame,
+						Description: currentDescription,
+						Crc32: currentCrc,
+						Md5: currentMd5,
+						Sha1: currentSha1,
+						Size: currentSize
+					));
+				}
+
+				inGameBlock = false;
+			}
+		}
+
+		return new RomDatabase(entries);
+	}
+
+	#endregion
+
+	#region Partial ROM Checksums
+
+	/// <summary>
+	/// Calculate checksum for a specific region of a ROM.
+	/// </summary>
+	public static HashResult CalculateRegionHashes(byte[] data, int offset, int length) {
+		if (offset < 0 || length < 0 || offset + length > data.Length) {
+			throw new ArgumentOutOfRangeException($"Invalid region: offset={offset}, length={length}, data.Length={data.Length}");
+		}
+
+		// Extract region
+		var region = new byte[length];
+		Array.Copy(data, offset, region, 0, length);
+
+		return CalculateAllHashes(region);
+	}
+
+	/// <summary>
+	/// Calculate checksums for all defined regions.
+	/// </summary>
+	public static List<RegionHashResult> CalculateRegionHashes(byte[] data, IEnumerable<RomRegion> regions) {
+		var results = new List<RegionHashResult>();
+
+		foreach (var region in regions) {
+			try {
+				int offset = region.Offset;
+				int length = region.Length;
+
+				// Handle -1 for "to end"
+				if (length < 0) {
+					length = data.Length - offset;
+				}
+
+				if (offset + length <= data.Length) {
+					var hashes = CalculateRegionHashes(data, offset, length);
+					results.Add(new RegionHashResult(region.Name, region.Offset, length, hashes, null));
+				} else {
+					results.Add(new RegionHashResult(region.Name, region.Offset, length, null, "Region exceeds data bounds"));
+				}
+			} catch (Exception ex) {
+				results.Add(new RegionHashResult(region.Name, region.Offset, region.Length, null, ex.Message));
+			}
+		}
+
+		return results;
+	}
+
+	/// <summary>
+	/// Get standard ROM regions for a system type.
+	/// </summary>
+	public static List<RomRegion> GetStandardRegions(SystemType system, byte[]? data = null) {
+		return system switch {
+			SystemType.Nes => GetNesRegions(data),
+			SystemType.Snes => GetSnesRegions(data),
+			SystemType.GameBoy or SystemType.GameBoyColor => GetGameBoyRegions(data),
+			SystemType.GameBoyAdvance => GetGbaRegions(data),
+			_ => []
+		};
+	}
+
+	private static List<RomRegion> GetNesRegions(byte[]? data) {
+		var regions = new List<RomRegion>();
+
+		if (data != null && data.Length >= 16) {
+			// Parse iNES header
+			int prgSize = data[4] * 16384;
+			int chrSize = data[5] * 8192;
+			int headerSize = (data[6] & 0x04) != 0 ? 528 : 16; // Trainer?
+
+			regions.Add(new RomRegion("Header", 0, headerSize));
+
+			if (prgSize > 0) {
+				regions.Add(new RomRegion("PRG-ROM", headerSize, prgSize));
+			}
+
+			if (chrSize > 0) {
+				regions.Add(new RomRegion("CHR-ROM", headerSize + prgSize, chrSize));
+			}
+		} else {
+			// Default NES regions
+			regions.Add(new RomRegion("Header", 0, 16));
+			regions.Add(new RomRegion("PRG-ROM", 16, -1)); // -1 means to end
+		}
+
+		return regions;
+	}
+
+	private static List<RomRegion> GetSnesRegions(byte[]? data) {
+		var regions = new List<RomRegion> {
+			new("Full ROM", 0, data?.Length ?? -1)
+		};
+
+		// Add header regions
+		if (data != null && data.Length >= 0x8000) {
+			regions.Add(new RomRegion("LoROM Header", 0x7fb0, 0x50));
+		}
+
+		if (data != null && data.Length >= 0x10000) {
+			regions.Add(new RomRegion("HiROM Header", 0xffb0, 0x50));
+		}
+
+		return regions;
+	}
+
+	private static List<RomRegion> GetGameBoyRegions(byte[]? data) {
+		var regions = new List<RomRegion> {
+			new("Header", 0x100, 0x50),
+			new("Nintendo Logo", 0x104, 0x30),
+			new("Title", 0x134, 0x10),
+			new("ROM", 0, data?.Length ?? -1)
+		};
+
+		return regions;
+	}
+
+	private static List<RomRegion> GetGbaRegions(byte[]? data) {
+		var regions = new List<RomRegion> {
+			new("Header", 0, 0xc0),
+			new("Nintendo Logo", 0x04, 0x9c),
+			new("Title", 0xa0, 0x0c),
+			new("ROM", 0, data?.Length ?? -1)
+		};
+
+		return regions;
+	}
+
+	#endregion
+
+	#region Records
+
+	public record FileHashReport(
+		string FileName,
+		long FileSize,
+		HashResult Hashes
+	);
+
+	public record RomRegion(
+		string Name,
+		int Offset,
+		int Length
+	);
+
+	public record RegionHashResult(
+		string RegionName,
+		int Offset,
+		int Length,
+		HashResult? Hashes,
+		string? Error
+	);
+
+	public record RomDatabaseEntry(
+		string Name,
+		string? Description,
+		uint? Crc32,
+		string? Md5,
+		string? Sha1,
+		long? Size
+	);
+
+	public record DatabaseMatchResult(
+		bool Found,
+		RomDatabaseEntry? Entry,
+		string? MatchedBy,
+		HashResult CalculatedHashes
+	);
+
+	#endregion
+}
+
+/// <summary>
+/// ROM database for checksum comparison.
+/// </summary>
+public class RomDatabase {
+	private readonly List<Checksum.RomDatabaseEntry> _entries;
+	private readonly Dictionary<uint, Checksum.RomDatabaseEntry> _crcIndex = [];
+	private readonly Dictionary<string, Checksum.RomDatabaseEntry> _md5Index = [];
+	private readonly Dictionary<string, Checksum.RomDatabaseEntry> _sha1Index = [];
+
+	public RomDatabase(IEnumerable<Checksum.RomDatabaseEntry> entries) {
+		_entries = entries.ToList();
+
+		// Build indexes
+		foreach (var entry in _entries) {
+			if (entry.Crc32.HasValue && !_crcIndex.ContainsKey(entry.Crc32.Value)) {
+				_crcIndex[entry.Crc32.Value] = entry;
+			}
+
+			if (entry.Md5 != null && !_md5Index.ContainsKey(entry.Md5)) {
+				_md5Index[entry.Md5] = entry;
+			}
+
+			if (entry.Sha1 != null && !_sha1Index.ContainsKey(entry.Sha1)) {
+				_sha1Index[entry.Sha1] = entry;
+			}
+		}
+	}
+
+	public IReadOnlyList<Checksum.RomDatabaseEntry> Entries => _entries;
+
+	public int Count => _entries.Count;
+
+	public Checksum.RomDatabaseEntry? FindByCrc32(uint crc) =>
+		_crcIndex.TryGetValue(crc, out var entry) ? entry : null;
+
+	public Checksum.RomDatabaseEntry? FindByMd5(string md5) =>
+		_md5Index.TryGetValue(md5.ToLowerInvariant(), out var entry) ? entry : null;
+
+	public Checksum.RomDatabaseEntry? FindBySha1(string sha1) =>
+		_sha1Index.TryGetValue(sha1.ToLowerInvariant(), out var entry) ? entry : null;
+
+	public List<Checksum.RomDatabaseEntry> Search(string query) =>
+		_entries.Where(e =>
+			(e.Name?.Contains(query, StringComparison.OrdinalIgnoreCase) ?? false) ||
+			(e.Description?.Contains(query, StringComparison.OrdinalIgnoreCase) ?? false)
+		).ToList();
+}
+
+/// <summary>
+/// Report format types.
+/// </summary>
+public enum ReportFormat {
+	/// <summary>Plain text format.</summary>
+	Txt,
+	/// <summary>JSON format.</summary>
+	Json,
+	/// <summary>XML format.</summary>
+	Xml,
+	/// <summary>CSV format.</summary>
+	Csv
 }
 
 /// <summary>

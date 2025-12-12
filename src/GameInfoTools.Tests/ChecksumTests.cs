@@ -480,4 +480,379 @@ public class ChecksumTests {
 	}
 
 	#endregion
+
+	#region Report Generation Tests
+
+	[Fact]
+	public void GenerateReport_Txt_ContainsAllHashes() {
+		var files = new List<Checksum.FileHashReport> {
+			new("test.rom", 1024, new Checksum.HashResult(
+				0x12345678u,
+				"d41d8cd98f00b204e9800998ecf8427e",
+				"da39a3ee5e6b4b0d3255bfef95601890afd80709",
+				"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+				"38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da274edebfe76f65fbd51ad2f14898b95b",
+				"cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e"
+			))
+		};
+
+		var report = Checksum.GenerateReport(files, ReportFormat.Txt);
+
+		Assert.Contains("test.rom", report);
+		Assert.Contains("12345678", report);
+		Assert.Contains("d41d8cd98f00b204e9800998ecf8427e", report);
+	}
+
+	[Fact]
+	public void GenerateReport_Json_IsValidJson() {
+		var files = new List<Checksum.FileHashReport> {
+			new("test.rom", 1024, new Checksum.HashResult(
+				0x12345678u,
+				"d41d8cd98f00b204e9800998ecf8427e",
+				"da39a3ee5e6b4b0d3255bfef95601890afd80709",
+				"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+				"38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da274edebfe76f65fbd51ad2f14898b95b",
+				"cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e"
+			))
+		};
+
+		var report = Checksum.GenerateReport(files, ReportFormat.Json);
+
+		Assert.Contains("\"files\":", report);
+		Assert.Contains("\"name\": \"test.rom\"", report);
+		Assert.Contains("\"crc32\": \"12345678\"", report);
+	}
+
+	[Fact]
+	public void GenerateReport_Xml_IsValidXml() {
+		var files = new List<Checksum.FileHashReport> {
+			new("test.rom", 1024, new Checksum.HashResult(
+				0x12345678u,
+				"d41d8cd98f00b204e9800998ecf8427e",
+				"da39a3ee5e6b4b0d3255bfef95601890afd80709",
+				"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+				"38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da274edebfe76f65fbd51ad2f14898b95b",
+				"cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e"
+			))
+		};
+
+		var report = Checksum.GenerateReport(files, ReportFormat.Xml);
+
+		Assert.Contains("<?xml", report);
+		Assert.Contains("<checksumReport>", report);
+		Assert.Contains("<name>test.rom</name>", report);
+		Assert.Contains("<crc32>12345678</crc32>", report);
+	}
+
+	[Fact]
+	public void GenerateReport_Csv_HasHeader() {
+		var files = new List<Checksum.FileHashReport> {
+			new("test.rom", 1024, new Checksum.HashResult(
+				0x12345678u,
+				"d41d8cd98f00b204e9800998ecf8427e",
+				"da39a3ee5e6b4b0d3255bfef95601890afd80709",
+				"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+				"38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da274edebfe76f65fbd51ad2f14898b95b",
+				"cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e"
+			))
+		};
+
+		var report = Checksum.GenerateReport(files, ReportFormat.Csv);
+
+		Assert.Contains("\"FileName\"", report);
+		Assert.Contains("\"CRC32\"", report);
+		Assert.Contains("\"test.rom\"", report);
+	}
+
+	[Fact]
+	public void GenerateReport_MultipleFiles_ContainsAll() {
+		var files = new List<Checksum.FileHashReport> {
+			new("file1.rom", 1024, new Checksum.HashResult(0x11111111u, "md51", "sha11", "sha2561", "sha3841", "sha5121")),
+			new("file2.rom", 2048, new Checksum.HashResult(0x22222222u, "md52", "sha12", "sha2562", "sha3842", "sha5122"))
+		};
+
+		var report = Checksum.GenerateReport(files, ReportFormat.Txt);
+
+		Assert.Contains("file1.rom", report);
+		Assert.Contains("file2.rom", report);
+		Assert.Contains("11111111", report);
+		Assert.Contains("22222222", report);
+	}
+
+	#endregion
+
+	#region Database Comparison Tests
+
+	[Fact]
+	public void LoadDatFile_ParsesNoIntroFormat() {
+		var datContent = """
+			clrmamepro (
+				name "Test ROM Set"
+				description "Test ROM Set"
+			)
+
+			game (
+				name "Test Game"
+				description "Test Game Description"
+				rom ( name "Test Game.nes" size 262160 crc 12345678 md5 d41d8cd98f00b204e9800998ecf8427e sha1 da39a3ee5e6b4b0d3255bfef95601890afd80709 )
+			)
+			""";
+
+		var database = Checksum.LoadDatFile(datContent);
+
+		Assert.Equal(1, database.Count);
+		Assert.Equal("Test Game", database.Entries[0].Name);
+	}
+
+	[Fact]
+	public void LoadDatFile_ParsesMultipleEntries() {
+		var datContent = """
+			game (
+				name "Game 1"
+				rom ( size 1024 crc 11111111 )
+			)
+
+			game (
+				name "Game 2"
+				rom ( size 2048 crc 22222222 )
+			)
+			""";
+
+		var database = Checksum.LoadDatFile(datContent);
+
+		Assert.Equal(2, database.Count);
+	}
+
+	[Fact]
+	public void RomDatabase_FindByCrc32_ReturnsMatch() {
+		var entries = new List<Checksum.RomDatabaseEntry> {
+			new("Test Game", "Desc", 0x12345678u, "md5hash", "sha1hash", 1024)
+		};
+		var database = new RomDatabase(entries);
+
+		var result = database.FindByCrc32(0x12345678u);
+
+		Assert.NotNull(result);
+		Assert.Equal("Test Game", result.Name);
+	}
+
+	[Fact]
+	public void RomDatabase_FindByMd5_ReturnsMatch() {
+		var entries = new List<Checksum.RomDatabaseEntry> {
+			new("Test Game", "Desc", 0x12345678u, "d41d8cd98f00b204e9800998ecf8427e", "sha1hash", 1024)
+		};
+		var database = new RomDatabase(entries);
+
+		var result = database.FindByMd5("D41D8CD98F00B204E9800998ECF8427E"); // uppercase
+
+		Assert.NotNull(result);
+		Assert.Equal("Test Game", result.Name);
+	}
+
+	[Fact]
+	public void RomDatabase_FindBySha1_ReturnsMatch() {
+		var entries = new List<Checksum.RomDatabaseEntry> {
+			new("Test Game", "Desc", 0x12345678u, "md5hash", "da39a3ee5e6b4b0d3255bfef95601890afd80709", 1024)
+		};
+		var database = new RomDatabase(entries);
+
+		var result = database.FindBySha1("DA39A3EE5E6B4B0D3255BFEF95601890AFD80709");
+
+		Assert.NotNull(result);
+		Assert.Equal("Test Game", result.Name);
+	}
+
+	[Fact]
+	public void RomDatabase_Search_FindsPartialMatch() {
+		var entries = new List<Checksum.RomDatabaseEntry> {
+			new("Dragon Warrior IV (USA)", "Description", null, null, null, null),
+			new("Final Fantasy (USA)", "Another game", null, null, null, null)
+		};
+		var database = new RomDatabase(entries);
+
+		var results = database.Search("Dragon");
+
+		Assert.Single(results);
+		Assert.Equal("Dragon Warrior IV (USA)", results[0].Name);
+	}
+
+	[Fact]
+	public void CompareToDatabase_MatchesBySha1First() {
+		var testData = new byte[] { 0x01, 0x02, 0x03, 0x04 };
+		var hashes = Checksum.CalculateAllHashes(testData);
+
+		var entries = new List<Checksum.RomDatabaseEntry> {
+			new("Test Game", "Desc", hashes.Crc32, hashes.Md5, hashes.Sha1, 4)
+		};
+		var database = new RomDatabase(entries);
+
+		var result = Checksum.CompareToDatabase(testData, database);
+
+		Assert.True(result.Found);
+		Assert.Equal("SHA1", result.MatchedBy);
+		Assert.Equal("Test Game", result.Entry?.Name);
+	}
+
+	[Fact]
+	public void CompareToDatabase_NoMatch_ReturnsFalse() {
+		var testData = new byte[] { 0x01, 0x02, 0x03, 0x04 };
+		var entries = new List<Checksum.RomDatabaseEntry> {
+			new("Different Game", "Desc", 0x99999999u, "differentmd5", "differentsha1", 4)
+		};
+		var database = new RomDatabase(entries);
+
+		var result = Checksum.CompareToDatabase(testData, database);
+
+		Assert.False(result.Found);
+		Assert.Null(result.Entry);
+	}
+
+	#endregion
+
+	#region Partial ROM Checksum Tests
+
+	[Fact]
+	public void CalculateRegionHashes_CalculatesForRegion() {
+		var data = new byte[100];
+		for (int i = 0; i < 100; i++) {
+			data[i] = (byte)i;
+		}
+
+		var fullHash = Checksum.CalculateAllHashes(data);
+		var regionHash = Checksum.CalculateRegionHashes(data, 0, 100);
+
+		Assert.Equal(fullHash.Crc32, regionHash.Crc32);
+		Assert.Equal(fullHash.Md5, regionHash.Md5);
+	}
+
+	[Fact]
+	public void CalculateRegionHashes_DifferentRegionsDifferentHashes() {
+		var data = new byte[100];
+		for (int i = 0; i < 100; i++) {
+			data[i] = (byte)i;
+		}
+
+		var region1 = Checksum.CalculateRegionHashes(data, 0, 50);
+		var region2 = Checksum.CalculateRegionHashes(data, 50, 50);
+
+		Assert.NotEqual(region1.Crc32, region2.Crc32);
+	}
+
+	[Fact]
+	public void CalculateRegionHashes_ThrowsOnInvalidOffset() {
+		var data = new byte[100];
+
+		Assert.Throws<ArgumentOutOfRangeException>(() =>
+			Checksum.CalculateRegionHashes(data, -1, 50));
+	}
+
+	[Fact]
+	public void CalculateRegionHashes_ThrowsOnRegionExceedsBounds() {
+		var data = new byte[100];
+
+		Assert.Throws<ArgumentOutOfRangeException>(() =>
+			Checksum.CalculateRegionHashes(data, 80, 50));
+	}
+
+	[Fact]
+	public void CalculateRegionHashes_MultipleRegions_ReturnsAll() {
+		var data = new byte[100];
+		for (int i = 0; i < 100; i++) {
+			data[i] = (byte)i;
+		}
+
+		var regions = new List<Checksum.RomRegion> {
+			new("First", 0, 25),
+			new("Second", 25, 25),
+			new("Third", 50, 50)
+		};
+
+		var results = Checksum.CalculateRegionHashes(data, regions);
+
+		Assert.Equal(3, results.Count);
+		Assert.All(results, r => Assert.NotNull(r.Hashes));
+		Assert.All(results, r => Assert.Null(r.Error));
+	}
+
+	[Fact]
+	public void CalculateRegionHashes_InvalidRegion_ReturnsError() {
+		var data = new byte[100];
+		var regions = new List<Checksum.RomRegion> {
+			new("Valid", 0, 50),
+			new("Invalid", 90, 50) // Exceeds bounds
+		};
+
+		var results = Checksum.CalculateRegionHashes(data, regions);
+
+		Assert.Equal(2, results.Count);
+		Assert.NotNull(results[0].Hashes);
+		Assert.NotNull(results[1].Error);
+	}
+
+	[Fact]
+	public void CalculateRegionHashes_NegativeLength_MeansToEnd() {
+		var data = new byte[100];
+		for (int i = 0; i < 100; i++) {
+			data[i] = (byte)i;
+		}
+
+		var regions = new List<Checksum.RomRegion> {
+			new("ToEnd", 50, -1)
+		};
+
+		var results = Checksum.CalculateRegionHashes(data, regions);
+
+		Assert.Single(results);
+		Assert.Equal(50, results[0].Length); // Should be calculated as 100-50
+		Assert.NotNull(results[0].Hashes);
+	}
+
+	[Fact]
+	public void GetStandardRegions_Nes_ReturnsValidRegions() {
+		var regions = Checksum.GetStandardRegions(SystemType.Nes);
+
+		Assert.NotEmpty(regions);
+		Assert.Contains(regions, r => r.Name == "Header");
+	}
+
+	[Fact]
+	public void GetStandardRegions_Snes_ReturnsValidRegions() {
+		var data = new byte[0x10000]; // 64KB
+		var regions = Checksum.GetStandardRegions(SystemType.Snes, data);
+
+		Assert.NotEmpty(regions);
+		Assert.Contains(regions, r => r.Name.Contains("ROM"));
+	}
+
+	[Fact]
+	public void GetStandardRegions_GameBoy_ReturnsHeaderRegion() {
+		var regions = Checksum.GetStandardRegions(SystemType.GameBoy);
+
+		Assert.NotEmpty(regions);
+		Assert.Contains(regions, r => r.Name == "Header");
+		Assert.Contains(regions, r => r.Name == "Nintendo Logo");
+	}
+
+	[Fact]
+	public void GetStandardRegions_Gba_ReturnsHeaderRegion() {
+		var regions = Checksum.GetStandardRegions(SystemType.GameBoyAdvance);
+
+		Assert.NotEmpty(regions);
+		Assert.Contains(regions, r => r.Name == "Header");
+		Assert.Contains(regions, r => r.Name == "Title");
+	}
+
+	[Fact]
+	public void GetStandardRegions_NesWithData_ParsesHeader() {
+		var data = new byte[16 + 0x4000 + 0x2000]; // Header + 16KB PRG + 8KB CHR
+		data[4] = 1; // 1 PRG bank
+		data[5] = 1; // 1 CHR bank
+
+		var regions = Checksum.GetStandardRegions(SystemType.Nes, data);
+
+		Assert.Contains(regions, r => r.Name == "PRG-ROM");
+		Assert.Contains(regions, r => r.Name == "CHR-ROM");
+	}
+
+	#endregion
 }
