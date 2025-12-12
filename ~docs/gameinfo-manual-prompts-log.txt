@@ -119,8 +119,9 @@ pick a random github issue and work on it; continue;
 
 Make a github issue for enhancement of each and every tool in our chest and a todo-list; then pick a few random issues and work them; always update the todo-lists and github issues and documentation and chat/session logs; always `git commit` as you go and link issues and git commits to issues; 
 
+pick a random github issue and work on it; continue;
 
-
+pick some random github issues and work on them; continue;
 
 
 

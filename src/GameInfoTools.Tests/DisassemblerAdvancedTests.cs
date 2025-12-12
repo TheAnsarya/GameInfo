@@ -383,7 +383,7 @@ public class DisassemblerAdvancedTests {
 
 	[Fact]
 	public void DisassembleArm7Thumb_Pop_ReturnsResult() {
-		byte[] data = [0x00, 0xbd];  // POP-like instruction  
+		byte[] data = [0x00, 0xbd];  // POP-like instruction
 		var instructions = Disassembler.DisassembleArm7Thumb(data, 0, 2, 0);
 
 		Assert.Single(instructions);
@@ -518,7 +518,7 @@ public class DisassemblerAdvancedTests {
 
 	[Fact]
 	public void DisassembleZ80_UnknownOpcode_ReturnsByte() {
-		// Use an opcode that's not in the table  
+		// Use an opcode that's not in the table
 		byte[] data = [0xd3];  // OUT (n),A - might not be in basic table
 		var result = Disassembler.DisassembleZ80One(data, 0, 0);
 

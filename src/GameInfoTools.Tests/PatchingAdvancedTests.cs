@@ -660,3 +660,631 @@ public class PatchingAdvancedTests {
 
 	#endregion
 }
+
+/// <summary>
+/// Tests for PatchUtilities: preview, multi-patch, conflict detection.
+/// </summary>
+public class PatchUtilitiesTests {
+	#region Helper Methods
+
+	private static byte[] CreateSimpleIpsPatch(int offset, byte[] data) {
+		using var ms = new MemoryStream();
+
+		// Header
+		ms.Write(new byte[] { (byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H' }, 0, 5);
+
+		// Record: offset (3 bytes), size (2 bytes), data
+		ms.WriteByte((byte)((offset >> 16) & 0xff));
+		ms.WriteByte((byte)((offset >> 8) & 0xff));
+		ms.WriteByte((byte)(offset & 0xff));
+		ms.WriteByte((byte)((data.Length >> 8) & 0xff));
+		ms.WriteByte((byte)(data.Length & 0xff));
+		ms.Write(data, 0, data.Length);
+
+		// EOF
+		ms.Write(new byte[] { (byte)'E', (byte)'O', (byte)'F' }, 0, 3);
+
+		return ms.ToArray();
+	}
+
+	private static byte[] CreateMultiRecordIpsPatch(params (int Offset, byte[] Data)[] records) {
+		using var ms = new MemoryStream();
+
+		// Header
+		ms.Write(new byte[] { (byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H' }, 0, 5);
+
+		foreach (var (offset, data) in records) {
+			ms.WriteByte((byte)((offset >> 16) & 0xff));
+			ms.WriteByte((byte)((offset >> 8) & 0xff));
+			ms.WriteByte((byte)(offset & 0xff));
+			ms.WriteByte((byte)((data.Length >> 8) & 0xff));
+			ms.WriteByte((byte)(data.Length & 0xff));
+			ms.Write(data, 0, data.Length);
+		}
+
+		// EOF
+		ms.Write(new byte[] { (byte)'E', (byte)'O', (byte)'F' }, 0, 3);
+
+		return ms.ToArray();
+	}
+
+	#endregion
+
+	#region Format Detection Tests
+
+	[Fact]
+	public void DetectFormat_IpsPatch_ReturnsIps() {
+		var patch = CreateSimpleIpsPatch(0x10, [0x01, 0x02]);
+
+		var format = PatchUtilities.DetectFormat(patch);
+
+		Assert.Equal(PatchFormat.Ips, format);
+	}
+
+	[Fact]
+	public void DetectFormat_BpsPatch_ReturnsBps() {
+		var patch = new byte[] { (byte)'B', (byte)'P', (byte)'S', (byte)'1', 0, 0, 0, 0 };
+
+		var format = PatchUtilities.DetectFormat(patch);
+
+		Assert.Equal(PatchFormat.Bps, format);
+	}
+
+	[Fact]
+	public void DetectFormat_UpsPatch_ReturnsUps() {
+		var patch = new byte[] { (byte)'U', (byte)'P', (byte)'S', (byte)'1', 0, 0, 0, 0 };
+
+		var format = PatchUtilities.DetectFormat(patch);
+
+		Assert.Equal(PatchFormat.Ups, format);
+	}
+
+	[Fact]
+	public void DetectFormat_UnknownHeader_ReturnsUnknown() {
+		var patch = new byte[] { 0x00, 0x01, 0x02, 0x03, 0x04 };
+
+		var format = PatchUtilities.DetectFormat(patch);
+
+		Assert.Equal(PatchFormat.Unknown, format);
+	}
+
+	[Fact]
+	public void DetectFormat_TooSmall_ReturnsUnknown() {
+		var patch = new byte[] { 0x00, 0x01, 0x02 };
+
+		var format = PatchUtilities.DetectFormat(patch);
+
+		Assert.Equal(PatchFormat.Unknown, format);
+	}
+
+	#endregion
+
+	#region Preview Tests
+
+	[Fact]
+	public void PreviewPatch_IpsSingleRecord_ReturnsCorrectPreview() {
+		var source = new byte[32];
+		source[0x10] = 0xaa;
+		source[0x11] = 0xbb;
+
+		var patch = CreateSimpleIpsPatch(0x10, [0x01, 0x02]);
+
+		var preview = PatchUtilities.PreviewPatch(patch, source, "test.ips");
+
+		Assert.Equal(PatchFormat.Ips, preview.Format);
+		Assert.Equal(1, preview.RecordCount);
+		Assert.Equal(2, preview.TotalBytesChanged);
+		Assert.Equal(0x10, preview.MinOffset);
+		Assert.Equal(0x11, preview.MaxOffset);
+		Assert.Single(preview.Changes);
+		Assert.Equal(new byte[] { 0xaa, 0xbb }, preview.Changes[0].OriginalData);
+		Assert.Equal(new byte[] { 0x01, 0x02 }, preview.Changes[0].NewData);
+	}
+
+	[Fact]
+	public void PreviewPatch_IpsMultipleRecords_ReturnsAllChanges() {
+		var source = new byte[64];
+		var patch = CreateMultiRecordIpsPatch(
+			(0x10, new byte[] { 0x01, 0x02 }),
+			(0x20, new byte[] { 0x03, 0x04, 0x05 })
+		);
+
+		var preview = PatchUtilities.PreviewPatch(patch, source, "test.ips");
+
+		Assert.Equal(2, preview.RecordCount);
+		Assert.Equal(5, preview.TotalBytesChanged);
+		Assert.Equal(2, preview.Changes.Count);
+		Assert.Equal(0x10, preview.MinOffset);
+		Assert.Equal(0x22, preview.MaxOffset);
+	}
+
+	[Fact]
+	public void PreviewPatch_IncludesSourceName() {
+		var source = new byte[32];
+		var patch = CreateSimpleIpsPatch(0x10, [0x01]);
+
+		var preview = PatchUtilities.PreviewPatch(patch, source, "my-patch.ips");
+
+		Assert.Equal("my-patch.ips", preview.Changes[0].Source);
+	}
+
+	#endregion
+
+	#region Conflict Detection Tests
+
+	[Fact]
+	public void DetectConflicts_NoOverlap_ReturnsEmptyList() {
+		var source = new byte[64];
+		var patch1 = CreateSimpleIpsPatch(0x10, [0x01, 0x02]);
+		var patch2 = CreateSimpleIpsPatch(0x20, [0x03, 0x04]);
+
+		var patches = new List<(byte[] PatchData, string Name)>
+		{
+			(patch1, "patch1.ips"),
+			(patch2, "patch2.ips")
+		};
+
+		var conflicts = PatchUtilities.DetectConflicts(patches, source);
+
+		Assert.Empty(conflicts);
+	}
+
+	[Fact]
+	public void DetectConflicts_SameOffsetDifferentValues_DetectsConflict() {
+		var source = new byte[64];
+		var patch1 = CreateSimpleIpsPatch(0x10, [0x01]);
+		var patch2 = CreateSimpleIpsPatch(0x10, [0x02]);
+
+		var patches = new List<(byte[] PatchData, string Name)>
+		{
+			(patch1, "patch1.ips"),
+			(patch2, "patch2.ips")
+		};
+
+		var conflicts = PatchUtilities.DetectConflicts(patches, source);
+
+		Assert.Single(conflicts);
+		Assert.Equal(0x10, conflicts[0].Offset);
+		Assert.Equal(1, conflicts[0].Length);
+		Assert.Contains("patch1.ips", conflicts[0].Patches);
+		Assert.Contains("patch2.ips", conflicts[0].Patches);
+	}
+
+	[Fact]
+	public void DetectConflicts_SameOffsetSameValues_NoConflict() {
+		var source = new byte[64];
+		var patch1 = CreateSimpleIpsPatch(0x10, [0x01]);
+		var patch2 = CreateSimpleIpsPatch(0x10, [0x01]); // Same value
+
+		var patches = new List<(byte[] PatchData, string Name)>
+		{
+			(patch1, "patch1.ips"),
+			(patch2, "patch2.ips")
+		};
+
+		var conflicts = PatchUtilities.DetectConflicts(patches, source);
+
+		Assert.Empty(conflicts);
+	}
+
+	[Fact]
+	public void DetectConflicts_OverlappingRanges_DetectsConflict() {
+		var source = new byte[64];
+		var patch1 = CreateSimpleIpsPatch(0x10, [0x01, 0x02, 0x03]);
+		var patch2 = CreateSimpleIpsPatch(0x12, [0x04]);
+
+		var patches = new List<(byte[] PatchData, string Name)>
+		{
+			(patch1, "patch1.ips"),
+			(patch2, "patch2.ips")
+		};
+
+		var conflicts = PatchUtilities.DetectConflicts(patches, source);
+
+		Assert.Single(conflicts);
+		Assert.Equal(0x12, conflicts[0].Offset);
+	}
+
+	#endregion
+
+	#region Multi-Patch Application Tests
+
+	[Fact]
+	public void ApplyMultiplePatches_NonOverlapping_AppliesAll() {
+		var source = new byte[64];
+		var patch1 = CreateSimpleIpsPatch(0x10, [0x01, 0x02]);
+		var patch2 = CreateSimpleIpsPatch(0x20, [0x03, 0x04]);
+
+		var patches = new List<(byte[] PatchData, string Name)>
+		{
+			(patch1, "patch1.ips"),
+			(patch2, "patch2.ips")
+		};
+
+		var result = PatchUtilities.ApplyMultiplePatches(source, patches);
+
+		Assert.True(result.Success);
+		Assert.Empty(result.Errors);
+		Assert.Empty(result.Conflicts);
+		Assert.Equal(0x01, result.PatchedData[0x10]);
+		Assert.Equal(0x02, result.PatchedData[0x11]);
+		Assert.Equal(0x03, result.PatchedData[0x20]);
+		Assert.Equal(0x04, result.PatchedData[0x21]);
+	}
+
+	[Fact]
+	public void ApplyMultiplePatches_ConflictLastWins_AppliesLastValue() {
+		var source = new byte[64];
+		var patch1 = CreateSimpleIpsPatch(0x10, [0x01]);
+		var patch2 = CreateSimpleIpsPatch(0x10, [0x02]);
+
+		var patches = new List<(byte[] PatchData, string Name)>
+		{
+			(patch1, "patch1.ips"),
+			(patch2, "patch2.ips")
+		};
+
+		var result = PatchUtilities.ApplyMultiplePatches(source, patches, false, "last");
+
+		Assert.True(result.Success);
+		Assert.Equal(0x02, result.PatchedData[0x10]); // Second patch wins
+	}
+
+	[Fact]
+	public void ApplyMultiplePatches_ConflictFirstWins_KeepsFirstValue() {
+		var source = new byte[64];
+		var patch1 = CreateSimpleIpsPatch(0x10, [0x01]);
+		var patch2 = CreateSimpleIpsPatch(0x10, [0x02]);
+
+		var patches = new List<(byte[] PatchData, string Name)>
+		{
+			(patch1, "patch1.ips"),
+			(patch2, "patch2.ips")
+		};
+
+		var result = PatchUtilities.ApplyMultiplePatches(source, patches, false, "first");
+
+		Assert.True(result.Success);
+		Assert.Equal(0x01, result.PatchedData[0x10]); // First patch wins
+	}
+
+	[Fact]
+	public void ApplyMultiplePatches_StopOnConflict_StopsAndReturnsConflicts() {
+		var source = new byte[64];
+		var patch1 = CreateSimpleIpsPatch(0x10, [0x01]);
+		var patch2 = CreateSimpleIpsPatch(0x10, [0x02]);
+
+		var patches = new List<(byte[] PatchData, string Name)>
+		{
+			(patch1, "patch1.ips"),
+			(patch2, "patch2.ips")
+		};
+
+		var result = PatchUtilities.ApplyMultiplePatches(source, patches, stopOnConflict: true);
+
+		Assert.False(result.Success);
+		Assert.Single(result.Conflicts);
+		Assert.Single(result.Errors);
+	}
+
+	[Fact]
+	public void ApplyMultiplePatches_RecordsAllChanges() {
+		var source = new byte[64];
+		var patch = CreateMultiRecordIpsPatch(
+			(0x10, new byte[] { 0x01 }),
+			(0x20, new byte[] { 0x02 })
+		);
+
+		var patches = new List<(byte[] PatchData, string Name)>
+		{
+			(patch, "test.ips")
+		};
+
+		var result = PatchUtilities.ApplyMultiplePatches(source, patches);
+
+		Assert.Equal(2, result.Changes.Count);
+	}
+
+	#endregion
+
+	#region Report Generation Tests
+
+	[Fact]
+	public void GeneratePatchReport_IncludesFormatAndCounts() {
+		var source = new byte[64];
+		var patch = CreateMultiRecordIpsPatch(
+			(0x10, new byte[] { 0x01, 0x02 }),
+			(0x20, new byte[] { 0x03 })
+		);
+
+		var preview = PatchUtilities.PreviewPatch(patch, source);
+		var report = PatchUtilities.GeneratePatchReport(preview);
+
+		Assert.Contains("Patch Format: Ips", report);
+		Assert.Contains("Records: 2", report);
+		Assert.Contains("Total Bytes Changed: 3", report);
+	}
+
+	[Fact]
+	public void GenerateConflictReport_NoConflicts_ReturnsMessage() {
+		var conflicts = new List<PatchConflict>();
+
+		var report = PatchUtilities.GenerateConflictReport(conflicts);
+
+		Assert.Equal("No conflicts detected.", report);
+	}
+
+	[Fact]
+	public void GenerateConflictReport_WithConflicts_ListsDetails() {
+		var conflicts = new List<PatchConflict>
+		{
+			new(0x10, 2, ["patch1.ips", "patch2.ips"], [[0x01, 0x02], [0x03, 0x04]])
+		};
+
+		var report = PatchUtilities.GenerateConflictReport(conflicts);
+
+		Assert.Contains("$000010", report);
+		Assert.Contains("patch1.ips", report);
+		Assert.Contains("patch2.ips", report);
+	}
+
+	#endregion
+
+	#region Undo Patch Tests
+
+	[Fact]
+	public void CreateUndoPatch_ReversesChanges() {
+		var source = new byte[64];
+		source[0x10] = 0xaa;
+		source[0x11] = 0xbb;
+
+		var patch = CreateSimpleIpsPatch(0x10, [0x01, 0x02]);
+		var undoPatch = PatchUtilities.CreateUndoPatch(patch, source);
+
+		// Apply original patch
+		var patched = IpsPatch.ApplyPatch(source, patch);
+		Assert.Equal(0x01, patched[0x10]);
+		Assert.Equal(0x02, patched[0x11]);
+
+		// Apply undo patch
+		var restored = IpsPatch.ApplyPatch(patched, undoPatch);
+		Assert.Equal(0xaa, restored[0x10]);
+		Assert.Equal(0xbb, restored[0x11]);
+	}
+
+	#endregion
+
+	#region Merge Patches Tests
+
+	[Fact]
+	public void MergePatches_NonOverlapping_CreatesCombinedPatch() {
+		var source = new byte[64];
+		var patch1 = CreateSimpleIpsPatch(0x10, [0x01]);
+		var patch2 = CreateSimpleIpsPatch(0x20, [0x02]);
+
+		var patches = new List<(byte[] PatchData, string Name)>
+		{
+			(patch1, "patch1.ips"),
+			(patch2, "patch2.ips")
+		};
+
+		var merged = PatchUtilities.MergePatches(source, patches);
+
+		// Apply merged patch and verify
+		var result = IpsPatch.ApplyPatch(source, merged);
+		Assert.Equal(0x01, result[0x10]);
+		Assert.Equal(0x02, result[0x20]);
+	}
+
+	#endregion
+}
+
+/// <summary>
+/// Tests for IPS patch header utilities.
+/// </summary>
+public class IpsPatchHeaderTests {
+	private static byte[] CreateMinimalIpsPatch() {
+		return new byte[] { (byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H', (byte)'E', (byte)'O', (byte)'F' };
+	}
+
+	#region Validation Tests
+
+	[Fact]
+	public void Validate_ValidPatch_ReturnsTrue() {
+		var patch = CreateMinimalIpsPatch();
+
+		var (isValid, error) = IpsPatchHeader.Validate(patch);
+
+		Assert.True(isValid);
+		Assert.Null(error);
+	}
+
+	[Fact]
+	public void Validate_InvalidHeader_ReturnsFalse() {
+		var patch = new byte[] { (byte)'X', (byte)'A', (byte)'T', (byte)'C', (byte)'H', (byte)'E', (byte)'O', (byte)'F' };
+
+		var (isValid, error) = IpsPatchHeader.Validate(patch);
+
+		Assert.False(isValid);
+		Assert.Contains("Invalid IPS header", error);
+	}
+
+	[Fact]
+	public void Validate_MissingEof_ReturnsFalse() {
+		var patch = new byte[] { (byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H', 0x00, 0x00, 0x10 };
+
+		var (isValid, error) = IpsPatchHeader.Validate(patch);
+
+		Assert.False(isValid);
+		Assert.Contains("Missing EOF", error);
+	}
+
+	[Fact]
+	public void Validate_TooSmall_ReturnsFalse() {
+		var patch = new byte[] { (byte)'P', (byte)'A', (byte)'T' };
+
+		var (isValid, error) = IpsPatchHeader.Validate(patch);
+
+		Assert.False(isValid);
+		Assert.Contains("too small", error);
+	}
+
+	#endregion
+
+	#region Truncate Extension Tests
+
+	[Fact]
+	public void HasTruncateExtension_NormalPatch_ReturnsFalse() {
+		var patch = CreateMinimalIpsPatch();
+
+		Assert.False(IpsPatchHeader.HasTruncateExtension(patch));
+	}
+
+	[Fact]
+	public void HasTruncateExtension_WithExtension_ReturnsTrue() {
+		var patch = new byte[]
+		{
+			(byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H',
+			(byte)'E', (byte)'O', (byte)'F',
+			0x00, 0x10, 0x00  // Truncate to $1000
+		};
+
+		Assert.True(IpsPatchHeader.HasTruncateExtension(patch));
+	}
+
+	[Fact]
+	public void GetTruncateOffset_NoExtension_ReturnsNull() {
+		var patch = CreateMinimalIpsPatch();
+
+		Assert.Null(IpsPatchHeader.GetTruncateOffset(patch));
+	}
+
+	[Fact]
+	public void GetTruncateOffset_WithExtension_ReturnsOffset() {
+		var patch = new byte[]
+		{
+			(byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H',
+			(byte)'E', (byte)'O', (byte)'F',
+			0x00, 0x10, 0x00  // Truncate to $1000
+		};
+
+		var offset = IpsPatchHeader.GetTruncateOffset(patch);
+
+		Assert.Equal(0x1000, offset);
+	}
+
+	[Fact]
+	public void AddTruncateExtension_AddsOffset() {
+		var patch = CreateMinimalIpsPatch();
+
+		var extended = IpsPatchHeader.AddTruncateExtension(patch, 0x2000);
+
+		Assert.True(IpsPatchHeader.HasTruncateExtension(extended));
+		Assert.Equal(0x2000, IpsPatchHeader.GetTruncateOffset(extended));
+	}
+
+	[Fact]
+	public void RemoveTruncateExtension_RemovesOffset() {
+		var patch = new byte[]
+		{
+			(byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H',
+			(byte)'E', (byte)'O', (byte)'F',
+			0x00, 0x10, 0x00
+		};
+
+		var cleaned = IpsPatchHeader.RemoveTruncateExtension(patch);
+
+		Assert.False(IpsPatchHeader.HasTruncateExtension(cleaned));
+		Assert.Equal(8, cleaned.Length);
+	}
+
+	[Fact]
+	public void AddTruncateExtension_ReplacesExisting() {
+		var patch = new byte[]
+		{
+			(byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H',
+			(byte)'E', (byte)'O', (byte)'F',
+			0x00, 0x10, 0x00  // Old truncate
+		};
+
+		var extended = IpsPatchHeader.AddTruncateExtension(patch, 0x3000);
+
+		Assert.Equal(0x3000, IpsPatchHeader.GetTruncateOffset(extended));
+	}
+
+	#endregion
+}
+
+/// <summary>
+/// Tests for patch record types.
+/// </summary>
+public class PatchRecordTypesTests {
+	[Fact]
+	public void PatchChange_StoresAllProperties() {
+		var change = new PatchChange(0x10, [0x01], [0x02], "test.ips");
+
+		Assert.Equal(0x10, change.Offset);
+		Assert.Equal(new byte[] { 0x01 }, change.OriginalData);
+		Assert.Equal(new byte[] { 0x02 }, change.NewData);
+		Assert.Equal("test.ips", change.Source);
+	}
+
+	[Fact]
+	public void PatchConflict_StoresAllProperties() {
+		var conflict = new PatchConflict(
+			0x10,
+			2,
+			["patch1", "patch2"],
+			[[0x01], [0x02]]
+		);
+
+		Assert.Equal(0x10, conflict.Offset);
+		Assert.Equal(2, conflict.Length);
+		Assert.Equal(2, conflict.Patches.Count);
+		Assert.Equal(2, conflict.Values.Count);
+	}
+
+	[Fact]
+	public void MultiPatchResult_StoresAllProperties() {
+		var result = new MultiPatchResult(
+			true,
+			[0x00],
+			[],
+			[],
+			[]
+		);
+
+		Assert.True(result.Success);
+		Assert.Single(result.PatchedData);
+		Assert.Empty(result.Changes);
+		Assert.Empty(result.Conflicts);
+		Assert.Empty(result.Errors);
+	}
+
+	[Fact]
+	public void PatchPreview_StoresAllProperties() {
+		var preview = new PatchPreview(
+			PatchFormat.Ips,
+			5,
+			100,
+			[],
+			0x10,
+			0x50
+		);
+
+		Assert.Equal(PatchFormat.Ips, preview.Format);
+		Assert.Equal(5, preview.RecordCount);
+		Assert.Equal(100, preview.TotalBytesChanged);
+		Assert.Equal(0x10, preview.MinOffset);
+		Assert.Equal(0x50, preview.MaxOffset);
+	}
+
+	[Fact]
+	public void PatchFormat_HasExpectedValues() {
+		Assert.Equal(0, (int)PatchFormat.Unknown);
+		Assert.Equal(1, (int)PatchFormat.Ips);
+		Assert.Equal(2, (int)PatchFormat.Bps);
+		Assert.Equal(3, (int)PatchFormat.Ups);
+	}
+}
+

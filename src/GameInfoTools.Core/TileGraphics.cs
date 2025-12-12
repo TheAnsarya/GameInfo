@@ -507,7 +507,7 @@ public static class Palette {
 	/// </summary>
 	public static (byte R, byte G, byte B)[] ReadPalette(byte[] data, int offset, int colorCount, PaletteFormat format) {
 		return format switch {
-			PaletteFormat.Snes or PaletteFormat.Gba or PaletteFormat.Cgb or PaletteFormat.Bgr15 => 
+			PaletteFormat.Snes or PaletteFormat.Gba or PaletteFormat.Cgb or PaletteFormat.Bgr15 =>
 				ReadSnesPalette(data, offset, colorCount),
 			PaletteFormat.Genesis => ReadGenesisPalette(data, offset, colorCount),
 			PaletteFormat.Nes => ReadNesPalette(data, offset, colorCount),
