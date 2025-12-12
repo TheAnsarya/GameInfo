@@ -425,3 +425,610 @@ public class CrossReferenceBuilder {
 		return opcode is 0xad or 0xae or 0xac or 0xbd or 0xbe or 0xbc or 0xb9;
 	}
 }
+
+/// <summary>
+/// Call graph analysis and visualization.
+/// </summary>
+public class CallGraphAnalyzer {
+	private readonly CrossReferenceDb _db;
+
+	public CallGraphAnalyzer(CrossReferenceDb db) {
+		_db = db;
+	}
+
+	/// <summary>
+	/// Node in the call graph.
+	/// </summary>
+	public record CallGraphNode(int Address, string? Label, int InDegree, int OutDegree, bool IsEntryPoint, bool IsLeaf);
+
+	/// <summary>
+	/// Edge in the call graph.
+	/// </summary>
+	public record CallGraphEdge(int From, int To, CrossReferenceDb.RefType Type, int Weight);
+
+	/// <summary>
+	/// Build call graph from cross-references.
+	/// </summary>
+	public (List<CallGraphNode> Nodes, List<CallGraphEdge> Edges) BuildCallGraph() {
+		var nodes = new Dictionary<int, CallGraphNode>();
+		var edges = new List<CallGraphEdge>();
+		var edgeCounts = new Dictionary<(int, int), int>();
+
+		// First pass: collect all call/jump edges
+		var subroutines = _db.FindSubroutines().ToHashSet();
+		var entryPoints = _db.FindEntryPoints().ToHashSet();
+
+		foreach (var target in subroutines.Union(entryPoints)) {
+			var refsTo = _db.GetRefsTo(target).Where(r => r.Type is CrossReferenceDb.RefType.Call or CrossReferenceDb.RefType.Jump);
+			var refsFrom = _db.GetRefsFrom(target).Where(r => r.Type is CrossReferenceDb.RefType.Call or CrossReferenceDb.RefType.Jump);
+
+			int inDegree = refsTo.Count();
+			int outDegree = refsFrom.Count();
+
+			nodes[target] = new CallGraphNode(
+				target,
+				_db.GetLabel(target),
+				inDegree,
+				outDegree,
+				entryPoints.Contains(target),
+				outDegree == 0
+			);
+
+			// Build edges
+			foreach (var r in refsTo) {
+				var key = (r.SourceAddress, target);
+				if (!edgeCounts.TryGetValue(key, out int count)) {
+					count = 0;
+				}
+
+				edgeCounts[key] = count + 1;
+			}
+		}
+
+		// Convert edge counts to edges
+		foreach (var kvp in edgeCounts) {
+			var (from, to) = kvp.Key;
+			var refType = _db.GetRefsTo(to)
+				.FirstOrDefault(r => r.SourceAddress == from)?.Type ?? CrossReferenceDb.RefType.Call;
+			edges.Add(new CallGraphEdge(from, to, refType, kvp.Value));
+		}
+
+		return (nodes.Values.ToList(), edges);
+	}
+
+	/// <summary>
+	/// Find all paths from source to destination.
+	/// </summary>
+	public List<List<int>> FindPaths(int source, int destination, int maxDepth = 10) {
+		var paths = new List<List<int>>();
+		var currentPath = new List<int> { source };
+		var visited = new HashSet<int> { source };
+
+		FindPathsDfs(source, destination, currentPath, visited, paths, maxDepth);
+
+		return paths;
+	}
+
+	private void FindPathsDfs(int current, int destination, List<int> path, HashSet<int> visited,
+		List<List<int>> paths, int maxDepth) {
+		if (path.Count > maxDepth) {
+			return;
+		}
+
+		if (current == destination && path.Count > 1) {
+			paths.Add([.. path]);
+			return;
+		}
+
+		foreach (var xref in _db.GetRefsFrom(current)) {
+			if (xref.Type is not (CrossReferenceDb.RefType.Call or CrossReferenceDb.RefType.Jump)) {
+				continue;
+			}
+
+			int next = xref.TargetAddress;
+			if (visited.Contains(next)) {
+				continue;
+			}
+
+			visited.Add(next);
+			path.Add(next);
+			FindPathsDfs(next, destination, path, visited, paths, maxDepth);
+			path.RemoveAt(path.Count - 1);
+			visited.Remove(next);
+		}
+	}
+
+	/// <summary>
+	/// Export call graph to DOT format for Graphviz.
+	/// </summary>
+	public string ExportToDot(string graphName = "CallGraph") {
+		var (nodes, edges) = BuildCallGraph();
+		var sb = new StringBuilder();
+
+		sb.AppendLine($"digraph {graphName} {{");
+		sb.AppendLine("  rankdir=TB;");
+		sb.AppendLine("  node [shape=box, fontname=\"Consolas\"];");
+		sb.AppendLine();
+
+		// Entry points with special style
+		sb.AppendLine("  // Entry Points");
+		foreach (var node in nodes.Where(n => n.IsEntryPoint)) {
+			string label = node.Label ?? $"${node.Address:x4}";
+			sb.AppendLine($"  \"${node.Address:x4}\" [label=\"{label}\", style=bold, color=green];");
+		}
+
+		// Leaf nodes
+		sb.AppendLine();
+		sb.AppendLine("  // Leaf Functions");
+		foreach (var node in nodes.Where(n => n.IsLeaf && !n.IsEntryPoint)) {
+			string label = node.Label ?? $"${node.Address:x4}";
+			sb.AppendLine($"  \"${node.Address:x4}\" [label=\"{label}\", style=filled, fillcolor=lightgray];");
+		}
+
+		// Regular nodes
+		sb.AppendLine();
+		sb.AppendLine("  // Regular Functions");
+		foreach (var node in nodes.Where(n => !n.IsEntryPoint && !n.IsLeaf)) {
+			string label = node.Label ?? $"${node.Address:x4}";
+			sb.AppendLine($"  \"${node.Address:x4}\" [label=\"{label}\"];");
+		}
+
+		// Edges
+		sb.AppendLine();
+		sb.AppendLine("  // Edges");
+		foreach (var edge in edges) {
+			string style = edge.Type == CrossReferenceDb.RefType.Jump ? "dashed" : "solid";
+			string color = edge.Type == CrossReferenceDb.RefType.Jump ? "blue" : "black";
+			sb.AppendLine($"  \"${edge.From:x4}\" -> \"${edge.To:x4}\" [style={style}, color={color}];");
+		}
+
+		sb.AppendLine("}");
+		return sb.ToString();
+	}
+
+	/// <summary>
+	/// Get statistics about the call graph.
+	/// </summary>
+	public CallGraphStats GetStatistics() {
+		var (nodes, edges) = BuildCallGraph();
+
+		return new CallGraphStats {
+			TotalNodes = nodes.Count,
+			TotalEdges = edges.Count,
+			EntryPoints = nodes.Count(n => n.IsEntryPoint),
+			LeafFunctions = nodes.Count(n => n.IsLeaf),
+			MaxInDegree = nodes.Count > 0 ? nodes.Max(n => n.InDegree) : 0,
+			MaxOutDegree = nodes.Count > 0 ? nodes.Max(n => n.OutDegree) : 0,
+			AverageInDegree = nodes.Count > 0 ? nodes.Average(n => n.InDegree) : 0,
+			AverageOutDegree = nodes.Count > 0 ? nodes.Average(n => n.OutDegree) : 0,
+			CallEdges = edges.Count(e => e.Type == CrossReferenceDb.RefType.Call),
+			JumpEdges = edges.Count(e => e.Type == CrossReferenceDb.RefType.Jump)
+		};
+	}
+
+	/// <summary>
+	/// Statistics about the call graph.
+	/// </summary>
+	public record CallGraphStats {
+		public int TotalNodes { get; init; }
+		public int TotalEdges { get; init; }
+		public int EntryPoints { get; init; }
+		public int LeafFunctions { get; init; }
+		public int MaxInDegree { get; init; }
+		public int MaxOutDegree { get; init; }
+		public double AverageInDegree { get; init; }
+		public double AverageOutDegree { get; init; }
+		public int CallEdges { get; init; }
+		public int JumpEdges { get; init; }
+	}
+}
+
+/// <summary>
+/// Jump table detection and analysis.
+/// </summary>
+public class JumpTableDetector {
+	/// <summary>
+	/// Detected jump table.
+	/// </summary>
+	public record JumpTable(int Address, int EntryCount, int EntrySize, List<int> Targets, JumpTableType Type);
+
+	/// <summary>
+	/// Type of jump table.
+	/// </summary>
+	public enum JumpTableType {
+		Absolute,       // Direct 16-bit addresses
+		Relative,       // 8-bit offsets from base
+		Split,          // Low/high byte tables
+		Indexed,        // Indexed with multiplier
+	}
+
+	/// <summary>
+	/// Detect jump tables in ROM data.
+	/// </summary>
+	public List<JumpTable> DetectJumpTables(byte[] data, int startOffset, int length, int cpuBase = 0x8000) {
+		var tables = new List<JumpTable>();
+		int end = Math.Min(startOffset + length, data.Length);
+
+		// Look for patterns of consecutive addresses
+		for (int i = startOffset; i < end - 4; i++) {
+			// Try absolute 16-bit address table
+			var absTable = TryDetectAbsoluteTable(data, i, end, cpuBase);
+			if (absTable != null && absTable.EntryCount >= 3) {
+				tables.Add(absTable);
+				i += absTable.EntryCount * 2 - 1; // Skip detected table
+				continue;
+			}
+
+			// Try split low/high byte table
+			var splitTable = TryDetectSplitTable(data, i, end, cpuBase);
+			if (splitTable != null && splitTable.EntryCount >= 3) {
+				tables.Add(splitTable);
+				i += splitTable.EntryCount - 1;
+			}
+		}
+
+		return tables;
+	}
+
+	private JumpTable? TryDetectAbsoluteTable(byte[] data, int offset, int end, int cpuBase) {
+		var targets = new List<int>();
+		int i = offset;
+
+		while (i + 1 < end && targets.Count < 64) {
+			int addr = data[i] | (data[i + 1] << 8);
+
+			// Check if it looks like a valid code address
+			if (addr < cpuBase || addr > cpuBase + 0x7fff) {
+				break;
+			}
+
+			// Check for reasonable address distribution
+			if (targets.Count > 0) {
+				int diff = Math.Abs(addr - targets[^1]);
+				if (diff > 0x2000) {
+					// Addresses too spread out, probably not a table
+					break;
+				}
+			}
+
+			targets.Add(addr);
+			i += 2;
+		}
+
+		if (targets.Count < 3) {
+			return null;
+		}
+
+		return new JumpTable(offset, targets.Count, 2, targets, JumpTableType.Absolute);
+	}
+
+	private JumpTable? TryDetectSplitTable(byte[] data, int offset, int end, int cpuBase) {
+		// Look for low byte table followed by high byte table
+		// Common pattern: consecutive low bytes, then consecutive high bytes
+
+		var lowBytes = new List<byte>();
+		var highBytes = new List<byte>();
+
+		// Collect potential low bytes
+		int i = offset;
+		while (i < end && lowBytes.Count < 32) {
+			byte b = data[i];
+			if (lowBytes.Count > 0 && Math.Abs(b - lowBytes[^1]) > 0x40) {
+				break;
+			}
+
+			lowBytes.Add(b);
+			i++;
+		}
+
+		if (lowBytes.Count < 3) {
+			return null;
+		}
+
+		// Check for matching high bytes after low bytes
+		int highStart = offset + lowBytes.Count;
+		if (highStart >= end) {
+			return null;
+		}
+
+		while (i < end && highBytes.Count < lowBytes.Count) {
+			byte b = data[i];
+			// High bytes should be in code range
+			if (b < (cpuBase >> 8) || b > ((cpuBase + 0x7fff) >> 8)) {
+				break;
+			}
+
+			highBytes.Add(b);
+			i++;
+		}
+
+		if (highBytes.Count != lowBytes.Count) {
+			return null;
+		}
+
+		// Reconstruct addresses
+		var targets = new List<int>();
+		for (int j = 0; j < lowBytes.Count; j++) {
+			targets.Add(lowBytes[j] | (highBytes[j] << 8));
+		}
+
+		return new JumpTable(offset, targets.Count, 1, targets, JumpTableType.Split);
+	}
+
+	/// <summary>
+	/// Find JMP indirect instructions that might use jump tables.
+	/// </summary>
+	public List<(int InstructionAddr, int TableAddr)> FindJumpIndirectUsers(byte[] data, int startOffset, int length, int cpuBase = 0x8000) {
+		var results = new List<(int, int)>();
+		int end = Math.Min(startOffset + length, data.Length);
+
+		for (int i = startOffset; i < end - 2; i++) {
+			// JMP ($nnnn) = 0x6C
+			if (data[i] == 0x6c) {
+				int tableAddr = data[i + 1] | (data[i + 2] << 8);
+				results.Add((cpuBase + (i - startOffset), tableAddr));
+			}
+		}
+
+		return results;
+	}
+}
+
+/// <summary>
+/// Unused code detection.
+/// </summary>
+public class UnusedCodeDetector {
+	private readonly CrossReferenceDb _db;
+
+	public UnusedCodeDetector(CrossReferenceDb db) {
+		_db = db;
+	}
+
+	/// <summary>
+	/// Code region that appears unused.
+	/// </summary>
+	public record UnusedRegion(int StartAddress, int EndAddress, int Size, UnusedReason Reason);
+
+	/// <summary>
+	/// Reason code appears unused.
+	/// </summary>
+	public enum UnusedReason {
+		NoReferences,       // No references to this address
+		DeadCode,           // Code after unconditional jump/return
+		UnreachableCode,    // Not reachable from any entry point
+	}
+
+	/// <summary>
+	/// Find functions that are never called.
+	/// </summary>
+	public List<int> FindUnusedFunctions() {
+		// Get all functions (addresses that have outgoing calls but no incoming calls)
+		var allTargets = new HashSet<int>();
+		var allSources = new HashSet<int>();
+
+		foreach (var target in GetAllReferencedTargets()) {
+			var refsTo = _db.GetRefsTo(target);
+			if (refsTo.Any(r => r.Type == CrossReferenceDb.RefType.Call)) {
+				allTargets.Add(target);
+			}
+		}
+
+		foreach (var source in GetAllReferenceSources()) {
+			var refsFrom = _db.GetRefsFrom(source);
+			if (refsFrom.Any(r => r.Type == CrossReferenceDb.RefType.Call)) {
+				allSources.Add(source);
+			}
+		}
+
+		// Functions that appear to have code but are never called
+		return allSources.Except(allTargets).OrderBy(a => a).ToList();
+	}
+
+	/// <summary>
+	/// Find potential dead code after unconditional jumps.
+	/// </summary>
+	public List<UnusedRegion> FindDeadCodeRegions(byte[] data, int startOffset, int length, int cpuBase = 0x8000) {
+		var regions = new List<UnusedRegion>();
+		int end = Math.Min(startOffset + length, data.Length);
+
+		for (int i = startOffset; i < end; i++) {
+			byte opcode = data[i];
+
+			// Check for unconditional control transfer
+			bool isUnconditional = opcode switch {
+				0x4c => true,  // JMP absolute
+				0x6c => true,  // JMP indirect
+				0x60 => true,  // RTS
+				0x40 => true,  // RTI
+				_ => false
+			};
+
+			if (!isUnconditional) {
+				continue;
+			}
+
+			int instrLen = opcode switch {
+				0x4c => 3,
+				0x6c => 3,
+				0x60 => 1,
+				0x40 => 1,
+				_ => 1
+			};
+
+			int nextAddr = cpuBase + (i - startOffset) + instrLen;
+
+			// Check if there are any references to the next address
+			if (!_db.GetRefsTo(nextAddr).Any()) {
+				// This could be dead code - scan until we find referenced code
+				int deadStart = nextAddr;
+				int scanPos = i + instrLen;
+
+				while (scanPos < end) {
+					int scanAddr = cpuBase + (scanPos - startOffset);
+					if (_db.GetRefsTo(scanAddr).Any()) {
+						break;
+					}
+
+					// Check for another entry point marker (label)
+					if (_db.GetLabel(scanAddr) != null) {
+						break;
+					}
+
+					scanPos++;
+				}
+
+				int deadEnd = cpuBase + (scanPos - startOffset);
+				if (deadEnd > deadStart + 2) {
+					regions.Add(new UnusedRegion(deadStart, deadEnd, deadEnd - deadStart, UnusedReason.DeadCode));
+				}
+			}
+
+			// Skip the instruction we just processed
+			i += instrLen - 1;
+		}
+
+		return regions;
+	}
+
+	/// <summary>
+	/// Calculate reference counts for all addresses.
+	/// </summary>
+	public Dictionary<int, int> GetReferenceCounts() {
+		var counts = new Dictionary<int, int>();
+
+		foreach (var target in GetAllReferencedTargets()) {
+			counts[target] = _db.GetRefsTo(target).Count();
+		}
+
+		return counts;
+	}
+
+	/// <summary>
+	/// Get most-referenced addresses (hot spots).
+	/// </summary>
+	public List<(int Address, int Count, string? Label)> GetHotSpots(int topN = 20) {
+		var counts = GetReferenceCounts();
+
+		return counts
+			.OrderByDescending(kvp => kvp.Value)
+			.Take(topN)
+			.Select(kvp => (kvp.Key, kvp.Value, _db.GetLabel(kvp.Key)))
+			.ToList();
+	}
+
+	private IEnumerable<int> GetAllReferencedTargets() {
+		// This is a bit of a hack since we don't have direct access to _refsTo keys
+		// We'll use the public methods to infer them
+		var targets = new HashSet<int>();
+		for (int addr = 0; addr < 0x10000; addr++) {
+			if (_db.GetRefsTo(addr).Any()) {
+				targets.Add(addr);
+			}
+		}
+
+		return targets;
+	}
+
+	private IEnumerable<int> GetAllReferenceSources() {
+		var sources = new HashSet<int>();
+		for (int addr = 0; addr < 0x10000; addr++) {
+			if (_db.GetRefsFrom(addr).Any()) {
+				sources.Add(addr);
+			}
+		}
+
+		return sources;
+	}
+}
+
+/// <summary>
+/// Data reference tracking and analysis.
+/// </summary>
+public class DataReferenceTracker {
+	private readonly CrossReferenceDb _db;
+
+	public DataReferenceTracker(CrossReferenceDb db) {
+		_db = db;
+	}
+
+	/// <summary>
+	/// Data access pattern.
+	/// </summary>
+	public record DataAccess(int Address, bool IsRead, bool IsWrite, int AccessCount, List<int> Accessors);
+
+	/// <summary>
+	/// Analyze data access patterns.
+	/// </summary>
+	public List<DataAccess> AnalyzeDataAccess() {
+		var dataAddrs = new Dictionary<int, (bool Read, bool Write, List<int> Readers, List<int> Writers)>();
+
+		for (int addr = 0; addr < 0x10000; addr++) {
+			var refs = _db.GetRefsTo(addr).ToList();
+			if (refs.Count == 0) {
+				continue;
+			}
+
+			var reads = refs.Where(r => r.Type == CrossReferenceDb.RefType.DataRead).Select(r => r.SourceAddress).ToList();
+			var writes = refs.Where(r => r.Type == CrossReferenceDb.RefType.DataWrite).Select(r => r.SourceAddress).ToList();
+
+			if (reads.Count > 0 || writes.Count > 0) {
+				dataAddrs[addr] = (reads.Count > 0, writes.Count > 0, reads, writes);
+			}
+		}
+
+		return dataAddrs.Select(kvp => new DataAccess(
+			kvp.Key,
+			kvp.Value.Read,
+			kvp.Value.Write,
+			kvp.Value.Readers.Count + kvp.Value.Writers.Count,
+			kvp.Value.Readers.Concat(kvp.Value.Writers).Distinct().ToList()
+		)).OrderBy(d => d.Address).ToList();
+	}
+
+	/// <summary>
+	/// Find read-only data (no writes).
+	/// </summary>
+	public List<int> FindReadOnlyData() {
+		var access = AnalyzeDataAccess();
+		return access.Where(d => d.IsRead && !d.IsWrite).Select(d => d.Address).ToList();
+	}
+
+	/// <summary>
+	/// Find write-only data (no reads).
+	/// </summary>
+	public List<int> FindWriteOnlyData() {
+		var access = AnalyzeDataAccess();
+		return access.Where(d => d.IsWrite && !d.IsRead).Select(d => d.Address).ToList();
+	}
+
+	/// <summary>
+	/// Categorize addresses by type.
+	/// </summary>
+	public Dictionary<string, List<int>> CategorizeAddresses() {
+		var categories = new Dictionary<string, List<int>> {
+			["RAM"] = [],
+			["PPU"] = [],
+			["APU"] = [],
+			["PRG ROM"] = [],
+			["SRAM"] = [],
+			["Other"] = []
+		};
+
+		var access = AnalyzeDataAccess();
+		foreach (var d in access) {
+			string category = d.Address switch {
+				< 0x0800 => "RAM",
+				< 0x2000 => "RAM",  // Mirrors
+				< 0x4000 => "PPU",
+				< 0x4020 => "APU",
+				>= 0x6000 and < 0x8000 => "SRAM",
+				>= 0x8000 => "PRG ROM",
+				_ => "Other"
+			};
+
+			categories[category].Add(d.Address);
+		}
+
+		return categories;
+	}
+}

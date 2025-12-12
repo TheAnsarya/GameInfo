@@ -377,3 +377,373 @@ public class BankManagerAdvancedTests {
 
 	#endregion
 }
+
+/// <summary>
+/// Tests for new BankManager features.
+/// </summary>
+public class BankManagerEnhancedTests {
+	private static byte[] CreateNesRom(int prgBanks, int chrBanks) {
+		int prgSize = prgBanks * 0x4000;
+		int chrSize = chrBanks * 0x2000;
+		var rom = new byte[16 + prgSize + chrSize];
+
+		rom[0] = (byte)'N';
+		rom[1] = (byte)'E';
+		rom[2] = (byte)'S';
+		rom[3] = 0x1a;
+		rom[4] = (byte)prgBanks;
+		rom[5] = (byte)chrBanks;
+
+		return rom;
+	}
+
+	[Fact]
+	public void FindAllFreeSpace_MultipleFreeRegions_FindsAll() {
+		var rom = CreateNesRom(1, 0);
+		var manager = new BankManager(rom);
+
+		// Create gaps in the bank (bank starts at offset 16)
+		rom[16] = 0x00;  // Used
+		// 17-31 are 0x00 (not free with fillByte=0xFF)
+		// Fill with 0xFF to create free space
+		for (int i = 20; i < 40; i++) {
+			rom[i] = 0xff;
+		}
+
+		rom[40] = 0x00;  // Used
+
+		for (int i = 50; i < 80; i++) {
+			rom[i] = 0xff;
+		}
+
+		var regions = manager.FindAllFreeSpace(0, 0xff, 5);
+
+		Assert.NotEmpty(regions);
+	}
+
+	[Fact]
+	public void FindAllFreeSpaceGlobal_AcrossBanks_FindsAll() {
+		var rom = CreateNesRom(2, 0);
+		var manager = new BankManager(rom);
+
+		// Fill some free space in each bank
+		for (int i = 0; i < 100; i++) {
+			rom[16 + i] = 0xff;  // Bank 0
+			rom[16 + 0x4000 + i] = 0xff;  // Bank 1
+		}
+
+		var regions = manager.FindAllFreeSpaceGlobal(0xff, 10);
+
+		Assert.NotEmpty(regions);
+	}
+
+	[Fact]
+	public void GetBankStatistics_ReturnsValidStats() {
+		var rom = CreateNesRom(1, 0);
+		var manager = new BankManager(rom);
+
+		// Add some used bytes
+		for (int i = 16; i < 116; i++) {
+			rom[i] = 0x00;
+		}
+
+		// Add free bytes
+		for (int i = 116; i < 216; i++) {
+			rom[i] = 0xff;
+		}
+
+		var stats = manager.GetBankStatistics(0, 0xff);
+
+		Assert.Equal(0, stats.BankNumber);
+		Assert.True(stats.TotalSize > 0);
+		Assert.True(stats.UsedBytes > 0);
+		Assert.True(stats.Entropy > 0);
+	}
+
+	[Fact]
+	public void GetRomStatistics_ReturnsValidStats() {
+		var rom = CreateNesRom(2, 1);
+		var manager = new BankManager(rom);
+
+		var stats = manager.GetRomStatistics();
+
+		Assert.Equal(SystemType.Nes, stats.System);
+		Assert.Equal(3, stats.TotalBanks);
+		Assert.Equal(2, stats.PrgBankCount);
+		Assert.Equal(1, stats.ChrBankCount);
+	}
+
+	[Fact]
+	public void GenerateVisualLayout_ProducesOutput() {
+		var rom = CreateNesRom(1, 0);
+		var manager = new BankManager(rom);
+
+		var layout = manager.GenerateVisualLayout(32);
+
+		Assert.Contains("Bank", layout);
+		Assert.Contains("PRG", layout);
+	}
+
+	[Fact]
+	public void SwapBanks_SwapsContent() {
+		var rom = CreateNesRom(2, 0);
+		var manager = new BankManager(rom);
+
+		// Fill banks with distinct data
+		for (int i = 0; i < 0x4000; i++) {
+			rom[16 + i] = 0x11;  // Bank 0
+			rom[16 + 0x4000 + i] = 0x22;  // Bank 1
+		}
+
+		manager.SwapBanks(0, 1);
+
+		var bank0 = manager.ExtractBank(0);
+		var bank1 = manager.ExtractBank(1);
+
+		Assert.Equal(0x22, bank0[0]);
+		Assert.Equal(0x11, bank1[0]);
+	}
+
+	[Fact]
+	public void CopyBank_CopiesContent() {
+		var rom = CreateNesRom(2, 0);
+		var manager = new BankManager(rom);
+
+		for (int i = 0; i < 0x4000; i++) {
+			rom[16 + i] = 0xAB;
+		}
+
+		manager.CopyBank(0, 1);
+
+		var bank1 = manager.ExtractBank(1);
+		Assert.Equal(0xAB, bank1[0]);
+	}
+
+	[Fact]
+	public void FillRegion_FillsCorrectly() {
+		var rom = CreateNesRom(1, 0);
+		var manager = new BankManager(rom);
+
+		manager.FillRegion(0, 0, 100, 0xAA);
+
+		var bank = manager.ExtractBank(0);
+		for (int i = 0; i < 100; i++) {
+			Assert.Equal(0xAA, bank[i]);
+		}
+	}
+
+	[Fact]
+	public void WriteToBank_WritesCorrectly() {
+		var rom = CreateNesRom(1, 0);
+		var manager = new BankManager(rom);
+
+		var data = new byte[] { 0x01, 0x02, 0x03, 0x04 };
+		manager.WriteToBank(0, 10, data);
+
+		var readBack = manager.ReadFromBank(0, 10, 4);
+		Assert.Equal(data, readBack);
+	}
+
+	[Fact]
+	public void ReadFromBank_ReadsCorrectly() {
+		var rom = CreateNesRom(1, 0);
+		var manager = new BankManager(rom);
+
+		rom[16 + 5] = 0x99;
+		rom[16 + 6] = 0x88;
+
+		var data = manager.ReadFromBank(0, 5, 2);
+
+		Assert.Equal(new byte[] { 0x99, 0x88 }, data);
+	}
+
+	[Fact]
+	public void FindFreeSpaceForData_FindsSuitable() {
+		var rom = CreateNesRom(1, 0);
+		var manager = new BankManager(rom);
+
+		// Create free space
+		for (int i = 100; i < 200; i++) {
+			rom[16 + i] = 0xff;
+		}
+
+		var region = manager.FindFreeSpaceForData(50);
+
+		Assert.NotNull(region);
+		Assert.True(region.Length >= 50);
+	}
+
+	[Fact]
+	public void ExportBankMapToJson_ProducesValidJson() {
+		var rom = CreateNesRom(1, 0);
+		var manager = new BankManager(rom);
+
+		var json = manager.ExportBankMapToJson();
+
+		Assert.Contains("\"system\"", json);
+		Assert.Contains("\"banks\"", json);
+		Assert.Contains("Nes", json);
+	}
+}
+
+/// <summary>
+/// Tests for BankReorganizer.
+/// </summary>
+public class BankReorganizerTests {
+	private static byte[] CreateNesRom(int prgBanks, int chrBanks) {
+		int prgSize = prgBanks * 0x4000;
+		int chrSize = chrBanks * 0x2000;
+		var rom = new byte[16 + prgSize + chrSize];
+
+		rom[0] = (byte)'N';
+		rom[1] = (byte)'E';
+		rom[2] = (byte)'S';
+		rom[3] = 0x1a;
+		rom[4] = (byte)prgBanks;
+		rom[5] = (byte)chrBanks;
+
+		return rom;
+	}
+
+	[Fact]
+	public void PlanSwap_AddsOperation() {
+		var rom = CreateNesRom(2, 0);
+		var manager = new BankManager(rom);
+		var reorg = new BankReorganizer(manager);
+
+		reorg.PlanSwap(0, 1);
+
+		var ops = reorg.GetPlannedOperations().ToList();
+		Assert.Single(ops);
+		Assert.Equal(BankReorganizer.ReorgType.Swap, ops[0].Type);
+	}
+
+	[Fact]
+	public void PlanCopy_AddsOperation() {
+		var rom = CreateNesRom(2, 0);
+		var manager = new BankManager(rom);
+		var reorg = new BankReorganizer(manager);
+
+		reorg.PlanCopy(0, 1);
+
+		var ops = reorg.GetPlannedOperations().ToList();
+		Assert.Single(ops);
+		Assert.Equal(BankReorganizer.ReorgType.Copy, ops[0].Type);
+	}
+
+	[Fact]
+	public void Execute_PerformsOperations() {
+		var rom = CreateNesRom(2, 0);
+		var manager = new BankManager(rom);
+		var reorg = new BankReorganizer(manager);
+
+		// Set distinct data
+		for (int i = 0; i < 0x4000; i++) {
+			rom[16 + i] = 0xAA;
+		}
+
+		reorg.PlanSwap(0, 1);
+		reorg.Execute();
+
+		var bank1 = manager.ExtractBank(1);
+		Assert.Equal(0xAA, bank1[0]);
+	}
+
+	[Fact]
+	public void ClearPlan_RemovesAllOperations() {
+		var rom = CreateNesRom(2, 0);
+		var manager = new BankManager(rom);
+		var reorg = new BankReorganizer(manager);
+
+		reorg.PlanSwap(0, 1);
+		reorg.PlanCopy(0, 1);
+		reorg.ClearPlan();
+
+		Assert.Empty(reorg.GetPlannedOperations());
+	}
+}
+
+/// <summary>
+/// Tests for BankExpander.
+/// </summary>
+public class BankExpanderTests {
+	private static byte[] CreateNesRom(int prgBanks, int chrBanks) {
+		int prgSize = prgBanks * 0x4000;
+		int chrSize = chrBanks * 0x2000;
+		var rom = new byte[16 + prgSize + chrSize];
+
+		rom[0] = (byte)'N';
+		rom[1] = (byte)'E';
+		rom[2] = (byte)'S';
+		rom[3] = 0x1a;
+		rom[4] = (byte)prgBanks;
+		rom[5] = (byte)chrBanks;
+
+		return rom;
+	}
+
+	[Fact]
+	public void CalculateNesPlan_CalculatesCorrectly() {
+		var rom = CreateNesRom(2, 1);
+
+		var plan = BankExpander.CalculateNesPlan(rom, 2, 1);
+
+		Assert.Equal(2, plan.CurrentPrgBanks);
+		Assert.Equal(4, plan.NewPrgBanks);
+		Assert.Equal(1, plan.CurrentChrBanks);
+		Assert.Equal(2, plan.NewChrBanks);
+	}
+
+	[Fact]
+	public void ExpandNesRom_ExpandsPrg() {
+		var rom = CreateNesRom(2, 1);
+
+		// Fill original PRG with data
+		for (int i = 0; i < 2 * 0x4000; i++) {
+			rom[16 + i] = 0xAB;
+		}
+
+		var expanded = BankExpander.ExpandNesRom(rom, 2, 0);
+
+		// Check header updated
+		Assert.Equal(4, expanded[4]);  // 4 PRG banks
+		Assert.Equal(1, expanded[5]);  // Still 1 CHR bank
+
+		// Check original data preserved
+		Assert.Equal(0xAB, expanded[16]);
+
+		// Check new banks are filled
+		Assert.Equal(0xff, expanded[16 + 2 * 0x4000]);
+	}
+
+	[Fact]
+	public void ExpandNesRom_ExpandsChr() {
+		var rom = CreateNesRom(2, 1);
+
+		// Fill CHR with data
+		for (int i = 0; i < 0x2000; i++) {
+			rom[16 + 2 * 0x4000 + i] = 0xCD;
+		}
+
+		var expanded = BankExpander.ExpandNesRom(rom, 0, 1);
+
+		Assert.Equal(2, expanded[4]);  // Still 2 PRG
+		Assert.Equal(2, expanded[5]);  // 2 CHR banks
+
+		// Original CHR preserved
+		int newChrOffset = 16 + 2 * 0x4000;
+		Assert.Equal(0xCD, expanded[newChrOffset]);
+	}
+
+	[Fact]
+	public void ExpandNesRom_PreservesHeader() {
+		var rom = CreateNesRom(2, 1);
+		rom[6] = 0x12;  // Some mapper flags
+		rom[7] = 0x34;
+
+		var expanded = BankExpander.ExpandNesRom(rom, 1, 1);
+
+		Assert.Equal(0x12, expanded[6]);
+		Assert.Equal(0x34, expanded[7]);
+	}
+}
