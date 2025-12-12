@@ -13,6 +13,7 @@ namespace GameInfoTools.UI.ViewModels;
 public partial class CdlViewerViewModel : ViewModelBase {
 	private readonly IFileDialogService _fileDialogService;
 	private CdlHeatmap? _cdlHeatmap;
+	private CdlLabelIntegration? _labelIntegration;
 
 	[ObservableProperty]
 	private bool _hasCdlLoaded;
@@ -74,6 +75,21 @@ public partial class CdlViewerViewModel : ViewModelBase {
 	[ObservableProperty]
 	private string _selectedSearchType = "Code";
 
+	[ObservableProperty]
+	private bool _hasLabelsLoaded;
+
+	[ObservableProperty]
+	private string _labelFilePath = "";
+
+	[ObservableProperty]
+	private int _totalLabels;
+
+	[ObservableProperty]
+	private int _coveredLabels;
+
+	[ObservableProperty]
+	private double _labelCoveragePercentage;
+
 	/// <summary>
 	/// Available search types.
 	/// </summary>
@@ -108,6 +124,11 @@ public partial class CdlViewerViewModel : ViewModelBase {
 	/// Bookmarks.
 	/// </summary>
 	public ObservableCollection<BookmarkInfo> Bookmarks { get; } = [];
+
+	/// <summary>
+	/// Labels with CDL coverage info.
+	/// </summary>
+	public ObservableCollection<LabelDisplayInfo> Labels { get; } = [];
 
 	/// <summary>
 	/// Event raised when user wants to navigate to a specific offset.
@@ -573,6 +594,155 @@ public partial class CdlViewerViewModel : ViewModelBase {
 
 	#endregion
 
+	#region Label Commands
+
+	/// <summary>
+	/// File type filter for label files.
+	/// </summary>
+	public static FilePickerFileType LabelFiles { get; } = new("Label Files") {
+		Patterns = ["*.mlb", "*.nl", "*.lbl", "*.sym", "*.txt"]
+	};
+
+	/// <summary>
+	/// Loads a label file.
+	/// </summary>
+	[RelayCommand]
+	public async Task LoadLabelFile() {
+		if (_cdlHeatmap is null) {
+			StatusText = "Load a CDL file first";
+			return;
+		}
+
+		var path = await _fileDialogService.OpenFileAsync("Open Label File", LabelFiles);
+		if (!string.IsNullOrEmpty(path)) {
+			LoadLabelsFromFile(path);
+		}
+	}
+
+	/// <summary>
+	/// Loads labels from a specific file path.
+	/// </summary>
+	public void LoadLabelsFromFile(string path) {
+		if (_cdlHeatmap is null) return;
+
+		try {
+			_labelIntegration = new CdlLabelIntegration(_cdlHeatmap);
+			_labelIntegration.LoadAuto(path);
+
+			LabelFilePath = path;
+			HasLabelsLoaded = true;
+			UpdateLabelStatistics();
+			UpdateLabels();
+
+			StatusText = $"Loaded labels from {Path.GetFileName(path)}";
+		} catch (Exception ex) {
+			StatusText = $"Error loading labels: {ex.Message}";
+			HasLabelsLoaded = false;
+		}
+	}
+
+	/// <summary>
+	/// Exports labels to Mesen MLB format.
+	/// </summary>
+	[RelayCommand]
+	public async Task ExportLabelsToMlb() {
+		if (_labelIntegration is null || !HasLabelsLoaded) {
+			StatusText = "No labels loaded";
+			return;
+		}
+
+		var path = await _fileDialogService.SaveFileAsync("Export Labels (Mesen)", ".mlb", "labels.mlb", LabelFiles);
+		if (!string.IsNullOrEmpty(path)) {
+			var content = _labelIntegration.ExportToMlb();
+			await File.WriteAllTextAsync(path, content);
+			StatusText = $"Labels exported to {Path.GetFileName(path)}";
+		}
+	}
+
+	/// <summary>
+	/// Exports labels to FCEUX NL format.
+	/// </summary>
+	[RelayCommand]
+	public async Task ExportLabelsToNl() {
+		if (_labelIntegration is null || !HasLabelsLoaded) {
+			StatusText = "No labels loaded";
+			return;
+		}
+
+		var path = await _fileDialogService.SaveFileAsync("Export Labels (FCEUX)", ".nl", "labels.nl", LabelFiles);
+		if (!string.IsNullOrEmpty(path)) {
+			var content = _labelIntegration.ExportToFceuxNl();
+			await File.WriteAllTextAsync(path, content);
+			StatusText = $"Labels exported to {Path.GetFileName(path)}";
+		}
+	}
+
+	/// <summary>
+	/// Gets the label at a specific offset.
+	/// </summary>
+	public string? GetLabelAtOffset(int offset) {
+		return _labelIntegration?.GetLabelAtOffset(offset);
+	}
+
+	/// <summary>
+	/// Gets labels in a range.
+	/// </summary>
+	public List<CdlLabelIntegration.LabelWithCoverage> GetLabelsInRange(int startOffset, int endOffset) {
+		return _labelIntegration?.GetLabelsInRange(startOffset, endOffset) ?? [];
+	}
+
+	/// <summary>
+	/// Filters labels by coverage type.
+	/// </summary>
+	[RelayCommand]
+	public void FilterLabelsByCode() {
+		UpdateLabels(isCode: true);
+	}
+
+	[RelayCommand]
+	public void FilterLabelsByData() {
+		UpdateLabels(isData: true);
+	}
+
+	[RelayCommand]
+	public void FilterLabelsByUncovered() {
+		UpdateLabels(isCovered: false);
+	}
+
+	[RelayCommand]
+	public void ShowAllLabels() {
+		UpdateLabels();
+	}
+
+	private void UpdateLabelStatistics() {
+		if (_labelIntegration is null) return;
+
+		var summary = _labelIntegration.GetCoverageSummary();
+		TotalLabels = summary.TotalLabels;
+		CoveredLabels = summary.CoveredLabels;
+		LabelCoveragePercentage = summary.CoveredPercentage;
+	}
+
+	private void UpdateLabels(bool? isCode = null, bool? isData = null, bool? isCovered = null) {
+		Labels.Clear();
+		if (_labelIntegration is null) return;
+
+		var labels = _labelIntegration.GetLabelsByCoverage(isCode, isData, isCovered);
+		foreach (var label in labels) {
+			Labels.Add(new LabelDisplayInfo(
+				label.Address,
+				label.Name,
+				label.Type.ToString(),
+				label.CoverageStatus,
+				label.Comment ?? "",
+				label.IsCode,
+				label.IsData
+			));
+		}
+	}
+
+	#endregion
+
 	partial void OnBankSizeChanged(int value) {
 		if (_cdlHeatmap is not null) {
 			UpdateBankCoverage();
@@ -654,4 +824,20 @@ public record BookmarkInfo(
 ) {
 	public string OffsetHex => $"${Offset:X6}";
 	public string DisplayName => string.IsNullOrEmpty(Description) ? Label : $"{Label} - {Description}";
+}
+
+/// <summary>
+/// Label display information with CDL coverage.
+/// </summary>
+public record LabelDisplayInfo(
+	int Address,
+	string Name,
+	string Type,
+	string CoverageStatus,
+	string Comment,
+	bool IsCode,
+	bool IsData
+) {
+	public string AddressHex => $"${Address:X4}";
+	public string DisplayName => string.IsNullOrEmpty(Comment) ? Name : $"{Name} - {Comment}";
 }
