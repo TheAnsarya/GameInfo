@@ -23,7 +23,7 @@ public class EdgeCaseTests {
 
 	[Fact]
 	public void ToHex_LargeValue_ReturnsCorrectWidth() {
-		var result = AddressConverter.ToHex(0xFFFFFF, 6);
+		var result = AddressConverter.ToHex(0xffffff, 6);
 		Assert.Equal("$ffffff", result);
 	}
 
@@ -179,7 +179,7 @@ public class EdgeCaseTests {
 
 	[Fact]
 	public void PatternDetector_FindTextRegions_SingleByte() {
-		byte[] data = [0xAA];
+		byte[] data = [0xaa];
 
 		var result = PatternDetector.FindTextRegions(data);
 

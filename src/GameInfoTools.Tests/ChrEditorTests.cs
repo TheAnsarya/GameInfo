@@ -76,12 +76,12 @@ public class ChrEditorTests {
 
 		byte[] newBytes = new byte[16];
 		for (int i = 0; i < 16; i++)
-			newBytes[i] = 0xFF;
+			newBytes[i] = 0xff;
 
 		editor.SetTileBytes(0, newBytes);
 
 		byte[] readBack = editor.GetTileBytes(0);
-		Assert.Equal(0xFF, readBack[0]);
+		Assert.Equal(0xff, readBack[0]);
 	}
 
 	[Fact]
@@ -187,7 +187,7 @@ public class TileCodecTests {
 
 		Assert.All(pixels, p => Assert.Equal(0, p));
 
-		// All 0xFF should give all 3 pixels
+		// All 0xff should give all 3 pixels
 		for (int i = 0; i < 16; i++) tileData[i] = 0xff;
 		pixels = TileCodec.DecodeNes2bpp(tileData);
 

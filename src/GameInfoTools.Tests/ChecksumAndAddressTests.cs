@@ -279,7 +279,7 @@ public class AddressConverterAdvancedTests {
 	[InlineData("0X1234", 0x1234)]
 	[InlineData("$ABCD", 0xabcd)]
 	[InlineData("$abcd", 0xabcd)]
-	[InlineData("0xABCD", 0xabcd)]
+	[InlineData("0xabcd", 0xabcd)]
 	public void ParseHex_VariousFormats_ParsesCorrectly(string input, int expected) {
 		var result = AddressConverter.ParseHex(input);
 
@@ -318,7 +318,7 @@ public class AddressConverterAdvancedTests {
 
 	[Fact]
 	public void ToHex_UsesLowercase() {
-		var result = AddressConverter.ToHex(0xABCD, 4);
+		var result = AddressConverter.ToHex(0xabcd, 4);
 
 		Assert.Equal("$abcd", result);
 	}
@@ -362,7 +362,7 @@ public class AddressConverterAdvancedTests {
 	[Fact]
 	public void NesCpuToFile_C000_ReturnsCorrectOffset() {
 		// $C000 is 0x4000 into the bank
-		var fileOffset = AddressConverter.NesCpuToFile(0xC000, 2, 0);
+		var fileOffset = AddressConverter.NesCpuToFile(0xc000, 2, 0);
 
 		Assert.Equal(16 + 0x4000, fileOffset);
 	}

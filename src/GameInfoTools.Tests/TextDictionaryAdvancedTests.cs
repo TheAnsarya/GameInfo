@@ -75,8 +75,8 @@ public class TextDictionaryAdvancedTests {
 		data[1] = 0x80;
 
 		// Invalid pointer (points outside data)
-		data[2] = 0xFF;
-		data[3] = 0xFF;
+		data[2] = 0xff;
+		data[3] = 0xff;
 
 		// String data
 		data[0x20] = 0x41;
@@ -391,8 +391,8 @@ public class TextDictionaryAdvancedTests {
 		var table = new TextTable();
 		table.AddEntry(0x48, "H");
 		table.AddEntry(0x65, "e");
-		table.AddEntry(0x6C, "l");
-		table.AddEntry(0x6F, "o");
+		table.AddEntry(0x6c, "l");
+		table.AddEntry(0x6f, "o");
 		table.AddEntry(0x57, "W");
 		table.AddEntry(0x72, "r");
 		table.AddEntry(0x64, "d");
@@ -411,18 +411,18 @@ public class TextDictionaryAdvancedTests {
 		// "Hello" at 0x10
 		data[0x10] = 0x48;  // H
 		data[0x11] = 0x65;  // e
-		data[0x12] = 0x6C;  // l
-		data[0x13] = 0x6C;  // l
-		data[0x14] = 0x6F;  // o
+		data[0x12] = 0x6c;  // l
+		data[0x13] = 0x6c;  // l
+		data[0x14] = 0x6f;  // o
 		data[0x15] = 0x00;  // end
 
 		// "World" at 0x16
 		data[0x16] = 0x57;  // W
-		data[0x17] = 0x6F;  // o
+		data[0x17] = 0x6f;  // o
 		data[0x18] = 0x72;  // r
-		data[0x19] = 0x6C;  // l
-		data[0x1A] = 0x64;  // d
-		data[0x1B] = 0x00;  // end
+		data[0x19] = 0x6c;  // l
+		data[0x1a] = 0x64;  // d
+		data[0x1b] = 0x00;  // end
 
 		dict.LoadFromPointerTable(data, tableOffset: 0, count: 2, table, bank: 0);
 
@@ -436,7 +436,7 @@ public class TextDictionaryAdvancedTests {
 		var table = new TextTable();
 
 		// Create entries that will contain special characters when decoded
-		table.AddEntry(0x5C, "\\");   // Backslash
+		table.AddEntry(0x5c, "\\");   // Backslash
 		table.AddEntry(0x22, "\"");   // Quote
 		table.AddEntry(0x41, "A");
 		table.AddEntry(0x00, "");
@@ -446,7 +446,7 @@ public class TextDictionaryAdvancedTests {
 		data[1] = 0x80;
 
 		// String with backslash and quote
-		data[0x10] = 0x5C;  // \
+		data[0x10] = 0x5c;  // \
 		data[0x11] = 0x22;  // "
 		data[0x12] = 0x41;  // A
 		data[0x13] = 0x00;  // end

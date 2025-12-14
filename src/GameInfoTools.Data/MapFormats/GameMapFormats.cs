@@ -13,14 +13,14 @@ public static class DragonWarriorMaps {
 		new("Tantegel Town", 0x1200, 24, 24, MapFormat.Tiled, "Starting town"),
 		new("Charlock Castle", 0x1400, 32, 32, MapFormat.Tiled, "Final dungeon exterior"),
 		new("Charlock Dungeon", 0x1800, 20, 50, MapFormat.Tiled, "Final dungeon interior"),
-		new("Swamp Cave", 0x1C00, 10, 10, MapFormat.Tiled, "South cave"),
-		new("Rocky Mountain Cave", 0x1E00, 10, 10, MapFormat.Tiled, "North cave"),
+		new("Swamp Cave", 0x1c00, 10, 10, MapFormat.Tiled, "South cave"),
+		new("Rocky Mountain Cave", 0x1e00, 10, 10, MapFormat.Tiled, "North cave"),
 		new("Erdrick's Cave", 0x2000, 10, 10, MapFormat.Tiled, "Token cave"),
 		new("Garinham", 0x2200, 16, 16, MapFormat.Tiled, "Northern town"),
 		new("Kol", 0x2400, 16, 16, MapFormat.Tiled, "Eastern town"),
 		new("Rimuldar", 0x2600, 16, 16, MapFormat.Tiled, "Central town"),
 		new("Cantlin", 0x2800, 16, 16, MapFormat.Tiled, "Southern town"),
-		new("Hauksness", 0x2A00, 16, 16, MapFormat.Tiled, "Ruined town"),
+		new("Hauksness", 0x2a00, 16, 16, MapFormat.Tiled, "Ruined town"),
 	];
 
 	/// <summary>
@@ -29,9 +29,9 @@ public static class DragonWarriorMaps {
 	/// </summary>
 	public static readonly MapDefinition[] Dw4Maps = [
 		new("Overworld Ch1", 0x08000, 128, 128, MapFormat.Metatile, "Chapter 1 overworld"),
-		new("Overworld Ch2", 0x0A000, 128, 128, MapFormat.Metatile, "Chapter 2 overworld"),
-		new("Overworld Ch3", 0x0C000, 128, 128, MapFormat.Metatile, "Chapter 3 overworld"),
-		new("Overworld Ch4", 0x0E000, 128, 128, MapFormat.Metatile, "Chapter 4 overworld"),
+		new("Overworld Ch2", 0x0a000, 128, 128, MapFormat.Metatile, "Chapter 2 overworld"),
+		new("Overworld Ch3", 0x0c000, 128, 128, MapFormat.Metatile, "Chapter 3 overworld"),
+		new("Overworld Ch4", 0x0e000, 128, 128, MapFormat.Metatile, "Chapter 4 overworld"),
 		new("Overworld Ch5", 0x10000, 256, 256, MapFormat.Metatile, "Chapter 5 overworld"),
 		new("Burland Castle", 0x12000, 32, 32, MapFormat.Metatile, "Ragnar's starting castle"),
 		new("Izmit", 0x12400, 24, 24, MapFormat.Metatile, "Town near Burland"),
@@ -51,8 +51,8 @@ public static class DragonWarriorMaps {
 		new(0x07, "Bridge", true, false, "Bridge over water"),
 		new(0x08, "Town", true, false, "Town entrance"),
 		new(0x09, "Castle", true, false, "Castle entrance"),
-		new(0x0A, "Cave", true, false, "Dungeon entrance"),
-		new(0x0B, "Shrine", true, false, "Shrine building"),
+		new(0x0a, "Cave", true, false, "Dungeon entrance"),
+		new(0x0b, "Shrine", true, false, "Shrine building"),
 	];
 }
 
@@ -95,9 +95,9 @@ public static class FinalFantasyMaps {
 		new(0x07, "Coast", false, true, "Shallow water"),
 		new(0x08, "Town", true, false, "Town entrance"),
 		new(0x09, "Castle", true, false, "Castle entrance"),
-		new(0x0A, "Cave", true, false, "Dungeon entrance"),
-		new(0x0B, "Bridge", true, false, "Bridge"),
-		new(0x0C, "Grass", true, false, "Grassland"),
+		new(0x0a, "Cave", true, false, "Dungeon entrance"),
+		new(0x0b, "Bridge", true, false, "Bridge"),
+		new(0x0c, "Grass", true, false, "Grassland"),
 	];
 }
 

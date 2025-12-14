@@ -43,10 +43,10 @@ public class HeatmapControl : Control {
 	}
 
 	// Color palette
-	private static readonly Color CodeColor = Color.FromRgb(0x4C, 0xAF, 0x50);      // Green
-	private static readonly Color DataColor = Color.FromRgb(0xFF, 0xC1, 0x07);      // Yellow/Amber
+	private static readonly Color CodeColor = Color.FromRgb(0x4c, 0xaf, 0x50);      // Green
+	private static readonly Color DataColor = Color.FromRgb(0xff, 0xc1, 0x07);      // Yellow/Amber
 	private static readonly Color UnknownColor = Color.FromRgb(0x42, 0x42, 0x42);   // Dark gray
-	private static readonly Color BackgroundColor = Color.FromRgb(0x1E, 0x1E, 0x1E); // Background
+	private static readonly Color BackgroundColor = Color.FromRgb(0x1e, 0x1e, 0x1e); // Background
 
 	static HeatmapControl() {
 		AffectsRender<HeatmapControl>(CellsProperty, ColumnsProperty);
@@ -103,7 +103,7 @@ public class HeatmapControl : Control {
 		Color baseColor;
 		if (cell.HasCode && cell.HasData) {
 			// Mixed: blend green and yellow
-			baseColor = Color.FromRgb(0x8B, 0xC3, 0x4A); // Lime green
+			baseColor = Color.FromRgb(0x8b, 0xc3, 0x4a); // Lime green
 		} else if (cell.HasCode) {
 			baseColor = CodeColor;
 		} else {

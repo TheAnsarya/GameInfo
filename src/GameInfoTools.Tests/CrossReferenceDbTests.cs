@@ -30,7 +30,7 @@ public class CrossReferenceDbTests {
 	public void GetRefsFrom_ReturnsCorrectReferences() {
 		var db = new CrossReferenceDb();
 		db.AddRef(0x8000, 0x9000, CrossReferenceDb.RefType.Call);
-		db.AddRef(0x8000, 0xA000, CrossReferenceDb.RefType.Jump);
+		db.AddRef(0x8000, 0xa000, CrossReferenceDb.RefType.Jump);
 
 		var refs = db.GetRefsFrom(0x8000).ToList();
 
@@ -41,7 +41,7 @@ public class CrossReferenceDbTests {
 	public void GetRefsTo_EmptyForUnknownAddress() {
 		var db = new CrossReferenceDb();
 
-		var refs = db.GetRefsTo(0xFFFF).ToList();
+		var refs = db.GetRefsTo(0xffff).ToList();
 
 		Assert.Empty(refs);
 	}

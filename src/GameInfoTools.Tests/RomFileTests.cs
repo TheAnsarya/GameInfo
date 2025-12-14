@@ -22,7 +22,7 @@ public class RomFileTests {
 		nesRom[0] = (byte)'N';
 		nesRom[1] = (byte)'E';
 		nesRom[2] = (byte)'S';
-		nesRom[3] = 0x1A;
+		nesRom[3] = 0x1a;
 		nesRom[4] = 1; // 1 PRG bank
 
 		var info = RomFile.GetRomInfo(nesRom);
@@ -35,7 +35,7 @@ public class RomFileTests {
 	public void GetRomInfo_DetectsSnesRom() {
 		// Create SNES ROM with LoROM header at $7FC0
 		byte[] snesRom = new byte[0x8000];
-		int headerOffset = 0x7FC0;
+		int headerOffset = 0x7fc0;
 
 		// Write internal title (21 bytes)
 		string title = "TEST GAME            "; // 21 chars
@@ -44,13 +44,13 @@ public class RomFileTests {
 		}
 
 		// Map mode at $7FD5 - LoROM (0x20)
-		snesRom[0x7FD5] = 0x20;
+		snesRom[0x7fd5] = 0x20;
 
 		// ROM type at $7FD6
-		snesRom[0x7FD6] = 0x00;
+		snesRom[0x7fd6] = 0x00;
 
 		// ROM size at $7FD7 (2^N KB, so 8 = 256KB)
-		snesRom[0x7FD7] = 0x08;
+		snesRom[0x7fd7] = 0x08;
 
 		var info = RomFile.GetRomInfo(snesRom);
 
@@ -64,12 +64,12 @@ public class RomFileTests {
 										 // Nintendo logo at $0104-$0133
 		byte[] logo =
 		[
-			0xCE, 0xED, 0x66, 0x66, 0xCC, 0x0D, 0x00, 0x0B,
-			0x03, 0x73, 0x00, 0x83, 0x00, 0x0C, 0x00, 0x0D,
-			0x00, 0x08, 0x11, 0x1F, 0x88, 0x89, 0x00, 0x0E,
-			0xDC, 0xCC, 0x6E, 0xE6, 0xDD, 0xDD, 0xD9, 0x99,
-			0xBB, 0xBB, 0x67, 0x63, 0x6E, 0x0E, 0xEC, 0xCC,
-			0xDD, 0xDC, 0x99, 0x9F, 0xBB, 0xB9, 0x33, 0x3E
+			0xce, 0xed, 0x66, 0x66, 0xcc, 0x0d, 0x00, 0x0b,
+			0x03, 0x73, 0x00, 0x83, 0x00, 0x0c, 0x00, 0x0d,
+			0x00, 0x08, 0x11, 0x1f, 0x88, 0x89, 0x00, 0x0e,
+			0xdc, 0xcc, 0x6e, 0xe6, 0xdd, 0xdd, 0xd9, 0x99,
+			0xbb, 0xbb, 0x67, 0x63, 0x6e, 0x0e, 0xec, 0xcc,
+			0xdd, 0xdc, 0x99, 0x9f, 0xbb, 0xb9, 0x33, 0x3e
 		];
 		Array.Copy(logo, 0, gbRom, 0x0104, logo.Length);
 
@@ -89,7 +89,7 @@ public class RomFileTests {
 	public void GetRomInfo_ReturnsUnknownForUnrecognized() {
 		byte[] unknownRom = new byte[0x1000];
 		for (int i = 0; i < unknownRom.Length; i++) {
-			unknownRom[i] = (byte)(i & 0xFF);
+			unknownRom[i] = (byte)(i & 0xff);
 		}
 
 		var info = RomFile.GetRomInfo(unknownRom);
@@ -113,18 +113,18 @@ public class RomFileTests {
 	public void ReadUInt16_ReturnsLittleEndianValue() {
 		var rom = new RomFile();
 		var dataProperty = typeof(RomFile).GetProperty("Data", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-		dataProperty?.SetValue(rom, new byte[] { 0xCD, 0xAB }); // Little-endian $ABCD
+		dataProperty?.SetValue(rom, new byte[] { 0xcd, 0xab }); // Little-endian $ABCD
 
-		Assert.Equal((ushort)0xABCD, rom.ReadUInt16(0));
+		Assert.Equal((ushort)0xabcd, rom.ReadUInt16(0));
 	}
 
 	[Fact]
 	public void ReadUInt24_ReturnsCorrectValue() {
 		var rom = new RomFile();
 		var dataProperty = typeof(RomFile).GetProperty("Data", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-		dataProperty?.SetValue(rom, new byte[] { 0xEF, 0xCD, 0xAB }); // Little-endian $ABCDEF
+		dataProperty?.SetValue(rom, new byte[] { 0xef, 0xcd, 0xab }); // Little-endian $ABCDEF
 
-		Assert.Equal(0xABCDEFu, rom.ReadUInt24(0));
+		Assert.Equal(0xabcdefu, rom.ReadUInt24(0));
 	}
 
 	[Fact]
@@ -133,11 +133,11 @@ public class RomFileTests {
 		var dataProperty = typeof(RomFile).GetProperty("Data", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
 		dataProperty?.SetValue(rom, new byte[] { 0x00, 0x00, 0x00, 0x00 });
 
-		rom.Write(1, new byte[] { 0xAB, 0xCD });
+		rom.Write(1, new byte[] { 0xab, 0xcd });
 
 		Assert.Equal(0x00, rom.ReadByte(0));
-		Assert.Equal(0xAB, rom.ReadByte(1));
-		Assert.Equal(0xCD, rom.ReadByte(2));
+		Assert.Equal(0xab, rom.ReadByte(1));
+		Assert.Equal(0xcd, rom.ReadByte(2));
 		Assert.Equal(0x00, rom.ReadByte(3));
 	}
 
@@ -147,9 +147,9 @@ public class RomFileTests {
 		var dataProperty = typeof(RomFile).GetProperty("Data", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
 		dataProperty?.SetValue(rom, new byte[] { 0x00, 0x00, 0x00, 0x00 });
 
-		rom.WriteByte(2, 0xFF);
+		rom.WriteByte(2, 0xff);
 
-		Assert.Equal(0xFF, rom.ReadByte(2));
+		Assert.Equal(0xff, rom.ReadByte(2));
 	}
 
 	[Fact]

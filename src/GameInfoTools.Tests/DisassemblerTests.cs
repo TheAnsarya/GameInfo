@@ -9,7 +9,7 @@ namespace GameInfoTools.Tests;
 public class DisassemblerTests {
 	[Fact]
 	public void Constructor_CreatesInstanceFromData() {
-		byte[] data = [0xA9, 0x00]; // LDA #$00
+		byte[] data = [0xa9, 0x00]; // LDA #$00
 		var disasm = new Disassembler(data);
 
 		Assert.NotNull(disasm);
@@ -17,7 +17,7 @@ public class DisassemblerTests {
 
 	[Fact]
 	public void DisassembleOne_ReturnsInstruction() {
-		byte[] data = [0xA9, 0x42]; // LDA #$42
+		byte[] data = [0xa9, 0x42]; // LDA #$42
 		var disasm = new Disassembler(data);
 
 		var instr = disasm.DisassembleOne(0);
@@ -28,7 +28,7 @@ public class DisassemblerTests {
 
 	[Fact]
 	public void DisassembleOne_LdaImmediate() {
-		byte[] data = [0xA9, 0x42]; // LDA #$42
+		byte[] data = [0xa9, 0x42]; // LDA #$42
 		var disasm = new Disassembler(data, new Disassembler.Options { LowercaseMnemonics = true });
 
 		var instr = disasm.DisassembleOne(0);
@@ -39,7 +39,7 @@ public class DisassemblerTests {
 
 	[Fact]
 	public void DisassembleOne_Nop() {
-		byte[] data = [0xEA]; // NOP
+		byte[] data = [0xea]; // NOP
 		var disasm = new Disassembler(data, new Disassembler.Options { LowercaseMnemonics = true });
 
 		var instr = disasm.DisassembleOne(0);
@@ -50,7 +50,7 @@ public class DisassemblerTests {
 
 	[Fact]
 	public void DisassembleOne_Jmp() {
-		byte[] data = [0x4C, 0x00, 0x80]; // JMP $8000
+		byte[] data = [0x4c, 0x00, 0x80]; // JMP $8000
 		var disasm = new Disassembler(data, new Disassembler.Options { LowercaseMnemonics = true });
 
 		var instr = disasm.DisassembleOne(0);
@@ -61,7 +61,7 @@ public class DisassemblerTests {
 
 	[Fact]
 	public void Disassemble_ReturnsMultipleInstructions() {
-		byte[] data = [0xA9, 0x00, 0xEA, 0x60]; // LDA #$00, NOP, RTS
+		byte[] data = [0xa9, 0x00, 0xea, 0x60]; // LDA #$00, NOP, RTS
 		var disasm = new Disassembler(data);
 
 		var instructions = disasm.Disassemble(0, 4);
@@ -71,7 +71,7 @@ public class DisassemblerTests {
 
 	[Fact]
 	public void DisassembledInstruction_HasCorrectAddress() {
-		byte[] data = [0xA9, 0x00]; // LDA #$00
+		byte[] data = [0xa9, 0x00]; // LDA #$00
 		var options = new Disassembler.Options { BaseAddress = 0x8000 };
 		var disasm = new Disassembler(data, options);
 

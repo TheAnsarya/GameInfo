@@ -38,11 +38,11 @@ public class UpsPatchTests {
 
 	[Fact]
 	public void Crc32_KnownData_CorrectCrc() {
-		// CRC32 of "123456789" is 0xCBF43926
+		// CRC32 of "123456789" is 0xcbf43926
 		byte[] data = "123456789"u8.ToArray();
 		uint crc = Crc32.Calculate(data);
 
-		Assert.Equal(0xCBF43926u, crc);
+		Assert.Equal(0xcbf43926u, crc);
 	}
 
 	[Fact]
@@ -78,7 +78,7 @@ public class UpsPatchTests {
 
 	[Fact]
 	public void Crc32_Span_MatchesArray() {
-		byte[] data = [0xAA, 0xBB, 0xCC, 0xDD, 0xEE];
+		byte[] data = [0xaa, 0xbb, 0xcc, 0xdd, 0xee];
 
 		uint arrayCrc = Crc32.Calculate(data);
 		uint spanCrc = Crc32.Calculate(data.AsSpan());
@@ -108,7 +108,7 @@ public class UpsPatchTests {
 	[Fact]
 	public void CreatePatch_SingleByteChange_CreatesPatch() {
 		byte[] original = [0x01, 0x02, 0x03, 0x04, 0x05];
-		byte[] modified = [0x01, 0x02, 0xFF, 0x04, 0x05];
+		byte[] modified = [0x01, 0x02, 0xff, 0x04, 0x05];
 
 		var patchData = UpsPatch.CreatePatch(original, modified);
 
@@ -122,7 +122,7 @@ public class UpsPatchTests {
 	[Fact]
 	public void CreatePatch_MultipleChanges_CreatesMultipleRecords() {
 		byte[] original = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08];
-		byte[] modified = [0xFF, 0x02, 0x03, 0x04, 0xEE, 0x06, 0x07, 0xDD];
+		byte[] modified = [0xff, 0x02, 0x03, 0x04, 0xee, 0x06, 0x07, 0xdd];
 
 		var patchData = UpsPatch.CreatePatch(original, modified);
 
@@ -164,7 +164,7 @@ public class UpsPatchTests {
 	[Fact]
 	public void ApplyPatch_ValidPatch_ReturnsModifiedData() {
 		byte[] original = [0x01, 0x02, 0x03, 0x04, 0x05];
-		byte[] modified = [0x01, 0x02, 0xFF, 0x04, 0x05];
+		byte[] modified = [0x01, 0x02, 0xff, 0x04, 0x05];
 
 		var patchData = UpsPatch.CreatePatch(original, modified);
 		var result = UpsPatch.ApplyPatch(original, patchData);
@@ -175,7 +175,7 @@ public class UpsPatchTests {
 	[Fact]
 	public void ApplyPatch_MultipleChanges_AllApplied() {
 		byte[] original = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08];
-		byte[] modified = [0xFF, 0x02, 0x03, 0xEE, 0x05, 0x06, 0xDD, 0x08];
+		byte[] modified = [0xff, 0x02, 0x03, 0xee, 0x05, 0x06, 0xdd, 0x08];
 
 		var patchData = UpsPatch.CreatePatch(original, modified);
 		var result = UpsPatch.ApplyPatch(original, patchData);
@@ -186,7 +186,7 @@ public class UpsPatchTests {
 	[Fact]
 	public void ApplyPatch_FileExpansion_ExpandsCorrectly() {
 		byte[] original = [0x01, 0x02, 0x03];
-		byte[] modified = [0x01, 0x02, 0x03, 0xAA, 0xBB, 0xCC];
+		byte[] modified = [0x01, 0x02, 0x03, 0xaa, 0xbb, 0xcc];
 
 		var patchData = UpsPatch.CreatePatch(original, modified);
 		var result = UpsPatch.ApplyPatch(original, patchData);
@@ -197,7 +197,7 @@ public class UpsPatchTests {
 	[Fact]
 	public void ApplyPatch_WrongSourceSize_ThrowsException() {
 		byte[] original = [0x01, 0x02, 0x03, 0x04, 0x05];
-		byte[] modified = [0x01, 0x02, 0xFF, 0x04, 0x05];
+		byte[] modified = [0x01, 0x02, 0xff, 0x04, 0x05];
 		byte[] wrongSource = [0x01, 0x02, 0x03]; // Different size
 
 		var patchData = UpsPatch.CreatePatch(original, modified);
@@ -208,8 +208,8 @@ public class UpsPatchTests {
 	[Fact]
 	public void ApplyPatch_WrongSourceCrc_ThrowsException() {
 		byte[] original = [0x01, 0x02, 0x03, 0x04, 0x05];
-		byte[] modified = [0x01, 0x02, 0xFF, 0x04, 0x05];
-		byte[] wrongSource = [0xAA, 0xBB, 0xCC, 0xDD, 0xEE]; // Same size, different content
+		byte[] modified = [0x01, 0x02, 0xff, 0x04, 0x05];
+		byte[] wrongSource = [0xaa, 0xbb, 0xcc, 0xdd, 0xee]; // Same size, different content
 
 		var patchData = UpsPatch.CreatePatch(original, modified);
 
@@ -222,10 +222,10 @@ public class UpsPatchTests {
 		byte[] modified = original.ToArray();
 
 		// Make random changes
-		modified[10] = 0xFF;
-		modified[50] = 0xAA;
-		modified[100] = 0xBB;
-		modified[200] = 0xCC;
+		modified[10] = 0xff;
+		modified[50] = 0xaa;
+		modified[100] = 0xbb;
+		modified[200] = 0xcc;
 
 		var patchData = UpsPatch.CreatePatch(original, modified);
 		var result = UpsPatch.ApplyPatch(original, patchData);
@@ -254,7 +254,7 @@ public class UpsPatchTests {
 	[Fact]
 	public void ReadPatch_ValidPatch_ParsesCorrectly() {
 		byte[] original = [0x01, 0x02, 0x03, 0x04, 0x05];
-		byte[] modified = [0x01, 0x02, 0xFF, 0x04, 0x05];
+		byte[] modified = [0x01, 0x02, 0xff, 0x04, 0x05];
 
 		var patchData = UpsPatch.CreatePatch(original, modified);
 		var (sourceSize, targetSize, records, sourceCrc, targetCrc, patchCrc) = UpsPatch.ReadPatch(patchData);
@@ -273,7 +273,7 @@ public class UpsPatchTests {
 	[Fact]
 	public void GetPatchInfo_ValidPatch_ReturnsInfoString() {
 		byte[] original = [0x01, 0x02, 0x03, 0x04, 0x05];
-		byte[] modified = [0x01, 0x02, 0xFF, 0x04, 0x05];
+		byte[] modified = [0x01, 0x02, 0xff, 0x04, 0x05];
 
 		var patchData = UpsPatch.CreatePatch(original, modified);
 		string info = UpsPatch.GetPatchInfo(patchData);
@@ -287,7 +287,7 @@ public class UpsPatchTests {
 	[Fact]
 	public void GetPatchInfo_MultipleRecords_ListsAll() {
 		byte[] original = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08];
-		byte[] modified = [0xFF, 0x02, 0x03, 0x04, 0xEE, 0x06, 0x07, 0x08];
+		byte[] modified = [0xff, 0x02, 0x03, 0x04, 0xee, 0x06, 0x07, 0x08];
 
 		var patchData = UpsPatch.CreatePatch(original, modified);
 		string info = UpsPatch.GetPatchInfo(patchData);
@@ -314,8 +314,8 @@ public class UpsPatchTests {
 	[Fact]
 	public void WritePatch_WithRecords_Readable() {
 		var records = new List<UpsPatch.UpsRecord> {
-			new(5, [0xAA, 0xBB]),
-			new(10, [0xCC])
+			new(5, [0xaa, 0xbb]),
+			new(10, [0xcc])
 		};
 
 		var patchData = UpsPatch.WritePatch(50, 50, records, 0x11111111, 0x22222222);
@@ -335,14 +335,14 @@ public class UpsPatchTests {
 
 		// Fill with different patterns
 		for (int i = 0; i < original.Length; i++) {
-			original[i] = (byte)(i & 0xFF);
+			original[i] = (byte)(i & 0xff);
 		}
 
 		Array.Copy(original, modified, original.Length);
 
 		// Make scattered changes
 		for (int i = 0; i < 100; i++) {
-			modified[i * 100] = 0xFF;
+			modified[i * 100] = 0xff;
 		}
 
 		var patchData = UpsPatch.CreatePatch(original, modified);
@@ -354,7 +354,7 @@ public class UpsPatchTests {
 	[Fact]
 	public void CreateAndApply_AllBytesChanged_Works() {
 		byte[] original = [0x00, 0x00, 0x00, 0x00, 0x00];
-		byte[] modified = [0xFF, 0xFF, 0xFF, 0xFF, 0xFF];
+		byte[] modified = [0xff, 0xff, 0xff, 0xff, 0xff];
 
 		var patchData = UpsPatch.CreatePatch(original, modified);
 		var result = UpsPatch.ApplyPatch(original, patchData);
@@ -367,7 +367,7 @@ public class UpsPatchTests {
 		// When original byte is same as modified, XOR is 0
 		// UPS uses 0 as terminator, so we need to handle this edge case
 		byte[] original = [0x00, 0x01, 0x02, 0x03, 0x04];
-		byte[] modified = [0xFF, 0x01, 0x02, 0x03, 0x04]; // Only first byte changes
+		byte[] modified = [0xff, 0x01, 0x02, 0x03, 0x04]; // Only first byte changes
 
 		var patchData = UpsPatch.CreatePatch(original, modified);
 		var result = UpsPatch.ApplyPatch(original, patchData);

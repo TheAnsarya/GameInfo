@@ -156,7 +156,7 @@ public class CdlViewerViewModelTests {
 		var info = new BankCoverageInfo(
 			BankIndex: 5,
 			StartOffset: 0x14000,
-			EndOffset: 0x17FFF,
+			EndOffset: 0x17fff,
 			CodePercentage: 25.5,
 			DataPercentage: 35.2,
 			CoveragePercentage: 60.7

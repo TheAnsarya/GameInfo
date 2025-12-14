@@ -42,10 +42,10 @@ public class CdlRomIntegrationTests {
 		var random = new Random(42); // Fixed seed for reproducibility
 
 		// NES header
-		data[0] = 0x4E; // 'N'
+		data[0] = 0x4e; // 'N'
 		data[1] = 0x45; // 'E'
 		data[2] = 0x53; // 'S'
-		data[3] = 0x1A; // EOF
+		data[3] = 0x1a; // EOF
 		data[4] = 0x01; // 1 PRG bank
 
 		// Fill ROM data
@@ -145,7 +145,7 @@ public class CdlRomIntegrationTests {
 		var romData = new byte[0x110];
 
 		// NES header
-		romData[0] = 0x4E; romData[1] = 0x45; romData[2] = 0x53; romData[3] = 0x1A;
+		romData[0] = 0x4e; romData[1] = 0x45; romData[2] = 0x53; romData[3] = 0x1a;
 		romData[4] = 0x01;
 
 		// Mark region as code
@@ -171,7 +171,7 @@ public class CdlRomIntegrationTests {
 		var romData = new byte[0x110];
 
 		// NES header
-		romData[0] = 0x4E; romData[1] = 0x45; romData[2] = 0x53; romData[3] = 0x1A;
+		romData[0] = 0x4e; romData[1] = 0x45; romData[2] = 0x53; romData[3] = 0x1a;
 		romData[4] = 0x01;
 
 		// Mark region as code
@@ -180,7 +180,7 @@ public class CdlRomIntegrationTests {
 		}
 
 		// Add a JMP instruction
-		romData[0x20] = 0x4C; // JMP opcode
+		romData[0x20] = 0x4c; // JMP opcode
 		romData[0x21] = 0x30; // Target low byte
 		romData[0x22] = 0x80; // Target high byte ($8030)
 
@@ -201,23 +201,23 @@ public class CdlRomIntegrationTests {
 		var romData = new byte[0x210];
 
 		// NES header
-		romData[0] = 0x4E; romData[1] = 0x45; romData[2] = 0x53; romData[3] = 0x1A;
+		romData[0] = 0x4e; romData[1] = 0x45; romData[2] = 0x53; romData[3] = 0x1a;
 		romData[4] = 0x01;
 
 		// Create two code regions with RTS at ends
-		// First function: 0x00-0x3F
+		// First function: 0x00-0x3f
 		for (int i = 0; i < 0x40; i++) {
 			cdlData[i] = 0x11; // Code + SubEntryPoint
 		}
 
-		romData[0x10 + 0x3F] = 0x60; // RTS at end of first function
+		romData[0x10 + 0x3f] = 0x60; // RTS at end of first function
 
-		// Second function: 0x80-0xBF
-		for (int i = 0x80; i < 0xC0; i++) {
+		// Second function: 0x80-0xbf
+		for (int i = 0x80; i < 0xc0; i++) {
 			cdlData[i] = 0x11; // Code + SubEntryPoint
 		}
 
-		romData[0x10 + 0xBF] = 0x60; // RTS at end of second function
+		romData[0x10 + 0xbf] = 0x60; // RTS at end of second function
 
 		var integration = CreateIntegration(cdlData, romData);
 		var boundaries = integration.DetectFunctionBoundaries();
@@ -262,7 +262,7 @@ public class CdlRomIntegrationTests {
 		var romData = new byte[0x210];
 
 		// NES header
-		romData[0] = 0x4E; romData[1] = 0x45; romData[2] = 0x53; romData[3] = 0x1A;
+		romData[0] = 0x4e; romData[1] = 0x45; romData[2] = 0x53; romData[3] = 0x1a;
 		romData[4] = 0x01;
 
 		// Create a data region with repeating pattern
@@ -464,7 +464,7 @@ public class CdlRomIntegrationTests {
 		var romData = new byte[32];
 
 		// Minimal NES header
-		romData[0] = 0x4E; romData[1] = 0x45; romData[2] = 0x53; romData[3] = 0x1A;
+		romData[0] = 0x4e; romData[1] = 0x45; romData[2] = 0x53; romData[3] = 0x1a;
 
 		var integration = CreateIntegration(cdlData, romData);
 

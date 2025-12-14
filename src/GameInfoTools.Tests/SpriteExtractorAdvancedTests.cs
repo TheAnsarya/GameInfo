@@ -18,7 +18,7 @@ public class SpriteExtractorAdvancedTests {
 	[InlineData(0x20, 0, true, false, false)]
 	[InlineData(0x40, 0, false, true, false)]
 	[InlineData(0x80, 0, false, false, true)]
-	[InlineData(0xE3, 3, true, true, true)]
+	[InlineData(0xe3, 3, true, true, true)]
 	public void NesSprite_AllAttributeBits_ParsedCorrectly(
 		byte attributes, int expectedPalette, bool expectedBehind, bool expectedFlipH, bool expectedFlipV) {
 		var sprite = new SpriteExtractor.NesSprite(0, 0, attributes, 0);
@@ -32,7 +32,7 @@ public class SpriteExtractorAdvancedTests {
 	[Fact]
 	public void NesSprite_FullOamEntry_ParsedCorrectly() {
 		// Test common NES sprite configurations
-		var sprite = new SpriteExtractor.NesSprite(Y: 0x78, TileIndex: 0x42, Attributes: 0xA3, X: 0x80);
+		var sprite = new SpriteExtractor.NesSprite(Y: 0x78, TileIndex: 0x42, Attributes: 0xa3, X: 0x80);
 
 		Assert.Equal(0x78, sprite.Y);      // Y = 120
 		Assert.Equal(0x42, sprite.TileIndex);
@@ -46,14 +46,14 @@ public class SpriteExtractorAdvancedTests {
 	[Fact]
 	public void NesSprite_BoundaryValues_Handled() {
 		// Test boundary Y values
-		var offscreen = new SpriteExtractor.NesSprite(Y: 0xEF, TileIndex: 0, Attributes: 0, X: 0);
+		var offscreen = new SpriteExtractor.NesSprite(Y: 0xef, TileIndex: 0, Attributes: 0, X: 0);
 		Assert.Equal(239, offscreen.Y);  // Just visible at bottom
 
-		var hidden = new SpriteExtractor.NesSprite(Y: 0xF0, TileIndex: 0, Attributes: 0, X: 0);
+		var hidden = new SpriteExtractor.NesSprite(Y: 0xf0, TileIndex: 0, Attributes: 0, X: 0);
 		Assert.Equal(240, hidden.Y);  // Effectively hidden (scanline 0)
 
 		// Test max values
-		var maxSprite = new SpriteExtractor.NesSprite(Y: 0xFF, TileIndex: 0xFF, Attributes: 0xFF, X: 0xFF);
+		var maxSprite = new SpriteExtractor.NesSprite(Y: 0xff, TileIndex: 0xff, Attributes: 0xff, X: 0xff);
 		Assert.Equal(255, maxSprite.Y);
 		Assert.Equal(255, maxSprite.TileIndex);
 		Assert.Equal(255, maxSprite.X);
@@ -110,10 +110,10 @@ public class SpriteExtractorAdvancedTests {
 	[Fact]
 	public void SnesSprite_HighTileIndex_Supported() {
 		// SNES supports 10-bit tile index (0-1023)
-		var highTile = new SpriteExtractor.SnesSprite(X: 0, Y: 0, TileIndex: 0x3FF, Palette: 7,
+		var highTile = new SpriteExtractor.SnesSprite(X: 0, Y: 0, TileIndex: 0x3ff, Palette: 7,
 			Priority0: true, Priority1: true, FlipH: true, FlipV: true, LargeSize: true);
 
-		Assert.Equal(0x3FF, highTile.TileIndex);
+		Assert.Equal(0x3ff, highTile.TileIndex);
 		Assert.Equal(7, highTile.Palette);
 	}
 
@@ -143,7 +143,7 @@ public class SpriteExtractorAdvancedTests {
 	public void ParseNesOam_WithOffset_StartsAtCorrectPosition() {
 		var data = new byte[]
 		{
-			0xFF, 0xFF, 0xFF, 0xFF,  // Padding before OAM
+			0xff, 0xff, 0xff, 0xff,  // Padding before OAM
 			0x10, 0x20, 0x30, 0x40,  // First sprite at offset 4
 			0x50, 0x60, 0x70, 0x80,  // Second sprite
 		};
@@ -302,23 +302,23 @@ public class SpriteExtractorAdvancedTests {
 			0x00, 0x00, 0x10, 0x00,  // No flip
 			0x08, 0x00, 0x11, 0x40,  // Horizontal flip
 			0x00, 0x08, 0x12, 0x80,  // Vertical flip
-			0x08, 0x08, 0x13, 0xC0,  // Both flips
+			0x08, 0x08, 0x13, 0xc0,  // Both flips
 		};
 
 		var meta = SpriteExtractor.ExtractMetasprite(data, 0, 4);
 
-		Assert.Equal(0x00, meta.Sprites[0].Attributes & 0xC0);
-		Assert.Equal(0x40, meta.Sprites[1].Attributes & 0xC0);
-		Assert.Equal(0x80, meta.Sprites[2].Attributes & 0xC0);
-		Assert.Equal(0xC0, meta.Sprites[3].Attributes & 0xC0);
+		Assert.Equal(0x00, meta.Sprites[0].Attributes & 0xc0);
+		Assert.Equal(0x40, meta.Sprites[1].Attributes & 0xc0);
+		Assert.Equal(0x80, meta.Sprites[2].Attributes & 0xc0);
+		Assert.Equal(0xc0, meta.Sprites[3].Attributes & 0xc0);
 	}
 
 	[Fact]
 	public void ExtractMetasprite_FromOffset_CorrectlyPositioned() {
 		var data = new byte[]
 		{
-			0xFF, 0xFF, 0xFF, 0xFF,  // Garbage before
-			0xFF, 0xFF, 0xFF, 0xFF,
+			0xff, 0xff, 0xff, 0xff,  // Garbage before
+			0xff, 0xff, 0xff, 0xff,
 			0x04, 0x08, 0x42, 0x03,  // Actual sprite at offset 8
 		};
 
@@ -335,7 +335,7 @@ public class SpriteExtractorAdvancedTests {
 		// Test the full range of signed byte offsets
 		var data = new byte[]
 		{
-			0x7F, 0x7F, 0x00, 0x00,  // Max positive: +127, +127
+			0x7f, 0x7f, 0x00, 0x00,  // Max positive: +127, +127
 			0x80, 0x80, 0x00, 0x00,  // Min negative: -128, -128
 		};
 
@@ -399,7 +399,7 @@ public class SpriteExtractorAdvancedTests {
 	[Fact]
 	public void GenerateMetaspriteAsm_NegativeOffsets_HandledAsUnsigned() {
 		var meta = new SpriteExtractor.Metasprite();
-		meta.Sprites.Add((-8, -16, 0x00, 0x00));  // -8 = 0xF8, -16 = 0xF0
+		meta.Sprites.Add((-8, -16, 0x00, 0x00));  // -8 = 0xf8, -16 = 0xf0
 
 		var asm = SpriteExtractor.GenerateMetaspriteAsm(meta, "NegOffset");
 
@@ -411,7 +411,7 @@ public class SpriteExtractorAdvancedTests {
 	[Fact]
 	public void GenerateMetaspriteAsm_LowercaseHex() {
 		var meta = new SpriteExtractor.Metasprite();
-		meta.Sprites.Add((0xAB, 0xCD, 0xEF, 0xFF));
+		meta.Sprites.Add((0xab, 0xcd, 0xef, 0xff));
 
 		var asm = SpriteExtractor.GenerateMetaspriteAsm(meta, "HexTest");
 
@@ -472,7 +472,7 @@ public class SpriteExtractorAdvancedTests {
 	public void ExportMetaspriteData_SpriteFlags_DecodedCorrectly() {
 		var meta = new SpriteExtractor.Metasprite();
 		// Attributes: palette 2 (0x02), behind background (0x20), flipH (0x40), flipV (0x80)
-		meta.Sprites.Add((8, 16, 0x42, 0xE2));  // Combined: 0xE2
+		meta.Sprites.Add((8, 16, 0x42, 0xe2));  // Combined: 0xe2
 
 		var data = SpriteExtractor.ExportMetaspriteData(meta);
 
@@ -516,15 +516,15 @@ public class SpriteExtractorAdvancedTests {
 		data[0x11] = 0x00;  // Y offset
 		data[0x12] = 0x01;  // Tile
 		data[0x13] = 0x00;  // Attr
-		data[0x14] = 0xF8;  // Terminator (Y >= 0xF8)
+		data[0x14] = 0xf8;  // Terminator (Y >= 0xf8)
 
 		// Metasprite data at file offset 0x20 (CPU $8020)
 		data[0x20] = 0x00;
 		data[0x21] = 0x00;
 		data[0x22] = 0x02;
 		data[0x23] = 0x00;
-		data[0x24] = 0xFF;  // Terminator
-		data[0x25] = 0xFF;
+		data[0x24] = 0xff;  // Terminator
+		data[0x25] = 0xff;
 
 		var results = SpriteExtractor.FindMetaspriteTable(
 			data, tableOffset: 0, count: 2,
@@ -538,8 +538,8 @@ public class SpriteExtractorAdvancedTests {
 		var data = new byte[0x20];
 
 		// Pointer pointing outside data
-		data[0] = 0xFF;
-		data[1] = 0xFF;  // $FFFF - way outside
+		data[0] = 0xff;
+		data[1] = 0xff;  // $FFFF - way outside
 
 		var results = SpriteExtractor.FindMetaspriteTable(
 			data, tableOffset: 0, count: 1,
@@ -561,24 +561,24 @@ public class SpriteExtractorAdvancedTests {
 		data[0] = 0x10;
 		data[1] = 0x80;
 
-		// 3 valid sprites followed by Y=0xF8 terminator
+		// 3 valid sprites followed by Y=0xf8 terminator
 		// Format: X offset, Y offset, Tile, Attr - need non-zero values to avoid all-zeros terminator
 		data[0x10] = 0x04;
 		data[0x11] = 0x04;
 		data[0x12] = 0x01;
 		data[0x13] = 0x00;  // Sprite 1
-		data[0x14] = 0x0C;
+		data[0x14] = 0x0c;
 		data[0x15] = 0x04;
 		data[0x16] = 0x02;
 		data[0x17] = 0x00;  // Sprite 2
 		data[0x18] = 0x14;
 		data[0x19] = 0x04;
-		data[0x1A] = 0x03;
-		data[0x1B] = 0x00;  // Sprite 3
-		data[0x1C] = 0xF8;
-		data[0x1D] = 0x00;
-		data[0x1E] = 0x00;
-		data[0x1F] = 0x00;  // Terminator (first byte >= 0xF8)
+		data[0x1a] = 0x03;
+		data[0x1b] = 0x00;  // Sprite 3
+		data[0x1c] = 0xf8;
+		data[0x1d] = 0x00;
+		data[0x1e] = 0x00;
+		data[0x1f] = 0x00;  // Terminator (first byte >= 0xf8)
 
 		var results = SpriteExtractor.FindMetaspriteTable(
 			data, tableOffset: 0, count: 1,
@@ -601,14 +601,14 @@ public class SpriteExtractorAdvancedTests {
 		data[0x11] = 0x04;
 		data[0x12] = 0x01;
 		data[0x13] = 0x01;  // Sprite 1
-		data[0x14] = 0x0C;
+		data[0x14] = 0x0c;
 		data[0x15] = 0x04;
 		data[0x16] = 0x02;
 		data[0x17] = 0x01;  // Sprite 2
 		data[0x18] = 0x00;
 		data[0x19] = 0x00;
-		data[0x1A] = 0x00;
-		data[0x1B] = 0x00;  // All zeros = terminator
+		data[0x1a] = 0x00;
+		data[0x1b] = 0x00;  // All zeros = terminator
 
 		var results = SpriteExtractor.FindMetaspriteTable(
 			data, tableOffset: 0, count: 1,
@@ -631,8 +631,8 @@ public class SpriteExtractorAdvancedTests {
 		data[0x11] = 0x04;
 		data[0x12] = 0x05;
 		data[0x13] = 0x01;  // Sprite 1
-		data[0x14] = 0xFF;
-		data[0x15] = 0xFF;
+		data[0x14] = 0xff;
+		data[0x15] = 0xff;
 		data[0x16] = 0x00;
 		data[0x17] = 0x00;  // $FF $FF terminator
 

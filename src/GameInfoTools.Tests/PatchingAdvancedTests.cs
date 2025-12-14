@@ -14,9 +14,9 @@ public class PatchingAdvancedTests {
 	[Fact]
 	public void IpsRecord_MaxOffset_Supported() {
 		// IPS supports 24-bit offsets (0-16777215)
-		var record = new IpsPatch.IpsRecord(0xFFFFFF, [0xAA], false, 0);
+		var record = new IpsPatch.IpsRecord(0xffffff, [0xaa], false, 0);
 
-		Assert.Equal(0xFFFFFF, record.Offset);
+		Assert.Equal(0xffffff, record.Offset);
 	}
 
 	[Fact]
@@ -32,10 +32,10 @@ public class PatchingAdvancedTests {
 
 	[Fact]
 	public void IpsRecord_RleProperties_Preserved() {
-		var record = new IpsPatch.IpsRecord(0x1000, [0xFF], true, 256);
+		var record = new IpsPatch.IpsRecord(0x1000, [0xff], true, 256);
 
 		Assert.Equal(0x1000, record.Offset);
-		Assert.Equal(0xFF, record.Data[0]);
+		Assert.Equal(0xff, record.Data[0]);
 		Assert.True(record.IsRle);
 		Assert.Equal(256, record.RleCount);
 	}
@@ -106,7 +106,7 @@ public class PatchingAdvancedTests {
 
 	[Fact]
 	public void ReadPatch_MaxSizeRecord_ParsedCorrectly() {
-		// IPS max record size is 0xFFFF (65535 bytes)
+		// IPS max record size is 0xffff (65535 bytes)
 		using var ms = new MemoryStream();
 		ms.Write(new byte[] { (byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H' }, 0, 5);
 
@@ -115,12 +115,12 @@ public class PatchingAdvancedTests {
 		ms.WriteByte(0x00);
 		ms.WriteByte(0x00);
 
-		// Size = 0xFFFF
-		ms.WriteByte(0xFF);
-		ms.WriteByte(0xFF);
+		// Size = 0xffff
+		ms.WriteByte(0xff);
+		ms.WriteByte(0xff);
 
 		// Data (all zeros for simplicity)
-		var data = new byte[0xFFFF];
+		var data = new byte[0xffff];
 		ms.Write(data, 0, data.Length);
 
 		ms.Write(new byte[] { (byte)'E', (byte)'O', (byte)'F' }, 0, 3);
@@ -128,7 +128,7 @@ public class PatchingAdvancedTests {
 		var records = IpsPatch.ReadPatch(ms.ToArray());
 
 		Assert.Single(records);
-		Assert.Equal(0xFFFF, records[0].Data.Length);
+		Assert.Equal(0xffff, records[0].Data.Length);
 	}
 
 	#endregion
@@ -137,14 +137,14 @@ public class PatchingAdvancedTests {
 
 	[Fact]
 	public void ReadPatch_LargeRle_ParsedCorrectly() {
-		// RLE with max count (0xFFFF)
+		// RLE with max count (0xffff)
 		var patch = new byte[]
 		{
 			(byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H',
 			0x00, 0x00, 0x00,  // Offset
 			0x00, 0x00,        // Size = 0 (RLE)
-			0xFF, 0xFF,        // Count = 65535
-			0xAB,              // Value
+			0xff, 0xff,        // Count = 65535
+			0xab,              // Value
 			(byte)'E', (byte)'O', (byte)'F'
 		};
 
@@ -153,7 +153,7 @@ public class PatchingAdvancedTests {
 		Assert.Single(records);
 		Assert.True(records[0].IsRle);
 		Assert.Equal(65535, records[0].RleCount);
-		Assert.Equal(0xAB, records[0].Data[0]);
+		Assert.Equal(0xab, records[0].Data[0]);
 	}
 
 	[Fact]
@@ -166,7 +166,7 @@ public class PatchingAdvancedTests {
 			0x00, 0x10, 0x00,  // Offset = 0x1000
 			0x00, 0x00,        // RLE
 			0x10, 0x00,        // Count = 4096
-			0xFF,              // Value
+			0xff,              // Value
 			(byte)'E', (byte)'O', (byte)'F'
 		};
 
@@ -174,7 +174,7 @@ public class PatchingAdvancedTests {
 
 		// Verify all 4096 bytes are set
 		for (int i = 0; i < 4096; i++) {
-			Assert.Equal(0xFF, result[0x1000 + i]);
+			Assert.Equal(0xff, result[0x1000 + i]);
 		}
 	}
 
@@ -185,31 +185,31 @@ public class PatchingAdvancedTests {
 		using var ms = new MemoryStream();
 		ms.Write(new byte[] { (byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H' }, 0, 5);
 
-		// RLE 1: Fill 0x000-0x0FF with 0xAA
+		// RLE 1: Fill 0x000-0x0ff with 0xaa
 		ms.Write([0x00, 0x00, 0x00], 0, 3);
 		ms.Write([0x00, 0x00], 0, 2);
-		ms.Write([0x01, 0x00, 0xAA], 0, 3);
+		ms.Write([0x01, 0x00, 0xaa], 0, 3);
 
-		// RLE 2: Fill 0x100-0x1FF with 0xBB
+		// RLE 2: Fill 0x100-0x1ff with 0xbb
 		ms.Write([0x00, 0x01, 0x00], 0, 3);
 		ms.Write([0x00, 0x00], 0, 2);
-		ms.Write([0x01, 0x00, 0xBB], 0, 3);
+		ms.Write([0x01, 0x00, 0xbb], 0, 3);
 
-		// RLE 3: Fill 0x200-0x2FF with 0xCC
+		// RLE 3: Fill 0x200-0x2ff with 0xcc
 		ms.Write([0x00, 0x02, 0x00], 0, 3);
 		ms.Write([0x00, 0x00], 0, 2);
-		ms.Write([0x01, 0x00, 0xCC], 0, 3);
+		ms.Write([0x01, 0x00, 0xcc], 0, 3);
 
 		ms.Write(new byte[] { (byte)'E', (byte)'O', (byte)'F' }, 0, 3);
 
 		var result = IpsPatch.ApplyPatch(rom, ms.ToArray());
 
-		Assert.Equal(0xAA, result[0x00]);
-		Assert.Equal(0xAA, result[0xFF]);
-		Assert.Equal(0xBB, result[0x100]);
-		Assert.Equal(0xBB, result[0x1FF]);
-		Assert.Equal(0xCC, result[0x200]);
-		Assert.Equal(0xCC, result[0x2FF]);
+		Assert.Equal(0xaa, result[0x00]);
+		Assert.Equal(0xaa, result[0xff]);
+		Assert.Equal(0xbb, result[0x100]);
+		Assert.Equal(0xbb, result[0x1ff]);
+		Assert.Equal(0xcc, result[0x200]);
+		Assert.Equal(0xcc, result[0x2ff]);
 	}
 
 	#endregion
@@ -223,7 +223,7 @@ public class PatchingAdvancedTests {
 
 		// Long continuous change
 		for (int i = 16; i < 200; i++) {
-			modified[i] = (byte)(i & 0xFF);
+			modified[i] = (byte)(i & 0xff);
 		}
 
 		var patch = IpsPatch.CreatePatch(original, modified);
@@ -239,18 +239,18 @@ public class PatchingAdvancedTests {
 		var modified = new byte[256];
 
 		// Scattered single-byte changes
-		modified[0x10] = 0xAA;
-		modified[0x80] = 0xBB;
-		modified[0xF0] = 0xCC;
+		modified[0x10] = 0xaa;
+		modified[0x80] = 0xbb;
+		modified[0xf0] = 0xcc;
 
 		var patch = IpsPatch.CreatePatch(original, modified);
 		var records = IpsPatch.ReadPatch(patch);
 
 		// Should create separate records for each area
 		Assert.True(records.Count >= 1);
-		Assert.Contains(records, r => r.Data.Contains((byte)0xAA));
-		Assert.Contains(records, r => r.Data.Contains((byte)0xBB));
-		Assert.Contains(records, r => r.Data.Contains((byte)0xCC));
+		Assert.Contains(records, r => r.Data.Contains((byte)0xaa));
+		Assert.Contains(records, r => r.Data.Contains((byte)0xbb));
+		Assert.Contains(records, r => r.Data.Contains((byte)0xcc));
 	}
 
 	[Fact]
@@ -316,7 +316,7 @@ public class PatchingAdvancedTests {
 		var records = new List<IpsPatch.IpsRecord>
 		{
 			new(0x100, [0x11, 0x22, 0x33], false, 0),
-			new(0x200, [0xFF], true, 100),
+			new(0x200, [0xff], true, 100),
 			new(0x400, [0x44], false, 0),
 		};
 
@@ -333,8 +333,8 @@ public class PatchingAdvancedTests {
 	public void WritePatch_RoundTrip_PreservesAllData() {
 		var records = new List<IpsPatch.IpsRecord>
 		{
-			new(0x123456, [0xDE, 0xAD, 0xBE, 0xEF], false, 0),
-			new(0x654321, [0xCA], true, 500),
+			new(0x123456, [0xde, 0xad, 0xbe, 0xef], false, 0),
+			new(0x654321, [0xca], true, 500),
 		};
 
 		var patch = IpsPatch.WritePatch(records);
@@ -343,11 +343,11 @@ public class PatchingAdvancedTests {
 		Assert.Equal(records.Count, readBack.Count);
 
 		Assert.Equal(0x123456, readBack[0].Offset);
-		Assert.Equal(new byte[] { 0xDE, 0xAD, 0xBE, 0xEF }, readBack[0].Data);
+		Assert.Equal(new byte[] { 0xde, 0xad, 0xbe, 0xef }, readBack[0].Data);
 		Assert.False(readBack[0].IsRle);
 
 		Assert.Equal(0x654321, readBack[1].Offset);
-		Assert.Equal(0xCA, readBack[1].Data[0]);
+		Assert.Equal(0xca, readBack[1].Data[0]);
 		Assert.True(readBack[1].IsRle);
 		Assert.Equal(500, readBack[1].RleCount);
 	}
@@ -372,16 +372,16 @@ public class PatchingAdvancedTests {
 
 		var records = new List<IpsPatch.IpsRecord>
 		{
-			new(0, [0xAA, 0xAA, 0xAA, 0xAA], false, 0),
-			new(2, [0xBB, 0xBB], false, 0),  // Overlaps with first
+			new(0, [0xaa, 0xaa, 0xaa, 0xaa], false, 0),
+			new(2, [0xbb, 0xbb], false, 0),  // Overlaps with first
 		};
 
 		var result = IpsPatch.ApplyRecords(rom, records);
 
-		Assert.Equal(0xAA, result[0]);
-		Assert.Equal(0xAA, result[1]);
-		Assert.Equal(0xBB, result[2]);  // Overwritten
-		Assert.Equal(0xBB, result[3]);  // Overwritten
+		Assert.Equal(0xaa, result[0]);
+		Assert.Equal(0xaa, result[1]);
+		Assert.Equal(0xbb, result[2]);  // Overwritten
+		Assert.Equal(0xbb, result[3]);  // Overwritten
 	}
 
 	#endregion
@@ -401,7 +401,7 @@ public class PatchingAdvancedTests {
 		// RLE record
 		ms.Write([0x00, 0x02, 0x00], 0, 3);
 		ms.Write([0x00, 0x00], 0, 2);
-		ms.Write([0x00, 0x20, 0xFF], 0, 3);
+		ms.Write([0x00, 0x20, 0xff], 0, 3);
 
 		ms.Write(new byte[] { (byte)'E', (byte)'O', (byte)'F' }, 0, 3);
 
@@ -427,15 +427,15 @@ public class PatchingAdvancedTests {
 
 	[Fact]
 	public void ReadPatch_EofAsOffset_NotTreatedAsEof() {
-		// "EOF" can appear as an offset (0x454F46)
-		// A valid IPS patch at offset 0x454F46 should NOT stop parsing
+		// "EOF" can appear as an offset (0x454f46)
+		// A valid IPS patch at offset 0x454f46 should NOT stop parsing
 		using var ms = new MemoryStream();
 		ms.Write(new byte[] { (byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H' }, 0, 5);
 
 		// Record 1 at offset 0x100
 		ms.Write([0x00, 0x01, 0x00], 0, 3);
 		ms.Write([0x00, 0x01], 0, 2);
-		ms.Write([0xAA], 0, 1);
+		ms.Write([0xaa], 0, 1);
 
 		// Actual EOF
 		ms.Write(new byte[] { (byte)'E', (byte)'O', (byte)'F' }, 0, 3);
@@ -458,7 +458,7 @@ public class PatchingAdvancedTests {
 			(byte)'P', (byte)'A', (byte)'T', (byte)'C', (byte)'H',
 			0x00, 0x00, 0x10,  // Offset
 			0x00, 0x05,        // Size = 5
-			0xAA, 0xBB,        // Only 2 bytes of data (truncated)
+			0xaa, 0xbb,        // Only 2 bytes of data (truncated)
 			// Missing EOF
 		};
 
@@ -558,22 +558,22 @@ public class PatchingAdvancedTests {
 		// Create original ROM
 		var original = new byte[1024];
 		for (int i = 0; i < 1024; i++) {
-			original[i] = (byte)(i & 0xFF);
+			original[i] = (byte)(i & 0xff);
 		}
 
 		// Create modified ROM
 		var modified = (byte[])original.Clone();
 
 		// Make various changes
-		modified[0x100] = 0xFF;  // Single byte
+		modified[0x100] = 0xff;  // Single byte
 		for (int i = 0; i < 16; i++) {
-			modified[0x200 + i] = 0xAA;  // Block of same value
+			modified[0x200 + i] = 0xaa;  // Block of same value
 		}
 
-		modified[0x300] = 0xDE;  // More single bytes
-		modified[0x301] = 0xAD;
-		modified[0x302] = 0xBE;
-		modified[0x303] = 0xEF;
+		modified[0x300] = 0xde;  // More single bytes
+		modified[0x301] = 0xad;
+		modified[0x302] = 0xbe;
+		modified[0x303] = 0xef;
 
 		// Create patch
 		var patch = IpsPatch.CreatePatch(original, modified);
@@ -595,9 +595,9 @@ public class PatchingAdvancedTests {
 		// Create patch from manual records
 		var records = new List<IpsPatch.IpsRecord>
 		{
-			new(0x000, [0x4E, 0x45, 0x53, 0x1A], false, 0),  // "NES" + 0x1A
-			new(0x010, [0xFF], true, 16),  // Fill 16 bytes
-			new(0x100, [0x48, 0x65, 0x6C, 0x6C, 0x6F], false, 0),  // "Hello"
+			new(0x000, [0x4e, 0x45, 0x53, 0x1a], false, 0),  // "NES" + 0x1a
+			new(0x010, [0xff], true, 16),  // Fill 16 bytes
+			new(0x100, [0x48, 0x65, 0x6c, 0x6c, 0x6f], false, 0),  // "Hello"
 		};
 
 		var patch = IpsPatch.WritePatch(records);
@@ -606,10 +606,10 @@ public class PatchingAdvancedTests {
 		Assert.Equal((byte)'N', result[0]);
 		Assert.Equal((byte)'E', result[1]);
 		Assert.Equal((byte)'S', result[2]);
-		Assert.Equal(0x1A, result[3]);
+		Assert.Equal(0x1a, result[3]);
 
 		for (int i = 0; i < 16; i++) {
-			Assert.Equal(0xFF, result[0x10 + i]);
+			Assert.Equal(0xff, result[0x10 + i]);
 		}
 
 		Assert.Equal((byte)'H', result[0x100]);

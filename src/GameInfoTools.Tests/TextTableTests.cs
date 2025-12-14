@@ -16,7 +16,7 @@ public class TextTableTests {
 
 		// Check standard ASCII mapping
 		Assert.Equal("A", table.GetCharacter(0x41));
-		Assert.Equal("Z", table.GetCharacter(0x5A));
+		Assert.Equal("Z", table.GetCharacter(0x5a));
 		Assert.Equal(" ", table.GetCharacter(0x20));
 	}
 
@@ -29,7 +29,7 @@ public class TextTableTests {
 
 		// Check typical DQ mappings
 		Assert.Equal("A", table.GetCharacter(0x80));
-		Assert.Equal("[END]", table.GetCharacter(0xFF));
+		Assert.Equal("[END]", table.GetCharacter(0xff));
 	}
 
 	[Fact]
@@ -40,7 +40,7 @@ public class TextTableTests {
 		Assert.Equal("A", table.GetCharacter(0x80));
 		Assert.Equal("B", table.GetCharacter(0x81));
 		Assert.Equal("C", table.GetCharacter(0x82));
-		Assert.Equal("[END]", table.GetCharacter(0xFF));
+		Assert.Equal("[END]", table.GetCharacter(0xff));
 	}
 
 	[Fact]
@@ -66,7 +66,7 @@ public class TextTableTests {
 	[Fact]
 	public void DecodeBlock_StopsAtEndMarker() {
 		var table = TextTable.FromString("80=A\n81=B\n82=C\nFF=[END]");
-		byte[] data = [0x80, 0x81, 0x82, 0xFF, 0x80, 0x80];
+		byte[] data = [0x80, 0x81, 0x82, 0xff, 0x80, 0x80];
 		var (text, bytesConsumed) = table.DecodeBlock(data, 0, data.Length);
 
 		Assert.Equal("ABC[END]", text);
@@ -86,8 +86,8 @@ public class TextTableTests {
 	[Fact]
 	public void DecodeUntil_StopsAtSpecifiedMarker() {
 		var table = TextTable.FromString("80=H\n81=i\n82=!\nFE=[STOP]");
-		byte[] data = [0x80, 0x81, 0x82, 0xFE, 0x80];
-		string decoded = table.DecodeUntil(data, 0, 0xFE, out int bytesRead);
+		byte[] data = [0x80, 0x81, 0x82, 0xfe, 0x80];
+		string decoded = table.DecodeUntil(data, 0, 0xfe, out int bytesRead);
 
 		Assert.Equal("Hi!", decoded);
 		Assert.Equal(4, bytesRead); // Includes the stop marker
@@ -100,7 +100,7 @@ public class TextTableTests {
 
 		Assert.Equal(2, encoded.Length);
 		Assert.Equal(0x80, encoded[0]);
-		Assert.Equal(0xFF, encoded[1]);
+		Assert.Equal(0xff, encoded[1]);
 	}
 
 	[Fact]
@@ -110,7 +110,7 @@ public class TextTableTests {
 
 		Assert.Equal(3, encoded.Length);
 		Assert.Equal(0x80, encoded[0]);
-		Assert.Equal(0xFF, encoded[1]);
+		Assert.Equal(0xff, encoded[1]);
 		Assert.Equal(0x80, encoded[2]);
 	}
 

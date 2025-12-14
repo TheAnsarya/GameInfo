@@ -762,7 +762,7 @@ public class JumpTableDetector {
 		int end = Math.Min(startOffset + length, data.Length);
 
 		for (int i = startOffset; i < end - 2; i++) {
-			// JMP ($nnnn) = 0x6C
+			// JMP ($nnnn) = 0x6c
 			if (data[i] == 0x6c) {
 				int tableAddr = data[i + 1] | (data[i + 2] << 8);
 				results.Add((cpuBase + (i - startOffset), tableAddr));

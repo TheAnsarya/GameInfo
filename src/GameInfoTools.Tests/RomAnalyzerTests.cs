@@ -8,10 +8,10 @@ public class RomAnalyzerTests {
 		byte[] rom = new byte[0x4010];
 
 		// iNES header
-		rom[0] = 0x4E; // 'N'
+		rom[0] = 0x4e; // 'N'
 		rom[1] = 0x45; // 'E'
 		rom[2] = 0x53; // 'S'
-		rom[3] = 0x1A; // EOF
+		rom[3] = 0x1a; // EOF
 		rom[4] = 0x01; // 1 PRG bank (16KB)
 		rom[5] = 0x00; // 0 CHR banks
 
@@ -19,15 +19,15 @@ public class RomAnalyzerTests {
 		for (int i = 0x10; i < rom.Length; i++) {
 			// Mix of NES opcodes
 			rom[i] = (byte)((i % 8) switch {
-				0 => 0xA9, // LDA
+				0 => 0xa9, // LDA
 				1 => 0x00, // immediate value
-				2 => 0xEA, // NOP
-				3 => 0x8D, // STA absolute
+				2 => 0xea, // NOP
+				3 => 0x8d, // STA absolute
 				4 => 0x00, // low byte
 				5 => 0x20, // high byte
-				6 => 0x4C, // JMP
+				6 => 0x4c, // JMP
 				7 => 0x00, // jump target
-				_ => 0xEA
+				_ => 0xea
 			});
 		}
 
@@ -94,9 +94,9 @@ public class RomAnalyzerTests {
 	public void AnalyzeRom_EmptyRegion_DetectsAsEmpty() {
 		// Create ROM with empty region
 		byte[] rom = CreateTestNesRom();
-		// Fill a section with 0xFF (empty/unused)
+		// Fill a section with 0xff (empty/unused)
 		for (int i = 0x2000; i < 0x3000; i++) {
-			rom[i] = 0xFF;
+			rom[i] = 0xff;
 		}
 
 		var analyzer = new RomAnalyzer(rom);
@@ -217,7 +217,7 @@ public class RomAnalyzerTests {
 	public void CompareWith_DifferentRoms_DetectsDifferences() {
 		byte[] rom1 = CreateTestNesRom();
 		byte[] rom2 = CreateTestNesRom();
-		rom2[0x100] = 0xFF; // Modify one byte
+		rom2[0x100] = 0xff; // Modify one byte
 
 		var analyzer = new RomAnalyzer(rom1);
 		var result = analyzer.CompareWith(rom2);
@@ -253,7 +253,7 @@ public class RomAnalyzerTests {
 	public void GenerateComparisonReport_ReturnsValidReport() {
 		byte[] rom1 = CreateTestNesRom();
 		byte[] rom2 = CreateTestNesRom();
-		rom2[0x100] = 0xFF;
+		rom2[0x100] = 0xff;
 
 		var analyzer = new RomAnalyzer(rom1);
 		string report = analyzer.GenerateComparisonReport(rom2);
@@ -274,7 +274,7 @@ public class RomAnalyzerTests {
 		rom[vectorOffset] = 0x00; // NMI low
 		rom[vectorOffset + 1] = 0x80; // NMI high ($8000)
 		rom[vectorOffset + 2] = 0x00; // Reset low
-		rom[vectorOffset + 3] = 0xC0; // Reset high ($C000)
+		rom[vectorOffset + 3] = 0xc0; // Reset high ($C000)
 		rom[vectorOffset + 4] = 0x00; // IRQ low
 		rom[vectorOffset + 5] = 0x90; // IRQ high ($9000)
 

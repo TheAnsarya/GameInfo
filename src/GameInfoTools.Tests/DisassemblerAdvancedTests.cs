@@ -52,7 +52,7 @@ public class DisassemblerAdvancedTests {
 	[Fact]
 	public void Constructor_AcceptsOptions() {
 		var data = new byte[] { 0xa9, 0x00 };
-		var options = new Disassembler.Options { BaseAddress = 0xC000 };
+		var options = new Disassembler.Options { BaseAddress = 0xc000 };
 		var disasm = new Disassembler(data, options);
 
 		Assert.NotNull(disasm);
@@ -127,12 +127,12 @@ public class DisassemblerAdvancedTests {
 	[Fact]
 	public void DisassembleOne_UsesBaseAddress() {
 		var data = new byte[] { 0xea };
-		var options = new Disassembler.Options { BaseAddress = 0xC000 };
+		var options = new Disassembler.Options { BaseAddress = 0xc000 };
 		var disasm = new Disassembler(data, options);
 
 		var instr = disasm.DisassembleOne(0);
 
-		Assert.Equal(0xC000, instr.Address);
+		Assert.Equal(0xc000, instr.Address);
 	}
 
 	[Fact]

@@ -610,7 +610,7 @@ public class BuildPipelineServiceTests : IDisposable {
 	public async Task PaletteExtractor_ExtractsSnesPalette_ToJson() {
 		// Create SNES palette data (2 bytes per color, BGR15)
 		var paletteData = new byte[32]; // 16 colors
-										// Set first color to red (0x001F in BGR15)
+										// Set first color to red (0x001f in BGR15)
 		paletteData[0] = 0x1f;
 		paletteData[1] = 0x00;
 		// Set second color to green

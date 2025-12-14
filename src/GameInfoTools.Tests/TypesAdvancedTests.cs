@@ -117,15 +117,15 @@ public class TypesAdvancedTests {
 	[Fact]
 	public void GameAddress_ToHexString_FixedWidth() {
 		Assert.Equal("$000001", new GameAddress(1).ToHexString());
-		Assert.Equal("$0000ff", new GameAddress(0xFF).ToHexString());
+		Assert.Equal("$0000ff", new GameAddress(0xff).ToHexString());
 		Assert.Equal("$001000", new GameAddress(0x1000).ToHexString());
-		Assert.Equal("$ffffff", new GameAddress(0xFFFFFF).ToHexString());
+		Assert.Equal("$ffffff", new GameAddress(0xffffff).ToHexString());
 	}
 
 	[Fact]
 	public void GameAddress_ToShortHex_FourDigits() {
 		Assert.Equal("$0001", new GameAddress(1).ToShortHex());
-		Assert.Equal("$00ff", new GameAddress(0xFF).ToShortHex());
+		Assert.Equal("$00ff", new GameAddress(0xff).ToShortHex());
 		Assert.Equal("$1000", new GameAddress(0x1000).ToShortHex());
 	}
 
@@ -173,7 +173,7 @@ public class TypesAdvancedTests {
 		var dict = new Dictionary<GameAddress, string>
 		{
 			{ new GameAddress(0x8000, AddressSpace.Cpu, 0), "Reset" },
-			{ new GameAddress(0xFFFA, AddressSpace.Cpu, -1), "NMI Vector" },
+			{ new GameAddress(0xfffa, AddressSpace.Cpu, -1), "NMI Vector" },
 		};
 
 		Assert.True(dict.ContainsKey(new GameAddress(0x8000, AddressSpace.Cpu, 0)));
@@ -317,7 +317,7 @@ public class TypesAdvancedTests {
 			Mapper = 1,
 			HasBattery = true,
 			HasTrainer = false,
-			RawHeader = new byte[] { 0x4E, 0x45, 0x53, 0x1A }
+			RawHeader = new byte[] { 0x4e, 0x45, 0x53, 0x1a }
 		};
 
 		var modified = original with { Mapper = 4 };

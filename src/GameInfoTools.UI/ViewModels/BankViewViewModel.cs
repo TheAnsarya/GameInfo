@@ -146,11 +146,11 @@ public partial class BankViewViewModel : ViewModelBase {
 
 		for (int i = 0; i < data.Length; i++) {
 			if (data[i] == 0x00) zeroCount++;
-			else if (data[i] == 0xFF) ffCount++;
-			else if (data[i] is >= 0x20 and < 0x7F) textLikeCount++;
+			else if (data[i] == 0xff) ffCount++;
+			else if (data[i] is >= 0x20 and < 0x7f) textLikeCount++;
 
 			// Look for 6502 code patterns (JSR, JMP, RTS, etc.)
-			if (data[i] is 0x20 or 0x4C or 0x60 or 0xA9 or 0xA5 or 0x85) {
+			if (data[i] is 0x20 or 0x4c or 0x60 or 0xa9 or 0xa5 or 0x85) {
 				codePatternCount++;
 			}
 		}

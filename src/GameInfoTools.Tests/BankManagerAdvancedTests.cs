@@ -404,8 +404,8 @@ public class BankManagerEnhancedTests {
 
 		// Create gaps in the bank (bank starts at offset 16)
 		rom[16] = 0x00;  // Used
-						 // 17-31 are 0x00 (not free with fillByte=0xFF)
-						 // Fill with 0xFF to create free space
+						 // 17-31 are 0x00 (not free with fillByte=0xff)
+						 // Fill with 0xff to create free space
 		for (int i = 20; i < 40; i++) {
 			rom[i] = 0xff;
 		}
@@ -510,13 +510,13 @@ public class BankManagerEnhancedTests {
 		var manager = new BankManager(rom);
 
 		for (int i = 0; i < 0x4000; i++) {
-			rom[16 + i] = 0xAB;
+			rom[16 + i] = 0xab;
 		}
 
 		manager.CopyBank(0, 1);
 
 		var bank1 = manager.ExtractBank(1);
-		Assert.Equal(0xAB, bank1[0]);
+		Assert.Equal(0xab, bank1[0]);
 	}
 
 	[Fact]
@@ -524,11 +524,11 @@ public class BankManagerEnhancedTests {
 		var rom = CreateNesRom(1, 0);
 		var manager = new BankManager(rom);
 
-		manager.FillRegion(0, 0, 100, 0xAA);
+		manager.FillRegion(0, 0, 100, 0xaa);
 
 		var bank = manager.ExtractBank(0);
 		for (int i = 0; i < 100; i++) {
-			Assert.Equal(0xAA, bank[i]);
+			Assert.Equal(0xaa, bank[i]);
 		}
 	}
 
@@ -639,14 +639,14 @@ public class BankReorganizerTests {
 
 		// Set distinct data
 		for (int i = 0; i < 0x4000; i++) {
-			rom[16 + i] = 0xAA;
+			rom[16 + i] = 0xaa;
 		}
 
 		reorg.PlanSwap(0, 1);
 		reorg.Execute();
 
 		var bank1 = manager.ExtractBank(1);
-		Assert.Equal(0xAA, bank1[0]);
+		Assert.Equal(0xaa, bank1[0]);
 	}
 
 	[Fact]
@@ -700,7 +700,7 @@ public class BankExpanderTests {
 
 		// Fill original PRG with data
 		for (int i = 0; i < 2 * 0x4000; i++) {
-			rom[16 + i] = 0xAB;
+			rom[16 + i] = 0xab;
 		}
 
 		var expanded = BankExpander.ExpandNesRom(rom, 2, 0);
@@ -710,7 +710,7 @@ public class BankExpanderTests {
 		Assert.Equal(1, expanded[5]);  // Still 1 CHR bank
 
 		// Check original data preserved
-		Assert.Equal(0xAB, expanded[16]);
+		Assert.Equal(0xab, expanded[16]);
 
 		// Check new banks are filled
 		Assert.Equal(0xff, expanded[16 + (2 * 0x4000)]);
@@ -722,7 +722,7 @@ public class BankExpanderTests {
 
 		// Fill CHR with data
 		for (int i = 0; i < 0x2000; i++) {
-			rom[16 + (2 * 0x4000) + i] = 0xCD;
+			rom[16 + (2 * 0x4000) + i] = 0xcd;
 		}
 
 		var expanded = BankExpander.ExpandNesRom(rom, 0, 1);
@@ -732,7 +732,7 @@ public class BankExpanderTests {
 
 		// Original CHR preserved
 		int newChrOffset = 16 + (2 * 0x4000);
-		Assert.Equal(0xCD, expanded[newChrOffset]);
+		Assert.Equal(0xcd, expanded[newChrOffset]);
 	}
 
 	[Fact]

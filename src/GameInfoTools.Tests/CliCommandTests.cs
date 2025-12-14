@@ -40,8 +40,8 @@ public class CliCommandTests {
 		byte[] data = "123456789"u8.ToArray();
 		uint crc = Core.Checksum.Crc32(data);
 
-		// CRC32 of "123456789" = 0xCBF43926
-		Assert.Equal(0xCBF43926u, crc);
+		// CRC32 of "123456789" = 0xcbf43926
+		Assert.Equal(0xcbf43926u, crc);
 	}
 
 	[Fact]

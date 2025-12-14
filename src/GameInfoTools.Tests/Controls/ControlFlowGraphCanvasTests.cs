@@ -404,9 +404,9 @@ public class ControlFlowGraphCanvasTests {
 		var canvas = new ControlFlowGraphCanvas();
 		canvas.Nodes = new ObservableCollection<CfgNode>
 		{
-			new CfgNode("entry", "ENTRY", 0xC000, 0xC003, CfgNodeType.Entry, "SEI ; LDA $00"),
-			new CfgNode("loop", "LOOP", 0xC004, 0xC006, CfgNodeType.LoopHeader, "DEX ; BNE LOOP"),
-			new CfgNode("exit", "EXIT", 0xC007, 0xC007, CfgNodeType.Exit, "RTS")
+			new CfgNode("entry", "ENTRY", 0xc000, 0xc003, CfgNodeType.Entry, "SEI ; LDA $00"),
+			new CfgNode("loop", "LOOP", 0xc004, 0xc006, CfgNodeType.LoopHeader, "DEX ; BNE LOOP"),
+			new CfgNode("exit", "EXIT", 0xc007, 0xc007, CfgNodeType.Exit, "RTS")
 		};
 		canvas.Edges = new ObservableCollection<CfgEdge>
 		{

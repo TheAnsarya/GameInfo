@@ -166,7 +166,7 @@ public partial class HexEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 			for (int i = 0; i < BytesPerRow; i++) {
 				if (i < rowData.Length) {
 					hexParts.Add($"{rowData[i]:X2}");
-					asciiParts.Add(rowData[i] is >= 0x20 and < 0x7F ? (char)rowData[i] : '.');
+					asciiParts.Add(rowData[i] is >= 0x20 and < 0x7f ? (char)rowData[i] : '.');
 				} else {
 					hexParts.Add("  ");
 					asciiParts.Add(' ');
@@ -462,7 +462,7 @@ public partial class HexEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		InspectorByte = $"{b} (0x{b:X2})";
 		InspectorSignedByte = $"{(sbyte)b}";
 		InspectorBinary = Convert.ToString(b, 2).PadLeft(8, '0');
-		InspectorAscii = b is >= 0x20 and < 0x7F ? $"'{(char)b}'" : "(non-printable)";
+		InspectorAscii = b is >= 0x20 and < 0x7f ? $"'{(char)b}'" : "(non-printable)";
 
 		// Word (16-bit) - Little Endian
 		if (offset + 1 < data.Length) {
@@ -1350,7 +1350,7 @@ public class AdvancedHexSearch {
 	}
 
 	/// <summary>
-	/// Search using a value range (e.g., bytes between 0x80 and 0xFF).
+	/// Search using a value range (e.g., bytes between 0x80 and 0xff).
 	/// </summary>
 	public static List<int> SearchRange(byte[] data, byte minValue, byte maxValue) {
 		var results = new List<int>();

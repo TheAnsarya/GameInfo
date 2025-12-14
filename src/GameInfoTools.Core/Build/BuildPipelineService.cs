@@ -366,7 +366,7 @@ public class BuildPipelineService {
 			.Select(kv => $"-D {kv.Key}={kv.Value}")
 			.Aggregate((a, b) => $"{a} {b}") ?? "";
 
-		return $"rgbasm {includes} {defines} -o \"{objFile}\" \"{mainFile}\" && rgblink -o \"{outputRom}\" \"{objFile}\" && rgbfix -v -p 0xFF \"{outputRom}\"";
+		return $"rgbasm {includes} {defines} -o \"{objFile}\" \"{mainFile}\" && rgblink -o \"{outputRom}\" \"{objFile}\" && rgbfix -v -p 0xff \"{outputRom}\"";
 	}
 
 	private string BuildDevkitArmCommand() {
@@ -505,9 +505,9 @@ public class BuildPipelineService {
 
 	private static void FixSnesChecksum(byte[] romData) {
 		// Determine header location based on ROM mapping
-		var headerOffset = romData.Length > 0x8000 && (romData[0x7FD5] & 0x01) == 0
-			? 0x7FC0 // LoROM
-			: 0xFFC0; // HiROM
+		var headerOffset = romData.Length > 0x8000 && (romData[0x7fd5] & 0x01) == 0
+			? 0x7fc0 // LoROM
+			: 0xffc0; // HiROM
 
 		if (headerOffset + 0x30 > romData.Length)
 			return;
@@ -519,19 +519,19 @@ public class BuildPipelineService {
 		}
 
 		// Subtract current checksum bytes
-		checksum -= romData[headerOffset + 0x2C];
-		checksum -= romData[headerOffset + 0x2D];
-		checksum -= romData[headerOffset + 0x2E];
-		checksum -= romData[headerOffset + 0x2F];
+		checksum -= romData[headerOffset + 0x2c];
+		checksum -= romData[headerOffset + 0x2d];
+		checksum -= romData[headerOffset + 0x2e];
+		checksum -= romData[headerOffset + 0x2f];
 
 		// Set complement and checksum
-		var checksumWord = (ushort)(checksum & 0xFFFF);
-		var complementWord = (ushort)(checksumWord ^ 0xFFFF);
+		var checksumWord = (ushort)(checksum & 0xffff);
+		var complementWord = (ushort)(checksumWord ^ 0xffff);
 
-		romData[headerOffset + 0x2C] = (byte)(complementWord & 0xFF);
-		romData[headerOffset + 0x2D] = (byte)(complementWord >> 8);
-		romData[headerOffset + 0x2E] = (byte)(checksumWord & 0xFF);
-		romData[headerOffset + 0x2F] = (byte)(checksumWord >> 8);
+		romData[headerOffset + 0x2c] = (byte)(complementWord & 0xff);
+		romData[headerOffset + 0x2d] = (byte)(complementWord >> 8);
+		romData[headerOffset + 0x2e] = (byte)(checksumWord & 0xff);
+		romData[headerOffset + 0x2f] = (byte)(checksumWord >> 8);
 	}
 
 	private static void FixGenesisChecksum(byte[] romData) {
@@ -544,9 +544,9 @@ public class BuildPipelineService {
 			checksum += (romData[i] << 8) | romData[i + 1];
 		}
 
-		// Store at 0x18E (big-endian)
-		romData[0x18E] = (byte)((checksum >> 8) & 0xFF);
-		romData[0x18F] = (byte)(checksum & 0xFF);
+		// Store at 0x18e (big-endian)
+		romData[0x18e] = (byte)((checksum >> 8) & 0xff);
+		romData[0x18f] = (byte)(checksum & 0xff);
 	}
 
 	private async Task<VerificationResult> VerifyRomAsync(CancellationToken cancellationToken) {

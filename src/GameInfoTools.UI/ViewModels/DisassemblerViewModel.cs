@@ -593,8 +593,8 @@ public partial class DisassemblerViewModel : ViewModelBase, IKeyboardShortcutHan
 
 		// Search entire ROM for references to this address
 		var data = _rom.Data;
-		var lowByte = (byte)(targetAddr & 0xFF);
-		var highByte = (byte)((targetAddr >> 8) & 0xFF);
+		var lowByte = (byte)(targetAddr & 0xff);
+		var highByte = (byte)((targetAddr >> 8) & 0xff);
 
 		for (int i = 0; i < data.Length - 2; i++) {
 			// Look for address in little-endian format

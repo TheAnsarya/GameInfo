@@ -1136,7 +1136,7 @@ public class Disassembler {
 			[0xf1] = ("pop", 1, "af"),
 		};
 
-		// Add LD r,r' instructions (0x40-0x7F except HALT)
+		// Add LD r,r' instructions (0x40-0x7f except HALT)
 		string[] regs = ["b", "c", "d", "e", "h", "l", "(hl)", "a"];
 		for (int dst = 0; dst < 8; dst++) {
 			for (int src = 0; src < 8; src++) {
@@ -1147,7 +1147,7 @@ public class Disassembler {
 			}
 		}
 
-		// Add ALU instructions (0x80-0xBF)
+		// Add ALU instructions (0x80-0xbf)
 		string[] aluOps = ["add", "adc", "sub", "sbc", "and", "xor", "or", "cp"];
 		for (int aluOp = 0; aluOp < 8; aluOp++) {
 			for (int src = 0; src < 8; src++) {

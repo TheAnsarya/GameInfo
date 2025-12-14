@@ -9,11 +9,11 @@ namespace GameInfoTools.Tests;
 public class SpriteExtractorTests {
 	[Fact]
 	public void NesSprite_Record_HasCorrectProperties() {
-		var sprite = new SpriteExtractor.NesSprite(0x10, 0x20, 0xE3, 0x40);
+		var sprite = new SpriteExtractor.NesSprite(0x10, 0x20, 0xe3, 0x40);
 
 		Assert.Equal(0x10, sprite.Y);
 		Assert.Equal(0x20, sprite.TileIndex);
-		Assert.Equal(0xE3, sprite.Attributes);
+		Assert.Equal(0xe3, sprite.Attributes);
 		Assert.Equal(0x40, sprite.X);
 	}
 
@@ -22,7 +22,7 @@ public class SpriteExtractorTests {
 		var sprite = new SpriteExtractor.NesSprite(0, 0, 0x03, 0);
 		Assert.Equal(3, sprite.Palette);
 
-		sprite = new SpriteExtractor.NesSprite(0, 0, 0xFC, 0); // Upper bits set
+		sprite = new SpriteExtractor.NesSprite(0, 0, 0xfc, 0); // Upper bits set
 		Assert.Equal(0, sprite.Palette);
 	}
 
@@ -31,7 +31,7 @@ public class SpriteExtractorTests {
 		var sprite = new SpriteExtractor.NesSprite(0, 0, 0x20, 0);
 		Assert.True(sprite.BehindBackground);
 
-		sprite = new SpriteExtractor.NesSprite(0, 0, 0xDF, 0); // All but bit 5
+		sprite = new SpriteExtractor.NesSprite(0, 0, 0xdf, 0); // All but bit 5
 		Assert.False(sprite.BehindBackground);
 	}
 
@@ -40,7 +40,7 @@ public class SpriteExtractorTests {
 		var sprite = new SpriteExtractor.NesSprite(0, 0, 0x40, 0);
 		Assert.True(sprite.FlipH);
 
-		sprite = new SpriteExtractor.NesSprite(0, 0, 0xBF, 0); // All but bit 6
+		sprite = new SpriteExtractor.NesSprite(0, 0, 0xbf, 0); // All but bit 6
 		Assert.False(sprite.FlipH);
 	}
 
@@ -49,7 +49,7 @@ public class SpriteExtractorTests {
 		var sprite = new SpriteExtractor.NesSprite(0, 0, 0x80, 0);
 		Assert.True(sprite.FlipV);
 
-		sprite = new SpriteExtractor.NesSprite(0, 0, 0x7F, 0); // All but bit 7
+		sprite = new SpriteExtractor.NesSprite(0, 0, 0x7f, 0); // All but bit 7
 		Assert.False(sprite.FlipV);
 	}
 
@@ -60,7 +60,7 @@ public class SpriteExtractorTests {
 			// Sprite 0: Y=10, Tile=20, Attr=03, X=40
 			10, 20, 0x03, 40,
 			// Sprite 1: Y=50, Tile=60, Attr=C0, X=70
-			50, 60, 0xC0, 70,
+			50, 60, 0xc0, 70,
 		};
 
 		var sprites = SpriteExtractor.ParseNesOam(data, 0, 2);
@@ -73,7 +73,7 @@ public class SpriteExtractorTests {
 
 		Assert.Equal(50, sprites[1].Y);
 		Assert.Equal(60, sprites[1].TileIndex);
-		Assert.Equal(0xC0, sprites[1].Attributes);
+		Assert.Equal(0xc0, sprites[1].Attributes);
 		Assert.Equal(70, sprites[1].X);
 	}
 
@@ -158,7 +158,7 @@ public class SpriteExtractorTests {
 		// Sprite with negative offsets (signed bytes)
 		var data = new byte[]
 		{
-			0xF8, 0xFC, 0x10, 0x00, // X=-8, Y=-4
+			0xf8, 0xfc, 0x10, 0x00, // X=-8, Y=-4
 		};
 
 		var meta = SpriteExtractor.ExtractMetasprite(data, 0, 1);

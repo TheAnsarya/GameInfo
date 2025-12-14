@@ -413,8 +413,8 @@ public class PaletteAdvancedTests {
 	[Fact]
 	public void GenesisColorToRgb_PureRed_ReturnsRed() {
 		// Genesis format: ----BBB- GGG-RRR-
-		// Pure red = 0x000E (bits 1-3)
-		var (r, g, b) = Palette.GenesisColorToRgb(0x000E);
+		// Pure red = 0x000e (bits 1-3)
+		var (r, g, b) = Palette.GenesisColorToRgb(0x000e);
 		Assert.True(r > 200);
 		Assert.True(g < 50);
 		Assert.True(b < 50);
@@ -435,7 +435,7 @@ public class PaletteAdvancedTests {
 	[Fact]
 	public void ReadGenesisPalette_ValidData_ReturnsPalette() {
 		// Big endian Genesis colors
-		byte[] data = [0x00, 0x00, 0x00, 0x0E, 0x0E, 0x00];  // Black, Red, Green
+		byte[] data = [0x00, 0x00, 0x00, 0x0e, 0x0e, 0x00];  // Black, Red, Green
 		var palette = Palette.ReadGenesisPalette(data, 0, 3);
 
 		Assert.Equal(3, palette.Length);
@@ -681,7 +681,7 @@ public class PaletteAdvancedTests {
 
 	[Fact]
 	public void DetectPaletteFormat_15BitColors_ReturnsSnes() {
-		byte[] data = [0x00, 0x00, 0xFF, 0x7F, 0x1F, 0x00];  // Valid 15-bit
+		byte[] data = [0x00, 0x00, 0xff, 0x7f, 0x1f, 0x00];  // Valid 15-bit
 		var format = Palette.DetectPaletteFormat(data, 0, 3);
 
 		Assert.Equal(Palette.PaletteFormat.Snes, format);
@@ -729,7 +729,7 @@ public class PaletteAdvancedTests {
 
 	[Fact]
 	public void ReadPalette_SnesFormat_ReadsSnesPalette() {
-		byte[] data = [0x00, 0x00, 0xFF, 0x7F];  // Black and White
+		byte[] data = [0x00, 0x00, 0xff, 0x7f];  // Black and White
 		var palette = Palette.ReadPalette(data, 0, 2, Palette.PaletteFormat.Snes);
 
 		Assert.Equal(2, palette.Length);
@@ -737,7 +737,7 @@ public class PaletteAdvancedTests {
 
 	[Fact]
 	public void ReadPalette_GenesisFormat_ReadsGenesisPalette() {
-		byte[] data = [0x00, 0x00, 0x00, 0x0E];
+		byte[] data = [0x00, 0x00, 0x00, 0x0e];
 		var palette = Palette.ReadPalette(data, 0, 2, Palette.PaletteFormat.Genesis);
 
 		Assert.Equal(2, palette.Length);

@@ -59,7 +59,7 @@ public class ChecksumTests {
 		// Create a small test ROM (32KB)
 		byte[] rom = new byte[0x8000];
 		for (int i = 0; i < rom.Length; i++) {
-			rom[i] = (byte)(i & 0xFF);
+			rom[i] = (byte)(i & 0xff);
 		}
 
 		var result = Checksum.SnesChecksum(rom);
@@ -70,7 +70,7 @@ public class ChecksumTests {
 	public void SnesComplement_ReturnsValidComplement() {
 		ushort checksum = 0x1234;
 		ushort complement = Checksum.SnesComplement(checksum);
-		Assert.Equal((ushort)(checksum ^ 0xFFFF), complement);
+		Assert.Equal((ushort)(checksum ^ 0xffff), complement);
 	}
 
 	[Fact]
@@ -86,7 +86,7 @@ public class ChecksumTests {
 		// Create a test NES ROM with header
 		byte[] rom = new byte[16 + 0x4000]; // Header + 16KB PRG
 		for (int i = 16; i < rom.Length; i++) {
-			rom[i] = (byte)(i & 0xFF);
+			rom[i] = (byte)(i & 0xff);
 		}
 
 		var result = Checksum.NesChecksum(rom, 16, rom.Length - 16);
@@ -104,7 +104,7 @@ public class ChecksumTests {
 	public void GameBoyHeaderChecksum_CalculatesCorrectly() {
 		byte[] rom = new byte[0x150];
 		// Fill header area
-		for (int i = 0x134; i <= 0x14C; i++) {
+		for (int i = 0x134; i <= 0x14c; i++) {
 			rom[i] = (byte)i;
 		}
 
@@ -117,7 +117,7 @@ public class ChecksumTests {
 	public void GameBoyGlobalChecksum_CalculatesCorrectly() {
 		byte[] rom = new byte[0x8000];
 		for (int i = 0; i < rom.Length; i++) {
-			rom[i] = (byte)(i & 0xFF);
+			rom[i] = (byte)(i & 0xff);
 		}
 
 		var result = Checksum.GameBoyGlobalChecksum(rom);
@@ -170,7 +170,7 @@ public class ChecksumTests {
 		ushort complement = (ushort)(rom[0x7fdc] | (rom[0x7fdd] << 8));
 		ushort checksum = (ushort)(rom[0x7fde] | (rom[0x7fdf] << 8));
 
-		// Checksum ^ complement should equal 0xFFFF
+		// Checksum ^ complement should equal 0xffff
 		Assert.Equal(0xffff, checksum ^ complement);
 	}
 
@@ -189,7 +189,7 @@ public class ChecksumTests {
 	public void Verify_NES_ReturnsResult() {
 		byte[] data = new byte[0x8000];
 		for (int i = 0; i < data.Length; i++) {
-			data[i] = (byte)(i & 0xFF);
+			data[i] = (byte)(i & 0xff);
 		}
 
 		var result = Checksum.Verify(data, SystemType.Nes);

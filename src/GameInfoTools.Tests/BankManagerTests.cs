@@ -18,10 +18,10 @@ public class BankManagerTests {
 		byte[] rom = new byte[16 + prgSize + chrSize];
 
 		// iNES header
-		rom[0] = 0x4E; // 'N'
+		rom[0] = 0x4e; // 'N'
 		rom[1] = 0x45; // 'E'
 		rom[2] = 0x53; // 'S'
-		rom[3] = 0x1A; // EOF
+		rom[3] = 0x1a; // EOF
 		rom[4] = (byte)prgBanks; // PRG ROM banks (16KB each)
 		rom[5] = (byte)chrBanks; // CHR ROM banks (8KB each)
 		rom[6] = 0x00; // Mapper low nibble, mirroring, etc.
@@ -90,13 +90,13 @@ public class BankManagerTests {
 
 	[Fact]
 	public void BankInfo_HasCorrectProperties() {
-		var info = new BankManager.BankInfo(0, 0x10, 0x4000, 0x8000, 0xBFFF, true);
+		var info = new BankManager.BankInfo(0, 0x10, 0x4000, 0x8000, 0xbfff, true);
 
 		Assert.Equal(0, info.Number);
 		Assert.Equal(0x10, info.FileOffset);
 		Assert.Equal(0x4000, info.Size);
 		Assert.Equal(0x8000, info.CpuStart);
-		Assert.Equal(0xBFFF, info.CpuEnd);
+		Assert.Equal(0xbfff, info.CpuEnd);
 		Assert.True(info.IsPrgRom);
 	}
 

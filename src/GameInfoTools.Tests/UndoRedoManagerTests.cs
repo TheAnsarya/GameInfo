@@ -326,15 +326,15 @@ public class EditActionTests {
 
 	[Fact]
 	public void SingleByteEdit_CreatesCorrectAction() {
-		var action = EditAction.SingleByteEdit(0x100, 0xAA, 0xBB, "test");
+		var action = EditAction.SingleByteEdit(0x100, 0xaa, 0xbb, "test");
 
 		Assert.Equal(EditAction.ActionType.SingleByte, action.Type);
 		Assert.Equal(0x100, action.Offset);
 		Assert.Equal(1, action.Length);
 		Assert.Single(action.OldData);
 		Assert.Single(action.NewData);
-		Assert.Equal(0xAA, action.OldData[0]);
-		Assert.Equal(0xBB, action.NewData[0]);
+		Assert.Equal(0xaa, action.OldData[0]);
+		Assert.Equal(0xbb, action.NewData[0]);
 	}
 
 	[Fact]
@@ -353,13 +353,13 @@ public class EditActionTests {
 	[Fact]
 	public void FillEdit_CreatesCorrectAction() {
 		var oldData = new byte[] { 0x01, 0x02, 0x03 };
-		var action = EditAction.FillEdit(0x300, oldData, 0xFF);
+		var action = EditAction.FillEdit(0x300, oldData, 0xff);
 
 		Assert.Equal(EditAction.ActionType.Fill, action.Type);
 		Assert.Equal(0x300, action.Offset);
 		Assert.Equal(3, action.Length);
 		Assert.Equal(oldData, action.OldData);
-		Assert.All(action.NewData, b => Assert.Equal(0xFF, b));
+		Assert.All(action.NewData, b => Assert.Equal(0xff, b));
 	}
 }
 

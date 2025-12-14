@@ -244,14 +244,14 @@ public class CdlHeatmapTests {
 		var banks = heatmap.GetBankCoverage(0x4000);
 
 		Assert.Equal(0, banks[0].StartOffset);
-		Assert.Equal(0x3FFF, banks[0].EndOffset);
+		Assert.Equal(0x3fff, banks[0].EndOffset);
 		Assert.Equal(0x4000, banks[1].StartOffset);
-		Assert.Equal(0x7FFF, banks[1].EndOffset);
+		Assert.Equal(0x7fff, banks[1].EndOffset);
 	}
 
 	[Fact]
 	public void GetBankCoverage_HasCorrectBankIndices() {
-		var data = CreateTestCdlData(0xC000); // 48KB = 3 banks
+		var data = CreateTestCdlData(0xc000); // 48KB = 3 banks
 		var heatmap = new CdlHeatmap(data);
 
 		var banks = heatmap.GetBankCoverage(0x4000);
@@ -899,14 +899,14 @@ public class CdlHeatmapTests {
 
 		Assert.Equal(0x80, rawConverted[0]); // Code -> Executed
 		Assert.Equal(0x40, rawConverted[1]); // Data -> Read
-		Assert.Equal(0xC0, rawConverted[2]); // Both -> Executed | Read
+		Assert.Equal(0xc0, rawConverted[2]); // Both -> Executed | Read
 	}
 
 	[Fact]
 	public void ConvertTo_BsnesToFceux_MapsFlags() {
 		// bsnes: 0x80=Executed, 0x40=Read
 		// FCEUX: 0x01=Code, 0x02=Data
-		var data = new byte[] { 0x80, 0x40, 0xC0 };
+		var data = new byte[] { 0x80, 0x40, 0xc0 };
 		var heatmap = new CdlHeatmap(data, CdlHeatmap.CdlFormat.Bsnes);
 
 		var converted = heatmap.ConvertTo(CdlHeatmap.CdlFormat.Fceux);
@@ -1212,7 +1212,7 @@ public class CdlHeatmapTests {
 		heatmap.ImportBookmarks(content);
 
 		Assert.Equal(2, heatmap.Bookmarks.Count);
-		Assert.Equal(0x0A, heatmap.Bookmarks[0].Offset);
+		Assert.Equal(0x0a, heatmap.Bookmarks[0].Offset);
 		Assert.Equal(0x14, heatmap.Bookmarks[1].Offset);
 	}
 

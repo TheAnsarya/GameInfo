@@ -47,7 +47,7 @@ public class PatternDetectorTests {
 		byte[] data = new byte[0x100];
 		// Fill with non-text data
 		for (int i = 0; i < data.Length; i++) {
-			data[i] = (byte)(0x80 + (i & 0x7F)); // High-bit set, not ASCII
+			data[i] = (byte)(0x80 + (i & 0x7f)); // High-bit set, not ASCII
 		}
 
 		var results = PatternDetector.FindTextRegions(data, 8);
@@ -65,8 +65,8 @@ public class PatternDetectorTests {
 			int offset = tile * 16;
 			for (int row = 0; row < 8; row++) {
 				// Alternating pattern
-				data[offset + row] = (byte)(row % 2 == 0 ? 0xFF : 0x00);
-				data[offset + row + 8] = (byte)(row % 2 == 0 ? 0x00 : 0xFF);
+				data[offset + row] = (byte)(row % 2 == 0 ? 0xff : 0x00);
+				data[offset + row + 8] = (byte)(row % 2 == 0 ? 0x00 : 0xff);
 			}
 		}
 
@@ -100,15 +100,15 @@ public class PatternDetectorTests {
 
 		// SEI, CLD, LDX #$FF, TXS (typical NES startup)
 		data[offset++] = 0x78; // SEI
-		data[offset++] = 0xD8; // CLD
-		data[offset++] = 0xA2; // LDX
-		data[offset++] = 0xFF; // #$FF
-		data[offset++] = 0x9A; // TXS
+		data[offset++] = 0xd8; // CLD
+		data[offset++] = 0xa2; // LDX
+		data[offset++] = 0xff; // #$FF
+		data[offset++] = 0x9a; // TXS
 
 		// LDA #$00, STA $2000
-		data[offset++] = 0xA9; // LDA
+		data[offset++] = 0xa9; // LDA
 		data[offset++] = 0x00; // #$00
-		data[offset++] = 0x8D; // STA absolute
+		data[offset++] = 0x8d; // STA absolute
 		data[offset++] = 0x00;
 		data[offset++] = 0x20;
 
@@ -146,10 +146,10 @@ public class PatternDetectorTests {
 		var pattern = PatternDetector.ParsePatternString("AA BB CC DD");
 
 		Assert.Equal(4, pattern.Length);
-		Assert.Equal((byte)0xAA, pattern[0]);
-		Assert.Equal((byte)0xBB, pattern[1]);
-		Assert.Equal((byte)0xCC, pattern[2]);
-		Assert.Equal((byte)0xDD, pattern[3]);
+		Assert.Equal((byte)0xaa, pattern[0]);
+		Assert.Equal((byte)0xbb, pattern[1]);
+		Assert.Equal((byte)0xcc, pattern[2]);
+		Assert.Equal((byte)0xdd, pattern[3]);
 	}
 
 	[Fact]
@@ -157,9 +157,9 @@ public class PatternDetectorTests {
 		var pattern = PatternDetector.ParsePatternString("AA ?? CC");
 
 		Assert.Equal(3, pattern.Length);
-		Assert.Equal((byte)0xAA, pattern[0]);
+		Assert.Equal((byte)0xaa, pattern[0]);
 		Assert.Null(pattern[1]); // Wildcard
-		Assert.Equal((byte)0xCC, pattern[2]);
+		Assert.Equal((byte)0xcc, pattern[2]);
 	}
 
 	[Fact]
@@ -182,7 +182,7 @@ public class PatternDetectorTests {
 
 	[Fact]
 	public void PatternToString_FormatsCorrectly() {
-		var pattern = new byte?[] { 0xAA, null, 0xCC };
+		var pattern = new byte?[] { 0xaa, null, 0xcc };
 		var result = PatternDetector.PatternToString(pattern);
 
 		Assert.Equal("aa ?? cc", result);
@@ -190,39 +190,39 @@ public class PatternDetectorTests {
 
 	[Fact]
 	public void MatchesPattern_ExactMatch_ReturnsTrue() {
-		byte[] data = [0xAA, 0xBB, 0xCC, 0xDD, 0xEE];
-		var pattern = new byte?[] { 0xAA, 0xBB, 0xCC };
+		byte[] data = [0xaa, 0xbb, 0xcc, 0xdd, 0xee];
+		var pattern = new byte?[] { 0xaa, 0xbb, 0xcc };
 
 		Assert.True(PatternDetector.MatchesPattern(data, 0, pattern));
 	}
 
 	[Fact]
 	public void MatchesPattern_WithWildcard_ReturnsTrue() {
-		byte[] data = [0xAA, 0x00, 0xCC, 0xDD, 0xEE];
-		var pattern = new byte?[] { 0xAA, null, 0xCC };
+		byte[] data = [0xaa, 0x00, 0xcc, 0xdd, 0xee];
+		var pattern = new byte?[] { 0xaa, null, 0xcc };
 
 		Assert.True(PatternDetector.MatchesPattern(data, 0, pattern));
 	}
 
 	[Fact]
 	public void MatchesPattern_NoMatch_ReturnsFalse() {
-		byte[] data = [0xAA, 0xBB, 0xCC, 0xDD, 0xEE];
-		var pattern = new byte?[] { 0xAA, 0xFF, 0xCC };
+		byte[] data = [0xaa, 0xbb, 0xcc, 0xdd, 0xee];
+		var pattern = new byte?[] { 0xaa, 0xff, 0xcc };
 
 		Assert.False(PatternDetector.MatchesPattern(data, 0, pattern));
 	}
 
 	[Fact]
 	public void MatchesPattern_OutOfBounds_ReturnsFalse() {
-		byte[] data = [0xAA, 0xBB];
-		var pattern = new byte?[] { 0xAA, 0xBB, 0xCC };
+		byte[] data = [0xaa, 0xbb];
+		var pattern = new byte?[] { 0xaa, 0xbb, 0xcc };
 
 		Assert.False(PatternDetector.MatchesPattern(data, 0, pattern));
 	}
 
 	[Fact]
 	public void ScanForSignature_FindsAllMatches() {
-		byte[] data = [0xAA, 0xBB, 0x00, 0x00, 0xAA, 0xBB, 0x00, 0x00, 0xAA, 0xBB];
+		byte[] data = [0xaa, 0xbb, 0x00, 0x00, 0xaa, 0xbb, 0x00, 0x00, 0xaa, 0xbb];
 		var pattern = PatternDetector.CreatePattern("Test", "AA BB", "Test pattern");
 
 		var results = PatternDetector.ScanForSignature(data, pattern);
@@ -235,7 +235,7 @@ public class PatternDetectorTests {
 
 	[Fact]
 	public void ScanForSignature_WithWildcard_FindsMatches() {
-		byte[] data = [0xAA, 0x11, 0xCC, 0x00, 0xAA, 0x22, 0xCC, 0x00, 0xAA, 0x33, 0xCC];
+		byte[] data = [0xaa, 0x11, 0xcc, 0x00, 0xaa, 0x22, 0xcc, 0x00, 0xaa, 0x33, 0xcc];
 		var pattern = PatternDetector.CreatePattern("Test", "AA ?? CC", "Wildcard pattern");
 
 		var results = PatternDetector.ScanForSignature(data, pattern);
@@ -245,7 +245,7 @@ public class PatternDetectorTests {
 
 	[Fact]
 	public void ScanForSignatures_ScansMultiplePatterns() {
-		byte[] data = [0xAA, 0xBB, 0x00, 0xCC, 0xDD, 0x00];
+		byte[] data = [0xaa, 0xbb, 0x00, 0xcc, 0xdd, 0x00];
 		var patterns = new[] {
 			PatternDetector.CreatePattern("Pattern1", "AA BB"),
 			PatternDetector.CreatePattern("Pattern2", "CC DD")
@@ -258,14 +258,14 @@ public class PatternDetectorTests {
 
 	[Fact]
 	public void GeneratePattern_CreatesPatternFromBytes() {
-		byte[] bytes = [0xAA, 0xBB, 0xCC, 0xDD];
+		byte[] bytes = [0xaa, 0xbb, 0xcc, 0xdd];
 		var pattern = PatternDetector.GeneratePattern("Test", bytes, [1, 2], "Test desc", "Test cat");
 
 		Assert.Equal("Test", pattern.Name);
-		Assert.Equal((byte)0xAA, pattern.Bytes[0]);
+		Assert.Equal((byte)0xaa, pattern.Bytes[0]);
 		Assert.Null(pattern.Bytes[1]); // Wildcard
 		Assert.Null(pattern.Bytes[2]); // Wildcard
-		Assert.Equal((byte)0xDD, pattern.Bytes[3]);
+		Assert.Equal((byte)0xdd, pattern.Bytes[3]);
 		Assert.Equal("Test desc", pattern.Description);
 		Assert.Equal("Test cat", pattern.Category);
 	}
@@ -401,7 +401,7 @@ public class PatternDetectorTests {
 		library.Add(PatternDetector.CreatePattern("Pattern1", "AA BB"));
 		library.Add(PatternDetector.CreatePattern("Pattern2", "CC DD"));
 
-		byte[] data = [0xAA, 0xBB, 0x00, 0xCC, 0xDD];
+		byte[] data = [0xaa, 0xbb, 0x00, 0xcc, 0xdd];
 		var results = library.ScanAll(data);
 
 		Assert.Equal(2, results.Count);
@@ -531,7 +531,7 @@ public class PatternDetectorTests {
 			Condition = "any of them"
 		};
 
-		byte[] data = [0x00, 0xAA, 0xBB, 0xCC, 0x00];
+		byte[] data = [0x00, 0xaa, 0xbb, 0xcc, 0x00];
 
 		var result = PatternDetector.EvaluateYaraRule(data, rule);
 
@@ -606,7 +606,7 @@ public class PatternDetectorTests {
 			}
 		};
 
-		byte[] data = [0xAA, 0xBB, 0x00, 0xCC, 0xDD];
+		byte[] data = [0xaa, 0xbb, 0x00, 0xcc, 0xdd];
 
 		var results = PatternDetector.ScanYaraRules(data, rules);
 
@@ -696,7 +696,7 @@ public class PatternDetectorTests {
 	public void GenerateBatchReport_CreatesReport() {
 		var fileResults = new List<PatternDetector.BatchScanFileResult> {
 			new("test.bin",
-				[new(PatternDetector.CreatePattern("test", "AA"), 0, [0xAA])],
+				[new(PatternDetector.CreatePattern("test", "AA"), 0, [0xaa])],
 				[],
 				[new PatternDetector.PatternMatch(0, 10, "Code", 0.8, null)],
 				null)
@@ -767,7 +767,7 @@ public class PatternDetectorTests {
 	[Fact]
 	public void ScoreAsArchitectureCode_6502Code_ReturnsHighScore() {
 		// Some 6502 code: LDA #$00, STA $00, RTS
-		byte[] code = [0xA9, 0x00, 0x85, 0x00, 0x60];
+		byte[] code = [0xa9, 0x00, 0x85, 0x00, 0x60];
 
 		var score = PatternDetector.ScoreAsArchitectureCode(code, 0, code.Length, PatternDetector.ArchitectureType.Mos6502);
 
@@ -777,7 +777,7 @@ public class PatternDetectorTests {
 	[Fact]
 	public void DetectArchitecture_6502Code_Identifies6502() {
 		// Typical 6502 code sequence
-		byte[] code = [0x20, 0x00, 0x80, 0x60, 0xA9, 0x00, 0x85, 0x00];
+		byte[] code = [0x20, 0x00, 0x80, 0x60, 0xa9, 0x00, 0x85, 0x00];
 
 		var (arch, confidence) = PatternDetector.DetectArchitecture(code, 0, code.Length);
 
@@ -788,7 +788,7 @@ public class PatternDetectorTests {
 	[Fact]
 	public void DetectArchitecture_Z80Code_HasResult() {
 		// Z80: NOP, RET, JP
-		byte[] code = [0x00, 0xC9, 0xC3, 0x00, 0x80];
+		byte[] code = [0x00, 0xc9, 0xc3, 0x00, 0x80];
 
 		var (arch, confidence) = PatternDetector.DetectArchitecture(code, 0, code.Length);
 

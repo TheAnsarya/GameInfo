@@ -508,7 +508,7 @@ public static class AudioEditor {
 		if (shift > 12)
 			return false;
 
-		// Check that the sample data isn't all zeros or all 0xFF
+		// Check that the sample data isn't all zeros or all 0xff
 		bool hasData = false;
 		for (int i = 1; i <= 8; i++) {
 			if (data[offset + i] != 0 && data[offset + i] != 0xff) {
@@ -701,7 +701,7 @@ public static class AudioEditor {
 		// Samples often end with silence or a specific pattern
 		int length = 16;
 		while (offset + length < data.Length && length < 0x1000) {
-			// Check for silence (many zeros or 0xAA pattern)
+			// Check for silence (many zeros or 0xaa pattern)
 			int silenceCount = 0;
 			for (int i = 0; i < 16 && offset + length + i < data.Length; i++) {
 				if (data[offset + length + i] == 0 || data[offset + length + i] == 0xaa) {

@@ -289,7 +289,7 @@ public class PointerTableTests {
 		// Random data unlikely to form valid pointer tables
 		byte[] data = new byte[10];
 		for (int i = 0; i < data.Length; i++) {
-			data[i] = (byte)(0xFF - i);  // 0xFF, 0xFE, 0xFD, etc.
+			data[i] = (byte)(0xff - i);  // 0xff, 0xfe, 0xfd, etc.
 		}
 
 		var tables = PointerTable.ScanForTables(data, 4);

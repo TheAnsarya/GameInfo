@@ -1248,7 +1248,7 @@ public static class Crc32 {
 
 	static Crc32() {
 		Table = new uint[256];
-		const uint polynomial = 0xEDB88320;
+		const uint polynomial = 0xedb88320;
 
 		for (uint i = 0; i < 256; i++) {
 			uint crc = i;
@@ -1264,25 +1264,25 @@ public static class Crc32 {
 	/// Calculate CRC32 of data.
 	/// </summary>
 	public static uint Calculate(byte[] data) {
-		uint crc = 0xFFFFFFFF;
+		uint crc = 0xffffffff;
 
 		foreach (byte b in data) {
 			crc = Table[(crc ^ b) & 0xff] ^ (crc >> 8);
 		}
 
-		return crc ^ 0xFFFFFFFF;
+		return crc ^ 0xffffffff;
 	}
 
 	/// <summary>
 	/// Calculate CRC32 of a span.
 	/// </summary>
 	public static uint Calculate(ReadOnlySpan<byte> data) {
-		uint crc = 0xFFFFFFFF;
+		uint crc = 0xffffffff;
 
 		foreach (byte b in data) {
 			crc = Table[(crc ^ b) & 0xff] ^ (crc >> 8);
 		}
 
-		return crc ^ 0xFFFFFFFF;
+		return crc ^ 0xffffffff;
 	}
 }

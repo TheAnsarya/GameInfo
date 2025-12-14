@@ -54,11 +54,11 @@ public class CdlLabelIntegrationTests {
 		var cdlData = CreateTestCdlData();
 		var heatmap = new CdlHeatmap(cdlData);
 
-		var integration = new CdlLabelIntegration(heatmap, baseAddress: 0xC000);
+		var integration = new CdlLabelIntegration(heatmap, baseAddress: 0xc000);
 
 		// Offset 0 should map to address $C000
-		Assert.Equal(0xC000, integration.OffsetToAddress(0));
-		Assert.Equal(0, integration.AddressToOffset(0xC000));
+		Assert.Equal(0xc000, integration.OffsetToAddress(0));
+		Assert.Equal(0, integration.AddressToOffset(0xc000));
 	}
 
 	#endregion

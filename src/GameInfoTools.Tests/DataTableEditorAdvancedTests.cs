@@ -61,13 +61,13 @@ public class DataTableEditorAdvancedTests {
 
 	[Fact]
 	public void ReadField_Byte_ReturnsCorrectValue() {
-		var data = new byte[] { 0x00, 0xAB, 0x00, 0x00 };
+		var data = new byte[] { 0x00, 0xab, 0x00, 0x00 };
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("Test", DataTableEditor.FieldType.Byte, 1);
 
 		var value = editor.ReadField(0, field);
 
-		Assert.Equal((byte)0xAB, value);
+		Assert.Equal((byte)0xab, value);
 	}
 
 	[Fact]
@@ -94,7 +94,7 @@ public class DataTableEditorAdvancedTests {
 
 	[Fact]
 	public void ReadField_SignedByte_ReturnsNegativeValue() {
-		var data = new byte[] { 0xFF }; // -1 as signed byte
+		var data = new byte[] { 0xff }; // -1 as signed byte
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("Test", DataTableEditor.FieldType.SignedByte, 0);
 
@@ -105,7 +105,7 @@ public class DataTableEditorAdvancedTests {
 
 	[Fact]
 	public void ReadField_SignedWord_ReturnsNegativeValue() {
-		var data = new byte[] { 0xFF, 0xFF }; // -1 as signed word
+		var data = new byte[] { 0xff, 0xff }; // -1 as signed word
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("Test", DataTableEditor.FieldType.SignedWord, 0);
 
@@ -131,9 +131,9 @@ public class DataTableEditorAdvancedTests {
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("Test", DataTableEditor.FieldType.Byte, 1);
 
-		editor.WriteField(0, field, (byte)0xCD);
+		editor.WriteField(0, field, (byte)0xcd);
 
-		Assert.Equal(0xCD, data[1]);
+		Assert.Equal(0xcd, data[1]);
 	}
 
 	[Fact]
@@ -169,12 +169,12 @@ public class DataTableEditorAdvancedTests {
 
 		editor.WriteField(0, field, (sbyte)-1);
 
-		Assert.Equal(0xFF, data[0]);
+		Assert.Equal(0xff, data[0]);
 	}
 
 	[Fact]
 	public void ReadRecord_ReadsAllFields() {
-		var data = new byte[] { 0x0A, 0x00, 0x14 }; // HP=10, padding, STR=20
+		var data = new byte[] { 0x0a, 0x00, 0x14 }; // HP=10, padding, STR=20
 		var editor = new DataTableEditor(data);
 
 		var table = new DataTableEditor.TableDef {
@@ -264,7 +264,7 @@ public class DataTableEditorAdvancedTests {
 
 		var value = editor.ReadField(0, field);
 
-		Assert.Equal((byte)0xAA, value);
+		Assert.Equal((byte)0xaa, value);
 	}
 
 	[Fact]
@@ -280,14 +280,14 @@ public class DataTableEditorAdvancedTests {
 
 	[Fact]
 	public void ReadField_WithOffset_CalculatesCorrectPosition() {
-		var data = new byte[] { 0x00, 0x00, 0x00, 0xAB };
+		var data = new byte[] { 0x00, 0x00, 0x00, 0xab };
 		var editor = new DataTableEditor(data);
 		var field = new DataTableEditor.FieldDef("Value", DataTableEditor.FieldType.Byte, 1);
 
 		// ReadField(offset=2, field.Offset=1) => position 3
 		var value = editor.ReadField(2, field);
 
-		Assert.Equal((byte)0xAB, value);
+		Assert.Equal((byte)0xab, value);
 	}
 }
 

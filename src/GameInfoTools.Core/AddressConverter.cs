@@ -189,26 +189,26 @@ public static class AddressConverter {
 			0x06 => "MBC2+Battery",
 			0x08 => "ROM+RAM",
 			0x09 => "ROM+RAM+Battery",
-			0x0B => "MMM01",
-			0x0C => "MMM01+RAM",
-			0x0D => "MMM01+RAM+Battery",
-			0x0F => "MBC3+Timer+Battery",
+			0x0b => "MMM01",
+			0x0c => "MMM01+RAM",
+			0x0d => "MMM01+RAM+Battery",
+			0x0f => "MBC3+Timer+Battery",
 			0x10 => "MBC3+Timer+RAM+Battery",
 			0x11 => "MBC3",
 			0x12 => "MBC3+RAM",
 			0x13 => "MBC3+RAM+Battery",
 			0x19 => "MBC5",
-			0x1A => "MBC5+RAM",
-			0x1B => "MBC5+RAM+Battery",
-			0x1C => "MBC5+Rumble",
-			0x1D => "MBC5+Rumble+RAM",
-			0x1E => "MBC5+Rumble+RAM+Battery",
+			0x1a => "MBC5+RAM",
+			0x1b => "MBC5+RAM+Battery",
+			0x1c => "MBC5+Rumble",
+			0x1d => "MBC5+Rumble+RAM",
+			0x1e => "MBC5+Rumble+RAM+Battery",
 			0x20 => "MBC6",
 			0x22 => "MBC7+Sensor+Rumble+RAM+Battery",
-			0xFC => "Pocket Camera",
-			0xFD => "Bandai TAMA5",
-			0xFE => "HuC3",
-			0xFF => "HuC1+RAM+Battery",
+			0xfc => "Pocket Camera",
+			0xfd => "Bandai TAMA5",
+			0xfe => "HuC3",
+			0xff => "HuC1+RAM+Battery",
 			_ => $"Unknown (${cartridgeType:x2})"
 		};
 	}
@@ -221,15 +221,15 @@ public static class AddressConverter {
 	/// GBA memory regions.
 	/// </summary>
 	public enum GbaMemoryRegion {
-		Bios,       // 0x00000000-0x00003FFF
-		Ewram,      // 0x02000000-0x0203FFFF
-		Iwram,      // 0x03000000-0x03007FFF
-		IoRegs,     // 0x04000000-0x040003FE
-		Palette,    // 0x05000000-0x050003FF
-		Vram,       // 0x06000000-0x06017FFF
-		Oam,        // 0x07000000-0x070003FF
-		Rom,        // 0x08000000-0x09FFFFFF (and mirrors)
-		Sram,       // 0x0E000000-0x0E00FFFF
+		Bios,       // 0x00000000-0x00003fff
+		Ewram,      // 0x02000000-0x0203ffff
+		Iwram,      // 0x03000000-0x03007fff
+		IoRegs,     // 0x04000000-0x040003fe
+		Palette,    // 0x05000000-0x050003ff
+		Vram,       // 0x06000000-0x06017fff
+		Oam,        // 0x07000000-0x070003ff
+		Rom,        // 0x08000000-0x09ffffff (and mirrors)
+		Sram,       // 0x0e000000-0x0e00ffff
 		Unknown
 	}
 
@@ -237,7 +237,7 @@ public static class AddressConverter {
 	/// Get the memory region for a GBA address.
 	/// </summary>
 	public static GbaMemoryRegion GbaGetRegion(uint address) {
-		var region = (address >> 24) & 0xFF;
+		var region = (address >> 24) & 0xff;
 
 		return region switch {
 			0x00 => GbaMemoryRegion.Bios,
@@ -247,8 +247,8 @@ public static class AddressConverter {
 			0x05 => GbaMemoryRegion.Palette,
 			0x06 => GbaMemoryRegion.Vram,
 			0x07 => GbaMemoryRegion.Oam,
-			0x08 or 0x09 or 0x0A or 0x0B or 0x0C or 0x0D => GbaMemoryRegion.Rom,
-			0x0E or 0x0F => GbaMemoryRegion.Sram,
+			0x08 or 0x09 or 0x0a or 0x0b or 0x0c or 0x0d => GbaMemoryRegion.Rom,
+			0x0e or 0x0f => GbaMemoryRegion.Sram,
 			_ => GbaMemoryRegion.Unknown
 		};
 	}
@@ -263,8 +263,8 @@ public static class AddressConverter {
 			throw new ArgumentException($"Address ${gbaAddress:x8} is not in ROM region", nameof(gbaAddress));
 		}
 
-		// ROM starts at 0x08000000, mirrors at 0x0A, 0x0C
-		return (int)(gbaAddress & 0x01FFFFFF);
+		// ROM starts at 0x08000000, mirrors at 0x0a, 0x0c
+		return (int)(gbaAddress & 0x01ffffff);
 	}
 
 	/// <summary>
@@ -282,7 +282,7 @@ public static class AddressConverter {
 			throw new ArgumentException($"Address ${address:x8} is not in EWRAM", nameof(address));
 		}
 
-		return (int)(address & 0x3FFFF);
+		return (int)(address & 0x3ffff);
 	}
 
 	/// <summary>
@@ -293,7 +293,7 @@ public static class AddressConverter {
 			throw new ArgumentException($"Address ${address:x8} is not in IWRAM", nameof(address));
 		}
 
-		return (int)(address & 0x7FFF);
+		return (int)(address & 0x7fff);
 	}
 
 	/// <summary>
@@ -304,7 +304,7 @@ public static class AddressConverter {
 			throw new ArgumentException($"Address ${address:x8} is not in VRAM", nameof(address));
 		}
 
-		return (int)(address & 0x1FFFF);
+		return (int)(address & 0x1ffff);
 	}
 
 	/// <summary>
@@ -338,7 +338,7 @@ public static class AddressConverter {
 			GbaMemoryRegion.Vram => 0x06000000,
 			GbaMemoryRegion.Oam => 0x07000000,
 			GbaMemoryRegion.Rom => 0x08000000,
-			GbaMemoryRegion.Sram => 0x0E000000,
+			GbaMemoryRegion.Sram => 0x0e000000,
 			_ => 0
 		};
 	}
@@ -411,11 +411,11 @@ public static class AddressConverter {
 	private static AddressConversionResult ConvertSnesAddress(int address, bool isFileOffset, bool isHiRom) {
 		if (isFileOffset) {
 			var cpu = isHiRom ? SnesFileToHiRom(address) : SnesFileToLoRom(address);
-			var bank = (cpu >> 16) & 0xFF;
+			var bank = (cpu >> 16) & 0xff;
 			return new AddressConversionResult(address, cpu, bank, ToHex(cpu, 6), SystemType.Snes);
 		} else {
 			var file = isHiRom ? SnesHiRomToFile(address) : SnesLoRomToFile(address);
-			var bank = (address >> 16) & 0xFF;
+			var bank = (address >> 16) & 0xff;
 			return new AddressConversionResult(file, address, bank, ToHex(address, 6), SystemType.Snes);
 		}
 	}

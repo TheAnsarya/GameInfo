@@ -236,7 +236,7 @@ public class CompressionDetectorAdvancedTests {
 	[Fact]
 	public void CompressRle_AllSameByte_CompressesEfficiently() {
 		var original = new byte[100];
-		for (int i = 0; i < 100; i++) original[i] = 0xAA;
+		for (int i = 0; i < 100; i++) original[i] = 0xaa;
 
 		var compressed = CompressionDetector.CompressRle(original);
 
@@ -273,7 +273,7 @@ public class CompressionDetectorAdvancedTests {
 	[Fact]
 	public void Analyze_HighRepetition_HasLowEntropy() {
 		var data = new byte[256];
-		for (int i = 0; i < 256; i++) data[i] = 0xAA;
+		for (int i = 0; i < 256; i++) data[i] = 0xaa;
 
 		var stats = CompressionDetector.Analyze(data, 0, 256);
 

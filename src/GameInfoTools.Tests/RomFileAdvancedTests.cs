@@ -52,7 +52,7 @@ public class RomFileAdvancedTests : IDisposable {
 
 	[Fact]
 	public void Data_ReturnsRomBytes() {
-		var data = new byte[] { 0xAB, 0xCD, 0xEF };
+		var data = new byte[] { 0xab, 0xcd, 0xef };
 		File.WriteAllBytes(_tempFile, data);
 
 		var rom = new RomFile();
@@ -138,9 +138,9 @@ public class RomFileAdvancedTests : IDisposable {
 
 		var rom = new RomFile();
 		rom.Load(_tempFile);
-		rom.WriteByte(1, 0xFF);
+		rom.WriteByte(1, 0xff);
 
-		Assert.Equal(0xFF, rom.ReadByte(1));
+		Assert.Equal(0xff, rom.ReadByte(1));
 	}
 
 	[Fact]
@@ -149,11 +149,11 @@ public class RomFileAdvancedTests : IDisposable {
 
 		var rom = new RomFile();
 		rom.Load(_tempFile);
-		rom.Write(1, new byte[] { 0xAA, 0xBB });
+		rom.Write(1, new byte[] { 0xaa, 0xbb });
 
 		Assert.Equal(0x00, rom.ReadByte(0));
-		Assert.Equal(0xAA, rom.ReadByte(1));
-		Assert.Equal(0xBB, rom.ReadByte(2));
+		Assert.Equal(0xaa, rom.ReadByte(1));
+		Assert.Equal(0xbb, rom.ReadByte(2));
 		Assert.Equal(0x00, rom.ReadByte(3));
 	}
 
@@ -178,18 +178,18 @@ public class RomFileAdvancedTests : IDisposable {
 
 		var rom = new RomFile();
 		rom.Load(_tempFile);
-		rom.WriteByte(1, 0xFF);
+		rom.WriteByte(1, 0xff);
 		rom.Save();
 
 		var savedData = File.ReadAllBytes(_tempFile);
-		Assert.Equal(0xFF, savedData[1]);
+		Assert.Equal(0xff, savedData[1]);
 	}
 
 	[Fact]
 	public void Save_WritesToNewPath() {
 		var tempFile2 = Path.GetTempFileName();
 		try {
-			File.WriteAllBytes(_tempFile, new byte[] { 0xAB, 0xCD });
+			File.WriteAllBytes(_tempFile, new byte[] { 0xab, 0xcd });
 
 			var rom = new RomFile();
 			rom.Load(_tempFile);
@@ -247,7 +247,7 @@ public class RomFileAdvancedTests : IDisposable {
 
 	[Fact]
 	public async Task LoadAsync_LoadsRom() {
-		File.WriteAllBytes(_tempFile, new byte[] { 0xAB, 0xCD });
+		File.WriteAllBytes(_tempFile, new byte[] { 0xab, 0xcd });
 
 		var rom = new RomFile();
 		await rom.LoadAsync(_tempFile);
@@ -262,11 +262,11 @@ public class RomFileAdvancedTests : IDisposable {
 
 		var rom = new RomFile();
 		rom.Load(_tempFile);
-		rom.WriteByte(0, 0xFF);
+		rom.WriteByte(0, 0xff);
 		await rom.SaveAsync();
 
 		var saved = File.ReadAllBytes(_tempFile);
-		Assert.Equal(0xFF, saved[0]);
+		Assert.Equal(0xff, saved[0]);
 	}
 
 	[Fact]
@@ -277,8 +277,8 @@ public class RomFileAdvancedTests : IDisposable {
 		data[1] = (byte)'E';
 		data[2] = (byte)'S';
 		data[3] = 0x1a;
-		data[16] = 0xAB; // First byte after header
-		data[17] = 0xCD;
+		data[16] = 0xab; // First byte after header
+		data[17] = 0xcd;
 
 		File.WriteAllBytes(_tempFile, data);
 
@@ -288,7 +288,7 @@ public class RomFileAdvancedTests : IDisposable {
 		var withoutHeader = rom.GetDataWithoutHeader();
 
 		Assert.Equal(16, withoutHeader.Length); // 32 - 16
-		Assert.Equal(0xAB, withoutHeader[0]);
-		Assert.Equal(0xCD, withoutHeader[1]);
+		Assert.Equal(0xab, withoutHeader[0]);
+		Assert.Equal(0xcd, withoutHeader[1]);
 	}
 }

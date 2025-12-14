@@ -219,7 +219,7 @@ public class ViewModelTests {
 		var vm = new HexEditorViewModel(rom);
 
 		byte originalValue = rom.Data[0x100];
-		byte newValue = (byte)(originalValue ^ 0xFF);
+		byte newValue = (byte)(originalValue ^ 0xff);
 
 		vm.WriteByte(0x100, newValue);
 
@@ -238,7 +238,7 @@ public class ViewModelTests {
 		var vm = new HexEditorViewModel(rom);
 
 		byte originalValue = rom.Data[0x100];
-		byte newValue = (byte)(originalValue ^ 0xFF);
+		byte newValue = (byte)(originalValue ^ 0xff);
 
 		vm.WriteByte(0x100, newValue);
 		vm.UndoCommand.Execute(null);
@@ -258,7 +258,7 @@ public class ViewModelTests {
 
 		byte[] originalValues = new byte[4];
 		Array.Copy(rom.Data, 0x100, originalValues, 0, 4);
-		byte[] newValues = [0xDE, 0xAD, 0xBE, 0xEF];
+		byte[] newValues = [0xde, 0xad, 0xbe, 0xef];
 
 		vm.WriteBytes(0x100, newValues);
 
@@ -278,13 +278,13 @@ public class ViewModelTests {
 		byte original1 = rom.Data[0x100];
 		byte original2 = rom.Data[0x200];
 
-		vm.WriteByte(0x100, 0xAA);
-		vm.WriteByte(0x200, 0xBB);
+		vm.WriteByte(0x100, 0xaa);
+		vm.WriteByte(0x200, 0xbb);
 
 		// Undo second edit first
 		vm.UndoCommand.Execute(null);
 		Assert.Equal(original2, rom.Data[0x200]);
-		Assert.Equal(0xAA, rom.Data[0x100]);
+		Assert.Equal(0xaa, rom.Data[0x100]);
 
 		// Undo first edit
 		vm.UndoCommand.Execute(null);
@@ -298,7 +298,7 @@ public class ViewModelTests {
 
 		Assert.Empty(vm.UndoDescription);
 
-		vm.WriteByte(0x100, 0xFF);
+		vm.WriteByte(0x100, 0xff);
 
 		Assert.NotEmpty(vm.UndoDescription);
 		Assert.Contains("000100", vm.UndoDescription, StringComparison.OrdinalIgnoreCase);
@@ -387,12 +387,12 @@ public class ViewModelTests {
 		var rom = CreateTestNesRom();
 		var vm = new HexEditorViewModel(rom);
 
-		vm.SetSelection(0x100, 0x10F);
+		vm.SetSelection(0x100, 0x10f);
 
 		Assert.True(vm.HasRangeSelection);
 		Assert.Equal(16, vm.SelectionLength);
 		Assert.Equal(0x100, vm.SelectionStart);
-		Assert.Equal(0x10F, vm.SelectionEnd);
+		Assert.Equal(0x10f, vm.SelectionEnd);
 	}
 
 	[Fact]
@@ -400,7 +400,7 @@ public class ViewModelTests {
 		var rom = CreateTestNesRom();
 		var vm = new HexEditorViewModel(rom);
 
-		vm.SetSelection(0x100, 0x10F);
+		vm.SetSelection(0x100, 0x10f);
 		vm.ClearRangeSelectionCommand.Execute(null);
 
 		Assert.False(vm.HasRangeSelection);
@@ -460,7 +460,7 @@ public class ViewModelTests {
 		var vm = new HexEditorViewModel(rom);
 		var comparisonData = new byte[rom.Length];
 		Array.Copy(rom.Data, comparisonData, rom.Length);
-		comparisonData[0x100] = (byte)(rom.Data[0x100] ^ 0xFF);
+		comparisonData[0x100] = (byte)(rom.Data[0x100] ^ 0xff);
 
 		vm.LoadComparisonData(comparisonData, "test.nes");
 
@@ -474,8 +474,8 @@ public class ViewModelTests {
 		var vm = new HexEditorViewModel(rom);
 		var comparisonData = new byte[rom.Length];
 		Array.Copy(rom.Data, comparisonData, rom.Length);
-		comparisonData[0x100] = 0xAA;
-		comparisonData[0x200] = 0xBB;
+		comparisonData[0x100] = 0xaa;
+		comparisonData[0x200] = 0xbb;
 
 		vm.LoadComparisonData(comparisonData, "test.nes");
 		vm.FindAllDifferencesCommand.Execute(null);
@@ -511,10 +511,10 @@ public class ViewModelTests {
 	public void HexEditorViewModel_FindAllPattern_FindsMatches() {
 		var rom = CreateTestNesRom();
 		// Set up a known pattern in the ROM
-		rom.Data[0x100] = 0xDE;
-		rom.Data[0x101] = 0xAD;
-		rom.Data[0x200] = 0xDE;
-		rom.Data[0x201] = 0xAD;
+		rom.Data[0x100] = 0xde;
+		rom.Data[0x101] = 0xad;
+		rom.Data[0x200] = 0xde;
+		rom.Data[0x201] = 0xad;
 		var vm = new HexEditorViewModel(rom);
 
 		vm.FindPattern = "DE AD";
@@ -526,8 +526,8 @@ public class ViewModelTests {
 	[Fact]
 	public void HexEditorViewModel_SearchResults_HaveContextPreview() {
 		var rom = CreateTestNesRom();
-		rom.Data[0x100] = 0xAB;
-		rom.Data[0x101] = 0xCD;
+		rom.Data[0x100] = 0xab;
+		rom.Data[0x101] = 0xcd;
 		var vm = new HexEditorViewModel(rom);
 
 		vm.FindPattern = "AB CD";
@@ -541,10 +541,10 @@ public class ViewModelTests {
 	[Fact]
 	public void HexEditorViewModel_FindNextPattern_NavigatesToNext() {
 		var rom = CreateTestNesRom();
-		rom.Data[0x100] = 0xDE;
-		rom.Data[0x101] = 0xAD;
-		rom.Data[0x200] = 0xDE;
-		rom.Data[0x201] = 0xAD;
+		rom.Data[0x100] = 0xde;
+		rom.Data[0x101] = 0xad;
+		rom.Data[0x200] = 0xde;
+		rom.Data[0x201] = 0xad;
 		var vm = new HexEditorViewModel(rom);
 		vm.SelectedOffset = 0; // Start from beginning
 
@@ -562,8 +562,8 @@ public class ViewModelTests {
 	[Fact]
 	public void HexEditorViewModel_FindNextPattern_WrapsAround() {
 		var rom = CreateTestNesRom();
-		rom.Data[0x100] = 0xDE;
-		rom.Data[0x101] = 0xAD;
+		rom.Data[0x100] = 0xde;
+		rom.Data[0x101] = 0xad;
 		var vm = new HexEditorViewModel(rom);
 		vm.SelectedOffset = 0x200; // Start past the match
 
@@ -577,10 +577,10 @@ public class ViewModelTests {
 	[Fact]
 	public void HexEditorViewModel_FindPreviousPattern_NavigatesBackward() {
 		var rom = CreateTestNesRom();
-		rom.Data[0x100] = 0xDE;
-		rom.Data[0x101] = 0xAD;
-		rom.Data[0x200] = 0xDE;
-		rom.Data[0x201] = 0xAD;
+		rom.Data[0x100] = 0xde;
+		rom.Data[0x101] = 0xad;
+		rom.Data[0x200] = 0xde;
+		rom.Data[0x201] = 0xad;
 		var vm = new HexEditorViewModel(rom);
 		vm.SelectedOffset = 0x300; // Start past both matches
 
@@ -598,8 +598,8 @@ public class ViewModelTests {
 	[Fact]
 	public void HexEditorViewModel_FindPreviousPattern_WrapsAround() {
 		var rom = CreateTestNesRom();
-		rom.Data[0x200] = 0xDE;
-		rom.Data[0x201] = 0xAD;
+		rom.Data[0x200] = 0xde;
+		rom.Data[0x201] = 0xad;
 		var vm = new HexEditorViewModel(rom);
 		vm.SelectedOffset = 0x50; // Start before the match
 
@@ -645,7 +645,7 @@ public class ViewModelTests {
 	[Fact]
 	public void HexEditorViewModel_CopySelection_CopiesSingleByte() {
 		var rom = CreateTestNesRom();
-		rom.Data[0x100] = 0xAB;
+		rom.Data[0x100] = 0xab;
 		var vm = new HexEditorViewModel(rom);
 		vm.SelectedOffset = 0x100;
 
@@ -658,9 +658,9 @@ public class ViewModelTests {
 	[Fact]
 	public void HexEditorViewModel_CopySelection_CopiesRangeSelection() {
 		var rom = CreateTestNesRom();
-		rom.Data[0x100] = 0xAB;
-		rom.Data[0x101] = 0xCD;
-		rom.Data[0x102] = 0xEF;
+		rom.Data[0x100] = 0xab;
+		rom.Data[0x101] = 0xcd;
+		rom.Data[0x102] = 0xef;
 		var vm = new HexEditorViewModel(rom);
 		vm.SetSelection(0x100, 0x102);
 
@@ -673,8 +673,8 @@ public class ViewModelTests {
 	[Fact]
 	public void HexEditorViewModel_PasteAtCursor_PastesData() {
 		var rom = CreateTestNesRom();
-		rom.Data[0x100] = 0xAB;
-		rom.Data[0x101] = 0xCD;
+		rom.Data[0x100] = 0xab;
+		rom.Data[0x101] = 0xcd;
 		var vm = new HexEditorViewModel(rom);
 
 		// Copy from 0x100
@@ -686,15 +686,15 @@ public class ViewModelTests {
 		vm.PasteAtCursorCommand.Execute(null);
 
 		// Verify data was pasted
-		Assert.Equal(0xAB, rom.Data[0x200]);
-		Assert.Equal(0xCD, rom.Data[0x201]);
+		Assert.Equal(0xab, rom.Data[0x200]);
+		Assert.Equal(0xcd, rom.Data[0x201]);
 		Assert.Contains("Pasted 2 bytes", vm.StatusText);
 	}
 
 	[Fact]
 	public void HexEditorViewModel_PasteAtCursor_CanUndo() {
 		var rom = CreateTestNesRom();
-		rom.Data[0x100] = 0xAB;
+		rom.Data[0x100] = 0xab;
 		byte originalValue = rom.Data[0x200];
 		var vm = new HexEditorViewModel(rom);
 
@@ -704,7 +704,7 @@ public class ViewModelTests {
 		vm.SelectedOffset = 0x200;
 		vm.PasteAtCursorCommand.Execute(null);
 
-		Assert.Equal(0xAB, rom.Data[0x200]);
+		Assert.Equal(0xab, rom.Data[0x200]);
 
 		// Undo
 		vm.UndoCommand.Execute(null);
@@ -718,12 +718,12 @@ public class ViewModelTests {
 		var vm = new HexEditorViewModel(rom);
 		vm.SetSelection(0x100, 0x103);
 
-		vm.FillSelectionCommand.Execute((byte)0xFF);
+		vm.FillSelectionCommand.Execute((byte)0xff);
 
-		Assert.Equal(0xFF, rom.Data[0x100]);
-		Assert.Equal(0xFF, rom.Data[0x101]);
-		Assert.Equal(0xFF, rom.Data[0x102]);
-		Assert.Equal(0xFF, rom.Data[0x103]);
+		Assert.Equal(0xff, rom.Data[0x100]);
+		Assert.Equal(0xff, rom.Data[0x101]);
+		Assert.Equal(0xff, rom.Data[0x102]);
+		Assert.Equal(0xff, rom.Data[0x103]);
 		Assert.Contains("Filled 4 bytes", vm.StatusText);
 	}
 
@@ -734,8 +734,8 @@ public class ViewModelTests {
 		var vm = new HexEditorViewModel(rom);
 		vm.SetSelection(0x100, 0x100);
 
-		vm.FillSelectionCommand.Execute((byte)0xFF);
-		Assert.Equal(0xFF, rom.Data[0x100]);
+		vm.FillSelectionCommand.Execute((byte)0xff);
+		Assert.Equal(0xff, rom.Data[0x100]);
 
 		vm.UndoCommand.Execute(null);
 		Assert.Equal(originalValue, rom.Data[0x100]);
@@ -1379,7 +1379,7 @@ public class ViewModelTests {
 		var data = new byte[0x10000]; // 64KB
 
 		// Internal header at LoROM location ($7FC0)
-		int headerOffset = 0x7FC0;
+		int headerOffset = 0x7fc0;
 
 		// Game title (21 bytes)
 		var title = "TEST ROM             "; // 21 chars with padding
@@ -1403,16 +1403,16 @@ public class ViewModelTests {
 		data[headerOffset + 0x19] = 0x01; // USA
 
 		// License
-		data[headerOffset + 0x1A] = 0x00;
+		data[headerOffset + 0x1a] = 0x00;
 
 		// Version
-		data[headerOffset + 0x1B] = 0x00;
+		data[headerOffset + 0x1b] = 0x00;
 
-		// Checksum complement and checksum (must XOR to 0xFFFF)
-		data[headerOffset + 0x1C] = 0xFF;
-		data[headerOffset + 0x1D] = 0xFF;
-		data[headerOffset + 0x1E] = 0x00;
-		data[headerOffset + 0x1F] = 0x00;
+		// Checksum complement and checksum (must XOR to 0xffff)
+		data[headerOffset + 0x1c] = 0xff;
+		data[headerOffset + 0x1d] = 0xff;
+		data[headerOffset + 0x1e] = 0x00;
+		data[headerOffset + 0x1f] = 0x00;
 
 		var rom = new RomFile();
 		rom.LoadFromBytes(data);
@@ -1532,12 +1532,12 @@ public class ViewModelTests {
 			originalValues[i] = rom.Data[0x10 + i];
 		}
 
-		vm.SelectedTile = 0xAA;
+		vm.SelectedTile = 0xaa;
 		vm.FillCommand.Execute(null);
 
 		// Verify all tiles filled
 		for (int i = 0; i < 16; i++) {
-			Assert.Equal(0xAA, rom.Data[0x10 + i]);
+			Assert.Equal(0xaa, rom.Data[0x10 + i]);
 		}
 
 		Assert.True(vm.CanUndo);
@@ -1562,7 +1562,7 @@ public class ViewModelTests {
 		Assert.Empty(vm.UndoDescription);
 
 		vm.SelectTileCommand.Execute(vm.MapTiles[5]);
-		vm.SelectedTile = 0xFF;
+		vm.SelectedTile = 0xff;
 		vm.SetTileCommand.Execute(null);
 
 		Assert.NotEmpty(vm.UndoDescription);
@@ -1878,10 +1878,10 @@ public class ViewModelTests {
 		vm.MapHeight = 4;
 		vm.LoadMapCommand.Execute(null);
 
-		vm.SelectedTile = 0xAB;
+		vm.SelectedTile = 0xab;
 		vm.FillCommand.Execute(null);
 
-		Assert.All(vm.MapTiles, t => Assert.Equal(0xAB, t.TileIndex));
+		Assert.All(vm.MapTiles, t => Assert.Equal(0xab, t.TileIndex));
 	}
 
 	[Fact]
@@ -1982,8 +1982,8 @@ public class ViewModelTests {
 
 	[Fact]
 	public void TilePaletteItem_Record_PropertiesCorrect() {
-		var item = new TilePaletteItem(0xAB, "Tile AB");
-		Assert.Equal(0xAB, item.Index);
+		var item = new TilePaletteItem(0xab, "Tile AB");
+		Assert.Equal(0xab, item.Index);
 		Assert.Equal("Tile AB", item.Name);
 		Assert.Equal("AB", item.Display);
 	}
@@ -2008,11 +2008,11 @@ public class ViewModelTests {
 		vm.MapWidth = 4;
 		vm.MapHeight = 4;
 		vm.MapDataArray = new byte[16];
-		vm.MapDataArray[0] = 0xAB; // Top-left
+		vm.MapDataArray[0] = 0xab; // Top-left
 
 		vm.ResizeMapCommand.Execute("8x8");
 
-		Assert.Equal((byte)0xAB, vm.MapDataArray?[0]);
+		Assert.Equal((byte)0xab, vm.MapDataArray?[0]);
 	}
 
 	[Fact]
@@ -2065,7 +2065,7 @@ public class ViewModelTests {
 		vm.MapWidth = 4;
 		vm.MapHeight = 4;
 		vm.MapDataArray = new byte[16];
-		for (int i = 0; i < 16; i++) vm.MapDataArray[i] = 0xFF;
+		for (int i = 0; i < 16; i++) vm.MapDataArray[i] = 0xff;
 
 		vm.GeneratePatternCommand.Execute("CLEAR");
 
@@ -2078,13 +2078,13 @@ public class ViewModelTests {
 		vm.MapWidth = 4;
 		vm.MapHeight = 4;
 		vm.MapDataArray = new byte[16];
-		vm.SelectedTile = 0xAA;
+		vm.SelectedTile = 0xaa;
 
 		vm.GeneratePatternCommand.Execute("BORDER");
 
-		// Corners and edges should be 0xAA
-		Assert.Equal((byte)0xAA, vm.MapDataArray?[0]); // Top-left
-		Assert.Equal((byte)0xAA, vm.MapDataArray?[3]); // Top-right
+		// Corners and edges should be 0xaa
+		Assert.Equal((byte)0xaa, vm.MapDataArray?[0]); // Top-left
+		Assert.Equal((byte)0xaa, vm.MapDataArray?[3]); // Top-right
 		Assert.Equal((byte)0, vm.MapDataArray?[5]); // Interior (1,1)
 	}
 

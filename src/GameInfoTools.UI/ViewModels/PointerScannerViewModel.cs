@@ -33,7 +33,7 @@ public partial class PointerScannerViewModel : ViewModelBase {
 	private int _validRangeStart = 0x8000;
 
 	[ObservableProperty]
-	private int _validRangeEnd = 0xFFFF;
+	private int _validRangeEnd = 0xffff;
 
 	[ObservableProperty]
 	private string _statusText = "";
@@ -80,22 +80,22 @@ public partial class PointerScannerViewModel : ViewModelBase {
 			case SystemType.Nes:
 				PointerSize = 2;
 				ValidRangeStart = 0x8000;
-				ValidRangeEnd = 0xFFFF;
+				ValidRangeEnd = 0xffff;
 				break;
 			case SystemType.Snes:
 				PointerSize = 3;
 				ValidRangeStart = 0x8000;
-				ValidRangeEnd = 0xFFFFFF;
+				ValidRangeEnd = 0xffffff;
 				break;
 			case SystemType.GameBoy:
 				PointerSize = 2;
 				ValidRangeStart = 0x0000;
-				ValidRangeEnd = 0x7FFF;
+				ValidRangeEnd = 0x7fff;
 				break;
 			default:
 				PointerSize = 2;
 				ValidRangeStart = 0x0000;
-				ValidRangeEnd = 0xFFFF;
+				ValidRangeEnd = 0xffff;
 				break;
 		}
 	}

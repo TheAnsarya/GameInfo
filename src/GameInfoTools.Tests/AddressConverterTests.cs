@@ -42,8 +42,8 @@ public class AddressConverterTests {
 	}
 
 	[Theory]
-	[InlineData(0xC00000, 0, 0x0000)] // HiROM Bank 0
-	[InlineData(0xC08000, 0, 0x8000)] // HiROM offset
+	[InlineData(0xc00000, 0, 0x0000)] // HiROM Bank 0
+	[InlineData(0xc08000, 0, 0x8000)] // HiROM offset
 	public void SnesHiRomToFile_ConvertsCorrectly(int snesAddr, int headerSize, int expected) {
 		int result = AddressConverter.SnesHiRomToFile(snesAddr, headerSize);
 		Assert.Equal(expected, result);
@@ -51,14 +51,14 @@ public class AddressConverterTests {
 
 	[Fact]
 	public void ParseHex_ParsesVariousFormats() {
-		Assert.Equal(0xCAFE, AddressConverter.ParseHex("$cafe"));
-		Assert.Equal(0xDEAD, AddressConverter.ParseHex("0xdead"));
-		Assert.Equal(0xBEEF, AddressConverter.ParseHex("beef"));
+		Assert.Equal(0xcafe, AddressConverter.ParseHex("$cafe"));
+		Assert.Equal(0xdead, AddressConverter.ParseHex("0xdead"));
+		Assert.Equal(0xbeef, AddressConverter.ParseHex("beef"));
 	}
 
 	[Theory]
 	[InlineData(0x1234, 4, "$1234")]
-	[InlineData(0xAB, 2, "$ab")]
+	[InlineData(0xab, 2, "$ab")]
 	[InlineData(0x1, 4, "$0001")]
 	public void ToHex_FormatsCorrectly(int value, int digits, string expected) {
 		string result = AddressConverter.ToHex(value, digits);
@@ -69,11 +69,11 @@ public class AddressConverterTests {
 
 	[Theory]
 	[InlineData(0x0000, 1, 0x0000)]  // Bank 0 start
-	[InlineData(0x3FFF, 1, 0x3FFF)]  // Bank 0 end
+	[InlineData(0x3fff, 1, 0x3fff)]  // Bank 0 end
 	[InlineData(0x4000, 1, 0x4000)]  // Bank 1 start
-	[InlineData(0x7FFF, 1, 0x7FFF)]  // Bank 1 end
+	[InlineData(0x7fff, 1, 0x7fff)]  // Bank 1 end
 	[InlineData(0x4000, 2, 0x8000)]  // Bank 2 start
-	[InlineData(0x7FFF, 2, 0xBFFF)]  // Bank 2 end
+	[InlineData(0x7fff, 2, 0xbfff)]  // Bank 2 end
 	public void GameBoyToFile_ConvertsCorrectly(int gbAddress, int bank, int expectedFile) {
 		int result = AddressConverter.GameBoyToFile(gbAddress, bank);
 		Assert.Equal(expectedFile, result);
@@ -81,10 +81,10 @@ public class AddressConverterTests {
 
 	[Theory]
 	[InlineData(0x0000, 0x0000, 0)]  // Bank 0
-	[InlineData(0x3FFF, 0x3FFF, 0)]  // Bank 0 end
+	[InlineData(0x3fff, 0x3fff, 0)]  // Bank 0 end
 	[InlineData(0x4000, 0x4000, 1)]  // Bank 1
 	[InlineData(0x8000, 0x4000, 2)]  // Bank 2
-	[InlineData(0xC000, 0x4000, 3)]  // Bank 3
+	[InlineData(0xc000, 0x4000, 3)]  // Bank 3
 	public void GameBoyFileToAddress_ConvertsCorrectly(int fileOffset, int expectedGb, int expectedBank) {
 		var (gbAddr, bank) = AddressConverter.GameBoyFileToAddress(fileOffset);
 		Assert.Equal(expectedGb, gbAddr);
@@ -93,10 +93,10 @@ public class AddressConverterTests {
 
 	[Theory]
 	[InlineData(0x0000, 0)]
-	[InlineData(0x3FFF, 0)]
+	[InlineData(0x3fff, 0)]
 	[InlineData(0x4000, 1)]
 	[InlineData(0x8000, 2)]
-	[InlineData(0xFFFF, 3)]
+	[InlineData(0xffff, 3)]
 	public void GameBoyGetBank_ReturnsCorrectBank(int fileOffset, int expectedBank) {
 		int result = AddressConverter.GameBoyGetBank(fileOffset);
 		Assert.Equal(expectedBank, result);
@@ -141,8 +141,8 @@ public class AddressConverterTests {
 	[InlineData(0x07000000u, AddressConverter.GbaMemoryRegion.Oam)]
 	[InlineData(0x08000000u, AddressConverter.GbaMemoryRegion.Rom)]
 	[InlineData(0x09000000u, AddressConverter.GbaMemoryRegion.Rom)]
-	[InlineData(0x0A000000u, AddressConverter.GbaMemoryRegion.Rom)]
-	[InlineData(0x0E000000u, AddressConverter.GbaMemoryRegion.Sram)]
+	[InlineData(0x0a000000u, AddressConverter.GbaMemoryRegion.Rom)]
+	[InlineData(0x0e000000u, AddressConverter.GbaMemoryRegion.Sram)]
 	public void GbaGetRegion_IdentifiesRegionCorrectly(uint address, AddressConverter.GbaMemoryRegion expectedRegion) {
 		var result = AddressConverter.GbaGetRegion(address);
 		Assert.Equal(expectedRegion, result);
@@ -152,7 +152,7 @@ public class AddressConverterTests {
 	[InlineData(0x08000000u, 0x00000000)]
 	[InlineData(0x08001234u, 0x00001234)]
 	[InlineData(0x09000000u, 0x01000000)]
-	[InlineData(0x0A123456u, 0x00123456)]
+	[InlineData(0x0a123456u, 0x00123456)]
 	public void GbaRomToFile_ConvertsCorrectly(uint gbaAddress, int expectedFile) {
 		int result = AddressConverter.GbaRomToFile(gbaAddress);
 		Assert.Equal(expectedFile, result);
@@ -209,7 +209,7 @@ public class AddressConverterTests {
 	[Theory]
 	[InlineData(AddressConverter.GbaMemoryRegion.Bios, 0x00000000u)]
 	[InlineData(AddressConverter.GbaMemoryRegion.Rom, 0x08000000u)]
-	[InlineData(AddressConverter.GbaMemoryRegion.Sram, 0x0E000000u)]
+	[InlineData(AddressConverter.GbaMemoryRegion.Sram, 0x0e000000u)]
 	public void GbaRegionBase_ReturnsCorrectBase(AddressConverter.GbaMemoryRegion region, uint expectedBase) {
 		uint result = AddressConverter.GbaRegionBase(region);
 		Assert.Equal(expectedBase, result);
@@ -218,7 +218,7 @@ public class AddressConverterTests {
 	[Theory]
 	[InlineData(0x08001234u, "ROM:$08001234")]
 	[InlineData(0x02000000u, "EWRAM:$02000000")]
-	[InlineData(0x03007FFFu, "IWRAM:$03007fff")]
+	[InlineData(0x03007fffu, "IWRAM:$03007fff")]
 	public void GbaFormatAddress_FormatsCorrectly(uint address, string expected) {
 		string result = AddressConverter.GbaFormatAddress(address);
 		Assert.Equal(expected, result);
@@ -267,7 +267,7 @@ public class AddressConverterTests {
 		var result = AddressConverter.ConvertAddress(0x0000, SystemType.Snes, isFileOffset: true, isHiRom: true);
 
 		Assert.Equal(0x0000, result.FileOffset);
-		Assert.Equal(0xC00000, result.CpuAddress);
+		Assert.Equal(0xc00000, result.CpuAddress);
 	}
 
 	#endregion

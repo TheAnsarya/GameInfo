@@ -906,7 +906,7 @@ public class TextTable {
 	}
 
 	private static double DetectShiftJisPattern(byte[] data) {
-		// ShiftJIS uses 0x81-0x9F and 0xE0-0xFC as first bytes
+		// ShiftJIS uses 0x81-0x9f and 0xe0-0xfc as first bytes
 		int shiftJisCount = 0;
 		for (int i = 0; i < data.Length - 1; i++) {
 			byte b = data[i];
@@ -943,7 +943,7 @@ public class TextTable {
 
 	private static Dictionary<byte, char> MapDragonQuestPattern(byte[] data) {
 		var mappings = new Dictionary<byte, char>();
-		// Common DQ pattern: A-Z at 0x80-0x99, a-z at 0x9A-0xB3
+		// Common DQ pattern: A-Z at 0x80-0x99, a-z at 0x9a-0xb3
 		for (int i = 0; i < 26; i++) {
 			mappings[(byte)(0x80 + i)] = (char)('A' + i);
 		}

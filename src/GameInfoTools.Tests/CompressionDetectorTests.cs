@@ -35,7 +35,7 @@ public class CompressionDetectorTests {
 		// RLE-like data with runs
 		byte[] data = new byte[0x40];
 		for (int i = 0; i < data.Length; i++) {
-			data[i] = (byte)(i < 0x20 ? 0xAA : 0xBB);
+			data[i] = (byte)(i < 0x20 ? 0xaa : 0xbb);
 		}
 
 		var result = CompressionDetector.Detect(data, 0);

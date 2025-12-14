@@ -398,7 +398,7 @@ public class CdlComparisonTests {
 
 		// Only middle section common
 		for (int i = 0; i < 0x80; i++) leftData[i] = 0x01;
-		for (int i = 0x40; i < 0xC0; i++) rightData[i] = 0x01;
+		for (int i = 0x40; i < 0xc0; i++) rightData[i] = 0x01;
 
 		var left = new CdlHeatmap(leftData);
 		var right = new CdlHeatmap(rightData);
@@ -536,8 +536,8 @@ public class CdlComparisonTests {
 		// Left has code at 0x00-0x20, right doesn't
 		for (int i = 0; i < 0x20; i++) leftData[i] = 0x01;
 
-		// Right has data at 0x80-0xA0, left doesn't
-		for (int i = 0x80; i < 0xA0; i++) rightData[i] = 0x02;
+		// Right has data at 0x80-0xa0, left doesn't
+		for (int i = 0x80; i < 0xa0; i++) rightData[i] = 0x02;
 
 		var left = new CdlHeatmap(leftData);
 		var right = new CdlHeatmap(rightData);

@@ -155,24 +155,24 @@ public class ControlFlowGraphCanvas : Control {
 
 	#region Colors
 
-	private static readonly Color EntryNodeColor = Color.FromRgb(0x4C, 0xAF, 0x50);     // Green
-	private static readonly Color ExitNodeColor = Color.FromRgb(0xF4, 0x43, 0x36);      // Red
-	private static readonly Color NormalNodeColor = Color.FromRgb(0x21, 0x96, 0xF3);    // Blue
-	private static readonly Color LoopHeaderColor = Color.FromRgb(0x9C, 0x27, 0xB0);    // Purple
-	private static readonly Color ConditionalColor = Color.FromRgb(0xFF, 0xC1, 0x07);   // Yellow/Amber
+	private static readonly Color EntryNodeColor = Color.FromRgb(0x4c, 0xaf, 0x50);     // Green
+	private static readonly Color ExitNodeColor = Color.FromRgb(0xf4, 0x43, 0x36);      // Red
+	private static readonly Color NormalNodeColor = Color.FromRgb(0x21, 0x96, 0xf3);    // Blue
+	private static readonly Color LoopHeaderColor = Color.FromRgb(0x9c, 0x27, 0xb0);    // Purple
+	private static readonly Color ConditionalColor = Color.FromRgb(0xff, 0xc1, 0x07);   // Yellow/Amber
 
-	private static readonly Color SelectedNodeBorderColor = Color.FromRgb(0xFF, 0xFF, 0xFF);
-	private static readonly Color HoveredNodeBorderColor = Color.FromRgb(0x90, 0xCA, 0xF9);
+	private static readonly Color SelectedNodeBorderColor = Color.FromRgb(0xff, 0xff, 0xff);
+	private static readonly Color HoveredNodeBorderColor = Color.FromRgb(0x90, 0xca, 0xf9);
 
 	private static readonly Color EdgeSequentialColor = Color.FromRgb(0x90, 0x90, 0x90);
-	private static readonly Color EdgeUnconditionalColor = Color.FromRgb(0x42, 0xA5, 0xF5);
-	private static readonly Color EdgeTrueColor = Color.FromRgb(0x4C, 0xAF, 0x50);
-	private static readonly Color EdgeFalseColor = Color.FromRgb(0xF4, 0x43, 0x36);
-	private static readonly Color EdgeBackColor = Color.FromRgb(0x9C, 0x27, 0xB0);
-	private static readonly Color EdgeCallColor = Color.FromRgb(0xFF, 0x98, 0x00);
+	private static readonly Color EdgeUnconditionalColor = Color.FromRgb(0x42, 0xa5, 0xf5);
+	private static readonly Color EdgeTrueColor = Color.FromRgb(0x4c, 0xaf, 0x50);
+	private static readonly Color EdgeFalseColor = Color.FromRgb(0xf4, 0x43, 0x36);
+	private static readonly Color EdgeBackColor = Color.FromRgb(0x9c, 0x27, 0xb0);
+	private static readonly Color EdgeCallColor = Color.FromRgb(0xff, 0x98, 0x00);
 
-	private static readonly Color BackgroundColor = Color.FromRgb(0x1E, 0x1E, 0x1E);
-	private static readonly Color TextColor = Color.FromRgb(0xE0, 0xE0, 0xE0);
+	private static readonly Color BackgroundColor = Color.FromRgb(0x1e, 0x1e, 0x1e);
+	private static readonly Color TextColor = Color.FromRgb(0xe0, 0xe0, 0xe0);
 
 	#endregion
 
@@ -485,7 +485,7 @@ public class ControlFlowGraphCanvas : Control {
 				FlowDirection.LeftToRight,
 				typeface,
 				9,
-				new SolidColorBrush(Color.FromArgb(0xA0, 0xE0, 0xE0, 0xE0)));
+				new SolidColorBrush(Color.FromArgb(0xa0, 0xe0, 0xe0, 0xe0)));
 			addressText.MaxTextWidth = layout.Width - 10;
 
 			var addressPos = new Point(layout.X + 5, layout.Y + 22);
@@ -499,7 +499,7 @@ public class ControlFlowGraphCanvas : Control {
 					FlowDirection.LeftToRight,
 					typeface,
 					9,
-					new SolidColorBrush(Color.FromArgb(0x80, 0xE0, 0xE0, 0xE0)));
+					new SolidColorBrush(Color.FromArgb(0x80, 0xe0, 0xe0, 0xe0)));
 				previewText.MaxTextWidth = layout.Width - 10;
 
 				var previewPos = new Point(layout.X + 5, layout.Y + 35);
