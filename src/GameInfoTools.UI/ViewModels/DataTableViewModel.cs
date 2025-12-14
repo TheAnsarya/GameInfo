@@ -185,30 +185,83 @@ public partial class DataTableViewModel : ViewModelBase {
 			".json",
 			$"{TableName.Replace(" ", "_").ToLowerInvariant()}.json",
 			FileDialogService.JsonFiles,
+			FileDialogService.WikitextFiles,
+			FileDialogService.CsvFiles,
 			FileDialogService.AllFiles
 		);
 
 		if (path is null) return;
 
 		try {
-			var json = System.Text.Json.JsonSerializer.Serialize(
-				new {
-					tableName = TableName,
-					offset = TableOffset,
-					recordSize = RecordSize,
-					recordCount = RecordCount,
-					fields = Fields.Select(f => new {
-						name = f.Name,
-						type = f.Type.ToString(),
-						offset = f.Offset,
-						size = f.Size
-					}),
-					records = Records.Select(r => r.Values)
-				},
-				new System.Text.Json.JsonSerializerOptions { WriteIndented = true }
-			);
+			string content;
 
-			await File.WriteAllTextAsync(path, json);
+			if (path.EndsWith(".wikitext", StringComparison.OrdinalIgnoreCase) ||
+				path.EndsWith(".wiki", StringComparison.OrdinalIgnoreCase)) {
+				// Export as wikitext
+				var sb = new System.Text.StringBuilder();
+				sb.AppendLine($"== {TableName} ==");
+				sb.AppendLine("Table at offset {{$|" + TableOffset.ToString("x") + "}}, " + RecordCount + " records of " + RecordSize + " bytes each.");
+				sb.AppendLine();
+				sb.AppendLine("{| class=\"wikitable sortable\" border=\"1\"");
+				sb.AppendLine("|-");
+
+				// Header row
+				sb.Append("! Index");
+				foreach (var field in Fields) {
+					sb.Append($" !! {field.Name}");
+				}
+				sb.AppendLine();
+
+				// Data rows
+				for (int i = 0; i < Records.Count; i++) {
+					sb.AppendLine("|-");
+					sb.Append("| {{$|" + i.ToString("x2") + "}}");
+					foreach (var field in Fields) {
+						if (Records[i].Values.TryGetValue(field.Name, out var val)) {
+							var isNumeric = field.Type == DataTableEditor.FieldType.Byte ||
+								field.Type == DataTableEditor.FieldType.Word ||
+								field.Type == DataTableEditor.FieldType.Long;
+							sb.Append(isNumeric
+								? " || {{$|" + val + "}}"
+								: " || " + val);
+						} else {
+							sb.Append(" || ");
+						}
+					}
+					sb.AppendLine();
+				}
+
+				sb.AppendLine("|}");
+				content = sb.ToString();
+			} else if (path.EndsWith(".csv", StringComparison.OrdinalIgnoreCase)) {
+				// Export as CSV
+				var sb = new System.Text.StringBuilder();
+				sb.AppendLine(string.Join(",", new[] { "Index" }.Concat(Fields.Select(f => $"\"{f.Name}\""))));
+				for (int i = 0; i < Records.Count; i++) {
+					sb.AppendLine(string.Join(",", new[] { i.ToString() }.Concat(Records[i].Values.Select(v => $"\"{v}\""))));
+				}
+				content = sb.ToString();
+			} else {
+				// Export as JSON
+				content = System.Text.Json.JsonSerializer.Serialize(
+					new {
+						tableName = TableName,
+						offset = TableOffset,
+						recordSize = RecordSize,
+						recordCount = RecordCount,
+						fields = Fields.Select(f => new {
+							name = f.Name,
+							type = f.Type.ToString(),
+							offset = f.Offset,
+							size = f.Size
+						}),
+						records = Records.Select(r => r.Values)
+					},
+					new System.Text.Json.JsonSerializerOptions { WriteIndented = true }
+				);
+			}
+
+			await File.WriteAllTextAsync(path, content);
 			StatusText = $"Exported {Records.Count} records to {Path.GetFileName(path)}";
 		} catch (Exception ex) {
 			StatusText = $"Export error: {ex.Message}";
