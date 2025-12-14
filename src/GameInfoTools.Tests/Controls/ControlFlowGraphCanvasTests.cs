@@ -429,4 +429,274 @@ public class ControlFlowGraphCanvasTests {
 	}
 
 	#endregion
+
+	#region DOT Export Tests
+
+	[Fact]
+	public void ExportToDot_EmptyGraph_ProducesValidDot() {
+		var canvas = new ControlFlowGraphCanvas();
+		canvas.Nodes = [];
+		canvas.Edges = [];
+
+		var dot = canvas.ExportToDot("TestGraph");
+
+		Assert.Contains("digraph TestGraph", dot);
+		Assert.Contains("rankdir=TB", dot);
+	}
+
+	[Fact]
+	public void ExportToDot_SingleNode_ContainsNodeDefinition() {
+		var canvas = new ControlFlowGraphCanvas {
+			Nodes = [new CfgNode("n1", "Entry", 0x8000, 0x8010, CfgNodeType.Entry, "LDA")],
+			Edges = []
+		};
+
+		var dot = canvas.ExportToDot();
+
+		Assert.Contains("\"n1\"", dot);
+		Assert.Contains("Entry", dot);
+		Assert.Contains("$8000", dot);
+		Assert.Contains("fillcolor", dot);
+	}
+
+	[Fact]
+	public void ExportToDot_WithEdge_ContainsEdgeDefinition() {
+		var canvas = new ControlFlowGraphCanvas {
+			Nodes = [
+				new CfgNode("n1", "Entry", 0x8000, 0x8010, CfgNodeType.Entry, "LDA"),
+				new CfgNode("n2", "Exit", 0x8010, 0x8020, CfgNodeType.Exit, "RTS")
+			],
+			Edges = [new CfgEdge("n1", "n2", CfgEdgeType.Sequential)]
+		};
+
+		var dot = canvas.ExportToDot();
+
+		Assert.Contains("\"n1\" -> \"n2\"", dot);
+	}
+
+	[Theory]
+	[InlineData(CfgNodeType.Entry, "#4CAF50")]
+	[InlineData(CfgNodeType.Exit, "#F44336")]
+	[InlineData(CfgNodeType.Normal, "#2196F3")]
+	[InlineData(CfgNodeType.LoopHeader, "#9C27B0")]
+	[InlineData(CfgNodeType.Conditional, "#FFC107")]
+	public void ExportToDot_NodeTypes_UseCorrectColors(CfgNodeType nodeType, string expectedColor) {
+		var canvas = new ControlFlowGraphCanvas {
+			Nodes = [new CfgNode("n1", "Test", 0, 0, nodeType, "")],
+			Edges = []
+		};
+
+		var dot = canvas.ExportToDot();
+
+		Assert.Contains(expectedColor, dot);
+	}
+
+	[Theory]
+	[InlineData(CfgEdgeType.Sequential, "#909090")]
+	[InlineData(CfgEdgeType.Unconditional, "#42A5F5")]
+	[InlineData(CfgEdgeType.ConditionalTrue, "#4CAF50")]
+	[InlineData(CfgEdgeType.ConditionalFalse, "#F44336")]
+	[InlineData(CfgEdgeType.BackEdge, "#9C27B0")]
+	[InlineData(CfgEdgeType.Call, "#FF9800")]
+	public void ExportToDot_EdgeTypes_UseCorrectColors(CfgEdgeType edgeType, string expectedColor) {
+		var canvas = new ControlFlowGraphCanvas {
+			Nodes = [
+				new CfgNode("n1", "A", 0, 0, CfgNodeType.Normal, ""),
+				new CfgNode("n2", "B", 0, 0, CfgNodeType.Normal, "")
+			],
+			Edges = [new CfgEdge("n1", "n2", edgeType)]
+		};
+
+		var dot = canvas.ExportToDot();
+
+		Assert.Contains(expectedColor, dot);
+	}
+
+	[Fact]
+	public void ExportToDot_BackEdge_UsesDashedStyle() {
+		var canvas = new ControlFlowGraphCanvas {
+			Nodes = [new CfgNode("n1", "Loop", 0, 0, CfgNodeType.LoopHeader, "")],
+			Edges = [new CfgEdge("n1", "n1", CfgEdgeType.BackEdge)]
+		};
+
+		var dot = canvas.ExportToDot();
+
+		Assert.Contains("style=dashed", dot);
+	}
+
+	[Fact]
+	public void ExportToDot_ConditionalTrue_HasTrueLabel() {
+		var canvas = new ControlFlowGraphCanvas {
+			Nodes = [
+				new CfgNode("n1", "A", 0, 0, CfgNodeType.Conditional, ""),
+				new CfgNode("n2", "B", 0, 0, CfgNodeType.Normal, "")
+			],
+			Edges = [new CfgEdge("n1", "n2", CfgEdgeType.ConditionalTrue)]
+		};
+
+		var dot = canvas.ExportToDot();
+
+		Assert.Contains("label=\"T\"", dot);
+	}
+
+	[Fact]
+	public void ExportToDot_EscapesSpecialCharacters() {
+		var canvas = new ControlFlowGraphCanvas {
+			Nodes = [new CfgNode("n1", "Test", 0, 0, CfgNodeType.Normal, "LDA \"value\"")],
+			Edges = []
+		};
+
+		var dot = canvas.ExportToDot();
+
+		Assert.Contains("\\\"value\\\"", dot);
+	}
+
+	#endregion
+
+	#region SVG Export Tests
+
+	[Fact]
+	public void ExportToSvg_EmptyGraph_ProducesValidSvg() {
+		var canvas = new ControlFlowGraphCanvas();
+		canvas.Nodes = [];
+		canvas.Edges = [];
+
+		var svg = canvas.ExportToSvg();
+
+		Assert.Contains("<svg", svg);
+		Assert.Contains("</svg>", svg);
+		Assert.Contains("xmlns=\"http://www.w3.org/2000/svg\"", svg);
+	}
+
+	[Fact]
+	public void ExportToSvg_WithNodes_ContainsRectElements() {
+		var canvas = new ControlFlowGraphCanvas {
+			Nodes = [new CfgNode("n1", "Entry", 0x8000, 0x8010, CfgNodeType.Entry, "LDA")],
+			Edges = []
+		};
+
+		var svg = canvas.ExportToSvg();
+
+		Assert.Contains("<rect", svg);
+		Assert.Contains("Entry", svg);
+	}
+
+	[Fact]
+	public void ExportToSvg_WithEdges_ContainsLineElements() {
+		var canvas = new ControlFlowGraphCanvas {
+			Nodes = [
+				new CfgNode("n1", "A", 0x8000, 0x8010, CfgNodeType.Entry, ""),
+				new CfgNode("n2", "B", 0x8010, 0x8020, CfgNodeType.Exit, "")
+			],
+			Edges = [new CfgEdge("n1", "n2", CfgEdgeType.Sequential)]
+		};
+
+		var svg = canvas.ExportToSvg();
+
+		Assert.Contains("<line", svg);
+	}
+
+	[Fact]
+	public void ExportToSvg_CustomDimensions_UsesCorrectSize() {
+		var canvas = new ControlFlowGraphCanvas {
+			Nodes = [],
+			Edges = []
+		};
+
+		var svg = canvas.ExportToSvg(1024, 768);
+
+		Assert.Contains("width=\"1024\"", svg);
+		Assert.Contains("height=\"768\"", svg);
+	}
+
+	[Fact]
+	public void ExportToSvg_ContainsStyleDefinitions() {
+		var canvas = new ControlFlowGraphCanvas {
+			Nodes = [],
+			Edges = []
+		};
+
+		var svg = canvas.ExportToSvg();
+
+		Assert.Contains("<style>", svg);
+		Assert.Contains(".entry", svg);
+		Assert.Contains(".exit", svg);
+	}
+
+	[Fact]
+	public void ExportToSvg_ContainsArrowMarkers() {
+		var canvas = new ControlFlowGraphCanvas {
+			Nodes = [],
+			Edges = []
+		};
+
+		var svg = canvas.ExportToSvg();
+
+		Assert.Contains("<defs>", svg);
+		Assert.Contains("<marker", svg);
+	}
+
+	#endregion
+
+	#region Statistics Tests
+
+	[Fact]
+	public void GetStatistics_EmptyGraph_ReturnsZeros() {
+		var canvas = new ControlFlowGraphCanvas {
+			Nodes = [],
+			Edges = []
+		};
+
+		var stats = canvas.GetStatistics();
+
+		Assert.Equal(0, stats.NodeCount);
+		Assert.Equal(0, stats.EdgeCount);
+		Assert.Equal(0, stats.EntryCount);
+		Assert.Equal(0, stats.ExitCount);
+		Assert.Equal(0, stats.LoopCount);
+		Assert.Equal(0, stats.ConditionalCount);
+	}
+
+	[Fact]
+	public void GetStatistics_WithNodes_CountsCorrectly() {
+		var canvas = new ControlFlowGraphCanvas {
+			Nodes = [
+				new CfgNode("n1", "A", 0, 0, CfgNodeType.Entry, ""),
+				new CfgNode("n2", "B", 0, 0, CfgNodeType.Conditional, ""),
+				new CfgNode("n3", "C", 0, 0, CfgNodeType.LoopHeader, ""),
+				new CfgNode("n4", "D", 0, 0, CfgNodeType.Exit, ""),
+				new CfgNode("n5", "E", 0, 0, CfgNodeType.Exit, "")
+			],
+			Edges = [
+				new CfgEdge("n1", "n2", CfgEdgeType.Sequential),
+				new CfgEdge("n2", "n3", CfgEdgeType.ConditionalTrue),
+				new CfgEdge("n3", "n3", CfgEdgeType.BackEdge),
+				new CfgEdge("n3", "n4", CfgEdgeType.Sequential),
+				new CfgEdge("n2", "n5", CfgEdgeType.ConditionalFalse)
+			]
+		};
+
+		var stats = canvas.GetStatistics();
+
+		Assert.Equal(5, stats.NodeCount);
+		Assert.Equal(5, stats.EdgeCount);
+		Assert.Equal(1, stats.EntryCount);
+		Assert.Equal(2, stats.ExitCount);
+		Assert.Equal(1, stats.LoopCount);
+		Assert.Equal(1, stats.ConditionalCount);
+	}
+
+	[Fact]
+	public void CfgStatistics_Record_HasCorrectProperties() {
+		var stats = new CfgStatistics(10, 15, 1, 2, 3, 4);
+
+		Assert.Equal(10, stats.NodeCount);
+		Assert.Equal(15, stats.EdgeCount);
+		Assert.Equal(1, stats.EntryCount);
+		Assert.Equal(2, stats.ExitCount);
+		Assert.Equal(3, stats.LoopCount);
+		Assert.Equal(4, stats.ConditionalCount);
+	}
+
+	#endregion
 }

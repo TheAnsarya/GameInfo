@@ -672,5 +672,203 @@ public class ControlFlowGraphCanvas : Control {
 		InvalidateVisual();
 	}
 
+	/// <summary>
+	/// Exports the control flow graph to DOT (Graphviz) format.
+	/// </summary>
+	/// <param name="graphName">Name for the graph.</param>
+	/// <returns>DOT format string.</returns>
+	public string ExportToDot(string graphName = "CFG") {
+		var sb = new System.Text.StringBuilder();
+		sb.AppendLine($"digraph {graphName} {{");
+		sb.AppendLine("    // Graph attributes");
+		sb.AppendLine("    rankdir=TB;");
+		sb.AppendLine("    node [shape=box, style=filled, fontname=\"Consolas\"];");
+		sb.AppendLine("    edge [fontname=\"Consolas\", fontsize=10];");
+		sb.AppendLine();
+
+		// Export nodes
+		if (Nodes is not null) {
+			sb.AppendLine("    // Nodes");
+			foreach (var node in Nodes) {
+				var color = GetDotNodeColor(node.NodeType);
+				var fontColor = GetDotFontColor(node.NodeType);
+				var label = $"{node.Label}\\n${node.StartAddress:X4}-${node.EndAddress:X4}";
+				if (!string.IsNullOrEmpty(node.Preview)) {
+					label += $"\\n{EscapeDotString(node.Preview)}";
+				}
+				sb.AppendLine($"    \"{node.Id}\" [label=\"{label}\", fillcolor=\"{color}\", fontcolor=\"{fontColor}\"];");
+			}
+			sb.AppendLine();
+		}
+
+		// Export edges
+		if (Edges is not null) {
+			sb.AppendLine("    // Edges");
+			foreach (var edge in Edges) {
+				var color = GetDotEdgeColor(edge.EdgeType);
+				var style = GetDotEdgeStyle(edge.EdgeType);
+				var label = GetDotEdgeLabel(edge.EdgeType);
+				var labelAttr = string.IsNullOrEmpty(label) ? "" : $", label=\"{label}\"";
+				sb.AppendLine($"    \"{edge.FromId}\" -> \"{edge.ToId}\" [color=\"{color}\", style={style}{labelAttr}];");
+			}
+		}
+
+		sb.AppendLine("}");
+		return sb.ToString();
+	}
+
+	/// <summary>
+	/// Exports the control flow graph to SVG format.
+	/// </summary>
+	/// <param name="width">SVG width.</param>
+	/// <param name="height">SVG height.</param>
+	/// <returns>SVG format string.</returns>
+	public string ExportToSvg(int width = 800, int height = 600) {
+		// Calculate layout if not already done
+		CalculateLayout();
+
+		var sb = new System.Text.StringBuilder();
+		sb.AppendLine($"<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+		sb.AppendLine($"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"{width}\" height=\"{height}\" viewBox=\"0 0 {width} {height}\">");
+		sb.AppendLine("  <style>");
+		sb.AppendLine("    .node { stroke: #333; stroke-width: 2; }");
+		sb.AppendLine("    .entry { fill: #4CAF50; }");
+		sb.AppendLine("    .exit { fill: #F44336; }");
+		sb.AppendLine("    .normal { fill: #2196F3; }");
+		sb.AppendLine("    .loop { fill: #9C27B0; }");
+		sb.AppendLine("    .conditional { fill: #FFC107; }");
+		sb.AppendLine("    .edge { fill: none; stroke-width: 2; }");
+		sb.AppendLine("    .label { font-family: Consolas, monospace; font-size: 10px; fill: white; }");
+		sb.AppendLine("    .addr { font-family: Consolas, monospace; font-size: 8px; fill: #AAA; }");
+		sb.AppendLine("  </style>");
+		sb.AppendLine($"  <rect width=\"{width}\" height=\"{height}\" fill=\"#1E1E1E\"/>");
+
+		// Draw edges first (underneath nodes)
+		if (Edges is not null && _nodeLayouts.Count > 0) {
+			sb.AppendLine("  <!-- Edges -->");
+			foreach (var edge in Edges) {
+				if (!_nodeLayouts.TryGetValue(edge.FromId, out var fromLayout) ||
+					!_nodeLayouts.TryGetValue(edge.ToId, out var toLayout)) continue;
+
+				var color = GetSvgEdgeColor(edge.EdgeType);
+				var fromX = fromLayout.X + fromLayout.Width / 2;
+				var fromY = fromLayout.Y + fromLayout.Height;
+				var toX = toLayout.X + toLayout.Width / 2;
+				var toY = toLayout.Y;
+
+				// Draw path with arrow marker
+				sb.AppendLine($"  <line x1=\"{fromX}\" y1=\"{fromY}\" x2=\"{toX}\" y2=\"{toY}\" class=\"edge\" stroke=\"{color}\" marker-end=\"url(#arrow-{edge.EdgeType})\"/>");
+			}
+		}
+
+		// Draw nodes
+		if (Nodes is not null) {
+			sb.AppendLine("  <!-- Nodes -->");
+			foreach (var node in Nodes) {
+				if (!_nodeLayouts.TryGetValue(node.Id, out var layout)) continue;
+
+				var nodeClass = node.NodeType switch {
+					CfgNodeType.Entry => "entry",
+					CfgNodeType.Exit => "exit",
+					CfgNodeType.LoopHeader => "loop",
+					CfgNodeType.Conditional => "conditional",
+					_ => "normal"
+				};
+
+				sb.AppendLine($"  <rect x=\"{layout.X}\" y=\"{layout.Y}\" width=\"{layout.Width}\" height=\"{layout.Height}\" rx=\"4\" class=\"node {nodeClass}\"/>");
+				sb.AppendLine($"  <text x=\"{layout.X + layout.Width / 2}\" y=\"{layout.Y + 15}\" text-anchor=\"middle\" class=\"label\">{EscapeXml(node.Label)}</text>");
+				sb.AppendLine($"  <text x=\"{layout.X + layout.Width / 2}\" y=\"{layout.Y + 28}\" text-anchor=\"middle\" class=\"addr\">${node.StartAddress:X4}-${node.EndAddress:X4}</text>");
+			}
+		}
+
+		// Arrow markers
+		sb.AppendLine("  <defs>");
+		foreach (var edgeType in Enum.GetValues<CfgEdgeType>()) {
+			var color = GetSvgEdgeColor(edgeType);
+			sb.AppendLine($"    <marker id=\"arrow-{edgeType}\" markerWidth=\"10\" markerHeight=\"10\" refX=\"9\" refY=\"3\" orient=\"auto\">");
+			sb.AppendLine($"      <path d=\"M0,0 L0,6 L9,3 z\" fill=\"{color}\"/>");
+			sb.AppendLine("    </marker>");
+		}
+		sb.AppendLine("  </defs>");
+
+		sb.AppendLine("</svg>");
+		return sb.ToString();
+	}
+
+	/// <summary>
+	/// Gets summary statistics about the graph.
+	/// </summary>
+	public CfgStatistics GetStatistics() {
+		int nodeCount = Nodes?.Count ?? 0;
+		int edgeCount = Edges?.Count ?? 0;
+		int entryCount = Nodes?.Count(n => n.NodeType == CfgNodeType.Entry) ?? 0;
+		int exitCount = Nodes?.Count(n => n.NodeType == CfgNodeType.Exit) ?? 0;
+		int loopCount = Edges?.Count(e => e.EdgeType == CfgEdgeType.BackEdge) ?? 0;
+		int conditionalCount = Nodes?.Count(n => n.NodeType == CfgNodeType.Conditional) ?? 0;
+
+		return new CfgStatistics(nodeCount, edgeCount, entryCount, exitCount, loopCount, conditionalCount);
+	}
+
+	#region DOT/SVG Helper Methods
+
+	private static string GetDotNodeColor(CfgNodeType nodeType) => nodeType switch {
+		CfgNodeType.Entry => "#4CAF50",
+		CfgNodeType.Exit => "#F44336",
+		CfgNodeType.LoopHeader => "#9C27B0",
+		CfgNodeType.Conditional => "#FFC107",
+		_ => "#2196F3"
+	};
+
+	private static string GetDotFontColor(CfgNodeType nodeType) => nodeType switch {
+		CfgNodeType.Conditional => "black",
+		_ => "white"
+	};
+
+	private static string GetDotEdgeColor(CfgEdgeType edgeType) => edgeType switch {
+		CfgEdgeType.Sequential => "#909090",
+		CfgEdgeType.Unconditional => "#42A5F5",
+		CfgEdgeType.ConditionalTrue => "#4CAF50",
+		CfgEdgeType.ConditionalFalse => "#F44336",
+		CfgEdgeType.BackEdge => "#9C27B0",
+		CfgEdgeType.Call => "#FF9800",
+		_ => "#909090"
+	};
+
+	private static string GetSvgEdgeColor(CfgEdgeType edgeType) => GetDotEdgeColor(edgeType);
+
+	private static string GetDotEdgeStyle(CfgEdgeType edgeType) => edgeType switch {
+		CfgEdgeType.BackEdge => "dashed",
+		CfgEdgeType.Call => "dotted",
+		_ => "solid"
+	};
+
+	private static string GetDotEdgeLabel(CfgEdgeType edgeType) => edgeType switch {
+		CfgEdgeType.ConditionalTrue => "T",
+		CfgEdgeType.ConditionalFalse => "F",
+		CfgEdgeType.Call => "call",
+		_ => ""
+	};
+
+	private static string EscapeDotString(string s) =>
+		s.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\n", "\\n");
+
+	private static string EscapeXml(string s) =>
+		s.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;");
+
+	#endregion
+
 	#endregion
 }
+
+/// <summary>
+/// Statistics about a control flow graph.
+/// </summary>
+public record CfgStatistics(
+	int NodeCount,
+	int EdgeCount,
+	int EntryCount,
+	int ExitCount,
+	int LoopCount,
+	int ConditionalCount
+);
+
