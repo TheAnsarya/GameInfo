@@ -1,4 +1,6 @@
 using System.Collections.ObjectModel;
+using System.Text;
+using Avalonia;
 using Avalonia.Input;
 using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -346,6 +348,70 @@ public partial class CdlViewerViewModel : ViewModelBase, IKeyboardShortcutHandle
 			await File.WriteAllTextAsync(path, report);
 			StatusText = $"Report saved to {Path.GetFileName(path)}";
 		}
+	}
+
+	/// <summary>
+	/// Gets the clipboard from the current application's main window.
+	/// </summary>
+	private static Avalonia.Input.Platform.IClipboard? GetClipboard() {
+		if (Application.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop) {
+			return desktop.MainWindow?.Clipboard;
+		}
+		return null;
+	}
+
+	/// <summary>
+	/// Copy CDL coverage summary as wikitext.
+	/// </summary>
+	[RelayCommand]
+	public async Task CopyAsWikitext() {
+		var clipboard = GetClipboard();
+		if (clipboard is null || _cdlHeatmap is null) {
+			StatusText = "No CDL data to copy";
+			return;
+		}
+
+		var sb = new StringBuilder();
+		sb.AppendLine("== CDL Coverage Analysis ==");
+		sb.AppendLine();
+		sb.AppendLine("{| class=\"wikitable\" border=\"1\"");
+		sb.AppendLine("|-");
+		sb.AppendLine("! Metric !! Value !! Percentage");
+		sb.AppendLine("|-");
+		sb.AppendLine($"| Total Bytes || {TotalBytes:N0} ||  ");
+		sb.AppendLine("|-");
+		sb.AppendLine($"| Code Bytes || {CodeBytes:N0} || {CodePercentage:F1}%");
+		sb.AppendLine("|-");
+		sb.AppendLine($"| Data Bytes || {DataBytes:N0} || {DataPercentage:F1}%");
+		sb.AppendLine("|-");
+		sb.AppendLine($"| Unknown Bytes || {UnknownBytes:N0} || {(TotalBytes > 0 ? UnknownBytes * 100.0 / TotalBytes : 0):F1}%");
+		sb.AppendLine("|-");
+		sb.AppendLine($"| Coverage || || {CoveragePercentage:F1}%");
+		sb.AppendLine("|}");
+
+		// Add region summary if available
+		if (CoveredRegions.Count > 0) {
+			sb.AppendLine();
+			sb.AppendLine("=== Covered Regions ===");
+			sb.AppendLine("{| class=\"wikitable\" border=\"1\"");
+			sb.AppendLine("|-");
+			sb.AppendLine("! Start !! End !! Size !! Type");
+
+			foreach (var region in CoveredRegions.Take(50)) { // Limit to first 50
+				sb.AppendLine("|-");
+				sb.AppendLine($"| {{{{$|{region.Offset:x6}}}}} || {{{{$|{(region.Offset + region.Length - 1):x6}}}}} || {region.Length} || {region.Type}");
+			}
+
+			if (CoveredRegions.Count > 50) {
+				sb.AppendLine("|-");
+				sb.AppendLine($"| colspan=\"4\" | ''... and {CoveredRegions.Count - 50} more regions''");
+			}
+
+			sb.AppendLine("|}");
+		}
+
+		await clipboard.SetTextAsync(sb.ToString());
+		StatusText = "Copied CDL coverage as wikitext";
 	}
 
 	/// <summary>

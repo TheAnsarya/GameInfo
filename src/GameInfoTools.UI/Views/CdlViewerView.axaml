@@ -26,9 +26,17 @@
 				<Separator/>
 				<Button Content="🔄 Refresh" Command="{Binding RefreshCommand}" ToolTip.Tip="Refresh display"/>
 				<Separator/>
-				<Button Content="📊 CSV" Command="{Binding ExportToCsvCommand}" ToolTip.Tip="Export to CSV"/>
-				<Button Content="📋 JSON" Command="{Binding ExportToJsonCommand}" ToolTip.Tip="Export to JSON"/>
-				<Button Content="📝 Report" Command="{Binding GenerateReportCommand}" ToolTip.Tip="Generate text report"/>
+				<SplitButton Content="📊 Export" Command="{Binding ExportToCsvCommand}" ToolTip.Tip="Export coverage data">
+					<SplitButton.Flyout>
+						<MenuFlyout Placement="Bottom">
+							<MenuItem Header="Export to CSV" Command="{Binding ExportToCsvCommand}"/>
+							<MenuItem Header="Export to JSON" Command="{Binding ExportToJsonCommand}"/>
+							<MenuItem Header="Generate Report" Command="{Binding GenerateReportCommand}"/>
+							<Separator/>
+							<MenuItem Header="Copy as Wikitext" Command="{Binding CopyAsWikitextCommand}"/>
+						</MenuFlyout>
+					</SplitButton.Flyout>
+				</SplitButton>
 			</StackPanel>
 		</Border>
 
