@@ -42,6 +42,7 @@
 				<MenuItem Header="_Pointer Scanner" Command="{Binding ShowPointerScannerCommand}"/>
 				<Separator/>
 				<MenuItem Header="C_DL Viewer" Command="{Binding ShowCdlViewerCommand}"/>
+				<MenuItem Header="_Build Pipeline" Command="{Binding ShowBuildPipelineCommand}"/>
 			</MenuItem>
 			<MenuItem Header="_View">
 				<MenuItem Header="Hex _Editor" Command="{Binding ShowHexEditorCommand}"/>

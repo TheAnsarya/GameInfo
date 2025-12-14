@@ -1,0 +1,243 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="using:GameInfoTools.UI.ViewModels"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="800"
+			 x:Class="GameInfoTools.UI.Views.BuildPipelineView"
+			 x:DataType="vm:BuildPipelineViewModel">
+
+	<Design.DataContext>
+		<vm:BuildPipelineViewModel/>
+	</Design.DataContext>
+
+	<Grid RowDefinitions="Auto,*,Auto,200">
+		<!-- Header and Toolbar -->
+		<StackPanel Grid.Row="0" Margin="16,16,16,8" Spacing="12">
+			<TextBlock Text="Build Pipeline" FontSize="24" FontWeight="Bold"/>
+			<TextBlock Text="Configure and run build pipelines for retro game ROM hacking projects."
+					   Opacity="0.7" TextWrapping="Wrap"/>
+
+			<!-- Toolbar -->
+			<StackPanel Orientation="Horizontal" Spacing="8">
+				<Button Content="📁 New" Command="{Binding NewConfigCommand}" CommandParameter="{Binding $parent[Window]}"/>
+				<Button Content="📂 Open" Command="{Binding OpenConfigCommand}" CommandParameter="{Binding $parent[Window]}"/>
+				<Button Content="💾 Save" Command="{Binding SaveConfigCommand}" IsEnabled="{Binding HasConfigLoaded}"/>
+				<Button Content="💾 Save As..." Command="{Binding SaveConfigAsCommand}" CommandParameter="{Binding $parent[Window]}" IsEnabled="{Binding HasConfigLoaded}"/>
+				<Separator Width="1" Background="{DynamicResource SystemControlBackgroundBaseMediumBrush}" Margin="8,4"/>
+				<Button Content="🔨 Build" Command="{Binding BuildRomCommand}" IsEnabled="{Binding HasConfigLoaded}" IsVisible="{Binding !IsBuilding}"/>
+				<Button Content="⏳ Building..." IsEnabled="False" IsVisible="{Binding IsBuilding}"/>
+				<Button Content="🧹 Clean" Command="{Binding CleanBuildCommand}" IsEnabled="{Binding HasConfigLoaded}"/>
+			</StackPanel>
+		</StackPanel>
+
+		<!-- Main Content -->
+		<TabControl Grid.Row="1" Margin="16,0">
+			<!-- Project Settings Tab -->
+			<TabItem Header="Project">
+				<ScrollViewer>
+					<StackPanel Margin="8" Spacing="16">
+						<!-- Project Info -->
+						<StackPanel Spacing="8">
+							<TextBlock Text="Project Information" FontSize="16" FontWeight="SemiBold"/>
+
+							<Grid ColumnDefinitions="150,*" RowDefinitions="Auto,Auto,Auto,Auto" HorizontalAlignment="Stretch">
+								<TextBlock Grid.Row="0" Grid.Column="0" Text="Project Name:" VerticalAlignment="Center" Margin="0,4"/>
+								<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ProjectName}" Margin="8,4" MaxWidth="400" HorizontalAlignment="Left"/>
+
+								<TextBlock Grid.Row="1" Grid.Column="0" Text="Platform:" VerticalAlignment="Center" Margin="0,4"/>
+								<ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Platforms}" SelectedItem="{Binding SelectedPlatform}" Margin="8,4" Width="150"/>
+
+								<TextBlock Grid.Row="2" Grid.Column="0" Text="Assembler:" VerticalAlignment="Center" Margin="0,4"/>
+								<ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Assemblers}" SelectedItem="{Binding SelectedAssembler}" Margin="8,4" Width="150"/>
+
+								<TextBlock Grid.Row="3" Grid.Column="0" Text="Compression:" VerticalAlignment="Center" Margin="0,4"/>
+								<ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding CompressionAlgorithms}" SelectedItem="{Binding CompressionAlgorithm}" Margin="8,4" Width="150"/>
+							</Grid>
+						</StackPanel>
+
+						<Separator/>
+
+						<!-- Source Files -->
+						<StackPanel Spacing="8">
+							<TextBlock Text="Source Configuration" FontSize="16" FontWeight="SemiBold"/>
+
+							<Grid ColumnDefinitions="150,*" RowDefinitions="Auto,Auto,Auto" HorizontalAlignment="Stretch">
+								<TextBlock Grid.Row="0" Grid.Column="0" Text="Base ROM:" VerticalAlignment="Center" Margin="0,4"/>
+								<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding BaseRom}" Margin="8,4" Watermark="roms/original.nes"/>
+
+								<TextBlock Grid.Row="1" Grid.Column="0" Text="Main Source File:" VerticalAlignment="Center" Margin="0,4"/>
+								<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding MainSourceFile}" Margin="8,4" Watermark="src/main.asm"/>
+
+								<TextBlock Grid.Row="2" Grid.Column="0" Text="Output ROM:" VerticalAlignment="Center" Margin="0,4"/>
+								<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding OutputRom}" Margin="8,4" Watermark="build/output.nes"/>
+							</Grid>
+						</StackPanel>
+
+						<Separator/>
+
+						<!-- Asset Directories -->
+						<StackPanel Spacing="8">
+							<TextBlock Text="Asset Directories" FontSize="16" FontWeight="SemiBold"/>
+
+							<Grid ColumnDefinitions="150,*" RowDefinitions="Auto,Auto,Auto" HorizontalAlignment="Stretch">
+								<TextBlock Grid.Row="0" Grid.Column="0" Text="Extract Dir:" VerticalAlignment="Center" Margin="0,4"/>
+								<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ExtractDir}" Margin="8,4" Watermark="assets/binary"/>
+
+								<TextBlock Grid.Row="1" Grid.Column="0" Text="Editable Dir:" VerticalAlignment="Center" Margin="0,4"/>
+								<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding EditableDir}" Margin="8,4" Watermark="assets/editable"/>
+
+								<TextBlock Grid.Row="2" Grid.Column="0" Text="Build Dir:" VerticalAlignment="Center" Margin="0,4"/>
+								<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding BuildDir}" Margin="8,4" Watermark="build"/>
+							</Grid>
+						</StackPanel>
+
+						<Separator/>
+
+						<!-- Build Options -->
+						<StackPanel Spacing="8">
+							<TextBlock Text="Build Options" FontSize="16" FontWeight="SemiBold"/>
+
+							<StackPanel Orientation="Horizontal" Spacing="16">
+								<CheckBox Content="Verify Build" IsChecked="{Binding VerifyBuild}"/>
+								<CheckBox Content="Fix Checksum" IsChecked="{Binding FixChecksum}"/>
+							</StackPanel>
+
+							<Grid ColumnDefinitions="150,Auto,Auto" RowDefinitions="Auto,Auto" HorizontalAlignment="Left">
+								<TextBlock Grid.Row="0" Grid.Column="0" Text="Graphics BPP:" VerticalAlignment="Center" Margin="0,4"/>
+								<NumericUpDown Grid.Row="0" Grid.Column="1" Value="{Binding GraphicsBpp}" Minimum="1" Maximum="8" Margin="8,4" Width="100"/>
+
+								<TextBlock Grid.Row="1" Grid.Column="0" Text="Graphics Format:" VerticalAlignment="Center" Margin="0,4"/>
+								<ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding GraphicsFormats}" SelectedItem="{Binding GraphicsFormat}" Margin="8,4" Width="100"/>
+							</Grid>
+						</StackPanel>
+					</StackPanel>
+				</ScrollViewer>
+			</TabItem>
+
+			<!-- Assets Tab -->
+			<TabItem Header="Assets">
+				<DockPanel Margin="8">
+					<!-- Asset Toolbar -->
+					<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
+						<Button Content="➕ Add Asset" Command="{Binding AddAssetCommand}"/>
+						<Separator Width="1" Background="{DynamicResource SystemControlBackgroundBaseMediumBrush}" Margin="8,4"/>
+						<Button Content="📤 Extract All" Command="{Binding ExtractAssetsCommand}" CommandParameter="{Binding $parent[Window]}" IsVisible="{Binding !IsExtracting}"/>
+						<Button Content="⏳ Extracting..." IsEnabled="False" IsVisible="{Binding IsExtracting}"/>
+						<Button Content="📝 To Editable" Command="{Binding ConvertToEditableCommand}" IsEnabled="{Binding HasConfigLoaded}"/>
+						<Button Content="🔧 To Binary" Command="{Binding ConvertToBinaryCommand}" IsEnabled="{Binding HasConfigLoaded}"/>
+					</StackPanel>
+
+					<!-- Assets List -->
+					<Border Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}" CornerRadius="4" Padding="8">
+						<ScrollViewer>
+							<ItemsControl ItemsSource="{Binding Assets}">
+								<ItemsControl.ItemTemplate>
+									<DataTemplate>
+										<Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" CornerRadius="4" Margin="0,0,0,8" Padding="12">
+											<Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+												<StackPanel Grid.Row="0" Grid.Column="0" Spacing="8">
+													<Grid ColumnDefinitions="80,200,80,100,80,*" RowDefinitions="Auto">
+														<TextBlock Grid.Column="0" Text="Name:" VerticalAlignment="Center"/>
+														<TextBox Grid.Column="1" Text="{Binding Name}" Margin="4,0"/>
+
+														<TextBlock Grid.Column="2" Text="Type:" VerticalAlignment="Center" Margin="8,0,0,0"/>
+														<ComboBox Grid.Column="3" ItemsSource="{Binding AssetTypes}" SelectedItem="{Binding Type}" Margin="4,0"/>
+
+														<TextBlock Grid.Column="4" Text="Output:" VerticalAlignment="Center" Margin="8,0,0,0"/>
+														<TextBox Grid.Column="5" Text="{Binding Output}" Margin="4,0"/>
+													</Grid>
+
+													<Grid ColumnDefinitions="80,150,80,150,80,80" RowDefinitions="Auto">
+														<TextBlock Grid.Column="0" Text="Offset:" VerticalAlignment="Center"/>
+														<TextBox Grid.Column="1" Text="{Binding Offset}" Margin="4,0" Watermark="0x0000"/>
+
+														<TextBlock Grid.Column="2" Text="Length:" VerticalAlignment="Center" Margin="8,0,0,0"/>
+														<TextBox Grid.Column="3" Text="{Binding Length}" Margin="4,0" Watermark="0x100"/>
+
+														<TextBlock Grid.Column="4" Text="Bank:" VerticalAlignment="Center" Margin="8,0,0,0"/>
+														<NumericUpDown Grid.Column="5" Value="{Binding Bank}" Minimum="0" Maximum="255" Margin="4,0" ShowButtonSpinner="False"/>
+													</Grid>
+												</StackPanel>
+
+												<Button Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Content="🗑️" VerticalAlignment="Center"
+														Command="{Binding $parent[ItemsControl].((vm:BuildPipelineViewModel)DataContext).RemoveAssetCommand}"
+														CommandParameter="{Binding}"/>
+											</Grid>
+										</Border>
+									</DataTemplate>
+								</ItemsControl.ItemTemplate>
+							</ItemsControl>
+						</ScrollViewer>
+					</Border>
+				</DockPanel>
+			</TabItem>
+
+			<!-- Help Tab -->
+			<TabItem Header="Help">
+				<ScrollViewer>
+					<StackPanel Margin="16" Spacing="16">
+						<TextBlock Text="Build Pipeline Help" FontSize="18" FontWeight="SemiBold"/>
+
+						<TextBlock TextWrapping="Wrap" LineHeight="24">
+							<Run FontWeight="SemiBold">Overview</Run><LineBreak/>
+							The build pipeline allows you to configure and automate the process of extracting assets from ROMs,
+							converting them to editable formats, and building modified ROMs from source code.<LineBreak/><LineBreak/>
+
+							<Run FontWeight="SemiBold">Workflow</Run><LineBreak/>
+							1. <Run FontWeight="SemiBold">Extract Assets</Run> - Extract graphics, text, and data from a base ROM<LineBreak/>
+							2. <Run FontWeight="SemiBold">To Editable</Run> - Convert binary assets to editable formats (PNG, JSON)<LineBreak/>
+							3. <Run FontWeight="SemiBold">Edit</Run> - Modify assets using external tools<LineBreak/>
+							4. <Run FontWeight="SemiBold">To Binary</Run> - Convert edited assets back to binary format<LineBreak/>
+							5. <Run FontWeight="SemiBold">Build</Run> - Assemble source code and include converted assets<LineBreak/><LineBreak/>
+
+							<Run FontWeight="SemiBold">Platform Support</Run><LineBreak/>
+							• <Run FontWeight="SemiBold">NES</Run> - 6502 assembly with ca65<LineBreak/>
+							• <Run FontWeight="SemiBold">SNES</Run> - 65816 assembly with asar<LineBreak/>
+							• <Run FontWeight="SemiBold">Genesis</Run> - 68000 assembly with asm68k<LineBreak/>
+							• <Run FontWeight="SemiBold">GB/GBC</Run> - Z80-like assembly with RGBDS<LineBreak/>
+							• <Run FontWeight="SemiBold">GBA</Run> - ARM assembly with devkitARM<LineBreak/><LineBreak/>
+
+							<Run FontWeight="SemiBold">Asset Types</Run><LineBreak/>
+							• <Run FontWeight="SemiBold">Graphics</Run> - Tile graphics (2/4/8 BPP)<LineBreak/>
+							• <Run FontWeight="SemiBold">Palette</Run> - Color palettes<LineBreak/>
+							• <Run FontWeight="SemiBold">Tilemap</Run> - Tile arrangement data<LineBreak/>
+							• <Run FontWeight="SemiBold">Text</Run> - Text strings with custom encoding<LineBreak/>
+							• <Run FontWeight="SemiBold">Data</Run> - Raw binary data<LineBreak/>
+							• <Run FontWeight="SemiBold">Audio</Run> - Sound/music data<LineBreak/><LineBreak/>
+
+							<Run FontWeight="SemiBold">Compression</Run><LineBreak/>
+							Supported algorithms: LZSS, RLE, Huffman
+						</TextBlock>
+					</StackPanel>
+				</ScrollViewer>
+			</TabItem>
+		</TabControl>
+
+		<!-- Status Bar -->
+		<Border Grid.Row="2" Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}" Padding="16,8">
+			<TextBlock Text="{Binding StatusText}"/>
+		</Border>
+
+		<!-- Build Output -->
+		<Grid Grid.Row="3" Margin="16,8,16,16">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+
+			<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="0,0,0,4">
+				<TextBlock Text="Build Output" FontWeight="SemiBold" VerticalAlignment="Center"/>
+				<Button Content="Clear" Command="{Binding ClearOutputCommand}" Padding="8,2"/>
+			</StackPanel>
+
+			<Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" CornerRadius="4">
+				<ScrollViewer>
+					<TextBox Text="{Binding BuildOutput}" IsReadOnly="True" FontFamily="Consolas,Menlo,monospace"
+							 AcceptsReturn="True" TextWrapping="NoWrap" BorderThickness="0"
+							 Background="Transparent" Padding="8"/>
+				</ScrollViewer>
+			</Border>
+		</Grid>
+	</Grid>
+</UserControl>
