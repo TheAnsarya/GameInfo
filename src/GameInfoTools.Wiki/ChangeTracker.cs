@@ -48,9 +48,11 @@ public static partial class ChangeTracker {
 	}
 
 	// Pattern: <!-- @CHANGE:type:status:timestamp:description -->
+	// Note: timestamp is in ISO8601 format which contains colons (e.g., 2024-01-15T10:30:00Z)
+	// We use a more specific pattern to capture the timestamp correctly
 	private static readonly Regex MarkerRegex = GenerateMarkerRegex();
 
-	[GeneratedRegex(@"<!--\s*@CHANGE:(\w+):(\w*):([^:]*):([^-]*)\s*-->", RegexOptions.Compiled)]
+	[GeneratedRegex(@"<!--\s*@CHANGE:(\w+):(\w*):([\dT:\-\.Z+]+):([^-]*)\s*-->", RegexOptions.Compiled)]
 	private static partial Regex GenerateMarkerRegex();
 
 	/// <summary>
@@ -151,17 +153,17 @@ public static partial class ChangeTracker {
 	/// Removes all change tracking markers from content (for clean export).
 	/// </summary>
 	public static string StripMarkers(string content) {
-		// Remove @CHANGE markers
+		// Remove @CHANGE markers (handled by MarkerRegex)
 		var result = MarkerRegex.Replace(content, "");
 
-		// Remove @CHANGE_START/END markers
-		result = Regex.Replace(result, @"<!--\s*@CHANGE_START:[^-]*\s*-->", "");
+		// Remove @CHANGE_START/END markers - use non-greedy matching
+		result = Regex.Replace(result, @"<!--\s*@CHANGE_START:.*?-->", "", RegexOptions.Singleline);
 		result = Regex.Replace(result, @"<!--\s*@CHANGE_END\s*-->", "");
-		result = Regex.Replace(result, @"<!--\s*@REVIEWED:[^-]*\s*-->", "");
+		result = Regex.Replace(result, @"<!--\s*@REVIEWED:.*?-->", "", RegexOptions.Singleline);
 
-		// Remove AI warning comments
-		result = Regex.Replace(result, @"<!--\s*⚠️ AI-GENERATED CONTENT[^-]*-->", "");
-		result = Regex.Replace(result, @"<!--\s*Data Crystal forbids AI-generated content[^-]*-->", "");
+		// Remove AI warning comments - use non-greedy matching
+		result = Regex.Replace(result, @"<!--\s*⚠️ AI-GENERATED CONTENT.*?-->", "", RegexOptions.Singleline);
+		result = Regex.Replace(result, @"<!--\s*Data Crystal forbids AI-generated content.*?-->", "", RegexOptions.Singleline);
 
 		// Clean up multiple blank lines
 		result = Regex.Replace(result, @"\n{3,}", "\n\n");
