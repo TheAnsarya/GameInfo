@@ -1,0 +1,235 @@
+{{rommap}}
+{{subpage}}
+
+=Dragon Warrior IV (NES) ROM Map=
+
+This ROM map documents the PRG ROM layout of Dragon Warrior IV (US version), based on disassembly analysis by TheAnsarya and the dragon-warrior-4-info project.
+
+==ROM Information==
+
+{| class="wikitable"
+|-
+!  Property  !!  Value
+|-
+|  Title  ||  Dragon Warrior IV
+|-
+|  Region  ||  US
+|-
+|  Size  ||  512KB PRG + 256KB CHR
+|-
+|  Mapper  ||  MMC5 (5)
+|-
+|  Banks  ||  32 PRG banks (16KB each)
+|-
+|  Header  ||  16 bytes (iNES)
+|}
+
+==Bank Structure==
+
+Dragon Warrior IV uses the MMC5 mapper with 32 banks of 16KB PRG ROM ($20000 bytes each).
+
+{| class="wikitable"
+|-
+!  Bank  !!  File Offset  !!  CPU Address  !!  Description  !!  Subroutines
+|-
+|  Bank 00  ||  $00010-$04010  ||  $8000-$bfff  ||  Map/world data  ||  22
+|-
+|  Bank 01  ||  $04010-$08010  ||  $8000-$bfff  ||  Map/world data  ||  17
+|-
+|  Bank 02  ||  $08010-$0c010  ||  $8000-$bfff  ||  Map/world data  ||  16
+|-
+|  Bank 03  ||  $0c010-$10010  ||  $8000-$bfff  ||  Map/world data  ||  14
+|-
+|  Bank 04  ||  $10010-$14010  ||  $8000-$bfff  ||  Graphics data  ||  22
+|-
+|  Bank 05  ||  $14010-$18010  ||  $8000-$bfff  ||  Graphics data  ||  12
+|-
+|  Bank 06  ||  $18010-$1c010  ||  $8000-$bfff  ||  Monster table, sprites  ||  57
+|-
+|  Bank 07  ||  $1c010-$20010  ||  $8000-$bfff  ||  Monster data  ||  75
+|-
+|  Bank 08  ||  $20010-$24010  ||  $8000-$bfff  ||  Monster data  ||  76
+|-
+|  Bank 09  ||  $24010-$28010  ||  $8000-$bfff  ||  Audio/music  ||  48
+|-
+|  Bank 10  ||  $28010-$2c010  ||  $8000-$bfff  ||  Audio/music  ||  46
+|-
+|  Bank 11  ||  $2c010-$30010  ||  $8000-$bfff  ||  Audio/music  ||  37
+|-
+|  Bank 12  ||  $30010-$34010  ||  $8000-$bfff  ||  Text/dialog  ||  50
+|-
+|  Bank 13  ||  $34010-$38010  ||  $8000-$bfff  ||  Text/dialog  ||  39
+|-
+|  Bank 14  ||  $38010-$3c010  ||  $8000-$bfff  ||  Text/dialog  ||  47
+|-
+|  Bank 15  ||  $3c010-$40010  ||  $8000-$bfff  ||  Battle system  ||  282
+|-
+|  Bank 16  ||  $40010-$44010  ||  $8000-$bfff  ||  Battle system  ||  203
+|-
+|  Bank 17  ||  $44010-$48010  ||  $8000-$bfff  ||  Menu system  ||  236
+|-
+|  Bank 18  ||  $48010-$4c010  ||  $8000-$bfff  ||  Shop/item system  ||  206
+|-
+|  Bank 19  ||  $4c010-$50010  ||  $8000-$bfff  ||  '''Battle AI/Tactics'''  ||  284
+|-
+|  Bank 20  ||  $50010-$54010  ||  $8000-$bfff  ||  World map system  ||  194
+|-
+|  Bank 21  ||  $54010-$58010  ||  $8000-$bfff  ||  NPC/event system  ||  185
+|-
+|  Bank 22  ||  $58010-$5c010  ||  $8000-$bfff  ||  Event scripting  ||  232
+|-
+|  Bank 23  ||  $5c010-$60010  ||  $8000-$bfff  ||  Event scripting  ||  203
+|-
+|  Bank 24  ||  $60010-$64010  ||  $8000-$bfff  ||  Save system  ||  117
+|-
+|  Bank 25  ||  $64010-$68010  ||  $8000-$bfff  ||  Compression  ||  29
+|-
+|  Bank 26  ||  $68010-$6c010  ||  $8000-$bfff  ||  Data tables  ||  19
+|-
+|  Bank 27  ||  $6c010-$70010  ||  $8000-$bfff  ||  Experience/level system  ||  207
+|-
+|  Bank 28  ||  $70010-$74010  ||  $8000-$bfff  ||  Character stats  ||  123
+|-
+|  Bank 29  ||  $74010-$78010  ||  $8000-$bfff  ||  Equipment system  ||  207
+|-
+|  Bank 30  ||  $78010-$7c010  ||  $8000-$bfff  ||  Core routines  ||  293
+|-
+|  Bank 31  ||  $7c010-$80010  ||  $c000-$ffff  ||  '''Fixed bank'''  ||  239
+|}
+
+==Bank 19 - Battle AI and Tactics System==
+
+Bank 19 ($4c010-$50010) contains the battle AI and tactics system.
+
+===Tactics Tables===
+
+{| class="wikitable"
+|-
+!  Address  !!  Size  !!  Description
+|-
+|  $ba74  ||  49 bytes  ||  Primary tactics/spell priority matrix (7×7)
+|-
+|  $baa5  ||  48 bytes  ||  Secondary tactics/spell data
+|-
+|  $bad5  ||  18 bytes  ||  Tertiary tactics data
+|-
+|  $bb3f  ||  9 bytes  ||  Spell power table
+|-
+|  $bb49  ||  9 bytes  ||  Spell attribute table
+|-
+|  $bb84  ||  7 bytes  ||  Attack multiplier by tactics (one per tactic)
+|-
+|  $bb8b  ||  7 bytes  ||  Stat divisor/multiplier by tactics
+|-
+|  $bb92  ||  7 bytes  ||  Hit threshold by tactics
+|}
+
+===Key Subroutines===
+
+{| class="wikitable"
+|-
+!  Address  !!  Name  !!  Description
+|-
+|  $8038  ||  battle_entry  ||  Main battle entry point
+|-
+|  $8088  ||  read_tactics  ||  Read current tactics setting from $615b
+|-
+|  $8176  ||  mul16  ||  16-bit multiply by 16
+|-
+|  $8187  ||  div16  ||  16-bit divide by 16
+|-
+|  $9212  ||  sum_party_stats  ||  Calculate party stat totals
+|-
+|  $805b  ||  dispatch_action  ||  Execute battle action based on tactics
+|}
+
+==Bank 31 - Fixed Bank==
+
+Bank 31 ($7c010-$80010) is the fixed bank, always mapped to $c000-$ffff.
+
+===Interrupt Vectors===
+
+{| class="wikitable"
+|-
+!  Address  !!  Description
+|-
+|  $fffa  ||  NMI vector
+|-
+|  $fffc  ||  Reset vector
+|-
+|  $fffe  ||  IRQ/BRK vector
+|}
+
+===Party Data Access Routines===
+
+{| class="wikitable"
+|-
+!  Address  !!  Description  !!  RAM Access
+|-
+|  $cc16  ||  Check party limit X  ||  $6197
+|-
+|  $cc1d  ||  Check party limit Y  ||  $6198
+|-
+|  $cc28  ||  Get current chapter  ||  $615a
+|-
+|  $f148  ||  Read chapter number  ||  $615a
+|-
+|  $f164  ||  Increment chapter  ||  $615a
+|-
+|  $f173  ||  Decrement chapter  ||  $615a
+|}
+
+==Bank 06 - Monster Data==
+
+Bank 06 ($18010-$1c010) contains monster sprites and data tables.
+
+===Monster Table===
+
+{| class="wikitable"
+|-
+!  Offset  !!  Size  !!  Description
+|-
+|  $8000  ||  varies  ||  Monster sprite data
+|-
+|  $9000  ||  varies  ||  Monster stat table
+|}
+
+==CHR ROM==
+
+The CHR ROM contains pattern table data for graphics.
+
+{| class="wikitable"
+|-
+!  Offset  !!  Size  !!  Description
+|-
+|  $80010-$84010  ||  16KB  ||  CHR Bank 0 - Title screen graphics
+|-
+|  $84010-$88010  ||  16KB  ||  CHR Bank 1 - Overworld tiles
+|-
+|  $88010-$8c010  ||  16KB  ||  CHR Bank 2 - Town/dungeon tiles
+|-
+|  $8c010-$90010  ||  16KB  ||  CHR Bank 3 - Character sprites
+|-
+|  $90010-$94010  ||  16KB  ||  CHR Bank 4 - Monster sprites
+|-
+|  $94010-$98010  ||  16KB  ||  CHR Bank 5 - Battle backgrounds
+|-
+|  $98010-$9c010  ||  16KB  ||  CHR Bank 6 - Menu/UI graphics
+|-
+|  $9c010-$a0010  ||  16KB  ||  CHR Bank 7 - Font and text
+|-
+|  ... ||  ...  ||  Additional CHR banks
+|}
+
+==See Also==
+
+* [[Dragon Warrior IV (NES)/RAM map|RAM Map]]
+* [[Dragon Warrior IV (NES)/SRAM map|SRAM Map]]
+* [[Dragon Warrior IV (NES)/TBL|Text Table]]
+* [[Dragon Warrior IV (NES)/Values|Game Values]]
+
+==External Links==
+
+* [https://github.com/TheAnsarya/dragon-warrior-4-info Dragon Warrior 4 Info Repository]
+
+[[Category:NES ROM maps]]

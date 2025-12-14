@@ -1,0 +1,15 @@
+==Known Dumps==
+
+These are the roms as they are listed in [https://www.tosecdev.org/ TOSEC].
+
+{| class="wikitable"
+|-
+!  Description  !!  Size  !!  Hashes
+|-
+|  Dragon Quest III (1988-02-10)(Enix)(JP)  ||  262160  ||  '''CRC32''': c1348e6f<br />'''MD5''': 4d7587c092e2955a80cfc2e383599f8e<br />'''SHA1''': 56e0fc1f50e3a778e832d5e142d5591bd0332fad
+|-
+|  Dragon Warrior III Rev PRG0 (1992-03)(Enix)(US)  ||  524304  ||  '''CRC32''': 0eb63e83<br />'''MD5''': 3ef863d2df43e805bad70f74f0ccd909<br />'''SHA1''': a867549bad1cba4cd6f6dd51743e78596b982bd8
+|}
+
+
+{{Dragon Quest Series}}

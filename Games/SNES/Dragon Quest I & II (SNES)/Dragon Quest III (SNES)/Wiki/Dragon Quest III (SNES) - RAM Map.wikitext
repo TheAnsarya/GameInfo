@@ -1,0 +1,331 @@
+{{rammap|game=Dragon Quest III}}
+
+==Main==
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Description
+|-
+|  Stats  ||  $7e3696  ||  long  ||  🪙 Current amount of Gold
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3699-$7e3724  ||  140 bytes   ||  ...
+|-
+|  Bag  ||  $7e3725-$7e3824  ||  256 bytes  ||  📦 Each byte is which item is in bag slot, 0 means empty, game uses values $01-$e4
+|-
+|  Bag  ||  $7e3825-$7e3924  ||  256 bytes  ||  📦 Each byte is amount of the item in the bag slot, game allows up to 99
+|-
+|  Stats  ||  $7e3925-$7e3960  ||  $3c bytes  ||  Hero's status and information ([[Dragon Quest III (SNES)/RAM map/Party Members#Primary_Data_Structure|data structure]])
+|-
+|  Stats  ||  $7e3961-$7e399c  ||  $3c bytes  ||  Party member #2's status and information ([[Dragon Quest III (SNES)/RAM map/Party Members#Primary_Data_Structure|data structure]])
+|-
+|  Stats  ||  $7e399d-$7e39d8  ||  $3c bytes  ||  Party member #3's status and information ([[Dragon Quest III (SNES)/RAM map/Party Members#Primary_Data_Structure|data structure]])
+|-
+|  Stats  ||  $7e39d9-$7e3a14  ||  $3c bytes  ||  Party member #4's status and information ([[Dragon Quest III (SNES)/RAM map/Party Members#Primary_Data_Structure|data structure]])
+|-
+|  Stats  ||  $7e3a15-$7e3a50  ||  $3c bytes  ||  Party member #5's status and information ([[Dragon Quest III (SNES)/RAM map/Party Members#Primary_Data_Structure|data structure]])
+|-
+|  Stats  ||  $7e3a51-$7e3a8c  ||  $3c bytes  ||  Party member #6's status and information ([[Dragon Quest III (SNES)/RAM map/Party Members#Primary_Data_Structure|data structure]])
+|-
+|  Stats  ||  $7e3a8d-$7e3ac8  ||  $3c bytes  ||  Party member #7's status and information ([[Dragon Quest III (SNES)/RAM map/Party Members#Primary_Data_Structure|data structure]])
+|-
+|  Stats  ||  $7e3ac9-$7e3b04  ||  $3c bytes  ||  Party member #8's status and information ([[Dragon Quest III (SNES)/RAM map/Party Members#Primary_Data_Structure|data structure]])
+|-
+|  Stats  ||  $7e3b05-$7e3b40  ||  $3c bytes  ||  Party member #9's status and information ([[Dragon Quest III (SNES)/RAM map/Party Members#Primary_Data_Structure|data structure]])
+|-
+|  Stats  ||  $7e3b41-$7e3b7c  ||  $3c bytes  ||  Party member #10's status and information ([[Dragon Quest III (SNES)/RAM map/Party Members#Primary_Data_Structure|data structure]])
+|-
+|  Stats  ||  $7e3b7d-$7e3bb8  ||  $3c bytes  ||  Party member #11's status and information ([[Dragon Quest III (SNES)/RAM map/Party Members#Primary_Data_Structure|data structure]])
+|-
+|  Stats  ||  $7e3bb9-$7e3bf4  ||  $3c bytes  ||  Party member #12's status and information ([[Dragon Quest III (SNES)/RAM map/Party Members#Primary_Data_Structure|data structure]])
+|-
+|  Stats  ||  $7e3bf5-$7e3c30  ||  $3c bytes  ||  Party member #13's status and information ([[Dragon Quest III (SNES)/RAM map/Party Members#Primary_Data_Structure|data structure]])
+|-
+|  Stats  ||  $7e3c31-$7e3c6c  ||  $3c bytes  ||  Party member #14's status and information ([[Dragon Quest III (SNES)/RAM map/Party Members#Primary_Data_Structure|data structure]])
+|-
+|  Stats  ||  $7e3c6d-$7e3ca8  ||  $3c bytes  ||  Party member #15's status and information ([[Dragon Quest III (SNES)/RAM map/Party Members#Primary_Data_Structure|data structure]])
+|-
+|  Stats  ||  $7e3ca9-$7e3ce4  ||  $3c bytes  ||  Party member #16's status and information ([[Dragon Quest III (SNES)/RAM map/Party Members#Primary_Data_Structure|data structure]])
+|-
+|  Stats  ||  $7e3ce5-$7e3d20  ||  $3c bytes  ||  Party member #17's status and information ([[Dragon Quest III (SNES)/RAM map/Party Members#Primary_Data_Structure|data structure]])
+|-
+|  Stats  ||  $7e3d21-$7e3d5c  ||  $3c bytes  ||  Party member #18's status and information ([[Dragon Quest III (SNES)/RAM map/Party Members#Primary_Data_Structure|data structure]])
+|-
+|  Stats  ||  $7e3d5d-$7e3d98  ||  $3c bytes  ||  Party member #19's status and information ([[Dragon Quest III (SNES)/RAM map/Party Members#Primary_Data_Structure|data structure]])
+|-
+|  Stats  ||  $7e3d99-$7e3dd4  ||  $3c bytes  ||  Party member #20's status and information ([[Dragon Quest III (SNES)/RAM map/Party Members#Primary_Data_Structure|data structure]])
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3dd5-$---  ||  ---   ||  ...
+|-
+|  Joypad  ||  $7e7ff8-$7e7ff9  ||  word  ||  🎮 Joypad Buttons - registers $4218 and $4219 are read and stored here
+|}
+
+==VBLANK State Machine==
+The whole graphics state is set every VBLANK interrupt. This is also where VRAM DMA transfers are scheduled.
+
+Several bytes are skipped because they are read/written in 16bit mode while the actual value is 8bit and are always $00.
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !! Size  !!  Description
+|-  style="background-color: #eaecf0;"
+|  colspan="4"  |  ...
+|-
+|  Graphics Settings  ||  $7e7f8a  ||  byte  ||  $2101 - 🖼️ OAM object size and object base
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e7f8b  ||  byte  ||  Skip!
+|-
+|  Graphics Settings  ||  $7e7f8c  ||  byte  ||  $2105 - 🖼️ BG mode and BG character size
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e7f8d  ||  byte  ||  Skip!
+|-
+|  Graphics Settings  ||  $7e7f8e  ||  byte  ||  $2106 - 🖼️ Mosaic size and mosaic enable
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e7f8f  ||  byte  ||  Skip!
+|-
+|  Graphics Settings  ||  $7e7f90  ||  byte  ||  $2107 - 🖼️ BG 1 screen base and screen size
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e7f91  ||  byte  ||  Skip!
+|-
+|  Graphics Settings  ||  $7e7f92  ||  byte  ||  $2108 - 🖼️ BG 2 screen base and screen size
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e7f93  ||  byte  ||  Skip!
+|-
+|  Graphics Settings  ||  $7e7f94  ||  byte  ||  $2109 - 🖼️ BG 3 screen base and screen size
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e7f95  ||  byte  ||  Skip!
+|-
+|  Graphics Settings  ||  $7e7f96  ||  byte  ||  $210a - 🖼️ BG 4 screen base and screen size
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e7f97  ||  byte  ||  Skip!
+|-
+|  Graphics Settings  ||  $7e7f98  ||  byte  ||  $210b - 🖼️ BG 1 & 2 tile base addresses
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e7f99  ||  byte  ||  Skip!
+|-
+|  Graphics Settings  ||  $7e7f9a  ||  byte  ||  $210c - 🖼️ BG 3 & 4 tile base addresses
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e7f9b - $7e...  ||  $ bytes  ||  ...
+|-
+|  Graphics Settings  ||  $7e7fac  ||  byte  ||  $211a - 🖼️ Mode 7 Settings Register
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e7fad  ||  byte  ||  Skip!
+|-
+|  Graphics Settings  ||  $7e7fae - $7e7faf  ||  word  ||  $211b - 🖼️ Mode 7 Matrix Registers - A
+|-
+|  Graphics Settings  ||  $7e7fb0 - $7e7fb1  ||  word  ||  $211c - 🖼️ Mode 7 Matrix Registers - B
+|-
+|  Graphics Settings  ||  $7e7fb2 - $7e7fb3  ||  word  ||  $211d - 🖼️ Mode 7 Matrix Registers - C
+|-
+|  Graphics Settings  ||  $7e7fb4 - $7e7fb5  ||  word  ||  $211e - 🖼️ Mode 7 Matrix Registers - D
+|-
+|  Graphics Settings  ||  $7e7fb6 - $7e7fb7  ||  word  ||  $211f - 🖼️ Mode 7 Matrix Registers - X
+|-
+|  Graphics Settings  ||  $7e7fb8 - $7e7fb9  ||  word  ||  $2120 - 🖼️ Mode 7 Matrix Registers - Y
+|-
+|  Graphics Settings  ||  $7e7fba  ||  byte  ||  $2123 - 🖼️ Window mask setting, BG 1 & 2
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e7fbb  ||  byte  ||  Skip!
+|-
+|  Graphics Settings  ||  $7e7fbc  ||  byte  ||  $2124 - 🖼️ Window mask setting, BG 3 & 4
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e7fbd  ||  byte  ||  Skip!
+|-
+|  Graphics Settings  ||  $7e7fbe  ||  byte  ||  $2125 - 🖼️ Window mask setting, OBJ
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e7fbf  ||  byte  ||  Skip!
+|-
+|  Graphics Settings  ||  $7e7fc0  ||  byte  ||  $2126 - 🖼️ Window 1 left position
+|-
+|  Graphics Settings  ||  $7e7fc1  ||  byte  ||  $2127 - 🖼️ Window 1 right position
+|-
+|  Graphics Settings  ||  $7e7fc2  ||  byte  ||  $2128 - 🖼️ Window 2 left position
+|-
+|  Graphics Settings  ||  $7e7fc3  ||  byte  ||  $2129 - 🖼️ Window 2 right position
+|-
+|  Graphics Settings  ||  $7e7fc4  ||  byte  ||  $212a - 🖼️ Window 1/2 mask logic, BG 1-4
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e7fc5  ||  byte  ||  Skip!
+|-
+|  Graphics Settings  ||  $7e7fc6  ||  byte  ||  $212b - 🖼️ Window 1/2 mask logic, MATH and OBJ
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e7fc7  ||  byte  ||  Skip!
+|-
+|  Graphics Settings  ||  $7e7fc8  ||  byte  ||  $212c - 🖼️ Main screen designation
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e7fc9  ||  byte  ||  Skip!
+|-
+|  Graphics Settings  ||  $7e7fca  ||  byte  ||  $212d - 🖼️ Sub screen designation
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e7fcb  ||  byte  ||  Skip!
+|-
+|  Graphics Settings  ||  $7e7fcc  ||  byte  ||  $212e - 🖼️ Window area main screen disable
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e7fcd  ||  byte  ||  Skip!
+|-
+|  Graphics Settings  ||  $7e7fce  ||  byte  ||  $212f - 🖼️ Window area sub screen disable
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e7fcf  ||  byte  ||  Skip!
+|-
+|  Graphics Settings  ||  $7e7fd0  ||  byte  ||  $2130 - 🎨 Color math control A
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e7fd1  ||  byte  ||  Skip!
+|-
+|  Graphics Settings  ||  $7e7fd2  ||  byte  ||  $2131 - 🎨 Color math control B
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e7fd3  ||  byte  ||  Skip!
+|-
+|  Graphics Settings  ||  $7e7fd4  ||  word  ||  $2132 - 🎨 Color math sub screen backdrop color, RGB intensities stored as 0bbbbbgggggrrrrr
+|-  style="background-color: #eaecf0;"
+|  colspan="4"  |  ...
+|-
+|  Graphics Settings  ||  $7e7fda  ||  byte  ||  $2133 - 🖼️ Screen mode/video select
+|-  style="background-color: #eaecf0;"
+|  colspan="4"  |  ...
+|-
+|  Graphics Loading  ||  $7e7ffe - $7e81fd  ||  $200 bytes  ||  🎨 CGRAM mirror, palettes/colors
+|-  style="background-color: #eaecf0;"
+|  colspan="4"  |  ...
+|-
+|  Graphics Loading  ||  $7e8bae - $7e8dad  ||  $100 words  ||  $4302 - ↔️ DMA source addresses
+|-
+|  Graphics Loading  ||  $7e8dae - $7e8fad  ||  $100 words but only uses low byte  ||  $4304 - ↔️ DMA source address banks
+|-
+|  Graphics Loading  ||  $7e8fae - $7e91ad  ||  $100 words  ||  $2116 - ↔️ VRAM destination addresses
+|-
+|  Graphics Loading  ||  $7e91ae - $7e93ad  ||  $100 words  ||  $4305 - ↔️ DMA transfer sizes
+|-
+|  Graphics Loading  ||  $7e93ae  ||  byte  ||  ↔️ Number of DMA transfers to perform (indexes the preceding arrays)
+|-  style="background-color: #eaecf0;"
+|  colspan="4"  |  ...
+|-
+|  Graphics Loading  ||  $7edb1f - $7edd3e  ||  $220 bytes  ||  👾 OAM - Sprite data
+|-  style="background-color: #eaecf0;"
+|  colspan="4"  |  ...
+|-
+|  Graphics Loading  ||  $7faeea - $7fb0e9  ||  $100 words  ||  ↔️ Tile indexes, which tiles to copy, used to fill the DMA copy scheduler data in $7e8bae - $7e93ae
+|-  style="background-color: #eaecf0;"
+|  colspan="4"  |  ...
+|-
+|}
+
+==Structures==
+[TODO: Change the name, add a description]
+
+===Party Members===
+The main data structure starts at <code>$7e3925</code>. Each entry is $3c bytes long.
+
+Details can be found in the [[Dragon Quest III (SNES)/RAM map/Party Members|Party Members]] subpage.
+
+==Game Event Flags==
+
+===Events===
+
+[[Dragon Quest III (SNES)/RAM map/Events]]
+
+===Treasures===
+
+[[Dragon Quest III (SNES)/RAM map/Treasures]]
+
+===Return Spell List===
+There are 5 bytes checked in the list, but only 3 are used and the last 2 bytes are gltchy.
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  SRAM  !!  Value  !!  Destination
+|-
+|  Return Spell  ||  $03680  ||  ---  ||  0000 0001  ||  Aliahan
+|-
+|  Return Spell  ||  $03680  ||  ---  ||  0000 0010  ||  Reeve
+|-
+|  Return Spell  ||  $03680  ||  ---  ||  0000 0100  ||  Romaly
+|-
+|  Return Spell  ||  $03680  ||  ---  ||  0000 1000  ||  Kazave
+|-
+|  Return Spell  ||  $03680  ||  ---  ||  0001 0000  ||  Noaniels
+|-
+|  Return Spell  ||  $03680  ||  ---  ||  0010 0000  ||  Ashalam
+|-
+|  Return Spell  ||  $03680  ||  ---  ||  0100 0000  ||  Isis
+|-
+|  Return Spell  ||  $03680  ||  ---  ||  1000 0000  ||  Portoga
+|-
+!  colspan="5"  |  
+|-
+|  Return Spell  ||  $03681  ||  ---  ||  0000 0001  ||  Baharata
+|-
+|  Return Spell  ||  $03681  ||  ---  ||  0000 0010  ||  Dharma
+|-
+|  Return Spell  ||  $03681  ||  ---  ||  0000 0100  ||  Lancel
+|-
+|  Return Spell  ||  $03681  ||  ---  ||  0000 1000  ||  Zipangu
+|-
+|  Return Spell  ||  $03681  ||  ---  ||  0001 0000  ||  Edinbear
+|-
+|  Return Spell  ||  $03681  ||  ---  ||  0010 0000  ||  Samanosa
+|-
+|  Return Spell  ||  $03681  ||  ---  ||  0100 0000  ||  ???
+|-
+|  Return Spell  ||  $03681  ||  ---  ||  1000 0000  ||  Zenithia
+|-
+!  colspan="5"  |  
+|-
+|  Return Spell  ||  $03682  ||  ---  ||  0000 0001  ||  Ludatorm
+|-
+|  Return Spell  ||  $03682  ||  ---  ||  0000 0010  ||  Domdora
+|-
+|  Return Spell  ||  $03682  ||  ---  ||  0000 0100  ||  Mercado
+|-
+|  Return Spell  ||  $03682  ||  ---  ||  0000 1000  ||  Kol
+|-
+|  Return Spell  ||  $03682  ||  ---  ||  0001 0000  ||  Rimuldar
+|-
+|  Return Spell  ||  $03682  ||  ---  ||  0010 0000  ||  X-Burg
+|-
+|  Return Spell  ||  $03682  ||  ---  ||  0100 0000  ||  
+|-
+|  Return Spell  ||  $03682  ||  ---  ||  1000 0000  ||  
+|-
+!  colspan="5"  |  
+|-
+|  Return Spell  ||  $03683  ||  ---  ||  0000 0001  ||  
+|-
+|  Return Spell  ||  $03683  ||  ---  ||  0000 0010  ||  
+|-
+|  Return Spell  ||  $03683  ||  ---  ||  0000 0100  ||  
+|-
+|  Return Spell  ||  $03683  ||  ---  ||  0000 1000  ||  
+|-
+|  Return Spell  ||  $03683  ||  ---  ||  0001 0000  ||  
+|-
+|  Return Spell  ||  $03683  ||  ---  ||  0010 0000  ||  
+|-
+|  Return Spell  ||  $03683  ||  ---  ||  0100 0000  ||  
+|-
+|  Return Spell  ||  $03683  ||  ---  ||  1000 0000  ||  
+|-
+!  colspan="5"  |  
+|-
+|  Return Spell  ||  $03684  ||  ---  ||  0000 0001  ||  
+|-
+|  Return Spell  ||  $03684  ||  ---  ||  0000 0010  ||  
+|-
+|  Return Spell  ||  $03684  ||  ---  ||  0000 0100  ||  
+|-
+|  Return Spell  ||  $03684  ||  ---  ||  0000 1000  ||  
+|-
+|  Return Spell  ||  $03684  ||  ---  ||  0001 0000  ||  
+|-
+|  Return Spell  ||  $03684  ||  ---  ||  0010 0000  ||  
+|-
+|  Return Spell  ||  $03684  ||  ---  ||  0100 0000  ||  
+|-
+|  Return Spell  ||  $03684  ||  ---  ||  1000 0000  ||  
+|}
+
+==Sub Pages==
+{{subpage|Party Members}}
+{{subpage|Events}}
+{{subpage|Treasures}}
+
+
+{{Internal Data}}

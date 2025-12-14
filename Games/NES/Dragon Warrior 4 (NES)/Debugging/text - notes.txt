@@ -1,0 +1,61 @@
+
+6fa94 - 6fabd
+
+F1 BF 0B 70 B3 DC 66 5B C3 58 6E 90 20 9A 07 7B
+1D A9 0D 64 03 CD 2F 1F 87 46 42 7F AB 94 B0 63
+89 94 23 FC 92 FE 75 D4 B5 95
+
+F1 BF 0B 70 B3 DC 66 5B C3 58 6E 90 20 9A 07 7B
+1D A9 0D 64 03 CD 2F 1F 87 46 42 7F AB 94 B0 63
+89 94 23 FC 92 FE 75 D4 B5 95
+
+`This is the Final Refuge.
+I've been waiting for you.'
+
+`' at the ends seem to be automatic, not encoded (type of text string?)
+
+start with 00 00 00 00 b3 dc.....
+`eeeeeeeeees the Final.....
+
+
+F1 BF 0B 70 B3 DC 66 5B C3 58 6E 90 20 9A 07 7B
+1D A9 0D 64 03 CD 2F 1F 87 46 42 7F AB 94 B0 63
+89 94 23 FC 92 FE 75 D4 B5 95
+
+|F1 BF 0B|
+||
+|70 B3 DC|
+||
+|66 5B C3|
+||
+|58 6E 90|
+|`Th|
+|20 9A 07|
+|is is| might be an ending space?
+|7B 1D A9|
+| th|
+|0D 64 03|
+|e Final|
+|CD 2F 1F|
+|
+Refu|
+|87 46 42|
+|ge.
+I'|
+|7F AB 94|
+|ve be|
+|B0 63 89|
+|en w|
+|94 23 FC|
+|aiti|
+|92 FE 75|
+|ng fo|
+|D4 B5 95|
+|r
+you.'|
+<wait for input>
+||
+||
+||
+||
+|

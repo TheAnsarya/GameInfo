@@ -1,0 +1,441 @@
+{{rommap}}
+{{subpage}}
+
+=Dragon Warrior (NES) ROM Map=
+
+This ROM map is based on the complete disassembly by TheAnsarya and documented memory locations from the Dragon Warrior Info Project.
+
+Addresses are NES CPU addresses ($8000-$FFFF for PRG ROM, $0000-$1FFF for CHR ROM).
+
+==Bank Structure==
+
+Dragon Warrior uses MMC1 mapper with 4 banks of 16KB PRG ROM:
+
+{| class="wikitable"
+!  Bank  !!  CPU Address  !!  File Offset  !!  Description
+|-
+|  Bank 00  ||  $8000-$BFFF  ||  $00010-$04010  ||  Main game code, graphics tables, shop data
+|-
+|  Bank 01  ||  $8000-$BFFF  ||  $04010-$08010  ||  Monster data, music, player stats
+|-
+|  Bank 02  ||  $8000-$BFFF  ||  $08010-$0C010  ||  Text compression, dialog data
+|-
+|  Bank 03  ||  $C000-$FFFF  ||  $0C010-$10010  ||  Fixed bank, core gameplay systems
+|}
+
+==PRG ROM Map==
+
+===Bank 00 ($8000-$BFFF)===
+
+{| class="wikitable sortable"
+!  Address  !!  Size  !!  Category  !!  Description
+|-
+|  $8000-$801F  ||  32 bytes  ||  Vectors  ||  Bank switching and interrupt vectors
+|-
+|  $8020-$80FF  ||  224 bytes  ||  Code  ||  Initialization and bank switching routines
+|-
+|  $8100-$85FF  ||  1280 bytes  ||  Graphics  ||  Overworld map tile definitions
+|-
+|  $8600-$8AFF  ||  1280 bytes  ||  Graphics  ||  Town and dungeon tile definitions
+|-
+|  $8B00-$8FFF  ||  1280 bytes  ||  Graphics  ||  Menu and UI graphics data
+|-
+|  $9000-$97FF  ||  2048 bytes  ||  Data  ||  NPC position and dialog tables
+|-
+|  $9800-$98FF  ||  256 bytes  ||  Data  ||  Map entry direction table
+|-
+|  $9900-$9946  ||  70 bytes  ||  Data  ||  Map entry direction table (continued)
+|-
+|  $9947-$9990  ||  74 bytes  ||  Data  ||  Item cost table
+|-
+|  $9991-$99CE  ||  62 bytes  ||  Data  ||  Shop items table
+|-
+|  $99CF-$99DE  ||  16 bytes  ||  Data  ||  Weapon bonus table
+|-
+|  $99DF-$99EE  ||  16 bytes  ||  Data  ||  Armor bonus table
+|-
+|  $99EF-$99FE  ||  16 bytes  ||  Data  ||  Shield bonus table
+|-
+|  $9A00-$9AFF  ||  256 bytes  ||  Data  ||  Palette and graphics pointers
+|-
+|  $9B00-$BFFF  ||  5376 bytes  ||  Code  ||  Main game logic and subroutines
+|}
+
+===Bank 01 ($8000-$BFFF)===
+
+{| class="wikitable sortable"
+!  Address  !!  Size  !!  Category  !!  Description  
+|-
+|  $8000-$803F  ||  64 bytes  ||  Vectors  ||  Bank 1 function pointers
+|-
+|  $8040-$81FF  ||  448 bytes  ||  Data  ||  Music note frequency table
+|-
+|  $8200-$8FFF  ||  3584 bytes  ||  Data  ||  Music sequence data
+|-
+|  $9000-$94FF  ||  1280 bytes  ||  Data  ||  Monster stat tables
+|-
+|  $9500-$95FF  ||  256 bytes  ||  Data  ||  Experience tables by level
+|-
+|  $9600-$96FF  ||  256 bytes  ||  Data  ||  Player base stats by level
+|-
+|  $9700-$97FF  ||  256 bytes  ||  Data  ||  Spell data and MP costs
+|-
+|  $9800-$9FFF  ||  2048 bytes  ||  Code  ||  Battle system and stat calculation
+|-
+|  $A000-$BFFF  ||  8192 bytes  ||  Code  ||  Music player and sound routines
+|}
+
+===Bank 02 ($8000-$BFFF)===
+
+{| class="wikitable sortable"
+!  Address  !!  Size  !!  Category  !!  Description
+|-
+|  $8000-$8FFF  ||  4096 bytes  ||  Data  ||  Compressed text data
+|-
+|  $9000-$9FFF  ||  4096 bytes  ||  Data  ||  Dialog text tables and pointers
+|-
+|  $A000-$AFFF  ||  4096 bytes  ||  Code  ||  Text decompression routines
+|-
+|  $B000-$BFFF  ||  4096 bytes  ||  Code  ||  Dialog display and text processing
+|}
+
+===Bank 03 ($C000-$FFFF) - Fixed Bank===
+
+{| class="wikitable sortable"
+!  Address  !!  Size  !!  Category  !!  Description
+|-
+|  $C000-$CFFF  ||  4096 bytes  ||  Code  ||  Core game loop and input handling
+|-
+|  $D000-$DFFF  ||  4096 bytes  ||  Code  ||  Map rendering and movement
+|-
+|  $E000-$EFFF  ||  4096 bytes  ||  Code  ||  Menu systems and inventory
+|-
+|  $F000-$FFEF  ||  4080 bytes  ||  Code  ||  System routines and utilities
+|-
+|  $FFF0-$FFFF  ||  16 bytes  ||  Vectors  ||  NMI, Reset, and IRQ vectors
+|}
+
+==CHR ROM Map==
+
+===Bank 0 ($0000-$0FFF)===
+
+{| class="wikitable sortable"
+!  Address  !!  Size  !!  Category  !!  Description
+|-
+|  $0000-$03FF  ||  1024 bytes  ||  Graphics  ||  Hero sprites and animations
+|-
+|  $0400-$07FF  ||  1024 bytes  ||  Graphics  ||  Monster sprites (first 64)
+|-
+|  $0800-$0BFF  ||  1024 bytes  ||  Graphics  ||  NPC sprites and objects
+|-
+|  $0C00-$0FFF  ||  1024 bytes  ||  Graphics  ||  UI elements and text font
+|}
+
+===Bank 1 ($1000-$1FFF)===
+
+{| class="wikitable sortable"
+!  Address  !!  Size  !!  Category  !!  Description
+|-
+|  $1000-$13FF  ||  1024 bytes  ||  Graphics  ||  Monster sprites (continued)
+|-
+|  $1400-$17FF  ||  1024 bytes  ||  Graphics  ||  Background tiles (overworld)
+|-
+|  $1800-$1BFF  ||  1024 bytes  ||  Graphics  ||  Background tiles (dungeons/towns)
+|-
+|  $1C00-$1FFF  ||  1024 bytes  ||  Graphics  ||  Background tiles (special areas)
+|}
+
+==Data Tables==
+
+===Detailed Bank 00 Data Tables===
+
+'''Item Cost Table''' ($9947-$9990, 74 bytes)
+
+Buy and sell prices for all items, weapons, armor, and shields. Each item uses 2 bytes for buy price (little-endian).
+
+{| class="wikitable sortable"
+!  Address  !!  Item  !!  Buy Price  !!  Notes
+|-
+|  $9947-$9948  ||  Herb  ||  24 GP  ||  Restores 23-30 HP
+|-
+|  $9949-$994A  ||  Magic Key  ||  53 GP  ||  Opens locked doors
+|-
+|  $994B-$994C  ||  Torch  ||  8 GP  ||  Illuminates dark areas
+|-
+|  $994D-$994E  ||  Fairy Water  ||  38 GP  ||  Repels weak monsters
+|-
+|  $994F-$9950  ||  Wings  ||  70 GP  ||  Return to Tantegel
+|-
+|  $9951-$9952  ||  Dragon's Scale  ||  20 GP  ||  Reduces damage by 1/3
+|-
+|  $9953-$9954  ||  Cursed Belt  ||  360 GP  ||  Cursed item, -2 AGI
+|-
+|  $9955-$9956  ||  Death Necklace  ||  2400 GP  ||  Cursed item, causes death
+|-
+|  $9957-$9958  ||  Bamboo Pole  ||  10 GP  ||  +2 ATK
+|-
+|  $9959-$995A  ||  Club  ||  60 GP  ||  +4 ATK
+|-
+|  $995B-$995C  ||  Copper Sword  ||  180 GP  ||  +10 ATK
+|-
+|  $995D-$995E  ||  Hand Axe  ||  560 GP  ||  +15 ATK
+|-
+|  $995F-$9960  ||  Broad Sword  ||  1500 GP  ||  +20 ATK
+|-
+|  $9961-$9962  ||  Flame Sword  ||  9800 GP  ||  +28 ATK
+|-
+|  $9963-$9964  ||  Clothes  ||  20 GP  ||  +2 DEF
+|-
+|  $9965-$9966  ||  Leather Armor  ||  70 GP  ||  +4 DEF
+|-
+|  $9967-$9968  ||  Chain Mail  ||  300 GP  ||  +10 DEF
+|-
+|  $9969-$996A  ||  Half Plate  ||  1000 GP  ||  +16 DEF
+|-
+|  $996B-$996C  ||  Full Plate  ||  3000 GP  ||  +24 DEF
+|-
+|  $996D-$996E  ||  Magic Armor  ||  7700 GP  ||  +24 DEF, regenerates HP
+|-
+|  $996F-$9970  ||  Small Shield  ||  90 GP  ||  +4 DEF
+|-
+|  $9971-$9972  ||  Large Shield  ||  800 GP  ||  +10 DEF
+|-
+|  $9973-$9974  ||  Silver Shield  ||  14800 GP  ||  +20 DEF, blocks breath
+|}
+
+'''Weapon Bonus Table''' ($99CF-$99DE, 16 bytes)
+
+Attack power bonuses for each weapon.
+
+'''Armor Bonus Table''' ($99DF-$99EE, 16 bytes)
+
+Defense bonuses for each armor piece.
+
+'''Shield Bonus Table''' ($99EF-$99FE, 16 bytes)
+
+Defense bonuses for each shield.
+
+===Detailed Bank 01 Data Tables===
+
+'''Monster Stats Table''' ($9000-$94FF, 1280 bytes)
+
+40 monsters × 16 bytes per entry = 640 bytes used. Each entry:
+* +$00-$01: HP (little-endian, 16-bit)
+* +$02: Attack Power (8-bit)
+* +$03: Defense Power (8-bit)
+* +$04-$05: Experience Reward (little-endian, 16-bit)
+* +$06-$07: Gold Reward (little-endian, 16-bit)
+* +$08: Special Abilities Flags
+* +$09: Resistance Flags
+* +$0A-$0B: Graphics Tile ID (16-bit)
+* +$0C-$0F: Reserved/Padding (4 bytes)
+
+'''Experience Requirements Table''' ($9500-$95FF, 256 bytes)
+
+Total experience required for each level (1-30). Each entry is 2 bytes (little-endian):
+* Level 1: 0 EXP
+* Level 2: 7 EXP
+* Level 10: 2000 EXP
+* Level 20: 28000 EXP
+* Level 30: 65535 EXP (max)
+
+'''Player Base Stats Table''' ($9600-$96FF, 256 bytes)
+
+Base HP/MP gain per level and stat modifiers.
+
+'''Spell Data Table''' ($9700-$97FF, 256 bytes)
+
+Spell MP costs and effect parameters:
+* HEAL: 4 MP, restores 10-17 HP
+* HURT: 2 MP, deals 5-12 damage
+* SLEEP: 2 MP, 62.5% base chance
+* RADIANT: 3 MP, radius 3 tiles
+* STOPSPELL: 2 MP, 62.5% base chance
+* OUTSIDE: 6 MP, warp to dungeon exit
+* RETURN: 8 MP, warp to Tantegel
+* REPEL: 2 MP, 127 steps duration
+* HEALMORE: 10 MP, restores 85-100 HP
+* HURTMORE: 5 MP, deals 58-65 damage
+
+===Detailed Bank 03 Code Routines===
+
+'''Battle System Routines'''
+
+{| class="wikitable"
+!  Address  !!  Routine  !!  Description
+|-
+|  ~$C000  ||  CalcPhysicalDamage  ||  Damage = (ATK/2) - (DEF/4) + Random(0,4)
+|-
+|  ~$C100  ||  CheckCriticalHit  ||  CritChance = AGI/64, Damage × 2 if crit
+|-
+|  ~$C200  ||  CheckHit  ||  Player: 87.5% - (EnemyAGI/4), Enemy: 75% - (PlayerAGI/2)
+|-
+|  ~$C300  ||  CheckDodge  ||  DodgeChance = PlayerAGI/4
+|-
+|  ~$C700  ||  BattleVictory  ||  Award experience and gold
+|}
+
+'''Level-Up Routines'''
+
+{| class="wikitable"
+!  Address  !!  Routine  !!  Description
+|-
+|  ~$CB00  ||  HPGainTable  ||  Base HP gain per level (5-28 + 0-3 random)
+|-
+|  ~$CB80  ||  MPGainTable  ||  Base MP gain per level (0-20 + 0-2 random)
+|-
+|  ~$CC00  ||  LevelUpSTR  ||  Even levels: +2-4, Odd levels: +1-3
+|-
+|  ~$CC50  ||  LevelUpAGI  ||  Odd levels: +2-5, Even levels: +1-3
+|-
+|  ~$CD00  ||  CheckSpellLearning  ||  Check if new spell unlocked at level
+|}
+
+'''Spell Effect Routines'''
+
+{| class="wikitable"
+!  Address  !!  Routine  !!  Description
+|-
+|  ~$D000  ||  SpellHEAL  ||  Restore 10-17 HP, 4 MP cost
+|-
+|  ~$D050  ||  SpellHEALMORE  ||  Restore 85-100 HP, 10 MP cost
+|-
+|  ~$D100  ||  SpellHURT  ||  Deal 5-12 - (DEF/8) damage, 2 MP
+|-
+|  ~$D150  ||  SpellHURTMORE  ||  Deal 58-65 - (DEF/4) damage, 5 MP
+|-
+|  ~$D200  ||  SpellSLEEP  ||  62.5% - (Level×2) success, 2 MP
+|-
+|  ~$D250  ||  SpellSTOPSPELL  ||  62.5% - (Level×3) success, 2 MP
+|-
+|  ~$D300  ||  SpellRADIANT  ||  Light radius 3 tiles, 3 MP
+|-
+|  ~$D350  ||  SpellOUTSIDE  ||  Warp to dungeon exit, 6 MP
+|-
+|  ~$D380  ||  SpellRETURN  ||  Warp to (43,43) Tantegel, 8 MP
+|-
+|  ~$D400  ||  SpellREPEL  ||  Block encounters 127 steps, 2 MP
+|}
+
+'''Item Effect Routines'''
+
+{| class="wikitable"
+!  Address  !!  Routine  !!  Description
+|-
+|  ~$D600  ||  UseHerb  ||  Restore 23-30 HP
+|-
+|  ~$D650  ||  UseTorch  ||  Light radius 3 tiles until battle
+|-
+|  ~$D700  ||  UseWings  ||  Warp to Tantegel (43,43)
+|-
+|  ~$D750  ||  ApplyDragonScale  ||  Reduce damage by 1/3
+|-
+|  ~$D800  ||  UseRainbowDrop  ||  Create bridge at (69,69)
+|}
+
+'''Encounter System Routines'''
+
+{| class="wikitable"
+!  Address  !!  Routine  !!  Description
+|-
+|  ~$E000  ||  EncounterCheck  ||  Check every 8 steps, rate varies by zone
+|-
+|  ~$E100  ||  SelectEncounter  ||  Choose enemy from zone table
+|-
+|  ~$E200  ||  AttemptFlee  ||  75% + (PlayerAGI-EnemyAGI)/4, min 25%, max 87.5%
+|}
+
+'''Enemy AI Routines'''
+
+{| class="wikitable"
+!  Address  !!  Routine  !!  Description
+|-
+|  ~$E400  ||  ProcessEnemyTurn  ||  25% spell cast chance if able
+|-
+|  ~$E500  ||  DragonlordAI  ||  Special AI for final boss forms
+|}
+
+'''Encounter Rate Constants'''
+
+* Tantegel area: 16/256 (6.25%)
+* Grassland: 32/256 (12.5%)
+* Forest: 48/256 (18.75%)
+* Hills: 64/256 (25%)
+* Mountains: 80/256 (31.25%)
+* Swamp: 96/256 (37.5%)
+
+===Shop Data Structure===
+
+Shop item lists are variable length, terminated by $FD:
+* Each byte represents an item ID from the item table
+* $FD = End of shop inventory
+* $FC = Link to another shop table
+* $FB = Special shop actions
+
+==Memory-Mapped I/O==
+
+{| class="wikitable"
+!  Address  !!  Description
+|-
+|  $2000-$2007  ||  PPU registers (PPUCTRL, PPUMASK, PPUSTATUS, etc.)
+|-
+|  $4000-$4017  ||  APU and controller registers
+|-
+|  $4018-$5FFF  ||  MMC1 mapper registers (bank switching)
+|-
+|  $6000-$7FFF  ||  Battery-backed SRAM (8KB save data)
+|}
+
+==Game Constants==
+
+===Battle System Constants===
+
+* Player ATK Divisor: 2
+* Enemy DEF Divisor: 4
+* Damage Variance: 0-4
+* Enemy STR Divisor: 2
+* Player DEF Divisor: 4
+* Crit AGI Divisor: 64
+* Crit Multiplier: 2×
+* Player Base Hit: 224/256 (87.5%)
+* Enemy Base Hit: 192/256 (75%)
+* Dodge AGI Divisor: 4
+
+===Spell Constants===
+
+* HEAL: 10-17 HP, 4 MP
+* HEALMORE: 85-100 HP, 10 MP
+* HURT: 5-12 damage - (DEF/8), 2 MP
+* HURTMORE: 58-65 damage - (DEF/4), 5 MP
+* SLEEP: 160/256 base - (Level×2), min 32/256, 2 MP
+* STOPSPELL: 160/256 base - (Level×3), min 16/256, 2 MP
+* RADIANT: 3 tile radius, 3 MP
+* REPEL: 127 steps, 2 MP
+* OUTSIDE: 6 MP
+* RETURN: 8 MP, target (43,43)
+
+===Stat Growth Constants===
+
+* HP Random Bonus: 0-3
+* MP Random Bonus: 0-2
+* STR Even Levels: 2-4
+* STR Odd Levels: 1-3
+* AGI Odd Levels: 2-5
+* AGI Even Levels: 1-3
+
+===Technical Limits===
+
+* Max Level: 30
+* Max HP/MP/STR/AGI/ATK/DEF: 255 (8-bit)
+* Max Gold/EXP: 65535 (16-bit)
+* Inventory Slots: 8
+* Map Width/Height: 120 tiles (overworld)
+* Max Interior: 32×32 tiles
+
+=References=
+
+* Complete disassembly by TheAnsarya: [https://github.com/TheAnsarya/dragon-warrior-info Dragon Warrior Info Project]
+* Dragon Warrior Data Crystal pages
+* NES mapper documentation
+* [https://hexed.it/ HexEd.it] - Browser-based hex editor for ROM analysis and modification
+* Formula documentation from GAME_FORMULAS.md in Dragon Warrior Info Project

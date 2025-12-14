@@ -1,0 +1,361 @@
+{{rommap}}
+{{Cleanup}}
+
+This page documents the ROM structure for '''Yoshi's Cookie''' (NES).
+
+==Overview==
+
+Yoshi's Cookie is a puzzle game developed by Bullet-Proof Software and published by Nintendo in 1992. It uses NROM mapper (iNES mapper 0) with 32 KB PRG-ROM and 8 KB CHR-ROM.
+
+==Header Information (iNES)==
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $0000 || 4 bytes || "NES" + $1a
+|-
+| $0004 || 1 byte || PRG-ROM size (2 = 32 KB)
+|-
+| $0005 || 1 byte || CHR-ROM size (1 = 8 KB)
+|-
+| $0006 || 1 byte || Flags 6 (mirroring)
+|-
+| $0007 || 1 byte || Flags 7
+|}
+
+==Bank Structure==
+
+NROM uses a simple memory map with no bank switching.
+
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $8000-$9fff || $2000 || Game engine and puzzle logic
+|-
+| $a000-$bfff || $2000 || Menu system and animations
+|-
+| $c000-$dfff || $2000 || Puzzle mechanics and input
+|-
+| $e000-$ffff || $2000 || Music, sound, and vectors
+|}
+
+==Reset Vectors==
+
+{| class="wikitable"
+! Address !! Description
+|-
+| $fffa || NMI vector
+|-
+| $fffc || Reset vector
+|-
+| $fffe || IRQ vector (unused)
+|}
+
+==Main Code Locations==
+
+===Known Addresses===
+
+{| class="wikitable"
+! Address !! Description
+|-
+| $8e65 || 1P menu handler
+|-
+| $9a80 || Title / continue screen
+|-
+| $9b76 || 1P menu starting animation
+|-
+| $9bf6 || 1P menu starting animation (continued)
+|-
+| $aa40 || Stage start / clear handler
+|-
+| $aabb || Round display routine
+|-
+| $b315 || Mario animation handler
+|-
+| $b3c4 || Paused / game over handler
+|-
+| $c7d3 || Adding column / row logic
+|-
+| $c876 || Playing / demo mode handler
+|-
+| $d06f || Playing single columns / rows
+|}
+
+===Game State Machine===
+
+{| class="wikitable"
+! Address !! Description
+|-
+| $8000 || Program entry / reset
+|-
+| $8100 || Main game loop
+|-
+| $8200 || State dispatcher
+|-
+| $8300 || Title screen state
+|-
+| $8400 || Menu state
+|-
+| $8500 || Puzzle mode state
+|-
+| $8600 || VS mode state
+|-
+| $8700 || Puzzle logic
+|}
+
+==Puzzle Data==
+
+===Cookie Types===
+
+{| class="wikitable"
+! ID !! Cookie Type
+|-
+| $00 || Empty
+|-
+| $01 || Heart cookie
+|-
+| $02 || Diamond cookie
+|-
+| $03 || Circle cookie
+|-
+| $04 || Flower cookie
+|-
+| $05 || Yoshi cookie (special)
+|}
+
+===Puzzle Board===
+
+The puzzle board is 5 columns × 5 rows = 25 tiles.
+
+{| class="wikitable"
+! Offset !! Description
+|-
+| $00-$04 || Row 0 (top)
+|-
+| $05-$09 || Row 1
+|-
+| $0a-$0e || Row 2
+|-
+| $0f-$13 || Row 3
+|-
+| $14-$18 || Row 4 (bottom)
+|}
+
+===Pre-Made Puzzle Data===
+
+Location: $b000-$b7ff (approximate)
+
+Each puzzle definition is $20 bytes:
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 25 bytes || Initial board state
+|-
+| $19 || 1 byte || Time limit (0 = unlimited)
+|-
+| $1a || 1 byte || Target score
+|-
+| $1b || 1 byte || Difficulty rating
+|-
+| $1c-$1f || 4 bytes || Reserved
+|}
+
+==VS Mode Data==
+
+===Attack Types===
+
+{| class="wikitable"
+! ID !! Attack !! Effect
+|-
+| $00 || None || --
+|-
+| $01 || Add row || Insert row at top
+|-
+| $02 || Add column || Insert column at left
+|-
+| $03 || Speed up || Increase opponent speed
+|-
+| $04 || Scramble || Mix opponent's cookies
+|}
+
+===VS Mode Rules===
+
+{| class="wikitable"
+! Setting !! Values
+|-
+| Speed || 1-10 (slowest to fastest)
+|-
+| Win condition || First to X rounds
+|-
+| Music || A, B, C, or Off
+|}
+
+==Animation Data==
+
+===Mario Animations===
+
+Location: $b300-$b3ff
+
+{| class="wikitable"
+! ID !! Animation
+|-
+| $00 || Idle
+|-
+| $01 || Pushing row
+|-
+| $02 || Pushing column
+|-
+| $03 || Victory
+|-
+| $04 || Defeat
+|}
+
+===Yoshi Animations===
+
+{| class="wikitable"
+! ID !! Animation
+|-
+| $00 || Idle
+|-
+| $01 || Eating cookie
+|-
+| $02 || Happy
+|-
+| $03 || Sad
+|}
+
+==Audio Data==
+
+===Music Tracks===
+
+Location: $e000-$efff (approximate)
+
+{| class="wikitable"
+! ID !! Track
+|-
+| $00 || Title screen
+|-
+| $01 || Menu
+|-
+| $02 || BGM A
+|-
+| $03 || BGM B
+|-
+| $04 || BGM C
+|-
+| $05 || Stage clear
+|-
+| $06 || Game over
+|-
+| $07 || Victory fanfare
+|}
+
+===Sound Effects===
+
+{| class="wikitable"
+! ID !! Sound
+|-
+| $00 || Menu select
+|-
+| $01 || Cookie slide
+|-
+| $02 || Row/column match
+|-
+| $03 || Yoshi cookie clear
+|-
+| $04 || Error/invalid move
+|-
+| $05 || Level up
+|-
+| $06 || Attack sent
+|-
+| $07 || Attack received
+|}
+
+==CHR-ROM Layout==
+
+8 KB of character ROM:
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $0000-$0fff || $1000 || Background tiles (cookies, board)
+|-
+| $1000-$17ff || $0800 || Sprite tiles (Mario, Yoshi)
+|-
+| $1800-$1fff || $0800 || Font and UI tiles
+|}
+
+==Difficulty Settings==
+
+===Action Mode===
+
+{| class="wikitable"
+! Level !! Speed !! Cookie Count
+|-
+| 1-10 || 1 || Start with few
+|-
+| 11-20 || 2 || Moderate
+|-
+| 21-30 || 3 || More cookies
+|-
+| 31+ || 4+ || Maximum cookies
+|}
+
+===Puzzle Mode===
+
+100 pre-made puzzles with increasing difficulty.
+
+==Scoring System==
+
+{| class="wikitable"
+! Action !! Points
+|-
+| Clear 1 row/column || 100
+|-
+| Clear 2 rows/columns || 400
+|-
+| Clear 3 rows/columns || 900
+|-
+| Yoshi cookie bonus || 1000
+|-
+| Chain bonus || multiplier
+|}
+
+==Game Mode Values==
+
+{| class="wikitable"
+! Value !! Mode
+|-
+| $00 || Title screen
+|-
+| $01 || Main menu
+|-
+| $02 || 1P Action mode
+|-
+| $03 || 1P Puzzle mode
+|-
+| $04 || VS mode (2P)
+|-
+| $05 || Options
+|-
+| $06 || Demo/attract
+|-
+| $07 || Game over
+|-
+| $08 || Ending
+|}
+
+==Notes==
+
+* Uses NROM (no mapper) - simple 32 KB PRG
+* Horizontal mirroring
+* No save feature (battery or password)
+* See [[Yoshi's Cookie (NES):TBL|TBL]] for text encoding
+
+=Related=
+
+{{Internal Data}}
+
+[[Category:Yoshi's Cookie (NES)|ROM map]]

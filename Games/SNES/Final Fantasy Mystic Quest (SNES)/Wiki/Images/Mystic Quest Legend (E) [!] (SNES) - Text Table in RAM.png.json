@@ -1,0 +1,11 @@
+{
+	"file": "Mystic Quest Legend (E) [!] (SNES) - Text Table in RAM.png",
+	"origin": "Mystic Quest Legend (E) [!] (SNES) - Text Table in RAM.xcf",
+	"name": "Mystic Quest Legend (E) [!] (SNES) - Text Table in RAM",
+	"description": "The text table characters as seen in RAM.\nPulled from \"Mystic Quest Legend (E) [!].smc\" using Tile Viewer in Mesen2 by myself.",
+	"rom": "Mystic Quest Legend (E) [!]",
+	"width": 385,
+	"height": 313,
+	"ramStartAddress": "$6300",
+	"ramEndAddress": "$6fff"
+}

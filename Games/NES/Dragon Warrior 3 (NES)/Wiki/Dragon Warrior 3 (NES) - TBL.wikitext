@@ -1,0 +1,459 @@
+{{tbl|game=Dragon Warrior 3 (NES)}}
+
+This is the text table (TBL) file for ''Dragon Warrior III'' (NES). It defines the mapping between ROM byte values and displayed characters. DW3 uses extensive DTE compression.
+
+==Standard Characters==
+{| class="wikitable"
+! Hex !! Char !! Hex !! Char !! Hex !! Char !! Hex !! Char
+|-
+| $00 || (space) || $10 || G || $20 || W || $30 || m
+|-
+| $01 || 0 || $11 || H || $21 || X || $31 || n
+|-
+| $02 || 1 || $12 || I || $22 || Y || $32 || o
+|-
+| $03 || 2 || $13 || J || $23 || Z || $33 || p
+|-
+| $04 || 3 || $14 || K || $24 || a || $34 || q
+|-
+| $05 || 4 || $15 || L || $25 || b || $35 || r
+|-
+| $06 || 5 || $16 || M || $26 || c || $36 || s
+|-
+| $07 || 6 || $17 || N || $27 || d || $37 || t
+|-
+| $08 || 7 || $18 || O || $28 || e || $38 || u
+|-
+| $09 || 8 || $19 || P || $29 || f || $39 || v
+|-
+| $0a || 9 || $1a || Q || $2a || g || $3a || w
+|-
+| $0b || A || $1b || R || $2b || h || $3b || x
+|-
+| $0c || B || $1c || S || $2c || i || $3c || y
+|-
+| $0d || C || $1d || T || $2d || j || $3d || z
+|-
+| $0e || D || $1e || U || $2e || k || $3e || '
+|-
+| $0f || E || $1f || V || $2f || l || $3f || .
+|}
+
+==Punctuation and Special Characters==
+{| class="wikitable"
+! Hex !! Char !! Description
+|-
+| $40 || , || Comma
+|-
+| $41 || - || Hyphen
+|-
+| $42 || ! || Exclamation
+|-
+| $43 || ? || Question mark
+|-
+| $44 || ( || Open parenthesis
+|-
+| $45 || ) || Close parenthesis
+|-
+| $46 || : || Colon
+|-
+| $47 || ; || Semicolon
+|-
+| $48 || " || Quote (open)
+|-
+| $49 || " || Quote (close)
+|-
+| $4a || / || Slash
+|-
+| $4b || & || Ampersand
+|-
+| $4c || + || Plus
+|-
+| $4d || = || Equals
+|-
+| $4e || * || Asterisk
+|-
+| $4f || ~ || Tilde
+|}
+
+==Control Codes==
+{| class="wikitable"
+! Hex !! Name !! Description
+|-
+| $e0 || [HERO] || Insert hero's name
+|-
+| $e1 || [CHAR2] || Insert party member 2 name
+|-
+| $e2 || [CHAR3] || Insert party member 3 name
+|-
+| $e3 || [CHAR4] || Insert party member 4 name
+|-
+| $e4 || [ITEM] || Insert item name
+|-
+| $e5 || [SPELL] || Insert spell name
+|-
+| $e6 || [ENEMY] || Insert enemy name
+|-
+| $e7 || [NUMBER] || Insert number value
+|-
+| $e8 || [LOCATION] || Insert location name
+|-
+| $e9 || [CLASS] || Insert class name
+|-
+| $ea || [PERSONALITY] || Insert personality name
+|-
+| $eb || [GOLD] || Insert gold amount
+|-
+| $ec || [WAIT] || Wait for button press
+|-
+| $ed || [CLEAR] || Clear text window
+|-
+| $ee || [LINE] || New line
+|-
+| $ef || [PAGE] || New page/scroll
+|-
+| $f0 || [DELAY] || Short pause
+|-
+| $f1 || [SOUND] || Play sound effect
+|-
+| $f2 || [CHOICE] || Show yes/no choice
+|-
+| $f3 || [MULTICHOICE] || Show multiple choices
+|-
+| $f4 || [BRANCH] || Conditional branch
+|-
+| $f5 || [FLAG] || Check/set event flag
+|-
+| $f6-$fe || Reserved || Future expansion
+|-
+| $ff || [END] || End of string
+|}
+
+==DTE (Dual-Tile Encoding)==
+Dragon Warrior III uses extensive DTE compression for text.
+
+===Common Word Parts ($50-$6f)===
+{| class="wikitable"
+! Hex !! DTE !! Hex !! DTE !! Hex !! DTE !! Hex !! DTE
+|-
+| $50 || th || $58 || ou || $60 || he || $68 || at
+|-
+| $51 || he || $59 || re || $61 || in || $69 || or
+|-
+| $52 || in || $5a || er || $62 || an || $6a || it
+|-
+| $53 || er || $5b || on || $63 || to || $6b || is
+|-
+| $54 || an || $5c || st || $64 || of || $6c || be
+|-
+| $55 || re || $5d || nd || $65 || yo || $6d || as
+|-
+| $56 || on || $5e || en || $66 || wa || $6e || ha
+|-
+| $57 || es || $5f || ed || $67 || ar || $6f || ve
+|}
+
+===Word Endings ($70-$8f)===
+{| class="wikitable"
+! Hex !! DTE !! Hex !! DTE !! Hex !! DTE !! Hex !! DTE
+|-
+| $70 || ll || $78 || ow || $80 || ng || $88 || ld
+|-
+| $71 || al || $79 || le || $81 || me || $89 || gh
+|-
+| $72 || se || $7a || ea || $82 || ne || $8a || ke
+|-
+| $73 || te || $7b || ti || $83 || om || $8b || wi
+|-
+| $74 || ri || $7c || ve || $84 || no || $8c || ca
+|-
+| $75 || ro || $7d || hi || $85 || nt || $8d || ma
+|-
+| $76 || ra || $7e || li || $86 || ut || $8e || ge
+|-
+| $77 || ou || $7f || lo || $87 || wh || $8f || ch
+|}
+
+===Game-Specific ($90-$af)===
+{| class="wikitable"
+! Hex !! DTE !! Hex !! DTE !! Hex !! DTE !! Hex !! DTE
+|-
+| $90 || qu || $98 || pr || $a0 || Th || $a8 || We
+|-
+| $91 || we || $99 || pl || $a1 || He || $a9 || Ha
+|-
+| $92 || sh || $9a || go || $a2 || Yo || $aa || Wi
+|-
+| $93 || so || $9b || co || $a3 || It || $ab || Al
+|-
+| $94 || ta || $9c || sp || $a4 || If || $ac || Dr
+|-
+| $95 || do || $9d || sw || $a5 || Bu || $ad || Go
+|-
+| $96 || mo || $9e || fi || $a6 || Wh || $ae || Ki
+|-
+| $97 || sa || $9f || sl || $a7 || An || $af || Da
+|}
+
+===Extended ($b0-$cf)===
+{| class="wikitable"
+! Hex !! DTE !! Hex !! DTE !! Hex !! DTE !! Hex !! DTE
+|-
+| $b0 || 's  || $b8 || ly || $c0 || us || $c8 || ss
+|-
+| $b1 || n't || $b9 || ty || $c1 || ur || $c9 || tt
+|-
+| $b2 || 've || $ba || ry || $c2 || ul || $ca || pp
+|-
+| $b3 || 're || $bb || ny || $c3 || un || $cb || rr
+|-
+| $b4 || 'll || $bc || dy || $c4 || up || $cc || mm
+|-
+| $b5 || 'd  || $bd || gy || $c5 || ck || $cd || nn
+|-
+| $b6 || 'm  || $be || sy || $c6 || ff || $ce || ll
+|-
+| $b7 || ing || $bf || my || $c7 || dd || $cf || ee
+|}
+
+===Reserved ($d0-$df)===
+Reserved for future DTE expansion.
+
+==MTE (Multi-Tile Encoding)==
+DW3 also uses MTE for common words and phrases.
+
+{| class="wikitable"
+! Range !! Description
+|-
+| $d0-$df || Common 3-letter combinations
+|}
+
+==TBL File Format==
+<pre>
+00=(space)
+01=0
+02=1
+03=2
+04=3
+05=4
+06=5
+07=6
+08=7
+09=8
+0A=9
+0B=A
+0C=B
+0D=C
+0E=D
+0F=E
+10=G
+11=H
+12=I
+13=J
+14=K
+15=L
+16=M
+17=N
+18=O
+19=P
+1A=Q
+1B=R
+1C=S
+1D=T
+1E=U
+1F=V
+20=W
+21=X
+22=Y
+23=Z
+24=a
+25=b
+26=c
+27=d
+28=e
+29=f
+2A=g
+2B=h
+2C=i
+2D=j
+2E=k
+2F=l
+30=m
+31=n
+32=o
+33=p
+34=q
+35=r
+36=s
+37=t
+38=u
+39=v
+3A=w
+3B=x
+3C=y
+3D=z
+3E='
+3F=.
+40=,
+41=-
+42=!
+43=?
+E0=[HERO]
+E1=[CHAR2]
+E2=[CHAR3]
+E3=[CHAR4]
+E4=[ITEM]
+E5=[SPELL]
+E6=[ENEMY]
+E7=[NUMBER]
+E8=[LOCATION]
+E9=[CLASS]
+EA=[PERSONALITY]
+EB=[GOLD]
+EC=[WAIT]
+ED=[CLEAR]
+EE=[LINE]
+EF=[PAGE]
+F0=[DELAY]
+F1=[SOUND]
+F2=[CHOICE]
+F3=[MULTICHOICE]
+F4=[BRANCH]
+F5=[FLAG]
+FF=[END]
+50=th
+51=he
+52=in
+53=er
+54=an
+55=re
+56=on
+57=es
+58=ou
+59=re
+5A=er
+5B=on
+5C=st
+5D=nd
+5E=en
+5F=ed
+60=he
+61=in
+62=an
+63=to
+64=of
+65=yo
+66=wa
+67=ar
+68=at
+69=or
+6A=it
+6B=is
+6C=be
+6D=as
+6E=ha
+6F=ve
+70=ll
+71=al
+72=se
+73=te
+74=ri
+75=ro
+76=ra
+77=ou
+78=ow
+79=le
+7A=ea
+7B=ti
+7C=ve
+7D=hi
+7E=li
+7F=lo
+80=ng
+81=me
+82=ne
+83=om
+84=no
+85=nt
+86=ut
+87=wh
+88=ld
+89=gh
+8A=ke
+8B=wi
+8C=ca
+8D=ma
+8E=ge
+8F=ch
+90=qu
+91=we
+92=sh
+93=so
+94=ta
+95=do
+96=mo
+97=sa
+98=pr
+99=pl
+9A=go
+9B=co
+9C=sp
+9D=sw
+9E=fi
+9F=sl
+A0=Th
+A1=He
+A2=Yo
+A3=It
+A4=If
+A5=Bu
+A6=Wh
+A7=An
+A8=We
+A9=Ha
+AA=Wi
+AB=Al
+AC=Dr
+AD=Go
+AE=Ki
+AF=Da
+B0='s
+B1=n't
+B2='ve
+B3='re
+B4='ll
+B5='d
+B6='m
+B7=ing
+B8=ly
+B9=ty
+BA=ry
+BB=ny
+BC=dy
+BD=gy
+BE=sy
+BF=my
+C0=us
+C1=ur
+C2=ul
+C3=un
+C4=up
+C5=ck
+C6=ff
+C7=dd
+C8=ss
+C9=tt
+CA=pp
+CB=rr
+CC=mm
+CD=nn
+CE=ll
+CF=ee
+</pre>
+
+==See Also==
+* [[Dragon Warrior 3 (NES):ROM map|ROM Map]]
+* [[Dragon Warrior 3 (NES):RAM map|RAM Map]]
+* [[Dragon Warrior 3 (NES):Values|Data Values]]
+
+[[Category:Dragon Warrior 3 (NES)|TBL]]

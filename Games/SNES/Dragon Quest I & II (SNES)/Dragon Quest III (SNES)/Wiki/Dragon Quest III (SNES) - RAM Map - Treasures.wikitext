@@ -1,0 +1,1043 @@
+{{subpage}}
+
+==Treasures==
+These flags indicate which chests or treasures have been already taken.
+
+The Yggdrasil Leaf on the overworld does not have an event flag in this range.
+
+**All of these need to be re-verified.**
+
+Names are mostly from the fan translation and will be re-checked/normalized.
+
+{| class="wikitable sortable"
+|-
+!  Location  !! Address  !! SRAM  !!  Value  !!  Description  !!  Item
+|-
+|  ---  ||  $03559  ||  $0067  ||  style="white-space: nowrap;"  |  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $03559  ||  $0067  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $03559  ||  $0067  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03559  ||  $0067  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03559  ||  $0067  ||  0001 0000  ||  ---  ||  
+|-
+|  Reeve  ||  $03559  ||  $0067  ||  0010 0000  ||  Top-right house, right pot  ||  Wisdom Seed
+|-
+|  Reeve  ||  $03559  ||  $0067  ||  0100 0000  ||  Move Rock on bottom right  ||  Small Medal
+|-
+|  Reeve  ||  $03559  ||  $0067  ||  1000 0000  ||  Top left house, bookshelf  ||  Muscle Guidebook
+|-
+!  colspan="6"  |  
+|-
+|  Reeve  ||  $0355a  ||  $0068  ||  0000 0001  ||  Top-right house, second floor, drawer  ||  Antidote Herb
+|-
+|  Portoga  ||  $0355a  ||  $0068  ||  0000 0010  ||  Castle, zap area, left chest  ||  Angry Tattoo
+|-
+|  Portoga  ||  $0355a  ||  $0068  ||  0000 0100  ||  Castle, zap area, middle chest  ||  Stamina Seed
+|-
+|  Portoga  ||  $0355a  ||  $0068  ||  0000 1000  ||  Castle, zap area, right chest  ||  Mist Staff
+|-
+|  Portoga  ||  $0355a  ||  $0068  ||  0001 0000  ||  Inn, drawer  ||  Pachisi Ticket
+|-
+|  Portoga  ||  $0355a  ||  $0068  ||  0010 0000  ||  Horse pasture next to item shop, Top-right corner  ||  Small Medal
+|-
+|  Portoga  ||  $0355a  ||  $0068  ||  0100 0000  ||  Top-right => Top-left => down-left, stairs => room, right drawer  ||  Tragic Tale
+|-
+|  Portoga  ||  $0355a  ||  $0068  ||  1000 0000  ||  Top-right => Top-left => down-left, stairs => room, pot  ||  Small Medal
+|-
+!  colspan="6"  |  
+|-
+|  Portoga  ||  $0355b  ||  $0069  ||  0000 0001  ||  House northwest of Inn, F2, Bottom-left room, left wall bag  ||  Strength Seed
+|-
+|  ---  ||  $0355b  ||  $0069  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $0355b  ||  $0069  ||  0000 0100  ||  ---  ||  
+|-
+|  New Town  ||  $0355b  ||  $0069  ||  0000 1000  ||  Phase 3, right of pond, bottom flower  ||  Pachisi Ticket
+|-
+|  ---  ||  $0355b  ||  $0069  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $0355b  ||  $0069  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $0355b  ||  $0069  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $0355b  ||  $0069  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  Noaniels  ||  $0355c  ||  $006a  ||  0000 0001  ||  Left side, stone wall next to old man  ||  Pachisi Ticket
+|-
+|  Noaniels  ||  $0355c  ||  $006a  ||  0000 0010  ||  Top-right house, pot  ||  Strength Seed
+|-
+|  Noaniels  ||  $0355c  ||  $006a  ||  0000 0100  ||  Inn, F2, Left room, drawer  ||  Leather Kilt
+|-
+|  Noaniels  ||  $0355c  ||  $006a  ||  0000 1000  ||  Inn, F2, Right room, right drawer  ||  Full Moon Herb
+|-
+|  Noaniels  ||  $0355c  ||  $006a  ||  0001 0000  ||  Bottom-left house, pot  ||  Agility Seed
+|-
+|  Noaniels  ||  $0355c  ||  $006a  ||  0010 0000  ||  Bottom-left house, F2, right bookshelf  ||  Tragic Tale
+|-
+|  Ashalam  ||  $0355c  ||  $006a  ||  0100 0000  ||  Inn, bottom-left room, armoire  ||  Moth Powder
+|-
+|  Ashalam  ||  $0355c  ||  $006a  ||  1000 0000  ||  Top-left house, bookshelf  ||  Joke Book
+|-
+!  colspan="6"  |  
+|-
+|  Ashalam  ||  $0355d  ||  $006b  ||  0000 0001  ||  Top-left house, F2, North-east blue square  ||  Small Medal
+|-
+|  Ashalam  ||  $0355d  ||  $006b  ||  0000 0010  ||  Middle-left house at night, armoire  ||  Pachisi Ticket
+|-
+|  Baharata  ||  $0355d  ||  $006b  ||  0000 0100  ||  House on bottom-right, drawer  ||  Pachisi Ticket
+|-
+|  Baharata  ||  $0355d  ||  $006b  ||  0000 1000  ||  House on bottom-left. F2, right drawer  ||  Traveler Clothes
+|-
+|  Baharata  ||  $0355d  ||  $006b  ||  0001 0000  ||  Inn, right room, drawer  ||  Small Medal
+|-
+|  Lancel's Shrine  ||  $0355d  ||  $006b  ||  0010 0000  ||  Right side after going alone, chest  ||  Small Medal
+|-
+|  Lancel  ||  $0355d  ||  $006b  ||  0100 0000  ||  Top of path between shrine and right building  ||  Small Medal
+|-
+|  Lancel  ||  $0355d  ||  $006b  ||  1000 0000  ||  Top-left house, drawer   ||  Pachisi Ticket
+|-
+!  colspan="6"  |  
+|-
+|  Lancel  ||  $0355e  ||  $006c  ||  0000 0001  ||  Top-left house, right pot  ||  5 gold pieces
+|-
+|  ---  ||  $0355e  ||  $006c  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $0355e  ||  $006c  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $0355e  ||  $006c  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $0355e  ||  $006c  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $0355e  ||  $006c  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $0355e  ||  $006c  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $0355e  ||  $006c  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $0355f  ||  $006d  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $0355f  ||  $006d  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $0355f  ||  $006d  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $0355f  ||  $006d  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $0355f  ||  $006d  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $0355f  ||  $006d  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $0355f  ||  $006d  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $0355f  ||  $006d  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $03560  ||  $006e  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $03560  ||  $006e  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $03560  ||  $006e  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03560  ||  $006e  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03560  ||  $006e  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $03560  ||  $006e  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $03560  ||  $006e  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $03560  ||  $006e  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $03561  ||  $006f  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $03561  ||  $006f  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $03561  ||  $006f  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03561  ||  $006f  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03561  ||  $006f  ||  0001 0000  ||  ---  ||  
+|-
+|  Isis  ||  $03561  ||  $006f  ||  0010 0000  ||  Bottom-right, Weapons shop, pot  ||  Small Medal
+|-
+|  Isis  ||  $03561  ||  $006f  ||  0100 0000  ||  Flower west of well  ||  Agility Seed
+|-
+|  Isis  ||  $03561  ||  $006f  ||  1000 0000  ||  Graveyard, in front of the middle cross  ||  Small Medal
+|-
+!  colspan="6"  |  
+|-
+|  Isis  ||  $03562  ||  $0070  ||  0000 0001  ||  Top-left house, F2, left armoire  ||  Boxer Shorts
+|-
+|  Isis  ||  $03562  ||  $0070  ||  0000 0010  ||  House right of the Inn, F2, left bookshelf  ||  Smart Book
+|-
+|  Isis  ||  $03562  ||  $0070  ||  0000 0100  ||  House right of the Inn, F1, wall bag  ||  Pachisi Ticket
+|-
+|  Luzami  ||  $03562  ||  $0070  ||  0000 1000  ||  Top left, in front of grave  ||  Luck Seed
+|-
+|  Luzami  ||  $03562  ||  $0070  ||  0001 0000  ||  Top-right corner, crack in red stone floor  ||  Small Medal
+|-
+|  Luzami  ||  $03562  ||  $0070  ||  0010 0000  ||  Top-right house, left bookcase  ||  Muscle Guidebook
+|-
+|  Luzami  ||  $03562  ||  $0070  ||  0100 0000  ||  Top-right house, third bookcase  ||  Lucky Book
+|-
+|  ---  ||  $03562  ||  $0070  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  Kazave  ||  $03563  ||  $0071  ||  0000 0001  ||  Item shop, top chest  ||  Poison Dagger
+|-
+|  Kazave  ||  $03563  ||  $0071  ||  0000 0010  ||  Item shop, bottom chest  ||  Club
+|-
+|  Kazave  ||  $03563  ||  $0071  ||  0000 0100  ||  Church Graveyard, In front of right Cross  ||  Small Medal
+|-
+|  Kazave  ||  $03563  ||  $0071  ||  0000 1000  ||  Item shop house  ||  Boxer Shorts
+|-
+|  Kazave  ||  $03563  ||  $0071  ||  0001 0000  ||  Inn, right drawer  ||  Pachisi Ticket
+|-
+|  Kazave  ||  $03563  ||  $0071  ||  0010 0000  ||  Top-right building, 2F, right drawer  ||  Fur Hood
+|-
+|  Kazave  ||  $03563  ||  $0071  ||  0100 0000  ||  Top-right building, 2F, top barrel  ||  Life Nut
+|-
+|  Hidden Village of Elves  ||  $03563  ||  $0071  ||  1000 0000  ||  Left of queen's throne, notch in hillside  ||  Small Medal
+|-
+!  colspan="6"  |  
+|-
+|  Tedanki  ||  $03564  ||  $0072  ||  0000 0001  ||  Equipment Shop, F2, chest  ||  Darkness Lamp
+|-
+|  Tedanki  ||  $03564  ||  $0072  ||  0000 0010  ||  Right building => B1, top coffin  ||  Life Nut
+|-
+|  Tedanki  ||  $03564  ||  $0072  ||  0000 0100  ||  Right building, 4 steps left of top pot  ||  Small Medal
+|-
+|  Tedanki  ||  $03564  ||  $0072  ||  0000 1000  ||  Right building, bottom pot  ||  55 gold pieces
+|-
+|  ---  ||  $03564  ||  $0072  ||  0001 0000  ||  ---  ||  
+|-
+|  Tedanki  ||  $03564  ||  $0072  ||  0010 0000  ||  Equipment Shop, F2, drawer  ||  Black Hood
+|-
+|  Muor  ||  $03564  ||  $0072  ||  0100 0000  ||  Top right grass area behind jail door  ||  Small Medal
+|-
+|  Muor  ||  $03564  ||  $0072  ||  1000 0000  ||  Inn, drawer  ||  Leather Kilt
+|-
+!  colspan="6"  |  
+|-
+|  Muor  ||  $03565  ||  $0073  ||  0000 0001  ||  Chruch, middle of floor tile cross  ||  Life Nut
+|-
+|  Muor  ||  $03565  ||  $0073  ||  0000 0010  ||  Back of top-tight building, F2, bottom pot  ||  Pachisi Ticket
+|-
+|  Muor  ||  $03565  ||  $0073  ||  0000 0100  ||  Back of top-tight building, F2, top pot  ||  Small Medal
+|-
+|  Zipangu  ||  $03565  ||  $0073  ||  0000 1000  ||  Right house, armoire  ||  Wooden Helmut
+|-
+|  Zipangu  ||  $03565  ||  $0073  ||  0001 0000  ||  Bottom-middle house, armoire  ||  Clothes
+|-
+|  Zipangu  ||  $03565  ||  $0073  ||  0010 0000  ||  Left house, bottom pot  ||  Mystic Nut
+|-
+|  Zipangu  ||  $03565  ||  $0073  ||  0100 0000  ||  Bottom left house, B1, top right corner, middle right pot  ||  Small Medal
+|-
+|  Zipangu  ||  $03565  ||  $0073  ||  1000 0000  ||  Bottom left house, B1, bottom left corner, top pot  ||  Strength Seed
+|-
+!  colspan="6"  |  
+|-
+|  Zipangu  ||  $03566  ||  $0074  ||  0000 0001  ||  Himiko's top-left room, top-right pot  ||  Mystic Nut
+|-
+|  Zipangu  ||  $03566  ||  $0074  ||  0000 0010  ||  Himiko's, right-middle room, top-left pot  ||  Strength Seed
+|-
+|  Zipangu  ||  $03566  ||  $0074  ||  0000 0100  ||  Himiko's, right-middle room, right-middle pot  ||  Small Medal
+|-
+|  Zipangu  ||  $03566  ||  $0074  ||  0000 1000  ||  Himiko's, top-right room, armoire #2  ||  Scale Shield
+|-
+|  Zipangu  ||  $03566  ||  $0074  ||  0001 0000  ||  Himiko's, top-right room, armoire #5  ||  Training Suit
+|-
+|  ---  ||  $03566  ||  $0074  ||  0010 0000  ||  ---  ||  
+|-
+|  Zipangu  ||  $03566  ||  $0074  ||  0100 0000  ||  Left house, left wallbag  ||  Moth Powder
+|-
+|  Pirates' Base  ||  $03566  ||  $0074  ||  1000 0000  ||  Room under top-right rock outside, top-left chest  ||  Strength Seed
+|-
+!  colspan="6"  |  
+|-
+|  Pirates' Base  ||  $03567  ||  $0075  ||  0000 0001  ||  Room under top-right rock outside, right chest  ||  Rockstar Ring
+|-
+|  Pirates' Base  ||  $03567  ||  $0075  ||  0000 0010  ||  Top-middle-left room, left pot  ||  Pachisi Ticket
+|-
+|  Pirates' Base  ||  $03567  ||  $0075  ||  0000 0100  ||  Top-middle-left room, right pot  ||  Pachisi Ticket
+|-
+|  Pirates' Base  ||  $03567  ||  $0075  ||  0000 1000  ||  Top-middle-left room, middle barrel  ||  Small Medal
+|-
+|  Pirates' Base  ||  $03567  ||  $0075  ||  0001 0000  ||  Top-left room, drawer  ||  Tube Socks
+|-
+|  Pirates' Base   ||  $03567  ||  $0075  ||  0010 0000  ||  F1 middle-middle room => B1, inside jail, right of floor crack  ||  Small Medal
+|-
+|  Sioux Village  ||  $03567  ||  $0075  ||  0100 0000  ||  South side of well  ||  Bolt Staff
+|-
+|  Sioux Village  ||  $03567  ||  $0075  ||  1000 0000  ||  North side of well  ||  Small Medal
+|-
+!  colspan="6"  |  
+|-
+|  Sioux Village  ||  $03568  ||  $0076  ||  0000 0001  ||  Bottom right house, right pot  ||  Agility Seed
+|-
+|  Sioux Village  ||  $03568  ||  $0076  ||  0000 0010  ||  Top house, pot  ||  Small Medal
+|-
+|  Sioux Village  ||  $03568  ||  $0076  ||  0000 0100  ||  Inside well, drawer  ||  Pachisi Ticket
+|-
+|  Greenlad Island  ||  $03568  ||  $0076  ||  0000 1000  ||  Old Man's house, left drawer  ||  Small Medal
+|-
+|  Greenlad Island  ||  $03568  ||  $0076  ||  0001 0000  ||  Old Man's house, left drawer  ||  Silk Hat
+|-
+|  ---  ||  $03568  ||  $0076  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $03568  ||  $0076  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $03568  ||  $0076  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $03569  ||  $0077  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $03569  ||  $0077  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $03569  ||  $0077  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03569  ||  $0077  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03569  ||  $0077  ||  0001 0000  ||  ---  ||  
+|-
+|  Aliahan  ||  $03569  ||  $0077  ||  0010 0000  ||  Castle, Top-left treasure room, Top Left Chest  ||  128 gold pieces
+|-
+|  Aliahan  ||  $03569  ||  $0077  ||  0100 0000  ||   Castle, Top-left treasure room, Top Middle Chest  ||  336 gold pieces
+|-
+|  Aliahan  ||  $03569  ||  $0077  ||  1000 0000  ||  Castle, Top-left treasure room, Top Right Chest  ||  Hero Ring
+|-
+!  colspan="6"  |  
+|-
+|  Aliahan  ||  $0356a  ||  $0078  ||  0000 0001  ||  Castle, Top-left treasure room, Bottom Left Chest  ||  Agility Seed
+|-
+|  Aliahan  ||  $0356a  ||  $0078  ||  0000 0010  ||  Castle, Top-left treasure room, Bottom Middle Chest  ||  Strength Seed
+|-
+|  Aliahan  ||  $0356a  ||  $0078  ||  0000 0100  ||  Castle, Top-left treasure room, Bottom Right Chest  ||  Rune Staff
+|-
+|  Aliahan  ||  $0356a  ||  $0078  ||  0000 1000  ||  Outside Ruida's Tavern, top barrel  ||  25 gold pieces
+|-
+|  Aliahan  ||  $0356a  ||  $0078  ||  0001 0000  ||  Hero's House, Bottom barrel  ||  Medical Herb
+|-
+|  Aliahan  ||  $0356a  ||  $0078  ||  0010 0000  ||  Hero's Grandpa's Bedroom, Drawer  ||  5 gold pieces
+|-
+|  Aliahan  ||  $0356a  ||  $0078  ||  0100 0000  ||  Hero's Bedroom, Drawer  ||  Strength Seed
+|-
+|  Aliahan  ||  $0356a  ||  $0078  ||  1000 0000  ||  Night Only House, Right Drawer  ||  Small Medal
+|-
+!  colspan="6"  |  
+|-
+|  Aliahan  ||  $0356b  ||  $0079  ||  0000 0001  ||  Castle, Room right of entrance, Right barrel  ||  Antidote Herb
+|-
+|  Aliahan  ||  $0356b  ||  $0079  ||  0000 0010  ||  Castle, Top left room, Drawer  ||  Small Medal
+|-
+|  Aliahan  ||  $0356b  ||  $0079  ||  0000 0100  ||  Castle, King's Chamber, Bottom Left Room, Left Drawer  ||  Luck Seed
+|-
+|  Aliahan  ||  $0356b  ||  $0079  ||  0000 1000  ||  Prison, Left cell, pot  ||  500 gold pieces
+|-
+|  Aliahan  ||  $0356b  ||  $0079  ||  0001 0000  ||  Prison, Right cell, pot  ||  Strength Seed
+|-
+|  Aliahan  ||  $0356b  ||  0079  ||  0010 0000  ||  Castle, Room right of entrance, Left barrel  ||  Small Medal
+|-
+|  Romaly  ||  $0356b  ||  $0079  ||  0100 0000  ||  Castle, F1, bottom-left => B1, left chest  ||  Assassin Dagger
+|-
+|  Romaly  ||  $0356b  ||  $0079  ||  1000 0000  ||  Castle, F1, bottom-left => B1, right chest  ||  Expel Shield
+|-
+!  colspan="6"  |  
+|-
+|  Romaly  ||  $0356c  ||  $007a  ||  0000 0001  ||  Right of castle entrance  ||  Small Medal
+|-
+|  Romaly  ||  $0356c  ||  $007a  ||  0000 0010  ||  Inn, F1, drawer  ||  Full Moon Herb
+|-
+|  Romaly  ||  $0356c  ||  $007a  ||  0000 0100  ||  Top-left house, drawer  ||  Leather Hat
+|-
+|  Romaly  ||  $0356c  ||  $007a  ||  0000 1000  ||  Top-left house, top pot  ||  Small Medal
+|-
+|  Romaly  ||  $0356c  ||  $007a  ||  0001 0000  ||  Church, drawer  ||  Hard Heart
+|-
+|  Romaly  ||  $0356c  ||  $007a  ||  0010 0000  ||  Church, middle bookshelf  ||  Smart Book
+|-
+|  Romaly  ||  $0356c  ||  $007a  ||  0100 0000  ||  Inn, F2, drawer  ||  Antidote Herb
+|-
+|  Romaly  ||  $0356c  ||  $007a  ||  1000 0000  ||  Top-middle locked room, East of water, Left bush  ||  Small Medal
+|-
+!  colspan="6"  |  
+|-
+|  Romaly  ||  $0356d  ||  $007b  ||  0000 0001  ||  Castle, bottom-right flower bed  ||  Small Medal
+|-
+|  Romaly  ||  $0356d  ||  $007b  ||  0000 0010  ||  Castle, F1, top-left => F4, prison cell sink  ||  Small Medal
+|-
+|  Romaly  ||  $0356d  ||  $007b  ||  0000 0100  ||  Castle, top-right F1 => F4, drawer  ||  Pachisi Ticket
+|-
+|  Romaly  ||  $0356d  ||  $007b  ||  0000 1000  ||  Castle, top-right F1 => F4, bookshelf  ||  Cheater Guide
+|-
+|  Romaly  ||  $0356d  ||  $007b  ||  0001 0000  ||  Top-right, at night where the dog was  ||  Pachisi Ticket
+|-
+|  Edinbear Castle  ||  $0356d  ||  $007b  ||  0010 0000  ||  F1, bottom-left outside grassy area, middle of flower bed  ||  Small Medal
+|-
+|  Edinbear Castle  ||  $0356d  ||  $007b  ||  0100 0000  ||  F1, bottom-right outside grassy area, bottom-left corner  ||  Small Medal
+|-
+|  Edinbear Castle  ||  $0356d  ||  $007b  ||  1000 0000  ||  F1, top-right room, bookcase  ||  Lady Manual
+|-
+!  colspan="6"  |  
+|-
+|  Edinbear Castle  ||  $0356e  ||  $007c  ||  0000 0001  ||  F1, top-right room, left drawer  ||   Slick Suit
+|-
+|  Edinbear Castle  ||  $0356e  ||  $007c  ||  0000 0010  ||  F1, top-right room, right drawer  ||  Party Dress
+|-
+|  Isis Castle  ||  $0356e  ||  $007c  ||  0000 0100  ||  F1, top-left room, top-left chest  ||  Silk Robe
+|-
+|  Isis Castle  ||  $0356e  ||  $007c  ||  0000 1000  ||  F1, top-left room, top-right chest  ||  72 gold pieces
+|-
+|  Isis Castle  ||  $0356e  ||  $007c  ||  0001 0000  ||  F1, top-left room, bottom-left chest  ||  Ruby Ring
+|-
+|  Isis Castle  ||  $0356e  ||  $007c  ||  0010 0000  ||  F1, top-left room, bottom-right chest  ||  Wisdom Seed
+|-
+|  Isis Castle  ||  $0356e  ||  $007c  ||  0100 0000  ||  F1, top-right room, top-left chest  ||  Golden Tiara
+|-
+|  Isis Castle  ||  $0356e  ||  $007c  ||  1000 0000  ||  F1, top-right room, top-right chest  ||  Life Nut
+|-
+!  colspan="6"  |  
+|-
+|  Isis Castle  ||  $0356f  ||  $007d  ||  0000 0001  ||  F1, top-right room, bottom-left chest  ||  Small Medal
+|-
+|  Isis Castle  ||  $0356f  ||  $007d  ||  0000 0010  ||  F1, top-right room, bottom-right chest  ||  80 gold pieces
+|-
+|  Isis  ||  $0356f  ||  $007d  ||  0000 0100  ||  Inside Well, chest  ||  Brave Book
+|-
+|  Isis Castle  ||  $0356f  ||  $007d  ||  0000 1000  ||  F1, middle-right upper room, left drawer  ||  Pachisi Ticket
+|-
+|  Isis Castle  ||  $0356f  ||  $007d  ||  0001 0000  ||  F1, middle-right lower room, bookshelf  ||  Defy Book
+|-
+|  ---  ||  $0356f  ||  $007d  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $0356f  ||  $007d  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $0356f  ||  $007d  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $03570  ||  $007e  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $03570  ||  $007e  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $03570  ||  $007e  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03570  ||  $007e  ||  0000 1000  ||  ---  ||  
+|-
+|  Samanosa  ||  $03570  ||  $007e  ||  0001 0000  ||  Barrel next to Inn  ||  Pachisi Ticket
+|-
+|  Samanosa  ||  $03570  ||  $007e  ||  0010 0000  ||  Cemetery, graves, top row, grave #5  ||  Small Medal
+|-
+|  Samanosa  ||  $03570  ||  $007e  ||  0100 0000  ||  Cemetery, graves, top-middle row, grave #2  ||  Agility Seed
+|-
+|  Samanosa  ||  $03570  ||  $007e  ||  1000 0000  ||  Cemetery, graves, bottom-middle row, grave #3  ||  Pachisi Ticket
+|-
+!  colspan="6"  |  
+|-
+|  Samanosa  ||  $03571  ||  $007f  ||  0000 0001  ||  House below cemetery, left pot  ||  Strength Seed
+|-
+|  Samanosa  ||  $03571  ||  $007f  ||  0000 0010  ||  Castle, outside, left side, top-left corner  ||  Small Medal
+|-
+|  Samanosa  ||  $03571  ||  $007f  ||  0000 0100  ||  Castle, F1, middle-right room, barrel  ||  Small Medal
+|-
+|  Samanosa  ||  $03571  ||  $007f  ||  0000 1000  ||  Castle, F1, top grassy room, top-right flower  ||  Life Nut
+|-
+|  Samanosa  ||  $03571  ||  $007f  ||  0001 0000  ||  Castle, B1, Jail, top-left cell, pot  ||  Small Medal
+|-
+|  Samanosa  ||  $03571  ||  $007f  ||  0010 0000  ||  Castle, F2, king's bedroom, bookcase  ||  Cheater Guide
+|-
+|  Samanosa  ||  $03571  ||  $007f  ||  0100 0000  ||  Castle, F2, king's bedroom, right drawer  ||  Club
+|-
+|  Samanosa  ||  $03571  ||  $007f  ||  1000 0000  ||  Castle, B2, Jail, Real king's room, north wall next to bed  ||  Life Stone
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $03572  ||  $0080  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $03572  ||  $0080  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $03572  ||  $0080  ||  0000 0100  ||  ---  ||  
+|-
+|  Dharma Shrine  ||  $03572  ||  $0080  ||  0000 1000  ||  Top right statue, front right  ||  Small Medal
+|-
+|  ---  ||  $03572  ||  $0080  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $03572  ||  $0080  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $03572  ||  $0080  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $03572  ||  $0080  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $03573  ||  $0081  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $03573  ||  $0081  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $03573  ||  $0081  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03573  ||  $0081  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03573  ||  $0081  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $03573  ||  $0081  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $03573  ||  $0081  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $03573  ||  $0081  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $03574  ||  $0082  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $03574  ||  $0082  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $03574  ||  $0082  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03574  ||  $0082  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03574  ||  $0082  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $03574  ||  $0082  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $03574  ||  $0082  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $03574  ||  $0082  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $03575  ||  $0083  ||  0000 0001  ||  ---  ||  
+|-
+|  Outside Aliahan, Promitory Cave  ||  $03575  ||  $0083  ||  0000 0010  ||  First chest  ||  Medical Herb
+|-
+|  Outside Aliahan, Promitory Cave  ||  $03575  ||  $0083  ||  0000 0100  ||  Second chest  ||  Traveler Clothes
+|-
+|  Outside Aliahan, Promitory Cave  ||  $03575  ||  $0083  ||  0000 1000  ||  Third chest  ||  56 gold pieces
+|-
+|  Cave of Enticement  ||  $03575  ||  $0083  ||  0001 0000  ||  B2, top-left corner, chest  ||  Antidote Herb
+|-
+|  Cave of Enticement  ||  $03575  ||  $0083  ||  0010 0000  ||  B2, bottom-left, chest  ||  Sacred Knife
+|-
+|  Cave west of Noaniels  ||  $03575  ||  $0083  ||  0100 0000  ||  B1, Middle-right, chest #2  ||  Holy Water
+|-
+|  Cave west of Noaniels  ||  $03575  ||  $0083  ||  1000 0000  ||  B1, On Left, chest #1  ||  288 gold pieces
+|-
+!  colspan="6"  |  
+|-
+|  Cave west of Noaniels  ||  $03576  ||  $0084  ||  0000 0001  ||  B2 left side top, go left, chest  ||  Iron Spear
+|-
+|  Cave west of Noaniels  ||  $03576  ||  $0084  ||  0000 0010  ||  B2 left side top, go right, chest  ||  Strength Seed
+|-
+|  Cave west of Noaniels  ||  $03576  ||  $0084  ||  0000 0100  ||  B3, middle, top chest  ||  Leather Dress
+|-
+|  Cave west of Noaniels  ||  $03576  ||  $0084  ||  0000 1000  ||  B3, bottom-left corner, chest  ||  224 gold pieces
+|-
+|   Cave west of Noaniels  ||  $03576  ||  $0084  ||  0001 0000  ||  B3, middle, bottom chest  ||  Pachisi Ticket
+|-
+|  Cave west of Noaniels  ||  $03576  ||  $0084  ||  0010 0000  ||  B3, middle-right, down, right, chest  ||  Silver Rosary
+|-
+|  Cave west of Noaniels  ||  $03576  ||  $0084  ||  0100 0000  ||  B1 bottom-left corner, right stairs, => B3, chest  ||  Small Medal
+|-
+|  Cave of Norud the Dwarf  ||  $03576  ||  $0084  ||  1000 0000  ||  Room, left chest  ||  Training Suit
+|-
+!  colspan="6"  |  
+|-
+|  Cave of Norud the Dwarf  ||  $03577  ||  $0085  ||  0000 0001  ||  Room, right chest  ||  Club
+|-
+|  Cave of Norud the Dwarf  ||  $03577  ||  $0085  ||  0000 0010  ||  Well, top-right corner water  ||  Life Nut
+|-
+|  ---  ||  $03577  ||  $0085  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03577  ||  $0085  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03577  ||  $0085  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $03577  ||  $0085  ||  0010 0000  ||  ---  ||  
+|-
+|  Kidnapper's Base Cave  ||  $03577  ||  $0085  ||  0100 0000  ||  B1, bottom-left, chest  ||  Stamina Seed
+|-
+|  Kidnapper's Base Cave  ||  $03577  ||  $0085  ||  1000 0000  ||  B1, top-left, top chest  ||  132 gold pieces
+|-
+!  colspan="6"  |  
+|-
+|  Kidnapper's Base Cave  ||  $03578  ||  $0086  ||  0000 0001  ||  B1, top-middle, chest  ||  Small Medal
+|-
+|  Kidnapper's Base Cave  ||  $03578  ||  $0086  ||  0000 0010  ||  B1, top-right, top chest  ||  Cannibox!
+|-
+|  Kidnapper's Base Cave  ||  $03578  ||  $0086  ||  0000 0100  ||  B1, top-right, right chest  ||  352 gold pieces
+|-
+|  Kidnapper's Base Cave  ||  $03578  ||  $0086  ||  0000 1000  ||  B1, top-left, left chest  ||  Mimic!
+|-
+|  Kidnapper's Base Cave  ||  $03578  ||  $0086  ||  0001 0000  ||  B2, left room chest group, top-left chest  ||  Strength Seed
+|-
+|  Kidnapper's Base Cave  ||  $03578  ||  $0086  ||  0010 0000  ||  B2, left room chest group, top-right chest  ||  Life Nut
+|-
+|  Kidnapper's Base Cave  ||  $03578  ||  $0086  ||  0100 0000  ||  B2, left room chest group, bottom-left chest  ||  Wisdom Seed
+|-
+|  Kidnapper's Base Cave  ||  $03578  ||  $0086  ||  1000 0000  ||  B2, left room chest group, bottom-right chest  ||  Agility Seed
+|-
+!  colspan="6"  |  
+|-
+|  Kidnapper's Base Cave  ||  $03579  ||  $0087  ||  0000 0001  ||  B2, middle room, left jail cell, top-left corner  ||  Luck Seed
+|-
+|  Kidnapper's Base Cave  ||  $03579  ||  $0087  ||  0000 0010  ||  B2, middle room, right jail cell, top-right corner  ||  Mystic Nut
+|-
+|  Kidnapper's Base Cave  ||  $03579  ||  $0087  ||  0000 0100  ||  B2, middle room, left wall bag  ||  Pachisi Ticket
+|-
+|  Orochi's Cave  ||  $03579  ||  $0087  ||  0000 1000  ||  B1, Middle right, chest  ||  All-knowing Mask
+|-
+|  Gaia's Navel  ||  $03579  ||  $0087  ||  0001 0000  ||  B1, south, top-left room  ||  248 gold pieces
+|-
+|  Gaia's Navel  ||  $03579  ||  $0087  ||  0010 0000  ||  B1, south, top-right room  ||  Small Medal
+|-
+|  Gaia's Navel  ||  $03579  ||  $0087  ||  0100 0000  ||  B1, south, bottom-left room  ||  Mimic!
+|-
+|  Gaia's Navel  ||  $03579  ||  $0087  ||  1000 0000  ||  B1, south, bottom-right room  ||  Wisdom Seed
+|-
+!  colspan="6"  |  
+|-
+|  Gaia's Navel  ||  $0357a  ||  $0088  ||  0000 0001  ||  B2, bottom-right stairs => B1, chest  ||  Terra Armor
+|-
+|  Gaia's Navel  ||  $0357a  ||  $0088  ||  0000 0010  ||  B3, left chest  ||  Small Medal
+|-
+|  Cave of Ra  ||  $0357a  ||  $0088  ||  0000 0100  ||  B2, top area, top-right chest group, top-left chest  ||  Mimic!
+|-
+|  Cave of Ra  ||  $0357a  ||  $0088  ||  0000 1000  ||  B2, top area, top-right chest group, top-right chest  ||  Mimic!
+|-
+|  Cave of Ra  ||  $0357a  ||  $0088  ||  0001 0000  ||  B2, top area, top-right chest group, bottom-left chest  ||  Mimic!
+|-
+|  Cave of Ra  ||  $0357a  ||  $0088  ||  0010 0000  ||  B2, top area, top-right chest group, bottom-right chest  ||  Mimic!
+|-
+|  Cave of Ra  ||  $0357a  ||  $0088  ||  0100 0000  ||  B2, bottom middle room, chest #4  ||  Mimic!
+|-
+|  Cave of Ra  ||  $0357a  ||  $0088  ||  1000 0000  ||  B2, bottom middle room, chest #5  ||  Small Medal
+|-
+!  colspan="6"  |  
+|-
+|  Cave of Ra  ||  $0357b  ||  $0089  ||  0000 0001  ||  B2, bottom right room, chest #2  ||  Mimic!
+|-
+|  Cave of Ra  ||  $0357b  ||  $0089  ||  0000 0010  ||  B2, bottom right room, chest #1  ||  Mimic!
+|-
+|  Cave of Ra  ||  $0357b  ||  $0089  ||  0000 0100  ||  B2, top area, chest #9  ||  320 gold pieces
+|-
+|  Cave of Ra  ||  $0357b  ||  $0089  ||  0000 1000  ||  B2, top area, chest #6  ||  24 gold pieces
+|-
+|  Cave of Ra  ||  $0357b  ||  $0089  ||  0001 0000  ||  B2, top area, chest #5  ||  568 gold pieces
+|-
+|  Cave of Ra  ||  $0357b  ||  $0089  ||  0010 0000  ||  B2, top area, chest #3  ||  56 gold pieces
+|-
+|  Cave of Ra  ||  $0357b  ||  $0089  ||  0100 0000  ||  B2, top area, chest #1  ||  128 gold pieces
+|-
+|  Cave of Ra  ||  $0357b  ||  $0089  ||  1000 0000  ||  B2, bottom middle room, chest #2  ||  24 gold pieces
+|-
+!  colspan="6"  |  
+|-
+|  Cave of Ra  ||  $0357c  ||  $008a  ||  0000 0001  ||  B2, top area, chest #8  ||  Small Medal
+|-
+|  Cave of Ra  ||  $0357c  ||  $008a  ||  0000 0010  ||  B2, top area, chest #7  ||  Life Nut
+|-
+|  Cave of Ra  ||  $0357c  ||  $008a  ||  0000 0100  ||  B2, top area, chest #4  ||  Pachisi Ticket
+|-
+|  Cave of Ra  ||  $0357c  ||  $008a  ||  0000 1000  ||  B2, top area, chest #2  ||  Strength Seed
+|-
+|  Cave of Ra  ||  $0357c  ||  $008a  ||  0001 0000  ||  B2, bottom middle room, chest #1  ||  Stamina Seed
+|-
+|  Cave of Ra  ||  $0357c  ||  $008a  ||  0010 0000  ||  B2, bottom middle room, chest #3  ||  Pachisi Ticket
+|-
+|  Cave of Ra  ||  $0357c  ||  $008a  ||  0100 0000  ||  B2, bottom right room, chest #3  ||  Life Stone
+|-
+|  Cave of Ra   ||  $0357c  ||  $008a  ||  1000 0000  ||  B3, left side, chest  ||  Plush Suit
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $0357d  ||  $008b  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $0357d  ||  $008b  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $0357d  ||  $008b  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $0357d  ||  $008b  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $0357d  ||  $008b  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $0357d  ||  $008b  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $0357d  ||  $008b  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $0357d  ||  $008b  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $0357e  ||  $008c  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $0357e  ||  $008c  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $0357e  ||  $008c  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $0357e  ||  $008c  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $0357e  ||  $008c  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $0357e  ||  $008c  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $0357e  ||  $008c  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $0357e  ||  $008c  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $0357f  ||  $008d  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $0357f  ||  $008d  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $0357f  ||  $008d  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $0357f  ||  $008d  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $0357f  ||  $008d  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $0357f  ||  $008d  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $0357f  ||  $008d  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $0357f  ||  $008d  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $03580  ||  $008e  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $03580  ||  $008e  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $03580  ||  $008e  ||  0000 0100  ||  ---  ||  
+|-
+|  Shrine East of Aliahan  ||  $03580  ||  $008e  ||  0000 1000  ||  Left pot  ||  Wing of Wyvern
+|-
+|  Shrine East of Aliahan  ||  $03580  ||  $008e  ||  0001 0000  ||  Right pot  ||  Small Medal
+|-
+|  ---  ||  $03580  ||  $008e  ||  0010 0000  ||  ---  ||  
+|-
+|  Temple south-east of Isis  ||  $03580  ||  $008e  ||  0100 0000  ||  Right bookcase  ||  Tomboy Book
+|-
+|  Temple south-east of Isis  ||  $03580  ||  $008e  ||  1000 0000  ||  Left pot  ||  Small Medal
+|-
+!  colspan="6"  |  
+|-
+|  Temple south-east of Isis  ||  $03581  ||  $008f  ||  0000 0001  ||  Left drawer  ||  Pachisi Ticket
+|-
+|  ---  ||  $03581  ||  $008f  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $03581  ||  $008f  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03581  ||  $008f  ||  0000 1000  ||  ---  ||  
+|-
+|  Shrine East of Dharma  ||  $03581  ||  $008f  ||  0001 0000  ||  Top left room, drawer  ||  Cypress Stick
+|-
+|  Shrine East of Dharma  ||  $03581  ||  $008f  ||  0010 0000  ||  Top right room, drawer  ||  Small Medal
+|-
+|  North Icy Shrine  ||  $03581  ||  $008f  ||  0100 0000  ||  Shrine north of Romaly => portal => shrine up north, top-middle blue tile around water  ||  Small Medal
+|-
+|  ---  ||  $03581  ||  $008f  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $03582  ||  $0090  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $03582  ||  $0090  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $03582  ||  $0090  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03582  ||  $0090  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03582  ||  $0090  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $03582  ||  $0090  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $03582  ||  $0090  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $03582  ||  $0090  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $03583  ||  $0091  ||  0000 0001  ||  ---  ||  
+|-
+|  Shrine north of Romaly  ||  $03583  ||  $0091  ||  0000 0010  ||  B1, south room, water in corner  ||  Small Medal
+|-
+|  Shrunken Shrine  ||  $03583  ||  $0091  ||  0000 0100  ||  5 steps north of chest on northmost floor decoration  ||  Small Medal
+|-
+|  Hobbit Shrine  ||  $03583  ||  $0091  ||  0000 1000  ||  Behind the hobbit's throne  ||  Small Medal
+|-
+|  Olivia's Promontory  ||  $03583  ||  $0091  ||  0001 0000  ||  F1, top right room, west wall between the two portals  ||  Small Medal
+|-
+|  Liamland Altar  ||  $03583  ||  $0091  ||  0010 0000  ||  Outside, right of the stairs  ||  Small Medal
+|-
+|  Najimi Tower  ||  $03583  ||  $0091  ||  0100 0000  ||  F2 top-left, chest  ||  40 gold pieces
+|-
+|  Najimi Tower  ||  $03583  ||  $0091  ||  1000 0000  ||  F2 top-right => F3, chest  ||  Small Medal
+|-
+!  colspan="6"  |  
+|-
+|  Najimi Tower  ||  $03584  ||  $0092  ||  0000 0001  ||  F3, middle-right room, chest  ||  Wing of Wyvern
+|-
+|  Outside Aliahan, Passageway  ||  $03584  ||  $0092  ||  0000 0010  ||  Locked treasure room, left chest  ||  Wooden Helmet
+|-
+|  Outside Aliahan, Passageway  ||  $03584  ||  $0092  ||  0000 0100  ||  Locked treasure room, right chest  ||  Agility Seed
+|-
+|  Outside Aliahan, Passageway  ||  $03584  ||  $0092  ||  0000 1000  ||  Chest in middle  ||  32 gold pieces
+|-
+|  Najimi Tower  ||  $03584  ||  $0092  ||  0001 0000  ||  F4, left bookcase  ||  Tomboy Book
+|-
+|  Garuna Tower  ||  $03584  ||  $0092  ||  0010 0000  ||  F1, Bottom right, chest  ||  Wisdom Seed
+|-
+|  Garuna Tower  ||  $03584  ||  $0092  ||  0100 0000  ||  F2, middle room with hole (EFGJNOPST)  ||  Zen Book
+|-
+|  Garuna Tower  ||  $03584  ||  $0092  ||  1000 0000  ||  F3, Top middle room, chest (EFGHK)  ||  448 gold pieces
+|-
+!  colspan="6"  |  
+|-
+|  Garuna Tower  ||  $03585  ||  $0093  ||  0000 0001  ||  F3, Top middle room, chest (EFGIL)  ||  Small Medal
+|-
+|  Garuna Tower  ||  $03585  ||  $0093  ||  0000 0010  ||  F6, chest (EFGJNOPR)  ||  Silver Barrette
+|-
+|  Arp Tower  ||  $03585  ||  $0093  ||  0000 0100  ||  F4, chest group, top-left chest  ||  Echo Flute
+|-
+|  Arp Tower  ||  $03585  ||  $0093  ||  0000 1000  ||  F4, chest group, bottom-left chest  ||  Small Medal
+|-
+|  Arp Tower  ||  $03585  ||  $0093  ||  0001 0000  ||  F4, chest group, bottom-right chest  ||  Life Nut
+|-
+|  Arp Tower  ||  $03585  ||  $0093  ||  0010 0000  ||  F4, chest group, top-right chest  ||  552 gold pieces
+|-
+|  Arp Tower  ||  $03585  ||  $0093  ||  0100 0000  ||  F5, bottom-left, left chest  ||  Benevolent Ring
+|-
+|  Arp Tower  ||  $03585  ||  $0093  ||  1000 0000  ||  F5, bottom-right, chest  ||  Cannibox!
+|-
+!  colspan="6"  |  
+|-
+|  Arp Tower  ||  $03586  ||  $0094  ||  0000 0001  ||  F5, bottom-left, right chest  ||  Small Medal
+|-
+|  Shampane Tower  ||  $03586  ||  $0094  ||  0000 0010  ||  F5  ||  [Event] Holes opens after Kandar's guys run away (see 03556-00010000)
+|-
+|  Shampane Tower  ||  $03586  ||  $0094  ||  0000 0100  ||  F1 bottom right, chest  ||  430 gold pieces
+|-
+|  Shampane Tower  ||  $03586  ||  $0094  ||  0000 1000  ||  F3, right side, chest  ||  Bronze Shield
+|-
+|  ---  ||  $03586  ||  $0094  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $03586  ||  $0094  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $03586  ||  $0094  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $03586  ||  $0094  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $03587  ||  $0095  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $03587  ||  $0095  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $03587  ||  $0095  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03587  ||  $0095  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03587  ||  $0095  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $03587  ||  $0095  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $03587  ||  $0095  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $03587  ||  $0095  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $03588  ||  $0096  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $03588  ||  $0096  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $03588  ||  $0096  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03588  ||  $0096  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03588  ||  $0096  ||  0001 0000  ||  ---  ||  
+|-
+|  Pyramid  ||  $03588  ||  $0096  ||  0010 0000  ||  F1, middle-left, middle chest  ||  Cannibox!
+|-
+|  Pyramid  ||  $03588  ||  $0096  ||  0100 0000  ||  F1, middle-left, bottom chest  ||  Cannibox!
+|-
+|  Pyramid  ||  $03588  ||  $0096  ||  1000 0000  ||  F3, top locked room, left chest  ||  Stamina Seed
+|-
+!  colspan="6"  |  
+|-
+|  Pyramid  ||  $03589  ||  $0097  ||  0000 0001  ||  F4, chest group, top right, chest, battle  ||  80 gold pieces
+|-
+|  Pyramid  ||  $03589  ||  $0097  ||  0000 0010  ||  F4, chest group, right middle-top, chest, battle  ||  Agility Seed
+|-
+|  Pyramid  ||  $03589  ||  $0097  ||  0000 0100  ||  F4, chest group, right middle-bottom, chest, battle  ||  112 gold pieces
+|-
+|  Pyramid  ||  $03589  ||  $0097  ||  0000 1000  ||  F4, chest group, bottom right, chest, battle  ||  Magical Skirt
+|-
+|  Pyramid  ||  $03589  ||  $0097  ||  0001 0000  ||  F4, chest group, bottom middle-right, chest, battle  ||  304 gold pieces
+|-
+|  Pyramid  ||  $03589  ||  $0097  ||  0010 0000  ||  F4, chest group, bottom middle-left, chest, battle  ||  Ruby Ring
+|-
+|  Pyramid  ||  $03589  ||  $0097  ||  0100 0000  ||  F4, chest group, bottom-left, chest, battle  ||  56 gold pieces
+|-
+|  Pyramid  ||  $03589  ||  $0097  ||  1000 0000  ||  F4, chest group, left middle-bottom, chest, battle  ||  Small Medal
+|-
+!  colspan="6"  |  
+|-
+|  Pyramid  ||  $0358a  ||  $0098  ||  0000 0001  ||  F4, chest group, left middle-top, chest, battle  ||  Stone Wig
+|-
+|  Pyramid  ||  $0358a  ||  $0098  ||  0000 0010  ||  F4, chest group, top-left, chest, battle  ||  176 gold pieces
+|-
+|  Pyramid  ||  $0358a  ||  $0098  ||  0000 0100  ||  F4, chest group, top middle-left, chest, battle  ||  Wing of Wyvern
+|-
+|  Pyramid  ||  $0358a  ||  $0098  ||  0000 1000  ||  F4, chest group, top middle-right, chest, battle  ||  Strength Seed
+|-
+|  Pyramid  ||  $0358a  ||  $0098  ||  0001 0000  ||  F5, chest  ||  Flashy Suit
+|-
+|  Pyramid  ||  $0358a  ||  $0098  ||  0010 0000  ||  F1, middle-left, top chest  ||  Empty!
+|-
+|  Pyramid  ||  $0358a  ||  $0098  ||  0100 0000  ||  F1, bottom-left corner, chest  ||  Empty!
+|-
+|  Pyramid  ||  $0358a  ||  $0098  ||  1000 0000  ||  F1, bottom-right corner, chest  ||  Empty!
+|-
+!  colspan="6"  |  
+|-
+|  Pyramid  ||  $0358b  ||  $0099  ||  0000 0001  ||  F2 top-left => F1, right chest  ||  Empty!
+|-
+|  Pyramid  ||  $0358b  ||  $0099  ||  0000 0010  ||  F2 top-left => F1, left chest  ||  Cannibox!
+|-
+|  Pyramid  ||  $0358b  ||  $0099  ||  0000 0100  ||  F2 top-left => F1, left room, chest  ||  Small Medal
+|-
+|  Pyramid  ||  $0358b  ||  $0099  ||  0000 1000  ||  F6, top-left, on the ledge  ||  Small Medal
+|-
+|  Pyramid  ||  $0358b  ||  $0099  ||  0001 0000  ||  F2, bottom-left, chest  ||  Wisom Seed
+|-
+|  ---  ||  $0358b  ||  $0099  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $0358b  ||  $0099  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $0358b  ||  $0099  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $0358c  ||  $009a  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $0358c  ||  $009a  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $0358c  ||  $009a  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $0358c  ||  $009a  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $0358c  ||  $009a  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $0358c  ||  $009a  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $0358c  ||  $009a  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $0358c  ||  $009a  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $0358d  ||  $009b  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $0358d  ||  $009b  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $0358d  ||  $009b  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $0358d  ||  $009b  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $0358d  ||  $009b  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $0358d  ||  $009b  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $0358d  ||  $009b  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $0358d  ||  $009b  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $0358e  ||  $009c  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $0358e  ||  $009c  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $0358e  ||  $009c  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $0358e  ||  $009c  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $0358e  ||  $009c  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $0358e  ||  $009c  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $0358e  ||  $009c  ||  0100 0000  ||  ---  ||  
+|-
+|  Pachisi Track #2  ||  $0358e  ||  $009c  ||  1000 0000  ||  F1, Middle of blue square on left  ||  Small Medal
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $0358f  ||  $009d  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $0358f  ||  $009d  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $0358f  ||  $009d  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $0358f  ||  $009d  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $0358f  ||  $009d  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $0358f  ||  $009d  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $0358f  ||  $009d  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $0358f  ||  $009d  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|-
+|  ---  ||  $03590  ||  $009e  ||  0000 0001  ||  ---  ||  
+|-
+|  ---  ||  $03590  ||  $009e  ||  0000 0010  ||  ---  ||  
+|-
+|  ---  ||  $03590  ||  $009e  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03590  ||  $009e  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03590  ||  $009e  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $03590  ||  $009e  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $03590  ||  $009e  ||  0100 0000  ||  ---  ||  
+|-
+|  Pachisi Track #3  ||  $03590  ||  $009e  ||  1000 0000  ||  Cave Entrance, north of guy, south east corner of grass  ||  Small Medal
+|-
+!  colspan="6"  |  
+|-
+|  Pachisi Track #3  ||  $03591  ||  $009f  ||  0000 0001  ||  Cave Entrance, right of guy, middle right of grass, next to water  ||  Pachisi Ticket
+|-
+|  Pachisi Track #3  ||  $03591  ||  $009f  ||  0000 0010  ||  South-west corner, grass on north-east  ||  Small Medal
+|-
+|  ---  ||  $03591  ||  $009f  ||  0000 0100  ||  ---  ||  
+|-
+|  ---  ||  $03591  ||  $009f  ||  0000 1000  ||  ---  ||  
+|-
+|  ---  ||  $03591  ||  $009f  ||  0001 0000  ||  ---  ||  
+|-
+|  ---  ||  $03591  ||  $009f  ||  0010 0000  ||  ---  ||  
+|-
+|  ---  ||  $03591  ||  $009f  ||  0100 0000  ||  ---  ||  
+|-
+|  ---  ||  $03591  ||  $009f  ||  1000 0000  ||  ---  ||  
+|-
+!  colspan="6"  |  
+|}
+
+{{Internal Data|game=Dragon Quest III (SNES)}}

@@ -1,0 +1,45 @@
+
+
+
+SnesRegister:2121:CGADD:CGRAM Address Register
+SnesRegister:2122:CGDATA:CGRAM Data Write Register
+
+SnesRegister:2138:OAMDATAREAD:OAM Data Read Register
+SnesRegister:2139:VMDATALREAD:VRAM Data Read Register (Low)
+SnesRegister:213A:VMDATAHREAD:VRAM Data Read Register (High)
+SnesRegister:213B:CGDATAREAD:CGRAM Data Read Register
+
+7fae
+
+
+
+SnesWorkRam:xxxx:xxxxx_State:State of $xxxx\n
+SnesWorkRam:xxxx:xxxxx_State:State of $xxxx\n
+SnesWorkRam:xxxx:xxxxx_State:State of $xxxx\n
+SnesWorkRam:xxxx:xxxxx_State:State of $xxxx\n
+SnesWorkRam:xxxx:xxxxx_State:State of $xxxx\n
+SnesWorkRam:xxxx:xxxxx_State:State of $xxxx\n
+SnesWorkRam:xxxx:xxxxx_State:State of $xxxx\n
+SnesWorkRam:xxxx:xxxxx_State:State of $xxxx\n
+
+|  Graphics Settings  ||  $7e - $7E  ||  word  ||  $xxxx - 🖼️ 
+|-
+|  Graphics Settings  ||  $7e  ||  byte  ||  $xxxx - 🖼️ 
+|-
+
+7FA3 - 2114
+
+|  $7FD4  ||  word  ||  $2132 - 🎨 
+|-  style="background-color: #eaecf0;"
+|  colspan="4"  |  ...
+|-
+|  Graphics Settings  ||  $7e7fda  ||  byte  ||  $2133 - 🖼️ 
+|-  style="background-color: #eaecf0;"
+|  colspan="4"  |  ...
+|-
+|  Graphics Loading  ||  $7e7ffe - $7e81fd  ||  $200 bytes  ||  🎨 CGRAM mirror, palettes/colors
+|-  style="background-color: #eaecf0;"
+
+ButThouMust script discussion:
+https://discord.com/channels/266412086291070988/1332697178061406258
+

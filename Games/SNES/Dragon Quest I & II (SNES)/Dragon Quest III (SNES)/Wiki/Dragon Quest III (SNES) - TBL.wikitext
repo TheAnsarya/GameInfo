@@ -1,0 +1,930 @@
+{{TBL}}
+
+==Japanese==
+
+===Basic Text Table===
+
+These are all the characters available from the Name Selection screen or used in menus.
+
+The space (<code>&nbsp;</code>) character is $01.
+
+Hiragana that don't appear: ゐ ゑ
+
+Katakana that don't appear: ヰ ヱ
+
+{| class="wikitable" style="text-align: center;"
+|-
+!    !!  _0  !!  _1  !!  _2  !!  _3  !!  _4  !!  _5  !!  _6  !!  _7  !!  _8  !!  _9  !!  _a  !!  _b  !!  _c  !!  _d  !!  _e  !!  _f
+|-
+! scope="row" |  0_
+|  style="background-color: #eaecf0;"  |
+|  &nbsp;
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  ＊
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  あ
+|  い
+|  う
+|  え
+|-
+! scope="row" |  1_
+|  お  ||  か  ||  き  ||  く  ||  け  ||  こ  ||  さ  ||  し  ||  す  ||  せ  ||  そ  ||  た  ||  ち  ||  つ  ||  て  ||  と
+|-
+! scope="row" |  2_
+|  な  ||  に  ||  ぬ  ||  ね  ||  の  ||  は  ||  ひ  ||  ふ  ||  へ  ||  ほ  ||  ま  ||  み  ||  む  ||  め  ||  も  ||  や
+|-
+! scope="row" |  3_
+|  ゆ  ||  よ  ||  ら  ||  り  ||  る  ||  れ  ||  ろ  ||  わ  ||  を  ||  ん  ||  ぁ  ||  ぃ  ||  ぅ  ||  ぇ  ||  ぉ  ||  っ
+|-
+! scope="row" |  4_
+|  ゃ  ||  ゅ  ||  ょ  ||  ア  ||  イ  ||  ウ  ||  エ  ||  オ  ||  カ  ||  キ  ||  ク  ||  ケ  ||  コ  ||  サ  ||  シ  ||  ス
+|-
+! scope="row" |  5_
+|  セ  ||  ソ  ||  タ  ||  チ  ||  ツ  ||  テ  ||  ト  ||  ナ  ||  ニ  ||  ヌ  ||  ネ  ||  ノ  ||  ハ  ||  ヒ  ||  フ  ||  ヘ
+|-
+! scope="row" |  6_
+|  ホ  ||  マ  ||  ミ  ||  ム  ||  メ  ||  モ  ||  ヤ  ||  ユ  ||  ヨ  ||  ラ  ||  リ  ||  ル  ||  レ  ||  ロ  ||  ワ  ||  ヲ
+|-
+! scope="row" |  7_
+|  ン
+|  ァ
+|  ィ
+|  ゥ
+|  ェ
+|  ォ
+|  ッ
+|  ャ
+|  ュ
+|  ョ
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  ★
+|  ー
+|  ?
+|  !
+|-
+! scope="row" |  8_
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  .
+|  「
+|  …
+|  0
+|  1
+|  2
+|  3
+|  4
+|  5
+|  6
+|  7
+|  8
+|-
+! scope="row" |  9_
+|  9  ||  A  ||  B  ||  C  ||  D  ||  E  ||  F  ||  G  ||  H  ||  I  ||  J  ||  K  ||  L  ||  M  ||  N  ||  O
+|-
+! scope="row" |  a_
+|  P
+|  Q
+|  R
+|  S
+|  T
+|  U
+|  V
+|  W
+|  X
+|  Y
+|  Z
+|  style="background-color: #eaecf0;"  |
+|  {end of string}
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|-
+! scope="row" |  b_
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  枚
+|  匹
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|-
+! scope="row" |  c_
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  が
+|  ぎ
+|  ぐ
+|  げ
+|  ご
+|  ざ
+|  じ
+|-
+! scope="row" |  d_
+|  ず  ||  ぜ  ||  ぞ  ||  だ  ||  ぢ  ||  づ  ||  で  ||  ど  ||  ば  ||  び  ||  ぶ  ||  べ  ||  ぼ  ||  ヴ  ||  ガ  ||  ギ
+|-
+! scope="row" |  e_
+|  グ  ||  ゲ  ||  ゴ  ||  ザ  ||  ジ  ||  ズ  ||  ゼ  ||  ゾ  ||  ダ  ||  ヂ  ||  ヅ  ||  デ  ||  ド  ||  バ  ||  ビ  ||  ブ
+|-
+! scope="row" |  f_
+|  ベ
+|  ボ
+|  ぱ
+|  ぴ
+|  ぷ
+|  ぺ
+|  ぽ
+|  パ
+|  ピ
+|  プ
+|  ペ
+|  ポ
+|  〜
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|}
+
+==== As seen in RAM ====
+
+The text table as seen in the RAM viewer of Mesen2.
+
+[[File:Dragon Quest III (SNES) - Text Table in RAM (JP).png|none]]
+
+==== TBL File ====
+
+Download TBL file: <code>[https://raw.githubusercontent.com/TheAnsarya/GameInfo/main/Dragon%20Quest%20III%20(SNES)/Wiki/Files/Dragon%20Quest%20III%20(SNES)%20(JP)%20-%20simple.tbl Dragon Quest III (SNES) (JP) - simple.tbl]</code>
+
+<div class="mw-collapsible mw-collapsed">
+<strong>Table File Contents</strong>
+<div class="mw-collapsible-content">
+<pre>
+01= 
+09=＊
+0c=あ
+0d=い
+0e=う
+0f=え
+10=お
+11=か
+12=き
+13=く
+14=け
+15=こ
+16=さ
+17=し
+18=す
+19=せ
+1a=そ
+1b=た
+1c=ち
+1d=つ
+1e=て
+1f=と
+20=な
+21=に
+22=ぬ
+23=ね
+24=の
+25=は
+26=ひ
+27=ふ
+28=へ
+29=ほ
+2a=ま
+2b=み
+2c=む
+2d=め
+2e=も
+2f=や
+30=ゆ
+31=よ
+32=ら
+33=り
+34=る
+35=れ
+36=ろ
+37=わ
+38=を
+39=ん
+3a=ぁ
+3b=ぃ
+3c=ぅ
+3d=ぇ
+3e=ぉ
+3f=っ
+40=ゃ
+41=ゅ
+42=ょ
+43=ア
+44=イ
+45=ウ
+46=エ
+47=オ
+48=カ
+49=キ
+4a=ク
+4b=ケ
+4c=コ
+4d=サ
+4e=シ
+4f=ス
+50=セ
+51=ソ
+52=タ
+53=チ
+54=ツ
+55=テ
+56=ト
+57=ナ
+58=ニ
+59=ヌ
+5a=ネ
+5b=ノ
+5c=ハ
+5d=ヒ
+5e=フ
+5f=ヘ
+60=ホ
+61=マ
+62=ミ
+63=ム
+64=メ
+65=モ
+66=ヤ
+67=ユ
+68=ヨ
+69=ラ
+6a=リ
+6b=ル
+6c=レ
+6d=ロ
+6e=ワ
+6f=ヲ
+70=ン
+71=ァ
+72=ィ
+73=ゥ
+74=ェ
+75=ォ
+76=ッ
+77=ャ
+78=ュ
+79=ョ
+7c=★
+7d=ー
+7e=?
+7f=!
+84=.
+85=「
+86=…
+87=0
+88=1
+89=2
+8a=3
+8b=4
+8c=5
+8d=6
+8e=7
+8f=8
+90=9
+91=A
+92=B
+93=C
+94=D
+95=E
+96=F
+97=G
+98=H
+99=I
+9a=J
+9b=K
+9c=L
+9d=M
+9e=N
+9f=O
+a0=P
+a1=Q
+a2=R
+a3=S
+a4=T
+a5=U
+a6=V
+a7=W
+a8=X
+a9=Y
+aa=Z
+ac={end of string}
+c9=が
+ca=ぎ
+cb=ぐ
+cc=げ
+cd=ご
+ce=ざ
+cf=じ
+d0=ず
+d1=ぜ
+d2=ぞ
+d3=だ
+d4=ぢ
+d5=づ
+d6=で
+d7=ど
+d8=ば
+d9=び
+da=ぶ
+db=べ
+dc=ぼ
+dd=ヴ
+de=ガ
+df=ギ
+e0=グ
+e1=ゲ
+e2=ゴ
+e3=ザ
+e4=ジ
+e5=ズ
+e6=ゼ
+e7=ゾ
+e8=ダ
+e9=ヂ
+ea=ヅ
+eb=デ
+ec=ド
+ed=バ
+ee=ビ
+ef=ブ
+f0=ベ
+f1=ボ
+f2=ぱ
+f3=ぴ
+f4=ぷ
+f5=ぺ
+f6=ぽ
+f7=パ
+f8=ピ
+f9=プ
+fa=ペ
+fb=ポ
+fc=〜
+</pre>
+</div>
+</div>
+
+===Extra character set===
+These are unused characters showing what would be printed.
+
+<div class="mw-collapsible mw-collapsed">
+<strong>Table File Contents</strong>
+<div class="mw-collapsible-content">
+<pre>
+02=/
+03=゜
+04=゛
+05=:
+06={Ex}
+07={Lv}
+08=ー
+0a=ど
+0b=.
+7a=ᴇ
+7b= 
+80=⯆
+81=⯈
+82={arrow on menu border}
+83=。
+ab={menu border top left}
+ad={menu border top}
+ae={menu border left}
+af={menu border left with thin horizontal}
+b0={menu border thin horizontal}
+b1={menu border left with ᴇ}
+b2={menu border top with ゛}
+b3={menu border top with ゜}
+b4={menu border thin horizontal with ゛}
+b5={menu border thin horizontal with ゜}
+b6={menu border bottom with ⯆}
+b7=〜
+b8=+
+b9={menu border bottom}
+ba=枚
+bb=匹
+bc={0 top half}
+bd={0 bottom half}
+be={1 top half}
+bf={1 bottom half}
+c0={2 top half}
+c1={2 bottom half}
+c2={3 top half}
+c3={3 bottom half}
+c4={4 top half}
+c5={4 bottom half}
+c6={5 top half}
+c7={5 bottom half}
+c8={6 top half}
+fd=+
+fe=ぬ
+ff=J
+</pre>
+</div>
+</div>
+
+===Text box dialogue===
+
+For text outside battles and menus. Adaptation of <code>table.txt</code> from Near's old tools (which had just the identified characters) to the standard table file format. A few control codes are identified.
+
+Download TBL file: <code>[https://raw.githubusercontent.com/ButThouMust/dq6-sfc/refs/heads/main/dq3%20jp.tbl dq3 jp.tbl]</code>
+
+====Dialog Table Commands====
+
+{| class="wikitable"
+|-
+!  Key  ||  Value  ||  Description
+|-
+|  $00ab  ||  &lt;ab - code ab&gt;  ||  
+|-
+|  $00ac  ||  &lt;ac - end of string&gt;  ||  End of String indicator, standard
+|-
+|  $00ad  ||  &lt;ad - line break&gt;  ||  Line break
+|-
+|  $00ae  ||  &lt;ae - end of string&gt;  ||  End of String indicator, what else does it do ???
+|-
+|  $00af  ||  &lt;af - wait&gt;  ||  Wait, Pause the dialog
+|-
+|  $00b0  ||  &lt;b0 - code b0&gt;  ||  
+|-
+|  $00b1  ||  &lt;b1 - code b1&gt;  ||  
+|-
+|  $00b2  ||  &lt;b2 - code b2&gt;  ||  
+|-
+|  $00b3  ||  &lt;b3 - code b3&gt;  ||  
+|-
+|  $00b4  ||  &lt;b4 - code b4&gt;  ||  
+|-
+|  $00b5  ||  &lt;b5 - code b5&gt;  ||  
+|-
+|  $00b6  ||  &lt;b6 - code b6&gt;  ||  
+|-
+|  $00b7  ||  &lt;b7 - code b7&gt;  ||  
+|-
+|  $00b8  ||  &lt;b8 - code b8&gt;  ||  
+|-
+|  $00b9  ||  &lt;b9 - code b9&gt;  ||  
+|-
+|  $00ba  ||  &lt;ba - code ba&gt;  ||  
+|-
+|  $00bb  ||  &lt;bb - code bb&gt;  ||  
+|-
+|  $00bc  ||  &lt;bc - code bc&gt;  ||  
+|-
+|  $00bd  ||  &lt;bd - code bd&gt;  ||  
+|-
+|  $00be  ||  &lt;be - code be&gt;  ||  
+|-
+|  $00bf  ||  &lt;bf - code bf&gt;  ||  
+|-
+|  $00c0  ||  &lt;c0 - code c0&gt;  ||  
+|-
+|  $00c1  ||  &lt;c1 - code c1&gt;  ||  
+|-
+|  $00c2  ||  &lt;c2 - code c2&gt;  ||  
+|-
+|  $00c3  ||  &lt;c3 - code c3&gt;  ||  
+|-
+|  $00c4  ||  &lt;c4 - code c4&gt;  ||  
+|-
+|  $00c5  ||  &lt;c5 - code c5&gt;  ||  
+|-
+|  $00c6  ||  &lt;c6 - code c6&gt;  ||  
+|-
+|  $00c7  ||  &lt;c7 - code c7&gt;  ||  
+|-
+|  $00c8  ||  &lt;c8 - code c8&gt;  ||  
+|-
+|  $00c9  ||  &lt;c9 - code c9&gt;  ||  
+|-
+|  $00ca  ||  &lt;ca - code ca&gt;  ||  
+|-
+|  $00cb  ||  &lt;cb - code cb&gt;  ||  
+|-
+|  $00cc  ||  &lt;cc - code cc&gt;  ||  
+|-
+|  $00cd  ||  &lt;cd - code cd&gt;  ||  
+|-
+|  $00ce  ||  &lt;ce - code ce&gt;  ||  
+|-
+|  $00cf  ||  &lt;cf - code cf&gt;  ||  
+|-
+|  $00d0  ||  &lt;d0 - code d0&gt;  ||  
+|-
+|  $00d1  ||  &lt;d1 - code d1&gt;  ||  
+|-
+|  $00d2  ||  &lt;d2 - code d2&gt;  ||  
+|-
+|  $00d3  ||  &lt;d3 - code d3&gt;  ||  
+|-
+|  $00d4  ||  &lt;d4 - code d4&gt;  ||  
+|-
+|  $00d5  ||  &lt;d5 - code d5&gt;  ||  
+|-
+|  $00d6  ||  &lt;d6 - code d6&gt;  ||  
+|-
+|  $00d7  ||  &lt;d7 - code d7&gt;  ||  
+|-
+|  $00d8  ||  &lt;d8 - code d8&gt;  ||  
+|-
+|  $00d9  ||  &lt;d9 - code d9&gt;  ||  
+|-
+|  $00da  ||  &lt;da - code da&gt;  ||  
+|-
+|  $00db  ||  &lt;db - code db&gt;  ||  
+|-
+|  $00dc  ||  &lt;dc - code dc&gt;  ||  
+|-
+|  $00dd  ||  &lt;dd - code dd&gt;  ||  
+|}
+
+====Dialog Table Characters====
+{| class="wikitable" style="text-align: center;"
+|-
+!    !!  _0  !!  _1  !!  _2  !!  _3  !!  _4  !!  _5  !!  _6  !!  _7  !!  _8  !!  _9  !!  _a  !!  _b  !!  _c  !!  _d  !!  _e  !!  _f
+|-
+!  scope="row"  |  020_
+|  　  ||  愛  ||  悪  ||  安  ||  暗  ||  闇  ||  栄  ||  永  ||  英  ||  駅  ||  演  ||  炎  ||  縁  ||  遠  ||  波  ||  派
+|-
+!  scope="row"  |  021_
+|  敗  ||  背  ||  配  ||  売  ||  漠  ||  爆  ||  箱  ||  肌  ||  畑  ||  発  ||  抜  ||  判  ||  半  ||  反  ||  版  ||  晩
+|-
+!  scope="row"  |  022_
+|  番  ||  兵  ||  柄  ||  並  ||  壁  ||  別  ||  変  ||  返  ||  便  ||  勉  ||  弁  ||  妃  ||  彼  ||  悲  ||  扉  ||  疲
+|-
+!  scope="row"  |  023_
+|  皮  ||  秘  ||  備  ||  美  ||  彦  ||  必  ||  姫  ||  標  ||  氷  ||  表  ||  病  ||  品  ||  保  ||  歩  ||  墓  ||  母
+|-
+!  scope="row"  |  024_
+|  報  ||  宝  ||  放  ||  方  ||  法  ||  砲  ||  訪  ||  坊  ||  忘  ||  暴  ||  望  ||  防  ||  北  ||  牧  ||  本  ||  付
+|-
+!  scope="row"  |  025_
+|  夫  ||  婦  ||  布  ||  敷  ||  浮  ||  父  ||  負  ||  武  ||  舞  ||  部  ||  封  ||  復  ||  服  ||  福  ||  腹  ||  仏
+|-
+!  scope="row"  |  026_
+|  物  ||  分  ||  粉  ||  文  ||  以  ||  位  ||  偉  ||  意  ||  移  ||  遺  ||  井  ||  育  ||  印  ||  飲  ||  隠  ||  仮
+|-
+!  scope="row"  |  027_
+|  何  ||  価  ||  家  ||  架  ||  歌  ||  河  ||  火  ||  花  ||  荷  ||  過  ||  我  ||  介  ||  会  ||  解  ||  怪  ||  改
+|-
+!  scope="row"  |  028_
+|  海  ||  界  ||  皆  ||  絵  ||  外  ||  涯  ||  格  ||  確  ||  覚  ||  革  ||  学  ||  楽  ||  額  ||  割  ||  活  ||  官
+|-
+!  scope="row"  |  029_
+|  感  ||  慣  ||  換  ||  敢  ||  甘  ||  観  ||  鑑  ||  丸  ||  岸  ||  眼  ||  岩  ||  顔  ||  願  ||  係  ||  刑  ||  形
+|-
+!  scope="row"  |  02a_
+|  恵  ||  景  ||  系  ||  経  ||  警  ||  劇  ||  撃  ||  欠  ||  決  ||  結  ||  件  ||  健  ||  券  ||  剣  ||  犬  ||  研
+|-
+!  scope="row"  |  02b_
+|  肩  ||  見  ||  賢  ||  険  ||  験  ||  原  ||  源  ||  現  ||  言  ||  限  ||  危  ||  寄  ||  希  ||  机  ||  期  ||  機
+|-
+!  scope="row"  |  02c_
+|  気  ||  祈  ||  貴  ||  技  ||  義  ||  議  ||  客  ||  逆  ||  休  ||  急  ||  救  ||  求  ||  泣  ||  球  ||  究  ||  牛
+|-
+!  scope="row"  |  02d_
+|  去  ||  居  ||  挙  ||  許  ||  距  ||  魚  ||  供  ||  共  ||  協  ||  強  ||  教  ||  橋  ||  胸  ||  興  ||  鏡  ||  駑
+|-
+!  scope="row"  |  02e_
+|  業  ||  禁  ||  筋  ||  近  ||  金  ||  吟  ||  銀  ||  個  ||  古  ||  呼  ||  庫  ||  湖  ||  後  ||  御  ||  護  ||  交
+|-
+!  scope="row"  |  02f_
+|  光  ||  効  ||  向  ||  好  ||  孝  ||  幸  ||  広  ||  康  ||  攻  ||  更  ||  港  ||  考  ||  航  ||  荒  ||  行  ||  鋼
+|-
+!  scope="row"  |  030_
+|  降  ||  高  ||  号  ||  合  ||  告  ||  獄  ||  骨  ||  込  ||  頃  ||  今  ||  婚  ||  根  ||  喰  ||  窟  ||  君  ||  魔
+|-
+!  scope="row"  |  031_
+|  埋  ||  枚  ||  毎  ||  万  ||  慢  ||  満  ||  命  ||  迷  ||  味  ||  夫  ||  岬  ||  密  ||  民  ||  眼  ||  木  ||  戻
+|-
+!  scope="row"  |  032_
+|  問  ||  門  ||  夢  ||  無  ||  娘  ||  内  ||  南  ||  猫  ||  熱  ||  年  ||  念  ||  虹  ||  任  ||  忍  ||  認  ||  悩
+|-
+!  scope="row"  |  033_
+|  能  ||  脳  ||  汚  ||  奥  ||  押  ||  黄  ||  屋  ||  憶  ||  音  ||  来  ||  頼  ||  絡  ||  落  ||  嵐  ||  令  ||  例
+|-
+!  scope="row"  |  034_
+|  礼  ||  霊  ||  歴  ||  列  ||  劣  ||  恋  ||  練  ||  連  ||  利  ||  履  ||  理  ||  里  ||  離  ||  陸  ||  率  ||  立
+|-
+!  scope="row"  |  035_
+|  流  ||  竜  ||  侶  ||  旅  ||  料  ||  良  ||  緑  ||  労  ||  牢  ||  考  ||  録  ||  涙  ||  類  ||  左  ||  差  ||  砂
+|-
+!  scope="row"  |  036_
+|  座  ||  最  ||  塞  ||  妻  ||  才  ||  災  ||  祭  ||  細  ||  在  ||  村  ||  罪  ||  財  ||  作  ||  策  ||  札  ||  殺
+|-
+!  scope="row"  |  037_
+|  雑  ||  参  ||  産  ||  算  ||  残  ||  瀬  ||  制  ||  征  ||  性  ||  成  ||  政  ||  整  ||  清  ||  精  ||  聖  ||  青
+|-
+!  scope="row"  |  038_
+|  静  ||  税  ||  昔  ||  積  ||  責  ||  赤  ||  切  ||  接  ||  設  ||  説  ||  雪  ||  絶  ||  先  ||  専  ||  川  ||  戦
+|-
+!  scope="row"  |  039_
+|  泉  ||  浅  ||  洗  ||  線  ||  船  ||  選  ||  前  ||  然  ||  全  ||  使  ||  史  ||  始  ||  姉  ||  姿  ||  子  ||  市
+|-
+!  scope="row"  |  03a_
+|  志  ||  支  ||  私  ||  糸  ||  紙  ||  詩  ||  試  ||  事  ||  似  ||  字  ||  持  ||  時  ||  次  ||  治  ||  示  ||  耳
+|-
+!  scope="row"  |  03b_
+|  式  ||  識  ||  七  ||  失  ||  室  ||  質  ||  実  ||  捨  ||  社  ||  者  ||  謝  ||  邪  ||  若  ||  弱  ||  主  ||  取
+|-
+!  scope="row"  |  03c_
+|  守  ||  手  ||  殊  ||  種  ||  酒  ||  受  ||  呪  ||  修  ||  終  ||  習  ||  舟  ||  集  ||  住  ||  十  ||  重  ||  宿
+|-
+!  scope="row"  |  03d_
+|  祝  ||  出  ||  術  ||  春  ||  準  ||  盾  ||  順  ||  初  ||  所  ||  書  ||  助  ||  女  ||  傷  ||  勝  ||  商  ||  唱
+|-
+!  scope="row"  |  03e_
+|  将  ||  小  ||  少  ||  床  ||  招  ||  沼  ||  照  ||  省  ||  称  ||  章  ||  笑  ||  粧  ||  紹  ||  賞  ||  丈  ||  乗
+|-
+!  scope="row"  |  03f_
+|  城  ||  場  ||  情  ||  条  ||  杖  ||  状  ||  飾  ||  色  ||  食  ||  伸  ||  信  ||  侵  ||  寝  ||  慎  ||  新  ||  森
+|-
+!  scope="row"  |  040_
+|  深  ||  真  ||  神  ||  親  ||  診  ||  身  ||  進  ||  震  ||  陣  ||  祖  ||  素  ||  組  ||  僧  ||  創  ||  倉  ||  想
+|-
+!  scope="row"  |  041_
+|  早  ||  争  ||  相  ||  草  ||  葬  ||  装  ||  走  ||  送  ||  像  ||  憎  ||  造  ||  側  ||  息  ||  束  ||  足  ||  属
+|-
+!  scope="row"  |  042_
+|  賊  ||  族  ||  続  ||  存  ||  損  ||  村  ||  吹  ||  水  ||  数  ||  他  ||  多  ||  太  ||  打  ||  体  ||  対  ||  耐
+|-
+!  scope="row"  |  043_
+|  待  ||  態  ||  替  ||  袋  ||  退  ||  代  ||  台  ||  大  ||  題  ||  達  ||  脱  ||  誰  ||  単  ||  探  ||  胆  ||  誕
+|-
+!  scope="row"  |  044_
+|  壇  ||  断  ||  段  ||  男  ||  談  ||  低  ||  定  ||  底  ||  庭  ||  弟  ||  敵  ||  的  ||  笛  ||  鉄  ||  展  ||  店
+|-
+!  scope="row"  |  045_
+|  転  ||  点  ||  伝  ||  殿  ||  値  ||  知  ||  地  ||  池  ||  置  ||  茶  ||  着  ||  中  ||  仲  ||  忠  ||  昼  ||  注
+|-
+!  scope="row"  |  046_
+|  虫  ||  兆  ||  張  ||  挑  ||  朝  ||  町  ||  調  ||  超  ||  長  ||  頂  ||  鳥  ||  直  ||  沈  ||  渡  ||  登  ||  途
+|-
+!  scope="row"  |  047_
+|  都  ||  努  ||  度  ||  土  ||  奴  ||  怒  ||  倒  ||  党  ||  凍  ||  塔  ||  島  ||  投  ||  東  ||  盗  ||  場  ||  灯
+|-
+!  scope="row"  |  048_
+|  等  ||  答  ||  筒  ||  逃  ||  透  ||  頭  ||  闘  ||  働  ||  動  ||  洞  ||  胴  ||  道  ||  銅  ||  得  ||  特  ||  毒
+|-
+!  scope="row"  |  049_
+|  読  ||  突  ||  追  ||  痛  ||  通  ||  右  ||  運  ||  雲  ||  和  ||  話  ||  惑  ||  腕  ||  夜  ||  野  ||  矢  ||  役
+|-
+!  scope="row"  |  04a_
+|  約  ||  薬  ||  子  ||  与  ||  預  ||  幼  ||  妖  ||  様  ||  用  ||  羊  ||  葉  ||  踊  ||  陽  ||  欲  ||  勇  ||  友
+|-
+!  scope="row"  |  04b_
+|  幽  ||  有  ||  由  ||  遊  ||  雄  ||  0  ||  2  ||  3  ||  4  ||  5  ||  6  ||  7  ||  8  ||  9  ||  ト  ||  リ
+|-
+!  scope="row"  |  04c_
+|  1  ||  A  ||  H  ||  K  ||  N  ||  Q  ||  R  ||  T  ||  V  ||  Z  ||  °  ||  ＾  ||  ※  ||  き  ||  そ  ||  ち
+|-
+!  scope="row"  |  04d_
+|  は  ||  ま  ||  も  ||  ら  ||  る  ||  ろ  ||  を  ||  ん  ||  ノ  ||  ヒ  ||  レ  ||  ワ  ||  B  ||  E  ||  F  ||  L
+|-
+!  scope="row"  |  04e_
+|  O  ||  P  ||  S  ||  う  ||  く  ||  さ  ||  し  ||  じ  ||  と  ||  よ  ||  り  ||  ミ  ||  ヲ  ||  C  ||  D  ||  G
+|-
+!  scope="row"  |  04f_
+|  J  ||  ＊  ||  メ  ||  I  ||  M  ||  W  ||  X  ||  Y  ||  ＋  ||  ざ  ||  ぢ  ||  ど  ||  ね  ||  ひ  ||  ふ  ||  ぶ
+|-
+!  scope="row"  |  050_
+|  み  ||  め  ||  れ  ||  わ  ||  セ  ||  ム  ||  ル  ||  血  ||  玉  ||  口  ||  工  ||  王  ||  三  ||  正  ||  西  ||  U
+|-
+!  scope="row"  |  051_
+|  あ  ||  え  ||  お  ||  か  ||  け  ||  す  ||  せ  ||  た  ||  だ  ||  な  ||  べ  ||  む  ||  や  ||  ゆ  ||  d  ||  ア
+|-
+!  scope="row"  |  052_
+|  シ  ||  ツ  ||  テ  ||  ラ  ||  日  ||  l  ||  （  ||  ）  ||  、  ||  。  ||  ．  ||  ．  ||  ぃ  ||  ？  ||  ！  ||  ウ
+|-
+!  scope="row"  |  053_
+|  カ  ||  …  ||  －  ||  々  ||  ｘ  ||  ー  ||  ～  ||  ＞  ||  ／  ||  ⑩  ||  が  ||  ぱ  ||  ぴ  ||  ぽ  ||  ギ  ||  ゲ
+|-
+!  scope="row"  |  054_
+|  ゴ  ||  ザ  ||  ズ  ||  ゾ  ||  ダ  ||  ヂ  ||  ヅ  ||  バ  ||  パ  ||  ビ  ||  ブ  ||  プ  ||  ベ  ||  ボ  ||  ポ  ||  温
+|-
+!  scope="row"  |  055_
+|  …  ||  ゛  ||  》  ||  『  ||  「  ||  』  ||  ょ  ||  ィ  ||  －  ||  へ  ||  %  ||  ぺ  ||  オ  ||  キ  ||  ケ  ||  チ
+|-
+!  scope="row"  |  056_
+|  ナ  ||  月  ||  巨  ||  入  ||  臣  ||  人  ||  ＆  ||  イ  ||  ク  ||  タ  ||  ド  ||  *  ||  馬  ||  八  ||  平  ||  閉
+|-
+!  scope="row"  |  057_
+|  辺  ||  飛  ||  ぷ  ||  亡  ||  不  ||  風  ||  聞  ||  囲  ||  異  ||  ょ  ||  下  ||  化  ||  果  ||  牙  ||  回  ||  灰
+|-
+!  scope="row"  |  058_
+|  開  ||  階  ||  間  ||  関  ||  ガ  ||  グ  ||  サ  ||  ネ  ||  ピ  ||  ホ  ||  ヤ  ||  ヴ  ||  兄  ||  穴  ||  元  ||  器
+|-
+!  scope="row"  |  059_
+|  帰  ||  記  ||  起  ||  恐  ||  局  ||  戸  ||  故  ||  語  ||  国  ||  困  ||  苦  ||  具  ||  空  ||  軍  ||  面  ||  応
+|-
+!  scope="row"  |  05a_
+|  恩  ||  両  ||  山  ||  世  ||  星  ||  生  ||  声  ||  石  ||  千  ||  仕  ||  士  ||  思  ||  指  ||  止  ||  死  ||  囚
+|-
+!  scope="row"  |  05b_
+|  周  ||  上  ||  冗  ||  心  ||  図  ||  天  ||  同  ||  雨  ||  要  ||  o  ||  ぁ  ||  ぉ  ||  ォ  ||  ッ  ||  ャ  ||  買
+|-
+!  scope="row"  |  05c_
+|  泊  ||  冒  ||  員  ||  引  ||  加  ||  枯  ||  名  ||  明  ||  力  ||  首  ||  消  ||  象  ||  当  ||  白  ||  目  ||  呂
+|-
+!  scope="row"  |  05d_
+|  自  ||  申  ||  い  ||  の  ||  ハ  ||  モ  ||  ぅ  ||  ぇ  ||  ゥ  ||  ぎ  ||  ぐ  ||  ご  ||  ず  ||  ぞ  ||  づ  ||  ぬ
+|-
+!  scope="row"  |  05e_
+|  ば  ||  び  ||  ぼ  ||  ジ  ||  ゼ  ||  デ  ||  げ  ||  ぜ  ||  で  ||  こ  ||  っ  ||  ゃ  ||  ゅ  ||  ァ  ||  つ  ||  エ
+|-
+!  scope="row"  |  05f_
+|  て  ||  マ  ||  ン  ||  に  ||  ほ  ||  ：  ||  コ  ||  ス  ||  ソ  ||  ヌ  ||  フ  ||  ロ  ||  暮  ||  ＿  ||  ｛  ||  ェ
+|-
+!  scope="row"  |  060_
+|  ニ  ||  ユ  ||  ヘ  ||  ペ  ||  鍵  ||  極  ||  滅  ||  職  ||  ュ  ||  ョ  ||  ヨ  ||  了  ||  style="background-color: #eaecf0;"  |    ||  style="background-color: #eaecf0;"  |    ||  style="background-color: #eaecf0;"  |    ||  style="background-color: #eaecf0;"  |  
+|}
+
+==English Translation==
+
+This table is based on the English translation by DQ Translations.
+
+[TODO: Where are the numbers? Verify the values in the table]
+
+=== As seen in RAM ===
+
+The text table as seen in the RAM viewer of Mesen.
+
+[[File:Dragon Quest III (SNES) - Text Table in RAM (EN).png|none]]
+
+===Table===
+
+The space (<code>&nbsp;</code>) character is $3f.
+
+{| class="wikitable" style="text-align: center;"
+|-
+!    !!  _0  !!  _1  !!  _2  !!  _3  !!  _4  !!  _5  !!  _6  !!  _7  !!  _8  !!  _9  !!  _a  !!  _b  !!  _c  !!  _d  !!  _e  !!  _f
+|-
+! scope="row" |  0_
+|  style="background-color: #eaecf0;"  |
+|  A  ||  B  ||  C  ||  D  ||  E  ||  F  ||  G  ||  H  ||  I  ||  J  ||  K  ||  L  ||  M  ||  N  ||  O
+|-
+! scope="row" |  1_
+|  P  ||  Q  ||  R  ||  S  ||  T  ||  U  ||  V  ||  W  ||  X  ||  Y  ||  Z  ||  a  ||  b  ||  c  ||  d  ||  e
+|-
+! scope="row" |  2_
+|  f  ||  g  ||  h  ||  i  ||  j  ||  k  ||  l  ||  m  ||  n  ||  o  ||  p  ||  q  ||  r  ||  s  ||  t  ||  u
+|-
+! scope="row" |  3_
+|  v
+|  w
+|  x
+|  y
+|  z
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  &nbsp;
+|-
+! scope="row" |  4_
+|  style="background-color: #eaecf0;"  |
+|  !
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  '
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  ,
+|  style="background-color: #eaecf0;"  |
+|  .
+|  style="background-color: #eaecf0;"  |
+|-
+! scope="row" |  5_
+|  :
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|}
+
+=== TBL File ===
+
+Download TBL file: <code>[https://raw.githubusercontent.com/TheAnsarya/GameInfo/main/Dragon%20Quest%20III%20(SNES)/Wiki/Files/Dragon%20Quest%20III%20(SNES)%20(EN)%20-%20simple.tbl Dragon Quest III (SNES) (EN) - simple.tbl]</code>
+
+<div class="mw-collapsible mw-collapsed">
+<strong>Table File Contents</strong>
+<div class="mw-collapsible-content">
+<pre>
+01=A
+02=B
+03=C
+04=D
+05=E
+06=F
+07=G
+08=H
+09=I
+0a=J
+0b=K
+0c=L
+0d=M
+0e=N
+0f=O
+10=P
+11=Q
+12=R
+13=S
+14=T
+15=U
+16=V
+17=W
+18=X
+19=Y
+1a=Z
+1b=a
+1c=b
+1d=c
+1e=d
+1f=e
+20=f
+21=g
+22=h
+23=i
+24=j
+25=k
+26=l
+27=m
+28=n
+29=o
+2a=p
+2b=q
+2c=r
+2d=s
+2e=t
+2f=u
+30=v
+31=w
+32=x
+33=y
+34=z
+3f= 
+41=!
+47='
+4c=,
+4e=.
+50=:
+</pre>
+</div>
+</div>
+
+(500000h) Text
+
+{{Internal Data}}

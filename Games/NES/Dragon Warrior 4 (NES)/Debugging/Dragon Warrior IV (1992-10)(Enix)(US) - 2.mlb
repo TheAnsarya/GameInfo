@@ -1,0 +1,185 @@
+﻿NesMemory:2000:PpuControl_2000:7  bit  0\n---- ----\nVPHB SINN\n|||| ||||\n|||| ||++- Base nametable address\n|||| ||    (0 = $2000; 1 = $2400; 2 = $2800; 3 = $2C00)\n|||| |+--- VRAM address increment per CPU read/write of PPUDATA\n|||| |     (0: add 1, going across; 1: add 32, going down)\n|||| +---- Sprite pattern table address for 8x8 sprites\n||||       (0: $0000; 1: $1000; ignored in 8x16 mode)\n|||+------ Background pattern table address (0: $0000; 1: $1000)\n||+------- Sprite size (0: 8x8; 1: 8x16)\n|+-------- PPU master/slave select\n|          (0: read backdrop from EXT pins; 1: output color on EXT pins)\n+--------- Generate an NMI at the start of the\n           vertical blanking interval (0: off; 1: on)
+NesMemory:2001:PpuMask_2001:7  bit  0\n---- ----\nBGRs bMmG\n|||| ||||\n|||| |||+- Display type: (0: color, 1: grayscale)\n|||| ||+-- 1: Show background in leftmost 8 pixels of screen, 0: Hide\n|||| |+--- 1: Show sprites in leftmost 8 pixels of screen, 0: Hide\n|||| +---- 1: Show background\n|||+------ 1: Show sprites\n||+------- Emphasize red\n|+-------- Emphasize green\n+--------- Emphasize blue
+NesMemory:2002:PpuStatus_2002:7  bit  0\n---- ----\nVSO. ....\n|||| ||||\n|||+-++++- Least significant bits previously written into a PPU register\n|||        (due to register not being updated for this address)\n||+------- Sprite overflow. The intent was for this flag to be set\n||         whenever more than eight sprites appear on a scanline, but a\n||         hardware bug causes the actual behavior to be more complicated\n||         and generate false positives as well as false negatives; see\n||         PPU sprite evaluation. This flag is set during sprite\n||         evaluation and cleared at dot 1 (the second dot) of the\n||         pre-render line.\n|+-------- Sprite 0 Hit.  Set when a nonzero pixel of sprite 0 overlaps\n|          a nonzero background pixel; cleared at dot 1 of the pre-render\n|          line.  Used for raster timing.\n+--------- Vertical blank has started (0: not in vblank; 1: in vblank).\n           Set at dot 1 of line 241 (the line *after* the post-render\n           line); cleared after reading $2002 and at dot 1 of the\n           pre-render line.
+NesMemory:2003:OamAddr_2003:Set OAM address - Write only
+NesMemory:2004:OamData_2004:Read/Write OAM data
+NesMemory:2005:PpuScroll_2005:Set PPU scroll, write twice - Write only
+NesMemory:2006:PpuAddr_2006:Set PPU address, write twice - Write only
+NesMemory:2007:PpuData_2007:Read/Write VRAM
+NesMemory:4000:Sq0Duty_4000:DDLC VVVV\nDuty (D), envelope loop / length counter halt (L), constant volume (C), volume/envelope (V)
+NesMemory:4001:Sq0Sweep_4001:EPPP NSSS\nSweep unit: enabled (E), period (P), negate (N), shift (S)
+NesMemory:4002:Sq0Timer_4002:TTTT TTTT\nTimer low (T)
+NesMemory:4003:Sq0Length_4003:LLLL LTTT\nLength counter load (L), timer high (T)
+NesMemory:4004:Sq1Duty_4004:DDLC VVVV\nDuty (D), envelope loop / length counter halt (L), constant volume (C), volume/envelope (V)
+NesMemory:4005:Sq1Sweep_4005:EPPP NSSS\nSweep unit: enabled (E), period (P), negate (N), shift (S)
+NesMemory:4006:Sq1Timer_4006:TTTT TTTT\nTimer low (T)
+NesMemory:4007:Sq1Length_4007:LLLL LTTT\nLength counter load (L), timer high (T)
+NesMemory:4008:TrgLinear_4008:CRRR RRRR\nLength counter halt / linear counter control (C), linear counter load (R)
+NesMemory:400A:TrgTimer_400A:TTTT TTTT\nTimer low (T)
+NesMemory:400B:TrgLength_400B:LLLL LTTT\nLength counter load (L), timer high (T)
+NesMemory:400C:NoiseVolume_400C:--LC VVVV\nEnvelope loop / length counter halt (L), constant volume (C), volume/envelope (V)
+NesMemory:400E:NoisePeriod_400E:L--- PPPP\nLoop noise (L), noise period (P)
+NesMemory:400F:NoiseLength_400F:LLLL L---\nLength counter load (L)
+NesMemory:4010:DmcFreq_4010:IL-- RRRR\nIRQ enable (I), loop (L), frequency (R)
+NesMemory:4011:DmcCounter_4011:-DDD DDDD\nLoad counter (D)
+NesMemory:4012:DmcAddress_4012:AAAA AAAA\nSample address (A)
+NesMemory:4013:DmcLength_4013:LLLL LLLL\nSample length (L)
+NesMemory:4014:SpriteDma_4014:Writing $XX will upload 256 bytes of data from CPU page $XX00-$XXFF to the internal PPU OAM.
+NesMemory:4015:ApuStatus_4015:Read:\nIF-D NT21\nDMC interrupt (I), frame interrupt (F), DMC active (D), length counter > 0 (N/T/2/1)\n\nWrite:\n---D NT21\nEnable DMC (D), noise (N), triangle (T), and pulse channels (2/1)
+NesMemory:4016:Ctrl1_4016:Read (NES - input):\n---4 3210\nRead data from controller port #1.\n\nWrite:\n---- ---A\nOutput data (strobe) to both controllers.
+NesMemory:4017:Ctrl2_FrameCtr_4017:Read (NES - input):\n---4 3210\nRead data from controller port #2.\n\nWrite (Frame counter): MI-- ----\nMode (M, 0 = 4-step, 1 = 5-step), IRQ inhibit flag (I)
+NesMemory:6001:Hero_Status_Ailments
+NesMemory:6002-6003:Hero_Current_HP
+NesMemory:6004-6005:Hero_Current_MP
+NesMemory:6006:Hero_Level
+NesMemory:6007:Hero_Strength
+NesMemory:6008:Hero_Agility
+NesMemory:6009:Hero_Vitality
+NesMemory:600A:Hero_Intelligence
+NesMemory:600B:Hero_Luck
+NesMemory:600C:Hero_UNKNOWN
+NesMemory:600D-600E:Hero_Maximum_HP
+NesMemory:600F-6010:Hero_Maximum_MP
+NesMemory:6011-6013:Hero_XP
+NesMemory:6014-601B:Hero_Items
+NesMemory:601C:Hero_Battle_Spells_1
+NesMemory:601D:Hero_Battle_Spells_2
+NesMemory:601E:Hero_Overworld_Spells
+NesMemory:601F:Cristo_Status_Ailments
+NesMemory:6020-6021:Cristo_Current_HP
+NesMemory:6022-6023:Cristo_Current_MP
+NesMemory:6024:Cristo_Level
+NesMemory:6025:Cristo_Strength
+NesMemory:6026:Cristo_Agility
+NesMemory:6027:Cristo_Vitality
+NesMemory:6028:Cristo_Intelligence
+NesMemory:6029:Cristo_Luck
+NesMemory:602A:Cristo_UNKNOWN
+NesMemory:602B-602C:Cristo_Maximum_HP
+NesMemory:602D-602E:Cristo_Maximum_MP
+NesMemory:602F-6031:Cristo_XP
+NesMemory:6032-6039:Cristo_Items
+NesMemory:603A:Cristo_Battle_Spells_1
+NesMemory:603B:Cristo_Battle_Spells_2
+NesMemory:603C:Cristo_Overworld_Spells
+NesMemory:603D:Nara_Status_Ailments
+NesMemory:603E-603F:Nara_Current_HP
+NesMemory:6040-6041:Nara_Current_MP
+NesMemory:6042:Nara_Level
+NesMemory:6043:Nara_Strength
+NesMemory:6044:Nara_Agility
+NesMemory:6045:Nara_Vitality
+NesMemory:6046:Nara_Intelligence
+NesMemory:6047:Nara_Luck
+NesMemory:6048:Nara_UNKNOWN
+NesMemory:6049-604A:Nara_Maximum_HP
+NesMemory:604B-604C:Nara_Maximum_MP
+NesMemory:604D-604F:Nara_XP
+NesMemory:6050-6057:Nara_Items
+NesMemory:6058:Nara_Battle_Spells_1
+NesMemory:6059:Nara_Battle_Spells_2
+NesMemory:605A:Nara_Overworld_Spells
+NesMemory:605B:Mara_Status_Ailments
+NesMemory:605C-605D:Mara_Current_HP
+NesMemory:605E-605F:Mara_Current_MP
+NesMemory:6060:Mara_Level
+NesMemory:6061:Mara_Strength
+NesMemory:6062:Mara_Agility
+NesMemory:6063:Mara_Vitality
+NesMemory:6064:Mara_Intelligence
+NesMemory:6065:Mara_Luck
+NesMemory:6066:Mara_UNKNOWN
+NesMemory:6067-6068:Mara_Maximum_HP
+NesMemory:6069-606A:Mara_Maximum_MP
+NesMemory:606B-606D:Mara_XP
+NesMemory:606E-6075:Mara_Items
+NesMemory:6076:Mara_Battle_Spells_1
+NesMemory:6077:Mara_Battle_Spells_2
+NesMemory:6078:Mara_Overworld_Spells
+NesMemory:6079:Brey_Status_Ailments
+NesMemory:607A-607B:Brey_Current_HP
+NesMemory:607C-607D:Brey_Current_MP
+NesMemory:607E:Brey_Level
+NesMemory:607F:Brey_Strength
+NesMemory:6080:Brey_Agility
+NesMemory:6081:Brey_Vitality
+NesMemory:6082:Brey_Intelligence
+NesMemory:6083:Brey_Luck
+NesMemory:6084:Brey_UNKNOWN
+NesMemory:6085-6086:Brey_Maximum_HP
+NesMemory:6087-6088:Brey_Maximum_MP
+NesMemory:6089-608B:Brey_XP
+NesMemory:608C-6093:Brey_Items
+NesMemory:6094:Brey_Battle_Spells_1
+NesMemory:6095:Brey_Battle_Spells_2
+NesMemory:6096:Brey_Overworld_Spells
+NesMemory:6097:Taloon_Status_Ailments
+NesMemory:6098-6099:Taloon_Current_HP
+NesMemory:609A-609B:Taloon_Current_MP
+NesMemory:609C:Taloon_Level
+NesMemory:609D:Taloon_Strength
+NesMemory:609E:Taloon_Agility
+NesMemory:609F:Taloon_Vitality
+NesMemory:60A0:Taloon_Intelligence
+NesMemory:60A1:Taloon_Luck
+NesMemory:60A2:Taloon_UNKNOWN
+NesMemory:60A3-60A4:Taloon_Maximum_HP
+NesMemory:60A5-60A6:Taloon_Maximum_MP
+NesMemory:60A7-60A9:Taloon_XP
+NesMemory:60AA-60B1:Taloon_Items
+NesMemory:60B2:Taloon_Battle_Spells_1
+NesMemory:60B3:Taloon_Battle_Spells_2
+NesMemory:60B4:Taloon_Overworld_Spells
+NesMemory:60B5:Ragnar_Status_Ailments
+NesMemory:60B6-60B7:Ragnar_Current_HP
+NesMemory:60B8-60B9:Ragnar_Current_MP
+NesMemory:60BA:Ragnar_Level
+NesMemory:60BB:Ragnar_Strength
+NesMemory:60BC:Ragnar_Agility
+NesMemory:60BD:Ragnar_Vitality
+NesMemory:60BE:Ragnar_Intelligence
+NesMemory:60BF:Ragnar_Luck
+NesMemory:60C0:Ragnar_UNKNOWN
+NesMemory:60C1-60C2:Ragnar_Maximum_HP
+NesMemory:60C3-60C4:Ragnar_Maximum_MP
+NesMemory:60C5-60C7:Ragnar_XP
+NesMemory:60C8-60CF:Ragnar_Items
+NesMemory:60D0:Ragnar_Battle_Spells_1
+NesMemory:60D1:Ragnar_Battle_Spells_2
+NesMemory:60D2:Ragnar_Overworld_Spells
+NesMemory:60D3:Alena_Status_Ailments
+NesMemory:60D4-60D5:Alena_Current_HP
+NesMemory:60D6-60D7:Alena_Current_MP
+NesMemory:60D8:Alena_Level
+NesMemory:60D9:Alena_Strength
+NesMemory:60DA:Alena_Agility
+NesMemory:60DB:Alena_Vitality
+NesMemory:60DC:Alena_Intelligence
+NesMemory:60DD:Alena_Luck
+NesMemory:60DE:Alena_UNKNOWN
+NesMemory:60DF-60E0:Alena_Maximum_HP
+NesMemory:60E1-60E2:Alena_Maximum_MP
+NesMemory:60E3-60E5:Alena_XP
+NesMemory:60E6-60ED:Alena_Items
+NesMemory:60EE:Alena_Battle_Spells_1
+NesMemory:60EF:Alena_Battle_Spells_2
+NesMemory:60F0:Alena_Overworld_Spells
+NesMemory:610F-6114:Party_Member_Other_1
+NesMemory:6115-611A:Party_Member_Other_2
+NesMemory:6157-6159:General_Gold
+NesMemory:615A:General_Chapter_Number
+NesMemory:615B:General_Battle_Tactics
+NesMemory:6165-6167:General_Return_Locations
+NesMemory:616A:Party_Members_Order_1
+NesMemory:616B:Party_Members_Order_2
+NesMemory:616C:Party_Members_Order_3
+NesMemory:616D:Party_Members_Order_4
+NesMemory:625D-6277:Flags_Treasure_Chests
+NesMemory:62A2:General_Small_Medals
+NesMemory:62AD-62AF:General_Casino_Coins
+NesMemory:62E7:C3_Lakanaba_Shop_Boomerang_Count
+NesMemory:62E8:C3_Lakanaba_Shop_Chain_Sickle_Count
+NesMemory:62E9:C3_Lakanaba_Shop_Sword_of_Malice_Count
+NesMemory:62ED:General_DayNight_Counter
+NesInternalRam:0063:World_Map_Number:Town/Dungeon map number
+NesInternalRam:0064:World_SubMap_Number:Town/Dungeon sub-map number

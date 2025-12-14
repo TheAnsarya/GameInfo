@@ -1,0 +1,656 @@
+{{rommap}}
+
+==Main==
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Description
+|-
+|  Character Class  ||  $c4179e-$c424a8  ||  $d0b bytes  ||  Character Classes ([[Dragon Quest III (SNES)/ROM map/Character Classes|Explanation]])
+|-
+|}
+
+==Text and Script==
+
+===Dialog Font===
+
+Referenced code: [https://github.com/ButThouMust/dq6-sfc/blob/main/FontDumperDQ3.java on github]
+
+Dialog font lookup table: [https://raw.githubusercontent.com/TheAnsarya/GameInfo/refs/heads/main/Dragon%20Quest%20III%20(SNES)/Debugging/ROM%20values/Dialog%20font%20lookup%20table.txt data file]
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Description
+|-
+|  Font Data  ||  $c10ed3 - $c151a9  ||  $42d7 bytes  || Dialog font data
+|-
+|  Font Settings  ||  $c151aa - $c152a3  ||  $fa bytes  ||  Dialog font lookup table, 50 structs of 5 bytes each
+|-
+|  Font Settings  ||  $c1bbd5  ||  byte  ||  ROM Bank for the Dialog script font (value = $c1)
+|}
+
+====Dialog font lookup table structure====
+gggggggg wwwwgggg aaaaaaaa aaaaaaaa 00hhhh00
+
+g: group size, 12 bits
+
+w: width, 4 bits
+
+a: offset address, 16 bits (combines with bank to create pointer to data)
+
+h: height, 4 bits
+
+==Monsters==
+For now, these are rom file addresses. Placeholder for much more complete monster info.
+The data will be moved out and a more general explanation will be added.
+
+Details can be found in the [[Dragon Quest III (SNES)/ROM map/Monsters|Monsters]] subpage.
+
+====Data====
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Description
+|-
+|  Stats  ||  $020028 - $020029  ||  word  ||  Monster #01 - Slime (スライム) - experience points gained: 4
+|-
+|  Stats  ||  $02002a  ||  byte  ||  Monster #01 - Slime (スライム) - gold gained: 2
+|-
+|  Stats  ||  $02004d - $02004e  ||  word  ||  Monster #02 - Raven (おおがらす) - experience points gained: 6
+|-
+|  Stats  ||  $02004f  ||  byte  ||  Monster #02 - Raven (おおがらす) - gold gained: 3
+|}
+
+===Names===
+All strings end with <code>ac</code> and are encoded according to the [[Dragon_Quest_III:TBL#Table|Text Table]]
+
+{| class="wikitable sortable"
+|-
+!  Index  !!  Address  !!  Size  !!  Japanese  !!  English  !!  Data
+|-
+|  01  ||  $3ed958 - $3ed95c  ||  5 bytes  ||  スライム  ||  Slime  ||  <code>4F 69 44 63 AC</code>
+|-
+|  02  ||  $3ed95d - $3ed962  ||  6 bytes  ||  おおがらす  ||  Raven  ||  <code>10 10 C9 32 18 AC</code>
+|-
+|  03  ||  $3ed963 - $3ed96a  ||  8 bytes  ||  いっかくうさぎ  ||  Pointed Rabbit  ||  <code>0D 3F 11 13 0E 16 CA AC</code>
+|-
+|  04  ||  $3ed96b - $3ed971  ||  7 bytes  ||  おおありくい  ||  Large Anteater  ||  <code>10 10 0C 33 13 0D AC</code>
+|-
+|  05  ||  $3ed972 - $3ed979  ||  8 bytes  ||  じんめんちょう  ||  Human Face Butterfly  ||  <code>CF 39 2D 39 1C 42 0E AC</code>
+|-
+|  06  ||  $3ed97a - $3ed97f  ||  6 bytes  ||  フロッガー  ||  Frogger  ||  <code>5E 6D 76 DE 7D AC</code>
+|-
+|  07  ||  $3ed980 - $3ed987  ||  8 bytes  ||  バブルスライム  ||  Bubble Slime  ||  <code>ED EF 6B 4F 69 44 63 AC</code>
+|-
+|  08  ||  $3ed988 - $3ed98e  ||  7 bytes  ||  まほうつかい  ||  Magician  ||  <code>2A 29 0E 1D 11 0D AC</code>
+|-
+|  09  ||  $3ed98f - $3ed994  ||  6 bytes  ||  さそりばち  ||  Scorpion Wasp  ||  <code>16 1A 33 D8 1C AC</code>
+|-
+|  0a  ||  $3ed995 - $3ed99c  ||  8 bytes  ||  ホイミスライム  ||  Hoimi Slime  ||  <code>60 44 62 4F 69 44 63 AC</code>
+|-
+|  0b  ||  $3ed99d - $3ed9a4  ||  8 bytes  ||  おばけありくい  ||  Ghost Anteater  ||  <code>10 D8 14 0C 33 13 0D AC</code>
+|-
+|  0c  ||  $3ed9a5 - $3ed9ab  ||  7 bytes  ||  アルミラージ  ||  Almirage  ||  <code>43 6B 62 69 7D E4 AC</code>
+|-
+|  0d  ||  $3ed9ac - $3ed9b3  ||  8 bytes  ||  ポイズントード  ||  Poison Toad  ||  <code>FB 44 E5 70 56 7D EC AC</code>
+|-
+|  0e  ||  $3ed9b4 - $3ed9ba  ||  7 bytes  ||  キャタピラー  ||  Caterpillar  ||  <code>49 77 52 F8 69 7D AC</code>
+|-
+|  0f  ||  $3ed9bb - $3ed9c2  ||  8 bytes  ||  こうもりおとこ  ||  Bat Man  ||  <code>15 0E 2E 33 10 1F 15 AC</code>
+|-
+|  10  ||  $3ed9c3 - $3ed9ca  ||  8 bytes  ||  アニマルゾンビ  ||  Animal Zombie  ||  <code>43 58 61 6B E7 70 EE AC</code>
+|-
+|  11  ||  $3ed9cb - $3ed9d0  ||  6 bytes  ||  キラービー  ||  Killer Bee  ||  <code>49 69 7D EE 7D AC</code>
+|-
+|  12  ||  $3ed9d1 - $3ed9d7  ||  7 bytes  ||  ぐんたいガニ  ||  -  ||  <code>CB 39 1B 0D DE 58 AC</code>
+|-
+|  13  ||  $3ed9d8 - $3ed9db  ||  4 bytes  ||  ギズモ  ||  Gizmo  ||  <code>DF E5 65 AC</code>
+|-
+|  14  ||  $3ed9dc - $3ed9e2  ||  7 bytes  ||  おばけキノコ  ||  -  ||  <code>10 D8 14 49 5B 4C AC</code>
+|-
+|  15  ||  $3ed9e3 - $3ed9e9  ||  7 bytes  ||  どくイモムシ  ||  -  ||  <code>D7 13 44 65 63 4E AC</code>
+|-
+|  16  ||  $3ed9ea - $3ed9f1  ||  8 bytes  ||  デスフラッター  ||  Death Flatter  ||  <code>EB 4F 5E 69 76 52 7D AC</code>
+|-
+|  17  ||  $3ed9f2 - $3ed9f9  ||  8 bytes  ||  バリイドドッグ  ||  Bariaid Dog  ||  <code>ED 6A 44 EC EC 76 E0 AC</code>
+|-
+|  18  ||  $3ed9fa - $3ed9fe  ||  5 bytes  ||  マタンゴ  ||  Matango  ||  <code>61 52 70 E2 AC</code>
+|-
+|  19  ||  $3ed9ff - $3eda05  ||  7 bytes  ||  あやしいかげ  ||  Suspicious Silhouette  ||  <code>0C 2F 17 0D 11 CC AC</code>
+|-
+|  1a  ||  $3eda06 - $3eda0b  ||  6 bytes  ||  バンパイア  ||  Vampire  ||  <code>ED 70 F7 44 43 AC</code>
+|-
+|  1b  ||  $3eda0c - $3eda11  ||  6 bytes  ||  ひとくいが  ||  Cannibal Moth  ||  <code>26 1F 13 0D C9 AC</code>
+|-
+|  1c  ||  $3eda12 - $3eda19  ||  8 bytes  ||  さまようよろい  ||  Roaming Armor  ||  <code>16 2A 31 0E 31 36 0D AC</code>
+|-
+|  1d  ||  $3eda1a - $3eda21  ||  8 bytes  ||  キャットフライ  ||  Cat Fly  ||  <code>49 77 76 56 5E 69 44 AC</code>
+|-
+|  1e  ||  $3eda22 - $3eda28  ||  7 bytes  ||  だいおうガマ  ||  -  ||  <code>D3 0D 10 0E DE 61 AC</code>
+|-
+|  1f  ||  $3eda29 - $3eda2e  ||  6 bytes  ||  あばれザル  ||  -  ||  <code>0C D8 35 E3 6B AC</code>
+|-
+|  20  ||  $3eda2f - $3eda35  ||  7 bytes  ||  わらいぶくろ  ||  Laughing Sack  ||  <code>37 32 0D DA 13 36 AC</code>
+|-
+|  21  ||  $3eda36 - $3eda3c  ||  7 bytes  ||  ミイラおとこ  ||  -  ||  <code>62 44 69 10 1F 15 AC</code>
+|-
+|  22  ||  $3eda3d - $3eda44  ||  8 bytes  ||  じごくのハサミ  ||  -  ||  <code>CF CD 13 24 5C 4D 62 AC</code>
+|-
+|  23  ||  $3eda45 - $3eda49  ||  5 bytes  ||  ドルイド  ||  Druid  ||  <code>EC 6B 44 EC AC</code>
+|-
+|  24  ||  $3eda4a - $3eda50  ||  7 bytes  ||  かえんムカデ  ||  -  ||  <code>11 0F 39 63 48 EB AC</code>
+|-
+|  25  ||  $3eda51 - $3eda54  ||  4 bytes  ||  マミー  ||  Mummy  ||  <code>61 62 7D AC</code>
+|-
+|  26  ||  $3eda55 - $3eda5c  ||  8 bytes  ||  マージマタンゴ  ||  Mage Matango  ||  <code>61 7D E4 61 52 70 E2 AC</code>
+|-
+|  27  ||  $3eda5d - $3eda64  ||  8 bytes  ||  ハンターフライ  ||  Hunter Fly  ||  <code>5C 70 52 7D 5E 69 44 AC</code>
+|-
+|  28  ||  $3eda65 - $3eda6c  ||  8 bytes  ||  デスジャッカル  ||  Death Jackal  ||  <code>EB 4F E4 77 76 48 6B AC</code>
+|-
+|  29  ||  $3eda6d - $3eda73  ||  7 bytes  ||  げんじゅつし  ||  Witchcraft Expert  ||  <code>CC 39 CF 41 1D 17 AC</code>
+|-
+|  2a  ||  $3eda74 - $3eda7a  ||  7 bytes  ||  ヒートギズモ  ||  Heat Gizmo  ||  <code>5D 7D 56 DF E5 65 AC</code>
+|-
+|  2b  ||  $3eda7b - $3eda80  ||  6 bytes  ||  アントベア  ||  Ant Bear  ||  <code>43 70 56 F0 43 AC</code>
+|-
+|  2c  ||  $3eda81 - $3eda88  ||  8 bytes  ||  ベホマスライム  ||  Behoma Slime  ||  <code>F0 60 61 4F 69 44 63 AC</code>
+|-
+|  2d  ||  $3eda89 - $3eda90  ||  8 bytes  ||  マッドオックス  ||  Mad Ox  ||  <code>61 76 EC 47 76 4A 4F AC</code>
+|-
+|  2e  ||  $3eda91 - $3eda98  ||  8 bytes  ||  キャットバット  ||  Cat Bat  ||  <code>49 77 76 56 ED 76 56 AC</code>
+|-
+|  2f  ||  $3eda99 - $3eda9f  ||  7 bytes  ||  エビルマージ  ||  Evil Mage  ||  <code>46 EE 6B 61 7D E4 AC</code>
+|-
+|  30  ||  $3edaa0 - $3edaa6  ||  7 bytes  ||  キラーエイプ  ||  Killer Ape  ||  <code>49 69 7D 46 44 F9 AC</code>
+|-
+|  31  ||  $3edaa7 - $3edaab  ||  5 bytes  ||  ガルーダ  ||  Garuda  ||  <code>DE 6B 7D E8 AC</code>
+|-
+|  32  ||  $3edaac - $3edab3  ||  8 bytes  ||  メタルスライム  ||  Metal Slime  ||  <code>64 52 6B 4F 69 44 63 AC</code>
+|-
+|  33  ||  $3edab4 - $3edab9  ||  6 bytes  ||  ゴートドン  ||  Goat Don  ||  <code>E2 7D 56 EC 70 AC</code>
+|-
+|  34  ||  $3edaba - $3edabf  ||  6 bytes  ||  さつじんき  ||  Devilish Murderer  ||  <code>16 1D CF 39 12 AC</code>
+|-
+|  35  ||  $3edac0 - $3edac6  ||  7 bytes  ||  ベビーサタン  ||  Baby Satan  ||  <code>F0 EE 7D 4D 52 70 AC</code>
+|-
+|  36  ||  $3edac7 - $3edacd  ||  7 bytes  ||  きめんどうし  ||  Devil Mask Sorceror  ||  <code>12 2D 39 D7 0E 17 AC</code>
+|-
+|  37  ||  $3edace - $3edad4  ||  7 bytes  ||  ひとくいばこ  ||  Cannibal Box  ||  <code>26 1F 13 0D D8 15 AC</code>
+|-
+|  38  ||  $3edad5 - $3edadc  ||  8 bytes  ||  エリミネーター  ||  Eliminator  ||  <code>46 6A 62 5A 7D 52 7D AC</code>
+|-
+|  39  ||  $3edadd - $3edae3  ||  7 bytes  ||  おおくちばし  ||  Large Beak  ||  <code>10 10 13 1C D8 17 AC</code>
+|-
+|  3a  ||  $3edae4 - $3edaeb  ||  8 bytes  ||  スライムつむり  ||  -  ||  <code>4F 69 44 63 1D 2C 33 AC</code>
+|-
+|  3b  ||  $3edaec - $3edaf3  ||  8 bytes  ||  スカイドラゴン  ||  Sky Dragon  ||  <code>4F 48 44 EC 69 E2 70 AC</code>
+|-
+|  3c  ||  $3edaf4 - $3edaf9  ||  6 bytes  ||  バーナバス  ||  Barnabas  ||  <code>ED 7D 57 ED 4F AC</code>
+|-
+|  3d  ||  $3edafa - $3edafd  ||  4 bytes  ||  まじょ  ||  Witch  ||  <code>2A CF 42 AC</code>
+|-
+|  3e  ||  $3edafe - $3edb05  ||  8 bytes  ||  デッドペッカー  ||  Dead Pecker  ||  <code>EB 76 EC FA 76 48 7D AC</code>
+|-
+|  3f  ||  $3edb06 - $3edb0d  ||  8 bytes  ||  じごくのよろい  ||  Hell Armor  ||  <code>CF CD 13 24 31 36 0D AC</code>
+|-
+|  40  ||  $3edb0e - $3edb15  ||  8 bytes  ||  マリンスライム  ||  Marine Slime  ||  <code>61 6A 70 4F 69 44 63 AC</code>
+|-
+|  41  ||  $3edb16 - $3edb1c  ||  7 bytes  ||  しびれくらげ  ||  Numb Jellyfish  ||  <code>17 D9 35 13 32 CC AC</code>
+|-
+|  42  ||  $3edb1d - $3edb21  ||  5 bytes  ||  マーマン  ||  Merman  ||  <code>61 7D 61 70 AC</code>
+|-
+|  43  ||  $3edb22 - $3edb28  ||  7 bytes  ||  だいおうイカ  ||  -  ||  <code>D3 0D 10 0E 44 48 AC</code>
+|-
+|  44  ||  $3edb29 - $3edb2d  ||  5 bytes  ||  ガニラス  ||  Ganiras  ||  <code>DE 58 69 4F AC</code>
+|-
+|  45  ||  $3edb2e - $3edb35  ||  8 bytes  ||  マーマンダイン  ||  Merman Dyne  ||  <code>61 7D 61 70 E8 44 70 AC</code>
+|-
+|  46  ||  $3edb36 - $3edb3c  ||  7 bytes  ||  ヘルコンドル  ||  Hell Condor  ||  <code>5F 6B 4C 70 EC 6B AC</code>
+|-
+|  47  ||  $3edb3d - $3edb43  ||  7 bytes  ||  ごうけつぐま  ||  Overpowering Bear  ||  <code>CD 0E 14 1D CB 2A AC</code>
+|-
+|  48  ||  $3edb44 - $3edb4b  ||  8 bytes  ||  くさったしたい  ||  Rotten Corpse  ||  <code>13 16 3F 1B 17 1B 0D AC</code>
+|-
+|  49  ||  $3edb4c - $3edb52  ||  7 bytes  ||  ビッグホーン  ||  Big Horn  ||  <code>EE 76 E0 60 7D 70 AC</code>
+|-
+|  4a  ||  $3edb53 - $3edb59  ||  7 bytes  ||  しびれあげは  ||  Paralysis Swallowtail  ||  <code>17 D9 35 0C CC 25 AC</code>
+|-
+|  4b  ||  $3edb5a - $3edb61  ||  8 bytes  ||  どくどくゾンビ  ||  -  ||  <code>D7 13 D7 13 E7 70 EE AC</code>
+|-
+|  4c  ||  $3edb62 - $3edb67  ||  6 bytes  ||  アカイライ  ||  Akairai  ||  <code>43 48 44 69 44 AC</code>
+|-
+|  4d  ||  $3edb68 - $3edb6f  ||  8 bytes  ||  キラーアーマー  ||  Killer Armor  ||  <code>49 69 7D 43 7D 61 7D AC</code>
+|-
+|  4e  ||  $3edb70 - $3edb77  ||  8 bytes  ||  デスストーカー  ||  Death Stalker  ||  <code>EB 4F 4F 56 7D 48 7D AC</code>
+|-
+|  4f  ||  $3edb78 - $3edb7f  ||  8 bytes  ||  ようがんまじん  ||  Lava Devil  ||  <code>31 0E C9 39 2A CF 39 AC</code>
+|-
+|  50  ||  $3edb80 - $3edb85  ||  6 bytes  ||  シャーマン  ||  Shaman  ||  <code>4E 77 7D 61 70 AC</code>
+|-
+|  51  ||  $3edb86 - $3edb8c  ||  7 bytes  ||  まほうおばば  ||  Magic Hag  ||  <code>2A 29 0E 10 D8 D8 AC</code>
+|-
+|  52  ||  $3edb8d - $3edb91  ||  5 bytes  ||  シャドー  ||  Shadow  ||  <code>4E 77 EC 7D AC</code>
+|-
+|  53  ||  $3edb92 - $3edb99  ||  8 bytes  ||  ひょうがまじん  ||  Glacier Devil  ||  <code>26 42 0E C9 2A CF 39 AC</code>
+|-
+|  54  ||  $3edb9a - $3edb9d  ||  4 bytes  ||  キメラ  ||  Chimera  ||  <code>49 64 69 AC</code>
+|-
+|  55  ||  $3edb9e - $3edba1  ||  4 bytes  ||  コング  ||  Kong  ||  <code>4C 70 E0 AC</code>
+|-
+|  56  ||  $3edba2 - $3edba6  ||  5 bytes  ||  ガメゴン  ||  Gamegon  ||  <code>DE 64 E2 70 AC</code>
+|-
+|  57  ||  $3edba7 - $3edbae  ||  8 bytes  ||  ごくらくちょう  ||  Bird of Paradise  ||  <code>CD 13 32 13 1C 42 0E AC</code>
+|-
+|  58  ||  $3edbaf - $3edbb5  ||  7 bytes  ||  ばくだんいわ  ||  Bomb Rock  ||  <code>D8 13 D3 39 0D 37 AC</code>
+|-
+|  59  ||  $3edbb6 - $3edbbb  ||  6 bytes  ||  グリズリー  ||  Grizzly  ||  <code>E0 6A E5 6A 7D AC</code>
+|-
+|  5a  ||  $3edbbc - $3edbc3  ||  8 bytes  ||  ゾンビマスター  ||  Zombie Master  ||  <code>E7 70 EE 61 4F 52 7D AC</code>
+|-
+|  5b  ||  $3edbc4 - $3edbcb  ||  8 bytes  ||  ガメゴンロード  ||  Gamegon Lord  ||  <code>DE 64 E2 70 6D 7D EC AC</code>
+|-
+|  5c  ||  $3edbcc - $3edbd3  ||  8 bytes  ||  スノードラゴン  ||  Snow Dragon  ||  <code>4F 5B 7D EC 69 E2 70 AC</code>
+|-
+|  5d  ||  $3edbd4 - $3edbd7  ||  4 bytes  ||  トロル  ||  Troll  ||  <code>56 6D 6B AC</code>
+|-
+|  5e  ||  $3edbd8 - $3edbdf  ||  8 bytes  ||  フロストギズモ  ||  Frost Gizmo  ||  <code>5E 6D 4F 56 DF E5 65 AC</code>
+|-
+|  5f  ||  $3edbe0 - $3edbe7  ||  8 bytes  ||  おどるほうせき  ||  Dancing Jewel  ||  <code>10 D7 34 29 0E 19 12 AC</code>
+|-
+|  60  ||  $3edbe8 - $3edbee  ||  7 bytes  ||  ミニデーモン  ||  Mini Demon  ||  <code>62 58 EB 7D 65 70 AC</code>
+|-
+|  61  ||  $3edbef - $3edbf5  ||  7 bytes  ||  テンタクルス  ||  Tentacles  ||  <code>55 70 52 4A 6B 4F AC</code>
+|-
+|  62  ||  $3edbf6 - $3edbfd  ||  8 bytes  ||  がいこつけんし  ||  Skeleton Swordsman  ||  <code>C9 0D 15 1D 14 39 17 AC</code>
+|-
+|  63  ||  $3edbfe - $3edc02  ||  5 bytes  ||  ミミック  ||  Mimic  ||  <code>62 62 76 4A AC</code>
+|-
+|  64  ||  $3edc03 - $3edc09  ||  7 bytes  ||  じごくのきし  ||  Knight of Hell  ||  <code>CF CD 13 24 12 17 AC</code>
+|-
+|  65  ||  $3edc0a - $3edc10  ||  7 bytes  ||  ホロゴースト  ||  Horror Ghost  ||  <code>60 6D E2 7D 4F 56 AC</code>
+|-
+|  66  ||  $3edc11 - $3edc18  ||  8 bytes  ||  やまたのおろち  ||  Mythical Serpent of Eight Heads  ||  <code>2F 2A 1B 24 10 36 1C AC</code>
+|-
+|  67  ||  $3edc19 - $3edc20  ||  8 bytes  ||  うごくせきぞう  ||  Moving Stone Statue  ||  <code>0E CD 13 19 12 D2 0E AC</code>
+|-
+|  68  ||  $3edc21 - $3edc27  ||  7 bytes  ||  サラマンダー  ||  Salamander  ||  <code>4D 69 61 70 E8 7D AC</code>
+|-
+|  69  ||  $3edc28 - $3edc2e  ||  7 bytes  ||  スライムベス  ||  Slime Bess  ||  <code>4F 69 44 63 F0 4F AC</code>
+|-
+|  6a  ||  $3edc2f - $3edc34  ||  6 bytes  ||  マドハンド  ||  Mud Hand  ||  <code>61 EC 5C 70 EC AC</code>
+|-
+|  6b  ||  $3edc35 - $3edc3b  ||  7 bytes  ||  まおうのかげ  ||  -  ||  <code>2A 10 0E 24 11 CC AC</code>
+|-
+|  6c  ||  $3edc3c - $3edc42  ||  7 bytes  ||  マクロベータ  ||  Macro Beta  ||  <code>61 4A 6D F0 7D 52 AC</code>
+|-
+|  6d  ||  $3edc43 - $3edc49  ||  7 bytes  ||  はぐれメタル  ||  -  ||  <code>25 CB 35 64 52 6B AC</code>
+|-
+|  6e  ||  $3edc4a - $3edc4d  ||  4 bytes  ||  グール  ||  Ghoul  ||  <code>E0 7D 6B AC</code>
+|-
+|  6f  ||  $3edc4e - $3edc55  ||  8 bytes  ||  ライオンヘッド  ||  Lion Head  ||  <code>69 44 47 70 5F 76 EC AC</code>
+|-
+|  70  ||  $3edc56 - $3edc5c  ||  7 bytes  ||  ボストロール  ||  -  ||  <code>F1 4F 56 6D 7D 6B AC</code>
+|-
+|  71  ||  $3edc5d - $3edc63  ||  7 bytes  ||  ゴールドマン  ||  Gold Man  ||  <code>E2 7D 6B EC 61 70 AC</code>
+|-
+|  72  ||  $3edc64 - $3edc69  ||  6 bytes  ||  スカルゴン  ||  Skull Gon  ||  <code>4F 48 6B E2 70 AC</code>
+|-
+|  73  ||  $3edc6a - $3edc71  ||  8 bytes  ||  キングマーマン  ||  King Merman  ||  <code>49 70 E0 61 7D 61 70 AC</code>
+|-
+|  74  ||  $3edc72 - $3edc77  ||  6 bytes  ||  クラーゴン  ||  Kragon  ||  <code>4A 69 7D E2 70 AC</code>
+|-
+|  75  ||  $3edc78 - $3edc7f  ||  8 bytes  ||  ダースリカント  ||  Darth Rikanto  ||  <code>E8 7D 4F 6A 48 70 56 AC</code>
+|-
+|  76  ||  $3edc80 - $3edc85  ||  6 bytes  ||  だいまじん  ||  Great Devil  ||  <code>D3 0D 2A CF 39 AC</code>
+|-
+|  77  ||  $3edc86 - $3edc8a  ||  5 bytes  ||  ラゴンヌ  ||  Ragon'nu  ||  <code>69 E2 70 59 AC</code>
+|-
+|  78  ||  $3edc8b - $3edc91  ||  7 bytes  ||  アークマージ  ||  Arch Mage  ||  <code>43 7D 4A 61 7D E4 AC</code>
+|-
+|  79  ||  $3edc92 - $3edc98  ||  7 bytes  ||  メイジキメラ  ||  Mage Chimera  ||  <code>64 44 E4 49 64 69 AC</code>
+|-
+|  7a  ||  $3edc99 - $3edc9f  ||  7 bytes  ||  サタンパピー  ||  Satan Puppy  ||  <code>4D 52 70 F7 F8 7D AC</code>
+|-
+|  7b  ||  $3edca0 - $3edca3  ||  4 bytes  ||  ヒドラ  ||  Hydra  ||  <code>5D EC 69 AC</code>
+|-
+|  7c  ||  $3edca4 - $3edcaa  ||  7 bytes  ||  トロルキング  ||  Troll King  ||  <code>56 6D 6B 49 70 E0 AC</code>
+|-
+|  7d  ||  $3edcab - $3edcaf  ||  5 bytes  ||  ドラゴン  ||  Dragon  ||  <code>EC 69 E2 70 AC</code>
+|-
+|  7e  ||  $3edcb0 - $3edcb4  ||  5 bytes  ||  バルログ  ||  Balrog  ||  <code>ED 6B 6D E0 AC</code>
+|-
+|  7f  ||  $3edcb5 - $3edcbc  ||  8 bytes  ||  ドラゴンゾンビ  ||  Dragon Zombie  ||  <code>EC 69 E2 70 E7 70 EE AC</code>
+|-
+|  80  ||  $3edcbd - $3edcc3  ||  7 bytes  ||  マントゴーア  ||  Mantgoa  ||  <code>61 70 56 E2 7D 43 AC</code>
+|-
+|  81  ||  $3edcc4 - $3edcc9  ||  6 bytes  ||  ソードイド  ||  Sword Id  ||  <code>51 7D EC 44 EC AC</code>
+|-
+|  82  ||  $3edcca - $3edcd0  ||  7 bytes  ||  キングヒドラ  ||  King Hydra  ||  <code>49 70 E0 5D EC 69 AC</code>
+|-
+|  83  ||  $3edcd1 - $3edcd8  ||  8 bytes  ||  バラモスブロス  ||  Baramos Bros  ||  <code>ED 69 65 4F EF 6D 4F AC</code>
+|-
+|  84  ||  $3edcd9 - $3edce0  ||  8 bytes  ||  バラモスゾンビ  ||  Baramos Zombie  ||  <code>ED 69 65 4F E7 70 EE AC</code>
+|-
+|  85  ||  $3edce1 - $3edce5  ||  5 bytes  ||  バラモス  ||  Baramos  ||  <code>ED 69 65 4F AC</code>
+|-
+|  86  ||  $3edce6 - $3edce9  ||  4 bytes  ||  ゾーマ  ||  Zoma  ||  <code>E7 7D 61 AC</code>
+|-
+|  87  ||  $3edcea - $3edcee  ||  5 bytes  ||  オルテガ  ||  Orutega  ||  <code>47 6B 55 DE AC</code>
+|-
+|  88  ||  $3edcef - $3edcf3  ||  5 bytes  ||  カンダタ  ||  Kandata  ||  <code>48 70 E8 52 AC</code>
+|-
+|  89  ||  $3edcf4 - $3edcfb  ||  8 bytes  ||  カンダタこぶん  ||  -  ||  <code>48 70 E8 52 15 DA 39 AC</code>
+|-
+|  8a  ||  $3edcfc - $3edd01  ||  6 bytes  ||  けいけんち  ||  Experience Value  ||  <code>14 0D 14 39 1C AC</code>
+|-
+|  8b  ||  $3edd02 - $3edd05  ||  4 bytes  ||  おかね  ||  Gold  ||  <code>10 11 23 AC</code>
+|-
+|  8c  ||  $3edd06 - $3edd0c  ||  7 bytes  ||  せんたくバカ  ||  Selection Idiot  ||  <code>19 39 1B 13 ED 48 AC</code>
+|-
+|  8d  ||  $3edd0d - $3edd15  ||  9 bytes  ||  せんたくにんげん  ||  Selection Human  ||  <code>19 39 1B 13 21 39 CC 39 AC</code>
+|-
+|  8e  ||  $3edd16 - $3edd1c  ||  7 bytes  ||  せんたくかみ  ||  Selection Deity  ||  <code>19 39 1B 13 11 2B AC</code>
+|-
+|  8f  ||  $3edd1d - $3edd22  ||  6 bytes  ||  せんたく0  ||  Selection 0  ||  <code>19 39 1B 13 87 AC</code>
+|-
+|  90  ||  $3edd23 - $3edd28  ||  6 bytes  ||  せんたく1  ||  Selection 1  ||  <code>19 39 1B 13 88 AC</code>
+|-
+|  91  ||  $3edd29 - $3edd2e  ||  6 bytes  ||  せんたく2  ||  Selection 2  ||  <code>19 39 1B 13 89 AC</code>
+|-
+|  92  ||  $3edd2f - $3edd34  ||  6 bytes  ||  せんたく3  ||  Selection 3  ||  <code>19 39 1B 13 8A AC</code>
+|-
+|  93  ||  $3edd35 - $3edd39  ||  5 bytes  ||  ほうおう  ||  Phoenix  ||  <code>29 0E 10 0E AC</code>
+|-
+|  94  ||  $3edd3a - $3edd41  ||  8 bytes  ||  てんのもんばん  ||  Heaven's Gate Watcher  ||  <code>1E 39 24 2E 39 D8 39 AC</code>
+|-
+|  95  ||  $3edd42 - $3edd48  ||  7 bytes  ||  メタルキメラ  ||  Metal Chimera  ||  <code>64 52 6B 49 64 69 AC</code>
+|-
+|  96  ||  $3edd49 - $3edd51  ||  9 bytes  ||  デビルウィザード  ||  Devil Wizard  ||  <code>EB EE 6B 45 72 E3 7D EC AC</code>
+|-
+|  97  ||  $3edd52 - $3edd58  ||  7 bytes  ||  キラークラブ  ||  Killer Crab  ||  <code>49 69 7D 4A 69 EF AC</code>
+|-
+|  98  ||  $3edd59 - $3edd5f  ||  7 bytes  ||  ダークトロル  ||  Dark Troll  ||  <code>E8 7D 4A 56 6D 6B AC</code>
+|-
+|  99  ||  $3edd60 - $3edd67  ||  8 bytes  ||  デーモンソード  ||  Demon Sword  ||  <code>EB 7D 65 70 51 7D EC AC</code>
+|-
+|  9a  ||  $3edd68 - $3edd6f  ||  8 bytes  ||  バラモスエビル  ||  Baramos Evil  ||  <code>ED 69 65 4F 46 EE 6B AC</code>
+|-
+|  9b  ||  $3edd70 - $3edd75  ||  6 bytes  ||  しんりゅう  ||  God Dragon  ||  <code>17 39 33 41 0E AC</code>
+|}
+
+==Notes==
+All values given are ROM offsets. They assume that a 512-byte copier header is ''not'' present. If there is a header present, you will have to add 512 ($200) to each offset lister here to get the correct offset in the ROM file.
+
+Note that the ROM is mapped into the SNES address space starting at $C00000. Therefore, if you want to use one of these ROM offsets as a breakpoint, you should add $C00000 to it. I've given a few examples below that already do this.
+
+==Menu Size Data==
+Almost every menu has a 16-bit (2-byte) value that determines its starting position (X/Y coordinates) and its width.
+Menu size data is stored in the following binary format:
+
+<tt>%1WWW WWYY YYYX XXXX</tt>
+* <tt>WWWWW</tt> = menu width (not just usable space, this includes the edge characters)
+* <tt>YYYYY</tt> = vertical tile offset from top of screen
+* <tt>XXXXX</tt> = horizontal tile offset from left of screen
+
+There is no value to determine the height of a menu. This is done internally by the drawing code for each individual menu.
+
+Like almost everything else on the SNES, this data is in low-endian format. Thus, the <tt>YYYX XXXX</tt> byte comes first in the ROM, then the <tt>1WWW WWYY</tt> byte.
+
+Here are a few menu size values that I have found. Note again that this controls only menu width and position. Menu content string pointers are stored elsewhere.
+* <tt>$30348-$30349</tt>: Introductory menu (contains Begin a New Quest, Continue Quest, Copy Quest, etc., etc.)
+* <tt>$30378-$30379</tt>: Change Message Speed menu (opened from introductory menu)
+* <tt>$30384-$30385</tt>: Mono/Stereo selector menu
+* <tt>$30024-$30025</tt>: Main walkabout menu (contains Talk, Spell, Item, Search, Status, Tactics)
+* <tt>$300FC-$300FD</tt>: Gold menu, associated with the main walkabout menu
+* <tt>$3036C-$3036D</tt>: Change Message Speed menu (opened from Tactics)
+
+
+What if the menu you want to expand (or contract!) isn't listed above?
+Here's how to find it.
+* Open the menu you want, and take a screenshot of it. As an example, let's try the gold box that appears when you open the main menu.
+* Open the screenshot in a paint program, and find out the X coordinate, Y coordinate, and width. Remember that these coordinates are in tiles, so you have to find the coordinate (or width) in pixels and then divide that number by 8.
+* Convert these values to hexadecimal and write them down. In this case, our X coordinate is 21 ($15), the Y coordinate is 16 ($10), and the width (including borders) is 9 ($09).
+* Open the ROM in a debugging emulator (I use Geiger's Snes9x debugging version).
+* Prepare things so that it will only take 1 more button press to get into the menu you want.
+* Set an execution breakpoint at <tt>$C90717</tt>.
+* Open the menu &mdash; this should set off the breakpoint.
+* Keep an eye on the <tt>A</tt> register.
+* You might see something like this as the breakpoint is hit four times (On Geiger Snes9x, hit the "Run" button to get to the next breakpoint).
+** <tt>$C9/0717 08          PHP                     A:0000 X:0000 Y:0015 P:envmxdIZc</tt>
+** <tt>$C9/0717 08          PHP                     A:0015 X:0000 Y:0015 P:envmxdIzc</tt>
+** <tt>$C9/0717 08          PHP                     A:1015 X:0000 Y:0015 P:envmxdIzc</tt>
+** <tt>$C9/0717 08          PHP                     A:0009 X:0000 Y:0015 P:envmxdIzc</tt>
+* This is for the gold menu. If you followed the steps above, you should see some familiar information here. Note how on the second iteration, we see the X coordinate in the accumulator, and on the third iteration, we can see both the X *and* Y coordinates in the top and bottom halves. And on the fifth iteration, there is the width.
+* Don't proceed past the fifth iteration (the one where <tt>A</tt> = menu width). Instead, single step ("Step Into" button on Geiger Snes9x) until you get to <tt>$C902B1</tt>.
+* You'll see something like this:
+** <tt>$C9/02B1 33 10       AND ($10,s),y[$C3:00FD] A:0F80 X:00C3 Y:0000 P:envmXdIzc</tt>
+* See that <tt>[$C3:00FD]</tt>? Now just take that number and subtract <tt>$C00001</tt> (yes, <tt>$C00001</tt>, not <tt>$C00000</tt>) from it.
+* We now have the location of the menu size data; in this case, <tt>$300FC</tt>. Remember that the value at this address is two bytes long, and low-endian.
+* Note that, in some cases, there will be unwanted <tt>$C90717</tt> breakpoints before the one we're looking for. That's why you should monitor the <tt>A</tt> register and make sure we're looking at the right iteration. The method I detailed above works only if you check the address on the iteration that contains the menu width (<tt>$0009</tt>, in this case).
+
+==Menu Text Pointers==
+To change the menu text, you need to find the pointers for that text. In most cases, this pointer is actually the 16-bit operand of an <tt>LDA</tt> opcode. Pointers can usually only reference the 64K block of memory from which they are called; in other words, if a pointer is at <tt>$360D1</tt> in the ROM, it can't reference anything above <tt>$3FFFF</tt> or below <tt>$30000</tt>. In some cases, a pointer can't be made to point backwards without further hacking, because of the way that they are referenced. (More to come...) Fortunately, this shouldn't really be a big issue, because there is a block of apparently unused space (solid <tt>$FF</tt>s) from <tt>$3F30A-$3FFFF</tt>. Most pointers are in the range of this memory. (Please let me know if I'm mistaken and this empty space actually serves a purpose!)
+
+A list of menu pointers can be found at the [https://web.archive.org/web/20071123130703/http://www.kojiroland.com/dqwiki/index.php/Menu_Text Kojiro Translations wiki].
+
+==Menu Padding Routine==
+Some menu entries have extra spaces padded onto the end that is not accounted for by the data at the expected pointers. These spaces are inserted by the use of a special routine located at <tt>$32B70</tt> in the ROM. When this routine is called, the <tt>X</tt> register contains the number of spaces to insert. If you're doing some menu expansion, you may have to set breakpoints at <tt>$C32B70</tt>. Single-step through until <tt>RTL</tt> is executed, so you can see where it came from, and then back up five bytes from the resulting address. If these padding spaces are throwing off your menu borders, replace the <tt>JSL $C32B70</tt> opcode with four <tt>NOP</tt>s.
+
+Calling <tt>$32B8D</tt> inserts a single dummy space. The "Change Message Speed" option on the "Tactics" menu uses this method, so look out for it if you're editing that menu item. There may be others I haven't found yet that do the same thing. Again, you can track down the originating <tt>JSL</tt> opcode by breaking on the subroutine start, stepping through until <tt>RTL</tt> is executed, and then subtracting five bytes from the program counter at that point.
+
+==Overworld Map==
+The overworld map is made up of a 64x64 grid of chunks which are a 4x4 grid of 16x16 pixel tiles which are really four 8x8 tiles. This results in a 4096x4096 pixel sized map.
+
+===Top level grid===
+Location in ROM: $2D8A00 - $2D9BE2
+
+The top level of the overworld tilemap data is a 64x64 grid composed of a word length (2 byte) index indicating which chunk to use. This is $2000 bytes. Most of the data is just a counter that increments by one each time since most of the land chunks are unique. However the open parts of the sea are represented by chunk $0001 so you will see long runs of that index. Some other reused chunks are composed of all desert or all forest or all grass, that kind of thing. Values range from $0001 to $0A3C, and $0000 is not used although is a valid chunk made of zeros.
+
+Decompression uses a $400 byte ring buffer that is all zeros at the beginning and a starting write position of $3BE. Every decompressed byte is written to the output and the ring buffer. The compressed data is composed of a command byte followed by 8 to 16 data bytes. For each bit in the command byte, if the bit is 1 then read and write one byte. If the bit is 0 then perform a copy operation from the ring buffer using the next two bytes of source data. The 10 lower bits are a pointer into the ring buffer that will be used as the source address. The number of bytes to copy is the upper 6 bits plus 3. Note that the copied bytes are written to the output and also into the ring buffer so if the buffer read address is close behind the buffer write address then you're copying what was just written. This is mostly used to generate long stretches of $0001 which represents the chunks of open sea.
+
+===Chunks===
+Location in ROM: $2DA49C - $2E486B‬
+
+The chunks are 4x4 grids of tile indexes (1 byte) accessed with an index. The chunk data is in one contiguous area but is actually 16 different byte arrays, one after another and each one $A3D bytes long, so that all 16 tiles can be accessed with the same index.
+
+The starting addresses for each array are shown in the layout the tiles appear on screen:
+
+{| class="wikitable"
+|-
+! 
+! X + 0
+! X + 1
+! X + 2
+! X + 3
+|-
+! Y + 0
+| $2DA49C
+| $2DAED9
+| $2DB916
+| $2DC353
+|-
+! Y + 1
+| $2DCD90
+| $2DD7CD
+| $2DE20A
+| $2DEC47
+|-
+! Y + 2
+| $2DF684
+| $2E00C1
+| $2E0AFE
+| $2E153B
+|-
+! Y + 3
+| $2E1F78
+| $2E29B5
+| $2E33F2
+| $2E3E2F
+|}
+
+Values range from $00 to $EC because the definitions for tiles $ED to $FF are not loaded, although there is space in RAM for them.
+
+===Tiles===
+Location in ROM: $254F38 - $25569F
+
+Each entry is 8 bytes with each 2 bytes representing one of the 4 tiles (8x8) that make up the larger 16x16 tile. These 2 byte parts are in the standard SNES tilemap format and are copied as is into VRAM.
+
+==Japanese Dialogue Text==
+In the Japanese game revision with CRC32 13836bd2, text is compressed with Huffman coding, and spans the range $3CC258 to $3ECFB5 in the ROM. This section assumes that you are familiar with how Huffman coding works. Pointers and data in the examples are based on the previously mentioned revision.
+
+It is worth noting that the dialogue in Dragon Quest VI SNES uses the exact same system, only with different pointers and table sizes.
+
+===Huffman tree data===
+Two parallel data blocks, each $7D4 bytes ($3EA two-byte entries): one from $159D3-$161A6 (for 0 bits, "left"), and another from $161A7-$1697A (for 1 bits, "right"). The blocks are parallel in that the number of entries into a block represents a split point in the Huffman tree, either left or right. A two-byte (little endian) entry has a flag for inner/leaf node in the tree (MSB set = inner node, MSB clear = leaf node). Inner nodes encode the byte position to go to for checking the next bit. Leaf nodes contain the character encoding value itself.
+
+As an example, tree entry $3E4 represents the offsets $159D3 + $3E4*2 = $1619B (left) and $161A7 + $3E4*2 = $1696F (right). The data at each offset is, respectively, $0200 (leaf node for character encoding $0200 = a space) and $87BC. The latter represents an inner node for the byte position $7BC in the tree data, which corresponds to tree entry ($7BC >> 1) = $3DE.
+
+===Text pointer table===
+Range $15331-$1591E in the ROM. It consists of $1FA three-byte entries, each of which is for a block of 8 strings, except the last one which has 7. Thus, there is a total of $FCF (4047) strings. Each string is terminated with the control code 00AC or 00AE.
+
+The 24 bits of a text pointer consist of two parts. The high 21 bits represent a byte offset from the start of the script at $3CC258, and the low 3 bits represent a bit within that byte (bit 7 is the most significant, bit 0 is the least significant).
+
+As an example, the bytes of the sixth pointer value at $15340 are <code>79 12 00</code>, or the hex value $001279. The bit offset is ($001279 & 7) = 1. The byte offset is ($001279 >> 3) = $24F. So the sixth pointer goes to byte ($3CC258 + $24F) = $3CC4A7 at bit position 1.
+
+===Decompression example===
+To decompress a character from the script, feed in text bits to the Huffman tree, starting at tree position $3E9 (end position in the tree). In the text data, start at the bit position in the byte and going "left to right" = from most significant to least significant. Keep getting offsets in the Huffman tree data until you reach a leaf node.
+
+If you were to feed in bits starting at $3CC4A7 bit position 1, you should start on the 111111_'''0'''_1 bit of the <code>FD</code> byte there, consume the twelve bits 01 1111 1010 01 in the buffer from the <code>FD FA 76</code> bytes, and take a path in the Huffman tree data to ROM position $166C1 (character value $0521, ツ).
+
+==Dialogue Font==
+There are two blocks of data for the variable-width and variable-height font: a metadata table from $151AA-$152A3, and the compressed font data itself from $10ED3-$151A9.
+
+===Font metadata table===
+The table consists of 50 five-byte entries that come in the following binary format:
+
+<code>SSSSSSSS WWWWSSSS [bank $C1 offset] --HHHH--</code>
+
+W = character width, H = character height
+
+S = number of characters in a group for a particular W*H pair
+
+The bank number being $C1 is hard-coded into the <code>LDA #$C1</code> instruction at $1BBD4. Which is to say, the `C1` byte is located at $1BBD5.
+
+<div class="mw-collapsible mw-collapsed">
+<strong>Summary of font metadata table</strong>
+<div class="mw-collapsible-content">
+{| class="wikitable"
+|-
+! Group # || table offset || raw data || W || H || # chars || char range || ROM addr
+|-
+!  1 || $151aa || b4 b2 d3 0e 34 || b || d || 2b4 || 201-4b4 || $10ed3
+|-
+!  2 || $151af || 0b 70 25 3f 30 || 7 || c ||   b || 4b5-4bf || $13f25
+|-
+!  3 || $151b4 || 01 50 99 3f 30 || 5 || c ||   1 || 4c0     || $13f99
+|-
+!  4 || $151b9 || 1b 90 a1 3f 2c || 9 || b ||  1b || 4c1-4db || $13fa1
+|-
+!  5 || $151be || 11 80 f0 40 2c || 8 || b ||  11 || 4dc-4ec || $140f0
+|-
+!  6 || $151c3 || 06 70 ab 41 2c || 7 || b ||   6 || 4ed-4f2 || $141ab
+|-
+!  7 || $151c8 || 01 50 e5 41 2c || 5 || b ||   1 || 4f3     || $141e5
+|-
+!  8 || $151cd || 1b b0 ec 41 2c || b || b ||  1b || 4f4-50e || $141ec
+|-
+!  9 || $151d2 || 16 a0 85 43 2c || a || b ||  16 || 50f-524 || $14385
+|-
+! 10 || $151d7 || 03 30 b4 44 2c || 3 || b ||   3 || 525-527 || $144b4
+|-
+! 11 || $151dc || 03 90 c1 44 0c || 9 || 3 ||   3 || 528-52a || $144c1
+|-
+! 12 || $151e1 || 02 90 cc 44 1c || 9 || 7 ||   2 || 52b-52c || $144cc
+|-
+! 13 || $151e6 || 04 90 dc 44 30 || 9 || c ||   4 || 52d-530 || $144dc
+|-
+! 14 || $151eb || 01 90 12 45 04 || 9 || 1 ||   1 || 531     || $14512
+|-
+! 15 || $151f0 || 01 70 14 45 04 || 7 || 1 ||   1 || 532     || $14514
+|-
+! 16 || $151f5 || 02 70 15 45 28 || 7 || a ||   2 || 533-534 || $14515
+|-
+! 17 || $151fa || 03 90 27 45 18 || 9 || 6 ||   3 || 535-537 || $14527
+|-
+! 18 || $151ff || 18 c0 3c 45 30 || c || c ||  18 || 538-54f || $1453c
+|-
+! 19 || $15204 || 01 a0 ec 46 18 || a || 6 ||   1 || 550     || $146ec
+|-
+! 20 || $15209 || 01 40 f4 46 30 || 4 || c ||   1 || 551     || $146f4
+|-
+! 21 || $1520e || 02 60 fa 46 34 || 6 || d ||   2 || 552-553 || $146fa
+|-
+! 22 || $15213 || 01 50 0e 47 34 || 5 || d ||   1 || 554     || $1470e
+|-
+! 23 || $15218 || 03 60 17 47 24 || 6 || 9 ||   3 || 555-557 || $14717
+|-
+! 24 || $1521d || 02 a0 2c 47 20 || a || 8 ||   2 || 558-559 || $1472c
+|-
+! 25 || $15222 || 0c a0 40 47 30 || a || c ||   c || 55a-565 || $14740
+|-
+! 26 || $15227 || 05 80 f4 47 30 || 8 || c ||   5 || 566-56a || $147f4
+|-
+! 27 || $1522c || 4e b0 30 48 30 || b || c ||  4e || 56b-5b8 || $14830
+|-
+! 28 || $15231 || 06 80 37 4d 24 || 8 || 9 ||   6 || 5b9-5be || $14d37
+|-
+! 29 || $15236 || 0e a0 6d 4d 34 || a || d ||   e || 5bf-5cc || $14d6d
+|-
+! 30 || $1523b || 05 90 51 4e 34 || 9 || d ||   5 || 5cd-5d1 || $14e51
+|-
+! 31 || $15240 || 04 b0 9b 4e 28 || b || a ||   4 || 5d2-5d5 || $14e9b
+|-
+! 32 || $15245 || 03 70 d2 4e 24 || 7 || 9 ||   3 || 5d6-5d8 || $14ed2
+|-
+! 33 || $1524a || 0d c0 ea 4e 2c || c || b ||   d || 5d9-5e5 || $14eea
+|-
+! 34 || $1524f || 03 d0 c1 4f 2c || d || b ||   3 || 5e6-5e8 || $14fc1
+|-
+! 35 || $15254 || 01 80 f7 4f 28 || 8 || a ||   1 || 5e9     || $14ff7
+|-
+! 36 || $15259 || 04 80 01 50 20 || 8 || 8 ||   4 || 5ea-5ed || $15001
+|-
+! 37 || $1525e || 02 b0 21 50 24 || b || 9 ||   2 || 5ee-5ef || $15021
+|-
+! 38 || $15263 || 03 a0 3a 50 28 || a || a ||   3 || 5f0-5f2 || $1503a
+|-
+! 39 || $15268 || 09 90 60 50 28 || 9 || a ||   9 || 5f3-5fb || $15060
+|-
+! 40 || $1526d || 01 b0 c6 50 38 || b || e ||   1 || 5fc     || $150c6
+|-
+! 41 || $15272 || 01 b0 da 50 1c || b || 7 ||   1 || 5fd     || $150da
+|-
+! 42 || $15277 || 01 d0 e4 50 30 || d || c ||   1 || 5fe     || $150e4
+|-
+! 43 || $1527c || 01 70 f8 50 1c || 7 || 7 ||   1 || 5ff     || $150f8
+|-
+! 44 || $15281 || 02 a0 ff 50 24 || a || 9 ||   2 || 600-601 || $150ff
+|-
+! 45 || $15286 || 01 c0 16 51 24 || c || 9 ||   1 || 602     || $15116
+|-
+! 46 || $1528b || 05 c0 24 51 34 || c || d ||   5 || 603-607 || $15124
+|-
+! 47 || $15290 || 01 80 86 51 18 || 8 || 6 ||   1 || 608     || $15186
+|-
+! 48 || $15295 || 01 60 8c 51 1c || 6 || 7 ||   1 || 609     || $1518c
+|-
+! 49 || $1529a || 01 90 92 51 24 || 9 || 9 ||   1 || 60a     || $15192
+|-
+! 50 || $1529f || 01 80 9d 51 34 || 8 || d ||   1 || 60b     || $1519d
+|}
+</div>
+</div>
+
+===Font data compression format===
+The 1bpp font data for each character is stored as a block of W*H bits in the appropriate range. TODO add more to this.
+
+==Sub Pages==
+{{subpage|Character Classes}}
+{{subpage|Monsters}}
+
+==Links==
+None currently.
+
+
+{{Internal Data}}

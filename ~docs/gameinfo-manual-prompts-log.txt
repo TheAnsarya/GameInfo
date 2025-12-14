@@ -138,6 +138,9 @@ continue;
 
 make the terminal readable, currently most of the text is invisible (color and background coolor the same) so fix that, and I'm tired of asking, make this change permanent; code format all files, especially c# files, so braces are on the right line, always use tabs not spaces, hexadecimal values are always lowercase; use the most modern code practices; use the most modern libraries and code and language and platform; continue build pipeline platform work updating github issues and todo-lists; continue;
 
+hexadecimal values are always lowercase; continue;
+
+There are a ton of files that need a `git commit` where the files are moved, do that code management; continue making this have universal code documentation and editing app; continue;
 
 
 

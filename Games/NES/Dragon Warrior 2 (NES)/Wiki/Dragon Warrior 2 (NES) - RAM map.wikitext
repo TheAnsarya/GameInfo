@@ -1,0 +1,406 @@
+{{rammap|game=Dragon Warrior 2 (NES)}}
+
+This is the RAM map for ''Dragon Warrior II'' (NES). The NES has 2KB of internal RAM ($0000-$07ff) mirrored at $0800-$1fff.
+
+==Zero Page ($0000-$00ff)==
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $00 || 1 || Temporary variable A
+|-
+| $01 || 1 || Temporary variable B
+|-
+| $02 || 2 || General pointer low/high
+|-
+| $04 || 2 || Text pointer low/high
+|-
+| $06 || 1 || Current bank number
+|-
+| $07 || 1 || Previous bank number
+|-
+| $08 || 1 || Frame counter
+|-
+| $09 || 1 || Random seed low
+|-
+| $0a || 1 || Random seed high
+|-
+| $0b || 1 || Button state (current)
+|-
+| $0c || 1 || Button state (previous)
+|-
+| $0d || 1 || Button state (new press)
+|-
+| $0e || 1 || Game mode flag
+|-
+| $0f || 1 || Sub-mode flag
+|-
+| $10-$1f || 16 || Scratch memory
+|-
+| $20 || 1 || PPU control mirror
+|-
+| $21 || 1 || PPU mask mirror
+|-
+| $22 || 1 || Scroll X
+|-
+| $23 || 1 || Scroll Y
+|-
+| $24 || 1 || NMI flag
+|-
+| $25 || 1 || Drawing flag
+|-
+| $26-$2f || 10 || PPU update buffer info
+|-
+| $30-$3f || 16 || Math variables
+|-
+| $40-$4f || 16 || Battle calculation temp
+|-
+| $50-$5f || 16 || Map calculation temp
+|-
+| $60-$6f || 16 || Sprite DMA pointer
+|-
+| $70-$7f || 16 || Sound engine variables
+|-
+| $80-$ff || 128 || Stack area
+|}
+
+==Main RAM ($0100-$07ff)==
+
+===Party Data ($0100-$01ff)===
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0100 || 1 || Party size (1-3)
+|-
+| $0101 || 1 || Party leader
+|-
+| $0102 || 1 || Active party member count
+|-
+| $0103 || 1 || Formation flag
+|-
+| $0104-$010f || 12 || Reserved
+|}
+
+===Hero Data ($0110-$014f)===
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0110 || 1 || Hero current HP low
+|-
+| $0111 || 1 || Hero current HP high
+|-
+| $0112 || 1 || Hero max HP low
+|-
+| $0113 || 1 || Hero max HP high
+|-
+| $0114 || 1 || Hero current MP
+|-
+| $0115 || 1 || Hero max MP
+|-
+| $0116 || 1 || Hero strength
+|-
+| $0117 || 1 || Hero agility
+|-
+| $0118 || 1 || Hero attack power
+|-
+| $0119 || 1 || Hero defense power
+|-
+| $011a || 1 || Hero level
+|-
+| $011b || 2 || Hero experience low/high
+|-
+| $011d || 1 || Hero experience (highest byte)
+|-
+| $011e || 1 || Hero equipped weapon
+|-
+| $011f || 1 || Hero equipped armor
+|-
+| $0120 || 1 || Hero equipped shield
+|-
+| $0121 || 1 || Hero equipped helmet
+|-
+| $0122 || 1 || Hero status flags
+|-
+| $0123-$012f || 13 || Hero inventory (items 1-13)
+|-
+| $0130-$013f || 16 || Hero spells learned (bitfield)
+|-
+| $0140-$014f || 16 || Reserved
+|}
+
+===Prince of Cannock Data ($0150-$018f)===
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0150 || 1 || Prince current HP low
+|-
+| $0151 || 1 || Prince current HP high
+|-
+| $0152 || 1 || Prince max HP low
+|-
+| $0153 || 1 || Prince max HP high
+|-
+| $0154 || 1 || Prince current MP
+|-
+| $0155 || 1 || Prince max MP
+|-
+| $0156 || 1 || Prince strength
+|-
+| $0157 || 1 || Prince agility
+|-
+| $0158 || 1 || Prince attack power
+|-
+| $0159 || 1 || Prince defense power
+|-
+| $015a || 1 || Prince level
+|-
+| $015b || 2 || Prince experience low/high
+|-
+| $015d || 1 || Prince experience (highest byte)
+|-
+| $015e || 1 || Prince equipped weapon
+|-
+| $015f || 1 || Prince equipped armor
+|-
+| $0160 || 1 || Prince equipped shield
+|-
+| $0161 || 1 || Prince equipped helmet
+|-
+| $0162 || 1 || Prince status flags
+|-
+| $0163-$016f || 13 || Prince inventory
+|-
+| $0170-$017f || 16 || Prince spells learned
+|-
+| $0180-$018f || 16 || Reserved
+|}
+
+===Princess of Moonbrooke Data ($0190-$01cf)===
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0190 || 1 || Princess current HP low
+|-
+| $0191 || 1 || Princess current HP high
+|-
+| $0192 || 1 || Princess max HP low
+|-
+| $0193 || 1 || Princess max HP high
+|-
+| $0194 || 1 || Princess current MP
+|-
+| $0195 || 1 || Princess max MP
+|-
+| $0196 || 1 || Princess strength
+|-
+| $0197 || 1 || Princess agility
+|-
+| $0198 || 1 || Princess attack power
+|-
+| $0199 || 1 || Princess defense power
+|-
+| $019a || 1 || Princess level
+|-
+| $019b || 2 || Princess experience low/high
+|-
+| $019d || 1 || Princess experience (highest byte)
+|-
+| $019e || 1 || Princess equipped weapon
+|-
+| $019f || 1 || Princess equipped armor
+|-
+| $01a0 || 1 || Princess equipped shield
+|-
+| $01a1 || 1 || Princess equipped helmet
+|-
+| $01a2 || 1 || Princess status flags
+|-
+| $01a3-$01af || 13 || Princess inventory
+|-
+| $01b0-$01bf || 16 || Princess spells learned
+|-
+| $01c0-$01cf || 16 || Reserved
+|}
+
+===Gold and Items ($01d0-$01ff)===
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $01d0 || 2 || Party gold (low/high)
+|-
+| $01d2 || 1 || Party gold (highest byte)
+|-
+| $01d3-$01df || 13 || Key items (bitfield)
+|-
+| $01e0-$01ef || 16 || Story progress flags
+|-
+| $01f0-$01ff || 16 || Reserved
+|}
+
+===Map and Position ($0200-$02ff)===
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0200 || 1 || Current map ID
+|-
+| $0201 || 1 || Player X position
+|-
+| $0202 || 1 || Player Y position
+|-
+| $0203 || 1 || Player facing direction
+|-
+| $0204 || 1 || Previous map ID
+|-
+| $0205 || 1 || Previous X position
+|-
+| $0206 || 1 || Previous Y position
+|-
+| $0207 || 1 || Map type (overworld/town/dungeon)
+|-
+| $0208 || 1 || Overworld X (when in town/dungeon)
+|-
+| $0209 || 1 || Overworld Y (when in town/dungeon)
+|-
+| $020a-$020f || 6 || Reserved
+|-
+| $0210 || 1 || Encounter step counter
+|-
+| $0211 || 1 || Encounter zone
+|-
+| $0212 || 1 || Torch/Radiant light timer
+|-
+| $0213 || 1 || Repel effect timer
+|-
+| $0214-$021f || 12 || Map scroll variables
+|-
+| $0220-$022f || 16 || Tile collision buffer
+|-
+| $0230-$023f || 16 || NPC position buffer
+|-
+| $0240-$02ff || 192 || Map tile cache
+|}
+
+===Sprite OAM ($0300-$03ff)===
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $0300-$03ff || 256 || Sprite OAM buffer (64 sprites × 4 bytes)
+|}
+
+===Battle Data ($0400-$04ff)===
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0400 || 1 || Battle active flag
+|-
+| $0401 || 1 || Battle type (normal/boss/event)
+|-
+| $0402 || 1 || Enemy group ID
+|-
+| $0403 || 1 || Enemy count
+|-
+| $0404 || 1 || Turn counter
+|-
+| $0405 || 1 || Run attempts
+|-
+| $0406-$040f || 10 || Battle state flags
+|-
+| $0410-$041f || 16 || Enemy 1 data (HP, status, etc.)
+|-
+| $0420-$042f || 16 || Enemy 2 data
+|-
+| $0430-$043f || 16 || Enemy 3 data
+|-
+| $0440-$044f || 16 || Enemy 4 data
+|-
+| $0450-$045f || 16 || Enemy 5 data
+|-
+| $0460-$046f || 16 || Enemy 6 data
+|-
+| $0470-$047f || 16 || Party battle state
+|-
+| $0480-$048f || 16 || Damage calculation buffer
+|-
+| $0490-$049f || 16 || Animation state
+|-
+| $04a0-$04ff || 96 || Battle message buffer
+|}
+
+===Menu and Text ($0500-$05ff)===
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0500 || 1 || Menu open flag
+|-
+| $0501 || 1 || Menu type
+|-
+| $0502 || 1 || Menu cursor position
+|-
+| $0503 || 1 || Menu scroll offset
+|-
+| $0504-$050f || 12 || Menu state
+|-
+| $0510-$051f || 16 || Menu option buffer
+|-
+| $0520-$057f || 96 || Text display buffer
+|-
+| $0580-$05ff || 128 || Dialogue buffer
+|}
+
+===Sound Engine ($0600-$067f)===
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0600 || 1 || Music track playing
+|-
+| $0601 || 1 || Music paused flag
+|-
+| $0602-$060f || 14 || Channel 1 (pulse 1) state
+|-
+| $0610-$061f || 16 || Channel 2 (pulse 2) state
+|-
+| $0620-$062f || 16 || Channel 3 (triangle) state
+|-
+| $0630-$063f || 16 || Channel 4 (noise) state
+|-
+| $0640-$067f || 64 || Sound effect queue
+|}
+
+===General Purpose ($0680-$07ff)===
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0680-$06ff || 128 || Decompression buffer
+|-
+| $0700-$077f || 128 || PPU nametable update buffer
+|-
+| $0780-$07ff || 128 || General scratch space
+|}
+
+==Status Flags==
+'''Character Status Byte:'''
+{| class="wikitable"
+! Bit !! Description
+|-
+| 0 || Poisoned
+|-
+| 1 || Asleep
+|-
+| 2 || Cursed
+|-
+| 3 || Paralyzed
+|-
+| 4 || Dead
+|-
+| 5 || Silenced
+|-
+| 6 || Confused
+|-
+| 7 || Reserved
+|}
+
+==See Also==
+* [[Dragon Warrior 2 (NES):ROM map|ROM Map]]
+* [[Dragon Warrior 2 (NES):SRAM map|SRAM Map]]
+* [[Dragon Warrior 2 (NES):TBL|Text Table]]
+
+[[Category:Dragon Warrior 2 (NES)|RAM map]]
