@@ -1249,3 +1249,537 @@ public record DifferenceRecord(int Offset, int Length, byte OriginalByte, byte C
 public record SearchResult(int Offset, int Length, string ContextPreview) {
 	public string OffsetDisplay => $"0x{Offset:X6}";
 }
+
+/// <summary>
+/// Advanced hex search with wildcard and regex support.
+/// </summary>
+public class AdvancedHexSearch {
+	/// <summary>
+	/// Wildcard byte (matches any value).
+	/// </summary>
+	public const byte Wildcard = 0xff;
+
+	/// <summary>
+	/// Pattern element for search.
+	/// </summary>
+	public record PatternElement(byte? Value, byte? Mask = null) {
+		public bool Matches(byte b) {
+			if (!Value.HasValue) return true; // Wildcard
+			if (Mask.HasValue) return (b & Mask.Value) == (Value.Value & Mask.Value);
+			return b == Value.Value;
+		}
+	}
+
+	/// <summary>
+	/// Parse a wildcard pattern string (e.g., "A9 ?? B9 ??").
+	/// </summary>
+	public static List<PatternElement>? ParseWildcardPattern(string pattern) {
+		if (string.IsNullOrWhiteSpace(pattern)) return null;
+
+		var elements = new List<PatternElement>();
+		var parts = pattern.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+		foreach (var part in parts) {
+			var clean = part.Trim().Replace("0x", "").Replace("$", "");
+
+			if (clean == "??" || clean == "**") {
+				elements.Add(new PatternElement(null)); // Wildcard
+			} else if (clean.Contains('?')) {
+				// Partial wildcard like "A?" matches A0-AF
+				string withZeros = clean.Replace('?', '0');
+				string maskStr = clean.Replace('?', '0').Replace('0', 'F').Replace('1', 'F')
+					.Replace('2', 'F').Replace('3', 'F').Replace('4', 'F')
+					.Replace('5', 'F').Replace('6', 'F').Replace('7', 'F')
+					.Replace('8', 'F').Replace('9', 'F').Replace('A', 'F')
+					.Replace('B', 'F').Replace('C', 'F').Replace('D', 'F')
+					.Replace('E', 'F');
+
+				// Calculate actual mask
+				byte mask = 0;
+				for (int i = 0; i < clean.Length && i < 2; i++) {
+					mask <<= 4;
+					if (clean[i] != '?') mask |= 0xf;
+				}
+
+				if (byte.TryParse(withZeros, System.Globalization.NumberStyles.HexNumber, null, out byte value)) {
+					elements.Add(new PatternElement(value, mask));
+				} else {
+					return null;
+				}
+			} else {
+				if (byte.TryParse(clean, System.Globalization.NumberStyles.HexNumber, null, out byte value)) {
+					elements.Add(new PatternElement(value));
+				} else {
+					return null;
+				}
+			}
+		}
+
+		return elements.Count > 0 ? elements : null;
+	}
+
+	/// <summary>
+	/// Search for wildcard pattern in data.
+	/// </summary>
+	public static List<int> SearchWildcard(byte[] data, List<PatternElement> pattern, int maxResults = -1) {
+		var results = new List<int>();
+		if (pattern.Count == 0 || pattern.Count > data.Length) return results;
+
+		for (int i = 0; i <= data.Length - pattern.Count; i++) {
+			bool matches = true;
+			for (int j = 0; j < pattern.Count; j++) {
+				if (!pattern[j].Matches(data[i + j])) {
+					matches = false;
+					break;
+				}
+			}
+
+			if (matches) {
+				results.Add(i);
+				if (maxResults > 0 && results.Count >= maxResults) break;
+			}
+		}
+
+		return results;
+	}
+
+	/// <summary>
+	/// Search using a value range (e.g., bytes between 0x80 and 0xFF).
+	/// </summary>
+	public static List<int> SearchRange(byte[] data, byte minValue, byte maxValue) {
+		var results = new List<int>();
+		for (int i = 0; i < data.Length; i++) {
+			if (data[i] >= minValue && data[i] <= maxValue) {
+				results.Add(i);
+			}
+		}
+
+		return results;
+	}
+
+	/// <summary>
+	/// Search for a relative offset pattern (text pointer search).
+	/// </summary>
+	public static List<int> SearchRelativePointer(byte[] data, int targetOffset, int baseAddress = 0, bool littleEndian = true) {
+		var results = new List<int>();
+		int targetValue = targetOffset + baseAddress;
+
+		if (targetValue < 0 || targetValue > 0xffff) return results;
+
+		byte lowByte = (byte)(targetValue & 0xff);
+		byte highByte = (byte)((targetValue >> 8) & 0xff);
+
+		for (int i = 0; i < data.Length - 1; i++) {
+			if (littleEndian) {
+				if (data[i] == lowByte && data[i + 1] == highByte) {
+					results.Add(i);
+				}
+			} else {
+				if (data[i] == highByte && data[i + 1] == lowByte) {
+					results.Add(i);
+				}
+			}
+		}
+
+		return results;
+	}
+
+	/// <summary>
+	/// Search with alignment constraint (e.g., every 16 bytes).
+	/// </summary>
+	public static List<int> SearchAligned(byte[] data, byte[] pattern, int alignment) {
+		var results = new List<int>();
+		if (pattern.Length == 0 || alignment <= 0) return results;
+
+		for (int i = 0; i <= data.Length - pattern.Length; i += alignment) {
+			bool matches = true;
+			for (int j = 0; j < pattern.Length; j++) {
+				if (data[i + j] != pattern[j]) {
+					matches = false;
+					break;
+				}
+			}
+
+			if (matches) results.Add(i);
+		}
+
+		return results;
+	}
+
+	/// <summary>
+	/// Search for a sequence NOT present (find gaps in pattern).
+	/// </summary>
+	public static List<(int Start, int Length)> FindAbsenceOf(byte[] data, byte[] pattern, int minGapSize = 1) {
+		var results = new List<(int Start, int Length)>();
+		var occurrences = new HashSet<int>();
+
+		// Find all occurrences
+		for (int i = 0; i <= data.Length - pattern.Length; i++) {
+			bool matches = true;
+			for (int j = 0; j < pattern.Length; j++) {
+				if (data[i + j] != pattern[j]) {
+					matches = false;
+					break;
+				}
+			}
+
+			if (matches) {
+				for (int j = 0; j < pattern.Length; j++) {
+					occurrences.Add(i + j);
+				}
+			}
+		}
+
+		// Find gaps
+		int gapStart = -1;
+		for (int i = 0; i < data.Length; i++) {
+			if (!occurrences.Contains(i)) {
+				if (gapStart < 0) gapStart = i;
+			} else if (gapStart >= 0) {
+				int gapLength = i - gapStart;
+				if (gapLength >= minGapSize) {
+					results.Add((gapStart, gapLength));
+				}
+
+				gapStart = -1;
+			}
+		}
+
+		// Handle trailing gap
+		if (gapStart >= 0) {
+			int gapLength = data.Length - gapStart;
+			if (gapLength >= minGapSize) {
+				results.Add((gapStart, gapLength));
+			}
+		}
+
+		return results;
+	}
+}
+
+/// <summary>
+/// Search history management.
+/// </summary>
+public class SearchHistory {
+	private readonly List<SearchHistoryEntry> _entries = [];
+	private int _maxEntries = 50;
+
+	public IReadOnlyList<SearchHistoryEntry> Entries => _entries;
+
+	public int MaxEntries {
+		get => _maxEntries;
+		set => _maxEntries = Math.Max(1, value);
+	}
+
+	public void Add(string pattern, SearchType type, int resultCount) {
+		// Remove if already exists
+		_entries.RemoveAll(e => e.Pattern == pattern && e.Type == type);
+
+		// Add to front
+		_entries.Insert(0, new SearchHistoryEntry(pattern, type, DateTime.Now, resultCount));
+
+		// Trim if needed
+		while (_entries.Count > _maxEntries) {
+			_entries.RemoveAt(_entries.Count - 1);
+		}
+	}
+
+	public void Clear() => _entries.Clear();
+
+	public List<SearchHistoryEntry> GetRecent(int count) => _entries.Take(count).ToList();
+}
+
+public record SearchHistoryEntry(string Pattern, SearchType Type, DateTime Timestamp, int ResultCount);
+
+public enum SearchType {
+	Hex,
+	Text,
+	Wildcard,
+	Relative,
+	Structure
+}
+
+/// <summary>
+/// Data structure template for hex editor.
+/// </summary>
+public class DataStructureTemplate {
+	public string Name { get; set; } = "";
+	public string Description { get; set; } = "";
+	public List<StructureField> Fields { get; } = [];
+	public int TotalSize => Fields.Sum(f => f.Size);
+
+	/// <summary>
+	/// Apply template to data and extract values.
+	/// </summary>
+	public Dictionary<string, object> ExtractValues(byte[] data, int offset) {
+		var values = new Dictionary<string, object>();
+		int currentOffset = offset;
+
+		foreach (var field in Fields) {
+			if (currentOffset + field.Size > data.Length) break;
+
+			object value = field.Type switch {
+				FieldType.Byte => data[currentOffset],
+				FieldType.SignedByte => (sbyte)data[currentOffset],
+				FieldType.Word => (ushort)(data[currentOffset] | (data[currentOffset + 1] << 8)),
+				FieldType.WordBE => (ushort)((data[currentOffset] << 8) | data[currentOffset + 1]),
+				FieldType.DWord => (uint)(data[currentOffset] |
+				                          (data[currentOffset + 1] << 8) |
+				                          (data[currentOffset + 2] << 16) |
+				                          (data[currentOffset + 3] << 24)),
+				FieldType.Pointer16 => (ushort)(data[currentOffset] | (data[currentOffset + 1] << 8)),
+				FieldType.String => ExtractString(data, currentOffset, field.Size),
+				FieldType.ByteArray => ExtractByteArray(data, currentOffset, field.Size),
+				_ => data[currentOffset]
+			};
+
+			values[field.Name] = value;
+			currentOffset += field.Size;
+		}
+
+		return values;
+	}
+
+	/// <summary>
+	/// Format extracted values as text.
+	/// </summary>
+	public string FormatValues(Dictionary<string, object> values) {
+		var sb = new System.Text.StringBuilder();
+		sb.AppendLine($"=== {Name} ===");
+
+		foreach (var field in Fields) {
+			if (values.TryGetValue(field.Name, out var value)) {
+				string formatted = field.Type switch {
+					FieldType.Byte => $"0x{(byte)value:X2} ({value})",
+					FieldType.SignedByte => $"{value}",
+					FieldType.Word or FieldType.WordBE => $"0x{(ushort)value:X4} ({value})",
+					FieldType.DWord => $"0x{(uint)value:X8} ({value})",
+					FieldType.Pointer16 => $"0x{(ushort)value:X4}",
+					FieldType.String => $"\"{value}\"",
+					FieldType.ByteArray => FormatByteArray((byte[])value),
+					_ => value.ToString() ?? ""
+				};
+
+				sb.AppendLine($"  {field.Name}: {formatted}");
+			}
+		}
+
+		return sb.ToString();
+	}
+
+	private static string ExtractString(byte[] data, int offset, int maxLength) {
+		var chars = new List<char>();
+		for (int i = 0; i < maxLength && offset + i < data.Length; i++) {
+			byte b = data[offset + i];
+			if (b == 0) break;
+			chars.Add(b >= 0x20 && b < 0x7f ? (char)b : '.');
+		}
+
+		return new string(chars.ToArray());
+	}
+
+	private static byte[] ExtractByteArray(byte[] data, int offset, int length) {
+		var result = new byte[Math.Min(length, data.Length - offset)];
+		Array.Copy(data, offset, result, 0, result.Length);
+		return result;
+	}
+
+	private static string FormatByteArray(byte[] data) {
+		return string.Join(" ", data.Select(b => $"{b:X2}"));
+	}
+
+	/// <summary>
+	/// Create a common NES enemy structure template.
+	/// </summary>
+	public static DataStructureTemplate CreateNesEnemy() {
+		return new DataStructureTemplate {
+			Name = "NES Enemy",
+			Description = "Common NES enemy data structure",
+			Fields = {
+				new StructureField("HP", FieldType.Byte, 1),
+				new StructureField("Attack", FieldType.Byte, 1),
+				new StructureField("Defense", FieldType.Byte, 1),
+				new StructureField("Speed", FieldType.Byte, 1),
+				new StructureField("EXP", FieldType.Word, 2),
+				new StructureField("Gold", FieldType.Word, 2),
+				new StructureField("SpriteID", FieldType.Byte, 1),
+				new StructureField("AI", FieldType.Byte, 1)
+			}
+		};
+	}
+
+	/// <summary>
+	/// Create a common NES pointer table template.
+	/// </summary>
+	public static DataStructureTemplate CreateNesPointerTable(int entryCount) {
+		var template = new DataStructureTemplate {
+			Name = "NES Pointer Table",
+			Description = $"Table of {entryCount} 16-bit pointers"
+		};
+
+		for (int i = 0; i < entryCount; i++) {
+			template.Fields.Add(new StructureField($"Ptr_{i:D2}", FieldType.Pointer16, 2));
+		}
+
+		return template;
+	}
+
+	/// <summary>
+	/// Create SNES header template.
+	/// </summary>
+	public static DataStructureTemplate CreateSnesHeader() {
+		return new DataStructureTemplate {
+			Name = "SNES Header",
+			Description = "SNES internal ROM header",
+			Fields = {
+				new StructureField("Title", FieldType.String, 21),
+				new StructureField("MapMode", FieldType.Byte, 1),
+				new StructureField("CartType", FieldType.Byte, 1),
+				new StructureField("ROMSize", FieldType.Byte, 1),
+				new StructureField("RAMSize", FieldType.Byte, 1),
+				new StructureField("Country", FieldType.Byte, 1),
+				new StructureField("License", FieldType.Byte, 1),
+				new StructureField("Version", FieldType.Byte, 1),
+				new StructureField("ChecksumComplement", FieldType.Word, 2),
+				new StructureField("Checksum", FieldType.Word, 2)
+			}
+		};
+	}
+}
+
+public record StructureField(string Name, FieldType Type, int Size);
+
+public enum FieldType {
+	Byte,
+	SignedByte,
+	Word,
+	WordBE,
+	DWord,
+	DWordBE,
+	Pointer16,
+	Pointer24,
+	String,
+	ByteArray
+}
+
+/// <summary>
+/// Multi-file search across multiple ROMs.
+/// </summary>
+public class MultiFileSearch {
+	/// <summary>
+	/// Result from a multi-file search.
+	/// </summary>
+	public record MultiSearchResult(string FilePath, int Offset, int Length, string ContextPreview);
+
+	/// <summary>
+	/// Search for pattern across multiple files.
+	/// </summary>
+	public static async Task<List<MultiSearchResult>> SearchFilesAsync(
+		IEnumerable<string> filePaths,
+		byte[] pattern,
+		IProgress<(string File, int Progress)>? progress = null,
+		CancellationToken cancellationToken = default) {
+		var results = new List<MultiSearchResult>();
+
+		foreach (var filePath in filePaths) {
+			cancellationToken.ThrowIfCancellationRequested();
+			progress?.Report((filePath, 0));
+
+			try {
+				var data = await File.ReadAllBytesAsync(filePath, cancellationToken);
+				var fileResults = SearchInData(data, pattern, filePath);
+				results.AddRange(fileResults);
+
+				progress?.Report((filePath, 100));
+			} catch (Exception) {
+				// Skip files that can't be read
+			}
+		}
+
+		return results;
+	}
+
+	private static List<MultiSearchResult> SearchInData(byte[] data, byte[] pattern, string filePath) {
+		var results = new List<MultiSearchResult>();
+
+		for (int i = 0; i <= data.Length - pattern.Length; i++) {
+			bool matches = true;
+			for (int j = 0; j < pattern.Length; j++) {
+				if (data[i + j] != pattern[j]) {
+					matches = false;
+					break;
+				}
+			}
+
+			if (matches) {
+				string context = GetContext(data, i, pattern.Length, 4);
+				results.Add(new MultiSearchResult(filePath, i, pattern.Length, context));
+			}
+		}
+
+		return results;
+	}
+
+	private static string GetContext(byte[] data, int offset, int length, int contextBytes) {
+		int start = Math.Max(0, offset - contextBytes);
+		int end = Math.Min(data.Length, offset + length + contextBytes);
+
+		var sb = new System.Text.StringBuilder();
+		for (int i = start; i < end; i++) {
+			if (i == offset) sb.Append('[');
+			sb.Append($"{data[i]:X2}");
+			if (i == offset + length - 1) sb.Append(']');
+			if (i < end - 1) sb.Append(' ');
+		}
+
+		return sb.ToString();
+	}
+
+	/// <summary>
+	/// Find files containing pattern.
+	/// </summary>
+	public static async Task<List<string>> FindFilesContaining(
+		string directory,
+		byte[] pattern,
+		string searchPattern = "*.nes;*.sfc;*.smc;*.gba;*.gb;*.gbc",
+		CancellationToken cancellationToken = default) {
+		var matchingFiles = new List<string>();
+		var extensions = searchPattern.Split(';').Select(p => p.TrimStart('*')).ToArray();
+
+		var files = Directory.EnumerateFiles(directory, "*.*", SearchOption.AllDirectories)
+			.Where(f => extensions.Any(ext => f.EndsWith(ext, StringComparison.OrdinalIgnoreCase)));
+
+		foreach (var file in files) {
+			cancellationToken.ThrowIfCancellationRequested();
+
+			try {
+				var data = await File.ReadAllBytesAsync(file, cancellationToken);
+				if (ContainsPattern(data, pattern)) {
+					matchingFiles.Add(file);
+				}
+			} catch {
+				// Skip
+			}
+		}
+
+		return matchingFiles;
+	}
+
+	private static bool ContainsPattern(byte[] data, byte[] pattern) {
+		if (pattern.Length == 0 || pattern.Length > data.Length) return false;
+
+		for (int i = 0; i <= data.Length - pattern.Length; i++) {
+			bool matches = true;
+			for (int j = 0; j < pattern.Length; j++) {
+				if (data[i + j] != pattern[j]) {
+					matches = false;
+					break;
+				}
+			}
+
+			if (matches) return true;
+		}
+
+		return false;
+	}
+}
