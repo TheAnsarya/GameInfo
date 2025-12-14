@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Text;
+using Avalonia;
 using Avalonia.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -377,6 +378,94 @@ public partial class HexEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		var hexString = BitConverter.ToString(_clipboard).Replace("-", " ");
 		StatusText = $"Copied {length} bytes: {(hexString.Length > 50 ? hexString[..50] + "..." : hexString)}";
 		OnPropertyChanged(nameof(HasClipboard));
+	}
+
+	/// <summary>
+	/// Gets the clipboard from the current application's main window.
+	/// </summary>
+	private static Avalonia.Input.Platform.IClipboard? GetSystemClipboard() {
+		if (Application.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop) {
+			return desktop.MainWindow?.Clipboard;
+		}
+		return null;
+	}
+
+	/// <summary>
+	/// Copy selection to system clipboard as wikitext for Data Crystal.
+	/// </summary>
+	[RelayCommand]
+	private async Task CopyAsWikitext() {
+		var clipboard = GetSystemClipboard();
+		if (clipboard is null || _clipboard is null || _clipboard.Length == 0) {
+			StatusText = "Nothing to copy";
+			return;
+		}
+
+		var sb = new StringBuilder();
+		var start = SelectionStart >= 0 ? SelectionStart : CurrentOffset;
+		sb.AppendLine($"; Hex data from offset {{{{$|{start:x6}}}}} ({_clipboard.Length} bytes)");
+
+		// Format as hex with Data Crystal {{$|xx}} notation
+		for (int i = 0; i < _clipboard.Length; i += 16) {
+			var lineBytes = Math.Min(16, _clipboard.Length - i);
+			sb.Append($"; {{{{$|{(start + i):x6}}}}}  ");
+
+			for (int j = 0; j < lineBytes; j++) {
+				sb.Append($"{{{{$|{_clipboard[i + j]:x2}}}}} ");
+			}
+
+			sb.AppendLine();
+		}
+
+		await clipboard.SetTextAsync(sb.ToString());
+		StatusText = $"Copied {_clipboard.Length} bytes as wikitext to clipboard";
+	}
+
+	/// <summary>
+	/// Copy selection to system clipboard as hex string.
+	/// </summary>
+	[RelayCommand]
+	private async Task CopyAsHexString() {
+		var clipboard = GetSystemClipboard();
+		if (clipboard is null || _clipboard is null || _clipboard.Length == 0) {
+			StatusText = "Nothing to copy";
+			return;
+		}
+
+		var hexString = BitConverter.ToString(_clipboard).Replace("-", " ");
+		await clipboard.SetTextAsync(hexString);
+		StatusText = $"Copied {_clipboard.Length} bytes as hex string to clipboard";
+	}
+
+	/// <summary>
+	/// Copy selection to system clipboard as assembly data bytes.
+	/// </summary>
+	[RelayCommand]
+	private async Task CopyAsAsmBytes() {
+		var clipboard = GetSystemClipboard();
+		if (clipboard is null || _clipboard is null || _clipboard.Length == 0) {
+			StatusText = "Nothing to copy";
+			return;
+		}
+
+		var sb = new StringBuilder();
+		var start = SelectionStart >= 0 ? SelectionStart : CurrentOffset;
+		sb.AppendLine($"; Data from offset ${start:X6} ({_clipboard.Length} bytes)");
+
+		for (int i = 0; i < _clipboard.Length; i += 16) {
+			var lineBytes = Math.Min(16, _clipboard.Length - i);
+			sb.Append("\t.db ");
+
+			for (int j = 0; j < lineBytes; j++) {
+				if (j > 0) sb.Append(", ");
+				sb.Append($"${_clipboard[i + j]:x2}");
+			}
+
+			sb.AppendLine();
+		}
+
+		await clipboard.SetTextAsync(sb.ToString());
+		StatusText = $"Copied {_clipboard.Length} bytes as ASM data to clipboard";
 	}
 
 	[RelayCommand]

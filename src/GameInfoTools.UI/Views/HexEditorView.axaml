@@ -24,6 +24,16 @@
 			<Separator/>
 			<Button Content="🔍" Command="{Binding ToggleSearchPanelCommand}" ToolTip.Tip="Search (Ctrl+F)" Width="28" Padding="4"/>
 			<Button Content="📍" Command="{Binding ToggleGotoPanelCommand}" ToolTip.Tip="Go to (Ctrl+G)" Width="28" Padding="4"/>
+			<SplitButton Content="📋" Command="{Binding CopySelectionCommand}" ToolTip.Tip="Copy Selection" Width="50" Padding="4">
+				<SplitButton.Flyout>
+					<MenuFlyout Placement="Bottom">
+						<MenuItem Header="Copy (Internal)" Command="{Binding CopySelectionCommand}"/>
+						<MenuItem Header="Copy as Hex String" Command="{Binding CopyAsHexStringCommand}"/>
+						<MenuItem Header="Copy as ASM Bytes" Command="{Binding CopyAsAsmBytesCommand}"/>
+						<MenuItem Header="Copy as Wikitext" Command="{Binding CopyAsWikitextCommand}"/>
+					</MenuFlyout>
+				</SplitButton.Flyout>
+			</SplitButton>
 			<Separator/>
 			<TextBlock Text="Group:" VerticalAlignment="Center"/>
 			<ComboBox ItemsSource="{Binding ByteGroupModes}" SelectedItem="{Binding ByteGroup}" Width="80"/>
