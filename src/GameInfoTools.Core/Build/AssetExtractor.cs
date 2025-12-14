@@ -47,6 +47,18 @@ public static class AssetExtractorFactory {
 			_ => new DataExtractor()
 		};
 	}
+
+	/// <summary>
+	/// Get a platform-specific extractor that handles all asset types for that platform
+	/// </summary>
+	public static IAssetExtractor? GetPlatformExtractor(Platform platform) {
+		return platform switch {
+			Platform.Nes => new NesAssetExtractor(),
+			// Future: Platform.Snes => new SnesAssetExtractor(),
+			// Future: Platform.Genesis => new GenesisAssetExtractor(),
+			_ => null
+		};
+	}
 }
 
 /// <summary>
