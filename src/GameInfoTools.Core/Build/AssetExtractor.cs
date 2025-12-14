@@ -47,6 +47,19 @@ public static class AssetExtractorFactory {
 			_ => new DataExtractor()
 		};
 	}
+
+	/// <summary>
+	/// Try to get a platform-specific extractor that handles all asset types
+	/// </summary>
+	/// <param name="platform">The ROM platform</param>
+	/// <returns>Platform-specific extractor if available, null otherwise</returns>
+	public static IAssetExtractor? TryGetPlatformExtractor(Platform platform) {
+		return platform switch {
+			Platform.Snes => new SnesAssetExtractor(),
+			// Platform.Nes => new NesAssetExtractor(), // Available in feature/57-nes-build-pipeline
+			_ => null
+		};
+	}
 }
 
 /// <summary>

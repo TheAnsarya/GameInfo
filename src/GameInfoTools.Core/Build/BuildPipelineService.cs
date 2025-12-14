@@ -154,6 +154,9 @@ public class BuildPipelineService {
 			return result;
 		}
 
+		// Try to get a platform-specific extractor first
+		var platformExtractor = AssetExtractorFactory.TryGetPlatformExtractor(_config.Project.Platform);
+
 		foreach (var asset in _config.Extraction.Assets) {
 			cancellationToken.ThrowIfCancellationRequested();
 
@@ -162,8 +165,8 @@ public class BuildPipelineService {
 
 				var outputPath = ResolvePath(asset.Output);
 
-				// Use type-specific extractor for intelligent conversion
-				var extractor = AssetExtractorFactory.GetExtractor(asset.Type, _config.Project.Platform);
+				// Prefer platform-specific extractor, fall back to type-specific
+				var extractor = platformExtractor ?? AssetExtractorFactory.GetExtractor(asset.Type, _config.Project.Platform);
 				var extractResult = await extractor.ExtractAsync(
 					romData,
 					asset,
