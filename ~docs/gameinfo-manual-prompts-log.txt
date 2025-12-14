@@ -142,6 +142,17 @@ hexadecimal values are always lowercase; continue;
 
 There are a ton of files that need a `git commit` where the files are moved, do that code management; continue making this have universal code documentation and editing app; continue;
 
+Add automatic ROM analysis → wiki page generation; Add wikitext export to CHR Editor (tile/sprite documentation); Add wikitext export to Map Editor (map data documentation); Enhance Wiki Editor with more game-specific templates; continue;
+
+create new branches for each issue/epic/effort and then merge them to main when they are done and remove the old branches that are complete; Add Data Crystal upload integration BUT DO NOT upload anything, Data Crystal forbids AI generated articles so every page needs to be manually reviewed and edited before it can be uploaded, you will get us banned if we don't manually review every article (update the documentation to reflect this fact) But once the review/edit is done, easy upload and compare and getting changes from other people from Data Crystal, is necessary; Make a UI for pushing to Data Crystal and pulling changes and how to implement those thoses in the wikitext generation process (a custom element or changes component or something?); plan and make github issues and todo-lists for this and every work effort; git commit as needed;
+
+Add unit tests for the Wiki project (optional but recommended); Test against Data Crystal when ready to upload content; Merge to main when ready: git checkout main && git merge feature/data-crystal-integration; Delete feature branch after merge: git branch -d feature/data-crystal-integration; continue;
+
+git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; always create todo-lists and create github issues and epics; and update them as you complete work; always create session logs in `~docs\session-logs` and ai chat logs at `~docs\chat-logs\` as markdown (`.md`) log files. log all of the chat/responses and work; continue;
+
+
+
+
 
 
 
