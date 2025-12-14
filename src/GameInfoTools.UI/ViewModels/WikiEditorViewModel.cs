@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Text;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -53,6 +54,13 @@ public partial class WikiEditorViewModel : ViewModelBase {
 		WikiDocumentType.SubPages,
 		WikiDocumentType.MainPage,
 		WikiDocumentType.Notes,
+		WikiDocumentType.Graphics,
+		WikiDocumentType.Maps,
+		WikiDocumentType.Audio,
+		WikiDocumentType.DataStructures,
+		WikiDocumentType.ScriptCommands,
+		WikiDocumentType.EnemyStats,
+		WikiDocumentType.ItemList,
 		WikiDocumentType.Custom
 	];
 
@@ -63,6 +71,13 @@ public partial class WikiEditorViewModel : ViewModelBase {
 		new WikiTemplate("Text Table (TBL)", WikiDocumentType.TextTable, GetTextTableTemplate()),
 		new WikiTemplate("Values Table", WikiDocumentType.Values, GetValuesTemplate()),
 		new WikiTemplate("Sub-pages", WikiDocumentType.SubPages, GetSubPagesTemplate()),
+		new WikiTemplate("Graphics/CHR", WikiDocumentType.Graphics, GetGraphicsTemplate()),
+		new WikiTemplate("Maps/Levels", WikiDocumentType.Maps, GetMapsTemplate()),
+		new WikiTemplate("Music/Sound", WikiDocumentType.Audio, GetAudioTemplate()),
+		new WikiTemplate("Data Structures", WikiDocumentType.DataStructures, GetDataStructuresTemplate()),
+		new WikiTemplate("Script Commands", WikiDocumentType.ScriptCommands, GetScriptCommandsTemplate()),
+		new WikiTemplate("Enemy Stats", WikiDocumentType.EnemyStats, GetEnemyStatsTemplate()),
+		new WikiTemplate("Item List", WikiDocumentType.ItemList, GetItemListTemplate()),
 	];
 
 	[ObservableProperty]
@@ -247,6 +262,160 @@ public partial class WikiEditorViewModel : ViewModelBase {
 		HasUnsavedChanges = false;
 		DetectDocumentType();
 		StatusMessage = $"Loaded {Path.GetFileName(path)}";
+	}
+
+	/// <summary>
+	/// Generates a comprehensive analysis wiki document from the loaded ROM.
+	/// </summary>
+	[RelayCommand]
+	private void GenerateRomAnalysis() {
+		if (_romFile is null) {
+			StatusMessage = "No ROM loaded";
+			return;
+		}
+
+		var info = _romFile.GetInfo();
+		var sb = new StringBuilder();
+
+		var gameTitle = info.Title ?? "Unknown Game";
+		var platform = info.System.ToString();
+
+		sb.AppendLine($$$"""
+			{{Game|
+			|title={{{gameTitle}}}
+			|platform={{{platform}}}
+			}}
+
+			This page was auto-generated from ROM analysis.
+
+			== ROM Information ==
+			{| class="wikitable" border="1"
+			|-
+			! Property !! Value
+			|-
+			| '''Title''' || {{{gameTitle}}}
+			|-
+			| '''Platform''' || {{{platform}}}
+			|-
+			| '''File Size''' || {{{info.Size:N0}}} bytes ({{$|{{{info.Size:x6}}}}})
+			|-
+			| '''Header Size''' || {{{info.HeaderSize}}} bytes
+			|-
+			| '''Mapper''' || {{{info.Mapper}}}
+			|}
+
+			""");
+
+		// Add ROM structure analysis
+		sb.AppendLine("== ROM Structure ==");
+		sb.AppendLine();
+
+		if (info.System is SystemType.Nes) {
+			var prgSize = Math.Max(0, info.Size - info.HeaderSize - (info.Size > 0x8000 ? 0x2000 : 0));
+			var chrSize = info.Size > prgSize + info.HeaderSize ? info.Size - prgSize - info.HeaderSize : 0;
+
+			sb.AppendLine($$$"""
+				{| class="wikitable" border="1"
+				|-
+				! Section !! Offset !! Size !! Description
+				|-
+				| Header || {{$|000000}} || {{{info.HeaderSize}}} || iNES/NES 2.0 header
+				|-
+				| PRG ROM || {{$|{{{info.HeaderSize:x6}}}}} || ~{{{prgSize:N0}}} || Program code and data
+				|-
+				| CHR ROM || (varies) || ~{{{chrSize:N0}}} || Graphics/tile data
+				|}
+
+				""");
+		} else if (info.System is SystemType.Snes) {
+			sb.AppendLine($$$"""
+				{| class="wikitable" border="1"
+				|-
+				! Section !! Description
+				|-
+				| Header || SMC/SFC header (if present)
+				|-
+				| Internal Header || At $00FFB0-$00FFFF (LoROM) or $00FFB0-$00FFFF (HiROM)
+				|-
+				| PRG || Program code
+				|-
+				| Data || Graphics, maps, text
+				|}
+
+				""");
+		}
+
+		// Memory map sections
+		sb.AppendLine("== Memory Map (Template) ==");
+		sb.AppendLine();
+		sb.AppendLine($$$"""
+			=== Zero Page ({{$|00}}-{{$|FF}}) ===
+			{| class="wikitable" border="1"
+			|-
+			! Address !! Size !! Description
+			|-
+			| {{$|00}} || 1 || (to be documented)
+			|}
+
+			=== RAM ({{$|0100}}-{{$|07FF}}) ===
+			{| class="wikitable" border="1"
+			|-
+			! Address !! Size !! Description
+			|-
+			| {{$|0100}} || $100 || Stack
+			|}
+
+			""");
+
+		// Bank structure
+		sb.AppendLine("== Bank Structure ==");
+		sb.AppendLine();
+
+		var bankSize = info.System switch {
+			SystemType.Nes => 0x4000, // 16KB banks typical
+			SystemType.Snes => 0x8000, // 32KB banks typical
+			_ => 0x4000
+		};
+
+		var bankCount = Math.Max(1, (info.Size - info.HeaderSize) / bankSize);
+		sb.AppendLine($$$"""
+			{| class="wikitable" border="1"
+			|-
+			! Bank !! File Offset !! Size !! Description
+			""");
+
+		for (int i = 0; i < Math.Min(bankCount, 32); i++) {
+			var offset = info.HeaderSize + (i * bankSize);
+			sb.AppendLine($$$"""
+				|-
+				| {{{i}}} || {{$|{{{offset:x6}}}}} || {{$|{{{bankSize:x4}}}}} ||
+				""");
+		}
+
+		if (bankCount > 32) {
+			sb.AppendLine($"|-\n| colspan=\"4\" | ''... and {bankCount - 32} more banks''");
+		}
+
+		sb.AppendLine("|}");
+		sb.AppendLine();
+
+		// Sub-pages links
+		sb.AppendLine("== Related Pages ==");
+		sb.AppendLine($"* [[{gameTitle} ({platform}) - RAM map|RAM Map]]");
+		sb.AppendLine($"* [[{gameTitle} ({platform}) - ROM map|ROM Map]]");
+		sb.AppendLine($"* [[{gameTitle} ({platform}) - SRAM map|SRAM Map]]");
+		sb.AppendLine($"* [[{gameTitle} ({platform}) - TBL|Text Table]]");
+		sb.AppendLine($"* [[{gameTitle} ({platform}) - Values|Values]]");
+		sb.AppendLine();
+
+		sb.AppendLine("[[Category:Games]]");
+		sb.AppendLine($"[[Category:{platform} games]]");
+
+		DocumentContent = sb.ToString();
+		DocumentTitle = $"{gameTitle} ({platform}) - Analysis";
+		SelectedDocumentType = WikiDocumentType.MainPage;
+		HasUnsavedChanges = true;
+		StatusMessage = "Generated ROM analysis wiki page";
 	}
 
 	/// <summary>
@@ -692,6 +861,302 @@ public partial class WikiEditorViewModel : ViewModelBase {
 		* [[Game Title - TBL|Text Table]]
 		* [[Game Title - Values|Values]]
 		""";
+
+	private static string GetGraphicsTemplate() => """
+		{{Game|
+		|title=Game Title
+		|platform=NES/SNES/etc
+		}}
+
+		This page documents the graphics/CHR data layout.
+
+		== CHR Banks ==
+		{| class="wikitable" border="1"
+		|-
+		! Bank !! Offset !! Size !! Description
+		|-
+		| 0 || {{$|000000}} || $2000 || Background tiles
+		|-
+		| 1 || {{$|002000}} || $2000 || Sprite tiles
+		|}
+
+		== Sprite Table ==
+		{| class="wikitable" border="1"
+		|-
+		! ID !! Tile !! Palette !! Size !! Description
+		|-
+		| {{$|00}} || {{$|00}} || 0 || 8x8 || Player idle
+		|}
+
+		== Palette Data ==
+		{| class="wikitable" border="1"
+		|-
+		! Offset !! Palette !! Colors !! Usage
+		|-
+		| {{$|xxxxxx}} || BG 0 || $0F,$00,$10,$30 || Main background
+		|}
+		""";
+
+	private static string GetMapsTemplate() => """
+		{{Game|
+		|title=Game Title
+		|platform=NES/SNES/etc
+		}}
+
+		This page documents the map/level data layout.
+
+		== Map Pointer Table ==
+		{| class="wikitable" border="1"
+		|-
+		! Offset !! Description
+		|-
+		| {{$|xxxxxx}} || Pointer table start
+		|}
+
+		== Map Data Format ==
+		{| class="wikitable" border="1"
+		|-
+		! Byte !! Description
+		|-
+		| 0 || Width
+		|-
+		| 1 || Height
+		|-
+		| 2+ || Tile data (row-major)
+		|}
+
+		== Map List ==
+		{| class="wikitable" border="1"
+		|-
+		! ID !! Name !! Width !! Height !! Offset
+		|-
+		| {{$|00}} || Map 1 || 16 || 16 || {{$|xxxxxx}}
+		|}
+
+		== Tileset References ==
+		{| class="wikitable" border="1"
+		|-
+		! Map ID !! Tileset !! Palette
+		|}
+		""";
+
+	private static string GetAudioTemplate() => """
+		{{Game|
+		|title=Game Title
+		|platform=NES/SNES/etc
+		}}
+
+		This page documents the music and sound data.
+
+		== Music Tracks ==
+		{| class="wikitable" border="1"
+		|-
+		! ID !! Name !! Offset !! Length
+		|-
+		| {{$|00}} || Title Screen || {{$|xxxxxx}} ||
+		|-
+		| {{$|01}} || Overworld || {{$|xxxxxx}} ||
+		|}
+
+		== Sound Effects ==
+		{| class="wikitable" border="1"
+		|-
+		! ID !! Name !! Description
+		|-
+		| {{$|00}} || Confirm || Menu selection
+		|-
+		| {{$|01}} || Cancel || Back/Cancel
+		|}
+
+		== Audio Engine ==
+		{| class="wikitable" border="1"
+		|-
+		! Offset !! Size !! Description
+		|-
+		| {{$|xxxxxx}} || || Sound engine code
+		|-
+		| {{$|xxxxxx}} || || Instrument data
+		|}
+		""";
+
+	private static string GetDataStructuresTemplate() => """
+		{{Game|
+		|title=Game Title
+		|platform=NES/SNES/etc
+		}}
+
+		This page documents data structures used in the game.
+
+		== Structure Name ==
+
+		Size: X bytes per entry
+
+		{| class="wikitable" border="1"
+		|-
+		! Offset !! Size !! Type !! Description
+		|-
+		| +0 || 1 || byte || Field 1
+		|-
+		| +1 || 2 || word || Field 2
+		|-
+		| +3 || 1 || byte || Flags (see below)
+		|}
+
+		=== Flags ===
+		{| class="wikitable" border="1"
+		|-
+		! Bit !! Description
+		|-
+		| 0 || Flag 1
+		|-
+		| 1 || Flag 2
+		|-
+		| 7 || Flag 8
+		|}
+
+		== Pointer Tables ==
+		{| class="wikitable" border="1"
+		|-
+		! Offset !! Description !! Entry Size !! Count
+		|}
+		""";
+
+	private static string GetScriptCommandsTemplate() => """
+		{{Game|
+		|title=Game Title
+		|platform=NES/SNES/etc
+		}}
+
+		This page documents the script/event command system.
+
+		== Script Engine ==
+		{| class="wikitable" border="1"
+		|-
+		! Offset !! Description
+		|-
+		| {{$|xxxxxx}} || Script interpreter
+		|-
+		| {{$|xxxxxx}} || Command table
+		|}
+
+		== Commands ==
+		{| class="wikitable" border="1"
+		|-
+		! Opcode !! Mnemonic !! Args !! Description
+		|-
+		| {{$|00}} || END || 0 || End script
+		|-
+		| {{$|01}} || WAIT || 1 || Wait N frames
+		|-
+		| {{$|02}} || JUMP || 2 || Jump to address
+		|-
+		| {{$|03}} || CALL || 2 || Call subroutine
+		|-
+		| {{$|04}} || RET || 0 || Return from call
+		|-
+		| {{$|05}} || MSG || 2 || Display message
+		|}
+
+		== Text Commands ==
+		{| class="wikitable" border="1"
+		|-
+		! Code !! Description
+		|-
+		| {{$|FE}} || Line break
+		|-
+		| {{$|FF}} || End of text
+		|}
+		""";
+
+	private static string GetEnemyStatsTemplate() => """
+		{{Game|
+		|title=Game Title
+		|platform=NES/SNES/etc
+		}}
+
+		This page lists enemy statistics.
+
+		== Enemy Data Format ==
+		{| class="wikitable" border="1"
+		|-
+		! Offset !! Size !! Description
+		|-
+		| +0 || 2 || HP
+		|-
+		| +2 || 1 || Attack
+		|-
+		| +3 || 1 || Defense
+		|-
+		| +4 || 2 || Experience
+		|-
+		| +6 || 2 || Gold
+		|}
+
+		== Enemy List ==
+		{| class="wikitable sortable" border="1"
+		|-
+		! ID !! Name !! HP !! ATK !! DEF !! EXP !! Gold
+		|-
+		| {{$|00}} || Enemy 1 || 10 || 5 || 3 || 5 || 2
+		|-
+		| {{$|01}} || Enemy 2 || 20 || 8 || 5 || 10 || 5
+		|}
+
+		== Boss Data ==
+		{| class="wikitable" border="1"
+		|-
+		! ID !! Name !! HP !! Location
+		|}
+		""";
+
+	private static string GetItemListTemplate() => """
+		{{Game|
+		|title=Game Title
+		|platform=NES/SNES/etc
+		}}
+
+		This page lists items and equipment.
+
+		== Item Data Format ==
+		{| class="wikitable" border="1"
+		|-
+		! Offset !! Size !! Description
+		|-
+		| +0 || 1 || Type (0=consumable, 1=weapon, 2=armor, etc.)
+		|-
+		| +1 || 1 || Effect value
+		|-
+		| +2 || 2 || Price
+		|}
+
+		== Consumable Items ==
+		{| class="wikitable sortable" border="1"
+		|-
+		! ID !! Name !! Effect !! Price
+		|-
+		| {{$|00}} || Herb || Restore 30 HP || 8
+		|}
+
+		== Weapons ==
+		{| class="wikitable sortable" border="1"
+		|-
+		! ID !! Name !! Attack !! Price !! Usable By
+		|-
+		| {{$|00}} || Wooden Sword || +5 || 50 || Hero
+		|}
+
+		== Armor ==
+		{| class="wikitable sortable" border="1"
+		|-
+		! ID !! Name !! Defense !! Price !! Usable By
+		|}
+
+		== Key Items ==
+		{| class="wikitable" border="1"
+		|-
+		! ID !! Name !! Description
+		|}
+		""";
 }
 
 /// <summary>
@@ -706,6 +1171,13 @@ public enum WikiDocumentType {
 	SubPages,
 	MainPage,
 	Notes,
+	Graphics,
+	Maps,
+	Audio,
+	DataStructures,
+	ScriptCommands,
+	EnemyStats,
+	ItemList,
 	Custom
 }
 

@@ -73,6 +73,9 @@
 				<Button Content="Import PNG..." Command="{Binding ImportFromPngCommand}" CommandParameter="{Binding $parent[Window]}"
 						ToolTip.Tip="Import map from PNG image"/>
 				<Separator/>
+				<Button Content="📋 Wiki" Command="{Binding CopyAsWikitextCommand}"
+						ToolTip.Tip="Copy map data as wikitext"/>
+				<Separator/>
 				<Button Content="↑" Command="{Binding ShiftMapCommand}" CommandParameter="UP" Width="24" ToolTip.Tip="Shift Up"/>
 				<Button Content="↓" Command="{Binding ShiftMapCommand}" CommandParameter="DOWN" Width="24" ToolTip.Tip="Shift Down"/>
 				<Button Content="←" Command="{Binding ShiftMapCommand}" CommandParameter="LEFT" Width="24" ToolTip.Tip="Shift Left"/>

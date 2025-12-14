@@ -72,6 +72,9 @@
 				<Button Content="🔄 Generate" Command="{Binding GenerateFromRomCommand}"
 						IsEnabled="{Binding CanGenerateFromRom}"
 						ToolTip.Tip="Generate current doc type from loaded ROM"/>
+				<Button Content="📊 ROM Analysis" Command="{Binding GenerateRomAnalysisCommand}"
+						IsEnabled="{Binding CanGenerateFromRom}"
+						ToolTip.Tip="Generate comprehensive ROM analysis wiki page"/>
 				<Button Content="📦 Batch Create" Command="{Binding BatchCreatePagesCommand}"
 						CommandParameter="{Binding $parent[Window]}"
 						IsEnabled="{Binding CanGenerateFromRom}"

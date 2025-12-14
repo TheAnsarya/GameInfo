@@ -1740,6 +1740,147 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 	}
 
 	/// <summary>
+	/// Gets the clipboard from the main window.
+	/// </summary>
+	private static Avalonia.Input.Platform.IClipboard? GetClipboard() {
+		if (Avalonia.Application.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop) {
+			return desktop.MainWindow?.Clipboard;
+		}
+		return null;
+	}
+
+	/// <summary>
+	/// Copy map data as wikitext documentation.
+	/// </summary>
+	[RelayCommand]
+	private async Task CopyAsWikitext() {
+		var clipboard = GetClipboard();
+		if (clipboard is null) {
+			StatusText = "Clipboard not available";
+			return;
+		}
+
+		var sb = new StringBuilder();
+		var mapDisplayName = string.IsNullOrWhiteSpace(MapName) ? $"Map {MapIndex:D3}" : MapName;
+
+		sb.AppendLine($"== {mapDisplayName} ==");
+		sb.AppendLine();
+		sb.AppendLine($$$"""
+{| class="wikitable"
+! Property !! Value
+|-
+| Name || {{{mapDisplayName}}}
+|-
+| Index || {{{MapIndex}}}
+|-
+| Width || {{{MapWidth}}} tiles
+|-
+| Height || {{{MapHeight}}} tiles
+|-
+| Data Offset || {{$|{{{MapDataOffset:x6}}}}}
+|-
+| Data Size || {{{MapWidth * MapHeight}}} bytes
+""");
+
+		if (Tileset is not null) {
+			sb.AppendLine($$$"""
+|-
+| Tileset Offset || {{$|{{{TilesetOffset:x6}}}}}
+|-
+| Tileset Format || {{{TilesetFormat}}}
+|-
+| Tile Count || {{{Tileset.TileCount}}}
+""");
+		}
+
+		sb.AppendLine("|}");
+		sb.AppendLine();
+
+		// Layer information
+		if (Layers.Count > 0) {
+			sb.AppendLine("=== Layers ===");
+			sb.AppendLine();
+			sb.AppendLine("""
+{| class="wikitable"
+! # !! Name !! Offset !! Format !! Visible
+""");
+			foreach (var layer in Layers) {
+				var visibleIcon = layer.IsVisible ? "✓" : "✗";
+				sb.AppendLine($$$"""
+|-
+| {{{layer.Index}}} || {{{layer.Name}}} || {{$|{{{layer.DataOffset:x6}}}}} || {{{layer.TileFormat}}} || {{{visibleIcon}}}
+""");
+			}
+			sb.AppendLine("|}");
+			sb.AppendLine();
+		}
+
+		// Tile usage statistics
+		if (MapDataArray is not null && MapDataArray.Length > 0) {
+			var tileUsage = new int[256];
+			foreach (var tile in MapDataArray) {
+				tileUsage[tile]++;
+			}
+
+			var usedTiles = tileUsage
+				.Select((count, index) => (index, count))
+				.Where(x => x.count > 0)
+				.OrderByDescending(x => x.count)
+				.Take(16)
+				.ToList();
+
+			sb.AppendLine("=== Tile Usage (Top 16) ===");
+			sb.AppendLine();
+			sb.AppendLine("""
+{| class="wikitable"
+! Tile !! Count !! %
+""");
+			foreach (var (index, count) in usedTiles) {
+				var percent = (count * 100.0 / MapDataArray.Length).ToString("F1");
+				sb.AppendLine($$$"""
+|-
+| {{$|{{{index:x2}}}}} || {{{count}}} || {{{percent}}}%
+""");
+			}
+			sb.AppendLine("|}");
+			sb.AppendLine();
+		}
+
+		// Selection data if present
+		if (SelectionStartX >= 0 && SelectionEndX >= 0) {
+			var selW = Math.Abs(SelectionEndX - SelectionStartX) + 1;
+			var selH = Math.Abs(SelectionEndY - SelectionStartY) + 1;
+			sb.AppendLine("=== Current Selection ===");
+			sb.AppendLine();
+			sb.AppendLine($"Selection: ({SelectionStartX},{SelectionStartY}) to ({SelectionEndX},{SelectionEndY}) = {selW}x{selH} tiles");
+			sb.AppendLine();
+		}
+
+		// Hex dump of first rows
+		if (MapDataArray is not null && MapDataArray.Length > 0) {
+			sb.AppendLine("=== Map Data (First 8 Rows) ===");
+			sb.AppendLine();
+			sb.AppendLine("<pre>");
+			var rowsToShow = Math.Min(8, MapHeight);
+			for (int y = 0; y < rowsToShow; y++) {
+				sb.Append($"{y:D2}: ");
+				for (int x = 0; x < MapWidth && (y * MapWidth + x) < MapDataArray.Length; x++) {
+					var tile = MapDataArray[(y * MapWidth) + x];
+					sb.Append($"{tile:x2} ");
+				}
+				sb.AppendLine();
+			}
+			if (MapHeight > 8) {
+				sb.AppendLine($"... ({MapHeight - 8} more rows)");
+			}
+			sb.AppendLine("</pre>");
+		}
+
+		await clipboard.SetTextAsync(sb.ToString());
+		StatusText = "Copied map data as wikitext";
+	}
+
+	/// <summary>
 	/// Imports map data from a PNG image by matching pixel colors to tile indices.
 	/// </summary>
 	[RelayCommand]

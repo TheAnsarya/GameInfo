@@ -76,6 +76,9 @@
 								ToolTip.Tip="Export selection to CHR" FontSize="10" Padding="4,2"/>
 						<Button Content="💾 PNG" Command="{Binding ExportSelectedTilesToPngCommand}" CommandParameter="{Binding $parent[Window]}"
 								ToolTip.Tip="Export selection to PNG" FontSize="10" Padding="4,2"/>
+						<Separator/>
+						<Button Content="📋 Wiki" Command="{Binding CopyAsWikitextCommand}"
+								ToolTip.Tip="Copy tile data as wikitext" FontSize="10" Padding="4,2"/>
 					</StackPanel>
 
 					<!-- Multi-select toolbar (shown when multi-select is active) -->

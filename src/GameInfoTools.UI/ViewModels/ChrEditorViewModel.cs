@@ -673,6 +673,134 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		}
 	}
 
+	/// <summary>
+	/// Gets the clipboard from the current application's main window.
+	/// </summary>
+	private static Avalonia.Input.Platform.IClipboard? GetSystemClipboard() {
+		if (Application.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop) {
+			return desktop.MainWindow?.Clipboard;
+		}
+		return null;
+	}
+
+	/// <summary>
+	/// Copies tile information as wikitext for Data Crystal documentation.
+	/// </summary>
+	[RelayCommand]
+	private async Task CopyAsWikitext() {
+		var clipboard = GetSystemClipboard();
+		if (clipboard is null || _chrEditor is null) {
+			StatusText = "Unable to copy to clipboard";
+			return;
+		}
+
+		var tilesToDocument = SelectedTileIndices.Count > 0
+			? SelectedTileIndices.Select(i => (SelectedBank * ChrEditor.TilesPerBank) + i).ToList()
+			: [SelectedTileIndex];
+
+		if (tilesToDocument.Count == 0 || tilesToDocument[0] < 0) {
+			StatusText = "No tiles selected";
+			return;
+		}
+
+		var sb = new StringBuilder();
+		sb.AppendLine("== Graphics/CHR Data ==");
+		sb.AppendLine();
+		sb.AppendLine($"CHR Offset: {{{{$|{ChrOffset:x6}}}}}");
+		sb.AppendLine($"Total Tiles: {TileCount}");
+		sb.AppendLine($"Banks: {BankCount}");
+		sb.AppendLine($"Format: {CurrentTileFormat}");
+		sb.AppendLine();
+
+		sb.AppendLine("=== Tile Index ===");
+		sb.AppendLine("{| class=\"wikitable\" border=\"1\"");
+		sb.AppendLine("|-");
+		sb.AppendLine("! Tile ID !! Offset !! Description");
+
+		foreach (var tileIndex in tilesToDocument.Take(100)) { // Limit to first 100
+			var offset = ChrOffset + (tileIndex * FormatBytesPerTile);
+			sb.AppendLine("|-");
+			sb.AppendLine($"| {{{{$|{tileIndex:x2}}}}} || {{{{$|{offset:x6}}}}} || ");
+		}
+
+		if (tilesToDocument.Count > 100) {
+			sb.AppendLine("|-");
+			sb.AppendLine($"| colspan=\"3\" | ''... and {tilesToDocument.Count - 100} more tiles''");
+		}
+
+		sb.AppendLine("|}");
+
+		// Add bank information
+		if (BankCount > 1) {
+			sb.AppendLine();
+			sb.AppendLine("=== CHR Banks ===");
+			sb.AppendLine("{| class=\"wikitable\" border=\"1\"");
+			sb.AppendLine("|-");
+			sb.AppendLine("! Bank !! Start Offset !! Tiles !! Description");
+
+			for (int bank = 0; bank < BankCount && bank < 16; bank++) {
+				var bankOffset = ChrOffset + (bank * ChrEditor.TilesPerBank * FormatBytesPerTile);
+				var tilesInBank = Math.Min(ChrEditor.TilesPerBank, TileCount - (bank * ChrEditor.TilesPerBank));
+				sb.AppendLine("|-");
+				sb.AppendLine($"| {bank} || {{{{$|{bankOffset:x6}}}}} || {tilesInBank} || ");
+			}
+
+			sb.AppendLine("|}");
+		}
+
+		await clipboard.SetTextAsync(sb.ToString());
+		StatusText = $"Copied {tilesToDocument.Count} tiles as wikitext";
+	}
+
+	/// <summary>
+	/// Copies selected tile as assembly data bytes.
+	/// </summary>
+	[RelayCommand]
+	private async Task CopyAsAsmData() {
+		var clipboard = GetSystemClipboard();
+		if (clipboard is null || _chrEditor is null || _rom is null) {
+			StatusText = "Unable to copy to clipboard";
+			return;
+		}
+
+		var tilesToExport = SelectedTileIndices.Count > 0
+			? SelectedTileIndices.Select(i => (SelectedBank * ChrEditor.TilesPerBank) + i).ToList()
+			: [SelectedTileIndex];
+
+		if (tilesToExport.Count == 0 || tilesToExport[0] < 0) {
+			StatusText = "No tiles selected";
+			return;
+		}
+
+		var sb = new StringBuilder();
+		sb.AppendLine($"; CHR tile data from offset ${ChrOffset:X6}");
+		sb.AppendLine($"; Format: {CurrentTileFormat} ({FormatBytesPerTile} bytes per tile)");
+		sb.AppendLine();
+
+		foreach (var tileIndex in tilesToExport) {
+			var offset = ChrOffset + (tileIndex * FormatBytesPerTile);
+			sb.AppendLine($"; Tile ${tileIndex:X2} at offset ${offset:X6}");
+			sb.AppendLine($"tile_{tileIndex:x2}:");
+
+			for (int row = 0; row < FormatBytesPerTile; row += 8) {
+				sb.Append("\t.db ");
+				var bytesThisRow = Math.Min(8, FormatBytesPerTile - row);
+				for (int i = 0; i < bytesThisRow; i++) {
+					if (i > 0) sb.Append(", ");
+					var dataOffset = offset + row + i;
+					if (dataOffset < _rom.Length) {
+						sb.Append($"${_rom.Data[dataOffset]:x2}");
+					}
+				}
+				sb.AppendLine();
+			}
+			sb.AppendLine();
+		}
+
+		await clipboard.SetTextAsync(sb.ToString());
+		StatusText = $"Copied {tilesToExport.Count} tiles as ASM data";
+	}
+
 	#endregion
 
 	private void UpdateTransformPreviews() {
