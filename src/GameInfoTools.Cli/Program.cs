@@ -20,6 +20,7 @@ public class Program {
 		rootCommand.AddCommand(CreateAnalysisCommand());
 		rootCommand.AddCommand(CreateDataCommand());
 		rootCommand.AddCommand(CreateDisasmCommand());
+		rootCommand.AddCommand(BuildCommands.CreateBuildCommand());
 		rootCommand.AddCommand(CreateListCommand());
 
 		// Show banner if no args
@@ -58,6 +59,7 @@ public class Program {
 		table.AddRow("[cyan]analysis[/]", "ROM analysis tools", "git analysis opcodes game.nes");
 		table.AddRow("[cyan]data[/]", "Game data editing", "git data monsters game.nes");
 		table.AddRow("[cyan]disasm[/]", "Disassembly tools", "git disasm bank game.nes 0");
+		table.AddRow("[cyan]build[/]", "Build pipeline operations", "git build project");
 		table.AddRow("[cyan]list[/]", "List available tools", "git list");
 
 		AnsiConsole.Write(table);
