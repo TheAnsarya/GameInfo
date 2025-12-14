@@ -1,0 +1,115 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="using:GameInfoTools.UI.ViewModels"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+			 x:Class="GameInfoTools.UI.Views.WikiEditorView"
+			 x:DataType="vm:WikiEditorViewModel">
+
+	<Design.DataContext>
+		<vm:WikiEditorViewModel/>
+	</Design.DataContext>
+
+	<DockPanel>
+		<!-- Toolbar -->
+		<Border DockPanel.Dock="Top" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}" Padding="8">
+			<StackPanel Orientation="Horizontal" Spacing="8">
+				<!-- Document Type -->
+				<ComboBox ItemsSource="{Binding DocumentTypes}"
+						  SelectedItem="{Binding SelectedDocumentType}"
+						  Width="150"/>
+
+				<Separator/>
+
+				<!-- Template Selection -->
+				<TextBlock Text="Template:" VerticalAlignment="Center"/>
+				<ComboBox ItemsSource="{Binding Templates}"
+						  SelectedItem="{Binding SelectedTemplate}"
+						  Width="150">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Name}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+
+				<Separator/>
+
+				<!-- Insert Buttons -->
+				<Button Content="Table" Command="{Binding InsertTableCommand}" ToolTip.Tip="Insert wiki table"/>
+				<Button Content="Section" Command="{Binding InsertSectionCommand}" ToolTip.Tip="Insert section header"/>
+				<Button Content="Hex" Command="{Binding InsertHexValueCommand}" ToolTip.Tip="Insert hex value template"/>
+				<Button Content="Link" Command="{Binding InsertLinkCommand}" ToolTip.Tip="Insert wiki link"/>
+
+				<Separator/>
+
+				<!-- Quick Insert -->
+				<DropDownButton Content="Insert Row">
+					<DropDownButton.Flyout>
+						<MenuFlyout>
+							<MenuItem Header="RAM Entry" Command="{Binding InsertRamEntryCommand}"/>
+							<MenuItem Header="ROM Entry" Command="{Binding InsertRomEntryCommand}"/>
+							<MenuItem Header="Text Table Entry" Command="{Binding InsertTextTableEntryCommand}"/>
+						</MenuFlyout>
+					</DropDownButton.Flyout>
+				</DropDownButton>
+
+				<Separator/>
+
+				<!-- Actions -->
+				<Button Content="📄 New" Command="{Binding NewDocumentCommand}" ToolTip.Tip="New document"/>
+				<Button Content="🔄 Generate" Command="{Binding GenerateFromRomCommand}"
+						IsEnabled="{Binding CanGenerateFromRom}"
+						ToolTip.Tip="Generate from loaded ROM"/>
+				<Button Content="👁 Preview" Command="{Binding TogglePreviewCommand}" ToolTip.Tip="Toggle preview"/>
+			</StackPanel>
+		</Border>
+
+		<!-- Document Title -->
+		<Border DockPanel.Dock="Top" Padding="8" Background="{DynamicResource SystemControlBackgroundBaseLowBrush}">
+			<Grid ColumnDefinitions="Auto,*,Auto">
+				<TextBlock Grid.Column="0" Text="Title:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+				<TextBox Grid.Column="1" Text="{Binding DocumentTitle}" FontWeight="Bold"/>
+				<TextBlock Grid.Column="2" Text="{Binding HasUnsavedChanges, StringFormat='{}*'}"
+						   IsVisible="{Binding HasUnsavedChanges}"
+						   Foreground="Orange" FontWeight="Bold" VerticalAlignment="Center" Margin="8,0,0,0"/>
+			</Grid>
+		</Border>
+
+		<!-- Main Content -->
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+
+			<!-- Editor -->
+			<Border Grid.Column="0" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" Margin="4">
+				<TextBox Text="{Binding DocumentContent}"
+						 AcceptsReturn="True"
+						 AcceptsTab="True"
+						 TextWrapping="NoWrap"
+						 FontFamily="Consolas,Menlo,Monaco,monospace"
+						 FontSize="13"
+						 Padding="8"/>
+			</Border>
+
+			<!-- Splitter -->
+			<GridSplitter Grid.Column="1" Width="4" Background="Transparent"
+						  IsVisible="{Binding ShowPreview}"/>
+
+			<!-- Preview Panel -->
+			<Border Grid.Column="2" Background="{DynamicResource SystemControlBackgroundBaseLowBrush}"
+					Margin="4" IsVisible="{Binding ShowPreview}">
+				<DockPanel>
+					<TextBlock DockPanel.Dock="Top" Text="Preview" FontWeight="Bold" Padding="8"/>
+					<ScrollViewer>
+						<TextBlock Text="{Binding PreviewHtml}" TextWrapping="Wrap" Padding="8"/>
+					</ScrollViewer>
+				</DockPanel>
+			</Border>
+		</Grid>
+	</DockPanel>
+</UserControl>

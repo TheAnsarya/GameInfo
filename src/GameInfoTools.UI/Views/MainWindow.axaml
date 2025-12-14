@@ -43,6 +43,7 @@
 				<Separator/>
 				<MenuItem Header="C_DL Viewer" Command="{Binding ShowCdlViewerCommand}"/>
 				<MenuItem Header="_Build Pipeline" Command="{Binding ShowBuildPipelineCommand}"/>
+				<MenuItem Header="_Wiki Editor" Command="{Binding ShowWikiEditorCommand}"/>
 			</MenuItem>
 			<MenuItem Header="_View">
 				<MenuItem Header="Hex _Editor" Command="{Binding ShowHexEditorCommand}"/>

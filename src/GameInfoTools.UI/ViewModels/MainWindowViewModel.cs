@@ -45,6 +45,7 @@ public partial class MainWindowViewModel : ViewModelBase {
 		new ToolCategory("📜", "Script Editor", "scripts"),
 		new ToolCategory("🔥", "CDL Viewer", "cdl"),
 		new ToolCategory("🔨", "Build Pipeline", "build"),
+		new ToolCategory("📖", "Wiki Editor", "wiki"),
 	];
 
 	public MainWindowViewModel() {
@@ -69,6 +70,7 @@ public partial class MainWindowViewModel : ViewModelBase {
 			"scripts" => new ScriptEditorViewModel(_loadedRom),
 			"cdl" => new CdlViewerViewModel(),
 			"build" => new BuildPipelineViewModel(_loadedRom),
+			"wiki" => new WikiEditorViewModel(_loadedRom),
 			_ => new WelcomeViewModel()
 		};
 	}
@@ -178,6 +180,9 @@ public partial class MainWindowViewModel : ViewModelBase {
 
 	[RelayCommand]
 	private void ShowBuildPipeline() => SelectedCategory = ToolCategories[12];
+
+	[RelayCommand]
+	private void ShowWikiEditor() => SelectedCategory = ToolCategories[13];
 
 	[RelayCommand]
 	private void ShowAbout() {
