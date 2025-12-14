@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Text.Json;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -492,6 +493,65 @@ public partial class ScriptEditorViewModel : ViewModelBase, IKeyboardShortcutHan
 		} catch (Exception ex) {
 			StatusText = $"Export error: {ex.Message}";
 		}
+	}
+
+	/// <summary>
+	/// Gets the clipboard from the current application's main window.
+	/// </summary>
+	private static Avalonia.Input.Platform.IClipboard? GetClipboard() {
+		if (Application.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop) {
+			return desktop.MainWindow?.Clipboard;
+		}
+		return null;
+	}
+
+	/// <summary>
+	/// Copy script as wikitext for Data Crystal documentation.
+	/// </summary>
+	[RelayCommand]
+	private async Task CopyAsWikitext() {
+		var clipboard = GetClipboard();
+		if (clipboard is null || Commands.Count == 0) {
+			StatusText = "Nothing to copy";
+			return;
+		}
+
+		var sb = new StringBuilder();
+		sb.AppendLine($"=== Script at {{{{$|{ScriptOffset:x6}}}}} ===");
+		sb.AppendLine($"; Type: {SelectedScriptType}");
+		sb.AppendLine($"; Commands: {Commands.Count}");
+		sb.AppendLine();
+		sb.AppendLine("<pre>");
+
+		foreach (var cmd in Commands) {
+			sb.AppendLine(cmd.Disassembly);
+		}
+
+		sb.AppendLine("</pre>");
+
+		// Add opcodes table if available
+		if (Opcodes.Count > 0) {
+			sb.AppendLine();
+			sb.AppendLine("==== Opcodes ====");
+			sb.AppendLine("{| class=\"wikitable\" border=\"1\"");
+			sb.AppendLine("|-");
+			sb.AppendLine("! Opcode !! Name !! Length !! Description");
+
+			foreach (var op in Opcodes.Take(20)) { // Limit to first 20 for readability
+				sb.AppendLine("|-");
+				sb.AppendLine($"| {{{{$|{op.Code:x2}}}}} || {op.Name} || {op.Length} || {op.Description}");
+			}
+
+			if (Opcodes.Count > 20) {
+				sb.AppendLine("|-");
+				sb.AppendLine($"| colspan=\"4\" | ''... and {Opcodes.Count - 20} more opcodes''");
+			}
+
+			sb.AppendLine("|}");
+		}
+
+		await clipboard.SetTextAsync(sb.ToString());
+		StatusText = $"Copied {Commands.Count} commands as wikitext";
 	}
 
 	[RelayCommand]

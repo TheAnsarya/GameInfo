@@ -26,7 +26,14 @@
 			<Button Content="Find Scripts" Command="{Binding FindScriptsCommand}" ToolTip.Tip="Search for scripts in ROM"/>
 			<Separator/>
 			<Button Content="Load Opcodes..." Command="{Binding LoadOpcodeTableCommand}" CommandParameter="{Binding $parent[Window]}" ToolTip.Tip="Load opcode definition table"/>
-			<Button Content="Export..." Command="{Binding ExportScriptCommand}" CommandParameter="{Binding $parent[Window]}" ToolTip.Tip="Export disassembled script"/>
+			<SplitButton Content="Export..." Command="{Binding ExportScriptCommand}" CommandParameter="{Binding $parent[Window]}" ToolTip.Tip="Export disassembled script">
+				<SplitButton.Flyout>
+					<MenuFlyout Placement="Bottom">
+						<MenuItem Header="Export to File..." Command="{Binding ExportScriptCommand}" CommandParameter="{Binding $parent[Window]}"/>
+						<MenuItem Header="Copy as Wikitext" Command="{Binding CopyAsWikitextCommand}"/>
+					</MenuFlyout>
+				</SplitButton.Flyout>
+			</SplitButton>
 			<Separator/>
 			<CheckBox Content="Control Flow" IsChecked="{Binding ShowControlFlowGraph}" VerticalAlignment="Center"
 					  ToolTip.Tip="Show control flow graph panel"/>
