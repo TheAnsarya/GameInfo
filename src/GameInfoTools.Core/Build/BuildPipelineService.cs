@@ -185,34 +185,33 @@ public class BuildPipelineService
 			{
 				_logger.Info($"Extracting {asset.Name} ({asset.Type})...");
 
-				var offset = asset.Source.GetOffset();
-				var length = asset.Source.GetLength() ?? (romData.Length - offset);
-
-				if (offset < 0 || offset >= romData.Length)
-				{
-					result.Errors.Add($"Invalid offset for {asset.Name}: 0x{offset:x}");
-					continue;
-				}
-
-				if (offset + length > romData.Length)
-				{
-					length = romData.Length - offset;
-					_logger.Warning($"Truncating {asset.Name} to available data");
-				}
-
-				var data = new byte[length];
-				Array.Copy(romData, offset, data, 0, length);
-
 				var outputPath = ResolvePath(asset.Output);
-				var outputDir = Path.GetDirectoryName(outputPath);
-				if (outputDir != null && !Directory.Exists(outputDir))
-				{
-					Directory.CreateDirectory(outputDir);
-				}
 
-				await File.WriteAllBytesAsync(outputPath, data, cancellationToken);
-				result.ExtractedAssets.Add(asset.Name);
-				_logger.Debug($"Extracted {length} bytes to {outputPath}");
+				// Use type-specific extractor for intelligent conversion
+				var extractor = AssetExtractorFactory.GetExtractor(asset.Type, _config.Project.Platform);
+				var extractResult = await extractor.ExtractAsync(
+					romData,
+					asset,
+					outputPath,
+					_config.Assets,
+					cancellationToken);
+
+				if (extractResult.Success)
+				{
+					result.ExtractedAssets.Add(asset.Name);
+					_logger.Debug($"Extracted {extractResult.BytesExtracted} bytes to {extractResult.OutputPath}");
+
+					// Log any metadata
+					foreach (var (key, value) in extractResult.Metadata)
+					{
+						_logger.Debug($"  {key}: {value}");
+					}
+				}
+				else
+				{
+					result.Errors.Add($"Failed to extract {asset.Name}: {extractResult.Error}");
+					_logger.Error($"Failed to extract {asset.Name}: {extractResult.Error}");
+				}
 			}
 			catch (Exception ex)
 			{
@@ -276,25 +275,52 @@ public class BuildPipelineService
 
 		Directory.CreateDirectory(buildDir);
 
-		// This would call asset-specific converters based on file type
-		// For now, just copy JSON files as placeholders
+		// Convert all editable asset files to binary format
 		var files = Directory.GetFiles(editableDir, "*.*", SearchOption.AllDirectories);
 		foreach (var file in files)
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 
 			var relativePath = Path.GetRelativePath(editableDir, file);
-			var destPath = Path.Combine(buildDir, relativePath);
-			var destDir = Path.GetDirectoryName(destPath);
+			var ext = Path.GetExtension(file).ToLowerInvariant();
 
+			// Determine output path (change extension to .bin for converted files)
+			var destPath = ext switch
+			{
+				".png" or ".json" or ".pal" => Path.Combine(buildDir, Path.ChangeExtension(relativePath, ".bin")),
+				_ => Path.Combine(buildDir, relativePath)
+			};
+
+			var destDir = Path.GetDirectoryName(destPath);
 			if (destDir != null && !Directory.Exists(destDir))
 			{
 				Directory.CreateDirectory(destDir);
 			}
 
-			// TODO: Implement actual conversion based on file type
-			// For now, just copy
-			await Task.Run(() => File.Copy(file, destPath, overwrite: true), cancellationToken);
+			try
+			{
+				// Use appropriate converter based on file type
+				var converter = AssetConverterFactory.GetConverter(file);
+				var result = await converter.ConvertAsync(
+					file,
+					destPath,
+					_config.Project.Platform,
+					null,
+					cancellationToken);
+
+				if (result.Success)
+				{
+					_logger.Debug($"Converted: {relativePath} -> {Path.GetFileName(destPath)} ({result.BytesGenerated} bytes)");
+				}
+				else
+				{
+					_logger.Warning($"Failed to convert {relativePath}: {result.Error}");
+				}
+			}
+			catch (Exception ex)
+			{
+				_logger.Warning($"Failed to convert {relativePath}: {ex.Message}");
+			}
 		}
 	}
 
