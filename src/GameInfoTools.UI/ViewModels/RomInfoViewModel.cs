@@ -1,3 +1,5 @@
+using System.Text;
+using Avalonia;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GameInfoTools.Core;
@@ -93,5 +95,160 @@ public partial class RomInfoViewModel : ViewModelBase {
 		Crc32 = $"{Checksum.Crc32(data):x8}";
 		Md5 = Checksum.Md5(data);
 		Sha1 = Checksum.Sha1(data);
+	}
+
+	/// <summary>
+	/// Gets the clipboard from the current application's main window.
+	/// </summary>
+	private static Avalonia.Input.Platform.IClipboard? GetClipboard() {
+		if (Application.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop) {
+			return desktop.MainWindow?.Clipboard;
+		}
+		return null;
+	}
+
+	/// <summary>
+	/// Copies ROM info to clipboard as plain text.
+	/// </summary>
+	[RelayCommand]
+	private async Task CopyAsText() {
+		var clipboard = GetClipboard();
+		if (clipboard is null || !HasRomLoaded) return;
+
+		var sb = new StringBuilder();
+		sb.AppendLine($"File: {FileName}");
+		sb.AppendLine($"Size: {FileSize}");
+		sb.AppendLine($"System: {SystemType}");
+		sb.AppendLine($"Title: {Title}");
+		sb.AppendLine($"Header: {HeaderSize}");
+		sb.AppendLine($"Mapper: {Mapper}");
+		sb.AppendLine($"PRG ROM: {PrgRomSize}");
+		sb.AppendLine($"CHR ROM: {ChrRomSize}");
+		sb.AppendLine($"Battery: {HasBattery}");
+		sb.AppendLine($"Mirroring: {Mirroring}");
+		sb.AppendLine($"CRC32: {Crc32}");
+		sb.AppendLine($"MD5: {Md5}");
+		sb.AppendLine($"SHA1: {Sha1}");
+
+		await clipboard.SetTextAsync(sb.ToString());
+	}
+
+	/// <summary>
+	/// Copies ROM info to clipboard as wikitext for Data Crystal.
+	/// </summary>
+	[RelayCommand]
+	private async Task CopyAsWikitext() {
+		var clipboard = GetClipboard();
+		if (clipboard is null || !HasRomLoaded) return;
+
+		var sb = new StringBuilder();
+		sb.AppendLine("{{Game|");
+		sb.AppendLine($"|title={Title}");
+		sb.AppendLine($"|platform={SystemType}");
+		sb.AppendLine($"|size={_rom?.Length:N0} bytes");
+		sb.AppendLine($"|mapper={Mapper}");
+		sb.AppendLine("}}");
+		sb.AppendLine();
+		sb.AppendLine("== ROM Information ==");
+		sb.AppendLine("{| class=\"wikitable\" border=\"1\"");
+		sb.AppendLine("|-");
+		sb.AppendLine("! Property !! Value");
+		sb.AppendLine("|-");
+		sb.AppendLine($"| File Name || {FileName}");
+		sb.AppendLine("|-");
+		sb.AppendLine($"| File Size || {FileSize}");
+		sb.AppendLine("|-");
+		sb.AppendLine($"| Header Size || {HeaderSize}");
+		sb.AppendLine("|-");
+		sb.AppendLine($"| PRG ROM || {PrgRomSize}");
+		sb.AppendLine("|-");
+		sb.AppendLine($"| CHR ROM || {ChrRomSize}");
+		sb.AppendLine("|-");
+		sb.AppendLine($"| Mapper || {Mapper}");
+		sb.AppendLine("|-");
+		sb.AppendLine($"| Battery || {HasBattery}");
+		sb.AppendLine("|-");
+		sb.AppendLine($"| Mirroring || {Mirroring}");
+		sb.AppendLine("|}");
+		sb.AppendLine();
+		sb.AppendLine("== Checksums ==");
+		sb.AppendLine("{| class=\"wikitable\" border=\"1\"");
+		sb.AppendLine("|-");
+		sb.AppendLine("! Algorithm !! Value");
+		sb.AppendLine("|-");
+		sb.AppendLine($"| CRC32 || <code>{Crc32}</code>");
+		sb.AppendLine("|-");
+		sb.AppendLine($"| MD5 || <code>{Md5}</code>");
+		sb.AppendLine("|-");
+		sb.AppendLine($"| SHA1 || <code>{Sha1}</code>");
+		sb.AppendLine("|}");
+
+		await clipboard.SetTextAsync(sb.ToString());
+	}
+
+	/// <summary>
+	/// Copies ROM info to clipboard as Markdown.
+	/// </summary>
+	[RelayCommand]
+	private async Task CopyAsMarkdown() {
+		var clipboard = GetClipboard();
+		if (clipboard is null || !HasRomLoaded) return;
+
+		var sb = new StringBuilder();
+		sb.AppendLine($"# {Title}");
+		sb.AppendLine();
+		sb.AppendLine("## ROM Information");
+		sb.AppendLine();
+		sb.AppendLine("| Property | Value |");
+		sb.AppendLine("|----------|-------|");
+		sb.AppendLine($"| File Name | {FileName} |");
+		sb.AppendLine($"| File Size | {FileSize} |");
+		sb.AppendLine($"| System | {SystemType} |");
+		sb.AppendLine($"| Header Size | {HeaderSize} |");
+		sb.AppendLine($"| PRG ROM | {PrgRomSize} |");
+		sb.AppendLine($"| CHR ROM | {ChrRomSize} |");
+		sb.AppendLine($"| Mapper | {Mapper} |");
+		sb.AppendLine($"| Battery | {HasBattery} |");
+		sb.AppendLine($"| Mirroring | {Mirroring} |");
+		sb.AppendLine();
+		sb.AppendLine("## Checksums");
+		sb.AppendLine();
+		sb.AppendLine("| Algorithm | Value |");
+		sb.AppendLine("|-----------|-------|");
+		sb.AppendLine($"| CRC32 | `{Crc32}` |");
+		sb.AppendLine($"| MD5 | `{Md5}` |");
+		sb.AppendLine($"| SHA1 | `{Sha1}` |");
+
+		await clipboard.SetTextAsync(sb.ToString());
+	}
+
+	/// <summary>
+	/// Copies ROM info to clipboard as JSON.
+	/// </summary>
+	[RelayCommand]
+	private async Task CopyAsJson() {
+		var clipboard = GetClipboard();
+		if (clipboard is null || !HasRomLoaded) return;
+
+		var json = System.Text.Json.JsonSerializer.Serialize(new {
+			fileName = FileName,
+			filePath = FilePath,
+			fileSize = _rom?.Length,
+			system = SystemType,
+			title = Title,
+			headerSize = HeaderSize,
+			mapper = Mapper,
+			prgRomSize = PrgRomSize,
+			chrRomSize = ChrRomSize,
+			hasBattery = HasBattery,
+			mirroring = Mirroring,
+			checksums = new {
+				crc32 = Crc32,
+				md5 = Md5,
+				sha1 = Sha1
+			}
+		}, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
+
+		await clipboard.SetTextAsync(json);
 	}
 }
