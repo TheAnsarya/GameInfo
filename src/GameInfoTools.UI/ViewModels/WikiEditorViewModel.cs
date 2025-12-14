@@ -1,7 +1,10 @@
 using System.Collections.ObjectModel;
+using System.IO;
+using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GameInfoTools.Core;
+using GameInfoTools.UI.Services;
 
 namespace GameInfoTools.UI.ViewModels;
 
@@ -32,6 +35,9 @@ public partial class WikiEditorViewModel : ViewModelBase {
 
 	[ObservableProperty]
 	private bool _showPreview;
+
+	[ObservableProperty]
+	private string _statusMessage = "";
 
 	/// <summary>
 	/// Indicates whether generation from ROM is available (ROM is loaded).
@@ -162,6 +168,104 @@ public partial class WikiEditorViewModel : ViewModelBase {
 		DocumentTitle = "New Document";
 		FilePath = "";
 		HasUnsavedChanges = false;
+	}
+
+	[RelayCommand]
+	private async Task SaveDocumentAsync(Window? window) {
+		if (window is null) return;
+
+		// If we have a file path, save to it; otherwise prompt for location
+		var path = FilePath;
+		if (string.IsNullOrEmpty(path)) {
+			var dialogService = FileDialogService.FromWindow(window);
+			var suggestedName = DocumentTitle.Replace(":", " -").Replace(" - ", " - ") + ".wikitext";
+			path = await dialogService.SaveFileAsync(
+				"Save Wiki Document",
+				".wikitext",
+				suggestedName,
+				FileDialogService.WikitextFiles,
+				FileDialogService.AllFiles);
+
+			if (string.IsNullOrEmpty(path)) return;
+			FilePath = path;
+		}
+
+		await File.WriteAllTextAsync(path, DocumentContent);
+		HasUnsavedChanges = false;
+		StatusMessage = $"Saved to {Path.GetFileName(path)}";
+	}
+
+	[RelayCommand]
+	private async Task SaveDocumentAsAsync(Window? window) {
+		if (window is null) return;
+
+		var dialogService = FileDialogService.FromWindow(window);
+		var suggestedName = DocumentTitle.Replace(":", " -") + ".wikitext";
+		var path = await dialogService.SaveFileAsync(
+			"Save Wiki Document As",
+			".wikitext",
+			suggestedName,
+			FileDialogService.WikitextFiles,
+			FileDialogService.AllFiles);
+
+		if (string.IsNullOrEmpty(path)) return;
+
+		FilePath = path;
+		DocumentTitle = Path.GetFileNameWithoutExtension(path);
+		await File.WriteAllTextAsync(path, DocumentContent);
+		HasUnsavedChanges = false;
+		StatusMessage = $"Saved to {Path.GetFileName(path)}";
+	}
+
+	[RelayCommand]
+	private async Task OpenDocumentAsync(Window? window) {
+		if (window is null) return;
+
+		var dialogService = FileDialogService.FromWindow(window);
+		var path = await dialogService.OpenFileAsync(
+			"Open Wiki Document",
+			FileDialogService.WikitextFiles,
+			FileDialogService.AllFiles);
+
+		if (string.IsNullOrEmpty(path)) return;
+
+		await LoadDocumentFromPath(path);
+	}
+
+	/// <summary>
+	/// Loads a document from the specified file path.
+	/// </summary>
+	public async Task LoadDocumentFromPath(string path) {
+		if (!File.Exists(path)) {
+			StatusMessage = $"File not found: {path}";
+			return;
+		}
+
+		DocumentContent = await File.ReadAllTextAsync(path);
+		FilePath = path;
+		DocumentTitle = Path.GetFileNameWithoutExtension(path);
+		HasUnsavedChanges = false;
+		DetectDocumentType();
+		StatusMessage = $"Loaded {Path.GetFileName(path)}";
+	}
+
+	/// <summary>
+	/// Detects the document type based on content.
+	/// </summary>
+	private void DetectDocumentType() {
+		if (DocumentContent.Contains("RAM map", StringComparison.OrdinalIgnoreCase) ||
+			DocumentContent.Contains("Zero Page", StringComparison.OrdinalIgnoreCase)) {
+			SelectedDocumentType = WikiDocumentType.RamMap;
+		} else if (DocumentContent.Contains("ROM map", StringComparison.OrdinalIgnoreCase) ||
+			DocumentContent.Contains("ROM layout", StringComparison.OrdinalIgnoreCase)) {
+			SelectedDocumentType = WikiDocumentType.RomMap;
+		} else if (DocumentContent.Contains("SRAM", StringComparison.OrdinalIgnoreCase) ||
+			DocumentContent.Contains("Save", StringComparison.OrdinalIgnoreCase)) {
+			SelectedDocumentType = WikiDocumentType.SramMap;
+		} else if (DocumentContent.Contains("Character Table", StringComparison.OrdinalIgnoreCase) ||
+			DocumentContent.Contains("text encoding", StringComparison.OrdinalIgnoreCase)) {
+			SelectedDocumentType = WikiDocumentType.TextTable;
+		}
 	}
 
 	[RelayCommand]

@@ -57,8 +57,18 @@
 
 				<Separator/>
 
-				<!-- Actions -->
+				<!-- File Operations -->
+				<Button Content="📂 Open" Command="{Binding OpenDocumentCommand}"
+						CommandParameter="{Binding $parent[Window]}"
+						ToolTip.Tip="Open document (Ctrl+O)"/>
+				<Button Content="💾 Save" Command="{Binding SaveDocumentCommand}"
+						CommandParameter="{Binding $parent[Window]}"
+						ToolTip.Tip="Save document (Ctrl+S)"/>
 				<Button Content="📄 New" Command="{Binding NewDocumentCommand}" ToolTip.Tip="New document"/>
+
+				<Separator/>
+
+				<!-- Actions -->
 				<Button Content="🔄 Generate" Command="{Binding GenerateFromRomCommand}"
 						IsEnabled="{Binding CanGenerateFromRom}"
 						ToolTip.Tip="Generate from loaded ROM"/>
@@ -74,6 +84,17 @@
 				<TextBlock Grid.Column="2" Text="{Binding HasUnsavedChanges, StringFormat='{}*'}"
 						   IsVisible="{Binding HasUnsavedChanges}"
 						   Foreground="Orange" FontWeight="Bold" VerticalAlignment="Center" Margin="8,0,0,0"/>
+			</Grid>
+		</Border>
+
+		<!-- Status Bar -->
+		<Border DockPanel.Dock="Bottom" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}" Padding="8,4">
+			<Grid ColumnDefinitions="*,Auto,Auto">
+				<TextBlock Grid.Column="0" Text="{Binding StatusMessage}" VerticalAlignment="Center"/>
+				<TextBlock Grid.Column="1" Text="{Binding FilePath}" VerticalAlignment="Center"
+						   Foreground="Gray" Margin="16,0"/>
+				<TextBlock Grid.Column="2" Text="{Binding DocumentContent.Length, StringFormat='{}{0:N0} chars'}"
+						   VerticalAlignment="Center" Foreground="Gray"/>
 			</Grid>
 		</Border>
 

@@ -96,6 +96,13 @@ public class FileDialogService : IFileDialogService {
 	};
 
 	/// <summary>
+	/// Common file type filters for wikitext files.
+	/// </summary>
+	public static FilePickerFileType WikitextFiles { get; } = new("Wikitext Files") {
+		Patterns = ["*.wikitext", "*.wiki", "*.txt"]
+	};
+
+	/// <summary>
 	/// Common file type filters for binary files.
 	/// </summary>
 	public static FilePickerFileType BinaryFiles { get; } = new("Binary Files") {
