@@ -67,7 +67,9 @@
 	"terminal.integrated.profiles.windows": {
 		"PowerShell": {
 			"source": "PowerShell",
-			"args": ["-NoLogo"],
+			"args": [
+				"-NoLogo"
+			],
 			"env": {
 				"NO_COLOR": "1"
 			}

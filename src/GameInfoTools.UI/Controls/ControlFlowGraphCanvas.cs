@@ -1,8 +1,8 @@
-using System.Collections.ObjectModel;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Media;
+using System.Collections.ObjectModel;
 
 namespace GameInfoTools.UI.Controls;
 
@@ -235,7 +235,6 @@ public class ControlFlowGraphCanvas : Control {
 			outgoing[node.Id] = [];
 			incoming[node.Id] = [];
 		}
-
 		foreach (var edge in edges) {
 			if (outgoing.ContainsKey(edge.FromId) && incoming.ContainsKey(edge.ToId)) {
 				outgoing[edge.FromId].Add(edge.ToId);
@@ -294,12 +293,12 @@ public class ControlFlowGraphCanvas : Control {
 
 		// Position nodes
 		foreach (var (layerIndex, layerNodes) in layers.OrderBy(l => l.Key)) {
-			var y = NodePaddingY + (layerIndex * (DefaultNodeHeight + NodePaddingY));
+			var y = NodePaddingY + layerIndex * (DefaultNodeHeight + NodePaddingY);
 			var layerWidth = layerNodes.Count * (DefaultNodeWidth + NodePaddingX);
 			var startX = NodePaddingX;
 
 			for (int i = 0; i < layerNodes.Count; i++) {
-				var x = startX + (i * (DefaultNodeWidth + NodePaddingX));
+				var x = startX + i * (DefaultNodeWidth + NodePaddingX);
 				_nodeLayouts[layerNodes[i]] = new NodeLayout(x, y, DefaultNodeWidth, DefaultNodeHeight);
 			}
 		}
@@ -358,8 +357,8 @@ public class ControlFlowGraphCanvas : Control {
 			var pen = new Pen(new SolidColorBrush(color), 2);
 
 			// Calculate edge start/end points
-			var fromCenter = new Point(fromLayout.X + (fromLayout.Width / 2), fromLayout.Y + (fromLayout.Height / 2));
-			var toCenter = new Point(toLayout.X + (toLayout.Width / 2), toLayout.Y + (toLayout.Height / 2));
+			var fromCenter = new Point(fromLayout.X + fromLayout.Width / 2, fromLayout.Y + fromLayout.Height / 2);
+			var toCenter = new Point(toLayout.X + toLayout.Width / 2, toLayout.Y + toLayout.Height / 2);
 
 			Point startPoint, endPoint;
 
@@ -415,18 +414,18 @@ public class ControlFlowGraphCanvas : Control {
 
 	private void DrawArrowHead(DrawingContext context, Pen pen, Point from, Point to) {
 		var direction = new Vector(to.X - from.X, to.Y - from.Y);
-		var length = Math.Sqrt((direction.X * direction.X) + (direction.Y * direction.Y));
+		var length = Math.Sqrt(direction.X * direction.X + direction.Y * direction.Y);
 		if (length < 1) return;
 
 		direction = new Vector(direction.X / length, direction.Y / length);
 		var perpendicular = new Vector(-direction.Y, direction.X);
 
 		var arrowPoint1 = new Point(
-			to.X - (direction.X * ArrowSize) + (perpendicular.X * ArrowSize / 2),
-			to.Y - (direction.Y * ArrowSize) + (perpendicular.Y * ArrowSize / 2));
+			to.X - direction.X * ArrowSize + perpendicular.X * ArrowSize / 2,
+			to.Y - direction.Y * ArrowSize + perpendicular.Y * ArrowSize / 2);
 		var arrowPoint2 = new Point(
-			to.X - (direction.X * ArrowSize) - (perpendicular.X * ArrowSize / 2),
-			to.Y - (direction.Y * ArrowSize) - (perpendicular.Y * ArrowSize / 2));
+			to.X - direction.X * ArrowSize - perpendicular.X * ArrowSize / 2,
+			to.Y - direction.Y * ArrowSize - perpendicular.Y * ArrowSize / 2);
 
 		var geometry = new StreamGeometry();
 		using (var ctx = geometry.Open()) {
@@ -455,10 +454,10 @@ public class ControlFlowGraphCanvas : Control {
 			Pen borderPen;
 			if (_selectedNodeId == node.Id) {
 				borderPen = new Pen(new SolidColorBrush(SelectedNodeBorderColor), 3);
+			} else if (_hoveredNodeId == node.Id) {
+				borderPen = new Pen(new SolidColorBrush(HoveredNodeBorderColor), 2);
 			} else {
-				borderPen = _hoveredNodeId == node.Id
-					? new Pen(new SolidColorBrush(HoveredNodeBorderColor), 2)
-					: new Pen(new SolidColorBrush(Color.FromRgb(0x40, 0x40, 0x40)), 1);
+				borderPen = new Pen(new SolidColorBrush(Color.FromRgb(0x40, 0x40, 0x40)), 1);
 			}
 
 			// Draw node rectangle with rounded corners
@@ -647,14 +646,14 @@ public class ControlFlowGraphCanvas : Control {
 		var maxX = _nodeLayouts.Values.Max(l => l.X + l.Width);
 		var maxY = _nodeLayouts.Values.Max(l => l.Y + l.Height);
 
-		var graphWidth = maxX - minX + (NodePaddingX * 2);
-		var graphHeight = maxY - minY + (NodePaddingY * 2);
+		var graphWidth = maxX - minX + NodePaddingX * 2;
+		var graphHeight = maxY - minY + NodePaddingY * 2;
 
 		var scaleX = Bounds.Width / graphWidth;
 		var scaleY = Bounds.Height / graphHeight;
 		_zoom = Math.Min(Math.Min(scaleX, scaleY), 1.0);
 
-		_panOffset = new Point((-minX * _zoom) + NodePaddingX, (-minY * _zoom) + NodePaddingY);
+		_panOffset = new Point(-minX * _zoom + NodePaddingX, -minY * _zoom + NodePaddingY);
 		InvalidateVisual();
 	}
 
@@ -665,8 +664,8 @@ public class ControlFlowGraphCanvas : Control {
 		if (!_nodeLayouts.TryGetValue(nodeId, out var layout)) return;
 
 		_panOffset = new Point(
-			(Bounds.Width / 2) - ((layout.X + (layout.Width / 2)) * _zoom),
-			(Bounds.Height / 2) - ((layout.Y + (layout.Height / 2)) * _zoom));
+			Bounds.Width / 2 - (layout.X + layout.Width / 2) * _zoom,
+			Bounds.Height / 2 - (layout.Y + layout.Height / 2) * _zoom);
 
 		_selectedNodeId = nodeId;
 		SelectedNodeId = nodeId;
@@ -697,10 +696,8 @@ public class ControlFlowGraphCanvas : Control {
 				if (!string.IsNullOrEmpty(node.Preview)) {
 					label += $"\\n{EscapeDotString(node.Preview)}";
 				}
-
 				sb.AppendLine($"    \"{node.Id}\" [label=\"{label}\", fillcolor=\"{color}\", fontcolor=\"{fontColor}\"];");
 			}
-
 			sb.AppendLine();
 		}
 
@@ -754,9 +751,9 @@ public class ControlFlowGraphCanvas : Control {
 					!_nodeLayouts.TryGetValue(edge.ToId, out var toLayout)) continue;
 
 				var color = GetSvgEdgeColor(edge.EdgeType);
-				var fromX = fromLayout.X + (fromLayout.Width / 2);
+				var fromX = fromLayout.X + fromLayout.Width / 2;
 				var fromY = fromLayout.Y + fromLayout.Height;
-				var toX = toLayout.X + (toLayout.Width / 2);
+				var toX = toLayout.X + toLayout.Width / 2;
 				var toY = toLayout.Y;
 
 				// Draw path with arrow marker
@@ -779,8 +776,8 @@ public class ControlFlowGraphCanvas : Control {
 				};
 
 				sb.AppendLine($"  <rect x=\"{layout.X}\" y=\"{layout.Y}\" width=\"{layout.Width}\" height=\"{layout.Height}\" rx=\"4\" class=\"node {nodeClass}\"/>");
-				sb.AppendLine($"  <text x=\"{layout.X + (layout.Width / 2)}\" y=\"{layout.Y + 15}\" text-anchor=\"middle\" class=\"label\">{EscapeXml(node.Label)}</text>");
-				sb.AppendLine($"  <text x=\"{layout.X + (layout.Width / 2)}\" y=\"{layout.Y + 28}\" text-anchor=\"middle\" class=\"addr\">${node.StartAddress:X4}-${node.EndAddress:X4}</text>");
+				sb.AppendLine($"  <text x=\"{layout.X + layout.Width / 2}\" y=\"{layout.Y + 15}\" text-anchor=\"middle\" class=\"label\">{EscapeXml(node.Label)}</text>");
+				sb.AppendLine($"  <text x=\"{layout.X + layout.Width / 2}\" y=\"{layout.Y + 28}\" text-anchor=\"middle\" class=\"addr\">${node.StartAddress:X4}-${node.EndAddress:X4}</text>");
 			}
 		}
 
@@ -792,7 +789,6 @@ public class ControlFlowGraphCanvas : Control {
 			sb.AppendLine($"      <path d=\"M0,0 L0,6 L9,3 z\" fill=\"{color}\"/>");
 			sb.AppendLine("    </marker>");
 		}
-
 		sb.AppendLine("  </defs>");
 
 		sb.AppendLine("</svg>");
