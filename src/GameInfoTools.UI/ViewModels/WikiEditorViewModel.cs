@@ -250,6 +250,50 @@ public partial class WikiEditorViewModel : ViewModelBase {
 	}
 
 	/// <summary>
+	/// Batch creates all standard wiki pages for a game in a selected folder.
+	/// </summary>
+	[RelayCommand]
+	private async Task BatchCreatePagesAsync(Window? window) {
+		if (window is null || _romFile is null) return;
+
+		var dialogService = FileDialogService.FromWindow(window);
+		var folder = await dialogService.SelectFolderAsync("Select Output Folder for Wiki Pages");
+		if (string.IsNullOrEmpty(folder)) return;
+
+		var info = _romFile.GetInfo();
+		var gameTitle = info.Title ?? "Unknown Game";
+		var platform = info.System;
+		var prefix = $"{gameTitle} ({platform})";
+
+		// Create standard pages
+		var pages = new Dictionary<string, string> {
+			[$"{prefix} - RAM map.wikitext"] = GenerateRamMapFromRom(info),
+			[$"{prefix} - ROM map.wikitext"] = GenerateRomMapFromRom(info),
+			[$"{prefix} - SRAM map.wikitext"] = GenerateSramMapFromRom(info),
+			[$"{prefix} - TBL.wikitext"] = GenerateTextTableFromRom(info),
+			[$"{prefix} - Values.wikitext"] = GenerateValuesFromRom(info),
+			[$"{prefix} - Sub-pages.wikitext"] = GenerateSubPagesFromRom(info),
+		};
+
+		var created = 0;
+		foreach (var (filename, content) in pages) {
+			var path = Path.Combine(folder, filename);
+			if (!File.Exists(path)) {
+				await File.WriteAllTextAsync(path, content);
+				created++;
+			}
+		}
+
+		// Create Images subfolder
+		var imagesFolder = Path.Combine(folder, "Images");
+		if (!Directory.Exists(imagesFolder)) {
+			Directory.CreateDirectory(imagesFolder);
+		}
+
+		StatusMessage = $"Created {created} wiki pages in {folder}";
+	}
+
+	/// <summary>
 	/// Detects the document type based on content.
 	/// </summary>
 	private void DetectDocumentType() {
@@ -379,6 +423,142 @@ public partial class WikiEditorViewModel : ViewModelBase {
 			== See Also ==
 			* [[{{{info.Title}}} - RAM map|RAM Map]]
 			* [[{{{info.Title}}} - TBL|Text Table]]
+			""";
+	}
+
+	private string GenerateSramMapFromRom(RomInfo info) {
+		return $$$"""
+			{{Game|
+			|title={{{info.Title ?? "Unknown"}}}
+			|platform={{{info.System}}}
+			}}
+
+			This page documents the SRAM (save data) layout for {{{info.Title ?? "the game"}}}.
+
+			== Save Slot Structure ==
+			{| class="wikitable" border="1"
+			|-
+			! Offset !! Size !! Description
+			|-
+			| {{$|0000}} || ? || Save slot 1
+			|-
+			| {{$|????}} || ? || Save slot 2
+			|-
+			| {{$|????}} || ? || Save slot 3
+			|}
+
+			== Save Slot Contents ==
+			{| class="wikitable" border="1"
+			|-
+			! Offset !! Size !! Description
+			|-
+			| {{$|00}} || 2 || Checksum
+			|}
+
+			== See Also ==
+			* [[{{{info.Title}}} - RAM map|RAM Map]]
+			* [[{{{info.Title}}} - ROM map|ROM Map]]
+			""";
+	}
+
+	private string GenerateTextTableFromRom(RomInfo info) {
+		return $$$"""
+			{{Game|
+			|title={{{info.Title ?? "Unknown"}}}
+			|platform={{{info.System}}}
+			}}
+
+			This page documents the text encoding table for {{{info.Title ?? "the game"}}}.
+
+			== Character Table ==
+			{| class="wikitable" border="1"
+			|-
+			! Value !! Character !! Notes
+			|-
+			| {{$|00}} || (space) ||
+			|-
+			| {{$|0A}} || A ||
+			|-
+			| {{$|0B}} || B ||
+			|-
+			| {{$|0C}} || C ||
+			|}
+
+			== Control Codes ==
+			{| class="wikitable" border="1"
+			|-
+			! Value !! Description
+			|-
+			| {{$|FE}} || Line break
+			|-
+			| {{$|FF}} || End of string
+			|}
+
+			== See Also ==
+			* [[{{{info.Title}}} - ROM map|ROM Map]]
+			* [[{{{info.Title}}} - Values|Values]]
+			""";
+	}
+
+	private string GenerateValuesFromRom(RomInfo info) {
+		return $$$"""
+			{{Game|
+			|title={{{info.Title ?? "Unknown"}}}
+			|platform={{{info.System}}}
+			}}
+
+			This page lists game values and IDs for {{{info.Title ?? "the game"}}}.
+
+			== Items ==
+			{| class="wikitable" border="1"
+			|-
+			! ID !! Name !! Description
+			|-
+			| {{$|00}} || (None) ||
+			|-
+			| {{$|01}} || Item 1 ||
+			|}
+
+			== Enemies ==
+			{| class="wikitable" border="1"
+			|-
+			! ID !! Name !! HP !! Attack !! Defense
+			|-
+			| {{$|00}} || Enemy 1 || ? || ? || ?
+			|}
+
+			== Spells/Abilities ==
+			{| class="wikitable" border="1"
+			|-
+			! ID !! Name !! MP Cost !! Effect
+			|}
+
+			== See Also ==
+			* [[{{{info.Title}}} - TBL|Text Table]]
+			* [[{{{info.Title}}} - ROM map|ROM Map]]
+			""";
+	}
+
+	private string GenerateSubPagesFromRom(RomInfo info) {
+		return $$$"""
+			{{Game|
+			|title={{{info.Title ?? "Unknown"}}}
+			|platform={{{info.System}}}
+			}}
+
+			== {{{info.Title ?? "Game"}}} Sub-pages ==
+
+			=== Data Maps ===
+			* [[{{{info.Title}}} - RAM map|RAM Map]] - Memory layout
+			* [[{{{info.Title}}} - ROM map|ROM Map]] - ROM structure
+			* [[{{{info.Title}}} - SRAM map|SRAM Map]] - Save data format
+
+			=== Reference Tables ===
+			* [[{{{info.Title}}} - TBL|Text Table]] - Character encoding
+			* [[{{{info.Title}}} - Values|Values]] - IDs and constants
+
+			=== Resources ===
+			* [[Category:{{{info.Title}}}|All {{{info.Title}}} pages]]
 			""";
 	}
 

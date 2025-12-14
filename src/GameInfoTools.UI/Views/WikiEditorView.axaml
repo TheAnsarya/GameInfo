@@ -71,7 +71,11 @@
 				<!-- Actions -->
 				<Button Content="🔄 Generate" Command="{Binding GenerateFromRomCommand}"
 						IsEnabled="{Binding CanGenerateFromRom}"
-						ToolTip.Tip="Generate from loaded ROM"/>
+						ToolTip.Tip="Generate current doc type from loaded ROM"/>
+				<Button Content="📦 Batch Create" Command="{Binding BatchCreatePagesCommand}"
+						CommandParameter="{Binding $parent[Window]}"
+						IsEnabled="{Binding CanGenerateFromRom}"
+						ToolTip.Tip="Create all standard wiki pages for loaded ROM"/>
 				<Button Content="👁 Preview" Command="{Binding TogglePreviewCommand}" ToolTip.Tip="Toggle preview"/>
 			</StackPanel>
 		</Border>
