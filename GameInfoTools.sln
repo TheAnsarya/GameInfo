@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameInfoTools.Tests", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameInfoTools.UI", "src\GameInfoTools.UI\GameInfoTools.UI.csproj", "{293CCFA9-D421-43E6-9E74-2218499E9EEB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameInfoTools.Wiki", "src\GameInfoTools.Wiki\GameInfoTools.Wiki.csproj", "{6B3646E8-FEFB-47F7-AD35-0D14EA004A03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -155,6 +157,18 @@ Global
 		{293CCFA9-D421-43E6-9E74-2218499E9EEB}.Release|x64.Build.0 = Release|Any CPU
 		{293CCFA9-D421-43E6-9E74-2218499E9EEB}.Release|x86.ActiveCfg = Release|Any CPU
 		{293CCFA9-D421-43E6-9E74-2218499E9EEB}.Release|x86.Build.0 = Release|Any CPU
+		{6B3646E8-FEFB-47F7-AD35-0D14EA004A03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B3646E8-FEFB-47F7-AD35-0D14EA004A03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B3646E8-FEFB-47F7-AD35-0D14EA004A03}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6B3646E8-FEFB-47F7-AD35-0D14EA004A03}.Debug|x64.Build.0 = Debug|Any CPU
+		{6B3646E8-FEFB-47F7-AD35-0D14EA004A03}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6B3646E8-FEFB-47F7-AD35-0D14EA004A03}.Debug|x86.Build.0 = Debug|Any CPU
+		{6B3646E8-FEFB-47F7-AD35-0D14EA004A03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B3646E8-FEFB-47F7-AD35-0D14EA004A03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B3646E8-FEFB-47F7-AD35-0D14EA004A03}.Release|x64.ActiveCfg = Release|Any CPU
+		{6B3646E8-FEFB-47F7-AD35-0D14EA004A03}.Release|x64.Build.0 = Release|Any CPU
+		{6B3646E8-FEFB-47F7-AD35-0D14EA004A03}.Release|x86.ActiveCfg = Release|Any CPU
+		{6B3646E8-FEFB-47F7-AD35-0D14EA004A03}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -162,5 +176,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{5C3F29B1-F6C3-4D27-A4B7-D0191BDC481C} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{293CCFA9-D421-43E6-9E74-2218499E9EEB} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{6B3646E8-FEFB-47F7-AD35-0D14EA004A03} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 	EndGlobalSection
 EndGlobal

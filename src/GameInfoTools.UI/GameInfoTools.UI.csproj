@@ -37,5 +37,6 @@
 		<ProjectReference Include="..\GameInfoTools.Rom\GameInfoTools.Rom.csproj" />
 		<ProjectReference Include="..\GameInfoTools.Data\GameInfoTools.Data.csproj" />
 		<ProjectReference Include="..\GameInfoTools.Disassembly\GameInfoTools.Disassembly.csproj" />
+		<ProjectReference Include="..\GameInfoTools.Wiki\GameInfoTools.Wiki.csproj" />
 	</ItemGroup>
 </Project>

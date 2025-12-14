@@ -80,7 +80,14 @@ dotnet run --project src/GameInfoTools.Cli -- <command>
 | `GameInfoTools.Analysis` | ROM analysis, cross-referencing |
 | `GameInfoTools.Disassembly` | 6502/65816 disassembler |
 | `GameInfoTools.Rom` | Bank management, IPS/BPS patching |
+| `GameInfoTools.Wiki` | MediaWiki/Data Crystal integration |
 | `GameInfoTools.Cli` | Command-line interface |
+
+### Data Crystal Integration
+
+The tools include integration with [Data Crystal](https://datacrystal.tcrf.net/) for publishing ROM hacking documentation.
+
+⚠️ **Important:** Data Crystal forbids AI-generated content. All content must be manually reviewed and edited before upload. See [docs/data-crystal-integration.md](docs/data-crystal-integration.md) for details.
 
 ### Test Suite
 

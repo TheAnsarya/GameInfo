@@ -46,6 +46,7 @@ public partial class MainWindowViewModel : ViewModelBase {
 		new ToolCategory("🔥", "CDL Viewer", "cdl"),
 		new ToolCategory("🔨", "Build Pipeline", "build"),
 		new ToolCategory("📖", "Wiki Editor", "wiki"),
+		new ToolCategory("🌐", "Data Crystal", "datacrystal"),
 	];
 
 	public MainWindowViewModel() {
@@ -71,6 +72,7 @@ public partial class MainWindowViewModel : ViewModelBase {
 			"cdl" => new CdlViewerViewModel(),
 			"build" => new BuildPipelineViewModel(_loadedRom),
 			"wiki" => new WikiEditorViewModel(_loadedRom),
+			"datacrystal" => new DataCrystalViewModel(),
 			_ => new WelcomeViewModel()
 		};
 	}
