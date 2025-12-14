@@ -88,7 +88,13 @@ public partial class BuildPipelineViewModel : ViewModelBase {
 		Assembler.Asar,
 		Assembler.Asm68k,
 		Assembler.Rgbds,
-		Assembler.DevkitArm
+		Assembler.DevkitArm,
+		Assembler.Ophis,
+		Assembler.Asm6,
+		Assembler.Nesasm,
+		Assembler.Bass,
+		Assembler.Wla,
+		Assembler.Armips
 	];
 
 	public ObservableCollection<CompressionAlgorithm> CompressionAlgorithms { get; } = [

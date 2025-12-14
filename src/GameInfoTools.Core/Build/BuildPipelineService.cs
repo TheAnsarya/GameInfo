@@ -284,6 +284,12 @@ public class BuildPipelineService {
 			Assembler.Asm68k => BuildAsm68kCommand(),
 			Assembler.Rgbds => BuildRgbdsCommand(),
 			Assembler.DevkitArm => BuildDevkitArmCommand(),
+			Assembler.Ophis => BuildOphisCommand(),
+			Assembler.Asm6 => BuildAsm6Command(),
+			Assembler.Nesasm => BuildNesasmCommand(),
+			Assembler.Bass => BuildBassCommand(),
+			Assembler.Wla => BuildWlaCommand(),
+			Assembler.Armips => BuildArmipsCommand(),
 			_ => throw new NotSupportedException($"Assembler {_config.Source.Assembler} not supported")
 		};
 
@@ -377,6 +383,91 @@ public class BuildPipelineService {
 			   $"arm-none-eabi-ld {linkerScript} -o \"{elfFile}\" \"{objFile}\" && " +
 			   $"arm-none-eabi-objcopy -O binary \"{elfFile}\" \"{outputRom}\" && " +
 			   $"gbafix \"{outputRom}\"";
+	}
+
+	private string BuildOphisCommand() {
+		var mainFile = ResolvePath(_config.Source.MainFile);
+		var outputRom = ResolvePath(_config.Source.OutputRom);
+
+		var options = _config.Source.AssemblerOptions?.Aggregate((a, b) => $"{a} {b}") ?? "";
+
+		// Ophis can be run as Python module or standalone
+		return $"python -m Ophis {options} -o \"{outputRom}\" \"{mainFile}\"";
+	}
+
+	private string BuildAsm6Command() {
+		var mainFile = ResolvePath(_config.Source.MainFile);
+		var outputRom = ResolvePath(_config.Source.OutputRom);
+
+		var defines = _config.Source.Defines?
+			.Select(kv => $"-d{kv.Key}={kv.Value}")
+			.Aggregate((a, b) => $"{a} {b}") ?? "";
+
+		return $"asm6f {defines} \"{mainFile}\" \"{outputRom}\"";
+	}
+
+	private string BuildNesasmCommand() {
+		var mainFile = ResolvePath(_config.Source.MainFile);
+		var outputDir = Path.GetDirectoryName(ResolvePath(_config.Source.OutputRom)) ?? ".";
+
+		var includes = _config.Source.Includes?
+			.Select(i => $"-I\"{ResolvePath(i)}\"")
+			.Aggregate((a, b) => $"{a} {b}") ?? "";
+
+		return $"nesasm {includes} -o \"{outputDir}\" \"{mainFile}\"";
+	}
+
+	private string BuildBassCommand() {
+		var mainFile = ResolvePath(_config.Source.MainFile);
+		var outputRom = ResolvePath(_config.Source.OutputRom);
+
+		var defines = _config.Source.Defines?
+			.Select(kv => $"-D{kv.Key}={kv.Value}")
+			.Aggregate((a, b) => $"{a} {b}") ?? "";
+
+		return $"bass {defines} -o \"{outputRom}\" \"{mainFile}\"";
+	}
+
+	private string BuildWlaCommand() {
+		var mainFile = ResolvePath(_config.Source.MainFile);
+		var outputRom = ResolvePath(_config.Source.OutputRom);
+		var objFile = Path.ChangeExtension(outputRom, ".o");
+
+		// WLA-DX uses different assemblers for different platforms
+		var assembler = _config.Project.Platform switch {
+			Platform.Nes => "wla-6502",
+			Platform.Snes => "wla-65816",
+			Platform.Genesis => "wla-z80", // For sound driver
+			Platform.Gb or Platform.Gbc => "wla-gb",
+			_ => "wla-6502"
+		};
+
+		var includes = _config.Source.Includes?
+			.Select(i => $"-I \"{ResolvePath(i)}\"")
+			.Aggregate((a, b) => $"{a} {b}") ?? "";
+
+		var defines = _config.Source.Defines?
+			.Select(kv => $"-D{kv.Key}={kv.Value}")
+			.Aggregate((a, b) => $"{a} {b}") ?? "";
+
+		return $"{assembler} {includes} {defines} -o \"{objFile}\" \"{mainFile}\" && wlalink -v \"{objFile}\" \"{outputRom}\"";
+	}
+
+	private string BuildArmipsCommand() {
+		var mainFile = ResolvePath(_config.Source.MainFile);
+		var outputRom = ResolvePath(_config.Source.OutputRom);
+
+		var defines = _config.Source.Defines?
+			.Select(kv => $"-D{kv.Key}={kv.Value}")
+			.Aggregate((a, b) => $"{a} {b}") ?? "";
+
+		// If we have a base ROM, copy it first (armips patches in place)
+		if (_config.Source.BaseRom != null) {
+			var baseRom = ResolvePath(_config.Source.BaseRom);
+			return $"copy \"{baseRom}\" \"{outputRom}\" && armips {defines} \"{mainFile}\"";
+		}
+
+		return $"armips {defines} -equ OutputFile \"{outputRom}\" \"{mainFile}\"";
 	}
 
 	private async Task FixChecksumAsync(CancellationToken cancellationToken) {

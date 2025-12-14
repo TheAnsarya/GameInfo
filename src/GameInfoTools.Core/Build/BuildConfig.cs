@@ -299,11 +299,17 @@ public enum Platform {
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum Assembler {
 	Unknown,
-	Ca65,
-	Asar,
-	Asm68k,
-	Rgbds,
-	DevkitArm
+	Ca65,      // cc65 suite - NES, SNES, C64
+	Asar,      // SNES
+	Asm68k,    // Genesis/Mega Drive
+	Rgbds,     // Game Boy
+	DevkitArm, // GBA
+	Ophis,     // NES (Python-based)
+	Asm6,      // NES (simple)
+	Nesasm,    // NES
+	Bass,      // Multi-platform
+	Wla,       // Multi-platform (WLA-DX)
+	Armips     // Multi-platform (MIPS, ARM, etc.)
 }
 
 /// <summary>
