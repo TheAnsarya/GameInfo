@@ -1,7 +1,10 @@
 using System.Collections.ObjectModel;
+using System.IO;
+using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GameInfoTools.Core;
+using GameInfoTools.UI.Services;
 
 namespace GameInfoTools.UI.ViewModels;
 
@@ -221,25 +224,59 @@ public partial class PointerScannerViewModel : ViewModelBase {
 	}
 
 	[RelayCommand]
-	private void ExportResults() {
+	private async Task ExportResultsAsync(Window? window) {
 		if (FoundTables.Count == 0) {
 			StatusText = "No tables to export";
 			return;
 		}
 
-		var sb = new System.Text.StringBuilder();
-		sb.AppendLine("# Pointer Table Scan Results");
-		sb.AppendLine();
+		if (window is null) return;
 
-		foreach (var table in FoundTables) {
-			sb.AppendLine($"## Table at {table.Offset}");
-			sb.AppendLine($"- Entries: {table.EntryCount}");
-			sb.AppendLine($"- Size: {table.Size} bytes");
-			sb.AppendLine($"- Target Range: {table.TargetRange}");
+		var dialogService = FileDialogService.FromWindow(window);
+		var path = await dialogService.SaveFileAsync(
+			"Export Pointer Tables",
+			".txt",
+			"pointer_tables.txt",
+			FileDialogService.TextFiles,
+			FileDialogService.WikitextFiles,
+			FileDialogService.AllFiles
+		);
+
+		if (path is null) return;
+
+		var sb = new System.Text.StringBuilder();
+
+		if (path.EndsWith(".wikitext", StringComparison.OrdinalIgnoreCase) ||
+			path.EndsWith(".wiki", StringComparison.OrdinalIgnoreCase)) {
+			// Export as wikitext
+			sb.AppendLine("== Pointer Tables ==");
+			sb.AppendLine("{| class=\"wikitable sortable\" border=\"1\"");
+			sb.AppendLine("|-");
+			sb.AppendLine("! Offset !! Entries !! Size !! Target Range");
+
+			foreach (var table in FoundTables) {
+				var offsetHex = table.Offset.TrimStart('$', '0', 'x');
+				sb.AppendLine("|-");
+				sb.AppendLine($"| {{{{$|{offsetHex}}}}} || {table.EntryCount} || {table.Size} || {table.TargetRange}");
+			}
+
+			sb.AppendLine("|}");
+		} else {
+			// Export as markdown
+			sb.AppendLine("# Pointer Table Scan Results");
 			sb.AppendLine();
+
+			foreach (var table in FoundTables) {
+				sb.AppendLine($"## Table at {table.Offset}");
+				sb.AppendLine($"- Entries: {table.EntryCount}");
+				sb.AppendLine($"- Size: {table.Size} bytes");
+				sb.AppendLine($"- Target Range: {table.TargetRange}");
+				sb.AppendLine();
+			}
 		}
 
-		StatusText = $"Exported {FoundTables.Count} tables";
+		await File.WriteAllTextAsync(path, sb.ToString());
+		StatusText = $"Exported {FoundTables.Count} tables to {Path.GetFileName(path)}";
 	}
 
 	[RelayCommand]
@@ -261,7 +298,7 @@ public partial class PointerScannerViewModel : ViewModelBase {
 	}
 
 	[RelayCommand]
-	private void Export() => ExportResults();
+	private async Task ExportAsync(Window? window) => await ExportResultsAsync(window);
 
 	partial void OnSelectedTableChanged(PointerTableInfo? value) {
 		SelectedPointers.Clear();

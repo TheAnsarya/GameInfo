@@ -273,6 +273,7 @@ public partial class TextExtractorViewModel : ViewModelBase {
 			"extracted_strings.txt",
 			FileDialogService.TextFiles,
 			FileDialogService.JsonFiles,
+			FileDialogService.WikitextFiles,
 			FileDialogService.AllFiles
 		);
 
@@ -291,6 +292,20 @@ public partial class TextExtractorViewModel : ViewModelBase {
 				}
 
 				sb.AppendLine("]");
+			} else if (path.EndsWith(".wikitext", StringComparison.OrdinalIgnoreCase) ||
+				path.EndsWith(".wiki", StringComparison.OrdinalIgnoreCase)) {
+				// Export as wikitext table
+				sb.AppendLine("== Extracted Strings ==");
+				sb.AppendLine("{| class=\"wikitable sortable\" border=\"1\"");
+				sb.AppendLine("|-");
+				sb.AppendLine("! Offset !! Length !! Text !! Confidence");
+
+				foreach (var item in ExtractedStrings) {
+					sb.AppendLine("|-");
+					sb.AppendLine($"| {{{{$|{item.Offset.TrimStart('$', '0', 'x')}}}}} || {item.Length} || {EscapeWikitext(item.Text)} || {item.Confidence}");
+				}
+
+				sb.AppendLine("|}");
 			} else {
 				// Export as plain text
 				sb.AppendLine($"# Extracted Strings from ROM");
@@ -316,6 +331,15 @@ public partial class TextExtractorViewModel : ViewModelBase {
 			.Replace("\n", "\\n")
 			.Replace("\r", "\\r")
 			.Replace("\t", "\\t");
+	}
+
+	private static string EscapeWikitext(string text) {
+		return text
+			.Replace("|", "{{!}}")
+			.Replace("[[", "[<nowiki/>[")
+			.Replace("]]", "]<nowiki/>]")
+			.Replace("{{", "{<nowiki/>{")
+			.Replace("}}", "}<nowiki/>}");
 	}
 }
 

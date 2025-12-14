@@ -17,7 +17,9 @@
 			<Button Content="Scan" Command="{Binding ScanCommand}" ToolTip.Tip="Scan for pointer tables"/>
 			<Button Content="Scan Range..." Command="{Binding ScanRangeCommand}" ToolTip.Tip="Scan specific range"/>
 			<Separator/>
-			<Button Content="Export..." Command="{Binding ExportCommand}" ToolTip.Tip="Export pointer table"/>
+			<Button Content="Export..." Command="{Binding ExportCommand}"
+					CommandParameter="{Binding $parent[Window]}"
+					ToolTip.Tip="Export pointer tables (txt/wikitext)"/>
 			<Separator/>
 			<TextBlock Text="Format:" VerticalAlignment="Center"/>
 			<ComboBox ItemsSource="{Binding PointerFormats}" SelectedItem="{Binding SelectedFormat}" Width="120"/>
