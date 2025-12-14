@@ -4,15 +4,12 @@ namespace GameInfoTools.Core.Build;
 /// Compression and decompression utilities for retro game ROMs.
 /// Supports common algorithms used in NES, SNES, Genesis, and other platforms.
 /// </summary>
-public static class CompressionUtils
-{
+public static class CompressionUtils {
 	/// <summary>
 	/// Decompress data using the specified algorithm
 	/// </summary>
-	public static byte[] Decompress(byte[] data, CompressionAlgorithm algorithm, CompressionOptions? options = null)
-	{
-		return algorithm switch
-		{
+	public static byte[] Decompress(byte[] data, CompressionAlgorithm algorithm, CompressionOptions? options = null) {
+		return algorithm switch {
 			CompressionAlgorithm.None => data,
 			CompressionAlgorithm.Lzss => DecompressLzss(data, options),
 			CompressionAlgorithm.Rle => DecompressRle(data, options),
@@ -24,10 +21,8 @@ public static class CompressionUtils
 	/// <summary>
 	/// Compress data using the specified algorithm
 	/// </summary>
-	public static byte[] Compress(byte[] data, CompressionAlgorithm algorithm, CompressionOptions? options = null)
-	{
-		return algorithm switch
-		{
+	public static byte[] Compress(byte[] data, CompressionAlgorithm algorithm, CompressionOptions? options = null) {
+		return algorithm switch {
 			CompressionAlgorithm.None => data,
 			CompressionAlgorithm.Lzss => CompressLzss(data, options),
 			CompressionAlgorithm.Rle => CompressRle(data, options),
@@ -42,8 +37,7 @@ public static class CompressionUtils
 	/// Decompress LZSS-compressed data.
 	/// LZSS is commonly used in SNES, GBA, and many other systems.
 	/// </summary>
-	public static byte[] DecompressLzss(byte[] data, CompressionOptions? options = null)
-	{
+	public static byte[] DecompressLzss(byte[] data, CompressionOptions? options = null) {
 		var opts = options ?? new CompressionOptions();
 		var output = new List<byte>();
 		var slidingWindow = new byte[opts.LzssWindowSize];
@@ -52,8 +46,7 @@ public static class CompressionUtils
 		int pos = 0;
 
 		// Check for header if expected
-		if (opts.HasHeader && pos < data.Length)
-		{
+		if (opts.HasHeader && pos < data.Length) {
 			// GBA-style header: first byte is compression type, next 3 bytes are decompressed size
 			var headerByte = data[pos++];
 			if ((headerByte & 0xf0) == 0x10) // LZSS marker
@@ -64,15 +57,13 @@ public static class CompressionUtils
 			}
 		}
 
-		while (pos < data.Length)
-		{
+		while (pos < data.Length) {
 			if (opts.ExpectedSize > 0 && output.Count >= opts.ExpectedSize)
 				break;
 
 			var flags = data[pos++];
 
-			for (int i = 0; i < 8 && pos < data.Length; i++)
-			{
+			for (int i = 0; i < 8 && pos < data.Length; i++) {
 				if (opts.ExpectedSize > 0 && output.Count >= opts.ExpectedSize)
 					break;
 
@@ -80,8 +71,7 @@ public static class CompressionUtils
 					? ((flags >> (7 - i)) & 1) != 0
 					: ((flags >> i) & 1) != 0;
 
-				if (isCompressed)
-				{
+				if (isCompressed) {
 					// Compressed: read offset and length
 					if (pos + 1 >= data.Length)
 						break;
@@ -90,31 +80,25 @@ public static class CompressionUtils
 					var byte2 = data[pos++];
 
 					int offset, length;
-					if (opts.LzssOffsetBytesFirst)
-					{
+					if (opts.LzssOffsetBytesFirst) {
 						// Format: OOOO OOOO | LLLL OOOO (GBA style)
 						length = ((byte1 >> 4) & 0x0f) + opts.LzssMinMatchLength;
 						offset = ((byte1 & 0x0f) << 8) | byte2;
-					}
-					else
-					{
+					} else {
 						// Format: LLLL OOOO | OOOO OOOO (SNES style)
 						length = ((byte1 >> 4) & 0x0f) + opts.LzssMinMatchLength;
 						offset = ((byte1 & 0x0f) << 8) | byte2;
 					}
 
 					// Copy from sliding window
-					for (int j = 0; j < length; j++)
-					{
+					for (int j = 0; j < length; j++) {
 						var windowOffset = (windowPos - offset - 1) & (opts.LzssWindowSize - 1);
 						var b = slidingWindow[windowOffset];
 						output.Add(b);
 						slidingWindow[windowPos] = b;
 						windowPos = (windowPos + 1) & (opts.LzssWindowSize - 1);
 					}
-				}
-				else
-				{
+				} else {
 					// Literal byte
 					var b = data[pos++];
 					output.Add(b);
@@ -130,16 +114,14 @@ public static class CompressionUtils
 	/// <summary>
 	/// Compress data using LZSS algorithm.
 	/// </summary>
-	public static byte[] CompressLzss(byte[] data, CompressionOptions? options = null)
-	{
+	public static byte[] CompressLzss(byte[] data, CompressionOptions? options = null) {
 		var opts = options ?? new CompressionOptions();
 		var output = new List<byte>();
 		var slidingWindow = new byte[opts.LzssWindowSize];
 		var windowPos = opts.LzssWindowStart;
 
 		// Add header if needed (GBA style)
-		if (opts.HasHeader)
-		{
+		if (opts.HasHeader) {
 			output.Add(0x10); // LZSS marker
 			output.Add((byte)(data.Length & 0xff));
 			output.Add((byte)((data.Length >> 8) & 0xff));
@@ -147,49 +129,40 @@ public static class CompressionUtils
 		}
 
 		int pos = 0;
-		while (pos < data.Length)
-		{
+		while (pos < data.Length) {
 			var flagByte = 0;
 			var flagPos = output.Count;
 			output.Add(0); // Placeholder for flag byte
 
 			var chunk = new List<byte>();
 
-			for (int i = 0; i < 8 && pos < data.Length; i++)
-			{
+			for (int i = 0; i < 8 && pos < data.Length; i++) {
 				// Try to find a match in the sliding window
 				var (matchOffset, matchLength) = FindBestMatch(data, pos, slidingWindow, windowPos, opts);
 
-				if (matchLength >= opts.LzssMinMatchLength)
-				{
+				if (matchLength >= opts.LzssMinMatchLength) {
 					// Compressed reference
 					if (opts.LzssFlagBitOrder)
-						flagByte |= (1 << (7 - i));
+						flagByte |= 1 << (7 - i);
 					else
-						flagByte |= (1 << i);
+						flagByte |= 1 << i;
 
 					// Encode offset and length
 					var length = matchLength - opts.LzssMinMatchLength;
-					if (opts.LzssOffsetBytesFirst)
-					{
+					if (opts.LzssOffsetBytesFirst) {
 						chunk.Add((byte)(((length & 0x0f) << 4) | ((matchOffset >> 8) & 0x0f)));
 						chunk.Add((byte)(matchOffset & 0xff));
-					}
-					else
-					{
+					} else {
 						chunk.Add((byte)(((length & 0x0f) << 4) | ((matchOffset >> 8) & 0x0f)));
 						chunk.Add((byte)(matchOffset & 0xff));
 					}
 
 					// Update sliding window
-					for (int j = 0; j < matchLength; j++)
-					{
+					for (int j = 0; j < matchLength; j++) {
 						slidingWindow[windowPos] = data[pos++];
 						windowPos = (windowPos + 1) & (opts.LzssWindowSize - 1);
 					}
-				}
-				else
-				{
+				} else {
 					// Literal byte
 					var b = data[pos++];
 					chunk.Add(b);
@@ -205,24 +178,20 @@ public static class CompressionUtils
 		return [.. output];
 	}
 
-	private static (int offset, int length) FindBestMatch(byte[] data, int pos, byte[] window, int windowPos, CompressionOptions opts)
-	{
+	private static (int offset, int length) FindBestMatch(byte[] data, int pos, byte[] window, int windowPos, CompressionOptions opts) {
 		var maxLength = Math.Min(opts.LzssMaxMatchLength, data.Length - pos);
 		var bestOffset = 0;
 		var bestLength = 0;
 
-		for (int offset = 1; offset < opts.LzssWindowSize && offset <= pos; offset++)
-		{
+		for (int offset = 1; offset < opts.LzssWindowSize && offset <= pos; offset++) {
 			var windowOffset = (windowPos - offset) & (opts.LzssWindowSize - 1);
 			var length = 0;
 
-			while (length < maxLength && window[(windowOffset + length) & (opts.LzssWindowSize - 1)] == data[pos + length])
-			{
+			while (length < maxLength && window[(windowOffset + length) & (opts.LzssWindowSize - 1)] == data[pos + length]) {
 				length++;
 			}
 
-			if (length > bestLength)
-			{
+			if (length > bestLength) {
 				bestLength = length;
 				bestOffset = offset;
 			}
@@ -239,16 +208,14 @@ public static class CompressionUtils
 	/// Decompress RLE-compressed data.
 	/// RLE is commonly used for simple graphics compression.
 	/// </summary>
-	public static byte[] DecompressRle(byte[] data, CompressionOptions? options = null)
-	{
+	public static byte[] DecompressRle(byte[] data, CompressionOptions? options = null) {
 		var opts = options ?? new CompressionOptions();
 		var output = new List<byte>();
 		int pos = 0;
 
 		// Check for header
 		int expectedSize = -1;
-		if (opts.HasHeader && pos < data.Length)
-		{
+		if (opts.HasHeader && pos < data.Length) {
 			var headerByte = data[pos++];
 			if ((headerByte & 0xf0) == 0x30) // RLE marker
 			{
@@ -257,15 +224,13 @@ public static class CompressionUtils
 			}
 		}
 
-		while (pos < data.Length)
-		{
+		while (pos < data.Length) {
 			if (expectedSize > 0 && output.Count >= expectedSize)
 				break;
 
 			var flag = data[pos++];
 
-			if ((flag & opts.RleRunMask) != 0)
-			{
+			if ((flag & opts.RleRunMask) != 0) {
 				// Run of identical bytes
 				var count = (flag & ~opts.RleRunMask) + opts.RleMinRunLength;
 				if (pos >= data.Length)
@@ -274,9 +239,7 @@ public static class CompressionUtils
 
 				for (int i = 0; i < count; i++)
 					output.Add(value);
-			}
-			else
-			{
+			} else {
 				// Literal bytes
 				var count = (flag & ~opts.RleRunMask) + 1;
 
@@ -291,14 +254,12 @@ public static class CompressionUtils
 	/// <summary>
 	/// Compress data using RLE algorithm.
 	/// </summary>
-	public static byte[] CompressRle(byte[] data, CompressionOptions? options = null)
-	{
+	public static byte[] CompressRle(byte[] data, CompressionOptions? options = null) {
 		var opts = options ?? new CompressionOptions();
 		var output = new List<byte>();
 
 		// Add header if needed
-		if (opts.HasHeader)
-		{
+		if (opts.HasHeader) {
 			output.Add(0x30); // RLE marker
 			output.Add((byte)(data.Length & 0xff));
 			output.Add((byte)((data.Length >> 8) & 0xff));
@@ -306,8 +267,7 @@ public static class CompressionUtils
 		}
 
 		int pos = 0;
-		while (pos < data.Length)
-		{
+		while (pos < data.Length) {
 			// Count run length
 			var runStart = pos;
 			var runValue = data[pos];
@@ -315,34 +275,28 @@ public static class CompressionUtils
 
 			while (pos + runLength < data.Length &&
 				   data[pos + runLength] == runValue &&
-				   runLength < opts.RleMaxRunLength)
-			{
+				   runLength < opts.RleMaxRunLength) {
 				runLength++;
 			}
 
-			if (runLength >= opts.RleMinRunLength)
-			{
+			if (runLength >= opts.RleMinRunLength) {
 				// Encode as run
 				var count = runLength - opts.RleMinRunLength;
 				output.Add((byte)(opts.RleRunMask | count));
 				output.Add(runValue);
 				pos += runLength;
-			}
-			else
-			{
+			} else {
 				// Find literal sequence
 				var literalStart = pos;
 				var literalLength = 0;
 
-				while (pos + literalLength < data.Length && literalLength < opts.RleMaxLiteralLength)
-				{
+				while (pos + literalLength < data.Length && literalLength < opts.RleMaxLiteralLength) {
 					// Check if a run starts here
 					var checkValue = data[pos + literalLength];
 					var checkLength = 1;
 					while (pos + literalLength + checkLength < data.Length &&
 						   data[pos + literalLength + checkLength] == checkValue &&
-						   checkLength < opts.RleMinRunLength)
-					{
+						   checkLength < opts.RleMinRunLength) {
 						checkLength++;
 					}
 
@@ -373,8 +327,7 @@ public static class CompressionUtils
 	/// <summary>
 	/// Decompress Huffman-encoded data (simplified GBA-style).
 	/// </summary>
-	public static byte[] DecompressHuffman(byte[] data)
-	{
+	public static byte[] DecompressHuffman(byte[] data) {
 		var output = new List<byte>();
 
 		if (data.Length < 5)
@@ -399,13 +352,11 @@ public static class CompressionUtils
 		int nibbleBuffer = 0;
 		bool hasNibble = false;
 
-		while (output.Count < decompressedSize && pos < data.Length)
-		{
+		while (output.Count < decompressedSize && pos < data.Length) {
 			// Read next bit
 			var bit = (data[pos] >> (7 - bitPos)) & 1;
 			bitPos++;
-			if (bitPos >= 8)
-			{
+			if (bitPos >= 8) {
 				bitPos = 0;
 				pos++;
 			}
@@ -419,29 +370,21 @@ public static class CompressionUtils
 			var isLeaf = (nodeData & 0x80) != 0;
 			var value = nodeData & 0x3f;
 
-			if (isLeaf)
-			{
-				if (bitSize == 4)
-				{
-					if (!hasNibble)
-					{
+			if (isLeaf) {
+				if (bitSize == 4) {
+					if (!hasNibble) {
 						nibbleBuffer = value;
 						hasNibble = true;
-					}
-					else
-					{
+					} else {
 						output.Add((byte)((nibbleBuffer << 4) | value));
 						hasNibble = false;
 					}
-				}
-				else
-				{
+				} else {
 					output.Add((byte)value);
 				}
+
 				currentNode = 0;
-			}
-			else
-			{
+			} else {
 				currentNode = value + 1;
 			}
 		}
@@ -452,8 +395,7 @@ public static class CompressionUtils
 	/// <summary>
 	/// Compress data using Huffman encoding.
 	/// </summary>
-	public static byte[] CompressHuffman(byte[] data)
-	{
+	public static byte[] CompressHuffman(byte[] data) {
 		// Build frequency table
 		var frequencies = new int[256];
 		foreach (var b in data)
@@ -461,10 +403,8 @@ public static class CompressionUtils
 
 		// Build Huffman tree
 		var nodes = new List<HuffmanNode>();
-		for (int i = 0; i < 256; i++)
-		{
-			if (frequencies[i] > 0)
-			{
+		for (int i = 0; i < 256; i++) {
+			if (frequencies[i] > 0) {
 				nodes.Add(new HuffmanNode { Value = (byte)i, Frequency = frequencies[i], IsLeaf = true });
 			}
 		}
@@ -473,15 +413,13 @@ public static class CompressionUtils
 			return [0x20, (byte)data.Length, (byte)(data.Length >> 8), (byte)(data.Length >> 16), 0];
 
 		// Build tree by combining lowest frequency nodes
-		while (nodes.Count > 1)
-		{
+		while (nodes.Count > 1) {
 			nodes.Sort((a, b) => a.Frequency.CompareTo(b.Frequency));
 			var left = nodes[0];
 			var right = nodes[1];
 			nodes.RemoveRange(0, 2);
 
-			var parent = new HuffmanNode
-			{
+			var parent = new HuffmanNode {
 				Frequency = left.Frequency + right.Frequency,
 				Left = left,
 				Right = right,
@@ -507,24 +445,21 @@ public static class CompressionUtils
 
 		// Serialize tree (simplified)
 		var treeBytes = SerializeHuffmanTree(root);
-		output.Add((byte)(treeBytes.Count / 2 - 1));
+		output.Add((byte)((treeBytes.Count / 2) - 1));
 		output.AddRange(treeBytes);
 
 		// Encode data
 		int currentByte = 0;
 		int bitCount = 0;
 
-		foreach (var b in data)
-		{
+		foreach (var b in data) {
 			var (code, bits) = codes[b];
 
-			for (int i = bits - 1; i >= 0; i--)
-			{
+			for (int i = bits - 1; i >= 0; i--) {
 				currentByte = (currentByte << 1) | ((code >> i) & 1);
 				bitCount++;
 
-				if (bitCount >= 8)
-				{
+				if (bitCount >= 8) {
 					output.Add((byte)currentByte);
 					currentByte = 0;
 					bitCount = 0;
@@ -533,19 +468,16 @@ public static class CompressionUtils
 		}
 
 		// Flush remaining bits
-		if (bitCount > 0)
-		{
-			currentByte <<= (8 - bitCount);
+		if (bitCount > 0) {
+			currentByte <<= 8 - bitCount;
 			output.Add((byte)currentByte);
 		}
 
 		return [.. output];
 	}
 
-	private static void BuildCodeTable(HuffmanNode node, int code, int bits, Dictionary<byte, (int code, int bits)> codes)
-	{
-		if (node.IsLeaf)
-		{
+	private static void BuildCodeTable(HuffmanNode node, int code, int bits, Dictionary<byte, (int code, int bits)> codes) {
+		if (node.IsLeaf) {
 			codes[node.Value] = (code, Math.Max(1, bits));
 			return;
 		}
@@ -556,30 +488,24 @@ public static class CompressionUtils
 			BuildCodeTable(node.Right, (code << 1) | 1, bits + 1, codes);
 	}
 
-	private static List<byte> SerializeHuffmanTree(HuffmanNode node)
-	{
+	private static List<byte> SerializeHuffmanTree(HuffmanNode node) {
 		var result = new List<byte>();
 
-		void Serialize(HuffmanNode n, int index)
-		{
-			while (result.Count <= index * 2 + 1)
-			{
+		void Serialize(HuffmanNode n, int index) {
+			while (result.Count <= (index * 2) + 1) {
 				result.Add(0);
 			}
 
-			if (n.IsLeaf)
-			{
+			if (n.IsLeaf) {
 				result[index * 2] = (byte)(0x80 | n.Value);
-				result[index * 2 + 1] = (byte)(0x80 | n.Value);
-			}
-			else
-			{
+				result[(index * 2) + 1] = (byte)(0x80 | n.Value);
+			} else {
 				var leftIndex = result.Count / 2;
 				result[index * 2] = (byte)leftIndex;
 				if (n.Left != null) Serialize(n.Left, leftIndex);
 
 				var rightIndex = result.Count / 2;
-				result[index * 2 + 1] = (byte)rightIndex;
+				result[(index * 2) + 1] = (byte)rightIndex;
 				if (n.Right != null) Serialize(n.Right, rightIndex);
 			}
 		}
@@ -588,8 +514,7 @@ public static class CompressionUtils
 		return result;
 	}
 
-	private class HuffmanNode
-	{
+	private class HuffmanNode {
 		public byte Value { get; set; }
 		public int Frequency { get; set; }
 		public bool IsLeaf { get; set; }
@@ -604,18 +529,13 @@ public static class CompressionUtils
 	/// <summary>
 	/// Decompress Nintendo DTE (Dual Tile Encoding) used in some NES games.
 	/// </summary>
-	public static byte[] DecompressDte(byte[] data, byte[][] dictionary)
-	{
+	public static byte[] DecompressDte(byte[] data, byte[][] dictionary) {
 		var output = new List<byte>();
 
-		foreach (var b in data)
-		{
-			if (b < dictionary.Length && dictionary[b].Length > 1)
-			{
+		foreach (var b in data) {
+			if (b < dictionary.Length && dictionary[b].Length > 1) {
 				output.AddRange(dictionary[b]);
-			}
-			else
-			{
+			} else {
 				output.Add(b);
 			}
 		}
@@ -626,16 +546,14 @@ public static class CompressionUtils
 	/// <summary>
 	/// Detect compression algorithm from data header.
 	/// </summary>
-	public static CompressionAlgorithm DetectCompression(byte[] data)
-	{
+	public static CompressionAlgorithm DetectCompression(byte[] data) {
 		if (data.Length < 4)
 			return CompressionAlgorithm.None;
 
 		var header = data[0];
 
 		// GBA/DS compression markers
-		return (header & 0xf0) switch
-		{
+		return (header & 0xf0) switch {
 			0x10 => CompressionAlgorithm.Lzss, // LZ77
 			0x20 => CompressionAlgorithm.Huffman, // Huffman 8-bit
 			0x28 => CompressionAlgorithm.Huffman, // Huffman 4-bit
@@ -647,16 +565,14 @@ public static class CompressionUtils
 	/// <summary>
 	/// Get decompressed size from header.
 	/// </summary>
-	public static int? GetDecompressedSize(byte[] data)
-	{
+	public static int? GetDecompressedSize(byte[] data) {
 		if (data.Length < 4)
 			return null;
 
 		var header = data[0];
 
 		// Check for known compression headers
-		if ((header & 0xf0) is 0x10 or 0x20 or 0x28 or 0x30)
-		{
+		if ((header & 0xf0) is 0x10 or 0x20 or 0x28 or 0x30) {
 			return data[1] | (data[2] << 8) | (data[3] << 16);
 		}
 
@@ -669,8 +585,7 @@ public static class CompressionUtils
 /// <summary>
 /// Options for compression/decompression
 /// </summary>
-public class CompressionOptions
-{
+public class CompressionOptions {
 	/// <summary>
 	/// Whether the data has a header with size information
 	/// </summary>

@@ -17,6 +17,7 @@ public class CdlHeatmapEditingTests {
 		for (int i = size / 2; i < size; i++) {
 			data[i] = 0x02;
 		}
+
 		return data;
 	}
 

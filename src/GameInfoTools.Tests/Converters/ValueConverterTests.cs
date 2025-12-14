@@ -1,7 +1,7 @@
 using System.Globalization;
-using Xunit;
-using GameInfoTools.UI.Converters;
 using GameInfoTools.UI.Controls;
+using GameInfoTools.UI.Converters;
+using Xunit;
 
 namespace GameInfoTools.Tests.Converters;
 

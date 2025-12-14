@@ -240,12 +240,15 @@ public partial class DataTableViewModel : ViewModelBase {
 			if (root.TryGetProperty("tableName", out var tableNameElem)) {
 				TableName = tableNameElem.GetString() ?? "";
 			}
+
 			if (root.TryGetProperty("offset", out var offsetElem)) {
 				TableOffset = offsetElem.GetInt32();
 			}
+
 			if (root.TryGetProperty("recordSize", out var sizeElem)) {
 				RecordSize = sizeElem.GetInt32();
 			}
+
 			if (root.TryGetProperty("recordCount", out var countElem)) {
 				RecordCount = countElem.GetInt32();
 			}
@@ -274,6 +277,7 @@ public partial class DataTableViewModel : ViewModelBase {
 					foreach (var prop in recordElem.EnumerateObject()) {
 						values[prop.Name] = prop.Value.ToString();
 					}
+
 					Records.Add(new DataRecord(index++, values));
 				}
 			}

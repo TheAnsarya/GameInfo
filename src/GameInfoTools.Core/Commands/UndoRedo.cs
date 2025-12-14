@@ -239,20 +239,20 @@ public class SetTileCommand : IUndoableCommand {
 		_mapWidth = mapWidth;
 		_newTile = newTile;
 
-		int offset = y * mapWidth + x;
+		int offset = (y * mapWidth) + x;
 		_oldTile = mapData[offset];
 		Description = $"Set tile ({x}, {y}) to 0x{newTile:X2}";
 	}
 
 	/// <inheritdoc/>
 	public void Execute() {
-		int offset = _y * _mapWidth + _x;
+		int offset = (_y * _mapWidth) + _x;
 		_mapData[offset] = _newTile;
 	}
 
 	/// <inheritdoc/>
 	public void Undo() {
-		int offset = _y * _mapWidth + _x;
+		int offset = (_y * _mapWidth) + _x;
 		_mapData[offset] = _oldTile;
 	}
 }

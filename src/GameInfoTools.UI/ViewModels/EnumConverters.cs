@@ -53,6 +53,7 @@ public class EnumToBoolConverter<TEnum> : IValueConverter where TEnum : struct, 
 		if (value is TEnum enumValue) {
 			return enumValue.Equals(_targetValue);
 		}
+
 		return false;
 	}
 
@@ -60,6 +61,7 @@ public class EnumToBoolConverter<TEnum> : IValueConverter where TEnum : struct, 
 		if (value is true) {
 			return _targetValue;
 		}
+
 		return Avalonia.Data.BindingOperations.DoNothing;
 	}
 }

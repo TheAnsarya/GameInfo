@@ -460,6 +460,7 @@ public class PointerTable {
 			short shortPtr = (short)ptr;
 			return shortPtr != short.MinValue && Math.Abs(shortPtr) < 0x4000;
 		}
+
 		return format switch {
 			PointerFormat.Absolute16 => ptr >= 0x8000 && ptr <= 0xffff,
 			PointerFormat.Absolute24 => ptr >= 0 && ptr < 0x1000000,
@@ -752,6 +753,7 @@ public class PointerTable {
 					if (regionSize >= minSize) {
 						orphans.Add((regionStart + headerSize, offset + headerSize - 1));
 					}
+
 					regionStart = -1;
 				}
 			}

@@ -11,8 +11,7 @@ namespace GameInfoTools.UI.ViewModels;
 /// <summary>
 /// View model for the build pipeline management UI.
 /// </summary>
-public partial class BuildPipelineViewModel : ViewModelBase
-{
+public partial class BuildPipelineViewModel : ViewModelBase {
 	private readonly RomFile? _rom;
 	private BuildConfig? _config;
 	private string? _configPath;
@@ -104,50 +103,41 @@ public partial class BuildPipelineViewModel : ViewModelBase
 
 	public ObservableCollection<AssetDefinitionViewModel> Assets { get; } = [];
 
-	public BuildPipelineViewModel(RomFile? rom)
-	{
+	public BuildPipelineViewModel(RomFile? rom) {
 		_rom = rom;
 	}
 
 	[RelayCommand]
-	private async Task NewConfig(Window window)
-	{
+	private async Task NewConfig(Window window) {
 		var topLevel = TopLevel.GetTopLevel(window);
 		if (topLevel is null) return;
 
-		var folder = await topLevel.StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions
-		{
+		var folder = await topLevel.StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions {
 			Title = "Select Project Folder",
 			AllowMultiple = false
 		});
 
-		if (folder.Count > 0)
-		{
+		if (folder.Count > 0) {
 			_projectPath = folder[0].Path.LocalPath;
 			_configPath = Path.Combine(_projectPath, "build.config.json");
 
-			_config = new BuildConfig
-			{
+			_config = new BuildConfig {
 				Schema = "./build.config.schema.json",
-				Project = new ProjectConfig
-				{
+				Project = new ProjectConfig {
 					Name = Path.GetFileName(_projectPath),
 					Platform = SelectedPlatform
 				},
-				Source = new SourceConfig
-				{
+				Source = new SourceConfig {
 					Assembler = SelectedAssembler,
 					MainFile = "src/main.asm",
 					OutputRom = $"build/{Path.GetFileName(_projectPath)}.nes"
 				},
-				Assets = new AssetsConfig
-				{
+				Assets = new AssetsConfig {
 					ExtractDir = ExtractDir,
 					EditableDir = EditableDir,
 					BuildDir = BuildDir
 				},
-				Build = new BuildOptions
-				{
+				Build = new BuildOptions {
 					Verify = true,
 					ChecksumFix = true
 				}
@@ -160,13 +150,11 @@ public partial class BuildPipelineViewModel : ViewModelBase
 	}
 
 	[RelayCommand]
-	private async Task OpenConfig(Window window)
-	{
+	private async Task OpenConfig(Window window) {
 		var topLevel = TopLevel.GetTopLevel(window);
 		if (topLevel is null) return;
 
-		var files = await topLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
-		{
+		var files = await topLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions {
 			Title = "Open Build Configuration",
 			AllowMultiple = false,
 			FileTypeFilter = [
@@ -175,8 +163,7 @@ public partial class BuildPipelineViewModel : ViewModelBase
 			]
 		});
 
-		if (files.Count > 0)
-		{
+		if (files.Count > 0) {
 			_configPath = files[0].Path.LocalPath;
 			_projectPath = Path.GetDirectoryName(_configPath);
 			await LoadConfigAsync(_configPath);
@@ -184,30 +171,24 @@ public partial class BuildPipelineViewModel : ViewModelBase
 	}
 
 	[RelayCommand]
-	private async Task SaveConfig()
-	{
+	private async Task SaveConfig() {
 		if (_config is null || string.IsNullOrEmpty(_configPath)) return;
 
-		try
-		{
+		try {
 			UpdateConfigFromViewModel();
 			await _config.SaveAsync(_configPath);
 			StatusText = "Configuration saved";
-		}
-		catch (Exception ex)
-		{
+		} catch (Exception ex) {
 			StatusText = $"Save error: {ex.Message}";
 		}
 	}
 
 	[RelayCommand]
-	private async Task SaveConfigAs(Window window)
-	{
+	private async Task SaveConfigAs(Window window) {
 		var topLevel = TopLevel.GetTopLevel(window);
 		if (topLevel is null) return;
 
-		var file = await topLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
-		{
+		var file = await topLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions {
 			Title = "Save Build Configuration",
 			DefaultExtension = ".json",
 			SuggestedFileName = "build.config.json",
@@ -216,8 +197,7 @@ public partial class BuildPipelineViewModel : ViewModelBase
 			]
 		});
 
-		if (file is not null)
-		{
+		if (file is not null) {
 			_configPath = file.Path.LocalPath;
 			_projectPath = Path.GetDirectoryName(_configPath);
 			await SaveConfig();
@@ -225,8 +205,7 @@ public partial class BuildPipelineViewModel : ViewModelBase
 	}
 
 	[RelayCommand]
-	private async Task ExtractAssets(Window window)
-	{
+	private async Task ExtractAssets(Window window) {
 		if (_config is null || string.IsNullOrEmpty(_projectPath)) return;
 
 		// Check for base ROM
@@ -236,13 +215,11 @@ public partial class BuildPipelineViewModel : ViewModelBase
 				: Path.Combine(_projectPath, BaseRom)
 			: _rom?.FilePath;
 
-		if (string.IsNullOrEmpty(romPath) || !File.Exists(romPath))
-		{
+		if (string.IsNullOrEmpty(romPath) || !File.Exists(romPath)) {
 			var topLevel = TopLevel.GetTopLevel(window);
 			if (topLevel is null) return;
 
-			var files = await topLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
-			{
+			var files = await topLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions {
 				Title = "Select Base ROM for Extraction",
 				AllowMultiple = false,
 				FileTypeFilter = [
@@ -257,8 +234,7 @@ public partial class BuildPipelineViewModel : ViewModelBase
 			BaseRom = romPath;
 		}
 
-		try
-		{
+		try {
 			IsExtracting = true;
 			StatusText = "Extracting assets...";
 			BuildOutput = $"[{DateTime.Now:HH:mm:ss}] Starting asset extraction\n";
@@ -271,40 +247,31 @@ public partial class BuildPipelineViewModel : ViewModelBase
 			BuildOutput += $"[{DateTime.Now:HH:mm:ss}] Extraction complete\n";
 			BuildOutput += $"[{DateTime.Now:HH:mm:ss}] Extracted {result.ExtractedAssets.Count} assets\n";
 
-			if (result.ExtractedAssets.Count > 0)
-			{
+			if (result.ExtractedAssets.Count > 0) {
 				BuildOutput += $"[{DateTime.Now:HH:mm:ss}] Assets:\n";
-				foreach (var asset in result.ExtractedAssets)
-				{
+				foreach (var asset in result.ExtractedAssets) {
 					BuildOutput += $"  - {asset}\n";
 				}
 			}
 
-			if (result.Errors.Count > 0)
-			{
+			if (result.Errors.Count > 0) {
 				BuildOutput += $"[{DateTime.Now:HH:mm:ss}] Errors:\n";
-				foreach (var error in result.Errors)
-				{
+				foreach (var error in result.Errors) {
 					BuildOutput += $"  - {error}\n";
 				}
 			}
 
 			StatusText = $"Extracted {result.ExtractedAssets.Count} assets";
-		}
-		catch (Exception ex)
-		{
+		} catch (Exception ex) {
 			BuildOutput += $"[{DateTime.Now:HH:mm:ss}] ERROR: {ex.Message}\n";
 			StatusText = $"Extraction failed: {ex.Message}";
-		}
-		finally
-		{
+		} finally {
 			IsExtracting = false;
 		}
 	}
 
 	[RelayCommand]
-	private async Task ConvertToEditable()
-	{
+	private async Task ConvertToEditable() {
 		// Note: The current BuildPipelineService doesn't expose ConvertToEditableAsync publicly.
 		// This functionality would convert binary assets to editable formats (PNG, JSON, etc.)
 		// For now, we'll note this as a feature to implement.
@@ -314,8 +281,7 @@ public partial class BuildPipelineViewModel : ViewModelBase
 	}
 
 	[RelayCommand]
-	private async Task ConvertToBinary()
-	{
+	private async Task ConvertToBinary() {
 		// Note: The current BuildPipelineService handles this internally during build.
 		// ConvertAssetsToBinaryAsync is called automatically before assembly.
 		await Task.CompletedTask;
@@ -324,12 +290,10 @@ public partial class BuildPipelineViewModel : ViewModelBase
 	}
 
 	[RelayCommand]
-	private async Task BuildRom()
-	{
+	private async Task BuildRom() {
 		if (_config is null || string.IsNullOrEmpty(_projectPath)) return;
 
-		try
-		{
+		try {
 			IsBuilding = true;
 			StatusText = "Building ROM...";
 			BuildOutput += $"[{DateTime.Now:HH:mm:ss}] Starting build\n";
@@ -341,44 +305,34 @@ public partial class BuildPipelineViewModel : ViewModelBase
 			BuildOutput += $"[{DateTime.Now:HH:mm:ss}] Build {(result.Success ? "succeeded" : "failed")}\n";
 			BuildOutput += $"[{DateTime.Now:HH:mm:ss}] Output: {result.OutputPath}\n";
 
-			if (result.Errors.Count > 0)
-			{
+			if (result.Errors.Count > 0) {
 				BuildOutput += $"[{DateTime.Now:HH:mm:ss}] Errors:\n";
-				foreach (var error in result.Errors)
-				{
+				foreach (var error in result.Errors) {
 					BuildOutput += $"  - {error}\n";
 				}
 			}
 
-			if (result.Warnings.Count > 0)
-			{
+			if (result.Warnings.Count > 0) {
 				BuildOutput += $"[{DateTime.Now:HH:mm:ss}] Warnings:\n";
-				foreach (var warning in result.Warnings)
-				{
+				foreach (var warning in result.Warnings) {
 					BuildOutput += $"  - {warning}\n";
 				}
 			}
 
 			StatusText = result.Success ? "Build completed successfully" : "Build failed";
-		}
-		catch (Exception ex)
-		{
+		} catch (Exception ex) {
 			BuildOutput += $"[{DateTime.Now:HH:mm:ss}] ERROR: {ex.Message}\n";
 			StatusText = $"Build failed: {ex.Message}";
-		}
-		finally
-		{
+		} finally {
 			IsBuilding = false;
 		}
 	}
 
 	[RelayCommand]
-	private async Task CleanBuild()
-	{
+	private async Task CleanBuild() {
 		if (_config is null || string.IsNullOrEmpty(_projectPath)) return;
 
-		try
-		{
+		try {
 			StatusText = "Cleaning build artifacts...";
 			BuildOutput += $"[{DateTime.Now:HH:mm:ss}] Starting clean\n";
 
@@ -388,19 +342,15 @@ public partial class BuildPipelineViewModel : ViewModelBase
 
 			BuildOutput += $"[{DateTime.Now:HH:mm:ss}] Clean complete\n";
 			StatusText = "Clean completed";
-		}
-		catch (Exception ex)
-		{
+		} catch (Exception ex) {
 			BuildOutput += $"[{DateTime.Now:HH:mm:ss}] ERROR: {ex.Message}\n";
 			StatusText = $"Clean failed: {ex.Message}";
 		}
 	}
 
 	[RelayCommand]
-	private void AddAsset()
-	{
-		Assets.Add(new AssetDefinitionViewModel
-		{
+	private void AddAsset() {
+		Assets.Add(new AssetDefinitionViewModel {
 			Name = $"asset_{Assets.Count + 1}",
 			Type = AssetType.Graphics,
 			Offset = "0x0",
@@ -410,38 +360,30 @@ public partial class BuildPipelineViewModel : ViewModelBase
 	}
 
 	[RelayCommand]
-	private void RemoveAsset(AssetDefinitionViewModel? asset)
-	{
-		if (asset is not null)
-		{
+	private void RemoveAsset(AssetDefinitionViewModel? asset) {
+		if (asset is not null) {
 			Assets.Remove(asset);
 		}
 	}
 
 	[RelayCommand]
-	private void ClearOutput()
-	{
+	private void ClearOutput() {
 		BuildOutput = "";
 	}
 
-	private async Task LoadConfigAsync(string path)
-	{
-		try
-		{
+	private async Task LoadConfigAsync(string path) {
+		try {
 			_config = await BuildConfig.LoadAsync(path);
 			ApplyConfigToViewModel(_config);
 			HasConfigLoaded = true;
 			StatusText = $"Loaded: {path}";
-		}
-		catch (Exception ex)
-		{
+		} catch (Exception ex) {
 			StatusText = $"Load error: {ex.Message}";
 			HasConfigLoaded = false;
 		}
 	}
 
-	private void ApplyConfigToViewModel(BuildConfig config)
-	{
+	private void ApplyConfigToViewModel(BuildConfig config) {
 		ProjectName = config.Project.Name;
 		SelectedPlatform = config.Project.Platform;
 		SelectedAssembler = config.Source.Assembler;
@@ -459,12 +401,9 @@ public partial class BuildPipelineViewModel : ViewModelBase
 
 		// Load assets
 		Assets.Clear();
-		if (config.Extraction?.Assets is not null)
-		{
-			foreach (var asset in config.Extraction.Assets)
-			{
-				Assets.Add(new AssetDefinitionViewModel
-				{
+		if (config.Extraction?.Assets is not null) {
+			foreach (var asset in config.Extraction.Assets) {
+				Assets.Add(new AssetDefinitionViewModel {
 					Name = asset.Name,
 					Type = asset.Type,
 					Offset = asset.Source.Offset,
@@ -476,14 +415,11 @@ public partial class BuildPipelineViewModel : ViewModelBase
 		}
 	}
 
-	private void UpdateConfigFromViewModel()
-	{
-		var assetDefs = Assets.Select(a => new AssetDefinition
-		{
+	private void UpdateConfigFromViewModel() {
+		var assetDefs = Assets.Select(a => new AssetDefinition {
 			Name = a.Name,
 			Type = a.Type,
-			Source = new AssetSource
-			{
+			Source = new AssetSource {
 				Offset = a.Offset,
 				Length = string.IsNullOrEmpty(a.Length) ? null : a.Length,
 				Bank = a.Bank
@@ -491,19 +427,16 @@ public partial class BuildPipelineViewModel : ViewModelBase
 			Output = a.Output
 		}).ToList();
 
-		_config = new BuildConfig
-		{
+		_config = new BuildConfig {
 			Schema = _config?.Schema,
-			Project = new ProjectConfig
-			{
+			Project = new ProjectConfig {
 				Name = ProjectName,
 				Platform = SelectedPlatform,
 				Version = _config?.Project.Version,
 				Description = _config?.Project.Description,
 				Authors = _config?.Project.Authors
 			},
-			Source = new SourceConfig
-			{
+			Source = new SourceConfig {
 				Assembler = SelectedAssembler,
 				MainFile = MainSourceFile,
 				OutputRom = OutputRom,
@@ -513,27 +446,23 @@ public partial class BuildPipelineViewModel : ViewModelBase
 				LinkerConfig = _config?.Source.LinkerConfig,
 				AssemblerOptions = _config?.Source.AssemblerOptions
 			},
-			Assets = new AssetsConfig
-			{
+			Assets = new AssetsConfig {
 				ExtractDir = ExtractDir,
 				EditableDir = EditableDir,
 				BuildDir = BuildDir,
-				Graphics = new GraphicsConfig
-				{
+				Graphics = new GraphicsConfig {
 					Format = GraphicsFormat,
 					DefaultBpp = GraphicsBpp,
 					Palette = _config?.Assets.Graphics?.Palette
 				},
 				Palettes = _config?.Assets.Palettes,
 				Text = _config?.Assets.Text,
-				Compression = new CompressionConfig
-				{
+				Compression = new CompressionConfig {
 					Algorithm = CompressionAlgorithm,
 					CustomScript = _config?.Assets.Compression?.CustomScript
 				}
 			},
-			Build = new BuildOptions
-			{
+			Build = new BuildOptions {
 				Verify = VerifyBuild,
 				ChecksumFix = FixChecksum,
 				PreBuild = _config?.Build.PreBuild,
@@ -548,8 +477,7 @@ public partial class BuildPipelineViewModel : ViewModelBase
 /// <summary>
 /// View model for a single asset definition.
 /// </summary>
-public partial class AssetDefinitionViewModel : ViewModelBase
-{
+public partial class AssetDefinitionViewModel : ViewModelBase {
 	[ObservableProperty]
 	private string _name = "";
 

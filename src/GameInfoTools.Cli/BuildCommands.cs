@@ -7,13 +7,11 @@ namespace GameInfoTools.Cli;
 /// <summary>
 /// Build pipeline CLI commands
 /// </summary>
-public static class BuildCommands
-{
+public static class BuildCommands {
 	/// <summary>
 	/// Create the build command with all subcommands
 	/// </summary>
-	public static Command CreateBuildCommand()
-	{
+	public static Command CreateBuildCommand() {
 		var buildCommand = new Command("build", "Build pipeline operations");
 
 		// build project
@@ -59,134 +57,103 @@ public static class BuildCommands
 		return buildCommand;
 	}
 
-	private static async Task BuildProjectAsync(FileInfo configFile, bool clean, bool verify)
-	{
-		if (!configFile.Exists)
-		{
+	private static async Task BuildProjectAsync(FileInfo configFile, bool clean, bool verify) {
+		if (!configFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Configuration file not found:[/] {configFile.FullName}");
 			return;
 		}
 
 		var logger = new SpectreBuildLogger();
 
-		try
-		{
+		try {
 			var service = await BuildPipelineService.LoadAsync(configFile.FullName, logger);
 
-			if (clean)
-			{
+			if (clean) {
 				await service.CleanAsync();
 			}
 
 			await AnsiConsole.Status()
-				.StartAsync("Building...", async ctx =>
-				{
+				.StartAsync("Building...", async ctx => {
 					var result = await service.BuildAsync();
 
-					if (result.Success)
-					{
+					if (result.Success) {
 						AnsiConsole.MarkupLine($"[green]✓[/] Build succeeded: {result.OutputPath}");
 
-						if (result.Warnings.Count > 0)
-						{
+						if (result.Warnings.Count > 0) {
 							AnsiConsole.MarkupLine($"[yellow]Warnings:[/]");
-							foreach (var warning in result.Warnings)
-							{
+							foreach (var warning in result.Warnings) {
 								AnsiConsole.MarkupLine($"  [yellow]•[/] {warning}");
 							}
 						}
-					}
-					else
-					{
+					} else {
 						AnsiConsole.MarkupLine("[red]✗[/] Build failed");
-						foreach (var error in result.Errors)
-						{
+						foreach (var error in result.Errors) {
 							AnsiConsole.MarkupLine($"  [red]•[/] {error}");
 						}
 					}
 				});
-		}
-		catch (Exception ex)
-		{
+		} catch (Exception ex) {
 			AnsiConsole.WriteException(ex);
 		}
 	}
 
-	private static async Task ExtractAssetsAsync(FileInfo configFile, string[]? assets)
-	{
-		if (!configFile.Exists)
-		{
+	private static async Task ExtractAssetsAsync(FileInfo configFile, string[]? assets) {
+		if (!configFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Configuration file not found:[/] {configFile.FullName}");
 			return;
 		}
 
 		var logger = new SpectreBuildLogger();
 
-		try
-		{
+		try {
 			var service = await BuildPipelineService.LoadAsync(configFile.FullName, logger);
 
 			await AnsiConsole.Status()
-				.StartAsync("Extracting assets...", async ctx =>
-				{
+				.StartAsync("Extracting assets...", async ctx => {
 					var result = await service.ExtractAssetsAsync();
 
-					if (result.ExtractedAssets.Count > 0)
-					{
+					if (result.ExtractedAssets.Count > 0) {
 						AnsiConsole.MarkupLine($"[green]✓[/] Extracted {result.ExtractedAssets.Count} assets:");
-						foreach (var asset in result.ExtractedAssets)
-						{
+						foreach (var asset in result.ExtractedAssets) {
 							AnsiConsole.MarkupLine($"  [cyan]•[/] {asset}");
 						}
 					}
 
-					if (result.Errors.Count > 0)
-					{
+					if (result.Errors.Count > 0) {
 						AnsiConsole.MarkupLine("[red]Errors:[/]");
-						foreach (var error in result.Errors)
-						{
+						foreach (var error in result.Errors) {
 							AnsiConsole.MarkupLine($"  [red]•[/] {error}");
 						}
 					}
 				});
-		}
-		catch (Exception ex)
-		{
+		} catch (Exception ex) {
 			AnsiConsole.WriteException(ex);
 		}
 	}
 
-	private static async Task CleanBuildAsync(FileInfo configFile)
-	{
-		if (!configFile.Exists)
-		{
+	private static async Task CleanBuildAsync(FileInfo configFile) {
+		if (!configFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Configuration file not found:[/] {configFile.FullName}");
 			return;
 		}
 
 		var logger = new SpectreBuildLogger();
 
-		try
-		{
+		try {
 			var service = await BuildPipelineService.LoadAsync(configFile.FullName, logger);
 
 			await AnsiConsole.Status()
-				.StartAsync("Cleaning...", async ctx =>
-				{
+				.StartAsync("Cleaning...", async ctx => {
 					await service.CleanAsync();
 					AnsiConsole.MarkupLine("[green]✓[/] Clean complete");
 				});
-		}
-		catch (Exception ex)
-		{
+		} catch (Exception ex) {
 			AnsiConsole.WriteException(ex);
 		}
 	}
 
-	private static async Task InitConfigAsync(string platform, FileInfo outputFile)
-	{
-		var platformEnum = platform.ToLowerInvariant() switch
-		{
+	private static async Task InitConfigAsync(string platform, FileInfo outputFile) {
+		var platformEnum = platform.ToLowerInvariant() switch {
 			"nes" => Platform.Nes,
 			"snes" => Platform.Snes,
 			"genesis" or "megadrive" or "md" => Platform.Genesis,
@@ -196,15 +163,13 @@ public static class BuildCommands
 			_ => Platform.Unknown
 		};
 
-		if (platformEnum == Platform.Unknown)
-		{
+		if (platformEnum == Platform.Unknown) {
 			AnsiConsole.MarkupLine($"[red]Unknown platform:[/] {platform}");
 			AnsiConsole.MarkupLine("Supported platforms: nes, snes, genesis, gb, gbc, gba");
 			return;
 		}
 
-		var assembler = platformEnum switch
-		{
+		var assembler = platformEnum switch {
 			Platform.Nes => Assembler.Ca65,
 			Platform.Snes => Assembler.Asar,
 			Platform.Genesis => Assembler.Asm68k,
@@ -213,8 +178,7 @@ public static class BuildCommands
 			_ => Assembler.Unknown
 		};
 
-		var extension = platformEnum switch
-		{
+		var extension = platformEnum switch {
 			Platform.Nes => ".nes",
 			Platform.Snes => ".sfc",
 			Platform.Genesis => ".bin",
@@ -224,48 +188,40 @@ public static class BuildCommands
 			_ => ".bin"
 		};
 
-		var config = new BuildConfig
-		{
+		var config = new BuildConfig {
 			Schema = "https://gameinfo.example.com/schemas/build-config.json",
-			Project = new ProjectConfig
-			{
+			Project = new ProjectConfig {
 				Name = "My Project",
 				Platform = platformEnum,
 				Version = "1.0.0",
 				Description = $"A {platform.ToUpperInvariant()} ROM hacking project"
 			},
-			Source = new SourceConfig
-			{
+			Source = new SourceConfig {
 				BaseRom = $"roms/original{extension}",
 				Assembler = assembler,
 				MainFile = "src/main.asm",
 				Includes = ["src/", "include/"],
 				OutputRom = $"build/game{extension}"
 			},
-			Assets = new AssetsConfig
-			{
+			Assets = new AssetsConfig {
 				ExtractDir = "assets/binary",
 				EditableDir = "assets/json",
 				BuildDir = "build/assets",
-				Graphics = new GraphicsConfig
-				{
+				Graphics = new GraphicsConfig {
 					Format = "png",
 					TileSize = [8, 8],
 					DefaultBpp = platformEnum == Platform.Nes || platformEnum == Platform.Gb || platformEnum == Platform.Gbc ? 2 : 4
 				},
-				Palettes = new PalettesConfig
-				{
+				Palettes = new PalettesConfig {
 					Format = "json",
-					ColorFormat = platformEnum switch
-					{
+					ColorFormat = platformEnum switch {
 						Platform.Nes => ColorFormat.Indexed,
 						Platform.Genesis => ColorFormat.Bgr9,
 						_ => ColorFormat.Bgr15
 					}
 				}
 			},
-			Build = new BuildOptions
-			{
+			Build = new BuildOptions {
 				Verify = true,
 				ChecksumFix = true
 			}
@@ -277,21 +233,17 @@ public static class BuildCommands
 		AnsiConsole.MarkupLine($"  Assembler: [cyan]{assembler}[/]");
 	}
 
-	private static async Task ValidateConfigAsync(FileInfo configFile)
-	{
-		if (!configFile.Exists)
-		{
+	private static async Task ValidateConfigAsync(FileInfo configFile) {
+		if (!configFile.Exists) {
 			AnsiConsole.MarkupLine($"[red]Configuration file not found:[/] {configFile.FullName}");
 			return;
 		}
 
-		try
-		{
+		try {
 			var config = await BuildConfig.LoadAsync(configFile.FullName);
 			var errors = config.Validate().ToList();
 
-			if (errors.Count == 0)
-			{
+			if (errors.Count == 0) {
 				AnsiConsole.MarkupLine("[green]✓[/] Configuration is valid");
 
 				var table = new Table()
@@ -312,18 +264,13 @@ public static class BuildCommands
 					table.AddRow("Assets", $"{config.Extraction.Assets.Count} defined");
 
 				AnsiConsole.Write(table);
-			}
-			else
-			{
+			} else {
 				AnsiConsole.MarkupLine("[red]✗[/] Configuration has errors:");
-				foreach (var error in errors)
-				{
+				foreach (var error in errors) {
 					AnsiConsole.MarkupLine($"  [red]•[/] {error}");
 				}
 			}
-		}
-		catch (Exception ex)
-		{
+		} catch (Exception ex) {
 			AnsiConsole.MarkupLine($"[red]Failed to parse configuration:[/] {ex.Message}");
 		}
 	}
@@ -331,8 +278,7 @@ public static class BuildCommands
 	/// <summary>
 	/// Spectre.Console-based build logger
 	/// </summary>
-	private class SpectreBuildLogger : IBuildLogger
-	{
+	private class SpectreBuildLogger : IBuildLogger {
 		public void Debug(string message) => AnsiConsole.MarkupLine($"[grey]{Markup.Escape(message)}[/]");
 		public void Info(string message) => AnsiConsole.MarkupLine($"[white]{Markup.Escape(message)}[/]");
 		public void Warning(string message) => AnsiConsole.MarkupLine($"[yellow]{Markup.Escape(message)}[/]");

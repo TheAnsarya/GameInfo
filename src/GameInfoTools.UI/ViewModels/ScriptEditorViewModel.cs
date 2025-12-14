@@ -1066,10 +1066,10 @@ public partial class ScriptEditorViewModel : ViewModelBase, IKeyboardShortcutHan
 
 					var dx = positions[b1.Id].X - positions[b2.Id].X;
 					var dy = positions[b1.Id].Y - positions[b2.Id].Y;
-					var dist = Math.Sqrt(dx * dx + dy * dy) + 0.1;
+					var dist = Math.Sqrt((dx * dx) + (dy * dy)) + 0.1;
 
 					var force = repulsion / (dist * dist);
-					forces[b1.Id] = (forces[b1.Id].X + force * dx / dist, forces[b1.Id].Y + force * dy / dist);
+					forces[b1.Id] = (forces[b1.Id].X + (force * dx / dist), forces[b1.Id].Y + (force * dy / dist));
 				}
 			}
 
@@ -1079,16 +1079,16 @@ public partial class ScriptEditorViewModel : ViewModelBase, IKeyboardShortcutHan
 					var dx = positions[successorId].X - positions[block.Id].X;
 					var dy = positions[successorId].Y - positions[block.Id].Y;
 
-					forces[block.Id] = (forces[block.Id].X + attraction * dx, forces[block.Id].Y + attraction * dy);
-					forces[successorId] = (forces[successorId].X - attraction * dx, forces[successorId].Y - attraction * dy);
+					forces[block.Id] = (forces[block.Id].X + (attraction * dx), forces[block.Id].Y + (attraction * dy));
+					forces[successorId] = (forces[successorId].X - (attraction * dx), forces[successorId].Y - (attraction * dy));
 				}
 			}
 
 			// Apply forces
 			foreach (var block in BasicBlocks) {
 				positions[block.Id] = (
-					positions[block.Id].X + forces[block.Id].X * 0.1,
-					positions[block.Id].Y + forces[block.Id].Y * 0.1
+					positions[block.Id].X + (forces[block.Id].X * 0.1),
+					positions[block.Id].Y + (forces[block.Id].Y * 0.1)
 				);
 			}
 		}
@@ -1112,13 +1112,13 @@ public partial class ScriptEditorViewModel : ViewModelBase, IKeyboardShortcutHan
 		const double nodeWidth = 150;
 		const double nodeHeight = 80;
 		double radius = Math.Max(BasicBlocks.Count * 50, 200);
-		double centerX = radius + nodeWidth / 2;
-		double centerY = radius + nodeHeight / 2;
+		double centerX = radius + (nodeWidth / 2);
+		double centerY = radius + (nodeHeight / 2);
 
 		for (int i = 0; i < BasicBlocks.Count; i++) {
-			var angle = 2 * Math.PI * i / BasicBlocks.Count - Math.PI / 2;
-			var x = centerX + radius * Math.Cos(angle) - nodeWidth / 2;
-			var y = centerY + radius * Math.Sin(angle) - nodeHeight / 2;
+			var angle = (2 * Math.PI * i / BasicBlocks.Count) - (Math.PI / 2);
+			var x = centerX + (radius * Math.Cos(angle)) - (nodeWidth / 2);
+			var y = centerY + (radius * Math.Sin(angle)) - (nodeHeight / 2);
 
 			NodePositions.Add(new GraphNodePosition(BasicBlocks[i].Id, x, y, nodeWidth, nodeHeight));
 		}

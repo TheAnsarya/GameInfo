@@ -311,6 +311,7 @@ public class EditUndoRedoManager : UndoRedoManager<EditAction> {
 		if (action is not null && _applyAction is not null) {
 			_applyAction(action, false);
 		}
+
 		return action;
 	}
 
@@ -322,6 +323,7 @@ public class EditUndoRedoManager : UndoRedoManager<EditAction> {
 		if (action is not null && _applyAction is not null) {
 			_applyAction(action, true);
 		}
+
 		return action;
 	}
 

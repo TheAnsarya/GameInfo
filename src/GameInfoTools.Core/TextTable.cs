@@ -397,6 +397,7 @@ public class TextTable {
 			_dteEncodeTable.Remove(text);
 			return true;
 		}
+
 		return false;
 	}
 
@@ -617,6 +618,7 @@ public class TextTable {
 				var escaped = System.Security.SecurityElement.Escape(kvp.Value);
 				sb.AppendLine($"    <Entry hex=\"{hex}\" value=\"{escaped}\" />");
 			}
+
 			sb.AppendLine("  </DTE>");
 		}
 
@@ -699,6 +701,7 @@ public class TextTable {
 					if (!byte.TryParse(hex.Substring(i * 2, 2), System.Globalization.NumberStyles.HexNumber, null, out bytes[i]))
 						valid = false;
 				}
+
 				if (valid) {
 					table._dteTable[bytes] = value;
 					table._dteEncodeTable[value] = bytes;
@@ -744,6 +747,7 @@ public class TextTable {
 						if (!byte.TryParse(hex.Substring(i * 2, 2), System.Globalization.NumberStyles.HexNumber, null, out bytes[i]))
 							valid = false;
 					}
+
 					if (valid) {
 						table._dteTable[bytes] = value;
 						table._dteEncodeTable[value] = bytes;
@@ -784,6 +788,7 @@ public class TextTable {
 					if (!byte.TryParse(hex.Substring(i * 2, 2), System.Globalization.NumberStyles.HexNumber, null, out bytes[i]))
 						valid = false;
 				}
+
 				if (valid) {
 					table._dteTable[bytes] = value;
 					table._dteEncodeTable[value] = bytes;
@@ -887,6 +892,7 @@ public class TextTable {
 			if (b >= 0x20 && b < 0x7f)
 				asciiCount++;
 		}
+
 		return (double)asciiCount / data.Length;
 	}
 
@@ -895,6 +901,7 @@ public class TextTable {
 		for (int i = 0x20; i < 0x7f; i++) {
 			mappings[(byte)i] = (char)i;
 		}
+
 		return mappings;
 	}
 
@@ -908,6 +915,7 @@ public class TextTable {
 				i++; // Skip second byte
 			}
 		}
+
 		return (double)shiftJisCount / (data.Length / 2.0);
 	}
 
@@ -918,6 +926,7 @@ public class TextTable {
 		for (int i = 0; i < 63; i++) {
 			mappings[(byte)(0xa1 + i)] = (char)(0xff61 + i);
 		}
+
 		return mappings;
 	}
 
@@ -928,6 +937,7 @@ public class TextTable {
 			if (b >= 0x80 && b < 0xc0)
 				dqCount++;
 		}
+
 		return (double)dqCount / data.Length * 0.8;
 	}
 
@@ -937,9 +947,11 @@ public class TextTable {
 		for (int i = 0; i < 26; i++) {
 			mappings[(byte)(0x80 + i)] = (char)('A' + i);
 		}
+
 		for (int i = 0; i < 26; i++) {
 			mappings[(byte)(0x9a + i)] = (char)('a' + i);
 		}
+
 		return mappings;
 	}
 
@@ -950,6 +962,7 @@ public class TextTable {
 			if (Math.Abs(data[i + 1] - data[i]) <= 1 && Math.Abs(data[i + 2] - data[i + 1]) <= 1)
 				sequentialRuns++;
 		}
+
 		return (double)sequentialRuns / data.Length * 0.5;
 	}
 
@@ -975,6 +988,7 @@ public class TextTable {
 			var b = (byte)((offset + 'a' + i) & 0xff);
 			mappings[b] = (char)('a' + i);
 		}
+
 		return mappings;
 	}
 
@@ -1089,6 +1103,7 @@ public class TextTable {
 			_encodeTable.Remove(str);
 			return true;
 		}
+
 		return false;
 	}
 
@@ -1136,6 +1151,7 @@ internal class ByteArrayComparer : IEqualityComparer<byte[]> {
 			if (x[i] != y[i])
 				return false;
 		}
+
 		return true;
 	}
 
@@ -1144,7 +1160,7 @@ internal class ByteArrayComparer : IEqualityComparer<byte[]> {
 			return 0;
 		int hash = 17;
 		foreach (var b in obj)
-			hash = hash * 31 + b;
+			hash = (hash * 31) + b;
 		return hash;
 	}
 }

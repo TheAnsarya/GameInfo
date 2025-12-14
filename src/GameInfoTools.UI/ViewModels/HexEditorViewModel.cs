@@ -767,6 +767,7 @@ public partial class HexEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		if (_comparisonData is null || offset < 0 || offset >= _comparisonData.Length) {
 			return null;
 		}
+
 		return _comparisonData[offset];
 	}
 
@@ -1043,6 +1044,7 @@ public partial class HexEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 					commands.Add(new SetByteCommand(_rom.Data, targetOffset, replacement[i]));
 				}
 			}
+
 			replaceCount++;
 		}
 
@@ -1069,6 +1071,7 @@ public partial class HexEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 				for (int i = 0; i < bytes.Length; i++) {
 					bytes[i] = Convert.ToByte(cleanHex.Substring(i * 2, 2), 16);
 				}
+
 				return bytes;
 			} catch {
 				return null;
@@ -1097,6 +1100,7 @@ public partial class HexEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		for (int i = 0; i < pattern.Length; i++) {
 			if (data[offset + i] != pattern[i]) return false;
 		}
+
 		return true;
 	}
 
@@ -1195,6 +1199,7 @@ public partial class HexEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 			e.Handled = true;
 			return true;
 		}
+
 		if (e.Key == Key.PageDown) {
 			int maxOffset = _rom?.Length ?? 0;
 			CurrentOffset = Math.Min(maxOffset - BytesPerRow, CurrentOffset + (BytesPerRow * RowCount));
@@ -1208,6 +1213,7 @@ public partial class HexEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 			e.Handled = true;
 			return true;
 		}
+
 		if (e.Key == Key.End && e.KeyModifiers == KeyModifiers.Control) {
 			int maxOffset = (_rom?.Length ?? 0) - BytesPerRow;
 			CurrentOffset = Math.Max(0, maxOffset);
@@ -1462,14 +1468,13 @@ public class AdvancedHexSearch {
 /// </summary>
 public class SearchHistory {
 	private readonly List<SearchHistoryEntry> _entries = [];
-	private int _maxEntries = 50;
 
 	public IReadOnlyList<SearchHistoryEntry> Entries => _entries;
 
 	public int MaxEntries {
-		get => _maxEntries;
-		set => _maxEntries = Math.Max(1, value);
-	}
+		get;
+		set => field = Math.Max(1, value);
+	} = 50;
 
 	public void Add(string pattern, SearchType type, int resultCount) {
 		// Remove if already exists
@@ -1479,7 +1484,7 @@ public class SearchHistory {
 		_entries.Insert(0, new SearchHistoryEntry(pattern, type, DateTime.Now, resultCount));
 
 		// Trim if needed
-		while (_entries.Count > _maxEntries) {
+		while (_entries.Count > MaxEntries) {
 			_entries.RemoveAt(_entries.Count - 1);
 		}
 	}
@@ -1524,9 +1529,9 @@ public class DataStructureTemplate {
 				FieldType.Word => (ushort)(data[currentOffset] | (data[currentOffset + 1] << 8)),
 				FieldType.WordBE => (ushort)((data[currentOffset] << 8) | data[currentOffset + 1]),
 				FieldType.DWord => (uint)(data[currentOffset] |
-				                          (data[currentOffset + 1] << 8) |
-				                          (data[currentOffset + 2] << 16) |
-				                          (data[currentOffset + 3] << 24)),
+										  (data[currentOffset + 1] << 8) |
+										  (data[currentOffset + 2] << 16) |
+										  (data[currentOffset + 3] << 24)),
 				FieldType.Pointer16 => (ushort)(data[currentOffset] | (data[currentOffset + 1] << 8)),
 				FieldType.String => ExtractString(data, currentOffset, field.Size),
 				FieldType.ByteArray => ExtractByteArray(data, currentOffset, field.Size),

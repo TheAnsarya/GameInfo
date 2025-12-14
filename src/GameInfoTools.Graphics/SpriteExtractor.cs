@@ -452,8 +452,8 @@ public class SpriteExtractor {
 	private static bool IsLikelyAnimationTable(byte[] data, int offset, Core.SystemType system) {
 		if (system == Core.SystemType.Nes) {
 			// NES: Look for pointer pairs in $8000-$FFFF range
-			for (int i = 0; i < 4 && offset + i * 2 + 1 < data.Length; i++) {
-				int ptr = data[offset + i * 2] | (data[offset + i * 2 + 1] << 8);
+			for (int i = 0; i < 4 && offset + (i * 2) + 1 < data.Length; i++) {
+				int ptr = data[offset + (i * 2)] | (data[offset + (i * 2) + 1] << 8);
 				if (ptr < 0x8000 || ptr > 0xffff)
 					return false;
 			}
@@ -468,8 +468,8 @@ public class SpriteExtractor {
 		int count = 0;
 		int maxEntries = 64;
 
-		for (int i = 0; i < maxEntries && offset + i * 2 + 1 < data.Length; i++) {
-			int ptr = data[offset + i * 2] | (data[offset + i * 2 + 1] << 8);
+		for (int i = 0; i < maxEntries && offset + (i * 2) + 1 < data.Length; i++) {
+			int ptr = data[offset + (i * 2)] | (data[offset + (i * 2) + 1] << 8);
 
 			if (system == Core.SystemType.Nes) {
 				if (ptr < 0x8000 || ptr > 0xffff)
@@ -920,7 +920,7 @@ public class AdvancedSpriteDetector {
 
 		// Character sprites: typically 2x3 or 2x2, often symmetric
 		if ((region.Width == 16 && region.Height == 24) ||
-		    (region.Width == 16 && region.Height == 16)) {
+			(region.Width == 16 && region.Height == 16)) {
 			if (symmetricCount > tileCount / 2) {
 				return SpriteType.Character;
 			}
@@ -949,7 +949,7 @@ public class AdvancedSpriteDetector {
 		float confidence = 0.5f;
 
 		// Rectangular regions are more likely to be valid sprites
-		int expectedTiles = (region.Width / 8) * (region.Height / 8);
+		int expectedTiles = region.Width / 8 * (region.Height / 8);
 		float fillRatio = region.Tiles.Count / (float)expectedTiles;
 		if (fillRatio > 0.8f) confidence += 0.2f;
 
@@ -1033,8 +1033,8 @@ public class AnimationExtractor {
 		// Look for sequences of valid pointers
 		for (int i = start; i < end - 8; i += 2) {
 			int consecutiveValid = 0;
-			for (int j = 0; j < 32 && i + j * 2 + 1 < end; j++) {
-				int ptr = data[i + j * 2] | (data[i + j * 2 + 1] << 8);
+			for (int j = 0; j < 32 && i + (j * 2) + 1 < end; j++) {
+				int ptr = data[i + (j * 2)] | (data[i + (j * 2) + 1] << 8);
 
 				bool valid = system switch {
 					Core.SystemType.Nes => ptr >= 0x8000 && ptr <= 0xffff,
@@ -1063,7 +1063,7 @@ public class AnimationExtractor {
 		var animations = new List<AnimationSequence>();
 
 		for (int i = 0; i < count; i++) {
-			int ptr = data[tableOffset + i * 2] | (data[tableOffset + i * 2 + 1] << 8);
+			int ptr = data[tableOffset + (i * 2)] | (data[tableOffset + (i * 2) + 1] << 8);
 
 			// Convert to file offset
 			int fileOffset = system switch {
@@ -1249,9 +1249,9 @@ public class SpriteSheetGenerator {
 			int bestScore = int.MaxValue;
 
 			for (int i = 0; i < freeRects.Count; i++) {
-				var rect = freeRects[i];
-				if (rect.W >= w && rect.H >= h) {
-					int score = Math.Min(rect.W - w, rect.H - h);
+				var (X, Y, W, H) = freeRects[i];
+				if (W >= w && H >= h) {
+					int score = Math.Min(W - w, H - h);
 					if (score < bestScore) {
 						bestScore = score;
 						bestIdx = i;
@@ -1343,7 +1343,7 @@ public static class SpriteExporter {
 
 		for (int ty = 0; ty < tilesY; ty++) {
 			for (int tx = 0; tx < tilesX; tx++) {
-				int tileIndex = ty * tilesX + tx;
+				int tileIndex = (ty * tilesX) + tx;
 				int chrOffset = tileIndex * 16;
 
 				// Encode 8x8 tile in NES 2bpp format
@@ -1351,8 +1351,8 @@ public static class SpriteExporter {
 					byte plane0 = 0, plane1 = 0;
 
 					for (int col = 0; col < 8; col++) {
-						int px = tx * 8 + col;
-						int py = ty * 8 + row;
+						int px = (tx * 8) + col;
+						int py = (ty * 8) + row;
 
 						byte pixel = (px < width && py < height) ? pixels[py, px] : (byte)0;
 
@@ -1384,15 +1384,15 @@ public static class SpriteExporter {
 
 		for (int ty = 0; ty < tilesY; ty++) {
 			for (int tx = 0; tx < tilesX; tx++) {
-				int tileIndex = ty * tilesX + tx;
+				int tileIndex = (ty * tilesX) + tx;
 				int offset = tileIndex * 32;
 
 				for (int row = 0; row < 8; row++) {
 					byte plane0 = 0, plane1 = 0, plane2 = 0, plane3 = 0;
 
 					for (int col = 0; col < 8; col++) {
-						int px = tx * 8 + col;
-						int py = ty * 8 + row;
+						int px = (tx * 8) + col;
+						int py = (ty * 8) + row;
 
 						byte pixel = (px < width && py < height) ? pixels[py, px] : (byte)0;
 
@@ -1403,10 +1403,10 @@ public static class SpriteExporter {
 					}
 
 					// SNES 4bpp interleaved format
-					data[offset + row * 2] = plane0;
-					data[offset + row * 2 + 1] = plane1;
-					data[offset + 16 + row * 2] = plane2;
-					data[offset + 16 + row * 2 + 1] = plane3;
+					data[offset + (row * 2)] = plane0;
+					data[offset + (row * 2) + 1] = plane1;
+					data[offset + 16 + (row * 2)] = plane2;
+					data[offset + 16 + (row * 2) + 1] = plane3;
 				}
 			}
 		}

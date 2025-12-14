@@ -992,14 +992,7 @@ public partial class DisassemblerViewModel : ViewModelBase, IKeyboardShortcutHan
 
 		try {
 			var ext = Path.GetExtension(filePath).ToLowerInvariant();
-			string content;
-
-			if (ext == ".mlb") {
-				content = Symbols.ExportMlb();
-			} else {
-				content = Symbols.ExportLabels();
-			}
-
+			string content = ext == ".mlb" ? Symbols.ExportMlb() : Symbols.ExportLabels();
 			File.WriteAllText(filePath, content);
 			StatusText = $"Exported {Symbols.Count} symbols to {Path.GetFileName(filePath)}";
 		} catch (Exception ex) {
@@ -1062,6 +1055,7 @@ public partial class DisassemblerViewModel : ViewModelBase, IKeyboardShortcutHan
 				if (!string.IsNullOrEmpty(bm.Comment)) {
 					line += $"\t{bm.Comment}";
 				}
+
 				lines.Add(line);
 			}
 

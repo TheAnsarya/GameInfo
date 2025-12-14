@@ -277,7 +277,6 @@ public class CrossReferenceDb {
 /// Builds cross-references by analyzing code.
 /// </summary>
 public class CrossReferenceBuilder {
-	private readonly CrossReferenceDb _db = new();
 
 	/// <summary>
 	/// Reference record for external access.
@@ -292,7 +291,7 @@ public class CrossReferenceBuilder {
 	/// <param name="startOffset">Starting offset in ROM (default 0).</param>
 	/// <param name="length">Length to analyze (default: entire ROM).</param>
 	public void ProcessCode(byte[] rom, int baseAddress, int startOffset = 0, int? length = null) {
-		int endOffset = startOffset + (length ?? rom.Length - startOffset);
+		int endOffset = startOffset + (length ?? (rom.Length - startOffset));
 
 		int offset = startOffset;
 		while (offset < endOffset && offset < rom.Length) {
@@ -311,7 +310,7 @@ public class CrossReferenceBuilder {
 			if (refType.HasValue && instrLen >= 2) {
 				int targetAddr = CalculateTargetAddress(rom, offset, opcode, baseAddress);
 				if (targetAddr >= 0) {
-					_db.AddRef(sourceAddr, targetAddr, refType.Value);
+					Database.AddRef(sourceAddr, targetAddr, refType.Value);
 				}
 			}
 
@@ -319,7 +318,7 @@ public class CrossReferenceBuilder {
 			if (IsAbsoluteAddressing(opcode) && instrLen >= 3) {
 				int addr = rom[offset + 1] | (rom[offset + 2] << 8);
 				var dataType = IsLoadInstruction(opcode) ? CrossReferenceDb.RefType.DataRead : CrossReferenceDb.RefType.DataWrite;
-				_db.AddRef(sourceAddr, addr, dataType);
+				Database.AddRef(sourceAddr, addr, dataType);
 			}
 
 			offset += instrLen;
@@ -330,20 +329,20 @@ public class CrossReferenceBuilder {
 	/// Get all references from a source address.
 	/// </summary>
 	public IEnumerable<Reference> GetReferencesFrom(int address) {
-		return _db.GetRefsFrom(address).Select(r => new Reference(r.SourceAddress, r.TargetAddress, r.Type));
+		return Database.GetRefsFrom(address).Select(r => new Reference(r.SourceAddress, r.TargetAddress, r.Type));
 	}
 
 	/// <summary>
 	/// Get all references to a target address.
 	/// </summary>
 	public IEnumerable<Reference> GetReferencesTo(int address) {
-		return _db.GetRefsTo(address).Select(r => new Reference(r.SourceAddress, r.TargetAddress, r.Type));
+		return Database.GetRefsTo(address).Select(r => new Reference(r.SourceAddress, r.TargetAddress, r.Type));
 	}
 
 	/// <summary>
 	/// Get the underlying database.
 	/// </summary>
-	public CrossReferenceDb Database => _db;
+	public CrossReferenceDb Database { get; } = new();
 
 	/// <summary>
 	/// Get instruction length for 6502 opcode.
@@ -655,7 +654,7 @@ public class JumpTableDetector {
 			var absTable = TryDetectAbsoluteTable(data, i, end, cpuBase);
 			if (absTable != null && absTable.EntryCount >= 3) {
 				tables.Add(absTable);
-				i += absTable.EntryCount * 2 - 1; // Skip detected table
+				i += (absTable.EntryCount * 2) - 1; // Skip detected table
 				continue;
 			}
 

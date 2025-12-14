@@ -566,21 +566,21 @@ public class WorkflowIntegrationTests {
 		// Fill with pattern
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				mapData[y * width + x] = (byte)((x + y) % 256);
+				mapData[(y * width) + x] = (byte)((x + y) % 256);
 			}
 		}
 
 		// Modify tile at position (5, 5)
 		int targetX = 5, targetY = 5;
 		byte newTile = 0xff;
-		mapData[targetY * width + targetX] = newTile;
+		mapData[(targetY * width) + targetX] = newTile;
 
 		// Verify modification
-		Assert.Equal(newTile, mapData[targetY * width + targetX]);
+		Assert.Equal(newTile, mapData[(targetY * width) + targetX]);
 
 		// Verify neighbors unchanged
-		Assert.NotEqual(newTile, mapData[(targetY - 1) * width + targetX]);
-		Assert.NotEqual(newTile, mapData[targetY * width + (targetX - 1)]);
+		Assert.NotEqual(newTile, mapData[((targetY - 1) * width) + targetX]);
+		Assert.NotEqual(newTile, mapData[(targetY * width) + (targetX - 1)]);
 	}
 
 	[Fact]
@@ -678,7 +678,7 @@ public class WorkflowIntegrationTests {
 		var pixels = new byte[64];
 		for (int y = 0; y < 8; y++) {
 			for (int x = 0; x < 4; x++) {
-				pixels[y * 8 + x] = 1; // Left half = color 1
+				pixels[(y * 8) + x] = 1; // Left half = color 1
 			}
 		}
 
@@ -686,7 +686,7 @@ public class WorkflowIntegrationTests {
 		var flipped = new byte[64];
 		for (int y = 0; y < 8; y++) {
 			for (int x = 0; x < 8; x++) {
-				flipped[y * 8 + x] = pixels[y * 8 + (7 - x)];
+				flipped[(y * 8) + x] = pixels[(y * 8) + (7 - x)];
 			}
 		}
 

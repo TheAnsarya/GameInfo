@@ -123,6 +123,20 @@ pick a random github issue and work on it; continue;
 
 pick some random github issues and work on them; continue;
 
+pick some random github issues and work on them; continue;
+
+git commit everything in logical batches; pick some random github issues and work on them; continue;
+
+
+
+
+*************** THIS:
+
+git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; always create todo-lists and create github issues and epics; and update them as you complete work; always create session logs in `~docs\session-logs` and ai chat logs at `~docs\chat-logs\` as markdown (`.md`) log files. log all of the chat/responses and work; ***create documentation for all of the recent work in the `\docs\` folder***; create github issues and todolists, and plans for build pipelines for [SNES, NES, Genesis, etc], with compilers and asset integration (convert assets from ROM data/code to json/png/etc, to an editable state, edited versions, and then convert back to rom data) with configuration files so we can set up any game to be compiled from source and assets; and then implement it; continue;
+
+continue;
+
+make the terminal readable, currently most of the text is invisible (color and background coolor the same) so fix that, and I'm tired of asking, make this change permanent; code format all files, especially c# files, so braces are on the right line, always use tabs not spaces, hexadecimal values are always lowercase; use the most modern code practices; use the most modern libraries and code and language and platform; continue build pipeline platform work updating github issues and todo-lists; continue;
 
 
 
@@ -134,7 +148,11 @@ pick some random github issues and work on them; continue;
 
 
 
-continue
+
+
+
+
+continue;
 
 
 

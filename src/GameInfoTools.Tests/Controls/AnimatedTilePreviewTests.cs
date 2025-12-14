@@ -1,6 +1,6 @@
-using Xunit;
-using GameInfoTools.UI.Controls;
 using Avalonia.Media;
+using GameInfoTools.UI.Controls;
+using Xunit;
 
 namespace GameInfoTools.Tests.Controls;
 
@@ -24,6 +24,7 @@ public class AnimatedTilePreviewTests {
 				tile[y, x] = fillValue;
 			}
 		}
+
 		return tile;
 	}
 
@@ -32,6 +33,7 @@ public class AnimatedTilePreviewTests {
 		for (int i = 0; i < count; i++) {
 			frames.Add(CreateTestTile((byte)(i % 4)));
 		}
+
 		return frames.AsReadOnly();
 	}
 

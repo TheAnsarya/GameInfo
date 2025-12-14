@@ -93,16 +93,11 @@ public class MapCanvasTests {
 
 		// HSV to RGB calculation
 		double c = value * saturation;
-		double x = c * (1 - Math.Abs(((hue / 60) % 2) - 1));
+		double x = c * (1 - Math.Abs((hue / 60 % 2) - 1));
 		double m = value - c;
 
 		double r, g, b;
-		if (hue < 60) { r = c; g = x; b = 0; }
-		else if (hue < 120) { r = x; g = c; b = 0; }
-		else if (hue < 180) { r = 0; g = c; b = x; }
-		else if (hue < 240) { r = 0; g = x; b = c; }
-		else if (hue < 300) { r = x; g = 0; b = c; }
-		else { r = c; g = 0; b = x; }
+		if (hue < 60) { r = c; g = x; b = 0; } else if (hue < 120) { r = x; g = c; b = 0; } else if (hue < 180) { r = 0; g = c; b = x; } else if (hue < 240) { r = 0; g = x; b = c; } else if (hue < 300) { r = x; g = 0; b = c; } else { r = c; g = 0; b = x; }
 
 		byte red = (byte)((r + m) * 255);
 		byte green = (byte)((g + m) * 255);
@@ -121,7 +116,7 @@ public class MapCanvasTests {
 	[InlineData(127, 178.59375)]
 	[InlineData(255, 358.59375)] // 255/256*360 = 358.59375
 	public void TileIndex_GeneratesUniqueHue(byte tileIndex, double expectedHue) {
-		double hue = (tileIndex / 256.0) * 360;
+		double hue = tileIndex / 256.0 * 360;
 		Assert.Equal(expectedHue, hue, 4);
 	}
 

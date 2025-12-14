@@ -8,7 +8,6 @@ namespace GameInfoTools.Analysis;
 /// Handles loading and integrating label files with CDL coverage data.
 /// </summary>
 public class CdlLabelIntegration {
-	private readonly SymbolTable _symbols = new();
 	private readonly CdlHeatmap _cdl;
 	private readonly int _baseAddress;
 
@@ -54,18 +53,18 @@ public class CdlLabelIntegration {
 	/// <summary>
 	/// Gets the loaded symbol table.
 	/// </summary>
-	public SymbolTable Symbols => _symbols;
+	public SymbolTable Symbols { get; } = new();
 
 	/// <summary>
 	/// Gets whether any labels are loaded.
 	/// </summary>
-	public bool HasLabels => _symbols.GetAllSymbols().Any();
+	public bool HasLabels => Symbols.GetAllSymbols().Any();
 
 	/// <summary>
 	/// Loads labels from a Mesen MLB file.
 	/// </summary>
 	public void LoadMlb(string content) {
-		_symbols.LoadMlb(content);
+		Symbols.LoadMlb(content);
 	}
 
 	/// <summary>
@@ -95,7 +94,7 @@ public class CdlLabelIntegration {
 				var name = match.Groups[2].Value.Trim();
 				var comment = match.Groups[3].Success ? match.Groups[3].Value.Trim() : null;
 
-				_symbols.AddSymbol(name, address, SymbolTable.SymbolType.Unknown, comment);
+				Symbols.AddSymbol(name, address, SymbolTable.SymbolType.Unknown, comment);
 			}
 		}
 	}
@@ -112,7 +111,7 @@ public class CdlLabelIntegration {
 	/// Loads labels from a generic label file.
 	/// </summary>
 	public void LoadLabels(string content) {
-		_symbols.LoadLabels(content);
+		Symbols.LoadLabels(content);
 	}
 
 	/// <summary>
@@ -159,7 +158,7 @@ public class CdlLabelIntegration {
 	public List<LabelWithCoverage> GetLabelsWithCoverage() {
 		var result = new List<LabelWithCoverage>();
 
-		foreach (var (name, address, type) in _symbols.GetAllSymbols()) {
+		foreach (var (name, address, type) in Symbols.GetAllSymbols()) {
 			int offset = AddressToOffset(address);
 			CdlHeatmap.CdlFlags flags = CdlHeatmap.CdlFlags.None;
 			bool isCovered = false;
@@ -177,7 +176,7 @@ public class CdlLabelIntegration {
 				address,
 				name,
 				type,
-				_symbols.GetComment(name),
+				Symbols.GetComment(name),
 				isCode,
 				isData,
 				isCovered,
@@ -209,9 +208,11 @@ public class CdlLabelIntegration {
 		if (isCode.HasValue) {
 			labels = labels.Where(l => l.IsCode == isCode.Value).ToList();
 		}
+
 		if (isData.HasValue) {
 			labels = labels.Where(l => l.IsData == isData.Value).ToList();
 		}
+
 		if (isCovered.HasValue) {
 			labels = labels.Where(l => l.IsCovered == isCovered.Value).ToList();
 		}
@@ -239,14 +240,14 @@ public class CdlLabelIntegration {
 	/// </summary>
 	public string? GetLabelAtOffset(int offset) {
 		int address = OffsetToAddress(offset);
-		return _symbols.GetSymbol(address);
+		return Symbols.GetSymbol(address);
 	}
 
 	/// <summary>
 	/// Gets the label at a specific address (if any).
 	/// </summary>
 	public string? GetLabelAtAddress(int address) {
-		return _symbols.GetSymbol(address);
+		return Symbols.GetSymbol(address);
 	}
 
 	/// <summary>
@@ -288,7 +289,7 @@ public class CdlLabelIntegration {
 
 		foreach (var label in generated) {
 			// Skip if we already have a label at this address (unless overwrite is enabled)
-			if (!overwriteExisting && _symbols.HasSymbol(label.Address)) {
+			if (!overwriteExisting && Symbols.HasSymbol(label.Address)) {
 				continue;
 			}
 
@@ -302,7 +303,7 @@ public class CdlLabelIntegration {
 				_ => SymbolTable.SymbolType.Unknown
 			};
 
-			_symbols.AddSymbol(label.Name, label.Address, symbolType, label.Comment);
+			Symbols.AddSymbol(label.Name, label.Address, symbolType, label.Comment);
 		}
 	}
 
@@ -315,7 +316,7 @@ public class CdlLabelIntegration {
 		sb.AppendLine($"; Generated: {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
 		sb.AppendLine();
 
-		foreach (var (name, address, type) in _symbols.GetAllSymbols().OrderBy(s => s.Address)) {
+		foreach (var (name, address, type) in Symbols.GetAllSymbols().OrderBy(s => s.Address)) {
 			var typeCode = type switch {
 				SymbolTable.SymbolType.Code or SymbolTable.SymbolType.Subroutine or SymbolTable.SymbolType.Label => "G",
 				SymbolTable.SymbolType.Ram => "R",
@@ -323,7 +324,7 @@ public class CdlLabelIntegration {
 				_ => "P"
 			};
 
-			var comment = _symbols.GetComment(name) ?? "";
+			var comment = Symbols.GetComment(name) ?? "";
 			sb.AppendLine($"{typeCode}:{address:X4}:{name}:{comment}");
 		}
 
@@ -338,8 +339,8 @@ public class CdlLabelIntegration {
 		sb.AppendLine("; Label file exported from CDL analysis");
 		sb.AppendLine();
 
-		foreach (var (name, address, _) in _symbols.GetAllSymbols().OrderBy(s => s.Address)) {
-			var comment = _symbols.GetComment(name) ?? "";
+		foreach (var (name, address, _) in Symbols.GetAllSymbols().OrderBy(s => s.Address)) {
+			var comment = Symbols.GetComment(name) ?? "";
 			sb.AppendLine($"${address:X4}#{name}#{comment}");
 		}
 
@@ -354,7 +355,7 @@ public class CdlLabelIntegration {
 		sb.AppendLine("; Symbol file");
 		sb.AppendLine();
 
-		foreach (var (name, address, _) in _symbols.GetAllSymbols().OrderBy(s => s.Address)) {
+		foreach (var (name, address, _) in Symbols.GetAllSymbols().OrderBy(s => s.Address)) {
 			sb.AppendLine($"{name} = ${address:X4}");
 		}
 

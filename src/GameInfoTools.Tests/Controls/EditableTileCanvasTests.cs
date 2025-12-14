@@ -1,6 +1,6 @@
-using Xunit;
-using GameInfoTools.UI.Controls;
 using Avalonia.Media;
+using GameInfoTools.UI.Controls;
+using Xunit;
 
 namespace GameInfoTools.Tests.Controls;
 
@@ -24,6 +24,7 @@ public class EditableTileCanvasTests {
 				tile[y, x] = (byte)((x + y) % 4);
 			}
 		}
+
 		return tile;
 	}
 

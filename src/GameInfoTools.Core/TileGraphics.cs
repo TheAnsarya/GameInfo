@@ -527,6 +527,7 @@ public static class Palette {
 		for (int i = 0; i < colorCount && offset < data.Length; i++) {
 			palette[i] = NesToRgb(data[offset++]);
 		}
+
 		return palette;
 	}
 
@@ -543,6 +544,7 @@ public static class Palette {
 				palette[colorsRead++] = GbColorToRgb(shade);
 			}
 		}
+
 		return palette;
 	}
 
@@ -555,6 +557,7 @@ public static class Palette {
 			palette[i] = (data[offset], data[offset + 1], data[offset + 2]);
 			offset += 3;
 		}
+
 		return palette;
 	}
 
@@ -567,6 +570,7 @@ public static class Palette {
 			palette[i] = (data[offset], data[offset + 1], data[offset + 2]);
 			offset += 4;
 		}
+
 		return palette;
 	}
 
@@ -583,6 +587,7 @@ public static class Palette {
 			palette[i] = ((byte)r, (byte)g, (byte)b);
 			offset += 2;
 		}
+
 		return palette;
 	}
 
@@ -604,8 +609,8 @@ public static class Palette {
 
 		// Calculate average saturation and brightness
 		float totalSat = 0, totalBright = 0;
-		foreach (var c in palette) {
-			var (h, s, v) = RgbToHsv(c.R, c.G, c.B);
+		foreach (var (R, G, B) in palette) {
+			var (h, s, v) = RgbToHsv(R, G, B);
 			totalSat += s;
 			totalBright += v;
 		}
@@ -631,10 +636,10 @@ public static class Palette {
 
 		float h = 0;
 		if (delta != 0) {
-			if (max == rf) h = 60 * (((gf - bf) / delta) % 6);
-			else if (max == gf) h = 60 * (((bf - rf) / delta) + 2);
-			else h = 60 * (((rf - gf) / delta) + 4);
+			if (max == rf) h = 60 * ((gf - bf) / delta % 6);
+			else h = max == gf ? 60 * (((bf - rf) / delta) + 2) : 60 * (((rf - gf) / delta) + 4);
 		}
+
 		if (h < 0) h += 360;
 
 		float s = max == 0 ? 0 : delta / max;
@@ -646,16 +651,11 @@ public static class Palette {
 	/// </summary>
 	public static (byte R, byte G, byte B) HsvToRgb(float h, float s, float v) {
 		float c = v * s;
-		float x = c * (1 - Math.Abs((h / 60) % 2 - 1));
+		float x = c * (1 - Math.Abs((h / 60 % 2) - 1));
 		float m = v - c;
 
 		float rf, gf, bf;
-		if (h < 60) { rf = c; gf = x; bf = 0; }
-		else if (h < 120) { rf = x; gf = c; bf = 0; }
-		else if (h < 180) { rf = 0; gf = c; bf = x; }
-		else if (h < 240) { rf = 0; gf = x; bf = c; }
-		else if (h < 300) { rf = x; gf = 0; bf = c; }
-		else { rf = c; gf = 0; bf = x; }
+		if (h < 60) { rf = c; gf = x; bf = 0; } else if (h < 120) { rf = x; gf = c; bf = 0; } else if (h < 180) { rf = 0; gf = c; bf = x; } else if (h < 240) { rf = 0; gf = x; bf = c; } else if (h < 300) { rf = x; gf = 0; bf = c; } else { rf = c; gf = 0; bf = x; }
 
 		return ((byte)((rf + m) * 255), (byte)((gf + m) * 255), (byte)((bf + m) * 255));
 	}
@@ -685,10 +685,7 @@ public static class Palette {
 			List<(byte R, byte G, byte B)> sorted;
 			if (rangeR >= rangeG && rangeR >= rangeB)
 				sorted = maxBucket.OrderBy(c => c.R).ToList();
-			else if (rangeG >= rangeB)
-				sorted = maxBucket.OrderBy(c => c.G).ToList();
-			else
-				sorted = maxBucket.OrderBy(c => c.B).ToList();
+			else sorted = rangeG >= rangeB ? maxBucket.OrderBy(c => c.G).ToList() : maxBucket.OrderBy(c => c.B).ToList();
 
 			int mid = sorted.Count / 2;
 			buckets.Add(sorted.Take(mid).ToList());
@@ -710,9 +707,9 @@ public static class Palette {
 		float avgG = (float)colors.Average(c => c.G);
 		float avgB = (float)colors.Average(c => c.B);
 		return (float)colors.Sum(c =>
-			(c.R - avgR) * (c.R - avgR) +
-			(c.G - avgG) * (c.G - avgG) +
-			(c.B - avgB) * (c.B - avgB));
+			((c.R - avgR) * (c.R - avgR)) +
+			((c.G - avgG) * (c.G - avgG)) +
+			((c.B - avgB) * (c.B - avgB)));
 	}
 
 	/// <summary>
@@ -729,11 +726,13 @@ public static class Palette {
 			var frameColors = new (byte R, byte G, byte B)[basePalette.Length];
 			for (int j = 0; j < basePalette.Length; j++) {
 				var (h, s, v) = RgbToHsv(basePalette[j].R, basePalette[j].G, basePalette[j].B);
-				h = (h + hueShiftPerFrame * i) % 360;
+				h = (h + (hueShiftPerFrame * i)) % 360;
 				frameColors[j] = HsvToRgb(h, s, v);
 			}
+
 			frames.Add(new PaletteAnimationFrame(i, frameColors, durationMs));
 		}
+
 		return frames;
 	}
 
@@ -748,11 +747,12 @@ public static class Palette {
 		var palette = new (byte R, byte G, byte B)[colorCount];
 		for (int i = 0; i < colorCount; i++) {
 			float t = colorCount > 1 ? (float)i / (colorCount - 1) : 0;
-			byte r = (byte)(startColor.R + (endColor.R - startColor.R) * t);
-			byte g = (byte)(startColor.G + (endColor.G - startColor.G) * t);
-			byte b = (byte)(startColor.B + (endColor.B - startColor.B) * t);
+			byte r = (byte)(startColor.R + ((endColor.R - startColor.R) * t));
+			byte g = (byte)(startColor.G + ((endColor.G - startColor.G) * t));
+			byte b = (byte)(startColor.B + ((endColor.B - startColor.B) * t));
 			palette[i] = (r, g, b);
 		}
+
 		return palette;
 	}
 
@@ -766,12 +766,13 @@ public static class Palette {
 			int dr = palette[i].R - target.R;
 			int dg = palette[i].G - target.G;
 			int db = palette[i].B - target.B;
-			int dist = dr * dr + dg * dg + db * db;
+			int dist = (dr * dr) + (dg * dg) + (db * db);
 			if (dist < bestDist) {
 				bestDist = dist;
 				bestIndex = i;
 			}
 		}
+
 		return bestIndex;
 	}
 
@@ -798,8 +799,9 @@ public static class Palette {
 			ushort color = RgbToGenesisColor(palette[i].R, palette[i].G, palette[i].B);
 			// Big endian
 			data[i * 2] = (byte)(color >> 8);
-			data[i * 2 + 1] = (byte)(color & 0xff);
+			data[(i * 2) + 1] = (byte)(color & 0xff);
 		}
+
 		return data;
 	}
 
@@ -810,9 +812,10 @@ public static class Palette {
 		var data = new byte[palette.Length * 3];
 		for (int i = 0; i < palette.Length; i++) {
 			data[i * 3] = palette[i].R;
-			data[i * 3 + 1] = palette[i].G;
-			data[i * 3 + 2] = palette[i].B;
+			data[(i * 3) + 1] = palette[i].G;
+			data[(i * 3) + 2] = palette[i].B;
 		}
+
 		return data;
 	}
 
@@ -823,10 +826,11 @@ public static class Palette {
 		var data = new byte[palette.Length * 4];
 		for (int i = 0; i < palette.Length; i++) {
 			data[i * 4] = palette[i].R;
-			data[i * 4 + 1] = palette[i].G;
-			data[i * 4 + 2] = palette[i].B;
-			data[i * 4 + 3] = alpha;
+			data[(i * 4) + 1] = palette[i].G;
+			data[(i * 4) + 2] = palette[i].B;
+			data[(i * 4) + 3] = alpha;
 		}
+
 		return data;
 	}
 
@@ -864,7 +868,7 @@ public static class Palette {
 	/// </summary>
 	public static (byte R, byte G, byte B)[] ApplySepia((byte R, byte G, byte B)[] palette) {
 		return palette.Select(c => {
-			int gray = (int)(c.R * 0.299 + c.G * 0.587 + c.B * 0.114);
+			int gray = (int)((c.R * 0.299) + (c.G * 0.587) + (c.B * 0.114));
 			return (
 				(byte)Math.Min(255, gray + 40),
 				(byte)Math.Min(255, gray + 20),
@@ -884,15 +888,17 @@ public static class Palette {
 		for (int i = 0; i < Math.Min(suspectedColors, data.Length - offset); i++) {
 			if (data[offset + i] > 0x3f) { allNesRange = false; break; }
 		}
+
 		if (allNesRange && suspectedColors <= 32) return PaletteFormat.Nes;
 
 		// Check for 15-bit color patterns
 		if (data.Length - offset >= suspectedColors * 2) {
 			bool valid15Bit = true;
 			for (int i = 0; i < suspectedColors && valid15Bit; i++) {
-				ushort val = (ushort)(data[offset + i * 2] | (data[offset + i * 2 + 1] << 8));
+				ushort val = (ushort)(data[offset + (i * 2)] | (data[offset + (i * 2) + 1] << 8));
 				if ((val & 0x8000) != 0) valid15Bit = false;
 			}
+
 			if (valid15Bit) return PaletteFormat.Snes;
 		}
 

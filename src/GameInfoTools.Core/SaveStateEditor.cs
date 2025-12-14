@@ -422,7 +422,7 @@ public static class SaveStateEditor {
 		}
 
 		int bytesChanged = differences.Sum(d => d.Length);
-		double similarity = 1.0 - (double)bytesChanged / maxLength;
+		double similarity = 1.0 - ((double)bytesChanged / maxLength);
 
 		return new SaveComparison(save1.Length, save2.Length, differences, similarity);
 	}

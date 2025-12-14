@@ -693,7 +693,7 @@ public class UnusedCodeDetectorTests {
 		var db = new CrossReferenceDb();
 		// Add many refs to 0x8100 (hot spot)
 		for (int i = 0; i < 10; i++) {
-			db.AddRef(0x8000 + i * 0x10, 0x8100, CrossReferenceDb.RefType.Call);
+			db.AddRef(0x8000 + (i * 0x10), 0x8100, CrossReferenceDb.RefType.Call);
 		}
 
 		// Add one ref to 0x8200

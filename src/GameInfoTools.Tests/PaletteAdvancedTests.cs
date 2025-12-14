@@ -424,12 +424,12 @@ public class PaletteAdvancedTests {
 	public void RgbToGenesisColor_Roundtrip() {
 		var original = ((byte)224, (byte)64, (byte)128);
 		ushort genesis = Palette.RgbToGenesisColor(original.Item1, original.Item2, original.Item3);
-		var result = Palette.GenesisColorToRgb(genesis);
+		var (R, G, B) = Palette.GenesisColorToRgb(genesis);
 
 		// Genesis has lower color depth, so check within 32 units
-		Assert.True(Math.Abs(result.R - original.Item1) <= 32);
-		Assert.True(Math.Abs(result.G - original.Item2) <= 32);
-		Assert.True(Math.Abs(result.B - original.Item3) <= 32);
+		Assert.True(Math.Abs(R - original.Item1) <= 32);
+		Assert.True(Math.Abs(G - original.Item2) <= 32);
+		Assert.True(Math.Abs(B - original.Item3) <= 32);
 	}
 
 	[Fact]
@@ -479,11 +479,11 @@ public class PaletteAdvancedTests {
 	public void HsvToRgb_RgbToHsv_Roundtrip() {
 		var original = ((byte)128, (byte)64, (byte)192);
 		var (h, s, v) = Palette.RgbToHsv(original.Item1, original.Item2, original.Item3);
-		var result = Palette.HsvToRgb(h, s, v);
+		var (R, G, B) = Palette.HsvToRgb(h, s, v);
 
-		Assert.True(Math.Abs(result.R - original.Item1) <= 2);
-		Assert.True(Math.Abs(result.G - original.Item2) <= 2);
-		Assert.True(Math.Abs(result.B - original.Item3) <= 2);
+		Assert.True(Math.Abs(R - original.Item1) <= 2);
+		Assert.True(Math.Abs(G - original.Item2) <= 2);
+		Assert.True(Math.Abs(B - original.Item3) <= 2);
 	}
 
 	#endregion

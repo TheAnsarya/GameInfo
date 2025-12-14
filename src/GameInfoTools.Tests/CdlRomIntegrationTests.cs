@@ -209,12 +209,14 @@ public class CdlRomIntegrationTests {
 		for (int i = 0; i < 0x40; i++) {
 			cdlData[i] = 0x11; // Code + SubEntryPoint
 		}
+
 		romData[0x10 + 0x3F] = 0x60; // RTS at end of first function
 
 		// Second function: 0x80-0xBF
 		for (int i = 0x80; i < 0xC0; i++) {
 			cdlData[i] = 0x11; // Code + SubEntryPoint
 		}
+
 		romData[0x10 + 0xBF] = 0x60; // RTS at end of second function
 
 		var integration = CreateIntegration(cdlData, romData);
@@ -321,6 +323,7 @@ public class CdlRomIntegrationTests {
 		for (int i = 0; i < 0x20; i++) {
 			cdlData[i] = 0x11; // Code + SubEntryPoint
 		}
+
 		var romData = CreateTestRomData(0x110);
 		var integration = CreateIntegration(cdlData, romData);
 
@@ -359,6 +362,7 @@ public class CdlRomIntegrationTests {
 		for (int i = 0; i < 0x20; i++) {
 			cdlData[i] = 0x11; // Code + SubEntryPoint
 		}
+
 		var romData = CreateTestRomData(0x110);
 		var integration = CreateIntegration(cdlData, romData);
 

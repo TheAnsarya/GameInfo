@@ -237,7 +237,7 @@ public class TileCodecTests {
 
 		// After flip, last column should have 1s
 		for (int row = 0; row < 8; row++) {
-			Assert.Equal(1, flipped[row * 8 + 7]);
+			Assert.Equal(1, flipped[(row * 8) + 7]);
 			Assert.Equal(0, flipped[row * 8]);
 		}
 	}

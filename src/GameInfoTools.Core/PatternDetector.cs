@@ -123,11 +123,7 @@ public static class PatternDetector {
 	) {
 		var pattern = new byte?[bytes.Length];
 		for (int i = 0; i < bytes.Length; i++) {
-			if (wildcardPositions?.Contains(i) == true) {
-				pattern[i] = null;
-			} else {
-				pattern[i] = bytes[i];
-			}
+			pattern[i] = wildcardPositions?.Contains(i) == true ? null : bytes[i];
 		}
 
 		return new SignaturePattern(name, pattern, description, category);

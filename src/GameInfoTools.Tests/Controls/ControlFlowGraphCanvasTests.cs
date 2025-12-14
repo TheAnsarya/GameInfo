@@ -420,12 +420,12 @@ public class ControlFlowGraphCanvasTests {
 		Assert.Equal(3, canvas.Edges.Count);
 
 		// Verify we have exactly one of each node type
-		Assert.Single(canvas.Nodes.Where(n => n.NodeType == CfgNodeType.Entry));
-		Assert.Single(canvas.Nodes.Where(n => n.NodeType == CfgNodeType.LoopHeader));
-		Assert.Single(canvas.Nodes.Where(n => n.NodeType == CfgNodeType.Exit));
+		Assert.Single(canvas.Nodes, n => n.NodeType == CfgNodeType.Entry);
+		Assert.Single(canvas.Nodes, n => n.NodeType == CfgNodeType.LoopHeader);
+		Assert.Single(canvas.Nodes, n => n.NodeType == CfgNodeType.Exit);
 
 		// Verify back edge exists
-		Assert.Single(canvas.Edges.Where(e => e.EdgeType == CfgEdgeType.BackEdge));
+		Assert.Single(canvas.Edges, e => e.EdgeType == CfgEdgeType.BackEdge);
 	}
 
 	#endregion

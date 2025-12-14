@@ -305,6 +305,7 @@ public class ChrEditor {
 				if (config.IncludeFlippedVariants) {
 					tilesTall = 4; // Normal, FlipH, FlipV, FlipHV
 				}
+
 				break;
 
 			case SpriteSheetLayout.Vertical:
@@ -313,6 +314,7 @@ public class ChrEditor {
 				if (config.IncludeFlippedVariants) {
 					tilesWide = 4;
 				}
+
 				break;
 
 			case SpriteSheetLayout.Grid:
@@ -322,13 +324,14 @@ public class ChrEditor {
 				if (config.IncludeFlippedVariants) {
 					tilesTall *= 4;
 				}
+
 				break;
 		}
 
 		int tileWidthWithSpacing = 8 + config.TileSpacing;
 		int tileHeightWithSpacing = 8 + config.TileSpacing;
-		int width = tilesWide * tileWidthWithSpacing - config.TileSpacing;
-		int height = tilesTall * tileHeightWithSpacing - config.TileSpacing;
+		int width = (tilesWide * tileWidthWithSpacing) - config.TileSpacing;
+		int height = (tilesTall * tileHeightWithSpacing) - config.TileSpacing;
 
 		var result = new byte[height, width];
 
@@ -364,13 +367,9 @@ public class ChrEditor {
 			gridX = variantRow * tileWidthWithSpacing;
 			gridY = tileNum * tileHeightWithSpacing;
 		} else {
-			gridX = (tileNum % tilesPerRow) * tileWidthWithSpacing;
+			gridX = tileNum % tilesPerRow * tileWidthWithSpacing;
 			int baseRow = tileNum / tilesPerRow;
-			if (config.IncludeFlippedVariants) {
-				gridY = (baseRow * 4 + variantRow) * tileHeightWithSpacing;
-			} else {
-				gridY = baseRow * tileHeightWithSpacing;
-			}
+			gridY = config.IncludeFlippedVariants ? ((baseRow * 4) + variantRow) * tileHeightWithSpacing : baseRow * tileHeightWithSpacing;
 		}
 
 		for (int y = 0; y < 8 && gridY + y < sheet.GetLength(0); y++) {
@@ -414,7 +413,7 @@ public class ChrEditor {
 
 		for (int ty = 0; ty < spriteHeight; ty++) {
 			for (int tx = 0; tx < spriteWidth; tx++) {
-				int tileListIndex = ty * spriteWidth + tx;
+				int tileListIndex = (ty * spriteWidth) + tx;
 				if (tileListIndex >= tileIndices.Length) continue;
 
 				int tileIndex = tileIndices[tileListIndex];
@@ -472,11 +471,11 @@ public class ChrEditor {
 
 		int width, height;
 		if (horizontal) {
-			width = frames.Count * frameWidth + (frames.Count - 1) * spacing;
+			width = (frames.Count * frameWidth) + ((frames.Count - 1) * spacing);
 			height = frameHeight;
 		} else {
 			width = frameWidth;
-			height = frames.Count * frameHeight + (frames.Count - 1) * spacing;
+			height = (frames.Count * frameHeight) + ((frames.Count - 1) * spacing);
 		}
 
 		var result = new byte[height, width];
@@ -648,7 +647,7 @@ public class ChrEditor {
 	public static byte[] ToBmpBytes(byte[,] indexed, (byte R, byte G, byte B)[] palette) {
 		int height = indexed.GetLength(0);
 		int width = indexed.GetLength(1);
-		int rowSize = ((width + 3) / 4) * 4; // BMP rows are 4-byte aligned
+		int rowSize = (width + 3) / 4 * 4; // BMP rows are 4-byte aligned
 		int imageSize = rowSize * height;
 		int paletteSize = 256 * 4;
 		int fileSize = 54 + paletteSize + imageSize;
@@ -727,6 +726,7 @@ public class ChrEditor {
 		if (BitConverter.IsLittleEndian) {
 			Array.Reverse(bytes);
 		}
+
 		return bytes;
 	}
 
@@ -738,6 +738,7 @@ public class ChrEditor {
 				crc = (crc >> 1) ^ ((crc & 1) == 1 ? 0xedb88320u : 0);
 			}
 		}
+
 		return ~crc;
 	}
 
@@ -773,8 +774,8 @@ public class ChrEditor {
 
 		// Create 2x4 grid: Original, FlipH, FlipV, FlipHV, Rot90, Rot180, Rot270, Rot360
 		int cellSize = 8 + spacing;
-		int width = 4 * cellSize - spacing;
-		int height = 2 * cellSize - spacing;
+		int width = (4 * cellSize) - spacing;
+		int height = (2 * cellSize) - spacing;
 		var result = new byte[height, width];
 
 		// First row: Original, FlipH, FlipV, FlipHV

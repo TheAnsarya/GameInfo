@@ -6,8 +6,7 @@ namespace GameInfoTools.Core.Build;
 /// <summary>
 /// Root configuration for a build pipeline project
 /// </summary>
-public record BuildConfig
-{
+public record BuildConfig {
 	[JsonPropertyName("$schema")]
 	public string? Schema { get; init; }
 
@@ -29,8 +28,7 @@ public record BuildConfig
 	/// <summary>
 	/// Load configuration from a JSON file
 	/// </summary>
-	public static async Task<BuildConfig> LoadAsync(string path)
-	{
+	public static async Task<BuildConfig> LoadAsync(string path) {
 		var json = await File.ReadAllTextAsync(path);
 		return JsonSerializer.Deserialize<BuildConfig>(json, GetJsonOptions())
 			?? throw new InvalidOperationException("Failed to parse build configuration");
@@ -39,8 +37,7 @@ public record BuildConfig
 	/// <summary>
 	/// Save configuration to a JSON file
 	/// </summary>
-	public async Task SaveAsync(string path)
-	{
+	public async Task SaveAsync(string path) {
 		var json = JsonSerializer.Serialize(this, GetJsonOptions());
 		await File.WriteAllTextAsync(path, json);
 	}
@@ -48,8 +45,7 @@ public record BuildConfig
 	/// <summary>
 	/// Validate the configuration
 	/// </summary>
-	public IEnumerable<string> Validate()
-	{
+	public IEnumerable<string> Validate() {
 		var errors = new List<string>();
 
 		if (string.IsNullOrWhiteSpace(Project.Name))
@@ -70,8 +66,7 @@ public record BuildConfig
 		return errors;
 	}
 
-	private static JsonSerializerOptions GetJsonOptions() => new()
-	{
+	private static JsonSerializerOptions GetJsonOptions() => new() {
 		PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
 		WriteIndented = true,
 		DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
@@ -82,8 +77,7 @@ public record BuildConfig
 /// <summary>
 /// Project metadata configuration
 /// </summary>
-public record ProjectConfig
-{
+public record ProjectConfig {
 	[JsonPropertyName("name")]
 	public string Name { get; init; } = "";
 
@@ -103,8 +97,7 @@ public record ProjectConfig
 /// <summary>
 /// Source assembly configuration
 /// </summary>
-public record SourceConfig
-{
+public record SourceConfig {
 	[JsonPropertyName("baseRom")]
 	public string? BaseRom { get; init; }
 
@@ -133,8 +126,7 @@ public record SourceConfig
 /// <summary>
 /// Asset pipeline configuration
 /// </summary>
-public record AssetsConfig
-{
+public record AssetsConfig {
 	[JsonPropertyName("extractDir")]
 	public string? ExtractDir { get; init; }
 
@@ -160,8 +152,7 @@ public record AssetsConfig
 /// <summary>
 /// Graphics conversion configuration
 /// </summary>
-public record GraphicsConfig
-{
+public record GraphicsConfig {
 	[JsonPropertyName("format")]
 	public string Format { get; init; } = "png";
 
@@ -178,8 +169,7 @@ public record GraphicsConfig
 /// <summary>
 /// Palette conversion configuration
 /// </summary>
-public record PalettesConfig
-{
+public record PalettesConfig {
 	[JsonPropertyName("format")]
 	public string Format { get; init; } = "json";
 
@@ -190,8 +180,7 @@ public record PalettesConfig
 /// <summary>
 /// Text conversion configuration
 /// </summary>
-public record TextConfig
-{
+public record TextConfig {
 	[JsonPropertyName("tableFile")]
 	public string? TableFile { get; init; }
 
@@ -202,8 +191,7 @@ public record TextConfig
 /// <summary>
 /// Compression configuration
 /// </summary>
-public record CompressionConfig
-{
+public record CompressionConfig {
 	[JsonPropertyName("algorithm")]
 	public CompressionAlgorithm Algorithm { get; init; } = CompressionAlgorithm.None;
 
@@ -214,8 +202,7 @@ public record CompressionConfig
 /// <summary>
 /// Build process options
 /// </summary>
-public record BuildOptions
-{
+public record BuildOptions {
 	[JsonPropertyName("preBuild")]
 	public List<string>? PreBuild { get; init; }
 
@@ -235,8 +222,7 @@ public record BuildOptions
 /// <summary>
 /// Asset extraction configuration
 /// </summary>
-public record ExtractionConfig
-{
+public record ExtractionConfig {
 	[JsonPropertyName("assets")]
 	public List<AssetDefinition> Assets { get; init; } = [];
 }
@@ -244,8 +230,7 @@ public record ExtractionConfig
 /// <summary>
 /// Individual asset extraction definition
 /// </summary>
-public record AssetDefinition
-{
+public record AssetDefinition {
 	[JsonPropertyName("name")]
 	public string Name { get; init; } = "";
 
@@ -265,8 +250,7 @@ public record AssetDefinition
 /// <summary>
 /// Asset source location in ROM
 /// </summary>
-public record AssetSource
-{
+public record AssetSource {
 	[JsonPropertyName("offset")]
 	public string Offset { get; init; } = "0x0";
 
@@ -286,8 +270,7 @@ public record AssetSource
 	/// </summary>
 	public int? GetLength() => Length != null ? ParseHex(Length) : null;
 
-	private static int ParseHex(string value)
-	{
+	private static int ParseHex(string value) {
 		if (value.StartsWith("0x", StringComparison.OrdinalIgnoreCase))
 			return Convert.ToInt32(value[2..], 16);
 		if (value.StartsWith("$"))
@@ -300,8 +283,7 @@ public record AssetSource
 /// Target platform
 /// </summary>
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum Platform
-{
+public enum Platform {
 	Unknown,
 	Nes,
 	Snes,
@@ -315,8 +297,7 @@ public enum Platform
 /// Assembler type
 /// </summary>
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum Assembler
-{
+public enum Assembler {
 	Unknown,
 	Ca65,
 	Asar,
@@ -329,8 +310,7 @@ public enum Assembler
 /// Asset type
 /// </summary>
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum AssetType
-{
+public enum AssetType {
 	Graphics,
 	Palette,
 	Tilemap,
@@ -343,8 +323,7 @@ public enum AssetType
 /// Color format
 /// </summary>
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum ColorFormat
-{
+public enum ColorFormat {
 	Rgb24,
 	Bgr15,
 	Bgr9,
@@ -355,8 +334,7 @@ public enum ColorFormat
 /// Compression algorithm
 /// </summary>
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum CompressionAlgorithm
-{
+public enum CompressionAlgorithm {
 	None,
 	Lzss,
 	Rle,

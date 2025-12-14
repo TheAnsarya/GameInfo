@@ -1310,6 +1310,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		foreach (var frame in reversed) {
 			AnimationFrames.Add(frame);
 		}
+
 		StatusText = "Reversed animation frame order";
 	}
 
@@ -1360,6 +1361,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		foreach (var desc in _undoRedo.UndoHistory) {
 			UndoHistoryList.Add(desc);
 		}
+
 		foreach (var desc in _undoRedo.RedoHistory) {
 			RedoHistoryList.Add(desc);
 		}
@@ -1409,6 +1411,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 			// Store original state when comparison view is enabled
 			OriginalTileData = CloneTile(SelectedTileData);
 		}
+
 		StatusText = ShowComparisonView ? "Comparison view enabled" : "Comparison view disabled";
 	}
 
@@ -1479,6 +1482,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		if (!AllowMultiSelect) {
 			SelectedTileIndices.Clear();
 		}
+
 		StatusText = AllowMultiSelect ? "Multi-select enabled (Ctrl+Click)" : "Multi-select disabled";
 	}
 
@@ -1534,7 +1538,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 
 		for (int row = minRow; row <= maxRow; row++) {
 			for (int col = minCol; col <= maxCol; col++) {
-				int idx = row * TilesPerRow + col;
+				int idx = (row * TilesPerRow) + col;
 				if (idx < Tiles.Count) {
 					SelectedTileIndices.Add(idx);
 				}
@@ -1562,6 +1566,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		for (int i = 0; i < Tiles.Count; i++) {
 			SelectedTileIndices.Add(i);
 		}
+
 		StatusText = $"Selected all {Tiles.Count} tiles";
 	}
 
@@ -1580,6 +1585,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 				SelectedTileIndices.Add(i);
 			}
 		}
+
 		StatusText = $"Inverted selection: {SelectedTileIndices.Count} tiles selected";
 	}
 
@@ -1598,6 +1604,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 				SelectedTileIndices.Add(idx);
 			}
 		}
+
 		StatusText = $"Selected row {row}: {SelectedTileIndices.Count} tiles";
 	}
 
@@ -1611,11 +1618,12 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		SelectedTileIndices.Clear();
 		int maxRows = (Tiles.Count + TilesPerRow - 1) / TilesPerRow;
 		for (int row = 0; row < maxRows; row++) {
-			int idx = row * TilesPerRow + col;
+			int idx = (row * TilesPerRow) + col;
 			if (idx < Tiles.Count) {
 				SelectedTileIndices.Add(idx);
 			}
 		}
+
 		StatusText = $"Selected column {col}: {SelectedTileIndices.Count} tiles";
 	}
 
@@ -1643,11 +1651,13 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 						}
 					}
 				}
+
 				if (hasColor) {
 					SelectedTileIndices.Add(i);
 				}
 			}
 		}
+
 		StatusText = $"Selected {SelectedTileIndices.Count} tiles containing color {colorIndex}";
 	}
 
@@ -1675,11 +1685,13 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 						}
 					}
 				}
+
 				if (!isEmpty) {
 					SelectedTileIndices.Add(i);
 				}
 			}
 		}
+
 		StatusText = $"Selected {SelectedTileIndices.Count} non-empty tiles";
 	}
 
@@ -1717,6 +1729,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 				}
 			}
 		}
+
 		StatusText = $"Selected {SelectedTileIndices.Count} tiles similar to current ({SearchSimilarityThreshold}% threshold)";
 	}
 
@@ -1741,6 +1754,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 				_tileClipboard.Add((idx, copy));
 			}
 		}
+
 		StatusText = $"Copied {_tileClipboard.Count} tiles to clipboard";
 	}
 
@@ -1765,6 +1779,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 				ExecuteTileChange(actualIndex, data, $"Paste tile at {actualIndex:X2}");
 			}
 		}
+
 		StatusText = $"Pasted {_tileClipboard.Count} tiles";
 	}
 
@@ -1833,6 +1848,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 				ExecuteTileChange(actualIndex, modified, $"Shift colors in tile {actualIndex:X2}");
 			}
 		}
+
 		StatusText = $"Shifted colors by {shift} in {SelectedTileIndices.Count} tiles";
 	}
 
@@ -1862,6 +1878,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 				ExecuteTileChange(actualIndex, modified, $"Adjust brightness in tile {actualIndex:X2}");
 			}
 		}
+
 		StatusText = $"Adjusted brightness by {adjustment} in {SelectedTileIndices.Count} tiles";
 	}
 
@@ -1880,6 +1897,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 				ExecuteTileChange(actualIndex, flipped, $"Flip tile {actualIndex:X2} horizontal");
 			}
 		}
+
 		StatusText = $"Flipped {SelectedTileIndices.Count} tiles horizontally";
 	}
 
@@ -1898,6 +1916,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 				ExecuteTileChange(actualIndex, flipped, $"Flip tile {actualIndex:X2} vertical");
 			}
 		}
+
 		StatusText = $"Flipped {SelectedTileIndices.Count} tiles vertically";
 	}
 
@@ -1916,6 +1935,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 				ExecuteTileChange(actualIndex, rotated, $"Rotate tile {actualIndex:X2} 90°");
 			}
 		}
+
 		StatusText = $"Rotated {SelectedTileIndices.Count} tiles 90°";
 	}
 
@@ -1933,6 +1953,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 				ExecuteTileChange(actualIndex, emptyTile, $"Clear tile {actualIndex:X2}");
 			}
 		}
+
 		StatusText = $"Cleared {SelectedTileIndices.Count} tiles";
 	}
 
@@ -1966,6 +1987,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 				_pixelClipboard[py, px] = SelectedTileData[y + py, x + px];
 			}
 		}
+
 		HasPixelClipboard = true;
 		StatusText = $"Copied {width}x{height} pixel region";
 	}
@@ -2037,6 +2059,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		if (!ShowTileSearch) {
 			TileSearchResults.Clear();
 		}
+
 		StatusText = ShowTileSearch ? "Tile search enabled" : "Tile search disabled";
 	}
 
@@ -2160,6 +2183,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		foreach (var idx in TileSearchResults) {
 			SelectedTileIndices.Add(idx);
 		}
+
 		StatusText = $"Selected {TileSearchResults.Count} tiles from search";
 	}
 
@@ -2176,7 +2200,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		for (int y = 0; y < 8; y++)
 			for (int x = 0; x < 8; x++)
 				if (tile1[y, x] == tile2[y, x]) matching++;
-		return (matching * 100) / 64;
+		return matching * 100 / 64;
 	}
 
 	private static bool IsTileEmpty(byte[,] tile) {
@@ -2304,6 +2328,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 						pixels[pixelOffset + 3] = 255;
 					}
 				}
+
 				tileX++;
 			}
 
@@ -2337,9 +2362,11 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 				if ((pixel & 1) != 0) plane0 |= (byte)(0x80 >> x);
 				if ((pixel & 2) != 0) plane1 |= (byte)(0x80 >> x);
 			}
+
 			bytes[y] = plane0;
 			bytes[y + 8] = plane1;
 		}
+
 		return bytes;
 	}
 

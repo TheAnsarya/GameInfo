@@ -774,10 +774,10 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 				result[i] = layer.BlendMode switch {
 					LayerBlendMode.Normal => layer.Opacity >= 1.0 ? srcTile
 						: (srcTile != 0 ? srcTile : destTile), // Simple transparency
-					LayerBlendMode.Multiply => (byte)Math.Min(255, (destTile * srcTile) / 255),
+					LayerBlendMode.Multiply => (byte)Math.Min(255, destTile * srcTile / 255),
 					LayerBlendMode.Screen => (byte)(255 - ((255 - destTile) * (255 - srcTile) / 255)),
 					LayerBlendMode.Overlay => destTile < 128
-						? (byte)((2 * destTile * srcTile) / 255)
+						? (byte)(2 * destTile * srcTile / 255)
 						: (byte)(255 - (2 * (255 - destTile) * (255 - srcTile) / 255)),
 					LayerBlendMode.Difference => (byte)Math.Abs(destTile - srcTile),
 					_ => srcTile
@@ -997,7 +997,7 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 
 		for (int y = startY; y <= endY && y < MapHeight; y++) {
 			for (int x = startX; x <= endX && x < MapWidth; x++) {
-				int srcIndex = y * MapWidth + x;
+				int srcIndex = (y * MapWidth) + x;
 				if (srcIndex < MapDataArray.Length) {
 					layerData[srcIndex] = MapDataArray[srcIndex];
 				}
@@ -1050,6 +1050,7 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		for (int i = 0; i < Layers.Count; i++) {
 			LoadLayerData(i);
 		}
+
 		StatusText = $"Loaded data for {Layers.Count} layers";
 	}
 
@@ -1331,6 +1332,7 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 				if (sx >= 0 && sy >= 0) {
 					StatusText = $"Selected {ex - sx + 1}x{ey - sy + 1} tiles";
 				}
+
 				break;
 		}
 
@@ -1463,6 +1465,7 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 
 			int e2 = 2 * err;
 			if (e2 > -dy) { err -= dy; x += sx; }
+
 			if (e2 < dx) { err += dx; y += sy; }
 		}
 
@@ -1493,6 +1496,7 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		if (SelectionStartX > SelectionEndX) {
 			(SelectionStartX, SelectionEndX) = (SelectionEndX, SelectionStartX);
 		}
+
 		if (SelectionStartY > SelectionEndY) {
 			(SelectionStartY, SelectionEndY) = (SelectionEndY, SelectionStartY);
 		}
@@ -1530,7 +1534,7 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		_clipboard = new byte[height, width];
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				int index = ((sy + y) * MapWidth) + (sx + x);
+				int index = ((sy + y) * MapWidth) + sx + x;
 				if (index < MapTiles.Count) {
 					_clipboard[y, x] = MapTiles[index].TileIndex;
 				}
@@ -1561,7 +1565,7 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 
 		for (int y = 0; y < height && (startY + y) < MapHeight; y++) {
 			for (int x = 0; x < width && (startX + x) < MapWidth; x++) {
-				int index = ((startY + y) * MapWidth) + (startX + x);
+				int index = ((startY + y) * MapWidth) + startX + x;
 				if (index < MapTiles.Count) {
 					byte newTile = _clipboard[y, x];
 					if (MapTiles[index].TileIndex != newTile) {
@@ -1920,8 +1924,8 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 
 		for (int y = 0; y < MapHeight; y++) {
 			for (int x = 0; x < MapWidth; x++) {
-				int srcX = ((x - dx) + MapWidth) % MapWidth;
-				int srcY = ((y - dy) + MapHeight) % MapHeight;
+				int srcX = (x - dx + MapWidth) % MapWidth;
+				int srcY = (y - dy + MapHeight) % MapHeight;
 
 				int srcIndex = (srcY * MapWidth) + srcX;
 				int dstIndex = (y * MapWidth) + x;
@@ -1946,9 +1950,10 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 				for (int y = 0; y < MapHeight; y++) {
 					for (int x = 0; x < MapWidth; x++) {
 						int index = (y * MapWidth) + x;
-						MapDataArray[index] = (byte)(((x + y) % 2) * 255);
+						MapDataArray[index] = (byte)((x + y) % 2 * 255);
 					}
 				}
+
 				StatusText = "Generated checkerboard pattern";
 				break;
 
@@ -1956,9 +1961,10 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 				for (int y = 0; y < MapHeight; y++) {
 					for (int x = 0; x < MapWidth; x++) {
 						int index = (y * MapWidth) + x;
-						MapDataArray[index] = (byte)((x * 255) / Math.Max(1, MapWidth - 1));
+						MapDataArray[index] = (byte)(x * 255 / Math.Max(1, MapWidth - 1));
 					}
 				}
+
 				StatusText = "Generated horizontal gradient";
 				break;
 
@@ -1966,9 +1972,10 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 				for (int y = 0; y < MapHeight; y++) {
 					for (int x = 0; x < MapWidth; x++) {
 						int index = (y * MapWidth) + x;
-						MapDataArray[index] = (byte)((y * 255) / Math.Max(1, MapHeight - 1));
+						MapDataArray[index] = (byte)(y * 255 / Math.Max(1, MapHeight - 1));
 					}
 				}
+
 				StatusText = "Generated vertical gradient";
 				break;
 
@@ -1980,6 +1987,7 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 						MapDataArray[index] = isBorder ? (byte)SelectedTile : (byte)0;
 					}
 				}
+
 				StatusText = "Generated border pattern";
 				break;
 
@@ -2003,24 +2011,19 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		}
 
 		// Generate color from tile index using HSV
-		double hue = (tileIndex / 256.0) * 360;
+		double hue = tileIndex / 256.0 * 360;
 		double saturation = 0.6;
-		double value = 0.4 + ((tileIndex % 16) / 32.0);
+		double value = 0.4 + (tileIndex % 16 / 32.0);
 		return HsvToColor(hue, saturation, value);
 	}
 
 	private static Color HsvToColor(double hue, double saturation, double value) {
 		double c = value * saturation;
-		double x = c * (1 - Math.Abs(((hue / 60) % 2) - 1));
+		double x = c * (1 - Math.Abs((hue / 60 % 2) - 1));
 		double m = value - c;
 
 		double r, g, b;
-		if (hue < 60) { r = c; g = x; b = 0; }
-		else if (hue < 120) { r = x; g = c; b = 0; }
-		else if (hue < 180) { r = 0; g = c; b = x; }
-		else if (hue < 240) { r = 0; g = x; b = c; }
-		else if (hue < 300) { r = x; g = 0; b = c; }
-		else { r = c; g = 0; b = x; }
+		if (hue < 60) { r = c; g = x; b = 0; } else if (hue < 120) { r = x; g = c; b = 0; } else if (hue < 180) { r = 0; g = c; b = x; } else if (hue < 240) { r = 0; g = x; b = c; } else if (hue < 300) { r = x; g = 0; b = c; } else { r = c; g = 0; b = x; }
 
 		return Color.FromRgb(
 			(byte)((r + m) * 255),
@@ -2050,11 +2053,12 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		// Generate a 256-color palette
 		var palette = new Color[256];
 		for (int i = 0; i < 256; i++) {
-			double hue = (i / 256.0) * 360;
+			double hue = i / 256.0 * 360;
 			double sat = 0.6;
-			double val = 0.4 + ((i % 16) / 32.0);
+			double val = 0.4 + (i % 16 / 32.0);
 			palette[i] = HsvToColor(hue, sat, val);
 		}
+
 		return palette;
 	}
 

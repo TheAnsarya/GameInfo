@@ -76,7 +76,7 @@ public class EditableTileCanvas : Control {
 	public static readonly DirectProperty<EditableTileCanvas, Rect?> SelectionProperty =
 		AvaloniaProperty.RegisterDirect<EditableTileCanvas, Rect?>(
 			nameof(Selection),
-			o => o._selection,
+			o => o.Selection,
 			(o, v) => o.Selection = v);
 
 	/// <summary>
@@ -97,7 +97,6 @@ public class EditableTileCanvas : Control {
 	private bool _isDrawing;
 	private Point _lastDrawPoint = new(-1, -1);
 	private Point _lineStartPoint = new(-1, -1);
-	private Rect? _selection;
 	private Point _selectionStart = new(-1, -1);
 
 	static EditableTileCanvas() {
@@ -165,9 +164,9 @@ public class EditableTileCanvas : Control {
 	/// Gets or sets the current pixel selection (in pixel coordinates 0-7).
 	/// </summary>
 	public Rect? Selection {
-		get => _selection;
+		get;
 		set {
-			if (SetAndRaise(SelectionProperty, ref _selection, value)) {
+			if (SetAndRaise(SelectionProperty, ref field, value)) {
 				InvalidateVisual();
 				SelectionChanged?.Invoke(this, new PixelSelectionChangedEventArgs(value));
 			}
@@ -221,8 +220,8 @@ public class EditableTileCanvas : Control {
 		context.DrawRectangle(borderPen, bounds);
 
 		// Draw selection if present
-		if (_selection.HasValue) {
-			var sel = _selection.Value;
+		if (Selection.HasValue) {
+			var sel = Selection.Value;
 			var selectionRect = new Rect(
 				sel.X * scale,
 				sel.Y * scale,
@@ -266,6 +265,7 @@ public class EditableTileCanvas : Control {
 					DrawLine((int)_lineStartPoint.X, (int)_lineStartPoint.Y, pixelX, pixelY, isRightButton ? (byte)0 : (byte)SelectedColorIndex);
 					_lineStartPoint = new Point(-1, -1);
 				}
+
 				break;
 
 			case DrawingTool.Rectangle:
@@ -275,6 +275,7 @@ public class EditableTileCanvas : Control {
 					DrawRectangle((int)_lineStartPoint.X, (int)_lineStartPoint.Y, pixelX, pixelY, isRightButton ? (byte)0 : (byte)SelectedColorIndex);
 					_lineStartPoint = new Point(-1, -1);
 				}
+
 				break;
 
 			case DrawingTool.Eyedropper:
@@ -323,6 +324,7 @@ public class EditableTileCanvas : Control {
 		if (CurrentTool == DrawingTool.Selection) {
 			_selectionStart = new Point(-1, -1);
 		}
+
 		_isDrawing = false;
 		_lastDrawPoint = new Point(-1, -1);
 		e.Pointer.Capture(null);
@@ -340,9 +342,9 @@ public class EditableTileCanvas : Control {
 	/// Returns null if no selection or no tile data.
 	/// </summary>
 	public byte[,]? GetSelectedPixels() {
-		if (!_selection.HasValue || TileData is null) return null;
+		if (!Selection.HasValue || TileData is null) return null;
 
-		var sel = _selection.Value;
+		var sel = Selection.Value;
 		int x = (int)sel.X;
 		int y = (int)sel.Y;
 		int width = (int)sel.Width;
@@ -354,6 +356,7 @@ public class EditableTileCanvas : Control {
 				result[py, px] = TileData[y + py, x + px];
 			}
 		}
+
 		return result;
 	}
 
@@ -363,8 +366,8 @@ public class EditableTileCanvas : Control {
 	public void PastePixels(byte[,] pixels) {
 		if (TileData is null || pixels is null) return;
 
-		int startX = _selection.HasValue ? (int)_selection.Value.X : 0;
-		int startY = _selection.HasValue ? (int)_selection.Value.Y : 0;
+		int startX = Selection.HasValue ? (int)Selection.Value.X : 0;
+		int startY = Selection.HasValue ? (int)Selection.Value.Y : 0;
 		int height = pixels.GetLength(0);
 		int width = pixels.GetLength(1);
 
@@ -380,6 +383,7 @@ public class EditableTileCanvas : Control {
 				}
 			}
 		}
+
 		InvalidateVisual();
 	}
 
@@ -477,6 +481,7 @@ public class EditableTileCanvas : Control {
 				err -= dy;
 				x0 += sx;
 			}
+
 			if (e2 < dx) {
 				err += dx;
 				y0 += sy;

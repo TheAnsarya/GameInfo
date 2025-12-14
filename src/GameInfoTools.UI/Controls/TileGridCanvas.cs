@@ -1,8 +1,8 @@
+using System.Collections.ObjectModel;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Media;
-using System.Collections.ObjectModel;
 
 namespace GameInfoTools.UI.Controls;
 
@@ -183,6 +183,7 @@ public class TileGridCanvas : Control {
 		foreach (var idx in indices) {
 			_selectedIndices.Add(idx);
 		}
+
 		InvalidateVisual();
 		MultiSelectChanged?.Invoke(this, new MultiSelectChangedEventArgs([.. _selectedIndices]));
 	}
@@ -205,6 +206,7 @@ public class TileGridCanvas : Control {
 		} else {
 			_selectedIndices.Add(index);
 		}
+
 		InvalidateVisual();
 		MultiSelectChanged?.Invoke(this, new MultiSelectChangedEventArgs([.. _selectedIndices]));
 	}
@@ -295,13 +297,13 @@ public class TileGridCanvas : Control {
 
 			// Vertical lines
 			for (int col = 1; col < columns; col++) {
-				int lineX = col * cellSize - (spacing / 2);
+				int lineX = (col * cellSize) - (spacing / 2);
 				context.DrawLine(gridPen, new Point(lineX, 0), new Point(lineX, rows * cellSize));
 			}
 
 			// Horizontal lines
 			for (int row = 1; row < rows; row++) {
-				int lineY = row * cellSize - (spacing / 2);
+				int lineY = (row * cellSize) - (spacing / 2);
 				context.DrawLine(gridPen, new Point(0, lineY), new Point(columns * cellSize, lineY));
 			}
 		}
@@ -322,6 +324,7 @@ public class TileGridCanvas : Control {
 					int lineX = col * cellSize;
 					context.DrawLine(overlay8Pen, new Point(lineX, 0), new Point(lineX, totalHeight));
 				}
+
 				for (int row = 0; row <= rows; row++) {
 					int lineY = row * cellSize;
 					context.DrawLine(overlay8Pen, new Point(0, lineY), new Point(totalWidth, lineY));
@@ -336,6 +339,7 @@ public class TileGridCanvas : Control {
 					int lineX = col * cellSize;
 					context.DrawLine(overlay16Pen, new Point(lineX, 0), new Point(lineX, totalHeight));
 				}
+
 				for (int row = 0; row <= rows; row += 2) {
 					int lineY = row * cellSize;
 					context.DrawLine(overlay16Pen, new Point(0, lineY), new Point(totalWidth, lineY));

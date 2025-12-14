@@ -24,33 +24,54 @@
 	"markdownlint.config": {
 		"MD010": false
 	},
+	"editor.insertSpaces": false,
+	"editor.tabSize": 4,
+	"editor.detectIndentation": false,
+	"editor.formatOnSave": true,
+	"[csharp]": {
+		"editor.defaultFormatter": "ms-dotnettools.csharp",
+		"editor.formatOnSave": true,
+		"editor.insertSpaces": false
+	},
 	"terminal.integrated.fontFamily": "Consolas, 'Courier New', monospace",
 	"terminal.integrated.fontSize": 15,
 	"terminal.integrated.lineHeight": 1.2,
 	"terminal.integrated.fontWeight": "normal",
 	"terminal.integrated.fontWeightBold": "bold",
-	"terminal.integrated.minimumContrastRatio": 7,
+	"terminal.integrated.minimumContrastRatio": 21,
 	"terminal.integrated.gpuAcceleration": "off",
+	"terminal.integrated.drawBoldTextInBrightColors": false,
+	"terminal.integrated.enablePersistentSessions": false,
 	"workbench.colorCustomizations": {
-		"terminal.foreground": "#E0E0E0",
-		"terminal.background": "#1E1E1E",
-		"terminal.ansiBlack": "#1E1E1E",
-		"terminal.ansiRed": "#F44747",
-		"terminal.ansiGreen": "#6A9955",
-		"terminal.ansiYellow": "#DCDCAA",
-		"terminal.ansiBlue": "#569CD6",
-		"terminal.ansiMagenta": "#C586C0",
-		"terminal.ansiCyan": "#4EC9B0",
-		"terminal.ansiWhite": "#D4D4D4",
-		"terminal.ansiBrightBlack": "#808080",
-		"terminal.ansiBrightRed": "#F14C4C",
-		"terminal.ansiBrightGreen": "#89D185",
-		"terminal.ansiBrightYellow": "#F5F543",
-		"terminal.ansiBrightBlue": "#6CB6FF",
-		"terminal.ansiBrightMagenta": "#D670D6",
-		"terminal.ansiBrightCyan": "#89D4CF",
-		"terminal.ansiBrightWhite": "#FFFFFF",
-		"terminalCursor.foreground": "#AEAFAD",
-		"terminalCursor.background": "#1E1E1E"
-	}
+		"terminal.foreground": "#FFFFFF",
+		"terminal.background": "#0C0C0C",
+		"terminal.ansiBlack": "#0C0C0C",
+		"terminal.ansiRed": "#E74856",
+		"terminal.ansiGreen": "#16C60C",
+		"terminal.ansiYellow": "#F9F1A5",
+		"terminal.ansiBlue": "#3B78FF",
+		"terminal.ansiMagenta": "#E74856",
+		"terminal.ansiCyan": "#61D6D6",
+		"terminal.ansiWhite": "#CCCCCC",
+		"terminal.ansiBrightBlack": "#767676",
+		"terminal.ansiBrightRed": "#E74856",
+		"terminal.ansiBrightGreen": "#16C60C",
+		"terminal.ansiBrightYellow": "#F9F1A5",
+		"terminal.ansiBrightBlue": "#3B78FF",
+		"terminal.ansiBrightMagenta": "#B4009E",
+		"terminal.ansiBrightCyan": "#61D6D6",
+		"terminal.ansiBrightWhite": "#F2F2F2",
+		"terminalCursor.foreground": "#FFFFFF",
+		"terminalCursor.background": "#0C0C0C"
+	},
+	"terminal.integrated.profiles.windows": {
+		"PowerShell": {
+			"source": "PowerShell",
+			"args": ["-NoLogo"],
+			"env": {
+				"NO_COLOR": "1"
+			}
+		}
+	},
+	"terminal.integrated.defaultProfile.windows": "PowerShell"
 }

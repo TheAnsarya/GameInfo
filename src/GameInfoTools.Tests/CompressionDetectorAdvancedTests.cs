@@ -323,7 +323,7 @@ public class CompressionDetectorAdvancedTests {
 	[Fact]
 	public void AutoDecompress_UnrecognizedFormat_ReturnsNull() {
 		var data = new byte[100];
-		for (int i = 0; i < 100; i++) data[i] = (byte)((i * 7 + 13) % 256);
+		for (int i = 0; i < 100; i++) data[i] = (byte)(((i * 7) + 13) % 256);
 
 		var result = CompressionDetector.AutoDecompress(data, 0);
 

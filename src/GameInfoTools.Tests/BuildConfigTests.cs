@@ -1,16 +1,14 @@
-using GameInfoTools.Core.Build;
 using System.Text.Json;
+using GameInfoTools.Core.Build;
 
 namespace GameInfoTools.Tests;
 
 /// <summary>
 /// Tests for BuildConfig and related types
 /// </summary>
-public class BuildConfigTests
-{
+public class BuildConfigTests {
 	[Fact]
-	public void BuildConfig_DefaultValues_AreCorrect()
-	{
+	public void BuildConfig_DefaultValues_AreCorrect() {
 		var config = new BuildConfig();
 
 		Assert.NotNull(config.Project);
@@ -21,8 +19,7 @@ public class BuildConfigTests
 	}
 
 	[Fact]
-	public void ProjectConfig_DefaultValues_AreCorrect()
-	{
+	public void ProjectConfig_DefaultValues_AreCorrect() {
 		var project = new ProjectConfig();
 
 		Assert.Equal("", project.Name);
@@ -33,8 +30,7 @@ public class BuildConfigTests
 	}
 
 	[Fact]
-	public void SourceConfig_DefaultValues_AreCorrect()
-	{
+	public void SourceConfig_DefaultValues_AreCorrect() {
 		var source = new SourceConfig();
 
 		Assert.Null(source.BaseRom);
@@ -47,8 +43,7 @@ public class BuildConfigTests
 	}
 
 	[Fact]
-	public void AssetsConfig_DefaultValues_AreCorrect()
-	{
+	public void AssetsConfig_DefaultValues_AreCorrect() {
 		var assets = new AssetsConfig();
 
 		Assert.Null(assets.ExtractDir);
@@ -60,8 +55,7 @@ public class BuildConfigTests
 	}
 
 	[Fact]
-	public void GraphicsConfig_DefaultValues_AreCorrect()
-	{
+	public void GraphicsConfig_DefaultValues_AreCorrect() {
 		var graphics = new GraphicsConfig();
 
 		Assert.Equal("png", graphics.Format);
@@ -71,8 +65,7 @@ public class BuildConfigTests
 	}
 
 	[Fact]
-	public void PalettesConfig_DefaultValues_AreCorrect()
-	{
+	public void PalettesConfig_DefaultValues_AreCorrect() {
 		var palettes = new PalettesConfig();
 
 		Assert.Equal("json", palettes.Format);
@@ -80,8 +73,7 @@ public class BuildConfigTests
 	}
 
 	[Fact]
-	public void BuildOptions_DefaultValues_AreCorrect()
-	{
+	public void BuildOptions_DefaultValues_AreCorrect() {
 		var build = new BuildOptions();
 
 		Assert.Null(build.PreBuild);
@@ -92,8 +84,7 @@ public class BuildConfigTests
 	}
 
 	[Fact]
-	public void CompressionConfig_DefaultValues_AreCorrect()
-	{
+	public void CompressionConfig_DefaultValues_AreCorrect() {
 		var compression = new CompressionConfig();
 
 		Assert.Equal(CompressionAlgorithm.None, compression.Algorithm);
@@ -101,48 +92,40 @@ public class BuildConfigTests
 	}
 
 	[Fact]
-	public void AssetSource_GetOffset_ParsesHexWithPrefix()
-	{
+	public void AssetSource_GetOffset_ParsesHexWithPrefix() {
 		var source = new AssetSource { Offset = "0x10000" };
 		Assert.Equal(0x10000, source.GetOffset());
 	}
 
 	[Fact]
-	public void AssetSource_GetOffset_ParsesHexWithDollarSign()
-	{
+	public void AssetSource_GetOffset_ParsesHexWithDollarSign() {
 		var source = new AssetSource { Offset = "$8000" };
 		Assert.Equal(0x8000, source.GetOffset());
 	}
 
 	[Fact]
-	public void AssetSource_GetOffset_ParsesDecimal()
-	{
+	public void AssetSource_GetOffset_ParsesDecimal() {
 		var source = new AssetSource { Offset = "1024" };
 		Assert.Equal(1024, source.GetOffset());
 	}
 
 	[Fact]
-	public void AssetSource_GetLength_ReturnsNullWhenNotSet()
-	{
+	public void AssetSource_GetLength_ReturnsNullWhenNotSet() {
 		var source = new AssetSource();
 		Assert.Null(source.GetLength());
 	}
 
 	[Fact]
-	public void AssetSource_GetLength_ParsesValue()
-	{
+	public void AssetSource_GetLength_ParsesValue() {
 		var source = new AssetSource { Length = "0x2000" };
 		Assert.Equal(0x2000, source.GetLength());
 	}
 
 	[Fact]
-	public void BuildConfig_Validate_ReturnsErrors_WhenNameMissing()
-	{
-		var config = new BuildConfig
-		{
+	public void BuildConfig_Validate_ReturnsErrors_WhenNameMissing() {
+		var config = new BuildConfig {
 			Project = new ProjectConfig { Platform = Platform.Nes },
-			Source = new SourceConfig
-			{
+			Source = new SourceConfig {
 				MainFile = "main.asm",
 				OutputRom = "game.nes",
 				Assembler = Assembler.Ca65
@@ -154,13 +137,10 @@ public class BuildConfigTests
 	}
 
 	[Fact]
-	public void BuildConfig_Validate_ReturnsErrors_WhenPlatformUnknown()
-	{
-		var config = new BuildConfig
-		{
+	public void BuildConfig_Validate_ReturnsErrors_WhenPlatformUnknown() {
+		var config = new BuildConfig {
 			Project = new ProjectConfig { Name = "Test", Platform = Platform.Unknown },
-			Source = new SourceConfig
-			{
+			Source = new SourceConfig {
 				MainFile = "main.asm",
 				OutputRom = "game.nes",
 				Assembler = Assembler.Ca65
@@ -172,13 +152,10 @@ public class BuildConfigTests
 	}
 
 	[Fact]
-	public void BuildConfig_Validate_ReturnsErrors_WhenAssemblerUnknown()
-	{
-		var config = new BuildConfig
-		{
+	public void BuildConfig_Validate_ReturnsErrors_WhenAssemblerUnknown() {
+		var config = new BuildConfig {
 			Project = new ProjectConfig { Name = "Test", Platform = Platform.Nes },
-			Source = new SourceConfig
-			{
+			Source = new SourceConfig {
 				MainFile = "main.asm",
 				OutputRom = "game.nes",
 				Assembler = Assembler.Unknown
@@ -190,13 +167,10 @@ public class BuildConfigTests
 	}
 
 	[Fact]
-	public void BuildConfig_Validate_ReturnsErrors_WhenMainFileMissing()
-	{
-		var config = new BuildConfig
-		{
+	public void BuildConfig_Validate_ReturnsErrors_WhenMainFileMissing() {
+		var config = new BuildConfig {
 			Project = new ProjectConfig { Name = "Test", Platform = Platform.Nes },
-			Source = new SourceConfig
-			{
+			Source = new SourceConfig {
 				OutputRom = "game.nes",
 				Assembler = Assembler.Ca65
 			}
@@ -207,13 +181,10 @@ public class BuildConfigTests
 	}
 
 	[Fact]
-	public void BuildConfig_Validate_ReturnsErrors_WhenOutputRomMissing()
-	{
-		var config = new BuildConfig
-		{
+	public void BuildConfig_Validate_ReturnsErrors_WhenOutputRomMissing() {
+		var config = new BuildConfig {
 			Project = new ProjectConfig { Name = "Test", Platform = Platform.Nes },
-			Source = new SourceConfig
-			{
+			Source = new SourceConfig {
 				MainFile = "main.asm",
 				Assembler = Assembler.Ca65
 			}
@@ -224,13 +195,10 @@ public class BuildConfigTests
 	}
 
 	[Fact]
-	public void BuildConfig_Validate_ReturnsNoErrors_WhenValid()
-	{
-		var config = new BuildConfig
-		{
+	public void BuildConfig_Validate_ReturnsNoErrors_WhenValid() {
+		var config = new BuildConfig {
 			Project = new ProjectConfig { Name = "Test", Platform = Platform.Nes },
-			Source = new SourceConfig
-			{
+			Source = new SourceConfig {
 				MainFile = "main.asm",
 				OutputRom = "game.nes",
 				Assembler = Assembler.Ca65
@@ -242,20 +210,16 @@ public class BuildConfigTests
 	}
 
 	[Fact]
-	public void BuildConfig_Serialization_RoundTrips()
-	{
-		var config = new BuildConfig
-		{
-			Project = new ProjectConfig
-			{
+	public void BuildConfig_Serialization_RoundTrips() {
+		var config = new BuildConfig {
+			Project = new ProjectConfig {
 				Name = "Test Project",
 				Platform = Platform.Snes,
 				Version = "1.0.0",
 				Description = "A test project",
 				Authors = ["Author1", "Author2"]
 			},
-			Source = new SourceConfig
-			{
+			Source = new SourceConfig {
 				BaseRom = "roms/original.sfc",
 				Assembler = Assembler.Asar,
 				MainFile = "src/main.asm",
@@ -263,25 +227,21 @@ public class BuildConfigTests
 				Defines = new Dictionary<string, string> { ["DEBUG"] = "1" },
 				OutputRom = "build/game.sfc"
 			},
-			Assets = new AssetsConfig
-			{
+			Assets = new AssetsConfig {
 				ExtractDir = "assets/binary",
 				EditableDir = "assets/json",
 				BuildDir = "build/assets",
-				Graphics = new GraphicsConfig
-				{
+				Graphics = new GraphicsConfig {
 					Format = "png",
 					TileSize = [8, 8],
 					DefaultBpp = 4
 				},
-				Palettes = new PalettesConfig
-				{
+				Palettes = new PalettesConfig {
 					Format = "json",
 					ColorFormat = ColorFormat.Bgr15
 				}
 			},
-			Build = new BuildOptions
-			{
+			Build = new BuildOptions {
 				PreBuild = ["echo Pre-build"],
 				PostBuild = ["echo Post-build"],
 				Verify = true,
@@ -289,8 +249,7 @@ public class BuildConfigTests
 			}
 		};
 
-		var json = JsonSerializer.Serialize(config, new JsonSerializerOptions
-		{
+		var json = JsonSerializer.Serialize(config, new JsonSerializerOptions {
 			PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
 			WriteIndented = true
 		});
@@ -301,8 +260,7 @@ public class BuildConfigTests
 	}
 
 	[Fact]
-	public void AssetDefinition_DefaultValues_AreCorrect()
-	{
+	public void AssetDefinition_DefaultValues_AreCorrect() {
 		var asset = new AssetDefinition();
 
 		Assert.Equal("", asset.Name);
@@ -313,8 +271,7 @@ public class BuildConfigTests
 	}
 
 	[Fact]
-	public void ExtractionConfig_DefaultValues_AreCorrect()
-	{
+	public void ExtractionConfig_DefaultValues_AreCorrect() {
 		var extraction = new ExtractionConfig();
 
 		Assert.NotNull(extraction.Assets);
@@ -328,8 +285,7 @@ public class BuildConfigTests
 	[InlineData(Platform.Gb)]
 	[InlineData(Platform.Gbc)]
 	[InlineData(Platform.Gba)]
-	public void Platform_AllValues_AreValid(Platform platform)
-	{
+	public void Platform_AllValues_AreValid(Platform platform) {
 		Assert.NotEqual(Platform.Unknown, platform);
 	}
 
@@ -339,8 +295,7 @@ public class BuildConfigTests
 	[InlineData(Assembler.Asm68k)]
 	[InlineData(Assembler.Rgbds)]
 	[InlineData(Assembler.DevkitArm)]
-	public void Assembler_AllValues_AreValid(Assembler assembler)
-	{
+	public void Assembler_AllValues_AreValid(Assembler assembler) {
 		Assert.NotEqual(Assembler.Unknown, assembler);
 	}
 
@@ -351,8 +306,7 @@ public class BuildConfigTests
 	[InlineData(AssetType.Data)]
 	[InlineData(AssetType.Text)]
 	[InlineData(AssetType.Audio)]
-	public void AssetType_AllValues_AreValid(AssetType assetType)
-	{
+	public void AssetType_AllValues_AreValid(AssetType assetType) {
 		// All values should be valid
 		Assert.True(Enum.IsDefined(assetType));
 	}
@@ -362,8 +316,7 @@ public class BuildConfigTests
 	[InlineData(ColorFormat.Bgr15)]
 	[InlineData(ColorFormat.Bgr9)]
 	[InlineData(ColorFormat.Indexed)]
-	public void ColorFormat_AllValues_AreValid(ColorFormat colorFormat)
-	{
+	public void ColorFormat_AllValues_AreValid(ColorFormat colorFormat) {
 		Assert.True(Enum.IsDefined(colorFormat));
 	}
 
@@ -373,8 +326,7 @@ public class BuildConfigTests
 	[InlineData(CompressionAlgorithm.Rle)]
 	[InlineData(CompressionAlgorithm.Huffman)]
 	[InlineData(CompressionAlgorithm.Custom)]
-	public void CompressionAlgorithm_AllValues_AreValid(CompressionAlgorithm algorithm)
-	{
+	public void CompressionAlgorithm_AllValues_AreValid(CompressionAlgorithm algorithm) {
 		Assert.True(Enum.IsDefined(algorithm));
 	}
 }
@@ -382,21 +334,17 @@ public class BuildConfigTests
 /// <summary>
 /// Tests for BuildPipelineService
 /// </summary>
-public class BuildPipelineServiceTests : IDisposable
-{
+public class BuildPipelineServiceTests : IDisposable {
 	private readonly string _testDir;
 
-	public BuildPipelineServiceTests()
-	{
+	public BuildPipelineServiceTests() {
 		_testDir = Path.Combine(Path.GetTempPath(), $"BuildPipelineTests_{Guid.NewGuid()}");
 		Directory.CreateDirectory(_testDir);
 	}
 
 	[Fact]
-	public async Task BuildAsync_ReturnsErrors_WhenConfigInvalid()
-	{
-		var config = new BuildConfig
-		{
+	public async Task BuildAsync_ReturnsErrors_WhenConfigInvalid() {
+		var config = new BuildConfig {
 			Project = new ProjectConfig { Name = "", Platform = Platform.Unknown }
 		};
 
@@ -408,10 +356,8 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task CleanAsync_DoesNotThrow_WhenDirectoryNotExists()
-	{
-		var config = new BuildConfig
-		{
+	public async Task CleanAsync_DoesNotThrow_WhenDirectoryNotExists() {
+		var config = new BuildConfig {
 			Build = new BuildOptions { Clean = ["nonexistent/**/*"] }
 		};
 
@@ -422,10 +368,8 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task ExtractAssetsAsync_ReturnsError_WhenNoBaseRom()
-	{
-		var config = new BuildConfig
-		{
+	public async Task ExtractAssetsAsync_ReturnsError_WhenNoBaseRom() {
+		var config = new BuildConfig {
 			Source = new SourceConfig { BaseRom = null }
 		};
 
@@ -436,10 +380,8 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task ExtractAssetsAsync_ReturnsError_WhenRomNotFound()
-	{
-		var config = new BuildConfig
-		{
+	public async Task ExtractAssetsAsync_ReturnsError_WhenRomNotFound() {
+		var config = new BuildConfig {
 			Source = new SourceConfig { BaseRom = "nonexistent.nes" }
 		};
 
@@ -450,8 +392,7 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task ExtractAssetsAsync_ExtractsData_WhenRomExists()
-	{
+	public async Task ExtractAssetsAsync_ExtractsData_WhenRomExists() {
 		// Create a test ROM file
 		var romPath = Path.Combine(_testDir, "test.nes");
 		var romData = new byte[0x10000];
@@ -461,11 +402,9 @@ public class BuildPipelineServiceTests : IDisposable
 		var outputDir = Path.Combine(_testDir, "assets");
 		Directory.CreateDirectory(outputDir);
 
-		var config = new BuildConfig
-		{
+		var config = new BuildConfig {
 			Source = new SourceConfig { BaseRom = "test.nes" },
-			Extraction = new ExtractionConfig
-			{
+			Extraction = new ExtractionConfig {
 				Assets =
 				[
 					new AssetDefinition
@@ -493,16 +432,13 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task ExtractAssetsAsync_HandlesInvalidOffset()
-	{
+	public async Task ExtractAssetsAsync_HandlesInvalidOffset() {
 		var romPath = Path.Combine(_testDir, "test.nes");
 		await File.WriteAllBytesAsync(romPath, new byte[0x1000]);
 
-		var config = new BuildConfig
-		{
+		var config = new BuildConfig {
 			Source = new SourceConfig { BaseRom = "test.nes" },
-			Extraction = new ExtractionConfig
-			{
+			Extraction = new ExtractionConfig {
 				Assets =
 				[
 					new AssetDefinition
@@ -523,8 +459,7 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public void BuildResult_DefaultValues_AreCorrect()
-	{
+	public void BuildResult_DefaultValues_AreCorrect() {
 		var result = new BuildResult();
 
 		Assert.False(result.Success);
@@ -536,8 +471,7 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public void ExtractionResult_DefaultValues_AreCorrect()
-	{
+	public void ExtractionResult_DefaultValues_AreCorrect() {
 		var result = new ExtractionResult();
 
 		Assert.NotNull(result.ExtractedAssets);
@@ -547,8 +481,7 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public void VerificationResult_DefaultValues_AreCorrect()
-	{
+	public void VerificationResult_DefaultValues_AreCorrect() {
 		var result = new VerificationResult();
 
 		Assert.False(result.Success);
@@ -557,8 +490,7 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public void ConsoleBuildLogger_DoesNotThrow()
-	{
+	public void ConsoleBuildLogger_DoesNotThrow() {
 		var logger = new ConsoleBuildLogger();
 
 		// Should not throw
@@ -582,14 +514,12 @@ public class BuildPipelineServiceTests : IDisposable
 	[InlineData(AssetType.Text, Platform.Nes)]
 	[InlineData(AssetType.Data, Platform.Nes)]
 	[InlineData(AssetType.Audio, Platform.Snes)]
-	public void AssetExtractorFactory_ReturnsCorrectExtractor(AssetType type, Platform platform)
-	{
+	public void AssetExtractorFactory_ReturnsCorrectExtractor(AssetType type, Platform platform) {
 		var extractor = AssetExtractorFactory.GetExtractor(type, platform);
 
 		Assert.NotNull(extractor);
 
-		var expectedType = type switch
-		{
+		var expectedType = type switch {
 			AssetType.Graphics => typeof(GraphicsExtractor),
 			AssetType.Palette => typeof(PaletteExtractor),
 			AssetType.Tilemap => typeof(TilemapExtractor),
@@ -603,15 +533,13 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task GraphicsExtractor_ExtractsNesTiles_ToJson()
-	{
+	public async Task GraphicsExtractor_ExtractsNesTiles_ToJson() {
 		// Create NES-style 2bpp tile data (16 bytes per tile)
 		// Simple checkerboard pattern
 		var tileData = new byte[32]; // 2 tiles
-		// Tile 0: all zeros
-		// Tile 1: simple pattern
-		for (int i = 0; i < 8; i++)
-		{
+									 // Tile 0: all zeros
+									 // Tile 1: simple pattern
+		for (int i = 0; i < 8; i++) {
 			tileData[16 + i] = (byte)(0xaa >> (i % 2)); // Bit plane 0
 			tileData[24 + i] = (byte)(0x55 >> (i % 2)); // Bit plane 1
 		}
@@ -619,16 +547,14 @@ public class BuildPipelineServiceTests : IDisposable
 		var romData = new byte[256];
 		Array.Copy(tileData, 0, romData, 0x10, tileData.Length);
 
-		var asset = new AssetDefinition
-		{
+		var asset = new AssetDefinition {
 			Name = "test_tiles",
 			Type = AssetType.Graphics,
 			Source = new AssetSource { Offset = "0x10", Length = "0x20" },
 			Output = "tiles.bin"
 		};
 
-		var assetsConfig = new AssetsConfig
-		{
+		var assetsConfig = new AssetsConfig {
 			Graphics = new GraphicsConfig { Format = "json" }
 		};
 
@@ -645,23 +571,20 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task GraphicsExtractor_ExtractsTiles_ToPng()
-	{
+	public async Task GraphicsExtractor_ExtractsTiles_ToPng() {
 		// Create simple tile data
 		var tileData = new byte[16]; // 1 NES tile
 		var romData = new byte[256];
 		Array.Copy(tileData, 0, romData, 0x00, tileData.Length);
 
-		var asset = new AssetDefinition
-		{
+		var asset = new AssetDefinition {
 			Name = "test_tiles",
 			Type = AssetType.Graphics,
 			Source = new AssetSource { Offset = "0x0", Length = "0x10" },
 			Output = "tiles.bin"
 		};
 
-		var assetsConfig = new AssetsConfig
-		{
+		var assetsConfig = new AssetsConfig {
 			Graphics = new GraphicsConfig { Format = "png" }
 		};
 
@@ -684,11 +607,10 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task PaletteExtractor_ExtractsSnesPalette_ToJson()
-	{
+	public async Task PaletteExtractor_ExtractsSnesPalette_ToJson() {
 		// Create SNES palette data (2 bytes per color, BGR15)
 		var paletteData = new byte[32]; // 16 colors
-		// Set first color to red (0x001F in BGR15)
+										// Set first color to red (0x001F in BGR15)
 		paletteData[0] = 0x1f;
 		paletteData[1] = 0x00;
 		// Set second color to green
@@ -698,16 +620,14 @@ public class BuildPipelineServiceTests : IDisposable
 		var romData = new byte[256];
 		Array.Copy(paletteData, 0, romData, 0x20, paletteData.Length);
 
-		var asset = new AssetDefinition
-		{
+		var asset = new AssetDefinition {
 			Name = "test_palette",
 			Type = AssetType.Palette,
 			Source = new AssetSource { Offset = "0x20", Length = "0x20" },
 			Output = "palette.bin"
 		};
 
-		var assetsConfig = new AssetsConfig
-		{
+		var assetsConfig = new AssetsConfig {
 			Palettes = new PalettesConfig { Format = "json" }
 		};
 
@@ -728,22 +648,19 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task PaletteExtractor_ExtractsPalette_ToPal()
-	{
+	public async Task PaletteExtractor_ExtractsPalette_ToPal() {
 		var paletteData = new byte[8]; // 4 SNES colors
 		var romData = new byte[256];
 		Array.Copy(paletteData, 0, romData, 0x00, paletteData.Length);
 
-		var asset = new AssetDefinition
-		{
+		var asset = new AssetDefinition {
 			Name = "test_palette",
 			Type = AssetType.Palette,
 			Source = new AssetSource { Offset = "0x0", Length = "0x8" },
 			Output = "palette.bin"
 		};
 
-		var assetsConfig = new AssetsConfig
-		{
+		var assetsConfig = new AssetsConfig {
 			Palettes = new PalettesConfig { Format = "pal" }
 		};
 
@@ -764,11 +681,10 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task TilemapExtractor_ExtractsSnesTilemap_ToJson()
-	{
+	public async Task TilemapExtractor_ExtractsSnesTilemap_ToJson() {
 		// Create SNES tilemap data (2 bytes per entry)
 		var tilemapData = new byte[128]; // 32x2 tilemap
-		// Set some entries
+										 // Set some entries
 		tilemapData[0] = 0x01; tilemapData[1] = 0x00; // Tile 1
 		tilemapData[2] = 0x02; tilemapData[3] = 0x04; // Tile 2, palette 1
 		tilemapData[4] = 0x03; tilemapData[5] = 0x40; // Tile 3, flip H
@@ -776,8 +692,7 @@ public class BuildPipelineServiceTests : IDisposable
 		var romData = new byte[256];
 		Array.Copy(tilemapData, 0, romData, 0x00, tilemapData.Length);
 
-		var asset = new AssetDefinition
-		{
+		var asset = new AssetDefinition {
 			Name = "test_tilemap",
 			Type = AssetType.Tilemap,
 			Source = new AssetSource { Offset = "0x0", Length = "0x80" },
@@ -805,14 +720,12 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task DataExtractor_ExtractsRawData_ToJson()
-	{
+	public async Task DataExtractor_ExtractsRawData_ToJson() {
 		var romData = new byte[256];
 		for (int i = 0; i < 32; i++)
 			romData[i] = (byte)i;
 
-		var asset = new AssetDefinition
-		{
+		var asset = new AssetDefinition {
 			Name = "test_data",
 			Type = AssetType.Data,
 			Source = new AssetSource { Offset = "0x0", Length = "0x20" },
@@ -839,14 +752,12 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task DataExtractor_ExtractsRawData_ToBinary()
-	{
+	public async Task DataExtractor_ExtractsRawData_ToBinary() {
 		var romData = new byte[256];
 		for (int i = 0; i < 32; i++)
 			romData[i] = (byte)(i * 2);
 
-		var asset = new AssetDefinition
-		{
+		var asset = new AssetDefinition {
 			Name = "test_data",
 			Type = AssetType.Data,
 			Source = new AssetSource { Offset = "0x0", Length = "0x20" },
@@ -871,12 +782,10 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task Extractor_ReturnsError_WhenOffsetInvalid()
-	{
+	public async Task Extractor_ReturnsError_WhenOffsetInvalid() {
 		var romData = new byte[256];
 
-		var asset = new AssetDefinition
-		{
+		var asset = new AssetDefinition {
 			Name = "test",
 			Type = AssetType.Data,
 			Source = new AssetSource { Offset = "0x1000" }, // Beyond ROM
@@ -904,8 +813,7 @@ public class BuildPipelineServiceTests : IDisposable
 	[InlineData(".pal", typeof(PalToAssetConverter))]
 	[InlineData(".bin", typeof(RawAssetConverter))]
 	[InlineData(".dat", typeof(RawAssetConverter))]
-	public void AssetConverterFactory_ReturnsCorrectConverter(string extension, Type expectedType)
-	{
+	public void AssetConverterFactory_ReturnsCorrectConverter(string extension, Type expectedType) {
 		var inputPath = $"test{extension}";
 		var converter = AssetConverterFactory.GetConverter(inputPath);
 
@@ -914,8 +822,7 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task JsonToAssetConverter_ConvertsPalette_ToBinary()
-	{
+	public async Task JsonToAssetConverter_ConvertsPalette_ToBinary() {
 		var paletteJson = """
 		{
 			"colorCount": 4,
@@ -945,8 +852,7 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task JsonToAssetConverter_ConvertsTilemap_ToBinary()
-	{
+	public async Task JsonToAssetConverter_ConvertsTilemap_ToBinary() {
 		var tilemapJson = """
 		{
 			"width": 2,
@@ -978,8 +884,7 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task JsonToAssetConverter_ConvertsGraphics_ToBinary()
-	{
+	public async Task JsonToAssetConverter_ConvertsGraphics_ToBinary() {
 		var graphicsJson = """
 		{
 			"tileCount": 1,
@@ -1017,8 +922,7 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task PalToAssetConverter_ConvertsPalFile_ToBinary()
-	{
+	public async Task PalToAssetConverter_ConvertsPalFile_ToBinary() {
 		var palContent = """
 		JASC-PAL
 		0100
@@ -1046,8 +950,7 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task RawAssetConverter_CopiesFile()
-	{
+	public async Task RawAssetConverter_CopiesFile() {
 		var data = new byte[] { 0x01, 0x02, 0x03, 0x04 };
 
 		var inputPath = Path.Combine(_testDir, "raw.bin");
@@ -1067,8 +970,7 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task Converter_ReturnsError_WhenFileNotFound()
-	{
+	public async Task Converter_ReturnsError_WhenFileNotFound() {
 		var inputPath = Path.Combine(_testDir, "nonexistent.json");
 		var outputPath = Path.Combine(_testDir, "output.bin");
 
@@ -1085,8 +987,7 @@ public class BuildPipelineServiceTests : IDisposable
 	#region AssetExtractionResult Tests
 
 	[Fact]
-	public void AssetExtractionResult_DefaultValues_AreCorrect()
-	{
+	public void AssetExtractionResult_DefaultValues_AreCorrect() {
 		var result = new AssetExtractionResult();
 
 		Assert.False(result.Success);
@@ -1098,8 +999,7 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public void AssetConversionResult_DefaultValues_AreCorrect()
-	{
+	public void AssetConversionResult_DefaultValues_AreCorrect() {
 		var result = new AssetConversionResult();
 
 		Assert.False(result.Success);
@@ -1113,8 +1013,7 @@ public class BuildPipelineServiceTests : IDisposable
 	#region Compression Tests
 
 	[Fact]
-	public void CompressionUtils_RleRoundTrip_PreservesData()
-	{
+	public void CompressionUtils_RleRoundTrip_PreservesData() {
 		// Create data with runs
 		var original = new byte[100];
 		for (int i = 0; i < 20; i++) original[i] = 0x00;      // Run of zeros
@@ -1129,8 +1028,7 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public void CompressionUtils_RleCompression_ReducesSize()
-	{
+	public void CompressionUtils_RleCompression_ReducesSize() {
 		// Data with lots of repetition should compress well
 		var original = new byte[100];
 		for (int i = 0; i < 100; i++) original[i] = 0xaa;
@@ -1141,13 +1039,11 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public void CompressionUtils_LzssRoundTrip_PreservesData()
-	{
+	public void CompressionUtils_LzssRoundTrip_PreservesData() {
 		// Create data with repeating patterns
 		var original = new byte[200];
 		var pattern = new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05 };
-		for (int i = 0; i < original.Length; i++)
-		{
+		for (int i = 0; i < original.Length; i++) {
 			original[i] = pattern[i % pattern.Length];
 		}
 
@@ -1159,8 +1055,7 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public void CompressionUtils_HuffmanCompress_ProducesValidOutput()
-	{
+	public void CompressionUtils_HuffmanCompress_ProducesValidOutput() {
 		// Create data with varying byte frequencies
 		var original = new byte[100];
 		for (int i = 0; i < 50; i++) original[i] = 0x00;  // 50% zeros
@@ -1180,8 +1075,7 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public void CompressionUtils_None_ReturnsUnchangedData()
-	{
+	public void CompressionUtils_None_ReturnsUnchangedData() {
 		var original = new byte[] { 0x01, 0x02, 0x03, 0x04 };
 
 		var compressed = CompressionUtils.Compress(original, CompressionAlgorithm.None);
@@ -1192,8 +1086,7 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public void CompressionUtils_DetectCompression_IdentifiesLzss()
-	{
+	public void CompressionUtils_DetectCompression_IdentifiesLzss() {
 		var lzssData = new byte[] { 0x10, 0x64, 0x00, 0x00 }; // LZSS header with size 100
 
 		var detected = CompressionUtils.DetectCompression(lzssData);
@@ -1202,8 +1095,7 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public void CompressionUtils_DetectCompression_IdentifiesRle()
-	{
+	public void CompressionUtils_DetectCompression_IdentifiesRle() {
 		var rleData = new byte[] { 0x30, 0x64, 0x00, 0x00 }; // RLE header with size 100
 
 		var detected = CompressionUtils.DetectCompression(rleData);
@@ -1212,8 +1104,7 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public void CompressionUtils_DetectCompression_IdentifiesHuffman()
-	{
+	public void CompressionUtils_DetectCompression_IdentifiesHuffman() {
 		var huffmanData = new byte[] { 0x20, 0x64, 0x00, 0x00 }; // Huffman header with size 100
 
 		var detected = CompressionUtils.DetectCompression(huffmanData);
@@ -1222,8 +1113,7 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public void CompressionUtils_GetDecompressedSize_ReadsFromHeader()
-	{
+	public void CompressionUtils_GetDecompressedSize_ReadsFromHeader() {
 		var data = new byte[] { 0x10, 0x00, 0x01, 0x00 }; // LZSS header with size 256
 
 		var size = CompressionUtils.GetDecompressedSize(data);
@@ -1232,8 +1122,7 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public void CompressionUtils_DecompressDte_ExpandsDictionary()
-	{
+	public void CompressionUtils_DecompressDte_ExpandsDictionary() {
 		var dictionary = new byte[][]
 		{
 			[0x61], // 'a'
@@ -1251,8 +1140,7 @@ public class BuildPipelineServiceTests : IDisposable
 	}
 
 	[Fact]
-	public void CompressionOptions_DefaultValues_AreCorrect()
-	{
+	public void CompressionOptions_DefaultValues_AreCorrect() {
 		var options = new CompressionOptions();
 
 		Assert.False(options.HasHeader);
@@ -1271,21 +1159,16 @@ public class BuildPipelineServiceTests : IDisposable
 
 	#endregion
 
-	public void Dispose()
-	{
-		try
-		{
+	public void Dispose() {
+		try {
 			if (Directory.Exists(_testDir))
 				Directory.Delete(_testDir, recursive: true);
-		}
-		catch
-		{
+		} catch {
 			// Ignore cleanup errors
 		}
 	}
 
-	private class TestBuildLogger : IBuildLogger
-	{
+	private class TestBuildLogger : IBuildLogger {
 		public List<string> Messages { get; } = [];
 
 		public void Debug(string message) => Messages.Add($"[DEBUG] {message}");

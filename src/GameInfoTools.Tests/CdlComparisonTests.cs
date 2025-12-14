@@ -51,6 +51,7 @@ public class CdlComparisonTests {
 		for (int i = 0; i < size; i++) {
 			data[i] = pattern;
 		}
+
 		return data;
 	}
 

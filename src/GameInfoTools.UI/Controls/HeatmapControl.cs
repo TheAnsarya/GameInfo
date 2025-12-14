@@ -1,7 +1,7 @@
+using System.Collections.ObjectModel;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
-using System.Collections.ObjectModel;
 using GameInfoTools.UI.ViewModels;
 
 namespace GameInfoTools.UI.Controls;
@@ -106,17 +106,15 @@ public class HeatmapControl : Control {
 			baseColor = Color.FromRgb(0x8B, 0xC3, 0x4A); // Lime green
 		} else if (cell.HasCode) {
 			baseColor = CodeColor;
-		} else if (cell.HasData) {
-			baseColor = DataColor;
 		} else {
-			baseColor = UnknownColor;
+			baseColor = cell.HasData ? DataColor : UnknownColor;
 		}
 
 		// Adjust brightness based on intensity
 		var intensity = Math.Clamp(cell.Intensity, 0.0, 1.0);
-		var r = (byte)(baseColor.R * (0.3 + 0.7 * intensity));
-		var g = (byte)(baseColor.G * (0.3 + 0.7 * intensity));
-		var b = (byte)(baseColor.B * (0.3 + 0.7 * intensity));
+		var r = (byte)(baseColor.R * (0.3 + (0.7 * intensity)));
+		var g = (byte)(baseColor.G * (0.3 + (0.7 * intensity)));
+		var b = (byte)(baseColor.B * (0.3 + (0.7 * intensity)));
 
 		return Color.FromRgb(r, g, b);
 	}

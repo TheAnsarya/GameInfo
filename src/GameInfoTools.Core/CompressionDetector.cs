@@ -382,7 +382,7 @@ public static class CompressionDetector {
 				int searchStart = Math.Max(0, i - windowSize);
 				for (int j = searchStart; j < i; j++) {
 					int matchLen = 0;
-					while (matchLen < maxLength && i + matchLen < data.Length && data[j + matchLen % (i - j)] == data[i + matchLen]) {
+					while (matchLen < maxLength && i + matchLen < data.Length && data[j + (matchLen % (i - j))] == data[i + matchLen]) {
 						matchLen++;
 					}
 
@@ -449,22 +449,22 @@ public static class CompressionDetector {
 						// Extended format (3 bytes)
 						if (srcPos + 3 > data.Length)
 							break;
-						length = ((indicator & 0x0f) << 4) | ((data[srcPos + 1] >> 4) & 0x0f) + 0x11;
-						displacement = ((data[srcPos + 1] & 0x0f) << 8) | data[srcPos + 2] + 1;
+						length = ((indicator & 0x0f) << 4) | (((data[srcPos + 1] >> 4) & 0x0f) + 0x11);
+						displacement = ((data[srcPos + 1] & 0x0f) << 8) | (data[srcPos + 2] + 1);
 						srcPos += 3;
 					} else if ((indicator >> 4) == 1) {
 						// Extra-extended format (4 bytes)
 						if (srcPos + 4 > data.Length)
 							break;
-						length = ((indicator & 0x0f) << 12) | (data[srcPos + 1] << 4) | ((data[srcPos + 2] >> 4) & 0x0f) + 0x111;
-						displacement = ((data[srcPos + 2] & 0x0f) << 8) | data[srcPos + 3] + 1;
+						length = ((indicator & 0x0f) << 12) | (data[srcPos + 1] << 4) | (((data[srcPos + 2] >> 4) & 0x0f) + 0x111);
+						displacement = ((data[srcPos + 2] & 0x0f) << 8) | (data[srcPos + 3] + 1);
 						srcPos += 4;
 					} else {
 						// Standard format (2 bytes)
 						if (srcPos + 2 > data.Length)
 							break;
 						length = ((indicator >> 4) & 0x0f) + 1;
-						displacement = ((indicator & 0x0f) << 8) | data[srcPos + 1] + 1;
+						displacement = ((indicator & 0x0f) << 8) | (data[srcPos + 1] + 1);
 						srcPos += 2;
 					}
 
@@ -515,6 +515,7 @@ public static class CompressionDetector {
 			while (i + runLen < length && data[offset + i + runLen] == data[offset + i]) {
 				runLen++;
 			}
+
 			if (runLen >= 3) {
 				runs++;
 				i += runLen;
@@ -551,7 +552,7 @@ public static class CompressionDetector {
 		double entropyFactor = 1 - (entropy / 8.0);
 		double patternFactor = (runs + backRefs) / (double)length * 10;
 
-		return Math.Max(0.1, Math.Min(1.0, 0.5 + entropyFactor * 0.3 + patternFactor * 0.2));
+		return Math.Max(0.1, Math.Min(1.0, 0.5 + (entropyFactor * 0.3) + (patternFactor * 0.2)));
 	}
 
 	/// <summary>
@@ -587,9 +588,9 @@ public static class CompressionDetector {
 		// Rough estimate - actual implementation would track decompression position
 		return type switch {
 			CompressionType.LzNintendo or CompressionType.Lz10 =>
-				Math.Min(data.Length - offset, 4 + (data[offset + 1] | (data[offset + 2] << 8) | (data[offset + 3] << 16)) / 2),
+				Math.Min(data.Length - offset, 4 + ((data[offset + 1] | (data[offset + 2] << 8) | (data[offset + 3] << 16)) / 2)),
 			CompressionType.Lz11 =>
-				Math.Min(data.Length - offset, 4 + (data[offset + 1] | (data[offset + 2] << 8) | (data[offset + 3] << 16)) / 2),
+				Math.Min(data.Length - offset, 4 + ((data[offset + 1] | (data[offset + 2] << 8) | (data[offset + 3] << 16)) / 2)),
 			_ => Math.Min(1024, data.Length - offset)
 		};
 	}

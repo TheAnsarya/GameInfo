@@ -1,9 +1,9 @@
+using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Data.Converters;
 using Avalonia.Input;
 using Avalonia.Media;
-using System.Globalization;
 
 namespace GameInfoTools.UI.Controls;
 
@@ -404,8 +404,8 @@ public class MapCanvas : Control {
 			var regionRect = new Rect(
 				minX * tileSize,
 				minY * tileSize,
-				((maxX - minX + 1) * tileSize),
-				((maxY - minY + 1) * tileSize));
+				(maxX - minX + 1) * tileSize,
+				(maxY - minY + 1) * tileSize);
 
 			context.FillRectangle(fillBrush, regionRect);
 			context.DrawRectangle(selectionPen, regionRect);
@@ -448,9 +448,9 @@ public class MapCanvas : Control {
 			color = tilePalette[tileIndex];
 		} else {
 			// Generate color from tile index using HSV
-			double hue = (tileIndex / 256.0) * 360;
+			double hue = tileIndex / 256.0 * 360;
 			double saturation = 0.6;
-			double value = 0.4 + ((tileIndex % 16) / 32.0);
+			double value = 0.4 + (tileIndex % 16 / 32.0);
 			color = HsvToColor(hue, saturation, value);
 		}
 
@@ -460,16 +460,11 @@ public class MapCanvas : Control {
 
 	private static Color HsvToColor(double hue, double saturation, double value) {
 		double c = value * saturation;
-		double x = c * (1 - Math.Abs(((hue / 60) % 2) - 1));
+		double x = c * (1 - Math.Abs((hue / 60 % 2) - 1));
 		double m = value - c;
 
 		double r, g, b;
-		if (hue < 60) { r = c; g = x; b = 0; }
-		else if (hue < 120) { r = x; g = c; b = 0; }
-		else if (hue < 180) { r = 0; g = c; b = x; }
-		else if (hue < 240) { r = 0; g = x; b = c; }
-		else if (hue < 300) { r = x; g = 0; b = c; }
-		else { r = c; g = 0; b = x; }
+		if (hue < 60) { r = c; g = x; b = 0; } else if (hue < 120) { r = x; g = c; b = 0; } else if (hue < 180) { r = 0; g = c; b = x; } else if (hue < 240) { r = 0; g = x; b = c; } else if (hue < 300) { r = x; g = 0; b = c; } else { r = c; g = 0; b = x; }
 
 		return Color.FromRgb(
 			(byte)((r + m) * 255),

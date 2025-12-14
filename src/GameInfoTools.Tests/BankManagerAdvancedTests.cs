@@ -404,8 +404,8 @@ public class BankManagerEnhancedTests {
 
 		// Create gaps in the bank (bank starts at offset 16)
 		rom[16] = 0x00;  // Used
-		// 17-31 are 0x00 (not free with fillByte=0xFF)
-		// Fill with 0xFF to create free space
+						 // 17-31 are 0x00 (not free with fillByte=0xFF)
+						 // Fill with 0xFF to create free space
 		for (int i = 20; i < 40; i++) {
 			rom[i] = 0xff;
 		}
@@ -713,7 +713,7 @@ public class BankExpanderTests {
 		Assert.Equal(0xAB, expanded[16]);
 
 		// Check new banks are filled
-		Assert.Equal(0xff, expanded[16 + 2 * 0x4000]);
+		Assert.Equal(0xff, expanded[16 + (2 * 0x4000)]);
 	}
 
 	[Fact]
@@ -722,7 +722,7 @@ public class BankExpanderTests {
 
 		// Fill CHR with data
 		for (int i = 0; i < 0x2000; i++) {
-			rom[16 + 2 * 0x4000 + i] = 0xCD;
+			rom[16 + (2 * 0x4000) + i] = 0xCD;
 		}
 
 		var expanded = BankExpander.ExpandNesRom(rom, 0, 1);
@@ -731,7 +731,7 @@ public class BankExpanderTests {
 		Assert.Equal(2, expanded[5]);  // 2 CHR banks
 
 		// Original CHR preserved
-		int newChrOffset = 16 + 2 * 0x4000;
+		int newChrOffset = 16 + (2 * 0x4000);
 		Assert.Equal(0xCD, expanded[newChrOffset]);
 	}
 

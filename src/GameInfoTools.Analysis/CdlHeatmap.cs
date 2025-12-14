@@ -7,7 +7,6 @@ namespace GameInfoTools.Analysis;
 /// </summary>
 public class CdlHeatmap {
 	private readonly byte[] _cdlData;
-	private readonly CdlFormat _format;
 
 	/// <summary>
 	/// CDL file format type.
@@ -79,7 +78,7 @@ public class CdlHeatmap {
 	/// <param name="format">CDL format type.</param>
 	public CdlHeatmap(byte[] cdlData, CdlFormat format = CdlFormat.Generic) {
 		_cdlData = cdlData ?? throw new ArgumentNullException(nameof(cdlData));
-		_format = format;
+		Format = format;
 	}
 
 	/// <summary>
@@ -140,7 +139,7 @@ public class CdlHeatmap {
 	/// <summary>
 	/// Gets the CDL format.
 	/// </summary>
-	public CdlFormat Format => _format;
+	public CdlFormat Format { get; }
 
 	/// <summary>
 	/// Gets the CDL flags for a specific offset.
@@ -294,6 +293,7 @@ public class CdlHeatmap {
 				char c = GetHeatmapChar(intensity, hasCode, hasData);
 				sb.Append(c);
 			}
+
 			sb.AppendLine(" │");
 		}
 
@@ -324,7 +324,7 @@ public class CdlHeatmap {
 		sb.AppendLine("╔══════════════════════════════════════════════════════════════╗");
 		sb.AppendLine("║               CDL COVERAGE ANALYSIS REPORT                   ║");
 		sb.AppendLine("╠══════════════════════════════════════════════════════════════╣");
-		sb.AppendLine($"║ Format: {_format,-20} Size: {_cdlData.Length,12:N0} bytes   ║");
+		sb.AppendLine($"║ Format: {Format,-20} Size: {_cdlData.Length,12:N0} bytes   ║");
 		sb.AppendLine("╠══════════════════════════════════════════════════════════════╣");
 		sb.AppendLine($"║ Total Coverage: {stats.CoveragePercentage,7:F2}%                                 ║");
 		sb.AppendLine($"║ Code:           {stats.CodePercentage,7:F2}% ({stats.CodeBytes,10:N0} bytes)          ║");
@@ -368,6 +368,7 @@ public class CdlHeatmap {
 				if (length >= minSize) {
 					regions.Add((regionStart, length));
 				}
+
 				regionStart = -1;
 			}
 		}
@@ -395,6 +396,7 @@ public class CdlHeatmap {
 				if (length >= minSize) {
 					regions.Add((regionStart, length, isCode));
 				}
+
 				regionStart = covered ? i : -1;
 				isCode = currentIsCode;
 			}
@@ -429,7 +431,7 @@ public class CdlHeatmap {
 		var cells = GenerateHeatmap(cellSize);
 
 		sb.AppendLine("{");
-		sb.AppendLine($"  \"format\": \"{_format}\",");
+		sb.AppendLine($"  \"format\": \"{Format}\",");
 		sb.AppendLine($"  \"size\": {_cdlData.Length},");
 		sb.AppendLine($"  \"cellSize\": {cellSize},");
 		sb.AppendLine("  \"stats\": {");
@@ -516,9 +518,9 @@ public class CdlHeatmap {
 		}
 
 		return new CdlDiff(
-			new CdlHeatmap(onlyThis, _format),
-			new CdlHeatmap(onlyOther, other._format),
-			new CdlHeatmap(common, _format)
+			new CdlHeatmap(onlyThis, Format),
+			new CdlHeatmap(onlyOther, other.Format),
+			new CdlHeatmap(common, Format)
 		);
 	}
 
@@ -582,7 +584,7 @@ public class CdlHeatmap {
 	public string ExportAsMlb(int minRegionSize = 8, string labelPrefix = "cdl", int baseAddress = 0x8000) {
 		var sb = new StringBuilder();
 		sb.AppendLine("# MLB Labels generated from CDL coverage data");
-		sb.AppendLine($"# Format: {_format}");
+		sb.AppendLine($"# Format: {Format}");
 		sb.AppendLine($"# Coverage: {GetCoverageStats().CoveragePercentage:F1}%");
 		sb.AppendLine();
 
@@ -612,7 +614,7 @@ public class CdlHeatmap {
 	public string ExportAsSym(int minRegionSize = 8, string labelPrefix = "cdl", int bankSize = 0x4000) {
 		var sb = new StringBuilder();
 		sb.AppendLine("; SYM Labels generated from CDL coverage data");
-		sb.AppendLine($"; Format: {_format}");
+		sb.AppendLine($"; Format: {Format}");
 		sb.AppendLine($"; Coverage: {GetCoverageStats().CoveragePercentage:F1}%");
 		sb.AppendLine();
 		sb.AppendLine("[labels]");
@@ -672,6 +674,7 @@ public class CdlHeatmap {
 			foreach (var (offset, length) in regions) {
 				sb.AppendLine($"Offset: 0x{offset:X6}  Length: {length,6:N0} bytes  (0x{length:X4})");
 			}
+
 			sb.AppendLine();
 			sb.AppendLine($"Total uncovered regions: {regions.Count}");
 			sb.AppendLine($"Total uncovered bytes: {regions.Sum(r => r.Length):N0}");
@@ -693,10 +696,10 @@ public class CdlHeatmap {
 	/// <param name="targetFormat">Target CDL format.</param>
 	/// <returns>New CdlHeatmap with converted data.</returns>
 	public CdlHeatmap ConvertTo(CdlFormat targetFormat) {
-		if (_format == targetFormat)
+		if (Format == targetFormat)
 			return this;
 
-		var convertedData = _format switch {
+		var convertedData = Format switch {
 			CdlFormat.Fceux => targetFormat switch {
 				CdlFormat.Mesen => ConvertFceuxToMesen(_cdlData),
 				CdlFormat.Bsnes => ConvertFceuxToBsnes(_cdlData),
@@ -724,8 +727,8 @@ public class CdlHeatmap {
 	/// <param name="path">Output file path.</param>
 	/// <param name="targetFormat">Target format (uses current format if not specified).</param>
 	public void SaveToFile(string path, CdlFormat? targetFormat = null) {
-		var format = targetFormat ?? _format;
-		var dataToSave = format == _format ? _cdlData : ConvertTo(format).GetRawData();
+		var format = targetFormat ?? Format;
+		var dataToSave = format == Format ? _cdlData : ConvertTo(format).GetRawData();
 		File.WriteAllBytes(path, dataToSave);
 	}
 
@@ -751,6 +754,7 @@ public class CdlHeatmap {
 
 			result[i] = mesen;
 		}
+
 		return result;
 	}
 
@@ -771,6 +775,7 @@ public class CdlHeatmap {
 
 			result[i] = fceux;
 		}
+
 		return result;
 	}
 
@@ -790,6 +795,7 @@ public class CdlHeatmap {
 
 			result[i] = bsnes;
 		}
+
 		return result;
 	}
 
@@ -808,6 +814,7 @@ public class CdlHeatmap {
 
 			result[i] = fceux;
 		}
+
 		return result;
 	}
 
@@ -825,6 +832,7 @@ public class CdlHeatmap {
 
 			result[i] = bsnes;
 		}
+
 		return result;
 	}
 
@@ -842,6 +850,7 @@ public class CdlHeatmap {
 
 			result[i] = mesen;
 		}
+
 		return result;
 	}
 
@@ -858,7 +867,7 @@ public class CdlHeatmap {
 		sb.AppendLine("╔══════════════════════════════════════════════════════════════╗");
 		sb.AppendLine("║              CDL FORMAT CONVERSION REPORT                    ║");
 		sb.AppendLine("╠══════════════════════════════════════════════════════════════╣");
-		sb.AppendLine($"║ Source Format:   {_format,-20} Size: {Size,10:N0}    ║");
+		sb.AppendLine($"║ Source Format:   {Format,-20} Size: {Size,10:N0}    ║");
 		sb.AppendLine($"║ Target Format:   {targetFormat,-20} Size: {converted.Size,10:N0}    ║");
 		sb.AppendLine("╠══════════════════════════════════════════════════════════════╣");
 		sb.AppendLine($"║ Original Coverage: {originalStats.CoveragePercentage,7:F2}%                           ║");
@@ -1107,6 +1116,7 @@ public class CdlHeatmap {
 				if (boundary.Type == "Start of coverage") {
 					AddBookmark(boundary.Offset, $"coverage_start_{boundary.Offset:X6}", "Start of covered region", "Boundary");
 				}
+
 				count++;
 			}
 		}
@@ -1128,8 +1138,10 @@ public class CdlHeatmap {
 				if (!string.IsNullOrEmpty(bookmark.Description)) {
 					sb.Append($" ; {bookmark.Description}");
 				}
+
 				sb.AppendLine();
 			}
+
 			sb.AppendLine();
 		}
 
@@ -1190,22 +1202,21 @@ public class CdlHeatmap {
 
 	#region CDL Editing with Undo Support
 
-	private readonly GameInfoTools.Core.EditUndoRedoManager? _undoManager;
 
 	/// <summary>
 	/// Gets whether undo operations are available.
 	/// </summary>
-	public bool CanUndo => _undoManager?.CanUndo ?? false;
+	public bool CanUndo => UndoManager?.CanUndo ?? false;
 
 	/// <summary>
 	/// Gets whether redo operations are available.
 	/// </summary>
-	public bool CanRedo => _undoManager?.CanRedo ?? false;
+	public bool CanRedo => UndoManager?.CanRedo ?? false;
 
 	/// <summary>
 	/// Gets the undo manager if available.
 	/// </summary>
-	public GameInfoTools.Core.EditUndoRedoManager? UndoManager => _undoManager;
+	public GameInfoTools.Core.EditUndoRedoManager? UndoManager { get; }
 
 	/// <summary>
 	/// Creates a new editable CDL heatmap with undo support.
@@ -1217,7 +1228,7 @@ public class CdlHeatmap {
 	public CdlHeatmap(byte[] cdlData, CdlFormat format, bool enableUndo, int maxHistory = 100)
 		: this(cdlData, format) {
 		if (enableUndo) {
-			_undoManager = new GameInfoTools.Core.EditUndoRedoManager(ApplyAction, maxHistory);
+			UndoManager = new GameInfoTools.Core.EditUndoRedoManager(ApplyAction, maxHistory);
 		}
 	}
 
@@ -1237,10 +1248,10 @@ public class CdlHeatmap {
 
 		if (oldValue == newValue) return;
 
-		if (recordUndo && _undoManager is not null) {
+		if (recordUndo && UndoManager is not null) {
 			var action = GameInfoTools.Core.EditAction.SingleByteEdit(offset, oldValue, newValue,
 				$"Set flags at ${offset:X6} to {flags}");
-			_undoManager.Push(action);
+			UndoManager.Push(action);
 		}
 
 		_cdlData[offset] = newValue;
@@ -1265,10 +1276,10 @@ public class CdlHeatmap {
 			newData[i] = (byte)flags;
 		}
 
-		if (recordUndo && _undoManager is not null) {
+		if (recordUndo && UndoManager is not null) {
 			var action = GameInfoTools.Core.EditAction.RangeEdit(startOffset, oldData, newData,
 				$"Set flags ${startOffset:X6}-${startOffset + length - 1:X6} to {flags}");
-			_undoManager.Push(action);
+			UndoManager.Push(action);
 		}
 
 		for (int i = 0; i < length; i++) {
@@ -1336,10 +1347,10 @@ public class CdlHeatmap {
 			newData[i] = (byte)(_cdlData[startOffset + i] | (byte)CdlFlags.Code);
 		}
 
-		if (recordUndo && _undoManager is not null) {
+		if (recordUndo && UndoManager is not null) {
 			var action = GameInfoTools.Core.EditAction.RangeEdit(startOffset, oldData, newData,
 				$"Mark ${startOffset:X6}-${startOffset + length - 1:X6} as code");
-			_undoManager.Push(action);
+			UndoManager.Push(action);
 		}
 
 		for (int i = 0; i < length; i++) {
@@ -1363,10 +1374,10 @@ public class CdlHeatmap {
 			newData[i] = (byte)(_cdlData[startOffset + i] | (byte)CdlFlags.Data);
 		}
 
-		if (recordUndo && _undoManager is not null) {
+		if (recordUndo && UndoManager is not null) {
 			var action = GameInfoTools.Core.EditAction.RangeEdit(startOffset, oldData, newData,
 				$"Mark ${startOffset:X6}-${startOffset + length - 1:X6} as data");
-			_undoManager.Push(action);
+			UndoManager.Push(action);
 		}
 
 		for (int i = 0; i < length; i++) {
@@ -1379,9 +1390,9 @@ public class CdlHeatmap {
 	/// </summary>
 	/// <returns>Description of what was undone, or null if nothing to undo.</returns>
 	public string? Undo() {
-		if (_undoManager is null) return null;
+		if (UndoManager is null) return null;
 
-		var action = _undoManager.UndoWithApply();
+		var action = UndoManager.UndoWithApply();
 		return action?.Description;
 	}
 
@@ -1390,27 +1401,27 @@ public class CdlHeatmap {
 	/// </summary>
 	/// <returns>Description of what was redone, or null if nothing to redo.</returns>
 	public string? Redo() {
-		if (_undoManager is null) return null;
+		if (UndoManager is null) return null;
 
-		var action = _undoManager.RedoWithApply();
+		var action = UndoManager.RedoWithApply();
 		return action?.Description;
 	}
 
 	/// <summary>
 	/// Gets description of next undo action.
 	/// </summary>
-	public string? GetUndoDescription() => _undoManager?.GetUndoDescription();
+	public string? GetUndoDescription() => UndoManager?.GetUndoDescription();
 
 	/// <summary>
 	/// Gets description of next redo action.
 	/// </summary>
-	public string? GetRedoDescription() => _undoManager?.GetRedoDescription();
+	public string? GetRedoDescription() => UndoManager?.GetRedoDescription();
 
 	/// <summary>
 	/// Clears all undo/redo history.
 	/// </summary>
 	public void ClearUndoHistory() {
-		_undoManager?.Clear();
+		UndoManager?.Clear();
 	}
 
 	private void ApplyAction(GameInfoTools.Core.EditAction action, bool isRedo) {

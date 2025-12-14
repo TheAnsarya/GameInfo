@@ -1,6 +1,6 @@
+using System.Collections.ObjectModel;
 using GameInfoTools.UI.Controls;
 using GameInfoTools.UI.ViewModels;
-using System.Collections.ObjectModel;
 
 namespace GameInfoTools.Tests.Controls;
 

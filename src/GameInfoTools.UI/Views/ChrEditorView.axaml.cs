@@ -89,6 +89,7 @@ public partial class ChrEditorView : UserControl {
 					if (vm.HasClipboard) {
 						vm.PasteTileCommand.Execute(null);
 					}
+
 					e.Handled = true;
 					break;
 
@@ -104,6 +105,7 @@ public partial class ChrEditorView : UserControl {
 							vm.UndoCommand.Execute(null);
 						}
 					}
+
 					e.Handled = true;
 					break;
 
@@ -112,6 +114,7 @@ public partial class ChrEditorView : UserControl {
 					if (vm.CanRedo) {
 						vm.RedoCommand.Execute(null);
 					}
+
 					e.Handled = true;
 					break;
 

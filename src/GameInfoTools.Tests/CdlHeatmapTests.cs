@@ -391,7 +391,7 @@ public class CdlHeatmapTests {
 		// Create data with large empty region in middle
 		var data = new byte[100];
 		for (int i = 0; i < 20; i++) data[i] = 0x01; // Code
-		// 20-80 is empty
+													 // 20-80 is empty
 		for (int i = 80; i < 100; i++) data[i] = 0x01; // Code
 
 		var heatmap = new CdlHeatmap(data);
@@ -407,7 +407,7 @@ public class CdlHeatmapTests {
 		// Create data with small and large empty regions
 		var data = new byte[100];
 		Array.Fill<byte>(data, 0x01); // All code
-		// Small gap (5 bytes)
+									  // Small gap (5 bytes)
 		for (int i = 10; i < 15; i++) data[i] = 0x00;
 		// Large gap (30 bytes)
 		for (int i = 40; i < 70; i++) data[i] = 0x00;
@@ -781,7 +781,7 @@ public class CdlHeatmapTests {
 	[Fact]
 	public void ExportAsSym_IncludesBankNumber() {
 		var data = new byte[0x8000]; // 2 banks
-		// First bank
+									 // First bank
 		for (int i = 0; i < 32; i++) data[i] = 0x01;
 		// Second bank
 		for (int i = 0x4000; i < 0x4020; i++) data[i] = 0x01;

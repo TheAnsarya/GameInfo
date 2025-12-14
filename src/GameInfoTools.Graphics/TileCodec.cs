@@ -124,9 +124,9 @@ public static class TileCodec {
 
 		for (int row = 0; row < 8; row++) {
 			byte plane0 = data[row * 2];
-			byte plane1 = data[row * 2 + 1];
-			byte plane2 = data[16 + row * 2];
-			byte plane3 = data[16 + row * 2 + 1];
+			byte plane1 = data[(row * 2) + 1];
+			byte plane2 = data[16 + (row * 2)];
+			byte plane3 = data[16 + (row * 2) + 1];
 
 			for (int col = 7; col >= 0; col--) {
 				int bit0 = (plane0 >> col) & 1;
@@ -165,9 +165,9 @@ public static class TileCodec {
 			}
 
 			data[row * 2] = plane0;
-			data[row * 2 + 1] = plane1;
-			data[16 + row * 2] = plane2;
-			data[16 + row * 2 + 1] = plane3;
+			data[(row * 2) + 1] = plane1;
+			data[16 + (row * 2)] = plane2;
+			data[16 + (row * 2) + 1] = plane3;
 		}
 
 		return data;
@@ -186,7 +186,7 @@ public static class TileCodec {
 		var flipped = new byte[64];
 		for (int row = 0; row < 8; row++) {
 			for (int col = 0; col < 8; col++) {
-				flipped[row * 8 + col] = pixels[row * 8 + (7 - col)];
+				flipped[(row * 8) + col] = pixels[(row * 8) + (7 - col)];
 			}
 		}
 
@@ -206,7 +206,7 @@ public static class TileCodec {
 		var flipped = new byte[64];
 		for (int row = 0; row < 8; row++) {
 			for (int col = 0; col < 8; col++) {
-				flipped[row * 8 + col] = pixels[(7 - row) * 8 + col];
+				flipped[(row * 8) + col] = pixels[((7 - row) * 8) + col];
 			}
 		}
 
@@ -226,7 +226,7 @@ public static class TileCodec {
 		var rotated = new byte[64];
 		for (int row = 0; row < 8; row++) {
 			for (int col = 0; col < 8; col++) {
-				rotated[col * 8 + (7 - row)] = pixels[row * 8 + col];
+				rotated[(col * 8) + (7 - row)] = pixels[(row * 8) + col];
 			}
 		}
 
@@ -287,14 +287,14 @@ public static class TileCodec {
 		for (int row = 0; row < 8; row++) {
 			// First 4 bitplanes (offset 0-31)
 			byte plane0 = data[row * 2];
-			byte plane1 = data[row * 2 + 1];
-			byte plane2 = data[16 + row * 2];
-			byte plane3 = data[16 + row * 2 + 1];
+			byte plane1 = data[(row * 2) + 1];
+			byte plane2 = data[16 + (row * 2)];
+			byte plane3 = data[16 + (row * 2) + 1];
 			// Second 4 bitplanes (offset 32-63)
-			byte plane4 = data[32 + row * 2];
-			byte plane5 = data[32 + row * 2 + 1];
-			byte plane6 = data[48 + row * 2];
-			byte plane7 = data[48 + row * 2 + 1];
+			byte plane4 = data[32 + (row * 2)];
+			byte plane5 = data[32 + (row * 2) + 1];
+			byte plane6 = data[48 + (row * 2)];
+			byte plane7 = data[48 + (row * 2) + 1];
 
 			for (int col = 7; col >= 0; col--) {
 				int bit0 = (plane0 >> col) & 1;
@@ -345,13 +345,13 @@ public static class TileCodec {
 			}
 
 			data[row * 2] = plane0;
-			data[row * 2 + 1] = plane1;
-			data[16 + row * 2] = plane2;
-			data[16 + row * 2 + 1] = plane3;
-			data[32 + row * 2] = plane4;
-			data[32 + row * 2 + 1] = plane5;
-			data[48 + row * 2] = plane6;
-			data[48 + row * 2 + 1] = plane7;
+			data[(row * 2) + 1] = plane1;
+			data[16 + (row * 2)] = plane2;
+			data[16 + (row * 2) + 1] = plane3;
+			data[32 + (row * 2)] = plane4;
+			data[32 + (row * 2) + 1] = plane5;
+			data[48 + (row * 2)] = plane6;
+			data[48 + (row * 2) + 1] = plane7;
 		}
 
 		return data;
@@ -377,7 +377,7 @@ public static class TileCodec {
 		for (int i = 0; i < 32; i++) {
 			// Genesis stores 2 pixels per byte, high nibble first
 			pixels[i * 2] = (byte)((data[i] >> 4) & 0x0f);
-			pixels[i * 2 + 1] = (byte)(data[i] & 0x0f);
+			pixels[(i * 2) + 1] = (byte)(data[i] & 0x0f);
 		}
 
 		return pixels;
@@ -396,7 +396,7 @@ public static class TileCodec {
 		var data = new byte[Genesis4BppTileSize];
 
 		for (int i = 0; i < 32; i++) {
-			data[i] = (byte)(((pixels[i * 2] & 0x0f) << 4) | (pixels[i * 2 + 1] & 0x0f));
+			data[i] = (byte)(((pixels[i * 2] & 0x0f) << 4) | (pixels[(i * 2) + 1] & 0x0f));
 		}
 
 		return data;
@@ -422,7 +422,7 @@ public static class TileCodec {
 		for (int i = 0; i < 32; i++) {
 			// GBA stores 2 pixels per byte, LOW nibble first (opposite of Genesis)
 			pixels[i * 2] = (byte)(data[i] & 0x0f);
-			pixels[i * 2 + 1] = (byte)((data[i] >> 4) & 0x0f);
+			pixels[(i * 2) + 1] = (byte)((data[i] >> 4) & 0x0f);
 		}
 
 		return pixels;
@@ -442,7 +442,7 @@ public static class TileCodec {
 
 		for (int i = 0; i < 32; i++) {
 			// Low nibble first
-			data[i] = (byte)((pixels[i * 2] & 0x0f) | ((pixels[i * 2 + 1] & 0x0f) << 4));
+			data[i] = (byte)((pixels[i * 2] & 0x0f) | ((pixels[(i * 2) + 1] & 0x0f) << 4));
 		}
 
 		return data;
@@ -525,6 +525,7 @@ public static class TileCodec {
 					b |= (byte)(1 << col);
 				}
 			}
+
 			data[i] = b;
 		}
 

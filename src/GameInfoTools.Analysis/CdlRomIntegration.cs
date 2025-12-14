@@ -351,6 +351,7 @@ public class CdlRomIntegration {
 		for (int i = 0; i < length; i++) {
 			byteCounts[_romData[romOffset + i]]++;
 		}
+
 		int uniqueValues = byteCounts.Count(c => c > 0);
 
 		// Check for word array (pairs of bytes with pattern)
@@ -389,10 +390,11 @@ public class CdlRomIntegration {
 				// Compare byte distributions between entries
 				int differences = 0;
 				for (int b = 0; b < structSize; b++) {
-					if (Math.Abs(_romData[romOffset + b] - _romData[romOffset + entry * structSize + b]) > 0x40) {
+					if (Math.Abs(_romData[romOffset + b] - _romData[romOffset + (entry * structSize) + b]) > 0x40) {
 						differences++;
 					}
 				}
+
 				if (differences > structSize / 2) {
 					isStructArray = false;
 					break;
@@ -498,6 +500,7 @@ public class CdlRomIntegration {
 			foreach (var label in group) {
 				sb.AppendLine($"{label.AddressHex} = {label.Name,-20} ; {label.Comment}");
 			}
+
 			sb.AppendLine();
 		}
 
@@ -538,6 +541,7 @@ public class CdlRomIntegration {
 		foreach (var func in functions.OrderByDescending(f => f.Size).Take(5)) {
 			sb.AppendLine($"║   {func.StartHex,-8} - {func.EndHex,-8}  ({func.Size,4} bytes) {func.Name,-12} ║");
 		}
+
 		sb.AppendLine("╠════════════════════════════════════════════════════════════════╣");
 
 		// Data tables
@@ -545,6 +549,7 @@ public class CdlRomIntegration {
 		foreach (var table in tables.Take(5)) {
 			sb.AppendLine($"║   {table.AddressHex,-8} {table.Type,-14} {table.EntryCount,4}×{table.EntrySize} bytes    ║");
 		}
+
 		sb.AppendLine("╚════════════════════════════════════════════════════════════════╝");
 
 		return sb.ToString();

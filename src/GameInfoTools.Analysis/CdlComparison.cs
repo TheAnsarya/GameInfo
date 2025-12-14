@@ -6,8 +6,6 @@ namespace GameInfoTools.Analysis;
 /// Provides side-by-side comparison functionality for two CDL files.
 /// </summary>
 public class CdlComparison {
-	private readonly CdlHeatmap _left;
-	private readonly CdlHeatmap _right;
 
 	/// <summary>
 	/// Type of difference between two CDL entries.
@@ -70,36 +68,36 @@ public class CdlComparison {
 	/// Creates a comparison between two CDL heatmaps.
 	/// </summary>
 	public CdlComparison(CdlHeatmap left, CdlHeatmap right) {
-		_left = left ?? throw new ArgumentNullException(nameof(left));
-		_right = right ?? throw new ArgumentNullException(nameof(right));
+		Left = left ?? throw new ArgumentNullException(nameof(left));
+		Right = right ?? throw new ArgumentNullException(nameof(right));
 	}
 
 	/// <summary>
 	/// Gets the left (baseline) CDL.
 	/// </summary>
-	public CdlHeatmap Left => _left;
+	public CdlHeatmap Left { get; }
 
 	/// <summary>
 	/// Gets the right (comparison) CDL.
 	/// </summary>
-	public CdlHeatmap Right => _right;
+	public CdlHeatmap Right { get; }
 
 	/// <summary>
 	/// Gets the minimum size of both CDL files.
 	/// </summary>
-	public int CommonSize => Math.Min(_left.Size, _right.Size);
+	public int CommonSize => Math.Min(Left.Size, Right.Size);
 
 	/// <summary>
 	/// Gets the maximum size of both CDL files.
 	/// </summary>
-	public int MaxSize => Math.Max(_left.Size, _right.Size);
+	public int MaxSize => Math.Max(Left.Size, Right.Size);
 
 	/// <summary>
 	/// Gets the difference type for a specific offset.
 	/// </summary>
 	public DiffType GetDiffType(int offset) {
-		var leftFlags = offset < _left.Size ? _left.GetFlags(offset) : CdlHeatmap.CdlFlags.None;
-		var rightFlags = offset < _right.Size ? _right.GetFlags(offset) : CdlHeatmap.CdlFlags.None;
+		var leftFlags = offset < Left.Size ? Left.GetFlags(offset) : CdlHeatmap.CdlFlags.None;
+		var rightFlags = offset < Right.Size ? Right.GetFlags(offset) : CdlHeatmap.CdlFlags.None;
 
 		if (leftFlags == rightFlags) {
 			return leftFlags == CdlHeatmap.CdlFlags.None ? DiffType.BothUncovered : DiffType.Same;
@@ -124,8 +122,8 @@ public class CdlComparison {
 		int size = MaxSize;
 
 		for (int i = 0; i < size; i++) {
-			var leftFlags = i < _left.Size ? _left.GetFlags(i) : CdlHeatmap.CdlFlags.None;
-			var rightFlags = i < _right.Size ? _right.GetFlags(i) : CdlHeatmap.CdlFlags.None;
+			var leftFlags = i < Left.Size ? Left.GetFlags(i) : CdlHeatmap.CdlFlags.None;
+			var rightFlags = i < Right.Size ? Right.GetFlags(i) : CdlHeatmap.CdlFlags.None;
 
 			if (leftFlags != rightFlags) {
 				var diffType = GetDiffType(i);
@@ -239,8 +237,8 @@ public class CdlComparison {
 		var data = new byte[size];
 
 		for (int i = 0; i < size; i++) {
-			var leftFlags = i < _left.Size ? (byte)_left.GetFlags(i) : (byte)0;
-			var rightFlags = i < _right.Size ? (byte)_right.GetFlags(i) : (byte)0;
+			var leftFlags = i < Left.Size ? (byte)Left.GetFlags(i) : (byte)0;
+			var rightFlags = i < Right.Size ? (byte)Right.GetFlags(i) : (byte)0;
 			data[i] = (byte)(leftFlags | rightFlags);
 		}
 
@@ -255,8 +253,8 @@ public class CdlComparison {
 		var data = new byte[size];
 
 		for (int i = 0; i < size; i++) {
-			var leftFlags = i < _left.Size ? (byte)_left.GetFlags(i) : (byte)0;
-			var rightFlags = i < _right.Size ? (byte)_right.GetFlags(i) : (byte)0;
+			var leftFlags = i < Left.Size ? (byte)Left.GetFlags(i) : (byte)0;
+			var rightFlags = i < Right.Size ? (byte)Right.GetFlags(i) : (byte)0;
 
 			if (leftFlags != rightFlags) {
 				data[i] = leftFlags;
@@ -274,8 +272,8 @@ public class CdlComparison {
 		var data = new byte[size];
 
 		for (int i = 0; i < size; i++) {
-			var leftFlags = (byte)_left.GetFlags(i);
-			var rightFlags = (byte)_right.GetFlags(i);
+			var leftFlags = (byte)Left.GetFlags(i);
+			var rightFlags = (byte)Right.GetFlags(i);
 			data[i] = (byte)(leftFlags & rightFlags);
 		}
 
@@ -286,8 +284,8 @@ public class CdlComparison {
 	/// Gets the comparison entry for a specific offset.
 	/// </summary>
 	public DiffEntry GetEntryAt(int offset) {
-		var leftFlags = offset < _left.Size ? _left.GetFlags(offset) : CdlHeatmap.CdlFlags.None;
-		var rightFlags = offset < _right.Size ? _right.GetFlags(offset) : CdlHeatmap.CdlFlags.None;
+		var leftFlags = offset < Left.Size ? Left.GetFlags(offset) : CdlHeatmap.CdlFlags.None;
+		var rightFlags = offset < Right.Size ? Right.GetFlags(offset) : CdlHeatmap.CdlFlags.None;
 		var diffType = GetDiffType(offset);
 		return new DiffEntry(offset, leftFlags, rightFlags, diffType);
 	}
@@ -313,8 +311,8 @@ public class CdlComparison {
 	public int? FindNextDifference(int fromOffset, bool wrap = true) {
 		// Search forward from offset
 		for (int i = fromOffset + 1; i < MaxSize; i++) {
-			var leftFlags = i < _left.Size ? _left.GetFlags(i) : CdlHeatmap.CdlFlags.None;
-			var rightFlags = i < _right.Size ? _right.GetFlags(i) : CdlHeatmap.CdlFlags.None;
+			var leftFlags = i < Left.Size ? Left.GetFlags(i) : CdlHeatmap.CdlFlags.None;
+			var rightFlags = i < Right.Size ? Right.GetFlags(i) : CdlHeatmap.CdlFlags.None;
 			if (leftFlags != rightFlags) {
 				return i;
 			}
@@ -323,8 +321,8 @@ public class CdlComparison {
 		// Wrap around if enabled
 		if (wrap) {
 			for (int i = 0; i <= fromOffset; i++) {
-				var leftFlags = i < _left.Size ? _left.GetFlags(i) : CdlHeatmap.CdlFlags.None;
-				var rightFlags = i < _right.Size ? _right.GetFlags(i) : CdlHeatmap.CdlFlags.None;
+				var leftFlags = i < Left.Size ? Left.GetFlags(i) : CdlHeatmap.CdlFlags.None;
+				var rightFlags = i < Right.Size ? Right.GetFlags(i) : CdlHeatmap.CdlFlags.None;
 				if (leftFlags != rightFlags) {
 					return i;
 				}
@@ -340,8 +338,8 @@ public class CdlComparison {
 	public int? FindPreviousDifference(int fromOffset, bool wrap = true) {
 		// Search backward from offset
 		for (int i = fromOffset - 1; i >= 0; i--) {
-			var leftFlags = i < _left.Size ? _left.GetFlags(i) : CdlHeatmap.CdlFlags.None;
-			var rightFlags = i < _right.Size ? _right.GetFlags(i) : CdlHeatmap.CdlFlags.None;
+			var leftFlags = i < Left.Size ? Left.GetFlags(i) : CdlHeatmap.CdlFlags.None;
+			var rightFlags = i < Right.Size ? Right.GetFlags(i) : CdlHeatmap.CdlFlags.None;
 			if (leftFlags != rightFlags) {
 				return i;
 			}
@@ -350,8 +348,8 @@ public class CdlComparison {
 		// Wrap around if enabled
 		if (wrap) {
 			for (int i = MaxSize - 1; i >= fromOffset; i--) {
-				var leftFlags = i < _left.Size ? _left.GetFlags(i) : CdlHeatmap.CdlFlags.None;
-				var rightFlags = i < _right.Size ? _right.GetFlags(i) : CdlHeatmap.CdlFlags.None;
+				var leftFlags = i < Left.Size ? Left.GetFlags(i) : CdlHeatmap.CdlFlags.None;
+				var rightFlags = i < Right.Size ? Right.GetFlags(i) : CdlHeatmap.CdlFlags.None;
 				if (leftFlags != rightFlags) {
 					return i;
 				}
@@ -371,8 +369,8 @@ public class CdlComparison {
 		int rightDataOnly = 0;
 
 		for (int i = 0; i < CommonSize; i++) {
-			var leftFlags = _left.GetFlags(i);
-			var rightFlags = _right.GetFlags(i);
+			var leftFlags = Left.GetFlags(i);
+			var rightFlags = Right.GetFlags(i);
 
 			bool leftCode = (leftFlags & CdlHeatmap.CdlFlags.Code) != 0;
 			bool rightCode = (rightFlags & CdlHeatmap.CdlFlags.Code) != 0;

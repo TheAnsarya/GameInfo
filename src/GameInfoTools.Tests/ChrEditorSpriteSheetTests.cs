@@ -12,9 +12,10 @@ public class ChrEditorSpriteSheetTests {
 		// Fill with recognizable patterns
 		for (int t = 0; t < tileCount; t++) {
 			for (int i = 0; i < ChrEditor.TileSize; i++) {
-				data[t * ChrEditor.TileSize + i] = (byte)((t + i) & 0xff);
+				data[(t * ChrEditor.TileSize) + i] = (byte)((t + i) & 0xff);
 			}
 		}
+
 		return data;
 	}
 

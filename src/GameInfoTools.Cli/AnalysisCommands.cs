@@ -541,6 +541,7 @@ public static class AnalysisCommands {
 				type
 			);
 		}
+
 		AnsiConsole.Write(coveredTable);
 
 		if (coveredRegions.Count > 50) {
@@ -563,6 +564,7 @@ public static class AnalysisCommands {
 				$"{length:N0}"
 			);
 		}
+
 		AnsiConsole.Write(uncoveredTable);
 
 		if (uncoveredRegions.Count > 50) {
@@ -646,6 +648,7 @@ public static class AnalysisCommands {
 			AnsiConsole.MarkupLine($"[red]Error: CDL file not found: {cdlFile1.FullName}[/]");
 			return;
 		}
+
 		if (!cdlFile2.Exists) {
 			AnsiConsole.MarkupLine($"[red]Error: CDL file not found: {cdlFile2.FullName}[/]");
 			return;
