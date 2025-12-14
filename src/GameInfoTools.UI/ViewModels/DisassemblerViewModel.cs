@@ -1,4 +1,6 @@
 using System.Collections.ObjectModel;
+using System.Text;
+using Avalonia;
 using Avalonia.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -634,12 +636,92 @@ public partial class DisassemblerViewModel : ViewModelBase, IKeyboardShortcutHan
 		Disassemble();
 	}
 
+	/// <summary>
+	/// Gets the clipboard from the current application's main window.
+	/// </summary>
+	private static Avalonia.Input.Platform.IClipboard? GetClipboard() {
+		if (Application.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop) {
+			return desktop.MainWindow?.Clipboard;
+		}
+		return null;
+	}
+
+	/// <summary>
+	/// Copy disassembly to clipboard as plain text.
+	/// </summary>
 	[RelayCommand]
-	private void CopyToClipboard() {
+	private async Task CopyToClipboard() {
+		var clipboard = GetClipboard();
+		if (clipboard is null) {
+			StatusText = "Clipboard unavailable";
+			return;
+		}
+
 		var text = string.Join(Environment.NewLine,
 			DisassemblyLines.Select(l => $"{l.Address}  {l.Bytes,-12} {l.Mnemonic} {l.Operand}"));
-		// Note: Clipboard access needs platform-specific implementation
+
+		await clipboard.SetTextAsync(text);
 		StatusText = $"Copied {DisassemblyLines.Count} lines to clipboard";
+	}
+
+	/// <summary>
+	/// Copy disassembly to clipboard as wikitext for Data Crystal.
+	/// </summary>
+	[RelayCommand]
+	private async Task CopyAsWikitext() {
+		var clipboard = GetClipboard();
+		if (clipboard is null) {
+			StatusText = "Clipboard unavailable";
+			return;
+		}
+
+		var sb = new StringBuilder();
+		sb.AppendLine("== Disassembly ==");
+		sb.AppendLine($"; Address range: ${BaseAddress:x4} - ${BaseAddress + Length:x4}");
+		sb.AppendLine($"; Offset: {{{{$|{StartOffset:x6}}}}}");
+		sb.AppendLine();
+		sb.AppendLine("<pre>");
+
+		foreach (var line in DisassemblyLines) {
+			sb.AppendLine($"{line.Address}  {line.Bytes,-12} {line.Mnemonic} {line.Operand}");
+		}
+
+		sb.AppendLine("</pre>");
+
+		await clipboard.SetTextAsync(sb.ToString());
+		StatusText = $"Copied {DisassemblyLines.Count} lines as wikitext";
+	}
+
+	/// <summary>
+	/// Copy disassembly to clipboard as assembly source code.
+	/// </summary>
+	[RelayCommand]
+	private async Task CopyAsAsm() {
+		var clipboard = GetClipboard();
+		if (clipboard is null) {
+			StatusText = "Clipboard unavailable";
+			return;
+		}
+
+		var sb = new StringBuilder();
+		sb.AppendLine($"; Disassembly from offset ${StartOffset:X6}");
+		sb.AppendLine($"; Address: ${BaseAddress:X4}-${BaseAddress + Length:X4}");
+		sb.AppendLine($".org ${BaseAddress:X4}");
+		sb.AppendLine();
+
+		foreach (var line in DisassemblyLines) {
+			var operand = line.Operand ?? "";
+			var mnemonic = line.Mnemonic.ToUpper();
+
+			// Format as proper assembly
+			if (!string.IsNullOrEmpty(line.Label)) {
+				sb.AppendLine($"{line.Label}:");
+			}
+			sb.AppendLine($"\t{mnemonic,-4} {operand}");
+		}
+
+		await clipboard.SetTextAsync(sb.ToString());
+		StatusText = $"Copied {DisassemblyLines.Count} lines as assembly source";
 	}
 
 	[RelayCommand]

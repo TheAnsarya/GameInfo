@@ -1,3 +1,5 @@
+using System.Text;
+using Avalonia;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GameInfoTools.Core;
@@ -46,6 +48,85 @@ public partial class ChecksumViewModel : ViewModelBase {
 	public ChecksumViewModel(RomFile? rom) {
 		_rom = rom;
 		CalculateChecksums();
+	}
+
+	/// <summary>
+	/// Gets the clipboard from the current application's main window.
+	/// </summary>
+	private static Avalonia.Input.Platform.IClipboard? GetClipboard() {
+		if (Application.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop) {
+			return desktop.MainWindow?.Clipboard;
+		}
+		return null;
+	}
+
+	/// <summary>
+	/// Copy checksums to clipboard as wikitext for Data Crystal.
+	/// </summary>
+	[RelayCommand]
+	private async Task CopyAsWikitext() {
+		var clipboard = GetClipboard();
+		if (clipboard is null || !HasRomLoaded) return;
+
+		var sb = new StringBuilder();
+		sb.AppendLine("== Checksums ==");
+		sb.AppendLine("{| class=\"wikitable\" border=\"1\"");
+		sb.AppendLine("|-");
+		sb.AppendLine("! Algorithm !! Value");
+		sb.AppendLine("|-");
+		sb.AppendLine($"| CRC32 || <code>{Crc32}</code>");
+		sb.AppendLine("|-");
+		sb.AppendLine($"| MD5 || <code>{Md5}</code>");
+		sb.AppendLine("|-");
+		sb.AppendLine($"| SHA1 || <code>{Sha1}</code>");
+
+		if (!string.IsNullOrEmpty(NesChecksum)) {
+			sb.AppendLine("|-");
+			sb.AppendLine($"| NES Checksum || <code>{NesChecksum}</code>");
+		}
+		if (!string.IsNullOrEmpty(SnesChecksum)) {
+			sb.AppendLine("|-");
+			sb.AppendLine($"| SNES Checksum || <code>{SnesChecksum}</code>");
+			sb.AppendLine("|-");
+			sb.AppendLine($"| SNES Complement || <code>{SnesComplement}</code>");
+		}
+		if (!string.IsNullOrEmpty(GbHeaderChecksum)) {
+			sb.AppendLine("|-");
+			sb.AppendLine($"| GB Header Checksum || <code>{GbHeaderChecksum}</code>");
+			sb.AppendLine("|-");
+			sb.AppendLine($"| GB Global Checksum || <code>{GbGlobalChecksum}</code>");
+		}
+
+		sb.AppendLine("|}");
+
+		await clipboard.SetTextAsync(sb.ToString());
+	}
+
+	/// <summary>
+	/// Copy checksums to clipboard as plain text.
+	/// </summary>
+	[RelayCommand]
+	private async Task CopyAsText() {
+		var clipboard = GetClipboard();
+		if (clipboard is null || !HasRomLoaded) return;
+
+		var sb = new StringBuilder();
+		sb.AppendLine($"CRC32: {Crc32}");
+		sb.AppendLine($"MD5:   {Md5}");
+		sb.AppendLine($"SHA1:  {Sha1}");
+
+		if (!string.IsNullOrEmpty(NesChecksum))
+			sb.AppendLine($"NES:   {NesChecksum}");
+		if (!string.IsNullOrEmpty(SnesChecksum)) {
+			sb.AppendLine($"SNES:  {SnesChecksum}");
+			sb.AppendLine($"Comp:  {SnesComplement}");
+		}
+		if (!string.IsNullOrEmpty(GbHeaderChecksum)) {
+			sb.AppendLine($"GB Hdr: {GbHeaderChecksum}");
+			sb.AppendLine($"GB Gbl: {GbGlobalChecksum}");
+		}
+
+		await clipboard.SetTextAsync(sb.ToString());
 	}
 
 	[RelayCommand]

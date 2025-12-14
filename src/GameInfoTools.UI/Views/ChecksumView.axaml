@@ -71,6 +71,14 @@
 			<StackPanel Orientation="Horizontal" Spacing="8">
 				<Button Content="Recalculate All" Command="{Binding CalculateChecksumsCommand}"/>
 				<Button Content="Fix Checksum" Command="{Binding FixChecksumCommand}"/>
+				<SplitButton Content="Copy" Command="{Binding CopyAsWikitextCommand}" IsEnabled="{Binding HasRomLoaded}">
+					<SplitButton.Flyout>
+						<MenuFlyout Placement="Bottom">
+							<MenuItem Header="Copy as Wikitext" Command="{Binding CopyAsWikitextCommand}"/>
+							<MenuItem Header="Copy as Plain Text" Command="{Binding CopyAsTextCommand}"/>
+						</MenuFlyout>
+					</SplitButton.Flyout>
+				</SplitButton>
 			</StackPanel>
 		</StackPanel>
 	</ScrollViewer>

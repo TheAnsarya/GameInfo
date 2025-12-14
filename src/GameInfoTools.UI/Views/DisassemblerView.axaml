@@ -45,7 +45,15 @@
 				<CheckBox Content="Auto-label" IsChecked="{Binding AutoLabelBranches}" VerticalAlignment="Center"/>
 				<Separator/>
 				<Button Content="🔍" Command="{Binding ToggleSearchCommand}" ToolTip.Tip="Search (Ctrl+F)" Width="30"/>
-				<Button Content="📋" Command="{Binding CopyToClipboardCommand}" ToolTip.Tip="Copy to Clipboard" Width="30"/>
+				<SplitButton Content="📋" Command="{Binding CopyToClipboardCommand}" ToolTip.Tip="Copy to Clipboard" Width="60">
+					<SplitButton.Flyout>
+						<MenuFlyout Placement="Bottom">
+							<MenuItem Header="Copy as Text" Command="{Binding CopyToClipboardCommand}"/>
+							<MenuItem Header="Copy as ASM Source" Command="{Binding CopyAsAsmCommand}"/>
+							<MenuItem Header="Copy as Wikitext" Command="{Binding CopyAsWikitextCommand}"/>
+						</MenuFlyout>
+					</SplitButton.Flyout>
+				</SplitButton>
 			</StackPanel>
 		</Border>
 
