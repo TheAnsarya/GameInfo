@@ -32,6 +32,38 @@ public enum MapDrawingTool {
 }
 
 /// <summary>
+/// Tile format for individual layers.
+/// </summary>
+public enum LayerTileFormat {
+	/// <summary>Simple tile index only.</summary>
+	TileIndex,
+	/// <summary>Tile index + attribute byte.</summary>
+	TileAndAttribute,
+	/// <summary>16x16 metatile indices.</summary>
+	Metatile,
+	/// <summary>Compressed RLE data.</summary>
+	CompressedRle,
+	/// <summary>Custom format.</summary>
+	Custom
+}
+
+/// <summary>
+/// Blend mode for layer rendering.
+/// </summary>
+public enum LayerBlendMode {
+	/// <summary>Normal opacity blend.</summary>
+	Normal,
+	/// <summary>Multiply (darken).</summary>
+	Multiply,
+	/// <summary>Screen (lighten).</summary>
+	Screen,
+	/// <summary>Overlay (contrast).</summary>
+	Overlay,
+	/// <summary>Difference (invert).</summary>
+	Difference
+}
+
+/// <summary>
 /// Map layer for multi-layer maps.
 /// </summary>
 public record MapLayer(
@@ -41,7 +73,11 @@ public record MapLayer(
 	bool IsLocked,
 	double Opacity,
 	int DataOffset,
-	byte[]? Data
+	byte[]? Data,
+	LayerTileFormat TileFormat = LayerTileFormat.TileIndex,
+	LayerBlendMode BlendMode = LayerBlendMode.Normal,
+	int ZOrder = 0,
+	int BytesPerTile = 1
 );
 
 /// <summary>
@@ -612,6 +648,376 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 
 		// TODO: Implement actual merge logic based on map format
 		StatusText = $"Merge {visibleLayers.Count} layers (not yet implemented)";
+	}
+
+	/// <summary>
+	/// Duplicate a layer.
+	/// </summary>
+	[RelayCommand]
+	private void DuplicateLayer(int index) {
+		if (index < 0 || index >= Layers.Count) return;
+
+		var source = Layers[index];
+		var newIndex = Layers.Count;
+		var newData = source.Data is not null ? (byte[])source.Data.Clone() : null;
+
+		var duplicate = new MapLayer(
+			$"{source.Name} (Copy)",
+			newIndex,
+			source.IsVisible,
+			false, // Not locked
+			source.Opacity,
+			source.DataOffset,
+			newData,
+			source.TileFormat,
+			source.BlendMode,
+			source.ZOrder + 1,
+			source.BytesPerTile
+		);
+
+		Layers.Add(duplicate);
+		LayerCount = Layers.Count;
+		StatusText = $"Duplicated layer '{source.Name}'";
+	}
+
+	/// <summary>
+	/// Set layer data offset.
+	/// </summary>
+	public void SetLayerDataOffset(int index, int offset) {
+		if (index < 0 || index >= Layers.Count) return;
+
+		var layer = Layers[index];
+		Layers[index] = layer with { DataOffset = offset };
+		StatusText = $"Layer {index} offset: 0x{offset:X6}";
+	}
+
+	/// <summary>
+	/// Set layer tile format.
+	/// </summary>
+	public void SetLayerTileFormat(int index, LayerTileFormat format) {
+		if (index < 0 || index >= Layers.Count) return;
+
+		var layer = Layers[index];
+		int bytesPerTile = format switch {
+			LayerTileFormat.TileIndex => 1,
+			LayerTileFormat.TileAndAttribute => 2,
+			LayerTileFormat.Metatile => 1,
+			LayerTileFormat.CompressedRle => 1,
+			LayerTileFormat.Custom => layer.BytesPerTile,
+			_ => 1
+		};
+
+		Layers[index] = layer with { TileFormat = format, BytesPerTile = bytesPerTile };
+		StatusText = $"Layer {index} format: {format}";
+	}
+
+	/// <summary>
+	/// Set layer blend mode.
+	/// </summary>
+	public void SetLayerBlendMode(int index, LayerBlendMode mode) {
+		if (index < 0 || index >= Layers.Count) return;
+
+		var layer = Layers[index];
+		Layers[index] = layer with { BlendMode = mode };
+		StatusText = $"Layer {index} blend: {mode}";
+	}
+
+	/// <summary>
+	/// Set layer Z-order.
+	/// </summary>
+	public void SetLayerZOrder(int index, int zOrder) {
+		if (index < 0 || index >= Layers.Count) return;
+
+		var layer = Layers[index];
+		Layers[index] = layer with { ZOrder = zOrder };
+	}
+
+	/// <summary>
+	/// Show only the active layer.
+	/// </summary>
+	[ObservableProperty]
+	private bool _soloActiveLayer;
+
+	/// <summary>
+	/// Show layer diff view (highlight differences between layers).
+	/// </summary>
+	[ObservableProperty]
+	private bool _showLayerDiff;
+
+	/// <summary>
+	/// Layer comparison target index.
+	/// </summary>
+	[ObservableProperty]
+	private int _diffTargetLayerIndex = -1;
+
+	/// <summary>
+	/// Get composite map data with all visible layers blended.
+	/// </summary>
+	public byte[] GetCompositeMapData() {
+		int mapSize = MapWidth * MapHeight;
+		var result = new byte[mapSize];
+
+		// Sort layers by Z-order
+		var sortedLayers = Layers
+			.Where(l => l.IsVisible && l.Data is not null)
+			.OrderBy(l => l.ZOrder)
+			.ToList();
+
+		foreach (var layer in sortedLayers) {
+			if (layer.Data is null) continue;
+
+			for (int i = 0; i < mapSize && i < layer.Data.Length; i++) {
+				byte srcTile = layer.Data[i];
+				byte destTile = result[i];
+
+				// Apply blend mode
+				result[i] = layer.BlendMode switch {
+					LayerBlendMode.Normal => layer.Opacity >= 1.0 ? srcTile
+						: (srcTile != 0 ? srcTile : destTile), // Simple transparency
+					LayerBlendMode.Multiply => (byte)Math.Min(255, (destTile * srcTile) / 255),
+					LayerBlendMode.Screen => (byte)(255 - ((255 - destTile) * (255 - srcTile) / 255)),
+					LayerBlendMode.Overlay => destTile < 128
+						? (byte)((2 * destTile * srcTile) / 255)
+						: (byte)(255 - (2 * (255 - destTile) * (255 - srcTile) / 255)),
+					LayerBlendMode.Difference => (byte)Math.Abs(destTile - srcTile),
+					_ => srcTile
+				};
+			}
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Get layer diff data showing differences between two layers.
+	/// </summary>
+	public byte[] GetLayerDiffData(int layer1Index, int layer2Index) {
+		if (layer1Index < 0 || layer1Index >= Layers.Count ||
+			layer2Index < 0 || layer2Index >= Layers.Count) {
+			return [];
+		}
+
+		var layer1 = Layers[layer1Index];
+		var layer2 = Layers[layer2Index];
+
+		if (layer1.Data is null || layer2.Data is null) return [];
+
+		int mapSize = MapWidth * MapHeight;
+		var result = new byte[mapSize];
+
+		for (int i = 0; i < mapSize; i++) {
+			byte tile1 = i < layer1.Data.Length ? layer1.Data[i] : (byte)0;
+			byte tile2 = i < layer2.Data.Length ? layer2.Data[i] : (byte)0;
+
+			// 0 = same, 255 = different
+			result[i] = tile1 == tile2 ? (byte)0 : (byte)255;
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Export a single layer to file.
+	/// </summary>
+	[RelayCommand]
+	private async Task ExportLayerAsync((Window window, int layerIndex) args) {
+		if (args.layerIndex < 0 || args.layerIndex >= Layers.Count) return;
+
+		var layer = Layers[args.layerIndex];
+		if (layer.Data is null) {
+			StatusText = $"Layer '{layer.Name}' has no data to export";
+			return;
+		}
+
+		var dialogService = FileDialogService.FromWindow(args.window);
+		var path = await dialogService.SaveFileAsync(
+			$"Export Layer - {layer.Name}",
+			".bin",
+			$"{layer.Name.Replace(" ", "_")}.bin",
+			FileDialogService.BinaryFiles
+		);
+
+		if (path is null) return;
+
+		try {
+			await File.WriteAllBytesAsync(path, layer.Data);
+			StatusText = $"Exported layer '{layer.Name}' to {Path.GetFileName(path)}";
+		} catch (Exception ex) {
+			StatusText = $"Error exporting layer: {ex.Message}";
+		}
+	}
+
+	/// <summary>
+	/// Export layer as JSON with metadata.
+	/// </summary>
+	[RelayCommand]
+	private async Task ExportLayerAsJsonAsync((Window window, int layerIndex) args) {
+		if (args.layerIndex < 0 || args.layerIndex >= Layers.Count) return;
+
+		var layer = Layers[args.layerIndex];
+
+		var dialogService = FileDialogService.FromWindow(args.window);
+		var path = await dialogService.SaveFileAsync(
+			$"Export Layer JSON - {layer.Name}",
+			".json",
+			$"{layer.Name.Replace(" ", "_")}.json",
+			FileDialogService.JsonFiles
+		);
+
+		if (path is null) return;
+
+		try {
+			var json = System.Text.Json.JsonSerializer.Serialize(new {
+				layer.Name,
+				layer.Index,
+				Width = MapWidth,
+				Height = MapHeight,
+				TileFormat = layer.TileFormat.ToString(),
+				BlendMode = layer.BlendMode.ToString(),
+				layer.Opacity,
+				layer.ZOrder,
+				DataOffset = $"0x{layer.DataOffset:X6}",
+				Data = layer.Data?.Select(b => (int)b).ToArray() ?? []
+			}, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
+
+			await File.WriteAllTextAsync(path, json);
+			StatusText = $"Exported layer '{layer.Name}' as JSON";
+		} catch (Exception ex) {
+			StatusText = $"Error exporting layer: {ex.Message}";
+		}
+	}
+
+	/// <summary>
+	/// Import data to a layer from file.
+	/// </summary>
+	[RelayCommand]
+	private async Task ImportToLayerAsync((Window window, int layerIndex) args) {
+		if (args.layerIndex < 0 || args.layerIndex >= Layers.Count) return;
+
+		var layer = Layers[args.layerIndex];
+		if (layer.IsLocked) {
+			StatusText = $"Layer '{layer.Name}' is locked";
+			return;
+		}
+
+		var dialogService = FileDialogService.FromWindow(args.window);
+		var path = await dialogService.OpenFileAsync(
+			$"Import to Layer - {layer.Name}",
+			FileDialogService.AllFiles
+		);
+
+		if (path is null) return;
+
+		try {
+			var data = await File.ReadAllBytesAsync(path);
+			int mapSize = MapWidth * MapHeight;
+
+			// Truncate or pad data to fit map size
+			if (data.Length != mapSize) {
+				var resized = new byte[mapSize];
+				Array.Copy(data, resized, Math.Min(data.Length, mapSize));
+				data = resized;
+			}
+
+			Layers[args.layerIndex] = layer with { Data = data };
+			StatusText = $"Imported {data.Length} bytes to layer '{layer.Name}'";
+		} catch (Exception ex) {
+			StatusText = $"Error importing to layer: {ex.Message}";
+		}
+	}
+
+	/// <summary>
+	/// Merge specific layers (not just visible ones).
+	/// </summary>
+	public byte[] MergeLayers(params int[] layerIndices) {
+		int mapSize = MapWidth * MapHeight;
+		var result = new byte[mapSize];
+
+		var layersToMerge = layerIndices
+			.Where(i => i >= 0 && i < Layers.Count && Layers[i].Data is not null)
+			.Select(i => Layers[i])
+			.OrderBy(l => l.ZOrder)
+			.ToList();
+
+		foreach (var layer in layersToMerge) {
+			if (layer.Data is null) continue;
+
+			for (int i = 0; i < mapSize && i < layer.Data.Length; i++) {
+				if (layer.Data[i] != 0) { // Simple transparency - 0 = transparent
+					result[i] = layer.Data[i];
+				}
+			}
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Flatten all layers into a single layer.
+	/// </summary>
+	[RelayCommand]
+	private void FlattenLayers() {
+		if (Layers.Count <= 1) return;
+
+		var compositeData = GetCompositeMapData();
+
+		// Remove all layers except first
+		while (Layers.Count > 1) {
+			Layers.RemoveAt(Layers.Count - 1);
+		}
+
+		// Update first layer with composite data
+		var baseLayer = Layers[0];
+		Layers[0] = baseLayer with { Name = "Flattened", Data = compositeData };
+
+		LayerCount = 1;
+		ActiveLayerIndex = 0;
+		ActiveLayer = Layers[0];
+
+		StatusText = "Flattened all layers";
+	}
+
+	/// <summary>
+	/// Create a layer from current selection.
+	/// </summary>
+	[RelayCommand]
+	private void CreateLayerFromSelection() {
+		if (!HasSelection || MapDataArray is null) {
+			StatusText = "No selection to create layer from";
+			return;
+		}
+
+		int startX = Math.Min(SelectionStartX, SelectionEndX);
+		int endX = Math.Max(SelectionStartX, SelectionEndX);
+		int startY = Math.Min(SelectionStartY, SelectionEndY);
+		int endY = Math.Max(SelectionStartY, SelectionEndY);
+
+		int mapSize = MapWidth * MapHeight;
+		var layerData = new byte[mapSize]; // Transparent (0) by default
+
+		for (int y = startY; y <= endY && y < MapHeight; y++) {
+			for (int x = startX; x <= endX && x < MapWidth; x++) {
+				int srcIndex = y * MapWidth + x;
+				if (srcIndex < MapDataArray.Length) {
+					layerData[srcIndex] = MapDataArray[srcIndex];
+				}
+			}
+		}
+
+		int newIndex = Layers.Count;
+		var newLayer = new MapLayer(
+			$"Selection Layer {newIndex}",
+			newIndex,
+			true,
+			false,
+			1.0,
+			0, // No ROM offset - in-memory only
+			layerData
+		);
+
+		Layers.Add(newLayer);
+		LayerCount = Layers.Count;
+		StatusText = $"Created layer from selection ({endX - startX + 1}x{endY - startY + 1})";
 	}
 
 	/// <summary>
