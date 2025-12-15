@@ -162,8 +162,9 @@ public class BuildPipelineService {
 
 				var outputPath = ResolvePath(asset.Output);
 
-				// Use type-specific extractor for intelligent conversion
-				var extractor = AssetExtractorFactory.GetExtractor(asset.Type, _config.Project.Platform);
+				// Prefer platform-specific extractor when available, fall back to type-specific
+				var extractor = AssetExtractorFactory.GetPlatformExtractor(_config.Project.Platform)
+					?? AssetExtractorFactory.GetExtractor(asset.Type, _config.Project.Platform);
 				var extractResult = await extractor.ExtractAsync(
 					romData,
 					asset,

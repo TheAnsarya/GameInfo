@@ -150,8 +150,9 @@ Add unit tests for the Wiki project (optional but recommended); Test against Dat
 
 git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; always create todo-lists and create github issues and epics; and update them as you complete work; always create session logs in `~docs\session-logs` and ai chat logs at `~docs\chat-logs\` as markdown (`.md`) log files. log all of the chat/responses and work; continue;
 
+Build Pipeline,
 
-
+you're supposed to always be working in a branch for each issue 
 
 
 
