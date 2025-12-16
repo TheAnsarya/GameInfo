@@ -54,8 +54,10 @@ public static class AssetExtractorFactory {
 	public static IAssetExtractor? GetPlatformExtractor(Platform platform) {
 		return platform switch {
 			Platform.Nes => new NesAssetExtractor(),
-			// Future: Platform.Snes => new SnesAssetExtractor(),
-			// Future: Platform.Genesis => new GenesisAssetExtractor(),
+			Platform.Snes => new SnesAssetExtractor(),
+			Platform.Genesis => new GenesisAssetExtractor(),
+			Platform.Gb or Platform.Gbc => new GameBoyAssetExtractor(),
+			Platform.Gba => new GbaAssetExtractor(),
 			_ => null
 		};
 	}
