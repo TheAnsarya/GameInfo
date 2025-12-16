@@ -8,20 +8,23 @@ using System.Text.Json.Serialization;
 namespace GameInfoTools.Wiki;
 
 /// <summary>
-/// Client for interacting with MediaWiki API (Data Crystal, etc.).
+/// Client for interacting with MediaWiki API.
 /// Supports reading pages, comparing revisions, and (with proper review) editing.
 ///
-/// ⚠️ IMPORTANT: Data Crystal FORBIDS AI-generated content.
-/// All content MUST be manually reviewed and edited before uploading.
-/// Uploading unreviewed AI-generated content will result in a ban.
+/// Content policy is configurable per wiki - some wikis forbid AI content,
+/// others allow it. Use WikiProfileManager to configure policies.
 /// </summary>
 public class MediaWikiClient : IDisposable {
 	private readonly HttpClient _httpClient;
 	private readonly MediaWikiConfig _config;
+	private readonly WikiContentPolicy _contentPolicy;
 	private readonly CookieContainer _cookies;
 	private string? _csrfToken;
 	private bool _isLoggedIn;
 	private bool _disposed;
+	private DateTime _lastEditTime = DateTime.MinValue;
+	private int _editsThisHour;
+	private DateTime _editHourStart = DateTime.UtcNow;
 
 	/// <summary>
 	/// Event raised when an operation is about to upload content.
@@ -30,10 +33,17 @@ public class MediaWikiClient : IDisposable {
 	public event EventHandler<UploadVerificationEventArgs>? UploadRequested;
 
 	/// <summary>
-	/// Creates a new MediaWiki client.
+	/// Creates a new MediaWiki client with default (permissive) content policy.
 	/// </summary>
-	public MediaWikiClient(MediaWikiConfig config) {
+	public MediaWikiClient(MediaWikiConfig config) : this(config, new WikiContentPolicy { AllowsAiContent = true }) {
+	}
+
+	/// <summary>
+	/// Creates a new MediaWiki client with the specified content policy.
+	/// </summary>
+	public MediaWikiClient(MediaWikiConfig config, WikiContentPolicy contentPolicy) {
 		_config = config ?? throw new ArgumentNullException(nameof(config));
+		_contentPolicy = contentPolicy ?? throw new ArgumentNullException(nameof(contentPolicy));
 		_cookies = new CookieContainer();
 
 		var handler = new HttpClientHandler {
@@ -58,6 +68,24 @@ public class MediaWikiClient : IDisposable {
 	/// The wiki configuration.
 	/// </summary>
 	public MediaWikiConfig Config => _config;
+
+	/// <summary>
+	/// The content policy for this wiki.
+	/// </summary>
+	public WikiContentPolicy ContentPolicy => _contentPolicy;
+
+	/// <summary>
+	/// Whether this wiki allows AI-generated content.
+	/// </summary>
+	public bool AllowsAiContent => _contentPolicy.AllowsAiContent;
+
+	/// <summary>
+	/// Gets the AI content warning message for this wiki, if applicable.
+	/// </summary>
+	public string? AiContentWarning =>
+		!_contentPolicy.AllowsAiContent && !string.IsNullOrEmpty(_contentPolicy.AiContentWarning)
+			? _contentPolicy.AiContentWarning
+			: null;
 
 	#region Read Operations (Safe)
 
@@ -354,10 +382,8 @@ public class MediaWikiClient : IDisposable {
 	/// <summary>
 	/// Edits a wiki page.
 	///
-	/// ⚠️ WARNING: This will upload content to the wiki.
-	/// Data Crystal FORBIDS AI-generated content.
-	/// All content MUST be manually reviewed and edited before calling this method.
-	/// Uploading unreviewed AI-generated content will result in a ban.
+	/// Content policy is determined by the wiki profile.
+	/// For wikis that forbid AI content, all content must be marked as reviewed before uploading.
 	/// </summary>
 	/// <param name="title">Page title to edit.</param>
 	/// <param name="content">New page content (wikitext).</param>
@@ -372,16 +398,30 @@ public class MediaWikiClient : IDisposable {
 		WikiSyncState syncState,
 		CancellationToken cancellationToken = default) {
 
-		// CRITICAL: Verify content has been reviewed
-		if (!syncState.ReviewedForUpload) {
+		// Check content policy - if AI content not allowed, require review
+		if (!_contentPolicy.AllowsAiContent && !syncState.ReviewedForUpload) {
 			return new EditResult {
 				Success = false,
 				ErrorCode = "NOT_REVIEWED",
-				ErrorMessage = "Content has not been marked as reviewed. " +
-					"AI-generated content MUST be manually reviewed before uploading. " +
-					"Data Crystal will ban users who upload unreviewed AI content."
+				ErrorMessage = _contentPolicy.AiContentWarning.Length > 0
+					? _contentPolicy.AiContentWarning
+					: "Content has not been marked as reviewed. " +
+						"This wiki requires manual review before uploading."
 			};
 		}
+
+		// Check if review is required regardless of AI policy
+		if (_contentPolicy.RequireReviewBeforeUpload && !syncState.ReviewedForUpload) {
+			return new EditResult {
+				Success = false,
+				ErrorCode = "NOT_REVIEWED",
+				ErrorMessage = "This wiki requires all content to be reviewed before uploading."
+			};
+		}
+
+		// Check rate limits
+		var rateLimitResult = CheckRateLimits();
+		if (rateLimitResult != null) return rateLimitResult;
 
 		// Allow event handlers to abort upload
 		var verifyArgs = new UploadVerificationEventArgs(title, content, syncState);
@@ -407,11 +447,16 @@ public class MediaWikiClient : IDisposable {
 			await RefreshCsrfTokenAsync(cancellationToken);
 		}
 
+		// Apply required summary prefix if configured
+		var finalSummary = !string.IsNullOrEmpty(_contentPolicy.RequiredSummaryPrefix)
+			? $"{_contentPolicy.RequiredSummaryPrefix} {summary}"
+			: summary;
+
 		var parameters = new Dictionary<string, string> {
 			["action"] = "edit",
 			["title"] = title,
 			["text"] = content,
-			["summary"] = summary,
+			["summary"] = finalSummary,
 			["token"] = _csrfToken!,
 			["format"] = "json",
 			["formatversion"] = "2"
@@ -423,7 +468,13 @@ public class MediaWikiClient : IDisposable {
 		}
 
 		try {
+			// Apply rate limit delay if needed
+			await ApplyRateLimitDelayAsync(cancellationToken);
+
 			var response = await PostAsync(parameters, cancellationToken);
+
+			// Record edit for rate limiting
+			RecordEdit();
 
 			if (response.RootElement.TryGetProperty("error", out var error)) {
 				return new EditResult {
@@ -456,6 +507,44 @@ public class MediaWikiClient : IDisposable {
 				ErrorMessage = ex.Message
 			};
 		}
+	}
+
+	private EditResult? CheckRateLimits() {
+		// Reset hourly counter if needed
+		if ((DateTime.UtcNow - _editHourStart).TotalHours >= 1) {
+			_editsThisHour = 0;
+			_editHourStart = DateTime.UtcNow;
+		}
+
+		// Check max edits per hour
+		if (_contentPolicy.MaxEditsPerHour > 0 && _editsThisHour >= _contentPolicy.MaxEditsPerHour) {
+			var resetTime = _editHourStart.AddHours(1);
+			return new EditResult {
+				Success = false,
+				ErrorCode = "RATE_LIMITED",
+				ErrorMessage = $"Rate limit reached ({_contentPolicy.MaxEditsPerHour} edits/hour). " +
+					$"Try again after {resetTime:HH:mm:ss} UTC."
+			};
+		}
+
+		return null;
+	}
+
+	private async Task ApplyRateLimitDelayAsync(CancellationToken cancellationToken) {
+		if (_contentPolicy.MinEditDelaySeconds > 0) {
+			var timeSinceLastEdit = DateTime.UtcNow - _lastEditTime;
+			var requiredDelay = TimeSpan.FromSeconds(_contentPolicy.MinEditDelaySeconds);
+
+			if (timeSinceLastEdit < requiredDelay) {
+				var delay = requiredDelay - timeSinceLastEdit;
+				await Task.Delay(delay, cancellationToken);
+			}
+		}
+	}
+
+	private void RecordEdit() {
+		_lastEditTime = DateTime.UtcNow;
+		_editsThisHour++;
 	}
 
 	#endregion
