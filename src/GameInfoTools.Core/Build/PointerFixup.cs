@@ -166,8 +166,7 @@ public class PointerFixup {
 					NewRawValue = newRawValue,
 					Format = format.Type
 				});
-			}
-			else if (address >= removeOffset) {
+			} else if (address >= removeOffset) {
 				// Pointer points into removed region - mark as invalid
 				invalidPointers.Add(new PointerFixInfo {
 					Location = location.Offset,
@@ -310,8 +309,7 @@ public class PointerFixup {
 					modifiedData = result.ModifiedData;
 					allFixes.AddRange(result.FixedPointers);
 				}
-			}
-			catch (Exception ex) {
+			} catch (Exception ex) {
 				errors.Add($"Operation '{operation.Name ?? "unnamed"}': {ex.Message}");
 			}
 		}
@@ -387,8 +385,7 @@ public class PointerFixup {
 					TargetAddress = address,
 					Format = format.Type
 				});
-			}
-			else {
+			} else {
 				invalidPointers.Add(new PointerInfo {
 					Location = location.Offset,
 					RawValue = rawValue,
@@ -415,8 +412,7 @@ public class PointerFixup {
 			for (var i = 0; i < format.ByteSize; i++) {
 				value |= data[offset + i] << (i * 8);
 			}
-		}
-		else {
+		} else {
 			for (var i = 0; i < format.ByteSize; i++) {
 				value |= data[offset + i] << ((format.ByteSize - 1 - i) * 8);
 			}
@@ -430,8 +426,7 @@ public class PointerFixup {
 			for (var i = 0; i < format.ByteSize; i++) {
 				data[offset + i] = (byte)(value >> (i * 8));
 			}
-		}
-		else {
+		} else {
 			for (var i = 0; i < format.ByteSize; i++) {
 				data[offset + i] = (byte)(value >> ((format.ByteSize - 1 - i) * 8));
 			}

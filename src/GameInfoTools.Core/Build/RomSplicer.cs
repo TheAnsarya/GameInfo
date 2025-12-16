@@ -70,8 +70,7 @@ public class RomSplicer {
 					Name = region.Name
 				});
 			}
-		}
-		else if (config.PartSize > 0) {
+		} else if (config.PartSize > 0) {
 			// Split by fixed part size
 			var partIndex = 0;
 			while (offset < romData.Length) {
@@ -95,12 +94,10 @@ public class RomSplicer {
 				offset += size;
 				partIndex++;
 			}
-		}
-		else if (config.Interleave != InterleaveMode.None) {
+		} else if (config.Interleave != InterleaveMode.None) {
 			// Split interleaved data
 			parts.AddRange(await SplitInterleavedAsync(romData, outputDir, config));
-		}
-		else {
+		} else {
 			throw new ArgumentException("Must specify regions, partSize, or interleave mode");
 		}
 
@@ -131,8 +128,7 @@ public class RomSplicer {
 			var headerData = await File.ReadAllBytesAsync(config.HeaderPath);
 			outputData.AddRange(headerData);
 			headerSize = headerData.Length;
-		}
-		else if (config.HeaderSize > 0) {
+		} else if (config.HeaderSize > 0) {
 			// Create empty header
 			outputData.AddRange(new byte[config.HeaderSize]);
 			headerSize = config.HeaderSize;
@@ -143,8 +139,7 @@ public class RomSplicer {
 			// Interleave parts
 			var interleavedData = await CombineInterleavedAsync(config);
 			outputData.AddRange(interleavedData);
-		}
-		else if (config.Parts.Count > 0) {
+		} else if (config.Parts.Count > 0) {
 			// Simple concatenation (sorted by index or order)
 			var sortedParts = config.Parts.OrderBy(p => p.Index ?? 0).ToList();
 			foreach (var part in sortedParts) {
@@ -421,8 +416,7 @@ public class RomSplicer {
 		if (config.Interleave == InterleaveMode.WordSwap && partDataList.Count >= 2) {
 			// Word-swap two parts
 			return InterleaveWordSwap(partDataList[0], partDataList[1]);
-		}
-		else if (config.Interleave == InterleaveMode.SMD && partDataList.Count >= 2) {
+		} else if (config.Interleave == InterleaveMode.SMD && partDataList.Count >= 2) {
 			// SMD interleaving
 			return InterleaveSmd(partDataList[0], partDataList[1]);
 		}

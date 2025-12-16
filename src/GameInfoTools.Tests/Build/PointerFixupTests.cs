@@ -172,7 +172,7 @@ public class PointerFixupTests : IDisposable {
 
 		// Assert
 		Assert.Equal(2, result.TotalPointersFixed); // Two pointers pointed to moved region
-		// Check the first moved pointer now points to 0x9000
+													// Check the first moved pointer now points to 0x9000
 		Assert.Equal(0x00, result.ModifiedData[2]);
 		Assert.Equal(0x90, result.ModifiedData[3]);
 		// Check the second moved pointer now points to 0x9010
@@ -245,7 +245,7 @@ public class PointerFixupTests : IDisposable {
 
 		// Assert
 		Assert.Equal(1, result.TotalPointersFixed); // Only second pointer should be fixed
-		// First pointer unchanged (points before insertion at 0x5000)
+													// First pointer unchanged (points before insertion at 0x5000)
 		Assert.Equal(0x00, result.ModifiedData[0]);
 		Assert.Equal(0x40, result.ModifiedData[1]);
 		// Second pointer was fixed - verify old/new in the fix info
