@@ -597,7 +597,8 @@ public class LocalizationManagerTests {
 	public void CopyStringsToLocale_CopiesStrings() {
 		var manager = CreateManagerWithStrings();
 
-		int copied = manager.CopyStringsToLocale("en", "es");
+		// Strings already exist in 'es' (added by AddStringKey), so use overwrite: true
+		int copied = manager.CopyStringsToLocale("en", "es", overwrite: true);
 
 		Assert.Equal(5, copied);
 		Assert.Equal("Hello!", manager.GetString("greeting", "es"));
