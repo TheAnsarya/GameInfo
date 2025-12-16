@@ -367,14 +367,16 @@ public class SaveEditor {
 
 	private static SavePlatform DetectPlatform(byte[] data) {
 		// Try to detect based on file size and content patterns
+		// Check more specific patterns first, then fall back to size-based detection
 		return data.Length switch {
-			0x2000 => SavePlatform.Nes,       // 8KB battery RAM
-			0x8000 => SavePlatform.Snes,      // 32KB SRAM
-			0x10000 => SavePlatform.Snes,     // 64KB SRAM
-			0x800 => SavePlatform.GameBoy,    // 2KB
-			0x2000 when HasGameBoyPattern(data) => SavePlatform.GameBoy, // 8KB
-			0x8000 when HasGameBoyPattern(data) => SavePlatform.GameBoyColor, // 32KB
-			0x10000 when IsGbaFlash(data) => SavePlatform.Gba,
+			0x800 => SavePlatform.GameBoy,    // 2KB - GB only
+			0x2000 when HasGameBoyPattern(data) => SavePlatform.GameBoy, // 8KB GB
+			0x2000 => SavePlatform.Nes,       // 8KB battery RAM (NES fallback)
+			0x8000 when HasGameBoyPattern(data) => SavePlatform.GameBoyColor, // 32KB GBC
+			0x8000 => SavePlatform.Snes,      // 32KB SRAM (SNES fallback)
+			0x10000 when IsGbaFlash(data) => SavePlatform.Gba, // 64KB GBA flash
+			0x10000 => SavePlatform.Snes,     // 64KB SRAM (SNES fallback)
+			0x20000 => SavePlatform.Gba,      // 128KB GBA flash
 			_ => SavePlatform.Unknown
 		};
 	}
