@@ -205,8 +205,8 @@ public class EquipmentSystemTests {
 
 		Assert.Equal(10, equipment[0].BuyPrice);  // Wooden Sword (byte value 10)
 		Assert.Equal(100, equipment[1].BuyPrice); // Iron Sword (byte value 100)
-		// Flame Sword price is 0xf4 + (0x01 << 8) = 244 + 256 = 500
-		// But if only low byte is read, it's 244
+												  // Flame Sword price is 0xf4 + (0x01 << 8) = 244 + 256 = 500
+												  // But if only low byte is read, it's 244
 
 		// First verify schema has correct field type
 		var weaponSchema = system.Schemas.First(s => s.Name == "Weapons");

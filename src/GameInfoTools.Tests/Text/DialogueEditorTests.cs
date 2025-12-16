@@ -352,7 +352,7 @@ public class DialogueEditorTests {
 		data[3] = 0x43; // C
 		data[4] = 0x44; // D
 		data[5] = 0x00; // End
-		// Fill remaining with non-zero to avoid phantom entries
+						// Fill remaining with non-zero to avoid phantom entries
 		for (int i = 6; i < 100; i++) data[i] = 0xff;
 
 		var editor = new DialogueEditor(data);

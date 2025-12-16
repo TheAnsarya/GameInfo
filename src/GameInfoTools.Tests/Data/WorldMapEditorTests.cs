@@ -24,7 +24,7 @@ public class WorldMapEditorTests {
 		// For HasDimensions=true, first 2 bytes are width, height
 		data[0x200] = 8;  // Width
 		data[0x201] = 8;  // Height
-		// Fill 64 tiles
+						  // Fill 64 tiles
 		for (int i = 0; i < 64; i++) {
 			data[0x202 + i] = (byte)(i % 4);  // Tiles 0-3 repeating
 		}
@@ -62,7 +62,7 @@ public class WorldMapEditorTests {
 		data[warpOffset + 5] = 2;     // DestY
 		data[warpOffset + 6] = 0;     // Direction (down)
 		data[warpOffset + 7] = 0;     // Flags
-		// Warp 1: Map 1 (2,2) -> Map 0 (5,5)
+									  // Warp 1: Map 1 (2,2) -> Map 0 (5,5)
 		warpOffset += 8;
 		data[warpOffset + 0] = 1;
 		data[warpOffset + 1] = 2;
