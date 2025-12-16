@@ -376,11 +376,19 @@ public class NesAssetExtractorTests {
 	}
 
 	[Fact]
-	public void AssetExtractorFactory_GetPlatformExtractor_ReturnsNullForOtherPlatforms() {
-		var snesExtractor = AssetExtractorFactory.GetPlatformExtractor(Platform.Snes);
-		var genesisExtractor = AssetExtractorFactory.GetPlatformExtractor(Platform.Genesis);
+	public void AssetExtractorFactory_GetPlatformExtractor_ReturnsNullForUnknownPlatforms() {
+		var unknownExtractor = AssetExtractorFactory.GetPlatformExtractor(Platform.Unknown);
 
-		Assert.Null(snesExtractor);
-		Assert.Null(genesisExtractor);
+		Assert.Null(unknownExtractor);
+	}
+
+	[Fact]
+	public void AssetExtractorFactory_GetPlatformExtractor_ReturnsExtractorsForAllSupportedPlatforms() {
+		Assert.IsType<NesAssetExtractor>(AssetExtractorFactory.GetPlatformExtractor(Platform.Nes));
+		Assert.IsType<SnesAssetExtractor>(AssetExtractorFactory.GetPlatformExtractor(Platform.Snes));
+		Assert.IsType<GenesisAssetExtractor>(AssetExtractorFactory.GetPlatformExtractor(Platform.Genesis));
+		Assert.IsType<GameBoyAssetExtractor>(AssetExtractorFactory.GetPlatformExtractor(Platform.Gb));
+		Assert.IsType<GameBoyAssetExtractor>(AssetExtractorFactory.GetPlatformExtractor(Platform.Gbc));
+		Assert.IsType<GbaAssetExtractor>(AssetExtractorFactory.GetPlatformExtractor(Platform.Gba));
 	}
 }
