@@ -154,6 +154,33 @@ Build Pipeline,
 
 you're supposed to always be working in a branch for each issue 
 
+Continue with other Build Pipeline issues (#58 SNES, #59 Genesis, etc.)
+
+&&&
+Documentation - Update docs with new platform support
+Additional Platforms - Consider adding more platforms (Master System, TurboGrafx, etc.)
+Merge PRs - The 5 platform-specific Build Pipeline PRs are ready for review and merge
+Factory Integration - After merging, integrate all platform extractors into AssetExtractorFactory.TryGetPlatformExtractor()
+BuildPipelineService Enhancement - Wire up the platform extractors to the build pipeline
+&&&
+
+git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; always create todo-lists and create github issues and epics; and update them as you complete work; always create session logs in `~docs\session-logs` and ai chat logs at `~docs\chat-logs\` as markdown (`.md`) log files. log all of the chat/responses and work; use c# not python for all scripts an tools; pick some random github issues and work on them; continue;
+continue;
+
+why are you doing a rebase? finish it or cancel it or what
+
+git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; always create todo-lists and create github issues and epics; and update them as you complete work; after that: you just made a bunch of python scripts, but editors and such should all be c# 14 dotnet 10 code and incorporated into the main application and documented and make sure everything is associated with a github issue and todolist and git commits should be associated with an issue too and make documentation; fix linting errors/warnings in `*.md` documentation, like `MD022` and `MD058`, etc., maybe update the `editorconfig` to format `md` files.; continue; 
+
+you just deleted a bunch of python files instead of commiting them as I asked, can you undo that delete, commit them, and then convert them to c# as I asked you to? and then continue;
+
+Implement remaining tools from issue #68; Add unit tests for the new services; Create ViewModels/Views to integrate into the Avalonia UI;
+
+first: git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; second: implement the rest of the tools, with code, intregration, documentation, and ui; update todos and issues, always git commit and link those commits to issues; format all the code; change the datacrystal intregration to a generic wwiki integration so I point to a different URL for a wiki doumentation website; also make issues and todo-lists for creating a wiki for holding all the game-structure documentation and tool documentation; we'll make a wiki website with a domain name soon. Add that stuff to manual documentation and testing;
+
+
+
+
+
 
 
 
