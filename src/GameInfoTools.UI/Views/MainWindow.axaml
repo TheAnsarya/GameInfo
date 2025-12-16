@@ -40,6 +40,11 @@
 				<Separator/>
 				<MenuItem Header="_Data Table Editor" Command="{Binding ShowDataEditorCommand}"/>
 				<MenuItem Header="_Pointer Scanner" Command="{Binding ShowPointerScannerCommand}"/>
+				<MenuItem Header="_Symbol Manager" Command="{Binding ShowSymbolManagerCommand}"/>
+				<MenuItem Header="Memory _Layout" Command="{Binding ShowMemoryLayoutCommand}"/>
+				<Separator/>
+				<MenuItem Header="_Palette Editor" Command="{Binding ShowPaletteEditorCommand}"/>
+				<MenuItem Header="_Save Editor" Command="{Binding ShowSaveEditorCommand}"/>
 				<Separator/>
 				<MenuItem Header="C_DL Viewer" Command="{Binding ShowCdlViewerCommand}"/>
 				<MenuItem Header="_Build Pipeline" Command="{Binding ShowBuildPipelineCommand}"/>

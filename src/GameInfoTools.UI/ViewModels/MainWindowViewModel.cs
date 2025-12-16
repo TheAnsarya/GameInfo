@@ -47,6 +47,10 @@ public partial class MainWindowViewModel : ViewModelBase {
 		new ToolCategory("🔨", "Build Pipeline", "build"),
 		new ToolCategory("📖", "Wiki Editor", "wiki"),
 		new ToolCategory("🌐", "Data Crystal", "datacrystal"),
+		new ToolCategory("🏷️", "Symbol Manager", "symbols"),
+		new ToolCategory("📐", "Memory Layout", "memory"),
+		new ToolCategory("🎨", "Palette Editor", "palette"),
+		new ToolCategory("💽", "Save Editor", "saves"),
 	];
 
 	public MainWindowViewModel() {
@@ -73,6 +77,10 @@ public partial class MainWindowViewModel : ViewModelBase {
 			"build" => new BuildPipelineViewModel(_loadedRom),
 			"wiki" => new WikiEditorViewModel(_loadedRom),
 			"datacrystal" => new DataCrystalViewModel(),
+			"symbols" => new SymbolManagerViewModel(_loadedRom),
+			"memory" => new MemoryLayoutViewModel(_loadedRom),
+			"palette" => new PaletteEditorViewModel(_loadedRom),
+			"saves" => new SaveEditorViewModel(),
 			_ => new WelcomeViewModel()
 		};
 	}
@@ -185,6 +193,18 @@ public partial class MainWindowViewModel : ViewModelBase {
 
 	[RelayCommand]
 	private void ShowWikiEditor() => SelectedCategory = ToolCategories[13];
+
+	[RelayCommand]
+	private void ShowSymbolManager() => SelectedCategory = ToolCategories[15];
+
+	[RelayCommand]
+	private void ShowMemoryLayout() => SelectedCategory = ToolCategories[16];
+
+	[RelayCommand]
+	private void ShowPaletteEditor() => SelectedCategory = ToolCategories[17];
+
+	[RelayCommand]
+	private void ShowSaveEditor() => SelectedCategory = ToolCategories[18];
 
 	[RelayCommand]
 	private void ShowAbout() {
