@@ -1,0 +1,173 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="using:GameInfoTools.UI.ViewModels"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
+			 x:Class="GameInfoTools.UI.Views.SaveEditorView"
+			 x:DataType="vm:SaveEditorViewModel">
+
+	<Design.DataContext>
+		<vm:SaveEditorViewModel/>
+	</Design.DataContext>
+
+	<Grid RowDefinitions="Auto,*,Auto" Margin="16">
+		<!-- Toolbar -->
+		<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
+			<Button Content="📂 Open" Command="{Binding LoadFileCommand}"
+					CommandParameter="{Binding $parent[Window]}" ToolTip.Tip="Open Save File"/>
+			<Button Content="💾 Save" Command="{Binding SaveFileCommand}"
+					CommandParameter="{Binding $parent[Window]}" IsEnabled="{Binding HasFileLoaded}"/>
+			<Button Content="📄 Save As" Command="{Binding SaveFileAsCommand}"
+					CommandParameter="{Binding $parent[Window]}" IsEnabled="{Binding HasFileLoaded}"/>
+			<Button Content="📋 Backup" Command="{Binding CreateBackupCommand}" IsEnabled="{Binding HasFileLoaded}"/>
+			<Separator/>
+			<TextBlock Text="Platform:" VerticalAlignment="Center"/>
+			<ComboBox ItemsSource="{Binding AvailablePlatforms}" SelectedItem="{Binding Platform}" Width="100"/>
+			<TextBlock Text="Format:" VerticalAlignment="Center"/>
+			<ComboBox ItemsSource="{Binding AvailableFormats}" SelectedItem="{Binding Format}" Width="80"/>
+			<Separator/>
+			<TextBlock Text="{Binding FileSize, StringFormat='Size: {0} bytes'}" VerticalAlignment="Center"
+					   IsVisible="{Binding HasFileLoaded}"/>
+			<TextBlock Text="⚠ Modified" Foreground="Orange" VerticalAlignment="Center"
+					   IsVisible="{Binding IsModified}"/>
+		</StackPanel>
+
+		<!-- Main Content -->
+		<Grid Grid.Row="1" ColumnDefinitions="250,Auto,*,Auto,300">
+			<!-- Slot List -->
+			<Border Grid.Column="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+					CornerRadius="4" Padding="8" Margin="0,0,8,0">
+				<DockPanel>
+					<StackPanel DockPanel.Dock="Top" Spacing="8" Margin="0,0,0,8">
+						<TextBlock Text="Save Slots" FontWeight="SemiBold"/>
+						<Grid ColumnDefinitions="*,*">
+							<StackPanel Grid.Column="0" Spacing="4">
+								<TextBlock Text="Slots:"/>
+								<NumericUpDown Value="{Binding SlotCount}" Minimum="1" Maximum="8" Width="60"/>
+							</StackPanel>
+							<StackPanel Grid.Column="1" Spacing="4">
+								<TextBlock Text="Size:"/>
+								<NumericUpDown Value="{Binding SlotSize}" Minimum="0" FormatString="X4" Width="80"
+											   FontFamily="Consolas"/>
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+
+					<ListBox ItemsSource="{Binding Slots}" SelectedIndex="{Binding SelectedSlot}">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel>
+									<TextBlock Text="{Binding Label}" FontWeight="SemiBold"/>
+									<TextBlock Text="{Binding DataPreview}" FontFamily="Consolas" FontSize="10"
+											   Opacity="0.7" TextTrimming="CharacterEllipsis"/>
+								</StackPanel>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</DockPanel>
+			</Border>
+
+			<GridSplitter Grid.Column="1" Width="4" ResizeDirection="Columns"/>
+
+			<!-- Field List -->
+			<Border Grid.Column="2" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+					CornerRadius="4" Padding="8" Margin="0,0,8,0">
+				<DockPanel>
+					<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
+						<TextBlock Text="Fields" FontWeight="SemiBold" VerticalAlignment="Center"/>
+						<Button Content="➕" Command="{Binding AddFieldCommand}" ToolTip.Tip="Add Field" Width="28"/>
+						<Button Content="🗑" Command="{Binding RemoveFieldCommand}" ToolTip.Tip="Remove Field" Width="28"/>
+						<Separator/>
+						<Button Content="📥 Load Defs" Command="{Binding LoadFieldDefinitionsCommand}"
+								CommandParameter="{Binding $parent[Window]}"/>
+						<Button Content="📤 Save Defs" Command="{Binding SaveFieldDefinitionsCommand}"
+								CommandParameter="{Binding $parent[Window]}"/>
+					</StackPanel>
+
+					<DataGrid ItemsSource="{Binding Fields}" SelectedItem="{Binding SelectedField}"
+							  AutoGenerateColumns="False" GridLinesVisibility="Horizontal"
+							  FontFamily="Consolas" FontSize="12">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="Offset" Binding="{Binding Offset, StringFormat=\{0:X4\}}" Width="60"/>
+							<DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="120"/>
+							<DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="80"/>
+							<DataGridTextColumn Header="Length" Binding="{Binding Length}" Width="50"/>
+							<DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*"/>
+						</DataGrid.Columns>
+					</DataGrid>
+				</DockPanel>
+			</Border>
+
+			<GridSplitter Grid.Column="3" Width="4" ResizeDirection="Columns"/>
+
+			<!-- Field Editor -->
+			<Grid Grid.Column="4" RowDefinitions="Auto,*,Auto">
+				<!-- Value Editor -->
+				<Border Grid.Row="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+						CornerRadius="4" Padding="12" Margin="0,0,0,8">
+					<StackPanel Spacing="8">
+						<TextBlock Text="Edit Value" FontWeight="SemiBold"/>
+
+						<TextBlock Text="{Binding SelectedField.Name, StringFormat='Field: {0}'}"
+								   IsVisible="{Binding SelectedField, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+
+						<StackPanel Spacing="4">
+							<TextBlock Text="Value:"/>
+							<Grid ColumnDefinitions="*,Auto">
+								<TextBox Grid.Column="0" Text="{Binding FieldValue}" FontFamily="Consolas"/>
+								<Button Grid.Column="1" Content="Set" Command="{Binding WriteFieldValueCommand}"
+										Margin="8,0,0,0"/>
+							</Grid>
+						</StackPanel>
+
+						<TextBlock Text="Select a field to edit" Opacity="0.6"
+								   IsVisible="{Binding !SelectedField}"/>
+					</StackPanel>
+				</Border>
+
+				<!-- Checksum -->
+				<Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+						CornerRadius="4" Padding="12" Margin="0,0,0,8">
+					<StackPanel Spacing="8">
+						<TextBlock Text="Checksum" FontWeight="SemiBold"/>
+
+						<StackPanel Spacing="4">
+							<TextBlock Text="Type:"/>
+							<ComboBox ItemsSource="{Binding AvailableChecksumTypes}"
+									  SelectedItem="{Binding ChecksumType}"/>
+						</StackPanel>
+
+						<StackPanel Orientation="Horizontal" Spacing="8">
+							<Button Content="✓ Verify" Command="{Binding VerifyChecksumCommand}"/>
+							<Button Content="🔄 Recalculate" Command="{Binding RecalculateChecksumCommand}"/>
+						</StackPanel>
+					</StackPanel>
+				</Border>
+
+				<!-- Slot Operations -->
+				<Border Grid.Row="2" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+						CornerRadius="4" Padding="12">
+					<StackPanel Spacing="8">
+						<TextBlock Text="Slot Operations" FontWeight="SemiBold"/>
+						<WrapPanel Orientation="Horizontal">
+							<Button Content="📋 Copy Slot" Margin="0,0,4,4"/>
+							<Button Content="🗑 Clear Slot" Command="{Binding ClearSlotCommand}"
+									CommandParameter="{Binding SelectedSlot}" Margin="0,0,4,4"/>
+						</WrapPanel>
+					</StackPanel>
+				</Border>
+			</Grid>
+		</Grid>
+
+		<!-- Status Bar -->
+		<Border Grid.Row="2" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+				CornerRadius="4" Padding="8" Margin="0,8,0,0">
+			<Grid ColumnDefinitions="*,Auto">
+				<TextBlock Text="{Binding StatusText}" Opacity="0.8"/>
+				<TextBlock Grid.Column="1" Text="{Binding FilePath}" Opacity="0.6"
+						   TextTrimming="CharacterEllipsis" MaxWidth="400"/>
+			</Grid>
+		</Border>
+	</Grid>
+</UserControl>

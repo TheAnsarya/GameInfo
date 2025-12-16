@@ -1,0 +1,165 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="using:GameInfoTools.UI.ViewModels"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
+			 x:Class="GameInfoTools.UI.Views.MemoryLayoutView"
+			 x:DataType="vm:MemoryLayoutViewModel">
+
+	<Design.DataContext>
+		<vm:MemoryLayoutViewModel/>
+	</Design.DataContext>
+
+	<Grid RowDefinitions="Auto,*,Auto" Margin="16">
+		<!-- Toolbar -->
+		<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
+			<TextBlock Text="Platform:" VerticalAlignment="Center"/>
+			<ComboBox ItemsSource="{Binding AvailablePlatforms}" SelectedItem="{Binding SelectedPlatform}" Width="120"/>
+			<Button Content="🔄 Load Template" Command="{Binding LoadPlatformTemplateCommand}"/>
+			<Separator/>
+			<TextBlock Text="Total Size:" VerticalAlignment="Center"/>
+			<NumericUpDown Value="{Binding TotalSize}" Minimum="256" Maximum="16777216"
+						   FormatString="X6" Width="100" FontFamily="Consolas"/>
+			<Separator/>
+			<Button Content="🔍 Auto-Detect" Command="{Binding AutoDetectRegionsCommand}" ToolTip.Tip="Auto-detect regions"/>
+			<Button Content="🗑 Clear All" Command="{Binding ClearAllRegionsCommand}"/>
+		</StackPanel>
+
+		<!-- Main Content -->
+		<Grid Grid.Row="1" ColumnDefinitions="*,Auto,350">
+			<!-- Left Panel: Region List and Map -->
+			<Grid Grid.Column="0" RowDefinitions="*,Auto,*">
+				<!-- Region List -->
+				<Border Grid.Row="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+						CornerRadius="4" Padding="8" Margin="0,0,8,4">
+					<DockPanel>
+						<TextBlock DockPanel.Dock="Top" Text="Memory Regions" FontWeight="SemiBold" Margin="0,0,0,8"/>
+						<DataGrid ItemsSource="{Binding Regions}" SelectedItem="{Binding SelectedRegion}"
+								  AutoGenerateColumns="False" IsReadOnly="True"
+								  GridLinesVisibility="Horizontal" FontFamily="Consolas" FontSize="12">
+							<DataGrid.Columns>
+								<DataGridTextColumn Header="Start" Binding="{Binding StartAddress, StringFormat=\{0:X6\}}" Width="70"/>
+								<DataGridTextColumn Header="End" Binding="{Binding EndAddress, StringFormat=\{0:X6\}}" Width="70"/>
+								<DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+								<DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="80"/>
+							</DataGrid.Columns>
+						</DataGrid>
+					</DockPanel>
+				</Border>
+
+				<GridSplitter Grid.Row="1" Height="4" ResizeDirection="Rows"/>
+
+				<!-- ASCII Map -->
+				<Border Grid.Row="2" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+						CornerRadius="4" Padding="8" Margin="0,4,8,0">
+					<DockPanel>
+						<TextBlock DockPanel.Dock="Top" Text="Memory Map" FontWeight="SemiBold" Margin="0,0,0,8"/>
+						<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+							<TextBlock Text="{Binding AsciiMap}" FontFamily="Consolas" FontSize="10"
+									   TextWrapping="NoWrap"/>
+						</ScrollViewer>
+					</DockPanel>
+				</Border>
+			</Grid>
+
+			<GridSplitter Grid.Column="1" Width="4" ResizeDirection="Columns"/>
+
+			<!-- Right Panel: Add Region and Info -->
+			<Grid Grid.Column="2" RowDefinitions="Auto,*,Auto">
+				<!-- Add Region -->
+				<Border Grid.Row="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+						CornerRadius="4" Padding="12" Margin="0,0,0,8">
+					<StackPanel Spacing="8">
+						<TextBlock Text="Add Region" FontWeight="SemiBold" FontSize="14"/>
+
+						<Grid ColumnDefinitions="*,8,*">
+							<StackPanel Grid.Column="0" Spacing="4">
+								<TextBlock Text="Name:"/>
+								<TextBox Text="{Binding NewRegionName}" Watermark="Region name"/>
+							</StackPanel>
+							<StackPanel Grid.Column="2" Spacing="4">
+								<TextBlock Text="Type:"/>
+								<ComboBox ItemsSource="{Binding AvailableTypes}" SelectedItem="{Binding NewRegionType}"/>
+							</StackPanel>
+						</Grid>
+
+						<Grid ColumnDefinitions="*,8,*">
+							<StackPanel Grid.Column="0" Spacing="4">
+								<TextBlock Text="Start:"/>
+								<NumericUpDown Value="{Binding NewRegionStart}" Minimum="0" Maximum="16777215"
+											   FormatString="X6" FontFamily="Consolas"/>
+							</StackPanel>
+							<StackPanel Grid.Column="2" Spacing="4">
+								<TextBlock Text="End:"/>
+								<NumericUpDown Value="{Binding NewRegionEnd}" Minimum="0" Maximum="16777215"
+											   FormatString="X6" FontFamily="Consolas"/>
+							</StackPanel>
+						</Grid>
+
+						<StackPanel Spacing="4">
+							<TextBlock Text="Description:"/>
+							<TextBox Text="{Binding NewRegionDescription}" Watermark="Optional description"/>
+						</StackPanel>
+
+						<StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right">
+							<Button Content="➕ Add" Command="{Binding AddRegionCommand}"/>
+							<Button Content="🗑 Remove" Command="{Binding RemoveRegionCommand}"/>
+						</StackPanel>
+					</StackPanel>
+				</Border>
+
+				<!-- Gaps and Overlaps -->
+				<TabControl Grid.Row="1">
+					<TabItem Header="Gaps">
+						<Border Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+								CornerRadius="4" Padding="8">
+							<DataGrid ItemsSource="{Binding Gaps}" AutoGenerateColumns="False"
+									  IsReadOnly="True" GridLinesVisibility="Horizontal"
+									  FontFamily="Consolas" FontSize="11">
+								<DataGrid.Columns>
+									<DataGridTextColumn Header="Start" Binding="{Binding StartAddress, StringFormat=\{0:X6\}}" Width="70"/>
+									<DataGridTextColumn Header="End" Binding="{Binding EndAddress, StringFormat=\{0:X6\}}" Width="70"/>
+									<DataGridTextColumn Header="Size" Binding="{Binding Size, StringFormat=\{0:X\}}" Width="60"/>
+								</DataGrid.Columns>
+							</DataGrid>
+						</Border>
+					</TabItem>
+					<TabItem Header="Overlaps">
+						<Border Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+								CornerRadius="4" Padding="8">
+							<ListBox ItemsSource="{Binding Overlaps}" FontFamily="Consolas" FontSize="11">
+								<ListBox.ItemTemplate>
+									<DataTemplate>
+										<TextBlock Text="Overlap detected"/>
+									</DataTemplate>
+								</ListBox.ItemTemplate>
+							</ListBox>
+						</Border>
+					</TabItem>
+				</TabControl>
+
+				<!-- Statistics -->
+				<Border Grid.Row="2" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+						CornerRadius="4" Padding="12" Margin="0,8,0,0">
+					<Grid ColumnDefinitions="*,*">
+						<StackPanel Grid.Column="0" Spacing="4">
+							<TextBlock Text="{Binding RegionCount, StringFormat='Regions: {0}'}"/>
+							<TextBlock Text="{Binding MappedBytes, StringFormat='Mapped: {0:X} bytes'}"/>
+						</StackPanel>
+						<StackPanel Grid.Column="1" Spacing="4">
+							<TextBlock Text="{Binding UnmappedBytes, StringFormat='Unmapped: {0:X} bytes'}"/>
+							<TextBlock Text="{Binding OverlapCount, StringFormat='Overlaps: {0}'}"/>
+						</StackPanel>
+					</Grid>
+				</Border>
+			</Grid>
+		</Grid>
+
+		<!-- Status Bar -->
+		<Border Grid.Row="2" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+				CornerRadius="4" Padding="8" Margin="0,8,0,0">
+			<TextBlock Text="{Binding StatusText}" Opacity="0.8"/>
+		</Border>
+	</Grid>
+</UserControl>

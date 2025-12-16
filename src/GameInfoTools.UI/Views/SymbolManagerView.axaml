@@ -1,0 +1,114 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="using:GameInfoTools.UI.ViewModels"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
+			 x:Class="GameInfoTools.UI.Views.SymbolManagerView"
+			 x:DataType="vm:SymbolManagerViewModel">
+
+	<Design.DataContext>
+		<vm:SymbolManagerViewModel/>
+	</Design.DataContext>
+
+	<Grid RowDefinitions="Auto,*,Auto" Margin="16">
+		<!-- Toolbar -->
+		<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
+			<Button Content="📂 Load MLB" Command="{Binding LoadMesenLabelsCommand}"
+					CommandParameter="{Binding $parent[Window]}" ToolTip.Tip="Load Mesen Labels"/>
+			<Button Content="💾 Save MLB" Command="{Binding SaveMesenLabelsCommand}"
+					CommandParameter="{Binding $parent[Window]}" ToolTip.Tip="Save Mesen Labels"/>
+			<Separator/>
+			<Button Content="📥 Import JSON" Command="{Binding ImportJsonCommand}"
+					CommandParameter="{Binding $parent[Window]}"/>
+			<Button Content="📤 Export JSON" Command="{Binding ExportJsonCommand}"
+					CommandParameter="{Binding $parent[Window]}"/>
+			<Separator/>
+			<TextBlock Text="Filter:" VerticalAlignment="Center"/>
+			<TextBox Text="{Binding SearchPattern}" Width="150" Watermark="Search pattern..."/>
+			<ComboBox ItemsSource="{Binding AvailableTypes}" SelectedItem="{Binding FilterType}"
+					  Width="120" PlaceholderText="All Types"/>
+			<Button Content="✕" Command="{Binding ClearFilterCommand}" ToolTip.Tip="Clear Filter"/>
+		</StackPanel>
+
+		<!-- Main Content -->
+		<Grid Grid.Row="1" ColumnDefinitions="*,Auto,300">
+			<!-- Symbol List -->
+			<Border Grid.Column="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+					CornerRadius="4" Padding="8" Margin="0,0,8,0">
+				<DockPanel>
+					<TextBlock DockPanel.Dock="Top" Text="Symbols" FontWeight="SemiBold" Margin="0,0,0,8"/>
+					<DataGrid ItemsSource="{Binding FilteredSymbols}" SelectedItem="{Binding SelectedSymbol}"
+							  AutoGenerateColumns="False" IsReadOnly="True"
+							  GridLinesVisibility="Horizontal" FontFamily="Consolas" FontSize="12">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="Address" Binding="{Binding Address, StringFormat=\{0:X6\}}" Width="80"/>
+							<DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="200"/>
+							<DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="100"/>
+							<DataGridTextColumn Header="Comment" Binding="{Binding Comment}" Width="*"/>
+						</DataGrid.Columns>
+					</DataGrid>
+				</DockPanel>
+			</Border>
+
+			<GridSplitter Grid.Column="1" Width="4" ResizeDirection="Columns"/>
+
+			<!-- Add Symbol Panel -->
+			<Border Grid.Column="2" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+					CornerRadius="4" Padding="12">
+				<StackPanel Spacing="12">
+					<TextBlock Text="Add Symbol" FontWeight="SemiBold" FontSize="14"/>
+
+					<StackPanel Spacing="4">
+						<TextBlock Text="Name:"/>
+						<TextBox Text="{Binding NewSymbolName}" Watermark="Symbol name"/>
+					</StackPanel>
+
+					<StackPanel Spacing="4">
+						<TextBlock Text="Address:"/>
+						<NumericUpDown Value="{Binding NewSymbolAddress}" Minimum="0" Maximum="16777215"
+									   FormatString="X6" FontFamily="Consolas"/>
+					</StackPanel>
+
+					<StackPanel Spacing="4">
+						<TextBlock Text="Type:"/>
+						<ComboBox ItemsSource="{Binding AvailableTypes}" SelectedItem="{Binding NewSymbolType}"/>
+					</StackPanel>
+
+					<StackPanel Spacing="4">
+						<TextBlock Text="Comment:"/>
+						<TextBox Text="{Binding NewSymbolComment}" Watermark="Optional comment"
+								 AcceptsReturn="True" Height="60"/>
+					</StackPanel>
+
+					<Button Content="➕ Add Symbol" Command="{Binding AddSymbolCommand}"
+							HorizontalAlignment="Stretch"/>
+
+					<Separator Margin="0,8"/>
+
+					<Button Content="🗑 Remove Selected" Command="{Binding RemoveSymbolCommand}"
+							HorizontalAlignment="Stretch"/>
+
+					<Button Content="📍 Go To Address" Command="{Binding GoToAddressCommand}"
+							HorizontalAlignment="Stretch"/>
+
+					<Separator Margin="0,8"/>
+
+					<TextBlock Text="Statistics" FontWeight="SemiBold"/>
+					<StackPanel Spacing="4" Opacity="0.8">
+						<TextBlock Text="{Binding SymbolCount, StringFormat='Total: {0}'}"/>
+						<TextBlock Text="{Binding CodeSymbolCount, StringFormat='Code Labels: {0}'}"/>
+						<TextBlock Text="{Binding DataSymbolCount, StringFormat='Data Labels: {0}'}"/>
+						<TextBlock Text="{Binding RamSymbolCount, StringFormat='RAM Labels: {0}'}"/>
+					</StackPanel>
+				</StackPanel>
+			</Border>
+		</Grid>
+
+		<!-- Status Bar -->
+		<Border Grid.Row="2" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+				CornerRadius="4" Padding="8" Margin="0,8,0,0">
+			<TextBlock Text="{Binding StatusText}" Opacity="0.8"/>
+		</Border>
+	</Grid>
+</UserControl>
