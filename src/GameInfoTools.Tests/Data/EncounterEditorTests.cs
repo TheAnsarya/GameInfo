@@ -261,7 +261,7 @@ public class EncounterEditorTests {
 	public void GetEnemyName_ReturnsFallbackForUnknown() {
 		var editor = CreateEditorWithData();
 
-		Assert.Equal("Enemy #99", editor.GetEnemyName(0x99));
+		Assert.Equal("Enemy #99", editor.GetEnemyName(0x99)); // 0x99 formats as "99" in hex
 	}
 
 	[Fact]

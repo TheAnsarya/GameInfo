@@ -129,7 +129,7 @@ public class EncounterEditor {
 	/// Gets an enemy name by ID.
 	/// </summary>
 	public string GetEnemyName(int id) {
-		return _enemyNames.TryGetValue(id, out var name) ? name : $"Enemy #{id}";
+		return _enemyNames.TryGetValue(id, out var name) ? name : $"Enemy #{id:x2}";
 	}
 
 	/// <summary>
@@ -186,17 +186,19 @@ public class EncounterEditor {
 			RomOffset = offset
 		};
 
-		// Read enemy slots
+		// Read enemy slots - assume paired format (enemy ID, count) of 2 bytes per slot
+		int slotStride = 2; // Each slot is 2 bytes (enemy + count)
 		for (int slot = 0; slot < _schema.MaxSlotsPerFormation; slot++) {
-			int slotOffset = offset + _schema.EnemyIdOffset + (slot * 2); // Assume 2 bytes per slot
-			if (slotOffset >= _data.Length) break;
+			int slotBase = offset + (slot * slotStride);
+			int enemyIdOffset = slotBase + _schema.EnemyIdOffset;
+			if (enemyIdOffset >= _data.Length) break;
 
-			int enemyId = _data[slotOffset];
+			int enemyId = _data[enemyIdOffset];
 			if (enemyId == 0 || enemyId == 0xff) continue; // Empty slot
 
 			int count = 1;
 			if (_schema.EnemyCountOffset >= 0) {
-				int countOffset = offset + _schema.EnemyCountOffset + slot;
+				int countOffset = slotBase + _schema.EnemyCountOffset;
 				if (countOffset < _data.Length) {
 					count = Math.Max(1, _data[countOffset] & 0x0f);
 				}
