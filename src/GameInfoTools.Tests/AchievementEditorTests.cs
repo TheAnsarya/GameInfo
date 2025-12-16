@@ -641,8 +641,7 @@ public class AchievementEditorTests {
 			var content = await File.ReadAllTextAsync(tempPath);
 			Assert.Contains("First Steps", content);
 			Assert.Contains("Story", content);
-		}
-		finally {
+		} finally {
 			File.Delete(tempPath);
 		}
 	}
@@ -667,8 +666,7 @@ public class AchievementEditorTests {
 			Assert.Single(newEditor.Achievements);
 			Assert.Single(newEditor.Categories);
 			Assert.Equal("First Steps", newEditor.Achievements["a1"].Name);
-		}
-		finally {
+		} finally {
 			File.Delete(tempPath);
 		}
 	}

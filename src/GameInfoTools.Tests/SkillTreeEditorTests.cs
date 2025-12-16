@@ -538,8 +538,7 @@ public class SkillTreeEditorTests {
 			var content = await File.ReadAllTextAsync(tempPath);
 			Assert.Contains("Fireball", content);
 			Assert.Contains("Fire Magic", content);
-		}
-		finally {
+		} finally {
 			File.Delete(tempPath);
 		}
 	}
@@ -567,8 +566,7 @@ public class SkillTreeEditorTests {
 			Assert.Single(newEditor.Trees);
 			Assert.Single(newEditor.Skills);
 			Assert.Equal("Fireball", newEditor.Skills["s1"].Name);
-		}
-		finally {
+		} finally {
 			File.Delete(tempPath);
 		}
 	}

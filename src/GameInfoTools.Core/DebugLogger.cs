@@ -210,8 +210,7 @@ public class DebugLogger : IDisposable {
 		foreach (var target in targetsCopy) {
 			try {
 				target.Write(entry);
-			}
-			catch {
+			} catch {
 				// Don't let target failures break logging
 			}
 		}
@@ -635,8 +634,7 @@ public class ConsoleLogTarget : ILogTarget {
 			Console.ForegroundColor = GetColor(entry.Level);
 			Console.WriteLine(formatted);
 			Console.ForegroundColor = originalColor;
-		}
-		else {
+		} else {
 			Console.WriteLine(formatted);
 		}
 	}

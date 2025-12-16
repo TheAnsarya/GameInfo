@@ -259,8 +259,7 @@ public class CutsceneEditor {
 			// Commands with Wait execute after previous completes
 			if (command.WaitForPrevious) {
 				totalFrames += command.DelayFrames + command.DurationFrames;
-			}
-			else {
+			} else {
 				// Parallel commands - track the longest path
 				var commandEnd = command.DelayFrames + command.DurationFrames;
 				if (commandEnd > totalFrames) {
@@ -664,14 +663,12 @@ public class CutsceneEditor {
 			if (c == '"') {
 				inQuotes = !inQuotes;
 				current.Append(c);
-			}
-			else if (c == ' ' && !inQuotes) {
+			} else if (c == ' ' && !inQuotes) {
 				if (current.Length > 0) {
 					parts.Add(current.ToString());
 					current.Clear();
 				}
-			}
-			else {
+			} else {
 				current.Append(c);
 			}
 		}

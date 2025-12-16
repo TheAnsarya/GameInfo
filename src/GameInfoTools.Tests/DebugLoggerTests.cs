@@ -478,8 +478,7 @@ public class DebugLoggerTests : IDisposable {
 			var content = await File.ReadAllTextAsync(tempPath);
 			Assert.Contains("Test message", content);
 			Assert.Contains(_logger.SessionId, content);
-		}
-		finally {
+		} finally {
 			File.Delete(tempPath);
 		}
 	}
@@ -501,8 +500,7 @@ public class DebugLoggerTests : IDisposable {
 			Assert.DoesNotContain("Debug message", content);
 			Assert.DoesNotContain("Info message", content);
 			Assert.Contains("Error message", content);
-		}
-		finally {
+		} finally {
 			File.Delete(tempPath);
 		}
 	}
@@ -522,8 +520,7 @@ public class DebugLoggerTests : IDisposable {
 			var content = await File.ReadAllTextAsync(tempPath);
 			Assert.Contains("Test message", content);
 			Assert.Contains("# Log Export", content);
-		}
-		finally {
+		} finally {
 			File.Delete(tempPath);
 		}
 	}
@@ -670,8 +667,7 @@ public class DebugLoggerTests : IDisposable {
 			// Assert
 			var content = File.ReadAllText(tempPath);
 			Assert.Contains("Test message", content);
-		}
-		finally {
+		} finally {
 			File.Delete(tempPath);
 		}
 	}
@@ -692,8 +688,7 @@ public class DebugLoggerTests : IDisposable {
 			// Assert
 			Assert.True(Directory.Exists(tempDir));
 			Assert.True(File.Exists(tempPath));
-		}
-		finally {
+		} finally {
 			if (Directory.Exists(tempDir)) {
 				Directory.Delete(tempDir, true);
 			}

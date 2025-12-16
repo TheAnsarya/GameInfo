@@ -612,8 +612,7 @@ public class CutsceneEditorTests {
 			Assert.True(File.Exists(tempPath));
 			var content = await File.ReadAllTextAsync(tempPath);
 			Assert.Contains("Opening", content);
-		}
-		finally {
+		} finally {
 			File.Delete(tempPath);
 		}
 	}
@@ -638,8 +637,7 @@ public class CutsceneEditorTests {
 			Assert.Single(newEditor.Cutscenes);
 			Assert.Single(newEditor.CommandTemplates);
 			Assert.Equal("Opening", newEditor.Cutscenes["cs1"].Name);
-		}
-		finally {
+		} finally {
 			File.Delete(tempPath);
 		}
 	}
