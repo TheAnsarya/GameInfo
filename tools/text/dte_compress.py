@@ -5,6 +5,9 @@ DTE/MTE Text Compression Tool
 Dual Tile Encoding (DTE) and Multi Tile Encoding (MTE) compression
 for ROM hacking text. Compresses text by replacing common pairs/sequences
 with single byte codes.
+
+C# equivalent: GameInfoTools.Text.DteOptimizer
+See: src/GameInfoTools.Text/DteOptimizer.cs
 """
 
 import argparse

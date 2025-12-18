@@ -4,6 +4,9 @@ DTE (Dual Tile Encoding) Analyzer - Analyze and optimize DTE compression
 
 Analyzes text data to find optimal DTE pairs for compression.
 Supports multiple encoding schemes and provides compression statistics.
+
+C# equivalent: GameInfoTools.Text.DteOptimizer
+See: src/GameInfoTools.Text/DteOptimizer.cs
 """
 
 import argparse

@@ -57,6 +57,8 @@ The GameInfo project provides tools in both Python (for quick scripting and prot
 | `text/script_compiler.py` | `GameInfoTools.Text.ScriptCompiler` | Script compilation |
 | `text/script_disasm.py` | `GameInfoTools.Text.ScriptCompiler` | Script disassembly |
 | `text/localization.py` | `GameInfoTools.Text.LocalizationManager` | Localization |
+| `text/dte_compress.py` | `GameInfoTools.Text.DteOptimizer` | DTE compression |
+| `analysis/dte_analyzer.py` | `GameInfoTools.Text.DteOptimizer` | DTE analysis |
 | `text/text_encoder.py` | `GameInfoTools.Core.TextTable` | Text encoding |
 | `text/text_codec.py` | `GameInfoTools.Core.TextTable` | Text codec |
 
@@ -148,7 +150,8 @@ These Python tools don't have C# equivalents yet:
 - `graphics/vram_viewer.py` - VRAM visualization
 
 ### Text
-- `text/dte_compress.py` - DTE optimization (Issue #71)
+- ~~`text/dte_compress.py`~~ → `DteOptimizer` ✅ (Issue #71 complete)
+- ~~`analysis/dte_analyzer.py`~~ → `DteOptimizer` ✅ (Issue #71 complete)
 
 ### Other
 - `converters/hex_calc.py` - Hex calculator utility
