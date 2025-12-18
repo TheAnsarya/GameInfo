@@ -4,28 +4,15 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:GameInfoTools.UI.ViewModels"
 			 mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="700"
-			 x:Class="GameInfoTools.UI.Views.DataCrystalView"
-			 x:DataType="vm:DataCrystalViewModel">
+			 x:Class="GameInfoTools.UI.Views.DarkReposView"
+			 x:DataType="vm:DarkReposViewModel">
 
 	<DockPanel>
-		<!-- AI Warning Banner -->
-		<Border DockPanel.Dock="Top" Background="#FF5722" Padding="12"
-				IsVisible="{Binding ShowAiWarning}">
-			<DockPanel>
-				<Button DockPanel.Dock="Right" Content="✕" Command="{Binding DismissWarningCommand}"
-						Background="Transparent" Foreground="White" Padding="8,4"/>
-				<StackPanel>
-					<TextBlock Text="⚠️ AI-GENERATED CONTENT WARNING" FontWeight="Bold" Foreground="White" FontSize="14"/>
-					<TextBlock Text="{Binding AiWarningMessage}" Foreground="White" TextWrapping="Wrap" FontSize="12" Margin="0,4,0,0"/>
-				</StackPanel>
-			</DockPanel>
-		</Border>
-
 		<!-- Toolbar -->
 		<Border DockPanel.Dock="Top" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
 				Padding="8">
 			<StackPanel Orientation="Horizontal" Spacing="8">
-				<TextBlock Text="📚 Data Crystal" FontWeight="Bold" VerticalAlignment="Center" FontSize="14"/>
+				<TextBlock Text="🌐 DarkRepos Wiki" FontWeight="Bold" VerticalAlignment="Center" FontSize="14"/>
 				<Separator/>
 
 				<!-- Connection Status -->
@@ -75,7 +62,7 @@
 				<!-- Login Tab -->
 				<TabItem Header="🔑 Login">
 					<StackPanel Spacing="12" Margin="16">
-						<TextBlock Text="Data Crystal Login" FontWeight="Bold" FontSize="16"/>
+						<TextBlock Text="DarkRepos Wiki Login" FontWeight="Bold" FontSize="16"/>
 						<TextBlock Text="Use a bot password for authentication. Never use your main password!"
 								   TextWrapping="Wrap" Opacity="0.8"/>
 
@@ -114,12 +101,11 @@
 								</StackPanel>
 								<StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="4">
 									<Button Content="⬇️ Pull" Command="{Binding PullChangesCommand}"
-											ToolTip.Tip="Download page from Data Crystal"/>
+											ToolTip.Tip="Download page from DarkRepos Wiki"/>
 									<Button Content="🔍 Compare" Command="{Binding CompareWithRemoteCommand}"
 											ToolTip.Tip="Compare local with remote"/>
 									<Button Content="⬆️ Push" Command="{Binding PushChangesCommand}"
-											IsEnabled="{Binding SelectedItem.CanUpload}"
-											ToolTip.Tip="Upload to Data Crystal (requires review)"/>
+											ToolTip.Tip="Upload to DarkRepos Wiki"/>
 								</StackPanel>
 							</Grid>
 						</Border>
@@ -133,14 +119,14 @@
 							<!-- Review Section -->
 							<Border Grid.Row="1" Padding="8" Background="{DynamicResource SystemControlBackgroundBaseLowBrush}">
 								<StackPanel Spacing="8">
-									<TextBlock Text="📋 Review for Upload" FontWeight="Bold"/>
-									<TextBlock Text="Mark content as reviewed ONLY after manual verification!"
-											   Foreground="Orange" FontSize="11"/>
+									<TextBlock Text="📋 Review for Upload (Optional)" FontWeight="Bold"/>
+									<TextBlock Text="DarkRepos allows AI content, but you may still want to review before uploading."
+											   Opacity="0.8" FontSize="11"/>
 
 									<Grid ColumnDefinitions="Auto,*,Auto" Margin="0,8,0,0">
 										<TextBlock Grid.Column="0" Text="Reviewer:" VerticalAlignment="Center"/>
 										<TextBox Grid.Column="1" Text="{Binding ReviewerName}"
-												 Watermark="Your name" Margin="8,0"/>
+												 Watermark="Your name (optional)" Margin="8,0"/>
 										<StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4">
 											<Button Content="✅ Mark Reviewed" Command="{Binding MarkAsReviewedCommand}"/>
 											<Button Content="🔄 Clear Review" Command="{Binding ClearReviewCommand}"/>
@@ -173,14 +159,14 @@
 				<TabItem Header="❓ Help">
 					<ScrollViewer Margin="16">
 						<StackPanel Spacing="16">
-							<TextBlock Text="Data Crystal Integration Help" FontWeight="Bold" FontSize="18"/>
+							<TextBlock Text="DarkRepos Wiki Integration Help" FontWeight="Bold" FontSize="18"/>
 
 							<StackPanel Spacing="4">
-								<TextBlock Text="⚠️ AI Content Policy" FontWeight="Bold" Foreground="Orange"/>
+								<TextBlock Text="✅ AI Content Policy" FontWeight="Bold" Foreground="LimeGreen"/>
 								<TextBlock TextWrapping="Wrap">
-									Data Crystal strictly forbids AI-generated content. All content created using
-									GameInfoTools or any AI assistance MUST be manually reviewed and edited by a
-									human before uploading. Violations will result in a permanent ban from Data Crystal.
+									DarkRepos Games Wiki allows AI-generated content! You can directly upload
+									content created with GameInfoTools without manual review (though reviewing
+									is still recommended for quality).
 								</TextBlock>
 							</StackPanel>
 
@@ -189,16 +175,15 @@
 								<TextBlock TextWrapping="Wrap">
 									1. Generate wiki content using the Wiki Editor tool
 									2. Save the .wikitext file to your wiki directory
-									3. MANUALLY review and edit ALL content
-									4. Mark the file as "Reviewed" with your name
-									5. Use "Push" to upload to Data Crystal
+									3. Optionally review the content
+									4. Use "Push" to upload to DarkRepos Wiki
 								</TextBlock>
 							</StackPanel>
 
 							<StackPanel Spacing="4">
 								<TextBlock Text="🔑 Authentication" FontWeight="Bold"/>
 								<TextBlock TextWrapping="Wrap">
-									Create a bot password at Special:BotPasswords on Data Crystal.
+									Create a bot password at Special:BotPasswords on DarkRepos Wiki.
 									Never use your main wiki password. Bot passwords allow controlled
 									API access with specific permissions.
 								</TextBlock>
@@ -219,8 +204,8 @@
 							<StackPanel Spacing="4">
 								<TextBlock Text="✅ Review Status" FontWeight="Bold"/>
 								<TextBlock TextWrapping="Wrap">
-									✅ Reviewed - Ready for upload
-									⛔ Not Reviewed - Cannot upload until reviewed
+									✅ Reviewed - Marked as reviewed
+									⛔ Not Reviewed - Not yet reviewed (can still upload)
 								</TextBlock>
 							</StackPanel>
 
@@ -228,11 +213,20 @@
 								<TextBlock Text="📝 Change Markers" FontWeight="Bold"/>
 								<TextBlock TextWrapping="Wrap">
 									The tool adds HTML comment markers to track content origin:
-									- @CHANGE:AiGenerated - AI-generated content (requires review)
+									- @CHANGE:AiGenerated - AI-generated content
 									- @CHANGE:Imported - Pulled from wiki
 									- @CHANGE:Modified - Human modifications
 									- @REVIEWED - Marked as reviewed
 									These are stripped when uploading.
+								</TextBlock>
+							</StackPanel>
+
+							<StackPanel Spacing="4">
+								<TextBlock Text="🌐 About DarkRepos" FontWeight="Bold"/>
+								<TextBlock TextWrapping="Wrap">
+									DarkRepos Games Wiki (games.darkrepos.com) is a community wiki for
+									ROM hacking documentation, disassemblies, and retro game data.
+									Unlike some other wikis, DarkRepos welcomes AI-assisted content creation.
 								</TextBlock>
 							</StackPanel>
 						</StackPanel>

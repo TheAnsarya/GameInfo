@@ -249,6 +249,30 @@ public class WikiProfileManager {
 		};
 
 	/// <summary>
+	/// Creates a profile for DarkRepos Games Wiki (games.darkrepos.com).
+	/// This is the primary wiki for GameInfoTools - AI content is allowed.
+	/// </summary>
+	public static WikiProfile CreateDarkReposProfile(string? username = null, string? botPassword = null) =>
+		new() {
+			Id = "darkrepos",
+			Name = "DarkRepos Games Wiki",
+			Description = "ROM hacking documentation, disassemblies, and game data - AI content allowed",
+			Config = new MediaWikiConfig {
+				BaseUrl = "https://games.darkrepos.com",
+				ApiPath = "/w/api.php",
+				Username = username,
+				BotPassword = botPassword,
+				UserAgent = "GameInfoTools/1.0 (https://github.com/TheAnsarya/GameInfo)"
+			},
+			ContentPolicy = new WikiContentPolicy {
+				AllowsAiContent = true,
+				RequireReviewBeforeUpload = false,
+				MinEditDelaySeconds = 0,
+				MaxEditsPerHour = 0  // No limit for own wiki
+			}
+		};
+
+	/// <summary>
 	/// Creates a profile for The Cutting Room Floor wiki.
 	/// </summary>
 	public static WikiProfile CreateTcrfProfile(string? username = null, string? botPassword = null) =>
@@ -367,10 +391,14 @@ public class WikiProfileManager {
 	}
 
 	private void InitializeDefaultProfiles() {
-		// Add Data Crystal as default preset (without credentials)
+		// Add DarkRepos as default wiki (AI content allowed)
+		var darkRepos = CreateDarkReposProfile();
+		_profiles[darkRepos.Id] = darkRepos with { IsDefault = true };
+		_defaultProfileId = darkRepos.Id;
+
+		// Add Data Crystal preset (AI content NOT allowed)
 		var dataCrystal = CreateDataCrystalProfile();
-		_profiles[dataCrystal.Id] = dataCrystal with { IsDefault = true };
-		_defaultProfileId = dataCrystal.Id;
+		_profiles[dataCrystal.Id] = dataCrystal;
 
 		// Add TCRF preset
 		var tcrf = CreateTcrfProfile();

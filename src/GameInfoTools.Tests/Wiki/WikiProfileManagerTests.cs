@@ -26,8 +26,9 @@ public class WikiProfileManagerTests : IDisposable {
 
 	[Fact]
 	public void NewManager_HasDefaultProfiles() {
-		// The manager should initialize with Data Crystal and TCRF presets
-		Assert.True(_manager.Profiles.Count >= 2);
+		// The manager should initialize with DarkRepos, Data Crystal, and TCRF presets
+		Assert.True(_manager.Profiles.Count >= 3);
+		Assert.Contains("darkrepos", _manager.Profiles.Keys);
 		Assert.Contains("datacrystal", _manager.Profiles.Keys);
 		Assert.Contains("tcrf", _manager.Profiles.Keys);
 	}
@@ -91,9 +92,9 @@ public class WikiProfileManagerTests : IDisposable {
 
 	[Fact]
 	public void GetProfile_ReturnsProfile() {
-		var profile = _manager.GetProfile("datacrystal");
+		var profile = _manager.GetProfile("darkrepos");
 		Assert.NotNull(profile);
-		Assert.Equal("Data Crystal", profile.Name);
+		Assert.Equal("DarkRepos Games Wiki", profile.Name);
 	}
 
 	[Fact]

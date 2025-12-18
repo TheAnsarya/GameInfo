@@ -61,7 +61,7 @@ public partial class ChecksumViewModel : ViewModelBase {
 	}
 
 	/// <summary>
-	/// Copy checksums to clipboard as wikitext for Data Crystal.
+	/// Copy checksums to clipboard as MediaWiki wikitext.
 	/// </summary>
 	[RelayCommand]
 	private async Task CopyAsWikitext() {

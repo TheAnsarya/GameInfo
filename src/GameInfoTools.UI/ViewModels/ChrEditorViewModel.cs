@@ -684,7 +684,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 	}
 
 	/// <summary>
-	/// Copies tile information as wikitext for Data Crystal documentation.
+	/// Copies tile information as MediaWiki wikitext for documentation.
 	/// </summary>
 	[RelayCommand]
 	private async Task CopyAsWikitext() {

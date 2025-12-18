@@ -5,7 +5,7 @@ namespace GameInfoTools.UI.Views;
 
 /// <summary>
 /// View for the Wiki Editor tool.
-/// Provides a UI for creating and editing Data Crystal wikitext files.
+/// Provides a UI for creating and editing MediaWiki wikitext files.
 /// </summary>
 public partial class WikiEditorView : UserControl {
 	public WikiEditorView() {

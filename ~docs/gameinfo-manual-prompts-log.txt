@@ -192,6 +192,21 @@ work issues #69 and #70 and #72; keep documentation and logs udpated, making bra
 
 Merge PR #74 to main branch; Close issues #69, #70, #71, #72, #73 after merge; Consider updating PR title - Currently named for issues #69, #70, #72 but now includes #71 and #73; Continue with other work from the backlog?
 
+Rename the issue #7 for the epic `#7 - Data Crystal Wiki Documentation` from `Data Crystal` to our own wiki which is named `Dark Repos` or `DarkRepos`; since **we are not using Data Crystal any more, everything must be converted**, `Data Crystal` does not want AI stuff, so we won't update there anymore, instead we'll make our own wiki because we are using AI stuff so we made our own website, and the wiki we'll use (is not currently at) but will be at `games.darkrepos.com`; also create a todo-list/documentation for creating a wiki at the url `games.darkrepos.com` and automate as much as you can and code c# utilities to upload-to, process, and sync-with the wiki; Remove all references to Data Crystal, Instead use DarkRepos and change all code to use the new wiki; and make the wiki;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

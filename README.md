@@ -1,6 +1,6 @@
 # GameInfo
 
-ROM hacking tools, game documentation, and Data Crystal wiki content for retro games.
+ROM hacking tools, game documentation, and wiki content for retro games.
 
 ## 📚 Documentation
 
@@ -18,7 +18,7 @@ ROM hacking tools, game documentation, and Data Crystal wiki content for retro g
 
 ### Wiki Content (`*/Wiki/`)
 
-Data Crystal-style wikitext documentation:
+MediaWiki-style wikitext documentation for [DarkRepos Games Wiki](https://games.darkrepos.com):
 - ROM Maps - Complete memory mapping
 - RAM Maps - Variable and state tracking
 - Data Structures - Table formats and layouts
@@ -80,14 +80,14 @@ dotnet run --project src/GameInfoTools.Cli -- <command>
 | `GameInfoTools.Analysis` | ROM analysis, cross-referencing |
 | `GameInfoTools.Disassembly` | 6502/65816 disassembler |
 | `GameInfoTools.Rom` | Bank management, IPS/BPS patching |
-| `GameInfoTools.Wiki` | MediaWiki/Data Crystal integration |
+| `GameInfoTools.Wiki` | MediaWiki/DarkRepos integration |
 | `GameInfoTools.Cli` | Command-line interface |
 
-### Data Crystal Integration
+### DarkRepos Wiki Integration
 
-The tools include integration with [Data Crystal](https://datacrystal.tcrf.net/) for publishing ROM hacking documentation.
+The tools include integration with [DarkRepos Games Wiki](https://games.darkrepos.com) for publishing ROM hacking documentation.
 
-⚠️ **Important:** Data Crystal forbids AI-generated content. All content must be manually reviewed and edited before upload. See [docs/data-crystal-integration.md](docs/data-crystal-integration.md) for details.
+✅ **AI Content Allowed:** DarkRepos allows AI-assisted content, making it the ideal target for GameInfoTools output. See [docs/darkrepos-wiki.md](docs/darkrepos-wiki.md) for setup instructions.
 
 ### Additional Documentation
 

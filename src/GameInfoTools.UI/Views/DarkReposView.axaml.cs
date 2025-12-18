@@ -2,8 +2,8 @@ using Avalonia.Controls;
 
 namespace GameInfoTools.UI.Views;
 
-public partial class DataCrystalView : UserControl {
-	public DataCrystalView() {
+public partial class DarkReposView : UserControl {
+	public DarkReposView() {
 		InitializeComponent();
 	}
 }
