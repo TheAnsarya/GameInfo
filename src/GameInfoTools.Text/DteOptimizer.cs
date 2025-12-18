@@ -442,7 +442,7 @@ public sealed class DteOptimizer {
 			// Try DTE sequences first (longest first)
 			foreach (var (seq, byteVal) in sortedDte) {
 				if (i + seq.Length <= text.Length &&
-				    text.AsSpan(i, seq.Length).SequenceEqual(seq)) {
+					text.AsSpan(i, seq.Length).SequenceEqual(seq)) {
 					result.Add((byte)byteVal);
 					i += seq.Length;
 					matched = true;
@@ -509,7 +509,7 @@ public sealed class DteOptimizer {
 			// Option 2: Use DTE entries
 			foreach (var (seq, byteVal) in sortedDte) {
 				if (i + seq.Length <= n &&
-				    text.AsSpan(i, seq.Length).SequenceEqual(seq)) {
+					text.AsSpan(i, seq.Length).SequenceEqual(seq)) {
 					int cost = 1 + dp[i + seq.Length].Cost;
 					if (cost < dp[i].Cost) {
 						dp[i] = (cost, ("dte", byteVal, i + seq.Length));

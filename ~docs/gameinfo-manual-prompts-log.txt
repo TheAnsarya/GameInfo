@@ -181,11 +181,16 @@ git commit; Remaining Editor Tools (Issue #68)
 
 git commit; make sure the c# code tools in the `src` folder contain all of the functionality of the python scripts in `tools`; finish issue #68;
 
+&&&
+close Issue #68 or create any new issues for the identified gaps; Project template generator; CDL merging/validation utilities
+DTE (dual tile encoding) optimizer
+Font editor
+Game data editors (shop, chest, party, class, battle formulas)
+&&&
 
+work issues #69 and #70 and #72; keep documentation and logs udpated, making branches for work, keep issues updated; then make sure all project documentation is linked to eventually by the main `readme.md` file through the link tree; add a comment to every python script to the c# classes thare are equivalant, and add a comment to those c# classes to the python scripts they are similar to; and make documentation, a table of python/c# links;
 
-
-
-
+Merge PR #74 to main branch; Close issues #69, #70, #71, #72, #73 after merge; Consider updating PR title - Currently named for issues #69, #70, #72 but now includes #71 and #73; Continue with other work from the backlog?
 
 
 

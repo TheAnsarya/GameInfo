@@ -100,13 +100,8 @@ public class DteOptimizerTests {
 	public void LoadTbl_ParsesStandardFormat() {
 		var optimizer = new DteOptimizer();
 
-		var tblContent = """
-			; Comment line
-			41=A
-			42=B
-			43=C
-			20= 
-			""";
+		// Note: Can't use raw string literal for space entry - formatter trims trailing space
+		var tblContent = "; Comment line\n41=A\n42=B\n43=C\n20= ";
 
 		optimizer.LoadTbl(tblContent);
 
