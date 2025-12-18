@@ -177,7 +177,9 @@ Implement remaining tools from issue #68; Add unit tests for the new services; C
 
 first: git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; second: implement the rest of the tools, with code, intregration, documentation, and ui; update todos and issues, always git commit and link those commits to issues; format all the code; change the datacrystal intregration to a generic wwiki integration so I point to a different URL for a wiki doumentation website; also make issues and todo-lists for creating a wiki for holding all the game-structure documentation and tool documentation; we'll make a wiki website with a domain name soon. Add that stuff to manual documentation and testing;
 
+git commit; Remaining Editor Tools (Issue #68)
 
+git commit; make sure the c# code tools in the `src` folder contain all of the functionality of the python scripts in `tools`; finish issue #68;
 
 
 
