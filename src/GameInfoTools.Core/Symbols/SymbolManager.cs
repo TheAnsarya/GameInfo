@@ -1,5 +1,12 @@
 namespace GameInfoTools.Core.Symbols;
 
+// C# equivalent of:
+// - tools/assembly/symbol_manager.py
+// - tools/assembly/symbol_table.py
+// - tools/debug/debug_symbols.py
+// - tools/debug/mlb_editor.py
+// - tools/debug/nl_editor.py
+
 /// <summary>
 /// Represents a debug symbol or label in a ROM
 /// </summary>

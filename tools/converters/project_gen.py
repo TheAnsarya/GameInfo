@@ -5,6 +5,8 @@ Project Generator
 Generate project scaffolding for different game modding/analysis projects.
 Creates directory structure, config files, and starter scripts.
 
+C# equivalent: GameInfoTools.Core.Build.ProjectTemplateGenerator
+
 Project Types:
 - nes: NES ROM hacking project
 - snes: SNES ROM hacking project

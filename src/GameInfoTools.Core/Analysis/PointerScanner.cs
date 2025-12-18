@@ -1,5 +1,7 @@
 namespace GameInfoTools.Core.Analysis;
 
+// C# equivalent of: tools/rom/pointer_scanner.py
+
 /// <summary>
 /// Represents a detected pointer in ROM
 /// </summary>

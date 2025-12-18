@@ -5,6 +5,8 @@ Pointer Scanner - Scan ROMs for pointer tables and references.
 Identifies and analyzes pointer structures, builds reference maps,
 and helps locate data referenced by pointers.
 
+C# equivalent: GameInfoTools.Core.Analysis.PointerScanner
+
 Usage:
 	python pointer_scanner.py <rom_file> --find-tables
 	python pointer_scanner.py <rom_file> --analyze 0x8000

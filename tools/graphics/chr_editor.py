@@ -7,6 +7,8 @@ Edit CHR ROM data with support for:
 - Palette preview
 - Tile arrangement
 - Import/export formats
+
+C# equivalent: GameInfoTools.Graphics.ChrEditor
 """
 
 import argparse

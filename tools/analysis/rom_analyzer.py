@@ -5,6 +5,8 @@ ROM Analysis Tool
 Analyzes NES ROMs using CDL data to identify and label code/data regions.
 Generates debug labels for Mesen (MLB) and FCEUX (NL) formats.
 
+C# equivalent: GameInfoTools.Analysis.RomAnalyzer
+
 Features:
 - Auto-detect function boundaries from CDL
 - Identify data tables and their types

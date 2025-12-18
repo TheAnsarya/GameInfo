@@ -5,6 +5,8 @@ String Extractor - Extract and catalog text strings from ROMs.
 Finds and extracts text strings using various encoding methods,
 with support for custom text tables and control codes.
 
+C# equivalent: GameInfoTools.Text.StringExtractor
+
 Usage:
 	python string_extractor.py <rom_file> --tbl encoding.tbl
 	python string_extractor.py <rom_file> --auto-detect

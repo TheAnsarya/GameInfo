@@ -8,6 +8,8 @@ Supports:
 - Variable-width fonts
 - Font metrics editing
 
+C# equivalent: GameInfoTools.Graphics.FontEditor
+
 Author: ROM Hacking Toolkit
 """
 
