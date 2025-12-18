@@ -134,10 +134,11 @@ These Python tools don't have C# equivalents yet:
 - `analysis/trace_analyzer.py` - CPU trace analysis
 
 ### Data Editors
-- `data/shop_editor.py` - Shop inventory editing
-- `data/chest_editor.py` - Chest contents editing
-- `data/party_editor.py` - Party/character editing
-- `data/class_editor.py` - Class/job editing
+- ~~`data/shop_editor.py`~~ → `ShopEditor` ✅ (Issue #73 complete)
+- ~~`data/chest_editor.py`~~ → `ChestEditor` ✅ (Issue #73 complete)
+- ~~`data/party_editor.py`~~ → `PartyEditor` ✅ (Issue #73 complete)
+- ~~`data/class_editor.py`~~ → `ClassEditor` ✅ (Issue #73 complete)
+- ~~`data/battle_formula*.py`~~ → `BattleFormulaEditor` ✅ (Issue #73 complete)
 - `data/monster_database.py` - Monster data management
 - `data/item_database.py` - Item data management
 - `data/spell_database.py` - Spell data management
