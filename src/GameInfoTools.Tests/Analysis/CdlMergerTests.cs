@@ -208,7 +208,7 @@ public class CdlMergerTests {
 		var merger = new CdlMerger();
 		var cdl = new byte[32];
 		cdl[0] = 0x01; // Code at start
-		// Bytes 1-31 are all 0 (unlogged)
+					   // Bytes 1-31 are all 0 (unlogged)
 
 		var result = merger.Validate(cdl, minGapSize: 16);
 

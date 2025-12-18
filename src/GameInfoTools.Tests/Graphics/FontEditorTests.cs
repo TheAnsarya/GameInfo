@@ -362,7 +362,7 @@ public class FontEditorTests {
 		var data = new byte[16];
 		data[0] = 0x80; // Bit 7 set in plane 0
 		data[8] = 0x00; // All clear in plane 1
-		// This should give pixel[0,0] = 1
+						// This should give pixel[0,0] = 1
 
 		var pixels = FontEditor.DecodeTile(data, FontEditor.TileFormat.Nes2bpp, 8, 8);
 
@@ -375,7 +375,7 @@ public class FontEditorTests {
 		var data = new byte[16];
 		data[0] = 0x80; // Plane 0, row 0
 		data[1] = 0x80; // Plane 1, row 0
-		// Pixel[0,0] should be 3 (both bits set)
+						// Pixel[0,0] should be 3 (both bits set)
 
 		var pixels = FontEditor.DecodeTile(data, FontEditor.TileFormat.GameBoy2bpp, 8, 8);
 
