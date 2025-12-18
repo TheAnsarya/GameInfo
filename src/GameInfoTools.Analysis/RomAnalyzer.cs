@@ -6,6 +6,9 @@ namespace GameInfoTools.Analysis;
 /// <summary>
 /// ROM analysis and mapping tool.
 /// </summary>
+/// <remarks>
+/// C# equivalent of: tools/analysis/rom_analyzer.py
+/// </remarks>
 public class RomAnalyzer {
 	private readonly byte[] _data;
 	private readonly RomInfo _romInfo;

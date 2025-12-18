@@ -2,6 +2,8 @@
 
 A comprehensive collection of 148+ Python tools for ROM hacking, game documentation, and retro game research. Tools are organized by category for easy discovery.
 
+> **Note:** Many of these Python tools have C# equivalents in `src/`. See the [Python/C# Tool Mapping](../docs/python-csharp-mapping.md) for cross-references.
+
 ## Tool Categories
 
 | Category | Count | Description |

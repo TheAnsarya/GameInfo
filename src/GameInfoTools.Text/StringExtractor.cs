@@ -6,6 +6,9 @@ namespace GameInfoTools.Text;
 /// <summary>
 /// String extraction and searching from ROM data.
 /// </summary>
+/// <remarks>
+/// C# equivalent of: tools/text/string_extractor.py
+/// </remarks>
 public class StringExtractor {
 	private readonly Core.TextTable _table;
 

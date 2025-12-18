@@ -89,6 +89,10 @@ The tools include integration with [Data Crystal](https://datacrystal.tcrf.net/)
 
 ⚠️ **Important:** Data Crystal forbids AI-generated content. All content must be manually reviewed and edited before upload. See [docs/data-crystal-integration.md](docs/data-crystal-integration.md) for details.
 
+### Additional Documentation
+
+- [Python/C# Tool Mapping](docs/python-csharp-mapping.md) - Cross-reference between Python and C# tools
+
 ### Test Suite
 
 993 tests covering all libraries:

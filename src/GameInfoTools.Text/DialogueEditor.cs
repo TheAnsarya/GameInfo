@@ -8,6 +8,9 @@ namespace GameInfoTools.Text;
 /// <summary>
 /// Dialogue editor for game text with control codes, formatting, and preview.
 /// </summary>
+/// <remarks>
+/// C# equivalent of: tools/text/dialogue_editor.py
+/// </remarks>
 public partial class DialogueEditor {
 	/// <summary>
 	/// Type of dialogue entry.

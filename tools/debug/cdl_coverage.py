@@ -5,6 +5,8 @@ CDL Coverage Tracker
 Track and analyze CDL (Code/Data Logger) coverage over time.
 Supports multiple emulator formats and generates coverage trends.
 
+C# equivalent: GameInfoTools.Analysis.CdlMerger
+
 Features:
 - Track CDL coverage history
 - Compare CDL files over time

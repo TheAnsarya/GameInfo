@@ -8,6 +8,9 @@ namespace GameInfoTools.Text;
 /// Service for managing localization and multi-language text in ROMs.
 /// Supports translation management, import/export, and ROM patching.
 /// </summary>
+/// <remarks>
+/// C# equivalent of: tools/text/localization.py
+/// </remarks>
 public class LocalizationManager {
 	private readonly Dictionary<string, LocaleData> _locales = [];
 	private string _currentLocale = "en";
