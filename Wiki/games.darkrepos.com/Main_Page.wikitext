@@ -1,0 +1,108 @@
+__NOTOC__
+<div style="text-align: center; font-size: 150%; padding: 1em;">
+'''Welcome to the DarkRepos Games Wiki'''
+</div>
+
+<div style="text-align: center; margin-bottom: 1em;">
+A comprehensive resource for ROM hacking documentation, disassemblies, and retro game data.
+</div>
+
+==About This Wiki==
+
+DarkRepos Games Wiki is a community-driven resource for documenting the technical details of retro video games. Our focus is on:
+
+* '''ROM Maps''' - Complete memory layouts and bank structures
+* '''RAM Maps''' - Runtime memory documentation
+* '''Data Structures''' - Tables, formats, and game data
+* '''Disassemblies''' - Annotated source code reconstructions
+* '''Text Tables''' - Character encoding documentation
+
+This wiki welcomes contributions from the ROM hacking community, including AI-assisted documentation.
+
+==Games by Platform==
+
+{| class="wikitable" style="width: 100%;"
+|-
+! style="width: 33%;" | [[Category:NES Games|Nintendo Entertainment System]]
+! style="width: 33%;" | [[Category:SNES Games|Super Nintendo]]
+! style="width: 33%;" | [[Category:GBA Games|Game Boy Advance]]
+|-
+| style="vertical-align: top;" |
+* [[Dragon Warrior (NES)]]
+* [[Dragon Warrior II (NES)]]
+* [[Dragon Warrior III (NES)]]
+* [[Dragon Warrior IV (NES)]]
+* [[Kirby's Adventure (NES)]]
+* [[Mappy-Land (NES)]]
+* [[Yoshi's Cookie (NES)]]
+| style="vertical-align: top;" |
+* [[Dragon Quest I & II (SNES)]]
+* [[Dragon Quest III (SNES)]]
+* [[Chrono Trigger (SNES)]]
+* [[Final Fantasy IV (SNES)]]
+* [[Final Fantasy Mystic Quest (SNES)]]
+* [[The 7th Saga (SNES)]]
+| style="vertical-align: top;" |
+* [[Yu-Gi-Oh! The Eternal Duelist Soul (GBA)]]
+|}
+
+==Featured Content==
+
+===Dragon Quest / Dragon Warrior Series===
+
+The Dragon Quest series (known as Dragon Warrior in North America until 2005) is extensively documented on this wiki:
+
+{| class="wikitable"
+|-
+! Game !! Platform !! Documentation Status
+|-
+| [[Dragon Warrior IV (NES)]] || NES || {{Complete}} ROM Map, RAM Map, Disassembly
+|-
+| [[Dragon Quest III (SNES)]] || SNES || {{InProgress}} ROM Map, RAM Map, Values
+|-
+| [[Dragon Quest I & II (SNES)]] || SNES || {{InProgress}} ROM Map, RAM Map, TBL
+|-
+| [[Final Fantasy Mystic Quest (SNES)]] || SNES || {{Complete}} Full documentation
+|}
+
+==Documentation Types==
+
+===ROM Maps===
+ROM maps document the structure of game cartridge data, including:
+* Bank layouts and memory addresses
+* Code locations and subroutine counts
+* Data table locations
+* Graphics and audio data regions
+
+===RAM Maps===
+RAM maps document runtime memory usage:
+* System RAM ($0000-$07FF on NES)
+* Work RAM/WRAM ($6000-$7FFF on NES)
+* Character and party data structures
+* Game state variables
+
+===Text Tables (TBL)===
+Text tables document character encoding:
+* Byte-to-character mappings
+* Control codes
+* Special characters and symbols
+
+===Values Tables===
+Values tables document game constants:
+* Item IDs and properties
+* Character/enemy statistics
+* Status effects and flags
+
+==Contributing==
+
+This wiki is part of the [https://github.com/TheAnsarya/GameInfo GameInfo project]. Contributions are welcome!
+
+* '''GitHub Repository''': https://github.com/TheAnsarya/GameInfo
+* '''Dragon Warrior IV Disassembly''': https://github.com/TheAnsarya/dragon-warrior-4-info
+* '''FFMQ Disassembly''': https://github.com/TheAnsarya/ffmq-info
+
+==Tools==
+
+Documentation on this wiki is created and maintained using '''GameInfoTools''', a suite of .NET tools for ROM analysis and documentation generation.
+
+[[Category:Main]]

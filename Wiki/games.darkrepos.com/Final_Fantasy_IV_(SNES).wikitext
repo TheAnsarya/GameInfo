@@ -1,0 +1,143 @@
+{{Infobox game
+| title = Final Fantasy IV
+| alt_title = Final Fantasy II (US)
+| image = Final Fantasy IV SNES box.jpg
+| developer = Square
+| publisher = Square
+| platform = SNES
+| release = July 19, 1991 (JP), November 23, 1991 (US)
+| genre = RPG
+| players = 1
+| mapper = HiROM
+| rom_size = 1 MB (8 Mbit)
+| ram_size = 8 KB
+}}
+
+'''Final Fantasy IV''' (released as '''Final Fantasy II''' in North America) is a landmark SNES RPG introducing the Active Time Battle system.
+
+==Overview==
+
+Revolutionary features:
+* Active Time Battle (ATB) system - first implementation
+* Character-driven narrative
+* Class-based party system
+* Multiple worlds to explore
+
+==Technical Information==
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ROM Size || 1 MB (8 Mbit)
+|-
+| RAM Size || 8 KB SRAM
+|-
+| Mapper || HiROM
+|-
+| Regions || JP, US
+|-
+| CRC32 (US) || <code>23084FCD</code> (v1.1)
+|}
+
+==Memory Map==
+
+{| class="wikitable"
+|-
+! Bank Range !! Address !! Description
+|-
+| $C0-$CF || $0000-$FFFF || Program ROM (HiROM)
+|-
+| $30 || $6000-$7FFF || SRAM
+|-
+| $7E || $0000-$FFFF || WRAM (low)
+|-
+| $7F || $0000-$FFFF || WRAM (high)
+|}
+
+==Party Members==
+
+The game features many characters who join and leave throughout the story:
+
+{| class="wikitable"
+|-
+! ID !! Name !! Class !! Permanent
+|-
+| $00 || Cecil || Dark Knight→Paladin || Yes
+|-
+| $01 || Kain || Dragoon || Yes
+|-
+| $02 || Rosa || White Mage || Yes
+|-
+| $03 || Rydia || Caller/Summoner || Yes
+|-
+| $04 || Edge || Ninja || Yes
+|-
+| $05 || Tellah || Sage || No
+|-
+| $06 || Edward || Bard || No
+|-
+| $07 || Yang || Monk || No*
+|-
+| $08 || Palom || Black Mage || No
+|-
+| $09 || Porom || White Mage || No
+|-
+| $0A || Cid || Engineer || No
+|-
+| $0B || FuSoYa || Lunarian || No
+|}
+
+==Command Types==
+
+{| class="wikitable"
+|-
+! ID !! Command !! Description
+|-
+| $00 || Fight || Basic attack
+|-
+| $01 || Item || Use item
+|-
+| $02 || White || White magic
+|-
+| $03 || Black || Black magic
+|-
+| $04 || Summon || Call magic
+|-
+| $05 || Jump || Dragoon ability
+|-
+| $06 || Throw || Ninja ability
+|-
+| $07 || Steal || Ninja ability
+|}
+
+==ATB System==
+
+The Active Time Battle system:
+* Character action gauges fill in real-time
+* Speed stat affects gauge fill rate
+* "Active" and "Wait" modes
+
+==Documentation==
+
+* [[Final Fantasy IV (SNES)/ROM map|ROM Map]] - Complete ROM layout
+* [[Final Fantasy IV (SNES)/RAM map|RAM Map]] - Runtime memory documentation
+* [[Final Fantasy IV (SNES)/TBL|Text Table]] - Character encoding
+* [[Final Fantasy IV (SNES)/Values|Values]] - Game constants
+
+===Sub-pages===
+* [[Final Fantasy IV (SNES)/ROM map/Characters|Character Data]]
+* [[Final Fantasy IV (SNES)/ROM map/Spells|Spell Data]]
+* [[Final Fantasy IV (SNES)/ROM map/Summons|Summon Data]]
+* [[Final Fantasy IV (SNES)/ROM map/Enemies|Enemy Data]]
+* [[Final Fantasy IV (SNES)/RAM map/Party Data|Party Data Structure]]
+* [[Final Fantasy IV (SNES)/Values/Items|Item Data]]
+
+==External Links==
+
+* [https://github.com/TheAnsarya/GameInfo GameInfo Repository]
+
+[[Category:SNES Games]]
+[[Category:Final Fantasy Series]]
+[[Category:RPG]]
+[[Category:Square]]

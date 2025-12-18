@@ -1,0 +1,139 @@
+{{Infobox game
+| title = The 7th Saga
+| alt_title = Elnard (JP)
+| image = The 7th Saga box.jpg
+| developer = Produce
+| publisher = Enix
+| platform = SNES
+| release = April 23, 1993 (JP), September 1993 (US)
+| genre = RPG
+| players = 1
+| mapper = LoROM
+| rom_size = 1.5 MB (12 Mbit)
+| ram_size = 8 KB
+}}
+
+'''The 7th Saga''' (known as '''Elnard''' in Japan) is a notoriously difficult RPG featuring seven selectable protagonists competing to gather seven runes.
+
+==Overview==
+
+Notable features:
+* Seven playable characters with unique stories
+* AI rivals that level up with you
+* High difficulty (US version significantly harder)
+* Mode 7 world map
+* Crystal Ball radar system
+
+==Technical Information==
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ROM Size || 1.5 MB (12 Mbit)
+|-
+| RAM Size || 8 KB SRAM
+|-
+| Mapper || LoROM
+|-
+| Regions || JP (Elnard), US
+|-
+| CRC32 (US) || <code>B3A72B35</code>
+|}
+
+==Memory Map==
+
+{| class="wikitable"
+|-
+! Bank Range !! Address !! Description
+|-
+| $00-$17 || $8000-$FFFF || Program ROM
+|-
+| $70 || $0000-$1FFF || SRAM
+|-
+| $7E || $0000-$FFFF || WRAM (low)
+|-
+| $7F || $0000-$FFFF || WRAM (high)
+|}
+
+==Playable Characters==
+
+{| class="wikitable"
+|-
+! ID !! Name !! Class !! Strengths
+|-
+| $00 || Kamil || Knight || Balanced, sword magic
+|-
+| $01 || Olvan || Dwarf || High defense, axes
+|-
+| $02 || Esuna || Elf || Healing magic
+|-
+| $03 || Wilme || Alien || Physical power
+|-
+| $04 || Lux || Robot || High HP, limited magic
+|-
+| $05 || Valsu || Priest || Best healing magic
+|-
+| $06 || Lejes || Demon || Attack magic
+|}
+
+==Rune System==
+
+Seven runes must be collected:
+
+{| class="wikitable"
+|-
+! ID !! Rune !! Location !! Guardian
+|-
+| $00 || Water Rune || Bonro || Drake
+|-
+| $01 || Fire Rune || Telaine || Flame Demon
+|-
+| $02 || Wind Rune || Melenam || Wind Demon
+|-
+| $03 || Star Rune || Guanta || Star Dragon
+|-
+| $04 || Moon Rune || Padal || Moon Demon
+|-
+| $05 || Sky Rune || Pell || Sky Dragon
+|-
+| $06 || Light Rune || Final Dungeon || Gorsia
+|}
+
+==Rival System==
+
+* Other apprentices compete for runes
+* They level up as you do
+* Can be allies or enemies
+* Some may be fought as bosses
+* Party of up to 2 characters
+
+==Version Differences==
+
+The US version has significant changes:
+* Enemy stats dramatically increased
+* Experience gains reduced
+* Player stats reduced from JP version
+* Generally considered much harder
+
+==Documentation==
+
+* [[The 7th Saga (SNES)/ROM map|ROM Map]] - Complete ROM layout
+* [[The 7th Saga (SNES)/RAM map|RAM Map]] - Runtime memory documentation
+* [[The 7th Saga (SNES)/TBL|Text Table]] - Character encoding
+* [[The 7th Saga (SNES)/Values|Values]] - Game constants
+
+===Sub-pages===
+* [[The 7th Saga (SNES)/ROM map/Characters|Character Data]]
+* [[The 7th Saga (SNES)/ROM map/Enemies|Enemy Data]]
+* [[The 7th Saga (SNES)/ROM map/Runes|Rune Data]]
+* [[The 7th Saga (SNES)/RAM map/Party Data|Party Data Structure]]
+* [[The 7th Saga (SNES)/Values/Spells|Spell Data]]
+
+==External Links==
+
+* [https://github.com/TheAnsarya/GameInfo GameInfo Repository]
+
+[[Category:SNES Games]]
+[[Category:RPG]]
+[[Category:Enix]]

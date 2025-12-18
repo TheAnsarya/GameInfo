@@ -1,0 +1,264 @@
+{{TBL}}
+{{game|Dragon Warrior IV (NES)}}
+
+=Dragon Warrior IV (NES) Text Table=
+
+This page documents the text encoding used in Dragon Warrior IV (US version).
+
+==Overview==
+
+Dragon Warrior IV uses a custom character encoding for all in-game text. The encoding is single-byte, with special control codes for text formatting.
+
+==Character Table==
+
+Space character is <code>$00</code>.
+
+{| class="wikitable" style="text-align: center; font-family: monospace;"
+|-
+! !! _0 !! _1 !! _2 !! _3 !! _4 !! _5 !! _6 !! _7 !! _8 !! _9 !! _A !! _B !! _C !! _D !! _E !! _F
+|-
+! 0_
+| &nbsp; || 0 || 1 || 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9 || a || b || c || d || e
+|-
+! 1_
+| f || g || h || i || j || k || l || m || n || o || p || q || r || s || t || u
+|-
+! 2_
+| v || w || x || y || z || A || B || C || D || E || F || G || H || I || J || K
+|-
+! 3_
+| L || M || N || O || P || Q || R || S || T || U || V || W || X || Y || Z
+| style="background:#eee;" |
+|-
+! 4_
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+|-
+! 5_
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+|-
+! 6_
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| — || " || " || ' || ' || ' || ' || .' || ? || ! || -
+|-
+! 7_
+| ✱ || : || … || 🪦 || 💀 || ( || ) || , || .  || 「
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+|-
+! 8_
+| ▼ || ▶
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+| style="background:#eee;" |
+|}
+
+==Control Codes==
+
+{| class="wikitable"
+|-
+! Code !! Name !! Description
+|-
+| $F0 || [NEWLINE] || Start new line
+|-
+| $F1 || [WAIT] || Wait for button press
+|-
+| $F2 || [CLEAR] || Clear text window
+|-
+| $F3 || [PAUSE] || Short pause
+|-
+| $F4 || [HERO] || Insert hero's name
+|-
+| $F5 || [MEMBER] || Insert party member name
+|-
+| $F6 || [ITEM] || Insert item name
+|-
+| $F7 || [MONSTER] || Insert monster name
+|-
+| $F8 || [NUMBER] || Insert number
+|-
+| $F9 || [SPELL] || Insert spell name
+|-
+| $FA || [LOCATION] || Insert location name
+|-
+| $FB-$FE || — || Reserved
+|-
+| $FF || [END] || End of string
+|}
+
+==TBL File Format==
+
+For use with hex editors and text extraction tools:
+
+<pre>
+00= 
+01=0
+02=1
+03=2
+04=3
+05=4
+06=5
+07=6
+08=7
+09=8
+0A=9
+0B=a
+0C=b
+0D=c
+0E=d
+0F=e
+10=f
+11=g
+12=h
+13=i
+14=j
+15=k
+16=l
+17=m
+18=n
+19=o
+1A=p
+1B=q
+1C=r
+1D=s
+1E=t
+1F=u
+20=v
+21=w
+22=x
+23=y
+24=z
+25=A
+26=B
+27=C
+28=D
+29=E
+2A=F
+2B=G
+2C=H
+2D=I
+2E=J
+2F=K
+30=L
+31=M
+32=N
+33=O
+34=P
+35=Q
+36=R
+37=S
+38=T
+39=U
+3A=V
+3B=W
+3C=X
+3D=Y
+3E=Z
+65=—
+66="
+67="
+68='
+69='
+6A='
+6B='
+6C=.'
+6D=?
+6E=!
+6F=-
+70=✱
+71=:
+72=…
+73=🪦
+74=💀
+75=(
+76=)
+77=,
+78=.
+79=「
+80=▼
+81=▶
+F0=[NEWLINE]
+F1=[WAIT]
+F2=[CLEAR]
+F3=[PAUSE]
+F4=[HERO]
+F5=[MEMBER]
+F6=[ITEM]
+F7=[MONSTER]
+F8=[NUMBER]
+F9=[SPELL]
+FA=[LOCATION]
+FF=[END]
+</pre>
+
+==Text Compression==
+
+Dialog text in Dragon Warrior IV uses a form of DTE (Dual Tile Encoding) compression where common character pairs are encoded as single bytes in the $90-$EF range.
+
+{| class="wikitable"
+|-
+! Range !! Description
+|-
+| $00-$8F || Direct character mapping (see table above)
+|-
+| $90-$EF || DTE pairs (two characters per byte)
+|-
+| $F0-$FF || Control codes
+|}
+
+==See Also==
+
+* [[Dragon Warrior IV (NES)/ROM map|ROM Map]] - Text data locations
+* [[Dragon Warrior IV (NES)/Values|Values]] - Item/spell name IDs
+
+[[Category:Text Tables]]
+[[Category:Dragon Warrior IV (NES)]]
+[[Category:NES Games]]

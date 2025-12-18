@@ -1,0 +1,129 @@
+{{Infobox game
+| title = Dragon Quest III
+| alt_title = Dragon Quest III: Soshite Densetsu e...
+| image = Dragon Quest III SNES box.jpg
+| developer = Heart Beat
+| publisher = Enix
+| platform = SNES
+| release = December 6, 1996 (JP)
+| genre = RPG
+| players = 1
+| mapper = LoROM
+| rom_size = 4 MB (32 Mbit)
+| ram_size = 64 KB
+}}
+
+'''Dragon Quest III: Soshite Densetsu e...''' (そして伝説へ..., "And Into the Legend...") is the Super Famicom remake of the original NES Dragon Warrior III. It features completely redrawn graphics, orchestrated music, and numerous gameplay enhancements.
+
+==Overview==
+
+The SNES remake expands significantly on the original:
+* New personality system affecting stat growth
+* Additional mini-games
+* Monster medals collection
+* Enhanced graphics and sound
+* Pachisi/Sugoroku mini-game tracks
+
+==Technical Information==
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ROM Size || 4 MB (32 Mbit)
+|-
+| RAM Size || 64 KB SRAM
+|-
+| Mapper || LoROM
+|-
+| Region || Japan only
+|-
+| CRC32 || <code>5B6547D7</code> (no header)
+|}
+
+==Memory Map==
+
+{| class="wikitable"
+|-
+! Bank Range !! Address !! Description
+|-
+| $00-$3F || $8000-$FFFF || Program ROM
+|-
+| $70-$7D || $0000-$7FFF || SRAM (save data)
+|-
+| $7E || $0000-$FFFF || WRAM (low)
+|-
+| $7F || $0000-$FFFF || WRAM (high)
+|}
+
+==Class System==
+
+The SNES version retains all classes from the original plus enhancements:
+
+{| class="wikitable"
+|-
+! ID !! Class !! Description
+|-
+| $00 || Hero || Main character (fixed)
+|-
+| $01 || Soldier || Physical fighter
+|-
+| $02 || Fighter || Fast attacker
+|-
+| $03 || Pilgrim || Healing magic
+|-
+| $04 || Wizard || Attack magic
+|-
+| $05 || Merchant || Gold bonuses
+|-
+| $06 || Goof-off || Random/Sage prerequisite
+|-
+| $07 || Sage || Advanced magic class
+|-
+| $08 || Thief || Steal items (new class)
+|}
+
+==Personality System==
+
+The remake introduces personalities that affect stat growth. Determined by answering questions at the game's start.
+
+{| class="wikitable"
+|-
+! Category !! Personality Types
+|-
+| Strength-focused || Tough, Stubborn, Tomboy
+|-
+| Agility-focused || Quick, Lucky, Carefree
+|-
+| Intelligence-focused || Smart, Sharp, Romantic
+|-
+| Balanced || Normal, Ordinary, Lone Wolf
+|-
+| Special || Sexy, Vain, Macho
+|}
+
+==Documentation==
+
+* [[Dragon Quest III (SNES)/ROM map|ROM Map]] - Complete ROM layout
+* [[Dragon Quest III (SNES)/RAM map|RAM Map]] - Runtime memory documentation
+* [[Dragon Quest III (SNES)/TBL|Text Table]] - Japanese character encoding
+* [[Dragon Quest III (SNES)/Values|Values]] - Game constants
+
+===Sub-pages===
+* [[Dragon Quest III (SNES)/ROM map/Character Classes|Character Classes]]
+* [[Dragon Quest III (SNES)/ROM map/Monsters|Monster Data]]
+* [[Dragon Quest III (SNES)/ROM map/Personality|Personality System]]
+* [[Dragon Quest III (SNES)/RAM map/Party Members|Party Member Data]]
+* [[Dragon Quest III (SNES)/RAM map/Events|Event Flags]]
+* [[Dragon Quest III (SNES)/RAM map/Treasures|Treasure Flags]]
+* [[Dragon Quest III (SNES)/Values/Spells|Spell Data]]
+
+==External Links==
+
+* [https://github.com/TheAnsarya/GameInfo GameInfo Repository]
+
+[[Category:SNES Games]]
+[[Category:Dragon Quest Series]]
+[[Category:RPG]]
+[[Category:Enix]]
+[[Category:Japan Only]]

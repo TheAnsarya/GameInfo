@@ -1,0 +1,63 @@
+{{Infobox game
+| title = Dragon Warrior
+| image = Dragon Warrior box.jpg
+| developer = Chunsoft
+| publisher = Enix
+| platform = NES
+| release = August 1989 (US)
+| genre = RPG
+| players = 1
+| mapper = NROM (0)
+| prg = 64 KB
+| chr = 16 KB
+| mirroring = Vertical
+}}
+
+'''Dragon Warrior''' (known as '''Dragon Quest''' in Japan) is a role-playing video game developed by Chunsoft and published by Enix for the Nintendo Entertainment System. It is the first game in the Dragon Quest series and one of the most influential JRPGs ever made.
+
+==Overview==
+
+Dragon Warrior established many conventions of the JRPG genre, including random enemy encounters, a turn-based battle system, and character progression through experience points and levels.
+
+==Technical Information==
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ROM Size || 64 KB PRG + 16 KB CHR
+|-
+| Mapper || NROM (Mapper 0)
+|-
+| PRG Banks || 4 × 16KB (no bank switching)
+|-
+| CHR Banks || 1 × 8KB (fixed)
+|-
+| Save Type || Password system
+|-
+| CRC32 || <code>???</code>
+|}
+
+==Documentation==
+
+* [[Dragon Warrior (NES)/ROM map|ROM Map]] - Complete PRG ROM layout
+* [[Dragon Warrior (NES)/RAM map|RAM Map]] - Runtime memory documentation
+* [[Dragon Warrior (NES)/SRAM map|SRAM Map]] - Password encoding
+* [[Dragon Warrior (NES)/TBL|Text Table]] - Character encoding
+* [[Dragon Warrior (NES)/Values|Values]] - Game constants and IDs
+
+===Sub-pages===
+* [[Dragon Warrior (NES)/Battle System|Battle System]]
+* [[Dragon Warrior (NES)/Experience System|Experience System]]
+* [[Dragon Warrior (NES)/Graphics Data|Graphics Data]]
+* [[Dragon Warrior (NES)/Monster Data|Monster Data]]
+* [[Dragon Warrior (NES)/Music Pointers|Music Pointers]]
+
+==External Links==
+
+* [https://github.com/TheAnsarya/GameInfo GameInfo Repository]
+
+[[Category:NES Games]]
+[[Category:Dragon Quest Series]]
+[[Category:RPG]]
+[[Category:Enix]]

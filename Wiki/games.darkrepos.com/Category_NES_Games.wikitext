@@ -1,0 +1,57 @@
+'''NES Games''' documented on the DarkRepos Game Documentation Wiki.
+
+==Overview==
+
+The Nintendo Entertainment System (NES), known as the Famicom in Japan, was an 8-bit home video game console released in 1983 (JP) and 1985 (US).
+
+==Technical Specifications==
+
+{| class="wikitable"
+|-
+! Component !! Specification
+|-
+| CPU || Ricoh 2A03 (modified 6502) @ 1.79 MHz
+|-
+| PPU || Ricoh 2C02 (NTSC) / 2C07 (PAL)
+|-
+| RAM || 2 KB
+|-
+| VRAM || 2 KB
+|-
+| Resolution || 256×240 pixels
+|-
+| Colors || 54 colors, 25 on screen
+|-
+| Sprites || 64 sprites, 8 per scanline
+|}
+
+==Common Mappers==
+
+{| class="wikitable"
+|-
+! Mapper !! Name !! Description
+|-
+| 0 || NROM || No mapper (32KB PRG, 8KB CHR)
+|-
+| 1 || MMC1 || Nintendo's first mapper
+|-
+| 2 || UNROM || Switchable PRG, fixed CHR
+|-
+| 3 || CNROM || Fixed PRG, switchable CHR
+|-
+| 4 || MMC3 || Most common advanced mapper
+|-
+| 5 || MMC5 || Most advanced official mapper
+|}
+
+==Games==
+
+* [[Dragon Warrior (NES)]]
+* [[Dragon Warrior II (NES)]]
+* [[Dragon Warrior III (NES)]]
+* [[Dragon Warrior IV (NES)]]
+* [[Kirby's Adventure (NES)]]
+* [[Mappy-Land (NES)]]
+* [[Yoshi's Cookie (NES)]]
+
+[[Category:Platforms]]

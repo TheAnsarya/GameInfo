@@ -1,0 +1,428 @@
+{{subpage}}
+{{game|Dragon Warrior IV (NES)}}
+
+=Dragon Warrior IV (NES) Values=
+
+This page documents game constants, IDs, and enumerated values used in Dragon Warrior IV.
+
+==Party Members==
+
+{| class="wikitable"
+|-
+! Value !! Name !! Chapter Available
+|-
+| $00 || Hero || 5
+|-
+| $01 || Cristo || 2, 5
+|-
+| $02 || Nara || 4, 5
+|-
+| $03 || Mara || 4, 5
+|-
+| $04 || Brey || 2, 5
+|-
+| $05 || Taloon || 3, 5
+|-
+| $06 || Ragnar || 1, 5
+|-
+| $07 || Alena || 2, 5
+|-
+| $09 || Extra Companion #1 || Various
+|-
+| $0A || Extra Companion #2 || Various
+|}
+
+==Extra Companions==
+
+{| class="wikitable"
+|-
+! Value !! Name !! Chapter !! Class !! Notes
+|-
+| $C5 || Healie || 1 || Kind Healer || Healslime that joins Ragnar
+|-
+| $C6 || Orin || 4 || Alchemist || Joins in Keeleon
+|-
+| $C7 || Laurent || 3 || Troubadour || Joins in Endor
+|-
+| $C8 || Strom || 3 || Guardsman || Joins at Strom's castle
+|-
+| $C9 || Hector || 5 || Young Man || Joins in Mintos
+|-
+| $CA || Panon || 5 || Jester || Joins in Monbaraba
+|-
+| $CB || Lucia || 5 || Zenithian || Joins in Zenithia
+|-
+| $CC || Doran || 5 || Baby Dragon || Found in World Tree
+|}
+
+==Battle Tactics==
+
+Set via the menu in Chapter 5 to control AI behavior:
+
+{| class="wikitable"
+|-
+! Value !! Name !! Description
+|-
+| $00 || Normal || Balanced approach
+|-
+| $01 || Save MP || Conserve magic, prefer physical attacks
+|-
+| $02 || Offensive || All-out attack, use strongest abilities
+|-
+| $03 || Defensive || Focus on healing and buffs
+|-
+| $04 || Try Out || Experimental, uses rarely-used abilities
+|-
+| $05 || Use No MP || Never cast spells
+|}
+
+==Chapters==
+
+{| class="wikitable"
+|-
+! Value !! Chapter !! Protagonist(s)
+|-
+| $00 || Chapter 1 || Ragnar
+|-
+| $01 || Chapter 2 || Alena, Cristo, Brey
+|-
+| $02 || Chapter 3 || Taloon
+|-
+| $03 || Chapter 4 || Mara, Nara
+|-
+| $04 || Chapter 5 || Hero (all unite)
+|}
+
+==Items==
+
+===Weapons ($00-$23)===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Type !! Attack
+|-
+| $00 || Cypress Stick || Weapon || +2
+|-
+| $01 || Club || Weapon || +7
+|-
+| $02 || Copper Sword || Weapon || +12
+|-
+| $03 || Iron Claw || Weapon || +18
+|-
+| $04 || Chain Sickle || Weapon || +20
+|-
+| $05 || Iron Spear || Weapon || +28
+|-
+| $06 || Broad Sword || Weapon || +33
+|-
+| $07 || Battle Axe || Weapon || +35
+|-
+| $08 || Silver Tarot Cards || Weapon || +38
+|-
+| $09 || Thorn Whip || Weapon || +42
+|-
+| $0A || Morning Star || Weapon || +45
+|-
+| $0B || Boomerang || Weapon || +25
+|-
+| $0C || Abacus of Virtue || Weapon || +35
+|-
+| $0D || Iron Fan || Weapon || +47
+|-
+| $0E || Metal Babble Sword || Weapon || +40
+|-
+| $0F || Poison Needle || Weapon || +1
+|-
+| $10 || Staff of Force || Weapon || +55
+|-
+| $11 || Staff of Thunder || Weapon || +29
+|-
+| $12 || Demon Hammer || Weapon || +70
+|-
+| $13 || Multi-edge Sword || Weapon || +99
+|-
+| $14 || Zenithian Sword || Weapon || +100
+|-
+| $15 || Dragon Killer || Weapon || +77
+|-
+| $16 || Stilleto Earrings || Weapon || +55
+|-
+| $17 || Staff of Punishment || Weapon || +63
+|-
+| $18 || Sword of Lethargy || Weapon || +60
+|-
+| $19 || Venomous Dagger || Weapon || +24
+|-
+| $1A || Fire Claw || Weapon || +65
+|-
+| $1B || Ice Blade || Weapon || +75
+|-
+| $1C || Sword of Miracles || Weapon || +100
+|-
+| $1D || Staff of Antimagic || Weapon || +40
+|-
+| $1E || Magma Staff || Weapon || +80
+|-
+| $1F || Sword of Decimation || Weapon || +95
+|-
+| $20 || Staff of Healing || Weapon || +8
+|-
+| $21 || Zenithian Sword (Alt) || Weapon || +100
+|-
+| $22 || Staff of Jubilation || Weapon || +58
+|-
+| $23 || Sword of Malice || Weapon || +62
+|}
+
+===Armor ($24-$3C)===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Defense
+|-
+| $24 || Basic Clothes || +4
+|-
+| $25 || Wayfarer's Clothes || +8
+|-
+| $26 || Leather Armor || +12
+|-
+| $27 || Chain Mail || +18
+|-
+| $28 || Half Plate Armor || +25
+|-
+| $29 || Iron Apron || +22
+|-
+| $2A || Full Plate Armor || +35
+|-
+| $2B || Silk Robe || +13
+|-
+| $2C || Dancer's Costume || +20
+|-
+| $2D || Bronze Armor || +30
+|-
+| $2E || Metal Babble Armor || +95
+|-
+| $2F || Fur Coat || +22
+|-
+| $30 || Leather Dress || +25
+|-
+| $31 || Pink Leotard || +38
+|-
+| $32 || Dragon Mail || +60
+|-
+| $33 || Cloak of Evasion || +28
+|-
+| $34 || Sacred Robe || +50
+|-
+| $35 || Water Flying Clothes || +40
+|-
+| $36 || Mysterious Bolero || +47
+|-
+| $37 || Zenithian Armor || +75
+|-
+| $38 || Swordedge Armor || +70
+|-
+| $39 || Robe of Serenity || +55
+|-
+| $3A || Zombie Mail || +49
+|-
+| $3B || Dress of Radiance || +85
+|-
+| $3C || Demon Armor || +80
+|}
+
+===Shields ($3D-$45)===
+
+{| class="wikitable"
+|-
+! ID !! Name !! Defense
+|-
+| $3D || Leather Shield || +4
+|-
+| $3E || Scale Shield || +7
+|-
+| $3F || Iron Shield || +12
+|-
+| $40 || Shield of Strength || +18
+|-
+| $41 || Mirror Shield || +35
+|-
+| $42 || Aeolus' Shield || +30
+|-
+| $43 || Dragon Shield || +30
+|-
+| $44 || Zenithian Shield || +55
+|-
+| $45 || Metal Babble Shield || +60
+|}
+
+===Helmets ($46-$4F)===
+
+{| class="wikitable"
+|-
+! ID !! Name !! Defense
+|-
+| $46 || Leather Hat || +2
+|-
+| $47 || Wooden Hat || +6
+|-
+| $48 || Iron Helmet || +16
+|-
+| $49 || Iron Mask || +25
+|-
+| $4A || Feather Hat || +15
+|-
+| $4B || Zenithian Helm || +50
+|-
+| $4C || Mask of Corruption || +38
+|-
+| $4D || Golden Barrette || +12
+|-
+| $4E || Hat of Happiness || +20
+|-
+| $4F || Metal Babble Helm || +50
+|}
+
+===Accessories ($50)===
+
+{| class="wikitable"
+|-
+! ID !! Name !! Effect
+|-
+| $50 || Meteorite Armband || +50 Agility
+|}
+
+===Consumables ($52-$7E)===
+
+{| class="wikitable"
+|-
+! ID !! Name !! Effect
+|-
+| $52 || Medical Herb || Restore ~30 HP
+|-
+| $53 || Antidote Herb || Cure poison
+|-
+| $54 || Fairy Water || Repel weak enemies
+|-
+| $55 || Wing of Wyvern || Return to last save point
+|-
+| $56 || Chimaera Wing || Return to any town
+|-
+| $57 || Moonwort Bulb || Cure paralysis
+|-
+| $58 || Full Moon Herb || Cure confusion
+|-
+| $59 || Sage's Stone || Heal entire party
+|-
+| $5A || Yggdrasil Leaf || Revive one character
+|-
+| ... || ... || ...
+|}
+
+===Special Values===
+
+{| class="wikitable"
+|-
+! Value !! Meaning
+|-
+| $51 || Blank separator (menu display)
+|-
+| $7F || No item (empty slot)
+|-
+| $80+ || Equipped item flag (add to item ID)
+|}
+
+==Status Effects==
+
+Bit flags stored in character status byte:
+
+{| class="wikitable"
+|-
+! Bit !! Mask !! Effect
+|-
+| 0 || $01 || Poisoned
+|-
+| 1 || $02 || Paralyzed
+|-
+| 2 || $04 || Asleep
+|-
+| 3 || $08 || Confused
+|-
+| 4 || $10 || Silenced
+|-
+| 5 || $20 || Dead
+|-
+| 6 || $40 || Cursed
+|-
+| 7 || $80 || In Wagon
+|}
+
+==Spells==
+
+{| class="wikitable"
+|-
+! ID !! Name !! MP !! Effect
+|-
+| $00 || Heal || 3 || Restore ~30 HP
+|-
+| $01 || Healmore || 5 || Restore ~75 HP
+|-
+| $02 || Healall || 7 || Full HP restore
+|-
+| $03 || Healus || 18 || Heal entire party
+|-
+| $04 || Blaze || 2 || Fire damage (single)
+|-
+| $05 || Blazemore || 4 || Fire damage (single)
+|-
+| $06 || Blazemost || 10 || Fire damage (single)
+|-
+| $07 || Firebal || 4 || Fire damage (group)
+|-
+| $08 || Firebane || 6 || Fire damage (group)
+|-
+| $09 || Firevolt || 15 || Fire damage (all)
+|-
+| $0A || Icebolt || 3 || Ice damage
+|-
+| $0B || Snowstorm || 5 || Ice damage (group)
+|-
+| $0C || Blizzard || 12 || Ice damage (all)
+|-
+| ... || ... || ... || ...
+|}
+
+==Day/Night Cycle Values==
+
+{| class="wikitable"
+|-
+! Range !! Length !! Description
+|-
+| $00-$27 || 40 || Day
+|-
+| $28-$77 || 80 || Day (after Inn)
+|-
+| $78-$7B || 4 || Afternoon
+|-
+| $7C-$7F || 4 || Dusk
+|-
+| $80-$83 || 4 || Evening
+|-
+| $84-$BF || 60 || Night
+|-
+| $C0-$C3 || 4 || Pre-dawn
+|-
+| $C4-$C7 || 4 || Dawn
+|-
+| $C8-$CB || 4 || Morning
+|}
+
+==See Also==
+
+* [[Dragon Warrior IV (NES)/RAM map|RAM Map]]
+* [[Dragon Warrior IV (NES)/Items|Full Item List]]
+* [[Dragon Warrior IV (NES)/Monsters|Monster Data]]
+
+[[Category:Values]]
+[[Category:Dragon Warrior IV (NES)]]
+[[Category:NES Games]]

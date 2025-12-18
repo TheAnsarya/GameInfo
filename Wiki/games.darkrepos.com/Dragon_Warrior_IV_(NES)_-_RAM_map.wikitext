@@ -1,0 +1,314 @@
+{{rammap}}
+{{game|Dragon Warrior IV (NES)}}
+
+=Dragon Warrior IV (NES) RAM Map=
+
+This RAM map documents the runtime memory layout of Dragon Warrior IV (US version).
+
+==Memory Regions==
+
+{| class="wikitable"
+|-
+! Region !! Address Range !! Size !! Description
+|-
+| System RAM || $0000-$07FF || 2 KB || CPU internal RAM
+|-
+| PPU Registers || $2000-$2007 || 8 bytes || Video registers
+|-
+| APU Registers || $4000-$4017 || 24 bytes || Audio/controller registers
+|-
+| WRAM || $6000-$7FFF || 8 KB || Work RAM (battery-backed)
+|-
+| PRG ROM || $8000-$FFFF || 32 KB || Program ROM (banked)
+|}
+
+==System RAM ($0000-$07FF)==
+
+{| class="wikitable sortable"
+|-
+! Address !! Size !! Category !! Description
+|-
+| $0000-$000F || 16 || System || Zero page temporaries
+|-
+| $0010-$001F || 16 || System || Subroutine arguments
+|-
+| $0020-$002F || 16 || Math || Multiplication/division workspace
+|-
+| $0030-$003F || 16 || PPU || Sprite DMA staging
+|-
+| $0040-$005F || 32 || Input || Controller state buffers
+|-
+| $0060-$0062 || 3 || World || Current map state
+|-
+| $0063 || 1 || World || '''Map Number'''
+|-
+| $0064 || 1 || World || '''Sub-Map Number'''
+|-
+| $0065-$006F || 11 || World || Map scroll position
+|-
+| $0070-$007F || 16 || Graphics || Tile update queue
+|-
+| $0080-$00FF || 128 || Stack || 6502 stack area
+|-
+| $0100-$01FF || 256 || System || Stack page
+|-
+| $0200-$02FF || 256 || PPU || Sprite OAM buffer
+|-
+| $0300-$03FF || 256 || Audio || Sound engine workspace
+|-
+| $0400-$04FF || 256 || Battle || Battle state variables
+|-
+| $0500-$05FF || 256 || Menu || Menu state variables
+|-
+| $0600-$07FF || 512 || General || General purpose storage
+|}
+
+==WRAM - Party Data ($6000-$61FF)==
+
+===Character Data Structure===
+
+Each of the 8 main party members uses 30 ($1E) bytes of storage:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| +$00 || 1 || Character ID
+|-
+| +$01 || 1 || Current HP (low byte)
+|-
+| +$02 || 1 || Current HP (high byte)
+|-
+| +$03 || 1 || Max HP (low byte)
+|-
+| +$04 || 1 || Max HP (high byte)
+|-
+| +$05 || 1 || Current MP (low byte)
+|-
+| +$06 || 1 || Current MP (high byte)
+|-
+| +$07 || 1 || Max MP (low byte)
+|-
+| +$08 || 1 || Max MP (high byte)
+|-
+| +$09 || 1 || Strength
+|-
+| +$0A || 1 || Agility
+|-
+| +$0B || 1 || Luck
+|-
+| +$0C || 1 || Attack Power
+|-
+| +$0D || 1 || Defense Power
+|-
+| +$0E || 1 || Level
+|-
+| +$0F || 1 || Status Effects
+|-
+| +$10 || 3 || Experience (24-bit)
+|-
+| +$13 || 1 || Equipped Weapon
+|-
+| +$14 || 1 || Equipped Armor
+|-
+| +$15 || 1 || Equipped Shield
+|-
+| +$16 || 1 || Equipped Helmet
+|-
+| +$17-$1D || 7 || Inventory slots (7 items)
+|}
+
+===Party Member Addresses===
+
+{| class="wikitable"
+|-
+! Character !! Base Address !! Label
+|-
+| Hero || $6001 || Hero_*
+|-
+| Cristo || $601F || Cristo_*
+|-
+| Nara || $603D || Nara_*
+|-
+| Mara || $605B || Mara_*
+|-
+| Brey || $6079 || Brey_*
+|-
+| Taloon || $6097 || Taloon_*
+|-
+| Ragnar || $60B5 || Ragnar_*
+|-
+| Alena || $60D3 || Alena_*
+|}
+
+===Extra Companions ($610F-$611A)===
+
+Extra companions use a smaller 6-byte structure:
+
+{| class="wikitable"
+|-
+! Address !! Size !! Description
+|-
+| $610F-$6114 || 6 || Extra Companion #1
+|-
+| $6115-$611A || 6 || Extra Companion #2
+|}
+
+{| class="wikitable"
+|-
+! Offset !! Description
+|-
+| +$00 || Companion ID (see [[Dragon Warrior IV (NES)/Values#Extra Companions|Values]])
+|-
+| +$01 || Current HP (low)
+|-
+| +$02 || Current HP (high)
+|-
+| +$03 || Max HP (low)
+|-
+| +$04 || Max HP (high)
+|-
+| +$05 || Status
+|}
+
+==WRAM - General Data ($6150-$62FF)==
+
+{| class="wikitable sortable"
+|-
+! Address !! Size !! Category !! Description !! Label
+|-
+| $6157-$6159 || 3 || Party || Gold (24-bit, little-endian) || General_Gold
+|-
+| $615A || 1 || Game || Chapter Number (0-4) || General_Chapter_Number
+|-
+| $615B || 1 || Battle || Battle Tactics setting || General_Battle_Tactics
+|-
+| $615C || 1 || Time || Day/Night Cycle counter || General_Day_Night
+|-
+| $615D-$6164 || 8 || System || Reserved || —
+|-
+| $6165-$6167 || 3 || Travel || Return/Zoom locations || General_Return_Locations
+|-
+| $6168-$6169 || 2 || System || Reserved || —
+|-
+| $616A-$616D || 4 || Party || Active party order (4 slots) || Party_Members_Order
+|-
+| $616E-$61FF || ~145 || System || Reserved/Unknown || —
+|}
+
+==WRAM - Flags and Events ($6200-$62FF)==
+
+===Treasure Chest Flags ($625D-$6277)===
+
+27 bytes of bit flags tracking opened treasure chests. Each bit represents one chest.
+
+{| class="wikitable"
+|-
+! Address !! Bits !! Maps
+|-
+| $625D || 0-7 || Chapter 1 chests 1-8
+|-
+| $625E || 0-7 || Chapter 1 chests 9-16
+|-
+| $625F-$6268 || — || Chapters 2-4 chests
+|-
+| $6269-$6277 || — || Chapter 5 chests
+|}
+
+===Event Flags===
+
+Game progression flags stored in bit-packed format:
+
+{| class="wikitable"
+|-
+! Address !! Description
+|-
+| $6278-$6280 || Story progression flags
+|-
+| $6281-$6290 || NPC conversation flags
+|-
+| $6291 || Party composition flags
+|}
+
+==WRAM - Battle State ($6300-$63FF)==
+
+During battles, additional state is stored:
+
+{| class="wikitable"
+|-
+! Address !! Size !! Description
+|-
+| $614A || 1 || Current Battle Actor Index
+|-
+| $616E || 1 || Battle State Flags
+|-
+| $617A || ~20 || Battle Action Queue
+|-
+| $6190 || ~16 || Monster HP array (up to 8 monsters × 2 bytes)
+|-
+| $61A0 || ~8 || Monster status effects
+|}
+
+==Status Effect Bits==
+
+Stored in character offset +$0F:
+
+{| class="wikitable"
+|-
+! Bit !! Effect
+|-
+| 0 || Poisoned
+|-
+| 1 || Paralyzed
+|-
+| 2 || Asleep
+|-
+| 3 || Confused
+|-
+| 4 || Silenced
+|-
+| 5 || Dead
+|-
+| 6 || Cursed
+|-
+| 7 || In Wagon
+|}
+
+==Day/Night Cycle==
+
+The day/night counter at $615C cycles through these values:
+
+{| class="wikitable"
+|-
+! Range !! Length !! Period
+|-
+| $00-$27 || 40 steps || Day
+|-
+| $28-$77 || 80 steps || Day (after Inn)
+|-
+| $78-$7B || 4 steps || Afternoon
+|-
+| $7C-$7F || 4 steps || Dusk
+|-
+| $80-$83 || 4 steps || Evening
+|-
+| $84-$BF || 60 steps || Night
+|-
+| $C0-$C3 || 4 steps || Pre-dawn
+|-
+| $C4-$C7 || 4 steps || Dawn
+|-
+| $C8-$CB || 4 steps || Morning
+|}
+
+Note: Staying at an Inn sets the counter to $28. Counter wraps after $CB.
+
+==See Also==
+
+* [[Dragon Warrior IV (NES)/ROM map|ROM Map]]
+* [[Dragon Warrior IV (NES)/SRAM map|SRAM Map]]
+* [[Dragon Warrior IV (NES)/Values|Values Tables]]
+
+[[Category:RAM Maps]]
+[[Category:Dragon Warrior IV (NES)]]
+[[Category:NES Games]]

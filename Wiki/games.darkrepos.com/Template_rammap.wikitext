@@ -1,0 +1,18 @@
+<noinclude>
+'''rammap''' - Template for RAM map header.
+
+==Usage==
+
+<pre>
+{{rammap}}
+</pre>
+
+This template adds the standard header for RAM map pages.
+
+[[Category:Templates]]
+</noinclude><includeonly>This page documents the runtime memory layout for this game.
+
+{| class="wikitable"
+|-
+! Address !! Length !! Description
+|}</includeonly>

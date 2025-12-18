@@ -1,0 +1,80 @@
+{{Infobox game
+| title = Dragon Warrior III
+| image = Dragon Warrior III box.jpg
+| developer = Chunsoft
+| publisher = Enix
+| platform = NES
+| release = March 1992 (US)
+| genre = RPG
+| players = 1
+| mapper = MMC5 (5)
+| prg = 256 KB
+| chr = 128 KB
+| mirroring = Vertical
+}}
+
+'''Dragon Warrior III''' (known as '''Dragon Quest III''' in Japan) is a role-playing video game for the Nintendo Entertainment System. It is the third and final game in the "Erdrick Trilogy."
+
+==Overview==
+
+Dragon Warrior III introduces the class system to the series, allowing players to customize their party with various job classes. The game is a prequel to Dragon Warrior I and II, revealing the origin of the legendary hero Erdrick.
+
+==Technical Information==
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ROM Size || 256 KB PRG + 128 KB CHR
+|-
+| Mapper || MMC5 (Mapper 5)
+|-
+| PRG Banks || 16 × 16KB
+|-
+| CHR Banks || 16 × 8KB
+|-
+| Save RAM || 8KB battery-backed
+|-
+| CRC32 || <code>???</code>
+|}
+
+==Class System==
+
+{| class="wikitable"
+|-
+! Class !! Description !! Stat Focus
+|-
+| Hero || Main character, balanced || All stats
+|-
+| Soldier || Heavy fighter || STR, HP
+|-
+| Fighter || Fast attacker || STR, AGI
+|-
+| Pilgrim || Healing magic || MP, INT
+|-
+| Wizard || Attack magic || MP, INT
+|-
+| Merchant || Gold collector || Luck
+|-
+| Goof-off || Random behavior || Luck
+|-
+| Sage || All magic (advanced) || MP, INT
+|}
+
+==Documentation==
+
+* [[Dragon Warrior III (NES)/ROM map|ROM Map]] - Complete PRG ROM layout
+* [[Dragon Warrior III (NES)/RAM map|RAM Map]] - Runtime memory documentation
+* [[Dragon Warrior III (NES)/TBL|Text Table]] - Character encoding
+* [[Dragon Warrior III (NES)/Values|Values]] - Game constants
+* [[Dragon Warrior III (NES)/Known Dumps|Known Dumps]] - ROM versions
+* [[Dragon Warrior III (NES)/Sub-pages|Sub-pages]] - Additional documentation
+
+==External Links==
+
+* [https://github.com/TheAnsarya/GameInfo GameInfo Repository]
+
+[[Category:NES Games]]
+[[Category:Dragon Quest Series]]
+[[Category:RPG]]
+[[Category:Enix]]

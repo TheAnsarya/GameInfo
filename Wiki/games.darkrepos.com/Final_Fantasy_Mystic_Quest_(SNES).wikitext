@@ -1,0 +1,139 @@
+{{Infobox game
+| title = Final Fantasy Mystic Quest
+| alt_title = Mystic Quest Legend (EU)
+| image = Final Fantasy Mystic Quest box.jpg
+| developer = Square
+| publisher = Square (JP/US), Nintendo (EU)
+| platform = SNES
+| release = October 5, 1992 (US)
+| genre = RPG
+| players = 1
+| mapper = LoROM
+| rom_size = 1 MB (8 Mbit)
+| ram_size = 8 KB
+}}
+
+'''Final Fantasy Mystic Quest''' (known as '''Mystic Quest Legend''' in Europe and '''Final Fantasy USA: Mystic Quest''' in Japan) is an action RPG designed as an introductory RPG for Western audiences.
+
+==Overview==
+
+A simplified RPG featuring:
+* Action-oriented gameplay with visible enemies
+* No random encounters
+* Weapons affect overworld obstacles
+* Partner character system
+* Simplified menu and equipment system
+
+==Technical Information==
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ROM Size || 1 MB (8 Mbit)
+|-
+| RAM Size || 8 KB SRAM
+|-
+| Mapper || LoROM
+|-
+| Regions || US, EU, JP
+|-
+| CRC32 (US) || <code>F8A3725C</code>
+|}
+
+==Memory Map==
+
+{| class="wikitable"
+|-
+! Bank Range !! Address !! Description
+|-
+| $00-$0F || $8000-$FFFF || Program ROM
+|-
+| $70 || $0000-$1FFF || SRAM (save data)
+|-
+| $7E || $0000-$FFFF || WRAM (low)
+|-
+| $7F || $0000-$FFFF || WRAM (high)
+|}
+
+==Party System==
+
+Benjamin (the hero) teams up with various partners throughout the game:
+
+{| class="wikitable"
+|-
+! ID !! Character !! Weapons !! Notes
+|-
+| $00 || Benjamin || All || Main character
+|-
+| $01 || Kaeli || Axes || Forest area partner
+|-
+| $02 || Tristam || Ninja Stars || Treasure hunter
+|-
+| $03 || Phoebe || Bombs/Claws || Fire area partner
+|-
+| $04 || Reuben || Swords || Ice area partner
+|}
+
+==Weapon Types==
+
+{| class="wikitable"
+|-
+! ID !! Type !! Overworld Use
+|-
+| $00 || Sword || Cut bushes
+|-
+| $01 || Axe || Chop trees
+|-
+| $02 || Claw || Climb walls
+|-
+| $03 || Bomb || Destroy rocks
+|}
+
+==Spell System==
+
+Magic is divided into three categories:
+
+{| class="wikitable"
+|-
+! Type !! Level 1 !! Level 2 !! Level 3
+|-
+| White || Cure || Heal || Life
+|-
+| Black || Fire || Blizzard || Thunder
+|-
+| Wizard || Quake || Exit || Meteor
+|}
+
+==Battle System==
+
+* Turn-based combat
+* Up to 2 party members
+* Weapons can be changed mid-battle
+* No random encounters - enemies visible on map
+* Battlefield obstacles can be destroyed
+
+==Documentation==
+
+* [[Final Fantasy Mystic Quest (SNES)/ROM map|ROM Map]] - Complete ROM layout
+* [[Final Fantasy Mystic Quest (SNES)/RAM map|RAM Map]] - Runtime memory documentation
+* [[Final Fantasy Mystic Quest (SNES)/TBL|Text Table]] - Character encoding
+* [[Final Fantasy Mystic Quest (SNES)/Values|Values]] - Game constants
+
+===Sub-pages===
+* [[Final Fantasy Mystic Quest (SNES)/ROM map/Weapons|Weapon Data]]
+* [[Final Fantasy Mystic Quest (SNES)/ROM map/Spells|Spell Data]]
+* [[Final Fantasy Mystic Quest (SNES)/ROM map/Enemies|Enemy Data]]
+* [[Final Fantasy Mystic Quest (SNES)/ROM map/Battlefields|Battlefield Data]]
+* [[Final Fantasy Mystic Quest (SNES)/RAM map/Party Data|Party Data Structure]]
+* [[Final Fantasy Mystic Quest (SNES)/Values/Items|Item Data]]
+
+==External Links==
+
+* [https://github.com/TheAnsarya/GameInfo GameInfo Repository]
+* [https://github.com/TheAnsarya/ffmq-info FFMQ Disassembly Project]
+
+[[Category:SNES Games]]
+[[Category:Final Fantasy Series]]
+[[Category:RPG]]
+[[Category:Square]]

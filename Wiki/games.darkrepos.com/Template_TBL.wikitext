@@ -1,0 +1,20 @@
+<noinclude>
+'''TBL''' - Template for text table header.
+
+==Usage==
+
+<pre>
+{{TBL}}
+</pre>
+
+This template adds the standard header for text encoding table pages.
+
+[[Category:Templates]]
+</noinclude><includeonly>This page documents the text encoding table used by this game. Values are in hexadecimal.
+
+'''File Format:''' <code>XX=Y</code> where XX is the hex value and Y is the character.
+
+{| class="wikitable"
+|-
+! Value !! Character !! Notes
+|}</includeonly>
