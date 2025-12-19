@@ -139,7 +139,7 @@ Space character is <code>$00</code>.
 For use with hex editors and text extraction tools:
 
 <pre>
-00= 
+00=
 01=0
 02=1
 03=2

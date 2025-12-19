@@ -1,0 +1,468 @@
+{{subpage}}
+
+=Dragon Warrior (NES) Experience and Level System=
+
+This page documents the experience point system, level progression, stat growth, and spell learning mechanics for Dragon Warrior (NES).
+
+==Experience Points==
+
+===Experience Requirements===
+
+Dragon Warrior uses a fixed experience table for all 30 levels. The table is stored in ROM at Bank 01, approximately $9500.
+
+{| class="wikitable sortable"
+!  Level  !!  Total EXP  !!  EXP for Next Level  !!  Cumulative Gain
+|-
+|  1  ||  0  ||  7  ||  Starting level
+|-
+|  2  ||  7  ||  16  ||  +7
+|-
+|  3  ||  23  ||  24  ||  +23
+|-
+|  4  ||  47  ||  63  ||  +47
+|-
+|  5  ||  110  ||  110  ||  +110
+|-
+|  6  ||  220  ||  230  ||  +220
+|-
+|  7  ||  450  ||  350  ||  +450
+|-
+|  8  ||  800  ||  500  ||  +800
+|-
+|  9  ||  1,300  ||  700  ||  +1,300
+|-
+|  10  ||  2,000  ||  900  ||  +2,000
+|-
+|  11  ||  2,900  ||  1,100  ||  +2,900
+|-
+|  12  ||  4,000  ||  1,500  ||  +4,000
+|-
+|  13  ||  5,500  ||  2,000  ||  +5,500
+|-
+|  14  ||  7,500  ||  2,500  ||  +7,500
+|-
+|  15  ||  10,000  ||  3,000  ||  +10,000
+|-
+|  16  ||  13,000  ||  3,500  ||  +13,000
+|-
+|  17  ||  16,500  ||  3,500  ||  +16,500
+|-
+|  18  ||  20,000  ||  4,000  ||  +20,000
+|-
+|  19  ||  24,000  ||  4,000  ||  +24,000
+|-
+|  20  ||  28,000  ||  4,000  ||  +28,000
+|-
+|  21  ||  32,000  ||  4,000  ||  +32,000
+|-
+|  22  ||  36,000  ||  4,000  ||  +36,000
+|-
+|  23  ||  40,000  ||  4,000  ||  +40,000
+|-
+|  24  ||  44,000  ||  4,000  ||  +44,000
+|-
+|  25  ||  48,000  ||  4,000  ||  +48,000
+|-
+|  26  ||  52,000  ||  4,000  ||  +52,000
+|-
+|  27  ||  56,000  ||  4,000  ||  +56,000
+|-
+|  28  ||  60,000  ||  4,000  ||  +60,000
+|-
+|  29  ||  64,000  ||  1,535  ||  +64,000
+|-
+|  30  ||  65,535  ||  MAX  ||  Maximum level (16-bit limit)
+|}
+
+'''Data Format in ROM:'''
+<pre>
+ExpRequirements:
+    .word $0000  ; Level 1: 0 EXP
+    .word $0007  ; Level 2: 7 EXP
+    .word $0017  ; Level 3: 23 EXP ($0017 hex = 23 decimal)
+    ; ... continues for all 30 levels
+    .word $FFFF  ; Level 30: 65535 EXP (max 16-bit value)
+</pre>
+
+'''Constants:'''
+* MAX_LEVEL = 30
+* MAX_EXP = 65,535 (16-bit unsigned maximum)
+
+'''ROM Location:''' Bank 01, approximately $9500-$953C (60 bytes = 30 levels × 2 bytes)
+
+===Experience Gain===
+
+Experience is gained directly from defeated monsters with no bonuses or modifiers:
+
+<pre>
+EXP Gained = Monster's Base EXP
+</pre>
+
+* No level scaling
+* No equipment bonuses
+* No party bonuses (single player game)
+* Fixed values from monster stats table
+
+'''ROM Location:''' Bank 03, approximately $C700 (BattleVictory routine)
+
+==HP Growth System==
+
+===HP Gain Per Level===
+
+HP growth uses a lookup table with random variance.
+
+'''Formula:'''
+<pre>
+Base HP Gain = HPGainTable[New Level]
+Random Bonus = Random(0, 3)
+Final HP Gain = Base HP Gain + Random Bonus
+New Max HP = Old Max HP + Final HP Gain
+</pre>
+
+'''HP Gain Table:'''
+
+{| class="wikitable sortable"
+!  Level  !!  Base Gain  !!  With Random (0-3)  !!  Expected Total HP
+|-
+|  2  ||  5  ||  5-8  ||  20-23
+|-
+|  3  ||  4  ||  4-7  ||  24-30
+|-
+|  4  ||  8  ||  8-11  ||  32-41
+|-
+|  5  ||  6  ||  6-9  ||  38-50
+|-
+|  6  ||  10  ||  10-13  ||  48-63
+|-
+|  7  ||  8  ||  8-11  ||  56-74
+|-
+|  8  ||  12  ||  12-15  ||  68-89
+|-
+|  9  ||  10  ||  10-13  ||  78-102
+|-
+|  10  ||  15  ||  15-18  ||  93-120
+|-
+|  11  ||  12  ||  12-15  ||  105-135
+|-
+|  12  ||  18  ||  18-21  ||  123-156
+|-
+|  13  ||  15  ||  15-18  ||  138-174
+|-
+|  14  ||  20  ||  20-23  ||  158-197
+|-
+|  15  ||  18  ||  18-21  ||  176-218
+|-
+|  16  ||  22  ||  22-25  ||  198-243
+|-
+|  17  ||  20  ||  20-23  ||  218-266
+|-
+|  18  ||  25  ||  25-28  ||  243-294
+|-
+|  19  ||  22  ||  22-25  ||  265-319
+|-
+|  20  ||  28  ||  28-31  ||  293-350 (largest gain!)
+|-
+|  21-30  ||  5  ||  5-8  ||  Constant minimal gain
+|}
+
+'''Constants:'''
+* HP_RANDOM_BONUS = 3 (0-3 variance)
+
+'''ROM Location:''' Bank 03, approximately $CB00 (HPGainTable) and $CB40 (LevelUpHP routine)
+
+==MP Growth System==
+
+===MP Gain Per Level===
+
+MP growth also uses a lookup table with random variance.
+
+'''Formula:'''
+<pre>
+Base MP Gain = MPGainTable[New Level]
+Random Bonus = Random(0, 2)
+Final MP Gain = Base MP Gain + Random Bonus
+New Max MP = Old Max MP + Final MP Gain
+</pre>
+
+'''MP Gain Table:'''
+
+{| class="wikitable sortable"
+!  Level  !!  Base Gain  !!  With Random (0-2)  !!  Expected Total MP
+|-
+|  2  ||  0  ||  0-2  ||  0-2 (may not gain MP!)
+|-
+|  3  ||  5  ||  5-7  ||  5-9 (HEAL learned)
+|-
+|  4  ||  3  ||  3-5  ||  8-14 (HURT learned)
+|-
+|  5  ||  6  ||  6-8  ||  14-22
+|-
+|  6  ||  4  ||  4-6  ||  18-28
+|-
+|  7  ||  8  ||  8-10  ||  26-38 (SLEEP learned)
+|-
+|  8  ||  6  ||  6-8  ||  32-46
+|-
+|  9  ||  10  ||  10-12  ||  42-58 (RADIANT learned)
+|-
+|  10  ||  8  ||  8-10  ||  50-68 (STOPSPELL learned)
+|-
+|  11  ||  12  ||  12-14  ||  62-82
+|-
+|  12  ||  10  ||  10-12  ||  72-94 (OUTSIDE learned)
+|-
+|  13  ||  15  ||  15-17  ||  87-111 (RETURN learned, largest gain!)
+|-
+|  14  ||  12  ||  12-14  ||  99-125
+|-
+|  15  ||  18  ||  18-20  ||  117-145 (REPEL learned, largest gain!)
+|-
+|  16  ||  15  ||  15-17  ||  132-162
+|-
+|  17  ||  20  ||  20-22  ||  152-184 (HEALMORE learned, largest gain!)
+|-
+|  18-30  ||  3  ||  3-5  ||  Constant minimal gain
+|}
+
+'''Constants:'''
+* MP_RANDOM_BONUS = 2 (0-2 variance)
+
+'''ROM Location:''' Bank 03, approximately $CB80 (MPGainTable) and $CBC0 (LevelUpMP routine)
+
+==Stat Growth System==
+
+===Strength (STR) Growth===
+
+STR growth is randomized and depends on whether the level is even or odd.
+
+'''Formula:'''
+<pre>
+If (New Level is Even):
+    STR Gain = Random(2, 4)
+Else:  (New Level is Odd)
+    STR Gain = Random(1, 3)
+
+New STR = Old STR + STR Gain
+</pre>
+
+'''Average Growth:'''
+* Even levels: ~3 STR
+* Odd levels: ~2 STR
+* Level 1-30: ~75 total STR gain
+
+'''Constants:'''
+* EVEN_LEVEL_STR_MIN = 2
+* EVEN_LEVEL_STR_MAX = 4
+* ODD_LEVEL_STR_MIN = 1
+* ODD_LEVEL_STR_MAX = 3
+
+'''ROM Location:''' Bank 03, approximately $CC00 (LevelUpSTR routine)
+
+===Agility (AGI) Growth===
+
+AGI growth is inverse to STR - odd levels get better gains.
+
+'''Formula:'''
+<pre>
+If (New Level is Odd):
+    AGI Gain = Random(2, 5)
+Else:  (New Level is Even)
+    AGI Gain = Random(1, 3)
+
+New AGI = Old AGI + AGI Gain
+</pre>
+
+'''Average Growth:'''
+* Odd levels: ~3.5 AGI
+* Even levels: ~2 AGI
+* Level 1-30: ~85 total AGI gain
+
+'''Constants:'''
+* ODD_LEVEL_AGI_MIN = 2
+* ODD_LEVEL_AGI_MAX = 5
+* EVEN_LEVEL_AGI_MIN = 1
+* EVEN_LEVEL_AGI_MAX = 3
+
+'''ROM Location:''' Bank 03, approximately $CC50 (LevelUpAGI routine)
+
+==Spell Learning System==
+
+===Spell Unlock Levels===
+
+Spells are automatically learned at specific levels:
+
+{| class="wikitable sortable"
+!  Level  !!  Spell  !!  MP Cost  !!  Effect
+|-
+|  3  ||  HEAL  ||  4  ||  Restore 10-17 HP
+|-
+|  4  ||  HURT  ||  2  ||  Deal 5-12 damage
+|-
+|  7  ||  SLEEP  ||  2  ||  Put enemy to sleep
+|-
+|  9  ||  RADIANT  ||  3  ||  Light in dungeons
+|-
+|  10  ||  STOPSPELL  ||  2  ||  Block enemy spells
+|-
+|  12  ||  OUTSIDE  ||  6  ||  Exit caves/dungeons
+|-
+|  13  ||  RETURN  ||  8  ||  Warp to Tantegel
+|-
+|  15  ||  REPEL  ||  2  ||  Block encounters
+|-
+|  17  ||  HEALMORE  ||  10  ||  Restore 85-100 HP
+|-
+|  19  ||  HURTMORE  ||  5  ||  Deal 58-65 damage
+|}
+
+'''Data Format in ROM:'''
+<pre>
+SpellUnlockTable:
+    .byte 3, SPELL_HEAL
+    .byte 4, SPELL_HURT
+    .byte 7, SPELL_SLEEP
+    .byte 9, SPELL_RADIANT
+    .byte 10, SPELL_STOPSPELL
+    .byte 12, SPELL_OUTSIDE
+    .byte 13, SPELL_RETURN
+    .byte 15, SPELL_REPEL
+    .byte 17, SPELL_HEALMORE
+    .byte 19, SPELL_HURTMORE
+    .byte $FF  ; End marker
+</pre>
+
+'''ROM Location:''' Bank 03, approximately $CD00 (CheckSpellLearning routine and spell table)
+
+==Level-Up Procedure==
+
+===Technical Flow===
+
+When player gains enough EXP for level-up:
+
+1. Check current EXP against level requirements table
+2. If threshold met, increment level
+3. Calculate HP gain (base + random)
+4. Calculate MP gain (base + random)
+5. Calculate STR gain (even/odd formula + random)
+6. Calculate AGI gain (odd/even formula + random)
+7. Check spell learning table for new spells
+8. Recalculate ATK/DEF (base stats + equipment)
+9. Display level-up message and stat gains
+10. If multiple level-ups, repeat
+
+'''ROM Location:''' Bank 03, approximately $CA00 (ProcessLevelUp routine)
+
+===Stat Recalculation===
+
+After level-up, attack and defense are recalculated:
+
+<pre>
+Player ATK = Base STR + Weapon Bonus + Fighter's Ring (if equipped)
+Player DEF = Base Defense + Armor Bonus + Shield Bonus
+</pre>
+
+Equipment bonuses are fixed values from equipment tables.
+
+==Practical Level Planning==
+
+===Recommended Levels by Area===
+
+{| class="wikitable"
+!  Level Range  !!  Recommended Activity  !!  Available Spells
+|-
+|  1-3  ||  Tantegel area, Brecconary  ||  None → HEAL
+|-
+|  4-6  ||  Tantegel, Garinham area  ||  HEAL, HURT
+|-
+|  7-9  ||  Kol, southern areas  ||  + SLEEP, RADIANT
+|-
+|  10-12  ||  Rimuldar, cave exploration  ||  + STOPSPELL, OUTSIDE
+|-
+|  13-15  ||  Cantlin area, quest items  ||  + RETURN, REPEL
+|-
+|  16-18  ||  Charlock preparation  ||  + HEALMORE
+|-
+|  19-20  ||  Charlock Castle  ||  + HURTMORE
+|-
+|  20+  ||  Dragonlord battle  ||  All spells
+|}
+
+===Optimal Grinding Locations===
+
+* '''Levels 1-5:''' Tantegel area (Slimes, Red Slimes)
+* '''Levels 6-10:''' Garinham area (Ghosts, Magicians)
+* '''Levels 11-15:''' Southern swamps (Skeletons, Warlocks)
+* '''Levels 16-19:''' Mountain areas (Starwyverns, Wizards)
+* '''Level 20:''' Ready for Dragonlord
+
+==Technical Limits==
+
+{| class="wikitable"
+!  Stat  !!  Maximum  !!  Type  !!  Notes
+|-
+|  Level  ||  30  ||  Hard cap  ||  Cannot exceed
+|-
+|  HP  ||  255  ||  8-bit  ||  Practical max ~220
+|-
+|  MP  ||  255  ||  8-bit  ||  Practical max ~160
+|-
+|  STR  ||  255  ||  8-bit  ||  Practical max ~140
+|-
+|  AGI  ||  255  ||  8-bit  ||  Practical max ~150
+|-
+|  EXP  ||  65,535  ||  16-bit  ||  Level 30 requirement
+|}
+
+==Modification Examples==
+
+===Fast Level Progression===
+
+Edit EXP requirements table in Bank 01 ~$9500:
+
+<pre>
+; Original:
+ExpRequirements:
+    .word $0000  ; Level 1
+    .word $0007  ; Level 2: 7 EXP
+    .word $0017  ; Level 3: 23 EXP
+
+; Modified (fast):
+ExpRequirements:
+    .word $0000  ; Level 1
+    .word $0001  ; Level 2: 1 EXP
+    .word $0002  ; Level 3: 2 EXP
+</pre>
+
+===Guaranteed Max Stat Gains===
+
+Edit random ranges in stat growth routines:
+
+<pre>
+; Original STR gain (even levels):
+LDA #2          ; Min gain
+STA TempMin
+LDA #4          ; Max gain
+STA TempMax
+JSR Random
+
+; Modified (always max):
+LDA #4          ; Always gain 4
+</pre>
+
+=References=
+
+* Dragon Warrior complete disassembly by TheAnsarya
+* GAME_FORMULAS.md - Complete level and stat formulas
+* Bank 01 data tables - EXP requirements
+* Bank 03 routines - Level-up implementation
+* [https://github.com/TheAnsarya/dragon-warrior-info Dragon Warrior Info Project]
+
+=See Also=
+
+* [[Dragon Warrior (NES) - Battle System|Battle System]]
+* [[Dragon Warrior (NES) - Values|Game Values and Constants]]
+* [[Dragon Warrior (NES) - ROM map|ROM Map]]
+
+[[Category:Dragon Warrior]]
+[[Category:NES Games]]
+[[Category:Experience Systems]]

@@ -82,7 +82,7 @@
 ! Developer
 | {{{developer}}}
 |-
-! Publisher  
+! Publisher
 | {{{publisher}}}
 |-
 ! Platform

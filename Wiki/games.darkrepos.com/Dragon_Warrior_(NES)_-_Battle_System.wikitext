@@ -1,0 +1,487 @@
+{{subpage}}
+
+=Dragon Warrior (NES) Battle System=
+
+This page documents the complete battle system mechanics, formulas, and technical implementation for Dragon Warrior (NES).
+
+==Battle Overview==
+
+Dragon Warrior uses a turn-based battle system with the following features:
+* One-on-one encounters (player vs single enemy)
+* Turn order based on agility comparison
+* Command menu: FIGHT, RUN, SPELL, ITEM
+* Random encounters triggered by terrain
+* Fixed battle backgrounds by enemy type
+
+==Turn Order==
+
+===Speed Calculation===
+
+Turn order is determined by comparing player and enemy agility:
+
+<pre>
+If Player AGI >= Enemy AGI:
+    Player acts first
+Else:
+    Random 50/50 who acts first
+</pre>
+
+The game gives preference to the player when agility is equal or higher, but randomizes turn order when the enemy is faster.
+
+==Damage Formulas==
+
+===Physical Attack Damage===
+
+'''Player Attacks Enemy:'''
+
+<pre>
+Base Damage = (Player ATK / 2) - (Enemy DEF / 4)
+If Base Damage < 0: Base Damage = 0
+Random Variance = Random(0, 4)
+Final Damage = Base Damage + Random Variance
+</pre>
+
+'''Example:'''
+* Player ATK = 40, Enemy DEF = 16
+* Base = (40 / 2) - (16 / 4) = 20 - 4 = 16
+* Variance = 0-4
+* Final = 16-20 damage
+
+'''Enemy Attacks Player:'''
+
+<pre>
+Base Damage = (Enemy STR / 2) - (Player DEF / 4)
+If Base Damage < 0: Base Damage = 0
+Random Variance = Random(0, 4)
+Final Damage = Base Damage + Random Variance
+</pre>
+
+'''Constants:'''
+* Player ATK Divisor: 2
+* Enemy DEF Divisor: 4
+* Enemy STR Divisor: 2
+* Player DEF Divisor: 4
+* Damage Variance: 0-4
+
+'''ROM Location:''' Bank 03, approximately $C000 (CalcPhysicalDamage routine)
+
+===Critical Hits===
+
+Critical hits deal double damage and have a "critical hit" message.
+
+'''Critical Hit Chance:'''
+
+<pre>
+Crit Chance = Player AGI / 64
+Random Value = Random(0, 255)
+If Random Value < Crit Chance:
+    Critical Hit!
+    Damage = Normal Damage × 2
+</pre>
+
+'''Example:'''
+* Player AGI = 64
+* Crit Chance = 64 / 64 = 1 (256/256 = 100% would be max, but AGI caps at 255)
+* At AGI 64: 64/256 = 25% crit chance
+* At AGI 128: 128/256 = 50% crit chance
+
+'''Constants:'''
+* Crit AGI Divisor: 64
+* Crit Multiplier: 2
+
+'''ROM Location:''' Bank 03, approximately $C100 (CheckCriticalHit routine)
+
+==Accuracy System==
+
+===Hit/Miss Calculation===
+
+'''Player Attacking Enemy:'''
+
+<pre>
+Base Hit Chance = 224 (out of 256) = 87.5%
+Evasion Penalty = Enemy AGI / 4
+Final Hit Chance = Base - Penalty
+Random Value = Random(0, 255)
+If Random Value < Final Hit Chance:
+    Attack Hits
+Else:
+    Attack Misses
+</pre>
+
+'''Enemy Attacking Player:'''
+
+<pre>
+Base Hit Chance = 192 (out of 256) = 75%
+Evasion Penalty = Player AGI / 2
+Final Hit Chance = Base - Penalty
+Random Value = Random(0, 255)
+If Random Value < Final Hit Chance:
+    Attack Hits
+Else:
+    Attack Misses
+</pre>
+
+'''Constants:'''
+* Player Base Hit: 224/256 (87.5%)
+* Enemy Base Hit: 192/256 (75%)
+* Enemy AGI Evasion Divisor: 4
+* Player AGI Evasion Divisor: 2
+
+'''ROM Location:''' Bank 03, approximately $C200 (CheckHit routine)
+
+===Dodge (Excellent Move)===
+
+Player can dodge enemy attacks with an "excellent move" message.
+
+<pre>
+Dodge Chance = Player AGI / 4
+Random Value = Random(0, 255)
+If Random Value < Dodge Chance:
+    Player Dodges!
+    No damage taken
+</pre>
+
+'''Example:'''
+* Player AGI = 100
+* Dodge Chance = 100 / 4 = 25 (25/256 = 9.8%)
+
+'''ROM Location:''' Bank 03, approximately $C300 (CheckDodge routine)
+
+==Spell System in Battle==
+
+===Offensive Spells===
+
+'''HURT:'''
+* MP Cost: 2
+* Base Damage: Random(5, 12)
+* Enemy Resistance: Enemy DEF / 8
+* Final Damage: Base - Resistance (minimum 1)
+
+<pre>
+Damage = Random(5, 12) - (Enemy DEF / 8)
+If Damage < 1: Damage = 1
+</pre>
+
+'''ROM Location:''' Bank 03, approximately $D100 (SpellHURT routine)
+
+'''HURTMORE:'''
+* MP Cost: 5
+* Base Damage: Random(58, 65)
+* Enemy Resistance: Enemy DEF / 4
+* Final Damage: Base - Resistance (minimum 1)
+
+<pre>
+Damage = Random(58, 65) - (Enemy DEF / 4)
+If Damage < 1: Damage = 1
+</pre>
+
+'''ROM Location:''' Bank 03, approximately $D150 (SpellHURTMORE routine)
+
+===Status Effect Spells===
+
+'''SLEEP:'''
+* MP Cost: 2
+* Base Success: 160/256 (62.5%)
+* Resistance: Enemy Level × 2
+* Minimum Success: 32/256 (12.5%)
+
+<pre>
+Success Chance = 160 - (Enemy Level × 2)
+If Success Chance < 32: Success Chance = 32
+Random Value = Random(0, 255)
+If Random Value < Success Chance:
+    Enemy Falls Asleep
+</pre>
+
+Sleeping enemies:
+* Cannot act for 1-3 turns
+* Wake up if damaged
+* Some enemies are immune
+
+'''ROM Location:''' Bank 03, approximately $D200 (SpellSLEEP routine)
+
+'''STOPSPELL:'''
+* MP Cost: 2
+* Base Success: 160/256 (62.5%)
+* Resistance: Enemy Level × 3
+* Minimum Success: 16/256 (6.25%)
+
+<pre>
+Success Chance = 160 - (Enemy Level × 3)
+If Success Chance < 16: Success Chance = 16
+Random Value = Random(0, 255)
+If Random Value < Success Chance:
+    Enemy Spells Blocked
+</pre>
+
+Affected enemies:
+* Cannot cast spells for 2-5 turns
+* Can still physically attack
+* Some enemies are immune
+
+'''ROM Location:''' Bank 03, approximately $D250 (SpellSTOPSPELL routine)
+
+===Healing Spells===
+
+'''HEAL:'''
+* MP Cost: 4
+* HP Restored: Random(10, 17)
+* Cannot exceed Max HP
+
+'''ROM Location:''' Bank 03, approximately $D000 (SpellHEAL routine)
+
+'''HEALMORE:'''
+* MP Cost: 10
+* HP Restored: Random(85, 100)
+* Cannot exceed Max HP
+
+'''ROM Location:''' Bank 03, approximately $D050 (SpellHEALMORE routine)
+
+==Enemy AI==
+
+===AI Behavior Flags===
+
+Each monster has an AI byte that determines behavior patterns:
+
+{| class="wikitable"
+!  Bits 0-2  !!  Behavior Type
+|-
+|  000  ||  Attack only (no spells)
+|-
+|  001  ||  Can cast SLEEP
+|-
+|  010  ||  Can cast HURT (2-7 damage)
+|-
+|  011  ||  Can cast STOPSPELL
+|-
+|  100  ||  Can cast HEALMORE (self, 75-100 HP)
+|-
+|  101  ||  Can cast HURTMORE (15-23 damage)
+|-
+|  110  ||  Breath attack (25-60 damage)
+|-
+|  111  ||  Special AI (Dragonlord)
+|}
+
+{| class="wikitable"
+!  Bit  !!  Resistance Flag
+|-
+|  3  ||  Can flee from battle
+|-
+|  4  ||  Resists SLEEP
+|-
+|  5  ||  Resists STOPSPELL
+|-
+|  6  ||  Resists HURT/HURTMORE
+|-
+|  7  ||  Immune to all magic
+|}
+
+===Spell Casting AI===
+
+Monsters with spells have a 25% (64/256) chance to cast each turn:
+
+<pre>
+If Monster Has Spell Ability:
+    Random Value = Random(0, 255)
+    If Random Value < 64:  (25% chance)
+        Cast Spell
+    Else:
+        Physical Attack
+Else:
+    Physical Attack
+</pre>
+
+'''ROM Location:''' Bank 03, approximately $E400 (ProcessEnemyTurn routine)
+
+===Special AI: Dragonlord===
+
+The final boss has unique AI patterns.
+
+'''Form 1 (Human):'''
+* 50% chance: HURTMORE (15-23 damage)
+* 25% chance: HURT (2-7 damage)
+* 25% chance: Physical attack
+
+'''Form 2 (Dragon):'''
+* Turn 1: Always Breath Attack (devastating damage)
+* HP > 50%: 50% Breath, 50% Physical
+* HP ≤ 50%: 75% HEALMORE (75-100 HP), 25% Physical
+
+'''ROM Location:''' Bank 03, approximately $E500 (DragonlordAI routine)
+
+==Fleeing from Battle==
+
+===Flee Success Rate===
+
+<pre>
+Base Flee Chance = 192 (out of 256) = 75%
+Agility Bonus = (Player AGI - Enemy AGI) / 4
+Final Flee Chance = Base + Bonus
+If Final < 64: Final = 64    (minimum 25%)
+If Final > 224: Final = 224  (maximum 87.5%)
+
+Random Value = Random(0, 255)
+If Random Value < Final Flee Chance:
+    Flee Succeeds
+Else:
+    Flee Fails (enemy gets free attack)
+</pre>
+
+'''Constants:'''
+* Base Flee Chance: 192/256 (75%)
+* AGI Flee Bonus Divisor: 4
+* Minimum Flee Chance: 64/256 (25%)
+* Maximum Flee Chance: 224/256 (87.5%)
+
+'''Special Cases:'''
+* Metal Slime and Goldman always flee successfully (player perspective reversed)
+* Boss enemies cannot be fled from
+
+'''ROM Location:''' Bank 03, approximately $E200 (AttemptFlee routine)
+
+==Battle Rewards==
+
+===Experience and Gold===
+
+After winning a battle, the player receives:
+* Experience points = Monster's EXP value (fixed, no modifiers)
+* Gold = Monster's Gold value (fixed, no modifiers)
+
+No bonuses or level scaling - rewards are direct from monster stats table.
+
+'''ROM Location:''' Bank 03, approximately $C700 (BattleVictory routine)
+
+===Special Monsters===
+
+'''Metal Slime:'''
+* 775 EXP (highest normal reward)
+* 6 Gold
+* 4 HP, 255 DEF (extremely hard to kill)
+* Frequently attempts to flee
+
+'''Goldman:'''
+* 6 EXP (lowest)
+* 255 Gold (highest non-boss)
+* 6 HP, 40 DEF
+* Frequently attempts to flee
+
+==Technical Implementation==
+
+===Battle Flow===
+
+1. Encounter triggered by encounter system
+2. Load enemy data from monster stats table (Bank 01, $9000+)
+3. Initialize battle state variables (RAM $0350-$0380)
+4. Determine turn order (AGI comparison)
+5. Execute turns (player command, enemy AI)
+6. Check for victory/defeat/flee conditions
+7. Award rewards or handle defeat
+8. Return to field
+
+===RAM Battle State===
+
+{| class="wikitable"
+!  Address  !!  Variable  !!  Purpose
+|-
+|  $0350  ||  EnemyID  ||  Current enemy (0-39)
+|-
+|  $0351-$0352  ||  EnemyHP  ||  Current enemy HP (16-bit)
+|-
+|  $0353-$0354  ||  EnemyMaxHP  ||  Maximum enemy HP (16-bit)
+|-
+|  $0355  ||  EnemySTR  ||  Enemy attack power
+|-
+|  $0356  ||  EnemyAGI  ||  Enemy agility
+|-
+|  $0357  ||  EnemyDEF  ||  Enemy defense
+|-
+|  $035E  ||  EnemyStatus  ||  Status effects (sleep, stopspell)
+|-
+|  $0370  ||  BattleActive  ||  $01 = battle in progress
+|-
+|  $0371  ||  PlayerTurn  ||  $01 = player's turn
+|-
+|  $0372  ||  PlayerStatus  ||  Player status effects
+|-
+|  $0373  ||  TurnCount  ||  Current turn number
+|}
+
+===Monster Stats Structure===
+
+Each monster entry in ROM (Bank 01, $9000+) is 16 bytes:
+* +$00-$01: HP (little-endian)
+* +$02: Attack Power
+* +$03: Defense Power
+* +$04-$05: EXP Reward (little-endian)
+* +$06-$07: Gold Reward (little-endian)
+* +$08: AI/Abilities flags
+* +$09: Resistance flags
+* +$0A-$0B: Graphics tile ID
+* +$0C-$0F: Reserved/padding
+
+==Modification Examples==
+
+===Increase Player Damage===
+
+Edit damage formula in Bank 03 ~$C000:
+
+<pre>
+; Original: Divide ATK by 2
+LDA PlayerATK
+LSR A           ; Divide by 2
+
+; Modified: Don't divide (2× damage)
+LDA PlayerATK
+; Remove LSR instruction
+</pre>
+
+===Make All Attacks Critical===
+
+Edit critical hit check in Bank 03 ~$C100:
+
+<pre>
+; Original: Check AGI/64
+LDA PlayerAGI
+LSR A
+LSR A
+LSR A
+LSR A
+LSR A
+LSR A      ; Divide by 64
+
+; Modified: Always pass (load high value)
+LDA #$FF   ; 255/256 = ~100% crit
+</pre>
+
+===Adjust Flee Success===
+
+Edit flee chance in Bank 03 ~$E200:
+
+<pre>
+; Original:
+BASE_FLEE_CHANCE = 192  ; 75%
+
+; Modified (easier):
+BASE_FLEE_CHANCE = 224  ; 87.5%
+
+; Modified (harder):
+BASE_FLEE_CHANCE = 128  ; 50%
+</pre>
+
+=References=
+
+* Dragon Warrior complete disassembly by TheAnsarya
+* GAME_FORMULAS.md - Complete battle formula documentation
+* Bank 03 assembly source - Battle system implementation
+* [https://github.com/TheAnsarya/dragon-warrior-info Dragon Warrior Info Project]
+
+=See Also=
+
+* [[Dragon Warrior (NES) - Monster Data|Monster Data]]
+* [[Dragon Warrior (NES) - Values|Game Values and Constants]]
+* [[Dragon Warrior (NES) - ROM map|ROM Map]]
+
+[[Category:Dragon Warrior]]
+[[Category:NES Games]]
+[[Category:Battle Systems]]

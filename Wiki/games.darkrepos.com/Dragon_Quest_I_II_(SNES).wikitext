@@ -90,7 +90,7 @@ The Prince of Midenhall must unite the descendants of Erdrick.
 ==Documentation==
 
 * [[Dragon Quest I & II (SNES)/ROM map|ROM Map]] - Complete ROM layout
-* [[Dragon Quest I & II (SNES)/RAM map|RAM Map]] - Runtime memory documentation  
+* [[Dragon Quest I & II (SNES)/RAM map|RAM Map]] - Runtime memory documentation
 * [[Dragon Quest I & II (SNES)/TBL|Text Table]] - Japanese character encoding
 * [[Dragon Quest I & II (SNES)/Values|Values]] - Game constants
 

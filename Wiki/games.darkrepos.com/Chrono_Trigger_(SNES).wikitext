@@ -18,7 +18,7 @@
 
 Developed by the "Dream Team" of:
 * Hironobu Sakaguchi (Final Fantasy creator)
-* Yuji Horii (Dragon Quest creator)  
+* Yuji Horii (Dragon Quest creator)
 * Akira Toriyama (Dragon Ball artist)
 
 ==Technical Information==
