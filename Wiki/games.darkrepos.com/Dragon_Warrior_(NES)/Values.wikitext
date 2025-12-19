@@ -115,7 +115,7 @@
 
 {| class="wikitable sortable"
 |-
-!  Equipment Byte  !!  Item ID  !!  Name  !!  Defense Bonus  !!  Buy Price  !!  Notes  
+!  Equipment Byte  !!  Item ID  !!  Name  !!  Defense Bonus  !!  Buy Price  !!  Notes
 |-
 |  style="text-align: center;"  |  $00  ||  style="text-align: center;"  |  $00  ||  None  ||  +0  ||  -  ||  No armor equipped
 |-
@@ -402,7 +402,7 @@
 * If Final Damage < 0: Final Damage = 0
 
 '''Enemy Physical Attack:'''
-* Base Damage = (Enemy STR / 2) - (Player DEF / 4)  
+* Base Damage = (Enemy STR / 2) - (Player DEF / 4)
 * Final Damage = Base Damage + Random(0, 4)
 * If Final Damage < 0: Final Damage = 0
 
@@ -460,41 +460,41 @@
 |-
 !  Level  !!  Base HP Gain  !!  With Random (0-3)  !!  Notes
 |-
-|  2  ||  5  ||  5-8  ||  
+|  2  ||  5  ||  5-8  ||
 |-
-|  3  ||  4  ||  4-7  ||  
+|  3  ||  4  ||  4-7  ||
 |-
-|  4  ||  8  ||  8-11  ||  
+|  4  ||  8  ||  8-11  ||
 |-
-|  5  ||  6  ||  6-9  ||  
+|  5  ||  6  ||  6-9  ||
 |-
-|  6  ||  10  ||  10-13  ||  
+|  6  ||  10  ||  10-13  ||
 |-
-|  7  ||  8  ||  8-11  ||  
+|  7  ||  8  ||  8-11  ||
 |-
-|  8  ||  12  ||  12-15  ||  
+|  8  ||  12  ||  12-15  ||
 |-
-|  9  ||  10  ||  10-13  ||  
+|  9  ||  10  ||  10-13  ||
 |-
 |  10  ||  15  ||  15-18  ||  Large gain
 |-
-|  11  ||  12  ||  12-15  ||  
+|  11  ||  12  ||  12-15  ||
 |-
 |  12  ||  18  ||  18-21  ||  Large gain
 |-
-|  13  ||  15  ||  15-18  ||  
+|  13  ||  15  ||  15-18  ||
 |-
 |  14  ||  20  ||  20-23  ||  Large gain
 |-
-|  15  ||  18  ||  18-21  ||  
+|  15  ||  18  ||  18-21  ||
 |-
 |  16  ||  22  ||  22-25  ||  Large gain
 |-
-|  17  ||  20  ||  20-23  ||  
+|  17  ||  20  ||  20-23  ||
 |-
 |  18  ||  25  ||  25-28  ||  Large gain
 |-
-|  19  ||  22  ||  22-25  ||  
+|  19  ||  22  ||  22-25  ||
 |-
 |  20  ||  28  ||  28-31  ||  Largest gain
 |-
@@ -513,13 +513,13 @@
 |-
 |  4  ||  3  ||  3-5  ||  HURT learned
 |-
-|  5  ||  6  ||  6-8  ||  
+|  5  ||  6  ||  6-8  ||
 |-
-|  6  ||  4  ||  4-6  ||  
+|  6  ||  4  ||  4-6  ||
 |-
 |  7  ||  8  ||  8-10  ||  SLEEP learned
 |-
-|  8  ||  6  ||  6-8  ||  
+|  8  ||  6  ||  6-8  ||
 |-
 |  9  ||  10  ||  10-12  ||  RADIANT learned
 |-
@@ -531,11 +531,11 @@
 |-
 |  13  ||  15  ||  15-17  ||  Largest gain, RETURN learned
 |-
-|  14  ||  12  ||  12-14  ||  
+|  14  ||  12  ||  12-14  ||
 |-
 |  15  ||  18  ||  18-20  ||  Largest gain, REPEL learned
 |-
-|  16  ||  15  ||  15-17  ||  
+|  16  ||  15  ||  15-17  ||
 |-
 |  17  ||  20  ||  20-22  ||  Largest gain, HEALMORE learned
 |-
@@ -678,7 +678,7 @@
 =References=
 
 * Dragon Warrior complete disassembly by TheAnsarya
-* GAME_FORMULAS.md - Complete formula documentation  
+* GAME_FORMULAS.md - Complete formula documentation
 * Dragon Warrior Info Project: [https://github.com/TheAnsarya/dragon-warrior-info]
 * DataCrystal Dragon Warrior pages
 

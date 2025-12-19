@@ -11,12 +11,14 @@ This document outlines the plan for setting up and deploying the DarkRepos Games
 ## Phase 1: Infrastructure Setup
 
 ### 1.1 Server Provisioning
+
 - [ ] Choose hosting provider (VPS, cloud, or self-hosted)
 - [ ] Set up web server (Nginx/Apache)
 - [ ] Configure SSL certificate (Let's Encrypt)
 - [ ] Set up domain DNS for games.darkrepos.com
 
 ### 1.2 MediaWiki Installation
+
 - [ ] Install PHP 8.x and required extensions
 - [ ] Install MySQL/MariaDB database
 - [ ] Download and install MediaWiki (latest stable)
@@ -24,6 +26,7 @@ This document outlines the plan for setting up and deploying the DarkRepos Games
 - [ ] Set up proper file permissions
 
 ### 1.3 MediaWiki Configuration
+
 ```php
 // LocalSettings.php key settings
 $wgSitename = "DarkRepos Games Wiki";
@@ -47,6 +50,7 @@ $wgGroupPermissions['bot']['autoconfirmed'] = true;
 ## Phase 2: Wiki Configuration
 
 ### 2.1 Extensions to Install
+
 - [ ] **VisualEditor** - Rich text editing
 - [ ] **Cite** - Citation support
 - [ ] **ParserFunctions** - Template logic
@@ -56,6 +60,7 @@ $wgGroupPermissions['bot']['autoconfirmed'] = true;
 - [ ] **WikiEditor** - Enhanced source editor
 
 ### 2.2 Custom Templates
+
 - [ ] Create `{{ROM Map}}` template
 - [ ] Create `{{RAM Map}}` template
 - [ ] Create `{{Data Table}}` template
@@ -64,6 +69,7 @@ $wgGroupPermissions['bot']['autoconfirmed'] = true;
 - [ ] Create `{{Hex}}` template for formatting
 
 ### 2.3 Category Structure
+
 ```
 Category:Games
 ├── Category:NES Games
@@ -84,6 +90,7 @@ Category:Documentation
 ```
 
 ### 2.4 Namespaces
+
 - [ ] Create `Data:` namespace for structured data
 - [ ] Create `Disasm:` namespace for disassembly pages
 - [ ] Create `Template:` for reusable templates
@@ -174,6 +181,7 @@ git wiki validate ./wiki-content/
 - [ ] Security scanning
 
 ### 5.3 CI/CD Integration
+
 ```yaml
 # .github/workflows/wiki-sync.yml
 name: Wiki Sync
@@ -224,7 +232,8 @@ jobs:
 - Keep updated for security patches
 
 ### API Endpoints
-```
+
+```text
 Base URL: https://games.darkrepos.com/w/api.php
 
 Actions used by GameInfoTools:

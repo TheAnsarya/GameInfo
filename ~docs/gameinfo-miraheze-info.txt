@@ -1,0 +1,81 @@
+
+----------------------------------------------------------------------------------------------------
+https://meta.miraheze.org/wiki/Special:RequestWikiQueue/71349
+
+Site name
+Dark Repos Game Info
+
+URL
+darkrepos.miraheze.org
+
+Language
+English
+
+Requester
+Ansarya (talk | contribs)
+
+Requested At
+04:36, 18 December 2025
+
+Status
+In review
+
+Reason for request
+I am using AI to disassemble and document old/retro video games, starting with SNES and NES but quickly spreading out, and creating editors and wiki documentation of the code and data structures and of the whole game. The Data Crystal wiki would be a natural place to put this info, but does not allow AI at all, so I need a wiki site to put all of my information up until I can host my own. So Retro game information will be here for now and thank you and god bless.
+
+Mark this wiki as private?
+ No
+ 
+The main subject(s) of this wiki are living people or real-life groups
+ No
+ 
+This wiki includes content that is not safe for work (NSFW)
+ No
+ 
+This wiki is moving or forking from an existing wiki
+ No
+----------------------------------------------------------------------------------------------------
+
+
+
+
+----------------------------------------------------------------------------------------------------
+https://meta.miraheze.org/wiki/Special:RequestWikiQueue/71349#mw-section-comments
+
+Comment given by CreateWiki AI at 04:37, 18 December 2025
+The request mentions using AI to disassemble and document retro video games, which raises potential concerns about copyright and licensing compliance. Please provide more details on how you plan to ensure that the content complies with Miraheze's copyright policies, particularly regarding the use of AI in disassembling and documenting games. Additionally, clarify the scope of the wiki to ensure it focuses on educational and legal aspects of retro gaming documentation.
+
+Comment given by Ansarya at 04:42, 18 December 2025
+Disassemblies and editors and documentation fall under fair use. The graphics are not included, and the actual ROM files themselves are not included. Everything is legal and very carefully avoiding any issues with copyright issues.
+
+Comment given by Ansarya at 04:49, 18 December 2025
+The Claude AI says the content we are producing all falls within our copyright and ethical considerations, we are very careful, especially for our wikitext content.
+
+Comment given by Ansarya at 04:58, 18 December 2025
+We are describing data structures and algorithms and basic value sets (like gamefaqs); we are not dumping data and images or anything that would be a problem;
+
+Comment given by Jph2 at 12:38, 18 December 2025
+The topic of the wiki seems clear. Can you provide more details about the specific content and scope of the wiki? For example, what kind of articles will the wiki include? How will the wiki be organized and what topics will it cover? Please respond in a comment below. Thank you.
+
+
+The wiki will have articles for various retro games (linked in categories by system (SNES, NES, mostly), genre, etc.) with information about the game (release date, name, english name (if a japanese game) file hashes, links to translations and romhacks and utilities, and then articles about the RAM layout with RAM locations for character stats, party gold, gam saves layout, data structures, etc - (like this one I made and filled: https://datacrystal.tcrf.net/wiki/Dragon_Quest_III_(SNES) ) and ROM file layout (like data structures for the game's enemies, where the graphics are in the file, where code is and where data is).
+I was previously putting this information into the DataCrystal wiki, but they disallow any and all AI usage anywhere in the process of gathering data, and also I would like some better control over formatting and naming and organization and data-views and such since I am moving off of their platform anyways.
+I am not trying to bulk copy their website or anything or replace them, just to have full control of the articles about how games work for the games I am researching.
+If you have any further questions I am happy to answer them :) Thank you for providing a free wiki space!
+
+----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

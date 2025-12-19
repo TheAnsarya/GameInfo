@@ -194,10 +194,15 @@ Merge PR #74 to main branch; Close issues #69, #70, #71, #72, #73 after merge; C
 
 Rename the issue #7 for the epic `#7 - Data Crystal Wiki Documentation` from `Data Crystal` to our own wiki which is named `Dark Repos` or `DarkRepos`; since **we are not using Data Crystal any more, everything must be converted**, `Data Crystal` does not want AI stuff, so we won't update there anymore, instead we'll make our own wiki because we are using AI stuff so we made our own website, and the wiki we'll use (is not currently at) but will be at `games.darkrepos.com`; also create a todo-list/documentation for creating a wiki at the url `games.darkrepos.com` and automate as much as you can and code c# utilities to upload-to, process, and sync-with the wiki; Remove all references to Data Crystal, Instead use DarkRepos and change all code to use the new wiki; and make the wiki;
 
+create all the wikitext stuff, document al the gamesand create the repos for it and generate all the wikitext and ddescriptions for how things work ND GET IT READY TO PUSH TO THE NEW WIKI WE'RE MAKING
 
+create all the wikitext stuff, document all the games and create the repos for it and generate all the wikitext and descriptions for how things work and get it ready to push to the new wiki we're making; don't add everything from data crystal to `games.darkrepos.com`, only add the games we've researched; add a list of all the other data crystal stuff (all the games) to a list for future research and add links to each one for the data crystal page so that we we can reference it during future disassembly/documentation/editing for dark repos; but create all the wikiness for these games, continue, continue, continue!
 
+Create more detailed sub-pages - ROM/RAM maps for other games; Copy existing content - Adapt files from Games/*/Wiki/ to new format
 
+git commit the copies of the wikipages before you start making changes so we know what's changed; continue;
 
+organize the wikipages into folders by game and url-sub-folders (like `Dragon_Quest_III_(SNES)/Values/Spells`); rename the `{{Bob}}` template, make our own modern mainstream version that includes multiple versions and languages and release dates; update the other templates, make them our own; continue;
 
 
 

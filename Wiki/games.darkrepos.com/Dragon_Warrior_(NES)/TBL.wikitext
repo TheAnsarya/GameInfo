@@ -20,7 +20,7 @@ $53 is rightquote-space (<code>'&nbsp;</code>) while $54 is space-rightquote (<c
 ! scope="row" |  3_
 |  M  ||  N  ||  O  ||  P  ||  Q  ||  R  ||  S  ||  T  ||  U  ||  V  ||  W  ||  X  ||  Y  ||  Z  ||  "  ||  "
 |-
-! scope="row" |  4_ 
+! scope="row" |  4_
 |  '  ||  ✱  ||  ▶  ||  ▼  ||  :  ||  ..
 |  style="background-color: #eaecf0;"  |
 |  .  ||  ,  ||  -
@@ -137,7 +137,7 @@ Quotes and such use basic ASCII values instead of Unicode.
 52=.'
 53='
 54='
-5F= 
+5F=
 </pre>
 
 {{Internal Data}}

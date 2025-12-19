@@ -21,7 +21,7 @@ The save game data begins at $6000 and uses the following structure:
 |-
 |  $6006  ||  1 byte  ||  STR  ||  Strength stat
 |-
-|  $6007  ||  1 byte  ||  AGI  ||  Agility stat  
+|  $6007  ||  1 byte  ||  AGI  ||  Agility stat
 |-
 |  $6008  ||  2 bytes  ||  EXP  ||  Current experience points (little endian)
 |-
@@ -85,7 +85,7 @@ The save game data begins at $6000 and uses the following structure:
 |-
 |  $603C  ||  3  ||  Defeated Green Dragon
 |-
-|  $603C  ||  4  ||  Defeated Blue Dragon  
+|  $603C  ||  4  ||  Defeated Blue Dragon
 |-
 |  $603C  ||  5  ||  Defeated Red Dragon
 |-
@@ -174,7 +174,7 @@ The save game data begins at $6000 and uses the following structure:
 |-
 |  $01  ||  Small Shield  ||  +4
 |-
-|  $02  ||  Large Shield  ||  +10  
+|  $02  ||  Large Shield  ||  +10
 |-
 |  $03  ||  Silver Shield  ||  +20 + breath protection
 |}

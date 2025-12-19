@@ -15,7 +15,7 @@ Each monster entry is 16 bytes long and located in Bank 1 starting at approximat
 |-
 |  style="text-align: center;"  |  +$02  ||  1 byte   ||  Attack Power
 |-
-|  style="text-align: center;"  |  +$03  ||  1 byte   ||  Defense Power  
+|  style="text-align: center;"  |  +$03  ||  1 byte   ||  Defense Power
 |-
 |  style="text-align: center;"  |  +$04  ||  2 bytes  ||  Experience Reward (little-endian)
 |-
@@ -104,7 +104,7 @@ Each monster entry is 16 bytes long and located in Bank 1 starting at approximat
 |-
 |  style="text-align: center;"  |  $21  ||  Axe Knight  ||  94-135  ||  94  ||  105  ||  500  ||  165  ||  None  ||  Heavy armored warrior
 |-
-|  style="text-align: center;"  |  $22  ||  Blue Dragon  ||  98-150  ||  98  ||  95  ||  600  ||  150  ||  Breath  ||  Ice breath attack, quest boss  
+|  style="text-align: center;"  |  $22  ||  Blue Dragon  ||  98-150  ||  98  ||  95  ||  600  ||  150  ||  Breath  ||  Ice breath attack, quest boss
 |-
 |  style="text-align: center;"  |  $23  ||  Stoneman  ||  100-135  ||  100  ||  160  ||  600  ||  148  ||  None  ||  Rock creature
 |-
