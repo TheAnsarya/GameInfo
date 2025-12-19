@@ -57,13 +57,19 @@ We are describing data structures and algorithms and basic value sets (like game
 Comment given by Jph2 at 12:38, 18 December 2025
 The topic of the wiki seems clear. Can you provide more details about the specific content and scope of the wiki? For example, what kind of articles will the wiki include? How will the wiki be organized and what topics will it cover? Please respond in a comment below. Thank you.
 
-
+Comment given by Ansarya at 05:31, 19 December 2025
 The wiki will have articles for various retro games (linked in categories by system (SNES, NES, mostly), genre, etc.) with information about the game (release date, name, english name (if a japanese game) file hashes, links to translations and romhacks and utilities, and then articles about the RAM layout with RAM locations for character stats, party gold, gam saves layout, data structures, etc - (like this one I made and filled: https://datacrystal.tcrf.net/wiki/Dragon_Quest_III_(SNES) ) and ROM file layout (like data structures for the game's enemies, where the graphics are in the file, where code is and where data is).
 I was previously putting this information into the DataCrystal wiki, but they disallow any and all AI usage anywhere in the process of gathering data, and also I would like some better control over formatting and naming and organization and data-views and such since I am moving off of their platform anyways.
 I am not trying to bulk copy their website or anything or replace them, just to have full control of the articles about how games work for the games I am researching.
 If you have any further questions I am happy to answer them :) Thank you for providing a free wiki space!
 
+Comment given by Ansarya at 08:40, 19 December 2025
+I am currently bringing/consodating my documentation into wikipages so it is not ready yet and it is not what is going to be be imported, but to see a represenative colection of what might be wiki pages in the future, see: https://github.com/TheAnsarya/GameInfo/tree/feature/darkrepos-wiki/Wiki
+
+Comment given by Ansarya at 08:42, 19 December 2025
+*Consolidating
 ----------------------------------------------------------------------------------------------------
+
 
 
 
