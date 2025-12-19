@@ -1,35 +1,48 @@
-{{Bob
- | bobscreen= Dq3remixts.png
- | title= Dragon Quest III: Soshite Densetsu e
- | aka= Dragon Quest III: Soshite Densetsu e... (Boxart)
- | developer= Heartbeat
- | publisher= Enix
- | system= SNES
- | japan= {{date|1996|December|6}}
- | tcrf=Dragon Quest III (SNES)
-}}
-{{SNES| title = Dragon Quest III
-|image = [[File:Dq3remixts.jpg|center]]
-|name = DRAGONQUEST3
-|company = Enix
-|header = None
-|bank = HiROM
-|interleaved = No
-|sram = 8 KiB
-|type = Normal + Batt
-|rom = 4 MiB
-|country = Japan
-|video = NTSC
-|romspeed = 120ns (FastROM)
-|revision = 1.0
-|checksum = Good 0x7473
-|crc32 = 13836BD2
-|game = Dragon Quest III
+{{Infobox game
+| title           = Dragon Quest III
+| title_jp        = ドラゴンクエストIII そして伝説へ…
+| title_jp_romaji = Doragon Kuesuto Surī: Soshite Densetsu e...
+| title_alt       = Dragon Quest III: The Seeds of Salvation
+
+| image           = Dq3remixts.png
+
+| developer       = Heartbeat
+| publisher_jp    = Enix
+
+| platform        = SNES
+| platforms       = Famicom, Game Boy Color, Mobile, Switch
+
+| release_jp      = December 6, 1996
+
+| genre           = RPG
+| players         = 1
+
+| mapper          = HiROM
+| rom_size        = 4 MB (32 Mbit)
+| sram            = 8 KB
+
+| series          = Dragon Quest
+| predecessor     = [[SNES/Dragon_Quest_I_II|Dragon Quest I & II]]
+| successor       = [[NES/Dragon_Warrior_IV|Dragon Quest IV]]
 }}
 
-==Sub-pages==
-{{namespaces}}
-{{subpage|Values}}
+{{platform
+| platform  = SNES
+| mapper    = HiROM
+| rom_size  = 4 MB
+| sram      = 8 KB
+}}
+
+'''Dragon Quest III: Soshite Densetsu e...''' (Dragon Quest III: And Thus Into Legend...) is the SNES remake of the original Famicom Dragon Quest III, developed by Heartbeat and published by Enix.
+
+==Documentation==
+
+{{navbox|SNES/Dragon_Quest_III|sram_map=no}}
+
+* [[SNES/Dragon_Quest_III/ROM_Map|ROM Map]] - Complete ROM layout
+* [[SNES/Dragon_Quest_III/RAM_Map|RAM Map]] - Runtime memory documentation
+* [[SNES/Dragon_Quest_III/TBL|Text Table]] - Character encoding
+* [[SNES/Dragon_Quest_III/Values|Values]] - Game constants and IDs
 
 ==Utilities==
 * None Available
@@ -67,9 +80,11 @@ These are the roms as they are listed in [https://www.tosecdev.org/ TOSEC].
 |  Dragon Quest III - The Seeds of Salvation (1996)(Enix)(JP)[a5]  ||  4194304<br />$400000  ||  '''CRC32''': 3a2a466d<br />'''MD5''': 00597e5b3e6eae5fb24b413e3b857363<br />'''SHA1''': 58fbc9428e73e4834465cdf6784dff70d1503103
 |}
 
-==External links==
+==External Links==
 * [https://www.youtube.com/watch?v=aVboEF9zOqE Dragon Quest III intro video]
+* [https://github.com/TheAnsarya/GameInfo GameInfo Repository]
 
-=Related Links=
-
-{{Dragon Quest Series}}
+[[Category:SNES Games]]
+[[Category:Dragon Quest Series]]
+[[Category:RPG]]
+[[Category:Enix]]

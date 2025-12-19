@@ -1,16 +1,31 @@
 {{Infobox game
-| title = Dragon Warrior IV
-| image = Dragon Warrior IV box.jpg
-| developer = Chunsoft
-| publisher = Enix
-| platform = NES
-| release = October 1992 (US)
-| genre = RPG
-| players = 1
-| mapper = MMC5 (5)
-| prg = 512 KB
-| chr = 256 KB
-| mirroring = Vertical
+| title           = Dragon Warrior IV
+| title_jp        = ドラゴンクエストIV 導かれし者たち
+| title_jp_romaji = Doragon Kuesuto Fō: Michibikareshi Monotachi
+
+| image           = Dragon Warrior IV box.jpg
+
+| developer       = Chunsoft
+| publisher_jp    = Enix
+| publisher_na    = Enix America
+
+| platform        = NES
+| platforms       = Famicom, PlayStation, Nintendo DS, Mobile
+
+| release_jp      = February 11, 1990
+| release_na      = October 1992
+
+| genre           = RPG
+| players         = 1
+
+| mapper          = MMC5 (5)
+| rom_size        = 512 KB PRG + 256 KB CHR
+| sram            = 8 KB
+| mirroring       = Vertical
+
+| series          = Dragon Quest
+| predecessor     = [[NES/Dragon_Warrior_III|Dragon Warrior III]]
+| successor       = [[Dragon Quest V]]
 }}
 
 '''Dragon Warrior IV''' (known as '''Dragon Quest IV''' in Japan) is a role-playing video game developed by Chunsoft and published by Enix for the Nintendo Entertainment System. It was released in Japan on February 11, 1990 and in North America in October 1992. It is the fourth installment in the Dragon Quest series.
@@ -105,19 +120,18 @@ Temporary party members that join in specific chapters:
 
 ==Documentation==
 
-* [[Dragon Warrior IV (NES)/ROM map|ROM Map]] - Complete PRG ROM layout
-* [[Dragon Warrior IV (NES)/RAM map|RAM Map]] - Runtime memory documentation
-* [[Dragon Warrior IV (NES)/SRAM map|SRAM Map]] - Save data structure
-* [[Dragon Warrior IV (NES)/TBL|Text Table]] - Character encoding
-* [[Dragon Warrior IV (NES)/Values|Values]] - Game constants and IDs
+{{navbox|NES/Dragon_Warrior_IV|sram_map=yes|extra1=Known_Dumps|extra2=Map_List}}
+
+* [[NES/Dragon_Warrior_IV/ROM_Map|ROM Map]] - Complete PRG ROM layout
+* [[NES/Dragon_Warrior_IV/RAM_Map|RAM Map]] - Runtime memory documentation
+* [[NES/Dragon_Warrior_IV/SRAM_Map|SRAM Map]] - Save data structure
+* [[NES/Dragon_Warrior_IV/TBL|Text Table]] - Character encoding
+* [[NES/Dragon_Warrior_IV/Values|Values]] - Game constants and IDs
 
 ===Sub-pages===
-* [[Dragon Warrior IV (NES)/Battle System|Battle System]]
-* [[Dragon Warrior IV (NES)/AI Tactics|AI Tactics System]]
-* [[Dragon Warrior IV (NES)/Experience Tables|Experience Tables]]
-* [[Dragon Warrior IV (NES)/Items|Item Data]]
-* [[Dragon Warrior IV (NES)/Monsters|Monster Data]]
-* [[Dragon Warrior IV (NES)/Maps|Map Data]]
+* [[NES/Dragon_Warrior_IV/Known_Dumps|Known Dumps]]
+* [[NES/Dragon_Warrior_IV/Map_List|Map List]]
+* [[NES/Dragon_Warrior_IV/Values/Extra_Companions|Extra Companions]]
 
 ==External Links==
 

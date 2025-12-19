@@ -9,21 +9,20 @@ Creates a navigation box with links to standard sub-pages for a game. Automatica
 
 ===Basic Usage===
 <pre>
-{{navbox|Dragon_Quest_III_(SNES)}}
+{{navbox|SNES/Dragon_Quest_III}}
 </pre>
 
 ===With Custom Pages===
 <pre>
 {{navbox
-| game = Dragon_Quest_III_(SNES)
+| game = NES/Dragon_Warrior_IV
 | rom_map = yes
 | ram_map = yes
 | sram_map = yes
 | tbl = yes
 | values = yes
-| extra1 = Monsters
-| extra2 = Items
-| extra3 = Maps
+| extra1 = Known_Dumps
+| extra2 = Map_List
 }}
 </pre>
 
@@ -33,7 +32,7 @@ Creates a navigation box with links to standard sub-pages for a game. Automatica
 |-
 ! Parameter !! Required !! Default !! Description
 |-
-| game (or 1) || Yes || — || Game folder name
+| game (or 1) || Yes || — || Game path (Platform/Game_Name)
 |-
 | rom_map || No || yes || Include ROM Map link
 |-
@@ -50,7 +49,7 @@ Creates a navigation box with links to standard sub-pages for a game. Automatica
 
 ==Example Output==
 
-{{navbox|Dragon_Warrior_IV_(NES)|sram_map=yes|extra1=Map_List|extra2=Known_Dumps}}
+{{navbox|NES/Dragon_Warrior_IV|sram_map=yes|extra1=Map_List|extra2=Known_Dumps}}
 
 ==Styling==
 

@@ -1,0 +1,76 @@
+{{Infobox game
+| title           = Dragon Warrior
+| title_jp        = ドラゴンクエスト
+| title_jp_romaji = Doragon Kuesuto
+
+| image           = Dragon Warrior box.jpg
+
+| developer       = Chunsoft
+| publisher_jp    = Enix
+| publisher_na    = Nintendo
+
+| platform        = NES
+| platforms       = Famicom, MSX, PC-98, Game Boy Color, Mobile, Switch
+
+| release_jp      = May 27, 1986
+| release_na      = August 1989
+
+| genre           = RPG
+| players         = 1
+
+| mapper          = NROM (0)
+| rom_size        = 64 KB PRG + 16 KB CHR
+| mirroring       = Vertical
+
+| series          = Dragon Quest
+| successor       = [[NES/Dragon_Warrior_II|Dragon Warrior II]]
+}}
+
+'''Dragon Warrior''' (known as '''Dragon Quest''' in Japan) is a role-playing video game developed by Chunsoft and published by Enix for the Nintendo Entertainment System. It is the first game in the Dragon Quest series and one of the most influential JRPGs ever made.
+
+==Overview==
+
+Dragon Warrior established many conventions of the JRPG genre, including random enemy encounters, a turn-based battle system, and character progression through experience points and levels.
+
+==Technical Information==
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ROM Size || 64 KB PRG + 16 KB CHR
+|-
+| Mapper || NROM (Mapper 0)
+|-
+| PRG Banks || 4 × 16KB (no bank switching)
+|-
+| CHR Banks || 1 × 8KB (fixed)
+|-
+| Save Type || Password system
+|-
+| CRC32 || <code>???</code>
+|}
+
+==Documentation==
+
+{{navbox|NES/Dragon_Warrior|sram_map=yes|extra1=Battle_System|extra2=Experience_System|extra3=Monster_Data}}
+
+* [[NES/Dragon_Warrior/ROM_Map|ROM Map]] - Complete PRG ROM layout
+* [[NES/Dragon_Warrior/RAM_Map|RAM Map]] - Runtime memory documentation
+* [[NES/Dragon_Warrior/SRAM_Map|SRAM Map]] - Password encoding
+* [[NES/Dragon_Warrior/TBL|Text Table]] - Character encoding
+* [[NES/Dragon_Warrior/Values|Values]] - Game constants and IDs
+
+===Sub-pages===
+* [[NES/Dragon_Warrior/Battle_System|Battle System]]
+* [[NES/Dragon_Warrior/Experience_System|Experience System]]
+* [[NES/Dragon_Warrior/Monster_Data|Monster Data]]
+
+==External Links==
+
+* [https://github.com/TheAnsarya/GameInfo GameInfo Repository]
+
+[[Category:NES Games]]
+[[Category:Dragon Quest Series]]
+[[Category:RPG]]
+[[Category:Enix]]

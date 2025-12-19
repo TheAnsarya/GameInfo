@@ -204,9 +204,11 @@ git commit the copies of the wikipages before you start making changes so we kno
 
 organize the wikipages into folders by game and url-sub-folders (like `Dragon_Quest_III_(SNES)/Values/Spells`); rename the `{{Bob}}` template, make our own modern mainstream version that includes multiple versions and languages and release dates; update the other templates, make them our own; continue;
 
+git-commit everything in logical batches, attach every commit to an issue, and update the issues and todo-lists, and I mean everything!; document everything! github issues for everything! update chat logs and session logs!; Do the reccomended stuff: "Update internal links in game pages to use new folder paths (replace {{Bob}} with {{Infobox_game}}, update subpage links); Create remaining game folders for stub pages (Chrono Trigger, Final Fantasy IV, etc.); Test templates with actual game pages to ensure they render correctly; Document the new wiki structure in README.md';"; continue;
 
+This folder structure for the wiki stuff sucks. Make a better one.; continue;
 
-
+don't use a folder named `games.darkrepos.com` move all contents to the parent folder or rename the folder with a better name; continue;
 
 
 

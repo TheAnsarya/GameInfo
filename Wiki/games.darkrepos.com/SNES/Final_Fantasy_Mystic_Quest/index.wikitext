@@ -1,16 +1,30 @@
 {{Infobox game
-| title = Final Fantasy Mystic Quest
-| alt_title = Mystic Quest Legend (EU)
-| image = Final Fantasy Mystic Quest box.jpg
-| developer = Square
-| publisher = Square (JP/US), Nintendo (EU)
-| platform = SNES
-| release = October 5, 1992 (US)
-| genre = RPG
-| players = 1
-| mapper = LoROM
-| rom_size = 1 MB (8 Mbit)
-| ram_size = 8 KB
+| title           = Final Fantasy Mystic Quest
+| title_jp        = ファイナルファンタジーUSA ミスティッククエスト
+| title_jp_romaji = Fainaru Fantajī Yū Esu Ē: Misutikku Kuesuto
+| title_alt       = Mystic Quest Legend (EU)
+
+| image           = Final Fantasy Mystic Quest box.jpg
+
+| developer       = Square
+| publisher_jp    = Square
+| publisher_na    = Square
+| publisher_eu    = Nintendo
+
+| platform        = SNES
+
+| release_jp      = September 10, 1993
+| release_na      = October 5, 1992
+| release_eu      = 1993
+
+| genre           = RPG
+| players         = 1
+
+| mapper          = LoROM
+| rom_size        = 1 MB (8 Mbit)
+| sram            = 8 KB
+
+| series          = Final Fantasy
 }}
 
 '''Final Fantasy Mystic Quest''' (known as '''Mystic Quest Legend''' in Europe and '''Final Fantasy USA: Mystic Quest''' in Japan) is an action RPG designed as an introductory RPG for Western audiences.
@@ -115,18 +129,22 @@ Magic is divided into three categories:
 
 ==Documentation==
 
-* [[Final Fantasy Mystic Quest (SNES)/ROM map|ROM Map]] - Complete ROM layout
-* [[Final Fantasy Mystic Quest (SNES)/RAM map|RAM Map]] - Runtime memory documentation
-* [[Final Fantasy Mystic Quest (SNES)/TBL|Text Table]] - Character encoding
-* [[Final Fantasy Mystic Quest (SNES)/Values|Values]] - Game constants
+{{navbox|SNES/Final_Fantasy_Mystic_Quest|sram_map=yes}}
+
+* [[SNES/Final_Fantasy_Mystic_Quest/ROM_Map|ROM Map]] - Complete ROM layout
+* [[SNES/Final_Fantasy_Mystic_Quest/RAM_Map|RAM Map]] - Runtime memory documentation
+* [[SNES/Final_Fantasy_Mystic_Quest/SRAM_Map|SRAM Map]] - Save data structure
+* [[SNES/Final_Fantasy_Mystic_Quest/TBL|Text Table]] - Character encoding (multiple languages)
+* [[SNES/Final_Fantasy_Mystic_Quest/Values|Values]] - Game constants
+
+===Text Tables by Language===
+* [[SNES/Final_Fantasy_Mystic_Quest/TBL/English|English TBL]]
+* [[SNES/Final_Fantasy_Mystic_Quest/TBL/Japanese|Japanese TBL]]
+* [[SNES/Final_Fantasy_Mystic_Quest/TBL/French|French TBL]]
+* [[SNES/Final_Fantasy_Mystic_Quest/TBL/German|German TBL]]
 
 ===Sub-pages===
-* [[Final Fantasy Mystic Quest (SNES)/ROM map/Weapons|Weapon Data]]
-* [[Final Fantasy Mystic Quest (SNES)/ROM map/Spells|Spell Data]]
-* [[Final Fantasy Mystic Quest (SNES)/ROM map/Enemies|Enemy Data]]
-* [[Final Fantasy Mystic Quest (SNES)/ROM map/Battlefields|Battlefield Data]]
-* [[Final Fantasy Mystic Quest (SNES)/RAM map/Party Data|Party Data Structure]]
-* [[Final Fantasy Mystic Quest (SNES)/Values/Items|Item Data]]
+* [[SNES/Final_Fantasy_Mystic_Quest/Values/Window_Colors|Window Colors]]
 
 ==External Links==
 
