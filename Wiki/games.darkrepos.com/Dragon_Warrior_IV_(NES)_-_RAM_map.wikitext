@@ -1,314 +1,1593 @@
 {{rammap}}
-{{game|Dragon Warrior IV (NES)}}
+{{stub}}
 
-=Dragon Warrior IV (NES) RAM Map=
+==Main==
 
-This RAM map documents the runtime memory layout of Dragon Warrior IV (US version).
+===System RAM===
 
-==Memory Regions==
-
-{| class="wikitable"
-|-
-! Region !! Address Range !! Size !! Description
-|-
-| System RAM || $0000-$07FF || 2 KB || CPU internal RAM
-|-
-| PPU Registers || $2000-$2007 || 8 bytes || Video registers
-|-
-| APU Registers || $4000-$4017 || 24 bytes || Audio/controller registers
-|-
-| WRAM || $6000-$7FFF || 8 KB || Work RAM (battery-backed)
-|-
-| PRG ROM || $8000-$FFFF || 32 KB || Program ROM (banked)
-|}
-
-==System RAM ($0000-$07FF)==
+System RAM is addressed from <code>$0000</code> to <code>$07ff</code>.
 
 {| class="wikitable sortable"
 |-
-! Address !! Size !! Category !! Description
+!  Category  !!  Address  !!  Size  !!  Description
+|-  style="background-color: #eaecf0;"
+|  ???  ||  $000 - $062  ||  ...  ||  ???
 |-
-| $0000-$000F || 16 || System || Zero page temporaries
+|  World  ||  $063  ||  byte  ||  Map Number
 |-
-| $0010-$001F || 16 || System || Subroutine arguments
-|-
-| $0020-$002F || 16 || Math || Multiplication/division workspace
-|-
-| $0030-$003F || 16 || PPU || Sprite DMA staging
-|-
-| $0040-$005F || 32 || Input || Controller state buffers
-|-
-| $0060-$0062 || 3 || World || Current map state
-|-
-| $0063 || 1 || World || '''Map Number'''
-|-
-| $0064 || 1 || World || '''Sub-Map Number'''
-|-
-| $0065-$006F || 11 || World || Map scroll position
-|-
-| $0070-$007F || 16 || Graphics || Tile update queue
-|-
-| $0080-$00FF || 128 || Stack || 6502 stack area
-|-
-| $0100-$01FF || 256 || System || Stack page
-|-
-| $0200-$02FF || 256 || PPU || Sprite OAM buffer
-|-
-| $0300-$03FF || 256 || Audio || Sound engine workspace
-|-
-| $0400-$04FF || 256 || Battle || Battle state variables
-|-
-| $0500-$05FF || 256 || Menu || Menu state variables
-|-
-| $0600-$07FF || 512 || General || General purpose storage
+|  World  ||  $064  ||  byte  ||  Sub-Map Number
+|-  style="background-color: #eaecf0;"
+|  ???  ||  $065 - $7ff  ||  ...  ||  ???
 |}
 
-==WRAM - Party Data ($6000-$61FF)==
+===WRAM===
 
-===Character Data Structure===
-
-Each of the 8 main party members uses 30 ($1E) bytes of storage:
-
-{| class="wikitable"
-|-
-! Offset !! Size !! Description
-|-
-| +$00 || 1 || Character ID
-|-
-| +$01 || 1 || Current HP (low byte)
-|-
-| +$02 || 1 || Current HP (high byte)
-|-
-| +$03 || 1 || Max HP (low byte)
-|-
-| +$04 || 1 || Max HP (high byte)
-|-
-| +$05 || 1 || Current MP (low byte)
-|-
-| +$06 || 1 || Current MP (high byte)
-|-
-| +$07 || 1 || Max MP (low byte)
-|-
-| +$08 || 1 || Max MP (high byte)
-|-
-| +$09 || 1 || Strength
-|-
-| +$0A || 1 || Agility
-|-
-| +$0B || 1 || Luck
-|-
-| +$0C || 1 || Attack Power
-|-
-| +$0D || 1 || Defense Power
-|-
-| +$0E || 1 || Level
-|-
-| +$0F || 1 || Status Effects
-|-
-| +$10 || 3 || Experience (24-bit)
-|-
-| +$13 || 1 || Equipped Weapon
-|-
-| +$14 || 1 || Equipped Armor
-|-
-| +$15 || 1 || Equipped Shield
-|-
-| +$16 || 1 || Equipped Helmet
-|-
-| +$17-$1D || 7 || Inventory slots (7 items)
-|}
-
-===Party Member Addresses===
-
-{| class="wikitable"
-|-
-! Character !! Base Address !! Label
-|-
-| Hero || $6001 || Hero_*
-|-
-| Cristo || $601F || Cristo_*
-|-
-| Nara || $603D || Nara_*
-|-
-| Mara || $605B || Mara_*
-|-
-| Brey || $6079 || Brey_*
-|-
-| Taloon || $6097 || Taloon_*
-|-
-| Ragnar || $60B5 || Ragnar_*
-|-
-| Alena || $60D3 || Alena_*
-|}
-
-===Extra Companions ($610F-$611A)===
-
-Extra companions use a smaller 6-byte structure:
-
-{| class="wikitable"
-|-
-! Address !! Size !! Description
-|-
-| $610F-$6114 || 6 || Extra Companion #1
-|-
-| $6115-$611A || 6 || Extra Companion #2
-|}
-
-{| class="wikitable"
-|-
-! Offset !! Description
-|-
-| +$00 || Companion ID (see [[Dragon Warrior IV (NES)/Values#Extra Companions|Values]])
-|-
-| +$01 || Current HP (low)
-|-
-| +$02 || Current HP (high)
-|-
-| +$03 || Max HP (low)
-|-
-| +$04 || Max HP (high)
-|-
-| +$05 || Status
-|}
-
-==WRAM - General Data ($6150-$62FF)==
+WRAM is addressed from <code>$6000</code> to <code>$7fff</code>.
 
 {| class="wikitable sortable"
 |-
-! Address !! Size !! Category !! Description !! Label
+!  Category  !!  Address  !!  Size  !!  Description  !!  Debug Label
+|-  style="background-color: #eaecf0;"
+|  ???  ||  $6000  ||  byte  ||  ???  ||  ...
 |-
-| $6157-$6159 || 3 || Party || Gold (24-bit, little-endian) || General_Gold
+|  Party Members  ||  $6001 - $601e  ||  30 bytes  ||  Hero ([[#Hero|details]])  ||  Hero_*
 |-
-| $615A || 1 || Game || Chapter Number (0-4) || General_Chapter_Number
+|  Party Members  ||  $601f - $603c  ||  30 bytes  ||  Cristo ([[#Cristo|details]])  ||  Cristo_*
 |-
-| $615B || 1 || Battle || Battle Tactics setting || General_Battle_Tactics
+|  Party Members  ||  $603d - $605a  ||  30 bytes  ||  Nara ([[#Nara|details]])  ||  Nara_*
 |-
-| $615C || 1 || Time || Day/Night Cycle counter || General_Day_Night
+|  Party Members  ||  $605b - $6078  ||  30 bytes  ||  Mara ([[#Mara|details]])  ||  Mara_*
 |-
-| $615D-$6164 || 8 || System || Reserved || —
+|  Party Members  ||  $6079 - $6096  ||  30 bytes  ||  Brey ([[#Brey|details]])  ||  Brey_*
 |-
-| $6165-$6167 || 3 || Travel || Return/Zoom locations || General_Return_Locations
+|  Party Members  ||  $6097 - $60b4  ||  30 bytes  ||  Taloon ([[#Taloon|details]])  ||  Taloon_*
 |-
-| $6168-$6169 || 2 || System || Reserved || —
+|  Party Members  ||  $60b5 - $60d2  ||  30 bytes  ||  Ragnar ([[#Ragnar|details]])  ||  Ragnar_*
 |-
-| $616A-$616D || 4 || Party || Active party order (4 slots) || Party_Members_Order
+|  Party Members  ||  $60d3 - $60f0  ||  30 bytes  ||  Alena ([[#Alena|details]])  ||  Alena_*
+|-  style="background-color: #eaecf0;"
+|  Party Members  ||  $60f1 - $610e  ||  30 bytes  ||  Unused Character Slot  ||  ...
 |-
-| $616E-$61FF || ~145 || System || Reserved/Unknown || —
+|  Party Members  ||  $610f - $6114  ||  6 bytes  ||  Extra Companion #1 ([[#Extra Companion #1|details]])  ||  Party_Member_Other_1
+|-
+|  Party Members  ||  $6115 - $611a  ||  6 bytes  ||  Extra Companion #2 ([[#Extra Companion #2|details]])  ||  Party_Member_Other_2
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $611b - $6156  ||  ...  ||  ???  ||  ...
+|-
+|  General  ||  $6157 - $6159  ||  long  ||  Gold  ||  General_Gold
+|-
+|  General  ||  $615a  ||  byte  ||  Chapter Number ([[Dragon_Warrior_IV_(NES)/Values#Chapters|values]])  ||  General_Chapter_Number
+|-
+|  General  ||  $615b  ||  byte  ||  Battle Tactics ([[Dragon_Warrior_IV_(NES)/Values#Battle Tactics|values]])  ||  General_Battle_Tactics
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $615c - $6164  ||  ...  ||  ???  ||  ...
+|-
+|  General  ||  $6165 - $6167  ||  long  ||  Return Locations ([[#Return Locations|details]])  ||  General_Return_Locations
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $6168 - $6169  ||  ...  ||  ???  ||  ...
+|-
+|  General  ||  $616a - $616d  ||  4 bytes  ||  Party Order  ||  Party_Members_Order_*
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $616e - $625c  ||  ...  ||  ???  ||  ...
+|-
+|  General  ||  $625d - $6277  ||  27 bytes  ||  Treasure Chests Flags ([[#Treasure Chests|details]])  ||  Flags_Treasure_Chests
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $6278 - $6291  ||  ...  ||  ???  ||  ...
+|-
+|  General  ||  $6292  ||  byte  ||  Party Members???  ||  ???  [TODO: verify that this is members in the party, last member Ragnar was $fd=>ff]
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $6293 - $62ac  ||  ...  ||  ???  ||  ...
+|-
+|  General  ||  $62ad - $62af  ||  3 bytes  ||  Casino Coins  ||  General_Casino_Coins
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $62b0 - $62e6  ||  ...  ||  ???  ||  ...
+|-
+|  General  ||  $62e7  ||  byte  ||  Chapter 3 - Lakanaba Shop - Number of Boomerang  ||  C3_Lakanaba_Shop_Boomerang_Count
+|-
+|  General  ||  $62e8  ||  byte  ||  Chapter 3 - Lakanaba Shop - Number of Chain Sickle  ||  C3_Lakanaba_Shop_Chain_Sickle_Count
+|-
+|  General  ||  $62e9  ||  byte  ||  Chapter 3 - Lakanaba Shop - Number of Sword of Malice  ||  C3_Lakanaba_Shop_Sword_of_Malice_Count
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $62ea - $62ec  ||  ...  ||  ???  ||  ...
+|-
+|  General  ||  $62ed  ||  byte  ||  Day/Night cycle (28 => Morning after Inn, 84 => night)  ||  General_DayNight_Counter
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $62ee - $7fff  ||  ...  ||  ???  ||  ...
 |}
 
-==WRAM - Flags and Events ($6200-$62FF)==
+==Party Members==
 
-===Treasure Chest Flags ($625D-$6277)===
+====Notes====
 
-27 bytes of bit flags tracking opened treasure chests. Each bit represents one chest.
+The <code>dead</code>/<code>alive</code> status bit is <code>dead</code> if you haven't used that character yet; they are set to <code>alive</code> when they join the party for the first time.
 
-{| class="wikitable"
+===Hero===
+
+Index is <code>$00</code>.
+
+{| class="wikitable sortable"
 |-
-! Address !! Bits !! Maps
+!  Category  !!  Address  !!  Size  !!  Description
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6001 # 0000_0001  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6001 # 0000_0010  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6001 # 0000_0100  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6001 # 0000_1000  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6001 # 0001_0000  ||  bit  ||  ...
 |-
-| $625D || 0-7 || Chapter 1 chests 1-8
+|  Stats  ||  $6001 # 0010_0000  ||  bit  ||  Poisoned
 |-
-| $625E || 0-7 || Chapter 1 chests 9-16
+|  Stats  ||  $6001 # 0100_0000  ||  bit  ||  Paralyzed
 |-
-| $625F-$6268 || — || Chapters 2-4 chests
+|  Stats  ||  $6001 # 1000_0000  ||  bit  ||  1 = Alive, 0 = Dead
 |-
-| $6269-$6277 || — || Chapter 5 chests
+|  Stats  ||  $6002 - $6003  ||  word  ||  Current HP
+|-
+|  Stats  ||  $6004 - $6005  ||  word  ||  Current MP
+|-
+|  Stats  ||  $6006  ||  byte  ||  Level
+|-
+|  Stats  ||  $6007  ||  byte  ||  Strength
+|-
+|  Stats  ||  $6008  ||  byte  ||  Agility
+|-
+|  Stats  ||  $6009  ||  byte  ||  Vitality
+|-
+|  Stats  ||  $600a  ||  byte  ||  Intelligence
+|-
+|  Stats  ||  $600b  ||  byte  ||  Luck
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $600c  ||  byte  ||  ???
+|-
+|  Stats  ||  $600d - $600e  ||  word  ||  Maximum HP
+|-
+|  Stats  ||  $600f - $6010  ||  word  ||  Maximum MP
+|-
+|  Stats  ||  $6011 - $6013  ||  long  ||  Current XP
+|-
+|  Stats  ||  $6014  ||  byte  ||  Item slot #1
+|-
+|  Stats  ||  $6015  ||  byte  ||  Item slot #2
+|-
+|  Stats  ||  $6016  ||  byte  ||  Item slot #3
+|-
+|  Stats  ||  $6017  ||  byte  ||  Item slot #4
+|-
+|  Stats  ||  $6018  ||  byte  ||  Item slot #5
+|-
+|  Stats  ||  $6019  ||  byte  ||  Item slot #6
+|-
+|  Stats  ||  $601a  ||  byte  ||  Item slot #7
+|-
+|  Stats  ||  $601b  ||  byte  ||  Item slot #8
+|-
+|  Stats  ||  $601c # 0000_0001  ||  bit  ||  Battle Spell #1 - Expel
+|- 
+|  Stats  ||  $601c # 0000_0010  ||  bit  ||  Battle Spell #2 - Healmore
+|- 
+|  Stats  ||  $601c # 0000_0100  ||  bit  ||  Battle Spell #3 - Blaze
+|- 
+|  Stats  ||  $601c # 0000_1000  ||  bit  ||  Battle Spell #4 - Return
+|- 
+|  Stats  ||  $601c # 0001_0000  ||  bit  ||  Battle Spell #5 - Sleepmore
+|- 
+|  Stats  ||  $601c # 0010_0000  ||  bit  ||  Battle Spell #6 - Awake
+|- 
+|  Stats  ||  $601c # 0100_0000  ||  bit  ||  Battle Spell #7 - Firebal
+|- 
+|  Stats  ||  $601c # 1000_0000  ||  bit  ||  Battle Spell #8 - Healall
+|- 
+|  Stats  ||  $601d # 0000_0001  ||  bit  ||  Battle Spell #9 - Ironize
+|- 
+|  Stats  ||  $601d # 0000_0010  ||  bit  ||  Battle Spell #10 - FendSpell
+|- 
+|  Stats  ||  $601d # 0000_0100  ||  bit  ||  Battle Spell #11 - Zap
+|- 
+|  Stats  ||  $601d # 0000_1000  ||  bit  ||  Battle Spell #12 - Transform
+|- 
+|  Stats  ||  $601d # 0001_0000  ||  bit  ||  Battle Spell #13 - Boom
+|- 
+|  Stats  ||  $601d # 0010_0000  ||  bit  ||  Battle Spell #14 - Healusall
+|- 
+|  Stats  ||  $601d # 0100_0000  ||  bit  ||  Battle Spell #15 - Lightning
+|- 
+|  Stats  ||  $601d # 1000_0000  ||  bit  ||  Battle Spell #16 - Vivify
+|- 
+|  Stats  ||  $601e # 0000_0001  ||  bit  ||  Battle Spell #17 - Thordain
+|- 
+|  Stats  ||  $601e # 0000_0010  ||  bit  ||  Battle Spell #18 - Chance
+|- 
+|  Stats  ||  $601e # 0000_0100  ||  bit  ||  Overworld Spell #1 - Return
+|- 
+|  Stats  ||  $601e # 0000_1000  ||  bit  ||  Overworld Spell #2 - Healmore
+|- 
+|  Stats  ||  $601e # 0001_0000  ||  bit  ||  Overworld Spell #3 - Repel
+|- 
+|  Stats  ||  $601e # 0010_0000  ||  bit  ||  Overworld Spell #4 - Outside
+|- 
+|  Stats  ||  $601e # 0100_0000  ||  bit  ||  Overworld Spell #5 - Healall
+|- 
+|  Stats  ||  $601e # 1000_0000  ||  bit  ||  Overworld Spell #6 - Vivify
 |}
 
-===Event Flags===
+===Cristo===
 
-Game progression flags stored in bit-packed format:
+Index is <code>$01</code>.
 
-{| class="wikitable"
+{| class="wikitable sortable"
 |-
-! Address !! Description
+!  Category  !!  Address  !!  Size  !!  Description
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $601f # 0000_0001  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $601f # 0000_0010  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $601f # 0000_0100  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $601f # 0000_1000  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $601f # 0001_0000  ||  bit  ||  ...
 |-
-| $6278-$6280 || Story progression flags
+|  Stats  ||  $601f # 0010_0000  ||  bit  ||  Poisoned
 |-
-| $6281-$6290 || NPC conversation flags
+|  Stats  ||  $601f # 0100_0000  ||  bit  ||  Paralyzed
 |-
-| $6291 || Party composition flags
+|  Stats  ||  $601f # 1000_0000  ||  bit  ||  1 = Alive, 0 = Dead
+|-
+|  Stats  ||  $6020 - $6021  ||  word  ||  Current HP
+|-
+|  Stats  ||  $6022 - $6023  ||  word  ||  Current MP
+|-
+|  Stats  ||  $6024  ||  byte  ||  Level
+|-
+|  Stats  ||  $6025  ||  byte  ||  Strength
+|-
+|  Stats  ||  $6026  ||  byte  ||  Agility
+|-
+|  Stats  ||  $6027  ||  byte  ||  Vitality
+|-
+|  Stats  ||  $6028  ||  byte  ||  Intelligence
+|-
+|  Stats  ||  $6029  ||  byte  ||  Luck
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $602a  ||  byte  ||  ???
+|-
+|  Stats  ||  $602b - $602c  ||  word  ||  Maximum HP
+|-
+|  Stats  ||  $602d - $602e  ||  word  ||  Maximum MP
+|-
+|  Stats  ||  $602f - $6031  ||  long  ||  Current XP
+|-
+|  Stats  ||  $6032  ||  byte  ||  Item slot #1
+|-
+|  Stats  ||  $6033  ||  byte  ||  Item slot #2
+|-
+|  Stats  ||  $6034  ||  byte  ||  Item slot #3
+|-
+|  Stats  ||  $6035  ||  byte  ||  Item slot #4
+|-
+|  Stats  ||  $6036  ||  byte  ||  Item slot #5
+|-
+|  Stats  ||  $6037  ||  byte  ||  Item slot #6
+|-
+|  Stats  ||  $6038  ||  byte  ||  Item slot #7
+|-
+|  Stats  ||  $6039  ||  byte  ||  Item slot #8
+|-
+|  Stats  ||  $603a # 0000_0001  ||  bit  ||  Battle Spell #1 - Upper
+|-
+|  Stats  ||  $603a # 0000_0010  ||  bit  ||  Battle Spell #2 - Heal
+|-
+|  Stats  ||  $603a # 0000_0100  ||  bit  ||  Battle Spell #3 - Surround
+|-
+|  Stats  ||  $603a # 0000_1000  ||  bit  ||  Battle Spell #4 - Healmore
+|-
+|  Stats  ||  $603a # 0001_0000  ||  bit  ||  Battle Spell #5 - StopSpell
+|-
+|  Stats  ||  $603a # 0010_0000  ||  bit  ||  Battle Spell #6 - Healall
+|-
+|  Stats  ||  $603a # 0100_0000  ||  bit  ||  Battle Spell #7 - Increase
+|-
+|  Stats  ||  $603a # 1000_0000  ||  bit  ||  Battle Spell #8 - Healus
+|- 
+|  Stats  ||  $603b # 0000_0001  ||  bit  ||  Battle Spell #9 - Beat
+|-
+|  Stats  ||  $603b # 0000_0010  ||  bit  ||  Battle Spell #10 - Vivify
+|-
+|  Stats  ||  $603b # 0000_0100  ||  bit  ||  Battle Spell #11 - Defeat
+|-
+|  Stats  ||  $603b # 0000_1000  ||  bit  ||  Battle Spell #12 - Revive
+|-
+|  Stats  ||  $603b # 0001_0000  ||  bit  ||  Battle Spell #13 - n/a
+|-
+|  Stats  ||  $603b # 0010_0000  ||  bit  ||  Battle Spell #14 - n/a
+|-
+|  Stats  ||  $603b # 0100_0000  ||  bit  ||  Battle Spell #15 - n/a
+|-
+|  Stats  ||  $603b # 1000_0000  ||  bit  ||  Battle Spell #16 - n/a
+|- 
+|  Stats  ||  $603c # 0000_0001  ||  bit  ||  Overworld Spell #1 - Heal
+|-
+|  Stats  ||  $603c # 0000_0010  ||  bit  ||  Overworld Spell #2 - Antidote
+|-
+|  Stats  ||  $603c # 0000_0100  ||  bit  ||  Overworld Spell #3 - Healmore
+|-
+|  Stats  ||  $603c # 0000_1000  ||  bit  ||  Overworld Spell #4 - Vivify
+|-
+|  Stats  ||  $603c # 0001_0000  ||  bit  ||  Overworld Spell #5 - Healall
+|-
+|  Stats  ||  $603c # 0010_0000  ||  bit  ||  Overworld Spell #6 - Healus
+|-
+|  Stats  ||  $603c # 0100_0000  ||  bit  ||  Overworld Spell #7 - Revive
+|-
+|  Stats  ||  $603c # 1000_0000  ||  bit  ||  Overworld Spell #8 - n/a
 |}
 
-==WRAM - Battle State ($6300-$63FF)==
+===Nara===
 
-During battles, additional state is stored:
+Index is <code>$02</code>.
 
-{| class="wikitable"
+{| class="wikitable sortable"
 |-
-! Address !! Size !! Description
+!  Category  !!  Address  !!  Size  !!  Description
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $603d # 0000_0001  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $603d # 0000_0010  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $603d # 0000_0100  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $603d # 0000_1000  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $603d # 0001_0000  ||  bit  ||  ...
 |-
-| $614A || 1 || Current Battle Actor Index
+|  Stats  ||  $603d # 0010_0000  ||  bit  ||  Poisoned
 |-
-| $616E || 1 || Battle State Flags
+|  Stats  ||  $603d # 0100_0000  ||  bit  ||  Paralyzed
 |-
-| $617A || ~20 || Battle Action Queue
+|  Stats  ||  $603d # 1000_0000  ||  bit  ||  1 = Alive, 0 = Dead
 |-
-| $6190 || ~16 || Monster HP array (up to 8 monsters × 2 bytes)
+|  Stats  ||  $603e - $603f  ||  word  ||  Current HP
 |-
-| $61A0 || ~8 || Monster status effects
+|  Stats  ||  $6040 - $6041  ||  word  ||  Current MP
+|-
+|  Stats  ||  $6042  ||  byte  ||  Level
+|-
+|  Stats  ||  $6043  ||  byte  ||  Strength
+|-
+|  Stats  ||  $6044  ||  byte  ||  Agility
+|-
+|  Stats  ||  $6045  ||  byte  ||  Vitality
+|-
+|  Stats  ||  $6046  ||  byte  ||  Intelligence
+|-
+|  Stats  ||  $6047  ||  byte  ||  Luck
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6048  ||  byte  ||  ???
+|-
+|  Stats  ||  $6049 - $604a  ||  word  ||  Maximum HP
+|-
+|  Stats  ||  $604b - $604c  ||  word  ||  Maximum MP
+|-
+|  Stats  ||  $604d - $604f  ||  long  ||  Current XP
+|-
+|  Stats  ||  $6050  ||  byte  ||  Item slot #1
+|-
+|  Stats  ||  $6051  ||  byte  ||  Item slot #2
+|-
+|  Stats  ||  $6052  ||  byte  ||  Item slot #3
+|-
+|  Stats  ||  $6053  ||  byte  ||  Item slot #4
+|-
+|  Stats  ||  $6054  ||  byte  ||  Item slot #5
+|-
+|  Stats  ||  $6055  ||  byte  ||  Item slot #6
+|-
+|  Stats  ||  $6056  ||  byte  ||  Item slot #7
+|-
+|  Stats  ||  $6057  ||  byte  ||  Item slot #8
+|-
+|  Stats  ||  $6058 # 0000_0001  ||  bit  ||  Battle Spell #1 - Infernos
+|-
+|  Stats  ||  $6058 # 0000_0010  ||  bit  ||  Battle Spell #2 - Heal
+|-
+|  Stats  ||  $6058 # 0000_0100  ||  bit  ||  Battle Spell #3 - Sleep
+|-
+|  Stats  ||  $6058 # 0000_1000  ||  bit  ||  Battle Spell #4 - Healmore
+|-
+|  Stats  ||  $6058 # 0001_0000  ||  bit  ||  Battle Spell #5 - NumbOff
+|-
+|  Stats  ||  $6058 # 0010_0000  ||  bit  ||  Battle Spell #6 - Healall
+|-
+|  Stats  ||  $6058 # 0100_0000  ||  bit  ||  Battle Spell #7 - Infermore
+|-
+|  Stats  ||  $6058 # 1000_0000  ||  bit  ||  Battle Spell #8 - Barrior
+|-
+|  Stats  ||  $6059 # 0000_0001  ||  bit  ||  Battle Spell #9 - Sleepmore
+|-
+|  Stats  ||  $6059 # 0000_0010  ||  bit  ||  Battle Spell #10 - Vivify
+|-
+|  Stats  ||  $6059 # 0000_0100  ||  bit  ||  Battle Spell #11 - Infermost
+|-
+|  Stats  ||  $6059 # 0000_1000  ||  bit  ||  Battle Spell #12 - Farewell
+|-
+|  Stats  ||  $6059 # 0001_0000  ||  bit  ||  Battle Spell #13 - n/a
+|-
+|  Stats  ||  $6059 # 0010_0000  ||  bit  ||  Battle Spell #14 - n/a
+|-
+|  Stats  ||  $6059 # 0100_0000  ||  bit  ||  Battle Spell #15 - n/a
+|-
+|  Stats  ||  $6059 # 1000_0000  ||  bit  ||  Battle Spell #16 - n/a
+|-
+|  Stats  ||  $605a # 0000_0001  ||  bit  ||  Overworld Spell #1 - Heal
+|-
+|  Stats  ||  $605a # 0000_0010  ||  bit  ||  Overworld Spell #2 - NumbOff
+|-
+|  Stats  ||  $605a # 0000_0100  ||  bit  ||  Overworld Spell #3 - Healmore
+|-
+|  Stats  ||  $605a # 0000_1000  ||  bit  ||  Overworld Spell #4 - Vivify
+|-
+|  Stats  ||  $605a # 0001_0000  ||  bit  ||  Overworld Spell #5 - Healall
+|-
+|  Stats  ||  $605a # 0010_0000  ||  bit  ||  Overworld Spell #6 - n/a
+|-
+|  Stats  ||  $605a # 0100_0000  ||  bit  ||  Overworld Spell #7 - n/a
+|-
+|  Stats  ||  $605a # 1000_0000  ||  bit  ||  Overworld Spell #8 - n/a
 |}
 
-==Status Effect Bits==
+===Mara===
 
-Stored in character offset +$0F:
+Index is <code>$03</code>.
 
-{| class="wikitable"
+{| class="wikitable sortable"
 |-
-! Bit !! Effect
+!  Category  !!  Address  !!  Size  !!  Description
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $605b # 0000_0001  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $605b # 0000_0010  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $605b # 0000_0100  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $605b # 0000_1000  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $605b # 0001_0000  ||  bit  ||  ...
 |-
-| 0 || Poisoned
+|  Stats  ||  $605b # 0010_0000  ||  bit  ||  Poisoned
 |-
-| 1 || Paralyzed
+|  Stats  ||  $605b # 0100_0000  ||  bit  ||  Paralyzed
 |-
-| 2 || Asleep
+|  Stats  ||  $605b # 1000_0000  ||  bit  ||  1 = Alive, 0 = Dead
 |-
-| 3 || Confused
+|  Stats  ||  $605c - $605d  ||  word  ||  Current HP
 |-
-| 4 || Silenced
+|  Stats  ||  $605e - $605f  ||  word  ||  Current MP
 |-
-| 5 || Dead
+|  Stats  ||  $6060  ||  byte  ||  Level
 |-
-| 6 || Cursed
+|  Stats  ||  $6061  ||  byte  ||  Strength
 |-
-| 7 || In Wagon
+|  Stats  ||  $6062  ||  byte  ||  Agility
+|-
+|  Stats  ||  $6063  ||  byte  ||  Vitality
+|-
+|  Stats  ||  $6064  ||  byte  ||  Intelligence
+|-
+|  Stats  ||  $6065  ||  byte  ||  Luck
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6066  ||  byte  ||  ???
+|-
+|  Stats  ||  $6067 - $6068  ||  word  ||  Maximum HP
+|-
+|  Stats  ||  $6069 - $606a  ||  word  ||  Maximum MP
+|-
+|  Stats  ||  $606b - $606d  ||  long  ||  Current XP
+|-
+|  Stats  ||  $606e  ||  byte  ||  Item slot #1
+|-
+|  Stats  ||  $606f  ||  byte  ||  Item slot #2
+|-
+|  Stats  ||  $6070  ||  byte  ||  Item slot #3
+|-
+|  Stats  ||  $6071  ||  byte  ||  Item slot #4
+|-
+|  Stats  ||  $6072  ||  byte  ||  Item slot #5
+|-
+|  Stats  ||  $6073  ||  byte  ||  Item slot #6
+|-
+|  Stats  ||  $6074  ||  byte  ||  Item slot #7
+|-
+|  Stats  ||  $6075  ||  byte  ||  Item slot #8
+|-
+|  Stats  ||  $6076 # 0000_0001  ||  bit  ||  Battle Spell #1 - Blaze
+|-
+|  Stats  ||  $6076 # 0000_0010  ||  bit  ||  Battle Spell #2 - Sap
+|-
+|  Stats  ||  $6076 # 0000_0100  ||  bit  ||  Battle Spell #3 - Firebal
+|-
+|  Stats  ||  $6076 # 0000_1000  ||  bit  ||  Battle Spell #4 - RobMagic
+|-
+|  Stats  ||  $6076 # 0001_0000  ||  bit  ||  Battle Spell #5 - Bang
+|-
+|  Stats  ||  $6076 # 0010_0000  ||  bit  ||  Battle Spell #6 - BeDragon
+|-
+|  Stats  ||  $6076 # 0100_0000  ||  bit  ||  Battle Spell #7 - Blazemore
+|-
+|  Stats  ||  $6076 # 1000_0000  ||  bit  ||  Battle Spell #8 - Blazemost
+|-
+|  Stats  ||  $6077 # 0000_0001  ||  bit  ||  Battle Spell #9 - Firebane
+|-
+|  Stats  ||  $6077 # 0000_0010  ||  bit  ||  Battle Spell #10 - Firevolt
+|-
+|  Stats  ||  $6077 # 0000_0100  ||  bit  ||  Battle Spell #11 - Boom
+|-
+|  Stats  ||  $6077 # 0000_1000  ||  bit  ||  Battle Spell #12 - Explodet
+|-
+|  Stats  ||  $6077 # 0001_0000  ||  bit  ||  Battle Spell #13 - n/a
+|-
+|  Stats  ||  $6077 # 0010_0000  ||  bit  ||  Battle Spell #14 - n/a
+|-
+|  Stats  ||  $6077 # 0100_0000  ||  bit  ||  Battle Spell #15 - n/a
+|-
+|  Stats  ||  $6077 # 1000_0000  ||  bit  ||  Battle Spell #16 - n/a
+|-
+|  Stats  ||  $6078 # 0000_0001  ||  bit  ||  Overworld Spell #1 - Return
+|-
+|  Stats  ||  $6078 # 0000_0010  ||  bit  ||  Overworld Spell #2 - Outside
+|-
+|  Stats  ||  $6078 # 0000_0100  ||  bit  ||  Overworld Spell #3 - StepGuard
+|-
+|  Stats  ||  $6078 # 0000_1000  ||  bit  ||  Overworld Spell #4 - n/a
+|-
+|  Stats  ||  $6078 # 0001_0000  ||  bit  ||  Overworld Spell #5 - n/a
+|-
+|  Stats  ||  $6078 # 0010_0000  ||  bit  ||  Overworld Spell #6 - n/a
+|-
+|  Stats  ||  $6078 # 0100_0000  ||  bit  ||  Overworld Spell #7 - n/a
+|-
+|  Stats  ||  $6078 # 1000_0000  ||  bit  ||  Overworld Spell #8 - n/a
 |}
 
-==Day/Night Cycle==
+===Brey===
 
-The day/night counter at $615C cycles through these values:
+Index is <code>$04</code>.
 
-{| class="wikitable"
+{| class="wikitable sortable"
 |-
-! Range !! Length !! Period
+!  Category  !!  Address  !!  Size  !!  Description
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6079 # 0000_0001  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6079 # 0000_0010  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6079 # 0000_0100  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6079 # 0000_1000  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6079 # 0001_0000  ||  bit  ||  ...
 |-
-| $00-$27 || 40 steps || Day
+|  Stats  ||  $6079 # 0010_0000  ||  bit  ||  Poisoned
 |-
-| $28-$77 || 80 steps || Day (after Inn)
+|  Stats  ||  $6079 # 0100_0000  ||  bit  ||  Paralyzed
 |-
-| $78-$7B || 4 steps || Afternoon
+|  Stats  ||  $6079 # 1000_0000  ||  bit  ||  1 = Alive, 0 = Dead
 |-
-| $7C-$7F || 4 steps || Dusk
+|  Stats  ||  $607a - $607b  ||  word  ||  Current HP
 |-
-| $80-$83 || 4 steps || Evening
+|  Stats  ||  $607c - $607d  ||  word  ||  Current MP
 |-
-| $84-$BF || 60 steps || Night
+|  Stats  ||  $607e  ||  byte  ||  Level
 |-
-| $C0-$C3 || 4 steps || Pre-dawn
+|  Stats  ||  $607f  ||  byte  ||  Strength
 |-
-| $C4-$C7 || 4 steps || Dawn
+|  Stats  ||  $6080  ||  byte  ||  Agility
 |-
-| $C8-$CB || 4 steps || Morning
+|  Stats  ||  $6081  ||  byte  ||  Vitality
+|-
+|  Stats  ||  $6082  ||  byte  ||  Intelligence
+|-
+|  Stats  ||  $6083  ||  byte  ||  Luck
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6084  ||  byte  ||  ???
+|-
+|  Stats  ||  $6085 - $6086  ||  word  ||  Maximum HP
+|-
+|  Stats  ||  $6087 - $6088  ||  word  ||  Maximum MP
+|-
+|  Stats  ||  $6089 - $608b  ||  long  ||  Current XP
+|-
+|  Stats  ||  $608c  ||  byte  ||  Item slot #1
+|-
+|  Stats  ||  $608d  ||  byte  ||  Item slot #2
+|-
+|  Stats  ||  $608e  ||  byte  ||  Item slot #3
+|-
+|  Stats  ||  $608f  ||  byte  ||  Item slot #4
+|-
+|  Stats  ||  $6090  ||  byte  ||  Item slot #5
+|-
+|  Stats  ||  $6091  ||  byte  ||  Item slot #6
+|-
+|  Stats  ||  $6092  ||  byte  ||  Item slot #7
+|-
+|  Stats  ||  $6093  ||  byte  ||  Item slot #8
+|-
+|  Stats  ||  $6094 # 0000_0001  ||  bit  ||  Battle Spell #1 - IceBolt
+|-
+|  Stats  ||  $6094 # 0000_0010  ||  bit  ||  Battle Spell #2 - Sap
+|-
+|  Stats  ||  $6094 # 0000_0100  ||  bit  ||  Battle Spell #3 - Snowstorm
+|-
+|  Stats  ||  $6094 # 0000_1000  ||  bit  ||  Battle Spell #4 - Bounce
+|-
+|  Stats  ||  $6094 # 0001_0000  ||  bit  ||  Battle Spell #5 - Icespears
+|-
+|  Stats  ||  $6094 # 0010_0000  ||  bit  ||  Battle Spell #6 - Return
+|-
+|  Stats  ||  $6094 # 0100_0000  ||  bit  ||  Battle Spell #7 - RobMagic
+|-
+|  Stats  ||  $6094 # 1000_0000  ||  bit  ||  Battle Spell #8 - Defence
+|- 
+|  Stats  ||  $6095 # 0000_0001  ||  bit  ||  Battle Spell #9 - Chaos
+|-
+|  Stats  ||  $6095 # 0000_0010  ||  bit  ||  Battle Spell #10 - SpeedUp
+|-
+|  Stats  ||  $6095 # 0000_0100  ||  bit  ||  Battle Spell #11 - Blizzard
+|-
+|  Stats  ||  $6095 # 0000_1000  ||  bit  ||  Battle Spell #12 - Bikill
+|-
+|  Stats  ||  $6095 # 0001_0000  ||  bit  ||  Battle Spell #13 - n/a
+|-
+|  Stats  ||  $6095 # 0010_0000  ||  bit  ||  Battle Spell #14 - n/a
+|-
+|  Stats  ||  $6095 # 0100_0000  ||  bit  ||  Battle Spell #15 - n/a
+|-
+|  Stats  ||  $6095 # 1000_0000  ||  bit  ||  Battle Spell #16 - n/a
+|- 
+|  Stats  ||  $6096 # 0000_0001  ||  bit  ||  Overworld Spell #1 - Return
+|-
+|  Stats  ||  $6096 # 0000_0010  ||  bit  ||  Overworld Spell #2 - Outside
+|-
+|  Stats  ||  $6096 # 0000_0100  ||  bit  ||  Overworld Spell #3 - Day-Night
+|-
+|  Stats  ||  $6096 # 0000_1000  ||  bit  ||  Overworld Spell #4 - X-Ray
+|-
+|  Stats  ||  $6096 # 0001_0000  ||  bit  ||  Overworld Spell #5 - n/a
+|-
+|  Stats  ||  $6096 # 0010_0000  ||  bit  ||  Overworld Spell #6 - n/a
+|-
+|  Stats  ||  $6096 # 0100_0000  ||  bit  ||  Overworld Spell #7 - n/a
+|-
+|  Stats  ||  $6096 # 1000_0000  ||  bit  ||  Overworld Spell #8 - n/a
 |}
 
-Note: Staying at an Inn sets the counter to $28. Counter wraps after $CB.
+===Taloon===
 
-==See Also==
+Index is <code>$05</code>.
 
-* [[Dragon Warrior IV (NES)/ROM map|ROM Map]]
-* [[Dragon Warrior IV (NES)/SRAM map|SRAM Map]]
-* [[Dragon Warrior IV (NES)/Values|Values Tables]]
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Description
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6097 # 0000_0001  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6097 # 0000_0010  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6097 # 0000_0100  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6097 # 0000_1000  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6097 # 0001_0000  ||  bit  ||  ...
+|-
+|  Stats  ||  $6097 # 0010_0000  ||  bit  ||  Poisoned
+|-
+|  Stats  ||  $6097 # 0100_0000  ||  bit  ||  Paralyzed
+|-
+|  Stats  ||  $6097 # 1000_0000  ||  bit  ||  1 = Alive, 0 = Dead
+|-
+|  Stats  ||  $6098 - $6099  ||  word  ||  Current HP
+|-
+|  Stats  ||  $609a - $609b  ||  word  ||  Current MP
+|-
+|  Stats  ||  $609c  ||  byte  ||  Level
+|-
+|  Stats  ||  $609d  ||  byte  ||  Strength
+|-
+|  Stats  ||  $609e  ||  byte  ||  Agility
+|-
+|  Stats  ||  $609f  ||  byte  ||  Vitality
+|-
+|  Stats  ||  $60a0  ||  byte  ||  Intelligence
+|-
+|  Stats  ||  $60a1  ||  byte  ||  Luck
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $60a2  ||  byte  ||  ???
+|-
+|  Stats  ||  $60a3 - $60a4  ||  word  ||  Maximum HP
+|-
+|  Stats  ||  $60a5 - $60a6  ||  word  ||  Maximum MP
+|-
+|  Stats  ||  $60a7 - $60a9  ||  long  ||  Current XP
+|-
+|  Stats  ||  $60aa  ||  byte  ||  Item slot #1
+|-
+|  Stats  ||  $60ab  ||  byte  ||  Item slot #2
+|-
+|  Stats  ||  $60ac  ||  byte  ||  Item slot #3
+|-
+|  Stats  ||  $60ad  ||  byte  ||  Item slot #4
+|-
+|  Stats  ||  $60ae  ||  byte  ||  Item slot #5
+|-
+|  Stats  ||  $60af  ||  byte  ||  Item slot #6
+|-
+|  Stats  ||  $60b0  ||  byte  ||  Item slot #7
+|-
+|  Stats  ||  $60b1  ||  byte  ||  Item slot #8
+|-
+|  Stats  ||  $60b2  ||  byte  ||  Battle Spells - n/a
+|-
+|  Stats  ||  $60b3  ||  byte  ||  Battle Spells - n/a
+|-
+|  Stats  ||  $60b4  ||  byte  ||  Overworld Spells - n/a
+|}
 
-[[Category:RAM Maps]]
-[[Category:Dragon Warrior IV (NES)]]
-[[Category:NES Games]]
+===Ragnar===
+
+Index is <code>$06</code>.
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Description
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $60b5 # 0000_0001  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $60b5 # 0000_0010  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $60b5 # 0000_0100  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $60b5 # 0000_1000  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $60b5 # 0001_0000  ||  bit  ||  ...
+|-
+|  Stats  ||  $60b5 # 0010_0000  ||  bit  ||  Poisoned
+|-
+|  Stats  ||  $60b5 # 0100_0000  ||  bit  ||  Paralyzed
+|-
+|  Stats  ||  $60b5 # 1000_0000  ||  bit  ||  1 = Alive, 0 = Dead
+|-
+|  Stats  ||  $60b6 - $60b7  ||  word  ||  Current HP
+|-
+|  Stats  ||  $60b8 - $60b9  ||  word  ||  Current MP
+|-
+|  Stats  ||  $60ba  ||  byte  ||  Level
+|-
+|  Stats  ||  $60bb  ||  byte  ||  Strength
+|-
+|  Stats  ||  $60bc  ||  byte  ||  Agility
+|-
+|  Stats  ||  $60bd  ||  byte  ||  Vitality
+|-
+|  Stats  ||  $60be  ||  byte  ||  Intelligence
+|-
+|  Stats  ||  $60bf  ||  byte  ||  Luck
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $60c0  ||  byte  ||  ???
+|-
+|  Stats  ||  $60c1 - $60c2  ||  word  ||  Maximum HP
+|-
+|  Stats  ||  $60c3 - $60c4  ||  word  ||  Maximum MP
+|-
+|  Stats  ||  $60c5 - $60c7  ||  long  ||  Current XP
+|-
+|  Stats  ||  $60c8  ||  byte  ||  Item slot #1
+|-
+|  Stats  ||  $60c9  ||  byte  ||  Item slot #2
+|-
+|  Stats  ||  $60ca  ||  byte  ||  Item slot #3
+|-
+|  Stats  ||  $60cb  ||  byte  ||  Item slot #4
+|-
+|  Stats  ||  $60cc  ||  byte  ||  Item slot #5
+|-
+|  Stats  ||  $60cd  ||  byte  ||  Item slot #6
+|-
+|  Stats  ||  $60ce  ||  byte  ||  Item slot #7
+|-
+|  Stats  ||  $60cf  ||  byte  ||  Item slot #8
+|-
+|  Stats  ||  $60d0  ||  byte  ||  Battle Spells - n/a
+|-
+|  Stats  ||  $60d1  ||  byte  ||  Battle Spells - n/a
+|-
+|  Stats  ||  $60d2  ||  byte  ||  Overworld Spells - n/a
+|}
+
+===Alena===
+
+Index is <code>$07</code>.
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Description
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $60d3 # 0000_0001  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $60d3 # 0000_0010  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $60d3 # 0000_0100  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $60d3 # 0000_1000  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $60d3 # 0001_0000  ||  bit  ||  ...
+|-
+|  Stats  ||  $60d3 # 0010_0000  ||  bit  ||  Poisoned
+|-
+|  Stats  ||  $60d3 # 0100_0000  ||  bit  ||  Paralyzed
+|-
+|  Stats  ||  $60d3 # 1000_0000  ||  bit  ||  1 = Alive, 0 = Dead
+|-
+|  Stats  ||  $60d4 - $60d5  ||  word  ||  Current HP
+|-
+|  Stats  ||  $60d6 - $60d7  ||  word  ||  Current MP
+|-
+|  Stats  ||  $60d8  ||  byte  ||  Level
+|-
+|  Stats  ||  $60d9  ||  byte  ||  Strength
+|-
+|  Stats  ||  $60da  ||  byte  ||  Agility
+|-
+|  Stats  ||  $60db  ||  byte  ||  Vitality
+|-
+|  Stats  ||  $60dc  ||  byte  ||  Intelligence
+|-
+|  Stats  ||  $60dd  ||  byte  ||  Luck
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $60de  ||  byte  ||  ???
+|-
+|  Stats  ||  $60df - $60e0  ||  word  ||  Maximum HP
+|-
+|  Stats  ||  $60e1 - $60e2  ||  word  ||  Maximum MP
+|-
+|  Stats  ||  $60e3 - $60e5  ||  long  ||  Current XP
+|-
+|  Stats  ||  $60e6  ||  byte  ||  Item slot #1
+|-
+|  Stats  ||  $60e7  ||  byte  ||  Item slot #2
+|-
+|  Stats  ||  $60e8  ||  byte  ||  Item slot #3
+|-
+|  Stats  ||  $60e9  ||  byte  ||  Item slot #4
+|-
+|  Stats  ||  $60ea  ||  byte  ||  Item slot #5
+|-
+|  Stats  ||  $60eb  ||  byte  ||  Item slot #6
+|-
+|  Stats  ||  $60ec  ||  byte  ||  Item slot #7
+|-
+|  Stats  ||  $60ed  ||  byte  ||  Item slot #8
+|-
+|  Stats  ||  $60ee  ||  byte  ||  Battle Spells - n/a
+|-
+|  Stats  ||  $60ef  ||  byte  ||  Battle Spells - n/a
+|-
+|  Stats  ||  $60f0  ||  byte  ||  Overworld Spells - n/a
+|}
+
+===Extra Companion #1===
+
+Index is <code>$09</code>.
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Description
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $610f # 0000_0001  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $610f # 0000_0010  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $610f # 0000_0100  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $610f # 0000_1000  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $610f # 0001_0000  ||  bit  ||  ...
+|-
+|  Stats  ||  $610f # 0010_0000  ||  bit  ||  Poisoned
+|-
+|  Stats  ||  $610f # 0100_0000  ||  bit  ||  Paralyzed
+|-
+|  Stats  ||  $610f # 1000_0000  ||  bit  ||  1 = Alive, 0 = Dead
+|-
+|  Stats  ||  $6110 - $6111  ||  word  ||  Current HP
+|-
+|  Stats  ||  $6112 - $6113  ||  word  ||  Current MP
+|-
+|  Stats  ||  $6114  ||  byte  ||  Which Companion ([[Dragon_Warrior_IV_(NES)/Values#Extra Companions|values]])
+|}
+
+===Extra Companion #2===
+
+Index is <code>$0a</code>.
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Description
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6115 # 0000_0001  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6115 # 0000_0010  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6115 # 0000_0100  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6115 # 0000_1000  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $6115 # 0001_0000  ||  bit  ||  ...
+|-
+|  Stats  ||  $6115 # 0010_0000  ||  bit  ||  Poisoned
+|-
+|  Stats  ||  $6115 # 0100_0000  ||  bit  ||  Paralyzed
+|-
+|  Stats  ||  $6115 # 1000_0000  ||  bit  ||  1 = Alive, 0 = Dead
+|-
+|  Stats  ||  $6116 - $6117  ||  word  ||  Current HP
+|-
+|  Stats  ||  $6118 - $6119  ||  word  ||  Current MP
+|-
+|  Stats  ||  $611a  ||  byte  ||  Which Companion ([[Dragon_Warrior_IV_(NES)/Values#Extra Companions|values]])
+|}
+
+==Return Locations==
+
+Locations for the <code>Return</code> spell. This uses 3 bytes, one bit for each location. This is reset every chapter.
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Name
+|-
+|  Location  ||  $6165 # 0000_0001  ||  bit  ||  Branca
+|-
+|  Location  ||  $6165 # 0000_0010  ||  bit  ||  Endor
+|-
+|  Location  ||  $6165 # 0000_0100  ||  bit  ||  Bonmalmo
+|-
+|  Location  ||  $6165 # 0000_1000  ||  bit  ||  Aneaux
+|-
+|  Location  ||  $6165 # 0001_0000  ||  bit  ||  Konenber
+|-
+|  Location  ||  $6165 # 0010_0000  ||  bit  ||  Mintos
+|-
+|  Location  ||  $6165 # 0100_0000  ||  bit  ||  Soretta
+|-
+|  Location  ||  $6165 # 1000_0000  ||  bit  ||  Keeleon
+|-
+|  Location  ||  $6166 # 0000_0001  ||  bit  ||  Haville
+|-
+|  Location  ||  $6166 # 0000_0010  ||  bit  ||  Monbaraba
+|-
+|  Location  ||  $6166 # 0000_0100  ||  bit  ||  Santeem
+|-
+|  Location  ||  $6166 # 0000_1000  ||  bit  ||  Tempe
+|-
+|  Location  ||  $6166 # 0001_0000  ||  bit  ||  Stancia
+|-
+|  Location  ||  $6166 # 0010_0000  ||  bit  ||  Burland
+|-
+|  Location  ||  $6166 # 0100_0000  ||  bit  ||  Izmit
+|-
+|  Location  ||  $6166 # 1000_0000  ||  bit  ||  Gardenbur
+|-
+|  Location  ||  $6167 # 0000_0001  ||  bit  ||  Rosaville
+|-
+|  Location  ||  $6167 # 0000_0010  ||  bit  ||  Riverton
+|-
+|  Location  ||  $6167 # 0000_0100  ||  bit  ||  Dire Palace
+|-
+|  Location  ||  $6167 # 0000_1000  ||  bit  ||  Aktemto
+|-
+|  Location  ||  $6167 # 0001_0000  ||  bit  ||  Gottside
+|-
+|  Location  ||  $6167 # 0010_0000  ||  bit  ||  Zenithia
+|-
+|  Location  ||  $6167 # 0100_0000  ||  bit  ||  Last Refuge
+|-  style="background-color: #eaecf0;"
+|  Location  ||  $6167 # 1000_0000  ||  bit  ||  "Infsnip" - Lands in the middle of the ocean, not an actual destination
+|}
+
+==Event Flags==
+
+[TODO: figure out where the real triggers are or how this makes sense]
+
+===Notes===
+
+618f, 02 = start chapter 1
+
+62d5, 01 = start chapter 1
+
+6281, Izmit, Night, School, running child, "His name is Alex", $80 (chapter 1)
+
+627e, 10=>30, Burland, talk to flora, Flora follows you, map: 02 03 (chapter 1)
+
+627e, 30=>50, Izmit, bring Flora to Alex, map: 12 02 (chapter 1)
+
+6283, 00=>80, Defeat Saro in Loch Tower (chapter 1)
+
+6288, 00=>80, Talk to Saro after defeating him in Loch Tower (chapter 1)
+
+6283, 80=>a0, Defeat Saro, talk to him, then children are following you in Loch Tower (chapter 1)
+
+6283, a0=>80, Return children to Izmit (chapter 1)
+
+==Treasure Chests==
+
+These are the flags that indicate if a treaure has already been looted or not. 0 => available, 1 => already taken.
+
+===Notes===
+
+The Chapter 2 item <code>Birdsong Nector</code> is not included here, must be an event.
+
+===Full List===
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !!  Size  !!  Map  !!  Sub-Map  !!  Description  !!  Reward
+
+|-
+|  Treasure  ||  style="white-space: nowrap;"  |  $625d # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $02  ||  style="text-align: center;"  |  $01  ||  Burland - Castle, F1, left chest group, bottom-left chest  ||  Agility Seed
+|-
+|  Treasure  ||  $625d # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $02  ||  style="text-align: center;"  |  $01  ||  Burland - Castle, F1, left chest group, top-right chest  ||  Iron Helmet
+|-
+|  Treasure  ||  $625d # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $02  ||  style="text-align: center;"  |  $01  ||  Burland - Castle, F1, left chest group, top-middle chest  ||  160 gold
+|-
+|  Treasure  ||  $625d # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $02  ||  style="text-align: center;"  |  $01  ||  Burland - Castle, F1, left chest group, top-left chest  ||  Lifeforce Nuts
+|-
+|  Treasure  ||  $625d # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $01  ||  style="text-align: center;"  |  $00  ||  Santeem - F1, top-middle, right chest  ||  Magma Staff
+|-
+|  Treasure  ||  $625d # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $01  ||  style="text-align: center;"  |  $00  ||  Santeem - F1, top-middle, middle chest  ||  Flute of Uncovering
+|-
+|  Treasure  ||  $625d # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $01  ||  style="text-align: center;"  |  $00  ||  Santeem - F1, top-middle, left chest  ||  Strength Seed
+|-
+|  Treasure  ||  $625d # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $00  ||  style="text-align: center;"  |  $04  ||  Keeleon - B1, Jail, bottom, chest  ||  Boarding Pass
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $625e # 0000_0001  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $625e # 0000_0010  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $625e # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $03  ||  style="text-align: center;"  |  $02  ||  Dire Palace - B1, 4-Chest Room, bottom-right chest  ||  <span style="-webkit-text-fill-color: yellow; -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: red;">&#x1F7BF;</span> Mimic!
+|-
+|  Treasure  ||  $625e # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $03  ||  style="text-align: center;"  |  $02  ||  Dire Palace - B1, 4-Chest Room, bottom-left chest  ||  <span style="-webkit-text-fill-color: yellow; -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: red;">&#x1F7BF;</span> Mimic!
+|-
+|  Treasure  ||  $625e # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $03  ||  style="text-align: center;"  |  $02  ||  Dire Palace - B1, 4-Chest Room, top-right chest  ||  Aeolus' Shield
+|-
+|  Treasure  ||  $625e # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $03  ||  style="text-align: center;"  |  $02  ||  Dire Palace - B1, 4-Chest Room, top-left chest  ||  Small Medal
+|-
+|  Treasure  ||  $625e # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $02  ||  style="text-align: center;"  |  $01  ||  Burland - Castle, F1, left chest group, bottom-right chest  ||  320 gold
+|-
+|  Treasure  ||  $625e # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $02  ||  style="text-align: center;"  |  $01  ||  Burland - Castle, F1, left chest group, bottom-middle chest  ||  Strength Seed
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $625f # 0000_0001  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $625f # 0000_0010  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $625f # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $0c  ||  Endor - Castle, F3 (chamber), right room, bottom chest  ||  Feather Hat
+|-
+|  Treasure  ||  $625f # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $0c  ||  Endor - Castle, F3 (chamber), right room, top chest  ||  Pink Leotard
+|-
+|  Treasure  ||  $625f # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $05  ||  Endor - Castle, left side, B1, chest  ||  Lifeforce Nuts
+|-
+|  Treasure  ||  $625f # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $03  ||  Endor - Bottom-right building, F1, bottom chest  ||  Multi-edge Sword
+|-
+|  Treasure  ||  $625f # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $03  ||  Endor - Bottom-right building, F1, top chest  ||  Strength Seed
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $625f # 1000_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $6260 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $6260 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $08  ||  style="text-align: center;"  |  $04  ||  Gardenbur - Top-Right, B1, Flowers, chest  ||  Zenithian Shield
+|-
+|  Treasure  ||  $6260 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $08  ||  style="text-align: center;"  |  $03  ||  Gardenbur - Middle, behind throne room stairs, B1, chest  ||  Fire Claw
+|-
+|  Treasure  ||  $6260 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $06  ||  style="text-align: center;"  |  $00  ||  Branca, top-left, bottom chest  ||  Small Medal
+|-
+|  Treasure  ||  $6260 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $06  ||  style="text-align: center;"  |  $00  ||  Branca, top-left, top-right chest  ||  120 gold
+|-
+|  Treasure  ||  $6260 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $06  ||  style="text-align: center;"  |  $00  ||  Branca, top-left, top-left chest  ||  Mystic Acorns
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $6260 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $6260 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-
+|  Treasure  ||  $6261 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $2d  ||  style="text-align: center;"  |  $00  ||  Aktemto Mine - B1, top, chest  ||  Silver Tarot Cards
+|-
+|  Treasure  ||  $6261 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $21  ||  style="text-align: center;"  |  $00  ||  Desert Inn - top, chest  ||  Lunch
+|-
+|  Treasure  ||  $6261 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $17  ||  style="text-align: center;"  |  $01  ||  Kievs - Top-right house, B1, chest  ||  Empty!
+|-
+|  Treasure  ||  $6261 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $16  ||  style="text-align: center;"  |  $02  ||  Lakanaba - Shop, B1, top-left chest group, right chest  ||  Chain Sickle
+|-
+|  Treasure  ||  $6261 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $16  ||  style="text-align: center;"  |  $02  ||  Lakanaba - Shop, B1, top-left chest group, middle chest  ||  Ice Blade
+|-
+|  Treasure  ||  $6261 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $16  ||  style="text-align: center;"  |  $02  ||  Lakanaba - Shop, B1, top-left chest group, left chest  ||  Strength Seed
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $6261 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $6261 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-
+|  Treasure  ||  $6262 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $2d  ||  style="text-align: center;"  |  $05  ||  Aktemto Mine - Ruins, F1, bottom-right, right chest  ||  <span style="-webkit-text-fill-color: yellow; -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: red;">&#x1F7BF;</span> Mimic!
+|-
+|  Treasure  ||  $6262 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $2d  ||  style="text-align: center;"  |  $05  ||  Aktemto Mine - Ruins, F1, bottom-right, left chest  ||  Small Medal
+|-
+|  Treasure  ||  $6262 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $2d  ||  style="text-align: center;"  |  $05  ||  Aktemto Mine - Ruins, F1, middle-middle, right room, chest  ||  Small Medal
+|-
+|  Treasure  ||  $6262 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $2d  ||  style="text-align: center;"  |  $05  ||  Aktemto Mine - Ruins, F1, middle-middle, left room, chest  ||  <span style="-webkit-text-fill-color: yellow; -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: red;">&#x1F7BF;</span> Mimic!
+|-
+|  Treasure  ||  $6262 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $2d  ||  style="text-align: center;"  |  $05  ||  Aktemto Mine - Ruins, F1, middle-left, left room, chest  ||  2480 gold
+|-
+|  Treasure  ||  $6262 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $2d  ||  style="text-align: center;"  |  $05  ||  Aktemto Mine - Ruins, F1, top-right, chest  ||  Gas Canister
+|-
+|  Treasure  ||  $6262 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $2d  ||  style="text-align: center;"  |  $02  ||  Aktemto Mine - B3, chest  ||  Gunpowder Jar
+|-
+|  Treasure  ||  $6262 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $2d  ||  style="text-align: center;"  |  $00  ||  Aktemto Mine - B1, bottom right, chest  ||  Mystic Acorns
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-
+|  Treasure  ||  $6263 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $01  ||  Padequia Cave - B2, top-right, chest  ||  800 gold
+|-
+|  Treasure  ||  $6263 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $01  ||  Padequia Cave - B2, top-left, chest  ||  Mystic Acorns
+|-
+|  Treasure  ||  $6263 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $00  ||  Padequia Cave - B1, chest  ||  Agility Seed
+|-
+|  Treasure  ||  $6263 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $2e  ||  style="text-align: center;"  |  $01  ||  Shrine of Breaking Waves - B1, right chest  ||  Zenithian Armor
+|-
+|  Treasure  ||  $6263 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $2e  ||  style="text-align: center;"  |  $01  ||  Shrine of Breaking Waves - B1, left chest  ||  Small Medal
+|-
+|  Treasure  ||  $6263 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $2e  ||  style="text-align: center;"  |  $00  ||  Shrine of Breaking Waves - middle area, bottom-right, chest  ||  Small Medal
+|-
+|  Treasure  ||  $6263 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $2d  ||  style="text-align: center;"  |  $05  ||  Aktemto Mine - Ruins, F1, bottom-left, right chest  ||  Strength Seed
+|-
+|  Treasure  ||  $6263 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $2d  ||  style="text-align: center;"  |  $05  ||  Aktemto Mine - Ruins, F1, bottom-left, left chest  ||  Agility Seed
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-
+|  Treasure  ||  $6264 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $30  ||  style="text-align: center;"  |  $02  ||  Bakor's Hideout - B2, middle-left, chest  ||  Iron Mask
+|-
+|  Treasure  ||  $6264 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $30  ||  style="text-align: center;"  |  $02  ||  Bakor's Hideout - B2, middle-right, chest  ||  Strength Seed
+|-
+|  Treasure  ||  $6264 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $30  ||  style="text-align: center;"  |  $01  ||  Bakor's Hideout - B1, middle, chest  ||  Small Medal
+|-
+|  Treasure  ||  $6264 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $30  ||  style="text-align: center;"  |  $01  ||  Bakor's Hideout - B1, top-right, chest  ||  1200 gold
+|-
+|  Treasure  ||  $6264 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $30  ||  style="text-align: center;"  |  $01  ||  Bakor's Hideout - B1, middle-top, chest  ||  Agility Seed
+|-
+|  Treasure  ||  $6264 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $02  ||  Padequia Cave - B3, bottom-left, chest  ||  <span style="-webkit-text-fill-color: yellow; -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: red;">&#x1F7BF;</span> Man-Eater Chest!
+|-
+|  Treasure  ||  $6264 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $02  ||  Padequia Cave - B3, middle, chest  ||  Padequia Seed
+|-
+|  Treasure  ||  $6264 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $2f  ||  style="text-align: center;"  |  $01  ||  Padequia Cave - B2, middle-left, chest  ||  Robe of Serenity
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-
+|  Treasure  ||  $6265 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $32  ||  style="text-align: center;"  |  $00  ||  Cave South Of Frenor - B2, left, chest  ||  Magic Potion
+|-
+|  Treasure  ||  $6265 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $04  ||  Cave West of Kievs - B5, chest  ||  Magic Key
+|-
+|  Treasure  ||  $6265 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $03  ||  Cave West of Kievs - B4, middle, chest  ||  Sphere of Silence
+|-
+|  Treasure  ||  $6265 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $03  ||  Cave West of Kievs - B4, middle, chest  ||  Lamp of Darkness
+|-
+|  Treasure  ||  $6265 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $01  ||  Cave West of Kievs - B2, bottom-left, chest  ||  240 gold
+|-
+|  Treasure  ||  $6265 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $01  ||  Cave West of Kievs - B2, right, chest  ||  Lifeforce Nuts
+|-
+|  Treasure  ||  $6265 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $00  ||  Cave West of Kievs - B1, top-left, chest  ||  Wing of Wyvern
+|-
+|  Treasure  ||  $6265 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $30  ||  style="text-align: center;"  |  $02  ||  Bakor's Hideout - B2, bottom-left, chest  ||  Dragon Shield
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-
+|  Treasure  ||  $6266 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $34  ||  style="text-align: center;"  |  $01  ||  Cascade Cave - B1, middle-left, chest  ||  Small Medal
+|-
+|  Treasure  ||  $6266 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $04  ||  Secret Playground Dungeon - B2, middle-right, chest  ||  600 gold
+|-
+|  Treasure  ||  $6266 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $03  ||  Secret Playground Dungeon - B2, top, chest  ||  Flying Shoes
+|-
+|  Treasure  ||  $6266 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $33  ||  style="text-align: center;"  |  $01  ||  Secret Playground Dungeon - B1, bottom-right, chest  ||  Medical Herb
+|-
+|  Treasure  ||  $6266 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $32  ||  style="text-align: center;"  |  $01  ||  Cave South Of Frenor - B1, bottom-right, chest  ||  Wing of Wyvern
+|-
+|  Treasure  ||  $6266 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $32  ||  style="text-align: center;"  |  $01  ||  Cave South Of Frenor - B1, middle, chest  ||  Agility Seed
+|-
+|  Treasure  ||  $6266 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $32  ||  style="text-align: center;"  |  $01  ||  Cave South Of Frenor - B1, top-left, chest  ||  360 gold
+|-
+|  Treasure  ||  $6266 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $32  ||  style="text-align: center;"  |  $00  ||  Cave South Of Frenor - B2, bottom, chest  ||  Golden Bracelet
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $6267 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $6267 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $01  ||  Final Cave - B2, bottom-left, chest  ||  Demon Armor
+|-
+|  Treasure  ||  $6267 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $01  ||  Final Cave - B2, bottom-right, chest  ||  Small Medal
+|-
+|  Treasure  ||  $6267 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $00  ||  Final Cave - B1, top-right, chest  ||  Dress of Radiance
+|-
+|  Treasure  ||  $6267 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $34  ||  style="text-align: center;"  |  $04  ||  Cascade Cave - B2, bottom-left, chest  ||  Mask of Corruption
+|-
+|  Treasure  ||  $6267 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $34  ||  style="text-align: center;"  |  $04  ||  Cascade Cave - B2, middle, chest  ||  1040 gold
+|-
+|  Treasure  ||  $6267 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $34  ||  style="text-align: center;"  |  $03  ||  Cascade Cave - F1, Behind Waterfall, chest  ||  Sandglass of Regression
+|-
+|  Treasure  ||  $6267 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $34  ||  style="text-align: center;"  |  $02  ||  Cascade Cave - B3, bottom, chest  ||  Metal Babble Sword
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-
+|  Treasure  ||  $6268 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $06  ||  Final Cave - B7, middle, chest  ||  Mirror Shield
+|-
+|  Treasure  ||  $6268 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $03  ||  Final Cave - B3 (from #2), bottom-right, chest  ||  <span style="-webkit-text-fill-color: yellow; -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: red;">&#x1F7BF;</span> Mimic!
+|-
+|  Treasure  ||  $6268 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $03  ||  Final Cave - B3, middle-left (from #2), bottom-right chest  ||  Strength Seed
+|-
+|  Treasure  ||  $6268 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $03  ||  Final Cave - B3, middle-left (from #2), bottom-left chest  ||  Agility Seed
+|-
+|  Treasure  ||  $6268 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $03  ||  Final Cave - B3, middle-left (from #2), top-right chest  ||  3280 gold
+|-
+|  Treasure  ||  $6268 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $03  ||  Final Cave - B3, middle-left (from #2), top-left chest  ||  Lifeforce Nuts
+|-
+|  Treasure  ||  $6268 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $03  ||  Final Cave - B3 (from #2), top-middle, chest  ||  Staff of Jubilation
+|-
+|  Treasure  ||  $6268 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $02  ||  Final Cave - B4, bottom-middle, chest  ||  Water Flying Clothes
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-
+|  Treasure  ||  $6269 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $02  ||  Silver Statuette Cave - B2, after water change, bottom, chest  ||  Medical Herb
+|-
+|  Treasure  ||  $6269 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $02  ||  Silver Statuette Cave - B2, after water change, top-left, chest  ||  760 gold
+|-
+|  Treasure  ||  $6269 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $02  ||  Silver Statuette Cave - B2, after water change, middle-left, chest  ||  Morning Star
+|-
+|  Treasure  ||  $6269 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $02  ||  Silver Statuette Cave - B2, after water change, top-right, chest  ||  Iron Spear
+|-
+|  Treasure  ||  $6269 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $37  ||  style="text-align: center;"  |  $02  ||  Cave of Betrayal - B3, chest  ||  Symbol of Faith
+|-
+|  Treasure  ||  $6269 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $36  ||  style="text-align: center;"  |  $06  ||  Cave North of Lakanaba - B5 (left side), top, chest  ||  Iron Safe
+|-
+|  Treasure  ||  $6269 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $36  ||  style="text-align: center;"  |  $01  ||  Cave North of Lakanaba - B2, middle-left, chest  ||  Chain Sickle
+|-
+|  Treasure  ||  $6269 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $35  ||  style="text-align: center;"  |  $06  ||  Final Cave - B7, right, chest  ||  Lifeforce Nuts
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-
+|  Treasure  ||  $626a # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $39  ||  style="text-align: center;"  |  $00  ||  Burland-Izmit tunnel, bottom-right, chest  ||  Medical Herb
+|-
+|  Treasure  ||  $626a # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $39  ||  style="text-align: center;"  |  $00  ||  Burland-Izmit tunnel, top-left, chest  ||  40 gold
+|-
+|  Treasure  ||  $626a # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $05  ||  Silver Statuette Cave - B4, chest  ||  Silver Statuette
+|-
+|  Treasure  ||  $626a # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $04  ||  Silver Statuette Cave - B3, after water change, bottom-middle, chest  ||  Broad Sword
+|-
+|  Treasure  ||  $626a # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $03  ||  Silver Statuette Cave - B3, before water change, left, chest  ||  Wing of Wyvern
+|-
+|  Treasure  ||  $626a # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $04  ||  Silver Statuette Cave - B3, after water change, top-right, right chest  ||  Empty!
+|-
+|  Treasure  ||  $626a # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $04  ||  Silver Statuette Cave - B3, after water change, top-right, left chest  ||  Empty!
+|-
+|  Treasure  ||  $626a # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $38  ||  style="text-align: center;"  |  $04  ||  Silver Statuette Cave - B3, after water change, top-left, chest  ||  Half Plate Armor
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-
+|  Treasure  ||  $626b # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $0f  ||  Zenithian Tower - F6, (#23), middle-bottom, chest  ||  Dragon Shield
+|-
+|  Treasure  ||  $626b # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $06  ||  Zenithian Tower - F3, (#12), chest  ||  Small Medal
+|-
+|  Treasure  ||  $626b # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $03  ||  Zenithian Tower - F2, right room, chest [TODO: verify description]  ||  Mystic Acorns
+|-
+|  Treasure  ||  $626b # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $00  ||  Zenithian Tower - Outside, #6, chest  ||  Magic Potion
+|-
+|  Treasure  ||  $626b # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $3d  ||  style="text-align: center;"  |  $00  ||  Zenithian Tower - Outside, #20, chest  ||  Mysterious Bolero
+|-
+|  Treasure  ||  $626b # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $3b  ||  style="text-align: center;"  |  $02  ||  Royal Crypt Dungeon - B3, middle, chest  ||  Small Medal
+|-
+|  Treasure  ||  $626b # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $3b  ||  style="text-align: center;"  |  $02  ||  Royal Crypt Dungeon - B3, top-middle, chest  ||  Staff of Antimagic
+|-
+|  Treasure  ||  $626b # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $3b  ||  style="text-align: center;"  |  $00  ||  Royal Crypt Dungeon - B1, bottom, chest  ||  Staff of Transform
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-
+|  Treasure  ||  $626c # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $41  ||  style="text-align: center;"  |  $01  ||  Loch Tower - F3, left side, chest  ||  Wing of Wyvern
+|-
+|  Treasure  ||  $626c # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $41  ||  style="text-align: center;"  |  $01  ||  Loch Tower - F3, top-right, chest  ||  Strength Seed
+|-
+|  Treasure  ||  $626c # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $40  ||  style="text-align: center;"  |  $03  ||  World Tree - F2, top-left, chest  ||  Staff of Healing
+|-
+|  Treasure  ||  $626c # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $40  ||  style="text-align: center;"  |  $01  ||  World Tree - F4, bottom, chest  ||  Dew of World Tree
+|-
+|  Treasure  ||  $626c # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $40  ||  style="text-align: center;"  |  $00  ||  World Tree - F3-2, bottom-right, chest  ||  Zenithian Sword
+|-
+|  Treasure  ||  $626c # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $3f  ||  style="text-align: center;"  |  $01  ||  Birdsong Tower - F3, middle, right chest  ||  1200 gold
+|-
+|  Treasure  ||  $626c # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $3f  ||  style="text-align: center;"  |  $01  ||  Birdsong Tower - F3, middle, left chest  ||  Strength Seed
+|-
+|  Treasure  ||  $626c # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $3f  ||  style="text-align: center;"  |  $01  ||  Birdsong Tower - F3, top-right  ||  Wing of Wyvern
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-
+|  Treasure  ||  $626d # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $02  ||  Great Lighthouse - F3, top-right, chest  ||  Full Moon Herb
+|-
+|  Treasure  ||  $626d # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $02  ||  Great Lighthouse - F3, top-left, chest  ||  Magic Potion
+|-
+|  Treasure  ||  $626d # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $01  ||  Great Lighthouse - F4, middle, chest  ||  Fire of Serenity
+|-
+|  Treasure  ||  $626d # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $00  ||  Great Lighthouse - F5, top-left, chest  ||  Golden Barrette
+|-
+|  Treasure  ||  $626d # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $41  ||  style="text-align: center;"  |  $03  ||  Loch Tower - F1, top-right, chest  ||  Luck Seed
+|-
+|  Treasure  ||  $626d # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $41  ||  style="text-align: center;"  |  $03  ||  Loch Tower - F1, top-left, chest  ||  Sword of Malice
+|-
+|  Treasure  ||  $626d # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $41  ||  style="text-align: center;"  |  $02  ||  Loch Tower - F2, middle, chest  ||  Scale Shield
+|-
+|  Treasure  ||  $626d # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $41  ||  style="text-align: center;"  |  $02  ||  Loch Tower - F2, middle-right, chest  ||  640 gold
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $626e # 0000_0001  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $626e # 0000_0010  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $626e # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $43  ||  style="text-align: center;"  |  $04  ||  Konenber - Inn, F2, top-right room, chest  ||  Sword of Decimation
+|-
+|  Treasure  ||  $626e # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $04  ||  Great Lighthouse - F1, middle, right chest  ||  400 gold
+|-
+|  Treasure  ||  $626e # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $04  ||  Great Lighthouse - F1, middle, left chest  ||  Luck Seed
+|-
+|  Treasure  ||  $626e # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $03  ||  Great Lighthouse - F2, bottom-left, chest  ||  Strength Seed
+|-
+|  Treasure  ||  $626e # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $02  ||  Great Lighthouse - F3, left, right chest  ||  Boomerang
+|-
+|  Treasure  ||  $626e # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $42  ||  style="text-align: center;"  |  $02  ||  Great Lighthouse - F3, left, left chest  ||  <span style="-webkit-text-fill-color: yellow; -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: red;">&#x1F7BF;</span> Man-Eater Chest!
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $626f # 0000_0001  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $626f # 0000_0010  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $626f # 0000_0100  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $626f # 0000_1000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $626f # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $44  ||  style="text-align: center;"  |  $02  ||  NE barrier shrine (Radimvice) - F3, bottom-right, chest  ||  Zombie Mail
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $626f # 0010_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $626f # 0100_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $626f # 1000_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-
+|  Treasure  ||  $6270 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $48  ||  style="text-align: center;"  |  $07  ||  Shrine of Colossus, Dungeon - F4, Outside on Hands, left hand (on right side), chest  ||  Demon Hammer
+|-
+|  Treasure  ||  $6270 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $48  ||  style="text-align: center;"  |  $06  ||  Shrine of Colossus, Dungeon - F4, top-right, chest  ||  <span style="-webkit-text-fill-color: yellow; -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: red;">&#x1F7BF;</span> Mimic!
+|-
+|  Treasure  ||  $6270 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $48  ||  style="text-align: center;"  |  $05  ||  Shrine of Colossus, Dungeon - B1, bottom-left, chest  ||  640 gold
+|-
+|  Treasure  ||  $6270 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $48  ||  style="text-align: center;"  |  $02  ||  Shrine of Colossus, Dungeon - F2, right, chest  ||  Agility Seed
+|-
+|  Treasure  ||  $6270 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $48  ||  style="text-align: center;"  |  $01  ||  Shrine of Colossus, Dungeon - F1, middle, chest  ||  Small Medal
+|-
+|  Treasure  ||  $6270 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $47  ||  style="text-align: center;"  |  $01  ||  Shrine of the Horn - B3, chest  ||  Dress of Radiance
+|-
+|  Treasure  ||  $6270 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $47  ||  style="text-align: center;"  |  $00  ||  Shrine of the Horn - B2, chest  ||  Baron's Horn (part 2?) [TODO: $6270#80 happens when you serch it, #40 happens when you get it]
+|-
+|  Treasure  ||  $6270 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $47  ||  style="text-align: center;"  |  $00  ||  Shrine of the Horn - B2, chest  ||  Baron's Horn
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $6271 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $6271 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $6271 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $6271 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $6271 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $6271 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $6271 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $6271 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-
+|  Treasure  ||  $6272 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $0d  ||  style="text-align: center;"  |  $00  ||  Mintos - middle, left of well, search  ||  Small Medal
+|-
+|  Treasure  ||  $6272 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $14  ||  style="text-align: center;"  |  $02  ||  Hometown - Destroyed, middle of flowers, search  ||  Feather Hat
+|-
+|  Treasure  ||  $6272 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $10  ||  style="text-align: center;"  |  $00  ||  Aneaux - Top-left, cemetary, middle tombstone  ||  Strength Seed
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $6272 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $6272 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $0e  ||  style="text-align: center;"  |  $00  ||  Tempe - Top, red monster platform, center, broken tile  ||  Lifeforce Nuts
+|-
+|  Treasure  ||  $6272 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $0b  ||  style="text-align: center;"  |  $00  ||  Riverton - Middle Island, bottom, search  ||  Small Medal
+|-
+|  Treasure  ||  $6272 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $2d  ||  style="text-align: center;"  |  $04  ||  Aktemto Mine - B4, middle, next to water, search  ||  Small Medal
+|-
+|  Treasure  ||  $6272 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $03  ||  style="text-align: center;"  |  $03  ||  Dire Palace - B1, Tomb, tombstone, search  ||  Lifeforce Nuts
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-
+|  Treasure  ||  $6273 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $01  ||  style="text-align: center;"  |  $00  ||  Santeem - F1, right side, room behind chapel, drawer #2  ||  Fairy Water
+|-
+|  Treasure  ||  $6273 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $01  ||  style="text-align: center;"  |  $00  ||  Santeem - F1, top-left, right drawer  ||  Wing of Wyvern
+|-
+|  Treasure  ||  $6273 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $46  ||  style="text-align: center;"  |  $02  ||  Zenithian Castle - F1, middle-top room, right drawer  ||  Small Medal
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $6273 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $6273 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $6273 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $27  ||  style="text-align: center;"  |  $00  ||  SW barrier shrine (Gigademon) - Outside, top-left corner, search  ||  Small Medal
+|-
+|  Treasure  ||  $6273 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $23  ||  style="text-align: center;"  |  $00  ||  Shrine East of Mintos - Left-back, middle, search ||  Small Medal
+|-
+|  Treasure  ||  $6273 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $19  ||  style="text-align: center;"  |  $00  ||  Seaside Village - Day, middle, south of statue, search  ||  Small Medal
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-
+|  Treasure  ||  $6274 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $09  ||  style="text-align: center;"  |  $07  ||  Stancia - top-right house, F2, right pot  ||  Small Medal
+|-
+|  Treasure  ||  $6274 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $09  ||  style="text-align: center;"  |  $02  ||  Stancia - Castle, F1, Interior, top-right room, drawer #2  ||  Small Medal
+|-
+|  Treasure  ||  $6274 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $08  ||  style="text-align: center;"  |  $02  ||  Gardenbur - F2, Top-right, right drawer  ||  Agility Seed
+|-
+|  Treasure  ||  $6274 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $08  ||  style="text-align: center;"  |  $01  ||  Gardenbur - Castle, bottom-left, right pot  ||  Small Medal
+|-
+|  Treasure  ||  $6274 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $04  ||  style="text-align: center;"  |  $0c  ||  Endor - Castle, F3 (chamber), right room, right drawer  ||  Small Medal
+|-
+|  Treasure  ||  $6274 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $03  ||  style="text-align: center;"  |  $02  ||  Dire Palace - B1, left pot  ||  Small Medal
+|-
+|  Treasure  ||  $6274 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $02  ||  style="text-align: center;"  |  $01  ||  Burland - Castle, F1, bottom-right room, drawer #4  ||  Medical Herb
+|-
+|  Treasure  ||  $6274 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $01  ||  style="text-align: center;"  |  $01  ||  Santeem - F3, Alena's room, drawer #2  ||  Feather Hat
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-
+|  Treasure  ||  $6275 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $15  ||  style="text-align: center;"  |  $02  ||  Monbaraba - Theater, B1, top room, drawer #2  ||  Strength Seed
+|-
+|  Treasure  ||  $6275 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $15  ||  style="text-align: center;"  |  $00  ||  Monbaraba - top-right, top pot  ||  Medical Herb
+|-
+|  Treasure  ||  $6275 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $14  ||  style="text-align: center;"  |  $01  ||  Hometown - B1, top-left pot  ||  Medical Herb
+|-
+|  Treasure  ||  $6275 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $12  ||  style="text-align: center;"  |  $00  ||  Izmit - middle-right house, right drawer  ||  Medical Herb
+|-
+|  Treasure  ||  $6275 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $11  ||  style="text-align: center;"  |  $02  ||  Haville - B1, Jail, right cell, pot  ||  Small Medal
+|-
+|  Treasure  ||  $6275 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $11  ||  style="text-align: center;"  |  $02  ||  Haville - B1, Jail, left cell, pot  ||  Small Medal
+|-
+|  Treasure  ||  $6275 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $0c  ||  style="text-align: center;"  |  $00  ||  Bazaar - bottom-right, right pot  ||  Gum Pod
+|-
+|  Treasure  ||  $6275 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $0c  ||  style="text-align: center;"  |  $00  ||  Bazaar - bottom-right, left pot  ||  Strength Seed
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-
+|  Treasure  ||  $6276 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $1c  ||  style="text-align: center;"  |  $01  ||  Secret Playground Entrance - B1, Exit, top-left pot  ||  Medical Herb
+|-
+|  Treasure  ||  $6276 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $31  ||  style="text-align: center;"  |  $04  ||  Cave West of Kievs - B5, left pot  ||  Small Medal
+|-
+|  Treasure  ||  $6276 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $24  ||  style="text-align: center;"  |  $00  ||  Small Island Shack North of Haville - right pot  ||  Small Medal
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $6276 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-
+|  Treasure  ||  $6276 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $43  ||  style="text-align: center;"  |  $08  ||  Konenber - Piers on left, Ship, B1, bottom room, drawer  ||  Small Medal
+|-
+|  Treasure  ||  $6276 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $1a  ||  style="text-align: center;"  |  $01  ||  Gottside - Top-right house, B1, right drawer  ||  Small Medal
+|-
+|  Treasure  ||  $6276 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  $17  ||  style="text-align: center;"  |  $00  ||  Kievs - top-right house, right pot  ||  Lifeforce Nuts
+|-
+|  Treasure  ||  $6276 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  $16  ||  style="text-align: center;"  |  $00  ||  Lakanaba - Taloon's House, F1, left pot  ||  Medical Herb
+
+|-  style="background-color: #eaecf0;"
+|  colspan="7"  |  
+
+|-
+|  Treasure  ||  $6277 # 0000_0001  ||  bit  ||  style="text-align: center;"  |  $20  ||  style="text-align: center;"  |  $00  ||  Woodsman's Shack - right pot  ||  50 gold
+|-
+|  Treasure  ||  $6277 # 0000_0010  ||  bit  ||  style="text-align: center;"  |  $20  ||  style="text-align: center;"  |  $00  ||  Woodsman's Shack - middle pot  ||  Medical Herb
+|-
+|  Treasure  ||  $6277 # 0000_0100  ||  bit  ||  style="text-align: center;"  |  $20  ||  style="text-align: center;"  |  $00  ||  Woodsman's Shack - left pot  ||  Leather Armor
+|-
+|  Treasure  ||  $6277 # 0000_1000  ||  bit  ||  style="text-align: center;"  |  $1c  ||  style="text-align: center;"  |  $01  ||  Secret Playground Entrance - B1, Exit, top-middle pot  ||  Agility Seed
+|-
+|  Treasure  ||  $6277 # 0001_0000  ||  bit  ||  style="text-align: center;"  |  $19  ||  style="text-align: center;"  |  $00  ||  Seaside Village - Day, beach, left-middle, search  ||  Stone of Drought
+|-
+|  Treasure  ||  $6277 # 0010_0000  ||  bit  ||  style="text-align: center;"  |  $0f  ||  style="text-align: center;"  |  $00  ||  Frenor, Church Garden, bottom-right, search  ||  Mystic Acorns
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $6277 # 0100_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Treasure  ||  $6277 # 1000_0000  ||  bit  ||  style="text-align: center;"  |  ...  ||  style="text-align: center;"  |  ...  ||  ...  ||  ...
+|}
+
+==WRAM==
+
+[TODO: move into main area]
+
+* 0x6EFE (0x20 bytes long) = ???  (initialized to FF bytes)
+* 0x6F20 (0x20 bytes long) = 'Smoothing Flags' that determine if walls use the front facing tile, or the regular tile.
+* 0x6F40 (0x40 bytes long) = Behavior of tiles (normal, wall, water, stairs, etc.) for current tile set (see [[Dragon Warrior IV/Tile Behaviors|Tile Behaviors]])
+* 0x7600 (0xC0 bytes long) = Tile numbers for current tileset of 32 tiles (33rd tile is Roof tile)
+* 0x76C0 (0x40 bytes long) = Attribute values for current tile set (33rd tile is Roof tile)
+* 0x7800 (??? bytes long) = Map data for current map.
+** Format: RRRttttt 
+** ttttt = tile number 0-31
+** RRR = roof number  0-7  (0 = no roof)
+
+=Links=
+
+{{Internal Data}}

@@ -1,129 +1,75 @@
-{{Infobox game
-| title = Dragon Quest III
-| alt_title = Dragon Quest III: Soshite Densetsu e...
-| image = Dragon Quest III SNES box.jpg
-| developer = Heart Beat
-| publisher = Enix
-| platform = SNES
-| release = December 6, 1996 (JP)
-| genre = RPG
-| players = 1
-| mapper = LoROM
-| rom_size = 4 MB (32 Mbit)
-| ram_size = 64 KB
+{{Bob
+ | bobscreen= Dq3remixts.png
+ | title= Dragon Quest III: Soshite Densetsu e
+ | aka= Dragon Quest III: Soshite Densetsu e... (Boxart)
+ | developer= Heartbeat
+ | publisher= Enix
+ | system= SNES
+ | japan= {{date|1996|December|6}}
+ | tcrf=Dragon Quest III (SNES)
+}}
+{{SNES| title = Dragon Quest III
+|image = [[File:Dq3remixts.jpg|center]]
+|name = DRAGONQUEST3
+|company = Enix
+|header = None
+|bank = HiROM
+|interleaved = No
+|sram = 8 KiB
+|type = Normal + Batt
+|rom = 4 MiB
+|country = Japan
+|video = NTSC
+|romspeed = 120ns (FastROM)
+|revision = 1.0
+|checksum = Good 0x7473
+|crc32 = 13836BD2
+|game = Dragon Quest III
 }}
 
-'''Dragon Quest III: Soshite Densetsu e...''' (そして伝説へ..., "And Into the Legend...") is the Super Famicom remake of the original NES Dragon Warrior III. It features completely redrawn graphics, orchestrated music, and numerous gameplay enhancements.
+==Sub-pages==
+{{namespaces}}
+{{subpage|Values}}
 
-==Overview==
+==Utilities==
+* None Available
 
-The SNES remake expands significantly on the original:
-* New personality system affecting stat growth
-* Additional mini-games
-* Monster medals collection
-* Enhanced graphics and sound
-* Pachisi/Sugoroku mini-game tracks
+==Hacks==
+* None known.
 
-==Technical Information==
+==Translations==
+* [https://www.romhacking.net/translations/1323/ English translation] v1.1 by [http://www.romhacking.net/community/712/ DQ Translations] (2009-11-19)
+* [https://www.romhacking.net/translations/6944/ Portuguese translation] v1.0 by [http://www.romhacking.net/community/7941/ Dindo] (2023-05-27)
+* [https://www.romhacking.net/translations/6234/ Spanish translation] v1.1 by [http://www.romhacking.net/community/712/ Rod Merida] (2022-09-17)
 
-{| class="wikitable"
-|-
-! Property !! Value
-|-
-| ROM Size || 4 MB (32 Mbit)
-|-
-| RAM Size || 64 KB SRAM
-|-
-| Mapper || LoROM
-|-
-| Region || Japan only
-|-
-| CRC32 || <code>5B6547D7</code> (no header)
-|}
+==Miscellaneous==
+* The [https://web.archive.org/web/20220115061924/https://www.romhacking.net/abandoned/ RHDN Abandoned Projects page] includes [https://web.archive.org/web/20211020093652/https://www.romhacking.net/abandoned/dq3r_toolsbyuu.zip byuu's Dragon Quest III translation tools] which contains useful tools and information.
+* A [https://github.com/TheAnsarya/GameInfo/raw/refs/heads/main/Dragon%20Quest%20III%20(SNES)/Debugging/Dragon%20Quest%20III%20(SNES)%20-%20Debugger%20Labels.mlb Mesen-S code-labels file] for debugging
 
-==Memory Map==
+==Known Dumps==
+
+These are the roms as they are listed in [https://www.tosecdev.org/ TOSEC].
 
 {| class="wikitable"
 |-
-! Bank Range !! Address !! Description
+!  Description  !!  Size  !!  Hashes
 |-
-| $00-$3F || $8000-$FFFF || Program ROM
+|  Dragon Quest III - The Seeds of Salvation (1996)(Enix)(JP)  ||  4194304<br />$400000  ||  '''CRC32''': 13836bd2<br />'''MD5''': 7c7c7db73b0608a184cc5e1d73d7695b<br />'''SHA1''': b711341e4b1022d7645c5313840874aebc01b7b7
 |-
-| $70-$7D || $0000-$7FFF || SRAM (save data)
+|  Dragon Quest III - The Seeds of Salvation (1996)(Enix)(JP)[a] ||  4194304<br />$400000  ||  '''CRC32''': b377006e<br />'''MD5''': c4c95db734c159589e45b93bf397afd1<br />'''SHA1''': 79e41f8a848c0698de1b061eafd2b8d09151a941
 |-
-| $7E || $0000-$FFFF || WRAM (low)
+|  Dragon Quest III - The Seeds of Salvation (1996)(Enix)(JP)[a2]  ||  4194304<br />$400000  ||  '''CRC32''': 672606ec<br />'''MD5''': 4d86aa18f6edbcdf685d7c3dab749af2<br />'''SHA1''': 75dc5fbc9ba0550a15cb77b78e4ce8c650ee7c34
 |-
-| $7F || $0000-$FFFF || WRAM (high)
+|  Dragon Quest III - The Seeds of Salvation (1996)(Enix)(JP)[a3]  ||  4194304<br />$400000  ||  '''CRC32''': 426334c3<br />'''MD5''': 08c955eccda778fbc8cb7ba48079e359<br />'''SHA1''': c25dc32d5093e06e6dafdb7ed259f182f2d9b3d4
+|-
+|  Dragon Quest III - The Seeds of Salvation (1996)(Enix)(JP)[a4]  ||  4194304<br />$400000  ||  '''CRC32''': c2cedc01<br />'''MD5''': 4ef1239a1c5249169045280d2f8e015b<br />'''SHA1''': 3304f47d1bf07fd1b6651dc8b6b959ab6801ad70
+|-
+|  Dragon Quest III - The Seeds of Salvation (1996)(Enix)(JP)[a5]  ||  4194304<br />$400000  ||  '''CRC32''': 3a2a466d<br />'''MD5''': 00597e5b3e6eae5fb24b413e3b857363<br />'''SHA1''': 58fbc9428e73e4834465cdf6784dff70d1503103
 |}
 
-==Class System==
+==External links==
+* [https://www.youtube.com/watch?v=aVboEF9zOqE Dragon Quest III intro video]
 
-The SNES version retains all classes from the original plus enhancements:
+=Related Links=
 
-{| class="wikitable"
-|-
-! ID !! Class !! Description
-|-
-| $00 || Hero || Main character (fixed)
-|-
-| $01 || Soldier || Physical fighter
-|-
-| $02 || Fighter || Fast attacker
-|-
-| $03 || Pilgrim || Healing magic
-|-
-| $04 || Wizard || Attack magic
-|-
-| $05 || Merchant || Gold bonuses
-|-
-| $06 || Goof-off || Random/Sage prerequisite
-|-
-| $07 || Sage || Advanced magic class
-|-
-| $08 || Thief || Steal items (new class)
-|}
-
-==Personality System==
-
-The remake introduces personalities that affect stat growth. Determined by answering questions at the game's start.
-
-{| class="wikitable"
-|-
-! Category !! Personality Types
-|-
-| Strength-focused || Tough, Stubborn, Tomboy
-|-
-| Agility-focused || Quick, Lucky, Carefree
-|-
-| Intelligence-focused || Smart, Sharp, Romantic
-|-
-| Balanced || Normal, Ordinary, Lone Wolf
-|-
-| Special || Sexy, Vain, Macho
-|}
-
-==Documentation==
-
-* [[Dragon Quest III (SNES)/ROM map|ROM Map]] - Complete ROM layout
-* [[Dragon Quest III (SNES)/RAM map|RAM Map]] - Runtime memory documentation
-* [[Dragon Quest III (SNES)/TBL|Text Table]] - Japanese character encoding
-* [[Dragon Quest III (SNES)/Values|Values]] - Game constants
-
-===Sub-pages===
-* [[Dragon Quest III (SNES)/ROM map/Character Classes|Character Classes]]
-* [[Dragon Quest III (SNES)/ROM map/Monsters|Monster Data]]
-* [[Dragon Quest III (SNES)/ROM map/Personality|Personality System]]
-* [[Dragon Quest III (SNES)/RAM map/Party Members|Party Member Data]]
-* [[Dragon Quest III (SNES)/RAM map/Events|Event Flags]]
-* [[Dragon Quest III (SNES)/RAM map/Treasures|Treasure Flags]]
-* [[Dragon Quest III (SNES)/Values/Spells|Spell Data]]
-
-==External Links==
-
-* [https://github.com/TheAnsarya/GameInfo GameInfo Repository]
-
-[[Category:SNES Games]]
-[[Category:Dragon Quest Series]]
-[[Category:RPG]]
-[[Category:Enix]]
-[[Category:Japan Only]]
+{{Dragon Quest Series}}

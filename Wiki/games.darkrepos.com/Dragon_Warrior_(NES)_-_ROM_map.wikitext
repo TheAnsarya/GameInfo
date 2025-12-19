@@ -63,7 +63,7 @@ Dragon Warrior uses MMC1 mapper with 4 banks of 16KB PRG ROM:
 ===Bank 01 ($8000-$BFFF)===
 
 {| class="wikitable sortable"
-!  Address  !!  Size  !!  Category  !!  Description  
+!  Address  !!  Size  !!  Category  !!  Description
 |-
 |  $8000-$803F  ||  64 bytes  ||  Vectors  ||  Bank 1 function pointers
 |-
