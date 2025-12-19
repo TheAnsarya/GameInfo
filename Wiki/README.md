@@ -1,11 +1,11 @@
 # DarkRepos Wiki Content
 
-This directory contains wikitext files for the **games.darkrepos.com** wiki.
+Wiki content for **games.darkrepos.com** - retro game ROM hacking documentation.
 
 ## Directory Structure
 
 ```text
-Wiki/games.darkrepos.com/
+Wiki/
 ├── _meta/                              # Wiki infrastructure
 │   ├── Main_Page.wikitext              # Wiki home page
 │   ├── Categories/                     # Category pages
