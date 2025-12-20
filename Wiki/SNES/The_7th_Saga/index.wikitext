@@ -123,6 +123,12 @@ The US version has significant changes:
 * [[The 7th Saga:SRAM_Map|SRAM Map]] - Save RAM documentation
 * [[The 7th Saga:Notes|Notes]] - Miscellaneous notes
 
+==Known Dumps==
+
+{{known_dumps}}
+<!-- TODO: Add ROM hash data from TOSEC/No-Intro -->
+{{known_dumps/end}}
+
 ==External Links==
 
 * [https://github.com/TheAnsarya/GameInfo GameInfo Repository]

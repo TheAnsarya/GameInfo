@@ -132,6 +132,12 @@ One of the largest and most technically impressive NES games:
 * [[Kirby's Adventure:ROM_Map|ROM Map]] - Complete ROM layout
 * [[Kirby's Adventure:RAM_Map|RAM Map]] - Runtime memory documentation
 
+==Known Dumps==
+
+{{known_dumps}}
+<!-- TODO: Add ROM hash data from TOSEC/No-Intro -->
+{{known_dumps/end}}
+
 ==External Links==
 
 * [https://github.com/TheAnsarya/GameInfo GameInfo Repository]

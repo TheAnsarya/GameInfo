@@ -39,10 +39,10 @@
 
 {{navbox|SNES/Dragon_Quest_III|sram_map=no}}
 
-* [[SNES/Dragon_Quest_III/ROM_Map|ROM Map]] - Complete ROM layout
-* [[SNES/Dragon_Quest_III/RAM_Map|RAM Map]] - Runtime memory documentation
-* [[SNES/Dragon_Quest_III/TBL|Text Table]] - Character encoding
-* [[SNES/Dragon_Quest_III/Values|Values]] - Game constants and IDs
+* [[Dragon Quest III:ROM_Map|ROM Map]] - Complete ROM layout
+* [[Dragon Quest III:RAM_Map|RAM Map]] - Runtime memory documentation
+* [[Dragon Quest III:TBL|Text Table]] - Character encoding
+* [[Dragon Quest III:Values|Values]] - Game constants and IDs
 
 ==Utilities==
 * None Available

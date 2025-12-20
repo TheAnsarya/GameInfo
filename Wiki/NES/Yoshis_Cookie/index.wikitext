@@ -78,6 +78,12 @@ A falling block puzzle game:
 * [[Yoshi's Cookie:RAM_Map|RAM Map]] - Runtime memory documentation
 * [[Yoshi's Cookie:TBL|Text Table]] - Character encoding
 
+==Known Dumps==
+
+{{known_dumps}}
+<!-- TODO: Add ROM hash data from TOSEC/No-Intro -->
+{{known_dumps/end}}
+
 ==External Links==
 
 * [https://github.com/TheAnsarya/GameInfo GameInfo Repository]

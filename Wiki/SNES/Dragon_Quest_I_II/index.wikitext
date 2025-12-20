@@ -89,17 +89,23 @@ The Prince of Midenhall must unite the descendants of Erdrick.
 
 ==Documentation==
 
-* [[Dragon Quest I & II (SNES)/ROM map|ROM Map]] - Complete ROM layout
-* [[Dragon Quest I & II (SNES)/RAM map|RAM Map]] - Runtime memory documentation
-* [[Dragon Quest I & II (SNES)/TBL|Text Table]] - Japanese character encoding
-* [[Dragon Quest I & II (SNES)/Values|Values]] - Game constants
+* [[Dragon Quest I & II:ROM_Map|ROM Map]] - Complete ROM layout
+* [[Dragon Quest I & II:RAM_Map|RAM Map]] - Runtime memory documentation
+* [[Dragon Quest I & II:TBL|Text Table]] - Japanese character encoding
+* [[Dragon Quest I & II:Values|Values]] - Game constants
 
 ===Sub-pages===
-* [[Dragon Quest I & II (SNES)/ROM map/DQ1 Data|Dragon Quest I Data]]
-* [[Dragon Quest I & II (SNES)/ROM map/DQ2 Data|Dragon Quest II Data]]
-* [[Dragon Quest I & II (SNES)/RAM map/Party Data|Party Data Structures]]
-* [[Dragon Quest I & II (SNES)/Values/Items|Item Data]]
-* [[Dragon Quest I & II (SNES)/Values/Spells|Spell Data]]
+* [[Dragon Quest I & II:ROM_Map/DQ1_Data|Dragon Quest I Data]]
+* [[Dragon Quest I & II:ROM_Map/DQ2_Data|Dragon Quest II Data]]
+* [[Dragon Quest I & II:RAM_Map/Party_Data|Party Data Structures]]
+* [[Dragon Quest I & II:Values/Items|Item Data]]
+* [[Dragon Quest I & II:Values/Spells|Spell Data]]
+
+==Known Dumps==
+
+{{known_dumps}}
+<!-- TODO: Add ROM hash data from TOSEC/No-Intro -->
+{{known_dumps/end}}
 
 ==External Links==
 

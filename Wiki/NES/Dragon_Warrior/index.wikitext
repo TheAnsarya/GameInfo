@@ -55,16 +55,22 @@ Dragon Warrior established many conventions of the JRPG genre, including random 
 
 {{navbox|NES/Dragon_Warrior|sram_map=yes|extra1=Battle_System|extra2=Experience_System|extra3=Monster_Data}}
 
-* [[NES/Dragon_Warrior/ROM_Map|ROM Map]] - Complete PRG ROM layout
-* [[NES/Dragon_Warrior/RAM_Map|RAM Map]] - Runtime memory documentation
-* [[NES/Dragon_Warrior/SRAM_Map|SRAM Map]] - Password encoding
-* [[NES/Dragon_Warrior/TBL|Text Table]] - Character encoding
-* [[NES/Dragon_Warrior/Values|Values]] - Game constants and IDs
+* [[Dragon Warrior:ROM_Map|ROM Map]] - Complete PRG ROM layout
+* [[Dragon Warrior:RAM_Map|RAM Map]] - Runtime memory documentation
+* [[Dragon Warrior:SRAM_Map|SRAM Map]] - Password encoding
+* [[Dragon Warrior:TBL|Text Table]] - Character encoding
+* [[Dragon Warrior:Values|Values]] - Game constants and IDs
 
 ===Sub-pages===
-* [[NES/Dragon_Warrior/Battle_System|Battle System]]
-* [[NES/Dragon_Warrior/Experience_System|Experience System]]
-* [[NES/Dragon_Warrior/Monster_Data|Monster Data]]
+* [[Dragon Warrior:Battle_System|Battle System]]
+* [[Dragon Warrior:Experience_System|Experience System]]
+* [[Dragon Warrior:Monster_Data|Monster Data]]
+
+==Known Dumps==
+
+{{known_dumps}}
+<!-- TODO: Add ROM hash data from TOSEC/No-Intro -->
+{{known_dumps/end}}
 
 ==External Links==
 

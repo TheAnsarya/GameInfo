@@ -99,6 +99,12 @@ Opponents from the anime series available to duel.
 * [[Yu-Gi-Oh! The Eternal Duelist Soul:RAM_Map|RAM Map]] - Runtime memory documentation
 * [[Yu-Gi-Oh! The Eternal Duelist Soul:Notes|Notes]] - Miscellaneous notes
 
+==Known Dumps==
+
+{{known_dumps}}
+<!-- TODO: Add ROM hash data from TOSEC/No-Intro -->
+{{known_dumps/end}}
+
 ==External Links==
 
 * [https://github.com/TheAnsarya/GameInfo GameInfo Repository]

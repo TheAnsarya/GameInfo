@@ -131,20 +131,26 @@ Magic is divided into three categories:
 
 {{navbox|SNES/Final_Fantasy_Mystic_Quest|sram_map=yes}}
 
-* [[SNES/Final_Fantasy_Mystic_Quest/ROM_Map|ROM Map]] - Complete ROM layout
-* [[SNES/Final_Fantasy_Mystic_Quest/RAM_Map|RAM Map]] - Runtime memory documentation
-* [[SNES/Final_Fantasy_Mystic_Quest/SRAM_Map|SRAM Map]] - Save data structure
-* [[SNES/Final_Fantasy_Mystic_Quest/TBL|Text Table]] - Character encoding (multiple languages)
-* [[SNES/Final_Fantasy_Mystic_Quest/Values|Values]] - Game constants
+* [[Final Fantasy Mystic Quest:ROM_Map|ROM Map]] - Complete ROM layout
+* [[Final Fantasy Mystic Quest:RAM_Map|RAM Map]] - Runtime memory documentation
+* [[Final Fantasy Mystic Quest:SRAM_Map|SRAM Map]] - Save data structure
+* [[Final Fantasy Mystic Quest:TBL|Text Table]] - Character encoding (multiple languages)
+* [[Final Fantasy Mystic Quest:Values|Values]] - Game constants
 
 ===Text Tables by Language===
-* [[SNES/Final_Fantasy_Mystic_Quest/TBL/English|English TBL]]
-* [[SNES/Final_Fantasy_Mystic_Quest/TBL/Japanese|Japanese TBL]]
-* [[SNES/Final_Fantasy_Mystic_Quest/TBL/French|French TBL]]
-* [[SNES/Final_Fantasy_Mystic_Quest/TBL/German|German TBL]]
+* [[Final Fantasy Mystic Quest:TBL/English|English TBL]]
+* [[Final Fantasy Mystic Quest:TBL/Japanese|Japanese TBL]]
+* [[Final Fantasy Mystic Quest:TBL/French|French TBL]]
+* [[Final Fantasy Mystic Quest:TBL/German|German TBL]]
 
 ===Sub-pages===
-* [[SNES/Final_Fantasy_Mystic_Quest/Values/Window_Colors|Window Colors]]
+* [[Final Fantasy Mystic Quest:Values/Window_Colors|Window Colors]]
+
+==Known Dumps==
+
+{{known_dumps}}
+<!-- TODO: Add ROM hash data from TOSEC/No-Intro -->
+{{known_dumps/end}}
 
 ==External Links==
 

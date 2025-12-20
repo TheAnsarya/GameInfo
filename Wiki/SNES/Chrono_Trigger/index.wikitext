@@ -112,6 +112,12 @@ Three-character combination attacks requiring specific party compositions.
 * [[Chrono Trigger:RAM_Map|RAM Map]] - Runtime memory documentation
 * [[Chrono Trigger:TBL|Text Table]] - Character encoding
 
+==Known Dumps==
+
+{{known_dumps}}
+<!-- TODO: Add ROM hash data from TOSEC/No-Intro -->
+{{known_dumps/end}}
+
 ==See Also==
 
 * [[Category:SNES|All SNES Games]]
