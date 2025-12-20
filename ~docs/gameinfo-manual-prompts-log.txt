@@ -210,6 +210,22 @@ This folder structure for the wiki stuff sucks. Make a better one.; continue;
 
 don't use a folder named `games.darkrepos.com` move all contents to the parent folder or rename the folder with a better name; continue;
 
+Keep converting wiki documentation from the `Games` folder to the `Wiki` folder, removing each file from the Games folder after all the information has been moved so we're not duplicating the wikitext in two locations; convert the `known dumps` table to a template with all three hash types in their own (stacked) cell; create a `spelling ignore` file for the whole project and add things that obviously aren't mis-spelled words like `wikitable` and `Enix`;
+
+yeah, do that; Update index files for newly migrated games (Kirby's Adventure, Mappy-Land, Yoshi's Cookie, Yu-Gi-Oh!, The 7th Saga, FF4) with proper links to subpages; Add Known Dumps templates to any index files that don't have them yet; Verify all cross-links work correctly; Consider if any Files/ or Images/ folders from source locations should also be migrated; it-commit everything in logical batches, attach every commit to an issue, and update the issues and todo-lists, and I mean everything!; document everything! github issues for everything! update chat logs and session logs!; The spelling checker is flagging hexadecimal values as mispelled words, like for `$7ebfff` it flags it and says `"ebfff": Unknown word .cSpell`, how do we fix this problem without adding every possible value to the ignore list?; I only want to see actual misspellings; 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -224,6 +240,7 @@ don't use a folder named `games.darkrepos.com` move all contents to the parent f
 
 
 continue;
+
 
 
 
