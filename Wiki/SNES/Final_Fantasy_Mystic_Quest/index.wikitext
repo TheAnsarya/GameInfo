@@ -148,9 +148,22 @@ Magic is divided into three categories:
 
 ==Known Dumps==
 
-{{known_dumps}}
-<!-- TODO: Add ROM hash data from TOSEC/No-Intro -->
-{{known_dumps/end}}
+{| class="wikitable sortable"
+|-
+! Version !! Size !! MD5 !! SHA1 !! Source
+|-
+| Final Fantasy - Mystic Quest (U) (V1.0) [!] || 524,288 || <code>da08f0559fade06f37d5fdf1b6a6d92e</code> || <code>787c535aaca7b57f6b85fc02ceef106f7fe5ea59</code> || GoodSNES
+|-
+| Final Fantasy - Mystic Quest (U) (V1.1) || 524,288 || <code>f7faeae5a847c098d677070920769ca2</code> || <code>6be74b73b736bc6027c0e92619874da7c498bed0</code> || GoodSNES
+|-
+| Final Fantasy USA - Mystic Quest (J) [!] || 524,288 || <code>5164060bd3350d7a6325ec8ae80bba54</code> || <code>ffc05a65ef43fa5c56c9930af1af527509c1ae05</code> || GoodSNES
+|-
+| Mystic Quest Legend (E) [!] || 524,288 || <code>92461cd3f1a72b8beb32ebab98057b76</code> || <code>3d3ec05a11d808600752c89895f04d5213e532b6</code> || GoodSNES
+|-
+| Mystic Quest Legend (F) || 524,288 || <code>a5356b9bad50d4a9191bc1fe50316b5b</code> || <code>6c2bcb3be5ad46cc96fd35b50446931fc046a167</code> || GoodSNES
+|-
+| Mystic Quest Legend (G) [!] || 524,288 || <code>10cfe4f746a8bf3dd54c1e61c67f61d1</code> || <code>bd190854c0f725160ed6f6b0669e3cdd2308ccca</code> || GoodSNES
+|}
 
 ==External Links==
 

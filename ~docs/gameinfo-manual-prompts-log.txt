@@ -214,9 +214,7 @@ Keep converting wiki documentation from the `Games` folder to the `Wiki` folder,
 
 yeah, do that; Update index files for newly migrated games (Kirby's Adventure, Mappy-Land, Yoshi's Cookie, Yu-Gi-Oh!, The 7th Saga, FF4) with proper links to subpages; Add Known Dumps templates to any index files that don't have them yet; Verify all cross-links work correctly; Consider if any Files/ or Images/ folders from source locations should also be migrated; it-commit everything in logical batches, attach every commit to an issue, and update the issues and todo-lists, and I mean everything!; document everything! github issues for everything! update chat logs and session logs!; The spelling checker is flagging hexadecimal values as mispelled words, like for `$7ebfff` it flags it and says `"ebfff": Unknown word .cSpell`, how do we fix this problem without adding every possible value to the ignore list?; I only want to see actual misspellings; 
 
-add markdown linting/formatting rules to the editor config (which you should apply to every generated file) so I don't see `MD022`, `MD032`, `MD040`, MD031`, etc, and other errors/warnings; then apply those rules;
-
-
+add markdown linting/formatting rules to the editor config (which you should apply to every generated file) so I don't see `MD022`, `MD032`, `MD040`, MD031`, etc, and other errors/warnings; then apply those rules; Regularize the folder structure: don't have duplicate wikitexts in two different folder structures, in the `Wiki` folder there are `Images` and `Files` folders but those files should be stored in sub folders in each game but documented in `md` files so like `.\Wiki\~docs\Referenced Files.md` which documents and describes all the uploaded files linked in the wikitext, same with `.\Wiki\~docs\Referenced Images.md`; 
 
 
 

@@ -103,9 +103,12 @@ The Prince of Midenhall must unite the descendants of Erdrick.
 
 ==Known Dumps==
 
-{{known_dumps}}
-<!-- TODO: Add ROM hash data from TOSEC/No-Intro -->
-{{known_dumps/end}}
+{| class="wikitable sortable"
+|-
+! Version !! Size !! MD5 !! SHA1 !! Source
+|-
+| Dragon Quest I & II (J) [!] || 1,572,864 || <code>1def71b5557cc6bb7402281d888cae80</code> || <code>1c0c6d78bf2bc29160adf48b17ebf5a5bc46230e</code> || GoodSNES
+|}
 
 ==External Links==
 

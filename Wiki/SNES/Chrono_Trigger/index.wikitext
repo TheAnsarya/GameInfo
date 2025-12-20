@@ -114,9 +114,14 @@ Three-character combination attacks requiring specific party compositions.
 
 ==Known Dumps==
 
-{{known_dumps}}
-<!-- TODO: Add ROM hash data from TOSEC/No-Intro -->
-{{known_dumps/end}}
+{| class="wikitable sortable"
+|-
+! Version !! Size !! MD5 !! SHA1 !! Source
+|-
+| Chrono Trigger (J) [!] || 4,194,304 || <code>9d56fb54af198d43dcd62550767999df</code> || <code>a82f0fba9bb111ffd0a878853a4563917d9b67bb</code> || GoodSNES
+|-
+| Chrono Trigger (U) [!] || 4,194,304 || <code>a2bc447961e52fd2227baed164f729dc</code> || <code>de5822f4f2f7a55acb8926d4c0eaa63d5d989312</code> || GoodSNES
+|}
 
 ==See Also==
 
