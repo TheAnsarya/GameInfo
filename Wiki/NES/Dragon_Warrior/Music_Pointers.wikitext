@@ -66,3 +66,61 @@
 |-
 |  $31db  ||  $07  ||  Erdrick's Cave (Floor 2)
 |}
+
+==Music Track IDs==
+
+{| class="wikitable"
+|-
+!  ID  !!  Track Name  !!  Usage
+|-
+|  $00  ||  Silence  ||  No music playing
+|-
+|  $01  ||  Title Theme  ||  Title screen
+|-
+|  $02  ||  Throne Room  ||  Tantegel Castle throne room
+|-
+|  $03  ||  Castle  ||  Castle interiors
+|-
+|  $04  ||  Town  ||  All town locations
+|-
+|  $05  ||  Overworld  ||  World map exploration
+|-
+|  $06  ||  Dungeon 1  ||  Cave/dungeon level 1
+|-
+|  $07  ||  Dungeon 2  ||  Cave/dungeon level 2
+|-
+|  $08  ||  Dungeon 3  ||  Cave/dungeon level 3
+|-
+|  $09  ||  Dungeon 4  ||  Cave/dungeon level 4 / Hauksness
+|-
+|  $0a  ||  Dungeon 5  ||  Charlock Floor 5
+|-
+|  $0b  ||  Dungeon 6  ||  Charlock Floor 6
+|-
+|  $0c  ||  Dungeon 7  ||  Charlock Floor 7
+|-
+|  $0d  ||  Final Dungeon  ||  Charlock Floor 8 (Dragonlord)
+|-
+|  $0e  ||  Battle  ||  Normal enemy encounters
+|-
+|  $0f  ||  Boss Battle  ||  Dragonlord battle
+|-
+|  $10  ||  Victory  ||  Battle victory fanfare
+|-
+|  $11  ||  Death  ||  Game over
+|-
+|  $12  ||  Level Up  ||  Level up fanfare
+|-
+|  $13  ||  Inn  ||  Resting at inn
+|-
+|  $14  ||  Save  ||  Saving game
+|-
+|  $15  ||  Ending  ||  Ending sequence
+|}
+
+==See Also==
+
+* [[Dragon Warrior:ROM_Map|ROM Map]]
+* [[Dragon Warrior:RAM_Map|RAM Map]]
+
+[[Category:Dragon Warrior|Music Pointers]]

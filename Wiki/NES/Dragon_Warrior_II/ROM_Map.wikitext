@@ -1,4 +1,4 @@
-{{rommap|game=Dragon Warrior 2 (NES)}}
+{{rommap|game=Dragon Warrior II}}
 
 This is a preliminary ROM map for ''Dragon Warrior II'' (NES). This document outlines the structure of the ROM and the location of key data.
 
@@ -61,7 +61,7 @@ Dragon Warrior II uses mapper 4 (MMC3) with 8KB PRG banks.
 |}
 
 ==Text Data==
-Text uses a custom encoding. See [[Dragon Warrior 2 (NES):TBL|TBL file]] for character mappings.
+Text uses a custom encoding. See [[Dragon Warrior II:TBL|TBL file]] for character mappings.
 
 {| class="wikitable sortable"
 ! Offset !! End !! Size !! Description
@@ -232,9 +232,7 @@ Text uses a custom encoding. See [[Dragon Warrior 2 (NES):TBL|TBL file]] for cha
 |}
 
 ==See Also==
-* [[Dragon Warrior 2 (NES):RAM map|RAM Map]]
-* [[Dragon Warrior 2 (NES):TBL|Text Table]]
-* [[Dragon Warrior 2 (NES):Values|Data Values]]
-* [[Dragon Warrior 2 (NES):Known Dumps|Known ROM Dumps]]
+* [[Dragon Warrior II:RAM_Map|RAM Map]]
+* [[Dragon Warrior II:TBL|Text Table]]
 
-[[Category:Dragon Warrior 2 (NES)|ROM map]]
+[[Category:Dragon Warrior II|ROM map]]

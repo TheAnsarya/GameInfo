@@ -1,0 +1,508 @@
+{{rammap|game=Chrono Trigger}}
+
+This is the RAM map for ''Chrono Trigger'' (SNES). The game uses the standard SNES WRAM layout with extensive use of direct page addressing.
+
+==Direct Page ($0000-$00ff)==
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0000 || 2 || Direct page pointer (usually $0000)
+|-
+| $0002 || 2 || Frame counter
+|-
+| $0004 || 2 || RNG seed
+|-
+| $0006 || 2 || Joypad 1 current state
+|-
+| $0008 || 2 || Joypad 1 new presses
+|-
+| $000a || 2 || Joypad 2 current state
+|-
+| $000c || 2 || Joypad 2 new presses
+|-
+| $000e || 1 || Current game mode
+|-
+| $000f || 1 || Game sub-mode
+|-
+| $0010 || 2 || Current location ID
+|-
+| $0012 || 2 || Previous location ID
+|-
+| $0014 || 2 || Destination location ID
+|-
+| $0016 || 2 || Current map X position
+|-
+| $0018 || 2 || Current map Y position
+|-
+| $001a || 1 || Party leader index (0-2)
+|-
+| $001b || 1 || Direction facing
+|-
+| $001c || 1 || Movement speed
+|-
+| $001d || 1 || Collision flags
+|-
+| $001e || 2 || Screen scroll X
+|-
+| $0020 || 2 || Screen scroll Y
+|-
+| $0022 || 2 || BG1 scroll X
+|-
+| $0024 || 2 || BG1 scroll Y
+|-
+| $0026 || 2 || BG2 scroll X
+|-
+| $0028 || 2 || BG2 scroll Y
+|-
+| $002a-$003f || 22 || DMA queue
+|-
+| $0040 || 2 || HDMA enable flags
+|-
+| $0042 || 2 || NMI counter
+|-
+| $0044 || 1 || IRQ enable
+|-
+| $0045 || 1 || Screen brightness
+|-
+| $0046-$004f || 10 || Temporary calculation area
+|-
+| $0050-$005f || 16 || Subroutine parameters
+|-
+| $0060-$007f || 32 || Stack for nested routines
+|-
+| $0080-$009f || 32 || Graphics buffer pointers
+|-
+| $00a0-$00bf || 32 || Music/sound state
+|-
+| $00c0-$00df || 32 || Event processing temp
+|-
+| $00e0-$00ff || 32 || Misc temp storage
+|}
+
+==System State ($0100-$01ff)==
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0100 || 2 || Game state flags
+|-
+| $0102 || 2 || Menu state
+|-
+| $0104 || 2 || Battle state
+|-
+| $0106 || 1 || Current era index (0-7)
+|-
+| $0107 || 1 || Time travel in progress
+|-
+| $0108 || 2 || Active party member 1 ID
+|-
+| $010a || 2 || Active party member 2 ID
+|-
+| $010c || 2 || Active party member 3 ID
+|-
+| $010e || 2 || Reserve party flags
+|-
+| $0110 || 2 || Gold (low word)
+|-
+| $0112 || 2 || Gold (high word, max 9,999,999)
+|-
+| $0114 || 4 || Play time (frames)
+|-
+| $0118 || 2 || Step counter
+|-
+| $011a || 1 || Encounter rate modifier
+|-
+| $011b || 1 || No-encounter flag
+|-
+| $011c || 2 || Save slot used (0-2)
+|-
+| $011e || 2 || New Game+ flags
+|-
+| $0120-$013f || 32 || System configuration
+|-
+| $0140-$017f || 64 || Event queue
+|-
+| $0180-$01ff || 128 || Scene state data
+|}
+
+==Party Data ($0200-$05ff)==
+Seven party members × 128 bytes each ($80 bytes/character)
+
+{| class="wikitable"
+! Character !! RAM Range
+|-
+| Crono || $0200-$027f
+|-
+| Marle || $0280-$02ff
+|-
+| Lucca || $0300-$037f
+|-
+| Robo || $0380-$03ff
+|-
+| Frog || $0400-$047f
+|-
+| Ayla || $0480-$04ff
+|-
+| Magus || $0500-$057f
+|-
+| (Reserved) || $0580-$05ff
+|}
+
+===Character Structure (128 bytes)===
+{| class="wikitable sortable"
+! Offset !! Size !! Description
+|-
+| +$00 || 6 || Character name (6 chars)
+|-
+| +$06 || 2 || Current HP
+|-
+| +$08 || 2 || Max HP
+|-
+| +$0a || 2 || Current MP
+|-
+| +$0c || 2 || Max MP
+|-
+| +$0e || 1 || Level
+|-
+| +$0f || 1 || Power
+|-
+| +$10 || 1 || Stamina
+|-
+| +$11 || 1 || Speed
+|-
+| +$12 || 1 || Magic
+|-
+| +$13 || 1 || Hit%
+|-
+| +$14 || 1 || Evade%
+|-
+| +$15 || 1 || Magic Defense
+|-
+| +$16 || 2 || Attack power (calculated)
+|-
+| +$18 || 2 || Defense (calculated)
+|-
+| +$1a || 4 || Experience points
+|-
+| +$1e || 2 || Experience to next level
+|-
+| +$20 || 1 || Weapon equipped
+|-
+| +$21 || 1 || Armor equipped
+|-
+| +$22 || 1 || Helmet equipped
+|-
+| +$23 || 1 || Accessory equipped
+|-
+| +$24 || 1 || Status effects (bitfield)
+|-
+| +$25 || 1 || Battle row (0=front, 1=back)
+|-
+| +$26 || 2 || Tech points (for learning)
+|-
+| +$28 || 1 || Techs learned (bitfield, 8 techs)
+|-
+| +$29 || 1 || Tech levels (low bits)
+|-
+| +$2a || 1 || Tech levels (high bits)
+|-
+| +$2b || 1 || Element affinity
+|-
+| +$2c-$3f || 20 || Animation state
+|-
+| +$40-$5f || 32 || Battle-specific state
+|-
+| +$60-$7f || 32 || Extended data/flags
+|}
+
+==Inventory ($0600-$07ff)==
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0600 || 1 || Number of items in inventory
+|-
+| $0601-$065f || 95 || Item slots (item ID, 95 max)
+|-
+| $0660-$06bf || 95 || Item quantities
+|-
+| $06c0-$06df || 32 || Key items (bitfield)
+|-
+| $06e0-$06ff || 32 || Weapon/armor sorted indices
+|-
+| $0700-$071f || 32 || Equipment sort flags
+|-
+| $0720-$073f || 32 || Consumable sort flags
+|-
+| $0740-$077f || 64 || Shop inventory buffer
+|-
+| $0780-$07ff || 128 || Trade/exchange buffer
+|}
+
+==Event Flags ($0800-$09ff)==
+512 bytes of event flags (4096 individual flags)
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0800-$081f || 32 || Story progression flags
+|-
+| $0820-$083f || 32 || Side quest flags
+|-
+| $0840-$085f || 32 || Treasure chest flags (set A)
+|-
+| $0860-$087f || 32 || Treasure chest flags (set B)
+|-
+| $0880-$089f || 32 || NPC conversation flags
+|-
+| $08a0-$08bf || 32 || Door/passage unlock flags
+|-
+| $08c0-$08df || 32 || Boss defeat flags
+|-
+| $08e0-$08ff || 32 || Time period access flags
+|-
+| $0900-$091f || 32 || Ending branch flags
+|-
+| $0920-$097f || 96 || Location-specific flags
+|-
+| $0980-$09ff || 128 || Misc event flags
+|}
+
+==Battle Data ($0a00-$0dff)==
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0a00 || 1 || Battle active flag
+|-
+| $0a01 || 1 || Battle phase
+|-
+| $0a02 || 2 || Battle turn counter
+|-
+| $0a04 || 1 || Number of enemies
+|-
+| $0a05 || 1 || Number of allies
+|-
+| $0a06 || 2 || Formation type
+|-
+| $0a08 || 2 || Battle background ID
+|-
+| $0a0a || 2 || Battle music ID
+|-
+| $0a0c || 1 || Escape available
+|-
+| $0a0d || 1 || Boss battle flag
+|-
+| $0a0e || 2 || Total damage dealt
+|-
+| $0a10-$0a1f || 16 || ATB gauges (8 units × 2 bytes)
+|-
+| $0a20-$0aff || 224 || Battle unit data (party)
+|-
+| $0b00-$0bff || 256 || Enemy instance data (6 enemies × ~42 bytes)
+|-
+| $0c00-$0c7f || 128 || Battle animation queue
+|-
+| $0c80-$0cff || 128 || Damage number queue
+|-
+| $0d00-$0d3f || 64 || Target selection data
+|-
+| $0d40-$0d7f || 64 || Tech/combo execution state
+|-
+| $0d80-$0dbf || 64 || Status effect timers
+|-
+| $0dc0-$0dff || 64 || Battle result calculations
+|}
+
+===ATB System===
+The Active Time Battle system uses these addresses:
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0a10 || 2 || Party member 1 ATB gauge (0-65535)
+|-
+| $0a12 || 2 || Party member 2 ATB gauge
+|-
+| $0a14 || 2 || Party member 3 ATB gauge
+|-
+| $0a16 || 2 || (Reserved)
+|-
+| $0a18 || 2 || Enemy 1 ATB gauge
+|-
+| $0a1a || 2 || Enemy 2 ATB gauge
+|-
+| $0a1c || 2 || Enemy 3 ATB gauge
+|-
+| $0a1e || 2 || (etc.)
+|}
+
+ATB fill rate = Base speed × 256 / (speed divisor)
+
+==Menu System ($0e00-$0fff)==
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $0e00 || 1 || Current menu ID
+|-
+| $0e01 || 1 || Menu cursor position
+|-
+| $0e02 || 1 || Menu page/scroll offset
+|-
+| $0e03 || 1 || Selected character slot
+|-
+| $0e04 || 2 || Selected item slot
+|-
+| $0e06 || 2 || Menu animation timer
+|-
+| $0e08-$0e1f || 24 || Menu cursor stack (6 levels × 4)
+|-
+| $0e20-$0e3f || 32 || Menu text buffer
+|-
+| $0e40-$0e7f || 64 || Item list buffer
+|-
+| $0e80-$0ebf || 64 || Character select buffer
+|-
+| $0ec0-$0eff || 64 || Shop transaction buffer
+|-
+| $0f00-$0fff || 256 || Window/tile map buffer
+|}
+
+==Map Engine ($1000-$17ff)==
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $1000 || 2 || Current map ID
+|-
+| $1002 || 2 || Map width (tiles)
+|-
+| $1004 || 2 || Map height (tiles)
+|-
+| $1006 || 2 || Tileset ID
+|-
+| $1008 || 2 || Palette ID
+|-
+| $100a || 2 || Music ID
+|-
+| $100c-$103f || 52 || Map header data
+|-
+| $1040-$10ff || 192 || NPC data (16 NPCs × 12 bytes)
+|-
+| $1100-$117f || 128 || Exit/warp data
+|-
+| $1180-$11ff || 128 || Trigger zone data
+|-
+| $1200-$13ff || 512 || Tile collision cache
+|-
+| $1400-$15ff || 512 || Event trigger cache
+|-
+| $1600-$17ff || 512 || Layer 2 parallax data
+|}
+
+==Sound Engine ($1800-$18ff)==
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $1800 || 1 || Current music track
+|-
+| $1801 || 1 || Music volume
+|-
+| $1802 || 1 || Music tempo
+|-
+| $1803 || 1 || Music fade state
+|-
+| $1804 || 2 || Music position
+|-
+| $1806 || 2 || Sound effect queue head
+|-
+| $1808-$181f || 24 || Sound effect queue (8 effects × 3)
+|-
+| $1820-$183f || 32 || SPC700 communication buffer
+|-
+| $1840-$185f || 32 || Channel state
+|-
+| $1860-$18ff || 160 || Sound data buffer
+|}
+
+==OAM/VRAM Buffers ($1900-$1fff)==
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $1900-$19ff || 256 || OAM buffer (primary, 128 sprites × 4)
+|-
+| $1a00-$1a1f || 32 || OAM buffer (secondary, high bits)
+|-
+| $1a20-$1a3f || 32 || Sprite priority sort
+|-
+| $1a40-$1aff || 192 || Sprite animation state
+|-
+| $1b00-$1bff || 256 || CGRAM buffer (256 colors)
+|-
+| $1c00-$1dff || 512 || BG tile buffer
+|-
+| $1e00-$1fff || 512 || Window/mask buffer
+|}
+
+==High WRAM ($7e2000-$7fffff)==
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $7e2000-$7e3fff || 8KB || Map decompression buffer
+|-
+| $7e4000-$7e5fff || 8KB || Sprite decompression buffer
+|-
+| $7e6000-$7e7fff || 8KB || Text decompression buffer
+|-
+| $7e8000-$7e9fff || 8KB || Event script workspace
+|-
+| $7ea000-$7ebfff || 8KB || Battle calculation buffer
+|-
+| $7ec000-$7effff || 16KB || Mode 7 matrix/transformation
+|-
+| $7f0000-$7f7fff || 32KB || Tilemap cache
+|-
+| $7f8000-$7fffff || 32KB || General workspace
+|}
+
+==Status Effects==
+{| class="wikitable"
+! Bit !! Effect
+|-
+| 0 || Poison
+|-
+| 1 || Blind
+|-
+| 2 || Sleep
+|-
+| 3 || Stop
+|-
+| 4 || Chaos (Confuse)
+|-
+| 5 || Lock (Seal)
+|-
+| 6 || Slow
+|-
+| 7 || Haste
+|}
+
+==Time Eras==
+{| class="wikitable"
+! Index !! Year !! Notes
+|-
+| 0 || 65,000,000 BC || Prehistoric
+|-
+| 1 || 12,000 BC || Antiquity (Zeal)
+|-
+| 2 || 600 AD || Middle Ages
+|-
+| 3 || 1000 AD || Present
+|-
+| 4 || 1999 AD || Apocalypse
+|-
+| 5 || 2300 AD || Future
+|-
+| 6 || End of Time || Hub area
+|-
+| 7 || ??? || Special areas
+|}
+
+==See Also==
+* [[Chrono Trigger:ROM_Map|ROM Map]]
+* [[Chrono Trigger:TBL|Text Table]]
+
+[[Category:Chrono Trigger|RAM map]]

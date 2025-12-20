@@ -53,10 +53,40 @@ Dragon Warrior II introduces multiple party members to the series, expanding on 
 
 ==Documentation==
 
-* [[Dragon Warrior II (NES)/ROM map|ROM Map]] - Complete PRG ROM layout
-* [[Dragon Warrior II (NES)/RAM map|RAM Map]] - Runtime memory documentation
-* [[Dragon Warrior II (NES)/TBL|Text Table]] - Character encoding
-* [[Dragon Warrior II (NES)/Known Dumps|Known Dumps]] - ROM versions
+* [[Dragon Warrior II:ROM_Map|ROM Map]] - Complete PRG ROM layout
+* [[Dragon Warrior II:RAM_Map|RAM Map]] - Runtime memory documentation
+* [[Dragon Warrior II:TBL|Text Table]] - Character encoding
+
+==Known Dumps==
+
+These are the ROMs as they are listed in [https://www.tosecdev.org/ TOSEC].
+
+{{known_dumps}}
+{{dump
+| description = Dragon Quest II (1987-01-26)(Enix)(JP)
+| size = 131088
+| size_hex = $20010
+| crc32 = 7b3d483f
+| md5 = 5c908061c1ebdabc5a5ea1782f83a2cd
+| sha1 = 036f96215c102475e9ff7c4b89fe744cee069d9e
+}}
+{{dump
+| description = Dragon Quest II (1987-01-26)(Enix)(JP)[a]
+| size = 131088
+| size_hex = $20010
+| crc32 = d4aa554f
+| md5 = b5a03566a3ff68dc563e81cf08ced4e8
+| sha1 = 7eefe5e72e88a7f8513a6ac79b8789877d54f2a1
+}}
+{{dump
+| description = Dragon Warrior II (1990-09)(Enix)(US)
+| size = 262160
+| size_hex = $40010
+| crc32 = e9f5be99
+| md5 = 3aef63a01d6f57e3bf2c865a1d919d13
+| sha1 = f464c7045a489a248686e92164fde2903cfd013e
+}}
+{{known_dumps/end}}
 
 ==External Links==
 

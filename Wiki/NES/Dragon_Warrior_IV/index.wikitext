@@ -120,18 +120,35 @@ Temporary party members that join in specific chapters:
 
 ==Documentation==
 
-{{navbox|NES/Dragon_Warrior_IV|sram_map=yes|extra1=Known_Dumps|extra2=Map_List}}
+* [[Dragon Warrior IV:ROM_Map|ROM Map]] - Complete PRG ROM layout
+* [[Dragon Warrior IV:RAM_Map|RAM Map]] - Runtime memory documentation
+* [[Dragon Warrior IV:SRAM_Map|SRAM Map]] - Save data structure
+* [[Dragon Warrior IV:TBL|Text Table]] - Character encoding
+* [[Dragon Warrior IV:Values|Values]] - Game constants and IDs
+* [[Dragon Warrior IV:Map_List|Map List]] - Location ID reference
 
-* [[NES/Dragon_Warrior_IV/ROM_Map|ROM Map]] - Complete PRG ROM layout
-* [[NES/Dragon_Warrior_IV/RAM_Map|RAM Map]] - Runtime memory documentation
-* [[NES/Dragon_Warrior_IV/SRAM_Map|SRAM Map]] - Save data structure
-* [[NES/Dragon_Warrior_IV/TBL|Text Table]] - Character encoding
-* [[NES/Dragon_Warrior_IV/Values|Values]] - Game constants and IDs
+==Known Dumps==
 
-===Sub-pages===
-* [[NES/Dragon_Warrior_IV/Known_Dumps|Known Dumps]]
-* [[NES/Dragon_Warrior_IV/Map_List|Map List]]
-* [[NES/Dragon_Warrior_IV/Values/Extra_Companions|Extra Companions]]
+These are the ROMs as they are listed in [https://www.tosecdev.org/ TOSEC].
+
+{{known_dumps}}
+{{dump
+| description = Dragon Quest IV (1990-02-11)(Enix)(JP)
+| size = 524304
+| size_hex = $80010
+| crc32 = a1489f3e
+| md5 = 65be0515383394a096084d4921c353f4
+| sha1 = 1147ce6dfdc3354d8bb89be40f5d1a97a2be1aea
+}}
+{{dump
+| description = Dragon Warrior IV (1992-10)(Enix)(US)
+| size = 524304
+| size_hex = $80010
+| crc32 = f6b24806
+| md5 = e45105e8f82d8aa29b39260fd531498d
+| sha1 = f4759104bd0241ce3c038209446aeda79f170fdd
+}}
+{{known_dumps/end}}
 
 ==External Links==
 

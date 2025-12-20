@@ -63,12 +63,33 @@ Dragon Warrior III introduces the class system to the series, allowing players t
 
 ==Documentation==
 
-* [[Dragon Warrior III (NES)/ROM map|ROM Map]] - Complete PRG ROM layout
-* [[Dragon Warrior III (NES)/RAM map|RAM Map]] - Runtime memory documentation
-* [[Dragon Warrior III (NES)/TBL|Text Table]] - Character encoding
-* [[Dragon Warrior III (NES)/Values|Values]] - Game constants
-* [[Dragon Warrior III (NES)/Known Dumps|Known Dumps]] - ROM versions
-* [[Dragon Warrior III (NES)/Sub-pages|Sub-pages]] - Additional documentation
+* [[Dragon Warrior III:ROM_Map|ROM Map]] - Complete PRG ROM layout
+* [[Dragon Warrior III:RAM_Map|RAM Map]] - Runtime memory documentation
+* [[Dragon Warrior III:TBL|Text Table]] - Character encoding
+* [[Dragon Warrior III:Values|Values]] - Game constants
+
+==Known Dumps==
+
+These are the ROMs as they are listed in [https://www.tosecdev.org/ TOSEC].
+
+{{known_dumps}}
+{{dump
+| description = Dragon Quest III (1988-02-10)(Enix)(JP)
+| size = 262160
+| size_hex = $40010
+| crc32 = c1348e6f
+| md5 = 4d7587c092e2955a80cfc2e383599f8e
+| sha1 = 56e0fc1f50e3a778e832d5e142d5591bd0332fad
+}}
+{{dump
+| description = Dragon Warrior III Rev PRG0 (1992-03)(Enix)(US)
+| size = 524304
+| size_hex = $80010
+| crc32 = 0eb63e83
+| md5 = 3ef863d2df43e805bad70f74f0ccd909
+| sha1 = a867549bad1cba4cd6f6dd51743e78596b982bd8
+}}
+{{known_dumps/end}}
 
 ==External Links==
 

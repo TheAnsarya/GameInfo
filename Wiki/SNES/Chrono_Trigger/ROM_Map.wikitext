@@ -1,4 +1,4 @@
-{{rommap|game=Chrono Trigger (SNES)}}
+{{rommap|game=Chrono Trigger}}
 
 This is the ROM map for ''Chrono Trigger'' (SNES). Developed by Square, this game uses a 4MB (32Mbit) ROM with HiROM mapping.
 
@@ -384,8 +384,7 @@ Locations are organized by time period:
 |}
 
 ==See Also==
-* [[Chrono Trigger (SNES):RAM map|RAM Map]]
-* [[Chrono Trigger (SNES):TBL|Text Table]]
-* [[Chrono Trigger (SNES):Values|Data Values]]
+* [[Chrono Trigger:RAM_Map|RAM Map]]
+* [[Chrono Trigger:TBL|Text Table]]
 
-[[Category:Chrono Trigger (SNES)|ROM map]]
+[[Category:Chrono Trigger|ROM map]]

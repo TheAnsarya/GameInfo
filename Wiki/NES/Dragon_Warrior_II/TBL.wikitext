@@ -1,4 +1,4 @@
-{{tbl|game=Dragon Warrior 2 (NES)}}
+{{tbl|game=Dragon Warrior II}}
 
 This is the text table (TBL) file for ''Dragon Warrior II'' (NES). It defines the mapping between ROM byte values and displayed characters.
 
@@ -309,7 +309,7 @@ FF=[END]
 </pre>
 
 ==See Also==
-* [[Dragon Warrior 2 (NES):ROM map|ROM Map]]
-* [[Dragon Warrior 2 (NES):RAM map|RAM Map]]
+* [[Dragon Warrior II:ROM_Map|ROM Map]]
+* [[Dragon Warrior II:RAM_Map|RAM Map]]
 
-[[Category:Dragon Warrior 2 (NES)|TBL]]
+[[Category:Dragon Warrior II|TBL]]

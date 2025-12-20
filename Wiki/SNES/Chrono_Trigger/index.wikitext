@@ -108,17 +108,13 @@ Three-character combination attacks requiring specific party compositions.
 
 ==Documentation==
 
-* [[Chrono Trigger (SNES)/ROM map|ROM Map]] - Complete ROM layout
-* [[Chrono Trigger (SNES)/RAM map|RAM Map]] - Runtime memory documentation
-* [[Chrono Trigger (SNES)/TBL|Text Table]] - Character encoding
-* [[Chrono Trigger (SNES)/Values|Values]] - Game constants
+* [[Chrono Trigger:ROM_Map|ROM Map]] - Complete ROM layout
+* [[Chrono Trigger:RAM_Map|RAM Map]] - Runtime memory documentation
+* [[Chrono Trigger:TBL|Text Table]] - Character encoding
 
-===Sub-pages===
-* [[Chrono Trigger (SNES)/ROM map/Techs|Tech Data]]
-* [[Chrono Trigger (SNES)/ROM map/Enemies|Enemy Data]]
-* [[Chrono Trigger (SNES)/ROM map/Items|Item Data]]
-* [[Chrono Trigger (SNES)/RAM map/Party Data|Party Data Structure]]
-* [[Chrono Trigger (SNES)/Values/Endings|Endings]]
+==See Also==
+
+* [[Category:SNES|All SNES Games]]
 
 ==External Links==
 

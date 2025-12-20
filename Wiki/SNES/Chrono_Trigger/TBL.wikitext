@@ -299,7 +299,7 @@ The space (<code>&nbsp;</code>) character is $ef.
 
 == TBL File ==
 
-<code>Download TBL file: [https://raw.githubusercontent.com/TheAnsarya/GameInfo/main/Chrono%20Trigger%20(SNES)/Wiki/Files/Chrono%20Trigger%20(SNES).tbl Chrono Trigger (SNES).tbl]</code>
+<code>Download TBL file: [[File:Chrono_Trigger.tbl|Chrono Trigger.tbl]]</code>
 
 <pre>
 13=Crono

@@ -212,10 +212,9 @@ When extracting graphics from Dragon Warrior:
 * Items/UI use Menu Palette (ID 4)
 * Background tiles use context-specific palettes
 
-=References=
+=See Also=
 
-* Dragon Warrior complete disassembly
-* NES PPU documentation  
-* CHR ROM structure analysis
-* Graphics extraction tools by TheAnsarya
-* [https://hexed.it/ HexEd.it] - Browser-based hex editor for CHR ROM and graphics data editing
+* [[Dragon Warrior:ROM_Map|ROM Map]]
+* [[Dragon Warrior:RAM_Map|RAM Map]]
+
+[[Category:Dragon Warrior|Graphics Data]]
