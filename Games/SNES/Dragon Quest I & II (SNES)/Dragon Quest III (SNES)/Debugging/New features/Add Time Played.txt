@@ -1,6 +1,0 @@
-60 vblanks byte
-60 seconds byte
-60 minutes byte
-24 hours byte
-days word
-6 bytes
