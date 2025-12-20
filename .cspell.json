@@ -87,6 +87,12 @@
 		"WRAM",
 		"Yuji"
 	],
+	"ignoreRegExpList": [
+		"/\\$[0-9a-fA-F]+/g",
+		"/0x[0-9a-fA-F]+/g",
+		"/\\b[0-9a-fA-F]{2,}h\\b/g",
+		"/#[0-9a-fA-F]{3,8}\\b/g"
+	],
 	"ignorePaths": [
 		"node_modules",
 		".git",
