@@ -46,6 +46,7 @@
 		"Kuesuto",
 		"Lavos",
 		"LoROM",
+		"Mappy",
 		"Marle",
 		"Mbit",
 		"Merida",
@@ -58,6 +59,7 @@
 		"navbox",
 		"NES",
 		"overworld",
+		"playthrough",
 		"PRG",
 		"rammap",
 		"retrogaming",
@@ -85,6 +87,7 @@
 		"wikitable",
 		"wikitext",
 		"WRAM",
+		"Yoshi's",
 		"Yuji"
 	],
 	"ignoreRegExpList": [
