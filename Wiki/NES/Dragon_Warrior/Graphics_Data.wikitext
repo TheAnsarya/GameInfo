@@ -188,7 +188,7 @@ Dragon Warrior uses minimal graphics compression:
 
 ===PPU Configuration===
 * Background: CHR Bank 1
-* Sprites: CHR Bank 0  
+* Sprites: CHR Bank 0
 * Name tables: $2000 (main), $2400 (status)
 * Pattern tables: $0000 (sprites), $1000 (background)
 
