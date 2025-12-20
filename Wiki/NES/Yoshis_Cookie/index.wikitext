@@ -74,9 +74,9 @@ A falling block puzzle game:
 
 ==Documentation==
 
-* [[Yoshi's Cookie (NES)/ROM map|ROM Map]] - Complete ROM layout
-* [[Yoshi's Cookie (NES)/RAM map|RAM Map]] - Runtime memory documentation
-* [[Yoshi's Cookie (NES)/Values|Values]] - Game constants
+* [[Yoshi's Cookie:ROM_Map|ROM Map]] - Complete ROM layout
+* [[Yoshi's Cookie:RAM_Map|RAM Map]] - Runtime memory documentation
+* [[Yoshi's Cookie:TBL|Text Table]] - Character encoding
 
 ==External Links==
 

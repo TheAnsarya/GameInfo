@@ -118,17 +118,10 @@ The US version has significant changes:
 
 ==Documentation==
 
-* [[The 7th Saga (SNES)/ROM map|ROM Map]] - Complete ROM layout
-* [[The 7th Saga (SNES)/RAM map|RAM Map]] - Runtime memory documentation
-* [[The 7th Saga (SNES)/TBL|Text Table]] - Character encoding
-* [[The 7th Saga (SNES)/Values|Values]] - Game constants
-
-===Sub-pages===
-* [[The 7th Saga (SNES)/ROM map/Characters|Character Data]]
-* [[The 7th Saga (SNES)/ROM map/Enemies|Enemy Data]]
-* [[The 7th Saga (SNES)/ROM map/Runes|Rune Data]]
-* [[The 7th Saga (SNES)/RAM map/Party Data|Party Data Structure]]
-* [[The 7th Saga (SNES)/Values/Spells|Spell Data]]
+* [[The 7th Saga:ROM_Map|ROM Map]] - Complete ROM layout
+* [[The 7th Saga:RAM_Map|RAM Map]] - Runtime memory documentation
+* [[The 7th Saga:SRAM_Map|SRAM Map]] - Save RAM documentation
+* [[The 7th Saga:Notes|Notes]] - Miscellaneous notes
 
 ==External Links==
 

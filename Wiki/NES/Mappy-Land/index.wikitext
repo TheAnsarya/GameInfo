@@ -61,9 +61,9 @@ Mappy-Land features:
 
 ==Documentation==
 
-* [[Mappy-Land (NES)/ROM map|ROM Map]] - Complete ROM layout
-* [[Mappy-Land (NES)/RAM map|RAM Map]] - Runtime memory documentation
-* [[Mappy-Land (NES)/Values|Values]] - Game constants
+* [[Mappy-Land:ROM_Map|ROM Map]] - Complete ROM layout
+* [[Mappy-Land:RAM_Map|RAM Map]] - Runtime memory documentation
+* [[Mappy-Land:TBL|Text Table]] - Character encoding
 
 ==External Links==
 

@@ -129,15 +129,8 @@ One of the largest and most technically impressive NES games:
 
 ==Documentation==
 
-* [[Kirby's Adventure (NES)/ROM map|ROM Map]] - Complete ROM layout
-* [[Kirby's Adventure (NES)/RAM map|RAM Map]] - Runtime memory documentation
-* [[Kirby's Adventure (NES)/Values|Values]] - Game constants
-
-===Sub-pages===
-* [[Kirby's Adventure (NES)/ROM map/Copy Abilities|Copy Ability Data]]
-* [[Kirby's Adventure (NES)/ROM map/Enemies|Enemy Data]]
-* [[Kirby's Adventure (NES)/ROM map/Bosses|Boss Data]]
-* [[Kirby's Adventure (NES)/RAM map/Player Data|Player Data Structure]]
+* [[Kirby's Adventure:ROM_Map|ROM Map]] - Complete ROM layout
+* [[Kirby's Adventure:RAM_Map|RAM Map]] - Runtime memory documentation
 
 ==External Links==
 

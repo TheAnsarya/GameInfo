@@ -95,13 +95,9 @@ Opponents from the anime series available to duel.
 
 ==Documentation==
 
-* [[Yu-Gi-Oh! The Eternal Duelist Soul (GBA)/ROM map|ROM Map]] - Complete ROM layout
-* [[Yu-Gi-Oh! The Eternal Duelist Soul (GBA)/RAM map|RAM Map]] - Runtime memory documentation
-* [[Yu-Gi-Oh! The Eternal Duelist Soul (GBA)/Values|Values]] - Game constants
-
-===Sub-pages===
-* [[Yu-Gi-Oh! The Eternal Duelist Soul (GBA)/ROM map/Card Data|Card Data Structure]]
-* [[Yu-Gi-Oh! The Eternal Duelist Soul (GBA)/Values/Card List|Complete Card List]]
+* [[Yu-Gi-Oh! The Eternal Duelist Soul:ROM_Map|ROM Map]] - Complete ROM layout
+* [[Yu-Gi-Oh! The Eternal Duelist Soul:RAM_Map|RAM Map]] - Runtime memory documentation
+* [[Yu-Gi-Oh! The Eternal Duelist Soul:Notes|Notes]] - Miscellaneous notes
 
 ==External Links==
 

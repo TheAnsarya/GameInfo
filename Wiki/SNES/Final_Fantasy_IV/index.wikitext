@@ -120,18 +120,9 @@ The Active Time Battle system:
 
 ==Documentation==
 
-* [[Final Fantasy IV (SNES)/ROM map|ROM Map]] - Complete ROM layout
-* [[Final Fantasy IV (SNES)/RAM map|RAM Map]] - Runtime memory documentation
-* [[Final Fantasy IV (SNES)/TBL|Text Table]] - Character encoding
-* [[Final Fantasy IV (SNES)/Values|Values]] - Game constants
-
-===Sub-pages===
-* [[Final Fantasy IV (SNES)/ROM map/Characters|Character Data]]
-* [[Final Fantasy IV (SNES)/ROM map/Spells|Spell Data]]
-* [[Final Fantasy IV (SNES)/ROM map/Summons|Summon Data]]
-* [[Final Fantasy IV (SNES)/ROM map/Enemies|Enemy Data]]
-* [[Final Fantasy IV (SNES)/RAM map/Party Data|Party Data Structure]]
-* [[Final Fantasy IV (SNES)/Values/Items|Item Data]]
+* [[Final Fantasy IV:ROM_Map|ROM Map]] - Complete ROM layout
+* [[Final Fantasy IV:RAM_Map|RAM Map]] - Runtime memory documentation
+* [[Final Fantasy IV:TBL|Text Table]] - Character encoding
 
 ==External Links==
 
