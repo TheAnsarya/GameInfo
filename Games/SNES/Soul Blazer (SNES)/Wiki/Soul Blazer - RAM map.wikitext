@@ -1,0 +1,166 @@
+{{DISPLAYTITLE:Soul Blazer:RAM map}}
+This is the '''RAM map''' for '''[[Soul Blazer]]''' (SNES).
+
+==Overview==
+Soul Blazer uses SNES Work RAM ($7E0000-$7FFFFF) for game state, with battery-backed SRAM for save data.
+
+==Work RAM==
+
+===Direct Page ($7E0000-$7E00FF)===
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $7E0000 || 256 || Direct Page variables
+|}
+
+===Stack ($7E0100-$7E01FF)===
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $7E0100 || 256 || Stack area
+|}
+
+===Player Data ($7E0200)===
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $7E0200 || 2 || Player X position (subpixel)
+|-
+| $7E0202 || 2 || Player Y position (subpixel)
+|-
+| $7E0204 || 2 || Current HP
+|-
+| $7E0206 || 2 || Max HP
+|-
+| $7E0208 || 2 || Strength
+|-
+| $7E020A || 2 || Defense
+|-
+| $7E020C || 4 || Experience points
+|-
+| $7E0210 || 4 || GEMs (currency)
+|-
+| $7E0214 || 1 || Level
+|-
+| $7E0215 || 1 || Equipped sword ID
+|-
+| $7E0216 || 1 || Equipped armor ID
+|-
+| $7E0217 || 1 || Equipped magic ID
+|}
+
+===Game State ($7E0300)===
+{| class="wikitable sortable"
+! Address !! Size !! Description
+|-
+| $7E0300 || 1 || Current area ID
+|-
+| $7E0301 || 1 || Current map ID
+|-
+| $7E0302 || 2 || Screen X scroll
+|-
+| $7E0304 || 2 || Screen Y scroll
+|-
+| $7E0306 || 1 || Game mode
+|-
+| $7E0307 || 1 || Frame counter
+|}
+
+====Game Modes====
+{| class="wikitable"
+! Value !! Description
+|-
+| 0 || Title screen
+|-
+| 1 || Gameplay
+|-
+| 2 || Menu/Pause
+|}
+
+===Controller Input ($7E0400)===
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $7E0400 || 2 || Controller 1 current state
+|-
+| $7E0402 || 2 || Controller 1 pressed (new this frame)
+|-
+| $7E0404 || 2 || Controller 1 held
+|}
+
+===OAM Buffer ($7E0500)===
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $7E0500 || 512 || OAM buffer (128 sprites × 4 bytes)
+|-
+| $7E0700 || 32 || OAM high table buffer
+|}
+
+===Entity Table ($7E0800)===
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $7E0800 || 2048 || Entity data (enemies, NPCs, projectiles)
+|}
+
+===Soul Lair Flags ($7E1000)===
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $7E1000 || 256 || Bitfield for cleared lairs
+|}
+
+Each bit represents one soul lair. When set, the lair has been cleared and its souls released.
+
+==SRAM ($700000-$707FFF)==
+
+===Save Slot Layout===
+Each save slot occupies 2KB ($800 bytes).
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $0000 || 16 || Player name
+|-
+| $0010 || 2 || Current HP
+|-
+| $0012 || 2 || Max HP
+|-
+| $0014 || 2 || Strength
+|-
+| $0016 || 2 || Defense
+|-
+| $0018 || 4 || Experience
+|-
+| $001C || 4 || GEMs
+|-
+| $0020 || 1 || Level
+|-
+| $0021 || 1 || Current area
+|-
+| $0022 || 1 || Current map
+|-
+| $0023 || 32 || Inventory items
+|-
+| $0043 || 1 || Equipped sword
+|-
+| $0044 || 1 || Equipped armor
+|-
+| $0045 || 1 || Equipped magic
+|-
+| $0100 || 256 || Soul lair cleared flags
+|-
+| $0200 || 256 || Event flags
+|-
+| $07FC || 2 || Checksum
+|-
+| $07FE || 2 || Checksum complement
+|}
+
+==See Also==
+* [[Soul Blazer:ROM map|ROM Map]]
+* [[Soul Blazer:Data tables|Data Tables]]
+
+[[Category:Soul Blazer]]
+[[Category:RAM maps]]
