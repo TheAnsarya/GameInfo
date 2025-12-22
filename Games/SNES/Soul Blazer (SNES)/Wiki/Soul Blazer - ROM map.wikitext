@@ -79,8 +79,44 @@ CPU Address = (Bank << 16) | $8000 | (File Offset & $7FFF)
 |-
 | $0F || $078000 || $07FFFF || 32KB || Audio/SPC
 |-
-| $10-$1F || $080000 || $0FFFFF || 512KB || Graphics/sprites
+| $10 || $080000 || $087FFF || 32KB || Act 1 Tileset (Grass Valley/Underground Castle)
+|-
+| $11 || $088000 || $08FFFF || 32KB || Act 2 Tileset (GreenWood)
+|-
+| $12 || $090000 || $097FFF || 32KB || Act 3 Tileset (St. Elles/Seabed)
+|-
+| $13 || $098000 || $09FFFF || 32KB || Act 4 Tileset (Mountain of Souls)
+|-
+| $14 || $0A0000 || $0A7FFF || 32KB || Act 5-6 Tileset (Leo's Lab/Magridd)
+|-
+| $15-$17 || $0A8000 || $0BFFFF || 96KB || Sprite graphics
+|-
+| $18-$1A || $0C0000 || $0DFFFF || 96KB || Tilemap data
+|-
+| $1B-$1F || $0D8000 || $0FFFFF || 160KB || Additional graphics/data
 |}
+
+==Tileset Banks==
+Each act uses a dedicated tileset bank containing 4BPP graphics tiles.
+
+{| class="wikitable"
+! Bank !! Area !! Tile Count !! Notes
+|-
+| $10 || Grass Valley, Underground Castle || 512 || Dungeon/castle theme
+|-
+| $11 || GreenWood, Shrines || 512 || Forest/nature theme
+|-
+| $12 || St. Elles, Seabed, Ghost Ship || 512 || Underwater/ocean theme
+|-
+| $13 || Mountain of Souls, Nome, Laynole, Lune || 512 || Mountain/ice theme
+|-
+| $14 || Leo's Lab, Magridd Castle, World of Evil || 512 || Mechanical/dark theme
+|}
+
+Tilesets use standard SNES 4BPP format:
+* 32 bytes per 8×8 tile
+* 512 tiles = 16,384 bytes ($4000)
+* Remaining space in each bank: palettes, attributes, metadata
 
 ==Key Routines==
 {| class="wikitable"

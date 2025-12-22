@@ -149,6 +149,19 @@ Analyzes:
 - Boss data (8 bosses)
 - Progression guide generation
 
+### Tilemap Renderer
+```bash
+python tilemap_renderer.py --list           # List known maps
+python tilemap_renderer.py --all            # Render all maps
+python tilemap_renderer.py --map "GreenWood" # Render specific map
+```
+Features:
+- Render full game maps to PNG images
+- 4BPP tile decoding with palette support
+- Tilemap parsing (flip, priority, palette attributes)
+- Database of known map locations
+- Batch export all maps
+
 ## ROM Structure
 
 ### Banks
