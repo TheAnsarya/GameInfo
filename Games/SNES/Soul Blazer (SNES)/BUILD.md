@@ -113,6 +113,42 @@ GUI application for:
 - Browsing game areas
 - Examining pointer tables
 
+### Palette Extractor
+```bash
+python palette_extractor.py
+```
+Extracts:
+- 170 SNES color palettes
+- PNG preview images for each palette
+- JSON export with RGB values
+
+### Palette Manager
+```bash
+python palette_manager.py
+```
+Library for:
+- Loading extracted palettes
+- Mapping areas to palettes
+- SNES format conversion
+
+### NPC Analyzer
+```bash
+python npc_analyzer.py
+```
+Analyzes:
+- NPC patterns (3,036 candidates)
+- Dialogue pointer tables (1,465 tables)
+- Complete script dump (694 blocks, 3,529 lines)
+
+### Event Analyzer
+```bash
+python event_analyzer.py
+```
+Analyzes:
+- Soul Lair patterns (1,980 entries)
+- Boss data (8 bosses)
+- Progression guide generation
+
 ## ROM Structure
 
 ### Banks
