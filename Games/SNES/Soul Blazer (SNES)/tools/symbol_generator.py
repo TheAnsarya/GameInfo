@@ -83,7 +83,7 @@ class SymbolGenerator:
 
 		# Common subroutine patterns identified from call frequency
 		frequent_calls = sorted(self.call_targets.items(), key=lambda x: -x[1])[:100]
-		
+
 		# Known/identifiable routines from code analysis
 		known_routines = {
 			# Bank 00 - Core engine
@@ -173,7 +173,7 @@ class SymbolGenerator:
 						"audio", "input", "npc", "camera", "events", "collision", "auto", "other"]:
 				if cat not in categories:
 					continue
-				
+
 				f.write(f"; === {cat.upper()} ===\n")
 				for sym in sorted(categories[cat], key=lambda s: s.full_address):
 					comment = f"  ; {sym.comment}" if sym.comment else ""
@@ -251,7 +251,7 @@ def main():
 	# Default paths
 	script_dir = Path(__file__).parent
 	disasm_dir = script_dir.parent / "disasm"
-	
+
 	if len(sys.argv) > 1:
 		disasm_dir = Path(sys.argv[1])
 
@@ -260,19 +260,19 @@ def main():
 		sys.exit(1)
 
 	generator = SymbolGenerator(str(disasm_dir))
-	
+
 	print("Analyzing disassembly files...")
 	generator.analyze_all_files()
-	
+
 	print(f"\nFound {len(generator.call_targets)} unique call targets")
 	print(f"Found {len(generator.jump_targets)} unique jump targets")
-	
+
 	print("\nAdding known symbols...")
 	generator.add_known_symbols()
-	
+
 	print("Adding auto-generated labels...")
 	generator.add_auto_labels()
-	
+
 	# Generate outputs
 	generator.generate_symbol_file(disasm_dir / "soul_blazer.sym")
 	generator.generate_ram_map(disasm_dir / "soul_blazer_ram.map")

@@ -18,7 +18,7 @@ def load_symbols(sym_file: Path) -> Dict[int, Tuple[str, str]]:
 			line = line.strip()
 			if not line or line.startswith(';'):
 				continue
-			
+
 			# Parse: $00:8000 Label  ; comment
 			match = re.match(r'\$([0-9a-f]{2}):([0-9a-f]{4})\s+(\S+)(?:\s*;\s*(.*))?', line, re.I)
 			if match:
@@ -28,7 +28,7 @@ def load_symbols(sym_file: Path) -> Dict[int, Tuple[str, str]]:
 				comment = match.group(4) or ""
 				full_addr = (bank << 16) | addr
 				symbols[full_addr] = (name, comment)
-	
+
 	return symbols
 
 
@@ -47,7 +47,7 @@ def apply_labels_to_file(asm_file: Path, symbols: Dict[int, Tuple[str, str]], ou
 			bank = int(match.group(1), 16)
 			addr = int(match.group(2), 16)
 			full_addr = (bank << 16) | addr
-			
+
 			# Check if we have a label for this address
 			if full_addr in symbols:
 				name, comment = symbols[full_addr]
@@ -56,7 +56,7 @@ def apply_labels_to_file(asm_file: Path, symbols: Dict[int, Tuple[str, str]], ou
 					label_line = f"{name}:\n"
 					modified.append(label_line)
 					labels_applied += 1
-		
+
 		# Also add cross-reference comments for JSL/JSR targets
 		for pattern, prefix in [(r'jsl\s+\$([0-9a-f]{6})', ''), (r'jsr\s+\$([0-9a-f]{4})', '')]:
 			match = re.search(pattern, line, re.I)
@@ -72,14 +72,14 @@ def apply_labels_to_file(asm_file: Path, symbols: Dict[int, Tuple[str, str]], ou
 						target = (bank << 16) | int(target_str, 16)
 					else:
 						target = int(target_str, 16)
-				
+
 				if target in symbols:
 					name, _ = symbols[target]
 					# Add label reference as comment if not already there
 					if f"; -> {name}" not in line and name not in line:
 						line = line.rstrip() + f"  ; -> {name}\n"
 				break
-		
+
 		modified.append(line)
 
 	# Write modified file
