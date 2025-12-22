@@ -1,0 +1,408 @@
+{{DISPLAYTITLE:Soul Blazer:Progression}}
+This is the '''progression guide''' for '''[[Soul Blazer]]''' (SNES), documenting the game's structure, bosses, and completion requirements.
+
+==Overview==
+Soul Blazer is divided into 6 Acts, each featuring:
+* Multiple dungeon areas with Soul Lairs
+* NPCs/creatures to release
+* A boss encounter
+* Key items and story progression
+
+Total Soul Lairs: ~120
+Total Bosses: 8
+
+==Act 1: Grass Valley==
+
+===Areas===
+{| class="wikitable"
+! Area !! Description !! Enemies
+|-
+| Grass Valley Village || Starting hub area || None
+|-
+| Underground Castle B1 || First dungeon level || Blue Slime, Skull Head
+|-
+| Underground Castle B2 || Second dungeon level || Green Slime, Ghost
+|-
+| Underground Castle B3 || Third dungeon level || Red Slime, Metal Scorpion
+|-
+| Underground Castle B4 || Boss area || Dark Soldier, Metal Armor
+|}
+
+===Progression===
+# Enter Grass Valley Shrine (starting location)
+# Clear Underground Castle B1 to release Old Woman
+# Clear B2 to release Tool Shop Owner
+# Purchase Dream Rod from Tool Shop
+# Use Dream Rod to speak with Dr. Leo
+# Clear B3 to release Bridge Guard
+# Cross bridge to B4
+# Defeat '''Metal Mantis''' boss
+# Release remaining villagers
+# Receive '''Sword of Life'''
+# Proceed to GreenWood
+
+===Boss: Metal Mantis===
+{| class="wikitable"
+! Stat !! Value
+|-
+| HP || 32
+|-
+| Attack || 8
+|-
+| Defense || 4
+|-
+| Pattern || Lunges forward, shoots projectiles
+|-
+| Weakness || Strike from behind
+|-
+| Reward || Access to GreenWood
+|}
+
+===Key Items===
+* '''Dream Rod''' - Allows communication with sleeping Dr. Leo
+* '''Sword of Life''' - Basic attack upgrade
+
+==Act 2: GreenWood==
+
+===Areas===
+{| class="wikitable"
+! Area !! Description !! Enemies
+|-
+| GreenWood || Forest hub area || None (after release)
+|-
+| Water Shrine || Water dungeon || Stinger, Mud Slime
+|-
+| Fire Shrine || Fire dungeon || Fire Bug, Fire Spirit
+|-
+| Light Shrine || Light dungeon || Poison Butterfly, Dark Elf
+|-
+| Lost Marsh || Boss area || Maneater, Guardian
+|}
+
+===Progression===
+# Enter GreenWood through western path
+# Clear Fire Shrine - Release deer
+# Clear Water Shrine - Release bird
+# Clear Light Shrine - Release mole
+# Release Turbo (squirrel)
+# Enter Lost Marsh with Turbo's help
+# Navigate marsh puzzles
+# Defeat '''Plantentacle''' boss
+# Release Great Tree
+# Receive '''Greenwood Leaf'''
+# Proceed to St. Elles
+
+===Boss: Plantentacle===
+{| class="wikitable"
+! Stat !! Value
+|-
+| HP || 48
+|-
+| Attack || 12
+|-
+| Defense || 6
+|-
+| Pattern || Extends vines, summons plant minions
+|-
+| Weakness || Strike the main bulb
+|-
+| Reward || Access to St. Elles
+|}
+
+===Key Items===
+* '''Greenwood Leaf''' - Allows breathing underwater
+* '''Magic Bell''' - Summons released creatures
+
+==Act 3: St. Elles==
+
+===Areas===
+{| class="wikitable"
+! Area !! Description !! Enemies
+|-
+| St. Elles Seabed || Underwater hub || Urchin, Jellyfish
+|-
+| Durean || Underwater ruins || Merman, Fish Monster
+|-
+| Ghost Ship || Haunted vessel || Zombie, Ghost Pirate
+|-
+| Southerta || Underwater city || Phantom, Bat
+|-
+| Mermaid Queen Palace || Royal chamber || None
+|}
+
+===Progression===
+# Dive into seabed using Greenwood Leaf
+# Clear Durean - Release dolphins
+# Learn about Ghost Ship from mermaids
+# Board Ghost Ship
+# Navigate the haunted ship
+# Defeat '''Ghost Ship Captain''' boss
+# Continue to Southerta
+# Visit Mermaid Queen
+# Defeat '''Poseidon''' boss
+# Receive '''Bubble Armor'''
+# Proceed to Mountain of Souls
+
+===Boss: Ghost Ship Captain===
+{| class="wikitable"
+! Stat !! Value
+|-
+| HP || 40
+|-
+| Attack || 14
+|-
+| Defense || 7
+|-
+| Pattern || Throws anchor, summons ghost crew
+|-
+| Weakness || Soul Blade magic
+|-
+| Reward || Access to Southerta
+|}
+
+===Boss: Poseidon===
+{| class="wikitable"
+! Stat !! Value
+|-
+| HP || 64
+|-
+| Attack || 18
+|-
+| Defense || 10
+|-
+| Pattern || Trident strikes, water spouts
+|-
+| Weakness || Strike during recovery
+|-
+| Reward || Bubble Armor
+|}
+
+===Key Items===
+* '''Bubble Armor''' - Increased underwater defense
+* '''Mermaid Tears''' - Healing item
+
+==Act 4: Mountain of Souls==
+
+===Areas===
+{| class="wikitable"
+! Area !! Description !! Enemies
+|-
+| Mountain Base || Entry area || Imp, Demon Eye
+|-
+| Laynole || Mushroom village || Fire Elemental, Stone Face
+|-
+| Nome || Mountain village || Ice Elemental, Demon Knight
+|-
+| Lune || Summit area || Various
+|}
+
+===Progression===
+# Enter mountain via Nome village
+# Clear Laynole - Release mushrooms
+# Learn about sleeping grandparents
+# Navigate to Lune area
+# Solve mountain puzzles
+# Defeat '''Stone Guardian''' boss
+# Release grandparents
+# Receive '''Phoenix''' magic
+# Proceed to Leo's Laboratory
+
+===Boss: Stone Guardian===
+{| class="wikitable"
+! Stat !! Value
+|-
+| HP || 80
+|-
+| Attack || 22
+|-
+| Defense || 15
+|-
+| Pattern || Stone fists, creates barriers
+|-
+| Weakness || Phoenix magic
+|-
+| Reward || Phoenix spell
+|}
+
+===Key Items===
+* '''Phoenix''' - Powerful fire magic
+* '''Mountain Key''' - Opens sealed doors
+
+==Act 5: Leo's Laboratory==
+
+===Areas===
+{| class="wikitable"
+! Area !! Description !! Enemies
+|-
+| Model Town 1 || Toy-sized town || Toy Soldier, Toy Tank
+|-
+| Model Town 2 || Second toy area || Cat, Mouse
+|-
+| Leo's Lab Basement || Laboratory || Various
+|-
+| Leo's Lab Attic || Upper laboratory || Various
+|-
+| Leo's Paintings || Painting worlds || Painting Monster
+|}
+
+===Progression===
+# Enter model town
+# Shrink to toy size
+# Clear Model Town areas - Release toy creatures
+# Enter Leo's Laboratory
+# Explore the basement
+# Enter paintings (4 different worlds)
+# Clear each painting world
+# Defeat '''Tin Doll''' boss
+# Rescue Marie from imprisonment
+# Learn Dr. Leo's fate
+# Proceed to Magridd Castle
+
+===Boss: Tin Doll===
+{| class="wikitable"
+! Stat !! Value
+|-
+| HP || 96
+|-
+| Attack || 26
+|-
+| Defense || 18
+|-
+| Pattern || Toy attacks, size manipulation
+|-
+| Weakness || Strike joints
+|-
+| Reward || Access to Magridd
+|}
+
+===Key Items===
+* '''Lucky Blade''' - Increased critical hits
+* '''Medical Herb''' - Full HP restoration
+
+==Act 6: Magridd Castle==
+
+===Areas===
+{| class="wikitable"
+! Area !! Description !! Enemies
+|-
+| Magridd Castle Town || Capital city || None (initially)
+|-
+| Magridd Castle || Royal castle || Dark Knight, Demon Wizard
+|-
+| Castle Basement || Dungeon area || Shadow, Dragon
+|-
+| World of Evil || Final area || Demon, Deathtoll's servants
+|-
+| Deathtoll's Lair || Final boss arena || Deathtoll
+|}
+
+===Progression===
+# Enter Castle Town
+# Get audience with King Magridd
+# Learn about evil corruption
+# Enter castle dungeon
+# Clear basement areas - Release imprisoned souls
+# Defeat '''Demon Bird''' boss
+# Discover truth about King Magridd
+# Enter World of Evil
+# Navigate final gauntlet
+# Defeat '''Deathtoll''' (final boss)
+# Watch ending sequence
+# Credits roll
+
+===Boss: Demon Bird===
+{| class="wikitable"
+! Stat !! Value
+|-
+| HP || 112
+|-
+| Attack || 30
+|-
+| Defense || 20
+|-
+| Pattern || Aerial attacks, dive bombs
+|-
+| Weakness || Time attacks during landing
+|-
+| Reward || Access to World of Evil
+|}
+
+===Boss: Deathtoll (Final)=== 
+{| class="wikitable"
+! Stat !! Value
+|-
+| HP || 255
+|-
+| Attack || 40
+|-
+| Defense || 25
+|-
+| Pattern || Multiple forms, various attacks
+|-
+| Weakness || Strike the core
+|-
+| Reward || Game completion
+|}
+
+===Key Items===
+* '''Soul Armor''' - Maximum defense
+* '''Soul Blade''' - Maximum attack
+
+==Soul Lair Summary==
+
+{| class="wikitable sortable"
+! Act !! Area !! Estimated Lairs !! Primary Releases
+|-
+| 1 || Grass Valley || 20 || Villagers, buildings
+|-
+| 2 || GreenWood || 18 || Forest creatures, plants
+|-
+| 3 || St. Elles || 22 || Sea creatures, mermaids
+|-
+| 4 || Mountain of Souls || 18 || Mountain dwellers
+|-
+| 5 || Leo's Laboratory || 20 || Toy creatures
+|-
+| 6 || Magridd Castle || 22 || Castle inhabitants
+|}
+
+==Boss Summary==
+
+{| class="wikitable sortable"
+! # !! Boss !! Act !! Location !! HP
+|-
+| 1 || Metal Mantis || 1 || Underground Castle B4 || 32
+|-
+| 2 || Plantentacle || 2 || Lost Marsh || 48
+|-
+| 3 || Ghost Ship Captain || 3 || Ghost Ship || 40
+|-
+| 4 || Poseidon || 3 || Southerta || 64
+|-
+| 5 || Stone Guardian || 4 || Mountain of Souls || 80
+|-
+| 6 || Tin Doll || 5 || Leo's Lab || 96
+|-
+| 7 || Demon Bird || 6 || Magridd Castle || 112
+|-
+| 8 || Deathtoll || 6 || World of Evil || 255
+|}
+
+==Completion Requirements==
+
+To achieve 100% completion:
+* Clear all ~120 Soul Lairs
+* Defeat all 8 bosses
+* Release all NPCs and creatures
+* Collect all equipment
+* View ending
+
+==See Also==
+* [[Soul Blazer:ROM map|ROM Map]]
+* [[Soul Blazer:RAM map|RAM Map]]
+* [[Soul Blazer:Enemies|Enemies]]
+* [[Soul Blazer:Items|Items]]
+* [[Soul Blazer:Data tables|Data Tables]]
+
+[[Category:Soul Blazer]]
+[[Category:Walkthroughs]]

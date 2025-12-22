@@ -95,6 +95,19 @@ Soul Blazer features over 50 enemy types across 6 acts, spawning from Soul Lairs
 
 Equipment includes 8 swords, 8 armor pieces, and 8 magic types.
 
+==Progression==
+{{Main|Soul Blazer:Progression}}
+
+The game is divided into 6 Acts:
+# '''Grass Valley''' - Underground Castle, Metal Mantis boss
+# '''GreenWood''' - Forest shrines, Plantentacle boss
+# '''St. Elles''' - Seabed/Ghost Ship, Poseidon boss
+# '''Mountain of Souls''' - Nome/Laynole, Stone Guardian boss
+# '''Leo's Laboratory''' - Model towns/paintings, Tin Doll boss
+# '''Magridd Castle''' - Final dungeons, Deathtoll final boss
+
+Total Soul Lairs: ~120 | Total Bosses: 8
+
 ==Audio==
 The game's music was composed by Yukihide Takekawa. The SNES SPC700 audio driver is located at $07A7F6 in the ROM.
 
