@@ -218,6 +218,10 @@ add markdown linting/formatting rules to the editor config (which you should app
 
 Check the `~roms` folder (not in git, because this is copyrighted material) there are SNES ROM files for games we're looking at so you can get hashes from them, or reference the file data for the deconstructions; pick a random one that's not got documentation here yet and start breaking it apart and documenting it, and disassemble it and comment all the code, make markdown documentation, make wikitext, make editors (use the classes and code from the main `gameinfo-tools` as a base), make assets extraction, conversion, editing, and reinsertion and the deconstruct/build scrips to pull the assets out and convert them to editasble atate and then back to dat and reinsert them into a built rom; make build process from disassembly and assets, etc; make sure to update git, github issues, todo-lists, chat and summary logs, and build and editing documentation;
 
+Create a few githuib issues for this work effort (with todo-lists!), then continue working exactly where you were: `Now let me create the disassembler for Soul Blazer:` and continue!
+
+Work on #1, but also work through the other four, making sub-github-issues for each one; make a bunch of sub issues that are linked to their parents; and then work through all of those issues; work on disassemnly, especially rebuild pprocess, and aset extraction and map viewer;
+
 
 
 

@@ -6,7 +6,8 @@ namespace GameInfoTools.Games.SoulBlazer;
 /// <summary>
 /// Soul Blazer (SNES) ROM editor.
 /// </summary>
-public class SoulBlazerEditor : IDisposable {
+public class SoulBlazerEditor : IDisposable
+{
 	private readonly RomFile _rom;
 	private bool _disposed;
 
@@ -32,14 +33,16 @@ public class SoulBlazerEditor : IDisposable {
 	/// <summary>
 	/// Creates a new Soul Blazer editor.
 	/// </summary>
-	public SoulBlazerEditor() {
+	public SoulBlazerEditor()
+	{
 		_rom = new RomFile();
 	}
 
 	/// <summary>
 	/// Load a Soul Blazer ROM.
 	/// </summary>
-	public void Load(string path) {
+	public void Load(string path)
+	{
 		_rom.Load(path);
 		IsModified = false;
 	}
@@ -47,7 +50,8 @@ public class SoulBlazerEditor : IDisposable {
 	/// <summary>
 	/// Load a Soul Blazer ROM asynchronously.
 	/// </summary>
-	public async Task LoadAsync(string path, CancellationToken ct = default) {
+	public async Task LoadAsync(string path, CancellationToken ct = default)
+	{
 		await _rom.LoadAsync(path, ct);
 		IsModified = false;
 	}
@@ -55,7 +59,8 @@ public class SoulBlazerEditor : IDisposable {
 	/// <summary>
 	/// Save the ROM to disk.
 	/// </summary>
-	public void Save(string? path = null) {
+	public void Save(string? path = null)
+	{
 		UpdateChecksum();
 		_rom.Save(path);
 		IsModified = false;
@@ -64,7 +69,8 @@ public class SoulBlazerEditor : IDisposable {
 	/// <summary>
 	/// Convert LoROM CPU address to file offset.
 	/// </summary>
-	public static int LoRomToFile(int bank, int address) {
+	public static int LoRomToFile(int bank, int address)
+	{
 		if (bank >= 0x80)
 			bank -= 0x80;
 		return bank * 0x8000 + (address & 0x7fff);
@@ -73,7 +79,8 @@ public class SoulBlazerEditor : IDisposable {
 	/// <summary>
 	/// Convert file offset to LoROM bank and address.
 	/// </summary>
-	public static (int Bank, int Address) FileToLoRom(int offset) {
+	public static (int Bank, int Address) FileToLoRom(int offset)
+	{
 		int bank = offset / 0x8000;
 		int address = 0x8000 + (offset % 0x8000);
 		return (bank, address);
@@ -97,7 +104,8 @@ public class SoulBlazerEditor : IDisposable {
 	/// <summary>
 	/// Write a byte to the ROM.
 	/// </summary>
-	public void WriteByte(int offset, byte value) {
+	public void WriteByte(int offset, byte value)
+	{
 		_rom.WriteByte(offset, value);
 		IsModified = true;
 	}
@@ -105,7 +113,8 @@ public class SoulBlazerEditor : IDisposable {
 	/// <summary>
 	/// Write a 16-bit word (little-endian).
 	/// </summary>
-	public void WriteWord(int offset, ushort value) {
+	public void WriteWord(int offset, ushort value)
+	{
 		_rom.Write(offset, [(byte)(value & 0xff), (byte)(value >> 8)]);
 		IsModified = true;
 	}
@@ -113,7 +122,8 @@ public class SoulBlazerEditor : IDisposable {
 	/// <summary>
 	/// Update the ROM checksum.
 	/// </summary>
-	public void UpdateChecksum() {
+	public void UpdateChecksum()
+	{
 		// Zero out existing checksum
 		var data = _rom.Data;
 		data[ChecksumOffset] = 0;
@@ -139,7 +149,8 @@ public class SoulBlazerEditor : IDisposable {
 	/// <summary>
 	/// Verify the ROM checksum.
 	/// </summary>
-	public bool VerifyChecksum() {
+	public bool VerifyChecksum()
+	{
 		ushort stored = ReadWord(ChecksumOffset);
 		ushort complement = ReadWord(ChecksumComplementOffset);
 		return (stored ^ complement) == 0xffff;
@@ -148,7 +159,8 @@ public class SoulBlazerEditor : IDisposable {
 	/// <summary>
 	/// Get the internal ROM title.
 	/// </summary>
-	public string GetTitle() {
+	public string GetTitle()
+	{
 		var span = _rom.Read(HeaderOffset, 21);
 		return System.Text.Encoding.ASCII.GetString(span).TrimEnd();
 	}
@@ -156,7 +168,8 @@ public class SoulBlazerEditor : IDisposable {
 	/// <summary>
 	/// Get enemy data by ID.
 	/// </summary>
-	public EnemyData? GetEnemy(int id) {
+	public EnemyData? GetEnemy(int id)
+	{
 		// Enemy table location needs verification
 		int tableOffset = 0x030000;
 		int entrySize = 16;
@@ -165,7 +178,8 @@ public class SoulBlazerEditor : IDisposable {
 		if (offset + entrySize > _rom.Length)
 			return null;
 
-		return new EnemyData {
+		return new EnemyData
+		{
 			Id = id,
 			Hp = ReadWord(offset),
 			Attack = ReadByte(offset + 2),
@@ -181,7 +195,8 @@ public class SoulBlazerEditor : IDisposable {
 	/// <summary>
 	/// Set enemy data.
 	/// </summary>
-	public void SetEnemy(EnemyData enemy) {
+	public void SetEnemy(EnemyData enemy)
+	{
 		int tableOffset = 0x030000;
 		int entrySize = 16;
 		int offset = tableOffset + enemy.Id * entrySize;
@@ -199,16 +214,19 @@ public class SoulBlazerEditor : IDisposable {
 	/// <summary>
 	/// Export all enemies to JSON.
 	/// </summary>
-	public void ExportEnemies(string path, int count = 100) {
+	public void ExportEnemies(string path, int count = 100)
+	{
 		var enemies = new List<EnemyData>();
 
-		for (int i = 0; i < count; i++) {
+		for (int i = 0; i < count; i++)
+		{
 			var enemy = GetEnemy(i);
 			if (enemy != null)
 				enemies.Add(enemy);
 		}
 
-		var json = JsonSerializer.Serialize(enemies, new JsonSerializerOptions {
+		var json = JsonSerializer.Serialize(enemies, new JsonSerializerOptions
+		{
 			WriteIndented = true
 		});
 
@@ -218,26 +236,32 @@ public class SoulBlazerEditor : IDisposable {
 	/// <summary>
 	/// Import enemies from JSON.
 	/// </summary>
-	public void ImportEnemies(string path) {
+	public void ImportEnemies(string path)
+	{
 		var json = File.ReadAllText(path);
 		var enemies = JsonSerializer.Deserialize<List<EnemyData>>(json);
 
-		if (enemies != null) {
+		if (enemies != null)
+		{
 			foreach (var enemy in enemies)
 				SetEnemy(enemy);
 		}
 	}
 
-	protected virtual void Dispose(bool disposing) {
-		if (!_disposed) {
-			if (disposing) {
+	protected virtual void Dispose(bool disposing)
+	{
+		if (!_disposed)
+		{
+			if (disposing)
+			{
 				_rom.Dispose();
 			}
 			_disposed = true;
 		}
 	}
 
-	public void Dispose() {
+	public void Dispose()
+	{
 		Dispose(true);
 		GC.SuppressFinalize(this);
 	}
@@ -246,7 +270,8 @@ public class SoulBlazerEditor : IDisposable {
 /// <summary>
 /// Enemy data structure.
 /// </summary>
-public class EnemyData {
+public class EnemyData
+{
 	public int Id { get; set; }
 	public string Name { get; set; } = "";
 	public ushort Hp { get; set; }
@@ -262,7 +287,8 @@ public class EnemyData {
 /// <summary>
 /// Item data structure.
 /// </summary>
-public class ItemData {
+public class ItemData
+{
 	public int Id { get; set; }
 	public string Name { get; set; } = "";
 	public byte Type { get; set; }
@@ -273,7 +299,8 @@ public class ItemData {
 /// <summary>
 /// Soul lair data structure.
 /// </summary>
-public class SoulLairData {
+public class SoulLairData
+{
 	public int Id { get; set; }
 	public ushort X { get; set; }
 	public ushort Y { get; set; }

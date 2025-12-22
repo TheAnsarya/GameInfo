@@ -482,6 +482,18 @@ class Disassembler:
 		"""Disassemble a single instruction at offset."""
 		bank, addr = self.file_to_lorom(offset)
 
+		if offset >= len(self.rom):
+			return DisassembledLine(
+				file_offset=offset,
+				bank=bank,
+				address=addr,
+				opcode=0x00,
+				operand_bytes=b'',
+				mnemonic=".db",
+				operand_str="$00",
+				comment="End of ROM"
+			)
+
 		opcode = self.rom[offset]
 		instr = OPCODES.get(opcode)
 
@@ -500,7 +512,21 @@ class Disassembler:
 
 		# Get operand
 		op_size = self.get_operand_size(instr.mode)
-		operand = self.rom[offset+1:offset+1+op_size]
+		operand_end = min(offset + 1 + op_size, len(self.rom))
+		operand = self.rom[offset+1:operand_end]
+
+		# If we don't have enough bytes, treat as data
+		if len(operand) < op_size:
+			return DisassembledLine(
+				file_offset=offset,
+				bank=bank,
+				address=addr,
+				opcode=opcode,
+				operand_bytes=b'',
+				mnemonic=".db",
+				operand_str=f"${opcode:02x}",
+				comment="Incomplete instruction at ROM end"
+			)
 
 		# Update state for REP/SEP
 		if instr.mnemonic == "REP" and len(operand) > 0:
@@ -614,8 +640,9 @@ def disassemble_soul_blazer(rom_path: str, output_dir: str):
 
 	# Disassemble each bank
 	num_banks = len(rom) // 0x8000
+	total_instructions = 0
 
-	for bank in range(min(num_banks, 4)):  # First 4 banks for now
+	for bank in range(num_banks):  # All banks
 		print(f"Disassembling bank ${bank:02x}...")
 
 		lines = disasm.disassemble_bank(bank)
@@ -635,7 +662,10 @@ def disassemble_soul_blazer(rom_path: str, output_dir: str):
 			for line in lines:
 				f.write(disasm.format_line(line).rstrip() + "\n")
 
+		total_instructions += len(lines)
 		print(f"  Wrote {len(lines)} instructions to {bank_file.name}")
+
+	print(f"\nTotal: {total_instructions} instructions across {num_banks} banks")
 
 	# Write symbol file
 	sym_file = output / "soul_blazer.sym"

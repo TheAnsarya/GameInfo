@@ -1,0 +1,1740 @@
+{
+	"pointer_tables": [
+		{
+			"bank": 0,
+			"offset": 22104,
+			"file_offset": 22104,
+			"pointer_count": 16,
+			"first_ptr": 55622,
+			"ptr_range": 400
+		},
+		{
+			"bank": 0,
+			"offset": 22106,
+			"file_offset": 22106,
+			"pointer_count": 16,
+			"first_ptr": 55664,
+			"ptr_range": 397
+		},
+		{
+			"bank": 0,
+			"offset": 22108,
+			"file_offset": 22108,
+			"pointer_count": 16,
+			"first_ptr": 55710,
+			"ptr_range": 375
+		},
+		{
+			"bank": 0,
+			"offset": 22110,
+			"file_offset": 22110,
+			"pointer_count": 16,
+			"first_ptr": 55733,
+			"ptr_range": 374
+		},
+		{
+			"bank": 0,
+			"offset": 22112,
+			"file_offset": 22112,
+			"pointer_count": 16,
+			"first_ptr": 55756,
+			"ptr_range": 365
+		},
+		{
+			"bank": 0,
+			"offset": 22114,
+			"file_offset": 22114,
+			"pointer_count": 16,
+			"first_ptr": 55796,
+			"ptr_range": 347
+		},
+		{
+			"bank": 0,
+			"offset": 22116,
+			"file_offset": 22116,
+			"pointer_count": 16,
+			"first_ptr": 55803,
+			"ptr_range": 362
+		},
+		{
+			"bank": 0,
+			"offset": 22118,
+			"file_offset": 22118,
+			"pointer_count": 16,
+			"first_ptr": 55810,
+			"ptr_range": 375
+		},
+		{
+			"bank": 0,
+			"offset": 22120,
+			"file_offset": 22120,
+			"pointer_count": 16,
+			"first_ptr": 55823,
+			"ptr_range": 418
+		},
+		{
+			"bank": 0,
+			"offset": 22122,
+			"file_offset": 22122,
+			"pointer_count": 16,
+			"first_ptr": 55848,
+			"ptr_range": 409
+		},
+		{
+			"bank": 0,
+			"offset": 22124,
+			"file_offset": 22124,
+			"pointer_count": 16,
+			"first_ptr": 55875,
+			"ptr_range": 424
+		},
+		{
+			"bank": 0,
+			"offset": 22126,
+			"file_offset": 22126,
+			"pointer_count": 16,
+			"first_ptr": 55944,
+			"ptr_range": 407
+		},
+		{
+			"bank": 0,
+			"offset": 22128,
+			"file_offset": 22128,
+			"pointer_count": 16,
+			"first_ptr": 55966,
+			"ptr_range": 434
+		},
+		{
+			"bank": 0,
+			"offset": 22328,
+			"file_offset": 22328,
+			"pointer_count": 16,
+			"first_ptr": 56954,
+			"ptr_range": 423
+		},
+		{
+			"bank": 0,
+			"offset": 22330,
+			"file_offset": 22330,
+			"pointer_count": 16,
+			"first_ptr": 56976,
+			"ptr_range": 434
+		},
+		{
+			"bank": 0,
+			"offset": 22332,
+			"file_offset": 22332,
+			"pointer_count": 16,
+			"first_ptr": 57008,
+			"ptr_range": 435
+		},
+		{
+			"bank": 0,
+			"offset": 22334,
+			"file_offset": 22334,
+			"pointer_count": 16,
+			"first_ptr": 57021,
+			"ptr_range": 440
+		},
+		{
+			"bank": 0,
+			"offset": 22336,
+			"file_offset": 22336,
+			"pointer_count": 16,
+			"first_ptr": 57039,
+			"ptr_range": 447
+		},
+		{
+			"bank": 0,
+			"offset": 22338,
+			"file_offset": 22338,
+			"pointer_count": 16,
+			"first_ptr": 57070,
+			"ptr_range": 451
+		},
+		{
+			"bank": 0,
+			"offset": 22340,
+			"file_offset": 22340,
+			"pointer_count": 16,
+			"first_ptr": 57101,
+			"ptr_range": 448
+		},
+		{
+			"bank": 0,
+			"offset": 22342,
+			"file_offset": 22342,
+			"pointer_count": 16,
+			"first_ptr": 57157,
+			"ptr_range": 425
+		},
+		{
+			"bank": 0,
+			"offset": 22344,
+			"file_offset": 22344,
+			"pointer_count": 16,
+			"first_ptr": 57170,
+			"ptr_range": 430
+		},
+		{
+			"bank": 0,
+			"offset": 22346,
+			"file_offset": 22346,
+			"pointer_count": 16,
+			"first_ptr": 57183,
+			"ptr_range": 435
+		},
+		{
+			"bank": 0,
+			"offset": 22348,
+			"file_offset": 22348,
+			"pointer_count": 16,
+			"first_ptr": 57221,
+			"ptr_range": 415
+		},
+		{
+			"bank": 0,
+			"offset": 22350,
+			"file_offset": 22350,
+			"pointer_count": 16,
+			"first_ptr": 57259,
+			"ptr_range": 395
+		},
+		{
+			"bank": 0,
+			"offset": 22352,
+			"file_offset": 22352,
+			"pointer_count": 16,
+			"first_ptr": 57297,
+			"ptr_range": 396
+		},
+		{
+			"bank": 0,
+			"offset": 22354,
+			"file_offset": 22354,
+			"pointer_count": 16,
+			"first_ptr": 57335,
+			"ptr_range": 397
+		},
+		{
+			"bank": 0,
+			"offset": 22356,
+			"file_offset": 22356,
+			"pointer_count": 16,
+			"first_ptr": 57356,
+			"ptr_range": 422
+		},
+		{
+			"bank": 0,
+			"offset": 22358,
+			"file_offset": 22358,
+			"pointer_count": 16,
+			"first_ptr": 57377,
+			"ptr_range": 432
+		},
+		{
+			"bank": 0,
+			"offset": 22360,
+			"file_offset": 22360,
+			"pointer_count": 16,
+			"first_ptr": 57410,
+			"ptr_range": 429
+		},
+		{
+			"bank": 0,
+			"offset": 22362,
+			"file_offset": 22362,
+			"pointer_count": 16,
+			"first_ptr": 57443,
+			"ptr_range": 413
+		},
+		{
+			"bank": 0,
+			"offset": 22364,
+			"file_offset": 22364,
+			"pointer_count": 16,
+			"first_ptr": 57461,
+			"ptr_range": 412
+		},
+		{
+			"bank": 0,
+			"offset": 22366,
+			"file_offset": 22366,
+			"pointer_count": 16,
+			"first_ptr": 57486,
+			"ptr_range": 417
+		},
+		{
+			"bank": 0,
+			"offset": 22368,
+			"file_offset": 22368,
+			"pointer_count": 16,
+			"first_ptr": 57521,
+			"ptr_range": 407
+		},
+		{
+			"bank": 0,
+			"offset": 22370,
+			"file_offset": 22370,
+			"pointer_count": 16,
+			"first_ptr": 57549,
+			"ptr_range": 392
+		},
+		{
+			"bank": 0,
+			"offset": 22372,
+			"file_offset": 22372,
+			"pointer_count": 16,
+			"first_ptr": 57582,
+			"ptr_range": 372
+		},
+		{
+			"bank": 0,
+			"offset": 22374,
+			"file_offset": 22374,
+			"pointer_count": 16,
+			"first_ptr": 57600,
+			"ptr_range": 395
+		},
+		{
+			"bank": 0,
+			"offset": 22376,
+			"file_offset": 22376,
+			"pointer_count": 16,
+			"first_ptr": 57618,
+			"ptr_range": 390
+		},
+		{
+			"bank": 0,
+			"offset": 22378,
+			"file_offset": 22378,
+			"pointer_count": 16,
+			"first_ptr": 57636,
+			"ptr_range": 385
+		},
+		{
+			"bank": 0,
+			"offset": 22380,
+			"file_offset": 22380,
+			"pointer_count": 16,
+			"first_ptr": 57654,
+			"ptr_range": 395
+		},
+		{
+			"bank": 0,
+			"offset": 22382,
+			"file_offset": 22382,
+			"pointer_count": 16,
+			"first_ptr": 57693,
+			"ptr_range": 393
+		},
+		{
+			"bank": 0,
+			"offset": 22384,
+			"file_offset": 22384,
+			"pointer_count": 16,
+			"first_ptr": 57732,
+			"ptr_range": 379
+		},
+		{
+			"bank": 0,
+			"offset": 22386,
+			"file_offset": 22386,
+			"pointer_count": 16,
+			"first_ptr": 57778,
+			"ptr_range": 391
+		},
+		{
+			"bank": 0,
+			"offset": 22388,
+			"file_offset": 22388,
+			"pointer_count": 16,
+			"first_ptr": 57809,
+			"ptr_range": 418
+		},
+		{
+			"bank": 0,
+			"offset": 22390,
+			"file_offset": 22390,
+			"pointer_count": 16,
+			"first_ptr": 57839,
+			"ptr_range": 442
+		},
+		{
+			"bank": 0,
+			"offset": 22392,
+			"file_offset": 22392,
+			"pointer_count": 16,
+			"first_ptr": 57856,
+			"ptr_range": 481
+		},
+		{
+			"bank": 0,
+			"offset": 22394,
+			"file_offset": 22394,
+			"pointer_count": 16,
+			"first_ptr": 57873,
+			"ptr_range": 504
+		},
+		{
+			"bank": 0,
+			"offset": 22396,
+			"file_offset": 22396,
+			"pointer_count": 16,
+			"first_ptr": 57903,
+			"ptr_range": 514
+		},
+		{
+			"bank": 0,
+			"offset": 22398,
+			"file_offset": 22398,
+			"pointer_count": 16,
+			"first_ptr": 57928,
+			"ptr_range": 555
+		},
+		{
+			"bank": 1,
+			"offset": 43518,
+			"file_offset": 43518,
+			"pointer_count": 16,
+			"first_ptr": 44181,
+			"ptr_range": 379
+		},
+		{
+			"bank": 1,
+			"offset": 43520,
+			"file_offset": 43520,
+			"pointer_count": 16,
+			"first_ptr": 44181,
+			"ptr_range": 379
+		},
+		{
+			"bank": 1,
+			"offset": 43522,
+			"file_offset": 43522,
+			"pointer_count": 16,
+			"first_ptr": 44181,
+			"ptr_range": 379
+		},
+		{
+			"bank": 1,
+			"offset": 43524,
+			"file_offset": 43524,
+			"pointer_count": 16,
+			"first_ptr": 44181,
+			"ptr_range": 379
+		},
+		{
+			"bank": 1,
+			"offset": 43526,
+			"file_offset": 43526,
+			"pointer_count": 16,
+			"first_ptr": 44181,
+			"ptr_range": 379
+		},
+		{
+			"bank": 1,
+			"offset": 43528,
+			"file_offset": 43528,
+			"pointer_count": 16,
+			"first_ptr": 43802,
+			"ptr_range": 379
+		},
+		{
+			"bank": 1,
+			"offset": 44182,
+			"file_offset": 44182,
+			"pointer_count": 16,
+			"first_ptr": 44438,
+			"ptr_range": 509
+		},
+		{
+			"bank": 1,
+			"offset": 44184,
+			"file_offset": 44184,
+			"pointer_count": 16,
+			"first_ptr": 44693,
+			"ptr_range": 271
+		},
+		{
+			"bank": 1,
+			"offset": 44186,
+			"file_offset": 44186,
+			"pointer_count": 16,
+			"first_ptr": 44760,
+			"ptr_range": 271
+		},
+		{
+			"bank": 1,
+			"offset": 44188,
+			"file_offset": 44188,
+			"pointer_count": 16,
+			"first_ptr": 44783,
+			"ptr_range": 271
+		},
+		{
+			"bank": 1,
+			"offset": 44190,
+			"file_offset": 44190,
+			"pointer_count": 16,
+			"first_ptr": 44795,
+			"ptr_range": 271
+		},
+		{
+			"bank": 1,
+			"offset": 44192,
+			"file_offset": 44192,
+			"pointer_count": 16,
+			"first_ptr": 44807,
+			"ptr_range": 475
+		},
+		{
+			"bank": 1,
+			"offset": 44194,
+			"file_offset": 44194,
+			"pointer_count": 16,
+			"first_ptr": 44830,
+			"ptr_range": 487
+		},
+		{
+			"bank": 1,
+			"offset": 44196,
+			"file_offset": 44196,
+			"pointer_count": 16,
+			"first_ptr": 44843,
+			"ptr_range": 609
+		},
+		{
+			"bank": 1,
+			"offset": 44198,
+			"file_offset": 44198,
+			"pointer_count": 16,
+			"first_ptr": 44866,
+			"ptr_range": 687
+		},
+		{
+			"bank": 1,
+			"offset": 44200,
+			"file_offset": 44200,
+			"pointer_count": 16,
+			"first_ptr": 44889,
+			"ptr_range": 699
+		},
+		{
+			"bank": 1,
+			"offset": 44202,
+			"file_offset": 44202,
+			"pointer_count": 16,
+			"first_ptr": 44912,
+			"ptr_range": 713
+		},
+		{
+			"bank": 1,
+			"offset": 44204,
+			"file_offset": 44204,
+			"pointer_count": 16,
+			"first_ptr": 44913,
+			"ptr_range": 791
+		},
+		{
+			"bank": 1,
+			"offset": 44206,
+			"file_offset": 44206,
+			"pointer_count": 16,
+			"first_ptr": 44947,
+			"ptr_range": 836
+		},
+		{
+			"bank": 1,
+			"offset": 44208,
+			"file_offset": 44208,
+			"pointer_count": 16,
+			"first_ptr": 44676,
+			"ptr_range": 881
+		},
+		{
+			"bank": 1,
+			"offset": 44210,
+			"file_offset": 44210,
+			"pointer_count": 16,
+			"first_ptr": 44842,
+			"ptr_range": 904
+		},
+		{
+			"bank": 1,
+			"offset": 44212,
+			"file_offset": 44212,
+			"pointer_count": 16,
+			"first_ptr": 44688,
+			"ptr_range": 960
+		},
+		{
+			"bank": 1,
+			"offset": 44214,
+			"file_offset": 44214,
+			"pointer_count": 16,
+			"first_ptr": 44689,
+			"ptr_range": 1016
+		},
+		{
+			"bank": 1,
+			"offset": 44216,
+			"file_offset": 44216,
+			"pointer_count": 16,
+			"first_ptr": 44690,
+			"ptr_range": 1039
+		},
+		{
+			"bank": 1,
+			"offset": 44218,
+			"file_offset": 44218,
+			"pointer_count": 16,
+			"first_ptr": 44691,
+			"ptr_range": 1062
+		},
+		{
+			"bank": 1,
+			"offset": 44220,
+			"file_offset": 44220,
+			"pointer_count": 16,
+			"first_ptr": 44692,
+			"ptr_range": 1096
+		},
+		{
+			"bank": 1,
+			"offset": 44222,
+			"file_offset": 44222,
+			"pointer_count": 16,
+			"first_ptr": 44472,
+			"ptr_range": 1096
+		},
+		{
+			"bank": 1,
+			"offset": 44224,
+			"file_offset": 44224,
+			"pointer_count": 16,
+			"first_ptr": 44959,
+			"ptr_range": 609
+		},
+		{
+			"bank": 1,
+			"offset": 44382,
+			"file_offset": 44382,
+			"pointer_count": 16,
+			"first_ptr": 44608,
+			"ptr_range": 2033
+		},
+		{
+			"bank": 1,
+			"offset": 61068,
+			"file_offset": 61068,
+			"pointer_count": 16,
+			"first_ptr": 65280,
+			"ptr_range": 3986
+		},
+		{
+			"bank": 1,
+			"offset": 61070,
+			"file_offset": 61070,
+			"pointer_count": 16,
+			"first_ptr": 61294,
+			"ptr_range": 438
+		},
+		{
+			"bank": 1,
+			"offset": 61072,
+			"file_offset": 61072,
+			"pointer_count": 16,
+			"first_ptr": 61342,
+			"ptr_range": 396
+		},
+		{
+			"bank": 1,
+			"offset": 61074,
+			"file_offset": 61074,
+			"pointer_count": 16,
+			"first_ptr": 61378,
+			"ptr_range": 390
+		},
+		{
+			"bank": 1,
+			"offset": 61076,
+			"file_offset": 61076,
+			"pointer_count": 16,
+			"first_ptr": 61408,
+			"ptr_range": 396
+		},
+		{
+			"bank": 1,
+			"offset": 61078,
+			"file_offset": 61078,
+			"pointer_count": 16,
+			"first_ptr": 61414,
+			"ptr_range": 432
+		},
+		{
+			"bank": 1,
+			"offset": 61080,
+			"file_offset": 61080,
+			"pointer_count": 16,
+			"first_ptr": 61426,
+			"ptr_range": 456
+		},
+		{
+			"bank": 1,
+			"offset": 61082,
+			"file_offset": 61082,
+			"pointer_count": 16,
+			"first_ptr": 61444,
+			"ptr_range": 444
+		},
+		{
+			"bank": 1,
+			"offset": 61084,
+			"file_offset": 61084,
+			"pointer_count": 16,
+			"first_ptr": 61504,
+			"ptr_range": 408
+		},
+		{
+			"bank": 1,
+			"offset": 61086,
+			"file_offset": 61086,
+			"pointer_count": 16,
+			"first_ptr": 61528,
+			"ptr_range": 414
+		},
+		{
+			"bank": 1,
+			"offset": 61088,
+			"file_offset": 61088,
+			"pointer_count": 16,
+			"first_ptr": 61588,
+			"ptr_range": 372
+		},
+		{
+			"bank": 1,
+			"offset": 61090,
+			"file_offset": 61090,
+			"pointer_count": 16,
+			"first_ptr": 61624,
+			"ptr_range": 360
+		},
+		{
+			"bank": 1,
+			"offset": 61092,
+			"file_offset": 61092,
+			"pointer_count": 16,
+			"first_ptr": 61642,
+			"ptr_range": 360
+		},
+		{
+			"bank": 1,
+			"offset": 61094,
+			"file_offset": 61094,
+			"pointer_count": 16,
+			"first_ptr": 61660,
+			"ptr_range": 354
+		},
+		{
+			"bank": 1,
+			"offset": 61096,
+			"file_offset": 61096,
+			"pointer_count": 16,
+			"first_ptr": 61678,
+			"ptr_range": 366
+		},
+		{
+			"bank": 1,
+			"offset": 61098,
+			"file_offset": 61098,
+			"pointer_count": 16,
+			"first_ptr": 61696,
+			"ptr_range": 372
+		},
+		{
+			"bank": 1,
+			"offset": 61100,
+			"file_offset": 61100,
+			"pointer_count": 16,
+			"first_ptr": 61732,
+			"ptr_range": 348
+		},
+		{
+			"bank": 1,
+			"offset": 61102,
+			"file_offset": 61102,
+			"pointer_count": 16,
+			"first_ptr": 61738,
+			"ptr_range": 390
+		},
+		{
+			"bank": 1,
+			"offset": 61104,
+			"file_offset": 61104,
+			"pointer_count": 16,
+			"first_ptr": 61768,
+			"ptr_range": 408
+		},
+		{
+			"bank": 1,
+			"offset": 61106,
+			"file_offset": 61106,
+			"pointer_count": 16,
+			"first_ptr": 61804,
+			"ptr_range": 390
+		},
+		{
+			"bank": 1,
+			"offset": 61108,
+			"file_offset": 61108,
+			"pointer_count": 16,
+			"first_ptr": 61846,
+			"ptr_range": 354
+		},
+		{
+			"bank": 1,
+			"offset": 61110,
+			"file_offset": 61110,
+			"pointer_count": 16,
+			"first_ptr": 61882,
+			"ptr_range": 324
+		}
+	],
+	"map_headers": [
+		{
+			"offset": 250,
+			"bank": 0,
+			"address": 33018,
+			"width": 120,
+			"height": 34,
+			"ptr1": 45376,
+			"ptr2": 43266
+		},
+		{
+			"offset": 300,
+			"bank": 0,
+			"address": 33068,
+			"width": 90,
+			"height": 34,
+			"ptr1": 45486,
+			"ptr2": 60930
+		},
+		{
+			"offset": 542,
+			"bank": 0,
+			"address": 33310,
+			"width": 104,
+			"height": 58,
+			"ptr1": 63440,
+			"ptr2": 35168
+		},
+		{
+			"offset": 662,
+			"bank": 0,
+			"address": 33430,
+			"width": 106,
+			"height": 28,
+			"ptr1": 64544,
+			"ptr2": 36226
+		},
+		{
+			"offset": 852,
+			"bank": 0,
+			"address": 33620,
+			"width": 66,
+			"height": 32,
+			"ptr1": 33733,
+			"ptr2": 59936
+		},
+		{
+			"offset": 882,
+			"bank": 0,
+			"address": 33650,
+			"width": 18,
+			"height": 66,
+			"ptr1": 45162,
+			"ptr2": 42490
+		},
+		{
+			"offset": 1132,
+			"bank": 0,
+			"address": 33900,
+			"width": 66,
+			"height": 96,
+			"ptr1": 34477,
+			"ptr2": 36099
+		},
+		{
+			"offset": 1150,
+			"bank": 0,
+			"address": 33918,
+			"width": 18,
+			"height": 33,
+			"ptr1": 56237,
+			"ptr2": 53251
+		},
+		{
+			"offset": 1308,
+			"bank": 0,
+			"address": 34076,
+			"width": 33,
+			"height": 32,
+			"ptr1": 34084,
+			"ptr2": 46748
+		},
+		{
+			"offset": 1378,
+			"bank": 0,
+			"address": 34146,
+			"width": 37,
+			"height": 67,
+			"ptr1": 57262,
+			"ptr2": 36355
+		},
+		{
+			"offset": 1424,
+			"bank": 0,
+			"address": 34192,
+			"width": 28,
+			"height": 27,
+			"ptr1": 61544,
+			"ptr2": 36105
+		},
+		{
+			"offset": 1434,
+			"bank": 0,
+			"address": 34202,
+			"width": 24,
+			"height": 33,
+			"ptr1": 62592,
+			"ptr2": 40090
+		},
+		{
+			"offset": 1474,
+			"bank": 0,
+			"address": 34242,
+			"width": 40,
+			"height": 107,
+			"ptr1": 49672,
+			"ptr2": 44320
+		},
+		{
+			"offset": 1844,
+			"bank": 0,
+			"address": 34612,
+			"width": 72,
+			"height": 72,
+			"ptr1": 51784,
+			"ptr2": 60880
+		},
+		{
+			"offset": 1990,
+			"bank": 0,
+			"address": 34758,
+			"width": 101,
+			"height": 24,
+			"ptr1": 61641,
+			"ptr2": 45056
+		},
+		{
+			"offset": 2234,
+			"bank": 0,
+			"address": 35002,
+			"width": 74,
+			"height": 102,
+			"ptr1": 50688,
+			"ptr2": 53326
+		},
+		{
+			"offset": 2768,
+			"bank": 0,
+			"address": 35536,
+			"width": 32,
+			"height": 85,
+			"ptr1": 37005,
+			"ptr2": 55962
+		},
+		{
+			"offset": 2800,
+			"bank": 0,
+			"address": 35568,
+			"width": 40,
+			"height": 107,
+			"ptr1": 40110,
+			"ptr2": 48387
+		},
+		{
+			"offset": 3044,
+			"bank": 0,
+			"address": 35812,
+			"width": 66,
+			"height": 128,
+			"ptr1": 49757,
+			"ptr2": 47392
+		},
+		{
+			"offset": 3252,
+			"bank": 0,
+			"address": 36020,
+			"width": 114,
+			"height": 27,
+			"ptr1": 58680,
+			"ptr2": 61440
+		},
+		{
+			"offset": 3518,
+			"bank": 0,
+			"address": 36286,
+			"width": 24,
+			"height": 99,
+			"ptr1": 50433,
+			"ptr2": 36868
+		},
+		{
+			"offset": 3538,
+			"bank": 0,
+			"address": 36306,
+			"width": 24,
+			"height": 101,
+			"ptr1": 50442,
+			"ptr2": 45058
+		},
+		{
+			"offset": 3570,
+			"bank": 0,
+			"address": 36338,
+			"width": 24,
+			"height": 96,
+			"ptr1": 49672,
+			"ptr2": 44336
+		},
+		{
+			"offset": 3652,
+			"bank": 0,
+			"address": 36420,
+			"width": 125,
+			"height": 16,
+			"ptr1": 50432,
+			"ptr2": 36886
+		},
+		{
+			"offset": 3712,
+			"bank": 0,
+			"address": 36480,
+			"width": 125,
+			"height": 16,
+			"ptr1": 50432,
+			"ptr2": 36886
+		},
+		{
+			"offset": 3766,
+			"bank": 0,
+			"address": 36534,
+			"width": 24,
+			"height": 121,
+			"ptr1": 32768,
+			"ptr2": 36557
+		},
+		{
+			"offset": 3952,
+			"bank": 0,
+			"address": 36720,
+			"width": 74,
+			"height": 74,
+			"ptr1": 34122,
+			"ptr2": 34072
+		},
+		{
+			"offset": 3964,
+			"bank": 0,
+			"address": 36732,
+			"width": 74,
+			"height": 74,
+			"ptr1": 34122,
+			"ptr2": 48384
+		},
+		{
+			"offset": 3982,
+			"bank": 0,
+			"address": 36750,
+			"width": 32,
+			"height": 86,
+			"ptr1": 51602,
+			"ptr2": 61450
+		},
+		{
+			"offset": 4012,
+			"bank": 0,
+			"address": 36780,
+			"width": 32,
+			"height": 86,
+			"ptr1": 45202,
+			"ptr2": 51531
+		},
+		{
+			"offset": 4128,
+			"bank": 0,
+			"address": 36896,
+			"width": 74,
+			"height": 74,
+			"ptr1": 34122,
+			"ptr2": 34072
+		},
+		{
+			"offset": 4140,
+			"bank": 0,
+			"address": 36908,
+			"width": 74,
+			"height": 74,
+			"ptr1": 34122,
+			"ptr2": 48384
+		},
+		{
+			"offset": 4158,
+			"bank": 0,
+			"address": 36926,
+			"width": 32,
+			"height": 86,
+			"ptr1": 51602,
+			"ptr2": 61445
+		},
+		{
+			"offset": 4188,
+			"bank": 0,
+			"address": 36956,
+			"width": 32,
+			"height": 86,
+			"ptr1": 45202,
+			"ptr2": 51531
+		},
+		{
+			"offset": 4280,
+			"bank": 0,
+			"address": 37048,
+			"width": 74,
+			"height": 74,
+			"ptr1": 34122,
+			"ptr2": 48408
+		},
+		{
+			"offset": 4314,
+			"bank": 0,
+			"address": 37082,
+			"width": 74,
+			"height": 74,
+			"ptr1": 34122,
+			"ptr2": 34060
+		},
+		{
+			"offset": 4340,
+			"bank": 0,
+			"address": 37108,
+			"width": 32,
+			"height": 86,
+			"ptr1": 51602,
+			"ptr2": 61452
+		},
+		{
+			"offset": 4380,
+			"bank": 0,
+			"address": 37148,
+			"width": 32,
+			"height": 86,
+			"ptr1": 45202,
+			"ptr2": 51504
+		},
+		{
+			"offset": 4432,
+			"bank": 0,
+			"address": 37200,
+			"width": 96,
+			"height": 40,
+			"ptr1": 61312,
+			"ptr2": 48392
+		},
+		{
+			"offset": 4460,
+			"bank": 0,
+			"address": 37228,
+			"width": 74,
+			"height": 74,
+			"ptr1": 34122,
+			"ptr2": 48408
+		},
+		{
+			"offset": 4494,
+			"bank": 0,
+			"address": 37262,
+			"width": 74,
+			"height": 74,
+			"ptr1": 34122,
+			"ptr2": 34060
+		},
+		{
+			"offset": 4520,
+			"bank": 0,
+			"address": 37288,
+			"width": 32,
+			"height": 86,
+			"ptr1": 51602,
+			"ptr2": 61443
+		},
+		{
+			"offset": 4560,
+			"bank": 0,
+			"address": 37328,
+			"width": 32,
+			"height": 86,
+			"ptr1": 45202,
+			"ptr2": 51504
+		},
+		{
+			"offset": 4636,
+			"bank": 0,
+			"address": 37404,
+			"width": 74,
+			"height": 74,
+			"ptr1": 34122,
+			"ptr2": 48406
+		},
+		{
+			"offset": 4720,
+			"bank": 0,
+			"address": 37488,
+			"width": 24,
+			"height": 99,
+			"ptr1": 33537,
+			"ptr2": 42241
+		},
+		{
+			"offset": 4828,
+			"bank": 0,
+			"address": 37596,
+			"width": 40,
+			"height": 107,
+			"ptr1": 49672,
+			"ptr2": 44320
+		},
+		{
+			"offset": 4894,
+			"bank": 0,
+			"address": 37662,
+			"width": 41,
+			"height": 34,
+			"ptr1": 59018,
+			"ptr2": 32768
+		},
+		{
+			"offset": 4938,
+			"bank": 0,
+			"address": 37706,
+			"width": 41,
+			"height": 34,
+			"ptr1": 37803,
+			"ptr2": 48384
+		},
+		{
+			"offset": 5096,
+			"bank": 0,
+			"address": 37864,
+			"width": 32,
+			"height": 24,
+			"ptr1": 45165,
+			"ptr2": 43523
+		},
+		{
+			"offset": 5326,
+			"bank": 0,
+			"address": 38094,
+			"width": 32,
+			"height": 24,
+			"ptr1": 45165,
+			"ptr2": 39171
+		},
+		{
+			"offset": 5444,
+			"bank": 0,
+			"address": 38212,
+			"width": 28,
+			"height": 34,
+			"ptr1": 64003,
+			"ptr2": 40108
+		},
+		{
+			"offset": 5836,
+			"bank": 0,
+			"address": 38604,
+			"width": 74,
+			"height": 74,
+			"ptr1": 34122,
+			"ptr2": 48406
+		},
+		{
+			"offset": 5846,
+			"bank": 0,
+			"address": 38614,
+			"width": 74,
+			"height": 74,
+			"ptr1": 34122,
+			"ptr2": 57880
+		},
+		{
+			"offset": 5922,
+			"bank": 0,
+			"address": 38690,
+			"width": 32,
+			"height": 128,
+			"ptr1": 49854,
+			"ptr2": 43808
+		},
+		{
+			"offset": 6010,
+			"bank": 0,
+			"address": 38778,
+			"width": 128,
+			"height": 127,
+			"ptr1": 64553,
+			"ptr2": 61440
+		},
+		{
+			"offset": 6076,
+			"bank": 0,
+			"address": 38844,
+			"width": 24,
+			"height": 34,
+			"ptr1": 62136,
+			"ptr2": 48900
+		},
+		{
+			"offset": 6096,
+			"bank": 0,
+			"address": 38864,
+			"width": 128,
+			"height": 127,
+			"ptr1": 62249,
+			"ptr2": 61440
+		},
+		{
+			"offset": 6144,
+			"bank": 0,
+			"address": 38912,
+			"width": 105,
+			"height": 16,
+			"ptr1": 34048,
+			"ptr2": 48406
+		},
+		{
+			"offset": 6160,
+			"bank": 0,
+			"address": 38928,
+			"width": 24,
+			"height": 34,
+			"ptr1": 62136,
+			"ptr2": 48900
+		},
+		{
+			"offset": 6180,
+			"bank": 0,
+			"address": 38948,
+			"width": 128,
+			"height": 127,
+			"ptr1": 62761,
+			"ptr2": 61440
+		},
+		{
+			"offset": 6244,
+			"bank": 0,
+			"address": 39012,
+			"width": 24,
+			"height": 34,
+			"ptr1": 62136,
+			"ptr2": 48900
+		},
+		{
+			"offset": 6264,
+			"bank": 0,
+			"address": 39032,
+			"width": 128,
+			"height": 127,
+			"ptr1": 64041,
+			"ptr2": 61440
+		},
+		{
+			"offset": 6302,
+			"bank": 0,
+			"address": 39070,
+			"width": 96,
+			"height": 56,
+			"ptr1": 55904,
+			"ptr2": 44104
+		},
+		{
+			"offset": 6702,
+			"bank": 0,
+			"address": 39470,
+			"width": 48,
+			"height": 127,
+			"ptr1": 33794,
+			"ptr2": 44886
+		},
+		{
+			"offset": 6954,
+			"bank": 0,
+			"address": 39722,
+			"width": 96,
+			"height": 27,
+			"ptr1": 47007,
+			"ptr2": 36254
+		},
+		{
+			"offset": 7536,
+			"bank": 0,
+			"address": 40304,
+			"width": 128,
+			"height": 41,
+			"ptr1": 33282,
+			"ptr2": 61058
+		},
+		{
+			"offset": 7566,
+			"bank": 0,
+			"address": 40334,
+			"width": 128,
+			"height": 39,
+			"ptr1": 33282,
+			"ptr2": 53378
+		},
+		{
+			"offset": 7596,
+			"bank": 0,
+			"address": 40364,
+			"width": 128,
+			"height": 36,
+			"ptr1": 33282,
+			"ptr2": 45698
+		},
+		{
+			"offset": 7626,
+			"bank": 0,
+			"address": 40394,
+			"width": 128,
+			"height": 42,
+			"ptr1": 33282,
+			"ptr2": 38018
+		},
+		{
+			"offset": 7786,
+			"bank": 0,
+			"address": 40554,
+			"width": 128,
+			"height": 16,
+			"ptr1": 33282,
+			"ptr2": 62594
+		},
+		{
+			"offset": 7800,
+			"bank": 0,
+			"address": 40568,
+			"width": 128,
+			"height": 19,
+			"ptr1": 33282,
+			"ptr2": 59010
+		},
+		{
+			"offset": 8052,
+			"bank": 0,
+			"address": 40820,
+			"width": 128,
+			"height": 35,
+			"ptr1": 33282,
+			"ptr2": 60034
+		},
+		{
+			"offset": 8112,
+			"bank": 0,
+			"address": 40880,
+			"width": 109,
+			"height": 114,
+			"ptr1": 32795,
+			"ptr2": 44291
+		},
+		{
+			"offset": 8118,
+			"bank": 0,
+			"address": 40886,
+			"width": 112,
+			"height": 27,
+			"ptr1": 35981,
+			"ptr2": 44315
+		},
+		{
+			"offset": 8128,
+			"bank": 0,
+			"address": 40896,
+			"width": 118,
+			"height": 27,
+			"ptr1": 36493,
+			"ptr2": 43291
+		},
+		{
+			"offset": 8318,
+			"bank": 0,
+			"address": 41086,
+			"width": 22,
+			"height": 128,
+			"ptr1": 58889,
+			"ptr2": 51478
+		},
+		{
+			"offset": 8364,
+			"bank": 0,
+			"address": 41132,
+			"width": 24,
+			"height": 128,
+			"ptr1": 58889,
+			"ptr2": 51480
+		},
+		{
+			"offset": 9256,
+			"bank": 0,
+			"address": 42024,
+			"width": 128,
+			"height": 21,
+			"ptr1": 33282,
+			"ptr2": 32770
+		},
+		{
+			"offset": 9266,
+			"bank": 0,
+			"address": 42034,
+			"width": 128,
+			"height": 23,
+			"ptr1": 33282,
+			"ptr2": 34306
+		},
+		{
+			"offset": 9856,
+			"bank": 0,
+			"address": 42624,
+			"width": 128,
+			"height": 48,
+			"ptr1": 33282,
+			"ptr2": 33026
+		},
+		{
+			"offset": 9868,
+			"bank": 0,
+			"address": 42636,
+			"width": 107,
+			"height": 32,
+			"ptr1": 42704,
+			"ptr2": 40962
+		},
+		{
+			"offset": 9900,
+			"bank": 0,
+			"address": 42668,
+			"width": 128,
+			"height": 46,
+			"ptr1": 33282,
+			"ptr2": 33026
+		},
+		{
+			"offset": 9912,
+			"bank": 0,
+			"address": 42680,
+			"width": 107,
+			"height": 32,
+			"ptr1": 42704,
+			"ptr2": 38402
+		},
+		{
+			"offset": 9970,
+			"bank": 0,
+			"address": 42738,
+			"width": 107,
+			"height": 32,
+			"ptr1": 43074,
+			"ptr2": 37122
+		},
+		{
+			"offset": 10534,
+			"bank": 0,
+			"address": 43302,
+			"width": 107,
+			"height": 96,
+			"ptr1": 43010,
+			"ptr2": 32768
+		},
+		{
+			"offset": 11260,
+			"bank": 0,
+			"address": 44028,
+			"width": 128,
+			"height": 128,
+			"ptr1": 43010,
+			"ptr2": 32768
+		},
+		{
+			"offset": 11774,
+			"bank": 0,
+			"address": 44542,
+			"width": 126,
+			"height": 32,
+			"ptr1": 44708,
+			"ptr2": 37122
+		},
+		{
+			"offset": 11792,
+			"bank": 0,
+			"address": 44560,
+			"width": 108,
+			"height": 32,
+			"ptr1": 44708,
+			"ptr2": 37122
+		},
+		{
+			"offset": 11810,
+			"bank": 0,
+			"address": 44578,
+			"width": 90,
+			"height": 32,
+			"ptr1": 44700,
+			"ptr2": 37122
+		},
+		{
+			"offset": 11828,
+			"bank": 0,
+			"address": 44596,
+			"width": 72,
+			"height": 32,
+			"ptr1": 44700,
+			"ptr2": 37122
+		},
+		{
+			"offset": 11846,
+			"bank": 0,
+			"address": 44614,
+			"width": 54,
+			"height": 32,
+			"ptr1": 44708,
+			"ptr2": 37122
+		},
+		{
+			"offset": 11864,
+			"bank": 0,
+			"address": 44632,
+			"width": 36,
+			"height": 32,
+			"ptr1": 44708,
+			"ptr2": 37122
+		},
+		{
+			"offset": 11882,
+			"bank": 0,
+			"address": 44650,
+			"width": 18,
+			"height": 32,
+			"ptr1": 44700,
+			"ptr2": 37122
+		},
+		{
+			"offset": 11948,
+			"bank": 0,
+			"address": 44716,
+			"width": 26,
+			"height": 34,
+			"ptr1": 45544,
+			"ptr2": 49666
+		},
+		{
+			"offset": 12116,
+			"bank": 0,
+			"address": 44884,
+			"width": 40,
+			"height": 107,
+			"ptr1": 34477,
+			"ptr2": 51483
+		},
+		{
+			"offset": 12136,
+			"bank": 0,
+			"address": 44904,
+			"width": 126,
+			"height": 27,
+			"ptr1": 47801,
+			"ptr2": 36347
+		},
+		{
+			"offset": 12242,
+			"bank": 0,
+			"address": 45010,
+			"width": 126,
+			"height": 27,
+			"ptr1": 47801,
+			"ptr2": 36347
+		},
+		{
+			"offset": 12316,
+			"bank": 0,
+			"address": 45084,
+			"width": 25,
+			"height": 56,
+			"ptr1": 45099,
+			"ptr2": 35501
+		},
+		{
+			"offset": 12460,
+			"bank": 0,
+			"address": 45228,
+			"width": 26,
+			"height": 34,
+			"ptr1": 62280,
+			"ptr2": 55812
+		},
+		{
+			"offset": 12810,
+			"bank": 0,
+			"address": 45578,
+			"width": 128,
+			"height": 22,
+			"ptr1": 33282,
+			"ptr2": 45440
+		}
+	],
+	"area_names": [
+		"Grass Valley Underground",
+		"Grass Valley Village",
+		"Underground Castle (B1)",
+		"Underground Castle (B2)",
+		"Underground Castle (B3)",
+		"Underground Castle (B4)",
+		"GreenWood",
+		"GreenWood Underground",
+		"Water Shrine",
+		"Fire Shrine",
+		"Light Shrine",
+		"Lost Marsh",
+		"St. Elles Seabed",
+		"St. Elles Underground",
+		"Durean",
+		"Ghost Ship",
+		"Southerta",
+		"Mermaid Queen's Palace",
+		"Mountain of Souls",
+		"Laynole",
+		"Nome",
+		"Lune",
+		"Model Town 1",
+		"Model Town 2",
+		"Leo's Lab Basement",
+		"Leo's Lab Attic",
+		"Leo's Paintings",
+		"Magridd Castle Town",
+		"Magridd Castle",
+		"Castle Basement",
+		"World of Evil",
+		"Deathtoll's Lair"
+	]
+}
