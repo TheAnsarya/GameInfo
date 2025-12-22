@@ -1,0 +1,3528 @@
+======================================================================
+  SOUL BLAZER (SNES) - COMPLETE SCRIPT DUMP
+======================================================================
+
+Total dialogue blocks: 694
+Banks with dialogue: 17
+
+----------------------------------------------------------------------
+  BANK $00 (21 entries)
+----------------------------------------------------------------------
+
+[$00:8727]
+  HHHHHHHHHHHHHHHH
+
+[$00:a56c]
+  
+  [WAIT]
+  ')
+  [WAIT]
+  ...'f
+  [WAIT]
+  '+
+  [WAIT]
+  ...'3
+  [WAIT]
+  '-
+  [WAIT]
+  ......
+
+[$00:a582]
+  
+  [WAIT]
+  ' 
+  [WAIT]
+  ...'y
+  [WAIT]
+  '"
+  [WAIT]
+  ...'I
+  [WAIT]
+  '!
+  [WAIT]
+  ......
+
+[$00:cefa]
+  poor creature that
+
+[$00:cf0d]
+  repeats transmigration
+
+[$00:cfbf]
+  being constantly 
+
+[$00:cfd1]
+  reincarnated means 
+
+[$00:cfe5]
+  everlasting suffering.
+
+[$00:d3d4]
+  defeated Deathtoll! 
+
+[$00:d43c]
+  
+  [WAIT]
+  
+  [WAIT]
+  , we decided 
+
+[$00:d490]
+  creatures` minds. 
+
+[$00:d4e6]
+  stop as much as 
+
+[$00:f0cf]
+  
+  [WAIT]
+  '{PAUSE}
+  [WAIT]
+  ...k
+  [WAIT]
+  '{NAME}
+  [WAIT]
+  ...k
+  [WAIT]
+  '0
+  [WAIT]
+  ...kkk
+  [WAIT]
+  
+
+[$00:f114]
+  k
+  [WAIT]
+  '1
+  [WAIT]
+  ...k
+  [WAIT]
+  '2
+  [WAIT]
+  ...k
+  [WAIT]
+  '3
+  [WAIT]
+  ...k
+  [WAIT]
+  {NUM}{NAME}
+
+[$00:f49c]
+  
+  [WAIT]
+  '{PAUSE}
+  [WAIT]
+  ...
+  [WAIT]
+  '{ITEM}
+  [WAIT]
+  ...
+  [WAIT]
+  '{NAME}
+  [WAIT]
+  ...
+
+[$00:f7fa]
+  Finished recording. 
+
+[$00:f896]
+  continue making steady
+
+[$00:f94d]
+  GreenWood where 
+
+[$00:f95f]
+  next stone awaits 
+
+[$00:f9a6]
+  <My follower, since 
+
+[$00:ffc0]
+  SOULBLAZER - 1 USA    
+  [WAIT]
+  
+
+----------------------------------------------------------------------
+  BANK $01 (8 entries)
+----------------------------------------------------------------------
+
+[$01:9d30]
+  %
+  $8)
+  $8+
+  $8-
+  $
+
+[$01:9d48]
+  &
+  % 2
+  %$6
+  %/;
+  %:9
+  %
+
+[$01:a369]
+  
+  %9!
+  &38
+  '48
+  ( =
+  )(
+
+[$01:a60e]
+  A)#'")1;A)1=A);{ITEM}A)#$
+
+[$01:f9d6]
+  Q/
+  
+  [WAIT]
+  R/
+  
+  [WAIT]
+  S/
+  
+  [WAIT]
+  T/
+  
+  [WAIT]
+  Y/
+  
+
+[$01:fc8f]
+  "%(+.0369<?ADGILNQSUXZ\^`bdfhjlmoprsuvwxyz{||}~~
+
+[$01:fcca]
+  ~~}||{zyxwvusrpomljhfdb`^\ZXUSQNLIGDA?<9630.+(%"
+
+[$01:fd8f]
+  "%(+.0369<?ADGILNQSUXZ\^`bdfhjlmoprsuvwxyz{||}~~
+
+----------------------------------------------------------------------
+  BANK $02 (159 entries)
+----------------------------------------------------------------------
+
+[$02:bb3b]
+  {ITEM}ALL RIGHTS RESERVED
+
+[$02:bb50]
+    COPYRIGHT 1992 QUINTET/ENIX
+
+[$02:bb70]
+  LICENSED BY NINTENDO
+
+[$02:bbb9]
+    destroyed by 
+
+[$02:bbe7]
+  Freil Empire, as it 
+
+[$02:bc3d]
+  
+  @
+  [WAIT]
+    It seems most 
+
+[$02:bca5]
+  ruled by greed. 
+
+[$02:bcd2]
+    overhear two guards talking 
+
+[$02:bcf7]
+  man named Dr.Leo. 
+
+[$02:bd2e]
+  great inventor 
+
+[$02:bd63]
+  
+  [CLEAR]
+  nights wondering how he 
+
+[$02:bdde]
+    He ordered his guards 
+
+[$02:be1a]
+  castle at once!
+
+[$02:be97]
+    would summon 
+
+[$02:beac]
+    evil, Deathtoll.
+
+[$02:bec8]
+  finally completed 
+
+[$02:befe]
+    upon Deathtoll, hoping they 
+
+[$02:bf1f]
+    might strike 
+
+[$02:bf67]
+    bring Deathtoll 
+
+[$02:bf9e]
+    Deathtoll would 
+
+[$02:bfcd]
+  
+  '
+  [WAIT]
+    One by one, 
+
+[$02:c05a]
+  
+  [CLEAR]
+  his follower. 
+
+[$02:c083]
+  tempted by evil, 
+
+[$02:c0ab]
+    another chance. 
+
+[$02:c12d]
+    .."warrior sent 
+
+[$02:c165]
+    "SOUL BLAZER!!
+
+[$02:c192]
+  
+  @
+  [WAIT]
+    Grass Valley at sunset::: 
+
+[$02:c1b7]
+  glistening ocean::::::: 
+
+[$02:c27f]
+  light ray shot 
+
+[$02:c315]
+  now{ she thinks 
+
+[$02:c344]
+  her father changed 
+
+[$02:c375]
+    Lisa feels she 
+
+[$02:c391]
+    if she believes:
+
+[$02:c3ca]
+  
+  [WAIT]
+  Name
+  &
+  [WAIT]
+  Lev
+  .
+  [WAIT]
+  Area
+  
+
+[$02:c435]
+  
+  T{PAUSE}
+  [WAIT]
+  
+  [CLEAR]
+  
+  h{PAUSE}{ITEM}
+  [WAIT]
+  P{PAUSE}
+  r{PAUSE}{ITEM}
+  R{PAUSE}
+
+[$02:c44b]
+  {NAME}
+  [WAIT]
+  
+  [CLEAR]
+  
+  ({NAME}{ITEM}
+  [WAIT]
+  P{PAUSE}
+  2{NAME}{ITEM}
+  R{PAUSE}
+
+[$02:c487]
+  
+  [CLEAR]
+   "B C D E F G H 
+
+[$02:c4a2]
+   N O P Q R S T U V W X Y Z
+
+[$02:c4c1]
+  b c d e f g h i j k l m
+
+[$02:c638]
+  
+  [CLEAR]
+  Soul@of@Magician@
+
+[$02:c64d]
+  
+  [CLEAR]
+  Soul@of@Light@@@@
+
+[$02:c662]
+  {PAUSE}Soul@of@Shield@@@
+
+[$02:c675]
+  
+  N{NAME}Soul@of@Detection
+
+[$02:c68c]
+  {ITEM}Soul@of@Reality@@
+
+[$02:c8c2]
+    Grass Valley Shrine 
+
+[$02:c8d9]
+   Grass Valley highlands
+
+[$02:c926]
+  Underground Castle, west
+
+[$02:c93f]
+  Underground Castle, east
+
+[$02:c9e0]
+  {PAUSE}GreenWood Shrine
+
+[$02:cafa]
+  {PAUSE}St. Elles Shrine
+
+[$02:cb0f]
+  Seabed Sanctuary
+
+[$02:cbfc]
+    Mountain, North-slope
+
+[$02:cc49]
+    Underground lake,Lune
+
+[$02:ccc1]
+  Laboratory Shrine
+
+[$02:cdb8]
+  torture chamber
+
+[$02:ce99]
+  Evil World Shrine
+
+[$02:cec8]
+  {NAME}Dazzling Space
+
+[$02:d1a2]
+  Delicious Seeds
+
+[$02:d25c]
+  Shield Bracelet
+
+[$02:d38f]
+  tool shop owner`
+
+[$02:d3a4]
+  tool shop owner
+
+[$02:d3d2]
+  water mill keeper
+
+[$02:d64f]
+  temporarily paralyzed.
+
+[$02:d6c0]
+  larger GEMs increases.
+
+[$02:d6fc]
+  special armor. 
+
+[$02:d739]
+  type monsters. 
+
+[$02:d7a2]
+  strongest sword 
+
+[$02:d7d0]
+  {NAME}Your defense power 
+
+[$02:d7e6]
+  becomes stronger. 
+
+[$02:d815]
+  fire without damage. 
+
+[$02:d8ce]
+  {NAME}Receive no damage from
+
+[$02:d8e7]
+  weaker monsters. 
+
+[$02:d99c]
+  Shoots <light> arrows 
+
+[$02:d9eb]
+  while button pressed. 
+
+[$02:da59]
+  explode soon after. 
+
+[$02:dab6]
+  Magical Tornado 
+
+[$02:dc71]
+  {NAME}"beautiful pearl 
+
+[$02:dca5]
+  turn magma into 
+
+[$02:dce4]
+  without slipping. 
+
+[$02:dd07]
+  Airship. Plug  
+
+[$02:dd1e]
+  keyhole located
+
+[$02:dd4e]
+  lightning pyramid, 
+
+[$02:dd80]
+  {NAME}Favorite Seeds, 
+
+[$02:ddd5]
+  attracts cats. 
+
+[$02:dea9]
+  expert at magic. 
+
+[$02:df1f]
+  three symbols, 
+
+[$02:dfbc]
+  enemies by 1/2. 
+
+[$02:dff9]
+  strength by 2. 
+
+[$02:e034]
+  meter reaches 0. 
+
+[$02:e106]
+  cast magic without 
+
+[$02:e11b]
+  using any GEMs. 
+
+[$02:e233]
+   Nothing inside.
+
+[$02:e265]
+  
+  [CLEAR]
+  The staff of Soul Blazer
+
+[$02:e286]
+  {PAUSE}Scenario written by
+
+[$02:e29d]
+  Tomoyoshi Miyazaki
+
+[$02:e2c8]
+  Masaya Hashimoto
+
+[$02:e2e0]
+  {PAUSE}Graphics designed by
+
+[$02:e318]
+  Takeshi Matsumuro
+
+[$02:e32c]
+  Shintaro Majima
+
+[$02:e343]
+  {PAUSE}Music composed by
+
+[$02:e358]
+  Yukihide Takekawa
+
+[$02:e371]
+  {PAUSE}Music arranged by
+
+[$02:e399]
+  {PAUSE}Sound created by
+
+[$02:e3bf]
+  {PAUSE}Music coordinated by
+
+[$02:e3ea]
+  {PAUSE}Scenario assistant
+
+[$02:e400]
+  Tatsuo Hashimoto
+
+[$02:e419]
+  {PAUSE}English Text by
+
+[$02:e42c]
+  Robert L:Jerauld
+
+[$02:e455]
+  Reiko Takebayashi
+
+[$02:e469]
+  Akira Kitanohara
+
+[$02:e490]
+  Takao Kawaguchi
+
+[$02:e4a2]
+  Keizo Mochizuki
+
+[$02:e4b4]
+  Teruhiko Hanawa
+
+[$02:e4c6]
+  Tetsuro Shimoda
+
+[$02:e4d8]
+  Masahiro Hirasawa
+
+[$02:e4fb]
+  Yasuko Sekiguchi
+
+[$02:e50e]
+  Miwako Matsumoto
+
+[$02:e53e]
+  Eiichi Hirasawa
+
+[$02:e565]
+  {PAUSE};<=>? America staff
+
+[$02:e5cf]
+  {PAUSE}Special thanks to
+
+[$02:e673]
+  Nobuyoshi Yoshii
+
+[$02:e696]
+  Hirotomo Morisada
+
+[$02:e6af]
+  {PAUSE}Assistant producer
+
+[$02:e6c5]
+  Kazunori Takado
+
+[$02:e6eb]
+  Masaya Hashimoto
+
+[$02:e737]
+  Yasuhiro Fukushima
+
+[$02:e75f]
+  {ITEM}Copyright [\ 1992
+
+[$02:e773]
+  
+  [CLEAR]
+  [\ 1992 ;<=>? COPORATION
+
+[$02:e7a5]
+  {PAUSE}Based Upon Soul Blader
+
+[$02:e7be]
+  {ITEM}Copyright [\ 1992
+
+[$02:e7d2]
+  
+  [CLEAR]
+  [\ 1992 ;<=>? COPORATION
+
+[$02:e804]
+  {PAUSE}Music Copyright [\ 1992
+
+[$02:e81e]
+  
+  [CLEAR]
+  [\ 1992 Yukihide Takekawa
+
+[$02:e83a]
+  
+  [CLEAR]
+  [\ 1992 KAZZ TOYAMA
+
+[$02:e850]
+  
+  [CLEAR]
+  [\ 1992 AMENITY Co:
+
+[$02:e86c]
+  {NAME}Licensed by NINTENDO
+
+[$02:e889]
+  {ITEM}Presented by ;<=>?
+
+[$02:ee2c]
+  {ITEM}{NUM}{NUM}{NUM}{NUM}{NUM}{NUM}{NUM}{NUM}{NUM}{NUM}{NUM}{NUM}{NUM}{NUM}{NUM}{NUM}
+
+[$02:ee5d]
+  {NUM}{NUM}{NUM}{NUM}{NUM}{NUM}{NUM}{NUM}{NUM}{NUM}{NUM}{NUM}{NUM}{NUM}{NUM}{NUM}
+
+[$02:eead]
+  {ITEM}{ITEM}{ITEM}{ITEM}{ITEM}{ITEM}{ITEM}{ITEM}{ITEM}{ITEM}{ITEM}{ITEM}{ITEM}{ITEM}{ITEM}{ITEM}
+
+[$02:eedd]
+  {ITEM}{ITEM}{ITEM}{ITEM}{ITEM}{ITEM}{ITEM}{ITEM}{ITEM}{ITEM}{ITEM}{ITEM}{ITEM}{ITEM}{ITEM}{ITEM}
+
+[$02:ef2d]
+  {NAME}{NAME}{NAME}{NAME}{NAME}{NAME}{NAME}{NAME}{NAME}{NAME}{NAME}{NAME}{NAME}{NAME}{NAME}{NAME}
+
+[$02:ef5d]
+  {NAME}{NAME}{NAME}{NAME}{NAME}{NAME}{NAME}{NAME}{NAME}{NAME}{NAME}{NAME}{NAME}{NAME}{NAME}{NAME}
+
+[$02:efad]
+  {PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}
+
+[$02:efdd]
+  {PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}{PAUSE}
+
+[$02:f02d]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+
+[$02:f05d]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+
+[$02:f0ad]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+
+[$02:f0dd]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+
+[$02:f12d]
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+[$02:f15d]
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+[$02:f3b5]
+  C3|
+  [WAIT]
+  {NAME}A
+  
+  [WAIT]
+  {ITEM}A3|
+  [WAIT]
+  {NAME}@
+  
+  
+
+[$02:f3d1]
+  3|
+  [WAIT]
+  
+  [WAIT]
+  4
+  [WAIT]
+  
+  
+  [WAIT]
+  34y
+  [WAIT]
+  {NUM}*{NAME}{PAUSE}
+
+[$02:f52c]
+  
+  
+  {PAUSE}{PAUSE}
+  
+  
+  
+  
+  
+  {NAME}{PAUSE}{PAUSE}{PAUSE}
+  {PAUSE}{PAUSE}
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  
+  
+  {PAUSE}
+  
+  
+  
+  {PAUSE}{PAUSE}
+  [WAIT]
+  
+  [WAIT]
+  
+  
+  
+  [WAIT]
+  
+  
+  
+  {PAUSE}{PAUSE}
+  
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  
+  
+  
+  
+  [WAIT]
+  {ITEM}
+  [WAIT]
+  
+  [WAIT]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  {PAUSE}{PAUSE}
+  [WAIT]
+  
+  [WAIT]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  {PAUSE}{PAUSE}
+  [CLEAR]
+  
+  [CLEAR]
+  {PAUSE}{PAUSE}
+  [WAIT]
+  
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+
+[$02:f5a4]
+  
+  
+  {PAUSE}{PAUSE}
+  [CLEAR]
+  {PAUSE}
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  {PAUSE}
+  [CLEAR]
+  {PAUSE}
+  [CLEAR]
+  {PAUSE}
+  [WAIT]
+  
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [WAIT]
+  {ITEM}{PAUSE}{PAUSE}
+
+[$02:f5cc]
+  
+  
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  
+  
+  [WAIT]
+  
+  
+  [WAIT]
+  
+  [WAIT]
+  {PAUSE}{PAUSE}
+  [WAIT]
+  {ITEM}{PAUSE}{PAUSE}
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  {ITEM}{PAUSE}{PAUSE}{PAUSE}{PAUSE}
+
+[$02:f5f4]
+  
+  
+  {PAUSE}{PAUSE}
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  {PAUSE}{PAUSE}{PAUSE}{PAUSE}
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [CLEAR]
+  
+  [WAIT]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+
+[$02:f62d]
+  
+  
+  
+  
+  
+  [WAIT]
+  
+  
+  [CLEAR]
+  
+  {PAUSE}
+  [WAIT]
+  
+  
+  [WAIT]
+  
+  [WAIT]
+  
+  [CLEAR]
+  
+  
+  [CLEAR]
+  
+  [WAIT]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  
+  [CLEAR]
+  {PAUSE}
+  [CLEAR]
+  {NAME}
+  [CLEAR]
+  {ITEM}
+
+[$02:f655]
+  
+  [WAIT]
+  {PAUSE}
+  {PAUSE}
+  [WAIT]
+  {PAUSE}
+  [CLEAR]
+  {PAUSE}{PAUSE}{NAME}
+  {NAME}
+  [WAIT]
+  {NAME}
+  [CLEAR]
+  {NAME}{PAUSE}{NAME}{NAME}{NAME}{ITEM}{NAME}{NUM}{NAME}
+
+----------------------------------------------------------------------
+  BANK $03 (176 entries)
+----------------------------------------------------------------------
+
+[$03:8093]
+  pressing either 
+
+[$03:80a5]
+  L or R button. 
+
+[$03:80e4]
+  or using magic. 
+
+[$03:8189]
+  One day he suddenly 
+
+[$03:819e]
+  disappeared along with
+
+[$03:81b6]
+  other villagers. 
+
+[$03:81c9]
+  feel so lonely.... 
+
+[$03:8268]
+  doing nothing. 
+
+[$03:82bf]
+  having been separated 
+
+[$03:8302]
+  They kidnapped Lisa! 
+
+[$03:8319]
+  must rescue her! 
+
+[$03:8415]
+  Medical Herb. 
+  [CLEAR]
+   
+
+[$03:8517]
+  Underground Castle. 
+
+[$03:859b]
+  him through our 
+
+[$03:87e1]
+  Oh, no wonder! 
+
+[$03:88e5]
+  Underground Castle. 
+
+[$03:8bce]
+  hear some light 
+
+[$03:8bdf]
+  snoring coming 
+
+[$03:8cd4]
+  My father told 
+
+[$03:8ce7]
+  his paintbrush to
+
+[$03:8d25]
+  hid it somewhere. 
+
+[$03:8dc0]
+  Lisa pulled out 
+
+[$03:8e7d]
+  animals mentioned 
+
+[$03:8ee7]
+  complete stranger, but
+
+[$03:8f24]
+  dies, they will
+
+[$03:8f45]
+  different creature. 
+
+[$03:8fdf]
+  return someday. 
+
+[$03:904c]
+  look into dreams. 
+
+[$03:90ad]
+  enables anyone 
+
+[$03:90f5]
+  Underground Castle. 
+
+[$03:9292]
+  how much it costs? 
+
+[$03:92c5]
+  dollars plus tax?! 
+
+[$03:93a1]
+  boundary between 
+
+[$03:93c5]
+  Sometimes things 
+
+[$03:93fd]
+  remember Lisa`s, 
+
+[$03:940f]
+  dream right? Have 
+
+[$03:9462]
+  saw her before. 
+
+[$03:95de]
+  disappeared!! What was
+
+[$03:960d]
+  screaming inside 
+
+[$03:9631]
+  "GHOST! "GHOST! 
+
+[$03:9748]
+  treasure near here. 
+
+[$03:977a]
+  where our treasure is.
+
+[$03:9960]
+  through without 
+
+[$03:9b90]
+  painter as well as 
+
+[$03:9c15]
+  painting by Dr.Leo.
+
+[$03:9fb7]
+  reincarnation. 
+
+[$03:a19f]
+  been surrounded 
+
+[$03:a260]
+  Brown Stone. 
+  [CLEAR]
+   
+
+[$03:a27f]
+  daughter named Lisa. 
+
+[$03:a327]
+  Deathtoll lives! 
+
+[$03:a408]
+  For example.... 
+
+[$03:a654]
+  feeling lonely. 
+
+[$03:a680]
+  happiness lies 
+
+[$03:a70e]
+  return someday. 
+
+[$03:a796]
+  would never end. 
+
+[$03:a842]
+  been captured by 
+
+[$03:a8c8]
+  creature, they 
+
+[$03:a8fd]
+  Flame Ball Magic. 
+  [CLEAR]
+   
+
+[$03:a95d]
+  Remember this, 
+
+[$03:a9c6]
+  looks like. Alright, 
+
+[$03:a9e1]
+  work together to
+
+[$03:aa0e]
+  Grass Valley Shrine. 
+
+[$03:aaa0]
+  those creatures, 
+
+[$03:aab7]
+  reconstructed. 
+
+[$03:ab1c]
+  No creature likes 
+
+[$03:aba5]
+  Recover Sword. 
+  [CLEAR]
+   
+
+[$03:abe1]
+  Alright, continue on. 
+
+[$03:ad9d]
+  special sword. 
+
+[$03:adcd]
+  destroy metal. 
+
+[$03:ae88]
+  correct sword. 
+
+[$03:af18]
+  invented by Dr.Leo. 
+
+[$03:af2e]
+  cannot move unless 
+
+[$03:b1ae]
+  Please, someone 
+
+[$03:b559]
+  happened between 
+
+[$03:b576]
+  ZHowever, being 
+
+[$03:b5a0]
+  yet established 
+
+[$03:b626]
+  Learning how they 
+
+[$03:b641]
+  ZBe warned though. Once
+
+[$03:b85d]
+  wonderful memories
+
+[$03:b921]
+  call him Turbo. 
+
+[$03:b952]
+  Hurry up Turbo! 
+
+[$03:bbe2]
+  
+  [WAIT]
+  '{NAME}
+  [WAIT]
+  ...
+  [WAIT]
+  '{PAUSE}
+  [WAIT]
+  ...
+  [WAIT]
+  "{NAME}
+  [CLEAR]
+  
+  [WAIT]
+  -
+  [WAIT]
+  
+
+[$03:bc64]
+  <Woodstin-Trio.> 
+
+[$03:bc84]
+  variety show at 
+
+[$03:bcad]
+  two sidekicks. 
+
+[$03:bccc]
+  around, you`re 
+
+[$03:bd42]
+  hear someone snoring
+
+[$03:bd60]
+  which direction 
+
+[$03:bd9f]
+  hear someone snoring
+
+[$03:be6c]
+  sneak up behind 
+
+[$03:bebd]
+  Red-Hot Mirror. 
+  [CLEAR]
+   
+
+[$03:bf07]
+  you@better@approach
+
+[$03:bf1b]
+  quietly@from@behind.
+
+[$03:c188]
+  casting magic. 
+
+[$03:c1a0]
+  fighting much easier 
+
+[$03:c23e]
+  magic without GEMs. 
+
+[$03:c274]
+  There@once@was@a@raft
+
+[$03:c28a]
+  made@from@the@bark@of
+
+[$03:c2ad]
+  You@must@find@this
+
+[$03:c2c0]
+  raft.@I@believe@it
+
+[$03:c2e1]
+  help@you@in@some@way.
+
+[$03:c4a8]
+  The@birds@tell@me@many
+
+[$03:c4c8]
+  I@am@thankful@for
+
+[$03:c4da]
+  them@because@I@can`t
+
+[$03:c4ef]
+  move@from@this@spot.
+
+[$03:c504]
+  The@birds@tell@me@the
+
+[$03:c51a]
+  Lostside@Marsh@has
+
+[$03:c53c]
+  One@is@called@Water,
+
+[$03:c551]
+  another@is@Fire
+
+[$03:c561]
+  and@the@third@is
+
+[$03:c6a4]
+  do walking me. 
+
+[$03:c6d0]
+  My twin brother 
+
+[$03:c70d]
+  <Woodstin-Trio> 
+
+[$03:c720]
+  local favorite here. 
+
+[$03:c75a]
+  <Woodstin-Trio> 
+
+[$03:c7a9]
+  We animals communicate
+
+[$03:c7fa]
+  means <thank you>. 
+
+[$03:c847]
+  particular@mole,@you
+
+[$03:c85c]
+  will@be@able@to
+
+[$03:c86c]
+  see@in@the@dark.
+
+[$03:c87d]
+  Make@sure@you@talk@to
+
+[$03:c908]
+  This@is@GreenWood.
+
+[$03:c929]
+  developed@by@a@dog
+
+[$03:c949]
+  He@created@this@town
+
+[$03:c95e]
+  so@animals@could@come
+
+[$03:c974]
+  here@and@feel@safe.
+
+[$03:ca01]
+  
+  [WAIT]
+  
+  [CLEAR]
+  y
+  [WAIT]
+  {PAUSE}
+  [WAIT]
+  "${PAUSE}
+  [WAIT]
+  -
+  [WAIT]
+  
+  [CLEAR]
+  )
+  [WAIT]
+  {PAUSE}
+  [WAIT]
+  "'
+
+[$03:ca86]
+  Here lies Turbo, 
+
+[$03:cb56]
+  GreenWood buried 
+
+[$03:cbb9]
+  standing alone. 
+
+[$03:cbcb]
+  ZWhen 
+  [WAIT]
+  
+  [WAIT]
+   closed 
+
+[$03:cbdc]
+  his eyes, he tried 
+
+[$03:cbf1]
+  imagine Turbo. 
+
+[$03:cd21]
+  Hey, you`re hurting 
+
+[$03:ce54]
+  smell fresh air. 
+
+[$03:cf20]
+  smell some armor
+
+[$03:d148]
+  <Woodstin-Trio>, .
+
+[$03:d17e]
+  together, so let`
+
+[$03:d1a8]
+  our only audience we 
+
+[$03:d1f5]
+  For our next number 
+
+[$03:d21c]
+  real squirrel, me.
+
+[$03:d292]
+  You`re right!! 
+
+[$03:d2c0]
+  Medical Herb. 
+  [CLEAR]
+   
+
+[$03:d2e0]
+  try again soon. 
+
+[$03:d395]
+  
+  [WAIT]
+  '
+  [CLEAR]
+  
+  [WAIT]
+  ...
+  [WAIT]
+  "{NAME}{ITEM}
+  [WAIT]
+  -
+  [WAIT]
+  '{PAUSE}
+  [WAIT]
+  ...
+  [WAIT]
+  
+
+[$03:d3a7]
+  
+  [WAIT]
+  "{NAME}
+  [CLEAR]
+  
+  [WAIT]
+  -
+  [WAIT]
+  '
+  [CLEAR]
+  
+  [WAIT]
+  ...
+  [WAIT]
+  '{NAME}
+  [WAIT]
+  ...
+  [WAIT]
+  
+
+[$03:d41e]
+  <Woodstin-Trio.> 
+
+[$03:d4bc]
+  Too bad, almost. 
+
+[$03:d67f]
+  three symbols, 
+
+[$03:d699]
+  Mountain King. 
+
+[$03:d73b]
+  cheer up everyone.
+
+[$03:d753]
+  work together to
+
+[$03:d780]
+  lights up darkness 
+
+[$03:d968]
+  Al.. allright, 
+
+[$03:d9ee]
+  ground, sometimes 
+
+[$03:da16]
+  dug up some dog
+
+[$03:dab7]
+  female mole living 
+
+[$03:dae4]
+  by evil creatures. 
+
+[$03:db2b]
+  house next door. 
+
+[$03:dc4f]
+  One day, Monmo 
+
+[$03:dc60]
+  captured by evil. He 
+
+[$03:dc98]
+  Suddenly he appeared, 
+
+[$03:dcfa]
+  those two moles
+
+[$03:dd29]
+  
+  [CLEAR]
+  $Shield Bracelet! 
+  [CLEAR]
+   
+
+[$03:dd50]
+  disappeared. Will 
+
+[$03:e0b7]
+  delicious seeds. 
+
+[$03:e108]
+  Psycho Sword. 
+  [CLEAR]
+   
+
+[$03:e1a2]
+  powerful sword 
+
+[$03:e289]
+  one, Deathtoll. 
+
+[$03:e29a]
+  He fought Deathtoll 
+
+[$03:e4a7]
+  Strange Bottle
+  [CLEAR]
+   .
+
+[$03:e57b]
+  
+  [CLEAR]
+  $Light Arrow Magic. 
+  [CLEAR]
+   
+
+[$03:ed2a]
+  swallowed into 
+
+[$03:ed61]
+  finally opened. 
+
+[$03:ed87]
+  defeat Deathtoll. 
+
+[$03:ee1e]
+  been saved every last 
+
+----------------------------------------------------------------------
+  BANK $04 (159 entries)
+----------------------------------------------------------------------
+
+[$04:8096]
+  Please, sit right 
+
+[$04:8373]
+  
+  [WAIT]
+  "(
+  [WAIT]
+  
+  [WAIT]
+  -
+  [WAIT]
+  "'
+  [WAIT]
+  
+  [WAIT]
+  -
+  [WAIT]
+  "(
+  [WAIT]
+  
+  [WAIT]
+  -
+  [WAIT]
+  "'
+  [WAIT]
+  
+  [WAIT]
+  -
+  [WAIT]
+  "(
+  [WAIT]
+  
+  [WAIT]
+  -
+  [WAIT]
+  ?E!{PAUSE}
+  [WAIT]
+  "){PAUSE}
+  [WAIT]
+  -
+  [WAIT]
+  "*
+
+[$04:849a]
+  
+  [WAIT]
+  "(
+  [WAIT]
+  
+  [WAIT]
+  -
+  [WAIT]
+  "'
+  [WAIT]
+  
+  [WAIT]
+  -
+  [WAIT]
+  "(
+  [WAIT]
+  
+  [WAIT]
+  -
+  [WAIT]
+  "'
+  [WAIT]
+  
+  [WAIT]
+  -
+  [WAIT]
+  "(
+  [WAIT]
+  
+  [WAIT]
+  -
+  [WAIT]
+  "){PAUSE}
+  [WAIT]
+  -
+  [WAIT]
+  "*
+
+[$04:8776]
+  things Nome was
+
+[$04:879a]
+  would invade our town.
+
+[$04:87f2]
+  Whoever collects 
+
+[$04:881f]
+  Red-Hot Mirror, 
+
+[$04:8841]
+  Red-Hot Stick, 
+
+[$04:88ef]
+  defeat Deathtoll. 
+
+[$04:89a9]
+  called, Deathtoll 
+
+[$04:89bc]
+  moved into position. 
+
+[$04:8a17]
+  equip SoulBlade
+
+[$04:8a9e]
+  symbols, but... 
+
+[$04:8af8]
+  Oh, you`re back! 
+
+[$04:8b1a]
+  worried, but.... 
+
+[$04:8b4e]
+  say something. 
+
+[$04:8b6f]
+  The@King@is@such@a
+
+[$04:8b82]
+  thoughtless@man.
+
+[$04:8c2f]
+  more fulfilled 
+
+[$04:8c93]
+  mushroom, return 
+
+[$04:8da7]
+  Mushroom Shoes if 
+
+[$04:8de3]
+  Mushroom Shoes. 
+
+[$04:8e45]
+  slopes though. 
+
+[$04:8e5b]
+  
+  [CLEAR]
+  $Mushroom Shoes. 
+  [CLEAR]
+   
+
+[$04:8e7e]
+  Mushroom Shoes? 
+
+[$04:8ece]
+  Where shall we 
+
+[$04:9064]
+  defeated by normal 
+
+[$04:9078]
+  swords exist there. 
+
+[$04:9116]
+  call upon evil. 
+
+[$04:9127]
+  Because he refused, he
+
+[$04:9151]
+  He secretly gave us 4 
+
+[$04:9204]
+  Laboratory where 
+
+[$04:9248]
+  wonder how she 
+
+[$04:9741]
+  fast. They become
+
+[$04:9753]
+  adults within half 
+
+[$04:9798]
+  They never feel their 
+
+[$04:97bd]
+  They enjoy each 
+
+[$04:983c]
+  underground lake, 
+
+[$04:9933]
+  fallen asleep. 
+
+[$04:9a15]
+  actual bad people. 
+
+[$04:9a37]
+  punishment room. 
+
+[$04:9c85]
+  yet completed, so 
+
+[$04:9d18]
+  &
+  [CLEAR]
+  
+  [WAIT]
+  
+  [CLEAR]
+  
+  [WAIT]
+  
+  [WAIT]
+  {PAUSE}
+  [WAIT]
+  4
+  [WAIT]
+  
+  [CLEAR]
+  =
+  [WAIT]
+  {PAUSE}
+  [WAIT]
+  
+
+[$04:9e30]
+  mountain winds 
+
+[$04:a036]
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+[$04:a2bb]
+  Ouch.... it hurts! 
+
+[$04:a4f4]
+  Good luck then. 
+
+[$04:a873]
+  pleasant smell. 
+
+[$04:a9b5]
+  some talkative ones. 
+
+[$04:aaa3]
+  
+  [CLEAR]
+  $Mystic Armor. 
+  [CLEAR]
+   
+
+[$04:ab21]
+  Great Door joins you, 
+
+[$04:abe3]
+  Take any leaves 
+
+[$04:ac0e]
+  Medical Herb. 
+  [CLEAR]
+   
+
+[$04:ace9]
+  swallowed into 
+
+[$04:adb2]
+  become purified. 
+
+[$04:aec6]
+  throwing bombs inside 
+
+[$04:b02c]
+  Uh, uh, Dr.Leo? 
+
+[$04:b09f]
+  had been hiding 
+
+[$04:b1e7]
+  
+  [CLEAR]
+  $Actinidia leaves. 
+  [CLEAR]
+   
+
+[$04:b235]
+  large machines 
+
+[$04:b24b]
+  machines which 
+
+[$04:b25b]
+  summoned evil. 
+
+[$04:b27f]
+  When those machines 
+
+[$04:b3d5]
+  his Medical Herbs 
+
+[$04:b48e]
+  doll named Marie. 
+
+[$04:b4c6]
+  "girl named Lisa took
+
+[$04:b5e4]
+  unless Deathtoll 
+
+[$04:b646]
+  wonder how Lisa is, 
+
+[$04:b6a3]
+  ZWe tools, exist 
+
+[$04:b6cb]
+  happy if we`re 
+
+[$04:b6ee]
+  <...we hurt if they 
+
+[$04:b73d]
+  way, we cannot. 
+
+[$04:b906]
+  outside because
+
+[$04:b963]
+  
+  [CLEAR]
+  $Spark Bomb. 
+  [CLEAR]
+   
+
+[$04:b9dd]
+  swallowed into 
+
+[$04:ba1b]
+  swallowed into 
+
+[$04:bac1]
+  Zantetsu Sword 
+
+[$04:bb0f]
+  &
+  [CLEAR]
+  
+  [WAIT]
+  
+  [CLEAR]
+  
+  [WAIT]
+  
+  [WAIT]
+  {PAUSE}
+  [WAIT]
+  4
+  [WAIT]
+  
+  [CLEAR]
+  )
+  [WAIT]
+  {PAUSE}
+  [WAIT]
+  
+  e
+
+[$04:bbd8]
+  No matter how small, 
+
+[$04:bca3]
+  daughter Lisa don`
+
+[$04:bd28]
+  ruin sooner or later. 
+
+[$04:c066]
+  famous architect 
+
+[$04:c0ce]
+  <speed> architect. 
+
+[$04:c181]
+  Elemental Mail. 
+
+[$04:c1c9]
+  I@must@say@that@or
+
+[$04:c1dc]
+  I@will@be@punished.
+
+[$04:c3d2]
+  Elemental Mail. 
+  [CLEAR]
+   
+
+[$04:c54c]
+  I@must@say@this@or
+
+[$04:c55f]
+  I@will@be@punished.
+
+[$04:c61e]
+  <"sad sounding 
+
+[$04:c662]
+  without strings. 
+
+[$04:c7ad]
+  hope someday someone
+
+[$04:c871]
+  It seems important 
+
+[$04:c906]
+  Queen passed away?
+
+[$04:cabf]
+  Invulnerable Bracelet 
+
+[$04:cba1]
+  Platinum Card, 
+
+[$04:cc73]
+  While listening 
+
+[$04:cc88]
+  guard, 
+  [WAIT]
+  
+  [WAIT]
+   sees a
+
+[$04:cce1]
+  love listening 
+
+[$04:cd80]
+  once disobeyed 
+
+[$04:cd91]
+  Magridd. He wanted 
+
+[$04:cdf9]
+  birthday present 
+
+[$04:cecd]
+  read peoples` minds. 
+
+[$04:cefb]
+  Medical Herb. 
+  [CLEAR]
+   
+
+[$04:cf94]
+  sometimes sounds 
+
+[$04:d024]
+  soldiers` dormitory. 
+
+[$04:d106]
+  Anyone without 
+
+[$04:d194]
+  things wandering 
+
+[$04:d299]
+  invisible passages 
+
+[$04:d2e3]
+  secret passages joins 
+
+[$04:d52f]
+  sneak up behind 
+
+[$04:d545]
+  almost fell into
+
+[$04:d669]
+  ...killed whomever 
+
+[$04:d6e9]
+  thought it would 
+
+[$04:d716]
+  captured by her own 
+
+[$04:d743]
+  must apologize 
+
+[$04:d7cc]
+  finally realized 
+
+[$04:d831]
+  say thank you. 
+
+[$04:d915]
+  beautiful women 
+
+[$04:d941]
+  realize no man 
+
+[$04:da7c]
+  every generation about
+
+[$04:da94]
+  accomplishments. 
+
+[$04:dc2a]
+  airship dock as soon 
+
+[$04:dc93]
+  start our ship. 
+
+[$04:df5d]
+  
+  [WAIT]
+  '&
+  [WAIT]
+  ...
+  [WAIT]
+  '#
+  [WAIT]
+  ...
+  [WAIT]
+  
+  [CLEAR]
+  =
+  [WAIT]
+  {PAUSE}
+  [WAIT]
+  
+  3
+
+[$04:e08a]
+  defeat Deathtoll. 
+
+[$04:e2a1]
+  Hey, keep walking. 
+
+[$04:e38d]
+  cannot sacrifice 
+
+[$04:e3b4]
+  -please, release 
+
+[$04:e3d9]
+  precious thing 
+
+[$04:e403]
+  her, she would 
+
+[$04:e42b]
+  endure anything 
+
+[$04:e468]
+  'right, Dr.Leo. 
+
+[$04:e479]
+  Leave Lisa alone. 
+
+[$04:e4ae]
+  stay@behind@me....
+
+[$04:e4c5]
+  Here,@take@this@and
+
+[$04:e4d9]
+  get@on@the@airship.
+
+[$04:e4ed]
+  Please@take@care@of
+
+[$04:e563]
+  wrong generation. 
+
+[$04:e5c3]
+  scientist may ruin the
+
+[$04:e5ec]
+  happiness comes 
+
+[$04:e697]
+  Lisa,@be@happy.
+
+[$04:e6c1]
+  (Yes,@gradually........
+
+[$04:e790]
+  father passed away.
+
+[$04:e7f7]
+  at Grass Valley, 
+
+[$04:e90b]
+  Deathtoll, right? 
+
+[$04:e923]
+  would say goodbye, 
+
+[$04:ea38]
+  <
+  [CLEAR]
+  $harp string.
+  [CLEAR]
+   > 
+
+[$04:eaa9]
+  been haunted by
+
+[$04:eb26]
+  genius, scientist 
+
+[$04:eb58]
+  kept inventing 
+
+[$04:eb68]
+  things, Water Mill, 
+
+[$04:ebc6]
+  realize something. 
+
+[$04:ec37]
+  become unhappy. 
+
+[$04:ed4d]
+  understand this. 
+
+[$04:edf7]
+  treasure chests hidden
+
+[$04:eeba]
+  Zantetsu Sword 
+
+[$04:ef04]
+  remember where 
+
+[$04:f0b8]
+  Good luck then. 
+
+----------------------------------------------------------------------
+  BANK $05 (1 entries)
+----------------------------------------------------------------------
+
+[$05:cc4e]
+   UVWpU(U$URu@w"
+
+----------------------------------------------------------------------
+  BANK $06 (2 entries)
+----------------------------------------------------------------------
+
+[$06:ab3f]
+  {ITEM}
+  [CLEAR]
+  {ITEM}
+  [CLEAR]
+  {ITEM}
+  [CLEAR]
+  {ITEM}
+  [CLEAR]
+  {ITEM}
+  [CLEAR]
+  {ITEM}
+  [CLEAR]
+  {ITEM}
+  [CLEAR]
+  {ITEM}
+  [CLEAR]
+  
+
+[$06:ae2e]
+  "UUUUUUUUUUUUUUUU
+
+----------------------------------------------------------------------
+  BANK $08 (66 entries)
+----------------------------------------------------------------------
+
+[$08:8489]
+  
+  [CLEAR]
+  %x#3"5UD#3x3DDDC
+
+[$08:8516]
+  !D2A
+  x
+  [CLEAR]
+  44"
+  [WAIT]
+  3#3x$B"
+
+[$08:8532]
+  #T32x#4ewTD4ExE4D4T!#3hc3S1
+
+[$08:85bd]
+  x#5UVvTWfxD34DEC3"hDUDF 
+
+[$08:862f]
+  44Dx$TS4TUT4xUT4EUT33x35TVEuFUx4D3$3"
+
+[$08:86b5]
+  3224x3"43TUUUxUT4VWvEUxFVEgffeu
+
+[$08:87c4]
+  4C{ITEM}x!23C3DUDxEDEUEWVgxeUdfewfVxUVfeUTCTx3413""
+
+[$08:8861]
+  R2323333xgVWgUUEexDEC$4"
+
+[$08:88f1]
+  3C33D333xVUUD2S
+
+[$08:89ec]
+  h33SCDVfwx444E5EWf
+
+[$08:8a76]
+  @111"Ex2C23#C4ExUEUEUEUVxVffU644Ed
+
+[$08:8b09]
+  $#$xDDEDUEEExUEfUDT
+
+[$08:8b8c]
+  ""#3"45x
+  [CLEAR]
+  `f%D4EUxEEETDT4Dx4434
+
+[$08:8c17]
+  Q#3x23T$$355x5E4E3$D4tDT
+
+[$08:8c42]
+  #$ndDhdUE4T3DThCF
+
+[$08:8c93]
+  024
+  [CLEAR]
+  !h12B33DEUx443CCPS4x4TCC3a34hefW3e3
+
+[$08:8d22]
+  n2BBCEx13433%B4xDD346{PAUSE}43x433$"
+
+[$08:8dab]
+  143Dx""222CB4xCD3D#333t$SDSDDC3hS5E%4
+
+[$08:8dd6]
+  2#{PAUSE}##"i"3#B2A3D
+
+[$08:91aa]
+  t4VUD4VCEhC4S"23"DX
+
+[$08:91fd]
+  23C42%ChDU3CU3Vdh$c%CFDD5hA#33C
+
+[$08:9262]
+  34D3ChD244C#FCh#$DC$T
+
+[$08:931b]
+  X&D&UFGfdh324C3433hD4S"44D#XwTEEV3CUHfB
+  [WAIT]
+  !
+
+[$08:937a]
+  
+  #
+  [CLEAR]
+  TX$D$EfEeVh34333C3Dh34343$4#Xd6eD4CC"X
+
+[$08:93db]
+  
+  [WAIT]
+  #"#44X$eEUDVUUXVfVfgUgVXeEWWVVfCXFUVEC3C#He
+
+[$08:943e]
+  "#3$4EXTFeEeVefXgeFfgVfFXUVTVeVdDX4ED42"#3H1
+
+[$08:94a2]
+  2"C32X44E6FDEEXVUgUeWfwh33#3333#XEET33#3"H
+
+[$08:9507]
+  ##$XD4DEEEEFXUEUVffUVXUWeVUUDETC#3"#2
+
+[$08:9566]
+  #$6VFfEX4C4DEEEeXDUUDUUUUXVTUUEUDTXDS3C"32"H32
+
+[$08:95cc]
+  "2"DX3EDEEFeEXeVeEfVUVXUEUEUEE4X5443#2"!8dR
+
+[$08:962d]
+  
+  "333EX#$44D4TDXTEVEVEFUXVUUVEU5UXU5DE3#3"HU3
+
+[$08:9690]
+  
+  "$34DX#2#C344DXD4DDUDUDXET4UTTEDXD4T4DC32HeBDB2"
+
+[$08:96f5]
+  !"3DX"#23D34DXDDDUDUTEXTFTETDD5XD4C$3##3HCB22#
+  [WAIT]
+  
+  
+
+[$08:975e]
+  ""23343XDEDDETEUXEU4UUDEUX4TEC4342HgET2#2" H
+  
+
+[$08:97c3]
+  22EEUX3#44445EX5DEDEUUDXEEDDDDD3XD2332
+
+[$08:9825]
+  3#4DEUX3334C4CCX4D4D4C4DX4D4434C3HgufUUdE4H$$
+
+[$08:988a]
+  #335X"##333E4X4DDDDDEDX5DDCDC4DX$$3
+
+[$08:98f5]
+  CEUFWX4#4C4DDDXDSDTDDDDXCDC343#2HTSR31
+
+[$08:9954]
+  H
+  [WAIT]
+  ""B34TEX#3#333D#X434C4C33TffffUUUUHUUUDd54#8DC2!
+
+[$08:99ba]
+  !21CCDX#"3"4243X3D2D3434HvfgfGWVVHUUEE4D3$8URA10
+  
+
+[$08:9a27]
+  ##$#4X#D34D4C4XC4C3D242HgUeeDT548fgF$C! 
+
+[$08:9a8c]
+  %3CH6EEUVUWfX343434C3HvwuvvfVVHEUE4C31"H 
+
+[$08:9aef]
+  ##CHDD6EEUFUHVeeffdfeHVVVVUUUUHETEDD3348UTE3"
+
+[$08:9b51]
+  "2CTH2CCEE6UFHUVfVfVgVHVfVVVUVTHUTETD3E#8WERD#
+
+[$08:9bbc]
+  12B3SH4EEUEVdVHfVfVefeVHeeUeFdETHDC3S#""18!0
+
+[$08:9c1e]
+  
+  [CLEAR]
+  
+  !154H"33#C5CDHTDeDUUEeHEUTUd5U5HTDCDC3338DT$3 1
+
+[$08:9c84]
+  #FuH"#"3B3D4HD4DDE4EDHEDECECE3HD4C3CB328fDE$C"2!8
+
+[$08:9cee]
+  !ACCUH2333DCDDHDU4FDEDDHEDD4D$344f33"!
+
+[$08:9d54]
+  {PAUSE}C8##3CDTEe8FVVVffvgH343433438wfWVVFVD8ECC"B!
+
+[$08:9db9]
+  8 !#"$$4584TETEeUT8dVTVEUUE8TESET5D5844B34"#
+
+[$08:9e22]
+  25383"3CCDDD8ETEUDUTU85UCTDDD4842C222#!($B$
+
+[$08:9e8b]
+  13&3FU8#334$4448C5444444(gWWVVedU(U4D4#211
+
+[$08:9ef7]
+  44$SSE(SUEUFETV(EEUTETED(D44C4#3#
+
+[$08:a09c]
+  44###"#"{PAUSE}2332"""!{PAUSE}
+
+[$08:a0f3]
+  "#{PAUSE}"#33##33{PAUSE}#22#""!"{PAUSE}
+
+[$08:a281]
+  43xa6UD3Du"t#3B%$0
+
+[$08:a34e]
+  24"2h4#32333Ch3C3S43D4hCDC4DDD4hD4U3DDDTh4TDTDTDEhEDUDUDUDhEUEEEEEEhUDTTTETEhDTESDTTDhCDDT4CDChDC4BDBC3hB4333232XVVFTFTETXDDS4C44CX233#2#1"DC3"
+
+[$08:a4b9]
+  `(
+  [WAIT]
+  !#1%A{PAUSE}B(3E42S4TC(SFTCFEV4(eUTUWDVU(TVFUUUVF(TVeDeeDe(UUdVDeUV(U5fDUUTU(6VDETUSe(CUTDe4EU(T4UDDU4D(T4DECDCD(4D34C433(43#C1422
+
+[$08:b7bf]
+  #jdS2#fTDBj"24FB
+
+[$08:b8b8]
+  UTS#z#33!3DeDz!
+
+[$08:b970]
+  z3"333DT3z3EgeT1!"z"EDD"
+
+[$08:b9ae]
+  Tz#"34TD34zVffTC!"4zDUC31
+
+[$08:b9eb]
+  3Fez""4C23#VzVUT2!"4Dz4U3
+
+[$08:baae]
+  ##DUdCz2"##EET2j#4VfT""
+
+[$08:bae6]
+  b4DUz3343D$UCzDC3"3
+
+[$08:bb24]
+  ""$Dez3333T3TDzDC222"
+
+----------------------------------------------------------------------
+  BANK $09 (9 entries)
+----------------------------------------------------------------------
+
+[$09:8888]
+  B{PAUSE}C{PAUSE}R{PAUSE}S{PAUSE}D{PAUSE}E{PAUSE}T{PAUSE}U{PAUSE}F
+
+[$09:88a0]
+  H{PAUSE}I{PAUSE}X{PAUSE}Y{PAUSE}J{PAUSE}K{PAUSE}Z{PAUSE}[{PAUSE}L
+
+[$09:88b8]
+  N{PAUSE}O{PAUSE}^{PAUSE}_{PAUSE}`{PAUSE}a{PAUSE}p{PAUSE}q{PAUSE}b
+
+[$09:8cb0]
+  {NUM}xgx{NUM}xgx{NUM}x{NUM}x{NUM}x{NUM}x
+
+[$09:8eb0]
+  {NUM}8{NUM}8{NUM}8{NUM}8{NUM}8{NUM}8{NUM}8{NUM}8
+
+[$09:9050]
+  {NUM}8{NUM}8{NUM}8{NUM}8{NUM}8{NUM}8{NUM}8{NUM}8
+  {NUM}
+
+[$09:a711]
+  `/p'xwxs|sxqpxz
+
+[$09:f1ff]
+  &KLGEEECABDFFFHKLPQRRRRRRRRRRRRPQSMRRRRRRRRRRRRSMSMRRRRRRRRRRRRSMSMRRRRRRRRRRRRSMSMRRRRRRRRRRRRSMNORRRRRRRRRRRRNOPQRRRRRRRRRRRRPQSMRRRRRRRRRRRRSMSMRRRRRRRRRRRRSMSMRRRRRRRRRRRRSMSMRRRRRRRRRRRRSMNORRRRRRRRRRRRNOIJGEEEECDFFFFHIJ
+
+[$09:f519]
+  
+  [CLEAR]
+  {NAME}Y8"|ix:BP)dBu
+
+----------------------------------------------------------------------
+  BANK $0A (1 entries)
+----------------------------------------------------------------------
+
+[$0a:a594]
+  *\
+  ]0ppphxhxd|l|j~n
+
+----------------------------------------------------------------------
+  BANK $0D (4 entries)
+----------------------------------------------------------------------
+
+[$0d:90d8]
+  
+  7
+  9
+  Z
+  |
+  |
+  {
+  Z
+  8
+  7
+  
+
+[$0d:b386]
+  !@"!A""A..."B...#B-#C-$C!$D!%D?%E?&E
+
+[$0d:b3de]
+  %E?%D?$D!$C!#C-#B-"B..."A...!A"!@" @'
+  0
+
+[$0d:b522]
+   @'"@'$A'&B'(C'*D",E".F"0G"2H"4I...6J...8K...:L...<M...?N-?N-=N-;M-9L-7K-5J...3I...1H.../G...-F...+E")D"'C"%B"#A" @'
+
+----------------------------------------------------------------------
+  BANK $0F (1 entries)
+----------------------------------------------------------------------
+
+[$0f:c993]
+  
+  
+  
+  
+  
+  
+  
+  [CLEAR]
+  
+  
+  [CLEAR]
+  
+  
+  [CLEAR]
+  
+  
+  [CLEAR]
+  @@@@
+
+----------------------------------------------------------------------
+  BANK $13 (1 entries)
+----------------------------------------------------------------------
+
+[$13:ffcd]
+  J)J)J)J)J)J)J)J)J)J)
+
+----------------------------------------------------------------------
+  BANK $15 (1 entries)
+----------------------------------------------------------------------
+
+[$15:8964]
+  #d{ITEM}{NUM}{NUM}H\
+  <1{NAME}xD6S)
+
+----------------------------------------------------------------------
+  BANK $17 (2 entries)
+----------------------------------------------------------------------
+
+[$17:8fb5]
+  !N`{NUM}P!{PAUSE}bS :!BK(
+
+[$17:ca83]
+  h@t_@u
+   <'PB 3,|z
+
+----------------------------------------------------------------------
+  BANK $1B (1 entries)
+----------------------------------------------------------------------
+
+[$1b:9f0f]
+  _...)0$?Hza"j!{PAUSE}<!q
+
+----------------------------------------------------------------------
+  BANK $1F (82 entries)
+----------------------------------------------------------------------
+
+[$1f:81ad]
+  work together so
+
+[$1f:8289]
+  looked different 
+
+[$1f:84c2]
+  students return, 
+
+[$1f:8554]
+  easiest dance, 
+
+[$1f:86ad]
+  island, Durean. 
+
+[$1f:8717]
+  volcano, right? 
+
+[$1f:883e]
+  rain, Blester. 
+
+[$1f:8891]
+  the@coral@reef@you
+
+[$1f:88a4]
+  will@find@a@passage@to
+
+[$1f:891a]
+  monsters. Make sure 
+
+[$1f:8a33]
+  4 mermaid statues 
+
+[$1f:8aee]
+  Proceed right along 
+
+[$1f:8b0e]
+  shore reef, Rockbird. 
+
+[$1f:8c24]
+  breathe under water, 
+
+[$1f:8c4b]
+  
+  [CLEAR]
+  $Bubble Armor. 
+  [CLEAR]
+   
+
+[$1f:8d30]
+  let anyone pass. 
+
+[$1f:8de5]
+  volcanic island. 
+
+[$1f:8e15]
+  These teardrops 
+
+[$1f:8e54]
+  Icy teardrops, filled 
+
+[$1f:8f09]
+  Walk downward under 
+
+[$1f:8f28]
+  volcanic island, 
+
+[$1f:9106]
+  referring to, right? 
+
+[$1f:9312]
+  bad feeling dominate 
+
+[$1f:9454]
+  dolphin, Lue, used
+
+[$1f:9479]
+  strange, whenever
+
+[$1f:94c1]
+  sometimes find myself 
+
+[$1f:9578]
+  home town along 
+
+[$1f:9894]
+  Red-Hot Stick. 
+
+[$1f:98a7]
+  Phoenix resides on
+
+[$1f:9a11]
+  This@is@a@secret,@the
+
+[$1f:9a27]
+  Queen@looks@like@this.
+
+[$1f:9a40]
+  She@always@sits@like
+
+[$1f:9a5b]
+  She@looks@so@mean.
+
+[$1f:9a70]
+  Lue,@the@dolphin@has
+
+[$1f:9a94]
+  Please@save@him!
+
+[$1f:9ad0]
+  never comes out. 
+
+[$1f:9ae2]
+  Maybe he likes 
+
+[$1f:9bfc]
+  <Hey, somebody 
+
+[$1f:9c29]
+  inventor, Dr.Leo.
+
+[$1f:9c56]
+  It attracts anyone who
+
+[$1f:9d11]
+  took it. Then she 
+
+[$1f:9d73]
+  Thunder Ring. 
+  [CLEAR]
+   
+
+[$1f:9da9]
+  wonder how he is. 
+
+[$1f:9eaa]
+  bad person. She 
+
+[$1f:a098]
+  Southerta, through the
+
+[$1f:a0bf]
+  Bubble Clothing. 
+
+[$1f:a0d4]
+  Listen closely 
+
+[$1f:a0f2]
+  mermaid statues. 
+
+[$1f:a2c2]
+  cannot travel any 
+
+[$1f:a33c]
+  new life. Lives, they 
+
+[$1f:a37a]
+  voices..... maybe 
+
+[$1f:a409]
+  treasure chest. 
+
+[$1f:a576]
+  down lightning 
+
+[$1f:a9a5]
+  Help! Somebody 
+
+[$1f:b065]
+  
+  [WAIT]
+  '
+  [WAIT]
+  
+  [WAIT]
+  ...
+  [WAIT]
+  "
+  [CLEAR]
+  
+  [WAIT]
+  
+  [WAIT]
+  -
+  [WAIT]
+  '
+  
+  [WAIT]
+  ...
+  [WAIT]
+  
+
+[$1f:b5a5]
+  
+  [WAIT]
+  
+  [CLEAR]
+  {PAUSE}
+  [WAIT]
+  '(
+  [WAIT]
+  ...
+  [WAIT]
+  ',
+  [WAIT]
+  ...
+  [WAIT]
+  {PAUSE}
+  [WAIT]
+  
+  [CLEAR]
+  {PAUSE}
+  [WAIT]
+  '(
+  [WAIT]
+  ...
+  [WAIT]
+  ')
+  [WAIT]
+  ...
+  [WAIT]
+  {PAUSE}
+  [WAIT]
+  
+  [CLEAR]
+  {PAUSE}
+  [WAIT]
+  '(
+  [WAIT]
+  ...
+  [WAIT]
+  '+
+  [WAIT]
+  ...
+  [WAIT]
+  {PAUSE}
+  [WAIT]
+  
+  [CLEAR]
+  {PAUSE}
+  [WAIT]
+  '(
+  [WAIT]
+  ...
+  [WAIT]
+  '*
+  [WAIT]
+  ...
+  [WAIT]
+  {PAUSE}'
+
+[$1f:c57f]
+  
+  [WAIT]
+  ''
+  [WAIT]
+  ...
+  [WAIT]
+  '(
+  [WAIT]
+  ...
+  [WAIT]
+  "%{PAUSE}
+  [WAIT]
+  -...
+
+[$1f:c5ac]
+  
+  [WAIT]
+  ''
+  [WAIT]
+  ...
+  [WAIT]
+  '(
+  [WAIT]
+  ...
+  [WAIT]
+  "${PAUSE}
+  [WAIT]
+  -...|
+
+[$1f:c5d9]
+  
+  [WAIT]
+  ''
+  [WAIT]
+  ...
+  [WAIT]
+  '(
+  [WAIT]
+  ...
+  [WAIT]
+  "%{PAUSE}
+  [WAIT]
+  -...O
+
+[$1f:c606]
+  
+  [WAIT]
+  ''
+  [WAIT]
+  ...
+  [WAIT]
+  '(
+  [WAIT]
+  ...
+  [WAIT]
+  "${PAUSE}
+  [WAIT]
+  -..."
+
+[$1f:c63d]
+  
+  [WAIT]
+  ''
+  [WAIT]
+  ...
+  [WAIT]
+  '(
+  [WAIT]
+  ...
+  [WAIT]
+  "!{PAUSE}
+  [WAIT]
+  -...
+
+[$1f:c66a]
+  
+  [WAIT]
+  ''
+  [WAIT]
+  ...
+  [WAIT]
+  '(
+  [WAIT]
+  ...
+  [WAIT]
+  ""{PAUSE}
+  [WAIT]
+  -...
+
+[$1f:c697]
+  
+  [WAIT]
+  ''
+  [WAIT]
+  ...
+  [WAIT]
+  '(
+  [WAIT]
+  ...
+  [WAIT]
+  "#{PAUSE}
+  [WAIT]
+  -...
+
+[$1f:c6c4]
+  
+  [WAIT]
+  ''
+  [WAIT]
+  ...
+  [WAIT]
+  '(
+  [WAIT]
+  ...
+  [WAIT]
+  "#{PAUSE}
+  [WAIT]
+  -...d
+
+[$1f:d22a]
+  
+  [WAIT]
+  ',
+  [WAIT]
+  ...
+  [WAIT]
+  '.
+  [WAIT]
+  ...
+  [WAIT]
+  ',
+  [WAIT]
+  ...'
+
+[$1f:d23d]
+  
+  [WAIT]
+  ',
+  [WAIT]
+  ...
+  [WAIT]
+  '-
+  [WAIT]
+  ...
+  [WAIT]
+  ',
+  [WAIT]
+  ...'
+
+[$1f:d250]
+  
+  [WAIT]
+  ',
+  [WAIT]
+  ...
+  [WAIT]
+  '-
+  [WAIT]
+  ...
+  [WAIT]
+  ',
+  [WAIT]
+  ...'!
+  [WAIT]
+  
+
+[$1f:d263]
+  
+  [WAIT]
+  ',
+  [WAIT]
+  ...
+  [WAIT]
+  '.
+  [WAIT]
+  ...
+  [WAIT]
+  ',
+  [WAIT]
+  ......p
+
+[$1f:d547]
+  
+  [WAIT]
+  '!
+  [WAIT]
+  ...
+  [WAIT]
+  '#
+  [WAIT]
+  ...
+  [WAIT]
+  '!
+  [WAIT]
+  ...'!
+  [WAIT]
+  
+
+[$1f:d56a]
+  
+  [WAIT]
+  '!
+  [WAIT]
+  ...
+  [WAIT]
+  '"
+  [WAIT]
+  ...
+  [WAIT]
+  '!
+  [WAIT]
+  ...
+  [WAIT]
+  
+
+[$1f:d5be]
+  
+  [WAIT]
+  '!
+  [WAIT]
+  ...
+  [WAIT]
+  '#
+  [WAIT]
+  ...
+  [WAIT]
+  '!
+  [WAIT]
+  ...'!
+  [WAIT]
+  
+
+[$1f:d5e1]
+  
+  [WAIT]
+  '!
+  [WAIT]
+  ...
+  [WAIT]
+  '"
+  [WAIT]
+  ...
+  [WAIT]
+  '!
+  [WAIT]
+  ...
+  [WAIT]
+  
+
+[$1f:dd33]
+  
+  [WAIT]
+  '+
+  [WAIT]
+  ...
+  [WAIT]
+  '2
+  [WAIT]
+  ...
+  [WAIT]
+  ',
+  [WAIT]
+  ...
+  [WAIT]
+  '1
+  [WAIT]
+  ...
+  [WAIT]
+  '+
+  [WAIT]
+  ...'
+
+[$1f:dd78]
+  
+  [WAIT]
+  '+
+  [WAIT]
+  ...
+  [WAIT]
+  '2
+  [WAIT]
+  ...
+  [WAIT]
+  ',
+  [WAIT]
+  ...
+  [WAIT]
+  '1
+  [WAIT]
+  ...
+  [WAIT]
+  '+
+  [WAIT]
+  ......
+
+[$1f:ddbe]
+  
+  [WAIT]
+  ',
+  [WAIT]
+  ...
+  [WAIT]
+  '2
+  [WAIT]
+  ...
+  [WAIT]
+  '+
+  [WAIT]
+  ...
+  [WAIT]
+  '1
+  [WAIT]
+  ...
+  [WAIT]
+  ',
+  [WAIT]
+  ...'
+
+[$1f:de03]
+  
+  [WAIT]
+  ',
+  [WAIT]
+  ...
+  [WAIT]
+  '2
+  [WAIT]
+  ...
+  [WAIT]
+  '+
+  [WAIT]
+  ...
+  [WAIT]
+  '1
+  [WAIT]
+  ...
+  [WAIT]
+  ',
+  [WAIT]
+  ......
+
+[$1f:e3d3]
+  
+  [WAIT]
+  ')
+  [WAIT]
+  ...'6
+  [WAIT]
+  '*
+  [WAIT]
+  ...'/
+  [WAIT]
+  '+
+  [WAIT]
+  ...'(
+  [WAIT]
+  '.
+  [WAIT]
+  ...'!
+  [WAIT]
+  '/
+  [WAIT]
+  ...'
+
+[$1f:e841]
+  
+  [WAIT]
+  '.
+  [WAIT]
+  ...
+  [WAIT]
+  '0
+  [WAIT]
+  ...
+  [WAIT]
+  '.
+  [WAIT]
+  ...
+  [WAIT]
+  
+
+[$1f:e86a]
+  
+  [WAIT]
+  '/
+  [WAIT]
+  ...
+  [WAIT]
+  '.
+  [WAIT]
+  ...
+  [WAIT]
+  '0
+  [WAIT]
+  ...
+  [WAIT]
+  
+
+[$1f:ebd4]
+  
+  [WAIT]
+  ''
+  [WAIT]
+  ...
+  [WAIT]
+  "({PAUSE}
+  [WAIT]
+  -
+  [WAIT]
+  ''
+  [WAIT]
+  ...
+
+[$1f:ec0d]
+  
+  [WAIT]
+  '$
+  [WAIT]
+  ...
+  [WAIT]
+  "%{PAUSE}
+  [WAIT]
+  -
+  [WAIT]
+  '$
+  [WAIT]
+  ...
+
+[$1f:ecb3]
+  
+  [WAIT]
+  '!
+  [WAIT]
+  ...
+  [WAIT]
+  ""{PAUSE}
+  [WAIT]
+  -
+  [WAIT]
+  '!
+  [WAIT]
+  ...
+
