@@ -162,6 +162,17 @@ Features:
 - Database of known map locations
 - Batch export all maps
 
+### Sprite Viewer
+```bash
+python sprite_viewer.py
+```
+GUI application for:
+- Viewing character, enemy, and boss sprites
+- Bank-based sprite browsing (banks $15-$19)
+- Palette selection from 170 extracted palettes
+- Zoom controls (1x-8x)
+- Batch export all known sprites
+
 ## ROM Structure
 
 ### Banks
