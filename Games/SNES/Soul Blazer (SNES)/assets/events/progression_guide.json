@@ -1,0 +1,84 @@
+[
+	{
+		"act": 1,
+		"area": "Grass Valley",
+		"steps": [
+			"Clear Underground Castle B1 - Release Old Woman",
+			"Clear Underground Castle B2 - Release Tool Shop Owner",
+			"Get Dream Rod from Tool Shop",
+			"Clear Underground Castle B3 - Release Bridge Guard",
+			"Cross bridge to B4",
+			"Defeat Metal Mantis boss",
+			"Release remaining villagers",
+			"Speak to Dr. Leo (via dream)",
+			"Receive Sword of Life"
+		]
+	},
+	{
+		"act": 2,
+		"area": "GreenWood",
+		"steps": [
+			"Enter GreenWood through western path",
+			"Clear Fire Shrine - Release deer",
+			"Clear Water Shrine - Release bird",
+			"Clear Light Shrine - Release mole",
+			"Enter Lost Marsh",
+			"Defeat Plantentacle boss",
+			"Release Great Tree",
+			"Speak to Turbo for key item"
+		]
+	},
+	{
+		"act": 3,
+		"area": "St. Elles",
+		"steps": [
+			"Dive into seabed",
+			"Clear Durean - Release dolphins",
+			"Board Ghost Ship",
+			"Defeat Ghost Ship boss",
+			"Enter Southerta",
+			"Visit Mermaid Queen",
+			"Defeat Poseidon boss",
+			"Receive Bubble Armor"
+		]
+	},
+	{
+		"act": 4,
+		"area": "Mountain of Souls",
+		"steps": [
+			"Enter mountain via Nome",
+			"Clear Laynole - Release mushrooms",
+			"Enter Lune area",
+			"Defeat Stone Guardian boss",
+			"Release grandparents",
+			"Receive Phoenix magic"
+		]
+	},
+	{
+		"act": 5,
+		"area": "Leo's Lab",
+		"steps": [
+			"Enter model town",
+			"Shrink to toy size",
+			"Clear Model Town areas",
+			"Enter Leo's Laboratory",
+			"Explore paintings (4 total)",
+			"Defeat Tin Doll boss",
+			"Rescue Marie"
+		]
+	},
+	{
+		"act": 6,
+		"area": "Magridd Castle",
+		"steps": [
+			"Enter Castle Town",
+			"Get audience with King Magridd",
+			"Enter castle dungeon",
+			"Clear basement areas",
+			"Defeat Castle bosses",
+			"Enter World of Evil",
+			"Defeat Deathtoll (final boss)",
+			"Watch ending"
+		]
+	}
+]
