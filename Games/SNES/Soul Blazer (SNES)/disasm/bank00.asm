@@ -21,16 +21,16 @@ $00:800e  e2 20         sep #$20
 $00:8010  a9 01         lda #$01
 $00:8012  48            pha
 $00:8013  ab            plb
-$00:8014  22 ac b9 02   jsl $02b9ac
-$00:8018  22 da ba 02   jsl $02bada
-$00:801c  22 12 f9 04   jsl $04f912
-$00:8020  22 ee f6 04   jsl $04f6ee
+$00:8014  22 ac b9 02   jsl $02b9ac  ; -> InitHardware
+$00:8018  22 da ba 02   jsl $02bada  ; -> InitRAM
+$00:801c  22 12 f9 04   jsl $04f912  ; -> InitSprites
+$00:8020  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:8024  a2 0c 00      ldx #$000c
 $00:8027  8e 18 03      stx $0318
-$00:802a  22 a2 b1 02   jsl $02b1a2
-$00:802e  22 81 f7 04   jsl $04f781
-$00:8032  22 b7 b1 02   jsl $02b1b7
-$00:8036  22 81 f7 04   jsl $04f781
+$00:802a  22 a2 b1 02   jsl $02b1a2  ; -> WaitVBlank
+$00:802e  22 81 f7 04   jsl $04f781  ; -> UpdatePalette
+$00:8032  22 b7 b1 02   jsl $02b1b7  ; -> DisableNMI
+$00:8036  22 81 f7 04   jsl $04f781  ; -> UpdatePalette
 $00:803a  ad 6a 1c      lda $1c6a
 $00:803d  38            sec
 $00:803e  e9 10         sbc #$10
@@ -38,44 +38,44 @@ $00:8040  c9 03         cmp #$03
 $00:8042  90 4b         bcc $808f
 $00:8044  ad fb 03      lda $03fb
 $00:8047  d0 61         bne $80aa
-$00:8049  22 fc 98 02   jsl $0298fc
-$00:804d  22 72 f5 04   jsl $04f572
-$00:8051  22 ae b1 02   jsl $02b1ae
-$00:8055  22 d6 89 02   jsl $0289d6
-$00:8059  22 5e 98 02   jsl $02985e
-$00:805d  22 a6 85 00   jsl $0085a6
-$00:8061  22 c4 85 00   jsl $0085c4
-$00:8065  22 34 8a 00   jsl $008a34
-$00:8069  22 f4 8d 00   jsl $008df4
-$00:806d  22 05 b0 00   jsl $00b005
-$00:8071  22 69 80 02   jsl $028069
-$00:8075  22 0b 81 02   jsl $02810b
-$00:8079  22 ee 86 00   jsl $0086ee
-$00:807d  22 59 a6 02   jsl $02a659
-$00:8081  22 95 96 02   jsl $029695
-$00:8085  22 23 f2 04   jsl $04f223
-$00:8089  22 a2 b1 02   jsl $02b1a2
+$00:8049  22 fc 98 02   jsl $0298fc  ; -> UpdateMap
+$00:804d  22 72 f5 04   jsl $04f572  ; -> LoadGraphics
+$00:8051  22 ae b1 02   jsl $02b1ae  ; -> EnableNMI
+$00:8055  22 d6 89 02   jsl $0289d6  ; -> LoadMap
+$00:8059  22 5e 98 02   jsl $02985e  ; -> ProcessEvents
+$00:805d  22 a6 85 00   jsl $0085a6  ; -> ReadJoypad
+$00:8061  22 c4 85 00   jsl $0085c4  ; -> ProcessInput
+$00:8065  22 34 8a 00   jsl $008a34  ; -> UpdatePlayer
+$00:8069  22 f4 8d 00   jsl $008df4  ; -> UpdateEntities
+$00:806d  22 05 b0 00   jsl $00b005  ; -> UpdateCollision
+$00:8071  22 69 80 02   jsl $028069  ; -> GameLoop_Update
+$00:8075  22 0b 81 02   jsl $02810b  ; -> GameLoop_Render
+$00:8079  22 ee 86 00   jsl $0086ee  ; -> UpdateSprites
+$00:807d  22 59 a6 02   jsl $02a659  ; -> UpdateCamera
+$00:8081  22 95 96 02   jsl $029695  ; -> UpdateNPCs
+$00:8085  22 23 f2 04   jsl $04f223  ; -> UpdateAudio
+$00:8089  22 a2 b1 02   jsl $02b1a2  ; -> WaitVBlank
 $00:808d  80 a3         bra $8032
-$00:808f  22 ae b1 02   jsl $02b1ae
-$00:8093  22 5e 98 02   jsl $02985e
-$00:8097  22 a6 85 00   jsl $0085a6
-$00:809b  22 c4 85 00   jsl $0085c4
-$00:809f  22 ee 86 00   jsl $0086ee
-$00:80a3  22 a2 b1 02   jsl $02b1a2
+$00:808f  22 ae b1 02   jsl $02b1ae  ; -> EnableNMI
+$00:8093  22 5e 98 02   jsl $02985e  ; -> ProcessEvents
+$00:8097  22 a6 85 00   jsl $0085a6  ; -> ReadJoypad
+$00:809b  22 c4 85 00   jsl $0085c4  ; -> ProcessInput
+$00:809f  22 ee 86 00   jsl $0086ee  ; -> UpdateSprites
+$00:80a3  22 a2 b1 02   jsl $02b1a2  ; -> WaitVBlank
 $00:80a7  82 88 ff      brl $8032
-$00:80aa  22 ae b1 02   jsl $02b1ae
+$00:80aa  22 ae b1 02   jsl $02b1ae  ; -> EnableNMI
 $00:80ae  22 a9 8e 02   jsl $028ea9
-$00:80b2  22 5e 98 02   jsl $02985e
+$00:80b2  22 5e 98 02   jsl $02985e  ; -> ProcessEvents
 $00:80b6  9c 23 03      stz $0323
-$00:80b9  22 a6 85 00   jsl $0085a6
-$00:80bd  22 c4 85 00   jsl $0085c4
-$00:80c1  22 ee 86 00   jsl $0086ee
-$00:80c5  22 59 a6 02   jsl $02a659
-$00:80c9  22 95 96 02   jsl $029695
-$00:80cd  22 23 f2 04   jsl $04f223
-$00:80d1  22 a2 b1 02   jsl $02b1a2
-$00:80d5  22 b7 b1 02   jsl $02b1b7
-$00:80d9  22 ae b1 02   jsl $02b1ae
+$00:80b9  22 a6 85 00   jsl $0085a6  ; -> ReadJoypad
+$00:80bd  22 c4 85 00   jsl $0085c4  ; -> ProcessInput
+$00:80c1  22 ee 86 00   jsl $0086ee  ; -> UpdateSprites
+$00:80c5  22 59 a6 02   jsl $02a659  ; -> UpdateCamera
+$00:80c9  22 95 96 02   jsl $029695  ; -> UpdateNPCs
+$00:80cd  22 23 f2 04   jsl $04f223  ; -> UpdateAudio
+$00:80d1  22 a2 b1 02   jsl $02b1a2  ; -> WaitVBlank
+$00:80d5  22 b7 b1 02   jsl $02b1b7  ; -> DisableNMI
+$00:80d9  22 ae b1 02   jsl $02b1ae  ; -> EnableNMI
 $00:80dd  22 be 81 00   jsl $0081be
 $00:80e1  ae fb 03      ldx $03fb
 $00:80e4  30 f7         bmi $80dd
@@ -89,7 +89,7 @@ $00:80f2  18            clc
 $00:80f3  6d 3b 04      adc $043b
 $00:80f6  8d 3b 04      sta $043b
 $00:80f9  a9 78         lda #$78
-$00:80fb  22 40 b1 02   jsl $02b140
+$00:80fb  22 40 b1 02   jsl $02b140  ; -> DelayFrames
 $00:80ff  a9 80         lda #$80
 $00:8101  8d e3 03      sta $03e3
 $00:8104  ad fd 03      lda $03fd
@@ -102,31 +102,32 @@ $00:8115  8d 7c 03      sta $037c
 $00:8118  ad 03 04      lda $0403
 $00:811b  8d 7e 03      sta $037e
 $00:811e  e2 20         sep #$20
-$00:8120  22 a2 b1 02   jsl $02b1a2
+$00:8120  22 a2 b1 02   jsl $02b1a2  ; -> WaitVBlank
 $00:8124  82 0b ff      brl $8032
+Sub_00_8127:
 $00:8127  8b            phb
 $00:8128  48            pha
 $00:8129  eb            xba
 $00:812a  48            pha
 $00:812b  da            phx
 $00:812c  5a            phy
-$00:812d  22 ae b1 02   jsl $02b1ae
+$00:812d  22 ae b1 02   jsl $02b1ae  ; -> EnableNMI
 $00:8131  ee a6 03      inc $03a6
-$00:8134  22 5e 98 02   jsl $02985e
-$00:8138  22 a6 85 00   jsl $0085a6
-$00:813c  22 c4 85 00   jsl $0085c4
-$00:8140  22 00 80 02   jsl $028000
-$00:8144  22 69 80 02   jsl $028069
-$00:8148  22 0b 81 02   jsl $02810b
-$00:814c  22 ee 86 00   jsl $0086ee
+$00:8134  22 5e 98 02   jsl $02985e  ; -> ProcessEvents
+$00:8138  22 a6 85 00   jsl $0085a6  ; -> ReadJoypad
+$00:813c  22 c4 85 00   jsl $0085c4  ; -> ProcessInput
+$00:8140  22 00 80 02   jsl $028000  ; -> GameLoop_Main
+$00:8144  22 69 80 02   jsl $028069  ; -> GameLoop_Update
+$00:8148  22 0b 81 02   jsl $02810b  ; -> GameLoop_Render
+$00:814c  22 ee 86 00   jsl $0086ee  ; -> UpdateSprites
 $00:8150  ad 62 04      lda $0462
 $00:8153  d0 08         bne $815d
-$00:8155  22 59 a6 02   jsl $02a659
-$00:8159  22 95 96 02   jsl $029695
-$00:815d  22 23 f2 04   jsl $04f223
+$00:8155  22 59 a6 02   jsl $02a659  ; -> UpdateCamera
+$00:8159  22 95 96 02   jsl $029695  ; -> UpdateNPCs
+$00:815d  22 23 f2 04   jsl $04f223  ; -> UpdateAudio
 $00:8161  9c a6 03      stz $03a6
-$00:8164  22 a2 b1 02   jsl $02b1a2
-$00:8168  22 b7 b1 02   jsl $02b1b7
+$00:8164  22 a2 b1 02   jsl $02b1a2  ; -> WaitVBlank
+$00:8168  22 b7 b1 02   jsl $02b1b7  ; -> DisableNMI
 $00:816c  7a            ply
 $00:816d  fa            plx
 $00:816e  68            pla
@@ -134,6 +135,7 @@ $00:816f  eb            xba
 $00:8170  68            pla
 $00:8171  ab            plb
 $00:8172  6b            rtl
+Sub_00_8173:
 $00:8173  8b            phb
 $00:8174  48            pha
 $00:8175  eb            xba
@@ -144,19 +146,19 @@ $00:8179  a9 01         lda #$01
 $00:817b  48            pha
 $00:817c  ab            plb
 $00:817d  ee a6 03      inc $03a6
-$00:8180  22 5e 98 02   jsl $02985e
-$00:8184  22 a6 85 00   jsl $0085a6
-$00:8188  22 c4 85 00   jsl $0085c4
-$00:818c  22 69 80 02   jsl $028069
-$00:8190  22 0b 81 02   jsl $02810b
-$00:8194  22 ee 86 00   jsl $0086ee
-$00:8198  22 59 a6 02   jsl $02a659
-$00:819c  22 95 96 02   jsl $029695
-$00:81a0  22 23 f2 04   jsl $04f223
+$00:8180  22 5e 98 02   jsl $02985e  ; -> ProcessEvents
+$00:8184  22 a6 85 00   jsl $0085a6  ; -> ReadJoypad
+$00:8188  22 c4 85 00   jsl $0085c4  ; -> ProcessInput
+$00:818c  22 69 80 02   jsl $028069  ; -> GameLoop_Update
+$00:8190  22 0b 81 02   jsl $02810b  ; -> GameLoop_Render
+$00:8194  22 ee 86 00   jsl $0086ee  ; -> UpdateSprites
+$00:8198  22 59 a6 02   jsl $02a659  ; -> UpdateCamera
+$00:819c  22 95 96 02   jsl $029695  ; -> UpdateNPCs
+$00:81a0  22 23 f2 04   jsl $04f223  ; -> UpdateAudio
 $00:81a4  22 ea 8e 02   jsl $028eea
-$00:81a8  22 a2 b1 02   jsl $02b1a2
-$00:81ac  22 b7 b1 02   jsl $02b1b7
-$00:81b0  22 ae b1 02   jsl $02b1ae
+$00:81a8  22 a2 b1 02   jsl $02b1a2  ; -> WaitVBlank
+$00:81ac  22 b7 b1 02   jsl $02b1b7  ; -> DisableNMI
+$00:81b0  22 ae b1 02   jsl $02b1ae  ; -> EnableNMI
 $00:81b4  9c a6 03      stz $03a6
 $00:81b7  7a            ply
 $00:81b8  fa            plx
@@ -175,23 +177,24 @@ $00:81c4  a9 01         lda #$01
 $00:81c6  48            pha
 $00:81c7  ab            plb
 $00:81c8  ee a6 03      inc $03a6
-$00:81cb  22 5e 98 02   jsl $02985e
-$00:81cf  22 a6 85 00   jsl $0085a6
-$00:81d3  22 c4 85 00   jsl $0085c4
-$00:81d7  22 69 80 02   jsl $028069
-$00:81db  22 0b 81 02   jsl $02810b
-$00:81df  22 ee 86 00   jsl $0086ee
-$00:81e3  22 59 a6 02   jsl $02a659
-$00:81e7  22 95 96 02   jsl $029695
-$00:81eb  22 23 f2 04   jsl $04f223
-$00:81ef  22 a2 b1 02   jsl $02b1a2
-$00:81f3  22 b7 b1 02   jsl $02b1b7
-$00:81f7  22 ae b1 02   jsl $02b1ae
+$00:81cb  22 5e 98 02   jsl $02985e  ; -> ProcessEvents
+$00:81cf  22 a6 85 00   jsl $0085a6  ; -> ReadJoypad
+$00:81d3  22 c4 85 00   jsl $0085c4  ; -> ProcessInput
+$00:81d7  22 69 80 02   jsl $028069  ; -> GameLoop_Update
+$00:81db  22 0b 81 02   jsl $02810b  ; -> GameLoop_Render
+$00:81df  22 ee 86 00   jsl $0086ee  ; -> UpdateSprites
+$00:81e3  22 59 a6 02   jsl $02a659  ; -> UpdateCamera
+$00:81e7  22 95 96 02   jsl $029695  ; -> UpdateNPCs
+$00:81eb  22 23 f2 04   jsl $04f223  ; -> UpdateAudio
+$00:81ef  22 a2 b1 02   jsl $02b1a2  ; -> WaitVBlank
+$00:81f3  22 b7 b1 02   jsl $02b1b7  ; -> DisableNMI
+$00:81f7  22 ae b1 02   jsl $02b1ae  ; -> EnableNMI
 $00:81fb  9c a6 03      stz $03a6
 $00:81fe  7a            ply
 $00:81ff  fa            plx
 $00:8200  68            pla
 $00:8201  eb            xba
+Sub_00_8202:
 $00:8202  68            pla
 $00:8203  ab            plb
 $00:8204  6b            rtl
@@ -205,7 +208,7 @@ $00:8213  89 80         bit #$80
 $00:8215  f0 0c         beq $8223
 $00:8217  a9 1e         lda #$1e
 $00:8219  48            pha
-$00:821a  22 b7 b1 02   jsl $02b1b7
+$00:821a  22 b7 b1 02   jsl $02b1b7  ; -> DisableNMI
 $00:821e  68            pla
 $00:821f  3a            dec a
 $00:8220  d0 f7         bne $8219
@@ -248,56 +251,58 @@ $00:826d  d0 d7         bne $8246
 $00:826f  ab            plb
 $00:8270  60            rts
 $00:8271  ad 14 03      lda $0314
-$00:8274  20 fc 82      jsr $82fc
+$00:8274  20 fc 82      jsr $82fc  ; -> Sub_00_82fc
 $00:8277  8d 06 1f      sta $1f06
 $00:827a  ad 14 03      lda $0314
-$00:827d  20 00 83      jsr $8300
+$00:827d  20 00 83      jsr $8300  ; -> Sub_00_8300
 $00:8280  8d 07 1f      sta $1f07
 $00:8283  ad 16 03      lda $0316
-$00:8286  20 fc 82      jsr $82fc
+$00:8286  20 fc 82      jsr $82fc  ; -> Sub_00_82fc
 $00:8289  8d 09 1f      sta $1f09
 $00:828c  ad 16 03      lda $0316
-$00:828f  20 00 83      jsr $8300
+$00:828f  20 00 83      jsr $8300  ; -> Sub_00_8300
 $00:8292  8d 0a 1f      sta $1f0a
 $00:8295  ad 6a 1c      lda $1c6a
-$00:8298  20 fc 82      jsr $82fc
+$00:8298  20 fc 82      jsr $82fc  ; -> Sub_00_82fc
 $00:829b  8d 0c 1f      sta $1f0c
 $00:829e  ad 6a 1c      lda $1c6a
-$00:82a1  20 00 83      jsr $8300
+$00:82a1  20 00 83      jsr $8300  ; -> Sub_00_8300
 $00:82a4  8d 0d 1f      sta $1f0d
 $00:82a7  ad 78 03      lda $0378
-$00:82aa  20 fc 82      jsr $82fc
+$00:82aa  20 fc 82      jsr $82fc  ; -> Sub_00_82fc
 $00:82ad  8d 0f 1f      sta $1f0f
 $00:82b0  ad 78 03      lda $0378
-$00:82b3  20 00 83      jsr $8300
+$00:82b3  20 00 83      jsr $8300  ; -> Sub_00_8300
 $00:82b6  8d 10 1f      sta $1f10
 $00:82b9  ad 74 03      lda $0374
-$00:82bc  20 00 83      jsr $8300
+$00:82bc  20 00 83      jsr $8300  ; -> Sub_00_8300
 $00:82bf  8d 12 1f      sta $1f12
 $00:82c2  ad 7a 03      lda $037a
-$00:82c5  20 fc 82      jsr $82fc
+$00:82c5  20 fc 82      jsr $82fc  ; -> Sub_00_82fc
 $00:82c8  8d 14 1f      sta $1f14
 $00:82cb  ad 7a 03      lda $037a
-$00:82ce  20 00 83      jsr $8300
+$00:82ce  20 00 83      jsr $8300  ; -> Sub_00_8300
 $00:82d1  8d 15 1f      sta $1f15
 $00:82d4  ad 76 03      lda $0376
-$00:82d7  20 00 83      jsr $8300
+$00:82d7  20 00 83      jsr $8300  ; -> Sub_00_8300
 $00:82da  8d 17 1f      sta $1f17
 $00:82dd  ad 00 1f      lda $1f00
-$00:82e0  20 fc 82      jsr $82fc
+$00:82e0  20 fc 82      jsr $82fc  ; -> Sub_00_82fc
 $00:82e3  8d 19 1f      sta $1f19
 $00:82e6  ad 00 1f      lda $1f00
-$00:82e9  20 00 83      jsr $8300
+$00:82e9  20 00 83      jsr $8300  ; -> Sub_00_8300
 $00:82ec  8d 1a 1f      sta $1f1a
 $00:82ef  a0 02 1f      ldy #$1f02
-$00:82f2  22 69 a7 02   jsl $02a769
+$00:82f2  22 69 a7 02   jsl $02a769  ; -> Sub_02_a769
 $00:82f6  a9 01         lda #$01
 $00:82f8  8d b8 03      sta $03b8
 $00:82fb  60            rts
+Sub_00_82fc:
 $00:82fc  4a            lsr a
 $00:82fd  4a            lsr a
 $00:82fe  4a            lsr a
 $00:82ff  4a            lsr a
+Sub_00_8300:
 $00:8300  c2 20         rep #$20
 $00:8302  29 0f 00      and #$000f
 $00:8305  aa            tax
@@ -322,7 +327,7 @@ $00:8327  4a            lsr a
 $00:8328  4a            lsr a
 $00:8329  eb            xba
 $00:832a  a9 0a         lda #$0a
-$00:832c  22 d1 b1 02   jsl $02b1d1
+$00:832c  22 d1 b1 02   jsl $02b1d1  ; -> Sub_02_b1d1
 $00:8330  48            pha
 $00:8331  ad 84 04      lda $0484
 $00:8334  29 0f         and #$0f
@@ -589,6 +594,7 @@ $00:85a2  e2 20         sep #$20
 $00:85a4  60            rts
 IRQ_Handler:
 $00:85a5  40            rti                      ; Interrupt Request handler
+ReadJoypad:
 $00:85a6  08            php
 $00:85a7  8b            phb
 $00:85a8  d4 38         pei ($38)
@@ -606,6 +612,7 @@ $00:85bf  86 38         stx $38
 $00:85c1  ab            plb
 $00:85c2  28            plp
 $00:85c3  6b            rtl
+ProcessInput:
 $00:85c4  08            php
 $00:85c5  c2 20         rep #$20
 $00:85c7  ad a8 06      lda $06a8
@@ -659,6 +666,7 @@ $00:8637  80 13         bra $864c
 $00:8639  bd 02 00      lda $0002,x
 $00:863c  38            sec
 $00:863d  ed 3c 03      sbc $033c
+Sub_00_8640:
 $00:8640  c9 00 01      cmp #$0100
 $00:8643  90 03         bcc $8648
 $00:8645  a9 ff 00      lda #$00ff
@@ -741,6 +749,7 @@ $00:86e9  a5 00         lda $00
 $00:86eb  1b            tcs
 $00:86ec  28            plp
 $00:86ed  6b            rtl
+UpdateSprites:
 $00:86ee  8b            phb
 $00:86ef  08            php
 $00:86f0  e2 20         sep #$20
@@ -894,7 +903,9 @@ $00:8808  a5 00         lda $00
 $00:880a  92 4c         sta ($4c)
 $00:880c  e6 4c         inc $4c
 $00:880e  a9 04         lda #$04
+Sub_00_8810:
 $00:8810  85 4e         sta $4e
+Sub_00_8812:
 $00:8812  c2 20         rep #$20
 $00:8814  c8            iny
 $00:8815  c8            iny
@@ -904,6 +915,7 @@ $00:8818  c0 00 02      cpy #$0200
 $00:881b  f0 0a         beq $8827
 $00:881d  8a            txa
 $00:881e  18            clc
+Sub_00_881f:
 $00:881f  69 07 00      adc #$0007
 $00:8822  aa            tax
 $00:8823  c6 0c         dec $0c
@@ -1010,6 +1022,7 @@ $00:88ea  60            rts
 $00:88eb  a9 80 e0      lda #$e080
 $00:88ee  99 86 04      sta $0486,y
 $00:88f1  80 e3         bra $88d6
+Sub_00_88f3:
 $00:88f3  8b            phb
 $00:88f4  e2 20         sep #$20
 $00:88f6  bd 24 00      lda $0024,x
@@ -1028,6 +1041,7 @@ $00:890b  0a            asl a
 $00:890c  18            clc
 $00:890d  79 00 00      adc $0000,y
 $00:8910  a8            tay
+Sub_00_8911:
 $00:8911  b9 00 00      lda $0000,y
 $00:8914  10 03         bpl $8919
 $00:8916  82 97 00      brl $89b0
@@ -1150,6 +1164,7 @@ $00:8a2a  22 28 8f 00   jsl $008f28
 $00:8a2e  20 9a 92      jsr $929a
 $00:8a31  80 89         bra $89bc
 $00:8a33  60            rts
+UpdatePlayer:
 $00:8a34  08            php
 $00:8a35  8b            phb
 $00:8a36  c2 20         rep #$20
@@ -1565,6 +1580,7 @@ $00:8df0  7a            ply
 $00:8df1  fa            plx
 $00:8df2  18            clc
 $00:8df3  60            rts
+UpdateEntities:
 $00:8df4  08            php
 $00:8df5  c2 30         rep #$30
 $00:8df7  ad 2d 04      lda $042d
@@ -1759,7 +1775,7 @@ $00:8f87  4a            lsr a
 $00:8f88  85 0c         sta $0c
 $00:8f8a  85 0e         sta $0e
 $00:8f8c  e2 20         sep #$20
-$00:8f8e  20 56 92      jsr $9256
+$00:8f8e  20 56 92      jsr $9256  ; -> Sub_00_9256
 $00:8f91  c9 0a         cmp #$0a
 $00:8f93  f0 4f         beq $8fe4
 $00:8f95  e6 18         inc $18
@@ -1767,13 +1783,13 @@ $00:8f97  c6 0c         dec $0c
 $00:8f99  d0 f3         bne $8f8e
 $00:8f9b  a5 00         lda $00
 $00:8f9d  85 18         sta $18
-$00:8f9f  20 56 92      jsr $9256
+$00:8f9f  20 56 92      jsr $9256  ; -> Sub_00_9256
 $00:8fa2  c9 0a         cmp #$0a
 $00:8fa4  f0 3e         beq $8fe4
 $00:8fa6  a5 1c         lda $1c
 $00:8fa8  85 18         sta $18
 $00:8faa  e6 16         inc $16
-$00:8fac  20 56 92      jsr $9256
+$00:8fac  20 56 92      jsr $9256  ; -> Sub_00_9256
 $00:8faf  b0 4b         bcs $8ffc
 $00:8fb1  c9 0f         cmp #$0f
 $00:8fb3  f0 2f         beq $8fe4
@@ -1786,7 +1802,7 @@ $00:8fbf  c6 0e         dec $0e
 $00:8fc1  d0 e9         bne $8fac
 $00:8fc3  a5 00         lda $00
 $00:8fc5  85 18         sta $18
-$00:8fc7  20 56 92      jsr $9256
+$00:8fc7  20 56 92      jsr $9256  ; -> Sub_00_9256
 $00:8fca  b0 30         bcs $8ffc
 $00:8fcc  c9 0f         cmp #$0f
 $00:8fce  f0 14         beq $8fe4
@@ -1850,7 +1866,7 @@ $00:9037  4a            lsr a
 $00:9038  85 0c         sta $0c
 $00:903a  85 0e         sta $0e
 $00:903c  e2 20         sep #$20
-$00:903e  20 56 92      jsr $9256
+$00:903e  20 56 92      jsr $9256  ; -> Sub_00_9256
 $00:9041  c9 05         cmp #$05
 $00:9043  f0 4f         beq $9094
 $00:9045  e6 18         inc $18
@@ -1858,13 +1874,13 @@ $00:9047  c6 0c         dec $0c
 $00:9049  d0 f3         bne $903e
 $00:904b  a5 00         lda $00
 $00:904d  85 18         sta $18
-$00:904f  20 56 92      jsr $9256
+$00:904f  20 56 92      jsr $9256  ; -> Sub_00_9256
 $00:9052  c9 05         cmp #$05
 $00:9054  f0 3e         beq $9094
 $00:9056  a5 1c         lda $1c
 $00:9058  85 18         sta $18
 $00:905a  c6 16         dec $16
-$00:905c  20 56 92      jsr $9256
+$00:905c  20 56 92      jsr $9256  ; -> Sub_00_9256
 $00:905f  b0 4b         bcs $90ac
 $00:9061  c9 0f         cmp #$0f
 $00:9063  f0 2f         beq $9094
@@ -1877,7 +1893,7 @@ $00:906f  c6 0e         dec $0e
 $00:9071  d0 e9         bne $905c
 $00:9073  a5 00         lda $00
 $00:9075  85 18         sta $18
-$00:9077  20 56 92      jsr $9256
+$00:9077  20 56 92      jsr $9256  ; -> Sub_00_9256
 $00:907a  b0 30         bcs $90ac
 $00:907c  c9 0f         cmp #$0f
 $00:907e  f0 14         beq $9094
@@ -1937,7 +1953,7 @@ $00:90dc  4a            lsr a
 $00:90dd  85 0c         sta $0c
 $00:90df  85 0e         sta $0e
 $00:90e1  e2 20         sep #$20
-$00:90e3  20 56 92      jsr $9256
+$00:90e3  20 56 92      jsr $9256  ; -> Sub_00_9256
 $00:90e6  c9 0c         cmp #$0c
 $00:90e8  f0 4f         beq $9139
 $00:90ea  e6 16         inc $16
@@ -1945,13 +1961,13 @@ $00:90ec  c6 0c         dec $0c
 $00:90ee  d0 f3         bne $90e3
 $00:90f0  a5 00         lda $00
 $00:90f2  85 16         sta $16
-$00:90f4  20 56 92      jsr $9256
+$00:90f4  20 56 92      jsr $9256  ; -> Sub_00_9256
 $00:90f7  c9 0c         cmp #$0c
 $00:90f9  f0 3e         beq $9139
 $00:90fb  a5 1a         lda $1a
 $00:90fd  85 16         sta $16
 $00:90ff  e6 18         inc $18
-$00:9101  20 56 92      jsr $9256
+$00:9101  20 56 92      jsr $9256  ; -> Sub_00_9256
 $00:9104  b0 4b         bcs $9151
 $00:9106  c9 0f         cmp #$0f
 $00:9108  f0 2f         beq $9139
@@ -1964,7 +1980,7 @@ $00:9114  c6 0e         dec $0e
 $00:9116  d0 e9         bne $9101
 $00:9118  a5 00         lda $00
 $00:911a  85 16         sta $16
-$00:911c  20 56 92      jsr $9256
+$00:911c  20 56 92      jsr $9256  ; -> Sub_00_9256
 $00:911f  b0 30         bcs $9151
 $00:9121  c9 0f         cmp #$0f
 $00:9123  f0 14         beq $9139
@@ -2030,7 +2046,7 @@ $00:9190  4a            lsr a
 $00:9191  85 0c         sta $0c
 $00:9193  85 0e         sta $0e
 $00:9195  e2 20         sep #$20
-$00:9197  20 56 92      jsr $9256
+$00:9197  20 56 92      jsr $9256  ; -> Sub_00_9256
 $00:919a  c9 03         cmp #$03
 $00:919c  f0 4f         beq $91ed
 $00:919e  e6 16         inc $16
@@ -2038,13 +2054,13 @@ $00:91a0  c6 0c         dec $0c
 $00:91a2  d0 f3         bne $9197
 $00:91a4  a5 00         lda $00
 $00:91a6  85 16         sta $16
-$00:91a8  20 56 92      jsr $9256
+$00:91a8  20 56 92      jsr $9256  ; -> Sub_00_9256
 $00:91ab  c9 03         cmp #$03
 $00:91ad  f0 3e         beq $91ed
 $00:91af  a5 1a         lda $1a
 $00:91b1  85 16         sta $16
 $00:91b3  c6 18         dec $18
-$00:91b5  20 56 92      jsr $9256
+$00:91b5  20 56 92      jsr $9256  ; -> Sub_00_9256
 $00:91b8  b0 4b         bcs $9205
 $00:91ba  c9 0f         cmp #$0f
 $00:91bc  f0 2f         beq $91ed
@@ -2057,7 +2073,7 @@ $00:91c8  c6 0e         dec $0e
 $00:91ca  d0 e9         bne $91b5
 $00:91cc  a5 00         lda $00
 $00:91ce  85 16         sta $16
-$00:91d0  20 56 92      jsr $9256
+$00:91d0  20 56 92      jsr $9256  ; -> Sub_00_9256
 $00:91d3  b0 30         bcs $9205
 $00:91d5  c9 0f         cmp #$0f
 $00:91d7  f0 14         beq $91ed
@@ -2107,7 +2123,7 @@ $00:922d  4a            lsr a
 $00:922e  4a            lsr a
 $00:922f  4a            lsr a
 $00:9230  85 18         sta $18
-$00:9232  20 56 92      jsr $9256
+$00:9232  20 56 92      jsr $9256  ; -> Sub_00_9256
 $00:9235  c9 0f         cmp #$0f
 $00:9237  00 f0         brk #$f0
 $00:9239  0b            phd
@@ -2124,6 +2140,7 @@ $00:9250  00 9d         brk #$9d
 $00:9252  16 00         asl $00,x
 $00:9254  38            sec
 $00:9255  60            rts
+Sub_00_9256:
 $00:9256  08            php
 $00:9257  da            phx
 $00:9258  c2 20         rep #$20
@@ -2135,7 +2152,7 @@ $00:925f  0a            asl a
 $00:9260  48            pha
 $00:9261  e2 20         sep #$20
 $00:9263  ad 43 03      lda $0343
-$00:9266  22 d1 b1 02   jsl $02b1d1
+$00:9266  22 d1 b1 02   jsl $02b1d1  ; -> Sub_02_b1d1
 $00:926a  83 02         sta $02,s
 $00:926c  a5 16         lda $16
 $00:926e  29 0f         and #$0f
@@ -2265,7 +2282,7 @@ $00:936c  9d 02 00      sta $0002,x
 $00:936f  ad 80 03      lda $0380
 $00:9372  9d 1e 00      sta $001e,x
 $00:9375  9e 20 00      stz $0020,x
-$00:9378  22 f3 88 00   jsl $0088f3
+$00:9378  22 f3 88 00   jsl $0088f3  ; -> Sub_00_88f3
 $00:937c  9e 14 00      stz $0014,x
 $00:937f  ad 7c 03      lda $037c
 $00:9382  9c 7c 03      stz $037c
@@ -2314,7 +2331,7 @@ $00:93da  e2 20         sep #$20
 $00:93dc  bf 03 00 01   lda $010003,x
 $00:93e0  eb            xba
 $00:93e1  a9 0e         lda #$0e
-$00:93e3  22 d1 b1 02   jsl $02b1d1
+$00:93e3  22 d1 b1 02   jsl $02b1d1  ; -> Sub_02_b1d1
 $00:93e7  c2 20         rep #$20
 $00:93e9  18            clc
 $00:93ea  6d b0 03      adc $03b0
@@ -2349,7 +2366,7 @@ $00:9436  9d 0a 00      sta $000a,x
 $00:9439  9e 08 00      stz $0008,x
 $00:943c  9e 0e 00      stz $000e,x
 $00:943f  80 04         bra $9445
-$00:9441  22 f3 88 00   jsl $0088f3
+$00:9441  22 f3 88 00   jsl $0088f3  ; -> Sub_00_88f3
 $00:9445  9e 14 00      stz $0014,x
 $00:9448  9e 04 00      stz $0004,x
 $00:944b  9e 06 00      stz $0006,x
@@ -2379,7 +2396,7 @@ $00:9472  85 18         sta $18
 $00:9474  bb            tyx
 $00:9475  da            phx
 $00:9476  ae a8 06      ldx $06a8
-$00:9479  20 62 e6      jsr $e662
+$00:9479  20 62 e6      jsr $e662  ; -> Sub_00_e662
 $00:947c  fa            plx
 $00:947d  a9 00 a0      lda #$a000
 $00:9480  99 16 00      sta $0016,y
@@ -2410,7 +2427,7 @@ $00:94c1  e2 20         sep #$20
 $00:94c3  bd 22 ba      lda $ba22,x
 $00:94c6  eb            xba
 $00:94c7  a9 0e         lda #$0e
-$00:94c9  22 d1 b1 02   jsl $02b1d1
+$00:94c9  22 d1 b1 02   jsl $02b1d1  ; -> Sub_02_b1d1
 $00:94cd  c2 20         rep #$20
 $00:94cf  18            clc
 $00:94d0  6d b0 03      adc $03b0
@@ -2438,6 +2455,7 @@ $00:950b  99 32 00      sta $0032,y
 $00:950e  7a            ply
 $00:950f  fa            plx
 $00:9510  28            plp
+Sub_00_9511:
 $00:9511  6b            rtl
 $00:9512  ad 64 04      lda $0464
 $00:9515  f0 03         beq $951a
@@ -2609,7 +2627,7 @@ $00:968c  bd d7 fa      lda $fad7,x
 $00:968f  18            clc
 $00:9690  79 02 00      adc $0002,y
 $00:9693  99 02 00      sta $0002,y
-$00:9696  22 00 80 02   jsl $028000
+$00:9696  22 00 80 02   jsl $028000  ; -> GameLoop_Main
 $00:969a  fa            plx
 $00:969b  6b            rtl
 $00:969c  bd 00 00      lda $0000,x
@@ -2721,11 +2739,11 @@ $00:976b  bd 02 00      lda $0002,x
 $00:976e  38            sec
 $00:976f  e9 20 00      sbc #$0020
 $00:9772  85 18         sta $18
-$00:9774  22 b8 f2 04   jsl $04f2b8
+$00:9774  22 b8 f2 04   jsl $04f2b8  ; -> Sub_04_f2b8
 $00:9778  bf 00 80 7f   lda $7f8000,x
 $00:977c  29 fc 00      and #$00fc
 $00:977f  f0 0f         beq $9790
-$00:9781  22 1a f3 04   jsl $04f31a
+$00:9781  22 1a f3 04   jsl $04f31a  ; -> Sub_04_f31a
 $00:9785  bf 00 80 7f   lda $7f8000,x
 $00:9789  29 fc 00      and #$00fc
 $00:978c  f0 07         beq $9795
@@ -2751,11 +2769,11 @@ $00:97b3  bd 00 00      lda $0000,x
 $00:97b6  85 16         sta $16
 $00:97b8  bd 02 00      lda $0002,x
 $00:97bb  85 18         sta $18
-$00:97bd  22 b8 f2 04   jsl $04f2b8
+$00:97bd  22 b8 f2 04   jsl $04f2b8  ; -> Sub_04_f2b8
 $00:97c1  bf 00 80 7f   lda $7f8000,x
 $00:97c5  29 f3 00      and #$00f3
 $00:97c8  f0 0f         beq $97d9
-$00:97ca  22 1a f3 04   jsl $04f31a
+$00:97ca  22 1a f3 04   jsl $04f31a  ; -> Sub_04_f31a
 $00:97ce  bf 00 80 7f   lda $7f8000,x
 $00:97d2  29 f3 00      and #$00f3
 $00:97d5  f0 07         beq $97de
@@ -2786,11 +2804,11 @@ $00:9808  29 f0 ff      and #$fff0
 $00:980b  38            sec
 $00:980c  e9 10 00      sbc #$0010
 $00:980f  85 18         sta $18
-$00:9811  22 b8 f2 04   jsl $04f2b8
+$00:9811  22 b8 f2 04   jsl $04f2b8  ; -> Sub_04_f2b8
 $00:9815  bf 00 80 7f   lda $7f8000,x
 $00:9819  29 f5 00      and #$00f5
 $00:981c  f0 0f         beq $982d
-$00:981e  22 31 f3 04   jsl $04f331
+$00:981e  22 31 f3 04   jsl $04f331  ; -> Sub_04_f331
 $00:9822  bf 00 80 7f   lda $7f8000,x
 $00:9826  29 f5 00      and #$00f5
 $00:9829  f0 07         beq $9832
@@ -2821,11 +2839,11 @@ $00:985c  29 f0 ff      and #$fff0
 $00:985f  38            sec
 $00:9860  e9 10 00      sbc #$0010
 $00:9863  85 18         sta $18
-$00:9865  22 b8 f2 04   jsl $04f2b8
+$00:9865  22 b8 f2 04   jsl $04f2b8  ; -> Sub_04_f2b8
 $00:9869  bf 00 80 7f   lda $7f8000,x
 $00:986d  29 fa 00      and #$00fa
 $00:9870  f0 0f         beq $9881
-$00:9872  22 31 f3 04   jsl $04f331
+$00:9872  22 31 f3 04   jsl $04f331  ; -> Sub_04_f331
 $00:9876  bf 00 80 7f   lda $7f8000,x
 $00:987a  29 fa 00      and #$00fa
 $00:987d  f0 07         beq $9886
@@ -3022,7 +3040,7 @@ $00:9a13  80 03         bra $9a18
 $00:9a15  a9 03 00      lda #$0003
 $00:9a18  9d 1e 00      sta $001e,x
 $00:9a1b  9e 20 00      stz $0020,x
-$00:9a1e  22 f3 88 00   jsl $0088f3
+$00:9a1e  22 f3 88 00   jsl $0088f3  ; -> Sub_00_88f3
 $00:9a22  9e 14 00      stz $0014,x
 $00:9a25  02 91         cop #$91
 $00:9a27  6b            rtl
@@ -3103,6 +3121,7 @@ $00:9abf  4a            lsr a
 $00:9ac0  b0 02         bcs $9ac4
 $00:9ac2  e8            inx
 $00:9ac3  e8            inx
+Sub_00_9ac4:
 $00:9ac4  bf 2b 9b 00   lda $009b2b,x
 $00:9ac8  fa            plx
 $00:9ac9  3a            dec a
@@ -3390,7 +3409,7 @@ $00:9d37  b3 9d         lda ($9d,s),y
 $00:9d39  3b            tsc
 $00:9d3a  9d b0 0e      sta $0eb0,x
 $00:9d3d  a9 01 00      lda #$0001
-$00:9d40  20 9d 9f      jsr $9f9d
+$00:9d40  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9d43  02 80         cop #$80
 $00:9d45  01 02         ora ($02,x)
 $00:9d47  82 82 1a      brl $b7cc
@@ -3402,7 +3421,7 @@ $00:9d54  02 82         cop #$82
 $00:9d56  82 0c fd      brl $9a65
 $00:9d59  b0 0e         bcs $9d69
 $00:9d5b  a9 00 00      lda #$0000
-$00:9d5e  20 9d 9f      jsr $9f9d
+$00:9d5e  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9d61  02 80         cop #$80
 $00:9d63  00 02         brk #$02
 $00:9d65  82 82 fc      brl $99ea
@@ -3414,7 +3433,7 @@ $00:9d72  02 82         cop #$82
 $00:9d74  82 ee fc      brl $9a65
 $00:9d77  b0 0e         bcs $9d87
 $00:9d79  a9 02 00      lda #$0002
-$00:9d7c  20 9d 9f      jsr $9f9d
+$00:9d7c  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9d7f  02 80         cop #$80
 $00:9d81  02 02         cop #$02
 $00:9d83  82 82 de      brl $7c08
@@ -3426,7 +3445,7 @@ $00:9d90  02 82         cop #$82
 $00:9d92  82 d0 fc      brl $9a65
 $00:9d95  b0 0e         bcs $9da5
 $00:9d97  a9 03 00      lda #$0003
-$00:9d9a  20 9d 9f      jsr $9f9d
+$00:9d9a  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9d9d  02 80         cop #$80
 $00:9d9f  03 02         ora $02,s
 $00:9da1  82 82 c0      brl $5e26
@@ -3438,7 +3457,7 @@ $00:9dae  02 82         cop #$82
 $00:9db0  82 b2 fc      brl $9a65
 $00:9db3  b0 0e         bcs $9dc3
 $00:9db5  a9 06 00      lda #$0006
-$00:9db8  20 9d 9f      jsr $9f9d
+$00:9db8  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9dbb  02 80         cop #$80
 $00:9dbd  06 02         asl $02
 $00:9dbf  82 82 a2      brl $4044
@@ -3450,7 +3469,7 @@ $00:9dcc  02 82         cop #$82
 $00:9dce  82 94 fc      brl $9a65
 $00:9dd1  b0 0e         bcs $9de1
 $00:9dd3  a9 04 00      lda #$0004
-$00:9dd6  20 9d 9f      jsr $9f9d
+$00:9dd6  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9dd9  02 80         cop #$80
 $00:9ddb  04 02         tsb $02
 $00:9ddd  82 82 84      brl $2262
@@ -3462,25 +3481,25 @@ $00:9dea  02 82         cop #$82
 $00:9dec  82 76 fc      brl $9a65
 $00:9def  b0 0e         bcs $9dff
 $00:9df1  a9 08 00      lda #$0008
-$00:9df4  20 9d 9f      jsr $9f9d
+$00:9df4  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9df7  02 80         cop #$80
 $00:9df9  08            php
 $00:9dfa  02 82         cop #$82
 $00:9dfc  82 66 fc      brl $9a65
 $00:9dff  a9 26 00      lda #$0026
-$00:9e02  20 9d 9f      jsr $9f9d
+$00:9e02  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9e05  02 80         cop #$80
 $00:9e07  26 02         rol $02
 $00:9e09  82 82 58      brl $f68e
 $00:9e0c  fc b0 0e      jsr ($0eb0,x)
 $00:9e0f  a9 0a 00      lda #$000a
-$00:9e12  20 9d 9f      jsr $9f9d
+$00:9e12  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9e15  02 80         cop #$80
 $00:9e17  0a            asl a
 $00:9e18  02 82         cop #$82
 $00:9e1a  82 48 fc      brl $9a65
 $00:9e1d  a9 25 00      lda #$0025
-$00:9e20  20 9d 9f      jsr $9f9d
+$00:9e20  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9e23  02 80         cop #$80
 $00:9e25  25 02         and $02
 $00:9e27  82 82 3a      brl $d8ac
@@ -3491,7 +3510,7 @@ $00:9e32  80 05         bra $9e39
 $00:9e34  02 82         cop #$82
 $00:9e36  82 2c fc      brl $9a65
 $00:9e39  a9 11 00      lda #$0011
-$00:9e3c  20 9d 9f      jsr $9f9d
+$00:9e3c  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9e3f  02 80         cop #$80
 $00:9e41  11 02         ora ($02),y
 $00:9e43  82 82 1e      brl $bcc8
@@ -3502,7 +3521,7 @@ $00:9e4e  80 12         bra $9e62
 $00:9e50  02 82         cop #$82
 $00:9e52  82 10 fc      brl $9a65
 $00:9e55  a9 07 00      lda #$0007
-$00:9e58  20 9d 9f      jsr $9f9d
+$00:9e58  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9e5b  02 80         cop #$80
 $00:9e5d  07 02         ora [$02]
 $00:9e5f  82 82 02      brl $a0e4
@@ -3513,29 +3532,29 @@ $00:9e6a  80 10         bra $9e7c
 $00:9e6c  02 82         cop #$82
 $00:9e6e  82 f4 fb      brl $9a65
 $00:9e71  a9 13 00      lda #$0013
-$00:9e74  20 9d 9f      jsr $9f9d
+$00:9e74  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9e77  02 80         cop #$80
 $00:9e79  13 02         ora ($02,s),y
 $00:9e7b  82 82 e6      brl $8500
 $00:9e7e  fb            xce
 $00:9e7f  a9 0e 00      lda #$000e
-$00:9e82  20 9d 9f      jsr $9f9d
+$00:9e82  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9e85  02 80         cop #$80
 $00:9e87  0e 02 82      asl $8202
 $00:9e8a  82 d8 fb      brl $9a65
 $00:9e8d  a9 0d 00      lda #$000d
-$00:9e90  20 9d 9f      jsr $9f9d
+$00:9e90  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9e93  02 80         cop #$80
 $00:9e95  0d 02 82      ora $8202
 $00:9e98  82 ca fb      brl $9a65
 $00:9e9b  a9 0b 00      lda #$000b
-$00:9e9e  20 9d 9f      jsr $9f9d
+$00:9e9e  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9ea1  02 80         cop #$80
 $00:9ea3  0b            phd
 $00:9ea4  02 82         cop #$82
 $00:9ea6  82 bc fb      brl $9a65
 $00:9ea9  a9 0f 00      lda #$000f
-$00:9eac  20 9d 9f      jsr $9f9d
+$00:9eac  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9eaf  02 80         cop #$80
 $00:9eb1  0f 02 82 82   ora $828202
 $00:9eb5  ae fb a9      ldx $a9fb
@@ -3545,7 +3564,7 @@ $00:9ebe  80 0c         bra $9ecc
 $00:9ec0  02 82         cop #$82
 $00:9ec2  82 a0 fb      brl $9a65
 $00:9ec5  a9 09 00      lda #$0009
-$00:9ec8  20 9d 9f      jsr $9f9d
+$00:9ec8  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9ecb  02 80         cop #$80
 $00:9ecd  09 02 82      ora #$8202
 $00:9ed0  82 92 fb      brl $9a65
@@ -3558,7 +3577,7 @@ $00:9edf  99 24 00      sta $0024,y
 $00:9ee2  c2 20         rep #$20
 $00:9ee4  00 84         brk #$84
 $00:9ee6  a9 1c 00      lda #$001c
-$00:9ee9  20 9d 9f      jsr $9f9d
+$00:9ee9  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9eec  02 80         cop #$80
 $00:9eee  1c 02 82      trb $8202
 $00:9ef1  ad ba 03      lda $03ba
@@ -3575,7 +3594,7 @@ $00:9f05  a6 00         ldx $00
 $00:9f07  a9 00 80      lda #$8000
 $00:9f0a  1c 2a 03      trb $032a
 $00:9f0d  a9 21 00      lda #$0021
-$00:9f10  20 9d 9f      jsr $9f9d
+$00:9f10  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9f13  02 80         cop #$80
 $00:9f15  21 02         and ($02,x)
 $00:9f17  82 82 4a      brl $e99c
@@ -3588,9 +3607,9 @@ $00:9f24  8d a6 00      sta $00a6
 $00:9f27  a9 00 80      lda #$8000
 $00:9f2a  1c 2a 03      trb $032a
 $00:9f2d  a9 20 00      lda #$0020
-$00:9f30  20 9d 9f      jsr $9f9d
+$00:9f30  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9f33  02 80         cop #$80
-$00:9f35  20 02 82      jsr $8202
+$00:9f35  20 02 82      jsr $8202  ; -> Sub_00_8202
 $00:9f38  82 2a fb      brl $9a65
 $00:9f3b  00 01         brk #$01
 $00:9f3d  20 7b 9f      jsr $9f7b
@@ -3601,7 +3620,7 @@ $00:9f46  00 a9         brk #$a9
 $00:9f48  00 80         brk #$80
 $00:9f4a  1c 2a 03      trb $032a
 $00:9f4d  a9 22 00      lda #$0022
-$00:9f50  20 9d 9f      jsr $9f9d
+$00:9f50  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9f53  02 80         cop #$80
 $00:9f55  22 02 82 82   jsl $828202
 $00:9f59  0a            asl a
@@ -3614,7 +3633,7 @@ $00:9f64  b9 a6 00      lda $00a6,y
 $00:9f67  a9 00 80      lda #$8000
 $00:9f6a  1c 2a 03      trb $032a
 $00:9f6d  a9 23 00      lda #$0023
-$00:9f70  20 9d 9f      jsr $9f9d
+$00:9f70  20 9d 9f      jsr $9f9d  ; -> Sub_00_9f9d
 $00:9f73  02 80         cop #$80
 $00:9f75  23 02         and $02,s
 $00:9f77  82 82 ea      brl $89fc
@@ -3633,6 +3652,7 @@ $00:9f95  02 00         cop #$00
 $00:9f97  9b            txy
 $00:9f98  9f 18 60 38   sta $386018,x
 $00:9f9c  60            rts
+Sub_00_9f9d:
 $00:9f9d  bc 3e 00      ldy $003e,x
 $00:9fa0  99 1e 00      sta $001e,y
 $00:9fa3  38            sec
@@ -4307,7 +4327,7 @@ $00:a57a  02 80         cop #$80
 $00:a57c  2d 02 82      and $8202
 $00:a57f  82 a9 00      brl $a62b
 $00:a582  02 80         cop #$80
-$00:a584  20 02 82      jsr $8202
+$00:a584  20 02 82      jsr $8202  ; -> Sub_00_8202
 $00:a587  80 79         bra $a602
 $00:a589  02 80         cop #$80
 $00:a58b  22 02 82 80   jsl $808202
@@ -4466,7 +4486,7 @@ $00:a6ea  1c 2a 03      trb $032a
 $00:a6ed  9c 33 04      stz $0433
 $00:a6f0  02 86         cop #$86
 $00:a6f2  6b            rtl
-$00:a6f3  20 42 a8      jsr $a842
+$00:a6f3  20 42 a8      jsr $a842  ; -> Sub_00_a842
 $00:a6f6  02 91         cop #$91
 $00:a6f8  bd 16 00      lda $0016,x
 $00:a6fb  89 00 80      bit #$8000
@@ -4481,10 +4501,10 @@ $00:a70a  53 20         eor ($20,s),y
 $00:a70c  ed a8 20      sbc $20a8
 $00:a70f  13 a9         ora ($a9,s),y
 $00:a711  02 91         cop #$91
-$00:a713  20 c6 a8      jsr $a8c6
+$00:a713  20 c6 a8      jsr $a8c6  ; -> Sub_00_a8c6
 $00:a716  90 de         bcc $a6f6
 $00:a718  4c 71 a8      jmp $a871
-$00:a71b  20 42 a8      jsr $a842
+$00:a71b  20 42 a8      jsr $a842  ; -> Sub_00_a842
 $00:a71e  bd 2e 00      lda $002e,x
 $00:a721  29 ff 00      and #$00ff
 $00:a724  9d 2c 00      sta $002c,x
@@ -4503,11 +4523,11 @@ $00:a740  13 a9         ora ($a9,s),y
 $00:a742  de 2c 00      dec $002c,x
 $00:a745  d0 e0         bne $a727
 $00:a747  02 91         cop #$91
-$00:a749  20 c6 a8      jsr $a8c6
+$00:a749  20 c6 a8      jsr $a8c6  ; -> Sub_00_a8c6
 $00:a74c  b0 01         bcs $a74f
 $00:a74e  6b            rtl
 $00:a74f  4c 71 a8      jmp $a871
-$00:a752  20 42 a8      jsr $a842
+$00:a752  20 42 a8      jsr $a842  ; -> Sub_00_a842
 $00:a755  bd 2e 00      lda $002e,x
 $00:a758  29 ff 00      and #$00ff
 $00:a75b  85 0c         sta $0c
@@ -4536,11 +4556,11 @@ $00:a78e  99 1c 00      sta $001c,y
 $00:a791  c6 0c         dec $0c
 $00:a793  d0 d2         bne $a767
 $00:a795  02 91         cop #$91
-$00:a797  20 c6 a8      jsr $a8c6
+$00:a797  20 c6 a8      jsr $a8c6  ; -> Sub_00_a8c6
 $00:a79a  b0 01         bcs $a79d
 $00:a79c  6b            rtl
 $00:a79d  4c 71 a8      jmp $a871
-$00:a7a0  20 42 a8      jsr $a842
+$00:a7a0  20 42 a8      jsr $a842  ; -> Sub_00_a842
 $00:a7a3  02 91         cop #$91
 $00:a7a5  bd 16 00      lda $0016,x
 $00:a7a8  89 00 80      bit #$8000
@@ -4558,10 +4578,10 @@ $00:a7bf  69 00 40      adc #$4000
 $00:a7c2  9d 1c 00      sta $001c,x
 $00:a7c5  20 13 a9      jsr $a913
 $00:a7c8  02 91         cop #$91
-$00:a7ca  20 c6 a8      jsr $a8c6
+$00:a7ca  20 c6 a8      jsr $a8c6  ; -> Sub_00_a8c6
 $00:a7cd  90 d4         bcc $a7a3
 $00:a7cf  4c 71 a8      jmp $a871
-$00:a7d2  20 42 a8      jsr $a842
+$00:a7d2  20 42 a8      jsr $a842  ; -> Sub_00_a842
 $00:a7d5  bd 2e 00      lda $002e,x
 $00:a7d8  29 ff 00      and #$00ff
 $00:a7db  9d 2c 00      sta $002c,x
@@ -4583,11 +4603,11 @@ $00:a800  20 13 a9      jsr $a913
 $00:a803  de 2c 00      dec $002c,x
 $00:a806  d0 d6         bne $a7de
 $00:a808  02 91         cop #$91
-$00:a80a  20 c6 a8      jsr $a8c6
+$00:a80a  20 c6 a8      jsr $a8c6  ; -> Sub_00_a8c6
 $00:a80d  b0 01         bcs $a810
 $00:a80f  6b            rtl
 $00:a810  4c 71 a8      jmp $a871
-$00:a813  20 42 a8      jsr $a842
+$00:a813  20 42 a8      jsr $a842  ; -> Sub_00_a842
 $00:a816  02 91         cop #$91
 $00:a818  bd 16 00      lda $0016,x
 $00:a81b  89 00 80      bit #$8000
@@ -4607,9 +4627,10 @@ $00:a830  00 53         brk #$53
 $00:a832  20 ed a8      jsr $a8ed
 $00:a835  20 13 a9      jsr $a913
 $00:a838  02 91         cop #$91
-$00:a83a  20 c6 a8      jsr $a8c6
+$00:a83a  20 c6 a8      jsr $a8c6  ; -> Sub_00_a8c6
 $00:a83d  90 d7         bcc $a816
 $00:a83f  4c 71 a8      jmp $a871
+Sub_00_a842:
 $00:a842  9b            txy
 $00:a843  bd 2c 00      lda $002c,x
 $00:a846  d0 16         bne $a85e
@@ -4619,7 +4640,7 @@ $00:a84d  bd 02 00      lda $0002,x
 $00:a850  38            sec
 $00:a851  e9 10 00      sbc #$0010
 $00:a854  85 18         sta $18
-$00:a856  22 b8 f2 04   jsl $04f2b8
+$00:a856  22 b8 f2 04   jsl $04f2b8  ; -> Sub_04_f2b8
 $00:a85a  8a            txa
 $00:a85b  99 2c 00      sta $002c,y
 $00:a85e  be 2c 00      ldx $002c,y
@@ -4673,6 +4694,7 @@ $00:a8bf  80 01         bra $a8c2
 $00:a8c1  02 82         cop #$82
 $00:a8c3  02 86         cop #$86
 $00:a8c5  6b            rtl
+Sub_00_a8c6:
 $00:a8c6  e2 20         sep #$20
 $00:a8c8  bd 2e 00      lda $002e,x
 $00:a8cb  dd 2f 00      cmp $002f,x
@@ -4694,7 +4716,7 @@ $00:a8e9  c2 20         rep #$20
 $00:a8eb  bb            tyx
 $00:a8ec  60            rts
 $00:a8ed  da            phx
-$00:a8ee  20 62 e6      jsr $e662
+$00:a8ee  20 62 e6      jsr $e662  ; -> Sub_00_e662
 $00:a8f1  bd 38 00      lda $0038,x
 $00:a8f4  aa            tax
 $00:a8f5  bd 06 80      lda $8006,x
@@ -4763,7 +4785,7 @@ $00:a98a  b9 0b 80      lda $800b,y
 $00:a98d  9d 18 00      sta $0018,x
 $00:a990  3a            dec a
 $00:a991  48            pha
-$00:a992  22 f3 88 00   jsl $0088f3
+$00:a992  22 f3 88 00   jsl $0088f3  ; -> Sub_00_88f3
 $00:a996  9e 04 00      stz $0004,x
 $00:a999  9e 06 00      stz $0006,x
 $00:a99c  6b            rtl
@@ -5172,11 +5194,11 @@ $00:ad0c  8d 24 04      sta $0424
 $00:ad0f  c2 20         rep #$20
 $00:ad11  da            phx
 $00:ad12  e2 20         sep #$20
-$00:ad14  22 b7 b1 02   jsl $02b1b7
-$00:ad18  22 ae b1 02   jsl $02b1ae
+$00:ad14  22 b7 b1 02   jsl $02b1b7  ; -> DisableNMI
+$00:ad18  22 ae b1 02   jsl $02b1ae  ; -> EnableNMI
 $00:ad1c  22 f5 ef 1f   jsl $1feff5
-$00:ad20  22 b7 b1 02   jsl $02b1b7
-$00:ad24  22 a2 b1 02   jsl $02b1a2
+$00:ad20  22 b7 b1 02   jsl $02b1b7  ; -> DisableNMI
+$00:ad24  22 a2 b1 02   jsl $02b1a2  ; -> WaitVBlank
 $00:ad28  c2 20         rep #$20
 $00:ad2a  fa            plx
 $00:ad2b  02 1b         cop #$1b
@@ -5480,13 +5502,13 @@ $00:afda  00 97         brk #$97
 $00:afdc  02 03         cop #$03
 $00:afde  03 da         ora $da,s
 $00:afe0  a0 16 c5      ldy #$c516
-$00:afe3  22 69 a7 02   jsl $02a769
+$00:afe3  22 69 a7 02   jsl $02a769  ; -> Sub_02_a769
 $00:afe7  fa            plx
 $00:afe8  02 1b         cop #$1b
 $00:afea  ee af 14      inc $14af
 $00:afed  00 da         brk #$da
 $00:afef  a0 27 c5      ldy #$c527
-$00:aff2  22 69 a7 02   jsl $02a769
+$00:aff2  22 69 a7 02   jsl $02a769  ; -> Sub_02_a769
 $00:aff6  fa            plx
 $00:aff7  02 1b         cop #$1b
 $00:aff9  fd af 0a      sbc $0aaf,x
@@ -5494,6 +5516,7 @@ $00:affc  00 02         brk #$02
 $00:affe  04 82         tsb $82
 $00:b000  54 ff 02      mvn $02,$ff
 $00:b003  86 6b         stx $6b
+UpdateCollision:
 $00:b005  08            php
 $00:b006  c2 20         rep #$20
 $00:b008  ae 9c 03      ldx $039c
@@ -5560,14 +5583,14 @@ $00:b090  0a            asl a
 $00:b091  a8            tay
 $00:b092  b9 2b ba      lda $ba2b,y
 $00:b095  a0 de 1a      ldy #$1ade
-$00:b098  22 a2 f3 04   jsl $04f3a2
+$00:b098  22 a2 f3 04   jsl $04f3a2  ; -> Sub_04_f3a2
 $00:b09c  90 e6         bcc $b084
 $00:b09e  02 16         cop #$16
 $00:b0a0  bd 34 00      lda $0034,x
 $00:b0a3  a0 9e 1a      ldy #$1a9e
-$00:b0a6  22 48 f3 04   jsl $04f348
+$00:b0a6  22 48 f3 04   jsl $04f348  ; -> Sub_04_f348
 $00:b0aa  a0 de 1a      ldy #$1ade
-$00:b0ad  22 48 f3 04   jsl $04f348
+$00:b0ad  22 48 f3 04   jsl $04f348  ; -> Sub_04_f348
 $00:b0b1  da            phx
 $00:b0b2  aa            tax
 $00:b0b3  bf 03 02 7f   lda $7f0203,x
@@ -5600,7 +5623,7 @@ $00:b0f5  b9 0b 80      lda $800b,y
 $00:b0f8  9d 18 00      sta $0018,x
 $00:b0fb  9e 30 00      stz $0030,x
 $00:b0fe  9e 20 00      stz $0020,x
-$00:b101  22 f3 88 00   jsl $0088f3
+$00:b101  22 f3 88 00   jsl $0088f3  ; -> Sub_00_88f3
 $00:b105  9e 14 00      stz $0014,x
 $00:b108  9e 04 00      stz $0004,x
 $00:b10b  9e 06 00      stz $0006,x
@@ -6218,7 +6241,7 @@ $00:b628  02 80         cop #$80
 $00:b62a  0b            phd
 $00:b62b  02 82         cop #$82
 $00:b62d  82 8c ff      brl $b5bc
-$00:b630  20 2b b7      jsr $b72b
+$00:b630  20 2b b7      jsr $b72b  ; -> Sub_00_b72b
 $00:b633  02 a0         cop #$a0
 $00:b635  f0 ff         beq $b636
 $00:b637  02 80         cop #$80
@@ -6245,7 +6268,7 @@ $00:b665  9f 20 00 00   sta $000020,x
 $00:b669  5d 02 80      eor $8002,x
 $00:b66c  29 02 82      and #$8202
 $00:b66f  80 07         bra $b678
-$00:b671  20 2b b7      jsr $b72b
+$00:b671  20 2b b7      jsr $b72b  ; -> Sub_00_b72b
 $00:b674  02 9f         cop #$9f
 $00:b676  10 00         bpl $b678
 $00:b678  02 80         cop #$80
@@ -6267,7 +6290,7 @@ $00:b698  02 9b         cop #$9b
 $00:b69a  00 00         brk #$00
 $00:b69c  ff b6 ff b6   sbc $b6ffb6,x
 $00:b6a0  15 b7         ora $b7,x
-$00:b6a2  20 2b b7      jsr $b72b
+$00:b6a2  20 2b b7      jsr $b72b  ; -> Sub_00_b72b
 $00:b6a5  02 a0         cop #$a0
 $00:b6a7  10 00         bpl $b6a9
 $00:b6a9  02 80         cop #$80
@@ -6280,14 +6303,14 @@ $00:b6b7  b0 5c         bcs $b715
 $00:b6b9  02 9c         cop #$9c
 $00:b6bb  50 b6         bvc $b673
 $00:b6bd  15 b7         ora $b7,x
-$00:b6bf  20 2b b7      jsr $b72b
+$00:b6bf  20 2b b7      jsr $b72b  ; -> Sub_00_b72b
 $00:b6c2  02 9f         cop #$9f
 $00:b6c4  f0 ff         beq $b6c5
 $00:b6c6  00 5d         brk #$5d
 $00:b6c8  02 80         cop #$80
 $00:b6ca  29 02 82      and #$8202
 $00:b6cd  80 07         bra $b6d6
-$00:b6cf  20 2b b7      jsr $b72b
+$00:b6cf  20 2b b7      jsr $b72b  ; -> Sub_00_b72b
 $00:b6d2  02 9f         cop #$9f
 $00:b6d4  f0 ff         beq $b6d5
 $00:b6d6  02 80         cop #$80
@@ -6329,8 +6352,10 @@ $00:b722  ec b6 02      cpx $02b6
 $00:b725  85 cf         sta $cf
 $00:b727  b6 00         ldx $00,y
 $00:b729  80 cc         bra $b6f7
+Sub_00_b72b:
 $00:b72b  a9 00 02      lda #$0200
 $00:b72e  9d 16 00      sta $0016,x
+Sub_00_b731:
 $00:b731  60            rts
 $00:b732  8e 9a 03      stx $039a
 $00:b735  02 80         cop #$80
@@ -6375,7 +6400,7 @@ $00:b78b  00 9f         brk #$9f
 $00:b78d  b9 92 b7      lda $b792,y
 $00:b790  92 b7         sta ($b7)
 $00:b792  02 9b         cop #$9b
-$00:b794  20 00 83      jsr $8300
+$00:b794  20 00 83      jsr $8300  ; -> Sub_00_8300
 $00:b797  b8            clv
 $00:b798  8d b8 cd      sta $cdb8
 $00:b79b  b8            clv
@@ -6571,6 +6596,7 @@ $00:b937  00 02         brk #$02
 $00:b939  97 02         sta [$02],y
 $00:b93b  80 30         bra $b96d
 $00:b93d  02 82         cop #$82
+Sub_00_b93f:
 $00:b93f  02 9a         cop #$9a
 $00:b941  00 00         brk #$00
 $00:b943  49 b9 52      eor #$52b9
@@ -7114,7 +7140,7 @@ $00:bde7  9d 16 00      sta $0016,x
 $00:bdea  02 a4         cop #$a4
 $00:bdec  02 99         cop #$99
 $00:bdee  02 80         cop #$80
-$00:bdf0  22 02 82 02   jsl $028202
+$00:bdf0  22 02 82 02   jsl $028202  ; -> Sub_02_8202
 $00:bdf4  81 40         sta ($40,x)
 $00:bdf6  14 02         trb $02
 $00:bdf8  83 02         sta $02,s
@@ -7188,7 +7214,7 @@ $00:be85  02 80         cop #$80
 $00:be87  01 02         ora ($02,x)
 $00:be89  82 02 04      brl $c28e
 $00:be8c  02 80         cop #$80
-$00:be8e  20 02 82      jsr $8202
+$00:be8e  20 02 82      jsr $8202  ; -> Sub_00_8202
 $00:be91  02 80         cop #$80
 $00:be93  1e 02 82      asl $8202,x
 $00:be96  02 09         cop #$09
@@ -7211,7 +7237,7 @@ $00:bebb  21 02         and ($02,x)
 $00:bebd  82 80 b9      brl $7840
 $00:bec0  02 a3         cop #$a3
 $00:bec2  02 80         cop #$80
-$00:bec4  22 02 82 02   jsl $028202
+$00:bec4  22 02 82 02   jsl $028202  ; -> Sub_02_8202
 $00:bec8  05 00         ora $00
 $00:beca  00 02         brk #$02
 $00:becc  80 03         bra $bed1
@@ -8628,7 +8654,7 @@ $00:cb1a  98            tya
 $00:cb1b  60            rts
 $00:cb1c  02 a3         cop #$a3
 $00:cb1e  02 80         cop #$80
-$00:cb20  20 02 82      jsr $8202
+$00:cb20  20 02 82      jsr $8202  ; -> Sub_00_8202
 $00:cb23  02 b2         cop #$b2
 $00:cb25  36 cb         rol $cb,x
 $00:cb27  00 08         brk #$08
@@ -9088,7 +9114,7 @@ $00:cf29  61 6e         adc ($6e,x)
 $00:cf2b  6e 6f 74      ror $746f
 $00:cf2e  0d 64 69      ora $6964
 $00:cf31  65 2e         adc $2e
-$00:cf33  20 11 88      jsr $8811
+$00:cf33  20 11 88      jsr $8811  ; -> Sub_00_8811
 $00:cf36  f1 d0         sbc ($d0),y
 $00:cf38  fe bb 0d      inc $0dbb,x
 $00:cf3b  97 64         sta [$64],y
@@ -9160,7 +9186,7 @@ $00:cfd3  69 6e 63      adc #$636e
 $00:cfd6  61 72         adc ($72,x)
 $00:cfd8  6e 61 74      ror $7461
 $00:cfdb  65 64         adc $64
-$00:cfdd  20 6d 65      jsr $656d
+$00:cfdd  20 6d 65      jsr $656d  ; -> Sub_00_656d
 $00:cfe0  61 6e         adc ($6e,x)
 $00:cfe2  73 20         adc ($20,s),y
 $00:cfe4  0d 65 76      ora $7665
@@ -9177,7 +9203,7 @@ $00:cffd  65 69         adc $69
 $00:cfff  6e 67 20      ror $2067
 $00:d002  61 6c         adc ($6c,x)
 $00:d004  69 76 65      adc #$6576
-$00:d007  20 ba 0d      jsr $0dba
+$00:d007  20 ba 0d      jsr $0dba  ; -> Sub_00_0dba
 $00:d00a  73 75         adc ($75,s),y
 $00:d00c  66 66         ror $66
 $00:d00e  65 72         adc $72
@@ -9189,10 +9215,10 @@ $00:d01d  65 61         adc $61
 $00:d01f  74 75         stz $75,x
 $00:d021  72 65         adc ($65)
 $00:d023  73 2e         adc ($2e,s),y
-$00:d025  20 11 95      jsr $9511
+$00:d025  20 11 95      jsr $9511  ; -> Sub_00_9511
 $00:d028  f1 66         sbc ($66),y
 $00:d02a  69 6e 64      adc #$646e
-$00:d02d  20 6f 75      jsr $756f
+$00:d02d  20 6f 75      jsr $756f  ; -> Sub_00_756f
 $00:d030  74 20         stz $20,x
 $00:d032  77 68         adc [$68],y
 $00:d034  61 74         adc ($74,x)
@@ -9620,16 +9646,16 @@ $00:d3d3  0d 64 65      ora $6564
 $00:d3d6  66 65         ror $65
 $00:d3d8  61 74         adc ($74,x)
 $00:d3da  65 64         adc $64
-$00:d3dc  20 44 65      jsr $6544
+$00:d3dc  20 44 65      jsr $6544  ; -> Sub_00_6544
 $00:d3df  61 74         adc ($74,x)
 $00:d3e1  68            pla
 $00:d3e2  74 6f         stz $6f,x
 $00:d3e4  6c 6c 21      jmp ($216c)
-$00:d3e7  20 11 53      jsr $5311
+$00:d3e7  20 11 53      jsr $5311  ; -> Sub_00_5311
 $00:d3ea  75 64         adc $64,x
 $00:d3ec  64 65         stz $65
 $00:d3ee  6e 6c 79      ror $796c
-$00:d3f1  20 02 02      jsr $0202
+$00:d3f1  20 02 02      jsr $0202  ; -> Sub_00_0202
 $00:d3f4  0d 68 65      ora $6568
 $00:d3f7  61 72         adc ($72,x)
 $00:d3f9  64 20         stz $20
@@ -9651,7 +9677,7 @@ $00:d41c  61 79         adc ($79,x)
 $00:d41e  20 b9 96      jsr $96b9
 $00:d421  73 65         adc ($65,s),y
 $00:d423  61 6c         adc ($6c,x)
-$00:d425  20 74 68      jsr $6874
+$00:d425  20 74 68      jsr $6874  ; -> Sub_00_6874
 $00:d428  65 0d         adc $0d
 $00:d42a  57 6f         eor [$6f],y
 $00:d42c  72 6c         adc ($6c)
@@ -9659,7 +9685,7 @@ $00:d42e  64 20         stz $20
 $00:d430  cb            wai
 $00:d431  45 76         eor $76
 $00:d433  69 6c 2e      adc #$2e6c
-$00:d436  20 11 13      jsr $1311
+$00:d436  20 11 13      jsr $1311  ; -> Sub_00_1311
 $00:d439  6c d4 10      jmp ($10d4)
 $00:d43c  02 02         cop #$02
 $00:d43e  2c 20 77      bit $7720
@@ -9676,7 +9702,7 @@ $00:d455  65 61         adc $61
 $00:d457  6c 20 0d      jmp ($0d20)
 $00:d45a  e1 57         sbc ($57,x)
 $00:d45c  6f 72 6c 64   adc $646c72
-$00:d460  20 cb 45      jsr $45cb
+$00:d460  20 cb 45      jsr $45cb  ; -> Sub_00_45cb
 $00:d463  76 69         ror $69,x
 $00:d465  6c 2e 2e      jmp ($2e2e)
 $00:d468  2e 2e 2e      rol $2e2e
@@ -9703,7 +9729,7 @@ $00:d492  65 61         adc $61
 $00:d494  74 75         stz $75,x
 $00:d496  72 65         adc ($65)
 $00:d498  73 60         adc ($60,s),y
-$00:d49a  20 6d 69      jsr $696d
+$00:d49a  20 6d 69      jsr $696d  ; -> Sub_00_696d
 $00:d49d  6e 64 73      ror $7364
 $00:d4a0  2e 20 11      rol $1120
 $00:d4a3  41 73         eor ($73,x)
@@ -9722,7 +9748,7 @@ $00:d4c1  73 61         adc ($61,s),y
 $00:d4c3  6d 65 20      adc $2065
 $00:d4c6  74 68         stz $68,x
 $00:d4c8  69 6e 67      adc #$676e
-$00:d4cb  20 0d f1      jsr $f10d
+$00:d4cb  20 0d f1      jsr $f10d  ; -> Sub_00_f10d
 $00:d4ce  68            pla
 $00:d4cf  61 70         adc ($70,x)
 $00:d4d1  70 65         bvs $d538
@@ -9738,31 +9764,31 @@ $00:d4e8  6f 70 20 61   adc $612070
 $00:d4ec  73 20         adc ($20,s),y
 $00:d4ee  6d 75 63      adc $6375
 $00:d4f1  68            pla
-$00:d4f2  20 61 73      jsr $7361
-$00:d4f5  20 0d 70      jsr $700d
+$00:d4f2  20 61 73      jsr $7361  ; -> Sub_00_7361
+$00:d4f5  20 0d 70      jsr $700d  ; -> Sub_00_700d
 $00:d4f8  6f 73 73 69   adc $697373
 $00:d4fc  62 6c 65      per $3a6b
 $00:d4ff  2e 20 11      rol $1120
 $00:d502  95 98         sta $98,x
 $00:d504  73 74         adc ($74,s),y
 $00:d506  69 6c 6c      adc #$6c6c
-$00:d509  20 79 6f      jsr $6f79
+$00:d509  20 79 6f      jsr $6f79  ; -> Sub_00_6f79
 $00:d50c  75 6e         adc $6e,x
 $00:d50e  67 2c         adc [$2c]
-$00:d510  20 0d fe      jsr $fe0d
+$00:d510  20 0d fe      jsr $fe0d  ; -> Sub_00_fe0d
 $00:d513  dc 65 78      jml [$7865]
 $00:d516  70 65         bvs $d57d
 $00:d518  72 69         adc ($69)
 $00:d51a  65 6e         adc $6e
 $00:d51c  63 65         adc $65,s
-$00:d51e  20 0d 6d      jsr $6d0d
+$00:d51e  20 0d 6d      jsr $6d0d  ; -> Sub_00_6d0d
 $00:d521  6f 72 65 2e   adc $2e6572
 $00:d525  20 11 82      jsr $8211
 $00:d528  69 66 20      adc #$2066
 $00:d52b  fe 66 69      inc $6966,x
 $00:d52e  67 75         adc [$75]
 $00:d530  72 65         adc ($65)
-$00:d532  20 6f 75      jsr $756f
+$00:d532  20 6f 75      jsr $756f  ; -> Sub_00_756f
 $00:d535  74 20         stz $20,x
 $00:d537  0d 72 65      ora $6572
 $00:d53a  61 73         adc ($73,x)
@@ -9786,7 +9812,7 @@ $00:d563  69 73 74      adc #$7473
 $00:d566  65 6e         adc $6e
 $00:d568  63 65         adc $65,s
 $00:d56a  73 2c         adc ($2c,s),y
-$00:d56c  20 0d fe      jsr $fe0d
+$00:d56c  20 0d fe      jsr $fe0d  ; -> Sub_00_fe0d
 $00:d56f  f1 a1         sbc ($a1),y
 $00:d571  77 69         adc [$69],y
 $00:d573  73 65         adc ($65,s),y
@@ -9795,7 +9821,7 @@ $00:d578  e1 4d         sbc ($4d,x)
 $00:d57a  61 73         adc ($73,x)
 $00:d57c  74 65         stz $65,x
 $00:d57e  72 2e         adc ($2e)
-$00:d580  20 11 02      jsr $0211
+$00:d580  20 11 02      jsr $0211  ; -> Sub_00_0211
 $00:d583  02 2c         cop #$2c
 $00:d585  20 b4 67      jsr $67b4
 $00:d588  6f 69 6e 67   adc $676e69
@@ -9838,13 +9864,13 @@ $00:d5d8  a9 2c         lda #$2c
 $00:d5da  eb            xba
 $00:d5db  a9 00         lda #$00
 $00:d5dd  a0 f9 d5      ldy #$d5f9
-$00:d5e0  22 8a 98 02   jsl $02988a
+$00:d5e0  22 8a 98 02   jsl $02988a  ; -> Sub_02_988a
 $00:d5e4  80 0c         bra $d5f2
 $00:d5e6  a9 2c         lda #$2c
 $00:d5e8  eb            xba
 $00:d5e9  a9 00         lda #$00
 $00:d5eb  a0 f5 d5      ldy #$d5f5
-$00:d5ee  22 8a 98 02   jsl $02988a
+$00:d5ee  22 8a 98 02   jsl $02988a  ; -> Sub_02_988a
 $00:d5f2  c2 20         rep #$20
 $00:d5f4  6b            rtl
 $00:d5f5  7f 16 10 16   adc $161016,x
@@ -10054,7 +10080,7 @@ $00:d7be  da            phx
 $00:d7bf  a0 02         ldy #$02
 $00:d7c1  cf 22 69 a7   cmp $a76922
 $00:d7c5  02 e2         cop #$e2
-$00:d7c7  20 a9 00      jsr $00a9
+$00:d7c7  20 a9 00      jsr $00a9  ; -> Sub_00_00a9
 $00:d7ca  eb            xba
 $00:d7cb  a9 02 22      lda #$2202
 $00:d7ce  81 a2         sta ($a2,x)
@@ -10156,11 +10182,11 @@ $00:d8a9  bb            tyx
 $00:d8aa  a7 38         lda [$38]
 $00:d8ac  e6 38         inc $38
 $00:d8ae  29 ff 00      and #$00ff
-$00:d8b1  20 17 e6      jsr $e617
+$00:d8b1  20 17 e6      jsr $e617  ; -> Sub_00_e617
 $00:d8b4  a7 38         lda [$38]
 $00:d8b6  e6 38         inc $38
 $00:d8b8  29 ff 00      and #$00ff
-$00:d8bb  20 28 e6      jsr $e628
+$00:d8bb  20 28 e6      jsr $e628  ; -> Sub_00_e628
 $00:d8be  85 00         sta $00
 $00:d8c0  bd 00 00      lda $0000,x
 $00:d8c3  38            sec
@@ -10204,11 +10230,11 @@ $00:d90d  bb            tyx
 $00:d90e  a7 38         lda [$38]
 $00:d910  e6 38         inc $38
 $00:d912  29 ff 00      and #$00ff
-$00:d915  20 17 e6      jsr $e617
+$00:d915  20 17 e6      jsr $e617  ; -> Sub_00_e617
 $00:d918  a7 38         lda [$38]
 $00:d91a  e6 38         inc $38
 $00:d91c  29 ff 00      and #$00ff
-$00:d91f  20 28 e6      jsr $e628
+$00:d91f  20 28 e6      jsr $e628  ; -> Sub_00_e628
 $00:d922  d9 00 00      cmp $0000,y
 $00:d925  f0 03         beq $d92a
 $00:d927  82 8f 0b      brl $e4b9
@@ -10216,7 +10242,7 @@ $00:d92a  a7 38         lda [$38]
 $00:d92c  e6 38         inc $38
 $00:d92e  29 ff 00      and #$00ff
 $00:d931  1a            inc a
-$00:d932  20 28 e6      jsr $e628
+$00:d932  20 28 e6      jsr $e628  ; -> Sub_00_e628
 $00:d935  d9 02 00      cmp $0002,y
 $00:d938  f0 03         beq $d93d
 $00:d93a  82 7e 0b      brl $e4bb
@@ -10247,16 +10273,16 @@ $00:d970  bb            tyx
 $00:d971  a7 38         lda [$38]
 $00:d973  e6 38         inc $38
 $00:d975  29 ff 00      and #$00ff
-$00:d978  20 17 e6      jsr $e617
+$00:d978  20 17 e6      jsr $e617  ; -> Sub_00_e617
 $00:d97b  a7 38         lda [$38]
 $00:d97d  e6 38         inc $38
 $00:d97f  29 ff 00      and #$00ff
-$00:d982  20 28 e6      jsr $e628
+$00:d982  20 28 e6      jsr $e628  ; -> Sub_00_e628
 $00:d985  99 00 00      sta $0000,y
 $00:d988  a7 38         lda [$38]
 $00:d98a  e6 38         inc $38
 $00:d98c  29 ff 00      and #$00ff
-$00:d98f  20 28 e6      jsr $e628
+$00:d98f  20 28 e6      jsr $e628  ; -> Sub_00_e628
 $00:d992  99 02 00      sta $0002,y
 $00:d995  da            phx
 $00:d996  bb            tyx
@@ -10267,7 +10293,7 @@ $00:d99e  bb            tyx
 $00:d99f  a7 38         lda [$38]
 $00:d9a1  e6 38         inc $38
 $00:d9a3  29 ff 00      and #$00ff
-$00:d9a6  20 17 e6      jsr $e617
+$00:d9a6  20 17 e6      jsr $e617  ; -> Sub_00_e617
 $00:d9a9  a7 38         lda [$38]
 $00:d9ab  e6 38         inc $38
 $00:d9ad  e6 38         inc $38
@@ -10277,7 +10303,7 @@ $00:d9b5  bb            tyx
 $00:d9b6  a7 38         lda [$38]
 $00:d9b8  e6 38         inc $38
 $00:d9ba  29 ff 00      and #$00ff
-$00:d9bd  20 17 e6      jsr $e617
+$00:d9bd  20 17 e6      jsr $e617  ; -> Sub_00_e617
 $00:d9c0  a7 38         lda [$38]
 $00:d9c2  e6 38         inc $38
 $00:d9c4  e6 38         inc $38
@@ -10290,7 +10316,7 @@ $00:d9d1  e6 38         inc $38
 $00:d9d3  20 2d e6      jsr $e62d
 $00:d9d6  a0 de         ldy #$de
 $00:d9d8  1a            inc a
-$00:d9d9  22 a2 f3 04   jsl $04f3a2
+$00:d9d9  22 a2 f3 04   jsl $04f3a2  ; -> Sub_04_f3a2
 $00:d9dd  90 12         bcc $d9f1
 $00:d9df  bd 16 00      lda $0016,x
 $00:d9e2  29 ff df      and #$dfff
@@ -10341,7 +10367,7 @@ $00:da45  a7 38         lda [$38]
 $00:da47  e6 38         inc $38
 $00:da49  e6 38         inc $38
 $00:da4b  a8            tay
-$00:da4c  22 69 a7 02   jsl $02a769
+$00:da4c  22 69 a7 02   jsl $02a769  ; -> Sub_02_a769
 $00:da50  e2 20         sep #$20
 $00:da52  a9 00         lda #$00
 $00:da54  eb            xba
@@ -10517,7 +10543,7 @@ $00:dbca  38            sec
 $00:dbcb  e9 10 00      sbc #$0010
 $00:dbce  85 18         sta $18
 $00:dbd0  da            phx
-$00:dbd1  22 b8 f2 04   jsl $04f2b8
+$00:dbd1  22 b8 f2 04   jsl $04f2b8  ; -> Sub_04_f2b8
 $00:dbd5  bf 00 80 7f   lda $7f8000,x
 $00:dbd9  fa            plx
 $00:dbda  29 ff 00      and #$00ff
@@ -10535,7 +10561,7 @@ $00:dbf4  38            sec
 $00:dbf5  e9 10 00      sbc #$0010
 $00:dbf8  85 18         sta $18
 $00:dbfa  da            phx
-$00:dbfb  22 b8 f2 04   jsl $04f2b8
+$00:dbfb  22 b8 f2 04   jsl $04f2b8  ; -> Sub_04_f2b8
 $00:dbff  e2 20         sep #$20
 $00:dc01  a7 38         lda [$38]
 $00:dc03  e6 38         inc $38
@@ -10567,7 +10593,7 @@ $00:dc34  7d 02 00      adc $0002,x
 $00:dc37  38            sec
 $00:dc38  e9 10 00      sbc #$0010
 $00:dc3b  85 18         sta $18
-$00:dc3d  22 b8 f2 04   jsl $04f2b8
+$00:dc3d  22 b8 f2 04   jsl $04f2b8  ; -> Sub_04_f2b8
 $00:dc41  bf 00 80 7f   lda $7f8000,x
 $00:dc45  09 f0 00      ora #$00f0
 $00:dc48  9f 00 80 7f   sta $7f8000,x
@@ -10589,7 +10615,7 @@ $00:dc65  7d 02 00      adc $0002,x
 $00:dc68  38            sec
 $00:dc69  e9 10 00      sbc #$0010
 $00:dc6c  85 18         sta $18
-$00:dc6e  22 b8 f2 04   jsl $04f2b8
+$00:dc6e  22 b8 f2 04   jsl $04f2b8  ; -> Sub_04_f2b8
 $00:dc72  bf 00 80 7f   lda $7f8000,x
 $00:dc76  29 00 ff      and #$ff00
 $00:dc79  9f 00 80 7f   sta $7f8000,x
@@ -10599,7 +10625,7 @@ $00:dc81  bb            tyx
 $00:dc82  a7 38         lda [$38]
 $00:dc84  e6 38         inc $38
 $00:dc86  29 ff 00      and #$00ff
-$00:dc89  20 17 e6      jsr $e617
+$00:dc89  20 17 e6      jsr $e617  ; -> Sub_00_e617
 $00:dc8c  a7 38         lda [$38]
 $00:dc8e  e6 38         inc $38
 $00:dc90  e6 38         inc $38
@@ -10646,7 +10672,7 @@ $00:dce8  f0 03         beq $dced
 $00:dcea  82 cc 07      brl $e4b9
 $00:dced  82 fe 01      brl $deee
 $00:dcf0  bb            tyx
-$00:dcf1  20 62 e6      jsr $e662
+$00:dcf1  20 62 e6      jsr $e662  ; -> Sub_00_e662
 $00:dcf4  a9 9b ac      lda #$ac9b
 $00:dcf7  99 18 00      sta $0018,y
 $00:dcfa  e2 20         sep #$20
@@ -10659,7 +10685,7 @@ $00:dd07  29 ff 00      and #$00ff
 $00:dd0a  99 30 00      sta $0030,y
 $00:dd0d  82 af 07      brl $e4bf
 $00:dd10  bb            tyx
-$00:dd11  20 62 e6      jsr $e662
+$00:dd11  20 62 e6      jsr $e662  ; -> Sub_00_e662
 $00:dd14  a9 cb ac      lda #$accb
 $00:dd17  99 18 00      sta $0018,y
 $00:dd1a  e2 20         sep #$20
@@ -10778,14 +10804,14 @@ $00:de19  b9 2b ba      lda $ba2b,y
 $00:de1c  f0 09         beq $de27
 $00:de1e  a0 de         ldy #$de
 $00:de20  1a            inc a
-$00:de21  22 a2 f3 04   jsl $04f3a2
+$00:de21  22 a2 f3 04   jsl $04f3a2  ; -> Sub_04_f3a2
 $00:de25  90 24         bcc $de4b
 $00:de27  a7 38         lda [$38]
 $00:de29  e6 38         inc $38
 $00:de2b  e6 38         inc $38
 $00:de2d  a0 de         ldy #$de
 $00:de2f  1a            inc a
-$00:de30  22 a2 f3 04   jsl $04f3a2
+$00:de30  22 a2 f3 04   jsl $04f3a2  ; -> Sub_04_f3a2
 $00:de34  90 12         bcc $de48
 $00:de36  bd 16 00      lda $0016,x
 $00:de39  29 ff df      and #$dfff
@@ -10838,12 +10864,12 @@ $00:dea8  a5 38         lda $38
 $00:deaa  9d 18 00      sta $0018,x
 $00:dead  82 0f 06      brl $e4bf
 $00:deb0  bb            tyx
-$00:deb1  22 f3 88 00   jsl $0088f3
+$00:deb1  22 f3 88 00   jsl $0088f3  ; -> Sub_00_88f3
 $00:deb5  90 03         bcc $deba
 $00:deb7  82 05 06      brl $e4bf
 $00:deba  82 0c 06      brl $e4c9
 $00:debd  bb            tyx
-$00:debe  22 f3 88 00   jsl $0088f3
+$00:debe  22 f3 88 00   jsl $0088f3  ; -> Sub_00_88f3
 $00:dec2  90 08         bcc $decc
 $00:dec4  de 2a 00      dec $002a,x
 $00:dec7  d0 f5         bne $debe
@@ -10864,7 +10890,7 @@ $00:dee6  99 36 00      sta $0036,y
 $00:dee9  c2 20         rep #$20
 $00:deeb  82 d1 05      brl $e4bf
 $00:deee  bb            tyx
-$00:deef  20 62 e6      jsr $e662
+$00:deef  20 62 e6      jsr $e662  ; -> Sub_00_e662
 $00:def2  a7 38         lda [$38]
 $00:def4  e6 38         inc $38
 $00:def6  e6 38         inc $38
@@ -10880,6 +10906,7 @@ $00:df0a  82 b2 05      brl $e4bf
 $00:df0d  bb            tyx
 $00:df0e  bc 3c 00      ldy $003c,x
 $00:df11  d0 10         bne $df23
+Sub_00_df13:
 $00:df13  bc 3e 00      ldy $003e,x
 $00:df16  8c a6 06      sty $06a6
 $00:df19  f0 1c         beq $df37
@@ -11178,13 +11205,14 @@ $00:e1c0  a5 38         lda $38
 $00:e1c2  9d 18 00      sta $0018,x
 $00:e1c5  bd 16 00      lda $0016,x
 $00:e1c8  29 fb ff      and #$fffb
+Sub_00_e1cb:
 $00:e1cb  9d 16 00      sta $0016,x
 $00:e1ce  82 ee 02      brl $e4bf
 $00:e1d1  bb            tyx
 $00:e1d2  bd 16 00      lda $0016,x
 $00:e1d5  89 04 00      bit #$0004
 $00:e1d8  d0 0c         bne $e1e6
-$00:e1da  22 f3 88 00   jsl $0088f3
+$00:e1da  22 f3 88 00   jsl $0088f3  ; -> Sub_00_88f3
 $00:e1de  90 03         bcc $e1e3
 $00:e1e0  82 d8 02      brl $e4bb
 $00:e1e3  82 e3 02      brl $e4c9
@@ -11344,7 +11372,7 @@ $00:e331  e6 38         inc $38
 $00:e333  99 16 00      sta $0016,y
 $00:e336  82 86 01      brl $e4bf
 $00:e339  bb            tyx
-$00:e33a  20 62 e6      jsr $e662
+$00:e33a  20 62 e6      jsr $e662  ; -> Sub_00_e662
 $00:e33d  a7 38         lda [$38]
 $00:e33f  e6 38         inc $38
 $00:e341  e6 38         inc $38
@@ -11407,7 +11435,7 @@ $00:e3be  7d 02 00      adc $0002,x
 $00:e3c1  38            sec
 $00:e3c2  e9 10 00      sbc #$0010
 $00:e3c5  85 18         sta $18
-$00:e3c7  22 b8 f2 04   jsl $04f2b8
+$00:e3c7  22 b8 f2 04   jsl $04f2b8  ; -> Sub_04_f2b8
 $00:e3cb  bf 00 80 7f   lda $7f8000,x
 $00:e3cf  fa            plx
 $00:e3d0  29 0f 00      and #$000f
@@ -11436,7 +11464,7 @@ $00:e401  e6 38         inc $38
 $00:e403  99 16 00      sta $0016,y
 $00:e406  82 b6 00      brl $e4bf
 $00:e409  bb            tyx
-$00:e40a  20 62 e6      jsr $e662
+$00:e40a  20 62 e6      jsr $e662  ; -> Sub_00_e662
 $00:e40d  a7 38         lda [$38]
 $00:e40f  e6 38         inc $38
 $00:e411  e6 38         inc $38
@@ -11484,7 +11512,7 @@ $00:e46b  e6 38         inc $38
 $00:e46d  99 16 00      sta $0016,y
 $00:e470  82 4c 00      brl $e4bf
 $00:e473  bb            tyx
-$00:e474  20 62 e6      jsr $e662
+$00:e474  20 62 e6      jsr $e662  ; -> Sub_00_e662
 $00:e477  a7 38         lda [$38]
 $00:e479  e6 38         inc $38
 $00:e47b  e6 38         inc $38
@@ -11592,7 +11620,7 @@ $00:e549  bd 02 00      lda $0002,x
 $00:e54c  38            sec
 $00:e54d  e9 10 00      sbc #$0010
 $00:e550  85 18         sta $18
-$00:e552  22 b8 f2 04   jsl $04f2b8
+$00:e552  22 b8 f2 04   jsl $04f2b8  ; -> Sub_04_f2b8
 $00:e556  bf 00 80 7f   lda $7f8000,x
 $00:e55a  09 f0 00      ora #$00f0
 $00:e55d  9f 00 80 7f   sta $7f8000,x
@@ -11611,7 +11639,7 @@ $00:e572  bd 02 00      lda $0002,x
 $00:e575  38            sec
 $00:e576  fd 12 00      sbc $0012,x
 $00:e579  85 18         sta $18
-$00:e57b  22 b8 f2 04   jsl $04f2b8
+$00:e57b  22 b8 f2 04   jsl $04f2b8  ; -> Sub_04_f2b8
 $00:e57f  b9 10 00      lda $0010,y
 $00:e582  4a            lsr a
 $00:e583  4a            lsr a
@@ -11621,7 +11649,7 @@ $00:e586  85 0e         sta $0e
 $00:e588  bf 00 80 7f   lda $7f8000,x
 $00:e58c  09 f0 00      ora #$00f0
 $00:e58f  9f 00 80 7f   sta $7f8000,x
-$00:e593  22 1a f3 04   jsl $04f31a
+$00:e593  22 1a f3 04   jsl $04f31a  ; -> Sub_04_f31a
 $00:e597  c6 0e         dec $0e
 $00:e599  d0 ed         bne $e588
 $00:e59b  a5 18         lda $18
@@ -11643,7 +11671,7 @@ $00:e5b9  bd 02 00      lda $0002,x
 $00:e5bc  38            sec
 $00:e5bd  e9 10 00      sbc #$0010
 $00:e5c0  85 18         sta $18
-$00:e5c2  22 b8 f2 04   jsl $04f2b8
+$00:e5c2  22 b8 f2 04   jsl $04f2b8  ; -> Sub_04_f2b8
 $00:e5c6  bf 00 80 7f   lda $7f8000,x
 $00:e5ca  29 00 ff      and #$ff00
 $00:e5cd  9f 00 80 7f   sta $7f8000,x
@@ -11662,7 +11690,7 @@ $00:e5e2  bd 02 00      lda $0002,x
 $00:e5e5  38            sec
 $00:e5e6  fd 12 00      sbc $0012,x
 $00:e5e9  85 18         sta $18
-$00:e5eb  22 b8 f2 04   jsl $04f2b8
+$00:e5eb  22 b8 f2 04   jsl $04f2b8  ; -> Sub_04_f2b8
 $00:e5ef  b9 10 00      lda $0010,y
 $00:e5f2  4a            lsr a
 $00:e5f3  4a            lsr a
@@ -11672,7 +11700,7 @@ $00:e5f6  85 0e         sta $0e
 $00:e5f8  bf 00 80 7f   lda $7f8000,x
 $00:e5fc  29 00 ff      and #$ff00
 $00:e5ff  9f 00 80 7f   sta $7f8000,x
-$00:e603  22 1a f3 04   jsl $04f31a
+$00:e603  22 1a f3 04   jsl $04f31a  ; -> Sub_04_f31a
 $00:e607  c6 0e         dec $0e
 $00:e609  d0 ed         bne $e5f8
 $00:e60b  a5 18         lda $18
@@ -11682,15 +11710,17 @@ $00:e611  c6 0c         dec $0c
 $00:e613  d0 d4         bne $e5e9
 $00:e615  bb            tyx
 $00:e616  60            rts
+Sub_00_e617:
 $00:e617  e2 20         sep #$20
 $00:e619  eb            xba
 $00:e61a  a9 40         lda #$40
-$00:e61c  22 d1 b1 02   jsl $02b1d1
+$00:e61c  22 d1 b1 02   jsl $02b1d1  ; -> Sub_02_b1d1
 $00:e620  c2 20         rep #$20
 $00:e622  18            clc
 $00:e623  69 00 08      adc #$0800
 $00:e626  a8            tay
 $00:e627  60            rts
+Sub_00_e628:
 $00:e628  0a            asl a
 $00:e629  0a            asl a
 $00:e62a  0a            asl a
@@ -11723,6 +11753,7 @@ $00:e65a  9d 3e 00      sta $003e,x
 $00:e65d  fa            plx
 $00:e65e  20 a3 e6      jsr $e6a3
 $00:e661  60            rts
+Sub_00_e662:
 $00:e662  22 8a e6 00   jsl $00e68a
 $00:e666  b0 21         bcs $e689
 $00:e668  8a            txa
@@ -11840,7 +11871,7 @@ $00:e76f  02 03         cop #$03
 $00:e771  1f 02 04 da   ora $da0402,x
 $00:e775  a0 36         ldy #$36
 $00:e777  bb            tyx
-$00:e778  22 69 a7 02   jsl $02a769
+$00:e778  22 69 a7 02   jsl $02a769  ; -> Sub_02_a769
 $00:e77c  fa            plx
 $00:e77d  02 85         cop #$85
 $00:e77f  5e ea 00      lsr $00ea,x
@@ -11868,7 +11899,7 @@ $00:e7b0  02 04         cop #$04
 $00:e7b2  da            phx
 $00:e7b3  a0 27         ldy #$27
 $00:e7b5  bb            tyx
-$00:e7b6  22 69 a7 02   jsl $02a769
+$00:e7b6  22 69 a7 02   jsl $02a769  ; -> Sub_02_a769
 $00:e7ba  fa            plx
 $00:e7bb  a9 00 30      lda #$3000
 $00:e7be  1c 26 03      trb $0326
@@ -11886,10 +11917,10 @@ $00:e7d5  ee 82 04      inc $0482
 $00:e7d8  02 03         cop #$03
 $00:e7da  79 02 04      adc $0402,y
 $00:e7dd  da            phx
-$00:e7de  22 ee f6 04   jsl $04f6ee
+$00:e7de  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:e7e2  a0 85         ldy #$85
 $00:e7e4  bb            tyx
-$00:e7e5  22 69 a7 02   jsl $02a769
+$00:e7e5  22 69 a7 02   jsl $02a769  ; -> Sub_02_a769
 $00:e7e9  fa            plx
 $00:e7ea  02 85         cop #$85
 $00:e7ec  40            rti
@@ -11906,10 +11937,10 @@ $00:e7fd  00 02         brk #$02
 $00:e7ff  03 21         ora $21,s
 $00:e801  02 04         cop #$04
 $00:e803  da            phx
-$00:e804  22 ee f6 04   jsl $04f6ee
+$00:e804  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:e808  a0 e1         ldy #$e1
 $00:e80a  bb            tyx
-$00:e80b  22 69 a7 02   jsl $02a769
+$00:e80b  22 69 a7 02   jsl $02a769  ; -> Sub_02_a769
 $00:e80f  fa            plx
 $00:e810  02 85         cop #$85
 $00:e812  40            rti
@@ -11926,7 +11957,7 @@ $00:e823  00 02         brk #$02
 $00:e825  03 21         ora $21,s
 $00:e827  02 04         cop #$04
 $00:e829  da            phx
-$00:e82a  22 ee f6 04   jsl $04f6ee
+$00:e82a  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:e82e  a0 3d         ldy #$3d
 $00:e830  bc 22 69      ldy $6922,x
 $00:e833  a7 02         lda [$02]
@@ -11946,7 +11977,7 @@ $00:e849  00 02         brk #$02
 $00:e84b  03 21         ora $21,s
 $00:e84d  02 04         cop #$04
 $00:e84f  da            phx
-$00:e850  22 ee f6 04   jsl $04f6ee
+$00:e850  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:e854  a0 b6         ldy #$b6
 $00:e856  bc 22 69      ldy $6922,x
 $00:e859  a7 02         lda [$02]
@@ -11966,7 +11997,7 @@ $00:e86f  00 02         brk #$02
 $00:e871  03 21         ora $21,s
 $00:e873  02 04         cop #$04
 $00:e875  da            phx
-$00:e876  22 ee f6 04   jsl $04f6ee
+$00:e876  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:e87a  a0 4d         ldy #$4d
 $00:e87c  bd 22 69      lda $6922,x
 $00:e87f  a7 02         lda [$02]
@@ -11986,7 +12017,7 @@ $00:e895  00 02         brk #$02
 $00:e897  03 21         ora $21,s
 $00:e899  02 04         cop #$04
 $00:e89b  da            phx
-$00:e89c  22 ee f6 04   jsl $04f6ee
+$00:e89c  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:e8a0  a0 ba         ldy #$ba
 $00:e8a2  bd 22 69      lda $6922,x
 $00:e8a5  a7 02         lda [$02]
@@ -12006,7 +12037,7 @@ $00:e8bb  00 02         brk #$02
 $00:e8bd  03 21         ora $21,s
 $00:e8bf  02 04         cop #$04
 $00:e8c1  da            phx
-$00:e8c2  22 ee f6 04   jsl $04f6ee
+$00:e8c2  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:e8c6  a0 2a         ldy #$2a
 $00:e8c8  be 22 69      ldx $6922,y
 $00:e8cb  a7 02         lda [$02]
@@ -12026,7 +12057,7 @@ $00:e8e1  00 02         brk #$02
 $00:e8e3  03 21         ora $21,s
 $00:e8e5  02 04         cop #$04
 $00:e8e7  da            phx
-$00:e8e8  22 ee f6 04   jsl $04f6ee
+$00:e8e8  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:e8ec  a0 51         ldy #$51
 $00:e8ee  be 22 69      ldx $6922,y
 $00:e8f1  a7 02         lda [$02]
@@ -12046,7 +12077,7 @@ $00:e907  00 02         brk #$02
 $00:e909  03 21         ora $21,s
 $00:e90b  02 04         cop #$04
 $00:e90d  da            phx
-$00:e90e  22 ee f6 04   jsl $04f6ee
+$00:e90e  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:e912  a0 bf         ldy #$bf
 $00:e914  be 22 69      ldx $6922,y
 $00:e917  a7 02         lda [$02]
@@ -12066,7 +12097,7 @@ $00:e92d  00 02         brk #$02
 $00:e92f  03 21         ora $21,s
 $00:e931  02 04         cop #$04
 $00:e933  da            phx
-$00:e934  22 ee f6 04   jsl $04f6ee
+$00:e934  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:e938  a0 35         ldy #$35
 $00:e93a  bf 22 69 a7   lda $a76922,x
 $00:e93e  02 fa         cop #$fa
@@ -12085,7 +12116,7 @@ $00:e953  00 02         brk #$02
 $00:e955  03 21         ora $21,s
 $00:e957  02 04         cop #$04
 $00:e959  da            phx
-$00:e95a  22 ee f6 04   jsl $04f6ee
+$00:e95a  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:e95e  a0 cd         ldy #$cd
 $00:e960  bf 22 69 a7   lda $a76922,x
 $00:e964  02 fa         cop #$fa
@@ -12104,7 +12135,7 @@ $00:e979  00 02         brk #$02
 $00:e97b  03 21         ora $21,s
 $00:e97d  02 04         cop #$04
 $00:e97f  da            phx
-$00:e980  22 ee f6 04   jsl $04f6ee
+$00:e980  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:e984  a0 23         ldy #$23
 $00:e986  c0 22         cpy #$22
 $00:e988  69 a7 02      adc #$02a7
@@ -12124,7 +12155,7 @@ $00:e99f  00 02         brk #$02
 $00:e9a1  03 21         ora $21,s
 $00:e9a3  02 04         cop #$04
 $00:e9a5  da            phx
-$00:e9a6  22 ee f6 04   jsl $04f6ee
+$00:e9a6  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:e9aa  a0 6a         ldy #$6a
 $00:e9ac  c0 22         cpy #$22
 $00:e9ae  69 a7 02      adc #$02a7
@@ -12144,7 +12175,7 @@ $00:e9c5  00 02         brk #$02
 $00:e9c7  03 21         ora $21,s
 $00:e9c9  02 04         cop #$04
 $00:e9cb  da            phx
-$00:e9cc  22 ee f6 04   jsl $04f6ee
+$00:e9cc  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:e9d0  a0 fa         ldy #$fa
 $00:e9d2  c0 22         cpy #$22
 $00:e9d4  69 a7 02      adc #$02a7
@@ -12165,7 +12196,7 @@ $00:e9ee  25 ea         and $ea
 $00:e9f0  00 02         brk #$02
 $00:e9f2  03 21         ora $21,s
 $00:e9f4  02 04         cop #$04
-$00:e9f6  22 ee f6 04   jsl $04f6ee
+$00:e9f6  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:e9fa  02 03         cop #$03
 $00:e9fc  1f 02 04 9c   ora $9c0402,x
 $00:ea00  82 04 02      brl $ec07
@@ -12211,13 +12242,13 @@ $00:ea62  eb            xba
 $00:ea63  a9 00         lda #$00
 $00:ea65  a0 86         ldy #$86
 $00:ea67  ea            nop
-$00:ea68  22 8a 98 02   jsl $02988a
+$00:ea68  22 8a 98 02   jsl $02988a  ; -> Sub_02_988a
 $00:ea6c  a9 2c         lda #$2c
 $00:ea6e  eb            xba
 $00:ea6f  a9 00         lda #$00
 $00:ea71  a0 8b         ldy #$8b
 $00:ea73  ea            nop
-$00:ea74  22 8a 98 02   jsl $02988a
+$00:ea74  22 8a 98 02   jsl $02988a  ; -> Sub_02_988a
 $00:ea78  c2 20         rep #$20
 $00:ea7a  ad 82 04      lda $0482
 $00:ea7d  d0 01         bne $ea80
@@ -12533,7 +12564,7 @@ $00:ed48  ee 54 04      inc $0454
 $00:ed4b  02 91         cop #$91
 $00:ed4d  6b            rtl
 $00:ed4e  a0 b0 c3      ldy #$c3b0
-$00:ed51  22 69 a7 02   jsl $02a769
+$00:ed51  22 69 a7 02   jsl $02a769  ; -> Sub_02_a769
 $00:ed55  9c a4 03      stz $03a4
 $00:ed58  a2 00 00      ldx #$0000
 $00:ed5b  a0 0d c4      ldy #$c40d
@@ -12617,7 +12648,7 @@ $00:edf4  1b            tcs
 $00:edf5  aa            tax
 $00:edf6  bf 00 02 70   lda $700200,x
 $00:edfa  8d 52 04      sta $0452
-$00:edfd  22 69 a7 02   jsl $02a769
+$00:edfd  22 69 a7 02   jsl $02a769  ; -> Sub_02_a769
 $00:ee01  fa            plx
 $00:ee02  7a            ply
 $00:ee03  68            pla
@@ -12936,7 +12967,7 @@ $00:f0a7  4a            lsr a
 $00:f0a8  3a            dec a
 $00:f0a9  8d 7a 03      sta $037a
 $00:f0ac  da            phx
-$00:f0ad  22 00 80 02   jsl $028000
+$00:f0ad  22 00 80 02   jsl $028000  ; -> GameLoop_Main
 $00:f0b1  fa            plx
 $00:f0b2  6b            rtl
 $00:f0b3  02 07         cop #$07
@@ -12986,6 +13017,7 @@ $00:f104  02 14         cop #$14
 $00:f106  2f 01 0d f1   and $f10d01
 $00:f10a  02 91         cop #$91
 $00:f10c  6b            rtl
+Sub_00_f10d:
 $00:f10d  02 80         cop #$80
 $00:f10f  12 02         ora ($02)
 $00:f111  82 02 91      brl $8216
@@ -13040,6 +13072,7 @@ $00:f17f  01 40         ora ($40,x)
 $00:f181  00 02         brk #$02
 $00:f183  ac 95 f1      ldy $f195
 $00:f186  00 e0         brk #$e0
+Sub_00_f188:
 $00:f188  00 60         brk #$60
 $00:f18a  01 40         ora ($40,x)
 $00:f18c  00 80         brk #$80
@@ -13205,20 +13238,20 @@ $00:f303  07 f3         ora [$f3]
 $00:f305  78            sei
 $00:f306  00 da         brk #$da
 $00:f308  a0 92 c1      ldy #$c192
-$00:f30b  22 69 a7 02   jsl $02a769
+$00:f30b  22 69 a7 02   jsl $02a769  ; -> Sub_02_a769
 $00:f30f  fa            plx
 $00:f310  ee 66 04      inc $0466
 $00:f313  02 1b         cop #$1b
 $00:f315  19 f3 d0      ora $d0f3,y
 $00:f318  02 9c         cop #$9c
 $00:f31a  66 04         ror $04
-$00:f31c  22 ee f6 04   jsl $04f6ee
+$00:f31c  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:f320  02 1b         cop #$1b
 $00:f322  26 f3         rol $f3
 $00:f324  70 00         bvs $f326
 $00:f326  da            phx
 $00:f327  a0 f1 c1      ldy #$c1f1
-$00:f32a  22 69 a7 02   jsl $02a769
+$00:f32a  22 69 a7 02   jsl $02a769  ; -> Sub_02_a769
 $00:f32e  fa            plx
 $00:f32f  ee 66 04      inc $0466
 $00:f332  02 1b         cop #$1b
@@ -13226,33 +13259,33 @@ $00:f334  38            sec
 $00:f335  f3 d0         sbc ($d0,s),y
 $00:f337  02 9c         cop #$9c
 $00:f339  66 04         ror $04
-$00:f33b  22 ee f6 04   jsl $04f6ee
+$00:f33b  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:f33f  02 1b         cop #$1b
 $00:f341  45 f3         eor $f3
 $00:f343  70 00         bvs $f345
 $00:f345  da            phx
 $00:f346  a0 28 c2      ldy #$c228
-$00:f349  22 69 a7 02   jsl $02a769
+$00:f349  22 69 a7 02   jsl $02a769  ; -> Sub_02_a769
 $00:f34d  fa            plx
 $00:f34e  ee 66 04      inc $0466
 $00:f351  02 1b         cop #$1b
 $00:f353  57 f3         eor [$f3],y
 $00:f355  d0 02         bne $f359
 $00:f357  9c 66 04      stz $0466
-$00:f35a  22 ee f6 04   jsl $04f6ee
+$00:f35a  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:f35e  02 1b         cop #$1b
 $00:f360  64 f3         stz $f3
 $00:f362  70 00         bvs $f364
 $00:f364  da            phx
 $00:f365  a0 6f c2      ldy #$c26f
-$00:f368  22 69 a7 02   jsl $02a769
+$00:f368  22 69 a7 02   jsl $02a769  ; -> Sub_02_a769
 $00:f36c  fa            plx
 $00:f36d  ee 66 04      inc $0466
 $00:f370  02 1b         cop #$1b
 $00:f372  76 f3         ror $f3,x
 $00:f374  d0 02         bne $f378
 $00:f376  9c 66 04      stz $0466
-$00:f379  22 ee f6 04   jsl $04f6ee
+$00:f379  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:f37d  02 1b         cop #$1b
 $00:f37f  83 f3         sta $f3,s
 $00:f381  70 00         bvs $f383
@@ -13279,7 +13312,7 @@ $00:f3b0  b4 f3         ldy $f3,x
 $00:f3b2  78            sei
 $00:f3b3  00 da         brk #$da
 $00:f3b5  a0 bb c2      ldy #$c2bb
-$00:f3b8  22 69 a7 02   jsl $02a769
+$00:f3b8  22 69 a7 02   jsl $02a769  ; -> Sub_02_a769
 $00:f3bc  fa            plx
 $00:f3bd  ee 66 04      inc $0466
 $00:f3c0  02 1b         cop #$1b
@@ -13287,13 +13320,13 @@ $00:f3c2  c6 f3         dec $f3
 $00:f3c4  38            sec
 $00:f3c5  04 9c         tsb $9c
 $00:f3c7  66 04         ror $04
-$00:f3c9  22 ee f6 04   jsl $04f6ee
+$00:f3c9  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:f3cd  02 1b         cop #$1b
 $00:f3cf  d3 f3         cmp ($f3,s),y
 $00:f3d1  70 00         bvs $f3d3
 $00:f3d3  da            phx
 $00:f3d4  a0 e1 c2      ldy #$c2e1
-$00:f3d7  22 69 a7 02   jsl $02a769
+$00:f3d7  22 69 a7 02   jsl $02a769  ; -> Sub_02_a769
 $00:f3db  fa            plx
 $00:f3dc  ee 66 04      inc $0466
 $00:f3df  02 1b         cop #$1b
@@ -13301,13 +13334,13 @@ $00:f3e1  e5 f3         sbc $f3
 $00:f3e3  38            sec
 $00:f3e4  04 9c         tsb $9c
 $00:f3e6  66 04         ror $04
-$00:f3e8  22 ee f6 04   jsl $04f6ee
+$00:f3e8  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:f3ec  02 1b         cop #$1b
 $00:f3ee  f2 f3         sbc ($f3)
 $00:f3f0  70 00         bvs $f3f2
 $00:f3f2  da            phx
 $00:f3f3  a0 39 c3      ldy #$c339
-$00:f3f6  22 69 a7 02   jsl $02a769
+$00:f3f6  22 69 a7 02   jsl $02a769  ; -> Sub_02_a769
 $00:f3fa  fa            plx
 $00:f3fb  ee 66 04      inc $0466
 $00:f3fe  02 1b         cop #$1b
@@ -13315,7 +13348,7 @@ $00:f400  04 f4         tsb $f4
 $00:f402  38            sec
 $00:f403  04 9c         tsb $9c
 $00:f405  66 04         ror $04
-$00:f407  22 ee f6 04   jsl $04f6ee
+$00:f407  22 ee f6 04   jsl $04f6ee  ; -> InitGraphics
 $00:f40b  02 1b         cop #$1b
 $00:f40d  11 f4         ora ($f4),y
 $00:f40f  70 00         bvs $f411
@@ -13476,7 +13509,7 @@ $00:f579  a9 0f         lda #$0f
 $00:f57b  eb            xba
 $00:f57c  a9 7e         lda #$7e
 $00:f57e  a0 00 78      ldy #$7800
-$00:f581  22 8a 98 02   jsl $02988a
+$00:f581  22 8a 98 02   jsl $02988a  ; -> Sub_02_988a
 $00:f585  c2 20         rep #$20
 $00:f587  fa            plx
 $00:f588  fe 30 00      inc $0030,x
@@ -13488,7 +13521,7 @@ $00:f595  02 91         cop #$91
 $00:f597  ad 66 04      lda $0466
 $00:f59a  30 42         bmi $f5de
 $00:f59c  d0 04         bne $f5a2
-$00:f59e  20 e7 f5      jsr $f5e7
+$00:f59e  20 e7 f5      jsr $f5e7  ; -> Sub_00_f5e7
 $00:f5a1  6b            rtl
 $00:f5a2  9e 30 00      stz $0030,x
 $00:f5a5  02 03         cop #$03
@@ -13498,27 +13531,28 @@ $00:f5ac  e7 f5         sbc [$f5]
 $00:f5ae  02 27         cop #$27
 $00:f5b0  b2 f5         lda ($f5)
 $00:f5b2  bd 30 00      lda $0030,x
-$00:f5b5  20 e7 f5      jsr $f5e7
+$00:f5b5  20 e7 f5      jsr $f5e7  ; -> Sub_00_f5e7
 $00:f5b8  fe 30 00      inc $0030,x
 $00:f5bb  02 04         cop #$04
 $00:f5bd  02 91         cop #$91
 $00:f5bf  ad 66 04      lda $0466
 $00:f5c2  f0 07         beq $f5cb
 $00:f5c4  a9 e0 00      lda #$00e0
-$00:f5c7  20 e7 f5      jsr $f5e7
+$00:f5c7  20 e7 f5      jsr $f5e7  ; -> Sub_00_f5e7
 $00:f5ca  6b            rtl
 $00:f5cb  02 03         cop #$03
 $00:f5cd  70 bd         bvs $f58c
 $00:f5cf  30 00         bmi $f5d1
-$00:f5d1  20 e7 f5      jsr $f5e7
+$00:f5d1  20 e7 f5      jsr $f5e7  ; -> Sub_00_f5e7
 $00:f5d4  de 30 00      dec $0030,x
 $00:f5d7  de 30 00      dec $0030,x
 $00:f5da  02 04         cop #$04
 $00:f5dc  80 b7         bra $f595
 $00:f5de  02 91         cop #$91
 $00:f5e0  a9 e0 00      lda #$00e0
-$00:f5e3  20 e7 f5      jsr $f5e7
+$00:f5e3  20 e7 f5      jsr $f5e7  ; -> Sub_00_f5e7
 $00:f5e6  6b            rtl
+Sub_00_f5e7:
 $00:f5e7  da            phx
 $00:f5e8  e2 20         sep #$20
 $00:f5ea  a2 00 00      ldx #$0000
@@ -13553,7 +13587,7 @@ $00:f628  a9 2c         lda #$2c
 $00:f62a  eb            xba
 $00:f62b  a9 7e         lda #$7e
 $00:f62d  a0 00 70      ldy #$7000
-$00:f630  22 8a 98 02   jsl $02988a
+$00:f630  22 8a 98 02   jsl $02988a  ; -> Sub_02_988a
 $00:f634  c2 20         rep #$20
 $00:f636  fa            plx
 $00:f637  60            rts
@@ -13742,11 +13776,11 @@ $00:f7b2  f0 a9         beq $f75d
 $00:f7b4  ad 0d 61      lda $610d
 $00:f7b7  62 6f 76      per $6e29
 $00:f7ba  65 2e         adc $2e
-$00:f7bc  20 11 13      jsr $1311
+$00:f7bc  20 11 13      jsr $1311  ; -> Sub_00_1311
 $00:f7bf  c2 f7         rep #$f7
 $00:f7c1  10 02         bpl $f7c5
 $00:f7c3  02 2c         cop #$2c
-$00:f7c5  20 0d 68      jsr $680d
+$00:f7c5  20 0d 68      jsr $680d  ; -> Sub_00_680d
 $00:f7c8  6f 77 20 a7   adc $a72077
 $00:f7cc  88            dey
 $00:f7cd  b7 79         lda [$79],y
@@ -13770,7 +13804,7 @@ $00:f7f7  3f 20 0c 46   and $460c20,x
 $00:f7fb  69 6e 69      adc #$696e
 $00:f7fe  73 68         adc ($68,s),y
 $00:f800  65 64         adc $64
-$00:f802  20 72 65      jsr $6572
+$00:f802  20 72 65      jsr $6572  ; -> Sub_00_6572
 $00:f805  63 6f         adc $6f,s
 $00:f807  72 64         adc ($64)
 $00:f809  69 6e 67      adc #$676e
@@ -13778,7 +13812,7 @@ $00:f80c  2e 20 11      rol $1120
 $00:f80f  44 6f 20      mvp $20,$6f
 $00:f812  fe 77 69      inc $6977,x
 $00:f815  73 68         adc ($68,s),y
-$00:f817  20 e2 0d      jsr $0de2
+$00:f817  20 e2 0d      jsr $0de2  ; -> Sub_00_0de2
 $00:f81a  63 6f         adc $6f,s
 $00:f81c  6e 74 69      ror $6974
 $00:f81f  6e 75 65      ror $6575
@@ -13790,7 +13824,7 @@ $00:f82c  6c 6c 2c      jmp ($2c6c)
 $00:f82f  20 e9 ba      jsr $bae9
 $00:f832  0d 73 74      ora $7473
 $00:f835  69 6c 6c      adc #$6c6c
-$00:f838  20 6d 75      jsr $756d
+$00:f838  20 6d 75      jsr $756d  ; -> Sub_00_756d
 $00:f83b  63 68         adc $68,s
 $00:f83d  20 e2 a1      jsr $a1e2
 $00:f840  64 6f         stz $6f
@@ -13801,9 +13835,9 @@ $00:f848  02 02         cop #$02
 $00:f84a  0d fe 98      ora $98fe
 $00:f84d  64 6f         stz $6f
 $00:f84f  69 6e 67      adc #$676e
-$00:f852  20 77 65      jsr $6577
+$00:f852  20 77 65      jsr $6577  ; -> Sub_00_6577
 $00:f855  6c 6c 2e      jmp ($2e6c)
-$00:f858  20 0d 44      jsr $440d
+$00:f858  20 0d 44      jsr $440d  ; -> Sub_00_440d
 $00:f85b  6f 20 ca b0   adc $b0ca20
 $00:f85f  75 70         adc $70,x
 $00:f861  2e 20 13      rol $1320
@@ -13833,7 +13867,7 @@ $00:f893  74 20         stz $20,x
 $00:f895  0d 63 6f      ora $6f63
 $00:f898  6e 74 69      ror $6974
 $00:f89b  6e 75 65      ror $6575
-$00:f89e  20 6d 61      jsr $616d
+$00:f89e  20 6d 61      jsr $616d  ; -> Sub_00_616d
 $00:f8a1  6b            rtl
 $00:f8a2  69 6e 67      adc #$676e
 $00:f8a5  20 73 74      jsr $7473
@@ -13857,14 +13891,14 @@ $00:f8ce  77 6e         adc [$6e],y
 $00:f8d0  20 90 fe      jsr $fe90
 $00:f8d3  0d d4 ba      ora $bad4
 $00:f8d6  cc cb 36      cpy $36cb
-$00:f8d9  20 0d 73      jsr $730d
+$00:f8d9  20 0d 73      jsr $730d  ; -> Sub_00_730d
 $00:f8dc  74 6f         stz $6f,x
 $00:f8de  6e 65 73      ror $7365
 $00:f8e1  20 bb e4      jsr $e4bb
 $00:f8e4  77 6f         adc [$6f],y
 $00:f8e6  72 6c         adc ($6c)
 $00:f8e8  64 2e         stz $2e
-$00:f8ea  20 11 57      jsr $5711
+$00:f8ea  20 11 57      jsr $5711  ; -> Sub_00_5711
 $00:f8ed  68            pla
 $00:f8ee  65 6e         adc $6e
 $00:f8f0  20 9a 73      jsr $739a
@@ -13890,7 +13924,7 @@ $00:f91c  6e 67 20      ror $2067
 $00:f91f  e2 0d         sep #$0d
 $00:f921  e1 57         sbc ($57,x)
 $00:f923  6f 72 6c 64   adc $646c72
-$00:f927  20 cb 45      jsr $45cb
+$00:f927  20 cb 45      jsr $45cb  ; -> Sub_00_45cb
 $00:f92a  76 69         ror $69,x
 $00:f92c  6c 20 0d      jmp ($0d20)
 $00:f92f  73 68         adc ($68,s),y
@@ -13951,7 +13985,7 @@ $00:f9af  77 65         adc [$65],y
 $00:f9b1  72 2c         adc ($2c)
 $00:f9b3  20 73 69      jsr $6973
 $00:f9b6  6e 63 65      ror $6563
-$00:f9b9  20 0d fe      jsr $fe0d
+$00:f9b9  20 0d fe      jsr $fe0d  ; -> Sub_00_fe0d
 $00:f9bc  f1 a1         sbc ($a1),y
 $00:f9be  61 62         adc ($62,x)
 $00:f9c0  6c 65 20      jmp ($2065)
@@ -13962,7 +13996,7 @@ $00:f9c9  6b            rtl
 $00:f9ca  20 f2 9a      jsr $9af2
 $00:f9cd  6c 69 76      jmp ($7669)
 $00:f9d0  69 6e 67      adc #$676e
-$00:f9d3  20 0d 74      jsr $740d
+$00:f9d3  20 0d 74      jsr $740d  ; -> Sub_00_740d
 $00:f9d6  68            pla
 $00:f9d7  69 6e 67      adc #$676e
 $00:f9da  73 2c         adc ($2c,s),y
@@ -13973,7 +14007,7 @@ $00:f9e5  6d 65 2e      adc $2e65
 $00:f9e8  20 8f 63      jsr $638f
 $00:f9eb  68            pla
 $00:f9ec  6f 6f 73 65   adc $65736f
-$00:f9f0  20 97 0d      jsr $0d97
+$00:f9f0  20 97 0d      jsr $0d97  ; -> Sub_00_0d97
 $00:f9f3  6e 61 6d      ror $6d61
 $00:f9f6  65 20         adc $20
 $00:f9f8  ae 79 6f      ldx $6f79
@@ -13997,14 +14031,14 @@ $00:fa21  69 6e 67      adc #$676e
 $00:fa24  20 0d 6e      jsr $6e0d
 $00:fa27  61 6d         adc ($6d,x)
 $00:fa29  65 2e         adc $2e
-$00:fa2b  20 11 41      jsr $4111
+$00:fa2b  20 11 41      jsr $4111  ; -> Sub_00_4111
 $00:fa2e  6c 6c 72      jmp ($726c)
 $00:fa31  69 67 68      adc #$6867
 $00:fa34  74 2c         stz $2c,x
 $00:fa36  20 b3 96      jsr $96b3
 $00:fa39  73 61         adc ($61,s),y
 $00:fa3b  76 65         ror $65,x
-$00:fa3d  20 0d e1      jsr $e10d
+$00:fa3d  20 0d e1      jsr $e10d  ; -> Sub_00_e10d
 $00:fa40  f6 ae         inc $ae,x
 $00:fa42  9a            txs
 $00:fa43  0d 63 72      ora $7263
@@ -14043,7 +14077,7 @@ $00:fa91  ff ff ff ff   sbc $ffffff,x
 $00:fa95  ff ff ff ff   sbc $ffffff,x
 $00:fa99  ff ff ff ff   sbc $ffffff,x
 $00:fa9d  ff ff ff 00   sbc $00ffff,x
-$00:faa1  20 00 00      jsr $0000
+$00:faa1  20 00 00      jsr $0000  ; -> Sub_00_0000
 $00:faa4  00 00         brk #$00
 $00:faa6  00 00         brk #$00
 $00:faa8  10 00         bpl $faaa
@@ -14374,6 +14408,7 @@ $00:fdff  00 ff         brk #$ff
 $00:fe01  ff ff ff ff   sbc $ffffff,x
 $00:fe05  ff ff ff ff   sbc $ffffff,x
 $00:fe09  ff ff ff ff   sbc $ffffff,x
+Sub_00_fe0d:
 $00:fe0d  ff ff ff ff   sbc $ffffff,x
 $00:fe11  ff ff ff ff   sbc $ffffff,x
 $00:fe15  ff ff ff ff   sbc $ffffff,x

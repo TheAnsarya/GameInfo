@@ -4809,7 +4809,7 @@ $03:ab4e  b9 02 14      lda $1402,y
 $03:ab51  2c 00 56      bit $5600
 $03:ab54  ab            plb
 $03:ab55  6b            rtl
-$03:ab56  22 61 b1 03   jsl $03b161
+$03:ab56  22 61 b1 03   jsl $03b161  ; -> Sub_03_b161
 $03:ab5a  02 17         cop #$17
 $03:ab5c  6a            ror a
 $03:ab5d  ab            plb
@@ -4905,7 +4905,7 @@ $03:ac2a  01 9c         ora ($9c,x)
 $03:ac2c  6b            rtl
 $03:ac2d  02 01         cop #$01
 $03:ac2f  e0 ab 6b      cpx #$6bab
-$03:ac32  22 61 b1 03   jsl $03b161
+$03:ac32  22 61 b1 03   jsl $03b161  ; -> Sub_03_b161
 $03:ac36  02 17         cop #$17
 $03:ac38  09 ad 02      ora #$02ad
 $03:ac3b  14 04         trb $04
@@ -5022,7 +5022,7 @@ $03:ad39  01 a0         ora ($a0,x)
 $03:ad3b  03 6b         ora $6b,s
 $03:ad3d  02 01         cop #$01
 $03:ad3f  0e b3 6b      asl $6bb3
-$03:ad42  22 61 b1 03   jsl $03b161
+$03:ad42  22 61 b1 03   jsl $03b161  ; -> Sub_03_b161
 $03:ad46  02 17         cop #$17
 $03:ad48  56 ad         lsr $ad,x
 $03:ad4a  e2 20         sep #$20
@@ -5473,7 +5473,7 @@ $03:b164  80 0e         bra $b174
 $03:b166  a9 07 00      lda #$0007
 $03:b169  9d 1e 00      sta $001e,x
 $03:b16c  9e 20 00      stz $0020,x
-$03:b16f  22 f3 88 00   jsl $0088f3
+$03:b16f  22 f3 88 00   jsl $0088f3  ; -> Sub_00_88f3
 $03:b173  ad 72 03      lda $0372
 $03:b176  9d 1c 00      sta $001c,x
 $03:b179  02 15         cop #$15
@@ -5565,7 +5565,7 @@ $03:b240  a9 32         lda #$32
 $03:b242  eb            xba
 $03:b243  a9 03         lda #$03
 $03:b245  a0 4e b2      ldy #$b24e
-$03:b248  22 8a 98 02   jsl $02988a
+$03:b248  22 8a 98 02   jsl $02988a  ; -> Sub_02_988a
 $03:b24c  28            plp
 $03:b24d  6b            rtl
 $03:b24e  7f e0 20 e0   adc $e020e0,x
@@ -5591,7 +5591,7 @@ $03:b276  a9 32         lda #$32
 $03:b278  eb            xba
 $03:b279  a9 03         lda #$03
 $03:b27b  a0 84 b2      ldy #$b284
-$03:b27e  22 8a 98 02   jsl $02988a
+$03:b27e  22 8a 98 02   jsl $02988a  ; -> Sub_02_988a
 $03:b282  28            plp
 $03:b283  6b            rtl
 $03:b284  07 f2         ora [$f2]
@@ -5880,7 +5880,7 @@ $03:b512  04 a9         tsb $a9
 $03:b514  ff 00 8d 86   sbc $868d00,x
 $03:b518  03 da         ora $da,s
 $03:b51a  a0 a4 c3      ldy #$c3a4
-$03:b51d  22 69 a7 02   jsl $02a769
+$03:b51d  22 69 a7 02   jsl $02a769  ; -> Sub_02_a769
 $03:b521  fa            plx
 $03:b522  02 03         cop #$03
 $03:b524  ff ce 86 03   sbc $0386ce,x
@@ -7157,7 +7157,7 @@ $03:c0a9  c2 20         rep #$20
 $03:c0ab  a9 7b b1      lda #$b17b
 $03:c0ae  48            pha
 $03:c0af  6b            rtl
-$03:c0b0  22 61 b1 03   jsl $03b161
+$03:c0b0  22 61 b1 03   jsl $03b161  ; -> Sub_03_b161
 $03:c0b4  02 17         cop #$17
 $03:c0b6  c4 c0         cpy $c0
 $03:c0b8  e2 20         sep #$20
@@ -11178,7 +11178,7 @@ $03:e4bb  02 85         cop #$85
 $03:e4bd  c0 ae         cpy #$ae
 $03:e4bf  00 02         brk #$02
 $03:e4c1  86 6b         stx $6b
-$03:e4c3  22 61 b1 03   jsl $03b161
+$03:e4c3  22 61 b1 03   jsl $03b161  ; -> Sub_03_b161
 $03:e4c7  02 17         cop #$17
 $03:e4c9  d7 e4         cmp [$e4],y
 $03:e4cb  e2 20         sep #$20
@@ -11219,7 +11219,7 @@ $03:e50e  ec 6b 02      cpx $026b
 $03:e511  14 48         trb $48
 $03:e513  00 17         brk #$17
 $03:e515  e5 6b         sbc $6b
-$03:e517  22 61 b1 03   jsl $03b161
+$03:e517  22 61 b1 03   jsl $03b161  ; -> Sub_03_b161
 $03:e51b  02 17         cop #$17
 $03:e51d  2b            pld
 $03:e51e  e5 e2         sbc $e2
@@ -11242,7 +11242,7 @@ $03:e53d  82 a9 ff      brl $e4e9
 $03:e540  02 14         cop #$14
 $03:e542  5e 00 47      lsr $4700,x
 $03:e545  e5 6b         sbc $6b
-$03:e547  22 61 b1 03   jsl $03b161
+$03:e547  22 61 b1 03   jsl $03b161  ; -> Sub_03_b161
 $03:e54b  02 17         cop #$17
 $03:e54d  5b            tcd
 $03:e54e  e5 e2         sbc $e2
@@ -11280,7 +11280,7 @@ $03:e594  02 14         cop #$14
 $03:e596  53 00         eor ($00,s),y
 $03:e598  9b            txy
 $03:e599  e5 6b         sbc $6b
-$03:e59b  22 61 b1 03   jsl $03b161
+$03:e59b  22 61 b1 03   jsl $03b161  ; -> Sub_03_b161
 $03:e59f  02 17         cop #$17
 $03:e5a1  af e5 e2 20   lda $20e2e5
 $03:e5a5  a9 03 48      lda #$4803
@@ -11765,7 +11765,7 @@ $03:e9a8  f0 02         beq $e9ac
 $03:e9aa  19 0a b0      ora $b00a,y
 $03:e9ad  e9 80 0c      sbc #$0c80
 $03:e9b0  a9 80 00      lda #$0080
-$03:e9b3  22 62 f4 04   jsl $04f462
+$03:e9b3  22 62 f4 04   jsl $04f462  ; -> Sub_04_f462
 $03:e9b7  90 03         bcc $e9bc
 $03:e9b9  02 39         cop #$39
 $03:e9bb  01 02         ora ($02,x)
@@ -11854,7 +11854,7 @@ $03:ea6d  eb            xba
 $03:ea6e  a9 7e         lda #$7e
 $03:ea70  a0 00         ldy #$00
 $03:ea72  78            sei
-$03:ea73  22 6e 98 02   jsl $02986e
+$03:ea73  22 6e 98 02   jsl $02986e  ; -> Sub_02_986e
 $03:ea77  c2 20         rep #$20
 $03:ea79  fa            plx
 $03:ea7a  6b            rtl
@@ -11956,11 +11956,11 @@ $03:eb64  e1 ab         sbc ($ab,x)
 $03:eb66  a9 0f eb      lda #$eb0f
 $03:eb69  a9 7e a0      lda #$a07e
 $03:eb6c  00 70         brk #$70
-$03:eb6e  22 6e 98 02   jsl $02986e
+$03:eb6e  22 6e 98 02   jsl $02986e  ; -> Sub_02_986e
 $03:eb72  a9 10 eb      lda #$eb10
 $03:eb75  a9 7e a0      lda #$a07e
 $03:eb78  00 78         brk #$78
-$03:eb7a  22 6e 98 02   jsl $02986e
+$03:eb7a  22 6e 98 02   jsl $02986e  ; -> Sub_02_986e
 $03:eb7e  c2 20         rep #$20
 $03:eb80  fa            plx
 $03:eb81  6b            rtl
@@ -12405,7 +12405,7 @@ $03:ef52  20 a9 0f      jsr $0fa9
 $03:ef55  eb            xba
 $03:ef56  a9 7e a0      lda #$a07e
 $03:ef59  00 78         brk #$78
-$03:ef5b  22 6e 98 02   jsl $02986e
+$03:ef5b  22 6e 98 02   jsl $02986e  ; -> Sub_02_986e
 $03:ef5f  c2 20         rep #$20
 $03:ef61  fa            plx
 $03:ef62  6b            rtl
@@ -12552,7 +12552,7 @@ $03:f0be  20 a9 10      jsr $10a9
 $03:f0c1  eb            xba
 $03:f0c2  a9 7e a0      lda #$a07e
 $03:f0c5  00 78         brk #$78
-$03:f0c7  22 6e 98 02   jsl $02986e
+$03:f0c7  22 6e 98 02   jsl $02986e  ; -> Sub_02_986e
 $03:f0cb  c2 20         rep #$20
 $03:f0cd  fa            plx
 $03:f0ce  6b            rtl
@@ -12669,7 +12669,7 @@ $03:f1e9  20 a9 0f      jsr $0fa9
 $03:f1ec  eb            xba
 $03:f1ed  a9 7e a0      lda #$a07e
 $03:f1f0  00 78         brk #$78
-$03:f1f2  22 8a 98 02   jsl $02988a
+$03:f1f2  22 8a 98 02   jsl $02988a  ; -> Sub_02_988a
 $03:f1f6  c2 20         rep #$20
 $03:f1f8  fa            plx
 $03:f1f9  6b            rtl

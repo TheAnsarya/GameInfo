@@ -1,0 +1,74 @@
+; Soul Blazer RAM Map
+; Generated from disassembly analysis
+; Format: address description (access_count)
+;
+; === KNOWN RAM ADDRESSES ===
+$0318 game_state ; accessed 14 times
+$0319 sub_state ; accessed 6 times
+$0323 temp_flag ; accessed 8 times
+$037c scroll_x ; accessed 11 times
+$037e scroll_y ; accessed 12 times
+$03a6 frame_counter ; accessed 8 times
+$03e3 fade_value ; accessed 7 times
+$03fb game_mode ; accessed 12 times
+$03fc game_mode_high ; accessed 6 times
+$03fd previous_state ; accessed 7 times
+$03ff state_param ; accessed 41 times
+$0401 position_x ; accessed 9 times
+$0403 position_y ; accessed 6 times
+$043b timer ; accessed 10 times
+$0462 pause_flag ; accessed 2 times
+$1b8a player_hp ; accessed 10 times
+$1c6a current_area ; accessed 27 times
+
+; === FREQUENTLY ACCESSED ===
+$0000 ram_0000 ; accessed 955 times
+$0016 ram_0016 ; accessed 569 times
+$00ff ram_00ff ; accessed 568 times
+$0002 ram_0002 ; accessed 313 times
+$06ad ram_06ad ; accessed 292 times
+$06b2 ram_06b2 ; accessed 179 times
+$00a9 ram_00a9 ; accessed 118 times
+$0001 ram_0001 ; accessed 114 times
+$0003 ram_0003 ; accessed 102 times
+$00ea ram_00ea ; accessed 98 times
+$0030 ram_0030 ; accessed 95 times
+$18cb ram_18cb ; accessed 95 times
+$0d0d ram_0d0d ; accessed 93 times
+$001a ram_001a ; accessed 81 times
+$0d20 ram_0d20 ; accessed 81 times
+$0cad ram_0cad ; accessed 74 times
+$001e ram_001e ; accessed 73 times
+$0200 ram_0200 ; accessed 73 times
+$007f ram_007f ; accessed 71 times
+$0006 ram_0006 ; accessed 67 times
+$0202 ram_0202 ; accessed 64 times
+$0cc9 ram_0cc9 ; accessed 59 times
+$001c ram_001c ; accessed 58 times
+$0302 ram_0302 ; accessed 57 times
+$06ae ram_06ae ; accessed 57 times
+$0010 ram_0010 ; accessed 56 times
+$1000 ram_1000 ; accessed 56 times
+$06b0 ram_06b0 ; accessed 55 times
+$0204 ram_0204 ; accessed 53 times
+$0101 ram_0101 ; accessed 53 times
+$0cba ram_0cba ; accessed 53 times
+$1402 ram_1402 ; accessed 53 times
+$02ff ram_02ff ; accessed 51 times
+$08c9 ram_08c9 ; accessed 51 times
+$010a ram_010a ; accessed 50 times
+$026b ram_026b ; accessed 50 times
+$0800 ram_0800 ; accessed 47 times
+$0326 ram_0326 ; accessed 46 times
+$039c ram_039c ; accessed 46 times
+$0ccc ram_0ccc ; accessed 46 times
+$0ca4 ram_0ca4 ; accessed 46 times
+$0102 ram_0102 ; accessed 45 times
+$19e3 ram_19e3 ; accessed 45 times
+$0018 ram_0018 ; accessed 44 times
+$00fe ram_00fe ; accessed 44 times
+$033c ram_033c ; accessed 43 times
+$0100 ram_0100 ; accessed 43 times
+$0282 ram_0282 ; accessed 42 times
+$08ad ram_08ad ; accessed 42 times
+$0ccb ram_0ccb ; accessed 42 times

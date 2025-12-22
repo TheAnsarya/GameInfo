@@ -3717,7 +3717,7 @@ $07:a347  12 32         ora ($32)
 $07:a349  25 1a         and $1a
 $07:a34b  de bc aa      dec $aabc,x
 $07:a34e  2e 01 cc      rol $cc01
-$07:a351  22 01 00 00   jsl $000001
+$07:a351  22 01 00 00   jsl $000001  ; -> Sub_00_0001
 $07:a355  10 8a         bpl $a2e1
 $07:a357  4e b1 ef      lsr $efb1
 $07:a35a  1d f2 f2      ora $f2f2,x
