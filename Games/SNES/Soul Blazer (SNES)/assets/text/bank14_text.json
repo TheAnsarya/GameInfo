@@ -1,0 +1,20 @@
+[
+	{
+		"file_offset": 666776,
+		"bank": 20,
+		"address": 44184,
+		"cpu_address": "$14:ac98",
+		"length": 12,
+		"raw": "5a0059683f54020301834061",
+		"text": "Z"
+	},
+	{
+		"file_offset": 666996,
+		"bank": 20,
+		"address": 44404,
+		"cpu_address": "$14:ad74",
+		"length": 13,
+		"raw": "60602071815170532a64208206",
+		"text": "`` q\"QpS*d ...{ITEM}"
+	}
+]

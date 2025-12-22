@@ -1,0 +1,101 @@
+[
+	{
+		"file_offset": 36820,
+		"bank": 1,
+		"address": 36820,
+		"cpu_address": "$01:8fd4",
+		"length": 34,
+		"raw": "582000387e528404000000000024402000387e638504000000000025502000387e53",
+		"text": "X "
+	},
+	{
+		"file_offset": 41204,
+		"bank": 1,
+		"address": 41204,
+		"cpu_address": "$01:a0f4",
+		"length": 32,
+		"raw": "07030000000000010000000400000043000000405c2501486b040149242b014a",
+		"text": "{NUM}{CLEAR}"
+	},
+	{
+		"file_offset": 41336,
+		"bank": 1,
+		"address": 41336,
+		"cpu_address": "$01:a178",
+		"length": 40,
+		"raw": "070300000000000100000003000000430000004000000042000001475f3301326d340132712a0132",
+		"text": "{NUM}{CLEAR}"
+	},
+	{
+		"file_offset": 51426,
+		"bank": 1,
+		"address": 51426,
+		"cpu_address": "$01:c8e2",
+		"length": 28,
+		"raw": "4900000000000000000000340000006b040102000002346e06710352",
+		"text": "I"
+	},
+	{
+		"file_offset": 57061,
+		"bank": 1,
+		"address": 57061,
+		"cpu_address": "$01:dee5",
+		"length": 24,
+		"raw": "000000000000000057000000045201010000045706520452",
+		"text": ""
+	},
+	{
+		"file_offset": 61357,
+		"bank": 1,
+		"address": 61357,
+		"cpu_address": "$01:efad",
+		"length": 41,
+		"raw": "0200005000200200005000300200005000400200003002500000003002700000003002800000003002",
+		"text": "{WAIT}"
+	},
+	{
+		"file_offset": 63749,
+		"bank": 1,
+		"address": 63749,
+		"cpu_address": "$01:f905",
+		"length": 25,
+		"raw": "00700400005002700400002002700400000002700400004000",
+		"text": ""
+	},
+	{
+		"file_offset": 63948,
+		"bank": 1,
+		"address": 63948,
+		"cpu_address": "$01:f9cc",
+		"length": 31,
+		"raw": "00003d03010244030100512f0102522f0102532f0102542f0102592f010065",
+		"text": ""
+	},
+	{
+		"file_offset": 64655,
+		"bank": 1,
+		"address": 64655,
+		"cpu_address": "$01:fc8f",
+		"length": 48,
+		"raw": "2225282b2e303336393c3f414447494c4e515355585a5c5e60626466686a6c6d6f70727375767778797a7b7c7c7d7e7e",
+		"text": "\"%(+.0369<?ADGILNQSUXZ\\^`bdfhjlmoprsuvwxyz{||}~~"
+	},
+	{
+		"file_offset": 64714,
+		"bank": 1,
+		"address": 64714,
+		"cpu_address": "$01:fcca",
+		"length": 48,
+		"raw": "7e7e7d7c7c7b7a79787776757372706f6d6c6a68666462605e5c5a585553514e4c494744413f3c393633302e2b282522",
+		"text": "~~}||{zyxwvusrpomljhfdb`^\\ZXUSQNLIGDA?<9630.+(%\""
+	},
+	{
+		"file_offset": 64911,
+		"bank": 1,
+		"address": 64911,
+		"cpu_address": "$01:fd8f",
+		"length": 48,
+		"raw": "2225282b2e303336393c3f414447494c4e515355585a5c5e60626466686a6c6d6f70727375767778797a7b7c7c7d7e7e",
+		"text": "\"%(+.0369<?ADGILNQSUXZ\\^`bdfhjlmoprsuvwxyz{||}~~"
+	}
+]

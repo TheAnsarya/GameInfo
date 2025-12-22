@@ -1,0 +1,20 @@
+[
+	{
+		"file_offset": 892687,
+		"bank": 27,
+		"address": 40719,
+		"cpu_address": "$1b:9f0f",
+		"length": 16,
+		"raw": "5f8229302485487a61816a84043c8471",
+		"text": "_...)0$?Hza\"j!{PAUSE}<!q"
+	},
+	{
+		"file_offset": 893387,
+		"bank": 27,
+		"address": 41419,
+		"cpu_address": "$1b:a1cb",
+		"length": 11,
+		"raw": "5082443b2e706a84500270",
+		"text": "P...D;.pj!P{WAIT}p"
+	}
+]

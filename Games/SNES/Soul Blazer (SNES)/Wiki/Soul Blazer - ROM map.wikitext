@@ -1,0 +1,108 @@
+{{DISPLAYTITLE:Soul Blazer:ROM map}}
+This is the '''ROM map''' for '''[[Soul Blazer]]''' (SNES).
+
+==Overview==
+Soul Blazer uses '''LoROM''' mapping. The ROM is 1MB (32 banks × 32KB).
+
+===Address Conversion===
+<pre>
+File Offset = (Bank × $8000) + (Address & $7FFF)
+CPU Address = (Bank << 16) | $8000 | (File Offset & $7FFF)
+</pre>
+
+==Interrupt Vectors==
+===Native Mode ($7FE0)===
+{| class="wikitable"
+! Vector !! Address !! Description
+|-
+| COP || $D61E || Coprocessor interrupt
+|-
+| BRK || $D5FC || Software break
+|-
+| ABORT || $0000 || Abort (unused)
+|-
+| NMI || $8342 || Non-maskable interrupt (VBlank)
+|-
+| RESET || $0000 || Reset (native, unused)
+|-
+| IRQ || $85A5 || Hardware interrupt
+|}
+
+===Emulation Mode ($7FF0)===
+{| class="wikitable"
+! Vector !! Address !! Description
+|-
+| COP || $0000 || Unused
+|-
+| ABORT || $0000 || Unused
+|-
+| NMI || $0015 || VBlank (emulation)
+|-
+| RESET || $8000 || Reset entry point
+|-
+| IRQ || $D011 || Hardware interrupt
+|}
+
+==Bank Layout==
+{| class="wikitable sortable"
+! Bank !! File Offset !! End !! Size !! Description
+|-
+| $00 || $000000 || $007FFF || 32KB || Main program code
+|-
+| $01 || $008000 || $00FFFF || 32KB || Game logic
+|-
+| $02 || $010000 || $017FFF || 32KB || Text/dialogue
+|-
+| $03 || $018000 || $01FFFF || 32KB || Text/dialogue
+|-
+| $04 || $020000 || $027FFF || 32KB || Text/dialogue
+|-
+| $05 || $028000 || $02FFFF || 32KB || Game data
+|-
+| $06 || $030000 || $037FFF || 32KB || Enemy data
+|-
+| $07 || $038000 || $03FFFF || 32KB || Item/equipment
+|-
+| $08 || $040000 || $047FFF || 32KB || Map data
+|-
+| $09 || $048000 || $04FFFF || 32KB || Map data
+|-
+| $0A || $050000 || $057FFF || 32KB || Map data
+|-
+| $0B || $058000 || $05FFFF || 32KB || Level data
+|-
+| $0C || $060000 || $067FFF || 32KB || Level data
+|-
+| $0D || $068000 || $06FFFF || 32KB || Graphics
+|-
+| $0E || $070000 || $077FFF || 32KB || Graphics
+|-
+| $0F || $078000 || $07FFFF || 32KB || Audio/SPC
+|-
+| $10-$1F || $080000 || $0FFFFF || 512KB || Graphics/sprites
+|}
+
+==Key Routines==
+{| class="wikitable"
+! Address !! Name !! Description
+|-
+| $00:8000 || Reset || Entry point after power-on/reset
+|-
+| $00:8342 || NMI_Handler || VBlank interrupt handler
+|-
+| $00:85A5 || IRQ_Handler || Hardware interrupt handler
+|}
+
+==Data Locations==
+{| class="wikitable"
+! File Offset !! Bank:Address !! Size !! Description
+|-
+| $004EFA || $00:CEFA || ~4KB || Opening dialogue
+|-
+| $0053C7 || $00:D3C7 || ~2KB || Ending dialogue
+|-
+| $010000 || $02:8000 || ~96KB || Main text data
+|}
+
+[[Category:Soul Blazer]]
+[[Category:ROM maps]]

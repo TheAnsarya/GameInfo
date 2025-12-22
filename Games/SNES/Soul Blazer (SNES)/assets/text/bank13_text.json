@@ -1,0 +1,20 @@
+[
+	{
+		"file_offset": 643255,
+		"bank": 19,
+		"address": 53431,
+		"cpu_address": "$13:d0b7",
+		"length": 10,
+		"raw": "71493c26613f47830061",
+		"text": "qI<&a?G-"
+	},
+	{
+		"file_offset": 655309,
+		"bank": 19,
+		"address": 65485,
+		"cpu_address": "$13:ffcd",
+		"length": 20,
+		"raw": "4a294a294a294a294a294a294a294a294a294a29",
+		"text": "J)J)J)J)J)J)J)J)J)J)"
+	}
+]

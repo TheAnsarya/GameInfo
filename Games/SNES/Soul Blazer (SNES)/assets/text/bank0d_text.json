@@ -1,0 +1,83 @@
+[
+	{
+		"file_offset": 431078,
+		"bank": 13,
+		"address": 37862,
+		"cpu_address": "$0d:93e6",
+		"length": 11,
+		"raw": "414e4e0429683544292846",
+		"text": "ANN{PAUSE})h5D)(F"
+	},
+	{
+		"file_offset": 431182,
+		"bank": 13,
+		"address": 37966,
+		"cpu_address": "$0d:944e",
+		"length": 11,
+		"raw": "414e4e0429683544292846",
+		"text": "ANN{PAUSE})h5D)(F"
+	},
+	{
+		"file_offset": 431321,
+		"bank": 13,
+		"address": 38105,
+		"cpu_address": "$0d:94d9",
+		"length": 11,
+		"raw": "35622d623164356231622d",
+		"text": "5b-b1d5b1b-"
+	},
+	{
+		"file_offset": 433936,
+		"bank": 13,
+		"address": 40720,
+		"cpu_address": "$0d:9f10",
+		"length": 13,
+		"raw": "6480542075403c403c80542075",
+		"text": "d'T u@<@<'T u"
+	},
+	{
+		"file_offset": 434132,
+		"bank": 13,
+		"address": 40916,
+		"cpu_address": "$0d:9fd4",
+		"length": 13,
+		"raw": "648054403c20758054403c2075",
+		"text": "d'T@< u'T@< u"
+	},
+	{
+		"file_offset": 434164,
+		"bank": 13,
+		"address": 40948,
+		"cpu_address": "$0d:9ff4",
+		"length": 13,
+		"raw": "648054403c20758054403c2075",
+		"text": "d'T@< u'T@< u"
+	},
+	{
+		"file_offset": 439173,
+		"bank": 13,
+		"address": 45957,
+		"cpu_address": "$0d:b385",
+		"length": 33,
+		"raw": "002140812141812241822242822342832343832443842444842544852545852645",
+		"text": ""
+	},
+	{
+		"file_offset": 439262,
+		"bank": 13,
+		"address": 46046,
+		"cpu_address": "$0d:b3de",
+		"length": 35,
+		"raw": "2545852544852444842443842343832342832242822241822141812140812040800130",
+		"text": "%E?%D?$D!$C!#C-#B-\"B...\"A...!A\"!@\" @'{NL}0"
+	},
+	{
+		"file_offset": 439582,
+		"bank": 13,
+		"address": 46366,
+		"cpu_address": "$0d:b51e",
+		"length": 100,
+		"raw": "000203002040802240802441802642802843802a44812c45812e4681304781324881344982364a82384b823a4c823c4d823f4e833f4e833d4e833b4d83394c83374b83354a823349823148822f47822d46822b4581294481274381254281234181204080",
+		"text": ""
+	}
+]

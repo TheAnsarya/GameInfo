@@ -1,0 +1,5250 @@
+# Soul Blazer (SNES) - Extracted Dialogue
+# ============================================================
+
+# $00:830b (File: $00030b)
+ `0123456789ABCDEF
+
+# $00:8727 (File: $000727)
+HHHHHHHHHHHHHHHH
+
+# $00:cefa (File: $004efa)
+poor creature that
+
+# $00:cf0d (File: $004f0d)
+repeats transmigration
+
+# $00:cf3c (File: $004f3c)
+deep sleep. 
+
+# $00:cfbf (File: $004fbf)
+being constantly 
+
+# $00:cfd1 (File: $004fd1)
+reincarnated means 
+
+# $00:cfe5 (File: $004fe5)
+everlasting suffering.
+
+# $00:cffc (File: $004ffc)
+Being alive 
+
+# $00:d00a (File: $00500a)
+suffering 
+
+# $00:d01b (File: $00501b)
+creatures. 
+
+# $00:d029 (File: $005029)
+find out what
+
+# $00:d3c7 (File: $0053c7)
+Finally, {WAIT}{WAIT} 
+
+# $00:d3d4 (File: $0053d4)
+defeated Deathtoll! 
+
+# $00:d3e9 (File: $0053e9)
+Suddenly {WAIT}{WAIT}
+
+# $00:d3fc (File: $0053fc)
+small voice. 
+
+# $00:d43c (File: $00543c)
+{WAIT}{WAIT}, we decided 
+
+# $00:d490 (File: $005490)
+creatures` minds. 
+
+# $00:d4a3 (File: $0054a3)
+As long as 
+
+# $00:d4b1 (File: $0054b1)
+inventions 
+
+# $00:d4c1 (File: $0054c1)
+same thing 
+
+# $00:d4e6 (File: $0054e6)
+stop as much as 
+
+# $00:d4f7 (File: $0054f7)
+possible. 
+
+# $00:d504 (File: $005504)
+still young, 
+
+# $00:d514 (File: $005514)
+experience 
+
+# $00:d52c (File: $00552c)
+figure out 
+
+# $00:d538 (File: $005538)
+reasons for, 
+
+# $00:d547 (File: $005547)
+feelings, 
+
+# $00:d553 (File: $005553)
+connections 
+
+# $00:d561 (File: $005561)
+existences, 
+
+# $00:d5a9 (File: $0055a9)
+disappear. 
+
+# $00:f0cf (File: $0070cf)
+{WAIT}'{PAUSE}{WAIT}...k{WAIT}'{NAME}{WAIT}...k{WAIT}'0{WAIT}...kkk{WAIT}
+
+# $00:f7e1 (File: $0077e1)
+accomplished.
+
+# $00:f7fa (File: $0077fa)
+Finished recording. 
+
+# $00:f81a (File: $00781a)
+continue? 
+
+# $00:f825 (File: $007825)
+Rest well, 
+
+# $00:f833 (File: $007833)
+still much 
+
+# $00:f84d (File: $00784d)
+doing well. 
+
+# $00:f896 (File: $007896)
+continue making steady
+
+# $00:f8ad (File: $0078ad)
+progress.> 
+
+# $00:f906 (File: $007906)
+gathered, 
+
+# $00:f912 (File: $007912)
+gate leading 
+
+# $00:f94d (File: $00794d)
+GreenWood where 
+
+# $00:f95f (File: $00795f)
+next stone awaits 
+
+# $00:f9a6 (File: $0079a6)
+<My follower, since 
+
+# $00:f9f9 (File: $0079f9)
+yourself. 
+
+# $00:fa19 (File: $007a19)
+interesting 
+
+# $00:fa2d (File: $007a2d)
+Allright, 
+
+# $00:fa44 (File: $007a44)
+creatures. 
+
+# $00:ffa0 (File: $007fa0)
+
+
+# $01:8fd4 (File: $008fd4)
+X 
+
+# $01:a0f4 (File: $00a0f4)
+{NUM}{CLEAR}
+
+# $01:a178 (File: $00a178)
+{NUM}{CLEAR}
+
+# $01:c8e2 (File: $00c8e2)
+I
+
+# $01:dee5 (File: $00dee5)
+
+
+# $01:efad (File: $00efad)
+{WAIT}
+
+# $01:f905 (File: $00f905)
+
+
+# $01:f9cc (File: $00f9cc)
+
+
+# $01:fc8f (File: $00fc8f)
+"%(+.0369<?ADGILNQSUXZ\^`bdfhjlmoprsuvwxyz{||}~~
+
+# $01:fcca (File: $00fcca)
+~~}||{zyxwvusrpomljhfdb`^\ZXUSQNLIGDA?<9630.+(%"
+
+# $01:fd8f (File: $00fd8f)
+"%(+.0369<?ADGILNQSUXZ\^`bdfhjlmoprsuvwxyz{||}~~
+
+# $02:bb2a (File: $013b2a)
+{PAUSE}PUSH START
+
+# $02:bb3b (File: $013b3b)
+{ITEM}ALL RIGHTS RESERVED
+
+# $02:bb50 (File: $013b50)
+  COPYRIGHT 1992 QUINTET/ENIX
+
+# $02:bb70 (File: $013b70)
+LICENSED BY NINTENDO
+
+# $02:bb95 (File: $013b95)
+tale late 
+
+# $02:bba2 (File: $013ba2)
+  at night 
+
+# $02:bbb9 (File: $013bb9)
+  destroyed by 
+
+# $02:bbc9 (File: $013bc9)
+temptation 
+
+# $02:bbe7 (File: $013be7)
+Freil Empire, as it 
+
+# $02:bc03 (File: $013c03)
+those days, 
+
+# $02:bc1f (File: $013c1f)
+powerful man, 
+
+# $02:bc33 (File: $013c33)
+Magridd. 
+
+# $02:bc84 (File: $013c84)
+  however, 
+
+# $02:bc9a (File: $013c9a)
+  himself 
+
+# $02:bca5 (File: $013ca5)
+ruled by greed. 
+
+# $02:bcd2 (File: $013cd2)
+  overhear two guards talking 
+
+# $02:bcf7 (File: $013cf7)
+man named Dr.Leo. 
+
+# $02:bd17 (File: $013d17)
+considered 
+
+# $02:bd2e (File: $013d2e)
+great inventor 
+
+# $02:bd44 (File: $013d44)
+genius. 
+
+# $02:bd54 (File: $013d54)
+stayed up 
+
+# $02:bd63 (File: $013d63)
+{CLEAR}nights wondering how he 
+
+# $02:bd8e (File: $013d8e)
+{CLEAR}inventor 
+
+# $02:bd99 (File: $013d99)
+make him even 
+
+# $02:bdab (File: $013dab)
+{CLEAR}more wealthy.
+
+# $02:bdde (File: $013dde)
+  He ordered his guards 
+
+# $02:bdfa (File: $013dfa)
+  capture Dr.
+
+# $02:be09 (File: $013e09)
+bring him 
+
+# $02:be1a (File: $013e1a)
+castle at once!
+
+# $02:be48 (File: $013e48)
+castle. 
+
+# $02:be58 (File: $013e58)
+confined him 
+
+# $02:be6a (File: $013e6a)
+  small room 
+
+# $02:be78 (File: $013e78)
+ordered him 
+
+# $02:be97 (File: $013e97)
+  would summon 
+
+# $02:beac (File: $013eac)
+  evil, Deathtoll.
+
+# $02:bec8 (File: $013ec8)
+finally completed 
+
+# $02:bef0 (File: $013ef0)
+instantly 
+
+# $02:befe (File: $013efe)
+  upon Deathtoll, hoping they 
+
+# $02:bf1f (File: $013f1f)
+  might strike 
+
+# $02:bf2f (File: $013f2f)
+deal.
+
+# $02:bf50 (File: $013f50)
+  complete. 
+
+# $02:bf67 (File: $013f67)
+  bring Deathtoll 
+
+# $02:bf84 (File: $013f84)
+  creatures, 
+
+# $02:bf9e (File: $013f9e)
+  Deathtoll would 
+
+# $02:bfb9 (File: $013fb9)
+  gold piece 
+
+# $02:bfc7 (File: $013fc7)
+each.
+
+# $02:bff3 (File: $013ff3)
+disappear. 
+
+# $02:c00b (File: $01400b)
+completely 
+
+# $02:c019 (File: $014019)
+  empty. 
+
+# $02:c035 (File: $014035)
+catastrophe, 
+
+# $02:c05a (File: $01405a)
+{CLEAR}his follower. 
+
+# $02:c083 (File: $014083)
+tempted by evil, 
+
+# $02:c097 (File: $014097)
+  however 
+
+# $02:c0ab (File: $0140ab)
+  another chance. 
+
+# $02:c0e1 (File: $0140e1)
+  World!> 
+
+# $02:c0ec (File: $0140ec)
+Master said. 
+
+# $02:c112 (File: $014112)
+  descended 
+
+# $02:c11f (File: $01411f)
+Earth..... 
+
+# $02:c12d (File: $01412d)
+  .."warrior sent 
+
+# $02:c155 (File: $014155)
+punish evil. 
+
+# $02:c165 (File: $014165)
+  "SOUL BLAZER!!
+
+# $02:c191 (File: $014191)
+
+
+# $02:c1b7 (File: $0141b7)
+glistening ocean::::::: 
+
+# $02:c1e3 (File: $0141e3)
+  beautiful: 
+
+# $02:c207 (File: $014207)
+looked at 
+
+# $02:c220 (File: $014220)
+sunset:
+
+# $02:c233 (File: $014233)
+his child{ 
+
+# $02:c247 (File: $014247)
+his friend{ 
+
+# $02:c266 (File: $014266)
+scenery:
+
+# $02:c271 (File: $014271)
+{WAIT}  Suddenly{ 
+
+# $02:c27f (File: $01427f)
+light ray shot 
+
+# $02:c2a0 (File: $0142a0)
+  However{ no 
+
+# $02:c2af (File: $0142af)
+noticed it:
+
+# $02:c2d7 (File: $0142d7)
+{CLEAR}herself:
+
+# $02:c2ec (File: $0142ec)
+feel lonely 
+
+# $02:c315 (File: $014315)
+now{ she thinks 
+
+# $02:c32e (File: $01432e)
+beautiful:
+
+# $02:c344 (File: $014344)
+her father changed 
+
+# $02:c35a (File: $01435a)
+  impossible 
+
+# $02:c368 (File: $014368)
+possible{ 
+
+# $02:c375 (File: $014375)
+  Lisa feels she 
+
+# $02:c391 (File: $014391)
+  if she believes:
+
+# $02:c3a5 (File: $0143a5)
+{NL}X{CLEAR}THE END
+
+# $02:c3ca (File: $0143ca)
+{WAIT}Name{NL}&{WAIT}Lev{NL}.{WAIT}Area{NL}
+
+# $02:c3ff (File: $0143ff)
+ Erase record
+
+# $02:c42f (File: $01442f)
+{CLEAR}{ITEM}{NL}R{PAUSE}
+
+# $02:c487 (File: $014487)
+{CLEAR} "B C D E F G H 
+
+# $02:c4a2 (File: $0144a2)
+ N O P Q R S T U V W X Y Z
+
+# $02:c4c1 (File: $0144c1)
+b c d e f g h i j k l m
+
+# $02:c4da (File: $0144da)
+ n o p q r 
+
+# $02:c4e7 (File: $0144e7)
+u v w x y z
+
+# $02:c51b (File: $01451b)
+{WAIT}LEVEL UP !
+
+# $02:c54c (File: $01454c)
+{PAUSE}Monster Lair
+
+# $02:c55b (File: $01455b)
+Remaining {ITEM}{WAIT}'
+
+# $02:c599 (File: $014599)
+{WAIT}Next level :{NL}
+
+# $02:c5bb (File: $0145bb)
+{NL}H{CLEAR}Strength :{NL}
+
+# $02:c5d8 (File: $0145d8)
+{PAUSE}Defence  :{NL}
+
+# $02:c5e5 (File: $0145e5)
+{PAUSE}Weapon: {NAME}t
+
+# $02:c5f3 (File: $0145f3)
+{NL}H{NAME}Armor : {NAME}t
+
+# $02:c605 (File: $014605)
+{NAME}Magic : {NAME}t
+
+# $02:c613 (File: $014613)
+{NL}H{ITEM}Item  : {NAME}t
+
+# $02:c62d (File: $01462d)
+{NL}X{WAIT}Souls
+
+# $02:c638 (File: $014638)
+{CLEAR}Soul@of@Magician@
+
+# $02:c64d (File: $01464d)
+{CLEAR}Soul@of@Light@@@@
+
+# $02:c662 (File: $014662)
+{PAUSE}Soul@of@Shield@@@
+
+# $02:c68c (File: $01468c)
+{ITEM}Soul@of@Reality@@
+
+# $02:c718 (File: $014718)
+{NL}B
+
+# $02:c8c2 (File: $0148c2)
+  Grass Valley Shrine 
+
+# $02:c8f9 (File: $0148f9)
+secret passage
+
+# $02:c909 (File: $014909)
+{ITEM}Treasure room
+
+# $02:c921 (File: $014921)
+room
+
+# $02:c95f (File: $01495f)
+Paintings
+
+# $02:c970 (File: $014970)
+Paintings
+
+# $02:c981 (File: $014981)
+Paintings
+
+# $02:c9a1 (File: $0149a1)
+Paintings
+
+# $02:c9b5 (File: $0149b5)
+paintings
+
+# $02:c9c0 (File: $0149c0)
+{NUM}Trial room
+
+# $02:c9d4 (File: $0149d4)
+dream
+
+# $02:c9e0 (File: $0149e0)
+{PAUSE}GreenWood Shrine
+
+# $02:c9fb (File: $0149fb)
+GreenWood
+
+# $02:ca14 (File: $014a14)
+{CLEAR}"squirrel`
+
+# $02:ca20 (File: $014a20)
+house
+
+# $02:ca32 (File: $014a32)
+Exchanger
+
+# $02:ca3d (File: $014a3d)
+{CLEAR}Lostside, 
+
+# $02:ca50 (File: $014a50)
+{ITEM}Water Shrine
+
+# $02:ca5f (File: $014a5f)
+{ITEM}Water Shrine
+
+# $02:ca6e (File: $014a6e)
+{ITEM}Water Shrine
+
+# $02:ca7d (File: $014a7d)
+{NUM}Fire Shrine
+
+# $02:ca8b (File: $014a8b)
+{NUM}Fire Shrine
+
+# $02:ca99 (File: $014a99)
+{NUM}Fire Shrine
+
+# $02:caa7 (File: $014aa7)
+{ITEM}Light Shrine
+
+# $02:cab6 (File: $014ab6)
+{ITEM}Light Shrine
+
+# $02:cacc (File: $014acc)
+stone statue
+
+# $02:cafa (File: $014afa)
+{PAUSE}St. Elles Shrine
+
+# $02:cb0f (File: $014b0f)
+Seabed Sanctuary
+
+# $02:cb2a (File: $014b2a)
+St. Elles
+
+# $02:cb37 (File: $014b37)
+Secret Cave
+
+# $02:cb46 (File: $014b46)
+Secret Cave
+
+# $02:cb53 (File: $014b53)
+{CLEAR}"dolphin`
+
+# $02:cb66 (File: $014b66)
+Southerta
+
+# $02:cb9a (File: $014b9a)
+{ITEM}"ghost ship
+
+# $02:cba8 (File: $014ba8)
+{ITEM}Servas` dream
+
+# $02:cbc1 (File: $014bc1)
+St. Elles
+
+# $02:cbdb (File: $014bdb)
+Sanctuary
+
+# $02:cbed (File: $014bed)
+Mountain House
+
+# $02:cc25 (File: $014c25)
+{CLEAR}An old man`
+
+# $02:cc39 (File: $014c39)
+{PAUSE}"passage 
+
+# $02:cc44 (File: $014c44)
+Lune
+
+# $02:cc62 (File: $014c62)
+{CLEAR}"mushroom`
+
+# $02:cc85 (File: $014c85)
+Snow Mountain
+
+# $02:cc94 (File: $014c94)
+{NUM}An ice hill
+
+# $02:ccae (File: $014cae)
+Laynole
+
+# $02:ccc1 (File: $014cc1)
+Laboratory Shrine
+
+# $02:ccda (File: $014cda)
+Laboratory
+
+# $02:ccec (File: $014cec)
+Laboratory
+
+# $02:cd03 (File: $014d03)
+{NUM}"mice nest
+
+# $02:cd17 (File: $014d17)
+dream
+
+# $02:cd28 (File: $014d28)
+Laboratory
+
+# $02:cd3e (File: $014d3e)
+Laboratory
+
+# $02:cd4a (File: $014d4a)
+{NUM}power plant
+
+# $02:cd95 (File: $014d95)
+Castle Shrine
+
+# $02:cdb8 (File: $014db8)
+torture chamber
+
+# $02:cdd4 (File: $014dd4)
+castle
+
+# $02:cdfc (File: $014dfc)
+left tower
+
+# $02:ce0a (File: $014e0a)
+left tower
+
+# $02:ce22 (File: $014e22)
+right tower
+
+# $02:ce31 (File: $014e31)
+right tower
+
+# $02:ce40 (File: $014e40)
+right tower
+
+# $02:ce81 (File: $014e81)
+{PAUSE}"soldier`
+
+# $02:ce8c (File: $014e8c)
+dream
+
+# $02:ce99 (File: $014e99)
+Evil World Shrine
+
+# $02:cec8 (File: $014ec8)
+{NAME}Dazzling Space
+
+# $02:ced9 (File: $014ed9)
+{CLEAR}Deathtoll`
+
+# $02:cee5 (File: $014ee5)
+Shrine
+
+# $02:cef6 (File: $014ef6)
+Deathtoll
+
+# $02:cf25 (File: $014f25)
+{WAIT}{NUM}{NUM}{ITEM} Record
+
+# $02:cf45 (File: $014f45)
+{WAIT}{NUM}{NUM}{PAUSE} Record
+
+# $02:cff7 (File: $014ff7)
+equipped
+
+# $02:d007 (File: $015007)
+Life
+
+# $02:d060 (File: $015060)
+Soul Blade
+
+# $02:d125 (File: $015125)
+Food
+
+# $02:d137 (File: $015137)
+pass
+
+# $02:d146 (File: $015146)
+brush
+
+# $02:d161 (File: $015161)
+Big Pearl
+
+# $02:d174 (File: $015174)
+Tears
+
+# $02:d18a (File: $01518a)
+mobile key
+
+# $02:d1ba (File: $0151ba)
+door key
+
+# $02:d1d2 (File: $0151d2)
+VIP Card
+
+# $02:d2a4 (File: $0152a4)
+Stone
+
+# $02:d35a (File: $01535a)
+old woman
+
+# $02:d377 (File: $015377)
+bridge guard
+
+# $02:d385 (File: $015385)
+architect
+
+# $02:d3a0 (File: $0153a0)
+son
+
+# $02:d3bb (File: $0153bb)
+lonely goat
+
+# $02:d3d2 (File: $0153d2)
+water mill keeper
+
+# $02:d3f5 (File: $0153f5)
+crocodile
+
+# $02:d400 (File: $015400)
+dog, <Turbo>
+
+# $02:d41d (File: $01541d)
+mole
+
+# $02:d44d (File: $01544d)
+angelfish
+
+# $02:d45f (File: $01545f)
+dolphin, Lue
+
+# $02:d483 (File: $015483)
+girl
+
+# $02:d4b0 (File: $0154b0)
+snail, Nome
+
+# $02:d4c3 (File: $0154c3)
+great door
+
+# $02:d4f8 (File: $0154f8)
+doll, Marie
+
+# $02:d529 (File: $015529)
+Magridd
+
+# $02:d54d (File: $01554d)
+{NAME}Strength:
+
+# $02:d560 (File: $015560)
+{NAME}Defence :
+
+# $02:d61f (File: $01561f)
+Master. 
+
+# $02:d640 (File: $015640)
+{NAME}Invincible 
+
+# $02:d64f (File: $01564f)
+temporarily paralyzed.
+
+# $02:d68a (File: $01568a)
+at once. 
+
+# $02:d6c0 (File: $0156c0)
+larger GEMs increases.
+
+# $02:d6fc (File: $0156fc)
+special armor. 
+
+# $02:d739 (File: $015739)
+type monsters. 
+
+# $02:d767 (File: $015767)
+filled when
+
+# $02:d77d (File: $01577d)
+defeated. 
+
+# $02:d7a2 (File: $0157a2)
+strongest sword 
+
+# $02:d7b5 (File: $0157b5)
+may use. 
+
+# $02:d7d0 (File: $0157d0)
+{NAME}Your defense power 
+
+# $02:d7e6 (File: $0157e6)
+becomes stronger. 
+
+# $02:d815 (File: $015815)
+fire without damage. 
+
+# $02:d86f (File: $01586f)
+necessary 
+
+# $02:d899 (File: $015899)
+{NAME}Invincible 
+
+# $02:d8ce (File: $0158ce)
+{NAME}Receive no damage from
+
+# $02:d8e7 (File: $0158e7)
+weaker monsters. 
+
+# $02:d90a (File: $01590a)
+{NAME}Protects {WAIT}{WAIT}
+
+# $02:d91a (File: $01591a)
+damage zones.
+
+# $02:d97b (File: $01597b)
+direction. 
+
+# $02:d99c (File: $01599c)
+Shoots <light> arrows 
+
+# $02:d9b6 (File: $0159b6)
+directions. 
+
+# $02:d9df (File: $0159df)
+collected 
+
+# $02:d9eb (File: $0159eb)
+while button pressed. 
+
+# $02:da17 (File: $015a17)
+"light ring 
+
+# $02:da59 (File: $015a59)
+explode soon after. 
+
+# $02:dab6 (File: $015ab6)
+Magical Tornado 
+
+# $02:db13 (File: $015b13)
+tool shop. 
+
+# $02:db29 (File: $015b29)
+{NAME}Harp String 
+
+# $02:db69 (File: $015b69)
+Valley. 
+
+# $02:dbb3 (File: $015bb3)
+paintbrush 
+
+# $02:dbf8 (File: $015bf8)
+symbol. Anyone
+
+# $02:dc20 (File: $015c20)
+messenger.
+
+# $02:dc71 (File: $015c71)
+{NAME}"beautiful pearl 
+
+# $02:dc8c (File: $015c8c)
+coral reef. 
+
+# $02:dca5 (File: $015ca5)
+turn magma into 
+
+# $02:dccc (File: $015ccc)
+goo enables 
+
+# $02:dce4 (File: $015ce4)
+without slipping. 
+
+# $02:dd07 (File: $015d07)
+Airship. Plug  
+
+# $02:dd1e (File: $015d1e)
+keyhole located
+
+# $02:dd4e (File: $015d4e)
+lightning pyramid, 
+
+# $02:dd63 (File: $015d63)
+lightning 
+
+# $02:dd80 (File: $015d80)
+{NAME}Favorite Seeds, 
+
+# $02:dda6 (File: $015da6)
+exchanger. 
+
+# $02:ddc4 (File: $015dc4)
+peculiar scent
+
+# $02:ddd5 (File: $015dd5)
+attracts cats. 
+
+# $02:de09 (File: $015e09)
+laboratory. 
+
+# $02:de22 (File: $015e22)
+may enter 
+
+# $02:de3e (File: $015e3e)
+Castle. 
+
+# $02:de64 (File: $015e64)
+wish within 
+
+# $02:de74 (File: $015e74)
+Castle. 
+
+# $02:de8a (File: $015e8a)
+collect 8 
+
+# $02:dea9 (File: $015ea9)
+expert at magic. 
+
+# $02:df1f (File: $015f1f)
+three symbols, 
+
+# $02:df3a (File: $015f3a)
+join you.
+
+# $02:df87 (File: $015f87)
+double. 
+
+# $02:df9a (File: $015f9a)
+{NAME}Will reduce 
+
+# $02:dfbc (File: $015fbc)
+enemies by 1/2. 
+
+# $02:dfd7 (File: $015fd7)
+{NAME}Your sword 
+
+# $02:dff9 (File: $015ff9)
+strength by 2. 
+
+# $02:e020 (File: $016020)
+refilled if 
+
+# $02:e034 (File: $016034)
+meter reaches 0. 
+
+# $02:e06d (File: $01606d)
+meter reach 
+
+# $02:e094 (File: $016094)
+appear once 
+
+# $02:e0a4 (File: $0160a4)
+collected 6 
+
+# $02:e106 (File: $016106)
+cast magic without 
+
+# $02:e11b (File: $01611b)
+using any GEMs. 
+
+# $02:e217 (File: $016217)
+ {WAIT}{WAIT} recieved
+
+# $02:e233 (File: $016233)
+ Nothing inside.
+
+# $02:e265 (File: $016265)
+{CLEAR}The staff of Soul Blazer
+
+# $02:e286 (File: $016286)
+{PAUSE}Scenario written by
+
+# $02:e29d (File: $01629d)
+Tomoyoshi Miyazaki
+
+# $02:e2b7 (File: $0162b7)
+{PAUSE}Programmed by
+
+# $02:e2c8 (File: $0162c8)
+Masaya Hashimoto
+
+# $02:e2e0 (File: $0162e0)
+{PAUSE}Graphics designed by
+
+# $02:e2f8 (File: $0162f8)
+Kouji Yokota
+
+# $02:e307 (File: $016307)
+Masahiko Takai
+
+# $02:e318 (File: $016318)
+Takeshi Matsumuro
+
+# $02:e32c (File: $01632c)
+Shintaro Majima
+
+# $02:e343 (File: $016343)
+{PAUSE}Music composed by
+
+# $02:e358 (File: $016358)
+Yukihide Takekawa
+
+# $02:e371 (File: $016371)
+{PAUSE}Music arranged by
+
+# $02:e386 (File: $016386)
+KAZZ TOYAMA
+
+# $02:e399 (File: $016399)
+{PAUSE}Sound created by
+
+# $02:e3ad (File: $0163ad)
+You Himeno
+
+# $02:e3bf (File: $0163bf)
+{PAUSE}Music coordinated by
+
+# $02:e3d7 (File: $0163d7)
+AMENITY Co:
+
+# $02:e3ea (File: $0163ea)
+{PAUSE}Scenario assistant
+
+# $02:e400 (File: $016400)
+Tatsuo Hashimoto
+
+# $02:e419 (File: $016419)
+{PAUSE}English Text by
+
+# $02:e42c (File: $01642c)
+Robert L:Jerauld
+
+# $02:e445 (File: $016445)
+{PAUSE}*+,-./ staff
+
+# $02:e455 (File: $016455)
+Reiko Takebayashi
+
+# $02:e469 (File: $016469)
+Akira Kitanohara
+
+# $02:e481 (File: $016481)
+{PAUSE};<=>? staff
+
+# $02:e490 (File: $016490)
+Takao Kawaguchi
+
+# $02:e4a2 (File: $0164a2)
+Keizo Mochizuki
+
+# $02:e4b4 (File: $0164b4)
+Teruhiko Hanawa
+
+# $02:e4c6 (File: $0164c6)
+Tetsuro Shimoda
+
+# $02:e4d8 (File: $0164d8)
+Masahiro Hirasawa
+
+# $02:e4ec (File: $0164ec)
+Kenjiro Kano
+
+# $02:e4fb (File: $0164fb)
+Yasuko Sekiguchi
+
+# $02:e50e (File: $01650e)
+Miwako Matsumoto
+
+# $02:e521 (File: $016521)
+Keiko Taga
+
+# $02:e52f (File: $01652f)
+Hajime Kanie
+
+# $02:e53e (File: $01653e)
+Eiichi Hirasawa
+
+# $02:e550 (File: $016550)
+Shinji Futami
+
+# $02:e565 (File: $016565)
+{PAUSE};<=>? America staff
+
+# $02:e57c (File: $01657c)
+Keiji Honda
+
+# $02:e58a (File: $01658a)
+Tsuneo Morita
+
+# $02:e59a (File: $01659a)
+Paul Bowler
+
+# $02:e5a8 (File: $0165a8)
+Paul Handelman
+
+# $02:e5b9 (File: $0165b9)
+Cherie Hasson
+
+# $02:e5cf (File: $0165cf)
+{PAUSE}Special thanks to
+
+# $02:e5e4 (File: $0165e4)
+Ryuichi Moriya
+
+# $02:e5f5 (File: $0165f5)
+Naoki Yasuda
+
+# $02:e604 (File: $016604)
+Yoshiaki Ujiie
+
+# $02:e615 (File: $016615)
+Shinichi Kouda
+
+# $02:e626 (File: $016626)
+Taiki Mochida
+
+# $02:e636 (File: $016636)
+Masahiro Endo
+
+# $02:e646 (File: $016646)
+Azumi Izumi
+
+# $02:e654 (File: $016654)
+Dai Yamamoto
+
+# $02:e663 (File: $016663)
+Keiko Hattori
+
+# $02:e673 (File: $016673)
+Nobuyoshi Yoshii
+
+# $02:e686 (File: $016686)
+Miki Watanabe
+
+# $02:e696 (File: $016696)
+Hirotomo Morisada
+
+# $02:e6af (File: $0166af)
+{PAUSE}Assistant producer
+
+# $02:e6c5 (File: $0166c5)
+Kazunori Takado
+
+# $02:e6dc (File: $0166dc)
+{PAUSE}Directed by
+
+# $02:e6eb (File: $0166eb)
+Masaya Hashimoto
+
+# $02:e703 (File: $016703)
+{PAUSE}Produced by
+
+# $02:e712 (File: $016712)
+Yasuyuki Sone
+
+# $02:e727 (File: $016727)
+{PAUSE}Published by
+
+# $02:e737 (File: $016737)
+Yasuhiro Fukushima
+
+# $02:e752 (File: $016752)
+Soul Blazer
+
+# $02:e75f (File: $01675f)
+{ITEM}Copyright [\ 1992
+
+# $02:e773 (File: $016773)
+{CLEAR}[\ 1992 ;<=>? COPORATION
+
+# $02:e7a5 (File: $0167a5)
+{PAUSE}Based Upon Soul Blader
+
+# $02:e7be (File: $0167be)
+{ITEM}Copyright [\ 1992
+
+# $02:e7d2 (File: $0167d2)
+{CLEAR}[\ 1992 ;<=>? COPORATION
+
+# $02:e804 (File: $016804)
+{PAUSE}Music Copyright [\ 1992
+
+# $02:e81e (File: $01681e)
+{CLEAR}[\ 1992 Yukihide Takekawa
+
+# $02:e83a (File: $01683a)
+{CLEAR}[\ 1992 KAZZ TOYAMA
+
+# $02:e850 (File: $016850)
+{CLEAR}[\ 1992 AMENITY Co:
+
+# $02:e86c (File: $01686c)
+{NAME}Licensed by NINTENDO
+
+# $02:e889 (File: $016889)
+{ITEM}Presented by ;<=>?
+
+# $03:8093 (File: $018093)
+pressing either 
+
+# $03:80a5 (File: $0180a5)
+L or R button. 
+
+# $03:80e4 (File: $0180e4)
+or using magic. 
+
+# $03:8170 (File: $018170)
+My husband 
+
+# $03:8189 (File: $018189)
+One day he suddenly 
+
+# $03:819e (File: $01819e)
+disappeared along with
+
+# $03:81b6 (File: $0181b6)
+other villagers. 
+
+# $03:81c9 (File: $0181c9)
+feel so lonely.... 
+
+# $03:81ed (File: $0181ed)
+children? 
+
+# $03:8236 (File: $018236)
+second floor 
+
+# $03:8248 (File: $018248)
+own room. 
+
+# $03:8268 (File: $018268)
+doing nothing. 
+
+# $03:827a (File: $01827a)
+beginning 
+
+# $03:8293 (File: $018293)
+Please, stay 
+
+# $03:82bf (File: $0182bf)
+having been separated 
+
+# $03:82d7 (File: $0182d7)
+her parents. 
+
+# $03:8302 (File: $018302)
+They kidnapped Lisa! 
+
+# $03:8319 (File: $018319)
+must rescue her! 
+
+# $03:8335 (File: $018335)
+sigh coming
+
+# $03:83ae (File: $0183ae)
+Hello, may 
+
+# $03:83d0 (File: $0183d0)
+Take whatever 
+
+# $03:83fe (File: $0183fe)
+Herbs though. 
+
+# $03:8415 (File: $018415)
+Medical Herb. {CLEAR} 
+
+# $03:8429 (File: $018429)
+Hello, may 
+
+# $03:8458 (File: $018458)
+Medical Herb 
+
+# $03:84c8 (File: $0184c8)
+water mill 
+
+# $03:84e2 (File: $0184e2)
+destroyed. 
+
+# $03:8517 (File: $018517)
+Underground Castle. 
+
+# $03:8530 (File: $018530)
+<{WAIT}{WAIT} began 
+
+# $03:8542 (File: $018542)
+small voice.
+
+# $03:858d (File: $01858d)
+communicate 
+
+# $03:859b (File: $01859b)
+him through our 
+
+# $03:85ac (File: $0185ac)
+thoughts. 
+
+# $03:8667 (File: $018667)
+necessary 
+
+# $03:8673 (File: $018673)
+guard such 
+
+# $03:879f (File: $01879f)
+Underground 
+
+# $03:87e1 (File: $0187e1)
+Oh, no wonder! 
+
+# $03:87f3 (File: $0187f3)
+turning it 
+
+# $03:881e (File: $01881e)
+water mill 
+
+# $03:8864 (File: $018864)
+stupid wheel! 
+
+# $03:88c8 (File: $0188c8)
+turn, power 
+
+# $03:88d6 (File: $0188d6)
+transmitted 
+
+# $03:88e5 (File: $0188e5)
+Underground Castle. 
+
+# $03:890b (File: $01890b)
+Emblem A. {CLEAR} 
+
+# $03:897a (File: $01897a)
+wonder why 
+
+# $03:8989 (File: $018989)
+such small 
+
+# $03:89af (File: $0189af)
+swallowed up 
+
+# $03:89c1 (File: $0189c1)
+paintings 
+
+# $03:89e2 (File: $0189e2)
+wonder why 
+
+# $03:89fe (File: $0189fe)
+small houses? 
+
+# $03:8a3a (File: $018a3a)
+Herb {CLEAR} at 
+
+# $03:8bce (File: $018bce)
+hear some light 
+
+# $03:8bdf (File: $018bdf)
+snoring coming 
+
+# $03:8c03 (File: $018c03)
+{WAIT}{WAIT} placed 
+
+# $03:8c35 (File: $018c35)
+Oh, my! Who 
+
+# $03:8ca2 (File: $018ca2)
+dream. It 
+
+# $03:8cb9 (File: $018cb9)
+someone who
+
+# $03:8cd4 (File: $018cd4)
+My father told 
+
+# $03:8ce7 (File: $018ce7)
+his paintbrush to
+
+# $03:8d25 (File: $018d25)
+hid it somewhere. 
+
+# $03:8d73 (File: $018d73)
+paintbrush. I
+
+# $03:8d95 (File: $018d95)
+One day, as 
+
+# $03:8dc0 (File: $018dc0)
+Lisa pulled out 
+
+# $03:8e10 (File: $018e10)
+problems, 
+
+# $03:8e27 (File: $018e27)
+Take care 
+
+# $03:8e7d (File: $018e7d)
+animals mentioned 
+
+# $03:8eb5 (File: $018eb5)
+understand 
+
+# $03:8ecf (File: $018ecf)
+say though. 
+
+# $03:8ee7 (File: $018ee7)
+complete stranger, but
+
+# $03:8f24 (File: $018f24)
+dies, they will
+
+# $03:8f45 (File: $018f45)
+different creature. 
+
+# $03:8f77 (File: $018f77)
+doing now? 
+
+# $03:8f87 (File: $018f87)
+Lisa appears 
+
+# $03:8f97 (File: $018f97)
+sleeping. 
+
+# $03:8fa3 (File: $018fa3)
+Z{WAIT}{WAIT}, placed 
+
+# $03:8fb1 (File: $018fb1)
+?Rod upon 
+
+# $03:8fdf (File: $018fdf)
+return someday. 
+
+# $03:903f (File: $01903f)
+enables you
+
+# $03:904c (File: $01904c)
+look into dreams. 
+
+# $03:9075 (File: $019075)
+speak with
+
+# $03:908b (File: $01908b)
+sleeping. 
+
+# $03:90ad (File: $0190ad)
+enables anyone 
+
+# $03:90be (File: $0190be)
+possesses it 
+
+# $03:90dd (File: $0190dd)
+asleep. It is
+
+# $03:90f5 (File: $0190f5)
+Underground Castle. 
+
+# $03:9155 (File: $019155)
+architect. 
+
+# $03:918c (File: $01918c)
+something. 
+
+# $03:91a7 (File: $0191a7)
+these walls? 
+
+# $03:91c1 (File: $0191c1)
+fast builder! 
+
+# $03:9262 (File: $019262)
+mother.Would 
+
+# $03:9273 (File: $019273)
+buy some goat`
+
+# $03:9292 (File: $019292)
+how much it costs? 
+
+# $03:92c5 (File: $0192c5)
+dollars plus tax?! 
+
+# $03:9357 (File: $019357)
+given you. 
+
+# $03:93a1 (File: $0193a1)
+boundary between 
+
+# $03:93c5 (File: $0193c5)
+Sometimes things 
+
+# $03:93fd (File: $0193fd)
+remember Lisa`s, 
+
+# $03:940f (File: $01940f)
+dream right? Have 
+
+# $03:943b (File: $01943b)
+her dream? 
+
+# $03:9447 (File: $019447)
+Things may 
+
+# $03:9454 (File: $019454)
+different 
+
+# $03:9462 (File: $019462)
+saw her before. 
+
+# $03:950f (File: $01950f)
+painted by 
+
+# $03:952c (File: $01952c)
+appeared! 
+
+# $03:953b (File: $01953b)
+terrifying!! 
+
+# $03:9552 (File: $019552)
+dragged into 
+
+# $03:9561 (File: $019561)
+painting! 
+
+# $03:9588 (File: $019588)
+painting, he 
+
+# $03:95de (File: $0195de)
+disappeared!! What was
+
+# $03:960d (File: $01960d)
+screaming inside 
+
+# $03:9631 (File: $019631)
+"GHOST! "GHOST! 
+
+# $03:972b (File: $01972b)
+our secret 
+
+# $03:9748 (File: $019748)
+treasure near here. 
+
+# $03:9766 (File: $019766)
+following me?
+
+# $03:977a (File: $01977a)
+where our treasure is.
+
+# $03:97a6 (File: $0197a6)
+Well, okay, I`
+
+# $03:97c9 (File: $0197c9)
+pass helpful? 
+
+# $03:9881 (File: $019881)
+{WAIT}{WAIT} placed 
+
+# $03:993d (File: $01993d)
+our secret 
+
+# $03:9953 (File: $019953)
+cannot let 
+
+# $03:9960 (File: $019960)
+through without 
+
+# $03:9981 (File: $019981)
+pass! Where 
+
+# $03:99a0 (File: $0199a0)
+inside now.
+
+# $03:99bf (File: $0199bf)
+little so 
+
+# $03:99e4 (File: $0199e4)
+bottle. {CLEAR} 
+
+# $03:9b16 (File: $019b16)
+free, right? 
+
+# $03:9b2b (File: $019b2b)
+shall show you
+
+# $03:9b6d (File: $019b6d)
+his daughter, 
+
+# $03:9b90 (File: $019b90)
+painter as well as 
+
+# $03:9ba5 (File: $019ba5)
+inventor. 
+
+# $03:9bcf (File: $019bcf)
+away. Lisa 
+
+# $03:9be3 (File: $019be3)
+same since. 
+
+# $03:9c05 (File: $019c05)
+cliff contains
+
+# $03:9c15 (File: $019c15)
+painting by Dr.Leo.
+
+# $03:9c5a (File: $019c5a)
+house people
+
+# $03:9c67 (File: $019c67)
+constructed 
+
+# $03:9c81 (File: $019c81)
+terribly fond 
+
+# $03:9ca0 (File: $019ca0)
+ground near 
+
+# $03:9cd0 (File: $019cd0)
+follow me. 
+
+# $03:9d76 (File: $019d76)
+known among 
+
+# $03:9d84 (File: $019d84)
+friends as 
+
+# $03:9d93 (File: $019d93)
+Gourmet Goat. 
+
+# $03:9da4 (File: $019da4)
+only eat food 
+
+# $03:9dbc (File: $019dbc)
+tool shop. 
+
+# $03:9ddd (File: $019ddd)
+tool shop! 
+
+# $03:9df7 (File: $019df7)
+secret if 
+
+# $03:9e35 (File: $019e35)
+painting, 
+
+# $03:9e41 (File: $019e41)
+must equip 
+
+# $03:9e76 (File: $019e76)
+painting. 
+
+# $03:9ec7 (File: $019ec7)
+love food 
+
+# $03:9ed4 (File: $019ed4)
+tool shop! 
+
+# $03:9f0a (File: $019f0a)
+Since losing 
+
+# $03:9f34 (File: $019f34)
+goat hanging
+
+# $03:9f4d (File: $019f4d)
+so lonely 
+
+# $03:9fb7 (File: $019fb7)
+reincarnation. 
+
+# $03:9fd4 (File: $019fd4)
+communicate 
+
+# $03:9fed (File: $019fed)
+enjoy his 
+
+# $03:a033 (File: $01a033)
+underneath 
+
+# $03:a05f (File: $01a05f)
+under one. 
+
+# $03:a06b (File: $01a06b)
+He thought 
+
+# $03:a07f (File: $01a07f)
+watching, 
+
+# $03:a157 (File: $01a157)
+finally feel 
+
+# $03:a166 (File: $01a166)
+myself again. 
+
+# $03:a19f (File: $01a19f)
+been surrounded 
+
+# $03:a1b0 (File: $01a1b0)
+by darkness. 
+
+# $03:a1d4 (File: $01a1d4)
+best friend 
+
+# $03:a21a (File: $01a21a)
+looks like
+
+# $03:a23a (File: $01a23a)
+day before he 
+
+# $03:a249 (File: $01a249)
+disappeared. 
+
+# $03:a260 (File: $01a260)
+Brown Stone. {CLEAR} 
+
+# $03:a27f (File: $01a27f)
+daughter named Lisa. 
+
+# $03:a2a9 (File: $01a2a9)
+her until 
+
+# $03:a2da (File: $01a2da)
+thundering 
+
+# $03:a327 (File: $01a327)
+Deathtoll lives! 
+
+# $03:a374 (File: $01a374)
+Chief. He 
+
+# $03:a3f5 (File: $01a3f5)
+do anything 
+
+# $03:a408 (File: $01a408)
+For example.... 
+
+# $03:a4fc (File: $01a4fc)
+dreaming. 
+
+# $03:a50b (File: $01a50b)
+Daddy, where 
+
+# $03:a522 (File: $01a522)
+"voice, full 
+
+# $03:a53d (File: $01a53d)
+somewhere. 
+
+# $03:a575 (File: $01a575)
+also need my
+
+# $03:a582 (File: $01a582)
+paintbrush 
+
+# $03:a5a0 (File: $01a5a0)
+Daddy! Is 
+
+# $03:a5db (File: $01a5db)
+no answer. 
+
+# $03:a617 (File: $01a617)
+would meet
+
+# $03:a654 (File: $01a654)
+feeling lonely. 
+
+# $03:a666 (File: $01a666)
+ZMy father 
+
+# $03:a680 (File: $01a680)
+happiness lies 
+
+# $03:a6fc (File: $01a6fc)
+Zonly promise 
+
+# $03:a70e (File: $01a70e)
+return someday. 
+
+# $03:a771 (File: $01a771)
+day return. 
+
+# $03:a796 (File: $01a796)
+would never end. 
+
+# $03:a821 (File: $01a821)
+Earth, away 
+
+# $03:a842 (File: $01a842)
+been captured by 
+
+# $03:a854 (File: $01a854)
+Deathtoll 
+
+# $03:a86d (File: $01a86d)
+monster lairs.
+
+# $03:a89d (File: $01a89d)
+everyone. 
+
+# $03:a8b9 (File: $01a8b9)
+small tree or 
+
+# $03:a8c8 (File: $01a8c8)
+creature, they 
+
+# $03:a8fd (File: $01a8fd)
+Flame Ball Magic. {CLEAR} 
+
+# $03:a91a (File: $01a91a)
+join you. I
+
+# $03:a928 (File: $01a928)
+magician so 
+
+# $03:a93b (File: $01a93b)
+types magic. 
+
+# $03:a95d (File: $01a95d)
+Remember this, 
+
+# $03:a9a8 (File: $01a9a8)
+small spheres 
+
+# $03:a9c6 (File: $01a9c6)
+looks like. Alright, 
+
+# $03:a9e1 (File: $01a9e1)
+work together to
+
+# $03:aa0e (File: $01aa0e)
+Grass Valley Shrine. 
+
+# $03:aa70 (File: $01aa70)
+being held 
+
+# $03:aa7e (File: $01aa7e)
+Underground 
+
+# $03:aaa0 (File: $01aaa0)
+those creatures, 
+
+# $03:aab7 (File: $01aab7)
+reconstructed. 
+
+# $03:aad5 (File: $01aad5)
+small voice. 
+
+# $03:aaf3 (File: $01aaf3)
+villagers. 
+
+# $03:ab05 (File: $01ab05)
+now taking 
+
+# $03:ab1c (File: $01ab1c)
+No creature likes 
+
+# $03:ab31 (File: $01ab31)
+alone. We 
+
+# $03:ab40 (File: $01ab40)
+each other. 
+
+# $03:aba5 (File: $01aba5)
+Recover Sword. {CLEAR} 
+
+# $03:abe1 (File: $01abe1)
+Alright, continue on. 
+
+# $03:abf8 (File: $01abf8)
+Good luck! 
+
+# $03:ac99 (File: $01ac99)
+] corner. 
+
+# $03:aca4 (File: $01aca4)
+Allright, 
+
+# $03:ad75 (File: $01ad75)
+paintings 
+
+# $03:ad9d (File: $01ad9d)
+special sword. 
+
+# $03:adae (File: $01adae)
+must find 
+
+# $03:adba (File: $01adba)
+special sword 
+
+# $03:adcd (File: $01adcd)
+destroy metal. 
+
+# $03:ae20 (File: $01ae20)
+Underground 
+
+# $03:ae6b (File: $01ae6b)
+save those 
+
+# $03:ae88 (File: $01ae88)
+correct sword. 
+
+# $03:af18 (File: $01af18)
+invented by Dr.Leo. 
+
+# $03:af2e (File: $01af2e)
+cannot move unless 
+
+# $03:af43 (File: $01af43)
+water mill 
+
+# $03:b1ae (File: $01b1ae)
+Please, someone 
+
+# $03:b1c9 (File: $01b1c9)
+release me, 
+
+# $03:b2f5 (File: $01b2f5)
+Allright, 
+
+# $03:b301 (File: $01b301)
+continue. 
+
+# $03:b31d (File: $01b31d)
+returning 
+
+# $03:b329 (File: $01b329)
+Grass Valley. 
+
+# $03:b52e (File: $01b52e)
+My follower, 
+
+# $03:b559 (File: $01b559)
+happened between 
+
+# $03:b576 (File: $01b576)
+ZHowever, being 
+
+# $03:b587 (File: $01b587)
+attracted 
+
+# $03:b5a0 (File: $01b5a0)
+yet established 
+
+# $03:b5b1 (File: $01b5b1)
+yourself as 
+
+# $03:b5c7 (File: $01b5c7)
+creature. 
+
+# $03:b5db (File: $01b5db)
+now passed,
+
+# $03:b5e9 (File: $01b5e9)
+feelings have
+
+# $03:b611 (File: $01b611)
+living as 
+
+# $03:b626 (File: $01b626)
+Learning how they 
+
+# $03:b641 (File: $01b641)
+ZBe warned though. Once
+
+# $03:b716 (File: $01b716)
+remember me?
+
+# $03:b784 (File: $01b784)
+(Daughter 
+
+# $03:b795 (File: $01b795)
+inventor! 
+
+# $03:b7b3 (File: $01b7b3)
+remember me?
+
+# $03:b7c2 (File: $01b7c2)
+Well, okay. 
+
+# $03:b7d3 (File: $01b7d3)
+never lied to
+
+# $03:b83f (File: $01b83f)
+thinking. 
+
+# $03:b85d (File: $01b85d)
+wonderful memories
+
+# $03:b870 (File: $01b870)
+together! 
+
+# $03:b881 (File: $01b881)
+Okay, let 
+
+# $03:b8ae (File: $01b8ae)
+goat behind 
+
+# $03:b8d6 (File: $01b8d6)
+(say <hello>. 
+
+# $03:b921 (File: $01b921)
+call him Turbo. 
+
+# $03:b952 (File: $01b952)
+Hurry up Turbo! 
+
+# $03:ba6f (File: $01ba6f)
+restaurant. 
+
+# $03:ba8f (File: $01ba8f)
+!on! At least 
+
+# $03:baaa (File: $01baaa)
+Great! Let 
+
+# $03:bab9 (File: $01bab9)
+our special 
+
+# $03:baf7 (File: $01baf7)
+offended. 
+
+# $03:bb07 (File: $01bb07)
+restaurant 
+
+# $03:bb1c (File: $01bb1c)
+delicious 
+
+# $03:bc64 (File: $01bc64)
+<Woodstin-Trio.> 
+
+# $03:bc76 (File: $01bc76)
+We usually 
+
+# $03:bc84 (File: $01bc84)
+variety show at 
+
+# $03:bcad (File: $01bcad)
+two sidekicks. 
+
+# $03:bccc (File: $01bccc)
+around, you`re 
+
+# $03:bcdc (File: $01bcdc)
+annoying me. 
+
+# $03:bd35 (File: $01bd35)
+graveyard. 
+
+# $03:bd42 (File: $01bd42)
+hear someone snoring
+
+# $03:bd60 (File: $01bd60)
+which direction 
+
+# $03:bd92 (File: $01bd92)
+graveyard. 
+
+# $03:bd9f (File: $01bd9f)
+hear someone snoring
+
+# $03:bdc2 (File: $01bdc2)
+direction 
+
+# $03:bdd5 (File: $01bdd5)
+coming from. 
+
+# $03:be6c (File: $01be6c)
+sneak up behind 
+
+# $03:bebd (File: $01bebd)
+Red-Hot Mirror. {CLEAR} 
+
+# $03:bef8 (File: $01bef8)
+For@shy@birds,
+
+# $03:bf07 (File: $01bf07)
+you@better@approach
+
+# $03:bf1b (File: $01bf1b)
+quietly@from@behind.
+
+# $03:c035 (File: $01c035)
+something. 
+
+# $03:c044 (File: $01c044)
+Follow me. 
+
+# $03:c135 (File: $01c135)
+world....... 
+
+# $03:c151 (File: $01c151)
+difficult 
+
+# $03:c16c (File: $01c16c)
+8 emblems,
+
+# $03:c179 (File: $01c179)
+require GEMs 
+
+# $03:c188 (File: $01c188)
+casting magic. 
+
+# $03:c1a0 (File: $01c1a0)
+fighting much easier 
+
+# $03:c1c5 (File: $01c1c5)
+bring them 
+
+# $03:c1df (File: $01c1df)
+collected 
+
+# $03:c203 (File: $01c203)
+Magic Bell. 
+
+# $03:c214 (File: $01c214)
+fought well! 
+
+# $03:c226 (File: $01c226)
+Magic Bell 
+
+# $03:c23e (File: $01c23e)
+magic without GEMs. 
+
+# $03:c274 (File: $01c274)
+There@once@was@a@raft
+
+# $03:c28a (File: $01c28a)
+made@from@the@bark@of
+
+# $03:c2a0 (File: $01c2a0)
+my@branches.
+
+# $03:c2ad (File: $01c2ad)
+You@must@find@this
+
+# $03:c2c0 (File: $01c2c0)
+raft.@I@believe@it
+
+# $03:c2d3 (File: $01c2d3)
+might@be@able
+
+# $03:c2e1 (File: $01c2e1)
+help@you@in@some@way.
+
+# $03:c33c (File: $01c33c)
+hear someone 
+
+# $03:c3a8 (File: $01c3a8)
+{WAIT}{WAIT} placed 
+
+# $03:c3b4 (File: $01c3b4)
+?Rod upon 
+
+# $03:c430 (File: $01c430)
+taking place 
+
+# $03:c440 (File: $01c440)
+turn they 
+
+# $03:c484 (File: $01c484)
+relationship. 
+
+# $03:c4a8 (File: $01c4a8)
+The@birds@tell@me@many
+
+# $03:c4c8 (File: $01c4c8)
+I@am@thankful@for
+
+# $03:c4da (File: $01c4da)
+them@because@I@can`t
+
+# $03:c4ef (File: $01c4ef)
+move@from@this@spot.
+
+# $03:c504 (File: $01c504)
+The@birds@tell@me@the
+
+# $03:c51a (File: $01c51a)
+Lostside@Marsh@has
+
+# $03:c52d (File: $01c52d)
+three@shrines.
+
+# $03:c53c (File: $01c53c)
+One@is@called@Water,
+
+# $03:c551 (File: $01c551)
+another@is@Fire
+
+# $03:c561 (File: $01c561)
+and@the@third@is
+
+# $03:c661 (File: $01c661)
+'right, let`
+
+# $03:c675 (File: $01c675)
+Why not!? 
+
+# $03:c686 (File: $01c686)
+as much fun 
+
+# $03:c6a4 (File: $01c6a4)
+do walking me. 
+
+# $03:c6c4 (File: $01c6c4)
+graveyard. 
+
+# $03:c6d0 (File: $01c6d0)
+My twin brother 
+
+# $03:c6e5 (File: $01c6e5)
+island guard. 
+
+# $03:c70d (File: $01c70d)
+<Woodstin-Trio> 
+
+# $03:c720 (File: $01c720)
+local favorite here. 
+
+# $03:c75a (File: $01c75a)
+<Woodstin-Trio> 
+
+# $03:c79a (File: $01c79a)
+more thing... 
+
+# $03:c7a9 (File: $01c7a9)
+We animals communicate
+
+# $03:c7fa (File: $01c7fa)
+means <thank you>. 
+
+# $03:c839 (File: $01c839)
+If@you@find@a
+
+# $03:c847 (File: $01c847)
+particular@mole,@you
+
+# $03:c85c (File: $01c85c)
+will@be@able@to
+
+# $03:c86c (File: $01c86c)
+see@in@the@dark.
+
+# $03:c87d (File: $01c87d)
+Make@sure@you@talk@to
+
+# $03:c893 (File: $01c893)
+all@the@moles.
+
+# $03:c8e7 (File: $01c8e7)
+carefully. 
+
+# $03:c908 (File: $01c908)
+This@is@GreenWood.
+
+# $03:c91b (File: $01c91b)
+This@land@was
+
+# $03:c929 (File: $01c929)
+developed@by@a@dog
+
+# $03:c93c (File: $01c93c)
+named@Turbo.
+
+# $03:c949 (File: $01c949)
+He@created@this@town
+
+# $03:c95e (File: $01c95e)
+so@animals@could@come
+
+# $03:c974 (File: $01c974)
+here@and@feel@safe.
+
+# $03:ca86 (File: $01ca86)
+Here lies Turbo, 
+
+# $03:caa1 (File: $01caa1)
+GreenWood. 
+
+# $03:caba (File: $01caba)
+{WAIT}{WAIT} touched 
+
+# $03:cac7 (File: $01cac7)
+small bird 
+
+# $03:caf4 (File: $01caf4)
+residents of
+
+# $03:cb01 (File: $01cb01)
+GreenWood. 
+
+# $03:cb2c (File: $01cb2c)
+Turbo, they 
+
+# $03:cb48 (File: $01cb48)
+some leaves 
+
+# $03:cb56 (File: $01cb56)
+GreenWood buried 
+
+# $03:cb98 (File: $01cb98)
+grave stone. 
+
+# $03:cbb9 (File: $01cbb9)
+standing alone. 
+
+# $03:cbcb (File: $01cbcb)
+ZWhen {WAIT}{WAIT} closed 
+
+# $03:cbdc (File: $01cbdc)
+his eyes, he tried 
+
+# $03:cbf1 (File: $01cbf1)
+imagine Turbo. 
+
+# $03:cc0d (File: $01cc0d)
+sleep comes 
+
+# $03:cc1b (File: $01cc1b)
+hard work, 
+
+# $03:cc28 (File: $01cc28)
+rest comes 
+
+# $03:cc36 (File: $01cc36)
+honest life. 
+
+# $03:cc48 (File: $01cc48)
+rest well 
+
+# $03:ccf0 (File: $01ccf0)
+some nerve! 
+
+# $03:cd21 (File: $01cd21)
+Hey, you`re hurting 
+
+# $03:ce24 (File: $01ce24)
+Allright, let 
+
+# $03:ce54 (File: $01ce54)
+smell fresh air. 
+
+# $03:ceb3 (File: $01ceb3)
+somewhere. 
+
+# $03:ced9 (File: $01ced9)
+outhouse. 
+
+# $03:cef2 (File: $01cef2)
+bathroom. 
+
+# $03:cf20 (File: $01cf20)
+smell some armor
+
+# $03:cfc6 (File: $01cfc6)
+work some 
+
+# $03:cfd3 (File: $01cfd3)
+food off. 
+
+# $03:cfe8 (File: $01cfe8)
+following 
+
+# $03:d00b (File: $01d00b)
+coincidence. 
+
+# $03:d01f (File: $01d01f)
+starving! 
+
+# $03:d036 (File: $01d036)
+restaurant. 
+
+# $03:d137 (File: $01d137)
+Billy, leader 
+
+# $03:d148 (File: $01d148)
+<Woodstin-Trio>, .
+
+# $03:d167 (File: $01d167)
+exciting! 
+
+# $03:d17e (File: $01d17e)
+together, so let`
+
+# $03:d1a8 (File: $01d1a8)
+our only audience we 
+
+# $03:d1bf (File: $01d1bf)
+try our best. 
+
+# $03:d1d6 (File: $01d1d6)
+other guys. 
+
+# $03:d1f5 (File: $01d1f5)
+For our next number 
+
+# $03:d21c (File: $01d21c)
+real squirrel, me.
+
+# $03:d247 (File: $01d247)
+correctly, 
+
+# $03:d274 (File: $01d274)
+squirrel is. 
+
+# $03:d282 (File: $01d282)
+Here we go! 
+
+# $03:d292 (File: $01d292)
+You`re right!! 
+
+# $03:d2c0 (File: $01d2c0)
+Medical Herb. {CLEAR} 
+
+# $03:d2e0 (File: $01d2e0)
+try again soon. 
+
+# $03:d41e (File: $01d41e)
+<Woodstin-Trio.> 
+
+# $03:d457 (File: $01d457)
+other two 
+
+# $03:d462 (File: $01d462)
+band members 
+
+# $03:d49e (File: $01d49e)
+Okay, let`
+
+# $03:d4bc (File: $01d4bc)
+Too bad, almost. 
+
+# $03:d4df (File: $01d4df)
+our show. 
+
+# $03:d570 (File: $01d570)
+dog named 
+
+# $03:d5eb (File: $01d5eb)
+releasing me. 
+
+# $03:d668 (File: $01d668)
+Mountain. 
+
+# $03:d67f (File: $01d67f)
+three symbols, 
+
+# $03:d699 (File: $01d699)
+Mountain King. 
+
+# $03:d72f (File: $01d72f)
+darkness. 
+
+# $03:d73b (File: $01d73b)
+cheer up everyone.
+
+# $03:d753 (File: $01d753)
+work together to
+
+# $03:d780 (File: $01d780)
+lights up darkness 
+
+# $03:d794 (File: $01d794)
+joined {WAIT}{WAIT}! 
+
+# $03:d7a9 (File: $01d7a9)
+way why don`
+
+# $03:d7f4 (File: $01d7f4)
+without me. 
+
+# $03:d833 (File: $01d833)
+GreenWood {CLEAR} 
+
+# $03:d849 (File: $01d849)
+dog bones! 
+
+# $03:d899 (File: $01d899)
+brings light 
+
+# $03:d8a8 (File: $01d8a8)
+darkness. 
+
+# $03:d923 (File: $01d923)
+must bring 
+
+# $03:d94c (File: $01d94c)
+Th.. that`
+
+# $03:d968 (File: $01d968)
+Al.. allright, 
+
+# $03:d9e2 (File: $01d9e2)
+digging in
+
+# $03:d9ee (File: $01d9ee)
+ground, sometimes 
+
+# $03:da16 (File: $01da16)
+dug up some dog
+
+# $03:da3d (File: $01da3d)
+buried them. 
+
+# $03:da4e (File: $01da4e)
+What? Did 
+
+# $03:da77 (File: $01da77)
+living down 
+
+# $03:da9d (File: $01da9d)
+story..... 
+
+# $03:dab7 (File: $01dab7)
+female mole living 
+
+# $03:dad9 (File: $01dad9)
+taken away
+
+# $03:dae4 (File: $01dae4)
+by evil creatures. 
+
+# $03:dafa (File: $01dafa)
+scared..... 
+
+# $03:db0f (File: $01db0f)
+became so 
+
+# $03:db2b (File: $01db2b)
+house next door. 
+
+# $03:dbc1 (File: $01dbc1)
+!on! Aren`
+
+# $03:dbce (File: $01dbce)
+suprised? 
+
+# $03:dc4f (File: $01dc4f)
+One day, Monmo 
+
+# $03:dc60 (File: $01dc60)
+captured by evil. He 
+
+# $03:dc7d (File: $01dc7d)
+rescue her 
+
+# $03:dc98 (File: $01dc98)
+Suddenly he appeared, 
+
+# $03:dcb0 (File: $01dcb0)
+had no idea 
+
+# $03:dcec (File: $01dcec)
+GreenWood. 
+
+# $03:dcfa (File: $01dcfa)
+those two moles
+
+# $03:dd29 (File: $01dd29)
+{CLEAR}$Shield Bracelet! {CLEAR} 
+
+# $03:dd42 (File: $01dd42)
+My roommate 
+
+# $03:dd50 (File: $01dd50)
+disappeared. Will 
+
+# $03:dd76 (File: $01dd76)
+bit jealous 
+
+# $03:dd84 (File: $01dd84)
+he won Monmo`
+
+# $03:dd9d (File: $01dd9d)
+hope they 
+
+# $03:dda9 (File: $01dda9)
+happy now. 
+
+# $03:dea2 (File: $01dea2)
+cannot see. 
+
+# $03:decd (File: $01decd)
+follow you. 
+
+# $03:def5 (File: $01def5)
+Allright, 
+
+# $03:df12 (File: $01df12)
+right place. 
+
+# $03:df65 (File: $01df65)
+wait here? 
+
+# $03:dfa3 (File: $01dfa3)
+named Dr.Leo. 
+
+# $03:dfb2 (File: $01dfb2)
+Turbo learned 
+
+# $03:e06f (File: $01e06f)
+hungry, if 
+
+# $03:e097 (File: $01e097)
+something. 
+
+# $03:e0ab (File: $01e0ab)
+smell some 
+
+# $03:e0b7 (File: $01e0b7)
+delicious seeds. 
+
+# $03:e108 (File: $01e108)
+Psycho Sword. {CLEAR} 
+
+# $03:e11c (File: $01e11c)
+Those seeds 
+
+# $03:e16f (File: $01e16f)
+starving....
+
+# $03:e1a2 (File: $01e1a2)
+powerful sword 
+
+# $03:e1f3 (File: $01e1f3)
+releasing me. 
+
+# $03:e21d (File: $01e21d)
+Emblem C.{CLEAR} 
+
+# $03:e230 (File: $01e230)
+releasing me. 
+
+# $03:e267 (File: $01e267)
+Turbo refused 
+
+# $03:e289 (File: $01e289)
+one, Deathtoll. 
+
+# $03:e29a (File: $01e29a)
+He fought Deathtoll 
+
+# $03:e2bd (File: $01e2bd)
+GreenWood 
+
+# $03:e2dd (File: $01e2dd)
+defeated. 
+
+# $03:e2eb (File: $01e2eb)
+Turbo, wait! 
+
+# $03:e34c (File: $01e34c)
+Light Shrine 
+
+# $03:e385 (File: $01e385)
+looking for. 
+
+# $03:e396 (File: $01e396)
+bird, Tiki,
+
+# $03:e3b9 (File: $01e3b9)
+must protect 
+
+# $03:e3c7 (File: $01e3c7)
+GreenWood now 
+
+# $03:e43d (File: $01e43d)
+real life, 
+
+# $03:e44a (File: $01e44a)
+often dream 
+
+# $03:e463 (File: $01e463)
+fly wherever 
+
+# $03:e4a7 (File: $01e4a7)
+Strange Bottle{CLEAR} .
+
+# $03:e57b (File: $01e57b)
+{CLEAR}$Light Arrow Magic. {CLEAR} 
+
+# $03:e69f (File: $01e69f)
+small voice. 
+
+# $03:e6d0 (File: $01e6d0)
+GreenWood. 
+
+# $03:e6de (File: $01e6de)
+cannot prove 
+
+# $03:e6f1 (File: $01e6f1)
+GreenWood, we 
+
+# $03:e723 (File: $01e723)
+GreenWood! 
+
+# $03:e748 (File: $01e748)
+Light Shrine. 
+
+# $03:ebfd (File: $01ebfd)
+GreenWood? 
+
+# $03:ec2c (File: $01ec2c)
+returning 
+
+# $03:ec38 (File: $01ec38)
+GreenWood. 
+
+# $03:ed2a (File: $01ed2a)
+swallowed into 
+
+# $03:ed61 (File: $01ed61)
+finally opened. 
+
+# $03:ed87 (File: $01ed87)
+defeat Deathtoll. 
+
+# $03:eda0 (File: $01eda0)
+Phoenix joins
+
+# $03:edbe (File: $01edbe)
+Deathtoll 
+
+# $03:ee1e (File: $01ee1e)
+been saved every last 
+
+# $03:ee5d (File: $01ee5d)
+creatures. 
+
+# $04:8061 (File: $020061)
+My, my, it 
+
+# $04:8075 (File: $020075)
+someone new. 
+
+# $04:8096 (File: $020096)
+Please, sit right 
+
+# $04:80c0 (File: $0200c0)
+questions 
+
+# $04:80e0 (File: $0200e0)
+discuss them 
+
+# $04:81a3 (File: $0201a3)
+Oh honey, 
+
+# $04:8205 (File: $020205)
+gazing at 
+
+# $04:8210 (File: $020210)
+each other. 
+
+# $04:8228 (File: $020228)
+girlfriend. 
+
+# $04:826e (File: $02026e)
+gazing at 
+
+# $04:8279 (File: $020279)
+each other. 
+
+# $04:82aa (File: $0202aa)
+someone new. 
+
+# $04:82d5 (File: $0202d5)
+Make sure 
+
+# $04:82f2 (File: $0202f2)
+carefully. 
+
+# $04:8300 (File: $020300)
+move too fast 
+
+# $04:8310 (File: $020310)
+may overlook 
+
+# $04:831e (File: $02031e)
+things... 
+
+# $04:83e3 (File: $0203e3)
+magician. 
+
+# $04:8428 (File: $020428)
+Oh Phoenix, 
+
+# $04:8436 (File: $020436)
+protect {WAIT}{WAIT}. 
+
+# $04:8501 (File: $020501)
+magician. 
+
+# $04:8546 (File: $020546)
+Oh Phoenix, 
+
+# $04:8554 (File: $020554)
+protect {WAIT}{WAIT}. 
+
+# $04:86ae (File: $0206ae)
+saved me? 
+
+# $04:86e8 (File: $0206e8)
+released. 
+
+# $04:86f3 (File: $0206f3)
+Release him 
+
+# $04:870f (File: $02070f)
+visit those 
+
+# $04:8731 (File: $020731)
+looking for. 
+
+# $04:8776 (File: $020776)
+things Nome was
+
+# $04:879a (File: $02079a)
+would invade our town.
+
+# $04:87c1 (File: $0207c1)
+See Nome. 
+
+# $04:87f2 (File: $0207f2)
+Whoever collects 
+
+# $04:881f (File: $02081f)
+Red-Hot Mirror, 
+
+# $04:8831 (File: $020831)
+Red-Hot Ball 
+
+# $04:8841 (File: $020841)
+Red-Hot Stick, 
+
+# $04:887a (File: $02087a)
+strongest 
+
+# $04:888f (File: $02088f)
+collect them 
+
+# $04:889e (File: $02089e)
+bring them 
+
+# $04:88c5 (File: $0208c5)
+tremendous.
+
+# $04:88ef (File: $0208ef)
+defeat Deathtoll. 
+
+# $04:892c (File: $02092c)
+High above 
+
+# $04:893f (File: $02093f)
+beautiful 
+
+# $04:899b (File: $02099b)
+As soon as 
+
+# $04:89a9 (File: $0209a9)
+called, Deathtoll 
+
+# $04:89bc (File: $0209bc)
+moved into position. 
+
+# $04:89e3 (File: $0209e3)
+Phoenix!! {CLEAR} 
+
+# $04:8a17 (File: $020a17)
+equip SoulBlade
+
+# $04:8a28 (File: $020a28)
+Soul Armor 
+
+# $04:8a69 (File: $020a69)
+Deathtoll. 
+
+# $04:8a8c (File: $020a8c)
+collected 
+
+# $04:8a9e (File: $020a9e)
+symbols, but... 
+
+# $04:8abf (File: $020abf)
+magicians 
+
+# $04:8adb (File: $020adb)
+Find them 
+
+# $04:8af8 (File: $020af8)
+Oh, you`re back! 
+
+# $04:8b1a (File: $020b1a)
+worried, but.... 
+
+# $04:8b4e (File: $020b4e)
+say something. 
+
+# $04:8b6f (File: $020b6f)
+The@King@is@such@a
+
+# $04:8b82 (File: $020b82)
+thoughtless@man.
+
+# $04:8bfd (File: $020bfd)
+days spent 
+
+# $04:8c0a (File: $020c0a)
+fulfillment. 
+
+# $04:8c19 (File: $020c19)
+ZMaybe Dr.Leo`
+
+# $04:8c2f (File: $020c2f)
+more fulfilled 
+
+# $04:8c93 (File: $020c93)
+mushroom, return 
+
+# $04:8ca7 (File: $020ca7)
+same place 
+
+# $04:8da7 (File: $020da7)
+Mushroom Shoes if 
+
+# $04:8de3 (File: $020de3)
+Mushroom Shoes. 
+
+# $04:8e17 (File: $020e17)
+wear these 
+
+# $04:8e36 (File: $020e36)
+still slip on
+
+# $04:8e45 (File: $020e45)
+slopes though. 
+
+# $04:8e5b (File: $020e5b)
+{CLEAR}$Mushroom Shoes. {CLEAR} 
+
+# $04:8e7e (File: $020e7e)
+Mushroom Shoes? 
+
+# $04:8eab (File: $020eab)
+mushrooms. 
+
+# $04:8ece (File: $020ece)
+Where shall we 
+
+# $04:8f6c (File: $020f6c)
+Week, week! 
+
+# $04:8f8b (File: $020f8b)
+our vehicle. 
+
+# $04:8fea (File: $020fea)
+{WAIT}{WAIT} placed 
+
+# $04:8ffe (File: $020ffe)
+mushroom. 
+
+# $04:904d (File: $02104d)
+Mechanical 
+
+# $04:9064 (File: $021064)
+defeated by normal 
+
+# $04:9078 (File: $021078)
+swords exist there. 
+
+# $04:9116 (File: $021116)
+call upon evil. 
+
+# $04:9127 (File: $021127)
+Because he refused, he
+
+# $04:9151 (File: $021151)
+He secretly gave us 4 
+
+# $04:917a (File: $02117a)
+run away. 
+
+# $04:9185 (File: $021185)
+Those stones 
+
+# $04:91aa (File: $0211aa)
+other stones 
+
+# $04:91c3 (File: $0211c3)
+Laboratory 
+
+# $04:9204 (File: $021204)
+Laboratory where 
+
+# $04:922b (File: $02122b)
+his daughters 
+
+# $04:923a (File: $02123a)
+name? Lisa? 
+
+# $04:9248 (File: $021248)
+wonder how she 
+
+# $04:929f (File: $02129f)
+Lucky Blade 
+
+# $04:92cc (File: $0212cc)
+larger GEMs. 
+
+# $04:958c (File: $02158c)
+completed. 
+
+# $04:96e1 (File: $0216e1)
+completed. 
+
+# $04:9741 (File: $021741)
+fast. They become
+
+# $04:9753 (File: $021753)
+adults within half 
+
+# $04:9798 (File: $021798)
+They never feel their 
+
+# $04:97b1 (File: $0217b1)
+too short. 
+
+# $04:97bd (File: $0217bd)
+They enjoy each 
+
+# $04:982b (File: $02182b)
+passage leads 
+
+# $04:983c (File: $02183c)
+underground lake, 
+
+# $04:9859 (File: $021859)
+Hey, you`re 
+
+# $04:98a0 (File: $0218a0)
+town, maybe 
+
+# $04:9904 (File: $021904)
+{WAIT}{WAIT} placed 
+
+# $04:9933 (File: $021933)
+fallen asleep. 
+
+# $04:9951 (File: $021951)
+childhood. 
+
+# $04:99ad (File: $0219ad)
+year ago? 
+
+# $04:99c0 (File: $0219c0)
+important. 
+
+# $04:99f3 (File: $0219f3)
+prison over
+
+# $04:9a15 (File: $021a15)
+actual bad people. 
+
+# $04:9a37 (File: $021a37)
+punishment room. 
+
+# $04:9aaa (File: $021aaa)
+Emblem E.{CLEAR} 
+
+# $04:9b99 (File: $021b99)
+finished. 
+
+# $04:9bb2 (File: $021bb2)
+race. Why don`
+
+# $04:9bda (File: $021bda)
+well everyone`
+
+# $04:9c46 (File: $021c46)
+ready, so 
+
+# $04:9c85 (File: $021c85)
+yet completed, so 
+
+# $04:9c99 (File: $021c99)
+cannot start 
+
+# $04:9cf3 (File: $021cf3)
+quite warm 
+
+# $04:9d07 (File: $021d07)
+mountain. 
+
+# $04:9d93 (File: $021d93)
+belongings 
+
+# $04:9da1 (File: $021da1)
+Aurora Ridge. 
+
+# $04:9db1 (File: $021db1)
+Magic Armor, 
+
+# $04:9dcb (File: $021dcb)
+Medical Herb. 
+
+# $04:9ddb (File: $021ddb)
+hope someone 
+
+# $04:9dea (File: $021dea)
+find them. 
+
+# $04:9e24 (File: $021e24)
+hometown. 
+
+# $04:9e30 (File: $021e30)
+mountain winds 
+
+# $04:9e65 (File: $021e65)
+Make sure 
+
+# $04:9ebf (File: $021ebf)
+Emblem F. {CLEAR} 
+
+# $04:a2bb (File: $0222bb)
+Ouch.... it hurts! 
+
+# $04:a2f1 (File: $0222f1)
+real form. 
+
+# $04:a4a0 (File: $0224a0)
+world. Here, 
+
+# $04:a4f4 (File: $0224f4)
+Good luck then. 
+
+# $04:a568 (File: $022568)
+been sitting 
+
+# $04:a576 (File: $022576)
+too long. 
+
+# $04:a589 (File: $022589)
+exercise. 
+
+# $04:a597 (File: $022597)
+It scares 
+
+# $04:a5b5 (File: $0225b5)
+exercising. 
+
+# $04:a69d (File: $02269d)
+laboratory. 
+
+# $04:a6b3 (File: $0226b3)
+door key. 
+
+# $04:a765 (File: $022765)
+room freely. 
+
+# $04:a77b (File: $02277b)
+something. 
+
+# $04:a841 (File: $022841)
+chase rats. 
+
+# $04:a873 (File: $022873)
+pleasant smell. 
+
+# $04:a939 (File: $022939)
+Laboratory. 
+
+# $04:a950 (File: $022950)
+second floor 
+
+# $04:a9b5 (File: $0229b5)
+some talkative ones. 
+
+# $04:aa82 (File: $022a82)
+Mystic Armor 
+
+# $04:aaa3 (File: $022aa3)
+{CLEAR}$Mystic Armor. {CLEAR} 
+
+# $04:aace (File: $022ace)
+GreenWood. 
+
+# $04:aaec (File: $022aec)
+Emblem G. {CLEAR} 
+
+# $04:ab21 (File: $022b21)
+Great Door joins you, 
+
+# $04:ab44 (File: $022b44)
+invisible 
+
+# $04:abd3 (File: $022bd3)
+Medical Herb? 
+
+# $04:abe3 (File: $022be3)
+Take any leaves 
+
+# $04:ac0e (File: $022c0e)
+Medical Herb. {CLEAR} 
+
+# $04:ac22 (File: $022c22)
+Medical Herbs 
+
+# $04:ac56 (File: $022c56)
+Oh, really? !
+
+# $04:acb6 (File: $022cb6)
+Dr.Leo`s. 
+
+# $04:acc3 (File: $022cc3)
+two models 
+
+# $04:acd6 (File: $022cd6)
+his room. 
+
+# $04:ace9 (File: $022ce9)
+swallowed into 
+
+# $04:ad70 (File: $022d70)
+devout mouse, 
+
+# $04:ad8b (File: $022d8b)
+purified. 
+
+# $04:ad9e (File: $022d9e)
+felt his body 
+
+# $04:adb2 (File: $022db2)
+become purified. 
+
+# $04:ae87 (File: $022e87)
+<{WAIT}{WAIT} hears 
+
+# $04:aec6 (File: $022ec6)
+throwing bombs inside 
+
+# $04:aede (File: $022ede)
+model towns. 
+
+# $04:af20 (File: $022f20)
+join you. 
+
+# $04:af3a (File: $022f3a)
+invisible 
+
+# $04:af4e (File: $022f4e)
+model towns
+
+# $04:af5a (File: $022f5a)
+joins you. 
+
+# $04:b003 (File: $023003)
+sleeping. 
+
+# $04:b00e (File: $02300e)
+He looks as 
+
+# $04:b020 (File: $023020)
+suffering. 
+
+# $04:b02c (File: $02302c)
+Uh, uh, Dr.Leo? 
+
+# $04:b04a (File: $02304a)
+{WAIT}{WAIT} places 
+
+# $04:b091 (File: $023091)
+taken away. 
+
+# $04:b09f (File: $02309f)
+had been hiding 
+
+# $04:b0d7 (File: $0230d7)
+left this. 
+
+# $04:b0eb (File: $0230eb)
+door key. {CLEAR} 
+
+# $04:b0fd (File: $0230fd)
+invisible 
+
+# $04:b14a (File: $02314a)
+Use magic 
+
+# $04:b15e (File: $02315e)
+enemies which 
+
+# $04:b16e (File: $02316e)
+cannot reach. 
+
+# $04:b1b1 (File: $0231b1)
+Actinidia. 
+
+# $04:b1bd (File: $0231bd)
+Take some 
+
+# $04:b1e7 (File: $0231e7)
+{CLEAR}$Actinidia leaves. {CLEAR} 
+
+# $04:b235 (File: $023235)
+large machines 
+
+# $04:b24b (File: $02324b)
+machines which 
+
+# $04:b25b (File: $02325b)
+summoned evil. 
+
+# $04:b27f (File: $02327f)
+When those machines 
+
+# $04:b2a6 (File: $0232a6)
+destroyed.
+
+# $04:b320 (File: $023320)
+nothing in
+
+# $04:b32c (File: $02332c)
+chest then 
+
+# $04:b35a (File: $02335a)
+Medical Herbs 
+
+# $04:b391 (File: $023391)
+chest doesn`
+
+# $04:b3a4 (File: $0233a4)
+anything. 
+
+# $04:b3d5 (File: $0233d5)
+his Medical Herbs 
+
+# $04:b3f5 (File: $0233f5)
+satisfied. 
+
+# $04:b409 (File: $023409)
+taking them 
+
+# $04:b416 (File: $023416)
+out? Well, it`
+
+# $04:b47e (File: $02347e)
+room belongs 
+
+# $04:b48e (File: $02348e)
+doll named Marie. 
+
+# $04:b4c6 (File: $0234c6)
+"girl named Lisa took
+
+# $04:b59c (File: $02359c)
+save Dr.Leo. 
+
+# $04:b5e4 (File: $0235e4)
+unless Deathtoll 
+
+# $04:b5f7 (File: $0235f7)
+defeated. 
+
+# $04:b646 (File: $023646)
+wonder how Lisa is, 
+
+# $04:b68a (File: $02368a)
+pass away 
+
+# $04:b695 (File: $023695)
+peacefully. 
+
+# $04:b6a3 (File: $0236a3)
+ZWe tools, exist 
+
+# $04:b6cb (File: $0236cb)
+happy if we`re 
+
+# $04:b6ee (File: $0236ee)
+<...we hurt if they 
+
+# $04:b73d (File: $02373d)
+way, we cannot. 
+
+# $04:b764 (File: $023764)
+understood
+
+# $04:b76f (File: $02376f)
+our feelings. 
+
+# $04:b796 (File: $023796)
+been happy. 
+
+# $04:b878 (File: $023878)
+been born 
+
+# $04:b89a (File: $02389a)
+anything. 
+
+# $04:b8f9 (File: $0238f9)
+We cannot 
+
+# $04:b906 (File: $023906)
+outside because
+
+# $04:b951 (File: $023951)
+Spark Bomb. 
+
+# $04:b963 (File: $023963)
+{CLEAR}$Spark Bomb. {CLEAR} 
+
+# $04:b9dd (File: $0239dd)
+swallowed into 
+
+# $04:ba1b (File: $023a1b)
+swallowed into 
+
+# $04:ba86 (File: $023a86)
+laboratory. 
+
+# $04:baaa (File: $023aaa)
+which only 
+
+# $04:bac1 (File: $023ac1)
+Zantetsu Sword 
+
+# $04:baeb (File: $023aeb)
+certain door 
+
+# $04:bba8 (File: $023ba8)
+Deathtoll? 
+
+# $04:bbd8 (File: $023bd8)
+No matter how small, 
+
+# $04:bc29 (File: $023c29)
+oxygen would 
+
+# $04:bc44 (File: $023c44)
+us would die. 
+
+# $04:bc7c (File: $023c7c)
+decisions 
+
+# $04:bca3 (File: $023ca3)
+daughter Lisa don`
+
+# $04:bcbf (File: $023cbf)
+obey, she 
+
+# $04:bccb (File: $023ccb)
+remain safe. 
+
+# $04:bcde (File: $023cde)
+waiting for
+
+# $04:bd15 (File: $023d15)
+forgive me! 
+
+# $04:bd28 (File: $023d28)
+ruin sooner or later. 
+
+# $04:bd42 (File: $023d42)
+do nothing 
+
+# $04:bd55 (File: $023d55)
+Oh, Master! 
+
+# $04:bf70 (File: $023f70)
+Laboratory? 
+
+# $04:bf7d (File: $023f7d)
+Good luck. 
+
+# $04:bffb (File: $023ffb)
+basement. 
+
+# $04:c066 (File: $024066)
+famous architect 
+
+# $04:c089 (File: $024089)
+architecture. 
+
+# $04:c0ce (File: $0240ce)
+<speed> architect. 
+
+# $04:c132 (File: $024132)
+basement. 
+
+# $04:c146 (File: $024146)
+soldier right 
+
+# $04:c16a (File: $02416a)
+captured, 
+
+# $04:c181 (File: $024181)
+Elemental Mail. 
+
+# $04:c1b0 (File: $0241b0)
+greatest man 
+
+# $04:c1c9 (File: $0241c9)
+I@must@say@that@or
+
+# $04:c1dc (File: $0241dc)
+I@will@be@punished.
+
+# $04:c20f (File: $02420f)
+greatest man 
+
+# $04:c2ec (File: $0242ec)
+{WAIT}{WAIT} placed 
+
+# $04:c2f8 (File: $0242f8)
+?Rod upon 
+
+# $04:c31f (File: $02431f)
+sleeping. 
+
+# $04:c341 (File: $024341)
+same dream 
+
+# $04:c34d (File: $02434d)
+as Dr.Leo. 
+
+# $04:c38b (File: $02438b)
+obey anymore! 
+
+# $04:c3d2 (File: $0243d2)
+Elemental Mail. {CLEAR} 
+
+# $04:c408 (File: $024408)
+Good luck! 
+
+# $04:c533 (File: $024533)
+greatest man 
+
+# $04:c54c (File: $02454c)
+I@must@say@this@or
+
+# $04:c55f (File: $02455f)
+I@will@be@punished.
+
+# $04:c61e (File: $02461e)
+<"sad sounding 
+
+# $04:c662 (File: $024662)
+without strings. 
+
+# $04:c692 (File: $024692)
+play some 
+
+# $04:c69d (File: $02469d)
+music let 
+
+# $04:c6c9 (File: $0246c9)
+24 years. 
+
+# $04:c6e4 (File: $0246e4)
+mine town, 
+
+# $04:c6f0 (File: $0246f0)
+Grass Valley. 
+
+# $04:c71a (File: $02471a)
+took care 
+
+# $04:c73a (File: $02473a)
+true feelings 
+
+# $04:c749 (File: $024749)
+though........ 
+
+# $04:c7a1 (File: $0247a1)
+no words. 
+
+# $04:c7ad (File: $0247ad)
+hope someday someone
+
+# $04:c7e2 (File: $0247e2)
+play music, 
+
+# $04:c7f1 (File: $0247f1)
+harp string 
+
+# $04:c817 (File: $024817)
+harp string.
+
+# $04:c833 (File: $024833)
+carefully if 
+
+# $04:c871 (File: $024871)
+It seems important 
+
+# $04:c906 (File: $024906)
+Queen passed away?
+
+# $04:c9fa (File: $0249fa)
+releasing me. 
+
+# $04:ca2d (File: $024a2d)
+Magridd. Do 
+
+# $04:ca66 (File: $024a66)
+{WAIT}{WAIT}`S pocket. 
+
+# $04:cabf (File: $024abf)
+Invulnerable Bracelet 
+
+# $04:cae7 (File: $024ae7)
+standing. 
+
+# $04:cb46 (File: $024b46)
+top floor 
+
+# $04:cb75 (File: $024b75)
+Platinum Card
+
+# $04:cb83 (File: $024b83)
+cannot enter. 
+
+# $04:cba1 (File: $024ba1)
+Platinum Card, 
+
+# $04:cc73 (File: $024c73)
+While listening 
+
+# $04:cc88 (File: $024c88)
+guard, {WAIT}{WAIT} sees a
+
+# $04:cc99 (File: $024c99)
+card under 
+
+# $04:cce1 (File: $024ce1)
+love listening 
+
+# $04:cd80 (File: $024d80)
+once disobeyed 
+
+# $04:cd91 (File: $024d91)
+Magridd. He wanted 
+
+# $04:cda6 (File: $024da6)
+save Dr.Leo. 
+
+# $04:cdc1 (File: $024dc1)
+torture room 
+
+# $04:cdea (File: $024dea)
+harp string 
+
+# $04:cdf9 (File: $024df9)
+birthday present 
+
+# $04:ce24 (File: $024e24)
+great music 
+
+# $04:cea0 (File: $024ea0)
+Medical Herbs
+
+# $04:cecd (File: $024ecd)
+read peoples` minds. 
+
+# $04:cefb (File: $024efb)
+Medical Herb. {CLEAR} 
+
+# $04:cf88 (File: $024f88)
+same music 
+
+# $04:cf94 (File: $024f94)
+sometimes sounds 
+
+# $04:cfa7 (File: $024fa7)
+wonderful 
+
+# $04:cfc5 (File: $024fc5)
+depressed. 
+
+# $04:d024 (File: $025024)
+soldiers` dormitory. 
+
+# $04:d03c (File: $02503c)
+taking care 
+
+# $04:d0da (File: $0250da)
+connected 
+
+# $04:d0fa (File: $0250fa)
+top floor. 
+
+# $04:d106 (File: $025106)
+Anyone without 
+
+# $04:d11b (File: $02511b)
+card cannot 
+
+# $04:d194 (File: $025194)
+things wandering 
+
+# $04:d299 (File: $025299)
+invisible passages 
+
+# $04:d2e3 (File: $0252e3)
+secret passages joins 
+
+# $04:d37c (File: $02537c)
+next King. 
+
+# $04:d388 (File: $025388)
+He, he, he. 
+
+# $04:d3d4 (File: $0253d4)
+Emblem H.{CLEAR} 
+
+# $04:d413 (File: $025413)
+been stolen! 
+
+# $04:d45f (File: $02545f)
+It seems some 
+
+# $04:d489 (File: $025489)
+hate being 
+
+# $04:d4db (File: $0254db)
+nice girl. 
+
+# $04:d4e7 (File: $0254e7)
+She seems 
+
+# $04:d52f (File: $02552f)
+sneak up behind 
+
+# $04:d545 (File: $025545)
+almost fell into
+
+# $04:d5f9 (File: $0255f9)
+happening. 
+
+# $04:d607 (File: $025607)
+do nothing 
+
+# $04:d61d (File: $02561d)
+Queen from
+
+# $04:d628 (File: $025628)
+passing away. 
+
+# $04:d63c (File: $02563c)
+failed as 
+
+# $04:d669 (File: $025669)
+...killed whomever 
+
+# $04:d682 (File: $025682)
+follow me. 
+
+# $04:d6d3 (File: $0256d3)
+Deathtoll. 
+
+# $04:d6e9 (File: $0256e9)
+thought it would 
+
+# $04:d716 (File: $025716)
+captured by her own 
+
+# $04:d743 (File: $025743)
+must apologize 
+
+# $04:d762 (File: $025762)
+Black Stone
+
+# $04:d784 (File: $025784)
+these now. 
+
+# $04:d7a9 (File: $0257a9)
+Deathtoll. 
+
+# $04:d7cc (File: $0257cc)
+finally realized 
+
+# $04:d7e0 (File: $0257e0)
+happening 
+
+# $04:d7ed (File: $0257ed)
+situation was
+
+# $04:d7fb (File: $0257fb)
+at its worst. 
+
+# $04:d831 (File: $025831)
+say thank you. 
+
+# $04:d858 (File: $025858)
+may sound 
+
+# $04:d889 (File: $025889)
+murderer. 
+
+# $04:d895 (File: $025895)
+(However, if 
+
+# $04:d8a5 (File: $0258a5)
+kills 100, 
+
+# $04:d8ba (File: $0258ba)
+praised as 
+
+# $04:d915 (File: $025915)
+beautiful women 
+
+# $04:d941 (File: $025941)
+realize no man 
+
+# $04:d953 (File: $025953)
+by himself. 
+
+# $04:d97a (File: $02597a)
+Deathtoll 
+
+# $04:d9b0 (File: $0259b0)
+compensating 
+
+# $04:d9e9 (File: $0259e9)
+town where 
+
+# $04:da21 (File: $025a21)
+themselves.
+
+# $04:da47 (File: $025a47)
+build statues 
+
+# $04:da7c (File: $025a7c)
+every generation about
+
+# $04:da94 (File: $025a94)
+accomplishments. 
+
+# $04:dafc (File: $025afc)
+removing some 
+
+# $04:dbb7 (File: $025bb7)
+save Dr.Leo. 
+
+# $04:dc2a (File: $025c2a)
+airship dock as soon 
+
+# $04:dc40 (File: $025c40)
+as possible. 
+
+# $04:dc7f (File: $025c7f)
+Doctor, we 
+
+# $04:dc93 (File: $025c93)
+start our ship. 
+
+# $04:dd50 (File: $025d50)
+Queen Magridd!
+
+# $04:dd60 (File: $025d60)
+destroyed 
+
+# $04:dd7b (File: $025d7b)
+realize?! 
+
+# $04:dd87 (File: $025d87)
+Shut up wimp! 
+
+# $04:dd96 (File: $025d96)
+Defeat him! 
+
+# $04:e052 (File: $026052)
+darkness. 
+
+# $04:e06b (File: $02606b)
+Black Stone, 
+
+# $04:e08a (File: $02608a)
+defeat Deathtoll. 
+
+# $04:e0ae (File: $0260ae)
+airship dock 
+
+# $04:e0c0 (File: $0260c0)
+top floor 
+
+# $04:e0cd (File: $0260cd)
+right tower. 
+
+# $04:e153 (File: $026153)
+GreenWood 
+
+# $04:e176 (File: $026176)
+collected 
+
+# $04:e1c7 (File: $0261c7)
+beckon evil. 
+
+# $04:e1e1 (File: $0261e1)
+last stone. 
+
+# $04:e1f3 (File: $0261f3)
+free him to
+
+# $04:e201 (File: $026201)
+last stone. 
+
+# $04:e22e (File: $02622e)
+Deathtoll. 
+
+# $04:e256 (File: $026256)
+dirtier than 
+
+# $04:e28a (File: $02628a)
+never easy. 
+
+# $04:e2a1 (File: $0262a1)
+Hey, keep walking. 
+
+# $04:e2f9 (File: $0262f9)
+still do what
+
+# $04:e332 (File: $026332)
+Deathtoll! 
+
+# $04:e38d (File: $02638d)
+cannot sacrifice 
+
+# $04:e3b4 (File: $0263b4)
+-please, release 
+
+# $04:e3d9 (File: $0263d9)
+precious thing 
+
+# $04:e403 (File: $026403)
+her, she would 
+
+# $04:e41c (File: $02641c)
+motivation. 
+
+# $04:e42b (File: $02642b)
+endure anything 
+
+# $04:e440 (File: $026440)
+imagining her 
+
+# $04:e45c (File: $02645c)
+honest man.
+
+# $04:e468 (File: $026468)
+'right, Dr.Leo. 
+
+# $04:e479 (File: $026479)
+Leave Lisa alone. 
+
+# $04:e491 (File: $026491)
+whispered 
+
+# $04:e4ae (File: $0264ae)
+stay@behind@me....
+
+# $04:e4c5 (File: $0264c5)
+Here,@take@this@and
+
+# $04:e4d9 (File: $0264d9)
+get@on@the@airship.
+
+# $04:e4ed (File: $0264ed)
+Please@take@care@of
+
+# $04:e50d (File: $02650d)
+run away. 
+
+# $04:e53f (File: $02653f)
+forgive me. 
+
+# $04:e563 (File: $026563)
+wrong generation. 
+
+# $04:e576 (File: $026576)
+Scientists 
+
+# $04:e5b7 (File: $0265b7)
+unexpected 
+
+# $04:e5c3 (File: $0265c3)
+scientist may ruin the
+
+# $04:e5ec (File: $0265ec)
+happiness comes 
+
+# $04:e614 (File: $026614)
+patientce. 
+
+# $04:e630 (File: $026630)
+leaving you. 
+
+# $04:e641 (File: $026641)
+passing away,
+
+# $04:e66a (File: $02666a)
+scientist 
+
+# $04:e677 (File: $026677)
+knowledge 
+
+# $04:e697 (File: $026697)
+Lisa,@be@happy.
+
+# $04:e6a7 (File: $0266a7)
+But@don`t@rush
+
+# $04:e6c1 (File: $0266c1)
+(Yes,@gradually........
+
+# $04:e790 (File: $026790)
+father passed away.
+
+# $04:e7b4 (File: $0267b4)
+him again. 
+
+# $04:e7c7 (File: $0267c7)
+finally able 
+
+# $04:e7d7 (File: $0267d7)
+him again. 
+
+# $04:e7e3 (File: $0267e3)
+Ever since 
+
+# $04:e7f7 (File: $0267f7)
+at Grass Valley, 
+
+# $04:e84f (File: $02684f)
+questions. 
+
+# $04:e88b (File: $02688b)
+far away even 
+
+# $04:e90b (File: $02690b)
+Deathtoll, right? 
+
+# $04:e923 (File: $026923)
+would say goodbye, 
+
+# $04:e946 (File: $026946)
+leave while 
+
+# $04:ea27 (File: $026a27)
+something. 
+
+# $04:ea38 (File: $026a38)
+<{CLEAR}$harp string.{CLEAR} > 
+
+# $04:eaa9 (File: $026aa9)
+been haunted by
+
+# $04:eac4 (File: $026ac4)
+<research.> 
+
+# $04:eade (File: $026ade)
+attention 
+
+# $04:eaf1 (File: $026af1)
+daughter. 
+
+# $04:eb0a (File: $026b0a)
+understand. 
+
+# $04:eb19 (File: $026b19)
+praised as 
+
+# $04:eb26 (File: $026b26)
+genius, scientist 
+
+# $04:eb58 (File: $026b58)
+kept inventing 
+
+# $04:eb68 (File: $026b68)
+things, Water Mill, 
+
+# $04:eb7d (File: $026b7d)
+Elevator, 
+
+# $04:ebb9 (File: $026bb9)
+evil, only 
+
+# $04:ebc6 (File: $026bc6)
+realize something. 
+
+# $04:ebe4 (File: $026be4)
+make peoples` 
+
+# $04:ebff (File: $026bff)
+tools start 
+
+# $04:ec17 (File: $026c17)
+their culture 
+
+# $04:ec37 (File: $026c37)
+become unhappy. 
+
+# $04:ec60 (File: $026c60)
+Deathtoll 
+
+# $04:ec8f (File: $026c8f)
+destroyed. 
+
+# $04:ec9e (File: $026c9e)
+Please, let 
+
+# $04:ecb0 (File: $026cb0)
+somewhere! 
+
+# $04:ecec (File: $026cec)
+make sure 
+
+# $04:ed1c (File: $026d1c)
+tomorrow. 
+
+# $04:ed3b (File: $026d3b)
+punished. 
+
+# $04:ed4d (File: $026d4d)
+understand this. 
+
+# $04:edf7 (File: $026df7)
+treasure chests hidden
+
+# $04:ee10 (File: $026e10)
+basements 
+
+# $04:ee4b (File: $026e4b)
+joins you, 
+
+# $04:ee5d (File: $026e5d)
+treasures 
+
+# $04:eeba (File: $026eba)
+Zantetsu Sword 
+
+# $04:eed3 (File: $026ed3)
+laboratory. 
+
+# $04:eee2 (File: $026ee2)
+Spirit Sword 
+
+# $04:eef2 (File: $026ef2)
+castle..... 
+
+# $04:ef04 (File: $026f04)
+remember where 
+
+# $04:ef15 (File: $026f15)
+invincible 
+
+# $04:effa (File: $026ffa)
+{WAIT}{WAIT} plugged 
+
+# $04:f008 (File: $027008)
+starting key. 
+
+# $04:f0b8 (File: $0270b8)
+Good luck then. 
+
+# $05:c00b (File: $02c00b)
+
+
+# $05:cc4e (File: $02cc4e)
+ UVWpU(U$URu@w"
+
+# $05:ce4b (File: $02ce4b)
+
+
+# $05:d24b (File: $02d24b)
+
+
+# $05:d62c (File: $02d62c)
+{CLEAR}
+
+# $05:da7f (File: $02da7f)
+
+
+# $05:db7c (File: $02db7c)
+{NL}
+
+# $05:dc76 (File: $02dc76)
+4fISuI3
+
+# $05:de0f (File: $02de0f)
+w3UE3#U#Uf
+
+# $05:ed7e (File: $02ed7e)
+A>I>I>A>e{WAIT}C
+
+# $05:ee45 (File: $02ee45)
+Gh{NUM} {NUM}4{CLEAR}SJM
+
+# $05:f0fb (File: $02f0fb)
+
+
+# $06:86cf (File: $0306cf)
+D{ITEM}EEEEE/OJO
+
+# $06:975f (File: $03175f)
+'"}~{|cdPN@Y@p@y
+
+# $06:995c (File: $03195c)
+s''A~B}B]SLcd|
+
+# $06:999f (File: $03199f)
+H?B?C?h?@?T?
+
+# $06:9dff (File: $031dff)
+{WAIT}{WAIT}DDbbAACCQQ
+
+# $06:a9a2 (File: $0329a2)
+'0O6I8G _
+
+# $06:ab8e (File: $032b8e)
+[xx0x
+
+# $06:ae2e (File: $032e2e)
+"UUUUUUUUUUUUUUUU
+
+# $06:b00f (File: $03300f)
+UUUUUUUUWT\Pp@
+
+# $06:cf31 (File: $034f31)
+-!VR%$VS^E={CLEAR}
+
+# $07:8c4c (File: $038c4c)
+CC_T##xC!B4"1
+
+# $07:c7a8 (File: $03c7a8)
+T2C{CLEAR}2B! "Tb"
+
+# $07:ca87 (File: $03ca87)
+?O0T%%CBT#
+
+# $08:83fd (File: $0403fd)
+#E%B
+
+# $08:8489 (File: $040489)
+{CLEAR}%x#3"5UD#3x3DDDC
+
+# $08:849b (File: $04049b)
+5CxS4C4C4C4x33
+
+# $08:8515 (File: $040515)
+
+
+# $08:8532 (File: $040532)
+#T32x#4ewTD4ExE4D4T!#3hc3S1
+
+# $08:85a7 (File: $0405a7)
+#3E2x3333C233x3DB#333
+
+# $08:85bd (File: $0405bd)
+x#5UVvTWfxD34DEC3"hDUDF 
+
+# $08:862f (File: $04062f)
+44Dx$TS4TUT4xUT4EUT33x35TVEuFUx4D3$3"
+
+# $08:86b5 (File: $0406b5)
+3224x3"43TUUUxUT4VWvEUxFVEgffeu
+
+# $08:8753 (File: $040753)
+343#4433xeFvUT44"x#"!
+
+# $08:87c4 (File: $0407c4)
+4C{ITEM}x!23C3DUDxEDEUEWVgxeUdfewfVxUVfeUTCTx3413""
+
+# $08:8861 (File: $040861)
+R2323333xgVWgUUEexDEC$4"
+
+# $08:88d4 (File: $0408d4)
+!h"23EUVefxCCF
+
+# $08:88f1 (File: $0408f1)
+3C33D333xVUUD2S
+
+# $08:895e (File: $04095e)
+"3324D5x3#C4SCDV
+
+# $08:89ec (File: $0409ec)
+h33SCDVfwx444E5EWf
+
+# $08:8a76 (File: $040a76)
+@111"Ex2C23#C4ExUEUEUEUVxVffU644Ed
+
+# $08:8afc (File: $040afc)
+1bcqTCEx D{NAME}$
+
+# $08:8b09 (File: $040b09)
+$#$xDDEDUEEExUEfUDT
+
+# $08:8b8c (File: $040b8c)
+""#3"45x{CLEAR}`f%D4EUxEEETDT4Dx4434
+
+# $08:8c17 (File: $040c17)
+Q#3x23T$$355x5E4E3$D4tDT
+
+# $08:8c42 (File: $040c42)
+#$ndDhdUE4T3DThCF
+
+# $08:8c93 (File: $040c93)
+024{CLEAR}!h12B33DEUx443CCPS4x4TCC3a34hefW3e3
+
+# $08:8d22 (File: $040d22)
+n2BBCEx13433%B4xDD346{PAUSE}43x433$"
+
+# $08:8d58 (File: $040d58)
+342S4ChD4C3
+
+# $08:8dab (File: $040dab)
+143Dx""222CB4xCD3D#333t$SDSDDC3hS5E%4
+
+# $08:91aa (File: $0411aa)
+t4VUD4VCEhC4S"23"DX
+
+# $08:91fd (File: $0411fd)
+23C42%ChDU3CU3Vdh$c%CFDD5hA#33C
+
+# $08:9262 (File: $041262)
+34D3ChD244C#FCh#$DC$T
+
+# $08:92bc (File: $0412bc)
+"42"4hD333$D5Dh344343%Ch433###
+
+# $08:931b (File: $04131b)
+X&D&UFGfdh324C3433hD4S"44D#XwTEEV3CUHfB{WAIT}!
+
+# $08:9377 (File: $041377)
+{NL}"
+
+# $08:93db (File: $0413db)
+{WAIT}#"#44X$eEUDVUUXVfVfgUgVXeEWWVVfCXFUVEC3C#He
+
+# $08:943e (File: $04143e)
+"#3$4EXTFeEeVefXgeFfgVfFXUVTVeVdDX4ED42"#3H1
+
+# $08:94a2 (File: $0414a2)
+2"C32X44E6FDEEXVUgUeWfwh33#3333#XEET33#3"H
+
+# $08:9507 (File: $041507)
+##$XD4DEEEEFXUEUVffUVXUWeVUUDETC#3"#2
+
+# $08:9566 (File: $041566)
+#$6VFfEX4C4DEEEeXDUUDUUUUXVTUUEUDTXDS3C"32"H32
+
+# $08:95cc (File: $0415cc)
+"2"DX3EDEEFeEXeVeEfVUVXUEUEUEE4X5443#2"!8dR
+
+# $08:962c (File: $04162c)
+
+
+# $08:9690 (File: $041690)
+{NL}"$34DX#2#C344DXD4DDUDUDXET4UTTEDXD4T4DC32HeBDB2"
+
+# $08:96f2 (File: $0416f2)
+
+
+# $08:975e (File: $04175e)
+""23343XDEDDETEUXEU4UUDEUX4TEC4342HgET2#2" H{NL}
+
+# $08:97c3 (File: $0417c3)
+22EEUX3#44445EX5DEDEUUDXEEDDDDD3XD2332
+
+# $08:9825 (File: $041825)
+3#4DEUX3334C4CCX4D4D4C4DX4D4434C3HgufUUdE4H$$
+
+# $08:988a (File: $04188a)
+#335X"##333E4X4DDDDDEDX5DDCDC4DX$$3
+
+# $08:98f5 (File: $0418f5)
+CEUFWX4#4C4DDDXDSDTDDDDXCDC343#2HTSR31
+
+# $08:9954 (File: $041954)
+H{WAIT}""B34TEX#3#333D#X434C4C33TffffUUUUHUUUDd54#8DC2!
+
+# $08:99ba (File: $0419ba)
+!21CCDX#"3"4243X3D2D3434HvfgfGWVVHUUEE4D3$8URA10{NL}
+
+# $08:9a27 (File: $041a27)
+##$#4X#D34D4C4XC4C3D242HgUeeDT548fgF$C! 
+
+# $08:9a8c (File: $041a8c)
+%3CH6EEUVUWfX343434C3HvwuvvfVVHEUE4C31"H 
+
+# $08:9aef (File: $041aef)
+##CHDD6EEUFUHVeeffdfeHVVVVUUUUHETEDD3348UTE3"
+
+# $08:9b50 (File: $041b50)
+
+
+# $08:9bbc (File: $041bbc)
+12B3SH4EEUEVdVHfVfVefeVHeeUeFdETHDC3S#""18!0
+
+# $08:9c1e (File: $041c1e)
+{CLEAR}{NL}!154H"33#C5CDHTDeDUUEeHEUTUd5U5HTDCDC3338DT$3 1
+
+# $08:9c84 (File: $041c84)
+#FuH"#"3B3D4HD4DDE4EDHEDECECE3HD4C3CB328fDE$C"2!8
+
+# $08:9cee (File: $041cee)
+!ACCUH2333DCDDHDU4FDEDDHEDD4D$344f33"!
+
+# $08:9d54 (File: $041d54)
+{PAUSE}C8##3CDTEe8FVVVffvgH343433438wfWVVFVD8ECC"B!
+
+# $08:9db9 (File: $041db9)
+8 !#"$$4584TETEeUT8dVTVEUUE8TESET5D5844B34"#
+
+# $08:9e22 (File: $041e22)
+25383"3CCDDD8ETEUDUTU85UCTDDD4842C222#!($B$
+
+# $08:9e8b (File: $041e8b)
+13&3FU8#334$4448C5444444(gWWVVedU(U4D4#211
+
+# $08:9ef7 (File: $041ef7)
+44$SSE(SUEUFETV(EEUTETED(D44C4#3#
+
+# $08:9f5c (File: $041f5c)
+##3#(4B53D3DC(4D$43433(3#$"2#!#
+
+# $08:a042 (File: $042042)
+UBTSRED"{PAUSE}CC#
+
+# $08:a161 (File: $042161)
+
+
+# $08:a281 (File: $042281)
+43xa6UD3Du"t#3B%$0
+
+# $08:a33f (File: $04233f)
+DX"!32R#5Th"#"
+
+# $08:a34e (File: $04234e)
+24"2h4#32333Ch3C3S43D4hCDC4DDD4hD4U3DDDTh4TDTDTDEhEDUDUDUDhEUEEEEEEhUDTTTETEhDTESDTTDhCDDT4CDChDC4BDBC3hB4333232XVVFTFTETXDDS4C44CX233#2#1"DC3"
+
+# $08:a4b9 (File: $0424b9)
+`({WAIT}!#1%A{PAUSE}B(3E42S4TC(SFTCFEV4(eUTUWDVU(TVFUUUVF(TVeDeeDe(UUdVDeUV(U5fDUUTU(6VDETUSe(CUTDe4EU(T4UDDU4D(T4DECDCD(4D34C433(43#C1422
+
+# $08:b6f1 (File: $0436f1)
+j{PAUSE}A{NL}"
+
+# $08:b72d (File: $04372d)
+{NL}6fz#D"33UwQz
+
+# $08:b7bf (File: $0437bf)
+#jdS2#fTDBj"24FB
+
+# $08:b8b8 (File: $0438b8)
+UTS#z#33!3DeDz!
+
+# $08:b8fc (File: $0438fc)
+3""#C4B!z2!DEUU1
+
+# $08:b930 (File: $043930)
+
+
+# $08:b970 (File: $043970)
+z3"333DT3z3EgeT1!"z"EDD"
+
+# $08:b9ae (File: $0439ae)
+Tz#"34TD34zVffTC!"4zDUC31
+
+# $08:b9eb (File: $0439eb)
+3Fez""4C23#VzVUT2!"4Dz4U3
+
+# $08:ba6a (File: $043a6a)
+#Tz#"""3DVdzC""
+
+# $08:baae (File: $043aae)
+##DUdCz2"##EET2j#4VfT""
+
+# $08:bae6 (File: $043ae6)
+b4DUz3343D$UCzDC3"3
+
+# $08:bb22 (File: $043b22)
+
+
+# $09:8888 (File: $048888)
+B{PAUSE}C{PAUSE}R{PAUSE}S{PAUSE}D{PAUSE}E{PAUSE}T{PAUSE}U{PAUSE}F
+
+# $09:88a0 (File: $0488a0)
+H{PAUSE}I{PAUSE}X{PAUSE}Y{PAUSE}J{PAUSE}K{PAUSE}Z{PAUSE}[{PAUSE}L
+
+# $09:88b8 (File: $0488b8)
+N{PAUSE}O{PAUSE}^{PAUSE}_{PAUSE}`{PAUSE}a{PAUSE}p{PAUSE}q{PAUSE}b
+
+# $09:8cb0 (File: $048cb0)
+{NUM}xgx{NUM}xgx{NUM}x{NUM}x{NUM}x{NUM}x
+
+# $09:9853 (File: $049853)
+
+
+# $09:9bf8 (File: $049bf8)
+
+
+# $09:9c03 (File: $049c03)
+HSLjfspd|`
+
+# $09:a470 (File: $04a470)
+{CLEAR}``pCp{NUM}pGpgp{NUM}p
+
+# $09:a711 (File: $04a711)
+`/p'xwxs|sxqpxz
+
+# $09:a90f (File: $04a90f)
+
+
+# $09:a930 (File: $04a930)
+{WAIT}w
+
+# $09:af7d (File: $04af7d)
+8{NAME}^TFP{PAUSE}"d{NUM} e{NAME}
+
+# $09:bf2f (File: $04bf2f)
+
+
+# $09:f1ff (File: $04f1ff)
+&KLGEEECABDFFFHKLPQRRRRRRRRRRRRPQSMRRRRRRRRRRRRSMSMRRRRRRRRRRRRSMSMRRRRRRRRRRRRSMSMRRRRRRRRRRRRSMNORRRRRRRRRRRRNOPQRRRRRRRRRRRRPQSMRRRRRRRRRRRRSMSMRRRRRRRRRRRRSMSMRRRRRRRRRRRRSMSMRRRRRRRRRRRRSMNORRRRRRRRRRRRNOIJGEEEECDFFFFHIJ
+
+# $09:f519 (File: $04f519)
+{CLEAR}{NAME}Y8"|ix:BP)dBu
+
+# $09:fc58 (File: $04fc58)
+{ITEM}b9{NAME}X?{NL}V+PA{NL}
+
+# $0a:91ff (File: $0511ff)
+
+
+# $0a:9218 (File: $051218)
+0pppxhxh}e
+
+# $0a:97d8 (File: $0517d8)
+D
+
+# $0a:a594 (File: $052594)
+*\{NL}]0ppphxhxd|l|j~n
+
+# $0b:d83e (File: $05d83e)
+Z3zH{NL}
+
+# $0d:93e6 (File: $0693e6)
+ANN{PAUSE})h5D)(F
+
+# $0d:944e (File: $06944e)
+ANN{PAUSE})h5D)(F
+
+# $0d:94d9 (File: $0694d9)
+5b-b1d5b1b-
+
+# $0d:9f10 (File: $069f10)
+d'T u@<@<'T u
+
+# $0d:9fd4 (File: $069fd4)
+d'T@< u'T@< u
+
+# $0d:9ff4 (File: $069ff4)
+d'T@< u'T@< u
+
+# $0d:b385 (File: $06b385)
+
+
+# $0d:b3de (File: $06b3de)
+%E?%D?$D!$C!#C-#B-"B..."A...!A"!@" @'{NL}0
+
+# $0d:b51e (File: $06b51e)
+
+
+# $0e:cf42 (File: $074f42)
+SX]skZ{PAUSE}'$#
+
+# $0e:ebf0 (File: $076bf0)
+PX4{ITEM}{WAIT}IDHFl
+
+# $0f:9e40 (File: $079e40)
+k{ITEM}
+
+# $0f:bfd1 (File: $07bfd1)
+
+
+# $0f:fc44 (File: $07fc44)
+{NL}xS ty{PAUSE}'LX\
+
+# $0f:ffff (File: $07ffff)
+
+
+# $11:a0b3 (File: $08a0b3)
+]2...H&S.?zaP
+
+# $11:aab5 (File: $08aab5)
+<'
+
+# $11:b7e0 (File: $08b7e0)
+rvc@p!r{NL}>1!
+
+# $12:8ffe (File: $090ffe)
+is6_7jy8'A 
+
+# $12:cb47 (File: $094b47)
+rz
+
+# $13:d0b7 (File: $09d0b7)
+qI<&a?G-
+
+# $13:ffcd (File: $09ffcd)
+J)J)J)J)J)J)J)J)J)J)
+
+# $14:ac98 (File: $0a2c98)
+Z
+
+# $14:ad74 (File: $0a2d74)
+`` q"QpS*d ...{ITEM}
+
+# $15:8964 (File: $0a8964)
+#d{ITEM}{NUM}{NUM}H\{NL}<1{NAME}xD6S)
+
+# $16:82a3 (File: $0b02a3)
+\'l2A\FcDb
+
+# $17:8526 (File: $0b8526)
+{PAUSE}C#s!@n2h*T{NUM}
+
+# $17:8fb5 (File: $0b8fb5)
+!N`{NUM}P!{PAUSE}bS :!BK(
+
+# $17:9ef8 (File: $0b9ef8)
+a"+BI2[y3o
+
+# $17:c91d (File: $0bc91d)
+3Zw(DS:w({PAUSE}s
+
+# $17:ca83 (File: $0bca83)
+h@t_@u{NL} <'PB 3,|z
+
+# $18:9287 (File: $0c1287)
+V+1{zD}U%h*{NAME}Z
+
+# $18:9f57 (File: $0c1f57)
+a"
+
+# $18:a86b (File: $0c286b)
+H@E(!...@E){PAUSE}B'E"
+
+# $18:bdd2 (File: $0c3dd2)
+A95Br'&pRE
+
+# $18:bf12 (File: $0c3f12)
+"hP4~B c"8!,VP
+
+# $18:c757 (File: $0c4757)
+
+
+# $19:8966 (File: $0c8966)
+W-z'@JL!"x
+
+# $19:8fdb (File: $0c8fdb)
+&LV{NAME}pa{ITEM}HV{NAME}
+
+# $19:a239 (File: $0ca239)
+8?;"cu-PFC
+
+# $1a:994d (File: $0d194d)
+0'wX-CtZ31
+
+# $1a:a099 (File: $0d2099)
+N:`E`w{CLEAR}h{WAIT}"X)
+
+# $1a:e0cc (File: $0d60cc)
+>*=)IN`SCX*
+
+# $1a:e106 (File: $0d6106)
+]8!`TghAC?
+
+# $1b:9f0f (File: $0d9f0f)
+_...)0$?Hza"j!{PAUSE}<!q
+
+# $1b:a1cb (File: $0da1cb)
+P...D;.pj!P{WAIT}p
+
+# $1c:bea3 (File: $0e3ea3)
+ '-CtbQMTSW
+
+# $1d:96af (File: $0e96af)
+iN@r-y14Z-"
+
+# $1d:a87c (File: $0ea87c)
+XTY@Q{NL}X{NUM}U4A
+
+# $1d:b02d (File: $0eb02d)
+Z{PAUSE}{WAIT}V'q{NAME}@N$X
+
+# $1d:eaa7 (File: $0eeaa7)
+#HNX{WAIT}y
+
+# $1e:b5e2 (File: $0f35e2)
+B{ITEM}{CLEAR}>rAUd{CLEAR}Hl
+
+# $1e:bd11 (File: $0f3d11)
+0!/1M=LMI]HiA
+
+# $1e:c7ba (File: $0f47ba)
+k'S
+
+# $1e:ca5a (File: $0f4a5a)
+k'S
+
+# $1f:805a (File: $0f805a)
+{WAIT}{WAIT} placed 
+
+# $1f:808a (File: $0f808a)
+dream. Isn`
+
+# $1f:8123 (File: $0f8123)
+Magma Rain. 
+
+# $1f:819c (File: $0f819c)
+creatures. 
+
+# $1f:81ad (File: $0f81ad)
+work together so
+
+# $1f:81be (File: $0f81be)
+we may revive 
+
+# $1f:81fa (File: $0f81fa)
+joined you. 
+
+# $1f:827c (File: $0f827c)
+under water 
+
+# $1f:8289 (File: $0f8289)
+looked different 
+
+# $1f:832c (File: $0f832c)
+Medical Herbs 
+
+# $1f:836d (File: $0f836d)
+Medical herbs 
+
+# $1f:839c (File: $0f839c)
+need another. 
+
+# $1f:8428 (File: $0f8428)
+best jumper! 
+
+# $1f:8439 (File: $0f8439)
+show you. 
+
+# $1f:84ab (File: $0f84ab)
+at dancing. 
+
+# $1f:84c2 (File: $0f84c2)
+students return, 
+
+# $1f:84e1 (File: $0f84e1)
+great dance. 
+
+# $1f:8521 (File: $0f8521)
+our dance.
+
+# $1f:8533 (File: $0f8533)
+more fun if
+
+# $1f:8554 (File: $0f8554)
+easiest dance, 
+
+# $1f:86ad (File: $0f86ad)
+island, Durean. 
+
+# $1f:86bf (File: $0f86bf)
+must find 
+
+# $1f:8717 (File: $0f8717)
+volcano, right? 
+
+# $1f:8819 (File: $0f8819)
+Travel up 
+
+# $1f:883e (File: $0f883e)
+rain, Blester. 
+
+# $1f:8883 (File: $0f8883)
+If@you@travel
+
+# $1f:8891 (File: $0f8891)
+the@coral@reef@you
+
+# $1f:88a4 (File: $0f88a4)
+will@find@a@passage@to
+
+# $1f:88bb (File: $0f88bb)
+a@small@creek.
+
+# $1f:88fc (File: $0f88fc)
+coral reef 
+
+# $1f:890f (File: $0f890f)
+dangerous 
+
+# $1f:891a (File: $0f891a)
+monsters. Make sure 
+
+# $1f:8931 (File: $0f8931)
+magic there. 
+
+# $1f:8a33 (File: $0f8a33)
+4 mermaid statues 
+
+# $1f:8a50 (File: $0f8a50)
+Those statues 
+
+# $1f:8a5f (File: $0f8a5f)
+prevented 
+
+# $1f:8aee (File: $0f8aee)
+Proceed right along 
+
+# $1f:8b0e (File: $0f8b0e)
+shore reef, Rockbird. 
+
+# $1f:8b29 (File: $0f8b29)
+<{WAIT}{WAIT} hears 
+
+# $1f:8b35 (File: $0f8b35)
+small voice. 
+
+# $1f:8be6 (File: $0f8be6)
+Bubble Armor? 
+
+# $1f:8c24 (File: $0f8c24)
+breathe under water, 
+
+# $1f:8c4b (File: $0f8c4b)
+{CLEAR}$Bubble Armor. {CLEAR} 
+
+# $1f:8c67 (File: $0f8c67)
+been hurt? 
+
+# $1f:8c8d (File: $0f8c8d)
+heal you. 
+
+# $1f:8d30 (File: $0f8d30)
+let anyone pass. 
+
+# $1f:8d9d (File: $0f8d9d)
+teardrops 
+
+# $1f:8dbb (File: $0f8dbb)
+turn Magma 
+
+# $1f:8dd0 (File: $0f8dd0)
+Use them at 
+
+# $1f:8de5 (File: $0f8de5)
+volcanic island. 
+
+# $1f:8e15 (File: $0f8e15)
+These teardrops 
+
+# $1f:8e30 (File: $0f8e30)
+mermaid when
+
+# $1f:8e3d (File: $0f8e3d)
+evil invaded 
+
+# $1f:8e54 (File: $0f8e54)
+Icy teardrops, filled 
+
+# $1f:8e80 (File: $0f8e80)
+hottest Magma
+
+# $1f:8f09 (File: $0f8f09)
+Walk downward under 
+
+# $1f:8f28 (File: $0f8f28)
+volcanic island, 
+
+# $1f:90a2 (File: $0f90a2)
+Magic Flair. 
+
+# $1f:90b6 (File: $0f90b6)
+Magic Flair 
+
+# $1f:90ec (File: $0f90ec)
+hit points. 
+
+# $1f:9106 (File: $0f9106)
+referring to, right? 
+
+# $1f:926d (File: $0f926d)
+saved me. 
+
+# $1f:9278 (File: $0f9278)
+Everything 
+
+# $1f:929e (File: $0f929e)
+One glance at 
+
+# $1f:92b3 (File: $0f92b3)
+caused desire 
+
+# $1f:92cc (File: $0f92cc)
+overwhelm me. 
+
+# $1f:92e6 (File: $0f92e6)
+disappeared 
+
+# $1f:9312 (File: $0f9312)
+bad feeling dominate 
+
+# $1f:9328 (File: $0f9328)
+us we created 
+
+# $1f:9339 (File: $0f9339)
+ourselves. 
+
+# $1f:934d (File: $0f934d)
+Blue Stone. 
+
+# $1f:937e (File: $0f937e)
+creatures. 
+
+# $1f:93a1 (File: $0f93a1)
+<"beautiful 
+
+# $1f:93f1 (File: $0f93f1)
+releasing me. 
+
+# $1f:9446 (File: $0f9446)
+St.Elles. 
+
+# $1f:9454 (File: $0f9454)
+dolphin, Lue, used
+
+# $1f:9479 (File: $0f9479)
+strange, whenever
+
+# $1f:949d (File: $0f949d)
+his daughter 
+
+# $1f:94b5 (File: $0f94b5)
+miss them 
+
+# $1f:94c1 (File: $0f94c1)
+sometimes find myself 
+
+# $1f:94f5 (File: $0f94f5)
+Lisa must 
+
+# $1f:9512 (File: $0f9512)
+comes Lue. He
+
+# $1f:9578 (File: $0f9578)
+home town along 
+
+# $1f:95b5 (File: $0f95b5)
+PHey Lala, 
+
+# $1f:95de (File: $0f95de)
+beautiful. 
+
+# $1f:95f8 (File: $0f95f8)
+together. 
+
+# $1f:96aa (File: $0f96aa)
+ghost ship. 
+
+# $1f:9722 (File: $0f9722)
+dreaming. 
+
+# $1f:972d (File: $0f972d)
+She looked 
+
+# $1f:974b (File: $0f974b)
+sunken ship. 
+
+# $1f:97e9 (File: $0f97e9)
+coral reef 
+
+# $1f:97fc (File: $0f97fc)
+dolphins. 
+
+# $1f:9822 (File: $0f9822)
+treasure. 
+
+# $1f:987e (File: $0f987e)
+releasing me!
+
+# $1f:9894 (File: $0f9894)
+Red-Hot Stick. 
+
+# $1f:98a7 (File: $0f98a7)
+Phoenix resides on
+
+# $1f:98cd (File: $0f98cd)
+Red-Hot Stick
+
+# $1f:9a00 (File: $0f9a00)
+Okay, wait. 
+
+# $1f:9a11 (File: $0f9a11)
+This@is@a@secret,@the
+
+# $1f:9a27 (File: $0f9a27)
+Queen@looks@like@this.
+
+# $1f:9a40 (File: $0f9a40)
+She@always@sits@like
+
+# $1f:9a5b (File: $0f9a5b)
+She@looks@so@mean.
+
+# $1f:9a70 (File: $0f9a70)
+Lue,@the@dolphin@has
+
+# $1f:9a85 (File: $0f9a85)
+been@captured!
+
+# $1f:9a94 (File: $0f9a94)
+Please@save@him!
+
+# $1f:9ab1 (File: $0f9ab1)
+leave whenever
+
+# $1f:9ac0 (File: $0f9ac0)
+he wishes, 
+
+# $1f:9ad0 (File: $0f9ad0)
+never comes out. 
+
+# $1f:9ae2 (File: $0f9ae2)
+Maybe he likes 
+
+# $1f:9b48 (File: $0f9b48)
+{WAIT}{WAIT} touches 
+
+# $1f:9b6a (File: $0f9b6a)
+Hey, didn`
+
+# $1f:9bfc (File: $0f9bfc)
+<Hey, somebody 
+
+# $1f:9c29 (File: $0f9c29)
+inventor, Dr.Leo.
+
+# $1f:9c56 (File: $0f9c56)
+It attracts anyone who
+
+# $1f:9c6d (File: $0f9c6d)
+looks at it 
+
+# $1f:9c80 (File: $0f9c80)
+changes their 
+
+# $1f:9c8f (File: $0f9c8f)
+personality. 
+
+# $1f:9ca4 (File: $0f9ca4)
+mind, they 
+
+# $1f:9cb9 (File: $0f9cb9)
+great person.
+
+# $1f:9cd5 (File: $0f9cd5)
+mind, they 
+
+# $1f:9ce9 (File: $0f9ce9)
+bad person. 
+
+# $1f:9d11 (File: $0f9d11)
+took it. Then she 
+
+# $1f:9d47 (File: $0f9d47)
+Blue Stone
+
+# $1f:9d73 (File: $0f9d73)
+Thunder Ring. {CLEAR} 
+
+# $1f:9da9 (File: $0f9da9)
+wonder how he is. 
+
+# $1f:9e57 (File: $0f9e57)
+tried hard 
+
+# $1f:9eaa (File: $0f9eaa)
+bad person. She 
+
+# $1f:9ebd (File: $0f9ebd)
+attracted 
+
+# $1f:a04b (File: $0fa04b)
+small voice. 
+
+# $1f:a098 (File: $0fa098)
+Southerta, through the
+
+# $1f:a0bf (File: $0fa0bf)
+Bubble Clothing. 
+
+# $1f:a0d4 (File: $0fa0d4)
+Listen closely 
+
+# $1f:a0f2 (File: $0fa0f2)
+mermaid statues. 
+
+# $1f:a1ce (File: $0fa1ce)
+ball, shiny 
+
+# $1f:a1dc (File: $0fa1dc)
+black.... 
+
+# $1f:a1ea (File: $0fa1ea)
+That Pearl! 
+
+# $1f:a266 (File: $0fa266)
+conversation 
+
+# $1f:a285 (File: $0fa285)
+Daddy, how 
+
+# $1f:a298 (File: $0fa298)
+passed since 
+
+# $1f:a2a7 (File: $0fa2a7)
+ship sank? 
+
+# $1f:a2b5 (File: $0fa2b5)
+too hungry 
+
+# $1f:a2c2 (File: $0fa2c2)
+cannot travel any 
+
+# $1f:a2f7 (File: $0fa2f7)
+son, some 
+
+# $1f:a307 (File: $0fa307)
+life does 
+
+# $1f:a313 (File: $0fa313)
+end at death. 
+
+# $1f:a330 (File: $0fa330)
+born into 
+
+# $1f:a33c (File: $0fa33c)
+new life. Lives, they 
+
+# $1f:a35a (File: $0fa35a)
+everlasting.
+
+# $1f:a36f (File: $0fa36f)
+hear some 
+
+# $1f:a37a (File: $0fa37a)
+voices..... maybe 
+
+# $1f:a396 (File: $0fa396)
+calling me. 
+
+# $1f:a3e5 (File: $0fa3e5)
+calling me.
+
+# $1f:a409 (File: $0fa409)
+treasure chest. 
+
+# $1f:a41b (File: $0fa41b)
+hope someone 
+
+# $1f:a518 (File: $0fa518)
+monuments 
+
+# $1f:a52d (File: $0fa52d)
+lightning 
+
+# $1f:a538 (File: $0fa538)
+pyramids. 
+
+# $1f:a54c (File: $0fa54c)
+Thunder Ring 
+
+# $1f:a576 (File: $0fa576)
+down lightning 
+
+# $1f:a590 (File: $0fa590)
+monsters. 
+
+# $1f:a627 (File: $0fa627)
+{WAIT}{WAIT} poured 
+
+# $1f:a9a5 (File: $0fa9a5)
+Help! Somebody 
+
+# $1f:a9b5 (File: $0fa9b5)
+please...... 
+
+# $1f:aa15 (File: $0faa15)
+Allright, 
+
+# $1f:fa42 (File: $0ffa42)
+)4BQ^gnswz|}~
+
+# $1f:fab3 (File: $0ffab3)
+MlL\=-\acN8HE
+

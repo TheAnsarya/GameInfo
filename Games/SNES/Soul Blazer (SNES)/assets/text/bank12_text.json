@@ -1,0 +1,20 @@
+[
+	{
+		"file_offset": 593918,
+		"bank": 18,
+		"address": 36862,
+		"cpu_address": "$12:8ffe",
+		"length": 11,
+		"raw": "6973365f376a7938804120",
+		"text": "is6_7jy8'A "
+	},
+	{
+		"file_offset": 609095,
+		"bank": 18,
+		"address": 52039,
+		"cpu_address": "$12:cb47",
+		"length": 12,
+		"raw": "727a00047e637507813c8261",
+		"text": "rz"
+	}
+]

@@ -1,0 +1,146 @@
+[
+	{
+		"file_offset": 297096,
+		"bank": 9,
+		"address": 34952,
+		"cpu_address": "$09:8888",
+		"length": 17,
+		"raw": "4204430452045304440445045404550446",
+		"text": "B{PAUSE}C{PAUSE}R{PAUSE}S{PAUSE}D{PAUSE}E{PAUSE}T{PAUSE}U{PAUSE}F"
+	},
+	{
+		"file_offset": 297120,
+		"bank": 9,
+		"address": 34976,
+		"cpu_address": "$09:88a0",
+		"length": 17,
+		"raw": "48044904580459044a044b045a045b044c",
+		"text": "H{PAUSE}I{PAUSE}X{PAUSE}Y{PAUSE}J{PAUSE}K{PAUSE}Z{PAUSE}[{PAUSE}L"
+	},
+	{
+		"file_offset": 297144,
+		"bank": 9,
+		"address": 35000,
+		"cpu_address": "$09:88b8",
+		"length": 17,
+		"raw": "4e044f045e045f04600461047004710462",
+		"text": "N{PAUSE}O{PAUSE}^{PAUSE}_{PAUSE}`{PAUSE}a{PAUSE}p{PAUSE}q{PAUSE}b"
+	},
+	{
+		"file_offset": 298160,
+		"bank": 9,
+		"address": 36016,
+		"cpu_address": "$09:8cb0",
+		"length": 17,
+		"raw": "0778677807786778077807780778077800",
+		"text": "{NUM}xgx{NUM}xgx{NUM}x{NUM}x{NUM}x{NUM}x"
+	},
+	{
+		"file_offset": 301139,
+		"bank": 9,
+		"address": 38995,
+		"cpu_address": "$09:9853",
+		"length": 14,
+		"raw": "006f607770777077706c60434066",
+		"text": ""
+	},
+	{
+		"file_offset": 302072,
+		"bank": 9,
+		"address": 39928,
+		"cpu_address": "$09:9bf8",
+		"length": 10,
+		"raw": "00370078007700705249",
+		"text": ""
+	},
+	{
+		"file_offset": 302083,
+		"bank": 9,
+		"address": 39939,
+		"cpu_address": "$09:9c03",
+		"length": 10,
+		"raw": "48534c6a667370647c60",
+		"text": "HSLjfspd|`"
+	},
+	{
+		"file_offset": 304240,
+		"bank": 9,
+		"address": 42096,
+		"cpu_address": "$09:a470",
+		"length": 17,
+		"raw": "0360607043700770477067700770007000",
+		"text": "{CLEAR}``pCp{NUM}pGpgp{NUM}p"
+	},
+	{
+		"file_offset": 304913,
+		"bank": 9,
+		"address": 42769,
+		"cpu_address": "$09:a711",
+		"length": 15,
+		"raw": "602f7027787778737c73787170787a",
+		"text": "`/p'xwxs|sxqpxz"
+	},
+	{
+		"file_offset": 305423,
+		"bank": 9,
+		"address": 43279,
+		"cpu_address": "$09:a90f",
+		"length": 18,
+		"raw": "007878787b787b387b3071003a0078007b04",
+		"text": ""
+	},
+	{
+		"file_offset": 305456,
+		"bank": 9,
+		"address": 43312,
+		"cpu_address": "$09:a930",
+		"length": 18,
+		"raw": "027700770077007400750077007700007e81",
+		"text": "{WAIT}w"
+	},
+	{
+		"file_offset": 307069,
+		"bank": 9,
+		"address": 44925,
+		"cpu_address": "$09:af7d",
+		"length": 13,
+		"raw": "38055e54465004816407206505",
+		"text": "8{NAME}^TFP{PAUSE}\"d{NUM} e{NAME}"
+	},
+	{
+		"file_offset": 311087,
+		"bank": 9,
+		"address": 48943,
+		"cpu_address": "$09:bf2f",
+		"length": 13,
+		"raw": "00200040407878787878783838",
+		"text": ""
+	},
+	{
+		"file_offset": 324095,
+		"bank": 9,
+		"address": 61951,
+		"cpu_address": "$09:f1ff",
+		"length": 257,
+		"raw": "264b4c4745454543414244464646484b4c50515252525252525252525252525051534d525252525252525252525252534d534d525252525252525252525252534d534d525252525252525252525252534d534d525252525252525252525252534d4e4f5252525252525252525252524e4f50515252525252525252525252525051534d525252525252525252525252534d534d525252525252525252525252534d534d525252525252525252525252534d534d525252525252525252525252534d4e4f5252525252525252525252524e4f494a474545454543444646464648494a0000000000000000000000000000000000000000000000000000000000000000",
+		"text": "&KLGEEECABDFFFHKLPQRRRRRRRRRRRRPQSMRRRRRRRRRRRRSMSMRRRRRRRRRRRRSMSMRRRRRRRRRRRRSMSMRRRRRRRRRRRRSMNORRRRRRRRRRRRNOPQRRRRRRRRRRRRPQSMRRRRRRRRRRRRSMSMRRRRRRRRRRRRSMSMRRRRRRRRRRRRSMSMRRRRRRRRRRRRSMNORRRRRRRRRRRRNOIJGEEEECDFFFFHIJ"
+	},
+	{
+		"file_offset": 324889,
+		"bank": 9,
+		"address": 62745,
+		"cpu_address": "$09:f519",
+		"length": 15,
+		"raw": "03055938227c69783a425029644275",
+		"text": "{CLEAR}{NAME}Y8\"|ix:BP)dBu"
+	},
+	{
+		"file_offset": 326744,
+		"bank": 9,
+		"address": 64600,
+		"cpu_address": "$09:fc58",
+		"length": 12,
+		"raw": "06623905588501562b504101",
+		"text": "{ITEM}b9{NAME}X?{NL}V+PA{NL}"
+	}
+]

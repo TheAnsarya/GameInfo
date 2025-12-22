@@ -1,0 +1,99 @@
+{{Infobox SB1 Cart|
+title=Soul Blazer|
+image=[[File:Soul Blazer Box Art.jpg|200px]]|
+developer=[[Quintet]]|
+publisher=[[Enix]]|
+released=January 31, 1992 (Japan)<br/>November 27, 1992 (NA)<br/>January 27, 1994 (EU)|
+genre=Action RPG|
+modes=Single player|
+platform=[[Super Nintendo Entertainment System|SNES]]|
+media=8 [[Megabit]] Cartridge
+}}
+
+'''Soul Blazer''' is an action role-playing video game developed by [[Quintet]] and published by [[Enix]] for the [[Super Nintendo Entertainment System]]. It was released in Japan in 1992, North America later that year, and Europe in 1994.
+
+==ROM Map==
+{{Main|Soul Blazer:ROM map}}
+
+Soul Blazer uses '''LoROM''' mapping with a 1MB ROM (32 banks of 32KB).
+
+===Header Information===
+{| class="wikitable"
+! Property !! Value
+|-
+| Internal Title || <code>SOULBLAZER - 1 USA</code>
+|-
+| ROM Size || 1024 KB (1 MB)
+|-
+| SRAM Size || 8 KB
+|-
+| Map Mode || LoROM (0x20)
+|-
+| ROM Type || 0x02 (ROM + RAM + Battery)
+|-
+| Region || North America (0x01)
+|-
+| Developer ID || 0xB4 (Enix)
+|-
+| Version || 1.0
+|-
+| Checksum || 0x6059
+|}
+
+===File Hashes===
+{| class="wikitable"
+! Algorithm !! Hash
+|-
+| SHA256 || <code>8438da09de8ce9aded3bb08644543f7b60fb60cffc68ce2d67d6a0643f2ecfc2</code>
+|-
+| SHA1 || <code>f2832eb02547c39cae3bdaab5c2a53e4f8b31810</code>
+|-
+| MD5 || <code>83cf41d53a1b94aeea1a645037a24004</code>
+|-
+| CRC32 || <code>31b965db</code>
+|}
+
+==RAM Map==
+{{Main|Soul Blazer:RAM map}}
+
+==Text==
+{{Main|Soul Blazer:Text}}
+
+Soul Blazer uses a mostly ASCII-based text encoding with control codes for dialogue formatting.
+
+===Control Codes===
+{| class="wikitable"
+! Code !! Description
+|-
+| 0x00 || End of string
+|-
+| 0x01 || New line
+|-
+| 0x02 || Wait for button press
+|-
+| 0x03 || Clear text box
+|-
+| 0x04 || Short pause
+|-
+| 0x05 || Player name placeholder
+|-
+| 0x06 || Item name placeholder
+|-
+| 0x07 || Number placeholder
+|}
+
+==Data Tables==
+{{Main|Soul Blazer:Data tables}}
+
+==See Also==
+* [[Soul Blazer:Notes|Notes]]
+* [[Soul Blazer:Bugs|Bugs and Glitches]]
+
+==External Links==
+* [https://en.wikipedia.org/wiki/Soul_Blazer Wikipedia article]
+* [https://www.mobygames.com/game/snes/soul-blazer MobyGames entry]
+
+[[Category:SNES games]]
+[[Category:Action RPG]]
+[[Category:Quintet games]]
+[[Category:Enix games]]

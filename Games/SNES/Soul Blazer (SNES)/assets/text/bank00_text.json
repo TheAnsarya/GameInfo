@@ -1,0 +1,452 @@
+[
+	{
+		"file_offset": 779,
+		"bank": 0,
+		"address": 33547,
+		"cpu_address": "$00:830b",
+		"length": 18,
+		"raw": "206030313233343536373839414243444546",
+		"text": " `0123456789ABCDEF"
+	},
+	{
+		"file_offset": 1831,
+		"bank": 0,
+		"address": 34599,
+		"cpu_address": "$00:8727",
+		"length": 16,
+		"raw": "48484848484848484848484848484848",
+		"text": "HHHHHHHHHHHHHHHH"
+	},
+	{
+		"file_offset": 20218,
+		"bank": 0,
+		"address": 52986,
+		"cpu_address": "$00:cefa",
+		"length": 18,
+		"raw": "706f6f722063726561747572652074686174",
+		"text": "poor creature that"
+	},
+	{
+		"file_offset": 20237,
+		"bank": 0,
+		"address": 53005,
+		"cpu_address": "$00:cf0d",
+		"length": 22,
+		"raw": "72657065617473207472616e736d6967726174696f6e",
+		"text": "repeats transmigration"
+	},
+	{
+		"file_offset": 20284,
+		"bank": 0,
+		"address": 53052,
+		"cpu_address": "$00:cf3c",
+		"length": 12,
+		"raw": "6465657020736c6565702e20",
+		"text": "deep sleep. "
+	},
+	{
+		"file_offset": 20415,
+		"bank": 0,
+		"address": 53183,
+		"cpu_address": "$00:cfbf",
+		"length": 17,
+		"raw": "6265696e6720636f6e7374616e746c7920",
+		"text": "being constantly "
+	},
+	{
+		"file_offset": 20433,
+		"bank": 0,
+		"address": 53201,
+		"cpu_address": "$00:cfd1",
+		"length": 19,
+		"raw": "7265696e6361726e61746564206d65616e7320",
+		"text": "reincarnated means "
+	},
+	{
+		"file_offset": 20453,
+		"bank": 0,
+		"address": 53221,
+		"cpu_address": "$00:cfe5",
+		"length": 22,
+		"raw": "657665726c617374696e6720737566666572696e672e",
+		"text": "everlasting suffering."
+	},
+	{
+		"file_offset": 20476,
+		"bank": 0,
+		"address": 53244,
+		"cpu_address": "$00:cffc",
+		"length": 12,
+		"raw": "4265696e6720616c69766520",
+		"text": "Being alive "
+	},
+	{
+		"file_offset": 20490,
+		"bank": 0,
+		"address": 53258,
+		"cpu_address": "$00:d00a",
+		"length": 10,
+		"raw": "737566666572696e6720",
+		"text": "suffering "
+	},
+	{
+		"file_offset": 20507,
+		"bank": 0,
+		"address": 53275,
+		"cpu_address": "$00:d01b",
+		"length": 11,
+		"raw": "6372656174757265732e20",
+		"text": "creatures. "
+	},
+	{
+		"file_offset": 20521,
+		"bank": 0,
+		"address": 53289,
+		"cpu_address": "$00:d029",
+		"length": 13,
+		"raw": "66696e64206f75742077686174",
+		"text": "find out what"
+	},
+	{
+		"file_offset": 21447,
+		"bank": 0,
+		"address": 54215,
+		"cpu_address": "$00:d3c7",
+		"length": 12,
+		"raw": "46696e616c6c792c20020220",
+		"text": "Finally, {WAIT}{WAIT} "
+	},
+	{
+		"file_offset": 21460,
+		"bank": 0,
+		"address": 54228,
+		"cpu_address": "$00:d3d4",
+		"length": 20,
+		"raw": "6465666561746564204465617468746f6c6c2120",
+		"text": "defeated Deathtoll! "
+	},
+	{
+		"file_offset": 21481,
+		"bank": 0,
+		"address": 54249,
+		"cpu_address": "$00:d3e9",
+		"length": 11,
+		"raw": "53756464656e6c79200202",
+		"text": "Suddenly {WAIT}{WAIT}"
+	},
+	{
+		"file_offset": 21500,
+		"bank": 0,
+		"address": 54268,
+		"cpu_address": "$00:d3fc",
+		"length": 13,
+		"raw": "736d616c6c20766f6963652e20",
+		"text": "small voice. "
+	},
+	{
+		"file_offset": 21564,
+		"bank": 0,
+		"address": 54332,
+		"cpu_address": "$00:d43c",
+		"length": 15,
+		"raw": "02022c207765206465636964656420",
+		"text": "{WAIT}{WAIT}, we decided "
+	},
+	{
+		"file_offset": 21648,
+		"bank": 0,
+		"address": 54416,
+		"cpu_address": "$00:d490",
+		"length": 18,
+		"raw": "63726561747572657360206d696e64732e20",
+		"text": "creatures` minds. "
+	},
+	{
+		"file_offset": 21667,
+		"bank": 0,
+		"address": 54435,
+		"cpu_address": "$00:d4a3",
+		"length": 11,
+		"raw": "4173206c6f6e6720617320",
+		"text": "As long as "
+	},
+	{
+		"file_offset": 21681,
+		"bank": 0,
+		"address": 54449,
+		"cpu_address": "$00:d4b1",
+		"length": 11,
+		"raw": "696e76656e74696f6e7320",
+		"text": "inventions "
+	},
+	{
+		"file_offset": 21697,
+		"bank": 0,
+		"address": 54465,
+		"cpu_address": "$00:d4c1",
+		"length": 11,
+		"raw": "73616d65207468696e6720",
+		"text": "same thing "
+	},
+	{
+		"file_offset": 21734,
+		"bank": 0,
+		"address": 54502,
+		"cpu_address": "$00:d4e6",
+		"length": 16,
+		"raw": "73746f70206173206d75636820617320",
+		"text": "stop as much as "
+	},
+	{
+		"file_offset": 21751,
+		"bank": 0,
+		"address": 54519,
+		"cpu_address": "$00:d4f7",
+		"length": 10,
+		"raw": "706f737369626c652e20",
+		"text": "possible. "
+	},
+	{
+		"file_offset": 21764,
+		"bank": 0,
+		"address": 54532,
+		"cpu_address": "$00:d504",
+		"length": 13,
+		"raw": "7374696c6c20796f756e672c20",
+		"text": "still young, "
+	},
+	{
+		"file_offset": 21780,
+		"bank": 0,
+		"address": 54548,
+		"cpu_address": "$00:d514",
+		"length": 11,
+		"raw": "657870657269656e636520",
+		"text": "experience "
+	},
+	{
+		"file_offset": 21804,
+		"bank": 0,
+		"address": 54572,
+		"cpu_address": "$00:d52c",
+		"length": 11,
+		"raw": "666967757265206f757420",
+		"text": "figure out "
+	},
+	{
+		"file_offset": 21816,
+		"bank": 0,
+		"address": 54584,
+		"cpu_address": "$00:d538",
+		"length": 13,
+		"raw": "726561736f6e7320666f722c20",
+		"text": "reasons for, "
+	},
+	{
+		"file_offset": 21831,
+		"bank": 0,
+		"address": 54599,
+		"cpu_address": "$00:d547",
+		"length": 10,
+		"raw": "6665656c696e67732c20",
+		"text": "feelings, "
+	},
+	{
+		"file_offset": 21843,
+		"bank": 0,
+		"address": 54611,
+		"cpu_address": "$00:d553",
+		"length": 12,
+		"raw": "636f6e6e656374696f6e7320",
+		"text": "connections "
+	},
+	{
+		"file_offset": 21857,
+		"bank": 0,
+		"address": 54625,
+		"cpu_address": "$00:d561",
+		"length": 12,
+		"raw": "6578697374656e6365732c20",
+		"text": "existences, "
+	},
+	{
+		"file_offset": 21929,
+		"bank": 0,
+		"address": 54697,
+		"cpu_address": "$00:d5a9",
+		"length": 11,
+		"raw": "6469736170706561722e20",
+		"text": "disappear. "
+	},
+	{
+		"file_offset": 28879,
+		"bank": 0,
+		"address": 61647,
+		"cpu_address": "$00:f0cf",
+		"length": 21,
+		"raw": "02800402826b02800502826b02803002826b6b6b02",
+		"text": "{WAIT}'{PAUSE}{WAIT}...k{WAIT}'{NAME}{WAIT}...k{WAIT}'0{WAIT}...kkk{WAIT}"
+	},
+	{
+		"file_offset": 30689,
+		"bank": 0,
+		"address": 63457,
+		"cpu_address": "$00:f7e1",
+		"length": 13,
+		"raw": "6163636f6d706c69736865642e",
+		"text": "accomplished."
+	},
+	{
+		"file_offset": 30714,
+		"bank": 0,
+		"address": 63482,
+		"cpu_address": "$00:f7fa",
+		"length": 20,
+		"raw": "46696e6973686564207265636f7264696e672e20",
+		"text": "Finished recording. "
+	},
+	{
+		"file_offset": 30746,
+		"bank": 0,
+		"address": 63514,
+		"cpu_address": "$00:f81a",
+		"length": 10,
+		"raw": "636f6e74696e75653f20",
+		"text": "continue? "
+	},
+	{
+		"file_offset": 30757,
+		"bank": 0,
+		"address": 63525,
+		"cpu_address": "$00:f825",
+		"length": 11,
+		"raw": "526573742077656c6c2c20",
+		"text": "Rest well, "
+	},
+	{
+		"file_offset": 30771,
+		"bank": 0,
+		"address": 63539,
+		"cpu_address": "$00:f833",
+		"length": 11,
+		"raw": "7374696c6c206d75636820",
+		"text": "still much "
+	},
+	{
+		"file_offset": 30797,
+		"bank": 0,
+		"address": 63565,
+		"cpu_address": "$00:f84d",
+		"length": 12,
+		"raw": "646f696e672077656c6c2e20",
+		"text": "doing well. "
+	},
+	{
+		"file_offset": 30870,
+		"bank": 0,
+		"address": 63638,
+		"cpu_address": "$00:f896",
+		"length": 22,
+		"raw": "636f6e74696e7565206d616b696e6720737465616479",
+		"text": "continue making steady"
+	},
+	{
+		"file_offset": 30893,
+		"bank": 0,
+		"address": 63661,
+		"cpu_address": "$00:f8ad",
+		"length": 11,
+		"raw": "70726f67726573732e3e20",
+		"text": "progress.> "
+	},
+	{
+		"file_offset": 30982,
+		"bank": 0,
+		"address": 63750,
+		"cpu_address": "$00:f906",
+		"length": 10,
+		"raw": "67617468657265642c20",
+		"text": "gathered, "
+	},
+	{
+		"file_offset": 30994,
+		"bank": 0,
+		"address": 63762,
+		"cpu_address": "$00:f912",
+		"length": 13,
+		"raw": "67617465206c656164696e6720",
+		"text": "gate leading "
+	},
+	{
+		"file_offset": 31053,
+		"bank": 0,
+		"address": 63821,
+		"cpu_address": "$00:f94d",
+		"length": 16,
+		"raw": "477265656e576f6f6420776865726520",
+		"text": "GreenWood where "
+	},
+	{
+		"file_offset": 31071,
+		"bank": 0,
+		"address": 63839,
+		"cpu_address": "$00:f95f",
+		"length": 18,
+		"raw": "6e6578742073746f6e652061776169747320",
+		"text": "next stone awaits "
+	},
+	{
+		"file_offset": 31142,
+		"bank": 0,
+		"address": 63910,
+		"cpu_address": "$00:f9a6",
+		"length": 20,
+		"raw": "3c4d7920666f6c6c6f7765722c2073696e636520",
+		"text": "<My follower, since "
+	},
+	{
+		"file_offset": 31225,
+		"bank": 0,
+		"address": 63993,
+		"cpu_address": "$00:f9f9",
+		"length": 10,
+		"raw": "796f757273656c662e20",
+		"text": "yourself. "
+	},
+	{
+		"file_offset": 31257,
+		"bank": 0,
+		"address": 64025,
+		"cpu_address": "$00:fa19",
+		"length": 12,
+		"raw": "696e746572657374696e6720",
+		"text": "interesting "
+	},
+	{
+		"file_offset": 31277,
+		"bank": 0,
+		"address": 64045,
+		"cpu_address": "$00:fa2d",
+		"length": 10,
+		"raw": "416c6c72696768742c20",
+		"text": "Allright, "
+	},
+	{
+		"file_offset": 31300,
+		"bank": 0,
+		"address": 64068,
+		"cpu_address": "$00:fa44",
+		"length": 11,
+		"raw": "6372656174757265732e20",
+		"text": "creatures. "
+	},
+	{
+		"file_offset": 32672,
+		"bank": 0,
+		"address": 65440,
+		"cpu_address": "$00:ffa0",
+		"length": 55,
+		"raw": "0000000000000000000000000000000000000000000000000000000000000000534f554c424c415a4552202d2031205553412020202002",
+		"text": ""
+	}
+]

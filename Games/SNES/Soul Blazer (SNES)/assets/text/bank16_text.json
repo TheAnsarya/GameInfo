@@ -1,0 +1,11 @@
+[
+	{
+		"file_offset": 721571,
+		"bank": 22,
+		"address": 33443,
+		"cpu_address": "$16:82a3",
+		"length": 10,
+		"raw": "5c806c32415c46634462",
+		"text": "\\'l2A\\FcDb"
+	}
+]

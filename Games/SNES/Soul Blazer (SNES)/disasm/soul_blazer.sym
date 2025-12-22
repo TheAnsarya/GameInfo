@@ -1,0 +1,6 @@
+; Soul Blazer Symbol File
+; Format: bank:address label
+
+$00:8000 Reset
+$00:8342 NMI_Handler
+$00:85a5 IRQ_Handler
