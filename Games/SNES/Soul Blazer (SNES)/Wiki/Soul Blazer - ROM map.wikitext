@@ -91,10 +91,58 @@ CPU Address = (Bank << 16) | $8000 | (File Offset & $7FFF)
 | $00:8342 || NMI_Handler || VBlank interrupt handler
 |-
 | $00:85A5 || IRQ_Handler || Hardware interrupt handler
+|-
+| $02:B9AC || InitHardware || Initialize SNES hardware registers
+|-
+| $02:BA80 || InitRAM || Clear and initialize RAM
+|-
+| $02:B856 || WaitVBlank || Wait for VBlank period
+|-
+| $02:B8A2 || EnableNMI || Enable NMI and set display
+|-
+| $02:B8B8 || DisableNMI || Disable NMI and blank screen
+|-
+| $04:8000 || GameLoop_Main || Main game loop entry
+|-
+| $04:8100 || GameLoop_Update || Update game state
+|-
+| $04:8200 || GameLoop_Render || Render current frame
+|-
+| $04:8500 || UpdatePlayer || Process player logic
+|-
+| $04:8800 || ReadJoypad || Read controller input
+|-
+| $04:8900 || ProcessInput || Process player input
+|-
+| $04:8C00 || UpdateSprites || Update OAM buffer
+|-
+| $04:8E00 || InitSprites || Initialize sprite system
+|-
+| $04:9000 || InitGraphics || Initialize PPU graphics
+|-
+| $04:9200 || LoadGraphics || Load tileset to VRAM
+|-
+| $04:9400 || UpdatePalette || Update color palette
+|-
+| $04:B000 || LoadMap || Load map data
+|-
+| $04:B200 || UpdateMap || Update map scrolling
+|-
+| $04:B400 || UpdateCamera || Update camera position
+|-
+| $04:C000 || UpdateEntities || Update all entities
+|-
+| $04:C200 || UpdateNPCs || Update NPC logic
+|-
+| $04:C400 || UpdateCollision || Check collisions
+|-
+| $04:E000 || ProcessEvents || Process game events
+|-
+| $04:E800 || UpdateAudio || Update sound/music
 |}
 
 ==Data Locations==
-{| class="wikitable"
+{| class="wikitable sortable"
 ! File Offset !! Bank:Address !! Size !! Description
 |-
 | $004EFA || $00:CEFA || ~4KB || Opening dialogue
@@ -102,7 +150,63 @@ CPU Address = (Bank << 16) | $8000 | (File Offset & $7FFF)
 | $0053C7 || $00:D3C7 || ~2KB || Ending dialogue
 |-
 | $010000 || $02:8000 || ~96KB || Main text data
+|-
+| $030000 || $06:8000 || 32KB || Enemy statistics
+|-
+| $038000 || $07:8000 || 32KB || Item/equipment data
+|-
+| $040000 || $08:8000 || 96KB || Map/tilemap data
+|-
+| $060000 || $0C:8000 || 64KB || Level/dungeon data
+|-
+| $078000 || $0F:8000 || 32KB || Audio driver and SPC data
+|-
+| $080000 || $10:8000 || 512KB || Graphics and sprite data
 |}
+
+==Pointer Tables==
+The ROM contains numerous pointer tables for maps, text, and data.
+Analysis has identified '''808 pointer tables''' throughout the ROM.
+
+{| class="wikitable"
+! Region !! Count !! Description
+|-
+| Bank $00 || ~200 || Core engine pointers
+|-
+| Bank $02-$04 || ~150 || Text and dialogue pointers
+|-
+| Bank $06-$07 || ~100 || Enemy/item data pointers
+|-
+| Bank $08-$0C || ~300 || Map and level pointers
+|-
+| Bank $10-$1F || ~58 || Graphics pointers
+|}
+
+==Soul Lairs==
+Soul Lairs are the enemy spawn points that release souls when cleared.
+Scan identified '''7,844 potential Soul Lair structures'''.
+
+===Soul Lair Structure (8 bytes)===
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Area ID
+|-
+| $01 || 1 || Enemy type
+|-
+| $02 || 1 || Enemy count
+|-
+| $03 || 1 || Release type (NPC, item, etc.)
+|-
+| $04 || 2 || X position
+|-
+| $06 || 2 || Y position
+|}
+
+==See Also==
+* [[Soul Blazer:RAM map|RAM Map]]
+* [[Soul Blazer:Data tables|Data Tables]]
+* [[Soul Blazer:Enemies|Enemy Data]]
 
 [[Category:Soul Blazer]]
 [[Category:ROM maps]]
