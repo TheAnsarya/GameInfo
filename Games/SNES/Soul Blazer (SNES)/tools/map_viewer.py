@@ -2,7 +2,7 @@
 """
 Soul Blazer (SNES) Map Viewer
 Visual map viewer and editor using tkinter.
-Integrates extracted map data, tilesets, and pointer tables.
+Integrates extracted map data, tilesets, pointer tables, and palettes.
 """
 
 import json
@@ -14,12 +14,16 @@ from PIL import Image, ImageTk
 import io
 from typing import Optional
 
+# Import palette manager
+from palette_manager import PaletteManager, DEFAULT_PALETTES
+
 
 # Base paths for Soul Blazer data
 SCRIPT_DIR = Path(__file__).parent
 ASSETS_DIR = SCRIPT_DIR.parent / "assets"
 MAPS_DIR = ASSETS_DIR / "maps"
 DATA_DIR = ASSETS_DIR / "data"
+PALETTES_FILE = ASSETS_DIR / "palettes" / "palettes.json"
 DEFAULT_ROM = Path(r"c:\Users\me\source\repos\GameInfo\~roms\SNES\GoodSNES\Soul Blazer (U) [!].sfc")
 
 
@@ -27,12 +31,10 @@ class TileRenderer:
 	"""Render SNES 4BPP tiles to images."""
 
 	# Default SNES palette (grayscale for debugging)
-	DEFAULT_PALETTE = [
-		(i * 17, i * 17, i * 17) for i in range(16)
-	]
+	DEFAULT_PALETTE = DEFAULT_PALETTES.get("grayscale", [(i * 17, i * 17, i * 17) for i in range(16)])
 
 	# Soul Blazer-style palette (grassland theme)
-	GRASSLAND_PALETTE = [
+	GRASSLAND_PALETTE = DEFAULT_PALETTES.get("grassland", [
 		(0, 0, 0),        # 0 - transparent/black
 		(40, 80, 40),     # 1 - dark grass
 		(60, 120, 60),    # 2 - medium grass
@@ -49,7 +51,7 @@ class TileRenderer:
 		(180, 80, 80),    # 13 - red accent
 		(80, 80, 180),    # 14 - blue accent
 		(255, 255, 255),  # 15 - white
-	]
+	])
 
 	def __init__(self):
 		self.palette = self.DEFAULT_PALETTE
@@ -206,6 +208,9 @@ class MapViewer(tk.Tk):
 		self.current_map = None
 		self.tile_renderer = TileRenderer()
 		self.map_data = MapData()
+		self.palette_manager = PaletteManager()
+		self.current_palette_index = 0
+		self.current_area_name = None
 		self.tileset_image = None
 		self.map_image = None
 		self.bank_image = None
@@ -236,6 +241,9 @@ class MapViewer(tk.Tk):
 		view_menu.add_separator()
 		view_menu.add_command(label="Use Grayscale Palette", command=self.use_grayscale_palette)
 		view_menu.add_command(label="Use Grassland Palette", command=self.use_grassland_palette)
+		view_menu.add_separator()
+		view_menu.add_command(label="Use Area Palette", command=self.use_area_palette)
+		view_menu.add_command(label="Select Palette...", command=self.select_palette)
 
 		data_menu = tk.Menu(menubar, tearoff=0)
 		menubar.add_cascade(label="Data", menu=data_menu)
@@ -381,8 +389,13 @@ class MapViewer(tk.Tk):
 
 		info_lines.append(f"Pointer Tables: {len(self.map_data.pointer_tables)}")
 		info_lines.append(f"Tilesets: {len(self.map_data.tilesets)}")
+		info_lines.append(f"Palettes: {self.palette_manager.palette_count}")
 		info_lines.append(f"Zoom: {self.zoom}x")
 		info_lines.append(f"Current Tileset: Bank {self.current_tileset_bank}")
+		if self.current_area_name:
+			info_lines.append(f"Area: {self.current_area_name}")
+		if self.current_palette_index >= 0:
+			info_lines.append(f"Palette: #{self.current_palette_index}")
 
 		self.info_text.insert(tk.END, "\n".join(info_lines))
 		self.info_text.config(state=tk.DISABLED)
@@ -496,11 +509,19 @@ class MapViewer(tk.Tk):
 			area_name = area["name"]
 			tileset_bank = area["tileset_bank"]
 
+			self.current_area_name = area_name
 			self.status_var.set(f"Selected: {area_name} (Tileset Bank {tileset_bank})")
 
 			# Load the appropriate tileset for this area
 			self.tileset_var.set(str(tileset_bank))
 			self.load_tileset(tileset_bank)
+
+			# Auto-apply area palette if available
+			palettes = self.palette_manager.get_palettes_for_area(area_name)
+			if palettes and len(palettes) > 0:
+				self.tile_renderer.palette = palettes[0]
+				self.status_var.set(f"Selected: {area_name} (Palette auto-applied)")
+				self.refresh_views()
 
 	def set_zoom(self, zoom: int):
 		"""Set zoom level."""
@@ -514,12 +535,98 @@ class MapViewer(tk.Tk):
 	def use_grayscale_palette(self):
 		"""Switch to grayscale palette."""
 		self.tile_renderer.palette = TileRenderer.DEFAULT_PALETTE
+		self.current_palette_index = -1  # Indicate custom palette
 		self.refresh_views()
 
 	def use_grassland_palette(self):
 		"""Switch to grassland palette."""
 		self.tile_renderer.palette = TileRenderer.GRASSLAND_PALETTE
+		self.current_palette_index = -2  # Indicate custom palette
 		self.refresh_views()
+
+	def use_area_palette(self):
+		"""Use palette associated with current area from extracted data."""
+		if not self.current_area_name:
+			messagebox.showinfo("Info", "Select an area first")
+			return
+
+		palettes = self.palette_manager.get_palettes_for_area(self.current_area_name)
+		if palettes:
+			self.tile_renderer.palette = palettes[0]
+			self.status_var.set(f"Applied palette for {self.current_area_name}")
+			self.refresh_views()
+		else:
+			messagebox.showinfo("Info", f"No palette mapping for {self.current_area_name}")
+
+	def select_palette(self):
+		"""Open palette selection dialog."""
+		if self.palette_manager.palette_count == 0:
+			messagebox.showinfo("Info", "No palettes loaded")
+			return
+
+		# Create palette selection dialog
+		dialog = tk.Toplevel(self)
+		dialog.title("Select Palette")
+		dialog.geometry("400x500")
+		dialog.transient(self)
+
+		ttk.Label(dialog, text="Available Palettes:").pack(anchor=tk.W, padx=5, pady=5)
+
+		# Listbox with palettes
+		listbox_frame = ttk.Frame(dialog)
+		listbox_frame.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
+
+		listbox = tk.Listbox(listbox_frame, height=20)
+		listbox.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+
+		scrollbar = ttk.Scrollbar(listbox_frame, orient=tk.VERTICAL, command=listbox.yview)
+		scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+		listbox.configure(yscrollcommand=scrollbar.set)
+
+		# Populate with palette info
+		for i in range(self.palette_manager.palette_count):
+			info = self.palette_manager.get_palette_info(i)
+			name = info.get('name', f'Palette {i}')
+			offset = info.get('rom_offset', 0)
+			listbox.insert(tk.END, f"{i}: {name} (${offset:06x})")
+
+		# Preview canvas
+		preview_canvas = tk.Canvas(dialog, height=32, bg='#333')
+		preview_canvas.pack(fill=tk.X, padx=5, pady=5)
+
+		def update_preview(event=None):
+			selection = listbox.curselection()
+			if not selection:
+				return
+			idx = selection[0]
+			palette = self.palette_manager.get_palette(idx)
+
+			preview_canvas.delete("all")
+			for i, color in enumerate(palette[:16]):
+				x = i * 24
+				# Convert to hex color string
+				hex_color = f"#{color[0]:02x}{color[1]:02x}{color[2]:02x}"
+				preview_canvas.create_rectangle(x, 0, x + 24, 32, fill=hex_color, outline="white")
+
+		listbox.bind('<<ListboxSelect>>', update_preview)
+
+		def apply_palette():
+			selection = listbox.curselection()
+			if not selection:
+				return
+			idx = selection[0]
+			palette = self.palette_manager.get_palette(idx)
+			self.tile_renderer.palette = palette
+			self.current_palette_index = idx
+			self.status_var.set(f"Applied palette {idx}")
+			self.refresh_views()
+			dialog.destroy()
+
+		button_frame = ttk.Frame(dialog)
+		button_frame.pack(fill=tk.X, padx=5, pady=5)
+
+		ttk.Button(button_frame, text="Apply", command=apply_palette).pack(side=tk.LEFT, padx=5)
+		ttk.Button(button_frame, text="Cancel", command=dialog.destroy).pack(side=tk.RIGHT, padx=5)
 
 	def refresh_views(self):
 		"""Refresh all views with current palette."""

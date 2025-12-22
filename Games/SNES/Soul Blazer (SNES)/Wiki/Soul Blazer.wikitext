@@ -85,6 +85,18 @@ Soul Blazer uses a mostly ASCII-based text encoding with control codes for dialo
 ==Data Tables==
 {{Main|Soul Blazer:Data tables}}
 
+==Data Structures==
+{{Main|Soul Blazer:Data structures}}
+
+Comprehensive documentation of binary formats including:
+* 4BPP graphics tiles and palettes
+* Tilemap format with attributes
+* Entity structure (32-byte slots)
+* Soul Lair data format
+* Player stats block
+* SRAM save file format
+* Compression formats (RLE, LZ)
+
 ==Enemies==
 {{Main|Soul Blazer:Enemies}}
 
