@@ -1,0 +1,211 @@
+{{DISPLAYTITLE:Soul Blazer:Enemies}}
+This page documents '''enemy data''' in '''[[Soul Blazer]]''' (SNES).
+
+==Overview==
+Soul Blazer features over 50 unique enemy types across 6 acts.
+Enemies spawn from '''Soul Lairs''' which must be destroyed to release trapped souls.
+
+==Enemy Mechanics==
+
+===Combat Formula===
+<pre>
+Damage = (Player_ATK - Enemy_DEF) × Modifier
+If Damage < 1, Damage = 1
+Critical Hit: Damage × 2
+</pre>
+
+===Experience Scaling===
+Experience requirements increase exponentially per level.
+Maximum level is 25.
+
+==Enemies by Area==
+
+===Act 1: Underground Castle===
+{| class="wikitable sortable"
+! Name !! HP !! ATK !! DEF !! EXP !! GEMs !! Notes
+|-
+| Golem || 8 || 2 || 1 || 1 || 1 || Basic enemy
+|-
+| Blue Metal || 12 || 3 || 2 || 2 || 2 || Requires Zantetsu Sword
+|-
+| Armored Knight || 20 || 4 || 3 || 4 || 4 || Armored
+|-
+| Torch || 6 || 2 || 0 || 1 || 1 || Fire elemental
+|-
+| Stone Statue || 16 || 3 || 4 || 3 || 3 || High defense
+|-
+| Spike Ball || 4 || 5 || 0 || 1 || 1 || Contact damage
+|}
+
+===Act 2: GreenWood===
+{| class="wikitable sortable"
+! Name !! HP !! ATK !! DEF !! EXP !! GEMs !! Notes
+|-
+| Blue Slime || 10 || 3 || 1 || 2 || 2 || Splits on damage
+|-
+| Red Slime || 14 || 4 || 1 || 3 || 3 || Faster variant
+|-
+| Metally || 30 || 5 || 8 || 10 || 15 || High defense, high reward
+|-
+| Bat || 6 || 2 || 0 || 1 || 1 || Flies
+|-
+| Skeleton || 18 || 4 || 2 || 4 || 4 || Throws bones
+|-
+| Ghost || 12 || 3 || 0 || 3 || 3 || Requires Spirit Sword
+|}
+
+===Act 3: St. Elles (Seabed)===
+{| class="wikitable sortable"
+! Name !! HP !! ATK !! DEF !! EXP !! GEMs !! Notes
+|-
+| Fish || 8 || 3 || 1 || 2 || 2 || Swims in patterns
+|-
+| Jellyfish || 10 || 4 || 0 || 3 || 3 || Electric attack
+|-
+| Sea Dragon || 40 || 6 || 4 || 8 || 10 || Mini-boss type
+|-
+| Crab || 16 || 4 || 5 || 4 || 5 || Hard shell
+|-
+| Seahorse || 12 || 3 || 2 || 3 || 3 || Projectiles
+|-
+| Squid || 20 || 5 || 2 || 5 || 6 || Ink attack
+|}
+
+===Act 4: Mountain of Souls===
+{| class="wikitable sortable"
+! Name !! HP !! ATK !! DEF !! EXP !! GEMs !! Notes
+|-
+| Eagle || 14 || 4 || 1 || 4 || 4 || Flies, dive attack
+|-
+| Condor || 20 || 5 || 2 || 6 || 6 || Larger eagle
+|-
+| Mountain Spirit || 24 || 5 || 3 || 7 || 8 || Magic attacks
+|-
+| Ice Golem || 35 || 6 || 5 || 10 || 12 || Ice elemental
+|}
+
+===Act 5: Leo's Lab===
+{| class="wikitable sortable"
+! Name !! HP !! ATK !! DEF !! EXP !! GEMs !! Notes
+|-
+| Toy Soldier || 16 || 4 || 3 || 5 || 5 || March pattern
+|-
+| Toy Car || 12 || 5 || 2 || 4 || 4 || Fast movement
+|-
+| Doll || 20 || 4 || 4 || 6 || 6 || Erratic movement
+|-
+| Mouse || 8 || 3 || 1 || 3 || 3 || Small, fast
+|}
+
+===Act 6: Magridd/World of Evil===
+{| class="wikitable sortable"
+! Name !! HP !! ATK !! DEF !! EXP !! GEMs !! Notes
+|-
+| Demon || 30 || 7 || 5 || 15 || 15 || Dark magic
+|-
+| Fire Spirit || 25 || 8 || 3 || 12 || 12 || Fire attacks
+|-
+| Ice Spirit || 25 || 8 || 3 || 12 || 12 || Ice attacks
+|-
+| Mummy || 35 || 6 || 6 || 14 || 14 || Poison
+|-
+| Scorpion || 28 || 9 || 4 || 16 || 16 || Poison sting
+|-
+| Spider || 22 || 7 || 2 || 10 || 10 || Web attack
+|}
+
+==Bosses==
+
+===Act Bosses===
+{| class="wikitable"
+! Boss !! Location !! HP !! Strategy
+|-
+| Metal Mantis || Underground Castle || 200 || Attack head, dodge claws
+|-
+| Great Tree || GreenWood || 300 || Attack roots, avoid leaves
+|-
+| Ghost Ship Captain || St. Elles || 350 || Time attacks during openings
+|-
+| Tin Doll || Leo's Lab || 400 || Avoid toys, strike when vulnerable
+|-
+| Demon King || Magridd Castle || 500 || Use magic, maintain distance
+|-
+| Deathtoll || World of Evil || 999 || Final boss, multiple forms
+|}
+
+==Special Enemy Properties==
+
+===Elemental Weaknesses===
+{| class="wikitable"
+! Element !! Weak To !! Strong Against
+|-
+| Fire || Ice, Water || Plant, Ice
+|-
+| Ice || Fire || Water, Wind
+|-
+| Metal || Zantetsu Sword || Physical
+|-
+| Ghost || Spirit Sword || Physical
+|}
+
+===AI Types===
+{| class="wikitable"
+! Type !! Behavior
+|-
+| 0 || Stationary
+|-
+| 1 || Chase player
+|-
+| 2 || Patrol path
+|-
+| 3 || Random movement
+|-
+| 4 || Projectile attack
+|-
+| 5 || Dive/charge attack
+|}
+
+==Soul Lair Data==
+Each Soul Lair stores:
+* Enemy type to spawn
+* Number of enemies
+* What is released (NPC, item, etc.)
+* Position on map
+
+===Release Types===
+{| class="wikitable"
+! ID !! Description
+|-
+| 0 || NPC/Villager
+|-
+| 1 || Item (equipment)
+|-
+| 2 || Item (consumable)
+|-
+| 3 || Platform/Path
+|-
+| 4 || Building
+|-
+| 5 || Special event
+|}
+
+==Data Locations==
+{| class="wikitable"
+! Data !! Bank !! Address
+|-
+| Enemy stats || $06 || $06:8000
+|-
+| Enemy sprites || $10-$17 || Various
+|-
+| Soul Lair data || $08-$0B || Various
+|-
+| Boss data || $06 || $06:C000
+|}
+
+==See Also==
+* [[Soul Blazer:Data tables|Data Tables]]
+* [[Soul Blazer:ROM map|ROM Map]]
+* [[Soul Blazer:Items|Items]]
+
+[[Category:Soul Blazer]]
+[[Category:Enemy data]]

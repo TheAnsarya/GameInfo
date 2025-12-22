@@ -85,6 +85,25 @@ Soul Blazer uses a mostly ASCII-based text encoding with control codes for dialo
 ==Data Tables==
 {{Main|Soul Blazer:Data tables}}
 
+==Enemies==
+{{Main|Soul Blazer:Enemies}}
+
+Soul Blazer features over 50 enemy types across 6 acts, spawning from Soul Lairs.
+
+==Items and Equipment==
+{{Main|Soul Blazer:Items}}
+
+Equipment includes 8 swords, 8 armor pieces, and 8 magic types.
+
+==Audio==
+The game's music was composed by Yukihide Takekawa. The SNES SPC700 audio driver is located at $07A7F6 in the ROM.
+
+===Soundtrack===
+The game features 26 unique music tracks:
+* Title Screen, The Shrine, area themes for each act
+* Boss Battle, Deathtoll (final boss)
+* Victory, Game Over, Ending, Credits
+
 ==See Also==
 * [[Soul Blazer:Notes|Notes]]
 * [[Soul Blazer:Bugs|Bugs and Glitches]]
