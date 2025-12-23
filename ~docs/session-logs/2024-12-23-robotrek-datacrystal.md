@@ -121,3 +121,19 @@ Created `tools/robotrek/quintet_lzss.py`:
 ## Files Created
 
 - `tools/robotrek/quintet_lzss.py`
+- `tools/robotrek/extract_graphics.py`
+- `tools/robotrek/extract_data.py`
+- `Games/SNES/Robotrek (SNES)/extracted/font_80000.png`
+- `Games/SNES/Robotrek (SNES)/extracted/font_81000.png`
+- `Games/SNES/Robotrek (SNES)/extracted/inventory_d9310.png`
+- `Games/SNES/Robotrek (SNES)/extracted/enemies.json`
+- `Games/SNES/Robotrek (SNES)/extracted/items.json`
+
+## Commits This Session
+
+| Hash | Message |
+|------|---------|
+| 4143fe4 | docs(robotrek): Integrate Data Crystal ROM/RAM map |
+| 9945d07 | feat(robotrek): Add Quintet LZSS decompressor |
+| a952223 | feat(robotrek): Add graphics extractor and assets |
+| 66a934f | feat(robotrek): Add data extractor with enemies/items |
