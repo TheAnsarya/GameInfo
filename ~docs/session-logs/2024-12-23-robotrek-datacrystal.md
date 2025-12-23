@@ -291,7 +291,77 @@ Created `extracted/item_names.json`:
 
 | Hash | Message |
 |------|---------|
-| TBD | docs: add item pointer table and actor data research |
+| a203b07 | docs(robotrek): add item pointer table, actor data, PAR verification |
+
+## Session 4 - Continued ROM Research
+
+### Work Completed
+
+#### 1. Enemy Names Extraction
+
+Found enemy name table at **$01FDB6-$01FF72**:
+- 58 enemy names extracted
+- Null-terminated strings
+- Created `enemy_names.json` with complete list
+
+**Enemy List Sample:**
+- Mine, Turbo, Mushroom, Poison, Spider
+- Gel, Gelgel, Bosstoad, Rushbird, Quickbird
+- Mole, Powermole, Tackler, Plasmoke, Elesmoke
+- Monk, Mummy, Franken, Ho Ho, Gator
+- Gunrobot, CannonX, Biolion, Shell, Urchin
+- And more...
+
+#### 2. Actor Data Structure Analysis
+
+Deep analyzed the 22-byte actor records at $038000+:
+- Found 127 standard 22-byte records + 1 special 109-byte header record
+- Data appears to be **compressed or sprite/animation data**, NOT stat tables
+- Byte values show random distribution (0-255), not typical stat patterns
+- No clear HP, ATK, DEF, EXP, Gold fields identifiable
+
+**Conclusion:** The pointer table at $038000 likely points to sprite/animation data or compressed graphics, not enemy statistics. Enemy stats may be stored elsewhere or calculated dynamically.
+
+#### 3. Weapon Stat Search
+
+Searched for weapon stat patterns:
+- Base ATK sequences (5,10,20,40 for Swords) - NOT FOUND as consecutive bytes
+- Cost sequences (200,400,1000,2000) - NOT FOUND
+- Searched various record sizes (8, 10, 12, 16 bytes) - No clear matches
+
+**Conclusion:** Weapon stats may be:
+1. Stored using different encoding
+2. Calculated using formulas
+3. Located in a different bank
+4. Part of compressed data
+
+#### 4. ROM Analysis Scripts Created
+
+Added Python scripts for ROM research:
+- `extract_actor_data.py` - Extracts enemy names and analyzes actor table
+- `find_enemy_stats.py` - Searches for enemy stat patterns
+- `find_weapon_stats.py` - Searches for weapon stat patterns
+- `analyze_item_structure.py` - Analyzes item pointer table structure
+- `analyze_actor_structure.py` - Deep analysis of actor data records
+
+### Files Created
+
+- `Games/SNES/Robotrek (SNES)/extracted/enemy_names.json`
+- `Games/SNES/Robotrek (SNES)/scripts/extract_actor_data.py`
+- `Games/SNES/Robotrek (SNES)/scripts/find_enemy_stats.py`
+- `Games/SNES/Robotrek (SNES)/scripts/find_weapon_stats.py`
+- `Games/SNES/Robotrek (SNES)/scripts/analyze_item_structure.py`
+- `Games/SNES/Robotrek (SNES)/scripts/analyze_actor_structure.py`
+
+### Files Modified
+
+- `Wiki/SNES/Robotrek/ROM_Map.wikitext` - Clarified actor table purpose
+
+### Session 4 Commits
+
+| Hash | Message |
+|------|---------|
+| 963857b | feat(robotrek): add ROM analysis scripts and enemy name extraction |
 
 ## What's Next
 

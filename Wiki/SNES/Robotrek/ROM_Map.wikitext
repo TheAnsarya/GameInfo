@@ -233,9 +233,9 @@ Robotrek uses '''Quintet's standard LZSS compression algorithm''', common to oth
 |-
 | $c1fdbe || $01fdbe || ~$300 || Enemy names (null-terminated strings) || '''Verified'''
 |-
-| $c38000 || $038000 || $180 || '''Actor/Enemy data pointer table''' (128 × 2-byte) || '''Research'''
+| $c38000 || $038000 || $180 || '''Actor/Entity pointer table''' (128 × 2-byte) || '''Research'''
 |-
-| $c381a4 || $0381a4 || ~$b40 || Actor/Enemy data records (22-byte entries) || '''Research'''
+| $c381a4 || $0381a4 || ~$b40 || Actor/Entity data (22-byte entries) - likely sprite/animation data, not stats || '''Research'''
 |}
 
 == Item Name Pointer Table ==
