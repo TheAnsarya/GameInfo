@@ -1,0 +1,478 @@
+{{DISPLAYTITLE:Robotrek - Weapons}}
+__NOTOC__
+
+==Overview==
+
+Robotrek features an extensive weapon crafting system where weapons can be created at R&D machines and combined to form more powerful variants. Each weapon has base stats that improve as it levels up (Level 1-9).
+
+'''Data Status:''' Weapon stats compiled from GameFAQs guides. ROM addresses TBD.
+
+==Melee Weapons==
+
+===Swords===
+
+{| class="wikitable sortable"
+! Weapon !! Base ATK !! Lv1 !! Lv2 !! Lv3 !! Lv4 !! Lv5 !! Lv6 !! Lv7 !! Lv8 !! Lv9 !! Cost
+|-
+| Sword 1 || +5 || +5 || +6 || +7 || +8 || +9 || +11 || +13 || +15 || +17 || 200 GP
+|-
+| Sword 2 || +10 || +10 || +13 || +16 || +19 || +22 || +26 || +30 || +34 || +38 || 400 GP
+|-
+| Sword 3 || +20 || +20 || +25 || +30 || +35 || +40 || +45 || +50 || +55 || +60 || 1000 GP
+|-
+| Sword 4 || +40 || +40 || +45 || +50 || +55 || +60 || +65 || +70 || +75 || +80 || 2000 GP
+|}
+
+'''Notes:''' Sword 1-3 are short range weapons that can collect items from capsules. Sword 4 casts lightning to attack 3 enemies but cannot collect items.
+
+===Axes===
+
+{| class="wikitable sortable"
+! Weapon !! Base ATK !! Lv1 !! Lv2 !! Lv3 !! Lv4 !! Lv5 !! Lv6 !! Lv7 !! Lv8 !! Lv9 !! Cost
+|-
+| Axe 1 || +10 || +10 || +20 || +30 || +40 || +50 || +60 || +70 || +80 || +90 || 400 GP
+|-
+| Axe 2 || +20 || +20 || +30 || +40 || +50 || +60 || +70 || +80 || +90 || +100 || 500 GP
+|-
+| Axe 3 || +40 || +40 || +50 || +60 || +70 || +80 || +90 || +100 || +110 || +120 || 1000 GP
+|}
+
+'''Notes:''' Close range weapons. Can collect item capsules in battlefield.
+
+===Hammers===
+
+{| class="wikitable sortable"
+! Weapon !! Base ATK !! Lv1 !! Lv2 !! Lv3 !! Lv4 !! Lv5 !! Lv6 !! Lv7 !! Lv8 !! Lv9 !! Cost
+|-
+| Hammer 1 || +8 || +8 || +11 || +14 || +17 || +20 || +24 || +28 || +32 || +36 || 200 GP
+|-
+| Hammer 2 || +10 || +10 || +12 || +14 || +16 || +18 || +21 || +24 || +27 || +30 || 6000 GP
+|-
+| Hammer 3 || +24 || +24 || +27 || +30 || +33 || +36 || +40 || +44 || +48 || +52 || 1500 GP
+|}
+
+'''Notes:''' Short range weapon. Can knock target back and collect item capsules. Hammer 2 is known as "Suppon Hammer".
+
+===Punches===
+
+{| class="wikitable sortable"
+! Weapon !! Base ATK !! Lv1 !! Lv2 !! Lv3 !! Lv4 !! Lv5 !! Lv6 !! Lv7 !! Lv8 !! Lv9 !! Cost
+|-
+| Punch 1 || +12 || +12 || +15 || +18 || +21 || +24 || +28 || +32 || +36 || +40 || 200 GP
+|-
+| Punch 2 || +24 || +24 || +27 || +30 || +33 || +36 || +40 || +44 || +48 || +52 || 500 GP
+|-
+| Punch 3 || +48 || +48 || +51 || +54 || +57 || +60 || +64 || +68 || +72 || +76 || 360 GP
+|}
+
+'''Notes:''' Short range weapon. Can collect items from capsules.
+
+==Ranged Weapons==
+
+===Shots===
+
+{| class="wikitable sortable"
+! Weapon !! Base ATK !! Lv1 !! Lv2 !! Lv3 !! Lv4 !! Lv5 !! Lv6 !! Lv7 !! Lv8 !! Lv9 !! Cost
+|-
+| Shot 1 || +4 || +4 || +6 || +8 || +10 || +12 || +15 || +18 || +21 || +24 || 200 GP
+|-
+| Shot 2 || +10 || +10 || +12 || +14 || +16 || +18 || +21 || +24 || +27 || +30 || 500 GP
+|-
+| Shot 3 || +32 || +32 || +34 || +36 || +38 || +40 || +43 || +46 || +49 || +52 || 1000 GP
+|}
+
+'''Notes:''' Long range weapon. Destroys item capsules (cannot collect). Does more damage to close targets.
+
+===Lasers===
+
+{| class="wikitable sortable"
+! Weapon !! Base ATK !! Lv1 !! Lv2 !! Lv3 !! Lv4 !! Lv5 !! Lv6 !! Lv7 !! Lv8 !! Lv9 !! Cost
+|-
+| Laser 1 || +25 || +25 || +27 || +29 || +31 || +33 || +36 || +39 || +42 || +45 || 1000 GP
+|-
+| Laser 2 || +35 || +35 || +37 || +39 || +41 || +43 || +46 || +49 || +52 || +55 || 2000 GP
+|-
+| Laser 3 || +45 || +45 || +47 || +49 || +51 || +53 || +56 || +59 || +62 || +65 || 5000 GP
+|}
+
+'''Notes:''' Long range weapon. Destroys item capsules. Attacks all enemies in same row. Attack becomes stronger at Level 7+.
+
+===Blades===
+
+{| class="wikitable sortable"
+! Weapon !! Base ATK !! Lv1 !! Lv2 !! Lv3 !! Lv4 !! Lv5 !! Lv6 !! Lv7 !! Lv8 !! Lv9 !! Cost
+|-
+| Blade 1 || +10 || +10 || +12 || +14 || +16 || +18 || +21 || +24 || +27 || +30 || 1000 GP
+|-
+| Blade 2 || +15 || +15 || +17 || +19 || +21 || +23 || +26 || +29 || +32 || +35 || 2000 GP
+|-
+| Blade 3 || +20 || +20 || +22 || +24 || +26 || +28 || +31 || +34 || +37 || +40 || 4000 GP
+|-
+| Blade 4 || +55 || +55 || +65 || +75 || +85 || +95 || +105 || +115 || +125 || +135 || 6000 GP
+|}
+
+'''Notes:''' Blade 2-4 attacks become larger at Level 7. Blade 1 attack does not scale.
+
+===Celtis===
+
+{| class="wikitable sortable"
+! Weapon !! Base ATK !! Lv1 !! Lv2 !! Lv3 !! Lv4 !! Lv5 !! Lv6 !! Lv7 !! Lv8 !! Lv9 !! Cost
+|-
+| Celtis 1 || +12 || +12 || +14 || +16 || +18 || +20 || +23 || +26 || +29 || +32 || 500 GP
+|-
+| Celtis 2 || +24 || +24 || +26 || +28 || +30 || +32 || +35 || +38 || +41 || +44 || 1000 GP
+|-
+| Celtis 3 || +36 || +36 || +38 || +40 || +42 || +44 || +47 || +50 || +53 || +56 || 2000 GP
+|}
+
+'''Notes:''' Long range weapon. Knocks target back. Can collect items from capsules.
+
+===Blows===
+
+{| class="wikitable sortable"
+! Weapon !! Base ATK !! Lv1 !! Lv2 !! Lv3 !! Lv4 !! Lv5 !! Lv6 !! Lv7 !! Lv8 !! Lv9 !! Cost
+|-
+| Blow 1 || +16 || +16 || +18 || +20 || +22 || +24 || +27 || +30 || +33 || +36 || 480 GP
+|-
+| Blow 2 || +32 || +32 || +34 || +36 || +38 || +40 || +43 || +46 || +49 || +52 || 640 GP
+|-
+| Blow 3 || +64 || +64 || +66 || +68 || +70 || +72 || +75 || +78 || +81 || +84 || 800 GP
+|}
+
+'''Notes:''' Long range weapon. Can collect items from capsules.
+
+==Bombs==
+
+{| class="wikitable sortable"
+! Weapon !! Base ATK !! Lv1 !! Lv2 !! Lv3 !! Lv4 !! Lv5 !! Lv6 !! Lv7 !! Lv8 !! Lv9 !! Cost
+|-
+| Bomb 1 || +10 || +10 || +15 || +20 || +25 || +30 || +35 || +40 || +45 || +50 || 400 GP
+|-
+| Bomb 2 || +23 || +23 || +28 || +34 || +41 || +49 || +59 || +71 || +85 || +101 || 1000 GP
+|-
+| Bomb 3 || +28 || +28 || +33 || +39 || +46 || +54 || +64 || +76 || +90 || +106 || 1400 GP
+|-
+| Bomb 4 || +36 || +36 || +41 || +47 || +54 || +62 || +72 || +84 || +98 || +114 || 2000 GP
+|}
+
+'''Notes:''' Bomb 1 attacks 1 enemy in same row. Bomb 2-4 attack 3 enemies and scale significantly at higher levels.
+
+==Defensive Equipment==
+
+===Shields===
+
+{| class="wikitable sortable"
+! Item !! ATK !! DEF !! Cost
+|-
+| Shield 1 || +0 || +8 || 400 GP
+|-
+| Shield 2 || +0 || +12 || 500 GP
+|-
+| Shield 3 || +0 || +16 || 1000 GP
+|-
+| Shield 4 || +0 || +20 || 2000 GP
+|-
+| Shield 5 || +0 || +34 || 3000 GP
+|}
+
+===Boots===
+
+{| class="wikitable sortable"
+! Item !! ATK !! DEF !! Cost !! Notes
+|-
+| Boots 1 || +0 || +0 || 200 GP || -
+|-
+| Boots 2 || +0 || +0 || 1000 GP || -
+|-
+| Boots 3 || +0 || +2 || 1200 GP || -
+|-
+| Boots 4 || +0 || +4 || 1600 GP || -
+|-
+| Boots 5 || +0 || +16 || 2000 GP || -
+|-
+| Boots 6 || +0 || +6 || 4000 GP || -
+|}
+
+'''Notes:''' Boots increase movement speed.
+
+===Packs===
+
+{| class="wikitable sortable"
+! Item !! ATK !! DEF !! Cost !! Notes
+|-
+| Empty Pack || +0 || +1 || 20 GP || Base pack for combinations
+|-
+| Power Pack || +10 || +0 || 3000 GP || Increases attack
+|-
+| Shield Pack || +0 || +10 || 5000 GP || Increases defense
+|-
+| Turbo Pack || +0 || +2 || 3000 GP || -
+|-
+| Solar Pack || +0 || +5 || 4000 GP || -
+|-
+| Quick Pack || +0 || +5 || 5000 GP || -
+|}
+
+==Weapon Combinations==
+
+===Sword Combinations===
+
+{| class="wikitable"
+! Result !! Recipe 1 !! Recipe 2 !! Recipe 3 !! Recipe 4
+|-
+| Sword 1 || Scrap 1 + Scrap 1 || Sword 1 + Sword 1 || - || -
+|-
+| Sword 2 || Sword 1 + Scrap 1 || Sword 2 + Sword * || - || -
+|-
+| Sword 3 || Sword 1 + Scrap 9 || Sword 2 + Scrap 9 || Sword 3 + Sword * || -
+|-
+| Sword 4 || Sword 3 + Scrap 7 || Sword 4 + Sword * || - || -
+|}
+
+===Axe Combinations===
+
+{| class="wikitable"
+! Result !! Recipe 1 !! Recipe 2 !! Recipe 3 !! Recipe 4
+|-
+| Axe 1 || Scrap 1 + Scrap 6 || Sword 1 + Hammer 1 || Sword 2 + Hammer 1 || Sword 3 + Hammer 1
+|-
+| Axe 2 || Sword 2 + Hammer 2 || Sword 3 + Hammer 2 || Axe 1 + Scrap 1 || Sword 2 + Hammer 3
+|-
+| Axe 3 || Sword 3 + Hammer 3 || Axe 1 + Scrap 9 || Axe 2 + Scrap 3 || -
+|}
+
+===Blade Combinations===
+
+{| class="wikitable"
+! Result !! Recipe 1 !! Recipe 2 !! Recipe 3 !! Recipe 4
+|-
+| Blade 1 || Sword 1 + Laser 1 || Sword 2 + Laser 1 || Sword 3 + Laser 1 || Scrap 1 + Scrap 10
+|-
+| Blade 2 || Sword 2 + Laser 2 || Sword 3 + Laser 2 || Sword 4 + Scrap 1 || Sword 2 + Laser 3
+|-
+| Blade 3 || Sword 3 + Laser 3 || - || - || -
+|-
+| Blade 4 || Blade 3 + Seed || Scrap 8 + Smoke || - || -
+|}
+
+===Hammer Combinations===
+
+{| class="wikitable"
+! Result !! Recipe 1
+|-
+| Hammer 1 || Scrap 6 + Clean
+|-
+| Hammer 2 || Solar Pack + Scrap 6
+|-
+| Hammer 3 || Scrap 6 + Scrap 6
+|}
+
+===Punch Combinations===
+
+{| class="wikitable"
+! Result !! Recipe 1 !! Recipe 2
+|-
+| Punch 1 || Scrap 4 + Scrap 4 || -
+|-
+| Punch 2 || Punch 1 + Scrap 4 || -
+|-
+| Punch 3 || Punch 1 + Scrap 9 || Punch 2 + Scrap 4
+|}
+
+===Blow Combinations===
+
+{| class="wikitable"
+! Result !! Recipe 1 !! Recipe 2 !! Recipe 3
+|-
+| Blow 1 || Punch 1 + Laser 1 || Punch 2 + Laser 1 || Punch 3 + Laser 1
+|-
+| Blow 2 || Punch 2 + Laser 2 || Punch 3 + Laser 2 || Scrap 4 + Scrap 9
+|-
+| Blow 3 || Punch 3 + Laser 3 || Scrap 4 + Scrap 10 || -
+|}
+
+===Celtis Combinations===
+
+{| class="wikitable"
+! Result !! Recipe 1 !! Recipe 2
+|-
+| Celtis 1 || Hammer 1 + Shot 1 || Scrap 2 + Scrap 6
+|-
+| Celtis 2 || Hammer 2 + Shot 2 || Hammer 3 + Shot 2
+|-
+| Celtis 3 || Scrap 6 + Scrap 9 || -
+|}
+
+===Shot Combinations===
+
+{| class="wikitable"
+! Result !! Recipe 1
+|-
+| Shot 1 || Scrap 2 + Scrap 2
+|-
+| Shot 2 || Shot 1 + Scrap 2
+|-
+| Shot 3 || Shot 2 + Scrap 2
+|}
+
+===Laser Combinations===
+
+{| class="wikitable"
+! Result !! Recipe 1
+|-
+| Laser 1 || Scrap 2 + Scrap 7
+|-
+| Laser 2 || Scrap 7 + Laser 1
+|-
+| Laser 3 || Scrap 7 + Laser 2
+|}
+
+===Bomb Combinations===
+
+{| class="wikitable"
+! Result !! Recipe 1
+|-
+| Bomb 2 || Bomb 1 + Scrap 10
+|-
+| Bomb 3 || Scrap 10 + Weather
+|-
+| Bomb 4 || Bomb 1 + Boots 6
+|}
+
+===Shield Combinations===
+
+{| class="wikitable"
+! Result !! Recipe 1 !! Recipe 2
+|-
+| Shield 1 || Scrap 5 + Scrap 5 || -
+|-
+| Shield 2 || Shield 1 + Clean || Scrap 5 + Clean
+|-
+| Shield 3 || Scrap 5 + Scrap 9 || -
+|-
+| Shield 4 || Weather + Scrap 9 || Scrap 7 + Scrap 9
+|-
+| Shield 5 || Shield 4 + Scrap 9 || Scrap 9 + Scrap 9
+|}
+
+===Boots Combinations===
+
+{| class="wikitable"
+! Result !! Recipe 1 !! Recipe 2
+|-
+| Boots 1 || Scrap 3 + Scrap 3 || -
+|-
+| Boots 2 || Boots 1 + Scrap 3 || -
+|-
+| Boots 3 || Boots 1 + Scrap 7 || Boots 2 + Scrap 3
+|-
+| Boots 4 || Scrap 3 + Scrap 5 || -
+|-
+| Boots 5 || Scrap 3 + Scrap 9 || -
+|-
+| Boots 6 || Boots 5 + Scrap 10 || Scrap 3 + Scrap 10
+|}
+
+==Inventor's Friend Locations==
+
+The Inventor's Friend books teach recipes. Required level shown in parentheses.
+
+{| class="wikitable sortable"
+! Level !! Item/Weapon !! Location
+|-
+| 1 || Boots 1 || Father's house
+|-
+| 2 || Sword 1 || Your house in Rococo Town
+|-
+| 3 || Shot 1 || Your house in Rococo Town
+|-
+| 4 || Bomb 1 || Your house in Rococo Town
+|-
+| 5 || Shield 1 || Your house in Rococo Town
+|-
+| 6 || Hammer 1 || Your house in Rococo Town
+|-
+| 7 || Punch 1 || Your house in Rococo Town
+|-
+| 8 || Boots 2 || House in Old House
+|-
+| 9 || Axe 1 || House in Old House
+|-
+| 10 || Shield 3 || House in Old House
+|-
+| 11 || Power Pack || House in Old House
+|-
+| 12 || Sword 2 || R&D in Volcano
+|-
+| 13 || Punch 2 || R&D in Volcano
+|-
+| 14 || Celtis 1 || Dr. Einst room in Volcano
+|-
+| 15 || Shield Pack || Father's house
+|-
+| 16 || Quick Pack || Chief's room in Volcano
+|-
+| 17 || Bomb 2 || Dr. Einst room in Volcano
+|-
+| 18 || Turbo Pack || Your house in Rococo Town
+|-
+| 19 || Weather || Your house in Rococo Town
+|-
+| 20 || Vanish || Your house in Rococo Town
+|-
+| 21 || Smoke || Crispy Shop in Rococo
+|-
+| 22 || Cure || Crispy Shop in Rococo
+|-
+| 23 || Clean || Crispy Shop in Rococo
+|-
+| 24 || Repair || Your house in Rococo
+|-
+| 25 || Laser 1 || Mainframe room in Fortress
+|-
+| 26 || Blade 1 || Prison in Fortress
+|-
+| 27 || Blade 2 || Prison in Fortress
+|-
+| 28 || Bomb 3 || Polon's house in Rococo Town (Past)
+|-
+| 29 || Shot 3 || Polon's house in Rococo Town (Past)
+|-
+| 30 || Shield 5 || Lab in Choco
+|-
+| 40 || Boots 6 || Lab in Choco
+|-
+| 50 || Bomb 4 || Lab in Choco
+|-
+| 60 || Laser 3 || Library in Kirara
+|-
+| 70 || Solar Pack || Library in Kirara
+|-
+| 80 || Blade 4 || Library in Kirara
+|}
+
+==Item Combinations==
+
+{| class="wikitable"
+! Result !! Recipe 1 !! Recipe 2 !! Recipe 3 !! Recipe 4
+|-
+| Smoke || Repair + Repair || Repair + Big Bomb || Big Bomb + Big Bomb || Smoke + Smoke
+|-
+| Cure || Clean + Clean || Clean + Repair || Repair + Smoke || Smoke + Big Bomb
+|-
+| Clean || Cure + Cure || Cure + Repair || - || -
+|-
+| Repair || Smoke + Clean || Clean + Big Bomb || Cure + Big Bomb || Cure + Scrap 7
+|-
+| Big Bomb || Bomb 1 + Smoke || Smoke + Cure || Scrap 7 + Scrap 7 || -
+|}
+
+==See Also==
+* [[Robotrek|Main Page]]
+* [[Robotrek:Items|Items]]
+* [[Robotrek:Enemies|Enemies]]
+* [[Robotrek:RAM Map|RAM Map]]
+
+[[Category:Robotrek]]
+[[Category:SNES Games]]
+[[Category:Weapons]]

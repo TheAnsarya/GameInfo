@@ -137,6 +137,106 @@ Source: ROM address $01fdbe (null-terminated strings), pointer table at $01fd00
 * Boss names: Cmdr., Gateau, De Rose, Papamecha, Bugbug
 * Robot-type enemies: Gunrobot, CannonX, Blacktank
 
+== Enemy Drop Tables ==
+
+Data compiled from GameFAQs guide by DSLevantine. The "Message" column indicates a relative encounter difficulty/experience factor.
+
+{| class="wikitable sortable"
+! Enemy !! Message !! Drops
+|-
+| Mushroom || 0.1 || 150GP, Clean
+|-
+| Mine || 0.1 || 1000GP, Clean
+|-
+| Gel || 0.1 || 200GP
+|-
+| Rushbird || 0.2 || Cure
+|-
+| Spider || 0.3 || Repair, Punch 1
+|-
+| Cmdr. || 0.2 || Laser 2
+|-
+| Monk || 0.6 || 200GP, Cure, Repair
+|-
+| Mole || 0.6 || 250GP, 300GP, Axe 1
+|-
+| Ho Ho || 0.6 || Cure
+|-
+| Plasmoke || 0.7 || Clean
+|-
+| Mummy || 0.8 || 200GP, Punch 1
+|-
+| Elesmoke || 0.7 || 200GP
+|-
+| Franken || 0.9 || 500GP, Hammer 1
+|-
+| Powermole || 1.0 || Axe 1, Axe 2
+|-
+| Spider || 0.8 || Clean, Blow 1
+|-
+| Turbo || 0.7 || Cure
+|-
+| Minicom || 0.5 || 220GP
+|-
+| Gator || 1.1 || Cure
+|-
+| Bosstoad || 1.4 || ?
+|-
+| Gelgel || 0.8 || Clean
+|-
+| Masker || 2.6 || ?
+|-
+| Beret || 2.5 || 800GP
+|-
+| Gunrobot || 1.5 || ?
+|-
+| Biolion || 1.1 || Empty Pack
+|-
+| CannonX || 1.3 || ?
+|-
+| Poison || 0.8 || Clean
+|-
+| Shell || 30.0 || 1GP, Shot 3
+|-
+| Angler || 0.9 || Cure
+|-
+| Luckstar || 1.2 || 500GP, 1000GP
+|-
+| Urchin || 0.9 || Clean, Bomb 2
+|-
+| Octopus || 1.5 || 1000GP
+|-
+| Tackler || 1.6 || 250GP, 320GP
+|-
+| Quickbird || 1.0 || Shield 2
+|-
+| Knight || 1.8 || Repair, Scrap 6
+|-
+| Redpixy || 2.0 || 200GP
+|-
+| Whitepixy || 2.2 || 300GP, 500GP
+|-
+| Master || 2.2 || Repair, Scrap 2, Scrap 1
+|-
+| Masker || 2.0 || 2000GP, Smoke
+|-
+| Beret (variants) || 2.0-2.6 || 2000GP
+|-
+| Big Fan || 1.6 || 800GP, Repair, Cure, Boots 6
+|-
+| Bumpy || 1.8 || Cure, Clean
+|-
+| Bigface || 2.4 || Blade 1, Sword 3, Blade 4
+|-
+| Gagarian || 2.8 || Cure, Boots 6, Bomb 4, Blade 3
+|-
+| Ninja || 3.0 || ?
+|-
+| Goldpixy || 2.2 || ?
+|}
+
+'''Note:''' Gelgels give $1,000-$7,500 and Cleans if you defeat them all.
+
 == Enemy Stats ==
 
 Stats are pending research. The enemy stats table location is unverified.

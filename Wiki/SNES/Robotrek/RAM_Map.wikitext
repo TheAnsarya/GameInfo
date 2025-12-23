@@ -334,12 +334,51 @@ SRAM is 8 KB ($2000 bytes) at $70:0000-$1fff.
 | $4218-$421f || Joypad registers
 |}
 
+== Pro Action Replay Addresses ==
+
+These addresses have been verified through PAR codes from GameFAQs:
+
+{| class="wikitable"
+! Address !! Description !! Notes
+|-
+| $7e0b14 || Hero Level || Value 0-99 (code: 7E0B1463 for level 99)
+|-
+| $7e0690 || Robot 1 Current Energy || 2 bytes (FF = 255)
+|-
+| $7e0696 || Robot 1 Power stat || 1 byte (FF = max)
+|-
+| $7e069c || Robot 1 Guard stat || 1 byte (FF = max)
+|-
+| $7e069a || Robot 1 Speed stat || 2 bytes 
+|-
+| $7e0688 || Robot 1 Program || 2 bytes (code: 7E068827)
+|-
+| $7e0689 || Robot 1 Program High || 1 byte (code: 7E06890F)
+|-
+| $7e07b0-$7e07bf || Inventor's Friend unlock flags || 16 bytes (FF = all unlocked)
+|}
+
+'''Inventor's Friend Complete Unlock:'''
+<pre>
+7E07B0FF - 7E07BFFF (16 consecutive codes)
+</pre>
+
+'''Note:''' These addresses indicate the in-game RAM locations for robot stats and progress flags. Robot stats appear to be in the $7e06xx range rather than the previously estimated $7e02xx range.
+
 == Notes ==
 
 * All multi-byte values are little-endian
 * Robot data structures are designed for 3 robots
 * Save data includes checksum for validation
 * Some addresses may vary between US and JP versions
+* PAR codes confirm robot stat addresses are $7e06xx
+
+== See Also ==
+
+* [[Robotrek:ROM Map|ROM Map]]
+* [[Robotrek:Data Structures|Save Data]]
+* [[Robotrek|Main Page]]
 
 [[Category:RAM Maps]]
 [[Category:SNES]]
+[[Category:Robotrek]]
