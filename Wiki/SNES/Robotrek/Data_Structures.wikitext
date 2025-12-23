@@ -25,11 +25,11 @@ SRAM: $70:0000-$70:1FFF (8 KB)
 |-
 | $0008 || 3 || Play time (hours:minutes:seconds)
 |-
-| $000B || 1 || Current chapter (1-5)
+| $000b || 1 || Current chapter (1-5)
 |-
-| $000C || 2 || Current location ID
+| $000c || 2 || Current location ID
 |-
-| $000E || 2 || Player X position
+| $000e || 2 || Player X position
 |-
 | $0010 || 2 || Player Y position
 |-
@@ -37,7 +37,7 @@ SRAM: $70:0000-$70:1FFF (8 KB)
 |-
 | $0013 || 1 || Direction facing
 |-
-| $0014-$001F || 12 || Reserved
+| $0014-$001f || 12 || Reserved
 |}
 
 === Player Data ($70:0020-$70:007F) ===
@@ -49,9 +49,9 @@ SRAM: $70:0000-$70:1FFF (8 KB)
 |-
 | $0028 || 2 || Current HP
 |-
-| $002A || 2 || Max HP
+| $002a || 2 || Max HP
 |-
-| $002C || 4 || Gold
+| $002c || 4 || Gold
 |-
 | $0030 || 4 || Total EXP
 |-
@@ -65,11 +65,11 @@ SRAM: $70:0000-$70:1FFF (8 KB)
 |-
 | $0039 || 1 || Guard (base)
 |-
-| $003A || 1 || Speed (base)
+| $003a || 1 || Speed (base)
 |-
-| $003B || 1 || Active robot slot (0-2)
+| $003b || 1 || Active robot slot (0-2)
 |-
-| $003C-$007F || 68 || Reserved/unused
+| $003c-$007f || 68 || Reserved/unused
 |}
 
 === Robot 1 Data ($70:0080-$70:00FF) ===
@@ -81,11 +81,11 @@ SRAM: $70:0000-$70:1FFF (8 KB)
 |-
 | $0088 || 2 || Current HP
 |-
-| $008A || 2 || Max HP
+| $008a || 2 || Max HP
 |-
-| $008C || 2 || Current EN
+| $008c || 2 || Current EN
 |-
-| $008E || 2 || Max EN
+| $008e || 2 || Max EN
 |-
 | $0090 || 1 || Level
 |-
@@ -107,19 +107,19 @@ SRAM: $70:0000-$70:1FFF (8 KB)
 |-
 | $0099 || 1 || Accessory 1
 |-
-| $009A || 1 || Accessory 2
+| $009a || 1 || Accessory 2
 |-
-| $009B || 1 || Program slot 1
+| $009b || 1 || Program slot 1
 |-
-| $009C || 1 || Program slot 2
+| $009c || 1 || Program slot 2
 |-
-| $009D || 1 || Program slot 3
+| $009d || 1 || Program slot 3
 |-
-| $009E || 1 || Program slot 4
+| $009e || 1 || Program slot 4
 |-
-| $009F || 1 || Color palette
+| $009f || 1 || Color palette
 |-
-| $00A0-$00FF || 96 || Stats history/modifiers
+| $00a0-$00ff || 96 || Stats history/modifiers
 |}
 
 === Robot 2 Data ($70:0100-$70:017F) ===
@@ -135,21 +135,21 @@ Same structure as Robot 1.
 {| class="wikitable"
 ! Offset !! Size !! Description
 |-
-| $0200-$021F || 32 || Consumable items (ID, Qty pairs)
+| $0200-$021f || 32 || Consumable items (ID, Qty pairs)
 |-
-| $0220-$023F || 32 || Weapons (16 slots, 2 bytes each)
+| $0220-$023f || 32 || Weapons (16 slots, 2 bytes each)
 |-
-| $0240-$025F || 32 || Armor (16 slots, 2 bytes each)
+| $0240-$025f || 32 || Armor (16 slots, 2 bytes each)
 |-
-| $0260-$027F || 32 || Accessories (16 slots, 2 bytes each)
+| $0260-$027f || 32 || Accessories (16 slots, 2 bytes each)
 |-
-| $0280-$029F || 32 || Materials (ID, Qty pairs)
+| $0280-$029f || 32 || Materials (ID, Qty pairs)
 |-
-| $02A0-$02BF || 32 || Robot parts (16 slots, 2 bytes each)
+| $02a0-$02bf || 32 || Robot parts (16 slots, 2 bytes each)
 |-
-| $02C0-$02DF || 32 || Key items (bitfield, 256 flags)
+| $02c0-$02df || 32 || Key items (bitfield, 256 flags)
 |-
-| $02E0-$02FF || 32 || Learned recipes (bitfield)
+| $02e0-$02ff || 32 || Learned recipes (bitfield)
 |}
 
 === Story Flags ($70:0300-$70:03FF) ===
@@ -165,26 +165,26 @@ Same structure as Robot 1.
 |-
 | $0302-$0309 || Chapter 2 flags
 |-
-| $030A-$0311 || Chapter 3 flags
+| $030a-$0311 || Chapter 3 flags
 |-
 | $0312-$0319 || Chapter 4 flags
 |-
-| $031A-$0321 || Chapter 5 flags
+| $031a-$0321 || Chapter 5 flags
 |-
-| $0322-$032F || Boss defeated flags
+| $0322-$032f || Boss defeated flags
 |-
-| $0330-$033F || Treasure chests opened
+| $0330-$033f || Treasure chests opened
 |-
-| $0340-$034F || NPCs talked to
+| $0340-$034f || NPCs talked to
 |-
-| $0350-$035F || Areas discovered
+| $0350-$035f || Areas discovered
 |-
-| $0360-$03FF || Misc/event flags
+| $0360-$03ff || Misc/event flags
 |}
 
 == ROM Data Structures ==
 
-=== Item Data (Bank $D0) ===
+=== Item Data (Bank $d0) ===
 
 Each item: 8 bytes
 
@@ -204,7 +204,7 @@ Each item: 8 bytes
 | $06 || 2 || Flags / Special effects
 |}
 
-=== Enemy Data (Bank $D1) ===
+=== Enemy Data (Bank $d1) ===
 
 Each enemy: 16 bytes
 
@@ -227,18 +227,18 @@ Each enemy: 16 bytes
 |-
 | $08 || 2 || EXP reward
 |-
-| $0A || 2 || Gold reward
+| $0a || 2 || Gold reward
 |-
-| $0C || 1 || Drop 1 ID
+| $0c || 1 || Drop 1 ID
 |-
-| $0D || 1 || Drop 1 rate
+| $0d || 1 || Drop 1 rate
 |-
-| $0E || 1 || Drop 2 ID
+| $0e || 1 || Drop 2 ID
 |-
-| $0F || 1 || Drop 2 rate
+| $0f || 1 || Drop 2 rate
 |}
 
-=== Invention Recipes (Bank $D2) ===
+=== Invention Recipes (Bank $d2) ===
 
 Each recipe: 8 bytes
 
@@ -262,7 +262,7 @@ Each recipe: 8 bytes
 | $07 || 1 || Required level / flags
 |}
 
-=== Map Data (Banks $E8-$EF) ===
+=== Map Data (Banks $e8-$ef) ===
 
 ==== Map Header ====
 
@@ -281,11 +281,11 @@ Each recipe: 8 bytes
 |-
 | $08 || 2 || Layer 1 data pointer
 |-
-| $0A || 2 || Layer 2 data pointer
+| $0a || 2 || Layer 2 data pointer
 |-
-| $0C || 2 || Collision data pointer
+| $0c || 2 || Collision data pointer
 |-
-| $0E || 2 || Event data pointer
+| $0e || 2 || Event data pointer
 |}
 
 ==== Tile Data ====
@@ -312,7 +312,7 @@ Each recipe: 8 bytes
 | $06 || 2 || Flags/conditions
 |}
 
-=== Sprite Data (Banks $C0-$C7) ===
+=== Sprite Data (Banks $c0-$c7) ===
 
 ==== Sprite Header ====
 
@@ -370,15 +370,15 @@ Uses dictionary encoding (see TBL page).
 {| class="wikitable"
 ! Address !! Description
 |-
-| $2100-$213F || PPU registers
+| $2100-$213f || PPU registers
 |-
 | $4016 || Controller 1 data
 |-
 | $4017 || Controller 2 data
 |-
-| $4200-$420D || CPU registers
+| $4200-$420d || CPU registers
 |-
-| $4300-$437F || DMA channels
+| $4300-$437f || DMA channels
 |}
 
 [[Category:Data Structures]]

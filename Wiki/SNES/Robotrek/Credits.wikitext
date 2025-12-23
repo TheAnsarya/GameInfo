@@ -164,7 +164,7 @@ Robotrek was Quintet's only RPG with a modern/sci-fi setting. The game:
 
 == Internal ROM Credits ==
 
-Found in ROM at $FF:FFE0:
+Found in ROM at $ff:FFE0:
 
 <pre>
 ROBOTREK 1 USA

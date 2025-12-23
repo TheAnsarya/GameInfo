@@ -4,11 +4,11 @@
 
 This page documents all enemies in Robotrek (USA version).
 
-'''Data Status:''' Enemy names verified from ROM at $01FDBE. Stats are TBD pending research.
+'''Data Status:''' Enemy names verified from ROM at $01fdbe. Stats are TBD pending research.
 
 == Verified Enemy List (58 enemies) ==
 
-Source: ROM address $01FDBE (null-terminated strings), pointer table at $01FD00
+Source: ROM address $01fdbe (null-terminated strings), pointer table at $01fd00
 
 {| class="wikitable sortable"
 ! ID !! Hex !! Name !! Category
@@ -143,8 +143,8 @@ Stats are pending research. The enemy stats table location is unverified.
 
 == Data Structure ==
 
-Enemy names are stored at ROM offset $01FDBE as null-terminated strings.
-A pointer table at $01FD00 contains 16-bit offsets to each name.
+Enemy names are stored at ROM offset $01fdbe as null-terminated strings.
+A pointer table at $01fd00 contains 16-bit offsets to each name.
 
 Enemy stats structure (TBD - requires further research):
 
@@ -167,15 +167,15 @@ Enemy stats structure (TBD - requires further research):
 |-
 | $09 || 2 || Gold
 |-
-| $0B || 1 || AI Pattern
+| $0b || 1 || AI Pattern
 |-
-| $0C || 1 || Drop ID 1
+| $0c || 1 || Drop ID 1
 |-
-| $0D || 1 || Drop ID 2
+| $0d || 1 || Drop ID 2
 |-
-| $0E || 1 || Drop Rate
+| $0e || 1 || Drop Rate
 |-
-| $0F || 1 || Flags/Resistances
+| $0f || 1 || Flags/Resistances
 |}
 
 [[Category:Data Tables]]

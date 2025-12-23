@@ -18,30 +18,30 @@
 | ROM Size | 1.5 MB ($180000) |
 | SRAM | 8 KB |
 | Mapper | HiROM + FastROM |
-| Checksum | $6D44 |
+| Checksum | $6d44 |
 | CRC32 | 7AD4AADC |
 
 ### Verified Addresses
 
 | Type | ROM Offset | SNES Address | Description |
 |------|-----------|--------------|-------------|
-| Item Names (script) | $01E413 | $C1E413 | CC-separated strings, 98 entries |
-| Item Names (menu) | $01F8A0 | $C1F8A0 | Null-separated, 8-byte aligned |
-| Enemy Name Pointers | $01FD00 | $C1FD00 | 16-bit pointer table |
-| Enemy Names | $01FDBE | $C1FDBE | Null-terminated strings, 58 entries |
-| Font Graphics | $80000 | $D08000 | 2BPP GameBoy format (uncompressed) |
-| Map Metadata | $D8000 | $DB8000 | Map structure data |
-| Inventory Graphics | $D9310 | $DB9310 | Menu graphics (uncompressed) |
+| Item Names (script) | $01e413 | $c1e413 | CC-separated strings, 98 entries |
+| Item Names (menu) | $01f8a0 | $c1f8a0 | Null-separated, 8-byte aligned |
+| Enemy Name Pointers | $01fd00 | $c1fd00 | 16-bit pointer table |
+| Enemy Names | $01fdbe | $c1fdbe | Null-terminated strings, 58 entries |
+| Font Graphics | $80000 | $d08000 | 2BPP GameBoy format (uncompressed) |
+| Map Metadata | $d8000 | $db8000 | Map structure data |
+| Inventory Graphics | $d9310 | $db9310 | Menu graphics (uncompressed) |
 
-### Interrupt Vectors (at $FFE0)
+### Interrupt Vectors (at $ffe0)
 
 | Vector | Address | Description |
 |--------|---------|-------------|
 | RESET | $8000 | Game entry point |
-| NMI_native | $800D | VBlank interrupt (JML $8BFB43) |
-| IRQ_native | $8011 | IRQ interrupt (JML $8BFBC8) |
-| COP_native | $8015 | COP handler (JML $809EE8) |
-| BRK_native | $8019 | BRK handler (JML $8BFBC9) |
+| NMI_native | $800d | VBlank interrupt (JML $8bfb43) |
+| IRQ_native | $8011 | IRQ interrupt (JML $8bfbc8) |
+| COP_native | $8015 | COP handler (JML $809ee8) |
+| BRK_native | $8019 | BRK handler (JML $8bfbc9) |
 
 ### Bank Analysis (JSL Destinations)
 
@@ -52,33 +52,33 @@ Most frequently called banks:
 | $80 | 399 | Core system routines |
 | $84 | 343 | Main game logic |
 | $88 | 281 | Secondary systems |
-| $8A | 214 | Additional game code |
-| $8B | 97 | Interrupt handlers |
+| $8a | 214 | Additional game code |
+| $8b | 97 | Interrupt handlers |
 
 ### Reset Sequence Analysis
 
 ```asm
-$C08000: SEI          ; Disable interrupts
-$C08001: CLC          ; Switch to native mode
-$C08002: XCE          ; 
-$C08003: STZ $420B    ; Disable DMA
-$C08006: STZ $420C    ; Disable HDMA
-$C08009: JML $80801D  ; Jump to main initialization
+$c08000: SEI          ; Disable interrupts
+$c08001: CLC          ; Switch to native mode
+$c08002: XCE          ; 
+$c08003: STZ $420b    ; Disable DMA
+$c08006: STZ $420c    ; Disable HDMA
+$c08009: JML $80801d  ; Jump to main initialization
 ```
 
 ### Main Loop
 
-Located at $C0803D-$C08049:
+Located at $c0803d-$c08049:
 ```asm
-$C0803D: JSL $8081FC  ; Frame processing
-$C08041: JSL $848000  ; Main game update
-$C08045: JSL $808199  ; Post-frame
-$C08049: BRA $803D    ; Loop
+$c0803d: JSL $8081fc  ; Frame processing
+$c08041: JSL $848000  ; Main game update
+$c08045: JSL $808199  ; Post-frame
+$c08049: BRA $803d    ; Loop
 ```
 
 ## Code Organization
 
-### Bank $80 ($C0xxxx in HiROM)
+### Bank $80 ($c0xxxx in HiROM)
 - System initialization
 - Main loop
 - Core subroutines
@@ -93,11 +93,11 @@ $C08049: BRA $803D    ; Loop
 - Secondary game systems
 - TBD: Need further analysis
 
-### Bank $8A
+### Bank $8a
 - Additional game code
 - TBD: Need further analysis
 
-### Bank $8B
+### Bank $8b
 - Interrupt handlers (NMI, IRQ, BRK)
 - VBlank processing
 
@@ -125,17 +125,17 @@ $C08049: BRA $803D    ; Loop
 
 | Offset | Track Name |
 |--------|------------|
-| $0296B | Robots vs. Hackers |
-| $02EEB | Count Prinky's Mansion |
-| $039A9 | Super Robot Battle! |
+| $0296b | Robots vs. Hackers |
+| $02eeb | Count Prinky's Mansion |
+| $039a9 | Super Robot Battle! |
 | $05879 | Futuristic World in Peril |
-| $07A69 | The World of Quintenix |
-| $10D21 | Hometown in Autumn |
-| $1264E | Music Box of Memories |
-| $EFAD5 | Gateau ~ Master of Time |
-| $14848E | Staff Roll |
-| $14F2EE | Beyond the Stars! |
-| $17F054 | Tropical Paradise |
+| $07a69 | The World of Quintenix |
+| $10d21 | Hometown in Autumn |
+| $1264e | Music Box of Memories |
+| $efad5 | Gateau ~ Master of Time |
+| $14848e | Staff Roll |
+| $14f2ee | Beyond the Stars! |
+| $17f054 | Tropical Paradise |
 
 ## SRAM Save Structure (from Data Crystal)
 
@@ -148,15 +148,15 @@ $C08049: BRA $803D    ; Loop
 | $0303 | 2 | Player X Position |
 | $0305 | 2 | Player Y Position |
 | $0312 | 7 | Player Name |
-| $031E | 7 | Robot 1 Name |
+| $031e | 7 | Robot 1 Name |
 | $0325 | 7 | Robot 2 Name |
 | $0336 | 7 | Robot 3 Name |
 | $0388 | 2 | Program Points |
-| $038A | 6 | Robot Current HP (×3) |
+| $038a | 6 | Robot Current HP (×3) |
 | $0390 | 6 | Robot Max HP (×3) |
 | $0396 | 6 | Robot Power (×3) |
-| $039C | 6 | Robot Guard (×3) |
-| $03A2 | 6 | Robot Speed (×3) |
-| $03A8 | 6 | Robot Charge (×3) |
-| $03E9 | 3 | GP (Gold) |
-| $04FA | 4 | Checksum |
+| $039c | 6 | Robot Guard (×3) |
+| $03a2 | 6 | Robot Speed (×3) |
+| $03a8 | 6 | Robot Charge (×3) |
+| $03e9 | 3 | GP (Gold) |
+| $04fa | 4 | Checksum |

@@ -19,7 +19,7 @@ This page documents the ROM layout for Robotrek (USA version).
 |-
 | SRAM || 8 KB
 |-
-| Checksum || $6D44
+| Checksum || $6d44
 |-
 | CRC32 || 7AD4AADC
 |-
@@ -34,116 +34,116 @@ Robotrek uses '''Quintet's standard LZSS compression algorithm''', common to oth
 
 == Major Data Regions ==
 
-=== Early Banks ($00000-$3FFFF) ===
+=== Early Banks ($00000-$3ffff) ===
 
 {| class="wikitable"
 ! File Offset !! Size !! Description
 |-
 | $00000-$00622 || $623 || Compressed map tileset data
 |-
-| $00623-$00C3E || $61C || Compressed map tileset data
+| $00623-$00c3e || $61c || Compressed map tileset data
 |-
-| $00C3F-$0124D || $60F || Compressed map tileset data
+| $00c3f-$0124d || $60f || Compressed map tileset data
 |-
-| $0124E-$01844 || $5F7 || Compressed map tileset data
+| $0124e-$01844 || $5f7 || Compressed map tileset data
 |-
-| $01845-$01E2E || $5EA || Compressed map tileset data
+| $01845-$01e2e || $5ea || Compressed map tileset data
 |-
-| $01E2F-$023E7 || $5B9 || Compressed map tileset data
+| $01e2f-$023e7 || $5b9 || Compressed map tileset data
 |-
-| $023E8-$0296A || $583 || Compressed map arrangement data
+| $023e8-$0296a || $583 || Compressed map arrangement data
 |-
-| $0296B-$02EEA || $580 || '''Music - Robots vs. Hackers'''
+| $0296b-$02eea || $580 || '''Music - Robots vs. Hackers'''
 |-
-| $02EEB-$0344A || $560 || '''Music - Count Prinky's Mansion'''
+| $02eeb-$0344a || $560 || '''Music - Count Prinky's Mansion'''
 |-
-| $0344B-$039A8 || $55E || Compressed map tileset data
+| $0344b-$039a8 || $55e || Compressed map tileset data
 |-
-| $039A9-$03F03 || $55B || '''Music - Super Robot Battle!'''
+| $039a9-$03f03 || $55b || '''Music - Super Robot Battle!'''
 |-
-| $05879-$05D6C || $4F4 || '''Music - Futuristic World in Peril'''
+| $05879-$05d6c || $4f4 || '''Music - Futuristic World in Peril'''
 |-
-| $07A69-$07F03 || $49B || '''Music - The World of Quintenix'''
+| $07a69-$07f03 || $49b || '''Music - The World of Quintenix'''
 |-
-| $0FFC0-$0FFFF || $40 || Internal ROM header
+| $0ffc0-$0ffff || $40 || Internal ROM header
 |}
 
-=== Bank $10000-$1FFFF ===
+=== Bank $10000-$1ffff ===
 
 {| class="wikitable"
 ! File Offset !! Size !! Description
 |-
-| $10000-$1046D || $46E || Compressed map arrangement data
+| $10000-$1046d || $46e || Compressed map arrangement data
 |-
-| $10D21-$11166 || $446 || '''Music - Hometown in Autumn'''
+| $10d21-$11166 || $446 || '''Music - Hometown in Autumn'''
 |-
-| $1264E-$12A59 || $40C || '''Music - Music Box of Memories'''
+| $1264e-$12a59 || $40c || '''Music - Music Box of Memories'''
 |-
-| $15FEE-$16390 || $3A3 || '''Music - Deep Underground'''
+| $15fee-$16390 || $3a3 || '''Music - Deep Underground'''
 |-
-| $01E413 || ~$1480 || '''Item names''' (CC-separated, 98 entries) - '''VERIFIED'''
+| $01e413 || ~$1480 || '''Item names''' (CC-separated, 98 entries) - '''VERIFIED'''
 |-
-| $01F8A0 || ~$500 || Item names (menu, 8-byte aligned) - '''VERIFIED'''
+| $01f8a0 || ~$500 || Item names (menu, 8-byte aligned) - '''VERIFIED'''
 |-
-| $01FD00 || ~$BC || Enemy name pointer table - '''VERIFIED'''
+| $01fd00 || ~$bc || Enemy name pointer table - '''VERIFIED'''
 |-
-| $01FDBE || ~$300 || '''Enemy names''' (null-terminated, 58 entries) - '''VERIFIED'''
+| $01fdbe || ~$300 || '''Enemy names''' (null-terminated, 58 entries) - '''VERIFIED'''
 |}
 
-=== Sound Samples ($90000-$DFFFF) ===
+=== Sound Samples ($90000-$dffff) ===
 
 {| class="wikitable"
 ! File Offset !! Description
 |-
-| $90000-$9002E || Sound sample 00 (16-bit length + BRR data)
+| $90000-$9002e || Sound sample 00 (16-bit length + BRR data)
 |-
-| $9002F-$90054 || Sound sample 01
+| $9002f-$90054 || Sound sample 01
 |-
-| $90055-$900A7 || Sound sample 02
+| $90055-$900a7 || Sound sample 02
 |-
-| $900A8-$901D2 || Sound sample 03
+| $900a8-$901d2 || Sound sample 03
 |-
-| $901D3-$915DE || Sound sample 04 (large)
+| $901d3-$915de || Sound sample 04 (large)
 |-
-| $915DF-$921E6 || Sound sample 05
+| $915df-$921e6 || Sound sample 05
 |-
-| $921E7-$93871 || Sound sample 06 (large)
+| $921e7-$93871 || Sound sample 06 (large)
 |-
-| ... || (Samples 07-2A continue through $D177B)
+| ... || (Samples 07-2A continue through $d177b)
 |}
 
-=== Graphics ($80000-$8FFFF) ===
+=== Graphics ($80000-$8ffff) ===
 
 {| class="wikitable"
 ! File Offset !! Size !! Description
 |-
-| $80000-$81FFF || $2000 || '''Uncompressed font graphics''' (2BPP GameBoy format)
+| $80000-$81fff || $2000 || '''Uncompressed font graphics''' (2BPP GameBoy format)
 |-
-| $82000-$835C4 || $15C5 || Compressed graphics
+| $82000-$835c4 || $15c5 || Compressed graphics
 |-
-| $835C5-$84B5B || $1597 || Compressed graphics
+| $835c5-$84b5b || $1597 || Compressed graphics
 |-
-| $84B5C-$860EE || $1593 || Compressed graphics
+| $84b5c-$860ee || $1593 || Compressed graphics
 |-
-| $860EF-$87630 || $1542 || Compressed graphics
+| $860ef-$87630 || $1542 || Compressed graphics
 |-
-| $87631-$87F3F || $90F || Compressed graphics
+| $87631-$87f3f || $90f || Compressed graphics
 |}
 
-=== Map Data ($D8000-$DFFFF) ===
+=== Map Data ($d8000-$dffff) ===
 
 {| class="wikitable"
 ! File Offset !! Size !! Description
 |-
-| $D8000-$D930F || $1310 || Map metadata
+| $d8000-$d930f || $1310 || Map metadata
 |-
-| $D9310-$DB30F || $2000 || '''Uncompressed inventory/menu graphics'''
+| $d9310-$db30f || $2000 || '''Uncompressed inventory/menu graphics'''
 |-
-| $DB310-$DD16F || $1E60 || Compressed graphics
+| $db310-$dd16f || $1e60 || Compressed graphics
 |-
-| $DD170-$DEB7E || $1A0F || Compressed graphics
+| $dd170-$deb7e || $1a0f || Compressed graphics
 |-
-| $DEB7F-$DFF74 || $13F6 || Compressed graphics
+| $deb7f-$dff74 || $13f6 || Compressed graphics
 |}
 
 === Music Tracks ===
@@ -151,51 +151,51 @@ Robotrek uses '''Quintet's standard LZSS compression algorithm''', common to oth
 {| class="wikitable sortable"
 ! File Offset !! Track Name
 |-
-| $0296B || Robots vs. Hackers
+| $0296b || Robots vs. Hackers
 |-
-| $02EEB || Count Prinky's Mansion
+| $02eeb || Count Prinky's Mansion
 |-
-| $039A9 || Super Robot Battle!
+| $039a9 || Super Robot Battle!
 |-
 | $05879 || Futuristic World in Peril
 |-
-| $07A69 || The World of Quintenix
+| $07a69 || The World of Quintenix
 |-
-| $10D21 || Hometown in Autumn
+| $10d21 || Hometown in Autumn
 |-
-| $1264E || Music Box of Memories
+| $1264e || Music Box of Memories
 |-
-| $15FEE || Deep Underground
+| $15fee || Deep Underground
 |-
-| $259E3 || Special Item
+| $259e3 || Special Item
 |-
-| $33CCC || (no music)
+| $33ccc || (no music)
 |-
-| $EFAD5 || Gateau ~ Master of Time
+| $efad5 || Gateau ~ Master of Time
 |-
-| $F9654 || Quiet Victory
+| $f9654 || Quiet Victory
 |-
-| $11EDB7 || Programmers' Computer
+| $11edb7 || Programmers' Computer
 |-
-| $12C090 || Research and Development
+| $12c090 || Research and Development
 |-
-| $12C8C1 || Dangerous Places
+| $12c8c1 || Dangerous Places
 |-
-| $12D366 || A Long Time Ago...
+| $12d366 || A Long Time Ago...
 |-
-| $13A6D2 || Beneath the Lava
+| $13a6d2 || Beneath the Lava
 |-
-| $13B7A0 || High in the Sky
+| $13b7a0 || High in the Sky
 |-
-| $13D6D7 || Theme of the Hackers
+| $13d6d7 || Theme of the Hackers
 |-
-| $13E7C6 || Hackers' Supreme Fortress
+| $13e7c6 || Hackers' Supreme Fortress
 |-
-| $14848E || Staff Roll
+| $14848e || Staff Roll
 |-
-| $14F2EE || Beyond the Stars!
+| $14f2ee || Beyond the Stars!
 |-
-| $17F054 || Tropical Paradise
+| $17f054 || Tropical Paradise
 |}
 
 == Verified Data Tables ==
@@ -203,13 +203,13 @@ Robotrek uses '''Quintet's standard LZSS compression algorithm''', common to oth
 {| class="wikitable"
 ! Address !! File Offset !! Size !! Description !! Status
 |-
-| $C1E413 || $01E413 || ~$1480 || Item names (script text, CC-separated) || '''Verified'''
+| $c1e413 || $01e413 || ~$1480 || Item names (script text, CC-separated) || '''Verified'''
 |-
-| $C1F8A0 || $01F8A0 || ~$500 || Item names (menu, null-separated, 8-byte) || '''Verified'''
+| $c1f8a0 || $01f8a0 || ~$500 || Item names (menu, null-separated, 8-byte) || '''Verified'''
 |-
-| $C1FD00 || $01FD00 || ~$BC || Enemy name pointer table (16-bit) || '''Verified'''
+| $c1fd00 || $01fd00 || ~$bc || Enemy name pointer table (16-bit) || '''Verified'''
 |-
-| $C1FDBE || $01FDBE || ~$300 || Enemy names (null-terminated strings) || '''Verified'''
+| $c1fdbe || $01fdbe || ~$300 || Enemy names (null-terminated strings) || '''Verified'''
 |}
 
 == Interrupt Vectors ==
@@ -217,15 +217,15 @@ Robotrek uses '''Quintet's standard LZSS compression algorithm''', common to oth
 {| class="wikitable"
 ! Vector !! Address !! Target !! Description
 |-
-| RESET || $FFFC || $8000 || Game entry point
+| RESET || $fffc || $8000 || Game entry point
 |-
-| NMI (native) || $FFEA || $800D || VBlank → JML $8BFB43
+| NMI (native) || $ffea || $800d || VBlank → JML $8bfb43
 |-
-| IRQ (native) || $FFEE || $8011 || IRQ → JML $8BFBC8
+| IRQ (native) || $ffee || $8011 || IRQ → JML $8bfbc8
 |-
-| COP (native) || $FFE4 || $8015 || COP → JML $809EE8
+| COP (native) || $ffe4 || $8015 || COP → JML $809ee8
 |-
-| BRK (native) || $FFE6 || $8019 || BRK → JML $8BFBC9
+| BRK (native) || $ffe6 || $8019 || BRK → JML $8bfbc9
 |}
 
 == Unused Space ==
@@ -233,18 +233,18 @@ Robotrek uses '''Quintet's standard LZSS compression algorithm''', common to oth
 {| class="wikitable"
 ! File Offset !! Size !! Description
 |-
-| $3400A-$37FFF || $3FF6 || Unused (available for expansion)
+| $3400a-$37fff || $3ff6 || Unused (available for expansion)
 |-
-| $171F0E-$177FFF || $60F2 || Unused
+| $171f0e-$177fff || $60f2 || Unused
 |}
 
 == Notes ==
 
-* The ROM uses HiROM mapping, so bank $C0 starts at file offset $0
+* The ROM uses HiROM mapping, so bank $c0 starts at file offset $0
 * Graphics are mostly compressed using Quintet's LZSS
 * Font graphics at $80000 are uncompressed 2BPP (GameBoy-style format)
 * Map metadata format is similar to other Quintet games
-* SRAM at $70:0000-$1FFF stores save game data (see [[Robotrek (SNES)/RAM_Map|RAM Map]])
+* SRAM at $70:0000-$1fff stores save game data (see [[Robotrek (SNES)/RAM_Map|RAM Map]])
 
 [[Category:ROM Maps]]
 [[Category:SNES]]

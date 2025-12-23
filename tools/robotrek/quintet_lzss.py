@@ -280,17 +280,17 @@ def main():
 
 	if args.scan:
 		end = args.end if args.end else len(lzss.rom_data)
-		print(f"Scanning for compressed blocks from ${args.offset:X} to ${end:X}...")
+		print(f"Scanning for compressed blocks from ${args.offset:x} to ${end:x}...")
 		blocks = find_compressed_blocks(lzss.rom_data, args.offset, end)
 		print(f"Found {len(blocks)} potential compressed blocks:")
 		for offset, size in blocks[:50]:  # Limit output
-			print(f"  ${offset:06X}: {size} bytes uncompressed")
+			print(f"  ${offset:06x}: {size} bytes uncompressed")
 		if len(blocks) > 50:
 			print(f"  ... and {len(blocks) - 50} more")
 	else:
 		size = lzss.get_size_at(args.offset)
-		print(f"Compressed data at ${args.offset:06X}")
-		print(f"Uncompressed size: {size} bytes (${size:04X})")
+		print(f"Compressed data at ${args.offset:06x}")
+		print(f"Uncompressed size: {size} bytes (${size:04x})")
 
 		try:
 			data = lzss.decompress_at(args.offset, args.variant)

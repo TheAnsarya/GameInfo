@@ -4,7 +4,7 @@
 
 This page documents all items in Robotrek (USA version).
 
-'''Data Status:''' Item names verified from ROM at $01E413. Stats are TBD pending research.
+'''Data Status:''' Item names verified from ROM at $01e413. Stats are TBD pending research.
 
 == Item Categories ==
 
@@ -17,7 +17,7 @@ This page documents all items in Robotrek (USA version).
 
 == Verified Item List (98 items) ==
 
-Source: ROM address $01E413 (CC-separated strings)
+Source: ROM address $01e413 (CC-separated strings)
 
 {| class="wikitable sortable"
 ! ID !! Hex !! Name !! Category
@@ -221,7 +221,7 @@ Source: ROM address $01E413 (CC-separated strings)
 
 == Data Structure ==
 
-Item names are stored at ROM offset $01E413, separated by $CC bytes.
+Item names are stored at ROM offset $01e413, separated by $cc bytes.
 
 Item stats structure (TBD - requires further research):
 

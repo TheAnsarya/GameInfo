@@ -77,13 +77,13 @@ Robotrek uses '''HiROM''' mapping with '''FastROM''' enabled:
 {| class="wikitable"
 ! Bank Range !! Address Range !! Description
 |-
-| $C0-$CF || $0000-$FFFF || Program ROM (Banks 0-15)
+| $c0-$cf || $0000-$ffff || Program ROM (Banks 0-15)
 |-
-| $D0-$DF || $0000-$FFFF || Program ROM (Banks 16-31)
+| $d0-$df || $0000-$ffff || Program ROM (Banks 16-31)
 |-
-| $70-$77 || $0000-$1FFF || SRAM (Save Data)
+| $70-$77 || $0000-$1fff || SRAM (Save Data)
 |-
-| $7E-$7F || $0000-$FFFF || Work RAM
+| $7e-$7f || $0000-$ffff || Work RAM
 |}
 
 == Development ==

@@ -171,9 +171,9 @@ Robotrek uses HiROM mapping:
 
 | Bank | Address | Description |
 |------|---------|-------------|
-| $C0-$CF | $0000-$FFFF | Program ROM (banks 0-15) |
-| $D0-$DF | $0000-$FFFF | Program ROM (banks 16-31) |
-| $70-$77 | $0000-$1FFF | Save RAM |
+| $c0-$cf | $0000-$ffff | Program ROM (banks 0-15) |
+| $d0-$df | $0000-$ffff | Program ROM (banks 16-31) |
+| $70-$77 | $0000-$1fff | Save RAM |
 
 ### Compression
 
@@ -186,7 +186,7 @@ Robotrek uses several compression methods:
 
 | Address | Description |
 |---------|-------------|
-| $C08000+ | Main program code |
+| $c08000+ | Main program code |
 | TBD | Item table |
 | TBD | Enemy table |
 | TBD | Invention table |

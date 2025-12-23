@@ -9,14 +9,14 @@ This page documents the RAM memory layout for Robotrek.
 {| class="wikitable"
 ! Range !! Size !! Description
 |-
-| $7E0000-$7E1FFF || 8 KB || Direct Page, Stack, Low RAM
+| $7e0000-$7e1fff || 8 KB || Direct Page, Stack, Low RAM
 |-
-| $7E2000-$7EFFFF || 56 KB || Main Work RAM
+| $7e2000-$7effff || 56 KB || Main Work RAM
 |-
-| $7F0000-$7FFFFF || 64 KB || Extended Work RAM
+| $7f0000-$7fffff || 64 KB || Extended Work RAM
 |}
 
-== Direct Page ($7E0000-$7E00FF) ==
+== Direct Page ($7e0000-$7e00ff) ==
 
 {| class="wikitable"
 ! Address !! Size !! Description
@@ -31,9 +31,9 @@ This page documents the RAM memory layout for Robotrek.
 |-
 | $08-$09 || 2 || Loop counter
 |-
-| $0A-$0B || 2 || Temporary value
+| $0a-$0b || 2 || Temporary value
 |-
-| $0C-$0D || 2 || Return value
+| $0c-$0d || 2 || Return value
 |-
 | $10-$11 || 2 || Current bank
 |-
@@ -45,16 +45,16 @@ This page documents the RAM memory layout for Robotrek.
 |-
 | $18-$19 || 2 || Current map ID
 |-
-| $1A-$1B || 2 || Player X position
+| $1a-$1b || 2 || Player X position
 |-
-| $1C-$1D || 2 || Player Y position
+| $1c-$1d || 2 || Player Y position
 |-
-| $1E-$1F || 2 || Camera X position
+| $1e-$1f || 2 || Camera X position
 |-
 | $20-$21 || 2 || Camera Y position
 |}
 
-== Player Data ($7E0100-$7E01FF) ==
+== Player Data ($7e0100-$7e01ff) ==
 
 {| class="wikitable"
 ! Address !! Size !! Description
@@ -69,20 +69,20 @@ This page documents the RAM memory layout for Robotrek.
 |-
 | $0109 || 1 || Hero Power stat
 |-
-| $010A || 1 || Hero Guard stat
+| $010a || 1 || Hero Guard stat
 |-
-| $010B || 1 || Hero Speed stat
+| $010b || 1 || Hero Speed stat
 |-
-| $010C-$010F || 4 || Gold amount
+| $010c-$010f || 4 || Gold amount
 |-
-| $0110-$011F || 16 || Equipped items
+| $0110-$011f || 16 || Equipped items
 |-
-| $0120-$012F || 16 || Inventory slots (16 items)
+| $0120-$012f || 16 || Inventory slots (16 items)
 |-
-| $0130-$013F || 16 || Invention materials
+| $0130-$013f || 16 || Invention materials
 |}
 
-== Robot 1 Data ($7E0200-$7E027F) ==
+== Robot 1 Data ($7e0200-$7e027f) ==
 
 {| class="wikitable"
 ! Address !! Size !! Description
@@ -95,34 +95,34 @@ This page documents the RAM memory layout for Robotrek.
 |-
 | $0206-$0207 || 2 || Robot 1 Current EN
 |-
-| $0208-$020B || 4 || Robot 1 Experience
+| $0208-$020b || 4 || Robot 1 Experience
 |-
-| $020C || 1 || Robot 1 Level
+| $020c || 1 || Robot 1 Level
 |-
-| $020D || 1 || Robot 1 Power
+| $020d || 1 || Robot 1 Power
 |-
-| $020E || 1 || Robot 1 Guard
+| $020e || 1 || Robot 1 Guard
 |-
-| $020F || 1 || Robot 1 Speed
+| $020f || 1 || Robot 1 Speed
 |-
 | $0210-$0213 || 4 || Robot 1 Special Attacks
 |-
 | $0214-$0217 || 4 || Robot 1 Equipped Parts (Head, Body, Arms, Legs)
 |-
-| $0218-$021B || 4 || Robot 1 Accessories
+| $0218-$021b || 4 || Robot 1 Accessories
 |-
-| $021C-$027F || 100 || Robot 1 Additional data
+| $021c-$027f || 100 || Robot 1 Additional data
 |}
 
-== Robot 2 Data ($7E0280-$7E02FF) ==
+== Robot 2 Data ($7e0280-$7e02ff) ==
 
 Same structure as Robot 1, offset by $80 bytes.
 
-== Robot 3 Data ($7E0300-$7E037F) ==
+== Robot 3 Data ($7e0300-$7e037f) ==
 
 Same structure as Robot 1, offset by $100 bytes.
 
-== Game State ($7E0400-$7E04FF) ==
+== Game State ($7e0400-$7e04ff) ==
 
 {| class="wikitable"
 ! Address !! Size !! Description
@@ -139,20 +139,20 @@ Same structure as Robot 1, offset by $100 bytes.
 |-
 | $0409 || 1 || Game progress flags
 |-
-| $040A-$040F || 6 || Story progress bits
+| $040a-$040f || 6 || Story progress bits
 |-
-| $0410-$041F || 16 || Event flags (128 bits)
+| $0410-$041f || 16 || Event flags (128 bits)
 |-
-| $0420-$042F || 16 || Treasure flags (128 chests)
+| $0420-$042f || 16 || Treasure flags (128 chests)
 |-
-| $0430-$043F || 16 || NPC conversation flags
+| $0430-$043f || 16 || NPC conversation flags
 |-
-| $0440-$044F || 16 || Boss defeat flags
+| $0440-$044f || 16 || Boss defeat flags
 |-
-| $0450-$045F || 16 || Secret discovery flags
+| $0450-$045f || 16 || Secret discovery flags
 |}
 
-== Battle State ($7E0500-$7E05FF) ==
+== Battle State ($7e0500-$7e05ff) ==
 
 {| class="wikitable"
 ! Address !! Size !! Description
@@ -165,40 +165,40 @@ Same structure as Robot 1, offset by $100 bytes.
 |-
 | $0503 || 1 || Enemy count
 |-
-| $0504-$050F || 12 || Turn order queue
+| $0504-$050f || 12 || Turn order queue
 |-
-| $0510-$052F || 32 || Enemy 1 battle data
+| $0510-$052f || 32 || Enemy 1 battle data
 |-
-| $0530-$054F || 32 || Enemy 2 battle data
+| $0530-$054f || 32 || Enemy 2 battle data
 |-
-| $0550-$056F || 32 || Enemy 3 battle data
+| $0550-$056f || 32 || Enemy 3 battle data
 |-
-| $0570-$058F || 32 || Enemy 4 battle data
+| $0570-$058f || 32 || Enemy 4 battle data
 |-
-| $0590-$059F || 16 || Battle rewards
+| $0590-$059f || 16 || Battle rewards
 |-
-| $05A0-$05AF || 16 || Damage calculation scratch
+| $05a0-$05af || 16 || Damage calculation scratch
 |}
 
-== Map/Room Data ($7E0600-$7E07FF) ==
+== Map/Room Data ($7e0600-$7e07ff) ==
 
 {| class="wikitable"
 ! Address !! Size !! Description
 |-
-| $0600-$060F || 16 || Current room NPCs (IDs)
+| $0600-$060f || 16 || Current room NPCs (IDs)
 |-
-| $0610-$062F || 32 || NPC positions
+| $0610-$062f || 32 || NPC positions
 |-
-| $0630-$063F || 16 || Interactive objects
+| $0630-$063f || 16 || Interactive objects
 |-
-| $0640-$064F || 16 || Door/warp data
+| $0640-$064f || 16 || Door/warp data
 |-
-| $0650-$06FF || 176 || Collision data cache
+| $0650-$06ff || 176 || Collision data cache
 |-
-| $0700-$07FF || 256 || Tile animation data
+| $0700-$07ff || 256 || Tile animation data
 |}
 
-== Menu State ($7E0800-$7E08FF) ==
+== Menu State ($7e0800-$7e08ff) ==
 
 {| class="wikitable"
 ! Address !! Size !! Description
@@ -213,30 +213,30 @@ Same structure as Robot 1, offset by $100 bytes.
 |-
 | $0804-$0807 || 4 || Menu scroll position
 |-
-| $0808-$080F || 8 || Menu scratch data
+| $0808-$080f || 8 || Menu scratch data
 |-
-| $0810-$081F || 16 || Selected item data
+| $0810-$081f || 16 || Selected item data
 |}
 
-== Invention System ($7E0900-$7E09FF) ==
+== Invention System ($7e0900-$7e09ff) ==
 
 {| class="wikitable"
 ! Address !! Size !! Description
 |-
-| $0900-$090F || 16 || Invention slots (8 x 2 bytes)
+| $0900-$090f || 16 || Invention slots (8 x 2 bytes)
 |-
-| $0910-$092F || 32 || Material inventory
+| $0910-$092f || 32 || Material inventory
 |-
-| $0930-$093F || 16 || Recipe progress
+| $0930-$093f || 16 || Recipe progress
 |-
-| $0940-$094F || 16 || Discovered recipes (flags)
+| $0940-$094f || 16 || Discovered recipes (flags)
 |}
 
 == SRAM Structure (Verified from Data Crystal) ==
 
 '''Source:''' [https://datacrystal.tcrf.net/wiki/Robotrek/RAM_map Data Crystal]
 
-SRAM is 8 KB ($2000 bytes) at $70:0000-$1FFF.
+SRAM is 8 KB ($2000 bytes) at $70:0000-$1fff.
 
 === File Layout ===
 
@@ -249,7 +249,7 @@ SRAM is 8 KB ($2000 bytes) at $70:0000-$1FFF.
 |-
 | $0600 || $500 (1280) || '''Save Slot #2'''
 |-
-| $0B00 || $500 (1280) || '''Save Slot #3'''
+| $0b00 || $500 (1280) || '''Save Slot #3'''
 |-
 | $1000 || $100 (256) || Blank (filled with $60)
 |-
@@ -257,7 +257,7 @@ SRAM is 8 KB ($2000 bytes) at $70:0000-$1FFF.
 |-
 | $1600 || $500 (1280) || Backup Slot #2
 |-
-| $1B00 || $500 (1280) || Backup Slot #3
+| $1b00 || $500 (1280) || Backup Slot #3
 |}
 
 === Save Slot Structure ($500 = 1280 bytes) ===
@@ -275,7 +275,7 @@ SRAM is 8 KB ($2000 bytes) at $70:0000-$1FFF.
 |-
 | $0312 || 7 || Player Name (raw)
 |-
-| $031E || 7 || Robot 1 Name (raw)
+| $031e || 7 || Robot 1 Name (raw)
 |-
 | $0325 || 7 || Robot 2 Name (raw)
 |-
@@ -283,29 +283,29 @@ SRAM is 8 KB ($2000 bytes) at $70:0000-$1FFF.
 |-
 | $0342 || 7 || Player Name String (display)
 |-
-| $034E || 7 || Robot 1 Name String (display)
+| $034e || 7 || Robot 1 Name String (display)
 |-
-| $035A || 7 || Robot 2 Name String (display)
+| $035a || 7 || Robot 2 Name String (display)
 |-
-| $036D || 7 || Robot 3 Name String (display)
+| $036d || 7 || Robot 3 Name String (display)
 |-
 | $0388 || 2 || Program Points
 |-
-| $038A || 6 || Robot Current HP (3 × 2 bytes)
+| $038a || 6 || Robot Current HP (3 × 2 bytes)
 |-
 | $0390 || 6 || Robot Max HP (3 × 2 bytes)
 |-
 | $0396 || 6 || Robot Power (3 × 2 bytes)
 |-
-| $039C || 6 || Robot Guard (3 × 2 bytes)
+| $039c || 6 || Robot Guard (3 × 2 bytes)
 |-
-| $03A2 || 6 || Robot Speed (3 × 2 bytes)
+| $03a2 || 6 || Robot Speed (3 × 2 bytes)
 |-
-| $03A8 || 6 || Robot Charge (3 × 2 bytes)
+| $03a8 || 6 || Robot Charge (3 × 2 bytes)
 |-
-| $03E9 || 3 || GP/Gold (hex → decimal conversion)
+| $03e9 || 3 || GP/Gold (hex → decimal conversion)
 |-
-| $04FA || 4 || Checksum
+| $04fa || 4 || Checksum
 |}
 
 == Hardware Registers Used ==
@@ -317,7 +317,7 @@ SRAM is 8 KB ($2000 bytes) at $70:0000-$1FFF.
 |-
 | $2105 || BG mode
 |-
-| $210D-$2114 || BG scroll registers
+| $210d-$2114 || BG scroll registers
 |-
 | $2115-$2117 || VRAM access
 |-
@@ -331,7 +331,7 @@ SRAM is 8 KB ($2000 bytes) at $70:0000-$1FFF.
 |-
 | $4200 || NMI/IRQ enable
 |-
-| $4218-$421F || Joypad registers
+| $4218-$421f || Joypad registers
 |}
 
 == Notes ==
