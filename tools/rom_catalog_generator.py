@@ -51,6 +51,35 @@ class SNESHeader:
 
 
 @dataclass
+class NESHeader:
+	"""NES ROM header information (iNES format)."""
+	format: str = ""  # iNES, NES2.0
+	prg_rom_size: int = 0  # PRG ROM size in bytes
+	chr_rom_size: int = 0  # CHR ROM size in bytes
+	mapper: int = 0  # Mapper number
+	mapper_name: str = ""
+	mirroring: str = ""  # Horizontal, Vertical, Four-screen
+	has_battery: bool = False
+	has_trainer: bool = False
+	prg_ram_size: int = 0
+	chr_ram_size: int = 0
+	tv_system: str = ""  # NTSC, PAL, Dual
+	is_valid: bool = False
+
+
+@dataclass
+class GBAHeader:
+	"""GBA ROM header information."""
+	title: str = ""
+	game_code: str = ""
+	maker_code: str = ""
+	unit_code: int = 0
+	software_version: int = 0
+	complement: int = 0
+	is_valid: bool = False
+
+
+@dataclass
 class RomFile:
 	"""ROM file information."""
 	filename: str
@@ -84,6 +113,12 @@ class RomFile:
 	
 	# SNES-specific
 	snes_header: Optional[Dict[str, Any]] = None
+	
+	# NES-specific
+	nes_header: Optional[Dict[str, Any]] = None
+	
+	# GBA-specific
+	gba_header: Optional[Dict[str, Any]] = None
 
 
 @dataclass
@@ -214,6 +249,191 @@ SNES_COUNTRIES = {
 	0x11: "Australia",
 }
 
+# NES mapper names (common ones)
+NES_MAPPERS = {
+	0: "NROM",
+	1: "MMC1/SxROM",
+	2: "UxROM",
+	3: "CNROM",
+	4: "MMC3/TxROM",
+	5: "MMC5/ExROM",
+	7: "AxROM",
+	9: "MMC2/PxROM",
+	10: "MMC4/FxROM",
+	11: "Color Dreams",
+	13: "CPROM",
+	15: "100-in-1",
+	16: "Bandai FCG",
+	18: "Jaleco SS88006",
+	19: "Namco 129/163",
+	21: "Konami VRC4a/VRC4c",
+	22: "Konami VRC2a",
+	23: "Konami VRC2b/VRC4e/VRC4f",
+	24: "Konami VRC6a",
+	25: "Konami VRC4b/VRC4d",
+	26: "Konami VRC6b",
+	33: "Taito TC0190",
+	34: "BNROM/NINA-001",
+	64: "Tengen RAMBO-1",
+	65: "Irem H-3001",
+	66: "GxROM/MxROM",
+	67: "Sunsoft-3",
+	68: "Sunsoft-4",
+	69: "Sunsoft FME-7",
+	71: "Codemasters/Camerica",
+	73: "Konami VRC3",
+	75: "Konami VRC1",
+	76: "Namcot 108 variant",
+	78: "Irem 74HC161/32",
+	79: "NINA-003/NINA-006",
+	80: "Taito X1-005",
+	85: "Konami VRC7",
+	87: "Jaleco JF-09/JF-10",
+	88: "Namcot 118",
+	89: "Sunsoft-2",
+	94: "Capcom UN1ROM",
+	95: "Namcot 118 variant",
+	105: "NES-EVENT/MMC1",
+	118: "TxSROM",
+	119: "TQROM",
+	140: "Jaleco JF-11/14",
+	180: "Crazy Climber",
+	185: "CNROM variant",
+	206: "Namco 118",
+	228: "Action 52",
+}
+
+# GBA maker codes (common ones)
+GBA_MAKERS = {
+	"01": "Nintendo",
+	"08": "Capcom",
+	"13": "Electronic Arts",
+	"18": "Hudson Soft",
+	"20": "Destination Software",
+	"25": "San-X",
+	"28": "Kemco Japan",
+	"29": "Seta",
+	"33": "Bandai",
+	"34": "Sunsoft",
+	"35": "Kemco",
+	"41": "Ubisoft",
+	"42": "Atlus",
+	"44": "Malibu",
+	"46": "Angel",
+	"47": "Spectrum Holobyte",
+	"49": "Irem",
+	"4A": "Virgin",
+	"4D": "Malibu",
+	"4F": "U.S. Gold",
+	"50": "Absolute",
+	"51": "Acclaim",
+	"52": "Activision",
+	"53": "American Sammy",
+	"54": "GameTek",
+	"55": "Park Place",
+	"56": "LJN",
+	"57": "Matchbox",
+	"59": "Milton Bradley",
+	"5A": "Mindscape",
+	"5B": "Romstar",
+	"5C": "Naxat Soft",
+	"5D": "Tradewest",
+	"60": "Titus",
+	"61": "Virgin",
+	"67": "Ocean",
+	"69": "Electronic Arts",
+	"6E": "Elite Systems",
+	"6F": "Electro Brain",
+	"70": "Infogrames",
+	"71": "Interplay",
+	"72": "JVC",
+	"73": "Parker Brothers",
+	"75": "Sales Curve",
+	"78": "THQ",
+	"79": "Accolade",
+	"7A": "Triffix",
+	"7C": "Microprose",
+	"7F": "Kemco",
+	"80": "Misawa",
+	"83": "LOZC",
+	"86": "Tokuma Shoten",
+	"8B": "Bullet-Proof Software",
+	"8C": "Vic Tokai",
+	"8E": "Ape",
+	"8F": "I'Max",
+	"91": "Chunsoft",
+	"92": "Video System",
+	"93": "BEC",
+	"95": "Varie",
+	"97": "Kaneko",
+	"99": "ARC",
+	"9A": "Nihon Bussan",
+	"9B": "Tecmo",
+	"9C": "Imagineer",
+	"9D": "Banpresto",
+	"9F": "Nova",
+	"A1": "Hori Electric",
+	"A4": "Konami",
+	"A7": "Takara",
+	"A9": "Technos Japan",
+	"AA": "Broderbund",
+	"AC": "Toei Animation",
+	"AD": "Toho",
+	"AF": "Namco",
+	"B0": "Acclaim",
+	"B1": "ASCII or Nexoft",
+	"B2": "Bandai",
+	"B4": "Square Enix",
+	"B6": "HAL Laboratory",
+	"B7": "SNK",
+	"B9": "Pony Canyon",
+	"BA": "Culture Brain",
+	"BB": "Sunsoft",
+	"BD": "Sony Imagesoft",
+	"BF": "Sammy",
+	"C0": "Taito",
+	"C2": "Kemco",
+	"C3": "Squaresoft",
+	"C4": "Tokuma Shoten Intermedia",
+	"C5": "Data East",
+	"C6": "Tonkinhouse",
+	"C8": "Koei",
+	"C9": "UFL",
+	"CA": "Ultra",
+	"CB": "Vap",
+	"CC": "Use Corporation",
+	"CD": "Meldac",
+	"CE": "Pony Canyon",
+	"CF": "Angel",
+	"D0": "Taito",
+	"D1": "Sofel",
+	"D2": "Quest",
+	"D3": "Sigma Enterprises",
+	"D4": "ASK Kodansha",
+	"D6": "Naxat Soft",
+	"D7": "Copya System",
+	"DA": "Tomy",
+	"DB": "LJN",
+	"DD": "NCS",
+	"DE": "Human",
+	"DF": "Altron",
+	"E0": "Jaleco",
+	"E1": "Towa Chiki",
+	"E2": "Yutaka",
+	"E3": "Varie",
+	"E5": "Epoch",
+	"E7": "Athena",
+	"E8": "Asmik",
+	"E9": "Natsume",
+	"EA": "King Records",
+	"EB": "Atlus",
+	"EC": "Epic/Sony Records",
+	"EE": "IGS",
+	"F0": "A Wave",
+	"F3": "Extreme Entertainment",
+	"FF": "LJN",
+}
+
 
 def calculate_hashes(filepath: Path) -> Dict[str, str]:
 	"""Calculate all hash values for a file."""
@@ -336,6 +556,172 @@ def parse_snes_header(filepath: Path) -> Optional[SNESHeader]:
 		
 	except Exception as e:
 		print(f"Error parsing SNES header for {filepath}: {e}")
+	
+	return None
+
+
+def parse_nes_header(filepath: Path) -> Optional[NESHeader]:
+	"""Parse NES ROM header (iNES/NES2.0 format)."""
+	try:
+		with open(filepath, "rb") as f:
+			data = f.read(16)  # Header is 16 bytes
+		
+		if len(data) < 16:
+			return None
+		
+		# Check for NES signature
+		if data[0:4] != b"NES\x1a":
+			return None
+		
+		header = NESHeader()
+		header.is_valid = True
+		
+		# Check for NES 2.0 format
+		if (data[7] & 0x0C) == 0x08:
+			header.format = "NES2.0"
+		else:
+			header.format = "iNES"
+		
+		# PRG ROM size
+		prg_lsb = data[4]
+		if header.format == "NES2.0":
+			prg_msb = data[9] & 0x0F
+			if prg_msb == 0x0F:
+				# Exponent-multiplier notation
+				exponent = (prg_lsb >> 2) & 0x3F
+				multiplier = prg_lsb & 0x03
+				header.prg_rom_size = (2 ** exponent) * (multiplier * 2 + 1)
+			else:
+				header.prg_rom_size = ((prg_msb << 8) | prg_lsb) * 16384
+		else:
+			header.prg_rom_size = prg_lsb * 16384
+		
+		# CHR ROM size
+		chr_lsb = data[5]
+		if header.format == "NES2.0":
+			chr_msb = (data[9] >> 4) & 0x0F
+			if chr_msb == 0x0F:
+				exponent = (chr_lsb >> 2) & 0x3F
+				multiplier = chr_lsb & 0x03
+				header.chr_rom_size = (2 ** exponent) * (multiplier * 2 + 1)
+			else:
+				header.chr_rom_size = ((chr_msb << 8) | chr_lsb) * 8192
+		else:
+			header.chr_rom_size = chr_lsb * 8192
+		
+		# Flags 6
+		flags6 = data[6]
+		if flags6 & 0x08:
+			header.mirroring = "Four-screen"
+		elif flags6 & 0x01:
+			header.mirroring = "Vertical"
+		else:
+			header.mirroring = "Horizontal"
+		
+		header.has_battery = bool(flags6 & 0x02)
+		header.has_trainer = bool(flags6 & 0x04)
+		
+		# Mapper number
+		mapper_lo = (flags6 >> 4) & 0x0F
+		mapper_hi = (data[7] >> 4) & 0x0F
+		
+		if header.format == "NES2.0":
+			mapper_ext = (data[8] & 0x0F) << 8
+			header.mapper = mapper_ext | (mapper_hi << 4) | mapper_lo
+		else:
+			header.mapper = (mapper_hi << 4) | mapper_lo
+		
+		header.mapper_name = NES_MAPPERS.get(header.mapper, f"Unknown ({header.mapper})")
+		
+		# PRG RAM size
+		if header.format == "NES2.0":
+			prg_ram_shift = data[10] & 0x0F
+			prg_nvram_shift = (data[10] >> 4) & 0x0F
+			if prg_ram_shift > 0:
+				header.prg_ram_size = 64 << prg_ram_shift
+			if prg_nvram_shift > 0:
+				header.prg_ram_size = 64 << prg_nvram_shift
+		else:
+			prg_ram = data[8]
+			header.prg_ram_size = prg_ram * 8192 if prg_ram > 0 else 8192
+		
+		# CHR RAM size
+		if header.format == "NES2.0":
+			chr_ram_shift = data[11] & 0x0F
+			chr_nvram_shift = (data[11] >> 4) & 0x0F
+			if chr_ram_shift > 0:
+				header.chr_ram_size = 64 << chr_ram_shift
+			if chr_nvram_shift > 0:
+				header.chr_ram_size = 64 << chr_nvram_shift
+		else:
+			# CHR RAM is used when CHR ROM = 0
+			if header.chr_rom_size == 0:
+				header.chr_ram_size = 8192
+		
+		# TV system
+		if header.format == "NES2.0":
+			tv_byte = data[12] & 0x03
+			if tv_byte == 0:
+				header.tv_system = "NTSC"
+			elif tv_byte == 1:
+				header.tv_system = "PAL"
+			elif tv_byte == 2:
+				header.tv_system = "Dual"
+			else:
+				header.tv_system = "Dendy"
+		else:
+			# iNES doesn't have reliable TV system info
+			header.tv_system = "Unknown"
+		
+		return header
+		
+	except Exception as e:
+		print(f"Error parsing NES header for {filepath}: {e}")
+	
+	return None
+
+
+def parse_gba_header(filepath: Path) -> Optional[GBAHeader]:
+	"""Parse GBA ROM header."""
+	try:
+		with open(filepath, "rb") as f:
+			data = f.read(0xC0)  # Header is at start, we need up to $C0
+		
+		if len(data) < 0xC0:
+			return None
+		
+		# Check for valid GBA ROM (fixed value at $B2)
+		if data[0xB2] != 0x96:
+			return None
+		
+		header = GBAHeader()
+		header.is_valid = True
+		
+		# Title (12 bytes at $A0)
+		title_bytes = data[0xA0:0xAC]
+		header.title = title_bytes.decode("ascii", errors="replace").strip("\x00").strip()
+		
+		# Game code (4 bytes at $AC)
+		game_code_bytes = data[0xAC:0xB0]
+		header.game_code = game_code_bytes.decode("ascii", errors="replace")
+		
+		# Maker code (2 bytes at $B0)
+		maker_code_bytes = data[0xB0:0xB2]
+		header.maker_code = maker_code_bytes.decode("ascii", errors="replace")
+		
+		# Unit code ($B3)
+		header.unit_code = data[0xB3]
+		
+		# Software version ($BC)
+		header.software_version = data[0xBC]
+		
+		# Header checksum complement ($BD)
+		header.complement = data[0xBD]
+		
+		return header
+		
+	except Exception as e:
+		print(f"Error parsing GBA header for {filepath}: {e}")
 	
 	return None
 
@@ -482,6 +868,18 @@ def process_rom_file(filepath: Path, root_path: Path) -> RomFile:
 		header = parse_snes_header(filepath)
 		if header and header.is_valid:
 			rom.snes_header = asdict(header)
+	
+	# Parse NES header if applicable
+	if rom.platform == "NES" and rom.extension == ".nes":
+		header = parse_nes_header(filepath)
+		if header and header.is_valid:
+			rom.nes_header = asdict(header)
+	
+	# Parse GBA header if applicable
+	if rom.platform == "Game Boy Advance" and rom.extension == ".gba":
+		header = parse_gba_header(filepath)
+		if header and header.is_valid:
+			rom.gba_header = asdict(header)
 	
 	return rom
 

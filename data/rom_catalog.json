@@ -1,5 +1,5 @@
 {
-	"generated": "2025-12-23T04:32:09.051617",
+	"generated": "2025-12-23T04:37:45.423114",
 	"generator": "rom_catalog_generator.py",
 	"version": "1.0.0",
 	"root_path": "~roms",
@@ -733,7 +733,9 @@
 				"complement": 19523,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Chrono Trigger (U) [!].sfc",
@@ -773,7 +775,9 @@
 				"complement": 34675,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Civilization (Beta).sfc",
@@ -813,7 +817,9 @@
 				"complement": 20022,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Civilization (J).sfc",
@@ -853,7 +859,9 @@
 				"complement": 26387,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Civilization (U) [!].sfc",
@@ -893,7 +901,9 @@
 				"complement": 44925,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Dragon Quest I & II (J) [!].sfc",
@@ -933,7 +943,9 @@
 				"complement": 53877,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Dragon Quest III - Soshite Densetsu he... (J) [!].sfc",
@@ -973,7 +985,9 @@
 				"complement": 35724,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Dragon Quest V - Tenkuu no Hanayome (J) [!].sfc",
@@ -1013,7 +1027,9 @@
 				"complement": 17670,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Dragon Quest VI - Maboroshi no Daichi (J) [!].sfc",
@@ -1053,7 +1069,9 @@
 				"complement": 41328,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Final Fantasy - Mystic Quest (U) (V1.0) [!].sfc",
@@ -1093,7 +1111,9 @@
 				"complement": 45857,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Final Fantasy - Mystic Quest (U) (V1.1).sfc",
@@ -1133,7 +1153,9 @@
 				"complement": 28682,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Final Fantasy II (U) (V1.0) [!].sfc",
@@ -1173,7 +1195,9 @@
 				"complement": 31247,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Final Fantasy II (U) (V1.1) [!].sfc",
@@ -1213,7 +1237,9 @@
 				"complement": 35031,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Final Fantasy III (U) (Beta).sfc",
@@ -1253,7 +1279,9 @@
 				"complement": 26480,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Final Fantasy III (U) (V1.0) [!].sfc",
@@ -1293,7 +1321,9 @@
 				"complement": 41165,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Final Fantasy III (U) (V1.1) [!].sfc",
@@ -1333,7 +1363,9 @@
 				"complement": 30111,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Final Fantasy IV (J) (V1.0) [!].sfc",
@@ -1373,7 +1405,9 @@
 				"complement": 21478,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Final Fantasy IV (J) (V1.1) [!].sfc",
@@ -1413,7 +1447,9 @@
 				"complement": 21299,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Final Fantasy IV - Easy Type (J) [!].sfc",
@@ -1453,7 +1489,9 @@
 				"complement": 34588,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Final Fantasy USA - Mystic Quest (J) [!].sfc",
@@ -1493,7 +1531,9 @@
 				"complement": 64365,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Final Fantasy V (J) [!].sfc",
@@ -1533,7 +1573,9 @@
 				"complement": 57357,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Final Fantasy VI (J) [!].sfc",
@@ -1573,7 +1615,9 @@
 				"complement": 24205,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Legend of Zelda, The - A Link to the Past (E) [!].sfc",
@@ -1613,7 +1657,9 @@
 				"complement": 35398,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Legend of Zelda, The - A Link to the Past (F) [!].sfc",
@@ -1653,7 +1699,9 @@
 				"complement": 39505,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Legend of Zelda, The - A Link to the Past (FC) [!].sfc",
@@ -1693,7 +1741,9 @@
 				"complement": 18243,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Legend of Zelda, The - A Link to the Past (G) [!].sfc",
@@ -1733,7 +1783,9 @@
 				"complement": 44873,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Legend of Zelda, The - A Link to the Past (U) [!].sfc",
@@ -1773,7 +1825,9 @@
 				"complement": 20722,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Lufia & The Fortress of Doom (U) (Beta).sfc",
@@ -1813,7 +1867,9 @@
 				"complement": 40689,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Lufia & The Fortress of Doom (U) [!].sfc",
@@ -1853,7 +1909,9 @@
 				"complement": 3092,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Lufia II - Rise of the Sinistrals (D) [!].sfc",
@@ -1893,7 +1951,9 @@
 				"complement": 29580,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Lufia II - Rise of the Sinistrals (E) [!].sfc",
@@ -1933,7 +1993,9 @@
 				"complement": 52066,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Lufia II - Rise of the Sinistrals (G) [!].sfc",
@@ -1973,7 +2035,9 @@
 				"complement": 17386,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Lufia II - Rise of the Sinistrals (S).sfc",
@@ -2013,7 +2077,9 @@
 				"complement": 8489,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Lufia II - Rise of the Sinistrals (U) [!].sfc",
@@ -2053,7 +2119,9 @@
 				"complement": 17815,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Megaman VII (E) [!].sfc",
@@ -2093,7 +2161,9 @@
 				"complement": 39177,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Megaman VII (U) [!].sfc",
@@ -2133,7 +2203,9 @@
 				"complement": 3686,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Megaman X (E) [!].sfc",
@@ -2173,7 +2245,9 @@
 				"complement": 45332,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Megaman X (U) (V1.0) [!].sfc",
@@ -2213,7 +2287,9 @@
 				"complement": 43524,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Megaman X (U) (V1.1) [!].sfc",
@@ -2253,7 +2329,9 @@
 				"complement": 45885,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Megaman X 2 (E) [!].sfc",
@@ -2293,7 +2371,9 @@
 				"complement": 18122,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Megaman X 2 (U) [!].sfc",
@@ -2333,7 +2413,9 @@
 				"complement": 63048,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Megaman X 3 (E) [!].sfc",
@@ -2373,7 +2455,9 @@
 				"complement": 2177,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Megaman X 3 (U) [!].sfc",
@@ -2413,7 +2497,9 @@
 				"complement": 49066,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Mystic Quest Legend (E) [!].sfc",
@@ -2453,7 +2539,9 @@
 				"complement": 11734,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Mystic Quest Legend (F).sfc",
@@ -2493,7 +2581,9 @@
 				"complement": 6272,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Mystic Quest Legend (G) [!].sfc",
@@ -2533,7 +2623,9 @@
 				"complement": 58318,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Paladin's Quest (U) [!].sfc",
@@ -2573,7 +2665,9 @@
 				"complement": 56060,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Prince of Persia (E) [!].sfc",
@@ -2613,7 +2707,9 @@
 				"complement": 16689,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Prince of Persia (J) [!].sfc",
@@ -2653,7 +2749,9 @@
 				"complement": 35529,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Prince of Persia (U) [!].sfc",
@@ -2693,7 +2791,9 @@
 				"complement": 16690,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Prince of Persia 2 - The Shadow & The Flame (E) [!].sfc",
@@ -2733,7 +2833,9 @@
 				"complement": 14189,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Prince of Persia 2 - The Shadow & The Flame (U) [!].sfc",
@@ -2773,7 +2875,9 @@
 				"complement": 14201,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Rockman & Forte (J) [!].sfc",
@@ -2813,7 +2917,9 @@
 				"complement": 365,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Rockman 7 - Shukumei no Taiketsu! (J) [!].sfc",
@@ -2853,7 +2959,9 @@
 				"complement": 47918,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Rockman 7 - Shukumei no Taiketsu! (Prototype).sfc",
@@ -2893,7 +3001,9 @@
 				"complement": 65535,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Rockman X (J) (V1.0) [!].sfc",
@@ -2933,7 +3043,9 @@
 				"complement": 39574,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Rockman X (J) (V1.1).sfc",
@@ -2973,7 +3085,9 @@
 				"complement": 46120,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Rockman X 2 (J) [!].sfc",
@@ -3013,7 +3127,9 @@
 				"complement": 31391,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Rockman X 3 (J) [!].sfc",
@@ -3053,7 +3169,9 @@
 				"complement": 37917,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Rockman's Soccer (J) [!].sfc",
@@ -3093,7 +3211,9 @@
 				"complement": 6990,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "SeaQuest DSV (E) [!].sfc",
@@ -3133,7 +3253,9 @@
 				"complement": 26820,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "SeaQuest DSV (U) [!].sfc",
@@ -3173,7 +3295,9 @@
 				"complement": 27328,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Secret of Evermore (E) [!].sfc",
@@ -3213,7 +3337,9 @@
 				"complement": 2844,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Secret of Evermore (F) [!].sfc",
@@ -3253,7 +3379,9 @@
 				"complement": 9770,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Secret of Evermore (G) [!].sfc",
@@ -3293,7 +3421,9 @@
 				"complement": 59022,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Secret of Evermore (S).sfc",
@@ -3333,7 +3463,9 @@
 				"complement": 30739,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Secret of Evermore (U) [!].sfc",
@@ -3373,7 +3505,9 @@
 				"complement": 52285,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Secret of Mana (E) (V1.0).sfc",
@@ -3413,7 +3547,9 @@
 				"complement": 51537,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Secret of Mana (E) (V1.1) [!].sfc",
@@ -3453,7 +3589,9 @@
 				"complement": 35757,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Secret of Mana (F) (V1.0).sfc",
@@ -3493,7 +3631,9 @@
 				"complement": 35504,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Secret of Mana (F) (V1.1) [!].sfc",
@@ -3533,7 +3673,9 @@
 				"complement": 24661,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Secret of Mana (G) [!].sfc",
@@ -3573,7 +3715,9 @@
 				"complement": 18974,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Secret of Mana (U) [!].sfc",
@@ -3613,7 +3757,9 @@
 				"complement": 44547,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Secret of the Stars (U) [!].sfc",
@@ -3653,7 +3799,9 @@
 				"complement": 61096,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Seiken Densetsu 2 (J) (V1.0) [!].sfc",
@@ -3693,7 +3841,9 @@
 				"complement": 9859,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Seiken Densetsu 3 (J) [!].sfc",
@@ -3733,7 +3883,9 @@
 				"complement": 58896,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Sim City (E) [!].sfc",
@@ -3773,7 +3925,9 @@
 				"complement": 55795,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Sim City (F) [!].sfc",
@@ -3813,7 +3967,9 @@
 				"complement": 42197,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Sim City (G) [!].sfc",
@@ -3853,7 +4009,9 @@
 				"complement": 65479,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Sim City (J) [!].sfc",
@@ -3893,7 +4051,9 @@
 				"complement": 56919,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Sim City (U) [!].sfc",
@@ -3933,7 +4093,9 @@
 				"complement": 50764,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Sim City 2000 (E) [!].sfc",
@@ -3973,7 +4135,9 @@
 				"complement": 49743,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Sim City 2000 (J) [!].sfc",
@@ -4013,7 +4177,9 @@
 				"complement": 65049,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Sim City 2000 (U) [!].sfc",
@@ -4053,7 +4219,9 @@
 				"complement": 49755,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Sim City Jr. (J) [!].sfc",
@@ -4093,7 +4261,9 @@
 				"complement": 61836,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "SimAnt (Beta).sfc",
@@ -4133,7 +4303,9 @@
 				"complement": 16489,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "SimAnt (J).sfc",
@@ -4173,7 +4345,9 @@
 				"complement": 63786,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "SimAnt (U) [!].sfc",
@@ -4213,7 +4387,9 @@
 				"complement": 28422,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "SimEarth - The Living Planet (J) (V1.0) [!].sfc",
@@ -4253,7 +4429,9 @@
 				"complement": 36997,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "SimEarth - The Living Planet (U) [!].sfc",
@@ -4293,7 +4471,9 @@
 				"complement": 12750,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Simpsons, The - Bart no Fushigi na Yume no Daibouken (J).sfc",
@@ -4333,7 +4513,9 @@
 				"complement": 35589,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Simpsons, The - Bart's Nightmare (E).sfc",
@@ -4373,7 +4555,9 @@
 				"complement": 38572,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Simpsons, The - Bart's Nightmare (U) [!].sfc",
@@ -4413,7 +4597,9 @@
 				"complement": 38573,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Simpsons, The - Krusty's Super Fun House (E) (V1.0) [!].sfc",
@@ -4453,7 +4639,9 @@
 				"complement": 19884,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Simpsons, The - Krusty's Super Fun House (J).sfc",
@@ -4493,7 +4681,9 @@
 				"complement": 41560,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Simpsons, The - Krusty's Super Fun House (Sw) (V1.0) [!].sfc",
@@ -4533,7 +4723,9 @@
 				"complement": 19585,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Simpsons, The - Krusty's Super Fun House (U) (V1.0) [!].sfc",
@@ -4573,7 +4765,9 @@
 				"complement": 19884,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Sky Blazer (Beta1).sfc",
@@ -4613,7 +4807,9 @@
 				"complement": 57954,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Sky Blazer (Beta2).sfc",
@@ -4653,7 +4849,9 @@
 				"complement": 53401,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Sky Blazer (E).sfc",
@@ -4693,7 +4891,9 @@
 				"complement": 60693,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Sky Blazer (U) [!].sfc",
@@ -4733,7 +4933,9 @@
 				"complement": 60694,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Sky Mission (J) [!].sfc",
@@ -4773,7 +4975,9 @@
 				"complement": 24304,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Soul Blade (Unl) [!].sfc",
@@ -4800,7 +5004,9 @@
 			"is_unlicensed": true,
 			"is_prototype": false,
 			"is_beta": false,
-			"snes_header": null
+			"snes_header": null,
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Soul Blader (J) [!].sfc",
@@ -4840,7 +5046,9 @@
 				"complement": 48369,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Soul Blazer (E) [!].sfc",
@@ -4880,7 +5088,9 @@
 				"complement": 60713,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Soul Blazer (F).sfc",
@@ -4920,7 +5130,9 @@
 				"complement": 10594,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Soul Blazer (G).sfc",
@@ -4960,7 +5172,9 @@
 				"complement": 9799,
 				"header_offset": 65472,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Soul Blazer (U) [!].sfc",
@@ -5000,7 +5214,9 @@
 				"complement": 40870,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Sparkster (E).sfc",
@@ -5040,7 +5256,9 @@
 				"complement": 55420,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Sparkster (J).sfc",
@@ -5080,7 +5298,9 @@
 				"complement": 56582,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		},
 		{
 			"filename": "Sparkster (U) [!].sfc",
@@ -5120,7 +5340,9 @@
 				"complement": 52837,
 				"header_offset": 32704,
 				"is_valid": true
-			}
+			},
+			"nes_header": null,
+			"gba_header": null
 		}
 	]
 }
