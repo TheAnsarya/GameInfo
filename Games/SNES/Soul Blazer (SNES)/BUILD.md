@@ -197,6 +197,33 @@ Features:
 - Movement pattern analysis
 - JSON export for each entity type
 
+### Compression Analyzer
+```bash
+python compression_analyzer.py --known      # Analyze known blocks
+python compression_analyzer.py --scan       # Scan ROM for compressed data
+python compression_analyzer.py --test OFFSET # Test decompression at offset
+```
+Features:
+- RLE decompression support
+- LZ77 decompression support
+- Compression type detection
+- Ratio analysis and statistics
+- Exports decompressed blocks to binary
+
+### Save Editor
+```bash
+python save_editor.py save.srm              # Display save info
+python save_editor.py save.srm --export data.json  # Export to JSON
+python save_editor.py save.srm --slot 1 --max-stats --output new.srm
+```
+Features:
+- Read/write SRAM save files
+- Edit character stats (level, HP, EXP, GEMs)
+- Modify equipment (sword, armor, magic)
+- Track progress (area, souls, lairs)
+- Unlock items and emblems
+- JSON import/export
+
 ## ROM Structure
 
 ### Banks
