@@ -584,6 +584,99 @@ Updated ROM_Map.wikitext with:
 
 ---
 
+## Session 7 - Map Data, Palettes, and Graphics Analysis
+
+### Work Completed
+
+#### 1. Map Data Analysis
+
+Created `analyze_map_data.py` to investigate map structure:
+- Found map metadata region at $d8000-$d930f (4879 bytes)
+- All 6 tileset regions decompress to exactly 2048 bytes
+- Map arrangement decompresses to 771 bytes
+- Identified common 4-byte patterns in metadata
+
+**Map Tileset Decompression:**
+| Region | Compressed | Decompressed |
+|--------|------------|--------------|
+| $00000-$00622 | 1570 bytes | 2048 bytes |
+| $00623-$00c3e | 1563 bytes | 2048 bytes |
+| $00c3f-$0124d | 1550 bytes | 2048 bytes |
+| $0124e-$01844 | 1526 bytes | 2048 bytes |
+| $01845-$01e2e | 1513 bytes | 2048 bytes |
+| $01e2f-$023e7 | 1464 bytes | 2048 bytes |
+| $023e8-$0296a (arr) | 1410 bytes | 771 bytes |
+
+#### 2. Palette Extraction
+
+Created `extract_palettes.py` to analyze color data:
+- SNES palettes are 15-bit RGB (BBBBBGGGGGRRRRR)
+- Each palette is 32 bytes (16 colors × 2 bytes)
+
+**Known Palette Regions:**
+| Region | Palettes | Description |
+|--------|----------|-------------|
+| $018845-$018c05 | 30 | General game palettes |
+| $05de10-$05e7ff | 79 | Robot/object palettes |
+| $08fe00-$08ffff | 16 | Menu/UI palettes |
+
+**Additional Palette Groups (found via pattern analysis):**
+- $10b9a0-$10ba40: 6 palettes
+- $139020-$139080: 4 palettes
+- $14a0e0-$14a1a0: 7 palettes
+- $14b020-$14b0e0: 7 palettes
+
+Generated palette visualization images (PNG).
+
+#### 3. Sprite Graphics Extraction
+
+Created `extract_sprites.py` to extract uncompressed graphics:
+
+**Font Graphics (2BPP):**
+- Location: $080000-$082000
+- 512 tiles (8192 bytes)
+- GameBoy-style 2-bit-per-pixel format
+
+**Menu Graphics (4BPP):**
+- Location: $0d9310-$0db310
+- 256 tiles (8192 bytes)
+- Standard SNES 4-bit-per-pixel format
+
+Exported both as PNG tile sheets.
+
+#### 4. ROM_Map Updates
+
+Added to ROM_Map.wikitext:
+- New "Palettes" section with all discovered palette regions
+- Updated tileset table with decompressed sizes
+- Documented SNES palette format (15-bit RGB)
+
+### Session 7 Commits
+
+| Hash | Message |
+|------|---------|
+| a9eb6e6 | feat(robotrek): add map data and palette analysis scripts |
+
+### Files Created
+
+- `Games/SNES/Robotrek (SNES)/scripts/analyze_map_data.py`
+- `Games/SNES/Robotrek (SNES)/scripts/extract_palettes.py`
+- `Games/SNES/Robotrek (SNES)/scripts/extract_sprites.py`
+- `Games/SNES/Robotrek (SNES)/extracted/map_data_analysis.json`
+- `Games/SNES/Robotrek (SNES)/extracted/palette_analysis.json`
+- `Games/SNES/Robotrek (SNES)/extracted/palettes_palettes_1.png`
+- `Games/SNES/Robotrek (SNES)/extracted/palettes_palettes_2_robot_colors.png`
+- `Games/SNES/Robotrek (SNES)/extracted/palettes_palettes_3.png`
+- `Games/SNES/Robotrek (SNES)/extracted/font_2bpp.png`
+- `Games/SNES/Robotrek (SNES)/extracted/menu_graphics_4bpp.png`
+- `Games/SNES/Robotrek (SNES)/extracted/sprite_analysis.json`
+
+### Files Modified
+
+- `Wiki/SNES/Robotrek/ROM_Map.wikitext` - Palette section, tileset decomp sizes
+
+---
+
 ## All Session Commits
 
 | Hash | Session | Message |
@@ -603,12 +696,15 @@ Updated ROM_Map.wikitext with:
 | fc2677b | 5 | feat(robotrek): add graphics extraction and PNG conversion |
 | 4c5d483 | 6 | feat(robotrek): add comprehensive data extractor |
 | 4f6e545 | 6 | feat(robotrek): analyze actor/entity data format |
+| 19b6cdc | 6 | docs(robotrek): update session log with Session 6 progress |
+| 4562355 | 6 | feat(robotrek): add enemy stats search script |
+| a9eb6e6 | 7 | feat(robotrek): add map data and palette analysis scripts |
 
 ## What's Next
 
 1. **Enemy stat tables** - Still not located; may need code tracing
 2. **Weapon damage formulas** - Likely calculated, not stored in tables
-3. **Map data investigation** - Analyze map/tileset structure
+3. **Character sprite extraction** - Decode compressed sprite data
 4. **Push to Data Crystal** - Contribute verified findings back to wiki
-5. **Further graphics work** - Extract character sprites, decode palettes
+5. **LZSS decompression improvements** - Better handle all compressed regions
 

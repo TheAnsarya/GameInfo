@@ -1,0 +1,254 @@
+{
+	"graphics_regions": [
+		{
+			"region": "$080000-$082000",
+			"size": 8192,
+			"description": "Font (2BPP)",
+			"tiles_if_4bpp": 256
+		},
+		{
+			"region": "$0d9310-$0db310",
+			"size": 8192,
+			"description": "Menu graphics (uncompressed)",
+			"tiles_if_4bpp": 256
+		}
+	],
+	"font_info": {
+		"region": "$080000-$082000",
+		"size": 8192,
+		"num_tiles": 512,
+		"format": "2BPP"
+	},
+	"menu_info": {
+		"region": "$0d9310-$0db310",
+		"size": 8192,
+		"num_tiles": 256,
+		"format": "4BPP"
+	},
+	"actors": [
+		{
+			"data_offset": "$0301a4",
+			"frames": [],
+			"terminator": 24,
+			"index": 0,
+			"pointer": "$81a4"
+		},
+		{
+			"data_offset": "$030211",
+			"frames": [],
+			"terminator": 156,
+			"index": 1,
+			"pointer": "$8211"
+		},
+		{
+			"data_offset": "$030227",
+			"frames": [],
+			"terminator": 232,
+			"index": 2,
+			"pointer": "$8227"
+		},
+		{
+			"data_offset": "$03023d",
+			"frames": [],
+			"terminator": 2,
+			"index": 3,
+			"pointer": "$823d"
+		},
+		{
+			"data_offset": "$030253",
+			"frames": [],
+			"terminator": 64,
+			"index": 4,
+			"pointer": "$8253"
+		},
+		{
+			"data_offset": "$030269",
+			"frames": [],
+			"terminator": 69,
+			"index": 5,
+			"pointer": "$8269"
+		},
+		{
+			"data_offset": "$03027f",
+			"frames": [],
+			"terminator": 46,
+			"index": 6,
+			"pointer": "$827f"
+		},
+		{
+			"data_offset": "$030295",
+			"frames": [],
+			"terminator": 188,
+			"index": 7,
+			"pointer": "$8295"
+		},
+		{
+			"data_offset": "$0302ab",
+			"frames": [],
+			"terminator": 133,
+			"index": 8,
+			"pointer": "$82ab"
+		},
+		{
+			"data_offset": "$0302c1",
+			"frames": [],
+			"terminator": 140,
+			"index": 9,
+			"pointer": "$82c1"
+		},
+		{
+			"data_offset": "$0302d7",
+			"frames": [],
+			"terminator": 194,
+			"index": 10,
+			"pointer": "$82d7"
+		},
+		{
+			"data_offset": "$0302ed",
+			"frames": [],
+			"terminator": 46,
+			"index": 11,
+			"pointer": "$82ed"
+		},
+		{
+			"data_offset": "$030303",
+			"frames": [],
+			"terminator": 243,
+			"index": 12,
+			"pointer": "$8303"
+		},
+		{
+			"data_offset": "$030319",
+			"frames": [],
+			"terminator": 25,
+			"index": 13,
+			"pointer": "$8319"
+		},
+		{
+			"data_offset": "$03032f",
+			"frames": [],
+			"terminator": 149,
+			"index": 14,
+			"pointer": "$832f"
+		},
+		{
+			"data_offset": "$030345",
+			"frames": [],
+			"terminator": 128,
+			"index": 15,
+			"pointer": "$8345"
+		},
+		{
+			"data_offset": "$03035b",
+			"frames": [],
+			"terminator": 165,
+			"index": 16,
+			"pointer": "$835b"
+		},
+		{
+			"data_offset": "$030371",
+			"frames": [],
+			"terminator": 6,
+			"index": 17,
+			"pointer": "$8371"
+		},
+		{
+			"data_offset": "$030387",
+			"frames": [],
+			"terminator": 184,
+			"index": 18,
+			"pointer": "$8387"
+		},
+		{
+			"data_offset": "$03039d",
+			"frames": [],
+			"terminator": 146,
+			"index": 19,
+			"pointer": "$839d"
+		},
+		{
+			"data_offset": "$0303b3",
+			"frames": [],
+			"terminator": 2,
+			"index": 20,
+			"pointer": "$83b3"
+		},
+		{
+			"data_offset": "$0303c9",
+			"frames": [],
+			"terminator": 26,
+			"index": 21,
+			"pointer": "$83c9"
+		},
+		{
+			"data_offset": "$0303df",
+			"frames": [],
+			"terminator": 9,
+			"index": 22,
+			"pointer": "$83df"
+		},
+		{
+			"data_offset": "$0303f5",
+			"frames": [],
+			"terminator": 0,
+			"index": 23,
+			"pointer": "$83f5"
+		},
+		{
+			"data_offset": "$03040b",
+			"frames": [],
+			"terminator": 128,
+			"index": 24,
+			"pointer": "$840b"
+		},
+		{
+			"data_offset": "$030421",
+			"frames": [],
+			"terminator": 69,
+			"index": 25,
+			"pointer": "$8421"
+		},
+		{
+			"data_offset": "$030437",
+			"frames": [],
+			"terminator": 122,
+			"index": 26,
+			"pointer": "$8437"
+		},
+		{
+			"data_offset": "$03044d",
+			"frames": [],
+			"terminator": 217,
+			"index": 27,
+			"pointer": "$844d"
+		},
+		{
+			"data_offset": "$030463",
+			"frames": [],
+			"terminator": 255,
+			"index": 28,
+			"pointer": "$8463"
+		},
+		{
+			"data_offset": "$030479",
+			"frames": [],
+			"terminator": 190,
+			"index": 29,
+			"pointer": "$8479"
+		},
+		{
+			"data_offset": "$03048f",
+			"frames": [],
+			"terminator": 28,
+			"index": 30,
+			"pointer": "$848f"
+		},
+		{
+			"data_offset": "$0304a5",
+			"frames": [],
+			"terminator": 226,
+			"index": 31,
+			"pointer": "$84a5"
+		}
+	]
+}
