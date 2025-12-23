@@ -349,7 +349,7 @@ These addresses have been verified through PAR codes from GameFAQs:
 |-
 | $7e069c || Robot 1 Guard stat || 1 byte (FF = max)
 |-
-| $7e069a || Robot 1 Speed stat || 2 bytes 
+| $7e069a || Robot 1 Speed stat || 2 bytes
 |-
 | $7e0688 || Robot 1 Program || 2 bytes (code: 7E068827)
 |-

@@ -244,8 +244,9 @@ Extract real data and populate wiki tables
 Begin disassembly of core game systems
 &&&
 
+continue, using `https://datacrystal.tcrf.net/wiki/Robotrek` as a reference;
 
-
+continue, using `https://gamefaqs.gamespot.com/snes/588622-robotrek/faqs` as a reference; all hexadecimal values should be lowercase! fix this throughout the project's current code and documentation and use lowercase going forward;
 
 
 
