@@ -6,6 +6,8 @@ This page documents all enemies in Robotrek (USA version).
 
 '''Data Status:''' Enemy names verified from ROM at $01fdbe. Stats are TBD pending research.
 
+'''Source:''' [https://github.com/TheAnsarya/GameInfo GameInfo extracted data]
+
 == Verified Enemy List (58 enemies) ==
 
 Source: ROM address $01fdbe (null-terminated strings), pointer table at $01fd00
