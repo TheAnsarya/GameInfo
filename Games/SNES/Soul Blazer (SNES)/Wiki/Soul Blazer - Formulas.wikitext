@@ -1,0 +1,355 @@
+{{DISPLAYTITLE:Soul Blazer - Formulas}}
+This page documents the '''game mechanics formulas''' in '''[[Soul Blazer]]''' (SNES).
+
+==Overview==
+Soul Blazer uses several mathematical formulas to calculate damage, experience, and other game values. All calculations use integer math with truncation (no rounding).
+
+==Damage Formulas==
+
+===Physical Damage===
+Player attacking an enemy:
+<pre>
+Damage = ATK - (DEF ÷ 2)
+Minimum = 1
+
+Where:
+  ATK = Player Attack (Base + Sword)
+  DEF = Enemy Defense
+</pre>
+
+{| class="wikitable"
+|+ Example: Level 10 Player vs Skeleton
+|-
+! Component !! Value
+|-
+| Base Attack || 6
+|-
+| Sword of Life (+4) || 4
+|-
+| Total ATK || 10
+|-
+| Skeleton DEF || 2
+|-
+| DEF ÷ 2 || 1
+|-
+| '''Damage''' || '''9'''
+|}
+
+===Enemy Damage===
+Enemy attacking player:
+<pre>
+Damage = Enemy_ATK - (Player_DEF ÷ 2)
+Minimum = 1
+
+Where:
+  Player_DEF = Defense (Base + Armor)
+</pre>
+
+===Magic Damage===
+Magic spells use a modified formula:
+<pre>
+Magic_Damage = Magic_Power × Multiplier - (DEF ÷ 4)
+Minimum = 1
+
+Multipliers by magic type:
+  Soul Blade:   ×1
+  Flame Ball:   ×2
+  Light Arrow:  ×1.5
+  Magic Flare:  ×2.5
+  Rotator:      ×1 per hit (up to 4 hits)
+  Spark Bomb:   ×3
+  Flame Pillar: ×2.5
+  Tornado:      ×3.5
+</pre>
+
+===Critical Hits===
+With the Critical Sword equipped:
+<pre>
+Critical_Chance = Level ÷ 10 (max 10%)
+Critical_Damage = Normal_Damage × 2
+</pre>
+
+===Elemental Weakness===
+When hitting an elemental weakness:
+<pre>
+Weakness_Damage = Normal_Damage × 1.5
+</pre>
+
+Weaknesses:
+{| class="wikitable"
+! Enemy Type !! Weakness
+|-
+| Plant enemies || Fire magic
+|-
+| Ice enemies || Fire magic
+|-
+| Water enemies || Thunder/Lightning
+|-
+| Ghost enemies || Spirit Sword
+|-
+| Metal enemies || Zantetsu Sword
+|}
+
+==Experience Formulas==
+
+===EXP Requirements===
+Experience needed for each level follows an exponential curve:
+<pre>
+EXP_for_Level(L) = floor(L^2.4 × 8)
+</pre>
+
+{| class="wikitable"
+|+ Experience Table
+! Level !! EXP to Next !! Total EXP
+|-
+| 1 || 20 || 0
+|-
+| 5 || 158 || 328
+|-
+| 10 || 712 || 2,474
+|-
+| 15 || 1,764 || 7,400
+|-
+| 20 || 3,400 || 15,920
+|-
+| 25 || 5,702 || 28,614
+|-
+| 30 || 8,754 || 46,062
+|-
+| 35 || 12,640 || 68,844
+|-
+| 40 || 17,442 || 97,540
+|-
+| 45 || 23,244 || 132,730
+|-
+| 50 || — || 175,000
+|}
+
+===EXP Gain===
+Base experience from defeating enemies:
+<pre>
+EXP_Gained = Enemy_Base_EXP
+
+With Lucky Blade equipped:
+EXP_Gained = Enemy_Base_EXP × 1.5
+</pre>
+
+==Stat Formulas==
+
+===HP Calculation===
+<pre>
+Max_HP = 20 + (Level - 1) × 4
+
+Example:
+  Level 1:  20 HP
+  Level 10: 56 HP
+  Level 25: 116 HP
+  Level 50: 216 HP
+</pre>
+
+===Attack Calculation===
+<pre>
+Base_Attack = 2 + (Level - 1) ÷ 2
+Total_Attack = Base_Attack + Sword_Attack
+
+Example (Level 20 with Spirit Sword):
+  Base Attack = 2 + 19÷2 = 2 + 9 = 11
+  Spirit Sword = +20
+  Total = 31
+</pre>
+
+===Defense Calculation===
+<pre>
+Base_Defense = 1 + (Level - 1) ÷ 3
+Total_Defense = Base_Defense + Armor_Defense
+
+Example (Level 30 with Magic Armor):
+  Base Defense = 1 + 29÷3 = 1 + 9 = 10
+  Magic Armor = +12
+  Total = 22
+</pre>
+
+==Magic Cost==
+
+{| class="wikitable"
+! Magic !! GEM Cost !! Power !! Notes
+|-
+| Soul Blade || 2 || 2 || Short range
+|-
+| Flame Ball || 4 || 6 || Piercing
+|-
+| Light Arrow || 3 || 4 || Homing
+|-
+| Magic Flare || 8 || 10 || Screen-wide
+|-
+| Rotator || 2 || 3 || Orbiting, multi-hit
+|-
+| Spark Bomb || 6 || 12 || Explosion radius
+|-
+| Flame Pillar || 5 || 8 || Vertical range
+|-
+| Tornado || 10 || 14 || Strongest magic
+|}
+
+==Drop Rate Formulas==
+
+===GEM Drops===
+<pre>
+GEM_Amount = Enemy_Base_GEMs + Random(0, 2)
+
+With Lucky Blade:
+GEM_Amount = (Enemy_Base_GEMs × 1.5) + Random(0, 3)
+</pre>
+
+===Item Drops===
+Rare item drop chance:
+<pre>
+Drop_Chance = Base_Rate + (Luck_Bonus)
+
+Where:
+  Base_Rate = 5% (standard enemies)
+  Base_Rate = 10% (mini-bosses)
+  Base_Rate = 100% (bosses)
+  Luck_Bonus = +5% with Lucky Blade
+</pre>
+
+==Boss Health Formulas==
+
+===Standard Bosses===
+{| class="wikitable"
+! Boss !! HP !! Recommended Level
+|-
+| Metal Mantis || 100 || 8
+|-
+| Plantentacle || 150 || 14
+|-
+| Poseidon || 200 || 20
+|-
+| Stone Guardian || 180 || 25
+|-
+| Tin Doll || 250 || 30
+|-
+| Ghost Ship Captain || 200 || 28
+|-
+| Demon Bird || 300 || 35
+|-
+| Deathtoll (all phases) || 900 || 45
+|}
+
+===Deathtoll Phases===
+<pre>
+Phase 1: 300 HP - Floating head, projectile attacks
+Phase 2: 300 HP - Body revealed, melee attacks
+Phase 3: 300 HP - Full form, all attack patterns
+Total:   900 HP
+</pre>
+
+==Movement Formulas==
+
+===Walk Speed===
+<pre>
+Base_Speed = 2.0 pixels/frame
+With Light Armor: 2.5 pixels/frame
+
+Slowed (ice/sand): 1.0 pixels/frame
+Water (mermaid form): 3.0 pixels/frame
+</pre>
+
+===Attack Speed===
+<pre>
+Attack_Frames = 12 (0.2 seconds at 60 FPS)
+Recovery_Frames = 6
+Total_Attack_Cycle = 18 frames
+</pre>
+
+===Invincibility Frames===
+<pre>
+After taking damage: 60 frames (1 second)
+After using magic: 6 frames (0.1 seconds)
+</pre>
+
+==Healing Formulas==
+
+===HP Recovery===
+<pre>
+Medical Herb: +50 HP
+Strange Bottle: +100 HP
+Recovery Sword (per hit): +1 HP
+Dream Rod (Lisa): Full HP restore
+</pre>
+
+==Time Formulas==
+
+===In-Game Time===
+<pre>
+1 game minute = 60 real seconds
+1 game hour = 60 game minutes = 1 real hour
+Play time stored in save: Minutes (16-bit, max 65,535 = 1,092 hours)
+</pre>
+
+==Random Number Generator==
+
+Soul Blazer uses a 16-bit LFSR for pseudo-random values:
+<pre>
+Location: $7E0042 (2 bytes)
+Initial seed: $0001
+
+Update per call:
+  bit = (rng ^ (rng >> 1) ^ (rng >> 3) ^ (rng >> 12)) & 1
+  rng = (rng >> 1) | (bit << 15)
+
+Returns: rng & 0xFF (low byte)
+</pre>
+
+Used for:
+* Enemy behavior variations
+* Drop rate calculations
+* Critical hit checks
+* AI decision trees
+
+==Grinding Efficiency==
+
+===EXP per Minute===
+Approximate grinding rates by area:
+{| class="wikitable"
+! Area !! Best Enemy !! EXP/Kill !! Kills/Min !! EXP/Min
+|-
+| Underground Castle || Armor || 10 || 8 || 80
+|-
+| GreenWood || Crystal || 15 || 6 || 90
+|-
+| Seabed || Merman || 18 || 7 || 126
+|-
+| Mountain of Souls || Demon || 30 || 5 || 150
+|-
+| Leo's Laboratory || Metal Enemy || 35 || 6 || 210
+|-
+| World of Evil || Deathtoll Minion || 60 || 4 || 240
+|}
+
+===Optimal Level Ranges===
+{| class="wikitable"
+! Area !! Entry Level !! Exit Level
+|-
+| Grass Valley || 1 || 8
+|-
+| GreenWood || 8 || 15
+|-
+| St. Elles || 15 || 22
+|-
+| Mountain of Souls || 22 || 28
+|-
+| Leo's Laboratory || 28 || 36
+|-
+| Magridd Castle || 36 || 45+
+|}
+
+==See Also==
+* [[Soul Blazer:Data tables|Data Tables]]
+* [[Soul Blazer:Enemies|Enemies]]
+* [[Soul Blazer:Items|Items]]
+* [[Soul Blazer:Technical Reference|Technical Reference]]
+
+[[Category:Soul Blazer]]
+[[Category:Game Mechanics]]
+[[Category:Formulas]]

@@ -554,3 +554,24 @@ Features:
 - BRR scanning to find unknown samples
 - Configurable sample rate output
 - Sample metadata with ADSR values
+
+### Event Script Decoder
+```bash
+python event_decoder.py --list                      # List known scripts
+python event_decoder.py ROM.sfc --decode-all        # Decode all known scripts
+python event_decoder.py ROM.sfc --decode 0x12       # Decode by script ID
+python event_decoder.py ROM.sfc --decode "Metal Mantis"  # Decode by name
+python event_decoder.py ROM.sfc --offset 0x021200   # Decode at specific offset
+python event_decoder.py ROM.sfc --hex               # Show hex opcodes
+python event_decoder.py ROM.sfc --scan              # Scan ROM for scripts
+python event_decoder.py ROM.sfc --export -o scripts/  # Export to JSON
+```
+Features:
+- Decode event scripts (cutscenes, NPC dialogs, triggers)
+- 30+ known script locations cataloged
+- Full opcode disassembly (80+ opcodes)
+- Parameter formatting (items, flags, directions)
+- Flag and jump target tracking
+- Script scanning for undocumented scripts
+- JSON export for analysis
+- Support for all script commands (NPC, player, camera, audio)
