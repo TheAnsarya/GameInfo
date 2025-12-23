@@ -1,6 +1,25 @@
 # Robotrek Disassembly Notes
 
+## References
+
+- [Data Crystal ROM Map](https://datacrystal.tcrf.net/wiki/Robotrek/ROM_map) - Comprehensive ROM structure
+- [Data Crystal RAM Map](https://datacrystal.tcrf.net/wiki/Robotrek/RAM_map) - SRAM save format
+
 ## ROM Structure
+
+### Key Information
+
+| Property | Value |
+|----------|-------|
+| Internal Name | ROBOTREK 1 USA |
+| Developer | Quintet / Ancient |
+| Publisher | Enix |
+| Compression | Quintet LZSS |
+| ROM Size | 1.5 MB ($180000) |
+| SRAM | 8 KB |
+| Mapper | HiROM + FastROM |
+| Checksum | $6D44 |
+| CRC32 | 7AD4AADC |
 
 ### Verified Addresses
 
@@ -10,6 +29,9 @@
 | Item Names (menu) | $01F8A0 | $C1F8A0 | Null-separated, 8-byte aligned |
 | Enemy Name Pointers | $01FD00 | $C1FD00 | 16-bit pointer table |
 | Enemy Names | $01FDBE | $C1FDBE | Null-terminated strings, 58 entries |
+| Font Graphics | $80000 | $D08000 | 2BPP GameBoy format (uncompressed) |
+| Map Metadata | $D8000 | $DB8000 | Map structure data |
+| Inventory Graphics | $D9310 | $DB9310 | Menu graphics (uncompressed) |
 
 ### Interrupt Vectors (at $FFE0)
 
@@ -81,23 +103,60 @@ $C08049: BRA $803D    ; Loop
 
 ## Next Steps
 
-1. **Map RAM usage** - Find key variables for:
-   - Player stats
-   - Robot data
-   - Inventory
-   - Battle state
-
-2. **Identify data tables** - Locate:
-   - Item stats (power, guard, etc.)
-   - Enemy stats (HP, attack, etc.)
-   - Invention recipes
-
-3. **Battle system** - Analyze:
-   - Damage calculation
-   - Turn order
-   - AI routines
-
-4. **Compression** - Identify format for:
+1. **Decompress LZSS data** - Implement Quintet LZSS decompressor to access:
    - Graphics
-   - Text/dialog
-   - Map data
+   - Map tilesets
+   - Map arrangements
+
+2. **Locate item/enemy stats tables** - Names found, but stats (HP, Power, Guard) need research
+
+3. **Map RAM variables** - Find working RAM addresses for:
+   - Current battle state
+   - Active menu/dialog
+   - Player position in real-time
+
+4. **Disassemble battle damage formula** - Core battle calculation
+
+5. **Research invention system** - Recipe format and crafting logic
+
+6. **Extract music** - Sequence data at known offsets (see ROM Map)
+
+## Music Track Locations (from Data Crystal)
+
+| Offset | Track Name |
+|--------|------------|
+| $0296B | Robots vs. Hackers |
+| $02EEB | Count Prinky's Mansion |
+| $039A9 | Super Robot Battle! |
+| $05879 | Futuristic World in Peril |
+| $07A69 | The World of Quintenix |
+| $10D21 | Hometown in Autumn |
+| $1264E | Music Box of Memories |
+| $EFAD5 | Gateau ~ Master of Time |
+| $14848E | Staff Roll |
+| $14F2EE | Beyond the Stars! |
+| $17F054 | Tropical Paradise |
+
+## SRAM Save Structure (from Data Crystal)
+
+3 save slots + 3 backup slots, each 1280 bytes ($500):
+
+| Offset | Size | Description |
+|--------|------|-------------|
+| $0000 | 144 | Inventory (72 slots × 2 bytes) |
+| $0302 | 1 | Player Facing Direction |
+| $0303 | 2 | Player X Position |
+| $0305 | 2 | Player Y Position |
+| $0312 | 7 | Player Name |
+| $031E | 7 | Robot 1 Name |
+| $0325 | 7 | Robot 2 Name |
+| $0336 | 7 | Robot 3 Name |
+| $0388 | 2 | Program Points |
+| $038A | 6 | Robot Current HP (×3) |
+| $0390 | 6 | Robot Max HP (×3) |
+| $0396 | 6 | Robot Power (×3) |
+| $039C | 6 | Robot Guard (×3) |
+| $03A2 | 6 | Robot Speed (×3) |
+| $03A8 | 6 | Robot Charge (×3) |
+| $03E9 | 3 | GP (Gold) |
+| $04FA | 4 | Checksum |

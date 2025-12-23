@@ -4,95 +4,201 @@
 
 This page documents the ROM layout for Robotrek (USA version).
 
+'''Source:''' Partially based on [https://datacrystal.tcrf.net/wiki/Robotrek/ROM_map Data Crystal] with additional verified research.
+
 == ROM Overview ==
 
 {| class="wikitable"
 ! Property !! Value
 |-
-| ROM Size || 1.5 MB (1,572,864 bytes)
+| Internal Name || ROBOTREK 1 USA
 |-
-| Mapper || HiROM + FastROM
+| ROM Size || 1.5 MB (1,572,864 bytes / $180000)
 |-
-| Banks || 24 x 64KB banks ($C0-$D7)
+| Mapper || HiROM + FastROM (120ns)
 |-
 | SRAM || 8 KB
+|-
+| Checksum || $6D44
+|-
+| CRC32 || 7AD4AADC
+|-
+| Developer || Quintet / Ancient
+|-
+| Publisher || Enix
 |}
 
-== Bank Layout ==
+== Compression ==
 
-{| class="wikitable sortable"
-! Bank !! File Offset !! Size !! Description
-|-
-| $C0 || $000000 || $10000 || Main program, reset vectors
-|-
-| $C1 || $010000 || $10000 || Game logic, NPC routines
-|-
-| $C2 || $020000 || $10000 || Battle system
-|-
-| $C3 || $030000 || $10000 || Invention/crafting system
-|-
-| $C4 || $040000 || $10000 || Map engine
-|-
-| $C5 || $050000 || $10000 || Event scripts
-|-
-| $C6 || $060000 || $10000 || Dialog system
-|-
-| $C7 || $070000 || $10000 || Menu/UI code
-|-
-| $C8 || $080000 || $10000 || Sound driver
-|-
-| $C9 || $090000 || $10000 || Music data (SPC)
-|-
-| $CA || $0A0000 || $10000 || Sound effects
-|-
-| $CB || $0B0000 || $10000 || Graphics: Characters
-|-
-| $CC || $0C0000 || $10000 || Graphics: Robots
-|-
-| $CD || $0D0000 || $10000 || Graphics: Enemies
-|-
-| $CE || $0E0000 || $10000 || Graphics: Tilesets
-|-
-| $CF || $0F0000 || $10000 || Graphics: Backgrounds
-|-
-| $D0 || $100000 || $10000 || Map data (part 1)
-|-
-| $D1 || $110000 || $10000 || Map data (part 2)
-|-
-| $D2 || $120000 || $10000 || Map data (part 3)
-|-
-| $D3 || $130000 || $10000 || Text data (English)
-|-
-| $D4 || $140000 || $10000 || Item/Invention tables
-|-
-| $D5 || $150000 || $10000 || Enemy data
-|-
-| $D6 || $160000 || $10000 || Event flags/scripts
-|-
-| $D7 || $170000 || $10000 || Miscellaneous data
-|}
+Robotrek uses '''Quintet's standard LZSS compression algorithm''', common to other Quintet games (Soul Blazer, Illusion of Gaia, Terranigma).
 
-== Important Addresses ==
+== Major Data Regions ==
 
-=== Program Code ===
+=== Early Banks ($00000-$3FFFF) ===
 
 {| class="wikitable"
-! Address !! Description
+! File Offset !! Size !! Description
 |-
-| $C08000 || Reset vector handler
+| $00000-$00622 || $623 || Compressed map tileset data
 |-
-| $C0FFEA || NMI vector
+| $00623-$00C3E || $61C || Compressed map tileset data
 |-
-| $C0FFEE || IRQ vector
+| $00C3F-$0124D || $60F || Compressed map tileset data
 |-
-| $C10000 || Main game loop
+| $0124E-$01844 || $5F7 || Compressed map tileset data
 |-
-| $C20000 || Battle initialization
+| $01845-$01E2E || $5EA || Compressed map tileset data
 |-
-| $C30000 || Invention check routine
+| $01E2F-$023E7 || $5B9 || Compressed map tileset data
+|-
+| $023E8-$0296A || $583 || Compressed map arrangement data
+|-
+| $0296B-$02EEA || $580 || '''Music - Robots vs. Hackers'''
+|-
+| $02EEB-$0344A || $560 || '''Music - Count Prinky's Mansion'''
+|-
+| $0344B-$039A8 || $55E || Compressed map tileset data
+|-
+| $039A9-$03F03 || $55B || '''Music - Super Robot Battle!'''
+|-
+| $05879-$05D6C || $4F4 || '''Music - Futuristic World in Peril'''
+|-
+| $07A69-$07F03 || $49B || '''Music - The World of Quintenix'''
+|-
+| $0FFC0-$0FFFF || $40 || Internal ROM header
 |}
 
-=== Data Tables ===
+=== Bank $10000-$1FFFF ===
+
+{| class="wikitable"
+! File Offset !! Size !! Description
+|-
+| $10000-$1046D || $46E || Compressed map arrangement data
+|-
+| $10D21-$11166 || $446 || '''Music - Hometown in Autumn'''
+|-
+| $1264E-$12A59 || $40C || '''Music - Music Box of Memories'''
+|-
+| $15FEE-$16390 || $3A3 || '''Music - Deep Underground'''
+|-
+| $01E413 || ~$1480 || '''Item names''' (CC-separated, 98 entries) - '''VERIFIED'''
+|-
+| $01F8A0 || ~$500 || Item names (menu, 8-byte aligned) - '''VERIFIED'''
+|-
+| $01FD00 || ~$BC || Enemy name pointer table - '''VERIFIED'''
+|-
+| $01FDBE || ~$300 || '''Enemy names''' (null-terminated, 58 entries) - '''VERIFIED'''
+|}
+
+=== Sound Samples ($90000-$DFFFF) ===
+
+{| class="wikitable"
+! File Offset !! Description
+|-
+| $90000-$9002E || Sound sample 00 (16-bit length + BRR data)
+|-
+| $9002F-$90054 || Sound sample 01
+|-
+| $90055-$900A7 || Sound sample 02
+|-
+| $900A8-$901D2 || Sound sample 03
+|-
+| $901D3-$915DE || Sound sample 04 (large)
+|-
+| $915DF-$921E6 || Sound sample 05
+|-
+| $921E7-$93871 || Sound sample 06 (large)
+|-
+| ... || (Samples 07-2A continue through $D177B)
+|}
+
+=== Graphics ($80000-$8FFFF) ===
+
+{| class="wikitable"
+! File Offset !! Size !! Description
+|-
+| $80000-$81FFF || $2000 || '''Uncompressed font graphics''' (2BPP GameBoy format)
+|-
+| $82000-$835C4 || $15C5 || Compressed graphics
+|-
+| $835C5-$84B5B || $1597 || Compressed graphics
+|-
+| $84B5C-$860EE || $1593 || Compressed graphics
+|-
+| $860EF-$87630 || $1542 || Compressed graphics
+|-
+| $87631-$87F3F || $90F || Compressed graphics
+|}
+
+=== Map Data ($D8000-$DFFFF) ===
+
+{| class="wikitable"
+! File Offset !! Size !! Description
+|-
+| $D8000-$D930F || $1310 || Map metadata
+|-
+| $D9310-$DB30F || $2000 || '''Uncompressed inventory/menu graphics'''
+|-
+| $DB310-$DD16F || $1E60 || Compressed graphics
+|-
+| $DD170-$DEB7E || $1A0F || Compressed graphics
+|-
+| $DEB7F-$DFF74 || $13F6 || Compressed graphics
+|}
+
+=== Music Tracks ===
+
+{| class="wikitable sortable"
+! File Offset !! Track Name
+|-
+| $0296B || Robots vs. Hackers
+|-
+| $02EEB || Count Prinky's Mansion
+|-
+| $039A9 || Super Robot Battle!
+|-
+| $05879 || Futuristic World in Peril
+|-
+| $07A69 || The World of Quintenix
+|-
+| $10D21 || Hometown in Autumn
+|-
+| $1264E || Music Box of Memories
+|-
+| $15FEE || Deep Underground
+|-
+| $259E3 || Special Item
+|-
+| $33CCC || (no music)
+|-
+| $EFAD5 || Gateau ~ Master of Time
+|-
+| $F9654 || Quiet Victory
+|-
+| $11EDB7 || Programmers' Computer
+|-
+| $12C090 || Research and Development
+|-
+| $12C8C1 || Dangerous Places
+|-
+| $12D366 || A Long Time Ago...
+|-
+| $13A6D2 || Beneath the Lava
+|-
+| $13B7A0 || High in the Sky
+|-
+| $13D6D7 || Theme of the Hackers
+|-
+| $13E7C6 || Hackers' Supreme Fortress
+|-
+| $14848E || Staff Roll
+|-
+| $14F2EE || Beyond the Stars!
+|-
+| $17F054 || Tropical Paradise
+|}
+
+== Verified Data Tables ==
 
 {| class="wikitable"
 ! Address !! File Offset !! Size !! Description !! Status
@@ -104,113 +210,41 @@ This page documents the ROM layout for Robotrek (USA version).
 | $C1FD00 || $01FD00 || ~$BC || Enemy name pointer table (16-bit) || '''Verified'''
 |-
 | $C1FDBE || $01FDBE || ~$300 || Enemy names (null-terminated strings) || '''Verified'''
-|-
-| $D40000 || $100000 || TBD || Item stats table || Unverified
-|-
-| $D40800 || $100800 || TBD || Invention recipes table || Unverified
-|-
-| $D41000 || $101000 || TBD || Robot parts table || Unverified
-|-
-| $D50000 || $110000 || TBD || Enemy stats table || Unverified
-|-
-| $D50800 || $110800 || TBD || Enemy drops table || Unverified
 |}
 
-=== Graphics ===
+== Interrupt Vectors ==
 
 {| class="wikitable"
-! Address !! Size !! Description
+! Vector !! Address !! Target !! Description
 |-
-| $CB0000 || TBD || Hero sprite data
+| RESET || $FFFC || $8000 || Game entry point
 |-
-| $CB8000 || TBD || NPC sprite data
+| NMI (native) || $FFEA || $800D || VBlank → JML $8BFB43
 |-
-| $CC0000 || TBD || Robot sprite data (compressed)
+| IRQ (native) || $FFEE || $8011 || IRQ → JML $8BFBC8
 |-
-| $CD0000 || TBD || Enemy sprite data (compressed)
+| COP (native) || $FFE4 || $8015 || COP → JML $809EE8
 |-
-| $CE0000 || TBD || Tileset data (compressed)
-|-
-| $CF0000 || TBD || Background graphics
+| BRK (native) || $FFE6 || $8019 || BRK → JML $8BFBC9
 |}
 
-=== Text/Dialog ===
+== Unused Space ==
 
 {| class="wikitable"
-! Address !! File Offset !! Size !! Description !! Status
+! File Offset !! Size !! Description
 |-
-| $C1E413 || $01E413 || ~$1480 || Item names (CC-separated, 98 entries) || '''Verified'''
+| $3400A-$37FFF || $3FF6 || Unused (available for expansion)
 |-
-| $C1FDBE || $01FDBE || ~$300 || Enemy names (null-terminated, 58 entries) || '''Verified'''
-|-
-| $D30000 || $0F0000 || TBD || Text pointer table || Unverified
-|-
-| $D30400 || $0F0400 || TBD || Dialog text (compressed) || Unverified
-|-
-| $D38000 || $0F8000 || TBD || Menu text || Unverified
+| $171F0E-$177FFF || $60F2 || Unused
 |}
-
-=== Audio ===
-
-{| class="wikitable"
-! Address !! Size !! Description
-|-
-| $C90000 || TBD || Music sequence data
-|-
-| $CA0000 || TBD || Sound effect data
-|-
-| $C80000 || TBD || SPC700 driver code
-|}
-
-== Compression ==
-
-Robotrek uses several compression formats:
-
-=== LZSS Compression ===
-
-Used for graphics data. Structure:
-* Compressed data starts with 2-byte uncompressed size
-* Followed by flag bytes and data
-
-=== Text Compression ===
-
-Uses dictionary-based compression with DTE (Dual Tile Encoding):
-* Control codes: $00-$1F
-* Dictionary entries: $80-$FF
-* ASCII-like mapping for basic characters
-
-== Pointers ==
-
-=== Pointer Tables ===
-
-{| class="wikitable"
-! Address !! Count !! Description
-|-
-| $D30000 || TBD || Dialog text pointers (16-bit)
-|-
-| $D00000 || TBD || Map data pointers (24-bit)
-|-
-| $D40000 || TBD || Item data pointers
-|}
-
-== Checksum ==
-
-{| class="wikitable"
-! Field !! Value !! Address
-|-
-| Checksum || $6D44 || $FFDE
-|-
-| Complement || $92BB || $FFDC
-|}
-
-Checksum + Complement = $FFFF (valid)
 
 == Notes ==
 
 * The ROM uses HiROM mapping, so bank $C0 starts at file offset $0
-* Graphics are mostly 4bpp format
-* Some tables have fixed-size entries, others are pointer-based
-* SRAM at $70:0000-$1FFF stores save game data
+* Graphics are mostly compressed using Quintet's LZSS
+* Font graphics at $80000 are uncompressed 2BPP (GameBoy-style format)
+* Map metadata format is similar to other Quintet games
+* SRAM at $70:0000-$1FFF stores save game data (see [[Robotrek (SNES)/RAM_Map|RAM Map]])
 
 [[Category:ROM Maps]]
 [[Category:SNES]]

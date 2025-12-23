@@ -88,9 +88,15 @@ Robotrek uses '''HiROM''' mapping with '''FastROM''' enabled:
 
 == Development ==
 
-Robotrek was developed by Quintet, known for the "Soul Blazer trilogy" (Soul Blazer, Illusion of Gaia, Terranigma). While not part of that series, Robotrek shares Quintet's characteristic polish and attention to detail.
+Robotrek was developed by '''Quintet''' with co-development by '''Ancient'''. Quintet is known for the "Soul Blazer trilogy" (Soul Blazer, Illusion of Gaia, Terranigma). While not part of that series, Robotrek shares Quintet's characteristic polish and attention to detail.
 
 The Japanese title "Slapstick" (スラップスティック) refers to the comedic nature of the game, which differs significantly from Quintet's usually darker RPG themes.
+
+=== Technical Notes ===
+
+* Uses '''Quintet's standard LZSS compression algorithm''', shared with other Quintet games
+* Map metadata format is similar to other Quintet SNES games
+* Font graphics are stored uncompressed in 2BPP GameBoy format at $80000
 
 == Related Games ==
 
@@ -100,8 +106,12 @@ Quintet SNES RPGs:
 * '''Robotrek''' (1994)
 * [[Terranigma (SNES)|Terranigma]] (1995)
 
+Also related:
+* [[ActRaiser (SNES)|ActRaiser]] (Quintet)
+
 == External Links ==
 
+* [https://datacrystal.tcrf.net/wiki/Robotrek Data Crystal - Robotrek] - ROM/RAM maps and technical data
 * [https://gamefaqs.gamespot.com/snes/588654-robotrek GameFAQs - Robotrek]
 * [https://www.mobygames.com/game/robotrek MobyGames - Robotrek]
 
