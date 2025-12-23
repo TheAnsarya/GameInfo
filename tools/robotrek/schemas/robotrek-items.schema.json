@@ -1,0 +1,94 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "robotrek-items.schema.json",
+	"title": "Robotrek Items",
+	"description": "Schema for Robotrek item data",
+	"type": "object",
+	"required": ["game", "data_type", "items"],
+	"properties": {
+		"game": {
+			"type": "string",
+			"const": "Robotrek"
+		},
+		"data_type": {
+			"type": "string",
+			"const": "items"
+		},
+		"rom_location": {
+			"type": "object",
+			"properties": {
+				"bank": { "type": "string" },
+				"start": { "type": "string" },
+				"entry_size": { "type": "integer" },
+				"count": { "type": "integer" }
+			}
+		},
+		"item_types": {
+			"type": "object",
+			"additionalProperties": { "type": "string" }
+		},
+		"item_flags": {
+			"type": "object",
+			"additionalProperties": { "type": "string" }
+		},
+		"items": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["id", "item_id", "item_type", "primary_stat", "secondary_stat", "buy_price", "flags"],
+				"properties": {
+					"id": {
+						"type": "integer",
+						"minimum": 0,
+						"description": "Item index in table"
+					},
+					"item_id": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 255,
+						"description": "Item ID byte"
+					},
+					"item_type": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 255,
+						"description": "Item type (0=Consumable, 1=Weapon, etc.)"
+					},
+					"type_name": {
+						"type": "string",
+						"description": "Human-readable type name"
+					},
+					"primary_stat": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 255,
+						"description": "Primary stat value (attack, defense, etc.)"
+					},
+					"secondary_stat": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 255,
+						"description": "Secondary stat value"
+					},
+					"buy_price": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 65535,
+						"description": "Buy price in gold (sell = buy/2)"
+					},
+					"flags": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 65535,
+						"description": "Item flags bitfield"
+					},
+					"flag_names": {
+						"type": "array",
+						"items": { "type": "string" },
+						"description": "Human-readable flag names"
+					}
+				}
+			}
+		}
+	}
+}
