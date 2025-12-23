@@ -478,5 +478,137 @@ Updated ROM_Map.wikitext with:
 
 | Hash | Message |
 |------|---------|
-| TBD | feat(robotrek): add ROM analysis and recipe decoding scripts |
-| TBD | docs(robotrek): update ROM map with recipe table documentation |
+| 65843c7 | feat(robotrek): add ROM analysis scripts and recipe table decoder |
+| fc2677b | feat(robotrek): add graphics extraction and PNG conversion |
+
+#### 5. Graphics Extraction
+
+Created complete graphics extraction pipeline:
+- `extract_all_graphics.py` - Decompresses all LZSS compressed graphics
+- `convert_graphics_to_png.py` - Converts 2BPP/4BPP tiles to PNG
+
+**Extracted Graphics:**
+- 17 compressed regions successfully decompressed
+- 7 map tilesets (128x32 each)
+- 5 graphics banks (128x128 each)
+- 3 menu graphics (128x128-256)
+- Font graphics (128x256, 2BPP)
+- Inventory graphics (128x256)
+
+---
+
+## Session 6 - Comprehensive Data Extraction
+
+### Work Completed
+
+#### 1. Comprehensive Data Extractor
+
+Created `comprehensive_extractor.py` that extracts all known game data to JSON:
+
+**Features:**
+- Extracts all 83 item names with addresses
+- Extracts all 56 enemy names with addresses
+- Includes 40 same-item upgrade recipes
+- ROM metadata (checksums, mapper info)
+- Proper handling of CC-separator for items ($CC = 204)
+- Null-terminated parsing for enemies
+
+**Output Files:**
+- `robotrek_complete_data.json` - All data combined
+- `items_extracted.json` - Item names only
+- `enemies_extracted.json` - Enemy names only
+
+#### 2. Item Name Format Discovery
+
+Discovered item names use **$CC separator** (not null-terminated):
+- Item table starts at $01e413
+- Variable-length strings separated by byte $CC (204)
+- ASCII text format
+- 83 total items extracted correctly
+
+#### 3. Actor Data Format Analysis
+
+Created `analyze_actor_data.py` to decode actor/entity format:
+
+**Actor Pointer Table:**
+- Location: $038000
+- Entry count: 192
+- Format: 2-byte little-endian pointers
+
+**Standard Actor Format (22 bytes):**
+```
+fe [gfx_lo] [gfx_hi] 83 [anim_lo] [anim_hi] 83   ; Frame 0
+fe [gfx_lo] [gfx_hi] 83 [anim_lo] [anim_hi] 83   ; Frame 1
+fe [gfx_lo] [gfx_hi] 83 [anim_lo] [anim_hi] 83   ; Frame 2
+ff                                               ; Terminator
+```
+
+**Key Findings:**
+- Each actor has 3 animation frames
+- Graphics pointers at offsets 1-2, 8-9, 15-16
+- Animation pointers at offsets 4-5, 11-12, 18-19
+- Bank marker $83 indicates bank $03
+- Actor 0 (player) uses different format
+
+**Unique Pointers Found:**
+- 22 unique graphics pointers
+- 29 unique animation pointers
+
+#### 4. Wiki Documentation Updates
+
+Updated ROM_Map.wikitext with:
+- Complete item names table (83 entries with addresses)
+- Complete enemy names table (56 entries with addresses)
+- Actor data format documentation
+- Sample actor entries with pointers
+
+### Session 6 Commits
+
+| Hash | Message |
+|------|---------|
+| 4c5d483 | feat(robotrek): add comprehensive data extractor and update ROM_Map with item/enemy tables |
+| 4f6e545 | feat(robotrek): analyze actor/entity data format and document in ROM_Map |
+
+### Files Created
+
+- `Games/SNES/Robotrek (SNES)/scripts/comprehensive_extractor.py`
+- `Games/SNES/Robotrek (SNES)/scripts/analyze_actor_data.py`
+- `Games/SNES/Robotrek (SNES)/extracted/robotrek_complete_data.json`
+- `Games/SNES/Robotrek (SNES)/extracted/items_extracted.json`
+- `Games/SNES/Robotrek (SNES)/extracted/enemies_extracted.json`
+- `Games/SNES/Robotrek (SNES)/extracted/actor_data_analysis.json`
+
+### Files Modified
+
+- `Wiki/SNES/Robotrek/ROM_Map.wikitext` - Complete item/enemy tables, actor format
+
+---
+
+## All Session Commits
+
+| Hash | Session | Message |
+|------|---------|---------|
+| 4143fe4 | 1 | docs(robotrek): Integrate Data Crystal ROM/RAM map |
+| 9945d07 | 1 | feat(robotrek): Add Quintet LZSS decompressor |
+| a952223 | 1 | feat(robotrek): Add graphics extractor and assets |
+| 66a934f | 1 | feat(robotrek): Add data extractor with enemies/items |
+| 327073f | 2 | style: standardize hex values to lowercase |
+| ddb1dcd | 2 | docs: add comprehensive weapon/item stats from GameFAQs |
+| af10f91 | 3 | style: fix trailing whitespace |
+| a203b07 | 3 | docs(robotrek): add item pointer table, actor data, PAR verification |
+| 963857b | 4 | feat(robotrek): add ROM analysis scripts and enemy name extraction |
+| ee1fced | 4 | docs(robotrek): update session log and ROM map |
+| 6d460fc | 4 | feat(robotrek): add combination recipe decoder |
+| 65843c7 | 5 | feat(robotrek): add ROM analysis scripts and recipe table decoder |
+| fc2677b | 5 | feat(robotrek): add graphics extraction and PNG conversion |
+| 4c5d483 | 6 | feat(robotrek): add comprehensive data extractor |
+| 4f6e545 | 6 | feat(robotrek): analyze actor/entity data format |
+
+## What's Next
+
+1. **Enemy stat tables** - Still not located; may need code tracing
+2. **Weapon damage formulas** - Likely calculated, not stored in tables
+3. **Map data investigation** - Analyze map/tileset structure
+4. **Push to Data Crystal** - Contribute verified findings back to wiki
+5. **Further graphics work** - Extract character sprites, decode palettes
+
