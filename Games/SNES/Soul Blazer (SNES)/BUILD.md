@@ -490,3 +490,20 @@ Features:
 - Export palette as PNG image
 - ROM palette scanning
 - Copy/paste colors between palettes
+### Sprite Sheet Exporter
+```bash
+python sprite_sheet_exporter.py ROM.sfc   # List available sprites
+python sprite_sheet_exporter.py ROM.sfc --list  # List with details
+python sprite_sheet_exporter.py ROM.sfc --sprite player_walk_down -o player.png
+python sprite_sheet_exporter.py ROM.sfc --category enemy --sheet -o enemies.png
+python sprite_sheet_exporter.py ROM.sfc --metadata sprites.json
+python sprite_sheet_exporter.py ROM.sfc --scale 3 --columns 4 --sheet
+```
+Features:
+- Export individual sprites or complete sprite sheets
+- Category filtering (player, enemy, npc, boss, item, effect)
+- Animation frame support
+- Configurable scale and layout (grid columns)
+- JSON metadata export
+- Known Soul Blazer sprite definitions
+- 4BPP tile decoding with palette application

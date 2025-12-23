@@ -102,6 +102,19 @@ Comprehensive documentation of binary formats including:
 
 Soul Blazer features over 50 enemy types across 6 acts, spawning from Soul Lairs.
 
+==Bosses==
+{{Main|Soul Blazer:Bosses}}
+
+8 major boss battles guard each act:
+* '''Metal Mantis''' (Act 1) - HP: 100, weak to Fire
+* '''Plantentacle''' (Act 2) - HP: 150, weak to Fire magic
+* '''Poseidon''' (Act 3) - HP: 200, weak to Thunder
+* '''Stone Guardian''' (Act 4) - HP: 180, weak to Magic Flare
+* '''Tin Doll''' (Act 5) - HP: 250, weak to Spark Bomb
+* '''Ghost Ship Captain''' (Act 5) - HP: 200, requires Spirit Sword
+* '''Demon Bird''' (Act 6) - HP: 300, weak to Tornado
+* '''Deathtoll''' (Final) - HP: 900 total (3 phases)
+
 ==Items and Equipment==
 {{Main|Soul Blazer:Items}}
 
