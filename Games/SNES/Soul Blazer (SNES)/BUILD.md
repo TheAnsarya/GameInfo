@@ -619,3 +619,22 @@ Features:
 - JSON export for editing
 - Readable text export
 - Special character handling (♥, ★, arrows, etc.)
+
+### Compression Tools
+```bash
+python compression.py --list                        # List known compressed data
+python compression.py --test                        # Test compression roundtrip
+python compression.py input.bin -d -o output.bin   # Decompress file
+python compression.py input.bin -c --rle -o out.bin  # RLE compress
+python compression.py input.bin -c --lz77 -o out.bin # LZ77 compress
+python compression.py --rom game.sfc -a 0x40000 -d -o map.bin  # From ROM
+python compression.py --rom game.sfc -a 0x40000 --analyze      # Analyze
+```
+Features:
+- RLE compression/decompression
+- LZ77 compression/decompression (4KB sliding window)
+- Auto-detection of compression type
+- ROM extraction from known addresses
+- Compression analysis and statistics
+- Roundtrip testing for verification
+- Known Soul Blazer compressed data cataloged (map data, graphics)

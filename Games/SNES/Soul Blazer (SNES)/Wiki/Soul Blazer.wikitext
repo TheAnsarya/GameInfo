@@ -160,10 +160,39 @@ The Hero is a divine servant sent by The Master to restore 91 souls across 6 act
 
 Soul Blazer contains numerous hidden elements:
 * Hidden treasures and secret rooms
-* Glitches: Damage boost skip, GEM overflow, soul dupe, walk through walls
 * Easter eggs: Developer credits room, sound test, Quintet references
 * Debug mode via Game Genie codes
 * Unused content: items, NPCs, music, and maps
+
+==Glitches==
+{{Main|Soul Blazer:Glitches}}
+
+Soul Blazer has several exploitable glitches:
+* '''Damage Boost Skip''' - Skip areas using enemy knockback
+* '''GEM Overflow''' - Overflow counter for max GEMs
+* '''Soul Duplication''' - Release same soul multiple times
+* '''Walk Through Walls''' - Clip through collision
+* '''Save Corruption''' - Known triggers to avoid
+* Speedrun techniques with time save estimates
+
+==Formulas==
+{{Main|Soul Blazer:Formulas}}
+
+Detailed game mechanics calculations:
+* '''Damage''': <code>ATK - (DEF ÷ 2)</code> (minimum 1)
+* '''EXP Required''': <code>floor(Level^2.4 × 8)</code>
+* Magic damage multipliers by type
+* Drop rate calculations with Lucky Blade bonus
+* Grinding efficiency analysis
+
+==Credits==
+{{Main|Soul Blazer:Credits}}
+
+Development team and production history:
+* '''Quintet Corporation''' - Developer (Tomoyoshi Miyazaki, Masaya Hashimoto)
+* '''Yukihide Takekawa''' - Music composer
+* '''Enix''' - Publisher (Yasuhiro Fukushima)
+* Soul trilogy legacy (Soul Blazer → Illusion of Gaia → Terranigma)
 
 ==Audio==
 {{Main|Soul Blazer:Audio}}
