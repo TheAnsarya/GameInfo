@@ -301,6 +301,24 @@ Features:
 - JSON export of scan results
 - Wikitext documentation generation
 
+### Pointer Scanner
+```bash
+python pointer_scanner.py                  # Scan all banks for pointer tables
+python pointer_scanner.py --known          # Scan known tables only
+python pointer_scanner.py --bank 5         # Scan specific bank (decimal)
+python pointer_scanner.py --wikitext       # Generate wiki output
+python pointer_scanner.py --output DIR     # Export to JSON
+```
+Features:
+- Scans ROM for pointer tables
+- 15 known pointer table locations
+- 16-bit and 24-bit pointer support
+- LoROM address conversion
+- Data block size analysis
+- Table validation (minimum 4 consecutive valid pointers)
+- Per-bank scanning
+- JSON and wikitext export
+
 ## ROM Structure
 
 ### Banks
