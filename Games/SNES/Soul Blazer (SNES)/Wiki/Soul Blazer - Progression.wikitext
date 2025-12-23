@@ -327,7 +327,7 @@ Total Bosses: 8
 | Reward || Access to World of Evil
 |}
 
-===Boss: Deathtoll (Final)=== 
+===Boss: Deathtoll (Final)===
 {| class="wikitable"
 ! Stat !! Value
 |-
