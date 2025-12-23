@@ -154,9 +154,10 @@ Experience points are stored as 24-bit (3-byte) little-endian integers:
 
 == See Also ==
 
-* [[Dragon Warrior IV (NES)/ROM Map|ROM Map]] - Bank 18 and Bank 27 documentation
-* [[Dragon Warrior IV (NES)/RAM Map|RAM Map]] - Character data addresses
-* [[Dragon Warrior IV (NES)/Values|Values]] - Party member indices
+* [[Dragon Warrior IV:Characters|Characters]] - Character leveling and stats
+* [[Dragon Warrior IV:Enemies|Enemies]] - Monster EXP rewards
+* [[Dragon Warrior IV:ROM_Map|ROM Map]] - Bank 18 and Bank 27 documentation
+* [[Dragon Warrior IV:RAM_Map|RAM Map]] - Character data addresses
 
 [[Category:Game Mechanics]]
 [[Category:NES]]

@@ -242,9 +242,10 @@ Each character learns spells at specific levels. The spell learning data is stor
 
 == See Also ==
 
-* [[Dragon Warrior IV (NES)/Battle System|Battle System]] - Combat mechanics
-* [[Dragon Warrior IV (NES)/Values|Values]] - Complete spell value list
-* [[Dragon Warrior IV (NES)/ROM Map|ROM Map]] - Bank 19 data locations
+* [[Dragon Warrior IV:Characters|Characters]] - Spell learners by character
+* [[Dragon Warrior IV:Battle_System|Battle System]] - Combat mechanics
+* [[Dragon Warrior IV:Enemies|Enemies]] - Enemy spell usage
+* [[Dragon Warrior IV:ROM_Map|ROM Map]] - Bank 19 data locations
 
 [[Category:Magic System]]
 [[Category:NES]]

@@ -381,5 +381,17 @@ Each invention recipe uses 8 bytes:
 | $07 || 1 || Required Level / Flags
 |}
 
+== See Also ==
+
+* [[Robotrek:Items|Items]] - Complete item list
+* [[Robotrek:Weapons|Weapons]] - Weapon stats and upgrades
+* [[Robotrek:Enemies|Enemies]] - Enemy drops for materials
+* [[Robotrek:ROM_Map|ROM Map]] - Data table addresses
+
+== Source ==
+
+Combination data verified from:
+* [https://github.com/TheAnsarya/GameInfo/tree/feature/darkrepos-wiki/Games/SNES/Robotrek/extracted GameInfo extracted Robotrek data]
+
 [[Category:Game Mechanics]]
 [[Category:SNES]]

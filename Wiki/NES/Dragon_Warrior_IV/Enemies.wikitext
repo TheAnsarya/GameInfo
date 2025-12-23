@@ -218,9 +218,10 @@ See [[Dragon Warrior IV (NES)/Battle System|Battle System]] for the enemy type c
 
 == See Also ==
 
-* [[Dragon Warrior IV (NES)/Battle System|Battle System]] - Combat mechanics
-* [[Dragon Warrior IV (NES)/Values|Values]] - Enemy ID list
-* [[Dragon Warrior IV (NES)/ROM Map|ROM Map]] - Bank 6-8 data locations
+* [[Dragon Warrior IV:Battle_System|Battle System]] - Combat mechanics
+* [[Dragon Warrior IV:Items|Items]] - Enemy drops
+* [[Dragon Warrior IV:EXP_System|EXP System]] - Experience from enemies
+* [[Dragon Warrior IV:ROM_Map|ROM Map]] - Bank 6-8 data locations
 
 == References ==
 

@@ -256,9 +256,12 @@ Each byte encodes enemy properties:
 
 == See Also ==
 
-* [[Dragon Warrior IV (NES)/ROM Map|ROM Map]] - Bank 19 documentation
-* [[Dragon Warrior IV (NES)/Values|Values]] - Battle Tactics list
-* [[Dragon Warrior IV (NES)/RAM Map|RAM Map]] - Battle-related RAM addresses
+* [[Dragon Warrior IV:Characters|Characters]] - Party member stats and abilities
+* [[Dragon Warrior IV:Spells|Spells]] - Magic system and effects
+* [[Dragon Warrior IV:Enemies|Enemies]] - Monster types and categories
+* [[Dragon Warrior IV:Items|Items]] - Equipment for battle
+* [[Dragon Warrior IV:ROM_Map|ROM Map]] - Bank 19 documentation
+* [[Dragon Warrior IV:RAM_Map|RAM Map]] - Battle-related RAM addresses
 
 [[Category:Battle System]]
 [[Category:NES]]

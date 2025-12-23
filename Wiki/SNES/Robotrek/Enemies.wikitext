@@ -280,5 +280,12 @@ Enemy stats structure (TBD - requires further research):
 | $0f || 1 || Flags/Resistances
 |}
 
+== See Also ==
+
+* [[Robotrek:Items|Items]] - Item drops from enemies
+* [[Robotrek:Inventions|Inventions]] - Materials for crafting
+* [[Robotrek:Formulas|Formulas]] - Damage calculations
+* [[Robotrek:ROM_Map|ROM Map]] - Data table addresses
+
 [[Category:Data Tables]]
 [[Category:SNES]]
