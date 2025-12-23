@@ -552,6 +552,69 @@ Located at file offset '''$01c200''', this table encodes weapon/item combination
 * Pack 3 + Pack 3 = Pack 4 ($6a marker, at $01c2df)
 * Hammer 3 + Hammer 3 = Celtis 1 ($6b marker, at $01c2ec)
 
+== Actor/Entity Data ==
+
+Located at file offset '''$038000''', this area contains actor/entity definitions for NPCs, enemies, and objects.
+
+=== Actor Pointer Table ===
+
+{| class="wikitable"
+! Property !! Value
+|-
+| Location || $038000
+|-
+| Entry count || 192
+|-
+| Entry size || 2 bytes (16-bit pointer)
+|-
+| Total size || $180 (384 bytes)
+|}
+
+=== Actor Data Format ===
+
+Standard actors (indices 1-191) use a 22-byte format:
+
+<pre>
+fe [gfx_lo] [gfx_hi] 83 [anim_lo] [anim_hi] 83   ; Frame 0
+fe [gfx_lo] [gfx_hi] 83 [anim_lo] [anim_hi] 83   ; Frame 1
+fe [gfx_lo] [gfx_hi] 83 [anim_lo] [anim_hi] 83   ; Frame 2
+ff                                               ; Terminator
+</pre>
+
+{| class="wikitable"
+! Field !! Offset !! Size !! Description
+|-
+| Marker || 0, 7, 14 || 1 || Always $fe
+|-
+| Graphics ptr || 1-2, 8-9, 15-16 || 2 || 16-bit pointer to graphics in bank $03
+|-
+| Bank marker 1 || 3, 10, 17 || 1 || Always $83 (bank $03 indicator)
+|-
+| Animation ptr || 4-5, 11-12, 18-19 || 2 || 16-bit pointer to animation in bank $03
+|-
+| Bank marker 2 || 6, 13, 20 || 1 || Always $83 (bank $03 indicator)
+|-
+| Terminator || 21 || 1 || Always $ff
+|}
+
+'''Actor 0 (Player)''' uses a different format specific to the main character.
+
+=== Sample Actor Entries ===
+
+{| class="wikitable"
+! Index !! Offset !! Graphics !! Animation !! Notes
+|-
+| 1 || $038211 || $03cece || $039213 || NPC type A
+|-
+| 2 || $038227 || $03cf16 || $039243 || NPC type B
+|-
+| 3 || $03823d || $03d200 || $0392d7 || NPC type C
+|-
+| 4 || $038253 || $03d076 || $03928d || NPC type D
+|-
+| 5 || $038269 || $03cfd2 || $039273 || NPC type E
+|}
+
 == Interrupt Vectors ==
 
 {| class="wikitable"

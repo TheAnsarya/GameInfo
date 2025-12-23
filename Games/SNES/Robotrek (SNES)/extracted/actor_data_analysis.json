@@ -1,0 +1,1626 @@
+{
+	"analysis_type": "Actor/Entity Data",
+	"pointer_table_address": "$038000",
+	"pointer_count": 192,
+	"entry_size_analysis": {
+		"differences": [
+			109,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22,
+			22
+		],
+		"frequency": {
+			"22": 180,
+			"0": 9,
+			"109": 1,
+			"-37257": 1
+		},
+		"most_common": 22
+	},
+	"format_description": {
+		"standard_actor": "22 bytes: 3x (fe GG GG 83 AA AA 83) + ff terminator",
+		"frame_format": "fe [gfx_ptr_lo] [gfx_ptr_hi] 83 [anim_ptr_lo] [anim_ptr_hi] 83",
+		"notes": [
+			"GG GG = 16-bit pointer to graphics data in bank $03",
+			"AA AA = 16-bit pointer to animation data in bank $03",
+			"Actor 0 has different format (player character)"
+		]
+	},
+	"pointers": [
+		{
+			"index": 0,
+			"hex_index": "$00",
+			"pointer_address": "$038000",
+			"pointer_value": "$81a4",
+			"file_offset": "$0381a4"
+		},
+		{
+			"index": 1,
+			"hex_index": "$01",
+			"pointer_address": "$038002",
+			"pointer_value": "$8211",
+			"file_offset": "$038211"
+		},
+		{
+			"index": 2,
+			"hex_index": "$02",
+			"pointer_address": "$038004",
+			"pointer_value": "$8227",
+			"file_offset": "$038227"
+		},
+		{
+			"index": 3,
+			"hex_index": "$03",
+			"pointer_address": "$038006",
+			"pointer_value": "$823d",
+			"file_offset": "$03823d"
+		},
+		{
+			"index": 4,
+			"hex_index": "$04",
+			"pointer_address": "$038008",
+			"pointer_value": "$8253",
+			"file_offset": "$038253"
+		},
+		{
+			"index": 5,
+			"hex_index": "$05",
+			"pointer_address": "$03800a",
+			"pointer_value": "$8269",
+			"file_offset": "$038269"
+		},
+		{
+			"index": 6,
+			"hex_index": "$06",
+			"pointer_address": "$03800c",
+			"pointer_value": "$827f",
+			"file_offset": "$03827f"
+		},
+		{
+			"index": 7,
+			"hex_index": "$07",
+			"pointer_address": "$03800e",
+			"pointer_value": "$8295",
+			"file_offset": "$038295"
+		},
+		{
+			"index": 8,
+			"hex_index": "$08",
+			"pointer_address": "$038010",
+			"pointer_value": "$82ab",
+			"file_offset": "$0382ab"
+		},
+		{
+			"index": 9,
+			"hex_index": "$09",
+			"pointer_address": "$038012",
+			"pointer_value": "$82c1",
+			"file_offset": "$0382c1"
+		},
+		{
+			"index": 10,
+			"hex_index": "$0a",
+			"pointer_address": "$038014",
+			"pointer_value": "$82d7",
+			"file_offset": "$0382d7"
+		},
+		{
+			"index": 11,
+			"hex_index": "$0b",
+			"pointer_address": "$038016",
+			"pointer_value": "$82ed",
+			"file_offset": "$0382ed"
+		},
+		{
+			"index": 12,
+			"hex_index": "$0c",
+			"pointer_address": "$038018",
+			"pointer_value": "$8303",
+			"file_offset": "$038303"
+		},
+		{
+			"index": 13,
+			"hex_index": "$0d",
+			"pointer_address": "$03801a",
+			"pointer_value": "$8319",
+			"file_offset": "$038319"
+		},
+		{
+			"index": 14,
+			"hex_index": "$0e",
+			"pointer_address": "$03801c",
+			"pointer_value": "$832f",
+			"file_offset": "$03832f"
+		},
+		{
+			"index": 15,
+			"hex_index": "$0f",
+			"pointer_address": "$03801e",
+			"pointer_value": "$8345",
+			"file_offset": "$038345"
+		},
+		{
+			"index": 16,
+			"hex_index": "$10",
+			"pointer_address": "$038020",
+			"pointer_value": "$835b",
+			"file_offset": "$03835b"
+		},
+		{
+			"index": 17,
+			"hex_index": "$11",
+			"pointer_address": "$038022",
+			"pointer_value": "$8371",
+			"file_offset": "$038371"
+		},
+		{
+			"index": 18,
+			"hex_index": "$12",
+			"pointer_address": "$038024",
+			"pointer_value": "$8387",
+			"file_offset": "$038387"
+		},
+		{
+			"index": 19,
+			"hex_index": "$13",
+			"pointer_address": "$038026",
+			"pointer_value": "$839d",
+			"file_offset": "$03839d"
+		},
+		{
+			"index": 20,
+			"hex_index": "$14",
+			"pointer_address": "$038028",
+			"pointer_value": "$83b3",
+			"file_offset": "$0383b3"
+		},
+		{
+			"index": 21,
+			"hex_index": "$15",
+			"pointer_address": "$03802a",
+			"pointer_value": "$83c9",
+			"file_offset": "$0383c9"
+		},
+		{
+			"index": 22,
+			"hex_index": "$16",
+			"pointer_address": "$03802c",
+			"pointer_value": "$83df",
+			"file_offset": "$0383df"
+		},
+		{
+			"index": 23,
+			"hex_index": "$17",
+			"pointer_address": "$03802e",
+			"pointer_value": "$83f5",
+			"file_offset": "$0383f5"
+		},
+		{
+			"index": 24,
+			"hex_index": "$18",
+			"pointer_address": "$038030",
+			"pointer_value": "$840b",
+			"file_offset": "$03840b"
+		},
+		{
+			"index": 25,
+			"hex_index": "$19",
+			"pointer_address": "$038032",
+			"pointer_value": "$8421",
+			"file_offset": "$038421"
+		},
+		{
+			"index": 26,
+			"hex_index": "$1a",
+			"pointer_address": "$038034",
+			"pointer_value": "$8437",
+			"file_offset": "$038437"
+		},
+		{
+			"index": 27,
+			"hex_index": "$1b",
+			"pointer_address": "$038036",
+			"pointer_value": "$844d",
+			"file_offset": "$03844d"
+		},
+		{
+			"index": 28,
+			"hex_index": "$1c",
+			"pointer_address": "$038038",
+			"pointer_value": "$8463",
+			"file_offset": "$038463"
+		},
+		{
+			"index": 29,
+			"hex_index": "$1d",
+			"pointer_address": "$03803a",
+			"pointer_value": "$8479",
+			"file_offset": "$038479"
+		},
+		{
+			"index": 30,
+			"hex_index": "$1e",
+			"pointer_address": "$03803c",
+			"pointer_value": "$848f",
+			"file_offset": "$03848f"
+		},
+		{
+			"index": 31,
+			"hex_index": "$1f",
+			"pointer_address": "$03803e",
+			"pointer_value": "$84a5",
+			"file_offset": "$0384a5"
+		},
+		{
+			"index": 32,
+			"hex_index": "$20",
+			"pointer_address": "$038040",
+			"pointer_value": "$84bb",
+			"file_offset": "$0384bb"
+		},
+		{
+			"index": 33,
+			"hex_index": "$21",
+			"pointer_address": "$038042",
+			"pointer_value": "$84d1",
+			"file_offset": "$0384d1"
+		},
+		{
+			"index": 34,
+			"hex_index": "$22",
+			"pointer_address": "$038044",
+			"pointer_value": "$84e7",
+			"file_offset": "$0384e7"
+		},
+		{
+			"index": 35,
+			"hex_index": "$23",
+			"pointer_address": "$038046",
+			"pointer_value": "$84fd",
+			"file_offset": "$0384fd"
+		},
+		{
+			"index": 36,
+			"hex_index": "$24",
+			"pointer_address": "$038048",
+			"pointer_value": "$8513",
+			"file_offset": "$038513"
+		},
+		{
+			"index": 37,
+			"hex_index": "$25",
+			"pointer_address": "$03804a",
+			"pointer_value": "$8529",
+			"file_offset": "$038529"
+		},
+		{
+			"index": 38,
+			"hex_index": "$26",
+			"pointer_address": "$03804c",
+			"pointer_value": "$853f",
+			"file_offset": "$03853f"
+		},
+		{
+			"index": 39,
+			"hex_index": "$27",
+			"pointer_address": "$03804e",
+			"pointer_value": "$8555",
+			"file_offset": "$038555"
+		},
+		{
+			"index": 40,
+			"hex_index": "$28",
+			"pointer_address": "$038050",
+			"pointer_value": "$856b",
+			"file_offset": "$03856b"
+		},
+		{
+			"index": 41,
+			"hex_index": "$29",
+			"pointer_address": "$038052",
+			"pointer_value": "$8581",
+			"file_offset": "$038581"
+		},
+		{
+			"index": 42,
+			"hex_index": "$2a",
+			"pointer_address": "$038054",
+			"pointer_value": "$8597",
+			"file_offset": "$038597"
+		},
+		{
+			"index": 43,
+			"hex_index": "$2b",
+			"pointer_address": "$038056",
+			"pointer_value": "$85ad",
+			"file_offset": "$0385ad"
+		},
+		{
+			"index": 44,
+			"hex_index": "$2c",
+			"pointer_address": "$038058",
+			"pointer_value": "$85c3",
+			"file_offset": "$0385c3"
+		},
+		{
+			"index": 45,
+			"hex_index": "$2d",
+			"pointer_address": "$03805a",
+			"pointer_value": "$85d9",
+			"file_offset": "$0385d9"
+		},
+		{
+			"index": 46,
+			"hex_index": "$2e",
+			"pointer_address": "$03805c",
+			"pointer_value": "$85ef",
+			"file_offset": "$0385ef"
+		},
+		{
+			"index": 47,
+			"hex_index": "$2f",
+			"pointer_address": "$03805e",
+			"pointer_value": "$8605",
+			"file_offset": "$038605"
+		},
+		{
+			"index": 48,
+			"hex_index": "$30",
+			"pointer_address": "$038060",
+			"pointer_value": "$861b",
+			"file_offset": "$03861b"
+		},
+		{
+			"index": 49,
+			"hex_index": "$31",
+			"pointer_address": "$038062",
+			"pointer_value": "$8631",
+			"file_offset": "$038631"
+		}
+	],
+	"actors": [
+		{
+			"index": 0,
+			"hex_index": "$00",
+			"offset": "$0381a4",
+			"type": "player",
+			"raw_hex": "00 00 10 09 a5 9b 83 00 80 8e fc 00 00 01 69 99 83 00 00 0e 02 89",
+			"notes": "Main player/robot - different format"
+		},
+		{
+			"index": 1,
+			"hex_index": "$01",
+			"offset": "$038211",
+			"type": "standard",
+			"raw_hex": "fe ce ce 83 13 92 83 fe ce ce 83 13 92 83 fe ce ce 83 13 92 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$cece",
+					"graphics_offset": "$03cece",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9213",
+					"animation_offset": "$039213",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$cece",
+					"graphics_offset": "$03cece",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9213",
+					"animation_offset": "$039213",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$cece",
+					"graphics_offset": "$03cece",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9213",
+					"animation_offset": "$039213",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 2,
+			"hex_index": "$02",
+			"offset": "$038227",
+			"type": "standard",
+			"raw_hex": "fe 16 cf 83 43 92 83 fe 16 cf 83 43 92 83 fe 16 cf 83 43 92 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$cf16",
+					"graphics_offset": "$03cf16",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9243",
+					"animation_offset": "$039243",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$cf16",
+					"graphics_offset": "$03cf16",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9243",
+					"animation_offset": "$039243",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$cf16",
+					"graphics_offset": "$03cf16",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9243",
+					"animation_offset": "$039243",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 3,
+			"hex_index": "$03",
+			"offset": "$03823d",
+			"type": "standard",
+			"raw_hex": "fe 00 d2 83 d7 92 83 fe 00 d2 83 d7 92 83 fe 00 d2 83 d7 92 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$d200",
+					"graphics_offset": "$03d200",
+					"bank_byte1": "$83",
+					"animation_ptr": "$92d7",
+					"animation_offset": "$0392d7",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$d200",
+					"graphics_offset": "$03d200",
+					"bank_byte1": "$83",
+					"animation_ptr": "$92d7",
+					"animation_offset": "$0392d7",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$d200",
+					"graphics_offset": "$03d200",
+					"bank_byte1": "$83",
+					"animation_ptr": "$92d7",
+					"animation_offset": "$0392d7",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 4,
+			"hex_index": "$04",
+			"offset": "$038253",
+			"type": "standard",
+			"raw_hex": "fe 76 d0 83 8d 92 83 fe 76 d0 83 8d 92 83 fe 76 d0 83 8d 92 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$d076",
+					"graphics_offset": "$03d076",
+					"bank_byte1": "$83",
+					"animation_ptr": "$928d",
+					"animation_offset": "$03928d",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$d076",
+					"graphics_offset": "$03d076",
+					"bank_byte1": "$83",
+					"animation_ptr": "$928d",
+					"animation_offset": "$03928d",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$d076",
+					"graphics_offset": "$03d076",
+					"bank_byte1": "$83",
+					"animation_ptr": "$928d",
+					"animation_offset": "$03928d",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 5,
+			"hex_index": "$05",
+			"offset": "$038269",
+			"type": "standard",
+			"raw_hex": "fe d2 cf 83 73 92 83 fe d2 cf 83 73 92 83 fe d2 cf 83 73 92 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$cfd2",
+					"graphics_offset": "$03cfd2",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9273",
+					"animation_offset": "$039273",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$cfd2",
+					"graphics_offset": "$03cfd2",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9273",
+					"animation_offset": "$039273",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$cfd2",
+					"graphics_offset": "$03cfd2",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9273",
+					"animation_offset": "$039273",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 6,
+			"hex_index": "$06",
+			"offset": "$03827f",
+			"type": "standard",
+			"raw_hex": "fe ce ce 83 2b 92 83 fe ce ce 83 2b 92 83 fe ce ce 83 2b 92 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$cece",
+					"graphics_offset": "$03cece",
+					"bank_byte1": "$83",
+					"animation_ptr": "$922b",
+					"animation_offset": "$03922b",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$cece",
+					"graphics_offset": "$03cece",
+					"bank_byte1": "$83",
+					"animation_ptr": "$922b",
+					"animation_offset": "$03922b",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$cece",
+					"graphics_offset": "$03cece",
+					"bank_byte1": "$83",
+					"animation_ptr": "$922b",
+					"animation_offset": "$03922b",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 7,
+			"hex_index": "$07",
+			"offset": "$038295",
+			"type": "standard",
+			"raw_hex": "fe 91 d2 83 16 93 83 fe 91 d2 83 16 93 83 fe 91 d2 83 16 93 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$d291",
+					"graphics_offset": "$03d291",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9316",
+					"animation_offset": "$039316",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$d291",
+					"graphics_offset": "$03d291",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9316",
+					"animation_offset": "$039316",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$d291",
+					"graphics_offset": "$03d291",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9316",
+					"animation_offset": "$039316",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 8,
+			"hex_index": "$08",
+			"offset": "$0382ab",
+			"type": "standard",
+			"raw_hex": "fe 51 d4 83 3d 93 83 fe 51 d4 83 3d 93 83 fe 51 d4 83 3d 93 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$d451",
+					"graphics_offset": "$03d451",
+					"bank_byte1": "$83",
+					"animation_ptr": "$933d",
+					"animation_offset": "$03933d",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$d451",
+					"graphics_offset": "$03d451",
+					"bank_byte1": "$83",
+					"animation_ptr": "$933d",
+					"animation_offset": "$03933d",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$d451",
+					"graphics_offset": "$03d451",
+					"bank_byte1": "$83",
+					"animation_ptr": "$933d",
+					"animation_offset": "$03933d",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 9,
+			"hex_index": "$09",
+			"offset": "$0382c1",
+			"type": "standard",
+			"raw_hex": "fe 51 d4 83 62 93 83 fe 51 d4 83 62 93 83 fe 51 d4 83 62 93 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$d451",
+					"graphics_offset": "$03d451",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9362",
+					"animation_offset": "$039362",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$d451",
+					"graphics_offset": "$03d451",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9362",
+					"animation_offset": "$039362",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$d451",
+					"graphics_offset": "$03d451",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9362",
+					"animation_offset": "$039362",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 10,
+			"hex_index": "$0a",
+			"offset": "$0382d7",
+			"type": "standard",
+			"raw_hex": "fe 46 d5 83 7a 93 83 fe 46 d5 83 7a 93 83 fe 46 d5 83 7a 93 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$d546",
+					"graphics_offset": "$03d546",
+					"bank_byte1": "$83",
+					"animation_ptr": "$937a",
+					"animation_offset": "$03937a",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$d546",
+					"graphics_offset": "$03d546",
+					"bank_byte1": "$83",
+					"animation_ptr": "$937a",
+					"animation_offset": "$03937a",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$d546",
+					"graphics_offset": "$03d546",
+					"bank_byte1": "$83",
+					"animation_ptr": "$937a",
+					"animation_offset": "$03937a",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 11,
+			"hex_index": "$0b",
+			"offset": "$0382ed",
+			"type": "standard",
+			"raw_hex": "fe 3d d7 83 ac 93 83 fe 3d d7 83 ac 93 83 fe 3d d7 83 ac 93 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$d73d",
+					"graphics_offset": "$03d73d",
+					"bank_byte1": "$83",
+					"animation_ptr": "$93ac",
+					"animation_offset": "$0393ac",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$d73d",
+					"graphics_offset": "$03d73d",
+					"bank_byte1": "$83",
+					"animation_ptr": "$93ac",
+					"animation_offset": "$0393ac",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$d73d",
+					"graphics_offset": "$03d73d",
+					"bank_byte1": "$83",
+					"animation_ptr": "$93ac",
+					"animation_offset": "$0393ac",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 12,
+			"hex_index": "$0c",
+			"offset": "$038303",
+			"type": "standard",
+			"raw_hex": "fe bb d7 83 c6 93 83 fe bb d7 83 c6 93 83 fe bb d7 83 c6 93 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$d7bb",
+					"graphics_offset": "$03d7bb",
+					"bank_byte1": "$83",
+					"animation_ptr": "$93c6",
+					"animation_offset": "$0393c6",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$d7bb",
+					"graphics_offset": "$03d7bb",
+					"bank_byte1": "$83",
+					"animation_ptr": "$93c6",
+					"animation_offset": "$0393c6",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$d7bb",
+					"graphics_offset": "$03d7bb",
+					"bank_byte1": "$83",
+					"animation_ptr": "$93c6",
+					"animation_offset": "$0393c6",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 13,
+			"hex_index": "$0d",
+			"offset": "$038319",
+			"type": "standard",
+			"raw_hex": "fe 80 d6 83 92 93 83 fe 80 d6 83 92 93 83 fe 80 d6 83 92 93 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$d680",
+					"graphics_offset": "$03d680",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9392",
+					"animation_offset": "$039392",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$d680",
+					"graphics_offset": "$03d680",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9392",
+					"animation_offset": "$039392",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$d680",
+					"graphics_offset": "$03d680",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9392",
+					"animation_offset": "$039392",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 14,
+			"hex_index": "$0e",
+			"offset": "$03832f",
+			"type": "standard",
+			"raw_hex": "fe d2 cf 83 80 92 83 fe d2 cf 83 80 92 83 fe d2 cf 83 80 92 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$cfd2",
+					"graphics_offset": "$03cfd2",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9280",
+					"animation_offset": "$039280",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$cfd2",
+					"graphics_offset": "$03cfd2",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9280",
+					"animation_offset": "$039280",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$cfd2",
+					"graphics_offset": "$03cfd2",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9280",
+					"animation_offset": "$039280",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 15,
+			"hex_index": "$0f",
+			"offset": "$038345",
+			"type": "standard",
+			"raw_hex": "fe 91 d2 83 23 93 83 fe 91 d2 83 23 93 83 fe 91 d2 83 23 93 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$d291",
+					"graphics_offset": "$03d291",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9323",
+					"animation_offset": "$039323",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$d291",
+					"graphics_offset": "$03d291",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9323",
+					"animation_offset": "$039323",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$d291",
+					"graphics_offset": "$03d291",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9323",
+					"animation_offset": "$039323",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 16,
+			"hex_index": "$10",
+			"offset": "$03835b",
+			"type": "standard",
+			"raw_hex": "fe 76 d0 83 b2 92 83 fe 76 d0 83 b2 92 83 fe 76 d0 83 b2 92 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$d076",
+					"graphics_offset": "$03d076",
+					"bank_byte1": "$83",
+					"animation_ptr": "$92b2",
+					"animation_offset": "$0392b2",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$d076",
+					"graphics_offset": "$03d076",
+					"bank_byte1": "$83",
+					"animation_ptr": "$92b2",
+					"animation_offset": "$0392b2",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$d076",
+					"graphics_offset": "$03d076",
+					"bank_byte1": "$83",
+					"animation_ptr": "$92b2",
+					"animation_offset": "$0392b2",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 17,
+			"hex_index": "$11",
+			"offset": "$038371",
+			"type": "standard",
+			"raw_hex": "fe 00 d2 83 f1 92 83 fe 00 d2 83 f1 92 83 fe 00 d2 83 f1 92 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$d200",
+					"graphics_offset": "$03d200",
+					"bank_byte1": "$83",
+					"animation_ptr": "$92f1",
+					"animation_offset": "$0392f1",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$d200",
+					"graphics_offset": "$03d200",
+					"bank_byte1": "$83",
+					"animation_ptr": "$92f1",
+					"animation_offset": "$0392f1",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$d200",
+					"graphics_offset": "$03d200",
+					"bank_byte1": "$83",
+					"animation_ptr": "$92f1",
+					"animation_offset": "$0392f1",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 18,
+			"hex_index": "$12",
+			"offset": "$038387",
+			"type": "standard",
+			"raw_hex": "fe 16 cf 83 5b 92 83 fe 16 cf 83 5b 92 83 fe 16 cf 83 5b 92 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$cf16",
+					"graphics_offset": "$03cf16",
+					"bank_byte1": "$83",
+					"animation_ptr": "$925b",
+					"animation_offset": "$03925b",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$cf16",
+					"graphics_offset": "$03cf16",
+					"bank_byte1": "$83",
+					"animation_ptr": "$925b",
+					"animation_offset": "$03925b",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$cf16",
+					"graphics_offset": "$03cf16",
+					"bank_byte1": "$83",
+					"animation_ptr": "$925b",
+					"animation_offset": "$03925b",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 19,
+			"hex_index": "$13",
+			"offset": "$03839d",
+			"type": "standard",
+			"raw_hex": "fe 62 d1 83 ca 92 83 fe 62 d1 83 ca 92 83 fe 62 d1 83 ca 92 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$d162",
+					"graphics_offset": "$03d162",
+					"bank_byte1": "$83",
+					"animation_ptr": "$92ca",
+					"animation_offset": "$0392ca",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$d162",
+					"graphics_offset": "$03d162",
+					"bank_byte1": "$83",
+					"animation_ptr": "$92ca",
+					"animation_offset": "$0392ca",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$d162",
+					"graphics_offset": "$03d162",
+					"bank_byte1": "$83",
+					"animation_ptr": "$92ca",
+					"animation_offset": "$0392ca",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 20,
+			"hex_index": "$14",
+			"offset": "$0383b3",
+			"type": "standard",
+			"raw_hex": "fe 7a d8 83 de 93 83 fe 7a d8 83 de 93 83 fe 7a d8 83 de 93 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$d87a",
+					"graphics_offset": "$03d87a",
+					"bank_byte1": "$83",
+					"animation_ptr": "$93de",
+					"animation_offset": "$0393de",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$d87a",
+					"graphics_offset": "$03d87a",
+					"bank_byte1": "$83",
+					"animation_ptr": "$93de",
+					"animation_offset": "$0393de",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$d87a",
+					"graphics_offset": "$03d87a",
+					"bank_byte1": "$83",
+					"animation_ptr": "$93de",
+					"animation_offset": "$0393de",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 21,
+			"hex_index": "$15",
+			"offset": "$0383c9",
+			"type": "standard",
+			"raw_hex": "fe cc d3 83 30 93 83 fe cc d3 83 30 93 83 fe cc d3 83 30 93 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$d3cc",
+					"graphics_offset": "$03d3cc",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9330",
+					"animation_offset": "$039330",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$d3cc",
+					"graphics_offset": "$03d3cc",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9330",
+					"animation_offset": "$039330",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$d3cc",
+					"graphics_offset": "$03d3cc",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9330",
+					"animation_offset": "$039330",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 22,
+			"hex_index": "$16",
+			"offset": "$0383df",
+			"type": "standard",
+			"raw_hex": "fe d2 da 83 1d 94 83 fe d2 da 83 1d 94 83 fe d2 da 83 1d 94 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$dad2",
+					"graphics_offset": "$03dad2",
+					"bank_byte1": "$83",
+					"animation_ptr": "$941d",
+					"animation_offset": "$03941d",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$dad2",
+					"graphics_offset": "$03dad2",
+					"bank_byte1": "$83",
+					"animation_ptr": "$941d",
+					"animation_offset": "$03941d",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$dad2",
+					"graphics_offset": "$03dad2",
+					"bank_byte1": "$83",
+					"animation_ptr": "$941d",
+					"animation_offset": "$03941d",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 23,
+			"hex_index": "$17",
+			"offset": "$0383f5",
+			"type": "standard",
+			"raw_hex": "fe 26 d9 83 f8 93 83 fe 26 d9 83 f8 93 83 fe 26 d9 83 f8 93 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$d926",
+					"graphics_offset": "$03d926",
+					"bank_byte1": "$83",
+					"animation_ptr": "$93f8",
+					"animation_offset": "$0393f8",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$d926",
+					"graphics_offset": "$03d926",
+					"bank_byte1": "$83",
+					"animation_ptr": "$93f8",
+					"animation_offset": "$0393f8",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$d926",
+					"graphics_offset": "$03d926",
+					"bank_byte1": "$83",
+					"animation_ptr": "$93f8",
+					"animation_offset": "$0393f8",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 24,
+			"hex_index": "$18",
+			"offset": "$03840b",
+			"type": "standard",
+			"raw_hex": "fe b2 d9 83 10 94 83 fe b2 d9 83 10 94 83 fe b2 d9 83 10 94 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$d9b2",
+					"graphics_offset": "$03d9b2",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9410",
+					"animation_offset": "$039410",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$d9b2",
+					"graphics_offset": "$03d9b2",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9410",
+					"animation_offset": "$039410",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$d9b2",
+					"graphics_offset": "$03d9b2",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9410",
+					"animation_offset": "$039410",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 25,
+			"hex_index": "$19",
+			"offset": "$038421",
+			"type": "standard",
+			"raw_hex": "fe 30 db 83 35 94 83 fe 30 db 83 35 94 83 fe 30 db 83 35 94 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$db30",
+					"graphics_offset": "$03db30",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9435",
+					"animation_offset": "$039435",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$db30",
+					"graphics_offset": "$03db30",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9435",
+					"animation_offset": "$039435",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$db30",
+					"graphics_offset": "$03db30",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9435",
+					"animation_offset": "$039435",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 26,
+			"hex_index": "$1a",
+			"offset": "$038437",
+			"type": "standard",
+			"raw_hex": "fe b9 db 83 5a 94 83 fe b9 db 83 5a 94 83 fe b9 db 83 5a 94 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$dbb9",
+					"graphics_offset": "$03dbb9",
+					"bank_byte1": "$83",
+					"animation_ptr": "$945a",
+					"animation_offset": "$03945a",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$dbb9",
+					"graphics_offset": "$03dbb9",
+					"bank_byte1": "$83",
+					"animation_ptr": "$945a",
+					"animation_offset": "$03945a",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$dbb9",
+					"graphics_offset": "$03dbb9",
+					"bank_byte1": "$83",
+					"animation_ptr": "$945a",
+					"animation_offset": "$03945a",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 27,
+			"hex_index": "$1b",
+			"offset": "$03844d",
+			"type": "standard",
+			"raw_hex": "fe aa dc 83 7f 94 83 fe aa dc 83 7f 94 83 fe aa dc 83 7f 94 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$dcaa",
+					"graphics_offset": "$03dcaa",
+					"bank_byte1": "$83",
+					"animation_ptr": "$947f",
+					"animation_offset": "$03947f",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$dcaa",
+					"graphics_offset": "$03dcaa",
+					"bank_byte1": "$83",
+					"animation_ptr": "$947f",
+					"animation_offset": "$03947f",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$dcaa",
+					"graphics_offset": "$03dcaa",
+					"bank_byte1": "$83",
+					"animation_ptr": "$947f",
+					"animation_offset": "$03947f",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 28,
+			"hex_index": "$1c",
+			"offset": "$038463",
+			"type": "standard",
+			"raw_hex": "fe 55 de 83 a4 94 83 fe 55 de 83 a4 94 83 fe 55 de 83 a4 94 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$de55",
+					"graphics_offset": "$03de55",
+					"bank_byte1": "$83",
+					"animation_ptr": "$94a4",
+					"animation_offset": "$0394a4",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$de55",
+					"graphics_offset": "$03de55",
+					"bank_byte1": "$83",
+					"animation_ptr": "$94a4",
+					"animation_offset": "$0394a4",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$de55",
+					"graphics_offset": "$03de55",
+					"bank_byte1": "$83",
+					"animation_ptr": "$94a4",
+					"animation_offset": "$0394a4",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		},
+		{
+			"index": 29,
+			"hex_index": "$1d",
+			"offset": "$038479",
+			"type": "standard",
+			"raw_hex": "fe f4 df 83 15 95 83 fe f4 df 83 15 95 83 fe f4 df 83 15 95 83 ff",
+			"frames": [
+				{
+					"frame": 0,
+					"marker": "$fe",
+					"graphics_ptr": "$dff4",
+					"graphics_offset": "$03dff4",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9515",
+					"animation_offset": "$039515",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 1,
+					"marker": "$fe",
+					"graphics_ptr": "$dff4",
+					"graphics_offset": "$03dff4",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9515",
+					"animation_offset": "$039515",
+					"bank_byte2": "$83"
+				},
+				{
+					"frame": 2,
+					"marker": "$fe",
+					"graphics_ptr": "$dff4",
+					"graphics_offset": "$03dff4",
+					"bank_byte1": "$83",
+					"animation_ptr": "$9515",
+					"animation_offset": "$039515",
+					"bank_byte2": "$83"
+				}
+			],
+			"terminator": "$ff",
+			"frame_count": 3
+		}
+	]
+}
