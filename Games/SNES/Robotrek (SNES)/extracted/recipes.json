@@ -1,0 +1,70 @@
+{
+	"table_address": "$01c2c6",
+	"recipe_count": 9,
+	"format_notes": "Same-item combinations: Item + Item = Next tier item",
+	"recipes": [
+		{
+			"address": "$01c2c6",
+			"item1": 1,
+			"item2": 1,
+			"result": 2,
+			"description": "Smoke + Smoke = Cure"
+		},
+		{
+			"address": "$01c2ca",
+			"item1": 5,
+			"item2": 5,
+			"result": 6,
+			"description": "Sword 1 + Sword 1 = Sword 2"
+		},
+		{
+			"address": "$01c2cc",
+			"item1": 6,
+			"item2": 6,
+			"result": 7,
+			"description": "Sword 2 + Sword 2 = Sword 3"
+		},
+		{
+			"address": "$01c2d5",
+			"item1": 24,
+			"item2": 24,
+			"result": 25,
+			"description": "Punch 3 + Punch 3 = Blow 1"
+		},
+		{
+			"address": "$01c2d7",
+			"item1": 25,
+			"item2": 25,
+			"result": 26,
+			"description": "Blow 1 + Blow 1 = Blow 2"
+		},
+		{
+			"address": "$01c2e0",
+			"item1": 45,
+			"item2": 45,
+			"result": 46,
+			"description": "Pack 3 + Pack 3 = Pack 4"
+		},
+		{
+			"address": "$01c2e2",
+			"item1": 46,
+			"item2": 46,
+			"result": 47,
+			"description": "Pack 4 + Pack 4 = Pack 5"
+		},
+		{
+			"address": "$01c2ed",
+			"item1": 18,
+			"item2": 18,
+			"result": 19,
+			"description": "Hammer 3 + Hammer 3 = Celtis 1"
+		},
+		{
+			"address": "$01c2ef",
+			"item1": 19,
+			"item2": 19,
+			"result": 20,
+			"description": "Celtis 1 + Celtis 1 = Celtis 2"
+		}
+	]
+}
