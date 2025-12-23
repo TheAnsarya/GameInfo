@@ -131,6 +131,72 @@ For SNES ROMs, additional header information is parsed:
 | `header_offset` | Offset where header was found ($7FC0 or $FFC0) |
 | `is_valid` | Whether checksum + complement = $FFFF |
 
+### NES Header Information
+
+For NES ROMs (iNES/NES2.0 format), additional header information is parsed:
+
+```json
+{
+	"nes_header": {
+		"format": "iNES",
+		"prg_rom_size": 524288,
+		"chr_rom_size": 0,
+		"mapper": 1,
+		"mapper_name": "MMC1/SxROM",
+		"mirroring": "Horizontal",
+		"has_battery": true,
+		"has_trainer": false,
+		"prg_ram_size": 8192,
+		"chr_ram_size": 0,
+		"tv_system": "Unknown",
+		"is_valid": true
+	}
+}
+```
+
+| Field | Description |
+|-------|-------------|
+| `format` | Header format (iNES, NES2.0) |
+| `prg_rom_size` | Program ROM size in bytes |
+| `chr_rom_size` | Character ROM size in bytes (0 = uses CHR RAM) |
+| `mapper` | Mapper number (0-255+) |
+| `mapper_name` | Mapper name (e.g., "MMC1/SxROM", "MMC3/TxROM") |
+| `mirroring` | Nametable mirroring (Horizontal, Vertical, Four-screen) |
+| `has_battery` | Whether ROM has battery-backed save RAM |
+| `has_trainer` | Whether ROM has 512-byte trainer data |
+| `prg_ram_size` | Program RAM size in bytes |
+| `chr_ram_size` | Character RAM size in bytes |
+| `tv_system` | TV system (NTSC, PAL, Dual, Dendy) |
+| `is_valid` | Whether header signature is valid |
+
+### GBA Header Information
+
+For GBA ROMs, additional header information is parsed:
+
+```json
+{
+	"gba_header": {
+		"title": "POKEMON EMER",
+		"game_code": "BPEE",
+		"maker_code": "01",
+		"unit_code": 0,
+		"software_version": 0,
+		"complement": 123,
+		"is_valid": true
+	}
+}
+```
+
+| Field | Description |
+|-------|-------------|
+| `title` | Internal game title (12 chars max) |
+| `game_code` | 4-character game code (e.g., "BPEE" = Pokémon Emerald USA) |
+| `maker_code` | 2-character maker/licensee code |
+| `unit_code` | Hardware unit code |
+| `software_version` | ROM version number |
+| `complement` | Header checksum complement |
+| `is_valid` | Whether header signature is valid |
+
 ### Filename Parsing (GoodTools Format)
 
 The catalog parser understands GoodTools naming conventions:
