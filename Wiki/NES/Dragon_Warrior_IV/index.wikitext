@@ -128,6 +128,8 @@ Temporary party members that join in specific chapters:
 * [[Dragon Warrior IV:Map_List|Map List]] - Location ID reference
 * [[Dragon Warrior IV:Battle_System|Battle System]] - AI tactics and combat mechanics
 * [[Dragon Warrior IV:EXP_System|EXP System]] - Experience calculation formulas
+* [[Dragon Warrior IV:Spells|Spells]] - Magic system and spell tables
+* [[Dragon Warrior IV:Enemies|Enemies]] - Monster data structure and categories
 
 ==Known Dumps==
 

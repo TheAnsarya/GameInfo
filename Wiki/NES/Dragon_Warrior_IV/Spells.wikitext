@@ -1,0 +1,250 @@
+{{Back|Dragon Warrior IV (NES)}}
+
+= Dragon Warrior IV (NES) - Spells =
+
+This page documents the spell and magic system in Dragon Warrior IV.
+
+'''Data Status:''' Spell effect table verified from Bank 19 ($b80b). Power tables at $bb3f, $bb49.
+
+== Overview ==
+
+Dragon Warrior IV features a comprehensive spell system with healing, offensive, status, and utility spells. Each spell has an action code that determines its behavior through effect tables.
+
+== Action Code Ranges ==
+
+Source: Bank 19 hit check routine at $9135
+
+{| class="wikitable"
+! Range !! Type !! Description
+|-
+| $00-$12 || Physical || Regular attacks, defend, flee
+|-
+| $13-$1b || Healing || Heal, Healmore, Vivify, etc.
+|-
+| $1c-$28 || Offensive || Blaze, Bang, Zap, elemental spells
+|-
+| $29-$32 || Status || Sleep, StopSpell, Surround
+|-
+| $33-$42 || Buff/Utility || Bounce, Bikill, Return, etc.
+|-
+| $43+ || Special || Monster abilities, AI actions
+|}
+
+== Spell Effect Table ($b80b) ==
+
+Each byte encodes the effect type for a corresponding action code:
+* '''Upper nibble:''' Effect category/type
+* '''Lower nibble:''' Power level or parameter
+
+=== Common Effect Bytes ===
+
+{| class="wikitable"
+! Value Range !! Description
+|-
+| $e0-$e5 || Healing spells (different power levels)
+|-
+| $f2 || Most offensive/status spells
+|-
+| $67-$72 || Status/buff effects
+|}
+
+== Healing Spells ==
+
+{| class="wikitable sortable"
+! Code !! Name !! Effect Byte !! MP Cost !! Description
+|-
+| $13 || Heal || $68 || 2 || Restore minor HP
+|-
+| $14 || Healmore || $68 || 5 || Restore moderate HP
+|-
+| $15 || Healall || $ee || 7 || Restore all HP to one ally
+|-
+| $16 || Healus || $e9 || 18 || Restore HP to all allies
+|-
+| $17 || Healusall || $67 || 36 || Restore all HP to all allies
+|-
+| $18 || Vivify || $c7 || 10 || 50% chance to revive ally
+|-
+| $19 || Revive || $6b || 20 || Fully revive ally
+|-
+| $1a || Antidote || $a6 || 2 || Cure poison
+|-
+| $1b || Numboff || $4c || 2 || Cure paralysis
+|}
+
+== Offensive Spells ==
+
+{| class="wikitable sortable"
+! Code !! Name !! Effect Byte !! Element !! Description
+|-
+| $1c || Blaze || $ea || Fire || Single target fire damage
+|-
+| $1d || Blazemore || $f2 || Fire || Stronger single target fire
+|-
+| $1e || Blazemost || $f2 || Fire || Strongest single target fire
+|-
+| $1f || Firebane || $cd || Fire || Group fire damage
+|-
+| $20 || Firevolt || $cd || Fire || Stronger group fire
+|-
+| $21 || Bang || $f2 || Explosion || Group explosion damage
+|-
+| $22 || Boom || $f2 || Explosion || Stronger group explosion
+|-
+| $23 || Explodet || $f2 || Explosion || Strongest group explosion
+|-
+| $24 || Icebolt || $f2 || Ice || Single target ice damage
+|-
+| $25 || Snowblast || $f2 || Ice || Group ice damage
+|-
+| $26 || Zap || $f2 || Lightning || Group lightning damage
+|-
+| $27 || Thordain || $f2 || Lightning || Strongest lightning (4 casters)
+|-
+| $28 || Defeat || $f2 || Instant || Instant death (single)
+|}
+
+== Status Spells ==
+
+{| class="wikitable sortable"
+! Code !! Name !! Effect Byte !! Description
+|-
+| $29 || Beat || $f2 || Group instant death
+|-
+| $2a || Bedragon || $f2 || Transform into dragon
+|-
+| $2b || Limbo || $f2 || Banish enemy
+|-
+| $2c || Sleep || $f2 || Put single enemy to sleep
+|-
+| $2d || Sleepmore || $f2 || Put enemy group to sleep
+|-
+| $2e || StopSpell || $f2 || Seal enemy magic
+|-
+| $2f || Surround || $f2 || Reduce enemy accuracy
+|-
+| $30 || RobMagic || $f2 || Steal enemy MP
+|-
+| $31 || Ironize || $f2 || Become invincible (skip turn)
+|-
+| $32 || Transform || $f2 || Copy enemy appearance
+|}
+
+== Buff/Utility Spells ==
+
+{| class="wikitable sortable"
+! Code !! Name !! Effect Byte !! Description
+|-
+| $33 || Bounce || $f2 || Reflect spells
+|-
+| $34 || Increase || $f2 || Raise party defense
+|-
+| $35 || Bikill || $f2 || Double attack power
+|-
+| $36 || Sap || $f2 || Lower enemy defense
+|-
+| $37 || Defense || $f2 || Raise single ally defense
+|-
+| $38 || SpeedUp || $f2 || Raise party agility
+|-
+| $39 || SlowDown || $f2 || Lower enemy agility
+|-
+| $3a || Outside || $f2 || Exit dungeon
+|-
+| $3b || Return || $f2 || Warp to visited town
+|-
+| $3c || X-Ray || $f2 || Reveal treasure/traps
+|-
+| $3d || Stepguard || $f2 || Prevent floor damage
+|-
+| $3e || Repel || $f2 || Prevent weak encounters
+|-
+| $3f || Radiant || $f2 || Light dark areas
+|-
+| $40 || Day-Night || $f2 || Change time of day
+|-
+| $41 || Chance || $f2 || Random effect
+|-
+| $42 || Transform || $f2 || Change form
+|}
+
+== Spell Power Tables ==
+
+=== Power Values ($bb3f) ===
+
+9-entry table indexed by spell power index (capped at 8):
+
+{| class="wikitable"
+! Index !! Value (Dec) !! Value (Hex) !! Notes
+|-
+| 0 || 85 || $55 || Standard power
+|-
+| 1 || 100 || $64 || High power
+|-
+| 2 || 100 || $64 || High power
+|-
+| 3 || 192 || $c0 || Very high
+|-
+| 4 || 192 || $c0 || Very high
+|-
+| 5 || 0 || $00 || No power
+|-
+| 6 || 0 || $00 || No power
+|-
+| 7 || 0 || $00 || No power
+|-
+| 8 || 85 || $55 || Standard power
+|}
+
+=== Attribute Values ($bb49) ===
+
+{| class="wikitable"
+! Index !! Value (Dec) !! Value (Hex)
+|-
+| 0 || 85 || $55
+|-
+| 1 || 100 || $64
+|-
+| 2 || 100 || $64
+|-
+| 3 || 32 || $20
+|-
+| 4 || 32 || $20
+|-
+| 5 || 160 || $a0
+|-
+| 6 || 160 || $a0
+|}
+
+== Character Spell Learning ==
+
+Each character learns spells at specific levels. The spell learning data is stored in character data tables.
+
+{| class="wikitable"
+! Character !! Spell Focus !! Notes
+|-
+| Hero || Balanced || Learns both healing and offensive spells
+|-
+| Cristo || Healing || Primary healer, learns Vivify/Revive
+|-
+| Nara || Fortune || Status spells, limited healing
+|-
+| Mara || Offense || Fire and explosion spells
+|-
+| Brey || Offense || Ice and status spells
+|-
+| Taloon || None || No MP, luck-based abilities only
+|-
+| Ragnar || None || Fighter with no magic
+|-
+| Alena || None || Fighter with no magic
+|}
+
+== See Also ==
+
+* [[Dragon Warrior IV (NES)/Battle System|Battle System]] - Combat mechanics
+* [[Dragon Warrior IV (NES)/Values|Values]] - Complete spell value list
+* [[Dragon Warrior IV (NES)/ROM Map|ROM Map]] - Bank 19 data locations
+
+[[Category:Magic System]]
+[[Category:NES]]

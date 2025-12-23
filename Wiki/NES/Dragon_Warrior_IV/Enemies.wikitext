@@ -1,0 +1,231 @@
+{{Back|Dragon Warrior IV (NES)}}
+
+= Dragon Warrior IV (NES) - Enemies =
+
+This page documents the enemy data structure in Dragon Warrior IV.
+
+'''Data Status:''' Monster data structure verified from Bank 6/7. Enemy type table at Bank 19 $b967.
+
+== Overview ==
+
+Each monster in Dragon Warrior IV is defined by approximately 27 bytes of data. The monster tables are stored in Banks 6-8, with additional type data in Bank 19.
+
+== Monster Record Layout ==
+
+{| class="wikitable"
+! Byte !! Offset !! Name !! Description
+|-
+| 0-1 || +$00 || EXP_Lo/Hi || Experience points (16-bit)
+|-
+| 2-3 || +$02 || Gold_Lo/Hi || Gold dropped (16-bit)
+|-
+| 4-5 || +$04 || HP_Lo/Hi || Hit Points (16-bit)
+|-
+| 6 || +$06 || Attack || Attack power
+|-
+| 7 || +$07 || Defense || Defense power
+|-
+| 8 || +$08 || Agility || Agility stat
+|-
+| 9-14 || +$09 || Skills || 6 bytes of skill/ability data
+|-
+| 15-18 || +$0f || Behavior || AI and behavior flags
+|-
+| 19 || +$13 || Drop_Item || Item drop ID
+|-
+| 20 || +$14 || Unknown_20 || Unknown purpose
+|-
+| 21 || +$15 || Unknown_21 || Unknown purpose
+|-
+| 22 || +$16 || Metal_Flags || Metal monster flags
+|-
+| 23 || +$17 || Drop_Rate_Flags || Drop rate and additional flags
+|-
+| 24 || +$18 || Status_Vuln || Status vulnerability flags
+|-
+| 25 || +$19 || Unknown_25 || Unknown purpose
+|-
+| 26 || +$1a || Unknown_26 || Unknown purpose
+|}
+
+== Metal Flags (Byte 22, +$16) ==
+
+Controls special monster types, particularly Metal monsters.
+
+{| class="wikitable"
+! Bits !! Mask !! Description
+|-
+| 0-1 || $03 || Metal flag ($11 = Metal monster, immune to most damage)
+|-
+| 2-7 || $fc || Unknown (usually zero)
+|}
+
+=== Metal Monster Values ===
+
+{| class="wikitable"
+! Monster !! Byte 22 !! Binary !! Notes
+|-
+| Slime || $00 || 00000000 || Standard enemy (baseline)
+|-
+| Metal Slime || $11 || 00010001 || Metal flag set, takes 0-1 damage
+|-
+| Metal Babble || $11 || 00010001 || Metal flag set
+|-
+| King Metal || $11 || 00010001 || Metal flag set
+|}
+
+== Drop Rate Flags (Byte 23, +$17) ==
+
+{| class="wikitable"
+! Bits !! Mask !! Description
+|-
+| 0-2 || $07 || Item drop rate (see table)
+|-
+| 3-5 || $38 || Unknown flags
+|-
+| 6-7 || $c0 || Unknown flags
+|}
+
+=== Drop Rate Table ===
+
+{| class="wikitable"
+! Value !! Rate !! Probability
+|-
+| 000 || 0% || Never drops
+|-
+| 001 || 1/2 || 50%
+|-
+| 010 || 1/4 || 25%
+|-
+| 011 || 1/8 || 12.5%
+|-
+| 100 || 1/16 || 6.25%
+|-
+| 101 || 1/32 || 3.125%
+|-
+| 110 || 1/256 || 0.39%
+|-
+| 111 || 100% || Always drops
+|}
+
+== Status Vulnerability (Byte 24, +$18) ==
+
+{| class="wikitable"
+! Bits !! Mask !! Description
+|-
+| 0-2 || $07 || Base vulnerability (usually 111)
+|-
+| 3-5 || $38 || Behavior/AI flags
+|-
+| 6 || $40 || Paralysis vulnerability (1=can be paralyzed)
+|-
+| 7 || $80 || Confusion vulnerability OR Bounce flag
+|}
+
+=== Known Status Patterns ===
+
+{| class="wikitable"
+! Value !! Binary !! Meaning !! Example Monsters
+|-
+| $c7 || 11000111 || Bounce/Reflect magic || Necrosaro (form 7)
+|-
+| $87 || 10000111 || Can be Confused || Various
+|-
+| $47 || 01000111 || Can be Paralyzed || Various
+|-
+| $07 || 00000111 || Very Sleepy || Esturk, Bomb Crag
+|-
+| $17 || 00010111 || Sleepy || Brahmird, Big Sloth
+|-
+| $37 || 00110111 || Two-turn flee check || King Metal (rare)
+|-
+| $3f || 00111111 || Standard enemy || Most monsters
+|-
+| $9f || 10011111 || Confusable || Vampire Bat
+|-
+| $97 || 10010111 || Confusable || Rogue Wisper
+|}
+
+== Enemy Categories ==
+
+=== Metal Monsters (Byte 22 ≠ 0) ===
+
+Monsters with the metal flag take 0-1 damage from most attacks.
+
+{| class="wikitable sortable"
+! Monster !! Byte 22 !! Byte 24 !! Notes
+|-
+| Metal Slime || $11 || $3f || Standard metal behavior
+|-
+| Metal Babble || $11 || $3f || High evasion "3"
+|-
+| King Metal || $11 || $37 || Different mid bits, two-turn flee
+|}
+
+=== "Sleepy" Monsters (Byte 24 = $07 or $17) ===
+
+High vulnerability to Sleep spell.
+
+{| class="wikitable sortable"
+! Monster !! Byte 22 !! Byte 24 !! Notes
+|-
+| Esturk || $00 || $07 || "Sleepiest Boy" - very easy to put to sleep
+|-
+| Bomb Crag || $00 || $07 || Same sleep vulnerability
+|-
+| Brahmird || $00 || $17 || Slightly more resistant
+|-
+| Big Sloth || $00 || $17 || Same pattern as Brahmird
+|}
+
+=== "Confused" Monsters (Byte 24 bit 7 set) ===
+
+Can be affected by confusion effects.
+
+{| class="wikitable sortable"
+! Monster !! Byte 22 !! Byte 24 !! Notes
+|-
+| Rogue Wisper || $00 || $97 || Confusion vulnerability
+|-
+| Vampire Bat || $00 || $9f || Confusion vulnerability
+|}
+
+== Enemy Type Table (Bank 19, $b967) ==
+
+See [[Dragon Warrior IV (NES)/Battle System|Battle System]] for the enemy type categorization table.
+
+=== Type Distribution ===
+
+{| class="wikitable"
+! Type !! Value Range !! Description !! Count
+|-
+| 0 || $00-$1f || Regular enemies || 86
+|-
+| 1 || $20-$3f || Undead/Ghost || 21
+|-
+| 2 || $40-$5f || Flying || 0
+|-
+| 3 || $60-$7f || Magic-using || 32
+|-
+| 4 || $80-$9f || Strong enemies || 0
+|-
+| 5 || $a0-$bf || Boss-tier || 52
+|-
+| 6 || $c0-$df || High resistance || 24
+|-
+| 7 || $e0-$ff || Bosses/immune || 41
+|}
+
+== See Also ==
+
+* [[Dragon Warrior IV (NES)/Battle System|Battle System]] - Combat mechanics
+* [[Dragon Warrior IV (NES)/Values|Values]] - Enemy ID list
+* [[Dragon Warrior IV (NES)/ROM Map|ROM Map]] - Bank 6-8 data locations
+
+== References ==
+
+* Cowness.net speedrun notes
+* Vaxherd's monster data research
+
+[[Category:Enemies]]
+[[Category:NES]]
