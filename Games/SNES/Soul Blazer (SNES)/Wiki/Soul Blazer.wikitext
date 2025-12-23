@@ -107,6 +107,18 @@ Soul Blazer features over 50 enemy types across 6 acts, spawning from Soul Lairs
 
 Equipment includes 8 swords, 8 armor pieces, and 8 magic types.
 
+==Magic==
+{{Main|Soul Blazer:Magic}}
+
+Soul Blazer features 8 magic types collected throughout the game:
+* Soul Blade, Flame Ball, Light Arrow, Magic Flare
+* Rotator, Spark Bomb, Flame Pillar, Tornado
+
+==Maps and Areas==
+{{Main|Soul Blazer:Maps}}
+
+The game world consists of 32 interconnected maps across 6 acts, with over 170 Soul Lairs to clear.
+
 ==Progression==
 {{Main|Soul Blazer:Progression}}
 
