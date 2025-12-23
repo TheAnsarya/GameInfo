@@ -1,14 +1,14 @@
-# Session Log - 2024-12-23 - Robotrek Data Crystal Integration
+# Session Log - 2024-12-23 - Robotrek ROM Research
 
 ## Session Overview
 
-Continued Robotrek documentation work, integrating information from Data Crystal wiki (https://datacrystal.tcrf.net/wiki/Robotrek).
+Continued Robotrek documentation work, using reference information from [Data Crystal](https://datacrystal.tcrf.net/wiki/Robotrek).
 
 ## Work Completed
 
-### 1. Data Crystal Integration
+### 1. Reference Data Integration
 
-Fetched and integrated comprehensive ROM/RAM map data from Data Crystal:
+Fetched and integrated comprehensive ROM/RAM map data from Data Crystal wiki as reference:
 - ROM map with all data regions, music tracks, graphics locations
 - SRAM save file structure (verified)
 - Key technical details (Quintet LZSS compression)
@@ -16,7 +16,7 @@ Fetched and integrated comprehensive ROM/RAM map data from Data Crystal:
 ### 2. Wiki Updates
 
 **ROM_Map.wikitext:**
-- Complete rewrite with Data Crystal information
+- Complete rewrite with verified reference data
 - Added 23+ music track locations with names
 - Documented sound sample regions ($90000-$DFFFF)
 - Added compressed graphics locations
@@ -24,7 +24,7 @@ Fetched and integrated comprehensive ROM/RAM map data from Data Crystal:
 - Added interrupt vector table with targets
 
 **RAM_Map.wikitext:**
-- Added verified SRAM structure from Data Crystal
+- Added verified SRAM structure from reference sources
 - 3 save slots + 3 backup slots (1280 bytes each)
 - Complete save slot field layout:
   - Inventory (72 slots × 2 bytes)
@@ -36,12 +36,12 @@ Fetched and integrated comprehensive ROM/RAM map data from Data Crystal:
 **Main.wikitext:**
 - Added Ancient as co-developer
 - Added technical notes about Quintet LZSS compression
-- Added Data Crystal external link
+- Added external reference links
 
 ### 3. Disassembly Documentation
 
 Updated disasm/README.md with:
-- Data Crystal references
+- External reference links
 - Music track location table
 - SRAM structure quick reference
 - Updated next steps
@@ -64,7 +64,7 @@ Created `tools/robotrek/quintet_lzss.py`:
 
 ## Key Technical Findings
 
-### From Data Crystal
+### From Reference Sources
 
 1. **Compression:** Quintet's standard LZSS (shared with Soul Blazer series)
 2. **Map format:** Similar to other Quintet games
@@ -386,7 +386,7 @@ Added Python scripts for ROM research:
 1. **Find enemy stat tables** - Search compressed data or trace game code
 2. **Decode weapon level formulas** - How stats scale from Level 1-9
 3. **Create comprehensive extractor** - All game data to JSON
-4. **Update Data Crystal wiki** - Push verified findings
+4. **Update Dark Repos wiki** - Document verified findings
 
 ---
 
@@ -705,7 +705,7 @@ Added to ROM_Map.wikitext:
 1. **Enemy stat tables** - Still not located; may need code tracing
 2. **Weapon damage formulas** - Likely calculated, not stored in tables
 3. **Character sprite extraction** - Decode compressed sprite data
-4. **Push to Data Crystal** - Contribute verified findings back to wiki
+4. **Update Dark Repos wiki** - Document verified findings
 5. **LZSS decompression improvements** - Better handle all compressed regions
 
 ---

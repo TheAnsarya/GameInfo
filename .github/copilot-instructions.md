@@ -2,7 +2,9 @@
 
 ## Project Overview
 
-**Main Purpose:** Create Data Crystal `*.wikitext` files (ROM map, RAM map, data structures, systems descriptions) for SNES, NES, and other retro games, along with `*.md` documentation, disassemblies, and comprehensive ROM hacking tools.
+**Main Purpose:** Create Dark Repos `*.wikitext` files (ROM map, RAM map, data structures, systems descriptions) for SNES, NES, and other retro games, along with `*.md` documentation, disassemblies, and comprehensive ROM hacking tools.
+
+**Note:** Data Crystal (datacrystal.tcrf.net) is used as a reference source, but our wiki content goes to Dark Repos.
 
 **Home Folder:** `C:\Users\me\source\repos\GameInfo`
 
@@ -116,7 +118,7 @@ Documentation about the project itself:
 
 ## Output Formats
 
-### Data Crystal Wikitext
+### Dark Repos Wikitext
 - ROM maps
 - RAM maps
 - Data structures
