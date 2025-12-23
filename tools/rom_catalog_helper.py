@@ -41,6 +41,8 @@ class RomInfo:
 	is_prototype: bool
 	is_beta: bool
 	snes_header: Optional[dict] = field(default=None)
+	nes_header: Optional[dict] = field(default=None)
+	gba_header: Optional[dict] = field(default=None)
 	
 	@classmethod
 	def from_dict(cls, data: dict) -> "RomInfo":
@@ -71,6 +73,8 @@ class RomInfo:
 			is_prototype=data.get("is_prototype", False),
 			is_beta=data.get("is_beta", False),
 			snes_header=data.get("snes_header"),
+			nes_header=data.get("nes_header"),
+			gba_header=data.get("gba_header"),
 		)
 
 
@@ -443,6 +447,53 @@ class RomCatalogHelper:
 						if not version or version.upper() in rom.filename:
 							return rom
 		return None
+	
+	def get_dragon_quest(self, game: int, region: str = "Japan") -> Optional[RomInfo]:
+		"""
+		Convenience method to get Dragon Quest ROM.
+		
+		Args:
+			game: Game number (1-6 for SNES)
+			region: Region to find (usually Japan for SNES)
+			
+		Returns:
+			RomInfo for Dragon Quest, or None if not found.
+		"""
+		# Map game numbers to search patterns
+		if game == 1 or game == 2:
+			return self.find_by_name("Dragon Quest I & II", platform="SNES")
+		elif game == 3:
+			return self.find_by_name("Dragon Quest III", platform="SNES")
+		elif game == 4:
+			# DQ4 is on NES (Dragon Warrior IV in US)
+			return self.find_by_name("Dragon Warrior IV", platform="NES")
+		elif game == 5:
+			return self.find_by_name("Dragon Quest V", platform="SNES")
+		elif game == 6:
+			return self.find_by_name("Dragon Quest VI", platform="SNES")
+		return None
+	
+	def find_by_mapper(self, mapper: int, platform: str = "NES") -> list[RomInfo]:
+		"""
+		Find all ROMs using a specific mapper.
+		
+		Args:
+			mapper: Mapper number
+			platform: Platform to search (default: NES)
+			
+		Returns:
+			List of ROMs using the specified mapper.
+		"""
+		results = []
+		for rom in self._files:
+			if rom.platform.lower() != platform.lower():
+				continue
+			
+			if platform.lower() == "nes" and rom.nes_header:
+				if rom.nes_header.get("mapper") == mapper:
+					results.append(rom)
+		
+		return results
 
 
 def get_default_catalog_path() -> Path:
