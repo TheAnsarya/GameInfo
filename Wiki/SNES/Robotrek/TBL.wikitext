@@ -258,7 +258,7 @@ Standard table file for hex editors:
 02=B
 03=C
 ...
-3F= 
+3F=
 40=.
 41=,
 42=-

@@ -1,0 +1,793 @@
+{
+	"rom_info": {
+		"title": "ROBOTREK 1 USA",
+		"crc32": "7ad4aadc",
+		"sha1": "e315830e71cc6da91234813f70835d26802c0ea1",
+		"size": 1572864,
+		"mapper": "HiROM"
+	},
+	"items": [
+		{
+			"id": 0,
+			"name": "Nothing",
+			"address": "0x1e413"
+		},
+		{
+			"id": 1,
+			"name": "Sword 1",
+			"address": "0x1e41b"
+		},
+		{
+			"id": 2,
+			"name": "Sword 2",
+			"address": "0x1e423"
+		},
+		{
+			"id": 3,
+			"name": "Sword 3",
+			"address": "0x1e42b"
+		},
+		{
+			"id": 4,
+			"name": "Sword 4",
+			"address": "0x1e433"
+		},
+		{
+			"id": 5,
+			"name": "Axe 1",
+			"address": "0x1e43b"
+		},
+		{
+			"id": 6,
+			"name": "Axe 2",
+			"address": "0x1e441"
+		},
+		{
+			"id": 7,
+			"name": "Axe 3",
+			"address": "0x1e447"
+		},
+		{
+			"id": 8,
+			"name": "Blade 1",
+			"address": "0x1e44d"
+		},
+		{
+			"id": 9,
+			"name": "Blade 2",
+			"address": "0x1e455"
+		},
+		{
+			"id": 10,
+			"name": "Blade 3",
+			"address": "0x1e45d"
+		},
+		{
+			"id": 11,
+			"name": "Blade 4",
+			"address": "0x1e465"
+		},
+		{
+			"id": 12,
+			"name": "Hammer 1",
+			"address": "0x1e46d"
+		},
+		{
+			"id": 13,
+			"name": "Hammer 2",
+			"address": "0x1e476"
+		},
+		{
+			"id": 14,
+			"name": "Hammer 3",
+			"address": "0x1e47f"
+		},
+		{
+			"id": 15,
+			"name": "Celtis 1",
+			"address": "0x1e488"
+		},
+		{
+			"id": 16,
+			"name": "Celtis 2",
+			"address": "0x1e491"
+		},
+		{
+			"id": 17,
+			"name": "Celtis 3",
+			"address": "0x1e49a"
+		},
+		{
+			"id": 18,
+			"name": "Punch 1",
+			"address": "0x1e4a3"
+		},
+		{
+			"id": 19,
+			"name": "Punch 2",
+			"address": "0x1e4ab"
+		},
+		{
+			"id": 20,
+			"name": "Punch 3",
+			"address": "0x1e4b3"
+		},
+		{
+			"id": 21,
+			"name": "Blow 1",
+			"address": "0x1e4bb"
+		},
+		{
+			"id": 22,
+			"name": "Blow 2",
+			"address": "0x1e4c2"
+		},
+		{
+			"id": 23,
+			"name": "Blow 3",
+			"address": "0x1e4c9"
+		},
+		{
+			"id": 24,
+			"name": "Shot 1",
+			"address": "0x1e4d0"
+		},
+		{
+			"id": 25,
+			"name": "Shot 2",
+			"address": "0x1e4d7"
+		},
+		{
+			"id": 26,
+			"name": "Shot 3",
+			"address": "0x1e4de"
+		},
+		{
+			"id": 27,
+			"name": "Laser 1",
+			"address": "0x1e4e5"
+		},
+		{
+			"id": 28,
+			"name": "Laser 2",
+			"address": "0x1e4ed"
+		},
+		{
+			"id": 29,
+			"name": "Laser 3",
+			"address": "0x1e4f5"
+		},
+		{
+			"id": 30,
+			"name": "Bomb 1",
+			"address": "0x1e4fd"
+		},
+		{
+			"id": 31,
+			"name": "Bomb 2",
+			"address": "0x1e504"
+		},
+		{
+			"id": 32,
+			"name": "Bomb 3",
+			"address": "0x1e50b"
+		},
+		{
+			"id": 33,
+			"name": "Bomb 4",
+			"address": "0x1e512"
+		},
+		{
+			"id": 34,
+			"name": "Shield 1",
+			"address": "0x1e519"
+		},
+		{
+			"id": 35,
+			"name": "Shield 2",
+			"address": "0x1e522"
+		},
+		{
+			"id": 36,
+			"name": "Shield 3",
+			"address": "0x1e52b"
+		},
+		{
+			"id": 37,
+			"name": "Shield 4",
+			"address": "0x1e534"
+		},
+		{
+			"id": 38,
+			"name": "Shield 5",
+			"address": "0x1e53d"
+		},
+		{
+			"id": 39,
+			"name": "Empty Pack",
+			"address": "0x1e546"
+		},
+		{
+			"id": 40,
+			"name": "Power Pack",
+			"address": "0x1e551"
+		},
+		{
+			"id": 41,
+			"name": "Shield Pack",
+			"address": "0x1e55c"
+		},
+		{
+			"id": 42,
+			"name": "Turbo Pack",
+			"address": "0x1e568"
+		},
+		{
+			"id": 43,
+			"name": "Solar Pack",
+			"address": "0x1e573"
+		},
+		{
+			"id": 44,
+			"name": "Quick Pack",
+			"address": "0x1e57e"
+		},
+		{
+			"id": 45,
+			"name": "Boots 1",
+			"address": "0x1e589"
+		},
+		{
+			"id": 46,
+			"name": "Boots 2",
+			"address": "0x1e591"
+		},
+		{
+			"id": 47,
+			"name": "Boots 3",
+			"address": "0x1e599"
+		},
+		{
+			"id": 48,
+			"name": "Boots 4",
+			"address": "0x1e5a1"
+		},
+		{
+			"id": 49,
+			"name": "Boots 5",
+			"address": "0x1e5a9"
+		},
+		{
+			"id": 50,
+			"name": "Boots 6",
+			"address": "0x1e5b1"
+		},
+		{
+			"id": 51,
+			"name": "Transiver",
+			"address": "0x1e5b9"
+		},
+		{
+			"id": 52,
+			"name": "Horn",
+			"address": "0x1e5c3"
+		},
+		{
+			"id": 53,
+			"name": "Drill",
+			"address": "0x1e5c8"
+		},
+		{
+			"id": 54,
+			"name": "Vanish",
+			"address": "0x1e5ce"
+		},
+		{
+			"id": 55,
+			"name": "Change",
+			"address": "0x1e5d5"
+		},
+		{
+			"id": 56,
+			"name": "Glasses",
+			"address": "0x1e5dc"
+		},
+		{
+			"id": 57,
+			"name": "Key",
+			"address": "0x1e5e4"
+		},
+		{
+			"id": 58,
+			"name": "Little Robot",
+			"address": "0x1e5e8"
+		},
+		{
+			"id": 59,
+			"name": "Light",
+			"address": "0x1e5f5"
+		},
+		{
+			"id": 60,
+			"name": "Seed",
+			"address": "0x1e5fb"
+		},
+		{
+			"id": 61,
+			"name": "Blimb",
+			"address": "0x1e600"
+		},
+		{
+			"id": 62,
+			"name": "S/ship",
+			"address": "0x1e606"
+		},
+		{
+			"id": 63,
+			"name": "Warp System",
+			"address": "0x1e60d"
+		},
+		{
+			"id": 64,
+			"name": "Relay",
+			"address": "0x1e619"
+		},
+		{
+			"id": 65,
+			"name": "Cyber Jack",
+			"address": "0x1e61f"
+		},
+		{
+			"id": 66,
+			"name": "Red Jar",
+			"address": "0x1e62a"
+		},
+		{
+			"id": 67,
+			"name": "Blue Jar",
+			"address": "0x1e632"
+		},
+		{
+			"id": 68,
+			"name": "Yel Jar",
+			"address": "0x1e63b"
+		},
+		{
+			"id": 69,
+			"name": "Jewel",
+			"address": "0x1e643"
+		},
+		{
+			"id": 70,
+			"name": "Letter",
+			"address": "0x1e649"
+		},
+		{
+			"id": 71,
+			"name": "Litho",
+			"address": "0x1e650"
+		},
+		{
+			"id": 72,
+			"name": "Leader`s Badge",
+			"address": "0x1e656"
+		},
+		{
+			"id": 73,
+			"name": "Badge 2",
+			"address": "0x1e665"
+		},
+		{
+			"id": 74,
+			"name": "Stone 1",
+			"address": "0x1e66d"
+		},
+		{
+			"id": 75,
+			"name": "Stone 2",
+			"address": "0x1e675"
+		},
+		{
+			"id": 76,
+			"name": "Stone 3",
+			"address": "0x1e67d"
+		},
+		{
+			"id": 77,
+			"name": "Red Flower",
+			"address": "0x1e685"
+		},
+		{
+			"id": 78,
+			"name": "Sphere",
+			"address": "0x1e690"
+		},
+		{
+			"id": 79,
+			"name": "Rusty Drill",
+			"address": "0x1e697"
+		},
+		{
+			"id": 80,
+			"name": "Scrap A",
+			"address": "0x1e6a3"
+		},
+		{
+			"id": 81,
+			"name": "Scrap B",
+			"address": "0x1e6ab"
+		},
+		{
+			"id": 82,
+			"name": "Scrap 1",
+			"address": "0x1e6b3"
+		},
+		{
+			"id": 83,
+			"name": "Scrap 2",
+			"address": "0x1e6bb"
+		},
+		{
+			"id": 84,
+			"name": "Scrap 3",
+			"address": "0x1e6c3"
+		},
+		{
+			"id": 85,
+			"name": "Scrap 4",
+			"address": "0x1e6cb"
+		},
+		{
+			"id": 86,
+			"name": "Scrap 5",
+			"address": "0x1e6d3"
+		},
+		{
+			"id": 87,
+			"name": "Scrap 6",
+			"address": "0x1e6db"
+		},
+		{
+			"id": 88,
+			"name": "Scrap 7",
+			"address": "0x1e6e3"
+		},
+		{
+			"id": 89,
+			"name": "Scrap 8",
+			"address": "0x1e6eb"
+		},
+		{
+			"id": 90,
+			"name": "Scrap 9",
+			"address": "0x1e6f3"
+		},
+		{
+			"id": 91,
+			"name": "Scrap 10",
+			"address": "0x1e6fb"
+		},
+		{
+			"id": 92,
+			"name": "Smoke",
+			"address": "0x1e704"
+		},
+		{
+			"id": 93,
+			"name": "Cure",
+			"address": "0x1e70a"
+		},
+		{
+			"id": 94,
+			"name": "Clean",
+			"address": "0x1e70f"
+		},
+		{
+			"id": 95,
+			"name": "Repair",
+			"address": "0x1e715"
+		},
+		{
+			"id": 96,
+			"name": "Big Bomb",
+			"address": "0x1e71c"
+		},
+		{
+			"id": 97,
+			"name": "Weather",
+			"address": "0x1e725"
+		}
+	],
+	"enemies": [
+		{
+			"id": 0,
+			"name": "Mine",
+			"address": "0x1fdbe"
+		},
+		{
+			"id": 1,
+			"name": "Turbo",
+			"address": "0x1fdc3"
+		},
+		{
+			"id": 2,
+			"name": "Mushroom",
+			"address": "0x1fdc9"
+		},
+		{
+			"id": 3,
+			"name": "Poison",
+			"address": "0x1fdd2"
+		},
+		{
+			"id": 4,
+			"name": "Spider",
+			"address": "0x1fdd9"
+		},
+		{
+			"id": 5,
+			"name": "Spider",
+			"address": "0x1fde0"
+		},
+		{
+			"id": 6,
+			"name": "Gel",
+			"address": "0x1fde7"
+		},
+		{
+			"id": 7,
+			"name": "Gelgel",
+			"address": "0x1fdeb"
+		},
+		{
+			"id": 8,
+			"name": "Bosstoad",
+			"address": "0x1fdf2"
+		},
+		{
+			"id": 9,
+			"name": "Rushbird",
+			"address": "0x1fdfb"
+		},
+		{
+			"id": 10,
+			"name": "Quickbird",
+			"address": "0x1fe04"
+		},
+		{
+			"id": 11,
+			"name": "Mole",
+			"address": "0x1fe0e"
+		},
+		{
+			"id": 12,
+			"name": "Powermole",
+			"address": "0x1fe13"
+		},
+		{
+			"id": 13,
+			"name": "Tackler",
+			"address": "0x1fe1d"
+		},
+		{
+			"id": 14,
+			"name": "Plasmoke",
+			"address": "0x1fe25"
+		},
+		{
+			"id": 15,
+			"name": "Elesmoke",
+			"address": "0x1fe2e"
+		},
+		{
+			"id": 16,
+			"name": "Monk",
+			"address": "0x1fe37"
+		},
+		{
+			"id": 17,
+			"name": "Mummy",
+			"address": "0x1fe3c"
+		},
+		{
+			"id": 18,
+			"name": "Franken",
+			"address": "0x1fe42"
+		},
+		{
+			"id": 19,
+			"name": "Ho Ho",
+			"address": "0x1fe4a"
+		},
+		{
+			"id": 20,
+			"name": "Gator",
+			"address": "0x1fe50"
+		},
+		{
+			"id": 21,
+			"name": "Gunrobot",
+			"address": "0x1fe56"
+		},
+		{
+			"id": 22,
+			"name": "CannonX",
+			"address": "0x1fe5f"
+		},
+		{
+			"id": 23,
+			"name": "Biolion",
+			"address": "0x1fe67"
+		},
+		{
+			"id": 24,
+			"name": "Shell",
+			"address": "0x1fe6f"
+		},
+		{
+			"id": 25,
+			"name": "Urchin",
+			"address": "0x1fe75"
+		},
+		{
+			"id": 26,
+			"name": "Luckstar",
+			"address": "0x1fe7c"
+		},
+		{
+			"id": 27,
+			"name": "Angler",
+			"address": "0x1fe85"
+		},
+		{
+			"id": 28,
+			"name": "Octopus",
+			"address": "0x1fe8c"
+		},
+		{
+			"id": 29,
+			"name": "Pumpy",
+			"address": "0x1fe94"
+		},
+		{
+			"id": 30,
+			"name": "Bumpy",
+			"address": "0x1fe9a"
+		},
+		{
+			"id": 31,
+			"name": "Faceman",
+			"address": "0x1fea0"
+		},
+		{
+			"id": 32,
+			"name": "Bigface",
+			"address": "0x1fea8"
+		},
+		{
+			"id": 33,
+			"name": "Redpixy",
+			"address": "0x1feb0"
+		},
+		{
+			"id": 34,
+			"name": "Whitepixy",
+			"address": "0x1feb8"
+		},
+		{
+			"id": 35,
+			"name": "Goldpixy",
+			"address": "0x1fec2"
+		},
+		{
+			"id": 36,
+			"name": "Knight",
+			"address": "0x1fecb"
+		},
+		{
+			"id": 37,
+			"name": "Master",
+			"address": "0x1fed2"
+		},
+		{
+			"id": 38,
+			"name": "Gagarian",
+			"address": "0x1fed9"
+		},
+		{
+			"id": 39,
+			"name": "Ninja",
+			"address": "0x1fee2"
+		},
+		{
+			"id": 40,
+			"name": "Beeper",
+			"address": "0x1fee8"
+		},
+		{
+			"id": 41,
+			"name": "Cmdr.",
+			"address": "0x1feef"
+		},
+		{
+			"id": 42,
+			"name": "Masker",
+			"address": "0x1fef5"
+		},
+		{
+			"id": 43,
+			"name": "Beret",
+			"address": "0x1fefc"
+		},
+		{
+			"id": 44,
+			"name": "Meta Crab",
+			"address": "0x1ff02"
+		},
+		{
+			"id": 45,
+			"name": "Smallcrab",
+			"address": "0x1ff0c"
+		},
+		{
+			"id": 46,
+			"name": "Mamurana",
+			"address": "0x1ff16"
+		},
+		{
+			"id": 47,
+			"name": "Big Eye",
+			"address": "0x1ff1f"
+		},
+		{
+			"id": 48,
+			"name": "Blacktank",
+			"address": "0x1ff27"
+		},
+		{
+			"id": 49,
+			"name": "Gateau",
+			"address": "0x1ff31"
+		},
+		{
+			"id": 50,
+			"name": "Soldier",
+			"address": "0x1ff38"
+		},
+		{
+			"id": 51,
+			"name": "Gateau",
+			"address": "0x1ff40"
+		},
+		{
+			"id": 52,
+			"name": "De Rose",
+			"address": "0x1ff47"
+		},
+		{
+			"id": 53,
+			"name": "Papamecha",
+			"address": "0x1ff4f"
+		},
+		{
+			"id": 54,
+			"name": "Bugbug",
+			"address": "0x1ff59"
+		},
+		{
+			"id": 55,
+			"name": "Cmdr.",
+			"address": "0x1ff60"
+		},
+		{
+			"id": 56,
+			"name": "Minicom",
+			"address": "0x1ff66"
+		},
+		{
+			"id": 57,
+			"name": "Big Fan",
+			"address": "0x1ff6e"
+		}
+	]
+}

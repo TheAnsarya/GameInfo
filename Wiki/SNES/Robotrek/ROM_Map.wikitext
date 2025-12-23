@@ -95,17 +95,25 @@ This page documents the ROM layout for Robotrek (USA version).
 === Data Tables ===
 
 {| class="wikitable"
-! Address !! Size !! Description
+! Address !! File Offset !! Size !! Description !! Status
 |-
-| $D40000 || TBD || Item table base
+| $C1E413 || $01E413 || ~$1480 || Item names (script text, CC-separated) || '''Verified'''
 |-
-| $D40800 || TBD || Invention recipes table
+| $C1F8A0 || $01F8A0 || ~$500 || Item names (menu, null-separated, 8-byte) || '''Verified'''
 |-
-| $D41000 || TBD || Robot parts table
+| $C1FD00 || $01FD00 || ~$BC || Enemy name pointer table (16-bit) || '''Verified'''
 |-
-| $D50000 || TBD || Enemy stats table
+| $C1FDBE || $01FDBE || ~$300 || Enemy names (null-terminated strings) || '''Verified'''
 |-
-| $D50800 || TBD || Enemy drops table
+| $D40000 || $100000 || TBD || Item stats table || Unverified
+|-
+| $D40800 || $100800 || TBD || Invention recipes table || Unverified
+|-
+| $D41000 || $101000 || TBD || Robot parts table || Unverified
+|-
+| $D50000 || $110000 || TBD || Enemy stats table || Unverified
+|-
+| $D50800 || $110800 || TBD || Enemy drops table || Unverified
 |}
 
 === Graphics ===
@@ -129,17 +137,17 @@ This page documents the ROM layout for Robotrek (USA version).
 === Text/Dialog ===
 
 {| class="wikitable"
-! Address !! Size !! Description
+! Address !! File Offset !! Size !! Description !! Status
 |-
-| $D30000 || TBD || Text pointer table
+| $C1E413 || $01E413 || ~$1480 || Item names (CC-separated, 98 entries) || '''Verified'''
 |-
-| $D30400 || TBD || Dialog text (compressed)
+| $C1FDBE || $01FDBE || ~$300 || Enemy names (null-terminated, 58 entries) || '''Verified'''
 |-
-| $D38000 || TBD || Menu text
+| $D30000 || $0F0000 || TBD || Text pointer table || Unverified
 |-
-| $D3C000 || TBD || Item names
+| $D30400 || $0F0400 || TBD || Dialog text (compressed) || Unverified
 |-
-| $D3D000 || TBD || Enemy names
+| $D38000 || $0F8000 || TBD || Menu text || Unverified
 |}
 
 === Audio ===

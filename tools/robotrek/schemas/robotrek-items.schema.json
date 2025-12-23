@@ -4,7 +4,11 @@
 	"title": "Robotrek Items",
 	"description": "Schema for Robotrek item data",
 	"type": "object",
-	"required": ["game", "data_type", "items"],
+	"required": [
+		"game",
+		"data_type",
+		"items"
+	],
 	"properties": {
 		"game": {
 			"type": "string",
@@ -17,25 +21,45 @@
 		"rom_location": {
 			"type": "object",
 			"properties": {
-				"bank": { "type": "string" },
-				"start": { "type": "string" },
-				"entry_size": { "type": "integer" },
-				"count": { "type": "integer" }
+				"bank": {
+					"type": "string"
+				},
+				"start": {
+					"type": "string"
+				},
+				"entry_size": {
+					"type": "integer"
+				},
+				"count": {
+					"type": "integer"
+				}
 			}
 		},
 		"item_types": {
 			"type": "object",
-			"additionalProperties": { "type": "string" }
+			"additionalProperties": {
+				"type": "string"
+			}
 		},
 		"item_flags": {
 			"type": "object",
-			"additionalProperties": { "type": "string" }
+			"additionalProperties": {
+				"type": "string"
+			}
 		},
 		"items": {
 			"type": "array",
 			"items": {
 				"type": "object",
-				"required": ["id", "item_id", "item_type", "primary_stat", "secondary_stat", "buy_price", "flags"],
+				"required": [
+					"id",
+					"item_id",
+					"item_type",
+					"primary_stat",
+					"secondary_stat",
+					"buy_price",
+					"flags"
+				],
 				"properties": {
 					"id": {
 						"type": "integer",
@@ -84,7 +108,9 @@
 					},
 					"flag_names": {
 						"type": "array",
-						"items": { "type": "string" },
+						"items": {
+							"type": "string"
+						},
 						"description": "Human-readable flag names"
 					}
 				}

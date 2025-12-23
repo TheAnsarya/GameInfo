@@ -4,7 +4,11 @@
 	"title": "Robotrek Enemies",
 	"description": "Schema for Robotrek enemy data",
 	"type": "object",
-	"required": ["game", "data_type", "enemies"],
+	"required": [
+		"game",
+		"data_type",
+		"enemies"
+	],
 	"properties": {
 		"game": {
 			"type": "string",
@@ -17,21 +21,40 @@
 		"rom_location": {
 			"type": "object",
 			"properties": {
-				"bank": { "type": "string" },
-				"start": { "type": "string" },
-				"entry_size": { "type": "integer" },
-				"count": { "type": "integer" }
+				"bank": {
+					"type": "string"
+				},
+				"start": {
+					"type": "string"
+				},
+				"entry_size": {
+					"type": "integer"
+				},
+				"count": {
+					"type": "integer"
+				}
 			}
 		},
 		"ai_patterns": {
 			"type": "object",
-			"additionalProperties": { "type": "string" }
+			"additionalProperties": {
+				"type": "string"
+			}
 		},
 		"enemies": {
 			"type": "array",
 			"items": {
 				"type": "object",
-				"required": ["id", "enemy_id", "hp", "power", "guard", "speed", "exp", "gold"],
+				"required": [
+					"id",
+					"enemy_id",
+					"hp",
+					"power",
+					"guard",
+					"speed",
+					"exp",
+					"gold"
+				],
 				"properties": {
 					"id": {
 						"type": "integer",

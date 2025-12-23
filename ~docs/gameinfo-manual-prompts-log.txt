@@ -237,6 +237,15 @@ create a json file that has all of the files, in folder structure in the json, o
 
 What you just did for `Soul Blazor`, do for `Robotrek (U) [!].sfc` which is located at `GameInfo\~roms\SNES\GoodSNES\Robotrek (U) [!].sfc`; make a bunch of todo-lists and github issues for create a full documentation and disassembly of Robotrek (also known as Slapstick for the japanese release); make issues and todos and documentation and disassembly and tools (python and c# dotnet) and editors, and update the game catalog with Robotrek/slapstick files in `~roms` folder; make sure all documentation is reachable from the projects primary `readme.md` file; do the full asset and build pipelines; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
 
+&&&
+Create GitHub issues from the issue document (robotrek-issues.md)
+Test Python tools against the actual Robotrek ROM to verify addresses
+Extract real data and populate wiki tables
+Begin disassembly of core game systems
+&&&
+
+
+
 
 
 

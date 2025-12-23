@@ -4,7 +4,11 @@
 	"title": "Robotrek Inventions",
 	"description": "Schema for Robotrek invention recipe data",
 	"type": "object",
-	"required": ["game", "data_type", "inventions"],
+	"required": [
+		"game",
+		"data_type",
+		"inventions"
+	],
 	"properties": {
 		"game": {
 			"type": "string",
@@ -17,22 +21,38 @@
 		"rom_location": {
 			"type": "object",
 			"properties": {
-				"bank": { "type": "string" },
-				"start": { "type": "string" },
-				"entry_size": { "type": "integer" },
-				"count": { "type": "integer" }
+				"bank": {
+					"type": "string"
+				},
+				"start": {
+					"type": "string"
+				},
+				"entry_size": {
+					"type": "integer"
+				},
+				"count": {
+					"type": "integer"
+				}
 			}
 		},
 		"materials": {
 			"type": "object",
-			"additionalProperties": { "type": "string" },
+			"additionalProperties": {
+				"type": "string"
+			},
 			"description": "Material ID to name mapping"
 		},
 		"inventions": {
 			"type": "array",
 			"items": {
 				"type": "object",
-				"required": ["id", "result_item", "material1_id", "material1_qty", "required_level"],
+				"required": [
+					"id",
+					"result_item",
+					"material1_id",
+					"material1_qty",
+					"required_level"
+				],
 				"properties": {
 					"id": {
 						"type": "integer",

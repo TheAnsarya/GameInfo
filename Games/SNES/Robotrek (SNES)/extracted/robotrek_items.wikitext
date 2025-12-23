@@ -1,0 +1,204 @@
+== Item List ==
+
+Complete list of items in Robotrek (US).
+
+{| class="wikitable sortable"
+! ID !! Hex !! Name !! Type
+|-
+| 0 || 0x00 || Nothing || Item
+|-
+| 1 || 0x01 || Sword 1 || Weapon
+|-
+| 2 || 0x02 || Sword 2 || Weapon
+|-
+| 3 || 0x03 || Sword 3 || Weapon
+|-
+| 4 || 0x04 || Sword 4 || Weapon
+|-
+| 5 || 0x05 || Axe 1 || Weapon
+|-
+| 6 || 0x06 || Axe 2 || Weapon
+|-
+| 7 || 0x07 || Axe 3 || Weapon
+|-
+| 8 || 0x08 || Blade 1 || Weapon
+|-
+| 9 || 0x09 || Blade 2 || Weapon
+|-
+| 10 || 0x0A || Blade 3 || Weapon
+|-
+| 11 || 0x0B || Blade 4 || Weapon
+|-
+| 12 || 0x0C || Hammer 1 || Weapon
+|-
+| 13 || 0x0D || Hammer 2 || Weapon
+|-
+| 14 || 0x0E || Hammer 3 || Weapon
+|-
+| 15 || 0x0F || Celtis 1 || Weapon
+|-
+| 16 || 0x10 || Celtis 2 || Weapon
+|-
+| 17 || 0x11 || Celtis 3 || Weapon
+|-
+| 18 || 0x12 || Punch 1 || Weapon
+|-
+| 19 || 0x13 || Punch 2 || Weapon
+|-
+| 20 || 0x14 || Punch 3 || Weapon
+|-
+| 21 || 0x15 || Blow 1 || Weapon
+|-
+| 22 || 0x16 || Blow 2 || Weapon
+|-
+| 23 || 0x17 || Blow 3 || Weapon
+|-
+| 24 || 0x18 || Shot 1 || Weapon
+|-
+| 25 || 0x19 || Shot 2 || Weapon
+|-
+| 26 || 0x1A || Shot 3 || Weapon
+|-
+| 27 || 0x1B || Laser 1 || Weapon
+|-
+| 28 || 0x1C || Laser 2 || Weapon
+|-
+| 29 || 0x1D || Laser 3 || Weapon
+|-
+| 30 || 0x1E || Bomb 1 || Item
+|-
+| 31 || 0x1F || Bomb 2 || Item
+|-
+| 32 || 0x20 || Bomb 3 || Item
+|-
+| 33 || 0x21 || Bomb 4 || Item
+|-
+| 34 || 0x22 || Shield 1 || Armor
+|-
+| 35 || 0x23 || Shield 2 || Armor
+|-
+| 36 || 0x24 || Shield 3 || Armor
+|-
+| 37 || 0x25 || Shield 4 || Armor
+|-
+| 38 || 0x26 || Shield 5 || Armor
+|-
+| 39 || 0x27 || Empty Pack || Armor
+|-
+| 40 || 0x28 || Power Pack || Armor
+|-
+| 41 || 0x29 || Shield Pack || Armor
+|-
+| 42 || 0x2A || Turbo Pack || Armor
+|-
+| 43 || 0x2B || Solar Pack || Armor
+|-
+| 44 || 0x2C || Quick Pack || Armor
+|-
+| 45 || 0x2D || Boots 1 || Armor
+|-
+| 46 || 0x2E || Boots 2 || Armor
+|-
+| 47 || 0x2F || Boots 3 || Armor
+|-
+| 48 || 0x30 || Boots 4 || Armor
+|-
+| 49 || 0x31 || Boots 5 || Armor
+|-
+| 50 || 0x32 || Boots 6 || Armor
+|-
+| 51 || 0x33 || Transiver || Item
+|-
+| 52 || 0x34 || Horn || Item
+|-
+| 53 || 0x35 || Drill || Item
+|-
+| 54 || 0x36 || Vanish || Item
+|-
+| 55 || 0x37 || Change || Item
+|-
+| 56 || 0x38 || Glasses || Item
+|-
+| 57 || 0x39 || Key || Item
+|-
+| 58 || 0x3A || Little Robot || Item
+|-
+| 59 || 0x3B || Light || Item
+|-
+| 60 || 0x3C || Seed || Item
+|-
+| 61 || 0x3D || Blimb || Item
+|-
+| 62 || 0x3E || S/ship || Item
+|-
+| 63 || 0x3F || Warp System || Item
+|-
+| 64 || 0x40 || Relay || Item
+|-
+| 65 || 0x41 || Cyber Jack || Item
+|-
+| 66 || 0x42 || Red Jar || Item
+|-
+| 67 || 0x43 || Blue Jar || Item
+|-
+| 68 || 0x44 || Yel Jar || Item
+|-
+| 69 || 0x45 || Jewel || Item
+|-
+| 70 || 0x46 || Letter || Item
+|-
+| 71 || 0x47 || Litho || Item
+|-
+| 72 || 0x48 || Leader`s Badge || Item
+|-
+| 73 || 0x49 || Badge 2 || Item
+|-
+| 74 || 0x4A || Stone 1 || Item
+|-
+| 75 || 0x4B || Stone 2 || Item
+|-
+| 76 || 0x4C || Stone 3 || Item
+|-
+| 77 || 0x4D || Red Flower || Item
+|-
+| 78 || 0x4E || Sphere || Item
+|-
+| 79 || 0x4F || Rusty Drill || Item
+|-
+| 80 || 0x50 || Scrap A || Material
+|-
+| 81 || 0x51 || Scrap B || Material
+|-
+| 82 || 0x52 || Scrap 1 || Material
+|-
+| 83 || 0x53 || Scrap 2 || Material
+|-
+| 84 || 0x54 || Scrap 3 || Material
+|-
+| 85 || 0x55 || Scrap 4 || Material
+|-
+| 86 || 0x56 || Scrap 5 || Material
+|-
+| 87 || 0x57 || Scrap 6 || Material
+|-
+| 88 || 0x58 || Scrap 7 || Material
+|-
+| 89 || 0x59 || Scrap 8 || Material
+|-
+| 90 || 0x5A || Scrap 9 || Material
+|-
+| 91 || 0x5B || Scrap 10 || Material
+|-
+| 92 || 0x5C || Smoke || Program
+|-
+| 93 || 0x5D || Cure || Program
+|-
+| 94 || 0x5E || Clean || Program
+|-
+| 95 || 0x5F || Repair || Program
+|-
+| 96 || 0x60 || Big Bomb || Program
+|-
+| 97 || 0x61 || Weather || Program
+|-
+|}
