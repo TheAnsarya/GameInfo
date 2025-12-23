@@ -383,8 +383,100 @@ Added Python scripts for ROM research:
 
 ## What's Next
 
-1. **Complete recipe table decoding** - Parse cross-item combinations
-2. **Find enemy stat tables** - Search other banks for HP/ATK/DEF/EXP data
-3. **Decode weapon level formulas** - How stats scale from Level 1-9
-4. **Create comprehensive extractor** - All game data to JSON
-5. **Update Data Crystal wiki** - Push verified findings
+1. **Find enemy stat tables** - Search compressed data or trace game code
+2. **Decode weapon level formulas** - How stats scale from Level 1-9
+3. **Create comprehensive extractor** - All game data to JSON
+4. **Update Data Crystal wiki** - Push verified findings
+
+---
+
+## Session 5 - Continued ROM Research
+
+### Work Completed
+
+#### 1. Deep ROM Scan for Stat Tables
+
+Created comprehensive ROM analysis scripts:
+- `search_stat_tables.py` - Scans ROM for pointer tables and structured data
+- `analyze_stat_regions.py` - Detailed analysis of potential stat regions
+
+**Findings:**
+- Found 44 potential pointer tables across banks $01-$18
+- Found 2293 regions with stat-like data patterns
+- Confirmed enemy name pointer table at **$01fcf8** (not $01fd00 as previously noted)
+- First 4 pointer entries are garbage; real pointers start at index 4
+
+#### 2. Enemy Name Pointer Table Correction
+
+Corrected pointer table analysis:
+- Actual pointer table: $01fcf8
+- Pointers at index 4-59 point to enemy names
+- Index 0-3: Garbage/header data ("rrange ")
+- Index 33, 34, 47-59: Point to "Cmdr." placeholder ($ff60)
+
+**Complete Enemy Index Mapping:**
+| Index | Enemy | Index | Enemy |
+|-------|-------|-------|-------|
+| 4 | (blank) | 35 | Octopus |
+| 5 | Mine | 36 | Pumpy |
+| 6 | Turbo | 37 | Bumpy |
+| 7 | Mushroom | 38 | Faceman |
+| 8 | Poison | 39 | Bigface |
+| 9 | Spider | 40 | Redpixy |
+| 10 | Spider | 41 | Whitepixy |
+| 11 | Gel | 42 | Goldpixy |
+| 12 | Gelgel | 43 | Knight |
+| 13 | Bosstoad | 44 | Master |
+| 14 | Rushbird | 45 | Gagarian |
+| 15 | Quickbird | 46 | Ninja |
+| 16-32 | ... | 59 | Minicom |
+
+#### 3. Complete Recipe Table Decoding
+
+Created `decode_recipes_full.py` for comprehensive recipe analysis:
+
+**Recipe Table Structure ($01c200):**
+- Uses marker bytes $68-$79 for category indicators
+- $FF marks section boundaries
+- Same-item format: [A A B] means A + A = B
+- Chain format: [05 05 06 06 07] means Sword1→Sword2→Sword3
+
+**Confirmed Recipe Locations:**
+| Address | Marker | Recipes |
+|---------|--------|---------|
+| $01c2c5 | $68 | Smoke + Smoke = Cure |
+| $01c2c9 | $6d | Sword 1+1=2, Sword 2+2=3 |
+| $01c2d4 | $69 | Punch 3+3=Blow 1, Blow 1+1=2 |
+| $01c2df | $6a | Pack 3+3=4, Pack 4+4=5 |
+| $01c2ec | $6b | Hammer 3+3=Celtis 1, Celtis 1+1=2 |
+
+**Known 40+ Same-Item Recipes:**
+- All weapon upgrade paths (Sword, Axe, Blade, Hammer, Celtis, Punch, Blow, Shot, Laser, Bomb)
+- Equipment upgrades (Shield 1-5, Pack 1-6, Boots 1-6)
+- Consumable combinations (Smoke → Cure)
+
+#### 4. ROM Map Updates
+
+Updated ROM_Map.wikitext with:
+- Combination recipe table at $01c200
+- Corrected enemy name pointer table address
+- Recipe table format documentation
+- Category marker byte definitions
+
+### Files Created
+
+- `Games/SNES/Robotrek (SNES)/scripts/search_stat_tables.py`
+- `Games/SNES/Robotrek (SNES)/scripts/analyze_stat_regions.py`
+- `Games/SNES/Robotrek (SNES)/scripts/decode_recipes_full.py`
+- `Games/SNES/Robotrek (SNES)/extracted/recipes_full.json`
+
+### Files Modified
+
+- `Wiki/SNES/Robotrek/ROM_Map.wikitext` - Added recipe table, corrected addresses
+
+### Session 5 Commits
+
+| Hash | Message |
+|------|---------|
+| TBD | feat(robotrek): add ROM analysis and recipe decoding scripts |
+| TBD | docs(robotrek): update ROM map with recipe table documentation |

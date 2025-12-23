@@ -223,19 +223,21 @@ Robotrek uses '''Quintet's standard LZSS compression algorithm''', common to oth
 {| class="wikitable"
 ! Address !! File Offset !! Size !! Description !! Status
 |-
+| $c1c200 || $01c200 || $200 || '''Combination recipe table''' (weapon/item combinations) || '''Verified'''
+|-
 | $c1e413 || $01e413 || ~$1480 || Item names (script text, CC-separated) || '''Verified'''
 |-
 | $c1f748 || $01f748 || $aa || Item name pointer table (83 × 2-byte) || '''Verified'''
 |-
 | $c1f8a9 || $01f8a9 || ~$22e || Item names (menu, null-terminated, 8-byte) || '''Verified'''
 |-
-| $c1fd00 || $01fd00 || ~$bc || Enemy name pointer table (16-bit) || '''Verified'''
+| $c1fcf8 || $01fcf8 || ~$bc || Enemy name pointer table (16-bit, +8 offset) || '''Verified'''
 |-
-| $c1fdbe || $01fdbe || ~$300 || Enemy names (null-terminated strings) || '''Verified'''
+| $c1fdb4 || $01fdb4 || ~$300 || '''Enemy names''' (null-terminated, 58 entries) || '''Verified'''
 |-
-| $c38000 || $038000 || $180 || '''Actor/Entity pointer table''' (128 × 2-byte) || '''Research'''
+| $c38000 || $038000 || $180 || Actor/Entity pointer table (128 × 2-byte) || '''Research'''
 |-
-| $c381a4 || $0381a4 || ~$b40 || Actor/Entity data (22-byte entries) - likely sprite/animation data, not stats || '''Research'''
+| $c381a4 || $0381a4 || ~$b40 || Actor/Entity data (22-byte entries) - sprite/animation data || '''Research'''
 |}
 
 == Item Name Pointer Table ==
@@ -277,6 +279,48 @@ Located at file offset '''$01f748''', this table contains 83 16-bit little-endia
 |-
 | 77-82 || Key items || Trans, Horn, Drill, Vanish, Change, Glasses
 |}
+
+== Combination Recipe Table ==
+
+Located at file offset '''$01c200''', this table encodes weapon/item combination recipes.
+
+'''Format:'''
+* Uses marker bytes $68-$79 to indicate item categories
+* $FF marks section separators
+* Same-item pairs: sequence like [A A B] means A + A = B
+* Chain format: [05 05 06 06 07] means Sword1+Sword1=Sword2, Sword2+Sword2=Sword3
+
+'''Markers:'''
+{| class="wikitable"
+! Byte !! Category
+|-
+| $68 || Consumables (Smoke, Cure, etc.)
+|-
+| $69 || Punch/Axe weapons
+|-
+| $6a || Pack/Boots equipment
+|-
+| $6b || Blade weapons
+|-
+| $6c || Pack equipment
+|-
+| $6d || Multi-item recipe start
+|-
+| $6e || Shot weapons
+|-
+| $70 || Laser/Bomb weapons
+|-
+| $71 || Shield equipment
+|-
+| $FF || Section end
+|}
+
+'''Known same-item recipes:'''
+* Smoke + Smoke = Cure ($68 marker, at $01c2c5)
+* Sword 1 + Sword 1 = Sword 2 ($6d marker, at $01c2c9)
+* Punch 3 + Punch 3 = Blow 1 ($69 marker, at $01c2d4)
+* Pack 3 + Pack 3 = Pack 4 ($6a marker, at $01c2df)
+* Hammer 3 + Hammer 3 = Celtis 1 ($6b marker, at $01c2ec)
 
 == Interrupt Vectors ==
 

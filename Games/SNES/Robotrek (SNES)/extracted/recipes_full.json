@@ -1,0 +1,927 @@
+{
+	"table_address": "$01c200",
+	"table_size": 512,
+	"known_recipes": [
+		{
+			"item1": "Smoke",
+			"item2": "Smoke",
+			"result": "Cure"
+		},
+		{
+			"item1": "Sword 1",
+			"item2": "Sword 1",
+			"result": "Sword 2"
+		},
+		{
+			"item1": "Sword 2",
+			"item2": "Sword 2",
+			"result": "Sword 3"
+		},
+		{
+			"item1": "Sword 3",
+			"item2": "Sword 3",
+			"result": "Sword 4"
+		},
+		{
+			"item1": "Axe 1",
+			"item2": "Axe 1",
+			"result": "Axe 2"
+		},
+		{
+			"item1": "Axe 2",
+			"item2": "Axe 2",
+			"result": "Axe 3"
+		},
+		{
+			"item1": "Blade 1",
+			"item2": "Blade 1",
+			"result": "Blade 2"
+		},
+		{
+			"item1": "Blade 2",
+			"item2": "Blade 2",
+			"result": "Blade 3"
+		},
+		{
+			"item1": "Blade 3",
+			"item2": "Blade 3",
+			"result": "Blade 4"
+		},
+		{
+			"item1": "Hammer 1",
+			"item2": "Hammer 1",
+			"result": "Hammer 2"
+		},
+		{
+			"item1": "Hammer 2",
+			"item2": "Hammer 2",
+			"result": "Hammer 3"
+		},
+		{
+			"item1": "Hammer 3",
+			"item2": "Hammer 3",
+			"result": "Celtis 1"
+		},
+		{
+			"item1": "Celtis 1",
+			"item2": "Celtis 1",
+			"result": "Celtis 2"
+		},
+		{
+			"item1": "Celtis 2",
+			"item2": "Celtis 2",
+			"result": "Celtis 3"
+		},
+		{
+			"item1": "Punch 1",
+			"item2": "Punch 1",
+			"result": "Punch 2"
+		},
+		{
+			"item1": "Punch 2",
+			"item2": "Punch 2",
+			"result": "Punch 3"
+		},
+		{
+			"item1": "Punch 3",
+			"item2": "Punch 3",
+			"result": "Blow 1"
+		},
+		{
+			"item1": "Blow 1",
+			"item2": "Blow 1",
+			"result": "Blow 2"
+		},
+		{
+			"item1": "Blow 2",
+			"item2": "Blow 2",
+			"result": "Blow 3"
+		},
+		{
+			"item1": "Shot 1",
+			"item2": "Shot 1",
+			"result": "Shot 2"
+		},
+		{
+			"item1": "Shot 2",
+			"item2": "Shot 2",
+			"result": "Shot 3"
+		},
+		{
+			"item1": "Laser 1",
+			"item2": "Laser 1",
+			"result": "Laser 2"
+		},
+		{
+			"item1": "Laser 2",
+			"item2": "Laser 2",
+			"result": "Laser 3"
+		},
+		{
+			"item1": "Bomb 1",
+			"item2": "Bomb 1",
+			"result": "Bomb 2"
+		},
+		{
+			"item1": "Bomb 2",
+			"item2": "Bomb 2",
+			"result": "Bomb 3"
+		},
+		{
+			"item1": "Bomb 3",
+			"item2": "Bomb 3",
+			"result": "Bomb 4"
+		},
+		{
+			"item1": "Shield 1",
+			"item2": "Shield 1",
+			"result": "Shield 2"
+		},
+		{
+			"item1": "Shield 2",
+			"item2": "Shield 2",
+			"result": "Shield 3"
+		},
+		{
+			"item1": "Shield 3",
+			"item2": "Shield 3",
+			"result": "Shield 4"
+		},
+		{
+			"item1": "Shield 4",
+			"item2": "Shield 4",
+			"result": "Shield 5"
+		},
+		{
+			"item1": "Pack 1",
+			"item2": "Pack 1",
+			"result": "Pack 2"
+		},
+		{
+			"item1": "Pack 2",
+			"item2": "Pack 2",
+			"result": "Pack 3"
+		},
+		{
+			"item1": "Pack 3",
+			"item2": "Pack 3",
+			"result": "Pack 4"
+		},
+		{
+			"item1": "Pack 4",
+			"item2": "Pack 4",
+			"result": "Pack 5"
+		},
+		{
+			"item1": "Pack 5",
+			"item2": "Pack 5",
+			"result": "Pack 6"
+		},
+		{
+			"item1": "Boots 1",
+			"item2": "Boots 1",
+			"result": "Boots 2"
+		},
+		{
+			"item1": "Boots 2",
+			"item2": "Boots 2",
+			"result": "Boots 3"
+		},
+		{
+			"item1": "Boots 3",
+			"item2": "Boots 3",
+			"result": "Boots 4"
+		},
+		{
+			"item1": "Boots 4",
+			"item2": "Boots 4",
+			"result": "Boots 5"
+		},
+		{
+			"item1": "Boots 5",
+			"item2": "Boots 5",
+			"result": "Boots 6"
+		}
+	],
+	"parsed_same_item": [
+		{
+			"address": "$01c203",
+			"item1": 17,
+			"item1_name": "Hammer 2",
+			"item2": 17,
+			"item2_name": "Hammer 2",
+			"result": 17,
+			"result_name": "Hammer 2",
+			"marker": null
+		},
+		{
+			"address": "$01c207",
+			"item1": 18,
+			"item1_name": "Hammer 3",
+			"item2": 18,
+			"item2_name": "Hammer 3",
+			"result": 27,
+			"result_name": "Blow 3",
+			"marker": null
+		},
+		{
+			"address": "$01c211",
+			"item1": 19,
+			"item1_name": "Celtis 1",
+			"item2": 19,
+			"item2_name": "Celtis 1",
+			"result": 19,
+			"result_name": "Celtis 1",
+			"marker": "$70"
+		},
+		{
+			"address": "$01c21e",
+			"item1": 20,
+			"item1_name": "Celtis 2",
+			"item2": 20,
+			"item2_name": "Celtis 2",
+			"result": 20,
+			"result_name": "Celtis 2",
+			"marker": "$6b"
+		},
+		{
+			"address": "$01c22c",
+			"item1": 22,
+			"item1_name": "Punch 1",
+			"item2": 22,
+			"item2_name": "Punch 1",
+			"result": 22,
+			"result_name": "Punch 1",
+			"marker": "$6b"
+		},
+		{
+			"address": "$01c233",
+			"item1": 23,
+			"item1_name": "Punch 2",
+			"item2": 23,
+			"item2_name": "Punch 2",
+			"result": 23,
+			"result_name": "Punch 2",
+			"marker": "$6b"
+		},
+		{
+			"address": "$01c237",
+			"item1": 24,
+			"item1_name": "Punch 3",
+			"item2": 24,
+			"item2_name": "Punch 3",
+			"result": 12,
+			"result_name": "Blade 1",
+			"marker": "$6b"
+		},
+		{
+			"address": "$01c241",
+			"item1": 25,
+			"item1_name": "Blow 1",
+			"item2": 25,
+			"item2_name": "Blow 1",
+			"result": 25,
+			"result_name": "Blow 1",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c252",
+			"item1": 26,
+			"item1_name": "Blow 2",
+			"item2": 26,
+			"item2_name": "Blow 2",
+			"result": 26,
+			"result_name": "Blow 2",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c263",
+			"item1": 27,
+			"item1_name": "Blow 3",
+			"item2": 27,
+			"item2_name": "Blow 3",
+			"result": 27,
+			"result_name": "Blow 3",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c26e",
+			"item1": 28,
+			"item1_name": "Shot 1",
+			"item2": 28,
+			"item2_name": "Shot 1",
+			"result": 28,
+			"result_name": "Shot 1",
+			"marker": "$6e"
+		},
+		{
+			"address": "$01c283",
+			"item1": 29,
+			"item1_name": "Shot 2",
+			"item2": 29,
+			"item2_name": "Shot 2",
+			"result": 29,
+			"result_name": "Shot 2",
+			"marker": "$6e"
+		},
+		{
+			"address": "$01c2c6",
+			"item1": 1,
+			"item1_name": "Smoke",
+			"item2": 1,
+			"item2_name": "Smoke",
+			"result": 2,
+			"result_name": "Cure",
+			"marker": "$68"
+		},
+		{
+			"address": "$01c2ca",
+			"item1": 5,
+			"item1_name": "Sword 1",
+			"item2": 5,
+			"item2_name": "Sword 1",
+			"result": 6,
+			"result_name": "Sword 2",
+			"marker": "$6d"
+		},
+		{
+			"address": "$01c2cc",
+			"item1": 6,
+			"item1_name": "Sword 2",
+			"item2": 6,
+			"item2_name": "Sword 2",
+			"result": 7,
+			"result_name": "Sword 3",
+			"marker": "$6d"
+		},
+		{
+			"address": "$01c2d5",
+			"item1": 24,
+			"item1_name": "Punch 3",
+			"item2": 24,
+			"item2_name": "Punch 3",
+			"result": 25,
+			"result_name": "Blow 1",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c2d7",
+			"item1": 25,
+			"item1_name": "Blow 1",
+			"item2": 25,
+			"item2_name": "Blow 1",
+			"result": 26,
+			"result_name": "Blow 2",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c2e0",
+			"item1": 45,
+			"item1_name": "Pack 3",
+			"item2": 45,
+			"item2_name": "Pack 3",
+			"result": 46,
+			"result_name": "Pack 4",
+			"marker": "$6a"
+		},
+		{
+			"address": "$01c2e2",
+			"item1": 46,
+			"item1_name": "Pack 4",
+			"item2": 46,
+			"item2_name": "Pack 4",
+			"result": 47,
+			"result_name": "Pack 5",
+			"marker": "$6a"
+		},
+		{
+			"address": "$01c2ed",
+			"item1": 18,
+			"item1_name": "Hammer 3",
+			"item2": 18,
+			"item2_name": "Hammer 3",
+			"result": 19,
+			"result_name": "Celtis 1",
+			"marker": "$6b"
+		},
+		{
+			"address": "$01c2ef",
+			"item1": 19,
+			"item1_name": "Celtis 1",
+			"item2": 19,
+			"item2_name": "Celtis 1",
+			"result": 20,
+			"result_name": "Celtis 2",
+			"marker": "$6b"
+		}
+	],
+	"parsed_cross_item": [
+		{
+			"address": "$01c200",
+			"item1": 15,
+			"item1_name": "Blade 4",
+			"item2": 17,
+			"item2_name": "Hammer 2",
+			"result": 16,
+			"result_name": "Hammer 1",
+			"marker": null
+		},
+		{
+			"address": "$01c201",
+			"item1": 17,
+			"item1_name": "Hammer 2",
+			"item2": 16,
+			"item2_name": "Hammer 1",
+			"result": 17,
+			"result_name": "Hammer 2",
+			"marker": null
+		},
+		{
+			"address": "$01c202",
+			"item1": 16,
+			"item1_name": "Hammer 1",
+			"item2": 17,
+			"item2_name": "Hammer 2",
+			"result": 17,
+			"result_name": "Hammer 2",
+			"marker": null
+		},
+		{
+			"address": "$01c210",
+			"item1": 18,
+			"item1_name": "Hammer 3",
+			"item2": 19,
+			"item2_name": "Celtis 1",
+			"result": 19,
+			"result_name": "Celtis 1",
+			"marker": "$70"
+		},
+		{
+			"address": "$01c213",
+			"item1": 19,
+			"item1_name": "Celtis 1",
+			"item2": 27,
+			"item2_name": "Blow 3",
+			"result": 21,
+			"result_name": "Celtis 3",
+			"marker": "$70"
+		},
+		{
+			"address": "$01c214",
+			"item1": 27,
+			"item1_name": "Blow 3",
+			"item2": 21,
+			"item2_name": "Celtis 3",
+			"result": 28,
+			"result_name": "Shot 1",
+			"marker": "$70"
+		},
+		{
+			"address": "$01c215",
+			"item1": 21,
+			"item1_name": "Celtis 3",
+			"item2": 28,
+			"item2_name": "Shot 1",
+			"result": 22,
+			"result_name": "Punch 1",
+			"marker": "$70"
+		},
+		{
+			"address": "$01c21b",
+			"item1": 18,
+			"item1_name": "Hammer 3",
+			"item2": 20,
+			"item2_name": "Celtis 2",
+			"result": 19,
+			"result_name": "Celtis 1",
+			"marker": "$6b"
+		},
+		{
+			"address": "$01c21c",
+			"item1": 20,
+			"item1_name": "Celtis 2",
+			"item2": 19,
+			"item2_name": "Celtis 1",
+			"result": 20,
+			"result_name": "Celtis 2",
+			"marker": "$6b"
+		},
+		{
+			"address": "$01c21d",
+			"item1": 19,
+			"item1_name": "Celtis 1",
+			"item2": 20,
+			"item2_name": "Celtis 2",
+			"result": 20,
+			"result_name": "Celtis 2",
+			"marker": "$6b"
+		},
+		{
+			"address": "$01c220",
+			"item1": 20,
+			"item1_name": "Celtis 2",
+			"item2": 27,
+			"item2_name": "Blow 3",
+			"result": 21,
+			"result_name": "Celtis 3",
+			"marker": "$6b"
+		},
+		{
+			"address": "$01c221",
+			"item1": 27,
+			"item1_name": "Blow 3",
+			"item2": 21,
+			"item2_name": "Celtis 3",
+			"result": 28,
+			"result_name": "Shot 1",
+			"marker": "$6b"
+		},
+		{
+			"address": "$01c222",
+			"item1": 21,
+			"item1_name": "Celtis 3",
+			"item2": 28,
+			"item2_name": "Shot 1",
+			"result": 22,
+			"result_name": "Punch 1",
+			"marker": "$6b"
+		},
+		{
+			"address": "$01c223",
+			"item1": 28,
+			"item1_name": "Shot 1",
+			"item2": 22,
+			"item2_name": "Punch 1",
+			"result": 29,
+			"result_name": "Shot 2",
+			"marker": "$6b"
+		},
+		{
+			"address": "$01c224",
+			"item1": 22,
+			"item1_name": "Punch 1",
+			"item2": 29,
+			"item2_name": "Shot 2",
+			"result": 23,
+			"result_name": "Punch 2",
+			"marker": "$6b"
+		},
+		{
+			"address": "$01c22b",
+			"item1": 21,
+			"item1_name": "Celtis 3",
+			"item2": 22,
+			"item2_name": "Punch 1",
+			"result": 22,
+			"result_name": "Punch 1",
+			"marker": "$6b"
+		},
+		{
+			"address": "$01c230",
+			"item1": 21,
+			"item1_name": "Celtis 3",
+			"item2": 23,
+			"item2_name": "Punch 2",
+			"result": 22,
+			"result_name": "Punch 1",
+			"marker": "$6b"
+		},
+		{
+			"address": "$01c231",
+			"item1": 23,
+			"item1_name": "Punch 2",
+			"item2": 22,
+			"item2_name": "Punch 1",
+			"result": 23,
+			"result_name": "Punch 2",
+			"marker": "$6b"
+		},
+		{
+			"address": "$01c232",
+			"item1": 22,
+			"item1_name": "Punch 1",
+			"item2": 23,
+			"item2_name": "Punch 2",
+			"result": 23,
+			"result_name": "Punch 2",
+			"marker": "$6b"
+		},
+		{
+			"address": "$01c239",
+			"item1": 12,
+			"item1_name": "Blade 1",
+			"item2": 15,
+			"item2_name": "Blade 4",
+			"result": 27,
+			"result_name": "Blow 3",
+			"marker": "$6b"
+		},
+		{
+			"address": "$01c23a",
+			"item1": 15,
+			"item1_name": "Blade 4",
+			"item2": 27,
+			"item2_name": "Blow 3",
+			"result": 27,
+			"result_name": "Blow 3",
+			"marker": "$6b"
+		},
+		{
+			"address": "$01c240",
+			"item1": 24,
+			"item1_name": "Punch 3",
+			"item2": 25,
+			"item2_name": "Blow 1",
+			"result": 25,
+			"result_name": "Blow 1",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c243",
+			"item1": 25,
+			"item1_name": "Blow 1",
+			"item2": 12,
+			"item2_name": "Blade 1",
+			"result": 15,
+			"result_name": "Blade 4",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c244",
+			"item1": 12,
+			"item1_name": "Blade 1",
+			"item2": 15,
+			"item2_name": "Blade 4",
+			"result": 13,
+			"result_name": "Blade 2",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c245",
+			"item1": 15,
+			"item1_name": "Blade 4",
+			"item2": 13,
+			"item2_name": "Blade 2",
+			"result": 16,
+			"result_name": "Hammer 1",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c246",
+			"item1": 13,
+			"item1_name": "Blade 2",
+			"item2": 16,
+			"item2_name": "Hammer 1",
+			"result": 27,
+			"result_name": "Blow 3",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c247",
+			"item1": 16,
+			"item1_name": "Hammer 1",
+			"item2": 27,
+			"item2_name": "Blow 3",
+			"result": 25,
+			"result_name": "Blow 1",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c248",
+			"item1": 27,
+			"item1_name": "Blow 3",
+			"item2": 25,
+			"item2_name": "Blow 1",
+			"result": 28,
+			"result_name": "Shot 1",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c249",
+			"item1": 25,
+			"item1_name": "Blow 1",
+			"item2": 28,
+			"item2_name": "Shot 1",
+			"result": 28,
+			"result_name": "Shot 1",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c24f",
+			"item1": 24,
+			"item1_name": "Punch 3",
+			"item2": 26,
+			"item2_name": "Blow 2",
+			"result": 25,
+			"result_name": "Blow 1",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c250",
+			"item1": 26,
+			"item1_name": "Blow 2",
+			"item2": 25,
+			"item2_name": "Blow 1",
+			"result": 26,
+			"result_name": "Blow 2",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c251",
+			"item1": 25,
+			"item1_name": "Blow 1",
+			"item2": 26,
+			"item2_name": "Blow 2",
+			"result": 26,
+			"result_name": "Blow 2",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c254",
+			"item1": 26,
+			"item1_name": "Blow 2",
+			"item2": 12,
+			"item2_name": "Blade 1",
+			"result": 15,
+			"result_name": "Blade 4",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c255",
+			"item1": 12,
+			"item1_name": "Blade 1",
+			"item2": 15,
+			"item2_name": "Blade 4",
+			"result": 13,
+			"result_name": "Blade 2",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c256",
+			"item1": 15,
+			"item1_name": "Blade 4",
+			"item2": 13,
+			"item2_name": "Blade 2",
+			"result": 16,
+			"result_name": "Hammer 1",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c257",
+			"item1": 13,
+			"item1_name": "Blade 2",
+			"item2": 16,
+			"item2_name": "Hammer 1",
+			"result": 14,
+			"result_name": "Blade 3",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c258",
+			"item1": 16,
+			"item1_name": "Hammer 1",
+			"item2": 14,
+			"item2_name": "Blade 3",
+			"result": 17,
+			"result_name": "Hammer 2",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c259",
+			"item1": 14,
+			"item1_name": "Blade 3",
+			"item2": 17,
+			"item2_name": "Hammer 2",
+			"result": 27,
+			"result_name": "Blow 3",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c25a",
+			"item1": 17,
+			"item1_name": "Hammer 2",
+			"item2": 27,
+			"item2_name": "Blow 3",
+			"result": 26,
+			"result_name": "Blow 2",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c25b",
+			"item1": 27,
+			"item1_name": "Blow 3",
+			"item2": 26,
+			"item2_name": "Blow 2",
+			"result": 28,
+			"result_name": "Shot 1",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c25c",
+			"item1": 26,
+			"item1_name": "Blow 2",
+			"item2": 28,
+			"item2_name": "Shot 1",
+			"result": 26,
+			"result_name": "Blow 2",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c25d",
+			"item1": 28,
+			"item1_name": "Shot 1",
+			"item2": 26,
+			"item2_name": "Blow 2",
+			"result": 29,
+			"result_name": "Shot 2",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c25e",
+			"item1": 26,
+			"item1_name": "Blow 2",
+			"item2": 29,
+			"item2_name": "Shot 2",
+			"result": 29,
+			"result_name": "Shot 2",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c262",
+			"item1": 24,
+			"item1_name": "Punch 3",
+			"item2": 27,
+			"item2_name": "Blow 3",
+			"result": 27,
+			"result_name": "Blow 3",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c265",
+			"item1": 27,
+			"item1_name": "Blow 3",
+			"item2": 1,
+			"item2_name": "Smoke",
+			"result": 8,
+			"result_name": "Sword 4",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c266",
+			"item1": 1,
+			"item1_name": "Smoke",
+			"item2": 8,
+			"item2_name": "Sword 4",
+			"result": 18,
+			"result_name": "Hammer 3",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c267",
+			"item1": 8,
+			"item1_name": "Sword 4",
+			"item2": 18,
+			"item2_name": "Hammer 3",
+			"result": 21,
+			"result_name": "Celtis 3",
+			"marker": "$69"
+		},
+		{
+			"address": "$01c26d",
+			"item1": 27,
+			"item1_name": "Blow 3",
+			"item2": 28,
+			"item2_name": "Shot 1",
+			"result": 28,
+			"result_name": "Shot 1",
+			"marker": "$6e"
+		},
+		{
+			"address": "$01c270",
+			"item1": 28,
+			"item1_name": "Shot 1",
+			"item2": 24,
+			"item2_name": "Punch 3",
+			"result": 28,
+			"result_name": "Shot 1",
+			"marker": "$6e"
+		},
+		{
+			"address": "$01c271",
+			"item1": 24,
+			"item1_name": "Punch 3",
+			"item2": 28,
+			"item2_name": "Shot 1",
+			"result": 25,
+			"result_name": "Blow 1",
+			"marker": "$6e"
+		}
+	],
+	"notes": [
+		"Recipe table starts at $01c200",
+		"Uses marker bytes $68-$79 for category indicators",
+		"$FF marks section boundaries",
+		"Format: Item + Item = Result (same-item pairs upgrade to next tier)",
+		"Some cross-type combinations exist (e.g., Hammer 3 + Hammer 3 = Celtis 1)"
+	]
+}
