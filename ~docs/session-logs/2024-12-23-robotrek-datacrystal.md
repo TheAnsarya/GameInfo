@@ -362,11 +362,29 @@ Added Python scripts for ROM research:
 | Hash | Message |
 |------|---------|
 | 963857b | feat(robotrek): add ROM analysis scripts and enemy name extraction |
+| ee1fced | docs(robotrek): update session log and ROM map with Session 4 findings |
+| 6d460fc | feat(robotrek): add combination recipe decoder |
+
+## All Commits This Project
+
+| Hash | Date | Message |
+|------|------|---------|
+| 4143fe4 | Session 1 | docs(robotrek): Integrate Data Crystal ROM/RAM map |
+| 9945d07 | Session 1 | feat(robotrek): Add Quintet LZSS decompressor |
+| a952223 | Session 1 | feat(robotrek): Add graphics extractor and assets |
+| 66a934f | Session 1 | feat(robotrek): Add data extractor with enemies/items |
+| 327073f | Session 2 | style: standardize hex values to lowercase |
+| ddb1dcd | Session 2 | docs: add comprehensive weapon/item stats from GameFAQs |
+| af10f91 | Session 3 | style: fix trailing whitespace |
+| a203b07 | Session 3 | docs(robotrek): add item pointer table, actor data, PAR verification |
+| 963857b | Session 4 | feat(robotrek): add ROM analysis scripts and enemy name extraction |
+| ee1fced | Session 4 | docs(robotrek): update session log and ROM map |
+| 6d460fc | Session 4 | feat(robotrek): add combination recipe decoder |
 
 ## What's Next
 
-1. **Decode full recipe table** - Complete parsing of combination recipes
-2. **Map actor/enemy data structure** - Decode the 22-byte entry format
-3. **Find level-up stat formulas** - Weapon damage scaling per level
-4. **Extract enemy HP/EXP/Gold** - From actor data table
-5. **Create comprehensive extraction tool** - All game data to JSON
+1. **Complete recipe table decoding** - Parse cross-item combinations
+2. **Find enemy stat tables** - Search other banks for HP/ATK/DEF/EXP data
+3. **Decode weapon level formulas** - How stats scale from Level 1-9
+4. **Create comprehensive extractor** - All game data to JSON
+5. **Update Data Crystal wiki** - Push verified findings
