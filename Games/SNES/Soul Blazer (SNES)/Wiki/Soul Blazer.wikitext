@@ -166,13 +166,31 @@ Soul Blazer contains numerous hidden elements:
 * Unused content: items, NPCs, music, and maps
 
 ==Audio==
-The game's music was composed by Yukihide Takekawa. The SNES SPC700 audio driver is located at $07A7F6 in the ROM.
+{{Main|Soul Blazer:Audio}}
+
+The game's music was composed by Yukihide Takekawa (タケカワユキヒデ). The SNES SPC700 audio driver is located at $07A7F6 in the ROM.
 
 ===Soundtrack===
-The game features 26 unique music tracks:
-* Title Screen, The Shrine, area themes for each act
-* Boss Battle, Deathtoll (final boss)
-* Victory, Game Over, Ending, Credits
+The game features 22 music tracks and 16 sound effects:
+* Town themes for each act (Grass Valley, GreenWood, St. Elles, Mountain Village, Leo's Lab, Magridd)
+* Dungeon themes (Underground Castle, Forest, Seabed, Ghost Ship, Mountain, Model Town, Painting World, World of Evil)
+* Boss Battle and Deathtoll (final boss) themes
+* Jingles: Victory, Soul Released, Game Over
+* Title Screen, The Shrine, Ending/Credits
+
+===BRR Samples===
+Soul Blazer uses 32 BRR (Bit Rate Reduction) audio samples including orchestral instruments, drums, and sound effects.
+
+==Technical Reference==
+{{Main|Soul Blazer:Technical Reference}}
+
+Detailed hardware specifications and system documentation:
+* SNES hardware configuration (Mode 1 graphics, 8-channel audio)
+* Memory maps (CPU, VRAM, OAM layouts)
+* Entity system (32-byte slots, AI states)
+* Collision types and map format
+* SRAM save file format
+* Compression formats (RLE, LZ77)
 
 ==See Also==
 * [[Soul Blazer:Notes|Notes]]

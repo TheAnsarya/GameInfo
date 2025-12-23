@@ -507,3 +507,50 @@ Features:
 - JSON metadata export
 - Known Soul Blazer sprite definitions
 - 4BPP tile decoding with palette application
+
+---
+
+## New Tools (Session 7)
+
+### Level Calculator
+```bash
+python level_calculator.py                          # Show help
+python level_calculator.py level 20 --from 10       # EXP needed for levels
+python level_calculator.py stats 25 --sword 5 --armor 4  # Calculate stats
+python level_calculator.py grind 15 25 --attack 20  # Optimal grinding spots
+python level_calculator.py table all                # Print all data tables
+python level_calculator.py table enemies --area "GreenWood"  # Filter by area
+python level_calculator.py damage 20 8              # Calculate damage
+python level_calculator.py export game_data.json    # Export all data
+```
+Features:
+- Level progression table (levels 1-50)
+- Experience calculation (EXP requirements, total EXP)
+- Stat calculation with equipment bonuses
+- Damage formula calculator (ATK - DEF/2)
+- Grinding optimization (kills needed, GEMs earned, efficiency)
+- Complete enemy database by area
+- Boss data (HP, attack, defense, EXP)
+- Equipment stats (8 swords, 8 armors, 8 magics)
+- JSON data export
+
+### BRR Decoder
+```bash
+python brr_decoder.py --list                        # List known samples
+python brr_decoder.py ROM.sfc --decode-all -o samples/  # Export all samples
+python brr_decoder.py ROM.sfc --decode 0x00         # Decode specific sample
+python brr_decoder.py ROM.sfc --decode "Piano"      # Decode by name
+python brr_decoder.py ROM.sfc --offset 0x0F8000 -o sample.wav  # Decode at offset
+python brr_decoder.py ROM.sfc --analyze             # Analyze without saving
+python brr_decoder.py ROM.sfc --scan                # Scan ROM for BRR data
+python brr_decoder.py ROM.sfc --scan-start 0x0F0000 --scan-end 0x100000
+```
+Features:
+- Decode SNES BRR (Bit Rate Reduction) audio samples
+- Export to standard WAV format (16-bit PCM)
+- 32 known Soul Blazer samples cataloged
+- All 4 BRR filter modes supported
+- Sample analysis (amplitude, RMS, duration, loop points)
+- BRR scanning to find unknown samples
+- Configurable sample rate output
+- Sample metadata with ADSR values
