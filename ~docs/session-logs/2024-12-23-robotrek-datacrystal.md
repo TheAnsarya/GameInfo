@@ -111,25 +111,95 @@ Created `tools/robotrek/quintet_lzss.py`:
    - Material requirements
    - Success conditions
 
+## Session 2 - GameFAQs Integration
+
+### Work Completed
+
+#### 1. Hex Case Standardization
+
+Fixed all uppercase hexadecimal values to lowercase per project conventions:
+- `tools/robotrek/extract_data.py` - Format specifiers (06X → 06x)
+- `tools/robotrek/extract_graphics.py` - Format specifiers
+- `tools/robotrek/quintet_lzss.py` - Print statements
+- `Games/SNES/Robotrek (SNES)/disasm/README.md`
+- `Games/SNES/Robotrek (SNES)/BUILD.md`
+- All Wiki/SNES/Robotrek/*.wikitext files
+
+#### 2. GameFAQs Data Integration
+
+Fetched comprehensive game data from GameFAQs guides:
+- DSLevantine's Guide and Walkthrough (2024)
+- saintly's Weapons Guide (2003)
+
+#### 3. New Documentation Created
+
+**Wiki/SNES/Robotrek/Weapons.wikitext** (new file):
+- Complete damage tables for all 17 weapon types by level (1-9)
+- Base ATK and scaling for Swords, Axes, Hammers, Punches, Shots, Lasers, Blades, Celtis, Blows, Bombs
+- Shield and Boots defense stats
+- Pack equipment stats
+- All weapon combination recipes
+- Inventor's Friend locations and level requirements (Level 1-80)
+- Item combination recipes (Smoke, Cure, Clean, Repair, Big Bomb)
+
+#### 4. Updated Documentation
+
+**Wiki/SNES/Robotrek/Items.wikitext**:
+- Added key item descriptions from game
+- Added consumable item costs
+- Added scrap material notes
+- Added cross-references to Weapons page
+
+**Wiki/SNES/Robotrek/Enemies.wikitext**:
+- Added enemy drop tables (45+ entries)
+- Added "message" difficulty factor
+- Added drop items and gold rewards
+
+**Wiki/SNES/Robotrek/RAM_Map.wikitext**:
+- Added verified Pro Action Replay addresses:
+  - $7e0b14 - Hero Level
+  - $7e0690 - Robot 1 Energy
+  - $7e0696 - Robot 1 Power
+  - $7e069c - Robot 1 Guard
+  - $7e07b0-bf - Inventor's Friend flags
+
+**Wiki/SNES/Robotrek/Main.wikitext**:
+- Updated subpages to include Weapons
+- Updated item/enemy counts
+
+### Session 2 Commits
+
+| Hash | Message |
+|------|---------|
+| 327073f | style: standardize hex values to lowercase across Robotrek project |
+| ddb1dcd | docs: add comprehensive weapon/item stats from GameFAQs reference |
+
 ## Files Modified
 
 - `Wiki/SNES/Robotrek/ROM_Map.wikitext`
 - `Wiki/SNES/Robotrek/RAM_Map.wikitext`
 - `Wiki/SNES/Robotrek/Main.wikitext`
+- `Wiki/SNES/Robotrek/Items.wikitext`
+- `Wiki/SNES/Robotrek/Enemies.wikitext`
 - `Games/SNES/Robotrek (SNES)/disasm/README.md`
+- `Games/SNES/Robotrek (SNES)/BUILD.md`
+- `tools/robotrek/extract_data.py`
+- `tools/robotrek/extract_graphics.py`
+- `tools/robotrek/quintet_lzss.py`
 
 ## Files Created
 
 - `tools/robotrek/quintet_lzss.py`
 - `tools/robotrek/extract_graphics.py`
 - `tools/robotrek/extract_data.py`
+- `Wiki/SNES/Robotrek/Weapons.wikitext`
 - `Games/SNES/Robotrek (SNES)/extracted/font_80000.png`
 - `Games/SNES/Robotrek (SNES)/extracted/font_81000.png`
 - `Games/SNES/Robotrek (SNES)/extracted/inventory_d9310.png`
 - `Games/SNES/Robotrek (SNES)/extracted/enemies.json`
 - `Games/SNES/Robotrek (SNES)/extracted/items.json`
 
-## Commits This Session
+## All Commits This Session
 
 | Hash | Message |
 |------|---------|
@@ -137,3 +207,20 @@ Created `tools/robotrek/quintet_lzss.py`:
 | 9945d07 | feat(robotrek): Add Quintet LZSS decompressor |
 | a952223 | feat(robotrek): Add graphics extractor and assets |
 | 66a934f | feat(robotrek): Add data extractor with enemies/items |
+| 327073f | style: standardize hex values to lowercase |
+| ddb1dcd | docs: add comprehensive weapon/item stats from GameFAQs |
+
+## What's Next
+
+1. **Locate weapon stat tables in ROM** - Find the actual data structures for:
+   - Weapon base ATK values
+   - Level scaling formulas
+   - Item prices
+   
+2. **Verify PAR addresses** - Cross-reference PAR codes with disassembly
+
+3. **Extract combination recipes from ROM** - The Invention Machine logic
+
+4. **Enemy stat tables** - Find HP, EXP, gold values in ROM
+
+5. **Create extraction tools for verified data** - JSON export of game tables
