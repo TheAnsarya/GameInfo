@@ -394,3 +394,57 @@ The rebuild process verifies:
 - [ROM Map](Wiki/Soul%20Blazer%20-%20ROM%20map.wikitext)
 - [RAM Map](Wiki/Soul%20Blazer%20-%20RAM%20map.wikitext)
 - [Data Tables](Wiki/Soul%20Blazer%20-%20Data%20tables.wikitext)
+---
+
+## New Tools (Session 5)
+
+### SPC Exporter
+```bash
+python spc_exporter.py                    # Export all tracks to SPC format
+python spc_exporter.py --list             # List all known tracks
+python spc_exporter.py --track 0x01       # Export specific track
+python spc_exporter.py --analyze          # Analyze audio data in ROM
+python spc_exporter.py --catalog          # Export track catalog to JSON
+```
+Features:
+- Generate playable SPC files from ROM audio data
+- 22 music tracks supported (BGM + jingles)
+- Proper SPC header with ID666 tags
+- BRR sample extraction
+- SPC700 driver extraction
+- Track duration and metadata
+
+### Asset Pipeline
+```bash
+python asset_pipeline.py --list           # List all available assets
+python asset_pipeline.py --extract-all    # Extract all assets
+python asset_pipeline.py --extract NAME   # Extract specific asset
+python asset_pipeline.py --inject NAME FILE  # Inject modified asset
+```
+Features:
+- Bidirectional asset conversion (ROM ↔ Editable)
+- Text extraction/injection (JSON)
+- Graphics extraction/injection (PNG)
+- Enemy/item data (JSON)
+- Palette extraction (JSON with RGB/SNES values)
+- Map data extraction
+- Custom text encoding support
+
+### Deep Analyzer
+```bash
+python deep_analyzer.py                   # Full ROM analysis
+python deep_analyzer.py --bank 00         # Analyze specific bank
+python deep_analyzer.py --strings         # Find ASCII strings
+python deep_analyzer.py --pointers        # Find pointer tables
+python deep_analyzer.py --subroutines     # Find subroutine entry points
+python deep_analyzer.py --symbols         # Export discovered symbols
+```
+Features:
+- Comprehensive ROM structure analysis
+- 65816 opcode decoding and classification
+- Subroutine discovery and cross-referencing
+- String detection
+- Pointer table detection
+- Code vs data ratio analysis
+- Anomaly detection (unreachable code, infinite loops)
+- Symbol file generation for disassembly
