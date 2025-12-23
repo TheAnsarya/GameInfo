@@ -37,21 +37,21 @@ Robotrek uses '''Quintet's standard LZSS compression algorithm''', common to oth
 === Early Banks ($00000-$3ffff) ===
 
 {| class="wikitable"
-! File Offset !! Size !! Description
+! File Offset !! Size !! Description !! Decomp Size
 |-
-| $00000-$00622 || $623 || Compressed map tileset data
+| $00000-$00622 || $623 || Compressed map tileset data || 2048 bytes
 |-
-| $00623-$00c3e || $61c || Compressed map tileset data
+| $00623-$00c3e || $61c || Compressed map tileset data || 2048 bytes
 |-
-| $00c3f-$0124d || $60f || Compressed map tileset data
+| $00c3f-$0124d || $60f || Compressed map tileset data || 2048 bytes
 |-
-| $0124e-$01844 || $5f7 || Compressed map tileset data
+| $0124e-$01844 || $5f7 || Compressed map tileset data || 2048 bytes
 |-
-| $01845-$01e2e || $5ea || Compressed map tileset data
+| $01845-$01e2e || $5ea || Compressed map tileset data || 2048 bytes
 |-
-| $01e2f-$023e7 || $5b9 || Compressed map tileset data
+| $01e2f-$023e7 || $5b9 || Compressed map tileset data || 2048 bytes
 |-
-| $023e8-$0296a || $583 || Compressed map arrangement data
+| $023e8-$0296a || $583 || Compressed map arrangement data || 771 bytes
 |-
 | $0296b-$02eea || $580 || '''Music - Robots vs. Hackers'''
 |-
@@ -130,6 +130,28 @@ Robotrek uses '''Quintet's standard LZSS compression algorithm''', common to oth
 | $921e7-$93871 || Sound sample 06 (large)
 |-
 | ... || (Samples 07-2A continue through $d177b)
+|}
+
+=== Palettes ===
+
+SNES palettes are 15-bit RGB (BBBBBGGGGGRRRRR) stored little-endian. Each palette is 32 bytes (16 colors × 2 bytes).
+
+{| class="wikitable"
+! File Offset !! Size !! Description !! Notes
+|-
+| $018845-$018c05 || $3c0 || Palettes (30 entries) || General game palettes
+|-
+| $05de10-$05e7ff || $9f0 || Robot/object palettes (79 entries) || Robot color customization
+|-
+| $08fe00-$08ffff || $200 || Palettes (16 entries) || Menu/UI palettes
+|-
+| $10b9a0-$10ba40 || $c0 || Palette group (6 entries) || Detected via pattern analysis
+|-
+| $139020-$139080 || $80 || Palette group (4 entries) || Detected via pattern analysis
+|-
+| $14a0e0-$14a1a0 || $c0 || Palette group (7 entries) || Detected via pattern analysis
+|-
+| $14b020-$14b0e0 || $c0 || Palette group (7 entries) || Detected via pattern analysis
 |}
 
 === Graphics ($80000-$8ffff) ===
