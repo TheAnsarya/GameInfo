@@ -1,12 +1,12 @@
 {
-	"generated": "2025-12-23T04:37:45.423114",
+	"generated": "2025-12-23T05:55:27.544137",
 	"generator": "rom_catalog_generator.py",
 	"version": "1.0.0",
 	"root_path": "~roms",
-	"total_files": 111,
-	"total_size": 189530112,
+	"total_files": 113,
+	"total_size": 192675840,
 	"platforms": {
-		"SNES": 111
+		"SNES": 113
 	},
 	"folders": {
 		"SNES": {
@@ -333,6 +333,12 @@
 									"sha256": "04ca1a481093c4a7e12f18b33697d6e05e50e30e0f5b1655aa265abd14719bba"
 								},
 								{
+									"filename": "Robotrek (U) [!].sfc",
+									"size": 1572864,
+									"crc32": "7ad4aadc",
+									"sha256": "1e2ded7b1e350449b7a99b7ec414525e4b9b086c416deeee5eb3e48e032c46bd"
+								},
+								{
 									"filename": "Rockman & Forte (J) [!].sfc",
 									"size": 4194304,
 									"crc32": "5047e0d4",
@@ -631,6 +637,12 @@
 									"size": 524288,
 									"crc32": "0866a769",
 									"sha256": "2a14be3e9c9678d7eef829520d10feca5d9c9c1878b9c25fd16fb80c91fb6466"
+								},
+								{
+									"filename": "Slap Stick (J).sfc",
+									"size": 1572864,
+									"crc32": "53fb163b",
+									"sha256": "08144ea1ce3cf6ab107837278d308e4e859574a047a2ee8eb456f7900ad4be21"
 								},
 								{
 									"filename": "Soul Blade (Unl) [!].sfc",
@@ -2880,6 +2892,48 @@
 			"gba_header": null
 		},
 		{
+			"filename": "Robotrek (U) [!].sfc",
+			"relative_path": "SNES/GoodSNES/Robotrek (U) [!].sfc",
+			"size": 1572864,
+			"extension": ".sfc",
+			"crc32": "7ad4aadc",
+			"md5": "e85702f5d32e03a7cbae1154ee5083ce",
+			"sha1": "e315830e71cc6da91234813f70835d26802c0ea1",
+			"sha256": "1e2ded7b1e350449b7a99b7ec414525e4b9b086c416deeee5eb3e48e032c46bd",
+			"sha512": "608b5b05ab132406a155e924c5e0e9e309b2d92599ac37765ef49ddb6e9f5365a67bd50f67fc97abe2eb7e19f39febb19fea1745c9dd07b5c5582ca4a456fe8b",
+			"blake2b": "24d9fe4d2c4a5ddf712bf09ac748fbd1b9370b910c32c446fdc34a65a13aa51f00b3811921067add81841a2fdb5fc2a8389e56785290944ca6f4bffebb8cc8bd",
+			"blake3": "",
+			"description": "Robotrek",
+			"platform": "SNES",
+			"region": "USA",
+			"revision": "",
+			"is_verified": true,
+			"is_bad_dump": false,
+			"is_overdump": false,
+			"is_underdump": false,
+			"is_hack": false,
+			"is_translation": false,
+			"is_unlicensed": false,
+			"is_prototype": false,
+			"is_beta": false,
+			"snes_header": {
+				"title": "ROBOTREK 1 USA",
+				"mapper": "HiROM+FastROM",
+				"rom_type": "ROM+RAM+Battery",
+				"rom_size": 2097152,
+				"sram_size": 8192,
+				"country": "USA",
+				"license": "0x33",
+				"version": 0,
+				"checksum": 27972,
+				"complement": 37563,
+				"header_offset": 65472,
+				"is_valid": true
+			},
+			"nes_header": null,
+			"gba_header": null
+		},
+		{
 			"filename": "Rockman & Forte (J) [!].sfc",
 			"relative_path": "SNES/GoodSNES/Rockman & Forte (J) [!].sfc",
 			"size": 4194304,
@@ -4974,6 +5028,48 @@
 				"checksum": 41231,
 				"complement": 24304,
 				"header_offset": 32704,
+				"is_valid": true
+			},
+			"nes_header": null,
+			"gba_header": null
+		},
+		{
+			"filename": "Slap Stick (J).sfc",
+			"relative_path": "SNES/GoodSNES/Slap Stick (J).sfc",
+			"size": 1572864,
+			"extension": ".sfc",
+			"crc32": "53fb163b",
+			"md5": "eea1d6e9c25d39d0ba92be05e61f75f5",
+			"sha1": "af9bcfaa13d2cdbed7d946fcb68e7028210a2489",
+			"sha256": "08144ea1ce3cf6ab107837278d308e4e859574a047a2ee8eb456f7900ad4be21",
+			"sha512": "11bfde310139eaf28d6d53710e99ded4c3995508ce94cc4026c9b6edf68f384aa81d9f4be1f44b70ffcff1da5173a8d86fb520f968542ae2018472fce06bc348",
+			"blake2b": "1e7a56dadc51d9f482a01e07c135c1b9901b24c02e1582b0fbc699d7084495603e4efc8ad6923c1b1486526915bb27bf1064f20fb173c80cad8ea47dad4bf434",
+			"blake3": "",
+			"description": "Slap Stick",
+			"platform": "SNES",
+			"region": "Japan",
+			"revision": "",
+			"is_verified": false,
+			"is_bad_dump": false,
+			"is_overdump": false,
+			"is_underdump": false,
+			"is_hack": false,
+			"is_translation": false,
+			"is_unlicensed": false,
+			"is_prototype": false,
+			"is_beta": false,
+			"snes_header": {
+				"title": "SLAP STICK 1 JPN",
+				"mapper": "HiROM+FastROM",
+				"rom_type": "ROM+RAM+Battery",
+				"rom_size": 2097152,
+				"sram_size": 8192,
+				"country": "Japan",
+				"license": "0xB4",
+				"version": 0,
+				"checksum": 58299,
+				"complement": 7236,
+				"header_offset": 65472,
 				"is_valid": true
 			},
 			"nes_header": null,
