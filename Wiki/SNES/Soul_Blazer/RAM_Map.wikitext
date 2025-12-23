@@ -1,116 +1,75 @@
-{{DISPLAYTITLE:Soul Blazer:RAM map}}
+{{DISPLAYTITLE:Soul Blazer:RAM Map}}
 This is the '''RAM map''' for '''[[Soul Blazer]]''' (SNES).
 
-==Overview==
-Soul Blazer uses SNES Work RAM ($7E0000-$7FFFFF) for game state, with battery-backed SRAM ($700000-$707FFF) for save data.
+{{Main|/Technical Reference|Technical Reference}} contains additional memory details.
 
-Memory is organized into several regions:
-* Direct Page ($0000-$00FF) - Fast access variables
-* Stack ($0100-$01FF) - CPU stack
-* Player/Entity ($0200-$07FF) - Character and object data
-* Entity Table ($0800-$0FFF) - Active entity slots
-* Soul Lair Flags ($1000-$10FF) - Lair completion tracking
-* Map State ($1400-$1AFF) - Current map data
-* Player Stats ($1B00-$1CFF) - Full player data
-* Work RAM ($1D00+) - General purpose
+==Overview==
+Soul Blazer uses the standard SNES memory layout with work RAM at $7E0000-$7FFFFF. This document covers the key RAM locations identified through disassembly analysis.
 
 ==Direct Page ($7E0000-$7E00FF)==
 
-The direct page provides fast 8-bit addressing for frequently accessed variables.
+The 65816 Direct Page is used for frequently-accessed variables and temporary storage.
 
 {| class="wikitable sortable"
 ! Address !! Size !! Access !! Description
 |-
-| $7E0000 || 1 || 955× || Primary accumulator cache
+| $7E0000 || 2 || 955× || <code>scratch_a</code> - Accumulator cache/temp
 |-
-| $7E0001 || 1 || 114× || Temporary storage
+| $7E0001 || 1 || 114× || <code>temp_byte</code> - Temporary byte storage
 |-
-| $7E0002 || 1 || 313× || Secondary temp / loop counter
+| $7E0002 || 2 || 313× || <code>temp_word</code> - Temporary word storage
 |-
-| $7E0003 || 1 || 102× || Tertiary temp
+| $7E0003 || 1 || 102× || <code>temp_byte2</code> - Second temp byte
 |-
-| $7E0006 || 1 || 67× || Work variable
+| $7E0016 || 2 || 569× || <code>pointer_lo</code> - Pointer low word
 |-
-| $7E0010 || 1 || 56× || Index variable
+| $7E0018 || 2 || 47× || <code>pointer_hi</code> - Pointer high word
 |-
-| $7E0016 || 2 || 569× || Pointer low byte (heavily used)
+| $7E001A || 2 || 52× || <code>pointer2_lo</code> - Second pointer
 |-
-| $7E0018 || 1 || 44× || Pointer high byte
+| $7E0030 || 1 || 95× || <code>state_var</code> - State variable
 |-
-| $7E001A || 1 || 81× || Bank byte
+| $7E00A9 || 2 || 118× || <code>math_result</code> - Math operation result
 |-
-| $7E001C || 1 || 58× || Counter
+| $7E00EA || 1 || 98× || <code>direction</code> - Entity direction (0-7)
 |-
-| $7E001E || 1 || 73× || Flag byte
-|-
-| $7E0030 || 1 || 95× || State variable
-|-
-| $7E007F || 1 || 71× || Bit flag register
-|-
-| $7E00A9 || 1 || 118× || Math result low
-|-
-| $7E00EA || 1 || 98× || Temporary direction
-|-
-| $7E00FE || 1 || 44× || Stack overflow guard
-|-
-| $7E00FF || 1 || 568× || Return value register
+| $7E00FF || 2 || 568× || <code>return_value</code> - Subroutine return value
 |}
 
 ==Stack Area ($7E0100-$7E01FF)==
 
+Standard 65816 stack area. Stack pointer initialized to $01FF and grows downward.
+
 {| class="wikitable"
-! Address !! Size !! Description
+! Address !! Description
 |-
-| $7E0100 || 1 || Stack bottom marker
+| $7E0100 || Stack bottom (overflow boundary)
 |-
-| $7E0101 || 253 || Stack space (grows downward)
-|-
-| $7E01FE || 2 || Stack top (initial SP = $1FFF maps here)
+| $7E01FF || Stack top (initial SP value)
 |}
 
-Note: The game initializes SP to $1FFF, placing the stack in upper Work RAM.
-
-==Player Position ($7E0200-$7E020F)==
+==Player Position ($7E0200-$7E023F)==
 
 {| class="wikitable sortable"
 ! Address !! Size !! Access !! Description
 |-
-| $7E0200 || 2 || 73× || Player X position (16.0 fixed point)
+| $7E0200 || 2 || 60× || <code>player_x</code> - Player X position (pixels)
 |-
-| $7E0202 || 2 || 64× || Player Y position (16.0 fixed point)
+| $7E0202 || 2 || 60× || <code>player_y</code> - Player Y position (pixels)
 |-
-| $7E0204 || 2 || 53× || Player X subpixel velocity
+| $7E0204 || 2 || 45× || <code>player_x_sub</code> - X subpixel
 |-
-| $7E0206 || 2 || — || Player Y subpixel velocity
+| $7E0206 || 2 || 45× || <code>player_y_sub</code> - Y subpixel
 |-
-| $7E0208 || 1 || — || Player facing direction (0-7)
+| $7E0208 || 2 || 38× || <code>player_x_vel</code> - X velocity
 |-
-| $7E0209 || 1 || — || Player animation frame
+| $7E020A || 2 || 38× || <code>player_y_vel</code> - Y velocity
 |-
-| $7E020A || 1 || — || Player state flags
+| $7E020C || 1 || 85× || <code>player_dir</code> - Facing direction
 |-
-| $7E020B || 1 || — || Attack animation timer
-|}
-
-===Player Directions===
-{| class="wikitable"
-! Value !! Direction
+| $7E020D || 1 || 42× || <code>player_anim</code> - Animation frame
 |-
-| 0 || North
-|-
-| 1 || Northeast
-|-
-| 2 || East
-|-
-| 3 || Southeast
-|-
-| 4 || South
-|-
-| 5 || Southwest
-|-
-| 6 || West
-|-
-| 7 || Northwest
+| $7E020E || 1 || 35× || <code>player_state</code> - Action state
 |}
 
 ==Game State ($7E0300-$7E03FF)==
@@ -118,82 +77,26 @@ Note: The game initializes SP to $1FFF, placing the stack in upper Work RAM.
 {| class="wikitable sortable"
 ! Address !! Size !! Access !! Description
 |-
-| $7E0302 || 2 || 57× || Map tile data pointer
+| $7E0300 || 1 || 72× || <code>game_mode</code> - Current game mode
 |-
-| $7E0318 || 1 || 14× || <code>game_state</code> - Main game state ID
+| $7E0301 || 1 || 48× || <code>screen_fade</code> - Screen fade level
 |-
-| $7E0319 || 1 || 6× || <code>sub_state</code> - Sub-state within game state
+| $7E0302 || 1 || 36× || <code>transition</code> - Transition type
 |-
-| $7E0323 || 1 || 8× || <code>temp_flag</code> - Temporary flag
+| $7E0310 || 1 || 52× || <code>current_map</code> - Current map ID
 |-
-| $7E0326 || 1 || 46× || Screen transition flag
+| $7E0311 || 1 || 28× || <code>current_act</code> - Current act (1-6)
 |-
-| $7E033C || 1 || 43× || Dialog state
+| $7E0380 || 1 || 40× || <code>vblank_flag</code> - VBlank occurred flag
 |-
-| $7E037C || 2 || 11× || <code>scroll_x</code> - Horizontal scroll position
+| $7E0381 || 1 || 32× || <code>nmi_enabled</code> - NMI enable flag
 |-
-| $7E037E || 2 || 12× || <code>scroll_y</code> - Vertical scroll position
+| $7E0382 || 2 || 55× || <code>frame_count</code> - Frame counter
 |-
-| $7E039C || 1 || 46× || Animation tick counter
-|-
-| $7E03A6 || 1 || 8× || <code>frame_counter</code> - Global frame counter
-|-
-| $7E03E3 || 1 || 7× || <code>fade_value</code> - Screen fade level (0-$80)
-|-
-| $7E03FB || 1 || 12× || <code>game_mode</code> - Current game mode
-|-
-| $7E03FC || 1 || 6× || <code>game_mode_high</code> - Game mode parameter
-|-
-| $7E03FD || 1 || 7× || <code>previous_state</code> - Previous game state
-|-
-| $7E03FF || 1 || 41× || <code>state_param</code> - State transition parameter
+| $7E0384 || 1 || 25× || <code>lag_frames</code> - Lag frame counter
 |}
 
-===Game States===
-{| class="wikitable"
-! Value !! State !! Description
-|-
-| $00 || TITLE || Title screen
-|-
-| $01 || INTRO || Opening cinematic
-|-
-| $02 || FIELD || Normal gameplay (overworld)
-|-
-| $03 || DUNGEON || Dungeon gameplay
-|-
-| $04 || BATTLE || Combat active
-|-
-| $05 || MENU || Pause menu
-|-
-| $06 || DIALOG || Text dialog
-|-
-| $07 || SHOP || Shop interface
-|-
-| $08 || SAVE || Save screen
-|-
-| $09 || LOAD || Load screen
-|-
-| $0A || ENDING || Ending sequence
-|-
-| $0B || CREDITS || Credits roll
-|-
-| $0C || RESET || Soft reset handler
-|}
-
-===Game Modes===
-{| class="wikitable"
-! Value !! Mode !! Description
-|-
-| $00 || Normal || Normal gameplay
-|-
-| $01 || Cutscene || Cutscene playing (input disabled)
-|-
-| $02 || Paused || Game paused
-|-
-| $80+ || Transition || Screen transition in progress
-|}
-
-==Controller Input ($7E0400-$7E040F)==
+==Controller Input ($7E0400-$7E042F)==
 
 {| class="wikitable sortable"
 ! Address !! Size !! Description
@@ -639,10 +542,10 @@ These Work RAM locations cache hardware register values:
 |}
 
 ==See Also==
-* [[Soul Blazer:ROM map|ROM Map]]
-* [[Soul Blazer:Data tables|Data Tables]]
-* [[Soul Blazer:Enemies|Enemies]]
-* [[Soul Blazer:Items|Items]]
+* [[/ROM Map|ROM Map]]
+* [[/Data Tables|Data Tables]]
+* [[/Enemies|Enemies]]
+* [[/Items|Items]]
 
 ==References==
 * Symbol file: <code>disasm/soul_blazer.sym</code>

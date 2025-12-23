@@ -1,4 +1,4 @@
-{{DISPLAYTITLE:Soul Blazer:Data structures}}
+{{DISPLAYTITLE:Soul Blazer:Data Structures}}
 This page documents the '''binary data structures and formats''' used in '''[[Soul Blazer]]''' (SNES).
 
 ==Overview==
@@ -305,7 +305,7 @@ Located at RAM $7E1B00 (52 bytes).
 ==Text Encoding==
 
 ===Character Encoding Table===
-Soul Blazer uses a custom text encoding.
+Soul Blazer uses a custom text encoding. See the [[/TBL|TBL page]] for the complete table.
 
 {| class="wikitable"
 ! Range !! Description
@@ -364,83 +364,6 @@ Control codes:
   $F8      : Insert player name
 </pre>
 
-==SRAM Save Format==
-
-===Save File Layout===
-SRAM: $700000-$707FFF (32KB, mirrored)
-
-{| class="wikitable"
-! Offset !! Size !! Description
-|-
-| $0000 || 2 || Save file checksum
-|-
-| $0002 || 4 || Magic bytes ("SOUL")
-|-
-| $0006 || 1 || Save slot number
-|-
-| $0007 || 1 || Valid save flag ($55=valid)
-|-
-| $0008 || $34 || Player stats block (copy from $7E1B00)
-|-
-| $003C || 2 || Current map ID
-|-
-| $003E || 2 || Player X position
-|-
-| $0040 || 2 || Player Y position
-|-
-| $0042 || 1 || Player direction
-|-
-| $0043 || 1 || Current act number (1-6)
-|-
-| $0044 || $100 || Soul lair completion flags
-|-
-| $0144 || $80 || Event flags
-|-
-| $01C4 || $20 || Treasure chest flags
-|-
-| $01E4 || $1C || Reserved
-|-
-| $0200 || - || (Each save slot = $200 bytes)
-|}
-
-Checksum calculation:
-<pre>
-sum = 0
-for each byte from offset $0002 to $01FF:
-    sum += byte
-checksum = sum ^ $FFFF
-</pre>
-
-==Pointer Tables==
-
-===Map Pointer Table===
-Banks $10-$17 contain map data pointers.
-
-<pre>
-Table structure:
-  Word 0: Tileset pointer
-  Word 2: Tilemap pointer
-  Word 4: Collision pointer
-  Word 6: Entity spawn pointer
-  Word 8: Music ID
-  Word A: Area properties
-</pre>
-
-===NPC Pointer Table===
-NPC data organized by area.
-
-<pre>
-Per NPC entry (12 bytes):
-  Byte 0-1: X position
-  Byte 2-3: Y position
-  Byte 4: NPC type
-  Byte 5: Dialogue ID
-  Byte 6: Movement pattern
-  Byte 7: Direction
-  Byte 8-9: Associated lair ID
-  Byte A-B: Flags
-</pre>
-
 ==Compression==
 
 ===RLE Compression===
@@ -469,11 +392,10 @@ Commands:
 </pre>
 
 ==See Also==
-* [[Soul Blazer:RAM map]]
-* [[Soul Blazer:ROM map]]
-* [[Soul Blazer:Data tables]]
-* [[Soul Blazer:Enemies]]
+* [[/RAM Map|RAM Map]]
+* [[/ROM Map|ROM Map]]
+* [[/Data Tables|Data Tables]]
+* [[/TBL|Text Table]]
 
-[[Category:SNES]]
 [[Category:Soul Blazer]]
 [[Category:Data Structures]]

@@ -1,4 +1,4 @@
-{{DISPLAYTITLE:Soul Blazer - Credits}}
+{{DISPLAYTITLE:Soul Blazer:Credits}}
 '''Soul Blazer''' was developed by '''Quintet''' and published by '''Enix''' in 1992. This page documents the development team, credits, and historical context.
 
 == Development Team ==
@@ -197,37 +197,8 @@ All three games share:
 * Quintet development team
 * Enix publishing
 
-=== Modern Availability ===
-
-As of 2024, Soul Blazer has not been officially re-released on any modern platform. Options for playing:
-* Original SNES cartridge
-* SNES Classic (via modding)
-* Emulation
-
-== Development Trivia ==
-
-* Soul Blazer was originally conceived as a sequel to ActRaiser
-* The game engine was heavily modified from ActRaiser
-* Development took approximately 18 months
-* The team was approximately 15 people
-* Sound was composed on actual SNES hardware
-* Debug mode code remains in US ROM (Game Genie enabled)
-
-== References ==
-
-* Quintet developer interviews (Famitsu, 1992)
-* Soul Blazer instruction manual
-* Enix press releases
-* ROM header and data analysis
-
-== See Also ==
-
-* [[Soul Blazer|Main Article]]
-* [[Soul Blazer - Audio|Audio System]]
-* [[Soul Blazer - Technical Reference|Technical Reference]]
-* [[Soul Blazer - ROM Map|ROM Map]]
+==See Also==
+* [[/Audio|Audio]] - Music details
 
 [[Category:Soul Blazer]]
-[[Category:SNES]]
 [[Category:Credits]]
-[[Category:Development History]]

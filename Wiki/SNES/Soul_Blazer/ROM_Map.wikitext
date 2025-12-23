@@ -1,5 +1,7 @@
-{{DISPLAYTITLE:Soul Blazer:ROM map}}
+{{DISPLAYTITLE:Soul Blazer:ROM Map}}
 This is the '''ROM map''' for '''[[Soul Blazer]]''' (SNES).
+
+{{Main|/Technical Reference|Technical Reference}} contains additional ROM layout details.
 
 ==Overview==
 Soul Blazer uses '''LoROM''' mapping. The ROM is 1MB (32 banks × 32KB).
@@ -240,9 +242,9 @@ Scan identified '''7,844 potential Soul Lair structures'''.
 |}
 
 ==See Also==
-* [[Soul Blazer:RAM map|RAM Map]]
-* [[Soul Blazer:Data tables|Data Tables]]
-* [[Soul Blazer:Enemies|Enemy Data]]
+* [[/RAM Map|RAM Map]]
+* [[/Data Tables|Data Tables]]
+* [[/Enemies|Enemy Data]]
 
 [[Category:Soul Blazer]]
 [[Category:ROM maps]]

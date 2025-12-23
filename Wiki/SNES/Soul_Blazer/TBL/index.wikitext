@@ -1,0 +1,51 @@
+{{TBL}}
+
+=Text Table=
+
+==English==
+
+This applies to:
+* Soul Blazer (U) [!]
+
+[[Soul Blazer (SNES)/TBL/English|English]]
+
+==Japanese==
+
+This applies to:
+* Soul Blader (J) [!]
+
+[TODO: Add Japanese table]
+
+==Control Codes==
+
+{| class="wikitable"
+! Code !! Description
+|-
+| $F0 xx || Pause for xx frames
+|-
+| $F1 || Wait for button press
+|-
+| $F2 xx || Set text color xx
+|-
+| $F3 xx yy || Set text position (x, y)
+|-
+| $F4 xx || Play sound effect xx
+|-
+| $F5 || Clear text window
+|-
+| $F6 nn || Insert item name #nn
+|-
+| $F7 nn || Insert character name #nn
+|-
+| $F8 || Insert player name
+|-
+| $FE || New line
+|-
+| $FF || End of string
+|}
+
+=Links=
+
+<br/>
+
+{{Internal Data}}

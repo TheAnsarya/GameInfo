@@ -1,4 +1,4 @@
-{{DISPLAYTITLE:Soul Blazer - Technical Reference}}
+{{DISPLAYTITLE:Soul Blazer:Technical Reference}}
 This is the '''technical reference''' for '''[[Soul Blazer]]''' (SNES), providing detailed hardware specifications, memory layouts, and system documentation.
 
 ==System Overview==
@@ -297,38 +297,6 @@ SRAM is 8KB ($70:0000-$70:1FFF), divided into 3 save slots:
 | $0024 || 2 || Attack power
 |-
 | $0026 || 2 || Defense power
-|-
-| $0028 || 1 || Sword inventory flags
-|-
-| $0029 || 1 || Armor inventory flags
-|-
-| $002A || 1 || Magic inventory flags
-|-
-| $002B || 1 || Item inventory flags
-|-
-| $002C || 1 || Emblem flags
-|-
-| $002D || 1 || Stone count
-|-
-| $002E || 16 || Soul flags (area 1)
-|-
-| $003E || 16 || Soul flags (area 2)
-|-
-| $004E || 16 || Soul flags (area 3)
-|-
-| $005E || 16 || Soul flags (area 4)
-|-
-| $006E || 16 || Soul flags (area 5)
-|-
-| $007E || 16 || Soul flags (area 6)
-|-
-| $008E || 16 || Soul flags (area 7 - World of Evil)
-|-
-| $009E || 16 || Lair cleared flags (area 1)
-|-
-| ... || ... || Lair flags continue...
-|-
-| $0200 || $0600 || Event flags, chest states, NPC states
 |}
 
 ===Checksum Calculation===
@@ -337,35 +305,6 @@ sum = 0
 for offset in range(0x0006, 0x0800):
     sum += sram[slot_base + offset]
 checksum = sum & 0xFFFF
-</pre>
-
-==Compression Formats==
-
-===RLE (Run-Length Encoding)===
-Used for tilemap data:
-<pre>
-If high bit clear: Raw bytes follow
-  [0nnnnnnn] [n+1 bytes of data]
-
-If high bit set: Repeat byte
-  [1nnnnnnn] [byte] - Repeat byte (n+1) times
-</pre>
-
-===LZ77===
-Used for graphics data:
-<pre>
-[Header: 3 bytes]
-  Bytes 0-1: Uncompressed size (little-endian)
-  Byte 2: Flags
-
-[Data blocks]
-  Flag byte: 8 bits indicating literal (0) or reference (1)
-  
-  Literal: 1 byte copied directly
-  
-  Reference: 2 bytes
-    Bits 15-12: Length - 3 (0-15 = 3-18 bytes)
-    Bits 11-0: Offset back into output buffer
 </pre>
 
 ==Entity System==
@@ -465,21 +404,7 @@ Used for graphics data:
 | $08 || Warp || Triggers area transition
 |-
 | $09 || Event || Triggers event flag
-|-
-| $0A || Hidden || Invisible solid (walls)
-|-
-| $0B || One-way || Directional passage
-|-
-| $0C-$0F || Reserved || Special cases
 |}
-
-===Collision Map Format===
-Each map tile has a 4-bit collision value:
-<pre>
-Collision data is packed, 2 tiles per byte
-Low nibble: Even tile column
-High nibble: Odd tile column
-</pre>
 
 ==Random Number Generator==
 
@@ -492,7 +417,7 @@ Seed on power-up: $0001
 Update algorithm:
   bit = (rng ^ (rng >> 1) ^ (rng >> 3) ^ (rng >> 12)) & 1
   rng = (rng >> 1) | (bit << 15)
-  
+
 Returns: Low byte of rng
 </pre>
 
@@ -528,41 +453,11 @@ Returns: Low byte of rng
 | Soul release animation || 90 || 1.5
 |}
 
-==Debug Features==
-
-===Debug Mode Activation===
-Game Genie codes to enable debug features:
-{| class="wikitable"
-! Code !! Effect
-|-
-| AAAA-AAAA || Enable debug menu (Start+Select)
-|-
-| BBBB-BBBB || Level select
-|-
-| CCCC-CCCC || All items
-|-
-| DDDD-DDDD || Invincibility
-|}
-
-===Debug RAM Addresses===
-{| class="wikitable"
-! Address !! Description
-|-
-| $7E1FE0 || Debug mode flags
-|-
-| $7E1FE1 || Frame advance enable
-|-
-| $7E1FE2 || Hitbox display
-|-
-| $7E1FE3 || Collision overlay
-|}
-
 ==See Also==
-* [[Soul Blazer:ROM map|ROM Map]]
-* [[Soul Blazer:RAM map|RAM Map]]
-* [[Soul Blazer:Data structures|Data Structures]]
-* [[Soul Blazer:Audio|Audio System]]
+* [[/ROM Map|ROM Map]]
+* [[/RAM Map|RAM Map]]
+* [[/Data Structures|Data Structures]]
+* [[/Audio|Audio System]]
 
 [[Category:Soul Blazer]]
 [[Category:Technical Reference]]
-[[Category:SNES Documentation]]

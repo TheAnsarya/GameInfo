@@ -1,0 +1,206 @@
+{{DISPLAYTITLE:Soul Blazer:Data Tables}}
+This page documents the '''data tables''' in '''[[Soul Blazer]]''' (SNES).
+
+==Overview==
+Soul Blazer stores game data in structured tables throughout the ROM.
+Analysis has identified over '''29,000 data structures'''.
+
+==Enemy Data==
+===Enemy Statistics Table===
+Located in Bank $06, starting at $06:8000.
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 2 || Base HP
+|-
+| $02 || 2 || Attack power
+|-
+| $04 || 2 || Defense
+|-
+| $06 || 2 || Experience reward
+|-
+| $08 || 2 || GEM reward
+|-
+| $0A || 1 || Sprite ID
+|-
+| $0B || 1 || AI type
+|-
+| $0C || 1 || Movement speed
+|-
+| $0D || 1 || Elemental weakness
+|-
+| $0E || 2 || Reserved
+|}
+
+===Enemy Types===
+{| class="wikitable sortable"
+! ID !! Name !! Area
+|-
+| $00 || Golem || Underground Castle
+|-
+| $01 || Blue Metal || Underground Castle
+|-
+| $02 || Armored Knight || Underground Castle
+|-
+| $03 || Torch || Underground Castle
+|-
+| $04 || Stone Statue || Underground Castle
+|-
+| $05 || Spike Ball || Underground Castle
+|-
+| $06 || Blue Slime || GreenWood
+|-
+| $07 || Red Slime || GreenWood
+|-
+| $08 || Metally || GreenWood
+|-
+| $09 || Bat || GreenWood
+|-
+| $0A || Skeleton || GreenWood
+|-
+| $0B || Ghost || GreenWood
+|-
+| $0C || Demon || St. Elles
+|-
+| $0D || Fire Spirit || St. Elles
+|-
+| $0E || Ice Spirit || St. Elles
+|-
+| $0F || Mummy || St. Elles
+|-
+| $10 || Fish || St. Elles Seabed
+|-
+| $11 || Jellyfish || St. Elles Seabed
+|-
+| $12 || Sea Dragon || St. Elles Seabed
+|-
+| $13 || Crab || St. Elles Seabed
+|-
+| $14 || Seahorse || St. Elles Seabed
+|-
+| $15 || Squid || St. Elles Seabed
+|-
+| $16 || Eagle || Mountain of Souls
+|-
+| $17 || Condor || Mountain of Souls
+|-
+| $18 || Mountain Spirit || Mountain of Souls
+|-
+| $19 || Ice Golem || Mountain of Souls
+|-
+| $1A || Toy Soldier || Leo's Lab
+|-
+| $1B || Toy Car || Leo's Lab
+|-
+| $1C || Doll || Leo's Lab
+|-
+| $1D || Mouse || Leo's Lab
+|-
+| $1E || Scorpion || World of Evil
+|-
+| $1F || Spider || World of Evil
+|}
+
+==Item Data==
+===Equipment Table===
+Located in Bank $07.
+
+====Swords====
+{| class="wikitable sortable"
+! ID !! Name !! Attack !! Special
+|-
+| $00 || Sword of Life || 4 || Regenerate HP
+|-
+| $01 || Psycho Sword || 8 || Critical hits
+|-
+| $02 || Critical Sword || 12 || High critical rate
+|-
+| $03 || Lucky Blade || 16 || Find more GEMs
+|-
+| $04 || Zantetsu Sword || 32 || Instant kill metal
+|-
+| $05 || Spirit Sword || 48 || Hits ghosts
+|-
+| $06 || Recovery Sword || 64 || HP on kill
+|-
+| $07 || Soul Blade || 128 || Ultimate sword
+|}
+
+====Armor====
+{| class="wikitable sortable"
+! ID !! Name !! Defense !! Special
+|-
+| $00 || Iron Armor || 2 || None
+|-
+| $01 || Ice Armor || 4 || Fire resist
+|-
+| $02 || Bubble Armor || 6 || Water breathe
+|-
+| $03 || Magic Armor || 10 || Magic resist
+|-
+| $04 || Mystic Armor || 16 || Regenerate
+|-
+| $05 || Light Armor || 24 || Fast move
+|-
+| $06 || Elemental Armor || 32 || All elements
+|-
+| $07 || Soul Armor || 64 || Ultimate armor
+|}
+
+====Magic====
+{| class="wikitable sortable"
+! ID !! Name !! GEM Cost !! Description
+|-
+| $00 || Flame Ball || 1 || Fireball projectile
+|-
+| $01 || Light Arrow || 2 || Piercing light
+|-
+| $02 || Magic Flare || 4 || Screen attack
+|-
+| $03 || Rotation || 2 || Spinning attack
+|-
+| $04 || Spark Bomb || 8 || Explosion
+|-
+| $05 || Flame Pillar || 16 || Fire column
+|-
+| $06 || Tornado || 32 || Wind attack
+|-
+| $07 || Phoenix || 50 || Full heal + revive
+|}
+
+==Map Data==
+===Map Header Structure===
+Each map has a header defining its properties.
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 2 || Tileset pointer (bank relative)
+|-
+| $02 || 2 || Tilemap pointer
+|-
+| $04 || 2 || Collision map pointer
+|-
+| $06 || 1 || Width (in screens)
+|-
+| $07 || 1 || Height (in screens)
+|-
+| $08 || 1 || Music ID
+|-
+| $09 || 1 || Palette ID
+|-
+| $0A || 2 || Entity list pointer
+|-
+| $0C || 2 || Soul Lair list pointer
+|-
+| $0E || 2 || Reserved
+|}
+
+==See Also==
+* [[/Enemies|Enemies]]
+* [[/Items|Items]]
+* [[/ROM Map|ROM Map]]
+
+[[Category:Soul Blazer]]
+[[Category:Data Tables]]
