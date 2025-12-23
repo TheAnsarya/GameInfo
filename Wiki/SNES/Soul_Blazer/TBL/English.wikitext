@@ -308,7 +308,7 @@ The standard .tbl file format for use with ROM editors:
 3B=x
 3C=y
 3D=z
-3E= 
+3E=
 3F=.
 40=,
 41=?

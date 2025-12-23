@@ -54,7 +54,7 @@ class SpriteDefinition:
 class Palette:
 	"""16-color palette."""
 	colors: List[Tuple[int, int, int]] = field(default_factory=list)
-	
+
 	@classmethod
 	def from_snes_data(cls, data: bytes) -> 'Palette':
 		"""Parse SNES palette data."""
@@ -71,7 +71,7 @@ class Palette:
 class SpriteSheetExporter:
 	"""
 	Export sprites from Soul Blazer ROM as sprite sheets.
-	
+
 	Features:
 	- Export individual sprites or complete sheets
 	- Multiple layout options (grid, strip, packed)
@@ -79,7 +79,7 @@ class SpriteSheetExporter:
 	- Custom palette application
 	- JSON metadata export
 	"""
-	
+
 	# Known sprite locations in Soul Blazer
 	SPRITE_DEFINITIONS = {
 		# Player sprites
@@ -107,7 +107,7 @@ class SpriteSheetExporter:
 			"Player Attack Side", SpriteCategory.PLAYER,
 			0x01C0, 24, 3, 2, 0, 3, 6, 0x15
 		),
-		
+
 		# Enemy sprites
 		"slime": SpriteDefinition(
 			"Slime", SpriteCategory.ENEMY,
@@ -129,7 +129,7 @@ class SpriteSheetExporter:
 			"Plant Enemy", SpriteCategory.ENEMY,
 			0x0100, 8, 2, 2, 1, 2, 20, 0x16
 		),
-		
+
 		# Bosses
 		"metal_mantis": SpriteDefinition(
 			"Metal Mantis", SpriteCategory.BOSS,
@@ -147,7 +147,7 @@ class SpriteSheetExporter:
 			"Deathtoll", SpriteCategory.BOSS,
 			0x0800, 128, 8, 8, 2, 4, 8, 0x17
 		),
-		
+
 		# NPCs
 		"villager_male": SpriteDefinition(
 			"Villager (Male)", SpriteCategory.NPC,
@@ -161,7 +161,7 @@ class SpriteSheetExporter:
 			"Mermaid", SpriteCategory.NPC,
 			0x0080, 6, 2, 3, 3, 2, 12, 0x18
 		),
-		
+
 		# Items/Effects
 		"gem": SpriteDefinition(
 			"GEM", SpriteCategory.ITEM,
@@ -176,7 +176,7 @@ class SpriteSheetExporter:
 			0x0040, 4, 2, 2, 4, 4, 6, 0x19
 		),
 	}
-	
+
 	# Known palette locations
 	PALETTE_LOCATIONS = {
 		0: 0x048000,  # Player
@@ -185,7 +185,7 @@ class SpriteSheetExporter:
 		3: 0x048060,  # NPC
 		4: 0x048080,  # Items/effects
 	}
-	
+
 	# Graphics bank offsets (LoROM)
 	GRAPHICS_BANKS = {
 		0x15: 0x0A8000,  # Player
@@ -194,15 +194,15 @@ class SpriteSheetExporter:
 		0x18: 0x0C0000,  # NPCs
 		0x19: 0x0C8000,  # Items/effects
 	}
-	
+
 	def __init__(self, rom_path: str = None):
 		"""Initialize the sprite sheet exporter."""
 		self.rom_data = None
 		self.palettes: Dict[int, Palette] = {}
-		
+
 		if rom_path and os.path.exists(rom_path):
 			self.load_rom(rom_path)
-	
+
 	def load_rom(self, rom_path: str) -> bool:
 		"""Load ROM file."""
 		try:
@@ -213,7 +213,7 @@ class SpriteSheetExporter:
 		except Exception as e:
 			print(f"Error loading ROM: {e}")
 			return False
-	
+
 	def _load_palettes(self):
 		"""Load known palettes from ROM."""
 		for idx, offset in self.PALETTE_LOCATIONS.items():
@@ -221,30 +221,30 @@ class SpriteSheetExporter:
 				self.palettes[idx] = Palette.from_snes_data(
 					self.rom_data[offset:offset+32]
 				)
-	
+
 	def _decode_4bpp_tile(self, data: bytes, palette: Palette) -> List[Tuple[int, int, int, int]]:
 		"""
 		Decode a single 8x8 4BPP tile.
-		
+
 		SNES 4BPP format: 32 bytes per tile
 		- Bytes 0-15: Bitplanes 0 and 1
 		- Bytes 16-31: Bitplanes 2 and 3
 		"""
 		pixels = []
-		
+
 		for y in range(8):
 			bp0 = data[y * 2]
 			bp1 = data[y * 2 + 1]
 			bp2 = data[16 + y * 2]
 			bp3 = data[16 + y * 2 + 1]
-			
+
 			for x in range(7, -1, -1):
 				bit = 7 - x
 				pixel = ((bp0 >> bit) & 1) | \
 						(((bp1 >> bit) & 1) << 1) | \
 						(((bp2 >> bit) & 1) << 2) | \
 						(((bp3 >> bit) & 1) << 3)
-				
+
 				if pixel == 0:
 					# Transparent
 					pixels.append((0, 0, 0, 0))
@@ -253,74 +253,74 @@ class SpriteSheetExporter:
 					pixels.append((r, g, b, 255))
 				else:
 					pixels.append((255, 0, 255, 255))  # Magenta for missing
-		
+
 		return pixels
-	
+
 	def _get_tile_data(self, sprite_def: SpriteDefinition, frame: int = 0) -> bytes:
 		"""Get raw tile data for a sprite frame."""
 		if sprite_def.bank not in self.GRAPHICS_BANKS:
 			return b''
-		
+
 		bank_offset = self.GRAPHICS_BANKS[sprite_def.bank]
 		tile_size = 32  # 4BPP: 32 bytes per tile
 		frame_size = sprite_def.tile_count * tile_size
-		
+
 		offset = bank_offset + sprite_def.tile_offset + (frame * frame_size)
-		
+
 		if offset + frame_size <= len(self.rom_data):
 			return self.rom_data[offset:offset + frame_size]
 		return b''
-	
+
 	def export_sprite(self, sprite_name: str, output_path: str,
 					  frame: int = None, scale: int = 1) -> bool:
 		"""Export a single sprite or animation to image."""
 		if not HAS_PIL:
 			print("PIL required for image export")
 			return False
-		
+
 		if sprite_name not in self.SPRITE_DEFINITIONS:
 			print(f"Unknown sprite: {sprite_name}")
 			return False
-		
+
 		sprite_def = self.SPRITE_DEFINITIONS[sprite_name]
 		palette = self.palettes.get(sprite_def.palette_index, Palette())
-		
+
 		# If no specific frame, export all frames as strip
 		frames_to_export = [frame] if frame is not None else range(sprite_def.frames)
-		
+
 		sprite_width = sprite_def.width * 8
 		sprite_height = sprite_def.height * 8
-		
+
 		if frame is not None:
 			img_width = sprite_width * scale
 			img_height = sprite_height * scale
 		else:
 			img_width = sprite_width * sprite_def.frames * scale
 			img_height = sprite_height * scale
-		
+
 		img = Image.new('RGBA', (img_width, img_height), (0, 0, 0, 0))
-		
+
 		for f_idx, f in enumerate(frames_to_export):
 			tile_data = self._get_tile_data(sprite_def, f)
 			if not tile_data:
 				continue
-			
+
 			# Decode tiles
 			tile_size = 32
 			for t in range(sprite_def.tile_count):
 				if t * tile_size + tile_size > len(tile_data):
 					break
-				
+
 				tile_bytes = tile_data[t * tile_size:(t + 1) * tile_size]
 				pixels = self._decode_4bpp_tile(tile_bytes, palette)
-				
+
 				# Calculate tile position
 				tile_x = (t % sprite_def.width) * 8
 				tile_y = (t // sprite_def.width) * 8
-				
+
 				# Add frame offset
 				frame_offset_x = f_idx * sprite_width
-				
+
 				# Place pixels
 				for py in range(8):
 					for px in range(8):
@@ -329,16 +329,16 @@ class SpriteSheetExporter:
 							color = pixels[pixel_idx]
 							x = (frame_offset_x + tile_x + px) * scale
 							y = (tile_y + py) * scale
-							
+
 							for sy in range(scale):
 								for sx in range(scale):
 									if x + sx < img_width and y + sy < img_height:
 										img.putpixel((x + sx, y + sy), color)
-		
+
 		img.save(output_path)
 		print(f"Exported {sprite_name} to {output_path}")
 		return True
-	
+
 	def export_sprite_sheet(self, category: SpriteCategory = None,
 							output_path: str = "sprite_sheet.png",
 							columns: int = 8, scale: int = 2,
@@ -347,55 +347,55 @@ class SpriteSheetExporter:
 		if not HAS_PIL:
 			print("PIL required for image export")
 			return False
-		
+
 		# Filter sprites by category
 		sprites = []
 		for name, sprite_def in self.SPRITE_DEFINITIONS.items():
 			if category is None or sprite_def.category == category:
 				sprites.append((name, sprite_def))
-		
+
 		if not sprites:
 			print("No sprites to export")
 			return False
-		
+
 		# Calculate sheet dimensions
 		cell_width = 32 * scale  # Max sprite width
 		cell_height = 32 * scale  # Max sprite height
 		label_height = 16 if include_labels else 0
-		
+
 		rows = (len(sprites) + columns - 1) // columns
-		
+
 		sheet_width = cell_width * columns
 		sheet_height = (cell_height + label_height) * rows
-		
+
 		img = Image.new('RGBA', (sheet_width, sheet_height), (64, 64, 64, 255))
-		
+
 		for idx, (name, sprite_def) in enumerate(sprites):
 			col = idx % columns
 			row = idx // columns
-			
+
 			x_offset = col * cell_width
 			y_offset = row * (cell_height + label_height)
-			
+
 			# Get first frame
 			palette = self.palettes.get(sprite_def.palette_index, Palette())
 			tile_data = self._get_tile_data(sprite_def, 0)
-			
+
 			if not tile_data:
 				continue
-			
+
 			# Decode and place sprite
 			tile_size = 32
 			for t in range(sprite_def.tile_count):
 				if t * tile_size + tile_size > len(tile_data):
 					break
-				
+
 				tile_bytes = tile_data[t * tile_size:(t + 1) * tile_size]
 				pixels = self._decode_4bpp_tile(tile_bytes, palette)
-				
+
 				tile_x = (t % sprite_def.width) * 8
 				tile_y = (t // sprite_def.width) * 8
-				
+
 				for py in range(8):
 					for px in range(8):
 						pixel_idx = py * 8 + px
@@ -404,16 +404,16 @@ class SpriteSheetExporter:
 							if color[3] > 0:  # Not transparent
 								x = x_offset + (tile_x + px) * scale
 								y = y_offset + (tile_y + py) * scale
-								
+
 								for sy in range(scale):
 									for sx in range(scale):
 										if x + sx < sheet_width and y + sy < sheet_height:
 											img.putpixel((x + sx, y + sy), color)
-		
+
 		img.save(output_path)
 		print(f"Exported sprite sheet ({len(sprites)} sprites) to {output_path}")
 		return True
-	
+
 	def export_metadata(self, output_path: str):
 		"""Export sprite definitions as JSON metadata."""
 		data = {
@@ -421,7 +421,7 @@ class SpriteSheetExporter:
 			"palettes": {},
 			"banks": {}
 		}
-		
+
 		for name, sprite_def in self.SPRITE_DEFINITIONS.items():
 			data["sprites"][name] = {
 				"display_name": sprite_def.name,
@@ -441,25 +441,25 @@ class SpriteSheetExporter:
 				},
 				"bank": f"0x{sprite_def.bank:02X}"
 			}
-		
+
 		for idx, pal in self.palettes.items():
 			data["palettes"][idx] = [
 				{"r": r, "g": g, "b": b, "hex": f"#{r:02X}{g:02X}{b:02X}"}
 				for r, g, b in pal.colors
 			]
-		
+
 		for bank, offset in self.GRAPHICS_BANKS.items():
 			data["banks"][f"0x{bank:02X}"] = f"0x{offset:06X}"
-		
+
 		with open(output_path, 'w') as f:
 			json.dump(data, f, indent='\t')
-		
+
 		print(f"Exported metadata to {output_path}")
-	
+
 	def list_sprites(self):
 		"""List all available sprites."""
 		print("\n=== Available Sprites ===\n")
-		
+
 		by_category: Dict[SpriteCategory, List[str]] = {}
 		for name, sprite_def in self.SPRITE_DEFINITIONS.items():
 			if sprite_def.category not in by_category:
@@ -468,7 +468,7 @@ class SpriteSheetExporter:
 				f"  {name}: {sprite_def.name} ({sprite_def.width*8}x{sprite_def.height*8}, "
 				f"{sprite_def.frames} frames)"
 			)
-		
+
 		for category in SpriteCategory:
 			if category in by_category:
 				print(f"{category.value.upper()}:")
@@ -490,22 +490,22 @@ def main():
 	parser.add_argument('--frame', '-f', type=int, help='Specific frame to export')
 	parser.add_argument('--metadata', '-m', help='Export metadata to JSON file')
 	parser.add_argument('--columns', type=int, default=8, help='Columns in sprite sheet')
-	
+
 	args = parser.parse_args()
-	
+
 	exporter = SpriteSheetExporter(args.rom)
-	
+
 	if args.list:
 		exporter.list_sprites()
 		return
-	
+
 	if not args.rom:
 		parser.print_help()
 		return
-	
+
 	if args.metadata:
 		exporter.export_metadata(args.metadata)
-	
+
 	if args.sprite:
 		exporter.export_sprite(args.sprite, args.output, args.frame, args.scale)
 	elif args.sheet or args.category:

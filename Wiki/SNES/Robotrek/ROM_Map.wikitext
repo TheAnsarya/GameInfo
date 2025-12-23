@@ -1,0 +1,208 @@
+{{Back|Robotrek (SNES)}}
+
+= Robotrek (SNES) - ROM Map =
+
+This page documents the ROM layout for Robotrek (USA version).
+
+== ROM Overview ==
+
+{| class="wikitable"
+! Property !! Value
+|-
+| ROM Size || 1.5 MB (1,572,864 bytes)
+|-
+| Mapper || HiROM + FastROM
+|-
+| Banks || 24 x 64KB banks ($C0-$D7)
+|-
+| SRAM || 8 KB
+|}
+
+== Bank Layout ==
+
+{| class="wikitable sortable"
+! Bank !! File Offset !! Size !! Description
+|-
+| $C0 || $000000 || $10000 || Main program, reset vectors
+|-
+| $C1 || $010000 || $10000 || Game logic, NPC routines
+|-
+| $C2 || $020000 || $10000 || Battle system
+|-
+| $C3 || $030000 || $10000 || Invention/crafting system
+|-
+| $C4 || $040000 || $10000 || Map engine
+|-
+| $C5 || $050000 || $10000 || Event scripts
+|-
+| $C6 || $060000 || $10000 || Dialog system
+|-
+| $C7 || $070000 || $10000 || Menu/UI code
+|-
+| $C8 || $080000 || $10000 || Sound driver
+|-
+| $C9 || $090000 || $10000 || Music data (SPC)
+|-
+| $CA || $0A0000 || $10000 || Sound effects
+|-
+| $CB || $0B0000 || $10000 || Graphics: Characters
+|-
+| $CC || $0C0000 || $10000 || Graphics: Robots
+|-
+| $CD || $0D0000 || $10000 || Graphics: Enemies
+|-
+| $CE || $0E0000 || $10000 || Graphics: Tilesets
+|-
+| $CF || $0F0000 || $10000 || Graphics: Backgrounds
+|-
+| $D0 || $100000 || $10000 || Map data (part 1)
+|-
+| $D1 || $110000 || $10000 || Map data (part 2)
+|-
+| $D2 || $120000 || $10000 || Map data (part 3)
+|-
+| $D3 || $130000 || $10000 || Text data (English)
+|-
+| $D4 || $140000 || $10000 || Item/Invention tables
+|-
+| $D5 || $150000 || $10000 || Enemy data
+|-
+| $D6 || $160000 || $10000 || Event flags/scripts
+|-
+| $D7 || $170000 || $10000 || Miscellaneous data
+|}
+
+== Important Addresses ==
+
+=== Program Code ===
+
+{| class="wikitable"
+! Address !! Description
+|-
+| $C08000 || Reset vector handler
+|-
+| $C0FFEA || NMI vector
+|-
+| $C0FFEE || IRQ vector
+|-
+| $C10000 || Main game loop
+|-
+| $C20000 || Battle initialization
+|-
+| $C30000 || Invention check routine
+|}
+
+=== Data Tables ===
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $D40000 || TBD || Item table base
+|-
+| $D40800 || TBD || Invention recipes table
+|-
+| $D41000 || TBD || Robot parts table
+|-
+| $D50000 || TBD || Enemy stats table
+|-
+| $D50800 || TBD || Enemy drops table
+|}
+
+=== Graphics ===
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $CB0000 || TBD || Hero sprite data
+|-
+| $CB8000 || TBD || NPC sprite data
+|-
+| $CC0000 || TBD || Robot sprite data (compressed)
+|-
+| $CD0000 || TBD || Enemy sprite data (compressed)
+|-
+| $CE0000 || TBD || Tileset data (compressed)
+|-
+| $CF0000 || TBD || Background graphics
+|}
+
+=== Text/Dialog ===
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $D30000 || TBD || Text pointer table
+|-
+| $D30400 || TBD || Dialog text (compressed)
+|-
+| $D38000 || TBD || Menu text
+|-
+| $D3C000 || TBD || Item names
+|-
+| $D3D000 || TBD || Enemy names
+|}
+
+=== Audio ===
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $C90000 || TBD || Music sequence data
+|-
+| $CA0000 || TBD || Sound effect data
+|-
+| $C80000 || TBD || SPC700 driver code
+|}
+
+== Compression ==
+
+Robotrek uses several compression formats:
+
+=== LZSS Compression ===
+
+Used for graphics data. Structure:
+* Compressed data starts with 2-byte uncompressed size
+* Followed by flag bytes and data
+
+=== Text Compression ===
+
+Uses dictionary-based compression with DTE (Dual Tile Encoding):
+* Control codes: $00-$1F
+* Dictionary entries: $80-$FF
+* ASCII-like mapping for basic characters
+
+== Pointers ==
+
+=== Pointer Tables ===
+
+{| class="wikitable"
+! Address !! Count !! Description
+|-
+| $D30000 || TBD || Dialog text pointers (16-bit)
+|-
+| $D00000 || TBD || Map data pointers (24-bit)
+|-
+| $D40000 || TBD || Item data pointers
+|}
+
+== Checksum ==
+
+{| class="wikitable"
+! Field !! Value !! Address
+|-
+| Checksum || $6D44 || $FFDE
+|-
+| Complement || $92BB || $FFDC
+|}
+
+Checksum + Complement = $FFFF (valid)
+
+== Notes ==
+
+* The ROM uses HiROM mapping, so bank $C0 starts at file offset $0
+* Graphics are mostly 4bpp format
+* Some tables have fixed-size entries, others are pointer-based
+* SRAM at $70:0000-$1FFF stores save game data
+
+[[Category:ROM Maps]]
+[[Category:SNES]]

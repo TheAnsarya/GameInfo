@@ -43,7 +43,7 @@ class RomInfo:
 	snes_header: Optional[dict] = field(default=None)
 	nes_header: Optional[dict] = field(default=None)
 	gba_header: Optional[dict] = field(default=None)
-	
+
 	@classmethod
 	def from_dict(cls, data: dict) -> "RomInfo":
 		"""Create RomInfo from a catalog file entry dict."""
@@ -81,10 +81,10 @@ class RomInfo:
 class RomCatalogHelper:
 	"""
 	Helper class for working with the ROM catalog.
-	
+
 	Provides methods to look up ROMs by various criteria and
 	resolve paths to actual ROM files.
-	
+
 	Example usage:
 		helper = RomCatalogHelper("data/rom_catalog.json")
 		rom = helper.find_by_crc32("31b965db")
@@ -93,11 +93,11 @@ class RomCatalogHelper:
 			if path.exists():
 				data = path.read_bytes()
 	"""
-	
+
 	def __init__(self, catalog_path: str | Path, roms_root: Optional[str | Path] = None):
 		"""
 		Initialize the helper with a catalog file.
-		
+
 		Args:
 			catalog_path: Path to the rom_catalog.json file
 			roms_root: Optional override for the ROMs root folder.
@@ -105,21 +105,21 @@ class RomCatalogHelper:
 			           resolved relative to the catalog file's parent.
 		"""
 		self.catalog_path = Path(catalog_path)
-		
+
 		with open(self.catalog_path, "r", encoding="utf-8") as f:
 			self._catalog = json.load(f)
-		
+
 		# Build index of all files for fast lookup
 		self._files: list[RomInfo] = [
 			RomInfo.from_dict(f) for f in self._catalog.get("files", [])
 		]
-		
+
 		# Build hash indexes for fast lookup
 		self._by_crc32: dict[str, list[RomInfo]] = {}
 		self._by_md5: dict[str, list[RomInfo]] = {}
 		self._by_sha1: dict[str, list[RomInfo]] = {}
 		self._by_sha256: dict[str, list[RomInfo]] = {}
-		
+
 		for rom in self._files:
 			if rom.crc32:
 				self._by_crc32.setdefault(rom.crc32.lower(), []).append(rom)
@@ -129,7 +129,7 @@ class RomCatalogHelper:
 				self._by_sha1.setdefault(rom.sha1.lower(), []).append(rom)
 			if rom.sha256:
 				self._by_sha256.setdefault(rom.sha256.lower(), []).append(rom)
-		
+
 		# Determine ROMs root folder
 		if roms_root:
 			self._roms_root = Path(roms_root)
@@ -137,44 +137,44 @@ class RomCatalogHelper:
 			root_path = self._catalog.get("root_path", "~roms")
 			# Resolve relative to catalog parent directory
 			self._roms_root = self.catalog_path.parent.parent / root_path
-	
+
 	@property
 	def catalog(self) -> dict:
 		"""Return the raw catalog dictionary."""
 		return self._catalog
-	
+
 	@property
 	def files(self) -> list[RomInfo]:
 		"""Return list of all ROM files in the catalog."""
 		return self._files
-	
+
 	@property
 	def total_files(self) -> int:
 		"""Return total number of files in the catalog."""
 		return self._catalog.get("total_files", len(self._files))
-	
+
 	@property
 	def total_size(self) -> int:
 		"""Return total size of all files in bytes."""
 		return self._catalog.get("total_size", 0)
-	
+
 	@property
 	def platforms(self) -> dict[str, int]:
 		"""Return platform counts."""
 		return self._catalog.get("platforms", {})
-	
+
 	@property
 	def roms_root(self) -> Path:
 		"""Return the ROMs root folder path."""
 		return self._roms_root
-	
+
 	def find_by_crc32(self, crc32: str) -> Optional[RomInfo]:
 		"""
 		Find a ROM by its CRC32 hash.
-		
+
 		Args:
 			crc32: The CRC32 hash (8 hex chars)
-			
+
 		Returns:
 			RomInfo if found, None otherwise.
 			If multiple ROMs have the same CRC32, returns the first verified one,
@@ -188,11 +188,11 @@ class RomCatalogHelper:
 			if rom.is_verified:
 				return rom
 		return matches[0]
-	
+
 	def find_all_by_crc32(self, crc32: str) -> list[RomInfo]:
 		"""Find all ROMs with a given CRC32 hash."""
 		return self._by_crc32.get(crc32.lower(), [])
-	
+
 	def find_by_md5(self, md5: str) -> Optional[RomInfo]:
 		"""Find a ROM by its MD5 hash."""
 		matches = self._by_md5.get(md5.lower(), [])
@@ -202,7 +202,7 @@ class RomCatalogHelper:
 			if rom.is_verified:
 				return rom
 		return matches[0]
-	
+
 	def find_by_sha1(self, sha1: str) -> Optional[RomInfo]:
 		"""Find a ROM by its SHA1 hash."""
 		matches = self._by_sha1.get(sha1.lower(), [])
@@ -212,7 +212,7 @@ class RomCatalogHelper:
 			if rom.is_verified:
 				return rom
 		return matches[0]
-	
+
 	def find_by_sha256(self, sha256: str) -> Optional[RomInfo]:
 		"""Find a ROM by its SHA256 hash."""
 		matches = self._by_sha256.get(sha256.lower(), [])
@@ -222,20 +222,20 @@ class RomCatalogHelper:
 			if rom.is_verified:
 				return rom
 		return matches[0]
-	
+
 	def find_by_hash(self, hash_value: str) -> Optional[RomInfo]:
 		"""
 		Find a ROM by any hash, auto-detecting the hash type by length.
-		
+
 		Args:
 			hash_value: A hash string (CRC32, MD5, SHA1, or SHA256)
-			
+
 		Returns:
 			RomInfo if found, None otherwise.
 		"""
 		hash_value = hash_value.lower().strip()
 		length = len(hash_value)
-		
+
 		if length == 8:
 			return self.find_by_crc32(hash_value)
 		elif length == 32:
@@ -244,9 +244,9 @@ class RomCatalogHelper:
 			return self.find_by_sha1(hash_value)
 		elif length == 64:
 			return self.find_by_sha256(hash_value)
-		
+
 		return None
-	
+
 	def find_by_name(
 		self,
 		name: str,
@@ -258,19 +258,19 @@ class RomCatalogHelper:
 	) -> Optional[RomInfo]:
 		"""
 		Find a ROM by name with optional filters.
-		
+
 		Args:
 			name: The ROM name to search for (case-insensitive)
 			region: Optional region filter (e.g., "USA", "Japan", "Europe")
 			platform: Optional platform filter (e.g., "SNES", "NES")
 			verified_only: If True, only return verified dumps
 			exact: If True, require exact name match (description field)
-			
+
 		Returns:
 			RomInfo if found, None otherwise.
 		"""
 		name_lower = name.lower()
-		
+
 		for rom in self._files:
 			# Check filters
 			if region and rom.region.lower() != region.lower():
@@ -279,7 +279,7 @@ class RomCatalogHelper:
 				continue
 			if verified_only and not rom.is_verified:
 				continue
-			
+
 			# Check name
 			if exact:
 				if rom.description.lower() == name_lower:
@@ -287,9 +287,9 @@ class RomCatalogHelper:
 			else:
 				if name_lower in rom.description.lower() or name_lower in rom.filename.lower():
 					return rom
-		
+
 		return None
-	
+
 	def find_all_by_name(
 		self,
 		name: str,
@@ -301,7 +301,7 @@ class RomCatalogHelper:
 		"""Find all ROMs matching a name with optional filters."""
 		name_lower = name.lower()
 		results = []
-		
+
 		for rom in self._files:
 			if region and rom.region.lower() != region.lower():
 				continue
@@ -309,12 +309,12 @@ class RomCatalogHelper:
 				continue
 			if verified_only and not rom.is_verified:
 				continue
-			
+
 			if name_lower in rom.description.lower() or name_lower in rom.filename.lower():
 				results.append(rom)
-		
+
 		return results
-	
+
 	def find_by_platform(
 		self,
 		platform: str,
@@ -324,7 +324,7 @@ class RomCatalogHelper:
 	) -> list[RomInfo]:
 		"""Find all ROMs for a given platform."""
 		results = []
-		
+
 		for rom in self._files:
 			if rom.platform.lower() != platform.lower():
 				continue
@@ -333,32 +333,32 @@ class RomCatalogHelper:
 			if verified_only and not rom.is_verified:
 				continue
 			results.append(rom)
-		
+
 		return results
-	
+
 	def get_rom_path(self, rom: RomInfo) -> Path:
 		"""
 		Get the filesystem path for a ROM.
-		
+
 		Args:
 			rom: The RomInfo object
-			
+
 		Returns:
 			Path to the ROM file (may not exist if user hasn't added the ROM)
 		"""
 		return self._roms_root / rom.relative_path
-	
+
 	def rom_exists(self, rom: RomInfo) -> bool:
 		"""Check if the ROM file actually exists on disk."""
 		return self.get_rom_path(rom).exists()
-	
+
 	def read_rom(self, rom: RomInfo) -> Optional[bytes]:
 		"""
 		Read the ROM file contents.
-		
+
 		Args:
 			rom: The RomInfo object
-			
+
 		Returns:
 			ROM file contents as bytes, or None if file doesn't exist.
 		"""
@@ -366,7 +366,7 @@ class RomCatalogHelper:
 		if path.exists():
 			return path.read_bytes()
 		return None
-	
+
 	def get_verified_roms(self, platform: Optional[str] = None) -> list[RomInfo]:
 		"""Get all verified ROM dumps, optionally filtered by platform."""
 		results = []
@@ -377,7 +377,7 @@ class RomCatalogHelper:
 				continue
 			results.append(rom)
 		return results
-	
+
 	def get_available_roms(self, platform: Optional[str] = None) -> list[RomInfo]:
 		"""Get all ROMs that actually exist on disk."""
 		results = []
@@ -387,14 +387,14 @@ class RomCatalogHelper:
 			if self.rom_exists(rom):
 				results.append(rom)
 		return results
-	
+
 	def get_soul_blazer(self, region: str = "USA") -> Optional[RomInfo]:
 		"""
 		Convenience method to get Soul Blazer ROM.
-		
+
 		Args:
 			region: Region to find (USA, Europe, France, Germany, Japan)
-			
+
 		Returns:
 			RomInfo for Soul Blazer, or None if not found.
 		"""
@@ -417,21 +417,21 @@ class RomCatalogHelper:
 			"g": "Germany",
 		}
 		region = region_map.get(region.lower(), region)
-		
+
 		# Handle Japan special case (Soul Blader)
 		if region.lower() == "japan":
 			return self.find_by_name("Soul Blader", region="Japan", platform="SNES")
-		
+
 		return self.find_by_name("Soul Blazer", region=region, platform="SNES")
-	
+
 	def get_ffmq(self, region: str = "USA", version: str = "") -> Optional[RomInfo]:
 		"""
 		Convenience method to get Final Fantasy Mystic Quest ROM.
-		
+
 		Args:
 			region: Region to find (USA, Japan, Europe)
 			version: Optional version (e.g., "V1.0", "V1.1")
-			
+
 		Returns:
 			RomInfo for FFMQ, or None if not found.
 		"""
@@ -447,15 +447,15 @@ class RomCatalogHelper:
 						if not version or version.upper() in rom.filename:
 							return rom
 		return None
-	
+
 	def get_dragon_quest(self, game: int, region: str = "Japan") -> Optional[RomInfo]:
 		"""
 		Convenience method to get Dragon Quest ROM.
-		
+
 		Args:
 			game: Game number (1-6 for SNES)
 			region: Region to find (usually Japan for SNES)
-			
+
 		Returns:
 			RomInfo for Dragon Quest, or None if not found.
 		"""
@@ -472,15 +472,15 @@ class RomCatalogHelper:
 		elif game == 6:
 			return self.find_by_name("Dragon Quest VI", platform="SNES")
 		return None
-	
+
 	def find_by_mapper(self, mapper: int, platform: str = "NES") -> list[RomInfo]:
 		"""
 		Find all ROMs using a specific mapper.
-		
+
 		Args:
 			mapper: Mapper number
 			platform: Platform to search (default: NES)
-			
+
 		Returns:
 			List of ROMs using the specified mapper.
 		"""
@@ -488,11 +488,11 @@ class RomCatalogHelper:
 		for rom in self._files:
 			if rom.platform.lower() != platform.lower():
 				continue
-			
+
 			if platform.lower() == "nes" and rom.nes_header:
 				if rom.nes_header.get("mapper") == mapper:
 					results.append(rom)
-		
+
 		return results
 
 
@@ -503,7 +503,7 @@ def get_default_catalog_path() -> Path:
 	catalog_path = script_dir.parent / "data" / "rom_catalog.json"
 	if catalog_path.exists():
 		return catalog_path
-	
+
 	# Try common locations
 	common_paths = [
 		Path("data/rom_catalog.json"),
@@ -513,18 +513,18 @@ def get_default_catalog_path() -> Path:
 	for path in common_paths:
 		if path.exists():
 			return path.resolve()
-	
+
 	raise FileNotFoundError("Could not find rom_catalog.json")
 
 
 def get_helper(catalog_path: Optional[str | Path] = None) -> RomCatalogHelper:
 	"""
 	Get a RomCatalogHelper instance.
-	
+
 	Args:
 		catalog_path: Optional path to catalog. If not provided,
 		              uses default location.
-	
+
 	Returns:
 		RomCatalogHelper instance.
 	"""
@@ -537,28 +537,28 @@ def get_helper(catalog_path: Optional[str | Path] = None) -> RomCatalogHelper:
 def find_rom(query: str, catalog_path: Optional[str | Path] = None) -> Optional[RomInfo]:
 	"""
 	Quick lookup function - finds ROM by hash or name.
-	
+
 	Args:
 		query: Hash value or ROM name
 		catalog_path: Optional path to catalog
-		
+
 	Returns:
 		RomInfo if found, None otherwise.
 	"""
 	helper = get_helper(catalog_path)
-	
+
 	# Try as hash first
 	result = helper.find_by_hash(query)
 	if result:
 		return result
-	
+
 	# Try as name
 	return helper.find_by_name(query)
 
 
 if __name__ == "__main__":
 	import sys
-	
+
 	# Demo/test mode
 	try:
 		helper = get_helper()
@@ -566,7 +566,7 @@ if __name__ == "__main__":
 		print(f"Total size: {helper.total_size / 1024 / 1024:.2f} MB")
 		print(f"Platforms: {helper.platforms}")
 		print()
-		
+
 		# Show Soul Blazer info
 		soul_blazer = helper.get_soul_blazer("USA")
 		if soul_blazer:
@@ -581,7 +581,7 @@ if __name__ == "__main__":
 			path = helper.get_rom_path(soul_blazer)
 			print(f"  Path: {path}")
 			print(f"  Exists: {path.exists()}")
-		
+
 		# Command line lookup
 		if len(sys.argv) > 1:
 			query = " ".join(sys.argv[1:])
@@ -593,7 +593,7 @@ if __name__ == "__main__":
 				print(f"  Region: {result.region}")
 			else:
 				print("  Not found")
-	
+
 	except FileNotFoundError as e:
 		print(f"Error: {e}", file=sys.stderr)
 		sys.exit(1)

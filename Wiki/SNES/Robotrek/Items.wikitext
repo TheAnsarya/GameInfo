@@ -1,0 +1,256 @@
+{{Back|Robotrek (SNES)}}
+
+= Robotrek (SNES) - Items =
+
+This page documents all items in Robotrek.
+
+== Item Categories ==
+
+* '''Consumables''' - Recovery items, status cures
+* '''Equipment''' - Weapons, armor, accessories
+* '''Materials''' - Invention components
+* '''Key Items''' - Story-related items
+* '''Robot Parts''' - Components for building robots
+
+== Consumable Items ==
+
+{| class="wikitable sortable"
+! ID !! Name !! Effect !! Buy !! Sell
+|-
+| $01 || Cure || Restore 50 HP || 20 || 10
+|-
+| $02 || Cure2 || Restore 150 HP || 80 || 40
+|-
+| $03 || Cure3 || Restore 500 HP || 300 || 150
+|-
+| $04 || Repair || Restore Robot EN || 50 || 25
+|-
+| $05 || Smoke || Escape battle || 30 || 15
+|-
+| $06 || Antidote || Cure poison || 25 || 12
+|-
+| $07 || Clean || Remove status effects || 100 || 50
+|-
+| $08 || Power Up || Boost Power +10 (battle) || 150 || 75
+|-
+| $09 || Guard Up || Boost Guard +10 (battle) || 150 || 75
+|-
+| $0A || Speed Up || Boost Speed +10 (battle) || 150 || 75
+|}
+
+== Equipment ==
+
+=== Weapons ===
+
+{| class="wikitable sortable"
+! ID !! Name !! Power !! Special !! Buy !! Sell
+|-
+| $10 || Punch || 10 || -- || -- || --
+|-
+| $11 || Iron Arm || 18 || -- || 200 || 100
+|-
+| $12 || Blade || 25 || -- || 400 || 200
+|-
+| $13 || Hammer || 35 || Stun chance || 800 || 400
+|-
+| $14 || Drill || 45 || Armor pierce || 1500 || 750
+|-
+| $15 || Laser || 55 || Ranged || 2500 || 1250
+|-
+| $16 || Axe || 65 || Critical+ || 4000 || 2000
+|-
+| $17 || Blade X || 80 || -- || 6000 || 3000
+|-
+| $18 || Laser X || 95 || Ranged, Multi || 9000 || 4500
+|-
+| $19 || Megatonarm || 120 || Max Power || -- || 5000
+|}
+
+=== Armor ===
+
+{| class="wikitable sortable"
+! ID !! Name !! Guard !! Special !! Buy !! Sell
+|-
+| $20 || Iron Body || 15 || -- || 300 || 150
+|-
+| $21 || Steel Body || 25 || -- || 700 || 350
+|-
+| $22 || Mithril || 40 || Magic Resist || 1500 || 750
+|-
+| $23 || Power Suit || 55 || Power +5 || 3000 || 1500
+|-
+| $24 || Blade Body || 70 || Counter || 5000 || 2500
+|-
+| $25 || Mirror Body || 85 || Reflect || 8000 || 4000
+|-
+| $26 || Maxarmor || 120 || All Resist || -- || 5000
+|}
+
+=== Accessories ===
+
+{| class="wikitable sortable"
+! ID !! Name !! Effect !! Buy !! Sell
+|-
+| $30 || Speed Boots || Speed +10 || 500 || 250
+|-
+| $31 || Power Ring || Power +10 || 800 || 400
+|-
+| $32 || Guard Ring || Guard +10 || 800 || 400
+|-
+| $33 || HP Plus || Max HP +50 || 1200 || 600
+|-
+| $34 || EN Plus || Max EN +30 || 1200 || 600
+|-
+| $35 || Lucky Charm || Drop rate + || 2000 || 1000
+|-
+| $36 || Exp. Up || EXP x1.5 || 3000 || 1500
+|-
+| $37 || Quick Ring || First strike || 5000 || 2500
+|}
+
+== Materials (Invention Components) ==
+
+{| class="wikitable sortable"
+! ID !! Name !! Category !! Used For
+|-
+| $40 || Scrap1 || Metal || Basic inventions
+|-
+| $41 || Scrap2 || Metal || Intermediate items
+|-
+| $42 || Scrap3 || Metal || Advanced items
+|-
+| $43 || Celtis || Mineral || Special items
+|-
+| $44 || Graphite || Mineral || Electronics
+|-
+| $45 || Spring || Mechanical || Movement parts
+|-
+| $46 || Gear || Mechanical || Robots
+|-
+| $47 || Motor || Mechanical || Powered items
+|-
+| $48 || Lens || Optical || Sensors
+|-
+| $49 || Crystal || Energy || Power items
+|-
+| $4A || Battery || Energy || Charge items
+|-
+| $4B || Chip || Electronic || Computers
+|-
+| $4C || Wire || Electronic || Connections
+|}
+
+== Key Items ==
+
+{| class="wikitable"
+! ID !! Name !! Purpose
+|-
+| $80 || Mayor's Letter || Story progression
+|-
+| $81 || ID Card || Access Research Lab
+|-
+| $82 || Key Card || Open locked doors
+|-
+| $83 || Rusty Key || Unlock treasure
+|-
+| $84 || Gold Key || Special treasure
+|-
+| $85 || Time Key || Time travel device
+|-
+| $86 || Map || Show world map
+|-
+| $87 || Radar || Show hidden items
+|-
+| $88 || Teleporter || Warp to towns
+|}
+
+== Robot Parts ==
+
+=== Heads ===
+
+{| class="wikitable sortable"
+! ID !! Name !! Power !! Speed !! Special
+|-
+| $50 || Normal || 0 || 0 || --
+|-
+| $51 || Sensor || 0 || +5 || Accuracy +
+|-
+| $52 || Heavy || +10 || -5 || HP +20
+|-
+| $53 || Speed || -5 || +15 || Evasion +
+|-
+| $54 || Power || +15 || 0 || Critical +
+|}
+
+=== Bodies ===
+
+{| class="wikitable sortable"
+! ID !! Name !! Guard !! HP Bonus !! Special
+|-
+| $58 || Normal || 0 || 0 || --
+|-
+| $59 || Heavy || +15 || +50 || Slow
+|-
+| $5A || Light || -5 || -20 || Speed +10
+|-
+| $5B || Tank || +25 || +100 || Very Slow
+|-
+| $5C || Hyper || +10 || +30 || EN +20
+|}
+
+=== Arms ===
+
+{| class="wikitable sortable"
+! ID !! Name !! Power !! Special
+|-
+| $60 || Punch || 10 || --
+|-
+| $61 || Blade || 25 || --
+|-
+| $62 || Hammer || 35 || Stun
+|-
+| $63 || Drill || 50 || Armor Pierce
+|-
+| $64 || Laser || 40 || Ranged
+|-
+| $65 || Missile || 60 || AOE
+|}
+
+=== Legs ===
+
+{| class="wikitable sortable"
+! ID !! Name !! Speed !! Special
+|-
+| $68 || Normal || 0 || --
+|-
+| $69 || Jet || +15 || Can fly
+|-
+| $6A || Tank || -10 || Guard +10
+|-
+| $6B || Wheel || +20 || Can't climb
+|-
+| $6C || Hover || +10 || Ignore terrain
+|}
+
+== Data Structure ==
+
+Each item uses 8 bytes:
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Item ID
+|-
+| $01 || 1 || Item Type/Category
+|-
+| $02 || 1 || Primary Stat
+|-
+| $03 || 1 || Secondary Stat
+|-
+| $04 || 2 || Buy Price
+|-
+| $06 || 2 || Special Flags
+|}
+
+[[Category:Data Tables]]
+[[Category:SNES]]

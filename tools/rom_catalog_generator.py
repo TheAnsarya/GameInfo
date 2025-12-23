@@ -86,7 +86,7 @@ class RomFile:
 	relative_path: str
 	size: int
 	extension: str
-	
+
 	# Hashes
 	crc32: str = ""
 	md5: str = ""
@@ -95,7 +95,7 @@ class RomFile:
 	sha512: str = ""
 	blake2b: str = ""
 	blake3: str = ""
-	
+
 	# Metadata
 	description: str = ""
 	platform: str = ""
@@ -110,13 +110,13 @@ class RomFile:
 	is_unlicensed: bool = False
 	is_prototype: bool = False
 	is_beta: bool = False
-	
+
 	# SNES-specific
 	snes_header: Optional[Dict[str, Any]] = None
-	
+
 	# NES-specific
 	nes_header: Optional[Dict[str, Any]] = None
-	
+
 	# GBA-specific
 	gba_header: Optional[Dict[str, Any]] = None
 
@@ -446,36 +446,36 @@ def calculate_hashes(filepath: Path) -> Dict[str, str]:
 		"blake2b": "",
 		"blake3": "",
 	}
-	
+
 	try:
 		with open(filepath, "rb") as f:
 			data = f.read()
-		
+
 		# CRC32
 		hashes["crc32"] = format(zlib.crc32(data) & 0xffffffff, "08x")
-		
+
 		# MD5
 		hashes["md5"] = hashlib.md5(data).hexdigest()
-		
+
 		# SHA-1
 		hashes["sha1"] = hashlib.sha1(data).hexdigest()
-		
+
 		# SHA-256
 		hashes["sha256"] = hashlib.sha256(data).hexdigest()
-		
+
 		# SHA-512
 		hashes["sha512"] = hashlib.sha512(data).hexdigest()
-		
+
 		# BLAKE2b
 		hashes["blake2b"] = hashlib.blake2b(data).hexdigest()
-		
+
 		# BLAKE3 (if available)
 		if HAS_BLAKE3:
 			hashes["blake3"] = blake3.blake3(data).hexdigest()
-		
+
 	except Exception as e:
 		print(f"Error calculating hashes for {filepath}: {e}")
-	
+
 	return hashes
 
 
@@ -484,79 +484,79 @@ def parse_snes_header(filepath: Path) -> Optional[SNESHeader]:
 	try:
 		with open(filepath, "rb") as f:
 			data = f.read()
-		
+
 		# Check for copier header (512 bytes)
 		header_offset = 0
 		if len(data) % 0x8000 == 512:
 			header_offset = 512
-		
+
 		# Try LoROM location first ($7FC0)
 		lorom_offset = header_offset + 0x7FC0
 		hirom_offset = header_offset + 0xFFC0
-		
+
 		header = SNESHeader()
-		
+
 		# Check LoROM
 		if lorom_offset + 32 <= len(data):
 			# Read checksum and complement from LoROM location
 			checksum = struct.unpack("<H", data[lorom_offset + 0x1C:lorom_offset + 0x1E])[0]
 			complement = struct.unpack("<H", data[lorom_offset + 0x1E:lorom_offset + 0x20])[0]
-			
+
 			if (checksum ^ complement) == 0xFFFF:
 				header.header_offset = lorom_offset
 				header.is_valid = True
-		
+
 		# Check HiROM if LoROM invalid
 		if not header.is_valid and hirom_offset + 32 <= len(data):
 			checksum = struct.unpack("<H", data[hirom_offset + 0x1C:hirom_offset + 0x1E])[0]
 			complement = struct.unpack("<H", data[hirom_offset + 0x1E:hirom_offset + 0x20])[0]
-			
+
 			if (checksum ^ complement) == 0xFFFF:
 				header.header_offset = hirom_offset
 				header.is_valid = True
-		
+
 		if header.is_valid:
 			offset = header.header_offset
-			
+
 			# Title (21 bytes, ASCII)
 			title_bytes = data[offset:offset + 21]
 			header.title = title_bytes.decode("ascii", errors="replace").strip()
-			
+
 			# Mapper mode
 			mapper_byte = data[offset + 0x15]
 			header.mapper = SNES_MAPPERS.get(mapper_byte, f"Unknown (0x{mapper_byte:02X})")
-			
+
 			# ROM type
 			rom_type_byte = data[offset + 0x16]
 			header.rom_type = SNES_ROM_TYPES.get(rom_type_byte, f"Unknown (0x{rom_type_byte:02X})")
-			
+
 			# ROM size (2^n KB)
 			rom_size_byte = data[offset + 0x17]
 			header.rom_size = (1 << rom_size_byte) * 1024
-			
+
 			# SRAM size (2^n KB, 0 = none)
 			sram_size_byte = data[offset + 0x18]
 			header.sram_size = (1 << sram_size_byte) * 1024 if sram_size_byte > 0 else 0
-			
+
 			# Country
 			country_byte = data[offset + 0x19]
 			header.country = SNES_COUNTRIES.get(country_byte, f"Unknown (0x{country_byte:02X})")
-			
+
 			# License code
 			header.license = f"0x{data[offset + 0x1A]:02X}"
-			
+
 			# Version
 			header.version = data[offset + 0x1B]
-			
+
 			# Checksum values
 			header.complement = struct.unpack("<H", data[offset + 0x1C:offset + 0x1E])[0]
 			header.checksum = struct.unpack("<H", data[offset + 0x1E:offset + 0x20])[0]
-			
+
 			return header
-		
+
 	except Exception as e:
 		print(f"Error parsing SNES header for {filepath}: {e}")
-	
+
 	return None
 
 
@@ -565,23 +565,23 @@ def parse_nes_header(filepath: Path) -> Optional[NESHeader]:
 	try:
 		with open(filepath, "rb") as f:
 			data = f.read(16)  # Header is 16 bytes
-		
+
 		if len(data) < 16:
 			return None
-		
+
 		# Check for NES signature
 		if data[0:4] != b"NES\x1a":
 			return None
-		
+
 		header = NESHeader()
 		header.is_valid = True
-		
+
 		# Check for NES 2.0 format
 		if (data[7] & 0x0C) == 0x08:
 			header.format = "NES2.0"
 		else:
 			header.format = "iNES"
-		
+
 		# PRG ROM size
 		prg_lsb = data[4]
 		if header.format == "NES2.0":
@@ -595,7 +595,7 @@ def parse_nes_header(filepath: Path) -> Optional[NESHeader]:
 				header.prg_rom_size = ((prg_msb << 8) | prg_lsb) * 16384
 		else:
 			header.prg_rom_size = prg_lsb * 16384
-		
+
 		# CHR ROM size
 		chr_lsb = data[5]
 		if header.format == "NES2.0":
@@ -608,7 +608,7 @@ def parse_nes_header(filepath: Path) -> Optional[NESHeader]:
 				header.chr_rom_size = ((chr_msb << 8) | chr_lsb) * 8192
 		else:
 			header.chr_rom_size = chr_lsb * 8192
-		
+
 		# Flags 6
 		flags6 = data[6]
 		if flags6 & 0x08:
@@ -617,22 +617,22 @@ def parse_nes_header(filepath: Path) -> Optional[NESHeader]:
 			header.mirroring = "Vertical"
 		else:
 			header.mirroring = "Horizontal"
-		
+
 		header.has_battery = bool(flags6 & 0x02)
 		header.has_trainer = bool(flags6 & 0x04)
-		
+
 		# Mapper number
 		mapper_lo = (flags6 >> 4) & 0x0F
 		mapper_hi = (data[7] >> 4) & 0x0F
-		
+
 		if header.format == "NES2.0":
 			mapper_ext = (data[8] & 0x0F) << 8
 			header.mapper = mapper_ext | (mapper_hi << 4) | mapper_lo
 		else:
 			header.mapper = (mapper_hi << 4) | mapper_lo
-		
+
 		header.mapper_name = NES_MAPPERS.get(header.mapper, f"Unknown ({header.mapper})")
-		
+
 		# PRG RAM size
 		if header.format == "NES2.0":
 			prg_ram_shift = data[10] & 0x0F
@@ -644,7 +644,7 @@ def parse_nes_header(filepath: Path) -> Optional[NESHeader]:
 		else:
 			prg_ram = data[8]
 			header.prg_ram_size = prg_ram * 8192 if prg_ram > 0 else 8192
-		
+
 		# CHR RAM size
 		if header.format == "NES2.0":
 			chr_ram_shift = data[11] & 0x0F
@@ -657,7 +657,7 @@ def parse_nes_header(filepath: Path) -> Optional[NESHeader]:
 			# CHR RAM is used when CHR ROM = 0
 			if header.chr_rom_size == 0:
 				header.chr_ram_size = 8192
-		
+
 		# TV system
 		if header.format == "NES2.0":
 			tv_byte = data[12] & 0x03
@@ -672,12 +672,12 @@ def parse_nes_header(filepath: Path) -> Optional[NESHeader]:
 		else:
 			# iNES doesn't have reliable TV system info
 			header.tv_system = "Unknown"
-		
+
 		return header
-		
+
 	except Exception as e:
 		print(f"Error parsing NES header for {filepath}: {e}")
-	
+
 	return None
 
 
@@ -686,43 +686,43 @@ def parse_gba_header(filepath: Path) -> Optional[GBAHeader]:
 	try:
 		with open(filepath, "rb") as f:
 			data = f.read(0xC0)  # Header is at start, we need up to $C0
-		
+
 		if len(data) < 0xC0:
 			return None
-		
+
 		# Check for valid GBA ROM (fixed value at $B2)
 		if data[0xB2] != 0x96:
 			return None
-		
+
 		header = GBAHeader()
 		header.is_valid = True
-		
+
 		# Title (12 bytes at $A0)
 		title_bytes = data[0xA0:0xAC]
 		header.title = title_bytes.decode("ascii", errors="replace").strip("\x00").strip()
-		
+
 		# Game code (4 bytes at $AC)
 		game_code_bytes = data[0xAC:0xB0]
 		header.game_code = game_code_bytes.decode("ascii", errors="replace")
-		
+
 		# Maker code (2 bytes at $B0)
 		maker_code_bytes = data[0xB0:0xB2]
 		header.maker_code = maker_code_bytes.decode("ascii", errors="replace")
-		
+
 		# Unit code ($B3)
 		header.unit_code = data[0xB3]
-		
+
 		# Software version ($BC)
 		header.software_version = data[0xBC]
-		
+
 		# Header checksum complement ($BD)
 		header.complement = data[0xBD]
-		
+
 		return header
-		
+
 	except Exception as e:
 		print(f"Error parsing GBA header for {filepath}: {e}")
-	
+
 	return None
 
 
@@ -742,42 +742,42 @@ def parse_filename(filename: str) -> Dict[str, Any]:
 		"is_prototype": False,
 		"is_beta": False,
 	}
-	
+
 	# Get base name without extension
 	base = os.path.splitext(filename)[0]
-	
+
 	# Check for verified dump [!]
 	if "[!]" in base:
 		info["is_verified"] = True
-	
+
 	# Check for bad dump [b]
 	if "[b" in base.lower() or "(bad)" in base.lower():
 		info["is_bad_dump"] = True
-	
+
 	# Check for overdump [o]
 	if "[o" in base.lower():
 		info["is_overdump"] = True
-	
+
 	# Check for underdump
 	if "[u]" in base.lower():
 		info["is_underdump"] = True
-	
+
 	# Check for hack [h]
 	if "[h" in base.lower() or "(hack)" in base.lower():
 		info["is_hack"] = True
-	
+
 	# Check for translation [T]
 	if "[t" in base.lower() or "(translation)" in base.lower():
 		info["is_translation"] = True
-	
+
 	# Check for prototype
 	if "(prototype)" in base.lower() or "(proto)" in base.lower():
 		info["is_prototype"] = True
-	
+
 	# Check for beta
 	if "(beta" in base.lower():
 		info["is_beta"] = True
-	
+
 	# Extract region
 	for code, region in REGION_CODES.items():
 		if code in base:
@@ -786,12 +786,12 @@ def parse_filename(filename: str) -> Dict[str, Any]:
 			if code == "(Unl)":
 				info["is_unlicensed"] = True
 			break
-	
+
 	# Extract version/revision
 	rev_match = re.search(r"\(V(\d+\.\d+)\)", base)
 	if rev_match:
 		info["revision"] = rev_match.group(1)
-	
+
 	# Generate description
 	# Remove codes from name for clean description
 	clean_name = base
@@ -802,16 +802,16 @@ def parse_filename(filename: str) -> Dict[str, Any]:
 	clean_name = re.sub(r"\(Beta\d*\)", "", clean_name, flags=re.IGNORECASE)
 	clean_name = re.sub(r"\(Prototype\)", "", clean_name, flags=re.IGNORECASE)
 	clean_name = clean_name.strip()
-	
+
 	info["description"] = clean_name
-	
+
 	return info
 
 
 def process_rom_file(filepath: Path, root_path: Path) -> RomFile:
 	"""Process a single ROM file and gather all information."""
 	relative = filepath.relative_to(root_path)
-	
+
 	# Get basic info
 	rom = RomFile(
 		filename=filepath.name,
@@ -819,7 +819,7 @@ def process_rom_file(filepath: Path, root_path: Path) -> RomFile:
 		size=filepath.stat().st_size,
 		extension=filepath.suffix.lower(),
 	)
-	
+
 	# Calculate hashes
 	hashes = calculate_hashes(filepath)
 	rom.crc32 = hashes["crc32"]
@@ -829,7 +829,7 @@ def process_rom_file(filepath: Path, root_path: Path) -> RomFile:
 	rom.sha512 = hashes["sha512"]
 	rom.blake2b = hashes["blake2b"]
 	rom.blake3 = hashes["blake3"]
-	
+
 	# Parse filename
 	file_info = parse_filename(filepath.name)
 	rom.description = file_info["description"]
@@ -844,10 +844,10 @@ def process_rom_file(filepath: Path, root_path: Path) -> RomFile:
 	rom.is_unlicensed = file_info["is_unlicensed"]
 	rom.is_prototype = file_info["is_prototype"]
 	rom.is_beta = file_info["is_beta"]
-	
+
 	# Detect platform
 	rom.platform = PLATFORM_EXTENSIONS.get(rom.extension, "Unknown")
-	
+
 	# Check parent folder for platform hint
 	parent_folder = relative.parts[0] if len(relative.parts) > 1 else ""
 	if parent_folder.upper() == "SNES":
@@ -862,36 +862,36 @@ def process_rom_file(filepath: Path, root_path: Path) -> RomFile:
 		rom.platform = "Game Boy Color"
 	elif parent_folder.upper() == "GENESIS" or parent_folder.upper() == "MD":
 		rom.platform = "Genesis/Mega Drive"
-	
+
 	# Parse SNES header if applicable
 	if rom.platform == "SNES" and rom.extension in [".sfc", ".smc"]:
 		header = parse_snes_header(filepath)
 		if header and header.is_valid:
 			rom.snes_header = asdict(header)
-	
+
 	# Parse NES header if applicable
 	if rom.platform == "NES" and rom.extension == ".nes":
 		header = parse_nes_header(filepath)
 		if header and header.is_valid:
 			rom.nes_header = asdict(header)
-	
+
 	# Parse GBA header if applicable
 	if rom.platform == "Game Boy Advance" and rom.extension == ".gba":
 		header = parse_gba_header(filepath)
 		if header and header.is_valid:
 			rom.gba_header = asdict(header)
-	
+
 	return rom
 
 
 def build_folder_structure(files: List[RomFile]) -> Dict[str, Any]:
 	"""Build nested folder structure from file list."""
 	root: Dict[str, Any] = {}
-	
+
 	for rom in files:
 		path_parts = Path(rom.relative_path).parts
 		current = root
-		
+
 		# Navigate/create folders
 		for i, part in enumerate(path_parts[:-1]):
 			if part not in current:
@@ -901,7 +901,7 @@ def build_folder_structure(files: List[RomFile]) -> Dict[str, Any]:
 					"_subfolders": {}
 				}
 			current = current[part]["_subfolders"] if "_subfolders" in current[part] else current[part]
-		
+
 		# Add file to final folder
 		folder_name = path_parts[-2] if len(path_parts) > 1 else "/"
 		if folder_name not in current:
@@ -916,7 +916,7 @@ def build_folder_structure(files: List[RomFile]) -> Dict[str, Any]:
 			"crc32": rom.crc32,
 			"sha256": rom.sha256,
 		})
-	
+
 	return root
 
 
@@ -926,46 +926,46 @@ def generate_catalog(root_path: Path, output_path: Path, verbose: bool = True) -
 		generated=datetime.now().isoformat(),
 		root_path=str(root_path),
 	)
-	
+
 	# Find all ROM files
 	rom_extensions = set(PLATFORM_EXTENSIONS.keys())
-	
+
 	files: List[RomFile] = []
 	platform_counts: Dict[str, int] = {}
 	total_size = 0
-	
+
 	for filepath in root_path.rglob("*"):
 		if filepath.is_file() and filepath.suffix.lower() in rom_extensions:
 			if verbose:
 				print(f"Processing: {filepath.name}")
-			
+
 			rom = process_rom_file(filepath, root_path)
 			files.append(rom)
-			
+
 			# Count platforms
 			platform_counts[rom.platform] = platform_counts.get(rom.platform, 0) + 1
 			total_size += rom.size
-	
+
 	# Sort files by path
 	files.sort(key=lambda x: x.relative_path)
-	
+
 	# Update catalog
 	catalog.total_files = len(files)
 	catalog.total_size = total_size
 	catalog.platforms = platform_counts
 	catalog.files = [asdict(f) for f in files]
 	catalog.folders = build_folder_structure(files)
-	
+
 	# Save to JSON
 	with open(output_path, "w", encoding="utf-8") as f:
 		json.dump(asdict(catalog), f, indent="\t", ensure_ascii=False)
-	
+
 	if verbose:
 		print(f"\nCatalog generated: {output_path}")
 		print(f"Total files: {catalog.total_files}")
 		print(f"Total size: {catalog.total_size:,} bytes ({catalog.total_size / (1024*1024):.2f} MB)")
 		print(f"Platforms: {catalog.platforms}")
-	
+
 	return catalog
 
 
@@ -973,12 +973,12 @@ def lookup_rom(catalog_path: Path, **criteria) -> List[Dict[str, Any]]:
 	"""Look up ROMs in catalog by various criteria."""
 	with open(catalog_path, "r", encoding="utf-8") as f:
 		catalog = json.load(f)
-	
+
 	results = []
-	
+
 	for rom in catalog.get("files", []):
 		match = True
-		
+
 		for key, value in criteria.items():
 			if key in rom:
 				rom_value = rom[key]
@@ -989,10 +989,10 @@ def lookup_rom(catalog_path: Path, **criteria) -> List[Dict[str, Any]]:
 				elif rom_value != value:
 					match = False
 					break
-		
+
 		if match:
 			results.append(rom)
-	
+
 	return results
 
 
@@ -1027,9 +1027,9 @@ def main():
 		type=str,
 		help="Look up ROM by SHA-256 hash"
 	)
-	
+
 	args = parser.parse_args()
-	
+
 	# Lookup mode
 	if args.lookup or args.lookup_hash:
 		catalog_path = args.output
@@ -1037,12 +1037,12 @@ def main():
 			print(f"Catalog not found: {catalog_path}")
 			print("Run without --lookup first to generate catalog")
 			return 1
-		
+
 		if args.lookup:
 			results = lookup_rom(catalog_path, description=args.lookup)
 		else:
 			results = lookup_rom(catalog_path, sha256=args.lookup_hash)
-		
+
 		if results:
 			print(f"Found {len(results)} matching ROM(s):")
 			for rom in results:
@@ -1055,17 +1055,17 @@ def main():
 				print(f"    Region: {rom['region']}")
 		else:
 			print("No matching ROMs found")
-		
+
 		return 0
-	
+
 	# Generate catalog
 	if not args.root.exists():
 		print(f"Root directory not found: {args.root}")
 		return 1
-	
+
 	# Ensure output directory exists
 	args.output.parent.mkdir(parents=True, exist_ok=True)
-	
+
 	generate_catalog(args.root, args.output, verbose=not args.quiet)
 	return 0
 

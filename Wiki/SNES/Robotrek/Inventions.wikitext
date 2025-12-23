@@ -1,0 +1,264 @@
+{{Back|Robotrek (SNES)}}
+
+= Robotrek (SNES) - Inventions =
+
+This page documents the invention system in Robotrek.
+
+== Overview ==
+
+The invention system is the core mechanic of Robotrek. Players use materials collected from enemies and treasure to create items and equipment for their robots.
+
+== Invention Mechanics ==
+
+=== Components Required ===
+
+Each invention requires 2-4 materials:
+* '''Primary''' - Main component (defines type)
+* '''Secondary''' - Modifier (affects stats)
+* '''Tertiary''' - Optional (special abilities)
+* '''Catalyst''' - Rare items (unique inventions)
+
+=== Success Rate ===
+
+{| class="wikitable"
+! Inventor Level !! Base Rate !! Per Level
+|-
+| 1-10 || 50% || +3%
+|-
+| 11-20 || 80% || +2%
+|-
+| 21-30 || 100% || --
+|}
+
+Failure uses materials but produces "Junk".
+
+== Invention Recipes ==
+
+=== Weapons ===
+
+{| class="wikitable sortable"
+! Result !! Material 1 !! Material 2 !! Material 3 !! Level Req
+|-
+| Iron Arm || Scrap1 || Scrap1 || -- || 1
+|-
+| Blade || Scrap2 || Spring || -- || 5
+|-
+| Hammer || Scrap2 || Scrap2 || Gear || 8
+|-
+| Drill || Scrap3 || Motor || Gear || 12
+|-
+| Laser || Graphite || Lens || Battery || 16
+|-
+| Axe || Scrap3 || Scrap3 || Crystal || 20
+|-
+| Blade X || Scrap3 || Celtis || Spring || 25
+|-
+| Laser X || Graphite || Crystal || Chip || 28
+|-
+| Megatonarm || Scrap3 x3 || Crystal || Motor || 30
+|}
+
+=== Armor ===
+
+{| class="wikitable sortable"
+! Result !! Material 1 !! Material 2 !! Material 3 !! Level Req
+|-
+| Iron Body || Scrap1 || Scrap1 || Scrap1 || 1
+|-
+| Steel Body || Scrap2 || Scrap2 || -- || 5
+|-
+| Mithril || Scrap2 || Celtis || -- || 10
+|-
+| Power Suit || Scrap3 || Motor || Battery || 15
+|-
+| Blade Body || Scrap3 || Scrap3 || Spring || 20
+|-
+| Mirror Body || Celtis || Crystal || Lens || 25
+|-
+| Maxarmor || Scrap3 x3 || Celtis || Crystal || 30
+|}
+
+=== Accessories ===
+
+{| class="wikitable sortable"
+! Result !! Material 1 !! Material 2 !! Material 3 !! Level Req
+|-
+| Speed Boots || Spring || Spring || Wire || 5
+|-
+| Power Ring || Scrap2 || Crystal || -- || 8
+|-
+| Guard Ring || Scrap2 || Celtis || -- || 8
+|-
+| HP Plus || Celtis || Battery || -- || 12
+|-
+| EN Plus || Crystal || Battery || -- || 12
+|-
+| Lucky Charm || Crystal || Crystal || Wire || 18
+|-
+| Exp. Up || Crystal || Chip || Lens || 22
+|-
+| Quick Ring || Spring x3 || Motor || -- || 26
+|}
+
+=== Consumables ===
+
+{| class="wikitable sortable"
+! Result !! Material 1 !! Material 2 !! Level Req
+|-
+| Cure || Scrap1 || -- || 1
+|-
+| Cure2 || Scrap2 || Scrap1 || 5
+|-
+| Cure3 || Scrap3 || Scrap2 || 15
+|-
+| Repair || Battery || Wire || 3
+|-
+| Smoke || Scrap1 || Wire || 2
+|-
+| Antidote || Scrap1 || Spring || 4
+|-
+| Clean || Celtis || Wire || 10
+|-
+| Power Up || Crystal || Scrap2 || 8
+|-
+| Guard Up || Celtis || Scrap2 || 8
+|-
+| Speed Up || Spring || Scrap2 || 8
+|}
+
+=== Special Items ===
+
+{| class="wikitable sortable"
+! Result !! Materials Required !! Level Req !! Notes
+|-
+| Bomb || Scrap2, Battery, Wire || 7 || Damages all enemies
+|-
+| Big Bomb || Scrap3, Battery x2, Crystal || 18 || Heavy AoE damage
+|-
+| Weather || Lens, Crystal, Chip || 15 || Changes map weather
+|-
+| Teleporter || Chip, Crystal, Wire x2 || 20 || Return to town
+|-
+| Radar || Lens, Chip, Wire || 12 || Show hidden items
+|-
+| Hacker Tool || Chip x2, Wire, Graphite || 25 || Open special doors
+|}
+
+== Robot Parts Invention ==
+
+=== Heads ===
+
+{| class="wikitable sortable"
+! Result !! Material 1 !! Material 2 !! Material 3 !! Level Req
+|-
+| Sensor Head || Lens || Chip || Wire || 8
+|-
+| Heavy Head || Scrap3 || Scrap3 || -- || 10
+|-
+| Speed Head || Spring || Motor || -- || 12
+|-
+| Power Head || Scrap3 || Crystal || Motor || 18
+|}
+
+=== Bodies ===
+
+{| class="wikitable sortable"
+! Result !! Material 1 !! Material 2 !! Material 3 !! Level Req
+|-
+| Heavy Body || Scrap3 x2 || Gear || Motor || 12
+|-
+| Light Body || Scrap2 || Spring || -- || 8
+|-
+| Tank Body || Scrap3 x3 || Motor || Celtis || 20
+|-
+| Hyper Body || Scrap3 || Crystal || Battery || 25
+|}
+
+=== Arms ===
+
+{| class="wikitable sortable"
+! Result !! Material 1 !! Material 2 !! Material 3 !! Level Req
+|-
+| Blade Arm || Scrap2 || Spring || -- || 5
+|-
+| Hammer Arm || Scrap3 || Gear || -- || 10
+|-
+| Drill Arm || Scrap3 || Motor || Gear || 15
+|-
+| Laser Arm || Graphite || Lens || Battery || 20
+|-
+| Missile Arm || Scrap3 || Motor || Battery || 25
+|}
+
+=== Legs ===
+
+{| class="wikitable sortable"
+! Result !! Material 1 !! Material 2 !! Material 3 !! Level Req
+|-
+| Jet Legs || Motor || Spring || Battery || 12
+|-
+| Tank Legs || Scrap3 || Gear x2 || -- || 15
+|-
+| Wheel Legs || Gear || Spring || Motor || 10
+|-
+| Hover Legs || Motor x2 || Spring || Crystal || 22
+|}
+
+== Combination Bonuses ==
+
+Certain material combinations provide bonus effects:
+
+{| class="wikitable"
+! Combination !! Bonus Effect
+|-
+| 3x Same Material || +25% stats
+|-
+| Celtis + Crystal || +Magic Resist
+|-
+| Motor + Spring || +Speed
+|-
+| Scrap3 + Crystal || +Power
+|-
+| Battery + Chip || +EN Recovery
+|}
+
+== Secret Inventions ==
+
+{| class="wikitable"
+! Result !! Materials !! How to Unlock
+|-
+| God Arm || Scrap3 x3, Crystal x2 || Complete game once
+|-
+| God Body || Celtis x3, Crystal x2 || Collect all materials
+|-
+| Time Watch || Chip x3, Crystal x2 || Beat final boss under 10 hours
+|-
+| Cosmos Ring || All materials x1 || 100% completion
+|}
+
+== Data Structure ==
+
+Each invention recipe uses 8 bytes:
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Result Item ID
+|-
+| $01 || 1 || Material 1 ID
+|-
+| $02 || 1 || Material 1 Quantity
+|-
+| $03 || 1 || Material 2 ID
+|-
+| $04 || 1 || Material 2 Quantity
+|-
+| $05 || 1 || Material 3 ID
+|-
+| $06 || 1 || Material 3 Quantity
+|-
+| $07 || 1 || Required Level / Flags
+|}
+
+[[Category:Game Mechanics]]
+[[Category:SNES]]

@@ -1,0 +1,273 @@
+{{Back|Robotrek (SNES)}}
+
+= Robotrek (SNES) - Text Data =
+
+This page documents the text data locations and dialog in Robotrek.
+
+== Text Banks ==
+
+{| class="wikitable"
+! Bank !! Address Range !! Content !! Entries
+|-
+| $CF || $008000-$00BFFF || Menu text || ~100
+|-
+| $D0 || $008000-$0087FF || Item names || ~150
+|-
+| $D1 || $008000-$0083FF || Enemy names || ~80
+|-
+| $D2 || $008000-$0081FF || Location names || ~50
+|-
+| $E0-$E3 || Full banks || Main dialog || ~2000
+|-
+| $E4-$E5 || Full banks || NPC dialog || ~500
+|-
+| $E6 || $008000-$00BFFF || Battle text || ~200
+|-
+| $E7 || $008000-$00BFFF || System messages || ~100
+|}
+
+== Menu Text ==
+
+=== Main Menu ===
+
+{| class="wikitable"
+! ID !! Text (EN) !! Text (JP)
+|-
+| $00 || "ITEM" || "アイテム"
+|-
+| $01 || "ROBOT" || "ロボット"
+|-
+| $02 || "EQUIP" || "そうび"
+|-
+| $03 || "INVENT" || "はつめい"
+|-
+| $04 || "PROGRAM" || "プログラム"
+|-
+| $05 || "STATUS" || "つよさ"
+|-
+| $06 || "CONFIG" || "せってい"
+|-
+| $07 || "SAVE" || "セーブ"
+|}
+
+=== Battle Menu ===
+
+{| class="wikitable"
+! ID !! Text (EN)
+|-
+| $10 || "ATTACK"
+|-
+| $11 || "DEFEND"
+|-
+| $12 || "ITEM"
+|-
+| $13 || "RUN"
+|-
+| $14 || "PROGRAM"
+|-
+| $15 || "SWAP"
+|}
+
+=== Shop Menu ===
+
+{| class="wikitable"
+! ID !! Text (EN)
+|-
+| $20 || "BUY"
+|-
+| $21 || "SELL"
+|-
+| $22 || "EXIT"
+|-
+| $23 || "How many?"
+|-
+| $24 || "That'll be %d gold."
+|-
+| $25 || "Thank you!"
+|-
+| $26 || "Come again!"
+|}
+
+== Item Names ==
+
+=== Consumables ===
+
+{| class="wikitable"
+! ID !! Name (EN) !! Name (JP) !! Description
+|-
+| $01 || "Cure" || "かいふく" || "Restore 50 HP"
+|-
+| $02 || "Cure2" || "かいふく2" || "Restore 150 HP"
+|-
+| $03 || "Cure3" || "かいふく3" || "Restore 500 HP"
+|-
+| $04 || "Repair" || "しゅうり" || "Restore Robot EN"
+|-
+| $05 || "Smoke" || "けむりだま" || "Escape from battle"
+|}
+
+=== Weapons ===
+
+{| class="wikitable"
+! ID !! Name (EN) !! Name (JP)
+|-
+| $10 || "Punch" || "パンチ"
+|-
+| $11 || "Iron Arm" || "アイアンアーム"
+|-
+| $12 || "Blade" || "ブレード"
+|-
+| $13 || "Hammer" || "ハンマー"
+|-
+| $14 || "Drill" || "ドリル"
+|-
+| $15 || "Laser" || "レーザー"
+|}
+
+== Enemy Names ==
+
+{| class="wikitable"
+! ID !! Name (EN) !! Name (JP)
+|-
+| $01 || "Mouse" || "ネズミ"
+|-
+| $02 || "Bat" || "コウモリ"
+|-
+| $03 || "Rat" || "ドブネズミ"
+|-
+| $10 || "Slime" || "スライム"
+|-
+| $11 || "Golem" || "ゴーレム"
+|-
+| $80 || "Mouse King" || "ネズミキング"
+|-
+| $88 || "Bugbug" || "バグバグ"
+|}
+
+== Location Names ==
+
+{| class="wikitable"
+! ID !! Name (EN) !! Name (JP)
+|-
+| $01 || "Rococo" || "ロココ"
+|-
+| $02 || "Choco" || "チョコ"
+|-
+| $03 || "Proco" || "プロコ"
+|-
+| $04 || "Kira" || "キラ"
+|-
+| $10 || "Forest" || "もり"
+|-
+| $11 || "Cave" || "どうくつ"
+|-
+| $12 || "Volcano" || "かざん"
+|}
+
+== Key Dialog Samples ==
+
+=== Opening ===
+
+<pre>
+[Face: Father]
+"Good morning, %PLAYER%!"
+"Did you sleep well?"
+[Wait]
+"Today's a big day..."
+"You're finally old enough to build your first Robot!"
+[Wait]
+</pre>
+
+=== First Robot ===
+
+<pre>
+[Face: Father]
+"Here's your very own R&D machine."
+"Use it to Invent equipment for your Robot."
+[Wait]
+"Remember: the better the materials,"
+"the better the invention!"
+</pre>
+
+=== Boss Intro (Mouse King) ===
+
+<pre>
+[Face: Mouse King]
+"Squeak squeak!"
+"You dare enter MY den?"
+[Wait]
+"I am the mighty Mouse King!"
+"Prepare to be nibbled!"
+</pre>
+
+== Text Pointer Format ==
+
+=== Pointer Table Structure ===
+
+<pre>
+Base: $E0:0000
+Each pointer: 2 bytes (bank-relative offset)
+Total pointers: Variable per bank
+
+Example:
+$E0:0000 = $8000  (Dialog 0 at $E0:8000)
+$E0:0002 = $8045  (Dialog 1 at $E0:8045)
+$E0:0004 = $80A2  (Dialog 2 at $E0:80A2)
+...
+</pre>
+
+=== Variable Substitution ===
+
+{| class="wikitable"
+! Code !! Variable !! Max Length
+|-
+| %PLAYER% || Player name || 8 chars
+|-
+| %ROBOT1% || Robot 1 name || 8 chars
+|-
+| %ROBOT2% || Robot 2 name || 8 chars
+|-
+| %ROBOT3% || Robot 3 name || 8 chars
+|-
+| %GOLD% || Current gold || 8 digits
+|-
+| %ITEM% || Item name || 12 chars
+|-
+| %ENEMY% || Enemy name || 12 chars
+|-
+| %LOCATION% || Location name || 12 chars
+|}
+
+== Dialog Extraction ==
+
+To extract all dialog:
+
+<pre>
+1. Dump banks $E0-$E7
+2. Parse pointer tables at bank start
+3. Decode text using TBL
+4. Handle control codes ($F0-$FF)
+5. Export to JSON/CSV
+</pre>
+
+== Translation Notes ==
+
+=== US Localization Changes ===
+
+* Some humor localized for Western audiences
+* Character names changed (Japanese puns → English names)
+* Some dialog shortened due to text space limits
+* Technical terms simplified
+
+=== Known Translation Errors ===
+
+{| class="wikitable"
+! Location !! Original (JP) !! Translation (EN) !! Correct
+|-
+| Shop dialog || "ありがとう" || "Thanks you!" || "Thank you!"
+|-
+| Item desc || "HP回復" || "HP Restore" || "Restore HP"
+|}
+
+[[Category:Text Data]]
+[[Category:SNES]]

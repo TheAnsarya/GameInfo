@@ -1,0 +1,112 @@
+{{Game
+| title = Robotrek
+| image = Robotrek_Title.png
+| caption = Title screen
+| developer = [[Quintet]]
+| publisher = [[Enix]]
+| platform = [[SNES]]
+| released = {{vgrelease|JP=July 8, 1994|NA=October 1994}}
+| genre = [[Action RPG]]
+| modes = Single player
+}}
+
+'''Robotrek''' (known as '''Slapstick''' (スラップスティック) in Japan) is an [[action RPG]] developed by [[Quintet]] and published by [[Enix]] for the [[Super Nintendo Entertainment System|Super Nintendo]] in 1994.
+
+== Overview ==
+
+Robotrek is unique among Quintet's games for its lighter, more comedic tone and its innovative robot-building mechanics. The player controls a young inventor who creates robots to fight battles, combining parts and items to create powerful machines.
+
+== Gameplay ==
+
+=== Robot System ===
+
+The player can build and customize up to three robots:
+* Each robot has stats: HP, EN (Energy), Power, Guard, Speed
+* Robots are built from parts found or purchased
+* Parts can be combined to create new inventions
+* Robots level up separately from the hero
+
+=== Combat ===
+
+* Turn-based battle system
+* Robots fight while the hero provides support
+* Energy management is crucial for special attacks
+* Multiple robots can be deployed in harder battles
+
+=== Invention System ===
+
+One of Robotrek's unique features:
+* Combine items to create new items/equipment
+* Secret combinations unlock powerful gear
+* The "Invention" machine in each town allows crafting
+
+== Subpages ==
+
+{{Subpages
+| title = Robotrek (SNES)
+| RAM Map = Memory addresses and variables
+| ROM Map = ROM structure and data locations
+| Data Structures = Internal data formats
+| Items = Complete item database
+| Inventions = Robot parts and combinations
+| Enemies = Enemy statistics and drops
+| Formulas = Damage, experience, and stat calculations
+| Maps = World and dungeon maps
+| Text = Dialog and text extraction
+| TBL = Text encoding tables
+| Glitches = Known bugs and exploits
+| Credits = Development credits
+}}
+
+== Technical Information ==
+
+=== ROM Details ===
+
+{| class="wikitable"
+! Region !! CRC32 !! SHA1 !! Size
+|-
+| USA || <code>7ad4aadc</code> || <code>e315830e71cc6da91234813f70835d26802c0ea1</code> || 1.5 MB
+|-
+| Japan || <code>TBD</code> || <code>TBD</code> || TBD
+|}
+
+=== Memory Mapping ===
+
+Robotrek uses '''HiROM''' mapping with '''FastROM''' enabled:
+
+{| class="wikitable"
+! Bank Range !! Address Range !! Description
+|-
+| $C0-$CF || $0000-$FFFF || Program ROM (Banks 0-15)
+|-
+| $D0-$DF || $0000-$FFFF || Program ROM (Banks 16-31)
+|-
+| $70-$77 || $0000-$1FFF || SRAM (Save Data)
+|-
+| $7E-$7F || $0000-$FFFF || Work RAM
+|}
+
+== Development ==
+
+Robotrek was developed by Quintet, known for the "Soul Blazer trilogy" (Soul Blazer, Illusion of Gaia, Terranigma). While not part of that series, Robotrek shares Quintet's characteristic polish and attention to detail.
+
+The Japanese title "Slapstick" (スラップスティック) refers to the comedic nature of the game, which differs significantly from Quintet's usually darker RPG themes.
+
+== Related Games ==
+
+Quintet SNES RPGs:
+* [[Soul Blazer (SNES)|Soul Blazer]] (1992)
+* [[Illusion of Gaia (SNES)|Illusion of Gaia]] (1993)
+* '''Robotrek''' (1994)
+* [[Terranigma (SNES)|Terranigma]] (1995)
+
+== External Links ==
+
+* [https://gamefaqs.gamespot.com/snes/588654-robotrek GameFAQs - Robotrek]
+* [https://www.mobygames.com/game/robotrek MobyGames - Robotrek]
+
+[[Category:SNES Games]]
+[[Category:Action RPG]]
+[[Category:Quintet]]
+[[Category:Enix]]
+[[Category:1994 video games]]

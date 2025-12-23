@@ -1,0 +1,275 @@
+{{Back|Robotrek (SNES)}}
+
+= Robotrek (SNES) - Text Encoding =
+
+This page documents the text encoding used in Robotrek.
+
+== Character Encoding Table (TBL) ==
+
+=== Standard Characters ($00-$5F) ===
+
+{| class="wikitable"
+! Hex !! Char !! Hex !! Char !! Hex !! Char !! Hex !! Char
+|-
+| $00 || (end) || $10 || P || $20 || f || $30 || v
+|-
+| $01 || A || $11 || Q || $21 || g || $31 || w
+|-
+| $02 || B || $12 || R || $22 || h || $32 || x
+|-
+| $03 || C || $13 || S || $23 || i || $33 || y
+|-
+| $04 || D || $14 || T || $24 || j || $34 || z
+|-
+| $05 || E || $15 || U || $25 || k || $35 || 0
+|-
+| $06 || F || $16 || V || $26 || l || $36 || 1
+|-
+| $07 || G || $17 || W || $27 || m || $37 || 2
+|-
+| $08 || H || $18 || X || $28 || n || $38 || 3
+|-
+| $09 || I || $19 || Y || $29 || o || $39 || 4
+|-
+| $0A || J || $1A || Z || $2A || p || $3A || 5
+|-
+| $0B || K || $1B || a || $2B || q || $3B || 6
+|-
+| $0C || L || $1C || b || $2C || r || $3C || 7
+|-
+| $0D || M || $1D || c || $2D || s || $3D || 8
+|-
+| $0E || N || $1E || d || $2E || t || $3E || 9
+|-
+| $0F || O || $1F || e || $2F || u || $3F || (space)
+|}
+
+=== Punctuation ($40-$5F) ===
+
+{| class="wikitable"
+! Hex !! Char !! Hex !! Char !! Hex !! Char !! Hex !! Char
+|-
+| $40 || . || $44 || ? || $48 || ( || $4C || /
+|-
+| $41 || , || $45 || ' || $49 || ) || $4D || :
+|-
+| $42 || - || $46 || " || $4A || [ || $4E || ;
+|-
+| $43 || ! || $47 || ... || $4B || ] || $4F || +
+|}
+
+=== Special Characters ($50-$5F) ===
+
+{| class="wikitable"
+! Hex !! Description
+|-
+| $50 || Heart symbol
+|-
+| $51 || Star symbol
+|-
+| $52 || Arrow right
+|-
+| $53 || Arrow left
+|-
+| $54 || Arrow up
+|-
+| $55 || Arrow down
+|-
+| $56 || Robot icon
+|-
+| $57 || Item icon
+|-
+| $58 || Gold icon
+|-
+| $59 || HP icon
+|-
+| $5A || EN icon
+|-
+| $5B-$5F || (Reserved)
+|}
+
+== Control Codes ==
+
+=== Text Flow ($F0-$FF) ===
+
+{| class="wikitable"
+! Code !! Description !! Parameters
+|-
+| $F0 || Line break || --
+|-
+| $F1 || Wait for input || --
+|-
+| $F2 || Clear window || --
+|-
+| $F3 || Pause (frames) || 1 byte (duration)
+|-
+| $F4 || Text speed || 1 byte (0=fast, 8=slow)
+|-
+| $F5 || Set position || 2 bytes (X, Y)
+|-
+| $F6 || Color || 1 byte (palette)
+|-
+| $F7 || Name variable || 1 byte (character ID)
+|-
+| $F8 || Number variable || 2 bytes (RAM address)
+|-
+| $F9 || Item name || 1 byte (item ID)
+|-
+| $FA || Play sound || 1 byte (sound ID)
+|-
+| $FB || Face graphic || 1 byte (face ID)
+|-
+| $FC || Choice prompt || 2 bytes (choice count, jump offset)
+|-
+| $FD || Jump || 2 bytes (text address)
+|-
+| $FE || End dialog || --
+|-
+| $FF || End script || --
+|}
+
+== Name Variables ==
+
+{| class="wikitable"
+! ID !! Name
+|-
+| $00 || Player name
+|-
+| $01 || Robot 1 name
+|-
+| $02 || Robot 2 name
+|-
+| $03 || Robot 3 name
+|-
+| $04 || Current NPC
+|-
+| $05 || Current town
+|}
+
+== Dictionary/Compression ==
+
+Robotrek uses dictionary compression for common words:
+
+=== Common Words ($80-$BF) ===
+
+{| class="wikitable"
+! Code !! Word !! Code !! Word
+|-
+| $80 || "the " || $90 || "Robot"
+|-
+| $81 || "you " || $91 || "Invent"
+|-
+| $82 || "and " || $92 || "Doctor"
+|-
+| $83 || "for " || $93 || "Father"
+|-
+| $84 || "can " || $94 || "Hacker"
+|-
+| $85 || "this " || $95 || "Rococo"
+|-
+| $86 || "with " || $96 || "Battle"
+|-
+| $87 || "have " || $97 || "Attack"
+|-
+| $88 || "will " || $98 || "Item"
+|-
+| $89 || "from " || $99 || "weapon"
+|-
+| $8A || "your " || $9A || "armor"
+|-
+| $8B || "that " || $9B || "Program"
+|-
+| $8C || "what " || $9C || "Friend"
+|-
+| $8D || "there " || $9D || "Enemy"
+|-
+| $8E || "here " || $9E || "World"
+|-
+| $8F || "it's " || $9F || "Time"
+|}
+
+=== Extended Dictionary ($C0-$EF) ===
+
+Longer phrases and common dialog patterns.
+
+== Text Block Structure ==
+
+=== Pointer Table ===
+
+<pre>
+Text pointers stored as 16-bit offsets from bank start:
+  - Dialog: Bank $E0-$E7
+  - Items: Bank $D0
+  - Enemies: Bank $D1
+  - Menus: Bank $CF
+</pre>
+
+=== Dialog Format ===
+
+<pre>
+[Pointer Table]
+  +$00: Dialog 0 offset (2 bytes)
+  +$02: Dialog 1 offset (2 bytes)
+  ...
+
+[Dialog Data]
+  Face ID (1 byte, if $FB used)
+  Text data (variable)
+  Control codes embedded
+  $FE terminator
+</pre>
+
+== Text Locations ==
+
+{| class="wikitable"
+! Type !! Bank !! Address Range !! Pointer Table
+|-
+| Main Dialog || $E0-$E3 || $008000-$00FFFF || $E00000
+|-
+| NPC Dialog || $E4-$E5 || $008000-$00FFFF || $E40000
+|-
+| Battle Text || $E6 || $008000-$00BFFF || $E60000
+|-
+| Menu Text || $CF || $008000-$00BFFF || $CF0000
+|-
+| Item Names || $D0 || $008000-$0087FF || $D00000
+|-
+| Enemy Names || $D1 || $008000-$0083FF || $D10000
+|-
+| Location Names || $D2 || $008000-$0081FF || $D20000
+|}
+
+== Encoding Notes ==
+
+* All text is 8-bit encoded (no multi-byte characters in US version)
+* Japanese version (Slapstick) uses 16-bit encoding for kanji
+* Text is NOT compressed with standard LZ algorithms
+* Dictionary compression saves approximately 30% space
+* Maximum dialog length: 512 bytes per text block
+* Window displays 4 lines of 24 characters each
+
+== TBL File Format ==
+
+Standard table file for hex editors:
+
+<pre>
+00=\n
+01=A
+02=B
+03=C
+...
+3F= 
+40=.
+41=,
+42=-
+43=!
+44=?
+45='
+...
+F0=\n
+FE=[END]
+FF=[SCRIPT END]
+</pre>
+
+[[Category:Text Data]]
+[[Category:SNES]]

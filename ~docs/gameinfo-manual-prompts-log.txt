@@ -222,11 +222,20 @@ Create a few githuib issues for this work effort (with todo-lists!), then contin
 
 Work on #1, but also work through the other four, making sub-github-issues for each one; make a bunch of sub issues that are linked to their parents; and then work through all of those issues; work on disassemnly, especially rebuild pprocess, and aset extraction and map viewer;
 
+continue, and go as long as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
+
+continue, and go as long as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
+
+continue, and **go as long as you can**; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
+
+continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
+
+Move all the Soul Blazor Wiki files from the `Games` folder to the `Wiki` folder and follow the file/folder layout used by the other games in the `wiki` folder; Wikitext files should be made in the main `wiki` folder (following folder structure), not the individual game's folder;  then update those wiki files with the new structure and make sure all links point to actual files; then add a table file, and title screen screen-shot (for the main page's image), and other useful files to to the wiki; then continue working on Soul Blazor, first ensuring the disassembly and reassembly and asset (extraction-to-datafiles/conversion-to-editable/conversion-from-editable-back-to-datafiles/inserstion-in-build-process) process is working; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
+
+create a json file that has all of the files, in folder structure in the json, of all the roms in the `~roms` folder with their filename -with relative folder structure- and size and hashes (crc32, md5, all the sha varients, and any other popular new hashes) and description, so that even though this folder is not in source control due to copyright (in `gitignore`) it is able to be refenced and consumed by scripts, etc. so you have to have these files yourself and copy them here so the scripts and editors and analysis can reference the actual rom itself; then use that file; document everything; continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
 
 
-
-
-
+What you just did for `Soul Blazor`, do for `Robotrek (U) [!].sfc` which is located at `GameInfo\~roms\SNES\GoodSNES\Robotrek (U) [!].sfc`; make a bunch of todo-lists and github issues for create a full documentation and disassembly of Robotrek (also known as Slapstick for the japanese release); make issues and todos and documentation and disassembly and tools (python and c# dotnet) and editors, and update the game catalog with Robotrek/slapstick files in `~roms` folder; make sure all documentation is reachable from the projects primary `readme.md` file; do the full asset and build pipelines; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
 
 
 
