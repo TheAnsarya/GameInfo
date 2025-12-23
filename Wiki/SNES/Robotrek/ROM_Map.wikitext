@@ -80,10 +80,30 @@ Robotrek uses '''Quintet's standard LZSS compression algorithm''', common to oth
 | $1264e-$12a59 || $40c || '''Music - Music Box of Memories'''
 |-
 | $15fee-$16390 || $3a3 || '''Music - Deep Underground'''
+|}
+
+=== Text & Data Tables (Bank $01) ===
+
+{| class="wikitable"
+! File Offset !! Size !! Description
+|-
+| $01e000-$01e3ff || $400 || Item description text (compressed text format)
 |-
 | $01e413 || ~$1480 || '''Item names''' (CC-separated, 98 entries) - '''VERIFIED'''
 |-
-| $01f8a0 || ~$500 || Item names (menu, 8-byte aligned) - '''VERIFIED'''
+| $01f600-$01f617 || $18 || Pointer table (8 entries, unknown purpose)
+|-
+| $01f618-$01f746 || $12e || Data block (possibly tile/palette indices)
+|-
+| $01f748-$01f7f1 || $aa || '''Item name pointer table''' (83 × 2 bytes) - '''VERIFIED'''
+|-
+| $01f7f2-$01f87b || $8a || More pointer data
+|-
+| $01f87c-$01f88d || $12 || Unused item name "ABCDEFGHIJKLMNOP"
+|-
+| $01f88e-$01f8a7 || $1a || Blank/spacer area
+|-
+| $01f8a9-$01fad6 || $22e || '''Item names (menu)''' (null-terminated, 8-byte aligned) - '''VERIFIED'''
 |-
 | $01fd00 || ~$bc || Enemy name pointer table - '''VERIFIED'''
 |-
@@ -205,11 +225,57 @@ Robotrek uses '''Quintet's standard LZSS compression algorithm''', common to oth
 |-
 | $c1e413 || $01e413 || ~$1480 || Item names (script text, CC-separated) || '''Verified'''
 |-
-| $c1f8a0 || $01f8a0 || ~$500 || Item names (menu, null-separated, 8-byte) || '''Verified'''
+| $c1f748 || $01f748 || $aa || Item name pointer table (83 × 2-byte) || '''Verified'''
+|-
+| $c1f8a9 || $01f8a9 || ~$22e || Item names (menu, null-terminated, 8-byte) || '''Verified'''
 |-
 | $c1fd00 || $01fd00 || ~$bc || Enemy name pointer table (16-bit) || '''Verified'''
 |-
 | $c1fdbe || $01fdbe || ~$300 || Enemy names (null-terminated strings) || '''Verified'''
+|-
+| $c38000 || $038000 || $180 || '''Actor/Enemy data pointer table''' (128 × 2-byte) || '''Research'''
+|-
+| $c381a4 || $0381a4 || ~$b40 || Actor/Enemy data records (22-byte entries) || '''Research'''
+|}
+
+== Item Name Pointer Table ==
+
+Located at file offset '''$01f748''', this table contains 83 16-bit little-endian pointers to null-terminated item names.
+
+{| class="wikitable"
+! Index Range !! Items !! Description
+|-
+| 0-4 || Unused || Placeholder entries
+|-
+| 5-8 || Sword 1-4 || Melee weapons
+|-
+| 9-11 || Axe 1-3 || Melee weapons
+|-
+| 12-15 || Blade 1-4 || Melee weapons
+|-
+| 16-18 || Hammer 1-3 || Melee weapons
+|-
+| 19-21 || Celtis 1-3 || Melee weapons
+|-
+| 22-24 || Punch 1-3 || Melee weapons
+|-
+| 25-27 || Blow 1-3 || Melee weapons
+|-
+| 28-30 || Shot 1-3 || Ranged weapons
+|-
+| 31-33 || Laser 1-3 || Ranged weapons
+|-
+| 34-37 || Bomb 1-4 || Ranged weapons
+|-
+| 38-42 || Shield 1-5 || Defensive equipment
+|-
+| 43-48 || Pack items || Robot accessories
+|-
+| 49-54 || Boots 1-6 || Movement equipment
+|-
+| 55-76 || Unused || Empty slots (point to blank)
+|-
+| 77-82 || Key items || Trans, Horn, Drill, Vanish, Change, Glasses
 |}
 
 == Interrupt Vectors ==

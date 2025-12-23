@@ -210,17 +210,93 @@ Fetched comprehensive game data from GameFAQs guides:
 | 327073f | style: standardize hex values to lowercase |
 | ddb1dcd | docs: add comprehensive weapon/item stats from GameFAQs |
 
+## Session 3 - ROM Research Continuation
+
+### Work Completed
+
+#### 1. Item Name Pointer Table Discovery
+
+Located the item name pointer table at **$01F748**:
+- 83 16-bit little-endian pointers
+- Points to null-terminated strings at $01F8A9+
+- Items indexed 0-82 (indices 0-4 and 55-76 are unused/placeholders)
+
+**Item Categories by Index:**
+- 5-8: Swords (1-4)
+- 9-11: Axes (1-3)
+- 12-15: Blades (1-4)
+- 16-18: Hammers (1-3)
+- 19-21: Celtis (1-3)
+- 22-24: Punches (1-3)
+- 25-27: Blows (1-3)
+- 28-30: Shots (1-3)
+- 31-33: Lasers (1-3)
+- 34-37: Bombs (1-4)
+- 38-42: Shields (1-5)
+- 43-48: Packs
+- 49-54: Boots (1-6)
+- 77-82: Key Items (Trans, Horn, Drill, etc.)
+
+#### 2. PAR Address Verification
+
+Confirmed PAR addresses by finding references in ROM code:
+- `$0b14` (Hero Level): 63 occurrences
+- `$0690` (Robot Energy): 58 occurrences
+- `$0696` (Robot Power): 16 occurrences
+- `$069c` (Robot Guard): 37 occurrences
+- `$07b0` (Inventor Flags): 37 occurrences
+
+These addresses are heavily used throughout the codebase, confirming the GameFAQs PAR codes are valid.
+
+#### 3. Actor/Enemy Data Pointer Table
+
+Found pointer table at **$038000**:
+- 128 16-bit pointers to actor/enemy data
+- 22-byte entry size (consistent increment of 22)
+- Data records at $0381A4+
+- Likely contains enemy stats, behavior, graphics pointers
+
+#### 4. Combination Recipe Table
+
+Located recipe table at **$01C2C6**:
+- Complex format with special markers ($68-$71, $74-$79)
+- $FF as section separator
+- Confirmed pattern: `05 05 06 06 07` = Sword 1+1=2, Sword 2+2=3
+
+Recipe encoding:
+- Same item pairs: next byte is result (or implied +1)
+- Cross-combinations: explicit result byte
+- Markers separate weapon categories
+
+#### 5. Updated ROM Map
+
+Added new verified entries to ROM_Map.wikitext:
+- Item name pointer table ($01F748)
+- Actor/Enemy data table ($038000)
+- Detailed item index breakdown
+
+#### 6. JSON Export Created
+
+Created `extracted/item_names.json`:
+- Complete item list with ROM addresses
+- Pointer addresses for each item
+- 83 total items
+
+### Files Modified
+
+- `Wiki/SNES/Robotrek/ROM_Map.wikitext` - Added item pointer table, actor data table
+- `Games/SNES/Robotrek (SNES)/extracted/item_names.json` - New file
+
+### Session 3 Commits
+
+| Hash | Message |
+|------|---------|
+| TBD | docs: add item pointer table and actor data research |
+
 ## What's Next
 
-1. **Locate weapon stat tables in ROM** - Find the actual data structures for:
-   - Weapon base ATK values
-   - Level scaling formulas
-   - Item prices
-   
-2. **Verify PAR addresses** - Cross-reference PAR codes with disassembly
-
-3. **Extract combination recipes from ROM** - The Invention Machine logic
-
-4. **Enemy stat tables** - Find HP, EXP, gold values in ROM
-
-5. **Create extraction tools for verified data** - JSON export of game tables
+1. **Decode full recipe table** - Complete parsing of combination recipes
+2. **Map actor/enemy data structure** - Decode the 22-byte entry format
+3. **Find level-up stat formulas** - Weapon damage scaling per level
+4. **Extract enemy HP/EXP/Gold** - From actor data table
+5. **Create comprehensive extraction tool** - All game data to JSON
