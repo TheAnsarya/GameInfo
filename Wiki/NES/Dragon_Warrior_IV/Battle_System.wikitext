@@ -1,0 +1,264 @@
+{{Back|Dragon Warrior IV (NES)}}
+
+= Dragon Warrior IV (NES) - Battle System =
+
+This page documents the battle system mechanics in Dragon Warrior IV.
+
+'''Data Status:''' Battle AI tables verified from Bank 19 ($4c010-$50010). Damage formulas TBD.
+
+== Overview ==
+
+Dragon Warrior IV features a unique AI-controlled battle system where party members (except the Hero in Chapter 5) fight automatically based on selected tactics.
+
+== Battle Tactics ==
+
+Source: RAM address $615b
+
+{| class="wikitable"
+! Value !! Name !! Description
+|-
+| $00 || Normal || Balanced approach, uses mix of attacks and spells
+|-
+| $01 || Save MP || Conservative magic usage, prefers physical attacks
+|-
+| $02 || Offensive || Attack priority, focuses on dealing damage
+|-
+| $03 || Defensive || Uses defensive spells and healing more often
+|-
+| $04 || Try Out || Experimental behavior, may use unusual strategies
+|-
+| $05 || Use No MP || Physical attacks only, never uses magic
+|}
+
+== Tactic Modifiers ==
+
+Source: Bank 19 ($bb84-$bbb6)
+
+=== Attack Multiplier Table ($bb84) ===
+
+Base attack power multiplier per AI tactic:
+
+{| class="wikitable"
+! Tactic !! Value (Hex) !! Value (Dec) !! Effect
+|-
+| Normal || $10 || 16 || Standard damage
+|-
+| Save MP || $00 || 0 || Reduced attack power
+|-
+| Offensive || $10 || 16 || Standard damage
+|-
+| Defensive || $10 || 16 || Standard damage
+|-
+| Try Out || $10 || 16 || Standard damage
+|-
+| Use No MP || $10 || 16 || Standard damage
+|-
+| (Reserved) || $10 || 16 || Standard damage
+|}
+
+=== Stat Multiplier Table ($bb8b) ===
+
+Party stat sum multiplier per AI tactic:
+
+{| class="wikitable"
+! Tactic !! Value (Hex) !! Effect
+|-
+| Normal || $10 || Full stat contribution
+|-
+| Save MP || $10 || Full stat contribution
+|-
+| Offensive || $00 || No stat bonus
+|-
+| Defensive || $10 || Full stat contribution
+|-
+| Try Out || $00 || No stat bonus
+|-
+| Use No MP || $00 || No stat bonus
+|-
+| (Reserved) || $00 || No stat bonus
+|}
+
+=== Hit Threshold Table ($bb92) ===
+
+Hit success threshold per AI tactic (higher = harder to land):
+
+{| class="wikitable"
+! Tactic !! Value (Hex) !! Value (Dec) !! Notes
+|-
+| Normal || $66 || 102 || Balanced
+|-
+| Save MP || $33 || 51 || Easier to hit
+|-
+| Offensive || $8c || 140 || Harder to hit
+|-
+| Defensive || $01 || 1 || Very easy to hit
+|-
+| Try Out || $ff || 255 || Hardest to hit
+|-
+| Use No MP || $01 || 1 || Very easy to hit
+|-
+| (Reserved) || $a0 || 160 || High threshold
+|}
+
+=== Damage Mode Tables ===
+
+==== Base Damage ($bb99) ====
+
+{| class="wikitable"
+! Address !! Value !! Description
+|-
+| $bb99 || $40 (64) || Base value for damage calculations
+|}
+
+==== Mode Table 1 ($bb9a) ====
+
+{| class="wikitable"
+! Index !! Value !! Notes
+|-
+| 0-6 || $80 (128) || All tactics use same value
+|}
+
+==== Mode Table 2 ($bba1) ====
+
+{| class="wikitable"
+! Index !! Value !! Notes
+|-
+| 0-6 || $c8 (200) || All tactics use same value
+|}
+
+==== Mode Table 3 ($bba8) ====
+
+{| class="wikitable"
+! Index !! Value !! Notes
+|-
+| 0-6 || $64 (100) || All tactics use same value
+|}
+
+== Special Action Codes ==
+
+Source: Bank 19 ($91a9)
+
+Actions requiring special hit handling:
+
+{| class="wikitable"
+! Code (Hex) !! Description
+|-
+| $11 || Special hit type 1
+|-
+| $17 || Special hit type 2
+|-
+| $18 || Special hit type 3
+|-
+| $1a || Special hit type 4
+|-
+| $1b || Special hit type 5
+|-
+| $1d || Special hit type 6
+|-
+| $1e || Special hit type 7
+|-
+| $20 || Special hit type 8
+|-
+| $23 || Special hit type 9
+|-
+| $40 || Special hit type 10
+|-
+| $42 || Special hit type 11
+|-
+| $53 || Special hit type 12
+|-
+| $57 || Special hit type 13
+|-
+| $58 || Special hit type 14
+|-
+| $5b || Special hit type 15
+|-
+| $5c || Special hit type 16
+|-
+| $5d || Special hit type 17
+|-
+| $60 || Special hit type 18
+|}
+
+== Battle Entry Code ==
+
+Source: Bank 19 ($8038)
+
+<pre>
+battle_entry:
+    JSR read_tactics    ; $8038 - Read current tactic setting
+    JSR $80A1           ; $803B - Initialize battle state
+    BCC skip            ; $803E - Branch if carry clear
+    JSR $804A           ; $8040 - Unknown setup
+    JSR sum_party_stats ; $8043 - Calculate party stat totals
+    JSR dispatch_action ; $8046 - Execute battle action
+skip:
+    RTS                 ; $8049
+</pre>
+
+== Key Subroutines ==
+
+{| class="wikitable"
+! Address !! Name !! Description
+|-
+| $8038 || battle_entry || Main battle loop entry point
+|-
+| $8088 || read_tactics || Reads tactics setting from $615b
+|-
+| $8176 || mul16 || 16-bit multiply by 16 (shift left 4)
+|-
+| $8187 || div16 || 16-bit divide by 16 (shift right 4)
+|-
+| $8330 || mult_by_a || Multiply indexed value by accumulator
+|-
+| $83c5 || div_16_loop || 16-bit division loop
+|-
+| $9212 || sum_party_stats || Calculate sum of active party stats
+|}
+
+== Enemy Type Table ==
+
+Source: Bank 19 ($b967), 256 bytes
+
+Each byte encodes enemy properties:
+
+=== Bit Layout ===
+
+{| class="wikitable"
+! Bits !! Description
+|-
+| 7-5 || Type category (0-7)
+|-
+| 4-0 || Resistance/special flags
+|}
+
+=== Type Categories ===
+
+{| class="wikitable"
+! Type !! Value Range !! Description !! Count
+|-
+| 0 || $00-$1f || Regular enemies || 86
+|-
+| 1 || $20-$3f || Undead/Ghost || 21
+|-
+| 2 || $40-$5f || Flying || 0
+|-
+| 3 || $60-$7f || Magic-using || 32
+|-
+| 4 || $80-$9f || Strong enemies || 0
+|-
+| 5 || $a0-$bf || Boss-tier || 52
+|-
+| 6 || $c0-$df || High resistance || 24
+|-
+| 7 || $e0-$ff || Bosses/immune || 41
+|}
+
+== See Also ==
+
+* [[Dragon Warrior IV (NES)/ROM Map|ROM Map]] - Bank 19 documentation
+* [[Dragon Warrior IV (NES)/Values|Values]] - Battle Tactics list
+* [[Dragon Warrior IV (NES)/RAM Map|RAM Map]] - Battle-related RAM addresses
+
+[[Category:Battle System]]
+[[Category:NES]]

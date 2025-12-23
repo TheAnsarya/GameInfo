@@ -1,0 +1,162 @@
+{{Back|Dragon Warrior IV (NES)}}
+
+= Dragon Warrior IV (NES) - EXP System =
+
+This page documents the experience point system in Dragon Warrior IV.
+
+'''Data Status:''' EXP calculation routine verified at Bank 18 ($9f7c). Coefficient tables at $a0fb.
+
+== Overview ==
+
+Dragon Warrior IV uses a '''formula-based EXP calculation''' rather than storing all 99 level values for each character. This space-efficient approach uses coefficient tables to calculate EXP requirements dynamically.
+
+== Key Memory Locations ==
+
+=== RAM ===
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $72-$74 || 3 bytes || Current character's EXP (little-endian)
+|-
+| $6e19-$6e1b,X || 3 bytes || Calculated EXP requirement for next level (indexed)
+|-
+| $6e3c || 1 byte || Loop counter for party processing
+|-
+| $6e || 1 byte || Current character index being processed
+|}
+
+=== ROM (Bank 18) ===
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $a0fb || 16 bytes || Pointer table to EXP coefficient data
+|-
+| $a123+ || Variable || Character-specific EXP coefficient data
+|}
+
+== EXP Calculation Routine ==
+
+Located in Bank 18 at $9f7c:
+
+<pre>
+loc_9F7C:
+    LDA $0B             ; Character class index
+    CMP #$06            ; Special case check
+    BEQ $9F88
+    JSR $9F9C           ; Load coefficients
+    JMP $9FB9           ; Calculate EXP
+</pre>
+
+=== Coefficient Loader ($9f9c) ===
+
+<pre>
+loc_9F9C:
+    ASL                 ; Index * 2 (16-bit pointer)
+    TAX
+    LDA $A0FB,X         ; Load pointer low byte
+    STA $0C
+    LDA $A0FC,X         ; Load pointer high byte
+    STA $0D
+    ; ... continues with calculation
+</pre>
+
+== Character EXP Curves ==
+
+=== Pointer Table at $a0fb ===
+
+{| class="wikitable"
+! Index !! Pointer !! Character(s)
+|-
+| 0 || $a123 || Hero
+|-
+| 1 || $a14b || Cristo
+|-
+| 2 || $a17b || Nara
+|-
+| 3 || $a1ab || Mara
+|-
+| 4 || $a1db || Brey
+|-
+| 5 || $a20b || Taloon
+|-
+| 6 || $a1ab || (shares with Mara)
+|-
+| 7 || $a23b || Ragnar
+|}
+
+'''Note:''' Entries 3 and 6 point to the same address ($a1ab), suggesting Mara and another character (possibly Alena) share the same EXP curve.
+
+== Level-Up Check ==
+
+Located in Bank 18 at $9c22:
+
+<pre>
+    CMP #$63            ; Compare to max level 99
+    BEQ skip            ; If max level, skip
+    ; ... get level, calculate EXP needed
+    
+    ; Compare current EXP to required
+    LDA $6E19,Y         ; Get required EXP low byte
+    SEC
+    SBC $72             ; Subtract current EXP
+    STA $00
+    LDA $6E1A,Y         ; Mid byte
+    SBC $73
+    STA $01
+    LDA $6E1B,Y         ; High byte
+    SBC $74
+    STA $02
+</pre>
+
+=== Level-Up Comparison ($9caa-$9cbf) ===
+
+<pre>
+    LDA $74             ; Current EXP high byte
+    CMP $6E1B,X         ; Required EXP high byte
+    BCC no_levelup      ; If current < required, no level up
+    BNE levelup         ; If different, level up!
+    
+    LDA $73             ; Mid byte check
+    CMP $6E1A,X
+    BCC no_levelup
+    BNE levelup
+    
+    LDA $72             ; Low byte check
+    CMP $6E19,X
+    BCS levelup         ; If current >= required, level up!
+</pre>
+
+== EXP Value Format ==
+
+Experience points are stored as 24-bit (3-byte) little-endian integers:
+
+{| class="wikitable"
+! Byte !! Address (RAM) !! Description !! Range
+|-
+| Low || $72 || Bits 0-7 || 0-255
+|-
+| Mid || $73 || Bits 8-15 || 0-255
+|-
+| High || $74 || Bits 16-23 || 0-255
+|}
+
+'''Maximum EXP:''' 16,777,215 (0xFFFFFF)
+
+== Implications ==
+
+# '''Formula-based EXP''': The game calculates EXP requirements using coefficients, not a simple lookup table. This saves significant ROM space for 8 characters × 99 levels.
+
+# '''Shared Curves''': Some characters share EXP curves, reducing the amount of coefficient data needed.
+
+# '''24-bit EXP''': The 3-byte storage allows for EXP values up to ~16.7 million, sufficient for level 99.
+
+== See Also ==
+
+* [[Dragon Warrior IV (NES)/ROM Map|ROM Map]] - Bank 18 and Bank 27 documentation
+* [[Dragon Warrior IV (NES)/RAM Map|RAM Map]] - Character data addresses
+* [[Dragon Warrior IV (NES)/Values|Values]] - Party member indices
+
+[[Category:Game Mechanics]]
+[[Category:NES]]
