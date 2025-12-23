@@ -575,3 +575,47 @@ Features:
 - Script scanning for undocumented scripts
 - JSON export for analysis
 - Support for all script commands (NPC, player, camera, audio)
+
+---
+
+## New Tools (Session 8)
+
+### ROM Validator
+```bash
+python rom_validator.py ROM.sfc                     # Validate ROM
+python rom_validator.py ROM.sfc --header            # Show header info
+python rom_validator.py ROM.sfc --hashes            # Calculate all hashes
+python rom_validator.py ROM.sfc --compare other.sfc # Compare two ROMs
+python rom_validator.py ROM.sfc --export info.json  # Export info to JSON
+python rom_validator.py ROM.sfc --quiet             # Only show errors
+```
+Features:
+- ROM integrity validation
+- SNES header parsing (title, map mode, region, version)
+- Checksum calculation and verification
+- Multiple hash algorithms (SHA256, SHA1, MD5, CRC32)
+- ROM comparison for patch analysis
+- Known good ROM detection (US version)
+- Copier header detection and handling
+- Interrupt vector display (RESET, NMI, IRQ)
+- JSON export for automation
+
+### Text Encoder
+```bash
+python text_encoder.py --table                      # Show encoding table
+python text_encoder.py --encode "Hello World[END]" # Encode text to bytes
+python text_encoder.py ROM.sfc --decode 0x58000    # Decode at address
+python text_encoder.py ROM.sfc --extract           # Extract all text
+python text_encoder.py ROM.sfc --extract --export-json text.json
+python text_encoder.py ROM.sfc --extract --export-text text.txt
+python text_encoder.py ROM.sfc --decode 0x58000 --length 500
+```
+Features:
+- Soul Blazer character encoding table
+- Bidirectional text encoding/decoding
+- Control code support ([LF], [WAIT], [HERO], [COLOR:XX], etc.)
+- Pointer table extraction
+- Multiple text table support (Dialogue, Items, Enemies, Areas, Menu)
+- JSON export for editing
+- Readable text export
+- Special character handling (♥, ★, arrows, etc.)
