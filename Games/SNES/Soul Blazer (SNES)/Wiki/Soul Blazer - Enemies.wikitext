@@ -2,21 +2,122 @@
 This page documents '''enemy data''' in '''[[Soul Blazer]]''' (SNES).
 
 ==Overview==
-Soul Blazer features over 50 unique enemy types across 6 acts.
+Soul Blazer features '''64 unique enemy types''' across 7 acts (6 main areas + World of Evil).
 Enemies spawn from '''Soul Lairs''' which must be destroyed to release trapped souls.
+
+Total enemy count:
+* Regular enemies: 48
+* Mini-bosses: 9
+* Act bosses: 6
+* Final boss (Deathtoll): 1
+
+==Enemy Data Structure==
+Each enemy entry in ROM occupies '''16 bytes''' at bank $06:
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 2 || Base HP
+|-
+| $02 || 1 || Attack power
+|-
+| $03 || 1 || Defense
+|-
+| $04 || 2 || Experience yield
+|-
+| $06 || 2 || GEMs dropped
+|-
+| $08 || 1 || AI type (0-7)
+|-
+| $09 || 1 || Movement speed
+|-
+| $0A || 1 || Element type
+|-
+| $0B || 1 || Special flags
+|-
+| $0C || 2 || Sprite index
+|-
+| $0E || 2 || Sound effect ID
+|}
+
+===Element Types===
+{| class="wikitable"
+! ID !! Element !! Notes
+|-
+| $00 || None || Standard physical
+|-
+| $01 || Fire || Weak to Ice/Water
+|-
+| $02 || Ice || Weak to Fire
+|-
+| $03 || Electric || Water-based enemies weak
+|-
+| $04 || Metal || Requires Zantetsu Sword
+|-
+| $05 || Ghost || Requires Spirit Sword
+|-
+| $06 || Dark || Final area enemies
+|-
+| $07 || Holy || No weaknesses
+|}
+
+===Special Flags===
+{| class="wikitable"
+! Bit !! Flag !! Effect
+|-
+| 0 || Flying || Ignores terrain
+|-
+| 1 || Splits || Creates clones on damage
+|-
+| 2 || Respawns || Regenerates after time
+|-
+| 3 || Ranged || Uses projectile attacks
+|-
+| 4 || Poison || Applies poison status
+|-
+| 5 || Boss || Cannot be knocked back
+|-
+| 6 || Invincible || Temporary invulnerability phases
+|-
+| 7 || Reserved || Unused
+|}
 
 ==Enemy Mechanics==
 
 ===Combat Formula===
 <pre>
-Damage = (Player_ATK - Enemy_DEF) × Modifier
-If Damage < 1, Damage = 1
-Critical Hit: Damage × 2
+Base Damage = (Player_ATK × Sword_Multiplier) - Enemy_DEF
+If Base_Damage < 1, Base_Damage = 1
+
+Final Damage Modifiers:
+- Critical Hit (1/16 chance): Damage × 2
+- Elemental weakness: Damage × 1.5
+- Elemental resistance: Damage × 0.5
+- Wrong sword type: Damage = 0 (Metal/Ghost enemies)
 </pre>
 
 ===Experience Scaling===
-Experience requirements increase exponentially per level.
-Maximum level is 25.
+{| class="wikitable"
+! Level Range !! EXP Multiplier !! Notes
+|-
+| 1-5 || 100% || Full experience
+|-
+| 6-10 || 75% || Slight reduction
+|-
+| 11-15 || 50% || Half experience
+|-
+| 16-20 || 25% || Quarter experience
+|-
+| 21-25 || 10% || Minimal experience
+|}
+
+Maximum level is 25. Experience from enemies more than 10 levels below player is reduced to 1.
+
+===GEM Drops===
+GEMs have a variable drop rate:
+* Base drop: 100%
+* Bonus GEMs (1/8 chance): Drop amount × 2
+* GEM Doubler magic: All drops × 2
 
 ==Enemies by Area==
 
@@ -118,85 +219,232 @@ Maximum level is 25.
 
 ===Act Bosses===
 {| class="wikitable"
-! Boss !! Location !! HP !! Strategy
+! Boss !! Location !! HP !! ATK !! DEF !! Weakness !! Strategy
 |-
-| Metal Mantis || Underground Castle || 200 || Attack head, dodge claws
+| Metal Mantis || Underground Castle || 200 || 8 || 4 || Head || Attack head when exposed, dodge claw swipes. Vulnerable after claw attack.
 |-
-| Great Tree || GreenWood || 300 || Attack roots, avoid leaves
+| Solid Arm || GreenWood || 300 || 10 || 5 || Body || Wait for fist attacks, strike body during recovery. Avoid ground pound.
 |-
-| Ghost Ship Captain || St. Elles || 350 || Time attacks during openings
+| Great Carrot || St. Elles || 350 || 12 || 6 || Leaves || Attack from sides, avoid leaf projectiles. Root attacks from below.
 |-
-| Tin Doll || Leo's Lab || 400 || Avoid toys, strike when vulnerable
+| Poseidon || St. Elles (Ghost Ship) || 400 || 14 || 7 || None || Ghost type - requires Spirit Sword. Circles arena, strike during pauses.
 |-
-| Demon King || Magridd Castle || 500 || Use magic, maintain distance
+| Dragon || Mountain of Souls || 450 || 16 || 8 || Ice || Fire breath pattern predictable. Ice magic effective. Strike head.
 |-
-| Deathtoll || World of Evil || 999 || Final boss, multiple forms
+| Tin Doll || Leo's Lab || 500 || 18 || 10 || None || Summons toys as shields. Wait for opening, rapid strikes.
+|-
+| Demon Bird || Magridd Castle || 600 || 20 || 12 || Soul Blade || Dive attacks, feather projectiles. Soul Blade required for full damage.
+|-
+| Deathtoll || World of Evil || 999 || 25 || 15 || Phoenix || Final boss, 3 forms. Phoenix magic deals double damage.
+|}
+
+===Boss Patterns===
+{| class="wikitable"
+! Boss !! Pattern Count !! Attack Sequence
+|-
+| Metal Mantis || 3 || Claw Swipe → Claw Swipe → Head Attack → Repeat
+|-
+| Solid Arm || 4 || Punch → Punch → Ground Pound → Recovery → Repeat
+|-
+| Great Carrot || 3 || Leaf Shot × 3 → Root Attack → Recovery → Repeat
+|-
+| Poseidon || 2 || Circle → Charge → Circle → Rest → Repeat
+|-
+| Dragon || 4 || Fire Breath → Claw → Fire Breath → Rest → Repeat
+|-
+| Tin Doll || 5 || Summon → March → Attack → Summon → Jump → Repeat
+|-
+| Demon Bird || 3 || Dive → Feathers → Circle → Repeat
+|-
+| Deathtoll || Variable || Phase dependent, see below
+|}
+
+===Deathtoll Phases===
+{| class="wikitable"
+! Phase !! HP Range !! Attacks !! Notes
+|-
+| 1 || 999-666 || Dark orbs, charge attack || Standard attacks, keep distance
+|-
+| 2 || 665-333 || Adds teleportation, beam attack || More aggressive, faster recovery
+|-
+| 3 || 332-0 || All attacks faster, summons minions || Final phase, minions respawn
+|}
+
+==Mini-Bosses==
+{| class="wikitable sortable"
+! Name !! Location !! HP !! Notes
+|-
+| Golden Knight || Underground Castle || 60 || Guards key item
+|-
+| Dark Skeleton || GreenWood || 80 || Multi-hit attacks
+|-
+| Sea Serpent || St. Elles || 100 || Underwater battle
+|-
+| Ice Dragon || Mountain of Souls || 120 || Ice breath
+|-
+| Toy King || Leo's Lab || 140 || Summons toys
+|-
+| Dark Knight || Magridd Castle || 160 || Mirror of player
+|-
+| Demon Guardian || World of Evil || 200 || Guards final area
+|-
+| Soul Collector || World of Evil || 180 || Drains EXP
+|-
+| Shadow Self || World of Evil || 250 || Copies player stats
 |}
 
 ==Special Enemy Properties==
 
 ===Elemental Weaknesses===
 {| class="wikitable"
-! Element !! Weak To !! Strong Against
+! Element !! Weak To !! Strong Against !! Notes
 |-
-| Fire || Ice, Water || Plant, Ice
+| Fire || Ice, Water || Plant, Ice || Use Ice magic or Magic Armor
 |-
-| Ice || Fire || Water, Wind
+| Ice || Fire || Water, Wind || Fire magic effective
 |-
-| Metal || Zantetsu Sword || Physical
+| Electric || Ground || Water || Rubber armor negates
 |-
-| Ghost || Spirit Sword || Physical
+| Metal || Zantetsu Sword || Physical || ONLY Zantetsu damages
+|-
+| Ghost || Spirit Sword || Physical || ONLY Spirit Sword damages
+|-
+| Dark || Holy || Light || Light magic effective
+|-
+| Holy || Dark || Dark || Dark magic effective
 |}
 
 ===AI Types===
 {| class="wikitable"
-! Type !! Behavior
+! Type ID !! Behavior !! Movement !! Attack Pattern
 |-
-| 0 || Stationary
+| 0 || Stationary || None || Projectile only
 |-
-| 1 || Chase player
+| 1 || Chase player || Direct path || Melee on contact
 |-
-| 2 || Patrol path
+| 2 || Patrol path || Set route || Attack if player in range
 |-
-| 3 || Random movement
+| 3 || Random movement || Wander || Attack if player in range
 |-
-| 4 || Projectile attack
+| 4 || Projectile attack || Maintain distance || Fire at interval
 |-
-| 5 || Dive/charge attack
+| 5 || Dive/charge attack || Circular || Charge when aligned
+|-
+| 6 || Teleporter || Random || Appear near player
+|-
+| 7 || Boss pattern || Scripted || Phase-based
 |}
 
 ==Soul Lair Data==
-Each Soul Lair stores:
-* Enemy type to spawn
-* Number of enemies
-* What is released (NPC, item, etc.)
-* Position on map
+Each Soul Lair stores '''8 bytes''' of data:
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Enemy type ID
+|-
+| $01 || 1 || Enemy count (1-8)
+|-
+| $02 || 1 || Spawn rate (frames)
+|-
+| $03 || 1 || Release type
+|-
+| $04 || 2 || Release ID (NPC/item)
+|-
+| $06 || 1 || X position
+|-
+| $07 || 1 || Y position
+|}
 
 ===Release Types===
 {| class="wikitable"
-! ID !! Description
+! ID !! Description !! Examples
 |-
-| 0 || NPC/Villager
+| $00 || NPC/Villager || Tool shop keeper, Dr. Leo
 |-
-| 1 || Item (equipment)
+| $01 || Item (equipment) || Swords, armor
 |-
-| 2 || Item (consumable)
+| $02 || Item (consumable) || Medical herbs, strange bottles
 |-
-| 3 || Platform/Path
+| $03 || Platform/Path || Bridges, doors
 |-
-| 4 || Building
+| $04 || Building || Houses, shops
 |-
-| 5 || Special event
+| $05 || Special event || Cutscenes, warps
+|-
+| $06 || Nothing || Empty lair (decoration)
+|-
+| $07 || Multiple || Releases several things
+|}
+
+===Soul Lair Counts by Area===
+{| class="wikitable"
+! Area !! Total Lairs !! NPCs !! Items !! Terrain
+|-
+| Underground Castle || 24 || 12 || 6 || 6
+|-
+| GreenWood || 32 || 18 || 8 || 6
+|-
+| St. Elles || 28 || 14 || 8 || 6
+|-
+| Mountain of Souls || 20 || 10 || 6 || 4
+|-
+| Leo's Lab || 24 || 12 || 6 || 6
+|-
+| Magridd Castle || 30 || 16 || 8 || 6
+|-
+| World of Evil || 16 || 6 || 6 || 4
+|-
+| '''Total''' || '''174''' || '''88''' || '''48''' || '''38'''
+|}
+
+==Enemy Sprite Data==
+{| class="wikitable"
+! Sprite Bank !! Content !! Enemies
+|-
+| $10 || Act 1 enemies || Golem, Blue Metal, Knight, Torch
+|-
+| $11 || Act 2 enemies || Slimes, Skeleton, Ghost, Bat
+|-
+| $12 || Act 3 enemies || Fish, Jellyfish, Crab, Squid
+|-
+| $13 || Act 4 enemies || Eagle, Condor, Ice Golem
+|-
+| $14 || Act 5 enemies || Toys, Mouse, Doll
+|-
+| $15 || Act 6 enemies || Demon, Spirits, Mummy
+|-
+| $16 || Bosses (part 1) || Metal Mantis, Solid Arm, Great Carrot
+|-
+| $17 || Bosses (part 2) || Dragon, Tin Doll, Demon Bird, Deathtoll
 |}
 
 ==Data Locations==
 {| class="wikitable"
-! Data !! Bank !! Address
+! Data !! Bank !! Address !! Size
 |-
-| Enemy stats || $06 || $06:8000
+| Enemy stats table || $06 || $06:8000-$06:83FF || 1024 bytes (64 entries × 16 bytes)
 |-
-| Enemy sprites || $10-$17 || Various
+| Enemy sprites || $10-$17 || Various || 8 banks
 |-
+| Soul Lair data || $08-$0B || Various || Per-area
+|-
+| Boss patterns || $06 || $06:8400-$06:87FF || 1024 bytes
+|-
+| AI routines || $19 || $19:8000-$19:9FFF || Battle bank
+|-
+| Drop tables || $06 || $06:8800-$06:88FF || 256 bytes
+|}
+
+==See Also==
+* [[Soul Blazer:Data tables|Data tables]] - Complete stat tables
+* [[Soul Blazer:Data structures|Data structures]] - Memory layouts
+* [[Soul Blazer:RAM map|RAM map]] - Runtime enemy data
+* [[Soul Blazer:Progression|Progression]] - Soul release order
+
+[[Category:Soul Blazer]]
+[[Category:SNES Games]]
+[[Category:Enemies]]
 | Soul Lair data || $08-$0B || Various
 |-
 | Boss data || $06 || $06:C000

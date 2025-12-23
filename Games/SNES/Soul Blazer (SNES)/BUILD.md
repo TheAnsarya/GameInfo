@@ -238,6 +238,52 @@ Features:
 - Tile-by-tile inspection
 - Collision statistics per map
 
+### Dialog Editor
+```bash
+python dialog_editor.py                    # Launch GUI editor
+python dialog_editor.py --rom PATH         # Open specific ROM
+```
+Features:
+- GUI text/dialogue editor
+- Custom text codec for Soul Blazer encoding
+- Control code toolbar (newline, pause, clear, player name, etc.)
+- Dialog block navigation by category
+- Find/search functionality
+- Entry validation
+- JSON import/export for translations
+- Raw hex view for debugging
+
+### Event Flags Analyzer
+```bash
+python event_flags_analyzer.py             # Print summary
+python event_flags_analyzer.py --wikitext  # Generate wiki output
+python event_flags_analyzer.py --area "GreenWood"  # Show area flags
+python event_flags_analyzer.py --output DIR  # Export to JSON
+```
+Features:
+- Documents all game progression flags
+- Flag categories (lairs, souls, items, events, bosses, emblems)
+- Dependencies and prerequisites tracking
+- Progression order documentation
+- 49 known flags across 7 areas
+- 17 progression steps mapped
+
+### Audio Player
+```bash
+python audio_player.py                     # Launch GUI player
+python audio_player.py --list              # List all sounds
+python audio_player.py --rom PATH          # Open specific ROM
+python audio_player.py --export-all DIR    # Export all audio to WAV
+```
+Features:
+- GUI audio player with waveform display
+- 22 background music tracks
+- 16 sound effects
+- BRR sample decoding
+- WAV export functionality
+- Volume control
+- Audio catalog export to JSON
+
 ## ROM Structure
 
 ### Banks
