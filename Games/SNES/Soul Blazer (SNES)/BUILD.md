@@ -224,6 +224,20 @@ Features:
 - Unlock items and emblems
 - JSON import/export
 
+### Collision Viewer
+```bash
+python collision_viewer.py                 # Launch GUI viewer
+python collision_viewer.py --export        # Export all collision maps
+python collision_viewer.py --map 00        # Analyze specific map (hex ID)
+```
+Features:
+- Visualize map collision data
+- 16 collision types (walkable, solid, water, pit, etc.)
+- Color-coded overlay display
+- Export collision maps to PNG
+- Tile-by-tile inspection
+- Collision statistics per map
+
 ## ROM Structure
 
 ### Banks
