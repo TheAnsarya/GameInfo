@@ -173,6 +173,30 @@ GUI application for:
 - Zoom controls (1x-8x)
 - Batch export all known sprites
 
+### Animation Analyzer
+```bash
+python animation_analyzer.py --report       # Print analysis report
+python animation_analyzer.py --output DIR   # Export to JSON files
+```
+Features:
+- Scans ROM for animation sequence patterns
+- Maps player animation states (24 animations)
+- Exports animation frame data to JSON
+- Reports animation patterns by bank
+
+### Entity Extractor
+```bash
+python entity_extractor.py --summary        # Print summary only
+python entity_extractor.py --wikitext       # Generate wiki output
+python entity_extractor.py --output DIR     # Export to JSON files
+```
+Features:
+- Extracts enemy definitions (stats, behavior, sprites)
+- Boss data extraction (8 bosses)
+- NPC type definitions
+- Movement pattern analysis
+- JSON export for each entity type
+
 ## ROM Structure
 
 ### Banks
