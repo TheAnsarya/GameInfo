@@ -708,3 +708,20 @@ Added to ROM_Map.wikitext:
 4. **Push to Data Crystal** - Contribute verified findings back to wiki
 5. **LZSS decompression improvements** - Better handle all compressed regions
 
+---
+
+## Summary Statistics
+
+| Metric | Count |
+|--------|-------|
+| Total Sessions | 7 |
+| Total Commits | 18 |
+| Scripts Created | 12 |
+| JSON Files Generated | 8 |
+| PNG Images Extracted | 8 |
+| Wiki Pages Updated | 4 |
+| Items Documented | 83 |
+| Enemies Documented | 56 |
+| Palettes Found | 145+ |
+| Actors Analyzed | 192 |
+
