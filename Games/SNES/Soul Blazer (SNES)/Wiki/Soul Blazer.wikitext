@@ -132,6 +132,26 @@ The game is divided into 6 Acts:
 
 Total Soul Lairs: ~120 | Total Bosses: 8
 
+==Characters==
+{{Main|Soul Blazer:Characters}}
+
+The Hero is a divine servant sent by The Master to restore 91 souls across 6 acts. Notable characters include:
+* '''The Hero''' - Player character with transformation abilities (Mole, Angel, Mouse, Mermaid)
+* '''The Master''' - Divine being who guides through shrines
+* '''Deathtoll''' - Primary antagonist with 3 battle phases
+* '''Dr. Leo''' - Inventor with important story role
+* '''Released Souls''' - NPCs freed from monster lairs
+
+==Secrets==
+{{Main|Soul Blazer:Secrets}}
+
+Soul Blazer contains numerous hidden elements:
+* Hidden treasures and secret rooms
+* Glitches: Damage boost skip, GEM overflow, soul dupe, walk through walls
+* Easter eggs: Developer credits room, sound test, Quintet references
+* Debug mode via Game Genie codes
+* Unused content: items, NPCs, music, and maps
+
 ==Audio==
 The game's music was composed by Yukihide Takekawa. The SNES SPC700 audio driver is located at $07A7F6 in the ROM.
 

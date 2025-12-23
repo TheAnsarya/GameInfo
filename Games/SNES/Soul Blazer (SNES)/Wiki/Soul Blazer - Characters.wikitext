@@ -1,0 +1,393 @@
+{{DISPLAYTITLE:Soul Blazer - Characters}}
+'''Soul Blazer''' features a cast of characters including the player hero, various NPCs, and souls released from monster lairs.
+
+== The Hero ==
+
+The protagonist is a divine servant sent by The Master to restore life to the world.
+
+=== Player Stats ===
+{| class="wikitable"
+|-
+! Stat !! Base !! Max !! Description
+|-
+| HP || 20 || 999 || Health points
+|-
+| Level || 1 || 50 || Experience level
+|-
+| STR || 2 || 99 || Strength (attack power)
+|-
+| DEF || 1 || 99 || Defense (damage reduction)
+|-
+| LCK || 5 || 99 || Luck (critical hit, drops)
+|}
+
+=== Player Data Structure ===
+
+Located at RAM $7E0100 (52 bytes):
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Field !! Description
+|-
+| $00-$01 || 2 || Current HP || Health points
+|-
+| $02-$03 || 2 || Max HP || Maximum HP
+|-
+| $04-$05 || 2 || Level || Current level (1-50)
+|-
+| $06-$09 || 4 || Experience || Total EXP gained
+|-
+| $0A-$0D || 4 || EXP to Next || EXP needed for next level
+|-
+| $0E || 1 || STR || Strength stat
+|-
+| $0F || 1 || DEF || Defense stat
+|-
+| $10 || 1 || LCK || Luck stat
+|-
+| $11 || 1 || Magic Power || Magic damage bonus
+|-
+| $12-$13 || 2 || GEMs || Currency
+|-
+| $14 || 1 || Sword ID || Equipped sword
+|-
+| $15 || 1 || Armor ID || Equipped armor
+|-
+| $16 || 1 || Magic ID || Equipped magic
+|-
+| $17 || 1 || Emblem ID || Active emblem
+|}
+
+=== Level Progression ===
+
+{| class="wikitable"
+|-
+! Level !! EXP Required !! Total EXP !! HP Gain !! STR Gain
+|-
+| 1 || - || 0 || 20 || 2
+|-
+| 2 || 30 || 30 || +4 || +1
+|-
+| 3 || 50 || 80 || +4 || +1
+|-
+| 4 || 80 || 160 || +5 || +1
+|-
+| 5 || 120 || 280 || +5 || +2
+|-
+| 10 || 500 || 1,800 || +6 || +2
+|-
+| 15 || 1,200 || 6,500 || +7 || +2
+|-
+| 20 || 2,500 || 18,000 || +8 || +3
+|-
+| 25 || 5,000 || 42,000 || +8 || +3
+|-
+| 30 || 8,000 || 82,000 || +9 || +3
+|-
+| 40 || 15,000 || 200,000 || +10 || +4
+|-
+| 50 || 25,000 || 450,000 || +12 || +5
+|}
+
+== The Master ==
+
+The divine being who sends the Hero on his quest. Communicates through the Master's Shrine.
+
+=== Shrine Functions ===
+* Save game progress
+* Provide guidance and hints
+* Advance story after boss defeats
+* Grant new abilities
+
+== Deathtoll ==
+
+The primary antagonist who stole souls and sealed them in monster lairs.
+
+=== Deathtoll Forms ===
+{| class="wikitable"
+|-
+! Phase !! HP !! Attack Pattern
+|-
+| Phase 1 || 200 || Energy spheres, teleport
+|-
+| Phase 2 || 300 || Demon form, claw attacks
+|-
+| Phase 3 || 400 || Final form, all attacks
+|}
+
+== Released Souls by Act ==
+
+=== Act 1: Grass Valley ===
+
+{| class="wikitable"
+|-
+! Soul ID !! Character !! Release Condition !! Reward/Function
+|-
+| $00 || Tool Shop Owner || Clear Underground B1 lairs || Opens tool shop
+|-
+| $01 || Inn Keeper || Clear Underground B2 lairs || Opens inn (save/heal)
+|-
+| $02 || Old Woman || Clear painting lairs || Gives hint about Leo
+|-
+| $03 || Child || Clear B3 lairs || Reveals secret passage
+|-
+| $04 || Soldier || Clear boss lair || Bridge to shrine
+|-
+| $05 || Village Elder || Clear all lairs || Emblem of Grass Valley
+|-
+| $06 || Dr. Leo's Servant || Story event || Advances to GreenWood
+|}
+
+=== Act 2: GreenWood ===
+
+{| class="wikitable"
+|-
+! Soul ID !! Character !! Type !! Notes
+|-
+| $10 || Turbo the Dog || Animal || Follows you in town
+|-
+| $11 || Squirrel || Animal || Gives Soul Blade magic
+|-
+| $12 || Deer || Animal || Opens forest path
+|-
+| $13 || Crocodile || Animal || Opens water shrine
+|-
+| $14 || Mole King || Animal || Grants mole transformation
+|-
+| $15 || Great Tree || Spirit || Restores forest
+|-
+| $16 || Bird Clan || Animal || Flying platforms
+|-
+| $17 || Stone Statues || Object || Activate puzzle doors
+|}
+
+=== Act 3: St. Elle's ===
+
+{| class="wikitable"
+|-
+! Soul ID !! Character !! Type !! Notes
+|-
+| $20 || Mountain Hermit || Human || Gives Mermaid's Tears
+|-
+| $21 || Ice Queen || Spirit || Opens Ice Palace
+|-
+| $22 || Lue || Human || Story character
+|-
+| $23 || Angels || Spirit || Grant angel form
+|-
+| $24 || Grandpa || Human || Frozen, needs rescue
+|-
+| $25 || Aurora || Spirit || Controls weather
+|}
+
+=== Act 4: Dr. Leo's Lab ===
+
+{| class="wikitable"
+|-
+! Soul ID !! Character !! Type !! Notes
+|-
+| $30 || Dr. Leo || Human || Story character, inventor
+|-
+| $31 || Marie || Human || Leo's assistant
+|-
+| $32 || Model People || Miniature || Town population
+|-
+| $33 || Toy Soldiers || Animated || Guard functions
+|-
+| $34 || Mouse Family || Animal || Grant mouse form
+|-
+| $35 || Power Plant Workers || Human || Restore electricity
+|}
+
+=== Act 5: Seabed Castle ===
+
+{| class="wikitable"
+|-
+! Soul ID !! Character !! Type !! Notes
+|-
+| $40 || Mermaid Queen || Mermaid || Rules underwater kingdom
+|-
+| $41 || Dolphin || Animal || Guide through waters
+|-
+| $42 || Angelfish || Animal || Open coral paths
+|-
+| $43 || Ghost Captain || Ghost || Story, Ghost Ship
+|-
+| $44 || Sunken Sailors || Ghost || Crew of Ghost Ship
+|-
+| $45 || Pearl Oysters || Animal || Treasure locations
+|}
+
+=== Act 6: World of Evil ===
+
+{| class="wikitable"
+|-
+! Soul ID !! Character !! Type !! Notes
+|-
+| $50 || Hero's Spirit || Spirit || Past hero's memories
+|-
+| $51 || Demons (reformed) || Demon || Former evil, now allies
+|-
+| $52 || Final Souls || Various || Complete restoration
+|}
+
+== Transformation Forms ==
+
+The Hero can transform into animals in certain areas.
+
+=== Mole Form ===
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| Location || GreenWood tunnels
+|-
+| Ability || Dig through soft ground
+|-
+| Granted by || Mole King soul
+|-
+| Sprite Bank || $16
+|}
+
+=== Angel Form ===
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| Location || St. Elle's clouds
+|-
+| Ability || Fly over gaps
+|-
+| Granted by || Angel soul
+|-
+| Sprite Bank || $16
+|}
+
+=== Mouse Form ===
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| Location || Model Town
+|-
+| Ability || Access small passages
+|-
+| Granted by || Mouse Family soul
+|-
+| Sprite Bank || $16
+|}
+
+=== Mermaid Form ===
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| Location || Seabed areas
+|-
+| Ability || Breathe underwater
+|-
+| Granted by || Mermaid's Tears item
+|-
+| Sprite Bank || $16
+|}
+
+== NPC Dialogue System ==
+
+=== Dialogue Pointer Table ===
+
+Located at $03:8000, each NPC has a pointer to their dialogue block:
+
+<pre>
+$03:8000: .dw NPC_00_Dialogue  ; Tool Shop Owner
+$03:8002: .dw NPC_01_Dialogue  ; Inn Keeper
+$03:8004: .dw NPC_02_Dialogue  ; Old Woman
+...
+</pre>
+
+=== Dialogue Flags ===
+
+NPC dialogue can change based on story progress. Flags at $7E1900-$7E191F track:
+* Whether NPC has been spoken to
+* Story event completion
+* Item/soul delivery status
+
+== Character Sprite Data ==
+
+=== Sprite Banks ===
+{| class="wikitable"
+|-
+! Bank !! Content
+|-
+| $15 || Player sprites (all forms)
+|-
+| $16 || NPC sprites, transformations
+|-
+| $17 || Town NPC sprites
+|-
+| $18 || Animal sprites
+|-
+| $19 || Special/boss NPC sprites
+|}
+
+=== Player Animation States ===
+{| class="wikitable"
+|-
+! State ID !! Animation !! Frames
+|-
+| $00 || Idle facing down || 2
+|-
+| $01 || Walk down || 4
+|-
+| $02 || Idle facing up || 2
+|-
+| $03 || Walk up || 4
+|-
+| $04 || Idle facing right || 2
+|-
+| $05 || Walk right || 4
+|-
+| $06 || Attack down || 3
+|-
+| $07 || Attack up || 3
+|-
+| $08 || Attack right || 3
+|-
+| $09 || Magic cast || 4
+|-
+| $0A || Damage || 2
+|-
+| $0B || Death || 4
+|}
+
+== Soul Counter ==
+
+Progress is tracked by souls released:
+
+{| class="wikitable"
+|-
+! Act !! Total Souls !! Requirement
+|-
+| Grass Valley || 12 || 10 to face boss
+|-
+| GreenWood || 18 || 15 to face boss
+|-
+| St. Elle's || 16 || 14 to face boss
+|-
+| Dr. Leo's Lab || 20 || 18 to face boss
+|-
+| Seabed Castle || 15 || 13 to face boss
+|-
+| World of Evil || 10 || All to face Deathtoll
+|-
+| '''Total''' || '''91''' || -
+|}
+
+== See Also ==
+
+* [[Soul Blazer - Progression|Progression]]
+* [[Soul Blazer - Enemies|Enemies]]
+* [[Soul Blazer - Items|Items]]
+* [[Soul Blazer - RAM map|RAM Map]]
+
+[[Category:Soul Blazer]]
+[[Category:SNES]]

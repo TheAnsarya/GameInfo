@@ -448,3 +448,45 @@ Features:
 - Code vs data ratio analysis
 - Anomaly detection (unreachable code, infinite loops)
 - Symbol file generation for disassembly
+
+---
+
+## New Tools (Session 6)
+
+### ROM Labeler
+```bash
+python rom_labeler.py                     # Generate labels from known data
+python rom_labeler.py --rom FILE.sfc      # Analyze ROM for subroutines
+python rom_labeler.py --scan              # Auto-scan JSR/JSL targets
+python rom_labeler.py --import labels.txt # Import additional labels
+python rom_labeler.py --format mesen      # Export to Mesen .mlb format
+python rom_labeler.py --format bsnes      # Export to bsnes/higan .sym format
+python rom_labeler.py --format ca65       # Export for CA65 assembler
+python rom_labeler.py --format wla        # Export for WLA-DX assembler
+python rom_labeler.py --format json       # Export full label database
+```
+Features:
+- Generate and manage ROM labels/symbols
+- Auto-detect subroutines from JSR/JSL instructions
+- Known Soul Blazer labels built-in
+- RAM, hardware register, and code labels
+- Multi-format export (Mesen, bsnes, CA65, WLA-DX, JSON)
+- LoROM address conversion
+- Label import from text files
+
+### Palette Viewer
+```bash
+python palette_viewer.py                  # Open GUI palette viewer
+python palette_viewer.py ROM.sfc          # Load ROM and view palettes
+python palette_viewer.py --cli ROM.sfc    # CLI mode, list all palettes
+python palette_viewer.py --export DIR     # Export all palettes to directory
+```
+Features:
+- View and edit SNES 15-bit BGR palettes
+- Known palette locations for Soul Blazer
+- Interactive color picker with RGB sliders
+- Palette effects (grayscale, invert, brighten, darken)
+- Export/import JASC .pal format
+- Export palette as PNG image
+- ROM palette scanning
+- Copy/paste colors between palettes
