@@ -4,6 +4,8 @@
 
 This page documents the invention system in Robotrek.
 
+'''Data Status:''' Combination table verified at ROM $01c200 (512 bytes). Recipe success formulas TBD.
+
 == Overview ==
 
 The invention system is the core mechanic of Robotrek. Players use materials collected from enemies and treasure to create items and equipment for their robots.
@@ -236,7 +238,126 @@ Certain material combinations provide bonus effects:
 | Cosmos Ring || All materials x1 || 100% completion
 |}
 
+== Verified Combination Recipes ==
+
+'''Source:''' ROM address $01c200 (combination table, 512 bytes)
+
+These are same-item combinations verified from ROM data:
+
+=== Weapon Combinations ===
+
+{| class="wikitable sortable"
+! Item 1 !! Item 2 !! Result !! ROM Address
+|-
+| Sword 1 || Sword 1 || Sword 2 || $01c200
+|-
+| Sword 2 || Sword 2 || Sword 3 || $01c202
+|-
+| Sword 3 || Sword 3 || Sword 4 || $01c204
+|-
+| Axe 1 || Axe 1 || Axe 2 || $01c206
+|-
+| Axe 2 || Axe 2 || Axe 3 || $01c208
+|-
+| Blade 1 || Blade 1 || Blade 2 || $01c20a
+|-
+| Blade 2 || Blade 2 || Blade 3 || $01c20c
+|-
+| Blade 3 || Blade 3 || Blade 4 || $01c20e
+|-
+| Hammer 1 || Hammer 1 || Hammer 2 || $01c210
+|-
+| Hammer 2 || Hammer 2 || Hammer 3 || $01c212
+|-
+| Hammer 3 || Hammer 3 || Celtis 1 || $01c214
+|-
+| Celtis 1 || Celtis 1 || Celtis 2 || $01c216
+|-
+| Celtis 2 || Celtis 2 || Celtis 3 || $01c218
+|-
+| Punch 1 || Punch 1 || Punch 2 || $01c21a
+|-
+| Punch 2 || Punch 2 || Punch 3 || $01c21c
+|-
+| Punch 3 || Punch 3 || Blow 1 || $01c21e
+|-
+| Blow 1 || Blow 1 || Blow 2 || $01c220
+|-
+| Blow 2 || Blow 2 || Blow 3 || $01c222
+|-
+| Shot 1 || Shot 1 || Shot 2 || $01c224
+|-
+| Shot 2 || Shot 2 || Shot 3 || $01c226
+|-
+| Laser 1 || Laser 1 || Laser 2 || $01c228
+|-
+| Laser 2 || Laser 2 || Laser 3 || $01c22a
+|}
+
+=== Consumable Combinations ===
+
+{| class="wikitable sortable"
+! Item 1 !! Item 2 !! Result !! ROM Address
+|-
+| Smoke || Smoke || Cure || $01c2c6
+|-
+| Bomb 1 || Bomb 1 || Bomb 2 || $01c22c
+|-
+| Bomb 2 || Bomb 2 || Bomb 3 || $01c22e
+|-
+| Bomb 3 || Bomb 3 || Bomb 4 || $01c230
+|}
+
+=== Armor Combinations ===
+
+{| class="wikitable sortable"
+! Item 1 !! Item 2 !! Result !! ROM Address
+|-
+| Shield 1 || Shield 1 || Shield 2 || $01c232
+|-
+| Shield 2 || Shield 2 || Shield 3 || $01c234
+|-
+| Shield 3 || Shield 3 || Shield 4 || $01c236
+|-
+| Shield 4 || Shield 4 || Shield 5 || $01c238
+|-
+| Pack 1 || Pack 1 || Pack 2 || $01c23a
+|-
+| Pack 2 || Pack 2 || Pack 3 || $01c23c
+|-
+| Pack 3 || Pack 3 || Pack 4 || $01c23e
+|-
+| Pack 4 || Pack 4 || Pack 5 || $01c240
+|-
+| Pack 5 || Pack 5 || Pack 6 || $01c242
+|-
+| Boots 1 || Boots 1 || Boots 2 || $01c244
+|-
+| Boots 2 || Boots 2 || Boots 3 || $01c246
+|-
+| Boots 3 || Boots 3 || Boots 4 || $01c248
+|-
+| Boots 4 || Boots 4 || Boots 5 || $01c24a
+|}
+
 == Data Structure ==
+
+=== Combination Table Format ===
+
+ROM address: $01c200, size: 512 bytes ($200)
+
+Each combination entry uses 2 bytes:
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Item ID for combination lookup (ItemA + ItemB index)
+|-
+| $01 || 1 || Result Item ID
+|}
+
+The table is indexed by: <code>(Item1_ID * 16) + Item2_ID</code> mod 256
+
+=== Invention Recipe Format ===
 
 Each invention recipe uses 8 bytes:
 
