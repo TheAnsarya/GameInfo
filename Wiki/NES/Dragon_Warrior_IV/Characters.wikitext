@@ -1,0 +1,498 @@
+{{DISPLAYTITLE:Dragon Warrior IV - Characters}}
+
+This page documents the playable characters and companions in Dragon Warrior IV for the NES.
+
+==Party System Overview==
+
+Dragon Warrior IV uses a unique chapter-based system where players control different characters throughout the game. In Chapter 5, all characters unite under the Hero's leadership.
+
+===Character IDs===
+
+{| class="wikitable"
+|-
+! Range !! Type !! Description
+|-
+| $00-$07 || Playable || Main party members
+|-
+| $C5-$CC || Companions || Temporary story companions
+|}
+
+==Main Party Members==
+
+===Hero ($00)===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $00
+|-
+| Name || Hero (player-named)
+|-
+| Class || Chosen One
+|-
+| Playable || Chapter 5
+|-
+| Starting Level || 1
+|-
+| Equipment Type || Swords, Heavy Armor
+|}
+
+'''Stats Growth:''' Balanced all-around with good HP, Attack, and Magic.
+
+'''Abilities:'''
+* Access to Heal, Healall, Healus, Healusall spells
+* Attack magic including Blaze, Blazemore, Zap, Lightning
+* Can equip the Zenithian equipment set
+
+===Ragnar McRyan ($06)===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $06
+|-
+| Name || Ragnar
+|-
+| Class || Royal Soldier
+|-
+| Playable || Chapter 1, Chapter 5
+|-
+| Chapter 1 Location || Burland Castle
+|-
+| Equipment Type || Swords, Heavy Armor, Shields
+|}
+
+'''Stats Growth:''' Highest HP and Defense. No magic abilities.
+
+'''Chapter 1 Story:''' Investigates the disappearance of children from Burland.
+
+===Alena ($07)===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $07
+|-
+| Name || Alena
+|-
+| Class || Princess
+|-
+| Playable || Chapter 2, Chapter 5
+|-
+| Chapter 2 Location || Santeem Castle
+|-
+| Equipment Type || Claws, Light Armor
+|}
+
+'''Stats Growth:''' Highest Attack and Agility. Critical hit specialist. No magic.
+
+'''Chapter 2 Story:''' Escapes castle life seeking adventure with Cristo and Brey.
+
+===Cristo ($01)===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $01
+|-
+| Name || Cristo
+|-
+| Class || Priest/Chancellor
+|-
+| Playable || Chapter 2, Chapter 5
+|-
+| Chapter 2 Location || Santeem Castle
+|-
+| Equipment Type || Staves, Robes
+|}
+
+'''Stats Growth:''' High MP for healing. Moderate defensive stats.
+
+'''Spells:'''
+* Heal, Healmore, Healall
+* Revive, Vivify
+* Upper, Increase
+* Beat, Defeat
+
+===Brey ($04)===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $04
+|-
+| Name || Brey
+|-
+| Class || Wizard/Tutor
+|-
+| Playable || Chapter 2, Chapter 5
+|-
+| Chapter 2 Location || Santeem Castle
+|-
+| Equipment Type || Staves, Robes
+|}
+
+'''Stats Growth:''' Highest MP. Lowest HP and Defense.
+
+'''Spells:'''
+* Icebolt, Snowstorm, Blizzard
+* Sap, Defense
+* Surround, Chaos
+* Bounce
+
+===Taloon ($05)===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $05
+|-
+| Name || Taloon
+|-
+| Class || Arms Merchant
+|-
+| Playable || Chapter 3, Chapter 5
+|-
+| Chapter 3 Location || Lakanaba
+|-
+| Equipment Type || Swords, Medium Armor
+|}
+
+'''Stats Growth:''' Balanced fighter. No magic abilities.
+
+'''Special Abilities:'''
+* Random battle actions (trip, stumble, call for help)
+* Better item appraisal
+* Shop discounts in Chapter 3
+
+'''Chapter 3 Story:''' Builds a merchant empire to fund his dream of adventure.
+
+===Mara ($03)===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $03
+|-
+| Name || Mara
+|-
+| Class || Dancer
+|-
+| Playable || Chapter 4, Chapter 5
+|-
+| Chapter 4 Location || Monbaraba
+|-
+| Equipment Type || Whips, Fans, Light Armor
+|}
+
+'''Stats Growth:''' Good Agility and MP. Group-hitting attack spells.
+
+'''Spells:'''
+* Blaze, Blazemore, Blazemost
+* Bang, Boom, Explodet
+* Firebane, Firevolt
+
+===Nara ($02)===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $02
+|-
+| Name || Nara
+|-
+| Class || Fortune Teller
+|-
+| Playable || Chapter 4, Chapter 5
+|-
+| Chapter 4 Location || Monbaraba
+|-
+| Equipment Type || Tarot Cards, Robes
+|}
+
+'''Stats Growth:''' Healing focus with some offensive magic.
+
+'''Spells:'''
+* Heal, Healmore
+* Infernos, Infermost
+* Sleep, Stopspell
+* Outside, Repel
+
+'''Chapter 4 Story:''' Sisters Mara and Nara seek revenge for their father's murder.
+
+==Extra Companions==
+
+Temporary party members that join during the story:
+
+===Healie ($C5)===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $C5
+|-
+| Name || Healie
+|-
+| Class || Kind Healer (Healslime)
+|-
+| Chapter || 1
+|-
+| Location || Well of Souls
+|}
+
+'''Role:''' Assists Ragnar with healing magic. Dreams of becoming human.
+
+===Orin ($C6)===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $C6
+|-
+| Name || Orin
+|-
+| Class || Alchemist
+|-
+| Chapter || 4
+|-
+| Location || Keeleon Castle area
+|}
+
+'''Role:''' Childhood friend of Edgar. Helps Mara and Nara in their quest.
+
+===Laurent ($C7)===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $C7
+|-
+| Name || Laurent
+|-
+| Class || Troubadour
+|-
+| Chapter || 3
+|-
+| Location || Endor
+|}
+
+'''Role:''' Musician who assists Taloon during his merchant adventures.
+
+===Strom ($C8)===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $C8
+|-
+| Name || Strom
+|-
+| Class || Guardsman
+|-
+| Chapter || 3
+|-
+| Location || Bonmalmo
+|}
+
+'''Role:''' Soldier who helps Taloon escort Princess Flora.
+
+===Hector ($C9)===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $C9
+|-
+| Name || Hector
+|-
+| Class || Young Man
+|-
+| Chapter || 5
+|-
+| Location || Riverton
+|}
+
+'''Role:''' Young man seeking to prove himself as a hero.
+
+===Panon ($CA)===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $CA
+|-
+| Name || Panon
+|-
+| Class || Jester
+|-
+| Chapter || 5
+|-
+| Location || Monbaraba
+|}
+
+'''Role:''' Comedian who joins briefly during the party's quest.
+
+===Lucia ($CB)===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $CB
+|-
+| Name || Lucia
+|-
+| Class || Zenithian
+|-
+| Chapter || 5
+|-
+| Location || Zenithia
+|}
+
+'''Role:''' Zenithian guide who helps the party navigate the sky castle.
+
+===Doran ($CC)===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $CC
+|-
+| Name || Doran
+|-
+| Class || Baby Dragon
+|-
+| Chapter || 5
+|-
+| Location || Gardenbur area
+|}
+
+'''Role:''' Young dragon who joins the party temporarily. Very powerful fighter.
+
+==Character Stats Memory==
+
+See [[Dragon Warrior IV:RAM_Map|RAM Map]] for detailed memory layout.
+
+===Party Slot Structure===
+
+Each character has a data block in RAM:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| +$00 || 1 || Character ID
+|-
+| +$01 || 1 || Current HP (low byte)
+|-
+| +$02 || 1 || Current HP (high byte)
+|-
+| +$03 || 1 || Current MP
+|-
+| +$04 || 1 || Strength
+|-
+| +$05 || 1 || Agility
+|-
+| +$06 || 1 || Vitality
+|-
+| +$07 || 1 || Intelligence
+|-
+| +$08 || 1 || Luck
+|-
+| +$09 || 3 || Experience (24-bit)
+|-
+| +$0C || 1 || Level
+|}
+
+==AI Tactics Behavior==
+
+In Chapter 5, non-Hero characters are AI-controlled. See [[Dragon Warrior IV:Battle_System|Battle System]] for tactics details.
+
+{| class="wikitable"
+|-
+! Character !! Default Behavior !! Notes
+|-
+| Ragnar || Physical attacks || Never uses items
+|-
+| Alena || Physical attacks, critical focus || High crit rate
+|-
+| Cristo || Healing priority || Sometimes uses Beat/Defeat
+|-
+| Brey || Offensive magic || May waste MP on weak enemies
+|-
+| Taloon || Unpredictable || Random special actions
+|-
+| Mara || Group attack magic || Efficient MP use
+|-
+| Nara || Mixed healing/offense || Balanced approach
+|}
+
+==Equipment Compatibility==
+
+{| class="wikitable"
+|-
+! Character !! Weapons !! Armor !! Shields !! Helmets
+|-
+| Hero || Swords, Staves || Heavy || Yes || Yes
+|-
+| Ragnar || Swords, Axes || Heavy || Yes || Yes
+|-
+| Alena || Claws, Fans || Light || No || Female
+|-
+| Cristo || Staves || Robes || Yes || Yes
+|-
+| Brey || Staves || Robes || No || Hats
+|-
+| Taloon || Swords, Boomerang || Medium || Yes || Yes
+|-
+| Mara || Whips, Fans || Light/Female || No || Female
+|-
+| Nara || Cards, Daggers || Robes || No || Female
+|}
+
+==Spell Learning==
+
+{| class="wikitable"
+|-
+! Character !! Notable Spells !! Learned At
+|-
+| Hero || Heal, Healall, Zap, Lighning, Return || Various levels
+|-
+| Cristo || Heal, Healall, Revive, Beat, Upper || Various levels
+|-
+| Brey || Icebolt, Snowstorm, Blizzard, Bounce || Various levels
+|-
+| Mara || Blaze, Bang, Boom, Explodet || Various levels
+|-
+| Nara || Heal, Healmore, Infernos, Sleep || Various levels
+|}
+
+==See Also==
+
+* [[Dragon Warrior IV:Battle_System|Battle System]] - AI tactics and combat
+* [[Dragon Warrior IV:EXP_System|EXP System]] - Level up mechanics
+* [[Dragon Warrior IV:Spells|Spells]] - Complete spell list
+* [[Dragon Warrior IV:Items|Items]] - Equipment list
+
+==Source==
+
+Character data extracted from:
+* [https://github.com/TheAnsarya/dragon-warrior-4-info/blob/main/data/game_data.json DW4 game_data.json]
+
+[[Category:Dragon Warrior IV]]
+[[Category:Characters]]

@@ -120,15 +120,22 @@ Temporary party members that join in specific chapters:
 
 ==Documentation==
 
+===Technical===
 * [[Dragon Warrior IV:ROM_Map|ROM Map]] - Complete PRG ROM layout
 * [[Dragon Warrior IV:RAM_Map|RAM Map]] - Runtime memory documentation
 * [[Dragon Warrior IV:SRAM_Map|SRAM Map]] - Save data structure
 * [[Dragon Warrior IV:TBL|Text Table]] - Character encoding
 * [[Dragon Warrior IV:Values|Values]] - Game constants and IDs
 * [[Dragon Warrior IV:Map_List|Map List]] - Location ID reference
+
+===Game Systems===
 * [[Dragon Warrior IV:Battle_System|Battle System]] - AI tactics and combat mechanics
 * [[Dragon Warrior IV:EXP_System|EXP System]] - Experience calculation formulas
 * [[Dragon Warrior IV:Spells|Spells]] - Magic system and spell tables
+
+===Game Data===
+* [[Dragon Warrior IV:Characters|Characters]] - Party members and companions
+* [[Dragon Warrior IV:Items|Items]] - Equipment and consumables
 * [[Dragon Warrior IV:Enemies|Enemies]] - Monster data structure and categories
 
 ==Known Dumps==
