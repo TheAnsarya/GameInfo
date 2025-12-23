@@ -15,6 +15,8 @@ ROM hacking tools, game documentation, and wiki content for retro games.
 | [Dragon Quest I & II](docs/dragon-quest-1-2-snes/) | SNES | ROM Map, RAM Map, Data Structures |
 | [Dragon Quest III](docs/dragon-quest-3-snes/) | SNES | ROM Map, RAM Map, Data Structures |
 | [Final Fantasy Mystic Quest](docs/ffmq-snes/) | SNES | ROM Map, RAM Map, Data Structures |
+| [Robotrek / Slapstick](Games/SNES/Robotrek%20(SNES)/) | SNES | ROM Map, RAM Map, Items, Enemies, Inventions |
+| [Soul Blazer](Games/SNES/Soul%20Blazer%20(SNES)/) | SNES | ROM Map, RAM Map, Items, Enemies |
 
 ### Wiki Content (`*/Wiki/`)
 
@@ -289,6 +291,8 @@ Each game folder contains Data Crystal-style wikitext documentation:
 | Final Fantasy Mystic Quest | [`Final Fantasy Mystic Quest (SNES)/Wiki/`](Final%20Fantasy%20Mystic%20Quest%20(SNES)/Wiki/) | Notes |
 | Chrono Trigger (SNES) | [`Chrono Trigger (SNES)/Wiki/`](Chrono%20Trigger%20(SNES)/Wiki/) | TBL |
 | Final Fantasy IV (SNES) | [`Final Fantasy IV (SNES)/Wiki/`](Final%20Fantasy%20IV%20(SNES)/Wiki/) | Notes |
+| Robotrek (SNES) | [`Wiki/SNES/Robotrek/`](Wiki/SNES/Robotrek/) | ROM Map, RAM Map, Items, Enemies, Inventions |
+| Soul Blazer (SNES) | [`Wiki/SNES/Soul_Blazer/`](Wiki/SNES/Soul_Blazer/) | ROM Map, RAM Map, Items, Enemies |
 
 ### Wiki File Types
 
