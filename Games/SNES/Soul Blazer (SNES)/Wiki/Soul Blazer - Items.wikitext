@@ -5,188 +5,396 @@ This page documents '''items and equipment''' in '''[[Soul Blazer]]''' (SNES).
 Soul Blazer features various equipment types that enhance the player's abilities.
 Equipment is obtained by releasing souls from Soul Lairs or found in chests.
 
+'''Item Counts:'''
+* Swords: 8
+* Armor: 8
+* Magic: 8
+* Key Items: 12
+* Consumables: 3
+* Emblems: 8
+* '''Total: 47 unique items'''
+
 ==Swords==
 Swords determine attack power and may have special abilities.
 
 {| class="wikitable sortable"
-! ID !! Name !! Attack !! Special Ability !! Location
+! ID !! Name !! Attack !! Special Ability !! Location !! Notes
 |-
-| $00 || Sword of Life || 4 || Regenerate 1 HP per 4 steps || Starting weapon
+| $00 || Sword of Life || 4 || Regenerate 1 HP per 4 steps || Starting weapon || Default equipment
 |-
-| $01 || Psycho Sword || 8 || Increased critical hit rate || Underground Castle
+| $01 || Psycho Sword || 8 || Increased critical hit rate (1/8) || Underground Castle || 4th floor chest
 |-
-| $02 || Critical Sword || 12 || Very high critical rate || GreenWood
+| $02 || Critical Sword || 12 || Very high critical rate (1/4) || GreenWood || After Fire Shrine
 |-
-| $03 || Lucky Blade || 16 || Increased GEM drops || St. Elles
+| $03 || Lucky Blade || 16 || Increased GEM drops (+50%) || St. Elles || Mermaid's gift
 |-
-| $04 || Zantetsu Sword || 32 || Kills metal enemies instantly || Mountain of Souls
+| $04 || Zantetsu Sword || 32 || Kills metal enemies instantly || Mountain of Souls || Nome's reward
 |-
-| $05 || Spirit Sword || 48 || Can damage ghost enemies || Leo's Lab
+| $05 || Spirit Sword || 48 || Can damage ghost enemies || Leo's Lab || Model Town 2
 |-
-| $06 || Recovery Sword || 64 || Restore HP on enemy kill || Magridd Castle
+| $06 || Recovery Sword || 64 || Restore HP on enemy kill || Magridd Castle || Queen's chamber
 |-
-| $07 || Soul Blade || 128 || Ultimate sword, all abilities || World of Evil
+| $07 || Soul Blade || 128 || Ultimate sword, all abilities || World of Evil || Pre-Deathtoll
 |}
 
-===Sword Notes===
-* '''Zantetsu Sword''' - Required to defeat Blue Metal and Metally enemies
-* '''Spirit Sword''' - Required to damage Ghost-type enemies
-* '''Soul Blade''' - Combines effects of all other swords
+===Sword Attack Calculation===
+<pre>
+Base Damage = Sword_Attack + Player_STR
+Modified Damage = Base_Damage × Multiplier
+
+Multipliers:
+- Normal hit: 1.0×
+- Critical hit: 2.0×
+- Elemental weakness: 1.5×
+- Wrong element: 0.5×
+</pre>
+
+===Sword Special Effects===
+{| class="wikitable"
+! Sword !! Effect Details
+|-
+| Sword of Life || Every 4 steps taken heals 1 HP. Timer at $7E0050.
+|-
+| Psycho Sword || Critical rate: 1/8 (12.5%) vs normal 1/16 (6.25%)
+|-
+| Critical Sword || Critical rate: 1/4 (25%)
+|-
+| Lucky Blade || Enemy GEM drops multiplied by 1.5 (rounded down)
+|-
+| Zantetsu Sword || Bypasses defense on metal enemies, deals 255 damage
+|-
+| Spirit Sword || Allows damage to ghost-type enemies (element $05)
+|-
+| Recovery Sword || Gain 5 HP per enemy killed
+|-
+| Soul Blade || All above effects combined
+|}
 
 ==Armor==
 Armor determines defense and may provide elemental protection.
 
 {| class="wikitable sortable"
-! ID !! Name !! Defense !! Special Ability !! Location
+! ID !! Name !! Defense !! Special Ability !! Location !! Notes
 |-
-| $00 || Iron Armor || 2 || None || Underground Castle
+| $00 || Iron Armor || 2 || None || Underground Castle || 1st floor
 |-
-| $01 || Ice Armor || 4 || Fire damage reduced 50% || GreenWood
+| $01 || Ice Armor || 4 || Fire damage reduced 50% || GreenWood || Water Shrine
 |-
-| $02 || Bubble Armor || 6 || Breathe underwater || St. Elles
+| $02 || Bubble Armor || 6 || Breathe underwater || St. Elles || Required for Seabed
 |-
-| $03 || Magic Armor || 10 || Magic damage reduced 50% || Mountain of Souls
+| $03 || Magic Armor || 10 || Magic damage reduced 50% || Mountain of Souls || Ice caves
 |-
-| $04 || Mystic Armor || 16 || Slow HP regeneration || Leo's Lab
+| $04 || Mystic Armor || 16 || Slow HP regeneration (1/8 steps) || Leo's Lab || Secret area
 |-
-| $05 || Light Armor || 24 || Increased movement speed || Magridd Town
+| $05 || Light Armor || 24 || Increased movement speed (+25%) || Magridd Town || Shop
 |-
-| $06 || Elemental Armor || 32 || Resist all elements || Magridd Castle
+| $06 || Elemental Armor || 32 || Resist all elements (25% each) || Magridd Castle || Treasury
 |-
-| $07 || Soul Armor || 64 || Ultimate armor, all abilities || World of Evil
+| $07 || Soul Armor || 64 || Ultimate armor, all abilities || World of Evil || Before final area
 |}
 
-===Armor Notes===
-* '''Bubble Armor''' - Essential for Seabed areas
-* '''Light Armor''' - Low defense but fastest movement
-* '''Soul Armor''' - Combines all armor effects
+===Armor Defense Calculation===
+<pre>
+Damage Taken = Enemy_Attack - (Armor_Defense + Player_DEF)
+If Damage_Taken < 1, Damage_Taken = 1
+
+Elemental Reduction (applied after defense):
+- 50% reduction: Ice/Magic Armor
+- 25% reduction: Elemental Armor (all elements)
+</pre>
+
+===Armor Special Effects===
+{| class="wikitable"
+! Armor !! Effect Details
+|-
+| Iron Armor || Basic protection, no special effects
+|-
+| Ice Armor || Fire damage = (Damage × 0.5), stacks with resistance
+|-
+| Bubble Armor || No drowning damage in water areas, can dive
+|-
+| Magic Armor || Magic attacks = (Damage × 0.5)
+|-
+| Mystic Armor || Heal 1 HP per 8 steps (slower than Sword of Life)
+|-
+| Light Armor || Movement speed +25%, useful for dodging
+|-
+| Elemental Armor || All element damage reduced 25%
+|-
+| Soul Armor || All above effects + 50% all element resist
+|}
 
 ==Magic==
 Magic spells consume GEMs and provide offensive abilities.
 
 {| class="wikitable sortable"
-! ID !! Name !! GEM Cost !! Effect !! Location
+! ID !! Name !! GEM Cost !! Effect !! Location !! Damage/Range
 |-
-| $00 || Flame Ball || 1 || Fire projectile forward || Underground Castle
+| $00 || Flame Ball || 1 || Fire projectile forward || Underground Castle || 20 dmg, single target
 |-
-| $01 || Light Arrow || 2 || Piercing light beam || GreenWood
+| $01 || Light Arrow || 2 || Piercing light beam || GreenWood || 30 dmg, pierces enemies
 |-
-| $02 || Magic Flare || 4 || Damages all on-screen enemies || St. Elles
+| $02 || Magic Flare || 4 || Damages all on-screen enemies || St. Elles || 15 dmg, screen-wide
 |-
-| $03 || Rotation || 2 || Spinning attack around player || Mountain of Souls
+| $03 || Rotation || 2 || Spinning attack around player || Mountain of Souls || 25 dmg, 360° radius
 |-
-| $04 || Spark Bomb || 8 || Powerful explosion || Leo's Lab
+| $04 || Spark Bomb || 8 || Powerful explosion || Leo's Lab || 60 dmg, area of effect
 |-
-| $05 || Flame Pillar || 16 || Fire column ahead || Magridd Castle
+| $05 || Flame Pillar || 16 || Fire column ahead || Magridd Castle || 80 dmg, vertical line
 |-
-| $06 || Tornado || 32 || Wind attack, wide range || World of Evil
+| $06 || Tornado || 32 || Wind attack, wide range || World of Evil || 100 dmg, large area
 |-
-| $07 || Phoenix || 50 || Full heal + revival || Deathtoll's Lair
+| $07 || Phoenix || 50 || Full heal + revival || Deathtoll's Lair || Full HP + 1 revive
 |}
 
-===Magic Notes===
-* '''Rotation''' - Good for surrounded situations
-* '''Magic Flare''' - Useful against many weak enemies
-* '''Phoenix''' - One-time revival if killed
+===Magic Mechanics===
+<pre>
+GEM Cost = Base_Cost × (Magic_Level / 10)
+Damage = Base_Damage × (Magic_Power + Player_Level / 4)
+
+Phoenix Special:
+- On death, automatically activates
+- Restores HP to maximum
+- Consumes 50 GEMs
+- One-time use until reacquired
+</pre>
+
+===Magic Element Types===
+{| class="wikitable"
+! Magic !! Element !! Enemies Weak
+|-
+| Flame Ball || Fire || Ice, Plant
+|-
+| Light Arrow || Light || Dark, Ghost
+|-
+| Magic Flare || Holy || None (neutral)
+|-
+| Rotation || Physical || None (neutral)
+|-
+| Spark Bomb || Electric || Metal, Water
+|-
+| Flame Pillar || Fire || Ice, Plant
+|-
+| Tornado || Wind || Flying
+|-
+| Phoenix || Holy || Dark
+|}
 
 ==Consumable Items==
 
 {| class="wikitable"
-! Name !! Effect !! Max Stack
+! ID !! Name !! Effect !! Max Stack !! GEM Value !! Notes
 |-
-| Medical Herb || Restore 40 HP || 9
+| $00 || Medical Herb || Restore 40 HP || 9 || 20 || Can buy from shops
 |-
-| Strange Bottle || Restore all HP || 9
+| $01 || Strange Bottle || Restore all HP || 9 || 100 || Rare find
 |-
-| Emblem (A-H) || Key items for progression || 1 each
+| $02 || Antidote || Cure poison status || 9 || 30 || Required for swamp areas
 |}
+
+===Item Usage===
+* Items accessed via menu (START button)
+* Can hold up to 9 of each consumable
+* Medical Herbs sold in most town shops
+* Strange Bottles found in chests only
 
 ==Key Items==
-Key items are required for game progression.
+Key items are required for game progression and cannot be sold or dropped.
 
 {| class="wikitable"
-! Item !! Purpose !! Location
+! ID !! Item !! Purpose !! Location !! Required For
 |-
-| Dream Rod || Access to dreams || The Master
+| $10 || Dream Rod || Access dream world || The Master || All progression
 |-
-| Emblems A-H || Open sealed doors || Various bosses
+| $11 || Pass || Enter restricted areas || Various || Act transitions
 |-
-| Master's Sword || Defeat Deathtoll || The Master
+| $12 || Magic Bell || Summon aid || Leo's Lab || Leo's Lab boss
 |-
-| Phoenix || Revival item || World of Evil
+| $13 || Mermaid's Tear || Breathe underwater || Mermaid Queen || St. Elles dungeons
 |-
-| Magic Bell || Summon help || Leo's Lab
+| $14 || Greenwood Leaf || Enter GreenWood || Turbo the Dog || Act 2 entry
 |-
-| Mermaid's Tear || Breathe underwater || Mermaid Queen
+| $15 || Mushroom Shoes || Walk on clouds || Mushroom || Mountain of Souls
+|-
+| $16 || Leo's Brush || Bring paintings to life || Dr. Leo || Model Town completion
+|-
+| $17 || Super Bracelet || Double punch power || Nome || Mountain climbing
+|-
+| $18 || Master's Key || Unlock Magridd doors || King Magridd || Castle access
+|-
+| $19 || Platinum Card || VIP access || Queen Magridd || Castle treasury
+|-
+| $1A || Mobile Key || Activate machines || Dr. Leo || Lab machinery
+|-
+| $1B || Master's Sword || Defeat Deathtoll || The Master || Final boss only
 |}
+
+==Emblems==
+Emblems are collectible key items that prove completion of areas.
+
+{| class="wikitable"
+! ID !! Emblem !! Location !! Obtained From !! Door Unlocked
+|-
+| $20 || Emblem A || Underground Castle || Metal Mantis || GreenWood gate
+|-
+| $21 || Emblem B || GreenWood || Solid Arm || St. Elles gate
+|-
+| $22 || Emblem C || St. Elles || Great Carrot || Mountain gate
+|-
+| $23 || Emblem D || St. Elles || Poseidon || Alternate route
+|-
+| $24 || Emblem E || Mountain of Souls || Dragon || Leo's Lab gate
+|-
+| $25 || Emblem F || Leo's Lab || Tin Doll || Magridd gate
+|-
+| $26 || Emblem G || Magridd Castle || Demon Bird || World of Evil
+|-
+| $27 || Emblem H || World of Evil || Deathtoll || Game complete
+|}
+
+===Emblem Display===
+Emblems appear on the status screen in order collected.
+All 8 emblems required for true ending sequence.
 
 ==GEMs==
 GEMs serve as both currency and magic points.
 
 ===GEM Economy===
-* Dropped by enemies on defeat
-* Found in chests
-* Lucky Blade increases drop rate
-* Used to cast magic spells
-* Can be stored: Maximum 9,999,999
+{| class="wikitable"
+! Source !! Amount !! Notes
+|-
+| Weak enemies || 1-5 || Grass Valley, early areas
+|-
+| Medium enemies || 5-15 || Acts 2-4
+|-
+| Strong enemies || 15-50 || Acts 5-6
+|-
+| Bosses || 100-500 || One-time reward
+|-
+| Chests (small) || 50-100 || Common find
+|-
+| Chests (large) || 200-500 || Rare find
+|-
+| Metally enemies || 100+ || High reward, hard to kill
+|}
+
+===GEM Modifiers===
+* '''Lucky Blade''': +50% drops
+* '''GEM Doubler''' (hidden): ×2 all drops
+* '''Maximum GEMs''': 9,999,999
+
+===GEM Storage===
+<pre>
+$7E003A-$7E003D: 4-byte GEM counter (32-bit)
+Display format: Right-aligned, comma-separated
+Example: 1,234,567 GEMs
+</pre>
 
 ==Equipment Data Structure==
-Each equipment entry is 8 bytes:
+Each equipment entry is '''8 bytes''':
 
 {| class="wikitable"
-! Offset !! Size !! Description
+! Offset !! Size !! Description !! Values
 |-
-| $00 || 1 || Equipment ID
+| $00 || 1 || Equipment ID || $00-$FF
 |-
-| $01 || 1 || Type (sword/armor/magic)
+| $01 || 1 || Type || $00=Sword, $01=Armor, $02=Magic
 |-
-| $02 || 2 || Base stat value
+| $02 || 1 || Base stat value || Attack/Defense/Power
 |-
-| $03 || 1 || Special ability flags
+| $03 || 1 || Special ability flags || See below
 |-
-| $04 || 1 || Elemental property
+| $04 || 1 || Elemental property || $00-$07
 |-
-| $06 || 2 || Reserved
+| $05 || 1 || GEM cost (magic only) || 1-50
+|-
+| $06 || 2 || Name pointer || Points to $03 bank
 |}
 
 ===Special Ability Flags===
 {| class="wikitable"
-! Bit !! Effect
+! Bit !! Effect !! Used By
 |-
-| 0 || HP regeneration
+| 0 || HP regeneration || Sword of Life, Mystic Armor
 |-
-| 1 || Critical hit bonus
+| 1 || Critical hit bonus || Psycho Sword, Critical Sword
 |-
-| 2 || GEM drop bonus
+| 2 || GEM drop bonus || Lucky Blade
 |-
-| 3 || Metal kill
+| 3 || Metal kill || Zantetsu Sword
 |-
-| 4 || Ghost damage
+| 4 || Ghost damage || Spirit Sword
 |-
-| 5 || HP on kill
+| 5 || HP on kill || Recovery Sword
 |-
-| 6 || Speed bonus
+| 6 || Speed bonus || Light Armor
 |-
-| 7 || Element resist
+| 7 || Element resist || Ice/Magic/Elemental/Soul Armor
+|}
+
+===Elemental Properties===
+{| class="wikitable"
+! ID !! Element !! Color !! Notes
+|-
+| $00 || None || White || Neutral damage
+|-
+| $01 || Fire || Red || vs Ice enemies
+|-
+| $02 || Ice || Blue || vs Fire enemies
+|-
+| $03 || Electric || Yellow || vs Metal/Water
+|-
+| $04 || Wind || Green || vs Flying
+|-
+| $05 || Light || Gold || vs Dark/Ghost
+|-
+| $06 || Dark || Purple || vs Light
+|-
+| $07 || Holy || White/Gold || vs Evil
+|}
+
+==Shop Data==
+{| class="wikitable"
+! Shop !! Location !! Items Available !! Prices
+|-
+| Grass Valley || Tool Shop || Medical Herb || 20 GEMs
+|-
+| GreenWood || Forest Shop || Medical Herb, Antidote || 20, 30 GEMs
+|-
+| St. Elles || Underwater Shop || Medical Herb, Strange Bottle || 20, 100 GEMs
+|-
+| Mountain || Mountain Shop || Medical Herb, Antidote || 25, 35 GEMs
+|-
+| Leo's Lab || Lab Shop || All consumables || Standard prices
+|-
+| Magridd Town || Castle Shop || All consumables, Light Armor || Various
 |}
 
 ==Data Locations==
 {| class="wikitable"
-! Data !! Bank !! Address
+! Data !! Bank !! Address !! Size
 |-
-| Sword data || $07 || $07:8000
+| Sword data || $07 || $07:8000-$07:803F || 64 bytes (8 × 8)
 |-
-| Armor data || $07 || $07:8100
+| Armor data || $07 || $07:8040-$07:807F || 64 bytes (8 × 8)
 |-
-| Magic data || $07 || $07:8200
+| Magic data || $07 || $07:8080-$07:80BF || 64 bytes (8 × 8)
 |-
-| Item names || $03 || $03:8000
+| Key items || $07 || $07:80C0-$07:80FF || 64 bytes (8 × 8)
+|-
+| Item names || $03 || $03:8000-$03:83FF || 1024 bytes
+|-
+| Shop data || $07 || $07:8100-$07:81FF || 256 bytes
+|-
+| Emblem data || $07 || $07:8200-$07:823F || 64 bytes
 |}
 
 ==See Also==
-* [[Soul Blazer:Enemies|Enemies]]
-* [[Soul Blazer:Data tables|Data Tables]]
-* [[Soul Blazer:ROM map|ROM Map]]
+* [[Soul Blazer:Enemies|Enemies]] - Enemy drops and farming
+* [[Soul Blazer:Data tables|Data Tables]] - Complete item stats
+* [[Soul Blazer:ROM map|ROM Map]] - Data locations
+* [[Soul Blazer:Progression|Progression]] - Item acquisition order
 
 [[Category:Soul Blazer]]
+[[Category:SNES Games]]
 [[Category:Item data]]

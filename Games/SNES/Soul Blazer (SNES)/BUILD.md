@@ -284,6 +284,23 @@ Features:
 - Volume control
 - Audio catalog export to JSON
 
+### Memory Scanner
+```bash
+python memory_scanner.py                   # Scan all banks, print summary
+python memory_scanner.py --wikitext        # Generate wiki output
+python memory_scanner.py --bank 00         # Scan specific bank (hex)
+python memory_scanner.py --output DIR      # Export scan results to JSON
+```
+Features:
+- Scans ROM for memory access patterns
+- 50+ known RAM address definitions
+- Hot address detection (frequently accessed)
+- 65816 opcode analysis
+- Read/write tracking
+- Memory region classification (WRAM, SRAM, Hardware, ROM)
+- JSON export of scan results
+- Wikitext documentation generation
+
 ## ROM Structure
 
 ### Banks
