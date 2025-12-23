@@ -293,9 +293,265 @@ Text is stored in a compressed format with control codes.
 | $05 || System messages, menus
 |}
 
+==Experience Table==
+===Level Up Requirements===
+Experience needed to reach each level.
+
+{| class="wikitable sortable"
+! Level !! Total EXP !! EXP to Next !! HP Gain !! STR Gain
+|-
+| 1 || 0 || 8 || — || —
+|-
+| 2 || 8 || 16 || +2 || +1
+|-
+| 3 || 24 || 32 || +2 || +1
+|-
+| 4 || 56 || 48 || +3 || +1
+|-
+| 5 || 104 || 72 || +3 || +2
+|-
+| 6 || 176 || 100 || +4 || +1
+|-
+| 7 || 276 || 140 || +4 || +2
+|-
+| 8 || 416 || 190 || +5 || +1
+|-
+| 9 || 606 || 250 || +5 || +2
+|-
+| 10 || 856 || 330 || +6 || +2
+|-
+| 11 || 1186 || 430 || +6 || +2
+|-
+| 12 || 1616 || 550 || +7 || +2
+|-
+| 13 || 2166 || 700 || +7 || +3
+|-
+| 14 || 2866 || 880 || +8 || +2
+|-
+| 15 || 3746 || 1100 || +8 || +3
+|-
+| 16 || 4846 || 1360 || +9 || +2
+|-
+| 17 || 6206 || 1680 || +9 || +3
+|-
+| 18 || 7886 || 2050 || +10 || +3
+|-
+| 19 || 9936 || 2500 || +10 || +3
+|-
+| 20 || 12436 || 3050 || +11 || +3
+|-
+| 21 || 15486 || 3700 || +11 || +4
+|-
+| 22 || 19186 || 4500 || +12 || +3
+|-
+| 23 || 23686 || 5500 || +12 || +4
+|-
+| 24 || 29186 || 6800 || +13 || +4
+|-
+| 25 || 35986 || — || +15 || +5
+|}
+
+Max Stats at Level 25: HP 250, STR 127, DEF (varies by armor)
+
+==Soul Lair Data==
+===Lair Types===
+{| class="wikitable"
+! ID !! Type !! Description
+|-
+| $00 || Green Lair || Standard enemy lair
+|-
+| $01 || Blue Lair || Contains multiple waves
+|-
+| $02 || Red Lair || Boss or key enemy
+|-
+| $03 || Purple Lair || Special/event trigger
+|-
+| $04 || Gold Lair || Treasure lair
+|}
+
+===Lair Release Types===
+{| class="wikitable"
+! ID !! Releases !! Description
+|-
+| $00 || Nothing || Empty lair (rare)
+|-
+| $01 || NPC || Releases townsperson
+|-
+| $02 || Item || Spawns chest
+|-
+| $03 || Equipment || Spawns weapon/armor
+|-
+| $04 || Magic || Grants magic spell
+|-
+| $05 || Emblem || Grants emblem item
+|-
+| $06 || Path || Opens passage
+|-
+| $07 || Event || Triggers cutscene
+|}
+
+===Lair Counts by Area===
+{| class="wikitable sortable"
+! Area !! Lairs !! NPCs !! Items
+|-
+| Underground Castle || 24 || 18 || 6
+|-
+| GreenWood || 28 || 20 || 8
+|-
+| St. Elles/Seabed || 32 || 22 || 10
+|-
+| Mountain of Souls || 20 || 14 || 6
+|-
+| Leo's Lab || 22 || 16 || 6
+|-
+| Magridd Castle || 18 || 12 || 6
+|-
+| World of Evil || 8 || 4 || 4
+|-
+! '''Total''' !! '''152''' !! '''106''' !! '''46'''
+|}
+
+==Boss Data==
+===Boss Statistics===
+{| class="wikitable sortable"
+! ID !! Name !! HP !! ATK !! DEF !! EXP !! Location
+|-
+| $40 || Metal Mantis || 100 || 8 || 4 || 60 || Underground Castle B4
+|-
+| $41 || Plantentacle || 150 || 12 || 6 || 120 || Lost Marsh
+|-
+| $42 || Poseidon || 200 || 16 || 8 || 200 || Ghost Ship
+|-
+| $43 || Blester || 180 || 14 || 7 || 150 || Mountain Cavern
+|-
+| $44 || Stone Guardian || 250 || 20 || 12 || 300 || Lune
+|-
+| $45 || Tin Doll || 280 || 22 || 14 || 400 || Leo's Paintings
+|-
+| $46 || Demon Bird || 320 || 26 || 16 || 500 || Magridd Castle
+|-
+| $47 || Deathtoll || 500 || 40 || 20 || 0 || Deathtoll's Lair
+|}
+
+===Boss Phases===
+Several bosses have multiple phases:
+
+'''Metal Mantis:'''
+* Phase 1: Standard attacks, 100% HP
+* Phase 2: Faster attacks, <50% HP
+
+'''Deathtoll:'''
+* Phase 1: Human form (HP 200)
+* Phase 2: Demon form (HP 300)
+* Uses magic attacks in both phases
+
+==Emblem Data==
+===Emblem Effects===
+{| class="wikitable"
+! ID !! Name !! Effect !! Location
+|-
+| $00 || Emblem A || Sword range +1 || Underground Castle
+|-
+| $01 || Emblem B || Magic cost -25% || GreenWood
+|-
+| $02 || Emblem C || DEF +4 || St. Elles
+|-
+| $03 || Emblem D || ATK +8 || Mountain of Souls
+|-
+| $04 || Emblem E || HP regen in dungeons || Leo's Lab
+|-
+| $05 || Emblem F || EXP +25% || Magridd Castle
+|-
+| $06 || Emblem G || GEM drops +50% || World of Evil
+|-
+| $07 || Emblem H || All effects combined || Deathtoll's Lair
+|}
+
+==Music Data==
+===Music Track IDs===
+{| class="wikitable"
+! ID !! Track Name !! Usage
+|-
+| $00 || Silence || —
+|-
+| $01 || Title Theme || Title screen
+|-
+| $02 || The Shrine || Master's shrine
+|-
+| $03 || Grass Valley || Act 1 village
+|-
+| $04 || Underground Castle || Act 1 dungeon
+|-
+| $05 || GreenWood || Act 2 overworld
+|-
+| $06 || Forest Shrine || Act 2 dungeons
+|-
+| $07 || St. Elles || Act 3 underwater
+|-
+| $08 || Ghost Ship || Act 3 dungeon
+|-
+| $09 || Mountain Theme || Act 4 overworld
+|-
+| $0A || Mountain Dungeon || Act 4 caves
+|-
+| $0B || Leo's Lab || Act 5 theme
+|-
+| $0C || Model Town || Act 5 areas
+|-
+| $0D || Magridd Castle || Act 6 theme
+|-
+| $0E || World of Evil || Final area
+|-
+| $0F || Boss Battle || All boss fights
+|-
+| $10 || Deathtoll || Final boss
+|-
+| $11 || Victory || Battle victory
+|-
+| $12 || Game Over || Death screen
+|-
+| $13 || Ending || Credits sequence
+|-
+| $14 || Staff Roll || Staff credits
+|}
+
+==Palette Data==
+===Palette Organization===
+{| class="wikitable"
+! Range !! Count !! Usage
+|-
+| $00-$31 || 50 || Background palettes
+|-
+| $32-$59 || 40 || Sprite palettes
+|-
+| $5A-$6D || 20 || UI/Menu palettes
+|-
+| $6E-$81 || 20 || Effect palettes
+|-
+| $82-$A9 || 40 || Unused/debug
+|}
+
+===Area Palette Mappings===
+{| class="wikitable"
+! Area !! BG Palette !! Sprite Palette
+|-
+| Underground Castle || $06-$08 || $32-$34
+|-
+| GreenWood || $12-$14 || $38-$3A
+|-
+| St. Elles || $21-$23 || $3E-$40
+|-
+| Mountain of Souls || $30-$32 || $44-$46
+|-
+| Leo's Lab || $3C-$3E || $4A-$4C
+|-
+| Magridd Castle || $4B-$4D || $50-$52
+|}
+
 ==See Also==
 * [[Soul Blazer:ROM map|ROM Map]]
 * [[Soul Blazer:RAM map|RAM Map]]
+* [[Soul Blazer:Data structures|Data Structures]]
 * [[Soul Blazer:Enemies|Enemy Data]]
 
 [[Category:Soul Blazer]]
