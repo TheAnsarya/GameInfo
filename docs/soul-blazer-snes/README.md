@@ -64,13 +64,20 @@ Soul Blazer uses LoROM mapping with 32 banks of 32KB each.
 
 ## Documentation
 
+### Core Maps
+
 | Document | Description |
 |----------|-------------|
 | [ROM Map](rom-map.md) | Complete ROM memory mapping |
 | [RAM Map](ram-map.md) | RAM addresses and variables |
-| [Text System](text-system.md) | Text encoding and dialogue |
-| [Data Structures](data-structures.md) | Table formats and layouts |
-| [Graphics](graphics.md) | Sprite and tile information |
+
+### Format Specifications
+
+| Document | Description |
+|----------|-------------|
+| [Graphics Formats](graphics-formats.md) | 4BPP tiles, palettes, sprites, tilemaps |
+| [Audio Formats](audio-formats.md) | BRR samples, SPC700, music sequences |
+| [Data Structures](data-structures.md) | Entity tables, save data, pointers |
 
 ## Related Files
 
