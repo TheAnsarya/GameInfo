@@ -1,0 +1,396 @@
+{
+	"enemies": [
+		{
+			"index": 0,
+			"hex_index": "$00",
+			"name_address": "$01fdbe",
+			"name": "Mine",
+			"display_name": "Mine"
+		},
+		{
+			"index": 1,
+			"hex_index": "$01",
+			"name_address": "$01fdc3",
+			"name": "Turbo",
+			"display_name": "Turbo"
+		},
+		{
+			"index": 2,
+			"hex_index": "$02",
+			"name_address": "$01fdc9",
+			"name": "Mushroom",
+			"display_name": "Mushroom"
+		},
+		{
+			"index": 3,
+			"hex_index": "$03",
+			"name_address": "$01fdd2",
+			"name": "Poison",
+			"display_name": "Poison"
+		},
+		{
+			"index": 4,
+			"hex_index": "$04",
+			"name_address": "$01fdd9",
+			"name": "Spider",
+			"display_name": "Spider"
+		},
+		{
+			"index": 5,
+			"hex_index": "$05",
+			"name_address": "$01fde0",
+			"name": "Spider",
+			"display_name": "Spider (2)"
+		},
+		{
+			"index": 6,
+			"hex_index": "$06",
+			"name_address": "$01fde7",
+			"name": "Gel",
+			"display_name": "Gel"
+		},
+		{
+			"index": 7,
+			"hex_index": "$07",
+			"name_address": "$01fdeb",
+			"name": "Gelgel",
+			"display_name": "Gelgel"
+		},
+		{
+			"index": 8,
+			"hex_index": "$08",
+			"name_address": "$01fdf2",
+			"name": "Bosstoad",
+			"display_name": "Bosstoad"
+		},
+		{
+			"index": 9,
+			"hex_index": "$09",
+			"name_address": "$01fdfb",
+			"name": "Rushbird",
+			"display_name": "Rushbird"
+		},
+		{
+			"index": 10,
+			"hex_index": "$0a",
+			"name_address": "$01fe04",
+			"name": "Quickbird",
+			"display_name": "Quickbird"
+		},
+		{
+			"index": 11,
+			"hex_index": "$0b",
+			"name_address": "$01fe0e",
+			"name": "Mole",
+			"display_name": "Mole"
+		},
+		{
+			"index": 12,
+			"hex_index": "$0c",
+			"name_address": "$01fe13",
+			"name": "Powermole",
+			"display_name": "Powermole"
+		},
+		{
+			"index": 13,
+			"hex_index": "$0d",
+			"name_address": "$01fe1d",
+			"name": "Tackler",
+			"display_name": "Tackler"
+		},
+		{
+			"index": 14,
+			"hex_index": "$0e",
+			"name_address": "$01fe25",
+			"name": "Plasmoke",
+			"display_name": "Plasmoke"
+		},
+		{
+			"index": 15,
+			"hex_index": "$0f",
+			"name_address": "$01fe2e",
+			"name": "Elesmoke",
+			"display_name": "Elesmoke"
+		},
+		{
+			"index": 16,
+			"hex_index": "$10",
+			"name_address": "$01fe37",
+			"name": "Monk",
+			"display_name": "Monk"
+		},
+		{
+			"index": 17,
+			"hex_index": "$11",
+			"name_address": "$01fe3c",
+			"name": "Mummy",
+			"display_name": "Mummy"
+		},
+		{
+			"index": 18,
+			"hex_index": "$12",
+			"name_address": "$01fe42",
+			"name": "Franken",
+			"display_name": "Franken"
+		},
+		{
+			"index": 19,
+			"hex_index": "$13",
+			"name_address": "$01fe4a",
+			"name": "Ho Ho",
+			"display_name": "Ho Ho"
+		},
+		{
+			"index": 20,
+			"hex_index": "$14",
+			"name_address": "$01fe50",
+			"name": "Gator",
+			"display_name": "Gator"
+		},
+		{
+			"index": 21,
+			"hex_index": "$15",
+			"name_address": "$01fe56",
+			"name": "Gunrobot",
+			"display_name": "Gunrobot"
+		},
+		{
+			"index": 22,
+			"hex_index": "$16",
+			"name_address": "$01fe5f",
+			"name": "CannonX",
+			"display_name": "CannonX"
+		},
+		{
+			"index": 23,
+			"hex_index": "$17",
+			"name_address": "$01fe67",
+			"name": "Biolion",
+			"display_name": "Biolion"
+		},
+		{
+			"index": 24,
+			"hex_index": "$18",
+			"name_address": "$01fe6f",
+			"name": "Shell",
+			"display_name": "Shell"
+		},
+		{
+			"index": 25,
+			"hex_index": "$19",
+			"name_address": "$01fe75",
+			"name": "Urchin",
+			"display_name": "Urchin"
+		},
+		{
+			"index": 26,
+			"hex_index": "$1a",
+			"name_address": "$01fe7c",
+			"name": "Luckstar",
+			"display_name": "Luckstar"
+		},
+		{
+			"index": 27,
+			"hex_index": "$1b",
+			"name_address": "$01fe85",
+			"name": "Angler",
+			"display_name": "Angler"
+		},
+		{
+			"index": 28,
+			"hex_index": "$1c",
+			"name_address": "$01fe8c",
+			"name": "Octopus",
+			"display_name": "Octopus"
+		},
+		{
+			"index": 29,
+			"hex_index": "$1d",
+			"name_address": "$01fe94",
+			"name": "Pumpy",
+			"display_name": "Pumpy"
+		},
+		{
+			"index": 30,
+			"hex_index": "$1e",
+			"name_address": "$01fe9a",
+			"name": "Bumpy",
+			"display_name": "Bumpy"
+		},
+		{
+			"index": 31,
+			"hex_index": "$1f",
+			"name_address": "$01fea0",
+			"name": "Faceman",
+			"display_name": "Faceman"
+		},
+		{
+			"index": 32,
+			"hex_index": "$20",
+			"name_address": "$01fea8",
+			"name": "Bigface",
+			"display_name": "Bigface"
+		},
+		{
+			"index": 33,
+			"hex_index": "$21",
+			"name_address": "$01feb0",
+			"name": "Redpixy",
+			"display_name": "Redpixy"
+		},
+		{
+			"index": 34,
+			"hex_index": "$22",
+			"name_address": "$01feb8",
+			"name": "Whitepixy",
+			"display_name": "Whitepixy"
+		},
+		{
+			"index": 35,
+			"hex_index": "$23",
+			"name_address": "$01fec2",
+			"name": "Goldpixy",
+			"display_name": "Goldpixy"
+		},
+		{
+			"index": 36,
+			"hex_index": "$24",
+			"name_address": "$01fecb",
+			"name": "Knight",
+			"display_name": "Knight"
+		},
+		{
+			"index": 37,
+			"hex_index": "$25",
+			"name_address": "$01fed2",
+			"name": "Master",
+			"display_name": "Master"
+		},
+		{
+			"index": 38,
+			"hex_index": "$26",
+			"name_address": "$01fed9",
+			"name": "Gagarian",
+			"display_name": "Gagarian"
+		},
+		{
+			"index": 39,
+			"hex_index": "$27",
+			"name_address": "$01fee2",
+			"name": "Ninja",
+			"display_name": "Ninja"
+		},
+		{
+			"index": 40,
+			"hex_index": "$28",
+			"name_address": "$01fee8",
+			"name": "Beeper",
+			"display_name": "Beeper"
+		},
+		{
+			"index": 41,
+			"hex_index": "$29",
+			"name_address": "$01feef",
+			"name": "Cmdr.",
+			"display_name": "Cmdr."
+		},
+		{
+			"index": 42,
+			"hex_index": "$2a",
+			"name_address": "$01fef5",
+			"name": "Masker",
+			"display_name": "Masker"
+		},
+		{
+			"index": 43,
+			"hex_index": "$2b",
+			"name_address": "$01fefc",
+			"name": "Beret",
+			"display_name": "Beret"
+		},
+		{
+			"index": 44,
+			"hex_index": "$2c",
+			"name_address": "$01ff02",
+			"name": "Meta Crab",
+			"display_name": "Meta Crab"
+		},
+		{
+			"index": 45,
+			"hex_index": "$2d",
+			"name_address": "$01ff0c",
+			"name": "Smallcrab",
+			"display_name": "Smallcrab"
+		},
+		{
+			"index": 46,
+			"hex_index": "$2e",
+			"name_address": "$01ff16",
+			"name": "Mamurana",
+			"display_name": "Mamurana"
+		},
+		{
+			"index": 47,
+			"hex_index": "$2f",
+			"name_address": "$01ff1f",
+			"name": "Big Eye",
+			"display_name": "Big Eye"
+		},
+		{
+			"index": 48,
+			"hex_index": "$30",
+			"name_address": "$01ff27",
+			"name": "Blacktank",
+			"display_name": "Blacktank"
+		},
+		{
+			"index": 49,
+			"hex_index": "$31",
+			"name_address": "$01ff31",
+			"name": "Gateau",
+			"display_name": "Gateau"
+		},
+		{
+			"index": 50,
+			"hex_index": "$32",
+			"name_address": "$01ff38",
+			"name": "Soldier",
+			"display_name": "Soldier"
+		},
+		{
+			"index": 51,
+			"hex_index": "$33",
+			"name_address": "$01ff40",
+			"name": "Gateau",
+			"display_name": "Gateau (2)"
+		},
+		{
+			"index": 52,
+			"hex_index": "$34",
+			"name_address": "$01ff47",
+			"name": "De Rose",
+			"display_name": "De Rose"
+		},
+		{
+			"index": 53,
+			"hex_index": "$35",
+			"name_address": "$01ff4f",
+			"name": "Papamecha",
+			"display_name": "Papamecha"
+		},
+		{
+			"index": 54,
+			"hex_index": "$36",
+			"name_address": "$01ff59",
+			"name": "Bugbug",
+			"display_name": "Bugbug"
+		},
+		{
+			"index": 55,
+			"hex_index": "$37",
+			"name_address": "$01ff60",
+			"name": "Cmdr.",
+			"display_name": "Cmdr. (2)"
+		}
+	]
+}

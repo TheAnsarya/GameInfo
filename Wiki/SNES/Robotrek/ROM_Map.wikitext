@@ -225,7 +225,7 @@ Robotrek uses '''Quintet's standard LZSS compression algorithm''', common to oth
 |-
 | $c1c200 || $01c200 || $200 || '''Combination recipe table''' (weapon/item combinations) || '''Verified'''
 |-
-| $c1e413 || $01e413 || ~$1480 || Item names (script text, CC-separated) || '''Verified'''
+| $c1e413 || $01e413 || ~$2a0 || '''Item names''' (CC-separated, 83 entries) || '''Verified'''
 |-
 | $c1f748 || $01f748 || $aa || Item name pointer table (83 × 2-byte) || '''Verified'''
 |-
@@ -233,11 +233,241 @@ Robotrek uses '''Quintet's standard LZSS compression algorithm''', common to oth
 |-
 | $c1fcf8 || $01fcf8 || ~$bc || Enemy name pointer table (16-bit, +8 offset) || '''Verified'''
 |-
-| $c1fdb4 || $01fdb4 || ~$300 || '''Enemy names''' (null-terminated, 58 entries) || '''Verified'''
+| $c1fdbe || $01fdbe || ~$1a3 || '''Enemy names''' (null-terminated, 56 entries) || '''Verified'''
 |-
 | $c38000 || $038000 || $180 || Actor/Entity pointer table (128 × 2-byte) || '''Research'''
 |-
 | $c381a4 || $0381a4 || ~$b40 || Actor/Entity data (22-byte entries) - sprite/animation data || '''Research'''
+|}
+
+== Item Names Table ==
+
+Located at file offset '''$01e413'''. Item names are stored as ASCII text separated by byte $CC (204).
+
+{| class="wikitable sortable"
+! Index !! Hex !! Address !! Name
+|-
+| 0 || $00 || $01e413 || Nothing
+|-
+| 1 || $01 || $01e41b || Sword 1
+|-
+| 2 || $02 || $01e423 || Sword 2
+|-
+| 3 || $03 || $01e42b || Sword 3
+|-
+| 4 || $04 || $01e433 || Sword 4
+|-
+| 5 || $05 || $01e43b || Axe 1
+|-
+| 6 || $06 || $01e441 || Axe 2
+|-
+| 7 || $07 || $01e447 || Axe 3
+|-
+| 8 || $08 || $01e44d || Blade 1
+|-
+| 9 || $09 || $01e455 || Blade 2
+|-
+| 10 || $0a || $01e45d || Blade 3
+|-
+| 11 || $0b || $01e465 || Blade 4
+|-
+| 12 || $0c || $01e46d || Hammer 1
+|-
+| 13 || $0d || $01e476 || Hammer 2
+|-
+| 14 || $0e || $01e47f || Hammer 3
+|-
+| 15 || $0f || $01e488 || Celtis 1
+|-
+| 16 || $10 || $01e491 || Celtis 2
+|-
+| 17 || $11 || $01e49a || Celtis 3
+|-
+| 18 || $12 || $01e4a3 || Punch 1
+|-
+| 19 || $13 || $01e4ab || Punch 2
+|-
+| 20 || $14 || $01e4b3 || Punch 3
+|-
+| 21 || $15 || $01e4bb || Blow 1
+|-
+| 22 || $16 || $01e4c2 || Blow 2
+|-
+| 23 || $17 || $01e4c9 || Blow 3
+|-
+| 24 || $18 || $01e4d0 || Shot 1
+|-
+| 25 || $19 || $01e4d7 || Shot 2
+|-
+| 26 || $1a || $01e4de || Shot 3
+|-
+| 27 || $1b || $01e4e5 || Laser 1
+|-
+| 28 || $1c || $01e4ed || Laser 2
+|-
+| 29 || $1d || $01e4f5 || Laser 3
+|-
+| 30 || $1e || $01e4fd || Bomb 1
+|-
+| 31 || $1f || $01e504 || Bomb 2
+|-
+| 32 || $20 || $01e50b || Bomb 3
+|-
+| 33 || $21 || $01e512 || Bomb 4
+|-
+| 34 || $22 || $01e519 || Shield 1
+|-
+| 35 || $23 || $01e522 || Shield 2
+|-
+| 36 || $24 || $01e52b || Shield 3
+|-
+| 37 || $25 || $01e534 || Shield 4
+|-
+| 38 || $26 || $01e53d || Shield 5
+|-
+| 39 || $27 || $01e546 || Pack 1
+|-
+| 40 || $28 || $01e54d || Pack 2
+|-
+| 41 || $29 || $01e554 || Pack 3
+|-
+| 42 || $2a || $01e55b || Pack 4
+|-
+| 43 || $2b || $01e562 || Pack 5
+|-
+| 44 || $2c || $01e569 || Pack 6
+|-
+| 45 || $2d || $01e570 || Boots 1
+|-
+| 46 || $2e || $01e578 || Boots 2
+|-
+| 47 || $2f || $01e580 || Boots 3
+|-
+| 48 || $30 || $01e588 || Boots 4
+|-
+| 49 || $31 || $01e590 || Boots 5
+|-
+| 50 || $32 || $01e598 || Boots 6
+|}
+
+== Enemy Names Table ==
+
+Located at file offset '''$01fdbe'''. Enemy names are stored as null-terminated ASCII strings.
+
+{| class="wikitable sortable"
+! Index !! Hex !! Address !! Name
+|-
+| 0 || $00 || $01fdbe || Mine
+|-
+| 1 || $01 || $01fdc3 || Turbo
+|-
+| 2 || $02 || $01fdc9 || Mushroom
+|-
+| 3 || $03 || $01fdd2 || Poison
+|-
+| 4 || $04 || $01fdd9 || Spider
+|-
+| 5 || $05 || $01fde0 || Spider (2)
+|-
+| 6 || $06 || $01fde7 || Gel
+|-
+| 7 || $07 || $01fdeb || Gelgel
+|-
+| 8 || $08 || $01fdf2 || Bosstoad
+|-
+| 9 || $09 || $01fdfb || Rushbird
+|-
+| 10 || $0a || $01fe04 || Quickbird
+|-
+| 11 || $0b || $01fe0e || Mole
+|-
+| 12 || $0c || $01fe13 || Powermole
+|-
+| 13 || $0d || $01fe1d || Tackler
+|-
+| 14 || $0e || $01fe25 || Plasmoke
+|-
+| 15 || $0f || $01fe2e || Elesmoke
+|-
+| 16 || $10 || $01fe37 || Monk
+|-
+| 17 || $11 || $01fe3c || Mummy
+|-
+| 18 || $12 || $01fe42 || Franken
+|-
+| 19 || $13 || $01fe4a || Ho Ho
+|-
+| 20 || $14 || $01fe50 || Gator
+|-
+| 21 || $15 || $01fe56 || Gunrobot
+|-
+| 22 || $16 || $01fe5f || CannonX
+|-
+| 23 || $17 || $01fe67 || Biolion
+|-
+| 24 || $18 || $01fe6f || Shell
+|-
+| 25 || $19 || $01fe75 || Urchin
+|-
+| 26 || $1a || $01fe7c || Luckstar
+|-
+| 27 || $1b || $01fe85 || Angler
+|-
+| 28 || $1c || $01fe8c || Octopus
+|-
+| 29 || $1d || $01fe94 || Pumpy
+|-
+| 30 || $1e || $01fe9a || Bumpy
+|-
+| 31 || $1f || $01fea0 || Faceman
+|-
+| 32 || $20 || $01fea8 || Bigface
+|-
+| 33 || $21 || $01feb0 || Redpixy
+|-
+| 34 || $22 || $01feb8 || Whitepixy
+|-
+| 35 || $23 || $01fec2 || Goldpixy
+|-
+| 36 || $24 || $01fecb || Knight
+|-
+| 37 || $25 || $01fed2 || Master
+|-
+| 38 || $26 || $01fed9 || Gagarian
+|-
+| 39 || $27 || $01fee2 || Ninja
+|-
+| 40 || $28 || $01fee8 || Beeper
+|-
+| 41 || $29 || $01feef || Cmdr.
+|-
+| 42 || $2a || $01fef5 || Masker
+|-
+| 43 || $2b || $01fefc || Beret
+|-
+| 44 || $2c || $01ff02 || Meta Crab
+|-
+| 45 || $2d || $01ff0c || Smallcrab
+|-
+| 46 || $2e || $01ff16 || Mamurana
+|-
+| 47 || $2f || $01ff1f || Big Eye
+|-
+| 48 || $30 || $01ff27 || Blacktank
+|-
+| 49 || $31 || $01ff31 || Gateau
+|-
+| 50 || $32 || $01ff38 || Soldier
+|-
+| 51 || $33 || $01ff40 || Gateau (2)
+|-
+| 52 || $34 || $01ff47 || De Rose
+|-
+| 53 || $35 || $01ff4f || Papamecha
+|-
+| 54 || $36 || $01ff59 || Bugbug
+|-
+| 55 || $37 || $01ff60 || Cmdr. (2)
 |}
 
 == Item Name Pointer Table ==
