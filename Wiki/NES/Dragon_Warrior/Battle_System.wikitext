@@ -63,7 +63,7 @@ Final Damage = Base Damage + Random Variance
 * Player DEF Divisor: 4
 * Damage Variance: 0-4
 
-'''ROM Location:''' Bank 03, approximately $C000 (CalcPhysicalDamage routine)
+'''ROM Location:''' Bank 03, approximately $c000 (CalcPhysicalDamage routine)
 
 ===Critical Hits===
 
@@ -89,7 +89,7 @@ If Random Value < Crit Chance:
 * Crit AGI Divisor: 64
 * Crit Multiplier: 2
 
-'''ROM Location:''' Bank 03, approximately $C100 (CheckCriticalHit routine)
+'''ROM Location:''' Bank 03, approximately $c100 (CheckCriticalHit routine)
 
 ==Accuracy System==
 
@@ -127,7 +127,7 @@ Else:
 * Enemy AGI Evasion Divisor: 4
 * Player AGI Evasion Divisor: 2
 
-'''ROM Location:''' Bank 03, approximately $C200 (CheckHit routine)
+'''ROM Location:''' Bank 03, approximately $c200 (CheckHit routine)
 
 ===Dodge (Excellent Move)===
 
@@ -145,7 +145,7 @@ If Random Value < Dodge Chance:
 * Player AGI = 100
 * Dodge Chance = 100 / 4 = 25 (25/256 = 9.8%)
 
-'''ROM Location:''' Bank 03, approximately $C300 (CheckDodge routine)
+'''ROM Location:''' Bank 03, approximately $c300 (CheckDodge routine)
 
 ==Spell System in Battle==
 
@@ -162,7 +162,7 @@ Damage = Random(5, 12) - (Enemy DEF / 8)
 If Damage < 1: Damage = 1
 </pre>
 
-'''ROM Location:''' Bank 03, approximately $D100 (SpellHURT routine)
+'''ROM Location:''' Bank 03, approximately $d100 (SpellHURT routine)
 
 '''HURTMORE:'''
 * MP Cost: 5
@@ -175,7 +175,7 @@ Damage = Random(58, 65) - (Enemy DEF / 4)
 If Damage < 1: Damage = 1
 </pre>
 
-'''ROM Location:''' Bank 03, approximately $D150 (SpellHURTMORE routine)
+'''ROM Location:''' Bank 03, approximately $d150 (SpellHURTMORE routine)
 
 ===Status Effect Spells===
 
@@ -198,7 +198,7 @@ Sleeping enemies:
 * Wake up if damaged
 * Some enemies are immune
 
-'''ROM Location:''' Bank 03, approximately $D200 (SpellSLEEP routine)
+'''ROM Location:''' Bank 03, approximately $d200 (SpellSLEEP routine)
 
 '''STOPSPELL:'''
 * MP Cost: 2
@@ -219,7 +219,7 @@ Affected enemies:
 * Can still physically attack
 * Some enemies are immune
 
-'''ROM Location:''' Bank 03, approximately $D250 (SpellSTOPSPELL routine)
+'''ROM Location:''' Bank 03, approximately $d250 (SpellSTOPSPELL routine)
 
 ===Healing Spells===
 
@@ -228,14 +228,14 @@ Affected enemies:
 * HP Restored: Random(10, 17)
 * Cannot exceed Max HP
 
-'''ROM Location:''' Bank 03, approximately $D000 (SpellHEAL routine)
+'''ROM Location:''' Bank 03, approximately $d000 (SpellHEAL routine)
 
 '''HEALMORE:'''
 * MP Cost: 10
 * HP Restored: Random(85, 100)
 * Cannot exceed Max HP
 
-'''ROM Location:''' Bank 03, approximately $D050 (SpellHEALMORE routine)
+'''ROM Location:''' Bank 03, approximately $d050 (SpellHEALMORE routine)
 
 ==Enemy AI==
 
@@ -292,7 +292,7 @@ Else:
     Physical Attack
 </pre>
 
-'''ROM Location:''' Bank 03, approximately $E400 (ProcessEnemyTurn routine)
+'''ROM Location:''' Bank 03, approximately $e400 (ProcessEnemyTurn routine)
 
 ===Special AI: Dragonlord===
 
@@ -308,7 +308,7 @@ The final boss has unique AI patterns.
 * HP > 50%: 50% Breath, 50% Physical
 * HP ≤ 50%: 75% HEALMORE (75-100 HP), 25% Physical
 
-'''ROM Location:''' Bank 03, approximately $E500 (DragonlordAI routine)
+'''ROM Location:''' Bank 03, approximately $e500 (DragonlordAI routine)
 
 ==Fleeing from Battle==
 
@@ -338,7 +338,7 @@ Else:
 * Metal Slime and Goldman always flee successfully (player perspective reversed)
 * Boss enemies cannot be fled from
 
-'''ROM Location:''' Bank 03, approximately $E200 (AttemptFlee routine)
+'''ROM Location:''' Bank 03, approximately $e200 (AttemptFlee routine)
 
 ==Battle Rewards==
 
@@ -350,7 +350,7 @@ After winning a battle, the player receives:
 
 No bonuses or level scaling - rewards are direct from monster stats table.
 
-'''ROM Location:''' Bank 03, approximately $C700 (BattleVictory routine)
+'''ROM Location:''' Bank 03, approximately $c700 (BattleVictory routine)
 
 ===Special Monsters===
 
@@ -396,7 +396,7 @@ No bonuses or level scaling - rewards are direct from monster stats table.
 |-
 |  $0357  ||  EnemyDEF  ||  Enemy defense
 |-
-|  $035E  ||  EnemyStatus  ||  Status effects (sleep, stopspell)
+|  $035e  ||  EnemyStatus  ||  Status effects (sleep, stopspell)
 |-
 |  $0370  ||  BattleActive  ||  $01 = battle in progress
 |-
@@ -417,14 +417,14 @@ Each monster entry in ROM (Bank 01, $9000+) is 16 bytes:
 * +$06-$07: Gold Reward (little-endian)
 * +$08: AI/Abilities flags
 * +$09: Resistance flags
-* +$0A-$0B: Graphics tile ID
-* +$0C-$0F: Reserved/padding
+* +$0a-$0b: Graphics tile ID
+* +$0c-$0f: Reserved/padding
 
 ==Modification Examples==
 
 ===Increase Player Damage===
 
-Edit damage formula in Bank 03 ~$C000:
+Edit damage formula in Bank 03 ~$c000:
 
 <pre>
 ; Original: Divide ATK by 2
@@ -438,7 +438,7 @@ LDA PlayerATK
 
 ===Make All Attacks Critical===
 
-Edit critical hit check in Bank 03 ~$C100:
+Edit critical hit check in Bank 03 ~$c100:
 
 <pre>
 ; Original: Check AGI/64
@@ -451,12 +451,12 @@ LSR A
 LSR A      ; Divide by 64
 
 ; Modified: Always pass (load high value)
-LDA #$FF   ; 255/256 = ~100% crit
+LDA #$ff   ; 255/256 = ~100% crit
 </pre>
 
 ===Adjust Flee Success===
 
-Edit flee chance in Bank 03 ~$E200:
+Edit flee chance in Bank 03 ~$e200:
 
 <pre>
 ; Original:
