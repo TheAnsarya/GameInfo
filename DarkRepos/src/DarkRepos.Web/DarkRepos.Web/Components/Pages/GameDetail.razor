@@ -1,0 +1,331 @@
+@page "/games/{Slug}"
+@using DarkRepos.Core.Models
+
+<PageTitle>@(Game?.Title ?? "Game") - Dark Repos</PageTitle>
+
+@if (Game != null)
+{
+	<HeadContent>
+		<meta name="description" content="@Game.Title documentation including ROM maps, RAM maps, and data structures for ROM hackers." />
+	</HeadContent>
+}
+
+<div class="container">
+	<nav class="breadcrumbs" aria-label="Breadcrumb">
+		<span class="breadcrumb-item"><a href="/">Home</a></span>
+		<span class="breadcrumb-separator" aria-hidden="true">/</span>
+		<span class="breadcrumb-item"><a href="/games">Games</a></span>
+		<span class="breadcrumb-separator" aria-hidden="true">/</span>
+		<span class="breadcrumb-item" aria-current="page">@(Game?.Title ?? "Game")</span>
+	</nav>
+
+	@if (Game != null)
+	{
+		<article>
+			<header class="page-header">
+				<span class="badge badge-@Game.Platform.ToString().ToLower()" style="margin-bottom: var(--space-3);">
+					@Game.Platform
+				</span>
+				<h1 class="page-title">@Game.Title</h1>
+				@if (!string.IsNullOrEmpty(Game.JapaneseTitle))
+				{
+					<p style="color: var(--color-text-secondary); font-size: var(--font-size-md);">
+						Japanese: @Game.JapaneseTitle
+					</p>
+				}
+			</header>
+
+			<div class="grid grid-cols-1 md:grid-cols-3" style="gap: var(--space-6);">
+				<div style="grid-column: span 2;">
+					@if (!string.IsNullOrEmpty(Game.Description))
+					{
+						<section aria-labelledby="description-title">
+							<h2 id="description-title">About</h2>
+							<p>@Game.Description</p>
+						</section>
+					}
+
+					<section aria-labelledby="wiki-title" style="margin-top: var(--space-8);">
+						<h2 id="wiki-title">Wiki Resources</h2>
+						<p>
+							Visit the game's wiki page for comprehensive technical documentation.
+						</p>
+
+						<div class="grid grid-cols-1 sm:grid-cols-2" style="gap: var(--space-4); margin-top: var(--space-4);">
+							@if (Game.Wiki.HasRomMap)
+							{
+								<a href="@GetWikiUrl("ROM Map")" target="_blank" rel="noopener" class="card" style="text-decoration: none;">
+									<h3 style="font-size: var(--font-size-md); margin-bottom: var(--space-2);">
+										📍 ROM Map
+									</h3>
+									<p style="color: var(--color-text-secondary); margin: 0; font-size: var(--font-size-sm);">
+										File offset locations for code and data
+									</p>
+								</a>
+							}
+							@if (Game.Wiki.HasRamMap)
+							{
+								<a href="@GetWikiUrl("RAM Map")" target="_blank" rel="noopener" class="card" style="text-decoration: none;">
+									<h3 style="font-size: var(--font-size-md); margin-bottom: var(--space-2);">
+										🧠 RAM Map
+									</h3>
+									<p style="color: var(--color-text-secondary); margin: 0; font-size: var(--font-size-sm);">
+										Memory addresses for game state
+									</p>
+								</a>
+							}
+							@if (Game.Wiki.HasDataStructures)
+							{
+								<a href="@GetWikiUrl("Data Structures")" target="_blank" rel="noopener" class="card" style="text-decoration: none;">
+									<h3 style="font-size: var(--font-size-md); margin-bottom: var(--space-2);">
+										📊 Data Structures
+									</h3>
+									<p style="color: var(--color-text-secondary); margin: 0; font-size: var(--font-size-sm);">
+										Format specifications for game data
+									</p>
+								</a>
+							}
+							@if (Game.Wiki.HasNotes)
+							{
+								<a href="@GetWikiUrl("Notes")" target="_blank" rel="noopener" class="card" style="text-decoration: none;">
+									<h3 style="font-size: var(--font-size-md); margin-bottom: var(--space-2);">
+										📝 Notes
+									</h3>
+									<p style="color: var(--color-text-secondary); margin: 0; font-size: var(--font-size-sm);">
+										General documentation and research
+									</p>
+								</a>
+							}
+						</div>
+
+						<p style="margin-top: var(--space-6);">
+							<a href="@GetWikiBaseUrl()" target="_blank" rel="noopener" class="btn btn-primary">
+								View Full Wiki Page →
+							</a>
+						</p>
+					</section>
+
+					@if (Game.RelatedTools.Any())
+					{
+						<section aria-labelledby="tools-title" style="margin-top: var(--space-8);">
+							<h2 id="tools-title">Related Tools</h2>
+							<ul>
+								@foreach (var tool in Game.RelatedTools)
+								{
+									<li><a href="/tools/@tool">@tool</a></li>
+								}
+							</ul>
+						</section>
+					}
+				</div>
+
+				<aside>
+					<div class="card">
+						<h3 style="font-size: var(--font-size-md); margin-bottom: var(--space-4);">Game Info</h3>
+						<dl style="margin: 0;">
+							<div style="margin-bottom: var(--space-3);">
+								<dt style="color: var(--color-text-muted); font-size: var(--font-size-sm);">Platform</dt>
+								<dd style="margin: 0;">@Game.Platform</dd>
+							</div>
+							@if (!string.IsNullOrEmpty(Game.Developer))
+							{
+								<div style="margin-bottom: var(--space-3);">
+									<dt style="color: var(--color-text-muted); font-size: var(--font-size-sm);">Developer</dt>
+									<dd style="margin: 0;">@Game.Developer</dd>
+								</div>
+							}
+							@if (!string.IsNullOrEmpty(Game.Publisher))
+							{
+								<div style="margin-bottom: var(--space-3);">
+									<dt style="color: var(--color-text-muted); font-size: var(--font-size-sm);">Publisher</dt>
+									<dd style="margin: 0;">@Game.Publisher</dd>
+								</div>
+							}
+							@if (Game.ReleaseYear.HasValue)
+							{
+								<div style="margin-bottom: var(--space-3);">
+									<dt style="color: var(--color-text-muted); font-size: var(--font-size-sm);">Release Year</dt>
+									<dd style="margin: 0;">@Game.ReleaseYear</dd>
+								</div>
+							}
+							@if (!string.IsNullOrEmpty(Game.Genre))
+							{
+								<div style="margin-bottom: var(--space-3);">
+									<dt style="color: var(--color-text-muted); font-size: var(--font-size-sm);">Genre</dt>
+									<dd style="margin: 0;">@Game.Genre</dd>
+								</div>
+							}
+							@if (!string.IsNullOrEmpty(Game.Series))
+							{
+								<div style="margin-bottom: var(--space-3);">
+									<dt style="color: var(--color-text-muted); font-size: var(--font-size-sm);">Series</dt>
+									<dd style="margin: 0;">
+										<a href="/games?series=@Game.Series">@Game.Series</a>
+									</dd>
+								</div>
+							}
+						</dl>
+					</div>
+
+					<div class="card" style="margin-top: var(--space-4);">
+						<h3 style="font-size: var(--font-size-md); margin-bottom: var(--space-4);">Documentation Status</h3>
+						<div style="display: flex; flex-direction: column; gap: var(--space-2);">
+							<span class="wiki-resource @(Game.Wiki.HasRomMap ? "available" : "")">
+								@(Game.Wiki.HasRomMap ? "✓" : "○") ROM Map
+							</span>
+							<span class="wiki-resource @(Game.Wiki.HasRamMap ? "available" : "")">
+								@(Game.Wiki.HasRamMap ? "✓" : "○") RAM Map
+							</span>
+							<span class="wiki-resource @(Game.Wiki.HasDataStructures ? "available" : "")">
+								@(Game.Wiki.HasDataStructures ? "✓" : "○") Data Structures
+							</span>
+							<span class="wiki-resource @(Game.Wiki.HasSystems ? "available" : "")">
+								@(Game.Wiki.HasSystems ? "✓" : "○") Systems
+							</span>
+							<span class="wiki-resource @(Game.Wiki.HasNotes ? "available" : "")">
+								@(Game.Wiki.HasNotes ? "✓" : "○") Notes
+							</span>
+						</div>
+					</div>
+				</aside>
+			</div>
+		</article>
+	}
+	else
+	{
+		<div class="empty-state">
+			<div class="empty-state-icon">🎮</div>
+			<h1 class="empty-state-title">Game Not Found</h1>
+			<p class="empty-state-description">
+				We couldn't find a game with the slug "@Slug".
+			</p>
+			<a href="/games" class="btn btn-primary">Browse All Games</a>
+		</div>
+	}
+</div>
+
+@code {
+	[Parameter]
+	public string Slug { get; set; } = string.Empty;
+
+	private Game? Game { get; set; }
+
+	protected override void OnParametersSet()
+	{
+		// Sample data - will be replaced with IContentService
+		var games = new Dictionary<string, Game>
+		{
+			["dragon-warrior-nes"] = new Game
+			{
+				Slug = "dragon-warrior-nes",
+				Title = "Dragon Warrior",
+				Platform = Core.Models.Platform.NES,
+				Developer = "Chunsoft",
+				Publisher = "Enix",
+				ReleaseYear = 1989,
+				Genre = "RPG",
+				Series = "Dragon Quest",
+				Description = "The first game in the Dragon Quest series, localized as Dragon Warrior for North America. A classic turn-based RPG that defined the genre on consoles.",
+				Wiki = new WikiResources
+				{
+					HasRomMap = true,
+					HasRamMap = true,
+					HasDataStructures = true,
+					HasNotes = true,
+					WikiBaseUrl = "https://games.darkrepos.com/wiki/Dragon_Warrior"
+				}
+			},
+			["dragon-warrior-4-nes"] = new Game
+			{
+				Slug = "dragon-warrior-4-nes",
+				Title = "Dragon Warrior IV",
+				Platform = Core.Models.Platform.NES,
+				Developer = "Chunsoft",
+				Publisher = "Enix",
+				ReleaseYear = 1992,
+				Genre = "RPG",
+				Series = "Dragon Quest",
+				Description = "The fourth installment in the Dragon Quest series. Features a unique chapter-based structure following different characters before uniting in the final chapter.",
+				Wiki = new WikiResources
+				{
+					HasRomMap = true,
+					HasRamMap = true,
+					HasDataStructures = true,
+					HasSystems = true,
+					HasNotes = true,
+					WikiBaseUrl = "https://games.darkrepos.com/wiki/Dragon_Warrior_IV"
+				}
+			},
+			["final-fantasy-mystic-quest-snes"] = new Game
+			{
+				Slug = "final-fantasy-mystic-quest-snes",
+				Title = "Final Fantasy Mystic Quest",
+				Platform = Core.Models.Platform.SNES,
+				Developer = "Square",
+				Publisher = "Square",
+				ReleaseYear = 1992,
+				Genre = "RPG",
+				Series = "Final Fantasy",
+				Description = "An entry-level RPG designed to introduce Western audiences to the genre. Known for its simplified gameplay and memorable soundtrack.",
+				Wiki = new WikiResources
+				{
+					HasRomMap = true,
+					HasRamMap = true,
+					HasDataStructures = false,
+					WikiBaseUrl = "https://games.darkrepos.com/wiki/Final_Fantasy_Mystic_Quest"
+				}
+			},
+			["soul-blazer-snes"] = new Game
+			{
+				Slug = "soul-blazer-snes",
+				Title = "Soul Blazer",
+				Platform = Core.Models.Platform.SNES,
+				Developer = "Quintet",
+				Publisher = "Enix",
+				ReleaseYear = 1992,
+				Genre = "Action RPG",
+				Series = "Soul Blazer Trilogy",
+				Description = "An action RPG where players restore life to a devastated world by defeating monsters and releasing trapped souls.",
+				Wiki = new WikiResources
+				{
+					HasRomMap = true,
+					HasRamMap = false,
+					HasDataStructures = false,
+					WikiBaseUrl = "https://games.darkrepos.com/wiki/Soul_Blazer"
+				}
+			},
+			["robotrek-snes"] = new Game
+			{
+				Slug = "robotrek-snes",
+				Title = "Robotrek",
+				JapaneseTitle = "Slapstick",
+				Platform = Core.Models.Platform.SNES,
+				Developer = "Quintet",
+				Publisher = "Enix",
+				ReleaseYear = 1994,
+				Genre = "RPG",
+				Description = "A quirky RPG where players build and customize robots to fight in turn-based battles. Features an inventor protagonist and humor-filled storyline.",
+				Wiki = new WikiResources
+				{
+					HasRomMap = true,
+					HasRamMap = false,
+					HasDataStructures = false,
+					WikiBaseUrl = "https://games.darkrepos.com/wiki/Robotrek"
+				}
+			}
+		};
+
+		Game = games.GetValueOrDefault(Slug);
+	}
+
+	private string GetWikiBaseUrl()
+	{
+		return Game?.Wiki.WikiBaseUrl ?? $"https://games.darkrepos.com/wiki/{Game?.Title.Replace(" ", "_")}";
+	}
+
+	private string GetWikiUrl(string section)
+	{
+		var baseUrl = GetWikiBaseUrl();
+		return $"{baseUrl}:{section.Replace(" ", "_")}";
+	}
+}

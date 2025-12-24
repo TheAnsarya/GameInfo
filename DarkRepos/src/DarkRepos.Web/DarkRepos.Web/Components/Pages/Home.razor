@@ -1,0 +1,219 @@
+@page "/"
+
+<PageTitle>Dark Repos - ROM Hacking Documentation & Tools</PageTitle>
+
+<HeadContent>
+	<meta name="description" content="Dark Repos is the home for ROM hacking documentation, disassemblies, and tools. Explore our comprehensive game catalog with ROM maps, RAM maps, and data structures." />
+</HeadContent>
+
+<section class="hero">
+	<div class="container">
+		<h1 class="hero-title">Dark Repos</h1>
+		<p class="hero-subtitle">
+			Your home for retro game documentation, disassemblies, and ROM hacking tools.
+			Explore comprehensive ROM maps, RAM maps, and data structures.
+		</p>
+		<div class="hero-actions">
+			<a href="/games" class="btn btn-primary">Browse Games</a>
+			<a href="/tools" class="btn btn-secondary">Explore Tools</a>
+		</div>
+	</div>
+</section>
+
+<div class="container">
+	<section aria-labelledby="featured-games-title">
+		<div class="section-header">
+			<h2 id="featured-games-title" class="section-title">Featured Games</h2>
+			<a href="/games" class="section-link">View all games →</a>
+		</div>
+
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+			<article class="game-card">
+				<div class="game-card-image">
+					<span>Cover</span>
+				</div>
+				<div class="game-card-content">
+					<span class="badge badge-nes game-card-platform">NES</span>
+					<h3 class="game-card-title">
+						<a href="/games/dragon-warrior-nes">Dragon Warrior</a>
+					</h3>
+					<div class="wiki-resources">
+						<span class="wiki-resource available">ROM Map</span>
+						<span class="wiki-resource available">RAM Map</span>
+						<span class="wiki-resource available">Data</span>
+					</div>
+				</div>
+			</article>
+
+			<article class="game-card">
+				<div class="game-card-image">
+					<span>Cover</span>
+				</div>
+				<div class="game-card-content">
+					<span class="badge badge-nes game-card-platform">NES</span>
+					<h3 class="game-card-title">
+						<a href="/games/dragon-warrior-4-nes">Dragon Warrior IV</a>
+					</h3>
+					<div class="wiki-resources">
+						<span class="wiki-resource available">ROM Map</span>
+						<span class="wiki-resource available">RAM Map</span>
+						<span class="wiki-resource available">Data</span>
+					</div>
+				</div>
+			</article>
+
+			<article class="game-card">
+				<div class="game-card-image">
+					<span>Cover</span>
+				</div>
+				<div class="game-card-content">
+					<span class="badge badge-snes game-card-platform">SNES</span>
+					<h3 class="game-card-title">
+						<a href="/games/final-fantasy-mystic-quest-snes">Final Fantasy Mystic Quest</a>
+					</h3>
+					<div class="wiki-resources">
+						<span class="wiki-resource available">ROM Map</span>
+						<span class="wiki-resource available">RAM Map</span>
+						<span class="wiki-resource">Data</span>
+					</div>
+				</div>
+			</article>
+
+			<article class="game-card">
+				<div class="game-card-image">
+					<span>Cover</span>
+				</div>
+				<div class="game-card-content">
+					<span class="badge badge-snes game-card-platform">SNES</span>
+					<h3 class="game-card-title">
+						<a href="/games/soul-blazer-snes">Soul Blazer</a>
+					</h3>
+					<div class="wiki-resources">
+						<span class="wiki-resource available">ROM Map</span>
+						<span class="wiki-resource">RAM Map</span>
+						<span class="wiki-resource">Data</span>
+					</div>
+				</div>
+			</article>
+
+			<article class="game-card">
+				<div class="game-card-image">
+					<span>Cover</span>
+				</div>
+				<div class="game-card-content">
+					<span class="badge badge-snes game-card-platform">SNES</span>
+					<h3 class="game-card-title">
+						<a href="/games/robotrek-snes">Robotrek</a>
+					</h3>
+					<div class="wiki-resources">
+						<span class="wiki-resource available">ROM Map</span>
+						<span class="wiki-resource">RAM Map</span>
+						<span class="wiki-resource">Data</span>
+					</div>
+				</div>
+			</article>
+
+			<article class="game-card">
+				<div class="game-card-image">
+					<span>Cover</span>
+				</div>
+				<div class="game-card-content">
+					<span class="badge badge-snes game-card-platform">SNES</span>
+					<h3 class="game-card-title">
+						<a href="/games/dragon-quest-3-snes">Dragon Quest III</a>
+					</h3>
+					<div class="wiki-resources">
+						<span class="wiki-resource available">ROM Map</span>
+						<span class="wiki-resource">RAM Map</span>
+						<span class="wiki-resource">Data</span>
+					</div>
+				</div>
+			</article>
+		</div>
+	</section>
+
+	<section aria-labelledby="platforms-title" style="margin-top: var(--space-10);">
+		<h2 id="platforms-title" class="section-title">Browse by Platform</h2>
+
+		<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+			<a href="/games?platform=nes" class="card" style="text-align: center; text-decoration: none;">
+				<div class="badge badge-nes" style="margin-bottom: var(--space-2);">NES</div>
+				<p style="margin: 0; color: var(--color-text-secondary);">Nintendo Entertainment System</p>
+			</a>
+			<a href="/games?platform=snes" class="card" style="text-align: center; text-decoration: none;">
+				<div class="badge badge-snes" style="margin-bottom: var(--space-2);">SNES</div>
+				<p style="margin: 0; color: var(--color-text-secondary);">Super Nintendo</p>
+			</a>
+			<a href="/games?platform=gb" class="card" style="text-align: center; text-decoration: none;">
+				<div class="badge badge-gb" style="margin-bottom: var(--space-2);">GB</div>
+				<p style="margin: 0; color: var(--color-text-secondary);">Game Boy</p>
+			</a>
+			<a href="/games?platform=gba" class="card" style="text-align: center; text-decoration: none;">
+				<div class="badge badge-gba" style="margin-bottom: var(--space-2);">GBA</div>
+				<p style="margin: 0; color: var(--color-text-secondary);">Game Boy Advance</p>
+			</a>
+		</div>
+	</section>
+
+	<section aria-labelledby="tools-title" style="margin-top: var(--space-10);">
+		<div class="section-header">
+			<h2 id="tools-title" class="section-title">Popular Tools</h2>
+			<a href="/tools" class="section-link">View all tools →</a>
+		</div>
+
+		<div class="grid grid-cols-1 md:grid-cols-2">
+			<article class="tool-card">
+				<div class="tool-card-icon">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+						<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/>
+					</svg>
+				</div>
+				<div class="tool-card-content">
+					<h3 class="tool-card-title">
+						<a href="/tools/rom-analyzer">ROM Analyzer</a>
+					</h3>
+					<p class="tool-card-description">
+						Analyze ROM files to identify data structures, code sections, and assets.
+					</p>
+					<div class="tool-card-tags">
+						<span class="badge" style="background: var(--color-bg-tertiary);">Analysis</span>
+						<span class="badge" style="background: var(--color-bg-tertiary);">Python</span>
+					</div>
+				</div>
+			</article>
+
+			<article class="tool-card">
+				<div class="tool-card-icon">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+						<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+					</svg>
+				</div>
+				<div class="tool-card-content">
+					<h3 class="tool-card-title">
+						<a href="/tools/asset-extractor">Asset Extractor</a>
+					</h3>
+					<p class="tool-card-description">
+						Extract graphics, text, and other assets from ROM files.
+					</p>
+					<div class="tool-card-tags">
+						<span class="badge" style="background: var(--color-bg-tertiary);">Graphics</span>
+						<span class="badge" style="background: var(--color-bg-tertiary);">Python</span>
+					</div>
+				</div>
+			</article>
+		</div>
+	</section>
+
+	<section aria-labelledby="wiki-title" style="margin-top: var(--space-10);">
+		<h2 id="wiki-title" class="section-title">Wiki Resources</h2>
+		<div class="card">
+			<p>
+				Our comprehensive wiki at <a href="https://games.darkrepos.com" target="_blank" rel="noopener">games.darkrepos.com</a>
+				contains detailed ROM maps, RAM maps, and data structure documentation for each game.
+			</p>
+			<p style="margin-bottom: 0;">
+				Each game page includes links to its wiki resources where available.
+			</p>
+		</div>
+	</section>
+</div>

@@ -1,0 +1,161 @@
+@page "/docs"
+@page "/docs/{*Path}"
+
+<PageTitle>Documentation - Dark Repos</PageTitle>
+
+<HeadContent>
+	<meta name="description" content="Guides, tutorials, and reference documentation for ROM hacking and retro game research." />
+</HeadContent>
+
+<div class="container">
+	<nav class="breadcrumbs" aria-label="Breadcrumb">
+		<span class="breadcrumb-item"><a href="/">Home</a></span>
+		<span class="breadcrumb-separator" aria-hidden="true">/</span>
+		@if (string.IsNullOrEmpty(Path))
+		{
+			<span class="breadcrumb-item" aria-current="page">Documentation</span>
+		}
+		else
+		{
+			<span class="breadcrumb-item"><a href="/docs">Documentation</a></span>
+			<span class="breadcrumb-separator" aria-hidden="true">/</span>
+			<span class="breadcrumb-item" aria-current="page">@GetCurrentPageTitle()</span>
+		}
+	</nav>
+
+	@if (string.IsNullOrEmpty(Path))
+	{
+		<header class="page-header">
+			<h1 class="page-title">Documentation</h1>
+			<p class="page-description">
+				Guides, tutorials, and reference documentation for ROM hacking and retro game research.
+			</p>
+		</header>
+
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+			<a href="/docs/getting-started" class="card" style="text-decoration: none;">
+				<div style="font-size: var(--font-size-2xl); margin-bottom: var(--space-3);">🚀</div>
+				<h2 style="font-size: var(--font-size-lg); margin-bottom: var(--space-2);">Getting Started</h2>
+				<p style="color: var(--color-text-secondary); margin: 0;">
+					New to ROM hacking? Start here with our beginner-friendly guides.
+				</p>
+			</a>
+
+			<a href="/docs/formats" class="card" style="text-decoration: none;">
+				<div style="font-size: var(--font-size-2xl); margin-bottom: var(--space-3);">📋</div>
+				<h2 style="font-size: var(--font-size-lg); margin-bottom: var(--space-2);">Format Specifications</h2>
+				<p style="color: var(--color-text-secondary); margin: 0;">
+					Technical documentation for ROM formats, compression, and data structures.
+				</p>
+			</a>
+
+			<a href="/docs/guides" class="card" style="text-decoration: none;">
+				<div style="font-size: var(--font-size-2xl); margin-bottom: var(--space-3);">📖</div>
+				<h2 style="font-size: var(--font-size-lg); margin-bottom: var(--space-2);">Guides & Tutorials</h2>
+				<p style="color: var(--color-text-secondary); margin: 0;">
+					Step-by-step guides for common ROM hacking tasks.
+				</p>
+			</a>
+
+			<a href="/docs/tools" class="card" style="text-decoration: none;">
+				<div style="font-size: var(--font-size-2xl); margin-bottom: var(--space-3);">🔧</div>
+				<h2 style="font-size: var(--font-size-lg); margin-bottom: var(--space-2);">Tool Documentation</h2>
+				<p style="color: var(--color-text-secondary); margin: 0;">
+					Detailed documentation for our ROM hacking tools.
+				</p>
+			</a>
+
+			<a href="/docs/platforms" class="card" style="text-decoration: none;">
+				<div style="font-size: var(--font-size-2xl); margin-bottom: var(--space-3);">🎮</div>
+				<h2 style="font-size: var(--font-size-lg); margin-bottom: var(--space-2);">Platform References</h2>
+				<p style="color: var(--color-text-secondary); margin: 0;">
+					Technical references for NES, SNES, and other platforms.
+				</p>
+			</a>
+
+			<a href="/docs/contributing" class="card" style="text-decoration: none;">
+				<div style="font-size: var(--font-size-2xl); margin-bottom: var(--space-3);">🤝</div>
+				<h2 style="font-size: var(--font-size-lg); margin-bottom: var(--space-2);">Contributing</h2>
+				<p style="color: var(--color-text-secondary); margin: 0;">
+					Learn how to contribute to Dark Repos documentation and tools.
+				</p>
+			</a>
+		</div>
+
+		<section style="margin-top: var(--space-10);">
+			<h2>Popular Guides</h2>
+			<div class="card">
+				<ul style="margin: 0; padding-left: var(--space-5);">
+					<li style="margin-bottom: var(--space-3);">
+						<a href="/docs/guides/creating-rom-map">Creating a ROM Map</a>
+						<span style="color: var(--color-text-muted);"> - Document code and data locations</span>
+					</li>
+					<li style="margin-bottom: var(--space-3);">
+						<a href="/docs/guides/text-extraction">Text Extraction Basics</a>
+						<span style="color: var(--color-text-muted);"> - Extract and translate game text</span>
+					</li>
+					<li style="margin-bottom: var(--space-3);">
+						<a href="/docs/guides/graphics-editing">Graphics Editing</a>
+						<span style="color: var(--color-text-muted);"> - View and modify game graphics</span>
+					</li>
+					<li style="margin-bottom: 0;">
+						<a href="/docs/guides/disassembly-basics">Disassembly Basics</a>
+						<span style="color: var(--color-text-muted);"> - Getting started with disassembly</span>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<section style="margin-top: var(--space-8);">
+			<h2>Quick Links</h2>
+			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3" style="gap: var(--space-4);">
+				<a href="https://games.darkrepos.com" target="_blank" rel="noopener" class="btn btn-secondary" style="justify-content: flex-start;">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+						<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+					</svg>
+					Wiki (games.darkrepos.com)
+				</a>
+				<a href="https://github.com/TheAnsarya/GameInfo" target="_blank" rel="noopener" class="btn btn-secondary" style="justify-content: flex-start;">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+						<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+					</svg>
+					GitHub Repository
+				</a>
+				<a href="/docs/api" class="btn btn-secondary" style="justify-content: flex-start;">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+						<path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+					</svg>
+					API Reference
+				</a>
+			</div>
+		</section>
+	}
+	else
+	{
+		<header class="page-header">
+			<h1 class="page-title">@GetCurrentPageTitle()</h1>
+		</header>
+
+		<div class="card">
+			<p>Documentation content for <code>@Path</code> would be loaded here.</p>
+			<p style="margin-bottom: 0;">
+				This page will be generated from Markdown files in the GameInfo repository.
+			</p>
+		</div>
+	}
+</div>
+
+@code {
+	[Parameter]
+	public string? Path { get; set; }
+
+	private string GetCurrentPageTitle()
+	{
+		if (string.IsNullOrEmpty(Path)) return "Documentation";
+
+		// Convert path to title (e.g., "getting-started" -> "Getting Started")
+		var lastSegment = Path.Split('/').Last();
+		return string.Join(" ", lastSegment.Split('-').Select(s =>
+			char.ToUpper(s[0]) + s.Substring(1)));
+	}
+}
