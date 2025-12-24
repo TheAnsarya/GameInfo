@@ -1,8 +1,11 @@
+{{Back|Chrono Trigger (SNES)}}
 {{rammap|game=Chrono Trigger}}
+
+= Chrono Trigger (SNES) - RAM Map =
 
 This is the RAM map for ''Chrono Trigger'' (SNES). The game uses the standard SNES WRAM layout with extensive use of direct page addressing.
 
-==Direct Page ($0000-$00ff)==
+== Direct Page ($0000-$00ff) ==
 {| class="wikitable sortable"
 ! Address !! Size !! Description
 |-

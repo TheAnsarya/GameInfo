@@ -1,7 +1,25 @@
+{{Back|Yu-Gi-Oh! The Eternal Duelist Soul (GBA)}}
 {{rammap}}
 {{stub}}
 
-=Main=
+= Yu-Gi-Oh! The Eternal Duelist Soul (GBA) - RAM Map =
+
+This page documents the RAM layout for Yu-Gi-Oh! The Eternal Duelist Soul on GBA.
+
+== Overview ==
+
+{| class="wikitable"
+|-
+! Region !! Address Range !! Size !! Description
+|-
+| EWRAM || $02000000-$0203ffff || 256 KB || External work RAM
+|-
+| IWRAM || $03000000-$03007fff || 32 KB || Internal work RAM (fast)
+|-
+| Flash || $0e000000-$0e00ffff || 64 KB || Save data storage
+|}
+
+== Main ==
 
 {| class="wikitable sortable"
 |-

@@ -1,8 +1,11 @@
+{{Back|Dragon Warrior II (NES)}}
 {{rammap|game=Dragon Warrior II}}
+
+= Dragon Warrior II (NES) - RAM Map =
 
 This is the RAM map for ''Dragon Warrior II'' (NES). The NES has 2KB of internal RAM ($0000-$07ff) mirrored at $0800-$1fff.
 
-==Zero Page ($0000-$00ff)==
+== Zero Page ($0000-$00ff) ==
 {| class="wikitable sortable"
 ! Address !! Size !! Description
 |-

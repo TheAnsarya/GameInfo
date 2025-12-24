@@ -1,13 +1,16 @@
+{{Back|Final Fantasy IV (SNES)}}
 {{Rammap}}
 {{Cleanup}}
 
+= Final Fantasy IV (SNES) - RAM Map =
+
 This page documents the RAM structure for '''Final Fantasy IV''' (SNES).
 
-==Overview==
+== Overview ==
 
 Final Fantasy IV uses the SNES's full 128 KB of WRAM, with critical game state in the direct page area for fast access.
 
-==Direct Page Variables ($0000-$00ff)==
+== Direct Page Variables ($0000-$00ff) ==
 
 {| class="wikitable"
 ! Address !! Size !! Description

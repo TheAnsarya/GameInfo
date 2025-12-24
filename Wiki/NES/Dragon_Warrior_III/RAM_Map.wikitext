@@ -1,6 +1,15 @@
+{{Back|Dragon Warrior III (NES)}}
 {{rammap}}
 
-=Main=
+= Dragon Warrior III (NES) - RAM Map =
+
+This page documents the RAM layout for Dragon Warrior III on NES.
+
+== Overview ==
+
+Dragon Warrior III uses the standard NES RAM layout with 2KB of internal RAM at $0000-$07ff, plus battery-backed SRAM for save data.
+
+== Main ==
 
 {| class="wikitable sortable"
 |-

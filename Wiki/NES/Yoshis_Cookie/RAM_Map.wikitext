@@ -1,15 +1,18 @@
+{{Back|Yoshi's Cookie (NES)}}
 {{Rammap}}
 {{Cleanup}}
 
+= Yoshi's Cookie (NES) - RAM Map =
+
 This page documents the RAM structure for '''Yoshi's Cookie''' (NES).
 
-==Overview==
+== Overview ==
 
 Yoshi's Cookie uses standard NES RAM ($0000-$07ff). As an NROM game, there is no additional cartridge RAM.
 
-==Zero Page ($00-$ff)==
+== Zero Page ($00-$ff) ==
 
-===System Variables ($00-$1f)===
+=== System Variables ($00-$1f) ===
 
 {| class="wikitable"
 ! Address !! Size !! Description
