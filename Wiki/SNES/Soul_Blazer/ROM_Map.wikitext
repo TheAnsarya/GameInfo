@@ -8,18 +8,18 @@ Soul Blazer uses '''LoROM''' mapping. The ROM is 1MB (32 banks × 32KB).
 
 ===Address Conversion===
 <pre>
-File Offset = (Bank × $8000) + (Address & $7FFF)
-CPU Address = (Bank << 16) | $8000 | (File Offset & $7FFF)
+File Offset = (Bank × $8000) + (Address & $7fff)
+CPU Address = (Bank << 16) | $8000 | (File Offset & $7fff)
 </pre>
 
 ==Interrupt Vectors==
-===Native Mode ($7FE0)===
+===Native Mode ($7fe0)===
 {| class="wikitable"
 ! Vector !! Address !! Description
 |-
-| COP || $D61E || Coprocessor interrupt
+| COP || $d61e || Coprocessor interrupt
 |-
-| BRK || $D5FC || Software break
+| BRK || $d5fc || Software break
 |-
 | ABORT || $0000 || Abort (unused)
 |-
@@ -27,10 +27,10 @@ CPU Address = (Bank << 16) | $8000 | (File Offset & $7FFF)
 |-
 | RESET || $0000 || Reset (native, unused)
 |-
-| IRQ || $85A5 || Hardware interrupt
+| IRQ || $85a5 || Hardware interrupt
 |}
 
-===Emulation Mode ($7FF0)===
+===Emulation Mode ($7ff0)===
 {| class="wikitable"
 ! Vector !! Address !! Description
 |-
@@ -42,60 +42,60 @@ CPU Address = (Bank << 16) | $8000 | (File Offset & $7FFF)
 |-
 | RESET || $8000 || Reset entry point
 |-
-| IRQ || $D011 || Hardware interrupt
+| IRQ || $d011 || Hardware interrupt
 |}
 
 ==Bank Layout==
 {| class="wikitable sortable"
 ! Bank !! File Offset !! End !! Size !! Description
 |-
-| $00 || $000000 || $007FFF || 32KB || Main program code
+| $00 || $000000 || $007fff || 32KB || Main program code
 |-
-| $01 || $008000 || $00FFFF || 32KB || Game logic
+| $01 || $008000 || $00ffff || 32KB || Game logic
 |-
-| $02 || $010000 || $017FFF || 32KB || Text/dialogue
+| $02 || $010000 || $017fff || 32KB || Text/dialogue
 |-
-| $03 || $018000 || $01FFFF || 32KB || Text/dialogue
+| $03 || $018000 || $01ffff || 32KB || Text/dialogue
 |-
-| $04 || $020000 || $027FFF || 32KB || Text/dialogue
+| $04 || $020000 || $027fff || 32KB || Text/dialogue
 |-
-| $05 || $028000 || $02FFFF || 32KB || Game data
+| $05 || $028000 || $02ffff || 32KB || Game data
 |-
-| $06 || $030000 || $037FFF || 32KB || Enemy data
+| $06 || $030000 || $037fff || 32KB || Enemy data
 |-
-| $07 || $038000 || $03FFFF || 32KB || Item/equipment
+| $07 || $038000 || $03ffff || 32KB || Item/equipment
 |-
-| $08 || $040000 || $047FFF || 32KB || Map data
+| $08 || $040000 || $047fff || 32KB || Map data
 |-
-| $09 || $048000 || $04FFFF || 32KB || Map data
+| $09 || $048000 || $04ffff || 32KB || Map data
 |-
-| $0A || $050000 || $057FFF || 32KB || Map data
+| $0a || $050000 || $057fff || 32KB || Map data
 |-
-| $0B || $058000 || $05FFFF || 32KB || Level data
+| $0b || $058000 || $05ffff || 32KB || Level data
 |-
-| $0C || $060000 || $067FFF || 32KB || Level data
+| $0c || $060000 || $067fff || 32KB || Level data
 |-
-| $0D || $068000 || $06FFFF || 32KB || Graphics
+| $0d || $068000 || $06ffff || 32KB || Graphics
 |-
-| $0E || $070000 || $077FFF || 32KB || Graphics
+| $0e || $070000 || $077fff || 32KB || Graphics
 |-
-| $0F || $078000 || $07FFFF || 32KB || Audio/SPC
+| $0f || $078000 || $07ffff || 32KB || Audio/SPC
 |-
-| $10 || $080000 || $087FFF || 32KB || Act 1 Tileset (Grass Valley/Underground Castle)
+| $10 || $080000 || $087fff || 32KB || Act 1 Tileset (Grass Valley/Underground Castle)
 |-
-| $11 || $088000 || $08FFFF || 32KB || Act 2 Tileset (GreenWood)
+| $11 || $088000 || $08ffff || 32KB || Act 2 Tileset (GreenWood)
 |-
-| $12 || $090000 || $097FFF || 32KB || Act 3 Tileset (St. Elles/Seabed)
+| $12 || $090000 || $097fff || 32KB || Act 3 Tileset (St. Elles/Seabed)
 |-
-| $13 || $098000 || $09FFFF || 32KB || Act 4 Tileset (Mountain of Souls)
+| $13 || $098000 || $09ffff || 32KB || Act 4 Tileset (Mountain of Souls)
 |-
-| $14 || $0A0000 || $0A7FFF || 32KB || Act 5-6 Tileset (Leo's Lab/Magridd)
+| $14 || $0a0000 || $0a7fff || 32KB || Act 5-6 Tileset (Leo's Lab/Magridd)
 |-
-| $15-$17 || $0A8000 || $0BFFFF || 96KB || Sprite graphics
+| $15-$17 || $0a8000 || $0bffff || 96KB || Sprite graphics
 |-
-| $18-$1A || $0C0000 || $0DFFFF || 96KB || Tilemap data
+| $18-$1a || $0c0000 || $0dffff || 96KB || Tilemap data
 |-
-| $1B-$1F || $0D8000 || $0FFFFF || 160KB || Additional graphics/data
+| $1b-$1f || $0d8000 || $0fffff || 160KB || Additional graphics/data
 |}
 
 ==Tileset Banks==
@@ -128,17 +128,17 @@ Tilesets use standard SNES 4BPP format:
 |-
 | $00:8342 || NMI_Handler || VBlank interrupt handler
 |-
-| $00:85A5 || IRQ_Handler || Hardware interrupt handler
+| $00:85a5 || IRQ_Handler || Hardware interrupt handler
 |-
-| $02:B9AC || InitHardware || Initialize SNES hardware registers
+| $02:b9ac || InitHardware || Initialize SNES hardware registers
 |-
-| $02:BA80 || InitRAM || Clear and initialize RAM
+| $02:ba80 || InitRAM || Clear and initialize RAM
 |-
-| $02:B856 || WaitVBlank || Wait for VBlank period
+| $02:b856 || WaitVBlank || Wait for VBlank period
 |-
-| $02:B8A2 || EnableNMI || Enable NMI and set display
+| $02:b8a2 || EnableNMI || Enable NMI and set display
 |-
-| $02:B8B8 || DisableNMI || Disable NMI and blank screen
+| $02:b8b8 || DisableNMI || Disable NMI and blank screen
 |-
 | $04:8000 || GameLoop_Main || Main game loop entry
 |-
@@ -152,9 +152,9 @@ Tilesets use standard SNES 4BPP format:
 |-
 | $04:8900 || ProcessInput || Process player input
 |-
-| $04:8C00 || UpdateSprites || Update OAM buffer
+| $04:8c00 || UpdateSprites || Update OAM buffer
 |-
-| $04:8E00 || InitSprites || Initialize sprite system
+| $04:8e00 || InitSprites || Initialize sprite system
 |-
 | $04:9000 || InitGraphics || Initialize PPU graphics
 |-
@@ -162,30 +162,30 @@ Tilesets use standard SNES 4BPP format:
 |-
 | $04:9400 || UpdatePalette || Update color palette
 |-
-| $04:B000 || LoadMap || Load map data
+| $04:b000 || LoadMap || Load map data
 |-
-| $04:B200 || UpdateMap || Update map scrolling
+| $04:b200 || UpdateMap || Update map scrolling
 |-
-| $04:B400 || UpdateCamera || Update camera position
+| $04:b400 || UpdateCamera || Update camera position
 |-
-| $04:C000 || UpdateEntities || Update all entities
+| $04:c000 || UpdateEntities || Update all entities
 |-
-| $04:C200 || UpdateNPCs || Update NPC logic
+| $04:c200 || UpdateNPCs || Update NPC logic
 |-
-| $04:C400 || UpdateCollision || Check collisions
+| $04:c400 || UpdateCollision || Check collisions
 |-
-| $04:E000 || ProcessEvents || Process game events
+| $04:e000 || ProcessEvents || Process game events
 |-
-| $04:E800 || UpdateAudio || Update sound/music
+| $04:e800 || UpdateAudio || Update sound/music
 |}
 
 ==Data Locations==
 {| class="wikitable sortable"
 ! File Offset !! Bank:Address !! Size !! Description
 |-
-| $004EFA || $00:CEFA || ~4KB || Opening dialogue
+| $004efa || $00:cefa || ~4KB || Opening dialogue
 |-
-| $0053C7 || $00:D3C7 || ~2KB || Ending dialogue
+| $0053c7 || $00:d3c7 || ~2KB || Ending dialogue
 |-
 | $010000 || $02:8000 || ~96KB || Main text data
 |-
@@ -195,9 +195,9 @@ Tilesets use standard SNES 4BPP format:
 |-
 | $040000 || $08:8000 || 96KB || Map/tilemap data
 |-
-| $060000 || $0C:8000 || 64KB || Level/dungeon data
+| $060000 || $0c:8000 || 64KB || Level/dungeon data
 |-
-| $078000 || $0F:8000 || 32KB || Audio driver and SPC data
+| $078000 || $0f:8000 || 32KB || Audio driver and SPC data
 |-
 | $080000 || $10:8000 || 512KB || Graphics and sprite data
 |}
@@ -215,9 +215,9 @@ Analysis has identified '''808 pointer tables''' throughout the ROM.
 |-
 | Bank $06-$07 || ~100 || Enemy/item data pointers
 |-
-| Bank $08-$0C || ~300 || Map and level pointers
+| Bank $08-$0c || ~300 || Map and level pointers
 |-
-| Bank $10-$1F || ~58 || Graphics pointers
+| Bank $10-$1f || ~58 || Graphics pointers
 |}
 
 ==Soul Lairs==
