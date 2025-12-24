@@ -1,4 +1,6 @@
 @page "/"
+@using DarkRepos.Core.Models
+@using DarkRepos.Core.Services
 
 <PageTitle>Dark Repos - ROM Hacking Documentation & Tools</PageTitle>
 
@@ -27,109 +29,46 @@
 			<a href="/games" class="section-link">View all games →</a>
 		</div>
 
-		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-			<article class="game-card">
-				<div class="game-card-image">
-					<span>Cover</span>
-				</div>
-				<div class="game-card-content">
-					<span class="badge badge-nes game-card-platform">NES</span>
-					<h3 class="game-card-title">
-						<a href="/games/dragon-warrior-nes">Dragon Warrior</a>
-					</h3>
-					<div class="wiki-resources">
-						<span class="wiki-resource available">ROM Map</span>
-						<span class="wiki-resource available">RAM Map</span>
-						<span class="wiki-resource available">Data</span>
-					</div>
-				</div>
-			</article>
-
-			<article class="game-card">
-				<div class="game-card-image">
-					<span>Cover</span>
-				</div>
-				<div class="game-card-content">
-					<span class="badge badge-nes game-card-platform">NES</span>
-					<h3 class="game-card-title">
-						<a href="/games/dragon-warrior-4-nes">Dragon Warrior IV</a>
-					</h3>
-					<div class="wiki-resources">
-						<span class="wiki-resource available">ROM Map</span>
-						<span class="wiki-resource available">RAM Map</span>
-						<span class="wiki-resource available">Data</span>
-					</div>
-				</div>
-			</article>
-
-			<article class="game-card">
-				<div class="game-card-image">
-					<span>Cover</span>
-				</div>
-				<div class="game-card-content">
-					<span class="badge badge-snes game-card-platform">SNES</span>
-					<h3 class="game-card-title">
-						<a href="/games/final-fantasy-mystic-quest-snes">Final Fantasy Mystic Quest</a>
-					</h3>
-					<div class="wiki-resources">
-						<span class="wiki-resource available">ROM Map</span>
-						<span class="wiki-resource available">RAM Map</span>
-						<span class="wiki-resource">Data</span>
-					</div>
-				</div>
-			</article>
-
-			<article class="game-card">
-				<div class="game-card-image">
-					<span>Cover</span>
-				</div>
-				<div class="game-card-content">
-					<span class="badge badge-snes game-card-platform">SNES</span>
-					<h3 class="game-card-title">
-						<a href="/games/soul-blazer-snes">Soul Blazer</a>
-					</h3>
-					<div class="wiki-resources">
-						<span class="wiki-resource available">ROM Map</span>
-						<span class="wiki-resource">RAM Map</span>
-						<span class="wiki-resource">Data</span>
-					</div>
-				</div>
-			</article>
-
-			<article class="game-card">
-				<div class="game-card-image">
-					<span>Cover</span>
-				</div>
-				<div class="game-card-content">
-					<span class="badge badge-snes game-card-platform">SNES</span>
-					<h3 class="game-card-title">
-						<a href="/games/robotrek-snes">Robotrek</a>
-					</h3>
-					<div class="wiki-resources">
-						<span class="wiki-resource available">ROM Map</span>
-						<span class="wiki-resource">RAM Map</span>
-						<span class="wiki-resource">Data</span>
-					</div>
-				</div>
-			</article>
-
-			<article class="game-card">
-				<div class="game-card-image">
-					<span>Cover</span>
-				</div>
-				<div class="game-card-content">
-					<span class="badge badge-snes game-card-platform">SNES</span>
-					<h3 class="game-card-title">
-						<a href="/games/dragon-quest-3-snes">Dragon Quest III</a>
-					</h3>
-					<div class="wiki-resources">
-						<span class="wiki-resource available">ROM Map</span>
-						<span class="wiki-resource">RAM Map</span>
-						<span class="wiki-resource">Data</span>
-					</div>
-				</div>
-			</article>
-		</div>
+		@if (IsLoading)
+		{
+			<div class="loading-state">
+				<div class="loading-spinner"></div>
+				<p>Loading featured games...</p>
+			</div>
+		}
+		else
+		{
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+				@foreach (var game in FeaturedGames)
+				{
+					<article class="game-card">
+						<div class="game-card-image">
+							@if (!string.IsNullOrEmpty(game.CoverImage))
+							{
+								<img src="@game.CoverImage" alt="@game.Title cover art" loading="lazy" />
+							}
+							else
+							{
+								<span>Cover</span>
+							}
+						</div>
+						<div class="game-card-content">
+							<span class="badge badge-@game.Platform.ToString().ToLower() game-card-platform">
+								@game.Platform
+							</span>
+							<h3 class="game-card-title">
+								<a href="/games/@game.Slug">@game.Title</a>
+							</h3>
+							<div class="wiki-resources">
+								<span class="wiki-resource @(game.Wiki.HasRomMap ? "available" : "")">ROM Map</span>
+								<span class="wiki-resource @(game.Wiki.HasRamMap ? "available" : "")">RAM Map</span>
+								<span class="wiki-resource @(game.Wiki.HasDataStructures ? "available" : "")">Data</span>
+							</div>
+						</div>
+					</article>
+				}
+			</div>
+		}
 	</section>
 
 	<section aria-labelledby="platforms-title" style="margin-top: var(--space-10);">
@@ -217,3 +156,24 @@
 		</div>
 	</section>
 </div>
+
+@code {
+	[Inject]
+	private IContentService ContentService { get; set; } = null!;
+
+	private IReadOnlyList<Game> FeaturedGames { get; set; } = [];
+	private bool IsLoading { get; set; } = true;
+
+	protected override async Task OnInitializedAsync()
+	{
+		IsLoading = true;
+		try
+		{
+			FeaturedGames = await ContentService.GetFeaturedGamesAsync(6);
+		}
+		finally
+		{
+			IsLoading = false;
+		}
+	}
+}

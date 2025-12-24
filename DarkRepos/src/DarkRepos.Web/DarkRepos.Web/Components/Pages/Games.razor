@@ -1,6 +1,7 @@
 @page "/games"
 @page "/games/{Platform}"
 @using DarkRepos.Core.Models
+@using DarkRepos.Core.Services
 
 <PageTitle>Games - Dark Repos</PageTitle>
 
@@ -56,7 +57,14 @@
 		</div>
 	</div>
 
-	@if (FilteredGames.Any())
+	@if (IsLoading)
+	{
+		<div class="loading-state">
+			<div class="loading-spinner"></div>
+			<p>Loading games...</p>
+		</div>
+	}
+	else if (FilteredGames.Any())
 	{
 		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" role="list">
 			@foreach (var game in FilteredGames)
@@ -136,118 +144,28 @@
 	[Parameter]
 	public string? Platform { get; set; }
 
-	// Sample data - will be replaced with IContentService
+	[Inject]
+	private IContentService ContentService { get; set; } = null!;
+
 	private List<Game> AllGames { get; set; } = new();
+	private bool IsLoading { get; set; } = true;
 
 	private IEnumerable<Game> FilteredGames => string.IsNullOrEmpty(Platform)
 		? AllGames
 		: AllGames.Where(g => g.Platform.ToString().Equals(Platform, StringComparison.OrdinalIgnoreCase));
 
-	protected override void OnInitialized()
+	protected override async Task OnInitializedAsync()
 	{
-		// Sample data for initial development
-		AllGames = new List<Game>
+		IsLoading = true;
+		try
 		{
-			new Game
-			{
-				Slug = "dragon-warrior-nes",
-				Title = "Dragon Warrior",
-				Platform = Core.Models.Platform.NES,
-				Developer = "Chunsoft",
-				Publisher = "Enix",
-				ReleaseYear = 1989,
-				Series = "Dragon Quest",
-				Wiki = new WikiResources { HasRomMap = true, HasRamMap = true, HasDataStructures = true }
-			},
-			new Game
-			{
-				Slug = "dragon-warrior-2-nes",
-				Title = "Dragon Warrior II",
-				Platform = Core.Models.Platform.NES,
-				Developer = "Chunsoft",
-				Publisher = "Enix",
-				ReleaseYear = 1990,
-				Series = "Dragon Quest",
-				Wiki = new WikiResources { HasRomMap = true, HasRamMap = true, HasDataStructures = true }
-			},
-			new Game
-			{
-				Slug = "dragon-warrior-3-nes",
-				Title = "Dragon Warrior III",
-				Platform = Core.Models.Platform.NES,
-				Developer = "Chunsoft",
-				Publisher = "Enix",
-				ReleaseYear = 1991,
-				Series = "Dragon Quest",
-				Wiki = new WikiResources { HasRomMap = true, HasRamMap = true, HasDataStructures = true }
-			},
-			new Game
-			{
-				Slug = "dragon-warrior-4-nes",
-				Title = "Dragon Warrior IV",
-				Platform = Core.Models.Platform.NES,
-				Developer = "Chunsoft",
-				Publisher = "Enix",
-				ReleaseYear = 1992,
-				Series = "Dragon Quest",
-				Wiki = new WikiResources { HasRomMap = true, HasRamMap = true, HasDataStructures = true }
-			},
-			new Game
-			{
-				Slug = "final-fantasy-mystic-quest-snes",
-				Title = "Final Fantasy Mystic Quest",
-				Platform = Core.Models.Platform.SNES,
-				Developer = "Square",
-				Publisher = "Square",
-				ReleaseYear = 1992,
-				Series = "Final Fantasy",
-				Wiki = new WikiResources { HasRomMap = true, HasRamMap = true, HasDataStructures = false }
-			},
-			new Game
-			{
-				Slug = "soul-blazer-snes",
-				Title = "Soul Blazer",
-				Platform = Core.Models.Platform.SNES,
-				Developer = "Quintet",
-				Publisher = "Enix",
-				ReleaseYear = 1992,
-				Series = "Soul Blazer Trilogy",
-				Wiki = new WikiResources { HasRomMap = true, HasRamMap = false, HasDataStructures = false }
-			},
-			new Game
-			{
-				Slug = "robotrek-snes",
-				Title = "Robotrek",
-				JapaneseTitle = "Slapstick",
-				Platform = Core.Models.Platform.SNES,
-				Developer = "Quintet",
-				Publisher = "Enix",
-				ReleaseYear = 1994,
-				Wiki = new WikiResources { HasRomMap = true, HasRamMap = false, HasDataStructures = false }
-			},
-			new Game
-			{
-				Slug = "dragon-quest-1-2-snes",
-				Title = "Dragon Quest I & II",
-				Platform = Core.Models.Platform.SNES,
-				Developer = "Chunsoft",
-				Publisher = "Enix",
-				ReleaseYear = 1993,
-				Series = "Dragon Quest",
-				Wiki = new WikiResources { HasRomMap = true, HasRamMap = false, HasDataStructures = false }
-			},
-			new Game
-			{
-				Slug = "dragon-quest-3-snes",
-				Title = "Dragon Quest III",
-				Platform = Core.Models.Platform.SNES,
-				Developer = "Heart Beat",
-				Publisher = "Enix",
-				ReleaseYear = 1996,
-				Series = "Dragon Quest",
-				Wiki = new WikiResources { HasRomMap = true, HasRamMap = false, HasDataStructures = false }
-			}
-		};
+			var games = await ContentService.GetAllGamesAsync();
+			AllGames = games.ToList();
+		}
+		finally
+		{
+			IsLoading = false;
+		}
 	}
 
 	private void FilterByPlatform(string? platform)

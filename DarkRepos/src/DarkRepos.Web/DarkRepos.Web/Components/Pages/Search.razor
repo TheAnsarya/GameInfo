@@ -1,0 +1,225 @@
+@page "/search"
+@using DarkRepos.Core.Models
+@using DarkRepos.Core.Services
+
+<PageTitle>Search - Dark Repos</PageTitle>
+
+<HeadContent>
+	<meta name="description" content="Search for games, tools, and documentation across Dark Repos." />
+</HeadContent>
+
+<div class="container">
+	<nav class="breadcrumbs" aria-label="Breadcrumb">
+		<span class="breadcrumb-item"><a href="/">Home</a></span>
+		<span class="breadcrumb-separator" aria-hidden="true">/</span>
+		<span class="breadcrumb-item" aria-current="page">Search</span>
+	</nav>
+
+	<header class="page-header">
+		<h1 class="page-title">Search</h1>
+		<p class="page-description">
+			Search across games, tools, and documentation.
+		</p>
+	</header>
+
+	<div class="search-container" style="margin-bottom: var(--space-6);">
+		<form @onsubmit="HandleSearch" @onsubmit:preventDefault>
+			<div style="display: flex; gap: var(--space-3);">
+				<input type="search"
+					   @bind="SearchTerms"
+					   @bind:event="oninput"
+					   placeholder="Search games, tools, documentation..."
+					   class="search-input"
+					   style="flex: 1; padding: var(--space-3); font-size: var(--font-size-md); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-bg-secondary); color: var(--color-text-primary);"
+					   aria-label="Search terms" />
+				<button type="submit" class="btn btn-primary">Search</button>
+			</div>
+		</form>
+	</div>
+
+	<div class="filter-bar" role="group" aria-label="Filter search results by type">
+		<span style="color: var(--color-text-secondary); font-size: var(--font-size-sm);">Type:</span>
+		<div class="filter-group">
+			<button class="filter-chip @(SelectedType == null ? "active" : "")"
+					@onclick="() => FilterByType(null)">
+				All
+			</button>
+			<button class="filter-chip @(SelectedType == SearchDocumentType.Game ? "active" : "")"
+					@onclick="() => FilterByType(SearchDocumentType.Game)">
+				Games
+			</button>
+			<button class="filter-chip @(SelectedType == SearchDocumentType.Tool ? "active" : "")"
+					@onclick="() => FilterByType(SearchDocumentType.Tool)">
+				Tools
+			</button>
+			<button class="filter-chip @(SelectedType == SearchDocumentType.Documentation ? "active" : "")"
+					@onclick="() => FilterByType(SearchDocumentType.Documentation)">
+				Docs
+			</button>
+		</div>
+	</div>
+
+	@if (IsSearching)
+	{
+		<div class="loading-state">
+			<div class="loading-spinner"></div>
+			<p>Searching...</p>
+		</div>
+	}
+	else if (HasSearched)
+	{
+		@if (Results != null && Results.Results.Count > 0)
+		{
+			<p style="color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+				Found @Results.TotalCount result(s) in @Results.Duration.TotalMilliseconds.ToString("0.00")ms
+			</p>
+
+			<div class="search-results" role="list">
+				@foreach (var result in Results.Results)
+				{
+					<article class="search-result card" role="listitem" style="margin-bottom: var(--space-4);">
+						<div style="display: flex; align-items: flex-start; gap: var(--space-4);">
+							<div class="search-result-icon" style="font-size: 1.5rem; flex-shrink: 0;">
+								@GetResultIcon(result.Document.Type)
+							</div>
+							<div style="flex: 1;">
+								<div style="display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-2);">
+									<span class="badge" style="background: var(--color-bg-tertiary); font-size: var(--font-size-xs);">
+										@result.Document.Type
+									</span>
+									@if (!string.IsNullOrEmpty(result.Document.Platform))
+									{
+										<span class="badge badge-@result.Document.Platform.ToLower()" style="font-size: var(--font-size-xs);">
+											@result.Document.Platform
+										</span>
+									}
+								</div>
+								<h3 style="margin: 0 0 var(--space-2) 0;">
+									<a href="@result.Document.Url">@((MarkupString)(result.HighlightedTitle ?? result.Document.Title))</a>
+								</h3>
+								@if (!string.IsNullOrEmpty(result.HighlightedSnippet) || !string.IsNullOrEmpty(result.Document.Description))
+								{
+									<p style="color: var(--color-text-secondary); margin: 0; font-size: var(--font-size-sm);">
+										@((MarkupString)(result.HighlightedSnippet ?? result.Document.Description ?? ""))
+									</p>
+								}
+							</div>
+						</div>
+					</article>
+				}
+			</div>
+
+			@if (Results.TotalCount > Results.Results.Count)
+			{
+				<p style="color: var(--color-text-secondary); text-align: center;">
+					Showing @Results.Results.Count of @Results.TotalCount results
+				</p>
+			}
+		}
+		else
+		{
+			<div class="empty-state">
+				<div class="empty-state-icon">🔍</div>
+				<h2 class="empty-state-title">No results found</h2>
+				<p class="empty-state-description">
+					@if (!string.IsNullOrEmpty(SearchTerms))
+					{
+						<text>No results found for "@SearchTerms". Try different search terms.</text>
+					}
+					else
+					{
+						<text>Enter search terms above to find games, tools, and documentation.</text>
+					}
+				</p>
+			</div>
+		}
+	}
+	else
+	{
+		<div class="empty-state">
+			<div class="empty-state-icon">🔍</div>
+			<h2 class="empty-state-title">Ready to search</h2>
+			<p class="empty-state-description">
+				Enter search terms above to find games, tools, and documentation.
+			</p>
+		</div>
+	}
+</div>
+
+@code {
+	[Inject]
+	private ISearchService SearchService { get; set; } = null!;
+
+	[SupplyParameterFromQuery(Name = "q")]
+	public string? QueryParam { get; set; }
+
+	private string SearchTerms { get; set; } = string.Empty;
+	private SearchDocumentType? SelectedType { get; set; }
+	private SearchResults? Results { get; set; }
+	private bool IsSearching { get; set; }
+	private bool HasSearched { get; set; }
+
+	protected override async Task OnInitializedAsync()
+	{
+		if (!string.IsNullOrWhiteSpace(QueryParam))
+		{
+			SearchTerms = QueryParam;
+			await PerformSearch();
+		}
+	}
+
+	private async Task HandleSearch()
+	{
+		await PerformSearch();
+	}
+
+	private async Task PerformSearch()
+	{
+		if (string.IsNullOrWhiteSpace(SearchTerms))
+		{
+			Results = null;
+			HasSearched = false;
+			return;
+		}
+
+		IsSearching = true;
+		HasSearched = true;
+		StateHasChanged();
+
+		try
+		{
+			var query = new SearchQuery
+			{
+				Terms = SearchTerms,
+				Type = SelectedType,
+				Limit = 20
+			};
+
+			Results = await SearchService.SearchAsync(query);
+		}
+		finally
+		{
+			IsSearching = false;
+			StateHasChanged();
+		}
+	}
+
+	private async Task FilterByType(SearchDocumentType? type)
+	{
+		SelectedType = type;
+		if (HasSearched)
+		{
+			await PerformSearch();
+		}
+	}
+
+	private string GetResultIcon(SearchDocumentType type) => type switch
+	{
+		SearchDocumentType.Game => "🎮",
+		SearchDocumentType.Tool => "🔧",
+		SearchDocumentType.Documentation => "📄",
+		SearchDocumentType.Wiki => "📚",
+		SearchDocumentType.Guide => "📖",
+		_ => "📋"
+	};
+}

@@ -1,5 +1,6 @@
 @page "/tools"
 @using DarkRepos.Core.Models
+@using DarkRepos.Core.Services
 
 <PageTitle>Tools - Dark Repos</PageTitle>
 
@@ -47,7 +48,14 @@
 		</div>
 	</div>
 
-	@if (FilteredTools.Any())
+	@if (IsLoading)
+	{
+		<div class="loading-state">
+			<div class="loading-spinner"></div>
+			<p>Loading tools...</p>
+		</div>
+	}
+	else if (FilteredTools.Any())
 	{
 		<div class="grid grid-cols-1 md:grid-cols-2" role="list">
 			@foreach (var tool in FilteredTools)
@@ -101,80 +109,29 @@
 </div>
 
 @code {
-	private ToolCategory? SelectedCategory { get; set; }
+	[Inject]
+	private IContentService ContentService { get; set; } = null!;
 
+	private ToolCategory? SelectedCategory { get; set; }
 	private List<Tool> AllTools { get; set; } = new();
+	private bool IsLoading { get; set; } = true;
 
 	private IEnumerable<Tool> FilteredTools => SelectedCategory == null
 		? AllTools
 		: AllTools.Where(t => t.Category == SelectedCategory);
 
-	protected override void OnInitialized()
+	protected override async Task OnInitializedAsync()
 	{
-		AllTools = new List<Tool>
+		IsLoading = true;
+		try
 		{
-			new Tool
-			{
-				Slug = "rom-analyzer",
-				Name = "ROM Analyzer",
-				Description = "Analyze ROM files to identify data structures, code sections, graphics, and other assets. Generates reports and suggestions for documentation.",
-				Category = ToolCategory.Analysis,
-				Language = "Python",
-				Version = "1.0.0",
-				RepositoryUrl = "https://github.com/TheAnsarya/GameInfo",
-				SupportedGames = ["NES", "SNES", "GB", "GBA"]
-			},
-			new Tool
-			{
-				Slug = "asset-extractor",
-				Name = "Asset Extractor",
-				Description = "Extract graphics, text, audio, and other assets from ROM files. Supports multiple formats and platforms.",
-				Category = ToolCategory.Graphics,
-				Language = "Python",
-				Version = "1.0.0",
-				RepositoryUrl = "https://github.com/TheAnsarya/GameInfo"
-			},
-			new Tool
-			{
-				Slug = "text-dumper",
-				Name = "Text Dumper",
-				Description = "Extract and dump text strings from ROMs using table files. Supports pointer tables and various encoding schemes.",
-				Category = ToolCategory.Text,
-				Language = "Python",
-				Version = "1.0.0",
-				RepositoryUrl = "https://github.com/TheAnsarya/GameInfo"
-			},
-			new Tool
-			{
-				Slug = "tile-viewer",
-				Name = "Tile Viewer",
-				Description = "View and export graphics tiles from ROM files. Supports various color depths and palette formats.",
-				Category = ToolCategory.Graphics,
-				Language = "C#",
-				Version = "0.9.0",
-				RepositoryUrl = "https://github.com/TheAnsarya/GameInfo"
-			},
-			new Tool
-			{
-				Slug = "disasm-tools",
-				Name = "Disassembly Tools",
-				Description = "Tools for creating and managing disassemblies. Includes label management, cross-referencing, and documentation generation.",
-				Category = ToolCategory.Disassembly,
-				Language = "Python",
-				Version = "1.0.0",
-				RepositoryUrl = "https://github.com/TheAnsarya/GameInfo"
-			},
-			new Tool
-			{
-				Slug = "wiki-generator",
-				Name = "Wiki Generator",
-				Description = "Generate MediaWiki-formatted pages from structured data. Creates ROM maps, RAM maps, and data structure documentation.",
-				Category = ToolCategory.General,
-				Language = "Python",
-				Version = "1.0.0",
-				RepositoryUrl = "https://github.com/TheAnsarya/GameInfo"
-			}
-		};
+			var tools = await ContentService.GetAllToolsAsync();
+			AllTools = tools.ToList();
+		}
+		finally
+		{
+			IsLoading = false;
+		}
 	}
 
 	private void FilterByCategory(ToolCategory? category)
