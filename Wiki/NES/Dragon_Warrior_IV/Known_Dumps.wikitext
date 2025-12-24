@@ -1,4 +1,10 @@
-==Known Dumps==
+{{Back|Dragon Warrior IV (NES)}}
+
+= Dragon Warrior IV (NES) - Known Dumps =
+
+This page lists the known ROM dumps for Dragon Warrior IV as documented by TOSEC.
+
+== Known Dumps ==
 
 These are the roms as they are listed in [https://www.tosecdev.org/ TOSEC].
 

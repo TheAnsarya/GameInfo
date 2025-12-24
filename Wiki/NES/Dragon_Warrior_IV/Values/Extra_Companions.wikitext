@@ -1,8 +1,24 @@
+{{Back|Dragon Warrior IV (NES)/Values}}
 {{subpage}}
 
-=Extra Companions=
+= Dragon Warrior IV - Extra Companions =
 
-==Values==
+This page documents the extra companions that temporarily join the party during certain chapters of Dragon Warrior IV.
+
+== Overview ==
+
+Extra companions are special characters that join temporarily during specific chapters. Unlike the main 8 party members, they are controlled by AI and leave when the chapter ends.
+
+{| class="wikitable"
+|-
+! Value Range !! Description
+|-
+| $c5-$cc || Playable extra companions (8 total)
+|-
+| $cd-$ff || Debug/unused slots
+|}
+
+== Values ==
 
 See: Same info on the main [[Dragon_Warrior_IV_(NES)/Values#Extra_Companions|Values page]].
 
