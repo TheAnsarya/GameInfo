@@ -1,469 +1,559 @@
 {{DISPLAYTITLE:Dragon Warrior IV - Items}}
+{{Back|Dragon Warrior IV (NES)}}
 
 This page documents the item system in Dragon Warrior IV for the NES.
 
-==Item System Overview==
+== Overview ==
 
-Items are indexed using 7 bits ($00-$7F). The high bit (bit 7) indicates whether an item is currently equipped.
+Dragon Warrior IV uses a single-byte item ID system supporting up to 128 unique items. The item data is distributed across multiple ROM banks, with item names, prices, stats, and equipment restrictions stored in separate tables.
+
+== ROM Data Locations ==
+
+{| class="wikitable"
+! Data Type !! ROM Address !! Bank !! Size !! Description
+|-
+| Item names || $28010 || 20 (PRG $14) || ~$800 || Dictionary-compressed text
+|-
+| Item prices || $08010 || 4 (PRG $02) || $100 || 2 bytes per item (little-endian)
+|-
+| Weapon attack || $0a010 || 5 (PRG $02) || $50 || Attack power values
+|-
+| Armor defense || $0a060 || 5 (PRG $02) || $40 || Defense values
+|-
+| Equipment flags || $0a100 || 5 (PRG $02) || $80 || Who can equip what
+|}
+
+== Item System Overview ==
+
+Items are indexed using 7 bits ($00-$7f). The high bit (bit 7) indicates whether an item is currently equipped. This allows the same byte to store both item identity and equipped status.
 
 {| class="wikitable"
 |-
 ! Property !! Value !! Description
 |-
-| Item ID Range || $00-$7F || 128 possible items
+| Item ID Range || $00-$7f || 128 possible items
 |-
 | Equipment Range || $00-$50 || Weapons, armor, shields, helmets
 |-
-| Consumable Range || $52-$7E || Items used from menu
+| Consumable Range || $52-$7e || Items used from menu or battle
 |-
 | Equipped Flag || $80 || Added to ID when item is equipped
 |-
-| No Item || $7F || Empty slot marker
+| No Item || $7f || Empty slot marker
 |-
-| Separator || $51 || Blank/unused slot
+| Separator || $51 || Blank/unused slot (inventory divider)
 |}
 
-==Weapons ($00-$23)==
+== Weapons ($00-$23) ==
+
+Weapons determine a character's attack power and may have special effects. The attack value is added to the character's base strength for damage calculation. Each weapon has equipment restrictions stored in a separate table.
 
 {| class="wikitable sortable"
 |-
-! ID !! Name !! Type
+! ID !! Name !! Type !! Notes
 |-
-| $00 || Cypress Stick || Weapon
+| $00 || Cypress Stick || Weapon || Starter weapon, weakest
 |-
-| $01 || Club || Weapon
+| $01 || Club || Weapon || Basic weapon
 |-
-| $02 || Copper Sword || Weapon
+| $02 || Copper Sword || Weapon || First metal weapon
 |-
-| $03 || Iron Claw || Weapon
+| $03 || Iron Claw || Weapon || Alena-preferred
 |-
-| $04 || Chain Sickle || Weapon
+| $04 || Chain Sickle || Weapon || Nara specialty
 |-
-| $05 || Iron Spear || Weapon
+| $05 || Iron Spear || Weapon || Early game
 |-
-| $06 || Broad Sword || Weapon
+| $06 || Broad Sword || Weapon || Mid-tier
 |-
-| $07 || Battle Axe || Weapon
+| $07 || Battle Axe || Weapon || High damage
 |-
-| $08 || Silver Tarot Cards || Weapon
+| $08 || Silver Tarot Cards || Weapon || Nara-exclusive
 |-
-| $09 || Thorn Whip || Weapon
+| $09 || Thorn Whip || Weapon || Mara specialty
 |-
-| $0a || Morning Star || Weapon
+| $0a || Morning Star || Weapon || Group damage
 |-
-| $0b || Boomerang || Weapon
+| $0b || Boomerang || Weapon || Hits all enemies
 |-
-| $0c || Abacus of Virtue || Weapon
+| $0c || Abacus of Virtue || Weapon || Taloon special
 |-
-| $0d || Iron Fan || Weapon
+| $0d || Iron Fan || Weapon || Female exclusive
 |-
-| $0e || Metal Babble Sword || Weapon
+| $0e || Metal Babble Sword || Weapon || Bonus vs metal slimes
 |-
-| $0f || Poison Needle || Weapon
+| $0f || Poison Needle || Weapon || Instant kill chance (1/8)
 |-
-| $10 || Staff of Force || Weapon
+| $10 || Staff of Force || Weapon || Cast Infernos
 |-
-| $11 || Staff of Thunder || Weapon
+| $11 || Staff of Thunder || Weapon || Cast Zap
 |-
-| $12 || Demon Hammer || Weapon
+| $12 || Demon Hammer || Weapon || Cursed, high attack
 |-
-| $13 || Multi-edge Sword || Weapon
+| $13 || Multi-edge Sword || Weapon || Hits group
 |-
-| $14 || Zenithian Sword (1) || Weapon
+| $14 || Zenithian Sword (1) || Weapon || Legendary, Hero only
 |-
-| $15 || Dragon Killer || Weapon
+| $15 || Dragon Killer || Weapon || Bonus vs dragons
 |-
-| $16 || Stilleto Earrings || Weapon
+| $16 || Stiletto Earrings || Weapon || Female accessory
 |-
-| $17 || Staff of Punishment || Weapon
+| $17 || Staff of Punishment || Weapon || Critical boost
 |-
-| $18 || Sword of Lethargy || Weapon
+| $18 || Sword of Lethargy || Weapon || May paralyze
 |-
-| $19 || Venomous Dagger || Weapon
+| $19 || Venomous Dagger || Weapon || May poison
 |-
-| $1a || Fire Claw || Weapon
+| $1a || Fire Claw || Weapon || Fire damage
 |-
-| $1b || Ice Blade || Weapon
+| $1b || Ice Blade || Weapon || Ice damage
 |-
-| $1c || Sword of Miracles || Weapon
+| $1c || Sword of Miracles || Weapon || HP drain on hit
 |-
-| $1d || Staff of Antimagic || Weapon
+| $1d || Staff of Antimagic || Weapon || MP drain
 |-
-| $1e || Magma Staff || Weapon
+| $1e || Magma Staff || Weapon || Fire spell cast
 |-
-| $1f || Sword of Decimation || Weapon
+| $1f || Sword of Decimation || Weapon || High attack, cursed
 |-
-| $20 || Staff of Healing || Weapon
+| $20 || Staff of Healing || Weapon || Cast Heal
 |-
-| $21 || Zenithian Sword (2) || Weapon
+| $21 || Zenithian Sword (2) || Weapon || Final form
 |-
-| $22 || Staff of Jubilation || Weapon
+| $22 || Staff of Jubilation || Weapon || MP recovery
 |-
-| $23 || Sword of Malice || Weapon
+| $23 || Sword of Malice || Weapon || Highest attack, cursed
 |}
 
-===Special Weapons===
+=== Special Weapons ===
+
+Weapons with unique battle effects beyond basic damage:
 
 {| class="wikitable"
 |-
-! Weapon !! Effect !! Notes
+! ID !! Weapon !! Effect !! Mechanic
 |-
-| Metal Babble Sword || High damage to metal slimes || $0e
+| $0e || Metal Babble Sword || High damage to metal slimes || Ignores defense for metal type
 |-
-| Poison Needle || Instant kill chance || $0f
+| $0f || Poison Needle || Instant kill chance || 1/8 chance per hit
 |-
-| Staff of Thunder || Cast Zap in battle || $11
+| $11 || Staff of Thunder || Cast Zap in battle || Uses no MP
 |-
-| Dragon Killer || Bonus damage to dragons || $15
+| $15 || Dragon Killer || Bonus damage to dragons || 1.5x vs dragon type
 |-
-| Sword of Miracles || HP recovery on hit || $1c
+| $1c || Sword of Miracles || HP recovery on hit || Heals ~25% of damage dealt
 |-
-| Staff of Healing || Cast Heal in battle || $20
+| $20 || Staff of Healing || Cast Heal in battle || Uses no MP
 |}
 
-==Armor ($24-$3C)==
+== Armor ($24-$3c) ==
+
+Armor provides defense points that reduce physical damage taken. Higher-tier armor has character restrictions and may provide elemental resistance.
 
 {| class="wikitable sortable"
 |-
-! ID !! Name !! Type
+! ID !! Name !! Type !! Notes
 |-
-| $24 || Basic Clothes || Armor
+| $24 || Basic Clothes || Armor || Universal starter
 |-
-| $25 || Wayfarer's Clothes || Armor
+| $25 || Wayfarer's Clothes || Armor || Slight upgrade
 |-
-| $26 || Leather Armor || Armor
+| $26 || Leather Armor || Armor || Early game
 |-
-| $27 || Chain Mail || Armor
+| $27 || Chain Mail || Armor || Mid defense
 |-
-| $28 || Half Plate Armor || Armor
+| $28 || Half Plate Armor || Armor || Heavy class
 |-
-| $29 || Iron Apron || Armor
+| $29 || Iron Apron || Armor || Taloon specialty
 |-
-| $2a || Full Plate Armor || Armor
+| $2a || Full Plate Armor || Armor || High defense
 |-
-| $2b || Silk Robe || Armor
+| $2b || Silk Robe || Armor || Mage class
 |-
-| $2c || Dancer's Costume || Armor
+| $2c || Dancer's Costume || Armor || Mara specialty
 |-
-| $2d || Bronze Armor || Armor
+| $2d || Bronze Armor || Armor || Standard armor
 |-
-| $2e || Metal Babble Armor || Armor
+| $2e || Metal Babble Armor || Armor || Highest defense, rare
 |-
-| $2f || Fur Coat || Armor
+| $2f || Fur Coat || Armor || Cold resistance
 |-
-| $30 || Leather Dress || Armor
+| $30 || Leather Dress || Armor || Female-only
 |-
-| $31 || Pink Leotard || Armor
+| $31 || Pink Leotard || Armor || Female-only
 |-
-| $32 || Dragon Mail || Armor
+| $32 || Dragon Mail || Armor || Fire/ice resist
 |-
-| $33 || Cloak of Evasion || Armor
+| $33 || Cloak of Evasion || Armor || Dodge boost
 |-
-| $34 || Sacred Robe || Armor
+| $34 || Sacred Robe || Armor || MP regen while walking
 |-
-| $35 || Water Flying Clothes || Armor
+| $35 || Water Flying Clothes || Armor || Water resistance
 |-
-| $36 || Mysterious Bolero || Armor
+| $36 || Mysterious Bolero || Armor || Spell resistance
 |-
-| $37 || Zenithian Armor || Armor
+| $37 || Zenithian Armor || Armor || Hero-exclusive legendary
 |-
-| $38 || Swordedge Armor || Armor
+| $38 || Swordedge Armor || Armor || Reflects physical damage
 |-
-| $39 || Robe of Serenity || Armor
+| $39 || Robe of Serenity || Armor || Prevents confusion
 |-
-| $3a || Zombie Mail || Armor
+| $3a || Zombie Mail || Armor || Cursed, high defense
 |-
-| $3b || Dress of Radiance || Armor
+| $3b || Dress of Radiance || Armor || Female legendary
 |-
-| $3c || Demon Armor || Armor
+| $3c || Demon Armor || Armor || Cursed, very high defense
 |}
 
-===Special Armor===
+=== Special Armor ===
+
+Armor with unique effects beyond basic defense:
 
 {| class="wikitable"
 |-
-! Armor !! Effect !! Notes
+! ID !! Armor !! Effect !! Notes
 |-
-| Metal Babble Armor || Highest defense, rare || $2e
+| $2e || Metal Babble Armor || Highest defense in game || Extremely rare drop
 |-
-| Zenithian Armor || Hero-exclusive legendary || $37
+| $32 || Dragon Mail || Fire/ice resistance || Reduces elemental by 50%
 |-
-| Cloak of Evasion || Dodge chance boost || $33
+| $33 || Cloak of Evasion || Dodge chance boost || +12.5% evasion
 |-
-| Sacred Robe || MP regen walking || $34
+| $34 || Sacred Robe || MP regen walking || 1 MP per 4 steps
 |-
-| Swordedge Armor || Reflects damage || $38
+| $37 || Zenithian Armor || Hero-exclusive legendary || Required for Zenithia access
+|-
+| $38 || Swordedge Armor || Reflects damage || Returns 25% physical damage
 |}
 
-==Shields ($3D-$45)==
+== Shields ($3d-$45) ==
+
+Shields provide additional defense and are equipped in the off-hand. Shield defense stacks with armor defense. Some shields have elemental resistances.
 
 {| class="wikitable sortable"
 |-
-! ID !! Name !! Type
+! ID !! Name !! Notes
 |-
-| $3d || Leather Shield || Shield
+| $3d || Leather Shield || Basic shield
 |-
-| $3e || Scale Shield || Shield
+| $3e || Scale Shield || Early upgrade
 |-
-| $3f || Iron Shield || Shield
+| $3f || Iron Shield || Standard shield
 |-
-| $40 || Shield of Strength || Shield
+| $40 || Shield of Strength || HP regen walking
 |-
-| $41 || Mirror Shield || Shield
+| $41 || Mirror Shield || Reflects breath attacks
 |-
-| $42 || Aeolus' Shield || Shield
+| $42 || Aeolus' Shield || Wind protection
 |-
-| $43 || Dragon Shield || Shield
+| $43 || Dragon Shield || Fire/ice resistance
 |-
-| $44 || Zenithian Shield || Shield
+| $44 || Zenithian Shield || Hero-exclusive legendary
 |-
-| $45 || Metal Babble Shield || Shield
+| $45 || Metal Babble Shield || Highest defense
 |}
 
-===Special Shields===
+=== Special Shields ===
+
+Shields with unique properties:
 
 {| class="wikitable"
 |-
-! Shield !! Effect !! Notes
+! ID !! Shield !! Effect !! Mechanic
 |-
-| Shield of Strength || HP regen walking || $40
+| $40 || Shield of Strength || HP regen while walking || +1 HP per 4 steps
 |-
-| Mirror Shield || Reflect breath attacks || $41
+| $41 || Mirror Shield || Reflects breath attacks || 50% reflection chance
 |-
-| Aeolus' Shield || Protects against wind || $42
+| $42 || Aeolus' Shield || Wind protection || Reduces wind damage
 |-
-| Dragon Shield || Fire/ice resistance || $43
+| $43 || Dragon Shield || Fire/ice resistance || 50% elemental reduction
 |-
-| Zenithian Shield || Hero-exclusive legendary || $44
+| $44 || Zenithian Shield || Hero legendary || Required for Zenithia
 |}
 
-==Helmets ($46-$4F)==
+== Helmets ($46-$4f) ==
+
+Helmets protect the head and add to overall defense. Some helmets have special effects or character restrictions.
 
 {| class="wikitable sortable"
 |-
-! ID !! Name !! Type
+! ID !! Name !! Notes
 |-
-| $46 || Leather Hat || Helmet
+| $46 || Leather Hat || Basic headgear
 |-
-| $47 || Wooden Hat || Helmet
+| $47 || Wooden Hat || Slight upgrade
 |-
-| $48 || Iron Helmet || Helmet
+| $48 || Iron Helmet || Standard helmet
 |-
-| $49 || Iron Mask || Helmet
+| $49 || Iron Mask || High defense
 |-
-| $4a || Feather Hat || Helmet
+| $4a || Feather Hat || Light, mage-friendly
 |-
-| $4b || Zenithian Helm || Helmet
+| $4b || Zenithian Helm || Hero-exclusive legendary
 |-
-| $4c || Mask of Corruption || Helmet
+| $4c || Mask of Corruption || Cursed, transforms user
 |-
-| $4d || Golden Barrette || Helmet
+| $4d || Golden Barrette || Female-only accessory
 |-
-| $4e || Hat of Happiness || Helmet
+| $4e || Hat of Happiness || +25% EXP bonus
 |-
-| $4f || Metal Babble Helm || Helmet
+| $4f || Metal Babble Helm || Highest defense
 |}
 
-===Special Helmets===
+=== Special Helmets ===
+
+Helmets with unique effects:
 
 {| class="wikitable"
 |-
-! Helmet !! Effect !! Notes
+! ID !! Helmet !! Effect !! Mechanic
 |-
-| Zenithian Helm || Hero-exclusive legendary || $4b
+| $4b || Zenithian Helm || Hero legendary || Required for Zenithia
 |-
-| Mask of Corruption || Cursed, transforms || $4c
+| $4c || Mask of Corruption || Transform on equip || Cursed, changes appearance
 |-
-| Hat of Happiness || EXP bonus || $4e
+| $4e || Hat of Happiness || EXP bonus || +25% experience gain
 |-
-| Metal Babble Helm || Highest defense || $4f
+| $4f || Metal Babble Helm || Highest helm defense || Extremely rare
 |}
 
-==Accessories ($50)==
+== Accessories ($50) ==
+
+Accessories provide bonuses beyond defense. They occupy a separate equipment slot.
 
 {| class="wikitable"
-|-
-! ID !! Name !! Type
-|-
-| $50 || Meteorite Armband || Accessory
-|}
-
-==Consumables ($53-$5B)==
-
-{| class="wikitable sortable"
 |-
 ! ID !! Name !! Effect
 |-
-| $53 || Medical Herb || Restores ~30 HP
-|-
-| $54 || Antidote Herb || Cures poison
-|-
-| $55 || Fairy Water || Repels weak monsters
-|-
-| $56 || Wing of Wyvern || Return to last town
-|-
-| $57 || Leaf of World Tree || Revives one ally
-|-
-| $58 || Full Moon Herb || Cures confusion
-|-
-| $5a || Magic Potion || Restores MP
-|-
-| $5b || Dew of World Tree || Full party heal
-|-
-| $74 || Lunch || Restores HP
+| $50 || Meteorite Armband || Doubles agility
 |}
 
-==Stat Seeds ($61-$65)==
+== Consumables ($53-$5b) ==
 
-Permanent stat boosters:
+Single-use items that restore HP/MP or provide temporary effects. Data at Bank 4 $8010 contains item properties.
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Effect !! Notes
+|-
+| $53 || Medical Herb || Restores ~30 HP || Most common healing
+|-
+| $54 || Antidote Herb || Cures poison || Status cure
+|-
+| $55 || Fairy Water || Repels weak monsters || Encounter reduction
+|-
+| $56 || Wing of Wyvern || Return to last town || Instant travel
+|-
+| $57 || Leaf of World Tree || Revives one ally || 100% HP on revival
+|-
+| $58 || Full Moon Herb || Cures confusion || Status cure
+|-
+| $59 || Wizard's Ring || MP recovery || Limited charges (see below)
+|-
+| $5a || Magic Potion || Restores ~30 MP || Rare item
+|-
+| $5b || Dew of World Tree || Full party heal || Extremely rare
+|-
+| $74 || Lunch || Restores HP || Chapter-specific
+|}
+
+== Stat Seeds ($61-$65) ==
+
+Permanent stat boosters consumed from inventory. Each seed provides a random bonus within a fixed range. Stat gains are added to the character's base stats.
+
+=== Stat Seed Data ===
+
+Stat seed effect ranges are stored at Bank 4:
 
 {| class="wikitable"
 |-
-! ID !! Name !! Stat
+! ID !! Name !! Stat Affected !! Range !! Notes
 |-
-| $61 || Strength Seed || Strength +1-3
+| $61 || Strength Seed || Strength || +1-3 || Attack power
 |-
-| $62 || Agility Seed || Agility +1-3
+| $62 || Agility Seed || Agility || +1-3 || Turn order, dodge
 |-
-| $63 || Luck Seed || Luck +1-3
+| $63 || Luck Seed || Luck || +1-3 || Critical, dodge
 |-
-| $64 || Lifeforce Nuts || Max HP +3-6
+| $64 || Lifeforce Nuts || Max HP || +3-6 || Health pool
 |-
-| $65 || Mystic Acorns || Max MP +3-6
+| $65 || Mystic Acorns || Max MP || +3-6 || Magic pool
 |}
 
-==Key Items==
+== Key Items ==
 
-===Story Items===
+Key items cannot be discarded and are required for story progression. They have unique IDs and are tracked in the key item inventory separate from consumables.
+
+=== Story Items ===
 
 {| class="wikitable"
 |-
 ! ID !! Name !! Chapter !! Purpose
 |-
-| $52 || Baron's Horn || 1 || Summons monsters for battle
+| $52 || Baron's Horn || 1 || Summons monsters for battle training
 |-
-| $5c || Flute of Uncovering || 2 || Reveals hidden locations
+| $5c || Flute of Uncovering || 2 || Reveals hidden locations in caves
 |-
-| $5d || Sphere of Silence || 5 || Quiets Necrosaro
+| $5d || Sphere of Silence || 5 || Required to approach Necrosaro
 |-
-| $5e || Scent Pouch || 3 || Taloon's merchandise
+| $5e || Scent Pouch || 3 || Taloon's sellable merchandise
 |-
-| $5f || Sandglass of Regression || 5 || Time manipulation
+| $5f || Sandglass of Regression || 5 || Time manipulation puzzle item
 |-
-| $60 || Sage's Stone || 5 || Party heal item
+| $60 || Sage's Stone || 5 || Unlimited party heal in battle
 |-
-| $66 || Mirror of Ra || 5 || Reveals true forms
+| $66 || Mirror of Ra || 5 || Reveals true forms of disguised beings
 |-
-| $67 || Lamp of Darkness || 5 || Creates darkness
+| $67 || Lamp of Darkness || 5 || Creates darkness for puzzle solving
 |-
-| $68 || Staff of Transform || 5 || Monster transformation
+| $68 || Staff of Transform || 5 || Transforms party into monsters
 |-
-| $6a || Stone of Drought || 5 || Drains water
+| $6a || Stone of Drought || 5 || Drains water to reveal paths
 |-
-| $6b || Iron Safe || 3 || Protects gold
+| $6b || Iron Safe || 3 || Protects gold from monster theft
 |-
-| $6c || Flying Shoes || 5 || Teleportation
+| $6c || Flying Shoes || 5 || Instant teleportation anywhere
 |-
-| $6d || Silver Statuette || 5 || Quest item
+| $6d || Silver Statuette || 5 || Trade quest item
 |-
-| $6e || Treasure Map || 3 || Shows hidden treasure
+| $6e || Treasure Map || 3 || Reveals Taloon's hidden treasures
 |-
-| $6f || Symbol of Faith || 5 || Holy symbol
+| $6f || Symbol of Faith || 5 || Holy symbol for temple access
 |-
-| $70 || Gunpowder Jar || 5 || Explosive
+| $70 || Gunpowder Jar || 5 || Explosive for clearing obstacles
 |-
-| $75 || Birdsong Nectar || 5 || Cures silence
+| $75 || Birdsong Nectar || 5 || Cures silence status
 |-
-| $76 || Golden Bracelet || 2 || Quest item
+| $76 || Golden Bracelet || 2 || Alena quest item
 |-
-| $77 || Prince's Letter || 2 || Quest item
+| $77 || Prince's Letter || 2 || Diplomatic quest item
 |-
-| $78 || Royal Scroll || 5 || Quest item
+| $78 || Royal Scroll || 5 || Authority document
 |-
-| $79 || Gum Pod || 3 || Quest item
+| $79 || Gum Pod || 3 || Crafting ingredient
 |-
-| $7a || Boarding Pass || 3 || Ship travel
+| $7a || Boarding Pass || 3 || Enables ship travel
 |-
 | $7b || Padequia Root || 5 || Medicine ingredient
 |-
-| $7c || Fire of Serenity || 5 || Quest item
+| $7c || Fire of Serenity || 5 || Calms aggressive creatures
 |-
-| $7d || Gas Canister || 5 || Balloon fuel
+| $7d || Gas Canister || 5 || Hot air balloon fuel
 |-
-| $7e || Padequia Seed || 5 || Medicine ingredient
+| $7e || Padequia Seed || 5 || Grows into Padequia Root
 |}
 
-===Keys===
+=== Keys ===
+
+Keys open locked doors throughout the world. Each key type opens progressively more secure locks.
 
 {| class="wikitable"
 |-
-! ID !! Name !! Opens
+! ID !! Name !! Opens !! Acquisition
 |-
-| $71 || Thief's Key || Basic locked doors
+| $71 || Thief's Key || Basic locked doors || Found early in each chapter
 |-
-| $72 || Magic Key || Magic locked doors
+| $72 || Magic Key || Magic locked doors || Mid-game reward
 |-
-| $73 || Final Key || All doors
+| $73 || Final Key || All doors || Late-game reward
 |}
 
-==Collectibles==
+== Collectibles ==
 
 {| class="wikitable"
 |-
-! ID !! Name !! Purpose
+! ID !! Name !! Purpose !! Notes
 |-
-| $69 || Small Medal || Trade for prizes
+| $69 || Small Medal || Trade for prizes || 32 total in game
 |}
 
-==Wizard's Ring==
+== Wizard's Ring ==
+
+The Wizard's Ring is a unique item that provides limited MP recovery.
 
 {| class="wikitable"
 |-
-! ID !! Name !! Effect
+! ID !! Name !! Effect !! Mechanic
 |-
-| $59 || Wizard's Ring || MP recovery (limited uses)
+| $59 || Wizard's Ring || MP recovery || Restores ~20 MP, breaks after ~5 uses
 |}
 
-==Zenithian Equipment==
+== Zenithian Equipment ==
 
-The legendary equipment set required to access Zenithia:
+The legendary equipment set required to access Zenithia. Only the Hero can equip these items, and all four pieces are required to ascend to Zenithia castle.
+
+=== Set Pieces ===
 
 {| class="wikitable"
 |-
-! ID !! Name !! Slot !! Location
+! ID !! Name !! Slot !! Location !! Notes
 |-
-| $14 || Zenithian Sword (1) || Weapon || Cascading Falls Cave
+| $14 || Zenithian Sword || Weapon || Cascading Falls Cave || Initial form
 |-
-| $21 || Zenithian Sword (2) || Weapon || Final form
+| $21 || Zenithian Sword || Weapon || Zenithia || Powered-up form
 |-
-| $37 || Zenithian Armor || Body || Stancia treasury
+| $37 || Zenithian Armor || Body || Stancia treasury || -
 |-
-| $44 || Zenithian Shield || Shield || Mintos cave
+| $44 || Zenithian Shield || Off-hand || Gardenbur || -
 |-
-| $4b || Zenithian Helm || Head || Aktemto Mine
+| $4b || Zenithian Helm || Head || Riverton well || -
 |}
 
-==Memory Layout==
+== Memory Layout ==
 
-See [[Dragon Warrior IV:RAM_Map|RAM Map]] for item memory locations.
+See [[Dragon Warrior IV:RAM_Map|RAM Map]] for complete item memory locations.
 
-===Inventory Slots===
-* Each character has 8 item slots
-* Item ID stored as single byte
-* Bit 7 ($80) indicates equipped status
-* $7f = empty slot
+=== Inventory Slots ===
 
-==See Also==
+Each character has 8 item slots stored sequentially in RAM:
+
+{| class="wikitable"
+|-
+! Address !! Description
+|-
+| $6100-$6107 || Hero inventory (Chapter 5)
+|-
+| $6108-$610f || Party member 2 inventory
+|-
+| ... || (continues for each party member)
+|}
+
+'''Item byte format:'''
+* Bits 0-6: Item ID ($00-$7e)
+* Bit 7: Equipped flag ($80 = equipped)
+* $7f/$ff = empty slot
+
+== Data Structure Summary ==
+
+{| class="wikitable"
+|-
+! Data Type !! ROM Location !! Size !! Notes
+|-
+| Item names || $28010 (Bank 20) || Variable || Text table, encoded
+|-
+| Item prices || $08010 (Bank 4) || 2 bytes each || Little-endian gold value
+|-
+| Weapon attack || $0a010 (Bank 5) || 1 byte each || Attack power value
+|-
+| Armor defense || $0a060 (Bank 5) || 1 byte each || Defense value
+|-
+| Equipment flags || $0a0b0 (Bank 5) || 1 byte each || Who can equip
+|}
+
+== See Also ==
 
 * [[Dragon Warrior IV:Battle_System|Battle System]] - Item use in combat
 * [[Dragon Warrior IV:Spells|Spells]] - Magic alternatives
+* [[Dragon Warrior IV:ROM_Map|ROM Map]] - Data locations
 * [[Dragon Warrior IV:RAM_Map|RAM Map]] - Memory locations
 * [[Dragon Warrior IV:Enemies|Enemies]] - Monster drops
 
-==Source==
+== Source ==
 
 Item data extracted from:
 * [https://github.com/TheAnsarya/dragon-warrior-4-info/blob/main/data/game_data.json DW4 game_data.json]
+* Disassembly analysis of Bank 4, 5, and 20
 
 [[Category:Dragon Warrior IV]]
 [[Category:Items]]

@@ -1,41 +1,90 @@
 {{DISPLAYTITLE:Dragon Warrior IV - Characters}}
+{{Back}}
 
-This page documents the playable characters and companions in Dragon Warrior IV for the NES.
+This page documents the playable characters and companions in Dragon Warrior IV for the NES, including their stats, abilities, and data structures.
 
-==Party System Overview==
+== ROM Data Locations ==
 
-Dragon Warrior IV uses a unique chapter-based system where players control different characters throughout the game. In Chapter 5, all characters unite under the Hero's leadership.
+Character-related data is distributed across multiple banks:
 
-===Character IDs===
+{| class="wikitable"
+|-
+! Data Type !! ROM Address !! Bank !! Size !! Description
+|-
+| Initial stats || $1c010 || 14 || 16 bytes each || Base stats per character
+|-
+| Stat growth || $1c090 || 14 || Variable || Level-up stat increases
+|-
+| Spell learning || $1e010 || 15 || Variable || Level:Spell pairs
+|-
+| Equipment flags || $0a0b0 || 5 || 1 byte each || Who can equip what
+|-
+| AI behavior || $4f600 || 19 || Variable || Tactics decision tables
+|}
+
+== Party System Overview ==
+
+Dragon Warrior IV uses a unique chapter-based system where players control different characters throughout the game. Each chapter focuses on different party members with their own storylines.
+
+=== Chapter Structure ===
+
+{| class="wikitable"
+|-
+! Chapter !! Playable Characters !! Notes
+|-
+| 1 || Ragnar || Solo quest with temporary helper
+|-
+| 2 || Alena, Cristo, Brey || Three-person party
+|-
+| 3 || Taloon || Solo merchant adventure
+|-
+| 4 || Mara, Nara || Sister duo quest
+|-
+| 5 || Hero + All others || Full party assembled
+|}
+
+=== Character IDs ===
+
+Character IDs are used throughout ROM and RAM to identify party members:
 
 {| class="wikitable"
 |-
 ! Range !! Type !! Description
 |-
-| $00-$07 || Playable || Main party members
+| $00-$07 || Playable || Main party members (see individual entries)
 |-
-| $C5-$CC || Companions || Temporary story companions
+| $c5-$cc || Companions || Temporary story companions
 |}
 
-==Main Party Members==
+== Main Party Members ==
 
-===Hero ($00)===
+=== Hero ($00) ===
+
+The player-controlled protagonist who unites all characters in Chapter 5.
 
 {| class="wikitable"
 |-
-! Property !! Value
+! Property !! Value !! Notes
 |-
-| ID || $00
+| ID || $00 || First party slot
 |-
-| Name || Hero (player-named)
+| Name || Hero (player-named) || Max 4 characters
 |-
-| Class || Chosen One
+| Class || Chosen One || Balanced all-around
 |-
-| Playable || Chapter 5
+| Playable || Chapter 5 || Story protagonist
 |-
-| Starting Level || 1
+| Starting Level || 1 || At chapter start
 |-
-| Equipment Type || Swords, Heavy Armor
+| Equipment Type || Swords, Heavy Armor || Can use Zenithian set
+|}
+
+'''Base Stats (Level 1):'''
+{| class="wikitable"
+|-
+! HP !! MP !! Str !! Agi !! Vit !! Int !! Luck
+|-
+| 25 || 5 || 8 || 6 || 8 || 6 || 5
 |}
 
 '''Stats Growth:''' Balanced all-around with good HP, Attack, and Magic.
@@ -43,71 +92,101 @@ Dragon Warrior IV uses a unique chapter-based system where players control diffe
 '''Abilities:'''
 * Access to Heal, Healall, Healus, Healusall spells
 * Attack magic including Blaze, Blazemore, Zap, Lightning
-* Can equip the Zenithian equipment set
+* Can equip the Zenithian equipment set (required for story)
 
-===Ragnar McRyan ($06)===
+=== Ragnar McRyan ($06) ===
+
+Royal soldier from Burland who investigates missing children.
 
 {| class="wikitable"
 |-
-! Property !! Value
+! Property !! Value !! Notes
 |-
-| ID || $06
+| ID || $06 || Party slot 7
 |-
-| Name || Ragnar
+| Name || Ragnar || Fixed name
 |-
-| Class || Royal Soldier
+| Class || Royal Soldier || Pure physical fighter
 |-
-| Playable || Chapter 1, Chapter 5
+| Playable || Chapter 1, Chapter 5 || First played character
 |-
-| Chapter 1 Location || Burland Castle
+| Chapter 1 Location || Burland Castle || Starts at level 1
 |-
-| Equipment Type || Swords, Heavy Armor, Shields
+| Equipment Type || Swords, Heavy Armor, Shields || Tank build
+|}
+
+'''Base Stats (Level 1):'''
+{| class="wikitable"
+|-
+! HP !! MP !! Str !! Agi !! Vit !! Int !! Luck
+|-
+| 30 || 0 || 10 || 4 || 10 || 3 || 4
 |}
 
 '''Stats Growth:''' Highest HP and Defense. No magic abilities.
 
 '''Chapter 1 Story:''' Investigates the disappearance of children from Burland.
 
-===Alena ($07)===
+=== Alena ($07) ===
+
+Tomboyish princess who seeks adventure beyond her sheltered life.
 
 {| class="wikitable"
 |-
-! Property !! Value
+! Property !! Value !! Notes
 |-
-| ID || $07
+| ID || $07 || Party slot 8
 |-
-| Name || Alena
+| Name || Alena || Fixed name
 |-
-| Class || Princess
+| Class || Princess || Critical hit specialist
 |-
-| Playable || Chapter 2, Chapter 5
+| Playable || Chapter 2, Chapter 5 || Tournament champion
 |-
-| Chapter 2 Location || Santeem Castle
+| Chapter 2 Location || Santeem Castle || Escapes to explore
 |-
-| Equipment Type || Claws, Light Armor
+| Equipment Type || Claws, Light Armor || Speed over defense
+|}
+
+'''Base Stats (Level 1):'''
+{| class="wikitable"
+|-
+! HP !! MP !! Str !! Agi !! Vit !! Int !! Luck
+|-
+| 20 || 0 || 7 || 10 || 5 || 4 || 8
 |}
 
 '''Stats Growth:''' Highest Attack and Agility. Critical hit specialist. No magic.
 
 '''Chapter 2 Story:''' Escapes castle life seeking adventure with Cristo and Brey.
 
-===Cristo ($01)===
+=== Cristo ($01) ===
+
+Loyal chancellor and priest who follows Princess Alena.
 
 {| class="wikitable"
 |-
-! Property !! Value
+! Property !! Value !! Notes
 |-
-| ID || $01
+| ID || $01 || Party slot 2
 |-
-| Name || Cristo
+| Name || Cristo || Fixed name
 |-
-| Class || Priest/Chancellor
+| Class || Priest/Chancellor || Primary healer
 |-
-| Playable || Chapter 2, Chapter 5
+| Playable || Chapter 2, Chapter 5 || Alena's advisor
 |-
-| Chapter 2 Location || Santeem Castle
+| Chapter 2 Location || Santeem Castle || Starts with party
 |-
-| Equipment Type || Staves, Robes
+| Equipment Type || Staves, Robes || Light equipment
+|}
+
+'''Base Stats (Level 1):'''
+{| class="wikitable"
+|-
+! HP !! MP !! Str !! Agi !! Vit !! Int !! Luck
+|-
+| 18 || 8 || 5 || 5 || 6 || 8 || 6
 |}
 
 '''Stats Growth:''' High MP for healing. Moderate defensive stats.
@@ -118,23 +197,33 @@ Dragon Warrior IV uses a unique chapter-based system where players control diffe
 * Upper, Increase
 * Beat, Defeat
 
-===Brey ($04)===
+=== Brey ($04) ===
+
+Elderly wizard and tutor to the Santeem royal family.
 
 {| class="wikitable"
 |-
-! Property !! Value
+! Property !! Value !! Notes
 |-
-| ID || $04
+| ID || $04 || Party slot 5
 |-
-| Name || Brey
+| Name || Brey || Fixed name
 |-
-| Class || Wizard/Tutor
+| Class || Wizard/Tutor || Offensive mage
 |-
-| Playable || Chapter 2, Chapter 5
+| Playable || Chapter 2, Chapter 5 || Ice specialist
 |-
-| Chapter 2 Location || Santeem Castle
+| Chapter 2 Location || Santeem Castle || Starts with party
 |-
-| Equipment Type || Staves, Robes
+| Equipment Type || Staves, Robes || Very light
+|}
+
+'''Base Stats (Level 1):'''
+{| class="wikitable"
+|-
+! HP !! MP !! Str !! Agi !! Vit !! Int !! Luck
+|-
+| 15 || 12 || 3 || 7 || 3 || 10 || 5
 |}
 
 '''Stats Growth:''' Highest MP. Lowest HP and Defense.
@@ -145,51 +234,73 @@ Dragon Warrior IV uses a unique chapter-based system where players control diffe
 * Surround, Chaos
 * Bounce
 
-===Taloon ($05)===
+=== Taloon ($05) ===
+
+Arms merchant who dreams of becoming an adventurer.
 
 {| class="wikitable"
 |-
-! Property !! Value
+! Property !! Value !! Notes
 |-
-| ID || $05
+| ID || $05 || Party slot 6
 |-
-| Name || Taloon
+| Name || Taloon || Fixed name
 |-
-| Class || Arms Merchant
+| Class || Arms Merchant || Special abilities
 |-
-| Playable || Chapter 3, Chapter 5
+| Playable || Chapter 3, Chapter 5 || Merchant story
 |-
-| Chapter 3 Location || Lakanaba
+| Chapter 3 Location || Lakanaba || Weapon shop
 |-
-| Equipment Type || Swords, Medium Armor
+| Equipment Type || Swords, Medium Armor || Balanced gear
+|}
+
+'''Base Stats (Level 1):'''
+{| class="wikitable"
+|-
+! HP !! MP !! Str !! Agi !! Vit !! Int !! Luck
+|-
+| 22 || 0 || 7 || 5 || 7 || 5 || 7
 |}
 
 '''Stats Growth:''' Balanced fighter. No magic abilities.
 
-'''Special Abilities:'''
-* Random battle actions (trip, stumble, call for help)
+'''Special Abilities (AI-controlled in battle):'''
+* Random trip/stumble (wastes turn)
+* Call for backup (may summon allies)
+* Steal item from enemy
 * Better item appraisal
 * Shop discounts in Chapter 3
 
 '''Chapter 3 Story:''' Builds a merchant empire to fund his dream of adventure.
 
-===Mara ($03)===
+=== Mara ($03) ===
+
+Fiery dancer and sister of Nara, seeking vengeance.
 
 {| class="wikitable"
 |-
-! Property !! Value
+! Property !! Value !! Notes
 |-
-| ID || $03
+| ID || $03 || Party slot 4
 |-
-| Name || Mara
+| Name || Mara || Fixed name
 |-
-| Class || Dancer
+| Class || Dancer || Attack mage
 |-
-| Playable || Chapter 4, Chapter 5
+| Playable || Chapter 4, Chapter 5 || Fire specialist
 |-
-| Chapter 4 Location || Monbaraba
+| Chapter 4 Location || Monbaraba || Dancer troupe
 |-
-| Equipment Type || Whips, Fans, Light Armor
+| Equipment Type || Whips, Fans, Light Armor || Light gear
+|}
+
+'''Base Stats (Level 1):'''
+{| class="wikitable"
+|-
+! HP !! MP !! Str !! Agi !! Vit !! Int !! Luck
+|-
+| 16 || 10 || 4 || 9 || 4 || 9 || 6
 |}
 
 '''Stats Growth:''' Good Agility and MP. Group-hitting attack spells.
@@ -199,23 +310,33 @@ Dragon Warrior IV uses a unique chapter-based system where players control diffe
 * Bang, Boom, Explodet
 * Firebane, Firevolt
 
-===Nara ($02)===
+=== Nara ($02) ===
+
+Fortune teller and sister of Mara, more reserved and mystical.
 
 {| class="wikitable"
 |-
-! Property !! Value
+! Property !! Value !! Notes
 |-
-| ID || $02
+| ID || $02 || Party slot 3
 |-
-| Name || Nara
+| Name || Nara || Fixed name
 |-
-| Class || Fortune Teller
+| Class || Fortune Teller || Healer/support
 |-
-| Playable || Chapter 4, Chapter 5
+| Playable || Chapter 4, Chapter 5 || Support role
 |-
-| Chapter 4 Location || Monbaraba
+| Chapter 4 Location || Monbaraba || With Mara
 |-
-| Equipment Type || Tarot Cards, Robes
+| Equipment Type || Tarot Cards, Robes || Light gear
+|}
+
+'''Base Stats (Level 1):'''
+{| class="wikitable"
+|-
+! HP !! MP !! Str !! Agi !! Vit !! Int !! Luck
+|-
+| 17 || 9 || 4 || 6 || 5 || 8 || 7
 |}
 
 '''Stats Growth:''' Healing focus with some offensive magic.
@@ -226,223 +347,312 @@ Dragon Warrior IV uses a unique chapter-based system where players control diffe
 * Sleep, Stopspell
 * Outside, Repel
 
-'''Chapter 4 Story:''' Sisters Mara and Nara seek revenge for their father's murder.
+'''Chapter 4 Story:''' Sisters Mara and Nara seek revenge for their father's murder by Balzack.
 
-==Extra Companions==
+== Extra Companions ==
 
-Temporary party members that join during the story:
+Temporary party members that join during specific story segments. These characters use IDs in the $c5-$cc range and have limited customization.
 
-===Healie ($C5)===
+=== Healie ($c5) ===
 
-{| class="wikitable"
-|-
-! Property !! Value
-|-
-| ID || $C5
-|-
-| Name || Healie
-|-
-| Class || Kind Healer (Healslime)
-|-
-| Chapter || 1
-|-
-| Location || Well of Souls
-|}
-
-'''Role:''' Assists Ragnar with healing magic. Dreams of becoming human.
-
-===Orin ($C6)===
+A friendly Healslime with dreams of becoming human.
 
 {| class="wikitable"
 |-
-! Property !! Value
+! Property !! Value !! Notes
 |-
-| ID || $C6
+| ID || $c5 || First companion ID
 |-
-| Name || Orin
+| Name || Healie || Monster ally
 |-
-| Class || Alchemist
+| Class || Kind Healer (Healslime) || Healing support
 |-
-| Chapter || 4
+| Chapter || 1 || Helps Ragnar
 |-
-| Location || Keeleon Castle area
+| Location || Well of Souls || Rescued from dungeon
 |}
 
-'''Role:''' Childhood friend of Edgar. Helps Mara and Nara in their quest.
+'''Role:''' Assists Ragnar with healing magic. Dreams of becoming human. Returns in Chapter 5 briefly.
 
-===Laurent ($C7)===
+=== Orin ($c6) ===
+
+Alchemist and friend of the murdered Edgar.
 
 {| class="wikitable"
 |-
-! Property !! Value
+! Property !! Value !! Notes
 |-
-| ID || $C7
+| ID || $c6 || Companion
 |-
-| Name || Laurent
+| Name || Orin || Human ally
 |-
-| Class || Troubadour
+| Class || Alchemist || Physical/support
 |-
-| Chapter || 3
+| Chapter || 4 || Mara/Nara story
 |-
-| Location || Endor
+| Location || Keeleon Castle area || Joins for vengeance
 |}
 
-'''Role:''' Musician who assists Taloon during his merchant adventures.
+'''Role:''' Childhood friend of Edgar. Helps Mara and Nara in their quest against Balzack.
 
-===Strom ($C8)===
+=== Laurent ($c7) ===
+
+Troubadour and musician who aids Taloon.
 
 {| class="wikitable"
 |-
-! Property !! Value
+! Property !! Value !! Notes
 |-
-| ID || $C8
+| ID || $c7 || Companion
 |-
-| Name || Strom
+| Name || Laurent || Bard ally
 |-
-| Class || Guardsman
+| Class || Troubadour || Support
 |-
-| Chapter || 3
+| Chapter || 3 || Merchant chapter
 |-
-| Location || Bonmalmo
+| Location || Endor || Casino city
 |}
 
-'''Role:''' Soldier who helps Taloon escort Princess Flora.
+'''Role:''' Musician who assists Taloon during his merchant adventures. Provides battlefield support.
 
-===Hector ($C9)===
+=== Strom ($c8) ===
+
+Dutiful guard who helps escort royalty.
 
 {| class="wikitable"
 |-
-! Property !! Value
+! Property !! Value !! Notes
 |-
-| ID || $C9
+| ID || $c8 || Companion
 |-
-| Name || Hector
+| Name || Strom || Soldier ally
 |-
-| Class || Young Man
+| Class || Guardsman || Physical fighter
 |-
-| Chapter || 5
+| Chapter || 3 || Escort quest
 |-
-| Location || Riverton
+| Location || Bonmalmo || Border town
 |}
 
-'''Role:''' Young man seeking to prove himself as a hero.
+'''Role:''' Soldier who helps Taloon escort Princess Flora safely.
 
-===Panon ($CA)===
+=== Hector ($c9) ===
+
+Young man seeking to prove his heroism.
 
 {| class="wikitable"
 |-
-! Property !! Value
+! Property !! Value !! Notes
 |-
-| ID || $CA
+| ID || $c9 || Companion
 |-
-| Name || Panon
+| Name || Hector || Human ally
 |-
-| Class || Jester
+| Class || Young Man || Physical fighter
 |-
-| Chapter || 5
+| Chapter || 5 || Brief appearance
 |-
-| Location || Monbaraba
+| Location || Riverton || Town quest
 |}
 
-'''Role:''' Comedian who joins briefly during the party's quest.
+'''Role:''' Young man seeking to prove himself as a hero. Joins party temporarily.
 
-===Lucia ($CB)===
+=== Panon ($ca) ===
+
+Comedian and entertainer with surprising combat skills.
 
 {| class="wikitable"
 |-
-! Property !! Value
+! Property !! Value !! Notes
 |-
-| ID || $CB
+| ID || $ca || Companion
 |-
-| Name || Lucia
+| Name || Panon || Jester ally
 |-
-| Class || Zenithian
+| Class || Jester || Physical/random
 |-
-| Chapter || 5
+| Chapter || 5 || Brief appearance
 |-
-| Location || Zenithia
+| Location || Monbaraba || Entertainment district
 |}
 
-'''Role:''' Zenithian guide who helps the party navigate the sky castle.
+'''Role:''' Comedian who joins briefly during the party's quest. Unpredictable in battle.
 
-===Doran ($CC)===
+=== Lucia ($cb) ===
+
+Guide from the sky castle Zenithia.
 
 {| class="wikitable"
 |-
-! Property !! Value
+! Property !! Value !! Notes
 |-
-| ID || $CC
+| ID || $cb || Companion
 |-
-| Name || Doran
+| Name || Lucia || Zenithian ally
 |-
-| Class || Baby Dragon
+| Class || Zenithian || Support/magic
 |-
-| Chapter || 5
+| Chapter || 5 || Zenithia arc
 |-
-| Location || Gardenbur area
+| Location || Zenithia || Sky castle
 |}
 
-'''Role:''' Young dragon who joins the party temporarily. Very powerful fighter.
+'''Role:''' Zenithian guide who helps the party navigate the sky castle. Provides crucial story information.
 
-==Character Stats Memory==
+=== Doran ($cc) ===
 
-See [[Dragon Warrior IV:RAM_Map|RAM Map]] for detailed memory layout.
-
-===Party Slot Structure===
-
-Each character has a data block in RAM:
+Baby dragon with tremendous power.
 
 {| class="wikitable"
 |-
-! Offset !! Size !! Description
+! Property !! Value !! Notes
 |-
-| +$00 || 1 || Character ID
+| ID || $cc || Last companion ID
 |-
-| +$01 || 1 || Current HP (low byte)
+| Name || Doran || Dragon ally
 |-
-| +$02 || 1 || Current HP (high byte)
+| Class || Baby Dragon || Powerful fighter
 |-
-| +$03 || 1 || Current MP
+| Chapter || 5 || Gardenbur area
 |-
-| +$04 || 1 || Strength
-|-
-| +$05 || 1 || Agility
-|-
-| +$06 || 1 || Vitality
-|-
-| +$07 || 1 || Intelligence
-|-
-| +$08 || 1 || Luck
-|-
-| +$09 || 3 || Experience (24-bit)
-|-
-| +$0C || 1 || Level
+| Location || Gardenbur area || Dragon nest
 |}
 
-==AI Tactics Behavior==
+'''Role:''' Young dragon who joins the party temporarily. Very powerful physical fighter despite being a baby.
 
-In Chapter 5, non-Hero characters are AI-controlled. See [[Dragon Warrior IV:Battle_System|Battle System]] for tactics details.
+== Character Stats Memory ==
+
+Character data is stored in RAM with a consistent structure. See [[Dragon Warrior IV:RAM_Map|RAM Map]] for complete memory layout.
+
+=== RAM Addresses ===
+
+{| class="wikitable"
+|-
+! Address Range !! Description
+|-
+| $6000-$600f || Hero stats block
+|-
+| $6010-$601f || Cristo stats block
+|-
+| $6020-$602f || Nara stats block
+|-
+| $6030-$603f || Mara stats block
+|-
+| $6040-$604f || Brey stats block
+|-
+| $6050-$605f || Taloon stats block
+|-
+| $6060-$606f || Ragnar stats block
+|-
+| $6070-$607f || Alena stats block
+|}
+
+=== Party Slot Structure ===
+
+Each character has a 16-byte data block in RAM with the following layout:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description !! Notes
+|-
+| +$00 || 1 || Character ID || $00-$07 for main, $c5-$cc for companions
+|-
+| +$01 || 2 || Current HP || Little-endian
+|-
+| +$03 || 1 || Current MP || Single byte (max 255)
+|-
+| +$04 || 1 || Strength || Base + equipment bonus
+|-
+| +$05 || 1 || Agility || Affects turn order
+|-
+| +$06 || 1 || Vitality || Defense calculation
+|-
+| +$07 || 1 || Intelligence || Spell power
+|-
+| +$08 || 1 || Luck || Critical/dodge
+|-
+| +$09 || 3 || Experience || 24-bit, little-endian
+|-
+| +$0c || 1 || Level || 1-99 range
+|-
+| +$0d || 1 || Status flags || Poison, sleep, etc.
+|-
+| +$0e || 2 || Max HP || Little-endian
+|}
+
+== AI Tactics Behavior ==
+
+In Chapter 5, non-Hero characters are AI-controlled based on tactics settings. The AI decision tables are stored at Bank 19 ($4f600).
+
+=== Tactics Commands ===
+
+{| class="wikitable"
+|-
+! ID !! Tactic !! Description
+|-
+| $00 || Normal || Balanced offense/defense
+|-
+| $01 || Offensive || Focus on damage dealing
+|-
+| $02 || Defensive || Prioritize survival
+|-
+| $03 || Use no MP || Physical attacks only
+|-
+| $04 || Save MP || Minimal spell usage
+|-
+| $05 || Fight || Direct attack orders (limited)
+|}
+
+=== Character AI Tendencies ===
 
 {| class="wikitable"
 |-
 ! Character !! Default Behavior !! Notes
 |-
-| Ragnar || Physical attacks || Never uses items
+| Ragnar || Physical attacks || Never uses items, high aggro
 |-
-| Alena || Physical attacks, critical focus || High crit rate
+| Alena || Physical attacks, critical focus || High crit rate (~12.5% base)
 |-
-| Cristo || Healing priority || Sometimes uses Beat/Defeat
+| Cristo || Healing priority || Sometimes uses Beat/Defeat inappropriately
 |-
 | Brey || Offensive magic || May waste MP on weak enemies
 |-
-| Taloon || Unpredictable || Random special actions
+| Taloon || Unpredictable || Random special actions 15% chance
 |-
-| Mara || Group attack magic || Efficient MP use
+| Mara || Group attack magic || Efficient MP use, targets groups
 |-
-| Nara || Mixed healing/offense || Balanced approach
+| Nara || Mixed healing/offense || Balanced approach, good AI
 |}
 
-==Equipment Compatibility==
+== Equipment Compatibility ==
+
+Equipment flags are stored at Bank 5 $0a0b0. Each equipment item has a 1-byte flag indicating which characters can equip it.
+
+=== Equipment Flag Bits ===
+
+{| class="wikitable"
+|-
+! Bit !! Character !! Notes
+|-
+| 0 || Hero || $01
+|-
+| 1 || Cristo || $02
+|-
+| 2 || Nara || $04
+|-
+| 3 || Mara || $08
+|-
+| 4 || Brey || $10
+|-
+| 5 || Taloon || $20
+|-
+| 6 || Ragnar || $40
+|-
+| 7 || Alena || $80
+|}
+
+=== Equipment Categories ===
 
 {| class="wikitable"
 |-
@@ -452,47 +662,52 @@ In Chapter 5, non-Hero characters are AI-controlled. See [[Dragon Warrior IV:Bat
 |-
 | Ragnar || Swords, Axes || Heavy || Yes || Yes
 |-
-| Alena || Claws, Fans || Light || No || Female
+| Alena || Claws, Fans || Light || No || Female hats
 |-
 | Cristo || Staves || Robes || Yes || Yes
 |-
-| Brey || Staves || Robes || No || Hats
+| Brey || Staves || Robes || No || Hats only
 |-
 | Taloon || Swords, Boomerang || Medium || Yes || Yes
 |-
-| Mara || Whips, Fans || Light/Female || No || Female
+| Mara || Whips, Fans || Light/Female || No || Female hats
 |-
-| Nara || Cards, Daggers || Robes || No || Female
+| Nara || Cards, Daggers || Robes || No || Female hats
 |}
 
-==Spell Learning==
+== Spell Learning ==
+
+Spell learning data is stored at Bank 15 $1e010. Each entry is a level:spell_id pair.
 
 {| class="wikitable"
 |-
-! Character !! Notable Spells !! Learned At
+! Character !! Notable Spells !! Learned At !! ROM Offset
 |-
-| Hero || Heal, Healall, Zap, Lighning, Return || Various levels
+| Hero || Heal, Healall, Zap, Lightning, Return || 1, 17, 10, 28, 7 || $1e010
 |-
-| Cristo || Heal, Healall, Revive, Beat, Upper || Various levels
+| Cristo || Heal, Healall, Revive, Beat, Upper || 1, 20, 18, 13, 8 || $1e030
 |-
-| Brey || Icebolt, Snowstorm, Blizzard, Bounce || Various levels
+| Brey || Icebolt, Snowstorm, Blizzard, Bounce || 1, 14, 26, 20 || $1e050
 |-
-| Mara || Blaze, Bang, Boom, Explodet || Various levels
+| Mara || Blaze, Bang, Boom, Explodet || 1, 12, 20, 32 || $1e070
 |-
-| Nara || Heal, Healmore, Infernos, Sleep || Various levels
+| Nara || Heal, Healmore, Infernos, Sleep || 1, 17, 8, 14 || $1e090
 |}
 
-==See Also==
+== See Also ==
 
-* [[Dragon Warrior IV:Battle_System|Battle System]] - AI tactics and combat
-* [[Dragon Warrior IV:EXP_System|EXP System]] - Level up mechanics
-* [[Dragon Warrior IV:Spells|Spells]] - Complete spell list
-* [[Dragon Warrior IV:Items|Items]] - Equipment list
+* [[Dragon Warrior IV:Battle_System|Battle System]] - AI tactics and combat mechanics
+* [[Dragon Warrior IV:EXP_System|EXP System]] - Level up requirements and mechanics
+* [[Dragon Warrior IV:Spells|Spells]] - Complete spell list with effects
+* [[Dragon Warrior IV:Items|Items]] - Equipment and item list
+* [[Dragon Warrior IV:ROM_Map|ROM Map]] - Complete ROM data layout
+* [[Dragon Warrior IV:RAM_Map|RAM Map]] - Runtime memory layout
 
-==Source==
+== Source ==
 
 Character data extracted from:
 * [https://github.com/TheAnsarya/dragon-warrior-4-info/blob/main/data/game_data.json DW4 game_data.json]
+* [https://github.com/TheAnsarya/dragon-warrior-4-info/tree/main/disasm Bank disassemblies]
 
 [[Category:Dragon Warrior IV]]
 [[Category:Characters]]
