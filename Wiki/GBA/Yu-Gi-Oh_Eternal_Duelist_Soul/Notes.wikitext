@@ -1,11 +1,36 @@
+{{Back|Yu-Gi-Oh! The Eternal Duelist Soul (GBA)}}
 {{notes}}
 {{stub}}
 
-=Main=
+= Yu-Gi-Oh! The Eternal Duelist Soul (GBA) - Notes =
 
-[TODO: Add notes here!]
+This page contains research notes and technical findings for Yu-Gi-Oh! The Eternal Duelist Soul on GBA.
 
-=Related=
-<br>
+== Overview ==
+
+Yu-Gi-Oh! The Eternal Duelist Soul simulates the Yu-Gi-Oh! Trading Card Game with 819 cards from the OCG (Official Card Game) sets.
+
+{| class="wikitable"
+|-
+! Feature !! Description
+|-
+| Card Count || 819 cards
+|-
+| Game Modes || Free Duel, Campaign, Link Trade
+|-
+| Forbidden/Limited || Supports ban lists
+|-
+| Password System || Konami Code compatible
+|}
+
+== Research Areas ==
+
+{{Todo|Add card data structure research}}
+
+{{Todo|Add deck save format documentation}}
+
+== Related ==
+
+<br/>
 
 {{Internal Data}}

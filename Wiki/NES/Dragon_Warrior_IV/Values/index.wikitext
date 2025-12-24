@@ -1,11 +1,32 @@
+{{Back|Dragon Warrior IV (NES)}}
 {{subpage}}
-{{stub}}
 
-=Values=
+= Dragon Warrior IV (NES) - Values =
 
-==Party Members==
+This page documents the game constants, IDs, and value tables used in Dragon Warrior IV for NES.
 
-[TODO: Should we use the $80 values instead of $00?]
+== Overview ==
+
+{| class="wikitable"
+|-
+! Category !! ID Range !! ROM Location !! Notes
+|-
+| Party Members || $00-$07 || Various || 8 playable characters
+|-
+| Extra Companions || $c5-$cc || Various || Chapter-specific allies
+|-
+| Battle Tactics || $00-$05 || $4fb84 || AI behavior settings
+|-
+| Chapters || $00-$05 || Various || 5 chapters + Prologue
+|-
+| Items || $00-$7f || $28010+ || Weapons, armor, misc
+|-
+| Spells || $00-$40 || $4f80b+ || Magic abilities
+|}
+
+== Values ==
+
+=== Party Members ===
 
 {| class="wikitable"
 |-
@@ -34,7 +55,7 @@
 |  $0a  ||  Extra Companion #2
 |}
 
-==Extra Companions==
+=== Extra Companions ===
 
 {| class="wikitable"
 |-
