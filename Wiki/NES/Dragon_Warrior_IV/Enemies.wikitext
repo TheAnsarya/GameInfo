@@ -1,56 +1,101 @@
 {{Back|Dragon Warrior IV (NES)}}
+{{DISPLAYTITLE:Dragon Warrior IV - Enemies}}
 
 = Dragon Warrior IV (NES) - Enemies =
 
-This page documents the enemy data structure in Dragon Warrior IV.
+This page documents the enemy data structure in Dragon Warrior IV for the NES, including monster stats, behaviors, and ROM locations.
 
 '''Data Status:''' Monster data structure verified from Bank 6/7. Enemy type table at Bank 19 $b967.
 
+== ROM Data Locations ==
+
+Enemy data is distributed across multiple banks:
+
+{| class="wikitable"
+|-
+! Data Type !! ROM Address !! Bank !! Size !! Description
+|-
+| Monster table || $18010 || 6 || ~27 bytes each || Stats, skills, drops
+|-
+| Monster names || $1c010 || 7 || Variable || Encoded text
+|-
+| Monster graphics || $40010+ || 16+ || Variable || CHR data
+|-
+| Type table || $4f977 || 19 ($b967) || 256 bytes || Enemy type categories
+|-
+| AI patterns || $4f800 || 19 || Variable || Behavior routines
+|}
+
 == Overview ==
 
-Each monster in Dragon Warrior IV is defined by approximately 27 bytes of data. The monster tables are stored in Banks 6-8, with additional type data in Bank 19.
+Dragon Warrior IV contains approximately 256 enemy types. Each monster is defined by a 27-byte data structure containing stats, abilities, AI behavior, and drop information.
+
+=== Monster ID Ranges ===
+
+{| class="wikitable"
+|-
+! Range !! Category !! Notes
+|-
+| $00-$8f || Regular encounters || Normal random battles
+|-
+| $90-$bf || Strong enemies || Dungeon bosses
+|-
+| $c0-$cf || Chapter bosses || Story bosses
+|-
+| $d0-$df || Necrosaro forms || Final boss stages
+|-
+| $e0-$ff || Special/unused || Debug, palettes
+|}
 
 == Monster Record Layout ==
 
+Each monster has a 27-byte ($1b) data block starting at Bank 6 $8010:
+
 {| class="wikitable"
-! Byte !! Offset !! Name !! Description
+! Byte !! Offset !! Name !! Description !! Notes
 |-
-| 0-1 || +$00 || EXP_Lo/Hi || Experience points (16-bit)
+| 0-1 || +$00 || EXP_Lo/Hi || Experience points (16-bit) || Little-endian
 |-
-| 2-3 || +$02 || Gold_Lo/Hi || Gold dropped (16-bit)
+| 2-3 || +$02 || Gold_Lo/Hi || Gold dropped (16-bit) || Little-endian
 |-
-| 4-5 || +$04 || HP_Lo/Hi || Hit Points (16-bit)
+| 4-5 || +$04 || HP_Lo/Hi || Hit Points (16-bit) || Little-endian, max 65535
 |-
-| 6 || +$06 || Attack || Attack power
+| 6 || +$06 || Attack || Attack power || Damage calculation base
 |-
-| 7 || +$07 || Defense || Defense power
+| 7 || +$07 || Defense || Defense power || Damage reduction
 |-
-| 8 || +$08 || Agility || Agility stat
+| 8 || +$08 || Agility || Agility stat || Turn order priority
 |-
-| 9-14 || +$09 || Skills || 6 bytes of skill/ability data
+| 9-14 || +$09 || Skills || 6 bytes of skill/ability data || Action selection pool
 |-
-| 15-18 || +$0f || Behavior || AI and behavior flags
+| 15-18 || +$0f || Behavior || AI and behavior flags || Pattern control
 |-
-| 19 || +$13 || Drop_Item || Item drop ID
+| 19 || +$13 || Drop_Item || Item drop ID || References item table
 |-
-| 20 || +$14 || Unknown_20 || Unknown purpose
+| 20 || +$14 || Unknown_20 || Unknown purpose || Usually $00
 |-
-| 21 || +$15 || Unknown_21 || Unknown purpose
+| 21 || +$15 || Unknown_21 || Unknown purpose || Sprite/palette?
 |-
-| 22 || +$16 || Metal_Flags || Metal monster flags
+| 22 || +$16 || Metal_Flags || Metal monster flags || Special damage
 |-
-| 23 || +$17 || Drop_Rate_Flags || Drop rate and additional flags
+| 23 || +$17 || Drop_Rate_Flags || Drop rate and additional flags || See below
 |-
-| 24 || +$18 || Status_Vuln || Status vulnerability flags
+| 24 || +$18 || Status_Vuln || Status vulnerability flags || Ailment resist
 |-
-| 25 || +$19 || Unknown_25 || Unknown purpose
+| 25 || +$19 || Unknown_25 || Unknown purpose || TBD
 |-
-| 26 || +$1a || Unknown_26 || Unknown purpose
+| 26 || +$1a || Unknown_26 || Unknown purpose || TBD
 |}
+
+=== Address Formula ===
+
+To find a specific monster's data:
+* Monster address = $18010 + (Monster_ID × $1b)
+* Example: Monster $05 (Slime) = $18010 + ($05 × $1b) = $18010 + $87 = $18097
 
 == Metal Flags (Byte 22, +$16) ==
 
-Controls special monster types, particularly Metal monsters.
+Controls special monster types, particularly Metal monsters that take minimal damage.
 
 {| class="wikitable"
 ! Bits !! Mask !! Description
@@ -60,18 +105,22 @@ Controls special monster types, particularly Metal monsters.
 | 2-7 || $fc || Unknown (usually zero)
 |}
 
-=== Metal Monster Values ===
+=== Metal Monster Mechanics ===
+
+When Metal_Flags = $11:
+* All non-critical physical attacks deal 0-1 damage
+* Spell damage is nullified
+* Critical hits deal normal damage
+* High flee rate (varies by monster)
 
 {| class="wikitable"
-! Monster !! Byte 22 !! Binary !! Notes
+! Monster !! ID !! Byte 22 !! HP !! EXP !! Notes
 |-
-| Slime || $00 || 00000000 || Standard enemy (baseline)
+| Metal Slime || $1a || $11 || 3-4 || 1350 || Flees quickly
 |-
-| Metal Slime || $11 || 00010001 || Metal flag set, takes 0-1 damage
+| Metal Babble || $6c || $11 || 5-6 || 10050 || Even faster flee
 |-
-| Metal Babble || $11 || 00010001 || Metal flag set
-|-
-| King Metal || $11 || 00010001 || Metal flag set
+| King Metal || $a8 || $11 || 7 || 30010 || Rare encounter
 |}
 
 == Drop Rate Flags (Byte 23, +$17) ==
@@ -192,41 +241,74 @@ Can be affected by confusion effects.
 
 == Enemy Type Table (Bank 19, $b967) ==
 
-See [[Dragon Warrior IV (NES)/Battle System|Battle System]] for the enemy type categorization table.
+The enemy type table at ROM address $4f977 (Bank 19 offset $b967) categorizes all 256 monster IDs into types for battle mechanics.
+
+See [[Dragon Warrior IV:Battle_System|Battle System]] for detailed type-based damage modifiers.
 
 === Type Distribution ===
 
 {| class="wikitable"
-! Type !! Value Range !! Description !! Count
+! Type !! Value Range !! Description !! Count !! Damage Modifier
 |-
-| 0 || $00-$1f || Regular enemies || 86
+| 0 || $00-$1f || Regular enemies || 86 || 1.0x (baseline)
 |-
-| 1 || $20-$3f || Undead/Ghost || 21
+| 1 || $20-$3f || Undead/Ghost || 21 || Holy +50%
 |-
-| 2 || $40-$5f || Flying || 0
+| 2 || $40-$5f || Flying || 0 || Unused in US
 |-
-| 3 || $60-$7f || Magic-using || 32
+| 3 || $60-$7f || Magic-using || 32 || Stopspell effective
 |-
-| 4 || $80-$9f || Strong enemies || 0
+| 4 || $80-$9f || Strong enemies || 0 || Unused in US
 |-
-| 5 || $a0-$bf || Boss-tier || 52
+| 5 || $a0-$bf || Boss-tier || 52 || Status resist +
 |-
-| 6 || $c0-$df || High resistance || 24
+| 6 || $c0-$df || High resistance || 24 || Magic resist
 |-
-| 7 || $e0-$ff || Bosses/immune || 41
+| 7 || $e0-$ff || Bosses/immune || 41 || Full immunity
+|}
+
+== Notable Enemies ==
+
+=== Early Game ($00-$1f) ===
+
+{| class="wikitable sortable"
+! ID !! Name !! HP !! ATK !! DEF !! EXP !! Gold !! Notes
+|-
+| $00 || Slime || 7 || 8 || 3 || 1 || 1 || First enemy
+|-
+| $01 || Red Slime || 10 || 11 || 5 || 2 || 3 || Slight upgrade
+|-
+| $05 || Drakee || 12 || 14 || 8 || 4 || 5 || Chapter 1 common
+|-
+| $0a || Stump || 18 || 20 || 15 || 8 || 6 || First tough enemy
+|}
+
+=== Bosses ===
+
+{| class="wikitable sortable"
+! ID !! Name !! HP !! ATK !! DEF !! Chapter !! Notes
+|-
+| $c1 || Saro's Shadow || 450 || 85 || 50 || 1 || Ragnar boss
+|-
+| $c2 || Marquis de Leon || 700 || 110 || 65 || 2 || Alena tournament
+|-
+| $c3 || Balzack || 500 || 95 || 55 || 4 || Sisters revenge
+|-
+| $d0-$d7 || Necrosaro || Varies || Varies || Varies || 5 || 7 forms total
 |}
 
 == See Also ==
 
-* [[Dragon Warrior IV:Battle_System|Battle System]] - Combat mechanics
-* [[Dragon Warrior IV:Items|Items]] - Enemy drops
-* [[Dragon Warrior IV:EXP_System|EXP System]] - Experience from enemies
+* [[Dragon Warrior IV:Battle_System|Battle System]] - Combat mechanics and formulas
+* [[Dragon Warrior IV:Items|Items]] - Enemy drop items
+* [[Dragon Warrior IV:EXP_System|EXP System]] - Experience calculations
 * [[Dragon Warrior IV:ROM_Map|ROM Map]] - Bank 6-8 data locations
 
 == References ==
 
-* Cowness.net speedrun notes
-* Vaxherd's monster data research
+* Cowness.net speedrun notes - Battle mechanics research
+* Vaxherd's monster data research - Data structure documentation
+* DW4 disassembly project
 
+[[Category:Dragon Warrior IV]]
 [[Category:Enemies]]
-[[Category:NES]]

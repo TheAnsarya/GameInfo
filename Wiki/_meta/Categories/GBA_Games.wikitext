@@ -27,29 +27,29 @@ The Game Boy Advance (GBA) was a 32-bit handheld video game console released by 
 | Sound || 6 channels (4 GB + 2 Direct Sound)
 |}
 
-==Memory Map==
+== Memory Map ==
 
 {| class="wikitable"
 |-
 ! Address Range !! Description
 |-
-| $00000000-$00003FFF || BIOS (16KB)
+| $00000000-$00003fff || BIOS (16KB)
 |-
-| $02000000-$0203FFFF || EWRAM (256KB)
+| $02000000-$0203ffff || EWRAM (256KB)
 |-
-| $03000000-$03007FFF || IWRAM (32KB)
+| $03000000-$03007fff || IWRAM (32KB)
 |-
-| $04000000-$040003FF || I/O Registers
+| $04000000-$040003ff || I/O Registers
 |-
-| $05000000-$050003FF || Palette RAM
+| $05000000-$050003ff || Palette RAM
 |-
-| $06000000-$06017FFF || VRAM (96KB)
+| $06000000-$06017fff || VRAM (96KB)
 |-
-| $07000000-$070003FF || OAM
+| $07000000-$070003ff || OAM
 |-
-| $08000000-$09FFFFFF || ROM (up to 32MB)
+| $08000000-$09ffffff || ROM (up to 32MB)
 |-
-| $0E000000-$0E00FFFF || SRAM/Flash (up to 64KB)
+| $0e000000-$0e00ffff || SRAM/Flash (up to 64KB)
 |}
 
 ==Save Types==

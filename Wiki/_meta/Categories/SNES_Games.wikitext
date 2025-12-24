@@ -27,17 +27,17 @@ The Super Nintendo Entertainment System (SNES), known as the Super Famicom in Ja
 | Audio RAM || 64 KB
 |}
 
-==Memory Mapping==
+== Memory Mapping ==
 
 {| class="wikitable"
 |-
 ! Mode !! ROM Location !! Description
 |-
-| LoROM || $00-$7D:$8000-$FFFF || 32KB banks at upper half
+| LoROM || $00-$7d:$8000-$ffff || 32KB banks at upper half
 |-
-| HiROM || $C0-$FF:$0000-$FFFF || 64KB contiguous banks
+| HiROM || $c0-$ff:$0000-$ffff || 64KB contiguous banks
 |-
-| ExHiROM || $40-$7D, $C0-$FF || Extended HiROM for 48Mbit
+| ExHiROM || $40-$7d, $c0-$ff || Extended HiROM for 48Mbit
 |}
 
 ==Common Enhancement Chips==

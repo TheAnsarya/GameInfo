@@ -74,10 +74,10 @@ ROM maps document the structure of game cartridge data, including:
 * Data table locations
 * Graphics and audio data regions
 
-===RAM Maps===
+=== RAM Maps ===
 RAM maps document runtime memory usage:
-* System RAM ($0000-$07FF on NES)
-* Work RAM/WRAM ($6000-$7FFF on NES)
+* System RAM ($0000-$07ff on NES)
+* Work RAM/WRAM ($6000-$7fff on NES)
 * Character and party data structures
 * Game state variables
 
