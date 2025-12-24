@@ -1,6 +1,31 @@
 {{DISPLAYTITLE:Dragon Warrior IV - Map List}}
+{{Back|Dragon Warrior IV (NES)}}
+
+= Dragon Warrior IV (NES) - Map List =
 
 This page documents all map locations in Dragon Warrior IV for the NES.
+
+'''Data Status:''' Map IDs verified from gameplay. Bank locations documented from ROM analysis.
+
+== Overview ==
+
+Dragon Warrior IV contains over 70 map groups organized into towns, dungeons, overworld areas, and special locations. The game spans five chapters, with each chapter restricting access to different regions of the world map.
+
+The map system uses a hierarchical structure where each "map group" can contain multiple submaps (floors, rooms, interior areas). This allows the game to efficiently manage related areas like multi-story towers or towns with building interiors.
+
+== ROM Data Locations ==
+
+{| class="wikitable"
+! Data Type !! ROM Address !! Bank !! Description
+|-
+| Map headers || $24010 || 9 || Map group definitions and properties
+|-
+| Tile data || $24010+ || 9 || Compressed tilemap data
+|-
+| NPC data || $28010 || 10 || NPC positions and dialog pointers
+|-
+| Exit data || $2c010 || 11 || Map transition and door data
+|}
 
 ==Map System Overview==
 
@@ -354,14 +379,17 @@ Maps in DW4 are organized into map groups, each containing multiple submaps. Map
 
 ==See Also==
 
-* [[Dragon Warrior IV:ROM_Map|ROM Map]] - Bank $09 map data
-* [[Dragon Warrior IV:Enemies|Enemies]] - Encounter zones
-* [[Dragon Warrior IV:Items|Items]] - Treasure locations
+* [[Dragon Warrior IV (NES)/ROM_Map|ROM Map]] - Bank $09 map data
+* [[Dragon Warrior IV (NES)/Enemies|Enemies]] - Encounter zones
+* [[Dragon Warrior IV (NES)/Items|Items]] - Treasure locations
+* [[Dragon Warrior IV (NES)/RAM_Map|RAM Map]] - Runtime memory
+* [[Dragon Warrior IV (NES)|Main Page]]
 
 ==Source==
 
 Map data from:
 * [https://github.com/TheAnsarya/dragon-warrior-4-info/blob/main/data/maps.json DW4 maps.json]
 
-[[Category:Dragon Warrior IV]]
 [[Category:Maps]]
+[[Category:NES]]
+[[Category:Dragon Warrior IV]]

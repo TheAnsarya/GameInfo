@@ -1,5 +1,40 @@
 {{srammap}}
-{{stub}}
+
+= Dragon Warrior IV (NES) - SRAM Map =
+
+This page documents the battery-backed save RAM layout for Dragon Warrior IV.
+
+'''Data Status:''' Party member structure verified. Some addresses remain unverified (marked with ???).
+
+== Overview ==
+
+Dragon Warrior IV uses the MMC5 mapper which provides 8KB of battery-backed SRAM at CPU addresses $6000-$7fff. This is mirrored in the save file as addresses $0000-$1fff. The save structure allocates fixed blocks for each of the eight playable characters, followed by global game state variables.
+
+=== Key Features ===
+
+* '''8KB total SRAM''' - Standard MMC5 save size
+* '''8 character slots''' - 30 bytes each at fixed offsets
+* '''24-bit gold/EXP''' - Supports values up to 16,777,215
+* '''Chapter tracking''' - Saves current chapter (0-4)
+* '''Tactics setting''' - AI behavior persisted across saves
+
+=== Memory Layout Summary ===
+
+{| class="wikitable"
+! Address Range !! Size !! Contents
+|-
+| $0000 || 1 byte || Header/validation byte
+|-
+| $0001-$00f0 || 240 bytes || 8 character data blocks (30 bytes each)
+|-
+| $00f1-$0156 || 102 bytes || Unknown/reserved
+|-
+| $0157-$015b || 5 bytes || Gold, chapter, tactics
+|-
+| $015c-$0167 || 12 bytes || Return spell locations + unknown
+|-
+| $0168-$1fff || ~7KB || Flags, inventory, story progress
+|}
 
 =SRAM=
 Address space is <code>$0000 - $1fff</code>.
@@ -864,6 +899,50 @@ Locations for the <code>Return</code> spell. This uses 3 bytes, one bit for each
 |  Location  ||  $0167 # 1000_0000  ||  bit  ||  "Infsnip" - Lands in the middle of the ocean, not an actual destination
 |}
 
+== Character Data Structure ==
+
+Each character occupies 30 bytes ($1e) in SRAM. The structure is identical for all 8 playable characters.
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Status flags (bit 5=Poison, 6=Paralyzed, 7=Alive)
+|-
+| $01-$02 || 2 || Current HP (little-endian word)
+|-
+| $03-$04 || 2 || Current MP
+|-
+| $05 || 1 || Level (1-99)
+|-
+| $06-$0a || 5 || Stats: Str, Agi, Vit, Int, Luck
+|-
+| $0b || 1 || Unknown
+|-
+| $0c-$0d || 2 || Max HP
+|-
+| $0e-$0f || 2 || Max MP
+|-
+| $10-$12 || 3 || Experience (24-bit, little-endian)
+|-
+| $13-$1a || 8 || Item slots (8 bytes)
+|-
+| $1b-$1c || 2 || Battle spell flags
+|-
+| $1d || 1 || Overworld spell flags
+|}
+
+== See Also ==
+
+* [[Dragon Warrior IV (NES)/RAM_Map|RAM Map]] - Runtime memory layout
+* [[Dragon Warrior IV (NES)/ROM_Map|ROM Map]] - PRG ROM structure
+* [[Dragon Warrior IV (NES)/Characters|Characters]] - Character details
+* [[Dragon Warrior IV (NES)/Items|Items]] - Item IDs for save editing
+* [[Dragon Warrior IV (NES)|Main Page]]
+
 =Links=
 
 {{Internal Data}}
+
+[[Category:SRAM]]
+[[Category:NES]]
+[[Category:Dragon Warrior IV]]

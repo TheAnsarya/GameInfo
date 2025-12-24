@@ -45,16 +45,16 @@ The generated table includes these columns:
 ==Memory Regions by Platform==
 
 ===NES===
-* $0000-$00FF: Zero Page (fast access)
-* $0100-$01FF: Stack
-* $0200-$07FF: Work RAM
+* $0000-$00ff: Zero Page (fast access)
+* $0100-$01ff: Stack
+* $0200-$07ff: Work RAM
 * $2000-$2007: PPU Registers
 * $4000-$4017: APU/IO Registers
 
 ===SNES===
-* $0000-$1FFF: Low RAM
-* $7E0000-$7FFFFF: Work RAM
-* $2100-$21FF: PPU Registers
+* $0000-$1fff: Low RAM
+* $7e0000-$7fffff: Work RAM
+* $2100-$21ff: PPU Registers
 
 ==Example Output==
 
