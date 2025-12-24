@@ -4,7 +4,7 @@
 
 This RAM map documents all memory locations used by Dragon Warrior, based on the complete disassembly by TheAnsarya from the Dragon Warrior Info Project.
 
-==Zero Page ($00-$FF)==
+==Zero Page ($00-$ff)==
 
 ===General Purpose Variables ($00-$01)===
 
@@ -37,11 +37,11 @@ This RAM map documents all memory locations used by Dragon Warrior, based on the
 |-
 |  $09  ||  1 byte  ||  IsEnemyMirrored  ||  $80 = enemy sprites mirrored, $00 = not mirrored
 |-
-|  $0A-$0B  ||  2 bytes  ||  PPUBufferPointer  ||  Pointer to RAM buffer for PPU image (little-endian)
+|  $0a-$0b  ||  2 bytes  ||  PPUBufferPointer  ||  Pointer to RAM buffer for PPU image (little-endian)
 |-
-|  $0C-$0D  ||  2 bytes  ||  PalettePointer  ||  Pointer to PPU palette data (little-endian)
+|  $0c-$0d  ||  2 bytes  ||  PalettePointer  ||  Pointer to PPU palette data (little-endian)
 |-
-|  $0F  ||  1 byte  ||  XPosFromCenter / ShakeX  ||  Tile X from center (signed) / Screen shake X offset
+|  $0f  ||  1 byte  ||  XPosFromCenter / ShakeX  ||  Tile X from center (signed) / Screen shake X offset
 |-
 |  $10  ||  1 byte  ||  YPosFromCenter / ShakeY  ||  Tile Y from center (signed) / Screen shake Y offset
 |}
@@ -66,32 +66,32 @@ This RAM map documents all memory locations used by Dragon Warrior, based on the
 |  $19  ||  1 byte  ||  CoverStatus  ||  $00 = not covered, $08 = under cover
 |}
 
-===Player Position ($3A-$3B)===
+===Player Position ($3a-$3b)===
 
 {| class="wikitable sortable"
 !  Address  !!  Size  !!  Name  !!  Description
 |-
-|  $3A  ||  1 byte  ||  CharXPos  ||  Player's X position on current map (in blocks)
+|  $3a  ||  1 byte  ||  CharXPos  ||  Player's X position on current map (in blocks)
 |-
-|  $3B  ||  1 byte  ||  CharYPos  ||  Player's Y position on current map (in blocks)
+|  $3b  ||  1 byte  ||  CharYPos  ||  Player's Y position on current map (in blocks)
 |}
 
-==Main RAM ($0200-$07FF)==
+==Main RAM ($0200-$07ff)==
 
-===Sprite RAM ($0200-$02FF)===
+===Sprite RAM ($0200-$02ff)===
 
 {| class="wikitable"
 !  Address  !!  Size  !!  Description
 |-
-|  $0200-$02FF  ||  256 bytes  ||  OAM (Object Attribute Memory) for sprites. 64 sprites × 4 bytes each (Y pos, tile, attributes, X pos)
+|  $0200-$02ff  ||  256 bytes  ||  OAM (Object Attribute Memory) for sprites. 64 sprites × 4 bytes each (Y pos, tile, attributes, X pos)
 |}
 
-===Player Stats ($0300-$034B)===
+===Player Stats ($0300-$034b)===
 
 {| class="wikitable sortable"
 !  Address  !!  Size  !!  Name  !!  Description
 |-
-|  $0300-$030F  ||  16 bytes  ||  PlayerName  ||  Player character name (8 characters max, space-padded)
+|  $0300-$030f  ||  16 bytes  ||  PlayerName  ||  Player character name (8 characters max, space-padded)
 |-
 |  $0310  ||  1 byte  ||  PlayerLevel  ||  Current player level (1-30)
 |-
@@ -105,13 +105,13 @@ This RAM map documents all memory locations used by Dragon Warrior, based on the
 |-
 |  $0319  ||  1 byte  ||  PlayerSTR  ||  Strength stat (base, before equipment)
 |-
-|  $031A  ||  1 byte  ||  PlayerAGI  ||  Agility stat (base, before equipment)
+|  $031a  ||  1 byte  ||  PlayerAGI  ||  Agility stat (base, before equipment)
 |-
-|  $031B-$031C  ||  2 bytes  ||  PlayerEXP  ||  Current experience points (little-endian, max 65535)
+|  $031b-$031c  ||  2 bytes  ||  PlayerEXP  ||  Current experience points (little-endian, max 65535)
 |-
-|  $031D-$031E  ||  2 bytes  ||  PlayerGold  ||  Current gold amount (little-endian, max 65535)
+|  $031d-$031e  ||  2 bytes  ||  PlayerGold  ||  Current gold amount (little-endian, max 65535)
 |-
-|  $031F  ||  1 byte  ||  PlayerWeapon  ||  Equipped weapon ID
+|  $031f  ||  1 byte  ||  PlayerWeapon  ||  Equipped weapon ID
 |-
 |  $0320  ||  1 byte  ||  PlayerArmor  ||  Equipped armor ID
 |-
@@ -121,14 +121,14 @@ This RAM map documents all memory locations used by Dragon Warrior, based on the
 |-
 |  $0323  ||  1 byte  ||  PlayerDEF  ||  Total defense power (base + equipment)
 |-
-|  $0324-$032B  ||  8 bytes  ||  PlayerInventory  ||  8 inventory slots (item IDs, $FF = empty)
+|  $0324-$032b  ||  8 bytes  ||  PlayerInventory  ||  8 inventory slots (item IDs, $ff = empty)
 |-
-|  $032C-$033B  ||  16 bytes  ||  PlayerFlags  ||  Game progress flags (quest items, story events)
+|  $032c-$033b  ||  16 bytes  ||  PlayerFlags  ||  Game progress flags (quest items, story events)
 |-
-|  $033C-$034B  ||  16 bytes  ||  PlayerSpells  ||  Known spells bitmask
+|  $033c-$034b  ||  16 bytes  ||  PlayerSpells  ||  Known spells bitmask
 |}
 
-===Enemy Stats (Battle) ($0350-$035E)===
+===Enemy Stats (Battle) ($0350-$035e)===
 
 {| class="wikitable sortable"
 !  Address  !!  Size  !!  Name  !!  Description
@@ -147,13 +147,13 @@ This RAM map documents all memory locations used by Dragon Warrior, based on the
 |-
 |  $0358-$0359  ||  2 bytes  ||  EnemyEXP  ||  Experience reward (little-endian)
 |-
-|  $035A-$035B  ||  2 bytes  ||  EnemyGold  ||  Gold reward (little-endian)
+|  $035a-$035b  ||  2 bytes  ||  EnemyGold  ||  Gold reward (little-endian)
 |-
-|  $035C  ||  1 byte  ||  EnemyAbilities  ||  Special abilities flags
+|  $035c  ||  1 byte  ||  EnemyAbilities  ||  Special abilities flags
 |-
-|  $035D  ||  1 byte  ||  EnemyResistances  ||  Resistance flags
+|  $035d  ||  1 byte  ||  EnemyResistances  ||  Resistance flags
 |-
-|  $035E  ||  1 byte  ||  EnemyStatus  ||  Status effects (sleep, stopspell, etc.)
+|  $035e  ||  1 byte  ||  EnemyStatus  ||  Status effects (sleep, stopspell, etc.)
 |}
 
 ===Battle State ($0370-$0374)===
@@ -172,47 +172,47 @@ This RAM map documents all memory locations used by Dragon Warrior, based on the
 |  $0374  ||  1 byte  ||  FleeAttempts  ||  Number of flee attempts this battle
 |}
 
-===Sound and Music ($0400-$04FF)===
+===Sound and Music ($0400-$04ff)===
 
 {| class="wikitable"
 !  Address  !!  Size  !!  Description
 |-
-|  $0400-$04FF  ||  256 bytes  ||  Music and sound effect state, channel data, note counters, tempo
+|  $0400-$04ff  ||  256 bytes  ||  Music and sound effect state, channel data, note counters, tempo
 |}
 
-===PPU Buffer ($0500-$05FF)===
+===PPU Buffer ($0500-$05ff)===
 
 {| class="wikitable"
 !  Address  !!  Size  !!  Description
 |-
-|  $0500-$05FF  ||  256 bytes  ||  PPU update buffer. Stores tiles/attributes to write to PPU during VBlank
+|  $0500-$05ff  ||  256 bytes  ||  PPU update buffer. Stores tiles/attributes to write to PPU during VBlank
 |}
 
-===Text Buffer ($0600-$06FF)===
+===Text Buffer ($0600-$06ff)===
 
 {| class="wikitable"
 !  Address  !!  Size  !!  Description
 |-
-|  $0600-$067F  ||  128 bytes  ||  Decompressed dialog text buffer
+|  $0600-$067f  ||  128 bytes  ||  Decompressed dialog text buffer
 |-
-|  $0680-$06FF  ||  128 bytes  ||  Window line buffer for text rendering
+|  $0680-$06ff  ||  128 bytes  ||  Window line buffer for text rendering
 |}
 
-===NPC and Map Data ($0700-$07FF)===
+===NPC and Map Data ($0700-$07ff)===
 
 {| class="wikitable"
 !  Address  !!  Size  !!  Description
 |-
-|  $0700-$073F  ||  64 bytes  ||  NPC position data (X, Y, facing direction, sprite ID)
+|  $0700-$073f  ||  64 bytes  ||  NPC position data (X, Y, facing direction, sprite ID)
 |-
-|  $0740-$077F  ||  64 bytes  ||  NPC behavior flags and dialog pointers
+|  $0740-$077f  ||  64 bytes  ||  NPC behavior flags and dialog pointers
 |-
-|  $0780-$07BF  ||  64 bytes  ||  Tile attribute buffer
+|  $0780-$07bf  ||  64 bytes  ||  Tile attribute buffer
 |-
-|  $07C0-$07FF  ||  64 bytes  ||  General temporary storage
+|  $07c0-$07ff  ||  64 bytes  ||  General temporary storage
 |}
 
-==SRAM ($6000-$7FFF)==
+==SRAM ($6000-$7fff)==
 
 Battery-backed save RAM. See [[Dragon Warrior (NES)/SRAM map|SRAM Map]] for full documentation.
 
