@@ -1,16 +1,61 @@
 {{rommap}}
+{{Back}}
 
-=Main=
+=Final Fantasy Mystic Quest ROM Map=
 
-{{ Todo | Add notes for ROM map}}
+This ROM map documents the data and code locations for Final Fantasy Mystic Quest (SNES). The game uses '''LoROM''' mapping with a 1MB ROM.
 
-Addresses are all SNES addresses, not file addresses.
+'''Data Status:''' Partial documentation available. Sound data well-documented. Many code sections still need analysis.
 
+==Overview==
 
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ROM Size || 1 MB (8 Mbit)
+|-
+| Mapping || LoROM
+|-
+| Region || US, EU, JP
+|}
 
-[[Final Fantasy: Mystic Quest/ROM map/Full Map]]
+===Address Conversion===
 
-Subpages:
+<pre>
+File Offset = (Bank × $8000) + (Address & $7fff)
+SNES Address = (Bank << 16) | $8000 | (File Offset & $7fff)
+</pre>
+
+==ROM Data Locations==
+
+{| class="wikitable sortable"
+! File Offset !! Bank:Address !! Category !! Description
+|-
+| $010715 || $02:8715 || Battle || Enemy damage animation frame data
+|-
+| $010b06 || $02:8b06 || Items || Weapon targeting data (sword is first item)
+|-
+| $010bf2 || $02:8bf2 || Items || Weapon stats and effects
+|-
+| $010f4a || $02:8f4a || Items || Weapon additional effects
+|-
+| $01572b || $02:d72b || Battle || Enemy formation positions (Behemoth position on screen)
+|-
+| $032b00 || $06:ab00 || Maps || Tile properties (solid, walkable, movement effects)
+|-
+| $034084 || $06:c084 || Graphics || Location palette assignments (Level Forest first)
+|-
+| $038200 || $07:8200 || Graphics || Menu palettes
+|-
+| $03b218 || $07:b218 || Maps || 2-byte pointers to location data (Level Forest first)
+|}
+
+==Subpages==
+
+Detailed documentation for specific data types:
+
+* [[Final Fantasy: Mystic Quest/ROM map/Full Map|Full ROM Map]]
 * [[Final Fantasy: Mystic Quest/ROM map/Characters|Characters]]
 * [[Final Fantasy: Mystic Quest/ROM map/Code|Code]]
 * [[Final Fantasy: Mystic Quest/ROM map/Enemies|Enemies]]
@@ -20,104 +65,151 @@ Subpages:
 * [[Final Fantasy: Mystic Quest/ROM map/Sound|Sound]]
 * [[Final Fantasy: Mystic Quest/ROM map/Text|Text]]
 
-==ROM Map==
+==Sound Data==
 
+The game's audio system uses SPC700 sequence data with BRR samples.
+
+===Sound Pointers===
 
 {| class="wikitable"
-!  Address  !!  Size  !!  Category  !!  Description
-|-  style="background-color: #eaecf0;"
-|  $0000 - $0e87  ||  ...  ||  ...  ||  ???
+! File Offset !! Description
 |-
-|  $0000  ||  ...  ||  ...  ||  ???
-
-
-
+| $6bdae || Pointers to SPC sequences (3 bytes each)
+|-
+| $6bdff || Pointers to BRR samples (3 bytes each)
+|-
+| $6bea1-$6c1e1 || Instrument sample indexes
+|-
+| $6c201 || BRR sample data start
+|-
+| $750fd || SPC sequence data start
 |}
 
-=Unheadered ROM only=
-* <tt>032B00</tt> - Tile Properties (solid, walkable, moves characters, etc..)
-* <tt>034084</tt> - Location Palette assignments (First Location: Level Forest)
-* <tt>038200</tt> - Menu Palettes
-* <tt>03B218</tt> - 2 byte pointers to Locations (First Location: Level Forest)
-* <tt>01572B</tt> - Enemy Formation Positions (Behemoth position on screen - Each enemy = 1 byte)
-* <tt>010715</tt> - This data decides what frame of animation is shown when each enemy receives a certain amount of damage
-* <tt>010B06</tt> - Targetting data (sword is first item)
-* <tt>010BF2</tt> - This data affects the character's weapon's stats and effects
-* <tt>010F4A</tt> - This data affects the character's weapon's effects as well
+===Music Track Locations===
 
-All offsets are using a V1.0 (U) version of the ROM without a header.
+{| class="wikitable sortable"
+! File Offset !! Track Name
+|-
+| $750fd || Silence
+|-
+| $78573 || Battle 1
+|-
+| $78b68 || Battle 2
+|-
+| $79320 || Battle 3
+|-
+| $79b73 || Victory!
+|-
+| $79e0a || World
+|-
+| $79f87 || Fossil Labyrinth
+|-
+| $7a29a || Dungeon of Ice
+|-
+| $7a84e || Lava Dome
+|-
+| $7ae4e || Mountain Range of Whirlwinds
+|-
+| $7b20b || Dungeon and Waterfall
+|-
+| $7b504 || Middle Tower
+|-
+| $7b779 || Last Castle
+|-
+| $7bf2e || Beautiful Forest
+|-
+| $7c2f8 || Shrine of Light
+|-
+| $7c743 || City of Earth ~ Foresta
+|-
+| $7cc41 || City of Ice ~ Aquaria
+|-
+| $7d151 || City of Fire ~ Faeria
+|-
+| $7da03 || City of Wind ~ Windaria
+|-
+| $7df42 || Rock 'n' Roll
+|-
+| $7e410 || Rock Theme
+|-
+| $7e810 || Fanfare of Friendship
+|-
+| $7e8c2 || Mystic Ballad
+|-
+| $7eaab || Hill of Fate
+|-
+| $7eedd || Mystic Quest
+|-
+| $7f473 || Ending
+|-
+| $7fbd3 || The Crystal
+|}
 
-=Sound=
+===SPC Sequence Commands===
 
-* 6BDAE   Pointers to SPCs ($0x03 each)
-* 6BDFF   Pointers to BRRs (same as above)
-* 6BEA1-6C1E1  Instrument sample indexes
-* 6C201   BRR sample data
-* 750FD   SPC sequence data
+====Note Commands ($00-$ce)====
 
+{| class="wikitable"
+! Range !! Description
+|-
+| $00-$0d || Play note C
+|-
+| $0e-$1b || Play note C#
+|-
+| $1c-$29 || Play note D
+|-
+| $2a-$37 || Play note D#
+|-
+| $38-$45 || Play note E
+|-
+| $46-$53 || Play note F
+|-
+| $54-$61 || Play note F#
+|-
+| $62-$6f || Play note G
+|-
+| $70-$7d || Play note G#
+|-
+| $7e-$8b || Play note A
+|-
+| $8c-$99 || Play note A#
+|-
+| $9a-$a7 || Play note B
+|-
+| $a8-$bf || Play note B#
+|-
+| $c0-$ce || Rest
+|}
 
-* 750FD  Silence
-* 78573  Battle 1
-* 78B68  Battle 2
-* 79320  Battle 3
-* 79B73  Victory!
-* 79E0A  World
-* 79F87  Fossil Labryrinth
-* 7A29A  Dungeon of Ice
-* 7A84E  Lava Dome
-* 7AE4E  Mountain Range of Whirlwinds
-* 7B20B  Dungeon and Waterfall
-* 7B504  Middle Tower
-* 7B779  Last Castle
-* 7BF2E  Beautiful Forest
-* 7C2F8  Shrine of Light
-* 7C743  City of Earth ~ Foresta
-* 7CC41  City of Ice ~ Aquaria
-* 7D151  City of Fire ~ Faeria
-* 7DA03  City of Wind ~ Windaria
-* 7DF42  Rock 'n' Roll
-* 7E410  Rock Theme
-* 7E810  Fanfare of Friendship
-* 7E8C2  Mystic Ballad
-* 7EAAB  Hill of Fate
-* 7EEDD  Mystic Quest
-* 7F473  Ending
-* 7FBD3  The Crystal
+====Control Commands ($d0+)====
 
-
-* 00-0D  - Play note, C
-* 0E-1B  - Play note, C#
-* 1C-29  - Play note, D
-* 2A-37  - Play note, D#
-* 38-45  - Play note, E
-* 46-53  - Play note, F
-* 54-61  - Play note, F#
-* 62-6F  - Play note, G
-* 70-7D  - Play note, G#
-* 7E-8B  - Play note, A
-* 8C-99  - Play note, A#
-* 9A-A7  - Play note, B
-* A8-BF  - Play note, B#
-* C0-CE  - rest
-
-
-* D2 xx  - set instrument volume to xx
-* D3 xx  - ???
-* D4 xx  - pan channel left or right [$00 = Right, $64 = middle, $ff = Left] (reverse stereo)
-* D7 ss tt dd  - Vibrato: ss = speed, tt = time until vibrato, dd = depth
-* E0  - Vibrato off?
-* E1  - ???
-* E2  - ???
-* E3  - ???
-* E4 xx  - change pitch to xx
-* E5 xx  - lenth of next note is xx
-* EA xx  - change instrument to xx
-* F0 xx yy - ???
-* F1  - ???
-* F2   - end of channel
-* F3 xx  - change tempo to xx
-* F4  - ???
-* F5 xx  - set reverb to xx
+{| class="wikitable"
+! Command !! Parameters !! Description
+|-
+| $d2 xx || 1 byte || Set instrument volume to xx
+|-
+| $d3 xx || 1 byte || Unknown
+|-
+| $d4 xx || 1 byte || Pan channel ($00=Right, $64=Middle, $ff=Left, reverse stereo)
+|-
+| $d7 ss tt dd || 3 bytes || Vibrato: speed, time delay, depth
+|-
+| $e0 || 0 bytes || Vibrato off
+|-
+| $e4 xx || 1 byte || Change pitch to xx
+|-
+| $e5 xx || 1 byte || Set length of next note to xx
+|-
+| $ea xx || 1 byte || Change instrument to xx
+|-
+| $f0 xx yy || 2 bytes || Unknown
+|-
+| $f2 || 0 bytes || End of channel
+|-
+| $f3 xx || 1 byte || Change tempo to xx
+|-
+| $f5 xx || 1 byte || Set reverb to xx
+|}
 * F6  - ???
 * F7 xx yy - ???
 * F8 xx  - set global SPC volume to xx
