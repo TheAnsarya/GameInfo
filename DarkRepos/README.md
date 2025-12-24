@@ -26,10 +26,12 @@ DarkRepos/
 
 ## Technology Stack
 
-- **Framework**: .NET 9 / Blazor (Interactive WebAssembly with Server prerendering)
-- **Styling**: CSS with custom design system (no heavy frameworks)
+- **Framework**: .NET 10 / Blazor Interactive WebAssembly + Server prerendering
+- **Styling**: Custom CSS design system (no Bootstrap/Tailwind)
+- **Database**: SQLite with EF Core 9.0 and FTS5 full-text search
+- **Logging**: Serilog with structured logging
 - **Build**: Static content generation from GameInfo repo files
-- **Database**: SQLite with EF Core (for search indexing)
+- **CI/CD**: GitHub Actions workflow
 - **Hosting**: TBD (Azure Static Web Apps, GitHub Pages, or VPS)
 
 ## Target Audience
@@ -54,6 +56,61 @@ DarkRepos/
 - [Discord Community](#) (Coming Soon)
 
 ## Development
+
+### Prerequisites
+
+- [.NET 10 SDK](https://dotnet.microsoft.com/download)
+- [Visual Studio 2022](https://visualstudio.microsoft.com/) or [VS Code](https://code.visualstudio.com/)
+- [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) (for VS Code)
+
+### Getting Started
+
+```powershell
+# Clone the repository
+git clone https://github.com/TheAnsarya/GameInfo.git
+cd GameInfo/DarkRepos
+
+# Restore dependencies
+dotnet restore
+
+# Run the web application
+cd src/DarkRepos.Web/DarkRepos.Web
+dotnet run
+
+# Or use hot reload
+dotnet watch run
+```
+
+The application will be available at:
+- **HTTPS**: https://localhost:7044
+- **HTTP**: http://localhost:5081
+
+### Project Structure
+
+```
+src/
+├── DarkRepos.Core/         # Shared models, services, interfaces
+├── DarkRepos.Web/          # Blazor web application
+│   ├── DarkRepos.Web/      # Server project (entry point)
+│   └── DarkRepos.Web.Client/ # WebAssembly client components
+└── DarkRepos.Build/        # Content pipeline tools
+```
+
+### Running Tests
+
+```powershell
+dotnet test DarkRepos.sln
+```
+
+### Code Quality
+
+```powershell
+# Format code
+dotnet format DarkRepos.sln
+
+# Check for issues
+dotnet build --configuration Release /p:EnforceCodeStyleInBuild=true
+```
 
 See [docs/](docs/) for comprehensive development documentation.
 
