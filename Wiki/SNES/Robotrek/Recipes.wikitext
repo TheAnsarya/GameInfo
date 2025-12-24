@@ -169,7 +169,7 @@ These recipes combine two identical items to produce an upgrade.
 The combination table at $01c200 uses a compact format:
 
 * Marker bytes $68-$79 indicate recipe categories
-* $FF marks section boundaries
+* $ff marks section boundaries
 * Same-item format: [A A B] means A + A = B
 * Chain format for upgrades: [05 05 06 06 07] = Sword 1→2→3
 
@@ -178,7 +178,7 @@ The combination table at $01c200 uses a compact format:
 {| class="wikitable"
 ! Marker !! Category
 |-
-| $68-$6F || Weapon categories
+| $68-$6f || Weapon categories
 |-
 | $70-$77 || Armor/accessory categories
 |-
