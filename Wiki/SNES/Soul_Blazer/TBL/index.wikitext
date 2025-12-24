@@ -21,27 +21,27 @@ This applies to:
 {| class="wikitable"
 ! Code !! Description
 |-
-| $F0 xx || Pause for xx frames
+| $f0 xx || Pause for xx frames
 |-
-| $F1 || Wait for button press
+| $f1 || Wait for button press
 |-
-| $F2 xx || Set text color xx
+| $f2 xx || Set text color xx
 |-
-| $F3 xx yy || Set text position (x, y)
+| $f3 xx yy || Set text position (x, y)
 |-
-| $F4 xx || Play sound effect xx
+| $f4 xx || Play sound effect xx
 |-
-| $F5 || Clear text window
+| $f5 || Clear text window
 |-
-| $F6 nn || Insert item name #nn
+| $f6 nn || Insert item name #nn
 |-
-| $F7 nn || Insert character name #nn
+| $f7 nn || Insert character name #nn
 |-
-| $F8 || Insert player name
+| $f8 || Insert player name
 |-
-| $FE || New line
+| $fe || New line
 |-
-| $FF || End of string
+| $ff || End of string
 |}
 
 =Links=

@@ -103,7 +103,7 @@ All offsets are using a V1.0 (U) version of the ROM without a header.
 
 * D2 xx  - set instrument volume to xx
 * D3 xx  - ???
-* D4 xx  - pan channel left or right [$00 = Right, $64 = middle, $FF = Left] (reverse stereo)
+* D4 xx  - pan channel left or right [$00 = Right, $64 = middle, $ff = Left] (reverse stereo)
 * D7 ss tt dd  - Vibrato: ss = speed, tt = time until vibrato, dd = depth
 * E0  - Vibrato off?
 * E1  - ???

@@ -23,7 +23,7 @@ The protagonist is a divine servant sent by The Master to restore life to the wo
 
 === Player Data Structure ===
 
-Located at RAM $7E0100 (52 bytes):
+Located at RAM $7e0100 (52 bytes):
 
 {| class="wikitable"
 |-
@@ -37,11 +37,11 @@ Located at RAM $7E0100 (52 bytes):
 |-
 | $06-$09 || 4 || Experience || Total EXP gained
 |-
-| $0A-$0D || 4 || EXP to Next || EXP needed for next level
+| $0a-$0d || 4 || EXP to Next || EXP needed for next level
 |-
-| $0E || 1 || STR || Strength stat
+| $0e || 1 || STR || Strength stat
 |-
-| $0F || 1 || DEF || Defense stat
+| $0f || 1 || DEF || Defense stat
 |-
 | $10 || 1 || LCK || Luck stat
 |-

@@ -42,13 +42,13 @@ Features:
 |-
 ! Address !! Description
 |-
-| $08000000-$08FFFFFF || ROM
+| $08000000-$08ffffff || ROM
 |-
-| $02000000-$0203FFFF || EWRAM
+| $02000000-$0203ffff || EWRAM
 |-
-| $03000000-$03007FFF || IWRAM
+| $03000000-$03007fff || IWRAM
 |-
-| $0E000000-$0E00FFFF || Flash Save
+| $0e000000-$0e00ffff || Flash Save
 |}
 
 ==Card Types==

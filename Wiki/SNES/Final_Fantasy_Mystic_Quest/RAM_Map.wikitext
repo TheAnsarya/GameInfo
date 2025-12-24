@@ -243,7 +243,7 @@ Note: Name is 8 characters in English, but 6 characters in Japanese, French, and
 |-
 |  $1010  ||  byte  ||  Player  ||  Level (Max: 41)
 |-
-|  $1011 - $1013  ||  long  ||  Player  ||  Experience (Max: $98967F / 9,999,999)
+|  $1011 - $1013  ||  long  ||  Player  ||  Experience (Max: $98967f / 9,999,999)
 |-
 |  $1014 - $1015  ||  word  ||  Player  ||  Current HP ("FIGURE" Max: $ffff / 65535, "SCALE" display Max: $0668 / 1640)
 |-

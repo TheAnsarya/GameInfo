@@ -103,17 +103,17 @@ Each entry is <code>$173</code> bytes long.
 |-
 |  $149  ||  byte  ||  Agility Level 3
 |-
-|  $14A  ||  byte  ||  Agility Increment 3
+|  $14a  ||  byte  ||  Agility Increment 3
 |-
-|  $14B  ||  byte  ||  Agility Level 4
+|  $14b  ||  byte  ||  Agility Level 4
 |-
-|  $14C  ||  byte  ||  Agility Increment 4
+|  $14c  ||  byte  ||  Agility Increment 4
 |-
-|  $14D  ||  byte  ||  Stamina - Initial Value, male
+|  $14d  ||  byte  ||  Stamina - Initial Value, male
 |-
-|  $14E  ||  byte  ||  Stamina - Initial Value, female
+|  $14e  ||  byte  ||  Stamina - Initial Value, female
 |-
-|  $14F  ||  byte  ||  Stamina - Level 0
+|  $14f  ||  byte  ||  Stamina - Level 0
 |-
 |  $150  ||  byte  ||  Stamina - Increment 0
 |-
@@ -135,17 +135,17 @@ Each entry is <code>$173</code> bytes long.
 |-
 |  $159  ||  byte  ||  Stamina - Level 5
 |-
-|  $15A  ||  byte  ||  Stamina - Increment 5
+|  $15a  ||  byte  ||  Stamina - Increment 5
 |-
-|  $15B  ||  byte  ||  Wisdom - Initial Value, male
+|  $15b  ||  byte  ||  Wisdom - Initial Value, male
 |-
-|  $15C  ||  byte  ||  Wisdom - Initial Value, female
+|  $15c  ||  byte  ||  Wisdom - Initial Value, female
 |-
-|  $15D  ||  byte  ||  Wisdom - Level 0
+|  $15d  ||  byte  ||  Wisdom - Level 0
 |-
-|  $15E  ||  byte  ||  Wisdom - Increment 0
+|  $15e  ||  byte  ||  Wisdom - Increment 0
 |-
-|  $15F  ||  byte  ||  Wisdom - Level 1
+|  $15f  ||  byte  ||  Wisdom - Level 1
 |-
 |  $160  ||  byte  ||  Wisdom - Increment 1
 |-
@@ -167,17 +167,17 @@ Each entry is <code>$173</code> bytes long.
 |-
 |  $169  ||  byte  ||  Luck - Level 0
 |-
-|  $16A  ||  byte  ||  Luck - Increment 0
+|  $16a  ||  byte  ||  Luck - Increment 0
 |-
-|  $16B  ||  byte  ||  Luck - Level 1
+|  $16b  ||  byte  ||  Luck - Level 1
 |-
-|  $16C  ||  byte  ||  Luck - Increment 1
+|  $16c  ||  byte  ||  Luck - Increment 1
 |-
-|  $16D  ||  byte  ||  Luck - Level 2
+|  $16d  ||  byte  ||  Luck - Level 2
 |-
-|  $16E  ||  byte  ||  Luck - Increment 2
+|  $16e  ||  byte  ||  Luck - Increment 2
 |-
-|  $16F  ||  byte  ||  Luck - Level 3
+|  $16f  ||  byte  ||  Luck - Level 3
 |-
 |  $170  ||  byte  ||  Luck - Increment 3
 |-

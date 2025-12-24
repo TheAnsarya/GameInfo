@@ -213,11 +213,11 @@ Robotrek takes place across multiple regions that unlock as the story progresses
 |-
 | $08 || 2 || BG color / weather
 |-
-| $0A || 2 || Encounter rate
+| $0a || 2 || Encounter rate
 |-
-| $0C || 2 || Encounter table pointer
+| $0c || 2 || Encounter table pointer
 |-
-| $0E || 2 || Event pointer table
+| $0e || 2 || Event pointer table
 |}
 
 === Tile Properties ===

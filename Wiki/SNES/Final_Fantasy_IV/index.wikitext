@@ -46,13 +46,13 @@ Revolutionary features:
 |-
 ! Bank Range !! Address !! Description
 |-
-| $C0-$CF || $0000-$FFFF || Program ROM (HiROM)
+| $c0-$cf || $0000-$ffff || Program ROM (HiROM)
 |-
-| $30 || $6000-$7FFF || SRAM
+| $30 || $6000-$7fff || SRAM
 |-
-| $7E || $0000-$FFFF || WRAM (low)
+| $7e || $0000-$ffff || WRAM (low)
 |-
-| $7F || $0000-$FFFF || WRAM (high)
+| $7f || $0000-$ffff || WRAM (high)
 |}
 
 ==Party Members==
@@ -83,9 +83,9 @@ The game features many characters who join and leave throughout the story:
 |-
 | $09 || Porom || White Mage || No
 |-
-| $0A || Cid || Engineer || No
+| $0a || Cid || Engineer || No
 |-
-| $0B || FuSoYa || Lunarian || No
+| $0b || FuSoYa || Lunarian || No
 |}
 
 ==Command Types==

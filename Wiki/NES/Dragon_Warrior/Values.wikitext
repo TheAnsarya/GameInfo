@@ -73,17 +73,17 @@
 |-
 |  style="text-align: center;"  |  $09  ||  Quest Item  ||  Gwaelin's Love  ||  -  ||  -  ||  -  ||  Love token from princess
 |-
-|  style="text-align: center;"  |  $0A  ||  Cursed  ||  Cursed Belt  ||  360 GP  ||  180 GP  ||  -2 AGI  ||  Reduces agility
+|  style="text-align: center;"  |  $0a  ||  Cursed  ||  Cursed Belt  ||  360 GP  ||  180 GP  ||  -2 AGI  ||  Reduces agility
 |-
-|  style="text-align: center;"  |  $0B  ||  Quest Item  ||  Silver Harp  ||  -  ||  -  ||  -  ||  Puts enemies to sleep
+|  style="text-align: center;"  |  $0b  ||  Quest Item  ||  Silver Harp  ||  -  ||  -  ||  -  ||  Puts enemies to sleep
 |-
-|  style="text-align: center;"  |  $0C  ||  Cursed  ||  Death Necklace  ||  2400 GP  ||  1200 GP  ||  -  ||  Causes death when used
+|  style="text-align: center;"  |  $0c  ||  Cursed  ||  Death Necklace  ||  2400 GP  ||  1200 GP  ||  -  ||  Causes death when used
 |-
-|  style="text-align: center;"  |  $0D  ||  Quest Item  ||  Stones of Sunlight  ||  -  ||  -  ||  -  ||  Component for Rainbow Drop
+|  style="text-align: center;"  |  $0d  ||  Quest Item  ||  Stones of Sunlight  ||  -  ||  -  ||  -  ||  Component for Rainbow Drop
 |-
-|  style="text-align: center;"  |  $0E  ||  Quest Item  ||  Staff of Rain  ||  -  ||  -  ||  -  ||  Component for Rainbow Drop
+|  style="text-align: center;"  |  $0e  ||  Quest Item  ||  Staff of Rain  ||  -  ||  -  ||  -  ||  Component for Rainbow Drop
 |-
-|  style="text-align: center;"  |  $0F  ||  Quest Item  ||  Rainbow Drop  ||  -  ||  -  ||  -  ||  Creates bridge to Charlock
+|  style="text-align: center;"  |  $0f  ||  Quest Item  ||  Rainbow Drop  ||  -  ||  -  ||  -  ||  Creates bridge to Charlock
 |}
 
 =Equipment Values=
@@ -104,11 +104,11 @@
 |-
 |  style="text-align: center;"  |  $80  ||  style="text-align: center;"  |  $04  ||  Hand Axe  ||  +15  ||  560 GP  ||  Good mid-game weapon
 |-
-|  style="text-align: center;"  |  $A0  ||  style="text-align: center;"  |  $05  ||  Broad Sword  ||  +20  ||  1500 GP  ||  Powerful late-game sword
+|  style="text-align: center;"  |  $a0  ||  style="text-align: center;"  |  $05  ||  Broad Sword  ||  +20  ||  1500 GP  ||  Powerful late-game sword
 |-
-|  style="text-align: center;"  |  $C0  ||  style="text-align: center;"  |  $06  ||  Flame Sword  ||  +28  ||  9800 GP  ||  Requires Dragon's Scale
+|  style="text-align: center;"  |  $c0  ||  style="text-align: center;"  |  $06  ||  Flame Sword  ||  +28  ||  9800 GP  ||  Requires Dragon's Scale
 |-
-|  style="text-align: center;"  |  $E0  ||  style="text-align: center;"  |  $07  ||  Erdrick's Sword  ||  +40  ||  -  ||  Legendary weapon, quest item
+|  style="text-align: center;"  |  $e0  ||  style="text-align: center;"  |  $07  ||  Erdrick's Sword  ||  +40  ||  -  ||  Legendary weapon, quest item
 |}
 
 ==Armor==
@@ -123,7 +123,7 @@
 |-
 |  style="text-align: center;"  |  $08  ||  style="text-align: center;"  |  $02  ||  Leather Armor  ||  +4  ||  70 GP  ||  Basic protection
 |-
-|  style="text-align: center;"  |  $0C  ||  style="text-align: center;"  |  $03  ||  Chain Mail  ||  +10  ||  300 GP  ||  Good early armor
+|  style="text-align: center;"  |  $0c  ||  style="text-align: center;"  |  $03  ||  Chain Mail  ||  +10  ||  300 GP  ||  Good early armor
 |-
 |  style="text-align: center;"  |  $10  ||  style="text-align: center;"  |  $04  ||  Half Plate  ||  +16  ||  1000 GP  ||  Strong mid-game armor
 |-
@@ -131,7 +131,7 @@
 |-
 |  style="text-align: center;"  |  $18  ||  style="text-align: center;"  |  $06  ||  Magic Armor  ||  +24  ||  7700 GP  ||  Curse resistance
 |-
-|  style="text-align: center;"  |  $1C  ||  style="text-align: center;"  |  $07  ||  Erdrick's Armor  ||  +28  ||  -  ||  Ultimate armor, quest reward
+|  style="text-align: center;"  |  $1c  ||  style="text-align: center;"  |  $07  ||  Erdrick's Armor  ||  +28  ||  -  ||  Ultimate armor, quest reward
 |}
 
 ==Shields==
@@ -318,11 +318,11 @@
 |-
 |  style="text-align: center;"  |  $09  ||  Erdrick's Cave  ||  16x16  ||  Cave  ||  Cave Theme  ||  Moderate encounters
 |-
-|  style="text-align: center;"  |  $0A  ||  Mountain Cave  ||  16x20  ||  Cave  ||  Cave Theme  ||  Weak encounters
+|  style="text-align: center;"  |  $0a  ||  Mountain Cave  ||  16x20  ||  Cave  ||  Cave Theme  ||  Weak encounters
 |-
-|  style="text-align: center;"  |  $0B  ||  Garin's Grave  ||  12x12  ||  Dungeon  ||  Dungeon Theme  ||  Undead encounters
+|  style="text-align: center;"  |  $0b  ||  Garin's Grave  ||  12x12  ||  Dungeon  ||  Dungeon Theme  ||  Undead encounters
 |-
-|  style="text-align: center;"  |  $0C  ||  Southern Shrine  ||  12x16  ||  Shrine  ||  Shrine Theme  ||  None
+|  style="text-align: center;"  |  $0c  ||  Southern Shrine  ||  12x16  ||  Shrine  ||  Shrine Theme  ||  None
 |}
 
 ==Experience Requirements by Level==
@@ -656,23 +656,23 @@
 |-
 !  Data Type  !!  Bank  !!  Approx Address  !!  Size  !!  Notes
 |-
-|  Monster Stats  ||  Bank 01  ||  $9000-$94FF  ||  1280 bytes  ||  40 monsters × 16 bytes
+|  Monster Stats  ||  Bank 01  ||  $9000-$94ff  ||  1280 bytes  ||  40 monsters × 16 bytes
 |-
 |  Item Costs  ||  Bank 00  ||  $9947-$9990  ||  74 bytes  ||  All shop items
 |-
-|  Weapon Bonuses  ||  Bank 00  ||  $99CF-$99DE  ||  16 bytes  ||  Attack values
+|  Weapon Bonuses  ||  Bank 00  ||  $99cf-$99de  ||  16 bytes  ||  Attack values
 |-
-|  Armor Bonuses  ||  Bank 00  ||  $99DF-$99EE  ||  16 bytes  ||  Defense values
+|  Armor Bonuses  ||  Bank 00  ||  $99df-$99ee  ||  16 bytes  ||  Defense values
 |-
-|  Shield Bonuses  ||  Bank 00  ||  $99EF-$99FE  ||  16 bytes  ||  Defense values
+|  Shield Bonuses  ||  Bank 00  ||  $99ef-$99fe  ||  16 bytes  ||  Defense values
 |-
-|  EXP Requirements  ||  Bank 01  ||  $9500-$95FF  ||  60 bytes  ||  30 levels × 2 bytes
+|  EXP Requirements  ||  Bank 01  ||  $9500-$95ff  ||  60 bytes  ||  30 levels × 2 bytes
 |-
-|  HP Gain Table  ||  Bank 03  ||  ~$CB00  ||  30 bytes  ||  Base HP per level
+|  HP Gain Table  ||  Bank 03  ||  ~$cb00  ||  30 bytes  ||  Base HP per level
 |-
-|  MP Gain Table  ||  Bank 03  ||  ~$CB80  ||  30 bytes  ||  Base MP per level
+|  MP Gain Table  ||  Bank 03  ||  ~$cb80  ||  30 bytes  ||  Base MP per level
 |-
-|  Spell Costs  ||  Bank 01  ||  $9700-$97FF  ||  20 bytes  ||  10 spells × 2 bytes
+|  Spell Costs  ||  Bank 01  ||  $9700-$97ff  ||  20 bytes  ||  10 spells × 2 bytes
 |}
 
 =References=

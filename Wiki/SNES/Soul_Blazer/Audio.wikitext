@@ -2,7 +2,7 @@
 '''Soul Blazer''' features a complete SPC700 audio system with music composed by '''Yukihide Takekawa''' (タケカワユキヒデ).
 
 ==Overview==
-The SNES SPC700 audio processor handles all music and sound effects. Soul Blazer's audio driver is located at '''$07A7F6''' (file offset $3E7F6) in the ROM.
+The SNES SPC700 audio processor handles all music and sound effects. Soul Blazer's audio driver is located at '''$07a7f6''' (file offset $3e7f6) in the ROM.
 
 ===Audio Statistics===
 {| class="wikitable"
@@ -16,7 +16,7 @@ The SNES SPC700 audio processor handles all music and sound effects. Soul Blazer
 |-
 | BRR Samples || 32
 |-
-| Total Audio Data || ~96KB (Bank $0F + samples)
+| Total Audio Data || ~96KB (Bank $0f + samples)
 |}
 
 ==SPC700 Audio Driver==
@@ -29,9 +29,9 @@ The SNES SPC700 audio processor handles all music and sound effects. Soul Blazer
 |-
 | DSP Setup || $078800 || 512 || DSP register initialization
 |-
-| Sample Directory || $078A00 || 256 || BRR sample pointers
+| Sample Directory || $078a00 || 256 || BRR sample pointers
 |-
-| Music Data || $078C00 || ~28KB || Sequence data for all tracks
+| Music Data || $078c00 || ~28KB || Sequence data for all tracks
 |}
 
 ===Driver Features===
@@ -47,13 +47,13 @@ The SNES SPC700 audio processor handles all music and sound effects. Soul Blazer
 {| class="wikitable sortable"
 ! ID !! File Offset !! Name !! Length !! Context
 |-
-| $00 || $078C00 || Silence || 0:00 || Null track
+| $00 || $078c00 || Silence || 0:00 || Null track
 |-
-| $01 || $078C10 || Title Screen || 1:32 || Title menu
+| $01 || $078c10 || Title Screen || 1:32 || Title menu
 |-
-| $02 || $078D40 || The Shrine || 0:48 || Master's shrines
+| $02 || $078d40 || The Shrine || 0:48 || Master's shrines
 |-
-| $03 || $078E80 || Grass Valley || 2:15 || Act 1 Town
+| $03 || $078e80 || Grass Valley || 2:15 || Act 1 Town
 |-
 | $04 || $079100 || Underground Castle || 2:45 || Act 1 Dungeon
 |-
@@ -61,46 +61,46 @@ The SNES SPC700 audio processor handles all music and sound effects. Soul Blazer
 |-
 | $06 || $079780 || GreenWood Forest || 2:52 || Act 2 Dungeon
 |-
-| $07 || $079B20 || St. Elles Beach || 2:18 || Act 3 Town
+| $07 || $079b20 || St. Elles Beach || 2:18 || Act 3 Town
 |-
-| $08 || $079E40 || Seabed Palace || 3:05 || Act 3 Dungeon
+| $08 || $079e40 || Seabed Palace || 3:05 || Act 3 Dungeon
 |-
-| $09 || $07A280 || Ghost Ship || 2:35 || Act 3 Ghost Ship area
+| $09 || $07a280 || Ghost Ship || 2:35 || Act 3 Ghost Ship area
 |-
-| $0A || $07A5C0 || Mountain Village || 2:22 || Act 4 Town
+| $0a || $07a5c0 || Mountain Village || 2:22 || Act 4 Town
 |-
-| $0B || $07A8F0 || Mountain of Souls || 3:12 || Act 4 Dungeon
+| $0b || $07a8f0 || Mountain of Souls || 3:12 || Act 4 Dungeon
 |-
-| $0C || $07AD40 || Leo's Laboratory || 2:08 || Act 5 Town
+| $0c || $07ad40 || Leo's Laboratory || 2:08 || Act 5 Town
 |-
-| $0D || $07B050 || Model Town || 2:42 || Act 5 Dungeon
+| $0d || $07b050 || Model Town || 2:42 || Act 5 Dungeon
 |-
-| $0E || $07B3A0 || Painting World || 2:55 || Act 5 Painting areas
+| $0e || $07b3a0 || Painting World || 2:55 || Act 5 Painting areas
 |-
-| $0F || $07B720 || Magridd Castle || 2:48 || Act 6 Town
+| $0f || $07b720 || Magridd Castle || 2:48 || Act 6 Town
 |-
-| $10 || $07BA80 || World of Evil || 3:28 || Act 6 Dungeon
+| $10 || $07ba80 || World of Evil || 3:28 || Act 6 Dungeon
 |-
-| $11 || $07BF00 || Boss Battle || 1:45 || Standard boss fights
+| $11 || $07bf00 || Boss Battle || 1:45 || Standard boss fights
 |-
-| $12 || $07C180 || Deathtoll Battle || 2:52 || Final boss theme
+| $12 || $07c180 || Deathtoll Battle || 2:52 || Final boss theme
 |-
-| $13 || $07C500 || Victory Fanfare || 0:12 || Boss defeated
+| $13 || $07c500 || Victory Fanfare || 0:12 || Boss defeated
 |-
-| $14 || $07C580 || Soul Released || 0:08 || Soul lair cleared
+| $14 || $07c580 || Soul Released || 0:08 || Soul lair cleared
 |-
-| $15 || $07C5E0 || Game Over || 0:18 || Death screen
+| $15 || $07c5e0 || Game Over || 0:18 || Death screen
 |-
-| $16 || $07C680 || Ending Theme || 3:45 || Credits sequence
+| $16 || $07c680 || Ending Theme || 3:45 || Credits sequence
 |}
 
 ===Track Categories===
 {| class="wikitable"
 ! Category !! Track IDs !! Count
 |-
-| Town Themes || $03, $05, $07, $0A, $0C, $0F || 6
+| Town Themes || $03, $05, $07, $0a, $0c, $0f || 6
 |-
-| Dungeon Themes || $04, $06, $08, $09, $0B, $0D, $0E, $10 || 8
+| Dungeon Themes || $04, $06, $08, $09, $0b, $0d, $0e, $10 || 8
 |-
 | Boss Themes || $11, $12 || 2
 |-
@@ -134,17 +134,17 @@ The SNES SPC700 audio processor handles all music and sound effects. Soul Blazer
 |-
 | $09 || Spark Bomb || Bomb explosion || High
 |-
-| $0A || Tornado || Wind magic || Medium
+| $0a || Tornado || Wind magic || Medium
 |-
-| $0B || Soul Release || Lair cleared || High
+| $0b || Soul Release || Lair cleared || High
 |-
-| $0C || Item Pickup || Collecting item || Low
+| $0c || Item Pickup || Collecting item || Low
 |-
-| $0D || Level Up || Gaining level || High
+| $0d || Level Up || Gaining level || High
 |-
-| $0E || Boss Intro || Boss appearance || High
+| $0e || Boss Intro || Boss appearance || High
 |-
-| $0F || Warp || Teleportation || Medium
+| $0f || Warp || Teleportation || Medium
 |}
 
 ==BRR Samples==
@@ -155,49 +155,49 @@ Soul Blazer uses '''BRR''' (Bit Rate Reduction) format for all audio samples. Ea
 {| class="wikitable sortable"
 ! ID !! Offset !! Size !! Description !! ADSR
 |-
-| $00 || $0F8000 || 576 || Strings (sustain) || 0xA0F0
+| $00 || $0f8000 || 576 || Strings (sustain) || 0xA0F0
 |-
-| $01 || $0F8240 || 432 || Flute || 0x80E8
+| $01 || $0f8240 || 432 || Flute || 0x80E8
 |-
-| $02 || $0F83F0 || 288 || Brass || 0xB0F0
+| $02 || $0f83f0 || 288 || Brass || 0xB0F0
 |-
-| $03 || $0F8510 || 864 || Piano || 0x90D8
+| $03 || $0f8510 || 864 || Piano || 0x90D8
 |-
-| $04 || $0F8870 || 720 || Organ || 0xA0E8
+| $04 || $0f8870 || 720 || Organ || 0xA0E8
 |-
-| $05 || $0F8B40 || 576 || Choir || 0x80E0
+| $05 || $0f8b40 || 576 || Choir || 0x80E0
 |-
-| $06 || $0F8D80 || 360 || Bell || 0x60C8
+| $06 || $0f8d80 || 360 || Bell || 0x60C8
 |-
-| $07 || $0F8EE8 || 432 || Harp || 0x70D0
+| $07 || $0f8ee8 || 432 || Harp || 0x70D0
 |-
-| $08 || $0F9098 || 1,152 || Guitar || 0x90E0
+| $08 || $0f9098 || 1,152 || Guitar || 0x90E0
 |-
-| $09 || $0F9518 || 288 || Bass || 0xB0F8
+| $09 || $0f9518 || 288 || Bass || 0xB0F8
 |-
-| $0A || $0F9638 || 720 || Synth Lead || 0x80E8
+| $0a || $0f9638 || 720 || Synth Lead || 0x80E8
 |-
-| $0B || $0F9908 || 576 || Synth Pad || 0xA0F0
+| $0b || $0f9908 || 576 || Synth Pad || 0xA0F0
 |-
-| $0C || $0F9B48 || 216 || Kick Drum || 0xF0FF
+| $0c || $0f9b48 || 216 || Kick Drum || 0xF0FF
 |-
-| $0D || $0F9C20 || 144 || Snare Drum || 0xF0FF
+| $0d || $0f9c20 || 144 || Snare Drum || 0xF0FF
 |-
-| $0E || $0F9CB0 || 144 || Hi-Hat Closed || 0xF0FF
+| $0e || $0f9cb0 || 144 || Hi-Hat Closed || 0xF0FF
 |-
-| $0F || $0F9D40 || 180 || Hi-Hat Open || 0xE0F0
+| $0f || $0f9d40 || 180 || Hi-Hat Open || 0xE0F0
 |-
-| $10 || $0F9DF4 || 288 || Tom || 0xF0FF
+| $10 || $0f9df4 || 288 || Tom || 0xF0FF
 |-
-| $11 || $0F9F14 || 144 || Cymbal || 0xD0E8
+| $11 || $0f9f14 || 144 || Cymbal || 0xD0E8
 |-
-| $12 || $0F9FA4 || 432 || Timpani || 0xB0F0
+| $12 || $0f9fa4 || 432 || Timpani || 0xB0F0
 |-
-| $13 || $0FA154 || 216 || Triangle || 0x60B0
+| $13 || $0fa154 || 216 || Triangle || 0x60B0
 |-
-| $14 || $0FA22C || 576 || Sword SFX || 0xF0FF
+| $14 || $0fa22c || 576 || Sword SFX || 0xF0FF
 |-
-| $15 || $0FA46C || 360 || Hit SFX || 0xF0FF
+| $15 || $0fa46c || 360 || Hit SFX || 0xF0FF
 |}
 
 ==See Also==

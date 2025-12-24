@@ -46,9 +46,9 @@ One of the largest and most technically impressive NES games:
 |-
 ! Bank Range !! Description
 |-
-| PRG Banks || $00-$2F (48 banks × 8KB)
+| PRG Banks || $00-$2f (48 banks × 8KB)
 |-
-| CHR Banks || $00-$FF (256 banks × 1KB)
+| CHR Banks || $00-$ff (256 banks × 1KB)
 |}
 
 ==Copy Abilities==
@@ -77,17 +77,17 @@ One of the largest and most technically impressive NES games:
 |-
 | $09 || Hammer || Bonkers
 |-
-| $0A || Tornado || Twister
+| $0a || Tornado || Twister
 |-
-| $0B || UFO || UFO
+| $0b || UFO || UFO
 |-
-| $0C || Sleep || Noddy
+| $0c || Sleep || Noddy
 |-
-| $0D || Backdrop || Bugzzy
+| $0d || Backdrop || Bugzzy
 |-
-| $0E || Throw || Rolling Turtle
+| $0e || Throw || Rolling Turtle
 |-
-| $0F || Wheel || Wheelie
+| $0f || Wheel || Wheelie
 |-
 | $10 || Ball || Bubbles
 |-

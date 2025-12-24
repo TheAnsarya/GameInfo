@@ -68,13 +68,13 @@ FF=<end>
 
 | $00 || A ||
 |-
-| $1A || Z ||
+| $1a || Z ||
 |-
 | $20 || (space) ||
 |-
-| $FE || — || Wait for input
+| $fe || — || Wait for input
 |-
-| $FF || — || End of string
+| $ff || — || End of string
 |-
 |}
 

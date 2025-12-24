@@ -22,15 +22,15 @@ Located in Bank $06, starting at $06:8000.
 |-
 | $08 || 2 || GEM reward
 |-
-| $0A || 1 || Sprite ID
+| $0a || 1 || Sprite ID
 |-
-| $0B || 1 || AI type
+| $0b || 1 || AI type
 |-
-| $0C || 1 || Movement speed
+| $0c || 1 || Movement speed
 |-
-| $0D || 1 || Elemental weakness
+| $0d || 1 || Elemental weakness
 |-
-| $0E || 2 || Reserved
+| $0e || 2 || Reserved
 |}
 
 ===Enemy Types===
@@ -57,17 +57,17 @@ Located in Bank $06, starting at $06:8000.
 |-
 | $09 || Bat || GreenWood
 |-
-| $0A || Skeleton || GreenWood
+| $0a || Skeleton || GreenWood
 |-
-| $0B || Ghost || GreenWood
+| $0b || Ghost || GreenWood
 |-
-| $0C || Demon || St. Elles
+| $0c || Demon || St. Elles
 |-
-| $0D || Fire Spirit || St. Elles
+| $0d || Fire Spirit || St. Elles
 |-
-| $0E || Ice Spirit || St. Elles
+| $0e || Ice Spirit || St. Elles
 |-
-| $0F || Mummy || St. Elles
+| $0f || Mummy || St. Elles
 |-
 | $10 || Fish || St. Elles Seabed
 |-
@@ -89,17 +89,17 @@ Located in Bank $06, starting at $06:8000.
 |-
 | $19 || Ice Golem || Mountain of Souls
 |-
-| $1A || Toy Soldier || Leo's Lab
+| $1a || Toy Soldier || Leo's Lab
 |-
-| $1B || Toy Car || Leo's Lab
+| $1b || Toy Car || Leo's Lab
 |-
-| $1C || Doll || Leo's Lab
+| $1c || Doll || Leo's Lab
 |-
-| $1D || Mouse || Leo's Lab
+| $1d || Mouse || Leo's Lab
 |-
-| $1E || Scorpion || World of Evil
+| $1e || Scorpion || World of Evil
 |-
-| $1F || Spider || World of Evil
+| $1f || Spider || World of Evil
 |}
 
 ==Item Data==
@@ -190,11 +190,11 @@ Each map has a header defining its properties.
 |-
 | $09 || 1 || Palette ID
 |-
-| $0A || 2 || Entity list pointer
+| $0a || 2 || Entity list pointer
 |-
-| $0C || 2 || Soul Lair list pointer
+| $0c || 2 || Soul Lair list pointer
 |-
-| $0E || 2 || Reserved
+| $0e || 2 || Reserved
 |}
 
 ==See Also==

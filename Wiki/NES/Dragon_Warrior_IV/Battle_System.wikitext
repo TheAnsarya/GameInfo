@@ -187,9 +187,9 @@ Source: Bank 19 ($8038)
 <pre>
 battle_entry:
     JSR read_tactics    ; $8038 - Read current tactic setting
-    JSR $80A1           ; $803B - Initialize battle state
-    BCC skip            ; $803E - Branch if carry clear
-    JSR $804A           ; $8040 - Unknown setup
+    JSR $80a1           ; $803b - Initialize battle state
+    BCC skip            ; $803e - Branch if carry clear
+    JSR $804a           ; $8040 - Unknown setup
     JSR sum_party_stats ; $8043 - Calculate party stat totals
     JSR dispatch_action ; $8046 - Execute battle action
 skip:

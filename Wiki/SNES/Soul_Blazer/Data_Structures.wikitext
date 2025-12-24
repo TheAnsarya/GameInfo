@@ -19,9 +19,9 @@ Each 8×8 tile uses 32 bytes:
 {| class="wikitable"
 ! Offset !! Size !! Description
 |-
-| $00-$0F || 16 || Bitplanes 0-1 (interleaved by row)
+| $00-$0f || 16 || Bitplanes 0-1 (interleaved by row)
 |-
-| $10-$1F || 16 || Bitplanes 2-3 (interleaved by row)
+| $10-$1f || 16 || Bitplanes 2-3 (interleaved by row)
 |}
 
 <pre>
@@ -157,15 +157,15 @@ Each active entity uses a 32-byte slot.
 |-
 | $08 || 2 || Y velocity (signed)
 |-
-| $0A || 1 || Direction (0-7, 8 directions)
+| $0a || 1 || Direction (0-7, 8 directions)
 |-
-| $0B || 1 || Animation frame
+| $0b || 1 || Animation frame
 |-
-| $0C || 1 || Animation timer
+| $0c || 1 || Animation timer
 |-
-| $0D || 1 || Sprite priority
+| $0d || 1 || Sprite priority
 |-
-| $0E || 2 || Current HP
+| $0e || 2 || Current HP
 |-
 | $10 || 1 || Invincibility timer
 |-
@@ -183,11 +183,11 @@ Each active entity uses a 32-byte slot.
 |-
 | $19 || 1 || Hit stun timer
 |-
-| $1A || 2 || Parent entity pointer
+| $1a || 2 || Parent entity pointer
 |-
-| $1C || 2 || Target entity pointer
+| $1c || 2 || Target entity pointer
 |-
-| $1E || 2 || AI data pointer
+| $1e || 2 || AI data pointer
 |}
 
 Direction values:
@@ -256,7 +256,7 @@ Lair flags:
 ==Player Data Structure==
 
 ===Player Stats Block===
-Located at RAM $7E1B00 (52 bytes).
+Located at RAM $7e1b00 (52 bytes).
 
 {| class="wikitable"
 ! Offset !! Size !! Description
@@ -273,17 +273,17 @@ Located at RAM $7E1B00 (52 bytes).
 |-
 | $09 || 1 || Strength
 |-
-| $0A || 1 || Defense
+| $0a || 1 || Defense
 |-
-| $0B || 1 || Luck
+| $0b || 1 || Luck
 |-
-| $0C || 1 || Equipped sword
+| $0c || 1 || Equipped sword
 |-
-| $0D || 1 || Equipped armor
+| $0d || 1 || Equipped armor
 |-
-| $0E || 1 || Equipped magic
+| $0e || 1 || Equipped magic
 |-
-| $0F || 1 || Soul count (released NPCs)
+| $0f || 1 || Soul count (released NPCs)
 |-
 | $10 || 4 || Sword inventory (bitfield)
 |-
@@ -291,11 +291,11 @@ Located at RAM $7E1B00 (52 bytes).
 |-
 | $18 || 4 || Magic inventory (bitfield)
 |-
-| $1C || 8 || Emblem inventory (bitfield)
+| $1c || 8 || Emblem inventory (bitfield)
 |-
 | $24 || 8 || Key items (bitfield)
 |-
-| $2C || 4 || Reserved
+| $2c || 4 || Reserved
 |-
 | $30 || 2 || Play time (minutes)
 |-
@@ -312,13 +312,13 @@ Soul Blazer uses a custom text encoding. See the [[/TBL|TBL page]] for the compl
 |-
 | $00-$09 || Numbers 0-9
 |-
-| $0A-$23 || Uppercase A-Z
+| $0a-$23 || Uppercase A-Z
 |-
-| $24-$3D || Lowercase a-z
+| $24-$3d || Lowercase a-z
 |-
-| $3E || Space
+| $3e || Space
 |-
-| $3F || Period
+| $3f || Period
 |-
 | $40 || Comma
 |-
@@ -336,9 +336,9 @@ Soul Blazer uses a custom text encoding. See the [[/TBL|TBL page]] for the compl
 |-
 | $47 || Ellipsis (...)
 |-
-| $FE || New line
+| $fe || New line
 |-
-| $FF || End of string
+| $ff || End of string
 |}
 
 ===Dialogue Pointer Format===
@@ -350,18 +350,18 @@ Pointer table header:
   Word 1+: 16-bit offsets to strings
 
 String format:
-  [Control codes][Text bytes][$FF]
+  [Control codes][Text bytes][$ff]
 
 Control codes:
-  $F0 xx   : Pause xx frames
-  $F1      : Wait for button press
-  $F2 xx   : Set text color xx
-  $F3 xx yy: Set position (x, y)
-  $F4 xx   : Play sound effect xx
-  $F5      : Clear text window
-  $F6 nn   : Insert item name #nn
-  $F7 nn   : Insert character name #nn
-  $F8      : Insert player name
+  $f0 xx   : Pause xx frames
+  $f1      : Wait for button press
+  $f2 xx   : Set text color xx
+  $f3 xx yy: Set position (x, y)
+  $f4 xx   : Play sound effect xx
+  $f5      : Clear text window
+  $f6 nn   : Insert item name #nn
+  $f7 nn   : Insert character name #nn
+  $f8      : Insert player name
 </pre>
 
 ==Compression==
@@ -371,8 +371,8 @@ Used for some tilemap data.
 
 <pre>
 Format:
-  $00-$7F: Copy next (n+1) bytes literally
-  $80-$FF: Repeat next byte (n-127) times
+  $00-$7f: Copy next (n+1) bytes literally
+  $80-$ff: Repeat next byte (n-127) times
   $00 $00: End of data
 </pre>
 

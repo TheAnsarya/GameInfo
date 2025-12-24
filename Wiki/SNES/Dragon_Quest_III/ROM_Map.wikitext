@@ -382,7 +382,7 @@ All strings end with <code>ac</code> and are encoded according to the [[Dragon_Q
 ==Notes==
 All values given are ROM offsets. They assume that a 512-byte copier header is ''not'' present. If there is a header present, you will have to add 512 ($200) to each offset lister here to get the correct offset in the ROM file.
 
-Note that the ROM is mapped into the SNES address space starting at $C00000. Therefore, if you want to use one of these ROM offsets as a breakpoint, you should add $C00000 to it. I've given a few examples below that already do this.
+Note that the ROM is mapped into the SNES address space starting at $c00000. Therefore, if you want to use one of these ROM offsets as a breakpoint, you should add $c00000 to it. I've given a few examples below that already do this.
 
 ==Menu Size Data==
 Almost every menu has a 16-bit (2-byte) value that determines its starting position (X/Y coordinates) and its width.
@@ -402,8 +402,8 @@ Here are a few menu size values that I have found. Note again that this controls
 * <tt>$30378-$30379</tt>: Change Message Speed menu (opened from introductory menu)
 * <tt>$30384-$30385</tt>: Mono/Stereo selector menu
 * <tt>$30024-$30025</tt>: Main walkabout menu (contains Talk, Spell, Item, Search, Status, Tactics)
-* <tt>$300FC-$300FD</tt>: Gold menu, associated with the main walkabout menu
-* <tt>$3036C-$3036D</tt>: Change Message Speed menu (opened from Tactics)
+* <tt>$300fc-$300fd</tt>: Gold menu, associated with the main walkabout menu
+* <tt>$3036c-$3036d</tt>: Change Message Speed menu (opened from Tactics)
 
 
 What if the menu you want to expand (or contract!) isn't listed above?
@@ -413,46 +413,46 @@ Here's how to find it.
 * Convert these values to hexadecimal and write them down. In this case, our X coordinate is 21 ($15), the Y coordinate is 16 ($10), and the width (including borders) is 9 ($09).
 * Open the ROM in a debugging emulator (I use Geiger's Snes9x debugging version).
 * Prepare things so that it will only take 1 more button press to get into the menu you want.
-* Set an execution breakpoint at <tt>$C90717</tt>.
+* Set an execution breakpoint at <tt>$c90717</tt>.
 * Open the menu &mdash; this should set off the breakpoint.
 * Keep an eye on the <tt>A</tt> register.
 * You might see something like this as the breakpoint is hit four times (On Geiger Snes9x, hit the "Run" button to get to the next breakpoint).
-** <tt>$C9/0717 08          PHP                     A:0000 X:0000 Y:0015 P:envmxdIZc</tt>
-** <tt>$C9/0717 08          PHP                     A:0015 X:0000 Y:0015 P:envmxdIzc</tt>
-** <tt>$C9/0717 08          PHP                     A:1015 X:0000 Y:0015 P:envmxdIzc</tt>
-** <tt>$C9/0717 08          PHP                     A:0009 X:0000 Y:0015 P:envmxdIzc</tt>
+** <tt>$c9/0717 08          PHP                     A:0000 X:0000 Y:0015 P:envmxdIZc</tt>
+** <tt>$c9/0717 08          PHP                     A:0015 X:0000 Y:0015 P:envmxdIzc</tt>
+** <tt>$c9/0717 08          PHP                     A:1015 X:0000 Y:0015 P:envmxdIzc</tt>
+** <tt>$c9/0717 08          PHP                     A:0009 X:0000 Y:0015 P:envmxdIzc</tt>
 * This is for the gold menu. If you followed the steps above, you should see some familiar information here. Note how on the second iteration, we see the X coordinate in the accumulator, and on the third iteration, we can see both the X *and* Y coordinates in the top and bottom halves. And on the fifth iteration, there is the width.
-* Don't proceed past the fifth iteration (the one where <tt>A</tt> = menu width). Instead, single step ("Step Into" button on Geiger Snes9x) until you get to <tt>$C902B1</tt>.
+* Don't proceed past the fifth iteration (the one where <tt>A</tt> = menu width). Instead, single step ("Step Into" button on Geiger Snes9x) until you get to <tt>$c902b1</tt>.
 * You'll see something like this:
-** <tt>$C9/02B1 33 10       AND ($10,s),y[$C3:00FD] A:0F80 X:00C3 Y:0000 P:envmXdIzc</tt>
-* See that <tt>[$C3:00FD]</tt>? Now just take that number and subtract <tt>$C00001</tt> (yes, <tt>$C00001</tt>, not <tt>$C00000</tt>) from it.
-* We now have the location of the menu size data; in this case, <tt>$300FC</tt>. Remember that the value at this address is two bytes long, and low-endian.
-* Note that, in some cases, there will be unwanted <tt>$C90717</tt> breakpoints before the one we're looking for. That's why you should monitor the <tt>A</tt> register and make sure we're looking at the right iteration. The method I detailed above works only if you check the address on the iteration that contains the menu width (<tt>$0009</tt>, in this case).
+** <tt>$c9/02B1 33 10       AND ($10,s),y[$c3:00FD] A:0F80 X:00C3 Y:0000 P:envmXdIzc</tt>
+* See that <tt>[$c3:00FD]</tt>? Now just take that number and subtract <tt>$c00001</tt> (yes, <tt>$c00001</tt>, not <tt>$c00000</tt>) from it.
+* We now have the location of the menu size data; in this case, <tt>$300fc</tt>. Remember that the value at this address is two bytes long, and low-endian.
+* Note that, in some cases, there will be unwanted <tt>$c90717</tt> breakpoints before the one we're looking for. That's why you should monitor the <tt>A</tt> register and make sure we're looking at the right iteration. The method I detailed above works only if you check the address on the iteration that contains the menu width (<tt>$0009</tt>, in this case).
 
 ==Menu Text Pointers==
-To change the menu text, you need to find the pointers for that text. In most cases, this pointer is actually the 16-bit operand of an <tt>LDA</tt> opcode. Pointers can usually only reference the 64K block of memory from which they are called; in other words, if a pointer is at <tt>$360D1</tt> in the ROM, it can't reference anything above <tt>$3FFFF</tt> or below <tt>$30000</tt>. In some cases, a pointer can't be made to point backwards without further hacking, because of the way that they are referenced. (More to come...) Fortunately, this shouldn't really be a big issue, because there is a block of apparently unused space (solid <tt>$FF</tt>s) from <tt>$3F30A-$3FFFF</tt>. Most pointers are in the range of this memory. (Please let me know if I'm mistaken and this empty space actually serves a purpose!)
+To change the menu text, you need to find the pointers for that text. In most cases, this pointer is actually the 16-bit operand of an <tt>LDA</tt> opcode. Pointers can usually only reference the 64K block of memory from which they are called; in other words, if a pointer is at <tt>$360d1</tt> in the ROM, it can't reference anything above <tt>$3ffff</tt> or below <tt>$30000</tt>. In some cases, a pointer can't be made to point backwards without further hacking, because of the way that they are referenced. (More to come...) Fortunately, this shouldn't really be a big issue, because there is a block of apparently unused space (solid <tt>$ff</tt>s) from <tt>$3f30a-$3ffff</tt>. Most pointers are in the range of this memory. (Please let me know if I'm mistaken and this empty space actually serves a purpose!)
 
 A list of menu pointers can be found at the [https://web.archive.org/web/20071123130703/http://www.kojiroland.com/dqwiki/index.php/Menu_Text Kojiro Translations wiki].
 
 ==Menu Padding Routine==
-Some menu entries have extra spaces padded onto the end that is not accounted for by the data at the expected pointers. These spaces are inserted by the use of a special routine located at <tt>$32B70</tt> in the ROM. When this routine is called, the <tt>X</tt> register contains the number of spaces to insert. If you're doing some menu expansion, you may have to set breakpoints at <tt>$C32B70</tt>. Single-step through until <tt>RTL</tt> is executed, so you can see where it came from, and then back up five bytes from the resulting address. If these padding spaces are throwing off your menu borders, replace the <tt>JSL $C32B70</tt> opcode with four <tt>NOP</tt>s.
+Some menu entries have extra spaces padded onto the end that is not accounted for by the data at the expected pointers. These spaces are inserted by the use of a special routine located at <tt>$32b70</tt> in the ROM. When this routine is called, the <tt>X</tt> register contains the number of spaces to insert. If you're doing some menu expansion, you may have to set breakpoints at <tt>$c32b70</tt>. Single-step through until <tt>RTL</tt> is executed, so you can see where it came from, and then back up five bytes from the resulting address. If these padding spaces are throwing off your menu borders, replace the <tt>JSL $c32b70</tt> opcode with four <tt>NOP</tt>s.
 
-Calling <tt>$32B8D</tt> inserts a single dummy space. The "Change Message Speed" option on the "Tactics" menu uses this method, so look out for it if you're editing that menu item. There may be others I haven't found yet that do the same thing. Again, you can track down the originating <tt>JSL</tt> opcode by breaking on the subroutine start, stepping through until <tt>RTL</tt> is executed, and then subtracting five bytes from the program counter at that point.
+Calling <tt>$32b8d</tt> inserts a single dummy space. The "Change Message Speed" option on the "Tactics" menu uses this method, so look out for it if you're editing that menu item. There may be others I haven't found yet that do the same thing. Again, you can track down the originating <tt>JSL</tt> opcode by breaking on the subroutine start, stepping through until <tt>RTL</tt> is executed, and then subtracting five bytes from the program counter at that point.
 
 ==Overworld Map==
 The overworld map is made up of a 64x64 grid of chunks which are a 4x4 grid of 16x16 pixel tiles which are really four 8x8 tiles. This results in a 4096x4096 pixel sized map.
 
 ===Top level grid===
-Location in ROM: $2D8A00 - $2D9BE2
+Location in ROM: $2d8a00 - $2d9be2
 
-The top level of the overworld tilemap data is a 64x64 grid composed of a word length (2 byte) index indicating which chunk to use. This is $2000 bytes. Most of the data is just a counter that increments by one each time since most of the land chunks are unique. However the open parts of the sea are represented by chunk $0001 so you will see long runs of that index. Some other reused chunks are composed of all desert or all forest or all grass, that kind of thing. Values range from $0001 to $0A3C, and $0000 is not used although is a valid chunk made of zeros.
+The top level of the overworld tilemap data is a 64x64 grid composed of a word length (2 byte) index indicating which chunk to use. This is $2000 bytes. Most of the data is just a counter that increments by one each time since most of the land chunks are unique. However the open parts of the sea are represented by chunk $0001 so you will see long runs of that index. Some other reused chunks are composed of all desert or all forest or all grass, that kind of thing. Values range from $0001 to $0a3c, and $0000 is not used although is a valid chunk made of zeros.
 
-Decompression uses a $400 byte ring buffer that is all zeros at the beginning and a starting write position of $3BE. Every decompressed byte is written to the output and the ring buffer. The compressed data is composed of a command byte followed by 8 to 16 data bytes. For each bit in the command byte, if the bit is 1 then read and write one byte. If the bit is 0 then perform a copy operation from the ring buffer using the next two bytes of source data. The 10 lower bits are a pointer into the ring buffer that will be used as the source address. The number of bytes to copy is the upper 6 bits plus 3. Note that the copied bytes are written to the output and also into the ring buffer so if the buffer read address is close behind the buffer write address then you're copying what was just written. This is mostly used to generate long stretches of $0001 which represents the chunks of open sea.
+Decompression uses a $400 byte ring buffer that is all zeros at the beginning and a starting write position of $3be. Every decompressed byte is written to the output and the ring buffer. The compressed data is composed of a command byte followed by 8 to 16 data bytes. For each bit in the command byte, if the bit is 1 then read and write one byte. If the bit is 0 then perform a copy operation from the ring buffer using the next two bytes of source data. The 10 lower bits are a pointer into the ring buffer that will be used as the source address. The number of bytes to copy is the upper 6 bits plus 3. Note that the copied bytes are written to the output and also into the ring buffer so if the buffer read address is close behind the buffer write address then you're copying what was just written. This is mostly used to generate long stretches of $0001 which represents the chunks of open sea.
 
 ===Chunks===
-Location in ROM: $2DA49C - $2E486B‬
+Location in ROM: $2da49c - $2e486b‬
 
-The chunks are 4x4 grids of tile indexes (1 byte) accessed with an index. The chunk data is in one contiguous area but is actually 16 different byte arrays, one after another and each one $A3D bytes long, so that all 16 tiles can be accessed with the same index.
+The chunks are 4x4 grids of tile indexes (1 byte) accessed with an index. The chunk data is in one contiguous area but is actually 16 different byte arrays, one after another and each one $a3d bytes long, so that all 16 tiles can be accessed with the same index.
 
 The starting addresses for each array are shown in the layout the tiles appear on screen:
 
@@ -465,72 +465,72 @@ The starting addresses for each array are shown in the layout the tiles appear o
 ! X + 3
 |-
 ! Y + 0
-| $2DA49C
-| $2DAED9
-| $2DB916
-| $2DC353
+| $2da49c
+| $2daed9
+| $2db916
+| $2dc353
 |-
 ! Y + 1
-| $2DCD90
-| $2DD7CD
-| $2DE20A
-| $2DEC47
+| $2dcd90
+| $2dd7cd
+| $2de20a
+| $2dec47
 |-
 ! Y + 2
-| $2DF684
-| $2E00C1
-| $2E0AFE
-| $2E153B
+| $2df684
+| $2e00c1
+| $2e0afe
+| $2e153b
 |-
 ! Y + 3
-| $2E1F78
-| $2E29B5
-| $2E33F2
-| $2E3E2F
+| $2e1f78
+| $2e29b5
+| $2e33f2
+| $2e3e2f
 |}
 
-Values range from $00 to $EC because the definitions for tiles $ED to $FF are not loaded, although there is space in RAM for them.
+Values range from $00 to $ec because the definitions for tiles $ed to $ff are not loaded, although there is space in RAM for them.
 
 ===Tiles===
-Location in ROM: $254F38 - $25569F
+Location in ROM: $254f38 - $25569f
 
 Each entry is 8 bytes with each 2 bytes representing one of the 4 tiles (8x8) that make up the larger 16x16 tile. These 2 byte parts are in the standard SNES tilemap format and are copied as is into VRAM.
 
 ==Japanese Dialogue Text==
-In the Japanese game revision with CRC32 13836bd2, text is compressed with Huffman coding, and spans the range $3CC258 to $3ECFB5 in the ROM. This section assumes that you are familiar with how Huffman coding works. Pointers and data in the examples are based on the previously mentioned revision.
+In the Japanese game revision with CRC32 13836bd2, text is compressed with Huffman coding, and spans the range $3cc258 to $3ecfb5 in the ROM. This section assumes that you are familiar with how Huffman coding works. Pointers and data in the examples are based on the previously mentioned revision.
 
 It is worth noting that the dialogue in Dragon Quest VI SNES uses the exact same system, only with different pointers and table sizes.
 
 ===Huffman tree data===
-Two parallel data blocks, each $7D4 bytes ($3EA two-byte entries): one from $159D3-$161A6 (for 0 bits, "left"), and another from $161A7-$1697A (for 1 bits, "right"). The blocks are parallel in that the number of entries into a block represents a split point in the Huffman tree, either left or right. A two-byte (little endian) entry has a flag for inner/leaf node in the tree (MSB set = inner node, MSB clear = leaf node). Inner nodes encode the byte position to go to for checking the next bit. Leaf nodes contain the character encoding value itself.
+Two parallel data blocks, each $7d4 bytes ($3ea two-byte entries): one from $159d3-$161a6 (for 0 bits, "left"), and another from $161a7-$1697a (for 1 bits, "right"). The blocks are parallel in that the number of entries into a block represents a split point in the Huffman tree, either left or right. A two-byte (little endian) entry has a flag for inner/leaf node in the tree (MSB set = inner node, MSB clear = leaf node). Inner nodes encode the byte position to go to for checking the next bit. Leaf nodes contain the character encoding value itself.
 
-As an example, tree entry $3E4 represents the offsets $159D3 + $3E4*2 = $1619B (left) and $161A7 + $3E4*2 = $1696F (right). The data at each offset is, respectively, $0200 (leaf node for character encoding $0200 = a space) and $87BC. The latter represents an inner node for the byte position $7BC in the tree data, which corresponds to tree entry ($7BC >> 1) = $3DE.
+As an example, tree entry $3e4 represents the offsets $159d3 + $3e4*2 = $1619b (left) and $161a7 + $3e4*2 = $1696f (right). The data at each offset is, respectively, $0200 (leaf node for character encoding $0200 = a space) and $87bc. The latter represents an inner node for the byte position $7bc in the tree data, which corresponds to tree entry ($7bc >> 1) = $3de.
 
 ===Text pointer table===
-Range $15331-$1591E in the ROM. It consists of $1FA three-byte entries, each of which is for a block of 8 strings, except the last one which has 7. Thus, there is a total of $FCF (4047) strings. Each string is terminated with the control code 00AC or 00AE.
+Range $15331-$1591e in the ROM. It consists of $1fa three-byte entries, each of which is for a block of 8 strings, except the last one which has 7. Thus, there is a total of $fcf (4047) strings. Each string is terminated with the control code 00AC or 00AE.
 
-The 24 bits of a text pointer consist of two parts. The high 21 bits represent a byte offset from the start of the script at $3CC258, and the low 3 bits represent a bit within that byte (bit 7 is the most significant, bit 0 is the least significant).
+The 24 bits of a text pointer consist of two parts. The high 21 bits represent a byte offset from the start of the script at $3cc258, and the low 3 bits represent a bit within that byte (bit 7 is the most significant, bit 0 is the least significant).
 
-As an example, the bytes of the sixth pointer value at $15340 are <code>79 12 00</code>, or the hex value $001279. The bit offset is ($001279 & 7) = 1. The byte offset is ($001279 >> 3) = $24F. So the sixth pointer goes to byte ($3CC258 + $24F) = $3CC4A7 at bit position 1.
+As an example, the bytes of the sixth pointer value at $15340 are <code>79 12 00</code>, or the hex value $001279. The bit offset is ($001279 & 7) = 1. The byte offset is ($001279 >> 3) = $24f. So the sixth pointer goes to byte ($3cc258 + $24f) = $3cc4a7 at bit position 1.
 
 ===Decompression example===
-To decompress a character from the script, feed in text bits to the Huffman tree, starting at tree position $3E9 (end position in the tree). In the text data, start at the bit position in the byte and going "left to right" = from most significant to least significant. Keep getting offsets in the Huffman tree data until you reach a leaf node.
+To decompress a character from the script, feed in text bits to the Huffman tree, starting at tree position $3e9 (end position in the tree). In the text data, start at the bit position in the byte and going "left to right" = from most significant to least significant. Keep getting offsets in the Huffman tree data until you reach a leaf node.
 
-If you were to feed in bits starting at $3CC4A7 bit position 1, you should start on the 111111_'''0'''_1 bit of the <code>FD</code> byte there, consume the twelve bits 01 1111 1010 01 in the buffer from the <code>FD FA 76</code> bytes, and take a path in the Huffman tree data to ROM position $166C1 (character value $0521, ツ).
+If you were to feed in bits starting at $3cc4a7 bit position 1, you should start on the 111111_'''0'''_1 bit of the <code>FD</code> byte there, consume the twelve bits 01 1111 1010 01 in the buffer from the <code>FD FA 76</code> bytes, and take a path in the Huffman tree data to ROM position $166c1 (character value $0521, ツ).
 
 ==Dialogue Font==
-There are two blocks of data for the variable-width and variable-height font: a metadata table from $151AA-$152A3, and the compressed font data itself from $10ED3-$151A9.
+There are two blocks of data for the variable-width and variable-height font: a metadata table from $151aa-$152a3, and the compressed font data itself from $10ed3-$151a9.
 
 ===Font metadata table===
 The table consists of 50 five-byte entries that come in the following binary format:
 
-<code>SSSSSSSS WWWWSSSS [bank $C1 offset] --HHHH--</code>
+<code>SSSSSSSS WWWWSSSS [bank $c1 offset] --HHHH--</code>
 
 W = character width, H = character height
 
 S = number of characters in a group for a particular W*H pair
 
-The bank number being $C1 is hard-coded into the <code>LDA #$C1</code> instruction at $1BBD4. Which is to say, the `C1` byte is located at $1BBD5.
+The bank number being $c1 is hard-coded into the <code>LDA #$c1</code> instruction at $1bbd4. Which is to say, the `C1` byte is located at $1bbd5.
 
 <div class="mw-collapsible mw-collapsed">
 <strong>Summary of font metadata table</strong>

@@ -44,13 +44,13 @@ Developed by the "Dream Team" of:
 |-
 ! Bank Range !! Address !! Description
 |-
-| $C0-$FF || $0000-$FFFF || Program ROM (HiROM)
+| $c0-$ff || $0000-$ffff || Program ROM (HiROM)
 |-
-| $30-$3F || $6000-$7FFF || SRAM
+| $30-$3f || $6000-$7fff || SRAM
 |-
-| $7E || $0000-$FFFF || WRAM (low)
+| $7e || $0000-$ffff || WRAM (low)
 |-
-| $7F || $0000-$FFFF || WRAM (high)
+| $7f || $0000-$ffff || WRAM (high)
 |}
 
 ==Party Members==

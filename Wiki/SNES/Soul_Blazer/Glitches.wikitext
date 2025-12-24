@@ -49,8 +49,8 @@ When GEM count exceeds 65,535, the value wraps to 0 and continues counting. Can 
 
 ====Technical Details====
 <pre>
-GEM counter at $7E1B20 (16-bit)
-Maximum value: $FFFF (65,535)
+GEM counter at $7e1b20 (16-bit)
+Maximum value: $ffff (65,535)
 Overflow behavior: Wraps to $0000
 </pre>
 
@@ -151,7 +151,7 @@ Rare circumstances can corrupt save data, resulting in lost progress.
 <pre>
 Save checksum at $70:0004 (per slot)
 If checksum fails, slot marked invalid
-Checksum = Sum of bytes $0006-$07FF
+Checksum = Sum of bytes $0006-$07ff
 </pre>
 
 ===Softlock - Leo's Painting===

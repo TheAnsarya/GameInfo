@@ -264,7 +264,7 @@ SNES palettes are 15-bit RGB (BBBBBGGGGGRRRRR) stored little-endian. Each palett
 
 == Item Names Table ==
 
-Located at file offset '''$01e413'''. Item names are stored as ASCII text separated by byte $CC (204).
+Located at file offset '''$01e413'''. Item names are stored as ASCII text separated by byte $cc (204).
 
 {| class="wikitable sortable"
 ! Index !! Hex !! Address !! Name
@@ -538,7 +538,7 @@ Located at file offset '''$01c200''', this table encodes weapon/item combination
 
 '''Format:'''
 * Uses marker bytes $68-$79 to indicate item categories
-* $FF marks section separators
+* $ff marks section separators
 * Same-item pairs: sequence like [A A B] means A + A = B
 * Chain format: [05 05 06 06 07] means Sword1+Sword1=Sword2, Sword2+Sword2=Sword3
 
@@ -564,7 +564,7 @@ Located at file offset '''$01c200''', this table encodes weapon/item combination
 |-
 | $71 || Shield equipment
 |-
-| $FF || Section end
+| $ff || Section end
 |}
 
 '''Known same-item recipes:'''

@@ -47,7 +47,7 @@ This is the '''technical reference''' for '''[[Soul Blazer]]''' (SNES), providin
 {| class="wikitable"
 ! Range !! Description
 |-
-| $00:0000-$00:1FFF || Mirror of $7E:0000-$7E:1FFF (low WRAM)
+| $00:0000-$00:1FFF || Mirror of $7e:0000-$7e:1FFF (low WRAM)
 |-
 | $00:2000-$00:5FFF || Hardware registers (PPU, APU, DMA)
 |-
@@ -55,18 +55,18 @@ This is the '''technical reference''' for '''[[Soul Blazer]]''' (SNES), providin
 |-
 | $00:8000-$00:FFFF || ROM Bank 00 (first 32KB)
 |-
-| $01:8000-$1F:FFFF || ROM Banks 01-1F
+| $01:8000-$1f:FFFF || ROM Banks 01-1F
 |-
 | $70:0000-$70:1FFF || SRAM (8KB, battery-backed)
 |-
-| $7E:0000-$7F:FFFF || Work RAM (128KB)
+| $7e:0000-$7f:FFFF || Work RAM (128KB)
 |}
 
 ===LoROM Mapping===
 <pre>
-File Offset = (Bank × $8000) + (Address & $7FFF)
+File Offset = (Bank × $8000) + (Address & $7fff)
 CPU Address = $808000 + File Offset
-             (Bank | $80) << 16 | $8000 | (Offset & $7FFF)
+             (Bank | $80) << 16 | $8000 | (Offset & $7fff)
 </pre>
 
 Example conversions:
@@ -77,9 +77,9 @@ Example conversions:
 |-
 | $008000 || $01:8000 || 01 || Bank 01 start
 |-
-| $078000 || $0F:8000 || 0F || Audio driver
+| $078000 || $0f:8000 || 0F || Audio driver
 |-
-| $0F8000 || $1F:8000 || 1F || Last bank
+| $0f8000 || $1f:8000 || 1F || Last bank
 |}
 
 ==PPU Configuration==
@@ -145,7 +145,7 @@ High table (bit 9 of X, size bit) in upper OAM.
 |-
 | 1 || $2105 (BGMODE) || Mode changes
 |-
-| 2 || $210D (BG1HOFS) || Parallax scrolling
+| 2 || $210d (BG1HOFS) || Parallax scrolling
 |-
 | 3 || $2111 (BG2HOFS) || Parallax scrolling
 |}
@@ -162,15 +162,15 @@ Used for:
 Executed every VBlank (60 Hz NTSC):
 <pre>
 1. Push registers
-2. Increment frame counter ($7E0040)
-3. Check input ($4218-$421F)
-4. Update OAM from shadow ($7E0400)
+2. Increment frame counter ($7e0040)
+3. Check input ($4218-$421f)
+4. Update OAM from shadow ($7e0400)
 5. Update CGRAM if dirty
 6. Process audio queue
 7. Pop registers, RTI
 </pre>
 
-===IRQ ($85A5)===
+===IRQ ($85a5)===
 Used for:
 * Mid-screen effects (scanline interrupts)
 * Timing-critical audio sync
@@ -266,7 +266,7 @@ SRAM is 8KB ($70:0000-$70:1FFF), divided into 3 save slots:
 |-
 | $0006 || 8 || Player name (null-padded)
 |-
-| $000E || 2 || Play time (minutes)
+| $000e || 2 || Play time (minutes)
 |-
 | $0010 || 1 || Current area ID
 |-
@@ -280,13 +280,13 @@ SRAM is 8KB ($70:0000-$70:1FFF), divided into 3 save slots:
 |-
 | $0018 || 2 || Maximum HP
 |-
-| $001A || 2 || Current EXP (low)
+| $001a || 2 || Current EXP (low)
 |-
-| $001C || 2 || Current EXP (high)
+| $001c || 2 || Current EXP (high)
 |-
-| $001E || 1 || Current Level
+| $001e || 1 || Current Level
 |-
-| $001F || 1 || Equipped Sword
+| $001f || 1 || Equipped Sword
 |-
 | $0020 || 1 || Equipped Armor
 |-
@@ -325,13 +325,13 @@ checksum = sum & 0xFFFF
 |-
 | $08 || 2 || Y velocity (8.8 fixed)
 |-
-| $0A || 2 || Current HP
+| $0a || 2 || Current HP
 |-
-| $0C || 2 || Maximum HP
+| $0c || 2 || Maximum HP
 |-
-| $0E || 1 || Direction (0-7)
+| $0e || 1 || Direction (0-7)
 |-
-| $0F || 1 || Animation state
+| $0f || 1 || Animation state
 |-
 | $10 || 1 || Animation frame
 |-
@@ -349,13 +349,13 @@ checksum = sum & 0xFFFF
 |-
 | $19 || 1 || Collision flags
 |-
-| $1A || 1 || Attack power
+| $1a || 1 || Attack power
 |-
-| $1B || 1 || Defense power
+| $1b || 1 || Defense power
 |-
-| $1C || 2 || Sprite base address
+| $1c || 2 || Sprite base address
 |-
-| $1E || 2 || User data / parent link
+| $1e || 2 || User data / parent link
 |}
 
 ===Entity Types===
@@ -366,17 +366,17 @@ checksum = sum & 0xFFFF
 |-
 | $01 || Player
 |-
-| $02-$3F || Enemies
+| $02-$3f || Enemies
 |-
-| $40-$5F || NPCs
+| $40-$5f || NPCs
 |-
-| $60-$7F || Projectiles
+| $60-$7f || Projectiles
 |-
-| $80-$9F || Items / pickups
+| $80-$9f || Items / pickups
 |-
-| $A0-$BF || Effects
+| $a0-$bf || Effects
 |-
-| $C0-$FF || Special / bosses
+| $c0-$ff || Special / bosses
 |}
 
 ==Collision System==
@@ -410,7 +410,7 @@ checksum = sum & 0xFFFF
 
 Soul Blazer uses a 16-bit LFSR (Linear Feedback Shift Register):
 <pre>
-Location: $7E0042-$7E0043
+Location: $7e0042-$7e0043
 
 Seed on power-up: $0001
 

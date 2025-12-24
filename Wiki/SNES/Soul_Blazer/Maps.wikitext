@@ -59,9 +59,9 @@ The game is divided into six acts, each consisting of:
 |-
 | $09 || Light Shrine || 3×4 || 8 || 12
 |-
-| $0A || Lost Marsh || 5×5 || 14 || 20
+| $0a || Lost Marsh || 5×5 || 14 || 20
 |-
-| $0B || Boss: Metal Scorpion || 1×2 || 1 || 1
+| $0b || Boss: Metal Scorpion || 1×2 || 1 || 1
 |}
 
 === Unique Mechanics ===
@@ -86,13 +86,13 @@ The game is divided into six acts, each consisting of:
 |-
 ! ID !! Name !! Screens !! Enemies !! Soul Lairs
 |-
-| $0C || Mountain of Souls || 6×4 || - || 0
+| $0c || Mountain of Souls || 6×4 || - || 0
 |-
-| $0D || Aurora's Garden || 4×4 || 14 || 18
+| $0d || Aurora's Garden || 4×4 || 14 || 18
 |-
-| $0E || Ice Palace || 5×5 || 16 || 22
+| $0e || Ice Palace || 5×5 || 16 || 22
 |-
-| $0F || Cloud Temple || 4×3 || 10 || 14
+| $0f || Cloud Temple || 4×3 || 10 || 14
 |-
 | $10 || Boss: Dark Knight || 2×2 || 1 || 1
 |}
@@ -150,7 +150,7 @@ The game is divided into six acts, each consisting of:
 |-
 | $19 || Ghost Ship || 4×4 || 14 || 18
 |-
-| $1A || Boss: Poseidon || 2×2 || 1 || 1
+| $1a || Boss: Poseidon || 2×2 || 1 || 1
 |}
 
 === Unique Mechanics ===
@@ -173,13 +173,13 @@ The game is divided into six acts, each consisting of:
 |-
 ! ID !! Name !! Screens !! Enemies !! Soul Lairs
 |-
-| $1B || Deathtoll's World || 8×8 || - || 0
+| $1b || Deathtoll's World || 8×8 || - || 0
 |-
-| $1C || Demon Realm || 6×6 || 24 || 32
+| $1c || Demon Realm || 6×6 || 24 || 32
 |-
-| $1D || Final Tower || 8×10 || 30 || 38
+| $1d || Final Tower || 8×10 || 30 || 38
 |-
-| $1E || Boss: Deathtoll || 3×3 || 3 || 1
+| $1e || Boss: Deathtoll || 3×3 || 3 || 1
 |}
 
 === Unique Mechanics ===
@@ -210,11 +210,11 @@ The game is divided into six acts, each consisting of:
 |-
 | $09 || 1 || Palette || Palette set ID
 |-
-| $0A || 2 || Entities || Pointer to entity list
+| $0a || 2 || Entities || Pointer to entity list
 |-
-| $0C || 2 || Lairs || Pointer to soul lair list
+| $0c || 2 || Lairs || Pointer to soul lair list
 |-
-| $0E || 2 || Events || Pointer to event triggers
+| $0e || 2 || Events || Pointer to event triggers
 |}
 
 ==See Also==

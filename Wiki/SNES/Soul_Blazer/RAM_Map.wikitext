@@ -4,118 +4,118 @@ This is the '''RAM map''' for '''[[Soul Blazer]]''' (SNES).
 {{Main|/Technical Reference|Technical Reference}} contains additional memory details.
 
 ==Overview==
-Soul Blazer uses the standard SNES memory layout with work RAM at $7E0000-$7FFFFF. This document covers the key RAM locations identified through disassembly analysis.
+Soul Blazer uses the standard SNES memory layout with work RAM at $7e0000-$7fffff. This document covers the key RAM locations identified through disassembly analysis.
 
-==Direct Page ($7E0000-$7E00FF)==
+==Direct Page ($7e0000-$7e00ff)==
 
 The 65816 Direct Page is used for frequently-accessed variables and temporary storage.
 
 {| class="wikitable sortable"
 ! Address !! Size !! Access !! Description
 |-
-| $7E0000 || 2 || 955× || <code>scratch_a</code> - Accumulator cache/temp
+| $7e0000 || 2 || 955× || <code>scratch_a</code> - Accumulator cache/temp
 |-
-| $7E0001 || 1 || 114× || <code>temp_byte</code> - Temporary byte storage
+| $7e0001 || 1 || 114× || <code>temp_byte</code> - Temporary byte storage
 |-
-| $7E0002 || 2 || 313× || <code>temp_word</code> - Temporary word storage
+| $7e0002 || 2 || 313× || <code>temp_word</code> - Temporary word storage
 |-
-| $7E0003 || 1 || 102× || <code>temp_byte2</code> - Second temp byte
+| $7e0003 || 1 || 102× || <code>temp_byte2</code> - Second temp byte
 |-
-| $7E0016 || 2 || 569× || <code>pointer_lo</code> - Pointer low word
+| $7e0016 || 2 || 569× || <code>pointer_lo</code> - Pointer low word
 |-
-| $7E0018 || 2 || 47× || <code>pointer_hi</code> - Pointer high word
+| $7e0018 || 2 || 47× || <code>pointer_hi</code> - Pointer high word
 |-
-| $7E001A || 2 || 52× || <code>pointer2_lo</code> - Second pointer
+| $7e001a || 2 || 52× || <code>pointer2_lo</code> - Second pointer
 |-
-| $7E0030 || 1 || 95× || <code>state_var</code> - State variable
+| $7e0030 || 1 || 95× || <code>state_var</code> - State variable
 |-
-| $7E00A9 || 2 || 118× || <code>math_result</code> - Math operation result
+| $7e00a9 || 2 || 118× || <code>math_result</code> - Math operation result
 |-
-| $7E00EA || 1 || 98× || <code>direction</code> - Entity direction (0-7)
+| $7e00ea || 1 || 98× || <code>direction</code> - Entity direction (0-7)
 |-
-| $7E00FF || 2 || 568× || <code>return_value</code> - Subroutine return value
+| $7e00ff || 2 || 568× || <code>return_value</code> - Subroutine return value
 |}
 
-==Stack Area ($7E0100-$7E01FF)==
+==Stack Area ($7e0100-$7e01ff)==
 
-Standard 65816 stack area. Stack pointer initialized to $01FF and grows downward.
+Standard 65816 stack area. Stack pointer initialized to $01ff and grows downward.
 
 {| class="wikitable"
 ! Address !! Description
 |-
-| $7E0100 || Stack bottom (overflow boundary)
+| $7e0100 || Stack bottom (overflow boundary)
 |-
-| $7E01FF || Stack top (initial SP value)
+| $7e01ff || Stack top (initial SP value)
 |}
 
-==Player Position ($7E0200-$7E023F)==
+==Player Position ($7e0200-$7e023f)==
 
 {| class="wikitable sortable"
 ! Address !! Size !! Access !! Description
 |-
-| $7E0200 || 2 || 60× || <code>player_x</code> - Player X position (pixels)
+| $7e0200 || 2 || 60× || <code>player_x</code> - Player X position (pixels)
 |-
-| $7E0202 || 2 || 60× || <code>player_y</code> - Player Y position (pixels)
+| $7e0202 || 2 || 60× || <code>player_y</code> - Player Y position (pixels)
 |-
-| $7E0204 || 2 || 45× || <code>player_x_sub</code> - X subpixel
+| $7e0204 || 2 || 45× || <code>player_x_sub</code> - X subpixel
 |-
-| $7E0206 || 2 || 45× || <code>player_y_sub</code> - Y subpixel
+| $7e0206 || 2 || 45× || <code>player_y_sub</code> - Y subpixel
 |-
-| $7E0208 || 2 || 38× || <code>player_x_vel</code> - X velocity
+| $7e0208 || 2 || 38× || <code>player_x_vel</code> - X velocity
 |-
-| $7E020A || 2 || 38× || <code>player_y_vel</code> - Y velocity
+| $7e020a || 2 || 38× || <code>player_y_vel</code> - Y velocity
 |-
-| $7E020C || 1 || 85× || <code>player_dir</code> - Facing direction
+| $7e020c || 1 || 85× || <code>player_dir</code> - Facing direction
 |-
-| $7E020D || 1 || 42× || <code>player_anim</code> - Animation frame
+| $7e020d || 1 || 42× || <code>player_anim</code> - Animation frame
 |-
-| $7E020E || 1 || 35× || <code>player_state</code> - Action state
+| $7e020e || 1 || 35× || <code>player_state</code> - Action state
 |}
 
-==Game State ($7E0300-$7E03FF)==
+==Game State ($7e0300-$7e03ff)==
 
 {| class="wikitable sortable"
 ! Address !! Size !! Access !! Description
 |-
-| $7E0300 || 1 || 72× || <code>game_mode</code> - Current game mode
+| $7e0300 || 1 || 72× || <code>game_mode</code> - Current game mode
 |-
-| $7E0301 || 1 || 48× || <code>screen_fade</code> - Screen fade level
+| $7e0301 || 1 || 48× || <code>screen_fade</code> - Screen fade level
 |-
-| $7E0302 || 1 || 36× || <code>transition</code> - Transition type
+| $7e0302 || 1 || 36× || <code>transition</code> - Transition type
 |-
-| $7E0310 || 1 || 52× || <code>current_map</code> - Current map ID
+| $7e0310 || 1 || 52× || <code>current_map</code> - Current map ID
 |-
-| $7E0311 || 1 || 28× || <code>current_act</code> - Current act (1-6)
+| $7e0311 || 1 || 28× || <code>current_act</code> - Current act (1-6)
 |-
-| $7E0380 || 1 || 40× || <code>vblank_flag</code> - VBlank occurred flag
+| $7e0380 || 1 || 40× || <code>vblank_flag</code> - VBlank occurred flag
 |-
-| $7E0381 || 1 || 32× || <code>nmi_enabled</code> - NMI enable flag
+| $7e0381 || 1 || 32× || <code>nmi_enabled</code> - NMI enable flag
 |-
-| $7E0382 || 2 || 55× || <code>frame_count</code> - Frame counter
+| $7e0382 || 2 || 55× || <code>frame_count</code> - Frame counter
 |-
-| $7E0384 || 1 || 25× || <code>lag_frames</code> - Lag frame counter
+| $7e0384 || 1 || 25× || <code>lag_frames</code> - Lag frame counter
 |}
 
-==Controller Input ($7E0400-$7E042F)==
+==Controller Input ($7e0400-$7e042f)==
 
 {| class="wikitable sortable"
 ! Address !! Size !! Description
 |-
-| $7E0400 || 2 || Controller 1 current state
+| $7e0400 || 2 || Controller 1 current state
 |-
-| $7E0401 || 2 || <code>position_x</code> - Cursor/target X
+| $7e0401 || 2 || <code>position_x</code> - Cursor/target X
 |-
-| $7E0402 || 2 || Controller 1 pressed (new this frame)
+| $7e0402 || 2 || Controller 1 pressed (new this frame)
 |-
-| $7E0403 || 2 || <code>position_y</code> - Cursor/target Y
+| $7e0403 || 2 || <code>position_y</code> - Cursor/target Y
 |-
-| $7E0404 || 2 || Controller 1 held (continuous)
+| $7e0404 || 2 || Controller 1 held (continuous)
 |-
-| $7E0406 || 2 || Controller 1 released this frame
+| $7e0406 || 2 || Controller 1 released this frame
 |-
-| $7E0408 || 2 || Controller 2 current state
+| $7e0408 || 2 || Controller 2 current state
 |-
-| $7E040A || 2 || Controller 2 pressed
+| $7e040a || 2 || Controller 2 pressed
 |}
 
 ===Controller Button Bits===
@@ -147,24 +147,24 @@ Standard 65816 stack area. Stack pointer initialized to $01FF and grows downward
 | $0800 || A
 |}
 
-==Timer Variables ($7E0430-$7E046F)==
+==Timer Variables ($7e0430-$7e046f)==
 
 {| class="wikitable sortable"
 ! Address !! Size !! Access !! Description
 |-
-| $7E043B || 2 || 10× || <code>timer</code> - General purpose timer
+| $7e043b || 2 || 10× || <code>timer</code> - General purpose timer
 |-
-| $7E0462 || 1 || 2× || <code>pause_flag</code> - Pause requested flag
+| $7e0462 || 1 || 2× || <code>pause_flag</code> - Pause requested flag
 |}
 
-==OAM Buffer ($7E0500-$7E071F)==
+==OAM Buffer ($7e0500-$7e071f)==
 
 {| class="wikitable"
 ! Address !! Size !! Description
 |-
-| $7E0500 || 512 || OAM low table (128 sprites × 4 bytes)
+| $7e0500 || 512 || OAM low table (128 sprites × 4 bytes)
 |-
-| $7E0700 || 32 || OAM high table (size/X bit 8)
+| $7e0700 || 32 || OAM high table (size/X bit 8)
 |}
 
 ===OAM Entry Format (4 bytes)===
@@ -187,18 +187,18 @@ Attribute byte:
 * ppp = Palette (0-7)
 * c = Character page select
 
-==Entity Table ($7E0800-$7E0FFF)==
+==Entity Table ($7e0800-$7e0fff)==
 
 The entity table holds all active game objects (enemies, NPCs, projectiles).
 
 {| class="wikitable sortable"
 ! Address !! Size !! Access !! Description
 |-
-| $7E0800 || 2048 || 47× || Entity slot array start
+| $7e0800 || 2048 || 47× || Entity slot array start
 |-
-| $7E08AD || 1 || 42× || Entity processing flag
+| $7e08ad || 1 || 42× || Entity processing flag
 |-
-| $7E08C9 || 1 || 51× || Active entity count
+| $7e08c9 || 1 || 51× || Active entity count
 |}
 
 ===Entity Slot Structure (32 bytes per entity)===
@@ -217,15 +217,15 @@ The entity table holds all active game objects (enemies, NPCs, projectiles).
 |-
 | +$08 || 2 || Y velocity
 |-
-| +$0A || 1 || Facing direction
+| +$0a || 1 || Facing direction
 |-
-| +$0B || 1 || Animation frame
+| +$0b || 1 || Animation frame
 |-
-| +$0C || 2 || HP remaining
+| +$0c || 2 || HP remaining
 |-
-| +$0E || 1 || AI state
+| +$0e || 1 || AI state
 |-
-| +$0F || 1 || AI timer
+| +$0f || 1 || AI timer
 |-
 | +$10 || 2 || Target X
 |-
@@ -235,31 +235,31 @@ The entity table holds all active game objects (enemies, NPCs, projectiles).
 |-
 | +$18 || 2 || Collision box offset
 |-
-| +$1A || 1 || Damage cooldown
+| +$1a || 1 || Damage cooldown
 |-
-| +$1B || 1 || Status effects
+| +$1b || 1 || Status effects
 |-
-| +$1C || 4 || Reserved
+| +$1c || 4 || Reserved
 |}
 
 Maximum of 64 entities active simultaneously.
 
-==Collision Data ($7E0C00-$7E0CFF)==
+==Collision Data ($7e0c00-$7e0cff)==
 
 {| class="wikitable sortable"
 ! Address !! Size !! Access !! Description
 |-
-| $7E0CA4 || 1 || 46× || Collision tile type
+| $7e0ca4 || 1 || 46× || Collision tile type
 |-
-| $7E0CAD || 1 || 74× || Collision result flags
+| $7e0cad || 1 || 74× || Collision result flags
 |-
-| $7E0CBA || 1 || 53× || Collision direction
+| $7e0cba || 1 || 53× || Collision direction
 |-
-| $7E0CC9 || 1 || 59× || Wall collision flag
+| $7e0cc9 || 1 || 59× || Wall collision flag
 |-
-| $7E0CCB || 1 || 42× || Floor type
+| $7e0ccb || 1 || 42× || Floor type
 |-
-| $7E0CCC || 1 || 46× || Interaction type
+| $7e0ccc || 1 || 46× || Interaction type
 |}
 
 ===Collision Flags===
@@ -283,28 +283,28 @@ Maximum of 64 entities active simultaneously.
 | $80 || Blocked
 |}
 
-==Map Data ($7E0D00-$7E0FFF)==
+==Map Data ($7e0d00-$7e0fff)==
 
 {| class="wikitable sortable"
 ! Address !! Size !! Access !! Description
 |-
-| $7E0D0D || 1 || 93× || Current tile ID
+| $7e0d0d || 1 || 93× || Current tile ID
 |-
-| $7E0D20 || 1 || 81× || Map layer data
+| $7e0d20 || 1 || 81× || Map layer data
 |-
-| $7E0D38 || 1 || — || Tile attribute
+| $7e0d38 || 1 || — || Tile attribute
 |-
-| $7E0D96 || 1 || 7× || Map width (tiles)
+| $7e0d96 || 1 || 7× || Map width (tiles)
 |-
-| $7E0D97 || 1 || 12× || Map height (tiles)
+| $7e0d97 || 1 || 12× || Map height (tiles)
 |}
 
-==Soul Lair Flags ($7E1000-$7E10FF)==
+==Soul Lair Flags ($7e1000-$7e10ff)==
 
 {| class="wikitable sortable"
 ! Address !! Size !! Access !! Description
 |-
-| $7E1000 || 256 || 56× || Bitfield for cleared lairs
+| $7e1000 || 256 || 56× || Bitfield for cleared lairs
 |}
 
 Each bit represents one soul lair. When set (1), the lair has been cleared and its souls released. Total of 2048 possible flags.
@@ -314,50 +314,50 @@ Each bit represents one soul lair. When set (1), the lair has been cleared and i
 * Byte 1 ($1001): Lairs 8-15
 * ... continues by area ...
 
-==Map State ($7E1400-$7E1AFF)==
+==Map State ($7e1400-$7e1aff)==
 
 {| class="wikitable sortable"
 ! Address !! Size !! Access !! Description
 |-
-| $7E1402 || 1 || 53× || Map scroll lock
+| $7e1402 || 1 || 53× || Map scroll lock
 |-
-| $7E18CB || 1 || 95× || Map event trigger ID
+| $7e18cb || 1 || 95× || Map event trigger ID
 |}
 
-==Player Stats ($7E1B00-$7E1CFF)==
+==Player Stats ($7e1b00-$7e1cff)==
 
 {| class="wikitable sortable"
 ! Address !! Size !! Access !! Description
 |-
-| $7E1B8A || 2 || 10× || <code>player_hp</code> - Current HP
+| $7e1b8a || 2 || 10× || <code>player_hp</code> - Current HP
 |-
-| $7E1B8C || 2 || — || Max HP
+| $7e1b8c || 2 || — || Max HP
 |-
-| $7E1B8E || 2 || — || Strength (attack power)
+| $7e1b8e || 2 || — || Strength (attack power)
 |-
-| $7E1B90 || 2 || — || Defense
+| $7e1b90 || 2 || — || Defense
 |-
-| $7E1B92 || 4 || — || Experience points
+| $7e1b92 || 4 || — || Experience points
 |-
-| $7E1B96 || 4 || — || GEMs (currency)
+| $7e1b96 || 4 || — || GEMs (currency)
 |-
-| $7E1B9A || 1 || — || Level (1-50)
+| $7e1b9a || 1 || — || Level (1-50)
 |-
-| $7E1B9B || 1 || — || Equipped sword ID (0-7)
+| $7e1b9b || 1 || — || Equipped sword ID (0-7)
 |-
-| $7E1B9C || 1 || — || Equipped armor ID (0-7)
+| $7e1b9c || 1 || — || Equipped armor ID (0-7)
 |-
-| $7E1B9D || 1 || — || Equipped magic ID (0-7)
+| $7e1b9d || 1 || — || Equipped magic ID (0-7)
 |-
-| $7E1B9E || 32 || — || Inventory items
+| $7e1b9e || 32 || — || Inventory items
 |-
-| $7E1BBE || 8 || — || Sword unlock flags
+| $7e1bbe || 8 || — || Sword unlock flags
 |-
-| $7E1BC6 || 8 || — || Armor unlock flags
+| $7e1bc6 || 8 || — || Armor unlock flags
 |-
-| $7E1BCE || 8 || — || Magic unlock flags
+| $7e1bce || 8 || — || Magic unlock flags
 |-
-| $7E1C6A || 1 || 27× || <code>current_area</code> - Area ID (0-31)
+| $7e1c6a || 1 || 27× || <code>current_area</code> - Area ID (0-31)
 |}
 
 ===Area IDs===
@@ -368,41 +368,41 @@ Each bit represents one soul lair. When set (1), the lair has been cleared and i
 |-
 | $05-$09 || GreenWood (Forest areas)
 |-
-| $0A-$0E || St. Elles (Seabed areas)
+| $0a-$0e || St. Elles (Seabed areas)
 |-
-| $0F-$13 || Mountain of Souls
+| $0f-$13 || Mountain of Souls
 |-
 | $14-$18 || Leo's Laboratory
 |-
-| $19-$1D || Magridd Castle
+| $19-$1d || Magridd Castle
 |-
-| $1E-$1F || World of Evil / Deathtoll
+| $1e-$1f || World of Evil / Deathtoll
 |}
 
-==Graphics Work RAM ($7E1E00-$7E1FFF)==
+==Graphics Work RAM ($7e1e00-$7e1fff)==
 
 {| class="wikitable sortable"
 ! Address !! Size !! Access !! Description
 |-
-| $7E19E3 || 1 || 45× || Palette fade target
+| $7e19e3 || 1 || 45× || Palette fade target
 |-
-| $7E1E13 || 2 || 29× || DMA source address
+| $7e1e13 || 2 || 29× || DMA source address
 |}
 
-==Extended Work RAM ($7E2000+)==
+==Extended Work RAM ($7e2000+)==
 
 {| class="wikitable sortable"
 ! Address !! Size !! Access !! Description
 |-
-| $7E2000 || 1 || 45× || Extended RAM bank marker
+| $7e2000 || 1 || 45× || Extended RAM bank marker
 |-
-| $7E2003 || 1 || 18× || Bank switch flag
+| $7e2003 || 1 || 18× || Bank switch flag
 |-
-| $7E2CAE || 1 || 10× || Audio playback state
+| $7e2cae || 1 || 10× || Audio playback state
 |-
-| $7E3800 || 1 || 135× || Tilemap buffer
+| $7e3800 || 1 || 135× || Tilemap buffer
 |-
-| $7E3B80 || 1 || 17× || Extended tilemap
+| $7e3b80 || 1 || 17× || Extended tilemap
 |}
 
 ==Frequently Accessed Addresses==
@@ -416,30 +416,30 @@ These addresses have the highest access counts in the codebase:
 |-
 | $0016 || Pointer low || 569 || Direct Page
 |-
-| $00FF || Return value || 568 || Direct Page
+| $00ff || Return value || 568 || Direct Page
 |-
 | $0002 || Temp storage || 313 || Direct Page
 |-
-| $06AD || Entity flags || 292 || Entity
+| $06ad || Entity flags || 292 || Entity
 |-
-| $06B2 || Entity index || 179 || Entity
+| $06b2 || Entity index || 179 || Entity
 |-
-| $00A9 || Math result || 118 || Direct Page
+| $00a9 || Math result || 118 || Direct Page
 |-
 | $0001 || Temp byte || 114 || Direct Page
 |-
 | $0003 || Temp byte 2 || 102 || Direct Page
 |-
-| $00EA || Direction || 98 || Direct Page
+| $00ea || Direction || 98 || Direct Page
 |-
 | $0030 || State var || 95 || Direct Page
 |-
-| $18CB || Event trigger || 95 || Map State
+| $18cb || Event trigger || 95 || Map State
 |-
-| $0D0D || Tile ID || 93 || Map Data
+| $0d0d || Tile ID || 93 || Map Data
 |}
 
-==SRAM ($700000-$707FFF)==
+==SRAM ($700000-$707fff)==
 
 Battery-backed save RAM for persistent game data.
 
@@ -478,7 +478,7 @@ Battery-backed save RAM for persistent game data.
 |-
 | $0028 || 4 || Experience points
 |-
-| $002C || 4 || GEMs (currency)
+| $002c || 4 || GEMs (currency)
 |-
 | $0030 || 1 || Level
 |-
@@ -516,7 +516,7 @@ Battery-backed save RAM for persistent game data.
 |-
 | $0600 || 254 || Reserved
 |-
-| $07FE || 2 || Checksum (16-bit sum of $0000-$07FD)
+| $07fe || 2 || Checksum (16-bit sum of $0000-$07fd)
 |}
 
 ==Hardware Register Mirrors==
@@ -526,19 +526,19 @@ These Work RAM locations cache hardware register values:
 {| class="wikitable"
 ! RAM !! Hardware !! Description
 |-
-| $7E0380 || $2100 || Screen display register
+| $7e0380 || $2100 || Screen display register
 |-
-| $7E0381 || $2101 || OAM size/base
+| $7e0381 || $2101 || OAM size/base
 |-
-| $7E0382 || $2105 || BG mode
+| $7e0382 || $2105 || BG mode
 |-
-| $7E0383 || $2106 || Mosaic
+| $7e0383 || $2106 || Mosaic
 |-
-| $7E0384 || $210D || BG1 horizontal scroll
+| $7e0384 || $210d || BG1 horizontal scroll
 |-
-| $7E0386 || $210E || BG1 vertical scroll
+| $7e0386 || $210e || BG1 vertical scroll
 |-
-| $7E0388 || $2115 || VRAM address increment
+| $7e0388 || $2115 || VRAM address increment
 |}
 
 ==See Also==

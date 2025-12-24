@@ -64,11 +64,11 @@ Located in Bank 18 at $9f7c:
 
 <pre>
 loc_9F7C:
-    LDA $0B             ; Character class index
+    LDA $0b             ; Character class index
     CMP #$06            ; Special case check
-    BEQ $9F88
-    JSR $9F9C           ; Load coefficients
-    JMP $9FB9           ; Calculate EXP
+    BEQ $9f88
+    JSR $9f9c           ; Load coefficients
+    JMP $9fb9           ; Calculate EXP
 </pre>
 
 === Coefficient Loader ($9f9c) ===
@@ -77,10 +77,10 @@ loc_9F7C:
 loc_9F9C:
     ASL                 ; Index * 2 (16-bit pointer)
     TAX
-    LDA $A0FB,X         ; Load pointer low byte
-    STA $0C
-    LDA $A0FC,X         ; Load pointer high byte
-    STA $0D
+    LDA $a0fb,X         ; Load pointer low byte
+    STA $0c
+    LDA $a0fc,X         ; Load pointer high byte
+    STA $0d
     ; ... continues with calculation
 </pre>
 
@@ -120,14 +120,14 @@ Located in Bank 18 at $9c22:
     ; ... get level, calculate EXP needed
     
     ; Compare current EXP to required
-    LDA $6E19,Y         ; Get required EXP low byte
+    LDA $6e19,Y         ; Get required EXP low byte
     SEC
     SBC $72             ; Subtract current EXP
     STA $00
-    LDA $6E1A,Y         ; Mid byte
+    LDA $6e1a,Y         ; Mid byte
     SBC $73
     STA $01
-    LDA $6E1B,Y         ; High byte
+    LDA $6e1b,Y         ; High byte
     SBC $74
     STA $02
 </pre>
@@ -136,17 +136,17 @@ Located in Bank 18 at $9c22:
 
 <pre>
     LDA $74             ; Current EXP high byte
-    CMP $6E1B,X         ; Required EXP high byte
+    CMP $6e1b,X         ; Required EXP high byte
     BCC no_levelup      ; If current < required, no level up
     BNE levelup         ; If different, level up!
     
     LDA $73             ; Mid byte check
-    CMP $6E1A,X
+    CMP $6e1a,X
     BCC no_levelup
     BNE levelup
     
     LDA $72             ; Low byte check
-    CMP $6E19,X
+    CMP $6e19,X
     BCS levelup         ; If current >= required, level up!
 </pre>
 

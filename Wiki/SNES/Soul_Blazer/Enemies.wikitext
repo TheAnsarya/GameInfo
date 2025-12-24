@@ -31,13 +31,13 @@ Each enemy entry in ROM occupies '''16 bytes''' at bank $06:
 |-
 | $09 || 1 || Movement speed
 |-
-| $0A || 1 || Element type
+| $0a || 1 || Element type
 |-
-| $0B || 1 || Special flags
+| $0b || 1 || Special flags
 |-
-| $0C || 2 || Sprite index
+| $0c || 2 || Sprite index
 |-
-| $0E || 2 || Sound effect ID
+| $0e || 2 || Sound effect ID
 |}
 
 ===Element Types===

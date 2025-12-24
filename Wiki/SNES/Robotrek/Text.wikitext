@@ -9,21 +9,21 @@ This page documents the text data locations and dialog in Robotrek.
 {| class="wikitable"
 ! Bank !! Address Range !! Content !! Entries
 |-
-| $CF || $008000-$00BFFF || Menu text || ~100
+| $cf || $008000-$00bfff || Menu text || ~100
 |-
-| $D0 || $008000-$0087FF || Item names || ~150
+| $d0 || $008000-$0087ff || Item names || ~150
 |-
-| $D1 || $008000-$0083FF || Enemy names || ~80
+| $d1 || $008000-$0083ff || Enemy names || ~80
 |-
-| $D2 || $008000-$0081FF || Location names || ~50
+| $d2 || $008000-$0081ff || Location names || ~50
 |-
-| $E0-$E3 || Full banks || Main dialog || ~2000
+| $e0-$e3 || Full banks || Main dialog || ~2000
 |-
-| $E4-$E5 || Full banks || NPC dialog || ~500
+| $e4-$e5 || Full banks || NPC dialog || ~500
 |-
-| $E6 || $008000-$00BFFF || Battle text || ~200
+| $e6 || $008000-$00bfff || Battle text || ~200
 |-
-| $E7 || $008000-$00BFFF || System messages || ~100
+| $e7 || $008000-$00bfff || System messages || ~100
 |}
 
 == Menu Text ==
@@ -205,14 +205,14 @@ This page documents the text data locations and dialog in Robotrek.
 === Pointer Table Structure ===
 
 <pre>
-Base: $E0:0000
+Base: $e0:0000
 Each pointer: 2 bytes (bank-relative offset)
 Total pointers: Variable per bank
 
 Example:
-$E0:0000 = $8000  (Dialog 0 at $E0:8000)
-$E0:0002 = $8045  (Dialog 1 at $E0:8045)
-$E0:0004 = $80A2  (Dialog 2 at $E0:80A2)
+$e0:0000 = $8000  (Dialog 0 at $e0:8000)
+$e0:0002 = $8045  (Dialog 1 at $e0:8045)
+$e0:0004 = $80a2  (Dialog 2 at $e0:80A2)
 ...
 </pre>
 
@@ -243,10 +243,10 @@ $E0:0004 = $80A2  (Dialog 2 at $E0:80A2)
 To extract all dialog:
 
 <pre>
-1. Dump banks $E0-$E7
+1. Dump banks $e0-$e7
 2. Parse pointer tables at bank start
 3. Decode text using TBL
-4. Handle control codes ($F0-$FF)
+4. Handle control codes ($f0-$ff)
 5. Export to JSON/CSV
 </pre>
 

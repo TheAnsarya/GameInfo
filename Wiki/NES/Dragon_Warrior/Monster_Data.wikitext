@@ -25,9 +25,9 @@ Each monster entry is 16 bytes long and located in Bank 1 starting at approximat
 |-
 |  style="text-align: center;"  |  +$09  ||  1 byte   ||  Resistance Flags
 |-
-|  style="text-align: center;"  |  +$0A  ||  2 bytes  ||  Graphics Tile ID
+|  style="text-align: center;"  |  +$0a  ||  2 bytes  ||  Graphics Tile ID
 |-
-|  style="text-align: center;"  |  +$0C  ||  4 bytes  ||  Reserved/Padding
+|  style="text-align: center;"  |  +$0c  ||  4 bytes  ||  Reserved/Padding
 |}
 
 ==Complete Monster Statistics==
@@ -56,17 +56,17 @@ Each monster entry is 16 bytes long and located in Bank 1 starting at approximat
 |-
 |  style="text-align: center;"  |  $09  ||  Droll  ||  25-35  ||  24  ||  20  ||  25  ||  30  ||  SLEEP  ||  Puts players to sleep
 |-
-|  style="text-align: center;"  |  $0A  ||  Drakeema  ||  20-30  ||  22  ||  18  ||  22  ||  25  ||  HEAL  ||  Can heal itself
+|  style="text-align: center;"  |  $0a  ||  Drakeema  ||  20-30  ||  22  ||  18  ||  22  ||  25  ||  HEAL  ||  Can heal itself
 |-
-|  style="text-align: center;"  |  $0B  ||  Skeleton  ||  30-45  ||  28  ||  22  ||  35  ||  40  ||  None  ||  Undead warrior
+|  style="text-align: center;"  |  $0b  ||  Skeleton  ||  30-45  ||  28  ||  22  ||  35  ||  40  ||  None  ||  Undead warrior
 |-
-|  style="text-align: center;"  |  $0C  ||  Warlock  ||  30-40  ||  26  ||  20  ||  32  ||  35  ||  HURT, SLEEP  ||  Powerful spellcaster
+|  style="text-align: center;"  |  $0c  ||  Warlock  ||  30-40  ||  26  ||  20  ||  32  ||  35  ||  HURT, SLEEP  ||  Powerful spellcaster
 |-
-|  style="text-align: center;"  |  $0D  ||  Metal Scorpion  ||  22-30  ||  36  ||  42  ||  40  ||  48  ||  None  ||  High defense
+|  style="text-align: center;"  |  $0d  ||  Metal Scorpion  ||  22-30  ||  36  ||  42  ||  40  ||  48  ||  None  ||  High defense
 |-
-|  style="text-align: center;"  |  $0E  ||  Wolf  ||  35-50  ||  40  ||  30  ||  50  ||  60  ||  None  ||  Fast attacker
+|  style="text-align: center;"  |  $0e  ||  Wolf  ||  35-50  ||  40  ||  30  ||  50  ||  60  ||  None  ||  Fast attacker
 |-
-|  style="text-align: center;"  |  $0F  ||  Wraith  ||  36-50  ||  44  ||  34  ||  58  ||  70  ||  HURT  ||  Undead spellcaster
+|  style="text-align: center;"  |  $0f  ||  Wraith  ||  36-50  ||  44  ||  34  ||  58  ||  70  ||  HURT  ||  Undead spellcaster
 |-
 |  style="text-align: center;"  |  $10  ||  Metal Slime  ||  4  ||  10  ||  255  ||  775  ||  6  ||  Run  ||  Extremely high defense, flees
 |-
@@ -88,17 +88,17 @@ Each monster entry is 16 bytes long and located in Bank 1 starting at approximat
 |-
 |  style="text-align: center;"  |  $19  ||  Goldman  ||  6  ||  48  ||  40  ||  6  ||  255  ||  Run  ||  High gold reward, flees
 |-
-|  style="text-align: center;"  |  $1A  ||  Knight  ||  76-100  ||  76  ||  78  ||  220  ||  185  ||  None  ||  Armored warrior
+|  style="text-align: center;"  |  $1a  ||  Knight  ||  76-100  ||  76  ||  78  ||  220  ||  185  ||  None  ||  Armored warrior
 |-
-|  style="text-align: center;"  |  $1B  ||  Magiwyvern  ||  78-100  ||  78  ||  70  ||  240  ||  220  ||  HURT, SLEEP  ||  Magical dragon
+|  style="text-align: center;"  |  $1b  ||  Magiwyvern  ||  78-100  ||  78  ||  70  ||  240  ||  220  ||  HURT, SLEEP  ||  Magical dragon
 |-
-|  style="text-align: center;"  |  $1C  ||  Demon Knight  ||  79-110  ||  84  ||  80  ||  350  ||  255  ||  HEALMORE  ||  Demonic warrior
+|  style="text-align: center;"  |  $1c  ||  Demon Knight  ||  79-110  ||  84  ||  80  ||  350  ||  255  ||  HEALMORE  ||  Demonic warrior
 |-
-|  style="text-align: center;"  |  $1D  ||  Werewolf  ||  70-95  ||  86  ||  70  ||  300  ||  155  ||  None  ||  Lycanthrope
+|  style="text-align: center;"  |  $1d  ||  Werewolf  ||  70-95  ||  86  ||  70  ||  300  ||  155  ||  None  ||  Lycanthrope
 |-
-|  style="text-align: center;"  |  $1E  ||  Green Dragon  ||  88-135  ||  88  ||  80  ||  350  ||  160  ||  Breath  ||  Breath attack, quest boss
+|  style="text-align: center;"  |  $1e  ||  Green Dragon  ||  88-135  ||  88  ||  80  ||  350  ||  160  ||  Breath  ||  Breath attack, quest boss
 |-
-|  style="text-align: center;"  |  $1F  ||  Starwyvern  ||  86-120  ||  90  ||  85  ||  395  ||  300  ||  STOPSPELL  ||  Star-powered dragon
+|  style="text-align: center;"  |  $1f  ||  Starwyvern  ||  86-120  ||  90  ||  85  ||  395  ||  300  ||  STOPSPELL  ||  Star-powered dragon
 |-
 |  style="text-align: center;"  |  $20  ||  Wizard  ||  80-120  ||  80  ||  70  ||  380  ||  185  ||  HURT, HEAL  ||  Powerful spellcaster
 |-
@@ -320,7 +320,7 @@ All monsters have fixed EXP and Gold rewards (no randomness). Special monsters:
 
 ===Monster Data Location===
 
-* '''ROM Address:''' Bank 01, approximately $9000-$94FF
+* '''ROM Address:''' Bank 01, approximately $9000-$94ff
 * '''Structure Size:''' 16 bytes per monster
 * '''Total Monsters:''' 40 (IDs $00-$27)
 
@@ -335,8 +335,8 @@ Offset  Size  Description
 +$06    2     Gold Reward (little-endian)
 +$08    1     Special Abilities/AI Flags
 +$09    1     Resistance Flags
-+$0A    2     Graphics Tile ID
-+$0C    4     Reserved/Padding
++$0a    2     Graphics Tile ID
++$0c    4     Reserved/Padding
 </pre>
 
 ==Graphics and Animation==
@@ -351,7 +351,7 @@ Monster animation frames:
 
 ==Technical Notes==
 
-* Monster data is stored in Bank 1 at $9000-$94FF
+* Monster data is stored in Bank 1 at $9000-$94ff
 * Each monster entry is exactly 16 bytes
 * HP values are ranges - exact HP is randomly determined within range
 * Metal Slime and Goldman have special AI routines for fleeing

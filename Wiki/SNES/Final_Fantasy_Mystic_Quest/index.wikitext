@@ -61,13 +61,13 @@ A simplified RPG featuring:
 |-
 ! Bank Range !! Address !! Description
 |-
-| $00-$0F || $8000-$FFFF || Program ROM
+| $00-$0f || $8000-$ffff || Program ROM
 |-
-| $70 || $0000-$1FFF || SRAM (save data)
+| $70 || $0000-$1fff || SRAM (save data)
 |-
-| $7E || $0000-$FFFF || WRAM (low)
+| $7e || $0000-$ffff || WRAM (low)
 |-
-| $7F || $0000-$FFFF || WRAM (high)
+| $7f || $0000-$ffff || WRAM (high)
 |}
 
 ==Party System==

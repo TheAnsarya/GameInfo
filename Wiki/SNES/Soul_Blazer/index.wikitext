@@ -108,13 +108,13 @@ The player controls a divine servant sent by The Master to defeat Deathtoll and 
 |-
 ! Bank !! Address !! Contents
 |-
-| $00-$07 || $008000-$0FFFFF || Program code and data
+| $00-$07 || $008000-$0fffff || Program code and data
 |-
-| $08-$0F || $108000-$17FFFF || Graphics (tilesets, sprites)
+| $08-$0f || $108000-$17ffff || Graphics (tilesets, sprites)
 |-
-| $10-$17 || $208000-$2FFFFF || Map data and scripts
+| $10-$17 || $208000-$2fffff || Map data and scripts
 |-
-| $18-$1F || $308000-$3FFFFF || Audio data (SPC, BRR samples)
+| $18-$1f || $308000-$3fffff || Audio data (SPC, BRR samples)
 |}
 
 ==Text Encoding==
