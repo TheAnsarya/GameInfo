@@ -1,6 +1,42 @@
-{{rommap}}
+{{Back|Kirby's Adventure (NES)}}
 
-==Signs above doors==
+= Kirby's Adventure (NES) - ROM Map =
+
+This page documents the ROM layout for Kirby's Adventure on NES. The game uses MMC3 mapper with extensive bank switching.
+
+== Overview ==
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ROM Size || 768 KB (6 Mbit)
+|-
+| PRG Size || 512 KB (64 × 8KB banks)
+|-
+| CHR Size || 256 KB (256 × 1KB banks)
+|-
+| Mapper || MMC3 (Mapper 4)
+|-
+| File Addresses || Add $10 for iNES header offset
+|}
+
+== ROM Layout Summary ==
+
+{| class="wikitable"
+|-
+! Address Range !! Description
+|-
+| $00010-$00a0f || Background palettes
+|-
+| $00a10-$60000+ || Compressed map, tileset, and enemy data
+|-
+| $02524b+ || Door sign graphics/data
+|}
+
+== Signs above doors ==
+
+{{rommap}}
 
 {| class="wikitable sortable"
 |-
