@@ -321,9 +321,12 @@ Item stats structure (TBD - requires further research):
 
 == See Also ==
 
-* [[Robotrek:Weapons|Weapons]] - Detailed weapon stats and combinations
-* [[Robotrek:Enemies|Enemies]]
-* [[Robotrek|Main Page]]
+* [[Robotrek (SNES)/Weapons|Weapons]] - Detailed weapon stats and combinations
+* [[Robotrek (SNES)/Enemies|Enemies]] - Enemy statistics and drops
+* [[Robotrek (SNES)/Recipes|Recipes]] - Item combination recipes
+* [[Robotrek (SNES)/Inventions|Inventions]] - Invention system
+* [[Robotrek (SNES)/ROM Map|ROM Map]] - Data table addresses
+* [[Robotrek (SNES)|Main Page]]
 
 == Notes ==
 

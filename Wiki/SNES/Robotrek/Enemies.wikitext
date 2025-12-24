@@ -282,10 +282,12 @@ Enemy stats structure (TBD - requires further research):
 
 == See Also ==
 
-* [[Robotrek:Items|Items]] - Item drops from enemies
-* [[Robotrek:Inventions|Inventions]] - Materials for crafting
-* [[Robotrek:Formulas|Formulas]] - Damage calculations
-* [[Robotrek:ROM_Map|ROM Map]] - Data table addresses
+* [[Robotrek (SNES)/Items|Items]] - Item drops from enemies
+* [[Robotrek (SNES)/Recipes|Recipes]] - Item combination recipes
+* [[Robotrek (SNES)/Inventions|Inventions]] - Materials for crafting
+* [[Robotrek (SNES)/Formulas|Formulas]] - Damage calculations
+* [[Robotrek (SNES)/ROM Map|ROM Map]] - Data table addresses
+* [[Robotrek (SNES)|Main Page]]
 
 [[Category:Data Tables]]
 [[Category:SNES]]

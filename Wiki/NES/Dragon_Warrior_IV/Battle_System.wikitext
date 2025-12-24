@@ -216,6 +216,125 @@ skip:
 | $9212 || sum_party_stats || Calculate sum of active party stats
 |}
 
+== Division Routines ==
+
+Bank 19 contains specialized 16-bit and 24-bit division routines used for damage calculations.
+
+=== 16-bit Division ($83c5) ===
+
+<pre>
+; Input:  tmp0,X - tmp1,X = dividend (16-bit)
+;         $6e14 - $6e15 = divisor (16-bit)
+; Output: tmp0,X - tmp1,X = quotient
+;         $6e11 - $6e12 = remainder
+; Method: Shift-and-subtract, 16 iterations
+
+loc_83c5:
+    ASL tmp0,X       ; Shift dividend left into remainder
+    ROL tmp1,X       
+    ROL $6e11        
+    ROL $6e12        
+    INC tmp0,X       ; Assume quotient bit = 1
+    LDA $6e11        
+    SEC              
+    SBC $6e14        ; Try subtract divisor
+    PHA              
+    LDA $6e12        
+    SBC $6e15        
+    BCS @keep        ; If no borrow, subtraction valid
+    PLA              
+    DEC tmp0,X       ; Quotient bit = 0
+    JMP @next        
+@keep:
+    STA $6e12        ; Keep subtraction result
+    PLA              
+    STA $6e11        
+@next:
+    DEY              
+    BNE loc_83c5     ; Loop 16 times
+    RTS
+</pre>
+
+=== Scaling Routines ===
+
+==== Multiply by 16 ($8176) ====
+
+<pre>
+; Input: tmp0,X tmp1,X = value
+; Output: tmp0,X tmp1,X = value * 16
+sub_8176:
+    ASL tmp0,X
+    ROL tmp1,X
+    ASL tmp0,X
+    ROL tmp1,X
+    ASL tmp0,X
+    ROL tmp1,X
+    ASL tmp0,X
+    ROL tmp1,X
+    RTS
+</pre>
+
+==== Divide by 16 ($8187) ====
+
+<pre>
+; Input: tmp0,X tmp1,X = value
+; Output: tmp0,X tmp1,X = value / 16
+sub_8187:
+    LSR tmp1,X
+    ROR tmp0,X
+    LSR tmp1,X
+    ROR tmp0,X
+    LSR tmp1,X
+    ROR tmp0,X
+    LSR tmp1,X
+    ROR tmp0,X
+    RTS
+</pre>
+
+== Zero Page Variables ==
+
+Key battle context variables in zero page:
+
+{| class="wikitable"
+! Address !! Name !! Purpose
+|-
+| $00-$03 || tmp0-tmp3 || Scratch/arithmetic
+|-
+| $04-$05 || ptr0 || General pointer
+|-
+| $81 || loop_counter || Character/iteration loop
+|-
+| $82 || inner_loop || Sub-loop counter
+|-
+| $86-$87 || char_data_ptr || Pointer to character data
+|-
+| $88-$89 || stat_data_ptr || Pointer to stat data
+|}
+
+== RAM Variables ==
+
+Key RAM locations for battle state:
+
+{| class="wikitable"
+! Address !! Name !! Purpose
+|-
+| $615b || tactics_setting || AI tactics (0-5)
+|-
+| $6e11-$6e13 || div_remainder || Division remainder
+|-
+| $6e14-$6e16 || div_divisor || Division divisor
+|-
+| $6e44 || battle_flag || Battle mode flag
+|-
+| $6e80 || battle_state || Current state/action
+|-
+| $72f4-$73xx || char_state || Character state array
+|-
+| $75d3 || enemy_index || Current enemy index
+|-
+| $75ed-$75ee || stat_sum || Calculated stat sum
+|}
+
 == Enemy Type Table ==
 
 Source: Bank 19 ($b967), 256 bytes
@@ -256,12 +375,15 @@ Each byte encodes enemy properties:
 
 == See Also ==
 
-* [[Dragon Warrior IV:Characters|Characters]] - Party member stats and abilities
-* [[Dragon Warrior IV:Spells|Spells]] - Magic system and effects
-* [[Dragon Warrior IV:Enemies|Enemies]] - Monster types and categories
-* [[Dragon Warrior IV:Items|Items]] - Equipment for battle
-* [[Dragon Warrior IV:ROM_Map|ROM Map]] - Bank 19 documentation
-* [[Dragon Warrior IV:RAM_Map|RAM Map]] - Battle-related RAM addresses
+* [[Dragon Warrior IV (NES)/Characters|Characters]] - Party member stats and abilities
+* [[Dragon Warrior IV (NES)/Spells|Spells]] - Magic system and effects
+* [[Dragon Warrior IV (NES)/Enemies|Enemies]] - Monster types and categories
+* [[Dragon Warrior IV (NES)/Items|Items]] - Equipment for battle
+* [[Dragon Warrior IV (NES)/EXP System|EXP System]] - Experience and leveling
+* [[Dragon Warrior IV (NES)/ROM Map|ROM Map]] - Bank 19 documentation
+* [[Dragon Warrior IV (NES)/RAM Map|RAM Map]] - Battle-related RAM addresses
+* [[Dragon Warrior IV (NES)|Main Page]]
 
 [[Category:Battle System]]
 [[Category:NES]]
+[[Category:Dragon Warrior IV]]

@@ -47,9 +47,11 @@ One of Robotrek's unique features:
 | RAM Map = Memory addresses and variables
 | ROM Map = ROM structure and data locations
 | Data Structures = Internal data formats
-| Items = Complete item database (98 items)
+| Items = Complete item database (83 items)
 | Weapons = Weapon stats, damage tables, and combinations
-| Enemies = Enemy statistics and drops (58 enemies)
+| Enemies = Enemy statistics and drops (56 enemies)
+| Recipes = Item combination recipes (40 recipes)
+| Inventions = Invention system and crafting
 | Formulas = Damage, experience, and stat calculations
 | Maps = World and dungeon maps
 | Text = Dialog and text extraction

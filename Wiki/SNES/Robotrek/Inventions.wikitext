@@ -383,10 +383,12 @@ Each invention recipe uses 8 bytes:
 
 == See Also ==
 
-* [[Robotrek:Items|Items]] - Complete item list
-* [[Robotrek:Weapons|Weapons]] - Weapon stats and upgrades
-* [[Robotrek:Enemies|Enemies]] - Enemy drops for materials
-* [[Robotrek:ROM_Map|ROM Map]] - Data table addresses
+* [[Robotrek (SNES)/Recipes|Recipes]] - Item combination recipes (verified from ROM)
+* [[Robotrek (SNES)/Items|Items]] - Complete item list
+* [[Robotrek (SNES)/Weapons|Weapons]] - Weapon stats and upgrades
+* [[Robotrek (SNES)/Enemies|Enemies]] - Enemy drops for materials
+* [[Robotrek (SNES)/ROM Map|ROM Map]] - Data table addresses
+* [[Robotrek (SNES)|Main Page]]
 
 == Source ==
 
