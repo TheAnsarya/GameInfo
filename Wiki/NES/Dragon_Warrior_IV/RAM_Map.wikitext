@@ -1,203 +1,290 @@
 {{rammap}}
-{{stub}}
+{{DISPLAYTITLE:Dragon Warrior IV - RAM Map}}
 
-==Main==
+= Dragon Warrior IV (NES) RAM Map =
 
-===System RAM===
+This page documents the runtime memory layout of Dragon Warrior IV for the NES. The game uses the NES's internal RAM plus MMC5 extended WRAM for game state storage.
+
+== Overview ==
+
+Dragon Warrior IV uses several memory regions:
+
+{| class="wikitable"
+|-
+! Region !! Address Range !! Size !! Description
+|-
+| System RAM || $0000-$07ff || 2KB || NES internal RAM
+|-
+| MMC5 ExRAM || $5c00-$5fff || 1KB || Extended attribute RAM
+|-
+| WRAM || $6000-$7fff || 8KB || Work RAM (battery-backed for saves)
+|}
+
+== Memory Layout Summary ==
+
+{| class="wikitable"
+|-
+! Address !! Size !! Category !! Description
+|-
+| $0063-$0064 || 2 bytes || World || Map/Sub-map numbers
+|-
+| $6001-$60f0 || 240 bytes || Party || 8 character data blocks (30 bytes each)
+|-
+| $610f-$611a || 12 bytes || Party || Extra companion data
+|-
+| $6157-$6159 || 3 bytes || General || Gold (24-bit)
+|-
+| $615a || 1 byte || General || Current chapter (0-4)
+|-
+| $615b || 1 byte || General || Battle tactics setting
+|-
+| $6165-$6167 || 3 bytes || General || Return spell locations
+|-
+| $616a-$616d || 4 bytes || General || Party member order
+|-
+| $625d-$6277 || 27 bytes || Flags || Treasure chest flags
+|-
+| $62ad-$62af || 3 bytes || General || Casino coins
+|-
+| $62ed || 1 byte || General || Day/night cycle counter
+|}
+
+== Main ==
+
+=== System RAM ===
 
 System RAM is addressed from <code>$0000</code> to <code>$07ff</code>.
 
 {| class="wikitable sortable"
 |-
-!  Category  !!  Address  !!  Size  !!  Description
-|-  style="background-color: #eaecf0;"
-|  ???  ||  $000 - $062  ||  ...  ||  ???
+! Category !! Address !! Size !! Description
+|- style="background-color: #eaecf0;"
+| ??? || $000 - $062 || ... || Zero page variables (TBD)
 |-
-|  World  ||  $063  ||  byte  ||  Map Number
+| World || $063 || byte || Map Number
 |-
-|  World  ||  $064  ||  byte  ||  Sub-Map Number
-|-  style="background-color: #eaecf0;"
-|  ???  ||  $065 - $7ff  ||  ...  ||  ???
+| World || $064 || byte || Sub-Map Number
+|- style="background-color: #eaecf0;"
+| ??? || $065 - $7ff || ... || System stack and variables (TBD)
 |}
 
-===WRAM===
+=== WRAM ===
 
-WRAM is addressed from <code>$6000</code> to <code>$7fff</code>.
+WRAM is addressed from <code>$6000</code> to <code>$7fff</code>. This 8KB region is battery-backed for save data.
 
 {| class="wikitable sortable"
 |-
-!  Category  !!  Address  !!  Size  !!  Description  !!  Debug Label
-|-  style="background-color: #eaecf0;"
-|  ???  ||  $6000  ||  byte  ||  ???  ||  ...
+! Category !! Address !! Size !! Description !! Debug Label
+|- style="background-color: #eaecf0;"
+| ??? || $6000 || byte || ??? || ...
 |-
-|  Party Members  ||  $6001 - $601e  ||  30 bytes  ||  Hero ([[#Hero|details]])  ||  Hero_*
+| Party Members || $6001 - $601e || 30 bytes || Hero ([[#Hero|details]]) || Hero_*
 |-
-|  Party Members  ||  $601f - $603c  ||  30 bytes  ||  Cristo ([[#Cristo|details]])  ||  Cristo_*
+| Party Members || $601f - $603c || 30 bytes || Cristo ([[#Cristo|details]]) || Cristo_*
 |-
-|  Party Members  ||  $603d - $605a  ||  30 bytes  ||  Nara ([[#Nara|details]])  ||  Nara_*
+| Party Members || $603d - $605a || 30 bytes || Nara ([[#Nara|details]]) || Nara_*
 |-
-|  Party Members  ||  $605b - $6078  ||  30 bytes  ||  Mara ([[#Mara|details]])  ||  Mara_*
+| Party Members || $605b - $6078 || 30 bytes || Mara ([[#Mara|details]]) || Mara_*
 |-
-|  Party Members  ||  $6079 - $6096  ||  30 bytes  ||  Brey ([[#Brey|details]])  ||  Brey_*
+| Party Members || $6079 - $6096 || 30 bytes || Brey ([[#Brey|details]]) || Brey_*
 |-
-|  Party Members  ||  $6097 - $60b4  ||  30 bytes  ||  Taloon ([[#Taloon|details]])  ||  Taloon_*
+| Party Members || $6097 - $60b4 || 30 bytes || Taloon ([[#Taloon|details]]) || Taloon_*
 |-
-|  Party Members  ||  $60b5 - $60d2  ||  30 bytes  ||  Ragnar ([[#Ragnar|details]])  ||  Ragnar_*
+| Party Members || $60b5 - $60d2 || 30 bytes || Ragnar ([[#Ragnar|details]]) || Ragnar_*
 |-
-|  Party Members  ||  $60d3 - $60f0  ||  30 bytes  ||  Alena ([[#Alena|details]])  ||  Alena_*
-|-  style="background-color: #eaecf0;"
-|  Party Members  ||  $60f1 - $610e  ||  30 bytes  ||  Unused Character Slot  ||  ...
+| Party Members || $60d3 - $60f0 || 30 bytes || Alena ([[#Alena|details]]) || Alena_*
+|- style="background-color: #eaecf0;"
+| Party Members || $60f1 - $610e || 30 bytes || Unused Character Slot || ...
 |-
-|  Party Members  ||  $610f - $6114  ||  6 bytes  ||  Extra Companion #1 ([[#Extra Companion #1|details]])  ||  Party_Member_Other_1
+| Party Members || $610f - $6114 || 6 bytes || Extra Companion #1 ([[#Extra Companion #1|details]]) || Party_Member_Other_1
 |-
-|  Party Members  ||  $6115 - $611a  ||  6 bytes  ||  Extra Companion #2 ([[#Extra Companion #2|details]])  ||  Party_Member_Other_2
-|-  style="background-color: #eaecf0;"
-|  ...  ||  $611b - $6156  ||  ...  ||  ???  ||  ...
+| Party Members || $6115 - $611a || 6 bytes || Extra Companion #2 ([[#Extra Companion #2|details]]) || Party_Member_Other_2
+|- style="background-color: #eaecf0;"
+| ... || $611b - $6156 || ... || ??? || ...
 |-
-|  General  ||  $6157 - $6159  ||  long  ||  Gold  ||  General_Gold
+| General || $6157 - $6159 || long || Gold (little-endian, 24-bit) || General_Gold
 |-
-|  General  ||  $615a  ||  byte  ||  Chapter Number ([[Dragon_Warrior_IV_(NES)/Values#Chapters|values]])  ||  General_Chapter_Number
+| General || $615a || byte || Chapter Number ([[Dragon_Warrior_IV_(NES)/Values#Chapters|values]]) || General_Chapter_Number
 |-
-|  General  ||  $615b  ||  byte  ||  Battle Tactics ([[Dragon_Warrior_IV_(NES)/Values#Battle Tactics|values]])  ||  General_Battle_Tactics
-|-  style="background-color: #eaecf0;"
-|  ...  ||  $615c - $6164  ||  ...  ||  ???  ||  ...
+| General || $615b || byte || Battle Tactics ([[Dragon_Warrior_IV_(NES)/Values#Battle Tactics|values]]) || General_Battle_Tactics
+|- style="background-color: #eaecf0;"
+| ... || $615c - $6164 || ... || ??? || ...
 |-
-|  General  ||  $6165 - $6167  ||  long  ||  Return Locations ([[#Return Locations|details]])  ||  General_Return_Locations
-|-  style="background-color: #eaecf0;"
-|  ...  ||  $6168 - $6169  ||  ...  ||  ???  ||  ...
+| General || $6165 - $6167 || long || Return Locations ([[#Return Locations|details]]) || General_Return_Locations
+|- style="background-color: #eaecf0;"
+| ... || $6168 - $6169 || ... || ??? || ...
 |-
-|  General  ||  $616a - $616d  ||  4 bytes  ||  Party Order  ||  Party_Members_Order_*
-|-  style="background-color: #eaecf0;"
-|  ...  ||  $616e - $625c  ||  ...  ||  ???  ||  ...
+| General || $616a - $616d || 4 bytes || Party Order || Party_Members_Order_*
+|- style="background-color: #eaecf0;"
+| ... || $616e - $625c || ... || ??? || ...
 |-
-|  General  ||  $625d - $6277  ||  27 bytes  ||  Treasure Chests Flags ([[#Treasure Chests|details]])  ||  Flags_Treasure_Chests
-|-  style="background-color: #eaecf0;"
-|  ...  ||  $6278 - $6291  ||  ...  ||  ???  ||  ...
+| General || $625d - $6277 || 27 bytes || Treasure Chests Flags ([[#Treasure Chests|details]]) || Flags_Treasure_Chests
+|- style="background-color: #eaecf0;"
+| ... || $6278 - $6291 || ... || ??? || ...
 |-
-|  General  ||  $6292  ||  byte  ||  Party Members???  ||  ???  [TODO: verify that this is members in the party, last member Ragnar was $fd=>ff]
-|-  style="background-color: #eaecf0;"
-|  ...  ||  $6293 - $62ac  ||  ...  ||  ???  ||  ...
+| General || $6292 || byte || Party Members??? || ??? [TODO: verify that this is members in the party, last member Ragnar was $fd=>ff]
+|- style="background-color: #eaecf0;"
+| ... || $6293 - $62ac || ... || ??? || ...
 |-
-|  General  ||  $62ad - $62af  ||  3 bytes  ||  Casino Coins  ||  General_Casino_Coins
-|-  style="background-color: #eaecf0;"
-|  ...  ||  $62b0 - $62e6  ||  ...  ||  ???  ||  ...
+| General || $62ad - $62af || 3 bytes || Casino Coins || General_Casino_Coins
+|- style="background-color: #eaecf0;"
+| ... || $62b0 - $62e6 || ... || ??? || ...
 |-
-|  General  ||  $62e7  ||  byte  ||  Chapter 3 - Lakanaba Shop - Number of Boomerang  ||  C3_Lakanaba_Shop_Boomerang_Count
+| General || $62e7 || byte || Chapter 3 - Lakanaba Shop - Number of Boomerang || C3_Lakanaba_Shop_Boomerang_Count
 |-
-|  General  ||  $62e8  ||  byte  ||  Chapter 3 - Lakanaba Shop - Number of Chain Sickle  ||  C3_Lakanaba_Shop_Chain_Sickle_Count
+| General || $62e8 || byte || Chapter 3 - Lakanaba Shop - Number of Chain Sickle || C3_Lakanaba_Shop_Chain_Sickle_Count
 |-
-|  General  ||  $62e9  ||  byte  ||  Chapter 3 - Lakanaba Shop - Number of Sword of Malice  ||  C3_Lakanaba_Shop_Sword_of_Malice_Count
-|-  style="background-color: #eaecf0;"
-|  ...  ||  $62ea - $62ec  ||  ...  ||  ???  ||  ...
+| General || $62e9 || byte || Chapter 3 - Lakanaba Shop - Number of Sword of Malice || C3_Lakanaba_Shop_Sword_of_Malice_Count
+|- style="background-color: #eaecf0;"
+| ... || $62ea - $62ec || ... || ??? || ...
 |-
-|  General  ||  $62ed  ||  byte  ||  Day/Night cycle (28 => Morning after Inn, 84 => night)  ||  General_DayNight_Counter
-|-  style="background-color: #eaecf0;"
-|  ...  ||  $62ee - $7fff  ||  ...  ||  ???  ||  ...
+| General || $62ed || byte || Day/Night cycle (28 => Morning after Inn, 84 => night) || General_DayNight_Counter
+|- style="background-color: #eaecf0;"
+| ... || $62ee - $7fff || ... || ??? || ...
 |}
 
-==Party Members==
+== Party Members ==
 
-====Notes====
+Each party member has a 30-byte ($1e) data block containing stats, items, and spells.
+
+=== Character Data Block Structure ===
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description !! Notes
+|-
+| +$00 || 1 byte || Status flags || Bit 7=alive, bit 6=paralyzed, bit 5=poisoned
+|-
+| +$01 || 2 bytes || Current HP || Little-endian
+|-
+| +$03 || 2 bytes || Current MP || Little-endian
+|-
+| +$05 || 1 byte || Level || 1-99
+|-
+| +$06 || 1 byte || Strength || Base stat
+|-
+| +$07 || 1 byte || Agility || Base stat
+|-
+| +$08 || 1 byte || Vitality || Base stat
+|-
+| +$09 || 1 byte || Intelligence || Base stat
+|-
+| +$0a || 1 byte || Luck || Base stat
+|-
+| +$0b || 1 byte || Unknown || TBD
+|-
+| +$0c || 2 bytes || Maximum HP || Little-endian
+|-
+| +$0e || 2 bytes || Maximum MP || Little-endian
+|-
+| +$10 || 3 bytes || Current XP || 24-bit, little-endian
+|-
+| +$13 || 8 bytes || Item slots || Item IDs (bit 7 = equipped)
+|-
+| +$1b || 3 bytes || Spell flags || Bitfield for known spells
+|}
+
+==== Notes ====
 
 The <code>dead</code>/<code>alive</code> status bit is <code>dead</code> if you haven't used that character yet; they are set to <code>alive</code> when they join the party for the first time.
 
-===Hero===
+=== Hero ===
 
-Index is <code>$00</code>.
+Index is <code>$00</code>. Data at $6001-$601e.
 
 {| class="wikitable sortable"
 |-
-!  Category  !!  Address  !!  Size  !!  Description
-|-  style="background-color: #eaecf0;"
-|  Stats  ||  $6001 # 0000_0001  ||  bit  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Stats  ||  $6001 # 0000_0010  ||  bit  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Stats  ||  $6001 # 0000_0100  ||  bit  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Stats  ||  $6001 # 0000_1000  ||  bit  ||  ...
-|-  style="background-color: #eaecf0;"
-|  Stats  ||  $6001 # 0001_0000  ||  bit  ||  ...
+! Category !! Address !! Size !! Description
+|- style="background-color: #eaecf0;"
+| Stats || $6001 # 0000_0001 || bit || ...
+|- style="background-color: #eaecf0;"
+| Stats || $6001 # 0000_0010 || bit || ...
+|- style="background-color: #eaecf0;"
+| Stats || $6001 # 0000_0100 || bit || ...
+|- style="background-color: #eaecf0;"
+| Stats || $6001 # 0000_1000 || bit || ...
+|- style="background-color: #eaecf0;"
+| Stats || $6001 # 0001_0000 || bit || ...
 |-
-|  Stats  ||  $6001 # 0010_0000  ||  bit  ||  Poisoned
+| Stats || $6001 # 0010_0000 || bit || Poisoned
 |-
-|  Stats  ||  $6001 # 0100_0000  ||  bit  ||  Paralyzed
+| Stats || $6001 # 0100_0000 || bit || Paralyzed
 |-
-|  Stats  ||  $6001 # 1000_0000  ||  bit  ||  1 = Alive, 0 = Dead
+| Stats || $6001 # 1000_0000 || bit || 1 = Alive, 0 = Dead
 |-
-|  Stats  ||  $6002 - $6003  ||  word  ||  Current HP
+| Stats || $6002 - $6003 || word || Current HP
 |-
-|  Stats  ||  $6004 - $6005  ||  word  ||  Current MP
+| Stats || $6004 - $6005 || word || Current MP
 |-
-|  Stats  ||  $6006  ||  byte  ||  Level
+| Stats || $6006 || byte || Level
 |-
-|  Stats  ||  $6007  ||  byte  ||  Strength
+| Stats || $6007 || byte || Strength
 |-
-|  Stats  ||  $6008  ||  byte  ||  Agility
+| Stats || $6008 || byte || Agility
 |-
-|  Stats  ||  $6009  ||  byte  ||  Vitality
+| Stats || $6009 || byte || Vitality
 |-
-|  Stats  ||  $600a  ||  byte  ||  Intelligence
+| Stats || $600a || byte || Intelligence
 |-
-|  Stats  ||  $600b  ||  byte  ||  Luck
-|-  style="background-color: #eaecf0;"
-|  Stats  ||  $600c  ||  byte  ||  ???
+| Stats || $600b || byte || Luck
+|- style="background-color: #eaecf0;"
+| Stats || $600c || byte || ???
 |-
-|  Stats  ||  $600d - $600e  ||  word  ||  Maximum HP
+| Stats || $600d - $600e || word || Maximum HP
 |-
-|  Stats  ||  $600f - $6010  ||  word  ||  Maximum MP
+| Stats || $600f - $6010 || word || Maximum MP
 |-
-|  Stats  ||  $6011 - $6013  ||  long  ||  Current XP
+| Stats || $6011 - $6013 || long || Current XP
 |-
-|  Stats  ||  $6014  ||  byte  ||  Item slot #1
+| Stats || $6014 || byte || Item slot #1
 |-
-|  Stats  ||  $6015  ||  byte  ||  Item slot #2
+| Stats || $6015 || byte || Item slot #2
 |-
-|  Stats  ||  $6016  ||  byte  ||  Item slot #3
+| Stats || $6016 || byte || Item slot #3
 |-
-|  Stats  ||  $6017  ||  byte  ||  Item slot #4
+| Stats || $6017 || byte || Item slot #4
 |-
-|  Stats  ||  $6018  ||  byte  ||  Item slot #5
+| Stats || $6018 || byte || Item slot #5
 |-
-|  Stats  ||  $6019  ||  byte  ||  Item slot #6
+| Stats || $6019 || byte || Item slot #6
 |-
-|  Stats  ||  $601a  ||  byte  ||  Item slot #7
+| Stats || $601a || byte || Item slot #7
 |-
-|  Stats  ||  $601b  ||  byte  ||  Item slot #8
+| Stats || $601b || byte || Item slot #8
 |-
-|  Stats  ||  $601c # 0000_0001  ||  bit  ||  Battle Spell #1 - Expel
-|- 
-|  Stats  ||  $601c # 0000_0010  ||  bit  ||  Battle Spell #2 - Healmore
-|- 
-|  Stats  ||  $601c # 0000_0100  ||  bit  ||  Battle Spell #3 - Blaze
-|- 
-|  Stats  ||  $601c # 0000_1000  ||  bit  ||  Battle Spell #4 - Return
-|- 
-|  Stats  ||  $601c # 0001_0000  ||  bit  ||  Battle Spell #5 - Sleepmore
-|- 
-|  Stats  ||  $601c # 0010_0000  ||  bit  ||  Battle Spell #6 - Awake
-|- 
-|  Stats  ||  $601c # 0100_0000  ||  bit  ||  Battle Spell #7 - Firebal
-|- 
-|  Stats  ||  $601c # 1000_0000  ||  bit  ||  Battle Spell #8 - Healall
-|- 
-|  Stats  ||  $601d # 0000_0001  ||  bit  ||  Battle Spell #9 - Ironize
-|- 
-|  Stats  ||  $601d # 0000_0010  ||  bit  ||  Battle Spell #10 - FendSpell
-|- 
-|  Stats  ||  $601d # 0000_0100  ||  bit  ||  Battle Spell #11 - Zap
-|- 
-|  Stats  ||  $601d # 0000_1000  ||  bit  ||  Battle Spell #12 - Transform
-|- 
-|  Stats  ||  $601d # 0001_0000  ||  bit  ||  Battle Spell #13 - Boom
-|- 
-|  Stats  ||  $601d # 0010_0000  ||  bit  ||  Battle Spell #14 - Healusall
-|- 
-|  Stats  ||  $601d # 0100_0000  ||  bit  ||  Battle Spell #15 - Lightning
-|- 
-|  Stats  ||  $601d # 1000_0000  ||  bit  ||  Battle Spell #16 - Vivify
-|- 
-|  Stats  ||  $601e # 0000_0001  ||  bit  ||  Battle Spell #17 - Thordain
+| Stats || $601c # 0000_0001 || bit || Battle Spell #1 - Expel
+|-
+| Stats || $601c # 0000_0010 || bit || Battle Spell #2 - Healmore
+|-
+| Stats || $601c # 0000_0100 || bit || Battle Spell #3 - Blaze
+|-
+| Stats || $601c # 0000_1000 || bit || Battle Spell #4 - Return
+|-
+| Stats || $601c # 0001_0000 || bit || Battle Spell #5 - Sleepmore
+|-
+| Stats || $601c # 0010_0000 || bit || Battle Spell #6 - Awake
+|-
+| Stats || $601c # 0100_0000 || bit || Battle Spell #7 - Firebal
+|-
+| Stats || $601c # 1000_0000 || bit || Battle Spell #8 - Healall
+|-
+| Stats || $601d # 0000_0001 || bit || Battle Spell #9 - Ironize
+|-
+| Stats || $601d # 0000_0010 || bit || Battle Spell #10 - FendSpell
+|-
+| Stats || $601d # 0000_0100 || bit || Battle Spell #11 - Zap
+|-
+| Stats || $601d # 0000_1000 || bit || Battle Spell #12 - Transform
+|-
+| Stats || $601d # 0001_0000 || bit || Battle Spell #13 - Boom
+|-
+| Stats || $601d # 0010_0000 || bit || Battle Spell #14 - Healusall
+|-
+| Stats || $601d # 0100_0000 || bit || Battle Spell #15 - Lightning
+|-
+| Stats || $601d # 1000_0000 || bit || Battle Spell #16 - Vivify
+|-
+| Stats || $601e # 0000_0001 || bit || Battle Spell #17 - Thordain
 |- 
 |  Stats  ||  $601e # 0000_0010  ||  bit  ||  Battle Spell #18 - Chance
 |- 
