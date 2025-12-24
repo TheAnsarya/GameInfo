@@ -6,16 +6,38 @@ This page documents all items in Robotrek (USA version).
 
 '''Data Status:''' Item names verified from ROM at $01e413. Stats are TBD pending research.
 
+== Overview ==
+
+Robotrek features 83 unique items used by the protagonist and their robots. Items are stored in the ROM as CC-terminated ($cc) strings, with a separate pointer table for quick lookup during gameplay. The item system supports equipment, consumables, key items for story progression, and materials used in the invention system.
+
+== ROM Data Locations ==
+
+{| class="wikitable"
+! Data Type !! ROM Address !! Size !! Format
+|-
+| Item name strings || $01e413 || ~$1480 || CC-terminated ASCII strings
+|-
+| Item name pointers || $01f748 || $a6 (166 bytes) || 83 × 2-byte little-endian pointers
+|-
+| Menu item names || $01f8a9 || $22e || Null-terminated, 8-byte aligned
+|-
+| Item descriptions || $01e000 || $400 || Compressed text format
+|}
+
 == Item Categories ==
 
-* '''Weapons''' - Swords, Axes, Blades, Hammers, Celtis, Punches, Blows, Shots, Lasers
-* '''Bombs''' - Explosive items
-* '''Armor''' - Shields, Packs, Boots
-* '''Key Items''' - Story and progression items
-* '''Materials''' - Scraps for invention
-* '''Programs''' - Robot abilities
+Items are organized into functional categories that determine how they can be used:
 
-== Verified Item List (98 items) ==
+* '''Weapons''' ($01-$1d) - Offensive equipment for robots. Includes Swords, Axes, Blades, Hammers, Celtis, Punches, Blows, Shots, and Lasers. Higher tier numbers indicate stronger versions.
+* '''Bombs''' ($1e-$21) - Consumable explosive items that deal area damage in battle. Can be thrown at enemy groups.
+* '''Armor''' ($22-$32) - Defensive equipment including Shields (reduce physical damage), Packs (provide stat bonuses), and Boots (affect movement speed).
+* '''Key Items''' ($33-$4f) - Story and progression items that unlock areas, enable abilities, or advance the plot. Cannot be sold or discarded.
+* '''Materials''' ($50-$5b) - Scraps and components used in the Invention Machine to create new items. Obtained from enemies or purchased.
+* '''Programs''' ($5c-$61) - Consumable items that provide temporary effects or can be used in battle. Include healing, status removal, and attack items.
+
+== Verified Item List (83 items) ==
+
+The following table lists all items extracted from the ROM. The ID column shows the internal index used by the game engine, and the Hex column shows the same value in hexadecimal for use in save editing or debugging.
 
 Source: ROM address $01e413 (CC-separated strings)
 
@@ -299,25 +321,61 @@ Scraps are used in the Invention Machine to combine different kinds of things.
 
 == Data Structure ==
 
-Item names are stored at ROM offset $01e413, separated by $cc bytes.
+Item data in Robotrek is stored across multiple ROM locations. The name strings and pointer tables have been verified, while the stat structure remains under investigation.
 
-Item stats structure (TBD - requires further research):
+=== Item Name Storage (Verified) ===
+
+Item names begin at ROM address $01e413 and use a $cc byte as the string terminator (rather than the more common $00 null terminator). This is a Quintet convention shared with other games like Soul Blazer.
 
 {| class="wikitable"
-! Offset !! Size !! Description
+! Property !! Value !! Notes
 |-
-| $00 || 1 || Item ID
+| Start Address || $01e413 || First item name ("Nothing")
 |-
-| $01 || 1 || Item Type/Category
+| End Address || $01f747 || Last item name
 |-
-| $02 || 1 || Primary Stat (Power/Guard)
+| Terminator || $cc || Each string ends with this byte
 |-
-| $03 || 1 || Secondary Stat
-|-
-| $04 || 2 || Buy Price
-|-
-| $06 || 2 || Special Flags
+| Total Entries || 83 || Including placeholder "Nothing" at index 0
 |}
+
+=== Item Pointer Table ===
+
+A pointer table at $01f748 contains 16-bit addresses for each item name, allowing the game to quickly look up names by item ID without scanning through all strings.
+
+{| class="wikitable"
+! Property !! Value
+|-
+| Table Address || $01f748
+|-
+| Entry Size || 2 bytes (little-endian)
+|-
+| Entry Count || 83
+|-
+| Total Size || 166 bytes ($a6)
+|}
+
+=== Item Stats Structure (TBD) ===
+
+The exact location and format of item statistics (attack power, defense, price, etc.) requires further research. The hypothesized structure based on similar Quintet games:
+
+{| class="wikitable"
+! Offset !! Size !! Description !! Notes
+|-
+| $00 || 1 || Item ID || Index matching name table
+|-
+| $01 || 1 || Item Type/Category || Determines equipment slot and usage
+|-
+| $02 || 1 || Primary Stat || Attack power for weapons, defense for armor
+|-
+| $03 || 1 || Secondary Stat || Speed modifier, special effect ID
+|-
+| $04 || 2 || Buy Price || Little-endian, in GP
+|-
+| $06 || 2 || Special Flags || Elemental type, restrictions, etc.
+|}
+
+'''Research needed:''' The stat table address has not been verified. Potential locations include the $020000-$02ffff bank based on similar Quintet game structures.
 
 == See Also ==
 

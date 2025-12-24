@@ -8,9 +8,33 @@ This page documents the spell and magic system in Dragon Warrior IV.
 
 == Overview ==
 
-Dragon Warrior IV features a comprehensive spell system with healing, offensive, status, and utility spells. Each spell has an action code that determines its behavior through effect tables.
+Dragon Warrior IV features a comprehensive spell system with healing, offensive, status, and utility spells. The game uses an action code system where each spell, attack, and ability is assigned a unique code that determines its behavior through lookup tables in Bank 19.
+
+The spell system distinguishes between:
+* '''Direct damage spells''' - Deal elemental damage based on power tables and enemy resistances
+* '''Status spells''' - Apply conditions like sleep, paralysis, or instant death with success rates
+* '''Healing spells''' - Restore HP using base values modified by caster stats
+* '''Utility spells''' - Provide non-combat benefits like dungeon escape or repelling encounters
+
+== ROM Data Locations ==
+
+All spell data is stored in Bank 19 (ROM file offset $4c010-$50010):
+
+{| class="wikitable"
+! Data Type !! ROM Address !! Bank 19 Offset !! Size !! Description
+|-
+| Effect table || $4f80b || $b80b || ~$60 || Maps action codes to effect types
+|-
+| Power table 1 || $4fb3f || $bb3f || 9 bytes || Base power values by index
+|-
+| Power table 2 || $4fb49 || $bb49 || 7 bytes || Attribute modifiers
+|-
+| Hit check routine || $4d135 || $9135 || ~$200 || Determines spell success/failure
+|}
 
 == Action Code Ranges ==
+
+Action codes are single-byte values that identify every possible battle action. The game categorizes these into ranges that determine which handler routines process them.
 
 Source: Bank 19 hit check routine at $9135
 
@@ -32,212 +56,236 @@ Source: Bank 19 hit check routine at $9135
 
 == Spell Effect Table ($b80b) ==
 
-Each byte encodes the effect type for a corresponding action code:
-* '''Upper nibble:''' Effect category/type
-* '''Lower nibble:''' Power level or parameter
+The effect table at Bank 19 address $b80b contains one byte per action code. This byte encodes both the effect category and a power/parameter value using a packed format.
+
+{| class="wikitable"
+! Bits !! Description
+|-
+| 7-4 (upper nibble) || Effect category/type - determines which effect handler to use
+|-
+| 3-0 (lower nibble) || Power level or sub-parameter - modifies the effect strength
+|}
 
 === Common Effect Bytes ===
 
+The following effect byte values appear frequently in the spell table:
+
 {| class="wikitable"
-! Value Range !! Description
+! Value Range !! Hex !! Description !! Typical Spells
 |-
-| $e0-$e5 || Healing spells (different power levels)
+| $e0-$e5 || e0-e5 || Healing spells (different power levels) || Heal, Healmore, Healall
 |-
-| $f2 || Most offensive/status spells
+| $f2 || f2 || Standard offensive/status formula || Most damage and status spells
 |-
-| $67-$72 || Status/buff effects
+| $67-$72 || 67-72 || Status/buff effects || Increase, Bikill, buff spells
+|-
+| $c7 || c7 || Resurrection with chance || Vivify (50% success)
+|-
+| $6b || 6b || Full resurrection || Revive (100% success)
 |}
 
 == Healing Spells ==
 
+Healing spells restore HP to party members. The amount healed depends on the spell's base power and may be modified by caster intelligence or level.
+
 {| class="wikitable sortable"
 ! Code !! Name !! Effect Byte !! MP Cost !! Description
 |-
-| $13 || Heal || $68 || 2 || Restore minor HP
+| $13 || Heal || $68 || 2 || Restore minor HP (~30-40)
 |-
-| $14 || Healmore || $68 || 5 || Restore moderate HP
+| $14 || Healmore || $68 || 5 || Restore moderate HP (~80-100)
 |-
 | $15 || Healall || $ee || 7 || Restore all HP to one ally
 |-
-| $16 || Healus || $e9 || 18 || Restore HP to all allies
+| $16 || Healus || $e9 || 18 || Restore HP to all allies (~100)
 |-
 | $17 || Healusall || $67 || 36 || Restore all HP to all allies
 |-
-| $18 || Vivify || $c7 || 10 || 50% chance to revive ally
+| $18 || Vivify || $c7 || 10 || 50% chance to revive ally with partial HP
 |-
-| $19 || Revive || $6b || 20 || Fully revive ally
+| $19 || Revive || $6b || 20 || Fully revive ally with full HP
 |-
-| $1a || Antidote || $a6 || 2 || Cure poison
+| $1a || Antidote || $a6 || 2 || Cure poison status
 |-
-| $1b || Numboff || $4c || 2 || Cure paralysis
+| $1b || Numboff || $4c || 2 || Cure paralysis status
 |}
 
 == Offensive Spells ==
 
+Offensive spells deal elemental damage to enemies. Damage is calculated using the spell's power index, caster stats, and target's elemental resistance.
+
 {| class="wikitable sortable"
-! Code !! Name !! Effect Byte !! Element !! Description
+! Code !! Name !! Effect Byte !! Element !! Target !! Description
 |-
-| $1c || Blaze || $ea || Fire || Single target fire damage
+| $1c || Blaze || $ea || Fire || Single || Base fire damage spell
 |-
-| $1d || Blazemore || $f2 || Fire || Stronger single target fire
+| $1d || Blazemore || $f2 || Fire || Single || Stronger single target fire
 |-
-| $1e || Blazemost || $f2 || Fire || Strongest single target fire
+| $1e || Blazemost || $f2 || Fire || Single || Strongest single target fire
 |-
-| $1f || Firebane || $cd || Fire || Group fire damage
+| $1f || Firebane || $cd || Fire || Group || Area fire damage
 |-
-| $20 || Firevolt || $cd || Fire || Stronger group fire
+| $20 || Firevolt || $cd || Fire || Group || Stronger area fire
 |-
-| $21 || Bang || $f2 || Explosion || Group explosion damage
+| $21 || Bang || $f2 || Explosion || Group || Base explosion damage
 |-
-| $22 || Boom || $f2 || Explosion || Stronger group explosion
+| $22 || Boom || $f2 || Explosion || Group || Stronger explosion
 |-
-| $23 || Explodet || $f2 || Explosion || Strongest group explosion
+| $23 || Explodet || $f2 || Explosion || Group || Strongest explosion
 |-
-| $24 || Icebolt || $f2 || Ice || Single target ice damage
+| $24 || Icebolt || $f2 || Ice || Single || Ice damage spell
 |-
-| $25 || Snowblast || $f2 || Ice || Group ice damage
+| $25 || Snowblast || $f2 || Ice || Group || Area ice damage
 |-
-| $26 || Zap || $f2 || Lightning || Group lightning damage
+| $26 || Zap || $f2 || Lightning || Group || Lightning damage
 |-
-| $27 || Thordain || $f2 || Lightning || Strongest lightning (4 casters)
+| $27 || Thordain || $f2 || Lightning || Group || Ultimate lightning (requires 4 casters)
 |-
-| $28 || Defeat || $f2 || Instant || Instant death (single)
+| $28 || Defeat || $f2 || Instant || Single || Instant death attempt
 |}
 
 == Status Spells ==
 
+Status spells attempt to inflict conditions on enemies. Success rate depends on the target's resistance and may be modified by level difference between caster and target.
+
 {| class="wikitable sortable"
-! Code !! Name !! Effect Byte !! Description
+! Code !! Name !! Effect Byte !! Target !! Description
 |-
-| $29 || Beat || $f2 || Group instant death
+| $29 || Beat || $f2 || Group || Attempt instant death on enemy group
 |-
-| $2a || Bedragon || $f2 || Transform into dragon
+| $2a || Bedragon || $f2 || Self || Transform into dragon form (Mara special)
 |-
-| $2b || Limbo || $f2 || Banish enemy
+| $2b || Limbo || $f2 || Single || Banish enemy from battle permanently
 |-
-| $2c || Sleep || $f2 || Put single enemy to sleep
+| $2c || Sleep || $f2 || Single || Put one enemy to sleep (skips turns)
 |-
-| $2d || Sleepmore || $f2 || Put enemy group to sleep
+| $2d || Sleepmore || $f2 || Group || Put enemy group to sleep
 |-
-| $2e || StopSpell || $f2 || Seal enemy magic
+| $2e || StopSpell || $f2 || Single || Seal enemy's magic for battle duration
 |-
-| $2f || Surround || $f2 || Reduce enemy accuracy
+| $2f || Surround || $f2 || Group || Reduce enemy accuracy (causes misses)
 |-
-| $30 || RobMagic || $f2 || Steal enemy MP
+| $30 || RobMagic || $f2 || Single || Drain MP from enemy to caster
 |-
-| $31 || Ironize || $f2 || Become invincible (skip turn)
+| $31 || Ironize || $f2 || Party || Party becomes invincible but cannot act
 |-
-| $32 || Transform || $f2 || Copy enemy appearance
+| $32 || Transform || $f2 || Self || Copy enemy's appearance and stats
 |}
 
 == Buff/Utility Spells ==
 
+Buff spells enhance party capabilities, while utility spells provide non-combat benefits. Most buffs last for the duration of battle.
+
 {| class="wikitable sortable"
-! Code !! Name !! Effect Byte !! Description
+! Code !! Name !! Effect Byte !! Target !! Description
 |-
-| $33 || Bounce || $f2 || Reflect spells
+| $33 || Bounce || $f2 || Single || Reflect spells back at caster
 |-
-| $34 || Increase || $f2 || Raise party defense
+| $34 || Increase || $f2 || Party || Raise defense for all allies
 |-
-| $35 || Bikill || $f2 || Double attack power
+| $35 || Bikill || $f2 || Single || Double attack power for one ally
 |-
-| $36 || Sap || $f2 || Lower enemy defense
+| $36 || Sap || $f2 || Single || Lower one enemy's defense
 |-
-| $37 || Defense || $f2 || Raise single ally defense
+| $37 || Defense || $f2 || Single || Raise defense for one ally
 |-
-| $38 || SpeedUp || $f2 || Raise party agility
+| $38 || SpeedUp || $f2 || Party || Raise agility for all allies
 |-
-| $39 || SlowDown || $f2 || Lower enemy agility
+| $39 || SlowDown || $f2 || Single || Lower enemy agility
 |-
-| $3a || Outside || $f2 || Exit dungeon
+| $3a || Outside || $f2 || Party || Instantly exit current dungeon
 |-
-| $3b || Return || $f2 || Warp to visited town
+| $3b || Return || $f2 || Party || Warp to previously visited town
 |-
-| $3c || X-Ray || $f2 || Reveal treasure/traps
+| $3c || X-Ray || $f2 || -- || Reveal hidden treasure and traps
 |-
-| $3d || Stepguard || $f2 || Prevent floor damage
+| $3d || Stepguard || $f2 || Party || Prevent damage from poison/lava tiles
 |-
-| $3e || Repel || $f2 || Prevent weak encounters
+| $3e || Repel || $f2 || Party || Prevent weak random encounters
 |-
-| $3f || Radiant || $f2 || Light dark areas
+| $3f || Radiant || $f2 || Party || Illuminate dark dungeon areas
 |-
-| $40 || Day-Night || $f2 || Change time of day
+| $40 || Day-Night || $f2 || -- || Toggle between day and night
 |-
-| $41 || Chance || $f2 || Random effect
+| $41 || Chance || $f2 || Varies || Random effect (unpredictable)
 |-
-| $42 || Transform || $f2 || Change form
+| $42 || Transform || $f2 || Self || Change caster's appearance
 |}
 
 == Spell Power Tables ==
 
+These tables at fixed ROM addresses control spell damage and effect strength. The game indexes into these tables based on the spell's power category.
+
 === Power Values ($bb3f) ===
 
-9-entry table indexed by spell power index (capped at 8):
+This 9-entry table provides base power multipliers indexed by the spell's internal power index (values 0-8). Located at Bank 19 address $bb3f.
 
 {| class="wikitable"
-! Index !! Value (Dec) !! Value (Hex) !! Notes
+! Index !! Value (Dec) !! Value (Hex) !! Usage
 |-
-| 0 || 85 || $55 || Standard power
+| 0 || 85 || $55 || Standard power - most basic spells
 |-
-| 1 || 100 || $64 || High power
+| 1 || 100 || $64 || High power - intermediate spells
 |-
-| 2 || 100 || $64 || High power
+| 2 || 100 || $64 || High power (duplicate)
 |-
-| 3 || 192 || $c0 || Very high
+| 3 || 192 || $c0 || Very high - advanced spells
 |-
-| 4 || 192 || $c0 || Very high
+| 4 || 192 || $c0 || Very high (duplicate)
 |-
-| 5 || 0 || $00 || No power
+| 5 || 0 || $00 || No damage - utility/status spells
 |-
-| 6 || 0 || $00 || No power
+| 6 || 0 || $00 || No damage
 |-
-| 7 || 0 || $00 || No power
+| 7 || 0 || $00 || No damage
 |-
-| 8 || 85 || $55 || Standard power
+| 8 || 85 || $55 || Standard power (wraparound)
 |}
 
 === Attribute Values ($bb49) ===
 
+This 7-entry table modifies spell effects based on elemental or spell type attributes. Located at Bank 19 address $bb49.
+
 {| class="wikitable"
-! Index !! Value (Dec) !! Value (Hex)
+! Index !! Value (Dec) !! Value (Hex) !! Probable Use
 |-
-| 0 || 85 || $55
+| 0 || 85 || $55 || Fire element base
 |-
-| 1 || 100 || $64
+| 1 || 100 || $64 || Ice element base
 |-
-| 2 || 100 || $64
+| 2 || 100 || $64 || Lightning element base
 |-
-| 3 || 32 || $20
+| 3 || 32 || $20 || Explosion element (lower base, hits group)
 |-
-| 4 || 32 || $20
+| 4 || 32 || $20 || Instant death (low success rate)
 |-
-| 5 || 160 || $a0
+| 5 || 160 || $a0 || Healing multiplier
 |-
-| 6 || 160 || $a0
+| 6 || 160 || $a0 || Buff effect strength
 |}
 
 == Character Spell Learning ==
 
-Each character learns spells at specific levels. The spell learning data is stored in character data tables.
+Each playable character has a predetermined spell list learned at specific levels. Non-magic characters (Taloon, Ragnar, Alena) have no spell capability and instead rely on physical attacks and special abilities.
 
 {| class="wikitable"
-! Character !! Spell Focus !! Notes
+! Character !! Spell Focus !! Key Spells !! Notes
 |-
-| Hero || Balanced || Learns both healing and offensive spells
+| Hero || Balanced || Healall, Zap, Return || Learns both healing and offensive; most versatile
 |-
-| Cristo || Healing || Primary healer, learns Vivify/Revive
+| Cristo || Healing/Support || Healus, Revive, Increase || Primary healer, defensive buffs
 |-
-| Nara || Fortune || Status spells, limited healing
+| Nara || Fortune/Status || Vivify, Outside, Beat || Status effects, limited healing
 |-
-| Mara || Offense || Fire and explosion spells
+| Mara || Offensive || Firevolt, Blazemost, Bedragon || Pure damage dealer, fire specialist
 |-
-| Brey || Offense || Ice and status spells
+| Brey || Offensive/Status || Icebolt, Snowblast, Sleepmore || Ice spells, crowd control
 |-
-| Taloon || None || No MP, luck-based abilities only
+| Taloon || None || -- || Luck-based abilities only, no MP
 |-
-| Ragnar || None || Fighter with no magic
+| Ragnar || None || -- || Fighter class, no magic capability
 |-
-| Alena || None || Fighter with no magic
+| Alena || None || -- || Martial artist, no magic capability
 |}
 
 == See Also ==

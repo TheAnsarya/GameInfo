@@ -8,7 +8,35 @@ This page documents all enemies in Robotrek (USA version).
 
 '''Source:''' [https://github.com/TheAnsarya/GameInfo GameInfo extracted data]
 
-== Verified Enemy List (58 enemies) ==
+== Overview ==
+
+Robotrek features 56 unique enemy types that the player's robots battle throughout the game. Enemies range from simple mechanical creatures to powerful boss characters. Each enemy has associated stats (HP, attack, defense), behavior patterns, and potential item drops.
+
+Enemy data is stored with name strings in one location and a pointer table for quick lookup. The actual stat data appears to be stored separately, with potential locations identified at $030299 during ROM analysis.
+
+== ROM Data Locations ==
+
+{| class="wikitable"
+! Data Type !! ROM Address !! Size !! Format
+|-
+| Enemy name pointers || $01fd00 || $bc (188 bytes) || 56 × 2-byte + header
+|-
+| Enemy name strings || $01fdbe || ~$1a2 || Null-terminated ASCII strings
+|-
+| Potential stat table || $030299 || TBD || 6-byte records (unverified)
+|}
+
+== Enemy Categories ==
+
+Enemies can be classified into several categories based on their characteristics:
+
+* '''Monsters''' - Standard enemies found in dungeons and the overworld. Make up the majority of encounters.
+* '''Robots''' - Mechanical enemies including Gunrobot, CannonX, and Blacktank. Often found in technological areas.
+* '''Bosses''' - Powerful story-related enemies including Cmdr., Gateau, De Rose, Papamecha, and Bugbug. Have significantly higher stats and unique attack patterns.
+
+== Verified Enemy List (56 enemies) ==
+
+The following table lists all enemies extracted from the ROM. Some enemy names appear multiple times (Spider, Cmdr., Gateau) which indicates palette swaps or stat variants using the same name but different internal IDs.
 
 Source: ROM address $01fdbe (null-terminated strings), pointer table at $01fd00
 
@@ -141,7 +169,9 @@ Source: ROM address $01fdbe (null-terminated strings), pointer table at $01fd00
 
 == Enemy Drop Tables ==
 
-Data compiled from GameFAQs guide by DSLevantine. The "Message" column indicates a relative encounter difficulty/experience factor.
+Enemy drops are rewards obtained after defeating enemies in battle. Each enemy can potentially drop GP (gold), items, or equipment. The drop system uses a "Message" value that appears to correlate with encounter difficulty and experience rewards.
+
+Data compiled from GameFAQs guide by DSLevantine. The "Message" column indicates a relative encounter difficulty/experience factor - higher values generally mean tougher enemies with better rewards.
 
 {| class="wikitable sortable"
 ! Enemy !! Message !! Drops
@@ -245,40 +275,64 @@ Stats are pending research. The enemy stats table location is unverified.
 
 == Data Structure ==
 
-Enemy names are stored at ROM offset $01fdbe as null-terminated strings.
-A pointer table at $01fd00 contains 16-bit offsets to each name.
+Enemy data in Robotrek is distributed across multiple ROM locations. The name strings have been verified, while the stat table location is under active research.
 
-Enemy stats structure (TBD - requires further research):
+=== Enemy Name Storage (Verified) ===
+
+Unlike item names which use $cc terminators, enemy names use standard null-termination ($00). The pointer table precedes the name strings.
 
 {| class="wikitable"
-! Offset !! Size !! Description
+! Property !! Value !! Notes
 |-
-| $00 || 1 || Enemy ID
+| Pointer Table || $01fd00 || Contains 16-bit offsets to each name
 |-
-| $01 || 1 || Sprite Index
+| Name Strings || $01fdbe || First name ("Mine")
 |-
-| $02 || 2 || HP
+| Terminator || $00 || Standard null termination
 |-
-| $04 || 1 || Power
-|-
-| $05 || 1 || Guard
-|-
-| $06 || 1 || Speed
-|-
-| $07 || 2 || EXP
-|-
-| $09 || 2 || Gold
-|-
-| $0b || 1 || AI Pattern
-|-
-| $0c || 1 || Drop ID 1
-|-
-| $0d || 1 || Drop ID 2
-|-
-| $0e || 1 || Drop Rate
-|-
-| $0f || 1 || Flags/Resistances
+| Total Entries || 56 || Some names repeat for variants
 |}
+
+=== Enemy Stats Structure (TBD) ===
+
+ROM analysis has identified a potential stat table at $030299 with 6-byte records. This hypothesis is based on:
+* Sequential HP-like values with reasonable progression
+* Record stride of 6 bytes matching typical enemy data structures
+* Location in a data-heavy bank region
+
+Hypothesized structure based on similar RPGs:
+
+{| class="wikitable"
+! Offset !! Size !! Description !! Notes
+|-
+| $00 || 1 || Enemy ID || Index matching name table
+|-
+| $01 || 1 || Sprite Index || Graphics reference for battle display
+|-
+| $02 || 2 || HP (little-endian) || Hit points, max 65535
+|-
+| $04 || 1 || Power || Attack strength
+|-
+| $05 || 1 || Guard || Defense value
+|-
+| $06 || 1 || Speed || Turn order priority
+|-
+| $07 || 2 || EXP (little-endian) || Experience reward
+|-
+| $09 || 2 || Gold (little-endian) || GP reward
+|-
+| $0b || 1 || AI Pattern || Behavior script index
+|-
+| $0c || 1 || Drop ID 1 || Primary item drop
+|-
+| $0d || 1 || Drop ID 2 || Secondary item drop
+|-
+| $0e || 1 || Drop Rate || Probability (0-255, where 255 = 100%)
+|-
+| $0f || 1 || Flags/Resistances || Elemental and status immunities
+|}
+
+'''Research status:''' The stat table at $030299 shows promising data patterns but has not been definitively correlated with known enemy stats. Further verification is needed by comparing extracted values against in-game testing.
 
 == See Also ==
 
