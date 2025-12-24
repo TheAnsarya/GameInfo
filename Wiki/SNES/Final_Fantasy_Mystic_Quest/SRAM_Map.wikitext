@@ -1,6 +1,15 @@
+{{Back|Final Fantasy: Mystic Quest (SNES)}}
 {{srammap}}
 
-==SRAM==
+= Final Fantasy: Mystic Quest (SNES) - SRAM Map =
+
+This page documents the SRAM (save data) structure for Final Fantasy: Mystic Quest.
+
+== Overview ==
+
+FFMQ uses a triple-backup save system with 3 primary slots (A) and 2 backup copies each (B, C).
+
+== SRAM ==
 
 The are 9 save slots of $38c bytes each for a total of $1fec bytes.
 

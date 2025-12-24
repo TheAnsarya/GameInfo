@@ -1,12 +1,13 @@
+{{Back|Dragon Warrior (NES)}}
 {{rommap}}
 
-=Dragon Warrior (NES) ROM Map=
+= Dragon Warrior (NES) - ROM Map =
 
 This ROM map is based on the complete disassembly by TheAnsarya and documented memory locations from the Dragon Warrior Info Project.
 
 Addresses are NES CPU addresses ($8000-$ffff for PRG ROM, $0000-$1fff for CHR ROM).
 
-==Bank Structure==
+== Bank Structure ==
 
 Dragon Warrior uses MMC1 mapper with 4 banks of 16KB PRG ROM:
 

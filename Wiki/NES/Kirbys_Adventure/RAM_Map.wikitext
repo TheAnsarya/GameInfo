@@ -1,9 +1,12 @@
+{{Back|Kirby's Adventure (NES)}}
 {{Rammap}}
 {{Cleanup}}
 
+= Kirby's Adventure (NES) - RAM Map =
+
 This page documents the RAM structure for '''Kirby's Adventure''' (NES).
 
-==Overview==
+== Overview ==
 
 Kirby's Adventure uses standard NES RAM ($0000-$07ff) plus the MMC3's additional 8 KB of PRG-RAM for extra work space. It's one of the most technically advanced NES games, pushing the hardware to its limits.
 

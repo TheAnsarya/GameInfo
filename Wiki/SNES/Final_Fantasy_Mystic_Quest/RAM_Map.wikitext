@@ -1,12 +1,15 @@
+{{Back|Final Fantasy: Mystic Quest (SNES)}}
 {{rammap}}
 
-=Main=
+= Final Fantasy: Mystic Quest (SNES) - RAM Map =
 
-{{ Todo | Add notes for RAM map}}
+This page documents the RAM layout for Final Fantasy: Mystic Quest.
+
+{{Todo|Add notes for RAM map}}
 
 [[Final Fantasy: Mystic Quest/SRAM map]]
 
-==RAM Map==
+== RAM Map ==
 
 Note: Name is 8 characters in English, but 6 characters in Japanese, French, and German versions.
 

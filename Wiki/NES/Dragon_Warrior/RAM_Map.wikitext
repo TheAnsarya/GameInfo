@@ -1,12 +1,13 @@
+{{Back|Dragon Warrior (NES)}}
 {{rammap}}
 
-=Dragon Warrior (NES) RAM Map=
+= Dragon Warrior (NES) - RAM Map =
 
 This RAM map documents all memory locations used by Dragon Warrior, based on the complete disassembly by TheAnsarya from the Dragon Warrior Info Project.
 
-==Zero Page ($00-$ff)==
+== Zero Page ($00-$ff) ==
 
-===General Purpose Variables ($00-$01)===
+=== General Purpose Variables ($00-$01) ===
 
 {| class="wikitable sortable"
 !  Address  !!  Size  !!  Name  !!  Description
