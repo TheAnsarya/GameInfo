@@ -1,4 +1,28 @@
-{{subpage}}
+{{Back|Dragon Quest III (SNES)}}
+
+= Dragon Quest III (SNES) - Values =
+
+This page documents the '''game constants, IDs, and data values''' for Dragon Quest III (SNES).
+
+==Overview==
+
+Dragon Quest III SNES uses various byte values to represent game elements. This page provides reference tables for all major data types.
+
+===ROM Data Locations===
+
+{| class="wikitable"
+! Data Type !! ROM Address !! Size !! Notes
+|-
+| Personality data || $c4179e-$c424a8 || $d0b bytes || Character class/personality modifiers
+|-
+| Monster stats || $020028+ || Varies || See ROM_Map for details
+|-
+| Monster names || $3ed958+ || Varies || AC-terminated strings
+|}
+
+===Subpages===
+
+* [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
 
 =Values=
 
