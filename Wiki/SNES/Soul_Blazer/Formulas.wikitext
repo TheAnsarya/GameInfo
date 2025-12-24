@@ -1,3 +1,4 @@
+{{Back|Soul Blazer (SNES)}}
 {{DISPLAYTITLE:Soul Blazer:Formulas}}
 This page documents the '''game mechanics formulas''' in '''[[Soul Blazer]]''' (SNES).
 

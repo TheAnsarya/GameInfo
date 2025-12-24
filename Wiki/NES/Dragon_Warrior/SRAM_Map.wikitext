@@ -1,3 +1,4 @@
+{{Back|Dragon Warrior (NES)}}
 {{subpage}}
 
 =Dragon Warrior (NES) SRAM Map=

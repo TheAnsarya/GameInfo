@@ -1,3 +1,4 @@
+{{Back|Soul Blazer (SNES)}}
 {{DISPLAYTITLE:Soul Blazer:Maps}}
 '''Soul Blazer''' features six main acts, each with multiple interconnected areas. This page documents the map structure, area data, and world progression.
 

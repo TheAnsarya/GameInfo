@@ -1,3 +1,4 @@
+{{Back|Soul Blazer (SNES)}}
 {{DISPLAYTITLE:Soul Blazer:Technical Reference}}
 This is the '''technical reference''' for '''[[Soul Blazer]]''' (SNES), providing detailed hardware specifications, memory layouts, and system documentation.
 

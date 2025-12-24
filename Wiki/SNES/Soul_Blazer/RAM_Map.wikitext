@@ -1,3 +1,4 @@
+{{Back|Soul Blazer (SNES)}}
 {{DISPLAYTITLE:Soul Blazer:RAM Map}}
 This is the '''RAM map''' for '''[[Soul Blazer]]''' (SNES).
 

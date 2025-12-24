@@ -1,3 +1,4 @@
+{{Back|Dragon Warrior IV (NES)}}
 {{srammap}}
 
 = Dragon Warrior IV (NES) - SRAM Map =

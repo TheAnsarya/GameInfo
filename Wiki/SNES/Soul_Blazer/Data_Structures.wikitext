@@ -1,3 +1,4 @@
+{{Back|Soul Blazer (SNES)}}
 {{DISPLAYTITLE:Soul Blazer:Data Structures}}
 This page documents the '''binary data structures and formats''' used in '''[[Soul Blazer]]''' (SNES).
 

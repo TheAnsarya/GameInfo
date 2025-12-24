@@ -1,3 +1,4 @@
+{{Back|Dragon Warrior IV (NES)}}
 {{rammap}}
 {{DISPLAYTITLE:Dragon Warrior IV - RAM Map}}
 

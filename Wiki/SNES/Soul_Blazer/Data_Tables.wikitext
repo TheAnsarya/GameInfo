@@ -1,3 +1,4 @@
+{{Back|Soul Blazer (SNES)}}
 {{DISPLAYTITLE:Soul Blazer:Data Tables}}
 This page documents the '''data tables''' in '''[[Soul Blazer]]''' (SNES).
 

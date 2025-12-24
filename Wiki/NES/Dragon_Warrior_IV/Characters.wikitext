@@ -1,5 +1,5 @@
+{{Back|Dragon Warrior IV (NES)}}
 {{DISPLAYTITLE:Dragon Warrior IV - Characters}}
-{{Back}}
 
 This page documents the playable characters and companions in Dragon Warrior IV for the NES, including their stats, abilities, and data structures.
 

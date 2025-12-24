@@ -1,3 +1,4 @@
+{{Back|Dragon Warrior III (NES)}}
 {{tbl|game=Dragon Warrior 3 (NES)}}
 
 This is the text table (TBL) file for ''Dragon Warrior III'' (NES). It defines the mapping between ROM byte values and displayed characters. DW3 uses extensive DTE compression.
