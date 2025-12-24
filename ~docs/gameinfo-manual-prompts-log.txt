@@ -267,6 +267,43 @@ A lot of the wiki pages you've created, especially when there is a data table, d
 
 
 
+
+&&&
+Plan the following project (in the `/GameInfo/DarkRepos/` folder) and make documentation (in the `/GameInfo/DarkRepos/docs/` folder) and github issues/subissues and todo-lists before starting work:
+
+Along with the main resource we are making which is the `GameInfo` github repos `https://github.com/TheAnsarya/GameInfo` where we have all of our documentation and tools and disassembly and assets, we also need a website organizing and documentating all of our work so someone can access those resources easily without navigating everything through github. the website address is `https://darkrepos.com/` and is named `Dark Repos` but ignore the current site because it is just a generic auto-generated splash-screen, maybe use the colors (browns, dark greens, light cream colored for accents, bright reds greens and yellows and oranges for statuses), follow modern colors studies and guidelines to make the site usable and the text readable, use readable fonts.
+Build a c# dotnet Blazor application using the most modern versions of c# and dotnet and blazor and css and the most modern coding practices and standards and code features (like advanced pattern matching) and put it in the `/GameInfo/DarkRepos/src/` folder, and make documentation about the project/website in the `/GameInfo/DarkRepos/docs/` folder. If you need specific ideas for making the website's content let me know.
+Make sure every page and component in the website has accessibility (aria) compliance including keyboard interface and screen-reader 
+If you need a database use efcore to talk to a sqlite instance.
+Make all of the information and tool documentation and games listing/info, etc. that we've discovered in the GameInfo project (with links to the resources and disassemblies and wikipages) available on the website, and make the site using a modern design.
+Also there is a wiki we will sync with our `/Game Info/Wiki/` folder that is a subdomain of `darkrepos.com`, currently we're using `games.darkrepos.com` for the wiki.
+
+Make comprehensive plans and github issues/subissues and todo-lists for this work effort and a create a roadmap markdown file and lots of documentation. Ask for any clarifications if you need them.
+&&&
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 continue;
 
 
