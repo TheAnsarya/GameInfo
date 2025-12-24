@@ -1,9 +1,12 @@
+{{Back|Final Fantasy IV (SNES)}}
 {{Rommap}}
 {{Cleanup}}
 
+= Final Fantasy IV (SNES) - ROM Map =
+
 This page documents the ROM structure for '''Final Fantasy IV''' (SNES), also known as '''Final Fantasy II''' in the US release.
 
-==Overview==
+== Overview ==
 
 Final Fantasy IV uses a '''HiROM''' memory mapping with a 2 MB (16 Mbit) ROM size.
 

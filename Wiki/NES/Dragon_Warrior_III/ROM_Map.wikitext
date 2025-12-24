@@ -1,8 +1,11 @@
+{{Back|Dragon Warrior III (NES)}}
 {{rommap|game=Dragon Warrior 3 (NES)}}
+
+= Dragon Warrior III (NES) - ROM Map =
 
 This is a preliminary ROM map for ''Dragon Warrior III'' (NES). DW3 is one of the largest NES RPGs, using mapper 4 (MMC3) with extensive bank switching.
 
-==ROM Header==
+== ROM Header ==
 The ROM uses the [[iNES]] format header.
 
 {| class="wikitable"

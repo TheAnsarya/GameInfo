@@ -1,9 +1,12 @@
+{{Back|Mappy-Land (NES)}}
 {{Rommap}}
 {{Cleanup}}
 
+= Mappy-Land (NES) - ROM Map =
+
 This page documents the ROM structure for '''Mappy-Land''' (NES).
 
-==Overview==
+== Overview ==
 
 Mappy-Land is an action platformer by Namco released in 1986 (Japan) / 1989 (US). It uses mapper MMC1 (iNES mapper 1) with 128 KB PRG-ROM and 128 KB CHR-ROM.
 

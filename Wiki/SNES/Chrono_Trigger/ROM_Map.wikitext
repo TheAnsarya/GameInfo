@@ -1,8 +1,11 @@
+{{Back|Chrono Trigger (SNES)}}
 {{rommap|game=Chrono Trigger}}
+
+= Chrono Trigger (SNES) - ROM Map =
 
 This is the ROM map for ''Chrono Trigger'' (SNES). Developed by Square, this game uses a 4MB (32Mbit) ROM with HiROM mapping.
 
-==ROM Header==
+== ROM Header ==
 The ROM uses the standard SNES header format at $00ffc0.
 
 {| class="wikitable"

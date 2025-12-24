@@ -1,9 +1,12 @@
+{{Back|Yoshi's Cookie (NES)}}
 {{rommap}}
 {{Cleanup}}
 
+= Yoshi's Cookie (NES) - ROM Map =
+
 This page documents the ROM structure for '''Yoshi's Cookie''' (NES).
 
-==Overview==
+== Overview ==
 
 Yoshi's Cookie is a puzzle game developed by Bullet-Proof Software and published by Nintendo in 1992. It uses NROM mapper (iNES mapper 0) with 32 KB PRG-ROM and 8 KB CHR-ROM.
 

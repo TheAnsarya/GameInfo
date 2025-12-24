@@ -1,8 +1,11 @@
+{{Back|Dragon Warrior II (NES)}}
 {{rommap|game=Dragon Warrior II}}
+
+= Dragon Warrior II (NES) - ROM Map =
 
 This is a preliminary ROM map for ''Dragon Warrior II'' (NES). This document outlines the structure of the ROM and the location of key data.
 
-==ROM Header==
+== ROM Header ==
 The ROM uses the [[iNES]] format header.
 
 {| class="wikitable"

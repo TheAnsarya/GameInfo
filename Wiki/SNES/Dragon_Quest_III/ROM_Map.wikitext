@@ -1,6 +1,26 @@
+{{Back|Dragon Quest III (SNES)}}
 {{rommap}}
 
-==Main==
+= Dragon Quest III (SNES) - ROM Map =
+
+This page documents the ROM layout for Dragon Quest III on SNES (the Super Famicom remake of the NES classic).
+
+== Overview ==
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ROM Size || 4 MB (32 Mbit)
+|-
+| Mapper || HiROM
+|-
+| SRAM Size || 64 KB
+|-
+| Region || Japan only
+|}
+
+== Main ==
 
 {| class="wikitable sortable"
 |-
