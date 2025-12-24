@@ -101,21 +101,21 @@ Temporary party members that join in specific chapters:
 |-
 ! ID !! Name !! Chapter !! Class
 |-
-| $C5 || Healie || 1 || Kind Healer
+| $c5 || Healie || 1 || Kind Healer
 |-
-| $C6 || Orin || 4 || Alchemist
+| $c6 || Orin || 4 || Alchemist
 |-
-| $C7 || Laurent || 3 || Troubadour
+| $c7 || Laurent || 3 || Troubadour
 |-
-| $C8 || Strom || 3 || Guardsman
+| $c8 || Strom || 3 || Guardsman
 |-
-| $C9 || Hector || 5 || Young Man
+| $c9 || Hector || 5 || Young Man
 |-
-| $CA || Panon || 5 || Jester
+| $ca || Panon || 5 || Jester
 |-
-| $CB || Lucia || 5 || Zenithian
+| $cb || Lucia || 5 || Zenithian
 |-
-| $CC || Doran || 5 || Baby Dragon
+| $cc || Doran || 5 || Baby Dragon
 |}
 
 ==Documentation==

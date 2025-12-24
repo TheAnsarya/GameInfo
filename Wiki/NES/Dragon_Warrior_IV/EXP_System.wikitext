@@ -1,14 +1,36 @@
 {{Back|Dragon Warrior IV (NES)}}
+{{DISPLAYTITLE:Dragon Warrior IV - EXP System}}
 
 = Dragon Warrior IV (NES) - EXP System =
 
-This page documents the experience point system in Dragon Warrior IV.
+This page documents the experience point system in Dragon Warrior IV, including the formula-based calculation and ROM data locations.
 
 '''Data Status:''' EXP calculation routine verified at Bank 18 ($9f7c). Coefficient tables at $a0fb.
+
+== ROM Data Locations ==
+
+{| class="wikitable"
+|-
+! Data Type !! ROM Address !! Bank !! Size !! Description
+|-
+| EXP calc routine || $49f7c || 18 ($9f7c) || ~100 bytes || Main calculation
+|-
+| Level check || $49c22 || 18 ($9c22) || ~150 bytes || Level-up comparison
+|-
+| Pointer table || $4a0fb || 18 ($a0fb) || 16 bytes || Character curve pointers
+|-
+| Coefficient data || $4a123+ || 18 ($a123+) || Variable || Per-character curves
+|}
 
 == Overview ==
 
 Dragon Warrior IV uses a '''formula-based EXP calculation''' rather than storing all 99 level values for each character. This space-efficient approach uses coefficient tables to calculate EXP requirements dynamically.
+
+=== Design Benefits ===
+
+* Saves ~2KB of ROM (8 chars × 99 levels × 3 bytes each)
+* Characters can share curves, further reducing data
+* Allows fine-tuning of level progression
 
 == Key Memory Locations ==
 
@@ -154,13 +176,16 @@ Experience points are stored as 24-bit (3-byte) little-endian integers:
 
 == See Also ==
 
-* [[Dragon Warrior IV (NES)/Characters|Characters]] - Character leveling and stats
-* [[Dragon Warrior IV (NES)/Enemies|Enemies]] - Monster EXP rewards
-* [[Dragon Warrior IV (NES)/Battle System|Battle System]] - Combat mechanics
-* [[Dragon Warrior IV (NES)/ROM Map|ROM Map]] - Bank 18 and Bank 27 documentation
-* [[Dragon Warrior IV (NES)/RAM Map|RAM Map]] - Character data addresses
-* [[Dragon Warrior IV (NES)|Main Page]]
+* [[Dragon Warrior IV:Characters|Characters]] - Character leveling and stats
+* [[Dragon Warrior IV:Enemies|Enemies]] - Monster EXP rewards
+* [[Dragon Warrior IV:Battle_System|Battle System]] - Combat mechanics
+* [[Dragon Warrior IV:ROM_Map|ROM Map]] - Bank 18 and Bank 27 documentation
+* [[Dragon Warrior IV:RAM_Map|RAM Map]] - Character data addresses
 
-[[Category:Game Mechanics]]
-[[Category:NES]]
+== References ==
+
+* Bank 18 disassembly analysis
+* dragon-warrior-4-info project
+
 [[Category:Dragon Warrior IV]]
+[[Category:Game Mechanics]]
