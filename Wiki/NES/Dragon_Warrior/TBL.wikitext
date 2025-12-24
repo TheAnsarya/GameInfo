@@ -1,3 +1,35 @@
+{{Back|Dragon Warrior (NES)}}
+
+= Dragon Warrior (NES) - Text Table =
+
+This page documents the '''text encoding table''' for Dragon Warrior (NES).
+
+==Overview==
+
+Dragon Warrior uses a custom 8-bit character encoding for all in-game text. This is common for NES games to save ROM space and allow custom character graphics.
+
+===Encoding Summary===
+
+{| class="wikitable"
+! Range !! Characters
+|-
+| $00-$09 || Numbers 0-9
+|-
+| $0a-$23 || Lowercase a-z
+|-
+| $24-$3d || Uppercase A-Z
+|-
+| $3e-$3f || Quotation marks
+|-
+| $40-$54 || Punctuation and special characters
+|-
+| $5f || Space character
+|}
+
+===ROM Location===
+
+The font graphics are stored in CHR ROM and the text data uses the encoding below.
+
 === Text Table ===
 
 The space (<code>&nbsp;</code>) character is $5f.

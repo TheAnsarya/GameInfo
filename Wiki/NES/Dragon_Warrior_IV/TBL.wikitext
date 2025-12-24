@@ -1,8 +1,38 @@
-{{TBL}}
+{{Back|Dragon Warrior IV (NES)}}
+
+= Dragon Warrior IV (NES) - Text Table =
+
+This page documents the '''text encoding table''' for Dragon Warrior IV (NES).
+
+==Overview==
+
+Dragon Warrior IV uses a custom 8-bit character encoding with dictionary-based compression (DTE/MTE). The encoding is more complex than earlier Dragon Warrior games to handle the larger script.
+
+===Encoding Summary===
+
+{| class="wikitable"
+! Range !! Characters
+|-
+| $00 || Space
+|-
+| $01-$0a || Numbers 0-9
+|-
+| $0b-$24 || Lowercase a-z
+|-
+| $25-$3e || Uppercase A-Z
+|-
+| $40-$7f || Punctuation and control codes
+|-
+| $80+ || DTE/MTE dictionary entries
+|}
+
+===ROM Location===
+
+Text data is stored across multiple banks (12-13) with pointers in Bank 31.
+
+{{ Todo | Finish table grid }}
 
 ==Text Table==
-
-[TODO: Finish table grid]
 
 The space (<code>&nbsp;</code>) character is $00.
 
