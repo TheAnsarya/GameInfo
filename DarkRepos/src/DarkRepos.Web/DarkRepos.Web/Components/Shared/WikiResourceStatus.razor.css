@@ -1,0 +1,49 @@
+/* WikiResourceStatus.razor - Component scoped styles */
+
+.wiki-resources {
+	display: flex;
+	gap: var(--space-3);
+	flex-wrap: wrap;
+}
+
+.wiki-resources.compact {
+	gap: var(--space-2);
+}
+
+.wiki-resource {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-1);
+	font-size: var(--font-size-sm);
+	padding: var(--space-1) var(--space-2);
+	border-radius: var(--radius-sm);
+	background: var(--color-bg-tertiary);
+	transition: background var(--transition-fast);
+}
+
+.wiki-resources.compact .wiki-resource {
+	padding: 2px var(--space-1);
+	font-size: var(--font-size-xs);
+}
+
+.wiki-resource.available {
+	color: var(--color-success);
+	background: rgba(76, 175, 80, 0.15);
+}
+
+.wiki-resource.unavailable {
+	color: var(--color-text-muted);
+	opacity: 0.6;
+}
+
+.wiki-resource .label {
+	color: var(--color-text-secondary);
+}
+
+.wiki-resource.available .label {
+	color: var(--color-success);
+}
+
+.wiki-resource .indicator {
+	font-weight: var(--font-weight-bold);
+}

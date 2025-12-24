@@ -1,0 +1,58 @@
+@using DarkRepos.Core.Models
+
+<article class="tool-card">
+	<div class="tool-card-header">
+		<span class="tool-icon">@GetCategoryIcon()</span>
+		<ToolCategoryBadge Category="@Tool.Category" />
+	</div>
+	<div class="tool-card-content">
+		<h3 class="tool-card-title">
+			<a href="/tools/@Tool.Slug">@Tool.Name</a>
+		</h3>
+		<p class="tool-card-description">@Tool.Description</p>
+		@if (Tool.Tags.Any())
+		{
+			<div class="tool-tags">
+				@foreach (var tag in Tool.Tags.Take(3))
+				{
+					<span class="tag">@tag</span>
+				}
+			</div>
+		}
+	</div>
+	<div class="tool-card-footer">
+		@if (!string.IsNullOrEmpty(Tool.DownloadUrl))
+		{
+			<a href="@Tool.DownloadUrl" class="btn btn-sm btn-primary" target="_blank" rel="noopener">
+				Download
+			</a>
+		}
+		@if (!string.IsNullOrEmpty(Tool.RepositoryUrl))
+		{
+			<a href="@Tool.RepositoryUrl" class="btn btn-sm btn-secondary" target="_blank" rel="noopener">
+				Source
+			</a>
+		}
+	</div>
+</article>
+
+@code {
+	[Parameter, EditorRequired]
+	public Tool Tool { get; set; } = default!;
+
+	private string GetCategoryIcon() => Tool.Category switch
+	{
+		ToolCategory.General => "🔧",
+		ToolCategory.Text => "📝",
+		ToolCategory.Graphics => "🎨",
+		ToolCategory.Audio => "🔊",
+		ToolCategory.Compression => "📦",
+		ToolCategory.Disassembly => "⚙️",
+		ToolCategory.Analysis => "🔍",
+		ToolCategory.MapEditor => "🗺️",
+		ToolCategory.Patching => "🩹",
+		ToolCategory.SaveEditor => "💾",
+		ToolCategory.Development => "🛠️",
+		_ => "🔧"
+	};
+}

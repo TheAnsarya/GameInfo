@@ -1,0 +1,43 @@
+@using DarkRepos.Core.Models
+
+<div class="wiki-resources @(Compact ? "compact" : "")">
+	<span class="wiki-resource @(Wiki.HasRomMap ? "available" : "unavailable")" title="ROM Map">
+		@if (ShowLabels)
+		{
+			<span class="label">ROM Map</span>
+		}
+		<span class="indicator">@(Wiki.HasRomMap ? "✓" : "○")</span>
+	</span>
+	<span class="wiki-resource @(Wiki.HasRamMap ? "available" : "unavailable")" title="RAM Map">
+		@if (ShowLabels)
+		{
+			<span class="label">RAM Map</span>
+		}
+		<span class="indicator">@(Wiki.HasRamMap ? "✓" : "○")</span>
+	</span>
+	<span class="wiki-resource @(Wiki.HasDataStructures ? "available" : "unavailable")" title="Data Structures">
+		@if (ShowLabels)
+		{
+			<span class="label">Data</span>
+		}
+		<span class="indicator">@(Wiki.HasDataStructures ? "✓" : "○")</span>
+	</span>
+	<span class="wiki-resource @(Wiki.HasSystems ? "available" : "unavailable")" title="Systems">
+		@if (ShowLabels)
+		{
+			<span class="label">Systems</span>
+		}
+		<span class="indicator">@(Wiki.HasSystems ? "✓" : "○")</span>
+	</span>
+</div>
+
+@code {
+	[Parameter, EditorRequired]
+	public WikiResources Wiki { get; set; } = default!;
+
+	[Parameter]
+	public bool Compact { get; set; } = false;
+
+	[Parameter]
+	public bool ShowLabels { get; set; } = true;
+}

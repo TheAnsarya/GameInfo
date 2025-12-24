@@ -1,0 +1,41 @@
+/* EmptyState.razor - Component scoped styles */
+
+.empty-state {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: var(--space-10) var(--space-4);
+	background: var(--color-bg-secondary);
+	border: 1px dashed var(--color-border);
+	border-radius: var(--radius-lg);
+}
+
+.empty-icon {
+	font-size: 4rem;
+	margin-bottom: var(--space-4);
+	opacity: 0.6;
+	filter: grayscale(0.3);
+}
+
+.empty-title {
+	font-size: var(--font-size-lg);
+	font-weight: var(--font-weight-semibold);
+	color: var(--color-text-primary);
+	margin: 0 0 var(--space-2);
+}
+
+.empty-message {
+	font-size: var(--font-size-base);
+	color: var(--color-text-secondary);
+	margin: 0;
+	max-width: 400px;
+	line-height: var(--line-height-relaxed);
+}
+
+.empty-actions {
+	margin-top: var(--space-6);
+	display: flex;
+	gap: var(--space-3);
+}
