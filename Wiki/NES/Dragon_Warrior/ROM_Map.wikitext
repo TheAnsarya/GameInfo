@@ -257,15 +257,15 @@ Dragon Warrior uses MMC1 mapper with 4 banks of 16KB PRG ROM:
 {| class="wikitable"
 !  Address  !!  Routine  !!  Description
 |-
-|  ~$C000  ||  CalcPhysicalDamage  ||  Damage = (ATK/2) - (DEF/4) + Random(0,4)
+|  ~$c000  ||  CalcPhysicalDamage  ||  Damage = (ATK/2) - (DEF/4) + Random(0,4)
 |-
-|  ~$C100  ||  CheckCriticalHit  ||  CritChance = AGI/64, Damage × 2 if crit
+|  ~$c100  ||  CheckCriticalHit  ||  CritChance = AGI/64, Damage × 2 if crit
 |-
-|  ~$C200  ||  CheckHit  ||  Player: 87.5% - (EnemyAGI/4), Enemy: 75% - (PlayerAGI/2)
+|  ~$c200  ||  CheckHit  ||  Player: 87.5% - (EnemyAGI/4), Enemy: 75% - (PlayerAGI/2)
 |-
-|  ~$C300  ||  CheckDodge  ||  DodgeChance = PlayerAGI/4
+|  ~$c300  ||  CheckDodge  ||  DodgeChance = PlayerAGI/4
 |-
-|  ~$C700  ||  BattleVictory  ||  Award experience and gold
+|  ~$c700  ||  BattleVictory  ||  Award experience and gold
 |}
 
 ===Spell Effects===
@@ -273,17 +273,17 @@ Dragon Warrior uses MMC1 mapper with 4 banks of 16KB PRG ROM:
 {| class="wikitable"
 !  Address  !!  Routine  !!  Description
 |-
-|  ~$D000  ||  SpellHEAL  ||  Restore 10-17 HP, 4 MP cost
+|  ~$d000  ||  SpellHEAL  ||  Restore 10-17 HP, 4 MP cost
 |-
-|  ~$D050  ||  SpellHEALMORE  ||  Restore 85-100 HP, 10 MP cost
+|  ~$d050  ||  SpellHEALMORE  ||  Restore 85-100 HP, 10 MP cost
 |-
-|  ~$D100  ||  SpellHURT  ||  Deal 5-12 - (DEF/8) damage, 2 MP
+|  ~$d100  ||  SpellHURT  ||  Deal 5-12 - (DEF/8) damage, 2 MP
 |-
-|  ~$D150  ||  SpellHURTMORE  ||  Deal 58-65 - (DEF/4) damage, 5 MP
+|  ~$d150  ||  SpellHURTMORE  ||  Deal 58-65 - (DEF/4) damage, 5 MP
 |-
-|  ~$D200  ||  SpellSLEEP  ||  62.5% - (Level×2) success, 2 MP
+|  ~$d200  ||  SpellSLEEP  ||  62.5% - (Level×2) success, 2 MP
 |-
-|  ~$D250  ||  SpellSTOPSPELL  ||  62.5% - (Level×3) success, 2 MP
+|  ~$d250  ||  SpellSTOPSPELL  ||  62.5% - (Level×3) success, 2 MP
 |}
 
 ===Encounter System===
@@ -327,9 +327,9 @@ Dragon Warrior uses MMC1 mapper with 4 banks of 16KB PRG ROM:
 |-
 |  $4000-$4017  ||  APU and controller registers
 |-
-|  $4018-$5FFF  ||  MMC1 mapper registers (bank switching)
+|  $4018-$5fff  ||  MMC1 mapper registers (bank switching)
 |-
-|  $6000-$7FFF  ||  Battery-backed SRAM (8KB save data)
+|  $6000-$7fff  ||  Battery-backed SRAM (8KB save data)
 |}
 
 ==References==

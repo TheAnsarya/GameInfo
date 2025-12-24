@@ -81,14 +81,14 @@ ExpRequirements:
     .word $0007  ; Level 2: 7 EXP
     .word $0017  ; Level 3: 23 EXP ($0017 hex = 23 decimal)
     ; ... continues for all 30 levels
-    .word $FFFF  ; Level 30: 65535 EXP (max 16-bit value)
+    .word $ffff  ; Level 30: 65535 EXP (max 16-bit value)
 </pre>
 
 '''Constants:'''
 * MAX_LEVEL = 30
 * MAX_EXP = 65,535 (16-bit unsigned maximum)
 
-'''ROM Location:''' Bank 01, approximately $9500-$953C (60 bytes = 30 levels × 2 bytes)
+'''ROM Location:''' Bank 01, approximately $9500-$953c (60 bytes = 30 levels × 2 bytes)
 
 ===Experience Gain===
 
@@ -103,7 +103,7 @@ EXP Gained = Monster's Base EXP
 * No party bonuses (single player game)
 * Fixed values from monster stats table
 
-'''ROM Location:''' Bank 03, approximately $C700 (BattleVictory routine)
+'''ROM Location:''' Bank 03, approximately $c700 (BattleVictory routine)
 
 ==HP Growth System==
 
@@ -168,7 +168,7 @@ New Max HP = Old Max HP + Final HP Gain
 '''Constants:'''
 * HP_RANDOM_BONUS = 3 (0-3 variance)
 
-'''ROM Location:''' Bank 03, approximately $CB00 (HPGainTable) and $CB40 (LevelUpHP routine)
+'''ROM Location:''' Bank 03, approximately $cb00 (HPGainTable) and $cb40 (LevelUpHP routine)
 
 ==MP Growth System==
 
@@ -227,7 +227,7 @@ New Max MP = Old Max MP + Final MP Gain
 '''Constants:'''
 * MP_RANDOM_BONUS = 2 (0-2 variance)
 
-'''ROM Location:''' Bank 03, approximately $CB80 (MPGainTable) and $CBC0 (LevelUpMP routine)
+'''ROM Location:''' Bank 03, approximately $cb80 (MPGainTable) and $cbc0 (LevelUpMP routine)
 
 ==Stat Growth System==
 
@@ -256,7 +256,7 @@ New STR = Old STR + STR Gain
 * ODD_LEVEL_STR_MIN = 1
 * ODD_LEVEL_STR_MAX = 3
 
-'''ROM Location:''' Bank 03, approximately $CC00 (LevelUpSTR routine)
+'''ROM Location:''' Bank 03, approximately $cc00 (LevelUpSTR routine)
 
 ===Agility (AGI) Growth===
 
@@ -283,7 +283,7 @@ New AGI = Old AGI + AGI Gain
 * EVEN_LEVEL_AGI_MIN = 1
 * EVEN_LEVEL_AGI_MAX = 3
 
-'''ROM Location:''' Bank 03, approximately $CC50 (LevelUpAGI routine)
+'''ROM Location:''' Bank 03, approximately $cc50 (LevelUpAGI routine)
 
 ==Spell Learning System==
 
@@ -328,10 +328,10 @@ SpellUnlockTable:
     .byte 15, SPELL_REPEL
     .byte 17, SPELL_HEALMORE
     .byte 19, SPELL_HURTMORE
-    .byte $FF  ; End marker
+    .byte $ff  ; End marker
 </pre>
 
-'''ROM Location:''' Bank 03, approximately $CD00 (CheckSpellLearning routine and spell table)
+'''ROM Location:''' Bank 03, approximately $cd00 (CheckSpellLearning routine and spell table)
 
 ==Level-Up Procedure==
 
@@ -350,7 +350,7 @@ When player gains enough EXP for level-up:
 9. Display level-up message and stat gains
 10. If multiple level-ups, repeat
 
-'''ROM Location:''' Bank 03, approximately $CA00 (ProcessLevelUp routine)
+'''ROM Location:''' Bank 03, approximately $ca00 (ProcessLevelUp routine)
 
 ===Stat Recalculation===
 
