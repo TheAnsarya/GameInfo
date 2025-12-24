@@ -1,5 +1,28 @@
-{{subpage}}
-{{stub}}
+{{Back|Dragon Warrior (NES)}}
+
+= Dragon Warrior (NES) - Values =
+
+This page documents the '''game constants, item IDs, and equipment values''' for Dragon Warrior (NES).
+
+==Overview==
+
+Dragon Warrior stores equipment data in a compact format using bit fields in a single byte. This page documents the various ID values and their meanings.
+
+===ROM Data Locations===
+
+{| class="wikitable"
+! Data Type !! ROM Address !! Size !! Notes
+|-
+| Weapon stats || $caef-$cb0c || 30 bytes || Attack values for 7 weapons
+|-
+| Armor stats || $cb0d-$cb20 || 20 bytes || Defense values for 7 armors
+|-
+| Shield stats || $cb21-$cb28 || 8 bytes || Defense values for 3 shields
+|-
+| Item prices || $cb40-$cb6f || 48 bytes || Buy prices (word per item)
+|-
+| Spell data || $cb80-$cbcf || 80 bytes || MP costs and effects
+|}
 
 =Values=
 

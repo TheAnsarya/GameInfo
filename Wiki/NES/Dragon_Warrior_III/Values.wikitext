@@ -1,26 +1,47 @@
-{{subpage}}
-{{stub}}
+{{Back|Dragon Warrior III (NES)}}
 
-=Values=
+= Dragon Warrior III (NES) - Values =
 
-==Items==
+This page documents the '''game constants, item IDs, and equipment values''' for Dragon Warrior III (NES).
+
+==Overview==
+
+Dragon Warrior III uses a 7-bit item index system with the high bit reserved for equipped status. This page documents all item values and their game data.
+
+===Item Index System===
 
 The item index only uses the bottom 7 bits so values range from <code>$00</code> to <code>$7f</code>.
 
 In the item bags, the high bit <code>%10000000</code> indicates that the item is equipped. So, to get the equipped value add <code>$80</code> to the item index.
 
-* [[ #Items-Weapons | Weapons ]]
-* [[ #Items-Armor | Armor ]]
-* [[ #Items-Shields | Shields ]]
-* [[ #Items-Helmets | Helmets ]]
-* [[ #Items-Items1 | Items #1 ]]
-* [[ #Items-Keys | Keys ]]
-* [[ #Items-Items2 | Items #2 ]]
-* [[ #Items-Seeds | Seeds ]]
-* [[ #Items-Consumables | Consumables ]]
-* [[ #Items-Items3 | Items #3 ]]
-* [[ #Items-Orbs | Orbs ]]
-* [[ #Items-GlitchItems | Glitch Items ]]
+<pre>
+Item Byte Format:
+  Bit 7: Equipped flag (1 = equipped, 0 = not equipped)
+  Bits 0-6: Item ID ($00-$7f)
+
+Example:
+  $05 = Iron Spear (in inventory)
+  $85 = Iron Spear (equipped)
+</pre>
+
+===Item Categories===
+
+* [[ #Items-Weapons | Weapons ]] ($00-$1c)
+* [[ #Items-Armor | Armor ]] ($1d-$31)
+* [[ #Items-Shields | Shields ]] ($32-$3c)
+* [[ #Items-Helmets | Helmets ]] ($3d-$48)
+* [[ #Items-Items1 | Items #1 ]] ($49-$4e)
+* [[ #Items-Keys | Keys ]] ($4f-$52)
+* [[ #Items-Items2 | Items #2 ]] ($53-$5b)
+* [[ #Items-Seeds | Seeds ]] ($5c-$63)
+* [[ #Items-Consumables | Consumables ]] ($64-$6e)
+* [[ #Items-Items3 | Items #3 ]] ($6f-$75)
+* [[ #Items-Orbs | Orbs ]] ($76-$7b)
+* [[ #Items-GlitchItems | Glitch Items ]] ($7c-$7f)
+
+=Values=
+
+==Items==
 
 {| class="wikitable sortable"
 |-
