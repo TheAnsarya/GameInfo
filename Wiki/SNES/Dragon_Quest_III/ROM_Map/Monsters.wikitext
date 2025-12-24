@@ -1,11 +1,17 @@
+{{Back|Dragon Quest III (SNES)/ROM_Map}}
 {{subpage}}
 
-==Main==
+= Dragon Quest III (SNES) - Monster Data =
+
+This page documents the monster data structure in Dragon Quest III (SNES).
+
+== Main ==
+
 Monsters, see [[Dragon Quest III (SNES)/Values#Monsters|Value List]]
 
 The main data resides from <code>$c20000-$c2xxxx</code>. Each entry is <code>$25</code> bytes long. There are <code>$a1</code> entries.
 
-===Primary Data Structure===
+=== Primary Data Structure ===
 Each entry is <code>$25</code> bytes long.
 
 {| class="wikitable sortable"

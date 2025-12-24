@@ -1,9 +1,15 @@
+{{Back|Dragon Quest III (SNES)/RAM_Map}}
 {{subpage}}
 
-==Events==
+= Dragon Quest III (SNES) - Event Flags =
+
+This page documents the game event trigger flags in Dragon Quest III (SNES).
+
+== Events ==
+
 These flags indicate which game event triggers have been already set.
 
-**All of these need to be re-verified.**
+{{Todo|All of these need to be re-verified.}}
 
 {| class="wikitable sortable"
 |-

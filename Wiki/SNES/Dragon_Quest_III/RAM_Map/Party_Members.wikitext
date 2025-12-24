@@ -1,6 +1,12 @@
+{{Back|Dragon Quest III (SNES)/RAM_Map}}
 {{subpage}}
 
-==Main==
+= Dragon Quest III (SNES) - Party Member Data =
+
+This page documents the party member RAM structure in Dragon Quest III (SNES).
+
+== Main ==
+
 The main data structure starts at <code>$7e3925</code>. Each entry is <code>$3c</code> bytes long.
 
 {| class="wikitable sortable"

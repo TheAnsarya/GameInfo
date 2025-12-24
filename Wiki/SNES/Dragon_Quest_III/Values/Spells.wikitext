@@ -1,9 +1,13 @@
+{{Back|Dragon Quest III (SNES)/Values}}
 {{subpage}}
 
-=Spells=
+= Dragon Quest III (SNES) - Spells =
 
-==Flags==
-[TODO: Finish filling out grid]
+This page documents the spell data in Dragon Quest III (SNES).
+
+== Flags ==
+
+{{Todo|Finish filling out grid}}
 
 Some of the spells do not coexist, so if you have one or the flagged they appear, but if you flag both only one appears. Need to note that somehow.
 

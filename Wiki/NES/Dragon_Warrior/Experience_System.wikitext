@@ -1,12 +1,13 @@
+{{Back|Dragon Warrior (NES)}}
 {{subpage}}
 
-=Dragon Warrior (NES) Experience and Level System=
+= Dragon Warrior (NES) - Experience System =
 
 This page documents the experience point system, level progression, stat growth, and spell learning mechanics for Dragon Warrior (NES).
 
-==Experience Points==
+== Experience Points ==
 
-===Experience Requirements===
+=== Experience Requirements ===
 
 Dragon Warrior uses a fixed experience table for all 30 levels. The table is stored in ROM at Bank 01, approximately $9500.
 

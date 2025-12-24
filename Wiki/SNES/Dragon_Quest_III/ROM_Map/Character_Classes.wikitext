@@ -1,6 +1,12 @@
+{{Back|Dragon Quest III (SNES)/ROM_Map}}
 {{subpage}}
 
-==Main==
+= Dragon Quest III (SNES) - Character Classes =
+
+This page documents the character class data structure in Dragon Quest III (SNES).
+
+== Main ==
+
 Character Classes, see [[Dragon Quest III (SNES)/Values#Class|Value List]]
 
 The main data resides from <code>$c4179e-$c424a8</code>. Each entry is <code>$173</code> bytes long. There are <code>9</code> entries.

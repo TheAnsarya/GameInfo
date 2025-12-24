@@ -1,6 +1,15 @@
+{{Back|Final Fantasy: Mystic Quest (SNES)/Values}}
 {{subpage}}
 
-=Values - Window Colors=
+= Final Fantasy: Mystic Quest (SNES) - Window Colors =
+
+This page documents the 15-bit BGR color values used for window backgrounds in Final Fantasy: Mystic Quest.
+
+== Overview ==
+
+The SNES uses 15-bit color (5 bits per channel). Window colors are stored at $9c-$9d as a 2-byte word in BGR format.
+
+== Values - Window Colors ==
 
 {| class="wikitable"
 !  R  !!  G  !!  B  !!  Value  !!  $9c bits  !!  $9d bits  !!  Color

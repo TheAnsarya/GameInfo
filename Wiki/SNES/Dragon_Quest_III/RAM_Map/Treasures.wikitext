@@ -1,11 +1,17 @@
+{{Back|Dragon Quest III (SNES)/RAM_Map}}
 {{subpage}}
 
-==Treasures==
+= Dragon Quest III (SNES) - Treasure Flags =
+
+This page documents the treasure chest event flags in Dragon Quest III (SNES).
+
+== Treasures ==
+
 These flags indicate which chests or treasures have been already taken.
 
 The Yggdrasil Leaf on the overworld does not have an event flag in this range.
 
-**All of these need to be re-verified.**
+{{Todo|All of these need to be re-verified.}}
 
 Names are mostly from the fan translation and will be re-checked/normalized.
 

@@ -1,6 +1,12 @@
+{{Back|Dragon Quest III (SNES)/ROM_Map}}
 {{subpage}}
 
-==Main==
+= Dragon Quest III (SNES) - Personality Data =
+
+This page documents the personality type data structure in Dragon Quest III (SNES).
+
+== Main ==
+
 Monsters, see [[Dragon Quest III (SNES)/Values#Personality|Value List]]
 
 The main data resides from <code>$c424bc-$xxxx</code>. Each entry is <code>$0b</code> bytes long. There are <code>$2f</code> entries.
