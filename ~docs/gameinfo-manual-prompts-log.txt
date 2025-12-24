@@ -254,6 +254,10 @@ continue, and **go as long as you can**, really complete as many tasks as you ca
 
 git comment everything in logical batches attaches top github issues; then I see you're making files about `Data Crystal` with `data-crystal` in their name but we are not integrating with data crystal, it only used as a refence. We are using our own custom wiki called `Dark Repos` so rename those and fix those mentions, we should only see the words `Data Crystal` when linking to a resource there or explaining that we used a link from there as a reference; Also, you put the `tools` for `RoboTrek` in the main `GameInfo\tools` folder but it should be a ``tools` subfolder in the main RoboTrek folder, the main `GameInfo\tools` folder is only for tools that apply to the project as a whole, not game-specific scripts; continue;
 
+continue;
+
+A lot of the wiki pages you've created, especially when there is a data table, do not have explanations of what the data is, so please add descriptive summaries to the sections in the Wiki; always use lowercase hexadecimal values; in the wiki pages make sure that any rom addresses are included somewhere to show where data comes from and always document data structures with addresses; continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
+
 
 
 
