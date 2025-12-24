@@ -1,4 +1,38 @@
-{{subpage}}
+{{Back|Final Fantasy: Mystic Quest (SNES)}}
+
+= Final Fantasy: Mystic Quest - Values =
+
+This page documents the '''game constants, item IDs, and equipment values''' for Final Fantasy: Mystic Quest (SNES).
+
+==Overview==
+
+FFMQ uses single-byte IDs for items, magic, weapons, and equipment. The game has a relatively simple item system compared to other RPGs.
+
+===Item Categories===
+
+{| class="wikitable"
+! Range !! Category !! Count
+|-
+| $00-$0f || Quest Items || 16
+|-
+| $10-$13 || Consumables || 4
+|-
+| $14-$1f || Magic Spells || 12
+|-
+| $20-$2f || Weapons || 16
+|-
+| $30-$3f || Armor || 16
+|-
+| $40-$4f || Shields || 16
+|-
+| $50-$5f || Helmets || 16
+|-
+| $60-$6f || Accessories || 16
+|}
+
+===Subpages===
+
+* [[Final Fantasy: Mystic Quest (SNES)/Values/Window_Colors|Window Colors]]
 
 =Values=
 
