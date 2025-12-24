@@ -1,10 +1,11 @@
+{{Back|Dragon Warrior (NES)}}
 {{subpage}}
 
-=Dragon Warrior (NES) Graphics Data=
+= Dragon Warrior (NES) - Graphics Data =
 
 This page documents the graphics system, tile organization, and palette structure for Dragon Warrior (NES).
 
-==CHR ROM Organization==
+== CHR ROM Organization ==
 
 Dragon Warrior uses 16KB of CHR ROM (2 banks of 8KB each) for all graphics data.
 

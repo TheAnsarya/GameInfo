@@ -1,10 +1,11 @@
+{{Back|Dragon Warrior (NES)}}
 {{subpage}}
 
-=Dragon Warrior (NES) Monster Data=
+= Dragon Warrior (NES) - Monster Data =
 
 This page documents the complete monster data structure and statistics for Dragon Warrior (NES), based on the complete disassembly by TheAnsarya.
 
-==Monster Data Structure==
+== Monster Data Structure ==
 
 Each monster entry is 16 bytes long and located in Bank 1 starting at approximately $9000. The structure is as follows:
 

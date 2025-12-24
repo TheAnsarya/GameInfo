@@ -1,10 +1,11 @@
+{{Back|Dragon Warrior (NES)}}
 {{subpage}}
 
-=Dragon Warrior (NES) Battle System=
+= Dragon Warrior (NES) - Battle System =
 
 This page documents the complete battle system mechanics, formulas, and technical implementation for Dragon Warrior (NES).
 
-==Battle Overview==
+== Battle Overview ==
 
 Dragon Warrior uses a turn-based battle system with the following features:
 * One-on-one encounters (player vs single enemy)

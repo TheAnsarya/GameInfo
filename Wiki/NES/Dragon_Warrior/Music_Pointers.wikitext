@@ -1,6 +1,11 @@
+{{Back|Dragon Warrior (NES)}}
 {{subpage}}
 
-==Music at each Location==
+= Dragon Warrior (NES) - Music Pointers =
+
+This page documents the music data and location-based music assignments in Dragon Warrior (NES).
+
+== Music at each Location ==
 
 {| class="wikitable sortable"
 |-
