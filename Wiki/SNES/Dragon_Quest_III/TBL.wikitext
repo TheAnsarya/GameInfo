@@ -1,8 +1,31 @@
-{{TBL}}
+{{Back|Dragon Quest III (SNES)}}
 
-==Japanese==
+= Dragon Quest III (SNES) - Text Encoding =
 
-===Basic Text Table===
+This page documents the text encoding used in Dragon Quest III (SNES remake). The game has comprehensive Japanese text support with hiragana, katakana, and kanji.
+
+== Overview ==
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| Space Character || $01
+|-
+| Encoding Type || Custom Japanese encoding
+|-
+| Hiragana Range || $0c-$42
+|-
+| Katakana Range || $43-$77
+|-
+| Kanji Support || Extended range
+|-
+| Missing Kana || ゐ ゑ (hiragana), ヰ ヱ (katakana)
+|}
+
+== Japanese ==
+
+=== Basic Text Table ===
 
 These are all the characters available from the Name Selection screen or used in menus.
 

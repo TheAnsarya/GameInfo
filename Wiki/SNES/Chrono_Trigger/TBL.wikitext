@@ -1,6 +1,29 @@
-{{TBL}}
+{{Back|Chrono Trigger (SNES)}}
 
-=Text Table=
+= Chrono Trigger (SNES) - Text Encoding =
+
+This page documents the text encoding used in Chrono Trigger for SNES. The game uses an extensive DTE (Dual Tile Encoding) compression system to fit dialogue within ROM constraints.
+
+== Overview ==
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| Space Character || $ef
+|-
+| Encoding Type || Custom + DTE
+|-
+| Character Names || $13-$19 (dynamic, player-named)
+|-
+| DTE Range || $20-$9f (common digrams/trigrams)
+|-
+| Standard ASCII || $a0-$ef
+|}
+
+The text system reserves byte values $13-$19 for the seven playable characters (Crono, Marle, Lucca, Robo, Frog, Ayla, Magus), with $1e storing Nadia (Marle's real name). The game uses $20 for "Epoch" (the time machine's name) which can also be renamed.
+
+== Text Table ==
 
 The space (<code>&nbsp;</code>) character is $ef.
 
