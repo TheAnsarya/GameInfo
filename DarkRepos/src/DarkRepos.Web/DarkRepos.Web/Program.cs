@@ -42,8 +42,13 @@ try
 	builder.Services.AddDbContext<DarkReposDbContext>(options =>
 		options.UseSqlite(connectionString));
 
-	// Register application services
-	builder.Services.AddScoped<IContentService, ContentService>();
+	// Register application services (with caching decorator)
+	builder.Services.AddScoped<ContentService>();
+	builder.Services.AddScoped<IContentService>(sp => {
+		var inner = sp.GetRequiredService<ContentService>();
+		var cache = sp.GetRequiredService<IContentCacheService>();
+		return new CachedContentService(inner, cache);
+	});
 	builder.Services.AddScoped<ISearchService, SearchService>();
 	builder.Services.AddScoped<DatabaseSeeder>();
 
@@ -52,6 +57,7 @@ try
 	builder.Services.AddSingleton<IGameMetadataService, GameMetadataService>();
 	builder.Services.AddSingleton<IWikiLinkService, WikiLinkService>();
 	builder.Services.AddSingleton<IContentCacheService, ContentCacheService>();
+	builder.Services.AddSingleton<IGameInfoImportService, GameInfoImportService>();
 
 	var app = builder.Build();
 

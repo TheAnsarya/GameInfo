@@ -239,13 +239,29 @@ public class ContentCacheService : IContentCacheService
 /// <summary>
 /// Cache key builders for common content types.
 /// </summary>
-public static class CacheKeys
-{
+public static class CacheKeys {
+	// Game keys
 	public static string Game(string slug) => $"game:{slug}";
+	public static string GameBySlug(string slug) => $"game:{slug}";
+	public static string AllGames() => "games:all";
 	public static string GameList(string? platform = null) => platform == null ? "games:all" : $"games:platform:{platform}";
+	public static string GamesByPlatform(string platform) => $"games:platform:{platform}";
+	public static string GamesBySeries(string series) => $"games:series:{series}";
+	public static string FeaturedGames(int count) => $"featured:games:{count}";
+
+	// Tool keys
 	public static string Tool(string slug) => $"tool:{slug}";
+	public static string ToolBySlug(string slug) => $"tool:{slug}";
+	public static string AllTools() => "tools:all";
 	public static string ToolList(string? category = null) => category == null ? "tools:all" : $"tools:category:{category}";
+	public static string ToolsByCategory(string category) => $"tools:category:{category}";
+	public static string ToolsForGame(string gameSlug) => $"tools:game:{gameSlug}";
+
+	// Content keys
 	public static string Markdown(string path) => $"markdown:{path}";
 	public static string Search(string query) => $"search:{query.ToLowerInvariant()}";
 	public static string WikiUrl(string gameSlug, string resourceType) => $"wiki:{gameSlug}:{resourceType}";
+
+	// Aggregate keys
+	public static string RecentUpdates(int count) => $"recent:updates:{count}";
 }
