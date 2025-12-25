@@ -65,13 +65,19 @@ try
 	builder.Services.AddSingleton<IContentCacheService, ContentCacheService>();
 	builder.Services.AddSingleton<IGameInfoImportService, GameInfoImportService>();
 
-	// Register documentation service
+	// Register documentation service (with caching decorator)
 	var docsPath = builder.Configuration["DarkRepos:DocsPath"]
 		?? Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "docs");
-	builder.Services.AddSingleton<IDocumentationService>(sp => {
+	builder.Services.AddSingleton<DocumentationService>(sp => {
 		var markdownService = sp.GetRequiredService<IMarkdownService>();
 		var logger = sp.GetRequiredService<ILogger<DocumentationService>>();
 		return new DocumentationService(markdownService, docsPath, logger);
+	});
+	builder.Services.AddSingleton<IDocumentationService>(sp => {
+		var inner = sp.GetRequiredService<DocumentationService>();
+		var cache = sp.GetRequiredService<IContentCacheService>();
+		var logger = sp.GetRequiredService<ILogger<CachedDocumentationService>>();
+		return new CachedDocumentationService(inner, cache, logger);
 	});
 
 	var app = builder.Build();
