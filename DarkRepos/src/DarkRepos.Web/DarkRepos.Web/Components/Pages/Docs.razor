@@ -33,7 +33,7 @@
 
 	@if (IsLoading)
 	{
-		<LoadingSpinner Text="Loading documentation..." />
+		<LoadingSpinner Message="Loading documentation..." />
 	}
 	else if (string.IsNullOrEmpty(Path))
 	{
@@ -206,6 +206,48 @@
 			</article>
 		</div>
 	}
+	else if (IsCategory && CategoryPages != null)
+	{
+		<header class="page-header">
+			<div class="text-4xl mb-4">@GetCategoryIcon(Path!)</div>
+			<h1 class="page-title">@GetCategoryTitle(Path!)</h1>
+			<p class="page-description">
+				@GetCategoryDescription(Path!)
+			</p>
+		</header>
+
+		@if (CategoryPages.Any())
+		{
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+				@foreach (var docPage in CategoryPages)
+				{
+					<a href="/docs/@docPage.Path" class="card" style="text-decoration: none;">
+						<h3 class="text-lg mb-2">@docPage.Title</h3>
+						<p class="text-secondary text-sm mb-0">
+							@(docPage.Description.Length > 150 ? docPage.Description[..147] + "..." : docPage.Description)
+						</p>
+						@if (docPage.LastModified.HasValue)
+						{
+							<p class="text-muted text-xs mt-2 mb-0">
+								Updated @docPage.LastModified.Value.ToString("MMM d, yyyy")
+							</p>
+						}
+					</a>
+				}
+			</div>
+		}
+		else
+		{
+			<EmptyState
+				Icon="📄"
+				Title="No pages yet"
+				Message="This category doesn't have any pages yet." />
+		}
+
+		<div class="mt-8">
+			<a href="/docs" class="btn btn-secondary">← Back to Documentation</a>
+		</div>
+	}
 	else
 	{
 		<EmptyState
@@ -225,27 +267,33 @@
 
 	private DocumentationPage? Page { get; set; }
 	private DocumentationToc? TableOfContents { get; set; }
+	private IReadOnlyList<DocumentationPage>? CategoryPages { get; set; }
 	private bool IsLoading { get; set; } = true;
+	private bool IsCategory { get; set; } = false;
 
-	protected override async Task OnParametersSetAsync()
-	{
+	protected override async Task OnParametersSetAsync() {
 		IsLoading = true;
+		Page = null;
+		CategoryPages = null;
+		IsCategory = false;
 
-		if (string.IsNullOrEmpty(Path))
-		{
+		if (string.IsNullOrEmpty(Path)) {
 			TableOfContents = await DocService.GetTableOfContentsAsync();
-			Page = null;
-		}
-		else
-		{
+		} else {
+			// First try to get as a page
 			Page = await DocService.GetPageAsync(Path);
+
+			// If no page found and path is a single segment, try as category
+			if (Page == null && !Path.Contains('/')) {
+				CategoryPages = await DocService.GetCategoryPagesAsync(Path);
+				IsCategory = CategoryPages.Count > 0;
+			}
 		}
 
 		IsLoading = false;
 	}
 
-	private string GetCurrentPageTitle()
-	{
+	private string GetCurrentPageTitle() {
 		if (string.IsNullOrEmpty(Path)) return "Documentation";
 
 		// Convert path to title (e.g., "getting-started" -> "Getting Started")
@@ -254,17 +302,43 @@
 			char.ToUpper(s[0]) + s.Substring(1)));
 	}
 
-	private string GetCategoryTitle(string category)
-	{
-		return category switch
-		{
-			"guides" => "Guides",
-			"formats" => "Formats",
-			"tools" => "Tools",
-			"platforms" => "Platforms",
-			"api" => "API",
+	private string GetCategoryTitle(string category) {
+		return category switch {
+			"guides" => "Guides & Tutorials",
+			"formats" => "Format Specifications",
+			"tools" => "Tool Documentation",
+			"platforms" => "Platform References",
+			"api" => "API Reference",
+			"getting-started" => "Getting Started",
+			"contributing" => "Contributing",
 			_ => string.Join(" ", category.Split('-').Select(s =>
 				char.ToUpper(s[0]) + s.Substring(1)))
+		};
+	}
+
+	private string GetCategoryDescription(string category) {
+		return category switch {
+			"guides" => "Step-by-step guides for common ROM hacking tasks.",
+			"formats" => "Technical documentation for ROM formats and data structures.",
+			"tools" => "Detailed documentation for ROM hacking tools.",
+			"platforms" => "Technical references for NES, SNES, and other platforms.",
+			"api" => "API documentation for developers.",
+			"getting-started" => "New to ROM hacking? Start here with beginner-friendly guides.",
+			"contributing" => "Learn how to contribute to Dark Repos documentation.",
+			_ => $"Documentation for {category}."
+		};
+	}
+
+	private string GetCategoryIcon(string category) {
+		return category switch {
+			"guides" => "📖",
+			"formats" => "📋",
+			"tools" => "🔧",
+			"platforms" => "🎮",
+			"api" => "💻",
+			"getting-started" => "🚀",
+			"contributing" => "🤝",
+			_ => "📄"
 		};
 	}
 }
