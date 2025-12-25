@@ -2,26 +2,35 @@ using DarkRepos.Core.Data;
 using DarkRepos.Core.Models;
 using DarkRepos.Core.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace DarkRepos.Core.Services;
 
 /// <summary>
 /// Service to seed the database with sample data for development and testing.
 /// </summary>
-public class DatabaseSeeder
-{
+public class DatabaseSeeder {
 	private readonly DarkReposDbContext _context;
+	private readonly IGameInfoImportService? _importService;
+	private readonly ILogger<DatabaseSeeder>? _logger;
 
-	public DatabaseSeeder(DarkReposDbContext context)
-	{
+	public DatabaseSeeder(DarkReposDbContext context) {
 		_context = context;
+	}
+
+	public DatabaseSeeder(
+		DarkReposDbContext context,
+		IGameInfoImportService importService,
+		ILogger<DatabaseSeeder>? logger = null) {
+		_context = context;
+		_importService = importService;
+		_logger = logger;
 	}
 
 	/// <summary>
 	/// Seeds the database with sample games and tools if empty.
 	/// </summary>
-	public async Task SeedAsync(CancellationToken cancellationToken = default)
-	{
+	public async Task SeedAsync(CancellationToken cancellationToken = default) {
 		// Only seed if database is empty
 		if (await _context.Games.AnyAsync(cancellationToken))
 			return;
@@ -29,16 +38,53 @@ public class DatabaseSeeder
 		var games = GetSampleGames();
 		var tools = GetSampleTools();
 
+		await SeedGamesAndTools(games, tools, cancellationToken);
+	}
+
+	/// <summary>
+	/// Seeds the database from a GameInfo repository.
+	/// </summary>
+	/// <param name="repositoryPath">Path to the GameInfo repository root.</param>
+	/// <param name="cancellationToken">Cancellation token.</param>
+	/// <returns>Number of games imported.</returns>
+	public async Task<int> SeedFromRepositoryAsync(string repositoryPath, CancellationToken cancellationToken = default) {
+		if (_importService == null) {
+			throw new InvalidOperationException("GameInfoImportService is required to seed from repository");
+		}
+
+		_logger?.LogInformation("Importing games from repository: {Path}", repositoryPath);
+
+		var games = await _importService.ImportGamesAsync(repositoryPath);
+		var tools = GetSampleTools(); // Still use sample tools for now
+
+		_logger?.LogInformation("Discovered {Count} games", games.Count);
+
+		// Clear existing data if seeding from repo
+		await ClearDatabaseAsync(cancellationToken);
+
+		await SeedGamesAndTools(games.ToList(), tools, cancellationToken);
+
+		_logger?.LogInformation("Seeded {Count} games and {ToolCount} tools", games.Count, tools.Count);
+
+		return games.Count;
+	}
+
+	private async Task ClearDatabaseAsync(CancellationToken cancellationToken) {
+		_context.SearchIndex.RemoveRange(_context.SearchIndex);
+		_context.Games.RemoveRange(_context.Games);
+		_context.Tools.RemoveRange(_context.Tools);
+		await _context.SaveChangesAsync(cancellationToken);
+	}
+
+	private async Task SeedGamesAndTools(List<Game> games, List<Tool> tools, CancellationToken cancellationToken) {
 		// Add games
-		foreach (var game in games)
-		{
+		foreach (var game in games) {
 			var entity = game.ToEntity();
 			_context.Games.Add(entity);
 		}
 
 		// Add tools
-		foreach (var tool in tools)
-		{
+		foreach (var tool in tools) {
 			var entity = tool.ToEntity();
 			_context.Tools.Add(entity);
 		}
@@ -46,8 +92,7 @@ public class DatabaseSeeder
 		await _context.SaveChangesAsync(cancellationToken);
 
 		// Index games for search
-		foreach (var game in games)
-		{
+		foreach (var game in games) {
 			var searchDoc = new SearchIndexEntry
 			{
 				DocumentId = $"game:{game.Slug}",

@@ -3,6 +3,7 @@ using DarkRepos.Core.Services;
 using DarkRepos.Web.Client.Pages;
 using DarkRepos.Web.Components;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Events;
 
@@ -50,7 +51,12 @@ try
 		return new CachedContentService(inner, cache);
 	});
 	builder.Services.AddScoped<ISearchService, SearchService>();
-	builder.Services.AddScoped<DatabaseSeeder>();
+	builder.Services.AddScoped<DatabaseSeeder>(sp => {
+		var context = sp.GetRequiredService<DarkReposDbContext>();
+		var importService = sp.GetRequiredService<IGameInfoImportService>();
+		var logger = sp.GetRequiredService<ILogger<DatabaseSeeder>>();
+		return new DatabaseSeeder(context, importService, logger);
+	});
 
 	// Register Phase 2 content pipeline services
 	builder.Services.AddSingleton<IMarkdownService, MarkdownService>();
