@@ -258,15 +258,7 @@ continue;
 
 A lot of the wiki pages you've created, especially when there is a data table, do not have explanations of what the data is, so please add descriptive summaries to the sections in the Wiki; always use lowercase hexadecimal values; in the wiki pages make sure that any rom addresses are included somewhere to show where data comes from and always document data structures with addresses; continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
 
-
-
-
-
-
-
-
-
-
+Consider updating GitHub issues with progress
 
 &&&
 Plan the following project (in the `/GameInfo/DarkRepos/` folder) and make documentation (in the `/GameInfo/DarkRepos/docs/` folder) and github issues/subissues and todo-lists before starting work:
@@ -281,6 +273,47 @@ Also there is a wiki we will sync with our `/Game Info/Wiki/` folder that is a s
 Make comprehensive plans and github issues/subissues and todo-lists for this work effort and a create a roadmap markdown file and lots of documentation. Ask for any clarifications if you need them.
 &&&
 
+&&&
+Hosting Environment:
+Where will the Blazor app be hosted? (Azure App Service, self-hosted VPS, static hosting like GitHub Pages, etc.) -- do not know yet
+Do you have a preferred hosting provider? no
+
+Blazor Hosting Model:
+Blazor Server (real-time connection, server-rendered)? real-time connection
+Blazor WebAssembly (runs in browser, can be static)? runs in browser
+Blazor United/.NET 8+ Interactive (hybrid approach)? use what is the most modern
+
+Authentication/Users:
+Will there be user accounts or admin login? Nope
+Or is this a public-only informational site? yes
+
+Content Management:
+Should content be read from the GameInfo repo files (markdown, JSON) at build time? yes
+Or stored in a database with an admin panel? nah, no editing on the site itself, only display
+Or a hybrid approach? not sure
+
+Wiki Integration:
+Is the wiki at games.darkrepos.com a MediaWiki instance? yes
+Should the main site just link to it, or pull/display content from it? just link to it for now
+
+Key Features Priority - Which are most important?
+Games catalog/browser
+Tool documentation
+Download links for tools/assets
+Disassembly viewer/browser  -- no, just link to the folder on github
+Interactive features (comments, community)? we'll make a discord channel
+
+Target Audience:
+ROM hackers and retro game researchers? yes! primary audience
+General retro gaming enthusiasts? also but the emphasis is on disassembly and hacking tools and game information
+Both? yep
+
+Mobile Support:
+Fully responsive mobile-first design? no
+Desktop-focused with mobile compatibility? primary target is desktop but it should look good in mobile. don't make the desktop site look like a mobile app
+&&&
+
+continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
 
 
 

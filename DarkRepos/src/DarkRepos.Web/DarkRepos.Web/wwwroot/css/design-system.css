@@ -506,6 +506,11 @@ select:focus {
 	letter-spacing: 0.05em;
 }
 
+.badge-sm {
+	padding: var(--space-1) var(--space-2);
+	font-size: var(--font-size-xs);
+}
+
 .badge-nes {
 	background-color: var(--color-platform-nes);
 	color: white;
@@ -715,6 +720,9 @@ select:focus {
 .mt-6 { margin-top: var(--space-6); }
 .mt-8 { margin-top: var(--space-8); }
 .mt-10 { margin-top: var(--space-10); }
+
+.mr-2 { margin-right: var(--space-2); }
+.ml-2 { margin-left: var(--space-2); }
 
 .mb-0 { margin-bottom: 0; }
 .mb-2 { margin-bottom: var(--space-2); }

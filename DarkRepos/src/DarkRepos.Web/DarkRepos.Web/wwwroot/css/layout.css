@@ -241,11 +241,9 @@
 .hero {
 	padding: var(--space-10) 0;
 	text-align: center;
-	background: linear-gradient(
-		180deg,
-		var(--color-bg-secondary) 0%,
-		var(--color-bg-primary) 100%
-	);
+	background: linear-gradient(180deg,
+			var(--color-bg-secondary) 0%,
+			var(--color-bg-primary) 100%);
 }
 
 .hero-title {
@@ -541,14 +539,19 @@
    Loading States
    ========================================================================== */
 
-.loading {
+.loading,
+.loading-state {
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	padding: var(--space-8);
+	gap: var(--space-4);
+	color: var(--color-text-secondary);
 }
 
-.spinner {
+.spinner,
+.loading-spinner {
 	width: 32px;
 	height: 32px;
 	border: 3px solid var(--color-border);
@@ -558,24 +561,29 @@
 }
 
 @keyframes spin {
-	to { transform: rotate(360deg); }
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 .skeleton {
-	background: linear-gradient(
-		90deg,
-		var(--color-bg-secondary) 25%,
-		var(--color-bg-tertiary) 50%,
-		var(--color-bg-secondary) 75%
-	);
+	background: linear-gradient(90deg,
+			var(--color-bg-secondary) 25%,
+			var(--color-bg-tertiary) 50%,
+			var(--color-bg-secondary) 75%);
 	background-size: 200% 100%;
 	animation: shimmer 1.5s infinite;
 	border-radius: var(--radius-md);
 }
 
 @keyframes shimmer {
-	0% { background-position: 200% 0; }
-	100% { background-position: -200% 0; }
+	0% {
+		background-position: 200% 0;
+	}
+
+	100% {
+		background-position: -200% 0;
+	}
 }
 
 /* ==========================================================================
