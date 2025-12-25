@@ -1,0 +1,125 @@
+@namespace DarkRepos.Web.Components.Shared
+
+<nav class="pagination" role="navigation" aria-label="@AriaLabel">
+	<ul class="pagination-list">
+		@* Previous button *@
+		<li>
+			<button class="pagination-btn pagination-prev @(CurrentPage <= 1 ? "disabled" : "")"
+				disabled="@(CurrentPage <= 1)"
+				@onclick="() => GoToPage(CurrentPage - 1)"
+				aria-label="Go to previous page">
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+					<path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+				</svg>
+				@if (ShowLabels) {
+					<span>Previous</span>
+				}
+			</button>
+		</li>
+
+		@* First page *@
+		@if (ShowFirstLast && TotalPages > MaxVisiblePages && CurrentPage > (MaxVisiblePages / 2 + 1)) {
+			<li>
+				<button class="pagination-btn" @onclick="() => GoToPage(1)" aria-label="Go to first page">1</button>
+			</li>
+			@if (CurrentPage > (MaxVisiblePages / 2 + 2)) {
+				<li class="pagination-ellipsis" aria-hidden="true">…</li>
+			}
+		}
+
+		@* Page numbers *@
+		@foreach (var pageNum in GetVisiblePages()) {
+			<li>
+				<button class="pagination-btn @(pageNum == CurrentPage ? "active" : "")"
+					@onclick="() => GoToPage(pageNum)"
+					aria-label="@(pageNum == CurrentPage ? $"Current page, page {pageNum}" : $"Go to page {pageNum}")"
+					aria-current="@(pageNum == CurrentPage ? "page" : null)">
+					@pageNum
+				</button>
+			</li>
+		}
+
+		@* Last page *@
+		@if (ShowFirstLast && TotalPages > MaxVisiblePages && CurrentPage < TotalPages - (MaxVisiblePages / 2)) {
+			@if (CurrentPage < TotalPages - (MaxVisiblePages / 2 + 1)) {
+				<li class="pagination-ellipsis" aria-hidden="true">…</li>
+			}
+			<li>
+				<button class="pagination-btn" @onclick="() => GoToPage(TotalPages)" aria-label="Go to last page">@TotalPages</button>
+			</li>
+		}
+
+		@* Next button *@
+		<li>
+			<button class="pagination-btn pagination-next @(CurrentPage >= TotalPages ? "disabled" : "")"
+				disabled="@(CurrentPage >= TotalPages)"
+				@onclick="() => GoToPage(CurrentPage + 1)"
+				aria-label="Go to next page">
+				@if (ShowLabels) {
+					<span>Next</span>
+				}
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+					<path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+				</svg>
+			</button>
+		</li>
+	</ul>
+
+	@if (ShowPageInfo) {
+		<div class="pagination-info">
+			Page @CurrentPage of @TotalPages
+			@if (TotalItems.HasValue) {
+				<span>(@TotalItems items)</span>
+			}
+		</div>
+	}
+</nav>
+
+@code {
+	[Parameter, EditorRequired]
+	public int CurrentPage { get; set; } = 1;
+
+	[Parameter, EditorRequired]
+	public int TotalPages { get; set; } = 1;
+
+	[Parameter]
+	public int? TotalItems { get; set; }
+
+	[Parameter]
+	public int MaxVisiblePages { get; set; } = 5;
+
+	[Parameter]
+	public bool ShowFirstLast { get; set; } = true;
+
+	[Parameter]
+	public bool ShowLabels { get; set; } = false;
+
+	[Parameter]
+	public bool ShowPageInfo { get; set; } = false;
+
+	[Parameter]
+	public string AriaLabel { get; set; } = "Pagination";
+
+	[Parameter]
+	public EventCallback<int> OnPageChanged { get; set; }
+
+	private async Task GoToPage(int page) {
+		if (page < 1 || page > TotalPages || page == CurrentPage) return;
+		await OnPageChanged.InvokeAsync(page);
+	}
+
+	private IEnumerable<int> GetVisiblePages() {
+		var halfVisible = MaxVisiblePages / 2;
+		var start = Math.Max(1, CurrentPage - halfVisible);
+		var end = Math.Min(TotalPages, start + MaxVisiblePages - 1);
+
+		// Adjust start if we're near the end
+		if (end - start + 1 < MaxVisiblePages) {
+			start = Math.Max(1, end - MaxVisiblePages + 1);
+		}
+
+		for (var i = start; i <= end; i++) {
+			yield return i;
+		}
+	}
+}

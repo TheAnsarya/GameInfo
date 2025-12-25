@@ -1,0 +1,115 @@
+@namespace DarkRepos.Web.Components.Shared
+
+<div class="tabs @CssClass">
+	<div class="tabs-list" role="tablist" aria-label="@AriaLabel">
+		@foreach (var (tab, index) in TabsToRender.Select((t, i) => (t, i))) {
+			<button
+				id="tab-@index"
+				class="tabs-trigger @(ActiveIndex == index ? "active" : "")"
+				role="tab"
+				aria-selected="@(ActiveIndex == index ? "true" : "false")"
+				aria-controls="tabpanel-@index"
+				tabindex="@(ActiveIndex == index ? 0 : -1)"
+				@onclick="() => SetActiveTab(index)"
+				@onkeydown="(e) => HandleKeyDown(e, index)">
+				@if (tab.Icon != null) {
+					@tab.Icon
+				}
+				@tab.Label
+			</button>
+		}
+	</div>
+
+	<div class="tabs-content">
+		@foreach (var (tab, index) in TabsToRender.Select((t, i) => (t, i))) {
+			<div
+				id="tabpanel-@index"
+				class="tabs-panel @(ActiveIndex == index ? "active" : "")"
+				role="tabpanel"
+				aria-labelledby="tab-@index"
+				hidden="@(ActiveIndex != index)"
+				tabindex="0">
+				@tab.Content
+			</div>
+		}
+	</div>
+</div>
+
+@code {
+	[Parameter]
+	public RenderFragment? ChildContent { get; set; }
+
+	[Parameter]
+	public int ActiveIndex { get; set; } = 0;
+
+	[Parameter]
+	public EventCallback<int> ActiveIndexChanged { get; set; }
+
+	[Parameter]
+	public string AriaLabel { get; set; } = "Tabs";
+
+	[Parameter]
+	public string? CssClass { get; set; }
+
+	/// <summary>
+	/// Optional list of tabs to render. Alternative to using ChildContent with TabPanel components.
+	/// </summary>
+	[Parameter]
+	public List<TabItem>? Items { get; set; }
+
+	private List<TabItem> _tabs = [];
+
+	private IReadOnlyList<TabItem> TabsToRender => Items ?? _tabs;
+
+	protected override void OnParametersSet() {
+		if (Items != null) {
+			_tabs = Items;
+		}
+	}
+
+	public void AddTab(TabItem tab) {
+		_tabs.Add(tab);
+		StateHasChanged();
+	}
+
+	public void RemoveTab(TabItem tab) {
+		_tabs.Remove(tab);
+		StateHasChanged();
+	}
+
+	private async Task SetActiveTab(int index) {
+		if (index < 0 || index >= TabsToRender.Count) return;
+		ActiveIndex = index;
+		await ActiveIndexChanged.InvokeAsync(index);
+	}
+
+	private async Task HandleKeyDown(KeyboardEventArgs e, int currentIndex) {
+		var newIndex = currentIndex;
+
+		switch (e.Key) {
+			case "ArrowLeft":
+				newIndex = currentIndex > 0 ? currentIndex - 1 : TabsToRender.Count - 1;
+				break;
+			case "ArrowRight":
+				newIndex = currentIndex < TabsToRender.Count - 1 ? currentIndex + 1 : 0;
+				break;
+			case "Home":
+				newIndex = 0;
+				break;
+			case "End":
+				newIndex = TabsToRender.Count - 1;
+				break;
+			default:
+				return;
+		}
+
+		await SetActiveTab(newIndex);
+	}
+
+	public class TabItem {
+		public string Label { get; set; } = string.Empty;
+		public RenderFragment? Content { get; set; }
+		public RenderFragment? Icon { get; set; }
+		public bool Disabled { get; set; }
+	}
+}
