@@ -7,6 +7,8 @@
 <a href="#main-content" class="skip-link">Skip to main content</a>
 <a href="#navigation" class="skip-link">Skip to navigation</a>
 
+<PageLoadingIndicator />
+
 <div class="page-wrapper" @onkeydown="HandleGlobalKeyDown" tabindex="-1" @ref="_pageWrapper">
 	<header class="site-header" role="banner">
 		<div class="header-inner">
@@ -95,6 +97,7 @@
 </div>
 
 <SearchModal @ref="_searchModal" OnClose="HandleSearchModalClose" />
+<ScrollToTopButton />
 
 @code {
 	private string SearchQuery { get; set; } = string.Empty;
