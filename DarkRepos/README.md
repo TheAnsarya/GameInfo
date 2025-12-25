@@ -19,8 +19,12 @@ DarkRepos/
 │   ├── CONTENT-STRATEGY.md # Content organization
 │   ├── TECHNICAL-SPECS.md  # Technical specifications
 │   └── ACCESSIBILITY.md    # WCAG compliance guide
-├── src/                     # Blazor application source
-│   └── DarkRepos.Web/      # Main web application
+├── src/                     # Application source
+│   ├── DarkRepos.Core/     # Shared models, services, interfaces
+│   ├── DarkRepos.Tests/    # Unit and component tests
+│   └── DarkRepos.Web/      # Blazor web application
+│       ├── DarkRepos.Web/      # Server project (entry point)
+│       └── DarkRepos.Web.Client/ # WebAssembly client components
 └── README.md               # This file
 ```
 
@@ -29,10 +33,39 @@ DarkRepos/
 - **Framework**: .NET 10 / Blazor Interactive WebAssembly + Server prerendering
 - **Styling**: Custom CSS design system (no Bootstrap/Tailwind)
 - **Database**: SQLite with EF Core 9.0 and FTS5 full-text search
+- **Testing**: xUnit 2.9.2, FluentAssertions 8.0.1, Moq 4.20.72, bUnit 1.33.3
 - **Logging**: Serilog with structured logging
 - **Build**: Static content generation from GameInfo repo files
 - **CI/CD**: GitHub Actions workflow
 - **Hosting**: TBD (Azure Static Web Apps, GitHub Pages, or VPS)
+
+## Features
+
+### Pages
+- **Home** - Landing page with featured games and tools
+- **Games** - Browse games by platform with filtering and search
+- **Game Detail** - Individual game pages with wiki resource links
+- **Tools** - Documentation for ROM hacking and analysis tools
+- **Tool Detail** - Individual tool pages with downloads and documentation
+- **Search** - Full-text search across games, tools, and documentation
+- **Docs** - Comprehensive documentation and guides
+
+### Shared Components
+- `GameCard` - Reusable game display card with platform badge
+- `ToolCard` - Reusable tool display card with category
+- `PlatformBadge` - Color-coded badges (NES, SNES, GB, GBA, Genesis)
+- `ToolCategoryBadge` - Color-coded tool category badges
+- `LoadingSpinner` - Consistent loading state indicator
+- `EmptyState` - Friendly empty/error state display
+- `SectionHeader` - Section titles with optional links
+- `WikiResourceStatus` - Status indicators for wiki resources
+
+### CSS Design System
+- Custom design tokens for colors, spacing, typography
+- Platform-specific color palette
+- Responsive grid system
+- Utility classes for common patterns
+- Dark mode first design
 
 ## Target Audience
 
@@ -40,14 +73,6 @@ DarkRepos/
 - Retro game researchers and documenters
 - Game preservation enthusiasts
 - Speedrunners and glitch hunters
-
-## Key Features
-
-1. **Games Catalog** - Browse documented games by platform, with links to wiki pages
-2. **Tools Documentation** - Comprehensive guides for GameInfo tools
-3. **Resource Downloads** - Links to tools, assets, and disassemblies
-4. **Search** - Full-text search across all content
-5. **Wiki Integration** - Links to MediaWiki at games.darkrepos.com
 
 ## Related Resources
 
@@ -77,7 +102,7 @@ dotnet restore
 cd src/DarkRepos.Web/DarkRepos.Web
 dotnet run
 
-# Or use hot reload
+# Or use hot reload for development
 dotnet watch run
 ```
 
@@ -85,34 +110,58 @@ The application will be available at:
 - **HTTPS**: https://localhost:7044
 - **HTTP**: http://localhost:5081
 
-### Project Structure
-
-```
-src/
-├── DarkRepos.Core/         # Shared models, services, interfaces
-├── DarkRepos.Web/          # Blazor web application
-│   ├── DarkRepos.Web/      # Server project (entry point)
-│   └── DarkRepos.Web.Client/ # WebAssembly client components
-└── DarkRepos.Build/        # Content pipeline tools
-```
-
 ### Running Tests
 
 ```powershell
-dotnet test DarkRepos.sln
+# Run all tests
+dotnet test src/DarkRepos.Tests/DarkRepos.Tests.csproj
+
+# Run with verbose output
+dotnet test src/DarkRepos.Tests/DarkRepos.Tests.csproj --verbosity normal
 ```
+
+**Current Test Coverage:**
+- ✅ Core Models (Game, Tool, WikiResource, Platform)
+- ✅ Database Services (DarkReposDbContext, FTS5 search)
+- ✅ Content Services (IContentService implementation)
+- ✅ Blazor Components (bUnit component tests)
+- ✅ Search functionality (keyword, platform, category filtering)
 
 ### Code Quality
 
+The project uses EditorConfig for consistent code formatting:
+- **Tabs** for indentation (C#, Razor, CSS, JSON)
+- **Spaces** for YAML and XML files
+- **LF** line endings
+- **UTF-8** encoding
+
 ```powershell
 # Format code
-dotnet format DarkRepos.sln
+dotnet format
 
-# Check for issues
+# Build with style enforcement
 dotnet build --configuration Release /p:EnforceCodeStyleInBuild=true
 ```
 
+### CI/CD Pipeline
+
+GitHub Actions workflow runs on push to main/develop and pull requests:
+1. Restore dependencies
+2. Build all projects
+3. Run test suite
+4. Report results
+
 See [docs/](docs/) for comprehensive development documentation.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'feat: Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+Please follow the existing code style and include tests for new features.
 
 ## License
 
