@@ -69,7 +69,10 @@ public class DatabaseSeeder {
 		return games.Count;
 	}
 
-	private async Task ClearDatabaseAsync(CancellationToken cancellationToken) {
+	/// <summary>
+	/// Clears all games, tools, and search index entries from the database.
+	/// </summary>
+	public async Task ClearDatabaseAsync(CancellationToken cancellationToken = default) {
 		_context.SearchIndex.RemoveRange(_context.SearchIndex);
 		_context.Games.RemoveRange(_context.Games);
 		_context.Tools.RemoveRange(_context.Tools);
