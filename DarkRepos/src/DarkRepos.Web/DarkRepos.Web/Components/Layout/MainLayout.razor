@@ -21,17 +21,17 @@
 				<span>Dark Repos</span>
 			</a>
 
-			<nav id="navigation" class="main-nav" role="navigation" aria-label="Main navigation">
-				<NavLink href="/" class="nav-link" Match="NavLinkMatch.All">
+			<nav id="navigation" class="main-nav @(_isMobileMenuOpen ? "mobile-open" : "")" role="navigation" aria-label="Main navigation">
+				<NavLink href="/" class="nav-link" Match="NavLinkMatch.All" @onclick="CloseMobileMenu">
 					<span>Home</span>
 				</NavLink>
-				<NavLink href="/games" class="nav-link">
+				<NavLink href="/games" class="nav-link" @onclick="CloseMobileMenu">
 					<span>Games</span>
 				</NavLink>
-				<NavLink href="/tools" class="nav-link">
+				<NavLink href="/tools" class="nav-link" @onclick="CloseMobileMenu">
 					<span>Tools</span>
 				</NavLink>
-				<NavLink href="/docs" class="nav-link">
+				<NavLink href="/docs" class="nav-link" @onclick="CloseMobileMenu">
 					<span>Docs</span>
 				</NavLink>
 			</nav>
@@ -48,10 +48,16 @@
 
 			<ThemeToggle />
 
-			<button class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
-				<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-					<path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
-				</svg>
+			<button class="mobile-menu-btn" @onclick="ToggleMobileMenu" aria-label="@(_isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu")" aria-expanded="@_isMobileMenuOpen.ToString().ToLower()">
+				@if (_isMobileMenuOpen) {
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+						<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+					</svg>
+				} else {
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+						<path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
+					</svg>
+				}
 			</button>
 		</div>
 	</header>
@@ -105,6 +111,7 @@
 	private string SearchQuery { get; set; } = string.Empty;
 	private SearchModal? _searchModal;
 	private ElementReference _pageWrapper;
+	private bool _isMobileMenuOpen = false;
 
 	private void HandleSearch() {
 		if (!string.IsNullOrWhiteSpace(SearchQuery)) {
@@ -120,6 +127,14 @@
 		// Modal closed
 	}
 
+	private void ToggleMobileMenu() {
+		_isMobileMenuOpen = !_isMobileMenuOpen;
+	}
+
+	private void CloseMobileMenu() {
+		_isMobileMenuOpen = false;
+	}
+
 	private void HandleGlobalKeyDown(KeyboardEventArgs e) {
 		// Ctrl+K or Cmd+K to open search modal
 		if ((e.CtrlKey || e.MetaKey) && e.Key == "k") {
@@ -128,6 +143,10 @@
 		// Forward slash "/" to open search (when not in input)
 		else if (e.Key == "/" && !IsInInputElement(e)) {
 			OpenSearchModal();
+		}
+		// Escape to close mobile menu
+		else if (e.Key == "Escape" && _isMobileMenuOpen) {
+			_isMobileMenuOpen = false;
 		}
 	}
 

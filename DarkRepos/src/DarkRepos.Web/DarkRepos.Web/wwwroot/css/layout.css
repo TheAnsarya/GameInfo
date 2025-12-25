@@ -125,15 +125,22 @@
 		border-top: 1px solid var(--color-border);
 		transform: translateX(-100%);
 		transition: transform var(--transition-normal);
+		overflow-y: auto;
+		z-index: var(--z-fixed);
 	}
 
-	.main-nav.open {
+	.main-nav.mobile-open {
 		transform: translateX(0);
 	}
 
 	.nav-link {
 		padding: var(--space-4);
 		border-bottom: 1px solid var(--color-border);
+		font-size: var(--font-size-md);
+	}
+
+	.nav-link:last-child {
+		border-bottom: none;
 	}
 }
 
