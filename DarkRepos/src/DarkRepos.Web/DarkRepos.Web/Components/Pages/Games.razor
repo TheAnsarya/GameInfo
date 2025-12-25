@@ -2,6 +2,7 @@
 @page "/games/{Platform}"
 @using DarkRepos.Core.Models
 @using DarkRepos.Core.Services
+@using DarkRepos.Web.Components.Shared
 
 <PageTitle>Games - Dark Repos</PageTitle>
 
@@ -11,11 +12,7 @@
 </HeadContent>
 
 <div class="container">
-	<nav class="breadcrumbs" aria-label="Breadcrumb">
-		<span class="breadcrumb-item"><a href="/">Home</a></span>
-		<span class="breadcrumb-separator" aria-hidden="true">/</span>
-		<span class="breadcrumb-item" aria-current="page">Games</span>
-	</nav>
+	<Breadcrumbs Items="@GetBreadcrumbItems()" />
 
 	<header class="page-header">
 		<h1 class="page-title">Games Catalog</h1>
@@ -124,5 +121,18 @@
 	{
 		Platform = platform;
 		StateHasChanged();
+	}
+
+	private IReadOnlyList<Breadcrumbs.BreadcrumbItem> GetBreadcrumbItems() {
+		var items = new List<Breadcrumbs.BreadcrumbItem> {
+			new("Home", "/", "🏠"),
+			new("Games", "/games", "🎮")
+		};
+
+		if (!string.IsNullOrEmpty(Platform)) {
+			items.Add(new(Platform.ToUpperInvariant(), $"/games/{Platform}"));
+		}
+
+		return items;
 	}
 }

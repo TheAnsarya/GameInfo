@@ -1,6 +1,7 @@
 @page "/tools/{Slug}"
 @using DarkRepos.Core.Models
 @using DarkRepos.Core.Services
+@using DarkRepos.Web.Components.Shared
 
 <PageTitle>@(Tool?.Name ?? "Tool") - Dark Repos</PageTitle>
 
@@ -12,13 +13,7 @@
 }
 
 <div class="container">
-	<nav class="breadcrumbs" aria-label="Breadcrumb">
-		<span class="breadcrumb-item"><a href="/">Home</a></span>
-		<span class="breadcrumb-separator" aria-hidden="true">/</span>
-		<span class="breadcrumb-item"><a href="/tools">Tools</a></span>
-		<span class="breadcrumb-separator" aria-hidden="true">/</span>
-		<span class="breadcrumb-item" aria-current="page">@(Tool?.Name ?? "Tool")</span>
-	</nav>
+	<Breadcrumbs Items="@GetBreadcrumbItems()" />
 
 	@if (IsLoading)
 	{
@@ -188,5 +183,20 @@
 		{
 			IsLoading = false;
 		}
+	}
+
+	private IReadOnlyList<Breadcrumbs.BreadcrumbItem> GetBreadcrumbItems() {
+		var items = new List<Breadcrumbs.BreadcrumbItem> {
+			new("Home", "/", "🏠"),
+			new("Tools", "/tools", "🔧")
+		};
+
+		if (Tool != null) {
+			items.Add(new(Tool.Name, $"/tools/{Slug}"));
+		} else {
+			items.Add(new("Tool", $"/tools/{Slug}"));
+		}
+
+		return items;
 	}
 }

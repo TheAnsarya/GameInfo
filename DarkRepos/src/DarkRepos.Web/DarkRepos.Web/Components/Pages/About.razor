@@ -1,6 +1,7 @@
 @page "/about"
 @using DarkRepos.Core.Models
 @using DarkRepos.Core.Services
+@using DarkRepos.Web.Components.Shared
 
 <PageTitle>About - Dark Repos</PageTitle>
 
@@ -10,11 +11,7 @@
 </HeadContent>
 
 <div class="container">
-	<nav class="breadcrumbs" aria-label="Breadcrumb">
-		<span class="breadcrumb-item"><a href="/">Home</a></span>
-		<span class="breadcrumb-separator" aria-hidden="true">/</span>
-		<span class="breadcrumb-item" aria-current="page">About</span>
-	</nav>
+	<Breadcrumbs Items="@_breadcrumbItems" />
 
 	<header class="page-header">
 		<h1 class="page-title">About Dark Repos</h1>
@@ -130,3 +127,10 @@
 		</section>
 	</article>
 </div>
+
+@code {
+	private static readonly IReadOnlyList<Breadcrumbs.BreadcrumbItem> _breadcrumbItems = [
+		new("Home", "/", "🏠"),
+		new("About", "/about", "ℹ️")
+	];
+}

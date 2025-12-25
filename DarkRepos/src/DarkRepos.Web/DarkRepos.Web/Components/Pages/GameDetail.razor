@@ -1,6 +1,7 @@
 @page "/games/{Slug}"
 @using DarkRepos.Core.Models
 @using DarkRepos.Core.Services
+@using DarkRepos.Web.Components.Shared
 
 <PageTitle>@(Game?.Title ?? "Game") - Dark Repos</PageTitle>
 
@@ -13,13 +14,7 @@
 }
 
 <div class="container">
-	<nav class="breadcrumbs" aria-label="Breadcrumb">
-		<span class="breadcrumb-item"><a href="/">Home</a></span>
-		<span class="breadcrumb-separator" aria-hidden="true">/</span>
-		<span class="breadcrumb-item"><a href="/games">Games</a></span>
-		<span class="breadcrumb-separator" aria-hidden="true">/</span>
-		<span class="breadcrumb-item" aria-current="page">@(Game?.Title ?? "Game")</span>
-	</nav>
+	<Breadcrumbs Items="@GetBreadcrumbItems()" />
 
 	@if (IsLoading)
 	{
@@ -224,5 +219,20 @@
 			"Notes" => WikiLinkService.GetNotesUrl(Game) ?? GetWikiBaseUrl(),
 			_ => GetWikiBaseUrl()
 		};
+	}
+
+	private IReadOnlyList<Breadcrumbs.BreadcrumbItem> GetBreadcrumbItems() {
+		var items = new List<Breadcrumbs.BreadcrumbItem> {
+			new("Home", "/", "🏠"),
+			new("Games", "/games", "🎮")
+		};
+
+		if (Game != null) {
+			items.Add(new(Game.Title, $"/games/{Slug}"));
+		} else {
+			items.Add(new("Game", $"/games/{Slug}"));
+		}
+
+		return items;
 	}
 }

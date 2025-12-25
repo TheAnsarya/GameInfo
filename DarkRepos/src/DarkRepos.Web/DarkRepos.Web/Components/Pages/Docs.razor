@@ -1,6 +1,7 @@
 @page "/docs"
 @page "/docs/{*Path}"
 @using DarkRepos.Core.Services
+@using DarkRepos.Web.Components.Shared
 @inject IDocumentationService DocService
 @inject NavigationManager Navigation
 
@@ -12,31 +13,7 @@
 </HeadContent>
 
 <div class="container">
-	<nav class="breadcrumbs" aria-label="Breadcrumb">
-		<span class="breadcrumb-item"><a href="/">Home</a></span>
-		<span class="breadcrumb-separator" aria-hidden="true">/</span>
-		@if (string.IsNullOrEmpty(Path) && SearchQuery == null)
-		{
-			<span class="breadcrumb-item" aria-current="page">Documentation</span>
-		}
-		else if (SearchQuery != null)
-		{
-			<span class="breadcrumb-item"><a href="/docs">Documentation</a></span>
-			<span class="breadcrumb-separator" aria-hidden="true">/</span>
-			<span class="breadcrumb-item" aria-current="page">Search Results</span>
-		}
-		else
-		{
-			<span class="breadcrumb-item"><a href="/docs">Documentation</a></span>
-			@if (!string.IsNullOrEmpty(Page?.Category))
-			{
-				<span class="breadcrumb-separator" aria-hidden="true">/</span>
-				<span class="breadcrumb-item"><a href="/docs/@Page.Category">@GetCategoryTitle(Page.Category)</a></span>
-			}
-			<span class="breadcrumb-separator" aria-hidden="true">/</span>
-			<span class="breadcrumb-item" aria-current="page">@(Page?.Title ?? GetCurrentPageTitle())</span>
-		}
-	</nav>
+	<Breadcrumbs Items="@GetBreadcrumbItems()" />
 
 	@if (IsLoading)
 	{
@@ -435,5 +412,37 @@
 			"contributing" => "🤝",
 			_ => "📄"
 		};
+	}
+
+	private IReadOnlyList<Breadcrumbs.BreadcrumbItem> GetBreadcrumbItems() {
+		var items = new List<Breadcrumbs.BreadcrumbItem> {
+			new("Home", "/", "🏠")
+		};
+
+		if (string.IsNullOrEmpty(Path) && SearchQuery == null) {
+			// Documentation index
+			items.Add(new("Documentation", "/docs", "📚"));
+		} else if (SearchQuery != null) {
+			// Search results
+			items.Add(new("Documentation", "/docs", "📚"));
+			items.Add(new("Search Results", $"/docs?q={Uri.EscapeDataString(SearchQuery)}", "🔍"));
+		} else if (IsCategory && !string.IsNullOrEmpty(Path)) {
+			// Category page
+			items.Add(new("Documentation", "/docs", "📚"));
+			items.Add(new(GetCategoryTitle(Path), $"/docs/{Path}", GetCategoryIcon(Path)));
+		} else if (Page != null) {
+			// Document page
+			items.Add(new("Documentation", "/docs", "📚"));
+			if (!string.IsNullOrEmpty(Page.Category)) {
+				items.Add(new(GetCategoryTitle(Page.Category), $"/docs/{Page.Category}", GetCategoryIcon(Page.Category)));
+			}
+			items.Add(new(Page.Title, $"/docs/{Page.Path}"));
+		} else {
+			// Not found
+			items.Add(new("Documentation", "/docs", "📚"));
+			items.Add(new(GetCurrentPageTitle(), $"/docs/{Path}"));
+		}
+
+		return items;
 	}
 }
