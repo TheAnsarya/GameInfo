@@ -194,30 +194,35 @@
 	[Inject]
 	private IContentService ContentService { get; set; } = null!;
 
+	[Inject]
+	private IWikiLinkService WikiLinkService { get; set; } = null!;
+
 	private Game? Game { get; set; }
 	private bool IsLoading { get; set; } = true;
 
-	protected override async Task OnParametersSetAsync()
-	{
+	protected override async Task OnParametersSetAsync() {
 		IsLoading = true;
-		try
-		{
+		try {
 			Game = await ContentService.GetGameBySlugAsync(Slug);
-		}
-		finally
-		{
+		} finally {
 			IsLoading = false;
 		}
 	}
 
-	private string GetWikiBaseUrl()
-	{
-		return Game?.Wiki.WikiBaseUrl ?? $"https://games.darkrepos.com/wiki/{Game?.Title.Replace(" ", "_")}";
+	private string GetWikiBaseUrl() {
+		if (Game == null) return "#";
+		return WikiLinkService.GetWikiUrl(Game);
 	}
 
-	private string GetWikiUrl(string section)
-	{
-		var baseUrl = GetWikiBaseUrl();
-		return $"{baseUrl}:{section.Replace(" ", "_")}";
+	private string GetWikiUrl(string section) {
+		if (Game == null) return "#";
+
+		return section switch {
+			"ROM Map" => WikiLinkService.GetRomMapUrl(Game) ?? GetWikiBaseUrl(),
+			"RAM Map" => WikiLinkService.GetRamMapUrl(Game) ?? GetWikiBaseUrl(),
+			"Data Structures" => WikiLinkService.GetDataStructuresUrl(Game) ?? GetWikiBaseUrl(),
+			"Notes" => WikiLinkService.GetNotesUrl(Game) ?? GetWikiBaseUrl(),
+			_ => GetWikiBaseUrl()
+		};
 	}
 }
