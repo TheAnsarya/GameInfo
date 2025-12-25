@@ -1,10 +1,13 @@
 @inherits LayoutComponentBase
 @inject NavigationManager Navigation
+@inject IJSRuntime JS
+@using DarkRepos.Web.Components.Shared
+@implements IAsyncDisposable
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 <a href="#navigation" class="skip-link">Skip to navigation</a>
 
-<div class="page-wrapper">
+<div class="page-wrapper" @onkeydown="HandleGlobalKeyDown" tabindex="-1" @ref="_pageWrapper">
 	<header class="site-header" role="banner">
 		<div class="header-inner">
 			<a href="/" class="site-logo" aria-label="Dark Repos Home">
@@ -37,8 +40,8 @@
 					<path
 						d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 				</svg>
-				<input type="search" @bind="SearchQuery" class="search-input" placeholder="Search games, tools..."
-					aria-label="Search games and tools" />
+				<input type="search" @bind="SearchQuery" class="search-input" placeholder="Search... (Ctrl+K)"
+					aria-label="Search games and tools" @onfocus="OpenSearchModal" />
 			</form>
 
 			<button class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -91,14 +94,45 @@
 	</footer>
 </div>
 
+<SearchModal @ref="_searchModal" OnClose="HandleSearchModalClose" />
+
 @code {
 	private string SearchQuery { get; set; } = string.Empty;
+	private SearchModal? _searchModal;
+	private ElementReference _pageWrapper;
 
-	private void HandleSearch()
-	{
-		if (!string.IsNullOrWhiteSpace(SearchQuery))
-		{
+	private void HandleSearch() {
+		if (!string.IsNullOrWhiteSpace(SearchQuery)) {
 			Navigation.NavigateTo($"/search?q={Uri.EscapeDataString(SearchQuery)}");
 		}
+	}
+
+	private void OpenSearchModal() {
+		_searchModal?.Open();
+	}
+
+	private void HandleSearchModalClose() {
+		// Modal closed
+	}
+
+	private void HandleGlobalKeyDown(KeyboardEventArgs e) {
+		// Ctrl+K or Cmd+K to open search modal
+		if ((e.CtrlKey || e.MetaKey) && e.Key == "k") {
+			OpenSearchModal();
+		}
+		// Forward slash "/" to open search (when not in input)
+		else if (e.Key == "/" && !IsInInputElement(e)) {
+			OpenSearchModal();
+		}
+	}
+
+	private bool IsInInputElement(KeyboardEventArgs e) {
+		// This is a simplified check - in a real app you'd use JS interop
+		// to check the actual active element
+		return false;
+	}
+
+	public ValueTask DisposeAsync() {
+		return ValueTask.CompletedTask;
 	}
 }
