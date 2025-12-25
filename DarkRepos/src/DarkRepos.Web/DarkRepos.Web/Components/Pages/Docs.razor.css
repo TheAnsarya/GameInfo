@@ -219,3 +219,47 @@
 .prose h6[id] {
 	scroll-margin-top: calc(var(--header-height) + var(--space-4));
 }
+/* Documentation search box */
+.docs-search-box {
+	max-width: 600px;
+}
+
+.docs-search-box .form-input {
+	padding: var(--space-3) var(--space-4);
+	font-size: var(--text-base);
+	border: 1px solid var(--border-color);
+	border-radius: var(--radius-md);
+	background: var(--input-background);
+	color: var(--text-primary);
+	transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.docs-search-box .form-input:focus {
+	outline: none;
+	border-color: var(--accent-primary);
+	box-shadow: 0 0 0 3px var(--accent-primary-alpha);
+}
+
+.docs-search-box .form-input::placeholder {
+	color: var(--text-muted);
+}
+
+/* Search results */
+.search-results .card {
+	transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.search-results .card:hover {
+	transform: translateY(-2px);
+	box-shadow: var(--shadow-md);
+}
+
+.search-results .badge {
+	display: inline-block;
+	padding: var(--space-1) var(--space-2);
+	font-size: var(--text-xs);
+	font-weight: 500;
+	border-radius: var(--radius-sm);
+	background: var(--surface-secondary);
+	color: var(--text-secondary);
+}

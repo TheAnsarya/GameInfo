@@ -2,8 +2,9 @@
 @page "/docs/{*Path}"
 @using DarkRepos.Core.Services
 @inject IDocumentationService DocService
+@inject NavigationManager Navigation
 
-<PageTitle>@(Page?.Title ?? "Documentation") - Dark Repos</PageTitle>
+<PageTitle>@(SearchQuery != null ? $"Search: {SearchQuery}" : Page?.Title ?? "Documentation") - Dark Repos</PageTitle>
 
 <HeadContent>
 	<meta name="description"
@@ -14,9 +15,15 @@
 	<nav class="breadcrumbs" aria-label="Breadcrumb">
 		<span class="breadcrumb-item"><a href="/">Home</a></span>
 		<span class="breadcrumb-separator" aria-hidden="true">/</span>
-		@if (string.IsNullOrEmpty(Path))
+		@if (string.IsNullOrEmpty(Path) && SearchQuery == null)
 		{
 			<span class="breadcrumb-item" aria-current="page">Documentation</span>
+		}
+		else if (SearchQuery != null)
+		{
+			<span class="breadcrumb-item"><a href="/docs">Documentation</a></span>
+			<span class="breadcrumb-separator" aria-hidden="true">/</span>
+			<span class="breadcrumb-item" aria-current="page">Search Results</span>
 		}
 		else
 		{
@@ -35,6 +42,64 @@
 	{
 		<LoadingSpinner Message="Loading documentation..." />
 	}
+	else if (SearchQuery != null)
+	{
+		<header class="page-header">
+			<h1 class="page-title">Search Results</h1>
+			<p class="page-description">
+				@if (SearchResults?.Count > 0)
+				{
+					<span>Found @SearchResults.Count result(s) for "@SearchQuery"</span>
+				}
+				else
+				{
+					<span>No results found for "@SearchQuery"</span>
+				}
+			</p>
+		</header>
+
+		<div class="docs-search-box mb-6">
+			<form @onsubmit="HandleSearch" @onsubmit:preventDefault="true">
+				<div class="flex gap-2">
+					<input type="search" @bind="SearchInput" @bind:event="oninput"
+						placeholder="Search documentation..."
+						class="form-input flex-1"
+						aria-label="Search documentation" />
+					<button type="submit" class="btn btn-primary">Search</button>
+				</div>
+			</form>
+		</div>
+
+		@if (SearchResults?.Count > 0)
+		{
+			<div class="search-results">
+				@foreach (var result in SearchResults)
+				{
+					<a href="/docs/@result.Path" class="card mb-4" style="display: block; text-decoration: none;">
+						<h3 class="text-lg mb-2">@result.Title</h3>
+						@if (!string.IsNullOrEmpty(result.Category))
+						{
+							<span class="badge badge-secondary mb-2">@GetCategoryTitle(result.Category)</span>
+						}
+						<p class="text-secondary text-sm mb-0">
+							@(result.Description.Length > 200 ? result.Description[..197] + "..." : result.Description)
+						</p>
+					</a>
+				}
+			</div>
+		}
+		else
+		{
+			<EmptyState
+				Icon="🔍"
+				Title="No results found"
+				Message="Try different keywords or browse the documentation categories." />
+		}
+
+		<div class="mt-6">
+			<a href="/docs" class="btn btn-secondary">← Back to Documentation</a>
+		</div>
+	}
 	else if (string.IsNullOrEmpty(Path))
 	{
 		<header class="page-header">
@@ -43,6 +108,18 @@
 				Guides, tutorials, and reference documentation for ROM hacking and retro game research.
 			</p>
 		</header>
+
+		<div class="docs-search-box mb-8">
+			<form @onsubmit="HandleSearch" @onsubmit:preventDefault="true">
+				<div class="flex gap-2">
+					<input type="search" @bind="SearchInput" @bind:event="oninput"
+						placeholder="Search documentation..."
+						class="form-input flex-1"
+						aria-label="Search documentation" />
+					<button type="submit" class="btn btn-primary">Search</button>
+				</div>
+			</form>
+		</div>
 
 		@if (TableOfContents != null && TableOfContents.Categories.Any())
 		{
@@ -265,19 +342,31 @@
 	[Parameter]
 	public string? Path { get; set; }
 
+	[SupplyParameterFromQuery(Name = "q")]
+	public string? SearchQuery { get; set; }
+
 	private DocumentationPage? Page { get; set; }
 	private DocumentationToc? TableOfContents { get; set; }
 	private IReadOnlyList<DocumentationPage>? CategoryPages { get; set; }
+	private IReadOnlyList<DocumentationPage>? SearchResults { get; set; }
 	private bool IsLoading { get; set; } = true;
 	private bool IsCategory { get; set; } = false;
+	private string SearchInput { get; set; } = string.Empty;
 
 	protected override async Task OnParametersSetAsync() {
 		IsLoading = true;
 		Page = null;
 		CategoryPages = null;
+		SearchResults = null;
 		IsCategory = false;
 
-		if (string.IsNullOrEmpty(Path)) {
+		// Initialize search input from query
+		SearchInput = SearchQuery ?? string.Empty;
+
+		if (!string.IsNullOrWhiteSpace(SearchQuery)) {
+			// Search mode
+			SearchResults = await DocService.SearchAsync(SearchQuery);
+		} else if (string.IsNullOrEmpty(Path)) {
 			TableOfContents = await DocService.GetTableOfContentsAsync();
 		} else {
 			// First try to get as a page
@@ -291,6 +380,12 @@
 		}
 
 		IsLoading = false;
+	}
+
+	private void HandleSearch() {
+		if (!string.IsNullOrWhiteSpace(SearchInput)) {
+			Navigation.NavigateTo($"/docs?q={Uri.EscapeDataString(SearchInput)}");
+		}
 	}
 
 	private string GetCurrentPageTitle() {
