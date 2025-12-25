@@ -179,6 +179,75 @@
 }
 
 /* ==========================================================================
+   Light Theme
+   ========================================================================== */
+
+.light-theme {
+	/* Background Colors - Light earth tones */
+	--color-bg-primary: #f5f3ef;
+	/* Warm white */
+	--color-bg-secondary: #e8e4dc;
+	/* Cream */
+	--color-bg-tertiary: #dbd6cc;
+	/* Light tan */
+	--color-bg-elevated: #ffffff;
+	/* Pure white */
+
+	/* Text Colors */
+	--color-text-primary: #2a3028;
+	/* Dark forest */
+	--color-text-secondary: #4a5248;
+	/* Muted dark */
+	--color-text-muted: #707868;
+	/* Dusty */
+	--color-text-inverse: #e8e4dc;
+	/* For dark backgrounds */
+
+	/* Accent Colors remain similar but slightly adjusted */
+	--color-accent-primary: #b8921f;
+	/* Darker gold */
+	--color-accent-secondary: #7a6349;
+	/* Darker bronze */
+
+	/* Interactive Colors */
+	--color-link: #2a7858;
+	/* Darker seafoam */
+	--color-link-hover: #3a9870;
+	/* Medium seafoam */
+	--color-link-visited: #6b5c94;
+	/* Darker lavender */
+	--color-focus: #c9a227;
+	/* Gold */
+
+	/* Border Colors */
+	--color-border: #c5c0b5;
+	--color-border-light: #d5d0c5;
+	--color-border-focus: var(--color-focus);
+
+	/* Shadows - lighter for light theme */
+	--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+	--shadow-md: 0 4px 6px rgba(0, 0, 0, 0.15);
+	--shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.2);
+	--shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.25);
+
+	/* Semantic aliases */
+	--surface-primary: var(--color-bg-primary);
+	--surface-secondary: var(--color-bg-secondary);
+	--surface-tertiary: var(--color-bg-tertiary);
+	--surface-elevated: var(--color-bg-elevated);
+	--text-primary: var(--color-text-primary);
+	--text-secondary: var(--color-text-secondary);
+	--text-muted: var(--color-text-muted);
+	--accent-primary: var(--color-accent-primary);
+	--accent-secondary: var(--color-accent-secondary);
+	--border-color: var(--color-border);
+	--link-color: var(--color-link);
+	--link-hover: var(--color-link-hover);
+	--card-background: var(--surface-elevated);
+	--input-background: var(--surface-elevated);
+}
+
+/* ==========================================================================
    Base Styles
    ========================================================================== */
 
