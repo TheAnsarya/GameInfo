@@ -616,3 +616,70 @@
 	width: 12px;
 	height: 12px;
 }
+
+/* ==========================================================================
+   Error Pages (404, 500, etc.)
+   ========================================================================== */
+
+.error-page {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: var(--space-10) var(--space-4);
+	min-height: 60vh;
+}
+
+.error-icon {
+	font-size: 6rem;
+	font-weight: var(--font-weight-bold);
+	color: var(--color-text-muted);
+	line-height: 1;
+	margin-bottom: var(--space-4);
+	opacity: 0.5;
+}
+
+.error-title {
+	font-size: var(--font-size-2xl);
+	color: var(--color-text-primary);
+	margin-bottom: var(--space-2);
+}
+
+.error-message {
+	font-size: var(--font-size-lg);
+	color: var(--color-text-secondary);
+	max-width: 500px;
+	margin-bottom: var(--space-6);
+}
+
+.error-actions {
+	display: flex;
+	gap: var(--space-3);
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.error-suggestions {
+	padding-top: var(--space-6);
+	border-top: 1px solid var(--color-border);
+}
+
+.error-links {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-4);
+	justify-content: center;
+}
+
+.error-links a {
+	color: var(--color-primary);
+	text-decoration: none;
+}
+
+.error-links a:hover {
+	text-decoration: underline;
+}
