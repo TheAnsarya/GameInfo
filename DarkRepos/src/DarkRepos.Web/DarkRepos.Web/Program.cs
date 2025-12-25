@@ -65,6 +65,15 @@ try
 	builder.Services.AddSingleton<IContentCacheService, ContentCacheService>();
 	builder.Services.AddSingleton<IGameInfoImportService, GameInfoImportService>();
 
+	// Register documentation service
+	var docsPath = builder.Configuration["DarkRepos:DocsPath"]
+		?? Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "docs");
+	builder.Services.AddSingleton<IDocumentationService>(sp => {
+		var markdownService = sp.GetRequiredService<IMarkdownService>();
+		var logger = sp.GetRequiredService<ILogger<DocumentationService>>();
+		return new DocumentationService(markdownService, docsPath, logger);
+	});
+
 	var app = builder.Build();
 
 	// Ensure database is created, FTS5 index is set up, and seed data is loaded

@@ -1,11 +1,13 @@
 @page "/docs"
 @page "/docs/{*Path}"
+@using DarkRepos.Core.Services
+@inject IDocumentationService DocService
 
-<PageTitle>Documentation - Dark Repos</PageTitle>
+<PageTitle>@(Page?.Title ?? "Documentation") - Dark Repos</PageTitle>
 
 <HeadContent>
 	<meta name="description"
-		content="Guides, tutorials, and reference documentation for ROM hacking and retro game research." />
+		content="@(Page?.Description ?? "Guides, tutorials, and reference documentation for ROM hacking and retro game research.")" />
 </HeadContent>
 
 <div class="container">
@@ -19,12 +21,21 @@
 		else
 		{
 			<span class="breadcrumb-item"><a href="/docs">Documentation</a></span>
+			@if (!string.IsNullOrEmpty(Page?.Category))
+			{
+				<span class="breadcrumb-separator" aria-hidden="true">/</span>
+				<span class="breadcrumb-item"><a href="/docs/@Page.Category">@GetCategoryTitle(Page.Category)</a></span>
+			}
 			<span class="breadcrumb-separator" aria-hidden="true">/</span>
-			<span class="breadcrumb-item" aria-current="page">@GetCurrentPageTitle()</span>
+			<span class="breadcrumb-item" aria-current="page">@(Page?.Title ?? GetCurrentPageTitle())</span>
 		}
 	</nav>
 
-	@if (string.IsNullOrEmpty(Path))
+	@if (IsLoading)
+	{
+		<LoadingSpinner Text="Loading documentation..." />
+	}
+	else if (string.IsNullOrEmpty(Path))
 	{
 		<header class="page-header">
 			<h1 class="page-title">Documentation</h1>
@@ -33,55 +44,77 @@
 			</p>
 		</header>
 
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-			<a href="/docs/getting-started" class="card" style="text-decoration: none;">
-				<div class="text-2xl mb-3">🚀</div>
-				<h2 class="text-lg mb-2">Getting Started</h2>
-				<p class="text-secondary mb-0">
-					New to ROM hacking? Start here with our beginner-friendly guides.
-				</p>
-			</a>
+		@if (TableOfContents != null && TableOfContents.Categories.Any())
+		{
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+				@foreach (var category in TableOfContents.Categories.Where(c => !string.IsNullOrEmpty(c.Path)))
+				{
+					<a href="/docs/@category.Path" class="card" style="text-decoration: none;">
+						<div class="text-2xl mb-3">@category.Icon</div>
+						<h2 class="text-lg mb-2">@category.Title</h2>
+						<p class="text-secondary mb-0">
+							@category.Description
+						</p>
+						@if (category.Pages.Any())
+						{
+							<p class="text-muted text-sm mt-2 mb-0">@category.Pages.Count page(s)</p>
+						}
+					</a>
+				}
+			</div>
+		}
+		else
+		{
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+				<a href="/docs/getting-started" class="card" style="text-decoration: none;">
+					<div class="text-2xl mb-3">🚀</div>
+					<h2 class="text-lg mb-2">Getting Started</h2>
+					<p class="text-secondary mb-0">
+						New to ROM hacking? Start here with our beginner-friendly guides.
+					</p>
+				</a>
 
-			<a href="/docs/formats" class="card" style="text-decoration: none;">
-				<div class="text-2xl mb-3">📋</div>
-				<h2 class="text-lg mb-2">Format Specifications</h2>
-				<p class="text-secondary mb-0">
-					Technical documentation for ROM formats, compression, and data structures.
-				</p>
-			</a>
+				<a href="/docs/formats" class="card" style="text-decoration: none;">
+					<div class="text-2xl mb-3">📋</div>
+					<h2 class="text-lg mb-2">Format Specifications</h2>
+					<p class="text-secondary mb-0">
+						Technical documentation for ROM formats, compression, and data structures.
+					</p>
+				</a>
 
-			<a href="/docs/guides" class="card" style="text-decoration: none;">
-				<div class="text-2xl mb-3">📖</div>
-				<h2 class="text-lg mb-2">Guides & Tutorials</h2>
-				<p class="text-secondary mb-0">
-					Step-by-step guides for common ROM hacking tasks.
-				</p>
-			</a>
+				<a href="/docs/guides" class="card" style="text-decoration: none;">
+					<div class="text-2xl mb-3">📖</div>
+					<h2 class="text-lg mb-2">Guides & Tutorials</h2>
+					<p class="text-secondary mb-0">
+						Step-by-step guides for common ROM hacking tasks.
+					</p>
+				</a>
 
-			<a href="/docs/tools" class="card" style="text-decoration: none;">
-				<div class="text-2xl mb-3">🔧</div>
-				<h2 class="text-lg mb-2">Tool Documentation</h2>
-				<p class="text-secondary mb-0">
-					Detailed documentation for our ROM hacking tools.
-				</p>
-			</a>
+				<a href="/docs/tools" class="card" style="text-decoration: none;">
+					<div class="text-2xl mb-3">🔧</div>
+					<h2 class="text-lg mb-2">Tool Documentation</h2>
+					<p class="text-secondary mb-0">
+						Detailed documentation for our ROM hacking tools.
+					</p>
+				</a>
 
-			<a href="/docs/platforms" class="card" style="text-decoration: none;">
-				<div class="text-2xl mb-3">🎮</div>
-				<h2 class="text-lg mb-2">Platform References</h2>
-				<p class="text-secondary mb-0">
-					Technical references for NES, SNES, and other platforms.
-				</p>
-			</a>
+				<a href="/docs/platforms" class="card" style="text-decoration: none;">
+					<div class="text-2xl mb-3">🎮</div>
+					<h2 class="text-lg mb-2">Platform References</h2>
+					<p class="text-secondary mb-0">
+						Technical references for NES, SNES, and other platforms.
+					</p>
+				</a>
 
-			<a href="/docs/contributing" class="card" style="text-decoration: none;">
-				<div class="text-2xl mb-3">🤝</div>
-				<h2 class="text-lg mb-2">Contributing</h2>
-				<p class="text-secondary mb-0">
-					Learn how to contribute to Dark Repos documentation and tools.
-				</p>
-			</a>
-		</div>
+				<a href="/docs/contributing" class="card" style="text-decoration: none;">
+					<div class="text-2xl mb-3">🤝</div>
+					<h2 class="text-lg mb-2">Contributing</h2>
+					<p class="text-secondary mb-0">
+						Learn how to contribute to Dark Repos documentation and tools.
+					</p>
+				</a>
+			</div>
+		}
 
 		<section class="mt-10">
 			<h2>Popular Guides</h2>
@@ -136,17 +169,52 @@
 			</div>
 		</section>
 	}
+	else if (Page != null)
+	{
+		<div class="docs-layout">
+			@if (Page.Headings.Any(h => h.Level <= 3))
+			{
+				<aside class="docs-sidebar">
+					<nav class="docs-toc" aria-label="Table of Contents">
+						<h3 class="docs-toc-title">On this page</h3>
+						<ul class="docs-toc-list">
+							@foreach (var heading in Page.Headings.Where(h => h.Level <= 3))
+							{
+								<li class="docs-toc-item toc-level-@heading.Level">
+									<a href="#@heading.Id">@heading.Text</a>
+								</li>
+							}
+						</ul>
+					</nav>
+				</aside>
+			}
+
+			<article class="docs-content">
+				<header class="page-header">
+					<h1 class="page-title">@Page.Title</h1>
+					@if (Page.LastModified.HasValue)
+					{
+						<p class="text-muted text-sm">
+							Last updated: @Page.LastModified.Value.ToString("MMMM d, yyyy")
+						</p>
+					}
+				</header>
+
+				<div class="prose">
+					@((MarkupString)Page.Html)
+				</div>
+			</article>
+		</div>
+	}
 	else
 	{
-		<header class="page-header">
-			<h1 class="page-title">@GetCurrentPageTitle()</h1>
-		</header>
+		<EmptyState
+			Icon="📄"
+			Title="Page Not Found"
+			Message="@($"The documentation page '{Path}' could not be found.")" />
 
-		<div class="card">
-			<p>Documentation content for <code>@Path</code> would be loaded here.</p>
-			<p class="mb-0">
-				This page will be generated from Markdown files in the GameInfo repository.
-			</p>
+		<div class="mt-6 text-center">
+			<a href="/docs" class="btn btn-primary">← Back to Documentation</a>
 		</div>
 	}
 </div>
@@ -154,6 +222,27 @@
 @code {
 	[Parameter]
 	public string? Path { get; set; }
+
+	private DocumentationPage? Page { get; set; }
+	private DocumentationToc? TableOfContents { get; set; }
+	private bool IsLoading { get; set; } = true;
+
+	protected override async Task OnParametersSetAsync()
+	{
+		IsLoading = true;
+
+		if (string.IsNullOrEmpty(Path))
+		{
+			TableOfContents = await DocService.GetTableOfContentsAsync();
+			Page = null;
+		}
+		else
+		{
+			Page = await DocService.GetPageAsync(Path);
+		}
+
+		IsLoading = false;
+	}
 
 	private string GetCurrentPageTitle()
 	{
@@ -163,5 +252,19 @@
 		var lastSegment = Path.Split('/').Last();
 		return string.Join(" ", lastSegment.Split('-').Select(s =>
 			char.ToUpper(s[0]) + s.Substring(1)));
+	}
+
+	private string GetCategoryTitle(string category)
+	{
+		return category switch
+		{
+			"guides" => "Guides",
+			"formats" => "Formats",
+			"tools" => "Tools",
+			"platforms" => "Platforms",
+			"api" => "API",
+			_ => string.Join(" ", category.Split('-').Select(s =>
+				char.ToUpper(s[0]) + s.Substring(1)))
+		};
 	}
 }
