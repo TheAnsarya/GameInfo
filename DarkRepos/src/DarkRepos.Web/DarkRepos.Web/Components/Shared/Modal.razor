@@ -1,0 +1,133 @@
+@namespace DarkRepos.Web.Components.Shared
+@implements IDisposable
+@inject IJSRuntime JS
+
+@if (_isVisible) {
+	<div class="modal-overlay @(CloseOnOverlayClick ? "modal-overlay--clickable" : "")"
+		 @onclick="HandleOverlayClick"
+		 @onkeydown="HandleKeyDown"
+		 role="presentation">
+		<div class="modal @($"modal--{Size.ToString().ToLower()}") @CssClass"
+			 role="dialog"
+			 aria-modal="true"
+			 aria-labelledby="@_titleId"
+			 @onclick:stopPropagation="true"
+			 tabindex="-1">
+
+			@if (ShowHeader) {
+				<header class="modal-header">
+					@if (HeaderContent != null) {
+						@HeaderContent
+					} else {
+						<h2 id="@_titleId" class="modal-title">@Title</h2>
+					}
+					@if (ShowCloseButton) {
+						<button type="button"
+								class="modal-close"
+								@onclick="Close"
+								aria-label="Close modal">
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<line x1="18" y1="6" x2="6" y2="18"></line>
+								<line x1="6" y1="6" x2="18" y2="18"></line>
+							</svg>
+						</button>
+					}
+				</header>
+			}
+
+			<div class="modal-body">
+				@ChildContent
+			</div>
+
+			@if (FooterContent != null) {
+				<footer class="modal-footer">
+					@FooterContent
+				</footer>
+			}
+		</div>
+	</div>
+}
+
+@code {
+	private string _titleId = $"modal-title-{Guid.NewGuid():N}";
+	private bool _isVisible;
+
+	[Parameter]
+	public string? Title { get; set; }
+
+	[Parameter]
+	public RenderFragment? HeaderContent { get; set; }
+
+	[Parameter]
+	public RenderFragment? ChildContent { get; set; }
+
+	[Parameter]
+	public RenderFragment? FooterContent { get; set; }
+
+	[Parameter]
+	public bool IsOpen { get; set; }
+
+	[Parameter]
+	public EventCallback<bool> IsOpenChanged { get; set; }
+
+	[Parameter]
+	public EventCallback OnClose { get; set; }
+
+	[Parameter]
+	public bool ShowHeader { get; set; } = true;
+
+	[Parameter]
+	public bool ShowCloseButton { get; set; } = true;
+
+	[Parameter]
+	public bool CloseOnOverlayClick { get; set; } = true;
+
+	[Parameter]
+	public bool CloseOnEscape { get; set; } = true;
+
+	[Parameter]
+	public ModalSize Size { get; set; } = ModalSize.Medium;
+
+	[Parameter]
+	public string? CssClass { get; set; }
+
+	protected override void OnParametersSet() {
+		_isVisible = IsOpen;
+	}
+
+	public async Task Open() {
+		_isVisible = true;
+		await IsOpenChanged.InvokeAsync(true);
+		StateHasChanged();
+	}
+
+	public async Task Close() {
+		_isVisible = false;
+		await IsOpenChanged.InvokeAsync(false);
+		await OnClose.InvokeAsync();
+		StateHasChanged();
+	}
+
+	private async Task HandleOverlayClick() {
+		if (CloseOnOverlayClick) {
+			await Close();
+		}
+	}
+
+	private async Task HandleKeyDown(KeyboardEventArgs e) {
+		if (e.Key == "Escape" && CloseOnEscape) {
+			await Close();
+		}
+	}
+
+	public void Dispose() {
+		// Cleanup if needed
+	}
+
+	public enum ModalSize {
+		Small,
+		Medium,
+		Large,
+		FullScreen
+	}
+}
