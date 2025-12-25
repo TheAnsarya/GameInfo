@@ -44,7 +44,7 @@
 	</div>
 </div>
 
-@code{
+@code {
 	[CascadingParameter]
 	private HttpContext? HttpContext { get; set; }
 
@@ -56,5 +56,5 @@
 	private bool IsDevelopment => Environment.IsDevelopment();
 
 	protected override void OnInitialized() =>
-		RequestId = Activity.Current?.Id ?? HttpContext?.TraceIdentifier;
+	RequestId = Activity.Current?.Id ?? HttpContext?.TraceIdentifier;
 }

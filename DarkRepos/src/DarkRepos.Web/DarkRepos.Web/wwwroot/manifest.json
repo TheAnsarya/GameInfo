@@ -13,5 +13,9 @@
 			"type": "image/png"
 		}
 	],
-	"categories": ["developer tools", "games", "reference"]
+	"categories": [
+		"developer tools",
+		"games",
+		"reference"
+	]
 }
