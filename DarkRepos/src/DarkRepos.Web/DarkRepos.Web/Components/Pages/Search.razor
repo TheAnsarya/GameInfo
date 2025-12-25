@@ -22,38 +22,34 @@
 		</p>
 	</header>
 
-	<div class="search-container" style="margin-bottom: var(--space-6);">
+	<div class="search-container mb-6">
 		<form @onsubmit="HandleSearch" @onsubmit:preventDefault>
-			<div style="display: flex; gap: var(--space-3);">
-				<input type="search"
-					   @bind="SearchTerms"
-					   @bind:event="oninput"
-					   placeholder="Search games, tools, documentation..."
-					   class="search-input"
-					   style="flex: 1; padding: var(--space-3); font-size: var(--font-size-md); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-bg-secondary); color: var(--color-text-primary);"
-					   aria-label="Search terms" />
+			<div class="flex gap-3">
+				<input type="search" @bind="SearchTerms" @bind:event="oninput"
+					placeholder="Search games, tools, documentation..." class="search-input"
+					style="flex: 1; padding: var(--space-3); font-size: var(--font-size-md); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-bg-secondary); color: var(--color-text-primary);"
+					aria-label="Search terms" />
 				<button type="submit" class="btn btn-primary">Search</button>
 			</div>
 		</form>
 	</div>
 
 	<div class="filter-bar" role="group" aria-label="Filter search results by type">
-		<span style="color: var(--color-text-secondary); font-size: var(--font-size-sm);">Type:</span>
+		<span class="text-secondary text-sm">Type:</span>
 		<div class="filter-group">
-			<button class="filter-chip @(SelectedType == null ? "active" : "")"
-					@onclick="() => FilterByType(null)">
+			<button class="filter-chip @(SelectedType == null ? "active" : "")" @onclick="() => FilterByType(null)">
 				All
 			</button>
 			<button class="filter-chip @(SelectedType == SearchDocumentType.Game ? "active" : "")"
-					@onclick="() => FilterByType(SearchDocumentType.Game)">
+				@onclick="() => FilterByType(SearchDocumentType.Game)">
 				Games
 			</button>
 			<button class="filter-chip @(SelectedType == SearchDocumentType.Tool ? "active" : "")"
-					@onclick="() => FilterByType(SearchDocumentType.Tool)">
+				@onclick="() => FilterByType(SearchDocumentType.Tool)">
 				Tools
 			</button>
 			<button class="filter-chip @(SelectedType == SearchDocumentType.Documentation ? "active" : "")"
-					@onclick="() => FilterByType(SearchDocumentType.Documentation)">
+				@onclick="() => FilterByType(SearchDocumentType.Documentation)">
 				Docs
 			</button>
 		</div>
@@ -61,45 +57,45 @@
 
 	@if (IsSearching)
 	{
-		<div class="loading-state">
-			<div class="loading-spinner"></div>
-			<p>Searching...</p>
-		</div>
+		<LoadingSpinner Message="Searching..." />
 	}
 	else if (HasSearched)
 	{
 		@if (Results != null && Results.Results.Count > 0)
 		{
-			<p style="color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+			<p class="text-secondary mb-4">
 				Found @Results.TotalCount result(s) in @Results.Duration.TotalMilliseconds.ToString("0.00")ms
 			</p>
 
 			<div class="search-results" role="list">
 				@foreach (var result in Results.Results)
 				{
-					<article class="search-result card" role="listitem" style="margin-bottom: var(--space-4);">
-						<div style="display: flex; align-items: flex-start; gap: var(--space-4);">
+					<article class="search-result card mb-4" role="listitem">
+						<div class="flex gap-4" style="align-items: flex-start;">
 							<div class="search-result-icon" style="font-size: 1.5rem; flex-shrink: 0;">
 								@GetResultIcon(result.Document.Type)
 							</div>
 							<div style="flex: 1;">
-								<div style="display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-2);">
+								<div class="flex gap-2 mb-2" style="align-items: center;">
 									<span class="badge" style="background: var(--color-bg-tertiary); font-size: var(--font-size-xs);">
 										@result.Document.Type
 									</span>
 									@if (!string.IsNullOrEmpty(result.Document.Platform))
 									{
-										<span class="badge badge-@result.Document.Platform.ToLower()" style="font-size: var(--font-size-xs);">
+										<span class="badge badge-@result.Document.Platform.ToLower()"
+											style="font-size: var(--font-size-xs);">
 											@result.Document.Platform
 										</span>
 									}
 								</div>
-								<h3 style="margin: 0 0 var(--space-2) 0;">
-									<a href="@result.Document.Url">@((MarkupString)(result.HighlightedTitle ?? result.Document.Title))</a>
+								<h3 class="mb-2" style="margin-top: 0;">
+									<a href="@result.Document.Url">@((MarkupString)(result.HighlightedTitle ??
+																	result.Document.Title))</a>
 								</h3>
-								@if (!string.IsNullOrEmpty(result.HighlightedSnippet) || !string.IsNullOrEmpty(result.Document.Description))
+								@if (!string.IsNullOrEmpty(result.HighlightedSnippet) ||
+													!string.IsNullOrEmpty(result.Document.Description))
 								{
-									<p style="color: var(--color-text-secondary); margin: 0; font-size: var(--font-size-sm);">
+									<p class="text-secondary text-sm mb-0">
 										@((MarkupString)(result.HighlightedSnippet ?? result.Document.Description ?? ""))
 									</p>
 								}
@@ -111,38 +107,29 @@
 
 			@if (Results.TotalCount > Results.Results.Count)
 			{
-				<p style="color: var(--color-text-secondary); text-align: center;">
+				<p class="text-secondary text-center">
 					Showing @Results.Results.Count of @Results.TotalCount results
 				</p>
 			}
 		}
 		else
 		{
-			<div class="empty-state">
-				<div class="empty-state-icon">🔍</div>
-				<h2 class="empty-state-title">No results found</h2>
-				<p class="empty-state-description">
-					@if (!string.IsNullOrEmpty(SearchTerms))
-					{
-						<text>No results found for "@SearchTerms". Try different search terms.</text>
-					}
-					else
-					{
-						<text>Enter search terms above to find games, tools, and documentation.</text>
-					}
-				</p>
-			</div>
+			@if (!string.IsNullOrEmpty(SearchTerms))
+			{
+				<EmptyState Icon="🔍" Title="No results found"
+					Message="@($"No results found for \"{SearchTerms}\". Try different search terms.")" />
+			}
+			else
+			{
+				<EmptyState Icon="🔍" Title="No results found"
+					Message="Enter search terms above to find games, tools, and documentation." />
+			}
 		}
 	}
 	else
 	{
-		<div class="empty-state">
-			<div class="empty-state-icon">🔍</div>
-			<h2 class="empty-state-title">Ready to search</h2>
-			<p class="empty-state-description">
-				Enter search terms above to find games, tools, and documentation.
-			</p>
-		</div>
+		<EmptyState Icon="🔍" Title="Ready to search"
+			Message="Enter search terms above to find games, tools, and documentation." />
 	}
 </div>
 

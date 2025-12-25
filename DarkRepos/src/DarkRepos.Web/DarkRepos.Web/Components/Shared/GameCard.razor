@@ -1,6 +1,6 @@
 @using DarkRepos.Core.Models
 
-<article class="game-card">
+<article class="game-card" role="listitem">
 	<div class="game-card-image">
 		@if (!string.IsNullOrEmpty(Game.CoverImage))
 		{
@@ -18,11 +18,24 @@
 		<h3 class="game-card-title">
 			<a href="/games/@Game.Slug">@Game.Title</a>
 		</h3>
+		@if (ShowMeta && (!string.IsNullOrEmpty(Game.Developer) || Game.ReleaseYear.HasValue))
+		{
+			<p class="game-card-meta">
+				@if (!string.IsNullOrEmpty(Game.Developer))
+				{
+					<span>@Game.Developer</span>
+				}
+				@if (Game.ReleaseYear.HasValue)
+				{
+					<span>@Game.ReleaseYear</span>
+				}
+			</p>
+		}
 		@if (ShowWikiStatus)
 		{
 			<WikiResourceStatus Wiki="@Game.Wiki" Compact="true" />
 		}
-		@if (!string.IsNullOrEmpty(Game.Publisher))
+		@if (!ShowMeta && !string.IsNullOrEmpty(Game.Publisher))
 		{
 			<p class="game-card-publisher">@Game.Publisher</p>
 		}
@@ -35,6 +48,9 @@
 
 	[Parameter]
 	public bool ShowWikiStatus { get; set; } = true;
+
+	[Parameter]
+	public bool ShowMeta { get; set; } = false;
 
 	private string GetPlatformIcon() => Game.Platform switch
 	{

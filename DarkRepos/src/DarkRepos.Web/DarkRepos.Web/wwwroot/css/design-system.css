@@ -629,6 +629,10 @@ select:focus {
 	gap: var(--space-5);
 }
 
+.gap-6 {
+	gap: var(--space-6);
+}
+
 /* ==========================================================================
    Grid
    ========================================================================== */
@@ -653,6 +657,11 @@ select:focus {
 .grid-cols-4 {
 	grid-template-columns: repeat(4, 1fr);
 }
+
+/* Column Span */
+.col-span-1 { grid-column: span 1; }
+.col-span-2 { grid-column: span 2; }
+.col-span-3 { grid-column: span 3; }
 
 @media (min-width: 640px) {
 	.sm\:grid-cols-2 {
@@ -709,6 +718,7 @@ select:focus {
 
 .mb-0 { margin-bottom: 0; }
 .mb-2 { margin-bottom: var(--space-2); }
+.mb-3 { margin-bottom: var(--space-3); }
 .mb-4 { margin-bottom: var(--space-4); }
 .mb-6 { margin-bottom: var(--space-6); }
 .mb-8 { margin-bottom: var(--space-8); }
@@ -741,6 +751,7 @@ select:focus {
 
 .text-sm { font-size: var(--font-size-sm); }
 .text-base { font-size: var(--font-size-base); }
+.text-md { font-size: var(--font-size-md); }
 .text-lg { font-size: var(--font-size-lg); }
 .text-xl { font-size: var(--font-size-xl); }
 .text-2xl { font-size: var(--font-size-2xl); }

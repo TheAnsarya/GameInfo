@@ -7,7 +7,8 @@
 @if (Game != null)
 {
 	<HeadContent>
-		<meta name="description" content="@Game.Title documentation including ROM maps, RAM maps, and data structures for ROM hackers." />
+		<meta name="description"
+			content="@Game.Title documentation including ROM maps, RAM maps, and data structures for ROM hackers." />
 	</HeadContent>
 }
 
@@ -22,29 +23,26 @@
 
 	@if (IsLoading)
 	{
-		<div class="loading-state">
-			<div class="loading-spinner"></div>
-			<p>Loading game details...</p>
-		</div>
+		<LoadingSpinner Message="Loading game details..." />
 	}
 	else if (Game != null)
 	{
 		<article>
 			<header class="page-header">
-				<span class="badge badge-@Game.Platform.ToString().ToLower()" style="margin-bottom: var(--space-3);">
-					@Game.Platform
-				</span>
+				<div class="mb-3">
+					<PlatformBadge Platform="@Game.Platform" />
+				</div>
 				<h1 class="page-title">@Game.Title</h1>
 				@if (!string.IsNullOrEmpty(Game.JapaneseTitle))
 				{
-					<p style="color: var(--color-text-secondary); font-size: var(--font-size-md);">
+					<p class="text-secondary text-md">
 						Japanese: @Game.JapaneseTitle
 					</p>
 				}
 			</header>
 
-			<div class="grid grid-cols-1 md:grid-cols-3" style="gap: var(--space-6);">
-				<div style="grid-column: span 2;">
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+				<div class="col-span-2">
 					@if (!string.IsNullOrEmpty(Game.Description))
 					{
 						<section aria-labelledby="description-title">
@@ -53,60 +51,56 @@
 						</section>
 					}
 
-					<section aria-labelledby="wiki-title" style="margin-top: var(--space-8);">
+					<section aria-labelledby="wiki-title" class="mt-8">
 						<h2 id="wiki-title">Wiki Resources</h2>
 						<p>
 							Visit the game's wiki page for comprehensive technical documentation.
 						</p>
 
-						<div class="grid grid-cols-1 sm:grid-cols-2" style="gap: var(--space-4); margin-top: var(--space-4);">
+						<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
 							@if (Game.Wiki.HasRomMap)
 							{
-								<a href="@GetWikiUrl("ROM Map")" target="_blank" rel="noopener" class="card" style="text-decoration: none;">
-									<h3 style="font-size: var(--font-size-md); margin-bottom: var(--space-2);">
-										📍 ROM Map
-									</h3>
-									<p style="color: var(--color-text-secondary); margin: 0; font-size: var(--font-size-sm);">
+								<a href="@GetWikiUrl("ROM Map")" target="_blank" rel="noopener" class="card"
+									style="text-decoration: none;">
+									<h3 class="text-md mb-2">📍 ROM Map</h3>
+									<p class="text-secondary text-sm mb-0">
 										File offset locations for code and data
 									</p>
 								</a>
 							}
 							@if (Game.Wiki.HasRamMap)
 							{
-								<a href="@GetWikiUrl("RAM Map")" target="_blank" rel="noopener" class="card" style="text-decoration: none;">
-									<h3 style="font-size: var(--font-size-md); margin-bottom: var(--space-2);">
-										🧠 RAM Map
-									</h3>
-									<p style="color: var(--color-text-secondary); margin: 0; font-size: var(--font-size-sm);">
+								<a href="@GetWikiUrl("RAM Map")" target="_blank" rel="noopener" class="card"
+									style="text-decoration: none;">
+									<h3 class="text-md mb-2">🧠 RAM Map</h3>
+									<p class="text-secondary text-sm mb-0">
 										Memory addresses for game state
 									</p>
 								</a>
 							}
 							@if (Game.Wiki.HasDataStructures)
 							{
-								<a href="@GetWikiUrl("Data Structures")" target="_blank" rel="noopener" class="card" style="text-decoration: none;">
-									<h3 style="font-size: var(--font-size-md); margin-bottom: var(--space-2);">
-										📊 Data Structures
-									</h3>
-									<p style="color: var(--color-text-secondary); margin: 0; font-size: var(--font-size-sm);">
+								<a href="@GetWikiUrl("Data Structures")" target="_blank" rel="noopener" class="card"
+									style="text-decoration: none;">
+									<h3 class="text-md mb-2">📊 Data Structures</h3>
+									<p class="text-secondary text-sm mb-0">
 										Format specifications for game data
 									</p>
 								</a>
 							}
 							@if (Game.Wiki.HasNotes)
 							{
-								<a href="@GetWikiUrl("Notes")" target="_blank" rel="noopener" class="card" style="text-decoration: none;">
-									<h3 style="font-size: var(--font-size-md); margin-bottom: var(--space-2);">
-										📝 Notes
-									</h3>
-									<p style="color: var(--color-text-secondary); margin: 0; font-size: var(--font-size-sm);">
+								<a href="@GetWikiUrl("Notes")" target="_blank" rel="noopener" class="card"
+									style="text-decoration: none;">
+									<h3 class="text-md mb-2">📝 Notes</h3>
+									<p class="text-secondary text-sm mb-0">
 										General documentation and research
 									</p>
 								</a>
 							}
 						</div>
 
-						<p style="margin-top: var(--space-6);">
+						<p class="mt-6">
 							<a href="@GetWikiBaseUrl()" target="_blank" rel="noopener" class="btn btn-primary">
 								View Full Wiki Page →
 							</a>
@@ -115,7 +109,7 @@
 
 					@if (Game.RelatedTools.Any())
 					{
-						<section aria-labelledby="tools-title" style="margin-top: var(--space-8);">
+						<section aria-labelledby="tools-title" class="mt-8">
 							<h2 id="tools-title">Related Tools</h2>
 							<ul>
 								@foreach (var tool in Game.RelatedTools)
@@ -129,45 +123,45 @@
 
 				<aside>
 					<div class="card">
-						<h3 style="font-size: var(--font-size-md); margin-bottom: var(--space-4);">Game Info</h3>
-						<dl style="margin: 0;">
-							<div style="margin-bottom: var(--space-3);">
-								<dt style="color: var(--color-text-muted); font-size: var(--font-size-sm);">Platform</dt>
-								<dd style="margin: 0;">@Game.Platform</dd>
+						<h3 class="text-md mb-4">Game Info</h3>
+						<dl class="mb-0">
+							<div class="mb-3">
+								<dt class="text-muted text-sm">Platform</dt>
+								<dd class="mb-0">@Game.Platform</dd>
 							</div>
 							@if (!string.IsNullOrEmpty(Game.Developer))
 							{
-								<div style="margin-bottom: var(--space-3);">
-									<dt style="color: var(--color-text-muted); font-size: var(--font-size-sm);">Developer</dt>
-									<dd style="margin: 0;">@Game.Developer</dd>
+								<div class="mb-3">
+									<dt class="text-muted text-sm">Developer</dt>
+									<dd class="mb-0">@Game.Developer</dd>
 								</div>
 							}
 							@if (!string.IsNullOrEmpty(Game.Publisher))
 							{
-								<div style="margin-bottom: var(--space-3);">
-									<dt style="color: var(--color-text-muted); font-size: var(--font-size-sm);">Publisher</dt>
-									<dd style="margin: 0;">@Game.Publisher</dd>
+								<div class="mb-3">
+									<dt class="text-muted text-sm">Publisher</dt>
+									<dd class="mb-0">@Game.Publisher</dd>
 								</div>
 							}
 							@if (Game.ReleaseYear.HasValue)
 							{
-								<div style="margin-bottom: var(--space-3);">
-									<dt style="color: var(--color-text-muted); font-size: var(--font-size-sm);">Release Year</dt>
-									<dd style="margin: 0;">@Game.ReleaseYear</dd>
+								<div class="mb-3">
+									<dt class="text-muted text-sm">Release Year</dt>
+									<dd class="mb-0">@Game.ReleaseYear</dd>
 								</div>
 							}
 							@if (!string.IsNullOrEmpty(Game.Genre))
 							{
-								<div style="margin-bottom: var(--space-3);">
-									<dt style="color: var(--color-text-muted); font-size: var(--font-size-sm);">Genre</dt>
-									<dd style="margin: 0;">@Game.Genre</dd>
+								<div class="mb-3">
+									<dt class="text-muted text-sm">Genre</dt>
+									<dd class="mb-0">@Game.Genre</dd>
 								</div>
 							}
 							@if (!string.IsNullOrEmpty(Game.Series))
 							{
-								<div style="margin-bottom: var(--space-3);">
-									<dt style="color: var(--color-text-muted); font-size: var(--font-size-sm);">Series</dt>
-									<dd style="margin: 0;">
+								<div class="mb-3">
+									<dt class="text-muted text-sm">Series</dt>
+									<dd class="mb-0">
 										<a href="/games?series=@Game.Series">@Game.Series</a>
 									</dd>
 								</div>
@@ -175,25 +169,9 @@
 						</dl>
 					</div>
 
-					<div class="card" style="margin-top: var(--space-4);">
-						<h3 style="font-size: var(--font-size-md); margin-bottom: var(--space-4);">Documentation Status</h3>
-						<div style="display: flex; flex-direction: column; gap: var(--space-2);">
-							<span class="wiki-resource @(Game.Wiki.HasRomMap ? "available" : "")">
-								@(Game.Wiki.HasRomMap ? "✓" : "○") ROM Map
-							</span>
-							<span class="wiki-resource @(Game.Wiki.HasRamMap ? "available" : "")">
-								@(Game.Wiki.HasRamMap ? "✓" : "○") RAM Map
-							</span>
-							<span class="wiki-resource @(Game.Wiki.HasDataStructures ? "available" : "")">
-								@(Game.Wiki.HasDataStructures ? "✓" : "○") Data Structures
-							</span>
-							<span class="wiki-resource @(Game.Wiki.HasSystems ? "available" : "")">
-								@(Game.Wiki.HasSystems ? "✓" : "○") Systems
-							</span>
-							<span class="wiki-resource @(Game.Wiki.HasNotes ? "available" : "")">
-								@(Game.Wiki.HasNotes ? "✓" : "○") Notes
-							</span>
-						</div>
+					<div class="card mt-4">
+						<h3 class="text-md mb-4">Documentation Status</h3>
+						<WikiResourceStatus Wiki="@Game.Wiki" Compact="false" />
 					</div>
 				</aside>
 			</div>
@@ -201,14 +179,11 @@
 	}
 	else
 	{
-		<div class="empty-state">
-			<div class="empty-state-icon">🎮</div>
-			<h1 class="empty-state-title">Game Not Found</h1>
-			<p class="empty-state-description">
-				We couldn't find a game with the slug "@Slug".
-			</p>
-			<a href="/games" class="btn btn-primary">Browse All Games</a>
-		</div>
+		<EmptyState Icon="🎮" Title="Game Not Found" Message="@($"We couldn't find a game with the slug \"{Slug}\".")">
+			<ChildContent>
+				<a href="/games" class="btn btn-primary">Browse All Games</a>
+			</ChildContent>
+		</EmptyState>
 	}
 </div>
 

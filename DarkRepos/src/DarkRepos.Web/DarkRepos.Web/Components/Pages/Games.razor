@@ -6,7 +6,8 @@
 <PageTitle>Games - Dark Repos</PageTitle>
 
 <HeadContent>
-	<meta name="description" content="Browse our catalog of documented retro games with ROM maps, RAM maps, and data structures." />
+	<meta name="description"
+		content="Browse our catalog of documented retro games with ROM maps, RAM maps, and data structures." />
 </HeadContent>
 
 <div class="container">
@@ -24,34 +25,33 @@
 	</header>
 
 	<div class="filter-bar" role="group" aria-label="Filter games by platform">
-		<span style="color: var(--color-text-secondary); font-size: var(--font-size-sm);">Platform:</span>
+		<span class="text-secondary text-sm">Platform:</span>
 		<div class="filter-group">
 			<button class="filter-chip @(string.IsNullOrEmpty(Platform) ? "active" : "")"
-					@onclick="@(() => FilterByPlatform(null))">
+				@onclick="@(() => FilterByPlatform(null))">
 				All
 			</button>
 			<button class="filter-chip @(Platform == "nes" ? "active" : "")"
-					@onclick="@(() => FilterByPlatform("nes"))">
+				@onclick="@(() => FilterByPlatform("nes"))">
 				NES
 			</button>
 			<button class="filter-chip @(Platform == "snes" ? "active" : "")"
-					@onclick="@(() => FilterByPlatform("snes"))">
+				@onclick="@(() => FilterByPlatform("snes"))">
 				SNES
 			</button>
-			<button class="filter-chip @(Platform == "gb" ? "active" : "")"
-					@onclick="@(() => FilterByPlatform("gb"))">
+			<button class="filter-chip @(Platform == "gb" ? "active" : "")" @onclick="@(() => FilterByPlatform("gb"))">
 				GB
 			</button>
 			<button class="filter-chip @(Platform == "gbc" ? "active" : "")"
-					@onclick="@(() => FilterByPlatform("gbc"))">
+				@onclick="@(() => FilterByPlatform("gbc"))">
 				GBC
 			</button>
 			<button class="filter-chip @(Platform == "gba" ? "active" : "")"
-					@onclick="@(() => FilterByPlatform("gba"))">
+				@onclick="@(() => FilterByPlatform("gba"))">
 				GBA
 			</button>
 			<button class="filter-chip @(Platform == "genesis" ? "active" : "")"
-					@onclick="@(() => FilterByPlatform("genesis"))">
+				@onclick="@(() => FilterByPlatform("genesis"))">
 				Genesis
 			</button>
 		</div>
@@ -59,57 +59,14 @@
 
 	@if (IsLoading)
 	{
-		<div class="loading-state">
-			<div class="loading-spinner"></div>
-			<p>Loading games...</p>
-		</div>
+		<LoadingSpinner Message="Loading games..." />
 	}
 	else if (FilteredGames.Any())
 	{
 		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" role="list">
 			@foreach (var game in FilteredGames)
 			{
-				<article class="game-card" role="listitem">
-					<div class="game-card-image">
-						@if (!string.IsNullOrEmpty(game.CoverImage))
-						{
-							<img src="@game.CoverImage" alt="@game.Title cover art" loading="lazy" />
-						}
-						else
-						{
-							<span>No Cover</span>
-						}
-					</div>
-					<div class="game-card-content">
-						<span class="badge badge-@game.Platform.ToString().ToLower() game-card-platform">
-							@game.Platform
-						</span>
-						<h2 class="game-card-title">
-							<a href="/games/@game.Slug">@game.Title</a>
-						</h2>
-						@if (!string.IsNullOrEmpty(game.Developer))
-						{
-							<p class="game-card-meta">
-								<span>@game.Developer</span>
-								@if (game.ReleaseYear.HasValue)
-								{
-									<span>@game.ReleaseYear</span>
-								}
-							</p>
-						}
-						<div class="wiki-resources">
-							<span class="wiki-resource @(game.Wiki.HasRomMap ? "available" : "")">
-								ROM Map
-							</span>
-							<span class="wiki-resource @(game.Wiki.HasRamMap ? "available" : "")">
-								RAM Map
-							</span>
-							<span class="wiki-resource @(game.Wiki.HasDataStructures ? "available" : "")">
-								Data
-							</span>
-						</div>
-					</div>
-				</article>
+				<GameCard Game="@game" ShowMeta="true" />
 			}
 		</div>
 
@@ -117,26 +74,21 @@
 	}
 	else
 	{
-		<div class="empty-state">
-			<div class="empty-state-icon">🎮</div>
-			<h2 class="empty-state-title">No games found</h2>
-			<p class="empty-state-description">
-				@if (!string.IsNullOrEmpty(Platform))
-				{
-					<text>No games found for the selected platform. Try a different filter.</text>
-				}
-				else
-				{
-					<text>No games have been added yet. Check back soon!</text>
-				}
-			</p>
-			@if (!string.IsNullOrEmpty(Platform))
-			{
-				<button class="btn btn-secondary" @onclick="() => FilterByPlatform(null)">
-					Show all games
-				</button>
-			}
-		</div>
+		@if (!string.IsNullOrEmpty(Platform))
+		{
+			<EmptyState Icon="🎮" Title="No games found"
+				Message="No games found for the selected platform. Try a different filter.">
+				<ChildContent>
+					<button class="btn btn-secondary" @onclick="() => FilterByPlatform(null)">
+						Show all games
+					</button>
+				</ChildContent>
+			</EmptyState>
+		}
+		else
+		{
+			<EmptyState Icon="🎮" Title="No games found" Message="No games have been added yet. Check back soon!" />
+		}
 	}
 </div>
 
@@ -147,7 +99,7 @@
 	[Inject]
 	private IContentService ContentService { get; set; } = null!;
 
-	private List<Game> AllGames { get; set; } = new();
+	private List<Game> AllGames { get; set; } = [];
 	private bool IsLoading { get; set; } = true;
 
 	private IEnumerable<Game> FilteredGames => string.IsNullOrEmpty(Platform)
