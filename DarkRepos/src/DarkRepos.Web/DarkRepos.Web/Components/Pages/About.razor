@@ -1,0 +1,128 @@
+@page "/about"
+@using DarkRepos.Core.Models
+@using DarkRepos.Core.Services
+
+<PageTitle>About - Dark Repos</PageTitle>
+
+<HeadContent>
+	<meta name="description"
+		content="About Dark Repos - A comprehensive resource hub for retro game research, ROM hacking, and disassembly projects." />
+</HeadContent>
+
+<div class="container">
+	<nav class="breadcrumbs" aria-label="Breadcrumb">
+		<span class="breadcrumb-item"><a href="/">Home</a></span>
+		<span class="breadcrumb-separator" aria-hidden="true">/</span>
+		<span class="breadcrumb-item" aria-current="page">About</span>
+	</nav>
+
+	<header class="page-header">
+		<h1 class="page-title">About Dark Repos</h1>
+		<p class="text-secondary">
+			A comprehensive resource hub for retro game research, ROM hacking, and disassembly projects.
+		</p>
+	</header>
+
+	<article class="about-content">
+		<section class="mb-8">
+			<h2>Our Mission</h2>
+			<p>
+				Dark Repos exists to preserve and document the technical details of classic video games.
+				We believe that understanding how these games work at a fundamental level is essential
+				for preservation, education, and the continued creativity of the ROM hacking community.
+			</p>
+		</section>
+
+		<section class="mb-8">
+			<h2>What We Provide</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+				<div class="card">
+					<h3 class="text-md mb-2">📚 Game Documentation</h3>
+					<p class="mb-0 text-secondary">
+						Detailed technical documentation including ROM maps, RAM maps, data structures,
+						and system descriptions for NES, SNES, GB, GBA, and Genesis games.
+					</p>
+				</div>
+				<div class="card">
+					<h3 class="text-md mb-2">🔧 ROM Hacking Tools</h3>
+					<p class="mb-0 text-secondary">
+						Open-source tools for ROM analysis, graphics editing, text extraction,
+						and disassembly work.
+					</p>
+				</div>
+				<div class="card">
+					<h3 class="text-md mb-2">📖 Disassemblies</h3>
+					<p class="mb-0 text-secondary">
+						Annotated assembly source code with comprehensive labels, cross-references,
+						and documentation.
+					</p>
+				</div>
+				<div class="card">
+					<h3 class="text-md mb-2">🔗 Wiki Resources</h3>
+					<p class="mb-0 text-secondary">
+						Community-editable wiki pages for collaborative documentation
+						at <a href="https://games.darkrepos.com" target="_blank" rel="noopener">games.darkrepos.com</a>.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="mb-8">
+			<h2>Target Audience</h2>
+			<ul class="about-list">
+				<li><strong>ROM Hackers & Reverse Engineers</strong> - Technical details for creating game modifications</li>
+				<li><strong>Retro Game Researchers</strong> - Academic and hobbyist documentation efforts</li>
+				<li><strong>Game Preservation Enthusiasts</strong> - Ensuring classic games survive in technical detail</li>
+				<li><strong>Speedrunners & Glitch Hunters</strong> - Understanding game mechanics at a deep level</li>
+			</ul>
+		</section>
+
+		<section class="mb-8">
+			<h2>Technology</h2>
+			<p>
+				This website is built with modern technologies while focusing on accessibility and performance:
+			</p>
+			<ul class="about-list">
+				<li>.NET 10 Blazor with Interactive WebAssembly</li>
+				<li>Custom CSS design system (no frameworks)</li>
+				<li>SQLite database with FTS5 full-text search</li>
+				<li>WCAG 2.1 AA accessibility compliance</li>
+			</ul>
+		</section>
+
+		<section class="mb-8">
+			<h2>Contributing</h2>
+			<p>
+				Dark Repos is an open-source project. We welcome contributions of all kinds:
+			</p>
+			<ul class="about-list">
+				<li>Documentation improvements</li>
+				<li>New game research and data</li>
+				<li>Tool development</li>
+				<li>Bug reports and feature requests</li>
+			</ul>
+			<p>
+				Visit our <a href="https://github.com/TheAnsarya/GameInfo" target="_blank" rel="noopener">GitHub repository</a>
+				to get started.
+			</p>
+		</section>
+
+		<section>
+			<h2>Related Resources</h2>
+			<ul class="about-list">
+				<li>
+					<a href="https://games.darkrepos.com" target="_blank" rel="noopener">Dark Repos Wiki</a>
+					- Community-editable game documentation wiki
+				</li>
+				<li>
+					<a href="https://github.com/TheAnsarya/GameInfo" target="_blank" rel="noopener">GameInfo Repository</a>
+					- Source code and tools
+				</li>
+				<li>
+					<a href="https://datacrystal.tcrf.net" target="_blank" rel="noopener">Data Crystal</a>
+					- Related ROM hacking documentation
+				</li>
+			</ul>
+		</section>
+	</article>
+</div>

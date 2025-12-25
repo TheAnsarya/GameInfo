@@ -1,0 +1,23 @@
+/* About page scoped styles */
+
+.about-content {
+	max-width: 800px;
+}
+
+.about-list {
+	padding-left: var(--space-6);
+	margin-bottom: 0;
+}
+
+.about-list li {
+	margin-bottom: var(--space-2);
+	color: var(--color-text-secondary);
+}
+
+.about-list li strong {
+	color: var(--color-text-primary);
+}
+
+.about-list a {
+	color: var(--color-primary);
+}
