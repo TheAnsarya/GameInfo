@@ -317,7 +317,9 @@ continue, and **go as long as you can**, really complete as many tasks as you ca
 
 git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
 
+make sure you are using the `.editorconfig` for formatting, copy it from the root of the whole `GameInfo` project if its current location is too many folders up for the `DarkRepos` c# project, and enforce the c# rules like all open braces on the opening line like `if (number == 18) {`; continue exactly where you left off, just formatting the code right;
 
+no, use the root editorconfig for all rules, copy it to the DarkRepos project and then use that and continue right where you where with what you were doing;
 
 
 

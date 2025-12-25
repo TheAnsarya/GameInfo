@@ -47,6 +47,12 @@ try
 	builder.Services.AddScoped<ISearchService, SearchService>();
 	builder.Services.AddScoped<DatabaseSeeder>();
 
+	// Register Phase 2 content pipeline services
+	builder.Services.AddSingleton<IMarkdownService, MarkdownService>();
+	builder.Services.AddSingleton<IGameMetadataService, GameMetadataService>();
+	builder.Services.AddSingleton<IWikiLinkService, WikiLinkService>();
+	builder.Services.AddSingleton<IContentCacheService, ContentCacheService>();
+
 	var app = builder.Build();
 
 	// Ensure database is created, FTS5 index is set up, and seed data is loaded
