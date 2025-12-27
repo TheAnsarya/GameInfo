@@ -239,7 +239,8 @@ public class ContentCacheService : IContentCacheService
 /// <summary>
 /// Cache key builders for common content types.
 /// </summary>
-public static class CacheKeys {
+public static class CacheKeys
+{
 	// Game keys
 	public static string Game(string slug) => $"game:{slug}";
 	public static string GameBySlug(string slug) => $"game:{slug}";

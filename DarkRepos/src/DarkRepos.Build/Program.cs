@@ -10,9 +10,12 @@ namespace DarkRepos.Build;
 /// <summary>
 /// DarkRepos CLI - Database and content management tools.
 /// </summary>
-public class Program {
-	public static async Task<int> Main(string[] args) {
-		var rootCommand = new RootCommand("DarkRepos CLI - Database and content management") {
+public class Program
+{
+	public static async Task<int> Main(string[] args)
+	{
+		var rootCommand = new RootCommand("DarkRepos CLI - Database and content management")
+		{
 			Name = "darkrepos"
 		};
 
@@ -20,7 +23,8 @@ public class Program {
 		rootCommand.AddCommand(CreateSeedCommand());
 		rootCommand.AddCommand(CreateInfoCommand());
 
-		if (args.Length == 0) {
+		if (args.Length == 0)
+		{
 			ShowBanner();
 			ShowHelp();
 			return 0;
@@ -29,7 +33,8 @@ public class Program {
 		return await rootCommand.InvokeAsync(args);
 	}
 
-	private static void ShowBanner() {
+	private static void ShowBanner()
+	{
 		AnsiConsole.Write(
 			new FigletText("DarkRepos")
 				.LeftJustified()
@@ -41,7 +46,8 @@ public class Program {
 		AnsiConsole.WriteLine();
 	}
 
-	private static void ShowHelp() {
+	private static void ShowHelp()
+	{
 		var table = new Table()
 			.Border(TableBorder.Rounded)
 			.AddColumn("Command")
@@ -57,12 +63,14 @@ public class Program {
 		AnsiConsole.MarkupLine("Use [cyan]darkrepos <command> --help[/] for more information.");
 	}
 
-	private static Command CreateImportCommand() {
+	private static Command CreateImportCommand()
+	{
 		var command = new Command("import", "Import games from GameInfo repository");
 
 		var repoOption = new Option<DirectoryInfo>(
 			aliases: ["-r", "--repo"],
-			description: "Path to GameInfo repository") {
+			description: "Path to GameInfo repository")
+		{
 			IsRequired = true
 		};
 
@@ -80,14 +88,16 @@ public class Program {
 		command.AddOption(dbOption);
 		command.AddOption(clearOption);
 
-		command.SetHandler(async (repoPath, dbPath, clear) => {
+		command.SetHandler(async (repoPath, dbPath, clear) =>
+		{
 			await ImportFromRepository(repoPath, dbPath, clear);
 		}, repoOption, dbOption, clearOption);
 
 		return command;
 	}
 
-	private static Command CreateSeedCommand() {
+	private static Command CreateSeedCommand()
+	{
 		var command = new Command("seed", "Seed database with sample data");
 
 		var dbOption = new Option<FileInfo>(
@@ -103,14 +113,16 @@ public class Program {
 		command.AddOption(dbOption);
 		command.AddOption(clearOption);
 
-		command.SetHandler(async (dbPath, clear) => {
+		command.SetHandler(async (dbPath, clear) =>
+		{
 			await SeedDatabase(dbPath, clear);
 		}, dbOption, clearOption);
 
 		return command;
 	}
 
-	private static Command CreateInfoCommand() {
+	private static Command CreateInfoCommand()
+	{
 		var command = new Command("info", "Show database information");
 
 		var dbOption = new Option<FileInfo>(
@@ -120,24 +132,28 @@ public class Program {
 
 		command.AddOption(dbOption);
 
-		command.SetHandler(async (dbPath) => {
+		command.SetHandler(async (dbPath) =>
+		{
 			await ShowDatabaseInfo(dbPath);
 		}, dbOption);
 
 		return command;
 	}
 
-	private static async Task ImportFromRepository(DirectoryInfo repoPath, FileInfo dbPath, bool clear) {
+	private static async Task ImportFromRepository(DirectoryInfo repoPath, FileInfo dbPath, bool clear)
+	{
 		AnsiConsole.MarkupLine($"[cyan]Importing from:[/] {repoPath.FullName}");
 		AnsiConsole.MarkupLine($"[cyan]Database:[/] {dbPath.FullName}");
 
-		if (!repoPath.Exists) {
+		if (!repoPath.Exists)
+		{
 			AnsiConsole.MarkupLine("[red]Error:[/] Repository path does not exist.");
 			return;
 		}
 
 		await AnsiConsole.Status()
-			.StartAsync("Setting up database...", async ctx => {
+			.StartAsync("Setting up database...", async ctx =>
+			{
 				var options = new DbContextOptionsBuilder<DarkReposDbContext>()
 					.UseSqlite($"Data Source={dbPath.FullName}")
 					.Options;
@@ -145,7 +161,8 @@ public class Program {
 				await using var context = new DarkReposDbContext(options);
 				await context.Database.EnsureCreatedAsync();
 
-				using var loggerFactory = LoggerFactory.Create(builder => {
+				using var loggerFactory = LoggerFactory.Create(builder =>
+				{
 					builder.SetMinimumLevel(LogLevel.Information);
 				});
 				var logger = loggerFactory.CreateLogger<DatabaseSeeder>();
@@ -154,7 +171,8 @@ public class Program {
 				var importService = new GameInfoImportService(markdownService);
 				var seeder = new DatabaseSeeder(context, importService, logger);
 
-				if (clear) {
+				if (clear)
+				{
 					ctx.Status("Clearing existing data...");
 					await seeder.ClearDatabaseAsync();
 					AnsiConsole.MarkupLine("[yellow]Existing data cleared.[/]");
@@ -169,11 +187,13 @@ public class Program {
 		AnsiConsole.MarkupLine("[green]Import completed successfully![/]");
 	}
 
-	private static async Task SeedDatabase(FileInfo dbPath, bool clear) {
+	private static async Task SeedDatabase(FileInfo dbPath, bool clear)
+	{
 		AnsiConsole.MarkupLine($"[cyan]Database:[/] {dbPath.FullName}");
 
 		await AnsiConsole.Status()
-			.StartAsync("Setting up database...", async ctx => {
+			.StartAsync("Setting up database...", async ctx =>
+			{
 				var options = new DbContextOptionsBuilder<DarkReposDbContext>()
 					.UseSqlite($"Data Source={dbPath.FullName}")
 					.Options;
@@ -183,7 +203,8 @@ public class Program {
 
 				var seeder = new DatabaseSeeder(context);
 
-				if (clear) {
+				if (clear)
+				{
 					ctx.Status("Clearing existing data...");
 					await seeder.ClearDatabaseAsync();
 					AnsiConsole.MarkupLine("[yellow]Existing data cleared.[/]");
@@ -197,10 +218,12 @@ public class Program {
 		AnsiConsole.MarkupLine("[green]Seeding completed successfully![/]");
 	}
 
-	private static async Task ShowDatabaseInfo(FileInfo dbPath) {
+	private static async Task ShowDatabaseInfo(FileInfo dbPath)
+	{
 		AnsiConsole.MarkupLine($"[cyan]Database:[/] {dbPath.FullName}");
 
-		if (!dbPath.Exists) {
+		if (!dbPath.Exists)
+		{
 			AnsiConsole.MarkupLine("[yellow]Database file does not exist yet.[/]");
 			return;
 		}
@@ -208,7 +231,8 @@ public class Program {
 		await ShowDatabaseStats(dbPath);
 	}
 
-	private static async Task ShowDatabaseStats(FileInfo dbPath) {
+	private static async Task ShowDatabaseStats(FileInfo dbPath)
+	{
 		var options = new DbContextOptionsBuilder<DarkReposDbContext>()
 			.UseSqlite($"Data Source={dbPath.FullName}")
 			.Options;
@@ -237,11 +261,13 @@ public class Program {
 		AnsiConsole.Write(table);
 	}
 
-	private static string FormatBytes(long bytes) {
+	private static string FormatBytes(long bytes)
+	{
 		string[] sizes = ["B", "KB", "MB", "GB"];
 		int order = 0;
 		double size = bytes;
-		while (size >= 1024 && order < sizes.Length - 1) {
+		while (size >= 1024 && order < sizes.Length - 1)
+		{
 			order++;
 			size /= 1024;
 		}

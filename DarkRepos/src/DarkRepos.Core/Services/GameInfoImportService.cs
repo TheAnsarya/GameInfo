@@ -5,7 +5,8 @@ namespace DarkRepos.Core.Services;
 /// <summary>
 /// Service for importing game content from a GameInfo-style repository.
 /// </summary>
-public interface IGameInfoImportService {
+public interface IGameInfoImportService
+{
 	/// <summary>
 	/// Discovers and imports all games from a repository path.
 	/// </summary>
@@ -38,34 +39,44 @@ public interface IGameInfoImportService {
 /// <summary>
 /// Implementation of IGameInfoImportService.
 /// </summary>
-public class GameInfoImportService : IGameInfoImportService {
+public class GameInfoImportService : IGameInfoImportService
+{
 	private readonly IMarkdownService _markdownService;
 
-	public GameInfoImportService(IMarkdownService markdownService) {
+	public GameInfoImportService(IMarkdownService markdownService)
+	{
 		_markdownService = markdownService;
 	}
 
-	public async Task<IReadOnlyList<Game>> ImportGamesAsync(string repositoryPath) {
+	public async Task<IReadOnlyList<Game>> ImportGamesAsync(string repositoryPath)
+	{
 		var games = new Dictionary<string, Game>();
 
 		// Discover from Games folder
 		var gamesPath = Path.Combine(repositoryPath, "Games");
-		if (Directory.Exists(gamesPath)) {
+		if (Directory.Exists(gamesPath))
+		{
 			var gamesFromFolder = await DiscoverGamesAsync(gamesPath);
-			foreach (var game in gamesFromFolder) {
+			foreach (var game in gamesFromFolder)
+			{
 				games[game.Slug] = game;
 			}
 		}
 
 		// Enhance with documentation metadata
 		var docsPath = Path.Combine(repositoryPath, "docs");
-		if (Directory.Exists(docsPath)) {
+		if (Directory.Exists(docsPath))
+		{
 			var gamesFromDocs = await DiscoverDocumentedGamesAsync(docsPath);
-			foreach (var docGame in gamesFromDocs) {
-				if (games.TryGetValue(docGame.Slug, out var existing)) {
+			foreach (var docGame in gamesFromDocs)
+			{
+				if (games.TryGetValue(docGame.Slug, out var existing))
+				{
 					// Merge documentation info
 					games[docGame.Slug] = MergeGameInfo(existing, docGame);
-				} else {
+				}
+				else
+				{
 					games[docGame.Slug] = docGame;
 				}
 			}
@@ -74,21 +85,26 @@ public class GameInfoImportService : IGameInfoImportService {
 		return games.Values.OrderBy(g => g.Title).ToList();
 	}
 
-	public Task<IReadOnlyList<Game>> DiscoverGamesAsync(string gamesPath) {
+	public Task<IReadOnlyList<Game>> DiscoverGamesAsync(string gamesPath)
+	{
 		var games = new List<Game>();
 
 		// Platform folders: NES, SNES, GB, etc.
-		foreach (var platformDir in Directory.EnumerateDirectories(gamesPath)) {
+		foreach (var platformDir in Directory.EnumerateDirectories(gamesPath))
+		{
 			var platformName = Path.GetFileName(platformDir);
-			if (!TryParsePlatform(platformName, out var platform)) {
+			if (!TryParsePlatform(platformName, out var platform))
+			{
 				continue;
 			}
 
 			// Game folders within platform
-			foreach (var gameDir in Directory.EnumerateDirectories(platformDir)) {
+			foreach (var gameDir in Directory.EnumerateDirectories(platformDir))
+			{
 				var gameFolderName = Path.GetFileName(gameDir);
 				var game = ParseGameFolder(gameFolderName);
-				if (game != null) {
+				if (game != null)
+				{
 					// Check for Wiki and Notes subfolders
 					var wikiPath = Path.Combine(gameDir, "Wiki");
 					var notesPath = Path.Combine(gameDir, "Notes");
@@ -98,11 +114,13 @@ public class GameInfoImportService : IGameInfoImportService {
 					var hasDataStructures = Directory.Exists(wikiPath) && HasWikiFile(wikiPath, "Data", "Structure");
 					var hasNotes = Directory.Exists(notesPath) && Directory.EnumerateFiles(notesPath).Any();
 
-					games.Add(new Game {
+					games.Add(new Game
+					{
 						Slug = game.Slug,
 						Title = game.Title,
 						Platform = platform,
-						Wiki = new WikiResources {
+						Wiki = new WikiResources
+						{
 							HasRomMap = hasRomMap,
 							HasRamMap = hasRamMap,
 							HasDataStructures = hasDataStructures,
@@ -117,23 +135,28 @@ public class GameInfoImportService : IGameInfoImportService {
 		return Task.FromResult<IReadOnlyList<Game>>(games);
 	}
 
-	public async Task<IReadOnlyList<Game>> DiscoverDocumentedGamesAsync(string docsPath) {
+	public async Task<IReadOnlyList<Game>> DiscoverDocumentedGamesAsync(string docsPath)
+	{
 		var games = new List<Game>();
 
 		// Look for game-specific folders like "dragon-warrior-nes", "ffmq-snes"
-		foreach (var docDir in Directory.EnumerateDirectories(docsPath)) {
+		foreach (var docDir in Directory.EnumerateDirectories(docsPath))
+		{
 			var folderName = Path.GetFileName(docDir);
 
 			// Skip non-game folders
-			if (folderName is "formats" or "guides" or "Build-Pipeline") {
+			if (folderName is "formats" or "guides" or "Build-Pipeline")
+			{
 				continue;
 			}
 
 			var game = ParseGameFolder(folderName);
-			if (game != null) {
+			if (game != null)
+			{
 				// Check for README.md to get more info
 				var readmePath = Path.Combine(docDir, "README.md");
-				if (File.Exists(readmePath)) {
+				if (File.Exists(readmePath))
+				{
 					var content = await File.ReadAllTextAsync(readmePath);
 					game = EnrichFromMarkdown(game, content);
 				}
@@ -144,7 +167,8 @@ public class GameInfoImportService : IGameInfoImportService {
 				var hasDataStructures = File.Exists(Path.Combine(docDir, "data-structures.md"));
 				var hasText = File.Exists(Path.Combine(docDir, "text-system.md"));
 
-				games.Add(new Game {
+				games.Add(new Game
+				{
 					Slug = game.Slug,
 					Title = game.Title,
 					Platform = game.Platform,
@@ -154,7 +178,8 @@ public class GameInfoImportService : IGameInfoImportService {
 					Series = game.Series,
 					Genre = game.Genre,
 					Description = game.Description,
-					Wiki = new WikiResources {
+					Wiki = new WikiResources
+					{
 						HasRomMap = hasRomMap,
 						HasRamMap = hasRamMap,
 						HasDataStructures = hasDataStructures,
@@ -169,17 +194,21 @@ public class GameInfoImportService : IGameInfoImportService {
 		return games;
 	}
 
-	public Game? ParseGameFolder(string folderName) {
+	public Game? ParseGameFolder(string folderName)
+	{
 		// Try format: "Game Name (Platform)"
 		var parenMatch = System.Text.RegularExpressions.Regex.Match(
 			folderName, @"^(.+?)\s*\((\w+)\)$");
 
-		if (parenMatch.Success) {
+		if (parenMatch.Success)
+		{
 			var title = parenMatch.Groups[1].Value.Trim();
 			var platformStr = parenMatch.Groups[2].Value;
 
-			if (TryParsePlatform(platformStr, out var platform)) {
-				return new Game {
+			if (TryParsePlatform(platformStr, out var platform))
+			{
+				return new Game
+				{
 					Slug = GenerateSlug(title, platform),
 					Title = title,
 					Platform = platform
@@ -189,14 +218,17 @@ public class GameInfoImportService : IGameInfoImportService {
 
 		// Try format: "game-name-platform" (kebab-case)
 		var parts = folderName.Split('-');
-		if (parts.Length >= 2) {
+		if (parts.Length >= 2)
+		{
 			var platformStr = parts[^1];
-			if (TryParsePlatform(platformStr, out var platform)) {
+			if (TryParsePlatform(platformStr, out var platform))
+			{
 				var titleParts = parts[..^1];
 				var title = string.Join(" ", titleParts.Select(p =>
 					char.ToUpper(p[0]) + p[1..]));
 
-				return new Game {
+				return new Game
+				{
 					Slug = folderName.ToLowerInvariant(),
 					Title = title,
 					Platform = platform
@@ -207,9 +239,11 @@ public class GameInfoImportService : IGameInfoImportService {
 		return null;
 	}
 
-	private static bool TryParsePlatform(string str, out Platform platform) {
+	private static bool TryParsePlatform(string str, out Platform platform)
+	{
 		str = str.ToUpperInvariant();
-		platform = str switch {
+		platform = str switch
+		{
 			"NES" or "FAMICOM" => Platform.NES,
 			"SNES" or "SFC" or "SUPERFAMICOM" => Platform.SNES,
 			"GB" or "GAMEBOY" => Platform.GB,
@@ -232,7 +266,8 @@ public class GameInfoImportService : IGameInfoImportService {
 		return platform != Platform.Unknown;
 	}
 
-	private static string GenerateSlug(string title, Platform platform) {
+	private static string GenerateSlug(string title, Platform platform)
+	{
 		var slug = title.ToLowerInvariant()
 			.Replace("'", "")
 			.Replace("&", "and")
@@ -241,23 +276,27 @@ public class GameInfoImportService : IGameInfoImportService {
 			.Replace(" ", "-");
 
 		// Remove consecutive dashes
-		while (slug.Contains("--")) {
+		while (slug.Contains("--"))
+		{
 			slug = slug.Replace("--", "-");
 		}
 
 		return $"{slug}-{platform.ToString().ToLowerInvariant()}";
 	}
 
-	private static bool HasWikiFile(string wikiPath, params string[] keywords) {
+	private static bool HasWikiFile(string wikiPath, params string[] keywords)
+	{
 		return Directory.EnumerateFiles(wikiPath, "*.wikitxt")
 			.Concat(Directory.EnumerateFiles(wikiPath, "*.wikitext"))
-			.Any(f => {
+			.Any(f =>
+			{
 				var name = Path.GetFileName(f).ToLowerInvariant();
 				return keywords.Any(k => name.Contains(k.ToLowerInvariant()));
 			});
 	}
 
-	private Game EnrichFromMarkdown(Game game, string markdownContent) {
+	private Game EnrichFromMarkdown(Game game, string markdownContent)
+	{
 		// Extract metadata from markdown front matter or content
 		var (frontMatter, _) = _markdownService.ParseFrontMatter(markdownContent);
 
@@ -268,29 +307,36 @@ public class GameInfoImportService : IGameInfoImportService {
 		string? genre = game.Genre;
 		string? description = game.Description;
 
-		if (frontMatter.TryGetValue("developer", out var dev)) {
+		if (frontMatter.TryGetValue("developer", out var dev))
+		{
 			developer = dev;
 		}
-		if (frontMatter.TryGetValue("publisher", out var pub)) {
+		if (frontMatter.TryGetValue("publisher", out var pub))
+		{
 			publisher = pub;
 		}
-		if (frontMatter.TryGetValue("year", out var yearStr) && int.TryParse(yearStr, out var year)) {
+		if (frontMatter.TryGetValue("year", out var yearStr) && int.TryParse(yearStr, out var year))
+		{
 			releaseYear = year;
 		}
-		if (frontMatter.TryGetValue("series", out var seriesVal)) {
+		if (frontMatter.TryGetValue("series", out var seriesVal))
+		{
 			series = seriesVal;
 		}
-		if (frontMatter.TryGetValue("genre", out var genreVal)) {
+		if (frontMatter.TryGetValue("genre", out var genreVal))
+		{
 			genre = genreVal;
 		}
 
 		// Try to extract description from content
 		var excerpt = _markdownService.ExtractExcerpt(markdownContent, 200);
-		if (!string.IsNullOrEmpty(excerpt)) {
+		if (!string.IsNullOrEmpty(excerpt))
+		{
 			description = excerpt;
 		}
 
-		return new Game {
+		return new Game
+		{
 			Slug = game.Slug,
 			Title = game.Title,
 			Platform = game.Platform,
@@ -303,21 +349,24 @@ public class GameInfoImportService : IGameInfoImportService {
 		};
 	}
 
-	private static string[] GetDocumentationPaths(string docDir) {
+	private static string[] GetDocumentationPaths(string docDir)
+	{
 		return Directory.EnumerateFiles(docDir, "*.md")
 			.Select(f => Path.GetFileName(f))
 			.Where(f => f != "README.md")
 			.ToArray();
 	}
 
-	private static DocumentationLevel CalculateDocLevel(bool hasRomMap, bool hasRamMap, bool hasDataStructures, bool hasNotes) {
+	private static DocumentationLevel CalculateDocLevel(bool hasRomMap, bool hasRamMap, bool hasDataStructures, bool hasNotes)
+	{
 		var score = 0;
 		if (hasRomMap) score += 2;
 		if (hasRamMap) score += 2;
 		if (hasDataStructures) score += 1;
 		if (hasNotes) score += 1;
 
-		return score switch {
+		return score switch
+		{
 			0 => DocumentationLevel.None,
 			1 => DocumentationLevel.Minimal,
 			2 or 3 => DocumentationLevel.Partial,
@@ -326,8 +375,10 @@ public class GameInfoImportService : IGameInfoImportService {
 		};
 	}
 
-	private static Game MergeGameInfo(Game existing, Game fromDocs) {
-		return new Game {
+	private static Game MergeGameInfo(Game existing, Game fromDocs)
+	{
+		return new Game
+		{
 			Slug = existing.Slug,
 			Title = existing.Title,
 			Platform = existing.Platform,
@@ -338,7 +389,8 @@ public class GameInfoImportService : IGameInfoImportService {
 			Genre = fromDocs.Genre ?? existing.Genre,
 			Description = fromDocs.Description ?? existing.Description,
 			DocumentationPaths = existing.DocumentationPaths.Union(fromDocs.DocumentationPaths).ToArray(),
-			Wiki = new WikiResources {
+			Wiki = new WikiResources
+			{
 				HasRomMap = existing.Wiki.HasRomMap || fromDocs.Wiki.HasRomMap,
 				HasRamMap = existing.Wiki.HasRamMap || fromDocs.Wiki.HasRamMap,
 				HasDataStructures = existing.Wiki.HasDataStructures || fromDocs.Wiki.HasDataStructures,
