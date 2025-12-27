@@ -1,0 +1,531 @@
+@page "/chr"
+@page "/chr/{RomId:guid}"
+@using DarkReposEditor.Core.Interfaces
+@inject IChrEditorService ChrService
+
+<PageTitle>CHR Editor - Dark Repos Editor</PageTitle>
+
+<div class="chr-editor" @onkeydown="HandleKeyDown" tabindex="0">
+	<header class="chr-toolbar">
+		<div class="toolbar-group">
+			<button class="btn btn-icon" @onclick="OpenFile" title="Open ROM (Ctrl+O)">
+				<span class="icon">📂</span>
+			</button>
+			<button class="btn btn-icon" @onclick="SaveFile" disabled="@(!HasData)" title="Save (Ctrl+S)">
+				<span class="icon">💾</span>
+			</button>
+			<button class="btn btn-icon" @onclick="ExportPng" disabled="@(!HasData)" title="Export PNG">
+				<span class="icon">📤</span>
+			</button>
+		</div>
+
+		<div class="toolbar-separator"></div>
+
+		<div class="toolbar-group">
+			<button class="btn btn-icon" @onclick="Undo" disabled="@(!CanUndo)" title="Undo (Ctrl+Z)">
+				<span class="icon">↩️</span>
+			</button>
+			<button class="btn btn-icon" @onclick="Redo" disabled="@(!CanRedo)" title="Redo (Ctrl+Y)">
+				<span class="icon">↪️</span>
+			</button>
+		</div>
+
+		<div class="toolbar-separator"></div>
+
+		<div class="toolbar-group tile-format">
+			<label>Format:</label>
+			<select class="format-select" @bind="SelectedFormat">
+				<option value="Nes">NES (2bpp)</option>
+				<option value="GameBoy">Game Boy (2bpp)</option>
+				<option value="Snes4Bpp">SNES (4bpp)</option>
+				<option value="Genesis">Genesis (4bpp)</option>
+				<option value="Gba4Bpp">GBA (4bpp)</option>
+				<option value="Gba8Bpp">GBA (8bpp)</option>
+			</select>
+		</div>
+
+		<div class="toolbar-separator"></div>
+
+		<div class="toolbar-group zoom-controls">
+			<label>Zoom:</label>
+			<button class="btn btn-icon btn-sm" @onclick="ZoomOut" disabled="@(Zoom <= 1)" title="Zoom Out">
+				<span class="icon">➖</span>
+			</button>
+			<span class="zoom-value">@(Zoom)x</span>
+			<button class="btn btn-icon btn-sm" @onclick="ZoomIn" disabled="@(Zoom >= 8)" title="Zoom In">
+				<span class="icon">➕</span>
+			</button>
+		</div>
+
+		<div class="toolbar-spacer"></div>
+
+		<div class="toolbar-group">
+			<span class="file-info">@FileName</span>
+			<span class="tile-count">@(HasData ? $"{Tiles.Length} tiles" : "")</span>
+		</div>
+	</header>
+
+	<div class="chr-main">
+		<!-- Tile Grid -->
+		<div class="chr-tiles-panel">
+			<div class="panel-header">
+				<h3>Tiles</h3>
+				<div class="tiles-per-row">
+					<label>Per Row:</label>
+					<select @bind="TilesPerRow">
+						<option value="8">8</option>
+						<option value="16">16</option>
+						<option value="32">32</option>
+					</select>
+				</div>
+			</div>
+			<div class="tiles-grid-container">
+				@if (HasData && ImageDataUrl != null)
+				{
+					<div class="tiles-grid" style="width: @(TilesPerRow * 8 * Zoom)px">
+						<img src="@ImageDataUrl" alt="Tile grid" class="tile-image"
+							 @onclick="OnTileGridClick" />
+						@if (SelectedTileIndex >= 0)
+						{
+							<div class="tile-selection" style="
+								left: @((SelectedTileIndex % TilesPerRow) * 8 * Zoom)px;
+								top: @((SelectedTileIndex / TilesPerRow) * 8 * Zoom)px;
+								width: @(8 * Zoom)px;
+								height: @(8 * Zoom)px;">
+							</div>
+						}
+					</div>
+				}
+				else
+				{
+					<div class="empty-state">
+						<div class="empty-icon">🎨</div>
+						<h3>No CHR Data</h3>
+						<p>Open a ROM file to view tiles</p>
+						<button class="btn btn-primary" @onclick="OpenFile">Open ROM</button>
+					</div>
+				}
+			</div>
+		</div>
+
+		<!-- Tile Editor -->
+		<div class="chr-editor-panel">
+			<div class="panel-header">
+				<h3>Tile Editor</h3>
+				<span class="tile-index">Tile #@(SelectedTileIndex >= 0 ? SelectedTileIndex : "--")</span>
+			</div>
+			<div class="tile-editor-container">
+				@if (SelectedTile != null)
+				{
+					<div class="tile-editor" style="width: @(8 * EditorZoom)px; height: @(8 * EditorZoom)px;">
+						@for (var y = 0; y < 8; y++)
+						{
+							@for (var x = 0; x < 8; x++)
+							{
+								var px = x;
+								var py = y;
+								var colorIndex = SelectedTile.GetPixel(px, py);
+								var color = CurrentPalette[colorIndex];
+								<div class="editor-pixel"
+									 style="left: @(px * EditorZoom)px; top: @(py * EditorZoom)px;
+									        width: @(EditorZoom)px; height: @(EditorZoom)px;
+									        background: rgb(@color.R, @color.G, @color.B);"
+									 @onclick="() => OnPixelClick(px, py)"
+									 title="(@px, @py) = @colorIndex">
+								</div>
+							}
+						}
+						<div class="editor-grid" style="
+							background-size: @(EditorZoom)px @(EditorZoom)px;
+							width: @(8 * EditorZoom)px; height: @(8 * EditorZoom)px;">
+						</div>
+					</div>
+				}
+				else
+				{
+					<div class="no-selection">
+						<p>Select a tile to edit</p>
+					</div>
+				}
+			</div>
+
+			<!-- Tools -->
+			<div class="tools-section">
+				<h4>Tools</h4>
+				<div class="tool-buttons">
+					<button class="btn btn-sm @(CurrentTool == "pencil" ? "active" : "")"
+							@onclick="SetToolPencil" title="Pencil (P)">
+						✏️
+					</button>
+					<button class="btn btn-sm @(CurrentTool == "fill" ? "active" : "")"
+							@onclick="SetToolFill" title="Fill (F)">
+						🪣
+					</button>
+					<button class="btn btn-sm @(CurrentTool == "line" ? "active" : "")"
+							@onclick="SetToolLine" title="Line (L)">
+						📏
+					</button>
+					<button class="btn btn-sm" @onclick="ClearTile" title="Clear Tile">
+						🗑️
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Palette -->
+		<div class="chr-palette-panel">
+			<div class="panel-header">
+				<h3>Palette</h3>
+			</div>
+			<div class="palette-grid">
+				@for (var i = 0; i < CurrentPalette.Count; i++)
+				{
+					var index = i;
+					var color = CurrentPalette[index];
+					<div class="palette-color @(SelectedColorIndex == index ? "selected" : "")"
+						 style="background: rgb(@color.R, @color.G, @color.B);"
+						 @onclick="() => SelectedColorIndex = index"
+						 title="Color @index: RGB(@color.R, @color.G, @color.B)">
+						@if (SelectedColorIndex == index)
+						{
+							<span class="selected-indicator">✓</span>
+						}
+					</div>
+				}
+			</div>
+			<div class="palette-presets">
+				<label>Preset:</label>
+				<select @bind="SelectedPalettePreset">
+					<option value="grayscale">Grayscale</option>
+					<option value="nes">NES Default</option>
+					<option value="gameboy">Game Boy Green</option>
+					<option value="custom">Custom</option>
+				</select>
+			</div>
+		</div>
+	</div>
+
+	<footer class="chr-status">
+		<span class="status-item">
+			Format: <span class="mono">@SelectedFormat</span>
+		</span>
+		<span class="status-item">
+			Selected: <span class="mono">@(SelectedTileIndex >= 0 ? $"#{SelectedTileIndex}" : "None")</span>
+		</span>
+		<span class="status-item">
+			Color: <span class="mono">@SelectedColorIndex</span>
+		</span>
+		<span class="status-item">
+			Tool: <span class="mono">@CurrentTool</span>
+		</span>
+		<span class="status-spacer"></span>
+		<span class="status-item">
+			@(IsModified ? "Modified" : "")
+		</span>
+	</footer>
+</div>
+
+@code {
+	[Parameter]
+	public Guid? RomId { get; set; }
+
+	// Data
+	private byte[] RawData { get; set; } = [];
+	private Tile[] Tiles { get; set; } = [];
+	private string FileName { get; set; } = "";
+	private bool HasData => Tiles.Length > 0;
+	private bool IsModified { get; set; }
+
+	// Format
+	private TileFormat _selectedFormat = TileFormat.Nes;
+	private TileFormat SelectedFormat
+	{
+		get => _selectedFormat;
+		set
+		{
+			if (_selectedFormat != value)
+			{
+				_selectedFormat = value;
+				ReloadTiles();
+			}
+		}
+	}
+
+	// View settings
+	private int Zoom { get; set; } = 2;
+	private int EditorZoom => 24;
+	private int TilesPerRow { get; set; } = 16;
+
+	// Palette
+	private Palette CurrentPalette { get; set; } = null!;
+	private int SelectedColorIndex { get; set; }
+	private string _selectedPalettePreset = "grayscale";
+	private string SelectedPalettePreset
+	{
+		get => _selectedPalettePreset;
+		set
+		{
+			_selectedPalettePreset = value;
+			UpdatePalette();
+		}
+	}
+
+	// Selection
+	private int SelectedTileIndex { get; set; } = -1;
+	private Tile? SelectedTile => SelectedTileIndex >= 0 && SelectedTileIndex < Tiles.Length
+		? Tiles[SelectedTileIndex]
+		: null;
+
+	// Tools
+	private string CurrentTool { get; set; } = "pencil";
+
+	// Undo/Redo
+	private Stack<EditAction> UndoStack { get; set; } = new();
+	private Stack<EditAction> RedoStack { get; set; } = new();
+	private bool CanUndo => UndoStack.Count > 0;
+	private bool CanRedo => RedoStack.Count > 0;
+
+	// Rendered image
+	private string? ImageDataUrl { get; set; }
+
+	protected override void OnInitialized()
+	{
+		CurrentPalette = ChrService.CreateGrayscalePalette(GetBitsPerPixel());
+	}
+
+	private int GetBitsPerPixel()
+	{
+		return SelectedFormat switch
+		{
+			TileFormat.Nes or TileFormat.GameBoy or TileFormat.Bpp2Planar => 2,
+			TileFormat.Snes4Bpp or TileFormat.Genesis or TileFormat.Gba4Bpp or TileFormat.Bpp4Planar => 4,
+			TileFormat.Gba8Bpp or TileFormat.Bpp8 => 8,
+			_ => 4
+		};
+	}
+
+	private void UpdatePalette()
+	{
+		CurrentPalette = SelectedPalettePreset switch
+		{
+			"nes" => ChrService.GetDefaultPalette(TilePlatform.Nes),
+			"gameboy" => ChrService.GetDefaultPalette(TilePlatform.GameBoy),
+			"grayscale" => ChrService.CreateGrayscalePalette(GetBitsPerPixel()),
+			_ => CurrentPalette
+		};
+		RefreshImage();
+	}
+
+	private void ReloadTiles()
+	{
+		if (RawData.Length > 0)
+		{
+			Tiles = ChrService.DecodeTiles(RawData, SelectedFormat);
+			CurrentPalette = ChrService.CreateGrayscalePalette(GetBitsPerPixel());
+			SelectedTileIndex = -1;
+			RefreshImage();
+		}
+	}
+
+	private void RefreshImage()
+	{
+		if (HasData)
+		{
+			var png = ChrService.ExportToPng(Tiles, CurrentPalette, TilesPerRow, Zoom);
+			ImageDataUrl = $"data:image/png;base64,{Convert.ToBase64String(png)}";
+		}
+	}
+
+	private void OpenFile()
+	{
+		// TODO: Implement file picker
+		// For demo, generate sample tile data
+		var tileCount = 256;
+		var bytesPerTile = ChrService.GetBytesPerTile(SelectedFormat);
+		RawData = new byte[tileCount * bytesPerTile];
+
+		// Create gradient pattern for demo
+		var random = new Random(42);
+		for (var i = 0; i < RawData.Length; i++)
+		{
+			RawData[i] = (byte)random.Next(256);
+		}
+
+		FileName = "Sample CHR Data";
+		Tiles = ChrService.DecodeTiles(RawData, SelectedFormat);
+		IsModified = false;
+		UndoStack.Clear();
+		RedoStack.Clear();
+		RefreshImage();
+	}
+
+	private void SaveFile()
+	{
+		// TODO: Implement save
+		RawData = ChrService.EncodeTiles(Tiles, SelectedFormat);
+		IsModified = false;
+	}
+
+	private void ExportPng()
+	{
+		// TODO: Implement file save dialog
+		var png = ChrService.ExportToPng(Tiles, CurrentPalette, TilesPerRow, 1);
+		// For now, just update the display
+	}
+
+	private void OnTileGridClick(MouseEventArgs e)
+	{
+		// Calculate which tile was clicked
+		var tileX = (int)(e.OffsetX / (8 * Zoom));
+		var tileY = (int)(e.OffsetY / (8 * Zoom));
+		var index = tileY * TilesPerRow + tileX;
+
+		if (index >= 0 && index < Tiles.Length)
+		{
+			SelectedTileIndex = index;
+		}
+	}
+
+	private void OnPixelClick(int x, int y)
+	{
+		if (SelectedTile == null) return;
+
+		var oldValue = SelectedTile.GetPixel(x, y);
+		var newValue = (byte)SelectedColorIndex;
+
+		if (oldValue != newValue)
+		{
+			switch (CurrentTool)
+			{
+				case "pencil":
+					UndoStack.Push(new EditAction(SelectedTileIndex, x, y, oldValue, newValue));
+					RedoStack.Clear();
+					SelectedTile.SetPixel(x, y, newValue);
+					break;
+				case "fill":
+					FloodFill(x, y, oldValue, newValue);
+					break;
+			}
+
+			IsModified = true;
+			RefreshImage();
+		}
+	}
+
+	private void FloodFill(int startX, int startY, byte oldColor, byte newColor)
+	{
+		if (SelectedTile == null || oldColor == newColor) return;
+
+		var stack = new Stack<(int x, int y)>();
+		stack.Push((startX, startY));
+
+		while (stack.Count > 0)
+		{
+			var (x, y) = stack.Pop();
+
+			if (x < 0 || x >= 8 || y < 0 || y >= 8) continue;
+			if (SelectedTile.GetPixel(x, y) != oldColor) continue;
+
+			SelectedTile.SetPixel(x, y, newColor);
+
+			stack.Push((x + 1, y));
+			stack.Push((x - 1, y));
+			stack.Push((x, y + 1));
+			stack.Push((x, y - 1));
+		}
+	}
+
+	private void ClearTile()
+	{
+		if (SelectedTile == null) return;
+
+		for (var y = 0; y < 8; y++)
+		{
+			for (var x = 0; x < 8; x++)
+			{
+				SelectedTile.SetPixel(x, y, 0);
+			}
+		}
+
+		IsModified = true;
+		RefreshImage();
+	}
+
+	private void ZoomIn()
+	{
+		if (Zoom < 8)
+		{
+			Zoom++;
+			RefreshImage();
+		}
+	}
+
+	private void ZoomOut()
+	{
+		if (Zoom > 1)
+		{
+			Zoom--;
+			RefreshImage();
+		}
+	}
+
+	private void Undo()
+	{
+		if (!CanUndo || SelectedTile == null) return;
+
+		var action = UndoStack.Pop();
+		if (action.TileIndex == SelectedTileIndex)
+		{
+			SelectedTile.SetPixel(action.X, action.Y, action.OldValue);
+			RedoStack.Push(action);
+			RefreshImage();
+		}
+	}
+
+	private void Redo()
+	{
+		if (!CanRedo || SelectedTile == null) return;
+
+		var action = RedoStack.Pop();
+		if (action.TileIndex == SelectedTileIndex)
+		{
+			SelectedTile.SetPixel(action.X, action.Y, action.NewValue);
+			UndoStack.Push(action);
+			RefreshImage();
+		}
+	}
+
+	private void HandleKeyDown(KeyboardEventArgs e)
+	{
+		switch (e.Key)
+		{
+			case "p":
+				CurrentTool = "pencil";
+				break;
+			case "f":
+				CurrentTool = "fill";
+				break;
+			case "l":
+				CurrentTool = "line";
+				break;
+			case "z" when e.CtrlKey:
+				Undo();
+				break;
+			case "y" when e.CtrlKey:
+				Redo();
+				break;
+			case "1":
+			case "2":
+			case "3":
+			case "4":
+				SelectedColorIndex = int.Parse(e.Key) - 1;
+				break;
+		}
+	}
+
+	private void SetToolPencil() => CurrentTool = "pencil";
+	private void SetToolFill() => CurrentTool = "fill";
+	private void SetToolLine() => CurrentTool = "line";
+
+	private record EditAction(int TileIndex, int X, int Y, byte OldValue, byte NewValue);
+}
