@@ -1,0 +1,589 @@
+@using DarkReposEditor.Core.Interfaces
+@using DarkReposEditor.Core.Models
+@inject IDisassemblerService DisassemblerService
+@inject IRomService RomService
+
+<div class="disassembly-viewer">
+	<div class="toolbar">
+		<div class="toolbar-section">
+			<label>Platform:</label>
+			<select @bind="Platform" @bind:after="OnPlatformChanged">
+				<option value="@RomPlatform.Nes">NES (6502)</option>
+				<option value="@RomPlatform.Snes">SNES (65816)</option>
+				<option value="@RomPlatform.GameBoy">Game Boy</option>
+				<option value="@RomPlatform.GameBoyColor">Game Boy Color</option>
+				<option value="@RomPlatform.Genesis">Genesis (68000)</option>
+			</select>
+		</div>
+
+		<div class="toolbar-section">
+			<label>Address:</label>
+			<input type="text" @bind="AddressText" @bind:after="OnAddressChanged" placeholder="$0000" class="address-input" />
+		</div>
+
+		<div class="toolbar-section">
+			<label>Lines:</label>
+			<input type="number" @bind="LineCount" @bind:after="OnLinesChanged" min="1" max="1000" class="lines-input" />
+		</div>
+
+		<div class="toolbar-section">
+			<button @onclick="GoToAddress" title="Go to address (G)">Go</button>
+			<button @onclick="DisassembleFromCursor" title="Disassemble from cursor">Disassemble</button>
+		</div>
+
+		<div class="toolbar-section">
+			<label>Format:</label>
+			<select @bind="OutputFormat">
+				<option value="@DisassemblyFormat.Ca65">ca65</option>
+				<option value="@DisassemblyFormat.Asm6">asm6</option>
+				<option value="@DisassemblyFormat.NesAsm">nesasm</option>
+				<option value="@DisassemblyFormat.Plain">Plain</option>
+			</select>
+		</div>
+
+		<div class="toolbar-section">
+			<label>
+				<input type="checkbox" @bind="ShowBytes" @bind:after="RefreshDisassembly" />
+				Show Bytes
+			</label>
+		</div>
+
+		<div class="toolbar-section export-section">
+			<button @onclick="CopyToClipboard" title="Copy to clipboard (Ctrl+C)">Copy</button>
+			<button @onclick="ExportAsm" title="Export as .asm file">Export</button>
+		</div>
+	</div>
+
+	<div class="main-content">
+		<div class="sidebar">
+			<div class="sidebar-section">
+				<h3>Labels</h3>
+				<div class="label-list">
+					@foreach (var label in Labels.OrderBy(l => l.Address))
+					{
+						<div class="label-item @(IsLabelVisible(label) ? "visible" : "")"
+							 @onclick="() => GoToLabel(label)">
+							<span class="label-address">@($"${label.Address:x4}")</span>
+							<span class="label-name">@label.Name</span>
+						</div>
+					}
+				</div>
+			</div>
+
+			<div class="sidebar-section">
+				<h3>Add Label</h3>
+				<div class="add-label-form">
+					<input type="text" @bind="NewLabelAddress" placeholder="$8000" class="label-input" />
+					<input type="text" @bind="NewLabelName" placeholder="label_name" class="label-input" />
+					<select @bind="NewLabelType">
+						<option value="@LabelType.Code">Code</option>
+						<option value="@LabelType.Subroutine">Subroutine</option>
+						<option value="@LabelType.Data">Data</option>
+						<option value="@LabelType.Pointer">Pointer</option>
+						<option value="@LabelType.Variable">Variable</option>
+					</select>
+					<button @onclick="AddLabel">Add</button>
+				</div>
+			</div>
+
+			<div class="sidebar-section">
+				<h3>Bookmarks</h3>
+				<div class="bookmark-list">
+					@foreach (var bookmark in Bookmarks)
+					{
+						<div class="bookmark-item" @onclick="() => GoToBookmark(bookmark)">
+							<span class="bookmark-address">@($"${bookmark.Address:x4}")</span>
+							<span class="bookmark-note">@bookmark.Note</span>
+							<button class="remove-btn" @onclick:stopPropagation="true"
+									@onclick="() => RemoveBookmark(bookmark)">×</button>
+						</div>
+					}
+				</div>
+				<button class="add-bookmark-btn" @onclick="AddBookmark">Add Bookmark</button>
+			</div>
+		</div>
+
+		<div class="disassembly-panel" @onkeydown="HandleKeyDown" tabindex="0">
+			<div class="line-numbers">
+				@for (int i = 0; i < DisassemblyLines.Count; i++)
+				{
+					var line = DisassemblyLines[i];
+					<div class="line-number @(i == SelectedLineIndex ? "selected" : "")">
+						@($"{line.Address:x4}")
+					</div>
+				}
+			</div>
+
+			<div class="code-content">
+				@for (int i = 0; i < DisassemblyLines.Count; i++)
+				{
+					var line = DisassemblyLines[i];
+					var lineIndex = i;
+					<div class="code-line @(GetLineClass(line, i))"
+						 @onclick="() => SelectLine(lineIndex)">
+						@if (!string.IsNullOrEmpty(line.Label))
+						{
+							<div class="label-line">@(line.Label):</div>
+						}
+						<div class="instruction-line">
+							@if (ShowBytes)
+							{
+								<span class="bytes">@FormatBytes(line.Bytes)</span>
+							}
+							<span class="mnemonic @(GetMnemonicClass(line.Mnemonic))">@line.Mnemonic</span>
+							<span class="operand">@line.Operand</span>
+							@if (!string.IsNullOrEmpty(line.Comment))
+							{
+								<span class="comment">; @line.Comment</span>
+							}
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+
+		<div class="info-panel">
+			@if (SelectedLine != null)
+			{
+				<h3>Instruction Details</h3>
+				<div class="info-row">
+					<label>Address:</label>
+					<span>@($"${SelectedLine.Address:x4}")</span>
+				</div>
+				<div class="info-row">
+					<label>Bytes:</label>
+					<span>@string.Join(" ", SelectedLine.Bytes.Select(b => $"{b:x2}"))</span>
+				</div>
+				<div class="info-row">
+					<label>Size:</label>
+					<span>@SelectedLine.Bytes.Length byte(s)</span>
+				</div>
+				<div class="info-row">
+					<label>Instruction:</label>
+					<span>@SelectedLine.Mnemonic @SelectedLine.Operand</span>
+				</div>
+				@if (GetInstructionInfo(SelectedLine) is string info)
+				{
+					<div class="info-row">
+						<label>Description:</label>
+						<span>@info</span>
+					</div>
+				}
+
+				<h3>Cross References</h3>
+				<div class="xref-list">
+					@foreach (var xref in GetCrossReferences(SelectedLine.Address))
+					{
+						<div class="xref-item" @onclick="() => GoToAddress(xref)">
+							@($"${xref:x4}")
+						</div>
+					}
+					@if (!GetCrossReferences(SelectedLine.Address).Any())
+					{
+						<div class="xref-empty">No references found</div>
+					}
+				</div>
+			}
+		</div>
+	</div>
+
+	<div class="status-bar">
+		<span class="status-item">
+			Platform: @GetPlatformName()
+		</span>
+		<span class="status-item">
+			Offset: @($"${StartAddress:x4}") - @($"${EndAddress:x4}")
+		</span>
+		<span class="status-item">
+			@DisassemblyLines.Count lines
+		</span>
+		@if (SelectedLine != null)
+		{
+			<span class="status-item">
+				Selected: @($"${SelectedLine.Address:x4}")
+			</span>
+		}
+	</div>
+</div>
+
+@code {
+	[Parameter]
+	public byte[]? Data { get; set; }
+
+	[Parameter]
+	public int InitialOffset { get; set; }
+
+	[Parameter]
+	public RomPlatform Platform { get; set; } = RomPlatform.Nes;
+
+	[Parameter]
+	public EventCallback<int> OnAddressSelected { get; set; }
+
+	// State
+	private List<DisassemblyLine> DisassemblyLines { get; set; } = new();
+	private List<Label> Labels { get; set; } = new();
+	private List<Bookmark> Bookmarks { get; set; } = new();
+	private Dictionary<int, List<int>> CrossReferences { get; set; } = new();
+
+	private int StartAddress { get; set; }
+	private int EndAddress { get; set; }
+	private int LineCount { get; set; } = 100;
+	private int SelectedLineIndex { get; set; } = -1;
+	private DisassemblyLine? SelectedLine => SelectedLineIndex >= 0 && SelectedLineIndex < DisassemblyLines.Count
+		? DisassemblyLines[SelectedLineIndex]
+		: null;
+
+	private string AddressText { get; set; } = "$0000";
+	private DisassemblyFormat OutputFormat { get; set; } = DisassemblyFormat.Ca65;
+	private bool ShowBytes { get; set; } = true;
+
+	// New label form
+	private string NewLabelAddress { get; set; } = "";
+	private string NewLabelName { get; set; } = "";
+	private LabelType NewLabelType { get; set; } = LabelType.Code;
+
+	protected override void OnInitialized()
+	{
+		StartAddress = InitialOffset;
+		AddressText = $"${StartAddress:x4}";
+		RefreshDisassembly();
+	}
+
+	protected override void OnParametersSet()
+	{
+		if (Data != null)
+		{
+			RefreshDisassembly();
+		}
+	}
+
+	private void RefreshDisassembly()
+	{
+		if (Data == null || Data.Length == 0)
+		{
+			DisassemblyLines.Clear();
+			return;
+		}
+
+		// Calculate how many bytes we need to disassemble
+		// (rough estimate, will be adjusted)
+		var estimatedBytes = LineCount * 3; // Average instruction size
+		var actualLength = Math.Min(estimatedBytes, Data.Length - StartAddress);
+
+		if (actualLength <= 0)
+		{
+			DisassemblyLines.Clear();
+			return;
+		}
+
+		var lines = DisassemblerService.Disassemble(
+			Data,
+			StartAddress,
+			actualLength,
+			Platform,
+			Labels).Take(LineCount).ToList();
+
+		DisassemblyLines = lines;
+
+		if (lines.Count > 0)
+		{
+			EndAddress = lines.Last().Address + lines.Last().Bytes.Length - 1;
+		}
+
+		BuildCrossReferences();
+	}
+
+	private void BuildCrossReferences()
+	{
+		CrossReferences.Clear();
+
+		foreach (var line in DisassemblyLines)
+		{
+			// Try to extract target address from operand
+			if (TryParseAddress(line.Operand, out var targetAddress))
+			{
+				if (!CrossReferences.ContainsKey(targetAddress))
+				{
+					CrossReferences[targetAddress] = new List<int>();
+				}
+				CrossReferences[targetAddress].Add(line.Address);
+			}
+		}
+	}
+
+	private bool TryParseAddress(string operand, out int address)
+	{
+		address = 0;
+		if (string.IsNullOrEmpty(operand)) return false;
+
+		// Extract address from operand like "$8000" or "$8000,x" or "($8000)"
+		var addrPart = operand.TrimStart('(', '#').TrimEnd(')', ',', 'x', 'y', 'X', 'Y').Trim();
+		if (addrPart.StartsWith('$') && addrPart.Length > 1)
+		{
+			return int.TryParse(addrPart[1..], System.Globalization.NumberStyles.HexNumber, null, out address);
+		}
+		return false;
+	}
+
+	private IEnumerable<int> GetCrossReferences(int address)
+	{
+		return CrossReferences.TryGetValue(address, out var refs) ? refs : Enumerable.Empty<int>();
+	}
+
+	private void OnPlatformChanged()
+	{
+		RefreshDisassembly();
+	}
+
+	private void OnAddressChanged()
+	{
+		if (TryParseAddress(AddressText.StartsWith('$') ? AddressText : $"${AddressText}", out var addr))
+		{
+			StartAddress = addr;
+		}
+	}
+
+	private void OnLinesChanged()
+	{
+		RefreshDisassembly();
+	}
+
+	private void GoToAddress()
+	{
+		OnAddressChanged();
+		RefreshDisassembly();
+	}
+
+	private void GoToAddress(int address)
+	{
+		StartAddress = address;
+		AddressText = $"${address:x4}";
+		RefreshDisassembly();
+	}
+
+	private void DisassembleFromCursor()
+	{
+		RefreshDisassembly();
+	}
+
+	private void SelectLine(int index)
+	{
+		SelectedLineIndex = index;
+		if (SelectedLine != null)
+		{
+			OnAddressSelected.InvokeAsync(SelectedLine.Address);
+		}
+	}
+
+	private string GetLineClass(DisassemblyLine line, int index)
+	{
+		var classes = new List<string>();
+
+		if (index == SelectedLineIndex)
+			classes.Add("selected");
+
+		if (!string.IsNullOrEmpty(line.Label))
+			classes.Add("has-label");
+
+		if (IsBranchOrJump(line.Mnemonic))
+			classes.Add("branch");
+
+		if (line.Mnemonic == "rts" || line.Mnemonic == "rti" || line.Mnemonic == "ret")
+			classes.Add("return");
+
+		return string.Join(" ", classes);
+	}
+
+	private string GetMnemonicClass(string mnemonic)
+	{
+		return mnemonic.ToLowerInvariant() switch
+		{
+			"jmp" or "jsr" or "bcc" or "bcs" or "beq" or "bne" or "bmi" or "bpl" or "bvc" or "bvs" or "jp" or "call" or "jr" => "branch-mnemonic",
+			"rts" or "rti" or "ret" => "return-mnemonic",
+			"lda" or "ldx" or "ldy" or "ld" => "load-mnemonic",
+			"sta" or "stx" or "sty" => "store-mnemonic",
+			"???" => "unknown-mnemonic",
+			_ => ""
+		};
+	}
+
+	private bool IsBranchOrJump(string mnemonic)
+	{
+		var branches = new[] { "jmp", "jsr", "bcc", "bcs", "beq", "bne", "bmi", "bpl", "bvc", "bvs", "jp", "call", "jr" };
+		return branches.Contains(mnemonic.ToLowerInvariant());
+	}
+
+	private string FormatBytes(byte[] bytes)
+	{
+		return string.Join(" ", bytes.Select(b => $"{b:x2}")).PadRight(9);
+	}
+
+	private string? GetInstructionInfo(DisassemblyLine line)
+	{
+		return line.Mnemonic.ToLowerInvariant() switch
+		{
+			"lda" => "Load Accumulator - Load a value into the A register",
+			"ldx" => "Load X Register - Load a value into the X register",
+			"ldy" => "Load Y Register - Load a value into the Y register",
+			"sta" => "Store Accumulator - Store the A register to memory",
+			"stx" => "Store X Register - Store the X register to memory",
+			"sty" => "Store Y Register - Store the Y register to memory",
+			"jmp" => "Jump - Transfer control to another location",
+			"jsr" => "Jump to Subroutine - Push return address and jump",
+			"rts" => "Return from Subroutine - Pop return address and jump",
+			"rti" => "Return from Interrupt - Pop status and return address",
+			"nop" => "No Operation - Do nothing for one cycle",
+			"brk" => "Break - Software interrupt",
+			"sei" => "Set Interrupt Disable - Disable IRQ interrupts",
+			"cli" => "Clear Interrupt Disable - Enable IRQ interrupts",
+			"sec" => "Set Carry Flag",
+			"clc" => "Clear Carry Flag",
+			"asl" => "Arithmetic Shift Left - Shift bits left, bit 7 to carry",
+			"lsr" => "Logical Shift Right - Shift bits right, bit 0 to carry",
+			"rol" => "Rotate Left - Rotate through carry",
+			"ror" => "Rotate Right - Rotate through carry",
+			"adc" => "Add with Carry - A = A + M + C",
+			"sbc" => "Subtract with Carry - A = A - M - (1-C)",
+			"cmp" => "Compare Accumulator - Set flags based on A - M",
+			"cpx" => "Compare X Register - Set flags based on X - M",
+			"cpy" => "Compare Y Register - Set flags based on Y - M",
+			"and" => "Logical AND - A = A & M",
+			"ora" => "Logical OR - A = A | M",
+			"eor" => "Exclusive OR - A = A ^ M",
+			"inc" => "Increment Memory - M = M + 1",
+			"dec" => "Decrement Memory - M = M - 1",
+			"inx" => "Increment X - X = X + 1",
+			"iny" => "Increment Y - Y = Y + 1",
+			"dex" => "Decrement X - X = X - 1",
+			"dey" => "Decrement Y - Y = Y - 1",
+			"pha" => "Push Accumulator - Push A onto stack",
+			"pla" => "Pull Accumulator - Pull A from stack",
+			"php" => "Push Processor Status - Push flags onto stack",
+			"plp" => "Pull Processor Status - Pull flags from stack",
+			"tax" => "Transfer A to X",
+			"tay" => "Transfer A to Y",
+			"txa" => "Transfer X to A",
+			"tya" => "Transfer Y to A",
+			"txs" => "Transfer X to Stack Pointer",
+			"tsx" => "Transfer Stack Pointer to X",
+			_ => null
+		};
+	}
+
+	private void HandleKeyDown(KeyboardEventArgs e)
+	{
+		switch (e.Key)
+		{
+			case "ArrowUp":
+				if (SelectedLineIndex > 0)
+					SelectLine(SelectedLineIndex - 1);
+				break;
+			case "ArrowDown":
+				if (SelectedLineIndex < DisassemblyLines.Count - 1)
+					SelectLine(SelectedLineIndex + 1);
+				break;
+			case "g" when e.CtrlKey:
+			case "G":
+				// Go to address dialog would go here
+				break;
+			case "Home":
+				if (DisassemblyLines.Count > 0)
+					SelectLine(0);
+				break;
+			case "End":
+				if (DisassemblyLines.Count > 0)
+					SelectLine(DisassemblyLines.Count - 1);
+				break;
+			case "Enter":
+				// Follow jump/branch target
+				if (SelectedLine != null && TryParseAddress(SelectedLine.Operand, out var target))
+				{
+					GoToAddress(target);
+				}
+				break;
+		}
+	}
+
+	private async Task CopyToClipboard()
+	{
+		var text = DisassemblerService.FormatOutput(DisassemblyLines, OutputFormat, ShowBytes);
+		// Would need IJSRuntime injection to copy to clipboard
+		await Task.CompletedTask;
+	}
+
+	private void ExportAsm()
+	{
+		var text = DisassemblerService.FormatOutput(DisassemblyLines, OutputFormat, ShowBytes);
+		// Would trigger download
+	}
+
+	private bool IsLabelVisible(Label label)
+	{
+		return label.Address >= StartAddress && label.Address <= EndAddress;
+	}
+
+	private void GoToLabel(Label label)
+	{
+		GoToAddress(label.Address);
+	}
+
+	private void AddLabel()
+	{
+		if (string.IsNullOrWhiteSpace(NewLabelName)) return;
+
+		if (TryParseAddress(NewLabelAddress.StartsWith('$') ? NewLabelAddress : $"${NewLabelAddress}", out var addr))
+		{
+			Labels.Add(new Label
+			{
+				Address = addr,
+				Name = NewLabelName,
+				Type = NewLabelType
+			});
+
+			NewLabelAddress = "";
+			NewLabelName = "";
+			RefreshDisassembly();
+		}
+	}
+
+	private void GoToBookmark(Bookmark bookmark)
+	{
+		GoToAddress(bookmark.Address);
+	}
+
+	private void AddBookmark()
+	{
+		if (SelectedLine == null) return;
+
+		Bookmarks.Add(new Bookmark
+		{
+			Address = SelectedLine.Address,
+			Note = $"Bookmark at ${SelectedLine.Address:x4}"
+		});
+	}
+
+	private void RemoveBookmark(Bookmark bookmark)
+	{
+		Bookmarks.Remove(bookmark);
+	}
+
+	private string GetPlatformName()
+	{
+		return Platform switch
+		{
+			RomPlatform.Nes => "NES (6502)",
+			RomPlatform.Snes => "SNES (65816)",
+			RomPlatform.GameBoy => "Game Boy (LR35902)",
+			RomPlatform.GameBoyColor => "Game Boy Color",
+			RomPlatform.Genesis => "Genesis (68000)",
+			_ => Platform.ToString()
+		};
+	}
+
+	// Inner class for bookmarks
+	private class Bookmark
+	{
+		public int Address { get; set; }
+		public string Note { get; set; } = "";
+	}
+}
