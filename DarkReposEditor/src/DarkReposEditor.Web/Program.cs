@@ -19,6 +19,7 @@ builder.Services.AddDbContext<EditorDbContext>(options =>
 builder.Services.AddScoped<IRomService, RomService>();
 builder.Services.AddScoped<IHexEditorService, HexEditorService>();
 builder.Services.AddScoped<IChrEditorService, ChrEditorService>();
+builder.Services.AddScoped<IDisassemblerService, DisassemblerService>();
 
 // Add controllers for API
 builder.Services.AddControllers();
