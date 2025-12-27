@@ -1,0 +1,104 @@
+.rating {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.125rem;
+}
+
+.rating.interactive {
+	cursor: pointer;
+}
+
+.rating.readonly {
+	cursor: default;
+}
+
+.rating:focus {
+	outline: 2px solid var(--primary-color, #6bb5ff);
+	outline-offset: 2px;
+	border-radius: 0.25rem;
+}
+
+.star {
+	display: inline-block;
+	line-height: 1;
+	transition: transform 0.1s ease, color 0.15s ease;
+}
+
+.rating.interactive .star:hover {
+	transform: scale(1.2);
+}
+
+/* Star states */
+.star.filled {
+	color: var(--gold-color, #fbbf24);
+}
+
+.star.half {
+	color: var(--gold-color, #fbbf24);
+	position: relative;
+}
+
+.star.half::after {
+	content: '☆';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 50%;
+	overflow: hidden;
+	color: var(--gold-color, #fbbf24);
+}
+
+.star.empty {
+	color: var(--text-muted, #555);
+}
+
+/* Size variants */
+.rating.small .star {
+	font-size: 0.875rem;
+}
+
+.rating.medium .star {
+	font-size: 1.25rem;
+}
+
+.rating.large .star {
+	font-size: 1.75rem;
+}
+
+/* Value and count display */
+.rating-value {
+	margin-left: 0.5rem;
+	font-size: 0.875rem;
+	font-weight: 500;
+	color: var(--text-color, #d4d4d4);
+}
+
+.rating-count {
+	margin-left: 0.25rem;
+	font-size: 0.75rem;
+	color: var(--text-muted, #888);
+}
+
+/* Interactive hover effect */
+.rating.interactive .star:hover ~ .star {
+	color: var(--text-muted, #555);
+}
+
+.rating.interactive:hover .star.filled,
+.rating.interactive:hover .star.half {
+	color: var(--gold-color, #fbbf24);
+}
+
+/* Compact variant */
+.rating.compact {
+	gap: 0;
+}
+
+.rating.compact .star {
+	font-size: 1rem;
+}
+
+.rating.compact .rating-value {
+	margin-left: 0.375rem;
+	font-size: 0.75rem;
+}
