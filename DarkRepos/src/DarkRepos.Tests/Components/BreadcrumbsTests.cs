@@ -5,9 +5,11 @@ using Xunit;
 
 namespace DarkRepos.Tests.Components;
 
-public class BreadcrumbsTests : TestContext {
+public class BreadcrumbsTests : TestContext
+{
 	[Fact]
-	public void Breadcrumbs_RendersAllItems() {
+	public void Breadcrumbs_RendersAllItems()
+	{
 		// Arrange
 		var items = new List<Breadcrumbs.BreadcrumbItem> {
 			new("Home", "/"),
@@ -25,7 +27,8 @@ public class BreadcrumbsTests : TestContext {
 	}
 
 	[Fact]
-	public void Breadcrumbs_LastItemIsCurrentPage() {
+	public void Breadcrumbs_LastItemIsCurrentPage()
+	{
 		// Arrange
 		var items = new List<Breadcrumbs.BreadcrumbItem> {
 			new("Home", "/"),
@@ -42,7 +45,8 @@ public class BreadcrumbsTests : TestContext {
 	}
 
 	[Fact]
-	public void Breadcrumbs_NonLastItemsAreLinks() {
+	public void Breadcrumbs_NonLastItemsAreLinks()
+	{
 		// Arrange
 		var items = new List<Breadcrumbs.BreadcrumbItem> {
 			new("Home", "/"),
@@ -62,7 +66,8 @@ public class BreadcrumbsTests : TestContext {
 	}
 
 	[Fact]
-	public void Breadcrumbs_RendersIcons_WhenProvided() {
+	public void Breadcrumbs_RendersIcons_WhenProvided()
+	{
 		// Arrange
 		var items = new List<Breadcrumbs.BreadcrumbItem> {
 			new("Home", "/", "🏠"),
@@ -79,7 +84,8 @@ public class BreadcrumbsTests : TestContext {
 	}
 
 	[Fact]
-	public void Breadcrumbs_UsesCustomSeparator() {
+	public void Breadcrumbs_UsesCustomSeparator()
+	{
 		// Arrange
 		var items = new List<Breadcrumbs.BreadcrumbItem> {
 			new("Home", "/"),
@@ -96,7 +102,8 @@ public class BreadcrumbsTests : TestContext {
 	}
 
 	[Fact]
-	public void Breadcrumbs_HasNavigationRole() {
+	public void Breadcrumbs_HasNavigationRole()
+	{
 		// Arrange
 		var items = new List<Breadcrumbs.BreadcrumbItem> {
 			new("Home", "/")
@@ -111,7 +118,8 @@ public class BreadcrumbsTests : TestContext {
 	}
 
 	[Fact]
-	public void Breadcrumbs_HandlesEmptyList() {
+	public void Breadcrumbs_HandlesEmptyList()
+	{
 		// Arrange
 		var items = new List<Breadcrumbs.BreadcrumbItem>();
 
@@ -124,7 +132,8 @@ public class BreadcrumbsTests : TestContext {
 	}
 
 	[Fact]
-	public void Breadcrumbs_HandlesSingleItem() {
+	public void Breadcrumbs_HandlesSingleItem()
+	{
 		// Arrange
 		var items = new List<Breadcrumbs.BreadcrumbItem> {
 			new("Home", "/")

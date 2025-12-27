@@ -6,9 +6,11 @@ using Xunit;
 
 namespace DarkRepos.Tests.Components;
 
-public class PaginationTests : TestContext {
+public class PaginationTests : TestContext
+{
 	[Fact]
-	public void Pagination_RendersAllPageButtons() {
+	public void Pagination_RendersAllPageButtons()
+	{
 		// Act
 		var cut = RenderComponent<Pagination>(parameters => parameters
 			.Add(p => p.CurrentPage, 1)
@@ -20,7 +22,8 @@ public class PaginationTests : TestContext {
 	}
 
 	[Fact]
-	public void Pagination_HighlightsCurrentPage() {
+	public void Pagination_HighlightsCurrentPage()
+	{
 		// Act
 		var cut = RenderComponent<Pagination>(parameters => parameters
 			.Add(p => p.CurrentPage, 3)
@@ -32,7 +35,8 @@ public class PaginationTests : TestContext {
 	}
 
 	[Fact]
-	public void Pagination_DisablesPrevious_OnFirstPage() {
+	public void Pagination_DisablesPrevious_OnFirstPage()
+	{
 		// Act
 		var cut = RenderComponent<Pagination>(parameters => parameters
 			.Add(p => p.CurrentPage, 1)
@@ -44,7 +48,8 @@ public class PaginationTests : TestContext {
 	}
 
 	[Fact]
-	public void Pagination_DisablesNext_OnLastPage() {
+	public void Pagination_DisablesNext_OnLastPage()
+	{
 		// Act
 		var cut = RenderComponent<Pagination>(parameters => parameters
 			.Add(p => p.CurrentPage, 5)
@@ -56,7 +61,8 @@ public class PaginationTests : TestContext {
 	}
 
 	[Fact]
-	public void Pagination_ShowsPageInfo_WhenEnabled() {
+	public void Pagination_ShowsPageInfo_WhenEnabled()
+	{
 		// Act
 		var cut = RenderComponent<Pagination>(parameters => parameters
 			.Add(p => p.CurrentPage, 2)
@@ -68,7 +74,8 @@ public class PaginationTests : TestContext {
 	}
 
 	[Fact]
-	public void Pagination_ShowsTotalItems_WhenProvided() {
+	public void Pagination_ShowsTotalItems_WhenProvided()
+	{
 		// Act
 		var cut = RenderComponent<Pagination>(parameters => parameters
 			.Add(p => p.CurrentPage, 1)
@@ -81,7 +88,8 @@ public class PaginationTests : TestContext {
 	}
 
 	[Fact]
-	public void Pagination_HasNavigationRole() {
+	public void Pagination_HasNavigationRole()
+	{
 		// Act
 		var cut = RenderComponent<Pagination>(parameters => parameters
 			.Add(p => p.CurrentPage, 1)
@@ -92,7 +100,8 @@ public class PaginationTests : TestContext {
 	}
 
 	[Fact]
-	public async Task Pagination_InvokesCallback_OnPageClick() {
+	public async Task Pagination_InvokesCallback_OnPageClick()
+	{
 		// Arrange
 		var clickedPage = 0;
 
@@ -110,7 +119,8 @@ public class PaginationTests : TestContext {
 	}
 
 	[Fact]
-	public void Pagination_ShowsEllipsis_ForManyPages() {
+	public void Pagination_ShowsEllipsis_ForManyPages()
+	{
 		// Act
 		var cut = RenderComponent<Pagination>(parameters => parameters
 			.Add(p => p.CurrentPage, 5)

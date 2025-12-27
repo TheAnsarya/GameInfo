@@ -4,17 +4,21 @@ using FluentAssertions;
 
 namespace DarkRepos.Tests.Services;
 
-public class WikiLinkServiceTests {
+public class WikiLinkServiceTests
+{
 	private readonly IWikiLinkService _service;
 
-	public WikiLinkServiceTests() {
+	public WikiLinkServiceTests()
+	{
 		_service = new WikiLinkService();
 	}
 
 	[Fact]
-	public void GetWikiUrl_WithGame_ReturnsCorrectUrl() {
+	public void GetWikiUrl_WithGame_ReturnsCorrectUrl()
+	{
 		// Arrange
-		var game = new Game {
+		var game = new Game
+		{
 			Slug = "dragon-warrior-nes",
 			Title = "Dragon Warrior",
 			Platform = Platform.NES
@@ -29,9 +33,11 @@ public class WikiLinkServiceTests {
 	}
 
 	[Fact]
-	public void GetRomMapUrl_WhenAvailable_ReturnsUrl() {
+	public void GetRomMapUrl_WhenAvailable_ReturnsUrl()
+	{
 		// Arrange
-		var game = new Game {
+		var game = new Game
+		{
 			Slug = "soul-blazer-snes",
 			Title = "Soul Blazer",
 			Platform = Platform.SNES,
@@ -48,9 +54,11 @@ public class WikiLinkServiceTests {
 	}
 
 	[Fact]
-	public void GetRomMapUrl_WhenNotAvailable_ReturnsNull() {
+	public void GetRomMapUrl_WhenNotAvailable_ReturnsNull()
+	{
 		// Arrange
-		var game = new Game {
+		var game = new Game
+		{
 			Slug = "test-game",
 			Title = "Test Game",
 			Platform = Platform.NES,
@@ -65,9 +73,11 @@ public class WikiLinkServiceTests {
 	}
 
 	[Fact]
-	public void GetRamMapUrl_WhenAvailable_ReturnsUrl() {
+	public void GetRamMapUrl_WhenAvailable_ReturnsUrl()
+	{
 		// Arrange
-		var game = new Game {
+		var game = new Game
+		{
 			Slug = "test-game",
 			Title = "Test Game",
 			Platform = Platform.SNES,
@@ -83,13 +93,16 @@ public class WikiLinkServiceTests {
 	}
 
 	[Fact]
-	public void GetAllWikiUrls_WithAllResources_ReturnsAllUrls() {
+	public void GetAllWikiUrls_WithAllResources_ReturnsAllUrls()
+	{
 		// Arrange
-		var game = new Game {
+		var game = new Game
+		{
 			Slug = "full-game",
 			Title = "Full Game",
 			Platform = Platform.SNES,
-			Wiki = new WikiResources {
+			Wiki = new WikiResources
+			{
 				HasRomMap = true,
 				HasRamMap = true,
 				HasDataStructures = true,
@@ -112,9 +125,11 @@ public class WikiLinkServiceTests {
 	}
 
 	[Fact]
-	public void GetAllWikiUrls_WithNoResources_ReturnsOnlyMainUrl() {
+	public void GetAllWikiUrls_WithNoResources_ReturnsOnlyMainUrl()
+	{
 		// Arrange
-		var game = new Game {
+		var game = new Game
+		{
 			Slug = "minimal-game",
 			Title = "Minimal Game",
 			Platform = Platform.NES,
@@ -130,7 +145,8 @@ public class WikiLinkServiceTests {
 	}
 
 	[Fact]
-	public void GenerateWikiLink_WithDisplayText_ReturnsFormattedLink() {
+	public void GenerateWikiLink_WithDisplayText_ReturnsFormattedLink()
+	{
 		// Arrange & Act
 		var link = _service.GenerateWikiLink("Dragon_Warrior_(NES)", "Dragon Warrior");
 
@@ -139,7 +155,8 @@ public class WikiLinkServiceTests {
 	}
 
 	[Fact]
-	public void GenerateWikiLink_WithoutDisplayText_ReturnsSimpleLink() {
+	public void GenerateWikiLink_WithoutDisplayText_ReturnsSimpleLink()
+	{
 		// Arrange & Act
 		var link = _service.GenerateWikiLink("Dragon_Warrior_(NES)");
 
@@ -148,7 +165,8 @@ public class WikiLinkServiceTests {
 	}
 
 	[Fact]
-	public void GenerateExternalLink_WithDisplayText_ReturnsFormattedLink() {
+	public void GenerateExternalLink_WithDisplayText_ReturnsFormattedLink()
+	{
 		// Arrange & Act
 		var link = _service.GenerateExternalLink("https://example.com", "Example");
 
@@ -157,7 +175,8 @@ public class WikiLinkServiceTests {
 	}
 
 	[Fact]
-	public void GenerateExternalLink_WithoutDisplayText_ReturnsSimpleLink() {
+	public void GenerateExternalLink_WithoutDisplayText_ReturnsSimpleLink()
+	{
 		// Arrange & Act
 		var link = _service.GenerateExternalLink("https://example.com");
 
@@ -166,7 +185,8 @@ public class WikiLinkServiceTests {
 	}
 
 	[Fact]
-	public void ToWikiPageName_WithSpaces_ReplacesWithUnderscores() {
+	public void ToWikiPageName_WithSpaces_ReplacesWithUnderscores()
+	{
 		// Arrange & Act
 		var pageName = _service.ToWikiPageName("Final Fantasy Mystic Quest", Platform.SNES);
 
@@ -175,7 +195,8 @@ public class WikiLinkServiceTests {
 	}
 
 	[Fact]
-	public void ToWikiPageName_WithSpecialCharacters_RemovesThem() {
+	public void ToWikiPageName_WithSpecialCharacters_RemovesThem()
+	{
 		// Arrange & Act
 		var pageName = _service.ToWikiPageName("Test [Game] {Version}", Platform.NES);
 

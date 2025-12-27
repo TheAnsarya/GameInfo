@@ -3,15 +3,18 @@ using FluentAssertions;
 
 namespace DarkRepos.Tests.Services;
 
-public class ContentCacheServiceTests {
+public class ContentCacheServiceTests
+{
 	private readonly IContentCacheService _cache;
 
-	public ContentCacheServiceTests() {
+	public ContentCacheServiceTests()
+	{
 		_cache = new ContentCacheService();
 	}
 
 	[Fact]
-	public void Set_AndTryGet_ReturnsValue() {
+	public void Set_AndTryGet_ReturnsValue()
+	{
 		// Arrange
 		const string key = "test-key";
 		const string value = "test-value";
@@ -26,7 +29,8 @@ public class ContentCacheServiceTests {
 	}
 
 	[Fact]
-	public void TryGet_WithMissingKey_ReturnsFalse() {
+	public void TryGet_WithMissingKey_ReturnsFalse()
+	{
 		// Arrange & Act
 		var found = _cache.TryGet<string>("nonexistent", out var value);
 
@@ -36,13 +40,15 @@ public class ContentCacheServiceTests {
 	}
 
 	[Fact]
-	public void GetOrCreate_WithMissingKey_CallsFactory() {
+	public void GetOrCreate_WithMissingKey_CallsFactory()
+	{
 		// Arrange
 		var factoryCalled = false;
 		const string key = "factory-test";
 
 		// Act
-		var result = _cache.GetOrCreate(key, () => {
+		var result = _cache.GetOrCreate(key, () =>
+		{
 			factoryCalled = true;
 			return "created-value";
 		});
@@ -53,14 +59,16 @@ public class ContentCacheServiceTests {
 	}
 
 	[Fact]
-	public void GetOrCreate_WithExistingKey_DoesNotCallFactory() {
+	public void GetOrCreate_WithExistingKey_DoesNotCallFactory()
+	{
 		// Arrange
 		const string key = "existing-key";
 		_cache.Set(key, "existing-value");
 		var factoryCalled = false;
 
 		// Act
-		var result = _cache.GetOrCreate(key, () => {
+		var result = _cache.GetOrCreate(key, () =>
+		{
 			factoryCalled = true;
 			return "new-value";
 		});
@@ -71,13 +79,15 @@ public class ContentCacheServiceTests {
 	}
 
 	[Fact]
-	public async Task GetOrCreateAsync_WithMissingKey_CallsFactory() {
+	public async Task GetOrCreateAsync_WithMissingKey_CallsFactory()
+	{
 		// Arrange
 		var factoryCalled = false;
 		const string key = "async-factory-test";
 
 		// Act
-		var result = await _cache.GetOrCreateAsync(key, async () => {
+		var result = await _cache.GetOrCreateAsync(key, async () =>
+		{
 			factoryCalled = true;
 			await Task.Delay(1);
 			return "async-created-value";
@@ -89,7 +99,8 @@ public class ContentCacheServiceTests {
 	}
 
 	[Fact]
-	public void Remove_RemovesKey() {
+	public void Remove_RemovesKey()
+	{
 		// Arrange
 		const string key = "remove-test";
 		_cache.Set(key, "value");
@@ -103,7 +114,8 @@ public class ContentCacheServiceTests {
 	}
 
 	[Fact]
-	public void RemoveByPrefix_RemovesMatchingKeys() {
+	public void RemoveByPrefix_RemovesMatchingKeys()
+	{
 		// Arrange
 		_cache.Set("game:dragon-warrior", "dw");
 		_cache.Set("game:soul-blazer", "sb");
@@ -119,7 +131,8 @@ public class ContentCacheServiceTests {
 	}
 
 	[Fact]
-	public void Clear_RemovesAllKeys() {
+	public void Clear_RemovesAllKeys()
+	{
 		// Arrange
 		_cache.Set("key1", "value1");
 		_cache.Set("key2", "value2");
@@ -135,7 +148,8 @@ public class ContentCacheServiceTests {
 	}
 
 	[Fact]
-	public void GetStatistics_ReturnsCorrectStats() {
+	public void GetStatistics_ReturnsCorrectStats()
+	{
 		// Arrange
 		_cache.Clear();
 		_cache.Set("stat-test", "value");
@@ -153,7 +167,8 @@ public class ContentCacheServiceTests {
 	}
 
 	[Fact]
-	public void CacheKeys_Game_ReturnsCorrectFormat() {
+	public void CacheKeys_Game_ReturnsCorrectFormat()
+	{
 		// Act
 		var key = CacheKeys.Game("dragon-warrior-nes");
 
@@ -162,7 +177,8 @@ public class ContentCacheServiceTests {
 	}
 
 	[Fact]
-	public void CacheKeys_GameList_WithPlatform_ReturnsCorrectFormat() {
+	public void CacheKeys_GameList_WithPlatform_ReturnsCorrectFormat()
+	{
 		// Act
 		var key = CacheKeys.GameList("NES");
 
@@ -171,7 +187,8 @@ public class ContentCacheServiceTests {
 	}
 
 	[Fact]
-	public void CacheKeys_GameList_WithoutPlatform_ReturnsAllGames() {
+	public void CacheKeys_GameList_WithoutPlatform_ReturnsAllGames()
+	{
 		// Act
 		var key = CacheKeys.GameList();
 
@@ -180,7 +197,8 @@ public class ContentCacheServiceTests {
 	}
 
 	[Fact]
-	public void CacheKeys_Search_NormalizesQuery() {
+	public void CacheKeys_Search_NormalizesQuery()
+	{
 		// Act
 		var key = CacheKeys.Search("Dragon Warrior");
 

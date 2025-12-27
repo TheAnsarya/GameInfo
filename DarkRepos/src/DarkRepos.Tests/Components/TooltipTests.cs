@@ -5,9 +5,11 @@ using Xunit;
 
 namespace DarkRepos.Tests.Components;
 
-public class TooltipTests : TestContext {
+public class TooltipTests : TestContext
+{
 	[Fact]
-	public void Tooltip_RendersChildContent() {
+	public void Tooltip_RendersChildContent()
+	{
 		// Arrange
 		const string buttonText = "Hover me";
 
@@ -21,7 +23,8 @@ public class TooltipTests : TestContext {
 	}
 
 	[Fact]
-	public void Tooltip_RendersTooltipText() {
+	public void Tooltip_RendersTooltipText()
+	{
 		// Arrange
 		const string tooltipText = "This is helpful information";
 
@@ -35,7 +38,8 @@ public class TooltipTests : TestContext {
 	}
 
 	[Fact]
-	public void Tooltip_HasCorrectPositionClass_ForTop() {
+	public void Tooltip_HasCorrectPositionClass_ForTop()
+	{
 		// Act
 		var cut = RenderComponent<Tooltip>(parameters => parameters
 			.Add(p => p.Text, "Tooltip")
@@ -47,7 +51,8 @@ public class TooltipTests : TestContext {
 	}
 
 	[Fact]
-	public void Tooltip_HasCorrectPositionClass_ForBottom() {
+	public void Tooltip_HasCorrectPositionClass_ForBottom()
+	{
 		// Act
 		var cut = RenderComponent<Tooltip>(parameters => parameters
 			.Add(p => p.Text, "Tooltip")
@@ -59,7 +64,8 @@ public class TooltipTests : TestContext {
 	}
 
 	[Fact]
-	public void Tooltip_HasCorrectPositionClass_ForLeft() {
+	public void Tooltip_HasCorrectPositionClass_ForLeft()
+	{
 		// Act
 		var cut = RenderComponent<Tooltip>(parameters => parameters
 			.Add(p => p.Text, "Tooltip")
@@ -71,7 +77,8 @@ public class TooltipTests : TestContext {
 	}
 
 	[Fact]
-	public void Tooltip_HasCorrectPositionClass_ForRight() {
+	public void Tooltip_HasCorrectPositionClass_ForRight()
+	{
 		// Act
 		var cut = RenderComponent<Tooltip>(parameters => parameters
 			.Add(p => p.Text, "Tooltip")
@@ -83,7 +90,8 @@ public class TooltipTests : TestContext {
 	}
 
 	[Fact]
-	public void Tooltip_DefaultsToTopPosition() {
+	public void Tooltip_DefaultsToTopPosition()
+	{
 		// Act
 		var cut = RenderComponent<Tooltip>(parameters => parameters
 			.Add(p => p.Text, "Tooltip")
@@ -94,7 +102,8 @@ public class TooltipTests : TestContext {
 	}
 
 	[Fact]
-	public void Tooltip_HasProperAriaAttributes() {
+	public void Tooltip_HasProperAriaAttributes()
+	{
 		// Act
 		var cut = RenderComponent<Tooltip>(parameters => parameters
 			.Add(p => p.Text, "Tooltip text")
@@ -105,7 +114,8 @@ public class TooltipTests : TestContext {
 	}
 
 	[Fact]
-	public void Tooltip_WrapperHasTabIndex() {
+	public void Tooltip_WrapperHasTabIndex()
+	{
 		// Act
 		var cut = RenderComponent<Tooltip>(parameters => parameters
 			.Add(p => p.Text, "Tooltip")

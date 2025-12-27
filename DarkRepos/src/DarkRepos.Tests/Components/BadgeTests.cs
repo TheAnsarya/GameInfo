@@ -6,9 +6,11 @@ using static DarkRepos.Web.Components.Shared.Badge;
 
 namespace DarkRepos.Tests.Components;
 
-public class BadgeTests : TestContext {
+public class BadgeTests : TestContext
+{
 	[Fact]
-	public void Badge_RendersText() {
+	public void Badge_RendersText()
+	{
 		// Act
 		var cut = RenderComponent<Badge>(parameters => parameters
 			.Add(p => p.Text, "Test Badge"));
@@ -18,7 +20,8 @@ public class BadgeTests : TestContext {
 	}
 
 	[Fact]
-	public void Badge_RendersChildContent() {
+	public void Badge_RendersChildContent()
+	{
 		// Act
 		var cut = RenderComponent<Badge>(parameters => parameters
 			.AddChildContent("<strong>Custom</strong>"));
@@ -28,7 +31,8 @@ public class BadgeTests : TestContext {
 	}
 
 	[Fact]
-	public void Badge_HasDefaultVariantClass() {
+	public void Badge_HasDefaultVariantClass()
+	{
 		// Act
 		var cut = RenderComponent<Badge>(parameters => parameters
 			.Add(p => p.Text, "Default"));
@@ -44,7 +48,8 @@ public class BadgeTests : TestContext {
 	[InlineData(BadgeVariant.Warning, "badge--warning")]
 	[InlineData(BadgeVariant.Error, "badge--error")]
 	[InlineData(BadgeVariant.Info, "badge--info")]
-	public void Badge_AppliesVariantClass(BadgeVariant variant, string expectedClass) {
+	public void Badge_AppliesVariantClass(BadgeVariant variant, string expectedClass)
+	{
 		// Act
 		var cut = RenderComponent<Badge>(parameters => parameters
 			.Add(p => p.Text, "Test")
@@ -57,7 +62,8 @@ public class BadgeTests : TestContext {
 	[Theory]
 	[InlineData(BadgeSize.Small, "badge--small")]
 	[InlineData(BadgeSize.Large, "badge--large")]
-	public void Badge_AppliesSizeClass(BadgeSize size, string expectedClass) {
+	public void Badge_AppliesSizeClass(BadgeSize size, string expectedClass)
+	{
 		// Act
 		var cut = RenderComponent<Badge>(parameters => parameters
 			.Add(p => p.Text, "Test")
@@ -68,7 +74,8 @@ public class BadgeTests : TestContext {
 	}
 
 	[Fact]
-	public void Badge_MediumSizeHasNoSizeClass() {
+	public void Badge_MediumSizeHasNoSizeClass()
+	{
 		// Act
 		var cut = RenderComponent<Badge>(parameters => parameters
 			.Add(p => p.Text, "Test")
@@ -81,7 +88,8 @@ public class BadgeTests : TestContext {
 	}
 
 	[Fact]
-	public void Badge_ShowsDismissButton_WhenDismissible() {
+	public void Badge_ShowsDismissButton_WhenDismissible()
+	{
 		// Act
 		var cut = RenderComponent<Badge>(parameters => parameters
 			.Add(p => p.Text, "Dismissible")
@@ -92,7 +100,8 @@ public class BadgeTests : TestContext {
 	}
 
 	[Fact]
-	public void Badge_DismissButton_InvokesCallback() {
+	public void Badge_DismissButton_InvokesCallback()
+	{
 		// Arrange
 		var dismissed = false;
 
@@ -109,7 +118,8 @@ public class BadgeTests : TestContext {
 	}
 
 	[Fact]
-	public void Badge_AppliesCustomCssClass() {
+	public void Badge_AppliesCustomCssClass()
+	{
 		// Act
 		var cut = RenderComponent<Badge>(parameters => parameters
 			.Add(p => p.Text, "Custom")

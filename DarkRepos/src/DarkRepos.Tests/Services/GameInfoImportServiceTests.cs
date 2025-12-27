@@ -6,11 +6,13 @@ using Xunit;
 
 namespace DarkRepos.Tests.Services;
 
-public class GameInfoImportServiceTests {
+public class GameInfoImportServiceTests
+{
 	private readonly IMarkdownService _markdownService;
 	private readonly GameInfoImportService _sut;
 
-	public GameInfoImportServiceTests() {
+	public GameInfoImportServiceTests()
+	{
 		_markdownService = Substitute.For<IMarkdownService>();
 		_markdownService.ParseFrontMatter(Arg.Any<string>())
 			.Returns((new Dictionary<string, string>(), "content"));
@@ -24,7 +26,8 @@ public class GameInfoImportServiceTests {
 	[InlineData("Final Fantasy IV (SNES)", "final-fantasy-iv-snes", "Final Fantasy IV", Platform.SNES)]
 	[InlineData("Pokemon Red (GB)", "pokemon-red-gb", "Pokemon Red", Platform.GB)]
 	[InlineData("Sonic the Hedgehog (Genesis)", "sonic-the-hedgehog-genesis", "Sonic the Hedgehog", Platform.Genesis)]
-	public void ParseGameFolder_ParenthesesFormat_ParsesCorrectly(string folderName, string expectedSlug, string expectedTitle, Platform expectedPlatform) {
+	public void ParseGameFolder_ParenthesesFormat_ParsesCorrectly(string folderName, string expectedSlug, string expectedTitle, Platform expectedPlatform)
+	{
 		// Act
 		var result = _sut.ParseGameFolder(folderName);
 
@@ -39,7 +42,8 @@ public class GameInfoImportServiceTests {
 	[InlineData("dragon-warrior-nes", "dragon-warrior-nes", "Dragon Warrior", Platform.NES)]
 	[InlineData("final-fantasy-snes", "final-fantasy-snes", "Final Fantasy", Platform.SNES)]
 	[InlineData("ffmq-snes", "ffmq-snes", "Ffmq", Platform.SNES)]
-	public void ParseGameFolder_KebabFormat_ParsesCorrectly(string folderName, string expectedSlug, string expectedTitle, Platform expectedPlatform) {
+	public void ParseGameFolder_KebabFormat_ParsesCorrectly(string folderName, string expectedSlug, string expectedTitle, Platform expectedPlatform)
+	{
 		// Act
 		var result = _sut.ParseGameFolder(folderName);
 
@@ -54,7 +58,8 @@ public class GameInfoImportServiceTests {
 	[InlineData("invalid-folder")]
 	[InlineData("NoParensNoPlatform")]
 	[InlineData("Game (UNKNOWN)")]
-	public void ParseGameFolder_InvalidFormat_ReturnsNull(string folderName) {
+	public void ParseGameFolder_InvalidFormat_ReturnsNull(string folderName)
+	{
 		// Act
 		var result = _sut.ParseGameFolder(folderName);
 
@@ -71,7 +76,8 @@ public class GameInfoImportServiceTests {
 	[InlineData("Genesis", Platform.Genesis)]
 	[InlineData("MEGADRIVE", Platform.Genesis)]
 	[InlineData("PSX", Platform.PlayStation)]
-	public void ParseGameFolder_DifferentPlatformFormats_ParsesCorrectly(string platformStr, Platform expectedPlatform) {
+	public void ParseGameFolder_DifferentPlatformFormats_ParsesCorrectly(string platformStr, Platform expectedPlatform)
+	{
 		// Act
 		var result = _sut.ParseGameFolder($"Test Game ({platformStr})");
 
@@ -81,7 +87,8 @@ public class GameInfoImportServiceTests {
 	}
 
 	[Fact]
-	public void ParseGameFolder_WithSpecialCharacters_GeneratesCleanSlug() {
+	public void ParseGameFolder_WithSpecialCharacters_GeneratesCleanSlug()
+	{
 		// Act
 		var result = _sut.ParseGameFolder("Dragon's Crown: Legends & Heroes (SNES)");
 
@@ -94,7 +101,8 @@ public class GameInfoImportServiceTests {
 	}
 
 	[Fact]
-	public void ParseGameFolder_WithExtraSpaces_TrimsCorrectly() {
+	public void ParseGameFolder_WithExtraSpaces_TrimsCorrectly()
+	{
 		// Act
 		var result = _sut.ParseGameFolder("  Dragon Warrior  ( NES )  ");
 
@@ -103,7 +111,8 @@ public class GameInfoImportServiceTests {
 	}
 
 	[Fact]
-	public void ParseGameFolder_CaseInsensitivePlatform_ParsesCorrectly() {
+	public void ParseGameFolder_CaseInsensitivePlatform_ParsesCorrectly()
+	{
 		// Act
 		var result = _sut.ParseGameFolder("Dragon Warrior (nes)");
 
@@ -113,11 +122,13 @@ public class GameInfoImportServiceTests {
 	}
 
 	[Fact]
-	public async Task DiscoverDocumentedGamesAsync_SkipsNonGameFolders() {
+	public async Task DiscoverDocumentedGamesAsync_SkipsNonGameFolders()
+	{
 		// Arrange - create temp directory structure
 		var tempDir = Path.Combine(Path.GetTempPath(), "DarkReposTest_" + Guid.NewGuid().ToString("N"));
 		Directory.CreateDirectory(tempDir);
-		try {
+		try
+		{
 			// Create non-game folders
 			Directory.CreateDirectory(Path.Combine(tempDir, "formats"));
 			Directory.CreateDirectory(Path.Combine(tempDir, "guides"));
@@ -131,17 +142,21 @@ public class GameInfoImportServiceTests {
 			// Assert
 			result.Should().HaveCount(1);
 			result[0].Slug.Should().Be("dragon-warrior-nes");
-		} finally {
+		}
+		finally
+		{
 			Directory.Delete(tempDir, true);
 		}
 	}
 
 	[Fact]
-	public async Task DiscoverGamesAsync_DiscoversPlatformFolders() {
+	public async Task DiscoverGamesAsync_DiscoversPlatformFolders()
+	{
 		// Arrange
 		var tempDir = Path.Combine(Path.GetTempPath(), "DarkReposTest_" + Guid.NewGuid().ToString("N"));
 		Directory.CreateDirectory(tempDir);
-		try {
+		try
+		{
 			// Create platform structure
 			var nesDir = Path.Combine(tempDir, "NES");
 			Directory.CreateDirectory(nesDir);
@@ -158,17 +173,21 @@ public class GameInfoImportServiceTests {
 			result.Should().HaveCount(2);
 			result.Should().Contain(g => g.Platform == Platform.NES);
 			result.Should().Contain(g => g.Platform == Platform.SNES);
-		} finally {
+		}
+		finally
+		{
 			Directory.Delete(tempDir, true);
 		}
 	}
 
 	[Fact]
-	public async Task DiscoverGamesAsync_DetectsWikiResources() {
+	public async Task DiscoverGamesAsync_DetectsWikiResources()
+	{
 		// Arrange
 		var tempDir = Path.Combine(Path.GetTempPath(), "DarkReposTest_" + Guid.NewGuid().ToString("N"));
 		Directory.CreateDirectory(tempDir);
-		try {
+		try
+		{
 			var nesDir = Path.Combine(tempDir, "NES");
 			var gameDir = Path.Combine(nesDir, "Dragon Warrior (NES)");
 			var wikiDir = Path.Combine(gameDir, "Wiki");
@@ -190,17 +209,21 @@ public class GameInfoImportServiceTests {
 			result[0].Wiki.HasRomMap.Should().BeTrue();
 			result[0].Wiki.HasRamMap.Should().BeTrue();
 			result[0].Wiki.HasNotes.Should().BeTrue();
-		} finally {
+		}
+		finally
+		{
 			Directory.Delete(tempDir, true);
 		}
 	}
 
 	[Fact]
-	public async Task DiscoverDocumentedGamesAsync_ReadsDocumentationFiles() {
+	public async Task DiscoverDocumentedGamesAsync_ReadsDocumentationFiles()
+	{
 		// Arrange
 		var tempDir = Path.Combine(Path.GetTempPath(), "DarkReposTest_" + Guid.NewGuid().ToString("N"));
 		Directory.CreateDirectory(tempDir);
-		try {
+		try
+		{
 			var gameDir = Path.Combine(tempDir, "dragon-warrior-nes");
 			Directory.CreateDirectory(gameDir);
 
@@ -221,17 +244,21 @@ public class GameInfoImportServiceTests {
 			result[0].DocumentationPaths.Should().Contain("rom-map.md");
 			result[0].DocumentationPaths.Should().Contain("ram-map.md");
 			result[0].DocumentationPaths.Should().NotContain("README.md");
-		} finally {
+		}
+		finally
+		{
 			Directory.Delete(tempDir, true);
 		}
 	}
 
 	[Fact]
-	public async Task ImportGamesAsync_MergesGamesAndDocs() {
+	public async Task ImportGamesAsync_MergesGamesAndDocs()
+	{
 		// Arrange
 		var tempDir = Path.Combine(Path.GetTempPath(), "DarkReposTest_" + Guid.NewGuid().ToString("N"));
 		Directory.CreateDirectory(tempDir);
-		try {
+		try
+		{
 			// Create Games structure
 			var gamesDir = Path.Combine(tempDir, "Games");
 			var nesDir = Path.Combine(gamesDir, "NES");
@@ -254,13 +281,16 @@ public class GameInfoImportServiceTests {
 			var game = result[0];
 			game.Wiki.HasRomMap.Should().BeTrue();  // From Games folder
 			game.Wiki.HasRamMap.Should().BeTrue();  // From docs folder
-		} finally {
+		}
+		finally
+		{
 			Directory.Delete(tempDir, true);
 		}
 	}
 
 	[Fact]
-	public void ParseGameFolder_AlternativePlatformNames_Works() {
+	public void ParseGameFolder_AlternativePlatformNames_Works()
+	{
 		// Test alternative platform names
 		var tests = new[]
 		{
@@ -278,7 +308,8 @@ public class GameInfoImportServiceTests {
 			("Test (DC)", Platform.Dreamcast),
 		};
 
-		foreach (var (folderName, expectedPlatform) in tests) {
+		foreach (var (folderName, expectedPlatform) in tests)
+		{
 			var result = _sut.ParseGameFolder(folderName);
 			result.Should().NotBeNull($"{folderName} should parse");
 			result!.Platform.Should().Be(expectedPlatform, $"{folderName} should map to {expectedPlatform}");
@@ -286,11 +317,13 @@ public class GameInfoImportServiceTests {
 	}
 
 	[Fact]
-	public async Task DiscoverDocumentedGamesAsync_WithFrontMatter_EnrichesGame() {
+	public async Task DiscoverDocumentedGamesAsync_WithFrontMatter_EnrichesGame()
+	{
 		// Arrange
 		var tempDir = Path.Combine(Path.GetTempPath(), "DarkReposTest_" + Guid.NewGuid().ToString("N"));
 		Directory.CreateDirectory(tempDir);
-		try {
+		try
+		{
 			var gameDir = Path.Combine(tempDir, "dragon-warrior-nes");
 			Directory.CreateDirectory(gameDir);
 			await File.WriteAllTextAsync(Path.Combine(gameDir, "README.md"), "---\ndeveloper: Chunsoft\n---\n# DW");
@@ -305,7 +338,9 @@ public class GameInfoImportServiceTests {
 			// Assert
 			result.Should().HaveCount(1);
 			result[0].Developer.Should().Be("Chunsoft");
-		} finally {
+		}
+		finally
+		{
 			Directory.Delete(tempDir, true);
 		}
 	}

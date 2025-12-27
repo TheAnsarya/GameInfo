@@ -8,9 +8,11 @@ using static DarkRepos.Web.Components.Shared.Tabs;
 
 namespace DarkRepos.Tests.Components;
 
-public class TabsTests : TestContext {
+public class TabsTests : TestContext
+{
 	[Fact]
-	public void Tabs_RendersTabList() {
+	public void Tabs_RendersTabList()
+	{
 		// Arrange
 		var tabs = CreateTestTabs();
 
@@ -24,7 +26,8 @@ public class TabsTests : TestContext {
 	}
 
 	[Fact]
-	public void Tabs_RendersAllTabs() {
+	public void Tabs_RendersAllTabs()
+	{
 		// Arrange
 		var tabs = CreateTestTabs();
 
@@ -38,7 +41,8 @@ public class TabsTests : TestContext {
 	}
 
 	[Fact]
-	public void Tabs_FirstTabIsActiveByDefault() {
+	public void Tabs_FirstTabIsActiveByDefault()
+	{
 		// Arrange
 		var tabs = CreateTestTabs();
 
@@ -52,7 +56,8 @@ public class TabsTests : TestContext {
 	}
 
 	[Fact]
-	public void Tabs_ShowsCorrectPanelContent() {
+	public void Tabs_ShowsCorrectPanelContent()
+	{
 		// Arrange
 		var tabs = CreateTestTabs();
 
@@ -66,7 +71,8 @@ public class TabsTests : TestContext {
 	}
 
 	[Fact]
-	public void Tabs_HasAriaLabel() {
+	public void Tabs_HasAriaLabel()
+	{
 		// Arrange
 		var tabs = CreateTestTabs();
 
@@ -80,7 +86,8 @@ public class TabsTests : TestContext {
 	}
 
 	[Fact]
-	public void Tabs_TabHasAriaSelected() {
+	public void Tabs_TabHasAriaSelected()
+	{
 		// Arrange
 		var tabs = CreateTestTabs();
 
@@ -94,7 +101,8 @@ public class TabsTests : TestContext {
 	}
 
 	[Fact]
-	public void Tabs_InactiveTabsHaveAriaSelectedFalse() {
+	public void Tabs_InactiveTabsHaveAriaSelectedFalse()
+	{
 		// Arrange
 		var tabs = CreateTestTabs();
 
@@ -104,13 +112,15 @@ public class TabsTests : TestContext {
 
 		// Assert
 		var inactiveTabs = cut.FindAll("[role='tab']:not(.active)");
-		foreach (var tab in inactiveTabs) {
+		foreach (var tab in inactiveTabs)
+		{
 			tab.GetAttribute("aria-selected").Should().Be("false");
 		}
 	}
 
 	[Fact]
-	public void Tabs_PanelHasAriaLabelledby() {
+	public void Tabs_PanelHasAriaLabelledby()
+	{
 		// Arrange
 		var tabs = CreateTestTabs();
 
@@ -123,7 +133,8 @@ public class TabsTests : TestContext {
 		panel.GetAttribute("aria-labelledby").Should().StartWith("tab-");
 	}
 
-	private static List<TabItem> CreateTestTabs() {
+	private static List<TabItem> CreateTestTabs()
+	{
 		return [
 			new() { Label = "Tab 1", Content = (RenderTreeBuilder builder) => builder.AddContent(0, "Content 1") },
 			new() { Label = "Tab 2", Content = (RenderTreeBuilder builder) => builder.AddContent(0, "Content 2") },

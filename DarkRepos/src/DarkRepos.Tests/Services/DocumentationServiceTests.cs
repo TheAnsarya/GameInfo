@@ -4,19 +4,22 @@ using NSubstitute;
 
 namespace DarkRepos.Tests.Services;
 
-public class DocumentationServiceTests : IDisposable {
+public class DocumentationServiceTests : IDisposable
+{
 	private readonly IMarkdownService _markdownService;
 	private readonly DocumentationService _service;
 	private readonly string _testDocsPath;
 
-	public DocumentationServiceTests() {
+	public DocumentationServiceTests()
+	{
 		_markdownService = Substitute.For<IMarkdownService>();
 		_testDocsPath = Path.Combine(Path.GetTempPath(), "darkrepos-test-docs-" + Guid.NewGuid().ToString("N"));
 		Directory.CreateDirectory(_testDocsPath);
 
 		// Setup default markdown service behavior
 		_markdownService.ToHtml(Arg.Any<string>()).Returns(x => $"<p>{x.Arg<string>()}</p>");
-		_markdownService.ExtractTitle(Arg.Any<string>()).Returns(x => {
+		_markdownService.ExtractTitle(Arg.Any<string>()).Returns(x =>
+		{
 			var md = x.Arg<string>();
 			var firstLine = md.Split('\n').FirstOrDefault(l => l.StartsWith("# "));
 			return firstLine?[2..].Trim();
@@ -29,18 +32,24 @@ public class DocumentationServiceTests : IDisposable {
 		_service = new DocumentationService(_markdownService, _testDocsPath, null);
 	}
 
-	public void Dispose() {
-		try {
-			if (Directory.Exists(_testDocsPath)) {
+	public void Dispose()
+	{
+		try
+		{
+			if (Directory.Exists(_testDocsPath))
+			{
 				Directory.Delete(_testDocsPath, true);
 			}
-		} catch {
+		}
+		catch
+		{
 			// Ignore cleanup errors
 		}
 	}
 
 	[Fact]
-	public async Task GetPageAsync_ExistingPage_ReturnsPage() {
+	public async Task GetPageAsync_ExistingPage_ReturnsPage()
+	{
 		// Arrange
 		var markdown = "# Test Page\n\nThis is test content.";
 		File.WriteAllText(Path.Combine(_testDocsPath, "test-page.md"), markdown);
@@ -55,7 +64,8 @@ public class DocumentationServiceTests : IDisposable {
 	}
 
 	[Fact]
-	public async Task GetPageAsync_NonExistentPage_ReturnsNull() {
+	public async Task GetPageAsync_NonExistentPage_ReturnsNull()
+	{
 		// Act
 		var result = await _service.GetPageAsync("nonexistent");
 
@@ -64,7 +74,8 @@ public class DocumentationServiceTests : IDisposable {
 	}
 
 	[Fact]
-	public async Task GetPageAsync_NestedPath_ReturnsPage() {
+	public async Task GetPageAsync_NestedPath_ReturnsPage()
+	{
 		// Arrange
 		var categoryPath = Path.Combine(_testDocsPath, "guides");
 		Directory.CreateDirectory(categoryPath);
@@ -80,7 +91,8 @@ public class DocumentationServiceTests : IDisposable {
 	}
 
 	[Fact]
-	public async Task GetPageAsync_DirectoryWithReadme_ReturnsReadme() {
+	public async Task GetPageAsync_DirectoryWithReadme_ReturnsReadme()
+	{
 		// Arrange
 		var categoryPath = Path.Combine(_testDocsPath, "formats");
 		Directory.CreateDirectory(categoryPath);
@@ -95,7 +107,8 @@ public class DocumentationServiceTests : IDisposable {
 	}
 
 	[Fact]
-	public async Task GetCategoryPagesAsync_ExistingCategory_ReturnsPages() {
+	public async Task GetCategoryPagesAsync_ExistingCategory_ReturnsPages()
+	{
 		// Arrange
 		var categoryPath = Path.Combine(_testDocsPath, "guides");
 		Directory.CreateDirectory(categoryPath);
@@ -110,7 +123,8 @@ public class DocumentationServiceTests : IDisposable {
 	}
 
 	[Fact]
-	public async Task GetCategoryPagesAsync_NonExistentCategory_ReturnsEmpty() {
+	public async Task GetCategoryPagesAsync_NonExistentCategory_ReturnsEmpty()
+	{
 		// Act
 		var result = await _service.GetCategoryPagesAsync("nonexistent");
 
@@ -119,7 +133,8 @@ public class DocumentationServiceTests : IDisposable {
 	}
 
 	[Fact]
-	public async Task GetTableOfContentsAsync_WithCategories_ReturnsStructure() {
+	public async Task GetTableOfContentsAsync_WithCategories_ReturnsStructure()
+	{
 		// Arrange
 		var guidesPath = Path.Combine(_testDocsPath, "guides");
 		Directory.CreateDirectory(guidesPath);
@@ -138,7 +153,8 @@ public class DocumentationServiceTests : IDisposable {
 	}
 
 	[Fact]
-	public async Task GetTableOfContentsAsync_IgnoresHiddenDirectories() {
+	public async Task GetTableOfContentsAsync_IgnoresHiddenDirectories()
+	{
 		// Arrange
 		Directory.CreateDirectory(Path.Combine(_testDocsPath, ".hidden"));
 		Directory.CreateDirectory(Path.Combine(_testDocsPath, "_private"));
@@ -157,7 +173,8 @@ public class DocumentationServiceTests : IDisposable {
 	}
 
 	[Fact]
-	public async Task SearchAsync_MatchingContent_ReturnsResults() {
+	public async Task SearchAsync_MatchingContent_ReturnsResults()
+	{
 		// Arrange
 		File.WriteAllText(Path.Combine(_testDocsPath, "search-test.md"), "# Search Test\n\nThis contains searchable content.");
 
@@ -170,7 +187,8 @@ public class DocumentationServiceTests : IDisposable {
 	}
 
 	[Fact]
-	public async Task SearchAsync_NoMatch_ReturnsEmpty() {
+	public async Task SearchAsync_NoMatch_ReturnsEmpty()
+	{
 		// Arrange
 		File.WriteAllText(Path.Combine(_testDocsPath, "test.md"), "# Test\n\nSome content here.");
 
@@ -182,7 +200,8 @@ public class DocumentationServiceTests : IDisposable {
 	}
 
 	[Fact]
-	public async Task SearchAsync_EmptyQuery_ReturnsEmpty() {
+	public async Task SearchAsync_EmptyQuery_ReturnsEmpty()
+	{
 		// Act
 		var result = await _service.SearchAsync("");
 
@@ -191,13 +210,15 @@ public class DocumentationServiceTests : IDisposable {
 	}
 
 	[Fact]
-	public async Task GetPageAsync_WithFrontMatter_UsesMetadata() {
+	public async Task GetPageAsync_WithFrontMatter_UsesMetadata()
+	{
 		// Arrange
 		var markdown = "---\ntitle: Custom Title\ndescription: Custom description\n---\n\n# Heading";
 		File.WriteAllText(Path.Combine(_testDocsPath, "frontmatter.md"), markdown);
 
 		_markdownService.ParseFrontMatter(Arg.Any<string>())
-			.Returns((new Dictionary<string, string> {
+			.Returns((new Dictionary<string, string>
+			{
 				["title"] = "Custom Title",
 				["description"] = "Custom description"
 			}, "# Heading"));
@@ -213,7 +234,8 @@ public class DocumentationServiceTests : IDisposable {
 	}
 
 	[Fact]
-	public async Task GetPageAsync_WithHeadings_IncludesTableOfContents() {
+	public async Task GetPageAsync_WithHeadings_IncludesTableOfContents()
+	{
 		// Arrange
 		var markdown = "# Main\n## Section 1\n## Section 2";
 		File.WriteAllText(Path.Combine(_testDocsPath, "headings.md"), markdown);
@@ -235,7 +257,8 @@ public class DocumentationServiceTests : IDisposable {
 	}
 
 	[Fact]
-	public async Task GetPageAsync_SetsLastModified() {
+	public async Task GetPageAsync_SetsLastModified()
+	{
 		// Arrange
 		var filePath = Path.Combine(_testDocsPath, "dated.md");
 		File.WriteAllText(filePath, "# Test");
@@ -250,7 +273,8 @@ public class DocumentationServiceTests : IDisposable {
 	}
 
 	[Fact]
-	public async Task GetTableOfContentsAsync_CategoryHasCorrectInfo() {
+	public async Task GetTableOfContentsAsync_CategoryHasCorrectInfo()
+	{
 		// Arrange
 		var guidesPath = Path.Combine(_testDocsPath, "guides");
 		Directory.CreateDirectory(guidesPath);
@@ -267,7 +291,8 @@ public class DocumentationServiceTests : IDisposable {
 	}
 
 	[Fact]
-	public async Task SearchAsync_CaseInsensitive() {
+	public async Task SearchAsync_CaseInsensitive()
+	{
 		// Arrange
 		File.WriteAllText(Path.Combine(_testDocsPath, "case-test.md"), "# UPPERCASE Content");
 
