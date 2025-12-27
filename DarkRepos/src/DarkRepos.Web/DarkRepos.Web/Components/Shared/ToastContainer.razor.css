@@ -9,7 +9,7 @@
 	pointer-events: none;
 }
 
-.toast-container > :deep(.toast) {
+.toast-container> :deep(.toast) {
 	pointer-events: auto;
 }
 
@@ -20,7 +20,7 @@
 		right: 1rem;
 	}
 
-	.toast-container > :deep(.toast) {
+	.toast-container> :deep(.toast) {
 		min-width: auto;
 		max-width: none;
 	}

@@ -136,8 +136,8 @@
 	margin-bottom: var(--space-2);
 }
 
-.prose li > ul,
-.prose li > ol {
+.prose li>ul,
+.prose li>ol {
 	margin-top: var(--space-2);
 	margin-bottom: 0;
 }
@@ -219,6 +219,7 @@
 .prose h6[id] {
 	scroll-margin-top: calc(var(--header-height) + var(--space-4));
 }
+
 /* Documentation search box */
 .docs-search-box {
 	max-width: 600px;

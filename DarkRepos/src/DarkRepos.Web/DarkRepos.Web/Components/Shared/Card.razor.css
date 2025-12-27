@@ -87,11 +87,11 @@
 	padding: 1rem;
 }
 
-.card-body > *:first-child {
+.card-body>*:first-child {
 	margin-top: 0;
 }
 
-.card-body > *:last-child {
+.card-body>*:last-child {
 	margin-bottom: 0;
 }
 
@@ -113,6 +113,7 @@
 
 /* Responsive */
 @media (max-width: 640px) {
+
 	.card-header,
 	.card-body,
 	.card-footer {

@@ -80,7 +80,7 @@
 	margin: 0;
 }
 
-.alert-message p + p {
+.alert-message p+p {
 	margin-top: 0.5rem;
 }
 
