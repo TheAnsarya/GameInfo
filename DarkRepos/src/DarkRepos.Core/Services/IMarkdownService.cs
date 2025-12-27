@@ -3,8 +3,7 @@ namespace DarkRepos.Core.Services;
 /// <summary>
 /// Service for parsing and rendering Markdown content.
 /// </summary>
-public interface IMarkdownService
-{
+public interface IMarkdownService {
 	/// <summary>
 	/// Converts Markdown text to HTML.
 	/// </summary>
@@ -60,8 +59,7 @@ public interface IMarkdownService
 /// <summary>
 /// Options for Markdown rendering.
 /// </summary>
-public class MarkdownRenderOptions
-{
+public class MarkdownRenderOptions {
 	/// <summary>
 	/// Whether to enable syntax highlighting for code blocks.
 	/// </summary>

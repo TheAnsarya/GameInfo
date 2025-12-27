@@ -9,19 +9,16 @@ using Xunit;
 
 namespace DarkRepos.Tests.Components;
 
-public class SearchBoxWithSuggestionsTests : TestContext
-{
+public class SearchBoxWithSuggestionsTests : TestContext {
 	private readonly Mock<ISearchService> _mockSearchService;
 
-	public SearchBoxWithSuggestionsTests()
-	{
+	public SearchBoxWithSuggestionsTests() {
 		_mockSearchService = new Mock<ISearchService>();
 		Services.AddSingleton(_mockSearchService.Object);
 	}
 
 	[Fact]
-	public void SearchBox_RendersInput()
-	{
+	public void SearchBox_RendersInput() {
 		// Act
 		var cut = RenderComponent<SearchBoxWithSuggestions>();
 
@@ -30,8 +27,7 @@ public class SearchBoxWithSuggestionsTests : TestContext
 	}
 
 	[Fact]
-	public void SearchBox_RendersSearchButton()
-	{
+	public void SearchBox_RendersSearchButton() {
 		// Act
 		var cut = RenderComponent<SearchBoxWithSuggestions>();
 
@@ -42,8 +38,7 @@ public class SearchBoxWithSuggestionsTests : TestContext
 	}
 
 	[Fact]
-	public void SearchBox_AppliesPlaceholder()
-	{
+	public void SearchBox_AppliesPlaceholder() {
 		// Arrange
 		var placeholder = "Search for games...";
 
@@ -56,8 +51,7 @@ public class SearchBoxWithSuggestionsTests : TestContext
 	}
 
 	[Fact]
-	public void SearchBox_AppliesLargeClass_WhenLargeTrue()
-	{
+	public void SearchBox_AppliesLargeClass_WhenLargeTrue() {
 		// Act
 		var cut = RenderComponent<SearchBoxWithSuggestions>(parameters => parameters
 			.Add(p => p.Large, true));
@@ -67,8 +61,7 @@ public class SearchBoxWithSuggestionsTests : TestContext
 	}
 
 	[Fact]
-	public void SearchBox_AppliesExpandedClass_WhenExpandedTrue()
-	{
+	public void SearchBox_AppliesExpandedClass_WhenExpandedTrue() {
 		// Act
 		var cut = RenderComponent<SearchBoxWithSuggestions>(parameters => parameters
 			.Add(p => p.Expanded, true));
@@ -78,8 +71,7 @@ public class SearchBoxWithSuggestionsTests : TestContext
 	}
 
 	[Fact]
-	public void SearchBox_ShowsShortcut_WhenShowShortcutTrue()
-	{
+	public void SearchBox_ShowsShortcut_WhenShowShortcutTrue() {
 		// Act
 		var cut = RenderComponent<SearchBoxWithSuggestions>(parameters => parameters
 			.Add(p => p.ShowShortcut, true)
@@ -92,8 +84,7 @@ public class SearchBoxWithSuggestionsTests : TestContext
 	}
 
 	[Fact]
-	public void SearchBox_HasAccessibilityAttributes()
-	{
+	public void SearchBox_HasAccessibilityAttributes() {
 		// Act
 		var cut = RenderComponent<SearchBoxWithSuggestions>();
 
@@ -105,8 +96,7 @@ public class SearchBoxWithSuggestionsTests : TestContext
 	}
 
 	[Fact]
-	public void SearchBox_DoesNotShowSuggestions_Initially()
-	{
+	public void SearchBox_DoesNotShowSuggestions_Initially() {
 		// Act
 		var cut = RenderComponent<SearchBoxWithSuggestions>();
 
@@ -116,8 +106,7 @@ public class SearchBoxWithSuggestionsTests : TestContext
 	}
 
 	[Fact]
-	public async Task SearchBox_FetchesSuggestions_OnInput()
-	{
+	public async Task SearchBox_FetchesSuggestions_OnInput() {
 		// Arrange
 		var suggestions = new List<string> { "Dragon Warrior", "Dragon Quest" };
 		_mockSearchService
@@ -142,8 +131,7 @@ public class SearchBoxWithSuggestionsTests : TestContext
 	}
 
 	[Fact]
-	public async Task SearchBox_DoesNotFetchSuggestions_WhenQueryTooShort()
-	{
+	public async Task SearchBox_DoesNotFetchSuggestions_WhenQueryTooShort() {
 		// Arrange
 		_mockSearchService
 			.Setup(s => s.GetSuggestionsAsync(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<CancellationToken>()))
@@ -165,8 +153,7 @@ public class SearchBoxWithSuggestionsTests : TestContext
 	}
 
 	[Fact]
-	public void SearchBox_InvokesQueryChanged_OnInput()
-	{
+	public void SearchBox_InvokesQueryChanged_OnInput() {
 		// Arrange
 		var changedValue = "";
 		var cut = RenderComponent<SearchBoxWithSuggestions>(parameters => parameters
@@ -181,8 +168,7 @@ public class SearchBoxWithSuggestionsTests : TestContext
 	}
 
 	[Fact]
-	public void SearchBox_InvokesOnSearch_OnEnterKey()
-	{
+	public void SearchBox_InvokesOnSearch_OnEnterKey() {
 		// Arrange
 		var searchValue = "";
 		var cut = RenderComponent<SearchBoxWithSuggestions>(parameters => parameters
@@ -198,8 +184,7 @@ public class SearchBoxWithSuggestionsTests : TestContext
 	}
 
 	[Fact]
-	public void SearchBox_InvokesOnSearch_OnButtonClick()
-	{
+	public void SearchBox_InvokesOnSearch_OnButtonClick() {
 		// Arrange
 		var searchValue = "";
 		var cut = RenderComponent<SearchBoxWithSuggestions>(parameters => parameters
@@ -214,8 +199,7 @@ public class SearchBoxWithSuggestionsTests : TestContext
 	}
 
 	[Fact]
-	public void SearchBox_HidesSuggestions_OnEscape()
-	{
+	public void SearchBox_HidesSuggestions_OnEscape() {
 		// Arrange
 		var suggestions = new List<string> { "Test 1", "Test 2" };
 		_mockSearchService

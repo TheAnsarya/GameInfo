@@ -5,11 +5,9 @@ using Xunit;
 
 namespace DarkRepos.Tests.Components;
 
-public class EmptyStateTests : TestContext
-{
+public class EmptyStateTests : TestContext {
 	[Fact]
-	public void EmptyState_DisplaysIcon()
-	{
+	public void EmptyState_DisplaysIcon() {
 		// Arrange
 		const string icon = "🎮";
 
@@ -23,8 +21,7 @@ public class EmptyStateTests : TestContext
 	}
 
 	[Fact]
-	public void EmptyState_DisplaysTitle()
-	{
+	public void EmptyState_DisplaysTitle() {
 		// Arrange
 		const string title = "No Games Found";
 
@@ -38,8 +35,7 @@ public class EmptyStateTests : TestContext
 	}
 
 	[Fact]
-	public void EmptyState_DisplaysMessage()
-	{
+	public void EmptyState_DisplaysMessage() {
 		// Arrange
 		const string message = "Try adjusting your search filters.";
 
@@ -54,8 +50,7 @@ public class EmptyStateTests : TestContext
 	}
 
 	[Fact]
-	public void EmptyState_RendersChildContent()
-	{
+	public void EmptyState_RendersChildContent() {
 		// Act
 		var cut = RenderComponent<EmptyState>(parameters => parameters
 			.Add(p => p.Icon, "📚")

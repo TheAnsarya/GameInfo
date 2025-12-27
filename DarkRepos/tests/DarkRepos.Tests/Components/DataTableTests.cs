@@ -6,8 +6,7 @@ using static DarkRepos.Web.Components.Shared.DataTable<DarkRepos.Tests.Component
 
 namespace DarkRepos.Tests.Components;
 
-public class DataTableTests : TestContext
-{
+public class DataTableTests : TestContext {
 	public record TestItem(int Id, string Name, decimal Price);
 
 	private static readonly List<TestItem> _testItems = [
@@ -23,8 +22,7 @@ public class DataTableTests : TestContext
 	];
 
 	[Fact]
-	public void DataTable_RendersAllItems()
-	{
+	public void DataTable_RendersAllItems() {
 		// Act
 		var cut = RenderComponent<DataTable<TestItem>>(parameters => parameters
 			.Add(p => p.Items, _testItems)
@@ -35,8 +33,7 @@ public class DataTableTests : TestContext
 	}
 
 	[Fact]
-	public void DataTable_RendersHeaders()
-	{
+	public void DataTable_RendersHeaders() {
 		// Act
 		var cut = RenderComponent<DataTable<TestItem>>(parameters => parameters
 			.Add(p => p.Items, _testItems)
@@ -51,8 +48,7 @@ public class DataTableTests : TestContext
 	}
 
 	[Fact]
-	public void DataTable_HidesHeaders_WhenShowHeaderFalse()
-	{
+	public void DataTable_HidesHeaders_WhenShowHeaderFalse() {
 		// Act
 		var cut = RenderComponent<DataTable<TestItem>>(parameters => parameters
 			.Add(p => p.Items, _testItems)
@@ -64,8 +60,7 @@ public class DataTableTests : TestContext
 	}
 
 	[Fact]
-	public void DataTable_ShowsEmptyMessage_WhenNoItems()
-	{
+	public void DataTable_ShowsEmptyMessage_WhenNoItems() {
 		// Act
 		var cut = RenderComponent<DataTable<TestItem>>(parameters => parameters
 			.Add(p => p.Items, Enumerable.Empty<TestItem>())
@@ -77,8 +72,7 @@ public class DataTableTests : TestContext
 	}
 
 	[Fact]
-	public void DataTable_HasGridRole()
-	{
+	public void DataTable_HasGridRole() {
 		// Act
 		var cut = RenderComponent<DataTable<TestItem>>(parameters => parameters
 			.Add(p => p.Items, _testItems)
@@ -89,8 +83,7 @@ public class DataTableTests : TestContext
 	}
 
 	[Fact]
-	public void DataTable_HasAriaLabel()
-	{
+	public void DataTable_HasAriaLabel() {
 		// Arrange
 		const string label = "Product list";
 
@@ -105,8 +98,7 @@ public class DataTableTests : TestContext
 	}
 
 	[Fact]
-	public void DataTable_SortableColumn_HasSortableClass()
-	{
+	public void DataTable_SortableColumn_HasSortableClass() {
 		// Arrange
 		var columns = new List<DataTableColumn<TestItem>> {
 			new() { Header = "Name", PropertyName = "Name", Sortable = true }
@@ -122,8 +114,7 @@ public class DataTableTests : TestContext
 	}
 
 	[Fact]
-	public void DataTable_IsScrollable_HasScrollableClass()
-	{
+	public void DataTable_IsScrollable_HasScrollableClass() {
 		// Act
 		var cut = RenderComponent<DataTable<TestItem>>(parameters => parameters
 			.Add(p => p.Items, _testItems)
@@ -135,8 +126,7 @@ public class DataTableTests : TestContext
 	}
 
 	[Fact]
-	public void DataTable_RendersCellValues()
-	{
+	public void DataTable_RendersCellValues() {
 		// Act
 		var cut = RenderComponent<DataTable<TestItem>>(parameters => parameters
 			.Add(p => p.Items, _testItems)

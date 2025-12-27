@@ -3,8 +3,7 @@ namespace DarkRepos.Core.Models;
 /// <summary>
 /// Represents a documented retro game in the Dark Repos catalog.
 /// </summary>
-public class Game
-{
+public class Game {
 	/// <summary>
 	/// URL-friendly unique identifier (e.g., "dragon-warrior-nes")
 	/// </summary>
@@ -99,8 +98,7 @@ public class Game
 /// <summary>
 /// Available wiki resources for a game
 /// </summary>
-public class WikiResources
-{
+public class WikiResources {
 	/// <summary>
 	/// Whether a ROM map exists
 	/// </summary>
@@ -135,8 +133,7 @@ public class WikiResources
 /// <summary>
 /// Gaming platform enumeration
 /// </summary>
-public enum Platform
-{
+public enum Platform {
 	Unknown = 0,
 	NES,
 	SNES,
@@ -163,8 +160,7 @@ public enum Platform
 /// <summary>
 /// Level of documentation completeness
 /// </summary>
-public enum DocumentationLevel
-{
+public enum DocumentationLevel {
 	/// <summary>No documentation available</summary>
 	None = 0,
 

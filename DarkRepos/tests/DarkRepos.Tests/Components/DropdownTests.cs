@@ -5,13 +5,11 @@ using Xunit;
 
 namespace DarkRepos.Tests.Components;
 
-public class DropdownTests : TestContext
-{
+public class DropdownTests : TestContext {
 	private readonly List<string> _items = ["Option 1", "Option 2", "Option 3"];
 
 	[Fact]
-	public void Dropdown_RendersPlaceholder_WhenNoSelection()
-	{
+	public void Dropdown_RendersPlaceholder_WhenNoSelection() {
 		// Act
 		var cut = RenderComponent<Dropdown<string>>(parameters => parameters
 			.Add(p => p.Items, _items)
@@ -22,8 +20,7 @@ public class DropdownTests : TestContext
 	}
 
 	[Fact]
-	public void Dropdown_RendersSelectedValue()
-	{
+	public void Dropdown_RendersSelectedValue() {
 		// Act
 		var cut = RenderComponent<Dropdown<string>>(parameters => parameters
 			.Add(p => p.Items, _items)
@@ -34,8 +31,7 @@ public class DropdownTests : TestContext
 	}
 
 	[Fact]
-	public void Dropdown_IsClosedByDefault()
-	{
+	public void Dropdown_IsClosedByDefault() {
 		// Act
 		var cut = RenderComponent<Dropdown<string>>(parameters => parameters
 			.Add(p => p.Items, _items));
@@ -45,8 +41,7 @@ public class DropdownTests : TestContext
 	}
 
 	[Fact]
-	public void Dropdown_OpensOnTriggerClick()
-	{
+	public void Dropdown_OpensOnTriggerClick() {
 		// Act
 		var cut = RenderComponent<Dropdown<string>>(parameters => parameters
 			.Add(p => p.Items, _items));
@@ -58,8 +53,7 @@ public class DropdownTests : TestContext
 	}
 
 	[Fact]
-	public void Dropdown_ShowsAllItems_WhenOpen()
-	{
+	public void Dropdown_ShowsAllItems_WhenOpen() {
 		// Act
 		var cut = RenderComponent<Dropdown<string>>(parameters => parameters
 			.Add(p => p.Items, _items)
@@ -71,8 +65,7 @@ public class DropdownTests : TestContext
 	}
 
 	[Fact]
-	public void Dropdown_HasAriaExpanded()
-	{
+	public void Dropdown_HasAriaExpanded() {
 		// Arrange
 		var cut = RenderComponent<Dropdown<string>>(parameters => parameters
 			.Add(p => p.Items, _items));
@@ -88,8 +81,7 @@ public class DropdownTests : TestContext
 	}
 
 	[Fact]
-	public void Dropdown_SelectsItem_OnClick()
-	{
+	public void Dropdown_SelectsItem_OnClick() {
 		// Arrange
 		string? selected = null;
 		var cut = RenderComponent<Dropdown<string>>(parameters => parameters
@@ -105,8 +97,7 @@ public class DropdownTests : TestContext
 	}
 
 	[Fact]
-	public void Dropdown_ClosesAfterSelection()
-	{
+	public void Dropdown_ClosesAfterSelection() {
 		// Arrange
 		var isOpen = true;
 		var cut = RenderComponent<Dropdown<string>>(parameters => parameters
@@ -122,8 +113,7 @@ public class DropdownTests : TestContext
 	}
 
 	[Fact]
-	public void Dropdown_SelectedItem_HasSelectedClass()
-	{
+	public void Dropdown_SelectedItem_HasSelectedClass() {
 		// Act
 		var cut = RenderComponent<Dropdown<string>>(parameters => parameters
 			.Add(p => p.Items, _items)
@@ -136,8 +126,7 @@ public class DropdownTests : TestContext
 	}
 
 	[Fact]
-	public void Dropdown_HasListboxRole()
-	{
+	public void Dropdown_HasListboxRole() {
 		// Act
 		var cut = RenderComponent<Dropdown<string>>(parameters => parameters
 			.Add(p => p.Items, _items)
@@ -148,23 +137,20 @@ public class DropdownTests : TestContext
 	}
 
 	[Fact]
-	public void Dropdown_ItemsHaveOptionRole()
-	{
+	public void Dropdown_ItemsHaveOptionRole() {
 		// Act
 		var cut = RenderComponent<Dropdown<string>>(parameters => parameters
 			.Add(p => p.Items, _items)
 			.Add(p => p.IsOpen, true));
 
 		// Assert
-		foreach (var item in cut.FindAll(".dropdown-item"))
-		{
+		foreach (var item in cut.FindAll(".dropdown-item")) {
 			item.GetAttribute("role").Should().Be("option");
 		}
 	}
 
 	[Fact]
-	public void Dropdown_HasOpenClass_WhenOpen()
-	{
+	public void Dropdown_HasOpenClass_WhenOpen() {
 		// Act
 		var cut = RenderComponent<Dropdown<string>>(parameters => parameters
 			.Add(p => p.Items, _items)
@@ -175,8 +161,7 @@ public class DropdownTests : TestContext
 	}
 
 	[Fact]
-	public void Dropdown_AppliesCustomCssClass()
-	{
+	public void Dropdown_AppliesCustomCssClass() {
 		// Act
 		var cut = RenderComponent<Dropdown<string>>(parameters => parameters
 			.Add(p => p.Items, _items)

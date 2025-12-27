@@ -5,8 +5,7 @@ namespace DarkRepos.Core.Services;
 /// <summary>
 /// Service for generating wiki links and wikitext content.
 /// </summary>
-public interface IWikiLinkService
-{
+public interface IWikiLinkService {
 	/// <summary>
 	/// Generates the wiki page URL for a game.
 	/// </summary>
@@ -84,8 +83,7 @@ public interface IWikiLinkService
 /// <summary>
 /// Types of wiki resources available for games.
 /// </summary>
-public enum WikiResourceType
-{
+public enum WikiResourceType {
 	Main,
 	RomMap,
 	RamMap,
@@ -97,20 +95,17 @@ public enum WikiResourceType
 /// <summary>
 /// Implementation of wiki link generation service.
 /// </summary>
-public class WikiLinkService : IWikiLinkService
-{
+public class WikiLinkService : IWikiLinkService {
 	private const string WikiBaseUrl = "https://games.darkrepos.com/wiki";
 
 	/// <inheritdoc />
-	public string GetWikiUrl(Game game)
-	{
+	public string GetWikiUrl(Game game) {
 		var pageName = ToWikiPageName(game.Title, game.Platform);
 		return $"{WikiBaseUrl}/{Uri.EscapeDataString(pageName)}";
 	}
 
 	/// <inheritdoc />
-	public string? GetRomMapUrl(Game game)
-	{
+	public string? GetRomMapUrl(Game game) {
 		if (!game.Wiki.HasRomMap)
 			return null;
 
@@ -119,8 +114,7 @@ public class WikiLinkService : IWikiLinkService
 	}
 
 	/// <inheritdoc />
-	public string? GetRamMapUrl(Game game)
-	{
+	public string? GetRamMapUrl(Game game) {
 		if (!game.Wiki.HasRamMap)
 			return null;
 
@@ -129,8 +123,7 @@ public class WikiLinkService : IWikiLinkService
 	}
 
 	/// <inheritdoc />
-	public string? GetDataStructuresUrl(Game game)
-	{
+	public string? GetDataStructuresUrl(Game game) {
 		if (!game.Wiki.HasDataStructures)
 			return null;
 
@@ -139,8 +132,7 @@ public class WikiLinkService : IWikiLinkService
 	}
 
 	/// <inheritdoc />
-	public string? GetSystemsUrl(Game game)
-	{
+	public string? GetSystemsUrl(Game game) {
 		if (!game.Wiki.HasSystems)
 			return null;
 
@@ -149,8 +141,7 @@ public class WikiLinkService : IWikiLinkService
 	}
 
 	/// <inheritdoc />
-	public string? GetNotesUrl(Game game)
-	{
+	public string? GetNotesUrl(Game game) {
 		if (!game.Wiki.HasNotes)
 			return null;
 
@@ -159,10 +150,8 @@ public class WikiLinkService : IWikiLinkService
 	}
 
 	/// <inheritdoc />
-	public Dictionary<WikiResourceType, string> GetAllWikiUrls(Game game)
-	{
-		var urls = new Dictionary<WikiResourceType, string>
-		{
+	public Dictionary<WikiResourceType, string> GetAllWikiUrls(Game game) {
+		var urls = new Dictionary<WikiResourceType, string> {
 			[WikiResourceType.Main] = GetWikiUrl(game)
 		};
 
@@ -190,8 +179,7 @@ public class WikiLinkService : IWikiLinkService
 	}
 
 	/// <inheritdoc />
-	public string GenerateWikiLink(string pageName, string? displayText = null)
-	{
+	public string GenerateWikiLink(string pageName, string? displayText = null) {
 		if (string.IsNullOrWhiteSpace(displayText) || displayText == pageName)
 			return $"[[{pageName}]]";
 
@@ -199,8 +187,7 @@ public class WikiLinkService : IWikiLinkService
 	}
 
 	/// <inheritdoc />
-	public string GenerateExternalLink(string url, string? displayText = null)
-	{
+	public string GenerateExternalLink(string url, string? displayText = null) {
 		if (string.IsNullOrWhiteSpace(displayText))
 			return $"[{url}]";
 
@@ -208,8 +195,7 @@ public class WikiLinkService : IWikiLinkService
 	}
 
 	/// <inheritdoc />
-	public string ToWikiPageName(string title, Platform platform)
-	{
+	public string ToWikiPageName(string title, Platform platform) {
 		// Format: "Game_Title_(Platform)"
 		// e.g., "Dragon_Warrior_(NES)", "Soul_Blazer_(SNES)"
 
@@ -226,8 +212,7 @@ public class WikiLinkService : IWikiLinkService
 	/// <summary>
 	/// Generates wikitext for a game info box.
 	/// </summary>
-	public string GenerateInfoBox(Game game)
-	{
+	public string GenerateInfoBox(Game game) {
 		var sb = new System.Text.StringBuilder();
 		sb.AppendLine("{{Infobox game");
 		sb.AppendLine($"|title = {game.Title}");
@@ -265,8 +250,7 @@ public class WikiLinkService : IWikiLinkService
 	/// <summary>
 	/// Generates wikitext for wiki resource navigation.
 	/// </summary>
-	public string GenerateResourceNavigation(Game game)
-	{
+	public string GenerateResourceNavigation(Game game) {
 		var pageName = ToWikiPageName(game.Title, game.Platform);
 		var sb = new System.Text.StringBuilder();
 
@@ -284,8 +268,7 @@ public class WikiLinkService : IWikiLinkService
 			("Notes", game.Wiki.HasNotes, "Notes")
 		};
 
-		foreach (var (name, available, suffix) in resources)
-		{
+		foreach (var (name, available, suffix) in resources) {
 			sb.AppendLine("|-");
 			var link = available
 				? $"[[{pageName}:{suffix}|{name}]]"
@@ -302,8 +285,7 @@ public class WikiLinkService : IWikiLinkService
 	/// <summary>
 	/// Generates a category tag for a game.
 	/// </summary>
-	public string GenerateCategory(Game game)
-	{
+	public string GenerateCategory(Game game) {
 		var categories = new List<string>
 		{
 			$"[[Category:{game.Platform} games]]"
@@ -321,19 +303,16 @@ public class WikiLinkService : IWikiLinkService
 		return string.Join("\n", categories);
 	}
 
-	private static string NormalizeForWiki(string input)
-	{
+	private static string NormalizeForWiki(string input) {
 		// Remove characters that are problematic in wiki page names
 		var invalidChars = new[] { '[', ']', '{', '}', '|', '#', '<', '>' };
 
-		foreach (var c in invalidChars)
-		{
+		foreach (var c in invalidChars) {
 			input = input.Replace(c.ToString(), "");
 		}
 
 		// Convert multiple underscores to single
-		while (input.Contains("__"))
-		{
+		while (input.Contains("__")) {
 			input = input.Replace("__", "_");
 		}
 

@@ -6,11 +6,9 @@ using Xunit;
 
 namespace DarkRepos.Tests.Components;
 
-public class CardTests : TestContext
-{
+public class CardTests : TestContext {
 	[Fact]
-	public void Card_RendersChildContent()
-	{
+	public void Card_RendersChildContent() {
 		// Act
 		var cut = RenderComponent<Card>(parameters => parameters
 			.AddChildContent("<p>Card content</p>"));
@@ -20,8 +18,7 @@ public class CardTests : TestContext
 	}
 
 	[Fact]
-	public void Card_RendersTitle()
-	{
+	public void Card_RendersTitle() {
 		// Act
 		var cut = RenderComponent<Card>(parameters => parameters
 			.Add(p => p.Title, "Card Title")
@@ -32,8 +29,7 @@ public class CardTests : TestContext
 	}
 
 	[Fact]
-	public void Card_RendersSubtitle()
-	{
+	public void Card_RendersSubtitle() {
 		// Act
 		var cut = RenderComponent<Card>(parameters => parameters
 			.Add(p => p.Title, "Title")
@@ -45,8 +41,7 @@ public class CardTests : TestContext
 	}
 
 	[Fact]
-	public void Card_RendersHeader_WhenTitleProvided()
-	{
+	public void Card_RendersHeader_WhenTitleProvided() {
 		// Act
 		var cut = RenderComponent<Card>(parameters => parameters
 			.Add(p => p.Title, "Title")
@@ -57,8 +52,7 @@ public class CardTests : TestContext
 	}
 
 	[Fact]
-	public void Card_DoesNotRenderHeader_WhenNoTitleOrHeaderContent()
-	{
+	public void Card_DoesNotRenderHeader_WhenNoTitleOrHeaderContent() {
 		// Act
 		var cut = RenderComponent<Card>(parameters => parameters
 			.AddChildContent("Content only"));
@@ -68,8 +62,7 @@ public class CardTests : TestContext
 	}
 
 	[Fact]
-	public void Card_RendersFooter_WhenFooterContentProvided()
-	{
+	public void Card_RendersFooter_WhenFooterContentProvided() {
 		// Arrange
 		RenderFragment footerContent = builder => builder.AddContent(0, "Footer text");
 
@@ -83,8 +76,7 @@ public class CardTests : TestContext
 	}
 
 	[Fact]
-	public void Card_DoesNotRenderFooter_WhenNoFooterContent()
-	{
+	public void Card_DoesNotRenderFooter_WhenNoFooterContent() {
 		// Act
 		var cut = RenderComponent<Card>(parameters => parameters
 			.AddChildContent("Content"));
@@ -94,8 +86,7 @@ public class CardTests : TestContext
 	}
 
 	[Fact]
-	public void Card_RendersImage_WhenImageUrlProvided()
-	{
+	public void Card_RendersImage_WhenImageUrlProvided() {
 		// Act
 		var cut = RenderComponent<Card>(parameters => parameters
 			.Add(p => p.ImageUrl, "/images/test.jpg")
@@ -107,8 +98,7 @@ public class CardTests : TestContext
 	}
 
 	[Fact]
-	public void Card_ImageHasAltText()
-	{
+	public void Card_ImageHasAltText() {
 		// Act
 		var cut = RenderComponent<Card>(parameters => parameters
 			.Add(p => p.ImageUrl, "/images/test.jpg")
@@ -120,8 +110,7 @@ public class CardTests : TestContext
 	}
 
 	[Fact]
-	public void Card_AppliesHoverableClass()
-	{
+	public void Card_AppliesHoverableClass() {
 		// Act
 		var cut = RenderComponent<Card>(parameters => parameters
 			.Add(p => p.Hoverable, true)
@@ -132,8 +121,7 @@ public class CardTests : TestContext
 	}
 
 	[Fact]
-	public void Card_AppliesClickableClass()
-	{
+	public void Card_AppliesClickableClass() {
 		// Act
 		var cut = RenderComponent<Card>(parameters => parameters
 			.Add(p => p.Clickable, true)
@@ -144,8 +132,7 @@ public class CardTests : TestContext
 	}
 
 	[Fact]
-	public void Card_AppliesCompactClass()
-	{
+	public void Card_AppliesCompactClass() {
 		// Act
 		var cut = RenderComponent<Card>(parameters => parameters
 			.Add(p => p.Compact, true)
@@ -156,8 +143,7 @@ public class CardTests : TestContext
 	}
 
 	[Fact]
-	public void Card_AppliesCustomCssClass()
-	{
+	public void Card_AppliesCustomCssClass() {
 		// Act
 		var cut = RenderComponent<Card>(parameters => parameters
 			.Add(p => p.CssClass, "my-card")
@@ -168,8 +154,7 @@ public class CardTests : TestContext
 	}
 
 	[Fact]
-	public void Card_IsArticleElement()
-	{
+	public void Card_IsArticleElement() {
 		// Act
 		var cut = RenderComponent<Card>(parameters => parameters
 			.AddChildContent("Content"));

@@ -10,11 +10,9 @@ namespace DarkRepos.Tests.Components;
 /// <summary>
 /// Tests for the TableOfContents component.
 /// </summary>
-public class TableOfContentsTests : TestContext
-{
+public class TableOfContentsTests : TestContext {
 	[Fact]
-	public void TableOfContents_RendersNothing_WhenItemsIsNull()
-	{
+	public void TableOfContents_RendersNothing_WhenItemsIsNull() {
 		// Act
 		var cut = RenderComponent<TableOfContents>(parameters => parameters
 			.Add(p => p.Items, null));
@@ -24,8 +22,7 @@ public class TableOfContentsTests : TestContext
 	}
 
 	[Fact]
-	public void TableOfContents_RendersNothing_WhenItemsIsEmpty()
-	{
+	public void TableOfContents_RendersNothing_WhenItemsIsEmpty() {
 		// Act
 		var cut = RenderComponent<TableOfContents>(parameters => parameters
 			.Add(p => p.Items, new List<TocItem>()));
@@ -35,8 +32,7 @@ public class TableOfContentsTests : TestContext
 	}
 
 	[Fact]
-	public void TableOfContents_RendersTocItems()
-	{
+	public void TableOfContents_RendersTocItems() {
 		// Arrange
 		var items = new List<TocItem>
 		{
@@ -56,8 +52,7 @@ public class TableOfContentsTests : TestContext
 	}
 
 	[Fact]
-	public void TableOfContents_RendersCorrectHrefs()
-	{
+	public void TableOfContents_RendersCorrectHrefs() {
 		// Arrange
 		var items = new List<TocItem>
 		{
@@ -73,8 +68,7 @@ public class TableOfContentsTests : TestContext
 	}
 
 	[Fact]
-	public void TableOfContents_ShowsCustomTitle()
-	{
+	public void TableOfContents_ShowsCustomTitle() {
 		// Arrange
 		var items = new List<TocItem>
 		{
@@ -91,8 +85,7 @@ public class TableOfContentsTests : TestContext
 	}
 
 	[Fact]
-	public void TableOfContents_HighlightsActiveItem()
-	{
+	public void TableOfContents_HighlightsActiveItem() {
 		// Arrange
 		var items = new List<TocItem>
 		{
@@ -112,8 +105,7 @@ public class TableOfContentsTests : TestContext
 	}
 
 	[Fact]
-	public void TableOfContents_RendersChildItems()
-	{
+	public void TableOfContents_RendersChildItems() {
 		// Arrange
 		var items = new List<TocItem>
 		{
@@ -142,8 +134,7 @@ public class TableOfContentsTests : TestContext
 	}
 
 	[Fact]
-	public void TableOfContents_RendersGrandchildItems()
-	{
+	public void TableOfContents_RendersGrandchildItems() {
 		// Arrange
 		var items = new List<TocItem>
 		{
@@ -181,8 +172,7 @@ public class TableOfContentsTests : TestContext
 	}
 
 	[Fact]
-	public void TableOfContents_HasStickyClass_WhenStickyIsTrue()
-	{
+	public void TableOfContents_HasStickyClass_WhenStickyIsTrue() {
 		// Arrange
 		var items = new List<TocItem>
 		{
@@ -199,8 +189,7 @@ public class TableOfContentsTests : TestContext
 	}
 
 	[Fact]
-	public void TableOfContents_NoStickyClass_WhenStickyIsFalse()
-	{
+	public void TableOfContents_NoStickyClass_WhenStickyIsFalse() {
 		// Arrange
 		var items = new List<TocItem>
 		{
@@ -217,8 +206,7 @@ public class TableOfContentsTests : TestContext
 	}
 
 	[Fact]
-	public void TableOfContents_ShowsToggleButton_WhenCollapsible()
-	{
+	public void TableOfContents_ShowsToggleButton_WhenCollapsible() {
 		// Arrange
 		var items = new List<TocItem>
 		{
@@ -235,8 +223,7 @@ public class TableOfContentsTests : TestContext
 	}
 
 	[Fact]
-	public void TableOfContents_HidesToggleButton_WhenNotCollapsible()
-	{
+	public void TableOfContents_HidesToggleButton_WhenNotCollapsible() {
 		// Arrange
 		var items = new List<TocItem>
 		{
@@ -253,8 +240,7 @@ public class TableOfContentsTests : TestContext
 	}
 
 	[Fact]
-	public void TableOfContents_CollapsesOnToggleClick()
-	{
+	public void TableOfContents_CollapsesOnToggleClick() {
 		// Arrange
 		var items = new List<TocItem>
 		{
@@ -273,8 +259,7 @@ public class TableOfContentsTests : TestContext
 	}
 
 	[Fact]
-	public void TableOfContents_ExpandsOnSecondToggleClick()
-	{
+	public void TableOfContents_ExpandsOnSecondToggleClick() {
 		// Arrange
 		var items = new List<TocItem>
 		{
@@ -294,8 +279,7 @@ public class TableOfContentsTests : TestContext
 	}
 
 	[Fact]
-	public void TableOfContents_InvokesCallback_OnItemClick()
-	{
+	public void TableOfContents_InvokesCallback_OnItemClick() {
 		// Arrange
 		var items = new List<TocItem>
 		{
@@ -315,8 +299,7 @@ public class TableOfContentsTests : TestContext
 	}
 
 	[Fact]
-	public void TableOfContents_HasAriaLabel()
-	{
+	public void TableOfContents_HasAriaLabel() {
 		// Arrange
 		var items = new List<TocItem>
 		{
@@ -332,8 +315,7 @@ public class TableOfContentsTests : TestContext
 	}
 
 	[Fact]
-	public void TableOfContents_AppliesLevelClasses()
-	{
+	public void TableOfContents_AppliesLevelClasses() {
 		// Arrange
 		var items = new List<TocItem>
 		{
@@ -353,8 +335,7 @@ public class TableOfContentsTests : TestContext
 	}
 
 	[Fact]
-	public void TableOfContents_ToggleHasAriaExpandedAttribute()
-	{
+	public void TableOfContents_ToggleHasAriaExpandedAttribute() {
 		// Arrange
 		var items = new List<TocItem>
 		{
@@ -379,8 +360,7 @@ public class TableOfContentsTests : TestContext
 	}
 
 	[Fact]
-	public void TableOfContents_ListsHaveRoleAttribute()
-	{
+	public void TableOfContents_ListsHaveRoleAttribute() {
 		// Arrange
 		var items = new List<TocItem>
 		{

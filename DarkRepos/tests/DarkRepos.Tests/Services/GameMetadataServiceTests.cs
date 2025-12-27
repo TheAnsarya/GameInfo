@@ -4,18 +4,15 @@ using FluentAssertions;
 
 namespace DarkRepos.Tests.Services;
 
-public class GameMetadataServiceTests
-{
+public class GameMetadataServiceTests {
 	private readonly IGameMetadataService _service;
 
-	public GameMetadataServiceTests()
-	{
+	public GameMetadataServiceTests() {
 		_service = new GameMetadataService();
 	}
 
 	[Fact]
-	public void ParseGame_WithValidJson_ReturnsGame()
-	{
+	public void ParseGame_WithValidJson_ReturnsGame() {
 		// Arrange
 		var json = """
 			{
@@ -46,8 +43,7 @@ public class GameMetadataServiceTests
 	}
 
 	[Fact]
-	public void ParseGame_WithMinimalJson_ReturnsGame()
-	{
+	public void ParseGame_WithMinimalJson_ReturnsGame() {
 		// Arrange
 		var json = """
 			{
@@ -68,8 +64,7 @@ public class GameMetadataServiceTests
 	}
 
 	[Fact]
-	public void ParseGame_WithWikiResources_ParsesCorrectly()
-	{
+	public void ParseGame_WithWikiResources_ParsesCorrectly() {
 		// Arrange
 		var json = """
 			{
@@ -101,8 +96,7 @@ public class GameMetadataServiceTests
 	}
 
 	[Fact]
-	public void ParseGame_WithEmptyJson_ReturnsNull()
-	{
+	public void ParseGame_WithEmptyJson_ReturnsNull() {
 		// Arrange & Act
 		var game = _service.ParseGame(string.Empty);
 
@@ -111,8 +105,7 @@ public class GameMetadataServiceTests
 	}
 
 	[Fact]
-	public void ParseGame_WithMissingRequiredFields_ReturnsNull()
-	{
+	public void ParseGame_WithMissingRequiredFields_ReturnsNull() {
 		// Arrange
 		var json = """
 			{
@@ -128,8 +121,7 @@ public class GameMetadataServiceTests
 	}
 
 	[Fact]
-	public void ParseGame_WithInvalidPlatform_ReturnsNull()
-	{
+	public void ParseGame_WithInvalidPlatform_ReturnsNull() {
 		// Arrange
 		var json = """
 			{
@@ -147,8 +139,7 @@ public class GameMetadataServiceTests
 	}
 
 	[Fact]
-	public void ParseGame_WithDocumentationLevel_ParsesCorrectly()
-	{
+	public void ParseGame_WithDocumentationLevel_ParsesCorrectly() {
 		// Arrange
 		var json = """
 			{
@@ -168,8 +159,7 @@ public class GameMetadataServiceTests
 	}
 
 	[Fact]
-	public void ValidateGameJson_WithValidJson_ReturnsValid()
-	{
+	public void ValidateGameJson_WithValidJson_ReturnsValid() {
 		// Arrange
 		var json = """
 			{
@@ -188,8 +178,7 @@ public class GameMetadataServiceTests
 	}
 
 	[Fact]
-	public void ValidateGameJson_WithMissingSlug_ReturnsError()
-	{
+	public void ValidateGameJson_WithMissingSlug_ReturnsError() {
 		// Arrange
 		var json = """
 			{
@@ -207,8 +196,7 @@ public class GameMetadataServiceTests
 	}
 
 	[Fact]
-	public void ValidateGameJson_WithInvalidSlug_ReturnsError()
-	{
+	public void ValidateGameJson_WithInvalidSlug_ReturnsError() {
 		// Arrange
 		var json = """
 			{
@@ -227,8 +215,7 @@ public class GameMetadataServiceTests
 	}
 
 	[Fact]
-	public void ValidateGameJson_WithInvalidReleaseYear_ReturnsError()
-	{
+	public void ValidateGameJson_WithInvalidReleaseYear_ReturnsError() {
 		// Arrange
 		var json = """
 			{
@@ -248,11 +235,9 @@ public class GameMetadataServiceTests
 	}
 
 	[Fact]
-	public void ExportToJson_WithGame_ReturnsValidJson()
-	{
+	public void ExportToJson_WithGame_ReturnsValidJson() {
 		// Arrange
-		var game = new Game
-		{
+		var game = new Game {
 			Slug = "test-game",
 			Title = "Test Game",
 			Platform = Platform.SNES,
@@ -272,11 +257,9 @@ public class GameMetadataServiceTests
 	}
 
 	[Fact]
-	public void ExportToJson_AndParseBack_ReturnsEquivalentGame()
-	{
+	public void ExportToJson_AndParseBack_ReturnsEquivalentGame() {
 		// Arrange
-		var original = new Game
-		{
+		var original = new Game {
 			Slug = "round-trip-test",
 			Title = "Round Trip Test",
 			Platform = Platform.GBA,
@@ -288,8 +271,7 @@ public class GameMetadataServiceTests
 			Series = "Test Series",
 			DocumentationLevel = DocumentationLevel.Substantial,
 			Tags = ["action", "test"],
-			Wiki = new WikiResources
-			{
+			Wiki = new WikiResources {
 				HasRomMap = true,
 				HasRamMap = false
 			}

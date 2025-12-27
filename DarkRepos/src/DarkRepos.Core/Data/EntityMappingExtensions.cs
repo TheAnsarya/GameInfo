@@ -6,20 +6,16 @@ namespace DarkRepos.Core.Data;
 /// <summary>
 /// Extension methods for mapping between database entities and domain models.
 /// </summary>
-public static class EntityMappingExtensions
-{
-	private static readonly JsonSerializerOptions JsonOptions = new()
-	{
+public static class EntityMappingExtensions {
+	private static readonly JsonSerializerOptions JsonOptions = new() {
 		PropertyNamingPolicy = JsonNamingPolicy.CamelCase
 	};
 
 	/// <summary>
 	/// Converts a GameEntity to a Game model.
 	/// </summary>
-	public static Game ToModel(this GameEntity entity)
-	{
-		return new Game
-		{
+	public static Game ToModel(this GameEntity entity) {
+		return new Game {
 			Slug = entity.Slug,
 			Title = entity.Title,
 			Platform = Enum.TryParse<Platform>(entity.Platform, true, out var platform)
@@ -38,8 +34,7 @@ public static class EntityMappingExtensions
 			Tags = DeserializeArray(entity.TagsJson),
 			DocumentationPaths = DeserializeArray(entity.DocumentationPathsJson),
 			RelatedTools = DeserializeArray(entity.RelatedToolsJson),
-			Wiki = new WikiResources
-			{
+			Wiki = new WikiResources {
 				HasRomMap = entity.HasRomMap,
 				HasRamMap = entity.HasRamMap,
 				HasDataStructures = entity.HasDataStructures,
@@ -54,10 +49,8 @@ public static class EntityMappingExtensions
 	/// <summary>
 	/// Converts a Game model to a GameEntity.
 	/// </summary>
-	public static GameEntity ToEntity(this Game game, int? existingId = null)
-	{
-		return new GameEntity
-		{
+	public static GameEntity ToEntity(this Game game, int? existingId = null) {
+		return new GameEntity {
 			Id = existingId ?? 0,
 			Slug = game.Slug,
 			Title = game.Title,
@@ -88,10 +81,8 @@ public static class EntityMappingExtensions
 	/// <summary>
 	/// Converts a ToolEntity to a Tool model.
 	/// </summary>
-	public static Tool ToModel(this ToolEntity entity)
-	{
-		return new Tool
-		{
+	public static Tool ToModel(this ToolEntity entity) {
+		return new Tool {
 			Slug = entity.Slug,
 			Name = entity.Name,
 			Description = entity.Description,
@@ -113,10 +104,8 @@ public static class EntityMappingExtensions
 	/// <summary>
 	/// Converts a Tool model to a ToolEntity.
 	/// </summary>
-	public static ToolEntity ToEntity(this Tool tool, int? existingId = null)
-	{
-		return new ToolEntity
-		{
+	public static ToolEntity ToEntity(this Tool tool, int? existingId = null) {
+		return new ToolEntity {
 			Id = existingId ?? 0,
 			Slug = tool.Slug,
 			Name = tool.Name,
@@ -137,10 +126,8 @@ public static class EntityMappingExtensions
 	/// <summary>
 	/// Converts a SearchIndexEntry to a SearchDocument.
 	/// </summary>
-	public static SearchDocument ToModel(this SearchIndexEntry entry)
-	{
-		return new SearchDocument
-		{
+	public static SearchDocument ToModel(this SearchIndexEntry entry) {
+		return new SearchDocument {
 			Id = entry.DocumentId,
 			Type = Enum.TryParse<SearchDocumentType>(entry.DocumentType, true, out var type)
 				? type
@@ -160,10 +147,8 @@ public static class EntityMappingExtensions
 	/// <summary>
 	/// Converts a SearchDocument to a SearchIndexEntry.
 	/// </summary>
-	public static SearchIndexEntry ToEntity(this SearchDocument document, int? existingId = null)
-	{
-		return new SearchIndexEntry
-		{
+	public static SearchIndexEntry ToEntity(this SearchDocument document, int? existingId = null) {
+		return new SearchIndexEntry {
 			Id = existingId ?? 0,
 			DocumentId = document.Id,
 			DocumentType = document.Type.ToString(),
@@ -179,23 +164,18 @@ public static class EntityMappingExtensions
 		};
 	}
 
-	private static string[] DeserializeArray(string? json)
-	{
+	private static string[] DeserializeArray(string? json) {
 		if (string.IsNullOrWhiteSpace(json))
 			return [];
 
-		try
-		{
+		try {
 			return JsonSerializer.Deserialize<string[]>(json, JsonOptions) ?? [];
-		}
-		catch
-		{
+		} catch {
 			return [];
 		}
 	}
 
-	private static string? SerializeArray(string[]? array)
-	{
+	private static string? SerializeArray(string[]? array) {
 		if (array == null || array.Length == 0)
 			return null;
 

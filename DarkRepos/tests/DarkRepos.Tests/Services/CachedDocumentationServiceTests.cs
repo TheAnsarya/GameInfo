@@ -6,15 +6,13 @@ using Xunit;
 
 namespace DarkRepos.Tests.Services;
 
-public class CachedDocumentationServiceTests
-{
+public class CachedDocumentationServiceTests {
 	private readonly IDocumentationService _innerService;
 	private readonly IContentCacheService _cacheService;
 	private readonly ILogger<CachedDocumentationService> _logger;
 	private readonly CachedDocumentationService _sut;
 
-	public CachedDocumentationServiceTests()
-	{
+	public CachedDocumentationServiceTests() {
 		_innerService = Substitute.For<IDocumentationService>();
 		_cacheService = new ContentCacheService();  // Use real cache for integration testing
 		_logger = Substitute.For<ILogger<CachedDocumentationService>>();
@@ -22,12 +20,10 @@ public class CachedDocumentationServiceTests
 	}
 
 	[Fact]
-	public async Task GetPageAsync_CachesResult()
-	{
+	public async Task GetPageAsync_CachesResult() {
 		// Arrange
 		var path = "guides/getting-started";
-		var page = new DocumentationPage
-		{
+		var page = new DocumentationPage {
 			Path = path,
 			Title = "Getting Started",
 			Description = "A guide",
@@ -47,12 +43,10 @@ public class CachedDocumentationServiceTests
 	}
 
 	[Fact]
-	public async Task GetPageAsync_CacheKeyIsCaseInsensitive()
-	{
+	public async Task GetPageAsync_CacheKeyIsCaseInsensitive() {
 		// Arrange
 		var path = "Guides/Getting-Started";
-		var page = new DocumentationPage
-		{
+		var page = new DocumentationPage {
 			Path = path,
 			Title = "Getting Started",
 			Description = "A guide",
@@ -71,8 +65,7 @@ public class CachedDocumentationServiceTests
 	}
 
 	[Fact]
-	public async Task GetCategoryPagesAsync_CachesResult()
-	{
+	public async Task GetCategoryPagesAsync_CachesResult() {
 		// Arrange
 		var category = "guides";
 		var pages = new List<DocumentationPage> {
@@ -92,11 +85,9 @@ public class CachedDocumentationServiceTests
 	}
 
 	[Fact]
-	public async Task GetTableOfContentsAsync_CachesResult()
-	{
+	public async Task GetTableOfContentsAsync_CachesResult() {
 		// Arrange
-		var toc = new DocumentationToc
-		{
+		var toc = new DocumentationToc {
 			Categories = [
 				new DocumentationCategory { Path = "guides", Title = "Guides", Description = "", Icon = "📖" }
 			]
@@ -114,8 +105,7 @@ public class CachedDocumentationServiceTests
 	}
 
 	[Fact]
-	public async Task SearchAsync_CachesResult()
-	{
+	public async Task SearchAsync_CachesResult() {
 		// Arrange
 		var query = "getting started";
 		var results = new List<DocumentationPage> {
@@ -134,8 +124,7 @@ public class CachedDocumentationServiceTests
 	}
 
 	[Fact]
-	public async Task SearchAsync_ReturnsEmptyForWhitespaceQuery()
-	{
+	public async Task SearchAsync_ReturnsEmptyForWhitespaceQuery() {
 		// Act
 		var result1 = await _sut.SearchAsync("");
 		var result2 = await _sut.SearchAsync("   ");
@@ -147,8 +136,7 @@ public class CachedDocumentationServiceTests
 	}
 
 	[Fact]
-	public async Task SearchAsync_NormalizesQueryForCacheKey()
-	{
+	public async Task SearchAsync_NormalizesQueryForCacheKey() {
 		// Arrange
 		var results = new List<DocumentationPage> {
 			new() { Path = "guides/test", Title = "Test", Markdown = "", Html = "", Description = "" }
@@ -165,8 +153,7 @@ public class CachedDocumentationServiceTests
 	}
 
 	[Fact]
-	public void InvalidateAll_ClearsAllDocsCacheEntries()
-	{
+	public void InvalidateAll_ClearsAllDocsCacheEntries() {
 		// Arrange - populate cache
 		_cacheService.Set("docs:page:test", "value");
 		_cacheService.Set("docs:category:guides", "value");
@@ -185,8 +172,7 @@ public class CachedDocumentationServiceTests
 	}
 
 	[Fact]
-	public void InvalidatePage_ClearsPageAndRelatedCaches()
-	{
+	public void InvalidatePage_ClearsPageAndRelatedCaches() {
 		// Arrange
 		_cacheService.Set("docs:page:guides/test", "page-value");
 		_cacheService.Set("docs:search:test", "search-value");
@@ -205,8 +191,7 @@ public class CachedDocumentationServiceTests
 	}
 
 	[Fact]
-	public void InvalidateCategory_ClearsCategoryAndRelatedCaches()
-	{
+	public void InvalidateCategory_ClearsCategoryAndRelatedCaches() {
 		// Arrange
 		_cacheService.Set("docs:category:guides", "category-value");
 		_cacheService.Set("docs:search:test", "search-value");
@@ -225,8 +210,7 @@ public class CachedDocumentationServiceTests
 	}
 
 	[Fact]
-	public async Task GetPageAsync_ReturnsNullWhenInnerReturnsNull()
-	{
+	public async Task GetPageAsync_ReturnsNullWhenInnerReturnsNull() {
 		// Arrange
 		_innerService.GetPageAsync("nonexistent").Returns((DocumentationPage?)null);
 
@@ -238,14 +222,12 @@ public class CachedDocumentationServiceTests
 	}
 
 	[Fact]
-	public async Task CacheExpiration_IsRespected()
-	{
+	public async Task CacheExpiration_IsRespected() {
 		// Arrange
 		var shortCache = new CachedDocumentationService(
 			_innerService, _cacheService, _logger, TimeSpan.FromMilliseconds(50));
 
-		var page = new DocumentationPage
-		{
+		var page = new DocumentationPage {
 			Path = "test",
 			Title = "Test",
 			Markdown = "",

@@ -6,22 +6,19 @@ using Xunit;
 
 namespace DarkRepos.Tests.Services;
 
-public class CachedContentServiceTests
-{
+public class CachedContentServiceTests {
 	private readonly IContentService _innerService;
 	private readonly IContentCacheService _cacheService;
 	private readonly CachedContentService _sut;
 
-	public CachedContentServiceTests()
-	{
+	public CachedContentServiceTests() {
 		_innerService = Substitute.For<IContentService>();
 		_cacheService = new ContentCacheService();
 		_sut = new CachedContentService(_innerService, _cacheService);
 	}
 
 	[Fact]
-	public async Task GetAllGamesAsync_FirstCall_CallsInnerService()
-	{
+	public async Task GetAllGamesAsync_FirstCall_CallsInnerService() {
 		// Arrange
 		var games = new List<Game> { CreateTestGame("dragon-quest") };
 		_innerService.GetAllGamesAsync(Arg.Any<CancellationToken>()).Returns(games);
@@ -35,8 +32,7 @@ public class CachedContentServiceTests
 	}
 
 	[Fact]
-	public async Task GetAllGamesAsync_SecondCall_ReturnsCached()
-	{
+	public async Task GetAllGamesAsync_SecondCall_ReturnsCached() {
 		// Arrange
 		var games = new List<Game> { CreateTestGame("dragon-quest") };
 		_innerService.GetAllGamesAsync(Arg.Any<CancellationToken>()).Returns(games);
@@ -50,8 +46,7 @@ public class CachedContentServiceTests
 	}
 
 	[Fact]
-	public async Task GetGameBySlugAsync_FirstCall_CallsInnerService()
-	{
+	public async Task GetGameBySlugAsync_FirstCall_CallsInnerService() {
 		// Arrange
 		var game = CreateTestGame("dragon-quest");
 		_innerService.GetGameBySlugAsync("dragon-quest", Arg.Any<CancellationToken>()).Returns(game);
@@ -65,8 +60,7 @@ public class CachedContentServiceTests
 	}
 
 	[Fact]
-	public async Task GetGameBySlugAsync_SecondCall_ReturnsCached()
-	{
+	public async Task GetGameBySlugAsync_SecondCall_ReturnsCached() {
 		// Arrange
 		var game = CreateTestGame("dragon-quest");
 		_innerService.GetGameBySlugAsync("dragon-quest", Arg.Any<CancellationToken>()).Returns(game);
@@ -80,8 +74,7 @@ public class CachedContentServiceTests
 	}
 
 	[Fact]
-	public async Task GetGameBySlugAsync_DifferentSlugs_CallsInnerServiceForEach()
-	{
+	public async Task GetGameBySlugAsync_DifferentSlugs_CallsInnerServiceForEach() {
 		// Arrange
 		var game1 = CreateTestGame("dragon-quest");
 		var game2 = CreateTestGame("final-fantasy");
@@ -98,8 +91,7 @@ public class CachedContentServiceTests
 	}
 
 	[Fact]
-	public async Task GetGamesByPlatformAsync_Caches()
-	{
+	public async Task GetGamesByPlatformAsync_Caches() {
 		// Arrange
 		var games = new List<Game> { CreateTestGame("dragon-quest") };
 		_innerService.GetGamesByPlatformAsync(Platform.NES, Arg.Any<CancellationToken>()).Returns(games);
@@ -113,8 +105,7 @@ public class CachedContentServiceTests
 	}
 
 	[Fact]
-	public async Task GetGamesBySeriesAsync_Caches()
-	{
+	public async Task GetGamesBySeriesAsync_Caches() {
 		// Arrange
 		var games = new List<Game> { CreateTestGame("dragon-quest") };
 		_innerService.GetGamesBySeriesAsync("Dragon Quest", Arg.Any<CancellationToken>()).Returns(games);
@@ -128,8 +119,7 @@ public class CachedContentServiceTests
 	}
 
 	[Fact]
-	public async Task GetAllToolsAsync_Caches()
-	{
+	public async Task GetAllToolsAsync_Caches() {
 		// Arrange
 		var tools = new List<Tool> { CreateTestTool("hex-editor") };
 		_innerService.GetAllToolsAsync(Arg.Any<CancellationToken>()).Returns(tools);
@@ -143,8 +133,7 @@ public class CachedContentServiceTests
 	}
 
 	[Fact]
-	public async Task GetToolBySlugAsync_Caches()
-	{
+	public async Task GetToolBySlugAsync_Caches() {
 		// Arrange
 		var tool = CreateTestTool("hex-editor");
 		_innerService.GetToolBySlugAsync("hex-editor", Arg.Any<CancellationToken>()).Returns(tool);
@@ -158,8 +147,7 @@ public class CachedContentServiceTests
 	}
 
 	[Fact]
-	public async Task GetToolsByCategoryAsync_Caches()
-	{
+	public async Task GetToolsByCategoryAsync_Caches() {
 		// Arrange
 		var tools = new List<Tool> { CreateTestTool("hex-editor") };
 		_innerService.GetToolsByCategoryAsync(ToolCategory.Analysis, Arg.Any<CancellationToken>()).Returns(tools);
@@ -173,8 +161,7 @@ public class CachedContentServiceTests
 	}
 
 	[Fact]
-	public async Task GetToolsForGameAsync_Caches()
-	{
+	public async Task GetToolsForGameAsync_Caches() {
 		// Arrange
 		var tools = new List<Tool> { CreateTestTool("hex-editor") };
 		_innerService.GetToolsForGameAsync("dragon-quest", Arg.Any<CancellationToken>()).Returns(tools);
@@ -188,8 +175,7 @@ public class CachedContentServiceTests
 	}
 
 	[Fact]
-	public async Task GetFeaturedGamesAsync_Caches()
-	{
+	public async Task GetFeaturedGamesAsync_Caches() {
 		// Arrange
 		var games = new List<Game> { CreateTestGame("dragon-quest") };
 		_innerService.GetFeaturedGamesAsync(6, Arg.Any<CancellationToken>()).Returns(games);
@@ -203,8 +189,7 @@ public class CachedContentServiceTests
 	}
 
 	[Fact]
-	public async Task GetRecentUpdatesAsync_Caches()
-	{
+	public async Task GetRecentUpdatesAsync_Caches() {
 		// Arrange
 		var updates = new List<object> { CreateTestGame("dragon-quest") };
 		_innerService.GetRecentUpdatesAsync(10, Arg.Any<CancellationToken>()).Returns(updates);
@@ -218,8 +203,7 @@ public class CachedContentServiceTests
 	}
 
 	[Fact]
-	public async Task InvalidateGameCache_ClearsGameCaches()
-	{
+	public async Task InvalidateGameCache_ClearsGameCaches() {
 		// Arrange
 		var games = new List<Game> { CreateTestGame("dragon-quest") };
 		_innerService.GetAllGamesAsync(Arg.Any<CancellationToken>()).Returns(games);
@@ -234,8 +218,7 @@ public class CachedContentServiceTests
 	}
 
 	[Fact]
-	public async Task InvalidateToolCache_ClearsToolCaches()
-	{
+	public async Task InvalidateToolCache_ClearsToolCaches() {
 		// Arrange
 		var tools = new List<Tool> { CreateTestTool("hex-editor") };
 		_innerService.GetAllToolsAsync(Arg.Any<CancellationToken>()).Returns(tools);
@@ -250,8 +233,7 @@ public class CachedContentServiceTests
 	}
 
 	[Fact]
-	public async Task InvalidateAll_ClearsAllCaches()
-	{
+	public async Task InvalidateAll_ClearsAllCaches() {
 		// Arrange
 		var games = new List<Game> { CreateTestGame("dragon-quest") };
 		var tools = new List<Tool> { CreateTestTool("hex-editor") };
@@ -270,10 +252,8 @@ public class CachedContentServiceTests
 		await _innerService.Received(2).GetAllToolsAsync(Arg.Any<CancellationToken>());
 	}
 
-	private static Game CreateTestGame(string slug)
-	{
-		return new Game
-		{
+	private static Game CreateTestGame(string slug) {
+		return new Game {
 			Slug = slug,
 			Title = slug.Replace("-", " ").ToUpperInvariant(),
 			Platform = Platform.NES,
@@ -281,8 +261,7 @@ public class CachedContentServiceTests
 			Developer = "Test Developer",
 			Publisher = "Test Publisher",
 			ReleaseYear = 1990,
-			Wiki = new WikiResources
-			{
+			Wiki = new WikiResources {
 				HasRomMap = true,
 				HasRamMap = false
 			},
@@ -290,10 +269,8 @@ public class CachedContentServiceTests
 		};
 	}
 
-	private static Tool CreateTestTool(string slug)
-	{
-		return new Tool
-		{
+	private static Tool CreateTestTool(string slug) {
+		return new Tool {
 			Slug = slug,
 			Name = slug.Replace("-", " ").ToUpperInvariant(),
 			Category = ToolCategory.Analysis,

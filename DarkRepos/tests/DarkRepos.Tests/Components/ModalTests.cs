@@ -10,16 +10,13 @@ using static DarkRepos.Web.Components.Shared.Modal;
 
 namespace DarkRepos.Tests.Components;
 
-public class ModalTests : TestContext
-{
-	public ModalTests()
-	{
+public class ModalTests : TestContext {
+	public ModalTests() {
 		Services.AddSingleton(Substitute.For<IJSRuntime>());
 	}
 
 	[Fact]
-	public void Modal_NotVisible_WhenIsOpenFalse()
-	{
+	public void Modal_NotVisible_WhenIsOpenFalse() {
 		// Act
 		var cut = RenderComponent<Modal>(parameters => parameters
 			.Add(p => p.IsOpen, false)
@@ -30,8 +27,7 @@ public class ModalTests : TestContext
 	}
 
 	[Fact]
-	public void Modal_Visible_WhenIsOpenTrue()
-	{
+	public void Modal_Visible_WhenIsOpenTrue() {
 		// Act
 		var cut = RenderComponent<Modal>(parameters => parameters
 			.Add(p => p.IsOpen, true)
@@ -42,8 +38,7 @@ public class ModalTests : TestContext
 	}
 
 	[Fact]
-	public void Modal_RendersChildContent()
-	{
+	public void Modal_RendersChildContent() {
 		// Act
 		var cut = RenderComponent<Modal>(parameters => parameters
 			.Add(p => p.IsOpen, true)
@@ -54,8 +49,7 @@ public class ModalTests : TestContext
 	}
 
 	[Fact]
-	public void Modal_RendersTitle()
-	{
+	public void Modal_RendersTitle() {
 		// Act
 		var cut = RenderComponent<Modal>(parameters => parameters
 			.Add(p => p.IsOpen, true)
@@ -67,8 +61,7 @@ public class ModalTests : TestContext
 	}
 
 	[Fact]
-	public void Modal_HasDialogRole()
-	{
+	public void Modal_HasDialogRole() {
 		// Act
 		var cut = RenderComponent<Modal>(parameters => parameters
 			.Add(p => p.IsOpen, true)
@@ -79,8 +72,7 @@ public class ModalTests : TestContext
 	}
 
 	[Fact]
-	public void Modal_HasAriaModal()
-	{
+	public void Modal_HasAriaModal() {
 		// Act
 		var cut = RenderComponent<Modal>(parameters => parameters
 			.Add(p => p.IsOpen, true)
@@ -91,8 +83,7 @@ public class ModalTests : TestContext
 	}
 
 	[Fact]
-	public void Modal_ShowsCloseButton_ByDefault()
-	{
+	public void Modal_ShowsCloseButton_ByDefault() {
 		// Act
 		var cut = RenderComponent<Modal>(parameters => parameters
 			.Add(p => p.IsOpen, true)
@@ -103,8 +94,7 @@ public class ModalTests : TestContext
 	}
 
 	[Fact]
-	public void Modal_HidesCloseButton_WhenShowCloseButtonFalse()
-	{
+	public void Modal_HidesCloseButton_WhenShowCloseButtonFalse() {
 		// Act
 		var cut = RenderComponent<Modal>(parameters => parameters
 			.Add(p => p.IsOpen, true)
@@ -116,8 +106,7 @@ public class ModalTests : TestContext
 	}
 
 	[Fact]
-	public void Modal_HidesHeader_WhenShowHeaderFalse()
-	{
+	public void Modal_HidesHeader_WhenShowHeaderFalse() {
 		// Act
 		var cut = RenderComponent<Modal>(parameters => parameters
 			.Add(p => p.IsOpen, true)
@@ -129,8 +118,7 @@ public class ModalTests : TestContext
 	}
 
 	[Fact]
-	public void Modal_RendersFooter_WhenFooterContentProvided()
-	{
+	public void Modal_RendersFooter_WhenFooterContentProvided() {
 		// Arrange
 		RenderFragment footerContent = builder => builder.AddContent(0, "Footer");
 
@@ -149,8 +137,7 @@ public class ModalTests : TestContext
 	[InlineData(ModalSize.Medium, "modal--medium")]
 	[InlineData(ModalSize.Large, "modal--large")]
 	[InlineData(ModalSize.FullScreen, "modal--fullscreen")]
-	public void Modal_AppliesSizeClass(ModalSize size, string expectedClass)
-	{
+	public void Modal_AppliesSizeClass(ModalSize size, string expectedClass) {
 		// Act
 		var cut = RenderComponent<Modal>(parameters => parameters
 			.Add(p => p.IsOpen, true)
@@ -162,8 +149,7 @@ public class ModalTests : TestContext
 	}
 
 	[Fact]
-	public void Modal_CloseButton_ClosesModal()
-	{
+	public void Modal_CloseButton_ClosesModal() {
 		// Arrange
 		var isOpen = true;
 
@@ -180,8 +166,7 @@ public class ModalTests : TestContext
 	}
 
 	[Fact]
-	public void Modal_OverlayClick_ClosesModal_WhenCloseOnOverlayClickTrue()
-	{
+	public void Modal_OverlayClick_ClosesModal_WhenCloseOnOverlayClickTrue() {
 		// Arrange
 		var isOpen = true;
 
@@ -199,8 +184,7 @@ public class ModalTests : TestContext
 	}
 
 	[Fact]
-	public void Modal_AppliesCustomCssClass()
-	{
+	public void Modal_AppliesCustomCssClass() {
 		// Act
 		var cut = RenderComponent<Modal>(parameters => parameters
 			.Add(p => p.IsOpen, true)

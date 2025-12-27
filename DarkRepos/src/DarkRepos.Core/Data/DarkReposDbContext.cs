@@ -7,11 +7,9 @@ namespace DarkRepos.Core.Data;
 /// Entity Framework Core database context for Dark Repos.
 /// Manages the SQLite database for content storage and FTS5 search index.
 /// </summary>
-public class DarkReposDbContext : DbContext
-{
+public class DarkReposDbContext : DbContext {
 	public DarkReposDbContext(DbContextOptions<DarkReposDbContext> options)
-		: base(options)
-	{
+		: base(options) {
 	}
 
 	/// <summary>
@@ -29,13 +27,11 @@ public class DarkReposDbContext : DbContext
 	/// </summary>
 	public DbSet<SearchIndexEntry> SearchIndex { get; set; } = null!;
 
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
-	{
+	protected override void OnModelCreating(ModelBuilder modelBuilder) {
 		base.OnModelCreating(modelBuilder);
 
 		// Game entity configuration
-		modelBuilder.Entity<GameEntity>(entity =>
-		{
+		modelBuilder.Entity<GameEntity>(entity => {
 			entity.ToTable("Games");
 			entity.HasKey(e => e.Id);
 			entity.Property(e => e.Slug).IsRequired().HasMaxLength(100);
@@ -58,8 +54,7 @@ public class DarkReposDbContext : DbContext
 		});
 
 		// Tool entity configuration
-		modelBuilder.Entity<ToolEntity>(entity =>
-		{
+		modelBuilder.Entity<ToolEntity>(entity => {
 			entity.ToTable("Tools");
 			entity.HasKey(e => e.Id);
 			entity.Property(e => e.Slug).IsRequired().HasMaxLength(100);
@@ -78,8 +73,7 @@ public class DarkReposDbContext : DbContext
 		});
 
 		// Search index configuration (FTS5 virtual table)
-		modelBuilder.Entity<SearchIndexEntry>(entity =>
-		{
+		modelBuilder.Entity<SearchIndexEntry>(entity => {
 			entity.ToTable("SearchIndex");
 			entity.HasKey(e => e.Id);
 			entity.Property(e => e.DocumentId).IsRequired().HasMaxLength(100);
@@ -102,8 +96,7 @@ public class DarkReposDbContext : DbContext
 	/// Creates the FTS5 virtual table for full-text search.
 	/// This must be called after database migration.
 	/// </summary>
-	public async Task EnsureFts5IndexAsync()
-	{
+	public async Task EnsureFts5IndexAsync() {
 		// Create FTS5 virtual table for full-text search
 		var sql = @"
 			CREATE VIRTUAL TABLE IF NOT EXISTS SearchFts USING fts5(
@@ -142,8 +135,7 @@ public class DarkReposDbContext : DbContext
 /// <summary>
 /// Database entity for Game storage.
 /// </summary>
-public class GameEntity
-{
+public class GameEntity {
 	public int Id { get; set; }
 	public required string Slug { get; set; }
 	public required string Title { get; set; }
@@ -177,8 +169,7 @@ public class GameEntity
 /// <summary>
 /// Database entity for Tool storage.
 /// </summary>
-public class ToolEntity
-{
+public class ToolEntity {
 	public int Id { get; set; }
 	public required string Slug { get; set; }
 	public required string Name { get; set; }
@@ -199,8 +190,7 @@ public class ToolEntity
 /// <summary>
 /// Search index entry for FTS5 full-text search.
 /// </summary>
-public class SearchIndexEntry
-{
+public class SearchIndexEntry {
 	public int Id { get; set; }
 	public required string DocumentId { get; set; }
 	public required string DocumentType { get; set; }

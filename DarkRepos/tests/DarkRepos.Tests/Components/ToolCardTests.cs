@@ -6,11 +6,9 @@ using Xunit;
 
 namespace DarkRepos.Tests.Components;
 
-public class ToolCardTests : TestContext
-{
+public class ToolCardTests : TestContext {
 	[Fact]
-	public void ToolCard_DisplaysToolName()
-	{
+	public void ToolCard_DisplaysToolName() {
 		// Arrange
 		var tool = CreateTestTool();
 
@@ -23,8 +21,7 @@ public class ToolCardTests : TestContext
 	}
 
 	[Fact]
-	public void ToolCard_DisplaysDescription()
-	{
+	public void ToolCard_DisplaysDescription() {
 		// Arrange
 		var tool = CreateTestTool();
 
@@ -37,8 +34,7 @@ public class ToolCardTests : TestContext
 	}
 
 	[Fact]
-	public void ToolCard_LinksToToolDetail()
-	{
+	public void ToolCard_LinksToToolDetail() {
 		// Arrange
 		var tool = CreateTestTool();
 
@@ -52,8 +48,7 @@ public class ToolCardTests : TestContext
 	}
 
 	[Fact]
-	public void ToolCard_DisplaysCategoryBadge()
-	{
+	public void ToolCard_DisplaysCategoryBadge() {
 		// Arrange
 		var tool = CreateTestTool();
 
@@ -65,10 +60,8 @@ public class ToolCardTests : TestContext
 		cut.Find(".badge").Should().NotBeNull();
 	}
 
-	private static Tool CreateTestTool()
-	{
-		return new Tool
-		{
+	private static Tool CreateTestTool() {
+		return new Tool {
 			Slug = "atlas",
 			Name = "Atlas",
 			Description = "A text insertion utility for ROM translation.",

@@ -5,8 +5,7 @@ namespace DarkRepos.Tests.Models;
 /// <summary>
 /// Unit tests for domain models.
 /// </summary>
-public class ModelTests
-{
+public class ModelTests {
 	[Theory]
 	[InlineData(Platform.NES, "NES")]
 	[InlineData(Platform.SNES, "SNES")]
@@ -17,8 +16,7 @@ public class ModelTests
 	[InlineData(Platform.MasterSystem, "MasterSystem")]
 	[InlineData(Platform.N64, "N64")]
 	[InlineData(Platform.PlayStation, "PlayStation")]
-	public void Platform_Enum_HasExpectedValues(Platform platform, string expected)
-	{
+	public void Platform_Enum_HasExpectedValues(Platform platform, string expected) {
 		platform.ToString().Should().Be(expected);
 	}
 
@@ -31,16 +29,13 @@ public class ModelTests
 	[InlineData(ToolCategory.Patching, "Patching")]
 	[InlineData(ToolCategory.Compression, "Compression")]
 	[InlineData(ToolCategory.General, "General")]
-	public void ToolCategory_Enum_HasExpectedValues(ToolCategory category, string expected)
-	{
+	public void ToolCategory_Enum_HasExpectedValues(ToolCategory category, string expected) {
 		category.ToString().Should().Be(expected);
 	}
 
 	[Fact]
-	public void Game_DefaultValues_AreCorrect()
-	{
-		var game = new Game
-		{
+	public void Game_DefaultValues_AreCorrect() {
+		var game = new Game {
 			Slug = "test",
 			Title = "Test",
 			Platform = Platform.NES
@@ -52,10 +47,8 @@ public class ModelTests
 	}
 
 	[Fact]
-	public void Tool_DefaultValues_AreCorrect()
-	{
-		var tool = new Tool
-		{
+	public void Tool_DefaultValues_AreCorrect() {
+		var tool = new Tool {
 			Slug = "test",
 			Name = "Test",
 			Description = "Test tool",
@@ -67,10 +60,8 @@ public class ModelTests
 	}
 
 	[Fact]
-	public void SearchDocument_DefaultValues_AreCorrect()
-	{
-		var doc = new SearchDocument
-		{
+	public void SearchDocument_DefaultValues_AreCorrect() {
+		var doc = new SearchDocument {
 			Id = "test",
 			Type = SearchDocumentType.Game,
 			Title = "Test",
@@ -82,18 +73,15 @@ public class ModelTests
 	}
 
 	[Fact]
-	public void SearchResult_HasCorrectProperties()
-	{
-		var doc = new SearchDocument
-		{
+	public void SearchResult_HasCorrectProperties() {
+		var doc = new SearchDocument {
 			Id = "test",
 			Type = SearchDocumentType.Game,
 			Title = "Test",
 			Url = "/test"
 		};
 
-		var result = new SearchResult
-		{
+		var result = new SearchResult {
 			Document = doc,
 			Score = 0.85
 		};
@@ -103,18 +91,15 @@ public class ModelTests
 	}
 
 	[Fact]
-	public void SearchResultItem_HighlightProperty_WorksCorrectly()
-	{
-		var doc = new SearchDocument
-		{
+	public void SearchResultItem_HighlightProperty_WorksCorrectly() {
+		var doc = new SearchDocument {
 			Id = "game:test",
 			Type = SearchDocumentType.Game,
 			Title = "Test Game",
 			Url = "/games/test"
 		};
 
-		var result = new SearchResult
-		{
+		var result = new SearchResult {
 			Document = doc,
 			Score = 0.85,
 			HighlightedSnippet = "This is a <mark>test</mark> excerpt"
@@ -125,10 +110,8 @@ public class ModelTests
 	}
 
 	[Fact]
-	public void Game_WithAllProperties_SerializesCorrectly()
-	{
-		var game = new Game
-		{
+	public void Game_WithAllProperties_SerializesCorrectly() {
+		var game = new Game {
 			Slug = "dragon-quest-3-snes",
 			Title = "Dragon Quest III",
 			Platform = Platform.SNES,

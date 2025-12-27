@@ -5,15 +5,13 @@ namespace DarkRepos.Core.Services;
 /// <summary>
 /// Implementation of IDocumentationService that loads markdown files from a docs folder.
 /// </summary>
-public class DocumentationService : IDocumentationService
-{
+public class DocumentationService : IDocumentationService {
 	private readonly IMarkdownService _markdownService;
 	private readonly ILogger<DocumentationService>? _logger;
 	private readonly string _docsPath;
 
 	// Category configuration
-	private static readonly Dictionary<string, (string Title, string Description, string Icon)> CategoryInfo = new()
-	{
+	private static readonly Dictionary<string, (string Title, string Description, string Icon)> CategoryInfo = new() {
 		["guides"] = ("Guides & Tutorials", "Step-by-step guides for common ROM hacking tasks.", "📖"),
 		["formats"] = ("Format Specifications", "Technical documentation for ROM formats and data structures.", "📋"),
 		["tools"] = ("Tool Documentation", "Detailed documentation for ROM hacking tools.", "🔧"),
@@ -23,39 +21,31 @@ public class DocumentationService : IDocumentationService
 		["api"] = ("API Reference", "API documentation for developers.", "💻"),
 	};
 
-	public DocumentationService(IMarkdownService markdownService, string docsPath, ILogger<DocumentationService>? logger = null)
-	{
+	public DocumentationService(IMarkdownService markdownService, string docsPath, ILogger<DocumentationService>? logger = null) {
 		_markdownService = markdownService;
 		_docsPath = docsPath;
 		_logger = logger;
 	}
 
-	public async Task<DocumentationPage?> GetPageAsync(string path)
-	{
+	public async Task<DocumentationPage?> GetPageAsync(string path) {
 		var filePath = GetFilePath(path);
-		if (filePath == null || !File.Exists(filePath))
-		{
+		if (filePath == null || !File.Exists(filePath)) {
 			_logger?.LogWarning("Documentation page not found: {Path}", path);
 			return null;
 		}
 
-		try
-		{
+		try {
 			var markdown = await File.ReadAllTextAsync(filePath);
 			return await ParseDocumentationPageAsync(path, markdown, filePath);
-		}
-		catch (Exception ex)
-		{
+		} catch (Exception ex) {
 			_logger?.LogError(ex, "Error loading documentation page: {Path}", path);
 			return null;
 		}
 	}
 
-	public async Task<IReadOnlyList<DocumentationPage>> GetCategoryPagesAsync(string category)
-	{
+	public async Task<IReadOnlyList<DocumentationPage>> GetCategoryPagesAsync(string category) {
 		var categoryPath = Path.Combine(_docsPath, category);
-		if (!Directory.Exists(categoryPath))
-		{
+		if (!Directory.Exists(categoryPath)) {
 			_logger?.LogWarning("Documentation category not found: {Category}", category);
 			return [];
 		}
@@ -63,12 +53,10 @@ public class DocumentationService : IDocumentationService
 		var pages = new List<DocumentationPage>();
 		var files = Directory.GetFiles(categoryPath, "*.md", SearchOption.TopDirectoryOnly);
 
-		foreach (var file in files.OrderBy(f => f))
-		{
+		foreach (var file in files.OrderBy(f => f)) {
 			var relativePath = GetRelativePath(file);
 			var page = await GetPageAsync(relativePath);
-			if (page != null)
-			{
+			if (page != null) {
 				pages.Add(page);
 			}
 		}
@@ -76,19 +64,15 @@ public class DocumentationService : IDocumentationService
 		return pages;
 	}
 
-	public Task<DocumentationToc> GetTableOfContentsAsync()
-	{
+	public Task<DocumentationToc> GetTableOfContentsAsync() {
 		var categories = new List<DocumentationCategory>();
 
 		// Scan for directories
-		if (Directory.Exists(_docsPath))
-		{
-			foreach (var dir in Directory.GetDirectories(_docsPath))
-			{
+		if (Directory.Exists(_docsPath)) {
+			foreach (var dir in Directory.GetDirectories(_docsPath)) {
 				var dirName = Path.GetFileName(dir);
 				// Skip hidden and special directories
-				if (dirName.StartsWith('.') || dirName.StartsWith('~') || dirName.StartsWith('_'))
-				{
+				if (dirName.StartsWith('.') || dirName.StartsWith('~') || dirName.StartsWith('_')) {
 					continue;
 				}
 
@@ -99,8 +83,7 @@ public class DocumentationService : IDocumentationService
 					dirName,
 					(ToTitleCase(dirName), $"Documentation for {dirName}.", "📄"));
 
-				categories.Add(new DocumentationCategory
-				{
+				categories.Add(new DocumentationCategory {
 					Path = dirName,
 					Title = title,
 					Description = description,
@@ -111,10 +94,8 @@ public class DocumentationService : IDocumentationService
 
 			// Also add root-level markdown files
 			var rootPages = GetRootPageSummaries();
-			if (rootPages.Count > 0)
-			{
-				categories.Insert(0, new DocumentationCategory
-				{
+			if (rootPages.Count > 0) {
+				categories.Insert(0, new DocumentationCategory {
 					Path = "",
 					Title = "Overview",
 					Description = "Main documentation pages.",
@@ -127,10 +108,8 @@ public class DocumentationService : IDocumentationService
 		return Task.FromResult(new DocumentationToc { Categories = categories });
 	}
 
-	public async Task<IReadOnlyList<DocumentationPage>> SearchAsync(string query)
-	{
-		if (string.IsNullOrWhiteSpace(query) || !Directory.Exists(_docsPath))
-		{
+	public async Task<IReadOnlyList<DocumentationPage>> SearchAsync(string query) {
+		if (string.IsNullOrWhiteSpace(query) || !Directory.Exists(_docsPath)) {
 			return [];
 		}
 
@@ -138,23 +117,17 @@ public class DocumentationService : IDocumentationService
 		var queryLower = query.ToLowerInvariant();
 		var files = Directory.GetFiles(_docsPath, "*.md", SearchOption.AllDirectories);
 
-		foreach (var file in files)
-		{
-			try
-			{
+		foreach (var file in files) {
+			try {
 				var content = await File.ReadAllTextAsync(file);
-				if (content.Contains(query, StringComparison.OrdinalIgnoreCase))
-				{
+				if (content.Contains(query, StringComparison.OrdinalIgnoreCase)) {
 					var path = GetRelativePath(file);
 					var page = await ParseDocumentationPageAsync(path, content, file);
-					if (page != null)
-					{
+					if (page != null) {
 						results.Add(page);
 					}
 				}
-			}
-			catch
-			{
+			} catch {
 				// Skip files that can't be read
 			}
 		}
@@ -166,8 +139,7 @@ public class DocumentationService : IDocumentationService
 			.ToList();
 	}
 
-	private string? GetFilePath(string path)
-	{
+	private string? GetFilePath(string path) {
 		// Normalize path
 		path = path.Replace('/', Path.DirectorySeparatorChar).TrimStart(Path.DirectorySeparatorChar);
 
@@ -190,20 +162,17 @@ public class DocumentationService : IDocumentationService
 		return null;
 	}
 
-	private string GetRelativePath(string filePath)
-	{
+	private string GetRelativePath(string filePath) {
 		var relative = Path.GetRelativePath(_docsPath, filePath);
 		// Remove .md extension
-		if (relative.EndsWith(".md", StringComparison.OrdinalIgnoreCase))
-		{
+		if (relative.EndsWith(".md", StringComparison.OrdinalIgnoreCase)) {
 			relative = relative[..^3];
 		}
 		// Use forward slashes
 		return relative.Replace(Path.DirectorySeparatorChar, '/');
 	}
 
-	private async Task<DocumentationPage?> ParseDocumentationPageAsync(string path, string markdown, string filePath)
-	{
+	private async Task<DocumentationPage?> ParseDocumentationPageAsync(string path, string markdown, string filePath) {
 		var html = _markdownService.ToHtml(markdown);
 		var title = _markdownService.ExtractTitle(markdown) ?? ToTitleCase(Path.GetFileNameWithoutExtension(filePath));
 		var excerpt = _markdownService.ExtractExcerpt(markdown, 200);
@@ -211,44 +180,36 @@ public class DocumentationService : IDocumentationService
 		var (frontMatter, _) = _markdownService.ParseFrontMatter(markdown);
 
 		// Use front matter title if available
-		if (frontMatter.TryGetValue("title", out var fmTitle) && !string.IsNullOrWhiteSpace(fmTitle))
-		{
+		if (frontMatter.TryGetValue("title", out var fmTitle) && !string.IsNullOrWhiteSpace(fmTitle)) {
 			title = fmTitle;
 		}
 
 		// Use front matter description if available
-		if (frontMatter.TryGetValue("description", out var fmDescription) && !string.IsNullOrWhiteSpace(fmDescription))
-		{
+		if (frontMatter.TryGetValue("description", out var fmDescription) && !string.IsNullOrWhiteSpace(fmDescription)) {
 			excerpt = fmDescription;
 		}
 
 		// Determine category from path
 		var category = "";
 		var pathParts = path.Split('/');
-		if (pathParts.Length > 1)
-		{
+		if (pathParts.Length > 1) {
 			category = pathParts[0];
 		}
 
 		DateTime? lastModified = null;
-		try
-		{
+		try {
 			lastModified = File.GetLastWriteTimeUtc(filePath);
-		}
-		catch
-		{
+		} catch {
 			// Ignore
 		}
 
-		return new DocumentationPage
-		{
+		return new DocumentationPage {
 			Path = path,
 			Title = title,
 			Description = excerpt,
 			Markdown = markdown,
 			Html = html,
-			Headings = headings.Select(h => new HeadingInfo
-			{
+			Headings = headings.Select(h => new HeadingInfo {
 				Level = h.Level,
 				Text = h.Text,
 				Id = h.Id
@@ -259,18 +220,15 @@ public class DocumentationService : IDocumentationService
 		};
 	}
 
-	private List<DocumentationPageSummary> GetCategoryPageSummaries(string categoryPath)
-	{
+	private List<DocumentationPageSummary> GetCategoryPageSummaries(string categoryPath) {
 		var summaries = new List<DocumentationPageSummary>();
 		if (!Directory.Exists(categoryPath)) return summaries;
 
-		foreach (var file in Directory.GetFiles(categoryPath, "*.md").OrderBy(f => f))
-		{
+		foreach (var file in Directory.GetFiles(categoryPath, "*.md").OrderBy(f => f)) {
 			var fileName = Path.GetFileNameWithoutExtension(file);
 			// Skip README and index
 			if (fileName.Equals("README", StringComparison.OrdinalIgnoreCase) ||
-				fileName.Equals("index", StringComparison.OrdinalIgnoreCase))
-			{
+				fileName.Equals("index", StringComparison.OrdinalIgnoreCase)) {
 				continue;
 			}
 
@@ -278,33 +236,26 @@ public class DocumentationService : IDocumentationService
 			var description = "";
 
 			// Try to extract title from file
-			try
-			{
+			try {
 				var firstLines = File.ReadLines(file).Take(10).ToList();
 				var titleLine = firstLines.FirstOrDefault(l => l.StartsWith("# "));
-				if (titleLine != null)
-				{
+				if (titleLine != null) {
 					title = titleLine[2..].Trim();
 				}
 				// Get description from next paragraph
 				var descStart = firstLines.FindIndex(l => !string.IsNullOrWhiteSpace(l) && !l.StartsWith("#"));
-				if (descStart >= 0)
-				{
+				if (descStart >= 0) {
 					description = firstLines[descStart].Trim();
-					if (description.Length > 100)
-					{
+					if (description.Length > 100) {
 						description = description[..97] + "...";
 					}
 				}
-			}
-			catch
-			{
+			} catch {
 				// Use defaults
 			}
 
 			var categoryName = Path.GetFileName(categoryPath);
-			summaries.Add(new DocumentationPageSummary
-			{
+			summaries.Add(new DocumentationPageSummary {
 				Path = $"{categoryName}/{fileName}",
 				Title = title,
 				Description = description,
@@ -315,37 +266,29 @@ public class DocumentationService : IDocumentationService
 		return summaries;
 	}
 
-	private List<DocumentationPageSummary> GetRootPageSummaries()
-	{
+	private List<DocumentationPageSummary> GetRootPageSummaries() {
 		var summaries = new List<DocumentationPageSummary>();
 		if (!Directory.Exists(_docsPath)) return summaries;
 
-		foreach (var file in Directory.GetFiles(_docsPath, "*.md").OrderBy(f => f))
-		{
+		foreach (var file in Directory.GetFiles(_docsPath, "*.md").OrderBy(f => f)) {
 			var fileName = Path.GetFileNameWithoutExtension(file);
 			// Skip README and hidden files
 			if (fileName.Equals("README", StringComparison.OrdinalIgnoreCase) ||
-				fileName.StartsWith('.'))
-			{
+				fileName.StartsWith('.')) {
 				continue;
 			}
 
 			var title = ToTitleCase(fileName);
-			try
-			{
+			try {
 				var firstLine = File.ReadLines(file).FirstOrDefault(l => l.StartsWith("# "));
-				if (firstLine != null)
-				{
+				if (firstLine != null) {
 					title = firstLine[2..].Trim();
 				}
-			}
-			catch
-			{
+			} catch {
 				// Use default
 			}
 
-			summaries.Add(new DocumentationPageSummary
-			{
+			summaries.Add(new DocumentationPageSummary {
 				Path = fileName,
 				Title = title,
 				Description = "",
@@ -356,8 +299,7 @@ public class DocumentationService : IDocumentationService
 		return summaries;
 	}
 
-	private static string ToTitleCase(string input)
-	{
+	private static string ToTitleCase(string input) {
 		if (string.IsNullOrEmpty(input)) return input;
 
 		// Replace hyphens and underscores with spaces

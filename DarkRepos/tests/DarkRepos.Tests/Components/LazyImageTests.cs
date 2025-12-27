@@ -9,14 +9,11 @@ namespace DarkRepos.Web.Tests.Components;
 /// <summary>
 /// Unit tests for the LazyImage component.
 /// </summary>
-public class LazyImageTests : TestContext
-{
+public class LazyImageTests : TestContext {
 	[Fact]
-	public void LazyImage_RendersContainer()
-	{
+	public void LazyImage_RendersContainer() {
 		// Act
-		var cut = RenderComponent<LazyImage>(p =>
-		{
+		var cut = RenderComponent<LazyImage>(p => {
 			p.Add(l => l.Src, "/images/test.png");
 			p.Add(l => l.Alt, "Test image");
 		});
@@ -26,15 +23,13 @@ public class LazyImageTests : TestContext
 	}
 
 	[Fact]
-	public void LazyImage_RendersImgElement_WithCorrectSrc()
-	{
+	public void LazyImage_RendersImgElement_WithCorrectSrc() {
 		// Arrange
 		const string src = "/images/game-cover.png";
 		const string alt = "Game Cover";
 
 		// Act
-		var cut = RenderComponent<LazyImage>(p =>
-		{
+		var cut = RenderComponent<LazyImage>(p => {
 			p.Add(l => l.Src, src);
 			p.Add(l => l.Alt, alt);
 		});
@@ -46,11 +41,9 @@ public class LazyImageTests : TestContext
 	}
 
 	[Fact]
-	public void LazyImage_HasLazyLoadingAttribute()
-	{
+	public void LazyImage_HasLazyLoadingAttribute() {
 		// Act
-		var cut = RenderComponent<LazyImage>(p =>
-		{
+		var cut = RenderComponent<LazyImage>(p => {
 			p.Add(l => l.Src, "/test.png");
 			p.Add(l => l.Alt, "Test");
 		});
@@ -62,14 +55,12 @@ public class LazyImageTests : TestContext
 	}
 
 	[Fact]
-	public void LazyImage_ShowsPlaceholder_WhenColorProvided()
-	{
+	public void LazyImage_ShowsPlaceholder_WhenColorProvided() {
 		// Arrange
 		const string color = "#ff0000";
 
 		// Act
-		var cut = RenderComponent<LazyImage>(p =>
-		{
+		var cut = RenderComponent<LazyImage>(p => {
 			p.Add(l => l.Src, "/test.png");
 			p.Add(l => l.Alt, "Test");
 			p.Add(l => l.PlaceholderColor, color);
@@ -81,11 +72,9 @@ public class LazyImageTests : TestContext
 	}
 
 	[Fact]
-	public void LazyImage_DoesNotShowPlaceholder_WhenColorIsNull()
-	{
+	public void LazyImage_DoesNotShowPlaceholder_WhenColorIsNull() {
 		// Act
-		var cut = RenderComponent<LazyImage>(p =>
-		{
+		var cut = RenderComponent<LazyImage>(p => {
 			p.Add(l => l.Src, "/test.png");
 			p.Add(l => l.Alt, "Test");
 			p.Add(l => l.PlaceholderColor, null);
@@ -96,11 +85,9 @@ public class LazyImageTests : TestContext
 	}
 
 	[Fact]
-	public void LazyImage_SetsWidthAndHeight()
-	{
+	public void LazyImage_SetsWidthAndHeight() {
 		// Act
-		var cut = RenderComponent<LazyImage>(p =>
-		{
+		var cut = RenderComponent<LazyImage>(p => {
 			p.Add(l => l.Src, "/test.png");
 			p.Add(l => l.Alt, "Test");
 			p.Add(l => l.Width, "200");
@@ -114,11 +101,9 @@ public class LazyImageTests : TestContext
 	}
 
 	[Fact]
-	public void LazyImage_AppliesAspectRatio()
-	{
+	public void LazyImage_AppliesAspectRatio() {
 		// Act
-		var cut = RenderComponent<LazyImage>(p =>
-		{
+		var cut = RenderComponent<LazyImage>(p => {
 			p.Add(l => l.Src, "/test.png");
 			p.Add(l => l.Alt, "Test");
 			p.Add(l => l.AspectRatio, "16/9");
@@ -130,11 +115,9 @@ public class LazyImageTests : TestContext
 	}
 
 	[Fact]
-	public void LazyImage_AppliesCustomClass()
-	{
+	public void LazyImage_AppliesCustomClass() {
 		// Act
-		var cut = RenderComponent<LazyImage>(p =>
-		{
+		var cut = RenderComponent<LazyImage>(p => {
 			p.Add(l => l.Src, "/test.png");
 			p.Add(l => l.Alt, "Test");
 			p.Add(l => l.Class, "custom-class");
@@ -146,11 +129,9 @@ public class LazyImageTests : TestContext
 	}
 
 	[Fact]
-	public void LazyImage_AppliesCustomStyle()
-	{
+	public void LazyImage_AppliesCustomStyle() {
 		// Act
-		var cut = RenderComponent<LazyImage>(p =>
-		{
+		var cut = RenderComponent<LazyImage>(p => {
 			p.Add(l => l.Src, "/test.png");
 			p.Add(l => l.Alt, "Test");
 			p.Add(l => l.Style, "border-radius: 50%");
@@ -162,11 +143,9 @@ public class LazyImageTests : TestContext
 	}
 
 	[Fact]
-	public void LazyImage_HasLoadingClass_BeforeLoad()
-	{
+	public void LazyImage_HasLoadingClass_BeforeLoad() {
 		// Act
-		var cut = RenderComponent<LazyImage>(p =>
-		{
+		var cut = RenderComponent<LazyImage>(p => {
 			p.Add(l => l.Src, "/test.png");
 			p.Add(l => l.Alt, "Test");
 		});
@@ -177,11 +156,9 @@ public class LazyImageTests : TestContext
 	}
 
 	[Fact]
-	public void LazyImage_HasLoadedClass_AfterLoadEvent()
-	{
+	public void LazyImage_HasLoadedClass_AfterLoadEvent() {
 		// Arrange
-		var cut = RenderComponent<LazyImage>(p =>
-		{
+		var cut = RenderComponent<LazyImage>(p => {
 			p.Add(l => l.Src, "/test.png");
 			p.Add(l => l.Alt, "Test");
 		});
@@ -195,11 +172,9 @@ public class LazyImageTests : TestContext
 	}
 
 	[Fact]
-	public void LazyImage_ShowsErrorState_OnError()
-	{
+	public void LazyImage_ShowsErrorState_OnError() {
 		// Arrange
-		var cut = RenderComponent<LazyImage>(p =>
-		{
+		var cut = RenderComponent<LazyImage>(p => {
 			p.Add(l => l.Src, "/test.png");
 			p.Add(l => l.Alt, "Test");
 		});
@@ -212,11 +187,9 @@ public class LazyImageTests : TestContext
 	}
 
 	[Fact]
-	public void LazyImage_ShowsErrorMessage_WhenEnabled()
-	{
+	public void LazyImage_ShowsErrorMessage_WhenEnabled() {
 		// Arrange
-		var cut = RenderComponent<LazyImage>(p =>
-		{
+		var cut = RenderComponent<LazyImage>(p => {
 			p.Add(l => l.Src, "/test.png");
 			p.Add(l => l.Alt, "Test");
 			p.Add(l => l.ShowErrorMessage, true);
@@ -230,12 +203,10 @@ public class LazyImageTests : TestContext
 	}
 
 	[Fact]
-	public async Task LazyImage_InvokesOnLoadCallback()
-	{
+	public async Task LazyImage_InvokesOnLoadCallback() {
 		// Arrange
 		var loadCalled = false;
-		var cut = RenderComponent<LazyImage>(p =>
-		{
+		var cut = RenderComponent<LazyImage>(p => {
 			p.Add(l => l.Src, "/test.png");
 			p.Add(l => l.Alt, "Test");
 			p.Add(l => l.OnLoad, EventCallback.Factory.Create(this, () => loadCalled = true));
@@ -249,12 +220,10 @@ public class LazyImageTests : TestContext
 	}
 
 	[Fact]
-	public async Task LazyImage_InvokesOnErrorCallback()
-	{
+	public async Task LazyImage_InvokesOnErrorCallback() {
 		// Arrange
 		var errorCalled = false;
-		var cut = RenderComponent<LazyImage>(p =>
-		{
+		var cut = RenderComponent<LazyImage>(p => {
 			p.Add(l => l.Src, "/test.png");
 			p.Add(l => l.Alt, "Test");
 			p.Add(l => l.OnError, EventCallback.Factory.Create(this, () => errorCalled = true));

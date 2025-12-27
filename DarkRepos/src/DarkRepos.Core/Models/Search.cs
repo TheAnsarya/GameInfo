@@ -3,8 +3,7 @@ namespace DarkRepos.Core.Models;
 /// <summary>
 /// Represents a searchable document in the FTS5 index.
 /// </summary>
-public class SearchDocument
-{
+public class SearchDocument {
 	/// <summary>
 	/// Unique document identifier
 	/// </summary>
@@ -64,8 +63,7 @@ public class SearchDocument
 /// <summary>
 /// Type of searchable document
 /// </summary>
-public enum SearchDocumentType
-{
+public enum SearchDocumentType {
 	/// <summary>Game catalog entry</summary>
 	Game = 1,
 
@@ -85,8 +83,7 @@ public enum SearchDocumentType
 /// <summary>
 /// Represents a search result with relevance information.
 /// </summary>
-public class SearchResult
-{
+public class SearchResult {
 	/// <summary>
 	/// The matching document
 	/// </summary>
@@ -111,8 +108,7 @@ public class SearchResult
 /// <summary>
 /// Search query parameters.
 /// </summary>
-public class SearchQuery
-{
+public class SearchQuery {
 	/// <summary>
 	/// The search terms
 	/// </summary>
@@ -147,8 +143,7 @@ public class SearchQuery
 /// <summary>
 /// Search results container with pagination info.
 /// </summary>
-public class SearchResults
-{
+public class SearchResults {
 	/// <summary>
 	/// The matching results
 	/// </summary>

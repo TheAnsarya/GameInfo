@@ -10,11 +10,9 @@ namespace DarkRepos.Web.Tests.Components;
 /// <summary>
 /// Unit tests for the Skeleton and SkeletonCard components.
 /// </summary>
-public class SkeletonTests : TestContext
-{
+public class SkeletonTests : TestContext {
 	[Fact]
-	public void Skeleton_RendersWithDefaultVariant()
-	{
+	public void Skeleton_RendersWithDefaultVariant() {
 		// Act
 		var cut = RenderComponent<Skeleton>();
 
@@ -31,8 +29,7 @@ public class SkeletonTests : TestContext
 	[InlineData(SkeletonVariant.Card, "skeleton-card")]
 	[InlineData(SkeletonVariant.Avatar, "skeleton-avatar")]
 	[InlineData(SkeletonVariant.Button, "skeleton-button")]
-	public void Skeleton_RendersCorrectVariantClass(SkeletonVariant variant, string expectedClass)
-	{
+	public void Skeleton_RendersCorrectVariantClass(SkeletonVariant variant, string expectedClass) {
 		// Act
 		var cut = RenderComponent<Skeleton>(p =>
 			p.Add(s => s.Variant, variant));
@@ -43,8 +40,7 @@ public class SkeletonTests : TestContext
 	}
 
 	[Fact]
-	public void Skeleton_AppliesCustomWidth()
-	{
+	public void Skeleton_AppliesCustomWidth() {
 		// Act
 		var cut = RenderComponent<Skeleton>(p =>
 			p.Add(s => s.Width, "200px"));
@@ -55,8 +51,7 @@ public class SkeletonTests : TestContext
 	}
 
 	[Fact]
-	public void Skeleton_AppliesCustomHeight()
-	{
+	public void Skeleton_AppliesCustomHeight() {
 		// Act
 		var cut = RenderComponent<Skeleton>(p =>
 			p.Add(s => s.Height, "100px"));
@@ -67,11 +62,9 @@ public class SkeletonTests : TestContext
 	}
 
 	[Fact]
-	public void Skeleton_AppliesCustomWidthAndHeight()
-	{
+	public void Skeleton_AppliesCustomWidthAndHeight() {
 		// Act
-		var cut = RenderComponent<Skeleton>(p =>
-		{
+		var cut = RenderComponent<Skeleton>(p => {
 			p.Add(s => s.Width, "50%");
 			p.Add(s => s.Height, "2rem");
 		});
@@ -84,8 +77,7 @@ public class SkeletonTests : TestContext
 	}
 
 	[Fact]
-	public void Skeleton_DisablesAnimation_WhenAnimatedIsFalse()
-	{
+	public void Skeleton_DisablesAnimation_WhenAnimatedIsFalse() {
 		// Act
 		var cut = RenderComponent<Skeleton>(p =>
 			p.Add(s => s.Animated, false));
@@ -96,8 +88,7 @@ public class SkeletonTests : TestContext
 	}
 
 	[Fact]
-	public void Skeleton_HasCorrectAccessibilityAttributes()
-	{
+	public void Skeleton_HasCorrectAccessibilityAttributes() {
 		// Act
 		var cut = RenderComponent<Skeleton>();
 
@@ -108,8 +99,7 @@ public class SkeletonTests : TestContext
 	}
 
 	[Fact]
-	public void SkeletonCard_RendersContainerAndSections()
-	{
+	public void SkeletonCard_RendersContainerAndSections() {
 		// Act
 		var cut = RenderComponent<SkeletonCard>();
 
@@ -122,8 +112,7 @@ public class SkeletonTests : TestContext
 	}
 
 	[Fact]
-	public void SkeletonCard_RendersTwoChildSkeletons_WhenShowSecondBadgeIsTrue()
-	{
+	public void SkeletonCard_RendersTwoChildSkeletons_WhenShowSecondBadgeIsTrue() {
 		// Act
 		var cut = RenderComponent<SkeletonCard>(p =>
 			p.Add(s => s.ShowSecondBadge, true));
@@ -134,8 +123,7 @@ public class SkeletonTests : TestContext
 	}
 
 	[Fact]
-	public void SkeletonCard_RendersOneBadge_WhenShowSecondBadgeIsFalse()
-	{
+	public void SkeletonCard_RendersOneBadge_WhenShowSecondBadgeIsFalse() {
 		// Act
 		var cut = RenderComponent<SkeletonCard>(p =>
 			p.Add(s => s.ShowSecondBadge, false));
@@ -146,8 +134,7 @@ public class SkeletonTests : TestContext
 	}
 
 	[Fact]
-	public void SkeletonCard_ShowsThirdLine_WhenEnabled()
-	{
+	public void SkeletonCard_ShowsThirdLine_WhenEnabled() {
 		// Act
 		var cut = RenderComponent<SkeletonCard>(p =>
 			p.Add(s => s.ShowThirdLine, true));
@@ -158,8 +145,7 @@ public class SkeletonTests : TestContext
 	}
 
 	[Fact]
-	public void SkeletonCard_HideThirdLine_ByDefault()
-	{
+	public void SkeletonCard_HideThirdLine_ByDefault() {
 		// Act
 		var cut = RenderComponent<SkeletonCard>();
 

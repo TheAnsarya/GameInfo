@@ -8,13 +8,11 @@ namespace DarkRepos.Tests.Services;
 /// <summary>
 /// Unit tests for the ContentService class.
 /// </summary>
-public class ContentServiceTests : IDisposable
-{
+public class ContentServiceTests : IDisposable {
 	private readonly DarkReposDbContext _context;
 	private readonly ContentService _service;
 
-	public ContentServiceTests()
-	{
+	public ContentServiceTests() {
 		var options = new DbContextOptionsBuilder<DarkReposDbContext>()
 			.UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
 			.Options;
@@ -25,8 +23,7 @@ public class ContentServiceTests : IDisposable
 		SeedTestData();
 	}
 
-	private void SeedTestData()
-	{
+	private void SeedTestData() {
 		var games = new List<GameEntity>
 		{
 			new()
@@ -82,15 +79,13 @@ public class ContentServiceTests : IDisposable
 		_context.SaveChanges();
 	}
 
-	public void Dispose()
-	{
+	public void Dispose() {
 		_context.Dispose();
 		GC.SuppressFinalize(this);
 	}
 
 	[Fact]
-	public async Task GetAllGamesAsync_ReturnsAllGames()
-	{
+	public async Task GetAllGamesAsync_ReturnsAllGames() {
 		// Act
 		var result = await _service.GetAllGamesAsync();
 
@@ -99,8 +94,7 @@ public class ContentServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task GetGameBySlugAsync_ExistingSlug_ReturnsGame()
-	{
+	public async Task GetGameBySlugAsync_ExistingSlug_ReturnsGame() {
 		// Act
 		var result = await _service.GetGameBySlugAsync("dragon-warrior-4-nes");
 
@@ -111,8 +105,7 @@ public class ContentServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task GetGameBySlugAsync_NonExistingSlug_ReturnsNull()
-	{
+	public async Task GetGameBySlugAsync_NonExistingSlug_ReturnsNull() {
 		// Act
 		var result = await _service.GetGameBySlugAsync("nonexistent-game");
 
@@ -121,8 +114,7 @@ public class ContentServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task GetGamesByPlatformAsync_NES_ReturnsNESGames()
-	{
+	public async Task GetGamesByPlatformAsync_NES_ReturnsNESGames() {
 		// Act
 		var result = await _service.GetGamesByPlatformAsync(Platform.NES);
 
@@ -132,8 +124,7 @@ public class ContentServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task GetGamesByPlatformAsync_SNES_ReturnsSNESGames()
-	{
+	public async Task GetGamesByPlatformAsync_SNES_ReturnsSNESGames() {
 		// Act
 		var result = await _service.GetGamesByPlatformAsync(Platform.SNES);
 
@@ -144,8 +135,7 @@ public class ContentServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task GetFeaturedGamesAsync_ReturnsGamesOrderedByDocLevel()
-	{
+	public async Task GetFeaturedGamesAsync_ReturnsGamesOrderedByDocLevel() {
 		// Act
 		var result = await _service.GetFeaturedGamesAsync(2);
 
@@ -156,11 +146,9 @@ public class ContentServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task SaveGameAsync_NewGame_AddsToDatabase()
-	{
+	public async Task SaveGameAsync_NewGame_AddsToDatabase() {
 		// Arrange
-		var newGame = new Game
-		{
+		var newGame = new Game {
 			Slug = "robotrek-snes",
 			Title = "Robotrek",
 			Platform = Platform.SNES,
@@ -180,8 +168,7 @@ public class ContentServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task DeleteGameAsync_ExistingGame_RemovesFromDatabase()
-	{
+	public async Task DeleteGameAsync_ExistingGame_RemovesFromDatabase() {
 		// Arrange
 		var initialCount = await _context.Games.CountAsync();
 
@@ -194,8 +181,7 @@ public class ContentServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task DeleteGameAsync_NonExistingGame_DoesNothing()
-	{
+	public async Task DeleteGameAsync_NonExistingGame_DoesNothing() {
 		// Arrange
 		var initialCount = await _context.Games.CountAsync();
 

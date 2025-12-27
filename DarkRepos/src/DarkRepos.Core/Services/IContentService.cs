@@ -5,8 +5,7 @@ namespace DarkRepos.Core.Services;
 /// <summary>
 /// Service for accessing game and tool content.
 /// </summary>
-public interface IContentService
-{
+public interface IContentService {
 	/// <summary>
 	/// Get all games in the catalog.
 	/// </summary>

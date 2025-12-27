@@ -5,11 +5,9 @@ using Xunit;
 
 namespace DarkRepos.Tests.Components;
 
-public class DownloadCardTests : TestContext
-{
+public class DownloadCardTests : TestContext {
 	[Fact]
-	public void DownloadCard_RendersTitle()
-	{
+	public void DownloadCard_RendersTitle() {
 		// Act
 		var cut = RenderComponent<DownloadCard>(parameters => parameters
 			.Add(p => p.Title, "Test Tool")
@@ -20,8 +18,7 @@ public class DownloadCardTests : TestContext
 	}
 
 	[Fact]
-	public void DownloadCard_RendersDescription()
-	{
+	public void DownloadCard_RendersDescription() {
 		// Act
 		var cut = RenderComponent<DownloadCard>(parameters => parameters
 			.Add(p => p.Title, "Test Tool")
@@ -33,8 +30,7 @@ public class DownloadCardTests : TestContext
 	}
 
 	[Fact]
-	public void DownloadCard_RendersVersion()
-	{
+	public void DownloadCard_RendersVersion() {
 		// Act
 		var cut = RenderComponent<DownloadCard>(parameters => parameters
 			.Add(p => p.Title, "Test Tool")
@@ -46,8 +42,7 @@ public class DownloadCardTests : TestContext
 	}
 
 	[Fact]
-	public void DownloadCard_RendersPlatform()
-	{
+	public void DownloadCard_RendersPlatform() {
 		// Act
 		var cut = RenderComponent<DownloadCard>(parameters => parameters
 			.Add(p => p.Title, "Test Tool")
@@ -59,8 +54,7 @@ public class DownloadCardTests : TestContext
 	}
 
 	[Fact]
-	public void DownloadCard_RendersSize()
-	{
+	public void DownloadCard_RendersSize() {
 		// Act
 		var cut = RenderComponent<DownloadCard>(parameters => parameters
 			.Add(p => p.Title, "Test Tool")
@@ -72,8 +66,7 @@ public class DownloadCardTests : TestContext
 	}
 
 	[Fact]
-	public void DownloadCard_RendersDownloadLink()
-	{
+	public void DownloadCard_RendersDownloadLink() {
 		// Arrange
 		var url = "https://github.com/example/releases";
 
@@ -89,8 +82,7 @@ public class DownloadCardTests : TestContext
 	}
 
 	[Fact]
-	public void DownloadCard_RendersDefaultIcon()
-	{
+	public void DownloadCard_RendersDefaultIcon() {
 		// Act
 		var cut = RenderComponent<DownloadCard>(parameters => parameters
 			.Add(p => p.Title, "Test Tool")
@@ -101,8 +93,7 @@ public class DownloadCardTests : TestContext
 	}
 
 	[Fact]
-	public void DownloadCard_RendersCustomIcon()
-	{
+	public void DownloadCard_RendersCustomIcon() {
 		// Act
 		var cut = RenderComponent<DownloadCard>(parameters => parameters
 			.Add(p => p.Title, "Test Tool")
@@ -114,8 +105,7 @@ public class DownloadCardTests : TestContext
 	}
 
 	[Fact]
-	public void DownloadCard_HasExternalLinkAttributes()
-	{
+	public void DownloadCard_HasExternalLinkAttributes() {
 		// Act
 		var cut = RenderComponent<DownloadCard>(parameters => parameters
 			.Add(p => p.Title, "Test Tool")
@@ -128,8 +118,7 @@ public class DownloadCardTests : TestContext
 	}
 
 	[Fact]
-	public void DownloadCard_HidesMetaItems_WhenNotProvided()
-	{
+	public void DownloadCard_HidesMetaItems_WhenNotProvided() {
 		// Act
 		var cut = RenderComponent<DownloadCard>(parameters => parameters
 			.Add(p => p.Title, "Test Tool")
@@ -140,8 +129,7 @@ public class DownloadCardTests : TestContext
 	}
 
 	[Fact]
-	public void DownloadCard_ShowsAllMetaItems_WhenProvided()
-	{
+	public void DownloadCard_ShowsAllMetaItems_WhenProvided() {
 		// Act
 		var cut = RenderComponent<DownloadCard>(parameters => parameters
 			.Add(p => p.Title, "Test Tool")

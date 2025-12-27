@@ -13,11 +13,9 @@ namespace DarkRepos.Tests.Components;
 /// <summary>
 /// Tests for the CopyButton component.
 /// </summary>
-public class CopyButtonTests : TestContext
-{
+public class CopyButtonTests : TestContext {
 	[Fact]
-	public void CopyButton_RendersWithDefaultLabel()
-	{
+	public void CopyButton_RendersWithDefaultLabel() {
 		// Arrange
 		SetupJsMock();
 
@@ -30,8 +28,7 @@ public class CopyButtonTests : TestContext
 	}
 
 	[Fact]
-	public void CopyButton_RendersCustomLabel()
-	{
+	public void CopyButton_RendersCustomLabel() {
 		// Arrange
 		SetupJsMock();
 
@@ -45,8 +42,7 @@ public class CopyButtonTests : TestContext
 	}
 
 	[Fact]
-	public void CopyButton_HasCopyIcon()
-	{
+	public void CopyButton_HasCopyIcon() {
 		// Arrange
 		SetupJsMock();
 
@@ -59,8 +55,7 @@ public class CopyButtonTests : TestContext
 	}
 
 	[Fact]
-	public void CopyButton_HasReadyClass_Initially()
-	{
+	public void CopyButton_HasReadyClass_Initially() {
 		// Arrange
 		SetupJsMock();
 
@@ -73,8 +68,7 @@ public class CopyButtonTests : TestContext
 	}
 
 	[Fact]
-	public void CopyButton_HasTitleAttribute()
-	{
+	public void CopyButton_HasTitleAttribute() {
 		// Arrange
 		SetupJsMock();
 
@@ -87,8 +81,7 @@ public class CopyButtonTests : TestContext
 	}
 
 	[Fact]
-	public void CopyButton_HasAriaLabel()
-	{
+	public void CopyButton_HasAriaLabel() {
 		// Arrange
 		SetupJsMock();
 
@@ -101,8 +94,7 @@ public class CopyButtonTests : TestContext
 	}
 
 	[Fact]
-	public void CopyButton_TruncatesLongText_InTitle()
-	{
+	public void CopyButton_TruncatesLongText_InTitle() {
 		// Arrange
 		SetupJsMock();
 		var longText = new string('a', 100);
@@ -118,8 +110,7 @@ public class CopyButtonTests : TestContext
 	}
 
 	[Fact]
-	public void CopyButton_HasCustomCopiedLabel()
-	{
+	public void CopyButton_HasCustomCopiedLabel() {
 		// Arrange
 		SetupJsMock();
 
@@ -133,8 +124,7 @@ public class CopyButtonTests : TestContext
 	}
 
 	[Fact]
-	public void CopyButton_HasCustomErrorLabel()
-	{
+	public void CopyButton_HasCustomErrorLabel() {
 		// Arrange
 		SetupJsMock();
 
@@ -148,8 +138,7 @@ public class CopyButtonTests : TestContext
 	}
 
 	[Fact]
-	public void CopyButton_HasButtonType()
-	{
+	public void CopyButton_HasButtonType() {
 		// Arrange
 		SetupJsMock();
 
@@ -162,8 +151,7 @@ public class CopyButtonTests : TestContext
 	}
 
 	[Fact]
-	public void CopyButton_AcceptsOnCopyCallback()
-	{
+	public void CopyButton_AcceptsOnCopyCallback() {
 		// Arrange
 		SetupJsMock();
 
@@ -177,8 +165,7 @@ public class CopyButtonTests : TestContext
 	}
 
 	[Fact]
-	public void CopyButton_HasFeedbackDurationParameter()
-	{
+	public void CopyButton_HasFeedbackDurationParameter() {
 		// Arrange
 		SetupJsMock();
 
@@ -192,8 +179,7 @@ public class CopyButtonTests : TestContext
 	}
 
 	[Fact]
-	public void CopyButton_IsNotDisabled_Initially()
-	{
+	public void CopyButton_IsNotDisabled_Initially() {
 		// Arrange
 		SetupJsMock();
 
@@ -206,8 +192,7 @@ public class CopyButtonTests : TestContext
 	}
 
 	[Fact]
-	public async Task CopyButton_ShowsCopied_AfterSuccessfulCopy()
-	{
+	public async Task CopyButton_ShowsCopied_AfterSuccessfulCopy() {
 		// Arrange
 		var jsMock = new Mock<IJSRuntime>();
 		jsMock.Setup(x => x.InvokeAsync<Microsoft.JSInterop.Infrastructure.IJSVoidResult>(
@@ -230,8 +215,7 @@ public class CopyButtonTests : TestContext
 	}
 
 	[Fact]
-	public async Task CopyButton_InvokesOnCopy_WithTrue_OnSuccess()
-	{
+	public async Task CopyButton_InvokesOnCopy_WithTrue_OnSuccess() {
 		// Arrange
 		var jsMock = new Mock<IJSRuntime>();
 		jsMock.Setup(x => x.InvokeAsync<Microsoft.JSInterop.Infrastructure.IJSVoidResult>(
@@ -254,8 +238,7 @@ public class CopyButtonTests : TestContext
 	}
 
 	[Fact]
-	public async Task CopyButton_ShowsError_WhenClipboardFails()
-	{
+	public async Task CopyButton_ShowsError_WhenClipboardFails() {
 		// Arrange
 		var jsMock = new Mock<IJSRuntime>();
 		jsMock.Setup(x => x.InvokeAsync<Microsoft.JSInterop.Infrastructure.IJSVoidResult>(
@@ -278,8 +261,7 @@ public class CopyButtonTests : TestContext
 	}
 
 	[Fact]
-	public async Task CopyButton_InvokesOnCopy_WithFalse_OnError()
-	{
+	public async Task CopyButton_InvokesOnCopy_WithFalse_OnError() {
 		// Arrange
 		var jsMock = new Mock<IJSRuntime>();
 		jsMock.Setup(x => x.InvokeAsync<Microsoft.JSInterop.Infrastructure.IJSVoidResult>(
@@ -302,8 +284,7 @@ public class CopyButtonTests : TestContext
 	}
 
 	[Fact]
-	public async Task CopyButton_DoesNotInvokeClipboard_WhenTextIsEmpty()
-	{
+	public async Task CopyButton_DoesNotInvokeClipboard_WhenTextIsEmpty() {
 		// Arrange
 		var jsMock = new Mock<IJSRuntime>();
 		var invoked = false;
@@ -326,8 +307,7 @@ public class CopyButtonTests : TestContext
 	}
 
 	[Fact]
-	public async Task CopyButton_ShowsCopyingState_DuringCopy()
-	{
+	public async Task CopyButton_ShowsCopyingState_DuringCopy() {
 		// Arrange
 		var tcs = new TaskCompletionSource<Microsoft.JSInterop.Infrastructure.IJSVoidResult>();
 		var jsMock = new Mock<IJSRuntime>();
@@ -354,8 +334,7 @@ public class CopyButtonTests : TestContext
 	}
 
 	[Fact]
-	public async Task CopyButton_IsDisabled_DuringCopy()
-	{
+	public async Task CopyButton_IsDisabled_DuringCopy() {
 		// Arrange
 		var tcs = new TaskCompletionSource<Microsoft.JSInterop.Infrastructure.IJSVoidResult>();
 		var jsMock = new Mock<IJSRuntime>();
@@ -380,8 +359,7 @@ public class CopyButtonTests : TestContext
 	}
 
 	[Fact]
-	public async Task CopyButton_InvokesJsWithCorrectText()
-	{
+	public async Task CopyButton_InvokesJsWithCorrectText() {
 		// Arrange
 		var expectedText = "Text to be copied!";
 		string? actualText = null;
@@ -405,8 +383,7 @@ public class CopyButtonTests : TestContext
 	}
 
 	[Fact]
-	public void CopyButton_UsesCustomCopiedLabel()
-	{
+	public void CopyButton_UsesCustomCopiedLabel() {
 		// Arrange - verify the custom label parameter is set
 		SetupJsMock();
 		var customLabel = "Custom Copied!";
@@ -421,8 +398,7 @@ public class CopyButtonTests : TestContext
 	}
 
 	[Fact]
-	public void CopyButton_UsesCustomErrorLabel()
-	{
+	public void CopyButton_UsesCustomErrorLabel() {
 		// Arrange - verify the custom label parameter is set
 		SetupJsMock();
 		var customLabel = "Custom Error!";
@@ -436,8 +412,7 @@ public class CopyButtonTests : TestContext
 		cut.Instance.ErrorLabel.Should().Be(customLabel);
 	}
 
-	private Mock<IJSRuntime> SetupJsMock()
-	{
+	private Mock<IJSRuntime> SetupJsMock() {
 		var jsMock = new Mock<IJSRuntime>();
 		Services.AddSingleton(jsMock.Object);
 		return jsMock;

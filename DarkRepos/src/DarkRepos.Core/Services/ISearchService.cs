@@ -5,8 +5,7 @@ namespace DarkRepos.Core.Services;
 /// <summary>
 /// Service for full-text search functionality.
 /// </summary>
-public interface ISearchService
-{
+public interface ISearchService {
 	/// <summary>
 	/// Search across all indexed content.
 	/// </summary>

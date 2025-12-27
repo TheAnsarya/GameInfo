@@ -8,11 +8,9 @@ namespace DarkRepos.Tests.Components;
 /// <summary>
 /// Tests for the DiscordInvite component.
 /// </summary>
-public class DiscordInviteTests : TestContext
-{
+public class DiscordInviteTests : TestContext {
 	[Fact]
-	public void DiscordInvite_RendersWithServerName()
-	{
+	public void DiscordInvite_RendersWithServerName() {
 		// Act
 		var cut = RenderComponent<DiscordInvite>(parameters => parameters
 			.Add(p => p.ServerName, "Test Server")
@@ -23,8 +21,7 @@ public class DiscordInviteTests : TestContext
 	}
 
 	[Fact]
-	public void DiscordInvite_GeneratesCorrectInviteUrl()
-	{
+	public void DiscordInvite_GeneratesCorrectInviteUrl() {
 		// Act
 		var cut = RenderComponent<DiscordInvite>(parameters => parameters
 			.Add(p => p.ServerName, "Test")
@@ -36,8 +33,7 @@ public class DiscordInviteTests : TestContext
 	}
 
 	[Fact]
-	public void DiscordInvite_ShowsDescription_WhenProvided()
-	{
+	public void DiscordInvite_ShowsDescription_WhenProvided() {
 		// Act
 		var cut = RenderComponent<DiscordInvite>(parameters => parameters
 			.Add(p => p.ServerName, "Test")
@@ -49,8 +45,7 @@ public class DiscordInviteTests : TestContext
 	}
 
 	[Fact]
-	public void DiscordInvite_HidesDescription_WhenCompact()
-	{
+	public void DiscordInvite_HidesDescription_WhenCompact() {
 		// Act
 		var cut = RenderComponent<DiscordInvite>(parameters => parameters
 			.Add(p => p.ServerName, "Test")
@@ -63,8 +58,7 @@ public class DiscordInviteTests : TestContext
 	}
 
 	[Fact]
-	public void DiscordInvite_ShowsOnlineCount_WhenGreaterThanZero()
-	{
+	public void DiscordInvite_ShowsOnlineCount_WhenGreaterThanZero() {
 		// Act
 		var cut = RenderComponent<DiscordInvite>(parameters => parameters
 			.Add(p => p.ServerName, "Test")
@@ -77,8 +71,7 @@ public class DiscordInviteTests : TestContext
 	}
 
 	[Fact]
-	public void DiscordInvite_HidesOnlineCount_WhenZero()
-	{
+	public void DiscordInvite_HidesOnlineCount_WhenZero() {
 		// Act
 		var cut = RenderComponent<DiscordInvite>(parameters => parameters
 			.Add(p => p.ServerName, "Test")
@@ -90,8 +83,7 @@ public class DiscordInviteTests : TestContext
 	}
 
 	[Fact]
-	public void DiscordInvite_ShowsMemberCount_WhenGreaterThanZero()
-	{
+	public void DiscordInvite_ShowsMemberCount_WhenGreaterThanZero() {
 		// Act
 		var cut = RenderComponent<DiscordInvite>(parameters => parameters
 			.Add(p => p.ServerName, "Test")
@@ -104,8 +96,7 @@ public class DiscordInviteTests : TestContext
 	}
 
 	[Fact]
-	public void DiscordInvite_HidesMemberCount_WhenZero()
-	{
+	public void DiscordInvite_HidesMemberCount_WhenZero() {
 		// Act
 		var cut = RenderComponent<DiscordInvite>(parameters => parameters
 			.Add(p => p.ServerName, "Test")
@@ -117,8 +108,7 @@ public class DiscordInviteTests : TestContext
 	}
 
 	[Fact]
-	public void DiscordInvite_FormatsLargeCount_AsK()
-	{
+	public void DiscordInvite_FormatsLargeCount_AsK() {
 		// Act
 		var cut = RenderComponent<DiscordInvite>(parameters => parameters
 			.Add(p => p.ServerName, "Test")
@@ -130,8 +120,7 @@ public class DiscordInviteTests : TestContext
 	}
 
 	[Fact]
-	public void DiscordInvite_FormatsVeryLargeCount_AsM()
-	{
+	public void DiscordInvite_FormatsVeryLargeCount_AsM() {
 		// Act
 		var cut = RenderComponent<DiscordInvite>(parameters => parameters
 			.Add(p => p.ServerName, "Test")
@@ -143,8 +132,7 @@ public class DiscordInviteTests : TestContext
 	}
 
 	[Fact]
-	public void DiscordInvite_ShowsServerIcon_WhenUrlProvided()
-	{
+	public void DiscordInvite_ShowsServerIcon_WhenUrlProvided() {
 		// Act
 		var cut = RenderComponent<DiscordInvite>(parameters => parameters
 			.Add(p => p.ServerName, "Test")
@@ -157,8 +145,7 @@ public class DiscordInviteTests : TestContext
 	}
 
 	[Fact]
-	public void DiscordInvite_ShowsPlaceholder_WhenNoIconUrl()
-	{
+	public void DiscordInvite_ShowsPlaceholder_WhenNoIconUrl() {
 		// Act
 		var cut = RenderComponent<DiscordInvite>(parameters => parameters
 			.Add(p => p.ServerName, "Dark Repos")
@@ -170,8 +157,7 @@ public class DiscordInviteTests : TestContext
 	}
 
 	[Fact]
-	public void DiscordInvite_GeneratesCorrectInitials_ForTwoWords()
-	{
+	public void DiscordInvite_GeneratesCorrectInitials_ForTwoWords() {
 		// Act
 		var cut = RenderComponent<DiscordInvite>(parameters => parameters
 			.Add(p => p.ServerName, "Game Info")
@@ -182,8 +168,7 @@ public class DiscordInviteTests : TestContext
 	}
 
 	[Fact]
-	public void DiscordInvite_GeneratesCorrectInitials_ForSingleWord()
-	{
+	public void DiscordInvite_GeneratesCorrectInitials_ForSingleWord() {
 		// Act
 		var cut = RenderComponent<DiscordInvite>(parameters => parameters
 			.Add(p => p.ServerName, "Discord")
@@ -194,8 +179,7 @@ public class DiscordInviteTests : TestContext
 	}
 
 	[Fact]
-	public void DiscordInvite_HasCompactClass_WhenCompactIsTrue()
-	{
+	public void DiscordInvite_HasCompactClass_WhenCompactIsTrue() {
 		// Act
 		var cut = RenderComponent<DiscordInvite>(parameters => parameters
 			.Add(p => p.ServerName, "Test")
@@ -207,8 +191,7 @@ public class DiscordInviteTests : TestContext
 	}
 
 	[Fact]
-	public void DiscordInvite_JoinButton_HasTargetBlank()
-	{
+	public void DiscordInvite_JoinButton_HasTargetBlank() {
 		// Act
 		var cut = RenderComponent<DiscordInvite>(parameters => parameters
 			.Add(p => p.ServerName, "Test")
@@ -221,8 +204,7 @@ public class DiscordInviteTests : TestContext
 	}
 
 	[Fact]
-	public void DiscordInvite_HasDiscordLogo()
-	{
+	public void DiscordInvite_HasDiscordLogo() {
 		// Act
 		var cut = RenderComponent<DiscordInvite>(parameters => parameters
 			.Add(p => p.ServerName, "Test")
@@ -233,8 +215,7 @@ public class DiscordInviteTests : TestContext
 	}
 
 	[Fact]
-	public void DiscordInvite_ShowsJoinLabel()
-	{
+	public void DiscordInvite_ShowsJoinLabel() {
 		// Act
 		var cut = RenderComponent<DiscordInvite>(parameters => parameters
 			.Add(p => p.ServerName, "Test")
@@ -245,8 +226,7 @@ public class DiscordInviteTests : TestContext
 	}
 
 	[Fact]
-	public void DiscordInvite_ShowsOnlineStatusDot()
-	{
+	public void DiscordInvite_ShowsOnlineStatusDot() {
 		// Act
 		var cut = RenderComponent<DiscordInvite>(parameters => parameters
 			.Add(p => p.ServerName, "Test")
@@ -258,8 +238,7 @@ public class DiscordInviteTests : TestContext
 	}
 
 	[Fact]
-	public void DiscordInvite_HandlesEmptyServerName()
-	{
+	public void DiscordInvite_HandlesEmptyServerName() {
 		// Act
 		var cut = RenderComponent<DiscordInvite>(parameters => parameters
 			.Add(p => p.ServerName, "")
@@ -270,8 +249,7 @@ public class DiscordInviteTests : TestContext
 	}
 
 	[Fact]
-	public void DiscordInvite_ImageHasLazyLoading()
-	{
+	public void DiscordInvite_ImageHasLazyLoading() {
 		// Act
 		var cut = RenderComponent<DiscordInvite>(parameters => parameters
 			.Add(p => p.ServerName, "Test")

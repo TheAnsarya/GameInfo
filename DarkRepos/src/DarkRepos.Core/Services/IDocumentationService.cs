@@ -5,8 +5,7 @@ namespace DarkRepos.Core.Services;
 /// <summary>
 /// Service for loading and managing documentation content.
 /// </summary>
-public interface IDocumentationService
-{
+public interface IDocumentationService {
 	/// <summary>
 	/// Gets a documentation page by its path.
 	/// </summary>
@@ -38,8 +37,7 @@ public interface IDocumentationService
 /// <summary>
 /// A documentation page with rendered content.
 /// </summary>
-public class DocumentationPage
-{
+public class DocumentationPage {
 	/// <summary>
 	/// Path to the page (without extension).
 	/// </summary>
@@ -89,8 +87,7 @@ public class DocumentationPage
 /// <summary>
 /// Table of contents for documentation.
 /// </summary>
-public class DocumentationToc
-{
+public class DocumentationToc {
 	/// <summary>
 	/// Root categories in the documentation.
 	/// </summary>
@@ -100,8 +97,7 @@ public class DocumentationToc
 /// <summary>
 /// A documentation category with pages.
 /// </summary>
-public class DocumentationCategory
-{
+public class DocumentationCategory {
 	/// <summary>
 	/// Category path/slug.
 	/// </summary>
@@ -131,8 +127,7 @@ public class DocumentationCategory
 /// <summary>
 /// Summary of a documentation page for listings.
 /// </summary>
-public class DocumentationPageSummary
-{
+public class DocumentationPageSummary {
 	/// <summary>
 	/// Page path.
 	/// </summary>
@@ -157,8 +152,7 @@ public class DocumentationPageSummary
 /// <summary>
 /// Information about a heading for table of contents.
 /// </summary>
-public class HeadingInfo
-{
+public class HeadingInfo {
 	/// <summary>
 	/// Heading level (1-6).
 	/// </summary>

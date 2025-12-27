@@ -6,8 +6,7 @@ namespace DarkRepos.Core.Services;
 /// <summary>
 /// Service for loading and parsing game metadata from JSON files.
 /// </summary>
-public interface IGameMetadataService
-{
+public interface IGameMetadataService {
 	/// <summary>
 	/// Loads game metadata from a JSON file.
 	/// </summary>
@@ -48,10 +47,8 @@ public interface IGameMetadataService
 /// <summary>
 /// Implementation of game metadata loading and parsing.
 /// </summary>
-public class GameMetadataService : IGameMetadataService
-{
-	private static readonly JsonSerializerOptions s_jsonOptions = new()
-	{
+public class GameMetadataService : IGameMetadataService {
+	private static readonly JsonSerializerOptions s_jsonOptions = new() {
 		PropertyNameCaseInsensitive = true,
 		PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
 		WriteIndented = true,
@@ -61,8 +58,7 @@ public class GameMetadataService : IGameMetadataService
 	};
 
 	/// <inheritdoc />
-	public async Task<Game?> LoadGameAsync(string jsonPath)
-	{
+	public async Task<Game?> LoadGameAsync(string jsonPath) {
 		if (!File.Exists(jsonPath))
 			return null;
 
@@ -71,8 +67,7 @@ public class GameMetadataService : IGameMetadataService
 	}
 
 	/// <inheritdoc />
-	public async Task<IReadOnlyList<Game>> LoadAllGamesAsync(string directoryPath)
-	{
+	public async Task<IReadOnlyList<Game>> LoadAllGamesAsync(string directoryPath) {
 		var games = new List<Game>();
 
 		if (!Directory.Exists(directoryPath))
@@ -80,18 +75,13 @@ public class GameMetadataService : IGameMetadataService
 
 		var jsonFiles = Directory.GetFiles(directoryPath, "*.json", SearchOption.AllDirectories);
 
-		foreach (var file in jsonFiles)
-		{
-			try
-			{
+		foreach (var file in jsonFiles) {
+			try {
 				var game = await LoadGameAsync(file);
-				if (game != null)
-				{
+				if (game != null) {
 					games.Add(game);
 				}
-			}
-			catch (JsonException)
-			{
+			} catch (JsonException) {
 				// Log and skip invalid files
 				continue;
 			}
@@ -101,39 +91,31 @@ public class GameMetadataService : IGameMetadataService
 	}
 
 	/// <inheritdoc />
-	public Game? ParseGame(string jsonContent)
-	{
+	public Game? ParseGame(string jsonContent) {
 		if (string.IsNullOrWhiteSpace(jsonContent))
 			return null;
 
-		try
-		{
+		try {
 			var dto = JsonSerializer.Deserialize<GameMetadataDto>(jsonContent, s_jsonOptions);
 			return dto?.ToGame();
-		}
-		catch (JsonException)
-		{
+		} catch (JsonException) {
 			return null;
 		}
 	}
 
 	/// <inheritdoc />
-	public (bool IsValid, List<string> Errors) ValidateGameJson(string jsonContent)
-	{
+	public (bool IsValid, List<string> Errors) ValidateGameJson(string jsonContent) {
 		var errors = new List<string>();
 
-		if (string.IsNullOrWhiteSpace(jsonContent))
-		{
+		if (string.IsNullOrWhiteSpace(jsonContent)) {
 			errors.Add("JSON content is empty");
 			return (false, errors);
 		}
 
-		try
-		{
+		try {
 			var dto = JsonSerializer.Deserialize<GameMetadataDto>(jsonContent, s_jsonOptions);
 
-			if (dto == null)
-			{
+			if (dto == null) {
 				errors.Add("Failed to parse JSON");
 				return (false, errors);
 			}
@@ -159,24 +141,20 @@ public class GameMetadataService : IGameMetadataService
 				errors.Add($"Invalid release year: {dto.ReleaseYear}");
 
 			return (errors.Count == 0, errors);
-		}
-		catch (JsonException ex)
-		{
+		} catch (JsonException ex) {
 			errors.Add($"JSON parsing error: {ex.Message}");
 			return (false, errors);
 		}
 	}
 
 	/// <inheritdoc />
-	public string ExportToJson(Game game, bool indented = true)
-	{
+	public string ExportToJson(Game game, bool indented = true) {
 		var dto = GameMetadataDto.FromGame(game);
 		var options = indented ? s_jsonOptions : new JsonSerializerOptions(s_jsonOptions) { WriteIndented = false };
 		return JsonSerializer.Serialize(dto, options);
 	}
 
-	private static bool IsValidSlug(string slug)
-	{
+	private static bool IsValidSlug(string slug) {
 		return slug.All(c => char.IsLetterOrDigit(c) || c == '-') &&
 			   slug == slug.ToLowerInvariant() &&
 			   !slug.StartsWith('-') &&
@@ -188,8 +166,7 @@ public class GameMetadataService : IGameMetadataService
 /// <summary>
 /// Data transfer object for game JSON serialization/deserialization.
 /// </summary>
-internal class GameMetadataDto
-{
+internal class GameMetadataDto {
 	public string? Slug { get; set; }
 	public string? Title { get; set; }
 	public string? Platform { get; set; }
@@ -209,8 +186,7 @@ internal class GameMetadataDto
 	public string[]? Tags { get; set; }
 	public DateTimeOffset? LastUpdated { get; set; }
 
-	public Game? ToGame()
-	{
+	public Game? ToGame() {
 		if (string.IsNullOrWhiteSpace(Slug) || string.IsNullOrWhiteSpace(Title) || string.IsNullOrWhiteSpace(Platform))
 			return null;
 
@@ -221,8 +197,7 @@ internal class GameMetadataDto
 		if (!string.IsNullOrWhiteSpace(DocumentationLevel))
 			Enum.TryParse(DocumentationLevel, true, out docLevel);
 
-		return new Game
-		{
+		return new Game {
 			Slug = Slug,
 			Title = Title,
 			Platform = platform,
@@ -244,10 +219,8 @@ internal class GameMetadataDto
 		};
 	}
 
-	public static GameMetadataDto FromGame(Game game)
-	{
-		return new GameMetadataDto
-		{
+	public static GameMetadataDto FromGame(Game game) {
+		return new GameMetadataDto {
 			Slug = game.Slug,
 			Title = game.Title,
 			Platform = game.Platform.ToString(),
@@ -270,8 +243,7 @@ internal class GameMetadataDto
 	}
 }
 
-internal class WikiResourcesDto
-{
+internal class WikiResourcesDto {
 	public bool HasRomMap { get; set; }
 	public bool HasRamMap { get; set; }
 	public bool HasDataStructures { get; set; }
@@ -279,10 +251,8 @@ internal class WikiResourcesDto
 	public bool HasNotes { get; set; }
 	public string? WikiBaseUrl { get; set; }
 
-	public WikiResources ToWikiResources()
-	{
-		return new WikiResources
-		{
+	public WikiResources ToWikiResources() {
+		return new WikiResources {
 			HasRomMap = HasRomMap,
 			HasRamMap = HasRamMap,
 			HasDataStructures = HasDataStructures,
@@ -292,14 +262,12 @@ internal class WikiResourcesDto
 		};
 	}
 
-	public static WikiResourcesDto? FromWikiResources(WikiResources wiki)
-	{
+	public static WikiResourcesDto? FromWikiResources(WikiResources wiki) {
 		if (!wiki.HasRomMap && !wiki.HasRamMap && !wiki.HasDataStructures &&
 			!wiki.HasSystems && !wiki.HasNotes && string.IsNullOrEmpty(wiki.WikiBaseUrl))
 			return null;
 
-		return new WikiResourcesDto
-		{
+		return new WikiResourcesDto {
 			HasRomMap = wiki.HasRomMap,
 			HasRamMap = wiki.HasRamMap,
 			HasDataStructures = wiki.HasDataStructures,

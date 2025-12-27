@@ -6,11 +6,9 @@ using Xunit;
 
 namespace DarkRepos.Tests.Components;
 
-public class GameCardTests : TestContext
-{
+public class GameCardTests : TestContext {
 	[Fact]
-	public void GameCard_DisplaysGameTitle()
-	{
+	public void GameCard_DisplaysGameTitle() {
 		// Arrange
 		var game = CreateTestGame();
 
@@ -23,8 +21,7 @@ public class GameCardTests : TestContext
 	}
 
 	[Fact]
-	public void GameCard_DisplaysPlatformBadge()
-	{
+	public void GameCard_DisplaysPlatformBadge() {
 		// Arrange
 		var game = CreateTestGame();
 
@@ -37,8 +34,7 @@ public class GameCardTests : TestContext
 	}
 
 	[Fact]
-	public void GameCard_LinksToGameDetail()
-	{
+	public void GameCard_LinksToGameDetail() {
 		// Arrange
 		var game = CreateTestGame();
 
@@ -52,8 +48,7 @@ public class GameCardTests : TestContext
 	}
 
 	[Fact]
-	public void GameCard_ShowsMeta_WhenShowMetaIsTrue()
-	{
+	public void GameCard_ShowsMeta_WhenShowMetaIsTrue() {
 		// Arrange
 		var game = CreateTestGame();
 
@@ -68,8 +63,7 @@ public class GameCardTests : TestContext
 	}
 
 	[Fact]
-	public void GameCard_HidesMeta_WhenShowMetaIsFalse()
-	{
+	public void GameCard_HidesMeta_WhenShowMetaIsFalse() {
 		// Arrange
 		var game = CreateTestGame();
 
@@ -82,10 +76,8 @@ public class GameCardTests : TestContext
 		cut.Markup.Should().NotContain("Enix");
 	}
 
-	private static Game CreateTestGame()
-	{
-		return new Game
-		{
+	private static Game CreateTestGame() {
+		return new Game {
 			Slug = "dragon-quest-iv",
 			Title = "Dragon Quest IV",
 			Platform = Platform.NES,

@@ -9,11 +9,9 @@ namespace DarkRepos.Web.Tests.Components;
 /// <summary>
 /// Unit tests for the WikiQuickLinks component.
 /// </summary>
-public class WikiQuickLinksTests : TestContext
-{
+public class WikiQuickLinksTests : TestContext {
 	[Fact]
-	public void WikiQuickLinks_RendersContainerAndGrid()
-	{
+	public void WikiQuickLinks_RendersContainerAndGrid() {
 		// Arrange
 		var wiki = new WikiResources { HasRomMap = true };
 
@@ -27,14 +25,12 @@ public class WikiQuickLinksTests : TestContext
 	}
 
 	[Fact]
-	public void WikiQuickLinks_ShowsHeader_WhenShowHeaderIsTrue()
-	{
+	public void WikiQuickLinks_ShowsHeader_WhenShowHeaderIsTrue() {
 		// Arrange
 		var wiki = new WikiResources { HasRomMap = true };
 
 		// Act
-		var cut = RenderComponent<WikiQuickLinks>(p =>
-		{
+		var cut = RenderComponent<WikiQuickLinks>(p => {
 			p.Add(w => w.Wiki, wiki);
 			p.Add(w => w.ShowHeader, true);
 		});
@@ -44,14 +40,12 @@ public class WikiQuickLinksTests : TestContext
 	}
 
 	[Fact]
-	public void WikiQuickLinks_HidesHeader_WhenShowHeaderIsFalse()
-	{
+	public void WikiQuickLinks_HidesHeader_WhenShowHeaderIsFalse() {
 		// Arrange
 		var wiki = new WikiResources { HasRomMap = true };
 
 		// Act
-		var cut = RenderComponent<WikiQuickLinks>(p =>
-		{
+		var cut = RenderComponent<WikiQuickLinks>(p => {
 			p.Add(w => w.Wiki, wiki);
 			p.Add(w => w.ShowHeader, false);
 		});
@@ -68,11 +62,9 @@ public class WikiQuickLinksTests : TestContext
 	[InlineData(false, false, false, false, true, "Notes")]
 	public void WikiQuickLinks_RendersAvailableLink_ForEachResource(
 		bool hasRomMap, bool hasRamMap, bool hasDataStructures, bool hasSystems, bool hasNotes,
-		string expectedText)
-	{
+		string expectedText) {
 		// Arrange
-		var wiki = new WikiResources
-		{
+		var wiki = new WikiResources {
 			HasRomMap = hasRomMap,
 			HasRamMap = hasRamMap,
 			HasDataStructures = hasDataStructures,
@@ -81,8 +73,7 @@ public class WikiQuickLinksTests : TestContext
 		};
 
 		// Act
-		var cut = RenderComponent<WikiQuickLinks>(p =>
-		{
+		var cut = RenderComponent<WikiQuickLinks>(p => {
 			p.Add(w => w.Wiki, wiki);
 			p.Add(w => w.ShowUnavailable, false);
 		});
@@ -94,11 +85,9 @@ public class WikiQuickLinksTests : TestContext
 	}
 
 	[Fact]
-	public void WikiQuickLinks_RendersAllAvailableLinks_WhenAllResourcesExist()
-	{
+	public void WikiQuickLinks_RendersAllAvailableLinks_WhenAllResourcesExist() {
 		// Arrange
-		var wiki = new WikiResources
-		{
+		var wiki = new WikiResources {
 			HasRomMap = true,
 			HasRamMap = true,
 			HasDataStructures = true,
@@ -117,11 +106,9 @@ public class WikiQuickLinksTests : TestContext
 	}
 
 	[Fact]
-	public void WikiQuickLinks_ShowsUnavailableResources_WhenShowUnavailableIsTrue()
-	{
+	public void WikiQuickLinks_ShowsUnavailableResources_WhenShowUnavailableIsTrue() {
 		// Arrange
-		var wiki = new WikiResources
-		{
+		var wiki = new WikiResources {
 			HasRomMap = true,
 			HasRamMap = false,
 			HasDataStructures = false,
@@ -130,8 +117,7 @@ public class WikiQuickLinksTests : TestContext
 		};
 
 		// Act
-		var cut = RenderComponent<WikiQuickLinks>(p =>
-		{
+		var cut = RenderComponent<WikiQuickLinks>(p => {
 			p.Add(w => w.Wiki, wiki);
 			p.Add(w => w.ShowUnavailable, true);
 		});
@@ -142,11 +128,9 @@ public class WikiQuickLinksTests : TestContext
 	}
 
 	[Fact]
-	public void WikiQuickLinks_HidesUnavailableResources_WhenShowUnavailableIsFalse()
-	{
+	public void WikiQuickLinks_HidesUnavailableResources_WhenShowUnavailableIsFalse() {
 		// Arrange
-		var wiki = new WikiResources
-		{
+		var wiki = new WikiResources {
 			HasRomMap = true,
 			HasRamMap = false,
 			HasDataStructures = false,
@@ -155,8 +139,7 @@ public class WikiQuickLinksTests : TestContext
 		};
 
 		// Act
-		var cut = RenderComponent<WikiQuickLinks>(p =>
-		{
+		var cut = RenderComponent<WikiQuickLinks>(p => {
 			p.Add(w => w.Wiki, wiki);
 			p.Add(w => w.ShowUnavailable, false);
 		});
@@ -167,11 +150,9 @@ public class WikiQuickLinksTests : TestContext
 	}
 
 	[Fact]
-	public void WikiQuickLinks_GeneratesCorrectUrl_WithWikiBaseUrl()
-	{
+	public void WikiQuickLinks_GeneratesCorrectUrl_WithWikiBaseUrl() {
 		// Arrange
-		var wiki = new WikiResources
-		{
+		var wiki = new WikiResources {
 			HasRomMap = true,
 			WikiBaseUrl = "https://games.darkrepos.com/wiki/Dragon_Warrior_IV"
 		};
@@ -186,14 +167,12 @@ public class WikiQuickLinksTests : TestContext
 	}
 
 	[Fact]
-	public void WikiQuickLinks_GeneratesCorrectUrl_WithGameSlug()
-	{
+	public void WikiQuickLinks_GeneratesCorrectUrl_WithGameSlug() {
 		// Arrange
 		var wiki = new WikiResources { HasRomMap = true };
 
 		// Act
-		var cut = RenderComponent<WikiQuickLinks>(p =>
-		{
+		var cut = RenderComponent<WikiQuickLinks>(p => {
 			p.Add(w => w.Wiki, wiki);
 			p.Add(w => w.GameSlug, "dragon-warrior-iv-nes");
 		});
@@ -204,18 +183,15 @@ public class WikiQuickLinksTests : TestContext
 	}
 
 	[Fact]
-	public void WikiQuickLinks_ShowsViewAllLink_WhenEnabledAndHasBaseUrl()
-	{
+	public void WikiQuickLinks_ShowsViewAllLink_WhenEnabledAndHasBaseUrl() {
 		// Arrange
-		var wiki = new WikiResources
-		{
+		var wiki = new WikiResources {
 			HasRomMap = true,
 			WikiBaseUrl = "https://games.darkrepos.com/wiki/Dragon_Warrior_IV"
 		};
 
 		// Act
-		var cut = RenderComponent<WikiQuickLinks>(p =>
-		{
+		var cut = RenderComponent<WikiQuickLinks>(p => {
 			p.Add(w => w.Wiki, wiki);
 			p.Add(w => w.ShowViewAllLink, true);
 		});
@@ -227,18 +203,15 @@ public class WikiQuickLinksTests : TestContext
 	}
 
 	[Fact]
-	public void WikiQuickLinks_HidesViewAllLink_WhenDisabled()
-	{
+	public void WikiQuickLinks_HidesViewAllLink_WhenDisabled() {
 		// Arrange
-		var wiki = new WikiResources
-		{
+		var wiki = new WikiResources {
 			HasRomMap = true,
 			WikiBaseUrl = "https://games.darkrepos.com/wiki/Dragon_Warrior_IV"
 		};
 
 		// Act
-		var cut = RenderComponent<WikiQuickLinks>(p =>
-		{
+		var cut = RenderComponent<WikiQuickLinks>(p => {
 			p.Add(w => w.Wiki, wiki);
 			p.Add(w => w.ShowViewAllLink, false);
 		});
@@ -248,14 +221,12 @@ public class WikiQuickLinksTests : TestContext
 	}
 
 	[Fact]
-	public void WikiQuickLinks_AppliesCompactClass_WhenCompactIsTrue()
-	{
+	public void WikiQuickLinks_AppliesCompactClass_WhenCompactIsTrue() {
 		// Arrange
 		var wiki = new WikiResources { HasRomMap = true };
 
 		// Act
-		var cut = RenderComponent<WikiQuickLinks>(p =>
-		{
+		var cut = RenderComponent<WikiQuickLinks>(p => {
 			p.Add(w => w.Wiki, wiki);
 			p.Add(w => w.Compact, true);
 		});
@@ -266,14 +237,12 @@ public class WikiQuickLinksTests : TestContext
 	}
 
 	[Fact]
-	public void WikiQuickLinks_HidesHeader_InCompactMode()
-	{
+	public void WikiQuickLinks_HidesHeader_InCompactMode() {
 		// Arrange
 		var wiki = new WikiResources { HasRomMap = true };
 
 		// Act
-		var cut = RenderComponent<WikiQuickLinks>(p =>
-		{
+		var cut = RenderComponent<WikiQuickLinks>(p => {
 			p.Add(w => w.Wiki, wiki);
 			p.Add(w => w.Compact, true);
 			p.Add(w => w.ShowHeader, true); // Would normally show, but compact hides it
@@ -284,11 +253,9 @@ public class WikiQuickLinksTests : TestContext
 	}
 
 	[Fact]
-	public void WikiQuickLinks_LinksOpenInNewTab()
-	{
+	public void WikiQuickLinks_LinksOpenInNewTab() {
 		// Arrange
-		var wiki = new WikiResources
-		{
+		var wiki = new WikiResources {
 			HasRomMap = true,
 			WikiBaseUrl = "https://games.darkrepos.com/wiki/test"
 		};
@@ -304,11 +271,9 @@ public class WikiQuickLinksTests : TestContext
 	}
 
 	[Fact]
-	public void WikiQuickLinks_NotesLink_UsesBaseUrlWithoutSubpage()
-	{
+	public void WikiQuickLinks_NotesLink_UsesBaseUrlWithoutSubpage() {
 		// Arrange
-		var wiki = new WikiResources
-		{
+		var wiki = new WikiResources {
 			HasNotes = true,
 			WikiBaseUrl = "https://games.darkrepos.com/wiki/Dragon_Warrior_IV"
 		};

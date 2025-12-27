@@ -5,8 +5,7 @@ namespace DarkRepos.Core.Services;
 /// <summary>
 /// Service for caching content to reduce file system and parsing operations.
 /// </summary>
-public interface IContentCacheService
-{
+public interface IContentCacheService {
 	/// <summary>
 	/// Gets an item from cache, or creates it using the factory if not present.
 	/// </summary>
@@ -73,18 +72,15 @@ public record CacheStatistics(
 /// <summary>
 /// In-memory content cache implementation.
 /// </summary>
-public class ContentCacheService : IContentCacheService
-{
+public class ContentCacheService : IContentCacheService {
 	private readonly ConcurrentDictionary<string, CacheEntry> _cache = new();
 	private readonly TimeSpan _defaultExpiration = TimeSpan.FromMinutes(30);
 	private int _hits;
 	private int _misses;
 
 	/// <inheritdoc />
-	public async Task<T> GetOrCreateAsync<T>(string key, Func<Task<T>> factory, TimeSpan? expiration = null)
-	{
-		if (TryGet<T>(key, out var cached) && cached != null)
-		{
+	public async Task<T> GetOrCreateAsync<T>(string key, Func<Task<T>> factory, TimeSpan? expiration = null) {
+		if (TryGet<T>(key, out var cached) && cached != null) {
 			return cached;
 		}
 
@@ -94,10 +90,8 @@ public class ContentCacheService : IContentCacheService
 	}
 
 	/// <inheritdoc />
-	public T GetOrCreate<T>(string key, Func<T> factory, TimeSpan? expiration = null)
-	{
-		if (TryGet<T>(key, out var cached) && cached != null)
-		{
+	public T GetOrCreate<T>(string key, Func<T> factory, TimeSpan? expiration = null) {
+		if (TryGet<T>(key, out var cached) && cached != null) {
 			return cached;
 		}
 
@@ -107,12 +101,10 @@ public class ContentCacheService : IContentCacheService
 	}
 
 	/// <inheritdoc />
-	public bool TryGet<T>(string key, out T? value)
-	{
+	public bool TryGet<T>(string key, out T? value) {
 		CleanupExpired();
 
-		if (_cache.TryGetValue(key, out var entry) && !entry.IsExpired)
-		{
+		if (_cache.TryGetValue(key, out var entry) && !entry.IsExpired) {
 			Interlocked.Increment(ref _hits);
 			entry.LastAccessed = DateTimeOffset.UtcNow;
 			value = (T)entry.Value;
@@ -125,8 +117,7 @@ public class ContentCacheService : IContentCacheService
 	}
 
 	/// <inheritdoc />
-	public void Set<T>(string key, T value, TimeSpan? expiration = null)
-	{
+	public void Set<T>(string key, T value, TimeSpan? expiration = null) {
 		if (value == null)
 			return;
 
@@ -141,35 +132,30 @@ public class ContentCacheService : IContentCacheService
 	}
 
 	/// <inheritdoc />
-	public void Remove(string key)
-	{
+	public void Remove(string key) {
 		_cache.TryRemove(key, out _);
 	}
 
 	/// <inheritdoc />
-	public void RemoveByPrefix(string keyPrefix)
-	{
+	public void RemoveByPrefix(string keyPrefix) {
 		var keysToRemove = _cache.Keys
 			.Where(k => k.StartsWith(keyPrefix, StringComparison.OrdinalIgnoreCase))
 			.ToList();
 
-		foreach (var key in keysToRemove)
-		{
+		foreach (var key in keysToRemove) {
 			_cache.TryRemove(key, out _);
 		}
 	}
 
 	/// <inheritdoc />
-	public void Clear()
-	{
+	public void Clear() {
 		_cache.Clear();
 		Interlocked.Exchange(ref _hits, 0);
 		Interlocked.Exchange(ref _misses, 0);
 	}
 
 	/// <inheritdoc />
-	public CacheStatistics GetStatistics()
-	{
+	public CacheStatistics GetStatistics() {
 		var hits = _hits;
 		var misses = _misses;
 		var total = hits + misses;
@@ -177,7 +163,7 @@ public class ContentCacheService : IContentCacheService
 
 		// Estimate size based on key lengths and rough value size estimate
 		var estimatedSize = _cache.Sum(kvp =>
-			kvp.Key.Length * 2 + // Key size (UTF-16)
+			(kvp.Key.Length * 2) + // Key size (UTF-16)
 			EstimateObjectSize(kvp.Value.Value));
 
 		return new CacheStatistics(
@@ -189,8 +175,7 @@ public class ContentCacheService : IContentCacheService
 		);
 	}
 
-	private void CleanupExpired()
-	{
+	private void CleanupExpired() {
 		// Cleanup every ~100 operations to avoid overhead
 		if (_cache.Count < 100)
 			return;
@@ -200,16 +185,13 @@ public class ContentCacheService : IContentCacheService
 			.Select(kvp => kvp.Key)
 			.ToList();
 
-		foreach (var key in expiredKeys)
-		{
+		foreach (var key in expiredKeys) {
 			_cache.TryRemove(key, out _);
 		}
 	}
 
-	private static long EstimateObjectSize(object obj)
-	{
-		return obj switch
-		{
+	private static long EstimateObjectSize(object obj) {
+		return obj switch {
 			string s => s.Length * 2,
 			byte[] b => b.Length,
 			ICollection<object> c => c.Count * 100, // Rough estimate
@@ -217,8 +199,7 @@ public class ContentCacheService : IContentCacheService
 		};
 	}
 
-	private sealed class CacheEntry
-	{
+	private sealed class CacheEntry {
 		public object Value { get; }
 		public DateTimeOffset Created { get; }
 		public DateTimeOffset LastAccessed { get; set; }
@@ -226,8 +207,7 @@ public class ContentCacheService : IContentCacheService
 
 		public bool IsExpired => DateTimeOffset.UtcNow - Created > Expiration;
 
-		public CacheEntry(object value, DateTimeOffset created, DateTimeOffset lastAccessed, TimeSpan expiration)
-		{
+		public CacheEntry(object value, DateTimeOffset created, DateTimeOffset lastAccessed, TimeSpan expiration) {
 			Value = value;
 			Created = created;
 			LastAccessed = lastAccessed;
@@ -239,8 +219,7 @@ public class ContentCacheService : IContentCacheService
 /// <summary>
 /// Cache key builders for common content types.
 /// </summary>
-public static class CacheKeys
-{
+public static class CacheKeys {
 	// Game keys
 	public static string Game(string slug) => $"game:{slug}";
 	public static string GameBySlug(string slug) => $"game:{slug}";

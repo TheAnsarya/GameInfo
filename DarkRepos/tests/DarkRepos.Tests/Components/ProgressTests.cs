@@ -6,11 +6,9 @@ using static DarkRepos.Web.Components.Shared.Progress;
 
 namespace DarkRepos.Tests.Components;
 
-public class ProgressTests : TestContext
-{
+public class ProgressTests : TestContext {
 	[Fact]
-	public void Progress_RendersWithValue()
-	{
+	public void Progress_RendersWithValue() {
 		// Act
 		var cut = RenderComponent<Progress>(parameters => parameters
 			.Add(p => p.Value, 50)
@@ -21,8 +19,7 @@ public class ProgressTests : TestContext
 	}
 
 	[Fact]
-	public void Progress_HasCorrectAriaAttributes()
-	{
+	public void Progress_HasCorrectAriaAttributes() {
 		// Act
 		var cut = RenderComponent<Progress>(parameters => parameters
 			.Add(p => p.Value, 30)
@@ -37,8 +34,7 @@ public class ProgressTests : TestContext
 	}
 
 	[Fact]
-	public void Progress_CalculatesPercentageCorrectly()
-	{
+	public void Progress_CalculatesPercentageCorrectly() {
 		// Act
 		var cut = RenderComponent<Progress>(parameters => parameters
 			.Add(p => p.Value, 25)
@@ -50,8 +46,7 @@ public class ProgressTests : TestContext
 	}
 
 	[Fact]
-	public void Progress_ClampsValueToRange()
-	{
+	public void Progress_ClampsValueToRange() {
 		// Act - Value exceeds max
 		var cut = RenderComponent<Progress>(parameters => parameters
 			.Add(p => p.Value, 150)
@@ -63,8 +58,7 @@ public class ProgressTests : TestContext
 	}
 
 	[Fact]
-	public void Progress_HandlesNegativeValue()
-	{
+	public void Progress_HandlesNegativeValue() {
 		// Act
 		var cut = RenderComponent<Progress>(parameters => parameters
 			.Add(p => p.Value, -10)
@@ -81,8 +75,7 @@ public class ProgressTests : TestContext
 	[InlineData(ProgressVariant.Warning, "progress-bar--warning")]
 	[InlineData(ProgressVariant.Error, "progress-bar--error")]
 	[InlineData(ProgressVariant.Info, "progress-bar--info")]
-	public void Progress_AppliesVariantClass(ProgressVariant variant, string expectedClass)
-	{
+	public void Progress_AppliesVariantClass(ProgressVariant variant, string expectedClass) {
 		// Act
 		var cut = RenderComponent<Progress>(parameters => parameters
 			.Add(p => p.Value, 50)
@@ -95,8 +88,7 @@ public class ProgressTests : TestContext
 	[Theory]
 	[InlineData(ProgressSize.Small, "progress--small")]
 	[InlineData(ProgressSize.Large, "progress--large")]
-	public void Progress_AppliesSizeClass(ProgressSize size, string expectedClass)
-	{
+	public void Progress_AppliesSizeClass(ProgressSize size, string expectedClass) {
 		// Act
 		var cut = RenderComponent<Progress>(parameters => parameters
 			.Add(p => p.Value, 50)
@@ -107,8 +99,7 @@ public class ProgressTests : TestContext
 	}
 
 	[Fact]
-	public void Progress_AppliesStripedClass()
-	{
+	public void Progress_AppliesStripedClass() {
 		// Act
 		var cut = RenderComponent<Progress>(parameters => parameters
 			.Add(p => p.Value, 50)
@@ -119,8 +110,7 @@ public class ProgressTests : TestContext
 	}
 
 	[Fact]
-	public void Progress_AppliesAnimatedClass()
-	{
+	public void Progress_AppliesAnimatedClass() {
 		// Act
 		var cut = RenderComponent<Progress>(parameters => parameters
 			.Add(p => p.Value, 50)
@@ -131,8 +121,7 @@ public class ProgressTests : TestContext
 	}
 
 	[Fact]
-	public void Progress_ShowsValue_WhenShowValueTrue()
-	{
+	public void Progress_ShowsValue_WhenShowValueTrue() {
 		// Act
 		var cut = RenderComponent<Progress>(parameters => parameters
 			.Add(p => p.Value, 75)
@@ -143,8 +132,7 @@ public class ProgressTests : TestContext
 	}
 
 	[Fact]
-	public void Progress_HidesValue_WhenShowValueFalse()
-	{
+	public void Progress_HidesValue_WhenShowValueFalse() {
 		// Act
 		var cut = RenderComponent<Progress>(parameters => parameters
 			.Add(p => p.Value, 75)
@@ -155,8 +143,7 @@ public class ProgressTests : TestContext
 	}
 
 	[Fact]
-	public void Progress_RendersLabel()
-	{
+	public void Progress_RendersLabel() {
 		// Act
 		var cut = RenderComponent<Progress>(parameters => parameters
 			.Add(p => p.Value, 50)
@@ -167,8 +154,7 @@ public class ProgressTests : TestContext
 	}
 
 	[Fact]
-	public void Progress_AppliesCustomCssClass()
-	{
+	public void Progress_AppliesCustomCssClass() {
 		// Act
 		var cut = RenderComponent<Progress>(parameters => parameters
 			.Add(p => p.Value, 50)

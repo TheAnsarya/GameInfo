@@ -3,18 +3,15 @@ using FluentAssertions;
 
 namespace DarkRepos.Tests.Services;
 
-public class MarkdownServiceTests
-{
+public class MarkdownServiceTests {
 	private readonly IMarkdownService _service;
 
-	public MarkdownServiceTests()
-	{
+	public MarkdownServiceTests() {
 		_service = new MarkdownService();
 	}
 
 	[Fact]
-	public void ToHtml_WithSimpleText_ReturnsHtml()
-	{
+	public void ToHtml_WithSimpleText_ReturnsHtml() {
 		// Arrange
 		var markdown = "Hello **world**!";
 
@@ -27,8 +24,7 @@ public class MarkdownServiceTests
 	}
 
 	[Fact]
-	public void ToHtml_WithEmptyString_ReturnsEmptyString()
-	{
+	public void ToHtml_WithEmptyString_ReturnsEmptyString() {
 		// Arrange & Act
 		var html = _service.ToHtml(string.Empty);
 
@@ -37,8 +33,7 @@ public class MarkdownServiceTests
 	}
 
 	[Fact]
-	public void ToHtml_WithNull_ReturnsEmptyString()
-	{
+	public void ToHtml_WithNull_ReturnsEmptyString() {
 		// Arrange & Act
 		var html = _service.ToHtml(null!);
 
@@ -47,8 +42,7 @@ public class MarkdownServiceTests
 	}
 
 	[Fact]
-	public void ToHtml_WithCodeBlock_RendersCodeBlock()
-	{
+	public void ToHtml_WithCodeBlock_RendersCodeBlock() {
 		// Arrange
 		var markdown = "```csharp\nvar x = 1;\n```";
 
@@ -61,8 +55,7 @@ public class MarkdownServiceTests
 	}
 
 	[Fact]
-	public void ToHtml_WithHeading_RendersHeading()
-	{
+	public void ToHtml_WithHeading_RendersHeading() {
 		// Arrange
 		var markdown = "# Title";
 
@@ -75,8 +68,7 @@ public class MarkdownServiceTests
 	}
 
 	[Fact]
-	public void ToHtml_WithTable_RendersTable()
-	{
+	public void ToHtml_WithTable_RendersTable() {
 		// Arrange
 		var markdown = """
 			| Col1 | Col2 |
@@ -94,8 +86,7 @@ public class MarkdownServiceTests
 	}
 
 	[Fact]
-	public void ToPlainText_WithFormatting_StripsFormatting()
-	{
+	public void ToPlainText_WithFormatting_StripsFormatting() {
 		// Arrange
 		var markdown = "**Bold** and *italic* text";
 
@@ -110,8 +101,7 @@ public class MarkdownServiceTests
 	}
 
 	[Fact]
-	public void ExtractTitle_WithHeading_ReturnsHeadingText()
-	{
+	public void ExtractTitle_WithHeading_ReturnsHeadingText() {
 		// Arrange
 		var markdown = """
 			# My Title
@@ -127,8 +117,7 @@ public class MarkdownServiceTests
 	}
 
 	[Fact]
-	public void ExtractTitle_WithNoHeading_ReturnsNull()
-	{
+	public void ExtractTitle_WithNoHeading_ReturnsNull() {
 		// Arrange
 		var markdown = "Just some text without a heading.";
 
@@ -140,8 +129,7 @@ public class MarkdownServiceTests
 	}
 
 	[Fact]
-	public void ExtractExcerpt_WithLongParagraph_TruncatesAtWordBoundary()
-	{
+	public void ExtractExcerpt_WithLongParagraph_TruncatesAtWordBoundary() {
 		// Arrange
 		var markdown = "This is a very long paragraph that should be truncated somewhere in the middle to create a reasonable excerpt for display purposes on the website.";
 
@@ -155,8 +143,7 @@ public class MarkdownServiceTests
 	}
 
 	[Fact]
-	public void ExtractExcerpt_WithShortParagraph_ReturnsFullText()
-	{
+	public void ExtractExcerpt_WithShortParagraph_ReturnsFullText() {
 		// Arrange
 		var markdown = "Short text.";
 
@@ -168,8 +155,7 @@ public class MarkdownServiceTests
 	}
 
 	[Fact]
-	public void ExtractHeadings_WithMultipleHeadings_ReturnsAllHeadings()
-	{
+	public void ExtractHeadings_WithMultipleHeadings_ReturnsAllHeadings() {
 		// Arrange
 		var markdown = """
 			# Main Title
@@ -201,8 +187,7 @@ public class MarkdownServiceTests
 	}
 
 	[Fact]
-	public void ParseFrontMatter_WithYamlFrontMatter_ExtractsMetadata()
-	{
+	public void ParseFrontMatter_WithYamlFrontMatter_ExtractsMetadata() {
 		// Arrange
 		var markdown = """
 			---
@@ -229,8 +214,7 @@ public class MarkdownServiceTests
 	}
 
 	[Fact]
-	public void ParseFrontMatter_WithNoFrontMatter_ReturnsOriginalContent()
-	{
+	public void ParseFrontMatter_WithNoFrontMatter_ReturnsOriginalContent() {
 		// Arrange
 		var markdown = "# Just Content";
 
@@ -243,8 +227,7 @@ public class MarkdownServiceTests
 	}
 
 	[Fact]
-	public void ParseFrontMatter_WithQuotedValues_RemovesQuotes()
-	{
+	public void ParseFrontMatter_WithQuotedValues_RemovesQuotes() {
 		// Arrange
 		var markdown = """
 			---
@@ -264,12 +247,10 @@ public class MarkdownServiceTests
 	}
 
 	[Fact]
-	public void ToHtml_WithCustomOptions_AppliesOptions()
-	{
+	public void ToHtml_WithCustomOptions_AppliesOptions() {
 		// Arrange
 		var markdown = "Check https://example.com for more info.";
-		var options = new MarkdownRenderOptions
-		{
+		var options = new MarkdownRenderOptions {
 			EnableAutoLinks = true
 		};
 

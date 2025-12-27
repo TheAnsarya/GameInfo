@@ -3,8 +3,7 @@ namespace DarkRepos.Core.Models;
 /// <summary>
 /// Represents a ROM hacking or game research tool.
 /// </summary>
-public class Tool
-{
+public class Tool {
 	/// <summary>
 	/// URL-friendly unique identifier (e.g., "rom-analyzer")
 	/// </summary>
@@ -99,8 +98,7 @@ public class Tool
 /// <summary>
 /// Tool category enumeration
 /// </summary>
-public enum ToolCategory
-{
+public enum ToolCategory {
 	/// <summary>General purpose tools</summary>
 	General = 0,
 

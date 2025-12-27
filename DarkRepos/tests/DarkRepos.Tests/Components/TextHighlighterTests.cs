@@ -8,11 +8,9 @@ namespace DarkRepos.Tests.Components;
 /// <summary>
 /// Tests for the TextHighlighter component.
 /// </summary>
-public class TextHighlighterTests : TestContext
-{
+public class TextHighlighterTests : TestContext {
 	[Fact]
-	public void TextHighlighter_RendersEmptySpan_WhenTextIsEmpty()
-	{
+	public void TextHighlighter_RendersEmptySpan_WhenTextIsEmpty() {
 		// Act
 		var cut = RenderComponent<TextHighlighter>(parameters => parameters
 			.Add(p => p.Text, "")
@@ -23,8 +21,7 @@ public class TextHighlighterTests : TestContext
 	}
 
 	[Fact]
-	public void TextHighlighter_RendersPlainText_WhenSearchTermsEmpty()
-	{
+	public void TextHighlighter_RendersPlainText_WhenSearchTermsEmpty() {
 		// Arrange
 		var text = "Hello World";
 
@@ -38,8 +35,7 @@ public class TextHighlighterTests : TestContext
 	}
 
 	[Fact]
-	public void TextHighlighter_RendersPlainText_WhenNoMatches()
-	{
+	public void TextHighlighter_RendersPlainText_WhenNoMatches() {
 		// Arrange
 		var text = "Hello World";
 
@@ -54,8 +50,7 @@ public class TextHighlighterTests : TestContext
 	}
 
 	[Fact]
-	public void TextHighlighter_HighlightsSingleTerm()
-	{
+	public void TextHighlighter_HighlightsSingleTerm() {
 		// Arrange
 		var text = "Hello World";
 
@@ -70,8 +65,7 @@ public class TextHighlighterTests : TestContext
 	}
 
 	[Fact]
-	public void TextHighlighter_HighlightsCaseInsensitive()
-	{
+	public void TextHighlighter_HighlightsCaseInsensitive() {
 		// Arrange
 		var text = "Hello World";
 
@@ -86,8 +80,7 @@ public class TextHighlighterTests : TestContext
 	}
 
 	[Fact]
-	public void TextHighlighter_HighlightsMultipleTerms()
-	{
+	public void TextHighlighter_HighlightsMultipleTerms() {
 		// Arrange
 		var text = "Hello World from the Test";
 
@@ -102,8 +95,7 @@ public class TextHighlighterTests : TestContext
 	}
 
 	[Fact]
-	public void TextHighlighter_HighlightsAllOccurrences()
-	{
+	public void TextHighlighter_HighlightsAllOccurrences() {
 		// Arrange
 		var text = "test this test and that test";
 
@@ -119,8 +111,7 @@ public class TextHighlighterTests : TestContext
 	}
 
 	[Fact]
-	public void TextHighlighter_IgnoresShortTerms()
-	{
+	public void TextHighlighter_IgnoresShortTerms() {
 		// Arrange
 		var text = "A B C test";
 
@@ -138,8 +129,7 @@ public class TextHighlighterTests : TestContext
 	}
 
 	[Fact]
-	public void TextHighlighter_UsesCustomHighlightClass()
-	{
+	public void TextHighlighter_UsesCustomHighlightClass() {
 		// Arrange
 		var text = "Hello World";
 
@@ -154,8 +144,7 @@ public class TextHighlighterTests : TestContext
 	}
 
 	[Fact]
-	public void TextHighlighter_TruncatesLongText()
-	{
+	public void TextHighlighter_TruncatesLongText() {
 		// Arrange
 		var text = new string('a', 100) + " searchterm " + new string('b', 100);
 
@@ -172,8 +161,7 @@ public class TextHighlighterTests : TestContext
 	}
 
 	[Fact]
-	public void TextHighlighter_EncodesHtmlInText()
-	{
+	public void TextHighlighter_EncodesHtmlInText() {
 		// Arrange
 		var text = "<script>alert('xss')</script> test";
 
@@ -188,8 +176,7 @@ public class TextHighlighterTests : TestContext
 	}
 
 	[Fact]
-	public void TextHighlighter_EncodesHtmlInSearchTerms()
-	{
+	public void TextHighlighter_EncodesHtmlInSearchTerms() {
 		// Arrange
 		var text = "Hello World";
 
@@ -203,8 +190,7 @@ public class TextHighlighterTests : TestContext
 	}
 
 	[Fact]
-	public void TextHighlighter_HandlesOverlappingTerms()
-	{
+	public void TextHighlighter_HandlesOverlappingTerms() {
 		// Arrange
 		var text = "testing tested test";
 
@@ -219,8 +205,7 @@ public class TextHighlighterTests : TestContext
 	}
 
 	[Fact]
-	public void TextHighlighter_WorksWithDuplicateSearchTerms()
-	{
+	public void TextHighlighter_WorksWithDuplicateSearchTerms() {
 		// Arrange
 		var text = "Hello World";
 
@@ -237,8 +222,7 @@ public class TextHighlighterTests : TestContext
 	}
 
 	[Fact]
-	public void TextHighlighter_HandlesNullText()
-	{
+	public void TextHighlighter_HandlesNullText() {
 		// Act
 		var cut = RenderComponent<TextHighlighter>(parameters => parameters
 			.Add(p => p.Text, null!)
@@ -249,8 +233,7 @@ public class TextHighlighterTests : TestContext
 	}
 
 	[Fact]
-	public void TextHighlighter_HandlesNullSearchTerms()
-	{
+	public void TextHighlighter_HandlesNullSearchTerms() {
 		// Act
 		var cut = RenderComponent<TextHighlighter>(parameters => parameters
 			.Add(p => p.Text, "Hello World")
@@ -261,8 +244,7 @@ public class TextHighlighterTests : TestContext
 	}
 
 	[Fact]
-	public void TextHighlighter_NoTruncation_WhenMaxLengthIsZero()
-	{
+	public void TextHighlighter_NoTruncation_WhenMaxLengthIsZero() {
 		// Arrange
 		var text = new string('a', 500);
 
@@ -278,8 +260,7 @@ public class TextHighlighterTests : TestContext
 	}
 
 	[Fact]
-	public void TextHighlighter_PreservesOriginalCase()
-	{
+	public void TextHighlighter_PreservesOriginalCase() {
 		// Arrange
 		var text = "HELLO hello Hello";
 
@@ -295,8 +276,7 @@ public class TextHighlighterTests : TestContext
 	}
 
 	[Fact]
-	public void TextHighlighter_HandlesSpecialRegexCharacters()
-	{
+	public void TextHighlighter_HandlesSpecialRegexCharacters() {
 		// Arrange
 		var text = "test (value) and [array] or $100";
 
@@ -311,8 +291,7 @@ public class TextHighlighterTests : TestContext
 	}
 
 	[Fact]
-	public void TextHighlighter_CustomContextLength()
-	{
+	public void TextHighlighter_CustomContextLength() {
 		// Arrange
 		var text = new string('a', 200) + " match " + new string('b', 200);
 
@@ -329,8 +308,7 @@ public class TextHighlighterTests : TestContext
 	}
 
 	[Fact]
-	public void TextHighlighter_ShowContext_False()
-	{
+	public void TextHighlighter_ShowContext_False() {
 		// Arrange
 		var text = "Short text with match in it";
 

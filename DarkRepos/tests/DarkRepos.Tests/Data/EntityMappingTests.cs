@@ -6,14 +6,11 @@ namespace DarkRepos.Tests.Data;
 /// <summary>
 /// Unit tests for entity mapping extensions.
 /// </summary>
-public class EntityMappingTests
-{
+public class EntityMappingTests {
 	[Fact]
-	public void GameEntity_ToModel_MapsCorrectly()
-	{
+	public void GameEntity_ToModel_MapsCorrectly() {
 		// Arrange
-		var entity = new GameEntity
-		{
+		var entity = new GameEntity {
 			Id = 1,
 			Slug = "dragon-warrior-4-nes",
 			Title = "Dragon Warrior IV",
@@ -45,11 +42,9 @@ public class EntityMappingTests
 	}
 
 	[Fact]
-	public void Game_ToEntity_MapsCorrectly()
-	{
+	public void Game_ToEntity_MapsCorrectly() {
 		// Arrange
-		var model = new Game
-		{
+		var model = new Game {
 			Slug = "soul-blazer-snes",
 			Title = "Soul Blazer",
 			Platform = Platform.SNES,
@@ -73,11 +68,9 @@ public class EntityMappingTests
 	}
 
 	[Fact]
-	public void ToolEntity_ToModel_MapsCorrectly()
-	{
+	public void ToolEntity_ToModel_MapsCorrectly() {
 		// Arrange
-		var entity = new ToolEntity
-		{
+		var entity = new ToolEntity {
 			Id = 1,
 			Slug = "atlas",
 			Name = "Atlas",
@@ -102,11 +95,9 @@ public class EntityMappingTests
 	}
 
 	[Fact]
-	public void Tool_ToEntity_MapsCorrectly()
-	{
+	public void Tool_ToEntity_MapsCorrectly() {
 		// Arrange
-		var model = new Tool
-		{
+		var model = new Tool {
 			Slug = "yy-chr",
 			Name = "YY-CHR",
 			Description = "Tile editor for NES/SNES graphics",
@@ -127,11 +118,9 @@ public class EntityMappingTests
 	}
 
 	[Fact]
-	public void GameEntity_ToModel_HandlesNullArrays()
-	{
+	public void GameEntity_ToModel_HandlesNullArrays() {
 		// Arrange
-		var entity = new GameEntity
-		{
+		var entity = new GameEntity {
 			Id = 1,
 			Slug = "test-game",
 			Title = "Test Game",
@@ -147,11 +136,9 @@ public class EntityMappingTests
 	}
 
 	[Fact]
-	public void GameEntity_ToModel_HandlesMalformedJson()
-	{
+	public void GameEntity_ToModel_HandlesMalformedJson() {
 		// Arrange
-		var entity = new GameEntity
-		{
+		var entity = new GameEntity {
 			Id = 1,
 			Slug = "test-game",
 			Title = "Test Game",
@@ -167,8 +154,7 @@ public class EntityMappingTests
 	}
 
 	[Fact]
-	public void Platform_ParsesCorrectly()
-	{
+	public void Platform_ParsesCorrectly() {
 		// Test various platform string mappings
 		var testCases = new Dictionary<string, Platform>
 		{
@@ -181,10 +167,8 @@ public class EntityMappingTests
 			{ "MasterSystem", Platform.MasterSystem }
 		};
 
-		foreach (var (input, expected) in testCases)
-		{
-			var entity = new GameEntity
-			{
+		foreach (var (input, expected) in testCases) {
+			var entity = new GameEntity {
 				Id = 1,
 				Slug = "test",
 				Title = "Test",

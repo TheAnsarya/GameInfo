@@ -9,11 +9,9 @@ namespace DarkRepos.Web.Tests.Components;
 /// <summary>
 /// Unit tests for the StatusBadge component.
 /// </summary>
-public class StatusBadgeTests : TestContext
-{
+public class StatusBadgeTests : TestContext {
 	[Fact]
-	public void StatusBadge_RendersContainer()
-	{
+	public void StatusBadge_RendersContainer() {
 		// Act
 		var cut = RenderComponent<StatusBadge>();
 
@@ -32,8 +30,7 @@ public class StatusBadgeTests : TestContext
 	[InlineData(StatusType.Error, "error")]
 	[InlineData(StatusType.Info, "info")]
 	[InlineData(StatusType.Unknown, "unknown")]
-	public void StatusBadge_AppliesCorrectStatusClass(StatusType status, string expectedClass)
-	{
+	public void StatusBadge_AppliesCorrectStatusClass(StatusType status, string expectedClass) {
 		// Act
 		var cut = RenderComponent<StatusBadge>(p =>
 			p.Add(s => s.Status, status));
@@ -44,11 +41,9 @@ public class StatusBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void StatusBadge_ShowsIcon_WhenShowIconIsTrue()
-	{
+	public void StatusBadge_ShowsIcon_WhenShowIconIsTrue() {
 		// Act
-		var cut = RenderComponent<StatusBadge>(p =>
-		{
+		var cut = RenderComponent<StatusBadge>(p => {
 			p.Add(s => s.Status, StatusType.Complete);
 			p.Add(s => s.ShowIcon, true);
 		});
@@ -58,11 +53,9 @@ public class StatusBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void StatusBadge_HidesIcon_WhenShowIconIsFalse()
-	{
+	public void StatusBadge_HidesIcon_WhenShowIconIsFalse() {
 		// Act
-		var cut = RenderComponent<StatusBadge>(p =>
-		{
+		var cut = RenderComponent<StatusBadge>(p => {
 			p.Add(s => s.Status, StatusType.Complete);
 			p.Add(s => s.ShowIcon, false);
 		});
@@ -72,11 +65,9 @@ public class StatusBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void StatusBadge_ShowsLabel_WhenShowLabelIsTrue()
-	{
+	public void StatusBadge_ShowsLabel_WhenShowLabelIsTrue() {
 		// Act
-		var cut = RenderComponent<StatusBadge>(p =>
-		{
+		var cut = RenderComponent<StatusBadge>(p => {
 			p.Add(s => s.Status, StatusType.Complete);
 			p.Add(s => s.ShowLabel, true);
 		});
@@ -86,11 +77,9 @@ public class StatusBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void StatusBadge_HidesLabel_WhenShowLabelIsFalse()
-	{
+	public void StatusBadge_HidesLabel_WhenShowLabelIsFalse() {
 		// Act
-		var cut = RenderComponent<StatusBadge>(p =>
-		{
+		var cut = RenderComponent<StatusBadge>(p => {
 			p.Add(s => s.Status, StatusType.Complete);
 			p.Add(s => s.ShowLabel, false);
 		});
@@ -100,8 +89,7 @@ public class StatusBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void StatusBadge_UsesDefaultLabel_ForStatus()
-	{
+	public void StatusBadge_UsesDefaultLabel_ForStatus() {
 		// Act
 		var cut = RenderComponent<StatusBadge>(p =>
 			p.Add(s => s.Status, StatusType.InProgress));
@@ -111,11 +99,9 @@ public class StatusBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void StatusBadge_UsesCustomLabel_WhenProvided()
-	{
+	public void StatusBadge_UsesCustomLabel_WhenProvided() {
 		// Act
-		var cut = RenderComponent<StatusBadge>(p =>
-		{
+		var cut = RenderComponent<StatusBadge>(p => {
 			p.Add(s => s.Status, StatusType.InProgress);
 			p.Add(s => s.Label, "Building...");
 		});
@@ -125,8 +111,7 @@ public class StatusBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void StatusBadge_HasCorrectIcon_ForCompleteStatus()
-	{
+	public void StatusBadge_HasCorrectIcon_ForCompleteStatus() {
 		// Act
 		var cut = RenderComponent<StatusBadge>(p =>
 			p.Add(s => s.Status, StatusType.Complete));
@@ -136,8 +121,7 @@ public class StatusBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void StatusBadge_HasCorrectIcon_ForErrorStatus()
-	{
+	public void StatusBadge_HasCorrectIcon_ForErrorStatus() {
 		// Act
 		var cut = RenderComponent<StatusBadge>(p =>
 			p.Add(s => s.Status, StatusType.Error));
@@ -147,8 +131,7 @@ public class StatusBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void StatusBadge_HasRoleStatus()
-	{
+	public void StatusBadge_HasRoleStatus() {
 		// Act
 		var cut = RenderComponent<StatusBadge>();
 
@@ -157,8 +140,7 @@ public class StatusBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void StatusBadge_HasAriaLabel()
-	{
+	public void StatusBadge_HasAriaLabel() {
 		// Act
 		var cut = RenderComponent<StatusBadge>(p =>
 			p.Add(s => s.Status, StatusType.Complete));
@@ -168,8 +150,7 @@ public class StatusBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void StatusBadge_IconHasAriaHidden()
-	{
+	public void StatusBadge_IconHasAriaHidden() {
 		// Act
 		var cut = RenderComponent<StatusBadge>(p =>
 			p.Add(s => s.ShowIcon, true));

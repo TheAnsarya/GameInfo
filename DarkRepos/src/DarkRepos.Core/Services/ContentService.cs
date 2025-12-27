@@ -7,17 +7,14 @@ namespace DarkRepos.Core.Services;
 /// <summary>
 /// Implementation of IContentService that retrieves game and tool content from the database.
 /// </summary>
-public class ContentService : IContentService
-{
+public class ContentService : IContentService {
 	private readonly DarkReposDbContext _context;
 
-	public ContentService(DarkReposDbContext context)
-	{
+	public ContentService(DarkReposDbContext context) {
 		_context = context;
 	}
 
-	public async Task<IReadOnlyList<Game>> GetAllGamesAsync(CancellationToken cancellationToken = default)
-	{
+	public async Task<IReadOnlyList<Game>> GetAllGamesAsync(CancellationToken cancellationToken = default) {
 		var entities = await _context.Games
 			.OrderBy(g => g.Title)
 			.ToListAsync(cancellationToken);
@@ -25,16 +22,14 @@ public class ContentService : IContentService
 		return entities.Select(e => e.ToModel()).ToList();
 	}
 
-	public async Task<Game?> GetGameBySlugAsync(string slug, CancellationToken cancellationToken = default)
-	{
+	public async Task<Game?> GetGameBySlugAsync(string slug, CancellationToken cancellationToken = default) {
 		var entity = await _context.Games
 			.FirstOrDefaultAsync(g => g.Slug == slug, cancellationToken);
 
 		return entity?.ToModel();
 	}
 
-	public async Task<IReadOnlyList<Game>> GetGamesByPlatformAsync(Platform platform, CancellationToken cancellationToken = default)
-	{
+	public async Task<IReadOnlyList<Game>> GetGamesByPlatformAsync(Platform platform, CancellationToken cancellationToken = default) {
 		var platformString = platform.ToString();
 		var entities = await _context.Games
 			.Where(g => g.Platform == platformString)
@@ -44,8 +39,7 @@ public class ContentService : IContentService
 		return entities.Select(e => e.ToModel()).ToList();
 	}
 
-	public async Task<IReadOnlyList<Game>> GetGamesBySeriesAsync(string series, CancellationToken cancellationToken = default)
-	{
+	public async Task<IReadOnlyList<Game>> GetGamesBySeriesAsync(string series, CancellationToken cancellationToken = default) {
 		var entities = await _context.Games
 			.Where(g => g.Series == series)
 			.OrderBy(g => g.ReleaseYear)
@@ -55,8 +49,7 @@ public class ContentService : IContentService
 		return entities.Select(e => e.ToModel()).ToList();
 	}
 
-	public async Task<IReadOnlyList<Tool>> GetAllToolsAsync(CancellationToken cancellationToken = default)
-	{
+	public async Task<IReadOnlyList<Tool>> GetAllToolsAsync(CancellationToken cancellationToken = default) {
 		var entities = await _context.Tools
 			.OrderBy(t => t.Name)
 			.ToListAsync(cancellationToken);
@@ -64,16 +57,14 @@ public class ContentService : IContentService
 		return entities.Select(e => e.ToModel()).ToList();
 	}
 
-	public async Task<Tool?> GetToolBySlugAsync(string slug, CancellationToken cancellationToken = default)
-	{
+	public async Task<Tool?> GetToolBySlugAsync(string slug, CancellationToken cancellationToken = default) {
 		var entity = await _context.Tools
 			.FirstOrDefaultAsync(t => t.Slug == slug, cancellationToken);
 
 		return entity?.ToModel();
 	}
 
-	public async Task<IReadOnlyList<Tool>> GetToolsByCategoryAsync(ToolCategory category, CancellationToken cancellationToken = default)
-	{
+	public async Task<IReadOnlyList<Tool>> GetToolsByCategoryAsync(ToolCategory category, CancellationToken cancellationToken = default) {
 		var categoryString = category.ToString();
 		var entities = await _context.Tools
 			.Where(t => t.Category == categoryString)
@@ -83,8 +74,7 @@ public class ContentService : IContentService
 		return entities.Select(e => e.ToModel()).ToList();
 	}
 
-	public async Task<IReadOnlyList<Tool>> GetToolsForGameAsync(string gameSlug, CancellationToken cancellationToken = default)
-	{
+	public async Task<IReadOnlyList<Tool>> GetToolsForGameAsync(string gameSlug, CancellationToken cancellationToken = default) {
 		// Get the game first to find its platform
 		var game = await _context.Games
 			.FirstOrDefaultAsync(g => g.Slug == gameSlug, cancellationToken);
@@ -102,8 +92,7 @@ public class ContentService : IContentService
 		return entities.Select(e => e.ToModel()).ToList();
 	}
 
-	public async Task<IReadOnlyList<Game>> GetFeaturedGamesAsync(int count = 6, CancellationToken cancellationToken = default)
-	{
+	public async Task<IReadOnlyList<Game>> GetFeaturedGamesAsync(int count = 6, CancellationToken cancellationToken = default) {
 		// Get games with the most complete documentation
 		var entities = await _context.Games
 			.OrderByDescending(g => g.DocumentationLevel)
@@ -116,8 +105,7 @@ public class ContentService : IContentService
 		return entities.Select(e => e.ToModel()).ToList();
 	}
 
-	public async Task<IReadOnlyList<object>> GetRecentUpdatesAsync(int count = 10, CancellationToken cancellationToken = default)
-	{
+	public async Task<IReadOnlyList<object>> GetRecentUpdatesAsync(int count = 10, CancellationToken cancellationToken = default) {
 		// Get recently updated games and tools, combined and sorted
 		var recentGames = await _context.Games
 			.Where(g => g.LastUpdated != null)
@@ -145,19 +133,15 @@ public class ContentService : IContentService
 	/// <summary>
 	/// Adds or updates a game in the database.
 	/// </summary>
-	public async Task<Game> SaveGameAsync(Game game, CancellationToken cancellationToken = default)
-	{
+	public async Task<Game> SaveGameAsync(Game game, CancellationToken cancellationToken = default) {
 		var existing = await _context.Games
 			.FirstOrDefaultAsync(g => g.Slug == game.Slug, cancellationToken);
 
-		if (existing != null)
-		{
+		if (existing != null) {
 			// Update existing
 			var updated = game.ToEntity(existing.Id);
 			_context.Entry(existing).CurrentValues.SetValues(updated);
-		}
-		else
-		{
+		} else {
 			// Add new
 			var entity = game.ToEntity();
 			_context.Games.Add(entity);
@@ -170,19 +154,15 @@ public class ContentService : IContentService
 	/// <summary>
 	/// Adds or updates a tool in the database.
 	/// </summary>
-	public async Task<Tool> SaveToolAsync(Tool tool, CancellationToken cancellationToken = default)
-	{
+	public async Task<Tool> SaveToolAsync(Tool tool, CancellationToken cancellationToken = default) {
 		var existing = await _context.Tools
 			.FirstOrDefaultAsync(t => t.Slug == tool.Slug, cancellationToken);
 
-		if (existing != null)
-		{
+		if (existing != null) {
 			// Update existing
 			var updated = tool.ToEntity(existing.Id);
 			_context.Entry(existing).CurrentValues.SetValues(updated);
-		}
-		else
-		{
+		} else {
 			// Add new
 			var entity = tool.ToEntity();
 			_context.Tools.Add(entity);
@@ -195,13 +175,11 @@ public class ContentService : IContentService
 	/// <summary>
 	/// Deletes a game from the database.
 	/// </summary>
-	public async Task DeleteGameAsync(string slug, CancellationToken cancellationToken = default)
-	{
+	public async Task DeleteGameAsync(string slug, CancellationToken cancellationToken = default) {
 		var existing = await _context.Games
 			.FirstOrDefaultAsync(g => g.Slug == slug, cancellationToken);
 
-		if (existing != null)
-		{
+		if (existing != null) {
 			_context.Games.Remove(existing);
 			await _context.SaveChangesAsync(cancellationToken);
 		}
@@ -210,13 +188,11 @@ public class ContentService : IContentService
 	/// <summary>
 	/// Deletes a tool from the database.
 	/// </summary>
-	public async Task DeleteToolAsync(string slug, CancellationToken cancellationToken = default)
-	{
+	public async Task DeleteToolAsync(string slug, CancellationToken cancellationToken = default) {
 		var existing = await _context.Tools
 			.FirstOrDefaultAsync(t => t.Slug == slug, cancellationToken);
 
-		if (existing != null)
-		{
+		if (existing != null) {
 			_context.Tools.Remove(existing);
 			await _context.SaveChangesAsync(cancellationToken);
 		}

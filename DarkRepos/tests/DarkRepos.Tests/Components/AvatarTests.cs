@@ -6,11 +6,9 @@ using static DarkRepos.Web.Components.Shared.Avatar;
 
 namespace DarkRepos.Tests.Components;
 
-public class AvatarTests : TestContext
-{
+public class AvatarTests : TestContext {
 	[Fact]
-	public void Avatar_RendersImage_WhenImageUrlProvided()
-	{
+	public void Avatar_RendersImage_WhenImageUrlProvided() {
 		// Act
 		var cut = RenderComponent<Avatar>(parameters => parameters
 			.Add(p => p.ImageUrl, "/avatar.jpg"));
@@ -20,8 +18,7 @@ public class AvatarTests : TestContext
 	}
 
 	[Fact]
-	public void Avatar_ImageHasAltText()
-	{
+	public void Avatar_ImageHasAltText() {
 		// Act
 		var cut = RenderComponent<Avatar>(parameters => parameters
 			.Add(p => p.ImageUrl, "/avatar.jpg")
@@ -32,8 +29,7 @@ public class AvatarTests : TestContext
 	}
 
 	[Fact]
-	public void Avatar_ShowsInitials_WhenNameProvided()
-	{
+	public void Avatar_ShowsInitials_WhenNameProvided() {
 		// Act
 		var cut = RenderComponent<Avatar>(parameters => parameters
 			.Add(p => p.Name, "John Doe"));
@@ -43,8 +39,7 @@ public class AvatarTests : TestContext
 	}
 
 	[Fact]
-	public void Avatar_ShowsInitials_SingleName()
-	{
+	public void Avatar_ShowsInitials_SingleName() {
 		// Act
 		var cut = RenderComponent<Avatar>(parameters => parameters
 			.Add(p => p.Name, "Admin"));
@@ -54,8 +49,7 @@ public class AvatarTests : TestContext
 	}
 
 	[Fact]
-	public void Avatar_ShowsPlaceholder_WhenNoImageOrName()
-	{
+	public void Avatar_ShowsPlaceholder_WhenNoImageOrName() {
 		// Act
 		var cut = RenderComponent<Avatar>();
 
@@ -68,8 +62,7 @@ public class AvatarTests : TestContext
 	[InlineData(AvatarSize.Medium, "avatar--medium")]
 	[InlineData(AvatarSize.Large, "avatar--large")]
 	[InlineData(AvatarSize.XLarge, "avatar--xlarge")]
-	public void Avatar_AppliesSizeClass(AvatarSize size, string expectedClass)
-	{
+	public void Avatar_AppliesSizeClass(AvatarSize size, string expectedClass) {
 		// Act
 		var cut = RenderComponent<Avatar>(parameters => parameters
 			.Add(p => p.Size, size));
@@ -79,8 +72,7 @@ public class AvatarTests : TestContext
 	}
 
 	[Fact]
-	public void Avatar_ShowsStatus_WhenShowStatusTrue()
-	{
+	public void Avatar_ShowsStatus_WhenShowStatusTrue() {
 		// Act
 		var cut = RenderComponent<Avatar>(parameters => parameters
 			.Add(p => p.ShowStatus, true)
@@ -92,8 +84,7 @@ public class AvatarTests : TestContext
 	}
 
 	[Fact]
-	public void Avatar_HidesStatus_WhenShowStatusFalse()
-	{
+	public void Avatar_HidesStatus_WhenShowStatusFalse() {
 		// Act
 		var cut = RenderComponent<Avatar>(parameters => parameters
 			.Add(p => p.ShowStatus, false)
@@ -108,8 +99,7 @@ public class AvatarTests : TestContext
 	[InlineData(AvatarStatus.Away, "avatar-status--away")]
 	[InlineData(AvatarStatus.Busy, "avatar-status--busy")]
 	[InlineData(AvatarStatus.Offline, "avatar-status--offline")]
-	public void Avatar_AppliesStatusClass(AvatarStatus status, string expectedClass)
-	{
+	public void Avatar_AppliesStatusClass(AvatarStatus status, string expectedClass) {
 		// Act
 		var cut = RenderComponent<Avatar>(parameters => parameters
 			.Add(p => p.ShowStatus, true)
@@ -120,8 +110,7 @@ public class AvatarTests : TestContext
 	}
 
 	[Fact]
-	public void Avatar_HasTitle_WhenNameProvided()
-	{
+	public void Avatar_HasTitle_WhenNameProvided() {
 		// Act
 		var cut = RenderComponent<Avatar>(parameters => parameters
 			.Add(p => p.Name, "John Doe"));
@@ -131,8 +120,7 @@ public class AvatarTests : TestContext
 	}
 
 	[Fact]
-	public void Avatar_AppliesCustomCssClass()
-	{
+	public void Avatar_AppliesCustomCssClass() {
 		// Act
 		var cut = RenderComponent<Avatar>(parameters => parameters
 			.Add(p => p.CssClass, "my-avatar"));

@@ -10,13 +10,11 @@ namespace DarkRepos.Tests.Services;
 /// Note: FTS5 doesn't work with InMemory database, so search tests are limited.
 /// For full search testing, use SQLite file-based database.
 /// </summary>
-public class SearchServiceTests : IDisposable
-{
+public class SearchServiceTests : IDisposable {
 	private readonly DarkReposDbContext _context;
 	private readonly SearchService _service;
 
-	public SearchServiceTests()
-	{
+	public SearchServiceTests() {
 		var options = new DbContextOptionsBuilder<DarkReposDbContext>()
 			.UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
 			.Options;
@@ -27,8 +25,7 @@ public class SearchServiceTests : IDisposable
 		SeedTestData();
 	}
 
-	private void SeedTestData()
-	{
+	private void SeedTestData() {
 		var entries = new List<SearchIndexEntry>
 		{
 			new()
@@ -81,15 +78,13 @@ public class SearchServiceTests : IDisposable
 		_context.SaveChanges();
 	}
 
-	public void Dispose()
-	{
+	public void Dispose() {
 		_context.Dispose();
 		GC.SuppressFinalize(this);
 	}
 
 	[Fact]
-	public async Task SearchAsync_EmptyQuery_ReturnsEmpty()
-	{
+	public async Task SearchAsync_EmptyQuery_ReturnsEmpty() {
 		// Arrange
 		var query = new SearchQuery { Terms = "" };
 
@@ -102,8 +97,7 @@ public class SearchServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task SearchAsync_ReturnsDurationMetric()
-	{
+	public async Task SearchAsync_ReturnsDurationMetric() {
 		// Arrange
 		var query = new SearchQuery { Terms = "test" };
 
@@ -116,8 +110,7 @@ public class SearchServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task GetSuggestionsAsync_EmptyPrefix_ReturnsEmpty()
-	{
+	public async Task GetSuggestionsAsync_EmptyPrefix_ReturnsEmpty() {
 		// Act
 		var result = await _service.GetSuggestionsAsync("");
 
@@ -126,8 +119,7 @@ public class SearchServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task GetSuggestionsAsync_ShortPrefix_ReturnsEmpty()
-	{
+	public async Task GetSuggestionsAsync_ShortPrefix_ReturnsEmpty() {
 		// Act
 		var result = await _service.GetSuggestionsAsync("D");
 
@@ -136,8 +128,7 @@ public class SearchServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task GetSuggestionsAsync_ValidPrefix_ReturnsTitles()
-	{
+	public async Task GetSuggestionsAsync_ValidPrefix_ReturnsTitles() {
 		// Act
 		var result = await _service.GetSuggestionsAsync("Dragon");
 
@@ -147,11 +138,9 @@ public class SearchServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task IndexDocumentAsync_AddsToIndex()
-	{
+	public async Task IndexDocumentAsync_AddsToIndex() {
 		// Arrange
-		var document = new SearchDocument
-		{
+		var document = new SearchDocument {
 			Id = "game:new-game",
 			Type = SearchDocumentType.Game,
 			Title = "New Test Game",
@@ -172,11 +161,9 @@ public class SearchServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task IndexDocumentAsync_UpdatesExisting()
-	{
+	public async Task IndexDocumentAsync_UpdatesExisting() {
 		// Arrange
-		var document = new SearchDocument
-		{
+		var document = new SearchDocument {
 			Id = "game:dragon-warrior-4-nes",
 			Type = SearchDocumentType.Game,
 			Title = "Dragon Warrior IV - Updated",
@@ -195,8 +182,7 @@ public class SearchServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task RemoveDocumentAsync_RemovesFromIndex()
-	{
+	public async Task RemoveDocumentAsync_RemovesFromIndex() {
 		// Arrange
 		var initialCount = await _context.SearchIndex.CountAsync();
 
@@ -209,8 +195,7 @@ public class SearchServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task GetIndexCountAsync_ReturnsCorrectCount()
-	{
+	public async Task GetIndexCountAsync_ReturnsCorrectCount() {
 		// Act
 		var count = await _service.GetIndexCountAsync();
 
@@ -219,8 +204,7 @@ public class SearchServiceTests : IDisposable
 	}
 
 	[Fact]
-	public async Task IndexDocumentsAsync_AddMultipleDocuments()
-	{
+	public async Task IndexDocumentsAsync_AddMultipleDocuments() {
 		// Arrange
 		var documents = new List<SearchDocument>
 		{

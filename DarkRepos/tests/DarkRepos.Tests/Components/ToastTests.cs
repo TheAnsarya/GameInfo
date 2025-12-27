@@ -6,11 +6,9 @@ using Xunit;
 
 namespace DarkRepos.Tests.Components;
 
-public class ToastTests : TestContext
-{
+public class ToastTests : TestContext {
 	[Fact]
-	public void Toast_DisplaysMessage()
-	{
+	public void Toast_DisplaysMessage() {
 		// Arrange
 		const string message = "Operation completed successfully";
 
@@ -23,8 +21,7 @@ public class ToastTests : TestContext
 	}
 
 	[Fact]
-	public void Toast_DisplaysTitle_WhenProvided()
-	{
+	public void Toast_DisplaysTitle_WhenProvided() {
 		// Arrange
 		const string title = "Success";
 		const string message = "Operation completed";
@@ -40,8 +37,7 @@ public class ToastTests : TestContext
 	}
 
 	[Fact]
-	public void Toast_OmitsTitle_WhenNull()
-	{
+	public void Toast_OmitsTitle_WhenNull() {
 		// Arrange
 		const string message = "Operation completed";
 
@@ -54,8 +50,7 @@ public class ToastTests : TestContext
 	}
 
 	[Fact]
-	public void Toast_HasCorrectTypeClass_ForSuccess()
-	{
+	public void Toast_HasCorrectTypeClass_ForSuccess() {
 		// Act
 		var cut = RenderComponent<Toast>(parameters => parameters
 			.Add(p => p.Message, "Success message")
@@ -66,8 +61,7 @@ public class ToastTests : TestContext
 	}
 
 	[Fact]
-	public void Toast_HasCorrectTypeClass_ForError()
-	{
+	public void Toast_HasCorrectTypeClass_ForError() {
 		// Act
 		var cut = RenderComponent<Toast>(parameters => parameters
 			.Add(p => p.Message, "Error message")
@@ -78,8 +72,7 @@ public class ToastTests : TestContext
 	}
 
 	[Fact]
-	public void Toast_HasCorrectTypeClass_ForWarning()
-	{
+	public void Toast_HasCorrectTypeClass_ForWarning() {
 		// Act
 		var cut = RenderComponent<Toast>(parameters => parameters
 			.Add(p => p.Message, "Warning message")
@@ -90,8 +83,7 @@ public class ToastTests : TestContext
 	}
 
 	[Fact]
-	public void Toast_HasCorrectTypeClass_ForInfo()
-	{
+	public void Toast_HasCorrectTypeClass_ForInfo() {
 		// Act
 		var cut = RenderComponent<Toast>(parameters => parameters
 			.Add(p => p.Message, "Info message")
@@ -102,8 +94,7 @@ public class ToastTests : TestContext
 	}
 
 	[Fact]
-	public void Toast_ShowsCloseButton_WhenDismissible()
-	{
+	public void Toast_ShowsCloseButton_WhenDismissible() {
 		// Act
 		var cut = RenderComponent<Toast>(parameters => parameters
 			.Add(p => p.Message, "Message")
@@ -114,8 +105,7 @@ public class ToastTests : TestContext
 	}
 
 	[Fact]
-	public void Toast_HidesCloseButton_WhenNotDismissible()
-	{
+	public void Toast_HidesCloseButton_WhenNotDismissible() {
 		// Act
 		var cut = RenderComponent<Toast>(parameters => parameters
 			.Add(p => p.Message, "Message")
@@ -126,8 +116,7 @@ public class ToastTests : TestContext
 	}
 
 	[Fact]
-	public void Toast_HasAlertRole()
-	{
+	public void Toast_HasAlertRole() {
 		// Act
 		var cut = RenderComponent<Toast>(parameters => parameters
 			.Add(p => p.Message, "Message"));
@@ -137,8 +126,7 @@ public class ToastTests : TestContext
 	}
 
 	[Fact]
-	public async Task Toast_InvokesOnClose_WhenDismissed()
-	{
+	public async Task Toast_InvokesOnClose_WhenDismissed() {
 		// Arrange
 		var closedCalled = false;
 

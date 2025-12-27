@@ -8,11 +8,9 @@ using static DarkRepos.Web.Components.Shared.Accordion;
 
 namespace DarkRepos.Tests.Components;
 
-public class AccordionTests : TestContext
-{
+public class AccordionTests : TestContext {
 	[Fact]
-	public void Accordion_RendersAllItems()
-	{
+	public void Accordion_RendersAllItems() {
 		// Arrange
 		var items = CreateTestItems();
 
@@ -25,8 +23,7 @@ public class AccordionTests : TestContext
 	}
 
 	[Fact]
-	public void Accordion_RendersItemTitles()
-	{
+	public void Accordion_RendersItemTitles() {
 		// Arrange
 		var items = CreateTestItems();
 
@@ -42,8 +39,7 @@ public class AccordionTests : TestContext
 	}
 
 	[Fact]
-	public void Accordion_AllPanelsCollapsedByDefault()
-	{
+	public void Accordion_AllPanelsCollapsedByDefault() {
 		// Arrange
 		var items = CreateTestItems();
 
@@ -56,8 +52,7 @@ public class AccordionTests : TestContext
 	}
 
 	[Fact]
-	public void Accordion_TriggerHasAriaExpanded()
-	{
+	public void Accordion_TriggerHasAriaExpanded() {
 		// Arrange
 		var items = CreateTestItems();
 
@@ -71,8 +66,7 @@ public class AccordionTests : TestContext
 	}
 
 	[Fact]
-	public async Task Accordion_ClickExpands()
-	{
+	public async Task Accordion_ClickExpands() {
 		// Arrange
 		var items = CreateTestItems();
 		var cut = RenderComponent<Accordion>(parameters => parameters
@@ -86,8 +80,7 @@ public class AccordionTests : TestContext
 	}
 
 	[Fact]
-	public async Task Accordion_ClickCollapses()
-	{
+	public async Task Accordion_ClickCollapses() {
 		// Arrange
 		var items = CreateTestItems();
 		var cut = RenderComponent<Accordion>(parameters => parameters
@@ -102,8 +95,7 @@ public class AccordionTests : TestContext
 	}
 
 	[Fact]
-	public void Accordion_DefaultExpandedWorks()
-	{
+	public void Accordion_DefaultExpandedWorks() {
 		// Arrange
 		var items = CreateTestItems();
 
@@ -118,8 +110,7 @@ public class AccordionTests : TestContext
 	}
 
 	[Fact]
-	public async Task Accordion_SingleMode_CollapsesOthers()
-	{
+	public async Task Accordion_SingleMode_CollapsesOthers() {
 		// Arrange
 		var items = CreateTestItems();
 		var cut = RenderComponent<Accordion>(parameters => parameters
@@ -137,8 +128,7 @@ public class AccordionTests : TestContext
 	}
 
 	[Fact]
-	public async Task Accordion_MultipleMode_KeepsOthersOpen()
-	{
+	public async Task Accordion_MultipleMode_KeepsOthersOpen() {
 		// Arrange
 		var items = CreateTestItems();
 		var cut = RenderComponent<Accordion>(parameters => parameters
@@ -156,8 +146,7 @@ public class AccordionTests : TestContext
 	}
 
 	[Fact]
-	public void Accordion_PanelHasRegionRole()
-	{
+	public void Accordion_PanelHasRegionRole() {
 		// Arrange
 		var items = CreateTestItems();
 
@@ -172,8 +161,7 @@ public class AccordionTests : TestContext
 	}
 
 	[Fact]
-	public void Accordion_TriggerControlsPanel()
-	{
+	public void Accordion_TriggerControlsPanel() {
 		// Arrange
 		var items = CreateTestItems();
 
@@ -188,8 +176,7 @@ public class AccordionTests : TestContext
 	}
 
 	[Fact]
-	public void Accordion_PanelLabelledByTrigger()
-	{
+	public void Accordion_PanelLabelledByTrigger() {
 		// Arrange
 		var items = CreateTestItems();
 
@@ -204,8 +191,7 @@ public class AccordionTests : TestContext
 	}
 
 	[Fact]
-	public async Task Accordion_InvokesOnToggleCallback()
-	{
+	public async Task Accordion_InvokesOnToggleCallback() {
 		// Arrange
 		var items = CreateTestItems();
 		var toggledIndex = -1;
@@ -223,8 +209,7 @@ public class AccordionTests : TestContext
 	}
 
 	[Fact]
-	public void Accordion_AppliesCustomCssClass()
-	{
+	public void Accordion_AppliesCustomCssClass() {
 		// Arrange
 		var items = CreateTestItems();
 
@@ -237,8 +222,7 @@ public class AccordionTests : TestContext
 		cut.Find(".accordion").ClassList.Should().Contain("my-accordion");
 	}
 
-	private static List<AccordionItem> CreateTestItems()
-	{
+	private static List<AccordionItem> CreateTestItems() {
 		return [
 			new() { Title = "Section 1", Content = (RenderTreeBuilder builder) => builder.AddContent(0, "Content 1") },
 			new() { Title = "Section 2", Content = (RenderTreeBuilder builder) => builder.AddContent(0, "Content 2") },

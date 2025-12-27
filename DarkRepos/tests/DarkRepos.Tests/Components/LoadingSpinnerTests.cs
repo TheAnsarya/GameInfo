@@ -5,11 +5,9 @@ using Xunit;
 
 namespace DarkRepos.Tests.Components;
 
-public class LoadingSpinnerTests : TestContext
-{
+public class LoadingSpinnerTests : TestContext {
 	[Fact]
-	public void LoadingSpinner_HasSpinnerElement()
-	{
+	public void LoadingSpinner_HasSpinnerElement() {
 		// Act
 		var cut = RenderComponent<LoadingSpinner>();
 
@@ -18,8 +16,7 @@ public class LoadingSpinnerTests : TestContext
 	}
 
 	[Fact]
-	public void LoadingSpinner_HasLoadingStateClass()
-	{
+	public void LoadingSpinner_HasLoadingStateClass() {
 		// Act
 		var cut = RenderComponent<LoadingSpinner>();
 
@@ -28,8 +25,7 @@ public class LoadingSpinnerTests : TestContext
 	}
 
 	[Fact]
-	public void LoadingSpinner_DisplaysCustomMessage()
-	{
+	public void LoadingSpinner_DisplaysCustomMessage() {
 		// Arrange
 		const string customMessage = "Loading games...";
 
@@ -42,8 +38,7 @@ public class LoadingSpinnerTests : TestContext
 	}
 
 	[Fact]
-	public void LoadingSpinner_OmitsMessageWhenNull()
-	{
+	public void LoadingSpinner_OmitsMessageWhenNull() {
 		// Act
 		var cut = RenderComponent<LoadingSpinner>();
 
