@@ -321,8 +321,76 @@ make sure you are using the `.editorconfig` for formatting, copy it from the roo
 
 no, use the root editorconfig for all rules, copy it to the DarkRepos project and then use that and continue right where you where with what you were doing;
 
+git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
+
+move all `DarkRepos.Tests` to a separate testing project; don't simplify tests just to satisfy passing, make sure complex tests are still in place; format all the files in the repos; git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
+
+No, the tests are in the main project for Dark Repos, so make a second project that is only about testing and move the tests there, and then continue with the rest of the previous prompt;
 
 
+&&&
+Plan the following project (in the `/GameInfo/DarkReposEditor/` folder) and make documentation (in the `/GameInfo/DarkReposEditor/docs/` folder) and github issues/subissues and todo-lists before starting work:
+
+Along with the main resource we are making which is the `GameInfo` github repos `https://github.com/TheAnsarya/GameInfo` where we have all of our documentation and tools and disassembly and assets, we also need all of the editors to have a web version, using blazor (most modern everything), incorporated into a single UI. The website address is `https://editor.darkrepos.com/` and is named `Dark Repos Editor` but ignore the current site because it is not implemented, you are making it, maybe use the colors (browns, dark greens, light cream colored for accents, bright reds greens and yellows and oranges for statuses), follow modern colors studies and guidelines to make the site usable and the text readable, use readable fonts.
+Build a c# dotnet Blazor application using the most modern versions of c# and dotnet and blazor and css and the most modern coding practices and standards and code features (like advanced pattern matching) and put it in the `/GameInfo/DarkReposEditor/src/` folder, and make documentation about the project/website in the `/GameInfo/DarkReposEditor/docs/` folder.
+Make sure every page and component in the website has accessibility (aria) compliance including keyboard interface and screen-reader 
+If you need a database use efcore to talk to a sqlite instance. Allow for switching to a real database later.
+Make all of the editors, etc. that we've created in the GameInfo project (with links to the resources) available on the meta-editor, and make the site using a modern design.
+
+Make comprehensive plans and github issues/subissues and todo-lists for this work effort and a create a roadmap markdown file and lots of documentation.
+&&&
+
+git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
+
+&&&
+Create GitHub issues - Run the script in github-issues.md to create epics and sub-issues
+Build the solution - Run dotnet build to verify all projects compile
+Begin Phase 1 - Implement core services (HexEditorService, RomService, etc.)
+Build components - Start with the Hex Editor component
+&&&
+
+
+
+
+
+
+
+
+
+
+
+
+
+git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
++++++++++++++++++++++++++++++++++ ChatGPT
+How do you take a blazor application and turn it into a native windows/linux/macos application/service so you run it locally in the web browser with a backing server service, like how Plex has a installed part and you interact with it through a web browser?
++++++++++++++++++++++++++++++++++ https://copilot.microsoft.com/chats/wiimeDYqwgXuB7XT8xXtj
 
 
 
