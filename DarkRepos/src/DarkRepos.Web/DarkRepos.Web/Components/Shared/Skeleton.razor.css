@@ -1,0 +1,85 @@
+/* Skeleton Component Styles */
+
+.skeleton {
+	background: var(--color-surface-secondary);
+	border-radius: var(--radius-sm);
+	overflow: hidden;
+}
+
+.skeleton.animated {
+	position: relative;
+}
+
+.skeleton.animated::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(
+		90deg,
+		transparent 0%,
+		rgba(255, 255, 255, 0.08) 50%,
+		transparent 100%
+	);
+	animation: skeleton-shimmer 1.5s infinite;
+}
+
+@keyframes skeleton-shimmer {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(100%);
+	}
+}
+
+/* Variant: Text */
+.skeleton-text {
+	height: 1rem;
+	width: 100%;
+	border-radius: var(--radius-xs);
+}
+
+/* Variant: Circle */
+.skeleton-circle {
+	width: 3rem;
+	height: 3rem;
+	border-radius: 50%;
+}
+
+/* Variant: Rectangle */
+.skeleton-rect {
+	width: 100%;
+	height: 10rem;
+	border-radius: var(--radius-md);
+}
+
+/* Variant: Card */
+.skeleton-card {
+	width: 100%;
+	height: 12rem;
+	border-radius: var(--radius-lg);
+}
+
+/* Variant: Avatar */
+.skeleton-avatar {
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 50%;
+}
+
+/* Variant: Button */
+.skeleton-button {
+	width: 6rem;
+	height: 2.5rem;
+	border-radius: var(--radius-md);
+}
+
+/* Respects reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+	.skeleton.animated::after {
+		animation: none;
+	}
+}
