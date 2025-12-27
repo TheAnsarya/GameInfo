@@ -1,0 +1,139 @@
+@*
+	LazyImage Component
+	Defers loading images until they're about to enter the viewport.
+	Uses native loading="lazy" with a low-quality placeholder.
+*@
+<div class="lazy-image-container @(IsLoaded ? "loaded" : "loading")"
+	 style="@GetContainerStyle()">
+	@if (!IsLoaded && !string.IsNullOrEmpty(PlaceholderColor))
+	{
+		<div class="lazy-image-placeholder" style="background-color: @PlaceholderColor;"></div>
+	}
+	<img src="@Src"
+		 alt="@Alt"
+		 loading="lazy"
+		 decoding="async"
+		 class="lazy-image @Class"
+		 style="@Style"
+		 @onload="HandleLoad"
+		 @onerror="HandleError"
+		 width="@Width"
+		 height="@Height" />
+	@if (HasError)
+	{
+		<div class="lazy-image-error" role="img" aria-label="@Alt">
+			<span class="error-icon">🖼️</span>
+			@if (ShowErrorMessage)
+			{
+				<span class="error-text">Image unavailable</span>
+			}
+		</div>
+	}
+</div>
+
+@code {
+	/// <summary>
+	/// Image source URL.
+	/// </summary>
+	[Parameter, EditorRequired]
+	public string Src { get; set; } = null!;
+
+	/// <summary>
+	/// Alt text for accessibility.
+	/// </summary>
+	[Parameter, EditorRequired]
+	public string Alt { get; set; } = null!;
+
+	/// <summary>
+	/// Image width for layout calculation.
+	/// </summary>
+	[Parameter]
+	public string? Width { get; set; }
+
+	/// <summary>
+	/// Image height for layout calculation.
+	/// </summary>
+	[Parameter]
+	public string? Height { get; set; }
+
+	/// <summary>
+	/// Aspect ratio (e.g., "16/9", "4/3", "1").
+	/// </summary>
+	[Parameter]
+	public string? AspectRatio { get; set; }
+
+	/// <summary>
+	/// Background color shown while loading.
+	/// </summary>
+	[Parameter]
+	public string? PlaceholderColor { get; set; } = "#2a2118";
+
+	/// <summary>
+	/// Additional CSS classes for the img element.
+	/// </summary>
+	[Parameter]
+	public string? Class { get; set; }
+
+	/// <summary>
+	/// Additional inline styles for the img element.
+	/// </summary>
+	[Parameter]
+	public string? Style { get; set; }
+
+	/// <summary>
+	/// Whether to show error message text.
+	/// </summary>
+	[Parameter]
+	public bool ShowErrorMessage { get; set; } = false;
+
+	/// <summary>
+	/// Callback when image loads successfully.
+	/// </summary>
+	[Parameter]
+	public EventCallback OnLoad { get; set; }
+
+	/// <summary>
+	/// Callback when image fails to load.
+	/// </summary>
+	[Parameter]
+	public EventCallback OnError { get; set; }
+
+	private bool IsLoaded { get; set; } = false;
+	private bool HasError { get; set; } = false;
+
+	private string GetContainerStyle()
+	{
+		var styles = new List<string>();
+
+		if (!string.IsNullOrEmpty(AspectRatio))
+		{
+			styles.Add($"aspect-ratio: {AspectRatio}");
+		}
+
+		if (!string.IsNullOrEmpty(Width))
+		{
+			styles.Add($"width: {Width}");
+		}
+
+		if (!string.IsNullOrEmpty(Height))
+		{
+			styles.Add($"height: {Height}");
+		}
+
+		return string.Join("; ", styles);
+	}
+
+	private async Task HandleLoad()
+	{
+		IsLoaded = true;
+		HasError = false;
+		await OnLoad.InvokeAsync();
+	}
+
+	private async Task HandleError()
+	{
+		IsLoaded = true;
+		HasError = true;
+		await OnError.InvokeAsync();
+	}
+}
