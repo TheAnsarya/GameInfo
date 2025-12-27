@@ -84,7 +84,8 @@ public class GbaRomParserTests {
 		for (int i = 0xA0; i <= 0xBC; i++) {
 			sum += romData[i];
 		}
-		romData[0xBD] = (byte)(-(sum + 0x19));
+
+		romData[0xBD] = (byte)-(sum + 0x19);
 
 		return romData;
 	}

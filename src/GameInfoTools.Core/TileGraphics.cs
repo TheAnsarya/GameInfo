@@ -636,8 +636,7 @@ public static class Palette {
 
 		float h = 0;
 		if (delta != 0) {
-			if (max == rf) h = 60 * ((gf - bf) / delta % 6);
-			else h = max == gf ? 60 * (((bf - rf) / delta) + 2) : 60 * (((rf - gf) / delta) + 4);
+			h = max == rf ? 60 * ((gf - bf) / delta % 6) : max == gf ? 60 * (((bf - rf) / delta) + 2) : 60 * (((rf - gf) / delta) + 4);
 		}
 
 		if (h < 0) h += 360;
@@ -682,11 +681,9 @@ public static class Palette {
 			var rangeG = maxBucket.Max(c => c.G) - maxBucket.Min(c => c.G);
 			var rangeB = maxBucket.Max(c => c.B) - maxBucket.Min(c => c.B);
 
-			List<(byte R, byte G, byte B)> sorted;
-			if (rangeR >= rangeG && rangeR >= rangeB)
-				sorted = maxBucket.OrderBy(c => c.R).ToList();
-			else sorted = rangeG >= rangeB ? maxBucket.OrderBy(c => c.G).ToList() : maxBucket.OrderBy(c => c.B).ToList();
-
+			List<(byte R, byte G, byte B)> sorted = rangeR >= rangeG && rangeR >= rangeB
+				? maxBucket.OrderBy(c => c.R).ToList()
+				: rangeG >= rangeB ? maxBucket.OrderBy(c => c.G).ToList() : maxBucket.OrderBy(c => c.B).ToList();
 			int mid = sorted.Count / 2;
 			buckets.Add(sorted.Take(mid).ToList());
 			buckets.Add(sorted.Skip(mid).ToList());

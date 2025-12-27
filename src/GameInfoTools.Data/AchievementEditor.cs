@@ -10,12 +10,11 @@ namespace GameInfoTools.Data;
 public class AchievementEditor {
 	private readonly Dictionary<string, Achievement> _achievements = [];
 	private readonly Dictionary<string, AchievementCategory> _categories = [];
-	private AchievementSchema _schema = new();
 
 	/// <summary>
 	/// Current schema configuration.
 	/// </summary>
-	public AchievementSchema Schema => _schema;
+	public AchievementSchema Schema { get; private set; } = new();
 
 	/// <summary>
 	/// All loaded achievements.
@@ -420,7 +419,7 @@ public class AchievementEditor {
 	/// </summary>
 	public async Task ExportToJsonAsync(string path) {
 		var export = new AchievementExport {
-			Schema = _schema,
+			Schema = Schema,
 			Categories = _categories.Values.ToList(),
 			Achievements = _achievements.Values.ToList()
 		};
@@ -437,7 +436,7 @@ public class AchievementEditor {
 		var import = JsonSerializer.Deserialize<AchievementExport>(json, GetJsonOptions())
 			?? throw new InvalidOperationException("Failed to parse achievement data");
 
-		_schema = import.Schema ?? new AchievementSchema();
+		Schema = import.Schema ?? new AchievementSchema();
 
 		_categories.Clear();
 		_achievements.Clear();
@@ -654,14 +653,14 @@ public class AchievementEditor {
 	public void Clear() {
 		_achievements.Clear();
 		_categories.Clear();
-		_schema = new AchievementSchema();
+		Schema = new AchievementSchema();
 	}
 
 	/// <summary>
 	/// Set the schema configuration.
 	/// </summary>
 	public void SetSchema(AchievementSchema schema) {
-		_schema = schema ?? new AchievementSchema();
+		Schema = schema ?? new AchievementSchema();
 	}
 
 	private static JsonSerializerOptions GetJsonOptions() => new() {

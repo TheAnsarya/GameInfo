@@ -20,6 +20,7 @@ public class WikiSyncManagerTests : IDisposable {
 		} catch {
 			// Best effort cleanup
 		}
+
 		GC.SuppressFinalize(this);
 	}
 

@@ -1746,6 +1746,7 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		if (Avalonia.Application.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop) {
 			return desktop.MainWindow?.Clipboard;
 		}
+
 		return null;
 	}
 
@@ -1811,6 +1812,7 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 | {{{layer.Index}}} || {{{layer.Name}}} || {{$|{{{layer.DataOffset:x6}}}}} || {{{layer.TileFormat}}} || {{{visibleIcon}}}
 """);
 			}
+
 			sb.AppendLine("|}");
 			sb.AppendLine();
 		}
@@ -1842,6 +1844,7 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 | {{$|{{{index:x2}}}}} || {{{count}}} || {{{percent}}}%
 """);
 			}
+
 			sb.AppendLine("|}");
 			sb.AppendLine();
 		}
@@ -1864,15 +1867,18 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 			var rowsToShow = Math.Min(8, MapHeight);
 			for (int y = 0; y < rowsToShow; y++) {
 				sb.Append($"{y:D2}: ");
-				for (int x = 0; x < MapWidth && (y * MapWidth + x) < MapDataArray.Length; x++) {
+				for (int x = 0; x < MapWidth && ((y * MapWidth) + x) < MapDataArray.Length; x++) {
 					var tile = MapDataArray[(y * MapWidth) + x];
 					sb.Append($"{tile:x2} ");
 				}
+
 				sb.AppendLine();
 			}
+
 			if (MapHeight > 8) {
 				sb.AppendLine($"... ({MapHeight - 8} more rows)");
 			}
+
 			sb.AppendLine("</pre>");
 		}
 

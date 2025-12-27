@@ -81,7 +81,6 @@ public partial class DialogueEditor {
 
 	private readonly byte[] _data;
 	private readonly List<DialogueEntry> _entries = [];
-	private DialogueSchema? _schema;
 	private readonly Dictionary<byte, ControlCode> _controlCodes = [];
 	private readonly Dictionary<byte, string> _textTable = [];
 	private readonly Dictionary<string, byte> _reverseTextTable = [];
@@ -98,13 +97,13 @@ public partial class DialogueEditor {
 	/// <summary>
 	/// Gets the current schema.
 	/// </summary>
-	public DialogueSchema? Schema => _schema;
+	public DialogueSchema? Schema { get; private set; }
 
 	/// <summary>
 	/// Sets the dialogue schema.
 	/// </summary>
 	public void SetSchema(DialogueSchema schema) {
-		_schema = schema;
+		Schema = schema;
 
 		// Build lookup tables
 		_controlCodes.Clear();
@@ -164,25 +163,19 @@ public partial class DialogueEditor {
 	/// Loads dialogue entries from ROM using the configured schema.
 	/// </summary>
 	public void LoadDialogue() {
-		if (_schema == null) {
+		if (Schema == null) {
 			throw new InvalidOperationException("Schema must be set before loading dialogue");
 		}
 
 		_entries.Clear();
 
-		for (int i = 0; i < _schema.EntryCount; i++) {
+		for (int i = 0; i < Schema.EntryCount; i++) {
 			// Read pointer
-			int pointerOffset = _schema.PointerTableOffset + (i * _schema.PointerSize);
-			int textPointer = ReadPointer(pointerOffset, _schema.PointerSize);
+			int pointerOffset = Schema.PointerTableOffset + (i * Schema.PointerSize);
+			int textPointer = ReadPointer(pointerOffset, Schema.PointerSize);
 
 			// Calculate actual text offset
-			int textOffset;
-			if (_schema.IsPointerRelative) {
-				textOffset = _schema.TextBaseOffset + textPointer;
-			} else {
-				textOffset = textPointer - _schema.BankOffset;
-			}
-
+			int textOffset = Schema.IsPointerRelative ? Schema.TextBaseOffset + textPointer : textPointer - Schema.BankOffset;
 			if (textOffset < 0 || textOffset >= _data.Length) continue;
 
 			// Read text
@@ -195,7 +188,7 @@ public partial class DialogueEditor {
 	/// Loads dialogue from a raw text block (no pointer table).
 	/// </summary>
 	public void LoadFromBlock(int startOffset, int maxLength) {
-		if (_schema == null) {
+		if (Schema == null) {
 			throw new InvalidOperationException("Schema must be set before loading dialogue");
 		}
 
@@ -237,7 +230,7 @@ public partial class DialogueEditor {
 		var displayText = new StringBuilder();
 
 		int pos = offset;
-		byte endMarker = _schema?.EndMarker ?? 0x00;
+		byte endMarker = Schema?.EndMarker ?? 0x00;
 
 		while (pos < _data.Length) {
 			byte b = _data[pos];
@@ -330,7 +323,7 @@ public partial class DialogueEditor {
 		var padded = new byte[entry.MaxLength];
 		Array.Copy(encoded, padded, encoded.Length);
 		// Fill remainder with end marker or space
-		byte fillByte = _schema?.EndMarker ?? 0x00;
+		byte fillByte = Schema?.EndMarker ?? 0x00;
 		for (int i = encoded.Length; i < padded.Length; i++) {
 			padded[i] = fillByte;
 		}
@@ -410,7 +403,7 @@ public partial class DialogueEditor {
 		}
 
 		// Add end marker
-		result.Add(_schema?.EndMarker ?? 0x00);
+		result.Add(Schema?.EndMarker ?? 0x00);
 
 		return result.ToArray();
 	}

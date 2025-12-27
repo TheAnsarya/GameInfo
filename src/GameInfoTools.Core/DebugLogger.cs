@@ -15,16 +15,12 @@ public class DebugLogger : IDisposable {
 	private readonly List<ILogTarget> _targets = [];
 	private readonly object _targetsLock = new();
 	private readonly Stopwatch _sessionTimer = Stopwatch.StartNew();
-
-	private LogLevel _minimumLevel = LogLevel.Debug;
-	private int _maxBufferSize = 10000;
 	private bool _disposed;
-	private string _sessionId = Guid.NewGuid().ToString("N")[..8];
 
 	/// <summary>
 	/// Current session ID.
 	/// </summary>
-	public string SessionId => _sessionId;
+	public string SessionId { get; private set; } = Guid.NewGuid().ToString("N")[..8];
 
 	/// <summary>
 	/// Session elapsed time.
@@ -34,18 +30,12 @@ public class DebugLogger : IDisposable {
 	/// <summary>
 	/// Minimum log level to record.
 	/// </summary>
-	public LogLevel MinimumLevel {
-		get => _minimumLevel;
-		set => _minimumLevel = value;
-	}
+	public LogLevel MinimumLevel { get; set; } = LogLevel.Debug;
 
 	/// <summary>
 	/// Maximum entries to buffer.
 	/// </summary>
-	public int MaxBufferSize {
-		get => _maxBufferSize;
-		set => _maxBufferSize = Math.Max(100, value);
-	}
+	public int MaxBufferSize { get; set => field = Math.Max(100, value); } = 10000;
 
 	/// <summary>
 	/// All buffered log entries.
@@ -63,7 +53,7 @@ public class DebugLogger : IDisposable {
 	/// Log a message at the specified level.
 	/// </summary>
 	public void Log(LogLevel level, string message, string? category = null, object? data = null) {
-		if (level < _minimumLevel) return;
+		if (level < MinimumLevel) return;
 
 		var entry = new LogEntry {
 			Timestamp = DateTime.UtcNow,
@@ -139,7 +129,7 @@ public class DebugLogger : IDisposable {
 	/// Log with formatted message.
 	/// </summary>
 	public void LogFormat(LogLevel level, string format, string? category, params object[] args) {
-		if (level < _minimumLevel) return;
+		if (level < MinimumLevel) return;
 		Log(level, string.Format(format, args), category);
 	}
 
@@ -193,7 +183,7 @@ public class DebugLogger : IDisposable {
 		_entries.Enqueue(entry);
 
 		// Trim buffer if needed
-		while (_entries.Count > _maxBufferSize && _entries.TryDequeue(out _)) {
+		while (_entries.Count > MaxBufferSize && _entries.TryDequeue(out _)) {
 			// Remove oldest entries
 		}
 
@@ -228,7 +218,7 @@ public class DebugLogger : IDisposable {
 	/// </summary>
 	public void NewSession() {
 		Clear();
-		_sessionId = Guid.NewGuid().ToString("N")[..8];
+		SessionId = Guid.NewGuid().ToString("N")[..8];
 		_sessionTimer.Restart();
 		Info("New logging session started", "Session");
 	}
@@ -264,6 +254,7 @@ public class DebugLogger : IDisposable {
 			foreach (var target in _targets) {
 				(target as IDisposable)?.Dispose();
 			}
+
 			_targets.Clear();
 		}
 	}
@@ -362,7 +353,7 @@ public class DebugLogger : IDisposable {
 
 		return new LogStatistics {
 			TotalEntries = entries.Length,
-			SessionId = _sessionId,
+			SessionId = SessionId,
 			SessionDuration = _sessionTimer.Elapsed,
 			ByLevel = entries
 				.GroupBy(e => e.Level)
@@ -390,7 +381,7 @@ public class DebugLogger : IDisposable {
 			: _entries.ToList();
 
 		var export = new LogExport {
-			SessionId = _sessionId,
+			SessionId = SessionId,
 			ExportTime = DateTime.UtcNow,
 			EntryCount = entries.Count,
 			Entries = entries
@@ -409,7 +400,7 @@ public class DebugLogger : IDisposable {
 			: _entries;
 
 		var sb = new StringBuilder();
-		sb.AppendLine($"# Log Export - Session {_sessionId}");
+		sb.AppendLine($"# Log Export - Session {SessionId}");
 		sb.AppendLine($"# Exported: {DateTime.UtcNow:O}");
 		sb.AppendLine();
 

@@ -210,6 +210,7 @@ public class RobotrekBalance {
 			foreach (var issue in Issues) {
 				sb.AppendLine($"  ❌ {issue}");
 			}
+
 			sb.AppendLine();
 		}
 
@@ -218,6 +219,7 @@ public class RobotrekBalance {
 			foreach (var warning in Warnings) {
 				sb.AppendLine($"  ⚠️ {warning}");
 			}
+
 			sb.AppendLine();
 		}
 

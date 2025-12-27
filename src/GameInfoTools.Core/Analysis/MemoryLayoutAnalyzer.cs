@@ -157,6 +157,7 @@ public class MemoryLayoutAnalyzer {
 			if (region.StartAddress > lastEnd + 1) {
 				gaps.Add((lastEnd + 1, region.StartAddress - 1));
 			}
+
 			lastEnd = Math.Max(lastEnd, region.EndAddress);
 		}
 
@@ -221,7 +222,7 @@ public class MemoryLayoutAnalyzer {
 		var map = new char[width];
 		for (var i = 0; i < width; i++) {
 			var startAddr = i * bytesPerChar;
-			var endAddr = (i + 1) * bytesPerChar - 1;
+			var endAddr = ((i + 1) * bytesPerChar) - 1;
 			var region = _regions.FirstOrDefault(r => r.Contains(startAddr) || r.Contains(endAddr));
 
 			map[i] = region?.Type switch {

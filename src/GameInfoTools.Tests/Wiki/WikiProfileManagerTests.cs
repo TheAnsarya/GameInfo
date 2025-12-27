@@ -19,6 +19,7 @@ public class WikiProfileManagerTests : IDisposable {
 		if (Directory.Exists(_tempDir)) {
 			Directory.Delete(_tempDir, true);
 		}
+
 		GC.SuppressFinalize(this);
 	}
 

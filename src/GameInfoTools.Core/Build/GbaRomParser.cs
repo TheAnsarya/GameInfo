@@ -6,7 +6,6 @@ namespace GameInfoTools.Core.Build;
 /// </summary>
 public class GbaRomParser {
 	private readonly byte[] _romData;
-	private readonly GbaHeader _header;
 
 	/// <summary>
 	/// GBA ROM header offset (starts at address 0).
@@ -46,13 +45,13 @@ public class GbaRomParser {
 
 	public GbaRomParser(byte[] romData) {
 		_romData = romData ?? throw new ArgumentNullException(nameof(romData));
-		_header = ParseHeader();
+		Header = ParseHeader();
 	}
 
 	/// <summary>
 	/// Gets the parsed GBA header.
 	/// </summary>
-	public GbaHeader Header => _header;
+	public GbaHeader Header { get; }
 
 	/// <summary>
 	/// Gets the ROM size in bytes.
@@ -64,17 +63,17 @@ public class GbaRomParser {
 	/// </summary>
 	public GbaRomInfo GetRomInfo() {
 		return new GbaRomInfo {
-			Title = _header.Title,
-			GameCode = _header.GameCode,
-			MakerCode = _header.MakerCode,
-			UnitCode = _header.UnitCode,
-			DeviceType = _header.DeviceType,
-			SoftwareVersion = _header.SoftwareVersion,
+			Title = Header.Title,
+			GameCode = Header.GameCode,
+			MakerCode = Header.MakerCode,
+			UnitCode = Header.UnitCode,
+			DeviceType = Header.DeviceType,
+			SoftwareVersion = Header.SoftwareVersion,
 			HeaderChecksumValid = ValidateHeaderChecksum(),
 			LogoValid = ValidateLogo(),
 			RomSize = _romData.Length,
-			EntryPoint = _header.EntryPoint,
-			IsMultiboot = _header.IsMultiboot,
+			EntryPoint = Header.EntryPoint,
+			IsMultiboot = Header.IsMultiboot,
 			HasSaveType = DetectSaveType()
 		};
 	}
@@ -159,8 +158,10 @@ public class GbaRomParser {
 			if ((offset & 0x00800000) != 0) {
 				offset |= unchecked((int)0xFF000000); // Sign extend
 			}
-			return (uint)((offset + 2) * 4 + 8);
+
+			return (uint)(((offset + 2) * 4) + 8);
 		}
+
 		return instruction;
 	}
 
@@ -185,6 +186,7 @@ public class GbaRomParser {
 				return false;
 			}
 		}
+
 		return true;
 	}
 
@@ -209,7 +211,8 @@ public class GbaRomParser {
 				sum += _romData[i];
 			}
 		}
-		return (byte)(-(sum + 0x19));
+
+		return (byte)-(sum + 0x19);
 	}
 
 	/// <summary>
@@ -268,6 +271,7 @@ public class GbaRomParser {
 		if (address >= 0x08000000 && address < 0x0E000000) {
 			return (int)((address - 0x08000000) % 0x02000000);
 		}
+
 		return (int)address;
 	}
 

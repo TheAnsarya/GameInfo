@@ -19,23 +19,23 @@ public class TilesetManagerTests {
 		// Tile 1: Solid color 1 at offset 0x110
 		offset = 0x110;
 		for (int row = 0; row < 8; row++) {
-			data[offset + row * 2] = 0xff;     // Plane 0 all set
-			data[offset + row * 2 + 1] = 0x00; // Plane 1 all clear
+			data[offset + (row * 2)] = 0xff;     // Plane 0 all set
+			data[offset + (row * 2) + 1] = 0x00; // Plane 1 all clear
 		}
 
 		// Tile 2: Solid color 2 at offset 0x120
 		offset = 0x120;
 		for (int row = 0; row < 8; row++) {
-			data[offset + row * 2] = 0x00;     // Plane 0 all clear
-			data[offset + row * 2 + 1] = 0xff; // Plane 1 all set
+			data[offset + (row * 2)] = 0x00;     // Plane 0 all clear
+			data[offset + (row * 2) + 1] = 0xff; // Plane 1 all set
 		}
 
 		// Tile 3: Checkerboard pattern at offset 0x130
 		offset = 0x130;
 		for (int row = 0; row < 8; row++) {
 			byte pattern = (row % 2 == 0) ? (byte)0xaa : (byte)0x55;
-			data[offset + row * 2] = pattern;
-			data[offset + row * 2 + 1] = 0x00;
+			data[offset + (row * 2)] = pattern;
+			data[offset + (row * 2) + 1] = 0x00;
 		}
 
 		// Create palette data at offset 0x200
@@ -509,7 +509,7 @@ public class TilesetManagerTests {
 		byte[] pixels = new byte[64];
 		for (int y = 0; y < 8; y++) {
 			for (int x = 0; x < 4; x++) {
-				pixels[y * 8 + x] = 1;
+				pixels[(y * 8) + x] = 1;
 			}
 		}
 

@@ -371,6 +371,7 @@ public class CdlMerger {
 					if (gapSize >= minGapSize) {
 						gaps.Add((gapStart, i - 1));
 					}
+
 					gapStart = -1;
 				}
 			}
@@ -563,10 +564,10 @@ public class CdlMerger {
 		return _config.Priority switch {
 			MergePriority.Union => flags1 | flags2,
 			MergePriority.CodeOverData => (code1 || code2)
-				? (flags1 | flags2) & ~CdlFlags.Data | (code1 ? CdlFlags.Code : CdlFlags.None)
+				? ((flags1 | flags2) & ~CdlFlags.Data) | (code1 ? CdlFlags.Code : CdlFlags.None)
 				: flags1 | flags2,
 			MergePriority.DataOverCode => (data1 || data2)
-				? (flags1 | flags2) & ~CdlFlags.Code | (data1 ? CdlFlags.Data : CdlFlags.None)
+				? ((flags1 | flags2) & ~CdlFlags.Code) | (data1 ? CdlFlags.Data : CdlFlags.None)
 				: flags1 | flags2,
 			MergePriority.FirstWins => flags1 != CdlFlags.None ? flags1 : flags2,
 			MergePriority.SecondWins => flags2 != CdlFlags.None ? flags2 : flags1,

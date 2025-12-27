@@ -680,6 +680,7 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		if (Application.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop) {
 			return desktop.MainWindow?.Clipboard;
 		}
+
 		return null;
 	}
 
@@ -792,8 +793,10 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 						sb.Append($"${_rom.Data[dataOffset]:x2}");
 					}
 				}
+
 				sb.AppendLine();
 			}
+
 			sb.AppendLine();
 		}
 

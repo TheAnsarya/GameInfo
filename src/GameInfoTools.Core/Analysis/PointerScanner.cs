@@ -194,6 +194,7 @@ public class PointerScanner {
 				if (currentTable.Count == 0) {
 					tableStart = offset;
 				}
+
 				currentTable.Add(pointer);
 			} else {
 				// End of potential table
@@ -207,6 +208,7 @@ public class PointerScanner {
 						Confidence = confidence
 					});
 				}
+
 				currentTable.Clear();
 			}
 		}
@@ -380,7 +382,8 @@ public class PointerScanner {
 		for (var i = 1; i < targets.Count; i++) {
 			avgGap += targets[i] - targets[i - 1];
 		}
-		avgGap /= (targets.Count - 1);
+
+		avgGap /= targets.Count - 1;
 
 		// Reasonable gap between entries suggests real table
 		if (avgGap > 0 && avgGap < 0x1000) {

@@ -148,11 +148,11 @@ public partial class MemoryLayoutViewModel : ViewModelBase {
 
 	private void RefreshGaps() {
 		Gaps.Clear();
-		foreach (var gap in _analyzer.FindGaps(TotalSize)) {
+		foreach (var (Start, End) in _analyzer.FindGaps(TotalSize)) {
 			Gaps.Add(new MemoryRegion {
 				Name = "Gap",
-				StartAddress = gap.Start,
-				EndAddress = gap.End,
+				StartAddress = Start,
+				EndAddress = End,
 				Type = MemoryRegionType.Unknown
 			});
 		}

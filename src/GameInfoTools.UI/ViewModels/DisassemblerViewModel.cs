@@ -643,6 +643,7 @@ public partial class DisassemblerViewModel : ViewModelBase, IKeyboardShortcutHan
 		if (Application.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop) {
 			return desktop.MainWindow?.Clipboard;
 		}
+
 		return null;
 	}
 
@@ -717,6 +718,7 @@ public partial class DisassemblerViewModel : ViewModelBase, IKeyboardShortcutHan
 			if (!string.IsNullOrEmpty(line.Label)) {
 				sb.AppendLine($"{line.Label}:");
 			}
+
 			sb.AppendLine($"\t{mnemonic,-4} {operand}");
 		}
 

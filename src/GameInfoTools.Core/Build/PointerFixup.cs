@@ -217,7 +217,7 @@ public class PointerFixup {
 		var addresses = new List<int>();
 
 		for (var i = 0; i < count; i++) {
-			var location = offset + i * format.ByteSize;
+			var location = offset + (i * format.ByteSize);
 			if (location + format.ByteSize > data.Length)
 				break;
 
@@ -302,6 +302,7 @@ public class PointerFixup {
 								Format = format.Type
 							});
 						}
+
 						break;
 				}
 

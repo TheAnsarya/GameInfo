@@ -367,6 +367,7 @@ public class WikiProfileManager {
 				foreach (var profile in data.Profiles) {
 					_profiles[profile.Id] = profile;
 				}
+
 				_defaultProfileId = data.DefaultProfileId;
 			}
 		} catch {

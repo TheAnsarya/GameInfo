@@ -12,12 +12,11 @@ public class QuestSystemEditor {
 	private readonly Dictionary<string, QuestChain> _chains = [];
 	private readonly Dictionary<string, QuestTrigger> _triggers = [];
 	private readonly List<QuestVariable> _variables = [];
-	private QuestSystemSchema _schema = new();
 
 	/// <summary>
 	/// Current schema configuration.
 	/// </summary>
-	public QuestSystemSchema Schema => _schema;
+	public QuestSystemSchema Schema { get; private set; } = new();
 
 	/// <summary>
 	/// All loaded quests.
@@ -442,8 +441,8 @@ public class QuestSystemEditor {
 
 		// Validate rewards against schema
 		foreach (var reward in quest.Rewards) {
-			if (reward.Type == RewardType.Item && _schema.ValidItemIds.Count > 0) {
-				if (!_schema.ValidItemIds.Contains(reward.ItemId ?? ""))
+			if (reward.Type == RewardType.Item && Schema.ValidItemIds.Count > 0) {
+				if (!Schema.ValidItemIds.Contains(reward.ItemId ?? ""))
 					errors.Add(new QuestValidationError {
 						QuestId = quest.Id,
 						Type = ValidationErrorType.InvalidValue,
@@ -548,7 +547,7 @@ public class QuestSystemEditor {
 	/// </summary>
 	public async Task ExportToJsonAsync(string path) {
 		var export = new QuestSystemExport {
-			Schema = _schema,
+			Schema = Schema,
 			Quests = _quests.Values.ToList(),
 			Chains = _chains.Values.ToList(),
 			Triggers = _triggers.Values.ToList(),
@@ -567,7 +566,7 @@ public class QuestSystemEditor {
 		var import = JsonSerializer.Deserialize<QuestSystemExport>(json, GetJsonOptions())
 			?? throw new InvalidOperationException("Failed to parse quest system data");
 
-		_schema = import.Schema ?? new QuestSystemSchema();
+		Schema = import.Schema ?? new QuestSystemSchema();
 
 		_quests.Clear();
 		foreach (var quest in import.Quests) {
@@ -805,14 +804,14 @@ public class QuestSystemEditor {
 		_chains.Clear();
 		_triggers.Clear();
 		_variables.Clear();
-		_schema = new QuestSystemSchema();
+		Schema = new QuestSystemSchema();
 	}
 
 	/// <summary>
 	/// Set the schema configuration.
 	/// </summary>
 	public void SetSchema(QuestSystemSchema schema) {
-		_schema = schema ?? new QuestSystemSchema();
+		Schema = schema ?? new QuestSystemSchema();
 	}
 
 	private static JsonSerializerOptions GetJsonOptions() => new() {

@@ -75,6 +75,7 @@ public static class RobotrekText {
 				if (ControlCodes.TryGetValue(b, out var code)) {
 					sb.Append(code);
 				}
+
 				i++;
 				break;
 			}
@@ -159,6 +160,7 @@ public static class RobotrekText {
 					break;
 				}
 			}
+
 			if (matched) continue;
 
 			// Standard character
@@ -168,6 +170,7 @@ public static class RobotrekText {
 				// Unknown character, encode as space
 				result.Add(0x3F);
 			}
+
 			i++;
 		}
 
@@ -190,15 +193,19 @@ public static class RobotrekText {
 		if (code.StartsWith("PAUSE:") && byte.TryParse(code[6..], out var pause)) {
 			return new byte[] { 0xF3, pause };
 		}
+
 		if (code.StartsWith("SPEED:") && byte.TryParse(code[6..], out var speed)) {
 			return new byte[] { 0xF4, speed };
 		}
+
 		if (code.StartsWith("FACE:") && byte.TryParse(code[5..], out var face)) {
 			return new byte[] { 0xFB, face };
 		}
+
 		if (code.StartsWith("ITEM:") && byte.TryParse(code[5..], out var item)) {
 			return new byte[] { 0xF9, item };
 		}
+
 		if (code.StartsWith("NAME:") && byte.TryParse(code[5..], out var name)) {
 			return new byte[] { 0xF7, name };
 		}

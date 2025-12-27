@@ -51,6 +51,7 @@ public class RomExpanderTests {
 			rom[0x7fc2] = (byte)'S';
 			rom[0x7fc3] = (byte)'T';
 		}
+
 		return rom;
 	}
 
@@ -74,6 +75,7 @@ public class RomExpanderTests {
 			sizeByte++;
 			size *= 2;
 		}
+
 		rom[0x148] = (byte)sizeByte;
 
 		return rom;

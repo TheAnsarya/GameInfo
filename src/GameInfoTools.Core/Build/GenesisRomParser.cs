@@ -6,7 +6,6 @@ namespace GameInfoTools.Core.Build;
 /// </summary>
 public class GenesisRomParser {
 	private readonly byte[] _romData;
-	private readonly GenesisHeader _header;
 
 	/// <summary>
 	/// Standard Genesis bank size (512KB chunks for SMD)
@@ -31,13 +30,13 @@ public class GenesisRomParser {
 			_romData = DeinterleaveSmd(romData);
 		}
 
-		_header = ParseHeader();
+		Header = ParseHeader();
 	}
 
 	/// <summary>
 	/// Gets the parsed Genesis header.
 	/// </summary>
-	public GenesisHeader Header => _header;
+	public GenesisHeader Header { get; }
 
 	/// <summary>
 	/// Gets the ROM size in bytes (after deinterleaving if applicable).
@@ -77,7 +76,7 @@ public class GenesisRomParser {
 		}
 
 		// Check if header says it has blocks and file size matches
-		if (blocks > 0 && (blocks * SmdBlockSize + SmdHeaderSize) == _romData.Length) {
+		if (blocks > 0 && ((blocks * SmdBlockSize) + SmdHeaderSize) == _romData.Length) {
 			// Also verify it's NOT a valid Genesis header at $100
 			if (_romData.Length > 0x150) {
 				var hasSegaHeader = _romData[0x100] == 'S' && _romData[0x101] == 'E' &&
@@ -110,7 +109,7 @@ public class GenesisRomParser {
 			// First 8KB are odd bytes, second 8KB are even bytes
 			for (int i = 0; i < SmdBlockSize / 2; i++) {
 				result[dstOffset + (i * 2) + 1] = smdData[srcOffset + i]; // Odd byte
-				result[dstOffset + (i * 2)] = smdData[srcOffset + SmdBlockSize / 2 + i]; // Even byte
+				result[dstOffset + (i * 2)] = smdData[srcOffset + (SmdBlockSize / 2) + i]; // Even byte
 			}
 		}
 
@@ -194,9 +193,11 @@ public class GenesisRomParser {
 		if (codes.Contains('J') || codes.Contains('1')) {
 			region |= GenesisRegion.Japan;
 		}
+
 		if (codes.Contains('U') || codes.Contains('4')) {
 			region |= GenesisRegion.Usa;
 		}
+
 		if (codes.Contains('E') || codes.Contains('8')) {
 			region |= GenesisRegion.Europe;
 		}
@@ -211,6 +212,7 @@ public class GenesisRomParser {
 		if (offset + length > _romData.Length) {
 			length = Math.Max(0, _romData.Length - offset);
 		}
+
 		if (length <= 0) return "";
 
 		var bytes = new byte[length];
@@ -279,7 +281,7 @@ public class GenesisRomParser {
 	/// Verify the ROM checksum.
 	/// </summary>
 	public bool VerifyChecksum() {
-		return _header.Checksum == CalculateChecksum();
+		return Header.Checksum == CalculateChecksum();
 	}
 
 	/// <summary>
@@ -321,7 +323,7 @@ public class GenesisRomParser {
 				var srcPos = srcOffset + (i * 2);
 				if (srcPos + 1 < _romData.Length) {
 					// Even byte goes to second half
-					result[dstOffset + SmdBlockSize / 2 + i] = _romData[srcPos];
+					result[dstOffset + (SmdBlockSize / 2) + i] = _romData[srcPos];
 					// Odd byte goes to first half
 					result[dstOffset + i] = _romData[srcPos + 1];
 				}
@@ -336,14 +338,14 @@ public class GenesisRomParser {
 	/// </summary>
 	public GenesisRomInfo GetRomInfo() {
 		return new GenesisRomInfo {
-			DomesticName = _header.DomesticName,
-			OverseasName = _header.OverseasName,
-			ProductCode = _header.ProductCode,
-			Region = _header.Region,
+			DomesticName = Header.DomesticName,
+			OverseasName = Header.OverseasName,
+			ProductCode = Header.ProductCode,
+			Region = Header.Region,
 			RomSize = RomSize,
 			BankCount = BankCount,
-			HasSram = _header.HasSram,
-			SramSize = _header.HasSram ? (int)(_header.SramEnd - _header.SramStart + 1) : 0,
+			HasSram = Header.HasSram,
+			SramSize = Header.HasSram ? (int)(Header.SramEnd - Header.SramStart + 1) : 0,
 			ChecksumValid = VerifyChecksum(),
 			WasSmdFormat = WasSmdFormat
 		};

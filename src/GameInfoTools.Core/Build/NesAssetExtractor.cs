@@ -274,6 +274,7 @@ public class NesAssetExtractor : IAssetExtractor {
 		if (TryGetIntOption(asset.Options, "songCount", out var count)) {
 			songCount = Math.Min(count, 256);
 		}
+
 		nsfHeader[6] = (byte)songCount;
 
 		// Starting song
@@ -284,6 +285,7 @@ public class NesAssetExtractor : IAssetExtractor {
 		if (TryGetIntOption(asset.Options, "loadAddress", out var load)) {
 			loadAddress = load;
 		}
+
 		nsfHeader[8] = (byte)(loadAddress & 0xff);
 		nsfHeader[9] = (byte)((loadAddress >> 8) & 0xff);
 
@@ -292,6 +294,7 @@ public class NesAssetExtractor : IAssetExtractor {
 		if (TryGetIntOption(asset.Options, "initAddress", out var init)) {
 			initAddress = init;
 		}
+
 		nsfHeader[0x0a] = (byte)(initAddress & 0xff);
 		nsfHeader[0x0b] = (byte)((initAddress >> 8) & 0xff);
 
@@ -300,6 +303,7 @@ public class NesAssetExtractor : IAssetExtractor {
 		if (TryGetIntOption(asset.Options, "playAddress", out var play)) {
 			playAddress = play;
 		}
+
 		nsfHeader[0x0c] = (byte)(playAddress & 0xff);
 		nsfHeader[0x0d] = (byte)((playAddress >> 8) & 0xff);
 
@@ -308,6 +312,7 @@ public class NesAssetExtractor : IAssetExtractor {
 		if (asset.Options?.TryGetValue("name", out var nameObj) == true && nameObj is string name) {
 			songName = name;
 		}
+
 		var nameBytes = System.Text.Encoding.ASCII.GetBytes(songName);
 		Array.Copy(nameBytes, 0, nsfHeader, 0x0e, Math.Min(nameBytes.Length, 31));
 
@@ -316,6 +321,7 @@ public class NesAssetExtractor : IAssetExtractor {
 		if (asset.Options?.TryGetValue("artist", out var artistObj) == true && artistObj is string art) {
 			artist = art;
 		}
+
 		var artistBytes = System.Text.Encoding.ASCII.GetBytes(artist);
 		Array.Copy(artistBytes, 0, nsfHeader, 0x2e, Math.Min(artistBytes.Length, 31));
 
@@ -324,6 +330,7 @@ public class NesAssetExtractor : IAssetExtractor {
 		if (asset.Options?.TryGetValue("copyright", out var copyObj) == true && copyObj is string copy) {
 			copyright = copy;
 		}
+
 		var copyBytes = System.Text.Encoding.ASCII.GetBytes(copyright);
 		Array.Copy(copyBytes, 0, nsfHeader, 0x4e, Math.Min(copyBytes.Length, 31));
 

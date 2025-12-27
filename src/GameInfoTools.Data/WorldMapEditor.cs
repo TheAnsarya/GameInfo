@@ -157,7 +157,6 @@ public class WorldMapEditor {
 
 	private readonly byte[] _data;
 	private readonly List<GameMap> _maps = [];
-	private MapSchema? _schema;
 
 	public WorldMapEditor(byte[] romData) {
 		_data = romData;
@@ -171,26 +170,26 @@ public class WorldMapEditor {
 	/// <summary>
 	/// Gets the current schema.
 	/// </summary>
-	public MapSchema? Schema => _schema;
+	public MapSchema? Schema { get; private set; }
 
 	/// <summary>
 	/// Sets the map schema.
 	/// </summary>
 	public void SetSchema(MapSchema schema) {
-		_schema = schema;
+		Schema = schema;
 	}
 
 	/// <summary>
 	/// Loads all maps from ROM using the configured schema.
 	/// </summary>
 	public void LoadMaps() {
-		if (_schema == null) {
+		if (Schema == null) {
 			throw new InvalidOperationException("Schema must be set before loading maps");
 		}
 
 		_maps.Clear();
 
-		for (int i = 0; i < _schema.MapCount; i++) {
+		for (int i = 0; i < Schema.MapCount; i++) {
 			var map = LoadMap(i);
 			if (map != null) {
 				_maps.Add(map);
@@ -202,14 +201,14 @@ public class WorldMapEditor {
 	/// Loads a single map by ID.
 	/// </summary>
 	public GameMap? LoadMap(int mapId) {
-		if (_schema == null) return null;
+		if (Schema == null) return null;
 
 		// Read pointer to map data
-		int pointerOffset = _schema.MapTableOffset + (mapId * _schema.PointerSize);
-		if (pointerOffset + _schema.PointerSize > _data.Length) return null;
+		int pointerOffset = Schema.MapTableOffset + (mapId * Schema.PointerSize);
+		if (pointerOffset + Schema.PointerSize > _data.Length) return null;
 
-		int mapPointer = ReadPointer(pointerOffset, _schema.PointerSize);
-		int mapDataOffset = mapPointer + _schema.MapDataBankOffset;
+		int mapPointer = ReadPointer(pointerOffset, Schema.PointerSize);
+		int mapDataOffset = mapPointer + Schema.MapDataBankOffset;
 
 		if (mapDataOffset < 0 || mapDataOffset >= _data.Length) return null;
 
@@ -220,11 +219,11 @@ public class WorldMapEditor {
 		};
 
 		// Determine map dimensions
-		int width = _schema.DefaultWidth;
-		int height = _schema.DefaultHeight;
+		int width = Schema.DefaultWidth;
+		int height = Schema.DefaultHeight;
 		int dataOffset = mapDataOffset;
 
-		if (_schema.HasDimensions && dataOffset + 2 <= _data.Length) {
+		if (Schema.HasDimensions && dataOffset + 2 <= _data.Length) {
 			width = _data[dataOffset];
 			height = _data[dataOffset + 1];
 			dataOffset += 2;
@@ -237,7 +236,7 @@ public class WorldMapEditor {
 		int tileCount = width * height;
 		var tileData = new int[tileCount];
 
-		if (_schema.IsCompressed) {
+		if (Schema.IsCompressed) {
 			// For compressed maps, we'd need specific decompression
 			// For now, just read raw
 			tileData = ReadRawTileData(dataOffset, tileCount);
@@ -259,22 +258,22 @@ public class WorldMapEditor {
 		map.DataSize = tileCount;
 
 		// Load warps if present
-		if (_schema.WarpTableOffset >= 0) {
+		if (Schema.WarpTableOffset >= 0) {
 			LoadWarps(map, mapId);
 		}
 
 		// Load events if present
-		if (_schema.EventTableOffset >= 0) {
+		if (Schema.EventTableOffset >= 0) {
 			LoadEvents(map, mapId);
 		}
 
 		// Load NPCs if present
-		if (_schema.NpcTableOffset >= 0) {
+		if (Schema.NpcTableOffset >= 0) {
 			LoadNpcs(map, mapId);
 		}
 
 		// Load collision if present
-		if (_schema.CollisionOffset >= 0) {
+		if (Schema.CollisionOffset >= 0) {
 			LoadCollision(map);
 		}
 
@@ -303,105 +302,105 @@ public class WorldMapEditor {
 	}
 
 	private void LoadWarps(GameMap map, int mapId) {
-		if (_schema == null || _schema.WarpTableOffset < 0) return;
+		if (Schema == null || Schema.WarpTableOffset < 0) return;
 
 		// This is a simplified warp loading - actual format varies by game
 		// Typically warps are stored per-map or in a global table
-		int warpOffset = _schema.WarpTableOffset;
+		int warpOffset = Schema.WarpTableOffset;
 		int warpId = 0;
 
 		// Look for warps associated with this map
 		// Common format: [MapId, X, Y, DestMap, DestX, DestY, Direction, Flags]
-		while (warpOffset + _schema.WarpSize <= _data.Length) {
+		while (warpOffset + Schema.WarpSize <= _data.Length) {
 			int warpMapId = _data[warpOffset];
 			if (warpMapId == 0xff) break;  // End marker
 			if (warpMapId != mapId) {
-				warpOffset += _schema.WarpSize;
+				warpOffset += Schema.WarpSize;
 				continue;
 			}
 
 			var warp = new WarpPoint {
 				Id = warpId++,
-				SourceX = _schema.WarpSize > 1 ? _data[warpOffset + 1] : 0,
-				SourceY = _schema.WarpSize > 2 ? _data[warpOffset + 2] : 0,
-				DestMapId = _schema.WarpSize > 3 ? _data[warpOffset + 3] : 0,
-				DestX = _schema.WarpSize > 4 ? _data[warpOffset + 4] : 0,
-				DestY = _schema.WarpSize > 5 ? _data[warpOffset + 5] : 0,
-				Direction = _schema.WarpSize > 6 ? _data[warpOffset + 6] : 0,
-				Flags = _schema.WarpSize > 7 ? _data[warpOffset + 7] : 0,
+				SourceX = Schema.WarpSize > 1 ? _data[warpOffset + 1] : 0,
+				SourceY = Schema.WarpSize > 2 ? _data[warpOffset + 2] : 0,
+				DestMapId = Schema.WarpSize > 3 ? _data[warpOffset + 3] : 0,
+				DestX = Schema.WarpSize > 4 ? _data[warpOffset + 4] : 0,
+				DestY = Schema.WarpSize > 5 ? _data[warpOffset + 5] : 0,
+				Direction = Schema.WarpSize > 6 ? _data[warpOffset + 6] : 0,
+				Flags = Schema.WarpSize > 7 ? _data[warpOffset + 7] : 0,
 				RomOffset = warpOffset
 			};
 
 			map.Warps.Add(warp);
-			warpOffset += _schema.WarpSize;
+			warpOffset += Schema.WarpSize;
 		}
 	}
 
 	private void LoadEvents(GameMap map, int mapId) {
-		if (_schema == null || _schema.EventTableOffset < 0) return;
+		if (Schema == null || Schema.EventTableOffset < 0) return;
 
-		int eventOffset = _schema.EventTableOffset;
+		int eventOffset = Schema.EventTableOffset;
 		int eventId = 0;
 
-		while (eventOffset + _schema.EventSize <= _data.Length) {
+		while (eventOffset + Schema.EventSize <= _data.Length) {
 			int eventMapId = _data[eventOffset];
 			if (eventMapId == 0xff) break;
 			if (eventMapId != mapId) {
-				eventOffset += _schema.EventSize;
+				eventOffset += Schema.EventSize;
 				continue;
 			}
 
 			var evt = new MapEvent {
 				Id = eventId++,
-				X = _schema.EventSize > 1 ? _data[eventOffset + 1] : 0,
-				Y = _schema.EventSize > 2 ? _data[eventOffset + 2] : 0,
-				TriggerType = _schema.EventSize > 3 ? (EventTriggerType)(_data[eventOffset + 3] & 0x0f) : EventTriggerType.None,
-				ScriptId = _schema.EventSize > 4 ? _data[eventOffset + 4] | (_schema.EventSize > 5 ? _data[eventOffset + 5] << 8 : 0) : 0,
+				X = Schema.EventSize > 1 ? _data[eventOffset + 1] : 0,
+				Y = Schema.EventSize > 2 ? _data[eventOffset + 2] : 0,
+				TriggerType = Schema.EventSize > 3 ? (EventTriggerType)(_data[eventOffset + 3] & 0x0f) : EventTriggerType.None,
+				ScriptId = Schema.EventSize > 4 ? _data[eventOffset + 4] | (Schema.EventSize > 5 ? _data[eventOffset + 5] << 8 : 0) : 0,
 				RomOffset = eventOffset
 			};
 
 			map.Events.Add(evt);
-			eventOffset += _schema.EventSize;
+			eventOffset += Schema.EventSize;
 		}
 	}
 
 	private void LoadNpcs(GameMap map, int mapId) {
-		if (_schema == null || _schema.NpcTableOffset < 0) return;
+		if (Schema == null || Schema.NpcTableOffset < 0) return;
 
-		int npcOffset = _schema.NpcTableOffset;
+		int npcOffset = Schema.NpcTableOffset;
 		int npcId = 0;
 
-		while (npcOffset + _schema.NpcSize <= _data.Length) {
+		while (npcOffset + Schema.NpcSize <= _data.Length) {
 			int npcMapId = _data[npcOffset];
 			if (npcMapId == 0xff) break;
 			if (npcMapId != mapId) {
-				npcOffset += _schema.NpcSize;
+				npcOffset += Schema.NpcSize;
 				continue;
 			}
 
 			var npc = new MapNpc {
 				Id = npcId++,
-				X = _schema.NpcSize > 1 ? _data[npcOffset + 1] : 0,
-				Y = _schema.NpcSize > 2 ? _data[npcOffset + 2] : 0,
-				SpriteId = _schema.NpcSize > 3 ? _data[npcOffset + 3] : 0,
-				Direction = _schema.NpcSize > 4 ? _data[npcOffset + 4] & 0x03 : 0,
-				MovementType = _schema.NpcSize > 4 ? (_data[npcOffset + 4] >> 2) & 0x0f : 0,
-				DialogueId = _schema.NpcSize > 5 ? _data[npcOffset + 5] : 0,
+				X = Schema.NpcSize > 1 ? _data[npcOffset + 1] : 0,
+				Y = Schema.NpcSize > 2 ? _data[npcOffset + 2] : 0,
+				SpriteId = Schema.NpcSize > 3 ? _data[npcOffset + 3] : 0,
+				Direction = Schema.NpcSize > 4 ? _data[npcOffset + 4] & 0x03 : 0,
+				MovementType = Schema.NpcSize > 4 ? (_data[npcOffset + 4] >> 2) & 0x0f : 0,
+				DialogueId = Schema.NpcSize > 5 ? _data[npcOffset + 5] : 0,
 				RomOffset = npcOffset
 			};
 
 			map.Npcs.Add(npc);
-			npcOffset += _schema.NpcSize;
+			npcOffset += Schema.NpcSize;
 		}
 	}
 
 	private void LoadCollision(GameMap map) {
-		if (_schema == null || _schema.CollisionOffset < 0) return;
+		if (Schema == null || Schema.CollisionOffset < 0) return;
 
 		int collisionSize = map.Width * map.Height;
 		map.CollisionData = new int[collisionSize];
 
-		int offset = _schema.CollisionOffset;
+		int offset = Schema.CollisionOffset;
 		for (int i = 0; i < collisionSize && offset + i < _data.Length; i++) {
 			map.CollisionData[i] = _data[offset + i];
 		}
@@ -424,7 +423,7 @@ public class WorldMapEditor {
 		if (layerIndex < 0 || layerIndex >= map.Layers.Count) return -1;
 
 		var layer = map.Layers[layerIndex];
-		int index = y * layer.Width + x;
+		int index = (y * layer.Width) + x;
 		return index < layer.TileData.Length ? layer.TileData[index] : -1;
 	}
 
@@ -438,7 +437,7 @@ public class WorldMapEditor {
 		if (layerIndex < 0 || layerIndex >= map.Layers.Count) return false;
 
 		var layer = map.Layers[layerIndex];
-		int index = y * layer.Width + x;
+		int index = (y * layer.Width) + x;
 		if (index >= layer.TileData.Length) return false;
 
 		layer.TileData[index] = tileId;
@@ -453,7 +452,7 @@ public class WorldMapEditor {
 		if (map == null || map.CollisionData.Length == 0) return -1;
 		if (x < 0 || x >= map.Width || y < 0 || y >= map.Height) return -1;
 
-		int index = y * map.Width + x;
+		int index = (y * map.Width) + x;
 		return index < map.CollisionData.Length ? map.CollisionData[index] : -1;
 	}
 
@@ -465,7 +464,7 @@ public class WorldMapEditor {
 		if (map == null || map.CollisionData.Length == 0) return false;
 		if (x < 0 || x >= map.Width || y < 0 || y >= map.Height) return false;
 
-		int index = y * map.Width + x;
+		int index = (y * map.Width) + x;
 		if (index >= map.CollisionData.Length) return false;
 
 		map.CollisionData[index] = collision;
@@ -656,7 +655,7 @@ public class WorldMapEditor {
 		var tiles = new int[width * height];
 		for (int ty = 0; ty < height; ty++) {
 			for (int tx = 0; tx < width; tx++) {
-				tiles[ty * width + tx] = GetTile(mapId, x + tx, y + ty, layerIndex);
+				tiles[(ty * width) + tx] = GetTile(mapId, x + tx, y + ty, layerIndex);
 			}
 		}
 
@@ -673,7 +672,7 @@ public class WorldMapEditor {
 
 		for (int ty = 0; ty < height; ty++) {
 			for (int tx = 0; tx < width; tx++) {
-				SetTile(mapId, x + tx, y + ty, tiles[ty * width + tx], layerIndex);
+				SetTile(mapId, x + tx, y + ty, tiles[(ty * width) + tx], layerIndex);
 			}
 		}
 
@@ -717,6 +716,7 @@ public class WorldMapEditor {
 				if (!tileCounts.ContainsKey(tile)) {
 					tileCounts[tile] = 0;
 				}
+
 				tileCounts[tile]++;
 			}
 		}

@@ -153,12 +153,11 @@ public class FontEditor {
 	}
 
 	private readonly List<Glyph> _glyphs;
-	private FontConfig _config;
 
 	/// <summary>
 	/// Current font configuration.
 	/// </summary>
-	public FontConfig Config => _config;
+	public FontConfig Config { get; private set; }
 
 	/// <summary>
 	/// Number of glyphs in the font.
@@ -170,7 +169,7 @@ public class FontEditor {
 	/// </summary>
 	public FontEditor() {
 		_glyphs = [];
-		_config = new FontConfig();
+		Config = new FontConfig();
 	}
 
 	/// <summary>
@@ -178,7 +177,7 @@ public class FontEditor {
 	/// </summary>
 	/// <param name="config">Font configuration.</param>
 	public FontEditor(FontConfig config) {
-		_config = config;
+		Config = config;
 		_glyphs = new List<Glyph>(config.CharCount);
 
 		// Initialize empty glyphs
@@ -205,7 +204,7 @@ public class FontEditor {
 		if (bytesPerTile == 0) return 0;
 
 		int tileCount = data.Length / bytesPerTile;
-		_config = _config with {
+		Config = Config with {
 			Format = format,
 			TileWidth = tileWidth,
 			TileHeight = tileHeight,
@@ -233,8 +232,8 @@ public class FontEditor {
 	/// <param name="format">Output tile format (null = use current).</param>
 	/// <returns>Encoded tile data.</returns>
 	public byte[] ExportToData(TileFormat? format = null) {
-		var outFormat = format ?? _config.Format;
-		int bytesPerTile = CalculateBytesPerTile(outFormat, _config.TileWidth, _config.TileHeight);
+		var outFormat = format ?? Config.Format;
+		int bytesPerTile = CalculateBytesPerTile(outFormat, Config.TileWidth, Config.TileHeight);
 		var result = new byte[_glyphs.Count * bytesPerTile];
 
 		for (int i = 0; i < _glyphs.Count; i++) {
@@ -251,7 +250,7 @@ public class FontEditor {
 	/// <param name="charCode">Character code.</param>
 	/// <returns>Glyph or null if not found.</returns>
 	public Glyph? GetGlyph(int charCode) {
-		int index = charCode - _config.FirstChar;
+		int index = charCode - Config.FirstChar;
 		return index >= 0 && index < _glyphs.Count ? _glyphs[index] : null;
 	}
 
@@ -262,7 +261,7 @@ public class FontEditor {
 	/// <param name="glyph">New glyph data.</param>
 	/// <returns>True if successful.</returns>
 	public bool SetGlyph(int charCode, Glyph glyph) {
-		int index = charCode - _config.FirstChar;
+		int index = charCode - Config.FirstChar;
 		if (index < 0 || index >= _glyphs.Count) return false;
 
 		_glyphs[index] = glyph with { CharCode = charCode };
@@ -432,7 +431,7 @@ public class FontEditor {
 		var widths = new byte[_glyphs.Count];
 
 		for (int i = 0; i < _glyphs.Count; i++) {
-			int calculated = CalculateGlyphWidth(_config.FirstChar + i);
+			int calculated = CalculateGlyphWidth(Config.FirstChar + i);
 			widths[i] = (byte)Math.Max(minWidth, calculated + spacing);
 		}
 
@@ -460,11 +459,11 @@ public class FontEditor {
 			}
 		}
 
-		_config = _config with { CharMap = charMap };
+		Config = Config with { CharMap = charMap };
 
 		// Update glyph character mappings
 		for (int i = 0; i < _glyphs.Count; i++) {
-			int code = _config.FirstChar + i;
+			int code = Config.FirstChar + i;
 			if (charMap.TryGetValue(code, out var c)) {
 				_glyphs[i] = _glyphs[i] with { Character = c };
 			}
@@ -477,14 +476,14 @@ public class FontEditor {
 	/// <returns>JSON string.</returns>
 	public string ExportConfigJson() {
 		var config = new {
-			name = _config.Name,
-			format = _config.Format.ToString(),
-			tileWidth = _config.TileWidth,
-			tileHeight = _config.TileHeight,
-			charCount = _config.CharCount,
-			firstChar = _config.FirstChar,
-			isVariableWidth = _config.IsVariableWidth,
-			charMap = _config.CharMap.ToDictionary(
+			name = Config.Name,
+			format = Config.Format.ToString(),
+			tileWidth = Config.TileWidth,
+			tileHeight = Config.TileHeight,
+			charCount = Config.CharCount,
+			firstChar = Config.FirstChar,
+			isVariableWidth = Config.IsVariableWidth,
+			charMap = Config.CharMap.ToDictionary(
 				kv => $"0x{kv.Key:x2}",
 				kv => kv.Value.ToString()
 			)
@@ -506,12 +505,12 @@ public class FontEditor {
 
 		// Calculate dimensions
 		int totalWidth = 0;
-		int lineHeight = _config.TileHeight;
+		int lineHeight = Config.TileHeight;
 
 		foreach (char c in text) {
 			var glyph = FindGlyphForChar(c);
 			if (glyph != null) {
-				totalWidth += _config.IsVariableWidth ? glyph.Advance : _config.TileWidth;
+				totalWidth += Config.IsVariableWidth ? glyph.Advance : Config.TileWidth;
 			}
 		}
 
@@ -525,7 +524,7 @@ public class FontEditor {
 			var glyph = FindGlyphForChar(c);
 			if (glyph == null) continue;
 
-			int advance = _config.IsVariableWidth ? glyph.Advance : _config.TileWidth;
+			int advance = Config.IsVariableWidth ? glyph.Advance : Config.TileWidth;
 			if (maxWidth > 0 && currentX + advance > maxWidth) break;
 
 			// Copy glyph pixels
@@ -543,14 +542,14 @@ public class FontEditor {
 
 	private Glyph? FindGlyphForChar(char c) {
 		// First try reverse lookup in char map
-		foreach (var kv in _config.CharMap) {
+		foreach (var kv in Config.CharMap) {
 			if (kv.Value == c) {
 				return GetGlyph(kv.Key);
 			}
 		}
 
 		// Fall back to ASCII if in range
-		if (c >= _config.FirstChar && c < _config.FirstChar + _config.CharCount) {
+		if (c >= Config.FirstChar && c < Config.FirstChar + Config.CharCount) {
 			return GetGlyph(c);
 		}
 
@@ -657,7 +656,7 @@ public class FontEditor {
 	private static void DecodeGameBoy2bpp(byte[] data, byte[,] pixels, int width, int height) {
 		for (int y = 0; y < height && y < 8; y++) {
 			byte plane0 = data[y * 2];
-			byte plane1 = data[y * 2 + 1];
+			byte plane1 = data[(y * 2) + 1];
 			for (int x = 0; x < width && x < 8; x++) {
 				int bit = 7 - x;
 				pixels[y, x] = (byte)(
@@ -689,8 +688,8 @@ public class FontEditor {
 	private static void DecodeMono1bpp(byte[] data, byte[,] pixels, int width, int height) {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				int byteIndex = (y * width + x) / 8;
-				int bitIndex = 7 - ((y * width + x) % 8);
+				int byteIndex = ((y * width) + x) / 8;
+				int bitIndex = 7 - (((y * width) + x) % 8);
 				if (byteIndex < data.Length) {
 					pixels[y, x] = (byte)((data[byteIndex] >> bitIndex) & 1);
 				}
@@ -701,7 +700,7 @@ public class FontEditor {
 	private static void DecodeLinear8bpp(byte[] data, byte[,] pixels, int width, int height) {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				int index = y * width + x;
+				int index = (y * width) + x;
 				if (index < data.Length) {
 					pixels[y, x] = data[index];
 				}
@@ -712,7 +711,7 @@ public class FontEditor {
 	private static void DecodeGba4bpp(byte[] data, byte[,] pixels, int width, int height) {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				int index = (y * width + x) / 2;
+				int index = ((y * width) + x) / 2;
 				if (index < data.Length) {
 					pixels[y, x] = (byte)((x % 2 == 0)
 						? data[index] & 0x0F
@@ -732,6 +731,7 @@ public class FontEditor {
 				if ((pixel & 1) != 0) plane0 |= (byte)(1 << bit);
 				if ((pixel & 2) != 0) plane1 |= (byte)(1 << bit);
 			}
+
 			data[y] = plane0;
 			data[y + 8] = plane1;
 		}
@@ -746,8 +746,9 @@ public class FontEditor {
 				if ((pixel & 1) != 0) plane0 |= (byte)(1 << bit);
 				if ((pixel & 2) != 0) plane1 |= (byte)(1 << bit);
 			}
+
 			data[y * 2] = plane0;
-			data[y * 2 + 1] = plane1;
+			data[(y * 2) + 1] = plane1;
 		}
 	}
 
@@ -762,6 +763,7 @@ public class FontEditor {
 				if ((pixel & 4) != 0) plane2 |= (byte)(1 << bit);
 				if ((pixel & 8) != 0) plane3 |= (byte)(1 << bit);
 			}
+
 			data[y] = plane0;
 			data[y + 8] = plane1;
 			data[y + 16] = plane2;
@@ -772,8 +774,8 @@ public class FontEditor {
 	private static void EncodeMono1bpp(byte[,] pixels, byte[] data, int width, int height) {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				int byteIndex = (y * width + x) / 8;
-				int bitIndex = 7 - ((y * width + x) % 8);
+				int byteIndex = ((y * width) + x) / 8;
+				int bitIndex = 7 - (((y * width) + x) % 8);
 				if (byteIndex < data.Length && pixels[y, x] != 0) {
 					data[byteIndex] |= (byte)(1 << bitIndex);
 				}
@@ -784,7 +786,7 @@ public class FontEditor {
 	private static void EncodeLinear8bpp(byte[,] pixels, byte[] data, int width, int height) {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				int index = y * width + x;
+				int index = (y * width) + x;
 				if (index < data.Length) {
 					data[index] = pixels[y, x];
 				}
@@ -795,7 +797,7 @@ public class FontEditor {
 	private static void EncodeGba4bpp(byte[,] pixels, byte[] data, int width, int height) {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x += 2) {
-				int index = (y * width + x) / 2;
+				int index = ((y * width) + x) / 2;
 				if (index < data.Length) {
 					byte lo = (byte)(pixels[y, x] & 0x0F);
 					byte hi = (byte)((x + 1 < width ? pixels[y, x + 1] : 0) << 4);

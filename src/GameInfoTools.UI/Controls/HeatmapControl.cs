@@ -104,10 +104,8 @@ public class HeatmapControl : Control {
 		if (cell.HasCode && cell.HasData) {
 			// Mixed: blend green and yellow
 			baseColor = Color.FromRgb(0x8b, 0xc3, 0x4a); // Lime green
-		} else if (cell.HasCode) {
-			baseColor = CodeColor;
 		} else {
-			baseColor = cell.HasData ? DataColor : UnknownColor;
+			baseColor = cell.HasCode ? CodeColor : cell.HasData ? DataColor : UnknownColor;
 		}
 
 		// Adjust brightness based on intensity

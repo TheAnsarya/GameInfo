@@ -357,6 +357,7 @@ public partial class CdlViewerViewModel : ViewModelBase, IKeyboardShortcutHandle
 		if (Application.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop) {
 			return desktop.MainWindow?.Clipboard;
 		}
+
 		return null;
 	}
 
@@ -399,7 +400,7 @@ public partial class CdlViewerViewModel : ViewModelBase, IKeyboardShortcutHandle
 
 			foreach (var region in CoveredRegions.Take(50)) { // Limit to first 50
 				sb.AppendLine("|-");
-				sb.AppendLine($"| {{{{$|{region.Offset:x6}}}}} || {{{{$|{(region.Offset + region.Length - 1):x6}}}}} || {region.Length} || {region.Type}");
+				sb.AppendLine($"| {{{{$|{region.Offset:x6}}}}} || {{{{$|{region.Offset + region.Length - 1:x6}}}}} || {region.Length} || {region.Type}");
 			}
 
 			if (CoveredRegions.Count > 50) {

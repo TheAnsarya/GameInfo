@@ -13,8 +13,6 @@ namespace GameInfoTools.Text;
 /// </remarks>
 public class LocalizationManager {
 	private readonly Dictionary<string, LocaleData> _locales = [];
-	private string _currentLocale = "en";
-	private LocalizationSchema? _schema;
 
 	/// <summary>
 	/// Gets the available locale codes.
@@ -24,19 +22,16 @@ public class LocalizationManager {
 	/// <summary>
 	/// Gets or sets the current locale.
 	/// </summary>
-	public string CurrentLocale {
-		get => _currentLocale;
-		set {
-			if (_locales.ContainsKey(value) || value == _currentLocale) {
-				_currentLocale = value;
+	public string CurrentLocale { get; set {
+			if (_locales.ContainsKey(value) || value == field) {
+				field = value;
 			}
-		}
-	}
+		} } = "en";
 
 	/// <summary>
 	/// Gets the current schema.
 	/// </summary>
-	public LocalizationSchema? Schema => _schema;
+	public LocalizationSchema? Schema { get; private set; }
 
 	/// <summary>
 	/// Gets the locale data for a specific locale.
@@ -129,7 +124,7 @@ public class LocalizationManager {
 	/// Sets the localization schema.
 	/// </summary>
 	public void SetSchema(LocalizationSchema schema) {
-		_schema = schema ?? throw new ArgumentNullException(nameof(schema));
+		Schema = schema ?? throw new ArgumentNullException(nameof(schema));
 	}
 
 	/// <summary>
@@ -197,7 +192,7 @@ public class LocalizationManager {
 	/// Removes a locale.
 	/// </summary>
 	public bool RemoveLocale(string code) {
-		if (code == _currentLocale) return false;
+		if (code == CurrentLocale) return false;
 		return _locales.Remove(code);
 	}
 
@@ -205,10 +200,11 @@ public class LocalizationManager {
 	/// Gets all strings for a locale.
 	/// </summary>
 	public IReadOnlyDictionary<string, LocalizedString> GetStrings(string? locale = null) {
-		locale ??= _currentLocale;
+		locale ??= CurrentLocale;
 		if (!_locales.TryGetValue(locale, out var data)) {
 			return new Dictionary<string, LocalizedString>();
 		}
+
 		return data.Strings;
 	}
 
@@ -220,7 +216,7 @@ public class LocalizationManager {
 	/// Gets a localized string.
 	/// </summary>
 	public string? GetString(string key, string? locale = null) {
-		locale ??= _currentLocale;
+		locale ??= CurrentLocale;
 		if (!_locales.TryGetValue(locale, out var data)) return null;
 		if (!data.Strings.TryGetValue(key, out var str)) return null;
 		return str.Value;
@@ -230,15 +226,15 @@ public class LocalizationManager {
 	/// Sets a localized string.
 	/// </summary>
 	public TranslationResult SetString(string key, string value, string? locale = null, string? category = null) {
-		locale ??= _currentLocale;
+		locale ??= CurrentLocale;
 
 		if (!_locales.TryGetValue(locale, out var data)) {
 			return new TranslationResult(false, key, "Locale not found");
 		}
 
 		// Validate length
-		int maxLength = _schema?.MaxStringLength ?? 256;
-		if (category != null && _schema?.Categories.TryGetValue(category, out var cat) == true) {
+		int maxLength = Schema?.MaxStringLength ?? 256;
+		if (category != null && Schema?.Categories.TryGetValue(category, out var cat) == true) {
 			maxLength = cat.MaxLength;
 		}
 
@@ -275,11 +271,12 @@ public class LocalizationManager {
 					Key = key,
 					Category = category,
 					Context = context,
-					MaxLength = maxLength ?? _schema?.MaxStringLength ?? 256,
+					MaxLength = maxLength ?? Schema?.MaxStringLength ?? 256,
 					IsTranslated = false
 				};
 			}
 		}
+
 		return true;
 	}
 
@@ -293,6 +290,7 @@ public class LocalizationManager {
 				removed = true;
 			}
 		}
+
 		return removed;
 	}
 
@@ -300,7 +298,7 @@ public class LocalizationManager {
 	/// Marks a string as needing review.
 	/// </summary>
 	public bool MarkForReview(string key, string? locale = null, bool needsReview = true) {
-		locale ??= _currentLocale;
+		locale ??= CurrentLocale;
 		if (!_locales.TryGetValue(locale, out var data)) return false;
 		if (!data.Strings.TryGetValue(key, out var str)) return false;
 
@@ -312,7 +310,7 @@ public class LocalizationManager {
 	/// Adds a comment to a string.
 	/// </summary>
 	public bool AddComment(string key, string comment, string? locale = null) {
-		locale ??= _currentLocale;
+		locale ??= CurrentLocale;
 		if (!_locales.TryGetValue(locale, out var data)) return false;
 		if (!data.Strings.TryGetValue(key, out var str)) return false;
 
@@ -336,10 +334,11 @@ public class LocalizationManager {
 	/// Gets the character table for a locale.
 	/// </summary>
 	public IReadOnlyDictionary<byte, string> GetCharacterTable(string? locale = null) {
-		locale ??= _currentLocale;
+		locale ??= CurrentLocale;
 		if (!_locales.TryGetValue(locale, out var data)) {
 			return new Dictionary<byte, string>();
 		}
+
 		return data.CharacterTable;
 	}
 
@@ -355,10 +354,11 @@ public class LocalizationManager {
 	/// Gets the DTE table for a locale.
 	/// </summary>
 	public IReadOnlyDictionary<string, byte[]> GetDteTable(string? locale = null) {
-		locale ??= _currentLocale;
+		locale ??= CurrentLocale;
 		if (!_locales.TryGetValue(locale, out var data)) {
 			return new Dictionary<string, byte[]>();
 		}
+
 		return data.DteTable;
 	}
 
@@ -370,7 +370,7 @@ public class LocalizationManager {
 	/// Searches for strings containing text.
 	/// </summary>
 	public List<LocalizedString> SearchStrings(string searchText, string? locale = null, bool caseSensitive = false) {
-		locale ??= _currentLocale;
+		locale ??= CurrentLocale;
 		if (!_locales.TryGetValue(locale, out var data)) return [];
 
 		var comparison = caseSensitive ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase;
@@ -384,7 +384,7 @@ public class LocalizationManager {
 	/// Gets strings by category.
 	/// </summary>
 	public List<LocalizedString> GetStringsByCategory(string category, string? locale = null) {
-		locale ??= _currentLocale;
+		locale ??= CurrentLocale;
 		if (!_locales.TryGetValue(locale, out var data)) return [];
 
 		return data.Strings.Values
@@ -396,7 +396,7 @@ public class LocalizationManager {
 	/// Gets untranslated strings.
 	/// </summary>
 	public List<LocalizedString> GetUntranslatedStrings(string? locale = null) {
-		locale ??= _currentLocale;
+		locale ??= CurrentLocale;
 		if (!_locales.TryGetValue(locale, out var data)) return [];
 
 		return data.Strings.Values
@@ -408,7 +408,7 @@ public class LocalizationManager {
 	/// Gets strings needing review.
 	/// </summary>
 	public List<LocalizedString> GetStringsNeedingReview(string? locale = null) {
-		locale ??= _currentLocale;
+		locale ??= CurrentLocale;
 		if (!_locales.TryGetValue(locale, out var data)) return [];
 
 		return data.Strings.Values
@@ -453,6 +453,7 @@ public class LocalizationManager {
 			foreach (var kvp in data) {
 				_locales[kvp.Key] = kvp.Value;
 			}
+
 			return true;
 		} catch {
 			return false;
@@ -479,7 +480,7 @@ public class LocalizationManager {
 	/// Exports strings to CSV format.
 	/// </summary>
 	public string ExportToCsv(string? locale = null) {
-		locale ??= _currentLocale;
+		locale ??= CurrentLocale;
 		if (!_locales.TryGetValue(locale, out var data)) return "";
 
 		var sb = new StringBuilder();
@@ -496,7 +497,7 @@ public class LocalizationManager {
 	/// Imports strings from CSV format.
 	/// </summary>
 	public int ImportFromCsv(string csv, string? locale = null) {
-		locale ??= _currentLocale;
+		locale ??= CurrentLocale;
 		if (!_locales.TryGetValue(locale, out var data)) return 0;
 
 		var lines = csv.Split('\n', StringSplitOptions.RemoveEmptyEntries);
@@ -551,6 +552,7 @@ public class LocalizationManager {
 				current.Append(c);
 			}
 		}
+
 		fields.Add(current.ToString());
 
 		return fields.ToArray();
@@ -564,7 +566,7 @@ public class LocalizationManager {
 	/// Validates all strings in a locale.
 	/// </summary>
 	public List<ValidationError> ValidateLocale(string? locale = null) {
-		locale ??= _currentLocale;
+		locale ??= CurrentLocale;
 		var errors = new List<ValidationError>();
 
 		if (!_locales.TryGetValue(locale, out var data)) {
@@ -585,7 +587,7 @@ public class LocalizationManager {
 
 			// Check for line breaks in non-dialogue
 			if (str.Category != "dialogue" && str.Value.Contains('\n')) {
-				if (_schema?.Categories.TryGetValue(str.Category ?? "", out var cat) == true) {
+				if (Schema?.Categories.TryGetValue(str.Category ?? "", out var cat) == true) {
 					if (!cat.AllowLineBreaks) {
 						errors.Add(new ValidationError(str.Key, "Line breaks not allowed in this category", ValidationSeverity.Warning));
 					}
@@ -624,7 +626,7 @@ public class LocalizationManager {
 	/// Gets statistics for a locale.
 	/// </summary>
 	public LocalizationStatistics GetStatistics(string? locale = null) {
-		locale ??= _currentLocale;
+		locale ??= CurrentLocale;
 
 		if (!_locales.TryGetValue(locale, out var data)) {
 			return new LocalizationStatistics(0, 0, 0, 0, 0, []);
@@ -705,7 +707,7 @@ public class LocalizationManager {
 		string processed = text;
 		int dteCount = 0;
 
-		if (_schema?.SupportsDTE == true) {
+		if (Schema?.SupportsDTE == true) {
 			// Sort DTE entries by length (longest first) for greedy matching
 			var sortedDte = data.DteTable.OrderByDescending(kvp => kvp.Key.Length);
 
@@ -716,6 +718,7 @@ public class LocalizationManager {
 					count++;
 					index += dte.Key.Length;
 				}
+
 				dteCount += count * (dte.Key.Length - dte.Value.Length);
 				processed = processed.Replace(dte.Key, new string('\0', dte.Value.Length));
 			}

@@ -50,6 +50,7 @@ public class GamePalette {
 		while (_colors.Count <= index) {
 			_colors.Add(Color.Black);
 		}
+
 		_colors[index] = color;
 	}
 
@@ -78,6 +79,7 @@ public class GamePalette {
 		foreach (var color in _colors) {
 			clone.AddColor(color);
 		}
+
 		return clone;
 	}
 }
@@ -143,26 +145,26 @@ public class PaletteAnalyzer {
 	}
 
 	private static void ParseRgb888(byte[] data, GamePalette palette, int colorCount) {
-		for (var i = 0; i < colorCount && i * 3 + 2 < data.Length; i++) {
+		for (var i = 0; i < colorCount && (i * 3) + 2 < data.Length; i++) {
 			var r = data[i * 3];
-			var g = data[i * 3 + 1];
-			var b = data[i * 3 + 2];
+			var g = data[(i * 3) + 1];
+			var b = data[(i * 3) + 2];
 			palette.AddColor(Color.FromArgb(r, g, b));
 		}
 	}
 
 	private static void ParseBgr888(byte[] data, GamePalette palette, int colorCount) {
-		for (var i = 0; i < colorCount && i * 3 + 2 < data.Length; i++) {
+		for (var i = 0; i < colorCount && (i * 3) + 2 < data.Length; i++) {
 			var b = data[i * 3];
-			var g = data[i * 3 + 1];
-			var r = data[i * 3 + 2];
+			var g = data[(i * 3) + 1];
+			var r = data[(i * 3) + 2];
 			palette.AddColor(Color.FromArgb(r, g, b));
 		}
 	}
 
 	private static void ParseRgb555(byte[] data, GamePalette palette, int colorCount) {
-		for (var i = 0; i < colorCount && i * 2 + 1 < data.Length; i++) {
-			var value = data[i * 2] | (data[i * 2 + 1] << 8);
+		for (var i = 0; i < colorCount && (i * 2) + 1 < data.Length; i++) {
+			var value = data[i * 2] | (data[(i * 2) + 1] << 8);
 			var r = ((value >> 0) & 0x1F) * 255 / 31;
 			var g = ((value >> 5) & 0x1F) * 255 / 31;
 			var b = ((value >> 10) & 0x1F) * 255 / 31;
@@ -171,8 +173,8 @@ public class PaletteAnalyzer {
 	}
 
 	private static void ParseBgr555(byte[] data, GamePalette palette, int colorCount) {
-		for (var i = 0; i < colorCount && i * 2 + 1 < data.Length; i++) {
-			var value = data[i * 2] | (data[i * 2 + 1] << 8);
+		for (var i = 0; i < colorCount && (i * 2) + 1 < data.Length; i++) {
+			var value = data[i * 2] | (data[(i * 2) + 1] << 8);
 			var b = ((value >> 0) & 0x1F) * 255 / 31;
 			var g = ((value >> 5) & 0x1F) * 255 / 31;
 			var r = ((value >> 10) & 0x1F) * 255 / 31;
@@ -182,8 +184,8 @@ public class PaletteAnalyzer {
 
 	private static void ParseGenesis(byte[] data, GamePalette palette, int colorCount) {
 		// Genesis uses 9-bit color: 0000BBB0 GGG0RRR0
-		for (var i = 0; i < colorCount && i * 2 + 1 < data.Length; i++) {
-			var value = (data[i * 2] << 8) | data[i * 2 + 1]; // Big endian
+		for (var i = 0; i < colorCount && (i * 2) + 1 < data.Length; i++) {
+			var value = (data[i * 2] << 8) | data[(i * 2) + 1]; // Big endian
 			var r = ((value >> 1) & 0x07) * 255 / 7;
 			var g = ((value >> 5) & 0x07) * 255 / 7;
 			var b = ((value >> 9) & 0x07) * 255 / 7;
@@ -405,7 +407,7 @@ public class PaletteAnalyzer {
 		var rDiff = a.R - b.R;
 		var gDiff = a.G - b.G;
 		var bDiff = a.B - b.B;
-		return Math.Sqrt(2 * rDiff * rDiff + 4 * gDiff * gDiff + 3 * bDiff * bDiff);
+		return Math.Sqrt((2 * rDiff * rDiff) + (4 * gDiff * gDiff) + (3 * bDiff * bDiff));
 	}
 
 	/// <summary>
@@ -417,6 +419,7 @@ public class PaletteAnalyzer {
 			var shade = i * 255 / (colorCount - 1);
 			palette.AddColor(Color.FromArgb(shade, shade, shade));
 		}
+
 		return palette;
 	}
 

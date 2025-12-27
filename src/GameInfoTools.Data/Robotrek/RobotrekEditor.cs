@@ -35,6 +35,7 @@ public static class RobotrekData {
 		if (bank >= 0xC0) {
 			return offset + ((bank - 0xC0) * 0x10000) + (address >= 0x8000 ? address - 0x8000 : address);
 		}
+
 		return offset + (bank * 0x10000) + address;
 	}
 }

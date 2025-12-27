@@ -301,6 +301,7 @@ public class EncounterEditor {
 				if (!enemyCounts.ContainsKey(slot.EnemyId)) {
 					enemyCounts[slot.EnemyId] = 0;
 				}
+
 				enemyCounts[slot.EnemyId]++;
 			}
 		}

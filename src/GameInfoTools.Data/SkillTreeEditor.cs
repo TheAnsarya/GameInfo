@@ -10,12 +10,11 @@ namespace GameInfoTools.Data;
 public class SkillTreeEditor {
 	private readonly Dictionary<string, SkillTree> _trees = [];
 	private readonly Dictionary<string, Skill> _skills = [];
-	private SkillTreeSchema _schema = new();
 
 	/// <summary>
 	/// Current schema configuration.
 	/// </summary>
-	public SkillTreeSchema Schema => _schema;
+	public SkillTreeSchema Schema { get; private set; } = new();
 
 	/// <summary>
 	/// All loaded skill trees.
@@ -80,6 +79,7 @@ public class SkillTreeEditor {
 		foreach (var skill in oldTree.Skills) {
 			_skills.Remove(skill.Id);
 		}
+
 		foreach (var skill in tree.Skills) {
 			_skills[skill.Id] = skill;
 		}
@@ -490,7 +490,7 @@ public class SkillTreeEditor {
 	/// </summary>
 	public async Task ExportToJsonAsync(string path) {
 		var export = new SkillTreeExport {
-			Schema = _schema,
+			Schema = Schema,
 			Trees = _trees.Values.ToList()
 		};
 
@@ -506,7 +506,7 @@ public class SkillTreeEditor {
 		var import = JsonSerializer.Deserialize<SkillTreeExport>(json, GetJsonOptions())
 			?? throw new InvalidOperationException("Failed to parse skill tree data");
 
-		_schema = import.Schema ?? new SkillTreeSchema();
+		Schema = import.Schema ?? new SkillTreeSchema();
 
 		_trees.Clear();
 		_skills.Clear();
@@ -710,14 +710,14 @@ public class SkillTreeEditor {
 	public void Clear() {
 		_trees.Clear();
 		_skills.Clear();
-		_schema = new SkillTreeSchema();
+		Schema = new SkillTreeSchema();
 	}
 
 	/// <summary>
 	/// Set the schema configuration.
 	/// </summary>
 	public void SetSchema(SkillTreeSchema schema) {
-		_schema = schema ?? new SkillTreeSchema();
+		Schema = schema ?? new SkillTreeSchema();
 	}
 
 	private static JsonSerializerOptions GetJsonOptions() => new() {

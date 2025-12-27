@@ -50,6 +50,7 @@ public class GameBoyAssetExtractor : IAssetExtractor {
 		if (asset.Options?.TryGetValue("extractType", out var extractType) == true) {
 			return extractType?.ToString() ?? "raw";
 		}
+
 		return "raw";
 	}
 
@@ -232,8 +233,12 @@ public class GameBoyAssetExtractor : IAssetExtractor {
 			colors.Add(new Dictionary<string, object> {
 				["index"] = i,
 				["raw"] = $"0x{rawColor:x4}",
-				["r5"] = r5, ["g5"] = g5, ["b5"] = b5,
-				["r"] = r8, ["g"] = g8, ["b"] = b8,
+				["r5"] = r5,
+				["g5"] = g5,
+				["b5"] = b5,
+				["r"] = r8,
+				["g"] = g8,
+				["b"] = b8,
 				["hex"] = $"#{r8:x2}{g8:x2}{b8:x2}"
 			});
 		}

@@ -272,6 +272,7 @@ public class ShopEditor : GameDataEditor<ShopSchema, Shop> {
 				} else {
 					WriteByte(itemOffset, itemId);
 				}
+
 				itemOffset += _schema.ItemIdSize;
 			}
 

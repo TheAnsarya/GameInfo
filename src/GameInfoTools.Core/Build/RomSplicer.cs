@@ -450,7 +450,7 @@ public class RomSplicer {
 
 		for (var i = 0; i < data.Length; i += 2) {
 			result[i / 2] = data[i];
-			result[halfSize + i / 2] = data[i + 1];
+			result[halfSize + (i / 2)] = data[i + 1];
 		}
 
 		return result;
@@ -462,7 +462,7 @@ public class RomSplicer {
 
 		for (var i = 0; i < size; i++) {
 			result[i * 2] = i < even.Length ? even[i] : (byte)0;
-			result[i * 2 + 1] = i < odd.Length ? odd[i] : (byte)0;
+			result[(i * 2) + 1] = i < odd.Length ? odd[i] : (byte)0;
 		}
 
 		return result;
@@ -475,7 +475,7 @@ public class RomSplicer {
 
 		for (var i = 0; i < halfSize; i++) {
 			result[i * 2] = data[i];
-			result[i * 2 + 1] = data[halfSize + i];
+			result[(i * 2) + 1] = data[halfSize + i];
 		}
 
 		return result;
@@ -495,8 +495,8 @@ public class RomSplicer {
 
 			// Each block: first half is odd bytes, second half is even bytes
 			for (var i = 0; i < halfBlock; i++) {
-				result[resultOffset + i * 2] = data[blockStart + halfBlock + i]; // even
-				result[resultOffset + i * 2 + 1] = data[blockStart + i]; // odd
+				result[resultOffset + (i * 2)] = data[blockStart + halfBlock + i]; // even
+				result[resultOffset + (i * 2) + 1] = data[blockStart + i]; // odd
 			}
 
 			resultOffset += thisBlockSize;
@@ -509,7 +509,7 @@ public class RomSplicer {
 		const int blockSize = 16384;
 		var size = Math.Max(even.Length, odd.Length);
 		var result = new byte[size * 2];
-		var blocks = (size * 2 + blockSize - 1) / blockSize;
+		var blocks = ((size * 2) + blockSize - 1) / blockSize;
 
 		for (var block = 0; block < blocks; block++) {
 			var blockStart = block * blockSize;
@@ -539,9 +539,9 @@ public class RomSplicer {
 
 			for (var i = 0; i < halfBlock; i++) {
 				// even bytes go to second half of block
-				result[blockStart + halfBlock + i] = data[sourceOffset + i * 2];
+				result[blockStart + halfBlock + i] = data[sourceOffset + (i * 2)];
 				// odd bytes go to first half of block
-				result[blockStart + i] = data[sourceOffset + i * 2 + 1];
+				result[blockStart + i] = data[sourceOffset + (i * 2) + 1];
 			}
 
 			sourceOffset += thisBlockSize;
@@ -568,6 +568,7 @@ public class RomSplicer {
 				crc = (crc & 1) != 0 ? (crc >> 1) ^ 0xedb88320 : crc >> 1;
 			}
 		}
+
 		return (~crc).ToString("x8");
 	}
 

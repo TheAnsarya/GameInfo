@@ -187,6 +187,7 @@ public class ProjectTemplateGenerator {
 				} else {
 					File.WriteAllText(fullPath, file.Content);
 				}
+
 				result.GeneratedFiles.Add(file);
 			}
 
@@ -401,6 +402,7 @@ public class ProjectTemplateGenerator {
 		foreach (var dir in GetDirectories().Take(10)) {
 			sb.AppendLine($"{indent}{dir}/");
 		}
+
 		sb.AppendLine("```");
 		sb.AppendLine();
 
@@ -473,6 +475,7 @@ public class ProjectTemplateGenerator {
 			sb.AppendLine("indent_style = space");
 			sb.AppendLine("indent_size = 4");
 		}
+
 		sb.AppendLine();
 		sb.AppendLine("[*.asm]");
 		sb.AppendLine("indent_style = tab");
