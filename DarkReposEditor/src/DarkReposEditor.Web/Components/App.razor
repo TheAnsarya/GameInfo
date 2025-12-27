@@ -1,0 +1,19 @@
+@using Microsoft.AspNetCore.Components.Web
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<base href="/" />
+	<title>Dark Repos Editor</title>
+	<link rel="icon" type="image/png" href="favicon.png" />
+	<link href="css/app.css" rel="stylesheet" />
+	<link href="DarkReposEditor.Shared.styles.css" rel="stylesheet" />
+	<HeadOutlet @rendermode="RenderMode.InteractiveAuto" />
+</head>
+<body>
+	<Routes @rendermode="RenderMode.InteractiveAuto" />
+	<script src="_framework/blazor.web.js"></script>
+</body>
+</html>

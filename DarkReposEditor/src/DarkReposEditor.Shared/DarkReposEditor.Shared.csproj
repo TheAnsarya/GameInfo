@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<RootNamespace>DarkReposEditor.Shared</RootNamespace>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.0-*" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\DarkReposEditor.Core\DarkReposEditor.Core.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,520 @@
+@page "/hex"
+@page "/hex/{RomId:guid}"
+@using DarkReposEditor.Core.Interfaces
+@using DarkReposEditor.Core.Models
+@inject IHexEditorService HexService
+
+<PageTitle>Hex Editor - Dark Repos Editor</PageTitle>
+
+<div class="hex-editor" @onkeydown="HandleKeyDown" tabindex="0">
+	<header class="hex-toolbar">
+		<div class="toolbar-group">
+			<button class="btn btn-icon" @onclick="OpenFile" title="Open ROM (Ctrl+O)">
+				<span class="icon">📂</span>
+			</button>
+			<button class="btn btn-icon" @onclick="SaveFile" disabled="@(!HasData)" title="Save (Ctrl+S)">
+				<span class="icon">💾</span>
+			</button>
+		</div>
+
+		<div class="toolbar-separator"></div>
+
+		<div class="toolbar-group">
+			<button class="btn btn-icon" @onclick="Undo" disabled="@(!CanUndo)" title="Undo (Ctrl+Z)">
+				<span class="icon">↩️</span>
+			</button>
+			<button class="btn btn-icon" @onclick="Redo" disabled="@(!CanRedo)" title="Redo (Ctrl+Y)">
+				<span class="icon">↪️</span>
+			</button>
+		</div>
+
+		<div class="toolbar-separator"></div>
+
+		<div class="toolbar-group">
+			<button class="btn btn-icon" @onclick="ShowSearch" disabled="@(!HasData)" title="Search (Ctrl+F)">
+				<span class="icon">🔍</span>
+			</button>
+			<button class="btn btn-icon" @onclick="ShowGoTo" disabled="@(!HasData)" title="Go to Address (Ctrl+G)">
+				<span class="icon">📍</span>
+			</button>
+		</div>
+
+		<div class="toolbar-separator"></div>
+
+		<div class="toolbar-group view-mode">
+			<label class="view-mode-label">View:</label>
+			<select class="view-mode-select" @bind="ViewMode">
+				<option value="Hex">Hex</option>
+				<option value="Decimal">Decimal</option>
+				<option value="Binary">Binary</option>
+			</select>
+		</div>
+
+		<div class="toolbar-spacer"></div>
+
+		<div class="toolbar-group">
+			<span class="file-info">@FileName</span>
+			<span class="size-info">@(HasData ? $"{Data.Length:N0} bytes" : "")</span>
+		</div>
+	</header>
+
+	@if (ShowSearchPanel)
+	{
+		<div class="search-panel">
+			<div class="search-input-group">
+				<label>Search:</label>
+				<input type="text" @bind="SearchQuery" @bind:event="oninput" placeholder="Hex bytes or text..." />
+				<label>
+					<input type="checkbox" @bind="SearchAsHex" /> Hex
+				</label>
+			</div>
+			<div class="search-actions">
+				<button class="btn btn-sm" @onclick="FindNext">Find Next</button>
+				<button class="btn btn-sm" @onclick="FindPrevious">Find Previous</button>
+				<button class="btn btn-sm" @onclick="() => ShowSearchPanel = false">Close</button>
+			</div>
+			@if (!string.IsNullOrEmpty(SearchStatus))
+			{
+				<div class="search-status">@SearchStatus</div>
+			}
+		</div>
+	}
+
+	@if (ShowGoToPanel)
+	{
+		<div class="goto-panel">
+			<label>Go to address:</label>
+			<input type="text" @bind="GoToAddress" placeholder="Address in hex..." />
+			<button class="btn btn-sm" @onclick="GoToOffset">Go</button>
+			<button class="btn btn-sm" @onclick="() => ShowGoToPanel = false">Close</button>
+		</div>
+	}
+
+	<div class="hex-content" @ref="contentElement">
+		@if (HasData)
+		{
+			<div class="hex-grid" style="height: @(VisibleRows * RowHeight)px;">
+				@for (var row = 0; row < VisibleRows && (ScrollOffset + row) * BytesPerRow < Data.Length; row++)
+				{
+					var rowOffset = (ScrollOffset + row) * BytesPerRow;
+					<div class="hex-row" data-offset="@rowOffset">
+						<!-- Address column -->
+						<span class="hex-address">@rowOffset.ToString("x8")</span>
+
+						<!-- Hex bytes -->
+						<span class="hex-bytes">
+							@for (var col = 0; col < BytesPerRow && rowOffset + col < Data.Length; col++)
+							{
+								var offset = rowOffset + col;
+								var isSelected = offset >= SelectionStart && offset <= SelectionEnd;
+								var isCursor = offset == CursorOffset;
+								<span class="hex-byte @(isSelected ? "selected" : "") @(isCursor ? "cursor" : "")"
+									  data-offset="@offset"
+									  @onclick="() => SetCursor(offset)"
+									  @ondblclick="() => StartEdit(offset)">
+									@FormatByte(Data[offset])
+								</span>
+								@if (col == 7)
+								{
+									<span class="hex-separator"></span>
+								}
+							}
+						</span>
+
+						<!-- ASCII column -->
+						<span class="hex-ascii">
+							@for (var col = 0; col < BytesPerRow && rowOffset + col < Data.Length; col++)
+							{
+								var offset = rowOffset + col;
+								var b = Data[offset];
+								var isSelected = offset >= SelectionStart && offset <= SelectionEnd;
+								var c = b >= 0x20 && b < 0x7f ? (char)b : '.';
+								<span class="ascii-char @(isSelected ? "selected" : "")"
+									  data-offset="@offset">@c</span>
+							}
+						</span>
+					</div>
+				}
+			</div>
+
+			<div class="hex-scrollbar">
+				<input type="range" min="0" max="@MaxScroll" @bind="ScrollOffset"
+					   orientation="vertical" class="scrollbar-track" />
+			</div>
+		}
+		else
+		{
+			<div class="empty-state">
+				<div class="empty-icon">📊</div>
+				<h3>No ROM Loaded</h3>
+				<p>Open a ROM file to start editing</p>
+				<button class="btn btn-primary" @onclick="OpenFile">Open ROM</button>
+			</div>
+		}
+	</div>
+
+	<footer class="hex-status">
+		<span class="status-item">
+			Offset: <span class="mono">@CursorOffset.ToString("x8")</span>
+		</span>
+		<span class="status-item">
+			Value: <span class="mono">@(HasData && CursorOffset < Data.Length ? $"${Data[CursorOffset]:x2}" : "--")</span>
+		</span>
+		@if (SelectionStart != SelectionEnd)
+		{
+			<span class="status-item">
+				Selection: <span class="mono">@(SelectionEnd - SelectionStart + 1) bytes</span>
+			</span>
+		}
+		<span class="status-spacer"></span>
+		<span class="status-item">
+			@(IsModified ? "Modified" : "")
+		</span>
+	</footer>
+</div>
+
+@code {
+	[Parameter]
+	public Guid? RomId { get; set; }
+
+	private ElementReference contentElement;
+
+	// Data
+	private byte[] Data { get; set; } = [];
+	private string FileName { get; set; } = "";
+	private bool HasData => Data.Length > 0;
+	private bool IsModified { get; set; }
+
+	// View settings
+	private const int BytesPerRow = 16;
+	private const int RowHeight = 24;
+	private int VisibleRows => 25;
+	private int ScrollOffset { get; set; }
+	private int MaxScroll => Math.Max(0, (Data.Length / BytesPerRow) - VisibleRows + 1);
+
+	// Cursor and selection
+	private int CursorOffset { get; set; }
+	private int SelectionStart { get; set; }
+	private int SelectionEnd { get; set; }
+
+	// Editing
+	private bool IsEditing { get; set; }
+	private string EditValue { get; set; } = "";
+
+	// View mode
+	private string ViewMode { get; set; } = "Hex";
+
+	// Undo/Redo
+	private Stack<EditAction> UndoStack { get; set; } = new();
+	private Stack<EditAction> RedoStack { get; set; } = new();
+	private bool CanUndo => UndoStack.Count > 0;
+	private bool CanRedo => RedoStack.Count > 0;
+
+	// Search
+	private bool ShowSearchPanel { get; set; }
+	private string SearchQuery { get; set; } = "";
+	private bool SearchAsHex { get; set; } = true;
+	private string SearchStatus { get; set; } = "";
+	private List<int> SearchResults { get; set; } = new();
+	private int CurrentSearchIndex { get; set; } = -1;
+
+	// Go To
+	private bool ShowGoToPanel { get; set; }
+	private string GoToAddress { get; set; } = "";
+
+	protected override async Task OnInitializedAsync()
+	{
+		if (RomId.HasValue)
+		{
+			// TODO: Load ROM from database
+		}
+	}
+
+	private string FormatByte(byte value)
+	{
+		return ViewMode switch
+		{
+			"Decimal" => value.ToString("D3"),
+			"Binary" => Convert.ToString(value, 2).PadLeft(8, '0'),
+			_ => value.ToString("x2")
+		};
+	}
+
+	private void SetCursor(int offset)
+	{
+		CursorOffset = offset;
+		SelectionStart = offset;
+		SelectionEnd = offset;
+	}
+
+	private void StartEdit(int offset)
+	{
+		SetCursor(offset);
+		IsEditing = true;
+		EditValue = "";
+	}
+
+	private void HandleKeyDown(KeyboardEventArgs e)
+	{
+		if (!HasData) return;
+
+		switch (e.Key)
+		{
+			case "ArrowUp":
+				MoveCursor(-BytesPerRow, e.ShiftKey);
+				break;
+			case "ArrowDown":
+				MoveCursor(BytesPerRow, e.ShiftKey);
+				break;
+			case "ArrowLeft":
+				MoveCursor(-1, e.ShiftKey);
+				break;
+			case "ArrowRight":
+				MoveCursor(1, e.ShiftKey);
+				break;
+			case "PageUp":
+				MoveCursor(-BytesPerRow * VisibleRows, e.ShiftKey);
+				break;
+			case "PageDown":
+				MoveCursor(BytesPerRow * VisibleRows, e.ShiftKey);
+				break;
+			case "Home":
+				if (e.CtrlKey)
+					MoveCursor(-CursorOffset, e.ShiftKey);
+				else
+					MoveCursor(-(CursorOffset % BytesPerRow), e.ShiftKey);
+				break;
+			case "End":
+				if (e.CtrlKey)
+					MoveCursor(Data.Length - 1 - CursorOffset, e.ShiftKey);
+				else
+					MoveCursor(BytesPerRow - 1 - (CursorOffset % BytesPerRow), e.ShiftKey);
+				break;
+			case "f" when e.CtrlKey:
+				ShowSearch();
+				break;
+			case "g" when e.CtrlKey:
+				ShowGoTo();
+				break;
+			case "z" when e.CtrlKey:
+				Undo();
+				break;
+			case "y" when e.CtrlKey:
+				Redo();
+				break;
+		}
+
+		// Handle hex input when editing
+		if (IsEditing && char.IsAsciiHexDigit(e.Key[0]))
+		{
+			HandleHexInput(e.Key[0]);
+		}
+	}
+
+	private void MoveCursor(int delta, bool extendSelection)
+	{
+		var newOffset = Math.Clamp(CursorOffset + delta, 0, Data.Length - 1);
+
+		if (extendSelection)
+		{
+			if (newOffset < SelectionStart)
+				SelectionStart = newOffset;
+			else
+				SelectionEnd = newOffset;
+		}
+		else
+		{
+			SelectionStart = newOffset;
+			SelectionEnd = newOffset;
+		}
+
+		CursorOffset = newOffset;
+		EnsureVisible(CursorOffset);
+	}
+
+	private void EnsureVisible(int offset)
+	{
+		var row = offset / BytesPerRow;
+		if (row < ScrollOffset)
+			ScrollOffset = row;
+		else if (row >= ScrollOffset + VisibleRows)
+			ScrollOffset = row - VisibleRows + 1;
+	}
+
+	private void HandleHexInput(char hexChar)
+	{
+		EditValue += hexChar;
+		if (EditValue.Length >= 2)
+		{
+			var newValue = Convert.ToByte(EditValue, 16);
+			var oldValue = Data[CursorOffset];
+
+			if (newValue != oldValue)
+			{
+				UndoStack.Push(new EditAction(CursorOffset, oldValue, newValue));
+				RedoStack.Clear();
+				Data[CursorOffset] = newValue;
+				IsModified = true;
+			}
+
+			EditValue = "";
+			IsEditing = false;
+			MoveCursor(1, false);
+		}
+	}
+
+	private void Undo()
+	{
+		if (!CanUndo) return;
+
+		var action = UndoStack.Pop();
+		Data[action.Offset] = action.OldValue;
+		RedoStack.Push(action);
+		SetCursor(action.Offset);
+		IsModified = UndoStack.Count > 0;
+	}
+
+	private void Redo()
+	{
+		if (!CanRedo) return;
+
+		var action = RedoStack.Pop();
+		Data[action.Offset] = action.NewValue;
+		UndoStack.Push(action);
+		SetCursor(action.Offset);
+		IsModified = true;
+	}
+
+	private void OpenFile()
+	{
+		// TODO: Implement file picker dialog
+		// For now, load sample data
+		Data = new byte[256];
+		for (var i = 0; i < 256; i++)
+			Data[i] = (byte)i;
+		FileName = "Sample Data";
+		IsModified = false;
+		UndoStack.Clear();
+		RedoStack.Clear();
+	}
+
+	private void SaveFile()
+	{
+		// TODO: Implement save
+		IsModified = false;
+	}
+
+	private void ShowSearch()
+	{
+		ShowSearchPanel = true;
+		ShowGoToPanel = false;
+	}
+
+	private void ShowGoTo()
+	{
+		ShowGoToPanel = true;
+		ShowSearchPanel = false;
+	}
+
+	private void FindNext()
+	{
+		if (string.IsNullOrEmpty(SearchQuery)) return;
+
+		try
+		{
+			var pattern = SearchAsHex
+				? HexService.ParseHex(SearchQuery)
+				: System.Text.Encoding.ASCII.GetBytes(SearchQuery);
+
+			SearchResults = HexService.Search(Data, pattern, CursorOffset + 1).ToList();
+
+			if (SearchResults.Count > 0)
+			{
+				CurrentSearchIndex = 0;
+				SetCursor(SearchResults[0]);
+				EnsureVisible(CursorOffset);
+				SearchStatus = $"Found at ${SearchResults[0]:x8}";
+			}
+			else
+			{
+				// Wrap around
+				SearchResults = HexService.Search(Data, pattern, 0).ToList();
+				if (SearchResults.Count > 0)
+				{
+					CurrentSearchIndex = 0;
+					SetCursor(SearchResults[0]);
+					EnsureVisible(CursorOffset);
+					SearchStatus = $"Wrapped. Found at ${SearchResults[0]:x8}";
+				}
+				else
+				{
+					SearchStatus = "Not found";
+				}
+			}
+		}
+		catch
+		{
+			SearchStatus = "Invalid search pattern";
+		}
+	}
+
+	private void FindPrevious()
+	{
+		if (string.IsNullOrEmpty(SearchQuery)) return;
+
+		try
+		{
+			var pattern = SearchAsHex
+				? HexService.ParseHex(SearchQuery)
+				: System.Text.Encoding.ASCII.GetBytes(SearchQuery);
+
+			// Search from beginning and find last match before cursor
+			var allResults = HexService.Search(Data, pattern, 0).ToList();
+			var prevResults = allResults.Where(r => r < CursorOffset).ToList();
+
+			if (prevResults.Count > 0)
+			{
+				var offset = prevResults[^1];
+				SetCursor(offset);
+				EnsureVisible(CursorOffset);
+				SearchStatus = $"Found at ${offset:x8}";
+			}
+			else if (allResults.Count > 0)
+			{
+				// Wrap around
+				var offset = allResults[^1];
+				SetCursor(offset);
+				EnsureVisible(CursorOffset);
+				SearchStatus = $"Wrapped. Found at ${offset:x8}";
+			}
+			else
+			{
+				SearchStatus = "Not found";
+			}
+		}
+		catch
+		{
+			SearchStatus = "Invalid search pattern";
+		}
+	}
+
+	private void GoToOffset()
+	{
+		try
+		{
+			var address = Convert.ToInt32(GoToAddress.TrimStart('$', '0', 'x'), 16);
+			if (address >= 0 && address < Data.Length)
+			{
+				SetCursor(address);
+				EnsureVisible(CursorOffset);
+				ShowGoToPanel = false;
+			}
+		}
+		catch
+		{
+			// Invalid address
+		}
+	}
+
+	private record EditAction(int Offset, byte OldValue, byte NewValue);
+}
