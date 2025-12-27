@@ -22,6 +22,7 @@ builder.Services.AddScoped<IChrEditorService, ChrEditorService>();
 builder.Services.AddScoped<IDisassemblerService, DisassemblerService>();
 builder.Services.AddScoped<ITextEditorService, TextEditorService>();
 builder.Services.AddScoped<IMapEditorService, MapEditorService>();
+builder.Services.AddScoped<IDataEditorService, DataEditorService>();
 
 // Add controllers for API
 builder.Services.AddControllers();
