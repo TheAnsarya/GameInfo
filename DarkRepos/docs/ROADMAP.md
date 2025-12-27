@@ -8,110 +8,111 @@ Create a modern, accessible website that serves as the central hub for all GameI
 
 ## Phase 1: Foundation (Sprint 1-2)
 **Target: Weeks 1-4**
-**Status**: 🔴 Not Started
+**Status**: ✅ Complete
 
 ### Milestone 1.1: Project Setup
-- [ ] Initialize .NET 9 Blazor Interactive WebAssembly project
-- [ ] Configure project structure and folder organization
-- [ ] Set up build pipeline and CI/CD configuration
-- [ ] Configure SQLite database with EF Core
-- [ ] Implement base layout and navigation structure
+- [x] Initialize .NET 10 Blazor Interactive WebAssembly project
+- [x] Configure project structure and folder organization
+- [x] Set up build pipeline and CI/CD configuration
+- [x] Configure SQLite database with EF Core 9.0
+- [x] Implement base layout and navigation structure
 
 ### Milestone 1.2: Design System Implementation
-- [ ] Define color palette (browns, dark greens, cream accents)
-- [ ] Create typography scale with readable fonts
-- [ ] Build core CSS custom properties (variables)
-- [ ] Create base component library (buttons, cards, links)
-- [ ] Implement responsive breakpoints
+- [x] Define color palette (browns, dark greens, cream accents)
+- [x] Create typography scale with readable fonts
+- [x] Build core CSS custom properties (variables)
+- [x] Create base component library (25+ components)
+- [x] Implement responsive breakpoints
 
 ### Milestone 1.3: Accessibility Foundation
-- [ ] Configure ARIA landmark regions
-- [ ] Implement keyboard navigation system
-- [ ] Add skip links and focus management
-- [ ] Set up screen reader testing workflow
-- [ ] Create accessibility testing checklist
+- [x] Configure ARIA landmark regions
+- [x] Implement keyboard navigation system
+- [x] Add skip links and focus management
+- [x] Set up screen reader testing workflow
+- [x] Create accessibility testing checklist
 
 **Deliverables:**
-- Working Blazor project skeleton
-- Design system CSS
-- Core layout components
-- Accessibility audit baseline
+- ✅ Working Blazor project skeleton
+- ✅ Design system CSS with custom properties
+- ✅ 25+ reusable Blazor components
+- ✅ Accessibility audit baseline
 
 ---
 
 ## Phase 2: Core Content (Sprint 3-4)
 **Target: Weeks 5-8**
-**Status**: 🔴 Not Started
+**Status**: ✅ Complete
 
 ### Milestone 2.1: Content Pipeline
-- [ ] Build Markdown parser for documentation files
-- [ ] Create JSON schema for game metadata
-- [ ] Implement static content generation at build time
-- [ ] Build content indexer for search functionality
-- [ ] Create content validation utilities
+- [x] Build Markdown parser for documentation files (Markdig)
+- [x] Create JSON schema for game metadata
+- [x] Implement content caching layer (ContentCacheService)
+- [x] Build content indexer for search functionality (FTS5)
+- [x] Create content validation utilities
 
 ### Milestone 2.2: Games Catalog
-- [ ] Build Games listing page with platform filters
-- [ ] Create Game detail page template
-- [ ] Implement platform categorization (NES, SNES, GBA, etc.)
-- [ ] Add links to wiki pages (games.darkrepos.com)
-- [ ] Display game metadata (developer, publisher, region)
+- [x] Build Games listing page with platform filters
+- [x] Create Game detail page template
+- [x] Implement platform categorization (NES, SNES, GBA, etc.)
+- [x] Add links to wiki pages (games.darkrepos.com)
+- [x] Display game metadata (developer, publisher, region)
 
 ### Milestone 2.3: Home Page
-- [ ] Design hero section with project overview
-- [ ] Create featured games showcase
-- [ ] Build recent updates/activity section
-- [ ] Add quick links to main sections
-- [ ] Implement call-to-action areas
+- [x] Design hero section with project overview
+- [x] Create featured games showcase
+- [x] Build recent updates/activity section
+- [x] Add quick links to main sections (platform navigation)
+- [x] Implement call-to-action areas
 
 **Deliverables:**
-- Content ingestion pipeline
-- Functional games catalog
-- Complete home page
+- ✅ Content ingestion pipeline with services
+- ✅ Functional games catalog with filtering
+- ✅ Complete home page with all sections
 
 ---
 
 ## Phase 3: Tools & Documentation (Sprint 5-6)
 **Target: Weeks 9-12**
-**Status**: 🔴 Not Started
+**Status**: � In Progress
 
 ### Milestone 3.1: Tools Section
-- [ ] Build tools catalog page
-- [ ] Create tool detail page template
-- [ ] Categorize tools (Graphics, Text, ROM, Analysis, etc.)
+- [x] Build tools catalog page
+- [x] Create tool detail page template
+- [x] Categorize tools (Graphics, Text, ROM, Analysis, etc.)
 - [ ] Add download links and GitHub references
 - [ ] Include usage documentation
 
 ### Milestone 3.2: Documentation Hub
-- [ ] Create documentation landing page
-- [ ] Build documentation category navigation
-- [ ] Implement breadcrumb navigation
-- [ ] Add table of contents for long pages
-- [ ] Create code block styling with syntax highlighting
+- [x] Create documentation landing page
+- [x] Build documentation category navigation
+- [x] Implement breadcrumb navigation
+- [x] Add table of contents for long pages
+- [x] Create code block styling with syntax highlighting
 
 ### Milestone 3.3: Search Functionality
-- [ ] Design search interface
-- [ ] Implement full-text search with SQLite FTS5
-- [ ] Create search results page
+- [x] Design search interface (SearchBox, SearchModal)
+- [x] Implement full-text search with SQLite FTS5
+- [x] Create search results page
 - [ ] Add search suggestions/autocomplete
 - [ ] Implement search filters by category
 
 **Deliverables:**
-- Complete tools section
-- Documentation hub
-- Working search system
+- ✅ Tools catalog pages
+- ✅ Documentation hub with markdown rendering
+- ✅ Working search system with FTS5
 
 ---
 
 ## Phase 4: Polish & Integration (Sprint 7-8)
 **Target: Weeks 13-16**
-**Status**: 🔴 Not Started
+**Status**: � In Progress
 
 ### Milestone 4.1: Wiki Integration
-- [ ] Add prominent wiki links throughout site
-- [ ] Create wiki navigation component
-- [ ] Build "View on Wiki" buttons for game pages
+- [x] Add prominent wiki links throughout site
+- [x] Create wiki navigation component (WikiResourceStatus)
+- [x] Build "View on Wiki" buttons for game pages
 - [ ] Add wiki contribution guide links
+- [ ] Fetch and render wikitext content
 
 ### Milestone 4.2: Resource Downloads
 - [ ] Create downloads/resources section
@@ -123,12 +124,12 @@ Create a modern, accessible website that serves as the central hub for all GameI
 - [ ] Add Discord invite integration
 - [ ] Create contribution guide page
 - [ ] Build "How to Contribute" section
-- [ ] Add GitHub repository links
+- [x] Add GitHub repository links
 
 **Deliverables:**
-- Complete wiki integration
-- Downloads section
-- Community engagement features
+- ✅ Wiki links integrated
+- 🔄 Downloads section (in progress)
+- 🔄 Community engagement features (in progress)
 
 ---
 
@@ -229,4 +230,4 @@ Post-Launch: Continuous improvement
 
 ---
 
-*Last Updated: December 24, 2025*
+*Last Updated: December 26, 2025*
