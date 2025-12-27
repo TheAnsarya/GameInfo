@@ -53,12 +53,16 @@
 		page-break-after: avoid;
 	}
 
-	h4, h5, h6 {
+	h4,
+	h5,
+	h6 {
 		font-size: 12pt;
 		page-break-after: avoid;
 	}
 
-	p, li, blockquote {
+	p,
+	li,
+	blockquote {
 		orphans: 3;
 		widows: 3;
 	}
@@ -267,11 +271,18 @@
 		page-break-inside: avoid;
 	}
 
-	h1, h2, h3, h4, h5, h6 {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
 		page-break-after: avoid;
 	}
 
-	img, table, figure {
+	img,
+	table,
+	figure {
 		page-break-inside: avoid;
 	}
 

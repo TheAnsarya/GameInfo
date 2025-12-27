@@ -156,14 +156,46 @@
 }
 
 /* Hover color adjustments */
-.tag-red:hover { --tag-bg: rgba(239, 68, 68, 0.3); }
-.tag-purple:hover { --tag-bg: rgba(168, 85, 247, 0.3); }
-.tag-green:hover { --tag-bg: rgba(34, 197, 94, 0.3); }
-.tag-blue:hover { --tag-bg: rgba(59, 130, 246, 0.3); }
-.tag-cyan:hover { --tag-bg: rgba(6, 182, 212, 0.3); }
-.tag-gold:hover { --tag-bg: rgba(234, 179, 8, 0.3); }
-.tag-orange:hover { --tag-bg: rgba(249, 115, 22, 0.3); }
-.tag-pink:hover { --tag-bg: rgba(236, 72, 153, 0.3); }
-.tag-teal:hover { --tag-bg: rgba(20, 184, 166, 0.3); }
-.tag-gray:hover { --tag-bg: rgba(107, 114, 128, 0.3); }
-.tag-indigo:hover { --tag-bg: rgba(99, 102, 241, 0.3); }
+.tag-red:hover {
+	--tag-bg: rgba(239, 68, 68, 0.3);
+}
+
+.tag-purple:hover {
+	--tag-bg: rgba(168, 85, 247, 0.3);
+}
+
+.tag-green:hover {
+	--tag-bg: rgba(34, 197, 94, 0.3);
+}
+
+.tag-blue:hover {
+	--tag-bg: rgba(59, 130, 246, 0.3);
+}
+
+.tag-cyan:hover {
+	--tag-bg: rgba(6, 182, 212, 0.3);
+}
+
+.tag-gold:hover {
+	--tag-bg: rgba(234, 179, 8, 0.3);
+}
+
+.tag-orange:hover {
+	--tag-bg: rgba(249, 115, 22, 0.3);
+}
+
+.tag-pink:hover {
+	--tag-bg: rgba(236, 72, 153, 0.3);
+}
+
+.tag-teal:hover {
+	--tag-bg: rgba(20, 184, 166, 0.3);
+}
+
+.tag-gray:hover {
+	--tag-bg: rgba(107, 114, 128, 0.3);
+}
+
+.tag-indigo:hover {
+	--tag-bg: rgba(99, 102, 241, 0.3);
+}

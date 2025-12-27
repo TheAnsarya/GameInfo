@@ -80,7 +80,7 @@
 }
 
 /* Interactive hover effect */
-.rating.interactive .star:hover ~ .star {
+.rating.interactive .star:hover~.star {
 	color: var(--text-muted, #555);
 }
 

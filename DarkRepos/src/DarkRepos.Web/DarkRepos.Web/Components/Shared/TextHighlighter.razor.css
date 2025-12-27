@@ -26,6 +26,7 @@ mark.search-highlight-subtle {
 
 /* Print-friendly highlighting */
 @media print {
+
 	.search-highlight,
 	mark.search-highlight-alt,
 	mark.search-highlight-alt2 {

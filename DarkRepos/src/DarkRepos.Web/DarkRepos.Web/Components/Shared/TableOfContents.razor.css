@@ -76,22 +76,22 @@
 	background: var(--color-bg-hover);
 }
 
-.toc-item.active > .toc-link {
+.toc-item.active>.toc-link {
 	color: var(--color-accent);
 	background: rgba(var(--color-accent-rgb), 0.1);
 	font-weight: 500;
 }
 
 /* Level-specific styling */
-.toc-level-2 > .toc-link {
+.toc-level-2>.toc-link {
 	font-weight: 500;
 }
 
-.toc-level-3 > .toc-link {
+.toc-level-3>.toc-link {
 	font-size: var(--font-size-xs);
 }
 
-.toc-level-4 > .toc-link {
+.toc-level-4>.toc-link {
 	font-size: var(--font-size-xs);
 	color: var(--color-text-muted);
 }
