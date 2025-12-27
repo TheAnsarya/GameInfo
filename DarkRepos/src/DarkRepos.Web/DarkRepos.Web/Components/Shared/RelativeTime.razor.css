@@ -1,0 +1,14 @@
+.relative-time {
+	font-size: inherit;
+	color: var(--text-muted, #888);
+	cursor: help;
+	white-space: nowrap;
+}
+
+.relative-time.future {
+	color: var(--primary-color, #6bb5ff);
+}
+
+.relative-time:hover {
+	color: var(--text-color, #d4d4d4);
+}
