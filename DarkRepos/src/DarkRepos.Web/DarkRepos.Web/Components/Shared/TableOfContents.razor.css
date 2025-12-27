@@ -1,0 +1,138 @@
+.toc {
+	background: var(--color-bg-secondary);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-lg);
+	padding: var(--space-4);
+	font-size: var(--font-size-sm);
+}
+
+.toc.sticky {
+	position: sticky;
+	top: var(--space-4);
+	max-height: calc(100vh - var(--space-8));
+	overflow-y: auto;
+}
+
+.toc-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: var(--space-3);
+	padding-bottom: var(--space-2);
+	border-bottom: 1px solid var(--color-border);
+}
+
+.toc-title {
+	margin: 0;
+	font-size: var(--font-size-sm);
+	font-weight: 600;
+	color: var(--color-text-secondary);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.toc-toggle {
+	padding: var(--space-1);
+	background: none;
+	border: none;
+	color: var(--color-text-secondary);
+	cursor: pointer;
+	font-size: var(--font-size-xs);
+	line-height: 1;
+}
+
+.toc-toggle:hover {
+	color: var(--color-text-primary);
+}
+
+.toc-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.toc-sublist {
+	list-style: none;
+	padding: 0;
+	margin: var(--space-1) 0 0 var(--space-3);
+}
+
+.toc-item {
+	margin-bottom: var(--space-1);
+}
+
+.toc-link {
+	display: block;
+	padding: var(--space-1) var(--space-2);
+	color: var(--color-text-secondary);
+	text-decoration: none;
+	border-radius: var(--radius-sm);
+	transition: var(--transition-fast);
+	line-height: 1.4;
+}
+
+.toc-link:hover {
+	color: var(--color-text-primary);
+	background: var(--color-bg-hover);
+}
+
+.toc-item.active > .toc-link {
+	color: var(--color-accent);
+	background: rgba(var(--color-accent-rgb), 0.1);
+	font-weight: 500;
+}
+
+/* Level-specific styling */
+.toc-level-2 > .toc-link {
+	font-weight: 500;
+}
+
+.toc-level-3 > .toc-link {
+	font-size: var(--font-size-xs);
+}
+
+.toc-level-4 > .toc-link {
+	font-size: var(--font-size-xs);
+	color: var(--color-text-muted);
+}
+
+/* Scrollbar styling for sticky TOC */
+.toc.sticky::-webkit-scrollbar {
+	width: 4px;
+}
+
+.toc.sticky::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.toc.sticky::-webkit-scrollbar-thumb {
+	background: var(--color-border);
+	border-radius: 2px;
+}
+
+.toc.sticky::-webkit-scrollbar-thumb:hover {
+	background: var(--color-text-muted);
+}
+
+/* Print styles */
+@media print {
+	.toc {
+		display: none;
+	}
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+	.toc-link {
+		transition: none;
+	}
+}
+
+/* Responsive - collapse on small screens */
+@media (max-width: 1024px) {
+	.toc.sticky {
+		position: relative;
+		top: 0;
+		max-height: none;
+	}
+}
