@@ -27,9 +27,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\DarkRepos.Core\DarkRepos.Core.csproj" />
-		<ProjectReference Include="..\DarkRepos.Web\DarkRepos.Web\DarkRepos.Web.csproj" />
-		<ProjectReference Include="..\DarkRepos.Web\DarkRepos.Web.Client\DarkRepos.Web.Client.csproj" />
+		<ProjectReference Include="..\..\src\DarkRepos.Core\DarkRepos.Core.csproj" />
+		<ProjectReference Include="..\..\src\DarkRepos.Web\DarkRepos.Web\DarkRepos.Web.csproj" />
+		<ProjectReference Include="..\..\src\DarkRepos.Web\DarkRepos.Web.Client\DarkRepos.Web.Client.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

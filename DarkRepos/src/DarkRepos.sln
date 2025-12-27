@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkRepos.Core", "DarkRepos
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkRepos.Build", "DarkRepos.Build\DarkRepos.Build.csproj", "{14A9E184-D1E4-4BB6-8E2E-786CDBAC7DDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkRepos.Tests", "DarkRepos.Tests\DarkRepos.Tests.csproj", "{D95EA582-2EB8-42B5-9C6A-B28C9D325A0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkRepos.Tests", "..\tests\DarkRepos.Tests\DarkRepos.Tests.csproj", "{D95EA582-2EB8-42B5-9C6A-B28C9D325A0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
