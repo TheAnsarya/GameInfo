@@ -1,0 +1,191 @@
+@page "/contribute"
+@using DarkRepos.Web.Components.Shared
+
+<PageTitle>Contribute - Dark Repos</PageTitle>
+
+<HeadContent>
+	<meta name="description"
+		content="Learn how to contribute to Dark Repos - documentation, tools, and wiki content for retro game research." />
+</HeadContent>
+
+<div class="container">
+	<Breadcrumbs Items="@_breadcrumbItems" />
+
+	<header class="page-header">
+		<h1 class="page-title">How to Contribute</h1>
+		<p class="page-description">
+			Dark Repos is a community-driven project. Here's how you can help.
+		</p>
+	</header>
+
+	<article class="contribute-content">
+		<section class="mb-8">
+			<h2>🎮 Game Documentation</h2>
+			<p>
+				The most valuable contribution is adding new game documentation or improving existing pages.
+				This includes ROM maps, RAM maps, data structures, and technical notes.
+			</p>
+
+			<div class="contribute-steps card">
+				<h3>Getting Started</h3>
+				<ol class="contribute-list">
+					<li>
+						<strong>Pick a game</strong> - Choose a game you're interested in or have been researching.
+						Check our <a href="/games">games catalog</a> to see what's already documented.
+					</li>
+					<li>
+						<strong>Research</strong> - Use disassemblers, debuggers, and hex editors to understand
+						the game's internals.
+					</li>
+					<li>
+						<strong>Document</strong> - Write up your findings using our wiki format at
+						<a href="https://games.darkrepos.com" target="_blank" rel="noopener">games.darkrepos.com</a>.
+					</li>
+					<li>
+						<strong>Submit</strong> - Create or edit wiki pages directly, or submit your research
+						via GitHub issues.
+					</li>
+				</ol>
+			</div>
+
+			<div class="contribute-formats mt-4">
+				<h3>Documentation Formats</h3>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+					<div class="card">
+						<h4>📍 ROM Map</h4>
+						<p class="text-secondary text-sm mb-0">
+							Document what's at each address in the ROM - code, data, graphics, text.
+						</p>
+					</div>
+					<div class="card">
+						<h4>📍 RAM Map</h4>
+						<p class="text-secondary text-sm mb-0">
+							Document memory locations used during gameplay - variables, flags, buffers.
+						</p>
+					</div>
+					<div class="card">
+						<h4>📊 Data Structures</h4>
+						<p class="text-secondary text-sm mb-0">
+							Document data formats - stats tables, sprite formats, compression schemes.
+						</p>
+					</div>
+					<div class="card">
+						<h4>📝 Technical Notes</h4>
+						<p class="text-secondary text-sm mb-0">
+							Document systems and algorithms - damage formulas, RNG, AI behavior.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="mb-8">
+			<h2>🔧 Tool Development</h2>
+			<p>
+				We welcome contributions to our ROM hacking tools, from bug fixes to new features.
+			</p>
+
+			<div class="card">
+				<h3>Contributing Code</h3>
+				<ul class="contribute-list">
+					<li>Fork the <a href="https://github.com/TheAnsarya/GameInfo" target="_blank" rel="noopener">GameInfo repository</a> on GitHub</li>
+					<li>Create a feature branch for your changes</li>
+					<li>Follow the coding style guidelines in <code>CONTRIBUTING.md</code></li>
+					<li>Write tests for new functionality</li>
+					<li>Submit a pull request with a clear description</li>
+				</ul>
+			</div>
+
+			<div class="card mt-4">
+				<h3>Tool Ideas</h3>
+				<ul class="contribute-list">
+					<li>Graphics viewers/editors for specific game formats</li>
+					<li>Text extractors and inserters</li>
+					<li>Level editors and map viewers</li>
+					<li>Compression/decompression utilities</li>
+					<li>ROM patching tools</li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="mb-8">
+			<h2>📚 Wiki Editing</h2>
+			<p>
+				Our wiki at <a href="https://games.darkrepos.com" target="_blank" rel="noopener">games.darkrepos.com</a>
+				is powered by MediaWiki and is open for community editing.
+			</p>
+
+			<div class="card">
+				<h3>Wiki Guidelines</h3>
+				<ul class="contribute-list">
+					<li><strong>Be accurate</strong> - Verify your information before adding it</li>
+					<li><strong>Cite sources</strong> - Link to disassemblies, credit original researchers</li>
+					<li><strong>Use templates</strong> - Follow existing page formats for consistency</li>
+					<li><strong>Stay organized</strong> - Use proper categories and cross-references</li>
+					<li><strong>Keep it technical</strong> - Focus on ROM hacking and reverse engineering</li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="mb-8">
+			<h2>🐛 Bug Reports & Suggestions</h2>
+			<p>
+				Found a bug or have an idea? Let us know on GitHub!
+			</p>
+
+			<div class="flex gap-4 flex-wrap">
+				<a href="https://github.com/TheAnsarya/GameInfo/issues/new?template=bug_report.md"
+					target="_blank" rel="noopener" class="btn btn-secondary">
+					🐛 Report a Bug
+				</a>
+				<a href="https://github.com/TheAnsarya/GameInfo/issues/new?template=feature_request.md"
+					target="_blank" rel="noopener" class="btn btn-secondary">
+					💡 Request a Feature
+				</a>
+			</div>
+		</section>
+
+		<section class="mb-8">
+			<h2>💬 Community</h2>
+			<p>
+				Join our community to discuss ROM hacking, share research, and collaborate with others.
+			</p>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+				<a href="https://github.com/TheAnsarya/GameInfo" target="_blank" rel="noopener"
+					class="card community-link">
+					<h4>GitHub</h4>
+					<p class="text-secondary text-sm mb-0">
+						View source code, submit issues, and contribute code.
+					</p>
+				</a>
+				<a href="https://games.darkrepos.com" target="_blank" rel="noopener"
+					class="card community-link">
+					<h4>Wiki</h4>
+					<p class="text-secondary text-sm mb-0">
+						Browse and edit game documentation.
+					</p>
+				</a>
+			</div>
+		</section>
+
+		<section class="mb-8">
+			<h2>📜 License</h2>
+			<p>
+				Contributions to Dark Repos are released under the MIT license unless otherwise noted.
+				By contributing, you agree to license your contributions under the same terms.
+			</p>
+			<p>
+				Game documentation and wiki content are licensed under
+				<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.
+			</p>
+		</section>
+	</article>
+</div>
+
+@code {
+	private static readonly IReadOnlyList<Breadcrumbs.BreadcrumbItem> _breadcrumbItems = [
+		new("Home", "/", "🏠"),
+		new("Contribute", "/contribute", "🤝")
+	];
+}
