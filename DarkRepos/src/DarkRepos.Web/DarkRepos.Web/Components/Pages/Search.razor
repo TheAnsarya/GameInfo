@@ -58,6 +58,36 @@
 		</div>
 	</div>
 
+	<div class="filter-bar" role="group" aria-label="Filter search results by platform">
+		<span class="text-secondary text-sm">Platform:</span>
+		<div class="filter-group">
+			<button class="filter-chip @(SelectedPlatform == null ? "active" : "")"
+				@onclick="() => FilterByPlatform(null)">
+				All
+			</button>
+			<button class="filter-chip @(SelectedPlatform == PlatformNes ? "active" : "")"
+				@onclick="() => FilterByPlatform(PlatformNes)">
+				NES
+			</button>
+			<button class="filter-chip @(SelectedPlatform == PlatformSnes ? "active" : "")"
+				@onclick="() => FilterByPlatform(PlatformSnes)">
+				SNES
+			</button>
+			<button class="filter-chip @(SelectedPlatform == PlatformGb ? "active" : "")"
+				@onclick="() => FilterByPlatform(PlatformGb)">
+				GB
+			</button>
+			<button class="filter-chip @(SelectedPlatform == PlatformGba ? "active" : "")"
+				@onclick="() => FilterByPlatform(PlatformGba)">
+				GBA
+			</button>
+			<button class="filter-chip @(SelectedPlatform == PlatformGenesis ? "active" : "")"
+				@onclick="() => FilterByPlatform(PlatformGenesis)">
+				Genesis
+			</button>
+		</div>
+	</div>
+
 	@if (IsSearching)
 	{
 		<LoadingSpinner Message="Searching..." />
@@ -149,9 +179,17 @@
 	[SupplyParameterFromQuery(Name = "q")]
 	public string? QueryParam { get; set; }
 
+	// Platform constants for use in Razor markup
+	private const string PlatformNes = "NES";
+	private const string PlatformSnes = "SNES";
+	private const string PlatformGb = "GB";
+	private const string PlatformGba = "GBA";
+	private const string PlatformGenesis = "Genesis";
+
 	private ElementReference _searchInput;
 	private string SearchTerms { get; set; } = string.Empty;
 	private SearchDocumentType? SelectedType { get; set; }
+	private string? SelectedPlatform { get; set; }
 	private SearchResults? Results { get; set; }
 	private bool IsSearching { get; set; }
 	private bool HasSearched { get; set; }
@@ -184,6 +222,7 @@
 			var query = new SearchQuery {
 				Terms = SearchTerms,
 				Type = SelectedType,
+				Platform = SelectedPlatform,
 				Limit = 20
 			};
 
@@ -197,6 +236,14 @@
 
 	private async Task FilterByType(SearchDocumentType? type) {
 		SelectedType = type;
+		_selectedIndex = -1;
+		if (HasSearched) {
+			await PerformSearch();
+		}
+	}
+
+	private async Task FilterByPlatform(string? platform) {
+		SelectedPlatform = platform;
 		_selectedIndex = -1;
 		if (HasSearched) {
 			await PerformSearch();
