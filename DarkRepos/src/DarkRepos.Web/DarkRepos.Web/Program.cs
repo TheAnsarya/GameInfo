@@ -45,13 +45,15 @@ try
 
 	// Register application services (with caching decorator)
 	builder.Services.AddScoped<ContentService>();
-	builder.Services.AddScoped<IContentService>(sp => {
+	builder.Services.AddScoped<IContentService>(sp =>
+	{
 		var inner = sp.GetRequiredService<ContentService>();
 		var cache = sp.GetRequiredService<IContentCacheService>();
 		return new CachedContentService(inner, cache);
 	});
 	builder.Services.AddScoped<ISearchService, SearchService>();
-	builder.Services.AddScoped<DatabaseSeeder>(sp => {
+	builder.Services.AddScoped<DatabaseSeeder>(sp =>
+	{
 		var context = sp.GetRequiredService<DarkReposDbContext>();
 		var importService = sp.GetRequiredService<IGameInfoImportService>();
 		var logger = sp.GetRequiredService<ILogger<DatabaseSeeder>>();
@@ -68,12 +70,14 @@ try
 	// Register documentation service (with caching decorator)
 	var docsPath = builder.Configuration["DarkRepos:DocsPath"]
 		?? Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "docs");
-	builder.Services.AddSingleton<DocumentationService>(sp => {
+	builder.Services.AddSingleton<DocumentationService>(sp =>
+	{
 		var markdownService = sp.GetRequiredService<IMarkdownService>();
 		var logger = sp.GetRequiredService<ILogger<DocumentationService>>();
 		return new DocumentationService(markdownService, docsPath, logger);
 	});
-	builder.Services.AddSingleton<IDocumentationService>(sp => {
+	builder.Services.AddSingleton<IDocumentationService>(sp =>
+	{
 		var inner = sp.GetRequiredService<DocumentationService>();
 		var cache = sp.GetRequiredService<IContentCacheService>();
 		var logger = sp.GetRequiredService<ILogger<CachedDocumentationService>>();

@@ -3,43 +3,48 @@
 @typeparam TItem
 
 <div class="dropdown @(IsOpen ? "dropdown--open" : "") @CssClass" @onkeydown="HandleKeyDown">
-	<button type="button"
-			class="dropdown-trigger"
-			@onclick="Toggle"
-			@onclick:stopPropagation="true"
-			aria-haspopup="listbox"
-			aria-expanded="@(IsOpen ? "true" : "false")"
-			aria-labelledby="@_labelId">
-		@if (TriggerContent != null) {
+	<button type="button" class="dropdown-trigger" @onclick="Toggle" @onclick:stopPropagation="true"
+		aria-haspopup="listbox" aria-expanded="@(IsOpen ? "true" : "false")" aria-labelledby="@_labelId">
+		@if (TriggerContent != null)
+		{
 			@TriggerContent
-		} else {
+		}
+		else
+		{
 			<span class="dropdown-value">
-				@if (SelectedItem != null) {
+				@if (SelectedItem != null)
+				{
 					@DisplaySelector(SelectedItem)
-				} else {
+				}
+				else
+				{
 					<span class="dropdown-placeholder">@Placeholder</span>
 				}
 			</span>
-			<svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+			<svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+				fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 				<polyline points="6 9 12 15 18 9"></polyline>
 			</svg>
 		}
 	</button>
 
-	@if (IsOpen) {
+	@if (IsOpen)
+	{
 		<div class="dropdown-overlay" @onclick="Close"></div>
 		<ul class="dropdown-menu" role="listbox" aria-labelledby="@_labelId">
-			@if (Items != null) {
-				@foreach (var (item, index) in Items.Select((x, i) => (x, i))) {
+			@if (Items != null)
+			{
+				@foreach (var (item, index) in Items.Select((x, i) => (x, i)))
+				{
 					<li class="dropdown-item @(IsItemSelected(item) ? "dropdown-item--selected" : "") @(_highlightedIndex == index ? "dropdown-item--highlighted" : "")"
-						role="option"
-						aria-selected="@IsItemSelected(item)"
-						@onclick="() => SelectItem(item)"
-						@onclick:stopPropagation="true"
-						@onmouseenter="() => _highlightedIndex = index">
-						@if (ItemTemplate != null) {
+						role="option" aria-selected="@IsItemSelected(item)" @onclick="() => SelectItem(item)"
+						@onclick:stopPropagation="true" @onmouseenter="() => _highlightedIndex = index">
+						@if (ItemTemplate != null)
+						{
 							@ItemTemplate(item)
-						} else {
+						}
+						else
+						{
 							@DisplaySelector(item)
 						}
 					</li>
@@ -83,61 +88,75 @@
 	[Parameter]
 	public string? CssClass { get; set; }
 
-	public async Task Toggle() {
+	public async Task Toggle()
+	{
 		IsOpen = !IsOpen;
-		if (IsOpen) {
+		if (IsOpen)
+		{
 			_highlightedIndex = Items != null && SelectedItem != null
-				? Items.ToList().IndexOf(SelectedItem)
-				: 0;
+			? Items.ToList().IndexOf(SelectedItem)
+			: 0;
 		}
 		await IsOpenChanged.InvokeAsync(IsOpen);
 	}
 
-	public async Task Open() {
+	public async Task Open()
+	{
 		IsOpen = true;
 		_highlightedIndex = Items != null && SelectedItem != null
-			? Items.ToList().IndexOf(SelectedItem)
-			: 0;
+		? Items.ToList().IndexOf(SelectedItem)
+		: 0;
 		await IsOpenChanged.InvokeAsync(true);
 	}
 
-	public async Task Close() {
+	public async Task Close()
+	{
 		IsOpen = false;
 		await IsOpenChanged.InvokeAsync(false);
 	}
 
-	private async Task SelectItem(TItem item) {
+	private async Task SelectItem(TItem item)
+	{
 		SelectedItem = item;
 		await SelectedItemChanged.InvokeAsync(item);
 		await Close();
 	}
 
-	private async Task HandleKeyDown(KeyboardEventArgs e) {
+	private async Task HandleKeyDown(KeyboardEventArgs e)
+	{
 		if (Items == null) return;
 
 		var itemList = Items.ToList();
 		if (itemList.Count == 0) return;
 
-		switch (e.Key) {
+		switch (e.Key)
+		{
 			case "ArrowDown":
-				if (!IsOpen) {
+				if (!IsOpen)
+				{
 					await Open();
-				} else {
+				}
+				else
+				{
 					_highlightedIndex = Math.Min(_highlightedIndex + 1, itemList.Count - 1);
 				}
 				break;
 
 			case "ArrowUp":
-				if (IsOpen) {
+				if (IsOpen)
+				{
 					_highlightedIndex = Math.Max(_highlightedIndex - 1, 0);
 				}
 				break;
 
 			case "Enter":
 			case " ":
-				if (IsOpen && _highlightedIndex >= 0 && _highlightedIndex < itemList.Count) {
+				if (IsOpen && _highlightedIndex >= 0 && _highlightedIndex < itemList.Count)
+				{
 					await SelectItem(itemList[_highlightedIndex]);
-				} else if (!IsOpen) {
+				}
+				else if (!IsOpen)
+				{
 					await Open();
 				}
 				break;
@@ -147,20 +166,23 @@
 				break;
 
 			case "Home":
-				if (IsOpen) {
+				if (IsOpen)
+				{
 					_highlightedIndex = 0;
 				}
 				break;
 
 			case "End":
-				if (IsOpen) {
+				if (IsOpen)
+				{
 					_highlightedIndex = itemList.Count - 1;
 				}
 				break;
 		}
 	}
 
-	private bool IsItemSelected(TItem item) {
+	private bool IsItemSelected(TItem item)
+	{
 		return EqualityComparer<TItem>.Default.Equals(item, SelectedItem);
 	}
 }

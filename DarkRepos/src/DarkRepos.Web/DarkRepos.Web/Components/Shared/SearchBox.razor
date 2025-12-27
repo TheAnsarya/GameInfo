@@ -2,19 +2,9 @@
 
 <div class="search-box @(Large ? "large" : "") @(Expanded ? "expanded" : "")">
 	<label class="visually-hidden" for="@InputId">@Placeholder</label>
-	<input type="search"
-		   id="@InputId"
-		   class="search-input"
-		   placeholder="@Placeholder"
-		   @bind="Query"
-		   @bind:event="oninput"
-		   @onkeydown="HandleKeyDown"
-		   autocomplete="off"
-		   aria-label="@Placeholder" />
-	<button type="button"
-			class="search-button"
-			@onclick="ExecuteSearch"
-			aria-label="Search">
+	<input type="search" id="@InputId" class="search-input" placeholder="@Placeholder" @bind="Query"
+		@bind:event="oninput" @onkeydown="HandleKeyDown" autocomplete="off" aria-label="@Placeholder" />
+	<button type="button" class="search-button" @onclick="ExecuteSearch" aria-label="Search">
 		<span class="search-icon">🔍</span>
 	</button>
 	@if (ShowShortcut && !string.IsNullOrEmpty(Shortcut))

@@ -195,24 +195,31 @@
 	private Game? Game { get; set; }
 	private bool IsLoading { get; set; } = true;
 
-	protected override async Task OnParametersSetAsync() {
+	protected override async Task OnParametersSetAsync()
+	{
 		IsLoading = true;
-		try {
+		try
+		{
 			Game = await ContentService.GetGameBySlugAsync(Slug);
-		} finally {
+		}
+		finally
+		{
 			IsLoading = false;
 		}
 	}
 
-	private string GetWikiBaseUrl() {
+	private string GetWikiBaseUrl()
+	{
 		if (Game == null) return "#";
 		return WikiLinkService.GetWikiUrl(Game);
 	}
 
-	private string GetWikiUrl(string section) {
+	private string GetWikiUrl(string section)
+	{
 		if (Game == null) return "#";
 
-		return section switch {
+		return section switch
+		{
 			"ROM Map" => WikiLinkService.GetRomMapUrl(Game) ?? GetWikiBaseUrl(),
 			"RAM Map" => WikiLinkService.GetRamMapUrl(Game) ?? GetWikiBaseUrl(),
 			"Data Structures" => WikiLinkService.GetDataStructuresUrl(Game) ?? GetWikiBaseUrl(),
@@ -221,15 +228,19 @@
 		};
 	}
 
-	private IReadOnlyList<Breadcrumbs.BreadcrumbItem> GetBreadcrumbItems() {
+	private IReadOnlyList<Breadcrumbs.BreadcrumbItem> GetBreadcrumbItems()
+	{
 		var items = new List<Breadcrumbs.BreadcrumbItem> {
-			new("Home", "/", "🏠"),
-			new("Games", "/games", "🎮")
-		};
+new("Home", "/", "🏠"),
+new("Games", "/games", "🎮")
+};
 
-		if (Game != null) {
+		if (Game != null)
+		{
 			items.Add(new(Game.Title, $"/games/{Slug}"));
-		} else {
+		}
+		else
+		{
 			items.Add(new("Game", $"/games/{Slug}"));
 		}
 
