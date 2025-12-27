@@ -1,0 +1,328 @@
+/* ==========================================================================
+   Print Styles
+   Optimizes the site for printing documentation.
+   ========================================================================== */
+
+@media print {
+	/* -------------------------------------------------------------------------
+	   Reset & Base
+	   ------------------------------------------------------------------------- */
+
+	/* Use light background for print */
+	:root {
+		--color-bg: #ffffff !important;
+		--color-text-primary: #000000 !important;
+		--color-text-secondary: #333333 !important;
+		--color-text-muted: #666666 !important;
+		--color-surface: #ffffff !important;
+		--color-surface-secondary: #f5f5f5 !important;
+		--color-border: #cccccc !important;
+	}
+
+	*,
+	*::before,
+	*::after {
+		background: transparent !important;
+		color: #000 !important;
+		box-shadow: none !important;
+		text-shadow: none !important;
+	}
+
+	html,
+	body {
+		font-size: 12pt;
+		line-height: 1.4;
+	}
+
+	/* -------------------------------------------------------------------------
+	   Typography
+	   ------------------------------------------------------------------------- */
+
+	h1 {
+		font-size: 24pt;
+		page-break-after: avoid;
+	}
+
+	h2 {
+		font-size: 18pt;
+		page-break-after: avoid;
+	}
+
+	h3 {
+		font-size: 14pt;
+		page-break-after: avoid;
+	}
+
+	h4, h5, h6 {
+		font-size: 12pt;
+		page-break-after: avoid;
+	}
+
+	p, li, blockquote {
+		orphans: 3;
+		widows: 3;
+	}
+
+	/* -------------------------------------------------------------------------
+	   Links
+	   ------------------------------------------------------------------------- */
+
+	a,
+	a:visited {
+		text-decoration: underline;
+	}
+
+	/* Show URL for external links */
+	a[href^="http"]::after,
+	a[href^="https"]::after {
+		content: " (" attr(href) ")";
+		font-size: 9pt;
+		font-weight: normal;
+	}
+
+	/* Don't show URL for internal links */
+	a[href^="/"]::after,
+	a[href^="#"]::after {
+		content: none;
+	}
+
+	/* -------------------------------------------------------------------------
+	   Hide Non-Essential Elements
+	   ------------------------------------------------------------------------- */
+
+	/* Navigation */
+	.site-header,
+	.site-nav,
+	.nav,
+	.navbar,
+	nav {
+		display: none !important;
+	}
+
+	/* Footer */
+	.site-footer,
+	footer {
+		display: none !important;
+	}
+
+	/* Interactive elements */
+	button,
+	.btn,
+	input,
+	select,
+	textarea,
+	.search-box,
+	.search-modal,
+	.theme-toggle,
+	.scroll-to-top,
+	.toast-container {
+		display: none !important;
+	}
+
+	/* Modals and overlays */
+	.modal,
+	.confirm-dialog,
+	.dropdown,
+	.tooltip {
+		display: none !important;
+	}
+
+	/* Loading states */
+	.loading-spinner,
+	.loading-state,
+	.skeleton,
+	.page-loading-indicator {
+		display: none !important;
+	}
+
+	/* Decorative elements */
+	.decorative,
+	[aria-hidden="true"] {
+		display: none !important;
+	}
+
+	/* -------------------------------------------------------------------------
+	   Layout Adjustments
+	   ------------------------------------------------------------------------- */
+
+	.container {
+		max-width: 100% !important;
+		width: 100% !important;
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+
+	.grid {
+		display: block !important;
+	}
+
+	.col-span-2 {
+		width: 100% !important;
+	}
+
+	aside {
+		page-break-before: always;
+	}
+
+	/* -------------------------------------------------------------------------
+	   Cards and Boxes
+	   ------------------------------------------------------------------------- */
+
+	.card {
+		border: 1px solid #cccccc !important;
+		padding: 12pt !important;
+		margin-bottom: 12pt !important;
+		page-break-inside: avoid;
+	}
+
+	/* -------------------------------------------------------------------------
+	   Tables
+	   ------------------------------------------------------------------------- */
+
+	table {
+		border-collapse: collapse !important;
+		width: 100% !important;
+	}
+
+	th,
+	td {
+		border: 1px solid #cccccc !important;
+		padding: 4pt 8pt !important;
+	}
+
+	thead {
+		display: table-header-group;
+	}
+
+	tr {
+		page-break-inside: avoid;
+	}
+
+	/* -------------------------------------------------------------------------
+	   Code Blocks
+	   ------------------------------------------------------------------------- */
+
+	pre,
+	code {
+		font-family: "Consolas", "Monaco", monospace !important;
+		font-size: 10pt !important;
+		border: 1px solid #cccccc !important;
+		background: #f5f5f5 !important;
+	}
+
+	pre {
+		padding: 8pt !important;
+		page-break-inside: avoid;
+		overflow-x: visible !important;
+		white-space: pre-wrap !important;
+		word-wrap: break-word !important;
+	}
+
+	code {
+		padding: 1pt 4pt !important;
+	}
+
+	/* -------------------------------------------------------------------------
+	   Images
+	   ------------------------------------------------------------------------- */
+
+	img {
+		max-width: 100% !important;
+		page-break-inside: avoid;
+	}
+
+	/* -------------------------------------------------------------------------
+	   Badges and Tags
+	   ------------------------------------------------------------------------- */
+
+	.badge,
+	.platform-badge,
+	.tool-category-badge {
+		border: 1px solid #cccccc !important;
+		padding: 2pt 6pt !important;
+	}
+
+	/* -------------------------------------------------------------------------
+	   Wiki Resources
+	   ------------------------------------------------------------------------- */
+
+	.wiki-resources .indicator {
+		font-weight: bold;
+	}
+
+	.wiki-resource.available .indicator::before {
+		content: "✓ ";
+	}
+
+	.wiki-resource.unavailable .indicator::before {
+		content: "○ ";
+	}
+
+	/* -------------------------------------------------------------------------
+	   Page Breaks
+	   ------------------------------------------------------------------------- */
+
+	article,
+	section {
+		page-break-inside: avoid;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		page-break-after: avoid;
+	}
+
+	img, table, figure {
+		page-break-inside: avoid;
+	}
+
+	/* -------------------------------------------------------------------------
+	   Data Tables (ROM/RAM maps)
+	   ------------------------------------------------------------------------- */
+
+	.data-table {
+		font-size: 9pt !important;
+	}
+
+	.data-table th,
+	.data-table td {
+		padding: 2pt 4pt !important;
+	}
+
+	/* -------------------------------------------------------------------------
+	   Breadcrumbs
+	   ------------------------------------------------------------------------- */
+
+	.breadcrumbs {
+		display: none !important;
+	}
+
+	/* -------------------------------------------------------------------------
+	   Pagination
+	   ------------------------------------------------------------------------- */
+
+	.pagination {
+		display: none !important;
+	}
+
+	/* -------------------------------------------------------------------------
+	   Accordions - Expand all for print
+	   ------------------------------------------------------------------------- */
+
+	.accordion-content {
+		display: block !important;
+		max-height: none !important;
+	}
+
+	/* -------------------------------------------------------------------------
+	   Footer Print Info
+	   ------------------------------------------------------------------------- */
+
+	body::after {
+		content: "Printed from darkrepos.com on " attr(data-print-date);
+		display: block;
+		margin-top: 24pt;
+		font-size: 9pt;
+		color: #666666 !important;
+		text-align: center;
+	}
+}
