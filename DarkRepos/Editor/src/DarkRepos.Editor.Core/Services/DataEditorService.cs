@@ -8,18 +8,15 @@ namespace DarkRepos.Editor.Core.Services;
 /// <summary>
 /// Implementation of IDataEditorService for editing structured game data.
 /// </summary>
-public class DataEditorService : IDataEditorService
-{
-	private static readonly JsonSerializerOptions JsonOptions = new()
-	{
+public class DataEditorService : IDataEditorService {
+	private static readonly JsonSerializerOptions JsonOptions = new() {
 		PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
 		WriteIndented = true,
 		Converters = { new JsonStringEnumConverter() }
 	};
 
 	/// <inheritdoc />
-	public DataStructure LoadStructureDefinition(string jsonSchema)
-	{
+	public DataStructure LoadStructureDefinition(string jsonSchema) {
 		if (string.IsNullOrWhiteSpace(jsonSchema))
 			throw new ArgumentException("Schema cannot be empty", nameof(jsonSchema));
 
@@ -30,13 +27,11 @@ public class DataEditorService : IDataEditorService
 	}
 
 	/// <inheritdoc />
-	public DataTable LoadDataTable(byte[] data, int offset, DataStructure structure, int rowCount)
-	{
+	public DataTable LoadDataTable(byte[] data, int offset, DataStructure structure, int rowCount) {
 		ArgumentNullException.ThrowIfNull(data);
 		ArgumentNullException.ThrowIfNull(structure);
 
-		var table = new DataTable
-		{
+		var table = new DataTable {
 			Name = structure.Name,
 			Offset = offset,
 			Structure = structure
@@ -44,8 +39,7 @@ public class DataEditorService : IDataEditorService
 
 		var recordSize = structure.RecordSize;
 
-		for (int i = 0; i < rowCount; i++)
-		{
+		for (int i = 0; i < rowCount; i++) {
 			var recordOffset = offset + (i * recordSize);
 			if (recordOffset + recordSize > data.Length)
 				break;
@@ -59,22 +53,18 @@ public class DataEditorService : IDataEditorService
 	}
 
 	/// <inheritdoc />
-	public DataRecord LoadRecord(byte[] data, int offset, DataStructure structure)
-	{
-		var record = new DataRecord
-		{
+	public DataRecord LoadRecord(byte[] data, int offset, DataStructure structure) {
+		var record = new DataRecord {
 			Offset = offset,
 			RawBytes = new byte[structure.RecordSize]
 		};
 
-		if (offset + structure.RecordSize <= data.Length)
-		{
+		if (offset + structure.RecordSize <= data.Length) {
 			Array.Copy(data, offset, record.RawBytes, 0, structure.RecordSize);
 		}
 
 		var pos = 0;
-		foreach (var field in structure.Fields)
-		{
+		foreach (var field in structure.Fields) {
 			var value = ReadFieldValue(record.RawBytes, pos, field, structure.Endianness);
 			record.Values[field.Name] = value;
 			pos += field.GetByteSize();
@@ -84,13 +74,11 @@ public class DataEditorService : IDataEditorService
 	}
 
 	/// <inheritdoc />
-	public byte[] ExportTable(DataTable table)
-	{
+	public byte[] ExportTable(DataTable table) {
 		var result = new byte[table.TotalSize];
 		var pos = 0;
 
-		foreach (var record in table.Records)
-		{
+		foreach (var record in table.Records) {
 			var recordBytes = ExportRecord(record, table.Structure);
 			Array.Copy(recordBytes, 0, result, pos, recordBytes.Length);
 			pos += recordBytes.Length;
@@ -100,17 +88,15 @@ public class DataEditorService : IDataEditorService
 	}
 
 	/// <inheritdoc />
-	public byte[] ExportRecord(DataRecord record, DataStructure structure)
-	{
+	public byte[] ExportRecord(DataRecord record, DataStructure structure) {
 		var result = new byte[structure.RecordSize];
 		var pos = 0;
 
-		foreach (var field in structure.Fields)
-		{
-			if (record.Values.TryGetValue(field.Name, out var value))
-			{
+		foreach (var field in structure.Fields) {
+			if (record.Values.TryGetValue(field.Name, out var value)) {
 				WriteFieldValue(result, pos, field, value, structure.Endianness);
 			}
+
 			pos += field.GetByteSize();
 		}
 
@@ -118,20 +104,16 @@ public class DataEditorService : IDataEditorService
 	}
 
 	/// <inheritdoc />
-	public string ExportToJson(DataTable table, bool pretty = true)
-	{
-		var options = new JsonSerializerOptions(JsonOptions)
-		{
+	public string ExportToJson(DataTable table, bool pretty = true) {
+		var options = new JsonSerializerOptions(JsonOptions) {
 			WriteIndented = pretty
 		};
 
-		var exportData = new
-		{
+		var exportData = new {
 			table.Name,
 			table.Structure.RecordSize,
 			RecordCount = table.Records.Count,
-			Records = table.Records.Select(r => new
-			{
+			Records = table.Records.Select(r => new {
 				r.Index,
 				r.Label,
 				r.Values
@@ -142,20 +124,16 @@ public class DataEditorService : IDataEditorService
 	}
 
 	/// <inheritdoc />
-	public string ExportToCsv(DataTable table, bool includeHeader = true)
-	{
+	public string ExportToCsv(DataTable table, bool includeHeader = true) {
 		var sb = new StringBuilder();
 
-		if (includeHeader)
-		{
+		if (includeHeader) {
 			sb.AppendLine(string.Join(",", table.Structure.Fields.Select(f =>
 				EscapeCsv(string.IsNullOrEmpty(f.Label) ? f.Name : f.Label))));
 		}
 
-		foreach (var record in table.Records)
-		{
-			var values = table.Structure.Fields.Select(f =>
-			{
+		foreach (var record in table.Records) {
+			var values = table.Structure.Fields.Select(f => {
 				var val = record.Values.TryGetValue(f.Name, out var v) ? v : "";
 				return EscapeCsv(FormatValue(val, f));
 			});
@@ -166,37 +144,29 @@ public class DataEditorService : IDataEditorService
 	}
 
 	/// <inheritdoc />
-	public DataTable ImportFromJson(string json, DataStructure structure)
-	{
+	public DataTable ImportFromJson(string json, DataStructure structure) {
 		using var doc = JsonDocument.Parse(json);
 		var root = doc.RootElement;
 
-		var table = new DataTable
-		{
+		var table = new DataTable {
 			Name = structure.Name,
 			Structure = structure
 		};
 
-		if (root.TryGetProperty("records", out var records) || root.TryGetProperty("Records", out records))
-		{
+		if (root.TryGetProperty("records", out var records) || root.TryGetProperty("Records", out records)) {
 			var index = 0;
-			foreach (var recordElement in records.EnumerateArray())
-			{
+			foreach (var recordElement in records.EnumerateArray()) {
 				var record = new DataRecord { Index = index++ };
 
-				if (recordElement.TryGetProperty("values", out var values) || recordElement.TryGetProperty("Values", out values))
-				{
-					foreach (var field in structure.Fields)
-					{
-						if (values.TryGetProperty(field.Name, out var fieldValue))
-						{
+				if (recordElement.TryGetProperty("values", out var values) || recordElement.TryGetProperty("Values", out values)) {
+					foreach (var field in structure.Fields) {
+						if (values.TryGetProperty(field.Name, out var fieldValue)) {
 							record.Values[field.Name] = ParseJsonValue(fieldValue, field);
 						}
 					}
 				}
 
-				if (recordElement.TryGetProperty("label", out var label) || recordElement.TryGetProperty("Label", out label))
-				{
+				if (recordElement.TryGetProperty("label", out var label) || recordElement.TryGetProperty("Label", out label)) {
 					record.Label = label.GetString();
 				}
 
@@ -208,8 +178,7 @@ public class DataEditorService : IDataEditorService
 	}
 
 	/// <inheritdoc />
-	public DataTable ImportFromCsv(string csv, DataStructure structure)
-	{
+	public DataTable ImportFromCsv(string csv, DataStructure structure) {
 		var lines = csv.Split('\n', StringSplitOptions.RemoveEmptyEntries)
 			.Select(l => l.TrimEnd('\r'))
 			.ToList();
@@ -220,25 +189,21 @@ public class DataEditorService : IDataEditorService
 		// Assume first line is header
 		var headers = ParseCsvLine(lines[0]);
 
-		var table = new DataTable
-		{
+		var table = new DataTable {
 			Name = structure.Name,
 			Structure = structure
 		};
 
-		for (int i = 1; i < lines.Count; i++)
-		{
+		for (int i = 1; i < lines.Count; i++) {
 			var values = ParseCsvLine(lines[i]);
 			var record = new DataRecord { Index = i - 1 };
 
-			for (int j = 0; j < Math.Min(headers.Count, values.Count); j++)
-			{
+			for (int j = 0; j < Math.Min(headers.Count, values.Count); j++) {
 				var field = structure.Fields.FirstOrDefault(f =>
 					f.Name.Equals(headers[j], StringComparison.OrdinalIgnoreCase) ||
 					(f.Label?.Equals(headers[j], StringComparison.OrdinalIgnoreCase) ?? false));
 
-				if (field != null)
-				{
+				if (field != null) {
 					record.Values[field.Name] = ParseStringValue(values[j], field);
 				}
 			}
@@ -250,16 +215,13 @@ public class DataEditorService : IDataEditorService
 	}
 
 	/// <inheritdoc />
-	public uint CalculateChecksum(DataTable table, ChecksumType type)
-	{
+	public uint CalculateChecksum(DataTable table, ChecksumType type) {
 		var data = ExportTable(table);
 		return CalculateChecksum(data, type);
 	}
 
-	private static uint CalculateChecksum(byte[] data, ChecksumType type)
-	{
-		return type switch
-		{
+	private static uint CalculateChecksum(byte[] data, ChecksumType type) {
+		return type switch {
 			ChecksumType.Sum8 => (uint)data.Sum(b => b) & 0xff,
 			ChecksumType.Sum16 => (uint)data.Sum(b => b) & 0xffff,
 			ChecksumType.Xor => data.Aggregate(0u, (acc, b) => acc ^ b),
@@ -269,47 +231,41 @@ public class DataEditorService : IDataEditorService
 		};
 	}
 
-	private static uint CalculateCrc16(byte[] data)
-	{
+	private static uint CalculateCrc16(byte[] data) {
 		uint crc = 0xffff;
-		foreach (var b in data)
-		{
+		foreach (var b in data) {
 			crc ^= b;
-			for (int i = 0; i < 8; i++)
-			{
+			for (int i = 0; i < 8; i++) {
 				if ((crc & 1) != 0)
 					crc = (crc >> 1) ^ 0xa001;
 				else
 					crc >>= 1;
 			}
 		}
+
 		return crc;
 	}
 
-	private static uint CalculateCrc32(byte[] data)
-	{
+	private static uint CalculateCrc32(byte[] data) {
 		uint crc = 0xffffffff;
-		foreach (var b in data)
-		{
+		foreach (var b in data) {
 			crc ^= b;
-			for (int i = 0; i < 8; i++)
-			{
+			for (int i = 0; i < 8; i++) {
 				if ((crc & 1) != 0)
 					crc = (crc >> 1) ^ 0xedb88320;
 				else
 					crc >>= 1;
 			}
 		}
+
 		return ~crc;
 	}
 
 	/// <inheritdoc />
-	public DataValidationResult ValidateTable(DataTable table)
-	{
+	public DataValidationResult ValidateTable(DataTable table) {
 		var result = new DataValidationResult { IsValid = true };
 
-		foreach (var record in table.Records)
-		{
+		foreach (var record in table.Records) {
 			var recordResult = ValidateRecord(record, table.Structure);
 			result.Errors.AddRange(recordResult.Errors);
 			result.Warnings.AddRange(recordResult.Warnings);
@@ -320,36 +276,29 @@ public class DataEditorService : IDataEditorService
 	}
 
 	/// <inheritdoc />
-	public DataValidationResult ValidateRecord(DataRecord record, DataStructure structure)
-	{
+	public DataValidationResult ValidateRecord(DataRecord record, DataStructure structure) {
 		var result = new DataValidationResult { IsValid = true };
 
-		foreach (var field in structure.Fields)
-		{
-			if (!record.Values.TryGetValue(field.Name, out var value))
-			{
-				if (field.DefaultValue == null)
-				{
-					result.Errors.Add(new DataValidationError
-					{
+		foreach (var field in structure.Fields) {
+			if (!record.Values.TryGetValue(field.Name, out var value)) {
+				if (field.DefaultValue == null) {
+					result.Errors.Add(new DataValidationError {
 						RecordIndex = record.Index,
 						FieldName = field.Name,
 						Message = $"Missing required field '{field.Name}'",
 						Severity = ValidationSeverity.Error
 					});
 				}
+
 				continue;
 			}
 
 			// Check numeric constraints
 			if (value is long longValue || (value is int intValue && (longValue = intValue) == intValue) ||
 				(value is uint uintValue && (longValue = uintValue) == uintValue) ||
-				(value is byte byteValue && (longValue = byteValue) == byteValue))
-			{
-				if (field.MinValue.HasValue && longValue < field.MinValue.Value)
-				{
-					result.Errors.Add(new DataValidationError
-					{
+				(value is byte byteValue && (longValue = byteValue) == byteValue)) {
+				if (field.MinValue.HasValue && longValue < field.MinValue.Value) {
+					result.Errors.Add(new DataValidationError {
 						RecordIndex = record.Index,
 						FieldName = field.Name,
 						Message = $"Value {longValue} is below minimum {field.MinValue}",
@@ -357,10 +306,8 @@ public class DataEditorService : IDataEditorService
 					});
 				}
 
-				if (field.MaxValue.HasValue && longValue > field.MaxValue.Value)
-				{
-					result.Errors.Add(new DataValidationError
-					{
+				if (field.MaxValue.HasValue && longValue > field.MaxValue.Value) {
+					result.Errors.Add(new DataValidationError {
 						RecordIndex = record.Index,
 						FieldName = field.Name,
 						Message = $"Value {longValue} exceeds maximum {field.MaxValue}",
@@ -370,10 +317,8 @@ public class DataEditorService : IDataEditorService
 			}
 
 			// Check enum values
-			if (field.EnumValues != null && value is int enumInt && !field.EnumValues.ContainsKey(enumInt))
-			{
-				result.Warnings.Add(new DataValidationError
-				{
+			if (field.EnumValues != null && value is int enumInt && !field.EnumValues.ContainsKey(enumInt)) {
+				result.Warnings.Add(new DataValidationError {
 					RecordIndex = record.Index,
 					FieldName = field.Name,
 					Message = $"Value {enumInt} is not a defined enum value",
@@ -387,8 +332,7 @@ public class DataEditorService : IDataEditorService
 	}
 
 	/// <inheritdoc />
-	public IReadOnlyList<StructureTemplate> GetTemplates()
-	{
+	public IReadOnlyList<StructureTemplate> GetTemplates() {
 		return
 		[
 			CreateRpgCharacterTemplate(),
@@ -403,13 +347,11 @@ public class DataEditorService : IDataEditorService
 	}
 
 	/// <inheritdoc />
-	public IReadOnlyList<DetectedTable> DetectTables(byte[] data, DataTableDetectionOptions options)
-	{
+	public IReadOnlyList<DetectedTable> DetectTables(byte[] data, DataTableDetectionOptions options) {
 		var results = new List<DetectedTable>();
 
 		// Look for pointer tables
-		if (options.DetectPointerTables && options.RomSize > 0)
-		{
+		if (options.DetectPointerTables && options.RomSize > 0) {
 			DetectPointerTables(data, options, results);
 		}
 
@@ -420,27 +362,23 @@ public class DataEditorService : IDataEditorService
 	}
 
 	/// <inheritdoc />
-	public object? GetFieldValue(DataRecord record, string fieldName)
-	{
+	public object? GetFieldValue(DataRecord record, string fieldName) {
 		return record.Values.TryGetValue(fieldName, out var value) ? value : null;
 	}
 
 	/// <inheritdoc />
-	public void SetFieldValue(DataRecord record, string fieldName, object value)
-	{
+	public void SetFieldValue(DataRecord record, string fieldName, object value) {
 		record.Values[fieldName] = value;
 		record.IsModified = true;
 	}
 
 	/// <inheritdoc />
-	public IReadOnlyList<DataRecord> FindRecords(DataTable table, Func<DataRecord, bool> predicate)
-	{
+	public IReadOnlyList<DataRecord> FindRecords(DataTable table, Func<DataRecord, bool> predicate) {
 		return table.Records.Where(predicate).ToList();
 	}
 
 	/// <inheritdoc />
-	public void SortTable(DataTable table, string fieldName, bool ascending = true)
-	{
+	public void SortTable(DataTable table, string fieldName, bool ascending = true) {
 		var field = table.Structure.Fields.FirstOrDefault(f => f.Name == fieldName);
 		if (field == null) return;
 
@@ -449,23 +387,21 @@ public class DataEditorService : IDataEditorService
 			: table.Records.OrderByDescending(r => r.Values.TryGetValue(fieldName, out var v) ? v : null).ToList();
 
 		table.Records.Clear();
-		for (int i = 0; i < sorted.Count; i++)
-		{
+		for (int i = 0; i < sorted.Count; i++) {
 			sorted[i].Index = i;
 			table.Records.Add(sorted[i]);
 		}
+
 		table.IsModified = true;
 	}
 
 	#region Private Helpers
 
-	private static object ReadFieldValue(byte[] data, int offset, DataField field, Endianness endianness)
-	{
+	private static object ReadFieldValue(byte[] data, int offset, DataField field, Endianness endianness) {
 		if (offset >= data.Length)
 			return GetDefaultValue(field);
 
-		switch (field.Type)
-		{
+		switch (field.Type) {
 			case DataFieldType.Byte:
 				return data[offset];
 
@@ -500,8 +436,7 @@ public class DataEditorService : IDataEditorService
 
 			case DataFieldType.Enum:
 			case DataFieldType.Flags:
-				return field.Size switch
-				{
+				return field.Size switch {
 					1 => data[offset],
 					2 => ReadWord(data, offset, endianness),
 					4 => ReadDWord(data, offset, endianness),
@@ -513,13 +448,11 @@ public class DataEditorService : IDataEditorService
 		}
 	}
 
-	private static void WriteFieldValue(byte[] data, int offset, DataField field, object value, Endianness endianness)
-	{
+	private static void WriteFieldValue(byte[] data, int offset, DataField field, object value, Endianness endianness) {
 		if (offset >= data.Length)
 			return;
 
-		switch (field.Type)
-		{
+		switch (field.Type) {
 			case DataFieldType.Byte:
 			case DataFieldType.Bool:
 				data[offset] = Convert.ToByte(value);
@@ -566,49 +499,39 @@ public class DataEditorService : IDataEditorService
 		}
 	}
 
-	private static ushort ReadWord(byte[] data, int offset, Endianness endianness)
-	{
+	private static ushort ReadWord(byte[] data, int offset, Endianness endianness) {
 		if (offset + 1 >= data.Length) return 0;
 		return endianness == Endianness.Little
 			? (ushort)(data[offset] | (data[offset + 1] << 8))
 			: (ushort)((data[offset] << 8) | data[offset + 1]);
 	}
 
-	private static void WriteWord(byte[] data, int offset, ushort value, Endianness endianness)
-	{
+	private static void WriteWord(byte[] data, int offset, ushort value, Endianness endianness) {
 		if (offset + 1 >= data.Length) return;
-		if (endianness == Endianness.Little)
-		{
+		if (endianness == Endianness.Little) {
 			data[offset] = (byte)(value & 0xff);
 			data[offset + 1] = (byte)((value >> 8) & 0xff);
-		}
-		else
-		{
+		} else {
 			data[offset] = (byte)((value >> 8) & 0xff);
 			data[offset + 1] = (byte)(value & 0xff);
 		}
 	}
 
-	private static uint ReadDWord(byte[] data, int offset, Endianness endianness)
-	{
+	private static uint ReadDWord(byte[] data, int offset, Endianness endianness) {
 		if (offset + 3 >= data.Length) return 0;
 		return endianness == Endianness.Little
 			? (uint)(data[offset] | (data[offset + 1] << 8) | (data[offset + 2] << 16) | (data[offset + 3] << 24))
 			: (uint)((data[offset] << 24) | (data[offset + 1] << 16) | (data[offset + 2] << 8) | data[offset + 3]);
 	}
 
-	private static void WriteDWord(byte[] data, int offset, uint value, Endianness endianness)
-	{
+	private static void WriteDWord(byte[] data, int offset, uint value, Endianness endianness) {
 		if (offset + 3 >= data.Length) return;
-		if (endianness == Endianness.Little)
-		{
+		if (endianness == Endianness.Little) {
 			data[offset] = (byte)(value & 0xff);
 			data[offset + 1] = (byte)((value >> 8) & 0xff);
 			data[offset + 2] = (byte)((value >> 16) & 0xff);
 			data[offset + 3] = (byte)((value >> 24) & 0xff);
-		}
-		else
-		{
+		} else {
 			data[offset] = (byte)((value >> 24) & 0xff);
 			data[offset + 1] = (byte)((value >> 16) & 0xff);
 			data[offset + 2] = (byte)((value >> 8) & 0xff);
@@ -616,48 +539,40 @@ public class DataEditorService : IDataEditorService
 		}
 	}
 
-	private static uint Read24Bit(byte[] data, int offset, Endianness endianness)
-	{
+	private static uint Read24Bit(byte[] data, int offset, Endianness endianness) {
 		if (offset + 2 >= data.Length) return 0;
 		return endianness == Endianness.Little
 			? (uint)(data[offset] | (data[offset + 1] << 8) | (data[offset + 2] << 16))
 			: (uint)((data[offset] << 16) | (data[offset + 1] << 8) | data[offset + 2]);
 	}
 
-	private static void Write24Bit(byte[] data, int offset, uint value, Endianness endianness)
-	{
+	private static void Write24Bit(byte[] data, int offset, uint value, Endianness endianness) {
 		if (offset + 2 >= data.Length) return;
-		if (endianness == Endianness.Little)
-		{
+		if (endianness == Endianness.Little) {
 			data[offset] = (byte)(value & 0xff);
 			data[offset + 1] = (byte)((value >> 8) & 0xff);
 			data[offset + 2] = (byte)((value >> 16) & 0xff);
-		}
-		else
-		{
+		} else {
 			data[offset] = (byte)((value >> 16) & 0xff);
 			data[offset + 1] = (byte)((value >> 8) & 0xff);
 			data[offset + 2] = (byte)(value & 0xff);
 		}
 	}
 
-	private static int ReadBits(byte[] data, int offset, int bitOffset, int bitWidth)
-	{
+	private static int ReadBits(byte[] data, int offset, int bitOffset, int bitWidth) {
 		if (offset >= data.Length) return 0;
 		var value = data[offset];
 		var mask = (1 << bitWidth) - 1;
 		return (value >> bitOffset) & mask;
 	}
 
-	private static void WriteBits(byte[] data, int offset, int bitOffset, int bitWidth, int value)
-	{
+	private static void WriteBits(byte[] data, int offset, int bitOffset, int bitWidth, int value) {
 		if (offset >= data.Length) return;
 		var mask = (1 << bitWidth) - 1;
 		data[offset] = (byte)((data[offset] & ~(mask << bitOffset)) | ((value & mask) << bitOffset));
 	}
 
-	private static string ReadString(byte[] data, int offset, int length)
-	{
+	private static string ReadString(byte[] data, int offset, int length) {
 		if (offset >= data.Length) return "";
 		var actualLength = Math.Min(length, data.Length - offset);
 		var bytes = new byte[actualLength];
@@ -671,8 +586,7 @@ public class DataEditorService : IDataEditorService
 		return Encoding.ASCII.GetString(bytes);
 	}
 
-	private static void WriteString(byte[] data, int offset, int length, string value)
-	{
+	private static void WriteString(byte[] data, int offset, int length, string value) {
 		if (offset >= data.Length) return;
 		var bytes = Encoding.ASCII.GetBytes(value);
 		var writeLength = Math.Min(length, Math.Min(bytes.Length, data.Length - offset));
@@ -683,10 +597,8 @@ public class DataEditorService : IDataEditorService
 			data[offset + i] = 0;
 	}
 
-	private static object GetDefaultValue(DataField field)
-	{
-		return field.Type switch
-		{
+	private static object GetDefaultValue(DataField field) {
+		return field.Type switch {
 			DataFieldType.Byte or DataFieldType.Bits or DataFieldType.Enum or DataFieldType.Flags => (byte)0,
 			DataFieldType.SByte => (sbyte)0,
 			DataFieldType.Word or DataFieldType.Pointer => (ushort)0,
@@ -699,61 +611,47 @@ public class DataEditorService : IDataEditorService
 		};
 	}
 
-	private static string EscapeCsv(string value)
-	{
-		if (value.Contains(',') || value.Contains('"') || value.Contains('\n'))
-		{
+	private static string EscapeCsv(string value) {
+		if (value.Contains(',') || value.Contains('"') || value.Contains('\n')) {
 			return $"\"{value.Replace("\"", "\"\"")}\"";
 		}
+
 		return value;
 	}
 
-	private static string FormatValue(object value, DataField field)
-	{
+	private static string FormatValue(object value, DataField field) {
 		if (value == null) return "";
 
-		if (field.DisplayFormat != null)
-		{
+		if (field.DisplayFormat != null) {
 			return string.Format($"{{0:{field.DisplayFormat}}}", value);
 		}
 
-		if (field.EnumValues != null && value is int intVal && field.EnumValues.TryGetValue(intVal, out var enumName))
-		{
+		if (field.EnumValues != null && value is int intVal && field.EnumValues.TryGetValue(intVal, out var enumName)) {
 			return enumName;
 		}
 
 		return value.ToString() ?? "";
 	}
 
-	private static List<string> ParseCsvLine(string line)
-	{
+	private static List<string> ParseCsvLine(string line) {
 		var result = new List<string>();
 		var current = new StringBuilder();
 		var inQuotes = false;
 
-		for (int i = 0; i < line.Length; i++)
-		{
+		for (int i = 0; i < line.Length; i++) {
 			var c = line[i];
 
-			if (c == '"')
-			{
-				if (inQuotes && i + 1 < line.Length && line[i + 1] == '"')
-				{
+			if (c == '"') {
+				if (inQuotes && i + 1 < line.Length && line[i + 1] == '"') {
 					current.Append('"');
 					i++;
-				}
-				else
-				{
+				} else {
 					inQuotes = !inQuotes;
 				}
-			}
-			else if (c == ',' && !inQuotes)
-			{
+			} else if (c == ',' && !inQuotes) {
 				result.Add(current.ToString());
 				current.Clear();
-			}
-			else
-			{
+			} else {
 				current.Append(c);
 			}
 		}
@@ -762,10 +660,8 @@ public class DataEditorService : IDataEditorService
 		return result;
 	}
 
-	private static object ParseJsonValue(JsonElement element, DataField field)
-	{
-		return field.Type switch
-		{
+	private static object ParseJsonValue(JsonElement element, DataField field) {
+		return field.Type switch {
 			DataFieldType.Byte or DataFieldType.Bits or DataFieldType.Enum or DataFieldType.Flags
 				=> element.TryGetByte(out var b) ? b : (byte)0,
 			DataFieldType.SByte => element.TryGetSByte(out var sb) ? sb : (sbyte)0,
@@ -779,22 +675,19 @@ public class DataEditorService : IDataEditorService
 		};
 	}
 
-	private static object ParseStringValue(string value, DataField field)
-	{
+	private static object ParseStringValue(string value, DataField field) {
 		if (string.IsNullOrEmpty(value))
 			return GetDefaultValue(field);
 
 		// Try to match enum name
-		if (field.EnumValues != null)
-		{
+		if (field.EnumValues != null) {
 			var match = field.EnumValues.FirstOrDefault(kv =>
 				kv.Value.Equals(value, StringComparison.OrdinalIgnoreCase));
 			if (match.Value != null)
 				return match.Key;
 		}
 
-		return field.Type switch
-		{
+		return field.Type switch {
 			DataFieldType.Byte or DataFieldType.Bits or DataFieldType.Enum or DataFieldType.Flags
 				=> byte.TryParse(value, out var b) ? b : (byte)0,
 			DataFieldType.SByte => sbyte.TryParse(value, out var sb) ? sb : (sbyte)0,
@@ -808,40 +701,30 @@ public class DataEditorService : IDataEditorService
 		};
 	}
 
-	private static void DetectPointerTables(byte[] data, DataTableDetectionOptions options, List<DetectedTable> results)
-	{
+	private static void DetectPointerTables(byte[] data, DataTableDetectionOptions options, List<DetectedTable> results) {
 		// Look for sequences of valid pointers
-		for (int offset = 0; offset < data.Length - 16; offset += 2)
-		{
+		for (int offset = 0; offset < data.Length - 16; offset += 2) {
 			var validPointers = 0;
 			var lastPointer = 0;
 			var increasing = true;
 
-			for (int i = 0; i < 64 && offset + (i * 2) + 1 < data.Length; i++)
-			{
+			for (int i = 0; i < 64 && offset + (i * 2) + 1 < data.Length; i++) {
 				var pointer = data[offset + (i * 2)] | (data[offset + (i * 2) + 1] << 8);
 
 				// Check if pointer is within ROM range
-				if (pointer >= 0x8000 && pointer < options.RomSize + 0x8000)
-				{
+				if (pointer >= 0x8000 && pointer < options.RomSize + 0x8000) {
 					validPointers++;
 					if (pointer < lastPointer) increasing = false;
 					lastPointer = pointer;
-				}
-				else if (validPointers >= options.MinRows)
-				{
+				} else if (validPointers >= options.MinRows) {
 					break;
-				}
-				else
-				{
+				} else {
 					validPointers = 0;
 				}
 			}
 
-			if (validPointers >= options.MinRows)
-			{
-				results.Add(new DetectedTable
-				{
+			if (validPointers >= options.MinRows) {
+				results.Add(new DetectedTable {
 					Offset = offset,
 					EstimatedRows = validPointers,
 					EstimatedRowSize = 2,
@@ -854,39 +737,29 @@ public class DataEditorService : IDataEditorService
 		}
 	}
 
-	private static void DetectRepeatingPatterns(byte[] data, DataTableDetectionOptions options, List<DetectedTable> results)
-	{
-		for (int rowSize = options.MinRowSize; rowSize <= options.MaxRowSize; rowSize++)
-		{
-			for (int offset = 0; offset < data.Length - (rowSize * options.MinRows); offset++)
-			{
+	private static void DetectRepeatingPatterns(byte[] data, DataTableDetectionOptions options, List<DetectedTable> results) {
+		for (int rowSize = options.MinRowSize; rowSize <= options.MaxRowSize; rowSize++) {
+			for (int offset = 0; offset < data.Length - (rowSize * options.MinRows); offset++) {
 				var matches = 0;
 				var lastFirstByte = data[offset];
 
-				for (int row = 1; row < 128 && offset + (row * rowSize) < data.Length; row++)
-				{
+				for (int row = 1; row < 128 && offset + (row * rowSize) < data.Length; row++) {
 					var currentFirstByte = data[offset + (row * rowSize)];
 
 					// Look for patterns: sequential IDs, similar structure
-					if (Math.Abs(currentFirstByte - lastFirstByte) <= 1)
-					{
+					if (Math.Abs(currentFirstByte - lastFirstByte) <= 1) {
 						matches++;
-					}
-					else
-					{
+					} else {
 						break;
 					}
 
 					lastFirstByte = currentFirstByte;
 				}
 
-				if (matches >= options.MinRows)
-				{
+				if (matches >= options.MinRows) {
 					var confidence = Math.Min(100, 30 + matches + (100 / rowSize));
-					if (confidence >= options.MinConfidence)
-					{
-						results.Add(new DetectedTable
-						{
+					if (confidence >= options.MinConfidence) {
+						results.Add(new DetectedTable {
 							Offset = offset,
 							EstimatedRows = matches + 1,
 							EstimatedRowSize = rowSize,
@@ -905,16 +778,13 @@ public class DataEditorService : IDataEditorService
 
 	#region Templates
 
-	private static StructureTemplate CreateRpgCharacterTemplate()
-	{
-		return new StructureTemplate
-		{
+	private static StructureTemplate CreateRpgCharacterTemplate() {
+		return new StructureTemplate {
 			Name = "RPG Character Stats",
 			Description = "Basic RPG character/party member stats",
 			Category = "RPG",
 			Platform = "Generic",
-			Structure = new DataStructure
-			{
+			Structure = new DataStructure {
 				Name = "Character",
 				Fields =
 				[
@@ -933,16 +803,13 @@ public class DataEditorService : IDataEditorService
 		};
 	}
 
-	private static StructureTemplate CreateRpgItemTemplate()
-	{
-		return new StructureTemplate
-		{
+	private static StructureTemplate CreateRpgItemTemplate() {
+		return new StructureTemplate {
 			Name = "RPG Item",
 			Description = "Item/equipment definition",
 			Category = "RPG",
 			Platform = "Generic",
-			Structure = new DataStructure
-			{
+			Structure = new DataStructure {
 				Name = "Item",
 				Fields =
 				[
@@ -960,16 +827,13 @@ public class DataEditorService : IDataEditorService
 		};
 	}
 
-	private static StructureTemplate CreateRpgMonsterTemplate()
-	{
-		return new StructureTemplate
-		{
+	private static StructureTemplate CreateRpgMonsterTemplate() {
+		return new StructureTemplate {
 			Name = "RPG Monster",
 			Description = "Enemy/monster definition",
 			Category = "RPG",
 			Platform = "Generic",
-			Structure = new DataStructure
-			{
+			Structure = new DataStructure {
 				Name = "Monster",
 				Fields =
 				[
@@ -988,16 +852,13 @@ public class DataEditorService : IDataEditorService
 		};
 	}
 
-	private static StructureTemplate CreateRpgSpellTemplate()
-	{
-		return new StructureTemplate
-		{
+	private static StructureTemplate CreateRpgSpellTemplate() {
+		return new StructureTemplate {
 			Name = "RPG Spell/Ability",
 			Description = "Magic spell or special ability",
 			Category = "RPG",
 			Platform = "Generic",
-			Structure = new DataStructure
-			{
+			Structure = new DataStructure {
 				Name = "Spell",
 				Fields =
 				[
@@ -1015,16 +876,13 @@ public class DataEditorService : IDataEditorService
 		};
 	}
 
-	private static StructureTemplate CreateRpgShopTemplate()
-	{
-		return new StructureTemplate
-		{
+	private static StructureTemplate CreateRpgShopTemplate() {
+		return new StructureTemplate {
 			Name = "RPG Shop Inventory",
 			Description = "Shop item list",
 			Category = "RPG",
 			Platform = "Generic",
-			Structure = new DataStructure
-			{
+			Structure = new DataStructure {
 				Name = "ShopItem",
 				Fields =
 				[
@@ -1035,16 +893,13 @@ public class DataEditorService : IDataEditorService
 		};
 	}
 
-	private static StructureTemplate CreateActionEnemyTemplate()
-	{
-		return new StructureTemplate
-		{
+	private static StructureTemplate CreateActionEnemyTemplate() {
+		return new StructureTemplate {
 			Name = "Action Game Enemy",
 			Description = "Enemy spawn/properties for action games",
 			Category = "Action",
 			Platform = "Generic",
-			Structure = new DataStructure
-			{
+			Structure = new DataStructure {
 				Name = "Enemy",
 				Fields =
 				[
@@ -1059,16 +914,13 @@ public class DataEditorService : IDataEditorService
 		};
 	}
 
-	private static StructureTemplate CreateActionWeaponTemplate()
-	{
-		return new StructureTemplate
-		{
+	private static StructureTemplate CreateActionWeaponTemplate() {
+		return new StructureTemplate {
 			Name = "Action Game Weapon",
 			Description = "Weapon properties for action games",
 			Category = "Action",
 			Platform = "Generic",
-			Structure = new DataStructure
-			{
+			Structure = new DataStructure {
 				Name = "Weapon",
 				Fields =
 				[
@@ -1082,16 +934,13 @@ public class DataEditorService : IDataEditorService
 		};
 	}
 
-	private static StructureTemplate CreatePlatformerLevelTemplate()
-	{
-		return new StructureTemplate
-		{
+	private static StructureTemplate CreatePlatformerLevelTemplate() {
+		return new StructureTemplate {
 			Name = "Platformer Level Header",
 			Description = "Level header/properties for platformers",
 			Category = "Platformer",
 			Platform = "Generic",
-			Structure = new DataStructure
-			{
+			Structure = new DataStructure {
 				Name = "LevelHeader",
 				Fields =
 				[

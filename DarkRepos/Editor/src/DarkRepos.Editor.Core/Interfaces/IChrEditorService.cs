@@ -3,8 +3,7 @@ namespace DarkRepos.Editor.Core.Interfaces;
 /// <summary>
 /// Service for CHR/graphics tile editing operations.
 /// </summary>
-public interface IChrEditorService
-{
+public interface IChrEditorService {
 	/// <summary>
 	/// Decode tiles from raw byte data.
 	/// </summary>
@@ -64,8 +63,7 @@ public interface IChrEditorService
 /// <summary>
 /// Represents a single 8x8 pixel tile.
 /// </summary>
-public class Tile
-{
+public class Tile {
 	/// <summary>
 	/// Pixel data as palette indices (0-based). 8x8 = 64 pixels.
 	/// Row-major order: [y * 8 + x]
@@ -82,15 +80,13 @@ public class Tile
 	/// </summary>
 	public int Height { get; }
 
-	public Tile(int width = 8, int height = 8)
-	{
+	public Tile(int width = 8, int height = 8) {
 		Width = width;
 		Height = height;
 		Pixels = new byte[width * height];
 	}
 
-	public Tile(byte[] pixels, int width = 8, int height = 8)
-	{
+	public Tile(byte[] pixels, int width = 8, int height = 8) {
 		Width = width;
 		Height = height;
 		if (pixels.Length != width * height)
@@ -101,21 +97,19 @@ public class Tile
 	/// <summary>
 	/// Get pixel value at coordinates.
 	/// </summary>
-	public byte GetPixel(int x, int y)
-	{
+	public byte GetPixel(int x, int y) {
 		if (x < 0 || x >= Width || y < 0 || y >= Height)
 			throw new ArgumentOutOfRangeException();
-		return Pixels[y * Width + x];
+		return Pixels[(y * Width) + x];
 	}
 
 	/// <summary>
 	/// Set pixel value at coordinates.
 	/// </summary>
-	public void SetPixel(int x, int y, byte value)
-	{
+	public void SetPixel(int x, int y, byte value) {
 		if (x < 0 || x >= Width || y < 0 || y >= Height)
 			throw new ArgumentOutOfRangeException();
-		Pixels[y * Width + x] = value;
+		Pixels[(y * Width) + x] = value;
 	}
 
 	/// <summary>
@@ -127,8 +121,7 @@ public class Tile
 /// <summary>
 /// RGBA color.
 /// </summary>
-public readonly record struct Color(byte R, byte G, byte B, byte A = 255)
-{
+public readonly record struct Color(byte R, byte G, byte B, byte A = 255) {
 	public static Color Transparent => new(0, 0, 0, 0);
 	public static Color Black => new(0, 0, 0);
 	public static Color White => new(255, 255, 255);
@@ -145,8 +138,7 @@ public readonly record struct Color(byte R, byte G, byte B, byte A = 255)
 /// <summary>
 /// A color palette for tiles.
 /// </summary>
-public class Palette
-{
+public class Palette {
 	/// <summary>
 	/// Colors in the palette.
 	/// </summary>
@@ -157,20 +149,17 @@ public class Palette
 	/// </summary>
 	public string Name { get; set; }
 
-	public Palette(int size, string name = "Palette")
-	{
+	public Palette(int size, string name = "Palette") {
 		Colors = new Color[size];
 		Name = name;
 	}
 
-	public Palette(Color[] colors, string name = "Palette")
-	{
+	public Palette(Color[] colors, string name = "Palette") {
 		Colors = colors;
 		Name = name;
 	}
 
-	public Color this[int index]
-	{
+	public Color this[int index] {
 		get => Colors[index];
 		set => Colors[index] = value;
 	}
@@ -181,8 +170,7 @@ public class Palette
 /// <summary>
 /// Tile data format.
 /// </summary>
-public enum TileFormat
-{
+public enum TileFormat {
 	/// <summary>1 bit per pixel (2 colors)</summary>
 	Bpp1 = 1,
 
@@ -226,8 +214,7 @@ public enum TileFormat
 /// <summary>
 /// Platform for tile operations.
 /// </summary>
-public enum TilePlatform
-{
+public enum TilePlatform {
 	Nes,
 	Snes,
 	GameBoy,

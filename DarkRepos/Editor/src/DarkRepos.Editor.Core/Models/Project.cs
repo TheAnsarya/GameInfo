@@ -3,8 +3,7 @@ namespace DarkRepos.Editor.Core.Models;
 /// <summary>
 /// Represents an editing project for a ROM.
 /// </summary>
-public class Project
-{
+public class Project {
 	/// <summary>
 	/// Unique identifier for the project.
 	/// </summary>

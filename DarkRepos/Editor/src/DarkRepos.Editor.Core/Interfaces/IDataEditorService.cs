@@ -4,8 +4,7 @@ namespace DarkRepos.Editor.Core.Interfaces;
 /// Service for editing structured game data like stats tables, item definitions, etc.
 /// Supports defining data structures and editing them in a type-safe manner.
 /// </summary>
-public interface IDataEditorService
-{
+public interface IDataEditorService {
 	/// <summary>
 	/// Loads a data structure definition from JSON schema.
 	/// </summary>
@@ -100,8 +99,7 @@ public interface IDataEditorService
 /// <summary>
 /// Defines the structure of a data record.
 /// </summary>
-public class DataStructure
-{
+public class DataStructure {
 	/// <summary>
 	/// Name of this structure.
 	/// </summary>
@@ -136,8 +134,7 @@ public class DataStructure
 /// <summary>
 /// A field within a data structure.
 /// </summary>
-public class DataField
-{
+public class DataField {
 	/// <summary>
 	/// Field name (used as identifier).
 	/// </summary>
@@ -216,10 +213,8 @@ public class DataField
 	/// <summary>
 	/// Gets the byte size of this field.
 	/// </summary>
-	public int GetByteSize()
-	{
-		var baseSize = Type switch
-		{
+	public int GetByteSize() {
+		var baseSize = Type switch {
 			DataFieldType.Byte or DataFieldType.SByte => 1,
 			DataFieldType.Word or DataFieldType.SWord => 2,
 			DataFieldType.DWord or DataFieldType.SDWord => 4,
@@ -236,8 +231,7 @@ public class DataField
 /// <summary>
 /// Type of data field.
 /// </summary>
-public enum DataFieldType
-{
+public enum DataFieldType {
 	/// <summary>
 	/// Unsigned byte (8-bit).
 	/// </summary>
@@ -312,8 +306,7 @@ public enum DataFieldType
 /// <summary>
 /// Byte order for multi-byte values.
 /// </summary>
-public enum Endianness
-{
+public enum Endianness {
 	/// <summary>
 	/// Little-endian (LSB first) - used by NES, SNES, GB, GBA.
 	/// </summary>
@@ -328,8 +321,7 @@ public enum Endianness
 /// <summary>
 /// Information about a pointer table.
 /// </summary>
-public class PointerTableInfo
-{
+public class PointerTableInfo {
 	/// <summary>
 	/// Offset of the pointer table.
 	/// </summary>
@@ -354,8 +346,7 @@ public class PointerTableInfo
 /// <summary>
 /// A table of data records.
 /// </summary>
-public class DataTable
-{
+public class DataTable {
 	/// <summary>
 	/// Table name.
 	/// </summary>
@@ -390,8 +381,7 @@ public class DataTable
 /// <summary>
 /// A single data record.
 /// </summary>
-public class DataRecord
-{
+public class DataRecord {
 	/// <summary>
 	/// Record index in the table.
 	/// </summary>
@@ -426,8 +416,7 @@ public class DataRecord
 /// <summary>
 /// Result of data validation.
 /// </summary>
-public class DataValidationResult
-{
+public class DataValidationResult {
 	/// <summary>
 	/// Whether validation passed.
 	/// </summary>
@@ -447,8 +436,7 @@ public class DataValidationResult
 /// <summary>
 /// A validation error.
 /// </summary>
-public class DataValidationError
-{
+public class DataValidationError {
 	/// <summary>
 	/// Record index (if applicable).
 	/// </summary>
@@ -473,8 +461,7 @@ public class DataValidationError
 /// <summary>
 /// Validation severity.
 /// </summary>
-public enum ValidationSeverity
-{
+public enum ValidationSeverity {
 	Warning,
 	Error
 }
@@ -482,8 +469,7 @@ public enum ValidationSeverity
 /// <summary>
 /// Type of checksum calculation.
 /// </summary>
-public enum ChecksumType
-{
+public enum ChecksumType {
 	/// <summary>
 	/// Simple sum of all bytes.
 	/// </summary>
@@ -513,8 +499,7 @@ public enum ChecksumType
 /// <summary>
 /// A predefined structure template.
 /// </summary>
-public class StructureTemplate
-{
+public class StructureTemplate {
 	/// <summary>
 	/// Template name.
 	/// </summary>
@@ -544,8 +529,7 @@ public class StructureTemplate
 /// <summary>
 /// A detected potential data table.
 /// </summary>
-public class DetectedTable
-{
+public class DetectedTable {
 	/// <summary>
 	/// ROM offset.
 	/// </summary>
@@ -575,8 +559,7 @@ public class DetectedTable
 /// <summary>
 /// Options for table detection.
 /// </summary>
-public class DataTableDetectionOptions
-{
+public class DataTableDetectionOptions {
 	/// <summary>
 	/// Minimum row size to consider.
 	/// </summary>

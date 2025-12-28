@@ -3,8 +3,7 @@ namespace DarkRepos.Editor.Core.Interfaces;
 /// <summary>
 /// Service for hex editing operations.
 /// </summary>
-public interface IHexEditorService
-{
+public interface IHexEditorService {
 	/// <summary>
 	/// Read bytes from a ROM.
 	/// </summary>

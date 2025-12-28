@@ -4,8 +4,7 @@ namespace DarkRepos.Editor.Core.Interfaces;
 /// Service for editing game scripts, event data, and scripted sequences.
 /// Supports bytecode parsing, decompilation, and recompilation.
 /// </summary>
-public interface IScriptEditorService
-{
+public interface IScriptEditorService {
 	/// <summary>
 	/// Loads a script definition (opcode table) from JSON.
 	/// </summary>
@@ -77,8 +76,7 @@ public interface IScriptEditorService
 /// <summary>
 /// Defines the script language/bytecode format for a game.
 /// </summary>
-public class ScriptDefinition
-{
+public class ScriptDefinition {
 	public string Name { get; set; } = "";
 	public string Description { get; set; } = "";
 	public string GameTitle { get; set; } = "";
@@ -95,8 +93,7 @@ public class ScriptDefinition
 /// <summary>
 /// Defines a single opcode in the script language.
 /// </summary>
-public class ScriptOpcode
-{
+public class ScriptOpcode {
 	public byte Code { get; set; }
 	public string Mnemonic { get; set; } = "";
 	public string Description { get; set; } = "";
@@ -115,8 +112,7 @@ public class ScriptOpcode
 /// <summary>
 /// Defines a parameter for an opcode.
 /// </summary>
-public class OpcodeParameter
-{
+public class OpcodeParameter {
 	public string Name { get; set; } = "";
 	public ParameterType Type { get; set; } = ParameterType.Byte;
 	public int Size { get; set; } = 1;
@@ -127,8 +123,7 @@ public class OpcodeParameter
 	public string? Description { get; set; }
 }
 
-public enum ScriptPlatform
-{
+public enum ScriptPlatform {
 	NES,
 	SNES,
 	GB,
@@ -138,8 +133,7 @@ public enum ScriptPlatform
 	Custom
 }
 
-public enum OpcodeCategory
-{
+public enum OpcodeCategory {
 	Flow,       // Jumps, branches, calls, returns
 	Dialog,     // Text display, choices
 	Event,      // Triggers, flags, variables
@@ -152,8 +146,7 @@ public enum OpcodeCategory
 	Misc        // Other
 }
 
-public enum ParameterType
-{
+public enum ParameterType {
 	Byte,
 	SByte,
 	Word,
@@ -179,8 +172,7 @@ public enum ParameterType
 /// <summary>
 /// Represents a parsed game script/event bytecode.
 /// </summary>
-public class GameScript
-{
+public class GameScript {
 	public string Name { get; set; } = "";
 	public int Offset { get; set; }
 	public int Length { get; set; }
@@ -194,8 +186,7 @@ public class GameScript
 /// <summary>
 /// Represents a single instruction in a script.
 /// </summary>
-public class ScriptInstruction
-{
+public class ScriptInstruction {
 	public int Offset { get; set; }
 	public int Length { get; set; }
 	public byte Opcode { get; set; }
@@ -209,10 +200,8 @@ public class ScriptInstruction
 	/// <summary>
 	/// Gets the formatted display string for the instruction.
 	/// </summary>
-	public string DisplayText
-	{
-		get
-		{
+	public string DisplayText {
+		get {
 			if (Parameters.Count == 0)
 				return Mnemonic;
 
@@ -225,8 +214,7 @@ public class ScriptInstruction
 /// <summary>
 /// Represents a parameter value in an instruction.
 /// </summary>
-public class ScriptParameterValue
-{
+public class ScriptParameterValue {
 	public string Name { get; set; } = "";
 	public ParameterType Type { get; set; }
 	public long Value { get; set; }
@@ -236,15 +224,12 @@ public class ScriptParameterValue
 	/// <summary>
 	/// Gets the formatted display value.
 	/// </summary>
-	public string DisplayValue
-	{
-		get
-		{
+	public string DisplayValue {
+		get {
 			if (!string.IsNullOrEmpty(EnumName))
 				return EnumName;
 
-			return Type switch
-			{
+			return Type switch {
 				ParameterType.Byte or ParameterType.SByte => $"${Value:x2}",
 				ParameterType.Word or ParameterType.SWord => $"${Value:x4}",
 				ParameterType.DWord => $"${Value:x8}",
@@ -270,8 +255,7 @@ public class ScriptParameterValue
 /// <summary>
 /// Options for script decompilation.
 /// </summary>
-public class DecompileOptions
-{
+public class DecompileOptions {
 	public bool IncludeComments { get; set; } = true;
 	public bool IncludeOffsets { get; set; } = true;
 	public bool IncludeRawBytes { get; set; } = false;
@@ -290,8 +274,7 @@ public class DecompileOptions
 /// <summary>
 /// Result of script validation.
 /// </summary>
-public class ScriptValidationResult
-{
+public class ScriptValidationResult {
 	public bool IsValid => Errors.Count == 0;
 	public List<ScriptValidationError> Errors { get; set; } = [];
 	public List<ScriptValidationError> Warnings { get; set; } = [];
@@ -300,8 +283,7 @@ public class ScriptValidationResult
 /// <summary>
 /// Represents a validation error or warning.
 /// </summary>
-public class ScriptValidationError
-{
+public class ScriptValidationError {
 	public int InstructionIndex { get; set; }
 	public int Offset { get; set; }
 	public string Message { get; set; } = "";
@@ -309,8 +291,7 @@ public class ScriptValidationError
 	public string? SuggestedFix { get; set; }
 }
 
-public enum ScriptValidationSeverity
-{
+public enum ScriptValidationSeverity {
 	Info,
 	Warning,
 	Error
@@ -323,8 +304,7 @@ public enum ScriptValidationSeverity
 /// <summary>
 /// Represents a cross-reference (jump/call target) in a script.
 /// </summary>
-public class ScriptCrossReference
-{
+public class ScriptCrossReference {
 	public int SourceOffset { get; set; }
 	public int TargetOffset { get; set; }
 	public CrossReferenceType Type { get; set; }
@@ -332,8 +312,7 @@ public class ScriptCrossReference
 	public string TargetLabel { get; set; } = "";
 }
 
-public enum CrossReferenceType
-{
+public enum CrossReferenceType {
 	Jump,
 	ConditionalJump,
 	Call,
@@ -343,8 +322,7 @@ public enum CrossReferenceType
 /// <summary>
 /// Represents a text reference in a script.
 /// </summary>
-public class ScriptTextReference
-{
+public class ScriptTextReference {
 	public int InstructionOffset { get; set; }
 	public int TextId { get; set; }
 	public int? TextBank { get; set; }
@@ -359,8 +337,7 @@ public class ScriptTextReference
 /// <summary>
 /// Options for script detection.
 /// </summary>
-public class ScriptDetectionOptions
-{
+public class ScriptDetectionOptions {
 	public int StartOffset { get; set; }
 	public int EndOffset { get; set; }
 	public int MinInstructions { get; set; } = 5;
@@ -373,8 +350,7 @@ public class ScriptDetectionOptions
 /// <summary>
 /// Represents a detected script candidate.
 /// </summary>
-public class DetectedScript
-{
+public class DetectedScript {
 	public int Offset { get; set; }
 	public int Length { get; set; }
 	public int InstructionCount { get; set; }
@@ -391,8 +367,7 @@ public class DetectedScript
 /// <summary>
 /// Predefined script definition template.
 /// </summary>
-public class ScriptDefinitionTemplate
-{
+public class ScriptDefinitionTemplate {
 	public string Name { get; set; } = "";
 	public string Description { get; set; } = "";
 	public string Category { get; set; } = "";
@@ -406,8 +381,7 @@ public class ScriptDefinitionTemplate
 /// <summary>
 /// Defines how script pointers are stored.
 /// </summary>
-public class PointerFormat
-{
+public class PointerFormat {
 	public int Size { get; set; } = 2;
 	public Endianness Endianness { get; set; } = Endianness.Little;
 	public int BaseAddress { get; set; }

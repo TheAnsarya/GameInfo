@@ -6,14 +6,11 @@ namespace DarkRepos.Editor.Core.Services;
 /// <summary>
 /// Service for disassembly operations.
 /// </summary>
-public class DisassemblerService : IDisassemblerService
-{
+public class DisassemblerService : IDisassemblerService {
 	private readonly Dictionary<RomPlatform, IInstructionDecoder> _decoders;
 
-	public DisassemblerService()
-	{
-		_decoders = new Dictionary<RomPlatform, IInstructionDecoder>
-		{
+	public DisassemblerService() {
+		_decoders = new Dictionary<RomPlatform, IInstructionDecoder> {
 			[RomPlatform.Nes] = new Mos6502Decoder(),
 			[RomPlatform.Snes] = new Wdc65816Decoder(),
 			[RomPlatform.GameBoy] = new SharpLr35902Decoder(),
@@ -26,15 +23,13 @@ public class DisassemblerService : IDisassemblerService
 		int offset,
 		int length,
 		RomPlatform platform,
-		IEnumerable<Label>? labels = null)
-	{
+		IEnumerable<Label>? labels = null) {
 		var decoder = GetDecoder(platform);
 		var labelDict = labels?.ToDictionary(l => l.Address, l => l) ?? new Dictionary<int, Label>();
 		var end = Math.Min(offset + length, data.Length);
 		var pc = offset;
 
-		while (pc < end)
-		{
+		while (pc < end) {
 			// Check for label at this address
 			string? label = labelDict.TryGetValue(pc, out var l) ? l.Name : null;
 			string? comment = l?.Comment;
@@ -51,8 +46,7 @@ public class DisassemblerService : IDisassemblerService
 		}
 	}
 
-	public DisassemblyLine DisassembleInstruction(byte[] data, int offset, RomPlatform platform)
-	{
+	public DisassemblyLine DisassembleInstruction(byte[] data, int offset, RomPlatform platform) {
 		var decoder = GetDecoder(platform);
 		var (mnemonic, operand, size) = decoder.Decode(data, offset);
 		var bytes = new byte[size];
@@ -61,8 +55,7 @@ public class DisassemblerService : IDisassemblerService
 		return new DisassemblyLine(offset, bytes, mnemonic, operand);
 	}
 
-	public IInstructionDecoder GetDecoder(RomPlatform platform)
-	{
+	public IInstructionDecoder GetDecoder(RomPlatform platform) {
 		if (_decoders.TryGetValue(platform, out var decoder))
 			return decoder;
 
@@ -73,15 +66,12 @@ public class DisassemblerService : IDisassemblerService
 	public string FormatOutput(
 		IEnumerable<DisassemblyLine> lines,
 		DisassemblyFormat format = DisassemblyFormat.Ca65,
-		bool includeBytes = true)
-	{
+		bool includeBytes = true) {
 		var sb = new System.Text.StringBuilder();
 
-		foreach (var line in lines)
-		{
+		foreach (var line in lines) {
 			// Label
-			if (!string.IsNullOrEmpty(line.Label))
-			{
+			if (!string.IsNullOrEmpty(line.Label)) {
 				sb.AppendLine(FormatLabel(line.Label, format));
 			}
 
@@ -93,10 +83,8 @@ public class DisassemblerService : IDisassemblerService
 		return sb.ToString();
 	}
 
-	private static string FormatLabel(string label, DisassemblyFormat format)
-	{
-		return format switch
-		{
+	private static string FormatLabel(string label, DisassemblyFormat format) {
+		return format switch {
 			DisassemblyFormat.Ca65 => $"{label}:",
 			DisassemblyFormat.Asm6 => $"{label}:",
 			DisassemblyFormat.NesAsm => $"{label}:",
@@ -104,8 +92,7 @@ public class DisassemblerService : IDisassemblerService
 		};
 	}
 
-	private static string FormatInstruction(DisassemblyLine line, DisassemblyFormat format, bool includeBytes)
-	{
+	private static string FormatInstruction(DisassemblyLine line, DisassemblyFormat format, bool includeBytes) {
 		var address = $"${line.Address:x4}";
 		var bytes = includeBytes ? string.Join(" ", line.Bytes.Select(b => $"{b:x2}")) : "";
 		var instruction = string.IsNullOrEmpty(line.Operand)
@@ -116,8 +103,7 @@ public class DisassemblerService : IDisassemblerService
 			? $" ; {line.Comment}"
 			: "";
 
-		return format switch
-		{
+		return format switch {
 			DisassemblyFormat.Ca65 when includeBytes =>
 				$"    {instruction,-20}{comment}".TrimEnd() + $" ; {address}: {bytes}",
 			DisassemblyFormat.Ca65 =>
@@ -129,19 +115,15 @@ public class DisassemblerService : IDisassemblerService
 		};
 	}
 
-	private static string ResolveLabels(string operand, Dictionary<int, Label> labels)
-	{
+	private static string ResolveLabels(string operand, Dictionary<int, Label> labels) {
 		// Try to parse address from operand and replace with label
 		if (string.IsNullOrEmpty(operand)) return operand;
 
 		// Match $xxxx addresses
-		if (operand.StartsWith('$') && operand.Length >= 3)
-		{
+		if (operand.StartsWith('$') && operand.Length >= 3) {
 			var addrStr = operand.TrimStart('$').Split(',')[0].Split(')')[0].Split('(')[0];
-			if (int.TryParse(addrStr, System.Globalization.NumberStyles.HexNumber, null, out var addr))
-			{
-				if (labels.TryGetValue(addr, out var label))
-				{
+			if (int.TryParse(addrStr, System.Globalization.NumberStyles.HexNumber, null, out var addr)) {
+				if (labels.TryGetValue(addr, out var label)) {
 					return operand.Replace($"${addrStr}", label.Name);
 				}
 			}
@@ -154,13 +136,11 @@ public class DisassemblerService : IDisassemblerService
 /// <summary>
 /// MOS 6502 instruction decoder (NES, C64, Apple II, etc.)
 /// </summary>
-public class Mos6502Decoder : IInstructionDecoder
-{
+public class Mos6502Decoder : IInstructionDecoder {
 	public string Architecture => "MOS 6502";
 
 	// Addressing modes
-	private enum Mode
-	{
+	private enum Mode {
 		Imp,    // Implied
 		Acc,    // Accumulator
 		Imm,    // Immediate #$xx
@@ -178,8 +158,7 @@ public class Mos6502Decoder : IInstructionDecoder
 
 	private static readonly (string Mnemonic, Mode Mode)[] _opcodes = new (string, Mode)[256];
 
-	static Mos6502Decoder()
-	{
+	static Mos6502Decoder() {
 		// Initialize all opcodes to unknown
 		for (var i = 0; i < 256; i++)
 			_opcodes[i] = ("???", Mode.Imp);
@@ -375,8 +354,7 @@ public class Mos6502Decoder : IInstructionDecoder
 		_opcodes[0xea] = ("nop", Mode.Imp);
 	}
 
-	public (string Mnemonic, string Operand, int Size) Decode(byte[] data, int offset)
-	{
+	public (string Mnemonic, string Operand, int Size) Decode(byte[] data, int offset) {
 		if (offset >= data.Length)
 			return ("???", "", 1);
 
@@ -387,10 +365,8 @@ public class Mos6502Decoder : IInstructionDecoder
 		return (mnemonic, operand, size);
 	}
 
-	private static (string Operand, int Size) DecodeOperand(byte[] data, int offset, Mode mode)
-	{
-		return mode switch
-		{
+	private static (string Operand, int Size) DecodeOperand(byte[] data, int offset, Mode mode) {
+		return mode switch {
 			Mode.Imp => ("", 1),
 			Mode.Acc => ("a", 1),
 			Mode.Imm when offset + 1 < data.Length => ($"#${data[offset + 1]:x2}", 2),
@@ -413,12 +389,10 @@ public class Mos6502Decoder : IInstructionDecoder
 /// <summary>
 /// WDC 65816 instruction decoder (SNES)
 /// </summary>
-public class Wdc65816Decoder : IInstructionDecoder
-{
+public class Wdc65816Decoder : IInstructionDecoder {
 	public string Architecture => "WDC 65816";
 
-	public (string Mnemonic, string Operand, int Size) Decode(byte[] data, int offset)
-	{
+	public (string Mnemonic, string Operand, int Size) Decode(byte[] data, int offset) {
 		// For now, use basic 6502 decoding with 16-bit extensions
 		// A full implementation would handle all 65816-specific opcodes
 		var decoder = new Mos6502Decoder();
@@ -429,18 +403,15 @@ public class Wdc65816Decoder : IInstructionDecoder
 /// <summary>
 /// Sharp LR35902 instruction decoder (Game Boy)
 /// </summary>
-public class SharpLr35902Decoder : IInstructionDecoder
-{
+public class SharpLr35902Decoder : IInstructionDecoder {
 	public string Architecture => "Sharp LR35902 (Game Boy)";
 
 	private static readonly string[] _mnemonics = new string[256];
 	private static readonly int[] _sizes = new int[256];
 
-	static SharpLr35902Decoder()
-	{
+	static SharpLr35902Decoder() {
 		// Initialize default values
-		for (var i = 0; i < 256; i++)
-		{
+		for (var i = 0; i < 256; i++) {
 			_mnemonics[i] = "???";
 			_sizes[i] = 1;
 		}
@@ -497,8 +468,7 @@ public class SharpLr35902Decoder : IInstructionDecoder
 		_mnemonics[0xfb] = "ei"; _sizes[0xfb] = 1;
 	}
 
-	public (string Mnemonic, string Operand, int Size) Decode(byte[] data, int offset)
-	{
+	public (string Mnemonic, string Operand, int Size) Decode(byte[] data, int offset) {
 		if (offset >= data.Length)
 			return ("???", "", 1);
 
@@ -507,12 +477,9 @@ public class SharpLr35902Decoder : IInstructionDecoder
 		var size = _sizes[opcode];
 		var operand = "";
 
-		if (size == 2 && offset + 1 < data.Length)
-		{
+		if (size == 2 && offset + 1 < data.Length) {
 			operand = $"${data[offset + 1]:x2}";
-		}
-		else if (size == 3 && offset + 2 < data.Length)
-		{
+		} else if (size == 3 && offset + 2 < data.Length) {
 			operand = $"${data[offset + 1] | (data[offset + 2] << 8):x4}";
 		}
 

@@ -3,8 +3,7 @@ namespace DarkRepos.Editor.Core.Models;
 /// <summary>
 /// Represents a ROM file with metadata and content.
 /// </summary>
-public class Rom
-{
+public class Rom {
 	/// <summary>
 	/// Unique identifier for the ROM.
 	/// </summary>

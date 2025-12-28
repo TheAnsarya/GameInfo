@@ -3,8 +3,7 @@ namespace DarkRepos.Editor.Core.Models;
 /// <summary>
 /// Supported ROM platforms/consoles.
 /// </summary>
-public enum RomPlatform
-{
+public enum RomPlatform {
 	/// <summary>Unknown platform.</summary>
 	Unknown = 0,
 

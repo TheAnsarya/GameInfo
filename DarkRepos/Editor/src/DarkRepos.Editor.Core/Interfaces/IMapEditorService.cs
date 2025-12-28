@@ -4,8 +4,7 @@ namespace DarkRepos.Editor.Core.Interfaces;
 /// Service for editing game maps, tilemaps, and level data.
 /// Supports various map formats common in retro games.
 /// </summary>
-public interface IMapEditorService
-{
+public interface IMapEditorService {
 	/// <summary>
 	/// Loads a tileset from ROM data.
 	/// </summary>
@@ -110,8 +109,7 @@ public interface IMapEditorService
 /// <summary>
 /// Represents a complete tileset with multiple tiles.
 /// </summary>
-public class Tileset
-{
+public class Tileset {
 	/// <summary>
 	/// Name or identifier for this tileset.
 	/// </summary>
@@ -147,18 +145,16 @@ public class Tileset
 	/// </summary>
 	public int TotalSize => Tiles.Count * GetBytesPerTile(Format, TileWidth, TileHeight);
 
-	private static int GetBytesPerTile(MapTileFormat format, int width, int height)
-	{
-		return format switch
-		{
-			MapTileFormat.Nes2Bpp => (width * height * 2) / 8,    // 16 bytes for 8x8
-			MapTileFormat.Snes4Bpp => (width * height * 4) / 8,   // 32 bytes for 8x8
-			MapTileFormat.Snes8Bpp => (width * height * 8) / 8,   // 64 bytes for 8x8
-			MapTileFormat.Gb2Bpp => (width * height * 2) / 8,     // 16 bytes for 8x8
-			MapTileFormat.Genesis4Bpp => (width * height * 4) / 8, // 32 bytes for 8x8
-			MapTileFormat.Gba4Bpp => (width * height * 4) / 8,    // 32 bytes for 8x8
+	private static int GetBytesPerTile(MapTileFormat format, int width, int height) {
+		return format switch {
+			MapTileFormat.Nes2Bpp => width * height * 2 / 8,    // 16 bytes for 8x8
+			MapTileFormat.Snes4Bpp => width * height * 4 / 8,   // 32 bytes for 8x8
+			MapTileFormat.Snes8Bpp => width * height * 8 / 8,   // 64 bytes for 8x8
+			MapTileFormat.Gb2Bpp => width * height * 2 / 8,     // 16 bytes for 8x8
+			MapTileFormat.Genesis4Bpp => width * height * 4 / 8, // 32 bytes for 8x8
+			MapTileFormat.Gba4Bpp => width * height * 4 / 8,    // 32 bytes for 8x8
 			MapTileFormat.Gba8Bpp => width * height,              // 64 bytes for 8x8
-			MapTileFormat.Linear1Bpp => (width * height) / 8,     // 8 bytes for 8x8
+			MapTileFormat.Linear1Bpp => width * height / 8,     // 8 bytes for 8x8
 			_ => 16
 		};
 	}
@@ -167,8 +163,7 @@ public class Tileset
 /// <summary>
 /// Raw graphics data for a single MapTile.
 /// </summary>
-public class TileGraphics
-{
+public class TileGraphics {
 	/// <summary>
 	/// MapTile index in the tileset.
 	/// </summary>
@@ -188,8 +183,7 @@ public class TileGraphics
 /// <summary>
 /// Represents a MapTile placement in a map.
 /// </summary>
-public class MapTile
-{
+public class MapTile {
 	/// <summary>
 	/// Index into the tileset.
 	/// </summary>
@@ -224,8 +218,7 @@ public class MapTile
 /// <summary>
 /// A tilemap containing grid of MapTile references.
 /// </summary>
-public class TileMap
-{
+public class TileMap {
 	/// <summary>
 	/// Name or identifier for this map.
 	/// </summary>
@@ -270,8 +263,7 @@ public class TileMap
 /// <summary>
 /// A metatile (MapTile made of smaller tiles).
 /// </summary>
-public class MetaTile
-{
+public class MetaTile {
 	/// <summary>
 	/// Index of this metatile.
 	/// </summary>
@@ -306,8 +298,7 @@ public class MetaTile
 /// <summary>
 /// A map using metatiles instead of raw tiles.
 /// </summary>
-public class MetaTileMap
-{
+public class MetaTileMap {
 	/// <summary>
 	/// Name of this map.
 	/// </summary>
@@ -342,8 +333,7 @@ public class MetaTileMap
 /// <summary>
 /// A copied region of tiles.
 /// </summary>
-public class TileRegion
-{
+public class TileRegion {
 	/// <summary>
 	/// Width of the region.
 	/// </summary>
@@ -363,8 +353,7 @@ public class TileRegion
 /// <summary>
 /// Color MapPalette for rendering.
 /// </summary>
-public class MapPalette
-{
+public class MapPalette {
 	/// <summary>
 	/// MapPalette name.
 	/// </summary>
@@ -389,8 +378,7 @@ public class MapPalette
 /// <summary>
 /// Result of map validation.
 /// </summary>
-public class MapValidationResult
-{
+public class MapValidationResult {
 	/// <summary>
 	/// Whether the map is valid.
 	/// </summary>
@@ -420,8 +408,7 @@ public class MapValidationResult
 /// <summary>
 /// Format of MapTile graphics data.
 /// </summary>
-public enum MapTileFormat
-{
+public enum MapTileFormat {
 	/// <summary>
 	/// NES 2-bit planar (CHR format).
 	/// </summary>
@@ -466,8 +453,7 @@ public enum MapTileFormat
 /// <summary>
 /// Format of map data layout.
 /// </summary>
-public enum MapFormat
-{
+public enum MapFormat {
 	/// <summary>
 	/// Linear row-by-row layout.
 	/// </summary>
@@ -522,8 +508,7 @@ public enum MapFormat
 /// <summary>
 /// Format of metatile definitions.
 /// </summary>
-public enum MetaTileFormat
-{
+public enum MetaTileFormat {
 	/// <summary>
 	/// Simple 2x2 metatiles.
 	/// </summary>

@@ -3,8 +3,7 @@ namespace DarkRepos.Editor.Core.Interfaces;
 /// <summary>
 /// Service for game text editing operations.
 /// </summary>
-public interface ITextEditorService
-{
+public interface ITextEditorService {
 	/// <summary>
 	/// Loads a table file defining character mappings.
 	/// </summary>
@@ -95,8 +94,7 @@ public interface ITextEditorService
 /// <summary>
 /// Character mapping table for text encoding/decoding.
 /// </summary>
-public class TableFile
-{
+public class TableFile {
 	/// <summary>
 	/// Name of the table file.
 	/// </summary>
@@ -150,24 +148,19 @@ public class TableFile
 	/// <summary>
 	/// Builds reverse mappings for encoding.
 	/// </summary>
-	public void BuildReverseMappings()
-	{
+	public void BuildReverseMappings() {
 		ReverseMappings.Clear();
 
 		// Add single-byte mappings
-		foreach (var kvp in SingleByteMappings)
-		{
-			if (!ReverseMappings.ContainsKey(kvp.Value))
-			{
+		foreach (var kvp in SingleByteMappings) {
+			if (!ReverseMappings.ContainsKey(kvp.Value)) {
 				ReverseMappings[kvp.Value] = new byte[] { kvp.Key };
 			}
 		}
 
 		// Add multi-byte mappings
-		foreach (var kvp in MultiByteMappings)
-		{
-			if (!ReverseMappings.ContainsKey(kvp.Value))
-			{
+		foreach (var kvp in MultiByteMappings) {
+			if (!ReverseMappings.ContainsKey(kvp.Value)) {
 				ReverseMappings[kvp.Value] = kvp.Key;
 			}
 		}
@@ -177,8 +170,7 @@ public class TableFile
 /// <summary>
 /// Represents a block of text found in ROM data.
 /// </summary>
-public class TextBlock
-{
+public class TextBlock {
 	/// <summary>
 	/// Starting offset of the text block.
 	/// </summary>
@@ -223,8 +215,7 @@ public class TextBlock
 /// <summary>
 /// Complete game script containing all text blocks.
 /// </summary>
-public class Script
-{
+public class Script {
 	/// <summary>
 	/// Game/ROM name.
 	/// </summary>
@@ -249,8 +240,7 @@ public class Script
 /// <summary>
 /// Options for text search operations.
 /// </summary>
-public class TextSearchOptions
-{
+public class TextSearchOptions {
 	/// <summary>
 	/// Minimum text length to consider valid.
 	/// </summary>
@@ -285,8 +275,7 @@ public class TextSearchOptions
 /// <summary>
 /// Script export formats.
 /// </summary>
-public enum ScriptExportFormat
-{
+public enum ScriptExportFormat {
 	/// <summary>Plain text format.</summary>
 	PlainText,
 
@@ -306,31 +295,28 @@ public enum ScriptExportFormat
 /// <summary>
 /// Comparer for byte arrays.
 /// </summary>
-public class ByteArrayComparer : IEqualityComparer<byte[]>
-{
-	public bool Equals(byte[]? x, byte[]? y)
-	{
+public class ByteArrayComparer : IEqualityComparer<byte[]> {
+	public bool Equals(byte[]? x, byte[]? y) {
 		if (x == null || y == null)
 			return x == y;
 		if (x.Length != y.Length)
 			return false;
-		for (int i = 0; i < x.Length; i++)
-		{
+		for (int i = 0; i < x.Length; i++) {
 			if (x[i] != y[i])
 				return false;
 		}
+
 		return true;
 	}
 
-	public int GetHashCode(byte[] obj)
-	{
+	public int GetHashCode(byte[] obj) {
 		if (obj == null || obj.Length == 0)
 			return 0;
 		int hash = 17;
-		foreach (var b in obj)
-		{
-			hash = hash * 31 + b;
+		foreach (var b in obj) {
+			hash = (hash * 31) + b;
 		}
+
 		return hash;
 	}
 }

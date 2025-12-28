@@ -2,17 +2,14 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace DarkRepos.Editor.Core.Services;
-
 using DarkRepos.Editor.Core.Interfaces;
 
+namespace DarkRepos.Editor.Core.Services;
 /// <summary>
 /// Service for editing game scripts, event data, and scripted sequences.
 /// </summary>
-public class ScriptEditorService : IScriptEditorService
-{
-	private static readonly JsonSerializerOptions JsonOptions = new()
-	{
+public class ScriptEditorService : IScriptEditorService {
+	private static readonly JsonSerializerOptions JsonOptions = new() {
 		PropertyNameCaseInsensitive = true,
 		WriteIndented = true,
 		Converters = { new JsonStringEnumConverter() }
@@ -20,8 +17,7 @@ public class ScriptEditorService : IScriptEditorService
 
 	#region GameScript Definition
 
-	public ScriptDefinition LoadScriptDefinition(string json)
-	{
+	public ScriptDefinition LoadScriptDefinition(string json) {
 		if (string.IsNullOrWhiteSpace(json))
 			throw new ArgumentException("JSON cannot be empty", nameof(json));
 
@@ -32,8 +28,7 @@ public class ScriptEditorService : IScriptEditorService
 		return definition;
 	}
 
-	private static void ValidateDefinition(ScriptDefinition definition)
-	{
+	private static void ValidateDefinition(ScriptDefinition definition) {
 		if (string.IsNullOrWhiteSpace(definition.Name))
 			throw new InvalidOperationException("GameScript definition must have a name");
 
@@ -42,8 +37,7 @@ public class ScriptEditorService : IScriptEditorService
 
 		// Check for duplicate opcodes
 		var duplicates = definition.Opcodes.GroupBy(o => o.Code).Where(g => g.Count() > 1).ToList();
-		if (duplicates.Count > 0)
-		{
+		if (duplicates.Count > 0) {
 			var codes = string.Join(", ", duplicates.Select(g => $"0x{g.Key:x2}"));
 			throw new InvalidOperationException($"Duplicate opcode codes: {codes}");
 		}
@@ -53,16 +47,14 @@ public class ScriptEditorService : IScriptEditorService
 
 	#region Parsing
 
-	public GameScript ParseScript(byte[] data, int offset, ScriptDefinition definition, int? maxLength = null)
-	{
+	public GameScript ParseScript(byte[] data, int offset, ScriptDefinition definition, int? maxLength = null) {
 		ArgumentNullException.ThrowIfNull(data);
 		ArgumentNullException.ThrowIfNull(definition);
 
 		if (offset < 0 || offset >= data.Length)
 			throw new ArgumentOutOfRangeException(nameof(offset));
 
-		var script = new GameScript
-		{
+		var script = new GameScript {
 			Name = $"Script_{offset:x6}",
 			Offset = offset
 		};
@@ -72,16 +64,13 @@ public class ScriptEditorService : IScriptEditorService
 		var endPosition = maxLength.HasValue ? Math.Min(offset + maxLength.Value, data.Length) : data.Length;
 		var instructionIndex = 0;
 
-		while (position < endPosition)
-		{
+		while (position < endPosition) {
 			var opcode = data[position];
 
 			// Check for terminator
-			if (definition.TerminatorByte.HasValue && opcode == definition.TerminatorByte.Value)
-			{
+			if (definition.TerminatorByte.HasValue && opcode == definition.TerminatorByte.Value) {
 				// Add terminator instruction
-				var termInst = new ScriptInstruction
-				{
+				var termInst = new ScriptInstruction {
 					Offset = position,
 					Length = 1,
 					Opcode = opcode,
@@ -93,11 +82,9 @@ public class ScriptEditorService : IScriptEditorService
 				break;
 			}
 
-			if (!opcodeMap.TryGetValue(opcode, out var opcodeDef))
-			{
+			if (!opcodeMap.TryGetValue(opcode, out var opcodeDef)) {
 				// Unknown opcode - treat as data byte or stop
-				var unknownInst = new ScriptInstruction
-				{
+				var unknownInst = new ScriptInstruction {
 					Offset = position,
 					Length = 1,
 					Opcode = opcode,
@@ -105,8 +92,7 @@ public class ScriptEditorService : IScriptEditorService
 					Comment = "Unknown opcode",
 					RawBytes = [opcode]
 				};
-				unknownInst.Parameters.Add(new ScriptParameterValue
-				{
+				unknownInst.Parameters.Add(new ScriptParameterValue {
 					Name = "value",
 					Type = ParameterType.Byte,
 					Value = opcode,
@@ -138,8 +124,7 @@ public class ScriptEditorService : IScriptEditorService
 
 		// Generate labels for jump targets
 		var labels = GenerateLabels(script);
-		foreach (var kvp in labels)
-		{
+		foreach (var kvp in labels) {
 			script.Labels[kvp.Key] = kvp.Value;
 			var targetInst = script.Instructions.FirstOrDefault(i => i.Offset == kvp.Key);
 			if (targetInst != null)
@@ -149,10 +134,8 @@ public class ScriptEditorService : IScriptEditorService
 		return script;
 	}
 
-	private ScriptInstruction ParseInstruction(byte[] data, int offset, ScriptOpcode opcodeDef, ScriptDefinition definition)
-	{
-		var instruction = new ScriptInstruction
-		{
+	private ScriptInstruction ParseInstruction(byte[] data, int offset, ScriptOpcode opcodeDef, ScriptDefinition definition) {
+		var instruction = new ScriptInstruction {
 			Offset = offset,
 			Opcode = opcodeDef.Code,
 			Mnemonic = opcodeDef.Mnemonic
@@ -160,14 +143,12 @@ public class ScriptEditorService : IScriptEditorService
 
 		var position = offset + 1; // Skip opcode byte
 
-		foreach (var paramDef in opcodeDef.Parameters)
-		{
+		foreach (var paramDef in opcodeDef.Parameters) {
 			var paramSize = GetParameterSize(paramDef);
 			if (position + paramSize > data.Length)
 				break;
 
-			var paramValue = new ScriptParameterValue
-			{
+			var paramValue = new ScriptParameterValue {
 				Name = paramDef.Name,
 				Type = paramDef.Type,
 				RawBytes = new byte[paramSize]
@@ -191,8 +172,7 @@ public class ScriptEditorService : IScriptEditorService
 		return instruction;
 	}
 
-	public List<GameScript> ParseScriptTable(byte[] data, int tableOffset, int count, ScriptDefinition definition, PointerFormat pointerFormat)
-	{
+	public List<GameScript> ParseScriptTable(byte[] data, int tableOffset, int count, ScriptDefinition definition, PointerFormat pointerFormat) {
 		ArgumentNullException.ThrowIfNull(data);
 		ArgumentNullException.ThrowIfNull(definition);
 		ArgumentNullException.ThrowIfNull(pointerFormat);
@@ -200,8 +180,7 @@ public class ScriptEditorService : IScriptEditorService
 		var scripts = new List<GameScript>();
 		var position = tableOffset;
 
-		for (int i = 0; i < count; i++)
-		{
+		for (int i = 0; i < count; i++) {
 			if (position + pointerFormat.Size > data.Length)
 				break;
 
@@ -214,16 +193,12 @@ public class ScriptEditorService : IScriptEditorService
 			else
 				scriptOffset = scriptOffset - pointerFormat.BaseAddress + pointerFormat.HeaderSize;
 
-			if (scriptOffset >= 0 && scriptOffset < data.Length)
-			{
-				try
-				{
+			if (scriptOffset >= 0 && scriptOffset < data.Length) {
+				try {
 					var script = ParseScript(data, scriptOffset, definition);
 					script.Name = $"Script_{i:d3}";
 					scripts.Add(script);
-				}
-				catch
-				{
+				} catch {
 					// Skip invalid scripts
 				}
 			}
@@ -238,15 +213,13 @@ public class ScriptEditorService : IScriptEditorService
 
 	#region Decompilation
 
-	public string DecompileScript(GameScript script, DecompileOptions? options = null)
-	{
+	public string DecompileScript(GameScript script, DecompileOptions? options = null) {
 		ArgumentNullException.ThrowIfNull(script);
 
 		options ??= new DecompileOptions();
 		var sb = new StringBuilder();
 
-		if (options.IncludeHeader)
-		{
+		if (options.IncludeHeader) {
 			sb.AppendLine($"; Script: {script.Name}");
 			sb.AppendLine($"; Offset: ${script.Offset:x6}");
 			sb.AppendLine($"; Length: {script.Length} bytes");
@@ -256,13 +229,11 @@ public class ScriptEditorService : IScriptEditorService
 
 		var indentLevel = 0;
 
-		foreach (var instruction in script.Instructions)
-		{
+		foreach (var instruction in script.Instructions) {
 			var line = new StringBuilder();
 
 			// Label
-			if (!string.IsNullOrEmpty(instruction.Label))
-			{
+			if (!string.IsNullOrEmpty(instruction.Label)) {
 				sb.AppendLine($"{instruction.Label}:");
 				indentLevel = 0; // Reset indent at labels
 			}
@@ -276,8 +247,7 @@ public class ScriptEditorService : IScriptEditorService
 				line.Append($"${instruction.Offset:x6}: ");
 
 			// Raw bytes
-			if (options.IncludeRawBytes)
-			{
+			if (options.IncludeRawBytes) {
 				var bytes = string.Join(" ", instruction.RawBytes.Select(b => $"{b:x2}"));
 				line.Append($"[{bytes}] ");
 			}
@@ -285,11 +255,9 @@ public class ScriptEditorService : IScriptEditorService
 			// Mnemonic and parameters
 			line.Append(instruction.Mnemonic);
 
-			if (instruction.Parameters.Count > 0)
-			{
+			if (instruction.Parameters.Count > 0) {
 				line.Append(' ');
-				var paramStrings = instruction.Parameters.Select(p =>
-				{
+				var paramStrings = instruction.Parameters.Select(p => {
 					if (options.UseSymbolicNames && !string.IsNullOrEmpty(p.EnumName))
 						return p.EnumName;
 
@@ -310,8 +278,7 @@ public class ScriptEditorService : IScriptEditorService
 			sb.AppendLine(line.ToString());
 
 			// Adjust indent after conditional
-			if (options.IndentAfterConditional)
-			{
+			if (options.IndentAfterConditional) {
 				// This is simplified - real implementation would track block structure
 			}
 		}
@@ -323,8 +290,7 @@ public class ScriptEditorService : IScriptEditorService
 
 	#region Compilation
 
-	public GameScript CompileScript(string source, ScriptDefinition definition)
-	{
+	public GameScript CompileScript(string source, ScriptDefinition definition) {
 		ArgumentNullException.ThrowIfNull(source);
 		ArgumentNullException.ThrowIfNull(definition);
 
@@ -337,16 +303,14 @@ public class ScriptEditorService : IScriptEditorService
 		// First pass: parse instructions and collect labels
 		var lines = source.Split('\n', StringSplitOptions.TrimEntries);
 
-		foreach (var line in lines)
-		{
+		foreach (var line in lines) {
 			if (string.IsNullOrWhiteSpace(line) || line.StartsWith(';'))
 				continue;
 
 			var workLine = line;
 
 			// Check for label
-			if (workLine.EndsWith(':'))
-			{
+			if (workLine.EndsWith(':')) {
 				var labelName = workLine[..^1].Trim();
 				labels[labelName] = currentOffset;
 				continue;
@@ -368,21 +332,17 @@ public class ScriptEditorService : IScriptEditorService
 			var mnemonic = parts[0].ToUpperInvariant();
 
 			// Handle .byte directive
-			if (mnemonic == ".BYTE")
-			{
-				foreach (var valuePart in parts.Skip(1))
-				{
+			if (mnemonic == ".BYTE") {
+				foreach (var valuePart in parts.Skip(1)) {
 					var byteValue = ParseNumericValue(valuePart);
-					var byteInst = new ScriptInstruction
-					{
+					var byteInst = new ScriptInstruction {
 						Offset = currentOffset,
 						Opcode = (byte)byteValue,
 						Mnemonic = ".byte",
 						Length = 1,
 						RawBytes = [(byte)byteValue]
 					};
-					byteInst.Parameters.Add(new ScriptParameterValue
-					{
+					byteInst.Parameters.Add(new ScriptParameterValue {
 						Name = "value",
 						Type = ParameterType.Byte,
 						Value = byteValue,
@@ -391,14 +351,14 @@ public class ScriptEditorService : IScriptEditorService
 					script.Instructions.Add(byteInst);
 					currentOffset++;
 				}
+
 				continue;
 			}
 
 			if (!opcodeMap.TryGetValue(mnemonic, out var opcodeDef))
 				throw new InvalidOperationException($"Unknown mnemonic: {mnemonic}");
 
-			var instruction = new ScriptInstruction
-			{
+			var instruction = new ScriptInstruction {
 				Offset = currentOffset,
 				Opcode = opcodeDef.Code,
 				Mnemonic = opcodeDef.Mnemonic
@@ -406,42 +366,34 @@ public class ScriptEditorService : IScriptEditorService
 
 			// Parse parameters
 			var paramIndex = 0;
-			foreach (var paramDef in opcodeDef.Parameters)
-			{
-				if (paramIndex + 1 >= parts.Length)
-				{
+			foreach (var paramDef in opcodeDef.Parameters) {
+				if (paramIndex + 1 >= parts.Length) {
 					if (!paramDef.IsOptional)
 						throw new InvalidOperationException($"Missing parameter {paramDef.Name} for {mnemonic}");
 					break;
 				}
 
 				var paramStr = parts[paramIndex + 1];
-				var paramValue = new ScriptParameterValue
-				{
+				var paramValue = new ScriptParameterValue {
 					Name = paramDef.Name,
 					Type = paramDef.Type
 				};
 
 				// Check if it's a label reference
 				if (!paramStr.StartsWith('$') && !paramStr.StartsWith("0x", StringComparison.OrdinalIgnoreCase) &&
-					!char.IsDigit(paramStr[0]) && !paramStr.StartsWith('-'))
-				{
+					!char.IsDigit(paramStr[0]) && !paramStr.StartsWith('-')) {
 					// It's a label reference
 					labelReferences.Add((script.Instructions.Count, paramIndex, paramStr));
 					paramValue.Value = 0; // Will be resolved later
-				}
-				else
-				{
+				} else {
 					paramValue.Value = ParseNumericValue(paramStr);
 				}
 
 				// Check enum values (reverse lookup)
-				if (paramDef.EnumValues != null)
-				{
+				if (paramDef.EnumValues != null) {
 					var enumEntry = paramDef.EnumValues.FirstOrDefault(e =>
 						string.Equals(e.Value, paramStr, StringComparison.OrdinalIgnoreCase));
-					if (enumEntry.Value != null)
-					{
+					if (enumEntry.Value != null) {
 						paramValue.Value = enumEntry.Key;
 						paramValue.EnumName = enumEntry.Value;
 					}
@@ -453,8 +405,7 @@ public class ScriptEditorService : IScriptEditorService
 
 			// Calculate instruction length
 			instruction.Length = 1; // opcode byte
-			foreach (var param in instruction.Parameters)
-			{
+			foreach (var param in instruction.Parameters) {
 				var paramDef = opcodeDef.Parameters[instruction.Parameters.IndexOf(param)];
 				instruction.Length += GetParameterSize(paramDef);
 			}
@@ -464,8 +415,7 @@ public class ScriptEditorService : IScriptEditorService
 		}
 
 		// Second pass: resolve label references
-		foreach (var (instIdx, paramIdx, label) in labelReferences)
-		{
+		foreach (var (instIdx, paramIdx, label) in labelReferences) {
 			if (!labels.TryGetValue(label, out var targetOffset))
 				throw new InvalidOperationException($"Undefined label: {label}");
 
@@ -473,13 +423,11 @@ public class ScriptEditorService : IScriptEditorService
 		}
 
 		// Generate raw bytes
-		foreach (var instruction in script.Instructions)
-		{
+		foreach (var instruction in script.Instructions) {
 			var bytes = new List<byte> { instruction.Opcode };
 			var paramIndex = 0;
 
-			foreach (var param in instruction.Parameters)
-			{
+			foreach (var param in instruction.Parameters) {
 				var opcodeDef = opcodeMap.Values.FirstOrDefault(o => o.Code == instruction.Opcode);
 				var paramDef = opcodeDef?.Parameters.ElementAtOrDefault(paramIndex);
 				var size = paramDef != null ? GetParameterSize(paramDef) : 1;
@@ -499,8 +447,7 @@ public class ScriptEditorService : IScriptEditorService
 		return script;
 	}
 
-	private static long ParseNumericValue(string value)
-	{
+	private static long ParseNumericValue(string value) {
 		value = value.Trim();
 
 		if (value.StartsWith("$"))
@@ -517,14 +464,12 @@ public class ScriptEditorService : IScriptEditorService
 
 	#region Export
 
-	public byte[] ExportScript(GameScript GameScript)
-	{
+	public byte[] ExportScript(GameScript GameScript) {
 		ArgumentNullException.ThrowIfNull(GameScript);
 
 		var bytes = new List<byte>();
 
-		foreach (var instruction in GameScript.Instructions)
-		{
+		foreach (var instruction in GameScript.Instructions) {
 			bytes.AddRange(instruction.RawBytes);
 		}
 
@@ -535,8 +480,7 @@ public class ScriptEditorService : IScriptEditorService
 
 	#region Validation
 
-	public ScriptValidationResult ValidateScript(GameScript GameScript, ScriptDefinition definition)
-	{
+	public ScriptValidationResult ValidateScript(GameScript GameScript, ScriptDefinition definition) {
 		ArgumentNullException.ThrowIfNull(GameScript);
 		ArgumentNullException.ThrowIfNull(definition);
 
@@ -544,32 +488,27 @@ public class ScriptEditorService : IScriptEditorService
 		var opcodeMap = definition.Opcodes.ToDictionary(o => o.Code);
 		var validOffsets = new HashSet<int>(GameScript.Instructions.Select(i => i.Offset));
 
-		for (int i = 0; i < GameScript.Instructions.Count; i++)
-		{
+		for (int i = 0; i < GameScript.Instructions.Count; i++) {
 			var instruction = GameScript.Instructions[i];
 
 			// Check for unknown opcodes
-			if (!opcodeMap.TryGetValue(instruction.Opcode, out var opcodeDef))
-			{
-				if (instruction.Mnemonic != ".byte")
-				{
-					result.Warnings.Add(new ScriptValidationError
-					{
+			if (!opcodeMap.TryGetValue(instruction.Opcode, out var opcodeDef)) {
+				if (instruction.Mnemonic != ".byte") {
+					result.Warnings.Add(new ScriptValidationError {
 						InstructionIndex = i,
 						Offset = instruction.Offset,
 						Message = $"Unknown opcode 0x{instruction.Opcode:x2}",
 						Severity = ScriptValidationSeverity.Warning
 					});
 				}
+
 				continue;
 			}
 
 			// Check parameter count
 			var requiredParams = opcodeDef.Parameters.Count(p => !p.IsOptional);
-			if (instruction.Parameters.Count < requiredParams)
-			{
-				result.Errors.Add(new ScriptValidationError
-				{
+			if (instruction.Parameters.Count < requiredParams) {
+				result.Errors.Add(new ScriptValidationError {
 					InstructionIndex = i,
 					Offset = instruction.Offset,
 					Message = $"{instruction.Mnemonic} requires {requiredParams} parameters, got {instruction.Parameters.Count}",
@@ -578,16 +517,13 @@ public class ScriptEditorService : IScriptEditorService
 			}
 
 			// Check parameter values
-			for (int p = 0; p < instruction.Parameters.Count && p < opcodeDef.Parameters.Count; p++)
-			{
+			for (int p = 0; p < instruction.Parameters.Count && p < opcodeDef.Parameters.Count; p++) {
 				var paramDef = opcodeDef.Parameters[p];
 				var paramValue = instruction.Parameters[p];
 
 				// Check min/max
-				if (paramDef.MinValue.HasValue && paramValue.Value < paramDef.MinValue.Value)
-				{
-					result.Errors.Add(new ScriptValidationError
-					{
+				if (paramDef.MinValue.HasValue && paramValue.Value < paramDef.MinValue.Value) {
+					result.Errors.Add(new ScriptValidationError {
 						InstructionIndex = i,
 						Offset = instruction.Offset,
 						Message = $"Parameter {paramDef.Name} value {paramValue.Value} is below minimum {paramDef.MinValue}",
@@ -595,10 +531,8 @@ public class ScriptEditorService : IScriptEditorService
 					});
 				}
 
-				if (paramDef.MaxValue.HasValue && paramValue.Value > paramDef.MaxValue.Value)
-				{
-					result.Errors.Add(new ScriptValidationError
-					{
+				if (paramDef.MaxValue.HasValue && paramValue.Value > paramDef.MaxValue.Value) {
+					result.Errors.Add(new ScriptValidationError {
 						InstructionIndex = i,
 						Offset = instruction.Offset,
 						Message = $"Parameter {paramDef.Name} value {paramValue.Value} is above maximum {paramDef.MaxValue}",
@@ -607,10 +541,8 @@ public class ScriptEditorService : IScriptEditorService
 				}
 
 				// Check enum values
-				if (paramDef.EnumValues != null && !paramDef.EnumValues.ContainsKey((int)paramValue.Value))
-				{
-					result.Warnings.Add(new ScriptValidationError
-					{
+				if (paramDef.EnumValues != null && !paramDef.EnumValues.ContainsKey((int)paramValue.Value)) {
+					result.Warnings.Add(new ScriptValidationError {
 						InstructionIndex = i,
 						Offset = instruction.Offset,
 						Message = $"Parameter {paramDef.Name} value 0x{paramValue.Value:x} is not a known enum value",
@@ -620,13 +552,10 @@ public class ScriptEditorService : IScriptEditorService
 
 				// Check jump targets
 				if ((paramDef.Type == ParameterType.Pointer || paramDef.Type == ParameterType.Offset) &&
-					opcodeDef.IsJump)
-				{
+					opcodeDef.IsJump) {
 					var targetOffset = (int)paramValue.Value;
-					if (!validOffsets.Contains(targetOffset))
-					{
-						result.Warnings.Add(new ScriptValidationError
-						{
+					if (!validOffsets.Contains(targetOffset)) {
+						result.Warnings.Add(new ScriptValidationError {
 							InstructionIndex = i,
 							Offset = instruction.Offset,
 							Message = $"Jump target 0x{targetOffset:x} is not a valid instruction offset",
@@ -638,16 +567,12 @@ public class ScriptEditorService : IScriptEditorService
 		}
 
 		// Check for missing terminator
-		if (definition.TerminatorByte.HasValue && GameScript.Instructions.Count > 0)
-		{
+		if (definition.TerminatorByte.HasValue && GameScript.Instructions.Count > 0) {
 			var lastInstruction = GameScript.Instructions[^1];
-			if (lastInstruction.Opcode != definition.TerminatorByte.Value)
-			{
+			if (lastInstruction.Opcode != definition.TerminatorByte.Value) {
 				var terminatingOpcode = opcodeMap.Values.FirstOrDefault(o => o.IsTerminator && !o.IsConditional);
-				if (terminatingOpcode == null || lastInstruction.Opcode != terminatingOpcode.Code)
-				{
-					result.Warnings.Add(new ScriptValidationError
-					{
+				if (terminatingOpcode == null || lastInstruction.Opcode != terminatingOpcode.Code) {
+					result.Warnings.Add(new ScriptValidationError {
 						InstructionIndex = GameScript.Instructions.Count - 1,
 						Offset = lastInstruction.Offset,
 						Message = "GameScript does not end with a terminator instruction",
@@ -664,24 +589,19 @@ public class ScriptEditorService : IScriptEditorService
 
 	#region Cross-References
 
-	public List<ScriptCrossReference> GetCrossReferences(GameScript GameScript)
-	{
+	public List<ScriptCrossReference> GetCrossReferences(GameScript GameScript) {
 		ArgumentNullException.ThrowIfNull(GameScript);
 
 		var refs = new List<ScriptCrossReference>();
 
-		foreach (var instruction in GameScript.Instructions)
-		{
+		foreach (var instruction in GameScript.Instructions) {
 			// Check if this instruction has jump/call parameters
-			foreach (var param in instruction.Parameters)
-			{
-				if (param.Type == ParameterType.Pointer || param.Type == ParameterType.Offset)
-				{
+			foreach (var param in instruction.Parameters) {
+				if (param.Type == ParameterType.Pointer || param.Type == ParameterType.Offset) {
 					var targetOffset = (int)param.Value;
 					var targetInst = GameScript.Instructions.FirstOrDefault(i => i.Offset == targetOffset);
 
-					refs.Add(new ScriptCrossReference
-					{
+					refs.Add(new ScriptCrossReference {
 						SourceOffset = instruction.Offset,
 						TargetOffset = targetOffset,
 						Type = GetCrossRefType(instruction),
@@ -695,8 +615,7 @@ public class ScriptEditorService : IScriptEditorService
 		return refs;
 	}
 
-	private static CrossReferenceType GetCrossRefType(ScriptInstruction instruction)
-	{
+	private static CrossReferenceType GetCrossRefType(ScriptInstruction instruction) {
 		var mnemonic = instruction.Mnemonic.ToUpperInvariant();
 
 		if (mnemonic.Contains("CALL") || mnemonic == "JSR" || mnemonic == "JSL")
@@ -708,16 +627,14 @@ public class ScriptEditorService : IScriptEditorService
 		return CrossReferenceType.Jump;
 	}
 
-	public List<ScriptTextReference> GetTextReferences(GameScript GameScript, ScriptDefinition definition)
-	{
+	public List<ScriptTextReference> GetTextReferences(GameScript GameScript, ScriptDefinition definition) {
 		ArgumentNullException.ThrowIfNull(GameScript);
 		ArgumentNullException.ThrowIfNull(definition);
 
 		var refs = new List<ScriptTextReference>();
 		var opcodeMap = definition.Opcodes.ToDictionary(o => o.Code);
 
-		foreach (var instruction in GameScript.Instructions)
-		{
+		foreach (var instruction in GameScript.Instructions) {
 			if (!opcodeMap.TryGetValue(instruction.Opcode, out var opcodeDef))
 				continue;
 
@@ -725,15 +642,12 @@ public class ScriptEditorService : IScriptEditorService
 				continue;
 
 			// Find the text parameter
-			for (int i = 0; i < instruction.Parameters.Count && i < opcodeDef.Parameters.Count; i++)
-			{
+			for (int i = 0; i < instruction.Parameters.Count && i < opcodeDef.Parameters.Count; i++) {
 				var paramDef = opcodeDef.Parameters[i];
 				if (paramDef.Type == ParameterType.TextId ||
-					paramDef.Name.Equals(opcodeDef.TextParameterName, StringComparison.OrdinalIgnoreCase))
-				{
+					paramDef.Name.Equals(opcodeDef.TextParameterName, StringComparison.OrdinalIgnoreCase)) {
 					var param = instruction.Parameters[i];
-					refs.Add(new ScriptTextReference
-					{
+					refs.Add(new ScriptTextReference {
 						InstructionOffset = instruction.Offset,
 						TextId = (int)param.Value,
 						InstructionMnemonic = instruction.Mnemonic
@@ -749,8 +663,7 @@ public class ScriptEditorService : IScriptEditorService
 
 	#region Detection
 
-	public List<DetectedScript> DetectScripts(byte[] data, ScriptDefinition definition, ScriptDetectionOptions options)
-	{
+	public List<DetectedScript> DetectScripts(byte[] data, ScriptDefinition definition, ScriptDetectionOptions options) {
 		ArgumentNullException.ThrowIfNull(data);
 		ArgumentNullException.ThrowIfNull(definition);
 		ArgumentNullException.ThrowIfNull(options);
@@ -761,8 +674,7 @@ public class ScriptEditorService : IScriptEditorService
 
 		var endOffset = Math.Min(options.EndOffset > 0 ? options.EndOffset : data.Length, data.Length);
 
-		for (int offset = options.StartOffset; offset < endOffset; offset++)
-		{
+		for (int offset = options.StartOffset; offset < endOffset; offset++) {
 			// Skip if already processed
 			if (!options.AllowOverlap && processedRanges.Any(r => offset >= r.start && offset < r.end))
 				continue;
@@ -772,8 +684,7 @@ public class ScriptEditorService : IScriptEditorService
 				continue;
 
 			// Try to parse as GameScript
-			try
-			{
+			try {
 				var GameScript = ParseScript(data, offset, definition, 4096); // Max 4KB per GameScript
 
 				if (GameScript.Instructions.Count < options.MinInstructions ||
@@ -799,8 +710,7 @@ public class ScriptEditorService : IScriptEditorService
 					.Distinct()
 					.ToList();
 
-				detected.Add(new DetectedScript
-				{
+				detected.Add(new DetectedScript {
 					Offset = offset,
 					Length = GameScript.Length,
 					InstructionCount = GameScript.Instructions.Count,
@@ -811,9 +721,7 @@ public class ScriptEditorService : IScriptEditorService
 
 				// Mark range as processed
 				processedRanges.Add((offset, offset + GameScript.Length));
-			}
-			catch
-			{
+			} catch {
 				// Not a valid GameScript at this offset
 			}
 		}
@@ -821,8 +729,7 @@ public class ScriptEditorService : IScriptEditorService
 		return detected.OrderByDescending(d => d.Confidence).ThenBy(d => d.Offset).ToList();
 	}
 
-	private static int CalculateConfidence(GameScript GameScript, ScriptDefinition definition)
-	{
+	private static int CalculateConfidence(GameScript GameScript, ScriptDefinition definition) {
 		if (GameScript.Instructions.Count == 0)
 			return 0;
 
@@ -851,8 +758,7 @@ public class ScriptEditorService : IScriptEditorService
 			score += 5;
 
 		// Bonus for having flow control
-		var hasFlowControl = GameScript.Instructions.Any(i =>
-		{
+		var hasFlowControl = GameScript.Instructions.Any(i => {
 			var upper = i.Mnemonic.ToUpperInvariant();
 			return upper.Contains("JUMP") || upper.Contains("GOTO") ||
 				   upper.Contains("CALL") || upper.Contains("RET") ||
@@ -868,8 +774,7 @@ public class ScriptEditorService : IScriptEditorService
 
 	#region Templates
 
-	public List<ScriptDefinitionTemplate> GetTemplates()
-	{
+	public List<ScriptDefinitionTemplate> GetTemplates() {
 		return
 		[
 			CreateDragonQuestTemplate(),
@@ -879,15 +784,12 @@ public class ScriptEditorService : IScriptEditorService
 		];
 	}
 
-	private static ScriptDefinitionTemplate CreateDragonQuestTemplate()
-	{
-		return new ScriptDefinitionTemplate
-		{
+	private static ScriptDefinitionTemplate CreateDragonQuestTemplate() {
+		return new ScriptDefinitionTemplate {
 			Name = "Dragon Quest (NES)",
 			Description = "GameScript format for Dragon Quest/Dragon Warrior NES games",
 			Category = "RPG",
-			Definition = new ScriptDefinition
-			{
+			Definition = new ScriptDefinition {
 				Name = "Dragon Quest GameScript",
 				Platform = ScriptPlatform.NES,
 				Endianness = Endianness.Little,
@@ -928,15 +830,12 @@ public class ScriptEditorService : IScriptEditorService
 		};
 	}
 
-	private static ScriptDefinitionTemplate CreateFinalFantasyTemplate()
-	{
-		return new ScriptDefinitionTemplate
-		{
+	private static ScriptDefinitionTemplate CreateFinalFantasyTemplate() {
+		return new ScriptDefinitionTemplate {
 			Name = "Final Fantasy (NES)",
 			Description = "GameScript format for Final Fantasy NES",
 			Category = "RPG",
-			Definition = new ScriptDefinition
-			{
+			Definition = new ScriptDefinition {
 				Name = "Final Fantasy GameScript",
 				Platform = ScriptPlatform.NES,
 				Endianness = Endianness.Little,
@@ -970,15 +869,12 @@ public class ScriptEditorService : IScriptEditorService
 		};
 	}
 
-	private static ScriptDefinitionTemplate CreateGenericNESTemplate()
-	{
-		return new ScriptDefinitionTemplate
-		{
+	private static ScriptDefinitionTemplate CreateGenericNESTemplate() {
+		return new ScriptDefinitionTemplate {
 			Name = "Generic NES GameScript",
 			Description = "Basic GameScript format template for NES games",
 			Category = "Generic",
-			Definition = new ScriptDefinition
-			{
+			Definition = new ScriptDefinition {
 				Name = "Generic NES GameScript",
 				Platform = ScriptPlatform.NES,
 				Endianness = Endianness.Little,
@@ -1009,15 +905,12 @@ public class ScriptEditorService : IScriptEditorService
 		};
 	}
 
-	private static ScriptDefinitionTemplate CreateGenericSNESTemplate()
-	{
-		return new ScriptDefinitionTemplate
-		{
+	private static ScriptDefinitionTemplate CreateGenericSNESTemplate() {
+		return new ScriptDefinitionTemplate {
 			Name = "Generic SNES GameScript",
 			Description = "Basic GameScript format template for SNES games",
 			Category = "Generic",
-			Definition = new ScriptDefinition
-			{
+			Definition = new ScriptDefinition {
 				Name = "Generic SNES GameScript",
 				Platform = ScriptPlatform.SNES,
 				Endianness = Endianness.Little,
@@ -1055,8 +948,7 @@ public class ScriptEditorService : IScriptEditorService
 
 	#region Labels
 
-	public int? ResolveLabel(GameScript script, string label)
-	{
+	public int? ResolveLabel(GameScript script, string label) {
 		ArgumentNullException.ThrowIfNull(script);
 		ArgumentNullException.ThrowIfNull(label);
 
@@ -1070,20 +962,16 @@ public class ScriptEditorService : IScriptEditorService
 		return match.Value != null ? match.Key : null;
 	}
 
-	public Dictionary<int, string> GenerateLabels(GameScript script, string prefix = "loc_")
-	{
+	public Dictionary<int, string> GenerateLabels(GameScript script, string prefix = "loc_") {
 		ArgumentNullException.ThrowIfNull(script);
 
 		var labels = new Dictionary<int, string>();
 		var targetOffsets = new HashSet<int>();
 
 		// Find all jump targets
-		foreach (var instruction in script.Instructions)
-		{
-			foreach (var param in instruction.Parameters)
-			{
-				if (param.Type == ParameterType.Pointer || param.Type == ParameterType.Offset)
-				{
+		foreach (var instruction in script.Instructions) {
+			foreach (var param in instruction.Parameters) {
+				if (param.Type == ParameterType.Pointer || param.Type == ParameterType.Offset) {
 					targetOffsets.Add((int)param.Value);
 				}
 			}
@@ -1091,11 +979,9 @@ public class ScriptEditorService : IScriptEditorService
 
 		// Create labels for valid targets
 		var labelIndex = 0;
-		foreach (var offset in targetOffsets.OrderBy(o => o))
-		{
+		foreach (var offset in targetOffsets.OrderBy(o => o)) {
 			// Only create label if it points to an actual instruction
-			if (script.Instructions.Any(i => i.Offset == offset))
-			{
+			if (script.Instructions.Any(i => i.Offset == offset)) {
 				labels[offset] = $"{prefix}{offset:x4}";
 				labelIndex++;
 			}
@@ -1108,13 +994,11 @@ public class ScriptEditorService : IScriptEditorService
 
 	#region Helper Methods
 
-	private static int GetParameterSize(OpcodeParameter param)
-	{
+	private static int GetParameterSize(OpcodeParameter param) {
 		if (param.Size > 0)
 			return param.Size;
 
-		return param.Type switch
-		{
+		return param.Type switch {
 			ParameterType.Byte or ParameterType.SByte => 1,
 			ParameterType.Word or ParameterType.SWord => 2,
 			ParameterType.DWord => 4,
@@ -1124,35 +1008,28 @@ public class ScriptEditorService : IScriptEditorService
 		};
 	}
 
-	private static bool IsSignedType(ParameterType type)
-	{
+	private static bool IsSignedType(ParameterType type) {
 		return type is ParameterType.SByte or ParameterType.SWord;
 	}
 
-	private static long ReadValue(byte[] data, int offset, int size, Endianness endianness, bool signed)
-	{
+	private static long ReadValue(byte[] data, int offset, int size, Endianness endianness, bool signed) {
 		if (offset + size > data.Length)
 			return 0;
 
 		long value = 0;
 
-		if (endianness == Endianness.Little)
-		{
+		if (endianness == Endianness.Little) {
 			for (int i = 0; i < size; i++)
 				value |= (long)data[offset + i] << (i * 8);
-		}
-		else
-		{
+		} else {
 			for (int i = 0; i < size; i++)
 				value |= (long)data[offset + i] << ((size - 1 - i) * 8);
 		}
 
 		// Sign extend if needed
-		if (signed)
-		{
-			var signBit = 1L << (size * 8 - 1);
-			if ((value & signBit) != 0)
-			{
+		if (signed) {
+			var signBit = 1L << ((size * 8) - 1);
+			if ((value & signBit) != 0) {
 				// Extend sign bits
 				for (int i = size * 8; i < 64; i++)
 					value |= 1L << i;
@@ -1162,17 +1039,13 @@ public class ScriptEditorService : IScriptEditorService
 		return value;
 	}
 
-	private static byte[] WriteValue(long value, int size, Endianness endianness)
-	{
+	private static byte[] WriteValue(long value, int size, Endianness endianness) {
 		var bytes = new byte[size];
 
-		if (endianness == Endianness.Little)
-		{
+		if (endianness == Endianness.Little) {
 			for (int i = 0; i < size; i++)
 				bytes[i] = (byte)(value >> (i * 8));
-		}
-		else
-		{
+		} else {
 			for (int i = 0; i < size; i++)
 				bytes[i] = (byte)(value >> ((size - 1 - i) * 8));
 		}

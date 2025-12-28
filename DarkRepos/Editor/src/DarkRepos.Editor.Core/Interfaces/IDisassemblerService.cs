@@ -5,8 +5,7 @@ namespace DarkRepos.Editor.Core.Interfaces;
 /// <summary>
 /// Service for disassembly operations.
 /// </summary>
-public interface IDisassemblerService
-{
+public interface IDisassemblerService {
 	/// <summary>
 	/// Disassemble a range of bytes.
 	/// </summary>
@@ -50,8 +49,7 @@ public record DisassemblyLine(
 /// <summary>
 /// Output format for disassembly.
 /// </summary>
-public enum DisassemblyFormat
-{
+public enum DisassemblyFormat {
 	/// <summary>ca65 assembler format.</summary>
 	Ca65,
 
@@ -68,8 +66,7 @@ public enum DisassemblyFormat
 /// <summary>
 /// Interface for CPU-specific instruction decoders.
 /// </summary>
-public interface IInstructionDecoder
-{
+public interface IInstructionDecoder {
 	/// <summary>
 	/// Decode an instruction at the given offset.
 	/// </summary>

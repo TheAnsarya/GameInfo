@@ -5,8 +5,7 @@ namespace DarkRepos.Editor.Core.Interfaces;
 /// <summary>
 /// Service for managing ROM files.
 /// </summary>
-public interface IRomService
-{
+public interface IRomService {
 	/// <summary>
 	/// Load a ROM from a file path.
 	/// </summary>

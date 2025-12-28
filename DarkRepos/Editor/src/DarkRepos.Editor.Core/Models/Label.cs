@@ -3,8 +3,7 @@ namespace DarkRepos.Editor.Core.Models;
 /// <summary>
 /// Represents a label/symbol for a memory address.
 /// </summary>
-public class Label
-{
+public class Label {
 	/// <summary>
 	/// Unique identifier for the label.
 	/// </summary>
@@ -54,8 +53,7 @@ public class Label
 /// <summary>
 /// Types of labels/symbols.
 /// </summary>
-public enum LabelType
-{
+public enum LabelType {
 	/// <summary>Unknown type.</summary>
 	Unknown = 0,
 
