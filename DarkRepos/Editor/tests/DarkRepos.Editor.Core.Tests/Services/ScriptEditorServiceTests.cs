@@ -5,15 +5,13 @@ using Xunit;
 
 namespace DarkRepos.Editor.Core.Tests.Services;
 
-public class ScriptEditorServiceTests
-{
+public class ScriptEditorServiceTests {
 	private readonly ScriptEditorService _service = new();
 
 	#region Script Definition Tests
 
 	[Fact]
-	public void LoadScriptDefinition_ValidJson_ReturnsDefinition()
-	{
+	public void LoadScriptDefinition_ValidJson_ReturnsDefinition() {
 		// Arrange
 		var json = """
 		{
@@ -40,8 +38,7 @@ public class ScriptEditorServiceTests
 	}
 
 	[Fact]
-	public void LoadScriptDefinition_EmptyJson_ThrowsException()
-	{
+	public void LoadScriptDefinition_EmptyJson_ThrowsException() {
 		// Arrange
 		var json = "";
 
@@ -53,8 +50,7 @@ public class ScriptEditorServiceTests
 	}
 
 	[Fact]
-	public void LoadScriptDefinition_NoOpcodes_ThrowsException()
-	{
+	public void LoadScriptDefinition_NoOpcodes_ThrowsException() {
 		// Arrange
 		var json = """
 		{
@@ -72,8 +68,7 @@ public class ScriptEditorServiceTests
 	}
 
 	[Fact]
-	public void LoadScriptDefinition_DuplicateOpcodes_ThrowsException()
-	{
+	public void LoadScriptDefinition_DuplicateOpcodes_ThrowsException() {
 		// Arrange
 		var json = """
 		{
@@ -98,8 +93,7 @@ public class ScriptEditorServiceTests
 	#region Parsing Tests
 
 	[Fact]
-	public void ParseScript_SimpleScript_ReturnsCorrectInstructions()
-	{
+	public void ParseScript_SimpleScript_ReturnsCorrectInstructions() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		// NOP, JUMP $0010, END (terminator 0xff)
@@ -119,8 +113,7 @@ public class ScriptEditorServiceTests
 	}
 
 	[Fact]
-	public void ParseScript_WithTerminator_StopsAtTerminator()
-	{
+	public void ParseScript_WithTerminator_StopsAtTerminator() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		byte[] data = [0x01, 0xff, 0x01, 0x01]; // NOP, END, more data that should be ignored
@@ -134,8 +127,7 @@ public class ScriptEditorServiceTests
 	}
 
 	[Fact]
-	public void ParseScript_UnknownOpcode_TreatsAsDataByte()
-	{
+	public void ParseScript_UnknownOpcode_TreatsAsDataByte() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		byte[] data = [0xaa, 0xff]; // Unknown opcode, END
@@ -150,8 +142,7 @@ public class ScriptEditorServiceTests
 	}
 
 	[Fact]
-	public void ParseScript_WithOffset_StartsFromCorrectPosition()
-	{
+	public void ParseScript_WithOffset_StartsFromCorrectPosition() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		byte[] data = [0xaa, 0xbb, 0x01, 0xff]; // junk, junk, NOP, END
@@ -166,8 +157,7 @@ public class ScriptEditorServiceTests
 	}
 
 	[Fact]
-	public void ParseScript_GeneratesLabelsForJumpTargets()
-	{
+	public void ParseScript_GeneratesLabelsForJumpTargets() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		// NOP at 0, JUMP to offset 4 (little-endian: 04 00), NOP at 4, END at 5
@@ -185,8 +175,7 @@ public class ScriptEditorServiceTests
 	#region Decompilation Tests
 
 	[Fact]
-	public void DecompileScript_BasicScript_ReturnsFormattedText()
-	{
+	public void DecompileScript_BasicScript_ReturnsFormattedText() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		byte[] data = [0x01, 0xff]; // NOP, END
@@ -201,8 +190,7 @@ public class ScriptEditorServiceTests
 	}
 
 	[Fact]
-	public void DecompileScript_WithHeader_IncludesScriptInfo()
-	{
+	public void DecompileScript_WithHeader_IncludesScriptInfo() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		byte[] data = [0x01, 0xff];
@@ -218,8 +206,7 @@ public class ScriptEditorServiceTests
 	}
 
 	[Fact]
-	public void DecompileScript_WithOffsets_IncludesOffsetComments()
-	{
+	public void DecompileScript_WithOffsets_IncludesOffsetComments() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		byte[] data = [0x01, 0xff];
@@ -233,8 +220,7 @@ public class ScriptEditorServiceTests
 	}
 
 	[Fact]
-	public void DecompileScript_NoHeader_OmitsScriptInfo()
-	{
+	public void DecompileScript_NoHeader_OmitsScriptInfo() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		byte[] data = [0x01, 0xff];
@@ -252,8 +238,7 @@ public class ScriptEditorServiceTests
 	#region Compilation Tests
 
 	[Fact]
-	public void CompileScript_BasicSource_ReturnsScript()
-	{
+	public void CompileScript_BasicSource_ReturnsScript() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		var source = """
@@ -271,8 +256,7 @@ public class ScriptEditorServiceTests
 	}
 
 	[Fact]
-	public void CompileScript_WithLabels_ResolvesReferences()
-	{
+	public void CompileScript_WithLabels_ResolvesReferences() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		var source = """
@@ -291,8 +275,7 @@ public class ScriptEditorServiceTests
 	}
 
 	[Fact]
-	public void CompileScript_WithHexValues_ParsesCorrectly()
-	{
+	public void CompileScript_WithHexValues_ParsesCorrectly() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		var source = """
@@ -308,8 +291,7 @@ public class ScriptEditorServiceTests
 	}
 
 	[Fact]
-	public void CompileScript_WithComments_IgnoresComments()
-	{
+	public void CompileScript_WithComments_IgnoresComments() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		var source = """
@@ -326,8 +308,7 @@ public class ScriptEditorServiceTests
 	}
 
 	[Fact]
-	public void CompileScript_UndefinedLabel_ThrowsException()
-	{
+	public void CompileScript_UndefinedLabel_ThrowsException() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		var source = """
@@ -344,8 +325,7 @@ public class ScriptEditorServiceTests
 	}
 
 	[Fact]
-	public void CompileScript_UnknownMnemonic_ThrowsException()
-	{
+	public void CompileScript_UnknownMnemonic_ThrowsException() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		var source = """
@@ -366,8 +346,7 @@ public class ScriptEditorServiceTests
 	#region Export Tests
 
 	[Fact]
-	public void ExportScript_ReturnsRawBytes()
-	{
+	public void ExportScript_ReturnsRawBytes() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		byte[] originalData = [0x01, 0x02, 0x10, 0x00, 0xff];
@@ -381,8 +360,7 @@ public class ScriptEditorServiceTests
 	}
 
 	[Fact]
-	public void CompileAndExport_RoundTrip_PreservesBytes()
-	{
+	public void CompileAndExport_RoundTrip_PreservesBytes() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		var source = """
@@ -404,8 +382,7 @@ public class ScriptEditorServiceTests
 	#region Validation Tests
 
 	[Fact]
-	public void ValidateScript_ValidScript_ReturnsNoErrors()
-	{
+	public void ValidateScript_ValidScript_ReturnsNoErrors() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		byte[] data = [0x01, 0xff];
@@ -420,8 +397,7 @@ public class ScriptEditorServiceTests
 	}
 
 	[Fact]
-	public void ValidateScript_MissingTerminator_ReturnsWarning()
-	{
+	public void ValidateScript_MissingTerminator_ReturnsWarning() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		byte[] data = [0x01, 0x01, 0x01]; // NOPs with no terminator
@@ -440,8 +416,7 @@ public class ScriptEditorServiceTests
 	#region Cross-Reference Tests
 
 	[Fact]
-	public void GetCrossReferences_WithJumps_ReturnsCrossRefs()
-	{
+	public void GetCrossReferences_WithJumps_ReturnsCrossRefs() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		byte[] data = [0x02, 0x04, 0x00, 0x01, 0xff]; // JUMP $0004, NOP, END
@@ -460,8 +435,7 @@ public class ScriptEditorServiceTests
 	#region Template Tests
 
 	[Fact]
-	public void GetTemplates_ReturnsNonEmptyList()
-	{
+	public void GetTemplates_ReturnsNonEmptyList() {
 		// Act
 		var templates = _service.GetTemplates();
 
@@ -470,14 +444,12 @@ public class ScriptEditorServiceTests
 	}
 
 	[Fact]
-	public void GetTemplates_AllTemplatesHaveValidDefinitions()
-	{
+	public void GetTemplates_AllTemplatesHaveValidDefinitions() {
 		// Act
 		var templates = _service.GetTemplates();
 
 		// Assert
-		foreach (var template in templates)
-		{
+		foreach (var template in templates) {
 			template.Name.Should().NotBeNullOrEmpty();
 			template.Definition.Should().NotBeNull();
 			template.Definition.Opcodes.Should().NotBeEmpty();
@@ -485,8 +457,7 @@ public class ScriptEditorServiceTests
 	}
 
 	[Fact]
-	public void GetTemplates_ContainsDragonQuestTemplate()
-	{
+	public void GetTemplates_ContainsDragonQuestTemplate() {
 		// Act
 		var templates = _service.GetTemplates();
 
@@ -499,8 +470,7 @@ public class ScriptEditorServiceTests
 	#region Label Tests
 
 	[Fact]
-	public void GenerateLabels_ForJumpTargets_CreatesLabels()
-	{
+	public void GenerateLabels_ForJumpTargets_CreatesLabels() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		byte[] data = [0x02, 0x03, 0x00, 0xff]; // JUMP to offset 3, END at 3
@@ -514,8 +484,7 @@ public class ScriptEditorServiceTests
 	}
 
 	[Fact]
-	public void ResolveLabel_ExistingLabel_ReturnsOffset()
-	{
+	public void ResolveLabel_ExistingLabel_ReturnsOffset() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		byte[] data = [0x02, 0x03, 0x00, 0xff];
@@ -532,8 +501,7 @@ public class ScriptEditorServiceTests
 	}
 
 	[Fact]
-	public void ResolveLabel_NonExistingLabel_ReturnsNull()
-	{
+	public void ResolveLabel_NonExistingLabel_ReturnsNull() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		byte[] data = [0x01, 0xff];
@@ -551,14 +519,12 @@ public class ScriptEditorServiceTests
 	#region Detection Tests
 
 	[Fact]
-	public void DetectScripts_WithValidScripts_ReturnsDetectedScripts()
-	{
+	public void DetectScripts_WithValidScripts_ReturnsDetectedScripts() {
 		// Arrange
 		var definition = CreateTestDefinition();
 		// Two scripts: NOP NOP END at 0, NOP END at 5
 		byte[] data = [0x01, 0x01, 0xff, 0xaa, 0xaa, 0x01, 0xff];
-		var options = new ScriptDetectionOptions
-		{
+		var options = new ScriptDetectionOptions {
 			StartOffset = 0,
 			EndOffset = data.Length,
 			MinInstructions = 2,
@@ -577,10 +543,8 @@ public class ScriptEditorServiceTests
 
 	#region Helper Methods
 
-	private static ScriptDefinition CreateTestDefinition()
-	{
-		return new ScriptDefinition
-		{
+	private static ScriptDefinition CreateTestDefinition() {
+		return new ScriptDefinition {
 			Name = "Test Script",
 			Platform = ScriptPlatform.NES,
 			Endianness = Endianness.Little,

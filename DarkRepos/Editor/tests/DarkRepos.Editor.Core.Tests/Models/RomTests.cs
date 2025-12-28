@@ -4,11 +4,9 @@ using Xunit;
 
 namespace DarkRepos.Editor.Core.Tests.Models;
 
-public class RomTests
-{
+public class RomTests {
 	[Fact]
-	public void Rom_DefaultValues_AreCorrect()
-	{
+	public void Rom_DefaultValues_AreCorrect() {
 		// Arrange & Act
 		var rom = new Rom();
 
@@ -28,16 +26,14 @@ public class RomTests
 	}
 
 	[Fact]
-	public void Rom_CanSetProperties()
-	{
+	public void Rom_CanSetProperties() {
 		// Arrange
 		var id = Guid.NewGuid();
 		var now = DateTime.UtcNow;
 		var data = new byte[] { 0x4e, 0x45, 0x53, 0x1a };
 
 		// Act
-		var rom = new Rom
-		{
+		var rom = new Rom {
 			Id = id,
 			Name = "Super Mario Bros",
 			FileName = "smb.nes",

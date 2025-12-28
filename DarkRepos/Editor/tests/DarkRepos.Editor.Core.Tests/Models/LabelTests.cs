@@ -4,11 +4,9 @@ using Xunit;
 
 namespace DarkRepos.Editor.Core.Tests.Models;
 
-public class LabelTests
-{
+public class LabelTests {
 	[Fact]
-	public void Label_DefaultValues_AreCorrect()
-	{
+	public void Label_DefaultValues_AreCorrect() {
 		// Arrange & Act
 		var label = new Label();
 
@@ -25,16 +23,14 @@ public class LabelTests
 	}
 
 	[Fact]
-	public void Label_CanSetProperties()
-	{
+	public void Label_CanSetProperties() {
 		// Arrange
 		var id = Guid.NewGuid();
 		var projectId = Guid.NewGuid();
 		var now = DateTime.UtcNow;
 
 		// Act
-		var label = new Label
-		{
+		var label = new Label {
 			Id = id,
 			ProjectId = projectId,
 			Address = 0x8000,
@@ -68,8 +64,7 @@ public class LabelTests
 	[InlineData(LabelType.Graphics)]
 	[InlineData(LabelType.Variable)]
 	[InlineData(LabelType.Register)]
-	public void LabelType_AllValues_AreValid(LabelType type)
-	{
+	public void LabelType_AllValues_AreValid(LabelType type) {
 		// Arrange & Act
 		var label = new Label { Type = type };
 

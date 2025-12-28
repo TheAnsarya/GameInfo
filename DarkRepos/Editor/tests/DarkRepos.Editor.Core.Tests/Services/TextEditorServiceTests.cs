@@ -5,20 +5,17 @@ using Xunit;
 
 namespace DarkRepos.Editor.Core.Tests.Services;
 
-public class TextEditorServiceTests
-{
+public class TextEditorServiceTests {
 	private readonly ITextEditorService _service;
 
-	public TextEditorServiceTests()
-	{
+	public TextEditorServiceTests() {
 		_service = new TextEditorService();
 	}
 
 	#region Table File Parsing Tests
 
 	[Fact]
-	public void LoadTableFile_SimpleAscii_ParsesCorrectly()
-	{
+	public void LoadTableFile_SimpleAscii_ParsesCorrectly() {
 		var content = @"
 20= 
 41=A
@@ -37,8 +34,7 @@ public class TextEditorServiceTests
 	}
 
 	[Fact]
-	public void LoadTableFile_WithControlCodes_ParsesCorrectly()
-	{
+	public void LoadTableFile_WithControlCodes_ParsesCorrectly() {
 		var content = @"
 41=A
 FE=<wait>
@@ -51,8 +47,7 @@ FF=<end>
 	}
 
 	[Fact]
-	public void LoadTableFile_WithMultiByteSequence_ParsesCorrectly()
-	{
+	public void LoadTableFile_WithMultiByteSequence_ParsesCorrectly() {
 		var content = @"
 41=A
 FE01=Player
@@ -66,8 +61,7 @@ FE02=Monster
 	}
 
 	[Fact]
-	public void LoadTableFile_IgnoresComments()
-	{
+	public void LoadTableFile_IgnoresComments() {
 		var content = @"
 // This is a comment
 # This is also a comment
@@ -80,8 +74,7 @@ FE02=Monster
 	}
 
 	[Fact]
-	public void LoadTableFile_LineBreakMarker_ParsesCorrectly()
-	{
+	public void LoadTableFile_LineBreakMarker_ParsesCorrectly() {
 		var content = @"
 41=A
 0A=<line>
@@ -97,8 +90,7 @@ FE02=Monster
 	#region Table File Generation Tests
 
 	[Fact]
-	public void GenerateTableFile_RoundTrips()
-	{
+	public void GenerateTableFile_RoundTrips() {
 		var original = @"
 20= 
 41=A
@@ -117,8 +109,7 @@ FE02=Monster
 	#region Decode Tests
 
 	[Fact]
-	public void DecodeText_SimpleString_DecodesCorrectly()
-	{
+	public void DecodeText_SimpleString_DecodesCorrectly() {
 		var table = CreateSimpleAsciiTable();
 		var data = new byte[] { 0x48, 0x65, 0x6c, 0x6c, 0x6f }; // "Hello"
 
@@ -128,8 +119,7 @@ FE02=Monster
 	}
 
 	[Fact]
-	public void DecodeText_WithTerminator_StopsAtTerminator()
-	{
+	public void DecodeText_WithTerminator_StopsAtTerminator() {
 		var table = CreateSimpleAsciiTable();
 		var data = new byte[] { 0x48, 0x69, 0x00, 0x42, 0x79, 0x65 }; // "Hi\0Bye"
 
@@ -139,8 +129,7 @@ FE02=Monster
 	}
 
 	[Fact]
-	public void DecodeText_WithOffset_StartsAtCorrectPosition()
-	{
+	public void DecodeText_WithOffset_StartsAtCorrectPosition() {
 		var table = CreateSimpleAsciiTable();
 		var data = new byte[] { 0x41, 0x42, 0x43, 0x44 }; // "ABCD"
 
@@ -150,8 +139,7 @@ FE02=Monster
 	}
 
 	[Fact]
-	public void DecodeText_UnknownBytes_ShowsHex()
-	{
+	public void DecodeText_UnknownBytes_ShowsHex() {
 		var table = CreateSimpleAsciiTable();
 		var data = new byte[] { 0x41, 0xff, 0x42 }; // "A" + unknown + "B"
 
@@ -161,8 +149,7 @@ FE02=Monster
 	}
 
 	[Fact]
-	public void DecodeText_WithControlCodes_IncludesControlCodes()
-	{
+	public void DecodeText_WithControlCodes_IncludesControlCodes() {
 		var table = CreateSimpleAsciiTable();
 		table.ControlCodes[new byte[] { 0xfe }] = "<wait>";
 		var data = new byte[] { 0x48, 0x69, 0xfe }; // "Hi<wait>"
@@ -173,8 +160,7 @@ FE02=Monster
 	}
 
 	[Fact]
-	public void DecodeText_WithDte_ExpansionCorrectly()
-	{
+	public void DecodeText_WithDte_ExpansionCorrectly() {
 		var table = CreateSimpleAsciiTable();
 		table.DteMappings[0x80] = "th";
 		var data = new byte[] { 0x80, 0x65 }; // "the"
@@ -189,8 +175,7 @@ FE02=Monster
 	#region Encode Tests
 
 	[Fact]
-	public void EncodeText_SimpleString_EncodesCorrectly()
-	{
+	public void EncodeText_SimpleString_EncodesCorrectly() {
 		var table = CreateSimpleAsciiTable();
 		var text = "Hello";
 
@@ -200,8 +185,7 @@ FE02=Monster
 	}
 
 	[Fact]
-	public void EncodeText_WithHexEscape_InsertsByte()
-	{
+	public void EncodeText_WithHexEscape_InsertsByte() {
 		var table = CreateSimpleAsciiTable();
 		var text = "A[$ff]B";
 
@@ -211,8 +195,7 @@ FE02=Monster
 	}
 
 	[Fact]
-	public void EncodeText_RoundTrip()
-	{
+	public void EncodeText_RoundTrip() {
 		var table = CreateSimpleAsciiTable();
 		var original = "Hello World";
 
@@ -227,10 +210,9 @@ FE02=Monster
 	#region Find Text Blocks Tests
 
 	[Fact]
-	public void FindTextBlocks_FindsTerminatedBlocks()
-	{
+	public void FindTextBlocks_FindsTerminatedBlocks() {
 		var table = CreateSimpleAsciiTable();
-		var data = new byte[] { 
+		var data = new byte[] {
 			0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x00,  // "Hello\0"
 			0x57, 0x6f, 0x72, 0x6c, 0x64, 0x00   // "World\0"
 		};
@@ -243,10 +225,9 @@ FE02=Monster
 	}
 
 	[Fact]
-	public void FindTextBlocks_RespectsMinLength()
-	{
+	public void FindTextBlocks_RespectsMinLength() {
 		var table = CreateSimpleAsciiTable();
-		var data = new byte[] { 
+		var data = new byte[] {
 			0x41, 0x00,  // "A\0" (too short)
 			0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x00  // "Hello\0"
 		};
@@ -259,10 +240,9 @@ FE02=Monster
 	}
 
 	[Fact]
-	public void FindTextBlocks_RespectsOffsetRange()
-	{
+	public void FindTextBlocks_RespectsOffsetRange() {
 		var table = CreateSimpleAsciiTable();
-		var data = new byte[] { 
+		var data = new byte[] {
 			0x41, 0x41, 0x41, 0x00,  // "AAA\0" at 0
 			0x42, 0x42, 0x42, 0x00   // "BBB\0" at 4
 		};
@@ -279,9 +259,8 @@ FE02=Monster
 	#region Pointer Table Tests
 
 	[Fact]
-	public void ReadPointerTable_16Bit_ReadsCorrectly()
-	{
-		var data = new byte[] { 
+	public void ReadPointerTable_16Bit_ReadsCorrectly() {
+		var data = new byte[] {
 			0x00, 0x80,  // $8000
 			0x10, 0x80,  // $8010
 			0x20, 0x80   // $8020
@@ -296,9 +275,8 @@ FE02=Monster
 	}
 
 	[Fact]
-	public void ReadPointerTable_24Bit_ReadsCorrectly()
-	{
-		var data = new byte[] { 
+	public void ReadPointerTable_24Bit_ReadsCorrectly() {
+		var data = new byte[] {
 			0x00, 0x80, 0x01,  // $018000
 			0x10, 0x80, 0x01   // $018010
 		};
@@ -311,9 +289,8 @@ FE02=Monster
 	}
 
 	[Fact]
-	public void ReadPointerTable_WithBaseAddress_AddsCorrectly()
-	{
-		var data = new byte[] { 
+	public void ReadPointerTable_WithBaseAddress_AddsCorrectly() {
+		var data = new byte[] {
 			0x00, 0x00,  // $0000 + base
 			0x10, 0x00   // $0010 + base
 		};
@@ -326,8 +303,7 @@ FE02=Monster
 	}
 
 	[Fact]
-	public void WritePointerTable_16Bit_WritesCorrectly()
-	{
+	public void WritePointerTable_16Bit_WritesCorrectly() {
 		var pointers = new[] { 0x8000, 0x8010, 0x8020 };
 
 		var result = _service.WritePointerTable(pointers);
@@ -340,8 +316,7 @@ FE02=Monster
 	}
 
 	[Fact]
-	public void WritePointerTable_RoundTrips()
-	{
+	public void WritePointerTable_RoundTrips() {
 		var original = new[] { 0x8000, 0x8010, 0x8020 };
 
 		var bytes = _service.WritePointerTable(original);
@@ -355,8 +330,7 @@ FE02=Monster
 	#region Script Export/Import Tests
 
 	[Fact]
-	public void ExportScript_PlainText_FormatsCorrectly()
-	{
+	public void ExportScript_PlainText_FormatsCorrectly() {
 		var script = CreateSampleScript();
 
 		var result = _service.ExportScript(script, ScriptExportFormat.PlainText);
@@ -367,8 +341,7 @@ FE02=Monster
 	}
 
 	[Fact]
-	public void ExportScript_Csv_FormatsCorrectly()
-	{
+	public void ExportScript_Csv_FormatsCorrectly() {
 		var script = CreateSampleScript();
 
 		var result = _service.ExportScript(script, ScriptExportFormat.Csv);
@@ -379,8 +352,7 @@ FE02=Monster
 	}
 
 	[Fact]
-	public void ExportScript_Json_RoundTrips()
-	{
+	public void ExportScript_Json_RoundTrips() {
 		var script = CreateSampleScript();
 
 		var json = _service.ExportScript(script, ScriptExportFormat.Json);
@@ -392,8 +364,7 @@ FE02=Monster
 	}
 
 	[Fact]
-	public void ExportScript_Markdown_FormatsAsTable()
-	{
+	public void ExportScript_Markdown_FormatsAsTable() {
 		var script = CreateSampleScript();
 
 		var result = _service.ExportScript(script, ScriptExportFormat.Markdown);
@@ -404,8 +375,7 @@ FE02=Monster
 	}
 
 	[Fact]
-	public void ExportScript_Atlas_FormatsCorrectly()
-	{
+	public void ExportScript_Atlas_FormatsCorrectly() {
 		var script = CreateSampleScript();
 
 		var result = _service.ExportScript(script, ScriptExportFormat.Atlas);
@@ -419,13 +389,11 @@ FE02=Monster
 
 	#region Helper Methods
 
-	private static TableFile CreateSimpleAsciiTable()
-	{
+	private static TableFile CreateSimpleAsciiTable() {
 		var table = new TableFile();
 
 		// Add printable ASCII
-		for (byte b = 0x20; b < 0x7f; b++)
-		{
+		for (byte b = 0x20; b < 0x7f; b++) {
 			table.SingleByteMappings[b] = ((char)b).ToString();
 		}
 
@@ -435,10 +403,8 @@ FE02=Monster
 		return table;
 	}
 
-	private static Script CreateSampleScript()
-	{
-		return new Script
-		{
+	private static Script CreateSampleScript() {
+		return new Script {
 			GameName = "Test Game",
 			TableName = "test.tbl",
 			Blocks = new List<TextBlock>

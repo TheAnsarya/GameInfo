@@ -1,19 +1,17 @@
 using Bunit;
-using FluentAssertions;
-using NSubstitute;
-using Xunit;
 using DarkRepos.Editor.Core.Interfaces;
 using DarkRepos.Editor.Shared.Components.Editors.HexEditor;
+using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
+using NSubstitute;
+using Xunit;
 
 namespace DarkRepos.Editor.Web.Tests.Components;
 
-public class HexEditorTests : TestContext
-{
+public class HexEditorTests : TestContext {
 	private readonly IHexEditorService _mockHexService;
 
-	public HexEditorTests()
-	{
+	public HexEditorTests() {
 		_mockHexService = Substitute.For<IHexEditorService>();
 		Services.AddScoped(_ => _mockHexService);
 	}
@@ -21,8 +19,7 @@ public class HexEditorTests : TestContext
 	#region Rendering Tests
 
 	[Fact]
-	public void HexEditor_RendersEmptyState_WhenNoDataLoaded()
-	{
+	public void HexEditor_RendersEmptyState_WhenNoDataLoaded() {
 		// Act
 		var cut = RenderComponent<HexEditor>();
 
@@ -32,8 +29,7 @@ public class HexEditorTests : TestContext
 	}
 
 	[Fact]
-	public void HexEditor_RendersToolbar_Always()
-	{
+	public void HexEditor_RendersToolbar_Always() {
 		// Act
 		var cut = RenderComponent<HexEditor>();
 
@@ -42,8 +38,7 @@ public class HexEditorTests : TestContext
 	}
 
 	[Fact]
-	public void HexEditor_RendersStatusBar_Always()
-	{
+	public void HexEditor_RendersStatusBar_Always() {
 		// Act
 		var cut = RenderComponent<HexEditor>();
 
@@ -52,8 +47,7 @@ public class HexEditorTests : TestContext
 	}
 
 	[Fact]
-	public void HexEditor_HasOpenButton_InToolbar()
-	{
+	public void HexEditor_HasOpenButton_InToolbar() {
 		// Act
 		var cut = RenderComponent<HexEditor>();
 
@@ -67,8 +61,7 @@ public class HexEditorTests : TestContext
 	#region Toolbar Tests
 
 	[Fact]
-	public void HexEditor_SaveButton_IsDisabled_WhenNoData()
-	{
+	public void HexEditor_SaveButton_IsDisabled_WhenNoData() {
 		// Act
 		var cut = RenderComponent<HexEditor>();
 
@@ -78,8 +71,7 @@ public class HexEditorTests : TestContext
 	}
 
 	[Fact]
-	public void HexEditor_UndoButton_IsDisabled_Initially()
-	{
+	public void HexEditor_UndoButton_IsDisabled_Initially() {
 		// Act
 		var cut = RenderComponent<HexEditor>();
 
@@ -89,8 +81,7 @@ public class HexEditorTests : TestContext
 	}
 
 	[Fact]
-	public void HexEditor_RedoButton_IsDisabled_Initially()
-	{
+	public void HexEditor_RedoButton_IsDisabled_Initially() {
 		// Act
 		var cut = RenderComponent<HexEditor>();
 
@@ -100,8 +91,7 @@ public class HexEditorTests : TestContext
 	}
 
 	[Fact]
-	public void HexEditor_SearchButton_IsDisabled_WhenNoData()
-	{
+	public void HexEditor_SearchButton_IsDisabled_WhenNoData() {
 		// Act
 		var cut = RenderComponent<HexEditor>();
 
@@ -111,8 +101,7 @@ public class HexEditorTests : TestContext
 	}
 
 	[Fact]
-	public void HexEditor_ViewModeSelect_Exists()
-	{
+	public void HexEditor_ViewModeSelect_Exists() {
 		// Act
 		var cut = RenderComponent<HexEditor>();
 
@@ -122,8 +111,7 @@ public class HexEditorTests : TestContext
 	}
 
 	[Fact]
-	public void HexEditor_ViewModeSelect_HasThreeOptions()
-	{
+	public void HexEditor_ViewModeSelect_HasThreeOptions() {
 		// Act
 		var cut = RenderComponent<HexEditor>();
 
@@ -137,8 +125,7 @@ public class HexEditorTests : TestContext
 	#region Open File Tests
 
 	[Fact]
-	public void HexEditor_ClickOpenButton_LoadsSampleData()
-	{
+	public void HexEditor_ClickOpenButton_LoadsSampleData() {
 		// Arrange
 		var cut = RenderComponent<HexEditor>();
 
@@ -152,8 +139,7 @@ public class HexEditorTests : TestContext
 	}
 
 	[Fact]
-	public void HexEditor_AfterOpen_ShowsFileName()
-	{
+	public void HexEditor_AfterOpen_ShowsFileName() {
 		// Arrange
 		var cut = RenderComponent<HexEditor>();
 
@@ -165,8 +151,7 @@ public class HexEditorTests : TestContext
 	}
 
 	[Fact]
-	public void HexEditor_AfterOpen_ShowsFileSize()
-	{
+	public void HexEditor_AfterOpen_ShowsFileSize() {
 		// Arrange
 		var cut = RenderComponent<HexEditor>();
 
@@ -181,9 +166,8 @@ public class HexEditorTests : TestContext
 
 	#region Panel Tests
 
-	    [Fact]
-	public void HexEditor_SearchPanel_NotVisible_Initially()
-	{
+	[Fact]
+	public void HexEditor_SearchPanel_NotVisible_Initially() {
 		// Act
 		var cut = RenderComponent<HexEditor>();
 
@@ -192,8 +176,7 @@ public class HexEditorTests : TestContext
 	}
 
 	[Fact]
-	public void HexEditor_GoToPanel_NotVisible_Initially()
-	{
+	public void HexEditor_GoToPanel_NotVisible_Initially() {
 		// Act
 		var cut = RenderComponent<HexEditor>();
 
@@ -206,8 +189,7 @@ public class HexEditorTests : TestContext
 	#region Status Bar Tests
 
 	[Fact]
-	public void HexEditor_StatusBar_ShowsOffset()
-	{
+	public void HexEditor_StatusBar_ShowsOffset() {
 		// Act
 		var cut = RenderComponent<HexEditor>();
 
@@ -216,8 +198,7 @@ public class HexEditorTests : TestContext
 	}
 
 	[Fact]
-	public void HexEditor_StatusBar_ShowsValue()
-	{
+	public void HexEditor_StatusBar_ShowsValue() {
 		// Act
 		var cut = RenderComponent<HexEditor>();
 
@@ -230,8 +211,7 @@ public class HexEditorTests : TestContext
 	#region Accessibility Tests
 
 	[Fact]
-	public void HexEditor_HasTabIndex_ForKeyboardNavigation()
-	{
+	public void HexEditor_HasTabIndex_ForKeyboardNavigation() {
 		// Act
 		var cut = RenderComponent<HexEditor>();
 
@@ -241,8 +221,7 @@ public class HexEditorTests : TestContext
 	}
 
 	[Fact]
-	public void HexEditor_Buttons_HaveTitles_ForAccessibility()
-	{
+	public void HexEditor_Buttons_HaveTitles_ForAccessibility() {
 		// Act
 		var cut = RenderComponent<HexEditor>();
 

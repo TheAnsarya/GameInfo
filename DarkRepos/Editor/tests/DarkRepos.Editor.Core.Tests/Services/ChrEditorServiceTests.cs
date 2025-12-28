@@ -1,19 +1,17 @@
-using FluentAssertions;
-using Xunit;
 using DarkRepos.Editor.Core.Interfaces;
 using DarkRepos.Editor.Core.Services;
+using FluentAssertions;
+using Xunit;
 
 namespace DarkRepos.Editor.Core.Tests.Services;
 
-public class ChrEditorServiceTests
-{
+public class ChrEditorServiceTests {
 	private readonly ChrEditorService _service = new();
 
 	#region Tile Decoding Tests
 
 	[Fact]
-	public void DecodeNesTile_ShouldDecodeCorrectly()
-	{
+	public void DecodeNesTile_ShouldDecodeCorrectly() {
 		// Arrange - Simple tile with all pixels set to specific values
 		var data = new byte[16];
 		// Row 0: all 0s
@@ -36,8 +34,7 @@ public class ChrEditorServiceTests
 	}
 
 	[Fact]
-	public void DecodeGameBoyTile_ShouldDecodeCorrectly()
-	{
+	public void DecodeGameBoyTile_ShouldDecodeCorrectly() {
 		// Arrange - GB uses interleaved format
 		var data = new byte[16];
 		// Row 0: pixel 0 = 3 (both bits), rest 0
@@ -53,8 +50,7 @@ public class ChrEditorServiceTests
 	}
 
 	[Fact]
-	public void DecodeSnes4BppTile_ShouldDecodeCorrectly()
-	{
+	public void DecodeSnes4BppTile_ShouldDecodeCorrectly() {
 		// Arrange
 		var data = new byte[32];
 		// Set pixel (0,0) to value 15 (all 4 bits)
@@ -72,8 +68,7 @@ public class ChrEditorServiceTests
 	}
 
 	[Fact]
-	public void DecodeGenesisTile_ShouldDecodeCorrectly()
-	{
+	public void DecodeGenesisTile_ShouldDecodeCorrectly() {
 		// Arrange - Genesis 4bpp packed (high nibble first)
 		var data = new byte[32];
 		data[0] = 0xa5; // pixel 0 = 10, pixel 1 = 5
@@ -87,8 +82,7 @@ public class ChrEditorServiceTests
 	}
 
 	[Fact]
-	public void DecodeGba4BppTile_ShouldDecodeCorrectly()
-	{
+	public void DecodeGba4BppTile_ShouldDecodeCorrectly() {
 		// Arrange - GBA 4bpp packed (low nibble first!)
 		var data = new byte[32];
 		data[0] = 0x52; // pixel 0 = 2, pixel 1 = 5
@@ -102,8 +96,7 @@ public class ChrEditorServiceTests
 	}
 
 	[Fact]
-	public void DecodeGba8BppTile_ShouldDecodeCorrectly()
-	{
+	public void DecodeGba8BppTile_ShouldDecodeCorrectly() {
 		// Arrange
 		var data = new byte[64];
 		data[0] = 42;  // pixel (0,0)
@@ -118,8 +111,7 @@ public class ChrEditorServiceTests
 	}
 
 	[Fact]
-	public void DecodeTiles_ShouldDecodeMultipleTiles()
-	{
+	public void DecodeTiles_ShouldDecodeMultipleTiles() {
 		// Arrange
 		var data = new byte[32]; // 2 NES tiles
 
@@ -131,8 +123,7 @@ public class ChrEditorServiceTests
 	}
 
 	[Fact]
-	public void DecodeTiles_WithCount_ShouldLimitTiles()
-	{
+	public void DecodeTiles_WithCount_ShouldLimitTiles() {
 		// Arrange
 		var data = new byte[48]; // 3 NES tiles worth
 
@@ -144,8 +135,7 @@ public class ChrEditorServiceTests
 	}
 
 	[Fact]
-	public void DecodeTiles_WithOffset_ShouldStartAtOffset()
-	{
+	public void DecodeTiles_WithOffset_ShouldStartAtOffset() {
 		// Arrange
 		var data = new byte[32];
 		data[16] = 0xff; // Set low bits of row 0 in second tile
@@ -163,8 +153,7 @@ public class ChrEditorServiceTests
 	#region Tile Encoding Tests
 
 	[Fact]
-	public void EncodeNesTile_RoundTrip_ShouldPreserveData()
-	{
+	public void EncodeNesTile_RoundTrip_ShouldPreserveData() {
 		// Arrange
 		var original = new Tile();
 		original.SetPixel(0, 0, 3);
@@ -182,8 +171,7 @@ public class ChrEditorServiceTests
 	}
 
 	[Fact]
-	public void EncodeGameBoyTile_RoundTrip_ShouldPreserveData()
-	{
+	public void EncodeGameBoyTile_RoundTrip_ShouldPreserveData() {
 		// Arrange
 		var original = new Tile();
 		for (var i = 0; i < 8; i++)
@@ -199,8 +187,7 @@ public class ChrEditorServiceTests
 	}
 
 	[Fact]
-	public void EncodeSnes4BppTile_RoundTrip_ShouldPreserveData()
-	{
+	public void EncodeSnes4BppTile_RoundTrip_ShouldPreserveData() {
 		// Arrange
 		var original = new Tile();
 		original.SetPixel(0, 0, 15);
@@ -218,8 +205,7 @@ public class ChrEditorServiceTests
 	}
 
 	[Fact]
-	public void SetTile_ShouldModifyData()
-	{
+	public void SetTile_ShouldModifyData() {
 		// Arrange
 		var data = new byte[32];
 		var tile = new Tile();
@@ -238,8 +224,7 @@ public class ChrEditorServiceTests
 	#region Palette Tests
 
 	[Fact]
-	public void ApplyPalette_ShouldMapPixelsToColors()
-	{
+	public void ApplyPalette_ShouldMapPixelsToColors() {
 		// Arrange
 		var tile = new Tile();
 		tile.SetPixel(0, 0, 0);
@@ -259,8 +244,7 @@ public class ChrEditorServiceTests
 	}
 
 	[Fact]
-	public void CreateGrayscalePalette_2Bpp_ShouldCreate4Colors()
-	{
+	public void CreateGrayscalePalette_2Bpp_ShouldCreate4Colors() {
 		// Act
 		var palette = _service.CreateGrayscalePalette(2);
 
@@ -271,8 +255,7 @@ public class ChrEditorServiceTests
 	}
 
 	[Fact]
-	public void CreateGrayscalePalette_4Bpp_ShouldCreate16Colors()
-	{
+	public void CreateGrayscalePalette_4Bpp_ShouldCreate16Colors() {
 		// Act
 		var palette = _service.CreateGrayscalePalette(4);
 
@@ -281,8 +264,7 @@ public class ChrEditorServiceTests
 	}
 
 	[Fact]
-	public void GetDefaultPalette_Nes_ShouldReturn4Colors()
-	{
+	public void GetDefaultPalette_Nes_ShouldReturn4Colors() {
 		// Act
 		var palette = _service.GetDefaultPalette(TilePlatform.Nes);
 
@@ -291,8 +273,7 @@ public class ChrEditorServiceTests
 	}
 
 	[Fact]
-	public void GetDefaultPalette_GameBoy_ShouldReturnGreenPalette()
-	{
+	public void GetDefaultPalette_GameBoy_ShouldReturnGreenPalette() {
 		// Act
 		var palette = _service.GetDefaultPalette(TilePlatform.GameBoy);
 
@@ -306,8 +287,7 @@ public class ChrEditorServiceTests
 	#region Image Rendering Tests
 
 	[Fact]
-	public void RenderToImage_ShouldCreateCorrectSizeBuffer()
-	{
+	public void RenderToImage_ShouldCreateCorrectSizeBuffer() {
 		// Arrange
 		var tiles = new Tile[4];
 		for (var i = 0; i < 4; i++)
@@ -324,8 +304,7 @@ public class ChrEditorServiceTests
 	}
 
 	[Fact]
-	public void RenderToImage_WithScale_ShouldScaleCorrectly()
-	{
+	public void RenderToImage_WithScale_ShouldScaleCorrectly() {
 		// Arrange
 		var tiles = new[] { new Tile() };
 		var palette = _service.CreateGrayscalePalette(2);
@@ -339,8 +318,7 @@ public class ChrEditorServiceTests
 	}
 
 	[Fact]
-	public void RenderToImage_EmptyTiles_ShouldReturnEmptyBuffer()
-	{
+	public void RenderToImage_EmptyTiles_ShouldReturnEmptyBuffer() {
 		// Arrange
 		var tiles = Array.Empty<Tile>();
 		var palette = _service.CreateGrayscalePalette(2);
@@ -353,8 +331,7 @@ public class ChrEditorServiceTests
 	}
 
 	[Fact]
-	public void ExportToPng_ShouldReturnValidPng()
-	{
+	public void ExportToPng_ShouldReturnValidPng() {
 		// Arrange
 		var tile = new Tile();
 		tile.SetPixel(0, 0, 1);
@@ -387,8 +364,7 @@ public class ChrEditorServiceTests
 	[InlineData(TileFormat.Gba4Bpp, 32)]
 	[InlineData(TileFormat.Bpp8, 64)]
 	[InlineData(TileFormat.Gba8Bpp, 64)]
-	public void GetBytesPerTile_ShouldReturnCorrectValue(TileFormat format, int expected)
-	{
+	public void GetBytesPerTile_ShouldReturnCorrectValue(TileFormat format, int expected) {
 		// Act
 		var result = _service.GetBytesPerTile(format);
 
@@ -401,8 +377,7 @@ public class ChrEditorServiceTests
 	#region Tile Class Tests
 
 	[Fact]
-	public void Tile_GetPixel_OutOfRange_ShouldThrow()
-	{
+	public void Tile_GetPixel_OutOfRange_ShouldThrow() {
 		// Arrange
 		var tile = new Tile();
 
@@ -412,8 +387,7 @@ public class ChrEditorServiceTests
 	}
 
 	[Fact]
-	public void Tile_SetPixel_OutOfRange_ShouldThrow()
-	{
+	public void Tile_SetPixel_OutOfRange_ShouldThrow() {
 		// Arrange
 		var tile = new Tile();
 
@@ -423,8 +397,7 @@ public class ChrEditorServiceTests
 	}
 
 	[Fact]
-	public void Tile_Clone_ShouldCreateIndependentCopy()
-	{
+	public void Tile_Clone_ShouldCreateIndependentCopy() {
 		// Arrange
 		var original = new Tile();
 		original.SetPixel(0, 0, 5);
@@ -443,8 +416,7 @@ public class ChrEditorServiceTests
 	#region Color Tests
 
 	[Fact]
-	public void Color_FromRgb_ShouldParseCorrectly()
-	{
+	public void Color_FromRgb_ShouldParseCorrectly() {
 		// Act
 		var color = Color.FromRgb(0xff8040);
 
@@ -456,8 +428,7 @@ public class ChrEditorServiceTests
 	}
 
 	[Fact]
-	public void Color_ToRgba_ShouldPackCorrectly()
-	{
+	public void Color_ToRgba_ShouldPackCorrectly() {
 		// Arrange
 		var color = new Color(0x12, 0x34, 0x56, 0x78);
 

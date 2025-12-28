@@ -11,20 +11,17 @@ namespace DarkRepos.Editor.Core.Tests;
 /// <summary>
 /// Tests for the DataEditorService structured data editing functionality.
 /// </summary>
-public class DataEditorServiceTests
-{
+public class DataEditorServiceTests {
 	private readonly DataEditorService _service;
 
-	public DataEditorServiceTests()
-	{
+	public DataEditorServiceTests() {
 		_service = new DataEditorService();
 	}
 
 	#region Structure Definition Tests
 
 	[Fact]
-	public void LoadStructureDefinition_WithValidJson_ReturnsStructure()
-	{
+	public void LoadStructureDefinition_WithValidJson_ReturnsStructure() {
 		// Arrange
 		var json = """
 		{
@@ -64,8 +61,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void LoadStructureDefinition_WithAllFieldTypes_ParsesCorrectly()
-	{
+	public void LoadStructureDefinition_WithAllFieldTypes_ParsesCorrectly() {
 		// Arrange
 		var json = """
 		{
@@ -110,8 +106,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void LoadStructureDefinition_WithBigEndian_SetsEndianness()
-	{
+	public void LoadStructureDefinition_WithBigEndian_SetsEndianness() {
 		// Arrange
 		var json = """
 		{
@@ -135,8 +130,7 @@ public class DataEditorServiceTests
 	#region Data Table Loading Tests
 
 	[Fact]
-	public void LoadDataTable_WithValidData_ReturnsTable()
-	{
+	public void LoadDataTable_WithValidData_ReturnsTable() {
 		// Arrange
 		var structureJson = """
 		{
@@ -169,8 +163,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void LoadDataTable_WithBigEndian_ReadsCorrectly()
-	{
+	public void LoadDataTable_WithBigEndian_ReadsCorrectly() {
 		// Arrange
 		var structureJson = """
 		{
@@ -195,8 +188,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void LoadDataTable_WithOffset_StartsAtCorrectPosition()
-	{
+	public void LoadDataTable_WithOffset_StartsAtCorrectPosition() {
 		// Arrange
 		var structureJson = """
 		{
@@ -219,8 +211,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void LoadDataTable_WithSignedFields_ReadsNegativeValues()
-	{
+	public void LoadDataTable_WithSignedFields_ReadsNegativeValues() {
 		// Arrange
 		var structureJson = """
 		{
@@ -249,8 +240,7 @@ public class DataEditorServiceTests
 	#region Export Tests
 
 	[Fact]
-	public void ExportToJson_WithValidTable_ReturnsFormattedJson()
-	{
+	public void ExportToJson_WithValidTable_ReturnsFormattedJson() {
 		// Arrange
 		var table = CreateSampleTable();
 
@@ -264,8 +254,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void ExportToCsv_WithValidTable_ReturnsCsvWithHeaders()
-	{
+	public void ExportToCsv_WithValidTable_ReturnsCsvWithHeaders() {
 		// Arrange
 		var table = CreateSampleTable();
 
@@ -284,8 +273,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void ExportToCsv_WithMultipleRecords_HasCorrectRowCount()
-	{
+	public void ExportToCsv_WithMultipleRecords_HasCorrectRowCount() {
 		// Arrange
 		var table = CreateSampleTable();
 
@@ -298,8 +286,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void ExportTable_WithValidTable_ReturnsCorrectBytes()
-	{
+	public void ExportTable_WithValidTable_ReturnsCorrectBytes() {
 		// Arrange
 		var table = CreateSampleTable();
 
@@ -316,8 +303,7 @@ public class DataEditorServiceTests
 	#region Import Tests
 
 	[Fact]
-	public void ImportFromJson_WithValidJson_ReturnsTable()
-	{
+	public void ImportFromJson_WithValidJson_ReturnsTable() {
 		// Arrange
 		var structureJson = """
 		{
@@ -346,8 +332,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void ImportFromCsv_WithValidCsv_ReturnsTable()
-	{
+	public void ImportFromCsv_WithValidCsv_ReturnsTable() {
 		// Arrange
 		var structureJson = """
 		{
@@ -373,8 +358,7 @@ public class DataEditorServiceTests
 	#region Validation Tests
 
 	[Fact]
-	public void ValidateTable_WithValidData_ReturnsNoErrors()
-	{
+	public void ValidateTable_WithValidData_ReturnsNoErrors() {
 		// Arrange
 		var structureJson = """
 		{
@@ -397,8 +381,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void ValidateTable_WithValueOutOfRange_ReturnsError()
-	{
+	public void ValidateTable_WithValueOutOfRange_ReturnsError() {
 		// Arrange
 		var structureJson = """
 		{
@@ -422,8 +405,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void ValidateTable_WithInvalidEnum_ReturnsWarning()
-	{
+	public void ValidateTable_WithInvalidEnum_ReturnsWarning() {
 		// Arrange
 		var structureJson = """
 		{
@@ -452,8 +434,7 @@ public class DataEditorServiceTests
 	#region Checksum Tests
 
 	[Fact]
-	public void CalculateChecksum_WithSum8_ReturnsCorrectSum()
-	{
+	public void CalculateChecksum_WithSum8_ReturnsCorrectSum() {
 		// Arrange
 		var table = CreateSampleTable();
 
@@ -466,8 +447,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void CalculateChecksum_WithSum16_ReturnsCorrectSum()
-	{
+	public void CalculateChecksum_WithSum16_ReturnsCorrectSum() {
 		// Arrange
 		var table = CreateSampleTable();
 
@@ -479,8 +459,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void CalculateChecksum_WithXor_ReturnsValue()
-	{
+	public void CalculateChecksum_WithXor_ReturnsValue() {
 		// Arrange
 		var table = CreateSampleTable();
 
@@ -493,8 +472,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void CalculateChecksum_WithCrc16_ReturnsChecksum()
-	{
+	public void CalculateChecksum_WithCrc16_ReturnsChecksum() {
 		// Arrange
 		var table = CreateSampleTable();
 
@@ -511,8 +489,7 @@ public class DataEditorServiceTests
 	#region Table Detection Tests
 
 	[Fact]
-	public void DetectTables_WithRepeatingPattern_FindsTables()
-	{
+	public void DetectTables_WithRepeatingPattern_FindsTables() {
 		// Arrange - 4-byte records repeated 4 times
 		var data = new byte[]
 		{
@@ -526,8 +503,7 @@ public class DataEditorServiceTests
 			0x08, 0x50, 0x80, 0x00
 		};
 
-		var options = new DataTableDetectionOptions
-		{
+		var options = new DataTableDetectionOptions {
 			MinRowSize = 4,
 			MaxRowSize = 8,
 			MinRows = 4,
@@ -542,15 +518,13 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void DetectTables_WithNoPattern_ReturnsFewOrNoCandidates()
-	{
+	public void DetectTables_WithNoPattern_ReturnsFewOrNoCandidates() {
 		// Arrange - random data
 		var random = new Random(42);
 		var data = new byte[64];
 		random.NextBytes(data);
 
-		var options = new DataTableDetectionOptions
-		{
+		var options = new DataTableDetectionOptions {
 			MinRowSize = 4,
 			MaxRowSize = 16,
 			MinRows = 8,
@@ -570,8 +544,7 @@ public class DataEditorServiceTests
 	#region Template Tests
 
 	[Fact]
-	public void GetTemplates_ReturnsTemplates()
-	{
+	public void GetTemplates_ReturnsTemplates() {
 		// Act
 		var templates = _service.GetTemplates();
 
@@ -580,8 +553,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void GetTemplates_ContainsRpgCharacterTemplate()
-	{
+	public void GetTemplates_ContainsRpgCharacterTemplate() {
 		// Act
 		var templates = _service.GetTemplates();
 
@@ -590,8 +562,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void GetTemplates_ContainsRpgItemTemplate()
-	{
+	public void GetTemplates_ContainsRpgItemTemplate() {
 		// Act
 		var templates = _service.GetTemplates();
 
@@ -600,14 +571,12 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void GetTemplates_TemplatesHaveValidStructures()
-	{
+	public void GetTemplates_TemplatesHaveValidStructures() {
 		// Act
 		var templates = _service.GetTemplates();
 
 		// Assert
-		foreach (var template in templates)
-		{
+		foreach (var template in templates) {
 			template.Structure.Should().NotBeNull();
 			template.Structure.Fields.Should().NotBeEmpty();
 			template.Name.Should().NotBeNullOrEmpty();
@@ -619,8 +588,7 @@ public class DataEditorServiceTests
 	#region Field Value Tests
 
 	[Fact]
-	public void GetFieldValue_WithValidField_ReturnsValue()
-	{
+	public void GetFieldValue_WithValidField_ReturnsValue() {
 		// Arrange
 		var table = CreateSampleTable();
 		var record = table.Records[0];
@@ -633,8 +601,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void SetFieldValue_WithValidValue_UpdatesRecord()
-	{
+	public void SetFieldValue_WithValidValue_UpdatesRecord() {
 		// Arrange
 		var table = CreateSampleTable();
 		var record = table.Records[0];
@@ -652,18 +619,16 @@ public class DataEditorServiceTests
 	#region Find and Sort Tests
 
 	[Fact]
-	public void FindRecords_WithMatchingPredicate_ReturnsRecords()
-	{
+	public void FindRecords_WithMatchingPredicate_ReturnsRecords() {
 		// Arrange
 		var table = CreateSampleTable();
 
 		// Act
-		var found = _service.FindRecords(table, r =>
-		{
-			if (r.Values.TryGetValue("Id", out var idValue))
-			{
+		var found = _service.FindRecords(table, r => {
+			if (r.Values.TryGetValue("Id", out var idValue)) {
 				return Convert.ToInt32(idValue) > 1;
 			}
+
 			return false;
 		});
 
@@ -672,8 +637,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void SortTable_ByFieldAscending_SortsCorrectly()
-	{
+	public void SortTable_ByFieldAscending_SortsCorrectly() {
 		// Arrange
 		var table = CreateSampleTable();
 
@@ -686,8 +650,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void SortTable_ByFieldDescending_SortsCorrectly()
-	{
+	public void SortTable_ByFieldDescending_SortsCorrectly() {
 		// Arrange
 		var table = CreateSampleTable();
 
@@ -703,8 +666,7 @@ public class DataEditorServiceTests
 
 	#region Helper Methods
 
-	private DataTable CreateSampleTable()
-	{
+	private DataTable CreateSampleTable() {
 		var structureJson = """
 		{
 			"name": "Sample",

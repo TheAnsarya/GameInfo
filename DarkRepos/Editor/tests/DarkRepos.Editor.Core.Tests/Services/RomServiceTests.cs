@@ -5,13 +5,11 @@ using Xunit;
 
 namespace DarkRepos.Editor.Core.Tests.Services;
 
-public class RomServiceTests
-{
+public class RomServiceTests {
 	private readonly RomService _service = new();
 
 	[Fact]
-	public async Task LoadAsync_WithValidData_ReturnsRom()
-	{
+	public async Task LoadAsync_WithValidData_ReturnsRom() {
 		// Arrange
 		var data = new byte[] { 0x4e, 0x45, 0x53, 0x1a, 0x02, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 		var fileName = "test.nes";
@@ -32,8 +30,7 @@ public class RomServiceTests
 	}
 
 	[Fact]
-	public async Task LoadAsync_WithEmptyData_ThrowsArgumentException()
-	{
+	public async Task LoadAsync_WithEmptyData_ThrowsArgumentException() {
 		// Arrange
 		var data = Array.Empty<byte>();
 
@@ -42,8 +39,7 @@ public class RomServiceTests
 	}
 
 	[Fact]
-	public async Task LoadAsync_WithNullData_ThrowsArgumentException()
-	{
+	public async Task LoadAsync_WithNullData_ThrowsArgumentException() {
 		// Act & Assert
 		await Assert.ThrowsAsync<ArgumentException>(() => _service.LoadAsync(null!, "test.bin"));
 	}
@@ -59,8 +55,7 @@ public class RomServiceTests
 	[InlineData(".n64", RomPlatform.Nintendo64)]
 	[InlineData(".nds", RomPlatform.NintendoDs)]
 	[InlineData(".pce", RomPlatform.PcEngine)]
-	public void DetectPlatform_ByExtension_ReturnsCorrectPlatform(string extension, RomPlatform expected)
-	{
+	public void DetectPlatform_ByExtension_ReturnsCorrectPlatform(string extension, RomPlatform expected) {
 		// Arrange
 		var data = new byte[256];
 		var fileName = $"test{extension}";
@@ -73,8 +68,7 @@ public class RomServiceTests
 	}
 
 	[Fact]
-	public void DetectPlatform_WithNesHeader_ReturnsNes()
-	{
+	public void DetectPlatform_WithNesHeader_ReturnsNes() {
 		// Arrange - NES header magic "NES\x1A"
 		var data = new byte[] { 0x4e, 0x45, 0x53, 0x1a, 0x02, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
@@ -86,8 +80,7 @@ public class RomServiceTests
 	}
 
 	[Fact]
-	public void CalculateSha256_ReturnsLowercaseHash()
-	{
+	public void CalculateSha256_ReturnsLowercaseHash() {
 		// Arrange
 		var data = new byte[] { 0x00, 0x01, 0x02, 0x03 };
 
@@ -101,8 +94,7 @@ public class RomServiceTests
 	}
 
 	[Fact]
-	public void CalculateCrc32_ReturnsLowercaseHash()
-	{
+	public void CalculateCrc32_ReturnsLowercaseHash() {
 		// Arrange
 		var data = new byte[] { 0x00, 0x01, 0x02, 0x03 };
 
@@ -116,8 +108,7 @@ public class RomServiceTests
 	}
 
 	[Fact]
-	public async Task LoadAsync_NesRom_ExtractsMapper()
-	{
+	public async Task LoadAsync_NesRom_ExtractsMapper() {
 		// Arrange - iNES header with mapper 1 (MMC1)
 		var data = new byte[32];
 		data[0] = 0x4e; // N

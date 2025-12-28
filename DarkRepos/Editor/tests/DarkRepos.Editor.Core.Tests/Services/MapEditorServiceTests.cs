@@ -5,31 +5,26 @@ using Xunit;
 
 namespace DarkRepos.Editor.Core.Tests.Services;
 
-public class MapEditorServiceTests
-{
+public class MapEditorServiceTests {
 	private readonly MapEditorService _service;
 
-	public MapEditorServiceTests()
-	{
+	public MapEditorServiceTests() {
 		_service = new MapEditorService();
 	}
 
 	#region LoadTileset Tests
 
 	[Fact]
-	public void LoadTileset_Nes2Bpp_ParsesTilesCorrectly()
-	{
+	public void LoadTileset_Nes2Bpp_ParsesTilesCorrectly() {
 		// Create a simple 2 tile tileset (32 bytes)
 		var data = new byte[32];
 		// First tile: all pixels = 1
-		for (int i = 0; i < 8; i++)
-		{
+		for (int i = 0; i < 8; i++) {
 			data[i] = 0xff;      // Plane 0 all set
 			data[i + 8] = 0x00;  // Plane 1 all clear
 		}
 		// Second tile: all pixels = 3
-		for (int i = 0; i < 8; i++)
-		{
+		for (int i = 0; i < 8; i++) {
 			data[i + 16] = 0xff; // Plane 0 all set
 			data[i + 24] = 0xff; // Plane 1 all set
 		}
@@ -43,12 +38,10 @@ public class MapEditorServiceTests
 	}
 
 	[Fact]
-	public void LoadTileset_RespectsOffset()
-	{
+	public void LoadTileset_RespectsOffset() {
 		var data = new byte[48];
 		// Put tile at offset 16
-		for (int i = 0; i < 8; i++)
-		{
+		for (int i = 0; i < 8; i++) {
 			data[i + 16] = 0xff;
 			data[i + 24] = 0x00;
 		}
@@ -65,8 +58,7 @@ public class MapEditorServiceTests
 	#region LoadMap Tests
 
 	[Fact]
-	public void LoadMap_Linear_ParsesCorrectly()
-	{
+	public void LoadMap_Linear_ParsesCorrectly() {
 		var data = new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
 
 		var map = _service.LoadMap(data, 0, 4, 4, MapFormat.Linear);
@@ -80,8 +72,7 @@ public class MapEditorServiceTests
 	}
 
 	[Fact]
-	public void LoadMap_SnesTilemap_ParsesTileAttributes()
-	{
+	public void LoadMap_SnesTilemap_ParsesTileAttributes() {
 		// SNES tilemap is 2 bytes per tile (little endian word)
 		// bits 0-9: tile index
 		// bits 10-12: palette
@@ -110,8 +101,7 @@ public class MapEditorServiceTests
 	}
 
 	[Fact]
-	public void LoadMap_ColumnMajor_ParsesCorrectly()
-	{
+	public void LoadMap_ColumnMajor_ParsesCorrectly() {
 		var data = new byte[] { 0, 1, 2, 3, 4, 5 };  // 2x3 map, column major
 
 		var map = _service.LoadMap(data, 0, 2, 3, MapFormat.ColumnMajor);
@@ -129,8 +119,7 @@ public class MapEditorServiceTests
 	#region SetTile/GetTile Tests
 
 	[Fact]
-	public void SetTile_UpdatesMapAndSetsModified()
-	{
+	public void SetTile_UpdatesMapAndSetsModified() {
 		var map = _service.LoadMap(new byte[16], 0, 4, 4, MapFormat.Linear);
 		var tile = new MapTile { TileIndex = 42, PaletteIndex = 3 };
 
@@ -143,8 +132,7 @@ public class MapEditorServiceTests
 	}
 
 	[Fact]
-	public void GetTile_OutOfBounds_ReturnsDefaultTile()
-	{
+	public void GetTile_OutOfBounds_ReturnsDefaultTile() {
 		var map = _service.LoadMap(new byte[4], 0, 2, 2, MapFormat.Linear);
 
 		var result = _service.GetTile(map, 10, 10);
@@ -157,8 +145,7 @@ public class MapEditorServiceTests
 	#region FillRegion Tests
 
 	[Fact]
-	public void FillRegion_FillsRectangle()
-	{
+	public void FillRegion_FillsRectangle() {
 		var map = _service.LoadMap(new byte[16], 0, 4, 4, MapFormat.Linear);
 		var tile = new MapTile { TileIndex = 99 };
 
@@ -179,8 +166,7 @@ public class MapEditorServiceTests
 	#region FloodFill Tests
 
 	[Fact]
-	public void FloodFill_FillsContiguousArea()
-	{
+	public void FloodFill_FillsContiguousArea() {
 		// Create a map with a bordered area
 		var data = new byte[]
 		{
@@ -210,8 +196,7 @@ public class MapEditorServiceTests
 	#region CopyRegion/PasteRegion Tests
 
 	[Fact]
-	public void CopyRegion_CopiesData()
-	{
+	public void CopyRegion_CopiesData() {
 		var data = new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
 		var map = _service.LoadMap(data, 0, 3, 3, MapFormat.Linear);
 
@@ -226,11 +211,9 @@ public class MapEditorServiceTests
 	}
 
 	[Fact]
-	public void PasteRegion_PastesData()
-	{
+	public void PasteRegion_PastesData() {
 		var map = _service.LoadMap(new byte[9], 0, 3, 3, MapFormat.Linear);
-		var region = new TileRegion
-		{
+		var region = new TileRegion {
 			Width = 2,
 			Height = 2,
 			Tiles = new MapTile[,]
@@ -253,8 +236,7 @@ public class MapEditorServiceTests
 	#region ValidateMap Tests
 
 	[Fact]
-	public void ValidateMap_ValidMap_ReturnsValid()
-	{
+	public void ValidateMap_ValidMap_ReturnsValid() {
 		var tileset = _service.LoadTileset(new byte[32], 0, 2, MapTileFormat.Nes2Bpp);
 		var map = _service.LoadMap(new byte[] { 0, 1, 0, 1 }, 0, 2, 2, MapFormat.Linear);
 
@@ -266,8 +248,7 @@ public class MapEditorServiceTests
 	}
 
 	[Fact]
-	public void ValidateMap_InvalidTileIndex_ReturnsError()
-	{
+	public void ValidateMap_InvalidTileIndex_ReturnsError() {
 		var tileset = _service.LoadTileset(new byte[16], 0, 1, MapTileFormat.Nes2Bpp);
 		var map = _service.LoadMap(new byte[] { 0, 5, 0, 0 }, 0, 2, 2, MapFormat.Linear);
 
@@ -282,8 +263,7 @@ public class MapEditorServiceTests
 	#region RLE Compression Tests
 
 	[Fact]
-	public void DecompressRle_DecompressesCorrectly()
-	{
+	public void DecompressRle_DecompressesCorrectly() {
 		// 0x83 = run of 4 bytes, value 0xAA
 		// 0x02 = 3 literal bytes
 		var data = new byte[] { 0x83, 0xaa, 0x02, 0x11, 0x22, 0x33 };
@@ -294,8 +274,7 @@ public class MapEditorServiceTests
 	}
 
 	[Fact]
-	public void CompressRle_CompressesRuns()
-	{
+	public void CompressRle_CompressesRuns() {
 		var data = new byte[] { 0xaa, 0xaa, 0xaa, 0xaa, 0x11, 0x22 };
 
 		var compressed = _service.CompressRle(data);
@@ -309,8 +288,7 @@ public class MapEditorServiceTests
 	#region LZSS Compression Tests
 
 	[Fact]
-	public void CompressLzss_DecompressLzss_RoundTrips()
-	{
+	public void CompressLzss_DecompressLzss_RoundTrips() {
 		var original = new byte[] { 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 5, 6, 7, 8 };
 
 		var compressed = _service.CompressLzss(original);
@@ -324,8 +302,7 @@ public class MapEditorServiceTests
 	#region ExportMap Tests
 
 	[Fact]
-	public void ExportMap_Linear_ExportsCorrectly()
-	{
+	public void ExportMap_Linear_ExportsCorrectly() {
 		var data = new byte[] { 0, 1, 2, 3 };
 		var map = _service.LoadMap(data, 0, 2, 2, MapFormat.Linear);
 
@@ -335,8 +312,7 @@ public class MapEditorServiceTests
 	}
 
 	[Fact]
-	public void ExportMap_SnesTilemap_PreservesAttributes()
-	{
+	public void ExportMap_SnesTilemap_PreservesAttributes() {
 		var original = new byte[] { 0x42, 0b01001011 };
 		var map = _service.LoadMap(original, 0, 1, 1, MapFormat.SnesTilemap);
 
@@ -350,8 +326,7 @@ public class MapEditorServiceTests
 	#region Render Tests
 
 	[Fact]
-	public void RenderMapToPng_ProducesValidPng()
-	{
+	public void RenderMapToPng_ProducesValidPng() {
 		var tileset = CreateSimpleTileset();
 		var map = _service.LoadMap(new byte[] { 0, 1, 0, 1 }, 0, 2, 2, MapFormat.Linear);
 		var palette = CreateGrayscalePalette();
@@ -370,15 +345,13 @@ public class MapEditorServiceTests
 
 	#region Helper Methods
 
-	private Tileset CreateSimpleTileset()
-	{
+	private Tileset CreateSimpleTileset() {
 		// Create a tileset with 2 tiles
 		var data = new byte[32];
 
 		// Tile 0: all black (color index 0)
 		// Tile 1: all white (color index 3)
-		for (int i = 0; i < 8; i++)
-		{
+		for (int i = 0; i < 8; i++) {
 			data[i + 16] = 0xff;
 			data[i + 24] = 0xff;
 		}
@@ -386,10 +359,8 @@ public class MapEditorServiceTests
 		return _service.LoadTileset(data, 0, 2, MapTileFormat.Nes2Bpp);
 	}
 
-	private MapPalette CreateGrayscalePalette()
-	{
-		return new MapPalette
-		{
+	private MapPalette CreateGrayscalePalette() {
+		return new MapPalette {
 			Name = "Grayscale",
 			ColorCount = 4,
 			Colors = new uint[]

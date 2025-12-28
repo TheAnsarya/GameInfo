@@ -4,15 +4,13 @@ using Xunit;
 
 namespace DarkRepos.Editor.Core.Tests.Services;
 
-public class HexEditorServiceTests
-{
+public class HexEditorServiceTests {
 	private readonly HexEditorService _service = new();
 
 	#region ReadBytes Tests
 
 	[Fact]
-	public void ReadBytes_ValidRange_ReturnsCorrectBytes()
-	{
+	public void ReadBytes_ValidRange_ReturnsCorrectBytes() {
 		// Arrange
 		var data = new byte[] { 0x00, 0x11, 0x22, 0x33, 0x44, 0x55 };
 
@@ -24,8 +22,7 @@ public class HexEditorServiceTests
 	}
 
 	[Fact]
-	public void ReadBytes_LengthExceedsBounds_ClampsToAvailable()
-	{
+	public void ReadBytes_LengthExceedsBounds_ClampsToAvailable() {
 		// Arrange
 		var data = new byte[] { 0x00, 0x11, 0x22, 0x33 };
 
@@ -37,8 +34,7 @@ public class HexEditorServiceTests
 	}
 
 	[Fact]
-	public void ReadBytes_InvalidOffset_ThrowsException()
-	{
+	public void ReadBytes_InvalidOffset_ThrowsException() {
 		// Arrange
 		var data = new byte[] { 0x00, 0x11 };
 
@@ -51,8 +47,7 @@ public class HexEditorServiceTests
 	#region WriteBytes Tests
 
 	[Fact]
-	public void WriteBytes_ValidRange_ModifiesData()
-	{
+	public void WriteBytes_ValidRange_ModifiesData() {
 		// Arrange
 		var data = new byte[] { 0x00, 0x00, 0x00, 0x00 };
 		var newBytes = new byte[] { 0xaa, 0xbb };
@@ -65,8 +60,7 @@ public class HexEditorServiceTests
 	}
 
 	[Fact]
-	public void WriteBytes_ExceedsBounds_ThrowsException()
-	{
+	public void WriteBytes_ExceedsBounds_ThrowsException() {
 		// Arrange
 		var data = new byte[] { 0x00, 0x00 };
 		var newBytes = new byte[] { 0xaa, 0xbb, 0xcc };
@@ -80,8 +74,7 @@ public class HexEditorServiceTests
 	#region Search Tests
 
 	[Fact]
-	public void Search_PatternExists_ReturnsAllOffsets()
-	{
+	public void Search_PatternExists_ReturnsAllOffsets() {
 		// Arrange
 		var data = new byte[] { 0xaa, 0xbb, 0xcc, 0xaa, 0xbb, 0xdd };
 		var pattern = new byte[] { 0xaa, 0xbb };
@@ -94,8 +87,7 @@ public class HexEditorServiceTests
 	}
 
 	[Fact]
-	public void Search_PatternNotFound_ReturnsEmpty()
-	{
+	public void Search_PatternNotFound_ReturnsEmpty() {
 		// Arrange
 		var data = new byte[] { 0xaa, 0xbb, 0xcc };
 		var pattern = new byte[] { 0xff, 0xff };
@@ -108,8 +100,7 @@ public class HexEditorServiceTests
 	}
 
 	[Fact]
-	public void Search_WithStartOffset_SearchesFromOffset()
-	{
+	public void Search_WithStartOffset_SearchesFromOffset() {
 		// Arrange
 		var data = new byte[] { 0xaa, 0xbb, 0xcc, 0xaa, 0xbb };
 		var pattern = new byte[] { 0xaa, 0xbb };
@@ -122,8 +113,7 @@ public class HexEditorServiceTests
 	}
 
 	[Fact]
-	public void Search_EmptyPattern_ReturnsEmpty()
-	{
+	public void Search_EmptyPattern_ReturnsEmpty() {
 		// Arrange
 		var data = new byte[] { 0xaa, 0xbb };
 
@@ -139,8 +129,7 @@ public class HexEditorServiceTests
 	#region SearchText Tests
 
 	[Fact]
-	public void SearchText_TextExists_ReturnsOffset()
-	{
+	public void SearchText_TextExists_ReturnsOffset() {
 		// Arrange
 		var data = "Hello World"u8.ToArray();
 
@@ -152,8 +141,7 @@ public class HexEditorServiceTests
 	}
 
 	[Fact]
-	public void SearchText_TextNotFound_ReturnsEmpty()
-	{
+	public void SearchText_TextNotFound_ReturnsEmpty() {
 		// Arrange
 		var data = "Hello World"u8.ToArray();
 
@@ -169,8 +157,7 @@ public class HexEditorServiceTests
 	#region Replace Tests
 
 	[Fact]
-	public void Replace_MatchingBytes_Replaces()
-	{
+	public void Replace_MatchingBytes_Replaces() {
 		// Arrange
 		var data = new byte[] { 0xaa, 0xbb, 0xcc, 0xdd };
 		var oldBytes = new byte[] { 0xbb, 0xcc };
@@ -184,8 +171,7 @@ public class HexEditorServiceTests
 	}
 
 	[Fact]
-	public void Replace_NonMatchingBytes_ThrowsException()
-	{
+	public void Replace_NonMatchingBytes_ThrowsException() {
 		// Arrange
 		var data = new byte[] { 0xaa, 0xbb, 0xcc };
 		var oldBytes = new byte[] { 0xff, 0xff };
@@ -196,8 +182,7 @@ public class HexEditorServiceTests
 	}
 
 	[Fact]
-	public void Replace_DifferentSizes_ThrowsException()
-	{
+	public void Replace_DifferentSizes_ThrowsException() {
 		// Arrange
 		var data = new byte[] { 0xaa, 0xbb, 0xcc };
 		var oldBytes = new byte[] { 0xbb };
@@ -212,8 +197,7 @@ public class HexEditorServiceTests
 	#region Fill Tests
 
 	[Fact]
-	public void Fill_ValidRange_FillsWithValue()
-	{
+	public void Fill_ValidRange_FillsWithValue() {
 		// Arrange
 		var data = new byte[] { 0x00, 0x00, 0x00, 0x00 };
 
@@ -225,8 +209,7 @@ public class HexEditorServiceTests
 	}
 
 	[Fact]
-	public void Fill_LengthExceedsBounds_ClampsToAvailable()
-	{
+	public void Fill_LengthExceedsBounds_ClampsToAvailable() {
 		// Arrange
 		var data = new byte[] { 0x00, 0x00, 0x00 };
 
@@ -242,8 +225,7 @@ public class HexEditorServiceTests
 	#region GetHexDump Tests
 
 	[Fact]
-	public void GetHexDump_ValidData_FormatsCorrectly()
-	{
+	public void GetHexDump_ValidData_FormatsCorrectly() {
 		// Arrange
 		var data = new byte[] { 0x48, 0x65, 0x6c, 0x6c, 0x6f }; // "Hello"
 
@@ -265,8 +247,7 @@ public class HexEditorServiceTests
 	[InlineData("AA BB", new byte[] { 0xaa, 0xbb })]
 	[InlineData("aa-bb-cc", new byte[] { 0xaa, 0xbb, 0xcc })]
 	[InlineData("  aa  bb  ", new byte[] { 0xaa, 0xbb })]
-	public void ParseHex_ValidInput_ReturnsBytes(string input, byte[] expected)
-	{
+	public void ParseHex_ValidInput_ReturnsBytes(string input, byte[] expected) {
 		// Act
 		var result = _service.ParseHex(input);
 
@@ -275,15 +256,13 @@ public class HexEditorServiceTests
 	}
 
 	[Fact]
-	public void ParseHex_OddLength_ThrowsException()
-	{
+	public void ParseHex_OddLength_ThrowsException() {
 		// Act & Assert
 		Assert.Throws<FormatException>(() => _service.ParseHex("aab"));
 	}
 
 	[Fact]
-	public void ParseHex_EmptyString_ReturnsEmpty()
-	{
+	public void ParseHex_EmptyString_ReturnsEmpty() {
 		// Act
 		var result = _service.ParseHex("");
 
@@ -296,8 +275,7 @@ public class HexEditorServiceTests
 	#region FormatHex Tests
 
 	[Fact]
-	public void FormatHex_WithDefaultSeparator_FormatsWithSpaces()
-	{
+	public void FormatHex_WithDefaultSeparator_FormatsWithSpaces() {
 		// Arrange
 		var bytes = new byte[] { 0xaa, 0xbb, 0xcc };
 
@@ -309,8 +287,7 @@ public class HexEditorServiceTests
 	}
 
 	[Fact]
-	public void FormatHex_WithCustomSeparator_UsesCustomSeparator()
-	{
+	public void FormatHex_WithCustomSeparator_UsesCustomSeparator() {
 		// Arrange
 		var bytes = new byte[] { 0xaa, 0xbb, 0xcc };
 
@@ -322,8 +299,7 @@ public class HexEditorServiceTests
 	}
 
 	[Fact]
-	public void FormatHex_NoSeparator_ConcatenatesBytes()
-	{
+	public void FormatHex_NoSeparator_ConcatenatesBytes() {
 		// Arrange
 		var bytes = new byte[] { 0xaa, 0xbb };
 
@@ -335,8 +311,7 @@ public class HexEditorServiceTests
 	}
 
 	[Fact]
-	public void FormatHex_EmptyBytes_ReturnsEmpty()
-	{
+	public void FormatHex_EmptyBytes_ReturnsEmpty() {
 		// Act
 		var result = _service.FormatHex(ReadOnlySpan<byte>.Empty);
 

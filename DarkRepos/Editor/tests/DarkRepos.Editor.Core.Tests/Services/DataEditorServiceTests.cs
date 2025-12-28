@@ -5,20 +5,17 @@ using Xunit;
 
 namespace DarkRepos.Editor.Core.Tests.Services;
 
-public class DataEditorServiceTests
-{
+public class DataEditorServiceTests {
 	private readonly DataEditorService _service;
 
-	public DataEditorServiceTests()
-	{
+	public DataEditorServiceTests() {
 		_service = new DataEditorService();
 	}
 
 	#region LoadStructureDefinition Tests
 
 	[Fact]
-	public void LoadStructureDefinition_ValidJson_ReturnsStructure()
-	{
+	public void LoadStructureDefinition_ValidJson_ReturnsStructure() {
 		// Arrange
 		var json = """
 		{
@@ -45,16 +42,14 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void LoadStructureDefinition_EmptyJson_ThrowsArgumentException()
-	{
+	public void LoadStructureDefinition_EmptyJson_ThrowsArgumentException() {
 		// Act & Assert
 		var act = () => _service.LoadStructureDefinition("");
 		act.Should().Throw<ArgumentException>();
 	}
 
 	[Fact]
-	public void LoadStructureDefinition_NullJson_ThrowsArgumentException()
-	{
+	public void LoadStructureDefinition_NullJson_ThrowsArgumentException() {
 		// Act & Assert
 		var act = () => _service.LoadStructureDefinition(null!);
 		act.Should().Throw<ArgumentException>();
@@ -64,8 +59,7 @@ public class DataEditorServiceTests
 	[InlineData(DataFieldType.Byte, 1)]
 	[InlineData(DataFieldType.Word, 2)]
 	[InlineData(DataFieldType.DWord, 4)]
-	public void LoadStructureDefinition_FieldTypes_CorrectSize(DataFieldType type, int expectedSize)
-	{
+	public void LoadStructureDefinition_FieldTypes_CorrectSize(DataFieldType type, int expectedSize) {
 		// Arrange
 		var json = $$"""
 		{
@@ -86,8 +80,7 @@ public class DataEditorServiceTests
 	#region LoadDataTable Tests
 
 	[Fact]
-	public void LoadDataTable_ValidData_ReturnsTable()
-	{
+	public void LoadDataTable_ValidData_ReturnsTable() {
 		// Arrange
 		var structure = CreateTestStructure();
 		byte[] data = [0x01, 0x10, 0x00, 0x02, 0x20, 0x00, 0x03, 0x30, 0x00];
@@ -105,8 +98,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void LoadDataTable_WithOffset_LoadsFromOffset()
-	{
+	public void LoadDataTable_WithOffset_LoadsFromOffset() {
 		// Arrange
 		var structure = CreateTestStructure();
 		byte[] data = [0xff, 0xff, 0x01, 0x10, 0x00, 0x02, 0x20, 0x00];
@@ -121,8 +113,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void LoadDataTable_MoreRowsThanData_LoadsAvailableRows()
-	{
+	public void LoadDataTable_MoreRowsThanData_LoadsAvailableRows() {
 		// Arrange
 		var structure = CreateTestStructure();
 		byte[] data = [0x01, 0x10, 0x00];
@@ -135,8 +126,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void LoadDataTable_NullData_ThrowsArgumentNullException()
-	{
+	public void LoadDataTable_NullData_ThrowsArgumentNullException() {
 		// Arrange
 		var structure = CreateTestStructure();
 
@@ -150,8 +140,7 @@ public class DataEditorServiceTests
 	#region LoadRecord Tests
 
 	[Fact]
-	public void LoadRecord_ValidData_ReturnsRecord()
-	{
+	public void LoadRecord_ValidData_ReturnsRecord() {
 		// Arrange
 		var structure = CreateTestStructure();
 		byte[] data = [0x42, 0xcd, 0xab];
@@ -166,8 +155,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void LoadRecord_StoresRawBytes()
-	{
+	public void LoadRecord_StoresRawBytes() {
 		// Arrange
 		var structure = CreateTestStructure();
 		byte[] data = [0x01, 0x02, 0x03];
@@ -184,12 +172,10 @@ public class DataEditorServiceTests
 	#region ExportTable Tests
 
 	[Fact]
-	public void ExportTable_ValidTable_ReturnsBinary()
-	{
+	public void ExportTable_ValidTable_ReturnsBinary() {
 		// Arrange
 		var structure = CreateTestStructure();
-		var table = new DataTable
-		{
+		var table = new DataTable {
 			Name = "Test",
 			Structure = structure
 		};
@@ -212,8 +198,7 @@ public class DataEditorServiceTests
 	#region ExportRecord Tests
 
 	[Fact]
-	public void ExportRecord_ValidRecord_ReturnsBinary()
-	{
+	public void ExportRecord_ValidRecord_ReturnsBinary() {
 		// Arrange
 		var structure = CreateTestStructure();
 		var record = CreateRecord(structure, 0x42, 0xabcd);
@@ -233,12 +218,10 @@ public class DataEditorServiceTests
 	#region ExportToJson Tests
 
 	[Fact]
-	public void ExportToJson_ValidTable_ReturnsJson()
-	{
+	public void ExportToJson_ValidTable_ReturnsJson() {
 		// Arrange
 		var structure = CreateTestStructure();
-		var table = new DataTable
-		{
+		var table = new DataTable {
 			Name = "Test",
 			Structure = structure
 		};
@@ -254,8 +237,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void ExportToJson_PrettyFalse_ReturnsCompactJson()
-	{
+	public void ExportToJson_PrettyFalse_ReturnsCompactJson() {
 		// Arrange
 		var structure = CreateTestStructure();
 		var table = new DataTable { Name = "Test", Structure = structure };
@@ -273,8 +255,7 @@ public class DataEditorServiceTests
 	#region ExportToCsv Tests
 
 	[Fact]
-	public void ExportToCsv_ValidTable_ReturnsCsv()
-	{
+	public void ExportToCsv_ValidTable_ReturnsCsv() {
 		// Arrange
 		var structure = CreateTestStructure();
 		var table = new DataTable { Name = "Test", Structure = structure };
@@ -289,8 +270,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void ExportToCsv_NoHeader_OmitsHeader()
-	{
+	public void ExportToCsv_NoHeader_OmitsHeader() {
 		// Arrange
 		var structure = CreateTestStructure();
 		var table = new DataTable { Name = "Test", Structure = structure };
@@ -309,8 +289,7 @@ public class DataEditorServiceTests
 	#region ImportFromJson Tests
 
 	[Fact]
-	public void ImportFromJson_ValidJson_ReturnsTable()
-	{
+	public void ImportFromJson_ValidJson_ReturnsTable() {
 		// Arrange
 		var structure = CreateTestStructure();
 		var json = """
@@ -338,8 +317,7 @@ public class DataEditorServiceTests
 	#region ImportFromCsv Tests
 
 	[Fact]
-	public void ImportFromCsv_ValidCsv_ReturnsTable()
-	{
+	public void ImportFromCsv_ValidCsv_ReturnsTable() {
 		// Arrange
 		var structure = CreateTestStructure();
 		var csv = "id,value\n1,256\n2,512";
@@ -353,8 +331,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void ImportFromCsv_NoHeader_UsesFieldOrder()
-	{
+	public void ImportFromCsv_NoHeader_UsesFieldOrder() {
 		// Arrange
 		var structure = CreateTestStructure();
 		var csv = "1,256\n2,512";
@@ -371,8 +348,7 @@ public class DataEditorServiceTests
 	#region ValidateTable Tests
 
 	[Fact]
-	public void ValidateTable_ValidData_ReturnsNoErrors()
-	{
+	public void ValidateTable_ValidData_ReturnsNoErrors() {
 		// Arrange
 		var structure = CreateTestStructure();
 		var table = new DataTable { Name = "Test", Structure = structure };
@@ -387,8 +363,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void ValidateTable_ValueOutOfRange_ReturnsError()
-	{
+	public void ValidateTable_ValueOutOfRange_ReturnsError() {
 		// Arrange
 		var structure = CreateTestStructure();
 		structure.Fields[0].MaxValue = 100;
@@ -408,8 +383,7 @@ public class DataEditorServiceTests
 	#region ValidateRecord Tests
 
 	[Fact]
-	public void ValidateRecord_ValidData_ReturnsNoErrors()
-	{
+	public void ValidateRecord_ValidData_ReturnsNoErrors() {
 		// Arrange
 		var structure = CreateTestStructure();
 		var record = CreateRecord(structure, 0x01, 0x1000);
@@ -426,8 +400,7 @@ public class DataEditorServiceTests
 	#region GetFieldValue Tests
 
 	[Fact]
-	public void GetFieldValue_ExistingField_ReturnsValue()
-	{
+	public void GetFieldValue_ExistingField_ReturnsValue() {
 		// Arrange
 		var structure = CreateTestStructure();
 		var record = CreateRecord(structure, 0x42, 0x1234);
@@ -440,8 +413,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void GetFieldValue_NonExistingField_ReturnsNull()
-	{
+	public void GetFieldValue_NonExistingField_ReturnsNull() {
 		// Arrange
 		var structure = CreateTestStructure();
 		var record = CreateRecord(structure, 0x42, 0x1234);
@@ -458,8 +430,7 @@ public class DataEditorServiceTests
 	#region SetFieldValue Tests
 
 	[Fact]
-	public void SetFieldValue_ExistingField_UpdatesValue()
-	{
+	public void SetFieldValue_ExistingField_UpdatesValue() {
 		// Arrange
 		var structure = CreateTestStructure();
 		var record = CreateRecord(structure, 0x01, 0x1000);
@@ -472,8 +443,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void SetFieldValue_NonExistingField_AddsValue()
-	{
+	public void SetFieldValue_NonExistingField_AddsValue() {
 		// Arrange
 		var structure = CreateTestStructure();
 		var record = new DataRecord();
@@ -491,8 +461,7 @@ public class DataEditorServiceTests
 	#region FindRecords Tests
 
 	[Fact]
-	public void FindRecords_MatchingPredicate_ReturnsRecords()
-	{
+	public void FindRecords_MatchingPredicate_ReturnsRecords() {
 		// Arrange
 		var structure = CreateTestStructure();
 		var table = new DataTable { Name = "Test", Structure = structure };
@@ -509,8 +478,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void FindRecords_NoMatch_ReturnsEmpty()
-	{
+	public void FindRecords_NoMatch_ReturnsEmpty() {
 		// Arrange
 		var structure = CreateTestStructure();
 		var table = new DataTable { Name = "Test", Structure = structure };
@@ -528,8 +496,7 @@ public class DataEditorServiceTests
 	#region SortTable Tests
 
 	[Fact]
-	public void SortTable_Ascending_SortsCorrectly()
-	{
+	public void SortTable_Ascending_SortsCorrectly() {
 		// Arrange
 		var structure = CreateTestStructure();
 		var table = new DataTable { Name = "Test", Structure = structure };
@@ -547,8 +514,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void SortTable_Descending_SortsCorrectly()
-	{
+	public void SortTable_Descending_SortsCorrectly() {
 		// Arrange
 		var structure = CreateTestStructure();
 		var table = new DataTable { Name = "Test", Structure = structure };
@@ -570,8 +536,7 @@ public class DataEditorServiceTests
 	#region GetTemplates Tests
 
 	[Fact]
-	public void GetTemplates_ReturnsTemplates()
-	{
+	public void GetTemplates_ReturnsTemplates() {
 		// Act
 		var templates = _service.GetTemplates();
 
@@ -584,8 +549,7 @@ public class DataEditorServiceTests
 	#region CalculateChecksum Tests
 
 	[Fact]
-	public void CalculateChecksum_Crc32_ReturnsChecksum()
-	{
+	public void CalculateChecksum_Crc32_ReturnsChecksum() {
 		// Arrange
 		var structure = CreateTestStructure();
 		var table = new DataTable { Name = "Test", Structure = structure };
@@ -599,8 +563,7 @@ public class DataEditorServiceTests
 	}
 
 	[Fact]
-	public void CalculateChecksum_Sum8_ReturnsSum()
-	{
+	public void CalculateChecksum_Sum8_ReturnsSum() {
 		// Arrange
 		var structure = CreateTestStructure();
 		var table = new DataTable { Name = "Test", Structure = structure };
@@ -617,10 +580,8 @@ public class DataEditorServiceTests
 
 	#region Helper Methods
 
-	private static DataStructure CreateTestStructure()
-	{
-		return new DataStructure
-		{
+	private static DataStructure CreateTestStructure() {
+		return new DataStructure {
 			Name = "TestStructure",
 			Endianness = Endianness.Little,
 			Fields =
@@ -631,13 +592,10 @@ public class DataEditorServiceTests
 		};
 	}
 
-	private static DataRecord CreateRecord(DataStructure structure, byte id, ushort value)
-	{
-		return new DataRecord
-		{
+	private static DataRecord CreateRecord(DataStructure structure, byte id, ushort value) {
+		return new DataRecord {
 			RawBytes = [(byte)id, (byte)(value & 0xff), (byte)(value >> 8)],
-			Values = new Dictionary<string, object>
-			{
+			Values = new Dictionary<string, object> {
 				["id"] = id,
 				["value"] = value
 			}
