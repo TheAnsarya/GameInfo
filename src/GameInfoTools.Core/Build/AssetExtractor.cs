@@ -49,9 +49,10 @@ public static class AssetExtractorFactory {
 	}
 
 	/// <summary>
-<<<<<<< HEAD
-	/// Get a platform-specific extractor that handles all asset types for that platform
+	/// Get a platform-specific extractor that handles all asset types for that platform.
 	/// </summary>
+	/// <param name="platform">The ROM platform.</param>
+	/// <returns>Platform-specific extractor if available, null otherwise.</returns>
 	public static IAssetExtractor? GetPlatformExtractor(Platform platform) {
 		return platform switch {
 			Platform.Nes => new NesAssetExtractor(),
@@ -59,17 +60,6 @@ public static class AssetExtractorFactory {
 			Platform.Genesis => new GenesisAssetExtractor(),
 			Platform.Gb or Platform.Gbc => new GameBoyAssetExtractor(),
 			Platform.Gba => new GbaAssetExtractor(),
-=======
-	/// Try to get a platform-specific extractor that handles all asset types
-	/// </summary>
-	/// <param name="platform">The ROM platform</param>
-	/// <returns>Platform-specific extractor if available, null otherwise</returns>
-	public static IAssetExtractor? TryGetPlatformExtractor(Platform platform) {
-		return platform switch {
-			Platform.Genesis => new GenesisAssetExtractor(),
-			// Platform.Snes => new SnesAssetExtractor(), // Available in feature/58-snes-build-pipeline
-			// Platform.Nes => new NesAssetExtractor(), // Available in feature/57-nes-build-pipeline
->>>>>>> origin/feature/59-genesis-build-pipeline
 			_ => null
 		};
 	}
