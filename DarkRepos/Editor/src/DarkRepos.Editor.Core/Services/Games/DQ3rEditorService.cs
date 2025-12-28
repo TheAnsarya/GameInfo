@@ -92,6 +92,48 @@ public class DQ3rEditorService : IDQ3rEditorService {
 	}
 
 	/// <summary>
+	/// Get weapon data table.
+	/// </summary>
+	public DataTable? LoadWeapons() {
+		if (_romData.Length == 0) return null;
+
+		var structure = _dataEditor.LoadStructureDefinition(DQ3rStructures.WeaponJson);
+		return _dataEditor.LoadDataTable(
+			_romData,
+			Tables.Weapons.FileOffset,
+			structure,
+			Tables.Weapons.Count);
+	}
+
+	/// <summary>
+	/// Get armor data table.
+	/// </summary>
+	public DataTable? LoadArmor() {
+		if (_romData.Length == 0) return null;
+
+		var structure = _dataEditor.LoadStructureDefinition(DQ3rStructures.ArmorJson);
+		return _dataEditor.LoadDataTable(
+			_romData,
+			Tables.Armor.FileOffset,
+			structure,
+			Tables.Armor.Count);
+	}
+
+	/// <summary>
+	/// Get monster AI data table.
+	/// </summary>
+	public DataTable? LoadMonsterAi() {
+		if (_romData.Length == 0) return null;
+
+		var structure = _dataEditor.LoadStructureDefinition(DQ3rStructures.MonsterAiJson);
+		return _dataEditor.LoadDataTable(
+			_romData,
+			Tables.MonsterAi.FileOffset,
+			structure,
+			Tables.MonsterAi.Count);
+	}
+
+	/// <summary>
 	/// Save monster data back to ROM.
 	/// </summary>
 	public void SaveMonsters(DataTable table) {
@@ -139,18 +181,42 @@ public class DQ3rEditorService : IDQ3rEditorService {
 
 /// <summary>
 /// Known table locations in DQ3r ROM.
-/// Addresses are file offsets (after header removal).
+/// Addresses verified from dq3_extracted/extraction_summary.json.
 /// </summary>
 public class DQ3rKnownTables {
-	// TODO: These addresses need verification from datamap.json and disassembly
-	// Placeholder values based on typical DQ3 SNES structure
+	// Data bank $50 (80) - File offset 0x500000
+	public TableLocation Items { get; } = new(0x500000, 512, 16, "Item Data");
+	public TableLocation Weapons { get; } = new(0x502000, 128, 16, "Weapon Data");
+	public TableLocation Armor { get; } = new(0x504000, 128, 16, "Armor Data");
 
-	public TableLocation Monsters { get; } = new(0x1a0000, 256, 32, "Monster Stats");
-	public TableLocation Items { get; } = new(0x1b0000, 256, 16, "Item Data");
-	public TableLocation Spells { get; } = new(0x1c0000, 128, 12, "Spell Data");
-	public TableLocation Classes { get; } = new(0x1d0000, 16, 64, "Class Stats");
-	public TableLocation Equipment { get; } = new(0x1e0000, 256, 8, "Equipment Stats");
-	public TableLocation Shops { get; } = new(0x1f0000, 64, 32, "Shop Inventory");
+	// Data bank $51 (81) - File offset 0x510000
+	public TableLocation Monsters { get; } = new(0x510000, 384, 32, "Monster Stats");
+	public TableLocation MonsterAi { get; } = new(0x513000, 256, 32, "Monster AI");
+
+	// Data bank $52 (82) - File offset 0x520000
+	public TableLocation Spells { get; } = new(0x520000, 341, 12, "Spell Data");
+	public TableLocation Classes { get; } = new(0x521000, 128, 16, "Class Stats");
+
+	// Text - Bank $40 (64) - File offset 0x400000
+	public TableLocation MainDialog { get; } = new(0x400000, -1, -1, "Main Dialog (compressed)");
+
+	// Text from datamap.json (Bank $C1, etc.)
+	public TableLocation DialogFont { get; } = new(0x010ed3, -1, 0x42d7, "Dialog Font Data");
+	public TableLocation DialogFontMeta { get; } = new(0x0151aa, 50, 5, "Font Metadata Table");
+	public TableLocation DialogScript { get; } = new(0x3cc258, -1, 0x20d5e, "Dialog Script");
+
+	// Graphics
+	public TableLocation CharSprites { get; } = new(0x200000, 2048, 32, "Character Sprites");
+	public TableLocation MonsterGraphics { get; } = new(0x220000, 4096, 32, "Monster Graphics");
+	public TableLocation WorldTiles { get; } = new(0x180000, 2048, 16, "World Map Tiles");
+	public TableLocation UiGraphics { get; } = new(0x1a0000, 1024, 16, "UI Graphics");
+	public TableLocation FontGraphics { get; } = new(0x1b0000, 512, 16, "Font Tiles");
+
+	// Audio
+	public TableLocation MusicBank1 { get; } = new(0x300000, 4, -1, "Music Bank 1");
+	public TableLocation MusicBank2 { get; } = new(0x308000, 6, -1, "Music Bank 2");
+	public TableLocation SoundEffects { get; } = new(0x310000, -1, 16384, "Sound Effects (BRR)");
+	public TableLocation Instruments { get; } = new(0x320000, -1, 32768, "Instrument Samples (BRR)");
 }
 
 /// <summary>
@@ -168,7 +234,10 @@ public record TableLocation(int FileOffset, int Count, int EntrySize, string Des
 public interface IDQ3rEditorService {
 	void LoadRom(byte[] data);
 	DataTable? LoadMonsters();
+	DataTable? LoadMonsterAi();
 	DataTable? LoadItems();
+	DataTable? LoadWeapons();
+	DataTable? LoadArmor();
 	DataTable? LoadSpells();
 	DataTable? LoadClasses();
 	void SaveMonsters(DataTable table);
@@ -282,6 +351,84 @@ public static class DQ3rStructures {
 			{ "name": "equip_mask", "type": "uint16", "description": "Equipment Types Allowed" },
 			{ "name": "spell_table", "type": "uint16", "description": "Spell Learning Table Ptr" },
 			{ "name": "reserved", "type": "bytes", "size": 44 }
+		]
+	}
+	""";
+
+	/// <summary>
+	/// Weapon data structure schema.
+	/// </summary>
+	public static readonly string WeaponJson = """
+	{
+		"name": "Weapon",
+		"recordSize": 16,
+		"endianness": "little",
+		"fields": [
+			{ "name": "attack", "type": "uint8", "description": "Attack Power" },
+			{ "name": "hit_rate", "type": "uint8", "description": "Hit Rate Bonus" },
+			{ "name": "element", "type": "uint8", "description": "Elemental Type" },
+			{ "name": "effect", "type": "uint8", "description": "Special Effect" },
+			{ "name": "equip_class", "type": "uint8", "description": "Equippable Classes Mask" },
+			{ "name": "flags", "type": "uint8", "description": "Weapon Flags" },
+			{ "name": "buy_price", "type": "uint16", "description": "Buy Price" },
+			{ "name": "sell_price", "type": "uint16", "description": "Sell Price" },
+			{ "name": "name_ptr", "type": "uint16", "description": "Name Pointer" },
+			{ "name": "desc_ptr", "type": "uint16", "description": "Description Pointer" },
+			{ "name": "reserved", "type": "uint16" }
+		]
+	}
+	""";
+
+	/// <summary>
+	/// Armor data structure schema.
+	/// </summary>
+	public static readonly string ArmorJson = """
+	{
+		"name": "Armor",
+		"recordSize": 16,
+		"endianness": "little",
+		"fields": [
+			{ "name": "defense", "type": "uint8", "description": "Defense Power" },
+			{ "name": "resist", "type": "uint8", "description": "Resistance Type" },
+			{ "name": "element", "type": "uint8", "description": "Elemental Defense" },
+			{ "name": "effect", "type": "uint8", "description": "Special Effect" },
+			{ "name": "equip_class", "type": "uint8", "description": "Equippable Classes Mask" },
+			{ "name": "slot", "type": "uint8", "description": "Equipment Slot (body/helm/shield)" },
+			{ "name": "buy_price", "type": "uint16", "description": "Buy Price" },
+			{ "name": "sell_price", "type": "uint16", "description": "Sell Price" },
+			{ "name": "name_ptr", "type": "uint16", "description": "Name Pointer" },
+			{ "name": "desc_ptr", "type": "uint16", "description": "Description Pointer" },
+			{ "name": "reserved", "type": "uint16" }
+		]
+	}
+	""";
+
+	/// <summary>
+	/// Monster AI data structure schema.
+	/// </summary>
+	public static readonly string MonsterAiJson = """
+	{
+		"name": "MonsterAI",
+		"recordSize": 32,
+		"endianness": "little",
+		"fields": [
+			{ "name": "ai_type", "type": "uint8", "description": "AI Behavior Type" },
+			{ "name": "action_1", "type": "uint8", "description": "Primary Action" },
+			{ "name": "action_1_rate", "type": "uint8", "description": "Primary Action Rate" },
+			{ "name": "action_2", "type": "uint8", "description": "Secondary Action" },
+			{ "name": "action_2_rate", "type": "uint8", "description": "Secondary Action Rate" },
+			{ "name": "action_3", "type": "uint8", "description": "Tertiary Action" },
+			{ "name": "action_3_rate", "type": "uint8", "description": "Tertiary Action Rate" },
+			{ "name": "action_4", "type": "uint8", "description": "Quaternary Action" },
+			{ "name": "action_4_rate", "type": "uint8", "description": "Quaternary Action Rate" },
+			{ "name": "hp_threshold", "type": "uint8", "description": "HP% for AI Change" },
+			{ "name": "phase2_type", "type": "uint8", "description": "Phase 2 AI Type" },
+			{ "name": "flee_rate", "type": "uint8", "description": "Flee Probability" },
+			{ "name": "call_ally_id", "type": "uint8", "description": "Call Ally Monster ID" },
+			{ "name": "call_ally_rate", "type": "uint8", "description": "Call Ally Rate" },
+			{ "name": "target_priority", "type": "uint8", "description": "Target Selection" },
+			{ "name": "flags", "type": "uint8", "description": "Behavior Flags" },
+			{ "name": "reserved", "type": "bytes", "size": 16 }
 		]
 	}
 	""";
