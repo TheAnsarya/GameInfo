@@ -4,14 +4,16 @@ namespace DarkRepos.Editor.Core.Services.Games;
 /// DQ3r-specific trace analysis service.
 /// Integrates CDL data and trace logs with known DQ3r ROM structure.
 /// </summary>
-public class DQ3rTraceService : IDQ3rTraceService {
+public class DQ3rTraceService : IDQ3rTraceService
+{
 	private readonly ITraceAnalyzerService _traceAnalyzer;
 	private bool _cdlLoaded;
 
 	/// <summary>
 	/// Known function addresses from trace analysis.
 	/// </summary>
-	public static readonly Dictionary<int, string> KnownFunctions = new() {
+	public static readonly Dictionary<int, string> KnownFunctions = new()
+	{
 		// Main game loop (Bank $C0)
 		[0xc0936f] = "UpdateStateMachine",
 		[0xc600bd] = "MainLoopJsl_C6061F",
@@ -58,7 +60,8 @@ public class DQ3rTraceService : IDQ3rTraceService {
 	/// <summary>
 	/// Known RAM addresses from trace analysis.
 	/// </summary>
-	public static readonly Dictionary<int, string> KnownRamAddresses = new() {
+	public static readonly Dictionary<int, string> KnownRamAddresses = new()
+	{
 		// Game state
 		[0x7edd45] = "GameStateFlag1",
 		[0x7edd47] = "GameStateFlag2",
@@ -106,7 +109,8 @@ public class DQ3rTraceService : IDQ3rTraceService {
 	/// <summary>
 	/// Bank descriptions based on trace analysis.
 	/// </summary>
-	public static readonly Dictionary<int, string> BankDescriptions = new() {
+	public static readonly Dictionary<int, string> BankDescriptions = new()
+	{
 		[0xc0] = "Main game loop, state machine, compression",
 		[0xc1] = "Dialog font data and rendering",
 		[0xc4] = "Character class data",
@@ -121,14 +125,16 @@ public class DQ3rTraceService : IDQ3rTraceService {
 		[0xfc] = "Dialog script text (Bank $3C)",
 	};
 
-	public DQ3rTraceService(ITraceAnalyzerService traceAnalyzer) {
+	public DQ3rTraceService(ITraceAnalyzerService traceAnalyzer)
+	{
 		_traceAnalyzer = traceAnalyzer;
 	}
 
 	/// <summary>
 	/// Loads DQ3r CDL file.
 	/// </summary>
-	public void LoadCdl(string filePath) {
+	public void LoadCdl(string filePath)
+	{
 		_traceAnalyzer.LoadCdl(filePath);
 		_cdlLoaded = true;
 	}
@@ -136,7 +142,8 @@ public class DQ3rTraceService : IDQ3rTraceService {
 	/// <summary>
 	/// Loads DQ3r trace log.
 	/// </summary>
-	public void LoadTraceLog(string filePath) {
+	public void LoadTraceLog(string filePath)
+	{
 		_traceAnalyzer.LoadTraceLog(filePath);
 	}
 
@@ -161,15 +168,18 @@ public class DQ3rTraceService : IDQ3rTraceService {
 	/// <summary>
 	/// Analyzes CDL data for a specific data table region.
 	/// </summary>
-	public TraceAnalyzerService.CdlSummary? AnalyzeTableRegion(int startAddress, int length) {
+	public TraceAnalyzerService.CdlSummary? AnalyzeTableRegion(int startAddress, int length)
+	{
 		if (!_cdlLoaded) return null;
 
 		int code = 0, data = 0, drawn = 0, unknown = 0;
 
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++)
+		{
 			var flags = _traceAnalyzer.GetFlags(startAddress + i);
 			if (flags == TraceAnalyzerService.CdlFlags.None) unknown++;
-			else {
+			else
+			{
 				if (flags.HasFlag(TraceAnalyzerService.CdlFlags.Code)) code++;
 				if (flags.HasFlag(TraceAnalyzerService.CdlFlags.Data)) data++;
 				if (flags.HasFlag(TraceAnalyzerService.CdlFlags.Drawn)) drawn++;
@@ -188,23 +198,28 @@ public class DQ3rTraceService : IDQ3rTraceService {
 	/// <summary>
 	/// Finds functions that access a specific RAM address range.
 	/// </summary>
-	public List<int> FindFunctionsAccessingRam(int startRam, int endRam) {
+	public List<int> FindFunctionsAccessingRam(int startRam, int endRam)
+	{
 		var entries = _traceAnalyzer.GetTraceEntries();
 		var functions = new HashSet<int>();
 
-		foreach (var entry in entries) {
+		foreach (var entry in entries)
+		{
 			// Check if operand contains RAM address in range
-			if (entry.Operand.Contains('[')) {
+			if (entry.Operand.Contains('['))
+			{
 				var match = System.Text.RegularExpressions.Regex.Match(
 					entry.Operand, @"\[(?<bank>[0-9A-F]{2}):(?<addr>[0-9A-F]{4})\]",
 					System.Text.RegularExpressions.RegexOptions.IgnoreCase);
 
-				if (match.Success) {
+				if (match.Success)
+				{
 					int bank = Convert.ToInt32(match.Groups["bank"].Value, 16);
 					int addr = Convert.ToInt32(match.Groups["addr"].Value, 16);
 					int fullAddr = (bank << 16) | addr;
 
-					if (fullAddr >= startRam && fullAddr <= endRam) {
+					if (fullAddr >= startRam && fullAddr <= endRam)
+					{
 						functions.Add(entry.Address);
 					}
 				}
@@ -217,7 +232,8 @@ public class DQ3rTraceService : IDQ3rTraceService {
 	/// <summary>
 	/// Exports a labeled disassembly report using CDL and trace data.
 	/// </summary>
-	public string ExportLabeledReport() {
+	public string ExportLabeledReport()
+	{
 		var sb = new System.Text.StringBuilder();
 
 		sb.AppendLine("DQ3r Trace Analysis Report");
@@ -226,7 +242,8 @@ public class DQ3rTraceService : IDQ3rTraceService {
 
 		// CDL Summary
 		var summary = _traceAnalyzer.GetSummary();
-		if (summary != null) {
+		if (summary != null)
+		{
 			sb.AppendLine("CDL Coverage:");
 			sb.AppendLine($"  Code:     {summary.CodeBytes:N0} bytes ({summary.CodePercent:F2}%)");
 			sb.AppendLine($"  Data:     {summary.DataBytes:N0} bytes ({summary.DataPercent:F2}%)");
@@ -237,7 +254,8 @@ public class DQ3rTraceService : IDQ3rTraceService {
 
 		// Known Functions
 		sb.AppendLine("Known Functions:");
-		foreach (var (addr, name) in KnownFunctions.OrderBy(kv => kv.Key)) {
+		foreach (var (addr, name) in KnownFunctions.OrderBy(kv => kv.Key))
+		{
 			string codeStatus = _cdlLoaded && _traceAnalyzer.IsCode(addr - 0xc00000) ? "[CDL:Code]" : "";
 			sb.AppendLine($"  ${addr:x6}: {name} {codeStatus}");
 		}
@@ -245,7 +263,8 @@ public class DQ3rTraceService : IDQ3rTraceService {
 
 		// Bank Analysis
 		sb.AppendLine("Bank Descriptions:");
-		foreach (var (bank, desc) in BankDescriptions.OrderBy(kv => kv.Key)) {
+		foreach (var (bank, desc) in BankDescriptions.OrderBy(kv => kv.Key))
+		{
 			sb.AppendLine($"  Bank ${bank:x2}: {desc}");
 		}
 
@@ -256,7 +275,8 @@ public class DQ3rTraceService : IDQ3rTraceService {
 /// <summary>
 /// Interface for DQ3r-specific trace analysis.
 /// </summary>
-public interface IDQ3rTraceService {
+public interface IDQ3rTraceService
+{
 	void LoadCdl(string filePath);
 	void LoadTraceLog(string filePath);
 	string? GetFunctionName(int address);

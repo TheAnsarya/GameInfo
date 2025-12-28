@@ -7,7 +7,8 @@ namespace DarkRepos.Editor.Core.Services.Games;
 /// Dragon Quest III SNES (DQ3r) specific editor service.
 /// Provides game-specific data structure editing capabilities.
 /// </summary>
-public class DQ3rEditorService : IDQ3rEditorService {
+public class DQ3rEditorService : IDQ3rEditorService
+{
 	private readonly IDataEditorService _dataEditor;
 	private byte[] _romData = [];
 
@@ -17,7 +18,8 @@ public class DQ3rEditorService : IDQ3rEditorService {
 	/// </summary>
 	public static readonly DQ3rKnownTables Tables = new();
 
-	public DQ3rEditorService(IDataEditorService dataEditor) {
+	public DQ3rEditorService(IDataEditorService dataEditor)
+	{
 		_dataEditor = dataEditor;
 	}
 
@@ -25,12 +27,16 @@ public class DQ3rEditorService : IDQ3rEditorService {
 	/// Load ROM data for editing.
 	/// </summary>
 	/// <param name="data">ROM byte data (with or without SMC header).</param>
-	public void LoadRom(byte[] data) {
+	public void LoadRom(byte[] data)
+	{
 		// Strip SMC header if present
-		if (data.Length % 1024 == 512) {
+		if (data.Length % 1024 == 512)
+		{
 			_romData = new byte[data.Length - 512];
 			Array.Copy(data, 512, _romData, 0, _romData.Length);
-		} else {
+		}
+		else
+		{
 			_romData = data;
 		}
 	}
@@ -38,7 +44,8 @@ public class DQ3rEditorService : IDQ3rEditorService {
 	/// <summary>
 	/// Get monster data table.
 	/// </summary>
-	public DataTable? LoadMonsters() {
+	public DataTable? LoadMonsters()
+	{
 		if (_romData.Length == 0) return null;
 
 		var structure = _dataEditor.LoadStructureDefinition(DQ3rStructures.MonsterJson);
@@ -52,7 +59,8 @@ public class DQ3rEditorService : IDQ3rEditorService {
 	/// <summary>
 	/// Get item data table.
 	/// </summary>
-	public DataTable? LoadItems() {
+	public DataTable? LoadItems()
+	{
 		if (_romData.Length == 0) return null;
 
 		var structure = _dataEditor.LoadStructureDefinition(DQ3rStructures.ItemJson);
@@ -66,7 +74,8 @@ public class DQ3rEditorService : IDQ3rEditorService {
 	/// <summary>
 	/// Get spell data table.
 	/// </summary>
-	public DataTable? LoadSpells() {
+	public DataTable? LoadSpells()
+	{
 		if (_romData.Length == 0) return null;
 
 		var structure = _dataEditor.LoadStructureDefinition(DQ3rStructures.SpellJson);
@@ -80,7 +89,8 @@ public class DQ3rEditorService : IDQ3rEditorService {
 	/// <summary>
 	/// Get class data table.
 	/// </summary>
-	public DataTable? LoadClasses() {
+	public DataTable? LoadClasses()
+	{
 		if (_romData.Length == 0) return null;
 
 		var structure = _dataEditor.LoadStructureDefinition(DQ3rStructures.ClassJson);
@@ -94,7 +104,8 @@ public class DQ3rEditorService : IDQ3rEditorService {
 	/// <summary>
 	/// Get weapon data table.
 	/// </summary>
-	public DataTable? LoadWeapons() {
+	public DataTable? LoadWeapons()
+	{
 		if (_romData.Length == 0) return null;
 
 		var structure = _dataEditor.LoadStructureDefinition(DQ3rStructures.WeaponJson);
@@ -108,7 +119,8 @@ public class DQ3rEditorService : IDQ3rEditorService {
 	/// <summary>
 	/// Get armor data table.
 	/// </summary>
-	public DataTable? LoadArmor() {
+	public DataTable? LoadArmor()
+	{
 		if (_romData.Length == 0) return null;
 
 		var structure = _dataEditor.LoadStructureDefinition(DQ3rStructures.ArmorJson);
@@ -122,7 +134,8 @@ public class DQ3rEditorService : IDQ3rEditorService {
 	/// <summary>
 	/// Get monster AI data table.
 	/// </summary>
-	public DataTable? LoadMonsterAi() {
+	public DataTable? LoadMonsterAi()
+	{
 		if (_romData.Length == 0) return null;
 
 		var structure = _dataEditor.LoadStructureDefinition(DQ3rStructures.MonsterAiJson);
@@ -136,7 +149,8 @@ public class DQ3rEditorService : IDQ3rEditorService {
 	/// <summary>
 	/// Save monster data back to ROM.
 	/// </summary>
-	public void SaveMonsters(DataTable table) {
+	public void SaveMonsters(DataTable table)
+	{
 		var exported = _dataEditor.ExportTable(table);
 		Array.Copy(exported, 0, _romData, Tables.Monsters.FileOffset, exported.Length);
 	}
@@ -144,7 +158,8 @@ public class DQ3rEditorService : IDQ3rEditorService {
 	/// <summary>
 	/// Save item data back to ROM.
 	/// </summary>
-	public void SaveItems(DataTable table) {
+	public void SaveItems(DataTable table)
+	{
 		var exported = _dataEditor.ExportTable(table);
 		Array.Copy(exported, 0, _romData, Tables.Items.FileOffset, exported.Length);
 	}
@@ -152,7 +167,8 @@ public class DQ3rEditorService : IDQ3rEditorService {
 	/// <summary>
 	/// Save spell data back to ROM.
 	/// </summary>
-	public void SaveSpells(DataTable table) {
+	public void SaveSpells(DataTable table)
+	{
 		var exported = _dataEditor.ExportTable(table);
 		Array.Copy(exported, 0, _romData, Tables.Spells.FileOffset, exported.Length);
 	}
@@ -160,7 +176,8 @@ public class DQ3rEditorService : IDQ3rEditorService {
 	/// <summary>
 	/// Save class data back to ROM.
 	/// </summary>
-	public void SaveClasses(DataTable table) {
+	public void SaveClasses(DataTable table)
+	{
 		var exported = _dataEditor.ExportTable(table);
 		Array.Copy(exported, 0, _romData, Tables.Classes.FileOffset, exported.Length);
 	}
@@ -173,7 +190,8 @@ public class DQ3rEditorService : IDQ3rEditorService {
 	/// <summary>
 	/// Convert SNES address to file offset.
 	/// </summary>
-	public static int SnesAddressToFile(int snesAddress) {
+	public static int SnesAddressToFile(int snesAddress)
+	{
 		const int HiRomOffset = 0xc00000;
 		return snesAddress >= HiRomOffset ? snesAddress - HiRomOffset : snesAddress;
 	}
@@ -183,7 +201,8 @@ public class DQ3rEditorService : IDQ3rEditorService {
 /// Known table locations in DQ3r ROM.
 /// Addresses verified from dq3_extracted/extraction_summary.json.
 /// </summary>
-public class DQ3rKnownTables {
+public class DQ3rKnownTables
+{
 	// Data bank $50 (80) - File offset 0x500000
 	public TableLocation Items { get; } = new(0x500000, 512, 16, "Item Data");
 	public TableLocation Weapons { get; } = new(0x502000, 128, 16, "Weapon Data");
@@ -222,7 +241,8 @@ public class DQ3rKnownTables {
 /// <summary>
 /// Represents a known table location.
 /// </summary>
-public record TableLocation(int FileOffset, int Count, int EntrySize, string Description) {
+public record TableLocation(int FileOffset, int Count, int EntrySize, string Description)
+{
 	public int TotalSize => Count * EntrySize;
 	public int SnesAddress => FileOffset + 0xc00000;
 	public string SnesAddressHex => $"${SnesAddress:x6}";
@@ -231,7 +251,8 @@ public record TableLocation(int FileOffset, int Count, int EntrySize, string Des
 /// <summary>
 /// Interface for DQ3r-specific editing operations.
 /// </summary>
-public interface IDQ3rEditorService {
+public interface IDQ3rEditorService
+{
 	void LoadRom(byte[] data);
 	DataTable? LoadMonsters();
 	DataTable? LoadMonsterAi();
@@ -250,7 +271,8 @@ public interface IDQ3rEditorService {
 /// <summary>
 /// DQ3r data structure JSON schemas.
 /// </summary>
-public static class DQ3rStructures {
+public static class DQ3rStructures
+{
 	/// <summary>
 	/// Monster data structure schema.
 	/// </summary>

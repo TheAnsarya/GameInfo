@@ -43,9 +43,12 @@ builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.Al
 var app = builder.Build();
 
 // Configure the HTTP request pipeline
-if (app.Environment.IsDevelopment()) {
+if (app.Environment.IsDevelopment())
+{
 	app.UseWebAssemblyDebugging();
-} else {
+}
+else
+{
 	app.UseExceptionHandler("/Error", createScopeForErrors: true);
 	app.UseHsts();
 }
@@ -64,7 +67,8 @@ app.MapRazorComponents<App>()
 	.AddAdditionalAssemblies(typeof(DarkRepos.Editor.Shared._Imports).Assembly);
 
 // Initialize database
-using (var scope = app.Services.CreateScope()) {
+using (var scope = app.Services.CreateScope())
+{
 	var db = scope.ServiceProvider.GetRequiredService<EditorDbContext>();
 	db.Database.EnsureCreated();
 }
