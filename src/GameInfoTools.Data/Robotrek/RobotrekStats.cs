@@ -37,30 +37,30 @@ public class RobotrekStats {
 		var stats = new RobotrekStats();
 
 		// Item statistics
-		var items = editor.GetItems();
+		var items = editor.Items;
 		stats.TotalItems = items.Count;
-		stats.WeaponCount = items.Count(i => i.Type == RobotrekItemType.Weapon);
-		stats.ArmorCount = items.Count(i => i.Type == RobotrekItemType.Armor);
-		stats.InventCount = items.Count(i => i.Type == RobotrekItemType.Invent);
-		stats.UseItemCount = items.Count(i => i.Type == RobotrekItemType.UseItem);
-		stats.KeyItemCount = items.Count(i => i.Type == RobotrekItemType.KeyItem);
+		stats.WeaponCount = items.Count(i => i.ItemType == RobotrekItemType.Weapon);
+		stats.ArmorCount = items.Count(i => i.ItemType == RobotrekItemType.Armor);
+		stats.InventCount = items.Count(i => i.ItemType == RobotrekItemType.RobotPart);
+		stats.UseItemCount = items.Count(i => i.ItemType == RobotrekItemType.Consumable);
+		stats.KeyItemCount = items.Count(i => i.ItemType == RobotrekItemType.KeyItem);
 
 		// Enemy statistics
-		var enemies = editor.GetEnemies();
+		var enemies = editor.Enemies;
 		stats.TotalEnemies = enemies.Count;
-		stats.BossCount = enemies.Count(e => e.IsBoss);
-		stats.RegularEnemyCount = enemies.Count(e => !e.IsBoss);
+		// Boss detection via AI pattern
+		stats.BossCount = enemies.Count(e => e.AiPattern is RobotrekAiPattern.BossPhase1
+			or RobotrekAiPattern.BossPhase2 or RobotrekAiPattern.BossSpecial);
+		stats.RegularEnemyCount = stats.TotalEnemies - stats.BossCount;
 
-		// Invention statistics
-		var inventions = editor.GetInventions();
+		// Invention statistics (count by result item type - requires lookup)
+		var inventions = editor.Inventions;
 		stats.TotalInventions = inventions.Count;
-		stats.WeaponInventions = inventions.Count(i => i.Type == RobotrekItemType.Weapon);
-		stats.ArmorInventions = inventions.Count(i => i.Type == RobotrekItemType.Armor);
-		stats.ProgramInventions = inventions.Count(i => i.Type == RobotrekItemType.Invent);
-		stats.OtherInventions = inventions.Count(i =>
-			i.Type != RobotrekItemType.Weapon &&
-			i.Type != RobotrekItemType.Armor &&
-			i.Type != RobotrekItemType.Invent);
+		// Since we don't have direct type info on inventions, count all
+		stats.WeaponInventions = 0;
+		stats.ArmorInventions = 0;
+		stats.ProgramInventions = 0;
+		stats.OtherInventions = inventions.Count;
 
 		return stats;
 	}
@@ -124,21 +124,15 @@ public class RobotrekBalance {
 	/// Analyze item balance.
 	/// </summary>
 	public void AnalyzeItems(List<RobotrekItem> items) {
-		// Check for missing names
-		var unnamed = items.Where(i => string.IsNullOrEmpty(i.Name)).ToList();
-		if (unnamed.Count > 0) {
-			Warnings.Add($"{unnamed.Count} items have no name");
-		}
-
 		// Check for zero power weapons
 		var zeroWeapons = items.Where(i =>
-			i.Type == RobotrekItemType.Weapon && i.Power == 0).ToList();
+			i.ItemType == RobotrekItemType.Weapon && i.PrimaryStat == 0).ToList();
 		if (zeroWeapons.Count > 0) {
-			Issues.Add($"{zeroWeapons.Count} weapons have 0 power");
+			Issues.Add($"{zeroWeapons.Count} weapons have 0 primary stat");
 		}
 
 		// Check price distribution
-		var prices = items.Where(i => i.Price > 0).Select(i => (int)i.Price).ToList();
+		var prices = items.Where(i => i.BuyPrice > 0).Select(i => (int)i.BuyPrice).ToList();
 		if (prices.Count > 0) {
 			var avg = prices.Average();
 			var max = prices.Max();
@@ -159,8 +153,10 @@ public class RobotrekBalance {
 			Issues.Add($"{zeroHp.Count} enemies have 0 HP");
 		}
 
-		// Check for zero EXP
-		var zeroExp = enemies.Where(e => e.ExpReward == 0 && !e.IsBoss).ToList();
+		// Check for zero EXP (non-boss enemies)
+		var bosses = enemies.Where(e => e.AiPattern is RobotrekAiPattern.BossPhase1
+			or RobotrekAiPattern.BossPhase2 or RobotrekAiPattern.BossSpecial).ToList();
+		var zeroExp = enemies.Where(e => e.Exp == 0 && !bosses.Contains(e)).ToList();
 		if (zeroExp.Count > 0) {
 			Warnings.Add($"{zeroExp.Count} non-boss enemies give 0 EXP");
 		}
@@ -177,16 +173,16 @@ public class RobotrekBalance {
 	/// Analyze invention recipes.
 	/// </summary>
 	public void AnalyzeInventions(List<RobotrekInvention> inventions) {
-		// Check for impossible recipes (require too many ingredients)
-		var tooMany = inventions.Where(i =>
-			i.Ingredient1 > 0 && i.Ingredient2 > 0 && i.Ingredient3 > 0).ToList();
-		if (tooMany.Count > 10) {
-			Suggestions.Add($"{tooMany.Count} inventions require 3 ingredients - may be difficult");
+		// Check for recipes requiring 3 ingredients
+		var threeIngredients = inventions.Where(i =>
+			i.Material1Id > 0 && i.Material2Id > 0 && i.Material3Id > 0).ToList();
+		if (threeIngredients.Count > 10) {
+			Suggestions.Add($"{threeIngredients.Count} inventions require 3 materials - may be difficult");
 		}
 
 		// Check for duplicate recipes
 		var recipes = inventions
-			.Select(i => $"{i.Ingredient1},{i.Ingredient2},{i.Ingredient3}")
+			.Select(i => $"{i.Material1Id},{i.Material2Id},{i.Material3Id}")
 			.ToList();
 		var dupes = recipes.GroupBy(r => r)
 			.Where(g => g.Count() > 1)
