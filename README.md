@@ -95,6 +95,10 @@ The tools include integration with [DarkRepos Games Wiki](https://games.darkrepo
 
 - [Python/C# Tool Mapping](docs/python-csharp-mapping.md) - Cross-reference between Python and C# tools
 
+### Additional Documentation
+
+- [Python/C# Tool Mapping](docs/python-csharp-mapping.md) - Cross-reference between Python and C# tools
+
 ### Test Suite
 
 993 tests covering all libraries:
