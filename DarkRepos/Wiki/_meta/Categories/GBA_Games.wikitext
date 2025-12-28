@@ -1,0 +1,72 @@
+'''GBA Games''' documented on the DarkRepos Game Documentation Wiki.
+
+==Overview==
+
+The Game Boy Advance (GBA) was a 32-bit handheld video game console released by Nintendo in 2001.
+
+==Technical Specifications==
+
+{| class="wikitable"
+|-
+! Component !! Specification
+|-
+| CPU || ARM7TDMI @ 16.78 MHz
+|-
+| Coprocessor || Z80 @ 4/8 MHz (GB compatibility)
+|-
+| RAM || 256 KB EWRAM, 32 KB IWRAM
+|-
+| VRAM || 96 KB
+|-
+| Resolution || 240×160 pixels
+|-
+| Colors || 32,768 colors
+|-
+| Sprites || 128 sprites
+|-
+| Sound || 6 channels (4 GB + 2 Direct Sound)
+|}
+
+== Memory Map ==
+
+{| class="wikitable"
+|-
+! Address Range !! Description
+|-
+| $00000000-$00003fff || BIOS (16KB)
+|-
+| $02000000-$0203ffff || EWRAM (256KB)
+|-
+| $03000000-$03007fff || IWRAM (32KB)
+|-
+| $04000000-$040003ff || I/O Registers
+|-
+| $05000000-$050003ff || Palette RAM
+|-
+| $06000000-$06017fff || VRAM (96KB)
+|-
+| $07000000-$070003ff || OAM
+|-
+| $08000000-$09ffffff || ROM (up to 32MB)
+|-
+| $0e000000-$0e00ffff || SRAM/Flash (up to 64KB)
+|}
+
+==Save Types==
+
+{| class="wikitable"
+|-
+! Type !! Size !! Description
+|-
+| SRAM || 32KB || Static RAM (volatile without battery)
+|-
+| Flash || 64KB/128KB || Flash memory
+|-
+| EEPROM || 512B/8KB || Serial EEPROM
+|}
+
+==Games==
+
+* [[Yu-Gi-Oh! The Eternal Duelist Soul (GBA)]]
+
+[[Category:Platforms]]

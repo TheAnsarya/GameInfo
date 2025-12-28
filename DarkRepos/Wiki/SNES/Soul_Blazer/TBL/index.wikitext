@@ -1,0 +1,66 @@
+{{Back|Soul Blazer (SNES)}}
+
+= Soul Blazer (SNES) - Text Encoding =
+
+This page documents the text encoding used in Soul Blazer for SNES. The game was released as "Soul Blader" in Japan.
+
+== Overview ==
+
+{| class="wikitable"
+|-
+! Region !! ROM Title !! Notes
+|-
+| US || Soul Blazer (U) || English localization
+|-
+| Japan || Soul Blader (J) || Original release
+|}
+
+== Text Table ==
+
+=== English ===
+
+This applies to:
+* Soul Blazer (U) [!]
+
+[[Soul Blazer (SNES)/TBL/English|English]]
+
+=== Japanese ===
+
+This applies to:
+* Soul Blader (J) [!]
+
+{{Todo|Add Japanese table}}
+
+== Control Codes ==
+
+{| class="wikitable"
+! Code !! Description
+|-
+| $f0 xx || Pause for xx frames
+|-
+| $f1 || Wait for button press
+|-
+| $f2 xx || Set text color xx
+|-
+| $f3 xx yy || Set text position (x, y)
+|-
+| $f4 xx || Play sound effect xx
+|-
+| $f5 || Clear text window
+|-
+| $f6 nn || Insert item name #nn
+|-
+| $f7 nn || Insert character name #nn
+|-
+| $f8 || Insert player name
+|-
+| $fe || New line
+|-
+| $ff || End of string
+|}
+
+= Links =
+
+<br/>
+
+{{Internal Data}}

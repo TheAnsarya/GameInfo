@@ -1,0 +1,384 @@
+{{Back|Robotrek (SNES)}}
+
+= Robotrek (SNES) - RAM Map =
+
+This page documents the RAM memory layout for Robotrek.
+
+== RAM Overview ==
+
+{| class="wikitable"
+! Range !! Size !! Description
+|-
+| $7e0000-$7e1fff || 8 KB || Direct Page, Stack, Low RAM
+|-
+| $7e2000-$7effff || 56 KB || Main Work RAM
+|-
+| $7f0000-$7fffff || 64 KB || Extended Work RAM
+|}
+
+== Direct Page ($7e0000-$7e00ff) ==
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $00-$01 || 2 || Scratch register
+|-
+| $02-$03 || 2 || Scratch register
+|-
+| $04-$05 || 2 || Pointer low
+|-
+| $06-$07 || 2 || Pointer high
+|-
+| $08-$09 || 2 || Loop counter
+|-
+| $0a-$0b || 2 || Temporary value
+|-
+| $0c-$0d || 2 || Return value
+|-
+| $10-$11 || 2 || Current bank
+|-
+| $12-$13 || 2 || Frame counter
+|-
+| $14-$15 || 2 || RNG seed
+|-
+| $16-$17 || 2 || Game state flags
+|-
+| $18-$19 || 2 || Current map ID
+|-
+| $1a-$1b || 2 || Player X position
+|-
+| $1c-$1d || 2 || Player Y position
+|-
+| $1e-$1f || 2 || Camera X position
+|-
+| $20-$21 || 2 || Camera Y position
+|}
+
+== Player Data ($7e0100-$7e01ff) ==
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $0100-$0101 || 2 || Hero Max HP
+|-
+| $0102-$0103 || 2 || Hero Current HP
+|-
+| $0104-$0107 || 4 || Hero Experience
+|-
+| $0108 || 1 || Hero Level
+|-
+| $0109 || 1 || Hero Power stat
+|-
+| $010a || 1 || Hero Guard stat
+|-
+| $010b || 1 || Hero Speed stat
+|-
+| $010c-$010f || 4 || Gold amount
+|-
+| $0110-$011f || 16 || Equipped items
+|-
+| $0120-$012f || 16 || Inventory slots (16 items)
+|-
+| $0130-$013f || 16 || Invention materials
+|}
+
+== Robot 1 Data ($7e0200-$7e027f) ==
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $0200-$0201 || 2 || Robot 1 Max HP
+|-
+| $0202-$0203 || 2 || Robot 1 Current HP
+|-
+| $0204-$0205 || 2 || Robot 1 Max EN (Energy)
+|-
+| $0206-$0207 || 2 || Robot 1 Current EN
+|-
+| $0208-$020b || 4 || Robot 1 Experience
+|-
+| $020c || 1 || Robot 1 Level
+|-
+| $020d || 1 || Robot 1 Power
+|-
+| $020e || 1 || Robot 1 Guard
+|-
+| $020f || 1 || Robot 1 Speed
+|-
+| $0210-$0213 || 4 || Robot 1 Special Attacks
+|-
+| $0214-$0217 || 4 || Robot 1 Equipped Parts (Head, Body, Arms, Legs)
+|-
+| $0218-$021b || 4 || Robot 1 Accessories
+|-
+| $021c-$027f || 100 || Robot 1 Additional data
+|}
+
+== Robot 2 Data ($7e0280-$7e02ff) ==
+
+Same structure as Robot 1, offset by $80 bytes.
+
+== Robot 3 Data ($7e0300-$7e037f) ==
+
+Same structure as Robot 1, offset by $100 bytes.
+
+== Game State ($7e0400-$7e04ff) ==
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $0400-$0401 || 2 || Current map ID
+|-
+| $0402-$0403 || 2 || Previous map ID
+|-
+| $0404-$0405 || 2 || Destination X
+|-
+| $0406-$0407 || 2 || Destination Y
+|-
+| $0408 || 1 || Current chapter/scenario
+|-
+| $0409 || 1 || Game progress flags
+|-
+| $040a-$040f || 6 || Story progress bits
+|-
+| $0410-$041f || 16 || Event flags (128 bits)
+|-
+| $0420-$042f || 16 || Treasure flags (128 chests)
+|-
+| $0430-$043f || 16 || NPC conversation flags
+|-
+| $0440-$044f || 16 || Boss defeat flags
+|-
+| $0450-$045f || 16 || Secret discovery flags
+|}
+
+== Battle State ($7e0500-$7e05ff) ==
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $0500 || 1 || Battle active flag
+|-
+| $0501 || 1 || Current turn phase
+|-
+| $0502 || 1 || Active combatant index
+|-
+| $0503 || 1 || Enemy count
+|-
+| $0504-$050f || 12 || Turn order queue
+|-
+| $0510-$052f || 32 || Enemy 1 battle data
+|-
+| $0530-$054f || 32 || Enemy 2 battle data
+|-
+| $0550-$056f || 32 || Enemy 3 battle data
+|-
+| $0570-$058f || 32 || Enemy 4 battle data
+|-
+| $0590-$059f || 16 || Battle rewards
+|-
+| $05a0-$05af || 16 || Damage calculation scratch
+|}
+
+== Map/Room Data ($7e0600-$7e07ff) ==
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $0600-$060f || 16 || Current room NPCs (IDs)
+|-
+| $0610-$062f || 32 || NPC positions
+|-
+| $0630-$063f || 16 || Interactive objects
+|-
+| $0640-$064f || 16 || Door/warp data
+|-
+| $0650-$06ff || 176 || Collision data cache
+|-
+| $0700-$07ff || 256 || Tile animation data
+|}
+
+== Menu State ($7e0800-$7e08ff) ==
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $0800 || 1 || Menu open flag
+|-
+| $0801 || 1 || Current menu ID
+|-
+| $0802 || 1 || Cursor position
+|-
+| $0803 || 1 || Submenu level
+|-
+| $0804-$0807 || 4 || Menu scroll position
+|-
+| $0808-$080f || 8 || Menu scratch data
+|-
+| $0810-$081f || 16 || Selected item data
+|}
+
+== Invention System ($7e0900-$7e09ff) ==
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $0900-$090f || 16 || Invention slots (8 x 2 bytes)
+|-
+| $0910-$092f || 32 || Material inventory
+|-
+| $0930-$093f || 16 || Recipe progress
+|-
+| $0940-$094f || 16 || Discovered recipes (flags)
+|}
+
+== SRAM Structure (Verified from Data Crystal) ==
+
+'''Source:''' [https://datacrystal.tcrf.net/wiki/Robotrek/RAM_map Data Crystal]
+
+SRAM is 8 KB ($2000 bytes) at $70:0000-$1fff.
+
+=== File Layout ===
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $0000 || $100 (256) || Blank (filled with $60)
+|-
+| $0100 || $500 (1280) || '''Save Slot #1'''
+|-
+| $0600 || $500 (1280) || '''Save Slot #2'''
+|-
+| $0b00 || $500 (1280) || '''Save Slot #3'''
+|-
+| $1000 || $100 (256) || Blank (filled with $60)
+|-
+| $1100 || $500 (1280) || Backup Slot #1
+|-
+| $1600 || $500 (1280) || Backup Slot #2
+|-
+| $1b00 || $500 (1280) || Backup Slot #3
+|}
+
+=== Save Slot Structure ($500 = 1280 bytes) ===
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $0000 || $90 (144) || Inventory (72 slots × 2 bytes, slot 0=equipped, slot 71=trash)
+|-
+| $0302 || 1 || Player Facing (0=Down, 1=Up, 2=Left, 3=Right)
+|-
+| $0303 || 2 || Player X-axis position
+|-
+| $0305 || 2 || Player Y-axis position
+|-
+| $0312 || 7 || Player Name (raw)
+|-
+| $031e || 7 || Robot 1 Name (raw)
+|-
+| $0325 || 7 || Robot 2 Name (raw)
+|-
+| $0336 || 7 || Robot 3 Name (raw)
+|-
+| $0342 || 7 || Player Name String (display)
+|-
+| $034e || 7 || Robot 1 Name String (display)
+|-
+| $035a || 7 || Robot 2 Name String (display)
+|-
+| $036d || 7 || Robot 3 Name String (display)
+|-
+| $0388 || 2 || Program Points
+|-
+| $038a || 6 || Robot Current HP (3 × 2 bytes)
+|-
+| $0390 || 6 || Robot Max HP (3 × 2 bytes)
+|-
+| $0396 || 6 || Robot Power (3 × 2 bytes)
+|-
+| $039c || 6 || Robot Guard (3 × 2 bytes)
+|-
+| $03a2 || 6 || Robot Speed (3 × 2 bytes)
+|-
+| $03a8 || 6 || Robot Charge (3 × 2 bytes)
+|-
+| $03e9 || 3 || GP/Gold (hex → decimal conversion)
+|-
+| $04fa || 4 || Checksum
+|}
+
+== Hardware Registers Used ==
+
+{| class="wikitable"
+! Address !! Description
+|-
+| $2100 || Screen brightness
+|-
+| $2105 || BG mode
+|-
+| $210d-$2114 || BG scroll registers
+|-
+| $2115-$2117 || VRAM access
+|-
+| $2118-$2119 || VRAM data write
+|-
+| $2121 || CGRAM address
+|-
+| $2122 || CGRAM data write
+|-
+| $2140-$2143 || APU communication
+|-
+| $4200 || NMI/IRQ enable
+|-
+| $4218-$421f || Joypad registers
+|}
+
+== Pro Action Replay Addresses ==
+
+These addresses have been verified through PAR codes from GameFAQs:
+
+{| class="wikitable"
+! Address !! Description !! Notes
+|-
+| $7e0b14 || Hero Level || Value 0-99 (code: 7E0B1463 for level 99)
+|-
+| $7e0690 || Robot 1 Current Energy || 2 bytes (FF = 255)
+|-
+| $7e0696 || Robot 1 Power stat || 1 byte (FF = max)
+|-
+| $7e069c || Robot 1 Guard stat || 1 byte (FF = max)
+|-
+| $7e069a || Robot 1 Speed stat || 2 bytes
+|-
+| $7e0688 || Robot 1 Program || 2 bytes (code: 7E068827)
+|-
+| $7e0689 || Robot 1 Program High || 1 byte (code: 7E06890F)
+|-
+| $7e07b0-$7e07bf || Inventor's Friend unlock flags || 16 bytes (FF = all unlocked)
+|}
+
+'''Inventor's Friend Complete Unlock:'''
+<pre>
+7E07B0FF - 7E07BFFF (16 consecutive codes)
+</pre>
+
+'''Note:''' These addresses indicate the in-game RAM locations for robot stats and progress flags. Robot stats appear to be in the $7e06xx range rather than the previously estimated $7e02xx range.
+
+== Notes ==
+
+* All multi-byte values are little-endian
+* Robot data structures are designed for 3 robots
+* Save data includes checksum for validation
+* Some addresses may vary between US and JP versions
+* PAR codes confirm robot stat addresses are $7e06xx
+
+== See Also ==
+
+* [[Robotrek:ROM Map|ROM Map]]
+* [[Robotrek:Data Structures|Save Data]]
+* [[Robotrek|Main Page]]
+
+[[Category:RAM Maps]]
+[[Category:SNES]]
+[[Category:Robotrek]]

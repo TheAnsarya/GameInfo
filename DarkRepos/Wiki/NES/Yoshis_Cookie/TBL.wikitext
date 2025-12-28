@@ -1,0 +1,143 @@
+{{Back|Yoshi's Cookie (NES)}}
+{{TBL}}
+
+==English==
+
+=== Text Table ===
+
+The space (<code>&nbsp;</code>) character is $03.
+
+{| class="wikitable" style="text-align: center;"
+|-
+!    !!  _0  !!  _1  !!  _2  !!  _3  !!  _4  !!  _5  !!  _6  !!  _7  !!  _8  !!  _9  !!  _a  !!  _b  !!  _c  !!  _d  !!  _e  !!  _f
+|-
+! scope="row" |  0_
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  &nbsp;
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|-
+! scope="row" |  1_
+|  A
+|  B
+|  C
+|  D
+|  E
+|  F
+|  G
+|  H
+|  I
+|  J
+|  K
+|  L
+|  M
+|  N
+|  O
+|  P
+|-
+! scope="row" |  2_
+|  Q
+|  R
+|  S
+|  T
+|  U
+|  V
+|  W
+|  X
+|  Y
+|  Z
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|-
+! scope="row" |  3_
+|  0
+|  1
+|  2
+|  3
+|  4
+|  5
+|  6
+|  7
+|  8
+|  9
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|-
+! scope="row" |  4_
+|  colspan="16"  style="text-align: center; background-color: #eaecf0;"  |  ...
+|}
+
+<!--=== As seen in RAM ===
+
+The text table as seen in the RAM viewer of Mesen2.
+
+[[File:Yoshi's Cookie (NES) - Text Table in RAM (EN).png|none]]
+-->
+=== TBL File ===
+ 
+Download TBL file: <code>[https://raw.githubusercontent.com/TheAnsarya/GameInfo/main/Yoshi's%20Cookie%20(NES)\Wiki\Files\Yoshi's%20Cookie%20(NES)%20(EN).tbl Yoshi's Cookie (NES) (EN).tbl]</code>
+
+<pre>
+ 03= 
+ 10=A
+ 11=B
+ 12=C
+ 13=D
+ 14=E
+ 15=F
+ 16=G
+ 17=H
+ 18=I
+ 19=J
+ 1A=K
+ 1B=L
+ 1C=M
+ 1D=N
+ 1E=O
+ 1F=P
+ 20=Q
+ 21=R
+ 22=S
+ 23=T
+ 24=U
+ 25=V
+ 26=W
+ 27=X
+ 28=Y
+ 29=Z
+ 30=0
+ 31=1
+ 32=2
+ 33=3
+ 34=4
+ 35=5
+ 36=6
+ 37=7
+ 38=8
+ 39=9
+</pre>
+
+=Related=
+<br>
+
+{{Internal Data}}

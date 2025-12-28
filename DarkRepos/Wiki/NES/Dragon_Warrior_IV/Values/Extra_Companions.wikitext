@@ -1,0 +1,167 @@
+{{Back|Dragon Warrior IV (NES)/Values}}
+{{subpage}}
+
+= Dragon Warrior IV - Extra Companions =
+
+This page documents the extra companions that temporarily join the party during certain chapters of Dragon Warrior IV.
+
+== Overview ==
+
+Extra companions are special characters that join temporarily during specific chapters. Unlike the main 8 party members, they are controlled by AI and leave when the chapter ends.
+
+{| class="wikitable"
+|-
+! Value Range !! Description
+|-
+| $c5-$cc || Playable extra companions (8 total)
+|-
+| $cd-$ff || Debug/unused slots
+|}
+
+== Values ==
+
+See: Same info on the main [[Dragon_Warrior_IV_(NES)/Values#Extra_Companions|Values page]].
+
+{| class="wikitable"
+|-
+!  Value  !!  Name
+|-
+|  $c5  ||  Healie  ||  style="text-align: center;"  |  1  ||  Kind Healer
+|-
+|  $c6  ||  Orin  ||  style="text-align: center;"  |  4  ||  Alchemist
+|-
+|  $c7  ||  Laurent  ||  style="text-align: center;"  |  3  ||  Troubadour
+|-
+|  $c8  ||  Strom  ||  style="text-align: center;"  |  3  ||  Guardsman
+|-
+|  $c9  ||  Hector  ||  style="text-align: center;"  |  5  ||  Young Man
+|-
+|  $ca  ||  Panon  ||  style="text-align: center;"  |  5  ||  Jester
+|-
+|  $cb  ||  Lucia  ||  style="text-align: center;"  |  5  ||  Zenithian
+|-
+|  $cc  ||  Doran  ||  style="text-align: center;"  |  5  ||  Baby Dragon
+|-
+|  $cd  ||  ...  ||  style="text-align: center;"  |  Debug  ||  ...
+|-
+|  $ce  ||  ...  ||  style="text-align: center;"  |  Debug  ||  ...
+|-
+|  $cf  ||  ...  ||  style="text-align: center;"  |  Debug  ||  ...
+|-
+|  $d0  ||  ...  ||  style="text-align: center;"  |  Debug  ||  ...
+|-
+|  $d1  ||  ...  ||  style="text-align: center;"  |  Debug  ||  ...
+|-
+|  $d2  ||  ...  ||  style="text-align: center;"  |  Debug  ||  ...
+|-
+|  $d3  ||  ...  ||  style="text-align: center;"  |  Debug  ||  ...
+|-
+|  $d4  ||  ...  ||  style="text-align: center;"  |  Debug  ||  ...
+|-
+|  $d5  ||  ...  ||  style="text-align: center;"  |  Debug  ||  ...
+|-
+|  $d6  ||  ...  ||  style="text-align: center;"  |  Debug  ||  ...
+|-
+|  $d7  ||  ...  ||  style="text-align: center;"  |  Debug  ||  ...
+|-
+|  $d8  ||  ...  ||  style="text-align: center;"  |  Debug  ||  ...
+|-
+|  $d9  ||  ...  ||  style="text-align: center;"  |  Debug  ||  ...
+|}
+
+==RAM Structure==
+
+{| class="wikitable sortable"
+|-
+!  Offset  !!  Size  !!  Description
+|-  style="background-color: #eaecf0;"
+|  $00 # 0000_0001  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  $00 # 0000_0010  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  $00 # 0000_0100  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  $00 # 0000_1000  ||  bit  ||  ...
+|-  style="background-color: #eaecf0;"
+|  $00 # 0001_0000  ||  bit  ||  ...
+|-
+|  $00 # 0010_0000  ||  bit  ||  Poisoned
+|-
+|  $00 # 0100_0000  ||  bit  ||  Paralyzed
+|-
+|  $00 # 1000_0000  ||  bit  ||  1 = Alive, 0 = Dead
+|-
+|  $01 - $02  ||  word  ||  Current HP
+|-
+|  $03 - $04  ||  word  ||  Current MP
+|-
+|  $05  ||  byte  ||  Which Companion ([[#Values|values]])
+|}
+
+==Builds==
+
+===Healie===
+
+
+{| class="wikitable"
+|-
+!  Value  !!  Name  !!  Chapter  !!  Class  !!  Sex  !!  Level  !!  
+|-
+|  $c5  ||  Healie  ||  style="text-align: center;"  |  1  ||  Kind Healer
+|-
+
+|}
+
+
+
+{| class="wikitable"
+|-
+!  Value  !!  Name  !!  Chapter  !!  Class  !!  Sex  !!  Level  !!  Strength  !!  Agility  !!  Map HP  !!  Max MP  !!  Attack Power  !!  Defense Power  !!  Equipment  !!  Battle-Spells
+|-
+|  $c5  ||  Healie  ||  style="text-align: center;"  |  1  ||  Kind Healer
+|-
+|  $c6  ||  Orin  ||  style="text-align: center;"  |  4  ||  Alchemist
+|-
+|  $c7  ||  Laurent  ||  style="text-align: center;"  |  3  ||  Troubadour
+|-
+|  $c8  ||  Strom  ||  style="text-align: center;"  |  3  ||  Guardsman
+|-
+|  $c9  ||  Hector  ||  style="text-align: center;"  |  5  ||  Young Man
+|-
+|  $ca  ||  Panon  ||  style="text-align: center;"  |  5  ||  Jester
+|-
+|  $cb  ||  Lucia  ||  style="text-align: center;"  |  5  ||  Zenithian  ||  Female  ||  ?  ||  ...  ||  ...  ||  ...  ||  ...  ||  ...  ||  ...  ||  ...  ||
+|-
+|  $cc  ||  Doran  ||  style="text-align: center;"  |  5  ||  Baby Dragon
+|-
+|  $cd  ||  ...
+|-
+|  $ce  ||  ...
+|-
+|  $cf  ||  ...
+|-
+|  $d0  ||  ...
+|-
+|  $d1  ||  ...
+|-
+|  $d2  ||  ...
+|-
+|  $d3  ||  ...
+|-
+|  $d4  ||  ...
+|-
+|  $d5  ||  ...
+|-
+|  $d6  ||  ...
+|-
+|  $d7  ||  ...
+|-
+|  $d8  ||  ...
+|-
+|  $d9  ||  ...
+|}
+
+
+=Links=
+
+{{Internal Data|game=Dragon Quest III (SNES)}}

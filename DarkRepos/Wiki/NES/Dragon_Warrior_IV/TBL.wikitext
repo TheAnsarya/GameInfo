@@ -1,0 +1,142 @@
+{{Back|Dragon Warrior IV (NES)}}
+
+= Dragon Warrior IV (NES) - Text Table =
+
+This page documents the '''text encoding table''' for Dragon Warrior IV (NES).
+
+==Overview==
+
+Dragon Warrior IV uses a custom 8-bit character encoding with dictionary-based compression (DTE/MTE). The encoding is more complex than earlier Dragon Warrior games to handle the larger script.
+
+===Encoding Summary===
+
+{| class="wikitable"
+! Range !! Characters
+|-
+| $00 || Space
+|-
+| $01-$0a || Numbers 0-9
+|-
+| $0b-$24 || Lowercase a-z
+|-
+| $25-$3e || Uppercase A-Z
+|-
+| $40-$7f || Punctuation and control codes
+|-
+| $80+ || DTE/MTE dictionary entries
+|}
+
+===ROM Location===
+
+Text data is stored across multiple banks (12-13) with pointers in Bank 31.
+
+{{ Todo | Finish table grid }}
+
+==Text Table==
+
+The space (<code>&nbsp;</code>) character is $00.
+
+{| class="wikitable" style="text-align: center;"
+|-
+!    !!  _0  !!  _1  !!  _2  !!  _3  !!  _4  !!  _5  !!  _6  !!  _7  !!  _8  !!  _9  !!  _a  !!  _b  !!  _c  !!  _d  !!  _e  !!  _f
+|-
+! scope="row" |  0_
+|  &nbsp;  ||  0  ||  1  ||  2  ||  3  ||  4  ||  5  ||  6  ||  7  ||  8  ||  9  ||  a  ||  b  ||  c  ||  d  ||  e
+|-
+! scope="row" |  1_
+|  f  ||  g  ||  h  ||  i  ||  j  ||  k  ||  l  ||  m  ||  n  ||  o  ||  p  ||  q  ||  r  ||  s  ||  t  ||  u
+|-
+! scope="row" |  2_
+|  v  ||  w  ||  x  ||  y  ||  z  ||  A  ||  B  ||  C  ||  D  ||  E  ||  F  ||  G  ||  H  ||  I  ||  J  ||  K
+|-
+! scope="row" |  3_
+|  L  ||  M  ||  N  ||  O  ||  P  ||  Q  ||  R  ||  S  ||  T  ||  U  ||  V  ||  W  ||  X  ||  Y  ||  Z
+|  style="background-color: #eaecf0;"  |
+|-
+! scope="row" |  4_
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|-
+! scope="row" |  5_
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|-
+! scope="row" |  6_
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  —  ||  “  ||  ”  ||  ‘  ||  ‘  ||  ’  ||  ’  ||  .’  ||  ?  ||  !  ||  -
+|-
+! scope="row" |  7_
+|  ✱  ||  :  ||  …  ||  🪦  ||  💀  ||  (  ||  )  ||  ,  ||  .  || 「
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|-
+! scope="row" |  8_
+|  ▼  ||  ▶
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|  style="background-color: #eaecf0;"  |
+|}
+
+=== As seen in RAM ===
+
+The text table as seen in the RAM viewer of Mesen2.
+
+[[File:Dragon Warrior 4 (NES) - Text Table in RAM.png|none]]
+
+=== TBL File ===
+
+[TODO: Add table file]
+
+=== Control Codes ===
+
+[TODO: Add control codes]
+
+
+{{Internal Data}}

@@ -1,0 +1,208 @@
+{{Back|Soul Blazer (SNES)}}
+{{DISPLAYTITLE:Soul Blazer:Items}}
+This page documents '''items and equipment''' in '''[[Soul Blazer]]''' (SNES).
+
+==Overview==
+Soul Blazer features various equipment types that enhance the player's abilities.
+Equipment is obtained by releasing souls from Soul Lairs or found in chests.
+
+'''Item Counts:'''
+* Swords: 8
+* Armor: 8
+* Magic: 8
+* Key Items: 12
+* Consumables: 3
+* Emblems: 8
+* '''Total: 47 unique items'''
+
+==Swords==
+Swords determine attack power and may have special abilities.
+
+{| class="wikitable sortable"
+! ID !! Name !! Attack !! Special Ability !! Location !! Notes
+|-
+| $00 || Sword of Life || 4 || Regenerate 1 HP per 4 steps || Starting weapon || Default equipment
+|-
+| $01 || Psycho Sword || 8 || Increased critical hit rate (1/8) || Underground Castle || 4th floor chest
+|-
+| $02 || Critical Sword || 12 || Very high critical rate (1/4) || GreenWood || After Fire Shrine
+|-
+| $03 || Lucky Blade || 16 || Increased GEM drops (+50%) || St. Elles || Mermaid's gift
+|-
+| $04 || Zantetsu Sword || 32 || Kills metal enemies instantly || Mountain of Souls || Nome's reward
+|-
+| $05 || Spirit Sword || 48 || Can damage ghost enemies || Leo's Lab || Model Town 2
+|-
+| $06 || Recovery Sword || 64 || Restore HP on enemy kill || Magridd Castle || Queen's chamber
+|-
+| $07 || Soul Blade || 128 || Ultimate sword, all abilities || World of Evil || Pre-Deathtoll
+|}
+
+===Sword Attack Calculation===
+<pre>
+Base Damage = Sword_Attack + Player_STR
+Modified Damage = Base_Damage × Multiplier
+
+Multipliers:
+- Normal hit: 1.0×
+- Critical hit: 2.0×
+- Elemental weakness: 1.5×
+- Wrong element: 0.5×
+</pre>
+
+===Sword Special Effects===
+{| class="wikitable"
+! Sword !! Effect Details
+|-
+| Sword of Life || Every 4 steps taken heals 1 HP. Timer at $7e0050.
+|-
+| Psycho Sword || Critical rate: 1/8 (12.5%) vs normal 1/16 (6.25%)
+|-
+| Critical Sword || Critical rate: 1/4 (25%)
+|-
+| Lucky Blade || Enemy GEM drops multiplied by 1.5 (rounded down)
+|-
+| Zantetsu Sword || Bypasses defense on metal enemies, deals 255 damage
+|-
+| Spirit Sword || Allows damage to ghost-type enemies (element $05)
+|-
+| Recovery Sword || Gain 5 HP per enemy killed
+|-
+| Soul Blade || All above effects combined
+|}
+
+==Armor==
+Armor determines defense and may provide elemental protection.
+
+{| class="wikitable sortable"
+! ID !! Name !! Defense !! Special Ability !! Location !! Notes
+|-
+| $00 || Iron Armor || 2 || None || Underground Castle || 1st floor
+|-
+| $01 || Ice Armor || 4 || Fire damage reduced 50% || GreenWood || Water Shrine
+|-
+| $02 || Bubble Armor || 6 || Breathe underwater || St. Elles || Required for Seabed
+|-
+| $03 || Magic Armor || 10 || Magic damage reduced 50% || Mountain of Souls || Ice caves
+|-
+| $04 || Mystic Armor || 16 || Slow HP regeneration (1/8 steps) || Leo's Lab || Secret area
+|-
+| $05 || Light Armor || 24 || Increased movement speed (+25%) || Magridd Town || Shop
+|-
+| $06 || Elemental Armor || 32 || Resist all elements (25% each) || Magridd Castle || Treasury
+|-
+| $07 || Soul Armor || 64 || Ultimate armor, all abilities || World of Evil || Before final area
+|}
+
+===Armor Defense Calculation===
+<pre>
+Damage Taken = Enemy_Attack - (Armor_Defense + Player_DEF)
+If Damage_Taken < 1, Damage_Taken = 1
+
+Elemental Reduction (applied after defense):
+- 50% reduction: Ice/Magic Armor
+- 25% reduction: Elemental Armor (all elements)
+</pre>
+
+===Armor Special Effects===
+{| class="wikitable"
+! Armor !! Effect Details
+|-
+| Iron Armor || Basic protection, no special effects
+|-
+| Ice Armor || Fire damage = (Damage × 0.5), stacks with resistance
+|-
+| Bubble Armor || No drowning damage in water areas, can dive
+|-
+| Magic Armor || Magic attacks = (Damage × 0.5)
+|-
+| Mystic Armor || Heal 1 HP per 8 steps (slower than Sword of Life)
+|-
+| Light Armor || Movement speed +25%, useful for dodging
+|-
+| Elemental Armor || All element damage reduced 25%
+|-
+| Soul Armor || All above effects + 50% all element resist
+|}
+
+==Magic==
+Magic spells consume GEMs and provide offensive abilities.
+
+{| class="wikitable sortable"
+! ID !! Name !! GEM Cost !! Effect !! Location !! Damage/Range
+|-
+| $00 || Flame Ball || 1 || Fire projectile forward || Underground Castle || 20 dmg, single target
+|-
+| $01 || Light Arrow || 2 || Piercing light beam || GreenWood || 30 dmg, pierces enemies
+|-
+| $02 || Magic Flare || 4 || Damages all on-screen enemies || St. Elles || 15 dmg, screen-wide
+|-
+| $03 || Rotation || 2 || Spinning attack around player || Mountain of Souls || 25 dmg, 360° radius
+|-
+| $04 || Spark Bomb || 8 || Powerful explosion || Leo's Lab || 60 dmg, area of effect
+|-
+| $05 || Flame Pillar || 16 || Fire column ahead || Magridd Castle || 80 dmg, vertical line
+|-
+| $06 || Tornado || 32 || Wind attack, wide range || World of Evil || 100 dmg, large area
+|-
+| $07 || Phoenix || 50 || Full heal + revival || Deathtoll's Lair || Full HP + 1 revive
+|}
+
+===Magic Mechanics===
+<pre>
+GEM Cost = Base_Cost × (Magic_Level / 10)
+Damage = Base_Damage × (Magic_Power + Player_Level / 4)
+
+Phoenix Special:
+- On death, automatically activates
+- Restores HP to maximum
+- Consumes 50 GEMs
+- One-time use until reacquired
+</pre>
+
+===Magic Element Types===
+{| class="wikitable"
+! Magic !! Element !! Enemies Weak
+|-
+| Flame Ball || Fire || Ice, Plant
+|-
+| Light Arrow || Light || Dark, Ghost
+|-
+| Magic Flare || Holy || None (neutral)
+|-
+| Rotation || Physical || None (neutral)
+|-
+| Spark Bomb || Electric || Metal, Water
+|-
+| Flame Pillar || Fire || Ice, Plant
+|-
+| Tornado || Wind || Flying
+|-
+| Phoenix || Holy || Dark
+|}
+
+==Consumable Items==
+
+{| class="wikitable"
+! ID !! Name !! Effect !! Max Stack !! GEM Value !! Notes
+|-
+| $00 || Medical Herb || Restore 40 HP || 9 || 20 || Can buy from shops
+|-
+| $01 || Strange Bottle || Restore all HP || 9 || 100 || Rare find
+|-
+| $02 || Antidote || Cure poison status || 9 || 30 || Required for swamp areas
+|}
+
+===Item Usage===
+* Items accessed via menu (START button)
+* Can hold up to 9 of each consumable
+* Medical Herbs sold in most town shops
+* Strange Bottles found in chests only
+
+==See Also==
+* [[/Magic|Magic]]
+* [[/Formulas|Formulas]]
+* [[/Data Tables|Data Tables]]
+
+[[Category:Soul Blazer]]
+[[Category:Items]]

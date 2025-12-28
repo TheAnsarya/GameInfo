@@ -1,0 +1,654 @@
+{{Back|Final Fantasy IV (SNES)}}
+{{Rammap}}
+{{Cleanup}}
+
+= Final Fantasy IV (SNES) - RAM Map =
+
+This page documents the RAM structure for '''Final Fantasy IV''' (SNES).
+
+== Overview ==
+
+Final Fantasy IV uses the SNES's full 128 KB of WRAM, with critical game state in the direct page area for fast access.
+
+== Direct Page Variables ($0000-$00ff) ==
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $00 || 2 bytes || Scratch/temp variable
+|-
+| $02 || 2 bytes || Scratch/temp variable
+|-
+| $04 || 2 bytes || Scratch/temp variable
+|-
+| $06 || 2 bytes || Scratch/temp variable
+|-
+| $08 || 2 bytes || Current pointer (low)
+|-
+| $0a || 1 byte || Current pointer (bank)
+|-
+| $0c || 2 bytes || Loop counter
+|-
+| $0e || 2 bytes || Math accumulator
+|-
+| $10 || 2 bytes || Random number seed
+|-
+| $12 || 2 bytes || Frame counter
+|-
+| $14 || 1 byte || Current game mode
+|-
+| $15 || 1 byte || Sub-mode
+|-
+| $16 || 1 byte || Screen fade level
+|-
+| $17 || 1 byte || NMI flags
+|-
+| $18 || 1 byte || Controller 1 current
+|-
+| $19 || 1 byte || Controller 1 previous
+|-
+| $1a || 1 byte || Controller 1 pressed (new)
+|-
+| $1b || 1 byte || Controller 2 current
+|-
+| $1c || 1 byte || Controller 2 previous
+|-
+| $1d || 1 byte || Controller 2 pressed
+|-
+| $1e || 2 bytes || DMA source address
+|-
+| $20 || 1 byte || DMA source bank
+|-
+| $21 || 2 bytes || DMA destination
+|-
+| $23 || 2 bytes || DMA size
+|-
+| $25-$2f || 11 bytes || Reserved/temp
+|-
+| $30 || 2 bytes || Current menu selection
+|-
+| $32 || 1 byte || Menu page
+|-
+| $33 || 1 byte || Menu cursor position
+|-
+| $34 || 2 bytes || Dialogue text pointer
+|-
+| $36 || 1 byte || Dialogue bank
+|-
+| $37 || 1 byte || Text speed
+|-
+| $38 || 1 byte || Current speaker ID
+|-
+| $39-$3f || 7 bytes || Reserved
+|-
+| $40 || 2 bytes || Current map ID
+|-
+| $42 || 2 bytes || Player X position (16.8 fixed)
+|-
+| $44 || 2 bytes || Player Y position (16.8 fixed)
+|-
+| $46 || 1 byte || Player direction
+|-
+| $47 || 1 byte || Player movement state
+|-
+| $48 || 1 byte || Encounter steps
+|-
+| $49 || 1 byte || Current tileset
+|-
+| $4a || 2 bytes || Camera X offset
+|-
+| $4c || 2 bytes || Camera Y offset
+|-
+| $4e-$5f || 18 bytes || Map scratch area
+|-
+| $60-$7f || 32 bytes || Battle scratch variables
+|}
+
+==Game Mode Values==
+
+{| class="wikitable"
+! Value !! Mode
+|-
+| $00 || Title screen
+|-
+| $01 || New game/naming
+|-
+| $02 || Field/overworld
+|-
+| $03 || Town/dungeon
+|-
+| $04 || Menu screen
+|-
+| $05 || Shop
+|-
+| $06 || Inn
+|-
+| $07 || Battle
+|-
+| $08 || Battle victory
+|-
+| $09 || Battle defeat
+|-
+| $0a || Cutscene
+|-
+| $0b || Airship
+|-
+| $0c || Loading
+|-
+| $0d || Save/load screen
+|-
+| $0e || Ending
+|}
+
+==Party Data ($1000-$17ff)==
+
+===Active Party ($1000-$14ff)===
+
+Each party member uses $100 bytes. Party supports up to 5 active members.
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 byte || Character ID
+|-
+| $01 || 1 byte || Character flags (active, back row, etc.)
+|-
+| $02 || 6 bytes || Character name (6 chars)
+|-
+| $08 || 1 byte || Current level
+|-
+| $09 || 1 byte || Class/job ID
+|-
+| $0a || 4 bytes || Current experience
+|-
+| $0e || 4 bytes || Experience to next level
+|-
+| $12 || 2 bytes || Current HP
+|-
+| $14 || 2 bytes || Maximum HP
+|-
+| $16 || 2 bytes || Current MP
+|-
+| $18 || 2 bytes || Maximum MP
+|-
+| $1a || 1 byte || Strength
+|-
+| $1b || 1 byte || Agility
+|-
+| $1c || 1 byte || Vitality
+|-
+| $1d || 1 byte || Intelligence
+|-
+| $1e || 1 byte || Spirit
+|-
+| $1f || 1 byte || Attack power
+|-
+| $20 || 1 byte || Defense
+|-
+| $21 || 1 byte || Evade %
+|-
+| $22 || 1 byte || Magic defense
+|-
+| $23 || 1 byte || Magic evade %
+|-
+| $24 || 1 byte || Equipped weapon ID
+|-
+| $25 || 1 byte || Equipped shield ID
+|-
+| $26 || 1 byte || Equipped helmet ID
+|-
+| $27 || 1 byte || Equipped armor ID
+|-
+| $28 || 1 byte || Equipped gloves ID
+|-
+| $29 || 1 byte || Equipped accessory ID
+|-
+| $2a || 2 bytes || Status ailments (bitfield)
+|-
+| $2c || 1 byte || Battle commands unlocked
+|-
+| $2d-$3f || 19 bytes || Magic spells learned (bitfield)
+|-
+| $40-$5f || 32 bytes || Ability data
+|-
+| $60-$ff || 160 bytes || Level-up stat tracking/reserved
+|}
+
+===Character Status Bits===
+
+{| class="wikitable"
+! Bit !! Status
+|-
+| 0 || Poison
+|-
+| 1 || Blind
+|-
+| 2 || Silence
+|-
+| 3 || Confuse
+|-
+| 4 || Sleep
+|-
+| 5 || Paralysis
+|-
+| 6 || Mini
+|-
+| 7 || Pig/Toad
+|-
+| 8 || Petrify
+|-
+| 9 || Dead/KO
+|-
+| 10 || Berserk
+|-
+| 11 || Haste
+|-
+| 12 || Slow
+|-
+| 13 || Float
+|-
+| 14 || Protect
+|-
+| 15 || Shell
+|}
+
+===Reserve Party ($1500-$17ff)===
+
+Characters not in active party (same structure as above).
+
+==Inventory ($1800-$1fff)==
+
+===Item Inventory ($1800-$18ff)===
+
+Each slot is 2 bytes (item ID + quantity), 128 slots total.
+
+{| class="wikitable"
+! Address !! Description
+|-
+| $1800-$18ff || Consumable items (64 slots)
+|-
+| $1900-$197f || Weapons (32 slots)
+|-
+| $1980-$19ff || Armor (32 slots)
+|-
+| $1a00-$1a3f || Accessories (16 slots)
+|-
+| $1a40-$1a7f || Key items (16 slots, qty always 1)
+|}
+
+===Gil Counter===
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $1a80 || 4 bytes || Current gil (32-bit)
+|}
+
+==Event Flags ($1b00-$1cff)==
+
+512 event flags controlling story progression, chest states, etc.
+
+{| class="wikitable"
+! Address Range !! Description
+|-
+| $1b00-$1b3f || Story progression flags (Chapter 1)
+|-
+| $1b40-$1b7f || Story progression flags (Chapter 2)
+|-
+| $1b80-$1bbf || Story progression flags (Chapter 3)
+|-
+| $1bc0-$1bff || Story progression flags (Chapter 4)
+|-
+| $1c00-$1c7f || Treasure chest flags (128 bytes = 1024 chests)
+|-
+| $1c80-$1cbf || NPC interaction flags
+|-
+| $1cc0-$1cff || Miscellaneous event flags
+|}
+
+==Battle State ($2000-$2fff)==
+
+===Battle Party ($2000-$24ff)===
+
+Expanded party data during battle (includes buffs, ATB, etc.)
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00-$ff || 256 bytes || Base stats (copied from party data)
+|-
+| $100 || 2 bytes || ATB gauge value
+|-
+| $102 || 2 bytes || ATB gauge max
+|-
+| $104 || 1 byte || Current command
+|-
+| $105 || 1 byte || Command target
+|-
+| $106 || 2 bytes || Temporary attack modifier
+|-
+| $108 || 2 bytes || Temporary defense modifier
+|-
+| $10a || 2 bytes || Temporary magic modifier
+|-
+| $10c || 1 byte || Buff duration 1
+|-
+| $10d || 1 byte || Buff duration 2
+|-
+| $10e || 1 byte || Buff duration 3
+|-
+| $10f || 1 byte || Battle row (0=front, 1=back)
+|}
+
+===Enemy Data ($2500-$29ff)===
+
+Up to 8 enemies, $100 bytes each
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 byte || Monster ID
+|-
+| $01 || 1 byte || Monster flags
+|-
+| $02 || 2 bytes || Current HP
+|-
+| $04 || 2 bytes || Maximum HP
+|-
+| $06 || 2 bytes || Current MP
+|-
+| $08 || 2 bytes || Maximum MP
+|-
+| $0a || 1 byte || Attack power
+|-
+| $0b || 1 byte || Defense
+|-
+| $0c || 1 byte || Magic power
+|-
+| $0d || 1 byte || Magic defense
+|-
+| $0e || 1 byte || Agility
+|-
+| $0f || 1 byte || Evade
+|-
+| $10 || 2 bytes || ATB gauge
+|-
+| $12 || 2 bytes || Status ailments
+|-
+| $14 || 1 byte || AI state
+|-
+| $15 || 1 byte || AI counter
+|-
+| $16 || 2 bytes || X position (screen)
+|-
+| $18 || 2 bytes || Y position (screen)
+|-
+| $1a-$ff || Reserved
+|}
+
+===Battle Variables ($2a00-$2bff)===
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $2a00 || 1 byte || Battle phase
+|-
+| $2a01 || 1 byte || Turn counter
+|-
+| $2a02 || 1 byte || Battle result (0=ongoing, 1=win, 2=lose, 3=escape)
+|-
+| $2a03 || 1 byte || Active unit index
+|-
+| $2a04 || 1 byte || Target unit index
+|-
+| $2a05 || 1 byte || Current action type
+|-
+| $2a06 || 1 byte || Current action ID
+|-
+| $2a08 || 2 bytes || Damage accumulator
+|-
+| $2a0a || 2 bytes || Last damage dealt
+|-
+| $2a0c || 4 bytes || Experience reward accumulator
+|-
+| $2a10 || 4 bytes || Gil reward accumulator
+|-
+| $2a14 || 8 bytes || Drop item slots
+|-
+| $2a1c || 1 byte || Number of drops
+|-
+| $2a20 || 2 bytes || Battle timer (frames)
+|-
+| $2a22 || 1 byte || ATB active flag
+|-
+| $2a23 || 1 byte || Battle speed setting
+|-
+| $2a24-$2aff || Battle animation state
+|-
+| $2b00-$2bff || Damage number display queue
+|}
+
+==Map State ($3000-$3fff)==
+
+===Current Map Data ($3000-$37ff)===
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $3000 || 2 bytes || Current map ID
+|-
+| $3002 || 2 bytes || Previous map ID
+|-
+| $3004 || 2 bytes || Player X (tile)
+|-
+| $3006 || 2 bytes || Player Y (tile)
+|-
+| $3008 || 2 bytes || Player X (subpixel)
+|-
+| $300a || 2 bytes || Player Y (subpixel)
+|-
+| $300c || 1 byte || Player facing direction
+|-
+| $300d || 1 byte || Player sprite state
+|-
+| $300e || 1 byte || Encounter counter
+|-
+| $300f || 1 byte || Encounter rate (current map)
+|-
+| $3010 || 2 bytes || Camera X scroll
+|-
+| $3012 || 2 bytes || Camera Y scroll
+|-
+| $3014 || 1 byte || Map transition state
+|-
+| $3015 || 1 byte || Vehicle type (0=none, 1=chocobo, 2=airship)
+|-
+| $3016 || 2 bytes || Airship X position
+|-
+| $3018 || 2 bytes || Airship Y position
+|-
+| $301a || 1 byte || Airship height/altitude
+|-
+| $301b || 1 byte || Airship flags
+|-
+| $3020-$307f || 96 bytes || Event trigger zones (current map)
+|-
+| $3080-$30ff || 128 bytes || Tile collision cache
+|}
+
+===NPC State ($3100-$37ff)===
+
+Up to 32 NPCs per map, $38 bytes each
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 byte || NPC ID
+|-
+| $01 || 1 byte || NPC flags (active, visible, etc.)
+|-
+| $02 || 1 byte || Sprite ID
+|-
+| $03 || 1 byte || Palette
+|-
+| $04 || 2 bytes || X position (tile)
+|-
+| $06 || 2 bytes || Y position (tile)
+|-
+| $08 || 2 bytes || X position (subpixel)
+|-
+| $0a || 2 bytes || Y position (subpixel)
+|-
+| $0c || 1 byte || Direction
+|-
+| $0d || 1 byte || Movement type
+|-
+| $0e || 1 byte || Movement counter
+|-
+| $0f || 1 byte || Movement path index
+|-
+| $10 || 2 bytes || Event script pointer
+|-
+| $12-$37 || 38 bytes || Path data/reserved
+|}
+
+==Menu State ($3800-$3fff)==
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $3800 || 1 byte || Menu mode
+|-
+| $3801 || 1 byte || Menu page
+|-
+| $3802 || 1 byte || Cursor row
+|-
+| $3803 || 1 byte || Cursor column
+|-
+| $3804 || 1 byte || Selected character index
+|-
+| $3805 || 1 byte || Selected item slot
+|-
+| $3806 || 1 byte || Menu state flags
+|-
+| $3808 || 2 bytes || Menu scroll offset
+|-
+| $380a || 2 bytes || Item filter flags
+|-
+| $380c-$383f || 52 bytes || Menu scratch buffer
+|-
+| $3840-$38ff || 192 bytes || Window tile buffer
+|-
+| $3900-$3fff || 256 bytes || Text buffer
+|}
+
+==Audio State ($4000-$43ff)==
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $4000 || 1 byte || Current BGM ID
+|-
+| $4001 || 1 byte || Previous BGM ID
+|-
+| $4002 || 1 byte || BGM volume
+|-
+| $4003 || 1 byte || BGM fade state
+|-
+| $4004 || 1 byte || SFX channel 1 ID
+|-
+| $4005 || 1 byte || SFX channel 2 ID
+|-
+| $4006 || 1 byte || SFX channel 3 ID
+|-
+| $4007 || 1 byte || SFX priority
+|-
+| $4008-$40ff || 248 bytes || SPC700 communication buffer
+|-
+| $4100-$43ff || 768 bytes || Music sequence data cache
+|}
+
+==Save Data Structure==
+
+SRAM is 8 KB, supporting 4 save slots.
+
+===Save Slot Layout===
+
+Each save slot is approximately $800 (2048) bytes:
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $000-$4ff || 1280 bytes || Party data (all characters)
+|-
+| $500-$5ff || 256 bytes || Inventory
+|-
+| $600-$6ff || 256 bytes || Event flags
+|-
+| $700-$77f || 128 bytes || Map state / location
+|-
+| $780-$7bf || 64 bytes || Settings / config
+|-
+| $7c0-$7fd || 62 bytes || Playtime and misc
+|-
+| $7fe-$7ff || 2 bytes || Checksum
+|}
+
+==Scratch RAM ($7e0000-$7e7fff)==
+
+Lower 32 KB used for decompression buffers, sprite tables, and temporary data.
+
+{| class="wikitable"
+! Address Range !! Description
+|-
+| $7e0000-$7e00ff || Direct page (mirrored)
+|-
+| $7e0100-$7e01ff || Stack
+|-
+| $7e0200-$7e0fff || System variables
+|-
+| $7e1000-$7e1fff || Party data
+|-
+| $7e2000-$7e2fff || Battle state
+|-
+| $7e3000-$7e3fff || Map state
+|-
+| $7e4000-$7e4fff || Audio/misc
+|-
+| $7e5000-$7e5fff || Decompression buffer 1
+|-
+| $7e6000-$7e6fff || Decompression buffer 2
+|-
+| $7e7000-$7e7fff || OAM buffer / sprite tables
+|}
+
+==VRAM Layout==
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $0000-$0fff || 4 KB || BG1 tilemap (field)
+|-
+| $1000-$1fff || 4 KB || BG2 tilemap (field)
+|-
+| $2000-$2fff || 4 KB || BG3 tilemap (text)
+|-
+| $3000-$3fff || 4 KB || BG4 tilemap (status)
+|-
+| $4000-$7fff || 16 KB || BG tile graphics
+|-
+| $8000-$bfff || 16 KB || Sprite graphics
+|-
+| $c000-$cfff || 4 KB || Font tiles
+|-
+| $d000-$ffff || 12 KB || Additional graphics
+|}
+
+==Notes==
+
+* All addresses are based on the US version (Final Fantasy II)
+* Japanese version may have slight differences
+* Battle RAM extensively uses direct page for speed
+* ATB system requires frame-accurate timing
+
+[[Category:Final Fantasy IV (SNES)|RAM map]]

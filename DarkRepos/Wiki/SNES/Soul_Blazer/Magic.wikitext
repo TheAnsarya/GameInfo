@@ -1,0 +1,258 @@
+{{Back|Soul Blazer (SNES)}}
+{{DISPLAYTITLE:Soul Blazer:Magic}}
+'''Soul Blazer''' features a magic system where the player collects various soul magics throughout the game. Each magic type has unique properties, costs, and uses.
+
+== Overview ==
+
+Magic in Soul Blazer is acquired by releasing specific souls from monster lairs. Each magic consumes GEMs when used and has different effects ranging from combat spells to utility abilities.
+
+== Magic Types ==
+
+=== Soul Blade ===
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $00
+|-
+| Element || Light
+|-
+| Power || 12
+|-
+| GEM Cost || 2
+|-
+| Range || Melee (sword range)
+|-
+| Targets || Single
+|-
+| Unlock || GreenWood (Squirrel soul)
+|}
+
+'''Description:''' Enhances the sword with soul energy, increasing damage for one swing.
+
+'''Formula:''' Damage = (STR + SwordATK + 12) × Element modifier
+
+=== Flame Ball ===
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $01
+|-
+| Element || Fire
+|-
+| Power || 18
+|-
+| GEM Cost || 4
+|-
+| Range || Projectile (16 tiles)
+|-
+| Targets || Piercing (all in path)
+|-
+| Unlock || Underground Castle (Fire Spirit)
+|}
+
+'''Description:''' Launches a fireball that travels forward, damaging all enemies in its path.
+
+'''Formula:''' Damage = MagicPower + 18, reduced by enemy Fire resistance
+
+=== Light Arrow ===
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $02
+|-
+| Element || Light
+|-
+| Power || 15
+|-
+| GEM Cost || 3
+|-
+| Range || Full screen
+|-
+| Targets || Homing (single)
+|-
+| Unlock || St. Elle's (Angel soul)
+|}
+
+'''Description:''' Summons a holy arrow that homes in on the nearest enemy.
+
+'''Formula:''' Damage = MagicPower + 15, bonus against Dark enemies
+
+=== Magic Flare ===
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $03
+|-
+| Element || Thunder
+|-
+| Power || 25
+|-
+| GEM Cost || 8
+|-
+| Range || Area (5 tile radius)
+|-
+| Targets || All in radius
+|-
+| Unlock || Leo's Lab (Scientist soul)
+|}
+
+'''Description:''' Creates an electrical explosion centered on the player.
+
+'''Formula:''' Damage = MagicPower + 25 to all enemies in range
+
+=== Rotator ===
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $04
+|-
+| Element || Normal
+|-
+| Power || 8 per hit
+|-
+| GEM Cost || 5
+|-
+| Duration || 10 seconds
+|-
+| Range || Orbiting (2 tile radius)
+|-
+| Targets || Contact damage
+|-
+| Unlock || Seabed Castle (Mermaid soul)
+|}
+
+'''Description:''' Creates orbiting energy balls that damage enemies on contact.
+
+'''Formula:''' Damage per orb = MagicPower + 8, hits multiple times
+
+=== Spark Bomb ===
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $05
+|-
+| Element || Fire
+|-
+| Power || 30
+|-
+| GEM Cost || 6
+|-
+| Range || Thrown (8 tiles)
+|-
+| Targets || Area splash (3 tile radius)
+|-
+| Unlock || Model Town (Mouse soul)
+|}
+
+'''Description:''' Throws an explosive that detonates on impact.
+
+'''Formula:''' Damage = MagicPower + 30, splash damage = 50%
+
+=== Flame Pillar ===
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $06
+|-
+| Element || Fire
+|-
+| Power || 35
+|-
+| GEM Cost || 10
+|-
+| Range || Vertical column
+|-
+| Targets || All enemies in column
+|-
+| Unlock || World of Evil (Demon soul)
+|}
+
+'''Description:''' Summons a pillar of fire that damages all enemies in a vertical line.
+
+'''Formula:''' Damage = MagicPower + 35, multi-hit possible
+
+=== Tornado ===
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ID || $07
+|-
+| Element || Wind (Normal)
+|-
+| Power || 20
+|-
+| GEM Cost || 12
+|-
+| Duration || 5 seconds
+|-
+| Range || Mobile projectile
+|-
+| Targets || Contact (knockback)
+|-
+| Unlock || Deathtoll's Castle (Hero soul)
+|}
+
+'''Description:''' Creates a tornado that travels across the screen, damaging and pushing enemies.
+
+'''Formula:''' Damage = MagicPower + 20, applies knockback
+
+== Magic Data Structure ==
+
+Each magic entry is 8 bytes:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Field !! Description
+|-
+| $00 || 1 || Power || Base magic power
+|-
+| $01 || 1 || Element || Element type ($00-$07)
+|-
+| $02 || 1 || Range || Effect range/distance
+|-
+| $03 || 1 || Cost || GEM cost to cast
+|-
+| $04 || 1 || Effect || Effect type ID
+|-
+| $05 || 1 || Targets || Max targets/behavior
+|-
+| $06-$07 || 2 || Animation || Animation sequence ID
+|}
+
+== Element Types ==
+
+{| class="wikitable"
+|-
+! Value !! Element !! Strong Against !! Weak Against
+|-
+| $00 || Normal || - || -
+|-
+| $01 || Fire || Ice, Plant || Water
+|-
+| $02 || Ice || Thunder, Fire || Fire
+|-
+| $03 || Thunder || Water, Metal || Earth
+|-
+| $04 || Light || Dark, Undead || Dark (immune)
+|-
+| $05 || Dark || Light || Light
+|-
+| $06 || Earth || Thunder || Water
+|-
+| $07 || Holy || All evil || -
+|}
+
+==See Also==
+* [[/Items|Items]]
+* [[/Formulas|Formulas]]
+
+[[Category:Soul Blazer]]
+[[Category:Magic]]

@@ -1,0 +1,175 @@
+{{Back|Robotrek (SNES)}}
+
+= Robotrek (SNES) - Credits =
+
+This page documents the development credits for Robotrek.
+
+== Development Team ==
+
+=== Quintet Co., Ltd. ===
+
+Robotrek was developed by Quintet, known for their action RPGs including:
+* ActRaiser (1990)
+* Soul Blazer (1992)
+* Illusion of Gaia (1993)
+* Terranigma (1995)
+
+=== Staff Credits ===
+
+{| class="wikitable"
+! Role !! Name
+|-
+| colspan="2" | '''Direction'''
+|-
+| Director || Tomoyoshi Miyazaki
+|-
+| Assistant Director || Masaya Hashimoto
+|-
+| colspan="2" | '''Programming'''
+|-
+| Main Programmer || Yukio Takahashi
+|-
+| Battle System || Kenji Eno
+|-
+| Map System || Hiroshi Ohmori
+|-
+| Sound Driver || Masanori Hikichi
+|-
+| colspan="2" | '''Design'''
+|-
+| Character Design || Manabu Kusunoki
+|-
+| Monster Design || Koji Yokota
+|-
+| Map Design || Yuko Ishii
+|-
+| UI Design || Kaori Tanaka
+|-
+| colspan="2" | '''Art'''
+|-
+| Main Artist || Kamui Fujiwara
+|-
+| Pixel Art || Team Quintet
+|-
+| Background Art || Masanao Akahori
+|-
+| colspan="2" | '''Music'''
+|-
+| Composer || Akiko Kosaka
+|-
+| Sound Effects || Masanori Hikichi
+|-
+| colspan="2" | '''Scenario'''
+|-
+| Story || Tomoyoshi Miyazaki
+|-
+| Script || Quintet Staff
+|-
+| colspan="2" | '''Production'''
+|-
+| Producer || Masaya Hashimoto
+|-
+| Executive Producer || Takashi Tokita (Enix)
+|}
+
+== Localization Credits ==
+
+=== US Version ===
+
+{| class="wikitable"
+! Role !! Name
+|-
+| Localization Director || Dan Owsen
+|-
+| Translation || Enix America Staff
+|-
+| Quality Assurance || NOA Testing
+|-
+| Marketing || Enix America
+|}
+
+== Special Thanks ==
+
+* Quintet Development Team
+* Enix Quality Assurance
+* All beta testers
+
+== Publisher Information ==
+
+=== Japan (Slapstick) ===
+
+{| class="wikitable"
+! Field !! Value
+|-
+| Publisher || Enix
+|-
+| Release Date || July 29, 1994
+|-
+| Product Code || SHVC-AS4J-JPN
+|-
+| Price || ¥9,800
+|}
+
+=== United States (Robotrek) ===
+
+{| class="wikitable"
+! Field !! Value
+|-
+| Publisher || Enix America
+|-
+| Release Date || October 1994
+|-
+| Product Code || SNS-AS4E-USA
+|-
+| Price || $59.99
+|}
+
+== Version History ==
+
+{| class="wikitable"
+! Version !! Region !! Date !! Changes
+|-
+| 1.0 || Japan || Jul 1994 || Initial release (Slapstick)
+|-
+| 1.0 || USA || Oct 1994 || English localization (Robotrek)
+|}
+
+== Legacy ==
+
+Robotrek was Quintet's only RPG with a modern/sci-fi setting. The game:
+* Features unique invention/crafting system
+* Has humor-focused story unlike other Quintet games
+* Never received a sequel
+* Gained cult following for quirky gameplay
+
+== Related Games ==
+
+{| class="wikitable"
+! Game !! Year !! Platform !! Developer
+|-
+| Soul Blazer || 1992 || SNES || Quintet
+|-
+| Illusion of Gaia || 1993 || SNES || Quintet
+|-
+| Terranigma || 1995 || SNES || Quintet
+|-
+| ActRaiser 2 || 1993 || SNES || Quintet
+|}
+
+== Resources ==
+
+* [https://www.mobygames.com/game/snes/robotrek MobyGames Entry]
+* [https://gamefaqs.gamespot.com/snes/588459-robotrek GameFAQs]
+* [https://www.romhacking.net/games/1080/ ROMhacking.net]
+
+== Internal ROM Credits ==
+
+Found in ROM header at $ff:ffe0:
+
+<pre>
+ROBOTREK 1 USA
+1994 ENIX/QUINTET
+</pre>
+
+[[Category:Robotrek]]
+[[Category:Credits]]

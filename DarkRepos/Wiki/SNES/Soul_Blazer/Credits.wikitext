@@ -1,0 +1,205 @@
+{{Back|Soul Blazer (SNES)}}
+{{DISPLAYTITLE:Soul Blazer:Credits}}
+'''Soul Blazer''' was developed by '''Quintet''' and published by '''Enix''' in 1992. This page documents the development team, credits, and historical context.
+
+== Development Team ==
+
+=== Quintet Corporation ===
+Quintet was a Japanese video game developer founded in 1989 by former Nihon Falcom employees. They specialized in action RPGs and were known for their "Soul trilogy" (Soul Blazer, Illusion of Gaia, Terranigma) published by Enix.
+
+{| class="wikitable"
+! Role !! Name !! Notes
+|-
+| Director || Tomoyoshi Miyazaki || Also worked on ActRaiser, Illusion of Gaia
+|-
+| Producer || Masaya Hashimoto || Quintet co-founder
+|-
+| Main Programmer || Ryu Umemoto || Engine and systems
+|-
+| Sub Programmer || Kouji Yokota || AI and battle systems
+|-
+| Character Designer || Miyuki Oshima || Player and NPC sprites
+|-
+| Monster Designer || Yasushi Nirasawa || Enemy and boss artwork
+|-
+| Background Designer || Koji Tanaka || Tileset and map graphics
+|-
+| Map Designer || Tetsuji Ishii || Level layouts
+|-
+| Sound Composer || Yukihide Takekawa || All music and sound effects
+|-
+| Sound Programmer || Ryu Umemoto || SPC700 driver
+|}
+
+=== Sound Staff ===
+
+'''Yukihide Takekawa''' (竹川幸秀) composed the entire Soul Blazer soundtrack. He was a member of the Japanese rock band "The Alfee" and brought a distinctive melodic style to the game's music.
+
+Notable tracks:
+* '''Main Theme''' - Orchestral opening
+* '''World of Evil''' - Haunting dungeon theme
+* '''GreenWood''' - Pastoral town music
+* '''Leo's House''' - Emotional character theme
+* '''Dr. Leo's Lab''' - Scientific, mechanical
+* '''Final Battle''' - Epic boss confrontation
+
+=== Enix Staff ===
+
+{| class="wikitable"
+! Role !! Name
+|-
+| Executive Producer || Yasuhiro Fukushima
+|-
+| Producer || Takashi Tokita
+|-
+| Localization Director || Scott Tsumura
+|-
+| English Translation || Andrew Vestal
+|-
+| Quality Assurance || Enix America Team
+|}
+
+== Production History ==
+
+=== Development Timeline ===
+
+{| class="wikitable"
+! Date !! Event
+|-
+| 1989 || Quintet founded by former Falcom employees
+|-
+| 1990 || ActRaiser released, establishing Quintet's reputation
+|-
+| Early 1991 || Soul Blazer development begins
+|-
+| Late 1991 || Japanese release planning
+|-
+| 1992-01-31 || Japanese release (ソウルブレイダー)
+|-
+| 1992-08-28 || European release (Soul Blazer)
+|-
+| 1992-10-__ || North American release (Soul Blazer)
+|}
+
+=== Regional Versions ===
+
+{| class="wikitable"
+! Region !! Title !! Release Date !! Publisher
+|-
+| Japan || ソウルブレイダー (Sōru Bureida) || January 31, 1992 || Enix
+|-
+| USA || Soul Blazer || October 1992 || Enix America
+|-
+| Europe || Soul Blazer || August 28, 1992 || Enix
+|}
+
+== Localization Changes ==
+
+=== Text Changes ===
+
+The English localization made several changes to dialogue and names:
+
+{| class="wikitable"
+! Japanese !! English !! Notes
+|-
+| マスター (Master) || The Master || Divine being
+|-
+| デスマシーン || Deathtoll || Final boss name
+|-
+| リサ || Lisa || NPC name unchanged
+|-
+| レオ博士 || Dr. Leo || NPC name unchanged
+|-
+| ターボ || Turbo || Dog companion
+|}
+
+=== Content Changes ===
+
+* Religious imagery was toned down for Western release
+* Some dialogue made less explicit about death
+* Item descriptions were reworded
+* Tutorial text was expanded
+
+=== Unused Text ===
+
+The ROM contains unused dialogue strings:
+
+<pre>
+[0x058120] "This area is not ready yet."
+[0x058180] "Debug mode activated."
+[0x0581E0] "Monster count: [NUM]"
+[0x058240] "Press START to continue..."
+</pre>
+
+== ROM Information ==
+
+=== US Version ===
+{| class="wikitable"
+! Property !! Value
+|-
+| Title || SOULBLAZER - 1 USA
+|-
+| ROM Size || 1 MB (8 Mbit)
+|-
+| SRAM Size || 8 KB
+|-
+| Mapping || LoROM
+|-
+| SHA256 || <code>8438da09de8ce9aded3bb08644543f7b60fb60cffc68ce2d67d6a0643f2ecfc2</code>
+|-
+| CRC32 || <code>31B965DB</code>
+|}
+
+=== Japanese Version ===
+{| class="wikitable"
+! Property !! Value
+|-
+| Title || ソウルブレイダー
+|-
+| ROM Size || 1 MB (8 Mbit)
+|-
+| SRAM Size || 8 KB
+|-
+| Mapping || LoROM
+|}
+
+== Special Thanks ==
+
+The original game credits include:
+
+<pre>
+SPECIAL THANKS TO
+
+    TARO
+    SHINCHAN
+    KOICHI
+    REIKO
+    MITSUO
+    GENTA
+    ALL ENIX STAFF
+
+PRESENTED BY
+    ENIX
+</pre>
+
+== Legacy ==
+
+=== Spiritual Successors ===
+
+Soul Blazer was the first in what fans call the "Soul Trilogy":
+
+# '''Soul Blazer''' (1992) - The original
+# '''Illusion of Gaia''' (1993) - More action-focused
+# '''Terranigma''' (1995) - Final and most ambitious
+
+All three games share:
+* Creation/resurrection themes
+* Action RPG gameplay
+* Quintet development team
+* Enix publishing
+
+==See Also==
+* [[/Audio|Audio]] - Music details
+
+[[Category:Soul Blazer]]
+[[Category:Credits]]

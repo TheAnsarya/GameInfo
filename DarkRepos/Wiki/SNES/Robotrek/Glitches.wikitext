@@ -1,0 +1,206 @@
+{{Back|Robotrek (SNES)}}
+
+= Robotrek (SNES) - Known Glitches =
+
+This page documents known bugs and glitches in Robotrek.
+
+== Beneficial Glitches ==
+
+=== Item Duplication Glitch ===
+
+'''Discovered:''' Early 2000s
+
+'''Method:'''
+# Have exactly 1 of an item in your inventory
+# Enter battle and use the item
+# Reset the game during the item use animation
+# Reload save - item may not be consumed but effect applied
+
+'''Notes:''' Works inconsistently, timing-dependent.
+
+=== Infinite Money Exploit ===
+
+'''Method:'''
+# Invent an item with materials
+# Sell the invented item
+# If you have the Lucky Charm equipped, materials have a chance to not be consumed
+# Repeat for infinite money
+
+'''Notes:''' Only works with certain material combinations.
+
+=== Fast Leveling Glitch ===
+
+'''Method:'''
+# Fight enemies near Rococo after Chapter 2
+# During battle, if you defeat an enemy while your robot is being repaired
+# The EXP may be calculated multiple times
+
+'''Notes:''' Difficult to reproduce reliably.
+
+== Negative Glitches ==
+
+=== Save Corruption ===
+
+'''Trigger:''' Saving during certain event sequences
+
+'''Symptoms:'''
+* Save file becomes unloadable
+* Player position corrupted
+* Story flags reset
+
+'''Prevention:'''
+* Save only at inns or designated save points
+* Avoid saving during or immediately after boss fights
+* Keep backup saves in different slots
+
+=== Softlock - Volcano Event ===
+
+'''Location:''' Choco Volcano, Chapter 2
+
+'''Trigger:''' Leaving the volcano before completing the boss fight after triggering the event
+
+'''Result:''' Cannot re-enter volcano, cannot progress story
+
+'''Fix:''' None - must restart from earlier save
+
+=== Invisible Wall Glitch ===
+
+'''Location:''' Various maps
+
+'''Description:''' Player can get stuck behind invisible collision boundaries
+
+'''Prevention:''' Avoid walking into corners rapidly
+
+=== Robot Part Swap Crash ===
+
+'''Trigger:''' Rapidly swapping robot parts during battle
+
+'''Result:''' Game freeze
+
+'''Prevention:''' Wait for animations to complete before swapping
+
+== Text Display Bugs ==
+
+=== Name Overflow ===
+
+'''Description:''' Using 8 characters for player name can cause display issues in some text boxes
+
+'''Example:''' Name extends into adjacent text areas
+
+=== Dialog Skip Bug ===
+
+'''Description:''' Rapidly pressing buttons during text can skip important dialog flags
+
+'''Result:''' Story events may not trigger properly
+
+== Battle System Bugs ==
+
+=== Critical Hit Overflow ===
+
+'''Description:''' Extremely high damage values can overflow to small numbers
+
+'''Trigger:''' Maximum stats + critical hit + weakness = damage > 65535
+
+'''Result:''' Damage wraps to low value (displayed correctly but wrong damage dealt)
+
+=== Speed Tie Glitch ===
+
+'''Description:''' When player and enemy have identical speed values
+
+'''Behavior:''' Turn order becomes unpredictable, may favor enemy
+
+=== Status Effect Stacking ===
+
+'''Description:''' Some status effects can stack incorrectly
+
+'''Example:''' Multiple poison effects from different sources
+
+'''Result:''' Either no damage or excessive damage per turn
+
+== Inventory Bugs ==
+
+=== 99 Stack Overflow ===
+
+'''Description:''' Obtaining item #100 when stack is at 99
+
+'''Behavior:''' Item counter wraps to 0, items lost
+
+=== Empty Slot Display ===
+
+'''Description:''' Sometimes empty inventory slots display garbage data
+
+'''Cause:''' Uninitialized memory
+
+'''Harmless:''' Visual only, no gameplay impact
+
+== Map/Event Bugs ==
+
+=== NPC Collision Issues ===
+
+'''Description:''' NPCs can block doorways permanently
+
+'''Location:''' Various towns
+
+'''Prevention:''' Talk to NPCs to move them
+
+=== Treasure Chest Respawn ===
+
+'''Description:''' Some chests respawn their contents after story events
+
+'''Locations:'''
+* Rococo Forest chest (Chapter 1 to Chapter 2)
+* Research Lab chest (after boss)
+
+'''Notes:''' Considered a feature by some players
+
+=== Map Layer Z-Fighting ===
+
+'''Description:''' Objects on different layers flicker
+
+'''Cause:''' Priority bit conflicts in tilemap
+
+== Audio Bugs ==
+
+=== Music Loop Bug ===
+
+'''Description:''' Some tracks have incorrect loop points
+
+'''Affected:'''
+* Battle victory theme (slight pop at loop)
+* Choco town theme (brief silence)
+
+=== Sound Effect Cutoff ===
+
+'''Description:''' Multiple sound effects playing can cut each other off
+
+'''Cause:''' Limited audio channels
+
+== Version Differences ==
+
+=== US vs Japanese (Slapstick) ===
+
+Some bugs were fixed in the US localization:
+* Save corruption less frequent
+* Volcano softlock fixed in some versions
+* Text overflow issues addressed
+
+Some bugs were introduced:
+* Translation timing issues
+* Name length problems (shorter limit in Japanese)
+
+== Speedrun-Relevant Glitches ==
+
+{| class="wikitable"
+! Glitch !! Time Save !! Difficulty !! Category
+|-
+| Item Dupe || ~2 min || Hard || Any%
+|-
+| Fast Level || ~5 min || Very Hard || Any%
+|-
+| Wrong Warp || ~10 min || Frame Perfect || Any%
+|-
+| Text Skip || ~30 sec || Easy || All categories
+|}
+
+[[Category:Glitches]]
+[[Category:SNES]]

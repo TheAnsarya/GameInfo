@@ -1,0 +1,446 @@
+﻿SnesPrgRom:0000:fn_MainEntryPoint:game entry point (everything starts here)\norg $8000
+SnesPrgRom:0247:fn_BasicInit:ROUTINE: Basic init ($008247)\n	Screen off, no interupts, AXY => 8bit\norg $008247
+SnesPrgRom:0504:fn_Copy8ColorsFromD8E4:ROUTINE: Copy 8 Colors from $d8e4 ($008504)\n	copies $8 colors ($10 bytes)\n	data starts at $d8e4\nparameters:\n	A => starting color index\n	X => source address offset\ndirectpage should be $4300\ndma control $4350 should be set\ndma destination $4351 should be set\ndma databank $4354 should be set\n\norg $008504
+SnesPrgRom:0C1B:fn_DecompressAddress:ROUTINE: DecompressAddress ($008c1b)\n	expands the address stored in A.low\nparameters:\n	A => compressed address\nreturns:\n	X => ((bits 3-5 of A) * 2) + (bits 0-2 of A)\n		so values can be: $00 to $77 (with bit 3 always 0)\n	A => decompressed address\n		(((X * 2) + X) * 16) + $8000 (bottom 4 bits always 0)\n		so values can be: $8000 to $9650\nTODO: maybe rename when other address expanders are found or we figure out what this is for\n\norg $008c1b
+SnesPrgRom:0D8A:fn_DecompressAddressUnlessFF:ROUTINE:  ($008d8a)\nparameters:\n	A => compressed address\n		if $ff then return $ffff\nreturns:\n	X => decompressed address\n		$ffff when A is $ff\n\norg $008d8a
+SnesPrgRom:0D8E:fn_DecompressAddressUnlessFF__NotFF
+SnesPrgRom:0D93:fn_DecompressAddressUnlessFF__IsFF
+SnesPrgRom:0DDF:fn_CopyTilesToVRAM:ROUTINE: Copy tiles to VRAM ($008ddf)\n	loops Y times, writing one tile to VRAM each time\n		copies $10 bytes to vram, then copies $8 bytes as the low byte using the same high byte loaded from $00f0-$00f1\n		so if data for last $8 bytes is = $AA $BB $CC... and $00f0 = $5500, then the second part would write as $55AA $55BB $55CC...\nparameters:\n	databank => source address bank\n	X => source address offset\n	Y => number of times to loop\n	ram $00f0 => high byte (which is at $00f1) will be used as high byte for second half of copies\n$2115-$2117 should be set up with vram options and vram destination address\n\norg $008ddf
+SnesPrgRom:0DE8:fn_CopyTilesToVRAM__Loop
+SnesPrgRom:0EC4:fn_LoadTilesAndColors:ROUTINE: LoadTilesAndColors ($008ec4)\n	loads tiles from $078030 ($038030 in file)\n		viewable in 2bpp, 2 dimensional, 32 blocks wide in TileMolester\n		the 8bit address translation causes this output\nTODO: what are we actually loading? overworld? city? title?\n	text and menu outline and stuff and part of title screen\nTODO: finish code/comment cleanup\nTODO: Better label name\n\norg $008ec4
+SnesPrgRom:0F55:fn_LoadTilesAndColors_Loop
+SnesPrgRom:0FB4:fn_Copy4ColorsToCGRAM:ROUTINE: Copy $4 colors to CGRAM ($008fb4)\nparameters:\n	A => the starting color index\n	X => source address offset\ndirect page => $2100, so the writes are to registers\nAXY => 8bit\n\norg $008fb4
+SnesPrgRom:174E:fn_GeneralSetBitMask:TSB Sets bits (A) at address in ($0000)\n\norg $00974e
+SnesPrgRom:1754:fn_GeneralClearBitMask:TRB Clears bits (A) at address in ($0000)\n\norg $009754
+SnesPrgRom:175A:fn_GeneralAndBitMask:AND bits (A) at address in ($0000)\n\norg $00975a
+SnesPrgRom:1760:fn_SetBitMaskTo0ea8:ROUTINE: TSB With Mask From Table DataBitMask[] To $0ea8[] ($00976b)\n	fetch mask from rom DataBitMask[]\n	sets bits on $0ea8[] using mask\nparameters:\n	A => low byte: aaaaabbb\n		aaaaa - increment direct page by\n		bbb - this value is XOR'ed to flip the bits\n			invert = index to table \n			invert * 2 = address offset\n\norg $009760
+SnesPrgRom:176B:fn_ClearBitMaskTo0ea8:ROUTINE: TRB With Mask From Table DataBitMask[] To $0ea8[] ($00976b)\n	fetch mask from rom DataBitMask[]\n	clears bits on $0ea8[] using mask\nparameters:\n	A => low byte: aaaaabbb\n		aaaaa - increment direct page by\n		bbb - this value is XOR'ed to flip the bits\n			invert = index to table \n			invert * 2 = address offset\n\norg $00976b
+SnesPrgRom:1776:fn_AndBitMaskTo0ea8:ROUTINE: AND With Mask From Table DataBitMask[] To $0ea8[] ($00976b)\n	fetch mask from rom DataBitMask[]\n	clears bits on $0ea8[] using mask\nparameters:\n	A => low byte: aaaaabbb\n		aaaaa - increment direct page by\n		bbb - this value is XOR'ed to flip the bits\n			invert = index to table \n			invert * 2 = address offset\nreturns:\n	A => \nnotes:\n	always PHD before calling and PLD after\n\norg $009776
+SnesPrgRom:17DA:fn_IncreaseDPAndFetchBitMask:ROUTINE: Increase direct page, fetch from DataBitMask[] ($0097da)\n	increments direct page by top 5 bits of A\n	fetch value from rom DataBitMask[]\nparameters:\n	A => low byte: aaaaabbb\n		aaaaa - increment direct page by\n		bbb - this value is XOR'ed to flip the bits\n			invert = index to table \n			invert * 2 = address offset\n	directpage => \nreturns:\n	A => value from DataBitMask[]\n	directpage => \n\norg $0097da
+SnesPrgRom:17FB:d_DataBitMask
+SnesPrgRom:1891:fn_CopyByWords:ROUTINE: Copy by words ($009891)\n	copies up to $20 words ($40 bytes)\nparameters:\n	X => source offset\n	Y => destination offset\n\norg $009891
+SnesPrgRom:1994:fn_FillSectionWithA_LongJump:ROUTINE: fn_FillSectionWithA_LongJump ($009994)\n	entry point for long jumps to FillSectionWithA\nparameters:\n	see FillSectionWithA\nAXY => 16bit\n\norg $009994
+SnesPrgRom:1998:fn_FillSectionWithA:ROUTINE: fn_FillSectionWithA ($009998)\n	fills a section of memory with A\nparameters:\n	A => not exactly the number of bytes to fill with A\n		upper $A bits => fill size, number of $40 byte chunks to fill\n		bits 0-5 => offset into JumpTableFillWithA[]\n			this is the remainder except $08 only fills $06 and $24 only fills $22\n		bit 0 must be 0\n	X => fill value\n	Y => fill destination\nAXY => 16bit\n\norg $009998
+SnesPrgRom:19A7:fn_FillSectionWithA__Loop
+SnesPrgRom:19B8:fn_FillSectionWithA__Skip
+SnesPrgRom:19BD:fn_FillWithA_20:ROUTINE: Fill with A ($0099bd)\n	fills $40 bytes with A starting at Y\nparameters:\n	A => fill value\n	Y => destination\nA => 16bit\n\norg $0099bd
+SnesPrgRom:19C0:fn_FillWithA_1f
+SnesPrgRom:19C3:fn_FillWithA_1e
+SnesPrgRom:19C6:fn_FillWithA_1d
+SnesPrgRom:19C9:fn_FillWithA_1c
+SnesPrgRom:19CC:fn_FillWithA_1b
+SnesPrgRom:19CF:fn_FillWithA_1a
+SnesPrgRom:19D2:fn_FillWithA_19
+SnesPrgRom:19D5:fn_FillWithA_18
+SnesPrgRom:19D8:fn_FillWithA_17
+SnesPrgRom:19DB:fn_FillWithA_16
+SnesPrgRom:19DE:fn_FillWithA_15
+SnesPrgRom:19E1:fn_FillWithA_14
+SnesPrgRom:19E4:fn_FillWithA_13
+SnesPrgRom:19E7:fn_FillWithA_12
+SnesPrgRom:19EA:fn_FillWithA_11
+SnesPrgRom:19ED:fn_FillWithA_10
+SnesPrgRom:19F0:fn_FillWithA_0f
+SnesPrgRom:19F3:fn_FillWithA_0e
+SnesPrgRom:19F6:fn_FillWithA_0d
+SnesPrgRom:19F9:fn_FillWithA_0c
+SnesPrgRom:19FC:fn_FillWithA_0b
+SnesPrgRom:19FF:fn_FillWithA_0a
+SnesPrgRom:1A02:fn_FillWithA_09
+SnesPrgRom:1A05:fn_FillWithA_08
+SnesPrgRom:1A08:fn_FillWithA_07
+SnesPrgRom:1A0B:fn_FillWithA_06
+SnesPrgRom:1A0E:fn_FillWithA_05
+SnesPrgRom:1A11:fn_FillWithA_04
+SnesPrgRom:1A14:fn_FillWithA_03
+SnesPrgRom:1A17:fn_FillWithA_02
+SnesPrgRom:1A1A:fn_FillWithA_01
+SnesPrgRom:1A1D:fn_FillWithA_Nothing
+SnesPrgRom:1A1E:d_JumpTableFillWithA
+SnesPrgRom:454B:fn_Clear417BytesAtY:ROUTINE: Clear 417/$1A1 bytes at Y ($00c56b)\n	fills $0d*$20 bytes ($1A0) with $00, starting at Y\n	clears one additional byte, so $1A1 or 417 bytes are cleared\n	the extra byte seems like an error\nparameters:\n	Y => destination offset\n\norg $00c54b
+SnesPrgRom:454F:fn_Clear417BytesAtY__Loop
+SnesPrgRom:8337:fn_Routine018337:ROUTINE: Routine018337 ($018337)\n\norg $018337
+SnesPrgRom:8358:fn_Routine018337__Exit
+SnesPrgRom:835B:fn_Routine018337__JumpTable
+SnesPrgRom:836D:fn_LoadFromDataColors839f:ROUTINE: LoadFromDataColors839f ($01836d)\n	DataColors839f => $20 bytes in $4 byte chunks\n		byte 0 => color index\n		bytes 1-2 => source address\n		byte 3 => dma transfer size\nA => 8bit, XY => 16bit\n\norg $01836d
+SnesPrgRom:8372:fn_LoadFromDataColors839f__Loop
+SnesPrgRom:83BF:fn_CopyTilemapFromWRAMToVRAM:ROUTINE: Copy Tilemap from WRAM to VRAM ($0183bf)\n	copy two sections from WRAM to VRAM through DMA (channel 0)\n	each section can have 4 copys\nparameters:\n	@var_1a4c => if $01 then call second copy routine    TODO: verify\n	ram $19fa - $1a12 => parameters for first copy\n	ram $1a13 - $1a2b => parameters for second copy\n\norg $0183bf
+SnesPrgRom:83CB:fn_CopyTilemapFromWRAMToVRAM__Exit
+SnesPrgRom:83CC:fn_CopyTilemapFromWRAMToVRAM_1:ROUTINE: Copy Tilemap from WRAM to VRAM ($0183cc)\n	copy from WRAM to VRAM through DMA (channel 0) up to 4 times options at $19fa\nparameters:\n	$19fa => 1 byte, VMAIN flags, !tilemap_vram_control\n	$19fb-$1a02 => 8 bytes, 2-byte pairs, 4 of them, each is destination address in VRAM, !tilemap_vram_destination_addresses\n	$1a03-$1a0a => 8 bytes, 2-byte pairs, 4 of them, each is source address offset, !tilemap_wram_source_addresses\n	$1a0b-$1a12 => 8 bytes, 2-byte pairs, 4 of them, each is DMA transfer size in bytes, !tilemap_dma_transfer_sizes\nA => 8bit, XY => 16bit\n\norg $0183cc
+SnesPrgRom:83CF:fn_CopyTilemapFromWRAMToVRAM_1__Loop
+SnesPrgRom:8400:fn_CopyTilemapFromWRAMToVRAM_1__Exit
+SnesPrgRom:8401:fn_CopyTilemapFromWRAMToVRAM_2:ROUTINE:  ($018401)\n	copy from WRAM to VRAM through DMA (channel 0) up to 4 times, options at $1a13\nparameters:\n	$1a13 => 1 byte, VMAIN flags, !tilemap_vram_control_2\n	$1a14-$1a1b => 8 bytes, 2-byte pairs, 4 of them, each is destination address in VRAM, !tilemap_vram_destination_addresses_2\n	$1a1c-$1a23 => 8 bytes, 2-byte pairs, 4 of them, each is source address offset, !tilemap_wram_source_addresses_2\n	$1a24-$1a2b => 8 bytes, 2-byte pairs, 4 of them, each is DMA transfer size in bytes, !tilemap_dma_transfer_sizes_2\nA => 8bit, XY => 16bit\n\norg $018401
+SnesPrgRom:8404:fn_CopyTilemapFromWRAMToVRAM_2__Loop
+SnesPrgRom:8435:fn_CopyTilemapFromWRAMToVRAM_2__Exit
+SnesPrgRom:8436:fn_CopyWram7FD274ToVRAM:ROUTINE: Copy Wram 7FD274 To Vram ($018436)\n	Copy $2000 bytes from WRAM $7fd274 to VRAM $0000 through DMA (channel 0)\nA => 8bit, XY => 16bit\n\norg $018436
+SnesPrgRom:845E:fn_Copy64ColorsFrom7FC588:ROUTINE: Copy 64 colors from c588 ($01845e)\n	Copy $40 colors ($80 bytes) from WRAM $7fc588[X] to CGRAM\nparameters:\n	X => source offset\nA => 8bit, XY => 16bit\n\norg $01845e
+SnesPrgRom:8463:fn_Copy64ColorsFrom7FC588__Loop
+SnesPrgRom:8493:fn_CopyWram7F0000ToVram:ROUTINE: Copy wram 7f0000 to vram ($018493)\n	Copy $2e00 bytes from WRAM $7f0000 to VRAM $6900 through DMA (channel 0)\nA => 8bit, XY => 16bit\n\norg $018493
+SnesPrgRom:84B9:CopyWram7F4000ToVram:ROUTINE:  ($0184b9)\n	copy $0c00 bytes from WRAM $7f4000 to VRAM $6100 through DMA (channel 0)\nA => 8bit, XY => 16bit\n\norg $0184b9
+SnesPrgRom:973A:fn_WriteRamFrom195F:ROUTINE: WriteRamFrom195F ($01973a)\n	!ram_195f => destination address\n	!ram_195f+2 => \n	!ram_195f+4 => \n	!ram_195f+6 => \n	!ram_195f+8 => \n\norg $01973a
+SnesPrgRom:9776:fn_WriteRamFrom195F__Exit
+SnesPrgRom:C83A:fn_Routine01c83a
+SnesPrgRom:C852:fn_Routine01c83a__Loop
+SnesPrgRom:C883:fn_Routine01c83a__Exit
+SnesPrgRom:E90D:fn_CopyOneTileToWRAM:ROUTINE: Copy one tile to WRAM ($01:e90d)\n	$18 bytes from source => $20 bytes destination\n	Copy the first $10 bytes, then copy each of the next $8 bytes followed by a zero byte (so AABBCC... becomes AA00BB00CC00...)\nparameters:\n	Y => source address offset\n$2181-$2183 - should be set to wram destination address\n\norg $01e90d
+SnesPrgRom:E916:fn_CopyOneTileToWRAM__Loop
+SnesPrgRom:E922:fn_CopyOneTileToWRAM__Loop_B
+SnesPrgRom:E947:fn_Clear32bytesOfWRAM:ROUTINE: Clear $20 bytes of WRAM ($01:e947)\n\n$2181-$2183 - should be set to wram destination address\n\norg $01e947
+SnesPrgRom:E950:fn_Clear32bytesOfWRAM__Loop
+SnesPrgRom:F84A:fn_Routine01f84a:ROUTINE: fn_Routine01f84a ($01f84a)\nparameters:\n	ram $19f7 =>\nTODO: name this routine!!!\n\norg $01f84a
+SnesPrgRom:F869:fn_Routine01f84a__Loop
+SnesPrgRom:FA0C:fn_TilemapCopySetup:ROUTINE: TilemapCopySetup ($01fa0c)\n	in JumpTableTilemapCopySetup[]\n	source order: $8000,02,80,82\nparameters:\n	!ram_1924 => \n	!ram_1a31 => \n	!ram_1a33 => \nA => 8bit, XY => 16bit\n\norg $01fa0c
+SnesPrgRom:FA0F:fn_TilemapCopySetup__Loop
+SnesPrgRom:FA16::get values for $1a3d[0..7]
+SnesPrgRom:FAAF:fn_TilemapCopySetupVertical:ROUTINE: fn_TilemapCopySetupVertical ($01faaf)\n	in JumpTableTilemapCopySetup[]\n	source order: $8000,80,02,82\nparameters:\nA => 8bit, XY => 16bit\nTODO: name this routine!!!\n\norg $01faaf
+SnesPrgRom:FAB2:fn_TilemapCopySetupVertical__Loop
+SnesPrgRom:FB4A:fn_TilemapCopySetup_2:ROUTINE: fn_TilemapCopySetup_2 ($01fb4a)\n	in JumpTableTilemapCopySetup_2[]\n	source order: $9000,02,80,82\nparameters:\n	\nA => 8bit, XY => 16bit\n\norg $01fb4a
+SnesPrgRom:FB4D:fn_TilemapCopySetup_2__Loop
+SnesPrgRom:FBF0:fn_TilemapCopySetupVertical_2:ROUTINE:  ($01fbf0)\n	in JumpTableTilemapCopySetup_2[]\n	source order: $9000,80,02,82\nparameters:\n	!ram_1a31\n	!ram_1a32\n	!ram_1a33\n	!ram_1925\nA => 8bit, XY => 16bit\n\norg $01fbf0
+SnesPrgRom:FBF3:fn_TilemapCopySetupVertical_2__Loop
+SnesPrgRom:FC8F:fn_Routine01fc8f:ROUTINE: fn_Routine01fc8f ($01fc8f)\nparameters:\n	A => \n	Y => \n	!ram_1924 => \n	@var_1a2f => \n	!ram_1a34 => \n	$7f8000[] => \n	$7fcef4[] => \n	$7ff274[] => \nreturns:\n	ram $1a3d[] => 8 bytes\nA => 8bit, XY => 16bit\nTODO: name this routine\n\norg $01fc8f
+SnesPrgRom:FCC0:fn_Routine01fc8f__Skip
+SnesPrgRom:FCED:fn_Routine01fc8f__Skip_2
+SnesPrgRom:FCF2:fn_Routine01fc8f__Loop
+SnesPrgRom:FD10:fn_Routine01fc8f__Skip_3
+SnesPrgRom:FD25:fn_CalculateTilemapVramDestination:ROUTINE: Calculate tilemap vram destination address ($01fd25)\n	A => !ram_19bf * $40 + ($4000 or $4400 based on bit 4 of !ram_19bd)\nparameters:\n	!ram_19bf => this * $40 is the base address\n	!ram_19bd => bit 4 determines which offset to use\nreturns:\n	A => vram destination address\n\norg $01fd25
+SnesPrgRom:FD3E:fn_CalculateTilemapVramDestination__Skip
+SnesPrgRom:FD51:fn_Routine01fd51:ROUTINE:  ($01fd51)\n	Y.high => (Y.high < 0) ? (Y.high + @var_1925) : (Y.high - @var_1925)\n	Y.low => (Y.low < 0) ? (Y.low + !ram_1924) : (Y.low - !ram_1924)\nparameters:\n	Y => \n	!ram_1924 => \n	@var_1925 => \nreturns:\n	Y => \nTODO: Name this routine!!!!!!!!!\n\norg $01fd51
+SnesPrgRom:FD56:fn_Routine01fd51__SetHigh
+SnesPrgRom:FD59:fn_Routine01fd51__NegativeHigh
+SnesPrgRom:FD5F:fn_Routine01fd51__PositiveHigh
+SnesPrgRom:FD68:fn_Routine01fd51__SetLow
+SnesPrgRom:FD6B:fn_Routine01fd51__NegativeLow
+SnesPrgRom:FD71:fn_Routine01fd51__PositiveLow
+SnesPrgRom:FD7A:fn_Routine01fd51__End
+SnesPrgRom:FD7C:fn_CopyTileDataToWRAM:ROUTINE: Copy tile data to WRAM ($01fd7c)\n	Copies two sets of tiles into WRAM\n		1. destination => $7f:d274-‭$7f:f273‬ in $400 byte chunks\n			when @var_control is negative, the chunk is all $00\n			else, copy tiles from source address offset => $05:8c80 + ($0300 * @var_control)\n		2. destination => $7f:f274-$7f:f373 in $20 byte chunks\n			source address offset => $05:f280 + (@var_control * $10)\n			bottom 3 bits of each source nibble (low then high) becomes output byte\n				so $42 => $02 $04\n				and $CA => $02 $04\n			TODO: are these tiles?\n	(for certain maps, like first map "Level Forest") TODO: what all calls this?\nparameters:\n	ram $191a-1921 => values for @var_control\nA is 8bit\nTODO: better label?\n\norg $01fd7c
+SnesPrgRom:FD8F:fn_CopyTileDataToWRAM__Loop
+SnesPrgRom:FD97:fn_CopyTileDataToWRAM__Loop_A
+SnesPrgRom:FD9F:fn_CopyTileDataToWRAM__CopyTiles
+SnesPrgRom:FDBC:fn_CopyTileDataToWRAM__Loop_B
+SnesPrgRom:FDC3:fn_CopyTileDataToWRAM__LoopEnd
+SnesPrgRom:FDD6:fn_CopyTileDataToWRAM__Loop_C
+SnesPrgRom:FDEB:fn_CopyTileDataToWRAM__Loop_D
+SnesPrgRom:1634E:fn_Write32ZerosToWram:ROUTINE: Write32ZerosToWram ($02e34e)\n$2181-$2183 should be set to wram destination address\n\norg $02e34e
+SnesPrgRom:26220:d_g_DataTitleScreenCrystals01:DATA: Title screen crystals - compressed graphics part 01 ($04e220)\n	$04e220-$04e27f ($60 bytes)\n	in file: $026220-$02627f\n\norg $04e220
+SnesPrgRom:26490:d_g_DataTitleScreenCrystals02:DATA: Title screen crystals - compressed graphics part 02 ($04e490)\n	$04e490-$‭04e51f ($60 bytes)\n	in file: $026490-$0‭2651f\n\norg $04e490
+SnesPrgRom:27CC0:d_g_DataTitleScreenCrystals03:DATA: Title screen crystals - compressed graphics part 01 ($04fcc0)\n	$04fcc0-$0‭4fe9f‬ ($60 bytes)\n	in file: $027cc0-$0‭27e9f\n\norg $04fcc0
+SnesPrgRom:58CD9-58E90:d_DataTilesets:DATA:  ($0b8cd9)\n		accessed in $a byte chunks\n	bytes $00-$01 are ??? TODO: what are these\n	bytes $2-$9 of each are indexes into tile graphics data (label = DataTiles)\n		values $00-$21 are indexes, $FF means clear section\n	ends up in $1918-$1921\n\norg $0b8cd9
+SnesPrgRom:60000:fn_IdleUntilInterruptD8:ROUTINE: Idle until interrupt $d8 ($)\n	loops until bit 6 of !flags_d8 is set by an interrupt\n\norg $0c8000
+SnesPrgRom:60009:fn_IdleUntilInterruptD8__Loop
+SnesPrgRom:60948:fn_ClearOAM:ROUTINE: Clear OAM ($0c8948)\n	fills all $220 bytes of OAM from $000c00+ on DMA channel 5\n	sets data bank to $0c\n	A becomes 8bit\nknown uses:\n	fill OAM with $55 - moves all sprites small and to the left of the screen (can't see any sprites)\nXY => 16bit\n\norg $0c8948
+SnesPrgRom:60F14:d_DataTitleScreenWordsControlCodes:DATA: DataTitleScreenWordsControlCodes ($0c8f14)\n	$0c8f14-$0c8f97 ($84 bytes)\n	in file: $061f14-$061f97\n	describes graphics stored at $0caa4c ($ca0 bytes)\nlayout:\n	dma transfer size => byte[0] * 20\n	dma source offset => byte[1] * 20 += $aa4c\n	increase vram destination address by => byte[2] * 10\nend when byte[2] is $00\n\norg $0c8f14
+SnesPrgRom:610D7:fn_ClearVRAMLowBytes:ROUTINE: Clear VRAM low bytes with $00 ($0c90d7)\n	fills vram $0000-$3fff ($4000 bytes)\n		even addresses get value $00\n		odd addresses are not touched\ndirectpage => $4300\nA => 8bit, XY => 16bit\n\norg $0c90d7
+SnesPrgRom:610F9:fn_FillOAM2With_01ff:ROUTINE: Fill OAM2 with $01ff ($0c90f9)\n	fills vram $c000-$dfff ($2000 bytes)\n		with value $01ff ($ff $01) repeated\n	appears to be first half of OAM2 tile memory\n\norg $0c90f9
+SnesPrgRom:61140:d_DataFillValues9140
+SnesPrgRom:61142:fn_CopyAndDecompressCrystals:ROUTINE: Copy and decompress title screen crystals graphics ($0c9142)\n\norg $0c9142
+SnesPrgRom:61161:fn_DecompressCrystals:ROUTINE: Decompress title screen crystals ($0c9161)\n	decompresses title screen crystals graphics\n	destination of decompressed data => $7f2000-$7f3fff \nAXY => 16bit\n\norg $0c9161
+SnesPrgRom:61197:fn_DecompressCrystals__Section9197
+SnesPrgRom:6119F:fn_DecompressCrystals__Section919f
+SnesPrgRom:611A7:fn_DecompressCrystals__Section91a7
+SnesPrgRom:611AF:fn_DecompressCrystals__Section91af
+SnesPrgRom:611B7:fn_DecompressCrystals__Section91b7
+SnesPrgRom:611BF:fn_DecompressCrystals__Section91bf
+SnesPrgRom:611C7:fn_DecompressCrystals__Section91c7
+SnesPrgRom:611CD:fn_DecompressCrystals__MainLoop
+SnesPrgRom:611DA:fn_DecompressCrystals__Decompress
+SnesPrgRom:611E8:fn_DecompressCrystals__SkipAhead
+SnesPrgRom:611FE:fn_DecompressCrystals__Exit
+SnesPrgRom:611FF:fn_DecompressCrystalsChunk:ROUTINE: Decompress chunk ($0c91ff)\n	\nparameters:\n	X => source data offset\n		bits 0-4 are 0, so processed in $20 byte chunks\n		for bytes $10-$1f, odd addresses are not used (eg $11 $13 $15...)\n	Y => transformed data offset\n		for bytes $10-$1f, odd addresses are not set (eg $11 $13 $15...)\nAXY => 16bit\n\norg $0c91ff
+SnesPrgRom:6120A:fn_DecompressCrystalsChunk__Loop
+SnesPrgRom:61247:fn_ReverseWordArrays:ROUTINE: Reverse word arrays ($0c9247)\n	for bytes $7f0000-$7f0eb9 (size = $3c0)\n	reverses the contents of $3c arrays of $8 words ($10 bytes) each\n	each array stays in place, the words inside reverse order\nAXY => 16bit\n\norg $0c9247
+SnesPrgRom:61255:fn_ReverseWordArrays__Loop
+SnesPrgRom:61260:fn_ReverseWordArray:ROUTINE: Reverse word array ($0c9260)\n	reverses the order of an array of $8 words ($10 bytes)\n	the bytes are not reversed, just words\nparameters:\n	X => address offset\nreturns:\n	X => X + $10 (offset is incremented)\nAXY => 16bit\n\norg $0c9260
+SnesPrgRom:6129E:fn_ReverseBitsAndShiftLeftSection:ROUTINE: Reverse bits and shift left section ($0c929e)\n	for bytes $7f0000-$7f0eb9 (size = $3c0)\n	reverse and shift first $10 bytes\n	then reverse and shift $8 more times skipping every other byte\nXY => 16bit\n\norg $0c929e
+SnesPrgRom:612A9:fn_ReverseBitsAndShiftLeftSection__Loop
+SnesPrgRom:612AD:fn_ReverseBitsAndShiftLeftSection__Loop2
+SnesPrgRom:612B6:fn_ReverseBitsAndShiftLeftSection__Loop3
+SnesPrgRom:612C2:fn_ReverseBitsAndShiftLeft:ROUTINE: Reverse bits in byte and shift left ($0c92c2)\n	turns 12345678 into 76543210\n	carry contains 8 at end\nparameters:\n	X => address offset\n\norg $0c92c2
+SnesPrgRom:612EB:fn_ExpandSecondHalfWithZeros:ROUTINE: Expand second half with zeros ($0c92eb)\n	for bytes $7f0000-$7f0eb9 (size = $3c0)\n	for $20 byte chunks, skip first $10\n	then expand next $8 with zeros between bytes\n	so:			----------------abcdefgh--------\n	becomes:	----------------a0b0c0d0e0f0g0h0\nAXY => 16bit\ndirect page => $0000\n\norg $0c92eb
+SnesPrgRom:612F4:fn_ExpandSecondHalfWithZeros__Loop
+SnesPrgRom:61302:fn_ExpandSecondHalfWithZeros__Loop2
+SnesPrgRom:61318:fn_CopyTitleScreenCrystalsCompressed:ROUTINE: CopyTitleScreenCrystalsCompressed ($0c9318)\n	sources =>\n		$04e220-$04e27f - DataTitleScreenCrystals01 ($60 bytes)\n		$04e490-$‭04e51f - DataTitleScreenCrystals02 ($90 bytes)\n		$04fcc0-$0‭4fe9f - DataTitleScreenCrystals03 ($1E0 bytes)\n	destination => $7f0000-$7f0eb9\n		size => $3c0, chunk size => $20, number of chunks => $1e\n	copies $18 bytes then skips $8 bytes each chunk\nAXY => 16bit\ndirect page => $0000\n\norg $0c9318
+SnesPrgRom:61334:fn_CopyTitleScreenCrystalsCompressed__Entry
+SnesPrgRom:61336:fn_CopyTitleScreenCrystalsCompressed__Loop
+SnesPrgRom:61346:d_DataDecompressCrystalsControl01:DATA: DataDecompressCrystalsControl01 ($0c9346)\n	$0c9346-$0c9391 ($4c bytes)\n	in file: $061346-$061391\n\norg $0c9346
+SnesWorkRam:0E88:Maps_MapID
+SnesWorkRam:0E89:Map_Player_X
+SnesWorkRam:0E8A:Map_Player_Y
+SnesWorkRam:0E8B:Map_Player_Direction
+SnesWorkRam:0E97-0E9A:Game_Play_Timer
+SnesWorkRam:0E9B:Settings_Message_Speed
+SnesWorkRam:0E9C-0E9D:Settings_Window_Color
+SnesWorkRam:0E9E-0E9F:Item_Cure_Potions:byte #1 - cure potion's item number ($10)\nbyte #2 - amount
+SnesWorkRam:0EA0-0EA1:Item_Heal_Potions:byte #1 - heal potion's item number ($11)\nbyte #2 - amount
+SnesWorkRam:0EA2-0EA3:Item_Seeds:byte #1 - seed's item number ($12)\nbyte #2 - amount
+SnesWorkRam:0EA4-0EA5:Item_Refreshers:byte #1 - refresher's item number ($13)\nbyte #2 - amount
+SnesWorkRam:0EBD-0EC0:Map_Chests
+SnesWorkRam:0FD4-0FE7:Battlefields_Rounds_Left
+SnesWorkRam:1000-1007:Player_Name
+SnesWorkRam:1010:Player_Level
+SnesWorkRam:1011-1013:Player_Experience:long
+SnesWorkRam:1014-1015:Player_Current_HP
+SnesWorkRam:1016-1017:Player_Max_HP
+SnesWorkRam:1018:Player_White_MP_Current
+SnesWorkRam:1019:Player_Black_MP_Current
+SnesWorkRam:101A:Player_Wizard_MP_Current
+SnesWorkRam:101B:Player_White_MP_Max
+SnesWorkRam:101C:Player_Black_MP_Max
+SnesWorkRam:101D:Player_Wizard_MP_Max
+SnesWorkRam:1021:Player_Status
+SnesWorkRam:1022:Player_Current_Attack
+SnesWorkRam:1023:Player_Current_Defense
+SnesWorkRam:1024:Player_Current_Speed
+SnesWorkRam:1025:Player_Current_Magic
+SnesWorkRam:1026:Player_Base_Attack
+SnesWorkRam:1027:Player_Base_Defense
+SnesWorkRam:1028:Player_Base_Speed
+SnesWorkRam:1029:Player_Base_Magic
+SnesWorkRam:1030:Player_Weapon_Ammo_Count
+SnesWorkRam:1031:Player_Weapon_ID
+SnesWorkRam:1032-1034:Player_Flags_Weapons
+SnesWorkRam:1035-1037:Player_Flags_Armor
+SnesWorkRam:1038-1039:Player_Flags_Magic
+SnesWorkRam:1080-1087:Companion_Name
+SnesWorkRam:1090:Companion_Level
+SnesWorkRam:1094-1095:Companion_Current_HP
+SnesWorkRam:1096-1097:Companion_Max_HP
+SnesWorkRam:1098:Companion_White_MP_Current
+SnesWorkRam:1099:Companion_Black_MP_Current
+SnesWorkRam:109A:Companion_Wizard_MP_Current
+SnesWorkRam:109B:Companion_White_MP_Max
+SnesWorkRam:109C:Companion_Black_MP_Max
+SnesWorkRam:109D:Companion_Wizard_MP_Max
+SnesWorkRam:10A1:Companion_Status
+SnesWorkRam:10A2:Companion_Current_Attack
+SnesWorkRam:10A3:Companion_Current_Defense
+SnesWorkRam:10A4:Companion_Current_Speed
+SnesWorkRam:10A5:Companion_Current_Magic
+SnesWorkRam:10A6:Companion_Base_Attack
+SnesWorkRam:10A7:Companion_Base_Defense
+SnesWorkRam:10A8:Companion_Base_Speed
+SnesWorkRam:10A9:Companion_Base_Magic
+SnesWorkRam:10B0:Companion_Weapon_Ammo_Count
+SnesWorkRam:10B1:Companion_Weapon_ID
+SnesWorkRam:10B5-10B7:Companion_Flags_Armor
+SnesWorkRam:10B8-10B9:Companion_Flags_Magic
+SnesWorkRam:1100:Battle_Enemy_01_Start
+SnesWorkRam:1114-1115:Battle_Enemy_01_HP
+SnesWorkRam:1116-1117:Battle_Enemy_01_HP_Max
+SnesWorkRam:117F:Battle_Enemy_01_End
+SnesWorkRam:1180:Battle_Enemy_02_Start
+SnesWorkRam:1194-1195:Battle_Enemy_02_HP
+SnesWorkRam:1196-1197:Battle_Enemy_02_HP_Max
+SnesWorkRam:11FF:Battle_Enemy_01_End2
+SnesWorkRam:1200:Battle_Enemy_03_Start
+SnesWorkRam:1214-1215:Battle_Enemy_03_HP
+SnesWorkRam:1216-1217:Battle_Enemy_03_HP_Max
+SnesWorkRam:127F:Battle_Enemy_03_End
+SnesRegister:2100:INIDISP:Screen Display Register
+SnesRegister:2101:OBSEL:Object Size and Character Size Register
+SnesRegister:2102:OAMADDL:OAM Address Registers (Low)
+SnesRegister:2103:OAMADDH:OAM Address Registers (High)
+SnesRegister:2104:OAMDATA:OAM Data Write Register
+SnesRegister:2105:BGMODE:BG Mode and Character Size Register
+SnesRegister:2106:MOSAIC:Mosaic Register
+SnesRegister:2107:BG1SC:BG Tilemap Address Registers (BG1)
+SnesRegister:2108:BG2SC:BG Tilemap Address Registers (BG2)
+SnesRegister:2109:BG3SC:BG Tilemap Address Registers (BG3)
+SnesRegister:210A:BG4SC:BG Tilemap Address Registers (BG4)
+SnesRegister:210B:BG12NBA:BG Character Address Registers (BG1&2)
+SnesRegister:210C:BG34NBA:BG Character Address Registers (BG3&4)
+SnesRegister:210D:BG1HOFS:BG Scroll Registers (BG1)
+SnesRegister:210E:BG1VOFS:BG Scroll Registers (BG1)
+SnesRegister:210F:BG2HOFS:BG Scroll Registers (BG2)
+SnesRegister:2110:BG2VOFS:BG Scroll Registers (BG2)
+SnesRegister:2111:BG3HOFS:BG Scroll Registers (BG3)
+SnesRegister:2112:BG3VOFS:BG Scroll Registers (BG3)
+SnesRegister:2113:BG4HOFS:BG Scroll Registers (BG4)
+SnesRegister:2114:BG4VOFS:BG Scroll Registers (BG4)
+SnesRegister:2115:VMAIN:Video Port Control Register
+SnesRegister:2116:VMADDL:VRAM Address Registers (Low)
+SnesRegister:2117:VMADDH:VRAM Address Registers (High)
+SnesRegister:2118:VMDATAL:VRAM Data Write Registers (Low)
+SnesRegister:2119:VMDATAH:VRAM Data Write Registers (High)
+SnesRegister:211A:M7SEL:Mode 7 Settings Register
+SnesRegister:211B:M7A:Mode 7 Matrix Registers
+SnesRegister:211C:M7B:Mode 7 Matrix Registers
+SnesRegister:211D:M7C:Mode 7 Matrix Registers
+SnesRegister:211E:M7D:Mode 7 Matrix Registers
+SnesRegister:211F:M7X:Mode 7 Matrix Registers
+SnesRegister:2120:M7Y:Mode 7 Matrix Registers
+SnesRegister:2121:CGADD:CGRAM Address Register
+SnesRegister:2122:CGDATA:CGRAM Data Write Register
+SnesRegister:2123:W12SEL:Window Mask Settings Registers
+SnesRegister:2124:W34SEL:Window Mask Settings Registers
+SnesRegister:2125:WOBJSEL:Window Mask Settings Registers
+SnesRegister:2126:WH0:Window Position Registers (WH0)
+SnesRegister:2127:WH1:Window Position Registers (WH1)
+SnesRegister:2128:WH2:Window Position Registers (WH2)
+SnesRegister:2129:WH3:Window Position Registers (WH3)
+SnesRegister:212A:WBGLOG:Window Mask Logic registers (BG)
+SnesRegister:212B:WOBJLOG:Window Mask Logic registers (OBJ)
+SnesRegister:212C:TM:Screen Destination Registers
+SnesRegister:212D:TS:Screen Destination Registers
+SnesRegister:212E:TMW:Window Mask Destination Registers
+SnesRegister:212F:TSW:Window Mask Destination Registers
+SnesRegister:2130:CGWSEL:Color Math Registers
+SnesRegister:2131:CGADSUB:Color Math Registers
+SnesRegister:2132:COLDATA:Color Math Registers
+SnesRegister:2133:SETINI:Screen Mode Select Register
+SnesRegister:2134:MPYL:Multiplication Result Registers
+SnesRegister:2135:MPYM:Multiplication Result Registers
+SnesRegister:2136:MPYH:Multiplication Result Registers
+SnesRegister:2137:SLHV:Software Latch Register
+SnesRegister:2138:OAMDATAREAD:OAM Data Read Register
+SnesRegister:2139:VMDATALREAD:VRAM Data Read Register (Low)
+SnesRegister:213A:VMDATAHREAD:VRAM Data Read Register (High)
+SnesRegister:213B:CGDATAREAD:CGRAM Data Read Register
+SnesRegister:213C:OPHCT:Scanline Location Registers (Horizontal)
+SnesRegister:213D:OPVCT:Scanline Location Registers (Vertical)
+SnesRegister:213E:STAT77:PPU Status Register
+SnesRegister:213F:STAT78:PPU Status Register
+SnesRegister:2140:APUIO0:APU IO Registers
+SnesRegister:2141:APUIO1:APU IO Registers
+SnesRegister:2142:APUIO2:APU IO Registers
+SnesRegister:2143:APUIO3:APU IO Registers
+SnesRegister:2180:WMDATA:WRAM Data Register
+SnesRegister:2181:WMADDL:WRAM Address Registers
+SnesRegister:2182:WMADDM:WRAM Address Registers
+SnesRegister:2183:WMADDH:WRAM Address Registers
+SnesRegister:4016:JOYSER0:Old Style Joypad Registers
+SnesRegister:4017:JOYSER1:Old Style Joypad Registers
+SnesRegister:4200:NMITIMEN:Interrupt Enable Register
+SnesRegister:4201:WRIO:IO Port Write Register
+SnesRegister:4202:WRMPYA:Multiplicand Registers
+SnesRegister:4203:WRMPYB:Multiplicand Registers
+SnesRegister:4204:WRDIVL:Divisor & Dividend Registers
+SnesRegister:4205:WRDIVH:Divisor & Dividend Registers
+SnesRegister:4206:WRDIVB:Divisor & Dividend Registers
+SnesRegister:4207:HTIMEL:IRQ Timer Registers (Horizontal - Low)
+SnesRegister:4208:HTIMEH:IRQ Timer Registers (Horizontal - High)
+SnesRegister:4209:VTIMEL:IRQ Timer Registers (Vertical - Low)
+SnesRegister:420A:VTIMEH:IRQ Timer Registers (Vertical - High)
+SnesRegister:420B:MDMAEN:DMA Enable Register
+SnesRegister:420C:HDMAEN:HDMA Enable Register
+SnesRegister:420D:MEMSEL:ROM Speed Register
+SnesRegister:4210:RDNMI:Interrupt Flag Registers
+SnesRegister:4211:TIMEUP:Interrupt Flag Registers
+SnesRegister:4212:HVBJOY:PPU Status Register
+SnesRegister:4213:RDIO:IO Port Read Register
+SnesRegister:4214:RDDIVL:Multiplication Or Divide Result Registers (Low)
+SnesRegister:4215:RDDIVH:Multiplication Or Divide Result Registers (High)
+SnesRegister:4216:RDMPYL:Multiplication Or Divide Result Registers (Low)
+SnesRegister:4217:RDMPYH:Multiplication Or Divide Result Registers (High)
+SnesRegister:4218:JOY1L:Controller Port Data Registers (Pad 1 - Low)
+SnesRegister:4219:JOY1H:Controller Port Data Registers (Pad 1 - High)
+SnesRegister:421A:JOY2L:Controller Port Data Registers (Pad 2 - Low)
+SnesRegister:421B:JOY2H:Controller Port Data Registers (Pad 2 - High)
+SnesRegister:421C:JOY3L:Controller Port Data Registers (Pad 3 - Low)
+SnesRegister:421D:JOY3H:Controller Port Data Registers (Pad 3 - High)
+SnesRegister:421E:JOY4L:Controller Port Data Registers (Pad 4 - Low)
+SnesRegister:421F:JOY4H:Controller Port Data Registers (Pad 4 - High)
+SnesRegister:4300:DMAP0:(H)DMA Control
+SnesRegister:4301:BBAD0:(H)DMA B-Bus Address
+SnesRegister:4302:A1T0L:DMA A-Bus Address / HDMA Table Address (Low)
+SnesRegister:4303:A1T0H:DMA A-Bus Address / HDMA Table Address (High)
+SnesRegister:4304:A1B0:DMA A-Bus Address / HDMA Table Address (Bank)
+SnesRegister:4305:DAS0L:DMA Size / HDMA Indirect Address (Low)
+SnesRegister:4306:DAS0H:DMA Size / HDMA Indirect Address (High)
+SnesRegister:4307:DAS0B:HDMA Indirect Address (Bank)
+SnesRegister:4308:A2A0L:HDMA Mid Frame Table Address (Low)
+SnesRegister:4309:A2A0H:HDMA Mid Frame Table Address (High)
+SnesRegister:430A:NTLR0:HDMA Line Counter
+SnesRegister:4310:DMAP1:(H)DMA Control
+SnesRegister:4311:BBAD1:(H)DMA B-Bus Address
+SnesRegister:4312:A1T1L:DMA A-Bus Address / HDMA Table Address (Low)
+SnesRegister:4313:A1T1H:DMA A-Bus Address / HDMA Table Address (High)
+SnesRegister:4314:A1B1:DMA A-Bus Address / HDMA Table Address (Bank)
+SnesRegister:4315:DAS1L:DMA Size / HDMA Indirect Address (Low)
+SnesRegister:4316:DAS1H:DMA Size / HDMA Indirect Address (High)
+SnesRegister:4317:DAS1B:HDMA Indirect Address (Bank)
+SnesRegister:4318:A2A1L:HDMA Mid Frame Table Address (Low)
+SnesRegister:4319:A2A1H:HDMA Mid Frame Table Address (High)
+SnesRegister:431A:NTLR1:HDMA Line Counter
+SnesRegister:4320:DMAP2:(H)DMA Control
+SnesRegister:4321:BBAD2:(H)DMA B-Bus Address
+SnesRegister:4322:A1T2L:DMA A-Bus Address / HDMA Table Address (Low)
+SnesRegister:4323:A1T2H:DMA A-Bus Address / HDMA Table Address (High)
+SnesRegister:4324:A1B2:DMA A-Bus Address / HDMA Table Address (Bank)
+SnesRegister:4325:DAS2L:DMA Size / HDMA Indirect Address (Low)
+SnesRegister:4326:DAS2H:DMA Size / HDMA Indirect Address (High)
+SnesRegister:4327:DAS2B:HDMA Indirect Address (Bank)
+SnesRegister:4328:A2A2L:HDMA Mid Frame Table Address (Low)
+SnesRegister:4329:A2A2H:HDMA Mid Frame Table Address (High)
+SnesRegister:432A:NTLR2:HDMA Line Counter
+SnesRegister:4330:DMAP3:(H)DMA Control
+SnesRegister:4331:BBAD3:(H)DMA B-Bus Address
+SnesRegister:4332:A1T3L:DMA A-Bus Address / HDMA Table Address (Low)
+SnesRegister:4333:A1T3H:DMA A-Bus Address / HDMA Table Address (High)
+SnesRegister:4334:A1B3:DMA A-Bus Address / HDMA Table Address (Bank)
+SnesRegister:4335:DAS3L:DMA Size / HDMA Indirect Address (Low)
+SnesRegister:4336:DAS3H:DMA Size / HDMA Indirect Address (High)
+SnesRegister:4337:DAS3B:HDMA Indirect Address (Bank)
+SnesRegister:4338:A2A3L:HDMA Mid Frame Table Address (Low)
+SnesRegister:4339:A2A3H:HDMA Mid Frame Table Address (High)
+SnesRegister:433A:NTLR3:HDMA Line Counter
+SnesRegister:4340:DMAP4:(H)DMA Control
+SnesRegister:4341:BBAD4:(H)DMA B-Bus Address
+SnesRegister:4342:A1T4L:DMA A-Bus Address / HDMA Table Address (Low)
+SnesRegister:4343:A1T4H:DMA A-Bus Address / HDMA Table Address (High)
+SnesRegister:4344:A1B4:DMA A-Bus Address / HDMA Table Address (Bank)
+SnesRegister:4345:DAS4L:DMA Size / HDMA Indirect Address (Low)
+SnesRegister:4346:DAS4H:DMA Size / HDMA Indirect Address (High)
+SnesRegister:4347:DAS4B:HDMA Indirect Address (Bank)
+SnesRegister:4348:A2A4L:HDMA Mid Frame Table Address (Low)
+SnesRegister:4349:A2A4H:HDMA Mid Frame Table Address (High)
+SnesRegister:434A:NTLR4:HDMA Line Counter
+SnesRegister:4350:DMAP5:(H)DMA Control
+SnesRegister:4351:BBAD5:(H)DMA B-Bus Address
+SnesRegister:4352:A1T5L:DMA A-Bus Address / HDMA Table Address (Low)
+SnesRegister:4353:A1T5H:DMA A-Bus Address / HDMA Table Address (High)
+SnesRegister:4354:A1B5:DMA A-Bus Address / HDMA Table Address (Bank)
+SnesRegister:4355:DAS5L:DMA Size / HDMA Indirect Address (Low)
+SnesRegister:4356:DAS5H:DMA Size / HDMA Indirect Address (High)
+SnesRegister:4357:DAS5B:HDMA Indirect Address (Bank)
+SnesRegister:4358:A2A5L:HDMA Mid Frame Table Address (Low)
+SnesRegister:4359:A2A5H:HDMA Mid Frame Table Address (High)
+SnesRegister:435A:NTLR5:HDMA Line Counter
+SnesRegister:4360:DMAP6:(H)DMA Control
+SnesRegister:4361:BBAD6:(H)DMA B-Bus Address
+SnesRegister:4362:A1T6L:DMA A-Bus Address / HDMA Table Address (Low)
+SnesRegister:4363:A1T6H:DMA A-Bus Address / HDMA Table Address (High)
+SnesRegister:4364:A1B6:DMA A-Bus Address / HDMA Table Address (Bank)
+SnesRegister:4365:DAS6L:DMA Size / HDMA Indirect Address (Low)
+SnesRegister:4366:DAS6H:DMA Size / HDMA Indirect Address (High)
+SnesRegister:4367:DAS6B:HDMA Indirect Address (Bank)
+SnesRegister:4368:A2A6L:HDMA Mid Frame Table Address (Low)
+SnesRegister:4369:A2A6H:HDMA Mid Frame Table Address (High)
+SnesRegister:436A:NTLR6:HDMA Line Counter
+SnesRegister:4370:DMAP7:(H)DMA Control
+SnesRegister:4371:BBAD7:(H)DMA B-Bus Address
+SnesRegister:4372:A1T7L:DMA A-Bus Address / HDMA Table Address (Low)
+SnesRegister:4373:A1T7H:DMA A-Bus Address / HDMA Table Address (High)
+SnesRegister:4374:A1B7:DMA A-Bus Address / HDMA Table Address (Bank)
+SnesRegister:4375:DAS7L:DMA Size / HDMA Indirect Address (Low)
+SnesRegister:4376:DAS7H:DMA Size / HDMA Indirect Address (High)
+SnesRegister:4377:DAS7B:HDMA Indirect Address (Bank)
+SnesRegister:4378:A2A7L:HDMA Mid Frame Table Address (Low)
+SnesRegister:4379:A2A7H:HDMA Mid Frame Table Address (High)
+SnesRegister:437A:NTLR7:HDMA Line Counter
+SpcRam:00F0:TEST:Testing functions
+SpcRam:00F1:CONTROL:I/O and Timer Control
+SpcRam:00F2:DSPADDR:DSP Address
+SpcRam:00F3:DSPDATA:DSP Data
+SpcRam:00F4:CPUIO0:CPU I/O 0
+SpcRam:00F5:CPUIO1:CPU I/O 1
+SpcRam:00F6:CPUIO2:CPU I/O 2
+SpcRam:00F7:CPUIO3:CPU I/O 3
+SpcRam:00F8:RAMREG1:Memory Register 1
+SpcRam:00F9:RAMREG2:Memory Register 2
+SpcRam:00FA:T0TARGET:Timer 0 scaling target
+SpcRam:00FB:T1TARGET:Timer 1 scaling target
+SpcRam:00FC:T2TARGET:Timer 2 scaling target
+SpcRam:00FD:T0OUT:Timer 0 output
+SpcRam:00FE:T1OUT:Timer 1 output
+SpcRam:00FF:T2OUT:Timer 2 output

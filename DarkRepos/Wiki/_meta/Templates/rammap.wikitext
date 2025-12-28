@@ -1,0 +1,81 @@
+<noinclude>
+'''rammap''' - Template for RAM map tables on games.darkrepos.com
+
+==Description==
+
+This template creates standardized RAM map tables documenting the runtime memory layout of games. It supports different memory regions (zero page, stack, work RAM, VRAM, etc.).
+
+==Usage==
+
+===Basic Usage===
+<pre>
+{{rammap}}
+</pre>
+
+===With Parameters===
+<pre>
+{{rammap
+| platform = NES
+| region = Work RAM
+| description = Custom description text
+}}
+</pre>
+
+==Parameters==
+
+{| class="wikitable"
+|-
+! Parameter !! Required !! Default !! Description
+|-
+| platform || No || — || Platform name (NES, SNES, GBA) - adds platform-specific headers
+|-
+| region || No || — || Memory region name (Zero Page, Stack, Work RAM, VRAM, OAM, etc.)
+|-
+| description || No || (standard text) || Custom description for the page
+|}
+
+==Table Columns==
+
+The generated table includes these columns:
+* '''Address''' - Memory address (hex)
+* '''Length''' - Size in bytes
+* '''Type''' - Data type (byte, word, pointer, array, struct, etc.)
+* '''Description''' - What the memory location stores
+
+==Memory Regions by Platform==
+
+===NES===
+* $0000-$00ff: Zero Page (fast access)
+* $0100-$01ff: Stack
+* $0200-$07ff: Work RAM
+* $2000-$2007: PPU Registers
+* $4000-$4017: APU/IO Registers
+
+===SNES===
+* $0000-$1fff: Low RAM
+* $7e0000-$7fffff: Work RAM
+* $2100-$21ff: PPU Registers
+
+==Example Output==
+
+{{rammap|platform=NES|region=Zero Page}}
+
+| $0010 || 1 || byte || Current game state
+|-
+| $0020 || 2 || word || Player X position
+|-
+|}
+
+[[Category:Templates]]
+</noinclude><includeonly>{{#if:{{{description|}}}|{{{description}}}|This page documents the runtime memory layout for this game. All addresses are in hexadecimal.}}
+{{#if:{{{region|}}}|
+
+'''Memory Region:''' {{{region}}}
+}}
+
+{| class="wikitable sortable" style="width: 100%;"
+|-
+! style="width: 10%;" | Address
+! style="width: 8%;" | Length
+! style="width: 10%;" | Type
+! Description</includeonly>

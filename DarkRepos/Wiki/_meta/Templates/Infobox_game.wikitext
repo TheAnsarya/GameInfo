@@ -1,0 +1,367 @@
+<noinclude>
+'''Infobox game''' - Comprehensive game information box template for games.darkrepos.com
+
+==Description==
+
+A modern infobox template supporting:
+* Multiple game versions (original, remakes, ports)
+* Multiple regional titles (Japanese, English, European)
+* Multiple release dates by region
+* Multiple publishers by region
+* ROM technical specifications
+* Comprehensive metadata
+
+==Usage==
+
+<pre>
+{{Infobox game
+| title           = Primary English title
+| title_jp        = Japanese title (optional)
+| title_jp_romaji = Romanized Japanese title (optional)
+| title_alt       = Other alternate titles (optional)
+
+| image           = Box art image filename
+| image_caption   = Image caption (optional)
+
+| developer       = Development company
+| publisher       = Primary publisher (or use regional)
+| publisher_jp    = Japanese publisher (optional)
+| publisher_na    = North American publisher (optional)
+| publisher_eu    = European publisher (optional)
+
+| platform        = Primary platform (NES, SNES, GBA, etc.)
+| platforms       = Additional platforms for ports/remakes
+
+| release         = Simple release date (or use regional)
+| release_jp      = Japan release date (optional)
+| release_na      = North America release date (optional)
+| release_eu      = Europe release date (optional)
+| release_au      = Australia release date (optional)
+
+| genre           = Game genre(s)
+| players         = Number of players
+| modes           = Game modes (single-player, multiplayer, etc.)
+
+| mapper          = ROM mapper/memory controller
+| rom_size        = PRG ROM size
+| chr_size        = CHR ROM size (if applicable)
+| ram_size        = Work RAM / Save RAM size
+| sram            = Save RAM size (battery-backed)
+| mirroring       = Screen mirroring type
+
+| series          = Game series name (optional)
+| predecessor     = Previous game in series (optional)
+| successor       = Next game in series (optional)
+}}
+</pre>
+
+==Parameters==
+
+===Title Parameters===
+{| class="wikitable"
+|-
+! Parameter !! Required !! Description
+|-
+| title || Yes || Primary English/localized title
+|-
+| title_jp || No || Original Japanese title in Japanese script
+|-
+| title_jp_romaji || No || Romanized Japanese title
+|-
+| title_alt || No || Other alternate titles (regional variants, subtitles)
+|}
+
+===Media Parameters===
+{| class="wikitable"
+|-
+! Parameter !! Required !! Description
+|-
+| image || No || Box art or title screen image filename
+|-
+| image_caption || No || Caption for the image
+|}
+
+===Development Parameters===
+{| class="wikitable"
+|-
+! Parameter !! Required !! Description
+|-
+| developer || Yes || Development company/studio
+|-
+| publisher || Yes* || Primary publisher (*or use regional publishers)
+|-
+| publisher_jp || No || Publisher in Japan
+|-
+| publisher_na || No || Publisher in North America
+|-
+| publisher_eu || No || Publisher in Europe
+|}
+
+===Platform Parameters===
+{| class="wikitable"
+|-
+! Parameter !! Required !! Description
+|-
+| platform || Yes || Primary console platform
+|-
+| platforms || No || Additional platforms (for ports, remakes, Virtual Console, etc.)
+|}
+
+===Release Date Parameters===
+{| class="wikitable"
+|-
+! Parameter !! Required !! Description
+|-
+| release || Yes* || Simple release date (*or use regional dates)
+|-
+| release_jp || No || Japan release date
+|-
+| release_na || No || North America release date
+|-
+| release_eu || No || Europe release date
+|-
+| release_au || No || Australia release date
+|}
+
+===Gameplay Parameters===
+{| class="wikitable"
+|-
+! Parameter !! Required !! Description
+|-
+| genre || Yes || Game genre(s)
+|-
+| players || No || Number of players supported
+|-
+| modes || No || Game modes (Single-player, Multiplayer, Co-op, etc.)
+|}
+
+===Technical Parameters (ROM)===
+{| class="wikitable"
+|-
+! Parameter !! Required !! Description
+|-
+| mapper || No || ROM mapper/memory controller (MMC1, MMC3, LoROM, HiROM, etc.)
+|-
+| rom_size || No || PRG ROM size
+|-
+| chr_size || No || CHR ROM size (NES-specific)
+|-
+| ram_size || No || Work RAM size
+|-
+| sram || No || Save RAM size (battery-backed)
+|-
+| mirroring || No || Screen mirroring type (Horizontal, Vertical, 4-screen)
+|}
+
+===Series Parameters===
+{| class="wikitable"
+|-
+! Parameter !! Required !! Description
+|-
+| series || No || Name of the game series
+|-
+| predecessor || No || Previous game in the series
+|-
+| successor || No || Next game in the series
+|}
+
+==Example: Simple Game==
+
+<pre>
+{{Infobox game
+| title     = Dragon Warrior
+| developer = Chunsoft
+| publisher = Enix (JP), Nintendo (NA)
+| platform  = NES
+| release   = May 27, 1986
+| genre     = RPG
+| players   = 1
+| mapper    = UNROM
+| rom_size  = 64 KB
+}}
+</pre>
+
+==Example: Multi-Region Game==
+
+<pre>
+{{Infobox game
+| title           = Dragon Quest III
+| title_jp        = ドラゴンクエストIII そして伝説へ…
+| title_jp_romaji = Doragon Kuesuto Surī: Soshite Densetsu e...
+
+| developer       = Chunsoft
+| publisher_jp    = Enix
+| publisher_na    = Enix America
+
+| platform        = SNES
+| platforms       = Famicom, Game Boy Color, Mobile, Switch
+
+| release_jp      = December 6, 1996
+| release_na      = Unreleased
+
+| genre           = RPG
+| players         = 1
+
+| mapper          = LoROM
+| rom_size        = 2 MB
+| sram            = 64 KB
+
+| series          = Dragon Quest
+| predecessor     = Dragon Quest II
+| successor       = Dragon Quest IV
+}}
+</pre>
+
+[[Category:Templates]]
+</noinclude><includeonly>{| class="infobox" style="width: 320px; border: 1px solid #666; background: #f8f8f8; padding: 8px; float: right; margin: 0 0 1em 1em; border-radius: 4px;"
+|-
+! colspan="2" style="background: #369; color: #fff; text-align: center; font-size: 125%; padding: 8px; border-radius: 2px;" | {{{title}}}
+{{#if:{{{title_jp|}}}|
+{{!}}-
+{{!}} colspan="2" style="text-align: center; font-size: 110%; padding: 4px;" {{!}} {{{title_jp}}}
+}}
+{{#if:{{{title_jp_romaji|}}}|
+{{!}}-
+{{!}} colspan="2" style="text-align: center; font-style: italic; color: #666;" {{!}} ''{{{title_jp_romaji}}}''
+}}
+{{#if:{{{title_alt|}}}|
+{{!}}-
+{{!}} colspan="2" style="text-align: center; font-style: italic;" {{!}} {{{title_alt}}}
+}}
+{{#if:{{{image|}}}|
+{{!}}-
+{{!}} colspan="2" style="text-align: center; padding: 8px;" {{!}} [[File:{{{image}}}|280px]]
+{{#if:{{{image_caption|}}}|
+{{!}}-
+{{!}} colspan="2" style="text-align: center; font-size: 90%; color: #666;" {{!}} {{{image_caption}}}
+}}
+}}
+|-
+! colspan="2" style="background: #ddd; text-align: center; padding: 4px;" | '''Development'''
+|-
+! style="width: 35%;" | Developer
+| {{{developer}}}
+{{#if:{{{publisher|}}}|
+{{!}}-
+! Publisher
+{{!}} {{{publisher}}}
+}}
+{{#if:{{{publisher_jp|}}}|
+{{!}}-
+! Publisher (JP)
+{{!}} {{{publisher_jp}}}
+}}
+{{#if:{{{publisher_na|}}}|
+{{!}}-
+! Publisher (NA)
+{{!}} {{{publisher_na}}}
+}}
+{{#if:{{{publisher_eu|}}}|
+{{!}}-
+! Publisher (EU)
+{{!}} {{{publisher_eu}}}
+}}
+|-
+! colspan="2" style="background: #ddd; text-align: center; padding: 4px;" | '''Release'''
+|-
+! Platform
+| {{{platform}}}
+{{#if:{{{platforms|}}}|
+{{!}}-
+! Also on
+{{!}} {{{platforms}}}
+}}
+{{#if:{{{release|}}}|
+{{!}}-
+! Release
+{{!}} {{{release}}}
+}}
+{{#if:{{{release_jp|}}}|
+{{!}}-
+! Japan
+{{!}} {{{release_jp}}}
+}}
+{{#if:{{{release_na|}}}|
+{{!}}-
+! North America
+{{!}} {{{release_na}}}
+}}
+{{#if:{{{release_eu|}}}|
+{{!}}-
+! Europe
+{{!}} {{{release_eu}}}
+}}
+{{#if:{{{release_au|}}}|
+{{!}}-
+! Australia
+{{!}} {{{release_au}}}
+}}
+|-
+! colspan="2" style="background: #ddd; text-align: center; padding: 4px;" | '''Gameplay'''
+|-
+! Genre
+| {{{genre}}}
+{{#if:{{{players|}}}|
+{{!}}-
+! Players
+{{!}} {{{players}}}
+}}
+{{#if:{{{modes|}}}|
+{{!}}-
+! Modes
+{{!}} {{{modes}}}
+}}
+{{#if:{{{mapper|}}}{{{rom_size|}}}{{{chr_size|}}}{{{ram_size|}}}{{{sram|}}}{{{mirroring|}}}|
+{{!}}-
+! colspan="2" style="background: #ddd; text-align: center; padding: 4px;" {{!}} '''Technical'''
+{{#if:{{{mapper|}}}|
+{{!}}-
+! Mapper
+{{!}} {{{mapper}}}
+}}
+{{#if:{{{rom_size|}}}|
+{{!}}-
+! ROM Size
+{{!}} {{{rom_size}}}
+}}
+{{#if:{{{chr_size|}}}|
+{{!}}-
+! CHR Size
+{{!}} {{{chr_size}}}
+}}
+{{#if:{{{ram_size|}}}|
+{{!}}-
+! RAM Size
+{{!}} {{{ram_size}}}
+}}
+{{#if:{{{sram|}}}|
+{{!}}-
+! SRAM
+{{!}} {{{sram}}}
+}}
+{{#if:{{{mirroring|}}}|
+{{!}}-
+! Mirroring
+{{!}} {{{mirroring}}}
+}}
+}}
+{{#if:{{{series|}}}{{{predecessor|}}}{{{successor|}}}|
+{{!}}-
+! colspan="2" style="background: #ddd; text-align: center; padding: 4px;" {{!}} '''Series'''
+{{#if:{{{series|}}}|
+{{!}}-
+! Series
+{{!}} {{{series}}}
+}}
+{{#if:{{{predecessor|}}}|
+{{!}}-
+! Previous
+{{!}} {{{predecessor}}}
+}}
+{{#if:{{{successor|}}}|
+{{!}}-
+! Next
+{{!}} {{{successor}}}
+}}
+}}
+|}</includeonly>

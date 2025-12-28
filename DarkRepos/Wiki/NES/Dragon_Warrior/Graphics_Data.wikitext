@@ -1,0 +1,221 @@
+{{Back|Dragon Warrior (NES)}}
+{{subpage}}
+
+= Dragon Warrior (NES) - Graphics Data =
+
+This page documents the graphics system, tile organization, and palette structure for Dragon Warrior (NES).
+
+== CHR ROM Organization ==
+
+Dragon Warrior uses 16KB of CHR ROM (2 banks of 8KB each) for all graphics data.
+
+===CHR Bank 0 ($0000-$0fff)===
+
+{| class="wikitable"
+!  Tile Range  !!  Address  !!  Category  !!  Description  !!  Palette
+|-
+|  $00-$0f  ||  $0000-$007f  ||  Hero  ||  Player character sprites and animations  ||  Character Palette
+|-
+|  $10-$4f  ||  $0100-$04ff  ||  Monsters  ||  Enemy sprites (64 different monsters)  ||  Monster Palette
+|-
+|  $50-$6f  ||  $0500-$06ff  ||  NPCs  ||  Townspeople, guards, king, princess  ||  Character Palette
+|-
+|  $70-$7f  ||  $0700-$07ff  ||  Items  ||  Weapons, armor, items, treasure chests  ||  Menu Palette
+|-
+|  $80-$8f  ||  $0800-$08ff  ||  UI Elements  ||  Menu cursors, borders, text boxes  ||  Menu Palette
+|-
+|  $90-$ff  ||  $0900-$0fff  ||  Font/Text  ||  Text characters and symbols  ||  Dialog Palette
+|}
+
+===CHR Bank 1 ($1000-$1fff)===
+
+{| class="wikitable"
+!  Tile Range  !!  Address  !!  Category  !!  Description  !!  Palette
+|-
+|  $00-$3f  ||  $1000-$13ff  ||  Overworld  ||  Grass, trees, mountains, water  ||  Overworld Palette
+|-
+|  $40-$7f  ||  $1400-$17ff  ||  Towns  ||  Buildings, roads, doors, roofs  ||  Town Palette
+|-
+|  $80-$bf  ||  $1800-$1bff  ||  Dungeons  ||  Stone walls, floors, stairs  ||  Dungeon Palette
+|-
+|  $c0-$ff  ||  $1c00-$1fff  ||  Special  ||  Castle interiors, special areas  ||  Battle Palette
+|}
+
+==Palette System==
+
+Dragon Warrior uses 8 different 4-color palettes for various game elements:
+
+===Palette Definitions===
+
+{| class="wikitable"
+!  ID  !!  Name  !!  Purpose  !!  Color 0  !!  Color 1  !!  Color 2  !!  Color 3
+|-
+|  0  ||  Overworld  ||  World map graphics  ||  Black ($0f)  ||  White ($30)  ||  Light Gray ($10)  ||  Dark Gray ($00)
+|-
+|  1  ||  Dungeon  ||  Cave/dungeon graphics  ||  Black ($0f)  ||  Dark Gray ($00)  ||  Light Gray ($10)  ||  White ($30)
+|-
+|  2  ||  Town  ||  Town building graphics  ||  Black ($0f)  ||  Brown ($16)  ||  Orange ($27)  ||  White ($30)
+|-
+|  3  ||  Battle  ||  Battle background  ||  Black ($0f)  ||  Dark Gray ($00)  ||  Light Gray ($10)  ||  White ($30)
+|-
+|  4  ||  Menu  ||  UI and menu graphics  ||  Black ($0f)  ||  Dark Gray ($00)  ||  Light Gray ($10)  ||  White ($30)
+|-
+|  5  ||  Character  ||  Hero and NPC sprites  ||  Black ($0f)  ||  Brown ($16)  ||  Orange ($27)  ||  White ($30)
+|-
+|  6  ||  Monster  ||  Enemy sprites  ||  Black ($0f)  ||  Purple ($05)  ||  Pink ($15)  ||  White ($30)
+|-
+|  7  ||  Dialog  ||  Text and dialog boxes  ||  Black ($0f)  ||  Dark Gray ($00)  ||  Light Gray ($10)  ||  White ($30)
+|}
+
+===NES Color Values===
+
+The NES uses a 64-color palette. Common Dragon Warrior colors:
+
+{| class="wikitable"
+!  Value  !!  Color  !!  RGB  !!  Usage
+|-
+|  $0f  ||  Black  ||  (84, 84, 84)  ||  Transparency, outlines
+|-
+|  $00  ||  Dark Gray  ||  (84, 84, 84)  ||  Shadows, dark areas
+|-
+|  $10  ||  Light Gray  ||  (152, 150, 152)  ||  Highlights, stone
+|-
+|  $30  ||  White  ||  (236, 238, 236)  ||  Bright highlights, clouds
+|-
+|  $05  ||  Purple  ||  (92, 0, 48)  ||  Monster colors
+|-
+|  $15  ||  Pink  ||  (160, 20, 100)  ||  Monster highlights
+|-
+|  $16  ||  Brown  ||  (152, 34, 32)  ||  Character skin/clothing
+|-
+|  $27  ||  Orange  ||  (212, 136, 32)  ||  Character highlights
+|}
+
+==Sprite Animation System==
+
+===Hero Animations===
+
+The hero character has 16 different sprites covering:
+* 4 directions (up, down, left, right)
+* 2 walking frames per direction
+* 2 weapon states (armed/unarmed)
+
+Sprite mapping:
+{| class="wikitable"
+!  Tile ID  !!  Description
+|-
+|  $00-$03  ||  Hero facing down (unarmed, frames 1-2, armed frames 1-2)
+|-
+|  $04-$07  ||  Hero facing up (unarmed, frames 1-2, armed frames 1-2)
+|-
+|  $08-$0b  ||  Hero facing left (unarmed, frames 1-2, armed frames 1-2)
+|-
+|  $0c-$0f  ||  Hero facing right (unarmed, frames 1-2, armed frames 1-2)
+|}
+
+===Monster Animations===
+
+Most monsters use 1-2 tiles:
+* Single frame: Slimes, simple creatures
+* Two frames: Most humanoid monsters (idle + attack)
+* Special: Dragons use multiple frames for breath attacks
+
+===NPC Sprites===
+
+NPCs use shared sprite sets:
+* Male villager sprites
+* Female villager sprites
+* Guard/soldier sprites
+* Royal sprites (King, Princess)
+* Merchant sprites
+
+==Background Tile System==
+
+===Tile Properties===
+
+Each background tile has properties defined in code:
+* Walkability (passable/blocked)
+* Encounter rate modifier
+* Movement speed modifier
+* Special actions (doors, stairs, damage)
+
+===Overworld Tileset===
+
+{| class="wikitable"
+!  Tile Type  !!  Tiles  !!  Properties
+|-
+|  Grass  ||  $00-$0f  ||  Walkable, standard encounter rate
+|-
+|  Water  ||  $10-$1f  ||  Non-walkable (without ship/bridge)
+|-
+|  Forest  ||  $20-$2f  ||  Walkable, high encounter rate
+|-
+|  Hills  ||  $30-$3f  ||  Walkable, standard encounters
+|-
+|  Mountains  ||  $40-$4f  ||  Non-walkable
+|-
+|  Swamp  ||  $50-$5f  ||  Walkable, damage over time
+|-
+|  Desert  ||  $60-$6f  ||  Walkable, moderate encounters
+|-
+|  Shore  ||  $70-$7f  ||  Walkable, low encounters
+|}
+
+===Town Tileset===
+
+{| class="wikitable"
+!  Tile Type  !!  Tiles  !!  Properties
+|-
+|  Roads  ||  $00-$0f  ||  Walkable, no encounters
+|-
+|  Buildings  ||  $10-$3f  ||  Non-walkable (walls)
+|-
+|  Doors  ||  $40-$4f  ||  Walkable, triggers entry
+|-
+|  Roofs  ||  $50-$6f  ||  Non-walkable
+|-
+|  Special  ||  $70-$7f  ||  Stairs, treasures, NPCs
+|}
+
+==Graphics Compression==
+
+Dragon Warrior uses minimal graphics compression:
+* Sprites are stored as raw 2bpp tile data
+* Some background patterns use tile mirroring
+* Palette animation used for water/fire effects
+* Text uses character-based compression
+
+==Technical Implementation==
+
+===PPU Configuration===
+* Background: CHR Bank 1
+* Sprites: CHR Bank 0
+* Name tables: $2000 (main), $2400 (status)
+* Pattern tables: $0000 (sprites), $1000 (background)
+
+===Bank Switching===
+MMC1 mapper controls CHR bank selection:
+* Fixed mode: Bank 0 for sprites, Bank 1 for background
+* CHR banking rarely used in Dragon Warrior
+
+===Color Cycling===
+Some tiles use palette animation:
+* Water tiles cycle between blue shades
+* Torch flames alternate orange/red
+* Magic effects use rapid color changes
+
+==Asset Extraction Notes==
+
+When extracting graphics from Dragon Warrior:
+* Apply appropriate palette per sprite type
+* Monster sprites use Monster Palette (ID 6)
+* Hero/NPC sprites use Character Palette (ID 5)
+* Items/UI use Menu Palette (ID 4)
+* Background tiles use context-specific palettes
+
+=See Also=
+
+* [[Dragon Warrior:ROM_Map|ROM Map]]
+* [[Dragon Warrior:RAM_Map|RAM Map]]
+
+[[Category:Dragon Warrior|Graphics Data]]

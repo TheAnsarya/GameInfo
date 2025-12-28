@@ -1,0 +1,176 @@
+{{Infobox game
+| title           = Final Fantasy Mystic Quest
+| title_jp        = ファイナルファンタジーUSA ミスティッククエスト
+| title_jp_romaji = Fainaru Fantajī Yū Esu Ē: Misutikku Kuesuto
+| title_alt       = Mystic Quest Legend (EU)
+
+| image           = Final Fantasy Mystic Quest box.jpg
+
+| developer       = Square
+| publisher_jp    = Square
+| publisher_na    = Square
+| publisher_eu    = Nintendo
+
+| platform        = SNES
+
+| release_jp      = September 10, 1993
+| release_na      = October 5, 1992
+| release_eu      = 1993
+
+| genre           = RPG
+| players         = 1
+
+| mapper          = LoROM
+| rom_size        = 1 MB (8 Mbit)
+| sram            = 8 KB
+
+| series          = Final Fantasy
+}}
+
+'''Final Fantasy Mystic Quest''' (known as '''Mystic Quest Legend''' in Europe and '''Final Fantasy USA: Mystic Quest''' in Japan) is an action RPG designed as an introductory RPG for Western audiences.
+
+==Overview==
+
+A simplified RPG featuring:
+* Action-oriented gameplay with visible enemies
+* No random encounters
+* Weapons affect overworld obstacles
+* Partner character system
+* Simplified menu and equipment system
+
+==Technical Information==
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ROM Size || 1 MB (8 Mbit)
+|-
+| RAM Size || 8 KB SRAM
+|-
+| Mapper || LoROM
+|-
+| Regions || US, EU, JP
+|-
+| CRC32 (US) || <code>F8A3725C</code>
+|}
+
+==Memory Map==
+
+{| class="wikitable"
+|-
+! Bank Range !! Address !! Description
+|-
+| $00-$0f || $8000-$ffff || Program ROM
+|-
+| $70 || $0000-$1fff || SRAM (save data)
+|-
+| $7e || $0000-$ffff || WRAM (low)
+|-
+| $7f || $0000-$ffff || WRAM (high)
+|}
+
+==Party System==
+
+Benjamin (the hero) teams up with various partners throughout the game:
+
+{| class="wikitable"
+|-
+! ID !! Character !! Weapons !! Notes
+|-
+| $00 || Benjamin || All || Main character
+|-
+| $01 || Kaeli || Axes || Forest area partner
+|-
+| $02 || Tristam || Ninja Stars || Treasure hunter
+|-
+| $03 || Phoebe || Bombs/Claws || Fire area partner
+|-
+| $04 || Reuben || Swords || Ice area partner
+|}
+
+==Weapon Types==
+
+{| class="wikitable"
+|-
+! ID !! Type !! Overworld Use
+|-
+| $00 || Sword || Cut bushes
+|-
+| $01 || Axe || Chop trees
+|-
+| $02 || Claw || Climb walls
+|-
+| $03 || Bomb || Destroy rocks
+|}
+
+==Spell System==
+
+Magic is divided into three categories:
+
+{| class="wikitable"
+|-
+! Type !! Level 1 !! Level 2 !! Level 3
+|-
+| White || Cure || Heal || Life
+|-
+| Black || Fire || Blizzard || Thunder
+|-
+| Wizard || Quake || Exit || Meteor
+|}
+
+==Battle System==
+
+* Turn-based combat
+* Up to 2 party members
+* Weapons can be changed mid-battle
+* No random encounters - enemies visible on map
+* Battlefield obstacles can be destroyed
+
+==Documentation==
+
+{{navbox|SNES/Final_Fantasy_Mystic_Quest|sram_map=yes}}
+
+* [[Final Fantasy Mystic Quest:ROM_Map|ROM Map]] - Complete ROM layout
+* [[Final Fantasy Mystic Quest:RAM_Map|RAM Map]] - Runtime memory documentation
+* [[Final Fantasy Mystic Quest:SRAM_Map|SRAM Map]] - Save data structure
+* [[Final Fantasy Mystic Quest:TBL|Text Table]] - Character encoding (multiple languages)
+* [[Final Fantasy Mystic Quest:Values|Values]] - Game constants
+
+===Text Tables by Language===
+* [[Final Fantasy Mystic Quest:TBL/English|English TBL]]
+* [[Final Fantasy Mystic Quest:TBL/Japanese|Japanese TBL]]
+* [[Final Fantasy Mystic Quest:TBL/French|French TBL]]
+* [[Final Fantasy Mystic Quest:TBL/German|German TBL]]
+
+===Sub-pages===
+* [[Final Fantasy Mystic Quest:Values/Window_Colors|Window Colors]]
+
+==Known Dumps==
+
+{| class="wikitable sortable"
+|-
+! Version !! Size !! MD5 !! SHA1 !! Source
+|-
+| Final Fantasy - Mystic Quest (U) (V1.0) [!] || 524,288 || <code>da08f0559fade06f37d5fdf1b6a6d92e</code> || <code>787c535aaca7b57f6b85fc02ceef106f7fe5ea59</code> || GoodSNES
+|-
+| Final Fantasy - Mystic Quest (U) (V1.1) || 524,288 || <code>f7faeae5a847c098d677070920769ca2</code> || <code>6be74b73b736bc6027c0e92619874da7c498bed0</code> || GoodSNES
+|-
+| Final Fantasy USA - Mystic Quest (J) [!] || 524,288 || <code>5164060bd3350d7a6325ec8ae80bba54</code> || <code>ffc05a65ef43fa5c56c9930af1af527509c1ae05</code> || GoodSNES
+|-
+| Mystic Quest Legend (E) [!] || 524,288 || <code>92461cd3f1a72b8beb32ebab98057b76</code> || <code>3d3ec05a11d808600752c89895f04d5213e532b6</code> || GoodSNES
+|-
+| Mystic Quest Legend (F) || 524,288 || <code>a5356b9bad50d4a9191bc1fe50316b5b</code> || <code>6c2bcb3be5ad46cc96fd35b50446931fc046a167</code> || GoodSNES
+|-
+| Mystic Quest Legend (G) [!] || 524,288 || <code>10cfe4f746a8bf3dd54c1e61c67f61d1</code> || <code>bd190854c0f725160ed6f6b0669e3cdd2308ccca</code> || GoodSNES
+|}
+
+==External Links==
+
+* [https://github.com/TheAnsarya/GameInfo GameInfo Repository]
+* [https://github.com/TheAnsarya/ffmq-info FFMQ Disassembly Project]
+
+[[Category:SNES Games]]
+[[Category:Final Fantasy Series]]
+[[Category:RPG]]
+[[Category:Square]]
