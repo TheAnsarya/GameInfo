@@ -349,6 +349,33 @@ Begin Phase 1 - Implement core services (HexEditorService, RomService, etc.)
 Build components - Start with the Hex Editor component
 &&&
 
+git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
+
+Reorganize the DarkRepos projects into `/DarkRepos/Wiki/` for the wiki, `/DarkRepos/Web/` for the website, and `/DarkRepos/Editor/` for the editor; leave the `~docs` and `~plans` folders in place but move the supporting folders for the wiki project into the `Wiki` folder, etc; DarkRepos is not one thing, it is at least three things; fix all the references and class names, etc.; ensure the new structure is complete and everything is where it needs to be and all the documents, comments, and references correctly point to the new/correct locations/paths; update the session/chat logs and the github issues and todolists; git commit everything in logical batches, connecting them to github issues;
+
+&&&
+Session log - Create/update session log in session-logs
+Stash reconciliation - Review "WIP: Before DarkRepos reorganization" stash
+PR #75 - Verify changes appear correctly on GitHub
+&&&
+
+compare everything in the stash to the where those files were moved and see if any work needs to be merged over
+
+yep
+
+The `/DarkRepos/Editor/` project is using wrong `.editorconfig` values, merge the `./GameInfo/.editorconfig` root file into the Editor's version, overwriting values for c# in particular, so open braces are on the previous line, etc, ALWAYS TABS, add a header like the other editor configs have; reformat the whole project and git commit everything in logical batches; then, continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
+
+Merge all branches back down into main, don't delete work if there are conflicts, be smart about it and merge all commits;
+
+Optionally delete the old feature branches (local and remote); Update/close any related GitHub PRs; Never ever ever ever update `~docs/gameinfo-manual-prompts-log.txt` that is a manually edited file that only I edit, put your crap elsewhere; please put this directive into a directive file for ai chats; in fact make a directive file with all of my main directives that you're using or should be using;
+
+Aggressively attack the `Dragon Quest III (SNES)` game (`DQ3r`, for SNES) using all of our resources like `https://github.com/TheAnsarya/logsmall` and merge the DQ3r project at `https://github.com/TheAnsarya/dq3r-info` into the `GameInfo` project in the `/Games/Dragon Quest III (SNES)/` folder with a full disassembly, complete documentation, tools, editors (that are also merged into `DarkRepos/Editor`, assets and asset pipelines, and build tools, etc; use the untracked file `/GameInfo/~roms/SNES/GoodSNES/Dragon Quest III - Soshite Densetsu he... (J) [!].sfc` as the source and refeerence rom file; Create todo-lists and github issues for all of this work, make a plan as a markdown file in the `~plans` folder, make a roadmap, use the folder-structure of other games (disasm, docs, src, tools, tests, assets, whatever); and then start working the issues;
+
+Not `DQ3` which is an `NES` game, but rather `DQ3r` or `DQ3r (SNES)` which is an `SNES` game which is a remake of the original nes game
+
+No, the game is still called `Dragon Quest III (SNES)`, `DQ3r` is an abbreviation or shortcut, leave that folder and the main documentaion to refer to `Dragon Quest III (SNES)` or `Dragon Quest III Remix (SNES)`
+
+git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
 
 
 
