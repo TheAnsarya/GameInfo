@@ -1,0 +1,65 @@
+@namespace DarkRepos.Web.Components.Shared
+@inject IJSRuntime JS
+@implements IAsyncDisposable
+
+<button class="scroll-to-top @(IsVisible ? "visible" : "")"
+	@onclick="ScrollToTop"
+	aria-label="Scroll to top"
+	title="Scroll to top">
+	<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+		<polyline points="18 15 12 9 6 15"></polyline>
+	</svg>
+</button>
+
+@code {
+	private bool IsVisible { get; set; } = false;
+	private DotNetObjectReference<ScrollToTopButton>? _dotNetRef;
+
+	protected override async Task OnAfterRenderAsync(bool firstRender) {
+		if (firstRender) {
+			_dotNetRef = DotNetObjectReference.Create(this);
+			try {
+				// Use inline JS for scroll detection
+				await JS.InvokeVoidAsync("eval", """
+					window._scrollHandler = function(dotNetHelper) {
+						const handler = () => {
+							const isVisible = window.scrollY > 300;
+							dotNetHelper.invokeMethodAsync('SetVisibility', isVisible);
+						};
+						window.addEventListener('scroll', handler, { passive: true });
+						handler(); // Initial check
+						return handler;
+					};
+					""");
+				await JS.InvokeVoidAsync("window._scrollHandler", _dotNetRef);
+			} catch {
+				// JS interop might fail in some scenarios
+			}
+		}
+	}
+
+	[JSInvokable]
+	public void SetVisibility(bool visible) {
+		if (IsVisible != visible) {
+			IsVisible = visible;
+			StateHasChanged();
+		}
+	}
+
+	private async Task ScrollToTop() {
+		try {
+			await JS.InvokeVoidAsync("window.scrollTo", new { top = 0, behavior = "smooth" });
+		} catch {
+			// Fallback
+		}
+	}
+
+	public async ValueTask DisposeAsync() {
+		_dotNetRef?.Dispose();
+		try {
+			await JS.InvokeVoidAsync("eval", "window.removeEventListener('scroll', window._scrollHandler)");
+		} catch {
+			// Ignore cleanup errors
+		}
+	}
+}

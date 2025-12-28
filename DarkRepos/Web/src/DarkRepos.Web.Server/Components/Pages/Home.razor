@@ -1,0 +1,139 @@
+@page "/"
+@using DarkRepos.Core.Models
+@using DarkRepos.Core.Services
+
+<PageTitle>Dark Repos - ROM Hacking Documentation & Tools</PageTitle>
+
+<HeadContent>
+	<meta name="description"
+		content="Dark Repos is the home for ROM hacking documentation, disassemblies, and tools. Explore our comprehensive game catalog with ROM maps, RAM maps, and data structures." />
+</HeadContent>
+
+<section class="hero">
+	<div class="container">
+		<h1 class="hero-title">Dark Repos</h1>
+		<p class="hero-subtitle">
+			Your home for retro game documentation, disassemblies, and ROM hacking tools.
+			Explore comprehensive ROM maps, RAM maps, and data structures.
+		</p>
+		<div class="hero-actions">
+			<a href="/games" class="btn btn-primary">Browse Games</a>
+			<a href="/tools" class="btn btn-secondary">Explore Tools</a>
+		</div>
+	</div>
+</section>
+
+<div class="container">
+	<section aria-labelledby="featured-games-title">
+		<SectionHeader Title="Featured Games" Id="featured-games-title" LinkHref="/games" LinkText="View all games →" />
+
+		@if (IsLoading)
+		{
+			<LoadingSpinner Message="Loading featured games..." />
+		}
+		else if (!FeaturedGames.Any())
+		{
+			<EmptyState Icon="🎮" Title="No Featured Games" Message="Check back later for featured games." />
+		}
+		else
+		{
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+				@foreach (var game in FeaturedGames)
+				{
+					<GameCard Game="@game" />
+				}
+			</div>
+		}
+	</section>
+
+	<section aria-labelledby="platforms-title" class="mt-10">
+		<SectionHeader Title="Browse by Platform" Id="platforms-title" />
+
+		<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+			<a href="/games?platform=nes" class="card text-center" style="text-decoration: none;">
+				<PlatformBadge Platform="Platform.NES" />
+				<p class="text-secondary mt-2 mb-0">Nintendo Entertainment System</p>
+			</a>
+			<a href="/games?platform=snes" class="card text-center" style="text-decoration: none;">
+				<PlatformBadge Platform="Platform.SNES" />
+				<p class="text-secondary mt-2 mb-0">Super Nintendo</p>
+			</a>
+			<a href="/games?platform=gb" class="card text-center" style="text-decoration: none;">
+				<PlatformBadge Platform="Platform.GB" />
+				<p class="text-secondary mt-2 mb-0">Game Boy</p>
+			</a>
+			<a href="/games?platform=gba" class="card text-center" style="text-decoration: none;">
+				<PlatformBadge Platform="Platform.GBA" />
+				<p class="text-secondary mt-2 mb-0">Game Boy Advance</p>
+			</a>
+		</div>
+	</section>
+
+	<section aria-labelledby="tools-title" class="mt-10">
+		<SectionHeader Title="Popular Tools" Id="tools-title" LinkHref="/tools" LinkText="View all tools →" />
+
+		@if (IsLoadingTools)
+		{
+			<LoadingSpinner Message="Loading tools..." />
+		}
+		else if (!PopularTools.Any())
+		{
+			<EmptyState Icon="🛠️" Title="No Tools Available" Message="Check back later for ROM hacking tools." />
+		}
+		else
+		{
+			<div class="grid grid-cols-1 md:grid-cols-2">
+				@foreach (var tool in PopularTools)
+				{
+					<ToolCard Tool="@tool" />
+				}
+			</div>
+		}
+	</section>
+
+	<section aria-labelledby="wiki-title" class="mt-10">
+		<SectionHeader Title="Wiki Resources" Id="wiki-title" />
+		<div class="card">
+			<p>
+				Our comprehensive wiki at <a href="https://games.darkrepos.com" target="_blank"
+					rel="noopener">games.darkrepos.com</a>
+				contains detailed ROM maps, RAM maps, and data structure documentation for each game.
+			</p>
+			<p class="mb-0">
+				Each game page includes links to its wiki resources where available.
+			</p>
+		</div>
+	</section>
+</div>
+
+@code {
+	[Inject]
+	private IContentService ContentService { get; set; } = null!;
+
+	private IReadOnlyList<Game> FeaturedGames { get; set; } = [];
+	private IReadOnlyList<Tool> PopularTools { get; set; } = [];
+	private bool IsLoading { get; set; } = true;
+	private bool IsLoadingTools { get; set; } = true;
+
+	protected override async Task OnInitializedAsync()
+	{
+		IsLoading = true;
+		IsLoadingTools = true;
+
+		try
+		{
+			var gamesTask = ContentService.GetFeaturedGamesAsync(6);
+			var toolsTask = ContentService.GetAllToolsAsync();
+
+			await Task.WhenAll(gamesTask, toolsTask);
+
+			FeaturedGames = await gamesTask;
+			PopularTools = (await toolsTask).Take(4).ToList();
+		}
+		finally
+		{
+			IsLoading = false;
+			IsLoadingTools = false;
+		}
+	}
+}

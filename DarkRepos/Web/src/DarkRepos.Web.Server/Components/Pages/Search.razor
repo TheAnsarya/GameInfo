@@ -1,0 +1,295 @@
+@page "/search"
+@using DarkRepos.Core.Models
+@using DarkRepos.Core.Services
+@using DarkRepos.Web.Components.Shared
+@inject NavigationManager NavigationManager
+
+<PageTitle>Search - Dark Repos</PageTitle>
+
+<HeadContent>
+	<meta name="description" content="Search for games, tools, and documentation across Dark Repos." />
+</HeadContent>
+
+<div class="container" @onkeydown="HandleKeyDown">
+	<Breadcrumbs Items="@_breadcrumbItems" />
+
+	<header class="page-header">
+		<h1 class="page-title">Search</h1>
+		<p class="page-description">
+			Search across games, tools, and documentation.
+		</p>
+	</header>
+
+	<div class="search-container mb-6">
+		<form @onsubmit="HandleSearch" @onsubmit:preventDefault>
+			<div class="flex gap-3">
+				<input type="search" @bind="SearchTerms" @bind:event="oninput"
+					@ref="_searchInput"
+					placeholder="Search games, tools, documentation..." class="search-input"
+					style="flex: 1; padding: var(--space-3); font-size: var(--font-size-md); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-bg-secondary); color: var(--color-text-primary);"
+					aria-label="Search terms"
+					aria-describedby="search-hint" />
+				<button type="submit" class="btn btn-primary">Search</button>
+			</div>
+			<p id="search-hint" class="text-muted text-sm mt-2">
+				Press Enter to search. Use ↑↓ arrows to navigate results, Enter to open.
+			</p>
+		</form>
+	</div>
+
+	<div class="filter-bar" role="group" aria-label="Filter search results by type">
+		<span class="text-secondary text-sm">Type:</span>
+		<div class="filter-group">
+			<button class="filter-chip @(SelectedType == null ? "active" : "")" @onclick="() => FilterByType(null)">
+				All
+			</button>
+			<button class="filter-chip @(SelectedType == SearchDocumentType.Game ? "active" : "")"
+				@onclick="() => FilterByType(SearchDocumentType.Game)">
+				Games
+			</button>
+			<button class="filter-chip @(SelectedType == SearchDocumentType.Tool ? "active" : "")"
+				@onclick="() => FilterByType(SearchDocumentType.Tool)">
+				Tools
+			</button>
+			<button class="filter-chip @(SelectedType == SearchDocumentType.Documentation ? "active" : "")"
+				@onclick="() => FilterByType(SearchDocumentType.Documentation)">
+				Docs
+			</button>
+		</div>
+	</div>
+
+	<div class="filter-bar" role="group" aria-label="Filter search results by platform">
+		<span class="text-secondary text-sm">Platform:</span>
+		<div class="filter-group">
+			<button class="filter-chip @(SelectedPlatform == null ? "active" : "")"
+				@onclick="() => FilterByPlatform(null)">
+				All
+			</button>
+			<button class="filter-chip @(SelectedPlatform == PlatformNes ? "active" : "")"
+				@onclick="() => FilterByPlatform(PlatformNes)">
+				NES
+			</button>
+			<button class="filter-chip @(SelectedPlatform == PlatformSnes ? "active" : "")"
+				@onclick="() => FilterByPlatform(PlatformSnes)">
+				SNES
+			</button>
+			<button class="filter-chip @(SelectedPlatform == PlatformGb ? "active" : "")"
+				@onclick="() => FilterByPlatform(PlatformGb)">
+				GB
+			</button>
+			<button class="filter-chip @(SelectedPlatform == PlatformGba ? "active" : "")"
+				@onclick="() => FilterByPlatform(PlatformGba)">
+				GBA
+			</button>
+			<button class="filter-chip @(SelectedPlatform == PlatformGenesis ? "active" : "")"
+				@onclick="() => FilterByPlatform(PlatformGenesis)">
+				Genesis
+			</button>
+		</div>
+	</div>
+
+	@if (IsSearching)
+	{
+		<LoadingSpinner Message="Searching..." />
+	}
+	else if (HasSearched)
+	{
+		@if (Results != null && Results.Results.Count > 0)
+		{
+			<p class="text-secondary mb-4">
+				Found @Results.TotalCount result(s) in @Results.Duration.TotalMilliseconds.ToString("0.00")ms
+			</p>
+
+			<div class="search-results" role="listbox" aria-label="Search results" aria-activedescendant="@(_selectedIndex >= 0 ? $"result-{_selectedIndex}" : null)">
+				@for (int i = 0; i < Results.Results.Count; i++) {
+					var index = i;
+					var result = Results.Results[i];
+					<article id="result-@index"
+						class="search-result card mb-4 @(index == _selectedIndex ? "selected" : "")"
+						role="option"
+						aria-selected="@(index == _selectedIndex)"
+						@onclick="() => NavigateToResult(result.Document.Url)"
+						@onmouseenter="() => _selectedIndex = index"
+						tabindex="@(index == _selectedIndex ? 0 : -1)">
+						<div class="flex gap-4" style="align-items: flex-start;">
+							<div class="search-result-icon" style="font-size: 1.5rem; flex-shrink: 0;">
+								@GetResultIcon(result.Document.Type)
+							</div>
+							<div style="flex: 1;">
+								<div class="flex gap-2 mb-2" style="align-items: center;">
+									<span class="badge"
+										style="background: var(--color-bg-tertiary); font-size: var(--font-size-xs);">
+										@result.Document.Type
+									</span>
+									@if (!string.IsNullOrEmpty(result.Document.Platform)) {
+										<span class="badge badge-@result.Document.Platform.ToLower()"
+											style="font-size: var(--font-size-xs);">
+											@result.Document.Platform
+										</span>
+									}
+								</div>
+								<h3 class="mb-2" style="margin-top: 0;">
+									<a href="@result.Document.Url">@((MarkupString)(result.HighlightedTitle ??
+																	result.Document.Title))</a>
+								</h3>
+								@if (!string.IsNullOrEmpty(result.HighlightedSnippet) ||
+													!string.IsNullOrEmpty(result.Document.Description)) {
+									<p class="text-secondary text-sm mb-0">
+										@((MarkupString)(result.HighlightedSnippet ?? result.Document.Description ?? ""))
+									</p>
+								}
+							</div>
+						</div>
+					</article>
+				}
+			</div>
+
+			@if (Results.TotalCount > Results.Results.Count)
+			{
+				<p class="text-secondary text-center">
+					Showing @Results.Results.Count of @Results.TotalCount results
+				</p>
+			}
+		}
+		else
+		{
+			@if (!string.IsNullOrEmpty(SearchTerms))
+			{
+				<EmptyState Icon="🔍" Title="No results found"
+					Message="@($"No results found for \"{SearchTerms}\". Try different search terms.")" />
+			}
+			else
+			{
+				<EmptyState Icon="🔍" Title="No results found"
+					Message="Enter search terms above to find games, tools, and documentation." />
+			}
+		}
+	}
+	else
+	{
+		<EmptyState Icon="🔍" Title="Ready to search"
+			Message="Enter search terms above to find games, tools, and documentation." />
+	}
+</div>
+
+@code {
+	[Inject]
+	private ISearchService SearchService { get; set; } = null!;
+
+	[SupplyParameterFromQuery(Name = "q")]
+	public string? QueryParam { get; set; }
+
+	// Platform constants for use in Razor markup
+	private const string PlatformNes = "NES";
+	private const string PlatformSnes = "SNES";
+	private const string PlatformGb = "GB";
+	private const string PlatformGba = "GBA";
+	private const string PlatformGenesis = "Genesis";
+
+	private ElementReference _searchInput;
+	private string SearchTerms { get; set; } = string.Empty;
+	private SearchDocumentType? SelectedType { get; set; }
+	private string? SelectedPlatform { get; set; }
+	private SearchResults? Results { get; set; }
+	private bool IsSearching { get; set; }
+	private bool HasSearched { get; set; }
+	private int _selectedIndex = -1;
+
+	protected override async Task OnInitializedAsync() {
+		if (!string.IsNullOrWhiteSpace(QueryParam)) {
+			SearchTerms = QueryParam;
+			await PerformSearch();
+		}
+	}
+
+	private async Task HandleSearch() {
+		_selectedIndex = -1;
+		await PerformSearch();
+	}
+
+	private async Task PerformSearch() {
+		if (string.IsNullOrWhiteSpace(SearchTerms)) {
+			Results = null;
+			HasSearched = false;
+			return;
+		}
+
+		IsSearching = true;
+		HasSearched = true;
+		StateHasChanged();
+
+		try {
+			var query = new SearchQuery {
+				Terms = SearchTerms,
+				Type = SelectedType,
+				Platform = SelectedPlatform,
+				Limit = 20
+			};
+
+			Results = await SearchService.SearchAsync(query);
+		}
+		finally {
+			IsSearching = false;
+			StateHasChanged();
+		}
+	}
+
+	private async Task FilterByType(SearchDocumentType? type) {
+		SelectedType = type;
+		_selectedIndex = -1;
+		if (HasSearched) {
+			await PerformSearch();
+		}
+	}
+
+	private async Task FilterByPlatform(string? platform) {
+		SelectedPlatform = platform;
+		_selectedIndex = -1;
+		if (HasSearched) {
+			await PerformSearch();
+		}
+	}
+
+	private void HandleKeyDown(KeyboardEventArgs e) {
+		if (Results == null || Results.Results.Count == 0) return;
+
+		switch (e.Key) {
+			case "ArrowDown":
+				_selectedIndex = Math.Min(_selectedIndex + 1, Results.Results.Count - 1);
+				break;
+			case "ArrowUp":
+				_selectedIndex = Math.Max(_selectedIndex - 1, -1);
+				break;
+			case "Enter" when _selectedIndex >= 0:
+				NavigateToResult(Results.Results[_selectedIndex].Document.Url);
+				break;
+			case "Escape":
+				_selectedIndex = -1;
+				break;
+			case "Home":
+				_selectedIndex = 0;
+				break;
+			case "End":
+				_selectedIndex = Results.Results.Count - 1;
+				break;
+		}
+	}
+
+	private void NavigateToResult(string url) {
+		NavigationManager.NavigateTo(url);
+	}
+
+	private string GetResultIcon(SearchDocumentType type) => type switch {
+		SearchDocumentType.Game => "🎮",
+		SearchDocumentType.Tool => "🔧",
+		SearchDocumentType.Documentation => "📄",
+		SearchDocumentType.Wiki => "📚",
+		SearchDocumentType.Guide => "📖",
+		_ => "📋"
+	};
+
+	private static readonly IReadOnlyList<Breadcrumbs.BreadcrumbItem> _breadcrumbItems = [
+		new("Home", "/", "🏠"),
+		new("Search", "/search", "🔍")
+	];
+}

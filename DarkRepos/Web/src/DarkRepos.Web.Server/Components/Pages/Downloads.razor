@@ -1,0 +1,190 @@
+@page "/downloads"
+@using DarkRepos.Web.Components.Shared
+
+<PageTitle>Downloads - Dark Repos</PageTitle>
+
+<HeadContent>
+	<meta name="description"
+		content="Download ROM hacking tools, documentation templates, and resources from Dark Repos." />
+</HeadContent>
+
+<div class="container">
+	<Breadcrumbs Items="@_breadcrumbItems" />
+
+	<header class="page-header">
+		<h1 class="page-title">Downloads</h1>
+		<p class="page-description">
+			Download tools, documentation templates, and resources for ROM hacking and retro game research.
+		</p>
+	</header>
+
+	<div class="downloads-content">
+		<section class="mb-8">
+			<SectionHeader Title="ROM Hacking Tools" Icon="🔧" />
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+				<DownloadCard Title="GameInfo CLI Tools"
+					Description="Command-line tools for ROM analysis, data extraction, and documentation generation."
+					Version="1.0.0"
+					Platform=".NET 10"
+					Size="~15 MB"
+					Url="https://github.com/TheAnsarya/GameInfo/releases"
+					Icon="💻" />
+
+				<DownloadCard Title="GameInfo GUI Editor"
+					Description="Cross-platform graphical editor for hex editing, CHR graphics, and map viewing."
+					Version="1.0.0"
+					Platform="Windows, macOS, Linux"
+					Size="~25 MB"
+					Url="https://github.com/TheAnsarya/GameInfo/releases"
+					Icon="🖥️" />
+
+				<DownloadCard Title="CDL Analysis Tools"
+					Description="Code/Data Log tools for visualizing ROM coverage and generating labels."
+					Version="1.0.0"
+					Platform=".NET 10"
+					Size="~5 MB"
+					Url="https://github.com/TheAnsarya/GameInfo/releases"
+					Icon="📊" />
+
+				<DownloadCard Title="Python ROM Analysis"
+					Description="148+ Python scripts for ROM analysis, graphics extraction, and documentation."
+					Version="Latest"
+					Platform="Python 3.11+"
+					Size="~2 MB"
+					Url="https://github.com/TheAnsarya/GameInfo/tree/main/tools"
+					Icon="🐍" />
+			</div>
+		</section>
+
+		<section class="mb-8">
+			<SectionHeader Title="Documentation Templates" Icon="📄" />
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+				<DownloadCard Title="Wiki Page Templates"
+					Description="MediaWiki templates for ROM maps, RAM maps, data structures, and more."
+					Version="Latest"
+					Platform="MediaWiki"
+					Size="~50 KB"
+					Url="https://games.darkrepos.com/Category:Templates"
+					Icon="📝" />
+
+				<DownloadCard Title="JSON Data Schemas"
+					Description="JSON Schema definitions for game metadata, asset definitions, and builds."
+					Version="1.0.0"
+					Platform="JSON Schema"
+					Size="~20 KB"
+					Url="https://github.com/TheAnsarya/GameInfo/tree/main/data/schema"
+					Icon="📋" />
+			</div>
+		</section>
+
+		<section class="mb-8">
+			<SectionHeader Title="Source Code" Icon="📦" />
+			<div class="grid grid-cols-1 gap-4">
+				<div class="card download-source">
+					<div class="download-header">
+						<span class="download-icon">📦</span>
+						<div class="download-info">
+							<h3>GameInfo Repository</h3>
+							<p class="text-secondary">
+								Full source code for all tools, documentation, and the Dark Repos website.
+							</p>
+						</div>
+					</div>
+					<div class="download-links">
+						<a href="https://github.com/TheAnsarya/GameInfo" target="_blank" rel="noopener"
+							class="btn btn-primary">
+							View on GitHub
+						</a>
+						<a href="https://github.com/TheAnsarya/GameInfo/archive/refs/heads/main.zip"
+							target="_blank" rel="noopener" class="btn btn-secondary">
+							Download ZIP
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="mb-8">
+			<SectionHeader Title="Game-Specific Resources" Icon="🎮" />
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+				<DownloadCard Title="Dragon Warrior IV"
+					Description="NES disassembly, ROM/RAM maps, and editing tools."
+					Version="Latest"
+					Platform="NES"
+					Size="~5 MB"
+					Url="https://github.com/TheAnsarya/dragon-warrior-4-info"
+					Icon="⚔️" />
+
+				<DownloadCard Title="Final Fantasy Mystic Quest"
+					Description="SNES disassembly, game data, and documentation."
+					Version="Latest"
+					Platform="SNES"
+					Size="~10 MB"
+					Url="https://github.com/TheAnsarya/ffmq-info"
+					Icon="🗡️" />
+
+				<DownloadCard Title="Soul Blazer"
+					Description="SNES analysis tools, ROM map, and asset extraction."
+					Version="Latest"
+					Platform="SNES"
+					Size="~3 MB"
+					Url="https://github.com/TheAnsarya/GameInfo/tree/main/Games/SNES/Soul%20Blazer"
+					Icon="⚡" />
+			</div>
+		</section>
+
+		<section class="mb-8">
+			<SectionHeader Title="External Resources" Icon="🔗" />
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+				<div class="card external-link">
+					<h3>Mesen Debugger</h3>
+					<p class="text-secondary text-sm">
+						Multi-system emulator with powerful debugging features for NES, SNES, and more.
+					</p>
+					<a href="https://www.mesen.ca/" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">
+						Visit Website
+					</a>
+				</div>
+
+				<div class="card external-link">
+					<h3>ca65 Assembler</h3>
+					<p class="text-secondary text-sm">
+						Macro assembler for 6502/65816 used in our disassembly projects.
+					</p>
+					<a href="https://cc65.github.io/" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">
+						Visit Website
+					</a>
+				</div>
+
+				<div class="card external-link">
+					<h3>Tile Molester</h3>
+					<p class="text-secondary text-sm">
+						Java-based tile editor for viewing and editing ROM graphics.
+					</p>
+					<a href="https://github.com/ata4/TileMolester" target="_blank" rel="noopener"
+						class="btn btn-secondary btn-sm">
+						GitHub
+					</a>
+				</div>
+
+				<div class="card external-link">
+					<h3>Romhacking.net</h3>
+					<p class="text-secondary text-sm">
+						Community hub for ROM hacking utilities, patches, and documentation.
+					</p>
+					<a href="https://www.romhacking.net/" target="_blank" rel="noopener"
+						class="btn btn-secondary btn-sm">
+						Visit Website
+					</a>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+
+@code {
+	private static readonly IReadOnlyList<Breadcrumbs.BreadcrumbItem> _breadcrumbItems = [
+		new("Home", "/", "🏠"),
+		new("Downloads", "/downloads", "📥")
+	];
+}

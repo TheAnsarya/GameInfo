@@ -1,0 +1,166 @@
+@*
+	WikiQuickLinks Component
+	Generates quick navigation links to wiki resources for a game.
+	Links to ROM Map, RAM Map, Data Structures, and Systems pages.
+*@
+@using DarkRepos.Core.Models
+
+<div class="wiki-quick-links @(Compact ? "compact" : "")">
+	@if (ShowHeader && !Compact)
+	{
+		<h3 class="wiki-links-title">Wiki Resources</h3>
+	}
+
+	<div class="wiki-links-grid">
+		@if (Wiki.HasRomMap)
+		{
+			<a href="@GetWikiUrl("ROM_Map")"
+			   target="_blank"
+			   rel="noopener"
+			   class="wiki-link wiki-link-rom">
+				<span class="wiki-link-icon">🗺️</span>
+				<span class="wiki-link-text">ROM Map</span>
+			</a>
+		}
+		else if (ShowUnavailable)
+		{
+			<span class="wiki-link wiki-link-unavailable" title="ROM Map not yet documented">
+				<span class="wiki-link-icon">🗺️</span>
+				<span class="wiki-link-text">ROM Map</span>
+			</span>
+		}
+
+		@if (Wiki.HasRamMap)
+		{
+			<a href="@GetWikiUrl("RAM_Map")"
+			   target="_blank"
+			   rel="noopener"
+			   class="wiki-link wiki-link-ram">
+				<span class="wiki-link-icon">💾</span>
+				<span class="wiki-link-text">RAM Map</span>
+			</a>
+		}
+		else if (ShowUnavailable)
+		{
+			<span class="wiki-link wiki-link-unavailable" title="RAM Map not yet documented">
+				<span class="wiki-link-icon">💾</span>
+				<span class="wiki-link-text">RAM Map</span>
+			</span>
+		}
+
+		@if (Wiki.HasDataStructures)
+		{
+			<a href="@GetWikiUrl("Data_Structures")"
+			   target="_blank"
+			   rel="noopener"
+			   class="wiki-link wiki-link-data">
+				<span class="wiki-link-icon">📊</span>
+				<span class="wiki-link-text">Data</span>
+			</a>
+		}
+		else if (ShowUnavailable)
+		{
+			<span class="wiki-link wiki-link-unavailable" title="Data Structures not yet documented">
+				<span class="wiki-link-icon">📊</span>
+				<span class="wiki-link-text">Data</span>
+			</span>
+		}
+
+		@if (Wiki.HasSystems)
+		{
+			<a href="@GetWikiUrl("Systems")"
+			   target="_blank"
+			   rel="noopener"
+			   class="wiki-link wiki-link-systems">
+				<span class="wiki-link-icon">⚙️</span>
+				<span class="wiki-link-text">Systems</span>
+			</a>
+		}
+		else if (ShowUnavailable)
+		{
+			<span class="wiki-link wiki-link-unavailable" title="Systems not yet documented">
+				<span class="wiki-link-icon">⚙️</span>
+				<span class="wiki-link-text">Systems</span>
+			</span>
+		}
+
+		@if (Wiki.HasNotes)
+		{
+			<a href="@GetWikiUrl("")"
+			   target="_blank"
+			   rel="noopener"
+			   class="wiki-link wiki-link-notes">
+				<span class="wiki-link-icon">📝</span>
+				<span class="wiki-link-text">Notes</span>
+			</a>
+		}
+		else if (ShowUnavailable)
+		{
+			<span class="wiki-link wiki-link-unavailable" title="Notes not yet documented">
+				<span class="wiki-link-icon">📝</span>
+				<span class="wiki-link-text">Notes</span>
+			</span>
+		}
+	</div>
+
+	@if (ShowViewAllLink && !string.IsNullOrEmpty(Wiki.WikiBaseUrl))
+	{
+		<a href="@Wiki.WikiBaseUrl"
+		   target="_blank"
+		   rel="noopener"
+		   class="wiki-view-all">
+			View all wiki pages →
+		</a>
+	}
+</div>
+
+@code {
+	private const string DefaultWikiBaseUrl = "https://games.darkrepos.com/wiki";
+
+	/// <summary>
+	/// Wiki resources for the game.
+	/// </summary>
+	[Parameter, EditorRequired]
+	public WikiResources Wiki { get; set; } = null!;
+
+	/// <summary>
+	/// Game slug for URL generation.
+	/// </summary>
+	[Parameter]
+	public string? GameSlug { get; set; }
+
+	/// <summary>
+	/// Whether to show the header title.
+	/// </summary>
+	[Parameter]
+	public bool ShowHeader { get; set; } = true;
+
+	/// <summary>
+	/// Whether to show unavailable resources (grayed out).
+	/// </summary>
+	[Parameter]
+	public bool ShowUnavailable { get; set; } = true;
+
+	/// <summary>
+	/// Whether to show the "View all" link.
+	/// </summary>
+	[Parameter]
+	public bool ShowViewAllLink { get; set; } = true;
+
+	/// <summary>
+	/// Compact mode for inline display.
+	/// </summary>
+	[Parameter]
+	public bool Compact { get; set; } = false;
+
+	private string GetWikiUrl(string subPage)
+	{
+		var baseUrl = Wiki.WikiBaseUrl ?? $"{DefaultWikiBaseUrl}/{GameSlug}";
+
+		if (string.IsNullOrEmpty(subPage))
+			return baseUrl;
+
+		// MediaWiki URL pattern: BaseUrl:Subpage
+		return $"{baseUrl}:{subPage}";
+	}
+}

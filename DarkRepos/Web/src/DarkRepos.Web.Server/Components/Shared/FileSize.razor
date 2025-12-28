@@ -1,0 +1,11 @@
+@namespace DarkRepos.Web.Components.Shared
+@inherits FileSizeBase
+
+<span title="@TooltipText"
+	class="file-size @(ShowIcon ? "with-icon" : "") @SizeClass">
+	@if (ShowIcon)
+	{
+		<span class="file-size-icon" aria-hidden="true">📄</span>
+	}
+	@FormattedSize
+</span>

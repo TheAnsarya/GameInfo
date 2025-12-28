@@ -1,0 +1,36 @@
+@namespace DarkRepos.Web.Components.Shared
+@inject NavigationManager Navigation
+@implements IDisposable
+
+@if (_isNavigating)
+{
+	<div class="page-loading-indicator" role="progressbar" aria-label="Page loading">
+		<div class="page-loading-bar"></div>
+	</div>
+}
+
+@code {
+	private bool _isNavigating = false;
+
+	protected override void OnInitialized() {
+		Navigation.LocationChanged += HandleLocationChanged;
+	}
+
+	private void HandleLocationChanged(object? sender, LocationChangedEventArgs e) {
+		// Start loading indicator
+		_isNavigating = true;
+		StateHasChanged();
+
+		// Simulate page load completion after a short delay
+		// In a real app, you'd hook into the actual page load lifecycle
+		Task.Run(async () => {
+			await Task.Delay(300);
+			_isNavigating = false;
+			await InvokeAsync(StateHasChanged);
+		});
+	}
+
+	public void Dispose() {
+		Navigation.LocationChanged -= HandleLocationChanged;
+	}
+}

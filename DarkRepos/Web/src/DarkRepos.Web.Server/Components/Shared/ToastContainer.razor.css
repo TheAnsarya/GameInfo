@@ -1,0 +1,27 @@
+.toast-container {
+	position: fixed;
+	bottom: 1rem;
+	right: 1rem;
+	display: flex;
+	flex-direction: column-reverse;
+	gap: 0.5rem;
+	z-index: var(--z-toast);
+	pointer-events: none;
+}
+
+.toast-container> :deep(.toast) {
+	pointer-events: auto;
+}
+
+/* Mobile positioning */
+@media (max-width: 480px) {
+	.toast-container {
+		left: 1rem;
+		right: 1rem;
+	}
+
+	.toast-container> :deep(.toast) {
+		min-width: auto;
+		max-width: none;
+	}
+}

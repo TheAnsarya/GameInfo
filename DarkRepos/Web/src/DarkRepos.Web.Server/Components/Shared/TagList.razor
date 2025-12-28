@@ -1,0 +1,151 @@
+@namespace DarkRepos.Web.Components.Shared
+
+@*
+	TagList - Display a list of clickable tags
+	Usage: <TagList Tags="@tags" OnTagClick="@HandleTagClick" />
+	Features:
+	- Clickable tags with callbacks
+	- Removable tags (optional)
+	- Customizable colors
+	- Compact and expanded modes
+*@
+
+<div class="tag-list @(Compact ? "compact" : "") @(Wrap ? "wrap" : "")">
+	@foreach (var tag in Tags ?? Enumerable.Empty<string>())
+	{
+		<span class="tag @GetTagColorClass(tag)"
+			@onclick="() => HandleClick(tag)"
+			@onclick:stopPropagation="true"
+			role="button"
+			tabindex="0"
+			@onkeydown="e => HandleKeyDown(e, tag)">
+			@if (ShowIcon)
+			{
+				<span class="tag-icon" aria-hidden="true">#</span>
+			}
+			<span class="tag-text">@tag</span>
+			@if (Removable)
+			{
+				<button type="button"
+					class="tag-remove"
+					@onclick="() => HandleRemove(tag)"
+					@onclick:stopPropagation="true"
+					aria-label="Remove @tag">
+					×
+				</button>
+			}
+		</span>
+	}
+	@if (MaxVisible > 0 && (Tags?.Count() ?? 0) > MaxVisible)
+	{
+		<span class="tag-overflow">+@((Tags?.Count() ?? 0) - MaxVisible) more</span>
+	}
+</div>
+
+@code {
+	/// <summary>
+	/// The list of tags to display.
+	/// </summary>
+	[Parameter, EditorRequired]
+	public IEnumerable<string>? Tags { get; set; }
+
+	/// <summary>
+	/// Callback when a tag is clicked.
+	/// </summary>
+	[Parameter]
+	public EventCallback<string> OnTagClick { get; set; }
+
+	/// <summary>
+	/// Callback when a tag is removed.
+	/// </summary>
+	[Parameter]
+	public EventCallback<string> OnTagRemove { get; set; }
+
+	/// <summary>
+	/// Whether tags can be removed.
+	/// </summary>
+	[Parameter]
+	public bool Removable { get; set; }
+
+	/// <summary>
+	/// Whether to show the # icon before tags.
+	/// </summary>
+	[Parameter]
+	public bool ShowIcon { get; set; } = true;
+
+	/// <summary>
+	/// Use compact styling.
+	/// </summary>
+	[Parameter]
+	public bool Compact { get; set; }
+
+	/// <summary>
+	/// Allow tags to wrap to multiple lines.
+	/// </summary>
+	[Parameter]
+	public bool Wrap { get; set; } = true;
+
+	/// <summary>
+	/// Maximum visible tags (0 = show all).
+	/// </summary>
+	[Parameter]
+	public int MaxVisible { get; set; }
+
+	/// <summary>
+	/// Dictionary mapping tag names to color classes.
+	/// </summary>
+	[Parameter]
+	public Dictionary<string, string>? TagColors { get; set; }
+
+	private async Task HandleClick(string tag)
+	{
+		if (OnTagClick.HasDelegate)
+		{
+			await OnTagClick.InvokeAsync(tag);
+		}
+	}
+
+	private async Task HandleRemove(string tag)
+	{
+		if (OnTagRemove.HasDelegate)
+		{
+			await OnTagRemove.InvokeAsync(tag);
+		}
+	}
+
+	private async Task HandleKeyDown(KeyboardEventArgs e, string tag)
+	{
+		if (e.Key == "Enter" || e.Key == " ")
+		{
+			await HandleClick(tag);
+		}
+	}
+
+	private string GetTagColorClass(string tag)
+	{
+		if (TagColors?.TryGetValue(tag, out var color) == true)
+		{
+			return color;
+		}
+
+		// Default colors based on tag content
+		return tag.ToLowerInvariant() switch
+		{
+			"nes" or "nintendo" => "tag-red",
+			"snes" or "super nintendo" => "tag-purple",
+			"gb" or "game boy" => "tag-green",
+			"gba" or "game boy advance" => "tag-blue",
+			"genesis" or "mega drive" => "tag-cyan",
+			"sega" => "tag-blue",
+			"rpg" => "tag-gold",
+			"action" => "tag-red",
+			"puzzle" => "tag-green",
+			"platformer" => "tag-orange",
+			"rom hack" or "hack" => "tag-pink",
+			"translation" => "tag-teal",
+			"tool" or "utility" => "tag-gray",
+			"documentation" or "docs" => "tag-indigo",
+			_ => "tag-default"
+		};
+	}
+}

@@ -1,0 +1,159 @@
+@namespace DarkRepos.Web.Components.Shared
+@inject IJSRuntime JS
+
+@*
+	CopyButton - Copy text to clipboard
+	Usage: <CopyButton Text="@textToCopy" />
+	Features:
+	- Copies text to clipboard
+	- Visual feedback on success/error
+	- Accessible button with ARIA
+*@
+
+<button type="button"
+	class="copy-button @(_state.ToString().ToLower())"
+	@onclick="CopyToClipboard"
+	title="@GetTitle()"
+	aria-label="@GetTitle()"
+	disabled="@(_state == CopyState.Copying)">
+	@switch (_state)
+	{
+		case CopyState.Ready:
+			<span class="copy-icon" aria-hidden="true">📋</span>
+			<span class="copy-text">@Label</span>
+			break;
+		case CopyState.Copying:
+			<span class="copy-icon" aria-hidden="true">⏳</span>
+			<span class="copy-text">@CopyingLabel</span>
+			break;
+		case CopyState.Copied:
+			<span class="copy-icon" aria-hidden="true">✓</span>
+			<span class="copy-text">@CopiedLabel</span>
+			break;
+		case CopyState.Error:
+			<span class="copy-icon" aria-hidden="true">✗</span>
+			<span class="copy-text">@ErrorLabel</span>
+			break;
+	}
+</button>
+
+@code {
+	/// <summary>
+	/// The text to copy to clipboard.
+	/// </summary>
+	[Parameter, EditorRequired]
+	public string Text { get; set; } = string.Empty;
+
+	/// <summary>
+	/// Label for the ready state.
+	/// </summary>
+	[Parameter]
+	public string Label { get; set; } = "Copy";
+
+	/// <summary>
+	/// Label shown while copying.
+	/// </summary>
+	[Parameter]
+	public string CopyingLabel { get; set; } = "Copying...";
+
+	/// <summary>
+	/// Label shown after successful copy.
+	/// </summary>
+	[Parameter]
+	public string CopiedLabel { get; set; } = "Copied!";
+
+	/// <summary>
+	/// Label shown if copy fails.
+	/// </summary>
+	[Parameter]
+	public string ErrorLabel { get; set; } = "Failed";
+
+	/// <summary>
+	/// Duration in milliseconds to show success/error state.
+	/// </summary>
+	[Parameter]
+	public int FeedbackDuration { get; set; } = 2000;
+
+	/// <summary>
+	/// Whether to show only the icon (no text label).
+	/// </summary>
+	[Parameter]
+	public bool IconOnly { get; set; }
+
+	/// <summary>
+	/// Callback when copy completes (success or failure).
+	/// </summary>
+	[Parameter]
+	public EventCallback<bool> OnCopy { get; set; }
+
+	private CopyState _state = CopyState.Ready;
+	private System.Timers.Timer? _resetTimer;
+
+	private async Task CopyToClipboard()
+	{
+		if (string.IsNullOrEmpty(Text))
+		{
+			return;
+		}
+
+		_state = CopyState.Copying;
+		StateHasChanged();
+
+		try
+		{
+			await JS.InvokeVoidAsync("navigator.clipboard.writeText", Text);
+			_state = CopyState.Copied;
+			await OnCopy.InvokeAsync(true);
+		}
+		catch
+		{
+			_state = CopyState.Error;
+			await OnCopy.InvokeAsync(false);
+		}
+
+		StateHasChanged();
+
+		// Reset to ready state after delay
+		_resetTimer?.Dispose();
+		_resetTimer = new System.Timers.Timer(FeedbackDuration);
+		_resetTimer.Elapsed += async (_, _) =>
+		{
+			_state = CopyState.Ready;
+			_resetTimer?.Dispose();
+			await InvokeAsync(StateHasChanged);
+		};
+		_resetTimer.AutoReset = false;
+		_resetTimer.Start();
+	}
+
+	private string GetTitle() => _state switch
+	{
+		CopyState.Ready => $"Copy to clipboard: {TruncateText(Text, 50)}",
+		CopyState.Copying => "Copying...",
+		CopyState.Copied => "Copied to clipboard",
+		CopyState.Error => "Failed to copy",
+		_ => "Copy"
+	};
+
+	private static string TruncateText(string text, int maxLength)
+	{
+		if (string.IsNullOrEmpty(text) || text.Length <= maxLength)
+		{
+			return text;
+		}
+		return text[..(maxLength - 3)] + "...";
+	}
+
+	public void Dispose()
+	{
+		_resetTimer?.Dispose();
+	}
+
+	public enum CopyState
+	{
+		Ready,
+		Copying,
+		Copied,
+		Error
+	}
+}

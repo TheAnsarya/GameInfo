@@ -1,0 +1,168 @@
+.discord-invite {
+	background: var(--color-bg-secondary);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-lg);
+	overflow: hidden;
+	max-width: 24rem;
+}
+
+.discord-invite-header {
+	background: #5865f2;
+	color: #fff;
+	padding: var(--space-3) var(--space-4);
+	display: flex;
+	align-items: center;
+	gap: var(--space-2);
+}
+
+.discord-logo {
+	flex-shrink: 0;
+}
+
+.discord-label {
+	font-size: var(--font-size-sm);
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.discord-invite-body {
+	padding: var(--space-4);
+}
+
+.discord-server-info {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--space-3);
+}
+
+.discord-server-icon {
+	width: 50px;
+	height: 50px;
+	border-radius: 16px;
+	flex-shrink: 0;
+	object-fit: cover;
+}
+
+.discord-server-icon-placeholder {
+	background: #5865f2;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 600;
+	font-size: var(--font-size-lg);
+}
+
+.discord-server-details {
+	flex: 1;
+	min-width: 0;
+}
+
+.discord-server-name {
+	margin: 0 0 var(--space-1) 0;
+	font-size: var(--font-size-md);
+	font-weight: 600;
+	color: var(--color-text-primary);
+}
+
+.discord-server-description {
+	margin: 0 0 var(--space-2) 0;
+	font-size: var(--font-size-sm);
+	color: var(--color-text-secondary);
+	line-height: 1.4;
+}
+
+.discord-server-stats {
+	display: flex;
+	align-items: center;
+	gap: var(--space-3);
+	flex-wrap: wrap;
+}
+
+.discord-stat {
+	display: flex;
+	align-items: center;
+	gap: var(--space-1);
+	font-size: var(--font-size-xs);
+	color: var(--color-text-muted);
+}
+
+.discord-status-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+}
+
+.discord-status-dot.online {
+	background: #3ba55c;
+}
+
+.discord-status-dot.offline {
+	background: #747f8d;
+}
+
+.discord-invite-footer {
+	padding: 0 var(--space-4) var(--space-4);
+}
+
+.discord-join-button {
+	display: block;
+	width: 100%;
+	padding: var(--space-2) var(--space-4);
+	background: #5865f2;
+	color: #fff;
+	text-align: center;
+	text-decoration: none;
+	font-weight: 500;
+	font-size: var(--font-size-sm);
+	border-radius: var(--radius-md);
+	transition: background-color var(--transition-fast);
+}
+
+.discord-join-button:hover {
+	background: #4752c4;
+	color: #fff;
+}
+
+.discord-join-button:focus-visible {
+	outline: 2px solid var(--color-focus);
+	outline-offset: 2px;
+}
+
+/* Compact variant */
+.discord-invite.compact {
+	max-width: 18rem;
+}
+
+.discord-invite.compact .discord-invite-header {
+	padding: var(--space-2) var(--space-3);
+}
+
+.discord-invite.compact .discord-invite-body {
+	padding: var(--space-3);
+}
+
+.discord-invite.compact .discord-server-icon {
+	width: 40px;
+	height: 40px;
+	border-radius: 12px;
+}
+
+.discord-invite.compact .discord-invite-footer {
+	padding: 0 var(--space-3) var(--space-3);
+}
+
+/* Print styles */
+@media print {
+	.discord-invite {
+		display: none;
+	}
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+	.discord-join-button {
+		transition: none;
+	}
+}

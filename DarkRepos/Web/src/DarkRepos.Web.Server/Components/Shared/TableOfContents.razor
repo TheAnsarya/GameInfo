@@ -1,0 +1,153 @@
+@namespace DarkRepos.Web.Components.Shared
+
+@*
+	TableOfContents - Auto-generated table of contents from headings
+	Usage: <TableOfContents Items="@headings" />
+	Features:
+	- Hierarchical heading structure (H2-H4)
+	- Smooth scroll to sections
+	- Active section highlighting
+	- Collapsible sections
+*@
+
+@if (Items?.Count > 0)
+{
+	<nav class="toc @(Sticky ? "sticky" : "")" aria-label="Table of contents">
+		<header class="toc-header">
+			<h2 class="toc-title">@Title</h2>
+			@if (Collapsible)
+			{
+				<button type="button" class="toc-toggle" @onclick="ToggleCollapsed"
+					aria-expanded="@(!_collapsed)" aria-controls="toc-list">
+					@(_collapsed ? "▶" : "▼")
+				</button>
+			}
+		</header>
+
+		@if (!_collapsed)
+		{
+			<ul id="toc-list" class="toc-list" role="list">
+				@foreach (var item in Items)
+				{
+					<li class="toc-item toc-level-@item.Level @(item.Id == ActiveId ? "active" : "")">
+						<a href="#@item.Id" class="toc-link" @onclick="() => OnItemClick(item.Id)"
+							@onclick:preventDefault="@SmoothScroll">
+							@item.Text
+						</a>
+						@if (item.Children?.Count > 0)
+						{
+							<ul class="toc-sublist" role="list">
+								@foreach (var child in item.Children)
+								{
+									<li class="toc-item toc-level-@child.Level @(child.Id == ActiveId ? "active" : "")">
+										<a href="#@child.Id" class="toc-link" @onclick="() => OnItemClick(child.Id)"
+											@onclick:preventDefault="@SmoothScroll">
+											@child.Text
+										</a>
+										@if (child.Children?.Count > 0)
+										{
+											<ul class="toc-sublist" role="list">
+												@foreach (var grandchild in child.Children)
+												{
+													<li class="toc-item toc-level-@grandchild.Level @(grandchild.Id == ActiveId ? "active" : "")">
+														<a href="#@grandchild.Id" class="toc-link"
+															@onclick="() => OnItemClick(grandchild.Id)"
+															@onclick:preventDefault="@SmoothScroll">
+															@grandchild.Text
+														</a>
+													</li>
+												}
+											</ul>
+										}
+									</li>
+								}
+							</ul>
+						}
+					</li>
+				}
+			</ul>
+		}
+	</nav>
+}
+
+@code {
+	/// <summary>
+	/// The table of contents items (headings).
+	/// </summary>
+	[Parameter]
+	public IReadOnlyList<TocItem>? Items { get; set; }
+
+	/// <summary>
+	/// The title for the table of contents.
+	/// </summary>
+	[Parameter]
+	public string Title { get; set; } = "On This Page";
+
+	/// <summary>
+	/// The currently active item ID (for highlighting).
+	/// </summary>
+	[Parameter]
+	public string? ActiveId { get; set; }
+
+	/// <summary>
+	/// Callback when an item is clicked.
+	/// </summary>
+	[Parameter]
+	public EventCallback<string> OnItemClicked { get; set; }
+
+	/// <summary>
+	/// Whether the TOC should be sticky positioned.
+	/// </summary>
+	[Parameter]
+	public bool Sticky { get; set; } = true;
+
+	/// <summary>
+	/// Whether the TOC can be collapsed.
+	/// </summary>
+	[Parameter]
+	public bool Collapsible { get; set; }
+
+	/// <summary>
+	/// Whether to use smooth scrolling.
+	/// </summary>
+	[Parameter]
+	public bool SmoothScroll { get; set; } = true;
+
+	private bool _collapsed;
+
+	private void ToggleCollapsed()
+	{
+		_collapsed = !_collapsed;
+	}
+
+	private async Task OnItemClick(string id)
+	{
+		await OnItemClicked.InvokeAsync(id);
+	}
+
+	/// <summary>
+	/// Represents a single item in the table of contents.
+	/// </summary>
+	public class TocItem
+	{
+		/// <summary>
+		/// The heading ID (used for anchor links).
+		/// </summary>
+		public string Id { get; set; } = string.Empty;
+
+		/// <summary>
+		/// The heading text.
+		/// </summary>
+		public string Text { get; set; } = string.Empty;
+
+		/// <summary>
+		/// The heading level (2, 3, or 4).
+		/// </summary>
+		public int Level { get; set; } = 2;
+
+		/// <summary>
+		/// Child headings (sub-sections).
+		/// </summary>
+		public List<TocItem>? Children { get; set; }
+	}
+}

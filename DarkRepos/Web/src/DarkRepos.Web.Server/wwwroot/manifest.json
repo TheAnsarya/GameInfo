@@ -1,0 +1,21 @@
+{
+	"name": "Dark Repos",
+	"short_name": "DarkRepos",
+	"description": "ROM hacking documentation, disassemblies, and tools for retro games",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#1a1a1a",
+	"theme_color": "#4a3728",
+	"icons": [
+		{
+			"src": "/favicon.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	],
+	"categories": [
+		"developer tools",
+		"games",
+		"reference"
+	]
+}

@@ -1,0 +1,163 @@
+.version-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.25rem;
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.25rem;
+	font-family: var(--font-mono, ui-monospace, monospace);
+	font-weight: 500;
+	background-color: var(--version-bg, #f0f0f0);
+	color: var(--version-text, #333);
+	border: 1px solid var(--version-border, #ddd);
+}
+
+/* Type variants */
+.version-default {
+	--version-bg: #f0f0f0;
+	--version-text: #333;
+	--version-border: #ccc;
+}
+
+.version-release {
+	--version-bg: #d4edda;
+	--version-text: #155724;
+	--version-border: #c3e6cb;
+}
+
+.version-stable {
+	--version-bg: #d4edda;
+	--version-text: #155724;
+	--version-border: #28a745;
+}
+
+.version-beta {
+	--version-bg: #fff3cd;
+	--version-text: #856404;
+	--version-border: #ffc107;
+}
+
+.version-alpha {
+	--version-bg: #f8d7da;
+	--version-text: #721c24;
+	--version-border: #f5c6cb;
+}
+
+.version-preview {
+	--version-bg: #cce5ff;
+	--version-text: #004085;
+	--version-border: #b8daff;
+}
+
+.version-lts {
+	--version-bg: #d1ecf1;
+	--version-text: #0c5460;
+	--version-border: #17a2b8;
+}
+
+.version-deprecated {
+	--version-bg: #e9ecef;
+	--version-text: #6c757d;
+	--version-border: #ced4da;
+	text-decoration: line-through;
+	opacity: 0.8;
+}
+
+/* Size variants */
+.badge-sm {
+	padding: 0.125rem 0.375rem;
+	font-size: 0.75rem;
+}
+
+.badge-md {
+	padding: 0.25rem 0.5rem;
+	font-size: 0.875rem;
+}
+
+.badge-lg {
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+}
+
+/* Prefix styling */
+.version-prefix {
+	opacity: 0.7;
+	font-weight: normal;
+}
+
+/* Copy button */
+.version-copy-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: none;
+	border: none;
+	padding: 0.125rem;
+	margin-left: 0.25rem;
+	cursor: pointer;
+	opacity: 0.6;
+	border-radius: 0.125rem;
+	transition: opacity 0.15s ease;
+}
+
+.version-copy-btn:hover {
+	opacity: 1;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.version-copy-btn:active {
+	transform: scale(0.95);
+}
+
+.copy-icon {
+	font-size: 0.875em;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+	.version-default {
+		--version-bg: #2d2d2d;
+		--version-text: #e0e0e0;
+		--version-border: #444;
+	}
+
+	.version-release,
+	.version-stable {
+		--version-bg: #1e4620;
+		--version-text: #7ee07e;
+		--version-border: #2d6a2e;
+	}
+
+	.version-beta {
+		--version-bg: #4a3d00;
+		--version-text: #ffd95c;
+		--version-border: #6b5900;
+	}
+
+	.version-alpha {
+		--version-bg: #4a1c1c;
+		--version-text: #f5a5a5;
+		--version-border: #6b2929;
+	}
+
+	.version-preview {
+		--version-bg: #1a3a5c;
+		--version-text: #7eb8ff;
+		--version-border: #2a5a8a;
+	}
+
+	.version-lts {
+		--version-bg: #0d3c42;
+		--version-text: #5ed3e3;
+		--version-border: #17575f;
+	}
+
+	.version-deprecated {
+		--version-bg: #333;
+		--version-text: #999;
+		--version-border: #555;
+	}
+
+	.version-copy-btn:hover {
+		background-color: rgba(255, 255, 255, 0.1);
+	}
+}

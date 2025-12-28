@@ -1,0 +1,235 @@
+@namespace DarkRepos.Web.Components.Shared
+
+@*
+	TextHighlighter - Highlights search terms in text
+	Usage: <TextHighlighter Text="@text" SearchTerms="@query" />
+	Features:
+	- Highlights all occurrences
+	- Case-insensitive matching
+	- HTML-safe output
+	- Customizable highlight style
+*@
+
+@if (string.IsNullOrEmpty(Text))
+{
+	<span></span>
+}
+else if (string.IsNullOrWhiteSpace(SearchTerms))
+{
+	<span>@Text</span>
+}
+else
+{
+	<span>@((MarkupString)HighlightedText)</span>
+}
+
+@code {
+	/// <summary>
+	/// The text to display and highlight.
+	/// </summary>
+	[Parameter]
+	public string Text { get; set; } = string.Empty;
+
+	/// <summary>
+	/// The search terms to highlight (space-separated).
+	/// </summary>
+	[Parameter]
+	public string SearchTerms { get; set; } = string.Empty;
+
+	/// <summary>
+	/// CSS class for the highlight mark element.
+	/// </summary>
+	[Parameter]
+	public string HighlightClass { get; set; } = "search-highlight";
+
+	/// <summary>
+	/// Maximum length before truncating with ellipsis.
+	/// Set to 0 to disable truncation.
+	/// </summary>
+	[Parameter]
+	public int MaxLength { get; set; } = 0;
+
+	/// <summary>
+	/// Whether to show context around the first match when truncating.
+	/// </summary>
+	[Parameter]
+	public bool ShowContext { get; set; } = true;
+
+	/// <summary>
+	/// Number of characters of context to show before/after matches.
+	/// </summary>
+	[Parameter]
+	public int ContextLength { get; set; } = 50;
+
+	private string HighlightedText => BuildHighlightedText();
+
+	private string BuildHighlightedText()
+	{
+		if (string.IsNullOrEmpty(Text) || string.IsNullOrWhiteSpace(SearchTerms))
+		{
+			return HtmlEncode(Text);
+		}
+
+		var terms = GetSearchTerms();
+		if (terms.Count == 0)
+		{
+			return HtmlEncode(Text);
+		}
+
+		// Find all matches with their positions
+		var matches = FindAllMatches(Text, terms);
+
+		if (matches.Count == 0)
+		{
+			return MaybeTruncate(HtmlEncode(Text));
+		}
+
+		// Build the highlighted string
+		var result = new System.Text.StringBuilder();
+		var textToHighlight = Text;
+		var offset = 0;
+
+		// Apply truncation with context if needed
+		if (MaxLength > 0 && Text.Length > MaxLength && ShowContext && matches.Count > 0)
+		{
+			var (start, end) = GetContextBounds(matches[0].Start, matches[0].End, Text.Length);
+			textToHighlight = Text[start..end];
+			offset = start;
+
+			if (start > 0)
+			{
+				result.Append("...");
+			}
+
+			// Recalculate matches for truncated text
+			matches = FindAllMatches(textToHighlight, terms);
+		}
+
+		var currentPos = 0;
+		foreach (var match in matches.OrderBy(m => m.Start))
+		{
+			// Add text before this match
+			if (match.Start > currentPos)
+			{
+				result.Append(HtmlEncode(textToHighlight[currentPos..match.Start]));
+			}
+
+			// Add highlighted match
+			var matchedText = textToHighlight[match.Start..match.End];
+			result.Append($"<mark class=\"{HtmlEncode(HighlightClass)}\">{HtmlEncode(matchedText)}</mark>");
+
+			currentPos = match.End;
+		}
+
+		// Add remaining text
+		if (currentPos < textToHighlight.Length)
+		{
+			var remaining = textToHighlight[currentPos..];
+			result.Append(HtmlEncode(remaining));
+		}
+
+		// Add trailing ellipsis if truncated
+		if (MaxLength > 0 && offset + textToHighlight.Length < Text.Length)
+		{
+			result.Append("...");
+		}
+
+		return result.ToString();
+	}
+
+	private List<string> GetSearchTerms()
+	{
+		return SearchTerms
+			.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+			.Where(t => t.Length >= 2)
+			.Distinct(StringComparer.OrdinalIgnoreCase)
+			.ToList();
+	}
+
+	private static List<(int Start, int End)> FindAllMatches(string text, List<string> terms)
+	{
+		var matches = new List<(int Start, int End)>();
+
+		foreach (var term in terms)
+		{
+			var index = 0;
+			while ((index = text.IndexOf(term, index, StringComparison.OrdinalIgnoreCase)) >= 0)
+			{
+				var end = index + term.Length;
+
+				// Check for overlapping matches
+				var overlaps = matches.Any(m => (index >= m.Start && index < m.End) || (end > m.Start && end <= m.End));
+
+				if (!overlaps)
+				{
+					matches.Add((index, end));
+				}
+
+				index++;
+			}
+		}
+
+		return [.. matches.OrderBy(m => m.Start)];
+	}
+
+	private (int Start, int End) GetContextBounds(int matchStart, int matchEnd, int textLength)
+	{
+		var contextStart = Math.Max(0, matchStart - ContextLength);
+		var contextEnd = Math.Min(textLength, matchEnd + ContextLength);
+
+		// Ensure we don't exceed MaxLength
+		if (contextEnd - contextStart > MaxLength)
+		{
+			contextEnd = contextStart + MaxLength;
+		}
+
+		// Try to end at a word boundary
+		if (contextEnd < textLength)
+		{
+			var nextSpace = Text.IndexOf(' ', contextEnd);
+			if (nextSpace > 0 && nextSpace - contextStart <= MaxLength + 20)
+			{
+				contextEnd = nextSpace;
+			}
+		}
+
+		// Try to start at a word boundary
+		if (contextStart > 0)
+		{
+			var prevSpace = Text.LastIndexOf(' ', contextStart);
+			if (prevSpace >= 0 && contextEnd - prevSpace <= MaxLength + 20)
+			{
+				contextStart = prevSpace + 1;
+			}
+		}
+
+		return (contextStart, contextEnd);
+	}
+
+	private string MaybeTruncate(string text)
+	{
+		if (MaxLength <= 0 || text.Length <= MaxLength)
+		{
+			return text;
+		}
+
+		// Try to truncate at a word boundary
+		var truncateAt = text.LastIndexOf(' ', MaxLength);
+		if (truncateAt < MaxLength - 30)
+		{
+			truncateAt = MaxLength;
+		}
+
+		return text[..truncateAt] + "...";
+	}
+
+	private static string HtmlEncode(string text)
+	{
+		if (string.IsNullOrEmpty(text))
+		{
+			return string.Empty;
+		}
+
+		return System.Net.WebUtility.HtmlEncode(text);
+	}
+}
