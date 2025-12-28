@@ -80,12 +80,14 @@ Created unit tests in `GameInfoTools.Tests.Games.DQ3r`:
 ### Git Commits (2025-12-29 Session - Continuation)
 13. `46c3878` - feat(dq3r): add Blazor UI editor for DQ3r data tables (#142)
 14. `f02dfd0` - docs(dq3r): add verified data tables to ROM Map wikitext (#142)
+15. `ccd224a` - docs: update session log with 2025-12-29 progress
+16. `cbdff53` - feat(dq3r): add trace analysis services for CDL and trace logs (#133)
 
 ## Issues Still Open
 | Issue | Title | Status |
 |-------|-------|--------|
-| #127 | [Epic] DQ3r Complete Disassembly Project | In Progress (~75%) |
-| #133 | Integrate logsmall trace analysis | C# libs added, pending |
+| #127 | [Epic] DQ3r Complete Disassembly Project | In Progress (~85%) |
+| #133 | Integrate logsmall trace analysis | Completed |
 | #141 | Convert Python tools to C# | ~95% Complete |
 | #142 | Create DQ3r editors for DarkReposEditor | In Progress (Blazor UI done) |
 
@@ -104,11 +106,12 @@ Created unit tests in `GameInfoTools.Tests.Games.DQ3r`:
 
 ### C# Code Created
 - **8 new files** in GameInfoTools.Analysis.Games.DQ3r namespace
-- **2 new files** in DarkRepos.Editor.Core.Services.Games namespace
+- **3 new files** in DarkRepos.Editor.Core.Services.Games namespace
+- **1 new file** in DarkRepos.Editor.Core.Services namespace (TraceAnalyzerService)
 - **1 new file** in GameInfoTools.Tests.Games.DQ3r namespace
 - **1 config file** dq3r-datamap.json
 - **1 Blazor page** DQ3rEditor.razor with CSS
-- **~3,500 lines** of new C# code
+- **~4,100 lines** of new C# code
 - **38 unit tests** all passing
 
 ### Wiki Documentation
@@ -121,6 +124,7 @@ Created unit tests in `GameInfoTools.Tests.Games.DQ3r`:
 2. ~~Verify ROM addresses in DQ3rEditorService from datamap.json~~ ✅ Done
 3. ~~Add Blazor UI components for DQ3r editors~~ ✅ Done
 4. ~~Enhance DarkRepos wiki with ROM Map data~~ ✅ Done
-5. Integrate trace analysis from logsmall (#133)
+5. ~~Integrate trace analysis from logsmall~~ ✅ Done (#133)
 6. Add audio extraction support (lower priority)
 7. Create comprehensive dq3r-datamap.json configuration ✅ Done
+8. Add unit tests for trace analysis services
