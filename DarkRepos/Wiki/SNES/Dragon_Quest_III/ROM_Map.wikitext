@@ -20,6 +20,92 @@ This page documents the ROM layout for Dragon Quest III on SNES (the Super Famic
 | Region || Japan only
 |}
 
+== Data Tables Summary ==
+
+This section provides a comprehensive overview of all major data table locations in the ROM. All addresses are SNES CPU addresses (HiROM mapping, add $c00000 to file offset). For file addresses, subtract $c00000.
+
+=== Equipment and Items (Bank $50) ===
+
+{| class="wikitable sortable"
+|-
+! Table !! SNES Address !! File Offset !! Count !! Entry Size !! Total Size !! Description
+|-
+| Items || $d00000 || $500000 || 512 || 16 bytes || $2000 || Item stats and properties
+|-
+| Weapons || $d02000 || $502000 || 128 || 16 bytes || $800 || Weapon stats and bonuses
+|-
+| Armor || $d04000 || $504000 || 128 || 16 bytes || $800 || Armor stats and resistances
+|}
+
+=== Monsters (Bank $51) ===
+
+{| class="wikitable sortable"
+|-
+! Table !! SNES Address !! File Offset !! Count !! Entry Size !! Total Size !! Description
+|-
+| Monster Stats || $d10000 || $510000 || 384 || 32 bytes || $3000 || Monster HP, MP, stats, drops
+|-
+| Monster AI || $d13000 || $513000 || 256 || 32 bytes || $2000 || Monster AI patterns and behaviors
+|}
+
+=== Magic and Classes (Bank $52) ===
+
+{| class="wikitable sortable"
+|-
+! Table !! SNES Address !! File Offset !! Count !! Entry Size !! Total Size !! Description
+|-
+| Spells || $d20000 || $520000 || 341 || 12 bytes || $ffc || Spell effects, MP cost, targeting
+|-
+| Classes || $d21000 || $521000 || 128 || 16 bytes || $800 || Class base stats and growth rates
+|}
+
+=== Graphics ===
+
+{| class="wikitable sortable"
+|-
+! Table !! SNES Address !! File Offset !! Count !! Entry Size !! Description
+|-
+| Character Sprites || $e00000 || $200000 || 2048 || 32 bytes || Player/NPC sprite data
+|-
+| Monster Graphics || $e20000 || $220000 || 4096 || 32 bytes || Monster sprite data
+|-
+| World Map Tiles || $d80000 || $180000 || 2048 || 16 bytes || Overworld tile graphics
+|-
+| UI Graphics || $da0000 || $1a0000 || 1024 || 16 bytes || Menu and UI elements
+|-
+| Font Tiles || $db0000 || $1b0000 || 512 || 16 bytes || Font tile graphics
+|}
+
+=== Audio ===
+
+{| class="wikitable sortable"
+|-
+! Table !! SNES Address !! File Offset !! Description
+|-
+| Music Bank 1 || $f00000 || $300000 || Music sequences (4 tracks)
+|-
+| Music Bank 2 || $f08000 || $308000 || Music sequences (6 tracks)
+|-
+| Sound Effects || $f10000 || $310000 || Sound effect samples (BRR format, ~16KB)
+|-
+| Instruments || $f20000 || $320000 || Instrument samples (BRR format, ~32KB)
+|}
+
+=== Text and Script ===
+
+{| class="wikitable sortable"
+|-
+! Table !! SNES Address !! File Offset !! Size !! Description
+|-
+| Main Dialog || $c00000 || $400000 || Variable || Main dialog text (Huffman compressed)
+|-
+| Dialog Script || $fcc258 || $3cc258 || $20d5e bytes || Dialog script data
+|-
+| Dialog Font Data || $c10ed3 || $010ed3 || $42d7 bytes || Variable-width font data
+|-
+| Font Metadata || $c151aa || $0151aa || $fa bytes || Font metadata table (50 × 5 bytes)
+|}
+
 == Main ==
 
 {| class="wikitable sortable"
