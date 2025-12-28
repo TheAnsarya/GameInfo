@@ -1,0 +1,15 @@
+{
+	"name": "music_bank_2",
+	"format": "spc_music",
+	"source_address": "$308000",
+	"source_bank": 48,
+	"raw_size": 32768,
+	"processed_size": 32768,
+	"checksum": "583316ef0792aadf",
+	"metadata": {
+		"type": "SPC Music Data",
+		"estimated_tracks": 6,
+		"format_notes": "SNES SPC sequence data"
+	},
+	"extraction_notes": "Extracted from known audio location"
+}

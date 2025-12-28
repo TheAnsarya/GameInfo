@@ -1,69 +1,64 @@
 # Dragon Quest III (SNES) - ROM Map
 
-> **Status:** 🔴 Not Started
+> **Status:** � In Progress (96.48% coverage)
 
-This document will contain the complete ROM map for Dragon Quest III (SNES).
+Complete ROM map for Dragon Quest III (SNES) - HiROM mapping.
 
 ## ROM Information
 
 | Property | Value |
 |----------|-------|
-| Type | HiROM |
-| Size | 4,194,304 bytes (4 MB) |
-| Banks | 64 |
-| Checksum | TBD |
+| Type | HiROM (Mode $21) |
+| Size | 6,291,456 bytes (6 MB / 48 Mbit) |
+| Banks | 192 ($00-$BF) |
+| ROM Header | $FFC0-$FFDF |
+
+## Memory Mapping (HiROM)
+
+### Address Translation
+
+```
+SNES Address        PC File Offset      Description
+$c00000-$c0ffff  →  $000000-$00ffff    Bank $00
+$c10000-$c1ffff  →  $010000-$01ffff    Bank $01
+...
+$ff0000-$ffffff  →  $3f0000-$3fffff    Bank $3F (mirrors to $BF)
+
+For HiROM: PC = (SNES_Address & 0x3FFFFF)
+```
 
 ## Bank Overview
 
-| Bank | SNES Address | File Offset | Size | Description |
-|------|--------------|-------------|------|-------------|
-| $00 | $c00000-$c0ffff | $000000 | 64KB | Boot code, vectors |
-| $01 | $c10000-$c1ffff | $010000 | 64KB | Main engine |
-| $02 | $c20000-$c2ffff | $020000 | 64KB | Battle system |
-| ... | ... | ... | ... | ... |
-| $3f | $ff0000-$ffffff | $3f0000 | 64KB | TBD |
+| Bank | SNES Address | File Offset | Description |
+|------|--------------|-------------|-------------|
+| $00 | $c00000 | $000000 | Boot code, reset vectors, system init |
+| $01 | $c10000 | $010000 | Main game engine |
+| $02 | $c20000 | $020000 | Battle system core |
+| $03 | $c30000 | $030000 | Menu/UI system |
+| $04 | $c40000 | $040000 | Field/map engine |
+| $05 | $c50000 | $050000 | Audio/music driver |
+| $06 | $c60000 | $060000 | Graphics routines |
+| $07 | $c70000 | $070000 | Text/dialog engine |
+| $08 | $c80000 | $080000 | NPC/event scripts |
+| $09-$3F | ... | ... | Data banks (graphics, maps, text) |
 
-## Known Addresses
+## ROM Header ($FFC0)
 
-### System
-| Address | Description |
-|---------|-------------|
-| $c00000 | Reset vector handler |
-| TBD | NMI handler |
-| TBD | IRQ handler |
+| Offset | Field | Value |
+|--------|-------|-------|
+| $FFC0 | Title | "DRAGONQUEST3       " |
+| $FFD5 | Map Mode | $21 (HiROM, FastROM) |
+| $FFD6 | Type | $00 (ROM only) |
+| $FFD7 | ROM Size | $0C (4MB) |
+| $FFD8 | RAM Size | $03 (8KB) |
+| $FFD9 | Country | $00 (Japan) |
 
-### Battle System
-| Address | Description |
-|---------|-------------|
-| TBD | Battle initialization |
-| TBD | Damage calculation |
+## Key ROM Regions
 
-### Menu System
-| Address | Description |
-|---------|-------------|
-| TBD | Menu rendering |
-| TBD | Text rendering |
-
-### Data Tables
-| Address | Size | Description |
-|---------|------|-------------|
-| TBD | TBD | Monster data table |
-| TBD | TBD | Item data table |
-| TBD | TBD | Spell data table |
-
-## Graphics
-| Address | Size | Description |
-|---------|------|-------------|
-| TBD | TBD | Character sprites |
-| TBD | TBD | Monster graphics |
-| TBD | TBD | Map tiles |
-
-## Text
-| Address | Size | Description |
-|---------|------|-------------|
-| TBD | TBD | Dialog text |
-| TBD | TBD | Menu text |
+For detailed documentation, see:
+- [reference/memory_map.md](reference/memory_map.md) - Detailed memory map
+- [reference/TECHNICAL_SPECS.md](reference/TECHNICAL_SPECS.md) - Hardware specifications
 
 ---
 
-*To be populated from dq3r-info analysis data*
+*Data sourced from dq3r-info analysis (192 bank disassembly)*

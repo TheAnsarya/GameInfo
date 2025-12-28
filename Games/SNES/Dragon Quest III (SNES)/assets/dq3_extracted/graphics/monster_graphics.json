@@ -1,0 +1,14 @@
+{
+	"name": "monster_graphics",
+	"format": "snes_4bpp",
+	"source_address": "$220000",
+	"source_bank": 34,
+	"raw_size": 131072,
+	"processed_size": 131072,
+	"checksum": "fa88d51f26e401cc",
+	"metadata": {
+		"tile_count": 4096,
+		"estimated_tiles": "4096 tiles"
+	},
+	"extraction_notes": "Extracted from known location at $220000"
+}

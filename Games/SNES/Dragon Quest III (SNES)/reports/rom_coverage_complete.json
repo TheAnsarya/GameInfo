@@ -1,0 +1,228 @@
+{
+  "rom_info": {
+    "filename": "Dragon Quest III - english (patched).smc",
+    "size_bytes": 6291456,
+    "rom_map_source": "https://datacrystal.tcrf.net/wiki/Dragon_Quest_III_(SNES)/ROM_map"
+  },
+  "coverage_stats": {
+    "total_bytes": 6291456,
+    "covered_bytes": 188548,
+    "coverage_percentage": 2.9968897501627607,
+    "system_coverage": {
+      "overworld": 46875,
+      "monsters": 0,
+      "character_classes": 3339,
+      "text_system": 157381,
+      "menu_system": 0
+    },
+    "total_mapped": 207595
+  },
+  "system_analysis": {
+    "overworld": {
+      "top_grid": {
+        "entries": 2289,
+        "unique_chunks": 1994,
+        "chunk_range": [
+          0,
+          65535
+        ]
+      },
+      "chunks": {
+        "arrays": 16,
+        "array_size": 2621,
+        "total_chunks": 2621
+      },
+      "tiles": {
+        "count": 236,
+        "bytes_per_tile": 8
+      }
+    },
+    "monsters": {
+      "total_analyzed": 5,
+      "names_start": 4118872,
+      "stats_start": 131112,
+      "monsters": [
+        {
+          "id": 1,
+          "start": 4118872,
+          "end": 4118876,
+          "size": 5,
+          "japanese": "\u30b9\u30e9\u30a4\u30e0",
+          "english": "Slime",
+          "hex_data": "4f694463ac"
+        },
+        {
+          "id": 2,
+          "start": 4118877,
+          "end": 4118882,
+          "size": 6,
+          "japanese": "\u304a\u304a\u304c\u3089\u3059",
+          "english": "Raven",
+          "hex_data": "1010c93218ac"
+        },
+        {
+          "id": 3,
+          "start": 4118883,
+          "end": 4118890,
+          "size": 8,
+          "japanese": "\u3044\u3063\u304b\u304f\u3046\u3055\u304e",
+          "english": "Pointed Rabbit",
+          "hex_data": "0d3f11130e16caac"
+        },
+        {
+          "id": 4,
+          "start": 4118891,
+          "end": 4118897,
+          "size": 7,
+          "japanese": "\u304a\u304a\u3042\u308a\u304f\u3044",
+          "english": "Large Anteater",
+          "hex_data": "10100c33130dac"
+        },
+        {
+          "id": 5,
+          "start": 4118898,
+          "end": 4118905,
+          "size": 8,
+          "japanese": "\u3058\u3093\u3081\u3093\u3061\u3087\u3046",
+          "english": "Human Face Butterfly",
+          "hex_data": "cf392d391c420eac"
+        }
+      ]
+    },
+    "character_classes": {
+      "start": 12851102,
+      "end": 12854440,
+      "size": 0,
+      "estimated_classes": 0
+    },
+    "text_system": {
+      "dialog_font": {
+        "size": 0
+      },
+      "font_settings": {
+        "structs": 0
+      },
+      "huffman_trees": {
+        "entries": 1001
+      },
+      "text_pointers": {
+        "count": 505
+      },
+      "script_data": {
+        "size": 134493
+      }
+    },
+    "menu_system": {
+      "intro_menu": {
+        "address": 197448,
+        "x_offset": 2,
+        "y_offset": 2,
+        "width": 25
+      },
+      "main_menu": {
+        "address": 196644,
+        "x_offset": 2,
+        "y_offset": 2,
+        "width": 15
+      },
+      "gold_menu": {
+        "address": 196860,
+        "x_offset": 21,
+        "y_offset": 16,
+        "width": 9
+      },
+      "speed_menu": {
+        "address": 197496,
+        "x_offset": 7,
+        "y_offset": 13,
+        "width": 18
+      },
+      "stereo_menu": {
+        "address": 197508,
+        "x_offset": 11,
+        "y_offset": 19,
+        "width": 15
+      }
+    }
+  },
+  "rom_map_specifications": {
+    "overworld": {
+      "top_grid": {
+        "start": 2984448,
+        "end": 2989026,
+        "size": 4579,
+        "desc": "64x64 grid chunks"
+      },
+      "chunks": {
+        "start": 2991260,
+        "end": 3033195,
+        "size": 40400,
+        "desc": "4x4 grids of tile indexes"
+      },
+      "tiles": {
+        "start": 2445112,
+        "end": 2447007,
+        "size": 1896,
+        "desc": "16x16 pixel tiles (8 bytes each)"
+      }
+    },
+    "monsters": {
+      "names_start": 4118872,
+      "stats_start": 131112,
+      "experience_base": 131112,
+      "gold_base": 131114,
+      "total_monsters": 155
+    },
+    "character_classes": {
+      "start": 12851102,
+      "end": 12854440,
+      "size": 3339,
+      "desc": "Character class definitions"
+    },
+    "text_system": {
+      "dialog_font": {
+        "start": 12652243,
+        "end": 12669353,
+        "size": 17111,
+        "desc": "Dialog font data"
+      },
+      "font_settings": {
+        "start": 12669354,
+        "end": 12669603,
+        "size": 250,
+        "desc": "Font lookup table"
+      },
+      "huffman_left": {
+        "start": 88531,
+        "end": 90534,
+        "size": 2004,
+        "desc": "Huffman tree 0-bits"
+      },
+      "huffman_right": {
+        "start": 90535,
+        "end": 92538,
+        "size": 2004,
+        "desc": "Huffman tree 1-bits"
+      },
+      "text_pointers": {
+        "start": 86833,
+        "end": 88350,
+        "size": 1518,
+        "desc": "Text pointer table"
+      },
+      "script_data": {
+        "start": 3981912,
+        "end": 4116405,
+        "size": 134494,
+        "desc": "Compressed script data"
+      }
+    },
+    "menu_system": {
+      "intro_menu": 197448,
+      "main_menu": 196644,
+      "gold_menu": 196860,
+      "speed_menu": 197496,
+      "stereo_menu": 197508
+    }
+  }
+}

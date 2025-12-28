@@ -1,0 +1,204 @@
+{
+  "showcase_date": "2025-11-09T11:17:09.850891",
+  "performance_metrics": {
+    "total_execution_time": 0.8398442268371582,
+    "success_rate": 0.0,
+    "successful_tools": 0,
+    "total_tools": 7,
+    "analysis_metrics": {
+      "rom_coverage": {
+        "coverage_percentage": 0,
+        "rom_size_bytes": 6291456,
+        "analyzed_bytes": 0
+      },
+      "memory_banking": {
+        "total_banks": 192,
+        "utilized_banks": 141,
+        "utilization_percentage": 73.4375
+      },
+      "disassembly": {
+        "total_instructions": 21177,
+        "total_bytes": 52942,
+        "estimated_functions": 423
+      },
+      "graphics": {
+        "total_chunks": 690,
+        "total_tiles": 85536,
+        "palette_areas": 8463,
+        "estimated_sprites": 5346
+      },
+      "audio": {
+        "brr_samples": 158371,
+        "audio_sequences": 18316,
+        "estimated_music_tracks": 915
+      },
+      "cross_references": {
+        "total_symbols": 8566,
+        "total_references": 0
+      }
+    }
+  },
+  "execution_results": {
+    "rom_map_analyzer.py": {
+      "status": "failed",
+      "execution_time": 0.14171671867370605,
+      "return_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\rom_map_analyzer.py\", line 625, in main\n    if not analyzer.load_rom():\n           ~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\rom_map_analyzer.py\", line 79, in load_rom\n    print(\"\\U0001f3ae Dragon Quest III - Advanced ROM Coverage Analyzer\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python314\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f3ae' in position 0: character maps to <undefined>\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\rom_map_analyzer.py\", line 652, in <module>\n    exit(main())\n         ~~~~^^\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\rom_map_analyzer.py\", line 648, in main\n    print(f\"\\u274c Analysis error: {str(e)}\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python314\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\u274c' in position 0: character maps to <undefined>\n"
+    },
+    "memory_banking_analyzer.py": {
+      "status": "failed",
+      "execution_time": 0.10454082489013672,
+      "return_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\memory_banking_analyzer.py\", line 512, in main\n    if not analyzer.load_rom():\n           ~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\memory_banking_analyzer.py\", line 52, in load_rom\n    print(\"\\U0001f3e6 Dragon Quest III - Advanced Memory Banking System Analyzer\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python314\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f3e6' in position 0: character maps to <undefined>\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\memory_banking_analyzer.py\", line 538, in <module>\n    exit(main())\n         ~~~~^^\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\memory_banking_analyzer.py\", line 534, in main\n    print(f\"\\u274c Banking analysis error: {str(e)}\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python314\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\u274c' in position 0: character maps to <undefined>\n"
+    },
+    "disassembly_engine.py": {
+      "status": "failed",
+      "execution_time": 0.10270333290100098,
+      "return_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\disassembly_engine.py\", line 491, in main\n    if not engine.load_rom():\n           ~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\disassembly_engine.py\", line 218, in load_rom\n    print(\"\\U0001f527 Dragon Quest III - Advanced Disassembly Engine\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python314\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f527' in position 0: character maps to <undefined>\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\disassembly_engine.py\", line 514, in <module>\n    exit(main())\n         ~~~~^^\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\disassembly_engine.py\", line 510, in main\n    print(f\"\\u274c Disassembly error: {str(e)}\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python314\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\u274c' in position 0: character maps to <undefined>\n"
+    },
+    "graphics_format_analyzer.py": {
+      "status": "failed",
+      "execution_time": 0.10899496078491211,
+      "return_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\graphics_format_analyzer.py\", line 500, in main\n    if not analyzer.load_rom():\n           ~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\graphics_format_analyzer.py\", line 91, in load_rom\n    print(\"\\U0001f3a8 Dragon Quest III - Advanced Graphics Format Analyzer\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python314\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f3a8' in position 0: character maps to <undefined>\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\graphics_format_analyzer.py\", line 525, in <module>\n    exit(main())\n         ~~~~^^\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\graphics_format_analyzer.py\", line 521, in main\n    print(f\"\\u274c Graphics analysis error: {str(e)}\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python314\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\u274c' in position 0: character maps to <undefined>\n"
+    },
+    "audio_system_analyzer.py": {
+      "status": "failed",
+      "execution_time": 0.12871670722961426,
+      "return_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\audio_system_analyzer.py\", line 620, in main\n    if not analyzer.load_rom():\n           ~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\audio_system_analyzer.py\", line 116, in load_rom\n    print(\"\\U0001f3b5 Dragon Quest III - Advanced Audio System Analyzer\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python314\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f3b5' in position 0: character maps to <undefined>\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\audio_system_analyzer.py\", line 648, in <module>\n    exit(main())\n         ~~~~^^\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\audio_system_analyzer.py\", line 644, in main\n    print(f\"\\u274c Audio analysis error: {str(e)}\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python314\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\u274c' in position 0: character maps to <undefined>\n"
+    },
+    "cross_reference_engine.py": {
+      "status": "failed",
+      "execution_time": 0.11362314224243164,
+      "return_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\cross_reference_engine.py\", line 888, in main\n    engine.analyze_complete_cross_references()\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\cross_reference_engine.py\", line 852, in analyze_complete_cross_references\n    print(\"\\n\\U0001f680 Running Complete Cross-Reference Analysis\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python314\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f680' in position 2: character maps to <undefined>\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\cross_reference_engine.py\", line 897, in <module>\n    exit(main())\n         ~~~~^^\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\cross_reference_engine.py\", line 893, in main\n    print(f\"\\u274c Cross-reference analysis error: {str(e)}\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python314\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\u274c' in position 0: character maps to <undefined>\n"
+    },
+    "documentation_generator.py": {
+      "status": "failed",
+      "execution_time": 0.1267833709716797,
+      "return_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\documentation_generator.py\", line 1176, in main\n    generator.generate_complete_documentation()\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\documentation_generator.py\", line 1038, in generate_complete_documentation\n    print(\"\\n\\U0001f680 Generating Complete Documentation Suite\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python314\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f680' in position 2: character maps to <undefined>\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\documentation_generator.py\", line 1185, in <module>\n    exit(main())\n         ~~~~^^\n  File \"C:\\Users\\me\\source\\repos\\dq3r-info\\tools\\analysis\\documentation_generator.py\", line 1181, in main\n    print(f\"\\u274c Documentation generation error: {str(e)}\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python314\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\u274c' in position 0: character maps to <undefined>\n"
+    }
+  },
+  "validation_results": {
+    "reports": {
+      "rom_coverage_complete.json": {
+        "status": "valid",
+        "file_size": 5453,
+        "sections": 4,
+        "has_summary": false,
+        "keys": [
+          "rom_info",
+          "coverage_stats",
+          "system_analysis",
+          "rom_map_specifications"
+        ]
+      },
+      "memory_banking_analysis.json": {
+        "status": "valid",
+        "file_size": 1327680,
+        "sections": 3,
+        "has_summary": false,
+        "keys": [
+          "rom_info",
+          "banking_analysis",
+          "constants"
+        ]
+      },
+      "disassembly_analysis.json": {
+        "status": "valid",
+        "file_size": 136,
+        "sections": 4,
+        "has_summary": false,
+        "keys": [
+          "total_instructions",
+          "total_bytes",
+          "banks_analyzed",
+          "code_coverage_percentage"
+        ]
+      },
+      "graphics_analysis.json": {
+        "status": "valid",
+        "file_size": 887474,
+        "sections": 3,
+        "has_summary": true,
+        "keys": [
+          "summary",
+          "chunks",
+          "palettes"
+        ]
+      },
+      "audio_system_analysis.json": {
+        "status": "valid",
+        "file_size": 15492,
+        "sections": 5,
+        "has_summary": true,
+        "keys": [
+          "summary",
+          "brr_samples",
+          "audio_sequences",
+          "spc_code_blocks",
+          "audio_banks"
+        ]
+      },
+      "cross_reference_analysis.json": {
+        "status": "valid",
+        "file_size": 84624,
+        "sections": 3,
+        "has_summary": true,
+        "keys": [
+          "summary",
+          "symbols_by_type",
+          "cross_references_summary"
+        ]
+      }
+    },
+    "documentation": {
+      "README.md": {
+        "status": "exists",
+        "file_size": 7063,
+        "line_count": 194,
+        "word_count": 827
+      },
+      "TECHNICAL_SPECIFICATION.md": {
+        "status": "exists",
+        "file_size": 5986,
+        "line_count": 208,
+        "word_count": 821
+      },
+      "API_REFERENCE.md": {
+        "status": "exists",
+        "file_size": 5734,
+        "line_count": 246,
+        "word_count": 511
+      },
+      "ANALYSIS_SUMMARY.md": {
+        "status": "exists",
+        "file_size": 6453,
+        "line_count": 182,
+        "word_count": 807
+      },
+      "CROSS_REFERENCE_ANALYSIS.md": {
+        "status": "exists",
+        "file_size": 2921,
+        "line_count": 97,
+        "word_count": 401
+      },
+      "INDEX.md": {
+        "status": "exists",
+        "file_size": 3806,
+        "line_count": 92,
+        "word_count": 378
+      }
+    }
+  }
+}

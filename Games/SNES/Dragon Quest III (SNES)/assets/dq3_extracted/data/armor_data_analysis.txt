@@ -1,0 +1,8 @@
+Data Analysis: armor_data
+========================================
+
+type: Item Data Table
+entry_size_estimate: 16
+estimated_entries: 128
+table_format: Fixed-size records
+hex_preview: 3F 1D 1B 2D 2E 3F 2D 2A 1F 26 26 2D 3F 2C 23 21 22 2E 3F 28 29 31 41 AC 19 29 2F 3F 1D 1B 28 47

@@ -1,0 +1,14 @@
+{
+	"name": "font_data",
+	"format": "snes_2bpp",
+	"source_address": "$1b0000",
+	"source_bank": 27,
+	"raw_size": 8192,
+	"processed_size": 8192,
+	"checksum": "264a60a21ec36662",
+	"metadata": {
+		"tile_count": 512,
+		"estimated_tiles": "512 tiles"
+	},
+	"extraction_notes": "Extracted from known location at $1b0000"
+}

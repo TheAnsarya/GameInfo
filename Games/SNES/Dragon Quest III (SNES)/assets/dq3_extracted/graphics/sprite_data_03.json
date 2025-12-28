@@ -1,0 +1,13 @@
+{
+	"name": "sprite_data_03",
+	"format": "sprite_16x16",
+	"source_address": "$11b800",
+	"source_bank": 17,
+	"raw_size": 16384,
+	"processed_size": 16384,
+	"checksum": "adc43079ea1ad9a2",
+	"metadata": {
+		"detection_method": "pattern_matching"
+	},
+	"extraction_notes": "Found via pattern matching at $11b800"
+}

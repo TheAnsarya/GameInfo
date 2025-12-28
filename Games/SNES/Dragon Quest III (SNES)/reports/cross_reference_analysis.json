@@ -1,0 +1,3017 @@
+{
+  "summary": {
+    "total_symbols": 8566,
+    "analysis_date": "2025-11-09T11:14:58.907026",
+    "rom_size": 6291456,
+    "symbol_types": {
+      "graphics_data": 690,
+      "palette_data": 7777,
+      "audio_sample": 50,
+      "audio_sequence": 49
+    }
+  },
+  "symbols_by_type": {
+    "graphics_data": [
+      {
+        "name": "gfx_000000",
+        "address": "0x000000",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 0.888671875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_000400",
+        "address": "0x000400",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 0.939453125,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_000800",
+        "address": "0x000800",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 0.998046875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_000C00",
+        "address": "0x000C00",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 0.99609375,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_001000",
+        "address": "0x001000",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_001400",
+        "address": "0x001400",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_001800",
+        "address": "0x001800",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 0.9921875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_001C00",
+        "address": "0x001C00",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 0.998046875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_002000",
+        "address": "0x002000",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 0.982421875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_002400",
+        "address": "0x002400",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 0.990234375,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_002800",
+        "address": "0x002800",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 0.98828125,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_002C00",
+        "address": "0x002C00",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 0.994140625,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_003000",
+        "address": "0x003000",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_003400",
+        "address": "0x003400",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_003800",
+        "address": "0x003800",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_003C00",
+        "address": "0x003C00",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_004000",
+        "address": "0x004000",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_004400",
+        "address": "0x004400",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_004800",
+        "address": "0x004800",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 0.99609375,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_004C00",
+        "address": "0x004C00",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 0.98828125,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_005000",
+        "address": "0x005000",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 0.9375,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_005400",
+        "address": "0x005400",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 0.966796875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_005800",
+        "address": "0x005800",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 0.8499999999999996,
+        "source_analysis": "graphics",
+        "description": "2bpp graphics, 64 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_005C00",
+        "address": "0x005C00",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_006000",
+        "address": "0x006000",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 0.99609375,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_006400",
+        "address": "0x006400",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 0.970703125,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_006800",
+        "address": "0x006800",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 0.998046875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_006C00",
+        "address": "0x006C00",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 0.998046875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_007000",
+        "address": "0x007000",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_007400",
+        "address": "0x007400",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_007800",
+        "address": "0x007800",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_007C00",
+        "address": "0x007C00",
+        "size": 1024,
+        "bank": 0,
+        "confidence": 0.99609375,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_008000",
+        "address": "0x008000",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_008400",
+        "address": "0x008400",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 0.990234375,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_008800",
+        "address": "0x008800",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 0.998046875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_008C00",
+        "address": "0x008C00",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 0.982421875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_009000",
+        "address": "0x009000",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_009400",
+        "address": "0x009400",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 0.8671875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_009800",
+        "address": "0x009800",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_009C00",
+        "address": "0x009C00",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 0.998046875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_00A000",
+        "address": "0x00A000",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_00A400",
+        "address": "0x00A400",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 0.998046875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_00A800",
+        "address": "0x00A800",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_00AC00",
+        "address": "0x00AC00",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_00B000",
+        "address": "0x00B000",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_00B400",
+        "address": "0x00B400",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 0.998046875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_00B800",
+        "address": "0x00B800",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_00BC00",
+        "address": "0x00BC00",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_00C000",
+        "address": "0x00C000",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 0.998046875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_00C400",
+        "address": "0x00C400",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 0.998046875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_00C800",
+        "address": "0x00C800",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 0.998046875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_00CC00",
+        "address": "0x00CC00",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_00D000",
+        "address": "0x00D000",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_00D400",
+        "address": "0x00D400",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 0.7293750000000001,
+        "source_analysis": "graphics",
+        "description": "4bpp graphics, 32 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_00D800",
+        "address": "0x00D800",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_00DC00",
+        "address": "0x00DC00",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_00E000",
+        "address": "0x00E000",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_00E400",
+        "address": "0x00E400",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_00E800",
+        "address": "0x00E800",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 0.998046875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_00EC00",
+        "address": "0x00EC00",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 0.998046875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_00F000",
+        "address": "0x00F000",
+        "size": 1024,
+        "bank": 1,
+        "confidence": 0.8671875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_010000",
+        "address": "0x010000",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 0.9921875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_010400",
+        "address": "0x010400",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_010800",
+        "address": "0x010800",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_010C00",
+        "address": "0x010C00",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 0.951171875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_011000",
+        "address": "0x011000",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 0.8999999999999995,
+        "source_analysis": "graphics",
+        "description": "2bpp graphics, 64 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_012000",
+        "address": "0x012000",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_012400",
+        "address": "0x012400",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_012800",
+        "address": "0x012800",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 0.998046875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_012C00",
+        "address": "0x012C00",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 0.998046875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_013000",
+        "address": "0x013000",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_013400",
+        "address": "0x013400",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_013800",
+        "address": "0x013800",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_013C00",
+        "address": "0x013C00",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_014000",
+        "address": "0x014000",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 0.982421875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_014400",
+        "address": "0x014400",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 0.99609375,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_014800",
+        "address": "0x014800",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 0.984375,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_014C00",
+        "address": "0x014C00",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_015000",
+        "address": "0x015000",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 0.970703125,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_015400",
+        "address": "0x015400",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 0.99609375,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_015800",
+        "address": "0x015800",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 1.0,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_015C00",
+        "address": "0x015C00",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 0.994140625,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_016000",
+        "address": "0x016000",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 0.984375,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_016400",
+        "address": "0x016400",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 0.99609375,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_016800",
+        "address": "0x016800",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 0.9765625,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_016C00",
+        "address": "0x016C00",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 0.873046875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_017000",
+        "address": "0x017000",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 0.998046875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_017400",
+        "address": "0x017400",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 0.958984375,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_017800",
+        "address": "0x017800",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 0.99609375,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_017C00",
+        "address": "0x017C00",
+        "size": 1024,
+        "bank": 2,
+        "confidence": 0.98046875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_018000",
+        "address": "0x018000",
+        "size": 1024,
+        "bank": 3,
+        "confidence": 0.984375,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_018400",
+        "address": "0x018400",
+        "size": 1024,
+        "bank": 3,
+        "confidence": 0.9921875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_018800",
+        "address": "0x018800",
+        "size": 1024,
+        "bank": 3,
+        "confidence": 0.986328125,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_018C00",
+        "address": "0x018C00",
+        "size": 1024,
+        "bank": 3,
+        "confidence": 0.998046875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_019000",
+        "address": "0x019000",
+        "size": 1024,
+        "bank": 3,
+        "confidence": 0.99609375,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_019400",
+        "address": "0x019400",
+        "size": 1024,
+        "bank": 3,
+        "confidence": 0.99609375,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_019800",
+        "address": "0x019800",
+        "size": 1024,
+        "bank": 3,
+        "confidence": 0.998046875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_019C00",
+        "address": "0x019C00",
+        "size": 1024,
+        "bank": 3,
+        "confidence": 0.998046875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_01A000",
+        "address": "0x01A000",
+        "size": 1024,
+        "bank": 3,
+        "confidence": 0.9921875,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "gfx_01A400",
+        "address": "0x01A400",
+        "size": 1024,
+        "bank": 3,
+        "confidence": 0.99609375,
+        "source_analysis": "graphics",
+        "description": "1bpp graphics, 128 tiles",
+        "cross_reference_count": 0
+      }
+    ],
+    "palette_data": [
+      {
+        "name": "pal_000200",
+        "address": "0x000200",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_000600",
+        "address": "0x000600",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_000A00",
+        "address": "0x000A00",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_000E00",
+        "address": "0x000E00",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_001200",
+        "address": "0x001200",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_001600",
+        "address": "0x001600",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_001A00",
+        "address": "0x001A00",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_001E00",
+        "address": "0x001E00",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_002200",
+        "address": "0x002200",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_002600",
+        "address": "0x002600",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_002A00",
+        "address": "0x002A00",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_002E00",
+        "address": "0x002E00",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_003200",
+        "address": "0x003200",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_003600",
+        "address": "0x003600",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_003A00",
+        "address": "0x003A00",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_003E00",
+        "address": "0x003E00",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_004200",
+        "address": "0x004200",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_004600",
+        "address": "0x004600",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_004A00",
+        "address": "0x004A00",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_004E00",
+        "address": "0x004E00",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_005200",
+        "address": "0x005200",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_005600",
+        "address": "0x005600",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_005A00",
+        "address": "0x005A00",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_005E00",
+        "address": "0x005E00",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_006200",
+        "address": "0x006200",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_006600",
+        "address": "0x006600",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_006A00",
+        "address": "0x006A00",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_006E00",
+        "address": "0x006E00",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_007200",
+        "address": "0x007200",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_007600",
+        "address": "0x007600",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_007A00",
+        "address": "0x007A00",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_007E00",
+        "address": "0x007E00",
+        "size": 0,
+        "bank": 0,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_008200",
+        "address": "0x008200",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_008600",
+        "address": "0x008600",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_008A00",
+        "address": "0x008A00",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_008E00",
+        "address": "0x008E00",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_009200",
+        "address": "0x009200",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_009600",
+        "address": "0x009600",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_009A00",
+        "address": "0x009A00",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_009E00",
+        "address": "0x009E00",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_00A200",
+        "address": "0x00A200",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_00A600",
+        "address": "0x00A600",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_00AA00",
+        "address": "0x00AA00",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_00AE00",
+        "address": "0x00AE00",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_00B200",
+        "address": "0x00B200",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_00B600",
+        "address": "0x00B600",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_00BA00",
+        "address": "0x00BA00",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_00BE00",
+        "address": "0x00BE00",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_00C200",
+        "address": "0x00C200",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_00C600",
+        "address": "0x00C600",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_00CA00",
+        "address": "0x00CA00",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_00CE00",
+        "address": "0x00CE00",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_00D200",
+        "address": "0x00D200",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_00D600",
+        "address": "0x00D600",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_00DA00",
+        "address": "0x00DA00",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_00DE00",
+        "address": "0x00DE00",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_00E200",
+        "address": "0x00E200",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_00E600",
+        "address": "0x00E600",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_00EA00",
+        "address": "0x00EA00",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_00EE00",
+        "address": "0x00EE00",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_00F200",
+        "address": "0x00F200",
+        "size": 0,
+        "bank": 1,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_010200",
+        "address": "0x010200",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_010600",
+        "address": "0x010600",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_010A00",
+        "address": "0x010A00",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_010E00",
+        "address": "0x010E00",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_011200",
+        "address": "0x011200",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_011400",
+        "address": "0x011400",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_012200",
+        "address": "0x012200",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_012600",
+        "address": "0x012600",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_012A00",
+        "address": "0x012A00",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_012E00",
+        "address": "0x012E00",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_013200",
+        "address": "0x013200",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_013600",
+        "address": "0x013600",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_013A00",
+        "address": "0x013A00",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_013E00",
+        "address": "0x013E00",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_014200",
+        "address": "0x014200",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_014600",
+        "address": "0x014600",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_014A00",
+        "address": "0x014A00",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_014E00",
+        "address": "0x014E00",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_015200",
+        "address": "0x015200",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_015600",
+        "address": "0x015600",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_015A00",
+        "address": "0x015A00",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_015E00",
+        "address": "0x015E00",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_016200",
+        "address": "0x016200",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_016600",
+        "address": "0x016600",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_016A00",
+        "address": "0x016A00",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_016E00",
+        "address": "0x016E00",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_017200",
+        "address": "0x017200",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_017600",
+        "address": "0x017600",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_017A00",
+        "address": "0x017A00",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_017E00",
+        "address": "0x017E00",
+        "size": 0,
+        "bank": 2,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_018200",
+        "address": "0x018200",
+        "size": 0,
+        "bank": 3,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_018600",
+        "address": "0x018600",
+        "size": 0,
+        "bank": 3,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_018A00",
+        "address": "0x018A00",
+        "size": 0,
+        "bank": 3,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_018E00",
+        "address": "0x018E00",
+        "size": 0,
+        "bank": 3,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_019200",
+        "address": "0x019200",
+        "size": 0,
+        "bank": 3,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_019600",
+        "address": "0x019600",
+        "size": 0,
+        "bank": 3,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_019A00",
+        "address": "0x019A00",
+        "size": 0,
+        "bank": 3,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_019E00",
+        "address": "0x019E00",
+        "size": 0,
+        "bank": 3,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "pal_01A200",
+        "address": "0x01A200",
+        "size": 0,
+        "bank": 3,
+        "confidence": 0.7,
+        "source_analysis": "graphics",
+        "description": "Palette with 16 colors",
+        "cross_reference_count": 0
+      }
+    ],
+    "audio_sample": [
+      {
+        "name": "brr_000009",
+        "address": "0x000009",
+        "size": 81,
+        "bank": 0,
+        "confidence": 0.9,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 1.00)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_000012",
+        "address": "0x000012",
+        "size": 72,
+        "bank": 0,
+        "confidence": 0.9,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 1.00)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_00001B",
+        "address": "0x00001B",
+        "size": 63,
+        "bank": 0,
+        "confidence": 0.9,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 1.00)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_000024",
+        "address": "0x000024",
+        "size": 54,
+        "bank": 0,
+        "confidence": 0.9,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 1.00)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_00002D",
+        "address": "0x00002D",
+        "size": 45,
+        "bank": 0,
+        "confidence": 0.9,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 1.00)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_000036",
+        "address": "0x000036",
+        "size": 36,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_00003F",
+        "address": "0x00003F",
+        "size": 27,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_000048",
+        "address": "0x000048",
+        "size": 18,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_00005A",
+        "address": "0x00005A",
+        "size": 27,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_000063",
+        "address": "0x000063",
+        "size": 18,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_000075",
+        "address": "0x000075",
+        "size": 36,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_00007E",
+        "address": "0x00007E",
+        "size": 27,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_000087",
+        "address": "0x000087",
+        "size": 18,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_000099",
+        "address": "0x000099",
+        "size": 54,
+        "bank": 0,
+        "confidence": 0.9,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 1.00)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_0000A2",
+        "address": "0x0000A2",
+        "size": 45,
+        "bank": 0,
+        "confidence": 0.9,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 1.00)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_0000AB",
+        "address": "0x0000AB",
+        "size": 36,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_0000B4",
+        "address": "0x0000B4",
+        "size": 27,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_0000BD",
+        "address": "0x0000BD",
+        "size": 18,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_0000CF",
+        "address": "0x0000CF",
+        "size": 27,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_0000D8",
+        "address": "0x0000D8",
+        "size": 18,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_0000EA",
+        "address": "0x0000EA",
+        "size": 27,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_0000F3",
+        "address": "0x0000F3",
+        "size": 18,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_000105",
+        "address": "0x000105",
+        "size": 18,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_000117",
+        "address": "0x000117",
+        "size": 45,
+        "bank": 0,
+        "confidence": 0.9,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 1.00)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_000120",
+        "address": "0x000120",
+        "size": 36,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_000129",
+        "address": "0x000129",
+        "size": 27,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_000132",
+        "address": "0x000132",
+        "size": 18,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_000156",
+        "address": "0x000156",
+        "size": 72,
+        "bank": 0,
+        "confidence": 0.9,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 1.00)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_00015F",
+        "address": "0x00015F",
+        "size": 63,
+        "bank": 0,
+        "confidence": 0.9,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 1.00)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_000168",
+        "address": "0x000168",
+        "size": 54,
+        "bank": 0,
+        "confidence": 0.9,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 1.00)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_000171",
+        "address": "0x000171",
+        "size": 45,
+        "bank": 0,
+        "confidence": 0.9,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 1.00)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_00017A",
+        "address": "0x00017A",
+        "size": 36,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_000183",
+        "address": "0x000183",
+        "size": 27,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_00018C",
+        "address": "0x00018C",
+        "size": 18,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_0001A7",
+        "address": "0x0001A7",
+        "size": 18,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_0001B9",
+        "address": "0x0001B9",
+        "size": 18,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_0001D4",
+        "address": "0x0001D4",
+        "size": 108,
+        "bank": 0,
+        "confidence": 0.9,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 1.00)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_0001DD",
+        "address": "0x0001DD",
+        "size": 99,
+        "bank": 0,
+        "confidence": 0.9,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 1.00)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_0001E6",
+        "address": "0x0001E6",
+        "size": 90,
+        "bank": 0,
+        "confidence": 0.9,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 1.00)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_0001EF",
+        "address": "0x0001EF",
+        "size": 81,
+        "bank": 0,
+        "confidence": 0.9,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 1.00)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_0001F8",
+        "address": "0x0001F8",
+        "size": 72,
+        "bank": 0,
+        "confidence": 0.9,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 1.00)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_000201",
+        "address": "0x000201",
+        "size": 63,
+        "bank": 0,
+        "confidence": 0.9,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 1.00)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_00020A",
+        "address": "0x00020A",
+        "size": 54,
+        "bank": 0,
+        "confidence": 0.9,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 1.00)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_000213",
+        "address": "0x000213",
+        "size": 45,
+        "bank": 0,
+        "confidence": 0.9,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 1.00)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_00021C",
+        "address": "0x00021C",
+        "size": 36,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_000225",
+        "address": "0x000225",
+        "size": 27,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_00022E",
+        "address": "0x00022E",
+        "size": 18,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_000240",
+        "address": "0x000240",
+        "size": 18,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_00025B",
+        "address": "0x00025B",
+        "size": 27,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "brr_000264",
+        "address": "0x000264",
+        "size": 18,
+        "bank": 0,
+        "confidence": 0.8,
+        "source_analysis": "audio",
+        "description": "BRR audio sample (quality: 0.80)",
+        "cross_reference_count": 0
+      }
+    ],
+    "audio_sequence": [
+      {
+        "name": "mus_100060",
+        "address": "0x100060",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100070",
+        "address": "0x100070",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100080",
+        "address": "0x100080",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100090",
+        "address": "0x100090",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_1000A0",
+        "address": "0x1000A0",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100100",
+        "address": "0x100100",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "timing_control audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100110",
+        "address": "0x100110",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100120",
+        "address": "0x100120",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100130",
+        "address": "0x100130",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100140",
+        "address": "0x100140",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100150",
+        "address": "0x100150",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100190",
+        "address": "0x100190",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_1001A0",
+        "address": "0x1001A0",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_1001B0",
+        "address": "0x1001B0",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_1001C0",
+        "address": "0x1001C0",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_1001D0",
+        "address": "0x1001D0",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_1001E0",
+        "address": "0x1001E0",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_1001F0",
+        "address": "0x1001F0",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100250",
+        "address": "0x100250",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100260",
+        "address": "0x100260",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100270",
+        "address": "0x100270",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100280",
+        "address": "0x100280",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100290",
+        "address": "0x100290",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_1002A0",
+        "address": "0x1002A0",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_1002B0",
+        "address": "0x1002B0",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_1002C0",
+        "address": "0x1002C0",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "instrument_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_1002D0",
+        "address": "0x1002D0",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "instrument_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_1002E0",
+        "address": "0x1002E0",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "instrument_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_1002F0",
+        "address": "0x1002F0",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "instrument_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100310",
+        "address": "0x100310",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100320",
+        "address": "0x100320",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100330",
+        "address": "0x100330",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100340",
+        "address": "0x100340",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100360",
+        "address": "0x100360",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100370",
+        "address": "0x100370",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100380",
+        "address": "0x100380",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "instrument_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100390",
+        "address": "0x100390",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "instrument_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_1003A0",
+        "address": "0x1003A0",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "instrument_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_1003B0",
+        "address": "0x1003B0",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "instrument_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100430",
+        "address": "0x100430",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "timing_control audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100440",
+        "address": "0x100440",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "volume_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100450",
+        "address": "0x100450",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "volume_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100460",
+        "address": "0x100460",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "volume_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100470",
+        "address": "0x100470",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "volume_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_100490",
+        "address": "0x100490",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "tempo_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_1004A0",
+        "address": "0x1004A0",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "volume_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_1004B0",
+        "address": "0x1004B0",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "volume_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_1004C0",
+        "address": "0x1004C0",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "volume_change audio sequence",
+        "cross_reference_count": 0
+      },
+      {
+        "name": "mus_1004D0",
+        "address": "0x1004D0",
+        "size": 0,
+        "bank": 32,
+        "confidence": 0.7,
+        "source_analysis": "audio",
+        "description": "volume_change audio sequence",
+        "cross_reference_count": 0
+      }
+    ]
+  },
+  "cross_references_summary": {
+    "total_references": 0,
+    "reference_types": {}
+  }
+}

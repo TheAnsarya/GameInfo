@@ -2,31 +2,47 @@
 
 This folder contains Python tools for ROM analysis and asset extraction.
 
-## Tools
+## Folder Structure
 
-### From dq3r-info repository:
-- `analyze_rom.py` - Initial ROM structure analysis
-- `compression_engine.py` - Compression/decompression
-- `graphics_analyzer.py` - Graphics data detection
-- `text_extractor.py` - Text string extraction
-- `maximum_rom_analyzer.py` - Comprehensive ROM analysis
+```
+tools/
+├── README.md               # This file
+└── python/                 # Python analysis tools
+    ├── analysis/          # ROM analyzers
+    │   ├── comprehensive_rom_analyzer.py
+    │   ├── cross_reference_engine.py
+    │   ├── disassembly_engine.py
+    │   ├── graphics_format_analyzer.py
+    │   ├── memory_banking_analyzer.py
+    │   └── snes_disassembler.py
+    ├── graphics/          # Graphics decoders
+    │   ├── graphics_visualizer.py
+    │   └── snes_graphics_decoder.py
+    ├── reconstruction/    # Source reconstruction
+    │   └── advanced_source_reconstructor.py
+    ├── documentation/     # Doc generators
+    ├── editing/           # ROM editing tools
+    ├── formatting/        # Hex formatter
+    ├── utils/             # Shared utilities
+    └── ...
+```
 
-### Usage
+## Usage
 
 ```bash
 # Analyze ROM structure
-python tools/analyze_rom.py --rom "path/to/dq3.sfc"
+python tools/python/analysis/comprehensive_rom_analyzer.py --rom "path/to/dq3.sfc"
 
 # Extract graphics
-python tools/extract_graphics.py --rom "path/to/dq3.sfc" --output assets/graphics/
+python tools/python/graphics/snes_graphics_decoder.py --rom "path/to/dq3.sfc"
 
-# Extract text
-python tools/extract_text.py --rom "path/to/dq3.sfc" --output assets/text/
+# Format hex values to lowercase
+python tools/python/formatting/hex_formatter.py --input "file.asm"
 ```
 
 ## Status
 
-🔴 **Not Started** - Tools will be migrated from dq3r-info repository.
+✅ **Complete** - Tools migrated from dq3r-info repository.
 
 ## C# Migration
 

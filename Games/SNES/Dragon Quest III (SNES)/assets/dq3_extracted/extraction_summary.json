@@ -1,0 +1,424 @@
+{
+	"extraction_stats": {
+		"graphics": 15,
+		"audio": 4,
+		"text": 1,
+		"data": 8,
+		"total_bytes": 788480
+	},
+	"total_assets": 28,
+	"assets": [
+		{
+			"name": "character_sprites",
+			"asset_format": "snes_4bpp",
+			"source_address": 2097152,
+			"source_bank": 32,
+			"raw_size": 65536,
+			"processed_size": 65536,
+			"metadata": {
+				"tile_count": 2048,
+				"estimated_tiles": "2048 tiles"
+			},
+			"checksum": "ebb74803f46886cb",
+			"extraction_notes": "Extracted from known location at $200000"
+		},
+		{
+			"name": "monster_graphics",
+			"asset_format": "snes_4bpp",
+			"source_address": 2228224,
+			"source_bank": 34,
+			"raw_size": 131072,
+			"processed_size": 131072,
+			"metadata": {
+				"tile_count": 4096,
+				"estimated_tiles": "4096 tiles"
+			},
+			"checksum": "fa88d51f26e401cc",
+			"extraction_notes": "Extracted from known location at $220000"
+		},
+		{
+			"name": "world_tiles",
+			"asset_format": "snes_2bpp",
+			"source_address": 1572864,
+			"source_bank": 24,
+			"raw_size": 32768,
+			"processed_size": 32768,
+			"metadata": {
+				"tile_count": 2048,
+				"estimated_tiles": "2048 tiles"
+			},
+			"checksum": "650331b22b2c58ac",
+			"extraction_notes": "Extracted from known location at $180000"
+		},
+		{
+			"name": "ui_graphics",
+			"asset_format": "snes_2bpp",
+			"source_address": 1703936,
+			"source_bank": 26,
+			"raw_size": 16384,
+			"processed_size": 16384,
+			"metadata": {
+				"tile_count": 1024,
+				"estimated_tiles": "1024 tiles"
+			},
+			"checksum": "e494c0b354780ade",
+			"extraction_notes": "Extracted from known location at $1a0000"
+		},
+		{
+			"name": "font_data",
+			"asset_format": "snes_2bpp",
+			"source_address": 1769472,
+			"source_bank": 27,
+			"raw_size": 8192,
+			"processed_size": 8192,
+			"metadata": {
+				"tile_count": 512,
+				"estimated_tiles": "512 tiles"
+			},
+			"checksum": "264a60a21ec36662",
+			"extraction_notes": "Extracted from known location at $1b0000"
+		},
+		{
+			"name": "character_tiles_01",
+			"asset_format": "snes_4bpp",
+			"source_address": 327680,
+			"source_bank": 5,
+			"raw_size": 32768,
+			"processed_size": 32768,
+			"metadata": {
+				"detection_method": "pattern_matching"
+			},
+			"checksum": "54103d74c436ddef",
+			"extraction_notes": "Found via pattern matching at $050000"
+		},
+		{
+			"name": "character_tiles_02",
+			"asset_format": "snes_4bpp",
+			"source_address": 450560,
+			"source_bank": 6,
+			"raw_size": 32768,
+			"processed_size": 32768,
+			"metadata": {
+				"detection_method": "pattern_matching"
+			},
+			"checksum": "39a67f9e730387ea",
+			"extraction_notes": "Found via pattern matching at $06e000"
+		},
+		{
+			"name": "character_tiles_03",
+			"asset_format": "snes_4bpp",
+			"source_address": 589824,
+			"source_bank": 9,
+			"raw_size": 32768,
+			"processed_size": 32768,
+			"metadata": {
+				"detection_method": "pattern_matching"
+			},
+			"checksum": "e4d7cab993c78147",
+			"extraction_notes": "Found via pattern matching at $090000"
+		},
+		{
+			"name": "character_tiles_04",
+			"asset_format": "snes_4bpp",
+			"source_address": 847872,
+			"source_bank": 12,
+			"raw_size": 32768,
+			"processed_size": 32768,
+			"metadata": {
+				"detection_method": "pattern_matching"
+			},
+			"checksum": "0507a5aa854ed960",
+			"extraction_notes": "Found via pattern matching at $0cf000"
+		},
+		{
+			"name": "character_tiles_05",
+			"asset_format": "snes_4bpp",
+			"source_address": 917504,
+			"source_bank": 14,
+			"raw_size": 32768,
+			"processed_size": 32768,
+			"metadata": {
+				"detection_method": "pattern_matching"
+			},
+			"checksum": "ef90338b4ca5a58c",
+			"extraction_notes": "Found via pattern matching at $0e0000"
+		},
+		{
+			"name": "sprite_data_01",
+			"asset_format": "sprite_16x16",
+			"source_address": 350208,
+			"source_bank": 5,
+			"raw_size": 16384,
+			"processed_size": 16384,
+			"metadata": {
+				"detection_method": "pattern_matching"
+			},
+			"checksum": "2c5fb3e1f565ed10",
+			"extraction_notes": "Found via pattern matching at $055800"
+		},
+		{
+			"name": "sprite_data_02",
+			"asset_format": "sprite_16x16",
+			"source_address": 352256,
+			"source_bank": 5,
+			"raw_size": 16384,
+			"processed_size": 16384,
+			"metadata": {
+				"detection_method": "pattern_matching"
+			},
+			"checksum": "641dd1aac4557f1d",
+			"extraction_notes": "Found via pattern matching at $056000"
+		},
+		{
+			"name": "sprite_data_03",
+			"asset_format": "sprite_16x16",
+			"source_address": 1161216,
+			"source_bank": 17,
+			"raw_size": 16384,
+			"processed_size": 16384,
+			"metadata": {
+				"detection_method": "pattern_matching"
+			},
+			"checksum": "adc43079ea1ad9a2",
+			"extraction_notes": "Found via pattern matching at $11b800"
+		},
+		{
+			"name": "sprite_data_04",
+			"asset_format": "sprite_16x16",
+			"source_address": 1173504,
+			"source_bank": 17,
+			"raw_size": 16384,
+			"processed_size": 16384,
+			"metadata": {
+				"detection_method": "pattern_matching"
+			},
+			"checksum": "888e4a773a96d286",
+			"extraction_notes": "Found via pattern matching at $11e800"
+		},
+		{
+			"name": "sprite_data_05",
+			"asset_format": "sprite_16x16",
+			"source_address": 1181696,
+			"source_bank": 18,
+			"raw_size": 16384,
+			"processed_size": 16384,
+			"metadata": {
+				"detection_method": "pattern_matching"
+			},
+			"checksum": "f449063224273bbb",
+			"extraction_notes": "Found via pattern matching at $120800"
+		},
+		{
+			"name": "music_bank_1",
+			"asset_format": "spc_music",
+			"source_address": 3145728,
+			"source_bank": 48,
+			"raw_size": 32768,
+			"processed_size": 32768,
+			"metadata": {
+				"type": "SPC Music Data",
+				"estimated_tracks": 4,
+				"format_notes": "SNES SPC sequence data"
+			},
+			"checksum": "0400c4529fd20122",
+			"extraction_notes": "Extracted from known audio location"
+		},
+		{
+			"name": "music_bank_2",
+			"asset_format": "spc_music",
+			"source_address": 3178496,
+			"source_bank": 48,
+			"raw_size": 32768,
+			"processed_size": 32768,
+			"metadata": {
+				"type": "SPC Music Data",
+				"estimated_tracks": 6,
+				"format_notes": "SNES SPC sequence data"
+			},
+			"checksum": "583316ef0792aadf",
+			"extraction_notes": "Extracted from known audio location"
+		},
+		{
+			"name": "sound_effects",
+			"asset_format": "brr_sample",
+			"source_address": 3211264,
+			"source_bank": 49,
+			"raw_size": 16384,
+			"processed_size": 16384,
+			"metadata": {
+				"type": "BRR Sample",
+				"estimated_length": "1820 blocks",
+				"sample_rate": "Unknown (BRR format)"
+			},
+			"checksum": "354e440034a262b4",
+			"extraction_notes": "Extracted from known audio location"
+		},
+		{
+			"name": "instrument_samples",
+			"asset_format": "brr_sample",
+			"source_address": 3276800,
+			"source_bank": 50,
+			"raw_size": 32768,
+			"processed_size": 32768,
+			"metadata": {
+				"type": "BRR Sample",
+				"estimated_length": "3640 blocks",
+				"sample_rate": "Unknown (BRR format)"
+			},
+			"checksum": "c5567059dce8da29",
+			"extraction_notes": "Extracted from known audio location"
+		},
+		{
+			"name": "main_dialog",
+			"asset_format": "shift_jis",
+			"source_address": 4194304,
+			"source_bank": 64,
+			"raw_size": 131072,
+			"processed_size": 131072,
+			"metadata": {
+				"encoding": "shift_jis",
+				"size_bytes": 131072,
+				"estimated_strings": 91821,
+				"decoded_text": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+			},
+			"checksum": "dd873dbf2695fe88",
+			"extraction_notes": "Processed text data with shift_jis"
+		},
+		{
+			"name": "item_data",
+			"asset_format": "item_table",
+			"source_address": 5242880,
+			"source_bank": 80,
+			"raw_size": 8192,
+			"processed_size": 8192,
+			"metadata": {
+				"type": "Item Data Table",
+				"entry_size_estimate": 16,
+				"estimated_entries": 512,
+				"table_format": "Fixed-size records",
+				"hex_preview": "AC C0 3F 1D 1B 2D 2E 2D 3F B2 41 AF AD AC C0 3F 1D 1B 2D 2E 2D 3F B2 41 AC C0 3F 21 1B 34 1F 1E"
+			},
+			"checksum": "f25272541d60eb88",
+			"extraction_notes": "Data table with 512 entries"
+		},
+		{
+			"name": "weapon_data",
+			"asset_format": "item_table",
+			"source_address": 5251072,
+			"source_bank": 80,
+			"raw_size": 2048,
+			"processed_size": 2048,
+			"metadata": {
+				"type": "Item Data Table",
+				"entry_size_estimate": 16,
+				"estimated_entries": 128,
+				"table_format": "Fixed-size records",
+				"hex_preview": "26 33 3F 28 29 31 41 41 AC 12 1B 27 23 1B 3F 23 2D 28 47 2E 3F 22 1F 2C 1F 41 AC 12 1B 27 23 1B"
+			},
+			"checksum": "594a9d7ccf1afa33",
+			"extraction_notes": "Data table with 128 entries"
+		},
+		{
+			"name": "armor_data",
+			"asset_format": "item_table",
+			"source_address": 5253120,
+			"source_bank": 80,
+			"raw_size": 2048,
+			"processed_size": 2048,
+			"metadata": {
+				"type": "Item Data Table",
+				"entry_size_estimate": 16,
+				"estimated_entries": 128,
+				"table_format": "Fixed-size records",
+				"hex_preview": "3F 1D 1B 2D 2E 3F 2D 2A 1F 26 26 2D 3F 2C 23 21 22 2E 3F 28 29 31 41 AC 19 29 2F 3F 1D 1B 28 47"
+			},
+			"checksum": "3447bef2fc64f863",
+			"extraction_notes": "Data table with 128 entries"
+		},
+		{
+			"name": "monster_stats",
+			"asset_format": "monster_table",
+			"source_address": 5308416,
+			"source_bank": 81,
+			"raw_size": 12288,
+			"processed_size": 12288,
+			"metadata": {
+				"type": "Monster Data Table",
+				"entry_size_estimate": 32,
+				"estimated_entries": 384,
+				"table_format": "Fixed-size records",
+				"hex_preview": "3F 19 29 2F 47 2C 1F 3F 28 29 2E 3F 22 23 27 4E AF AD 17 1F 26 26 3F 23 2E 47 2D 3F 28 23 1D 1F"
+			},
+			"checksum": "ac473044a9670258",
+			"extraction_notes": "Data table with 384 entries"
+		},
+		{
+			"name": "monster_ai",
+			"asset_format": "monster_table",
+			"source_address": 5320704,
+			"source_bank": 81,
+			"raw_size": 8192,
+			"processed_size": 8192,
+			"metadata": {
+				"type": "Monster Data Table",
+				"entry_size_estimate": 32,
+				"estimated_entries": 256,
+				"table_format": "Fixed-size records",
+				"hex_preview": "4E 4E AF AD 19 29 2F 47 30 1F 3F 20 23 28 1B 26 26 33 3F 1D 29 27 1F 4E 3F 09 47 30 1F 3F 1C 1F"
+			},
+			"checksum": "3b21fbc01847defb",
+			"extraction_notes": "Data table with 256 entries"
+		},
+		{
+			"name": "spell_data",
+			"asset_format": "spell_table",
+			"source_address": 5373952,
+			"source_bank": 82,
+			"raw_size": 4096,
+			"processed_size": 4096,
+			"metadata": {
+				"type": "Spell Data Table",
+				"entry_size_estimate": 12,
+				"estimated_entries": 341,
+				"table_format": "Fixed-size records",
+				"hex_preview": "09 47 27 3F 1B 3F 31 1B 28 1E 1F 2C 23 28 21 3F 1C 1B 2C 1E 4E AF AD 01 3F 27 1B 28 3F 28 1B 27"
+			},
+			"checksum": "2086872ad28f6e03",
+			"extraction_notes": "Data table with 341 entries"
+		},
+		{
+			"name": "class_data",
+			"asset_format": "item_table",
+			"source_address": 5378048,
+			"source_bank": 82,
+			"raw_size": 2048,
+			"processed_size": 2048,
+			"metadata": {
+				"type": "Item Data Table",
+				"entry_size_estimate": 16,
+				"estimated_entries": 128,
+				"table_format": "Fixed-size records",
+				"hex_preview": "31 1B 2D 3F 23 28 3F 1B 3F 2D 22 2C 23 28 1F 3F 24 1B 23 26 55 3F AC 13 29 3F 33 29 2F 3F 1E 23"
+			},
+			"checksum": "228c46cdf69a8b50",
+			"extraction_notes": "Data table with 128 entries"
+		},
+		{
+			"name": "exp_tables",
+			"asset_format": "item_table",
+			"source_address": 5382144,
+			"source_bank": 82,
+			"raw_size": 4096,
+			"processed_size": 4096,
+			"metadata": {
+				"type": "Item Data Table",
+				"entry_size_estimate": 16,
+				"estimated_entries": 256,
+				"table_format": "Fixed-size records",
+				"hex_preview": "1F 2C 29 4C 3F 31 22 29 2D 1F 3F 28 1B 27 1F 3F 23 2D 3F CA 7E AC 0D 1B 28 33 3F 1C 2C 1B 30 1F"
+			},
+			"checksum": "82ecba9067a161a9",
+			"extraction_notes": "Data table with 256 entries"
+		}
+	]
+}

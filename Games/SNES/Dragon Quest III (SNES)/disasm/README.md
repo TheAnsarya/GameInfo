@@ -1,21 +1,50 @@
 # Dragon Quest III (SNES) - Disassembly
 
-This folder contains the disassembled 65816 assembly source files for Dragon Quest III (SNES).
+Complete bank-by-bank disassembly of Dragon Quest III (SNES).
 
 ## File Organization
 
-Each bank is in a separate file:
-- `bank00.asm` - Boot code, vectors
-- `bank01.asm` - Main engine
-- `bank02.asm` - Battle system (partial)
-- ...etc
+The `reconstructed/` folder contains 192 source files - one per ROM bank:
 
-## Status
+```
+reconstructed/
+├── bank_00.s          # Bank $00 - Boot code, vectors
+├── bank_01.s          # Bank $01 - Main engine
+├── bank_02.s          # Bank $02 - Battle system
+├── ...                # (192 bank files total)
+├── bank_bf.s          # Bank $BF
+├── dq3_master.s       # Main source file (includes all banks)
+├── Makefile           # Build configuration
+├── build.ps1          # PowerShell build script
+└── RECONSTRUCTION_SUMMARY.md  # Build statistics
+```
 
-🔴 **Not Started** - Disassembly files will be generated from ROM analysis.
+## Coverage Statistics
+
+| Metric | Value |
+|--------|-------|
+| Total ROM Size | 6,291,456 bytes |
+| Coverage | 96.48% |
+| Source Files | 192 |
+| Bank Range | $00 - $BF |
+
+## Building
+
+The source files can reassemble into a byte-perfect ROM:
+
+```powershell
+cd reconstructed
+./build.ps1
+```
+
+Or using Make:
+
+```bash
+cd reconstructed
+make
+```
 
 ## Source
 
-Files will be migrated from:
-- `dq3r-info/disassembly/`
-- `logsmall/debuglogs/dq3/` (trace-based analysis)
+Files migrated from:
+- `dq3r-info/src/reconstructed/`

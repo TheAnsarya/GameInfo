@@ -1,0 +1,39 @@
+{
+  "formatting_stats": {
+    "files_processed": 1445,
+    "files_modified": 182,
+    "hex_patterns_found": 425439,
+    "hex_patterns_converted": 425439,
+    "bytes_processed": 111719664,
+    "processing_time": 5509.486981630325,
+    "error_count": 0,
+    "warnings": []
+  },
+  "metadata": {
+    "timestamp": "2025-11-09 04:24:12",
+    "root_directory": ".",
+    "supported_extensions": [
+      ".json",
+      ".yml",
+      ".S",
+      ".html",
+      ".inc",
+      ".hpp",
+      ".py",
+      ".md",
+      ".ts",
+      ".asm",
+      ".txt",
+      ".rst",
+      ".s",
+      ".csv",
+      ".c",
+      ".yaml",
+      ".htm",
+      ".js",
+      ".cpp",
+      ".pyx",
+      ".h"
+    ]
+  }
+}

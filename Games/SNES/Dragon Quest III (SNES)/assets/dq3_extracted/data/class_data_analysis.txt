@@ -1,0 +1,8 @@
+Data Analysis: class_data
+========================================
+
+type: Item Data Table
+entry_size_estimate: 16
+estimated_entries: 128
+table_format: Fixed-size records
+hex_preview: 31 1B 2D 3F 23 28 3F 1B 3F 2D 22 2C 23 28 1F 3F 24 1B 23 26 55 3F AC 13 29 3F 33 29 2F 3F 1E 23

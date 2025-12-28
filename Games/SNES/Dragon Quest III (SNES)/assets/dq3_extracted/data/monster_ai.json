@@ -1,0 +1,17 @@
+{
+	"name": "monster_ai",
+	"format": "monster_table",
+	"source_address": "$513000",
+	"source_bank": 81,
+	"raw_size": 8192,
+	"processed_size": 8192,
+	"checksum": "3b21fbc01847defb",
+	"metadata": {
+		"type": "Monster Data Table",
+		"entry_size_estimate": 32,
+		"estimated_entries": 256,
+		"table_format": "Fixed-size records",
+		"hex_preview": "4E 4E AF AD 19 29 2F 47 30 1F 3F 20 23 28 1B 26 26 33 3F 1D 29 27 1F 4E 3F 09 47 30 1F 3F 1C 1F"
+	},
+	"extraction_notes": "Data table with 256 entries"
+}

@@ -20,24 +20,34 @@ Complete disassembly, documentation, asset extraction, and editor suite for **Dr
 
 ```
 Dragon Quest III (SNES)/
-├── README.md           # This file
-├── disasm/             # Disassembly output (bank*.asm files)
-├── src/                # Buildable source code
-│   ├── asm/           # Assembly source files
-│   ├── include/       # Headers and constants
-│   └── data/          # Data tables
-├── assets/             # Extracted assets
-│   ├── graphics/      # PNG graphics (sprites, tiles, UI)
-│   ├── audio/         # Music and sound effects
-│   ├── text/          # Dialog and strings (JSON)
-│   └── data/          # Game data (JSON)
-├── docs/               # Documentation
-│   ├── ROM-Map.md     # ROM address map
-│   ├── RAM-Map.md     # RAM address map
-│   └── Systems/       # System documentation
-├── tools/              # Analysis tools (Python)
-├── Debugging/          # Debug labels and notes
-└── build/              # Build output
+├── README.md                   # This file
+├── disasm/                     # Disassembly output
+│   └── reconstructed/          # 192 bank source files (bank_00.s - bank_bf.s)
+├── src/                        # Buildable source code
+│   └── README.md              # Source folder placeholder
+├── assets/                     # Extracted assets
+│   ├── data/                  # Game data tables
+│   ├── dq3_extracted/         # Extracted ROM regions
+│   ├── graphics/              # PNG graphics (sprites, tiles, UI)
+│   ├── music/                 # Music sequences
+│   └── text/                  # Dialog and strings
+├── Docs/                       # Documentation
+│   ├── reference/             # Technical reference docs
+│   │   ├── memory_map.md     # RAM/ROM address map
+│   │   ├── TECHNICAL_SPECS.md # Hardware specs
+│   │   └── ...               # API docs, guides, etc.
+│   ├── ROM-Map.md             # ROM address map
+│   └── RAM-Map.md             # RAM address map
+├── tools/                      # Analysis tools
+│   └── python/                # Python analysis tools
+│       ├── analysis/          # ROM analyzers
+│       ├── graphics/          # Graphics decoders
+│       ├── reconstruction/    # Source reconstruction
+│       └── ...
+├── analysis/                   # Analysis output data
+├── reports/                    # Analysis reports
+├── Debugging/                  # Debug labels and notes
+└── build/                      # Build output
 ```
 
 ## 🔗 Related Resources
@@ -52,12 +62,19 @@ Dragon Quest III (SNES)/
 
 | Phase | Status | Progress |
 |-------|--------|----------|
-| Setup | 🟡 In Progress | 25% |
-| ROM Analysis | ⬜ Not Started | 0% |
-| Disassembly | ⬜ Not Started | 0% |
-| Asset Extraction | ⬜ Not Started | 0% |
-| Documentation | ⬜ Not Started | 0% |
+| Setup | ✅ Complete | 100% |
+| ROM Analysis | 🟡 In Progress | 75% |
+| Disassembly | 🟡 In Progress | 96.48% (192 bank files) |
+| Asset Extraction | 🟡 In Progress | 50% |
+| Documentation | 🟡 In Progress | 60% |
 | Editor Tools | ⬜ Not Started | 0% |
+
+### Disassembly Statistics
+
+- **Total ROM Size:** 6,291,456 bytes
+- **Coverage:** 96.48%
+- **Source Files:** 192 assembly files (one per bank)
+- **Documentation:** Technical specs, memory maps, API reference
 
 ## 🎮 About the Game
 

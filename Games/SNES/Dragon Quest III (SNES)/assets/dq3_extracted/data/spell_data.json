@@ -1,0 +1,17 @@
+{
+	"name": "spell_data",
+	"format": "spell_table",
+	"source_address": "$520000",
+	"source_bank": 82,
+	"raw_size": 4096,
+	"processed_size": 4096,
+	"checksum": "2086872ad28f6e03",
+	"metadata": {
+		"type": "Spell Data Table",
+		"entry_size_estimate": 12,
+		"estimated_entries": 341,
+		"table_format": "Fixed-size records",
+		"hex_preview": "09 47 27 3F 1B 3F 31 1B 28 1E 1F 2C 23 28 21 3F 1C 1B 2C 1E 4E AF AD 01 3F 27 1B 28 3F 28 1B 27"
+	},
+	"extraction_notes": "Data table with 341 entries"
+}

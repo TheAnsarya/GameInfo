@@ -1,0 +1,15 @@
+{
+	"name": "instrument_samples",
+	"format": "brr_sample",
+	"source_address": "$320000",
+	"source_bank": 50,
+	"raw_size": 32768,
+	"processed_size": 32768,
+	"checksum": "c5567059dce8da29",
+	"metadata": {
+		"type": "BRR Sample",
+		"estimated_length": "3640 blocks",
+		"sample_rate": "Unknown (BRR format)"
+	},
+	"extraction_notes": "Extracted from known audio location"
+}

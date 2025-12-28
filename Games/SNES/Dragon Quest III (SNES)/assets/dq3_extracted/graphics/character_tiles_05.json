@@ -1,0 +1,13 @@
+{
+	"name": "character_tiles_05",
+	"format": "snes_4bpp",
+	"source_address": "$0e0000",
+	"source_bank": 14,
+	"raw_size": 32768,
+	"processed_size": 32768,
+	"checksum": "ef90338b4ca5a58c",
+	"metadata": {
+		"detection_method": "pattern_matching"
+	},
+	"extraction_notes": "Found via pattern matching at $0e0000"
+}

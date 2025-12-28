@@ -1,0 +1,8 @@
+Data Analysis: weapon_data
+========================================
+
+type: Item Data Table
+entry_size_estimate: 16
+estimated_entries: 128
+table_format: Fixed-size records
+hex_preview: 26 33 3F 28 29 31 41 41 AC 12 1B 27 23 1B 3F 23 2D 28 47 2E 3F 22 1F 2C 1F 41 AC 12 1B 27 23 1B

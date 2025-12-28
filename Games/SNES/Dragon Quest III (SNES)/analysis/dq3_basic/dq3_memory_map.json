@@ -1,0 +1,634 @@
+{
+	"regions": [
+		{
+			"address": 0,
+			"size": 8192,
+			"name": "DirectPage",
+			"description": "Direct page and stack space",
+			"access_type": "rw",
+			"data_type": "data",
+			"bank": 0
+		},
+		{
+			"address": 0,
+			"size": 65536,
+			"name": "Bank$00",
+			"description": "System/Boot code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 0
+		},
+		{
+			"address": 8192,
+			"size": 24576,
+			"name": "SystemRAM",
+			"description": "System work RAM",
+			"access_type": "rw",
+			"data_type": "data",
+			"bank": 0
+		},
+		{
+			"address": 8448,
+			"size": 256,
+			"name": "PPU",
+			"description": "Picture Processing Unit registers",
+			"access_type": "rw",
+			"data_type": "data",
+			"bank": 0
+		},
+		{
+			"address": 16384,
+			"size": 1024,
+			"name": "Controllers",
+			"description": "Controller and system registers",
+			"access_type": "rw",
+			"data_type": "data",
+			"bank": 0
+		},
+		{
+			"address": 24576,
+			"size": 32768,
+			"name": "WorkRAM",
+			"description": "Game work RAM",
+			"access_type": "rw",
+			"data_type": "data",
+			"bank": 0
+		},
+		{
+			"address": 65536,
+			"size": 65536,
+			"name": "Bank$01",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 1
+		},
+		{
+			"address": 131072,
+			"size": 65536,
+			"name": "Bank$02",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 2
+		},
+		{
+			"address": 196608,
+			"size": 65536,
+			"name": "Bank$03",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 3
+		},
+		{
+			"address": 262144,
+			"size": 65536,
+			"name": "Bank$04",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 4
+		},
+		{
+			"address": 327680,
+			"size": 65536,
+			"name": "Bank$05",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 5
+		},
+		{
+			"address": 393216,
+			"size": 65536,
+			"name": "Bank$06",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 6
+		},
+		{
+			"address": 458752,
+			"size": 65536,
+			"name": "Bank$07",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 7
+		},
+		{
+			"address": 524288,
+			"size": 65536,
+			"name": "Bank$08",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 8
+		},
+		{
+			"address": 589824,
+			"size": 65536,
+			"name": "Bank$09",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 9
+		},
+		{
+			"address": 655360,
+			"size": 65536,
+			"name": "Bank$0a",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 10
+		},
+		{
+			"address": 720896,
+			"size": 65536,
+			"name": "Bank$0b",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 11
+		},
+		{
+			"address": 786432,
+			"size": 65536,
+			"name": "Bank$0c",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 12
+		},
+		{
+			"address": 851968,
+			"size": 65536,
+			"name": "Bank$0d",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 13
+		},
+		{
+			"address": 917504,
+			"size": 65536,
+			"name": "Bank$0e",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 14
+		},
+		{
+			"address": 983040,
+			"size": 65536,
+			"name": "Bank$0f",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 15
+		},
+		{
+			"address": 1048576,
+			"size": 65536,
+			"name": "Bank$10",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 16
+		},
+		{
+			"address": 1114112,
+			"size": 65536,
+			"name": "Bank$11",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 17
+		},
+		{
+			"address": 1179648,
+			"size": 65536,
+			"name": "Bank$12",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 18
+		},
+		{
+			"address": 1245184,
+			"size": 65536,
+			"name": "Bank$13",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 19
+		},
+		{
+			"address": 1310720,
+			"size": 65536,
+			"name": "Bank$14",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 20
+		},
+		{
+			"address": 1376256,
+			"size": 65536,
+			"name": "Bank$15",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 21
+		},
+		{
+			"address": 1441792,
+			"size": 65536,
+			"name": "Bank$16",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 22
+		},
+		{
+			"address": 1507328,
+			"size": 65536,
+			"name": "Bank$17",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 23
+		},
+		{
+			"address": 1572864,
+			"size": 65536,
+			"name": "Bank$18",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 24
+		},
+		{
+			"address": 1638400,
+			"size": 65536,
+			"name": "Bank$19",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 25
+		},
+		{
+			"address": 1703936,
+			"size": 65536,
+			"name": "Bank$1a",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 26
+		},
+		{
+			"address": 1769472,
+			"size": 65536,
+			"name": "Bank$1b",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 27
+		},
+		{
+			"address": 1835008,
+			"size": 65536,
+			"name": "Bank$1c",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 28
+		},
+		{
+			"address": 1900544,
+			"size": 65536,
+			"name": "Bank$1d",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 29
+		},
+		{
+			"address": 1966080,
+			"size": 65536,
+			"name": "Bank$1e",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 30
+		},
+		{
+			"address": 2031616,
+			"size": 65536,
+			"name": "Bank$1f",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 31
+		},
+		{
+			"address": 2097152,
+			"size": 65536,
+			"name": "Bank$20",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 32
+		},
+		{
+			"address": 2162688,
+			"size": 65536,
+			"name": "Bank$21",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 33
+		},
+		{
+			"address": 2228224,
+			"size": 65536,
+			"name": "Bank$22",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 34
+		},
+		{
+			"address": 2293760,
+			"size": 65536,
+			"name": "Bank$23",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 35
+		},
+		{
+			"address": 2359296,
+			"size": 65536,
+			"name": "Bank$24",
+			"description": "Audio data",
+			"access_type": "rx",
+			"data_type": "audio",
+			"bank": 36
+		},
+		{
+			"address": 2424832,
+			"size": 65536,
+			"name": "Bank$25",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 37
+		},
+		{
+			"address": 2490368,
+			"size": 65536,
+			"name": "Bank$26",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 38
+		},
+		{
+			"address": 2555904,
+			"size": 65536,
+			"name": "Bank$27",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 39
+		},
+		{
+			"address": 2621440,
+			"size": 65536,
+			"name": "Bank$28",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 40
+		},
+		{
+			"address": 2686976,
+			"size": 65536,
+			"name": "Bank$29",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 41
+		},
+		{
+			"address": 2752512,
+			"size": 65536,
+			"name": "Bank$2a",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 42
+		},
+		{
+			"address": 2818048,
+			"size": 65536,
+			"name": "Bank$2b",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 43
+		},
+		{
+			"address": 2883584,
+			"size": 65536,
+			"name": "Bank$2c",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 44
+		},
+		{
+			"address": 2949120,
+			"size": 65536,
+			"name": "Bank$2d",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 45
+		},
+		{
+			"address": 3014656,
+			"size": 65536,
+			"name": "Bank$2e",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 46
+		},
+		{
+			"address": 3080192,
+			"size": 65536,
+			"name": "Bank$2f",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 47
+		},
+		{
+			"address": 3145728,
+			"size": 65536,
+			"name": "Bank$30",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 48
+		},
+		{
+			"address": 3211264,
+			"size": 65536,
+			"name": "Bank$31",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 49
+		},
+		{
+			"address": 3276800,
+			"size": 65536,
+			"name": "Bank$32",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 50
+		},
+		{
+			"address": 3342336,
+			"size": 65536,
+			"name": "Bank$33",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 51
+		},
+		{
+			"address": 3407872,
+			"size": 65536,
+			"name": "Bank$34",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 52
+		},
+		{
+			"address": 3473408,
+			"size": 65536,
+			"name": "Bank$35",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 53
+		},
+		{
+			"address": 3538944,
+			"size": 65536,
+			"name": "Bank$36",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 54
+		},
+		{
+			"address": 3604480,
+			"size": 65536,
+			"name": "Bank$37",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 55
+		},
+		{
+			"address": 3670016,
+			"size": 65536,
+			"name": "Bank$38",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 56
+		},
+		{
+			"address": 3735552,
+			"size": 65536,
+			"name": "Bank$39",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 57
+		},
+		{
+			"address": 3801088,
+			"size": 65536,
+			"name": "Bank$3a",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 58
+		},
+		{
+			"address": 3866624,
+			"size": 65536,
+			"name": "Bank$3b",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 59
+		},
+		{
+			"address": 3932160,
+			"size": 65536,
+			"name": "Bank$3c",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 60
+		},
+		{
+			"address": 3997696,
+			"size": 65536,
+			"name": "Bank$3d",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 61
+		},
+		{
+			"address": 4063232,
+			"size": 65536,
+			"name": "Bank$3e",
+			"description": "Program code",
+			"access_type": "rx",
+			"data_type": "code",
+			"bank": 62
+		},
+		{
+			"address": 4128768,
+			"size": 65536,
+			"name": "Bank$3f",
+			"description": "Data/Unknown",
+			"access_type": "rx",
+			"data_type": "data",
+			"bank": 63
+		},
+		{
+			"address": 8257536,
+			"size": 131072,
+			"name": "WRAM",
+			"description": "Additional work RAM",
+			"access_type": "rw",
+			"data_type": "data",
+			"bank": 0
+		}
+	]
+}

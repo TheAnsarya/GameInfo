@@ -1,0 +1,108 @@
+================================================================================
+🐉 Dragon Quest III - Comprehensive Analysis Report
+================================================================================
+ROM: Dragon Quest III - english (patched).smc
+Size: 6,291,456 bytes
+Banking: HiROM
+Analysis Date: 2025-11-09T01:16:57.934420
+
+📊 PROGRESS OVERVIEW
+----------------------------------------
+Total Analysis: 2.5%
+Bytes Analyzed: 155,348 / 6,291,456
+Functions Found: 255 (100.0% analyzed)
+Data Structures: 0 (0.0% documented)
+
+🎮 GAME SYSTEMS
+----------------------------------------
+SystemCore              0.0% (0 functions, 1 banks)
+BattleEngine            0.0% (0 functions, 3 banks)
+WorldEngine             0.0% (0 functions, 2 banks)
+MenuSystem              0.0% (0 functions, 2 banks)
+TextEngine              0.0% (0 functions, 3 banks)
+AudioEngine             0.0% (0 functions, 2 banks)
+GraphicsEngine          0.0% (0 functions, 3 banks)
+SaveSystem              0.0% (0 functions, 1 banks)
+GameData                0.0% (0 functions, 6 banks)
+
+🏦 BANKING SYSTEM
+----------------------------------------
+Total Banks: 64
+
+Bank $00:
+  📍 SNES Range: $0000-$ffff
+  💾 ROM Offset: $000000
+  📝 Type: System/Boot code
+  🔍 Code Density: 0.60
+
+Bank $01:
+  📍 SNES Range: $0000-$ffff
+  💾 ROM Offset: $010000
+  📝 Type: Program code
+  🔍 Code Density: 0.31
+
+Bank $02:
+  📍 SNES Range: $0000-$ffff
+  💾 ROM Offset: $020000
+  📝 Type: Program code
+  🔍 Code Density: 0.58
+
+Bank $03:
+  📍 SNES Range: $0000-$ffff
+  💾 ROM Offset: $030000
+  📝 Type: Program code
+  🔍 Code Density: 0.66
+
+Bank $04:
+  📍 SNES Range: $0000-$ffff
+  💾 ROM Offset: $040000
+  📝 Type: Program code
+  🔍 Code Density: 0.53
+
+Bank $05:
+  📍 SNES Range: $0000-$ffff
+  💾 ROM Offset: $050000
+  📝 Type: Program code
+  🔍 Code Density: 0.58
+
+Bank $06:
+  📍 SNES Range: $0000-$ffff
+  💾 ROM Offset: $060000
+  📝 Type: Program code
+  🔍 Code Density: 0.60
+
+Bank $07:
+  📍 SNES Range: $0000-$ffff
+  💾 ROM Offset: $070000
+  📝 Type: Program code
+  🔍 Code Density: 0.46
+
+Bank $08:
+  📍 SNES Range: $0000-$ffff
+  💾 ROM Offset: $080000
+  📝 Type: Program code
+  🔍 Code Density: 0.52
+
+Bank $09:
+  📍 SNES Range: $0000-$ffff
+  💾 ROM Offset: $090000
+  📝 Type: Program code
+  🔍 Code Density: 0.61
+
+⚡ INTERRUPT VECTORS
+----------------------------------------
+NATIVE_MODE Mode:
+  COP      $ffe4 -> $ffac (subroutine)
+  BRK      $ffe6 -> $ffa8 (subroutine)
+  ABORT    $ffe8 -> $ffa4 (subroutine)
+  NMI      $ffea -> $ffa0 (subroutine)
+  UNUSED   $ffec -> $ffa4 (subroutine)
+  IRQ      $ffee -> $ffa4 (subroutine)
+
+EMULATION_MODE Mode:
+  COP      $fff4 -> $ffa4 (subroutine)
+  UNUSED   $fff6 -> $ffa4 (subroutine)
+  ABORT    $fff8 -> $ffa4 (subroutine)
+  NMI      $fffa -> $ffa0 (subroutine)
+  RESET    $fffc -> $ff98 (subroutine)
+  IRQ      $fffe -> $ffa4 (subroutine)

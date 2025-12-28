@@ -1,0 +1,14 @@
+{
+	"name": "character_sprites",
+	"format": "snes_4bpp",
+	"source_address": "$200000",
+	"source_bank": 32,
+	"raw_size": 65536,
+	"processed_size": 65536,
+	"checksum": "ebb74803f46886cb",
+	"metadata": {
+		"tile_count": 2048,
+		"estimated_tiles": "2048 tiles"
+	},
+	"extraction_notes": "Extracted from known location at $200000"
+}

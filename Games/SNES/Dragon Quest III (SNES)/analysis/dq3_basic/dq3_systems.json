@@ -1,0 +1,142 @@
+{
+	"SystemCore": {
+		"name": "SystemCore",
+		"description": "Core system initialization, interrupt handlers, and main loop",
+		"start_address": 32768,
+		"end_address": 65535,
+		"banks": [
+			0
+		],
+		"functions": [],
+		"data_structures": [],
+		"variables": {},
+		"documentation": "Handles system startup, IRQ/NMI processing, and main game loop",
+		"completion_percentage": 0.0
+	},
+	"BattleEngine": {
+		"name": "BattleEngine",
+		"description": "Combat system, AI, damage calculations, and battle UI",
+		"start_address": 32768,
+		"end_address": 65535,
+		"banks": [
+			1,
+			2,
+			3
+		],
+		"functions": [],
+		"data_structures": [],
+		"variables": {},
+		"documentation": "Complete battle system implementation including turn order, spells, and AI",
+		"completion_percentage": 0.0
+	},
+	"WorldEngine": {
+		"name": "WorldEngine",
+		"description": "Overworld navigation, collision detection, and map management",
+		"start_address": 32768,
+		"end_address": 65535,
+		"banks": [
+			4,
+			5
+		],
+		"functions": [],
+		"data_structures": [],
+		"variables": {},
+		"documentation": "Handles world map movement, transitions, and collision systems",
+		"completion_percentage": 0.0
+	},
+	"MenuSystem": {
+		"name": "MenuSystem",
+		"description": "UI management, inventory, character status, and save/load",
+		"start_address": 32768,
+		"end_address": 65535,
+		"banks": [
+			6,
+			7
+		],
+		"functions": [],
+		"data_structures": [],
+		"variables": {},
+		"documentation": "Complete menu interface including item management and character progression",
+		"completion_percentage": 0.0
+	},
+	"TextEngine": {
+		"name": "TextEngine",
+		"description": "Dialog system, text rendering, and script processing",
+		"start_address": 32768,
+		"end_address": 65535,
+		"banks": [
+			8,
+			9,
+			10
+		],
+		"functions": [],
+		"data_structures": [],
+		"variables": {},
+		"documentation": "Text display engine with compression and variable-width font support",
+		"completion_percentage": 0.0
+	},
+	"AudioEngine": {
+		"name": "AudioEngine",
+		"description": "Music playback, sound effects, and audio streaming",
+		"start_address": 32768,
+		"end_address": 65535,
+		"banks": [
+			11,
+			12
+		],
+		"functions": [],
+		"data_structures": [],
+		"variables": {},
+		"documentation": "Audio system with instrument samples and music sequencing",
+		"completion_percentage": 0.0
+	},
+	"GraphicsEngine": {
+		"name": "GraphicsEngine",
+		"description": "Sprite rendering, background processing, and visual effects",
+		"start_address": 32768,
+		"end_address": 65535,
+		"banks": [
+			13,
+			14,
+			15
+		],
+		"functions": [],
+		"data_structures": [],
+		"variables": {},
+		"documentation": "Graphics rendering pipeline with sprite management and effects",
+		"completion_percentage": 0.0
+	},
+	"SaveSystem": {
+		"name": "SaveSystem",
+		"description": "Game state persistence, SRAM management, and data validation",
+		"start_address": 32768,
+		"end_address": 65535,
+		"banks": [
+			16
+		],
+		"functions": [],
+		"data_structures": [],
+		"variables": {},
+		"documentation": "Save/load system with checksum validation and state management",
+		"completion_percentage": 0.0
+	},
+	"GameData": {
+		"name": "GameData",
+		"description": "Static game data including items, spells, monsters, and maps",
+		"start_address": 32768,
+		"end_address": 65535,
+		"banks": [
+			17,
+			18,
+			19,
+			20,
+			21,
+			22
+		],
+		"functions": [],
+		"data_structures": [],
+		"variables": {},
+		"documentation": "All game content data tables and configuration",
+		"completion_percentage": 0.0
+	}
+}

@@ -1,0 +1,193 @@
+{
+  "functions": [
+    {
+      "name": "gfx_func_84be",
+      "address": 33982,
+      "purpose": "Display control",
+      "ppu_registers": [
+        "INIDISP"
+      ],
+      "complexity": 23
+    },
+    {
+      "name": "gfx_func_86b7",
+      "address": 34487,
+      "purpose": "General graphics operation",
+      "ppu_registers": [],
+      "complexity": 10
+    },
+    {
+      "name": "gfx_func_88f0",
+      "address": 35056,
+      "purpose": "VRAM data transfer",
+      "ppu_registers": [
+        "VMADD"
+      ],
+      "complexity": 62
+    },
+    {
+      "name": "gfx_func_8c98",
+      "address": 35992,
+      "purpose": "General graphics operation",
+      "ppu_registers": [],
+      "complexity": 4
+    },
+    {
+      "name": "gfx_func_a4ab",
+      "address": 42155,
+      "purpose": "General graphics operation",
+      "ppu_registers": [],
+      "complexity": 1
+    },
+    {
+      "name": "gfx_func_84ad",
+      "address": 33965,
+      "purpose": "General graphics operation",
+      "ppu_registers": [
+        "M7SEL",
+        "M7A"
+      ],
+      "complexity": 80
+    },
+    {
+      "name": "gfx_func_850d",
+      "address": 34061,
+      "purpose": "General graphics operation",
+      "ppu_registers": [
+        "M7SEL",
+        "M7A"
+      ],
+      "complexity": 66
+    },
+    {
+      "name": "gfx_func_8589",
+      "address": 34185,
+      "purpose": "General graphics operation",
+      "ppu_registers": [
+        "M7SEL",
+        "M7A"
+      ],
+      "complexity": 51
+    },
+    {
+      "name": "gfx_func_8605",
+      "address": 34309,
+      "purpose": "General graphics operation",
+      "ppu_registers": [
+        "M7SEL",
+        "M7A"
+      ],
+      "complexity": 36
+    },
+    {
+      "name": "gfx_func_8e53",
+      "address": 36435,
+      "purpose": "General graphics operation",
+      "ppu_registers": [
+        "M7SEL",
+        "M7A"
+      ],
+      "complexity": 34
+    },
+    {
+      "name": "gfx_func_dc6d",
+      "address": 56429,
+      "purpose": "Display control",
+      "ppu_registers": [
+        "INIDISP"
+      ],
+      "complexity": 12
+    },
+    {
+      "name": "gfx_func_f55c",
+      "address": 62812,
+      "purpose": "General graphics operation",
+      "ppu_registers": [
+        "BG3VOFS"
+      ],
+      "complexity": 14
+    },
+    {
+      "name": "gfx_func_868f",
+      "address": 34447,
+      "purpose": "General graphics operation",
+      "ppu_registers": [],
+      "complexity": 9
+    },
+    {
+      "name": "gfx_func_9ef2",
+      "address": 40690,
+      "purpose": "General graphics operation",
+      "ppu_registers": [
+        "BG4HOFS"
+      ],
+      "complexity": 13
+    },
+    {
+      "name": "gfx_func_f215",
+      "address": 61973,
+      "purpose": "General graphics operation",
+      "ppu_registers": [
+        "WH2"
+      ],
+      "complexity": 26
+    },
+    {
+      "name": "gfx_func_a008",
+      "address": 40968,
+      "purpose": "Sprite/OAM management",
+      "ppu_registers": [
+        "M7D",
+        "WBGLOG",
+        "TMW",
+        "BG3SC",
+        "WOBJSEL",
+        "BG3VOFS",
+        "BG4SC",
+        "BG1VOFS",
+        "BGMODE",
+        "CGWSEL",
+        "BG3HOFS",
+        "WH2",
+        "W12SEL",
+        "M7Y",
+        "WH1",
+        "BG12NBA",
+        "VMDATAH",
+        "M7SEL",
+        "WOBJLOG",
+        "CGADSUB",
+        "BG34NBA",
+        "BG2SC",
+        "OBSEL",
+        "BG2HOFS",
+        "M7C",
+        "CGDATA",
+        "MOSAIC",
+        "TS",
+        "BG1SC",
+        "TM",
+        "INIDISP",
+        "M7X",
+        "BG4VOFS",
+        "VMADD",
+        "TSW",
+        "M7A",
+        "WH3",
+        "OAMADDH",
+        "COLDATA",
+        "BG1HOFS",
+        "W34SEL",
+        "OAMADDL",
+        "BG2VOFS",
+        "VMAIN",
+        "M7B",
+        "WH0",
+        "BG4HOFS"
+      ],
+      "complexity": 594
+    }
+  ],
+  "sprite_data": [],
+  "palette_data": []
+}

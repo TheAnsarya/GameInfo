@@ -1,0 +1,15 @@
+{
+	"name": "sound_effects",
+	"format": "brr_sample",
+	"source_address": "$310000",
+	"source_bank": 49,
+	"raw_size": 16384,
+	"processed_size": 16384,
+	"checksum": "354e440034a262b4",
+	"metadata": {
+		"type": "BRR Sample",
+		"estimated_length": "1820 blocks",
+		"sample_rate": "Unknown (BRR format)"
+	},
+	"extraction_notes": "Extracted from known audio location"
+}

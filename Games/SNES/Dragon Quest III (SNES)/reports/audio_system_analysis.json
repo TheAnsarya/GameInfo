@@ -1,0 +1,756 @@
+{
+  "summary": {
+    "brr_samples": 158371,
+    "audio_sequences": 18316,
+    "spc_code_blocks": 0,
+    "audio_banks_identified": 4,
+    "total_sample_size": 14523507,
+    "average_sample_size": 91,
+    "looped_samples": 106343,
+    "music_sequences": 1751,
+    "effect_sequences": 16565
+  },
+  "brr_samples": [
+    {
+      "offset": "$000009",
+      "size": 81,
+      "is_looped": true,
+      "quality_score": 1.0,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$000012",
+      "size": 72,
+      "is_looped": true,
+      "quality_score": 1.0,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$00001b",
+      "size": 63,
+      "is_looped": true,
+      "quality_score": 1.0,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$000024",
+      "size": 54,
+      "is_looped": true,
+      "quality_score": 1.0,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$00002d",
+      "size": 45,
+      "is_looped": true,
+      "quality_score": 1.0,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$000036",
+      "size": 36,
+      "is_looped": true,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$00003f",
+      "size": 27,
+      "is_looped": true,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$000048",
+      "size": 18,
+      "is_looped": true,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$00005a",
+      "size": 27,
+      "is_looped": true,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$000063",
+      "size": 18,
+      "is_looped": true,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$000075",
+      "size": 36,
+      "is_looped": false,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$00007e",
+      "size": 27,
+      "is_looped": false,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$000087",
+      "size": 18,
+      "is_looped": false,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$000099",
+      "size": 54,
+      "is_looped": true,
+      "quality_score": 1.0,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$0000a2",
+      "size": 45,
+      "is_looped": true,
+      "quality_score": 1.0,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$0000ab",
+      "size": 36,
+      "is_looped": true,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$0000b4",
+      "size": 27,
+      "is_looped": true,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$0000bd",
+      "size": 18,
+      "is_looped": true,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$0000cf",
+      "size": 27,
+      "is_looped": true,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$0000d8",
+      "size": 18,
+      "is_looped": true,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$0000ea",
+      "size": 27,
+      "is_looped": false,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$0000f3",
+      "size": 18,
+      "is_looped": false,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$000105",
+      "size": 18,
+      "is_looped": true,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$000117",
+      "size": 45,
+      "is_looped": false,
+      "quality_score": 1.0,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$000120",
+      "size": 36,
+      "is_looped": false,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$000129",
+      "size": 27,
+      "is_looped": false,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$000132",
+      "size": 18,
+      "is_looped": false,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$000156",
+      "size": 72,
+      "is_looped": false,
+      "quality_score": 1.0,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$00015f",
+      "size": 63,
+      "is_looped": false,
+      "quality_score": 1.0,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$000168",
+      "size": 54,
+      "is_looped": false,
+      "quality_score": 1.0,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$000171",
+      "size": 45,
+      "is_looped": false,
+      "quality_score": 1.0,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$00017a",
+      "size": 36,
+      "is_looped": false,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$000183",
+      "size": 27,
+      "is_looped": false,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$00018c",
+      "size": 18,
+      "is_looped": false,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$0001a7",
+      "size": 18,
+      "is_looped": true,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$0001b9",
+      "size": 18,
+      "is_looped": false,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$0001d4",
+      "size": 108,
+      "is_looped": true,
+      "quality_score": 1.0,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$0001dd",
+      "size": 99,
+      "is_looped": true,
+      "quality_score": 1.0,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$0001e6",
+      "size": 90,
+      "is_looped": true,
+      "quality_score": 1.0,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$0001ef",
+      "size": 81,
+      "is_looped": true,
+      "quality_score": 1.0,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$0001f8",
+      "size": 72,
+      "is_looped": true,
+      "quality_score": 1.0,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$000201",
+      "size": 63,
+      "is_looped": true,
+      "quality_score": 1.0,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$00020a",
+      "size": 54,
+      "is_looped": true,
+      "quality_score": 1.0,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$000213",
+      "size": 45,
+      "is_looped": true,
+      "quality_score": 1.0,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$00021c",
+      "size": 36,
+      "is_looped": true,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$000225",
+      "size": 27,
+      "is_looped": false,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$00022e",
+      "size": 18,
+      "is_looped": false,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$000240",
+      "size": 18,
+      "is_looped": true,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$00025b",
+      "size": 27,
+      "is_looped": true,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    },
+    {
+      "offset": "$000264",
+      "size": 18,
+      "is_looped": true,
+      "quality_score": 0.8,
+      "sample_rate": 32000
+    }
+  ],
+  "audio_sequences": [
+    {
+      "offset": "$100060",
+      "length": 19,
+      "type": "tempo_change",
+      "channels": 4,
+      "instruments": 16
+    },
+    {
+      "offset": "$100070",
+      "length": 64,
+      "type": "tempo_change",
+      "channels": 4,
+      "instruments": 16
+    },
+    {
+      "offset": "$100080",
+      "length": 48,
+      "type": "tempo_change",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$100090",
+      "length": 32,
+      "type": "tempo_change",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$1000a0",
+      "length": 24,
+      "type": "tempo_change",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$100100",
+      "length": 19,
+      "type": "timing_control",
+      "channels": 6,
+      "instruments": 16
+    },
+    {
+      "offset": "$100110",
+      "length": 70,
+      "type": "tempo_change",
+      "channels": 6,
+      "instruments": 16
+    },
+    {
+      "offset": "$100120",
+      "length": 54,
+      "type": "tempo_change",
+      "channels": 6,
+      "instruments": 16
+    },
+    {
+      "offset": "$100130",
+      "length": 38,
+      "type": "tempo_change",
+      "channels": 6,
+      "instruments": 16
+    },
+    {
+      "offset": "$100140",
+      "length": 22,
+      "type": "tempo_change",
+      "channels": 6,
+      "instruments": 16
+    },
+    {
+      "offset": "$100150",
+      "length": 37,
+      "type": "tempo_change",
+      "channels": 6,
+      "instruments": 16
+    },
+    {
+      "offset": "$100190",
+      "length": 46,
+      "type": "tempo_change",
+      "channels": 6,
+      "instruments": 16
+    },
+    {
+      "offset": "$1001a0",
+      "length": 30,
+      "type": "tempo_change",
+      "channels": 6,
+      "instruments": 16
+    },
+    {
+      "offset": "$1001b0",
+      "length": 133,
+      "type": "tempo_change",
+      "channels": 6,
+      "instruments": 16
+    },
+    {
+      "offset": "$1001c0",
+      "length": 117,
+      "type": "tempo_change",
+      "channels": 6,
+      "instruments": 16
+    },
+    {
+      "offset": "$1001d0",
+      "length": 101,
+      "type": "tempo_change",
+      "channels": 6,
+      "instruments": 16
+    },
+    {
+      "offset": "$1001e0",
+      "length": 85,
+      "type": "tempo_change",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$1001f0",
+      "length": 69,
+      "type": "tempo_change",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$100200",
+      "length": 53,
+      "type": "tempo_change",
+      "channels": 6,
+      "instruments": 16
+    },
+    {
+      "offset": "$100250",
+      "length": 128,
+      "type": "tempo_change",
+      "channels": 6,
+      "instruments": 16
+    },
+    {
+      "offset": "$100260",
+      "length": 112,
+      "type": "tempo_change",
+      "channels": 6,
+      "instruments": 16
+    },
+    {
+      "offset": "$100270",
+      "length": 96,
+      "type": "tempo_change",
+      "channels": 6,
+      "instruments": 16
+    },
+    {
+      "offset": "$100280",
+      "length": 80,
+      "type": "tempo_change",
+      "channels": 6,
+      "instruments": 16
+    },
+    {
+      "offset": "$100290",
+      "length": 64,
+      "type": "tempo_change",
+      "channels": 6,
+      "instruments": 16
+    },
+    {
+      "offset": "$1002a0",
+      "length": 48,
+      "type": "tempo_change",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$1002b0",
+      "length": 32,
+      "type": "tempo_change",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$1002c0",
+      "length": 111,
+      "type": "instrument_change",
+      "channels": 6,
+      "instruments": 16
+    },
+    {
+      "offset": "$1002d0",
+      "length": 95,
+      "type": "instrument_change",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$1002e0",
+      "length": 79,
+      "type": "instrument_change",
+      "channels": 6,
+      "instruments": 16
+    },
+    {
+      "offset": "$1002f0",
+      "length": 63,
+      "type": "instrument_change",
+      "channels": 6,
+      "instruments": 16
+    },
+    {
+      "offset": "$100310",
+      "length": 31,
+      "type": "tempo_change",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$100320",
+      "length": 31,
+      "type": "tempo_change",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$100330",
+      "length": 34,
+      "type": "tempo_change",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$100340",
+      "length": 19,
+      "type": "tempo_change",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$100360",
+      "length": 59,
+      "type": "tempo_change",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$100370",
+      "length": 43,
+      "type": "tempo_change",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$100380",
+      "length": 27,
+      "type": "instrument_change",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$100390",
+      "length": 107,
+      "type": "instrument_change",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$1003a0",
+      "length": 91,
+      "type": "instrument_change",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$1003b0",
+      "length": 75,
+      "type": "instrument_change",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$100430",
+      "length": 165,
+      "type": "timing_control",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$100440",
+      "length": 149,
+      "type": "volume_change",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$100450",
+      "length": 133,
+      "type": "volume_change",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$100460",
+      "length": 117,
+      "type": "volume_change",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$100470",
+      "length": 101,
+      "type": "volume_change",
+      "channels": 5,
+      "instruments": 16
+    },
+    {
+      "offset": "$100490",
+      "length": 69,
+      "type": "tempo_change",
+      "channels": 4,
+      "instruments": 16
+    },
+    {
+      "offset": "$1004a0",
+      "length": 53,
+      "type": "volume_change",
+      "channels": 4,
+      "instruments": 16
+    },
+    {
+      "offset": "$1004b0",
+      "length": 37,
+      "type": "volume_change",
+      "channels": 4,
+      "instruments": 16
+    },
+    {
+      "offset": "$1004c0",
+      "length": 21,
+      "type": "volume_change",
+      "channels": 4,
+      "instruments": 16
+    },
+    {
+      "offset": "$1004d0",
+      "length": 113,
+      "type": "volume_change",
+      "channels": 4,
+      "instruments": 16
+    }
+  ],
+  "spc_code_blocks": [],
+  "audio_banks": {
+    "Music Data Banks": {
+      "banks": [
+        32,
+        40
+      ],
+      "samples": 8529,
+      "sequences": 8987,
+      "code_blocks": 0
+    },
+    "Sound Effect Banks": {
+      "banks": [
+        40,
+        48
+      ],
+      "samples": 7755,
+      "sequences": 9329,
+      "code_blocks": 0
+    },
+    "Sample Data Banks": {
+      "banks": [
+        48,
+        56
+      ],
+      "samples": 11935,
+      "sequences": 0,
+      "code_blocks": 0
+    },
+    "Instrument Banks": {
+      "banks": [
+        56,
+        64
+      ],
+      "samples": 12557,
+      "sequences": 0,
+      "code_blocks": 0
+    }
+  }
+}

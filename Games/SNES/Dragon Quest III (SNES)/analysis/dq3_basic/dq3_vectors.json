@@ -1,0 +1,90 @@
+{
+	"native_mode": {
+		"COP": {
+			"vector_address": "$ffe4",
+			"handler_address": "$ffac",
+			"handler_function": "sub_00_ffac",
+			"handler_type": "subroutine",
+			"handler_size": 1
+		},
+		"BRK": {
+			"vector_address": "$ffe6",
+			"handler_address": "$ffa8",
+			"handler_function": "sub_00_ffa8",
+			"handler_type": "subroutine",
+			"handler_size": 1
+		},
+		"ABORT": {
+			"vector_address": "$ffe8",
+			"handler_address": "$ffa4",
+			"handler_function": "sub_00_ffa4",
+			"handler_type": "subroutine",
+			"handler_size": 1
+		},
+		"NMI": {
+			"vector_address": "$ffea",
+			"handler_address": "$ffa0",
+			"handler_function": "sub_00_ffa0",
+			"handler_type": "subroutine",
+			"handler_size": 1
+		},
+		"UNUSED": {
+			"vector_address": "$ffec",
+			"handler_address": "$ffa4",
+			"handler_function": "sub_00_ffa4",
+			"handler_type": "subroutine",
+			"handler_size": 1
+		},
+		"IRQ": {
+			"vector_address": "$ffee",
+			"handler_address": "$ffa4",
+			"handler_function": "sub_00_ffa4",
+			"handler_type": "subroutine",
+			"handler_size": 1
+		}
+	},
+	"emulation_mode": {
+		"COP": {
+			"vector_address": "$fff4",
+			"handler_address": "$ffa4",
+			"handler_function": "sub_00_ffa4",
+			"handler_type": "subroutine",
+			"handler_size": 1
+		},
+		"UNUSED": {
+			"vector_address": "$fff6",
+			"handler_address": "$ffa4",
+			"handler_function": "sub_00_ffa4",
+			"handler_type": "subroutine",
+			"handler_size": 1
+		},
+		"ABORT": {
+			"vector_address": "$fff8",
+			"handler_address": "$ffa4",
+			"handler_function": "sub_00_ffa4",
+			"handler_type": "subroutine",
+			"handler_size": 1
+		},
+		"NMI": {
+			"vector_address": "$fffa",
+			"handler_address": "$ffa0",
+			"handler_function": "sub_00_ffa0",
+			"handler_type": "subroutine",
+			"handler_size": 1
+		},
+		"RESET": {
+			"vector_address": "$fffc",
+			"handler_address": "$ff98",
+			"handler_function": "sub_00_ff98",
+			"handler_type": "subroutine",
+			"handler_size": 5
+		},
+		"IRQ": {
+			"vector_address": "$fffe",
+			"handler_address": "$ffa4",
+			"handler_function": "sub_00_ffa4",
+			"handler_type": "subroutine",
+			"handler_size": 1
+		}
+	}
+}
