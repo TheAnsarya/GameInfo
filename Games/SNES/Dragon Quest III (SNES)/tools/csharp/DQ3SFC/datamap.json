@@ -1,0 +1,52 @@
+{
+	"romfile": {
+		"directory": "c:\\~working\\~dq3\\",
+		"filename": "Dragon Quest III - Soshite Densetsu he... (J).smc",
+		"filesize": 4194304,
+		"crc32": "0x13836bd2",
+		"MD5": "0x7c7c7db73b0608a184cc5e1d73d7695b",
+		"SHA1": "0xb711341e4b1022d7645c5313840874aebc01b7b7"
+	},
+	"datamap": {
+		"text": {
+			"menu": {
+				"font": {
+					"tableFile": "menu-font.tbl",
+					"address": "0x0",
+					"length": "0x0",
+					"charWidth": 8,
+					"charHeight": 8
+				}
+			},
+			"dialog": {
+				"table": {
+					"file": "text\\dialog-table.tbl",
+					"length": "0xfa"
+				},
+				"font": {
+					"settings": {
+						"rawFile": "text\\dialog-font.raw",
+						"imageFile": "text\\dialog-font.png"
+					},
+					"bankAddress": "0xc1bbd5",
+					"metadataTable": {
+						"address": "0xc151aa",
+						"addressEnd": "0xc152a3",
+						"count": 50,
+						"entryLength": 5
+					},
+					"data": {
+						"address": "0xc10ed3",
+						"addressEnd": "0xc151a9",
+						"length": "0x42d7"
+					}
+				},
+				"script": {
+					"address": "0xfcc258",
+					"addressEnd": "0xfecfb5",
+					"length": "0x20d5e"
+				}
+			}
+		}
+	}
+}

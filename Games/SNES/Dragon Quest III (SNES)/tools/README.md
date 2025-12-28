@@ -1,33 +1,31 @@
 # Dragon Quest III (SNES) - Analysis Tools
 
-This folder contains Python tools for ROM analysis and asset extraction.
+This folder contains analysis tools for ROM analysis and asset extraction.
 
 ## Folder Structure
 
 ```
 tools/
 ├── README.md               # This file
-└── python/                 # Python analysis tools
-    ├── analysis/          # ROM analyzers
-    │   ├── comprehensive_rom_analyzer.py
-    │   ├── cross_reference_engine.py
-    │   ├── disassembly_engine.py
-    │   ├── graphics_format_analyzer.py
-    │   ├── memory_banking_analyzer.py
-    │   └── snes_disassembler.py
-    ├── graphics/          # Graphics decoders
-    │   ├── graphics_visualizer.py
-    │   └── snes_graphics_decoder.py
-    ├── reconstruction/    # Source reconstruction
-    │   └── advanced_source_reconstructor.py
-    ├── documentation/     # Doc generators
-    ├── editing/           # ROM editing tools
-    ├── formatting/        # Hex formatter
-    ├── utils/             # Shared utilities
-    └── ...
+├── python/                 # Python analysis tools
+│   ├── analysis/          # ROM analyzers
+│   ├── graphics/          # Graphics decoders
+│   ├── reconstruction/    # Source reconstruction
+│   ├── documentation/     # Doc generators
+│   ├── editing/           # ROM editing tools
+│   ├── formatting/        # Hex formatter
+│   └── utils/             # Shared utilities
+└── csharp/                 # C# libraries (from logsmall)
+    ├── DQ3SFC/            # SNES-specific DQ3 library
+    │   ├── datamap.json   # ROM address map
+    │   ├── Compression/   # Decompression routines
+    │   └── Text/          # Text handling
+    └── DQ3Lib/            # Common DQ3 library
+        ├── Compression/   # Compression utilities
+        └── Text/          # Text encoding
 ```
 
-## Usage
+## Python Tools Usage
 
 ```bash
 # Analyze ROM structure
@@ -40,11 +38,18 @@ python tools/python/graphics/snes_graphics_decoder.py --rom "path/to/dq3.sfc"
 python tools/python/formatting/hex_formatter.py --input "file.asm"
 ```
 
+## C# Libraries
+
+The C# libraries from logsmall provide:
+- ROM data structure definitions
+- Compression/decompression algorithms
+- Text encoding/decoding
+- Data map with ROM addresses
+
+See [csharp/README.md](csharp/README.md) for details.
+
 ## Status
 
-✅ **Complete** - Tools migrated from dq3r-info repository.
-
-## C# Migration
-
-These Python tools will eventually be converted to C# (.NET 10) for integration with DarkRepos/Editor.
-See issue #141 for progress.
+✅ **Python Tools** - Complete (migrated from dq3r-info)
+✅ **C# Libraries** - Complete (copied from logsmall)
+🔄 **C# Migration** - In progress (see issue #141)
