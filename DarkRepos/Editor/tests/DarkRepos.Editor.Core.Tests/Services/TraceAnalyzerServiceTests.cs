@@ -3,18 +3,15 @@ using Xunit;
 
 namespace DarkRepos.Editor.Core.Tests.Services;
 
-public class TraceAnalyzerServiceTests
-{
+public class TraceAnalyzerServiceTests {
 	private readonly TraceAnalyzerService _service;
 
-	public TraceAnalyzerServiceTests()
-	{
+	public TraceAnalyzerServiceTests() {
 		_service = new TraceAnalyzerService();
 	}
 
 	[Fact]
-	public void LoadCdl_WithValidData_SetsFlagsCorrectly()
-	{
+	public void LoadCdl_WithValidData_SetsFlagsCorrectly() {
 		// Arrange - Create test CDL data
 		var cdlData = new byte[] {
 			0x01, // Code
@@ -36,8 +33,7 @@ public class TraceAnalyzerServiceTests
 	}
 
 	[Fact]
-	public void IsCode_WithCodeByte_ReturnsTrue()
-	{
+	public void IsCode_WithCodeByte_ReturnsTrue() {
 		// Arrange
 		_service.LoadCdl(new byte[] { 0x01 });
 
@@ -48,8 +44,7 @@ public class TraceAnalyzerServiceTests
 	}
 
 	[Fact]
-	public void IsData_WithDataByte_ReturnsTrue()
-	{
+	public void IsData_WithDataByte_ReturnsTrue() {
 		// Arrange
 		_service.LoadCdl(new byte[] { 0x02 });
 
@@ -60,8 +55,7 @@ public class TraceAnalyzerServiceTests
 	}
 
 	[Fact]
-	public void IsDrawn_WithDrawnByte_ReturnsTrue()
-	{
+	public void IsDrawn_WithDrawnByte_ReturnsTrue() {
 		// Arrange
 		_service.LoadCdl(new byte[] { 0x04 });
 
@@ -72,8 +66,7 @@ public class TraceAnalyzerServiceTests
 	}
 
 	[Fact]
-	public void GetSummary_WithMixedData_ReturnsCorrectCounts()
-	{
+	public void GetSummary_WithMixedData_ReturnsCorrectCounts() {
 		// Arrange
 		var cdlData = new byte[] {
 			0x01, 0x01, 0x01, // 3 code
@@ -96,8 +89,7 @@ public class TraceAnalyzerServiceTests
 	}
 
 	[Fact]
-	public void GetSummary_WithNoCdlData_ReturnsNull()
-	{
+	public void GetSummary_WithNoCdlData_ReturnsNull() {
 		// Act
 		var summary = _service.GetSummary();
 
@@ -106,8 +98,7 @@ public class TraceAnalyzerServiceTests
 	}
 
 	[Fact]
-	public void GetFlags_WithOutOfRangeAddress_ReturnsNone()
-	{
+	public void GetFlags_WithOutOfRangeAddress_ReturnsNone() {
 		// Arrange
 		_service.LoadCdl(new byte[] { 0x01, 0x02 });
 
@@ -117,8 +108,7 @@ public class TraceAnalyzerServiceTests
 	}
 
 	[Fact]
-	public void GetRegions_WithContiguousData_IdentifiesRegions()
-	{
+	public void GetRegions_WithContiguousData_IdentifiesRegions() {
 		// Arrange - Create CDL with distinct regions
 		var cdlData = new byte[64];
 		// First 32 bytes are code
@@ -142,8 +132,7 @@ public class TraceAnalyzerServiceTests
 	}
 
 	[Fact]
-	public void GetRegions_WithSmallRegions_FiltersCorrectly()
-	{
+	public void GetRegions_WithSmallRegions_FiltersCorrectly() {
 		// Arrange - Create CDL with small regions
 		var cdlData = new byte[20];
 		for (int i = 0; i < 10; i++) cdlData[i] = 0x01; // 10 bytes code
@@ -163,8 +152,7 @@ public class TraceAnalyzerServiceTests
 	}
 
 	[Fact]
-	public void GetUniqueAddresses_WithNoTraceData_ReturnsEmpty()
-	{
+	public void GetUniqueAddresses_WithNoTraceData_ReturnsEmpty() {
 		// Act
 		var addresses = _service.GetUniqueAddresses();
 
@@ -173,8 +161,7 @@ public class TraceAnalyzerServiceTests
 	}
 
 	[Fact]
-	public void GetMnemonicHistogram_WithNoTraceData_ReturnsEmpty()
-	{
+	public void GetMnemonicHistogram_WithNoTraceData_ReturnsEmpty() {
 		// Act
 		var histogram = _service.GetMnemonicHistogram();
 
@@ -183,8 +170,7 @@ public class TraceAnalyzerServiceTests
 	}
 
 	[Fact]
-	public void GetEntriesInRange_WithNoTraceData_ReturnsEmpty()
-	{
+	public void GetEntriesInRange_WithNoTraceData_ReturnsEmpty() {
 		// Act
 		var entries = _service.GetEntriesInRange(0, 0xFFFFFF);
 
@@ -193,8 +179,7 @@ public class TraceAnalyzerServiceTests
 	}
 
 	[Fact]
-	public void ExportCdlReport_WithData_ProducesReport()
-	{
+	public void ExportCdlReport_WithData_ProducesReport() {
 		// Arrange
 		var cdlData = new byte[] { 0x01, 0x02, 0x04, 0x00 };
 		_service.LoadCdl(cdlData);
@@ -209,8 +194,7 @@ public class TraceAnalyzerServiceTests
 	}
 
 	[Fact]
-	public void ExportCdlReport_WithNoCdlData_ReturnsMessage()
-	{
+	public void ExportCdlReport_WithNoCdlData_ReturnsMessage() {
 		// Act
 		var report = _service.ExportCdlReport();
 
@@ -226,8 +210,7 @@ public class TraceAnalyzerServiceTests
 	[InlineData(0x10, TraceAnalyzerService.CdlFlags.IndexMode8)]
 	[InlineData(0x20, TraceAnalyzerService.CdlFlags.MemoryMode8)]
 	[InlineData(0x31, TraceAnalyzerService.CdlFlags.Code | TraceAnalyzerService.CdlFlags.IndexMode8 | TraceAnalyzerService.CdlFlags.MemoryMode8)]
-	public void CdlFlags_ParseCorrectly(byte input, TraceAnalyzerService.CdlFlags expected)
-	{
+	public void CdlFlags_ParseCorrectly(byte input, TraceAnalyzerService.CdlFlags expected) {
 		// Arrange
 		_service.LoadCdl(new byte[] { input });
 
