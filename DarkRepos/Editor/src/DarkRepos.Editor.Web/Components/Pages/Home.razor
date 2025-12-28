@@ -1,0 +1,257 @@
+@page "/"
+@using DarkRepos.Editor.Core.Interfaces
+@inject IRomService RomService
+
+<PageTitle>DarkRepos Editor</PageTitle>
+
+<div class="home-container">
+	<header class="hero-section">
+		<h1>
+			<span class="logo-icon">🎮</span>
+			DarkRepos Editor
+		</h1>
+		<p class="tagline">A wiki-oriented ROM editor for retro game documentation</p>
+	</header>
+
+	<section class="actions-section">
+		@if (_selectedRom == null)
+		{
+			<div class="rom-selection">
+				<h2>Get Started</h2>
+				<p>Select a ROM file to begin editing:</p>
+
+				<div class="file-picker">
+					<InputFile OnChange="HandleFileSelected" accept=".nes,.sfc,.smc,.gb,.gbc,.gba,.smd,.gen" />
+					<div class="file-hint">
+						Supported formats: NES, SNES, GB, GBC, GBA, Genesis
+					</div>
+				</div>
+
+				@if (_recentRoms.Count > 0)
+				{
+					<div class="recent-section">
+						<h3>Recent ROMs</h3>
+						<ul class="recent-list">
+							@foreach (var rom in _recentRoms)
+							{
+								<li>
+									<button @onclick="() => LoadRecentRom(rom)" class="recent-item">
+										<span class="rom-name">@rom.Name</span>
+										<span class="rom-platform">@rom.Platform</span>
+									</button>
+								</li>
+							}
+						</ul>
+					</div>
+				}
+			</div>
+		}
+		else
+		{
+			<div class="rom-info">
+				<h2>Current ROM</h2>
+				<div class="rom-details">
+					<p><strong>Name:</strong> @_selectedRom.Name</p>
+					<p><strong>Platform:</strong> @_selectedRom.Platform</p>
+					<p><strong>Size:</strong> @FormatSize(_selectedRom.Size)</p>
+				</div>
+				<button @onclick="CloseRom" class="btn btn-secondary">Close ROM</button>
+			</div>
+		}
+	</section>
+
+	<section class="editors-section">
+		<h2>Editors</h2>
+		<div class="editor-grid">
+			<a href="/hex" class="editor-card @(IsRomLoaded ? "" : "disabled")">
+				<div class="card-icon">📊</div>
+				<h3>Hex Editor</h3>
+				<p>View and edit raw bytes</p>
+			</a>
+
+			<a href="/data" class="editor-card @(IsRomLoaded ? "" : "disabled")">
+				<div class="card-icon">📋</div>
+				<h3>Data Editor</h3>
+				<p>Edit structured game data</p>
+			</a>
+
+			<a href="/text" class="editor-card @(IsRomLoaded ? "" : "disabled")">
+				<div class="card-icon">💬</div>
+				<h3>Text Editor</h3>
+				<p>Edit game text and dialog</p>
+			</a>
+
+			<a href="/graphics" class="editor-card @(IsRomLoaded ? "" : "disabled")">
+				<div class="card-icon">🎨</div>
+				<h3>Graphics Editor</h3>
+				<p>Edit CHR tiles and sprites</p>
+			</a>
+
+			<a href="/map" class="editor-card @(IsRomLoaded ? "" : "disabled")">
+				<div class="card-icon">🗺️</div>
+				<h3>Map Editor</h3>
+				<p>Edit maps and tilemaps</p>
+			</a>
+
+			<a href="/script" class="editor-card @(IsRomLoaded ? "" : "disabled")">
+				<div class="card-icon">📜</div>
+				<h3>Script Editor</h3>
+				<p>Edit game scripts and events</p>
+			</a>
+
+			<a href="/disasm" class="editor-card @(IsRomLoaded ? "" : "disabled")">
+				<div class="card-icon">⚙️</div>
+				<h3>Disassembler</h3>
+				<p>View disassembled code</p>
+			</a>
+		</div>
+	</section>
+
+	<section class="features-section">
+		<h2>Features</h2>
+		<div class="features-grid">
+			<div class="feature">
+				<div class="feature-icon">📝</div>
+				<h3>Wiki Integration</h3>
+				<p>Generate wiki-ready documentation from your ROM analysis</p>
+			</div>
+
+			<div class="feature">
+				<div class="feature-icon">🔍</div>
+				<h3>Data Detection</h3>
+				<p>Auto-detect text tables, data structures, and more</p>
+			</div>
+
+			<div class="feature">
+				<div class="feature-icon">📤</div>
+				<h3>Multiple Export Formats</h3>
+				<p>Export to JSON, CSV, Assembly, and MediaWiki formats</p>
+			</div>
+
+			<div class="feature">
+				<div class="feature-icon">🎯</div>
+				<h3>Cross-Platform</h3>
+				<p>Support for NES, SNES, GB, GBC, GBA, and Genesis</p>
+			</div>
+		</div>
+	</section>
+
+	@if (!string.IsNullOrEmpty(_errorMessage))
+	{
+		<div class="error-message">
+			<span class="error-icon">⚠️</span>
+			@_errorMessage
+			<button @onclick="ClearError" class="error-close">×</button>
+		</div>
+	}
+</div>
+
+@code {
+	private RomInfo? _selectedRom;
+	private List<RomInfo> _recentRoms = [];
+	private string? _errorMessage;
+
+	private bool IsRomLoaded => _selectedRom != null;
+
+	protected override void OnInitialized()
+	{
+		// Load recent ROMs from storage/state
+		LoadRecentRoms();
+	}
+
+	private void LoadRecentRoms()
+	{
+		// This would typically load from local storage or a state service
+		// For now, we'll start with an empty list
+		_recentRoms = [];
+	}
+
+	private async Task HandleFileSelected(InputFileChangeEventArgs e)
+	{
+		try
+		{
+			var file = e.File;
+			if (file == null)
+				return;
+
+			// Read file into memory
+			var maxSize = 16 * 1024 * 1024; // 16 MB limit
+			if (file.Size > maxSize)
+			{
+				_errorMessage = "File too large. Maximum size is 16 MB.";
+				return;
+			}
+
+			using var stream = file.OpenReadStream(maxSize);
+			var buffer = new byte[file.Size];
+			await stream.ReadAsync(buffer);
+
+			// Get ROM info using RomService
+			var platform = RomService.DetectPlatform(buffer, file.Name);
+			_selectedRom = new RomInfo
+			{
+				Name = file.Name,
+				Platform = platform.ToString(),
+				Size = file.Size,
+				Data = buffer
+			};
+
+			// Add to recent ROMs
+			AddToRecent(_selectedRom);
+
+			_errorMessage = null;
+		}
+		catch (Exception ex)
+		{
+			_errorMessage = $"Error loading ROM: {ex.Message}";
+		}
+	}
+
+	private async Task LoadRecentRom(RomInfo rom)
+	{
+		// This would reload a previously opened ROM
+		_selectedRom = rom;
+		await Task.CompletedTask;
+	}
+
+	private void CloseRom()
+	{
+		_selectedRom = null;
+	}
+
+	private void AddToRecent(RomInfo rom)
+	{
+		// Remove if already in list
+		_recentRoms.RemoveAll(r => r.Name == rom.Name);
+
+		// Add to front
+		_recentRoms.Insert(0, rom);
+
+		// Keep only last 5
+		if (_recentRoms.Count > 5)
+			_recentRoms.RemoveRange(5, _recentRoms.Count - 5);
+	}
+
+	private void ClearError()
+	{
+		_errorMessage = null;
+	}
+
+	private static string FormatSize(long bytes)
+	{
+		if (bytes < 1024)
+			return $"{bytes} bytes";
+		if (bytes < 1024 * 1024)
+			return $"{bytes / 1024.0:F1} KB";
+		return $"{bytes / (1024.0 * 1024.0):F1} MB";
+	}
+
+	// Simple ROM info class for this page
+	public class RomInfo
+	{
+		public string Name { get; set; } = "";
+		public string Platform { get; set; } = "";
+		public long Size { get; set; }
+		public byte[]? Data { get; set; }
+	}
+}

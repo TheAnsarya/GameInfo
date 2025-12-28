@@ -1,0 +1,627 @@
+@using DarkRepos.Editor.Core.Interfaces
+@using DarkRepos.Editor.Core.Services
+@inject ITextEditorService TextEditorService
+@inject IRomService RomService
+
+<div class="text-editor">
+	<div class="editor-toolbar">
+		<div class="toolbar-section">
+			<label>Table File:</label>
+			<InputFile OnChange="HandleTableFileUpload" accept=".tbl" />
+			<button class="btn btn-secondary" @onclick="CreateDefaultTable" disabled="@(!HasRomData)">
+				Create Default ASCII
+			</button>
+		</div>
+
+		<div class="toolbar-section">
+			<label>Search Mode:</label>
+			<select @bind="SearchMode">
+				<option value="manual">Manual Selection</option>
+				<option value="auto">Auto-detect Text</option>
+				<option value="pointers">Pointer Table</option>
+			</select>
+		</div>
+
+		@if (SearchMode == "auto")
+		{
+			<div class="toolbar-section">
+				<label>Min Length:</label>
+				<input type="number" @bind="MinLength" min="1" max="100" style="width: 60px" />
+				<label>Min Valid %:</label>
+				<input type="number" @bind="MinValidPercent" min="1" max="100" style="width: 60px" />
+				<button class="btn btn-primary" @onclick="FindTextBlocks" disabled="@(!CanSearch)">
+					Find Text
+				</button>
+			</div>
+		}
+		else if (SearchMode == "pointers")
+		{
+			<div class="toolbar-section">
+				<label>Pointer Table:</label>
+				<input type="text" @bind="PointerTableAddress" placeholder="0x8000" style="width: 80px" />
+				<label>Count:</label>
+				<input type="number" @bind="PointerCount" min="1" max="1000" style="width: 60px" />
+				<label>Bank:</label>
+				<input type="text" @bind="TextBankAddress" placeholder="0x10010" style="width: 80px" />
+				<button class="btn btn-primary" @onclick="LoadPointerTable" disabled="@(!CanSearch)">
+					Load Pointers
+				</button>
+			</div>
+		}
+
+		<div class="toolbar-section export-section">
+			<label>Export:</label>
+			<select @bind="ExportFormat">
+				<option value="csv">CSV</option>
+				<option value="json">JSON</option>
+				<option value="atlas">Atlas</option>
+				<option value="markdown">Markdown</option>
+				<option value="plain">Plain Text</option>
+			</select>
+			<button class="btn btn-secondary" @onclick="ExportScript" disabled="@(!HasTextBlocks)">
+				Export
+			</button>
+		</div>
+	</div>
+
+	<div class="editor-content">
+		<div class="text-list-panel">
+			<div class="panel-header">
+				<span>Text Blocks (@TextBlocks.Count)</span>
+				<div class="filter-box">
+					<input type="text" @bind="FilterText" @bind:event="oninput" placeholder="Filter..." />
+				</div>
+			</div>
+
+			<div class="text-list" tabindex="0" @onkeydown="HandleKeyDown">
+				@foreach (var block in FilteredBlocks)
+				{
+					<div class="text-item @(block == SelectedBlock ? "selected" : "")"
+						 @onclick="() => SelectBlock(block)">
+						<span class="block-offset">$@block.Offset.ToString("x6")</span>
+						<span class="block-text">@TruncateText(block.Text, 60)</span>
+						@if (!string.IsNullOrEmpty(block.Label))
+						{
+							<span class="block-label">[@block.Label]</span>
+						}
+					</div>
+				}
+			</div>
+		</div>
+
+		<div class="text-edit-panel">
+			@if (SelectedBlock != null)
+			{
+				<div class="panel-header">
+					<span>Edit Text Block</span>
+					<span class="offset-display">Offset: $@SelectedBlock.Offset.ToString("x6") | Length: @SelectedBlock.Length bytes</span>
+				</div>
+
+				<div class="edit-area">
+					<div class="field-group">
+						<label>Label:</label>
+						<input type="text" @bind="SelectedBlock.Label" placeholder="Optional label..." />
+					</div>
+
+					<div class="field-group">
+						<label>Text:</label>
+						<textarea @bind="EditedText" @bind:event="oninput" rows="4"></textarea>
+					</div>
+
+					<div class="field-group">
+						<label>Comment:</label>
+						<input type="text" @bind="SelectedBlock.Comment" placeholder="Optional comment..." />
+					</div>
+
+					<div class="hex-preview">
+						<label>Raw Bytes:</label>
+						<div class="hex-display">
+							@if (SelectedBlock.RawBytes != null)
+							{
+								@string.Join(" ", SelectedBlock.RawBytes.Select(b => b.ToString("x2")))
+							}
+						</div>
+					</div>
+
+					<div class="encoded-preview">
+						<label>Encoded Preview:</label>
+						<div class="hex-display">
+							@if (EncodedPreview != null)
+							{
+								@string.Join(" ", EncodedPreview.Select(b => b.ToString("x2")))
+								@if (EncodedPreview.Length != SelectedBlock.RawBytes?.Length)
+								{
+									<span class="length-warning">
+										(Length: @EncodedPreview.Length, Original: @SelectedBlock.RawBytes?.Length)
+									</span>
+								}
+							}
+						</div>
+					</div>
+
+					<div class="button-group">
+						<button class="btn btn-primary" @onclick="ApplyChanges" disabled="@(!CanApplyChanges)">
+							Apply Changes
+						</button>
+						<button class="btn btn-secondary" @onclick="RevertChanges">
+							Revert
+						</button>
+						<button class="btn btn-danger" @onclick="DeleteBlock">
+							Delete Block
+						</button>
+					</div>
+				</div>
+			}
+			else
+			{
+				<div class="no-selection">
+					<p>Select a text block to edit</p>
+					<p class="hint">Use the list on the left or find text blocks using the toolbar options.</p>
+				</div>
+			}
+		</div>
+
+		<div class="table-panel">
+			<div class="panel-header">
+				<span>Character Table</span>
+				<button class="btn btn-sm" @onclick="ToggleTableView">
+					@(ShowFullTable ? "Show Mappings" : "Show All")
+				</button>
+			</div>
+
+			<div class="table-content">
+				@if (CurrentTable != null)
+				{
+					@if (ShowFullTable)
+					{
+						<div class="table-grid">
+							@for (int row = 0; row < 16; row++)
+							{
+								<div class="table-row">
+									<span class="row-header">@row.ToString("x1")x</span>
+									@for (int col = 0; col < 16; col++)
+									{
+										var byteVal = (byte)(row * 16 + col);
+										var charVal = GetCharacterMapping(byteVal);
+										<span class="table-cell @(string.IsNullOrEmpty(charVal) ? "empty" : "")"
+											  title="$@byteVal.ToString("x2")">
+											@(string.IsNullOrEmpty(charVal) ? "·" : charVal)
+										</span>
+									}
+								</div>
+							}
+						</div>
+					}
+					else
+					{
+						<div class="mapping-list">
+							@foreach (var mapping in CurrentTable.SingleByteMappings.OrderBy(m => m.Key))
+							{
+								<div class="mapping-item">
+									<span class="mapping-hex">$@mapping.Key.ToString("x2")</span>
+									<span class="mapping-char">@mapping.Value</span>
+								</div>
+							}
+							@if (CurrentTable.DteMappings.Any())
+							{
+								<div class="mapping-section">DTE Mappings</div>
+								@foreach (var mapping in CurrentTable.DteMappings.OrderBy(m => m.Key))
+								{
+									<div class="mapping-item dte">
+										<span class="mapping-hex">$@mapping.Key.ToString("x2")</span>
+										<span class="mapping-char">@mapping.Value</span>
+									</div>
+								}
+							}
+							@if (CurrentTable.ControlCodes.Any())
+							{
+								<div class="mapping-section">Control Codes</div>
+								@foreach (var mapping in CurrentTable.ControlCodes)
+								{
+									<div class="mapping-item control">
+										<span class="mapping-hex">$@BitConverter.ToString(mapping.Key).Replace("-", "")</span>
+										<span class="mapping-char">@mapping.Value</span>
+									</div>
+								}
+							}
+						</div>
+					}
+				}
+				else
+				{
+					<div class="no-table">
+						<p>No table loaded</p>
+						<p class="hint">Upload a .tbl file or create a default ASCII table.</p>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+
+	<div class="editor-status">
+		<span class="status-item">
+			@if (CurrentTable != null)
+			{
+				<span>Table: @CurrentTable.SingleByteMappings.Count chars</span>
+			}
+			else
+			{
+				<span>No table loaded</span>
+			}
+		</span>
+		<span class="status-item">Blocks: @TextBlocks.Count</span>
+		<span class="status-item">Modified: @ModifiedBlocks.Count</span>
+		@if (!string.IsNullOrEmpty(StatusMessage))
+		{
+			<span class="status-message @StatusClass">@StatusMessage</span>
+		}
+	</div>
+</div>
+
+@code {
+	[Parameter]
+	public byte[]? RomData { get; set; }
+
+	[Parameter]
+	public EventCallback<(int Offset, byte[] Data)> OnDataChanged { get; set; }
+
+	private TableFile? CurrentTable { get; set; }
+	private List<TextBlock> TextBlocks { get; set; } = [];
+	private HashSet<TextBlock> ModifiedBlocks { get; set; } = [];
+	private TextBlock? SelectedBlock { get; set; }
+	private string EditedText { get; set; } = "";
+	private byte[]? EncodedPreview { get; set; }
+
+	private string SearchMode { get; set; } = "auto";
+	private int MinLength { get; set; } = 3;
+	private int MinValidPercent { get; set; } = 80;
+	private string PointerTableAddress { get; set; } = "";
+	private int PointerCount { get; set; } = 10;
+	private string TextBankAddress { get; set; } = "";
+
+	private string ExportFormat { get; set; } = "csv";
+	private string FilterText { get; set; } = "";
+	private bool ShowFullTable { get; set; } = true;
+
+	private string StatusMessage { get; set; } = "";
+	private string StatusClass { get; set; } = "";
+
+	private bool HasRomData => RomData != null && RomData.Length > 0;
+	private bool CanSearch => HasRomData && CurrentTable != null;
+	private bool HasTextBlocks => TextBlocks.Count > 0;
+	private bool CanApplyChanges => SelectedBlock != null && EncodedPreview != null;
+
+	private List<TextBlock> FilteredBlocks => string.IsNullOrWhiteSpace(FilterText)
+		? TextBlocks
+		: TextBlocks.Where(b =>
+			b.Text.Contains(FilterText, StringComparison.OrdinalIgnoreCase) ||
+			b.Label?.Contains(FilterText, StringComparison.OrdinalIgnoreCase) == true ||
+			b.Offset.ToString("x6").Contains(FilterText, StringComparison.OrdinalIgnoreCase)
+		).ToList();
+
+	protected override void OnParametersSet()
+	{
+		if (RomData != null && CurrentTable == null)
+		{
+			// Optionally auto-create a default table
+		}
+
+		base.OnParametersSet();
+	}
+
+	private async Task HandleTableFileUpload(InputFileChangeEventArgs e)
+	{
+		try
+		{
+			var file = e.File;
+			using var stream = file.OpenReadStream(maxAllowedSize: 1024 * 1024); // 1MB max
+			using var reader = new StreamReader(stream);
+			var content = await reader.ReadToEndAsync();
+
+			CurrentTable = TextEditorService.LoadTableFile(content);
+			SetStatus($"Loaded table: {CurrentTable.SingleByteMappings.Count} characters", "success");
+		}
+		catch (Exception ex)
+		{
+			SetStatus($"Error loading table: {ex.Message}", "error");
+		}
+	}
+
+	private void CreateDefaultTable()
+	{
+		// Create a basic ASCII table
+		var tableContent = new System.Text.StringBuilder();
+
+		// Standard ASCII printable characters
+		for (int i = 0x20; i <= 0x7e; i++)
+		{
+			tableContent.AppendLine($"{i:x2}={(char)i}");
+		}
+
+		// Common control codes
+		tableContent.AppendLine("00=<end>");
+		tableContent.AppendLine("0a=<line>");
+
+		CurrentTable = TextEditorService.LoadTableFile(tableContent.ToString());
+		SetStatus("Created default ASCII table", "success");
+	}
+
+	private void FindTextBlocks()
+	{
+		if (RomData == null || CurrentTable == null)
+			return;
+
+		var options = new TextSearchOptions
+		{
+			MinLength = MinLength,
+			MinValidRatio = MinValidPercent / 100.0
+		};
+
+		TextBlocks = TextEditorService.FindTextBlocks(RomData, CurrentTable, options).ToList();
+		SetStatus($"Found {TextBlocks.Count} text blocks", "success");
+
+		if (TextBlocks.Count > 0)
+		{
+			SelectBlock(TextBlocks[0]);
+		}
+	}
+
+	private void LoadPointerTable()
+	{
+		if (RomData == null || CurrentTable == null)
+			return;
+
+		try
+		{
+			var ptrOffset = (int)ParseAddress(PointerTableAddress);
+			var bankOffset = (int)ParseAddress(TextBankAddress);
+
+			var pointers = TextEditorService.ReadPointerTable(RomData, ptrOffset, PointerCount, 2, 0x8000);
+
+			TextBlocks.Clear();
+			foreach (var ptr in pointers)
+			{
+				// Convert pointer to file offset (assuming NES with $8000 base)
+				var textOffset = bankOffset + (ptr - 0x8000);
+
+				if (textOffset < 0 || textOffset >= RomData.Length)
+					continue;
+
+				// Find end of string
+				var endOffset = textOffset;
+				while (endOffset < RomData.Length && !MatchesEndMarker(RomData, endOffset))
+				{
+					endOffset++;
+				}
+
+				var length = endOffset - textOffset;
+				if (length <= 0)
+					continue;
+
+				var rawBytes = new byte[length];
+				Array.Copy(RomData, textOffset, rawBytes, 0, length);
+
+				TextBlocks.Add(new TextBlock
+				{
+					Offset = textOffset,
+					Length = length,
+					RawBytes = rawBytes,
+					Text = TextEditorService.DecodeText(RomData, textOffset, length, CurrentTable),
+					HasPointer = true,
+					PointerAddress = ptrOffset + (TextBlocks.Count * 2)
+				});
+			}
+
+			SetStatus($"Loaded {TextBlocks.Count} strings from pointer table", "success");
+
+			if (TextBlocks.Count > 0)
+			{
+				SelectBlock(TextBlocks[0]);
+			}
+		}
+		catch (Exception ex)
+		{
+			SetStatus($"Error loading pointers: {ex.Message}", "error");
+		}
+	}
+
+	private bool MatchesEndMarker(byte[] data, int offset)
+	{
+		if (CurrentTable?.EndOfStringMarker == null)
+			return data[offset] == 0;
+
+		if (offset + CurrentTable.EndOfStringMarker.Length > data.Length)
+			return false;
+
+		for (int i = 0; i < CurrentTable.EndOfStringMarker.Length; i++)
+		{
+			if (data[offset + i] != CurrentTable.EndOfStringMarker[i])
+				return false;
+		}
+
+		return true;
+	}
+
+	private long ParseAddress(string address)
+	{
+		address = address.Trim();
+		if (address.StartsWith("0x", StringComparison.OrdinalIgnoreCase))
+			return Convert.ToInt64(address[2..], 16);
+		if (address.StartsWith("$"))
+			return Convert.ToInt64(address[1..], 16);
+		return Convert.ToInt64(address, 16);
+	}
+
+	private void SelectBlock(TextBlock block)
+	{
+		SelectedBlock = block;
+		EditedText = block.Text;
+		UpdateEncodedPreview();
+	}
+
+	private void UpdateEncodedPreview()
+	{
+		if (CurrentTable != null && !string.IsNullOrEmpty(EditedText))
+		{
+			EncodedPreview = TextEditorService.EncodeText(EditedText, CurrentTable);
+		}
+		else
+		{
+			EncodedPreview = null;
+		}
+	}
+
+	private async Task ApplyChanges()
+	{
+		if (SelectedBlock == null || EncodedPreview == null || RomData == null)
+			return;
+
+		// Check if encoded text fits
+		if (EncodedPreview.Length > SelectedBlock.Length)
+		{
+			SetStatus($"Encoded text is {EncodedPreview.Length - SelectedBlock.Length} bytes too long!", "error");
+			return;
+		}
+
+		// Update the block
+		SelectedBlock.Text = EditedText;
+		SelectedBlock.RawBytes = EncodedPreview;
+		ModifiedBlocks.Add(SelectedBlock);
+
+		// Notify parent of the change
+		await OnDataChanged.InvokeAsync((SelectedBlock.Offset, EncodedPreview));
+
+		SetStatus("Changes applied", "success");
+	}
+
+	private void RevertChanges()
+	{
+		if (SelectedBlock != null && RomData != null)
+		{
+			// Reload original bytes from ROM
+			var original = new byte[SelectedBlock.Length];
+			Array.Copy(RomData, SelectedBlock.Offset, original, 0, SelectedBlock.Length);
+			SelectedBlock.RawBytes = original;
+			SelectedBlock.Text = TextEditorService.DecodeText(RomData, SelectedBlock.Offset, SelectedBlock.Length, CurrentTable!);
+			EditedText = SelectedBlock.Text;
+			ModifiedBlocks.Remove(SelectedBlock);
+			UpdateEncodedPreview();
+
+			SetStatus("Changes reverted", "success");
+		}
+	}
+
+	private void DeleteBlock()
+	{
+		if (SelectedBlock != null)
+		{
+			var index = TextBlocks.IndexOf(SelectedBlock);
+			TextBlocks.Remove(SelectedBlock);
+			ModifiedBlocks.Remove(SelectedBlock);
+
+			// Select next block or previous
+			if (TextBlocks.Count > 0)
+			{
+				var newIndex = Math.Min(index, TextBlocks.Count - 1);
+				SelectBlock(TextBlocks[newIndex]);
+			}
+			else
+			{
+				SelectedBlock = null;
+			}
+
+			SetStatus("Block deleted", "success");
+		}
+	}
+
+	private async Task ExportScript()
+	{
+		if (TextBlocks.Count == 0 || CurrentTable == null)
+			return;
+
+		var script = new Script
+		{
+			GameName = "Exported Script",
+			Blocks = TextBlocks
+		};
+
+		var format = ExportFormat switch
+		{
+			"csv" => ScriptExportFormat.Csv,
+			"json" => ScriptExportFormat.Json,
+			"atlas" => ScriptExportFormat.Atlas,
+			"markdown" => ScriptExportFormat.Markdown,
+			_ => ScriptExportFormat.PlainText
+		};
+
+		var output = TextEditorService.ExportScript(script, format);
+
+		// Use JS interop to download the file
+		// For now, just log to console
+		SetStatus($"Exported {TextBlocks.Count} blocks as {ExportFormat.ToUpper()}", "success");
+
+		// TODO: Implement file download via JS interop
+		Console.WriteLine(output);
+
+		await Task.CompletedTask;
+	}
+
+	private void HandleKeyDown(KeyboardEventArgs e)
+	{
+		if (SelectedBlock == null || FilteredBlocks.Count == 0)
+			return;
+
+		var currentIndex = FilteredBlocks.IndexOf(SelectedBlock);
+
+		switch (e.Key)
+		{
+			case "ArrowUp":
+				if (currentIndex > 0)
+					SelectBlock(FilteredBlocks[currentIndex - 1]);
+				break;
+			case "ArrowDown":
+				if (currentIndex < FilteredBlocks.Count - 1)
+					SelectBlock(FilteredBlocks[currentIndex + 1]);
+				break;
+			case "Home":
+				SelectBlock(FilteredBlocks[0]);
+				break;
+			case "End":
+				SelectBlock(FilteredBlocks[^1]);
+				break;
+		}
+	}
+
+	private void ToggleTableView()
+	{
+		ShowFullTable = !ShowFullTable;
+	}
+
+	private string GetCharacterMapping(byte value)
+	{
+		if (CurrentTable == null)
+			return "";
+
+		if (CurrentTable.SingleByteMappings.TryGetValue(value, out var ch))
+			return ch;
+
+		if (CurrentTable.DteMappings.TryGetValue(value, out var dte))
+			return dte;
+
+		return "";
+	}
+
+	private string TruncateText(string text, int maxLength)
+	{
+		if (text.Length <= maxLength)
+			return text;
+		return text[..(maxLength - 3)] + "...";
+	}
+
+	private void SetStatus(string message, string statusClass)
+	{
+		StatusMessage = message;
+		StatusClass = statusClass;
+		StateHasChanged();
+	}
+}

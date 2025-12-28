@@ -1,0 +1,75 @@
+# Build outputs
+bin/
+obj/
+out/
+publish/
+
+# IDE
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.idea/
+
+# Test results
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# User-specific files
+launchSettings.json
+appsettings.Development.json
+appsettings.Local.json
+
+# Secrets
+*.pfx
+*.p12
+secrets.json
+.env
+.env.local
+.env.*.local
+
+# MAUI specific
+*.ipa
+*.apk
+*.aab
+*.msix
+*.msixbundle
+*.appxbundle
+*.appx
+
+# Built ROMs (keep originals in roms/)
+build/
+output/
+
+# Node modules (if any web tooling)
+node_modules/

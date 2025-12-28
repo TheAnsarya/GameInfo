@@ -1,0 +1,267 @@
+.home-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 2rem;
+}
+
+.hero-section {
+	text-align: center;
+	margin-bottom: 3rem;
+	padding: 2rem;
+	background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+	border-radius: 12px;
+}
+
+.hero-section h1 {
+	font-size: 2.5rem;
+	margin-bottom: 0.5rem;
+	color: #fff;
+}
+
+.logo-icon {
+	font-size: 2rem;
+	margin-right: 0.5rem;
+}
+
+.tagline {
+	font-size: 1.2rem;
+	color: #8892b0;
+	margin: 0;
+}
+
+.actions-section {
+	margin-bottom: 3rem;
+}
+
+.rom-selection,
+.rom-info {
+	background: #1f2937;
+	padding: 2rem;
+	border-radius: 8px;
+	border: 1px solid #374151;
+}
+
+.rom-selection h2,
+.rom-info h2 {
+	margin-top: 0;
+	color: #f3f4f6;
+}
+
+.file-picker {
+	margin: 1.5rem 0;
+}
+
+.file-picker ::deep input[type="file"] {
+	width: 100%;
+	padding: 1rem;
+	border: 2px dashed #4b5563;
+	border-radius: 8px;
+	background: #111827;
+	color: #fff;
+	cursor: pointer;
+	transition: border-color 0.2s;
+}
+
+.file-picker ::deep input[type="file"]:hover {
+	border-color: #60a5fa;
+}
+
+.file-hint {
+	margin-top: 0.5rem;
+	font-size: 0.875rem;
+	color: #9ca3af;
+}
+
+.recent-section {
+	margin-top: 2rem;
+	padding-top: 1.5rem;
+	border-top: 1px solid #374151;
+}
+
+.recent-section h3 {
+	color: #d1d5db;
+	margin-bottom: 1rem;
+}
+
+.recent-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.recent-item {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	padding: 0.75rem 1rem;
+	margin-bottom: 0.5rem;
+	background: #111827;
+	border: 1px solid #374151;
+	border-radius: 4px;
+	color: #e5e7eb;
+	cursor: pointer;
+	transition: background-color 0.2s, border-color 0.2s;
+}
+
+.recent-item:hover {
+	background: #1f2937;
+	border-color: #60a5fa;
+}
+
+.rom-name {
+	font-weight: 500;
+}
+
+.rom-platform {
+	color: #9ca3af;
+	font-size: 0.875rem;
+}
+
+.rom-details {
+	margin: 1rem 0;
+}
+
+.rom-details p {
+	margin: 0.5rem 0;
+	color: #d1d5db;
+}
+
+.btn {
+	padding: 0.75rem 1.5rem;
+	border: none;
+	border-radius: 6px;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+.btn-secondary {
+	background: #4b5563;
+	color: #fff;
+}
+
+.btn-secondary:hover {
+	background: #6b7280;
+}
+
+.editors-section {
+	margin-bottom: 3rem;
+}
+
+.editors-section h2 {
+	color: #f3f4f6;
+	margin-bottom: 1.5rem;
+}
+
+.editor-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: 1rem;
+}
+
+.editor-card {
+	display: block;
+	padding: 1.5rem;
+	background: #1f2937;
+	border: 1px solid #374151;
+	border-radius: 8px;
+	text-decoration: none;
+	transition: transform 0.2s, border-color 0.2s, background-color 0.2s;
+}
+
+.editor-card:hover {
+	transform: translateY(-2px);
+	border-color: #60a5fa;
+	background: #253449;
+}
+
+.editor-card.disabled {
+	opacity: 0.5;
+	pointer-events: none;
+}
+
+.card-icon {
+	font-size: 2rem;
+	margin-bottom: 0.75rem;
+}
+
+.editor-card h3 {
+	margin: 0 0 0.5rem;
+	color: #f3f4f6;
+	font-size: 1.1rem;
+}
+
+.editor-card p {
+	margin: 0;
+	color: #9ca3af;
+	font-size: 0.875rem;
+}
+
+.features-section {
+	margin-bottom: 3rem;
+}
+
+.features-section h2 {
+	color: #f3f4f6;
+	margin-bottom: 1.5rem;
+}
+
+.features-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	gap: 1.5rem;
+}
+
+.feature {
+	padding: 1.5rem;
+	background: #111827;
+	border-radius: 8px;
+	border: 1px solid #1f2937;
+}
+
+.feature-icon {
+	font-size: 1.5rem;
+	margin-bottom: 0.75rem;
+}
+
+.feature h3 {
+	margin: 0 0 0.5rem;
+	color: #e5e7eb;
+	font-size: 1rem;
+}
+
+.feature p {
+	margin: 0;
+	color: #9ca3af;
+	font-size: 0.875rem;
+}
+
+.error-message {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 1rem;
+	background: #7f1d1d;
+	border: 1px solid #991b1b;
+	border-radius: 8px;
+	color: #fecaca;
+	margin-top: 2rem;
+}
+
+.error-icon {
+	font-size: 1.25rem;
+}
+
+.error-close {
+	margin-left: auto;
+	padding: 0.25rem 0.5rem;
+	background: none;
+	border: none;
+	color: #fecaca;
+	font-size: 1.25rem;
+	cursor: pointer;
+}
+
+.error-close:hover {
+	color: #fff;
+}

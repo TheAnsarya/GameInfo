@@ -1,0 +1,406 @@
+@page "/script"
+@page "/script/{RomId}"
+@using DarkRepos.Editor.Core.Interfaces
+@inject IScriptEditorService ScriptService
+
+<PageTitle>Script Editor - DarkRepos Editor</PageTitle>
+
+<div class="script-editor">
+	<header class="editor-header">
+		<h1>Script Editor</h1>
+		<div class="header-actions">
+			<select @bind="_selectedDefinition" class="definition-select">
+				<option value="">Select Definition...</option>
+				@foreach (var name in _availableDefinitions)
+				{
+					<option value="@name">@name</option>
+				}
+			</select>
+			<button @onclick="LoadScripts" class="btn btn-primary" disabled="@string.IsNullOrEmpty(_selectedDefinition)">
+				Load
+			</button>
+			<button @onclick="ExportScript" class="btn btn-secondary" disabled="@(_selectedScript == null)">
+				Export
+			</button>
+		</div>
+	</header>
+
+	<div class="editor-content">
+		<aside class="script-list-panel">
+			<div class="panel-header">
+				<h3>Scripts</h3>
+				<span class="script-count">@_scripts.Count scripts</span>
+			</div>
+			<div class="script-list">
+				@foreach (var script in _scripts)
+				{
+					<div class="script-item @(_selectedScript == script ? "selected" : "")"
+						 @onclick="() => SelectScript(script)">
+						<span class="script-name">@script.Name</span>
+					<span class="script-offset">@FormatOffset(script.Offset)</span>
+					</div>
+				}
+			</div>
+		</aside>
+
+		<main class="script-view-panel">
+			@if (_selectedScript != null)
+			{
+				<div class="script-toolbar">
+					<div class="view-toggle">
+						<button class="@(_viewMode == ViewMode.Decompiled ? "active" : "")"
+								@onclick="() => SetViewMode(ViewMode.Decompiled)">Decompiled</button>
+						<button class="@(_viewMode == ViewMode.Bytecode ? "active" : "")"
+								@onclick="() => SetViewMode(ViewMode.Bytecode)">Bytecode</button>
+					</div>
+					<div class="toolbar-actions">
+						<button @onclick="Validate" class="tool-btn" title="Validate">✓</button>
+						<button @onclick="FindReferences" class="tool-btn" title="Find References">🔗</button>
+					</div>
+				</div>
+
+				<div class="script-content">
+					@if (_viewMode == ViewMode.Decompiled)
+					{
+						<pre class="decompiled-view">@_decompiledText</pre>
+					}
+					else
+					{
+						<div class="bytecode-view">
+							@foreach (var instruction in _selectedScript.Instructions)
+							{
+								<div class="instruction @(instruction == _selectedInstruction ? "selected" : "")"
+									 @onclick="() => SelectInstruction(instruction)">
+									<span class="inst-offset">@FormatOffset(instruction.Offset)</span>
+									<span class="inst-bytes">@FormatBytes(instruction.RawBytes)</span>
+									<span class="inst-mnemonic @GetMnemonicClass(instruction)">@instruction.Mnemonic</span>
+									<span class="inst-params">@FormatParameters(instruction)</span>
+									@if (!string.IsNullOrEmpty(instruction.Comment))
+									{
+										<span class="inst-comment">; @instruction.Comment</span>
+									}
+								</div>
+							}
+						</div>
+					}
+				</div>
+
+				@if (_validationErrors.Count > 0)
+				{
+					<div class="validation-panel">
+						<h4>Validation Results</h4>
+						<ul class="validation-list">
+							@foreach (var error in _validationErrors)
+							{
+								<li class="@error.Severity.ToString().ToLower()">
+									<span class="severity-icon">@GetSeverityIcon(error.Severity)</span>
+									<span class="message">@error.Message</span>
+									<span class="location">at @FormatOffset(error.Offset)</span>
+								</li>
+							}
+						</ul>
+					</div>
+				}
+			}
+			else
+			{
+				<div class="no-selection">
+					<p>Select a script from the list to view its contents.</p>
+				</div>
+			}
+		</main>
+
+		<aside class="detail-panel">
+			@if (_selectedInstruction != null)
+			{
+				<h3>Instruction Details</h3>
+				<div class="detail-content">
+					<div class="detail-field">
+						<label>Mnemonic</label>
+						<span class="mnemonic">@_selectedInstruction.Mnemonic</span>
+					</div>
+					<div class="detail-field">
+						<label>Opcode</label>
+						<span class="opcode">0x@_selectedInstruction.Opcode.ToString("x2")</span>
+					</div>
+					<div class="detail-field">
+						<label>Offset</label>
+						<span>@FormatOffset(_selectedInstruction.Offset)</span>
+					</div>
+					<div class="detail-field">
+						<label>Size</label>
+						<span>@_selectedInstruction.RawBytes.Length bytes</span>
+					</div>
+					<div class="detail-field">
+						<label>Description</label>
+						<span class="description">@(_opcodeDescription ?? "No description available")</span>
+					</div>
+					@if (_selectedInstruction.Parameters.Count > 0)
+					{
+						<div class="detail-field">
+							<label>Parameters</label>
+							<ul class="param-list">
+								@foreach (var param in _selectedInstruction.Parameters)
+								{
+									<li>
+										<span class="param-name">@param.Name:</span>
+										<span class="param-value">@param.Value (@param.Type)</span>
+									</li>
+								}
+							</ul>
+						</div>
+					}
+					<div class="detail-field">
+						<label>Raw Bytes</label>
+						<pre class="raw-bytes">@FormatBytes(_selectedInstruction.RawBytes)</pre>
+					</div>
+				</div>
+
+				@if (_crossReferences.Count > 0)
+				{
+					<h4>Cross References</h4>
+					<ul class="xref-list">
+						@foreach (var xref in _crossReferences)
+						{
+							<li @onclick="() => GotoReference(xref)">
+								<span class="xref-type">@xref.Type</span>
+								<span class="xref-offset">@FormatOffset(xref.SourceOffset)</span>
+							</li>
+						}
+					</ul>
+				}
+			}
+			else if (_selectedScript != null)
+			{
+				<h3>Script Info</h3>
+				<div class="detail-content">
+					<div class="detail-field">
+						<label>Name</label>
+						<span>@_selectedScript.Name</span>
+					</div>
+					<div class="detail-field">
+						<label>Offset</label>
+						<span>@FormatOffset(_selectedScript.Offset)</span>
+					</div>
+					<div class="detail-field">
+						<label>Length</label>
+						<span>@_selectedScript.Length bytes</span>
+					</div>
+					<div class="detail-field">
+						<label>Instructions</label>
+						<span>@_selectedScript.Instructions.Count</span>
+					</div>
+					<div class="detail-field">
+						<label>Labels</label>
+						<span>@_selectedScript.Labels.Count</span>
+					</div>
+				</div>
+			}
+			else
+			{
+				<div class="no-selection">
+					<p>Select an instruction to view details.</p>
+				</div>
+			}
+		</aside>
+	</div>
+</div>
+
+@code {
+	[Parameter]
+	public string? RomId { get; set; }
+
+	private List<string> _availableDefinitions = ["Dragon Quest NES", "Final Fantasy NES", "Generic NES", "Generic SNES"];
+	private string _selectedDefinition = "";
+	private ScriptDefinition? _definition;
+
+	private List<GameScript> _scripts = [];
+	private GameScript? _selectedScript;
+	private ScriptInstruction? _selectedInstruction;
+
+	private ViewMode _viewMode = ViewMode.Bytecode;
+	private string _decompiledText = "";
+
+	private ScriptValidationResult? _validationResult;
+	private List<ScriptValidationError> _validationErrors = [];
+	private List<ScriptCrossReference> _crossReferences = [];
+	private string? _opcodeDescription;
+
+	private enum ViewMode { Decompiled, Bytecode }
+
+	protected override void OnInitialized()
+	{
+		// Load available script definitions
+	}
+
+	private void LoadScripts()
+	{
+		if (string.IsNullOrEmpty(_selectedDefinition)) return;
+
+		// Get template definition from available templates
+		var templates = ScriptService.GetTemplates();
+		var template = templates.FirstOrDefault(t => t.Name == _selectedDefinition);
+		_definition = template?.Definition;
+
+		// For demo, create some sample scripts
+		_scripts =
+		[
+			CreateSampleScript("Event_Opening", 0x10000),
+			CreateSampleScript("Event_Battle", 0x10200),
+			CreateSampleScript("NPC_Dialog_001", 0x10400),
+			CreateSampleScript("NPC_Dialog_002", 0x10600),
+			CreateSampleScript("Event_Ending", 0x10800)
+		];
+	}
+
+	private GameScript CreateSampleScript(string name, int offset)
+	{
+		return new GameScript
+		{
+			Name = name,
+			Offset = offset,
+			Length = 64,
+			Instructions =
+			[
+				new ScriptInstruction
+				{
+					Offset = offset,
+					Opcode = 0x01,
+					Mnemonic = "NOP",
+					RawBytes = [0x01]
+				},
+				new ScriptInstruction
+				{
+					Offset = offset + 1,
+					Opcode = 0x10,
+					Mnemonic = "TEXT",
+					RawBytes = [0x10, 0x05, 0x00],
+					Parameters = [new ScriptParameterValue { Name = "textId", Type = ParameterType.TextId, Value = 5 }]
+				},
+				new ScriptInstruction
+				{
+					Offset = offset + 4,
+					Opcode = 0x20,
+					Mnemonic = "WAIT",
+					RawBytes = [0x20, 0x3c],
+					Parameters = [new ScriptParameterValue { Name = "frames", Type = ParameterType.Byte, Value = 60 }]
+				},
+				new ScriptInstruction
+				{
+					Offset = offset + 6,
+					Opcode = 0xff,
+					Mnemonic = "END",
+					RawBytes = [0xff]
+				}
+			]
+		};
+	}
+
+	private void SelectScript(GameScript script)
+	{
+		_selectedScript = script;
+		_selectedInstruction = null;
+		_validationErrors = [];
+		_crossReferences = [];
+
+		if (_viewMode == ViewMode.Decompiled)
+		{
+			_decompiledText = ScriptService.DecompileScript(script);
+		}
+	}
+
+	private void SelectInstruction(ScriptInstruction instruction)
+	{
+		_selectedInstruction = instruction;
+		LoadInstructionDetails(instruction);
+	}
+
+	private void LoadInstructionDetails(ScriptInstruction instruction)
+	{
+		// Get opcode description
+		if (_definition != null)
+		{
+			var opcode = _definition.Opcodes.FirstOrDefault(o => o.Code == instruction.Opcode);
+			_opcodeDescription = opcode?.Description;
+		}
+
+		// Load cross references
+		if (_selectedScript != null)
+		{
+			_crossReferences = ScriptService.GetCrossReferences(_selectedScript);
+		}
+	}
+
+	private void SetViewMode(ViewMode mode)
+	{
+		_viewMode = mode;
+		if (mode == ViewMode.Decompiled && _selectedScript != null)
+		{
+			_decompiledText = ScriptService.DecompileScript(_selectedScript);
+		}
+	}
+
+	private void Validate()
+	{
+		if (_selectedScript == null || _definition == null) return;
+		_validationResult = ScriptService.ValidateScript(_selectedScript, _definition);
+		_validationErrors = [.._validationResult.Errors, .._validationResult.Warnings];
+	}
+
+	private void FindReferences()
+	{
+		// Find all references to this script
+	}
+
+	private void ExportScript()
+	{
+		if (_selectedScript == null) return;
+		var exported = ScriptService.ExportScript(_selectedScript);
+		// Download or copy to clipboard (exported is byte[])
+	}
+
+	private void GotoReference(ScriptCrossReference xref)
+	{
+		// Navigate to the reference
+	}
+
+	private static string FormatOffset(int offset) => $"${offset:x4}";
+
+	private static string FormatBytes(byte[] bytes)
+	{
+		if (bytes == null || bytes.Length == 0) return "";
+		return string.Join(" ", bytes.Select(b => b.ToString("x2")));
+	}
+
+	private static string FormatParameters(ScriptInstruction inst)
+	{
+		if (inst.Parameters.Count == 0) return "";
+		return string.Join(", ", inst.Parameters.Select(p =>
+			p.Type == ParameterType.Pointer || p.Type == ParameterType.Offset
+				? $"${p.Value:x4}"
+				: $"#{p.Value}"));
+	}
+
+	private static string GetMnemonicClass(ScriptInstruction inst)
+	{
+		return inst.Mnemonic switch
+		{
+			"END" or "RET" => "terminator",
+			var m when m.StartsWith("J") || m.StartsWith("GOTO") => "jump",
+			var m when m.StartsWith("CALL") => "call",
+			"TEXT" or "MSG" or "DIALOG" => "text",
+			_ => ""
+		};
+	}
+
+	private static string GetSeverityIcon(ScriptValidationSeverity severity)
+	{
+		return severity switch
+		{
+			ScriptValidationSeverity.Error => "❌",
+			ScriptValidationSeverity.Warning => "⚠️",
+			ScriptValidationSeverity.Info => "ℹ️",
+			_ => ""
+		};
+	}
+}

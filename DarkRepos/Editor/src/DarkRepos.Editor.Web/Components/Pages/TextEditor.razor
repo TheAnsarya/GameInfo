@@ -1,0 +1,385 @@
+@page "/text"
+@page "/text/{RomId}"
+@using DarkRepos.Editor.Core.Interfaces
+@inject ITextEditorService TextService
+
+<PageTitle>Text Editor - DarkRepos Editor</PageTitle>
+
+<div class="text-editor">
+	<header class="editor-header">
+		<h1>Text Editor</h1>
+		<div class="header-actions">
+			<button @onclick="LoadTable" class="btn btn-primary">Load Table</button>
+			<button @onclick="SaveChanges" class="btn btn-secondary" disabled="@(!HasChanges)">Save</button>
+			<button @onclick="ExportText" class="btn btn-secondary">Export</button>
+		</div>
+	</header>
+
+	<div class="editor-content">
+		<aside class="sidebar">
+			<div class="sidebar-section">
+				<h3>Text Banks</h3>
+				<ul class="bank-list">
+					@foreach (var bank in _textBanks)
+					{
+						<li class="@(bank == _selectedBank ? "selected" : "")"
+							@onclick="() => SelectBank(bank)">
+							<span class="bank-name">@bank.Name</span>
+							<span class="bank-count">@bank.EntryCount entries</span>
+						</li>
+					}
+				</ul>
+			</div>
+
+			<div class="sidebar-section">
+				<h3>Table File</h3>
+				<div class="table-info">
+					@if (_tableFile != null)
+					{
+						<p>@_tableFile.Name</p>
+						<p class="table-entries">@_tableFile.EntryCount entries</p>
+					}
+					else
+					{
+						<p class="no-table">No table loaded</p>
+						<button @onclick="LoadTableFile" class="btn btn-small">Load .tbl</button>
+					}
+				</div>
+			</div>
+
+			<div class="sidebar-section">
+				<h3>Search</h3>
+				<div class="search-box">
+					<input type="text" @bind="_searchText" @bind:event="oninput" placeholder="Search text..." />
+					<button @onclick="SearchText" class="btn btn-small">🔍</button>
+				</div>
+				@if (_searchResults.Count > 0)
+				{
+					<ul class="search-results">
+						@foreach (var result in _searchResults.Take(20))
+						{
+							<li @onclick="() => SelectEntry(result)">
+								<span class="result-id">#@result.Index</span>
+								<span class="result-preview">@TruncateText(result.Text, 30)</span>
+							</li>
+						}
+						@if (_searchResults.Count > 20)
+						{
+							<li class="more-results">+@(_searchResults.Count - 20) more...</li>
+						}
+					</ul>
+				}
+			</div>
+		</aside>
+
+		<main class="main-content">
+			@if (_selectedBank != null)
+			{
+				<div class="text-list">
+					<div class="list-header">
+						<span class="col-id">#</span>
+						<span class="col-offset">Offset</span>
+						<span class="col-text">Text</span>
+						<span class="col-actions">Actions</span>
+					</div>
+					<div class="list-body">
+						@foreach (var entry in _currentEntries)
+						{
+							<div class="text-row @(entry == _selectedEntry ? "selected" : "") @(entry.IsModified ? "modified" : "")">
+								<span class="col-id">@entry.Index</span>
+								<span class="col-offset">@FormatOffset(entry.Offset)</span>
+								<span class="col-text" @ondblclick="() => EditEntry(entry)">
+									@entry.Text
+								</span>
+								<span class="col-actions">
+									<button @onclick="() => EditEntry(entry)" class="action-btn" title="Edit">✏️</button>
+									<button @onclick="() => ViewHex(entry)" class="action-btn" title="View Hex">📊</button>
+								</span>
+							</div>
+						}
+					</div>
+				</div>
+			}
+			else
+			{
+				<div class="no-selection">
+					<p>Select a text bank from the sidebar to view entries.</p>
+				</div>
+			}
+		</main>
+
+		<aside class="detail-panel">
+			@if (_selectedEntry != null)
+			{
+				<h3>Entry Details</h3>
+				<div class="detail-content">
+					<div class="detail-field">
+						<label>Index</label>
+						<span>@_selectedEntry.Index</span>
+					</div>
+					<div class="detail-field">
+						<label>Offset</label>
+						<span>@FormatOffset(_selectedEntry.Offset)</span>
+					</div>
+					<div class="detail-field">
+						<label>Length</label>
+						<span>@_selectedEntry.Length bytes</span>
+					</div>
+					<div class="detail-field">
+						<label>Original</label>
+						<pre class="original-text">@_selectedEntry.OriginalText</pre>
+					</div>
+					<div class="detail-field">
+						<label>Current</label>
+						<textarea @bind="_selectedEntry.Text" rows="4" class="edit-text"></textarea>
+					</div>
+					<div class="detail-field">
+						<label>Hex</label>
+						<pre class="hex-preview">@FormatHex(_selectedEntry.RawBytes)</pre>
+					</div>
+				</div>
+			}
+			else
+			{
+				<div class="no-selection">
+					<p>Select an entry to view details.</p>
+				</div>
+			}
+		</aside>
+	</div>
+
+	@if (_showTableDialog)
+	{
+		<div class="dialog-overlay" @onclick="CloseTableDialog">
+			<div class="dialog" @onclick:stopPropagation="true">
+				<h3>Load Table File</h3>
+				<div class="dialog-content">
+					<p>Select a table file (.tbl) to decode text:</p>
+					<InputFile OnChange="HandleTableFileSelected" accept=".tbl" />
+				</div>
+				<div class="dialog-actions">
+					<button @onclick="CloseTableDialog" class="btn btn-secondary">Cancel</button>
+				</div>
+			</div>
+		</div>
+	}
+
+	@if (_showExportDialog)
+	{
+		<div class="dialog-overlay" @onclick="CloseExportDialog">
+			<div class="dialog" @onclick:stopPropagation="true">
+				<h3>Export Text</h3>
+				<div class="dialog-content">
+					<div class="form-group">
+						<label>Format:</label>
+						<select @bind="_exportFormat">
+							<option value="txt">Plain Text (.txt)</option>
+							<option value="json">JSON (.json)</option>
+							<option value="csv">CSV (.csv)</option>
+							<option value="wiki">MediaWiki (.wikitext)</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label>
+							<input type="checkbox" @bind="_exportIncludeOffsets" />
+							Include offsets
+						</label>
+					</div>
+				</div>
+				<div class="dialog-actions">
+					<button @onclick="ExecuteExport" class="btn btn-primary">Export</button>
+					<button @onclick="CloseExportDialog" class="btn btn-secondary">Cancel</button>
+				</div>
+			</div>
+		</div>
+	}
+</div>
+
+@code {
+	[Parameter]
+	public string? RomId { get; set; }
+
+	private List<TextBank> _textBanks = [];
+	private TextBank? _selectedBank;
+	private List<TextEntry> _currentEntries = [];
+	private TextEntry? _selectedEntry;
+	private TableFile? _tableFile;
+
+	private string _searchText = "";
+	private List<TextEntry> _searchResults = [];
+
+	private bool _showTableDialog;
+	private bool _showExportDialog;
+	private string _exportFormat = "txt";
+	private bool _exportIncludeOffsets = true;
+
+	private bool HasChanges => _currentEntries.Any(e => e.IsModified);
+
+	protected override void OnInitialized()
+	{
+		LoadTestData();
+	}
+
+	private void LoadTestData()
+	{
+		// Create test text banks for demonstration
+		_textBanks =
+		[
+			new TextBank { Name = "Dialog", Offset = 0x10000, EntryCount = 256 },
+			new TextBank { Name = "Menu Text", Offset = 0x18000, EntryCount = 64 },
+			new TextBank { Name = "Item Names", Offset = 0x1a000, EntryCount = 128 },
+			new TextBank { Name = "Monster Names", Offset = 0x1c000, EntryCount = 96 },
+			new TextBank { Name = "Spell Names", Offset = 0x1e000, EntryCount = 48 }
+		];
+	}
+
+	private void SelectBank(TextBank bank)
+	{
+		_selectedBank = bank;
+		_selectedEntry = null;
+		LoadBankEntries(bank);
+	}
+
+	private void LoadBankEntries(TextBank bank)
+	{
+		// Load text entries for the selected bank
+		_currentEntries = [];
+		for (int i = 0; i < Math.Min(bank.EntryCount, 50); i++)
+		{
+			_currentEntries.Add(new TextEntry
+			{
+				Index = i,
+				Offset = bank.Offset + i * 16,
+				Text = $"Sample text entry {i + 1}",
+				OriginalText = $"Sample text entry {i + 1}",
+				Length = 16,
+				RawBytes = new byte[16]
+			});
+		}
+	}
+
+	private void SelectEntry(TextEntry entry)
+	{
+		_selectedEntry = entry;
+	}
+
+	private void EditEntry(TextEntry entry)
+	{
+		_selectedEntry = entry;
+	}
+
+	private void ViewHex(TextEntry entry)
+	{
+		// Navigate to hex editor at this offset
+	}
+
+	private void SearchText()
+	{
+		if (string.IsNullOrWhiteSpace(_searchText))
+		{
+			_searchResults = [];
+			return;
+		}
+
+		_searchResults = _currentEntries
+			.Where(e => e.Text.Contains(_searchText, StringComparison.OrdinalIgnoreCase))
+			.ToList();
+	}
+
+	private void LoadTable()
+	{
+		_showTableDialog = true;
+	}
+
+	private void LoadTableFile()
+	{
+		_showTableDialog = true;
+	}
+
+	private async Task HandleTableFileSelected(InputFileChangeEventArgs e)
+	{
+		var file = e.File;
+		if (file != null)
+		{
+			using var stream = file.OpenReadStream();
+			using var reader = new StreamReader(stream);
+			var content = await reader.ReadToEndAsync();
+
+			// Parse table file
+			_tableFile = new TableFile
+			{
+				Name = file.Name,
+				EntryCount = content.Split('\n').Length
+			};
+		}
+		CloseTableDialog();
+	}
+
+	private void CloseTableDialog()
+	{
+		_showTableDialog = false;
+	}
+
+	private void SaveChanges()
+	{
+		foreach (var entry in _currentEntries.Where(e => e.IsModified))
+		{
+			// Save changes back to ROM - setting OriginalText = Text clears IsModified
+			entry.OriginalText = entry.Text;
+		}
+	}
+
+	private void ExportText()
+	{
+		_showExportDialog = true;
+	}
+
+	private void ExecuteExport()
+	{
+		// Export text based on selected format
+		CloseExportDialog();
+	}
+
+	private void CloseExportDialog()
+	{
+		_showExportDialog = false;
+	}
+
+	private static string FormatOffset(int offset) => $"0x{offset:x6}";
+
+	private static string FormatHex(byte[] bytes)
+	{
+		if (bytes == null || bytes.Length == 0) return "";
+		return string.Join(" ", bytes.Select(b => b.ToString("x2")));
+	}
+
+	private static string TruncateText(string text, int maxLength)
+	{
+		if (text.Length <= maxLength) return text;
+		return text[..maxLength] + "...";
+	}
+
+	public class TextBank
+	{
+		public string Name { get; set; } = "";
+		public int Offset { get; set; }
+		public int EntryCount { get; set; }
+	}
+
+	public class TextEntry
+	{
+		public int Index { get; set; }
+		public int Offset { get; set; }
+		public string Text { get; set; } = "";
+		public string OriginalText { get; set; } = "";
+		public int Length { get; set; }
+		public byte[] RawBytes { get; set; } = [];
+		public bool IsModified => Text != OriginalText;
+	}
+
+	public class TableFile
+	{
+		public string Name { get; set; } = "";
+		public int EntryCount { get; set; }
+	}
+}
