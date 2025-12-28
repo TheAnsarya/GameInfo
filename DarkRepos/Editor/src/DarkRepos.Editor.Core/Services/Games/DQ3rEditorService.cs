@@ -166,6 +166,28 @@ public class DQ3rEditorService : IDQ3rEditorService {
 	}
 
 	/// <summary>
+	/// Get experience table data.
+	/// </summary>
+	public DataTable? LoadExpTable() {
+		if (_romData.Length == 0) return null;
+
+		var structure = _dataEditor.LoadStructureDefinition(DQ3rStructures.ExpTableJson);
+		return _dataEditor.LoadDataTable(
+			_romData,
+			Tables.ExpTable.FileOffset,
+			structure,
+			Tables.ExpTable.Count);
+	}
+
+	/// <summary>
+	/// Save experience table back to ROM.
+	/// </summary>
+	public void SaveExpTable(DataTable table) {
+		var exported = _dataEditor.ExportTable(table);
+		Array.Copy(exported, 0, _romData, Tables.ExpTable.FileOffset, exported.Length);
+	}
+
+	/// <summary>
 	/// Get the modified ROM data.
 	/// </summary>
 	public byte[] GetRomData() => _romData;
@@ -196,6 +218,7 @@ public class DQ3rKnownTables {
 	// Data bank $52 (82) - File offset 0x520000
 	public TableLocation Spells { get; } = new(0x520000, 341, 12, "Spell Data");
 	public TableLocation Classes { get; } = new(0x521000, 128, 16, "Class Stats");
+	public TableLocation ExpTable { get; } = new(0x522000, 99, 4, "Experience Table");
 
 	// Text - Bank $40 (64) - File offset 0x400000
 	public TableLocation MainDialog { get; } = new(0x400000, -1, -1, "Main Dialog (compressed)");
@@ -240,10 +263,12 @@ public interface IDQ3rEditorService {
 	DataTable? LoadArmor();
 	DataTable? LoadSpells();
 	DataTable? LoadClasses();
+	DataTable? LoadExpTable();
 	void SaveMonsters(DataTable table);
 	void SaveItems(DataTable table);
 	void SaveSpells(DataTable table);
 	void SaveClasses(DataTable table);
+	void SaveExpTable(DataTable table);
 	byte[] GetRomData();
 }
 
@@ -429,6 +454,20 @@ public static class DQ3rStructures {
 			{ "name": "target_priority", "type": "uint8", "description": "Target Selection" },
 			{ "name": "flags", "type": "uint8", "description": "Behavior Flags" },
 			{ "name": "reserved", "type": "bytes", "size": 16 }
+		]
+	}
+	""";
+
+	/// <summary>
+	/// Experience table data structure schema.
+	/// </summary>
+	public static readonly string ExpTableJson = """
+	{
+		"name": "ExperienceLevel",
+		"recordSize": 4,
+		"endianness": "little",
+		"fields": [
+			{ "name": "exp_required", "type": "uint32", "description": "Experience Required for Level" }
 		]
 	}
 	""";

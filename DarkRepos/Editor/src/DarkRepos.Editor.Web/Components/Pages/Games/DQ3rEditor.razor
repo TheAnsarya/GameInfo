@@ -85,6 +85,12 @@
 						<span class="count">128</span>
 					</a>
 				</li>
+				<li class="@(TableType == "exp-table" ? "active" : "")">
+					<a href="/games/dq3r/exp-table">
+						<span class="icon">📈</span> EXP Table
+						<span class="count">99</span>
+					</a>
+				</li>
 			</ul>
 
 			<h3 class="section-header">Quick Info</h3>
@@ -292,6 +298,7 @@
 			"armor" => _editor.LoadArmor(),
 			"spells" => _editor.LoadSpells(),
 			"classes" => _editor.LoadClasses(),
+			"exp-table" => _editor.LoadExpTable(),
 			_ => null
 		};
 
@@ -303,6 +310,7 @@
 			"armor" => "Armor Data",
 			"spells" => "Spell Data",
 			"classes" => "Class Stats",
+			"exp-table" => "Experience Table",
 			_ => "Unknown"
 		};
 
