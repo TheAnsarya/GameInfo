@@ -1,5 +1,6 @@
 using DarkRepos.Editor.Core.Interfaces;
 using DarkRepos.Editor.Core.Services;
+using DarkRepos.Editor.Core.Services.Games;
 using DarkRepos.Editor.Data;
 using DarkRepos.Editor.Web.Components;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,9 @@ builder.Services.AddScoped<ITextEditorService, TextEditorService>();
 builder.Services.AddScoped<IMapEditorService, MapEditorService>();
 builder.Services.AddScoped<IDataEditorService, DataEditorService>();
 builder.Services.AddScoped<IScriptEditorService, ScriptEditorService>();
+
+// Add game-specific editors
+builder.Services.AddScoped<IDQ3rEditorService, DQ3rEditorService>();
 
 // Add controllers for API
 builder.Services.AddControllers();

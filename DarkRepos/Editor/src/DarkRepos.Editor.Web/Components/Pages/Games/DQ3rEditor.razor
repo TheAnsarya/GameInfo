@@ -1,0 +1,475 @@
+@page "/games/dq3r"
+@page "/games/dq3r/{TableType}"
+@using DarkRepos.Editor.Core.Interfaces
+@using DarkRepos.Editor.Core.Services
+@using DarkRepos.Editor.Core.Services.Games
+@using DataTable = DarkRepos.Editor.Core.Interfaces.DataTable
+@inject IDataEditorService DataEditorService
+@inject IJSRuntime JSRuntime
+
+<PageTitle>Dragon Quest III (SNES) Editor - DarkRepos</PageTitle>
+
+<div class="dq3r-editor">
+	<header class="editor-header">
+		<h1>🐉 Dragon Quest III (SNES) Editor</h1>
+		<p class="subtitle">Dragon Quest III - Soshite Densetsu he... (そして伝説へ...)</p>
+	</header>
+
+	<div class="toolbar">
+		<div class="toolbar-group">
+			<InputFile OnChange="@LoadRomFile" accept=".sfc,.smc" class="file-input" id="romFile" />
+			<label for="romFile" class="btn btn-primary">
+				<span class="icon">📂</span> Load ROM
+			</label>
+			<button class="btn btn-success" @onclick="DownloadRomAsync" disabled="@(!_hasModifications)">
+				<span class="icon">💾</span> Save ROM
+			</button>
+			<span class="rom-status @(_romLoaded ? "loaded" : "")">
+				@(_romLoaded ? $"✓ ROM Loaded ({_romSize:N0} bytes)" : "No ROM loaded")
+			</span>
+		</div>
+
+		<div class="toolbar-group">
+			<button class="btn btn-secondary" @onclick="ExportJsonAsync" disabled="@(!_hasData)">
+				<span class="icon">📋</span> Export JSON
+			</button>
+			<button class="btn btn-secondary" @onclick="ExportWikitextAsync" disabled="@(!_hasData)">
+				<span class="icon">📝</span> Export Wikitext
+			</button>
+		</div>
+	</div>
+
+	<div class="main-layout">
+		<nav class="table-nav">
+			<h3>Data Tables</h3>
+			<ul class="table-list">
+				<li class="@(TableType == "monsters" ? "active" : "")">
+					<a href="/games/dq3r/monsters">
+						<span class="icon">👾</span> Monsters
+						<span class="count">384</span>
+					</a>
+				</li>
+				<li class="@(TableType == "monster-ai" ? "active" : "")">
+					<a href="/games/dq3r/monster-ai">
+						<span class="icon">🧠</span> Monster AI
+						<span class="count">256</span>
+					</a>
+				</li>
+				<li class="@(TableType == "items" ? "active" : "")">
+					<a href="/games/dq3r/items">
+						<span class="icon">🎒</span> Items
+						<span class="count">512</span>
+					</a>
+				</li>
+				<li class="@(TableType == "weapons" ? "active" : "")">
+					<a href="/games/dq3r/weapons">
+						<span class="icon">⚔️</span> Weapons
+						<span class="count">128</span>
+					</a>
+				</li>
+				<li class="@(TableType == "armor" ? "active" : "")">
+					<a href="/games/dq3r/armor">
+						<span class="icon">🛡️</span> Armor
+						<span class="count">128</span>
+					</a>
+				</li>
+				<li class="@(TableType == "spells" ? "active" : "")">
+					<a href="/games/dq3r/spells">
+						<span class="icon">✨</span> Spells
+						<span class="count">341</span>
+					</a>
+				</li>
+				<li class="@(TableType == "classes" ? "active" : "")">
+					<a href="/games/dq3r/classes">
+						<span class="icon">👤</span> Classes
+						<span class="count">128</span>
+					</a>
+				</li>
+			</ul>
+
+			<h3 class="section-header">Quick Info</h3>
+			<div class="info-panel">
+				<div class="info-row">
+					<span class="label">ROM Size:</span>
+					<span class="value">6 MB (HiROM)</span>
+				</div>
+				<div class="info-row">
+					<span class="label">Banks:</span>
+					<span class="value">$C0-$FF (64 banks)</span>
+				</div>
+				<div class="info-row">
+					<span class="label">Region:</span>
+					<span class="value">Japan (J)</span>
+				</div>
+			</div>
+		</nav>
+
+		<main class="content-area">
+			@if (!_romLoaded)
+			{
+				<div class="placeholder">
+					<div class="placeholder-icon">📁</div>
+					<h2>Load a ROM to begin</h2>
+					<p>Click "Load ROM" to open a Dragon Quest III (SNES) ROM file.</p>
+					<p class="note">Expected: Dragon Quest III - Soshite Densetsu he... (J) [!].sfc</p>
+				</div>
+			}
+			else if (_currentTable == null)
+			{
+				<div class="placeholder">
+					<div class="placeholder-icon">📋</div>
+					<h2>Select a data table</h2>
+					<p>Choose a data type from the navigation menu to view and edit.</p>
+				</div>
+			}
+			else
+			{
+				<div class="table-editor">
+					<div class="table-header">
+						<h2>@_currentTableName</h2>
+						<div class="table-stats">
+							<span class="stat">
+								<span class="label">Records:</span>
+								<span class="value">@_currentTable.Records.Count</span>
+							</span>
+							<span class="stat">
+								<span class="label">Record Size:</span>
+								<span class="value">@_currentTable.Structure.RecordSize bytes</span>
+							</span>
+							<span class="stat">
+								<span class="label">Total Size:</span>
+								<span class="value">@_currentTable.TotalSize bytes</span>
+							</span>
+						</div>
+					</div>
+
+					<div class="table-toolbar">
+						<div class="search-box">
+							<input type="text" @bind="_searchText" @bind:event="oninput"
+								placeholder="Search..." class="search-input" />
+							@if (!string.IsNullOrEmpty(_searchText))
+							{
+								<button class="btn-clear" @onclick="ClearSearch">×</button>
+							}
+						</div>
+						<div class="pagination">
+							<button class="btn btn-sm" @onclick="FirstPage" disabled="@(_currentPage <= 1)">⟪</button>
+							<button class="btn btn-sm" @onclick="PrevPage" disabled="@(_currentPage <= 1)">◀</button>
+							<span class="page-info">Page @_currentPage of @_totalPages</span>
+							<button class="btn btn-sm" @onclick="NextPage" disabled="@(_currentPage >= _totalPages)">▶</button>
+							<button class="btn btn-sm" @onclick="LastPage" disabled="@(_currentPage >= _totalPages)">⟫</button>
+						</div>
+					</div>
+
+					<div class="data-table-container">
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th class="col-index">#</th>
+									@foreach (var field in _currentTable.Structure.Fields)
+									{
+										<th title="@field.Description">@field.Name</th>
+									}
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var (record, index) in GetPagedRecords())
+								{
+									<tr class="@(index == _selectedIndex ? "selected" : "")"
+										@onclick="() => SelectRecord(index)">
+										<td class="col-index">@index</td>
+										@foreach (var field in _currentTable.Structure.Fields)
+										{
+											<td class="@GetFieldClass(field)">
+												@FormatFieldValue(record, field)
+											</td>
+										}
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+
+					@if (_selectedIndex >= 0 && _selectedRecord != null)
+					{
+						<div class="record-editor">
+							<h3>Edit Record #@_selectedIndex</h3>
+							<div class="field-grid">
+								@foreach (var field in _currentTable.Structure.Fields)
+								{
+									<div class="field-row">
+										<label title="@field.Description">@field.Name</label>
+										@if (field.Type == DataFieldType.FixedString)
+										{
+											<input type="text" value="@GetBytesHex(field)"
+												@onchange="e => SetFieldBytes(field, e.Value?.ToString())" />
+										}
+										else
+										{
+											<input type="@GetInputType(field)"
+												value="@GetFieldValue(field)"
+												@onchange="e => SetFieldValue(field, e.Value?.ToString())" />
+										}
+										<span class="field-type">@field.Type</span>
+									</div>
+								}
+							</div>
+							<div class="editor-actions">
+								<button class="btn btn-success" @onclick="ApplyChanges">Apply</button>
+								<button class="btn btn-secondary" @onclick="RevertChanges">Revert</button>
+							</div>
+						</div>
+					}
+				</div>
+			}
+		</main>
+	</div>
+</div>
+
+@code {
+	[Parameter]
+	public string? TableType { get; set; }
+
+	private DQ3rEditorService? _editor;
+	private bool _romLoaded;
+	private int _romSize;
+	private bool _hasModifications;
+	private bool _hasData => _currentTable != null;
+
+	private DataTable? _currentTable;
+	private string _currentTableName = "";
+	private string _searchText = "";
+	private int _currentPage = 1;
+	private int _pageSize = 50;
+	private int _totalPages => _currentTable == null ? 1 :
+		(int)Math.Ceiling(_currentTable.Records.Count / (double)_pageSize);
+
+	private int _selectedIndex = -1;
+	private DataRecord? _selectedRecord;
+	private Dictionary<string, object> _editBuffer = [];
+
+	protected override void OnInitialized() {
+		_editor = new DQ3rEditorService(DataEditorService);
+	}
+
+	protected override void OnParametersSet() {
+		if (_romLoaded && !string.IsNullOrEmpty(TableType)) {
+			LoadTable(TableType);
+		}
+	}
+
+	private async Task LoadRomFile(InputFileChangeEventArgs e) {
+		try {
+			var file = e.File;
+			if (file == null) return;
+
+			using var stream = file.OpenReadStream(maxAllowedSize: 10 * 1024 * 1024); // 10MB max
+			var buffer = new byte[file.Size];
+			await stream.ReadExactlyAsync(buffer);
+
+			_editor?.LoadRom(buffer);
+			_romLoaded = true;
+			_romSize = buffer.Length;
+			_hasModifications = false;
+
+			// Auto-load selected table
+			if (!string.IsNullOrEmpty(TableType)) {
+				LoadTable(TableType);
+			}
+		} catch (Exception ex) {
+			Console.WriteLine($"Error loading ROM: {ex.Message}");
+		}
+	}
+
+	private void LoadTable(string tableType) {
+		if (_editor == null) return;
+
+		_currentTable = tableType?.ToLower() switch {
+			"monsters" => _editor.LoadMonsters(),
+			"monster-ai" => _editor.LoadMonsterAi(),
+			"items" => _editor.LoadItems(),
+			"weapons" => _editor.LoadWeapons(),
+			"armor" => _editor.LoadArmor(),
+			"spells" => _editor.LoadSpells(),
+			"classes" => _editor.LoadClasses(),
+			_ => null
+		};
+
+		_currentTableName = tableType?.ToLower() switch {
+			"monsters" => "Monster Stats",
+			"monster-ai" => "Monster AI Patterns",
+			"items" => "Item Data",
+			"weapons" => "Weapon Data",
+			"armor" => "Armor Data",
+			"spells" => "Spell Data",
+			"classes" => "Class Stats",
+			_ => "Unknown"
+		};
+
+		_currentPage = 1;
+		_selectedIndex = -1;
+		_selectedRecord = null;
+	}
+
+	private async Task DownloadRomAsync() {
+		if (_editor == null) return;
+		var data = _editor.GetRomData();
+		var base64 = Convert.ToBase64String(data);
+		await JSRuntime.InvokeVoidAsync("downloadFile", "dq3r-modified.sfc", base64);
+		_hasModifications = false;
+	}
+
+	private async Task ExportJsonAsync() {
+		if (_currentTable == null) return;
+		var json = DataEditorService.ExportToJson(_currentTable);
+		await JSRuntime.InvokeVoidAsync("navigator.clipboard.writeText", json);
+	}
+
+	private async Task ExportWikitextAsync() {
+		if (_currentTable == null) return;
+		var wikitext = GenerateWikitext();
+		await JSRuntime.InvokeVoidAsync("navigator.clipboard.writeText", wikitext);
+	}
+
+	private string GenerateWikitext() {
+		if (_currentTable == null) return "";
+
+		var sb = new System.Text.StringBuilder();
+		sb.AppendLine($"== {_currentTableName} ==");
+		sb.AppendLine();
+		sb.AppendLine("{| class=\"wikitable sortable\"");
+		sb.AppendLine("|-");
+		sb.Append("! # ");
+		foreach (var field in _currentTable.Structure.Fields) {
+			sb.Append($"!! {field.Name} ");
+		}
+		sb.AppendLine();
+
+		var index = 0;
+		foreach (var record in _currentTable.Records.Take(100)) {
+			sb.AppendLine("|-");
+			sb.Append($"| {index++} ");
+			foreach (var field in _currentTable.Structure.Fields) {
+				var value = FormatFieldValue(record, field);
+				sb.Append($"|| {value} ");
+			}
+			sb.AppendLine();
+		}
+
+		sb.AppendLine("|}");
+		return sb.ToString();
+	}
+
+	private IEnumerable<(DataRecord Record, int Index)> GetPagedRecords() {
+		if (_currentTable == null) yield break;
+
+		var filtered = string.IsNullOrEmpty(_searchText)
+			? _currentTable.Records.Select((r, i) => (r, i))
+			: _currentTable.Records.Select((r, i) => (r, i))
+				.Where(x => MatchesSearch(x.r));
+
+		foreach (var item in filtered.Skip((_currentPage - 1) * _pageSize).Take(_pageSize)) {
+			yield return item;
+		}
+	}
+
+	private bool MatchesSearch(DataRecord record) {
+		if (string.IsNullOrEmpty(_searchText)) return true;
+		foreach (var (key, value) in record.Values) {
+			if (value?.ToString()?.Contains(_searchText, StringComparison.OrdinalIgnoreCase) == true) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private void SelectRecord(int index) {
+		_selectedIndex = index;
+		_selectedRecord = _currentTable?.Records.ElementAtOrDefault(index);
+		if (_selectedRecord != null) {
+			_editBuffer = new Dictionary<string, object>(_selectedRecord.Values);
+		}
+	}
+
+	private string FormatFieldValue(DataRecord record, DataField field) {
+		if (!record.Values.TryGetValue(field.Name, out var value)) return "-";
+		return field.Type switch {
+			DataFieldType.Byte or DataFieldType.Word or DataFieldType.DWord => $"0x{Convert.ToInt32(value):x}",
+			DataFieldType.FixedString => value is byte[] bytes ? BitConverter.ToString(bytes).Replace("-", " ") : "-",
+			_ => value?.ToString() ?? "-"
+		};
+	}
+
+	private string GetFieldClass(DataField field) => field.Type switch {
+		DataFieldType.Byte or DataFieldType.Word or DataFieldType.DWord => "numeric",
+		DataFieldType.FixedString => "bytes",
+		_ => ""
+	};
+
+	private string GetInputType(DataField field) => field.Type switch {
+		DataFieldType.Byte or DataFieldType.Word or DataFieldType.DWord => "number",
+		_ => "text"
+	};
+
+	private string GetFieldValue(DataField field) {
+		if (_editBuffer.TryGetValue(field.Name, out var value)) {
+			return value?.ToString() ?? "";
+		}
+		return "";
+	}
+
+	private string GetBytesHex(DataField field) {
+		if (_editBuffer.TryGetValue(field.Name, out var value) && value is byte[] bytes) {
+			return BitConverter.ToString(bytes).Replace("-", " ");
+		}
+		return "";
+	}
+
+	private void SetFieldValue(DataField field, string? value) {
+		if (value == null) return;
+		object parsed = field.Type switch {
+			DataFieldType.Byte => byte.TryParse(value, out var b) ? b : (byte)0,
+			DataFieldType.Word => ushort.TryParse(value, out var s) ? s : (ushort)0,
+			DataFieldType.DWord => uint.TryParse(value, out var i) ? i : 0u,
+			_ => value
+		};
+		_editBuffer[field.Name] = parsed;
+	}
+
+	private void SetFieldBytes(DataField field, string? value) {
+		if (string.IsNullOrEmpty(value)) return;
+		try {
+			var hex = value.Replace(" ", "").Replace("-", "");
+			var bytes = Enumerable.Range(0, hex.Length / 2)
+				.Select(i => Convert.ToByte(hex.Substring(i * 2, 2), 16))
+				.ToArray();
+			_editBuffer[field.Name] = bytes;
+		} catch {
+			// Invalid hex, ignore
+		}
+	}
+
+	private void ApplyChanges() {
+		if (_selectedRecord == null || _currentTable == null) return;
+		foreach (var (key, value) in _editBuffer) {
+			_selectedRecord.Values[key] = value;
+		}
+		_hasModifications = true;
+	}
+
+	private void RevertChanges() {
+		if (_selectedRecord != null) {
+			_editBuffer = new Dictionary<string, object>(_selectedRecord.Values);
+		}
+	}
+
+	private void ClearSearch() {
+		_searchText = "";
+		_currentPage = 1;
+	}
+
+	private void FirstPage() => _currentPage = 1;
+	private void PrevPage() { if (_currentPage > 1) _currentPage--; }
+	private void NextPage() { if (_currentPage < _totalPages) _currentPage++; }
+	private void LastPage() => _currentPage = _totalPages;
+}
