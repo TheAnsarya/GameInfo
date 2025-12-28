@@ -77,13 +77,17 @@ Created unit tests in `GameInfoTools.Tests.Games.DQ3r`:
 11. `61475a6` - feat(dq3r): update editor service with verified ROM addresses (#142)
 12. `f35337e` - docs(dq3r): add comprehensive datamap.json configuration (#141)
 
+### Git Commits (2025-12-29 Session - Continuation)
+13. `46c3878` - feat(dq3r): add Blazor UI editor for DQ3r data tables (#142)
+14. `f02dfd0` - docs(dq3r): add verified data tables to ROM Map wikitext (#142)
+
 ## Issues Still Open
 | Issue | Title | Status |
 |-------|-------|--------|
-| #127 | [Epic] DQ3r Complete Disassembly Project | In Progress |
+| #127 | [Epic] DQ3r Complete Disassembly Project | In Progress (~75%) |
 | #133 | Integrate logsmall trace analysis | C# libs added, pending |
-| #141 | Convert Python tools to C# | ~90% Complete (all analyzers done) |
-| #142 | Create DQ3r editors for DarkReposEditor | In Progress (service stub) |
+| #141 | Convert Python tools to C# | ~95% Complete |
+| #142 | Create DQ3r editors for DarkReposEditor | In Progress (Blazor UI done) |
 
 ## Statistics
 
@@ -100,16 +104,23 @@ Created unit tests in `GameInfoTools.Tests.Games.DQ3r`:
 
 ### C# Code Created
 - **8 new files** in GameInfoTools.Analysis.Games.DQ3r namespace
-- **1 new file** in DarkRepos.Editor.Core.Services.Games namespace
+- **2 new files** in DarkRepos.Editor.Core.Services.Games namespace
 - **1 new file** in GameInfoTools.Tests.Games.DQ3r namespace
 - **1 config file** dq3r-datamap.json
-- **~3,000 lines** of new C# code
+- **1 Blazor page** DQ3rEditor.razor with CSS
+- **~3,500 lines** of new C# code
 - **38 unit tests** all passing
+
+### Wiki Documentation
+- Enhanced ROM_Map.wikitext with 86 new lines
+- Added Data Tables Summary section with verified addresses
+- All data from DQ3rKnownTables verified against extraction
 
 ## Next Steps
 1. ~~Complete Python-to-C# tool conversion~~ ✅ Done (graphics, compression, tests)
 2. ~~Verify ROM addresses in DQ3rEditorService from datamap.json~~ ✅ Done
-3. Add Blazor UI components for DQ3r editors
-4. Integrate trace analysis from logsmall
-5. Add audio extraction support (lower priority)
-6. Create comprehensive dq3r-datamap.json configuration ✅ Done
+3. ~~Add Blazor UI components for DQ3r editors~~ ✅ Done
+4. ~~Enhance DarkRepos wiki with ROM Map data~~ ✅ Done
+5. Integrate trace analysis from logsmall (#133)
+6. Add audio extraction support (lower priority)
+7. Create comprehensive dq3r-datamap.json configuration ✅ Done
