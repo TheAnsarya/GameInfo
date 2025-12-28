@@ -32,6 +32,19 @@
 - Always clarify which address space is being referenced
 - Document header offsets when relevant
 
+### C# Code Style
+- **K&R brace style** - Opening braces on same line, not new line
+- Use latest .NET (10) and C# (14) features
+- Modern coding practices: pattern matching, spans, collection expressions
+- Cross-platform compatible code
+- All code must pass `dotnet format` with `.editorconfig`
+
+### Technology Stack
+- C# .NET 10 for all tools (not Python)
+- Blazor WebAssembly for web UI
+- xUnit for testing
+- EF Core with SQLite when database needed
+
 ## Documentation Structure
 
 ### `~docs/` (Tilde Docs - Development Documentation)
@@ -40,6 +53,11 @@ Documentation about *making* the project:
 - `~docs/chat-logs/` - AI chat conversation logs (markdown)
 - `~docs/plans/` - Planning documents
 - Development notes, decisions, process documentation
+
+### ⚠️ HANDS OFF FILES
+**NEVER modify these files - they are manually edited by the user only:**
+- `~docs/gameinfo-manual-prompts-log.txt` - User's personal prompt log
+- Any file explicitly marked as "manual" or "user-edited"
 
 ### `docs/` (Project Documentation)
 Documentation about the project itself:
