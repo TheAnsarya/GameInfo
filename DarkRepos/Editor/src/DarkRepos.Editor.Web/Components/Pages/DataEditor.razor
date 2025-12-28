@@ -30,22 +30,26 @@
 			<input type="text" @bind="OffsetHex" placeholder="0x0000" class="offset-input" />
 			<label>Count:</label>
 			<input type="number" @bind="RecordCount" min="1" max="9999" class="count-input" />
-			<button class="btn btn-success" @onclick="LoadDataTableAsync" disabled="@(!CanLoadTable)" title="Load data from ROM">
+			<button class="btn btn-success" @onclick="LoadDataTableAsync" disabled="@(!CanLoadTable)"
+				title="Load data from ROM">
 				<span class="icon">📥</span> Load
 			</button>
 		</div>
 
 		<div class="toolbar-group">
-			<button class="btn btn-secondary" @onclick="ExportToJsonAsync" disabled="@(!HasData)" title="Export to JSON">
+			<button class="btn btn-secondary" @onclick="ExportToJsonAsync" disabled="@(!HasData)"
+				title="Export to JSON">
 				<span class="icon">📋</span> JSON
 			</button>
 			<button class="btn btn-secondary" @onclick="ExportToCsvAsync" disabled="@(!HasData)" title="Export to CSV">
 				<span class="icon">📊</span> CSV
 			</button>
-			<button class="btn btn-secondary" @onclick="ImportFromJsonAsync" disabled="@(_currentStructure == null)" title="Import from JSON">
+			<button class="btn btn-secondary" @onclick="ImportFromJsonAsync" disabled="@(_currentStructure == null)"
+				title="Import from JSON">
 				<span class="icon">📤</span> Import JSON
 			</button>
-			<button class="btn btn-secondary" @onclick="ImportFromCsvAsync" disabled="@(_currentStructure == null)" title="Import from CSV">
+			<button class="btn btn-secondary" @onclick="ImportFromCsvAsync" disabled="@(_currentStructure == null)"
+				title="Import from CSV">
 				<span class="icon">📈</span> Import CSV
 			</button>
 		</div>
@@ -57,7 +61,8 @@
 			<button class="btn btn-info" @onclick="DetectTablesAsync" title="Auto-detect tables in ROM">
 				<span class="icon">🔍</span> Detect
 			</button>
-			<button class="btn btn-danger" @onclick="SaveChangesAsync" disabled="@(!HasModifications)" title="Save to ROM">
+			<button class="btn btn-danger" @onclick="SaveChangesAsync" disabled="@(!HasModifications)"
+				title="Save to ROM">
 				<span class="icon">💾</span> Save
 			</button>
 		</div>
@@ -75,7 +80,8 @@
 			@if (_isEditingStructure)
 			{
 				<div class="structure-editor">
-					<textarea @bind="_structureJson" rows="20" class="schema-textarea" placeholder="Enter JSON schema..."></textarea>
+					<textarea @bind="_structureJson" rows="20" class="schema-textarea"
+					placeholder="Enter JSON schema..."></textarea>
 					<div class="editor-actions">
 						<button class="btn btn-sm btn-success" @onclick="ApplyStructureAsync">Apply</button>
 						<button class="btn btn-sm btn-secondary" @onclick="CancelStructureEdit">Cancel</button>
@@ -196,7 +202,8 @@
 						}
 						<div class="info-row">
 							<span class="label">Modified:</span>
-							<span class="value @(record.IsModified ? "modified-flag" : "")">@(record.IsModified ? "Yes" : "No")</span>
+							<span class="value @(record.IsModified ? "modified-flag" : "")">@(record.IsModified ? "Yes" :
+															"No")</span>
 						</div>
 					</div>
 
@@ -534,8 +541,8 @@
 
 		_validationResult = DataEditorService.ValidateTable(_currentTable);
 		_statusMessage = _validationResult.IsValid
-			? "Validation passed"
-			: $"Validation found {_validationResult.Errors.Count} errors";
+		? "Validation passed"
+		: $"Validation found {_validationResult.Errors.Count} errors";
 		await Task.CompletedTask;
 	}
 
@@ -626,7 +633,7 @@
 			builder.AddAttribute(1, "type", "checkbox");
 			builder.AddAttribute(2, "checked", Convert.ToBoolean(value));
 			builder.AddAttribute(3, "onchange", EventCallback.Factory.Create<ChangeEventArgs>(this, e =>
-				OnFieldValueChanged(record, field, e.Value)));
+		OnFieldValueChanged(record, field, e.Value)));
 			builder.CloseElement();
 		}
 		else if (field.Type == DataFieldType.Enum && field.EnumValues != null)
@@ -635,7 +642,7 @@
 			builder.AddAttribute(1, "class", "field-select");
 			builder.AddAttribute(2, "value", Convert.ToInt32(value));
 			builder.AddAttribute(3, "onchange", EventCallback.Factory.Create<ChangeEventArgs>(this, e =>
-				OnFieldValueChanged(record, field, e.Value)));
+		OnFieldValueChanged(record, field, e.Value)));
 
 			foreach (var kvp in field.EnumValues)
 			{
@@ -661,7 +668,7 @@
 			builder.AddAttribute(2, "class", "field-input");
 			builder.AddAttribute(3, "value", FormatFieldValue(record, field));
 			builder.AddAttribute(4, "onchange", EventCallback.Factory.Create<ChangeEventArgs>(this, e =>
-				OnFieldValueChanged(record, field, e.Value)));
+		OnFieldValueChanged(record, field, e.Value)));
 			builder.CloseElement();
 		}
 	};
@@ -686,8 +693,8 @@
 	{
 		// Handle hex values
 		if (text.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ||
-			text.StartsWith("$") ||
-			text.StartsWith("0X"))
+		text.StartsWith("$") ||
+		text.StartsWith("0X"))
 		{
 			var hex = text;
 			if (hex.StartsWith("$")) hex = hex[1..];
@@ -775,8 +782,8 @@
 			return value == 0 ? "None" : $"0x{value:x2}";
 
 		var flags = enumValues
-			.Where(kvp => (value & kvp.Key) != 0)
-			.Select(kvp => kvp.Value);
+		.Where(kvp => (value & kvp.Key) != 0)
+		.Select(kvp => kvp.Value);
 
 		return string.Join(" | ", flags);
 	}

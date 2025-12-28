@@ -6,11 +6,9 @@ namespace DarkRepos.Editor.Data;
 /// <summary>
 /// Entity Framework database context for the Dark Repos Editor.
 /// </summary>
-public class EditorDbContext : DbContext
-{
+public class EditorDbContext : DbContext {
 	public EditorDbContext(DbContextOptions<EditorDbContext> options)
-		: base(options)
-	{
+		: base(options) {
 	}
 
 	/// <summary>
@@ -28,13 +26,11 @@ public class EditorDbContext : DbContext
 	/// </summary>
 	public DbSet<Label> Labels => Set<Label>();
 
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
-	{
+	protected override void OnModelCreating(ModelBuilder modelBuilder) {
 		base.OnModelCreating(modelBuilder);
 
 		// ROM configuration
-		modelBuilder.Entity<Rom>(entity =>
-		{
+		modelBuilder.Entity<Rom>(entity => {
 			entity.HasKey(e => e.Id);
 			entity.Property(e => e.Name).IsRequired().HasMaxLength(256);
 			entity.Property(e => e.FileName).IsRequired().HasMaxLength(512);
@@ -45,8 +41,7 @@ public class EditorDbContext : DbContext
 		});
 
 		// Project configuration
-		modelBuilder.Entity<Project>(entity =>
-		{
+		modelBuilder.Entity<Project>(entity => {
 			entity.HasKey(e => e.Id);
 			entity.Property(e => e.Name).IsRequired().HasMaxLength(256);
 			entity.Property(e => e.Description).HasMaxLength(2000);
@@ -58,8 +53,7 @@ public class EditorDbContext : DbContext
 		});
 
 		// Label configuration
-		modelBuilder.Entity<Label>(entity =>
-		{
+		modelBuilder.Entity<Label>(entity => {
 			entity.HasKey(e => e.Id);
 			entity.Property(e => e.Name).IsRequired().HasMaxLength(128);
 			entity.Property(e => e.Comment).HasMaxLength(1000);
