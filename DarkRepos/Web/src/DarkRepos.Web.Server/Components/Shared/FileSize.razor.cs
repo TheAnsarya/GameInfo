@@ -6,8 +6,7 @@ namespace DarkRepos.Web.Components.Shared;
 /// Base class for FileSize component - Display file sizes in human-readable format.
 /// Usage: &lt;FileSize Bytes="@sizeInBytes" /&gt;
 /// </summary>
-public class FileSizeBase : ComponentBase
-{
+public class FileSizeBase : ComponentBase {
 	private static readonly string[] DecimalUnits = new[] { "B", "KB", "MB", "GB", "TB", "PB", "EB" };
 	private static readonly string[] BinaryUnits = new[] { "B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB" };
 	private static readonly string[] AbbreviatedBinaryUnits = new[] { "B", "KB", "MB", "GB", "TB", "PB", "EB" };
@@ -62,10 +61,8 @@ public class FileSizeBase : ComponentBase
 
 	protected string TooltipText => GetTooltipText();
 
-	protected string GetSizeClass()
-	{
-		return Bytes switch
-		{
+	protected string GetSizeClass() {
+		return Bytes switch {
 			< 1024 => "size-tiny",
 			< 1024 * 1024 => "size-small",
 			< 1024 * 1024 * 1024 => "size-medium",
@@ -74,8 +71,7 @@ public class FileSizeBase : ComponentBase
 		};
 	}
 
-	protected string GetFormattedSize()
-	{
+	protected string GetFormattedSize() {
 		if (Bytes == 0)
 			return "0 B";
 
@@ -97,16 +93,14 @@ public class FileSizeBase : ComponentBase
 		return $"{sign}{size.ToString(format)} {units[unitIndex]}";
 	}
 
-	protected string[] GetUnits()
-	{
+	protected string[] GetUnits() {
 		if (!UseBinaryUnits)
 			return DecimalUnits;
 
 		return UseAbbreviatedUnits ? AbbreviatedBinaryUnits : BinaryUnits;
 	}
 
-	protected string GetTooltipText()
-	{
+	protected string GetTooltipText() {
 		if (!ShowTooltip)
 			return string.Empty;
 

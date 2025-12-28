@@ -8,11 +8,9 @@ namespace DarkRepos.Tests.Components;
 /// <summary>
 /// Tests for the VersionBadge component.
 /// </summary>
-public class VersionBadgeTests : TestContext
-{
+public class VersionBadgeTests : TestContext {
 	[Fact]
-	public void VersionBadge_RendersSpanElement()
-	{
+	public void VersionBadge_RendersSpanElement() {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, "1.0.0"));
@@ -22,8 +20,7 @@ public class VersionBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void VersionBadge_DisplaysVersion()
-	{
+	public void VersionBadge_DisplaysVersion() {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, "2.1.3"));
@@ -33,8 +30,7 @@ public class VersionBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void VersionBadge_ShowsPrefix_ByDefault()
-	{
+	public void VersionBadge_ShowsPrefix_ByDefault() {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, "1.0.0"));
@@ -44,8 +40,7 @@ public class VersionBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void VersionBadge_HidesPrefix_WhenShowPrefixFalse()
-	{
+	public void VersionBadge_HidesPrefix_WhenShowPrefixFalse() {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, "1.0.0")
@@ -56,8 +51,7 @@ public class VersionBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void VersionBadge_UsesCustomPrefix()
-	{
+	public void VersionBadge_UsesCustomPrefix() {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, "1.0.0")
@@ -70,8 +64,7 @@ public class VersionBadgeTests : TestContext
 	// === Type tests ===
 
 	[Fact]
-	public void VersionBadge_HasDefaultClass_WhenNoType()
-	{
+	public void VersionBadge_HasDefaultClass_WhenNoType() {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, "1.0.0"));
@@ -81,8 +74,7 @@ public class VersionBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void VersionBadge_HasReleaseClass_ForReleaseType()
-	{
+	public void VersionBadge_HasReleaseClass_ForReleaseType() {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, "1.0.0")
@@ -93,8 +85,7 @@ public class VersionBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void VersionBadge_HasBetaClass_ForBetaType()
-	{
+	public void VersionBadge_HasBetaClass_ForBetaType() {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, "1.0.0-beta")
@@ -105,8 +96,7 @@ public class VersionBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void VersionBadge_HasAlphaClass_ForAlphaType()
-	{
+	public void VersionBadge_HasAlphaClass_ForAlphaType() {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, "1.0.0-alpha")
@@ -117,8 +107,7 @@ public class VersionBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void VersionBadge_HasPreviewClass_ForPreviewType()
-	{
+	public void VersionBadge_HasPreviewClass_ForPreviewType() {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, "1.0.0-preview")
@@ -129,8 +118,7 @@ public class VersionBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void VersionBadge_HasStableClass_ForStableType()
-	{
+	public void VersionBadge_HasStableClass_ForStableType() {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, "1.0.0")
@@ -141,8 +129,7 @@ public class VersionBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void VersionBadge_HasLTSClass_ForLTSType()
-	{
+	public void VersionBadge_HasLTSClass_ForLTSType() {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, "8.0.0")
@@ -153,8 +140,7 @@ public class VersionBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void VersionBadge_HasDeprecatedClass_ForDeprecatedType()
-	{
+	public void VersionBadge_HasDeprecatedClass_ForDeprecatedType() {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, "0.9.0")
@@ -167,8 +153,7 @@ public class VersionBadgeTests : TestContext
 	// === Size tests ===
 
 	[Fact]
-	public void VersionBadge_HasMediumSizeClass_ByDefault()
-	{
+	public void VersionBadge_HasMediumSizeClass_ByDefault() {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, "1.0.0"));
@@ -178,8 +163,7 @@ public class VersionBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void VersionBadge_HasSmallSizeClass_ForSmallSize()
-	{
+	public void VersionBadge_HasSmallSizeClass_ForSmallSize() {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, "1.0.0")
@@ -190,8 +174,7 @@ public class VersionBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void VersionBadge_HasLargeSizeClass_ForLargeSize()
-	{
+	public void VersionBadge_HasLargeSizeClass_ForLargeSize() {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, "1.0.0")
@@ -204,8 +187,7 @@ public class VersionBadgeTests : TestContext
 	// === Tooltip tests ===
 
 	[Fact]
-	public void VersionBadge_HasDefaultTooltip()
-	{
+	public void VersionBadge_HasDefaultTooltip() {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, "1.2.3"));
@@ -215,8 +197,7 @@ public class VersionBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void VersionBadge_HasCustomTooltip_WhenSet()
-	{
+	public void VersionBadge_HasCustomTooltip_WhenSet() {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, "1.0.0")
@@ -227,8 +208,7 @@ public class VersionBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void VersionBadge_IncludesReleaseDate_InTooltip_WhenSet()
-	{
+	public void VersionBadge_IncludesReleaseDate_InTooltip_WhenSet() {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, "1.0.0")
@@ -241,8 +221,7 @@ public class VersionBadgeTests : TestContext
 	// === Copy button tests ===
 
 	[Fact]
-	public void VersionBadge_HidesCopyButton_ByDefault()
-	{
+	public void VersionBadge_HidesCopyButton_ByDefault() {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, "1.0.0"));
@@ -252,8 +231,7 @@ public class VersionBadgeTests : TestContext
 	}
 
 	[Fact]
-	public void VersionBadge_ShowsCopyButton_WhenEnabled()
-	{
+	public void VersionBadge_ShowsCopyButton_WhenEnabled() {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, "1.0.0")
@@ -266,8 +244,7 @@ public class VersionBadgeTests : TestContext
 	// === CSS class tests ===
 
 	[Fact]
-	public void VersionBadge_AppliesCustomCssClass()
-	{
+	public void VersionBadge_AppliesCustomCssClass() {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, "1.0.0")
@@ -285,8 +262,7 @@ public class VersionBadgeTests : TestContext
 	[InlineData("3.0.0-rc.1")]
 	[InlineData("10.0.0-preview.5")]
 	[InlineData("1.0.0+build.123")]
-	public void VersionBadge_DisplaysVariousVersionFormats(string version)
-	{
+	public void VersionBadge_DisplaysVariousVersionFormats(string version) {
 		// Act
 		var cut = RenderComponent<VersionBadge>(parameters => parameters
 			.Add(p => p.Version, version));

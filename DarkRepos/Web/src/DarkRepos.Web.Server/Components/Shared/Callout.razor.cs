@@ -6,8 +6,7 @@ namespace DarkRepos.Web.Components.Shared;
 /// Base class for Callout component - Highlighted information box.
 /// Usage: &lt;Callout Type="CalloutType.Warning" Title="Warning"&gt;Content&lt;/Callout&gt;
 /// </summary>
-public class CalloutBase : ComponentBase
-{
+public class CalloutBase : ComponentBase {
 	/// <summary>
 	/// Callout type determines the styling and default icon.
 	/// </summary>
@@ -62,8 +61,7 @@ public class CalloutBase : ComponentBase
 	[Parameter]
 	public string? CssClass { get; set; }
 
-	protected string TypeClass => Type switch
-	{
+	protected string TypeClass => Type switch {
 		CalloutType.Note => "callout-note",
 		CalloutType.Tip => "callout-tip",
 		CalloutType.Warning => "callout-warning",
@@ -73,8 +71,7 @@ public class CalloutBase : ComponentBase
 		_ => "callout-info"
 	};
 
-	protected string IconText => CustomIcon ?? Type switch
-	{
+	protected string IconText => CustomIcon ?? Type switch {
 		CalloutType.Note => "📝",
 		CalloutType.Tip => "💡",
 		CalloutType.Warning => "⚠️",
@@ -84,14 +81,12 @@ public class CalloutBase : ComponentBase
 		_ => "ℹ️"
 	};
 
-	protected string AriaRole => Type switch
-	{
+	protected string AriaRole => Type switch {
 		CalloutType.Warning or CalloutType.Caution => "alert",
 		_ => "note"
 	};
 
-	protected async Task HandleDismiss()
-	{
+	protected async Task HandleDismiss() {
 		await OnDismiss.InvokeAsync();
 	}
 }
@@ -99,8 +94,7 @@ public class CalloutBase : ComponentBase
 /// <summary>
 /// Callout type variants following GitHub-style admonitions.
 /// </summary>
-public enum CalloutType
-{
+public enum CalloutType {
 	/// <summary>
 	/// Generic information.
 	/// </summary>

@@ -11,11 +11,9 @@ namespace DarkRepos.Tests.Components;
 /// <summary>
 /// Tests for the CodeBlock component.
 /// </summary>
-public class CodeBlockTests : TestContext
-{
+public class CodeBlockTests : TestContext {
 	[Fact]
-	public void CodeBlock_RendersCode()
-	{
+	public void CodeBlock_RendersCode() {
 		// Arrange
 		SetupJsMock();
 		var code = "console.log('hello');";
@@ -29,8 +27,7 @@ public class CodeBlockTests : TestContext
 	}
 
 	[Fact]
-	public void CodeBlock_RendersLanguageLabel()
-	{
+	public void CodeBlock_RendersLanguageLabel() {
 		// Arrange
 		SetupJsMock();
 
@@ -44,8 +41,7 @@ public class CodeBlockTests : TestContext
 	}
 
 	[Fact]
-	public void CodeBlock_RendersTitle_WhenProvided()
-	{
+	public void CodeBlock_RendersTitle_WhenProvided() {
 		// Arrange
 		SetupJsMock();
 
@@ -59,8 +55,7 @@ public class CodeBlockTests : TestContext
 	}
 
 	[Fact]
-	public void CodeBlock_DoesNotRenderTitle_WhenNull()
-	{
+	public void CodeBlock_DoesNotRenderTitle_WhenNull() {
 		// Arrange
 		SetupJsMock();
 
@@ -73,8 +68,7 @@ public class CodeBlockTests : TestContext
 	}
 
 	[Fact]
-	public void CodeBlock_RendersLineNumbers_WhenEnabled()
-	{
+	public void CodeBlock_RendersLineNumbers_WhenEnabled() {
 		// Arrange
 		SetupJsMock();
 		var code = "line1\nline2\nline3";
@@ -93,8 +87,7 @@ public class CodeBlockTests : TestContext
 	}
 
 	[Fact]
-	public void CodeBlock_DoesNotRenderLineNumbers_WhenDisabled()
-	{
+	public void CodeBlock_DoesNotRenderLineNumbers_WhenDisabled() {
 		// Arrange
 		SetupJsMock();
 
@@ -108,8 +101,7 @@ public class CodeBlockTests : TestContext
 	}
 
 	[Fact]
-	public void CodeBlock_HasWithLinesClass_WhenLineNumbersEnabled()
-	{
+	public void CodeBlock_HasWithLinesClass_WhenLineNumbersEnabled() {
 		// Arrange
 		SetupJsMock();
 
@@ -123,8 +115,7 @@ public class CodeBlockTests : TestContext
 	}
 
 	[Fact]
-	public void CodeBlock_DoesNotHaveWithLinesClass_WhenLineNumbersDisabled()
-	{
+	public void CodeBlock_DoesNotHaveWithLinesClass_WhenLineNumbersDisabled() {
 		// Arrange
 		SetupJsMock();
 
@@ -138,8 +129,7 @@ public class CodeBlockTests : TestContext
 	}
 
 	[Fact]
-	public void CodeBlock_HasLanguageClass_OnCodeElement()
-	{
+	public void CodeBlock_HasLanguageClass_OnCodeElement() {
 		// Arrange
 		SetupJsMock();
 
@@ -153,8 +143,7 @@ public class CodeBlockTests : TestContext
 	}
 
 	[Fact]
-	public void CodeBlock_IncludesCopyButton()
-	{
+	public void CodeBlock_IncludesCopyButton() {
 		// Arrange
 		SetupJsMock();
 
@@ -190,8 +179,7 @@ public class CodeBlockTests : TestContext
 	[InlineData("65816", "65816 ASM")]
 	[InlineData("z80", "Z80 ASM")]
 	[InlineData("text", "Plain Text")]
-	public void CodeBlock_FormatsLanguageLabel_Correctly(string language, string expected)
-	{
+	public void CodeBlock_FormatsLanguageLabel_Correctly(string language, string expected) {
 		// Arrange
 		SetupJsMock();
 
@@ -205,8 +193,7 @@ public class CodeBlockTests : TestContext
 	}
 
 	[Fact]
-	public void CodeBlock_UsesUppercase_ForUnknownLanguage()
-	{
+	public void CodeBlock_UsesUppercase_ForUnknownLanguage() {
 		// Arrange
 		SetupJsMock();
 
@@ -220,8 +207,7 @@ public class CodeBlockTests : TestContext
 	}
 
 	[Fact]
-	public void CodeBlock_ShowsCode_ForEmptyLanguage()
-	{
+	public void CodeBlock_ShowsCode_ForEmptyLanguage() {
 		// Arrange
 		SetupJsMock();
 
@@ -235,8 +221,7 @@ public class CodeBlockTests : TestContext
 	}
 
 	[Fact]
-	public void CodeBlock_CountsLines_Correctly()
-	{
+	public void CodeBlock_CountsLines_Correctly() {
 		// Arrange
 		SetupJsMock();
 		var code = "a\nb\nc\nd\ne"; // 5 lines
@@ -251,8 +236,7 @@ public class CodeBlockTests : TestContext
 	}
 
 	[Fact]
-	public void CodeBlock_HandlesEmptyCode()
-	{
+	public void CodeBlock_HandlesEmptyCode() {
 		// Arrange
 		SetupJsMock();
 
@@ -265,8 +249,7 @@ public class CodeBlockTests : TestContext
 	}
 
 	[Fact]
-	public void CodeBlock_PreservesWhitespace()
-	{
+	public void CodeBlock_PreservesWhitespace() {
 		// Arrange
 		SetupJsMock();
 		var code = "  indented\n\ttabbed";
@@ -280,8 +263,7 @@ public class CodeBlockTests : TestContext
 	}
 
 	[Fact]
-	public void CodeBlock_HasPreElement()
-	{
+	public void CodeBlock_HasPreElement() {
 		// Arrange
 		SetupJsMock();
 
@@ -294,8 +276,7 @@ public class CodeBlockTests : TestContext
 	}
 
 	[Fact]
-	public void CodeBlock_HasCodeElement()
-	{
+	public void CodeBlock_HasCodeElement() {
 		// Arrange
 		SetupJsMock();
 
@@ -308,8 +289,7 @@ public class CodeBlockTests : TestContext
 	}
 
 	[Fact]
-	public void CodeBlock_LineNumbersAreHiddenFromAria()
-	{
+	public void CodeBlock_LineNumbersAreHiddenFromAria() {
 		// Arrange
 		SetupJsMock();
 
@@ -323,8 +303,7 @@ public class CodeBlockTests : TestContext
 	}
 
 	[Fact]
-	public void CodeBlock_DefaultsToTextLanguage()
-	{
+	public void CodeBlock_DefaultsToTextLanguage() {
 		// Arrange
 		SetupJsMock();
 
@@ -337,8 +316,7 @@ public class CodeBlockTests : TestContext
 	}
 
 	[Fact]
-	public void CodeBlock_DefaultsToNoLineNumbers()
-	{
+	public void CodeBlock_DefaultsToNoLineNumbers() {
 		// Arrange
 		SetupJsMock();
 
@@ -350,8 +328,7 @@ public class CodeBlockTests : TestContext
 		cut.FindAll(".line-numbers").Should().BeEmpty();
 	}
 
-	private void SetupJsMock()
-	{
+	private void SetupJsMock() {
 		var jsMock = new Mock<IJSRuntime>();
 		Services.AddSingleton(jsMock.Object);
 	}

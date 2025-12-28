@@ -7,13 +7,11 @@ namespace DarkRepos.Tests.Components;
 /// <summary>
 /// Unit tests for Callout component.
 /// </summary>
-public class CalloutTests : TestContext
-{
+public class CalloutTests : TestContext {
 	#region Basic Rendering Tests
 
 	[Fact]
-	public void Callout_RendersCorrectly()
-	{
+	public void Callout_RendersCorrectly() {
 		// Arrange & Act
 		var cut = RenderComponent<Callout>(parameters => parameters
 			.Add(p => p.Message, "Test message"));
@@ -24,8 +22,7 @@ public class CalloutTests : TestContext
 	}
 
 	[Fact]
-	public void Callout_WithTitle_RendersTitle()
-	{
+	public void Callout_WithTitle_RendersTitle() {
 		// Arrange & Act
 		var cut = RenderComponent<Callout>(parameters => parameters
 			.Add(p => p.Title, "Important Notice")
@@ -36,8 +33,7 @@ public class CalloutTests : TestContext
 	}
 
 	[Fact]
-	public void Callout_WithoutTitle_DoesNotRenderTitleElement()
-	{
+	public void Callout_WithoutTitle_DoesNotRenderTitleElement() {
 		// Arrange & Act
 		var cut = RenderComponent<Callout>(parameters => parameters
 			.Add(p => p.Message, "Just content"));
@@ -47,8 +43,7 @@ public class CalloutTests : TestContext
 	}
 
 	[Fact]
-	public void Callout_WithChildContent_RendersRichContent()
-	{
+	public void Callout_WithChildContent_RendersRichContent() {
 		// Arrange & Act
 		var cut = RenderComponent<Callout>(parameters => parameters
 			.AddChildContent("<strong>Bold text</strong> and more"));
@@ -58,8 +53,7 @@ public class CalloutTests : TestContext
 	}
 
 	[Fact]
-	public void Callout_ChildContentTakesPrecedenceOverMessage()
-	{
+	public void Callout_ChildContentTakesPrecedenceOverMessage() {
 		// Arrange & Act
 		var cut = RenderComponent<Callout>(parameters => parameters
 			.Add(p => p.Message, "Simple message")
@@ -82,8 +76,7 @@ public class CalloutTests : TestContext
 	[InlineData(CalloutType.Caution, "callout-caution")]
 	[InlineData(CalloutType.Important, "callout-important")]
 	[InlineData(CalloutType.Success, "callout-success")]
-	public void Callout_WithType_HasCorrectClass(CalloutType type, string expectedClass)
-	{
+	public void Callout_WithType_HasCorrectClass(CalloutType type, string expectedClass) {
 		// Arrange & Act
 		var cut = RenderComponent<Callout>(parameters => parameters
 			.Add(p => p.Type, type)
@@ -94,8 +87,7 @@ public class CalloutTests : TestContext
 	}
 
 	[Fact]
-	public void Callout_DefaultType_IsInfo()
-	{
+	public void Callout_DefaultType_IsInfo() {
 		// Arrange & Act
 		var cut = RenderComponent<Callout>(parameters => parameters
 			.Add(p => p.Message, "Test"));
@@ -109,8 +101,7 @@ public class CalloutTests : TestContext
 	#region Icon Tests
 
 	[Fact]
-	public void Callout_ShowsIconByDefault()
-	{
+	public void Callout_ShowsIconByDefault() {
 		// Arrange & Act
 		var cut = RenderComponent<Callout>(parameters => parameters
 			.Add(p => p.Message, "Test"));
@@ -120,8 +111,7 @@ public class CalloutTests : TestContext
 	}
 
 	[Fact]
-	public void Callout_WithShowIconFalse_HidesIcon()
-	{
+	public void Callout_WithShowIconFalse_HidesIcon() {
 		// Arrange & Act
 		var cut = RenderComponent<Callout>(parameters => parameters
 			.Add(p => p.Message, "Test")
@@ -139,8 +129,7 @@ public class CalloutTests : TestContext
 	[InlineData(CalloutType.Caution, "🔴")]
 	[InlineData(CalloutType.Important, "❗")]
 	[InlineData(CalloutType.Success, "✅")]
-	public void Callout_WithType_ShowsCorrectDefaultIcon(CalloutType type, string expectedIcon)
-	{
+	public void Callout_WithType_ShowsCorrectDefaultIcon(CalloutType type, string expectedIcon) {
 		// Arrange & Act
 		var cut = RenderComponent<Callout>(parameters => parameters
 			.Add(p => p.Type, type)
@@ -151,8 +140,7 @@ public class CalloutTests : TestContext
 	}
 
 	[Fact]
-	public void Callout_WithCustomIcon_OverridesDefault()
-	{
+	public void Callout_WithCustomIcon_OverridesDefault() {
 		// Arrange & Act
 		var cut = RenderComponent<Callout>(parameters => parameters
 			.Add(p => p.Type, CalloutType.Info)
@@ -164,8 +152,7 @@ public class CalloutTests : TestContext
 	}
 
 	[Fact]
-	public void Callout_IconHasAriaHidden()
-	{
+	public void Callout_IconHasAriaHidden() {
 		// Arrange & Act
 		var cut = RenderComponent<Callout>(parameters => parameters
 			.Add(p => p.Message, "Test"));
@@ -185,8 +172,7 @@ public class CalloutTests : TestContext
 	[InlineData(CalloutType.Success, "note")]
 	[InlineData(CalloutType.Warning, "alert")]
 	[InlineData(CalloutType.Caution, "alert")]
-	public void Callout_WithType_HasCorrectAriaRole(CalloutType type, string expectedRole)
-	{
+	public void Callout_WithType_HasCorrectAriaRole(CalloutType type, string expectedRole) {
 		// Arrange & Act
 		var cut = RenderComponent<Callout>(parameters => parameters
 			.Add(p => p.Type, type)
@@ -201,8 +187,7 @@ public class CalloutTests : TestContext
 	#region Dismissible Tests
 
 	[Fact]
-	public void Callout_NotDismissibleByDefault()
-	{
+	public void Callout_NotDismissibleByDefault() {
 		// Arrange & Act
 		var cut = RenderComponent<Callout>(parameters => parameters
 			.Add(p => p.Message, "Test"));
@@ -212,8 +197,7 @@ public class CalloutTests : TestContext
 	}
 
 	[Fact]
-	public void Callout_WhenDismissible_ShowsDismissButton()
-	{
+	public void Callout_WhenDismissible_ShowsDismissButton() {
 		// Arrange & Act
 		var cut = RenderComponent<Callout>(parameters => parameters
 			.Add(p => p.Message, "Test")
@@ -224,8 +208,7 @@ public class CalloutTests : TestContext
 	}
 
 	[Fact]
-	public void Callout_DismissButton_HasAccessibilityAttributes()
-	{
+	public void Callout_DismissButton_HasAccessibilityAttributes() {
 		// Arrange & Act
 		var cut = RenderComponent<Callout>(parameters => parameters
 			.Add(p => p.Message, "Test")
@@ -238,8 +221,7 @@ public class CalloutTests : TestContext
 	}
 
 	[Fact]
-	public async Task Callout_WhenDismissClicked_InvokesCallback()
-	{
+	public async Task Callout_WhenDismissClicked_InvokesCallback() {
 		// Arrange
 		var dismissed = false;
 		var cut = RenderComponent<Callout>(parameters => parameters
@@ -259,8 +241,7 @@ public class CalloutTests : TestContext
 	#region CSS Class Tests
 
 	[Fact]
-	public void Callout_WithCssClass_IncludesCustomClass()
-	{
+	public void Callout_WithCssClass_IncludesCustomClass() {
 		// Arrange & Act
 		var cut = RenderComponent<Callout>(parameters => parameters
 			.Add(p => p.Message, "Test")
@@ -271,8 +252,7 @@ public class CalloutTests : TestContext
 	}
 
 	[Fact]
-	public void Callout_CombinesAllClasses()
-	{
+	public void Callout_CombinesAllClasses() {
 		// Arrange & Act
 		var cut = RenderComponent<Callout>(parameters => parameters
 			.Add(p => p.Message, "Test")
@@ -291,8 +271,7 @@ public class CalloutTests : TestContext
 	#region Structure Tests
 
 	[Fact]
-	public void Callout_HasCorrectStructure()
-	{
+	public void Callout_HasCorrectStructure() {
 		// Arrange & Act
 		var cut = RenderComponent<Callout>(parameters => parameters
 			.Add(p => p.Title, "Title")
@@ -306,8 +285,7 @@ public class CalloutTests : TestContext
 	}
 
 	[Fact]
-	public void Callout_EmptyContent_StillRenders()
-	{
+	public void Callout_EmptyContent_StillRenders() {
 		// Arrange & Act
 		var cut = RenderComponent<Callout>();
 

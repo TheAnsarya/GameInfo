@@ -7,13 +7,11 @@ namespace DarkRepos.Tests.Components;
 /// <summary>
 /// Unit tests for ProgressCircle component.
 /// </summary>
-public class ProgressCircleTests : TestContext
-{
+public class ProgressCircleTests : TestContext {
 	#region Basic Rendering Tests
 
 	[Fact]
-	public void ProgressCircle_RendersCorrectly()
-	{
+	public void ProgressCircle_RendersCorrectly() {
 		// Arrange & Act
 		var cut = RenderComponent<ProgressCircle>(parameters => parameters
 			.Add(p => p.Value, 50));
@@ -24,8 +22,7 @@ public class ProgressCircleTests : TestContext
 	}
 
 	[Fact]
-	public void ProgressCircle_HasCorrectAriaAttributes()
-	{
+	public void ProgressCircle_HasCorrectAriaAttributes() {
 		// Arrange & Act
 		var cut = RenderComponent<ProgressCircle>(parameters => parameters
 			.Add(p => p.Value, 75));
@@ -44,8 +41,7 @@ public class ProgressCircleTests : TestContext
 	[InlineData(50)]
 	[InlineData(75)]
 	[InlineData(100)]
-	public void ProgressCircle_WithValue_RendersCorrectStrokeDasharray(double value)
-	{
+	public void ProgressCircle_WithValue_RendersCorrectStrokeDasharray(double value) {
 		// Arrange & Act
 		var cut = RenderComponent<ProgressCircle>(parameters => parameters
 			.Add(p => p.Value, value));
@@ -64,8 +60,7 @@ public class ProgressCircleTests : TestContext
 	[InlineData(-1, 0)]
 	[InlineData(101, 100)]
 	[InlineData(150, 100)]
-	public void ProgressCircle_ClampsValueToValidRange(double input, double expectedClamped)
-	{
+	public void ProgressCircle_ClampsValueToValidRange(double input, double expectedClamped) {
 		// Arrange & Act
 		var cut = RenderComponent<ProgressCircle>(parameters => parameters
 			.Add(p => p.Value, input));
@@ -80,8 +75,7 @@ public class ProgressCircleTests : TestContext
 	#region Label Tests
 
 	[Fact]
-	public void ProgressCircle_ShowsLabelByDefault()
-	{
+	public void ProgressCircle_ShowsLabelByDefault() {
 		// Arrange & Act
 		var cut = RenderComponent<ProgressCircle>(parameters => parameters
 			.Add(p => p.Value, 42));
@@ -91,8 +85,7 @@ public class ProgressCircleTests : TestContext
 	}
 
 	[Fact]
-	public void ProgressCircle_WithShowLabelFalse_HidesLabel()
-	{
+	public void ProgressCircle_WithShowLabelFalse_HidesLabel() {
 		// Arrange & Act
 		var cut = RenderComponent<ProgressCircle>(parameters => parameters
 			.Add(p => p.Value, 50)
@@ -103,8 +96,7 @@ public class ProgressCircleTests : TestContext
 	}
 
 	[Fact]
-	public void ProgressCircle_WithCustomLabel_UsesCustomText()
-	{
+	public void ProgressCircle_WithCustomLabel_UsesCustomText() {
 		// Arrange & Act
 		var cut = RenderComponent<ProgressCircle>(parameters => parameters
 			.Add(p => p.Value, 75)
@@ -119,8 +111,7 @@ public class ProgressCircleTests : TestContext
 	[InlineData(66.7, "67%")]
 	[InlineData(0.4, "0%")]
 	[InlineData(99.9, "100%")]
-	public void ProgressCircle_RoundsPercentageLabel(double value, string expected)
-	{
+	public void ProgressCircle_RoundsPercentageLabel(double value, string expected) {
 		// Arrange & Act
 		var cut = RenderComponent<ProgressCircle>(parameters => parameters
 			.Add(p => p.Value, value));
@@ -138,8 +129,7 @@ public class ProgressCircleTests : TestContext
 	[InlineData(ProgressCircleSize.Medium, "progress-circle-md")]
 	[InlineData(ProgressCircleSize.Large, "progress-circle-lg")]
 	[InlineData(ProgressCircleSize.ExtraLarge, "progress-circle-xl")]
-	public void ProgressCircle_WithSize_HasCorrectClass(ProgressCircleSize size, string expectedClass)
-	{
+	public void ProgressCircle_WithSize_HasCorrectClass(ProgressCircleSize size, string expectedClass) {
 		// Arrange & Act
 		var cut = RenderComponent<ProgressCircle>(parameters => parameters
 			.Add(p => p.Value, 50)
@@ -160,8 +150,7 @@ public class ProgressCircleTests : TestContext
 	[InlineData(ProgressCircleColor.Danger, "circle-danger")]
 	[InlineData(ProgressCircleColor.Info, "circle-info")]
 	[InlineData(ProgressCircleColor.Secondary, "circle-secondary")]
-	public void ProgressCircle_WithColor_HasCorrectClass(ProgressCircleColor color, string expectedClass)
-	{
+	public void ProgressCircle_WithColor_HasCorrectClass(ProgressCircleColor color, string expectedClass) {
 		// Arrange & Act
 		var cut = RenderComponent<ProgressCircle>(parameters => parameters
 			.Add(p => p.Value, 50)
@@ -176,8 +165,7 @@ public class ProgressCircleTests : TestContext
 	#region Tooltip Tests
 
 	[Fact]
-	public void ProgressCircle_DefaultTooltip_ShowsPercentageComplete()
-	{
+	public void ProgressCircle_DefaultTooltip_ShowsPercentageComplete() {
 		// Arrange & Act
 		var cut = RenderComponent<ProgressCircle>(parameters => parameters
 			.Add(p => p.Value, 45));
@@ -187,8 +175,7 @@ public class ProgressCircleTests : TestContext
 	}
 
 	[Fact]
-	public void ProgressCircle_WithCustomTooltip_UsesCustomText()
-	{
+	public void ProgressCircle_WithCustomTooltip_UsesCustomText() {
 		// Arrange & Act
 		var cut = RenderComponent<ProgressCircle>(parameters => parameters
 			.Add(p => p.Value, 50)
@@ -203,8 +190,7 @@ public class ProgressCircleTests : TestContext
 	#region CSS Class Tests
 
 	[Fact]
-	public void ProgressCircle_WithCssClass_IncludesCustomClass()
-	{
+	public void ProgressCircle_WithCssClass_IncludesCustomClass() {
 		// Arrange & Act
 		var cut = RenderComponent<ProgressCircle>(parameters => parameters
 			.Add(p => p.Value, 50)
@@ -215,8 +201,7 @@ public class ProgressCircleTests : TestContext
 	}
 
 	[Fact]
-	public void ProgressCircle_CombinesAllClasses()
-	{
+	public void ProgressCircle_CombinesAllClasses() {
 		// Arrange & Act
 		var cut = RenderComponent<ProgressCircle>(parameters => parameters
 			.Add(p => p.Value, 50)
@@ -235,8 +220,7 @@ public class ProgressCircleTests : TestContext
 	#region SVG Structure Tests
 
 	[Fact]
-	public void ProgressCircle_HasBackgroundCircle()
-	{
+	public void ProgressCircle_HasBackgroundCircle() {
 		// Arrange & Act
 		var cut = RenderComponent<ProgressCircle>(parameters => parameters
 			.Add(p => p.Value, 50));
@@ -246,8 +230,7 @@ public class ProgressCircleTests : TestContext
 	}
 
 	[Fact]
-	public void ProgressCircle_HasProgressCircle()
-	{
+	public void ProgressCircle_HasProgressCircle() {
 		// Arrange & Act
 		var cut = RenderComponent<ProgressCircle>(parameters => parameters
 			.Add(p => p.Value, 50));
@@ -257,8 +240,7 @@ public class ProgressCircleTests : TestContext
 	}
 
 	[Fact]
-	public void ProgressCircle_SvgHasCorrectViewBox()
-	{
+	public void ProgressCircle_SvgHasCorrectViewBox() {
 		// Arrange & Act
 		var cut = RenderComponent<ProgressCircle>(parameters => parameters
 			.Add(p => p.Value, 50));
@@ -272,8 +254,7 @@ public class ProgressCircleTests : TestContext
 	#region Edge Case Tests
 
 	[Fact]
-	public void ProgressCircle_WithZeroValue_RendersEmpty()
-	{
+	public void ProgressCircle_WithZeroValue_RendersEmpty() {
 		// Arrange & Act
 		var cut = RenderComponent<ProgressCircle>(parameters => parameters
 			.Add(p => p.Value, 0));
@@ -284,8 +265,7 @@ public class ProgressCircleTests : TestContext
 	}
 
 	[Fact]
-	public void ProgressCircle_WithFullValue_RendersFull()
-	{
+	public void ProgressCircle_WithFullValue_RendersFull() {
 		// Arrange & Act
 		var cut = RenderComponent<ProgressCircle>(parameters => parameters
 			.Add(p => p.Value, 100));
@@ -296,8 +276,7 @@ public class ProgressCircleTests : TestContext
 	}
 
 	[Fact]
-	public void ProgressCircle_WithDecimalValue_WorksCorrectly()
-	{
+	public void ProgressCircle_WithDecimalValue_WorksCorrectly() {
 		// Arrange & Act
 		var cut = RenderComponent<ProgressCircle>(parameters => parameters
 			.Add(p => p.Value, 33.33));

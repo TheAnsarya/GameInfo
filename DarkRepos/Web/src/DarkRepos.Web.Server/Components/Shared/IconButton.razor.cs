@@ -6,8 +6,7 @@ namespace DarkRepos.Web.Components.Shared;
 /// Base class for IconButton component - Button with icon support.
 /// Usage: &lt;IconButton Icon="🔍" OnClick="HandleSearch" /&gt;
 /// </summary>
-public class IconButtonBase : ComponentBase
-{
+public class IconButtonBase : ComponentBase {
 	/// <summary>
 	/// The icon to display (emoji or text).
 	/// </summary>
@@ -68,8 +67,7 @@ public class IconButtonBase : ComponentBase
 	[Parameter(CaptureUnmatchedValues = true)]
 	public Dictionary<string, object>? AdditionalAttributes { get; set; }
 
-	protected string VariantClass => Variant switch
-	{
+	protected string VariantClass => Variant switch {
 		IconButtonVariant.Primary => "icon-btn-primary",
 		IconButtonVariant.Secondary => "icon-btn-secondary",
 		IconButtonVariant.Success => "icon-btn-success",
@@ -80,17 +78,14 @@ public class IconButtonBase : ComponentBase
 		_ => "icon-btn-default"
 	};
 
-	protected string SizeClass => Size switch
-	{
+	protected string SizeClass => Size switch {
 		IconButtonSize.Small => "icon-btn-sm",
 		IconButtonSize.Large => "icon-btn-lg",
 		_ => "icon-btn-md"
 	};
 
-	protected async Task HandleClick(Microsoft.AspNetCore.Components.Web.MouseEventArgs args)
-	{
-		if (!Disabled)
-		{
+	protected async Task HandleClick(Microsoft.AspNetCore.Components.Web.MouseEventArgs args) {
+		if (!Disabled) {
 			await OnClick.InvokeAsync(args);
 		}
 	}
@@ -99,8 +94,7 @@ public class IconButtonBase : ComponentBase
 /// <summary>
 /// Button style variants.
 /// </summary>
-public enum IconButtonVariant
-{
+public enum IconButtonVariant {
 	Default,
 	Primary,
 	Secondary,
@@ -114,8 +108,7 @@ public enum IconButtonVariant
 /// <summary>
 /// Button size options.
 /// </summary>
-public enum IconButtonSize
-{
+public enum IconButtonSize {
 	Small,
 	Medium,
 	Large

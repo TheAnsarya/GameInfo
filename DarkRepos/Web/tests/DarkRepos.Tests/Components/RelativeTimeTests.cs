@@ -8,11 +8,9 @@ namespace DarkRepos.Tests.Components;
 /// <summary>
 /// Tests for the RelativeTime component.
 /// </summary>
-public class RelativeTimeTests : TestContext
-{
+public class RelativeTimeTests : TestContext {
 	[Fact]
-	public void RelativeTime_RendersTimeElement()
-	{
+	public void RelativeTime_RendersTimeElement() {
 		// Arrange
 		var dateTime = DateTime.UtcNow.AddMinutes(-5);
 
@@ -26,8 +24,7 @@ public class RelativeTimeTests : TestContext
 	}
 
 	[Fact]
-	public void RelativeTime_HasDateTimeAttribute()
-	{
+	public void RelativeTime_HasDateTimeAttribute() {
 		// Arrange
 		var dateTime = new DateTime(2025, 12, 27, 10, 30, 0, DateTimeKind.Utc);
 
@@ -41,8 +38,7 @@ public class RelativeTimeTests : TestContext
 	}
 
 	[Fact]
-	public void RelativeTime_HasTitleWithFullDateTime()
-	{
+	public void RelativeTime_HasTitleWithFullDateTime() {
 		// Arrange
 		var dateTime = DateTime.UtcNow.AddHours(-2);
 
@@ -56,8 +52,7 @@ public class RelativeTimeTests : TestContext
 	}
 
 	[Fact]
-	public void RelativeTime_ShowsJustNow_ForRecentTimes()
-	{
+	public void RelativeTime_ShowsJustNow_ForRecentTimes() {
 		// Arrange
 		var dateTime = DateTime.UtcNow.AddSeconds(-2);
 
@@ -71,8 +66,7 @@ public class RelativeTimeTests : TestContext
 	}
 
 	[Fact]
-	public void RelativeTime_ShowsSeconds()
-	{
+	public void RelativeTime_ShowsSeconds() {
 		// Arrange
 		var dateTime = DateTime.UtcNow.AddSeconds(-30);
 
@@ -87,8 +81,7 @@ public class RelativeTimeTests : TestContext
 	}
 
 	[Fact]
-	public void RelativeTime_ShowsMinutes()
-	{
+	public void RelativeTime_ShowsMinutes() {
 		// Arrange
 		var dateTime = DateTime.UtcNow.AddMinutes(-15);
 
@@ -103,8 +96,7 @@ public class RelativeTimeTests : TestContext
 	}
 
 	[Fact]
-	public void RelativeTime_ShowsHours()
-	{
+	public void RelativeTime_ShowsHours() {
 		// Arrange
 		var dateTime = DateTime.UtcNow.AddHours(-5);
 
@@ -119,8 +111,7 @@ public class RelativeTimeTests : TestContext
 	}
 
 	[Fact]
-	public void RelativeTime_ShowsYesterday()
-	{
+	public void RelativeTime_ShowsYesterday() {
 		// Arrange
 		var dateTime = DateTime.UtcNow.AddDays(-1).AddHours(-2);
 
@@ -134,8 +125,7 @@ public class RelativeTimeTests : TestContext
 	}
 
 	[Fact]
-	public void RelativeTime_ShowsDays()
-	{
+	public void RelativeTime_ShowsDays() {
 		// Arrange
 		var dateTime = DateTime.UtcNow.AddDays(-4);
 
@@ -150,8 +140,7 @@ public class RelativeTimeTests : TestContext
 	}
 
 	[Fact]
-	public void RelativeTime_ShowsLastWeek()
-	{
+	public void RelativeTime_ShowsLastWeek() {
 		// Arrange
 		var dateTime = DateTime.UtcNow.AddDays(-10);
 
@@ -165,8 +154,7 @@ public class RelativeTimeTests : TestContext
 	}
 
 	[Fact]
-	public void RelativeTime_ShowsWeeks()
-	{
+	public void RelativeTime_ShowsWeeks() {
 		// Arrange
 		var dateTime = DateTime.UtcNow.AddDays(-20);
 
@@ -181,8 +169,7 @@ public class RelativeTimeTests : TestContext
 	}
 
 	[Fact]
-	public void RelativeTime_ShowsLastMonth()
-	{
+	public void RelativeTime_ShowsLastMonth() {
 		// Arrange
 		var dateTime = DateTime.UtcNow.AddDays(-45);
 
@@ -196,8 +183,7 @@ public class RelativeTimeTests : TestContext
 	}
 
 	[Fact]
-	public void RelativeTime_ShowsMonths()
-	{
+	public void RelativeTime_ShowsMonths() {
 		// Arrange
 		var dateTime = DateTime.UtcNow.AddMonths(-5);
 
@@ -212,8 +198,7 @@ public class RelativeTimeTests : TestContext
 	}
 
 	[Fact]
-	public void RelativeTime_ShowsLastYear()
-	{
+	public void RelativeTime_ShowsLastYear() {
 		// Arrange
 		var dateTime = DateTime.UtcNow.AddDays(-400);
 
@@ -227,8 +212,7 @@ public class RelativeTimeTests : TestContext
 	}
 
 	[Fact]
-	public void RelativeTime_ShowsYears()
-	{
+	public void RelativeTime_ShowsYears() {
 		// Arrange
 		var dateTime = DateTime.UtcNow.AddYears(-3);
 
@@ -243,8 +227,7 @@ public class RelativeTimeTests : TestContext
 	}
 
 	[Fact]
-	public void RelativeTime_ShowsTomorrow_ForFutureDates()
-	{
+	public void RelativeTime_ShowsTomorrow_ForFutureDates() {
 		// Arrange
 		var dateTime = DateTime.UtcNow.AddDays(1).AddHours(2);
 
@@ -258,8 +241,7 @@ public class RelativeTimeTests : TestContext
 	}
 
 	[Fact]
-	public void RelativeTime_ShowsFutureMinutes()
-	{
+	public void RelativeTime_ShowsFutureMinutes() {
 		// Arrange
 		var dateTime = DateTime.UtcNow.AddMinutes(30);
 
@@ -274,8 +256,7 @@ public class RelativeTimeTests : TestContext
 	}
 
 	[Fact]
-	public void RelativeTime_ShowsNextWeek()
-	{
+	public void RelativeTime_ShowsNextWeek() {
 		// Arrange
 		var dateTime = DateTime.UtcNow.AddDays(10);
 
@@ -289,8 +270,7 @@ public class RelativeTimeTests : TestContext
 	}
 
 	[Fact]
-	public void RelativeTime_HasFutureClass_ForFutureDates()
-	{
+	public void RelativeTime_HasFutureClass_ForFutureDates() {
 		// Arrange
 		var dateTime = DateTime.UtcNow.AddHours(5);
 
@@ -304,8 +284,7 @@ public class RelativeTimeTests : TestContext
 	}
 
 	[Fact]
-	public void RelativeTime_HasPastClass_ForPastDates()
-	{
+	public void RelativeTime_HasPastClass_ForPastDates() {
 		// Arrange
 		var dateTime = DateTime.UtcNow.AddHours(-5);
 
@@ -319,8 +298,7 @@ public class RelativeTimeTests : TestContext
 	}
 
 	[Fact]
-	public void RelativeTime_UsesSingular_ForOneUnit()
-	{
+	public void RelativeTime_UsesSingular_ForOneUnit() {
 		// Arrange
 		var dateTime = DateTime.UtcNow.AddMinutes(-1);
 
@@ -334,8 +312,7 @@ public class RelativeTimeTests : TestContext
 	}
 
 	[Fact]
-	public void RelativeTime_UsesPlural_ForMultipleUnits()
-	{
+	public void RelativeTime_UsesPlural_ForMultipleUnits() {
 		// Arrange
 		var dateTime = DateTime.UtcNow.AddMinutes(-5);
 
@@ -349,8 +326,7 @@ public class RelativeTimeTests : TestContext
 	}
 
 	[Fact]
-	public void RelativeTime_AcceptsCustomTooltipFormat()
-	{
+	public void RelativeTime_AcceptsCustomTooltipFormat() {
 		// Arrange
 		var dateTime = new DateTime(2025, 12, 27, 10, 30, 0, DateTimeKind.Utc);
 

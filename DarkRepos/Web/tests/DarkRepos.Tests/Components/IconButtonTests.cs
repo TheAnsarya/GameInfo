@@ -8,13 +8,11 @@ namespace DarkRepos.Tests.Components;
 /// <summary>
 /// Unit tests for IconButton component.
 /// </summary>
-public class IconButtonTests : TestContext
-{
+public class IconButtonTests : TestContext {
 	#region Basic Rendering Tests
 
 	[Fact]
-	public void IconButton_WithIcon_RendersCorrectly()
-	{
+	public void IconButton_WithIcon_RendersCorrectly() {
 		// Arrange & Act
 		var cut = RenderComponent<IconButton>(parameters => parameters
 			.Add(p => p.Icon, "🔍"));
@@ -25,8 +23,7 @@ public class IconButtonTests : TestContext
 	}
 
 	[Fact]
-	public void IconButton_WithIconAndText_RendersBoth()
-	{
+	public void IconButton_WithIconAndText_RendersBoth() {
 		// Arrange & Act
 		var cut = RenderComponent<IconButton>(parameters => parameters
 			.Add(p => p.Icon, "📁")
@@ -38,8 +35,7 @@ public class IconButtonTests : TestContext
 	}
 
 	[Fact]
-	public void IconButton_WithoutText_DoesNotRenderTextSpan()
-	{
+	public void IconButton_WithoutText_DoesNotRenderTextSpan() {
 		// Arrange & Act
 		var cut = RenderComponent<IconButton>(parameters => parameters
 			.Add(p => p.Icon, "❌"));
@@ -49,8 +45,7 @@ public class IconButtonTests : TestContext
 	}
 
 	[Fact]
-	public void IconButton_WithEmptyText_DoesNotRenderTextSpan()
-	{
+	public void IconButton_WithEmptyText_DoesNotRenderTextSpan() {
 		// Arrange & Act
 		var cut = RenderComponent<IconButton>(parameters => parameters
 			.Add(p => p.Icon, "✓")
@@ -73,8 +68,7 @@ public class IconButtonTests : TestContext
 	[InlineData(IconButtonVariant.Warning, "icon-btn-warning")]
 	[InlineData(IconButtonVariant.Info, "icon-btn-info")]
 	[InlineData(IconButtonVariant.Ghost, "icon-btn-ghost")]
-	public void IconButton_WithVariant_HasCorrectClass(IconButtonVariant variant, string expectedClass)
-	{
+	public void IconButton_WithVariant_HasCorrectClass(IconButtonVariant variant, string expectedClass) {
 		// Arrange & Act
 		var cut = RenderComponent<IconButton>(parameters => parameters
 			.Add(p => p.Icon, "★")
@@ -92,8 +86,7 @@ public class IconButtonTests : TestContext
 	[InlineData(IconButtonSize.Small, "icon-btn-sm")]
 	[InlineData(IconButtonSize.Medium, "icon-btn-md")]
 	[InlineData(IconButtonSize.Large, "icon-btn-lg")]
-	public void IconButton_WithSize_HasCorrectClass(IconButtonSize size, string expectedClass)
-	{
+	public void IconButton_WithSize_HasCorrectClass(IconButtonSize size, string expectedClass) {
 		// Arrange & Act
 		var cut = RenderComponent<IconButton>(parameters => parameters
 			.Add(p => p.Icon, "★")
@@ -108,8 +101,7 @@ public class IconButtonTests : TestContext
 	#region Button Type Tests
 
 	[Fact]
-	public void IconButton_DefaultType_IsButton()
-	{
+	public void IconButton_DefaultType_IsButton() {
 		// Arrange & Act
 		var cut = RenderComponent<IconButton>(parameters => parameters
 			.Add(p => p.Icon, "★"));
@@ -122,8 +114,7 @@ public class IconButtonTests : TestContext
 	[InlineData("button")]
 	[InlineData("submit")]
 	[InlineData("reset")]
-	public void IconButton_WithType_SetsTypeAttribute(string buttonType)
-	{
+	public void IconButton_WithType_SetsTypeAttribute(string buttonType) {
 		// Arrange & Act
 		var cut = RenderComponent<IconButton>(parameters => parameters
 			.Add(p => p.Icon, "★")
@@ -138,8 +129,7 @@ public class IconButtonTests : TestContext
 	#region Disabled Tests
 
 	[Fact]
-	public void IconButton_WhenDisabled_HasDisabledAttribute()
-	{
+	public void IconButton_WhenDisabled_HasDisabledAttribute() {
 		// Arrange & Act
 		var cut = RenderComponent<IconButton>(parameters => parameters
 			.Add(p => p.Icon, "★")
@@ -150,8 +140,7 @@ public class IconButtonTests : TestContext
 	}
 
 	[Fact]
-	public void IconButton_WhenNotDisabled_DoesNotHaveDisabledAttribute()
-	{
+	public void IconButton_WhenNotDisabled_DoesNotHaveDisabledAttribute() {
 		// Arrange & Act
 		var cut = RenderComponent<IconButton>(parameters => parameters
 			.Add(p => p.Icon, "★")
@@ -162,8 +151,7 @@ public class IconButtonTests : TestContext
 	}
 
 	[Fact]
-	public async Task IconButton_WhenDisabled_ClickDoesNotTrigger()
-	{
+	public async Task IconButton_WhenDisabled_ClickDoesNotTrigger() {
 		// Arrange
 		var clicked = false;
 		var cut = RenderComponent<IconButton>(parameters => parameters
@@ -183,8 +171,7 @@ public class IconButtonTests : TestContext
 	#region Tooltip Tests
 
 	[Fact]
-	public void IconButton_WithTooltip_SetsTitleAttribute()
-	{
+	public void IconButton_WithTooltip_SetsTitleAttribute() {
 		// Arrange & Act
 		var cut = RenderComponent<IconButton>(parameters => parameters
 			.Add(p => p.Icon, "💾")
@@ -195,8 +182,7 @@ public class IconButtonTests : TestContext
 	}
 
 	[Fact]
-	public void IconButton_WithoutTooltip_NoTitleAttribute()
-	{
+	public void IconButton_WithoutTooltip_NoTitleAttribute() {
 		// Arrange & Act
 		var cut = RenderComponent<IconButton>(parameters => parameters
 			.Add(p => p.Icon, "★"));
@@ -210,8 +196,7 @@ public class IconButtonTests : TestContext
 	#region CSS Class Tests
 
 	[Fact]
-	public void IconButton_AlwaysHasBaseClass()
-	{
+	public void IconButton_AlwaysHasBaseClass() {
 		// Arrange & Act
 		var cut = RenderComponent<IconButton>(parameters => parameters
 			.Add(p => p.Icon, "★"));
@@ -221,8 +206,7 @@ public class IconButtonTests : TestContext
 	}
 
 	[Fact]
-	public void IconButton_WithCssClass_IncludesCustomClass()
-	{
+	public void IconButton_WithCssClass_IncludesCustomClass() {
 		// Arrange & Act
 		var cut = RenderComponent<IconButton>(parameters => parameters
 			.Add(p => p.Icon, "★")
@@ -233,8 +217,7 @@ public class IconButtonTests : TestContext
 	}
 
 	[Fact]
-	public void IconButton_WithMultipleClasses_IncludesAll()
-	{
+	public void IconButton_WithMultipleClasses_IncludesAll() {
 		// Arrange & Act
 		var cut = RenderComponent<IconButton>(parameters => parameters
 			.Add(p => p.Icon, "★")
@@ -255,8 +238,7 @@ public class IconButtonTests : TestContext
 	#region Click Event Tests
 
 	[Fact]
-	public async Task IconButton_WhenClicked_TriggersOnClick()
-	{
+	public async Task IconButton_WhenClicked_TriggersOnClick() {
 		// Arrange
 		var clicked = false;
 		var cut = RenderComponent<IconButton>(parameters => parameters
@@ -271,8 +253,7 @@ public class IconButtonTests : TestContext
 	}
 
 	[Fact]
-	public async Task IconButton_WhenClicked_PassesEventArgs()
-	{
+	public async Task IconButton_WhenClicked_PassesEventArgs() {
 		// Arrange
 		MouseEventArgs? receivedArgs = null;
 		var cut = RenderComponent<IconButton>(parameters => parameters
@@ -294,8 +275,7 @@ public class IconButtonTests : TestContext
 	#region Additional Attributes Tests
 
 	[Fact]
-	public void IconButton_WithAdditionalAttributes_PassesThrough()
-	{
+	public void IconButton_WithAdditionalAttributes_PassesThrough() {
 		// Arrange & Act
 		var cut = RenderComponent<IconButton>(parameters => parameters
 			.Add(p => p.Icon, "★")
@@ -312,8 +292,7 @@ public class IconButtonTests : TestContext
 	#region Accessibility Tests
 
 	[Fact]
-	public void IconButton_IconHasAriaHidden()
-	{
+	public void IconButton_IconHasAriaHidden() {
 		// Arrange & Act
 		var cut = RenderComponent<IconButton>(parameters => parameters
 			.Add(p => p.Icon, "★"));
@@ -323,8 +302,7 @@ public class IconButtonTests : TestContext
 	}
 
 	[Fact]
-	public void IconButton_IconOnlyWithTooltip_IsAccessible()
-	{
+	public void IconButton_IconOnlyWithTooltip_IsAccessible() {
 		// Arrange & Act
 		var cut = RenderComponent<IconButton>(parameters => parameters
 			.Add(p => p.Icon, "🔍")

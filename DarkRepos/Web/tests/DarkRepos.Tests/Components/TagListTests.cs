@@ -10,11 +10,9 @@ namespace DarkRepos.Tests.Components;
 /// <summary>
 /// Tests for the TagList component.
 /// </summary>
-public class TagListTests : TestContext
-{
+public class TagListTests : TestContext {
 	[Fact]
-	public void TagList_RendersTags()
-	{
+	public void TagList_RendersTags() {
 		// Arrange
 		var tags = new[] { "tag1", "tag2", "tag3" };
 
@@ -27,8 +25,7 @@ public class TagListTests : TestContext
 	}
 
 	[Fact]
-	public void TagList_ShowsTagText()
-	{
+	public void TagList_ShowsTagText() {
 		// Arrange
 		var tags = new[] { "Test Tag" };
 
@@ -41,8 +38,7 @@ public class TagListTests : TestContext
 	}
 
 	[Fact]
-	public void TagList_ShowsHashIcon_ByDefault()
-	{
+	public void TagList_ShowsHashIcon_ByDefault() {
 		// Arrange
 		var tags = new[] { "tag" };
 
@@ -55,8 +51,7 @@ public class TagListTests : TestContext
 	}
 
 	[Fact]
-	public void TagList_HidesIcon_WhenShowIconFalse()
-	{
+	public void TagList_HidesIcon_WhenShowIconFalse() {
 		// Arrange
 		var tags = new[] { "tag" };
 
@@ -70,8 +65,7 @@ public class TagListTests : TestContext
 	}
 
 	[Fact]
-	public void TagList_ShowsRemoveButton_WhenRemovable()
-	{
+	public void TagList_ShowsRemoveButton_WhenRemovable() {
 		// Arrange
 		var tags = new[] { "tag" };
 
@@ -85,8 +79,7 @@ public class TagListTests : TestContext
 	}
 
 	[Fact]
-	public void TagList_HidesRemoveButton_WhenNotRemovable()
-	{
+	public void TagList_HidesRemoveButton_WhenNotRemovable() {
 		// Arrange
 		var tags = new[] { "tag" };
 
@@ -100,8 +93,7 @@ public class TagListTests : TestContext
 	}
 
 	[Fact]
-	public void TagList_HasCompactClass_WhenCompact()
-	{
+	public void TagList_HasCompactClass_WhenCompact() {
 		// Arrange
 		var tags = new[] { "tag" };
 
@@ -115,8 +107,7 @@ public class TagListTests : TestContext
 	}
 
 	[Fact]
-	public void TagList_HasWrapClass_ByDefault()
-	{
+	public void TagList_HasWrapClass_ByDefault() {
 		// Arrange
 		var tags = new[] { "tag" };
 
@@ -129,8 +120,7 @@ public class TagListTests : TestContext
 	}
 
 	[Fact]
-	public void TagList_NoWrapClass_WhenWrapFalse()
-	{
+	public void TagList_NoWrapClass_WhenWrapFalse() {
 		// Arrange
 		var tags = new[] { "tag" };
 
@@ -144,8 +134,7 @@ public class TagListTests : TestContext
 	}
 
 	[Fact]
-	public async Task TagList_InvokesOnTagClick()
-	{
+	public async Task TagList_InvokesOnTagClick() {
 		// Arrange
 		var tags = new[] { "clickable" };
 		string? clickedTag = null;
@@ -162,8 +151,7 @@ public class TagListTests : TestContext
 	}
 
 	[Fact]
-	public async Task TagList_InvokesOnTagRemove()
-	{
+	public async Task TagList_InvokesOnTagRemove() {
 		// Arrange
 		var tags = new[] { "removable" };
 		string? removedTag = null;
@@ -181,8 +169,7 @@ public class TagListTests : TestContext
 	}
 
 	[Fact]
-	public void TagList_HasRoleButton()
-	{
+	public void TagList_HasRoleButton() {
 		// Arrange
 		var tags = new[] { "tag" };
 
@@ -195,8 +182,7 @@ public class TagListTests : TestContext
 	}
 
 	[Fact]
-	public void TagList_HasTabIndex()
-	{
+	public void TagList_HasTabIndex() {
 		// Arrange
 		var tags = new[] { "tag" };
 
@@ -209,8 +195,7 @@ public class TagListTests : TestContext
 	}
 
 	[Fact]
-	public void TagList_RemoveButton_HasAriaLabel()
-	{
+	public void TagList_RemoveButton_HasAriaLabel() {
 		// Arrange
 		var tags = new[] { "test-tag" };
 
@@ -224,8 +209,7 @@ public class TagListTests : TestContext
 	}
 
 	[Fact]
-	public void TagList_ShowsOverflow_WhenMaxVisibleSet()
-	{
+	public void TagList_ShowsOverflow_WhenMaxVisibleSet() {
 		// Arrange
 		var tags = new[] { "tag1", "tag2", "tag3", "tag4", "tag5" };
 
@@ -239,8 +223,7 @@ public class TagListTests : TestContext
 	}
 
 	[Fact]
-	public void TagList_NoOverflow_WhenAllTagsVisible()
-	{
+	public void TagList_NoOverflow_WhenAllTagsVisible() {
 		// Arrange
 		var tags = new[] { "tag1", "tag2" };
 
@@ -254,8 +237,7 @@ public class TagListTests : TestContext
 	}
 
 	[Fact]
-	public void TagList_NoOverflow_WhenMaxVisibleZero()
-	{
+	public void TagList_NoOverflow_WhenMaxVisibleZero() {
 		// Arrange
 		var tags = new[] { "tag1", "tag2", "tag3" };
 
@@ -282,8 +264,7 @@ public class TagListTests : TestContext
 	[InlineData("translation", "tag-teal")]
 	[InlineData("tool", "tag-gray")]
 	[InlineData("documentation", "tag-indigo")]
-	public void TagList_AppliesCorrectColorClass(string tag, string expectedClass)
-	{
+	public void TagList_AppliesCorrectColorClass(string tag, string expectedClass) {
 		// Act
 		var cut = RenderComponent<TagList>(parameters => parameters
 			.Add(p => p.Tags, new[] { tag }));
@@ -293,8 +274,7 @@ public class TagListTests : TestContext
 	}
 
 	[Fact]
-	public void TagList_AppliesDefaultColorClass_ForUnknownTag()
-	{
+	public void TagList_AppliesDefaultColorClass_ForUnknownTag() {
 		// Arrange
 		var tags = new[] { "unknown-tag" };
 
@@ -307,8 +287,7 @@ public class TagListTests : TestContext
 	}
 
 	[Fact]
-	public void TagList_UsesCustomColorFromDictionary()
-	{
+	public void TagList_UsesCustomColorFromDictionary() {
 		// Arrange
 		var tags = new[] { "custom" };
 		var colors = new Dictionary<string, string> { { "custom", "tag-pink" } };
@@ -323,8 +302,7 @@ public class TagListTests : TestContext
 	}
 
 	[Fact]
-	public void TagList_HandlesNullTags()
-	{
+	public void TagList_HandlesNullTags() {
 		// Act
 		var cut = RenderComponent<TagList>(parameters => parameters
 			.Add(p => p.Tags, null));
@@ -334,8 +312,7 @@ public class TagListTests : TestContext
 	}
 
 	[Fact]
-	public void TagList_HandlesEmptyTags()
-	{
+	public void TagList_HandlesEmptyTags() {
 		// Act
 		var cut = RenderComponent<TagList>(parameters => parameters
 			.Add(p => p.Tags, Array.Empty<string>()));
@@ -345,8 +322,7 @@ public class TagListTests : TestContext
 	}
 
 	[Fact]
-	public async Task TagList_InvokesOnTagClick_OnEnterKey()
-	{
+	public async Task TagList_InvokesOnTagClick_OnEnterKey() {
 		// Arrange
 		var tags = new[] { "keyboard" };
 		string? clickedTag = null;
@@ -363,8 +339,7 @@ public class TagListTests : TestContext
 	}
 
 	[Fact]
-	public async Task TagList_InvokesOnTagClick_OnSpaceKey()
-	{
+	public async Task TagList_InvokesOnTagClick_OnSpaceKey() {
 		// Arrange
 		var tags = new[] { "keyboard" };
 		string? clickedTag = null;

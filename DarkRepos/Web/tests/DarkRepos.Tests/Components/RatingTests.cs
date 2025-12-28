@@ -10,11 +10,9 @@ namespace DarkRepos.Tests.Components;
 /// <summary>
 /// Tests for the Rating component.
 /// </summary>
-public class RatingTests : TestContext
-{
+public class RatingTests : TestContext {
 	[Fact]
-	public void Rating_RendersCorrectNumberOfStars()
-	{
+	public void Rating_RendersCorrectNumberOfStars() {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.MaxValue, 5));
@@ -24,8 +22,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public void Rating_RendersCustomMaxValue()
-	{
+	public void Rating_RendersCustomMaxValue() {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.MaxValue, 10));
@@ -35,8 +32,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public void Rating_ShowsFilledStars_ForValue()
-	{
+	public void Rating_ShowsFilledStars_ForValue() {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.Value, 3)
@@ -48,8 +44,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public void Rating_ShowsEmptyStars_ForZeroValue()
-	{
+	public void Rating_ShowsEmptyStars_ForZeroValue() {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.Value, 0)
@@ -60,8 +55,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public void Rating_ShowsAllFilledStars_ForMaxValue()
-	{
+	public void Rating_ShowsAllFilledStars_ForMaxValue() {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.Value, 5)
@@ -72,8 +66,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public void Rating_ShowsHalfStar_WhenAllowHalf()
-	{
+	public void Rating_ShowsHalfStar_WhenAllowHalf() {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.Value, 3.5)
@@ -87,8 +80,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public void Rating_ShowsValue_WhenShowValueTrue()
-	{
+	public void Rating_ShowsValue_WhenShowValueTrue() {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.Value, 4.5)
@@ -100,8 +92,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public void Rating_HidesValue_WhenShowValueFalse()
-	{
+	public void Rating_HidesValue_WhenShowValueFalse() {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.Value, 4)
@@ -112,8 +103,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public void Rating_ShowsCount_WhenProvided()
-	{
+	public void Rating_ShowsCount_WhenProvided() {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.Value, 4)
@@ -125,8 +115,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public void Rating_HidesCount_WhenNotProvided()
-	{
+	public void Rating_HidesCount_WhenNotProvided() {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.Value, 4)
@@ -137,8 +126,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public void Rating_HasReadonlyClass_WhenReadonly()
-	{
+	public void Rating_HasReadonlyClass_WhenReadonly() {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.Value, 3)
@@ -149,8 +137,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public void Rating_HasInteractiveClass_WhenNotReadonly()
-	{
+	public void Rating_HasInteractiveClass_WhenNotReadonly() {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.Value, 3)
@@ -161,8 +148,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public void Rating_IsReadonly_ByDefault()
-	{
+	public void Rating_IsReadonly_ByDefault() {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.Value, 3));
@@ -172,8 +158,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public void Rating_HasAriaLabel()
-	{
+	public void Rating_HasAriaLabel() {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.Value, 4)
@@ -185,8 +170,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public void Rating_HasAriaValueNow()
-	{
+	public void Rating_HasAriaValueNow() {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.Value, 3.5));
@@ -196,8 +180,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public void Rating_HasAriaValueMax()
-	{
+	public void Rating_HasAriaValueMax() {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.MaxValue, 10));
@@ -207,8 +190,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public void Rating_HasRoleImg_WhenReadonly()
-	{
+	public void Rating_HasRoleImg_WhenReadonly() {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.Readonly, true));
@@ -218,8 +200,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public void Rating_HasRoleSlider_WhenInteractive()
-	{
+	public void Rating_HasRoleSlider_WhenInteractive() {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.Readonly, false));
@@ -229,8 +210,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public async Task Rating_InvokesCallback_OnClick()
-	{
+	public async Task Rating_InvokesCallback_OnClick() {
 		// Arrange
 		double? newValue = null;
 		var cut = RenderComponent<Rating>(parameters => parameters
@@ -246,8 +226,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public async Task Rating_DoesNotInvokeCallback_WhenReadonly()
-	{
+	public async Task Rating_DoesNotInvokeCallback_WhenReadonly() {
 		// Arrange
 		double? newValue = null;
 		var cut = RenderComponent<Rating>(parameters => parameters
@@ -263,8 +242,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public void Rating_HasTabIndex_WhenInteractive()
-	{
+	public void Rating_HasTabIndex_WhenInteractive() {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.Readonly, false));
@@ -274,8 +252,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public void Rating_HasNegativeTabIndex_WhenReadonly()
-	{
+	public void Rating_HasNegativeTabIndex_WhenReadonly() {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.Readonly, true));
@@ -288,8 +265,7 @@ public class RatingTests : TestContext
 	[InlineData("small")]
 	[InlineData("medium")]
 	[InlineData("large")]
-	public void Rating_HasSizeClass(string size)
-	{
+	public void Rating_HasSizeClass(string size) {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.Size, size));
@@ -299,8 +275,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public void Rating_DefaultsToMediumSize()
-	{
+	public void Rating_DefaultsToMediumSize() {
 		// Act
 		var cut = RenderComponent<Rating>();
 
@@ -309,8 +284,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public void Rating_IncludesCountInAriaLabel()
-	{
+	public void Rating_IncludesCountInAriaLabel() {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.Value, 4)
@@ -322,8 +296,7 @@ public class RatingTests : TestContext
 	}
 
 	[Fact]
-	public void Rating_StarsAreHiddenFromAria()
-	{
+	public void Rating_StarsAreHiddenFromAria() {
 		// Act
 		var cut = RenderComponent<Rating>(parameters => parameters
 			.Add(p => p.Value, 3));

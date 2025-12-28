@@ -7,8 +7,7 @@ namespace DarkRepos.Web.Components.Shared;
 /// Base class for VersionBadge component - Display version numbers with styling.
 /// Usage: &lt;VersionBadge Version="1.0.0" Type="Release" /&gt;
 /// </summary>
-public class VersionBadgeBase : ComponentBase
-{
+public class VersionBadgeBase : ComponentBase {
 	[Inject]
 	private IJSRuntime? JSRuntime { get; set; }
 
@@ -68,10 +67,8 @@ public class VersionBadgeBase : ComponentBase
 
 	protected string FormattedVersion => Version;
 
-	protected string TooltipText
-	{
-		get
-		{
+	protected string TooltipText {
+		get {
 			if (!string.IsNullOrEmpty(Tooltip))
 				return Tooltip;
 
@@ -83,8 +80,7 @@ public class VersionBadgeBase : ComponentBase
 		}
 	}
 
-	protected string TypeClass => Type switch
-	{
+	protected string TypeClass => Type switch {
 		VersionType.Release => "version-release",
 		VersionType.Beta => "version-beta",
 		VersionType.Alpha => "version-alpha",
@@ -95,17 +91,14 @@ public class VersionBadgeBase : ComponentBase
 		_ => "version-default"
 	};
 
-	protected string SizeClass => Size switch
-	{
+	protected string SizeClass => Size switch {
 		VersionBadgeSize.Small => "badge-sm",
 		VersionBadgeSize.Large => "badge-lg",
 		_ => "badge-md"
 	};
 
-	protected async Task CopyToClipboard()
-	{
-		if (JSRuntime is not null)
-		{
+	protected async Task CopyToClipboard() {
+		if (JSRuntime is not null) {
 			var textToCopy = ShowPrefix ? $"{Prefix}{Version}" : Version;
 			await JSRuntime.InvokeVoidAsync("navigator.clipboard.writeText", textToCopy);
 		}
@@ -115,8 +108,7 @@ public class VersionBadgeBase : ComponentBase
 /// <summary>
 /// Types of version releases.
 /// </summary>
-public enum VersionType
-{
+public enum VersionType {
 	Default,
 	Release,
 	Beta,
@@ -130,8 +122,7 @@ public enum VersionType
 /// <summary>
 /// Badge size options for VersionBadge.
 /// </summary>
-public enum VersionBadgeSize
-{
+public enum VersionBadgeSize {
 	Small,
 	Medium,
 	Large

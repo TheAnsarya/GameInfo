@@ -6,8 +6,7 @@ namespace DarkRepos.Web.Components.Shared;
 /// Base class for ProgressCircle component - Circular progress indicator.
 /// Usage: &lt;ProgressCircle Value="75" /&gt;
 /// </summary>
-public class ProgressCircleBase : ComponentBase
-{
+public class ProgressCircleBase : ComponentBase {
 	/// <summary>
 	/// Progress value (0-100).
 	/// </summary>
@@ -70,16 +69,14 @@ public class ProgressCircleBase : ComponentBase
 
 	protected string TooltipText => Tooltip ?? $"{Math.Round(NormalizedValue)}% complete";
 
-	protected string SizeClass => Size switch
-	{
+	protected string SizeClass => Size switch {
 		ProgressCircleSize.Small => "progress-circle-sm",
 		ProgressCircleSize.Large => "progress-circle-lg",
 		ProgressCircleSize.ExtraLarge => "progress-circle-xl",
 		_ => "progress-circle-md"
 	};
 
-	protected string ColorClass => Color switch
-	{
+	protected string ColorClass => Color switch {
 		ProgressCircleColor.Success => "circle-success",
 		ProgressCircleColor.Warning => "circle-warning",
 		ProgressCircleColor.Danger => "circle-danger",
@@ -88,8 +85,7 @@ public class ProgressCircleBase : ComponentBase
 		_ => "circle-primary"
 	};
 
-	protected string ThicknessClass => Thickness switch
-	{
+	protected string ThicknessClass => Thickness switch {
 		ProgressCircleThickness.Thin => "thickness-thin",
 		ProgressCircleThickness.Thick => "thickness-thick",
 		_ => "thickness-normal"
@@ -99,8 +95,7 @@ public class ProgressCircleBase : ComponentBase
 /// <summary>
 /// Size options for progress circle.
 /// </summary>
-public enum ProgressCircleSize
-{
+public enum ProgressCircleSize {
 	Small,
 	Medium,
 	Large,
@@ -110,8 +105,7 @@ public enum ProgressCircleSize
 /// <summary>
 /// Color variants for progress circle.
 /// </summary>
-public enum ProgressCircleColor
-{
+public enum ProgressCircleColor {
 	Primary,
 	Success,
 	Warning,
@@ -123,8 +117,7 @@ public enum ProgressCircleColor
 /// <summary>
 /// Stroke thickness options.
 /// </summary>
-public enum ProgressCircleThickness
-{
+public enum ProgressCircleThickness {
 	Thin,
 	Normal,
 	Thick
