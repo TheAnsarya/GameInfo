@@ -11,7 +11,7 @@ Map percentage (is in dq3r already)
 
 
 -- As in Kingdom Hearts, level up in the middle of the battle when a monster is killed
-Item drops from monters in middle of battle too
+Item drops from monsters in middle of battle too
 Do we heal on level up?
 Add Bag immediately (1o slots per character until chapter 5? or a full bag? or no bag until Chapter 5?)
 
@@ -24,7 +24,7 @@ Find and document all monster stats on DQ3 NES
 Find and document all monster stats on DQ4 NES
 
 Gather all DQ3r monster battle graphics
-Gather all DQ3/4 DS or GBA or PSX graphics for monster battles and actioons
+Gather all DQ3/4 DS or GBA or PSX graphics for monster battles and actions
 
 Get help to convert later ports, monster action graphics to SNES
 
@@ -54,10 +54,10 @@ EXPLORE: can we make enemies show up on the screen, so encounters are not random
 
 
 DQ3r:
-Text Speach Drawing:
+Text Speech Drawing:
 Decompile Text drawing
 Find character set graphics
-Genericize to different languages
+Generalize to different languages
 
 Text data:
 Find, decompress text data
@@ -102,12 +102,12 @@ Costumes, separate from armor
 
 Profile Avatar pictures
 Longer names
-Colors on stat menus baased on HP/Map
+Colors on stat menus based on HP/Map
 Colors on monster names like the colors on level difference in WoW
 
 Anticipated damage displayed for attack and spells
 
-Enemy hp/mp displayed (Scope in Chrono Trrigger)
+Enemy hp/mp displayed (Scope in Chrono Trigger)
 
 Monster animations
 

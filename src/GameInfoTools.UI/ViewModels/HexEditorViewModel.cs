@@ -387,6 +387,7 @@ public partial class HexEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		if (Application.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop) {
 			return desktop.MainWindow?.Clipboard;
 		}
+
 		return null;
 	}
 
@@ -408,7 +409,7 @@ public partial class HexEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		// Format as hex with Data Crystal {{$|xx}} notation
 		for (int i = 0; i < _clipboard.Length; i += 16) {
 			var lineBytes = Math.Min(16, _clipboard.Length - i);
-			sb.Append($"; {{{{$|{(start + i):x6}}}}}  ");
+			sb.Append($"; {{{{$|{start + i:x6}}}}}  ");
 
 			for (int j = 0; j < lineBytes; j++) {
 				sb.Append($"{{{{$|{_clipboard[i + j]:x2}}}}} ");

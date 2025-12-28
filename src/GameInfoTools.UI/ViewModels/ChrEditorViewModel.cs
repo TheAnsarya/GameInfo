@@ -680,11 +680,12 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 		if (Application.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop) {
 			return desktop.MainWindow?.Clipboard;
 		}
+
 		return null;
 	}
 
 	/// <summary>
-	/// Copies tile information as wikitext for Data Crystal documentation.
+	/// Copies tile information as MediaWiki wikitext for documentation.
 	/// </summary>
 	[RelayCommand]
 	private async Task CopyAsWikitext() {
@@ -792,8 +793,10 @@ public partial class ChrEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 						sb.Append($"${_rom.Data[dataOffset]:x2}");
 					}
 				}
+
 				sb.AppendLine();
 			}
+
 			sb.AppendLine();
 		}
 

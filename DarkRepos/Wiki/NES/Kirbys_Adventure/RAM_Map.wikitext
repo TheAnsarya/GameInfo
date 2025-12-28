@@ -1,0 +1,679 @@
+{{Back|Kirby's Adventure (NES)}}
+{{Rammap}}
+{{Cleanup}}
+
+= Kirby's Adventure (NES) - RAM Map =
+
+This page documents the RAM structure for '''Kirby's Adventure''' (NES).
+
+== Overview ==
+
+Kirby's Adventure uses standard NES RAM ($0000-$07ff) plus the MMC3's additional 8 KB of PRG-RAM for extra work space. It's one of the most technically advanced NES games, pushing the hardware to its limits.
+
+==Zero Page ($00-$ff)==
+
+===System Variables ($00-$1f)===
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $00 || 1 byte || Scratch A
+|-
+| $01 || 1 byte || Scratch B
+|-
+| $02 || 2 bytes || General pointer
+|-
+| $04 || 2 bytes || Secondary pointer
+|-
+| $06 || 1 byte || Loop counter
+|-
+| $07 || 1 byte || Secondary counter
+|-
+| $08 || 1 byte || Frame counter (low)
+|-
+| $09 || 1 byte || Frame counter (high)
+|-
+| $0a || 1 byte || NMI status flag
+|-
+| $0b || 1 byte || PPU control shadow
+|-
+| $0c || 1 byte || PPU mask shadow
+|-
+| $0d || 1 byte || Scroll X
+|-
+| $0e || 1 byte || Scroll Y
+|-
+| $0f || 1 byte || Current PRG bank
+|-
+| $10 || 1 byte || Current CHR bank 0
+|-
+| $11 || 1 byte || Current CHR bank 1
+|-
+| $12 || 1 byte || Random seed low
+|-
+| $13 || 1 byte || Random seed high
+|-
+| $14-$1f || Reserved
+|}
+
+===Input State ($20-$2f)===
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $20 || 1 byte || Controller 1 current
+|-
+| $21 || 1 byte || Controller 1 previous
+|-
+| $22 || 1 byte || Controller 1 new press
+|-
+| $23 || 1 byte || Controller 1 held
+|-
+| $24 || 1 byte || Controller 2 current
+|-
+| $25 || 1 byte || Controller 2 previous
+|-
+| $26 || 1 byte || Controller 2 new press
+|-
+| $27 || 1 byte || Input delay timer
+|}
+
+===Controller Button Bits===
+
+{| class="wikitable"
+! Bit !! Button
+|-
+| 7 || A (Jump/Ability)
+|-
+| 6 || B (Inhale/Spit)
+|-
+| 5 || Select
+|-
+| 4 || Start (Pause)
+|-
+| 3 || Up (Float/Swallow)
+|-
+| 2 || Down (Crouch/Slide)
+|-
+| 1 || Left
+|-
+| 0 || Right
+|}
+
+===Game State ($30-$4f)===
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $30 || 1 byte || Game mode
+|-
+| $31 || 1 byte || Game sub-mode
+|-
+| $32 || 1 byte || Current world (1-7)
+|-
+| $33 || 1 byte || Current stage (1-6 varies)
+|-
+| $34 || 1 byte || Current room
+|-
+| $35 || 1 byte || Lives remaining
+|-
+| $36 || 1 byte || Health points (0-6)
+|-
+| $37 || 1 byte || Max health (always 6)
+|-
+| $38 || 1 byte || Current ability ID
+|-
+| $39 || 1 byte || Stored ability (for Mix)
+|-
+| $3a || 4 bytes || Score (BCD)
+|-
+| $3e || 1 byte || Star count (for 1-UP)
+|-
+| $3f || 1 byte || Extra lives from stars
+|-
+| $40 || 1 byte || Boss HP remaining
+|-
+| $41 || 1 byte || Game complete flags
+|-
+| $42 || 1 byte || Arena mode flag
+|-
+| $43 || 1 byte || Sound test mode
+|}
+
+===Game Mode Values===
+
+{| class="wikitable"
+! Value !! Mode
+|-
+| $00 || Title screen
+|-
+| $01 || Intro cinematic
+|-
+| $02 || World map (hub)
+|-
+| $03 || In-stage gameplay
+|-
+| $04 || Stage transition
+|-
+| $05 || Pause menu
+|-
+| $06 || Sub-game (crane, etc.)
+|-
+| $07 || Boss battle
+|-
+| $08 || Stage clear
+|-
+| $09 || World clear
+|-
+| $0a || Game over
+|-
+| $0b || Ending sequence
+|-
+| $0c || Sound test
+|-
+| $0d || Arena mode
+|}
+
+==Kirby State ($50-$9f)==
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $50 || 2 bytes || Kirby X position (16-bit)
+|-
+| $52 || 2 bytes || Kirby Y position (16-bit)
+|-
+| $54 || 1 byte || Kirby X velocity
+|-
+| $55 || 1 byte || Kirby Y velocity
+|-
+| $56 || 1 byte || Kirby direction (0=right, 1=left)
+|-
+| $57 || 1 byte || Kirby state
+|-
+| $58 || 1 byte || Kirby sub-state
+|-
+| $59 || 1 byte || Animation frame
+|-
+| $5a || 1 byte || Animation timer
+|-
+| $5b || 1 byte || Floating flag
+|-
+| $5c || 1 byte || Float air counter
+|-
+| $5d || 1 byte || Inhale state
+|-
+| $5e || 1 byte || Inhale timer
+|-
+| $5f || 1 byte || Inhaled enemy ID
+|-
+| $60 || 1 byte || Has star (spit projectile)
+|-
+| $61 || 1 byte || Ability active flag
+|-
+| $62 || 1 byte || Ability animation
+|-
+| $63 || 1 byte || Invincibility timer
+|-
+| $64 || 1 byte || Damage flash timer
+|-
+| $65 || 1 byte || Ground collision
+|-
+| $66 || 1 byte || Wall collision
+|-
+| $67 || 1 byte || Ceiling collision
+|-
+| $68 || 1 byte || On slope flag
+|-
+| $69 || 1 byte || In water flag
+|-
+| $6a || 1 byte || Underwater timer
+|-
+| $6b || 1 byte || Current platform ID
+|-
+| $6c || 1 byte || Riding enemy (Meta Knight, etc.)
+|}
+
+===Kirby State Values===
+
+{| class="wikitable"
+! Value !! State
+|-
+| $00 || Idle
+|-
+| $01 || Walking
+|-
+| $02 || Running
+|-
+| $03 || Jumping
+|-
+| $04 || Falling
+|-
+| $05 || Floating (puffed)
+|-
+| $06 || Exhaling air puff
+|-
+| $07 || Inhaling
+|-
+| $08 || Full (enemy inside)
+|-
+| $09 || Swallowing
+|-
+| $0a || Spitting star
+|-
+| $0b || Using ability
+|-
+| $0c || Crouching
+|-
+| $0d || Sliding
+|-
+| $0e || Entering door
+|-
+| $0f || Exiting door
+|-
+| $10 || Damaged
+|-
+| $11 || Dying
+|-
+| $12 || Victory dance
+|-
+| $13 || Swimming
+|}
+
+==Copy Ability Data ($a0-$bf)==
+
+===Ability ID Table===
+
+{| class="wikitable"
+! ID !! Ability !! Source Enemy
+|-
+| $00 || None || --
+|-
+| $01 || Beam || Waddle Doo
+|-
+| $02 || Burning || Fire Lion, Flamer
+|-
+| $03 || Cutter || Sir Kibble
+|-
+| $04 || Fireball || Fire enemies
+|-
+| $05 || Freeze || Mr. Frosty, Chilly
+|-
+| $06 || Hammer || Bonkers
+|-
+| $07 || Hi-Jump || Starman
+|-
+| $08 || Ice || Pengi
+|-
+| $09 || Laser || Laser Ball
+|-
+| $0a || Light || Hot Head
+|-
+| $0b || Mike || Mr. Tick-Tock
+|-
+| $0c || Needle || Needlous
+|-
+| $0d || Parasol || Parasol enemies
+|-
+| $0e || Sleep || Noddy
+|-
+| $0f || Spark || Sparky
+|-
+| $10 || Star || Default
+|-
+| $11 || Stone || Rocky
+|-
+| $12 || Sword || Blade Knight
+|-
+| $13 || Throw || Rolling Turtle
+|-
+| $14 || Tornado || Twister
+|-
+| $15 || UFO || UFO
+|-
+| $16 || Wheel || Wheelie
+|-
+| $17 || Backdrop || Bugzzy
+|-
+| $18 || Ball || Master Hand
+|-
+| $19 || Crash || Bomber
+|}
+
+===Ability State Variables===
+
+{| class="wikitable"
+! Address !! Description
+|-
+| $a0 || Current ability ID
+|-
+| $a1 || Ability charge level
+|-
+| $a2 || Ability uses remaining (Mike)
+|-
+| $a3 || Ability duration timer
+|-
+| $a4-$af || Ability-specific state
+|}
+
+==Enemy State ($0100-$01ff)==
+
+Up to 8 enemies on screen, $20 bytes each
+
+===Enemy Slot Structure===
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 byte || Enemy type (0 = inactive)
+|-
+| $01 || 1 byte || Enemy state
+|-
+| $02 || 2 bytes || X position
+|-
+| $04 || 2 bytes || Y position
+|-
+| $06 || 1 byte || X velocity
+|-
+| $07 || 1 byte || Y velocity
+|-
+| $08 || 1 byte || Direction
+|-
+| $09 || 1 byte || HP remaining
+|-
+| $0a || 1 byte || Animation frame
+|-
+| $0b || 1 byte || Animation timer
+|-
+| $0c || 1 byte || AI state
+|-
+| $0d || 1 byte || AI timer
+|-
+| $0e || 1 byte || Attack cooldown
+|-
+| $0f || 1 byte || Flags
+|-
+| $10-$1f || Enemy-specific data
+|}
+
+===Common Enemy IDs===
+
+{| class="wikitable"
+! ID !! Enemy !! Ability
+|-
+| $01 || Waddle Dee || None
+|-
+| $02 || Waddle Doo || Beam
+|-
+| $03 || Bronto Burt || None
+|-
+| $04 || Poppy Bros Jr. || None
+|-
+| $05 || Sparky || Spark
+|-
+| $06 || Flamer || Burning
+|-
+| $07 || Hot Head || Fireball
+|-
+| $08 || Chilly || Freeze
+|-
+| $09 || Rocky || Stone
+|-
+| $0a || Blade Knight || Sword
+|-
+| $0b || Sir Kibble || Cutter
+|-
+| $0c || Noddy || Sleep
+|-
+| $0d || Wheelie || Wheel
+|-
+| $0e || Parasol || Parasol
+|-
+| $0f || Starman || Hi-Jump
+|}
+
+==Projectile State ($0200-$027f)==
+
+Up to 8 projectiles, $10 bytes each
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 byte || Projectile type (0 = inactive)
+|-
+| $01 || 1 byte || Owner (0 = Kirby, 1+ = enemy)
+|-
+| $02 || 2 bytes || X position
+|-
+| $04 || 2 bytes || Y position
+|-
+| $06 || 1 byte || X velocity
+|-
+| $07 || 1 byte || Y velocity
+|-
+| $08 || 1 byte || Damage
+|-
+| $09 || 1 byte || Lifespan timer
+|-
+| $0a || 1 byte || Animation frame
+|-
+| $0b-$0f || Type-specific data
+|}
+
+==OAM Buffer ($0300-$03ff)==
+
+Standard NES sprite buffer (64 sprites × 4 bytes)
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 byte || Y position
+|-
+| $01 || 1 byte || Tile index
+|-
+| $02 || 1 byte || Attributes
+|-
+| $03 || 1 byte || X position
+|}
+
+==Map/Room State ($0400-$04ff)==
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $0400 || 1 byte || Current room ID
+|-
+| $0401 || 1 byte || Room width (screens)
+|-
+| $0402 || 1 byte || Room height (screens)
+|-
+| $0403 || 1 byte || Tileset ID
+|-
+| $0404 || 1 byte || Palette ID
+|-
+| $0405 || 1 byte || Music ID
+|-
+| $0406 || 2 bytes || Camera X position
+|-
+| $0408 || 2 bytes || Camera Y position
+|-
+| $040a || 1 byte || Camera target (usually Kirby)
+|-
+| $040b || 1 byte || Room transition direction
+|-
+| $040c || 2 bytes || Door destination room
+|-
+| $040e || 1 byte || Warp star destination
+|-
+| $040f || 1 byte || Autoscroll speed
+|-
+| $0410-$04ff || Room-specific data
+|}
+
+==Audio State ($0500-$05ff)==
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $0500 || 1 byte || Current BGM ID
+|-
+| $0501 || 1 byte || Previous BGM ID
+|-
+| $0502 || 1 byte || BGM volume
+|-
+| $0503 || 1 byte || BGM fade direction
+|-
+| $0504 || 1 byte || SFX channel 1
+|-
+| $0505 || 1 byte || SFX channel 2
+|-
+| $0506 || 1 byte || SFX priority
+|-
+| $0507-$057f || Music sequencer state
+|-
+| $0580-$05ff || Sound effect state
+|}
+
+===Music Track IDs===
+
+{| class="wikitable"
+! ID !! Track
+|-
+| $00 || Silence
+|-
+| $01 || Title screen
+|-
+| $02 || Vegetable Valley
+|-
+| $03 || Ice Cream Island
+|-
+| $04 || Butter Building
+|-
+| $05 || Grape Garden
+|-
+| $06 || Yogurt Yard
+|-
+| $07 || Orange Ocean
+|-
+| $08 || Rainbow Resort
+|-
+| $09 || Boss battle
+|-
+| $0a || Mini-boss
+|-
+| $0b || Arena
+|-
+| $0c || King Dedede
+|-
+| $0d || Nightmare
+|-
+| $0e || Sub-game
+|-
+| $0f || Stage clear
+|-
+| $10 || World clear
+|-
+| $11 || Game over
+|-
+| $12 || Ending
+|-
+| $13 || Staff credits
+|}
+
+==World Map State ($0600-$067f)==
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $0600 || 1 byte || Cursor X position
+|-
+| $0601 || 1 byte || Cursor Y position
+|-
+| $0602 || 1 byte || Current world
+|-
+| $0603 || 7 bytes || Stage clear flags (world 1-7)
+|-
+| $060a || 7 bytes || Switch flags (world 1-7)
+|-
+| $0611 || 7 bytes || Big switch flags
+|-
+| $0618 || 1 byte || All switches pressed flag
+|-
+| $0619 || 1 byte || 100% completion flag
+|}
+
+==Save Data Format (SRAM)==
+
+Kirby's Adventure uses battery-backed save (8 KB).
+
+===Save Slot Structure===
+
+3 save slots, approximately $200 bytes each:
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 byte || Slot in use flag
+|-
+| $01 || 1 byte || Current world
+|-
+| $02 || 1 byte || Current stage
+|-
+| $03 || 1 byte || Lives
+|-
+| $04 || 4 bytes || Score
+|-
+| $08 || 7 bytes || World clear flags
+|-
+| $0f || 7 bytes || Stage clear flags
+|-
+| $16 || 28 bytes || Individual room flags
+|-
+| $32 || 7 bytes || Big switch flags
+|-
+| $39 || 7 bytes || All switches per world
+|-
+| $40 || 1 byte || Extra game unlocked
+|-
+| $41 || 1 byte || Sound test unlocked
+|-
+| $42 || 1 byte || Arena unlocked
+|-
+| $43 || 1 byte || 100% completion
+|-
+| $fe || 2 bytes || Checksum
+|}
+
+==PRG-RAM Extended Area ($6000-$7fff)==
+
+The MMC3 provides 8 KB of additional RAM:
+
+{| class="wikitable"
+! Address Range !! Description
+|-
+| $6000-$63ff || Decompression buffer
+|-
+| $6400-$67ff || Map tile cache
+|-
+| $6800-$6bff || Enemy spawn tables
+|-
+| $6c00-$6fff || Collision map cache
+|-
+| $7000-$73ff || Background animation data
+|-
+| $7400-$77ff || Level layout cache
+|-
+| $7800-$7bff || Misc buffers
+|-
+| $7c00-$7fff || Stack overflow area
+|}
+
+==Notes==
+
+* Kirby's Adventure uses extensive compression for map and graphics data
+* MMC3 mapper provides IRQ for split-screen effects
+* The game features extensive use of CHR-RAM for dynamic tiles
+* Health is displayed as a 6-point meter, not hearts
+* Each world has a different number of stages (varies 3-6)
+
+[[Category:Kirby's Adventure (NES)|RAM map]]

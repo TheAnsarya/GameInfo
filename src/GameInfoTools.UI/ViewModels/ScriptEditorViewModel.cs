@@ -502,6 +502,7 @@ public partial class ScriptEditorViewModel : ViewModelBase, IKeyboardShortcutHan
 		if (Application.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop) {
 			return desktop.MainWindow?.Clipboard;
 		}
+
 		return null;
 	}
 

@@ -1,0 +1,11 @@
+[
+	{
+		"file_offset": 690532,
+		"bank": 21,
+		"address": 35172,
+		"cpu_address": "$15:8964",
+		"length": 16,
+		"raw": "2364060707485c013c31057844365329",
+		"text": "#d{ITEM}{NUM}{NUM}H\\{NL}<1{NAME}xD6S)"
+	}
+]

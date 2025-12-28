@@ -1,0 +1,150 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "robotrek-enemies.schema.json",
+	"title": "Robotrek Enemies",
+	"description": "Schema for Robotrek enemy data",
+	"type": "object",
+	"required": [
+		"game",
+		"data_type",
+		"enemies"
+	],
+	"properties": {
+		"game": {
+			"type": "string",
+			"const": "Robotrek"
+		},
+		"data_type": {
+			"type": "string",
+			"const": "enemies"
+		},
+		"rom_location": {
+			"type": "object",
+			"properties": {
+				"bank": {
+					"type": "string"
+				},
+				"start": {
+					"type": "string"
+				},
+				"entry_size": {
+					"type": "integer"
+				},
+				"count": {
+					"type": "integer"
+				}
+			}
+		},
+		"ai_patterns": {
+			"type": "object",
+			"additionalProperties": {
+				"type": "string"
+			}
+		},
+		"enemies": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": [
+					"id",
+					"enemy_id",
+					"hp",
+					"power",
+					"guard",
+					"speed",
+					"exp",
+					"gold"
+				],
+				"properties": {
+					"id": {
+						"type": "integer",
+						"minimum": 0,
+						"description": "Enemy index in table"
+					},
+					"enemy_id": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 255,
+						"description": "Enemy ID byte"
+					},
+					"sprite_index": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 255,
+						"description": "Sprite graphics index"
+					},
+					"hp": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 65535,
+						"description": "Hit points"
+					},
+					"power": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 255,
+						"description": "Attack power"
+					},
+					"guard": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 255,
+						"description": "Defense"
+					},
+					"speed": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 255,
+						"description": "Speed/agility"
+					},
+					"ai_pattern": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 255,
+						"description": "AI behavior pattern"
+					},
+					"ai_name": {
+						"type": "string",
+						"description": "Human-readable AI pattern name"
+					},
+					"exp": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 65535,
+						"description": "Experience points awarded"
+					},
+					"gold": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 65535,
+						"description": "Gold awarded"
+					},
+					"drop1_id": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 255,
+						"description": "First drop item ID"
+					},
+					"drop1_rate": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 255,
+						"description": "First drop rate (0-100)"
+					},
+					"drop2_id": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 255,
+						"description": "Second drop item ID"
+					},
+					"drop2_rate": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 255,
+						"description": "Second drop rate (0-100)"
+					}
+				}
+			}
+		}
+	}
+}

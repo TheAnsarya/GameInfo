@@ -1,0 +1,56 @@
+[
+	{
+		"file_offset": 791175,
+		"bank": 24,
+		"address": 37511,
+		"cpu_address": "$18:9287",
+		"length": 13,
+		"raw": "562b317b7a447d5525682a055a",
+		"text": "V+1{zD}U%h*{NAME}Z"
+	},
+	{
+		"file_offset": 794455,
+		"bank": 24,
+		"address": 40791,
+		"cpu_address": "$18:9f57",
+		"length": 12,
+		"raw": "61810044844e6332822a4221",
+		"text": "a\""
+	},
+	{
+		"file_offset": 796779,
+		"bank": 24,
+		"address": 43115,
+		"cpu_address": "$18:a86b",
+		"length": 14,
+		"raw": "4840452884824045290442804522",
+		"text": "H@E(!...@E){PAUSE}B'E\""
+	},
+	{
+		"file_offset": 802258,
+		"bank": 24,
+		"address": 48594,
+		"cpu_address": "$18:bdd2",
+		"length": 10,
+		"raw": "41393542722726705245",
+		"text": "A95Br'&pRE"
+	},
+	{
+		"file_offset": 802578,
+		"bank": 24,
+		"address": 48914,
+		"cpu_address": "$18:bf12",
+		"length": 14,
+		"raw": "816850347e4220632238842c5650",
+		"text": "\"hP4~B c\"8!,VP"
+	},
+	{
+		"file_offset": 804695,
+		"bank": 24,
+		"address": 51031,
+		"cpu_address": "$18:c757",
+		"length": 12,
+		"raw": "005822444602705b81304400",
+		"text": ""
+	}
+]

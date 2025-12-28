@@ -83,8 +83,7 @@ public static partial class ChangeTracker {
 	public static string CreateAiGeneratedBlock(string content, string description) {
 		var sb = new StringBuilder();
 		sb.AppendLine(CreateSectionStart(ChangeType.AiGenerated, description));
-		sb.AppendLine("<!-- ⚠️ AI-GENERATED CONTENT - MUST BE MANUALLY REVIEWED BEFORE UPLOADING TO DATA CRYSTAL ⚠️ -->");
-		sb.AppendLine("<!-- Data Crystal forbids AI-generated content. Review and edit this section before upload. -->");
+		sb.AppendLine("<!-- ⚠️ AI-GENERATED CONTENT - Review before uploading to wikis that prohibit AI content ⚠️ -->");
 		sb.AppendLine(content);
 		sb.AppendLine(CreateSectionEnd());
 		return sb.ToString();
@@ -163,7 +162,6 @@ public static partial class ChangeTracker {
 
 		// Remove AI warning comments - use non-greedy matching
 		result = Regex.Replace(result, @"<!--\s*⚠️ AI-GENERATED CONTENT.*?-->", "", RegexOptions.Singleline);
-		result = Regex.Replace(result, @"<!--\s*Data Crystal forbids AI-generated content.*?-->", "", RegexOptions.Singleline);
 
 		// Clean up multiple blank lines
 		result = Regex.Replace(result, @"\n{3,}", "\n\n");

@@ -1,0 +1,11 @@
+{
+	"rom_name": "Soul Blazer (U)",
+	"rom_sha256": "8438da09de8ce9aded3bb08644543f7b60fb60cffc68ce2d67d6a0643f2ecfc2",
+	"rom_size": 1048576,
+	"num_banks": 32,
+	"assets": {
+		"text": "..\\assets\\text",
+		"graphics": "..\\assets\\graphics",
+		"banks": "..\\assets\\banks"
+	}
+}

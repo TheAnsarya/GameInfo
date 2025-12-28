@@ -1,0 +1,247 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:GameInfoTools.UI.ViewModels"
+			 mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="700"
+			 x:Class="GameInfoTools.UI.Views.DarkReposView"
+			 x:DataType="vm:DarkReposViewModel">
+
+	<DockPanel>
+		<!-- Toolbar -->
+		<Border DockPanel.Dock="Top" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+				Padding="8">
+			<StackPanel Orientation="Horizontal" Spacing="8">
+				<TextBlock Text="🌐 DarkRepos Wiki" FontWeight="Bold" VerticalAlignment="Center" FontSize="14"/>
+				<Separator/>
+
+				<!-- Connection Status -->
+				<TextBlock Text="{Binding StatusText}" VerticalAlignment="Center" Opacity="0.8"/>
+
+				<Separator/>
+
+				<!-- Directory Selection -->
+				<Button Content="📁 Select Folder" Command="{Binding SelectDirectoryCommand}"
+						CommandParameter="{Binding $parent[Window]}"
+						ToolTip.Tip="Select wiki files directory"/>
+				<Button Content="🔄 Refresh" Command="{Binding RefreshFileListCommand}"
+						ToolTip.Tip="Refresh file list"/>
+				<Button Content="📊 Check Status" Command="{Binding CheckAllStatusCommand}"
+						ToolTip.Tip="Check sync status for all files"/>
+			</StackPanel>
+		</Border>
+
+		<!-- Main Content -->
+		<Grid ColumnDefinitions="300,*" Margin="8">
+			<!-- Left Panel: File List -->
+			<Border Grid.Column="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+					CornerRadius="4" Padding="8" Margin="0,0,8,0">
+				<DockPanel>
+					<TextBlock DockPanel.Dock="Top" Text="📄 Wiki Files" FontWeight="SemiBold" Margin="0,0,0,8"/>
+
+					<ListBox ItemsSource="{Binding SyncItems}" SelectedItem="{Binding SelectedItem}">
+						<ListBox.ItemTemplate>
+							<DataTemplate x:DataType="vm:WikiSyncItem">
+								<Grid ColumnDefinitions="Auto,*,Auto,Auto" Margin="4">
+									<TextBlock Grid.Column="0" Text="{Binding StatusIcon}" Width="24" FontSize="14"/>
+									<StackPanel Grid.Column="1">
+										<TextBlock Text="{Binding WikiTitle}" FontWeight="SemiBold" FontSize="12"/>
+										<TextBlock Text="{Binding StatusText}" FontSize="10" Opacity="0.7"/>
+									</StackPanel>
+									<TextBlock Grid.Column="2" Text="{Binding ReviewIcon}" Width="24" FontSize="14"
+											   ToolTip.Tip="Review status"/>
+								</Grid>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</DockPanel>
+			</Border>
+
+			<!-- Right Panel: Details & Actions -->
+			<TabControl Grid.Column="1">
+				<!-- Login Tab -->
+				<TabItem Header="🔑 Login">
+					<StackPanel Spacing="12" Margin="16">
+						<TextBlock Text="DarkRepos Wiki Login" FontWeight="Bold" FontSize="16"/>
+						<TextBlock Text="Use a bot password for authentication. Never use your main password!"
+								   TextWrapping="Wrap" Opacity="0.8"/>
+
+						<Grid ColumnDefinitions="120,*" RowDefinitions="Auto,Auto,Auto" Margin="0,12,0,0">
+							<TextBlock Grid.Row="0" Grid.Column="0" Text="Username:" VerticalAlignment="Center"/>
+							<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Username}" Watermark="Your wiki username"/>
+
+							<TextBlock Grid.Row="1" Grid.Column="0" Text="Bot Password:" VerticalAlignment="Center" Margin="0,8,0,0"/>
+							<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding BotPassword}"
+									 PasswordChar="•" Watermark="Bot password from Special:BotPasswords" Margin="0,8,0,0"/>
+						</Grid>
+
+						<StackPanel Orientation="Horizontal" Spacing="8" Margin="0,16,0,0">
+							<Button Content="🔓 Login" Command="{Binding LoginCommand}"
+									IsEnabled="{Binding !IsLoggedIn}"/>
+							<Button Content="🔒 Logout" Command="{Binding LogoutCommand}"
+									IsEnabled="{Binding IsLoggedIn}"/>
+						</StackPanel>
+
+						<TextBlock Text="Status:" FontWeight="SemiBold" Margin="0,16,0,0"/>
+						<TextBlock Text="{Binding StatusText}"/>
+
+						<TextBlock Text="Note: You can pull/compare pages without logging in. Login is only required for pushing changes."
+								   TextWrapping="Wrap" Opacity="0.6" FontSize="11" Margin="0,16,0,0"/>
+					</StackPanel>
+				</TabItem>
+
+				<!-- Sync Tab -->
+				<TabItem Header="🔄 Sync">
+					<DockPanel>
+						<Border DockPanel.Dock="Top" Padding="8" Background="{DynamicResource SystemControlBackgroundBaseLowBrush}">
+							<Grid ColumnDefinitions="*,Auto">
+								<StackPanel Grid.Column="0">
+									<TextBlock Text="{Binding SelectedItem.WikiTitle, FallbackValue='(Select a file)'}" FontWeight="Bold"/>
+									<TextBlock Text="{Binding SelectedItem.StatusText, FallbackValue=''}" FontSize="11" Opacity="0.7"/>
+								</StackPanel>
+								<StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="4">
+									<Button Content="⬇️ Pull" Command="{Binding PullChangesCommand}"
+											ToolTip.Tip="Download page from DarkRepos Wiki"/>
+									<Button Content="🔍 Compare" Command="{Binding CompareWithRemoteCommand}"
+											ToolTip.Tip="Compare local with remote"/>
+									<Button Content="⬆️ Push" Command="{Binding PushChangesCommand}"
+											ToolTip.Tip="Upload to DarkRepos Wiki"/>
+								</StackPanel>
+							</Grid>
+						</Border>
+
+						<Grid RowDefinitions="*,Auto">
+							<!-- Diff View -->
+							<TextBox Grid.Row="0" Text="{Binding DiffText}" IsReadOnly="True"
+									 FontFamily="Consolas" FontSize="11"
+									 AcceptsReturn="True" TextWrapping="NoWrap"/>
+
+							<!-- Review Section -->
+							<Border Grid.Row="1" Padding="8" Background="{DynamicResource SystemControlBackgroundBaseLowBrush}">
+								<StackPanel Spacing="8">
+									<TextBlock Text="📋 Review for Upload (Optional)" FontWeight="Bold"/>
+									<TextBlock Text="DarkRepos allows AI content, but you may still want to review before uploading."
+											   Opacity="0.8" FontSize="11"/>
+
+									<Grid ColumnDefinitions="Auto,*,Auto" Margin="0,8,0,0">
+										<TextBlock Grid.Column="0" Text="Reviewer:" VerticalAlignment="Center"/>
+										<TextBox Grid.Column="1" Text="{Binding ReviewerName}"
+												 Watermark="Your name (optional)" Margin="8,0"/>
+										<StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4">
+											<Button Content="✅ Mark Reviewed" Command="{Binding MarkAsReviewedCommand}"/>
+											<Button Content="🔄 Clear Review" Command="{Binding ClearReviewCommand}"/>
+										</StackPanel>
+									</Grid>
+
+									<TextBox Text="{Binding ReviewNotes}" Watermark="Review notes (optional)"
+											 AcceptsReturn="True" Height="50"/>
+								</StackPanel>
+							</Border>
+						</Grid>
+					</DockPanel>
+				</TabItem>
+
+				<!-- Browse Tab -->
+				<TabItem Header="🔎 Browse">
+					<DockPanel>
+						<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="8" Margin="8">
+							<TextBox Text="{Binding CurrentPage}" Watermark="Page title" Width="300"/>
+							<Button Content="🔍 Fetch" Command="{Binding FetchPageCommand}"/>
+						</StackPanel>
+
+						<TextBox Text="{Binding PageContent}" IsReadOnly="True"
+								 FontFamily="Consolas" FontSize="11"
+								 AcceptsReturn="True" TextWrapping="NoWrap" Margin="8"/>
+					</DockPanel>
+				</TabItem>
+
+				<!-- Help Tab -->
+				<TabItem Header="❓ Help">
+					<ScrollViewer Margin="16">
+						<StackPanel Spacing="16">
+							<TextBlock Text="DarkRepos Wiki Integration Help" FontWeight="Bold" FontSize="18"/>
+
+							<StackPanel Spacing="4">
+								<TextBlock Text="✅ AI Content Policy" FontWeight="Bold" Foreground="LimeGreen"/>
+								<TextBlock TextWrapping="Wrap">
+									DarkRepos Games Wiki allows AI-generated content! You can directly upload
+									content created with GameInfoTools without manual review (though reviewing
+									is still recommended for quality).
+								</TextBlock>
+							</StackPanel>
+
+							<StackPanel Spacing="4">
+								<TextBlock Text="🔄 Workflow" FontWeight="Bold"/>
+								<TextBlock TextWrapping="Wrap">
+									1. Generate wiki content using the Wiki Editor tool
+									2. Save the .wikitext file to your wiki directory
+									3. Optionally review the content
+									4. Use "Push" to upload to DarkRepos Wiki
+								</TextBlock>
+							</StackPanel>
+
+							<StackPanel Spacing="4">
+								<TextBlock Text="🔑 Authentication" FontWeight="Bold"/>
+								<TextBlock TextWrapping="Wrap">
+									Create a bot password at Special:BotPasswords on DarkRepos Wiki.
+									Never use your main wiki password. Bot passwords allow controlled
+									API access with specific permissions.
+								</TextBlock>
+							</StackPanel>
+
+							<StackPanel Spacing="4">
+								<TextBlock Text="📊 Status Icons" FontWeight="Bold"/>
+								<TextBlock TextWrapping="Wrap">
+									✓ In Sync - Local matches remote
+									📄 Local Only - Not on wiki yet
+									☁️ Remote Only - On wiki, not saved locally
+									📝 Local Modified - Local changes not uploaded
+									⬇️ Remote Modified - Wiki has newer version
+									⚠️ Conflict - Both local and remote changed
+								</TextBlock>
+							</StackPanel>
+
+							<StackPanel Spacing="4">
+								<TextBlock Text="✅ Review Status" FontWeight="Bold"/>
+								<TextBlock TextWrapping="Wrap">
+									✅ Reviewed - Marked as reviewed
+									⛔ Not Reviewed - Not yet reviewed (can still upload)
+								</TextBlock>
+							</StackPanel>
+
+							<StackPanel Spacing="4">
+								<TextBlock Text="📝 Change Markers" FontWeight="Bold"/>
+								<TextBlock TextWrapping="Wrap">
+									The tool adds HTML comment markers to track content origin:
+									- @CHANGE:AiGenerated - AI-generated content
+									- @CHANGE:Imported - Pulled from wiki
+									- @CHANGE:Modified - Human modifications
+									- @REVIEWED - Marked as reviewed
+									These are stripped when uploading.
+								</TextBlock>
+							</StackPanel>
+
+							<StackPanel Spacing="4">
+								<TextBlock Text="🌐 About DarkRepos" FontWeight="Bold"/>
+								<TextBlock TextWrapping="Wrap">
+									DarkRepos Games Wiki (games.darkrepos.com) is a community wiki for
+									ROM hacking documentation, disassemblies, and retro game data.
+									Unlike some other wikis, DarkRepos welcomes AI-assisted content creation.
+								</TextBlock>
+							</StackPanel>
+						</StackPanel>
+					</ScrollViewer>
+				</TabItem>
+			</TabControl>
+		</Grid>
+
+		<!-- Loading Overlay -->
+		<Border IsVisible="{Binding IsBusy}" Background="#80000000"
+				HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+			<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+				<ProgressBar IsIndeterminate="True" Width="200"/>
+				<TextBlock Text="{Binding StatusText}" Foreground="White" Margin="0,8,0,0"/>
+			</StackPanel>
+		</Border>
+	</DockPanel>
+</UserControl>

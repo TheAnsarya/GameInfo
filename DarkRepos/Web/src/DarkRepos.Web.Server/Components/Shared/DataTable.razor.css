@@ -1,0 +1,119 @@
+.data-table-container {
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-md);
+	overflow: hidden;
+}
+
+.data-table-container.scrollable {
+	overflow-x: auto;
+}
+
+.data-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: var(--font-size-base);
+}
+
+.data-table th,
+.data-table td {
+	padding: 0.75rem 1rem;
+	text-align: left;
+	border-bottom: 1px solid var(--border-default);
+}
+
+.data-table th {
+	background: var(--bg-tertiary);
+	font-weight: 600;
+	color: var(--text-primary);
+	white-space: nowrap;
+}
+
+.data-table th.sortable {
+	cursor: pointer;
+	user-select: none;
+	transition: background 0.15s ease;
+}
+
+.data-table th.sortable:hover {
+	background: var(--bg-elevated);
+}
+
+.data-table th.sorted-asc,
+.data-table th.sorted-desc {
+	background: var(--bg-elevated);
+	color: var(--accent-primary);
+}
+
+.sort-indicator {
+	margin-left: 0.5rem;
+	font-size: 0.75rem;
+	opacity: 0.7;
+}
+
+.data-table tbody tr {
+	transition: background 0.15s ease;
+}
+
+.data-table tbody tr:hover {
+	background: var(--bg-secondary);
+}
+
+.data-table tbody tr:last-child td {
+	border-bottom: none;
+}
+
+.data-table td {
+	color: var(--text-secondary);
+}
+
+.empty-message {
+	text-align: center;
+	padding: 2rem !important;
+	color: var(--text-tertiary);
+}
+
+/* Clickable rows */
+.data-table tbody tr[onclick] {
+	cursor: pointer;
+}
+
+/* Responsive stacking for very small screens */
+@media (max-width: 480px) {
+	.data-table-container:not(.scrollable) {
+		border: none;
+	}
+
+	.data-table-container:not(.scrollable) .data-table,
+	.data-table-container:not(.scrollable) .data-table thead,
+	.data-table-container:not(.scrollable) .data-table tbody,
+	.data-table-container:not(.scrollable) .data-table th,
+	.data-table-container:not(.scrollable) .data-table td,
+	.data-table-container:not(.scrollable) .data-table tr {
+		display: block;
+	}
+
+	.data-table-container:not(.scrollable) .data-table thead {
+		display: none;
+	}
+
+	.data-table-container:not(.scrollable) .data-table tbody tr {
+		margin-bottom: 1rem;
+		border: 1px solid var(--border-default);
+		border-radius: var(--radius-md);
+	}
+
+	.data-table-container:not(.scrollable) .data-table td {
+		position: relative;
+		padding-left: 45%;
+		border-bottom: 1px solid var(--border-default);
+	}
+
+	.data-table-container:not(.scrollable) .data-table td::before {
+		content: attr(data-label);
+		position: absolute;
+		left: 1rem;
+		width: 40%;
+		font-weight: 600;
+		color: var(--text-primary);
+	}
+}

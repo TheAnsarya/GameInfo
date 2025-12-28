@@ -1,6 +1,6 @@
 # GameInfo
 
-ROM hacking tools, game documentation, and Data Crystal wiki content for retro games.
+ROM hacking tools, game documentation, and wiki content for retro games.
 
 ## 📚 Documentation
 
@@ -15,10 +15,12 @@ ROM hacking tools, game documentation, and Data Crystal wiki content for retro g
 | [Dragon Quest I & II](docs/dragon-quest-1-2-snes/) | SNES | ROM Map, RAM Map, Data Structures |
 | [Dragon Quest III](docs/dragon-quest-3-snes/) | SNES | ROM Map, RAM Map, Data Structures |
 | [Final Fantasy Mystic Quest](docs/ffmq-snes/) | SNES | ROM Map, RAM Map, Data Structures |
+| [Robotrek / Slapstick](Games/SNES/Robotrek%20(SNES)/) | SNES | ROM Map, RAM Map, Items, Enemies, Inventions |
+| [Soul Blazer](Games/SNES/Soul%20Blazer%20(SNES)/) | SNES | ROM Map, RAM Map, Items, Enemies |
 
 ### Wiki Content (`*/Wiki/`)
 
-Data Crystal-style wikitext documentation:
+MediaWiki-style wikitext documentation for [DarkRepos Games Wiki](https://games.darkrepos.com):
 - ROM Maps - Complete memory mapping
 - RAM Maps - Variable and state tracking
 - Data Structures - Table formats and layouts
@@ -80,14 +82,14 @@ dotnet run --project src/GameInfoTools.Cli -- <command>
 | `GameInfoTools.Analysis` | ROM analysis, cross-referencing |
 | `GameInfoTools.Disassembly` | 6502/65816 disassembler |
 | `GameInfoTools.Rom` | Bank management, IPS/BPS patching |
-| `GameInfoTools.Wiki` | MediaWiki/Data Crystal integration |
+| `GameInfoTools.Wiki` | MediaWiki/DarkRepos integration |
 | `GameInfoTools.Cli` | Command-line interface |
 
-### Data Crystal Integration
+### DarkRepos Wiki Integration
 
-The tools include integration with [Data Crystal](https://datacrystal.tcrf.net/) for publishing ROM hacking documentation.
+The tools include integration with [DarkRepos Games Wiki](https://games.darkrepos.com) for publishing ROM hacking documentation.
 
-⚠️ **Important:** Data Crystal forbids AI-generated content. All content must be manually reviewed and edited before upload. See [docs/data-crystal-integration.md](docs/data-crystal-integration.md) for details.
+✅ **AI Content Allowed:** DarkRepos allows AI-assisted content, making it the ideal target for GameInfoTools output. See [docs/darkrepos-wiki.md](docs/darkrepos-wiki.md) for setup instructions.
 
 ### Additional Documentation
 
@@ -289,6 +291,8 @@ Each game folder contains Data Crystal-style wikitext documentation:
 | Final Fantasy Mystic Quest | [`Final Fantasy Mystic Quest (SNES)/Wiki/`](Final%20Fantasy%20Mystic%20Quest%20(SNES)/Wiki/) | Notes |
 | Chrono Trigger (SNES) | [`Chrono Trigger (SNES)/Wiki/`](Chrono%20Trigger%20(SNES)/Wiki/) | TBL |
 | Final Fantasy IV (SNES) | [`Final Fantasy IV (SNES)/Wiki/`](Final%20Fantasy%20IV%20(SNES)/Wiki/) | Notes |
+| Robotrek (SNES) | [`Wiki/SNES/Robotrek/`](Wiki/SNES/Robotrek/) | ROM Map, RAM Map, Items, Enemies, Inventions |
+| Soul Blazer (SNES) | [`Wiki/SNES/Soul_Blazer/`](Wiki/SNES/Soul_Blazer/) | ROM Map, RAM Map, Items, Enemies |
 
 ### Wiki File Types
 

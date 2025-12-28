@@ -1,0 +1,1012 @@
+{{Back|Dragon Quest III (SNES)/Values}}
+{{subpage}}
+
+= Dragon Quest III (SNES) - Spells =
+
+This page documents the spell data in Dragon Quest III (SNES).
+
+== Flags ==
+
+{{Todo|Finish filling out grid}}
+
+Some of the spells do not coexist, so if you have one or the flagged they appear, but if you flag both only one appears. Need to note that somehow.
+
+{| class="wikitable sortable"
+|-
+!  Offset  !! Bit  !!  Japanese  !!  Name  !!  Battle  !!  Field  !!  Hero  !!  Warrior  !!  Fighter  !!  Mage  !!  Cleric  !!  Dealer  !!  Jester  !!  Thief  !!  Sage
+|-
+|  $00  ||  style="white-space: nowrap;"  |  0000 0001  ||  ホイミ  ||  Heal
+|<!-- Battle -->  ✓
+|<!-- Field -->  ✓
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $00  ||  0000 0010  ||  ---  ||  Antidote
+|<!-- Battle -->  ✓
+|<!-- Field -->  ✓
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $00  ||  0000 0100  ||  ---  ||  Healmore
+|<!-- Battle -->  ✓
+|<!-- Field -->  ✓
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $00  ||  0000 1000  ||  ---  ||  Vivify
+|<!-- Battle -->  ✓
+|<!-- Field -->  ✓
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $00  ||  0001 0000  ||  ---  ||  Healall
+|<!-- Battle -->  ✓
+|<!-- Field -->  ✓
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $00  ||  0010 0000  ||  ---  ||  Revive
+|<!-- Battle -->  ✓
+|<!-- Field -->  ✓
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $00  ||  0100 0000  ||  ---  ||  Healus
+|<!-- Battle -->  ✓
+|<!-- Field -->  ✓
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $00  ||  1000 0000  ||  ---  ||  Healusall
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  ✕
+|-
+!  colspan="4"  |  
+|-
+|  $01  ||  0000 0001  ||  ---  ||  Blaze
+|<!-- Battle -->  ✓
+|<!-- Field -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $01  ||  0000 0010  ||  ---  ||  Fireball
+|<!-- Battle -->  ✓
+|<!-- Field -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $01  ||  0000 0100  ||  ---  ||  Icebolt
+|<!-- Battle -->  ✓
+|<!-- Field -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $01  ||  0000 1000  ||  ---  ||  Gale
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  ✕
+|-
+|  $01  ||  0001 0000  ||  ---  ||  Beat
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  ✕
+|-
+|  $01  ||  0010 0000  ||  ---  ||  Bang
+|<!-- Battle -->  ✓
+|<!-- Field -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $01  ||  0100 0000  ||  ---  ||  Blazemore
+|<!-- Battle -->  ✓
+|<!-- Field -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $01  ||  1000 0000  ||  ---  ||  Firebane
+|<!-- Battle -->  ✓
+|<!-- Field -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+!  colspan="4"  |  
+|-
+|  $02  ||  0000 0001  ||  ---  ||  Snowblast
+|<!-- Battle -->  ✓
+|<!-- Field -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $02  ||  0000 0010  ||  ---  ||  Tornado
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  ✕
+|-
+|  $02  ||  0000 0100  ||  ---  ||  Defeat
+|<!-- Battle -->  ✓
+|<!-- Field -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Hero -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $02  ||  0000 1000  ||  ---  ||  Boom
+|<!-- Battle -->  ✓
+|<!-- Field -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $02  ||  0001 0000  ||  ---  ||  Zap
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  ✕
+|-
+|  $02  ||  0010 0000  ||  ---  ||  Blazemost
+|<!-- Battle -->  ✓
+|<!-- Field -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Hero -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $02  ||  0100 0000  ||  ---  ||  Firevolt
+|<!-- Battle -->  ✓
+|<!-- Field -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Hero -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $02  ||  1000 0000  ||  ---  ||  Icespears
+|<!-- Battle -->  ✓
+|<!-- Field -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage --> ✓
+|-
+!  colspan="4"  |  
+|-
+|  $03  ||  0000 0001  ||  ---  ||  Snowstorm
+|<!-- Battle -->  ✓
+|<!-- Field -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Hero -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $03  ||  0000 0010  ||  ---  ||  Aerocross
+|<!-- Battle -->  ✓
+|<!-- Field -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Hero -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $03  ||  0000 0100  ||  ---  ||  Explodet
+|<!-- Battle -->  ✓
+|<!-- Field -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Hero -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $03  ||  0000 1000  ||  ---  ||  Lightning
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  ✕
+|-
+|  $03  ||  0001 0000  ||  ---  ||  Numboff
+|<!-- Battle -->  ✓
+|<!-- Field -->  ✓
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $03  ||  0010 0000  ||  ---  ||  Expel
+|<!-- Battle -->  ✓
+|<!-- Field -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $03  ||  0100 0000  ||  ---  ||  Stopspell
+|<!-- Battle -->  ✓
+|<!-- Field -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $03  ||  1000 0000  ||  ---  ||  Robmagic
+|<!-- Battle -->  ✓
+|<!-- Field -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+!  colspan="4"  |  
+|-
+|  $04  ||  0000 0001  ||  ---  ||  Bounce  
+|<!-- Battle -->  ✓
+|<!-- Field -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $04  ||  0000 0010  ||  ---  ||  Slow  
+|<!-- Battle -->  ✓
+|<!-- Field -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $04  ||  0000 0100  ||  ---  ||  Sap  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  ✕
+|-
+|  $04  ||  0000 1000  ||  ---  ||  Defense  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  ✕
+|-
+|  $04  ||  0001 0000  ||  ---  ||  Upper  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $04  ||  0010 0000  ||  ---  ||  Increase  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  ✓
+|-
+|  $04  ||  0100 0000  ||  ---  ||  Sleep  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  ✕
+|-
+|  $04  ||  1000 0000  ||  ---  ||  Awaken  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  ✕
+|-
+!  colspan="4"  |  
+|-
+|  $05  ||  0000 0001  ||  ---  ||  Speed Up  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  ✕
+|-
+|  $05  ||  0000 0010  ||  ---  ||  Surround  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  ✕
+|-
+|  $05  ||  0000 0100  ||  ---  ||  (Nothing!)  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $05  ||  0000 1000  ||  ---  ||  (Nothing!)  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $05  ||  0001 0000  ||  ---  ||  Bikill  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $05  ||  0010 0000  ||  ---  ||  Ironize  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  ✕
+|-
+|  $05  ||  0100 0000  ||  ---  ||  (Nothing!)  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $05  ||  1000 0000  ||  ---  ||  (Nothing!)  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+!  colspan="4"  |  
+|-
+|  $06  ||  0000 0001  ||  ---  ||  Disperse  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $06  ||  0000 0010  ||  ---  ||  (Nothing!)  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $06  ||  0000 0100  ||  ---  ||  (Nothing!)  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $06  ||  0000 1000  ||  ---  ||  (Nothing!)  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  style="background-color: #eaecf0;"  |  ✕
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $06  ||  0001 0000  ||  ---  ||  Return  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $06  ||  0010 0000  ||  ---  ||  Outside  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $06  ||  0100 0000  ||  ---  ||  X-Ray  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $06  ||  1000 0000  ||  ---  ||  Step Guard  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+!  colspan="6"  |  
+|-
+|  $07  ||  0000 0001  ||  ---  ||  Repel  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $07  ||  0000 0010  ||  ---  ||  Day-Night  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $07  ||  0000 0100  ||  ---  ||  Curseoff  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $07  ||  0000 1000  ||  ---  ||  Invisible  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $07  ||  0001 0000  ||  ---  ||  Open  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $07  ||  0010 0000  ||  ---  ||  Recall  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $07  ||  0100 0000  ||  ---  ||  Remember  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $07  ||  1000 0000  ||  ---  ||  Retain  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+!  colspan="6"  |  
+|-
+|  $08  ||  0000 0001  ||  ---  ||  Forget  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $08  ||  0000 0010  ||  ---  ||  Hawk Eye  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $08  ||  0000 0100  ||  ---  ||  Location  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $08  ||  0000 1000  ||  ---  ||  Tiptoe  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $08  ||  0001 0000  ||  ---  ||  ThiefNose  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $08  ||  0010 0000  ||  ---  ||  Seek Out  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $08  ||  0100 0000  ||  ---  ||  Whistle  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $08  ||  1000 0000  ||  ---  ||  Dig Hole  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+!  colspan="6"  |  
+|-
+|  $09  ||  0000 0001  ||  ---  ||  Shop Call  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  ✓
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $09  ||  0000 0010  ||  ---  ||  ---  
+|<!-- Battle -->  style="background-color: #eaecf0;"  |  
+|<!-- Field -->  style="background-color: #eaecf0;"  |  
+|<!-- Hero -->  style="background-color: #eaecf0;"  |  
+|<!-- Warrior -->  style="background-color: #eaecf0;"  |  
+|<!-- Fighter -->  style="background-color: #eaecf0;"  |  
+|<!-- Mage -->  style="background-color: #eaecf0;"  |  
+|<!-- Cleric -->  style="background-color: #eaecf0;"  |  
+|<!-- Dealer -->  style="background-color: #eaecf0;"  |  
+|<!-- Jester -->  style="background-color: #eaecf0;"  |  
+|<!-- Thief -->  style="background-color: #eaecf0;"  |  
+|<!-- Sage -->  style="background-color: #eaecf0;"  |  
+|-
+|  $09  ||  0000 0100  ||  ---  ||  
+|-
+|  $09  ||  0000 1000  ||  ---  ||  
+|-
+|  $09  ||  0001 0000  ||  ---  ||  
+|-
+|  $09  ||  0010 0000  ||  ---  ||  
+|-
+|  $09  ||  0100 0000  ||  ---  ||  
+|-
+|  $09  ||  1000 0000  ||  ---  ||  
+|-
+|}
+
+

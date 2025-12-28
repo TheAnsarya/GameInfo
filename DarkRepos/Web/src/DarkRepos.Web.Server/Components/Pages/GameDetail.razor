@@ -1,0 +1,249 @@
+@page "/games/{Slug}"
+@using DarkRepos.Core.Models
+@using DarkRepos.Core.Services
+@using DarkRepos.Web.Components.Shared
+
+<PageTitle>@(Game?.Title ?? "Game") - Dark Repos</PageTitle>
+
+@if (Game != null)
+{
+	<HeadContent>
+		<meta name="description"
+			content="@Game.Title documentation including ROM maps, RAM maps, and data structures for ROM hackers." />
+	</HeadContent>
+}
+
+<div class="container">
+	<Breadcrumbs Items="@GetBreadcrumbItems()" />
+
+	@if (IsLoading)
+	{
+		<LoadingSpinner Message="Loading game details..." />
+	}
+	else if (Game != null)
+	{
+		<article>
+			<header class="page-header">
+				<div class="mb-3">
+					<PlatformBadge Platform="@Game.Platform" />
+				</div>
+				<h1 class="page-title">@Game.Title</h1>
+				@if (!string.IsNullOrEmpty(Game.JapaneseTitle))
+				{
+					<p class="text-secondary text-md">
+						Japanese: @Game.JapaneseTitle
+					</p>
+				}
+			</header>
+
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+				<div class="col-span-2">
+					@if (!string.IsNullOrEmpty(Game.Description))
+					{
+						<section aria-labelledby="description-title">
+							<h2 id="description-title">About</h2>
+							<p>@Game.Description</p>
+						</section>
+					}
+
+					<section aria-labelledby="wiki-title" class="mt-8">
+						<h2 id="wiki-title">Wiki Resources</h2>
+						<p>
+							Visit the game's wiki page for comprehensive technical documentation.
+						</p>
+
+						<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+							@if (Game.Wiki.HasRomMap)
+							{
+								<a href="@GetWikiUrl("ROM Map")" target="_blank" rel="noopener" class="card"
+									style="text-decoration: none;">
+									<h3 class="text-md mb-2">📍 ROM Map</h3>
+									<p class="text-secondary text-sm mb-0">
+										File offset locations for code and data
+									</p>
+								</a>
+							}
+							@if (Game.Wiki.HasRamMap)
+							{
+								<a href="@GetWikiUrl("RAM Map")" target="_blank" rel="noopener" class="card"
+									style="text-decoration: none;">
+									<h3 class="text-md mb-2">🧠 RAM Map</h3>
+									<p class="text-secondary text-sm mb-0">
+										Memory addresses for game state
+									</p>
+								</a>
+							}
+							@if (Game.Wiki.HasDataStructures)
+							{
+								<a href="@GetWikiUrl("Data Structures")" target="_blank" rel="noopener" class="card"
+									style="text-decoration: none;">
+									<h3 class="text-md mb-2">📊 Data Structures</h3>
+									<p class="text-secondary text-sm mb-0">
+										Format specifications for game data
+									</p>
+								</a>
+							}
+							@if (Game.Wiki.HasNotes)
+							{
+								<a href="@GetWikiUrl("Notes")" target="_blank" rel="noopener" class="card"
+									style="text-decoration: none;">
+									<h3 class="text-md mb-2">📝 Notes</h3>
+									<p class="text-secondary text-sm mb-0">
+										General documentation and research
+									</p>
+								</a>
+							}
+						</div>
+
+						<p class="mt-6">
+							<a href="@GetWikiBaseUrl()" target="_blank" rel="noopener" class="btn btn-primary">
+								View Full Wiki Page →
+							</a>
+						</p>
+					</section>
+
+					@if (Game.RelatedTools.Any())
+					{
+						<section aria-labelledby="tools-title" class="mt-8">
+							<h2 id="tools-title">Related Tools</h2>
+							<ul>
+								@foreach (var tool in Game.RelatedTools)
+								{
+									<li><a href="/tools/@tool">@tool</a></li>
+								}
+							</ul>
+						</section>
+					}
+				</div>
+
+				<aside>
+					<div class="card">
+						<h3 class="text-md mb-4">Game Info</h3>
+						<dl class="mb-0">
+							<div class="mb-3">
+								<dt class="text-muted text-sm">Platform</dt>
+								<dd class="mb-0">@Game.Platform</dd>
+							</div>
+							@if (!string.IsNullOrEmpty(Game.Developer))
+							{
+								<div class="mb-3">
+									<dt class="text-muted text-sm">Developer</dt>
+									<dd class="mb-0">@Game.Developer</dd>
+								</div>
+							}
+							@if (!string.IsNullOrEmpty(Game.Publisher))
+							{
+								<div class="mb-3">
+									<dt class="text-muted text-sm">Publisher</dt>
+									<dd class="mb-0">@Game.Publisher</dd>
+								</div>
+							}
+							@if (Game.ReleaseYear.HasValue)
+							{
+								<div class="mb-3">
+									<dt class="text-muted text-sm">Release Year</dt>
+									<dd class="mb-0">@Game.ReleaseYear</dd>
+								</div>
+							}
+							@if (!string.IsNullOrEmpty(Game.Genre))
+							{
+								<div class="mb-3">
+									<dt class="text-muted text-sm">Genre</dt>
+									<dd class="mb-0">@Game.Genre</dd>
+								</div>
+							}
+							@if (!string.IsNullOrEmpty(Game.Series))
+							{
+								<div class="mb-3">
+									<dt class="text-muted text-sm">Series</dt>
+									<dd class="mb-0">
+										<a href="/games?series=@Game.Series">@Game.Series</a>
+									</dd>
+								</div>
+							}
+						</dl>
+					</div>
+
+					<div class="card mt-4">
+						<h3 class="text-md mb-4">Documentation Status</h3>
+						<WikiResourceStatus Wiki="@Game.Wiki" Compact="false" />
+					</div>
+				</aside>
+			</div>
+		</article>
+	}
+	else
+	{
+		<EmptyState Icon="🎮" Title="Game Not Found" Message="@($"We couldn't find a game with the slug \"{Slug}\".")">
+			<ChildContent>
+				<a href="/games" class="btn btn-primary">Browse All Games</a>
+			</ChildContent>
+		</EmptyState>
+	}
+</div>
+
+@code {
+	[Parameter]
+	public string Slug { get; set; } = string.Empty;
+
+	[Inject]
+	private IContentService ContentService { get; set; } = null!;
+
+	[Inject]
+	private IWikiLinkService WikiLinkService { get; set; } = null!;
+
+	private Game? Game { get; set; }
+	private bool IsLoading { get; set; } = true;
+
+	protected override async Task OnParametersSetAsync()
+	{
+		IsLoading = true;
+		try
+		{
+			Game = await ContentService.GetGameBySlugAsync(Slug);
+		}
+		finally
+		{
+			IsLoading = false;
+		}
+	}
+
+	private string GetWikiBaseUrl()
+	{
+		if (Game == null) return "#";
+		return WikiLinkService.GetWikiUrl(Game);
+	}
+
+	private string GetWikiUrl(string section)
+	{
+		if (Game == null) return "#";
+
+		return section switch
+		{
+			"ROM Map" => WikiLinkService.GetRomMapUrl(Game) ?? GetWikiBaseUrl(),
+			"RAM Map" => WikiLinkService.GetRamMapUrl(Game) ?? GetWikiBaseUrl(),
+			"Data Structures" => WikiLinkService.GetDataStructuresUrl(Game) ?? GetWikiBaseUrl(),
+			"Notes" => WikiLinkService.GetNotesUrl(Game) ?? GetWikiBaseUrl(),
+			_ => GetWikiBaseUrl()
+		};
+	}
+
+	private IReadOnlyList<Breadcrumbs.BreadcrumbItem> GetBreadcrumbItems()
+	{
+		var items = new List<Breadcrumbs.BreadcrumbItem> {
+new("Home", "/", "🏠"),
+new("Games", "/games", "🎮")
+};
+
+		if (Game != null)
+		{
+			items.Add(new(Game.Title, $"/games/{Slug}"));
+		}
+		else
+		{
+			items.Add(new("Game", $"/games/{Slug}"));
+		}
+
+		return items;
+	}
+}

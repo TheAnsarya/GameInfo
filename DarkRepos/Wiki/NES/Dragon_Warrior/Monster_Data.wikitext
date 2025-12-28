@@ -1,0 +1,371 @@
+{{Back|Dragon Warrior (NES)}}
+{{subpage}}
+
+= Dragon Warrior (NES) - Monster Data =
+
+This page documents the complete monster data structure and statistics for Dragon Warrior (NES), based on the complete disassembly by TheAnsarya.
+
+== Monster Data Structure ==
+
+Each monster entry is 16 bytes long and located in Bank 1 starting at approximately $9000. The structure is as follows:
+
+{| class="wikitable"
+!  Offset  !!  Size  !!  Description
+|-
+|  style="text-align: center;"  |  +$00  ||  2 bytes  ||  HP (little-endian)
+|-
+|  style="text-align: center;"  |  +$02  ||  1 byte   ||  Attack Power
+|-
+|  style="text-align: center;"  |  +$03  ||  1 byte   ||  Defense Power
+|-
+|  style="text-align: center;"  |  +$04  ||  2 bytes  ||  Experience Reward (little-endian)
+|-
+|  style="text-align: center;"  |  +$06  ||  2 bytes  ||  Gold Reward (little-endian)
+|-
+|  style="text-align: center;"  |  +$08  ||  1 byte   ||  Special Abilities Flags
+|-
+|  style="text-align: center;"  |  +$09  ||  1 byte   ||  Resistance Flags
+|-
+|  style="text-align: center;"  |  +$0a  ||  2 bytes  ||  Graphics Tile ID
+|-
+|  style="text-align: center;"  |  +$0c  ||  4 bytes  ||  Reserved/Padding
+|}
+
+==Complete Monster Statistics==
+
+{| class="wikitable sortable"
+|-
+!  ID  !!  Name  !!  HP  !!  ATK  !!  DEF  !!  EXP  !!  Gold  !!  Special  !!  Notes
+|-
+|  style="text-align: center;"  |  $00  ||  Slime  ||  2-3  ||  5  ||  1  ||  1  ||  2  ||  None  ||  Weakest enemy
+|-
+|  style="text-align: center;"  |  $01  ||  Red Slime  ||  3-4  ||  7  ||  1  ||  2  ||  3  ||  None  ||  Slightly stronger slime
+|-
+|  style="text-align: center;"  |  $02  ||  Drakee  ||  6-8  ||  9  ||  6  ||  3  ||  5  ||  None  ||  Flying enemy
+|-
+|  style="text-align: center;"  |  $03  ||  Ghost  ||  7-10  ||  11  ||  8  ||  4  ||  6  ||  None  ||  Undead type
+|-
+|  style="text-align: center;"  |  $04  ||  Magician  ||  12-16  ||  11  ||  12  ||  8  ||  12  ||  HURT  ||  Casts offensive spells
+|-
+|  style="text-align: center;"  |  $05  ||  Magidrakee  ||  15-18  ||  14  ||  12  ||  10  ||  14  ||  SLEEP  ||  Flying spellcaster
+|-
+|  style="text-align: center;"  |  $06  ||  Scorpion  ||  18-25  ||  18  ||  16  ||  16  ||  20  ||  None  ||  Desert dwelling
+|-
+|  style="text-align: center;"  |  $07  ||  Druin  ||  22-30  ||  20  ||  18  ||  20  ||  25  ||  None  ||  Humanoid warrior
+|-
+|  style="text-align: center;"  |  $08  ||  Poltergeist  ||  23-30  ||  18  ||  15  ||  17  ||  20  ||  HURT  ||  Undead spellcaster
+|-
+|  style="text-align: center;"  |  $09  ||  Droll  ||  25-35  ||  24  ||  20  ||  25  ||  30  ||  SLEEP  ||  Puts players to sleep
+|-
+|  style="text-align: center;"  |  $0a  ||  Drakeema  ||  20-30  ||  22  ||  18  ||  22  ||  25  ||  HEAL  ||  Can heal itself
+|-
+|  style="text-align: center;"  |  $0b  ||  Skeleton  ||  30-45  ||  28  ||  22  ||  35  ||  40  ||  None  ||  Undead warrior
+|-
+|  style="text-align: center;"  |  $0c  ||  Warlock  ||  30-40  ||  26  ||  20  ||  32  ||  35  ||  HURT, SLEEP  ||  Powerful spellcaster
+|-
+|  style="text-align: center;"  |  $0d  ||  Metal Scorpion  ||  22-30  ||  36  ||  42  ||  40  ||  48  ||  None  ||  High defense
+|-
+|  style="text-align: center;"  |  $0e  ||  Wolf  ||  35-50  ||  40  ||  30  ||  50  ||  60  ||  None  ||  Fast attacker
+|-
+|  style="text-align: center;"  |  $0f  ||  Wraith  ||  36-50  ||  44  ||  34  ||  58  ||  70  ||  HURT  ||  Undead spellcaster
+|-
+|  style="text-align: center;"  |  $10  ||  Metal Slime  ||  4  ||  10  ||  255  ||  775  ||  6  ||  Run  ||  Extremely high defense, flees
+|-
+|  style="text-align: center;"  |  $11  ||  Specter  ||  40-55  ||  48  ||  38  ||  75  ||  90  ||  HURT  ||  Strong undead
+|-
+|  style="text-align: center;"  |  $12  ||  Wolflord  ||  50-70  ||  56  ||  44  ||  95  ||  120  ||  None  ||  Wolf pack leader
+|-
+|  style="text-align: center;"  |  $13  ||  Druinlord  ||  47-65  ||  52  ||  40  ||  85  ||  110  ||  HEAL  ||  Druin commander
+|-
+|  style="text-align: center;"  |  $14  ||  Drollmagi  ||  52-70  ||  58  ||  48  ||  110  ||  135  ||  SLEEP, STOPSPELL  ||  Magical droll
+|-
+|  style="text-align: center;"  |  $15  ||  Wyvern  ||  56-75  ||  64  ||  50  ||  135  ||  160  ||  None  ||  Dragon type
+|-
+|  style="text-align: center;"  |  $16  ||  Rogue Scorpion  ||  55-75  ||  60  ||  90  ||  150  ||  110  ||  None  ||  Armored scorpion
+|-
+|  style="text-align: center;"  |  $17  ||  Wraith Knight  ||  68-90  ||  76  ||  58  ||  185  ||  200  ||  HEAL  ||  Undead paladin
+|-
+|  style="text-align: center;"  |  $18  ||  Golem  ||  70-99  ||  120  ||  255  ||  270  ||  10  ||  HURTMORE  ||  Stone guardian, quest boss
+|-
+|  style="text-align: center;"  |  $19  ||  Goldman  ||  6  ||  48  ||  40  ||  6  ||  255  ||  Run  ||  High gold reward, flees
+|-
+|  style="text-align: center;"  |  $1a  ||  Knight  ||  76-100  ||  76  ||  78  ||  220  ||  185  ||  None  ||  Armored warrior
+|-
+|  style="text-align: center;"  |  $1b  ||  Magiwyvern  ||  78-100  ||  78  ||  70  ||  240  ||  220  ||  HURT, SLEEP  ||  Magical dragon
+|-
+|  style="text-align: center;"  |  $1c  ||  Demon Knight  ||  79-110  ||  84  ||  80  ||  350  ||  255  ||  HEALMORE  ||  Demonic warrior
+|-
+|  style="text-align: center;"  |  $1d  ||  Werewolf  ||  70-95  ||  86  ||  70  ||  300  ||  155  ||  None  ||  Lycanthrope
+|-
+|  style="text-align: center;"  |  $1e  ||  Green Dragon  ||  88-135  ||  88  ||  80  ||  350  ||  160  ||  Breath  ||  Breath attack, quest boss
+|-
+|  style="text-align: center;"  |  $1f  ||  Starwyvern  ||  86-120  ||  90  ||  85  ||  395  ||  300  ||  STOPSPELL  ||  Star-powered dragon
+|-
+|  style="text-align: center;"  |  $20  ||  Wizard  ||  80-120  ||  80  ||  70  ||  380  ||  185  ||  HURT, HEAL  ||  Powerful spellcaster
+|-
+|  style="text-align: center;"  |  $21  ||  Axe Knight  ||  94-135  ||  94  ||  105  ||  500  ||  165  ||  None  ||  Heavy armored warrior
+|-
+|  style="text-align: center;"  |  $22  ||  Blue Dragon  ||  98-150  ||  98  ||  95  ||  600  ||  150  ||  Breath  ||  Ice breath attack, quest boss
+|-
+|  style="text-align: center;"  |  $23  ||  Stoneman  ||  100-135  ||  100  ||  160  ||  600  ||  148  ||  None  ||  Rock creature
+|-
+|  style="text-align: center;"  |  $24  ||  Armored Knight  ||  105-165  ||  105  ||  115  ||  750  ||  186  ||  None  ||  Ultimate warrior
+|-
+|  style="text-align: center;"  |  $25  ||  Red Dragon  ||  100-180  ||  120  ||  120  ||  900  ||  143  ||  Breath  ||  Fire breath attack, quest boss
+|-
+|  style="text-align: center;"  |  $26  ||  Dragonlord (Form 1)  ||  100  ||  90  ||  95  ||  0  ||  0  ||  HEAL, HURTMORE  ||  Final boss, first form
+|-
+|  style="text-align: center;"  |  $27  ||  Dragonlord (Form 2)  ||  130  ||  140  ||  200  ||  0  ||  0  ||  Breath, HEALMORE  ||  Final boss, true form
+|}
+
+==Special Abilities==
+
+{| class="wikitable"
+!  Ability  !!  Description  !!  Monsters
+|-
+|  HURT  ||  Deals 2-7 damage  ||  Magician, Poltergeist, Warlock, Wraith, Specter, Magiwyvern, Wizard
+|-
+|  HURTMORE  ||  Deals 15-23 damage  ||  Golem, Demon Knight, Dragonlord
+|-
+|  HEAL  ||  Restores 7-23 HP  ||  Drakeema, Druinlord, Wraith Knight, Wizard, Dragonlord
+|-
+|  HEALMORE  ||  Restores 75-100 HP  ||  Demon Knight, Dragonlord (Form 2)
+|-
+|  SLEEP  ||  Puts player to sleep  ||  Magidrakee, Droll, Warlock, Drollmagi, Magiwyvern
+|-
+|  STOPSPELL  ||  Blocks player spells  ||  Drollmagi, Starwyvern
+|-
+|  Breath Attack  ||  High damage attack  ||  Green Dragon, Blue Dragon, Red Dragon, Dragonlord (Form 2)
+|-
+|  Run  ||  Attempts to flee  ||  Metal Slime, Goldman
+|}
+
+==Encounter Rates by Area==
+
+{| class="wikitable sortable"
+!  Monster  !!  Tantegel Area  !!  Grassland  !!  Forest  !!  Hills  !!  Mountains  !!  Swamp  !!  Charlock
+|-
+|  Slime  ||  Common  ||  Common  ||  Rare  ||  None  ||  None  ||  None  ||  None
+|-
+|  Red Slime  ||  Common  ||  Common  ||  Uncommon  ||  Rare  ||  None  ||  None  ||  None
+|-
+|  Drakee  ||  Common  ||  Common  ||  Common  ||  Uncommon  ||  Rare  ||  None  ||  None
+|-
+|  Ghost  ||  Uncommon  ||  Uncommon  ||  Common  ||  Common  ||  Uncommon  ||  None  ||  None
+|-
+|  Magician  ||  Rare  ||  Uncommon  ||  Common  ||  Common  ||  Common  ||  Uncommon  ||  Rare
+|-
+|  Magidrakee  ||  None  ||  Rare  ||  Uncommon  ||  Common  ||  Common  ||  Common  ||  Uncommon
+|-
+|  Scorpion  ||  None  ||  Rare  ||  Uncommon  ||  Common  ||  Common  ||  Common  ||  Uncommon
+|-
+|  Druin  ||  None  ||  None  ||  Rare  ||  Uncommon  ||  Common  ||  Common  ||  Common
+|-
+|  Poltergeist  ||  None  ||  None  ||  Rare  ||  Uncommon  ||  Common  ||  Common  ||  Common
+|-
+|  Droll  ||  None  ||  None  ||  Rare  ||  Uncommon  ||  Common  ||  Common  ||  Common
+|-
+|  Drakeema  ||  None  ||  None  ||  None  ||  Rare  ||  Uncommon  ||  Common  ||  Common
+|-
+|  Skeleton  ||  None  ||  None  ||  None  ||  Rare  ||  Uncommon  ||  Common  ||  Common
+|-
+|  Warlock  ||  None  ||  None  ||  None  ||  Rare  ||  Uncommon  ||  Common  ||  Common
+|-
+|  Metal Scorpion  ||  None  ||  None  ||  None  ||  Very Rare  ||  Very Rare  ||  Very Rare  ||  Rare
+|-
+|  Wolf  ||  None  ||  None  ||  None  ||  Rare  ||  Common  ||  Common  ||  Common
+|-
+|  Wraith  ||  None  ||  None  ||  None  ||  None  ||  Uncommon  ||  Common  ||  Common
+|-
+|  Metal Slime  ||  None  ||  None  ||  None  ||  Very Rare  ||  Very Rare  ||  Very Rare  ||  Rare
+|-
+|  Specter  ||  None  ||  None  ||  None  ||  None  ||  Uncommon  ||  Common  ||  Common
+|-
+|  Wolflord  ||  None  ||  None  ||  None  ||  None  ||  Rare  ||  Uncommon  ||  Common
+|-
+|  Druinlord  ||  None  ||  None  ||  None  ||  None  ||  Rare  ||  Uncommon  ||  Common
+|-
+|  Drollmagi  ||  None  ||  None  ||  None  ||  None  ||  Rare  ||  Common  ||  Common
+|-
+|  Wyvern  ||  None  ||  None  ||  None  ||  None  ||  Rare  ||  Common  ||  Common
+|-
+|  Rogue Scorpion  ||  None  ||  None  ||  None  ||  None  ||  Rare  ||  Uncommon  ||  Common
+|-
+|  Wraith Knight  ||  None  ||  None  ||  None  ||  None  ||  Rare  ||  Uncommon  ||  Common
+|-
+|  Golem  ||  None  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Special (Boss)
+|-
+|  Goldman  ||  None  ||  None  ||  None  ||  Very Rare  ||  Very Rare  ||  Very Rare  ||  Rare
+|-
+|  Knight  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Rare  ||  Common
+|-
+|  Magiwyvern  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Rare  ||  Common
+|-
+|  Demon Knight  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Rare  ||  Common
+|-
+|  Werewolf  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Uncommon  ||  Common
+|-
+|  Green Dragon  ||  None  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Special (Boss)
+|-
+|  Starwyvern  ||  None  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Common
+|-
+|  Wizard  ||  None  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Common
+|-
+|  Axe Knight  ||  None  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Common
+|-
+|  Blue Dragon  ||  None  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Special (Boss)
+|-
+|  Stoneman  ||  None  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Common
+|-
+|  Armored Knight  ||  None  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Common
+|-
+|  Red Dragon  ||  None  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Special (Boss)
+|-
+|  Dragonlord (Form 1)  ||  None  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Final Boss
+|-
+|  Dragonlord (Form 2)  ||  None  ||  None  ||  None  ||  None  ||  None  ||  None  ||  Final Boss
+|}
+
+==AI Behavior Patterns==
+
+===AI Pattern Flags===
+
+Each monster has an AI byte ($08 in monster data) that determines behavior:
+
+{| class="wikitable"
+!  Bits  !!  Description  !!  Effect
+|-
+|  0-2  ||  Base Behavior  ||  000=Attack only, 001=SLEEP, 010=HURT, 011=STOPSPELL, 100=HEALMORE, 101=HURTMORE, 110=Breath, 111=Special
+|-
+|  3  ||  Can Flee  ||  1=Can run away from battle
+|-
+|  4  ||  Resists SLEEP  ||  1=Immune to SLEEP spell
+|-
+|  5  ||  Resists STOPSPELL  ||  1=Immune to STOPSPELL spell
+|-
+|  6  ||  Resists HURT  ||  1=Reduced damage from HURT spells
+|-
+|  7  ||  Magic Immunity  ||  1=Immune to all magic
+|}
+
+===Spell Casting AI===
+
+Monsters with spell abilities have a 25% (64/256) chance to cast instead of attacking each turn.
+
+'''Enemy Spell Effects:'''
+* '''HURT''': Deals 2-7 damage to player
+* '''HURTMORE''': Deals 15-23 damage to player
+* '''HEAL''': Restores 7-23 HP to self
+* '''HEALMORE''': Restores 75-100 HP to self
+* '''SLEEP''': 50% - (PlayerLevel × 2) chance to put player to sleep (min 12.5%)
+* '''STOPSPELL''': Blocks player from casting spells for 2-5 turns
+* '''Breath Attack''': High damage fire/ice breath (25-60 damage)
+
+===Special AI: Dragonlord===
+
+'''Form 1 (Human):'''
+* 50% chance: Cast HURTMORE (15-23 damage)
+* 25% chance: Cast HURT (2-7 damage)
+* 25% chance: Physical attack
+
+'''Form 2 (Dragon):'''
+* Turn 1: Always use Breath Attack (devastating damage)
+* HP > 50%: 50% Breath Attack, 50% Physical Attack
+* HP ≤ 50%: 75% HEALMORE (75-100 HP), 25% Physical Attack
+
+==Encounter System==
+
+===Base Encounter Rates===
+
+The game checks for encounters every 8 steps. Chance varies by terrain:
+
+{| class="wikitable"
+!  Terrain  !!  Rate  !!  Percentage  !!  Average Steps Between
+|-
+|  Tantegel Area  ||  16/256  ||  6.25%  ||  ~128 steps
+|-
+|  Grassland  ||  32/256  ||  12.5%  ||  ~64 steps
+|-
+|  Forest  ||  48/256  ||  18.75%  ||  ~43 steps
+|-
+|  Hills  ||  64/256  ||  25%  ||  ~32 steps
+|-
+|  Mountains  ||  80/256  ||  31.25%  ||  ~26 steps
+|-
+|  Swamp  ||  96/256  ||  37.5%  ||  ~21 steps
+|}
+
+===Encounter Prevention===
+
+* '''REPEL Spell''': Blocks all encounters for 127 steps (2 MP cost)
+* '''Fairy Water''': Similar to REPEL, consumable item (38 GP)
+* '''Princess Gwaelin's Love''': Reduces encounter rate in certain areas
+
+==Drop Rates and Rewards==
+
+All monsters have fixed EXP and Gold rewards (no randomness). Special monsters:
+
+'''Metal Slime:'''
+* 775 EXP (highest non-boss reward)
+* 6 Gold (low gold)
+* 4 HP, 255 DEF (extremely high defense)
+* Frequently flees (high escape priority)
+
+'''Goldman:'''
+* 6 EXP (lowest)
+* 255 Gold (highest non-boss reward)
+* 6 HP, 40 DEF
+* Frequently flees (high escape priority)
+
+==Technical Data==
+
+===Monster Data Location===
+
+* '''ROM Address:''' Bank 01, approximately $9000-$94ff
+* '''Structure Size:''' 16 bytes per monster
+* '''Total Monsters:''' 40 (IDs $00-$27)
+
+===Data Format===
+
+<pre>
+Offset  Size  Description
++$00    2     HP (little-endian)
++$02    1     Attack Power
++$03    1     Defense Power
++$04    2     Experience Reward (little-endian)
++$06    2     Gold Reward (little-endian)
++$08    1     Special Abilities/AI Flags
++$09    1     Resistance Flags
++$0a    2     Graphics Tile ID
++$0c    4     Reserved/Padding
+</pre>
+
+==Graphics and Animation==
+
+Each monster uses 1-4 tiles from the CHR ROM for its sprite representation. Monster graphics are stored in CHR Bank 0 starting at $0400.
+
+Monster animation frames:
+* Most monsters: 2 frames (idle/attack)
+* Dragons: 4 frames (idle/rear/attack/breath)
+* Slimes: 1 frame (static)
+* Dragonlord: 8 frames (transformation sequence)
+
+==Technical Notes==
+
+* Monster data is stored in Bank 1 at $9000-$94ff
+* Each monster entry is exactly 16 bytes
+* HP values are ranges - exact HP is randomly determined within range
+* Metal Slime and Goldman have special AI routines for fleeing
+* Dragon breath attacks ignore armor defense
+* Undead monsters take extra damage from certain spells
+
+=References=
+
+* Complete Dragon Warrior disassembly by TheAnsarya
+* Monster behavior analysis from gameplay testing
+* Graphics tile mapping documentation
+* [https://hexed.it/ HexEd.it] - Browser-based hex editor for monster data modification
+
+[[Category:Dragon Warrior]]
+[[Category:NES Games]]
+[[Category:Monster Data]]

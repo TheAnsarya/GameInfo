@@ -209,6 +209,7 @@ public class SaveFile {
 		for (var i = 0; i < SlotSize; i++) {
 			Data[slotOffset + i] = fillByte;
 		}
+
 		IsModified = true;
 	}
 
@@ -316,6 +317,7 @@ public class SaveEditor {
 		for (var i = start; i < start + length; i++) {
 			sum += data[i];
 		}
+
 		return sum;
 	}
 
@@ -327,6 +329,7 @@ public class SaveEditor {
 		for (var i = start; i < start + length; i++) {
 			sum += data[i];
 		}
+
 		return sum;
 	}
 
@@ -338,6 +341,7 @@ public class SaveEditor {
 		for (var i = start; i < start + length; i++) {
 			result ^= data[i];
 		}
+
 		return result;
 	}
 
@@ -401,6 +405,7 @@ public class SaveEditor {
 					save.SlotCount = 3;
 					save.SlotSize = save.Data.Length / 3;
 				}
+
 				break;
 
 			case SavePlatform.Snes:
@@ -470,6 +475,7 @@ public static class BcdHelper {
 		if (value is < 0 or > 99) {
 			throw new ArgumentOutOfRangeException(nameof(value), "BCD value must be 0-99");
 		}
+
 		return (byte)(((value / 10) << 4) | (value % 10));
 	}
 
@@ -483,6 +489,7 @@ public static class BcdHelper {
 			result += FromBcd(data[offset + i]) * multiplier;
 			multiplier *= 100;
 		}
+
 		return result;
 	}
 

@@ -1,0 +1,17 @@
+@namespace DarkRepos.Web.Components.Shared
+@inherits VersionBadgeBase
+
+<span class="version-badge @TypeClass @SizeClass @CssClass"
+	title="@TooltipText">
+	@if (ShowPrefix)
+	{
+		<span class="version-prefix">@Prefix</span>
+	}
+	<span class="version-number">@FormattedVersion</span>
+	@if (ShowCopyButton)
+	{
+		<button class="version-copy-btn" @onclick="CopyToClipboard" title="Copy version">
+			<span class="copy-icon" aria-hidden="true">📋</span>
+		</button>
+	}
+</span>

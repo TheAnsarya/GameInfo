@@ -20,6 +20,7 @@ Project documentation organized by game and system.
 | [Dragon Quest I & II](dragon-quest-1-2-snes/) | ROM Map, RAM Map, Data Structures |
 | [Dragon Quest III](dragon-quest-3-snes/) | ROM Map, RAM Map, Data Structures |
 | [Final Fantasy Mystic Quest](ffmq-snes/) | ROM Map, RAM Map, Data Structures |
+| [Soul Blazer](soul-blazer-snes/) | ROM Map, RAM Map, Text System |
 
 ### Tool Documentation
 

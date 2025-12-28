@@ -561,7 +561,7 @@ public partial class WikiEditorViewModel : ViewModelBase {
 	}
 
 	private string GenerateRomMapFromRom(RomInfo info) {
-		var banks = _romFile?.Length / 0x4000 ?? 0; // Assuming 16KB banks for NES
+		var banks = (_romFile?.Length / 0x4000) ?? 0; // Assuming 16KB banks for NES
 
 		return $$$"""
 			{{Game|

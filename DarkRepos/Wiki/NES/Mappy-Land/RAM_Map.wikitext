@@ -1,0 +1,472 @@
+{{Back|Mappy-Land (NES)}}
+{{Rammap}}
+{{Cleanup}}
+
+= Mappy-Land (NES) - RAM Map =
+
+This page documents the RAM structure for '''Mappy-Land''' (NES).
+
+== Overview ==
+
+Mappy-Land uses standard NES RAM ($0000-$07ff) with the standard 2 KB of work RAM.
+
+== Zero Page ($00-$ff) ==
+
+=== System Variables ($00-$1f) ===
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $00 || 1 byte || Scratch register
+|-
+| $01 || 1 byte || Scratch register
+|-
+| $02 || 2 bytes || Pointer low/high (general use)
+|-
+| $04 || 2 bytes || Pointer low/high (secondary)
+|-
+| $06 || 1 byte || Loop counter
+|-
+| $07 || 1 byte || Loop counter secondary
+|-
+| $08 || 1 byte || Frame counter (0-255)
+|-
+| $09 || 1 byte || NMI flag
+|-
+| $0a || 1 byte || PPU control mirror ($2000)
+|-
+| $0b || 1 byte || PPU mask mirror ($2001)
+|-
+| $0c || 1 byte || Scroll X
+|-
+| $0d || 1 byte || Scroll Y
+|-
+| $0e || 1 byte || Current PRG bank
+|-
+| $0f || 1 byte || Current CHR bank
+|-
+| $10 || 1 byte || Random seed low
+|-
+| $11 || 1 byte || Random seed high
+|}
+
+===Input State ($20-$2f)===
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $20 || 1 byte || Controller 1 current state
+|-
+| $21 || 1 byte || Controller 1 previous state
+|-
+| $22 || 1 byte || Controller 1 new presses
+|-
+| $23 || 1 byte || Controller 2 current state
+|-
+| $24 || 1 byte || Controller 2 previous state
+|-
+| $25 || 1 byte || Controller 2 new presses
+|-
+| $26 || 1 byte || Input delay counter
+|-
+| $27 || 1 byte || Autorepeat counter
+|}
+
+===Controller Button Bits===
+
+{| class="wikitable"
+! Bit !! Button
+|-
+| 7 || A
+|-
+| 6 || B
+|-
+| 5 || Select
+|-
+| 4 || Start
+|-
+| 3 || Up
+|-
+| 2 || Down
+|-
+| 1 || Left
+|-
+| 0 || Right
+|}
+
+===Game State ($30-$4f)===
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $30 || 1 byte || Game mode
+|-
+| $31 || 1 byte || Game sub-mode
+|-
+| $32 || 1 byte || Current world (0-7)
+|-
+| $33 || 1 byte || Current stage (0-3)
+|-
+| $34 || 1 byte || Stage state flags
+|-
+| $35 || 1 byte || Lives remaining
+|-
+| $36 || 3 bytes || Score (BCD, 6 digits)
+|-
+| $39 || 3 bytes || High score (BCD)
+|-
+| $3c || 1 byte || Stage timer (ticks)
+|-
+| $3d || 1 byte || Stage timer display (seconds)
+|-
+| $3e || 1 byte || Items collected (current stage)
+|-
+| $3f || 1 byte || Items total (current stage)
+|-
+| $40 || 1 byte || Continue count
+|-
+| $41 || 1 byte || Player 1/2 indicator
+|}
+
+===Game Mode Values===
+
+{| class="wikitable"
+! Value !! Mode
+|-
+| $00 || Title screen
+|-
+| $01 || World map
+|-
+| $02 || Stage intro
+|-
+| $03 || Playing stage
+|-
+| $04 || Stage clear
+|-
+| $05 || Game over
+|-
+| $06 || Ending sequence
+|-
+| $07 || High score entry
+|-
+| $08 || Password screen
+|}
+
+==Mappy Player State ($50-$8f)==
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $50 || 1 byte || Player X position (pixel)
+|-
+| $51 || 1 byte || Player Y position (pixel)
+|-
+| $52 || 1 byte || Player X subpixel
+|-
+| $53 || 1 byte || Player Y subpixel
+|-
+| $54 || 1 byte || Player X velocity
+|-
+| $55 || 1 byte || Player Y velocity
+|-
+| $56 || 1 byte || Player direction (0=right, 1=left)
+|-
+| $57 || 1 byte || Player state
+|-
+| $58 || 1 byte || Animation frame
+|-
+| $59 || 1 byte || Animation timer
+|-
+| $5a || 1 byte || Jump state
+|-
+| $5b || 1 byte || Trampoline bounce count
+|-
+| $5c || 1 byte || Invincibility timer
+|-
+| $5d || 1 byte || Floor collision flag
+|-
+| $5e || 1 byte || Wall collision flag
+|-
+| $5f || 1 byte || On trampoline flag
+|}
+
+===Player State Values===
+
+{| class="wikitable"
+! Value !! State
+|-
+| $00 || Standing
+|-
+| $01 || Walking
+|-
+| $02 || Jumping
+|-
+| $03 || Falling
+|-
+| $04 || On trampoline
+|-
+| $05 || Bouncing
+|-
+| $06 || Using door
+|-
+| $07 || Hurt
+|-
+| $08 || Dying
+|-
+| $09 || Dead
+|}
+
+==Enemy State ($90-$ff)==
+
+Up to 8 enemies, $0e bytes each (addresses $90-$ed)
+
+===Enemy Slot Structure===
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 byte || Enemy type (0 = inactive)
+|-
+| $01 || 1 byte || X position
+|-
+| $02 || 1 byte || Y position
+|-
+| $03 || 1 byte || X subpixel
+|-
+| $04 || 1 byte || Y subpixel
+|-
+| $05 || 1 byte || X velocity
+|-
+| $06 || 1 byte || Y velocity
+|-
+| $07 || 1 byte || Direction
+|-
+| $08 || 1 byte || State
+|-
+| $09 || 1 byte || Animation frame
+|-
+| $0a || 1 byte || Animation timer
+|-
+| $0b || 1 byte || AI state
+|-
+| $0c || 1 byte || AI timer
+|-
+| $0d || 1 byte || Flags
+|}
+
+===Enemy Types===
+
+{| class="wikitable"
+! Value !! Type
+|-
+| $00 || Empty slot
+|-
+| $01 || Nyamco (cat)
+|-
+| $02 || Meowky
+|-
+| $03 || Goro (boss)
+|-
+| $04 || Mewkies
+|-
+| $05 || Ball enemy
+|-
+| $06 || Spike
+|-
+| $07 || Flying enemy
+|-
+| $08 || Roller
+|}
+
+==Item State ($0100-$013f)==
+
+Up to 16 items per stage, $04 bytes each
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 byte || Item type (0 = collected/inactive)
+|-
+| $01 || 1 byte || X position
+|-
+| $02 || 1 byte || Y position
+|-
+| $03 || 1 byte || Flags
+|}
+
+==Trampoline State ($0140-$015f)==
+
+Up to 8 trampolines, $04 bytes each
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 byte || Trampoline active flag
+|-
+| $01 || 1 byte || X position
+|-
+| $02 || 1 byte || Y position
+|-
+| $03 || 1 byte || Bounce count (0-3, 4=broken)
+|}
+
+==Door State ($0160-$017f)==
+
+Up to 8 doors, $04 bytes each
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 byte || Door active flag
+|-
+| $01 || 1 byte || X position
+|-
+| $02 || 1 byte || Y position
+|-
+| $03 || 1 byte || State (0=closed, 1=opening, 2=open)
+|}
+
+==Stage Data Cache ($0180-$01ff)==
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $0180 || 1 byte || Current stage width
+|-
+| $0181 || 1 byte || Current stage height
+|-
+| $0182 || 1 byte || Stage tileset ID
+|-
+| $0183 || 1 byte || Stage palette ID
+|-
+| $0184 || 2 bytes || Tile data pointer
+|-
+| $0186 || 2 bytes || Object pointer
+|-
+| $0188 || 1 byte || Enemy spawn count
+|-
+| $0189 || 1 byte || Item spawn count
+|-
+| $018a || 1 byte || Camera X scroll
+|-
+| $018b || 1 byte || Camera Y scroll (usually 0)
+|-
+| $018c-$01ff || Reserved || Stage-specific data
+|}
+
+==OAM Buffer ($0200-$02ff)==
+
+Standard NES OAM (Object Attribute Memory) buffer for sprite DMA.
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 byte || Y position
+|-
+| $01 || 1 byte || Tile index
+|-
+| $02 || 1 byte || Attributes
+|-
+| $03 || 1 byte || X position
+|}
+
+64 sprites total, repeating $04-byte pattern.
+
+===Sprite Attribute Bits===
+
+{| class="wikitable"
+! Bits !! Description
+|-
+| 0-1 || Palette (0-3)
+|-
+| 5 || Priority (0=in front, 1=behind)
+|-
+| 6 || Horizontal flip
+|-
+| 7 || Vertical flip
+|}
+
+==Audio State ($0300-$033f)==
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $0300 || 1 byte || Current music ID
+|-
+| $0301 || 1 byte || Music playing flag
+|-
+| $0302 || 1 byte || Music tempo
+|-
+| $0303 || 2 bytes || Music data pointer
+|-
+| $0305 || 1 byte || SFX channel 1 ID
+|-
+| $0306 || 1 byte || SFX channel 2 ID
+|-
+| $0307 || 1 byte || SFX priority
+|-
+| $0308-$030f || 8 bytes || Channel state data
+|-
+| $0310-$033f || 48 bytes || Note/envelope data
+|}
+
+==Name Table Buffer ($0400-$05ff)==
+
+512 bytes used for background tile updates during NMI.
+
+{| class="wikitable"
+! Address !! Description
+|-
+| $0400-$04ff || Row buffer for scrolling
+|-
+| $0500-$05ff || Column buffer and updates
+|}
+
+==Collision Map ($0600-$06ff)==
+
+256-byte cache of current screen collision data.
+
+{| class="wikitable"
+! Value !! Tile Type
+|-
+| $00 || Empty (walkable)
+|-
+| $01 || Solid floor
+|-
+| $02 || Solid wall
+|-
+| $03 || Platform (pass-through from below)
+|-
+| $04 || Ladder
+|-
+| $05 || Trampoline position
+|-
+| $06 || Door position
+|-
+| $07 || Hazard
+|}
+
+==Scratch RAM ($0700-$07ff)==
+
+General-purpose scratch area for decompression and level loading.
+
+{| class="wikitable"
+! Address !! Description
+|-
+| $0700-$073f || Decompression output buffer
+|-
+| $0740-$077f || Level decompression state
+|-
+| $0780-$07bf || Palette loading buffer
+|-
+| $07c0-$07ff || Stack area (grows down from $07ff)
+|}
+
+==Notes==
+
+* Mappy-Land uses typical NES RAM conventions
+* Zero page heavily used for speed-critical variables
+* OAM buffer at $0200 is standard for NES games using sprite DMA
+* MMC1 mapper provides bank switching but no additional RAM
+
+[[Category:Mappy-Land (NES)|RAM map]]

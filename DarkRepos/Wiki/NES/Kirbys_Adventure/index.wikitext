@@ -1,0 +1,149 @@
+{{Infobox game
+| title = Kirby's Adventure
+| image = Kirby's Adventure box.jpg
+| developer = HAL Laboratory
+| publisher = Nintendo
+| platform = NES
+| release = March 23, 1993 (JP), May 1, 1993 (US)
+| genre = Platformer
+| players = 1
+| mapper = MMC3
+| rom_size = 768 KB (6 Mbit)
+| ram_size = 8 KB
+}}
+
+'''Kirby's Adventure''' is a late-era NES platformer featuring Kirby's copy ability system for the first time.
+
+==Overview==
+
+One of the largest and most technically impressive NES games:
+* First appearance of copy abilities
+* 25 different copy abilities
+* 7 worlds with multiple levels
+* Mini-games and secrets
+* Advanced NES graphics techniques
+
+==Technical Information==
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ROM Size || 768 KB (6 Mbit)
+|-
+| RAM Size || 8 KB
+|-
+| Mapper || MMC3 (mapper 4)
+|-
+| Regions || JP, US, EU
+|-
+| CRC32 (US) || <code>86813F56</code>
+|}
+
+==Memory Map==
+
+{| class="wikitable"
+|-
+! Bank Range !! Description
+|-
+| PRG Banks || $00-$2f (48 banks × 8KB)
+|-
+| CHR Banks || $00-$ff (256 banks × 1KB)
+|}
+
+==Copy Abilities==
+
+{| class="wikitable"
+|-
+! ID !! Ability !! Enemy Source
+|-
+| $00 || Normal || (none)
+|-
+| $01 || Fire || Hot Head
+|-
+| $02 || Freeze || Chilly
+|-
+| $03 || Spark || Sparky
+|-
+| $04 || Cutter || Sir Kibble
+|-
+| $05 || Beam || Waddle Doo
+|-
+| $06 || Stone || Rocky
+|-
+| $07 || Needle || Needlous
+|-
+| $08 || Sword || Blade Knight
+|-
+| $09 || Hammer || Bonkers
+|-
+| $0a || Tornado || Twister
+|-
+| $0b || UFO || UFO
+|-
+| $0c || Sleep || Noddy
+|-
+| $0d || Backdrop || Bugzzy
+|-
+| $0e || Throw || Rolling Turtle
+|-
+| $0f || Wheel || Wheelie
+|-
+| $10 || Ball || Bubbles
+|-
+| $11 || Laser || Laser Ball
+|-
+| $12 || Mike || Walky
+|-
+| $13 || Light || Cool Spook
+|-
+| $14 || Hi-Jump || Starman
+|-
+| $15 || Crash || Bomber
+|-
+| $16 || Burning || Flamer
+|-
+| $17 || Star Rod || (Final Boss)
+|}
+
+==Worlds==
+
+{| class="wikitable"
+|-
+! ID !! World Name !! Levels !! Boss
+|-
+| 1 || Vegetable Valley || 4 || Whispy Woods
+|-
+| 2 || Ice Cream Island || 5 || Paint Roller
+|-
+| 3 || Butter Building || 6 || Mr. Shine & Mr. Bright
+|-
+| 4 || Grape Garden || 6 || Kracko
+|-
+| 5 || Yogurt Yard || 6 || Heavy Mole
+|-
+| 6 || Orange Ocean || 6 || Meta Knight
+|-
+| 7 || Rainbow Resort || 7 || King Dedede
+|}
+
+==Documentation==
+
+* [[Kirby's Adventure:ROM_Map|ROM Map]] - Complete ROM layout
+* [[Kirby's Adventure:RAM_Map|RAM Map]] - Runtime memory documentation
+
+==Known Dumps==
+
+{{known_dumps}}
+<!-- TODO: Add ROM hash data from TOSEC/No-Intro -->
+{{known_dumps/end}}
+
+==External Links==
+
+* [https://github.com/TheAnsarya/GameInfo GameInfo Repository]
+
+[[Category:NES Games]]
+[[Category:Kirby Series]]
+[[Category:Platformer]]
+[[Category:Nintendo]]
+[[Category:HAL Laboratory]]

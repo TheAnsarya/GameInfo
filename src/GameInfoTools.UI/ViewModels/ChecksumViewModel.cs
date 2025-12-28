@@ -57,11 +57,12 @@ public partial class ChecksumViewModel : ViewModelBase {
 		if (Application.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop) {
 			return desktop.MainWindow?.Clipboard;
 		}
+
 		return null;
 	}
 
 	/// <summary>
-	/// Copy checksums to clipboard as wikitext for Data Crystal.
+	/// Copy checksums to clipboard as MediaWiki wikitext.
 	/// </summary>
 	[RelayCommand]
 	private async Task CopyAsWikitext() {
@@ -84,12 +85,14 @@ public partial class ChecksumViewModel : ViewModelBase {
 			sb.AppendLine("|-");
 			sb.AppendLine($"| NES Checksum || <code>{NesChecksum}</code>");
 		}
+
 		if (!string.IsNullOrEmpty(SnesChecksum)) {
 			sb.AppendLine("|-");
 			sb.AppendLine($"| SNES Checksum || <code>{SnesChecksum}</code>");
 			sb.AppendLine("|-");
 			sb.AppendLine($"| SNES Complement || <code>{SnesComplement}</code>");
 		}
+
 		if (!string.IsNullOrEmpty(GbHeaderChecksum)) {
 			sb.AppendLine("|-");
 			sb.AppendLine($"| GB Header Checksum || <code>{GbHeaderChecksum}</code>");
@@ -121,6 +124,7 @@ public partial class ChecksumViewModel : ViewModelBase {
 			sb.AppendLine($"SNES:  {SnesChecksum}");
 			sb.AppendLine($"Comp:  {SnesComplement}");
 		}
+
 		if (!string.IsNullOrEmpty(GbHeaderChecksum)) {
 			sb.AppendLine($"GB Hdr: {GbHeaderChecksum}");
 			sb.AppendLine($"GB Gbl: {GbGlobalChecksum}");

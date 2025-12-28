@@ -1,0 +1,725 @@
+@namespace DarkRepos.Editor.Shared.Components.Editors.MapEditor
+
+@using DarkRepos.Editor.Core.Interfaces
+
+@inject IMapEditorService MapService
+
+<div class="map-editor">
+	<div class="editor-toolbar">
+		<div class="toolbar-group">
+			<label>Tile Format:</label>
+			<select @bind="SelectedTileFormat">
+				<option value="@MapTileFormat.Nes2Bpp">NES 2bpp</option>
+				<option value="@MapTileFormat.Snes4Bpp">SNES 4bpp</option>
+				<option value="@MapTileFormat.Snes8Bpp">SNES 8bpp</option>
+				<option value="@MapTileFormat.Gb2Bpp">Game Boy 2bpp</option>
+				<option value="@MapTileFormat.Genesis4Bpp">Genesis 4bpp</option>
+				<option value="@MapTileFormat.Gba4Bpp">GBA 4bpp</option>
+				<option value="@MapTileFormat.Gba8Bpp">GBA 8bpp</option>
+				<option value="@MapTileFormat.Linear1Bpp">Linear 1bpp</option>
+			</select>
+		</div>
+
+		<div class="toolbar-group">
+			<label>Map Format:</label>
+			<select @bind="SelectedMapFormat">
+				<option value="@MapFormat.Linear">Linear</option>
+				<option value="@MapFormat.NesNametable">NES Nametable</option>
+				<option value="@MapFormat.SnesTilemap">SNES Tilemap</option>
+				<option value="@MapFormat.GbBackground">GB Background</option>
+				<option value="@MapFormat.GenesisPlane">Genesis Plane</option>
+				<option value="@MapFormat.GbaTilemap">GBA Tilemap</option>
+				<option value="@MapFormat.ColumnMajor">Column Major</option>
+				<option value="@MapFormat.Block2x2">Block 2x2</option>
+				<option value="@MapFormat.CompressedRle">RLE Compressed</option>
+				<option value="@MapFormat.CompressedLzss">LZSS Compressed</option>
+			</select>
+		</div>
+
+		<div class="toolbar-group">
+			<label>Tileset Offset:</label>
+			<input type="text" @bind="TilesetOffsetHex" placeholder="0x0000" class="hex-input" />
+			<label>Tiles:</label>
+			<input type="number" @bind="TileCount" min="1" max="1024" class="number-input" />
+		</div>
+
+		<div class="toolbar-group">
+			<label>Map Offset:</label>
+			<input type="text" @bind="MapOffsetHex" placeholder="0x0000" class="hex-input" />
+			<label>Width:</label>
+			<input type="number" @bind="MapWidth" min="1" max="256" class="number-input" />
+			<label>Height:</label>
+			<input type="number" @bind="MapHeight" min="1" max="256" class="number-input" />
+		</div>
+
+		<div class="toolbar-group">
+			<button class="btn-primary" @onclick="LoadTileset" disabled="@(RomData == null)">Load Tileset</button>
+			<button class="btn-primary" @onclick="LoadMap" disabled="@(RomData == null || CurrentTileset == null)">Load Map</button>
+			<button class="btn-secondary" @onclick="ExportMap" disabled="@(CurrentMap == null)">Export</button>
+		</div>
+	</div>
+
+	<div class="editor-content">
+		<div class="tileset-panel">
+			<div class="panel-header">
+				<h3>Tileset</h3>
+				<span class="tile-count">@(CurrentTileset?.Tiles.Count ?? 0) tiles</span>
+			</div>
+			<div class="tileset-grid" @onkeydown="HandleTilesetKeyDown" tabindex="0">
+				@if (CurrentTileset != null)
+				{
+					@for (int i = 0; i < CurrentTileset.Tiles.Count; i++)
+					{
+						var index = i;
+						<div class="tileset-tile @(SelectedTileIndex == index ? "selected" : "")"
+							 @onclick="() => SelectTile(index)"
+							 title="Tile @index.ToString("X2")">
+							@if (TileImages.TryGetValue(index, out var img))
+							{
+								<img src="@img" alt="Tile @index" />
+							}
+							else
+							{
+								<span class="tile-index">@index.ToString("X2")</span>
+							}
+						</div>
+					}
+				}
+			</div>
+
+			<div class="tile-info">
+				@if (SelectedTileIndex >= 0 && CurrentTileset != null && SelectedTileIndex < CurrentTileset.Tiles.Count)
+				{
+					<div class="info-row">
+						<span class="label">Index:</span>
+						<span class="value">@SelectedTileIndex ($@SelectedTileIndex.ToString("X2"))</span>
+					</div>
+					<div class="info-row">
+						<span class="label">Size:</span>
+						<span class="value">@(CurrentTileset.TileWidth)x@(CurrentTileset.TileHeight)</span>
+					</div>
+				}
+			</div>
+		</div>
+
+		<div class="map-panel">
+			<div class="panel-header">
+				<h3>Map</h3>
+				@if (CurrentMap != null)
+				{
+					<span class="map-size">@(CurrentMap.Width)x@(CurrentMap.Height)</span>
+					@if (CurrentMap.IsModified)
+					{
+						<span class="modified-badge">Modified</span>
+					}
+				}
+			</div>
+
+			<div class="map-tools">
+				<button class="tool-btn @(CurrentTool == MapTool.Select ? "active" : "")"
+						@onclick="() => CurrentTool = MapTool.Select"
+						title="Select">
+					<span class="icon">☐</span>
+				</button>
+				<button class="tool-btn @(CurrentTool == MapTool.Draw ? "active" : "")"
+						@onclick="() => CurrentTool = MapTool.Draw"
+						title="Draw">
+					<span class="icon">✏</span>
+				</button>
+				<button class="tool-btn @(CurrentTool == MapTool.Fill ? "active" : "")"
+						@onclick="() => CurrentTool = MapTool.Fill"
+						title="Fill Region">
+					<span class="icon">▮</span>
+				</button>
+				<button class="tool-btn @(CurrentTool == MapTool.FloodFill ? "active" : "")"
+						@onclick="() => CurrentTool = MapTool.FloodFill"
+						title="Flood Fill">
+					<span class="icon">◉</span>
+				</button>
+				<div class="tool-separator"></div>
+				<button class="tool-btn" @onclick="CopySelection" disabled="@(!HasSelection)" title="Copy">
+					<span class="icon">⧉</span>
+				</button>
+				<button class="tool-btn" @onclick="PasteSelection" disabled="@(ClipboardRegion == null)" title="Paste">
+					<span class="icon">⧈</span>
+				</button>
+				<div class="tool-separator"></div>
+				<label>Zoom:</label>
+				<select @bind="ZoomLevel">
+					<option value="1">100%</option>
+					<option value="2">200%</option>
+					<option value="3">300%</option>
+					<option value="4">400%</option>
+				</select>
+			</div>
+
+			<div class="map-viewport" @onmousedown="HandleMapMouseDown" @onmousemove="HandleMapMouseMove" @onmouseup="HandleMapMouseUp">
+				@if (CurrentMap != null && MapImage != null)
+				{
+					<img src="@MapImage" alt="Map" class="map-image" style="image-rendering: pixelated; transform: scale(@ZoomLevel);" />
+
+					@if (ShowGrid)
+					{
+						<div class="map-grid-overlay" style="transform: scale(@ZoomLevel);"></div>
+					}
+
+					@if (SelectionRect.HasValue)
+					{
+						<div class="selection-overlay" style="@GetSelectionStyle()"></div>
+					}
+
+					@if (HoverX >= 0 && HoverY >= 0)
+					{
+						<div class="hover-tile" style="@GetHoverStyle()"></div>
+					}
+				}
+				else
+				{
+					<div class="map-placeholder">
+						<p>No map loaded</p>
+						<p class="hint">Load a tileset first, then load a map</p>
+					</div>
+				}
+			</div>
+
+			<div class="map-info">
+				@if (CurrentMap != null)
+				{
+					<span>Position: @HoverX, @HoverY</span>
+					@if (HoverX >= 0 && HoverY >= 0 && HoverX < CurrentMap.Width && HoverY < CurrentMap.Height)
+					{
+						var tile = CurrentMap.Tiles[HoverX, HoverY];
+						<span>| Tile: @tile.TileIndex.ToString("X2")</span>
+						<span>| Palette: @tile.PaletteIndex</span>
+						@if (tile.FlipX || tile.FlipY)
+						{
+							<span>| Flip: @(tile.FlipX ? "H" : "")@(tile.FlipY ? "V" : "")</span>
+						}
+					}
+				}
+			</div>
+		</div>
+
+		<div class="properties-panel">
+			<div class="panel-header">
+				<h3>Properties</h3>
+			</div>
+
+			@if (CurrentMap != null && SelectedMapX >= 0 && SelectedMapY >= 0)
+			{
+				var selectedTile = CurrentMap.Tiles[SelectedMapX, SelectedMapY];
+				<div class="property-group">
+					<h4>Selected Tile</h4>
+					<div class="property-row">
+						<label>Position:</label>
+						<span>@SelectedMapX, @SelectedMapY</span>
+					</div>
+					<div class="property-row">
+						<label>Tile Index:</label>
+						<input type="number" value="@selectedTile.TileIndex" 
+							   @onchange="e => UpdateTileIndex(e)" min="0" />
+					</div>
+					<div class="property-row">
+						<label>Palette:</label>
+						<input type="number" value="@selectedTile.PaletteIndex" 
+							   @onchange="e => UpdatePaletteIndex(e)" min="0" max="7" />
+					</div>
+					<div class="property-row">
+						<label>Priority:</label>
+						<input type="number" value="@selectedTile.Priority" 
+							   @onchange="e => UpdatePriority(e)" min="0" max="1" />
+					</div>
+					<div class="property-row">
+						<label>Flip X:</label>
+						<input type="checkbox" checked="@selectedTile.FlipX" 
+							   @onchange="e => ToggleFlipX()" />
+					</div>
+					<div class="property-row">
+						<label>Flip Y:</label>
+						<input type="checkbox" checked="@selectedTile.FlipY" 
+							   @onchange="e => ToggleFlipY()" />
+					</div>
+				</div>
+			}
+
+			<div class="property-group">
+				<h4>Palette</h4>
+				<div class="palette-editor">
+					@for (int p = 0; p < 8; p++)
+					{
+						var paletteIndex = p;
+						<div class="palette-row @(SelectedPalette == paletteIndex ? "selected" : "")"
+							 @onclick="() => SelectPalette(paletteIndex)">
+							<span class="palette-label">P@p</span>
+							<div class="palette-colors">
+								@if (CurrentPalettes.TryGetValue(paletteIndex, out var palette))
+								{
+									@for (int c = 0; c < Math.Min(palette.Colors.Length, 16); c++)
+									{
+										var color = palette.Colors[c];
+										<div class="color-swatch" 
+											 style="background-color: @GetCssColor(color);"
+											 title="Color @c"></div>
+									}
+								}
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+
+			<div class="property-group">
+				<h4>Validation</h4>
+				<button class="btn-secondary" @onclick="ValidateMap" disabled="@(CurrentMap == null || CurrentTileset == null)">
+					Validate Map
+				</button>
+				@if (ValidationResult != null)
+				{
+					<div class="validation-result @(ValidationResult.IsValid ? "valid" : "invalid")">
+						@if (ValidationResult.IsValid)
+						{
+							<span class="status">✓ Map is valid</span>
+							<span class="detail">@ValidationResult.UniqueTilesUsed unique tiles used</span>
+						}
+						else
+						{
+							<span class="status">✗ Validation failed</span>
+							<ul class="error-list">
+								@foreach (var error in ValidationResult.Errors)
+								{
+									<li>@error</li>
+								}
+							</ul>
+						}
+					</div>
+				}
+			</div>
+
+			<div class="property-group">
+				<h4>Display Options</h4>
+				<div class="property-row">
+					<label>Show Grid:</label>
+					<input type="checkbox" @bind="ShowGrid" />
+				</div>
+				<div class="property-row">
+					<label>Transparent BG:</label>
+					<input type="checkbox" @bind="TransparentBackground" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="status-bar">
+		<span class="status-item">@StatusMessage</span>
+		@if (CurrentTileset != null)
+		{
+			<span class="status-item">Tileset: @CurrentTileset.Tiles.Count tiles @@$@(TilesetOffset.ToString("X4"))</span>
+		}
+		@if (CurrentMap != null)
+		{
+			<span class="status-item">Map: @(CurrentMap.Width)x@(CurrentMap.Height) @@$@(MapOffset.ToString("X4"))</span>
+		}
+	</div>
+</div>
+
+@code {
+	[Parameter] public byte[]? RomData { get; set; }
+	[Parameter] public EventCallback<byte[]> OnExport { get; set; }
+
+	// Settings
+	private MapTileFormat SelectedTileFormat { get; set; } = MapTileFormat.Nes2Bpp;
+	private MapFormat SelectedMapFormat { get; set; } = MapFormat.Linear;
+	private int TilesetOffset { get; set; }
+	private int TileCount { get; set; } = 256;
+	private int MapOffset { get; set; }
+	private int MapWidth { get; set; } = 32;
+	private int MapHeight { get; set; } = 32;
+
+	// Hex input helpers
+	private string TilesetOffsetHex
+	{
+		get => $"0x{TilesetOffset:X4}";
+		set => TilesetOffset = ParseHex(value);
+	}
+	private string MapOffsetHex
+	{
+		get => $"0x{MapOffset:X4}";
+		set => MapOffset = ParseHex(value);
+	}
+
+	// State
+	private Tileset? CurrentTileset { get; set; }
+	private TileMap? CurrentMap { get; set; }
+	private Dictionary<int, string> TileImages { get; set; } = [];
+	private string? MapImage { get; set; }
+	private Dictionary<int, MapPalette> CurrentPalettes { get; set; } = [];
+	private int SelectedTileIndex { get; set; } = -1;
+	private int SelectedPalette { get; set; }
+	private MapValidationResult? ValidationResult { get; set; }
+	private string StatusMessage { get; set; } = "Ready";
+
+	// Map editing
+	private MapTool CurrentTool { get; set; } = MapTool.Draw;
+	private int SelectedMapX { get; set; } = -1;
+	private int SelectedMapY { get; set; } = -1;
+	private int HoverX { get; set; } = -1;
+	private int HoverY { get; set; } = -1;
+	private bool IsDrawing { get; set; }
+	private (int X, int Y, int Width, int Height)? SelectionRect { get; set; }
+	private TileRegion? ClipboardRegion { get; set; }
+	private int ZoomLevel { get; set; } = 2;
+	private bool ShowGrid { get; set; } = true;
+	private bool TransparentBackground { get; set; }
+
+	private bool HasSelection => SelectionRect.HasValue && SelectionRect.Value.Width > 0 && SelectionRect.Value.Height > 0;
+
+	private enum MapTool { Select, Draw, Fill, FloodFill }
+
+	protected override void OnInitialized()
+	{
+		InitializeDefaultPalettes();
+	}
+
+	private void InitializeDefaultPalettes()
+	{
+		// NES-style grayscale palettes
+		for (int p = 0; p < 8; p++)
+		{
+			CurrentPalettes[p] = new MapPalette
+			{
+				Name = $"Palette {p}",
+				ColorCount = 4,
+				Colors = [0xff000000, 0xff555555, 0xffaaaaaa, 0xffffffff],
+				TransparentIndex0 = true
+			};
+		}
+	}
+
+	private void LoadTileset()
+	{
+		if (RomData == null) return;
+
+		try
+		{
+			CurrentTileset = MapService.LoadTileset(RomData, TilesetOffset, TileCount, SelectedTileFormat);
+			RenderTilesetImages();
+			StatusMessage = $"Loaded {CurrentTileset.Tiles.Count} tiles";
+		}
+		catch (Exception ex)
+		{
+			StatusMessage = $"Error: {ex.Message}";
+		}
+	}
+
+	private void LoadMap()
+	{
+		if (RomData == null || CurrentTileset == null) return;
+
+		try
+		{
+			CurrentMap = MapService.LoadMap(RomData, MapOffset, MapWidth, MapHeight, SelectedMapFormat);
+			RenderMapImage();
+			StatusMessage = $"Loaded {CurrentMap.Width}x{CurrentMap.Height} map";
+		}
+		catch (Exception ex)
+		{
+			StatusMessage = $"Error: {ex.Message}";
+		}
+	}
+
+	private void RenderTilesetImages()
+	{
+		TileImages.Clear();
+		if (CurrentTileset == null) return;
+
+		var palette = CurrentPalettes.TryGetValue(SelectedPalette, out var p) ? p : CurrentPalettes[0];
+
+		for (int i = 0; i < CurrentTileset.Tiles.Count; i++)
+		{
+			try
+			{
+				var tile = new MapTile { TileIndex = i };
+				var png = MapService.RenderTileToPng(tile, CurrentTileset, palette, 1);
+				TileImages[i] = $"data:image/png;base64,{Convert.ToBase64String(png)}";
+			}
+			catch
+			{
+				// Skip tiles that fail to render
+			}
+		}
+	}
+
+	private void RenderMapImage()
+	{
+		if (CurrentMap == null || CurrentTileset == null) return;
+
+		var palette = CurrentPalettes.TryGetValue(SelectedPalette, out var p) ? p : CurrentPalettes[0];
+
+		try
+		{
+			var png = MapService.RenderMapToPng(CurrentMap, CurrentTileset, palette);
+			MapImage = $"data:image/png;base64,{Convert.ToBase64String(png)}";
+		}
+		catch (Exception ex)
+		{
+			StatusMessage = $"Render error: {ex.Message}";
+		}
+	}
+
+	private void SelectTile(int index)
+	{
+		SelectedTileIndex = index;
+	}
+
+	private void SelectPalette(int index)
+	{
+		SelectedPalette = index;
+		RenderTilesetImages();
+		RenderMapImage();
+	}
+
+	private void HandleTilesetKeyDown(KeyboardEventArgs e)
+	{
+		if (CurrentTileset == null) return;
+
+		var maxIndex = CurrentTileset.Tiles.Count - 1;
+		var cols = 16;
+
+		switch (e.Key)
+		{
+			case "ArrowLeft":
+				if (SelectedTileIndex > 0) SelectedTileIndex--;
+				break;
+			case "ArrowRight":
+				if (SelectedTileIndex < maxIndex) SelectedTileIndex++;
+				break;
+			case "ArrowUp":
+				if (SelectedTileIndex >= cols) SelectedTileIndex -= cols;
+				break;
+			case "ArrowDown":
+				if (SelectedTileIndex + cols <= maxIndex) SelectedTileIndex += cols;
+				break;
+		}
+	}
+
+	private void HandleMapMouseDown(MouseEventArgs e)
+	{
+		if (CurrentMap == null) return;
+
+		var (x, y) = GetMapCoords(e);
+		if (x < 0 || y < 0 || x >= CurrentMap.Width || y >= CurrentMap.Height) return;
+
+		IsDrawing = true;
+		SelectedMapX = x;
+		SelectedMapY = y;
+
+		switch (CurrentTool)
+		{
+			case MapTool.Draw:
+				if (SelectedTileIndex >= 0)
+				{
+					var tile = new MapTile { TileIndex = SelectedTileIndex, PaletteIndex = SelectedPalette };
+					MapService.SetTile(CurrentMap, x, y, tile);
+					RenderMapImage();
+				}
+				break;
+
+			case MapTool.FloodFill:
+				if (SelectedTileIndex >= 0)
+				{
+					var tile = new MapTile { TileIndex = SelectedTileIndex, PaletteIndex = SelectedPalette };
+					MapService.FloodFill(CurrentMap, x, y, tile);
+					RenderMapImage();
+				}
+				break;
+
+			case MapTool.Select:
+				SelectionRect = (x, y, 1, 1);
+				break;
+		}
+	}
+
+	private void HandleMapMouseMove(MouseEventArgs e)
+	{
+		if (CurrentMap == null) return;
+
+		var (x, y) = GetMapCoords(e);
+		HoverX = x;
+		HoverY = y;
+
+		if (!IsDrawing) return;
+
+		if (x < 0 || y < 0 || x >= CurrentMap.Width || y >= CurrentMap.Height) return;
+
+		switch (CurrentTool)
+		{
+			case MapTool.Draw:
+				if (SelectedTileIndex >= 0)
+				{
+					var tile = new MapTile { TileIndex = SelectedTileIndex, PaletteIndex = SelectedPalette };
+					MapService.SetTile(CurrentMap, x, y, tile);
+					RenderMapImage();
+				}
+				break;
+
+			case MapTool.Select:
+				if (SelectionRect.HasValue)
+				{
+					var startX = SelectionRect.Value.X;
+					var startY = SelectionRect.Value.Y;
+					SelectionRect = (
+						Math.Min(startX, x),
+						Math.Min(startY, y),
+						Math.Abs(x - startX) + 1,
+						Math.Abs(y - startY) + 1
+					);
+				}
+				break;
+		}
+	}
+
+	private void HandleMapMouseUp(MouseEventArgs e)
+	{
+		if (CurrentTool == MapTool.Fill && SelectionRect.HasValue && SelectedTileIndex >= 0)
+		{
+			var tile = new MapTile { TileIndex = SelectedTileIndex, PaletteIndex = SelectedPalette };
+			MapService.FillRegion(CurrentMap!, SelectionRect.Value.X, SelectionRect.Value.Y,
+				SelectionRect.Value.Width, SelectionRect.Value.Height, tile);
+			RenderMapImage();
+		}
+		IsDrawing = false;
+	}
+
+	private (int X, int Y) GetMapCoords(MouseEventArgs e)
+	{
+		// This is a simplified calculation - in reality you'd need to account for
+		// scroll position and the actual element bounds
+		var tileSize = (CurrentTileset?.TileWidth ?? 8) * ZoomLevel;
+		var x = (int)(e.OffsetX / tileSize);
+		var y = (int)(e.OffsetY / tileSize);
+		return (x, y);
+	}
+
+	private void CopySelection()
+	{
+		if (CurrentMap == null || !SelectionRect.HasValue) return;
+
+		var rect = SelectionRect.Value;
+		ClipboardRegion = MapService.CopyRegion(CurrentMap, rect.X, rect.Y, rect.Width, rect.Height);
+		StatusMessage = $"Copied {rect.Width}x{rect.Height} region";
+	}
+
+	private void PasteSelection()
+	{
+		if (CurrentMap == null || ClipboardRegion == null || SelectedMapX < 0) return;
+
+		MapService.PasteRegion(CurrentMap, SelectedMapX, SelectedMapY, ClipboardRegion);
+		RenderMapImage();
+		StatusMessage = $"Pasted {ClipboardRegion.Width}x{ClipboardRegion.Height} region";
+	}
+
+	private void ValidateMap()
+	{
+		if (CurrentMap == null || CurrentTileset == null) return;
+
+		ValidationResult = MapService.ValidateMap(CurrentMap, CurrentTileset);
+		StatusMessage = ValidationResult.IsValid ? "Map validated successfully" : "Map validation failed";
+	}
+
+	private void UpdateTileIndex(ChangeEventArgs e)
+	{
+		if (CurrentMap == null || SelectedMapX < 0) return;
+		if (int.TryParse(e.Value?.ToString(), out var index))
+		{
+			CurrentMap.Tiles[SelectedMapX, SelectedMapY].TileIndex = index;
+			CurrentMap.IsModified = true;
+			RenderMapImage();
+		}
+	}
+
+	private void UpdatePaletteIndex(ChangeEventArgs e)
+	{
+		if (CurrentMap == null || SelectedMapX < 0) return;
+		if (int.TryParse(e.Value?.ToString(), out var index))
+		{
+			CurrentMap.Tiles[SelectedMapX, SelectedMapY].PaletteIndex = index;
+			CurrentMap.IsModified = true;
+			RenderMapImage();
+		}
+	}
+
+	private void UpdatePriority(ChangeEventArgs e)
+	{
+		if (CurrentMap == null || SelectedMapX < 0) return;
+		if (int.TryParse(e.Value?.ToString(), out var priority))
+		{
+			CurrentMap.Tiles[SelectedMapX, SelectedMapY].Priority = priority;
+			CurrentMap.IsModified = true;
+		}
+	}
+
+	private void ToggleFlipX()
+	{
+		if (CurrentMap == null || SelectedMapX < 0) return;
+		CurrentMap.Tiles[SelectedMapX, SelectedMapY].FlipX = !CurrentMap.Tiles[SelectedMapX, SelectedMapY].FlipX;
+		CurrentMap.IsModified = true;
+		RenderMapImage();
+	}
+
+	private void ToggleFlipY()
+	{
+		if (CurrentMap == null || SelectedMapX < 0) return;
+		CurrentMap.Tiles[SelectedMapX, SelectedMapY].FlipY = !CurrentMap.Tiles[SelectedMapX, SelectedMapY].FlipY;
+		CurrentMap.IsModified = true;
+		RenderMapImage();
+	}
+
+	private async Task ExportMap()
+	{
+		if (CurrentMap == null) return;
+
+		var data = MapService.ExportMap(CurrentMap, SelectedMapFormat);
+		await OnExport.InvokeAsync(data);
+		StatusMessage = $"Exported {data.Length} bytes";
+	}
+
+	private string GetSelectionStyle()
+	{
+		if (!SelectionRect.HasValue || CurrentTileset == null) return "";
+
+		var rect = SelectionRect.Value;
+		var tileSize = CurrentTileset.TileWidth * ZoomLevel;
+
+		return $"left: {rect.X * tileSize}px; top: {rect.Y * tileSize}px; " +
+			   $"width: {rect.Width * tileSize}px; height: {rect.Height * tileSize}px;";
+	}
+
+	private string GetHoverStyle()
+	{
+		if (CurrentTileset == null) return "";
+
+		var tileSize = CurrentTileset.TileWidth * ZoomLevel;
+		return $"left: {HoverX * tileSize}px; top: {HoverY * tileSize}px; " +
+			   $"width: {tileSize}px; height: {tileSize}px;";
+	}
+
+	private static string GetCssColor(uint argb)
+	{
+		var a = (argb >> 24) & 0xff;
+		var r = (argb >> 16) & 0xff;
+		var g = (argb >> 8) & 0xff;
+		var b = argb & 0xff;
+		return $"rgba({r}, {g}, {b}, {a / 255.0:F2})";
+	}
+
+	private static int ParseHex(string value)
+	{
+		value = value.Trim();
+		if (value.StartsWith("0x", StringComparison.OrdinalIgnoreCase))
+			value = value[2..];
+		else if (value.StartsWith("$"))
+			value = value[1..];
+
+		return int.TryParse(value, System.Globalization.NumberStyles.HexNumber, null, out var result) ? result : 0;
+	}
+}

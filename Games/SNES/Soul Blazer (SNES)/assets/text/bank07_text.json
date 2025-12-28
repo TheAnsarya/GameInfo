@@ -1,0 +1,29 @@
+[
+	{
+		"file_offset": 232524,
+		"bank": 7,
+		"address": 35916,
+		"cpu_address": "$07:8c4c",
+		"length": 13,
+		"raw": "43435f54232378432142342231",
+		"text": "CC_T##xC!B4\"1"
+	},
+	{
+		"file_offset": 247720,
+		"bank": 7,
+		"address": 51112,
+		"cpu_address": "$07:c7a8",
+		"length": 12,
+		"raw": "543243033242212022546222",
+		"text": "T2C{CLEAR}2B! \"Tb\""
+	},
+	{
+		"file_offset": 248455,
+		"bank": 7,
+		"address": 51847,
+		"cpu_address": "$07:ca87",
+		"length": 10,
+		"raw": "3f4f3054252543425423",
+		"text": "?O0T%%CBT#"
+	}
+]

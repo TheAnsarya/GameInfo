@@ -1,0 +1,29 @@
+[
+	{
+		"file_offset": 565427,
+		"bank": 17,
+		"address": 41139,
+		"cpu_address": "$11:a0b3",
+		"length": 11,
+		"raw": "5d32824826532e857a6150",
+		"text": "]2...H&S.?zaP"
+	},
+	{
+		"file_offset": 567989,
+		"bank": 17,
+		"address": 43701,
+		"cpu_address": "$11:aab5",
+		"length": 13,
+		"raw": "3c80005c20395148413f305078",
+		"text": "<'"
+	},
+	{
+		"file_offset": 571360,
+		"bank": 17,
+		"address": 47072,
+		"cpu_address": "$11:b7e0",
+		"length": 11,
+		"raw": "72766340708472013e3184",
+		"text": "rvc@p!r{NL}>1!"
+	}
+]

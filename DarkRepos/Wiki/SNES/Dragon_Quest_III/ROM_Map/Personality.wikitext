@@ -1,0 +1,71 @@
+{{Back|Dragon Quest III (SNES)/ROM_Map}}
+{{subpage}}
+
+= Dragon Quest III (SNES) - Personality Data =
+
+This page documents the personality type data structure in Dragon Quest III (SNES).
+
+== Main ==
+
+Monsters, see [[Dragon Quest III (SNES)/Values#Personality|Value List]]
+
+The main data resides from <code>$c424bc-$xxxx</code>. Each entry is <code>$0b</code> bytes long. There are <code>$2f</code> entries.
+
+{| class="wikitable sortable"
+|-
+!  Index  !!  Address  !! Size  !!  Description
+|-
+|  $00  ||  $xxxx-$xxxx  ||  $xxxx bytes  ||  
+|-
+
+===Primary Data Structure===
+Each entry is <code>$0b</code> bytes long.
+
+{| class="wikitable sortable"
+|-
+!  Offset  !!  Mask  !!  Size  !!  Description
+|-
+|  $00-$01  ||  $ffff  ||  word  ||  Name, index of string
+|-
+
+
+
+offset	digit	attribute
+#$00	#$ffff	name
+#$02	#$00ff	Chikara coefficient
+#$03	#$00ff	Swiftness coefficient
+#$04	#$00ff	Tairyoku coefficient
+#$05	#$00ff	Cleverness coefficient
+#$06	#$00ff	Okayness factor
+#$07	#$0003	gender
+#$07	#$001c	Evaluation of the Registry Office
+#$07	#$0020	Personality Change 0: Male
+#$07	#$0040	Personality Change 1: Female
+#$07	#$0780	Derma Rating 0: Senshi
+#$08	#$0078	Dharma Rating 1: Butouka
+#$08	#$0780	Dharma Rating 2: Soryo
+#$09	#$0078	Dharma Rating 3: Mahou Tsukai
+#$09	#$0780	Dharma Rating 4: Kenja
+#$0a	#$0078	Dharma Rating 5: Shounin
+#$0a	#$0780	Dharma Rating 6: Play
+#$0b	#$0078	Dharma Rating 7: Tozoku
+#$0b	#$0080	(Unused)
+
+
+|}
+
+===Coefficients===
+[Todo: Add]
+
+===Full List===
+Personality ROM layout, expanded.
+[TODO: Update according to new data structure]
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !! Size  !!  Description
+|-
+|}
+
+
+{{Internal Data|game=Dragon Quest III (SNES)}}

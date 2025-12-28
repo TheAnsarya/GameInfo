@@ -76,7 +76,7 @@ public partial class MainWindowViewModel : ViewModelBase {
 			"cdl" => new CdlViewerViewModel(),
 			"build" => new BuildPipelineViewModel(_loadedRom),
 			"wiki" => new WikiEditorViewModel(_loadedRom),
-			"datacrystal" => new DataCrystalViewModel(),
+			"darkrepos" => new DarkReposViewModel(),
 			"symbols" => new SymbolManagerViewModel(_loadedRom),
 			"memory" => new MemoryLayoutViewModel(_loadedRom),
 			"palette" => new PaletteEditorViewModel(_loadedRom),

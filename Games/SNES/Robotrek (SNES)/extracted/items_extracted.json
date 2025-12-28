@@ -1,0 +1,502 @@
+{
+	"items": [
+		{
+			"index": 0,
+			"hex_index": "$00",
+			"name_address": "$01e413",
+			"name": "Nothing"
+		},
+		{
+			"index": 1,
+			"hex_index": "$01",
+			"name_address": "$01e41b",
+			"name": "Sword 1"
+		},
+		{
+			"index": 2,
+			"hex_index": "$02",
+			"name_address": "$01e423",
+			"name": "Sword 2"
+		},
+		{
+			"index": 3,
+			"hex_index": "$03",
+			"name_address": "$01e42b",
+			"name": "Sword 3"
+		},
+		{
+			"index": 4,
+			"hex_index": "$04",
+			"name_address": "$01e433",
+			"name": "Sword 4"
+		},
+		{
+			"index": 5,
+			"hex_index": "$05",
+			"name_address": "$01e43b",
+			"name": "Axe 1"
+		},
+		{
+			"index": 6,
+			"hex_index": "$06",
+			"name_address": "$01e441",
+			"name": "Axe 2"
+		},
+		{
+			"index": 7,
+			"hex_index": "$07",
+			"name_address": "$01e447",
+			"name": "Axe 3"
+		},
+		{
+			"index": 8,
+			"hex_index": "$08",
+			"name_address": "$01e44d",
+			"name": "Blade 1"
+		},
+		{
+			"index": 9,
+			"hex_index": "$09",
+			"name_address": "$01e455",
+			"name": "Blade 2"
+		},
+		{
+			"index": 10,
+			"hex_index": "$0a",
+			"name_address": "$01e45d",
+			"name": "Blade 3"
+		},
+		{
+			"index": 11,
+			"hex_index": "$0b",
+			"name_address": "$01e465",
+			"name": "Blade 4"
+		},
+		{
+			"index": 12,
+			"hex_index": "$0c",
+			"name_address": "$01e46d",
+			"name": "Hammer 1"
+		},
+		{
+			"index": 13,
+			"hex_index": "$0d",
+			"name_address": "$01e476",
+			"name": "Hammer 2"
+		},
+		{
+			"index": 14,
+			"hex_index": "$0e",
+			"name_address": "$01e47f",
+			"name": "Hammer 3"
+		},
+		{
+			"index": 15,
+			"hex_index": "$0f",
+			"name_address": "$01e488",
+			"name": "Celtis 1"
+		},
+		{
+			"index": 16,
+			"hex_index": "$10",
+			"name_address": "$01e491",
+			"name": "Celtis 2"
+		},
+		{
+			"index": 17,
+			"hex_index": "$11",
+			"name_address": "$01e49a",
+			"name": "Celtis 3"
+		},
+		{
+			"index": 18,
+			"hex_index": "$12",
+			"name_address": "$01e4a3",
+			"name": "Punch 1"
+		},
+		{
+			"index": 19,
+			"hex_index": "$13",
+			"name_address": "$01e4ab",
+			"name": "Punch 2"
+		},
+		{
+			"index": 20,
+			"hex_index": "$14",
+			"name_address": "$01e4b3",
+			"name": "Punch 3"
+		},
+		{
+			"index": 21,
+			"hex_index": "$15",
+			"name_address": "$01e4bb",
+			"name": "Blow 1"
+		},
+		{
+			"index": 22,
+			"hex_index": "$16",
+			"name_address": "$01e4c2",
+			"name": "Blow 2"
+		},
+		{
+			"index": 23,
+			"hex_index": "$17",
+			"name_address": "$01e4c9",
+			"name": "Blow 3"
+		},
+		{
+			"index": 24,
+			"hex_index": "$18",
+			"name_address": "$01e4d0",
+			"name": "Shot 1"
+		},
+		{
+			"index": 25,
+			"hex_index": "$19",
+			"name_address": "$01e4d7",
+			"name": "Shot 2"
+		},
+		{
+			"index": 26,
+			"hex_index": "$1a",
+			"name_address": "$01e4de",
+			"name": "Shot 3"
+		},
+		{
+			"index": 27,
+			"hex_index": "$1b",
+			"name_address": "$01e4e5",
+			"name": "Laser 1"
+		},
+		{
+			"index": 28,
+			"hex_index": "$1c",
+			"name_address": "$01e4ed",
+			"name": "Laser 2"
+		},
+		{
+			"index": 29,
+			"hex_index": "$1d",
+			"name_address": "$01e4f5",
+			"name": "Laser 3"
+		},
+		{
+			"index": 30,
+			"hex_index": "$1e",
+			"name_address": "$01e4fd",
+			"name": "Bomb 1"
+		},
+		{
+			"index": 31,
+			"hex_index": "$1f",
+			"name_address": "$01e504",
+			"name": "Bomb 2"
+		},
+		{
+			"index": 32,
+			"hex_index": "$20",
+			"name_address": "$01e50b",
+			"name": "Bomb 3"
+		},
+		{
+			"index": 33,
+			"hex_index": "$21",
+			"name_address": "$01e512",
+			"name": "Bomb 4"
+		},
+		{
+			"index": 34,
+			"hex_index": "$22",
+			"name_address": "$01e519",
+			"name": "Shield 1"
+		},
+		{
+			"index": 35,
+			"hex_index": "$23",
+			"name_address": "$01e522",
+			"name": "Shield 2"
+		},
+		{
+			"index": 36,
+			"hex_index": "$24",
+			"name_address": "$01e52b",
+			"name": "Shield 3"
+		},
+		{
+			"index": 37,
+			"hex_index": "$25",
+			"name_address": "$01e534",
+			"name": "Shield 4"
+		},
+		{
+			"index": 38,
+			"hex_index": "$26",
+			"name_address": "$01e53d",
+			"name": "Shield 5"
+		},
+		{
+			"index": 39,
+			"hex_index": "$27",
+			"name_address": "$01e546",
+			"name": "Empty Pack"
+		},
+		{
+			"index": 40,
+			"hex_index": "$28",
+			"name_address": "$01e551",
+			"name": "Power Pack"
+		},
+		{
+			"index": 41,
+			"hex_index": "$29",
+			"name_address": "$01e55c",
+			"name": "Shield Pack"
+		},
+		{
+			"index": 42,
+			"hex_index": "$2a",
+			"name_address": "$01e568",
+			"name": "Turbo Pack"
+		},
+		{
+			"index": 43,
+			"hex_index": "$2b",
+			"name_address": "$01e573",
+			"name": "Solar Pack"
+		},
+		{
+			"index": 44,
+			"hex_index": "$2c",
+			"name_address": "$01e57e",
+			"name": "Quick Pack"
+		},
+		{
+			"index": 45,
+			"hex_index": "$2d",
+			"name_address": "$01e589",
+			"name": "Boots 1"
+		},
+		{
+			"index": 46,
+			"hex_index": "$2e",
+			"name_address": "$01e591",
+			"name": "Boots 2"
+		},
+		{
+			"index": 47,
+			"hex_index": "$2f",
+			"name_address": "$01e599",
+			"name": "Boots 3"
+		},
+		{
+			"index": 48,
+			"hex_index": "$30",
+			"name_address": "$01e5a1",
+			"name": "Boots 4"
+		},
+		{
+			"index": 49,
+			"hex_index": "$31",
+			"name_address": "$01e5a9",
+			"name": "Boots 5"
+		},
+		{
+			"index": 50,
+			"hex_index": "$32",
+			"name_address": "$01e5b1",
+			"name": "Boots 6"
+		},
+		{
+			"index": 51,
+			"hex_index": "$33",
+			"name_address": "$01e5b9",
+			"name": "Transiver"
+		},
+		{
+			"index": 52,
+			"hex_index": "$34",
+			"name_address": "$01e5c3",
+			"name": "Horn"
+		},
+		{
+			"index": 53,
+			"hex_index": "$35",
+			"name_address": "$01e5c8",
+			"name": "Drill"
+		},
+		{
+			"index": 54,
+			"hex_index": "$36",
+			"name_address": "$01e5ce",
+			"name": "Vanish"
+		},
+		{
+			"index": 55,
+			"hex_index": "$37",
+			"name_address": "$01e5d5",
+			"name": "Change"
+		},
+		{
+			"index": 56,
+			"hex_index": "$38",
+			"name_address": "$01e5dc",
+			"name": "Glasses"
+		},
+		{
+			"index": 57,
+			"hex_index": "$39",
+			"name_address": "$01e5e4",
+			"name": "Key"
+		},
+		{
+			"index": 58,
+			"hex_index": "$3a",
+			"name_address": "$01e5e8",
+			"name": "Little Robot"
+		},
+		{
+			"index": 59,
+			"hex_index": "$3b",
+			"name_address": "$01e5f5",
+			"name": "Light"
+		},
+		{
+			"index": 60,
+			"hex_index": "$3c",
+			"name_address": "$01e5fb",
+			"name": "Seed"
+		},
+		{
+			"index": 61,
+			"hex_index": "$3d",
+			"name_address": "$01e600",
+			"name": "Blimb"
+		},
+		{
+			"index": 62,
+			"hex_index": "$3e",
+			"name_address": "$01e606",
+			"name": "S/ship"
+		},
+		{
+			"index": 63,
+			"hex_index": "$3f",
+			"name_address": "$01e60d",
+			"name": "Warp System"
+		},
+		{
+			"index": 64,
+			"hex_index": "$40",
+			"name_address": "$01e619",
+			"name": "Relay"
+		},
+		{
+			"index": 65,
+			"hex_index": "$41",
+			"name_address": "$01e61f",
+			"name": "Cyber Jack"
+		},
+		{
+			"index": 66,
+			"hex_index": "$42",
+			"name_address": "$01e62a",
+			"name": "Red Jar"
+		},
+		{
+			"index": 67,
+			"hex_index": "$43",
+			"name_address": "$01e632",
+			"name": "Blue Jar"
+		},
+		{
+			"index": 68,
+			"hex_index": "$44",
+			"name_address": "$01e63b",
+			"name": "Yel Jar"
+		},
+		{
+			"index": 69,
+			"hex_index": "$45",
+			"name_address": "$01e643",
+			"name": "Jewel"
+		},
+		{
+			"index": 70,
+			"hex_index": "$46",
+			"name_address": "$01e649",
+			"name": "Letter"
+		},
+		{
+			"index": 71,
+			"hex_index": "$47",
+			"name_address": "$01e650",
+			"name": "Litho"
+		},
+		{
+			"index": 72,
+			"hex_index": "$48",
+			"name_address": "$01e656",
+			"name": "Leader`s Badge"
+		},
+		{
+			"index": 73,
+			"hex_index": "$49",
+			"name_address": "$01e665",
+			"name": "Badge 2"
+		},
+		{
+			"index": 74,
+			"hex_index": "$4a",
+			"name_address": "$01e66d",
+			"name": "Stone 1"
+		},
+		{
+			"index": 75,
+			"hex_index": "$4b",
+			"name_address": "$01e675",
+			"name": "Stone 2"
+		},
+		{
+			"index": 76,
+			"hex_index": "$4c",
+			"name_address": "$01e67d",
+			"name": "Stone 3"
+		},
+		{
+			"index": 77,
+			"hex_index": "$4d",
+			"name_address": "$01e685",
+			"name": "Red Flower"
+		},
+		{
+			"index": 78,
+			"hex_index": "$4e",
+			"name_address": "$01e690",
+			"name": "Sphere"
+		},
+		{
+			"index": 79,
+			"hex_index": "$4f",
+			"name_address": "$01e697",
+			"name": "Rusty Drill"
+		},
+		{
+			"index": 80,
+			"hex_index": "$50",
+			"name_address": "$01e6a3",
+			"name": "Scrap A"
+		},
+		{
+			"index": 81,
+			"hex_index": "$51",
+			"name_address": "$01e6ab",
+			"name": "Scrap B"
+		},
+		{
+			"index": 82,
+			"hex_index": "$52",
+			"name_address": "$01e6b3",
+			"name": "Scrap 1"
+		}
+	]
+}

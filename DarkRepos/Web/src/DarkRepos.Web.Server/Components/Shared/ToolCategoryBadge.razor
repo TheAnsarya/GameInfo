@@ -1,0 +1,50 @@
+@using DarkRepos.Core.Models
+
+<span class="badge badge-tool-@GetCategoryClass()">@GetDisplayName()</span>
+
+@code {
+	[Parameter, EditorRequired]
+	public ToolCategory Category { get; set; }
+
+	[Parameter]
+	public bool ShowFullName { get; set; } = false;
+
+	private string GetCategoryClass() => Category switch
+	{
+		ToolCategory.General => "general",
+		ToolCategory.Text => "text",
+		ToolCategory.Graphics => "graphics",
+		ToolCategory.Audio => "audio",
+		ToolCategory.Compression => "compression",
+		ToolCategory.Disassembly => "disassembly",
+		ToolCategory.Analysis => "analysis",
+		ToolCategory.MapEditor => "mapeditor",
+		ToolCategory.Patching => "patching",
+		ToolCategory.SaveEditor => "saveeditor",
+		ToolCategory.Development => "development",
+		_ => "default"
+	};
+
+	private string GetDisplayName()
+	{
+		if (ShowFullName)
+		{
+			return Category switch
+			{
+				ToolCategory.General => "General Tool",
+				ToolCategory.Text => "Text Editor",
+				ToolCategory.Graphics => "Graphics Tool",
+				ToolCategory.Audio => "Audio Tool",
+				ToolCategory.Compression => "Compression Tool",
+				ToolCategory.Disassembly => "Disassembler",
+				ToolCategory.Analysis => "ROM Analysis",
+				ToolCategory.MapEditor => "Map Editor",
+				ToolCategory.Patching => "Patcher",
+				ToolCategory.SaveEditor => "Save Editor",
+				ToolCategory.Development => "Development Tool",
+				_ => Category.ToString()
+			};
+		}
+		return Category.ToString();
+	}
+}

@@ -1,0 +1,60 @@
+﻿@page "/Error"
+@using System.Diagnostics
+
+<PageTitle>Error - Dark Repos</PageTitle>
+
+<div class="container">
+	<div class="error-page">
+		<div class="error-icon" aria-hidden="true">⚠️</div>
+		<h1 class="error-title">Something Went Wrong</h1>
+		<p class="error-message">
+			An unexpected error occurred while processing your request.
+			We've been notified and are looking into it.
+		</p>
+
+		@if (ShowRequestId)
+		{
+			<p class="text-muted text-sm mb-4">
+				<strong>Request ID:</strong> <code>@RequestId</code>
+			</p>
+		}
+
+		<div class="error-actions">
+			<a href="/" class="btn btn-primary">Go to Home</a>
+			<button type="button" class="btn btn-secondary" onclick="history.back()">Go Back</button>
+		</div>
+
+		@if (IsDevelopment)
+		{
+			<div class="error-dev-info mt-6">
+				<details>
+					<summary class="text-muted cursor-pointer">Development Information</summary>
+					<div class="card mt-2 text-left">
+						<p class="text-sm">
+							Enable the <strong>Development</strong> environment to see detailed exception information.
+							Set <code>ASPNETCORE_ENVIRONMENT</code> to <code>Development</code> and restart the app.
+						</p>
+						<p class="text-sm text-warning mb-0">
+							⚠️ Never enable Development mode in production - it may expose sensitive information.
+						</p>
+					</div>
+				</details>
+			</div>
+		}
+	</div>
+</div>
+
+@code {
+	[CascadingParameter]
+	private HttpContext? HttpContext { get; set; }
+
+	[Inject]
+	private IWebHostEnvironment Environment { get; set; } = null!;
+
+	private string? RequestId { get; set; }
+	private bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+	private bool IsDevelopment => Environment.IsDevelopment();
+
+	protected override void OnInitialized() =>
+	RequestId = Activity.Current?.Id ?? HttpContext?.TraceIdentifier;
+}

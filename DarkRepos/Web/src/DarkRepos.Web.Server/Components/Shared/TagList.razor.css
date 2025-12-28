@@ -1,0 +1,201 @@
+.tag-list {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+}
+
+.tag-list.wrap {
+	flex-wrap: wrap;
+}
+
+.tag-list.compact {
+	gap: 0.25rem;
+}
+
+.tag {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.25rem;
+	padding: 0.25rem 0.625rem;
+	font-size: 0.875rem;
+	font-weight: 500;
+	line-height: 1.25;
+	border-radius: 9999px;
+	background: var(--tag-bg, #2d2d2d);
+	color: var(--tag-color, #d4d4d4);
+	border: 1px solid var(--tag-border, transparent);
+	cursor: pointer;
+	transition: all 0.15s ease;
+	user-select: none;
+}
+
+.compact .tag {
+	padding: 0.125rem 0.5rem;
+	font-size: 0.75rem;
+}
+
+.tag:hover {
+	background: var(--tag-hover-bg, #3d3d3d);
+	transform: translateY(-1px);
+}
+
+.tag:focus {
+	outline: 2px solid var(--primary-color, #6bb5ff);
+	outline-offset: 2px;
+}
+
+.tag-icon {
+	font-size: 0.75em;
+	opacity: 0.7;
+}
+
+.tag-text {
+	white-space: nowrap;
+}
+
+.tag-remove {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 1rem;
+	height: 1rem;
+	margin-left: 0.125rem;
+	padding: 0;
+	font-size: 0.875rem;
+	line-height: 1;
+	background: transparent;
+	border: none;
+	border-radius: 50%;
+	color: inherit;
+	opacity: 0.6;
+	cursor: pointer;
+	transition: all 0.15s ease;
+}
+
+.tag-remove:hover {
+	opacity: 1;
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.tag-overflow {
+	font-size: 0.75rem;
+	color: var(--text-muted, #888);
+	font-style: italic;
+}
+
+/* Color variants */
+.tag-default {
+	--tag-bg: #2d2d2d;
+	--tag-color: #d4d4d4;
+}
+
+.tag-red {
+	--tag-bg: rgba(239, 68, 68, 0.2);
+	--tag-color: #fca5a5;
+	--tag-border: rgba(239, 68, 68, 0.3);
+}
+
+.tag-purple {
+	--tag-bg: rgba(168, 85, 247, 0.2);
+	--tag-color: #d8b4fe;
+	--tag-border: rgba(168, 85, 247, 0.3);
+}
+
+.tag-green {
+	--tag-bg: rgba(34, 197, 94, 0.2);
+	--tag-color: #86efac;
+	--tag-border: rgba(34, 197, 94, 0.3);
+}
+
+.tag-blue {
+	--tag-bg: rgba(59, 130, 246, 0.2);
+	--tag-color: #93c5fd;
+	--tag-border: rgba(59, 130, 246, 0.3);
+}
+
+.tag-cyan {
+	--tag-bg: rgba(6, 182, 212, 0.2);
+	--tag-color: #67e8f9;
+	--tag-border: rgba(6, 182, 212, 0.3);
+}
+
+.tag-gold {
+	--tag-bg: rgba(234, 179, 8, 0.2);
+	--tag-color: #fde047;
+	--tag-border: rgba(234, 179, 8, 0.3);
+}
+
+.tag-orange {
+	--tag-bg: rgba(249, 115, 22, 0.2);
+	--tag-color: #fdba74;
+	--tag-border: rgba(249, 115, 22, 0.3);
+}
+
+.tag-pink {
+	--tag-bg: rgba(236, 72, 153, 0.2);
+	--tag-color: #f9a8d4;
+	--tag-border: rgba(236, 72, 153, 0.3);
+}
+
+.tag-teal {
+	--tag-bg: rgba(20, 184, 166, 0.2);
+	--tag-color: #5eead4;
+	--tag-border: rgba(20, 184, 166, 0.3);
+}
+
+.tag-gray {
+	--tag-bg: rgba(107, 114, 128, 0.2);
+	--tag-color: #d1d5db;
+	--tag-border: rgba(107, 114, 128, 0.3);
+}
+
+.tag-indigo {
+	--tag-bg: rgba(99, 102, 241, 0.2);
+	--tag-color: #a5b4fc;
+	--tag-border: rgba(99, 102, 241, 0.3);
+}
+
+/* Hover color adjustments */
+.tag-red:hover {
+	--tag-bg: rgba(239, 68, 68, 0.3);
+}
+
+.tag-purple:hover {
+	--tag-bg: rgba(168, 85, 247, 0.3);
+}
+
+.tag-green:hover {
+	--tag-bg: rgba(34, 197, 94, 0.3);
+}
+
+.tag-blue:hover {
+	--tag-bg: rgba(59, 130, 246, 0.3);
+}
+
+.tag-cyan:hover {
+	--tag-bg: rgba(6, 182, 212, 0.3);
+}
+
+.tag-gold:hover {
+	--tag-bg: rgba(234, 179, 8, 0.3);
+}
+
+.tag-orange:hover {
+	--tag-bg: rgba(249, 115, 22, 0.3);
+}
+
+.tag-pink:hover {
+	--tag-bg: rgba(236, 72, 153, 0.3);
+}
+
+.tag-teal:hover {
+	--tag-bg: rgba(20, 184, 166, 0.3);
+}
+
+.tag-gray:hover {
+	--tag-bg: rgba(107, 114, 128, 0.3);
+}
+
+.tag-indigo:hover {
+	--tag-bg: rgba(99, 102, 241, 0.3);
+}

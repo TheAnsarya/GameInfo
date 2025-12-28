@@ -1,0 +1,1496 @@
+[
+	{
+		"file_offset": 1015898,
+		"bank": 31,
+		"address": 32858,
+		"cpu_address": "$1f:805a",
+		"length": 10,
+		"raw": "020220706c6163656420",
+		"text": "{WAIT}{WAIT} placed "
+	},
+	{
+		"file_offset": 1015946,
+		"bank": 31,
+		"address": 32906,
+		"cpu_address": "$1f:808a",
+		"length": 11,
+		"raw": "647265616d2e2049736e60",
+		"text": "dream. Isn`"
+	},
+	{
+		"file_offset": 1016099,
+		"bank": 31,
+		"address": 33059,
+		"cpu_address": "$1f:8123",
+		"length": 12,
+		"raw": "4d61676d61205261696e2e20",
+		"text": "Magma Rain. "
+	},
+	{
+		"file_offset": 1016220,
+		"bank": 31,
+		"address": 33180,
+		"cpu_address": "$1f:819c",
+		"length": 11,
+		"raw": "6372656174757265732e20",
+		"text": "creatures. "
+	},
+	{
+		"file_offset": 1016237,
+		"bank": 31,
+		"address": 33197,
+		"cpu_address": "$1f:81ad",
+		"length": 16,
+		"raw": "776f726b20746f67657468657220736f",
+		"text": "work together so"
+	},
+	{
+		"file_offset": 1016254,
+		"bank": 31,
+		"address": 33214,
+		"cpu_address": "$1f:81be",
+		"length": 14,
+		"raw": "7765206d61792072657669766520",
+		"text": "we may revive "
+	},
+	{
+		"file_offset": 1016314,
+		"bank": 31,
+		"address": 33274,
+		"cpu_address": "$1f:81fa",
+		"length": 12,
+		"raw": "6a6f696e656420796f752e20",
+		"text": "joined you. "
+	},
+	{
+		"file_offset": 1016444,
+		"bank": 31,
+		"address": 33404,
+		"cpu_address": "$1f:827c",
+		"length": 12,
+		"raw": "756e64657220776174657220",
+		"text": "under water "
+	},
+	{
+		"file_offset": 1016457,
+		"bank": 31,
+		"address": 33417,
+		"cpu_address": "$1f:8289",
+		"length": 17,
+		"raw": "6c6f6f6b656420646966666572656e7420",
+		"text": "looked different "
+	},
+	{
+		"file_offset": 1016620,
+		"bank": 31,
+		"address": 33580,
+		"cpu_address": "$1f:832c",
+		"length": 14,
+		"raw": "4d65646963616c20486572627320",
+		"text": "Medical Herbs "
+	},
+	{
+		"file_offset": 1016685,
+		"bank": 31,
+		"address": 33645,
+		"cpu_address": "$1f:836d",
+		"length": 14,
+		"raw": "4d65646963616c20686572627320",
+		"text": "Medical herbs "
+	},
+	{
+		"file_offset": 1016732,
+		"bank": 31,
+		"address": 33692,
+		"cpu_address": "$1f:839c",
+		"length": 14,
+		"raw": "6e65656420616e6f746865722e20",
+		"text": "need another. "
+	},
+	{
+		"file_offset": 1016872,
+		"bank": 31,
+		"address": 33832,
+		"cpu_address": "$1f:8428",
+		"length": 13,
+		"raw": "62657374206a756d7065722120",
+		"text": "best jumper! "
+	},
+	{
+		"file_offset": 1016889,
+		"bank": 31,
+		"address": 33849,
+		"cpu_address": "$1f:8439",
+		"length": 10,
+		"raw": "73686f7720796f752e20",
+		"text": "show you. "
+	},
+	{
+		"file_offset": 1017003,
+		"bank": 31,
+		"address": 33963,
+		"cpu_address": "$1f:84ab",
+		"length": 12,
+		"raw": "61742064616e63696e672e20",
+		"text": "at dancing. "
+	},
+	{
+		"file_offset": 1017026,
+		"bank": 31,
+		"address": 33986,
+		"cpu_address": "$1f:84c2",
+		"length": 17,
+		"raw": "73747564656e74732072657475726e2c20",
+		"text": "students return, "
+	},
+	{
+		"file_offset": 1017057,
+		"bank": 31,
+		"address": 34017,
+		"cpu_address": "$1f:84e1",
+		"length": 13,
+		"raw": "67726561742064616e63652e20",
+		"text": "great dance. "
+	},
+	{
+		"file_offset": 1017121,
+		"bank": 31,
+		"address": 34081,
+		"cpu_address": "$1f:8521",
+		"length": 10,
+		"raw": "6f75722064616e63652e",
+		"text": "our dance."
+	},
+	{
+		"file_offset": 1017139,
+		"bank": 31,
+		"address": 34099,
+		"cpu_address": "$1f:8533",
+		"length": 11,
+		"raw": "6d6f72652066756e206966",
+		"text": "more fun if"
+	},
+	{
+		"file_offset": 1017172,
+		"bank": 31,
+		"address": 34132,
+		"cpu_address": "$1f:8554",
+		"length": 15,
+		"raw": "656173696573742064616e63652c20",
+		"text": "easiest dance, "
+	},
+	{
+		"file_offset": 1017517,
+		"bank": 31,
+		"address": 34477,
+		"cpu_address": "$1f:86ad",
+		"length": 16,
+		"raw": "69736c616e642c2044757265616e2e20",
+		"text": "island, Durean. "
+	},
+	{
+		"file_offset": 1017535,
+		"bank": 31,
+		"address": 34495,
+		"cpu_address": "$1f:86bf",
+		"length": 10,
+		"raw": "6d7573742066696e6420",
+		"text": "must find "
+	},
+	{
+		"file_offset": 1017623,
+		"bank": 31,
+		"address": 34583,
+		"cpu_address": "$1f:8717",
+		"length": 16,
+		"raw": "766f6c63616e6f2c2072696768743f20",
+		"text": "volcano, right? "
+	},
+	{
+		"file_offset": 1017881,
+		"bank": 31,
+		"address": 34841,
+		"cpu_address": "$1f:8819",
+		"length": 10,
+		"raw": "54726176656c20757020",
+		"text": "Travel up "
+	},
+	{
+		"file_offset": 1017918,
+		"bank": 31,
+		"address": 34878,
+		"cpu_address": "$1f:883e",
+		"length": 15,
+		"raw": "7261696e2c20426c65737465722e20",
+		"text": "rain, Blester. "
+	},
+	{
+		"file_offset": 1017987,
+		"bank": 31,
+		"address": 34947,
+		"cpu_address": "$1f:8883",
+		"length": 13,
+		"raw": "496640796f754074726176656c",
+		"text": "If@you@travel"
+	},
+	{
+		"file_offset": 1018001,
+		"bank": 31,
+		"address": 34961,
+		"cpu_address": "$1f:8891",
+		"length": 18,
+		"raw": "74686540636f72616c407265656640796f75",
+		"text": "the@coral@reef@you"
+	},
+	{
+		"file_offset": 1018020,
+		"bank": 31,
+		"address": 34980,
+		"cpu_address": "$1f:88a4",
+		"length": 22,
+		"raw": "77696c6c4066696e644061407061737361676540746f",
+		"text": "will@find@a@passage@to"
+	},
+	{
+		"file_offset": 1018043,
+		"bank": 31,
+		"address": 35003,
+		"cpu_address": "$1f:88bb",
+		"length": 14,
+		"raw": "6140736d616c6c40637265656b2e",
+		"text": "a@small@creek."
+	},
+	{
+		"file_offset": 1018108,
+		"bank": 31,
+		"address": 35068,
+		"cpu_address": "$1f:88fc",
+		"length": 11,
+		"raw": "636f72616c207265656620",
+		"text": "coral reef "
+	},
+	{
+		"file_offset": 1018127,
+		"bank": 31,
+		"address": 35087,
+		"cpu_address": "$1f:890f",
+		"length": 10,
+		"raw": "64616e6765726f757320",
+		"text": "dangerous "
+	},
+	{
+		"file_offset": 1018138,
+		"bank": 31,
+		"address": 35098,
+		"cpu_address": "$1f:891a",
+		"length": 20,
+		"raw": "6d6f6e73746572732e204d616b65207375726520",
+		"text": "monsters. Make sure "
+	},
+	{
+		"file_offset": 1018161,
+		"bank": 31,
+		"address": 35121,
+		"cpu_address": "$1f:8931",
+		"length": 13,
+		"raw": "6d616769632074686572652e20",
+		"text": "magic there. "
+	},
+	{
+		"file_offset": 1018419,
+		"bank": 31,
+		"address": 35379,
+		"cpu_address": "$1f:8a33",
+		"length": 18,
+		"raw": "34206d65726d616964207374617475657320",
+		"text": "4 mermaid statues "
+	},
+	{
+		"file_offset": 1018448,
+		"bank": 31,
+		"address": 35408,
+		"cpu_address": "$1f:8a50",
+		"length": 14,
+		"raw": "54686f7365207374617475657320",
+		"text": "Those statues "
+	},
+	{
+		"file_offset": 1018463,
+		"bank": 31,
+		"address": 35423,
+		"cpu_address": "$1f:8a5f",
+		"length": 10,
+		"raw": "70726576656e74656420",
+		"text": "prevented "
+	},
+	{
+		"file_offset": 1018606,
+		"bank": 31,
+		"address": 35566,
+		"cpu_address": "$1f:8aee",
+		"length": 20,
+		"raw": "50726f6365656420726967687420616c6f6e6720",
+		"text": "Proceed right along "
+	},
+	{
+		"file_offset": 1018638,
+		"bank": 31,
+		"address": 35598,
+		"cpu_address": "$1f:8b0e",
+		"length": 22,
+		"raw": "73686f726520726565662c20526f636b626972642e20",
+		"text": "shore reef, Rockbird. "
+	},
+	{
+		"file_offset": 1018665,
+		"bank": 31,
+		"address": 35625,
+		"cpu_address": "$1f:8b29",
+		"length": 10,
+		"raw": "3c020220686561727320",
+		"text": "<{WAIT}{WAIT} hears "
+	},
+	{
+		"file_offset": 1018677,
+		"bank": 31,
+		"address": 35637,
+		"cpu_address": "$1f:8b35",
+		"length": 13,
+		"raw": "736d616c6c20766f6963652e20",
+		"text": "small voice. "
+	},
+	{
+		"file_offset": 1018854,
+		"bank": 31,
+		"address": 35814,
+		"cpu_address": "$1f:8be6",
+		"length": 14,
+		"raw": "427562626c652041726d6f723f20",
+		"text": "Bubble Armor? "
+	},
+	{
+		"file_offset": 1018916,
+		"bank": 31,
+		"address": 35876,
+		"cpu_address": "$1f:8c24",
+		"length": 21,
+		"raw": "6272656174686520756e6465722077617465722c20",
+		"text": "breathe under water, "
+	},
+	{
+		"file_offset": 1018955,
+		"bank": 31,
+		"address": 35915,
+		"cpu_address": "$1f:8c4b",
+		"length": 18,
+		"raw": "0324427562626c652041726d6f722e200320",
+		"text": "{CLEAR}$Bubble Armor. {CLEAR} "
+	},
+	{
+		"file_offset": 1018983,
+		"bank": 31,
+		"address": 35943,
+		"cpu_address": "$1f:8c67",
+		"length": 11,
+		"raw": "6265656e20687572743f20",
+		"text": "been hurt? "
+	},
+	{
+		"file_offset": 1019021,
+		"bank": 31,
+		"address": 35981,
+		"cpu_address": "$1f:8c8d",
+		"length": 10,
+		"raw": "6865616c20796f752e20",
+		"text": "heal you. "
+	},
+	{
+		"file_offset": 1019184,
+		"bank": 31,
+		"address": 36144,
+		"cpu_address": "$1f:8d30",
+		"length": 17,
+		"raw": "6c657420616e796f6e6520706173732e20",
+		"text": "let anyone pass. "
+	},
+	{
+		"file_offset": 1019293,
+		"bank": 31,
+		"address": 36253,
+		"cpu_address": "$1f:8d9d",
+		"length": 10,
+		"raw": "7465617264726f707320",
+		"text": "teardrops "
+	},
+	{
+		"file_offset": 1019323,
+		"bank": 31,
+		"address": 36283,
+		"cpu_address": "$1f:8dbb",
+		"length": 11,
+		"raw": "7475726e204d61676d6120",
+		"text": "turn Magma "
+	},
+	{
+		"file_offset": 1019344,
+		"bank": 31,
+		"address": 36304,
+		"cpu_address": "$1f:8dd0",
+		"length": 12,
+		"raw": "557365207468656d20617420",
+		"text": "Use them at "
+	},
+	{
+		"file_offset": 1019365,
+		"bank": 31,
+		"address": 36325,
+		"cpu_address": "$1f:8de5",
+		"length": 17,
+		"raw": "766f6c63616e69632069736c616e642e20",
+		"text": "volcanic island. "
+	},
+	{
+		"file_offset": 1019413,
+		"bank": 31,
+		"address": 36373,
+		"cpu_address": "$1f:8e15",
+		"length": 16,
+		"raw": "5468657365207465617264726f707320",
+		"text": "These teardrops "
+	},
+	{
+		"file_offset": 1019440,
+		"bank": 31,
+		"address": 36400,
+		"cpu_address": "$1f:8e30",
+		"length": 12,
+		"raw": "6d65726d616964207768656e",
+		"text": "mermaid when"
+	},
+	{
+		"file_offset": 1019453,
+		"bank": 31,
+		"address": 36413,
+		"cpu_address": "$1f:8e3d",
+		"length": 13,
+		"raw": "6576696c20696e766164656420",
+		"text": "evil invaded "
+	},
+	{
+		"file_offset": 1019476,
+		"bank": 31,
+		"address": 36436,
+		"cpu_address": "$1f:8e54",
+		"length": 22,
+		"raw": "496379207465617264726f70732c2066696c6c656420",
+		"text": "Icy teardrops, filled "
+	},
+	{
+		"file_offset": 1019520,
+		"bank": 31,
+		"address": 36480,
+		"cpu_address": "$1f:8e80",
+		"length": 13,
+		"raw": "686f7474657374204d61676d61",
+		"text": "hottest Magma"
+	},
+	{
+		"file_offset": 1019657,
+		"bank": 31,
+		"address": 36617,
+		"cpu_address": "$1f:8f09",
+		"length": 20,
+		"raw": "57616c6b20646f776e7761726420756e64657220",
+		"text": "Walk downward under "
+	},
+	{
+		"file_offset": 1019688,
+		"bank": 31,
+		"address": 36648,
+		"cpu_address": "$1f:8f28",
+		"length": 17,
+		"raw": "766f6c63616e69632069736c616e642c20",
+		"text": "volcanic island, "
+	},
+	{
+		"file_offset": 1020066,
+		"bank": 31,
+		"address": 37026,
+		"cpu_address": "$1f:90a2",
+		"length": 13,
+		"raw": "4d6167696320466c6169722e20",
+		"text": "Magic Flair. "
+	},
+	{
+		"file_offset": 1020086,
+		"bank": 31,
+		"address": 37046,
+		"cpu_address": "$1f:90b6",
+		"length": 12,
+		"raw": "4d6167696320466c61697220",
+		"text": "Magic Flair "
+	},
+	{
+		"file_offset": 1020140,
+		"bank": 31,
+		"address": 37100,
+		"cpu_address": "$1f:90ec",
+		"length": 12,
+		"raw": "68697420706f696e74732e20",
+		"text": "hit points. "
+	},
+	{
+		"file_offset": 1020166,
+		"bank": 31,
+		"address": 37126,
+		"cpu_address": "$1f:9106",
+		"length": 21,
+		"raw": "726566657272696e6720746f2c2072696768743f20",
+		"text": "referring to, right? "
+	},
+	{
+		"file_offset": 1020525,
+		"bank": 31,
+		"address": 37485,
+		"cpu_address": "$1f:926d",
+		"length": 10,
+		"raw": "7361766564206d652e20",
+		"text": "saved me. "
+	},
+	{
+		"file_offset": 1020536,
+		"bank": 31,
+		"address": 37496,
+		"cpu_address": "$1f:9278",
+		"length": 11,
+		"raw": "45766572797468696e6720",
+		"text": "Everything "
+	},
+	{
+		"file_offset": 1020574,
+		"bank": 31,
+		"address": 37534,
+		"cpu_address": "$1f:929e",
+		"length": 14,
+		"raw": "4f6e6520676c616e636520617420",
+		"text": "One glance at "
+	},
+	{
+		"file_offset": 1020595,
+		"bank": 31,
+		"address": 37555,
+		"cpu_address": "$1f:92b3",
+		"length": 14,
+		"raw": "6361757365642064657369726520",
+		"text": "caused desire "
+	},
+	{
+		"file_offset": 1020620,
+		"bank": 31,
+		"address": 37580,
+		"cpu_address": "$1f:92cc",
+		"length": 14,
+		"raw": "6f7665727768656c6d206d652e20",
+		"text": "overwhelm me. "
+	},
+	{
+		"file_offset": 1020646,
+		"bank": 31,
+		"address": 37606,
+		"cpu_address": "$1f:92e6",
+		"length": 12,
+		"raw": "646973617070656172656420",
+		"text": "disappeared "
+	},
+	{
+		"file_offset": 1020690,
+		"bank": 31,
+		"address": 37650,
+		"cpu_address": "$1f:9312",
+		"length": 21,
+		"raw": "626164206665656c696e6720646f6d696e61746520",
+		"text": "bad feeling dominate "
+	},
+	{
+		"file_offset": 1020712,
+		"bank": 31,
+		"address": 37672,
+		"cpu_address": "$1f:9328",
+		"length": 14,
+		"raw": "7573207765206372656174656420",
+		"text": "us we created "
+	},
+	{
+		"file_offset": 1020729,
+		"bank": 31,
+		"address": 37689,
+		"cpu_address": "$1f:9339",
+		"length": 11,
+		"raw": "6f757273656c7665732e20",
+		"text": "ourselves. "
+	},
+	{
+		"file_offset": 1020749,
+		"bank": 31,
+		"address": 37709,
+		"cpu_address": "$1f:934d",
+		"length": 12,
+		"raw": "426c75652053746f6e652e20",
+		"text": "Blue Stone. "
+	},
+	{
+		"file_offset": 1020798,
+		"bank": 31,
+		"address": 37758,
+		"cpu_address": "$1f:937e",
+		"length": 11,
+		"raw": "6372656174757265732e20",
+		"text": "creatures. "
+	},
+	{
+		"file_offset": 1020833,
+		"bank": 31,
+		"address": 37793,
+		"cpu_address": "$1f:93a1",
+		"length": 12,
+		"raw": "3c8162656175746966756c20",
+		"text": "<\"beautiful "
+	},
+	{
+		"file_offset": 1020913,
+		"bank": 31,
+		"address": 37873,
+		"cpu_address": "$1f:93f1",
+		"length": 14,
+		"raw": "72656c656173696e67206d652e20",
+		"text": "releasing me. "
+	},
+	{
+		"file_offset": 1020998,
+		"bank": 31,
+		"address": 37958,
+		"cpu_address": "$1f:9446",
+		"length": 10,
+		"raw": "53742e456c6c65732e20",
+		"text": "St.Elles. "
+	},
+	{
+		"file_offset": 1021012,
+		"bank": 31,
+		"address": 37972,
+		"cpu_address": "$1f:9454",
+		"length": 18,
+		"raw": "646f6c7068696e2c204c75652c2075736564",
+		"text": "dolphin, Lue, used"
+	},
+	{
+		"file_offset": 1021049,
+		"bank": 31,
+		"address": 38009,
+		"cpu_address": "$1f:9479",
+		"length": 17,
+		"raw": "737472616e67652c207768656e65766572",
+		"text": "strange, whenever"
+	},
+	{
+		"file_offset": 1021085,
+		"bank": 31,
+		"address": 38045,
+		"cpu_address": "$1f:949d",
+		"length": 13,
+		"raw": "68697320646175676874657220",
+		"text": "his daughter "
+	},
+	{
+		"file_offset": 1021109,
+		"bank": 31,
+		"address": 38069,
+		"cpu_address": "$1f:94b5",
+		"length": 10,
+		"raw": "6d697373207468656d20",
+		"text": "miss them "
+	},
+	{
+		"file_offset": 1021121,
+		"bank": 31,
+		"address": 38081,
+		"cpu_address": "$1f:94c1",
+		"length": 22,
+		"raw": "736f6d6574696d65732066696e64206d7973656c6620",
+		"text": "sometimes find myself "
+	},
+	{
+		"file_offset": 1021173,
+		"bank": 31,
+		"address": 38133,
+		"cpu_address": "$1f:94f5",
+		"length": 10,
+		"raw": "4c697361206d75737420",
+		"text": "Lisa must "
+	},
+	{
+		"file_offset": 1021202,
+		"bank": 31,
+		"address": 38162,
+		"cpu_address": "$1f:9512",
+		"length": 13,
+		"raw": "636f6d6573204c75652e204865",
+		"text": "comes Lue. He"
+	},
+	{
+		"file_offset": 1021304,
+		"bank": 31,
+		"address": 38264,
+		"cpu_address": "$1f:9578",
+		"length": 16,
+		"raw": "686f6d6520746f776e20616c6f6e6720",
+		"text": "home town along "
+	},
+	{
+		"file_offset": 1021365,
+		"bank": 31,
+		"address": 38325,
+		"cpu_address": "$1f:95b5",
+		"length": 11,
+		"raw": "50486579204c616c612c20",
+		"text": "PHey Lala, "
+	},
+	{
+		"file_offset": 1021406,
+		"bank": 31,
+		"address": 38366,
+		"cpu_address": "$1f:95de",
+		"length": 11,
+		"raw": "62656175746966756c2e20",
+		"text": "beautiful. "
+	},
+	{
+		"file_offset": 1021432,
+		"bank": 31,
+		"address": 38392,
+		"cpu_address": "$1f:95f8",
+		"length": 10,
+		"raw": "746f6765746865722e20",
+		"text": "together. "
+	},
+	{
+		"file_offset": 1021610,
+		"bank": 31,
+		"address": 38570,
+		"cpu_address": "$1f:96aa",
+		"length": 12,
+		"raw": "67686f737420736869702e20",
+		"text": "ghost ship. "
+	},
+	{
+		"file_offset": 1021730,
+		"bank": 31,
+		"address": 38690,
+		"cpu_address": "$1f:9722",
+		"length": 10,
+		"raw": "647265616d696e672e20",
+		"text": "dreaming. "
+	},
+	{
+		"file_offset": 1021741,
+		"bank": 31,
+		"address": 38701,
+		"cpu_address": "$1f:972d",
+		"length": 11,
+		"raw": "536865206c6f6f6b656420",
+		"text": "She looked "
+	},
+	{
+		"file_offset": 1021771,
+		"bank": 31,
+		"address": 38731,
+		"cpu_address": "$1f:974b",
+		"length": 13,
+		"raw": "73756e6b656e20736869702e20",
+		"text": "sunken ship. "
+	},
+	{
+		"file_offset": 1021929,
+		"bank": 31,
+		"address": 38889,
+		"cpu_address": "$1f:97e9",
+		"length": 11,
+		"raw": "636f72616c207265656620",
+		"text": "coral reef "
+	},
+	{
+		"file_offset": 1021948,
+		"bank": 31,
+		"address": 38908,
+		"cpu_address": "$1f:97fc",
+		"length": 10,
+		"raw": "646f6c7068696e732e20",
+		"text": "dolphins. "
+	},
+	{
+		"file_offset": 1021986,
+		"bank": 31,
+		"address": 38946,
+		"cpu_address": "$1f:9822",
+		"length": 10,
+		"raw": "74726561737572652e20",
+		"text": "treasure. "
+	},
+	{
+		"file_offset": 1022078,
+		"bank": 31,
+		"address": 39038,
+		"cpu_address": "$1f:987e",
+		"length": 13,
+		"raw": "72656c656173696e67206d6521",
+		"text": "releasing me!"
+	},
+	{
+		"file_offset": 1022100,
+		"bank": 31,
+		"address": 39060,
+		"cpu_address": "$1f:9894",
+		"length": 15,
+		"raw": "5265642d486f7420537469636b2e20",
+		"text": "Red-Hot Stick. "
+	},
+	{
+		"file_offset": 1022119,
+		"bank": 31,
+		"address": 39079,
+		"cpu_address": "$1f:98a7",
+		"length": 18,
+		"raw": "50686f656e69782072657369646573206f6e",
+		"text": "Phoenix resides on"
+	},
+	{
+		"file_offset": 1022157,
+		"bank": 31,
+		"address": 39117,
+		"cpu_address": "$1f:98cd",
+		"length": 13,
+		"raw": "5265642d486f7420537469636b",
+		"text": "Red-Hot Stick"
+	},
+	{
+		"file_offset": 1022464,
+		"bank": 31,
+		"address": 39424,
+		"cpu_address": "$1f:9a00",
+		"length": 12,
+		"raw": "4f6b61792c20776169742e20",
+		"text": "Okay, wait. "
+	},
+	{
+		"file_offset": 1022481,
+		"bank": 31,
+		"address": 39441,
+		"cpu_address": "$1f:9a11",
+		"length": 21,
+		"raw": "546869734069734061407365637265742c40746865",
+		"text": "This@is@a@secret,@the"
+	},
+	{
+		"file_offset": 1022503,
+		"bank": 31,
+		"address": 39463,
+		"cpu_address": "$1f:9a27",
+		"length": 22,
+		"raw": "517565656e406c6f6f6b73406c696b6540746869732e",
+		"text": "Queen@looks@like@this."
+	},
+	{
+		"file_offset": 1022528,
+		"bank": 31,
+		"address": 39488,
+		"cpu_address": "$1f:9a40",
+		"length": 20,
+		"raw": "53686540616c776179734073697473406c696b65",
+		"text": "She@always@sits@like"
+	},
+	{
+		"file_offset": 1022555,
+		"bank": 31,
+		"address": 39515,
+		"cpu_address": "$1f:9a5b",
+		"length": 18,
+		"raw": "536865406c6f6f6b7340736f406d65616e2e",
+		"text": "She@looks@so@mean."
+	},
+	{
+		"file_offset": 1022576,
+		"bank": 31,
+		"address": 39536,
+		"cpu_address": "$1f:9a70",
+		"length": 20,
+		"raw": "4c75652c4074686540646f6c7068696e40686173",
+		"text": "Lue,@the@dolphin@has"
+	},
+	{
+		"file_offset": 1022597,
+		"bank": 31,
+		"address": 39557,
+		"cpu_address": "$1f:9a85",
+		"length": 14,
+		"raw": "6265656e40636170747572656421",
+		"text": "been@captured!"
+	},
+	{
+		"file_offset": 1022612,
+		"bank": 31,
+		"address": 39572,
+		"cpu_address": "$1f:9a94",
+		"length": 16,
+		"raw": "506c6561736540736176654068696d21",
+		"text": "Please@save@him!"
+	},
+	{
+		"file_offset": 1022641,
+		"bank": 31,
+		"address": 39601,
+		"cpu_address": "$1f:9ab1",
+		"length": 14,
+		"raw": "6c65617665207768656e65766572",
+		"text": "leave whenever"
+	},
+	{
+		"file_offset": 1022656,
+		"bank": 31,
+		"address": 39616,
+		"cpu_address": "$1f:9ac0",
+		"length": 11,
+		"raw": "6865207769736865732c20",
+		"text": "he wishes, "
+	},
+	{
+		"file_offset": 1022672,
+		"bank": 31,
+		"address": 39632,
+		"cpu_address": "$1f:9ad0",
+		"length": 17,
+		"raw": "6e6576657220636f6d6573206f75742e20",
+		"text": "never comes out. "
+	},
+	{
+		"file_offset": 1022690,
+		"bank": 31,
+		"address": 39650,
+		"cpu_address": "$1f:9ae2",
+		"length": 15,
+		"raw": "4d61796265206865206c696b657320",
+		"text": "Maybe he likes "
+	},
+	{
+		"file_offset": 1022792,
+		"bank": 31,
+		"address": 39752,
+		"cpu_address": "$1f:9b48",
+		"length": 11,
+		"raw": "020220746f756368657320",
+		"text": "{WAIT}{WAIT} touches "
+	},
+	{
+		"file_offset": 1022826,
+		"bank": 31,
+		"address": 39786,
+		"cpu_address": "$1f:9b6a",
+		"length": 10,
+		"raw": "4865792c206469646e60",
+		"text": "Hey, didn`"
+	},
+	{
+		"file_offset": 1022972,
+		"bank": 31,
+		"address": 39932,
+		"cpu_address": "$1f:9bfc",
+		"length": 15,
+		"raw": "3c4865792c20736f6d65626f647920",
+		"text": "<Hey, somebody "
+	},
+	{
+		"file_offset": 1023017,
+		"bank": 31,
+		"address": 39977,
+		"cpu_address": "$1f:9c29",
+		"length": 17,
+		"raw": "696e76656e746f722c2044722e4c656f2e",
+		"text": "inventor, Dr.Leo."
+	},
+	{
+		"file_offset": 1023062,
+		"bank": 31,
+		"address": 40022,
+		"cpu_address": "$1f:9c56",
+		"length": 22,
+		"raw": "497420617474726163747320616e796f6e652077686f",
+		"text": "It attracts anyone who"
+	},
+	{
+		"file_offset": 1023085,
+		"bank": 31,
+		"address": 40045,
+		"cpu_address": "$1f:9c6d",
+		"length": 12,
+		"raw": "6c6f6f6b7320617420697420",
+		"text": "looks at it "
+	},
+	{
+		"file_offset": 1023104,
+		"bank": 31,
+		"address": 40064,
+		"cpu_address": "$1f:9c80",
+		"length": 14,
+		"raw": "6368616e67657320746865697220",
+		"text": "changes their "
+	},
+	{
+		"file_offset": 1023119,
+		"bank": 31,
+		"address": 40079,
+		"cpu_address": "$1f:9c8f",
+		"length": 13,
+		"raw": "706572736f6e616c6974792e20",
+		"text": "personality. "
+	},
+	{
+		"file_offset": 1023140,
+		"bank": 31,
+		"address": 40100,
+		"cpu_address": "$1f:9ca4",
+		"length": 11,
+		"raw": "6d696e642c207468657920",
+		"text": "mind, they "
+	},
+	{
+		"file_offset": 1023161,
+		"bank": 31,
+		"address": 40121,
+		"cpu_address": "$1f:9cb9",
+		"length": 13,
+		"raw": "677265617420706572736f6e2e",
+		"text": "great person."
+	},
+	{
+		"file_offset": 1023189,
+		"bank": 31,
+		"address": 40149,
+		"cpu_address": "$1f:9cd5",
+		"length": 11,
+		"raw": "6d696e642c207468657920",
+		"text": "mind, they "
+	},
+	{
+		"file_offset": 1023209,
+		"bank": 31,
+		"address": 40169,
+		"cpu_address": "$1f:9ce9",
+		"length": 12,
+		"raw": "62616420706572736f6e2e20",
+		"text": "bad person. "
+	},
+	{
+		"file_offset": 1023249,
+		"bank": 31,
+		"address": 40209,
+		"cpu_address": "$1f:9d11",
+		"length": 18,
+		"raw": "746f6f6b2069742e205468656e2073686520",
+		"text": "took it. Then she "
+	},
+	{
+		"file_offset": 1023303,
+		"bank": 31,
+		"address": 40263,
+		"cpu_address": "$1f:9d47",
+		"length": 10,
+		"raw": "426c75652053746f6e65",
+		"text": "Blue Stone"
+	},
+	{
+		"file_offset": 1023347,
+		"bank": 31,
+		"address": 40307,
+		"cpu_address": "$1f:9d73",
+		"length": 16,
+		"raw": "5468756e6465722052696e672e200320",
+		"text": "Thunder Ring. {CLEAR} "
+	},
+	{
+		"file_offset": 1023401,
+		"bank": 31,
+		"address": 40361,
+		"cpu_address": "$1f:9da9",
+		"length": 18,
+		"raw": "776f6e64657220686f772068652069732e20",
+		"text": "wonder how he is. "
+	},
+	{
+		"file_offset": 1023575,
+		"bank": 31,
+		"address": 40535,
+		"cpu_address": "$1f:9e57",
+		"length": 11,
+		"raw": "7472696564206861726420",
+		"text": "tried hard "
+	},
+	{
+		"file_offset": 1023658,
+		"bank": 31,
+		"address": 40618,
+		"cpu_address": "$1f:9eaa",
+		"length": 16,
+		"raw": "62616420706572736f6e2e2053686520",
+		"text": "bad person. She "
+	},
+	{
+		"file_offset": 1023677,
+		"bank": 31,
+		"address": 40637,
+		"cpu_address": "$1f:9ebd",
+		"length": 10,
+		"raw": "61747472616374656420",
+		"text": "attracted "
+	},
+	{
+		"file_offset": 1024075,
+		"bank": 31,
+		"address": 41035,
+		"cpu_address": "$1f:a04b",
+		"length": 13,
+		"raw": "736d616c6c20766f6963652e20",
+		"text": "small voice. "
+	},
+	{
+		"file_offset": 1024152,
+		"bank": 31,
+		"address": 41112,
+		"cpu_address": "$1f:a098",
+		"length": 22,
+		"raw": "536f757468657274612c207468726f75676820746865",
+		"text": "Southerta, through the"
+	},
+	{
+		"file_offset": 1024191,
+		"bank": 31,
+		"address": 41151,
+		"cpu_address": "$1f:a0bf",
+		"length": 17,
+		"raw": "427562626c6520436c6f7468696e672e20",
+		"text": "Bubble Clothing. "
+	},
+	{
+		"file_offset": 1024212,
+		"bank": 31,
+		"address": 41172,
+		"cpu_address": "$1f:a0d4",
+		"length": 15,
+		"raw": "4c697374656e20636c6f73656c7920",
+		"text": "Listen closely "
+	},
+	{
+		"file_offset": 1024242,
+		"bank": 31,
+		"address": 41202,
+		"cpu_address": "$1f:a0f2",
+		"length": 17,
+		"raw": "6d65726d61696420737461747565732e20",
+		"text": "mermaid statues. "
+	},
+	{
+		"file_offset": 1024462,
+		"bank": 31,
+		"address": 41422,
+		"cpu_address": "$1f:a1ce",
+		"length": 12,
+		"raw": "62616c6c2c207368696e7920",
+		"text": "ball, shiny "
+	},
+	{
+		"file_offset": 1024476,
+		"bank": 31,
+		"address": 41436,
+		"cpu_address": "$1f:a1dc",
+		"length": 10,
+		"raw": "626c61636b2e2e2e2e20",
+		"text": "black.... "
+	},
+	{
+		"file_offset": 1024490,
+		"bank": 31,
+		"address": 41450,
+		"cpu_address": "$1f:a1ea",
+		"length": 12,
+		"raw": "5468617420506561726c2120",
+		"text": "That Pearl! "
+	},
+	{
+		"file_offset": 1024614,
+		"bank": 31,
+		"address": 41574,
+		"cpu_address": "$1f:a266",
+		"length": 13,
+		"raw": "636f6e766572736174696f6e20",
+		"text": "conversation "
+	},
+	{
+		"file_offset": 1024645,
+		"bank": 31,
+		"address": 41605,
+		"cpu_address": "$1f:a285",
+		"length": 11,
+		"raw": "44616464792c20686f7720",
+		"text": "Daddy, how "
+	},
+	{
+		"file_offset": 1024664,
+		"bank": 31,
+		"address": 41624,
+		"cpu_address": "$1f:a298",
+		"length": 13,
+		"raw": "7061737365642073696e636520",
+		"text": "passed since "
+	},
+	{
+		"file_offset": 1024679,
+		"bank": 31,
+		"address": 41639,
+		"cpu_address": "$1f:a2a7",
+		"length": 11,
+		"raw": "736869702073616e6b3f20",
+		"text": "ship sank? "
+	},
+	{
+		"file_offset": 1024693,
+		"bank": 31,
+		"address": 41653,
+		"cpu_address": "$1f:a2b5",
+		"length": 11,
+		"raw": "746f6f2068756e67727920",
+		"text": "too hungry "
+	},
+	{
+		"file_offset": 1024706,
+		"bank": 31,
+		"address": 41666,
+		"cpu_address": "$1f:a2c2",
+		"length": 18,
+		"raw": "63616e6e6f742074726176656c20616e7920",
+		"text": "cannot travel any "
+	},
+	{
+		"file_offset": 1024759,
+		"bank": 31,
+		"address": 41719,
+		"cpu_address": "$1f:a2f7",
+		"length": 10,
+		"raw": "736f6e2c20736f6d6520",
+		"text": "son, some "
+	},
+	{
+		"file_offset": 1024775,
+		"bank": 31,
+		"address": 41735,
+		"cpu_address": "$1f:a307",
+		"length": 10,
+		"raw": "6c69666520646f657320",
+		"text": "life does "
+	},
+	{
+		"file_offset": 1024787,
+		"bank": 31,
+		"address": 41747,
+		"cpu_address": "$1f:a313",
+		"length": 14,
+		"raw": "656e642061742064656174682e20",
+		"text": "end at death. "
+	},
+	{
+		"file_offset": 1024816,
+		"bank": 31,
+		"address": 41776,
+		"cpu_address": "$1f:a330",
+		"length": 10,
+		"raw": "626f726e20696e746f20",
+		"text": "born into "
+	},
+	{
+		"file_offset": 1024828,
+		"bank": 31,
+		"address": 41788,
+		"cpu_address": "$1f:a33c",
+		"length": 22,
+		"raw": "6e6577206c6966652e204c697665732c207468657920",
+		"text": "new life. Lives, they "
+	},
+	{
+		"file_offset": 1024858,
+		"bank": 31,
+		"address": 41818,
+		"cpu_address": "$1f:a35a",
+		"length": 12,
+		"raw": "657665726c617374696e672e",
+		"text": "everlasting."
+	},
+	{
+		"file_offset": 1024879,
+		"bank": 31,
+		"address": 41839,
+		"cpu_address": "$1f:a36f",
+		"length": 10,
+		"raw": "6865617220736f6d6520",
+		"text": "hear some "
+	},
+	{
+		"file_offset": 1024890,
+		"bank": 31,
+		"address": 41850,
+		"cpu_address": "$1f:a37a",
+		"length": 18,
+		"raw": "766f696365732e2e2e2e2e206d6179626520",
+		"text": "voices..... maybe "
+	},
+	{
+		"file_offset": 1024918,
+		"bank": 31,
+		"address": 41878,
+		"cpu_address": "$1f:a396",
+		"length": 12,
+		"raw": "63616c6c696e67206d652e20",
+		"text": "calling me. "
+	},
+	{
+		"file_offset": 1024997,
+		"bank": 31,
+		"address": 41957,
+		"cpu_address": "$1f:a3e5",
+		"length": 11,
+		"raw": "63616c6c696e67206d652e",
+		"text": "calling me."
+	},
+	{
+		"file_offset": 1025033,
+		"bank": 31,
+		"address": 41993,
+		"cpu_address": "$1f:a409",
+		"length": 16,
+		"raw": "74726561737572652063686573742e20",
+		"text": "treasure chest. "
+	},
+	{
+		"file_offset": 1025051,
+		"bank": 31,
+		"address": 42011,
+		"cpu_address": "$1f:a41b",
+		"length": 13,
+		"raw": "686f706520736f6d656f6e6520",
+		"text": "hope someone "
+	},
+	{
+		"file_offset": 1025304,
+		"bank": 31,
+		"address": 42264,
+		"cpu_address": "$1f:a518",
+		"length": 10,
+		"raw": "6d6f6e756d656e747320",
+		"text": "monuments "
+	},
+	{
+		"file_offset": 1025325,
+		"bank": 31,
+		"address": 42285,
+		"cpu_address": "$1f:a52d",
+		"length": 10,
+		"raw": "6c696768746e696e6720",
+		"text": "lightning "
+	},
+	{
+		"file_offset": 1025336,
+		"bank": 31,
+		"address": 42296,
+		"cpu_address": "$1f:a538",
+		"length": 10,
+		"raw": "707972616d6964732e20",
+		"text": "pyramids. "
+	},
+	{
+		"file_offset": 1025356,
+		"bank": 31,
+		"address": 42316,
+		"cpu_address": "$1f:a54c",
+		"length": 13,
+		"raw": "5468756e6465722052696e6720",
+		"text": "Thunder Ring "
+	},
+	{
+		"file_offset": 1025398,
+		"bank": 31,
+		"address": 42358,
+		"cpu_address": "$1f:a576",
+		"length": 15,
+		"raw": "646f776e206c696768746e696e6720",
+		"text": "down lightning "
+	},
+	{
+		"file_offset": 1025424,
+		"bank": 31,
+		"address": 42384,
+		"cpu_address": "$1f:a590",
+		"length": 10,
+		"raw": "6d6f6e73746572732e20",
+		"text": "monsters. "
+	},
+	{
+		"file_offset": 1025575,
+		"bank": 31,
+		"address": 42535,
+		"cpu_address": "$1f:a627",
+		"length": 10,
+		"raw": "020220706f7572656420",
+		"text": "{WAIT}{WAIT} poured "
+	},
+	{
+		"file_offset": 1026469,
+		"bank": 31,
+		"address": 43429,
+		"cpu_address": "$1f:a9a5",
+		"length": 15,
+		"raw": "48656c702120536f6d65626f647920",
+		"text": "Help! Somebody "
+	},
+	{
+		"file_offset": 1026485,
+		"bank": 31,
+		"address": 43445,
+		"cpu_address": "$1f:a9b5",
+		"length": 13,
+		"raw": "706c656173652e2e2e2e2e2e20",
+		"text": "please...... "
+	},
+	{
+		"file_offset": 1026581,
+		"bank": 31,
+		"address": 43541,
+		"cpu_address": "$1f:aa15",
+		"length": 10,
+		"raw": "416c6c72696768742c20",
+		"text": "Allright, "
+	},
+	{
+		"file_offset": 1047106,
+		"bank": 31,
+		"address": 64066,
+		"cpu_address": "$1f:fa42",
+		"length": 13,
+		"raw": "293442515e676e73777a7c7d7e",
+		"text": ")4BQ^gnswz|}~"
+	},
+	{
+		"file_offset": 1047219,
+		"bank": 31,
+		"address": 64179,
+		"cpu_address": "$1f:fab3",
+		"length": 13,
+		"raw": "4d6c4c5c3d2d5c61634e384845",
+		"text": "MlL\\=-\\acN8HE"
+	}
+]

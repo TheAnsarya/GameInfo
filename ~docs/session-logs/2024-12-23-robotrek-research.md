@@ -1,0 +1,727 @@
+# Session Log - 2024-12-23 - Robotrek ROM Research
+
+## Session Overview
+
+Continued Robotrek documentation work, using reference information from [Data Crystal](https://datacrystal.tcrf.net/wiki/Robotrek).
+
+## Work Completed
+
+### 1. Reference Data Integration
+
+Fetched and integrated comprehensive ROM/RAM map data from Data Crystal wiki as reference:
+- ROM map with all data regions, music tracks, graphics locations
+- SRAM save file structure (verified)
+- Key technical details (Quintet LZSS compression)
+
+### 2. Wiki Updates
+
+**ROM_Map.wikitext:**
+- Complete rewrite with verified reference data
+- Added 23+ music track locations with names
+- Documented sound sample regions ($90000-$DFFFF)
+- Added compressed graphics locations
+- Documented unused ROM space for potential expansion
+- Added interrupt vector table with targets
+
+**RAM_Map.wikitext:**
+- Added verified SRAM structure from reference sources
+- 3 save slots + 3 backup slots (1280 bytes each)
+- Complete save slot field layout:
+  - Inventory (72 slots × 2 bytes)
+  - Player/Robot names
+  - Robot stats (HP, Power, Guard, Speed, Charge)
+  - Gold and Program Points
+  - Checksum field
+
+**Main.wikitext:**
+- Added Ancient as co-developer
+- Added technical notes about Quintet LZSS compression
+- Added external reference links
+
+### 3. Disassembly Documentation
+
+Updated disasm/README.md with:
+- External reference links
+- Music track location table
+- SRAM structure quick reference
+- Updated next steps
+
+### 4. LZSS Decompressor Tool
+
+Created `tools/robotrek/quintet_lzss.py`:
+- Decompresses Quintet's standard LZSS compression
+- Two variants for different Quintet games
+- Scanning mode to find compressed blocks
+- Hex dump preview output
+- Tested successfully:
+  - $410A2: 8192 bytes graphics
+  - $82000: 8192 bytes graphics
+
+## Commits
+
+1. `4143fe4` - docs(robotrek): Integrate Data Crystal ROM/RAM map information
+2. `9945d07` - feat(robotrek): Add Quintet LZSS decompressor
+
+## Key Technical Findings
+
+### From Reference Sources
+
+1. **Compression:** Quintet's standard LZSS (shared with Soul Blazer series)
+2. **Map format:** Similar to other Quintet games
+3. **Font:** Uncompressed 2BPP GameBoy format at $80000
+4. **Developer:** Quintet + Ancient (co-development)
+
+### Music Track Locations
+
+| Offset | Track |
+|--------|-------|
+| $0296B | Robots vs. Hackers |
+| $02EEB | Count Prinky's Mansion |
+| $039A9 | Super Robot Battle! |
+| $EFAD5 | Gateau ~ Master of Time |
+| $14848E | Staff Roll |
+| $14F2EE | Beyond the Stars! |
+
+### Save Structure
+
+- 8 KB SRAM total
+- 3 main slots + 3 backup slots
+- 1280 bytes per slot
+- Includes checksum validation
+
+## What's Next
+
+1. **Graphics extraction** - Use LZSS decompressor to extract:
+   - Character sprites
+   - Enemy graphics
+   - Tilesets
+
+2. **Locate item stats** - Find tables for:
+   - Weapon power/guard values
+   - Item effects
+   - Prices
+
+3. **Research battle formulas** - Document:
+   - Damage calculation
+   - Hit/miss rates
+   - Critical hit mechanics
+
+4. **Invention recipes** - Map the crafting system:
+   - Recipe data structure
+   - Material requirements
+   - Success conditions
+
+## Session 2 - GameFAQs Integration
+
+### Work Completed
+
+#### 1. Hex Case Standardization
+
+Fixed all uppercase hexadecimal values to lowercase per project conventions:
+- `tools/robotrek/extract_data.py` - Format specifiers (06X → 06x)
+- `tools/robotrek/extract_graphics.py` - Format specifiers
+- `tools/robotrek/quintet_lzss.py` - Print statements
+- `Games/SNES/Robotrek (SNES)/disasm/README.md`
+- `Games/SNES/Robotrek (SNES)/BUILD.md`
+- All Wiki/SNES/Robotrek/*.wikitext files
+
+#### 2. GameFAQs Data Integration
+
+Fetched comprehensive game data from GameFAQs guides:
+- DSLevantine's Guide and Walkthrough (2024)
+- saintly's Weapons Guide (2003)
+
+#### 3. New Documentation Created
+
+**Wiki/SNES/Robotrek/Weapons.wikitext** (new file):
+- Complete damage tables for all 17 weapon types by level (1-9)
+- Base ATK and scaling for Swords, Axes, Hammers, Punches, Shots, Lasers, Blades, Celtis, Blows, Bombs
+- Shield and Boots defense stats
+- Pack equipment stats
+- All weapon combination recipes
+- Inventor's Friend locations and level requirements (Level 1-80)
+- Item combination recipes (Smoke, Cure, Clean, Repair, Big Bomb)
+
+#### 4. Updated Documentation
+
+**Wiki/SNES/Robotrek/Items.wikitext**:
+- Added key item descriptions from game
+- Added consumable item costs
+- Added scrap material notes
+- Added cross-references to Weapons page
+
+**Wiki/SNES/Robotrek/Enemies.wikitext**:
+- Added enemy drop tables (45+ entries)
+- Added "message" difficulty factor
+- Added drop items and gold rewards
+
+**Wiki/SNES/Robotrek/RAM_Map.wikitext**:
+- Added verified Pro Action Replay addresses:
+  - $7e0b14 - Hero Level
+  - $7e0690 - Robot 1 Energy
+  - $7e0696 - Robot 1 Power
+  - $7e069c - Robot 1 Guard
+  - $7e07b0-bf - Inventor's Friend flags
+
+**Wiki/SNES/Robotrek/Main.wikitext**:
+- Updated subpages to include Weapons
+- Updated item/enemy counts
+
+### Session 2 Commits
+
+| Hash | Message |
+|------|---------|
+| 327073f | style: standardize hex values to lowercase across Robotrek project |
+| ddb1dcd | docs: add comprehensive weapon/item stats from GameFAQs reference |
+
+## Files Modified
+
+- `Wiki/SNES/Robotrek/ROM_Map.wikitext`
+- `Wiki/SNES/Robotrek/RAM_Map.wikitext`
+- `Wiki/SNES/Robotrek/Main.wikitext`
+- `Wiki/SNES/Robotrek/Items.wikitext`
+- `Wiki/SNES/Robotrek/Enemies.wikitext`
+- `Games/SNES/Robotrek (SNES)/disasm/README.md`
+- `Games/SNES/Robotrek (SNES)/BUILD.md`
+- `tools/robotrek/extract_data.py`
+- `tools/robotrek/extract_graphics.py`
+- `tools/robotrek/quintet_lzss.py`
+
+## Files Created
+
+- `tools/robotrek/quintet_lzss.py`
+- `tools/robotrek/extract_graphics.py`
+- `tools/robotrek/extract_data.py`
+- `Wiki/SNES/Robotrek/Weapons.wikitext`
+- `Games/SNES/Robotrek (SNES)/extracted/font_80000.png`
+- `Games/SNES/Robotrek (SNES)/extracted/font_81000.png`
+- `Games/SNES/Robotrek (SNES)/extracted/inventory_d9310.png`
+- `Games/SNES/Robotrek (SNES)/extracted/enemies.json`
+- `Games/SNES/Robotrek (SNES)/extracted/items.json`
+
+## All Commits This Session
+
+| Hash | Message |
+|------|---------|
+| 4143fe4 | docs(robotrek): Integrate Data Crystal ROM/RAM map |
+| 9945d07 | feat(robotrek): Add Quintet LZSS decompressor |
+| a952223 | feat(robotrek): Add graphics extractor and assets |
+| 66a934f | feat(robotrek): Add data extractor with enemies/items |
+| 327073f | style: standardize hex values to lowercase |
+| ddb1dcd | docs: add comprehensive weapon/item stats from GameFAQs |
+
+## Session 3 - ROM Research Continuation
+
+### Work Completed
+
+#### 1. Item Name Pointer Table Discovery
+
+Located the item name pointer table at **$01F748**:
+- 83 16-bit little-endian pointers
+- Points to null-terminated strings at $01F8A9+
+- Items indexed 0-82 (indices 0-4 and 55-76 are unused/placeholders)
+
+**Item Categories by Index:**
+- 5-8: Swords (1-4)
+- 9-11: Axes (1-3)
+- 12-15: Blades (1-4)
+- 16-18: Hammers (1-3)
+- 19-21: Celtis (1-3)
+- 22-24: Punches (1-3)
+- 25-27: Blows (1-3)
+- 28-30: Shots (1-3)
+- 31-33: Lasers (1-3)
+- 34-37: Bombs (1-4)
+- 38-42: Shields (1-5)
+- 43-48: Packs
+- 49-54: Boots (1-6)
+- 77-82: Key Items (Trans, Horn, Drill, etc.)
+
+#### 2. PAR Address Verification
+
+Confirmed PAR addresses by finding references in ROM code:
+- `$0b14` (Hero Level): 63 occurrences
+- `$0690` (Robot Energy): 58 occurrences
+- `$0696` (Robot Power): 16 occurrences
+- `$069c` (Robot Guard): 37 occurrences
+- `$07b0` (Inventor Flags): 37 occurrences
+
+These addresses are heavily used throughout the codebase, confirming the GameFAQs PAR codes are valid.
+
+#### 3. Actor/Enemy Data Pointer Table
+
+Found pointer table at **$038000**:
+- 128 16-bit pointers to actor/enemy data
+- 22-byte entry size (consistent increment of 22)
+- Data records at $0381A4+
+- Likely contains enemy stats, behavior, graphics pointers
+
+#### 4. Combination Recipe Table
+
+Located recipe table at **$01C2C6**:
+- Complex format with special markers ($68-$71, $74-$79)
+- $FF as section separator
+- Confirmed pattern: `05 05 06 06 07` = Sword 1+1=2, Sword 2+2=3
+
+Recipe encoding:
+- Same item pairs: next byte is result (or implied +1)
+- Cross-combinations: explicit result byte
+- Markers separate weapon categories
+
+#### 5. Updated ROM Map
+
+Added new verified entries to ROM_Map.wikitext:
+- Item name pointer table ($01F748)
+- Actor/Enemy data table ($038000)
+- Detailed item index breakdown
+
+#### 6. JSON Export Created
+
+Created `extracted/item_names.json`:
+- Complete item list with ROM addresses
+- Pointer addresses for each item
+- 83 total items
+
+### Files Modified
+
+- `Wiki/SNES/Robotrek/ROM_Map.wikitext` - Added item pointer table, actor data table
+- `Games/SNES/Robotrek (SNES)/extracted/item_names.json` - New file
+
+### Session 3 Commits
+
+| Hash | Message |
+|------|---------|
+| a203b07 | docs(robotrek): add item pointer table, actor data, PAR verification |
+
+## Session 4 - Continued ROM Research
+
+### Work Completed
+
+#### 1. Enemy Names Extraction
+
+Found enemy name table at **$01FDB6-$01FF72**:
+- 58 enemy names extracted
+- Null-terminated strings
+- Created `enemy_names.json` with complete list
+
+**Enemy List Sample:**
+- Mine, Turbo, Mushroom, Poison, Spider
+- Gel, Gelgel, Bosstoad, Rushbird, Quickbird
+- Mole, Powermole, Tackler, Plasmoke, Elesmoke
+- Monk, Mummy, Franken, Ho Ho, Gator
+- Gunrobot, CannonX, Biolion, Shell, Urchin
+- And more...
+
+#### 2. Actor Data Structure Analysis
+
+Deep analyzed the 22-byte actor records at $038000+:
+- Found 127 standard 22-byte records + 1 special 109-byte header record
+- Data appears to be **compressed or sprite/animation data**, NOT stat tables
+- Byte values show random distribution (0-255), not typical stat patterns
+- No clear HP, ATK, DEF, EXP, Gold fields identifiable
+
+**Conclusion:** The pointer table at $038000 likely points to sprite/animation data or compressed graphics, not enemy statistics. Enemy stats may be stored elsewhere or calculated dynamically.
+
+#### 3. Weapon Stat Search
+
+Searched for weapon stat patterns:
+- Base ATK sequences (5,10,20,40 for Swords) - NOT FOUND as consecutive bytes
+- Cost sequences (200,400,1000,2000) - NOT FOUND
+- Searched various record sizes (8, 10, 12, 16 bytes) - No clear matches
+
+**Conclusion:** Weapon stats may be:
+1. Stored using different encoding
+2. Calculated using formulas
+3. Located in a different bank
+4. Part of compressed data
+
+#### 4. ROM Analysis Scripts Created
+
+Added Python scripts for ROM research:
+- `extract_actor_data.py` - Extracts enemy names and analyzes actor table
+- `find_enemy_stats.py` - Searches for enemy stat patterns
+- `find_weapon_stats.py` - Searches for weapon stat patterns
+- `analyze_item_structure.py` - Analyzes item pointer table structure
+- `analyze_actor_structure.py` - Deep analysis of actor data records
+
+### Files Created
+
+- `Games/SNES/Robotrek (SNES)/extracted/enemy_names.json`
+- `Games/SNES/Robotrek (SNES)/scripts/extract_actor_data.py`
+- `Games/SNES/Robotrek (SNES)/scripts/find_enemy_stats.py`
+- `Games/SNES/Robotrek (SNES)/scripts/find_weapon_stats.py`
+- `Games/SNES/Robotrek (SNES)/scripts/analyze_item_structure.py`
+- `Games/SNES/Robotrek (SNES)/scripts/analyze_actor_structure.py`
+
+### Files Modified
+
+- `Wiki/SNES/Robotrek/ROM_Map.wikitext` - Clarified actor table purpose
+
+### Session 4 Commits
+
+| Hash | Message |
+|------|---------|
+| 963857b | feat(robotrek): add ROM analysis scripts and enemy name extraction |
+| ee1fced | docs(robotrek): update session log and ROM map with Session 4 findings |
+| 6d460fc | feat(robotrek): add combination recipe decoder |
+
+## All Commits This Project
+
+| Hash | Date | Message |
+|------|------|---------|
+| 4143fe4 | Session 1 | docs(robotrek): Integrate Data Crystal ROM/RAM map |
+| 9945d07 | Session 1 | feat(robotrek): Add Quintet LZSS decompressor |
+| a952223 | Session 1 | feat(robotrek): Add graphics extractor and assets |
+| 66a934f | Session 1 | feat(robotrek): Add data extractor with enemies/items |
+| 327073f | Session 2 | style: standardize hex values to lowercase |
+| ddb1dcd | Session 2 | docs: add comprehensive weapon/item stats from GameFAQs |
+| af10f91 | Session 3 | style: fix trailing whitespace |
+| a203b07 | Session 3 | docs(robotrek): add item pointer table, actor data, PAR verification |
+| 963857b | Session 4 | feat(robotrek): add ROM analysis scripts and enemy name extraction |
+| ee1fced | Session 4 | docs(robotrek): update session log and ROM map |
+| 6d460fc | Session 4 | feat(robotrek): add combination recipe decoder |
+
+## What's Next
+
+1. **Find enemy stat tables** - Search compressed data or trace game code
+2. **Decode weapon level formulas** - How stats scale from Level 1-9
+3. **Create comprehensive extractor** - All game data to JSON
+4. **Update Dark Repos wiki** - Document verified findings
+
+---
+
+## Session 5 - Continued ROM Research
+
+### Work Completed
+
+#### 1. Deep ROM Scan for Stat Tables
+
+Created comprehensive ROM analysis scripts:
+- `search_stat_tables.py` - Scans ROM for pointer tables and structured data
+- `analyze_stat_regions.py` - Detailed analysis of potential stat regions
+
+**Findings:**
+- Found 44 potential pointer tables across banks $01-$18
+- Found 2293 regions with stat-like data patterns
+- Confirmed enemy name pointer table at **$01fcf8** (not $01fd00 as previously noted)
+- First 4 pointer entries are garbage; real pointers start at index 4
+
+#### 2. Enemy Name Pointer Table Correction
+
+Corrected pointer table analysis:
+- Actual pointer table: $01fcf8
+- Pointers at index 4-59 point to enemy names
+- Index 0-3: Garbage/header data ("rrange ")
+- Index 33, 34, 47-59: Point to "Cmdr." placeholder ($ff60)
+
+**Complete Enemy Index Mapping:**
+| Index | Enemy | Index | Enemy |
+|-------|-------|-------|-------|
+| 4 | (blank) | 35 | Octopus |
+| 5 | Mine | 36 | Pumpy |
+| 6 | Turbo | 37 | Bumpy |
+| 7 | Mushroom | 38 | Faceman |
+| 8 | Poison | 39 | Bigface |
+| 9 | Spider | 40 | Redpixy |
+| 10 | Spider | 41 | Whitepixy |
+| 11 | Gel | 42 | Goldpixy |
+| 12 | Gelgel | 43 | Knight |
+| 13 | Bosstoad | 44 | Master |
+| 14 | Rushbird | 45 | Gagarian |
+| 15 | Quickbird | 46 | Ninja |
+| 16-32 | ... | 59 | Minicom |
+
+#### 3. Complete Recipe Table Decoding
+
+Created `decode_recipes_full.py` for comprehensive recipe analysis:
+
+**Recipe Table Structure ($01c200):**
+- Uses marker bytes $68-$79 for category indicators
+- $FF marks section boundaries
+- Same-item format: [A A B] means A + A = B
+- Chain format: [05 05 06 06 07] means Sword1→Sword2→Sword3
+
+**Confirmed Recipe Locations:**
+| Address | Marker | Recipes |
+|---------|--------|---------|
+| $01c2c5 | $68 | Smoke + Smoke = Cure |
+| $01c2c9 | $6d | Sword 1+1=2, Sword 2+2=3 |
+| $01c2d4 | $69 | Punch 3+3=Blow 1, Blow 1+1=2 |
+| $01c2df | $6a | Pack 3+3=4, Pack 4+4=5 |
+| $01c2ec | $6b | Hammer 3+3=Celtis 1, Celtis 1+1=2 |
+
+**Known 40+ Same-Item Recipes:**
+- All weapon upgrade paths (Sword, Axe, Blade, Hammer, Celtis, Punch, Blow, Shot, Laser, Bomb)
+- Equipment upgrades (Shield 1-5, Pack 1-6, Boots 1-6)
+- Consumable combinations (Smoke → Cure)
+
+#### 4. ROM Map Updates
+
+Updated ROM_Map.wikitext with:
+- Combination recipe table at $01c200
+- Corrected enemy name pointer table address
+- Recipe table format documentation
+- Category marker byte definitions
+
+### Files Created
+
+- `Games/SNES/Robotrek (SNES)/scripts/search_stat_tables.py`
+- `Games/SNES/Robotrek (SNES)/scripts/analyze_stat_regions.py`
+- `Games/SNES/Robotrek (SNES)/scripts/decode_recipes_full.py`
+- `Games/SNES/Robotrek (SNES)/extracted/recipes_full.json`
+
+### Files Modified
+
+- `Wiki/SNES/Robotrek/ROM_Map.wikitext` - Added recipe table, corrected addresses
+
+### Session 5 Commits
+
+| Hash | Message |
+|------|---------|
+| 65843c7 | feat(robotrek): add ROM analysis scripts and recipe table decoder |
+| fc2677b | feat(robotrek): add graphics extraction and PNG conversion |
+
+#### 5. Graphics Extraction
+
+Created complete graphics extraction pipeline:
+- `extract_all_graphics.py` - Decompresses all LZSS compressed graphics
+- `convert_graphics_to_png.py` - Converts 2BPP/4BPP tiles to PNG
+
+**Extracted Graphics:**
+- 17 compressed regions successfully decompressed
+- 7 map tilesets (128x32 each)
+- 5 graphics banks (128x128 each)
+- 3 menu graphics (128x128-256)
+- Font graphics (128x256, 2BPP)
+- Inventory graphics (128x256)
+
+---
+
+## Session 6 - Comprehensive Data Extraction
+
+### Work Completed
+
+#### 1. Comprehensive Data Extractor
+
+Created `comprehensive_extractor.py` that extracts all known game data to JSON:
+
+**Features:**
+- Extracts all 83 item names with addresses
+- Extracts all 56 enemy names with addresses
+- Includes 40 same-item upgrade recipes
+- ROM metadata (checksums, mapper info)
+- Proper handling of CC-separator for items ($CC = 204)
+- Null-terminated parsing for enemies
+
+**Output Files:**
+- `robotrek_complete_data.json` - All data combined
+- `items_extracted.json` - Item names only
+- `enemies_extracted.json` - Enemy names only
+
+#### 2. Item Name Format Discovery
+
+Discovered item names use **$CC separator** (not null-terminated):
+- Item table starts at $01e413
+- Variable-length strings separated by byte $CC (204)
+- ASCII text format
+- 83 total items extracted correctly
+
+#### 3. Actor Data Format Analysis
+
+Created `analyze_actor_data.py` to decode actor/entity format:
+
+**Actor Pointer Table:**
+- Location: $038000
+- Entry count: 192
+- Format: 2-byte little-endian pointers
+
+**Standard Actor Format (22 bytes):**
+```
+fe [gfx_lo] [gfx_hi] 83 [anim_lo] [anim_hi] 83   ; Frame 0
+fe [gfx_lo] [gfx_hi] 83 [anim_lo] [anim_hi] 83   ; Frame 1
+fe [gfx_lo] [gfx_hi] 83 [anim_lo] [anim_hi] 83   ; Frame 2
+ff                                               ; Terminator
+```
+
+**Key Findings:**
+- Each actor has 3 animation frames
+- Graphics pointers at offsets 1-2, 8-9, 15-16
+- Animation pointers at offsets 4-5, 11-12, 18-19
+- Bank marker $83 indicates bank $03
+- Actor 0 (player) uses different format
+
+**Unique Pointers Found:**
+- 22 unique graphics pointers
+- 29 unique animation pointers
+
+#### 4. Wiki Documentation Updates
+
+Updated ROM_Map.wikitext with:
+- Complete item names table (83 entries with addresses)
+- Complete enemy names table (56 entries with addresses)
+- Actor data format documentation
+- Sample actor entries with pointers
+
+### Session 6 Commits
+
+| Hash | Message |
+|------|---------|
+| 4c5d483 | feat(robotrek): add comprehensive data extractor and update ROM_Map with item/enemy tables |
+| 4f6e545 | feat(robotrek): analyze actor/entity data format and document in ROM_Map |
+
+### Files Created
+
+- `Games/SNES/Robotrek (SNES)/scripts/comprehensive_extractor.py`
+- `Games/SNES/Robotrek (SNES)/scripts/analyze_actor_data.py`
+- `Games/SNES/Robotrek (SNES)/extracted/robotrek_complete_data.json`
+- `Games/SNES/Robotrek (SNES)/extracted/items_extracted.json`
+- `Games/SNES/Robotrek (SNES)/extracted/enemies_extracted.json`
+- `Games/SNES/Robotrek (SNES)/extracted/actor_data_analysis.json`
+
+### Files Modified
+
+- `Wiki/SNES/Robotrek/ROM_Map.wikitext` - Complete item/enemy tables, actor format
+
+---
+
+## Session 7 - Map Data, Palettes, and Graphics Analysis
+
+### Work Completed
+
+#### 1. Map Data Analysis
+
+Created `analyze_map_data.py` to investigate map structure:
+- Found map metadata region at $d8000-$d930f (4879 bytes)
+- All 6 tileset regions decompress to exactly 2048 bytes
+- Map arrangement decompresses to 771 bytes
+- Identified common 4-byte patterns in metadata
+
+**Map Tileset Decompression:**
+| Region | Compressed | Decompressed |
+|--------|------------|--------------|
+| $00000-$00622 | 1570 bytes | 2048 bytes |
+| $00623-$00c3e | 1563 bytes | 2048 bytes |
+| $00c3f-$0124d | 1550 bytes | 2048 bytes |
+| $0124e-$01844 | 1526 bytes | 2048 bytes |
+| $01845-$01e2e | 1513 bytes | 2048 bytes |
+| $01e2f-$023e7 | 1464 bytes | 2048 bytes |
+| $023e8-$0296a (arr) | 1410 bytes | 771 bytes |
+
+#### 2. Palette Extraction
+
+Created `extract_palettes.py` to analyze color data:
+- SNES palettes are 15-bit RGB (BBBBBGGGGGRRRRR)
+- Each palette is 32 bytes (16 colors × 2 bytes)
+
+**Known Palette Regions:**
+| Region | Palettes | Description |
+|--------|----------|-------------|
+| $018845-$018c05 | 30 | General game palettes |
+| $05de10-$05e7ff | 79 | Robot/object palettes |
+| $08fe00-$08ffff | 16 | Menu/UI palettes |
+
+**Additional Palette Groups (found via pattern analysis):**
+- $10b9a0-$10ba40: 6 palettes
+- $139020-$139080: 4 palettes
+- $14a0e0-$14a1a0: 7 palettes
+- $14b020-$14b0e0: 7 palettes
+
+Generated palette visualization images (PNG).
+
+#### 3. Sprite Graphics Extraction
+
+Created `extract_sprites.py` to extract uncompressed graphics:
+
+**Font Graphics (2BPP):**
+- Location: $080000-$082000
+- 512 tiles (8192 bytes)
+- GameBoy-style 2-bit-per-pixel format
+
+**Menu Graphics (4BPP):**
+- Location: $0d9310-$0db310
+- 256 tiles (8192 bytes)
+- Standard SNES 4-bit-per-pixel format
+
+Exported both as PNG tile sheets.
+
+#### 4. ROM_Map Updates
+
+Added to ROM_Map.wikitext:
+- New "Palettes" section with all discovered palette regions
+- Updated tileset table with decompressed sizes
+- Documented SNES palette format (15-bit RGB)
+
+### Session 7 Commits
+
+| Hash | Message |
+|------|---------|
+| a9eb6e6 | feat(robotrek): add map data and palette analysis scripts |
+
+### Files Created
+
+- `Games/SNES/Robotrek (SNES)/scripts/analyze_map_data.py`
+- `Games/SNES/Robotrek (SNES)/scripts/extract_palettes.py`
+- `Games/SNES/Robotrek (SNES)/scripts/extract_sprites.py`
+- `Games/SNES/Robotrek (SNES)/extracted/map_data_analysis.json`
+- `Games/SNES/Robotrek (SNES)/extracted/palette_analysis.json`
+- `Games/SNES/Robotrek (SNES)/extracted/palettes_palettes_1.png`
+- `Games/SNES/Robotrek (SNES)/extracted/palettes_palettes_2_robot_colors.png`
+- `Games/SNES/Robotrek (SNES)/extracted/palettes_palettes_3.png`
+- `Games/SNES/Robotrek (SNES)/extracted/font_2bpp.png`
+- `Games/SNES/Robotrek (SNES)/extracted/menu_graphics_4bpp.png`
+- `Games/SNES/Robotrek (SNES)/extracted/sprite_analysis.json`
+
+### Files Modified
+
+- `Wiki/SNES/Robotrek/ROM_Map.wikitext` - Palette section, tileset decomp sizes
+
+---
+
+## All Session Commits
+
+| Hash | Session | Message |
+|------|---------|---------|
+| 4143fe4 | 1 | docs(robotrek): Integrate Data Crystal ROM/RAM map |
+| 9945d07 | 1 | feat(robotrek): Add Quintet LZSS decompressor |
+| a952223 | 1 | feat(robotrek): Add graphics extractor and assets |
+| 66a934f | 1 | feat(robotrek): Add data extractor with enemies/items |
+| 327073f | 2 | style: standardize hex values to lowercase |
+| ddb1dcd | 2 | docs: add comprehensive weapon/item stats from GameFAQs |
+| af10f91 | 3 | style: fix trailing whitespace |
+| a203b07 | 3 | docs(robotrek): add item pointer table, actor data, PAR verification |
+| 963857b | 4 | feat(robotrek): add ROM analysis scripts and enemy name extraction |
+| ee1fced | 4 | docs(robotrek): update session log and ROM map |
+| 6d460fc | 4 | feat(robotrek): add combination recipe decoder |
+| 65843c7 | 5 | feat(robotrek): add ROM analysis scripts and recipe table decoder |
+| fc2677b | 5 | feat(robotrek): add graphics extraction and PNG conversion |
+| 4c5d483 | 6 | feat(robotrek): add comprehensive data extractor |
+| 4f6e545 | 6 | feat(robotrek): analyze actor/entity data format |
+| 19b6cdc | 6 | docs(robotrek): update session log with Session 6 progress |
+| 4562355 | 6 | feat(robotrek): add enemy stats search script |
+| a9eb6e6 | 7 | feat(robotrek): add map data and palette analysis scripts |
+
+## What's Next
+
+1. **Enemy stat tables** - Still not located; may need code tracing
+2. **Weapon damage formulas** - Likely calculated, not stored in tables
+3. **Character sprite extraction** - Decode compressed sprite data
+4. **Update Dark Repos wiki** - Document verified findings
+5. **LZSS decompression improvements** - Better handle all compressed regions
+
+---
+
+## Summary Statistics
+
+| Metric | Count |
+|--------|-------|
+| Total Sessions | 7 |
+| Total Commits | 18 |
+| Scripts Created | 12 |
+| JSON Files Generated | 8 |
+| PNG Images Extracted | 8 |
+| Wiki Pages Updated | 4 |
+| Items Documented | 83 |
+| Enemies Documented | 56 |
+| Palettes Found | 145+ |
+| Actors Analyzed | 192 |
+

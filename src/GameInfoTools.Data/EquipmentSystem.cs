@@ -448,10 +448,8 @@ public class EquipmentSystem {
 		object convertedValue;
 		if (prop.PropertyType.IsEnum) {
 			convertedValue = Enum.ToObject(prop.PropertyType, value);
-		} else if (prop.PropertyType == typeof(bool)) {
-			convertedValue = value != 0;
 		} else {
-			convertedValue = Convert.ChangeType(value, prop.PropertyType);
+			convertedValue = prop.PropertyType == typeof(bool) ? value != 0 : Convert.ChangeType(value, prop.PropertyType);
 		}
 
 		prop.SetValue(item, convertedValue);

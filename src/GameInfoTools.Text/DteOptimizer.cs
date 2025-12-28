@@ -125,7 +125,6 @@ public sealed class DteOptimizer {
 	private readonly Dictionary<string, int> _reverseDteTable = [];
 	private readonly Dictionary<int, char> _charTable = [];
 	private readonly Dictionary<char, int> _reverseCharTable = [];
-	private DteConfig _config = DteConfig.NesStandard;
 
 	/// <summary>
 	/// Gets the current DTE table (byte -> text mappings).
@@ -141,9 +140,9 @@ public sealed class DteOptimizer {
 	/// Gets or sets the configuration.
 	/// </summary>
 	public DteConfig Config {
-		get => _config;
-		set => _config = value ?? DteConfig.NesStandard;
-	}
+		get;
+		set => field = value ?? DteConfig.NesStandard;
+	} = DteConfig.NesStandard;
 
 	/// <summary>
 	/// Loads a TBL file for character encoding.
@@ -269,12 +268,12 @@ public sealed class DteOptimizer {
 	public Dictionary<string, int> AnalyzeSequences(string text) {
 		var sequences = new Dictionary<string, int>();
 
-		for (int length = _config.MinLength; length <= _config.MaxLength; length++) {
+		for (int length = Config.MinLength; length <= Config.MaxLength; length++) {
 			for (int i = 0; i <= text.Length - length; i++) {
 				var seq = text.Substring(i, length);
 
 				// Skip if contains control codes
-				if (_config.PreserveControlCodes && (seq.Contains('[') || seq.Contains(']'))) {
+				if (Config.PreserveControlCodes && (seq.Contains('[') || seq.Contains(']'))) {
 					continue;
 				}
 
@@ -302,7 +301,7 @@ public sealed class DteOptimizer {
 
 		// Filter by minimum occurrences and calculate savings
 		var candidates = sequences
-			.Where(kvp => kvp.Value >= _config.MinOccurrences)
+			.Where(kvp => kvp.Value >= Config.MinOccurrences)
 			.Select(kvp => new {
 				Text = kvp.Key,
 				Count = kvp.Value,
@@ -314,10 +313,10 @@ public sealed class DteOptimizer {
 		// Greedily select non-overlapping pairs
 		var selectedPairs = new List<DtePair>();
 		var usedSequences = new HashSet<string>();
-		var currentByte = _config.StartByte;
+		var currentByte = Config.StartByte;
 
 		foreach (var candidate in candidates) {
-			if (currentByte > _config.EndByte) break;
+			if (currentByte > Config.EndByte) break;
 
 			// Skip if this sequence is a substring of an already selected longer sequence
 			var isSubstring = usedSequences.Any(used =>
@@ -367,15 +366,15 @@ public sealed class DteOptimizer {
 	public DteAnalysisResult GenerateOptimalTableIterative(string text) {
 		var workingText = text;
 		var selectedPairs = new List<DtePair>();
-		var currentByte = _config.StartByte;
+		var currentByte = Config.StartByte;
 
-		while (currentByte <= _config.EndByte) {
+		while (currentByte <= Config.EndByte) {
 			// Analyze current text
 			var sequences = AnalyzeSequences(workingText);
 
 			// Find best candidate
 			var bestCandidate = sequences
-				.Where(kvp => kvp.Value >= _config.MinOccurrences)
+				.Where(kvp => kvp.Value >= Config.MinOccurrences)
 				.Select(kvp => new {
 					Text = kvp.Key,
 					Count = kvp.Value,
@@ -483,6 +482,7 @@ public sealed class DteOptimizer {
 		for (int i = 0; i <= n; i++) {
 			dp[i] = (int.MaxValue / 2, null);
 		}
+
 		dp[n] = (0, null);
 
 		// Sort DTE entries by length (longest first)

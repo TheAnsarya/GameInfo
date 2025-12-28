@@ -1,0 +1,172 @@
+{{Infobox game
+| title           = Dragon Warrior IV
+| title_jp        = ドラゴンクエストIV 導かれし者たち
+| title_jp_romaji = Doragon Kuesuto Fō: Michibikareshi Monotachi
+
+| image           = Dragon Warrior IV box.jpg
+
+| developer       = Chunsoft
+| publisher_jp    = Enix
+| publisher_na    = Enix America
+
+| platform        = NES
+| platforms       = Famicom, PlayStation, Nintendo DS, Mobile
+
+| release_jp      = February 11, 1990
+| release_na      = October 1992
+
+| genre           = RPG
+| players         = 1
+
+| mapper          = MMC5 (5)
+| rom_size        = 512 KB PRG + 256 KB CHR
+| sram            = 8 KB
+| mirroring       = Vertical
+
+| series          = Dragon Quest
+| predecessor     = [[NES/Dragon_Warrior_III|Dragon Warrior III]]
+| successor       = [[Dragon Quest V]]
+}}
+
+'''Dragon Warrior IV''' (known as '''Dragon Quest IV''' in Japan) is a role-playing video game developed by Chunsoft and published by Enix for the Nintendo Entertainment System. It was released in Japan on February 11, 1990 and in North America in October 1992. It is the fourth installment in the Dragon Quest series.
+
+==Overview==
+
+Dragon Warrior IV is notable for its chapter-based storytelling structure, where players control different protagonists across five chapters before the stories converge. The game features an AI-controlled party system in the final chapter, where party members make their own decisions in battle based on "tactics" settings.
+
+==Technical Information==
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| ROM Size || 512 KB PRG + 256 KB CHR
+|-
+| Mapper || MMC5 (Mapper 5)
+|-
+| PRG Banks || 32 × 16KB banks
+|-
+| CHR Banks || CHR RAM
+|-
+| Save RAM || 8KB battery-backed
+|-
+| CRC32 || <code>A5E6BAD5</code>
+|}
+
+==Chapters==
+
+{| class="wikitable"
+|-
+! Chapter !! Title !! Protagonist(s) !! Description
+|-
+| 1 || The Royal Soldiers || Ragnar McRyan || A soldier investigates missing children
+|-
+| 2 || Princess Alena's Adventure || Alena, Cristo, Brey || A princess escapes castle life for adventure
+|-
+| 3 || Taloon the Arms Merchant || Taloon || A merchant builds his fortune
+|-
+| 4 || The Sisters of Monbaraba || Mara, Nara || Two sisters seek revenge for their father
+|-
+| 5 || The Chosen || Hero || The hero unites all characters against evil
+|}
+
+==Party Members==
+
+{| class="wikitable"
+|-
+! ID !! Name !! Class !! Playable Chapter
+|-
+| $00 || Hero || Hero || 5
+|-
+| $01 || Cristo || Priest || 2, 5
+|-
+| $02 || Nara || Fortune Teller || 4, 5
+|-
+| $03 || Mara || Dancer || 4, 5
+|-
+| $04 || Brey || Wizard || 2, 5
+|-
+| $05 || Taloon || Merchant || 3, 5
+|-
+| $06 || Ragnar || Soldier || 1, 5
+|-
+| $07 || Alena || Princess || 2, 5
+|}
+
+==Extra Companions==
+
+Temporary party members that join in specific chapters:
+
+{| class="wikitable"
+|-
+! ID !! Name !! Chapter !! Class
+|-
+| $c5 || Healie || 1 || Kind Healer
+|-
+| $c6 || Orin || 4 || Alchemist
+|-
+| $c7 || Laurent || 3 || Troubadour
+|-
+| $c8 || Strom || 3 || Guardsman
+|-
+| $c9 || Hector || 5 || Young Man
+|-
+| $ca || Panon || 5 || Jester
+|-
+| $cb || Lucia || 5 || Zenithian
+|-
+| $cc || Doran || 5 || Baby Dragon
+|}
+
+==Documentation==
+
+===Technical===
+* [[Dragon Warrior IV:ROM_Map|ROM Map]] - Complete PRG ROM layout
+* [[Dragon Warrior IV:RAM_Map|RAM Map]] - Runtime memory documentation
+* [[Dragon Warrior IV:SRAM_Map|SRAM Map]] - Save data structure
+* [[Dragon Warrior IV:TBL|Text Table]] - Character encoding
+* [[Dragon Warrior IV:Values|Values]] - Game constants and IDs
+* [[Dragon Warrior IV:Map_List|Map List]] - Location ID reference
+
+===Game Systems===
+* [[Dragon Warrior IV:Battle_System|Battle System]] - AI tactics and combat mechanics
+* [[Dragon Warrior IV:EXP_System|EXP System]] - Experience calculation formulas
+* [[Dragon Warrior IV:Spells|Spells]] - Magic system and spell tables
+
+===Game Data===
+* [[Dragon Warrior IV:Characters|Characters]] - Party members and companions
+* [[Dragon Warrior IV:Items|Items]] - Equipment and consumables
+* [[Dragon Warrior IV:Enemies|Enemies]] - Monster data structure and categories
+
+==Known Dumps==
+
+These are the ROMs as they are listed in [https://www.tosecdev.org/ TOSEC].
+
+{{known_dumps}}
+{{dump
+| description = Dragon Quest IV (1990-02-11)(Enix)(JP)
+| size = 524304
+| size_hex = $80010
+| crc32 = a1489f3e
+| md5 = 65be0515383394a096084d4921c353f4
+| sha1 = 1147ce6dfdc3354d8bb89be40f5d1a97a2be1aea
+}}
+{{dump
+| description = Dragon Warrior IV (1992-10)(Enix)(US)
+| size = 524304
+| size_hex = $80010
+| crc32 = f6b24806
+| md5 = e45105e8f82d8aa29b39260fd531498d
+| sha1 = f4759104bd0241ce3c038209446aeda79f170fdd
+}}
+{{known_dumps/end}}
+
+==External Links==
+
+* [https://github.com/TheAnsarya/dragon-warrior-4-info Dragon Warrior IV Disassembly Project]
+* [https://github.com/TheAnsarya/GameInfo GameInfo Tools Repository]
+
+[[Category:NES Games]]
+[[Category:Dragon Quest Series]]
+[[Category:RPG]]
+[[Category:Enix]]

@@ -116,6 +116,7 @@ public class SymbolManager {
 			addressList = [];
 			_symbolsByAddress[symbol.FullAddress] = addressList;
 		}
+
 		addressList.Add(symbol);
 	}
 
@@ -159,6 +160,7 @@ public class SymbolManager {
 		if (_symbolsByName.TryGetValue(name, out var symbol)) {
 			return RemoveSymbol(symbol);
 		}
+
 		return false;
 	}
 
@@ -308,6 +310,7 @@ public class SymbolManager {
 				if (!int.TryParse(addressPart[..colonIndex], System.Globalization.NumberStyles.HexNumber, null, out var bankValue)) {
 					continue;
 				}
+
 				bank = bankValue;
 				addressPart = addressPart[(colonIndex + 1)..];
 			}

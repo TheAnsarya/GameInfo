@@ -9,7 +9,7 @@ namespace GameInfoTools.Wiki;
 /// Tracks which files have been reviewed for upload and their sync status.
 ///
 /// Content policies are wiki-specific and configured through WikiProfileManager.
-/// Some wikis (like Data Crystal) forbid AI-generated content, while private wikis may allow it.
+/// Some wikis forbid AI-generated content, while others (like DarkRepos) allow it.
 /// </summary>
 public class WikiSyncManager {
 	private readonly string _syncStatePath;
@@ -103,8 +103,9 @@ public class WikiSyncManager {
 	/// <summary>
 	/// Marks a file as reviewed and ready for upload.
 	///
-	/// For wikis that forbid AI content (like Data Crystal), only mark as reviewed
-	/// after a human has manually verified and edited the content.
+	/// For wikis that forbid AI content, only mark as reviewed after a human has
+	/// manually verified and edited the content. For wikis that allow AI content
+	/// (like DarkRepos), review is optional but recommended.
 	/// Check the wiki's content policy via WikiProfileManager.
 	/// </summary>
 	/// <param name="localPath">Path to the local file.</param>

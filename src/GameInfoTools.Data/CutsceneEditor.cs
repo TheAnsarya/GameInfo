@@ -10,12 +10,11 @@ namespace GameInfoTools.Data;
 public class CutsceneEditor {
 	private readonly Dictionary<string, Cutscene> _cutscenes = [];
 	private readonly Dictionary<string, CutsceneCommand> _commandTemplates = [];
-	private CutsceneSchema _schema = new();
 
 	/// <summary>
 	/// Current schema configuration.
 	/// </summary>
-	public CutsceneSchema Schema => _schema;
+	public CutsceneSchema Schema { get; private set; } = new();
 
 	/// <summary>
 	/// All loaded cutscenes.
@@ -269,7 +268,7 @@ public class CutsceneEditor {
 		}
 
 		// Convert frames to time (assuming 60fps)
-		var fps = _schema.FramesPerSecond > 0 ? _schema.FramesPerSecond : 60;
+		var fps = Schema.FramesPerSecond > 0 ? Schema.FramesPerSecond : 60;
 		return TimeSpan.FromSeconds(totalFrames / (double)fps);
 	}
 
@@ -401,6 +400,7 @@ public class CutsceneEditor {
 						CommandIndex = index
 					});
 				}
+
 				break;
 
 			case CommandType.MoveActor:
@@ -411,6 +411,7 @@ public class CutsceneEditor {
 						CommandIndex = index
 					});
 				}
+
 				break;
 
 			case CommandType.PlaySound:
@@ -422,6 +423,7 @@ public class CutsceneEditor {
 						CommandIndex = index
 					});
 				}
+
 				break;
 
 			case CommandType.Goto:
@@ -433,6 +435,7 @@ public class CutsceneEditor {
 						CommandIndex = index
 					});
 				}
+
 				break;
 		}
 
@@ -455,7 +458,7 @@ public class CutsceneEditor {
 	/// </summary>
 	public async Task ExportToJsonAsync(string path) {
 		var export = new CutsceneExport {
-			Schema = _schema,
+			Schema = Schema,
 			CommandTemplates = _commandTemplates.ToDictionary(kvp => kvp.Key, kvp => kvp.Value),
 			Cutscenes = _cutscenes.Values.ToList()
 		};
@@ -472,7 +475,7 @@ public class CutsceneEditor {
 		var import = JsonSerializer.Deserialize<CutsceneExport>(json, GetJsonOptions())
 			?? throw new InvalidOperationException("Failed to parse cutscene data");
 
-		_schema = import.Schema ?? new CutsceneSchema();
+		Schema = import.Schema ?? new CutsceneSchema();
 
 		_commandTemplates.Clear();
 		_cutscenes.Clear();
@@ -804,14 +807,14 @@ public class CutsceneEditor {
 	public void Clear() {
 		_cutscenes.Clear();
 		_commandTemplates.Clear();
-		_schema = new CutsceneSchema();
+		Schema = new CutsceneSchema();
 	}
 
 	/// <summary>
 	/// Set the schema configuration.
 	/// </summary>
 	public void SetSchema(CutsceneSchema schema) {
-		_schema = schema ?? new CutsceneSchema();
+		Schema = schema ?? new CutsceneSchema();
 	}
 
 	private static JsonSerializerOptions GetJsonOptions() => new() {

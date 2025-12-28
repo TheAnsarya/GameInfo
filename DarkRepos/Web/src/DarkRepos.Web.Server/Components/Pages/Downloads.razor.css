@@ -1,0 +1,63 @@
+/* Downloads.razor - Component scoped styles */
+
+.downloads-content {
+	max-width: 1000px;
+}
+
+.download-source {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-4);
+}
+
+.download-header {
+	display: flex;
+	gap: var(--space-4);
+	align-items: flex-start;
+}
+
+.download-icon {
+	font-size: 2.5rem;
+	flex-shrink: 0;
+}
+
+.download-info {
+	flex: 1;
+}
+
+.download-info h3 {
+	margin: 0 0 var(--space-2) 0;
+	color: var(--color-text-primary);
+}
+
+.download-info p {
+	margin: 0;
+	line-height: 1.6;
+}
+
+.download-links {
+	display: flex;
+	gap: var(--space-3);
+	flex-wrap: wrap;
+}
+
+.external-link {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-2);
+}
+
+.external-link h3 {
+	margin: 0;
+	font-size: var(--font-size-md);
+	color: var(--color-text-primary);
+}
+
+.external-link p {
+	margin: 0;
+	flex: 1;
+}
+
+.external-link .btn {
+	align-self: flex-start;
+}

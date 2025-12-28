@@ -1,0 +1,53 @@
+/* SectionHeader.razor - Component scoped styles */
+
+.section-header {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: var(--space-4);
+	margin-bottom: var(--space-6);
+	flex-wrap: wrap;
+}
+
+.section-header-content {
+	flex: 1;
+	min-width: 200px;
+}
+
+.section-title {
+	font-size: var(--font-size-xl);
+	font-weight: var(--font-weight-bold);
+	color: var(--color-text-primary);
+	margin: 0;
+	line-height: var(--line-height-tight);
+}
+
+.section-title.large {
+	font-size: var(--font-size-2xl);
+}
+
+.section-subtitle {
+	font-size: var(--font-size-base);
+	color: var(--color-text-secondary);
+	margin: var(--space-2) 0 0;
+	max-width: var(--max-width-text);
+}
+
+.section-link {
+	color: var(--color-link);
+	text-decoration: none;
+	font-size: var(--font-size-sm);
+	font-weight: var(--font-weight-medium);
+	transition: color var(--transition-fast);
+	white-space: nowrap;
+}
+
+.section-link:hover {
+	color: var(--color-link-hover);
+}
+
+.section-actions {
+	display: flex;
+	gap: var(--space-2);
+	align-items: center;
+}

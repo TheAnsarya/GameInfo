@@ -21,10 +21,7 @@
 		"maximum": 2
 	},
 	"MD013": false,
-	"MD022": {
-		"lines_above": 1,
-		"lines_below": 1
-	},
+	"MD022": false,
 	"MD024": {
 		"siblings_only": true
 	},
@@ -37,9 +34,8 @@
 	"MD029": {
 		"style": "ordered"
 	},
-	"MD031": {
-		"list_items": true
-	},
+	"MD031": false,
+	"MD032": false,
 	"MD033": {
 		"allowed_elements": [
 			"details",
@@ -54,7 +50,7 @@
 	"MD035": {
 		"style": "---"
 	},
-	"MD040": true,
+	"MD040": false,
 	"MD041": true,
 	"MD046": {
 		"style": "fenced"

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap (TODO: generate dynamically)
+# Sitemap: https://darkrepos.com/sitemap.xml

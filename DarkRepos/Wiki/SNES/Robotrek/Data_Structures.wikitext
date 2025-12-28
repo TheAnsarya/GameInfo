@@ -1,0 +1,385 @@
+{{Back|Robotrek (SNES)}}
+
+= Robotrek (SNES) - Data Structures =
+
+This page documents the internal data structures in Robotrek.
+
+== Save Data Structure ==
+
+SRAM: $70:0000-$70:1FFF (8 KB)
+
+=== Save Header ($70:0000-$70:001F) ===
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $0000 || 4 || Magic number "RBTK"
+|-
+| $0004 || 1 || Save slot number (0-2)
+|-
+| $0005 || 1 || Checksum byte 1
+|-
+| $0006 || 1 || Checksum byte 2
+|-
+| $0007 || 1 || Game flags
+|-
+| $0008 || 3 || Play time (hours:minutes:seconds)
+|-
+| $000b || 1 || Current chapter (1-5)
+|-
+| $000c || 2 || Current location ID
+|-
+| $000e || 2 || Player X position
+|-
+| $0010 || 2 || Player Y position
+|-
+| $0012 || 1 || Map layer/floor
+|-
+| $0013 || 1 || Direction facing
+|-
+| $0014-$001f || 12 || Reserved
+|}
+
+=== Player Data ($70:0020-$70:007F) ===
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $0020 || 8 || Player name (8 chars, null-padded)
+|-
+| $0028 || 2 || Current HP
+|-
+| $002a || 2 || Max HP
+|-
+| $002c || 4 || Gold
+|-
+| $0030 || 4 || Total EXP
+|-
+| $0034 || 1 || Level
+|-
+| $0035 || 1 || Inventor Level
+|-
+| $0036 || 2 || EXP to next level
+|-
+| $0038 || 1 || Power (base)
+|-
+| $0039 || 1 || Guard (base)
+|-
+| $003a || 1 || Speed (base)
+|-
+| $003b || 1 || Active robot slot (0-2)
+|-
+| $003c-$007f || 68 || Reserved/unused
+|}
+
+=== Robot 1 Data ($70:0080-$70:00FF) ===
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $0080 || 8 || Robot 1 name
+|-
+| $0088 || 2 || Current HP
+|-
+| $008a || 2 || Max HP
+|-
+| $008c || 2 || Current EN
+|-
+| $008e || 2 || Max EN
+|-
+| $0090 || 1 || Level
+|-
+| $0091 || 1 || Power (total)
+|-
+| $0092 || 1 || Guard (total)
+|-
+| $0093 || 1 || Speed (total)
+|-
+| $0094 || 1 || Head equipped
+|-
+| $0095 || 1 || Body equipped
+|-
+| $0096 || 1 || Right arm equipped
+|-
+| $0097 || 1 || Left arm equipped
+|-
+| $0098 || 1 || Legs equipped
+|-
+| $0099 || 1 || Accessory 1
+|-
+| $009a || 1 || Accessory 2
+|-
+| $009b || 1 || Program slot 1
+|-
+| $009c || 1 || Program slot 2
+|-
+| $009d || 1 || Program slot 3
+|-
+| $009e || 1 || Program slot 4
+|-
+| $009f || 1 || Color palette
+|-
+| $00a0-$00ff || 96 || Stats history/modifiers
+|}
+
+=== Robot 2 Data ($70:0100-$70:017F) ===
+
+Same structure as Robot 1.
+
+=== Robot 3 Data ($70:0180-$70:01FF) ===
+
+Same structure as Robot 1.
+
+=== Inventory ($70:0200-$70:02FF) ===
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $0200-$021f || 32 || Consumable items (ID, Qty pairs)
+|-
+| $0220-$023f || 32 || Weapons (16 slots, 2 bytes each)
+|-
+| $0240-$025f || 32 || Armor (16 slots, 2 bytes each)
+|-
+| $0260-$027f || 32 || Accessories (16 slots, 2 bytes each)
+|-
+| $0280-$029f || 32 || Materials (ID, Qty pairs)
+|-
+| $02a0-$02bf || 32 || Robot parts (16 slots, 2 bytes each)
+|-
+| $02c0-$02df || 32 || Key items (bitfield, 256 flags)
+|-
+| $02e0-$02ff || 32 || Learned recipes (bitfield)
+|}
+
+=== Story Flags ($70:0300-$70:03FF) ===
+
+256 bytes = 2048 individual flags
+
+{| class="wikitable"
+! Bit Range !! Description
+|-
+| $0300 bit 0-7 || Chapter 1 progress
+|-
+| $0301 bit 0-7 || Chapter 1 optional
+|-
+| $0302-$0309 || Chapter 2 flags
+|-
+| $030a-$0311 || Chapter 3 flags
+|-
+| $0312-$0319 || Chapter 4 flags
+|-
+| $031a-$0321 || Chapter 5 flags
+|-
+| $0322-$032f || Boss defeated flags
+|-
+| $0330-$033f || Treasure chests opened
+|-
+| $0340-$034f || NPCs talked to
+|-
+| $0350-$035f || Areas discovered
+|-
+| $0360-$03ff || Misc/event flags
+|}
+
+== ROM Data Structures ==
+
+=== Item Data (Bank $d0) ===
+
+Each item: 8 bytes
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Item ID
+|-
+| $01 || 1 || Item Type (0=Consume, 1=Weapon, 2=Armor, 3=Acc, 4=Material, 5=Part, 6=Key)
+|-
+| $02 || 1 || Primary stat value
+|-
+| $03 || 1 || Secondary stat value
+|-
+| $04 || 2 || Buy price
+|-
+| $06 || 2 || Flags / Special effects
+|}
+
+=== Enemy Data (Bank $d1) ===
+
+Each enemy: 16 bytes
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Enemy ID
+|-
+| $01 || 1 || Sprite index
+|-
+| $02 || 2 || HP
+|-
+| $04 || 1 || Power
+|-
+| $05 || 1 || Guard
+|-
+| $06 || 1 || Speed
+|-
+| $07 || 1 || AI pattern
+|-
+| $08 || 2 || EXP reward
+|-
+| $0a || 2 || Gold reward
+|-
+| $0c || 1 || Drop 1 ID
+|-
+| $0d || 1 || Drop 1 rate
+|-
+| $0e || 1 || Drop 2 ID
+|-
+| $0f || 1 || Drop 2 rate
+|}
+
+=== Invention Recipes (Bank $d2) ===
+
+Each recipe: 8 bytes
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Result item ID
+|-
+| $01 || 1 || Material 1 ID
+|-
+| $02 || 1 || Material 1 quantity
+|-
+| $03 || 1 || Material 2 ID
+|-
+| $04 || 1 || Material 2 quantity
+|-
+| $05 || 1 || Material 3 ID
+|-
+| $06 || 1 || Material 3 quantity
+|-
+| $07 || 1 || Required level / flags
+|}
+
+=== Map Data (Banks $e8-$ef) ===
+
+==== Map Header ====
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 2 || Map ID
+|-
+| $02 || 1 || Width (tiles)
+|-
+| $03 || 1 || Height (tiles)
+|-
+| $04 || 2 || Tileset ID
+|-
+| $06 || 2 || Music ID
+|-
+| $08 || 2 || Layer 1 data pointer
+|-
+| $0a || 2 || Layer 2 data pointer
+|-
+| $0c || 2 || Collision data pointer
+|-
+| $0e || 2 || Event data pointer
+|}
+
+==== Tile Data ====
+
+* Each tile: 1 byte (tile index)
+* Tiles are 16x16 pixels
+* Maps can be up to 256x256 tiles
+
+==== Event Data ====
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Event type
+|-
+| $01 || 1 || X position
+|-
+| $02 || 1 || Y position
+|-
+| $03 || 1 || Width/trigger radius
+|-
+| $04 || 2 || Script pointer
+|-
+| $06 || 2 || Flags/conditions
+|}
+
+=== Sprite Data (Banks $c0-$c7) ===
+
+==== Sprite Header ====
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 2 || Sprite ID
+|-
+| $02 || 1 || Frame count
+|-
+| $03 || 1 || Animation speed
+|-
+| $04 || 2 || Tile data pointer
+|-
+| $06 || 2 || Palette pointer
+|}
+
+==== Sprite Frame ====
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 || X offset
+|-
+| $01 || 1 || Y offset
+|-
+| $02 || 1 || Tile count
+|-
+| $03+ || var || Tile entries (3 bytes each: X, Y, Tile#)
+|}
+
+== Compression Formats ==
+
+=== Graphics Compression ===
+
+Robotrek uses a variant of LZSS compression:
+
+<pre>
+Header byte:
+  Bit 7: 1 = compressed block follows
+  Bit 7: 0 = literal bytes follow (count in bits 0-6)
+
+Compressed block:
+  Byte 1: Distance high nibble + Length (4+length)
+  Byte 2: Distance low byte
+  Copies 'length' bytes from 'distance' bytes back
+</pre>
+
+=== Text Compression ===
+
+Uses dictionary encoding (see TBL page).
+
+== Memory-Mapped I/O ==
+
+{| class="wikitable"
+! Address !! Description
+|-
+| $2100-$213f || PPU registers
+|-
+| $4016 || Controller 1 data
+|-
+| $4017 || Controller 2 data
+|-
+| $4200-$420d || CPU registers
+|-
+| $4300-$437f || DMA channels
+|}
+
+[[Category:Data Structures]]
+[[Category:SNES]]

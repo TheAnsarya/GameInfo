@@ -1,0 +1,245 @@
+@namespace DarkRepos.Web.Components.Shared
+@implements IDisposable
+
+@*
+	RelativeTime - Display timestamps as relative time
+	Usage: <RelativeTime DateTime="@dateTime" />
+	Features:
+	- Shows "2 hours ago", "yesterday", etc.
+	- Tooltip with full date/time
+	- Auto-updates periodically
+	- Accessible
+*@
+
+<time datetime="@DateTime.ToString("o")"
+	title="@GetFullDateTime()"
+	class="relative-time @(IsFuture ? "future" : "past")">
+	@GetRelativeTime()
+</time>
+
+@code {
+	/// <summary>
+	/// The date/time to display.
+	/// </summary>
+	[Parameter, EditorRequired]
+	public DateTime DateTime { get; set; }
+
+	/// <summary>
+	/// Whether to use UTC time for calculations.
+	/// </summary>
+	[Parameter]
+	public bool UseUtc { get; set; } = true;
+
+	/// <summary>
+	/// Whether to auto-update the relative time.
+	/// </summary>
+	[Parameter]
+	public bool AutoUpdate { get; set; } = true;
+
+	/// <summary>
+	/// Update interval in milliseconds (default: 60000 = 1 minute).
+	/// </summary>
+	[Parameter]
+	public int UpdateInterval { get; set; } = 60000;
+
+	/// <summary>
+	/// Format string for the full date/time tooltip.
+	/// </summary>
+	[Parameter]
+	public string TooltipFormat { get; set; } = "F";
+
+	private System.Timers.Timer? _updateTimer;
+	private bool IsFuture => GetCurrentTime() < DateTime;
+
+	protected override void OnInitialized()
+	{
+		if (AutoUpdate)
+		{
+			StartTimer();
+		}
+	}
+
+	protected override void OnParametersSet()
+	{
+		if (AutoUpdate && _updateTimer == null)
+		{
+			StartTimer();
+		}
+		else if (!AutoUpdate && _updateTimer != null)
+		{
+			StopTimer();
+		}
+	}
+
+	private void StartTimer()
+	{
+		_updateTimer = new System.Timers.Timer(UpdateInterval);
+		_updateTimer.Elapsed += async (_, _) => await InvokeAsync(StateHasChanged);
+		_updateTimer.AutoReset = true;
+		_updateTimer.Start();
+	}
+
+	private void StopTimer()
+	{
+		_updateTimer?.Stop();
+		_updateTimer?.Dispose();
+		_updateTimer = null;
+	}
+
+	private DateTime GetCurrentTime() => UseUtc ? System.DateTime.UtcNow : System.DateTime.Now;
+
+	private string GetFullDateTime() => DateTime.ToString(TooltipFormat);
+
+	private string GetRelativeTime()
+	{
+		var now = GetCurrentTime();
+		var diff = now - DateTime;
+		var absDiff = diff.Duration();
+
+		if (IsFuture)
+		{
+			return GetFutureTime(absDiff);
+		}
+
+		return GetPastTime(absDiff);
+	}
+
+	private static string GetPastTime(TimeSpan diff)
+	{
+		if (diff.TotalSeconds < 5)
+		{
+			return "just now";
+		}
+
+		if (diff.TotalSeconds < 60)
+		{
+			var secs = (int)diff.TotalSeconds;
+			return $"{secs} second{(secs == 1 ? "" : "s")} ago";
+		}
+
+		if (diff.TotalMinutes < 60)
+		{
+			var mins = (int)diff.TotalMinutes;
+			return $"{mins} minute{(mins == 1 ? "" : "s")} ago";
+		}
+
+		if (diff.TotalHours < 24)
+		{
+			var hours = (int)diff.TotalHours;
+			return $"{hours} hour{(hours == 1 ? "" : "s")} ago";
+		}
+
+		if (diff.TotalDays < 2)
+		{
+			return "yesterday";
+		}
+
+		if (diff.TotalDays < 7)
+		{
+			var days = (int)diff.TotalDays;
+			return $"{days} days ago";
+		}
+
+		if (diff.TotalDays < 14)
+		{
+			return "last week";
+		}
+
+		if (diff.TotalDays < 30)
+		{
+			var weeks = (int)(diff.TotalDays / 7);
+			return $"{weeks} week{(weeks == 1 ? "" : "s")} ago";
+		}
+
+		if (diff.TotalDays < 60)
+		{
+			return "last month";
+		}
+
+		if (diff.TotalDays < 365)
+		{
+			var months = (int)(diff.TotalDays / 30);
+			return $"{months} month{(months == 1 ? "" : "s")} ago";
+		}
+
+		if (diff.TotalDays < 730)
+		{
+			return "last year";
+		}
+
+		var years = (int)(diff.TotalDays / 365);
+		return $"{years} year{(years == 1 ? "" : "s")} ago";
+	}
+
+	private static string GetFutureTime(TimeSpan diff)
+	{
+		if (diff.TotalSeconds < 5)
+		{
+			return "now";
+		}
+
+		if (diff.TotalSeconds < 60)
+		{
+			var secs = (int)diff.TotalSeconds;
+			return $"in {secs} second{(secs == 1 ? "" : "s")}";
+		}
+
+		if (diff.TotalMinutes < 60)
+		{
+			var mins = (int)diff.TotalMinutes;
+			return $"in {mins} minute{(mins == 1 ? "" : "s")}";
+		}
+
+		if (diff.TotalHours < 24)
+		{
+			var hours = (int)diff.TotalHours;
+			return $"in {hours} hour{(hours == 1 ? "" : "s")}";
+		}
+
+		if (diff.TotalDays < 2)
+		{
+			return "tomorrow";
+		}
+
+		if (diff.TotalDays < 7)
+		{
+			var days = (int)diff.TotalDays;
+			return $"in {days} days";
+		}
+
+		if (diff.TotalDays < 14)
+		{
+			return "next week";
+		}
+
+		if (diff.TotalDays < 30)
+		{
+			var weeks = (int)(diff.TotalDays / 7);
+			return $"in {weeks} week{(weeks == 1 ? "" : "s")}";
+		}
+
+		if (diff.TotalDays < 60)
+		{
+			return "next month";
+		}
+
+		if (diff.TotalDays < 365)
+		{
+			var months = (int)(diff.TotalDays / 30);
+			return $"in {months} month{(months == 1 ? "" : "s")}";
+		}
+
+		if (diff.TotalDays < 730)
+		{
+			return "next year";
+		}
+
+		var years = (int)(diff.TotalDays / 365);
+		return $"in {years} year{(years == 1 ? "" : "s")}";
+	}
+
+	public void Dispose()
+	{
+		StopTimer();
+	}
+}

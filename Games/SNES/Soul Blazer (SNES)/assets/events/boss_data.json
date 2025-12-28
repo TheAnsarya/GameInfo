@@ -1,0 +1,50 @@
+[
+	{
+		"id": 1,
+		"name": "Metal Mantis",
+		"area": "Underground Castle",
+		"act": 1
+	},
+	{
+		"id": 2,
+		"name": "Plantentacle",
+		"area": "Lost Marsh",
+		"act": 2
+	},
+	{
+		"id": 3,
+		"name": "Ghost Ship Captain",
+		"area": "Ghost Ship",
+		"act": 3
+	},
+	{
+		"id": 4,
+		"name": "Poseidon",
+		"area": "Southerta",
+		"act": 3
+	},
+	{
+		"id": 5,
+		"name": "Stone Guardian",
+		"area": "Mountain of Souls",
+		"act": 4
+	},
+	{
+		"id": 6,
+		"name": "Tin Doll",
+		"area": "Leo's Lab",
+		"act": 5
+	},
+	{
+		"id": 7,
+		"name": "Demon Bird",
+		"area": "Magridd Castle",
+		"act": 6
+	},
+	{
+		"id": 8,
+		"name": "Deathtoll",
+		"area": "World of Evil",
+		"act": 6
+	}
+]

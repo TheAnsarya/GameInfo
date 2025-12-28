@@ -181,6 +181,7 @@ public class SnesAssetExtractor : IAssetExtractor {
 		if (TryGetIntOption(asset.Options, "pc", out var customPc)) {
 			pc = customPc;
 		}
+
 		spcHeader[0x25] = (byte)(pc & 0xff);
 		spcHeader[0x26] = (byte)((pc >> 8) & 0xff);
 
@@ -196,6 +197,7 @@ public class SnesAssetExtractor : IAssetExtractor {
 		if (asset.Options?.TryGetValue("name", out var nameObj) == true && nameObj is string name) {
 			songTitle = name;
 		}
+
 		var titleBytes = System.Text.Encoding.ASCII.GetBytes(songTitle);
 		Array.Copy(titleBytes, 0, spcHeader, 0x2e, Math.Min(titleBytes.Length, 32));
 
@@ -204,6 +206,7 @@ public class SnesAssetExtractor : IAssetExtractor {
 		if (asset.Options?.TryGetValue("game", out var gameObj) == true && gameObj is string game) {
 			gameTitle = game;
 		}
+
 		var gameBytes = System.Text.Encoding.ASCII.GetBytes(gameTitle);
 		Array.Copy(gameBytes, 0, spcHeader, 0x4e, Math.Min(gameBytes.Length, 32));
 
@@ -212,6 +215,7 @@ public class SnesAssetExtractor : IAssetExtractor {
 		if (asset.Options?.TryGetValue("artist", out var artistObj) == true && artistObj is string art) {
 			artist = art;
 		}
+
 		var artistBytes = System.Text.Encoding.ASCII.GetBytes(artist);
 		Array.Copy(artistBytes, 0, spcHeader, 0xb1, Math.Min(artistBytes.Length, 32));
 

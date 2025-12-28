@@ -1,0 +1,178 @@
+{{Infobox game
+| title           = Soul Blazer
+| title_jp        = ソウルブレイダー
+| title_jp_romaji = Sōru Bureidā
+
+| image           = Soul Blazer Title Screen.png
+
+| developer       = Quintet
+| publisher_jp    = Enix
+| publisher_na    = Enix
+| publisher_eu    = Enix
+
+| platform        = SNES
+
+| release_jp      = January 31, 1992
+| release_na      = November 27, 1992
+| release_eu      = January 27, 1994
+
+| genre           = Action RPG
+| players         = 1
+
+| mapper          = LoROM
+| rom_size        = 1 MB (8 Mbit)
+| sram            = 8 KB
+
+| series          = Soul Trilogy
+}}
+
+'''Soul Blazer''' is an action role-playing video game developed by '''Quintet''' and published by '''Enix''' for the Super Nintendo Entertainment System. It is the first game in the "Soul Trilogy" (Soul Blazer → Illusion of Gaia → Terranigma).
+
+==Overview==
+
+The player controls a divine servant sent by The Master to defeat Deathtoll and restore the souls of inhabitants across six acts. Key features:
+* Action RPG with real-time combat
+* Soul Lair system - defeat monster spawners to release trapped souls
+* NPCs provide items, hints, and story progression when released
+* 8 swords, 8 armors, 8 magic spells
+* Transformation abilities (Mole, Angel, Mouse, Mermaid)
+
+==Technical Information==
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| Internal Title || <code>SOULBLAZER - 1 USA</code>
+|-
+| ROM Size || 1 MB (8 Mbit)
+|-
+| SRAM Size || 8 KB
+|-
+| Mapper || LoROM (0x20)
+|-
+| ROM Type || 0x02 (ROM + RAM + Battery)
+|-
+| Region || North America (0x01)
+|-
+| Developer ID || 0xB4 (Enix)
+|-
+| Version || 1.0
+|-
+| Checksum || 0x6059
+|}
+
+===File Hashes (US Version)===
+{| class="wikitable"
+|-
+! Algorithm !! Hash
+|-
+| SHA256 || <code>8438da09de8ce9aded3bb08644543f7b60fb60cffc68ce2d67d6a0643f2ecfc2</code>
+|-
+| SHA1 || <code>f2832eb02547c39cae3bdaab5c2a53e4f8b31810</code>
+|-
+| MD5 || <code>83cf41d53a1b94aeea1a645037a24004</code>
+|-
+| CRC32 || <code>31b965db</code>
+|}
+
+==Subpages==
+
+===Technical Documentation===
+* [[/ROM_Map|ROM Map]] - Bank layout, data locations, code regions
+* [[/RAM_Map|RAM Map]] - Memory addresses, variables, structures
+* [[/Data_Structures|Data Structures]] - Binary format documentation
+* [[/Data_Tables|Data Tables]] - Game data tables and values
+* [[/Technical_Reference|Technical Reference]] - Hardware and system documentation
+* [[/TBL|Text Tables]] - Character encoding tables
+
+===Game Data===
+* [[/Enemies|Enemies]] - Enemy stats, behavior, drops
+* [[/Bosses|Bosses]] - Boss strategies and data
+* [[/Items|Items]] - Equipment and item data
+* [[/Magic|Magic]] - Spell data and effects
+* [[/Maps|Maps]] - Area and map information
+* [[/Characters|Characters]] - NPCs and story characters
+* [[/Progression|Progression]] - Walkthrough and soul lair guide
+
+===Reference===
+* [[/Formulas|Formulas]] - Damage, EXP, and game calculations
+* [[/Audio|Audio]] - Music, sound effects, BRR samples
+* [[/Credits|Credits]] - Development team and history
+* [[/Secrets|Secrets]] - Hidden content and easter eggs
+* [[/Glitches|Glitches]] - Bugs, exploits, speedrun techniques
+
+==Memory Map==
+
+{| class="wikitable"
+|-
+! Bank !! Address !! Contents
+|-
+| $00-$07 || $008000-$0fffff || Program code and data
+|-
+| $08-$0f || $108000-$17ffff || Graphics (tilesets, sprites)
+|-
+| $10-$17 || $208000-$2fffff || Map data and scripts
+|-
+| $18-$1f || $308000-$3fffff || Audio data (SPC, BRR samples)
+|}
+
+==Text Encoding==
+
+Soul Blazer uses a custom text encoding. See [[/TBL|Text Tables]] for the complete table.
+
+===Control Codes===
+{| class="wikitable"
+|-
+! Code !! Description
+|-
+| $00 || End of string
+|-
+| $01 || New line
+|-
+| $02 || Wait for button press
+|-
+| $03 || Clear text box
+|-
+| $04 || Short pause
+|-
+| $05 || Player name placeholder
+|-
+| $06 || Item name placeholder
+|-
+| $07 || Number placeholder
+|}
+
+==Game Structure==
+
+===Six Acts===
+# '''Grass Valley''' - Underground Castle, Metal Mantis boss
+# '''GreenWood''' - Forest shrines, Plantentacle boss
+# '''St. Elles''' - Seabed/Ghost Ship, Poseidon boss
+# '''Mountain of Souls''' - Nome/Laynole, Stone Guardian boss
+# '''Leo's Laboratory''' - Model towns/paintings, Tin Doll boss
+# '''Magridd Castle''' - Final dungeons, Deathtoll final boss
+
+===Statistics===
+* Total Soul Lairs: ~120
+* Total Bosses: 8
+* Total NPCs: 91 souls
+* Total Maps: 32
+
+==Downloads==
+
+* [[/Files|Files]] - ROM utilities and patches
+* [[/TBL|TBL Files]] - Text table files for editors
+
+==See Also==
+* [[SNES:Illusion_of_Gaia|Illusion of Gaia]] - Sequel
+* [[SNES:Terranigma|Terranigma]] - Third game in trilogy
+
+==External Links==
+* [https://en.wikipedia.org/wiki/Soul_Blazer Wikipedia article]
+* [https://www.mobygames.com/game/snes/soul-blazer MobyGames entry]
+
+[[Category:SNES]]
+[[Category:Action RPG]]
+[[Category:Quintet]]
+[[Category:Enix]]

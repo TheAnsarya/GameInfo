@@ -1,0 +1,504 @@
+{
+	"pointer_table": "$01f748",
+	"item_count": 83,
+	"items": [
+		{
+			"index": 0,
+			"ptr_addr": "$01f748",
+			"name_addr": "$01f87c",
+			"name": "ABCDEFGHIJKLMNOP"
+		},
+		{
+			"index": 1,
+			"ptr_addr": "$01f74a",
+			"name_addr": "$01f87c",
+			"name": "ABCDEFGHIJKLMNOP"
+		},
+		{
+			"index": 2,
+			"ptr_addr": "$01f74c",
+			"name_addr": "$01f87c",
+			"name": "ABCDEFGHIJKLMNOP"
+		},
+		{
+			"index": 3,
+			"ptr_addr": "$01f74e",
+			"name_addr": "$01f87c",
+			"name": "ABCDEFGHIJKLMNOP"
+		},
+		{
+			"index": 4,
+			"ptr_addr": "$01f750",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 5,
+			"ptr_addr": "$01f752",
+			"name_addr": "$01f8a9",
+			"name": "Sword 1"
+		},
+		{
+			"index": 6,
+			"ptr_addr": "$01f754",
+			"name_addr": "$01f8b2",
+			"name": "Sword 2"
+		},
+		{
+			"index": 7,
+			"ptr_addr": "$01f756",
+			"name_addr": "$01f8bb",
+			"name": "Sword 3"
+		},
+		{
+			"index": 8,
+			"ptr_addr": "$01f758",
+			"name_addr": "$01f8c4",
+			"name": "Sword 4"
+		},
+		{
+			"index": 9,
+			"ptr_addr": "$01f75a",
+			"name_addr": "$01f8cd",
+			"name": "Axe   1"
+		},
+		{
+			"index": 10,
+			"ptr_addr": "$01f75c",
+			"name_addr": "$01f8d6",
+			"name": "Axe   2"
+		},
+		{
+			"index": 11,
+			"ptr_addr": "$01f75e",
+			"name_addr": "$01f8df",
+			"name": "Axe   3"
+		},
+		{
+			"index": 12,
+			"ptr_addr": "$01f760",
+			"name_addr": "$01f8e8",
+			"name": "Blade 1"
+		},
+		{
+			"index": 13,
+			"ptr_addr": "$01f762",
+			"name_addr": "$01f8f1",
+			"name": "Blade 2"
+		},
+		{
+			"index": 14,
+			"ptr_addr": "$01f764",
+			"name_addr": "$01f8fa",
+			"name": "Blade 3"
+		},
+		{
+			"index": 15,
+			"ptr_addr": "$01f766",
+			"name_addr": "$01f903",
+			"name": "Blade 4"
+		},
+		{
+			"index": 16,
+			"ptr_addr": "$01f768",
+			"name_addr": "$01f90c",
+			"name": "Hammer1"
+		},
+		{
+			"index": 17,
+			"ptr_addr": "$01f76a",
+			"name_addr": "$01f915",
+			"name": "Hammer2"
+		},
+		{
+			"index": 18,
+			"ptr_addr": "$01f76c",
+			"name_addr": "$01f91e",
+			"name": "Hammer3"
+		},
+		{
+			"index": 19,
+			"ptr_addr": "$01f76e",
+			"name_addr": "$01f927",
+			"name": "Celtis1"
+		},
+		{
+			"index": 20,
+			"ptr_addr": "$01f770",
+			"name_addr": "$01f930",
+			"name": "Celtis2"
+		},
+		{
+			"index": 21,
+			"ptr_addr": "$01f772",
+			"name_addr": "$01f939",
+			"name": "Celtis3"
+		},
+		{
+			"index": 22,
+			"ptr_addr": "$01f774",
+			"name_addr": "$01f942",
+			"name": "Punch 1"
+		},
+		{
+			"index": 23,
+			"ptr_addr": "$01f776",
+			"name_addr": "$01f94b",
+			"name": "Punch 2"
+		},
+		{
+			"index": 24,
+			"ptr_addr": "$01f778",
+			"name_addr": "$01f954",
+			"name": "Punch 3"
+		},
+		{
+			"index": 25,
+			"ptr_addr": "$01f77a",
+			"name_addr": "$01f95d",
+			"name": "Blow  1"
+		},
+		{
+			"index": 26,
+			"ptr_addr": "$01f77c",
+			"name_addr": "$01f966",
+			"name": "Blow  2"
+		},
+		{
+			"index": 27,
+			"ptr_addr": "$01f77e",
+			"name_addr": "$01f96f",
+			"name": "Blow  3"
+		},
+		{
+			"index": 28,
+			"ptr_addr": "$01f780",
+			"name_addr": "$01f978",
+			"name": "Shot  1"
+		},
+		{
+			"index": 29,
+			"ptr_addr": "$01f782",
+			"name_addr": "$01f981",
+			"name": "Shot  2"
+		},
+		{
+			"index": 30,
+			"ptr_addr": "$01f784",
+			"name_addr": "$01f98a",
+			"name": "Shot  3"
+		},
+		{
+			"index": 31,
+			"ptr_addr": "$01f786",
+			"name_addr": "$01f993",
+			"name": "Laser 1"
+		},
+		{
+			"index": 32,
+			"ptr_addr": "$01f788",
+			"name_addr": "$01f99c",
+			"name": "Laser 2"
+		},
+		{
+			"index": 33,
+			"ptr_addr": "$01f78a",
+			"name_addr": "$01f9a5",
+			"name": "Laser 3"
+		},
+		{
+			"index": 34,
+			"ptr_addr": "$01f78c",
+			"name_addr": "$01f9ae",
+			"name": "Bomb  1"
+		},
+		{
+			"index": 35,
+			"ptr_addr": "$01f78e",
+			"name_addr": "$01f9b7",
+			"name": "Bomb  2"
+		},
+		{
+			"index": 36,
+			"ptr_addr": "$01f790",
+			"name_addr": "$01f9c0",
+			"name": "Bomb  3"
+		},
+		{
+			"index": 37,
+			"ptr_addr": "$01f792",
+			"name_addr": "$01f9c9",
+			"name": "Bomb  4"
+		},
+		{
+			"index": 38,
+			"ptr_addr": "$01f794",
+			"name_addr": "$01f9d2",
+			"name": "Shield 1"
+		},
+		{
+			"index": 39,
+			"ptr_addr": "$01f796",
+			"name_addr": "$01f9db",
+			"name": "Shield 2"
+		},
+		{
+			"index": 40,
+			"ptr_addr": "$01f798",
+			"name_addr": "$01f9e4",
+			"name": "Shield 3"
+		},
+		{
+			"index": 41,
+			"ptr_addr": "$01f79a",
+			"name_addr": "$01f9ed",
+			"name": "Shield 4"
+		},
+		{
+			"index": 42,
+			"ptr_addr": "$01f79c",
+			"name_addr": "$01f9f6",
+			"name": "Shield 5"
+		},
+		{
+			"index": 43,
+			"ptr_addr": "$01f79e",
+			"name_addr": "$01f9ff",
+			"name": "Empty -     Pack"
+		},
+		{
+			"index": 44,
+			"ptr_addr": "$01f7a0",
+			"name_addr": "$01fa11",
+			"name": "Power -     Pack"
+		},
+		{
+			"index": 45,
+			"ptr_addr": "$01f7a2",
+			"name_addr": "$01fa23",
+			"name": "Shield -    Pack"
+		},
+		{
+			"index": 46,
+			"ptr_addr": "$01f7a4",
+			"name_addr": "$01fa35",
+			"name": "Turbo -     Pack"
+		},
+		{
+			"index": 47,
+			"ptr_addr": "$01f7a6",
+			"name_addr": "$01fa47",
+			"name": "Solar -     Pack"
+		},
+		{
+			"index": 48,
+			"ptr_addr": "$01f7a8",
+			"name_addr": "$01fa59",
+			"name": "Quick -     Pack"
+		},
+		{
+			"index": 49,
+			"ptr_addr": "$01f7aa",
+			"name_addr": "$01fa6b",
+			"name": "Boots 1"
+		},
+		{
+			"index": 50,
+			"ptr_addr": "$01f7ac",
+			"name_addr": "$01fa74",
+			"name": "Boots 2"
+		},
+		{
+			"index": 51,
+			"ptr_addr": "$01f7ae",
+			"name_addr": "$01fa7d",
+			"name": "Boots 3"
+		},
+		{
+			"index": 52,
+			"ptr_addr": "$01f7b0",
+			"name_addr": "$01fa86",
+			"name": "Boots 4"
+		},
+		{
+			"index": 53,
+			"ptr_addr": "$01f7b2",
+			"name_addr": "$01fa8f",
+			"name": "Boots 5"
+		},
+		{
+			"index": 54,
+			"ptr_addr": "$01f7b4",
+			"name_addr": "$01fa98",
+			"name": "Boots 6"
+		},
+		{
+			"index": 55,
+			"ptr_addr": "$01f7b6",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 56,
+			"ptr_addr": "$01f7b8",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 57,
+			"ptr_addr": "$01f7ba",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 58,
+			"ptr_addr": "$01f7bc",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 59,
+			"ptr_addr": "$01f7be",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 60,
+			"ptr_addr": "$01f7c0",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 61,
+			"ptr_addr": "$01f7c2",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 62,
+			"ptr_addr": "$01f7c4",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 63,
+			"ptr_addr": "$01f7c6",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 64,
+			"ptr_addr": "$01f7c8",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 65,
+			"ptr_addr": "$01f7ca",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 66,
+			"ptr_addr": "$01f7cc",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 67,
+			"ptr_addr": "$01f7ce",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 68,
+			"ptr_addr": "$01f7d0",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 69,
+			"ptr_addr": "$01f7d2",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 70,
+			"ptr_addr": "$01f7d4",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 71,
+			"ptr_addr": "$01f7d6",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 72,
+			"ptr_addr": "$01f7d8",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 73,
+			"ptr_addr": "$01f7da",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 74,
+			"ptr_addr": "$01f7dc",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 75,
+			"ptr_addr": "$01f7de",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 76,
+			"ptr_addr": "$01f7e0",
+			"name_addr": "$01f88e",
+			"name": ""
+		},
+		{
+			"index": 77,
+			"ptr_addr": "$01f7e2",
+			"name_addr": "$01faa1",
+			"name": "Trans."
+		},
+		{
+			"index": 78,
+			"ptr_addr": "$01f7e4",
+			"name_addr": "$01faaa",
+			"name": "Horn"
+		},
+		{
+			"index": 79,
+			"ptr_addr": "$01f7e6",
+			"name_addr": "$01fab3",
+			"name": "Drill"
+		},
+		{
+			"index": 80,
+			"ptr_addr": "$01f7e8",
+			"name_addr": "$01fabc",
+			"name": "Vanish"
+		},
+		{
+			"index": 81,
+			"ptr_addr": "$01f7ea",
+			"name_addr": "$01fac5",
+			"name": "Change"
+		},
+		{
+			"index": 82,
+			"ptr_addr": "$01f7ec",
+			"name_addr": "$01face",
+			"name": "Glasses"
+		}
+	]
+}

@@ -1,0 +1,3188 @@
+[
+	{
+		"file_offset": 80682,
+		"bank": 2,
+		"address": 47914,
+		"cpu_address": "$02:bb2a",
+		"length": 12,
+		"raw": "045055534820535441525400",
+		"text": "{PAUSE}PUSH START"
+	},
+	{
+		"file_offset": 80699,
+		"bank": 2,
+		"address": 47931,
+		"cpu_address": "$02:bb3b",
+		"length": 20,
+		"raw": "06414c4c20524947485453205245534552564544",
+		"text": "{ITEM}ALL RIGHTS RESERVED"
+	},
+	{
+		"file_offset": 80720,
+		"bank": 2,
+		"address": 47952,
+		"cpu_address": "$02:bb50",
+		"length": 29,
+		"raw": "2020434f505952494748542031393932205155494e5445542f454e4958",
+		"text": "  COPYRIGHT 1992 QUINTET/ENIX"
+	},
+	{
+		"file_offset": 80752,
+		"bank": 2,
+		"address": 47984,
+		"cpu_address": "$02:bb70",
+		"length": 35,
+		"raw": "4c4943454e534544204259204e494e54454e444f00018002202057697365206d656e20",
+		"text": "LICENSED BY NINTENDO"
+	},
+	{
+		"file_offset": 80789,
+		"bank": 2,
+		"address": 48021,
+		"cpu_address": "$02:bb95",
+		"length": 10,
+		"raw": "74616c65206c61746520",
+		"text": "tale late "
+	},
+	{
+		"file_offset": 80802,
+		"bank": 2,
+		"address": 48034,
+		"cpu_address": "$02:bba2",
+		"length": 11,
+		"raw": "20206174206e6967687420",
+		"text": "  at night "
+	},
+	{
+		"file_offset": 80825,
+		"bank": 2,
+		"address": 48057,
+		"cpu_address": "$02:bbb9",
+		"length": 15,
+		"raw": "202064657374726f79656420627920",
+		"text": "  destroyed by "
+	},
+	{
+		"file_offset": 80841,
+		"bank": 2,
+		"address": 48073,
+		"cpu_address": "$02:bbc9",
+		"length": 11,
+		"raw": "74656d70746174696f6e20",
+		"text": "temptation "
+	},
+	{
+		"file_offset": 80871,
+		"bank": 2,
+		"address": 48103,
+		"cpu_address": "$02:bbe7",
+		"length": 20,
+		"raw": "467265696c20456d706972652c20617320697420",
+		"text": "Freil Empire, as it "
+	},
+	{
+		"file_offset": 80899,
+		"bank": 2,
+		"address": 48131,
+		"cpu_address": "$02:bc03",
+		"length": 12,
+		"raw": "74686f736520646179732c20",
+		"text": "those days, "
+	},
+	{
+		"file_offset": 80927,
+		"bank": 2,
+		"address": 48159,
+		"cpu_address": "$02:bc1f",
+		"length": 14,
+		"raw": "706f77657266756c206d616e2c20",
+		"text": "powerful man, "
+	},
+	{
+		"file_offset": 80947,
+		"bank": 2,
+		"address": 48179,
+		"cpu_address": "$02:bc33",
+		"length": 29,
+		"raw": "4d6167726964642e200001400220204974207365656d73206d6f737420",
+		"text": "Magridd. "
+	},
+	{
+		"file_offset": 81028,
+		"bank": 2,
+		"address": 48260,
+		"cpu_address": "$02:bc84",
+		"length": 11,
+		"raw": "2020686f77657665722c20",
+		"text": "  however, "
+	},
+	{
+		"file_offset": 81050,
+		"bank": 2,
+		"address": 48282,
+		"cpu_address": "$02:bc9a",
+		"length": 10,
+		"raw": "202068696d73656c6620",
+		"text": "  himself "
+	},
+	{
+		"file_offset": 81061,
+		"bank": 2,
+		"address": 48293,
+		"cpu_address": "$02:bca5",
+		"length": 30,
+		"raw": "72756c65642062792067726565642e200001400220204f6e652064617920",
+		"text": "ruled by greed. "
+	},
+	{
+		"file_offset": 81106,
+		"bank": 2,
+		"address": 48338,
+		"cpu_address": "$02:bcd2",
+		"length": 30,
+		"raw": "20206f766572686561722074776f206775617264732074616c6b696e6720",
+		"text": "  overhear two guards talking "
+	},
+	{
+		"file_offset": 81143,
+		"bank": 2,
+		"address": 48375,
+		"cpu_address": "$02:bcf7",
+		"length": 18,
+		"raw": "6d616e206e616d65642044722e4c656f2e20",
+		"text": "man named Dr.Leo. "
+	},
+	{
+		"file_offset": 81175,
+		"bank": 2,
+		"address": 48407,
+		"cpu_address": "$02:bd17",
+		"length": 11,
+		"raw": "636f6e7369646572656420",
+		"text": "considered "
+	},
+	{
+		"file_offset": 81198,
+		"bank": 2,
+		"address": 48430,
+		"cpu_address": "$02:bd2e",
+		"length": 15,
+		"raw": "677265617420696e76656e746f7220",
+		"text": "great inventor "
+	},
+	{
+		"file_offset": 81220,
+		"bank": 2,
+		"address": 48452,
+		"cpu_address": "$02:bd44",
+		"length": 12,
+		"raw": "67656e6975732e2000014002",
+		"text": "genius. "
+	},
+	{
+		"file_offset": 81236,
+		"bank": 2,
+		"address": 48468,
+		"cpu_address": "$02:bd54",
+		"length": 10,
+		"raw": "73746179656420757020",
+		"text": "stayed up "
+	},
+	{
+		"file_offset": 81251,
+		"bank": 2,
+		"address": 48483,
+		"cpu_address": "$02:bd63",
+		"length": 25,
+		"raw": "036e696768747320776f6e646572696e6720686f7720686520",
+		"text": "{CLEAR}nights wondering how he "
+	},
+	{
+		"file_offset": 81294,
+		"bank": 2,
+		"address": 48526,
+		"cpu_address": "$02:bd8e",
+		"length": 10,
+		"raw": "03696e76656e746f7220",
+		"text": "{CLEAR}inventor "
+	},
+	{
+		"file_offset": 81305,
+		"bank": 2,
+		"address": 48537,
+		"cpu_address": "$02:bd99",
+		"length": 14,
+		"raw": "6d616b652068696d206576656e20",
+		"text": "make him even "
+	},
+	{
+		"file_offset": 81323,
+		"bank": 2,
+		"address": 48555,
+		"cpu_address": "$02:bdab",
+		"length": 21,
+		"raw": "036d6f7265207765616c7468792e00014002202080",
+		"text": "{CLEAR}more wealthy."
+	},
+	{
+		"file_offset": 81374,
+		"bank": 2,
+		"address": 48606,
+		"cpu_address": "$02:bdde",
+		"length": 24,
+		"raw": "20204865206f726465726564206869732067756172647320",
+		"text": "  He ordered his guards "
+	},
+	{
+		"file_offset": 81402,
+		"bank": 2,
+		"address": 48634,
+		"cpu_address": "$02:bdfa",
+		"length": 13,
+		"raw": "2020636170747572652044722e",
+		"text": "  capture Dr."
+	},
+	{
+		"file_offset": 81417,
+		"bank": 2,
+		"address": 48649,
+		"cpu_address": "$02:be09",
+		"length": 10,
+		"raw": "6272696e672068696d20",
+		"text": "bring him "
+	},
+	{
+		"file_offset": 81434,
+		"bank": 2,
+		"address": 48666,
+		"cpu_address": "$02:be1a",
+		"length": 29,
+		"raw": "636173746c65206174206f6e636521000100032020536f6f6e2044722e",
+		"text": "castle at once!"
+	},
+	{
+		"file_offset": 81480,
+		"bank": 2,
+		"address": 48712,
+		"cpu_address": "$02:be48",
+		"length": 14,
+		"raw": "636173746c652e20000140022020",
+		"text": "castle. "
+	},
+	{
+		"file_offset": 81496,
+		"bank": 2,
+		"address": 48728,
+		"cpu_address": "$02:be58",
+		"length": 13,
+		"raw": "636f6e66696e65642068696d20",
+		"text": "confined him "
+	},
+	{
+		"file_offset": 81514,
+		"bank": 2,
+		"address": 48746,
+		"cpu_address": "$02:be6a",
+		"length": 13,
+		"raw": "2020736d616c6c20726f6f6d20",
+		"text": "  small room "
+	},
+	{
+		"file_offset": 81528,
+		"bank": 2,
+		"address": 48760,
+		"cpu_address": "$02:be78",
+		"length": 12,
+		"raw": "6f7264657265642068696d20",
+		"text": "ordered him "
+	},
+	{
+		"file_offset": 81559,
+		"bank": 2,
+		"address": 48791,
+		"cpu_address": "$02:be97",
+		"length": 15,
+		"raw": "2020776f756c642073756d6d6f6e20",
+		"text": "  would summon "
+	},
+	{
+		"file_offset": 81580,
+		"bank": 2,
+		"address": 48812,
+		"cpu_address": "$02:beac",
+		"length": 27,
+		"raw": "20206576696c2c204465617468746f6c6c2e00014002202044722e",
+		"text": "  evil, Deathtoll."
+	},
+	{
+		"file_offset": 81608,
+		"bank": 2,
+		"address": 48840,
+		"cpu_address": "$02:bec8",
+		"length": 18,
+		"raw": "66696e616c6c7920636f6d706c6574656420",
+		"text": "finally completed "
+	},
+	{
+		"file_offset": 81648,
+		"bank": 2,
+		"address": 48880,
+		"cpu_address": "$02:bef0",
+		"length": 10,
+		"raw": "696e7374616e746c7920",
+		"text": "instantly "
+	},
+	{
+		"file_offset": 81662,
+		"bank": 2,
+		"address": 48894,
+		"cpu_address": "$02:befe",
+		"length": 30,
+		"raw": "202075706f6e204465617468746f6c6c2c20686f70696e67207468657920",
+		"text": "  upon Deathtoll, hoping they "
+	},
+	{
+		"file_offset": 81695,
+		"bank": 2,
+		"address": 48927,
+		"cpu_address": "$02:bf1f",
+		"length": 15,
+		"raw": "20206d6967687420737472696b6520",
+		"text": "  might strike "
+	},
+	{
+		"file_offset": 81711,
+		"bank": 2,
+		"address": 48943,
+		"cpu_address": "$02:bf2f",
+		"length": 17,
+		"raw": "6465616c2e000140022020416674657220",
+		"text": "deal."
+	},
+	{
+		"file_offset": 81744,
+		"bank": 2,
+		"address": 48976,
+		"cpu_address": "$02:bf50",
+		"length": 12,
+		"raw": "2020636f6d706c6574652e20",
+		"text": "  complete. "
+	},
+	{
+		"file_offset": 81767,
+		"bank": 2,
+		"address": 48999,
+		"cpu_address": "$02:bf67",
+		"length": 18,
+		"raw": "20206272696e67204465617468746f6c6c20",
+		"text": "  bring Deathtoll "
+	},
+	{
+		"file_offset": 81796,
+		"bank": 2,
+		"address": 49028,
+		"cpu_address": "$02:bf84",
+		"length": 13,
+		"raw": "20206372656174757265732c20",
+		"text": "  creatures, "
+	},
+	{
+		"file_offset": 81822,
+		"bank": 2,
+		"address": 49054,
+		"cpu_address": "$02:bf9e",
+		"length": 18,
+		"raw": "20204465617468746f6c6c20776f756c6420",
+		"text": "  Deathtoll would "
+	},
+	{
+		"file_offset": 81849,
+		"bank": 2,
+		"address": 49081,
+		"cpu_address": "$02:bfb9",
+		"length": 13,
+		"raw": "2020676f6c6420706965636520",
+		"text": "  gold piece "
+	},
+	{
+		"file_offset": 81863,
+		"bank": 2,
+		"address": 49095,
+		"cpu_address": "$02:bfc7",
+		"length": 23,
+		"raw": "656163682e0001800220204f6e65206279206f6e652c20",
+		"text": "each."
+	},
+	{
+		"file_offset": 81907,
+		"bank": 2,
+		"address": 49139,
+		"cpu_address": "$02:bff3",
+		"length": 11,
+		"raw": "6469736170706561722e20",
+		"text": "disappear. "
+	},
+	{
+		"file_offset": 81931,
+		"bank": 2,
+		"address": 49163,
+		"cpu_address": "$02:c00b",
+		"length": 11,
+		"raw": "636f6d706c6574656c7920",
+		"text": "completely "
+	},
+	{
+		"file_offset": 81945,
+		"bank": 2,
+		"address": 49177,
+		"cpu_address": "$02:c019",
+		"length": 13,
+		"raw": "2020656d7074792e2000018002",
+		"text": "  empty. "
+	},
+	{
+		"file_offset": 81973,
+		"bank": 2,
+		"address": 49205,
+		"cpu_address": "$02:c035",
+		"length": 13,
+		"raw": "636174617374726f7068652c20",
+		"text": "catastrophe, "
+	},
+	{
+		"file_offset": 82010,
+		"bank": 2,
+		"address": 49242,
+		"cpu_address": "$02:c05a",
+		"length": 22,
+		"raw": "0368697320666f6c6c6f7765722e200001400220203c",
+		"text": "{CLEAR}his follower. "
+	},
+	{
+		"file_offset": 82051,
+		"bank": 2,
+		"address": 49283,
+		"cpu_address": "$02:c083",
+		"length": 17,
+		"raw": "74656d70746564206279206576696c2c20",
+		"text": "tempted by evil, "
+	},
+	{
+		"file_offset": 82071,
+		"bank": 2,
+		"address": 49303,
+		"cpu_address": "$02:c097",
+		"length": 10,
+		"raw": "2020686f776576657220",
+		"text": "  however "
+	},
+	{
+		"file_offset": 82091,
+		"bank": 2,
+		"address": 49323,
+		"cpu_address": "$02:c0ab",
+		"length": 18,
+		"raw": "2020616e6f74686572206368616e63652e20",
+		"text": "  another chance. "
+	},
+	{
+		"file_offset": 82145,
+		"bank": 2,
+		"address": 49377,
+		"cpu_address": "$02:c0e1",
+		"length": 10,
+		"raw": "2020576f726c64213e20",
+		"text": "  World!> "
+	},
+	{
+		"file_offset": 82156,
+		"bank": 2,
+		"address": 49388,
+		"cpu_address": "$02:c0ec",
+		"length": 22,
+		"raw": "4d617374657220736169642e200001400220204f6e20",
+		"text": "Master said. "
+	},
+	{
+		"file_offset": 82194,
+		"bank": 2,
+		"address": 49426,
+		"cpu_address": "$02:c112",
+		"length": 12,
+		"raw": "202064657363656e64656420",
+		"text": "  descended "
+	},
+	{
+		"file_offset": 82207,
+		"bank": 2,
+		"address": 49439,
+		"cpu_address": "$02:c11f",
+		"length": 11,
+		"raw": "45617274682e2e2e2e2e20",
+		"text": "Earth..... "
+	},
+	{
+		"file_offset": 82221,
+		"bank": 2,
+		"address": 49453,
+		"cpu_address": "$02:c12d",
+		"length": 18,
+		"raw": "20202e2e8177617272696f722073656e7420",
+		"text": "  ..\"warrior sent "
+	},
+	{
+		"file_offset": 82261,
+		"bank": 2,
+		"address": 49493,
+		"cpu_address": "$02:c155",
+		"length": 13,
+		"raw": "70756e697368206576696c2e20",
+		"text": "punish evil. "
+	},
+	{
+		"file_offset": 82277,
+		"bank": 2,
+		"address": 49509,
+		"cpu_address": "$02:c165",
+		"length": 17,
+		"raw": "202081534f554c20424c415a4552212100",
+		"text": "  \"SOUL BLAZER!!"
+	},
+	{
+		"file_offset": 82321,
+		"bank": 2,
+		"address": 49553,
+		"cpu_address": "$02:c191",
+		"length": 32,
+		"raw": "00014002202047726173732056616c6c65792061742073756e7365743a3a3a20",
+		"text": ""
+	},
+	{
+		"file_offset": 82359,
+		"bank": 2,
+		"address": 49591,
+		"cpu_address": "$02:c1b7",
+		"length": 24,
+		"raw": "676c697374656e696e67206f6365616e3a3a3a3a3a3a3a20",
+		"text": "glistening ocean::::::: "
+	},
+	{
+		"file_offset": 82403,
+		"bank": 2,
+		"address": 49635,
+		"cpu_address": "$02:c1e3",
+		"length": 15,
+		"raw": "202062656175746966756c3a200001",
+		"text": "  beautiful: "
+	},
+	{
+		"file_offset": 82439,
+		"bank": 2,
+		"address": 49671,
+		"cpu_address": "$02:c207",
+		"length": 10,
+		"raw": "6c6f6f6b656420617420",
+		"text": "looked at "
+	},
+	{
+		"file_offset": 82464,
+		"bank": 2,
+		"address": 49696,
+		"cpu_address": "$02:c220",
+		"length": 17,
+		"raw": "73756e7365743a0001400220204f6e6520",
+		"text": "sunset:"
+	},
+	{
+		"file_offset": 82483,
+		"bank": 2,
+		"address": 49715,
+		"cpu_address": "$02:c233",
+		"length": 11,
+		"raw": "686973206368696c647b20",
+		"text": "his child{ "
+	},
+	{
+		"file_offset": 82503,
+		"bank": 2,
+		"address": 49735,
+		"cpu_address": "$02:c247",
+		"length": 12,
+		"raw": "68697320667269656e647b20",
+		"text": "his friend{ "
+	},
+	{
+		"file_offset": 82534,
+		"bank": 2,
+		"address": 49766,
+		"cpu_address": "$02:c266",
+		"length": 10,
+		"raw": "7363656e6572793a0001",
+		"text": "scenery:"
+	},
+	{
+		"file_offset": 82545,
+		"bank": 2,
+		"address": 49777,
+		"cpu_address": "$02:c271",
+		"length": 13,
+		"raw": "02202053756464656e6c797b20",
+		"text": "{WAIT}  Suddenly{ "
+	},
+	{
+		"file_offset": 82559,
+		"bank": 2,
+		"address": 49791,
+		"cpu_address": "$02:c27f",
+		"length": 15,
+		"raw": "6c69676874207261792073686f7420",
+		"text": "light ray shot "
+	},
+	{
+		"file_offset": 82592,
+		"bank": 2,
+		"address": 49824,
+		"cpu_address": "$02:c2a0",
+		"length": 14,
+		"raw": "2020486f77657665727b206e6f20",
+		"text": "  However{ no "
+	},
+	{
+		"file_offset": 82607,
+		"bank": 2,
+		"address": 49839,
+		"cpu_address": "$02:c2af",
+		"length": 13,
+		"raw": "6e6f74696365642069743a0001",
+		"text": "noticed it:"
+	},
+	{
+		"file_offset": 82647,
+		"bank": 2,
+		"address": 49879,
+		"cpu_address": "$02:c2d7",
+		"length": 13,
+		"raw": "0368657273656c663a00014002",
+		"text": "{CLEAR}herself:"
+	},
+	{
+		"file_offset": 82668,
+		"bank": 2,
+		"address": 49900,
+		"cpu_address": "$02:c2ec",
+		"length": 12,
+		"raw": "6665656c206c6f6e656c7920",
+		"text": "feel lonely "
+	},
+	{
+		"file_offset": 82709,
+		"bank": 2,
+		"address": 49941,
+		"cpu_address": "$02:c315",
+		"length": 16,
+		"raw": "6e6f777b20736865207468696e6b7320",
+		"text": "now{ she thinks "
+	},
+	{
+		"file_offset": 82734,
+		"bank": 2,
+		"address": 49966,
+		"cpu_address": "$02:c32e",
+		"length": 21,
+		"raw": "62656175746966756c3a0001400220204a75737420",
+		"text": "beautiful:"
+	},
+	{
+		"file_offset": 82756,
+		"bank": 2,
+		"address": 49988,
+		"cpu_address": "$02:c344",
+		"length": 19,
+		"raw": "68657220666174686572206368616e67656420",
+		"text": "her father changed "
+	},
+	{
+		"file_offset": 82778,
+		"bank": 2,
+		"address": 50010,
+		"cpu_address": "$02:c35a",
+		"length": 13,
+		"raw": "2020696d706f737369626c6520",
+		"text": "  impossible "
+	},
+	{
+		"file_offset": 82792,
+		"bank": 2,
+		"address": 50024,
+		"cpu_address": "$02:c368",
+		"length": 10,
+		"raw": "706f737369626c657b20",
+		"text": "possible{ "
+	},
+	{
+		"file_offset": 82805,
+		"bank": 2,
+		"address": 50037,
+		"cpu_address": "$02:c375",
+		"length": 17,
+		"raw": "20204c697361206665656c732073686520",
+		"text": "  Lisa feels she "
+	},
+	{
+		"file_offset": 82833,
+		"bank": 2,
+		"address": 50065,
+		"cpu_address": "$02:c391",
+		"length": 19,
+		"raw": "20206966207368652062656c69657665733a00",
+		"text": "  if she believes:"
+	},
+	{
+		"file_offset": 82853,
+		"bank": 2,
+		"address": 50085,
+		"cpu_address": "$02:c3a5",
+		"length": 12,
+		"raw": "01580354484520454e440001",
+		"text": "{NL}X{CLEAR}THE END"
+	},
+	{
+		"file_offset": 82890,
+		"bank": 2,
+		"address": 50122,
+		"cpu_address": "$02:c3ca",
+		"length": 19,
+		"raw": "024e616d650126024c6576012e024172656101",
+		"text": "{WAIT}Name{NL}&{WAIT}Lev{NL}.{WAIT}Area{NL}"
+	},
+	{
+		"file_offset": 82943,
+		"bank": 2,
+		"address": 50175,
+		"cpu_address": "$02:c3ff",
+		"length": 15,
+		"raw": "204572617365207265636f72640001",
+		"text": " Erase record"
+	},
+	{
+		"file_offset": 82991,
+		"bank": 2,
+		"address": 50223,
+		"cpu_address": "$02:c42f",
+		"length": 27,
+		"raw": "030601520400015404020301680406025004017204060152040001",
+		"text": "{CLEAR}{ITEM}{NL}R{PAUSE}"
+	},
+	{
+		"file_offset": 83079,
+		"bank": 2,
+		"address": 50311,
+		"cpu_address": "$02:c487",
+		"length": 17,
+		"raw": "0320814220432044204520462047204820",
+		"text": "{CLEAR} \"B C D E F G H "
+	},
+	{
+		"file_offset": 83106,
+		"bank": 2,
+		"address": 50338,
+		"cpu_address": "$02:c4a2",
+		"length": 26,
+		"raw": "204e204f2050205120522053205420552056205720582059205a",
+		"text": " N O P Q R S T U V W X Y Z"
+	},
+	{
+		"file_offset": 83137,
+		"bank": 2,
+		"address": 50369,
+		"cpu_address": "$02:c4c1",
+		"length": 23,
+		"raw": "622063206420652066206720682069206a206b206c206d",
+		"text": "b c d e f g h i j k l m"
+	},
+	{
+		"file_offset": 83162,
+		"bank": 2,
+		"address": 50394,
+		"cpu_address": "$02:c4da",
+		"length": 11,
+		"raw": "206e206f20702071207220",
+		"text": " n o p q r "
+	},
+	{
+		"file_offset": 83175,
+		"bank": 2,
+		"address": 50407,
+		"cpu_address": "$02:c4e7",
+		"length": 11,
+		"raw": "752076207720782079207a",
+		"text": "u v w x y z"
+	},
+	{
+		"file_offset": 83227,
+		"bank": 2,
+		"address": 50459,
+		"cpu_address": "$02:c51b",
+		"length": 12,
+		"raw": "024c4556454c205550202100",
+		"text": "{WAIT}LEVEL UP !"
+	},
+	{
+		"file_offset": 83276,
+		"bank": 2,
+		"address": 50508,
+		"cpu_address": "$02:c54c",
+		"length": 13,
+		"raw": "044d6f6e73746572204c616972",
+		"text": "{PAUSE}Monster Lair"
+	},
+	{
+		"file_offset": 83291,
+		"bank": 2,
+		"address": 50523,
+		"cpu_address": "$02:c55b",
+		"length": 13,
+		"raw": "52656d61696e696e6720060280",
+		"text": "Remaining {ITEM}{WAIT}'"
+	},
+	{
+		"file_offset": 83353,
+		"bank": 2,
+		"address": 50585,
+		"cpu_address": "$02:c599",
+		"length": 14,
+		"raw": "024e657874206c6576656c203a01",
+		"text": "{WAIT}Next level :{NL}"
+	},
+	{
+		"file_offset": 83387,
+		"bank": 2,
+		"address": 50619,
+		"cpu_address": "$02:c5bb",
+		"length": 14,
+		"raw": "014803537472656e677468203a01",
+		"text": "{NL}H{CLEAR}Strength :{NL}"
+	},
+	{
+		"file_offset": 83416,
+		"bank": 2,
+		"address": 50648,
+		"cpu_address": "$02:c5d8",
+		"length": 12,
+		"raw": "04446566656e636520203a01",
+		"text": "{PAUSE}Defence  :{NL}"
+	},
+	{
+		"file_offset": 83429,
+		"bank": 2,
+		"address": 50661,
+		"cpu_address": "$02:c5e5",
+		"length": 11,
+		"raw": "04576561706f6e3a200574",
+		"text": "{PAUSE}Weapon: {NAME}t"
+	},
+	{
+		"file_offset": 83443,
+		"bank": 2,
+		"address": 50675,
+		"cpu_address": "$02:c5f3",
+		"length": 13,
+		"raw": "01480541726d6f72203a200574",
+		"text": "{NL}H{NAME}Armor : {NAME}t"
+	},
+	{
+		"file_offset": 83461,
+		"bank": 2,
+		"address": 50693,
+		"cpu_address": "$02:c605",
+		"length": 11,
+		"raw": "054d61676963203a200574",
+		"text": "{NAME}Magic : {NAME}t"
+	},
+	{
+		"file_offset": 83475,
+		"bank": 2,
+		"address": 50707,
+		"cpu_address": "$02:c613",
+		"length": 13,
+		"raw": "0148064974656d20203a200574",
+		"text": "{NL}H{ITEM}Item  : {NAME}t"
+	},
+	{
+		"file_offset": 83501,
+		"bank": 2,
+		"address": 50733,
+		"cpu_address": "$02:c62d",
+		"length": 10,
+		"raw": "015802536f756c730001",
+		"text": "{NL}X{WAIT}Souls"
+	},
+	{
+		"file_offset": 83512,
+		"bank": 2,
+		"address": 50744,
+		"cpu_address": "$02:c638",
+		"length": 20,
+		"raw": "03536f756c406f66404d6167696369616e400001",
+		"text": "{CLEAR}Soul@of@Magician@"
+	},
+	{
+		"file_offset": 83533,
+		"bank": 2,
+		"address": 50765,
+		"cpu_address": "$02:c64d",
+		"length": 20,
+		"raw": "03536f756c406f66404c69676874404040400001",
+		"text": "{CLEAR}Soul@of@Light@@@@"
+	},
+	{
+		"file_offset": 83554,
+		"bank": 2,
+		"address": 50786,
+		"cpu_address": "$02:c662",
+		"length": 41,
+		"raw": "04536f756c406f6640536869656c6440404000014e05536f756c406f6640446574656374696f6e0001",
+		"text": "{PAUSE}Soul@of@Shield@@@"
+	},
+	{
+		"file_offset": 83596,
+		"bank": 2,
+		"address": 50828,
+		"cpu_address": "$02:c68c",
+		"length": 20,
+		"raw": "06536f756c406f66405265616c69747940400001",
+		"text": "{ITEM}Soul@of@Reality@@"
+	},
+	{
+		"file_offset": 83736,
+		"bank": 2,
+		"address": 50968,
+		"cpu_address": "$02:c718",
+		"length": 19,
+		"raw": "0142004c4556015000455850016a0047454d01",
+		"text": "{NL}B"
+	},
+	{
+		"file_offset": 84162,
+		"bank": 2,
+		"address": 51394,
+		"cpu_address": "$02:c8c2",
+		"length": 54,
+		"raw": "202047726173732056616c6c657920536872696e6520002047726173732056616c6c657920686967686c616e647300204368696c6460",
+		"text": "  Grass Valley Shrine "
+	},
+	{
+		"file_offset": 84217,
+		"bank": 2,
+		"address": 51449,
+		"cpu_address": "$02:c8f9",
+		"length": 15,
+		"raw": "736563726574207061737361676500",
+		"text": "secret passage"
+	},
+	{
+		"file_offset": 84233,
+		"bank": 2,
+		"address": 51465,
+		"cpu_address": "$02:c909",
+		"length": 15,
+		"raw": "06547265617375726520726f6f6d00",
+		"text": "{ITEM}Treasure room"
+	},
+	{
+		"file_offset": 84257,
+		"bank": 2,
+		"address": 51489,
+		"cpu_address": "$02:c921",
+		"length": 55,
+		"raw": "726f6f6d00556e64657267726f756e6420436173746c652c207765737400556e64657267726f756e6420436173746c652c206561737400",
+		"text": "room"
+	},
+	{
+		"file_offset": 84319,
+		"bank": 2,
+		"address": 51551,
+		"cpu_address": "$02:c95f",
+		"length": 10,
+		"raw": "5061696e74696e677300",
+		"text": "Paintings"
+	},
+	{
+		"file_offset": 84336,
+		"bank": 2,
+		"address": 51568,
+		"cpu_address": "$02:c970",
+		"length": 10,
+		"raw": "5061696e74696e677300",
+		"text": "Paintings"
+	},
+	{
+		"file_offset": 84353,
+		"bank": 2,
+		"address": 51585,
+		"cpu_address": "$02:c981",
+		"length": 10,
+		"raw": "5061696e74696e677300",
+		"text": "Paintings"
+	},
+	{
+		"file_offset": 84385,
+		"bank": 2,
+		"address": 51617,
+		"cpu_address": "$02:c9a1",
+		"length": 18,
+		"raw": "5061696e74696e6773004d6f6e7374657220",
+		"text": "Paintings"
+	},
+	{
+		"file_offset": 84405,
+		"bank": 2,
+		"address": 51637,
+		"cpu_address": "$02:c9b5",
+		"length": 10,
+		"raw": "7061696e74696e677300",
+		"text": "paintings"
+	},
+	{
+		"file_offset": 84416,
+		"bank": 2,
+		"address": 51648,
+		"cpu_address": "$02:c9c0",
+		"length": 12,
+		"raw": "07547269616c20726f6f6d00",
+		"text": "{NUM}Trial room"
+	},
+	{
+		"file_offset": 84436,
+		"bank": 2,
+		"address": 51668,
+		"cpu_address": "$02:c9d4",
+		"length": 11,
+		"raw": "647265616d000000000000",
+		"text": "dream"
+	},
+	{
+		"file_offset": 84448,
+		"bank": 2,
+		"address": 51680,
+		"cpu_address": "$02:c9e0",
+		"length": 18,
+		"raw": "04477265656e576f6f6420536872696e6500",
+		"text": "{PAUSE}GreenWood Shrine"
+	},
+	{
+		"file_offset": 84475,
+		"bank": 2,
+		"address": 51707,
+		"cpu_address": "$02:c9fb",
+		"length": 10,
+		"raw": "477265656e576f6f6400",
+		"text": "GreenWood"
+	},
+	{
+		"file_offset": 84500,
+		"bank": 2,
+		"address": 51732,
+		"cpu_address": "$02:ca14",
+		"length": 11,
+		"raw": "0381737175697272656c60",
+		"text": "{CLEAR}\"squirrel`"
+	},
+	{
+		"file_offset": 84512,
+		"bank": 2,
+		"address": 51744,
+		"cpu_address": "$02:ca20",
+		"length": 17,
+		"raw": "686f7573650020537175697272656c2c20",
+		"text": "house"
+	},
+	{
+		"file_offset": 84530,
+		"bank": 2,
+		"address": 51762,
+		"cpu_address": "$02:ca32",
+		"length": 10,
+		"raw": "45786368616e67657200",
+		"text": "Exchanger"
+	},
+	{
+		"file_offset": 84541,
+		"bank": 2,
+		"address": 51773,
+		"cpu_address": "$02:ca3d",
+		"length": 11,
+		"raw": "034c6f7374736964652c20",
+		"text": "{CLEAR}Lostside, "
+	},
+	{
+		"file_offset": 84560,
+		"bank": 2,
+		"address": 51792,
+		"cpu_address": "$02:ca50",
+		"length": 14,
+		"raw": "06576174657220536872696e6500",
+		"text": "{ITEM}Water Shrine"
+	},
+	{
+		"file_offset": 84575,
+		"bank": 2,
+		"address": 51807,
+		"cpu_address": "$02:ca5f",
+		"length": 14,
+		"raw": "06576174657220536872696e6500",
+		"text": "{ITEM}Water Shrine"
+	},
+	{
+		"file_offset": 84590,
+		"bank": 2,
+		"address": 51822,
+		"cpu_address": "$02:ca6e",
+		"length": 14,
+		"raw": "06576174657220536872696e6500",
+		"text": "{ITEM}Water Shrine"
+	},
+	{
+		"file_offset": 84605,
+		"bank": 2,
+		"address": 51837,
+		"cpu_address": "$02:ca7d",
+		"length": 13,
+		"raw": "074669726520536872696e6500",
+		"text": "{NUM}Fire Shrine"
+	},
+	{
+		"file_offset": 84619,
+		"bank": 2,
+		"address": 51851,
+		"cpu_address": "$02:ca8b",
+		"length": 13,
+		"raw": "074669726520536872696e6500",
+		"text": "{NUM}Fire Shrine"
+	},
+	{
+		"file_offset": 84633,
+		"bank": 2,
+		"address": 51865,
+		"cpu_address": "$02:ca99",
+		"length": 13,
+		"raw": "074669726520536872696e6500",
+		"text": "{NUM}Fire Shrine"
+	},
+	{
+		"file_offset": 84647,
+		"bank": 2,
+		"address": 51879,
+		"cpu_address": "$02:caa7",
+		"length": 14,
+		"raw": "064c6967687420536872696e6500",
+		"text": "{ITEM}Light Shrine"
+	},
+	{
+		"file_offset": 84662,
+		"bank": 2,
+		"address": 51894,
+		"cpu_address": "$02:cab6",
+		"length": 20,
+		"raw": "064c6967687420536872696e650020546f6d6220",
+		"text": "{ITEM}Light Shrine"
+	},
+	{
+		"file_offset": 84684,
+		"bank": 2,
+		"address": 51916,
+		"cpu_address": "$02:cacc",
+		"length": 13,
+		"raw": "73746f6e652073746174756500",
+		"text": "stone statue"
+	},
+	{
+		"file_offset": 84730,
+		"bank": 2,
+		"address": 51962,
+		"cpu_address": "$02:cafa",
+		"length": 20,
+		"raw": "0453742e20456c6c657320536872696e65002020",
+		"text": "{PAUSE}St. Elles Shrine"
+	},
+	{
+		"file_offset": 84751,
+		"bank": 2,
+		"address": 51983,
+		"cpu_address": "$02:cb0f",
+		"length": 18,
+		"raw": "5365616265642053616e6374756172790020",
+		"text": "Seabed Sanctuary"
+	},
+	{
+		"file_offset": 84778,
+		"bank": 2,
+		"address": 52010,
+		"cpu_address": "$02:cb2a",
+		"length": 10,
+		"raw": "53742e20456c6c657300",
+		"text": "St. Elles"
+	},
+	{
+		"file_offset": 84791,
+		"bank": 2,
+		"address": 52023,
+		"cpu_address": "$02:cb37",
+		"length": 12,
+		"raw": "536563726574204361766500",
+		"text": "Secret Cave"
+	},
+	{
+		"file_offset": 84806,
+		"bank": 2,
+		"address": 52038,
+		"cpu_address": "$02:cb46",
+		"length": 12,
+		"raw": "536563726574204361766500",
+		"text": "Secret Cave"
+	},
+	{
+		"file_offset": 84819,
+		"bank": 2,
+		"address": 52051,
+		"cpu_address": "$02:cb53",
+		"length": 10,
+		"raw": "0381646f6c7068696e60",
+		"text": "{CLEAR}\"dolphin`"
+	},
+	{
+		"file_offset": 84838,
+		"bank": 2,
+		"address": 52070,
+		"cpu_address": "$02:cb66",
+		"length": 22,
+		"raw": "536f75746865727461002053686f7265207265656620",
+		"text": "Southerta"
+	},
+	{
+		"file_offset": 84890,
+		"bank": 2,
+		"address": 52122,
+		"cpu_address": "$02:cb9a",
+		"length": 13,
+		"raw": "068167686f7374207368697000",
+		"text": "{ITEM}\"ghost ship"
+	},
+	{
+		"file_offset": 84904,
+		"bank": 2,
+		"address": 52136,
+		"cpu_address": "$02:cba8",
+		"length": 16,
+		"raw": "065365727661736020647265616d0020",
+		"text": "{ITEM}Servas` dream"
+	},
+	{
+		"file_offset": 84929,
+		"bank": 2,
+		"address": 52161,
+		"cpu_address": "$02:cbc1",
+		"length": 19,
+		"raw": "53742e20456c6c657300000000000000002020",
+		"text": "St. Elles"
+	},
+	{
+		"file_offset": 84955,
+		"bank": 2,
+		"address": 52187,
+		"cpu_address": "$02:cbdb",
+		"length": 17,
+		"raw": "53616e637475617279002020536f756c20",
+		"text": "Sanctuary"
+	},
+	{
+		"file_offset": 84973,
+		"bank": 2,
+		"address": 52205,
+		"cpu_address": "$02:cbed",
+		"length": 39,
+		"raw": "4d6f756e7461696e20486f7573650020204d6f756e7461696e2c204e6f7274682d736c6f706500",
+		"text": "Mountain House"
+	},
+	{
+		"file_offset": 85029,
+		"bank": 2,
+		"address": 52261,
+		"cpu_address": "$02:cc25",
+		"length": 12,
+		"raw": "03416e206f6c64206d616e60",
+		"text": "{CLEAR}An old man`"
+	},
+	{
+		"file_offset": 85049,
+		"bank": 2,
+		"address": 52281,
+		"cpu_address": "$02:cc39",
+		"length": 10,
+		"raw": "04817061737361676520",
+		"text": "{PAUSE}\"passage "
+	},
+	{
+		"file_offset": 85060,
+		"bank": 2,
+		"address": 52292,
+		"cpu_address": "$02:cc44",
+		"length": 29,
+		"raw": "4c756e65002020556e64657267726f756e64206c616b652c4c756e6500",
+		"text": "Lune"
+	},
+	{
+		"file_offset": 85090,
+		"bank": 2,
+		"address": 52322,
+		"cpu_address": "$02:cc62",
+		"length": 11,
+		"raw": "03816d757368726f6f6d60",
+		"text": "{CLEAR}\"mushroom`"
+	},
+	{
+		"file_offset": 85125,
+		"bank": 2,
+		"address": 52357,
+		"cpu_address": "$02:cc85",
+		"length": 14,
+		"raw": "536e6f77204d6f756e7461696e00",
+		"text": "Snow Mountain"
+	},
+	{
+		"file_offset": 85140,
+		"bank": 2,
+		"address": 52372,
+		"cpu_address": "$02:cc94",
+		"length": 25,
+		"raw": "07416e206963652068696c6c002020496365206669656c6420",
+		"text": "{NUM}An ice hill"
+	},
+	{
+		"file_offset": 85166,
+		"bank": 2,
+		"address": 52398,
+		"cpu_address": "$02:ccae",
+		"length": 18,
+		"raw": "4c61796e6f6c650000000000000000002020",
+		"text": "Laynole"
+	},
+	{
+		"file_offset": 85185,
+		"bank": 2,
+		"address": 52417,
+		"cpu_address": "$02:ccc1",
+		"length": 18,
+		"raw": "4c61626f7261746f727920536872696e6500",
+		"text": "Laboratory Shrine"
+	},
+	{
+		"file_offset": 85210,
+		"bank": 2,
+		"address": 52442,
+		"cpu_address": "$02:ccda",
+		"length": 11,
+		"raw": "4c61626f7261746f727900",
+		"text": "Laboratory"
+	},
+	{
+		"file_offset": 85228,
+		"bank": 2,
+		"address": 52460,
+		"cpu_address": "$02:ccec",
+		"length": 11,
+		"raw": "4c61626f7261746f727900",
+		"text": "Laboratory"
+	},
+	{
+		"file_offset": 85251,
+		"bank": 2,
+		"address": 52483,
+		"cpu_address": "$02:cd03",
+		"length": 12,
+		"raw": "07816d696365206e65737400",
+		"text": "{NUM}\"mice nest"
+	},
+	{
+		"file_offset": 85271,
+		"bank": 2,
+		"address": 52503,
+		"cpu_address": "$02:cd17",
+		"length": 16,
+		"raw": "647265616d0020426173656d656e7420",
+		"text": "dream"
+	},
+	{
+		"file_offset": 85288,
+		"bank": 2,
+		"address": 52520,
+		"cpu_address": "$02:cd28",
+		"length": 21,
+		"raw": "4c61626f7261746f72790020426173656d656e7420",
+		"text": "Laboratory"
+	},
+	{
+		"file_offset": 85310,
+		"bank": 2,
+		"address": 52542,
+		"cpu_address": "$02:cd3e",
+		"length": 11,
+		"raw": "4c61626f7261746f727900",
+		"text": "Laboratory"
+	},
+	{
+		"file_offset": 85322,
+		"bank": 2,
+		"address": 52554,
+		"cpu_address": "$02:cd4a",
+		"length": 13,
+		"raw": "07706f77657220706c616e7400",
+		"text": "{NUM}power plant"
+	},
+	{
+		"file_offset": 85397,
+		"bank": 2,
+		"address": 52629,
+		"cpu_address": "$02:cd95",
+		"length": 22,
+		"raw": "436173746c6520536872696e650020436173746c6520",
+		"text": "Castle Shrine"
+	},
+	{
+		"file_offset": 85432,
+		"bank": 2,
+		"address": 52664,
+		"cpu_address": "$02:cdb8",
+		"length": 26,
+		"raw": "746f7274757265206368616d6265720020426173656d656e7420",
+		"text": "torture chamber"
+	},
+	{
+		"file_offset": 85460,
+		"bank": 2,
+		"address": 52692,
+		"cpu_address": "$02:cdd4",
+		"length": 17,
+		"raw": "636173746c650020426173656d656e7420",
+		"text": "castle"
+	},
+	{
+		"file_offset": 85500,
+		"bank": 2,
+		"address": 52732,
+		"cpu_address": "$02:cdfc",
+		"length": 11,
+		"raw": "6c65667420746f77657200",
+		"text": "left tower"
+	},
+	{
+		"file_offset": 85514,
+		"bank": 2,
+		"address": 52746,
+		"cpu_address": "$02:ce0a",
+		"length": 11,
+		"raw": "6c65667420746f77657200",
+		"text": "left tower"
+	},
+	{
+		"file_offset": 85538,
+		"bank": 2,
+		"address": 52770,
+		"cpu_address": "$02:ce22",
+		"length": 12,
+		"raw": "726967687420746f77657200",
+		"text": "right tower"
+	},
+	{
+		"file_offset": 85553,
+		"bank": 2,
+		"address": 52785,
+		"cpu_address": "$02:ce31",
+		"length": 12,
+		"raw": "726967687420746f77657200",
+		"text": "right tower"
+	},
+	{
+		"file_offset": 85568,
+		"bank": 2,
+		"address": 52800,
+		"cpu_address": "$02:ce40",
+		"length": 23,
+		"raw": "726967687420746f776572002081636f727269646f7220",
+		"text": "right tower"
+	},
+	{
+		"file_offset": 85633,
+		"bank": 2,
+		"address": 52865,
+		"cpu_address": "$02:ce81",
+		"length": 10,
+		"raw": "0481736f6c6469657260",
+		"text": "{PAUSE}\"soldier`"
+	},
+	{
+		"file_offset": 85644,
+		"bank": 2,
+		"address": 52876,
+		"cpu_address": "$02:ce8c",
+		"length": 12,
+		"raw": "647265616d00000000002020",
+		"text": "dream"
+	},
+	{
+		"file_offset": 85657,
+		"bank": 2,
+		"address": 52889,
+		"cpu_address": "$02:ce99",
+		"length": 18,
+		"raw": "4576696c20576f726c6420536872696e6500",
+		"text": "Evil World Shrine"
+	},
+	{
+		"file_offset": 85704,
+		"bank": 2,
+		"address": 52936,
+		"cpu_address": "$02:cec8",
+		"length": 16,
+		"raw": "0544617a7a6c696e6720537061636500",
+		"text": "{NAME}Dazzling Space"
+	},
+	{
+		"file_offset": 85721,
+		"bank": 2,
+		"address": 52953,
+		"cpu_address": "$02:ced9",
+		"length": 11,
+		"raw": "034465617468746f6c6c60",
+		"text": "{CLEAR}Deathtoll`"
+	},
+	{
+		"file_offset": 85733,
+		"bank": 2,
+		"address": 52965,
+		"cpu_address": "$02:cee5",
+		"length": 16,
+		"raw": "536872696e65002020426174746c6520",
+		"text": "Shrine"
+	},
+	{
+		"file_offset": 85750,
+		"bank": 2,
+		"address": 52982,
+		"cpu_address": "$02:cef6",
+		"length": 13,
+		"raw": "4465617468746f6c6c00000001",
+		"text": "Deathtoll"
+	},
+	{
+		"file_offset": 85797,
+		"bank": 2,
+		"address": 53029,
+		"cpu_address": "$02:cf25",
+		"length": 11,
+		"raw": "02070706205265636f7264",
+		"text": "{WAIT}{NUM}{NUM}{ITEM} Record"
+	},
+	{
+		"file_offset": 85829,
+		"bank": 2,
+		"address": 53061,
+		"cpu_address": "$02:cf45",
+		"length": 11,
+		"raw": "02070704205265636f7264",
+		"text": "{WAIT}{NUM}{NUM}{PAUSE} Record"
+	},
+	{
+		"file_offset": 86007,
+		"bank": 2,
+		"address": 53239,
+		"cpu_address": "$02:cff7",
+		"length": 15,
+		"raw": "65717569707065640053776f726420",
+		"text": "equipped"
+	},
+	{
+		"file_offset": 86023,
+		"bank": 2,
+		"address": 53255,
+		"cpu_address": "$02:d007",
+		"length": 88,
+		"raw": "4c6966650050737963686f2053776f726400437269746963616c2053776f7264004c75636b7920426c616465005a616e74657473752053776f7264005370697269742053776f7264005265636f766572792053776f726400",
+		"text": "Life"
+	},
+	{
+		"file_offset": 86112,
+		"bank": 2,
+		"address": 53344,
+		"cpu_address": "$02:d060",
+		"length": 196,
+		"raw": "536f756c20426c6164650049726f6e2041726d6f72004963652041726d6f7200427562626c652041726d6f72004d616769632041726d6f72004d79737469632041726d6f72004c696768742041726d6f7200456c656d656e74616c204d61696c00536f756c2041726d6f7200466c616d652042616c6c004c69676874204172726f77004d6167696320466c61697200526f7461746f7200537061726b20426f6d6200466c616d652050696c6c617200546f726e61646f0050686f656e697800476f617460",
+		"text": "Soul Blade"
+	},
+	{
+		"file_offset": 86309,
+		"bank": 2,
+		"address": 53541,
+		"cpu_address": "$02:d125",
+		"length": 17,
+		"raw": "466f6f64004861727020737472696e6700",
+		"text": "Food"
+	},
+	{
+		"file_offset": 86327,
+		"bank": 2,
+		"address": 53559,
+		"cpu_address": "$02:d137",
+		"length": 14,
+		"raw": "706173730085526f64004c656f60",
+		"text": "pass"
+	},
+	{
+		"file_offset": 86342,
+		"bank": 2,
+		"address": 53574,
+		"cpu_address": "$02:d146",
+		"length": 18,
+		"raw": "6272757368004c6561766573004d6f6c6560",
+		"text": "brush"
+	},
+	{
+		"file_offset": 86369,
+		"bank": 2,
+		"address": 53601,
+		"cpu_address": "$02:d161",
+		"length": 18,
+		"raw": "42696720506561726c004d65726d61696460",
+		"text": "Big Pearl"
+	},
+	{
+		"file_offset": 86388,
+		"bank": 2,
+		"address": 53620,
+		"cpu_address": "$02:d174",
+		"length": 21,
+		"raw": "5465617273004d757368726f6f6d2053686f657300",
+		"text": "Tears"
+	},
+	{
+		"file_offset": 86410,
+		"bank": 2,
+		"address": 53642,
+		"cpu_address": "$02:d18a",
+		"length": 47,
+		"raw": "6d6f62696c65206b6579005468756e6465722052696e670044656c6963696f7573205365656473004c656176657300",
+		"text": "mobile key"
+	},
+	{
+		"file_offset": 86458,
+		"bank": 2,
+		"address": 53690,
+		"cpu_address": "$02:d1ba",
+		"length": 23,
+		"raw": "646f6f72206b657900506c6174696e756d204361726400",
+		"text": "door key"
+	},
+	{
+		"file_offset": 86482,
+		"bank": 2,
+		"address": 53714,
+		"cpu_address": "$02:d1d2",
+		"length": 209,
+		"raw": "564950204361726400456d626c656d204100456d626c656d204200456d626c656d204300456d626c656d204400456d626c656d204500456d626c656d204600456d626c656d204700456d626c656d2048005265642d486f74204d6972726f72005265642d486f742042616c6c005265642d486f7420537469636b00506f7765722042726163656c657400536869656c642042726163656c65740053757065722042726163656c6574004d65646963616c204865726200537472616e676520426f74746c650042726f776e2053746f6e6500",
+		"text": "VIP Card"
+	},
+	{
+		"file_offset": 86692,
+		"bank": 2,
+		"address": 53924,
+		"cpu_address": "$02:d2a4",
+		"length": 67,
+		"raw": "53746f6e6500426c75652053746f6e650053696c7665722053746f6e6500507572706c652053746f6e6500426c61636b2053746f6e65004d616769632042656c6c0050",
+		"text": "Stone"
+	},
+	{
+		"file_offset": 86874,
+		"bank": 2,
+		"address": 54106,
+		"cpu_address": "$02:d35a",
+		"length": 10,
+		"raw": "6f6c6420776f6d616e00",
+		"text": "old woman"
+	},
+	{
+		"file_offset": 86903,
+		"bank": 2,
+		"address": 54135,
+		"cpu_address": "$02:d377",
+		"length": 13,
+		"raw": "62726964676520677561726400",
+		"text": "bridge guard"
+	},
+	{
+		"file_offset": 86917,
+		"bank": 2,
+		"address": 54149,
+		"cpu_address": "$02:d385",
+		"length": 26,
+		"raw": "61726368697465637400746f6f6c2073686f70206f776e657260",
+		"text": "architect"
+	},
+	{
+		"file_offset": 86944,
+		"bank": 2,
+		"address": 54176,
+		"cpu_address": "$02:d3a0",
+		"length": 20,
+		"raw": "736f6e00746f6f6c2073686f70206f776e657200",
+		"text": "son"
+	},
+	{
+		"file_offset": 86971,
+		"bank": 2,
+		"address": 54203,
+		"cpu_address": "$02:d3bb",
+		"length": 22,
+		"raw": "6c6f6e656c7920676f61740074756c69700069767900",
+		"text": "lonely goat"
+	},
+	{
+		"file_offset": 86994,
+		"bank": 2,
+		"address": 54226,
+		"cpu_address": "$02:d3d2",
+		"length": 18,
+		"raw": "7761746572206d696c6c206b656570657200",
+		"text": "water mill keeper"
+	},
+	{
+		"file_offset": 87029,
+		"bank": 2,
+		"address": 54261,
+		"cpu_address": "$02:d3f5",
+		"length": 10,
+		"raw": "63726f636f64696c6500",
+		"text": "crocodile"
+	},
+	{
+		"file_offset": 87040,
+		"bank": 2,
+		"address": 54272,
+		"cpu_address": "$02:d400",
+		"length": 18,
+		"raw": "646f672c203c547572626f3e00576f6f6460",
+		"text": "dog, <Turbo>"
+	},
+	{
+		"file_offset": 87069,
+		"bank": 2,
+		"address": 54301,
+		"cpu_address": "$02:d41d",
+		"length": 10,
+		"raw": "6d6f6c65006e6f6e6500",
+		"text": "mole"
+	},
+	{
+		"file_offset": 87117,
+		"bank": 2,
+		"address": 54349,
+		"cpu_address": "$02:d44d",
+		"length": 10,
+		"raw": "616e67656c6669736800",
+		"text": "angelfish"
+	},
+	{
+		"file_offset": 87135,
+		"bank": 2,
+		"address": 54367,
+		"cpu_address": "$02:d45f",
+		"length": 13,
+		"raw": "646f6c7068696e2c204c756500",
+		"text": "dolphin, Lue"
+	},
+	{
+		"file_offset": 87171,
+		"bank": 2,
+		"address": 54403,
+		"cpu_address": "$02:d483",
+		"length": 21,
+		"raw": "6769726c004772616e647061004772616e646d6100",
+		"text": "girl"
+	},
+	{
+		"file_offset": 87216,
+		"bank": 2,
+		"address": 54448,
+		"cpu_address": "$02:d4b0",
+		"length": 18,
+		"raw": "736e61696c2c204e6f6d6500737465707300",
+		"text": "snail, Nome"
+	},
+	{
+		"file_offset": 87235,
+		"bank": 2,
+		"address": 54467,
+		"cpu_address": "$02:d4c3",
+		"length": 11,
+		"raw": "677265617420646f6f7200",
+		"text": "great door"
+	},
+	{
+		"file_offset": 87288,
+		"bank": 2,
+		"address": 54520,
+		"cpu_address": "$02:d4f8",
+		"length": 12,
+		"raw": "646f6c6c2c204d6172696500",
+		"text": "doll, Marie"
+	},
+	{
+		"file_offset": 87337,
+		"bank": 2,
+		"address": 54569,
+		"cpu_address": "$02:d529",
+		"length": 22,
+		"raw": "4d6167726964640044722e4c656f00517565656e0001",
+		"text": "Magridd"
+	},
+	{
+		"file_offset": 87373,
+		"bank": 2,
+		"address": 54605,
+		"cpu_address": "$02:d54d",
+		"length": 12,
+		"raw": "05537472656e6774683a0001",
+		"text": "{NAME}Strength:"
+	},
+	{
+		"file_offset": 87392,
+		"bank": 2,
+		"address": 54624,
+		"cpu_address": "$02:d560",
+		"length": 12,
+		"raw": "05446566656e6365203a0001",
+		"text": "{NAME}Defence :"
+	},
+	{
+		"file_offset": 87583,
+		"bank": 2,
+		"address": 54815,
+		"cpu_address": "$02:d61f",
+		"length": 10,
+		"raw": "4d61737465722e200001",
+		"text": "Master. "
+	},
+	{
+		"file_offset": 87616,
+		"bank": 2,
+		"address": 54848,
+		"cpu_address": "$02:d640",
+		"length": 12,
+		"raw": "05496e76696e6369626c6520",
+		"text": "{NAME}Invincible "
+	},
+	{
+		"file_offset": 87631,
+		"bank": 2,
+		"address": 54863,
+		"cpu_address": "$02:d64f",
+		"length": 24,
+		"raw": "74656d706f726172696c7920706172616c797a65642e0001",
+		"text": "temporarily paralyzed."
+	},
+	{
+		"file_offset": 87690,
+		"bank": 2,
+		"address": 54922,
+		"cpu_address": "$02:d68a",
+		"length": 11,
+		"raw": "6174206f6e63652e200001",
+		"text": "at once. "
+	},
+	{
+		"file_offset": 87744,
+		"bank": 2,
+		"address": 54976,
+		"cpu_address": "$02:d6c0",
+		"length": 24,
+		"raw": "6c61726765722047454d7320696e637265617365732e0001",
+		"text": "larger GEMs increases."
+	},
+	{
+		"file_offset": 87804,
+		"bank": 2,
+		"address": 55036,
+		"cpu_address": "$02:d6fc",
+		"length": 17,
+		"raw": "7370656369616c2061726d6f722e200001",
+		"text": "special armor. "
+	},
+	{
+		"file_offset": 87865,
+		"bank": 2,
+		"address": 55097,
+		"cpu_address": "$02:d739",
+		"length": 17,
+		"raw": "74797065206d6f6e73746572732e200001",
+		"text": "type monsters. "
+	},
+	{
+		"file_offset": 87911,
+		"bank": 2,
+		"address": 55143,
+		"cpu_address": "$02:d767",
+		"length": 11,
+		"raw": "66696c6c6564207768656e",
+		"text": "filled when"
+	},
+	{
+		"file_offset": 87933,
+		"bank": 2,
+		"address": 55165,
+		"cpu_address": "$02:d77d",
+		"length": 12,
+		"raw": "64656665617465642e200001",
+		"text": "defeated. "
+	},
+	{
+		"file_offset": 87970,
+		"bank": 2,
+		"address": 55202,
+		"cpu_address": "$02:d7a2",
+		"length": 16,
+		"raw": "7374726f6e676573742073776f726420",
+		"text": "strongest sword "
+	},
+	{
+		"file_offset": 87989,
+		"bank": 2,
+		"address": 55221,
+		"cpu_address": "$02:d7b5",
+		"length": 11,
+		"raw": "6d6179207573652e200001",
+		"text": "may use. "
+	},
+	{
+		"file_offset": 88016,
+		"bank": 2,
+		"address": 55248,
+		"cpu_address": "$02:d7d0",
+		"length": 20,
+		"raw": "05596f757220646566656e736520706f77657220",
+		"text": "{NAME}Your defense power "
+	},
+	{
+		"file_offset": 88038,
+		"bank": 2,
+		"address": 55270,
+		"cpu_address": "$02:d7e6",
+		"length": 20,
+		"raw": "6265636f6d6573207374726f6e6765722e200001",
+		"text": "becomes stronger. "
+	},
+	{
+		"file_offset": 88085,
+		"bank": 2,
+		"address": 55317,
+		"cpu_address": "$02:d815",
+		"length": 23,
+		"raw": "6669726520776974686f75742064616d6167652e200001",
+		"text": "fire without damage. "
+	},
+	{
+		"file_offset": 88175,
+		"bank": 2,
+		"address": 55407,
+		"cpu_address": "$02:d86f",
+		"length": 10,
+		"raw": "6e656365737361727920",
+		"text": "necessary "
+	},
+	{
+		"file_offset": 88217,
+		"bank": 2,
+		"address": 55449,
+		"cpu_address": "$02:d899",
+		"length": 12,
+		"raw": "05496e76696e6369626c6520",
+		"text": "{NAME}Invincible "
+	},
+	{
+		"file_offset": 88270,
+		"bank": 2,
+		"address": 55502,
+		"cpu_address": "$02:d8ce",
+		"length": 23,
+		"raw": "0552656365697665206e6f2064616d6167652066726f6d",
+		"text": "{NAME}Receive no damage from"
+	},
+	{
+		"file_offset": 88295,
+		"bank": 2,
+		"address": 55527,
+		"cpu_address": "$02:d8e7",
+		"length": 19,
+		"raw": "7765616b6572206d6f6e73746572732e200001",
+		"text": "weaker monsters. "
+	},
+	{
+		"file_offset": 88330,
+		"bank": 2,
+		"address": 55562,
+		"cpu_address": "$02:d90a",
+		"length": 12,
+		"raw": "0550726f7465637473200202",
+		"text": "{NAME}Protects {WAIT}{WAIT}"
+	},
+	{
+		"file_offset": 88346,
+		"bank": 2,
+		"address": 55578,
+		"cpu_address": "$02:d91a",
+		"length": 15,
+		"raw": "64616d616765207a6f6e65732e0001",
+		"text": "damage zones."
+	},
+	{
+		"file_offset": 88443,
+		"bank": 2,
+		"address": 55675,
+		"cpu_address": "$02:d97b",
+		"length": 13,
+		"raw": "646972656374696f6e2e200001",
+		"text": "direction. "
+	},
+	{
+		"file_offset": 88476,
+		"bank": 2,
+		"address": 55708,
+		"cpu_address": "$02:d99c",
+		"length": 22,
+		"raw": "53686f6f7473203c6c696768743e206172726f777320",
+		"text": "Shoots <light> arrows "
+	},
+	{
+		"file_offset": 88502,
+		"bank": 2,
+		"address": 55734,
+		"cpu_address": "$02:d9b6",
+		"length": 14,
+		"raw": "646972656374696f6e732e200001",
+		"text": "directions. "
+	},
+	{
+		"file_offset": 88543,
+		"bank": 2,
+		"address": 55775,
+		"cpu_address": "$02:d9df",
+		"length": 10,
+		"raw": "636f6c6c656374656420",
+		"text": "collected "
+	},
+	{
+		"file_offset": 88555,
+		"bank": 2,
+		"address": 55787,
+		"cpu_address": "$02:d9eb",
+		"length": 24,
+		"raw": "7768696c6520627574746f6e20707265737365642e200001",
+		"text": "while button pressed. "
+	},
+	{
+		"file_offset": 88599,
+		"bank": 2,
+		"address": 55831,
+		"cpu_address": "$02:da17",
+		"length": 12,
+		"raw": "816c696768742072696e6720",
+		"text": "\"light ring "
+	},
+	{
+		"file_offset": 88665,
+		"bank": 2,
+		"address": 55897,
+		"cpu_address": "$02:da59",
+		"length": 22,
+		"raw": "6578706c6f646520736f6f6e2061667465722e200001",
+		"text": "explode soon after. "
+	},
+	{
+		"file_offset": 88758,
+		"bank": 2,
+		"address": 55990,
+		"cpu_address": "$02:dab6",
+		"length": 16,
+		"raw": "4d61676963616c20546f726e61646f20",
+		"text": "Magical Tornado "
+	},
+	{
+		"file_offset": 88851,
+		"bank": 2,
+		"address": 56083,
+		"cpu_address": "$02:db13",
+		"length": 13,
+		"raw": "746f6f6c2073686f702e200001",
+		"text": "tool shop. "
+	},
+	{
+		"file_offset": 88873,
+		"bank": 2,
+		"address": 56105,
+		"cpu_address": "$02:db29",
+		"length": 13,
+		"raw": "054861727020537472696e6720",
+		"text": "{NAME}Harp String "
+	},
+	{
+		"file_offset": 88937,
+		"bank": 2,
+		"address": 56169,
+		"cpu_address": "$02:db69",
+		"length": 10,
+		"raw": "56616c6c65792e200001",
+		"text": "Valley. "
+	},
+	{
+		"file_offset": 89011,
+		"bank": 2,
+		"address": 56243,
+		"cpu_address": "$02:dbb3",
+		"length": 11,
+		"raw": "7061696e74627275736820",
+		"text": "paintbrush "
+	},
+	{
+		"file_offset": 89080,
+		"bank": 2,
+		"address": 56312,
+		"cpu_address": "$02:dbf8",
+		"length": 14,
+		"raw": "73796d626f6c2e20416e796f6e65",
+		"text": "symbol. Anyone"
+	},
+	{
+		"file_offset": 89120,
+		"bank": 2,
+		"address": 56352,
+		"cpu_address": "$02:dc20",
+		"length": 12,
+		"raw": "6d657373656e6765722e0001",
+		"text": "messenger."
+	},
+	{
+		"file_offset": 89201,
+		"bank": 2,
+		"address": 56433,
+		"cpu_address": "$02:dc71",
+		"length": 18,
+		"raw": "058162656175746966756c20706561726c20",
+		"text": "{NAME}\"beautiful pearl "
+	},
+	{
+		"file_offset": 89228,
+		"bank": 2,
+		"address": 56460,
+		"cpu_address": "$02:dc8c",
+		"length": 14,
+		"raw": "636f72616c20726565662e200001",
+		"text": "coral reef. "
+	},
+	{
+		"file_offset": 89253,
+		"bank": 2,
+		"address": 56485,
+		"cpu_address": "$02:dca5",
+		"length": 16,
+		"raw": "7475726e206d61676d6120696e746f20",
+		"text": "turn magma into "
+	},
+	{
+		"file_offset": 89292,
+		"bank": 2,
+		"address": 56524,
+		"cpu_address": "$02:dccc",
+		"length": 12,
+		"raw": "676f6f20656e61626c657320",
+		"text": "goo enables "
+	},
+	{
+		"file_offset": 89316,
+		"bank": 2,
+		"address": 56548,
+		"cpu_address": "$02:dce4",
+		"length": 20,
+		"raw": "776974686f757420736c697070696e672e200001",
+		"text": "without slipping. "
+	},
+	{
+		"file_offset": 89351,
+		"bank": 2,
+		"address": 56583,
+		"cpu_address": "$02:dd07",
+		"length": 15,
+		"raw": "416972736869702e20506c75672020",
+		"text": "Airship. Plug  "
+	},
+	{
+		"file_offset": 89374,
+		"bank": 2,
+		"address": 56606,
+		"cpu_address": "$02:dd1e",
+		"length": 15,
+		"raw": "6b6579686f6c65206c6f6361746564",
+		"text": "keyhole located"
+	},
+	{
+		"file_offset": 89422,
+		"bank": 2,
+		"address": 56654,
+		"cpu_address": "$02:dd4e",
+		"length": 19,
+		"raw": "6c696768746e696e6720707972616d69642c20",
+		"text": "lightning pyramid, "
+	},
+	{
+		"file_offset": 89443,
+		"bank": 2,
+		"address": 56675,
+		"cpu_address": "$02:dd63",
+		"length": 10,
+		"raw": "6c696768746e696e6720",
+		"text": "lightning "
+	},
+	{
+		"file_offset": 89472,
+		"bank": 2,
+		"address": 56704,
+		"cpu_address": "$02:dd80",
+		"length": 17,
+		"raw": "054661766f726974652053656564732c20",
+		"text": "{NAME}Favorite Seeds, "
+	},
+	{
+		"file_offset": 89510,
+		"bank": 2,
+		"address": 56742,
+		"cpu_address": "$02:dda6",
+		"length": 13,
+		"raw": "65786368616e6765722e200001",
+		"text": "exchanger. "
+	},
+	{
+		"file_offset": 89540,
+		"bank": 2,
+		"address": 56772,
+		"cpu_address": "$02:ddc4",
+		"length": 14,
+		"raw": "706563756c696172207363656e74",
+		"text": "peculiar scent"
+	},
+	{
+		"file_offset": 89557,
+		"bank": 2,
+		"address": 56789,
+		"cpu_address": "$02:ddd5",
+		"length": 17,
+		"raw": "617474726163747320636174732e200001",
+		"text": "attracts cats. "
+	},
+	{
+		"file_offset": 89609,
+		"bank": 2,
+		"address": 56841,
+		"cpu_address": "$02:de09",
+		"length": 14,
+		"raw": "6c61626f7261746f72792e200001",
+		"text": "laboratory. "
+	},
+	{
+		"file_offset": 89634,
+		"bank": 2,
+		"address": 56866,
+		"cpu_address": "$02:de22",
+		"length": 10,
+		"raw": "6d617920656e74657220",
+		"text": "may enter "
+	},
+	{
+		"file_offset": 89662,
+		"bank": 2,
+		"address": 56894,
+		"cpu_address": "$02:de3e",
+		"length": 10,
+		"raw": "436173746c652e200001",
+		"text": "Castle. "
+	},
+	{
+		"file_offset": 89700,
+		"bank": 2,
+		"address": 56932,
+		"cpu_address": "$02:de64",
+		"length": 12,
+		"raw": "776973682077697468696e20",
+		"text": "wish within "
+	},
+	{
+		"file_offset": 89716,
+		"bank": 2,
+		"address": 56948,
+		"cpu_address": "$02:de74",
+		"length": 10,
+		"raw": "436173746c652e200001",
+		"text": "Castle. "
+	},
+	{
+		"file_offset": 89738,
+		"bank": 2,
+		"address": 56970,
+		"cpu_address": "$02:de8a",
+		"length": 10,
+		"raw": "636f6c6c656374203820",
+		"text": "collect 8 "
+	},
+	{
+		"file_offset": 89769,
+		"bank": 2,
+		"address": 57001,
+		"cpu_address": "$02:dea9",
+		"length": 19,
+		"raw": "657870657274206174206d616769632e200001",
+		"text": "expert at magic. "
+	},
+	{
+		"file_offset": 89887,
+		"bank": 2,
+		"address": 57119,
+		"cpu_address": "$02:df1f",
+		"length": 15,
+		"raw": "74687265652073796d626f6c732c20",
+		"text": "three symbols, "
+	},
+	{
+		"file_offset": 89914,
+		"bank": 2,
+		"address": 57146,
+		"cpu_address": "$02:df3a",
+		"length": 11,
+		"raw": "6a6f696e20796f752e0001",
+		"text": "join you."
+	},
+	{
+		"file_offset": 89991,
+		"bank": 2,
+		"address": 57223,
+		"cpu_address": "$02:df87",
+		"length": 10,
+		"raw": "646f75626c652e200001",
+		"text": "double. "
+	},
+	{
+		"file_offset": 90010,
+		"bank": 2,
+		"address": 57242,
+		"cpu_address": "$02:df9a",
+		"length": 13,
+		"raw": "0557696c6c2072656475636520",
+		"text": "{NAME}Will reduce "
+	},
+	{
+		"file_offset": 90044,
+		"bank": 2,
+		"address": 57276,
+		"cpu_address": "$02:dfbc",
+		"length": 18,
+		"raw": "656e656d69657320627920312f322e200001",
+		"text": "enemies by 1/2. "
+	},
+	{
+		"file_offset": 90071,
+		"bank": 2,
+		"address": 57303,
+		"cpu_address": "$02:dfd7",
+		"length": 12,
+		"raw": "05596f75722073776f726420",
+		"text": "{NAME}Your sword "
+	},
+	{
+		"file_offset": 90105,
+		"bank": 2,
+		"address": 57337,
+		"cpu_address": "$02:dff9",
+		"length": 17,
+		"raw": "737472656e67746820627920322e200001",
+		"text": "strength by 2. "
+	},
+	{
+		"file_offset": 90144,
+		"bank": 2,
+		"address": 57376,
+		"cpu_address": "$02:e020",
+		"length": 12,
+		"raw": "726566696c6c656420696620",
+		"text": "refilled if "
+	},
+	{
+		"file_offset": 90164,
+		"bank": 2,
+		"address": 57396,
+		"cpu_address": "$02:e034",
+		"length": 19,
+		"raw": "6d65746572207265616368657320302e200001",
+		"text": "meter reaches 0. "
+	},
+	{
+		"file_offset": 90221,
+		"bank": 2,
+		"address": 57453,
+		"cpu_address": "$02:e06d",
+		"length": 14,
+		"raw": "6d65746572207265616368200001",
+		"text": "meter reach "
+	},
+	{
+		"file_offset": 90260,
+		"bank": 2,
+		"address": 57492,
+		"cpu_address": "$02:e094",
+		"length": 12,
+		"raw": "617070656172206f6e636520",
+		"text": "appear once "
+	},
+	{
+		"file_offset": 90276,
+		"bank": 2,
+		"address": 57508,
+		"cpu_address": "$02:e0a4",
+		"length": 12,
+		"raw": "636f6c6c6563746564203620",
+		"text": "collected 6 "
+	},
+	{
+		"file_offset": 90374,
+		"bank": 2,
+		"address": 57606,
+		"cpu_address": "$02:e106",
+		"length": 19,
+		"raw": "63617374206d6167696320776974686f757420",
+		"text": "cast magic without "
+	},
+	{
+		"file_offset": 90395,
+		"bank": 2,
+		"address": 57627,
+		"cpu_address": "$02:e11b",
+		"length": 31,
+		"raw": "7573696e6720616e792047454d732e20000100020003000400050006000700",
+		"text": "using any GEMs. "
+	},
+	{
+		"file_offset": 90647,
+		"bank": 2,
+		"address": 57879,
+		"cpu_address": "$02:e217",
+		"length": 12,
+		"raw": "200202207265636965766564",
+		"text": " {WAIT}{WAIT} recieved"
+	},
+	{
+		"file_offset": 90675,
+		"bank": 2,
+		"address": 57907,
+		"cpu_address": "$02:e233",
+		"length": 16,
+		"raw": "204e6f7468696e6720696e736964652e",
+		"text": " Nothing inside."
+	},
+	{
+		"file_offset": 90725,
+		"bank": 2,
+		"address": 57957,
+		"cpu_address": "$02:e265",
+		"length": 25,
+		"raw": "03546865207374616666206f6620536f756c20426c617a6572",
+		"text": "{CLEAR}The staff of Soul Blazer"
+	},
+	{
+		"file_offset": 90758,
+		"bank": 2,
+		"address": 57990,
+		"cpu_address": "$02:e286",
+		"length": 20,
+		"raw": "045363656e6172696f207772697474656e206279",
+		"text": "{PAUSE}Scenario written by"
+	},
+	{
+		"file_offset": 90781,
+		"bank": 2,
+		"address": 58013,
+		"cpu_address": "$02:e29d",
+		"length": 18,
+		"raw": "546f6d6f796f736869204d6979617a616b69",
+		"text": "Tomoyoshi Miyazaki"
+	},
+	{
+		"file_offset": 90807,
+		"bank": 2,
+		"address": 58039,
+		"cpu_address": "$02:e2b7",
+		"length": 14,
+		"raw": "0450726f6772616d6d6564206279",
+		"text": "{PAUSE}Programmed by"
+	},
+	{
+		"file_offset": 90824,
+		"bank": 2,
+		"address": 58056,
+		"cpu_address": "$02:e2c8",
+		"length": 16,
+		"raw": "4d61736179612048617368696d6f746f",
+		"text": "Masaya Hashimoto"
+	},
+	{
+		"file_offset": 90848,
+		"bank": 2,
+		"address": 58080,
+		"cpu_address": "$02:e2e0",
+		"length": 21,
+		"raw": "0447726170686963732064657369676e6564206279",
+		"text": "{PAUSE}Graphics designed by"
+	},
+	{
+		"file_offset": 90872,
+		"bank": 2,
+		"address": 58104,
+		"cpu_address": "$02:e2f8",
+		"length": 12,
+		"raw": "4b6f756a6920596f6b6f7461",
+		"text": "Kouji Yokota"
+	},
+	{
+		"file_offset": 90887,
+		"bank": 2,
+		"address": 58119,
+		"cpu_address": "$02:e307",
+		"length": 14,
+		"raw": "4d61736168696b6f2054616b6169",
+		"text": "Masahiko Takai"
+	},
+	{
+		"file_offset": 90904,
+		"bank": 2,
+		"address": 58136,
+		"cpu_address": "$02:e318",
+		"length": 17,
+		"raw": "54616b65736869204d617473756d75726f",
+		"text": "Takeshi Matsumuro"
+	},
+	{
+		"file_offset": 90924,
+		"bank": 2,
+		"address": 58156,
+		"cpu_address": "$02:e32c",
+		"length": 15,
+		"raw": "5368696e7461726f204d616a696d61",
+		"text": "Shintaro Majima"
+	},
+	{
+		"file_offset": 90947,
+		"bank": 2,
+		"address": 58179,
+		"cpu_address": "$02:e343",
+		"length": 18,
+		"raw": "044d7573696320636f6d706f736564206279",
+		"text": "{PAUSE}Music composed by"
+	},
+	{
+		"file_offset": 90968,
+		"bank": 2,
+		"address": 58200,
+		"cpu_address": "$02:e358",
+		"length": 17,
+		"raw": "59756b69686964652054616b656b617761",
+		"text": "Yukihide Takekawa"
+	},
+	{
+		"file_offset": 90993,
+		"bank": 2,
+		"address": 58225,
+		"cpu_address": "$02:e371",
+		"length": 18,
+		"raw": "044d7573696320617272616e676564206279",
+		"text": "{PAUSE}Music arranged by"
+	},
+	{
+		"file_offset": 91014,
+		"bank": 2,
+		"address": 58246,
+		"cpu_address": "$02:e386",
+		"length": 11,
+		"raw": "4b415a5a20544f59414d41",
+		"text": "KAZZ TOYAMA"
+	},
+	{
+		"file_offset": 91033,
+		"bank": 2,
+		"address": 58265,
+		"cpu_address": "$02:e399",
+		"length": 17,
+		"raw": "04536f756e642063726561746564206279",
+		"text": "{PAUSE}Sound created by"
+	},
+	{
+		"file_offset": 91053,
+		"bank": 2,
+		"address": 58285,
+		"cpu_address": "$02:e3ad",
+		"length": 10,
+		"raw": "596f752048696d656e6f",
+		"text": "You Himeno"
+	},
+	{
+		"file_offset": 91071,
+		"bank": 2,
+		"address": 58303,
+		"cpu_address": "$02:e3bf",
+		"length": 21,
+		"raw": "044d7573696320636f6f7264696e61746564206279",
+		"text": "{PAUSE}Music coordinated by"
+	},
+	{
+		"file_offset": 91095,
+		"bank": 2,
+		"address": 58327,
+		"cpu_address": "$02:e3d7",
+		"length": 11,
+		"raw": "414d454e49545920436f3a",
+		"text": "AMENITY Co:"
+	},
+	{
+		"file_offset": 91114,
+		"bank": 2,
+		"address": 58346,
+		"cpu_address": "$02:e3ea",
+		"length": 19,
+		"raw": "045363656e6172696f20617373697374616e74",
+		"text": "{PAUSE}Scenario assistant"
+	},
+	{
+		"file_offset": 91136,
+		"bank": 2,
+		"address": 58368,
+		"cpu_address": "$02:e400",
+		"length": 16,
+		"raw": "54617473756f2048617368696d6f746f",
+		"text": "Tatsuo Hashimoto"
+	},
+	{
+		"file_offset": 91161,
+		"bank": 2,
+		"address": 58393,
+		"cpu_address": "$02:e419",
+		"length": 16,
+		"raw": "04456e676c6973682054657874206279",
+		"text": "{PAUSE}English Text by"
+	},
+	{
+		"file_offset": 91180,
+		"bank": 2,
+		"address": 58412,
+		"cpu_address": "$02:e42c",
+		"length": 16,
+		"raw": "526f62657274204c3a4a657261756c64",
+		"text": "Robert L:Jerauld"
+	},
+	{
+		"file_offset": 91205,
+		"bank": 2,
+		"address": 58437,
+		"cpu_address": "$02:e445",
+		"length": 13,
+		"raw": "042a2b2c2d2e2f207374616666",
+		"text": "{PAUSE}*+,-./ staff"
+	},
+	{
+		"file_offset": 91221,
+		"bank": 2,
+		"address": 58453,
+		"cpu_address": "$02:e455",
+		"length": 17,
+		"raw": "5265696b6f2054616b6562617961736869",
+		"text": "Reiko Takebayashi"
+	},
+	{
+		"file_offset": 91241,
+		"bank": 2,
+		"address": 58473,
+		"cpu_address": "$02:e469",
+		"length": 16,
+		"raw": "416b697261204b6974616e6f68617261",
+		"text": "Akira Kitanohara"
+	},
+	{
+		"file_offset": 91265,
+		"bank": 2,
+		"address": 58497,
+		"cpu_address": "$02:e481",
+		"length": 12,
+		"raw": "043b3c3d3e3f207374616666",
+		"text": "{PAUSE};<=>? staff"
+	},
+	{
+		"file_offset": 91280,
+		"bank": 2,
+		"address": 58512,
+		"cpu_address": "$02:e490",
+		"length": 15,
+		"raw": "54616b616f204b6177616775636869",
+		"text": "Takao Kawaguchi"
+	},
+	{
+		"file_offset": 91298,
+		"bank": 2,
+		"address": 58530,
+		"cpu_address": "$02:e4a2",
+		"length": 15,
+		"raw": "4b65697a6f204d6f6368697a756b69",
+		"text": "Keizo Mochizuki"
+	},
+	{
+		"file_offset": 91316,
+		"bank": 2,
+		"address": 58548,
+		"cpu_address": "$02:e4b4",
+		"length": 15,
+		"raw": "5465727568696b6f2048616e617761",
+		"text": "Teruhiko Hanawa"
+	},
+	{
+		"file_offset": 91334,
+		"bank": 2,
+		"address": 58566,
+		"cpu_address": "$02:e4c6",
+		"length": 15,
+		"raw": "5465747375726f205368696d6f6461",
+		"text": "Tetsuro Shimoda"
+	},
+	{
+		"file_offset": 91352,
+		"bank": 2,
+		"address": 58584,
+		"cpu_address": "$02:e4d8",
+		"length": 17,
+		"raw": "4d6173616869726f204869726173617761",
+		"text": "Masahiro Hirasawa"
+	},
+	{
+		"file_offset": 91372,
+		"bank": 2,
+		"address": 58604,
+		"cpu_address": "$02:e4ec",
+		"length": 12,
+		"raw": "4b656e6a69726f204b616e6f",
+		"text": "Kenjiro Kano"
+	},
+	{
+		"file_offset": 91387,
+		"bank": 2,
+		"address": 58619,
+		"cpu_address": "$02:e4fb",
+		"length": 16,
+		"raw": "596173756b6f2053656b696775636869",
+		"text": "Yasuko Sekiguchi"
+	},
+	{
+		"file_offset": 91406,
+		"bank": 2,
+		"address": 58638,
+		"cpu_address": "$02:e50e",
+		"length": 16,
+		"raw": "4d6977616b6f204d617473756d6f746f",
+		"text": "Miwako Matsumoto"
+	},
+	{
+		"file_offset": 91425,
+		"bank": 2,
+		"address": 58657,
+		"cpu_address": "$02:e521",
+		"length": 10,
+		"raw": "4b65696b6f2054616761",
+		"text": "Keiko Taga"
+	},
+	{
+		"file_offset": 91439,
+		"bank": 2,
+		"address": 58671,
+		"cpu_address": "$02:e52f",
+		"length": 12,
+		"raw": "48616a696d65204b616e6965",
+		"text": "Hajime Kanie"
+	},
+	{
+		"file_offset": 91454,
+		"bank": 2,
+		"address": 58686,
+		"cpu_address": "$02:e53e",
+		"length": 15,
+		"raw": "456969636869204869726173617761",
+		"text": "Eiichi Hirasawa"
+	},
+	{
+		"file_offset": 91472,
+		"bank": 2,
+		"address": 58704,
+		"cpu_address": "$02:e550",
+		"length": 13,
+		"raw": "5368696e6a6920467574616d69",
+		"text": "Shinji Futami"
+	},
+	{
+		"file_offset": 91493,
+		"bank": 2,
+		"address": 58725,
+		"cpu_address": "$02:e565",
+		"length": 20,
+		"raw": "043b3c3d3e3f20416d6572696361207374616666",
+		"text": "{PAUSE};<=>? America staff"
+	},
+	{
+		"file_offset": 91516,
+		"bank": 2,
+		"address": 58748,
+		"cpu_address": "$02:e57c",
+		"length": 11,
+		"raw": "4b65696a6920486f6e6461",
+		"text": "Keiji Honda"
+	},
+	{
+		"file_offset": 91530,
+		"bank": 2,
+		"address": 58762,
+		"cpu_address": "$02:e58a",
+		"length": 13,
+		"raw": "5473756e656f204d6f72697461",
+		"text": "Tsuneo Morita"
+	},
+	{
+		"file_offset": 91546,
+		"bank": 2,
+		"address": 58778,
+		"cpu_address": "$02:e59a",
+		"length": 11,
+		"raw": "5061756c20426f776c6572",
+		"text": "Paul Bowler"
+	},
+	{
+		"file_offset": 91560,
+		"bank": 2,
+		"address": 58792,
+		"cpu_address": "$02:e5a8",
+		"length": 14,
+		"raw": "5061756c2048616e64656c6d616e",
+		"text": "Paul Handelman"
+	},
+	{
+		"file_offset": 91577,
+		"bank": 2,
+		"address": 58809,
+		"cpu_address": "$02:e5b9",
+		"length": 13,
+		"raw": "43686572696520486173736f6e",
+		"text": "Cherie Hasson"
+	},
+	{
+		"file_offset": 91599,
+		"bank": 2,
+		"address": 58831,
+		"cpu_address": "$02:e5cf",
+		"length": 18,
+		"raw": "045370656369616c207468616e6b7320746f",
+		"text": "{PAUSE}Special thanks to"
+	},
+	{
+		"file_offset": 91620,
+		"bank": 2,
+		"address": 58852,
+		"cpu_address": "$02:e5e4",
+		"length": 14,
+		"raw": "52797569636869204d6f72697961",
+		"text": "Ryuichi Moriya"
+	},
+	{
+		"file_offset": 91637,
+		"bank": 2,
+		"address": 58869,
+		"cpu_address": "$02:e5f5",
+		"length": 12,
+		"raw": "4e616f6b6920596173756461",
+		"text": "Naoki Yasuda"
+	},
+	{
+		"file_offset": 91652,
+		"bank": 2,
+		"address": 58884,
+		"cpu_address": "$02:e604",
+		"length": 14,
+		"raw": "596f736869616b6920556a696965",
+		"text": "Yoshiaki Ujiie"
+	},
+	{
+		"file_offset": 91669,
+		"bank": 2,
+		"address": 58901,
+		"cpu_address": "$02:e615",
+		"length": 14,
+		"raw": "5368696e69636869204b6f756461",
+		"text": "Shinichi Kouda"
+	},
+	{
+		"file_offset": 91686,
+		"bank": 2,
+		"address": 58918,
+		"cpu_address": "$02:e626",
+		"length": 13,
+		"raw": "5461696b69204d6f6368696461",
+		"text": "Taiki Mochida"
+	},
+	{
+		"file_offset": 91702,
+		"bank": 2,
+		"address": 58934,
+		"cpu_address": "$02:e636",
+		"length": 13,
+		"raw": "4d6173616869726f20456e646f",
+		"text": "Masahiro Endo"
+	},
+	{
+		"file_offset": 91718,
+		"bank": 2,
+		"address": 58950,
+		"cpu_address": "$02:e646",
+		"length": 11,
+		"raw": "417a756d6920497a756d69",
+		"text": "Azumi Izumi"
+	},
+	{
+		"file_offset": 91732,
+		"bank": 2,
+		"address": 58964,
+		"cpu_address": "$02:e654",
+		"length": 12,
+		"raw": "4461692059616d616d6f746f",
+		"text": "Dai Yamamoto"
+	},
+	{
+		"file_offset": 91747,
+		"bank": 2,
+		"address": 58979,
+		"cpu_address": "$02:e663",
+		"length": 13,
+		"raw": "4b65696b6f20486174746f7269",
+		"text": "Keiko Hattori"
+	},
+	{
+		"file_offset": 91763,
+		"bank": 2,
+		"address": 58995,
+		"cpu_address": "$02:e673",
+		"length": 16,
+		"raw": "4e6f6275796f73686920596f73686969",
+		"text": "Nobuyoshi Yoshii"
+	},
+	{
+		"file_offset": 91782,
+		"bank": 2,
+		"address": 59014,
+		"cpu_address": "$02:e686",
+		"length": 13,
+		"raw": "4d696b6920576174616e616265",
+		"text": "Miki Watanabe"
+	},
+	{
+		"file_offset": 91798,
+		"bank": 2,
+		"address": 59030,
+		"cpu_address": "$02:e696",
+		"length": 17,
+		"raw": "4869726f746f6d6f204d6f726973616461",
+		"text": "Hirotomo Morisada"
+	},
+	{
+		"file_offset": 91823,
+		"bank": 2,
+		"address": 59055,
+		"cpu_address": "$02:e6af",
+		"length": 19,
+		"raw": "04417373697374616e742070726f6475636572",
+		"text": "{PAUSE}Assistant producer"
+	},
+	{
+		"file_offset": 91845,
+		"bank": 2,
+		"address": 59077,
+		"cpu_address": "$02:e6c5",
+		"length": 15,
+		"raw": "4b617a756e6f72692054616b61646f",
+		"text": "Kazunori Takado"
+	},
+	{
+		"file_offset": 91868,
+		"bank": 2,
+		"address": 59100,
+		"cpu_address": "$02:e6dc",
+		"length": 12,
+		"raw": "044469726563746564206279",
+		"text": "{PAUSE}Directed by"
+	},
+	{
+		"file_offset": 91883,
+		"bank": 2,
+		"address": 59115,
+		"cpu_address": "$02:e6eb",
+		"length": 16,
+		"raw": "4d61736179612048617368696d6f746f",
+		"text": "Masaya Hashimoto"
+	},
+	{
+		"file_offset": 91907,
+		"bank": 2,
+		"address": 59139,
+		"cpu_address": "$02:e703",
+		"length": 12,
+		"raw": "0450726f6475636564206279",
+		"text": "{PAUSE}Produced by"
+	},
+	{
+		"file_offset": 91922,
+		"bank": 2,
+		"address": 59154,
+		"cpu_address": "$02:e712",
+		"length": 13,
+		"raw": "5961737579756b6920536f6e65",
+		"text": "Yasuyuki Sone"
+	},
+	{
+		"file_offset": 91943,
+		"bank": 2,
+		"address": 59175,
+		"cpu_address": "$02:e727",
+		"length": 13,
+		"raw": "045075626c6973686564206279",
+		"text": "{PAUSE}Published by"
+	},
+	{
+		"file_offset": 91959,
+		"bank": 2,
+		"address": 59191,
+		"cpu_address": "$02:e737",
+		"length": 18,
+		"raw": "596173756869726f2046756b757368696d61",
+		"text": "Yasuhiro Fukushima"
+	},
+	{
+		"file_offset": 91986,
+		"bank": 2,
+		"address": 59218,
+		"cpu_address": "$02:e752",
+		"length": 11,
+		"raw": "536f756c20426c617a6572",
+		"text": "Soul Blazer"
+	},
+	{
+		"file_offset": 91999,
+		"bank": 2,
+		"address": 59231,
+		"cpu_address": "$02:e75f",
+		"length": 18,
+		"raw": "06436f70797269676874205b5c2031393932",
+		"text": "{ITEM}Copyright [\\ 1992"
+	},
+	{
+		"file_offset": 92019,
+		"bank": 2,
+		"address": 59251,
+		"cpu_address": "$02:e773",
+		"length": 25,
+		"raw": "035b5c2031393932203b3c3d3e3f20434f504f524154494f4e",
+		"text": "{CLEAR}[\\ 1992 ;<=>? COPORATION"
+	},
+	{
+		"file_offset": 92069,
+		"bank": 2,
+		"address": 59301,
+		"cpu_address": "$02:e7a5",
+		"length": 23,
+		"raw": "0442617365642055706f6e20536f756c20426c61646572",
+		"text": "{PAUSE}Based Upon Soul Blader"
+	},
+	{
+		"file_offset": 92094,
+		"bank": 2,
+		"address": 59326,
+		"cpu_address": "$02:e7be",
+		"length": 18,
+		"raw": "06436f70797269676874205b5c2031393932",
+		"text": "{ITEM}Copyright [\\ 1992"
+	},
+	{
+		"file_offset": 92114,
+		"bank": 2,
+		"address": 59346,
+		"cpu_address": "$02:e7d2",
+		"length": 25,
+		"raw": "035b5c2031393932203b3c3d3e3f20434f504f524154494f4e",
+		"text": "{CLEAR}[\\ 1992 ;<=>? COPORATION"
+	},
+	{
+		"file_offset": 92164,
+		"bank": 2,
+		"address": 59396,
+		"cpu_address": "$02:e804",
+		"length": 24,
+		"raw": "044d7573696320436f70797269676874205b5c2031393932",
+		"text": "{PAUSE}Music Copyright [\\ 1992"
+	},
+	{
+		"file_offset": 92190,
+		"bank": 2,
+		"address": 59422,
+		"cpu_address": "$02:e81e",
+		"length": 26,
+		"raw": "035b5c20313939322059756b69686964652054616b656b617761",
+		"text": "{CLEAR}[\\ 1992 Yukihide Takekawa"
+	},
+	{
+		"file_offset": 92218,
+		"bank": 2,
+		"address": 59450,
+		"cpu_address": "$02:e83a",
+		"length": 20,
+		"raw": "035b5c2031393932204b415a5a20544f59414d41",
+		"text": "{CLEAR}[\\ 1992 KAZZ TOYAMA"
+	},
+	{
+		"file_offset": 92240,
+		"bank": 2,
+		"address": 59472,
+		"cpu_address": "$02:e850",
+		"length": 20,
+		"raw": "035b5c203139393220414d454e49545920436f3a",
+		"text": "{CLEAR}[\\ 1992 AMENITY Co:"
+	},
+	{
+		"file_offset": 92268,
+		"bank": 2,
+		"address": 59500,
+		"cpu_address": "$02:e86c",
+		"length": 21,
+		"raw": "054c6963656e736564206279204e494e54454e444f",
+		"text": "{NAME}Licensed by NINTENDO"
+	},
+	{
+		"file_offset": 92297,
+		"bank": 2,
+		"address": 59529,
+		"cpu_address": "$02:e889",
+		"length": 19,
+		"raw": "0650726573656e746564206279203b3c3d3e3f",
+		"text": "{ITEM}Presented by ;<=>?"
+	}
+]

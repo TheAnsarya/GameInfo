@@ -1,0 +1,112 @@
+@page "/tools"
+@using DarkRepos.Core.Models
+@using DarkRepos.Core.Services
+@using DarkRepos.Web.Components.Shared
+
+<PageTitle>Tools - Dark Repos</PageTitle>
+
+<HeadContent>
+	<meta name="description"
+		content="ROM hacking and retro game research tools for analysis, extraction, and modification." />
+</HeadContent>
+
+<div class="container">
+	<Breadcrumbs Items="@_breadcrumbItems" />
+
+	<header class="page-header">
+		<h1 class="page-title">Tools</h1>
+		<p class="page-description">
+			ROM hacking and retro game research tools for analysis, asset extraction, and modification.
+		</p>
+	</header>
+
+	<div class="filter-bar" role="group" aria-label="Filter tools by category">
+		<span class="text-secondary text-sm">Category:</span>
+		<div class="filter-group">
+			<button class="filter-chip @(SelectedCategory == null ? "active" : "")"
+				@onclick="() => FilterByCategory(null)">
+				All
+			</button>
+			<button class="filter-chip @(SelectedCategory == ToolCategory.Analysis ? "active" : "")"
+				@onclick="() => FilterByCategory(ToolCategory.Analysis)">
+				Analysis
+			</button>
+			<button class="filter-chip @(SelectedCategory == ToolCategory.Graphics ? "active" : "")"
+				@onclick="() => FilterByCategory(ToolCategory.Graphics)">
+				Graphics
+			</button>
+			<button class="filter-chip @(SelectedCategory == ToolCategory.Text ? "active" : "")"
+				@onclick="() => FilterByCategory(ToolCategory.Text)">
+				Text
+			</button>
+			<button class="filter-chip @(SelectedCategory == ToolCategory.Disassembly ? "active" : "")"
+				@onclick="() => FilterByCategory(ToolCategory.Disassembly)">
+				Disassembly
+			</button>
+		</div>
+	</div>
+
+	@if (IsLoading)
+	{
+		<LoadingSpinner Message="Loading tools..." />
+	}
+	else if (FilteredTools.Any())
+	{
+		<div class="grid grid-cols-1 md:grid-cols-2" role="list">
+			@foreach (var tool in FilteredTools)
+			{
+				<ToolCard Tool="@tool" />
+			}
+		</div>
+
+		<p role="status" class="sr-only">Showing @FilteredTools.Count() tools</p>
+	}
+	else
+	{
+		<EmptyState Icon="🔧" Title="No tools found" Message="No tools match the selected category. Try a different filter.">
+			<ChildContent>
+				<button class="btn btn-secondary" @onclick="() => FilterByCategory(null)">
+					Show all tools
+				</button>
+			</ChildContent>
+		</EmptyState>
+	}
+</div>
+
+@code {
+	[Inject]
+	private IContentService ContentService { get; set; } = null!;
+
+	private ToolCategory? SelectedCategory { get; set; }
+	private List<Tool> AllTools { get; set; } = [];
+	private bool IsLoading { get; set; } = true;
+
+	private static readonly IReadOnlyList<Breadcrumbs.BreadcrumbItem> _breadcrumbItems = [
+		new("Home", "/", "🏠"),
+		new("Tools", "/tools", "🔧")
+	];
+
+	private IEnumerable<Tool> FilteredTools => SelectedCategory == null
+		? AllTools
+		: AllTools.Where(t => t.Category == SelectedCategory);
+
+	protected override async Task OnInitializedAsync()
+	{
+		IsLoading = true;
+		try
+		{
+			var tools = await ContentService.GetAllToolsAsync();
+			AllTools = tools.ToList();
+		}
+		finally
+		{
+			IsLoading = false;
+		}
+	}
+
+	private void FilterByCategory(ToolCategory? category)
+	{
+		SelectedCategory = category;
+		StateHasChanged();
+	}
+}

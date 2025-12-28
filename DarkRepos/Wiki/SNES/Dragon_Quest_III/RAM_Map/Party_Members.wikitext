@@ -1,0 +1,924 @@
+{{Back|Dragon Quest III (SNES)/RAM_Map}}
+{{subpage}}
+
+= Dragon Quest III (SNES) - Party Member Data =
+
+This page documents the party member RAM structure in Dragon Quest III (SNES).
+
+== Main ==
+
+The main data structure starts at <code>$7e3925</code>. Each entry is <code>$3c</code> bytes long.
+
+{| class="wikitable sortable"
+|-
+!  Address  !!  Size  !!  Description
+|-
+|  $7e3925-$7e3960  ||  $3c bytes  ||  Hero's status and information
+|-
+|  $7e3961-$7e399c  ||  $3c bytes  ||  Party member #2's status and information
+|-
+|  $7e399d-$7e39d8  ||  $3c bytes  ||  Party member #3's status and information
+|-
+|  $7e39d9-$7e3a14  ||  $3c bytes  ||  Party member #4's status and information
+|-
+|  $7e3a15-$7e3a50  ||  $3c bytes  ||  Party member #5's status and information
+|-
+|  $7e3a51-$7e3a8c  ||  $3c bytes  ||  Party member #6's status and information
+|-
+|  $7e3a8d-$7e3ac8  ||  $3c bytes  ||  Party member #7's status and information
+|-
+|  $7e3ac9-$7e3b04  ||  $3c bytes  ||  Party member #8's status and information
+|-
+|  $7e3b05-$7e3b40  ||  $3c bytes  ||  Party member #9's status and information
+|-
+|  $7e3b41-$7e3b7c  ||  $3c bytes  ||  Party member #10's status and information
+|-
+|  $7e3b7d-$7e3bb8  ||  $3c bytes  ||  Party member #11's status and information
+|-
+|  $7e3bb9-$7e3bf4  ||  $3c bytes  ||  Party member #12's status and information
+|-
+|  $7e3bf5-$7e3c30  ||  $3c bytes  ||  Party member #13's status and information
+|-
+|  $7e3c31-$7e3c6c  ||  $3c bytes  ||  Party member #14's status and information
+|-
+|  $7e3c6d-$7e3ca8  ||  $3c bytes  ||  Party member #15's status and information
+|-
+|  $7e3ca9-$7e3ce4  ||  $3c bytes  ||  Party member #16's status and information
+|-
+|  $7e3ce5-$7e3d20  ||  $3c bytes  ||  Party member #17's status and information
+|-
+|  $7e3d21-$7e3d5c  ||  $3c bytes  ||  Party member #18's status and information
+|-
+|  $7e3d5d-$7e3d98  ||  $3c bytes  ||  Party member #19's status and information
+|-
+|  $7e3d99-$7e3dd4  ||  $3c bytes  ||  Party member #20's status and information
+|}
+
+===Primary Data Structure===
+Each entry is <code>$3c</code> bytes long.
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Offset  !!  Mask  !!  Size  !!  Description
+|-
+|  Stats  ||  $00  ||  $01  ||  bit  ||  Is there a character in this slot, 0=no, 1=yes
+|-
+|  Stats  ||  $00  ||  $fe  ||  7 bits  ||  📈 Level
+|-
+|  Stats  ||  $01-$03  ||  $ffffff  ||  long  ||  📈 XP
+|-
+|  Stats  ||  $04-$05  ||  $ffff  ||  word  ||  📈 Max HP
+|-
+|  Stats  ||  $06-$07  ||  $ffff  ||  word  ||  📈 Current HP
+|-
+|  Stats  ||  $08-$09  ||  $ffff  ||  word  ||  📈 Max MP
+|-
+|  Stats  ||  $0a-$0b  ||  $ffff  ||  word  ||  📈 Current MP
+|-
+|  Stats  ||  $0c  ||  $ff  ||  byte  ||  📈 Strength, excluding equipment
+|-
+|  Stats  ||  $0d  ||  $ff  ||  byte  ||  📈 Agility, excluding equipment
+|-
+|  Stats  ||  $0e  ||  $ff  ||  byte  ||  📈 Stamina, excluding equipment
+|-
+|  Stats  ||  $0f  ||  $ff  ||  byte  ||  📈 Wisdom, excluding equipment
+|-
+|  Stats  ||  $10  ||  $ff  ||  byte  ||  📈 Luck, excluding equipment
+|-
+|  Stats  ||  $11  ||  $ff  ||  byte  ||  📈 Strength Carryover, Used during leveling up
+|-
+|  Stats  ||  $12  ||  $ff  ||  byte  ||  📈 Agility Carryover, Used during leveling up
+|-
+|  Stats  ||  $13  ||  $ff  ||  byte  ||  📈 Stamina Carryover, Used during leveling up
+|-
+|  Stats  ||  $14  ||  $ff  ||  byte  ||  📈 Wisdom Carryover, Used during leveling up
+|-
+|  Stats  ||  $15  ||  $ff  ||  byte  ||  📈 Luck Carryover, Used during leveling up
+|-
+|  Stats  ||  $16-$1a  ||  n/a  ||  5 bytes  ||  🏷️ Name, 4 characters max followed by $ac (end of string)
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $1b-$1e  ||  n/a  ||  4 bytes   ||  🏷️ Also part of name???
+|-
+|  Stats  ||  $1f  ||  $01  ||  bit  ||  Is Character Poisoned?
+|-
+|  Stats  ||  $1f  ||  $02  ||  bit  ||  Is Character Paralyzed?
+|-
+|  Stats  ||  $1f  ||  $04  ||  bit  ||  Is Character Cursed?
+|-
+|  Stats  ||  $1f  ||  $08  ||  bit  ||  Is Character Dying?, 0 &lt; HP &lt; 25%
+|-
+|  Stats  ||  $1f  ||  $10  ||  bit  ||  Is Character Dead?
+|-
+|  Stats  ||  $1f  ||  $20  ||  bit  ||  Gender - 0: Male, 1: Female
+|-
+|  Stats  ||  $1f-$20  ||  $0fc0  ||  6 bits  ||  Character [[Dragon Quest III (SNES)/Values#Personality|Personality]]
+|-
+|  Stats  ||  $20  ||  $10  ||  bit  ||  Character Type, Is the Hero, exclusive with next attribute
+|-
+|  Stats  ||  $20  ||  $20  ||  bit  ||  Character Type, Is regular party member, exclusive with previous attribute
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $20  ||  $c0  ||  2 bits  ||  (Unused)
+|-
+|  Stats  ||  $21  ||  $ff  ||  byte  ||  Character [[Dragon Quest III (SNES)/Values#Class|Class]]
+|-
+|  Stats  ||  $22  ||  $ff  ||  byte  ||  Menu Cursor Position, when moving, represents last menu selection
+|-
+|  Stats  ||  $23  ||  $ff  ||  byte  ||  Menu Cursor Position, in battle, represents last menu selection
+|-
+|  Spells  ||  $24-$2d  ||  n/a  ||  10 bytes  ||  Character's [[Dragon Quest III (SNES)/Values/Spells|Spells List]] (and Commands???)
+|-
+|  Bag  ||  $2e  ||  $ff  ||  byte  ||  📦 Character's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $2f  ||  $ff  ||  byte  ||  📦 Character's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $30-$3b  ||  n/a  ||  12 bytes  ||  📦 Character's bag: Each byte is which item is in the slot
+|}
+
+===Full List===
+Party Members RAM layout, expanded.
+[TODO: Update according to new data structure]
+
+{| class="wikitable sortable"
+|-
+!  Category  !!  Address  !! Size  !!  Description
+|-
+|  Stats  ||  $7e3925  ||  byte  ||  📈 Hero's level, top 7 bits are Hero's level, bottom bit unknown
+|-
+|  Stats  ||  $7e3926-$7e3928  ||  long  ||  📈 Hero's XP
+|-
+|  Stats  ||  $7e3929-$7e392a  ||  word  ||  📈 Hero's max HP
+|-
+|  Stats  ||  $7e392b-$7e392c  ||  word  ||  📈 Hero's current HP
+|-
+|  Stats  ||  $7e392d-$7e392e  ||  word  ||  📈 Hero's max MP
+|-
+|  Stats  ||  $7e392f-$7e3930  ||  word  ||  📈 Hero's current MP
+|-
+|  Stats  ||  $7e3931  ||  byte  ||  📈 Hero's strength
+|-
+|  Stats  ||  $7e3932  ||  byte  ||  📈 Hero's agility
+|-
+|  Stats  ||  $7e3933  ||  byte  ||  📈 Hero's stamina
+|-
+|  Stats  ||  $7e3934  ||  byte  ||  📈 Hero's wisdom
+|-
+|  Stats  ||  $7e3935  ||  byte  ||  📈 Hero's luck, excluding equipment
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3936-$7e393a  ||  5 bytes   ||  ...
+|-
+|  Stats  ||  $7e393b-$7e393f  ||  5 bytes  ||  🏷️ Hero's name, 4 characters max followed by $ac (end of string)
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3940-$7e3943  ||  4 bytes   ||  ...
+|-
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $7e3944  ||  0000 0001  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $7e3944  ||  0000 0010  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $7e3944  ||  0000 0100  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $7e3944  ||  0000 1000  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $7e3944  ||  0001 0000  ||  ...
+|-
+|  Stats  ||  $7e3944  ||  0010 0000  ||  Hero's Gender - 0: Male, 1: Female
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $7e3944  ||  0100 0000  ||  ...
+|-  style="background-color: #eaecf0;"
+|  Stats  ||  $7e3944  ||  1000 0000  ||  ...
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3945-$7e3948  ||  4 bytes   ||  ...
+|-
+|  Spells  ||  $7e3949-$7e3952  ||  10 bytes  ||  Hero's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
+|-
+|  Bag  ||  $7e3953  ||  byte  ||  📦 Hero's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $7e3954  ||  byte  ||  📦 Hero's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $7e3955-$7e3960  ||  12 bytes  ||  📦 Hero's bag: Each byte is which item is in the slot
+|-
+!  colspan="4"  |  
+|-
+|  Stats  ||  $7e3961  ||  byte  ||  📈 Party member #2's level, top 7 bits are level, bottom bit unknown
+|-
+|  Stats  ||  $7e3962-$7e3964  ||  long  ||  📈 Party member #2's XP
+|-
+|  Stats  ||  $7e3965-$7e3966  ||  word  ||  📈 Party member #2's max HP
+|-
+|  Stats  ||  $7e3967-$7e3968 ||  word  ||  📈 Party member #2's current HP
+|-
+|  Stats  ||  $7e3969-$7e396a  ||  word  ||  📈 Party member #2's max MP
+|-
+|  Stats  ||  $7e396b-$7e396c  ||  word  ||  📈 Party member #2's current MP
+|-
+|  Stats  ||  $7e396d  ||  byte  ||  📈 Party member #2's strength
+|-
+|  Stats  ||  $7e396e  ||  byte  ||  📈 Party member #2's agility
+|-
+|  Stats  ||  $7e396f  ||  byte  ||  📈 Party member #2's stamina
+|-
+|  Stats  ||  $7e3970  ||  byte  ||  📈 Party member #2's wisdom
+|-
+|  Stats  ||  $7e3971  ||  byte  ||  📈 Party member #2's luck, excluding equipment
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3972-$7e3976  ||  5 bytes   ||  ...
+|-
+|  Stats  ||  $7e3977-$7e397b  ||  5 bytes  ||  🏷️ Party member #2's name, 4 characters max followed by $ac (end of string)
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e397c-$7e3984  ||  9 bytes   ||  ...
+|-
+|  Spells  ||  $7e3985-$7e398e  ||  10 bytes  ||  Party member #2's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
+|-
+|  Bag  ||  $7e398f  ||  byte  ||  📦 Party member #2's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $7e3990  ||  byte  ||  📦 Party member #2's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $7e3991-$7e399c  ||  12 bytes  ||  📦 Party member #2's bag: Each byte is which item is in the slot
+|-
+!  colspan="4"  |  
+|-
+|  Stats  ||  $7e399d  ||  byte  ||  📈 Party member #3's level, top 7 bits are level, bottom bit unknown
+|-
+|  Stats  ||  $7e399e-$7e39a0  ||  long  ||  📈 Party member #3's XP
+|-
+|  Stats  ||  $7e39a1-$7e39a2  ||  word  ||  📈 Party member #3's max HP
+|-
+|  Stats  ||  $7e39a3-$7e39a4  ||  word  ||  📈 Party member #3's current HP
+|-
+|  Stats  ||  $7e39a5-$7e39a6  ||  word  ||  📈 Party member #3's max MP
+|-
+|  Stats  ||  $7e39a7-$7e39a8  ||  word  ||  📈 Party member #3's current MP
+|-
+|  Stats  ||  $7e39a9  ||  byte  ||  📈 Party member #3's strength
+|-
+|  Stats  ||  $7e39aa  ||  byte  ||  📈 Party member #3's agility
+|-
+|  Stats  ||  $7e39ab  ||  byte  ||  📈 Party member #3's stamina
+|-
+|  Stats  ||  $7e39ac  ||  byte  ||  📈 Party member #3's wisdom
+|-
+|  Stats  ||  $7e39ad  ||  byte  ||  📈 Party member #3's luck, excluding equipment
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e39ae-$7e39b2  ||  5 bytes   ||  ...
+|-
+|  Stats  ||  $7e39b3-$7e39b7  ||  5 bytes  ||  🏷️ Party member #3's name, 4 characters max followed by $ac (end of string)
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e39b8-$7e39c0  ||  9 bytes   ||  ...
+|-
+|  Spells  ||  $7e39c1-$7e39ca  ||  10 bytes  ||  Party member #3's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
+|-
+|  Bag  ||  $7e39cb  ||  byte  ||  📦 Party member #3's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $7e39cc  ||  byte  ||  📦 Party member #3's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $7e39cd-$7e39d8  ||  12 bytes  ||  📦 Party member #3's bag: Each byte is which item is in the slot
+|-
+!  colspan="4"  |  
+|-
+|  Stats  ||  $7e39d9  ||  byte  ||  📈 Party member #4's level, top 7 bits are level, bottom bit unknown
+|-
+|  Stats  ||  $7e39da-$7e39dc  ||  long  ||  📈 Party member #4's XP
+|-
+|  Stats  ||  $7e39dd-$7e39de  ||  word  ||  📈 Party member #4's max HP
+|-
+|  Stats  ||  $7e39df-$7e39e0  ||  word  ||  📈 Party member #4's current HP
+|-
+|  Stats  ||  $7e39e1-$7e39e2  ||  word  ||  📈 Party member #4's max MP
+|-
+|  Stats  ||  $7e39e3-$7e39e4  ||  word  ||  📈 Party member #4's current MP
+|-
+|  Stats  ||  $7e39e5  ||  byte  ||  📈 Party member #4's strength
+|-
+|  Stats  ||  $7e39e6  ||  byte  ||  📈 Party member #4's agility
+|-
+|  Stats  ||  $7e39e7  ||  byte  ||  📈 Party member #4's stamina
+|-
+|  Stats  ||  $7e39e8  ||  byte  ||  📈 Party member #4's wisdom
+|-
+|  Stats  ||  $7e39e9  ||  byte  ||  📈 Party member #4's luck, excluding equipment
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e39ea-$7e39ee  ||  5 bytes   ||  ...
+|-
+|  Stats  ||  $7e39ef-$7e39f3  ||  5 bytes  ||  🏷️ Party member #4's name, 4 characters max followed by $ac (end of string)
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e39f4-$7e39fc  ||  9 bytes   ||  ...
+|-
+|  Spells  ||  $7e39fd-$7e3a06  ||  10 bytes  ||  Party member #4's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
+|-
+|  Bag  ||  $7e3a07  ||  byte  ||  📦 Party member #4's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $7e3a08  ||  byte  ||  📦 Party member #4's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $7e3a09-$7e3a14  ||  12 bytes  ||  📦 Party member #4's bag: Each byte is which item is in the slot
+|-
+!  colspan="4"  |  
+|-
+|  Stats  ||  $7e3a15  ||  byte  ||  📈 Party member #5's level, top 7 bits are level, bottom bit unknown
+|-
+|  Stats  ||  $7e3a16-$7e3a18  ||  long  ||  📈 Party member #5's XP
+|-
+|  Stats  ||  $7e3a19-$7e3a1a  ||  word  ||  📈 Party member #5's max HP
+|-
+|  Stats  ||  $7e3a1b-$7e3a1c  ||  word  ||  📈 Party member #5's current HP
+|-
+|  Stats  ||  $7e3a1d-$7e3a1e  ||  word  ||  📈 Party member #5's max MP
+|-
+|  Stats  ||  $7e3a1f-$7e3a20  ||  word  ||  📈 Party member #5's current MP
+|-
+|  Stats  ||  $7e3a21  ||  byte  ||  📈 Party member #5's strength
+|-
+|  Stats  ||  $7e3a22  ||  byte  ||  📈 Party member #5's agility
+|-
+|  Stats  ||  $7e3a23  ||  byte  ||  📈 Party member #5's stamina
+|-
+|  Stats  ||  $7e3a24  ||  byte  ||  📈 Party member #5's wisdom
+|-
+|  Stats  ||  $7e3a25  ||  byte  ||  📈 Party member #5's luck, excluding equipment
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3a26-$7e3a2a  ||  5 bytes   ||  ...
+|-
+|  Stats  ||  $7e3a2b-$7e3a2f  ||  5 bytes  ||  🏷️ Party member #5's name, 4 characters max followed by $ac (end of string)
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3a30-$7e3a38  ||  9 bytes   ||  ...
+|-
+|  Spells  ||  $7e3a39-$7e3a42  ||  10 bytes  ||  Party member #5's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
+|-
+|  Bag  ||  $7e3a43  ||  byte  ||  📦 Party member #5's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $7e3a44  ||  byte  ||  📦 Party member #5's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $7e3a45-$7e3a50  ||  12 bytes  ||  📦 Party member #5's bag: Each byte is which item is in the slot
+|-
+!  colspan="4"  |  
+|-
+|  Stats  ||  $7e3a51  ||  byte  ||  📈 Party member #6's level, top 7 bits are level, bottom bit unknown
+|-
+|  Stats  ||  $7e3a52-$7e3a54  ||  long  ||  📈 Party member #6's XP
+|-
+|  Stats  ||  $7e3a55-$7e3a56  ||  word  ||  📈 Party member #6's max HP
+|-
+|  Stats  ||  $7e3a57-$7e3a58  ||  word  ||  📈 Party member #6's current HP
+|-
+|  Stats  ||  $7e3a59-$7e3a5a  ||  word  ||  📈 Party member #6's max MP
+|-
+|  Stats  ||  $7e3a5b-$7e3a5c  ||  word  ||  📈 Party member #6's current MP
+|-
+|  Stats  ||  $7e3a5d  ||  byte  ||  📈 Party member #6's strength
+|-
+|  Stats  ||  $7e3a5e  ||  byte  ||  📈 Party member #6's agility
+|-
+|  Stats  ||  $7e3a5f  ||  byte  ||  📈 Party member #6's stamina
+|-
+|  Stats  ||  $7e3a60  ||  byte  ||  📈 Party member #6's wisdom
+|-
+|  Stats  ||  $7e3a61  ||  byte  ||  📈 Party member #6's luck, excluding equipment
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3a62-$7e3a66  ||  5 bytes   ||  ...
+|-
+|  Stats  ||  $7e3a67-$7e3a6b  ||  5 bytes  ||  🏷️ Party member #6's name, 4 characters max followed by $ac (end of string)
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3a6c-$7e3a74  ||  9 bytes   ||  ...
+|-
+|  Spells  ||  $7e3a75-$7e3a7e  ||  10 bytes  ||  Party member #6's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
+|-
+|  Bag  ||  $7e3a7f  ||  byte  ||  📦 Party member #6's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $7e3a80  ||  byte  ||  📦 Party member #6's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $7e3a81-$7e3a8c  ||  12 bytes  ||  📦 Party member #6's bag: Each byte is which item is in the slot
+|-
+!  colspan="4"  |  
+|-
+|  Stats  ||  $7e3a8d  ||  byte  ||  📈 Party member #7's level, top 7 bits are level, bottom bit unknown
+|-
+|  Stats  ||  $7e3a8e-$7e3a90  ||  long  ||  📈 Party member #7's XP
+|-
+|  Stats  ||  $7e3a91-$7e3a92  ||  word  ||  📈 Party member #7's max HP
+|-
+|  Stats  ||  $7e3a93-$7e3a94  ||  word  ||  📈 Party member #7's current HP
+|-
+|  Stats  ||  $7e3a95-$7e3a96  ||  word  ||  📈 Party member #7's max MP
+|-
+|  Stats  ||  $7e3a97-$7e3a98  ||  word  ||  📈 Party member #7's current MP
+|-
+|  Stats  ||  $7e3a99  ||  byte  ||  📈 Party member #7's strength
+|-
+|  Stats  ||  $7e3a9a  ||  byte  ||  📈 Party member #7's agility
+|-
+|  Stats  ||  $7e3a9b  ||  byte  ||  📈 Party member #7's stamina
+|-
+|  Stats  ||  $7e3a9c  ||  byte  ||  📈 Party member #7's wisdom
+|-
+|  Stats  ||  $7e3a9d  ||  byte  ||  📈 Party member #7's luck, excluding equipment
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3a9e-$7e3aa2  ||  5 bytes   ||  ...
+|-
+|  Stats  ||  $7e3aa3-$7e3aa7  ||  5 bytes  ||  🏷️ Party member #7's name, 4 characters max followed by $ac (end of string)
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3aa8-$7e3ab0  ||  9 bytes   ||  ...
+|-
+|  Spells  ||  $7e3ab1-$7e3aba  ||  10 bytes  ||  Party member #7's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
+|-
+|  Bag  ||  $7e3abb  ||  byte  ||  📦 Party member #7's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $7e3abc  ||  byte  ||  📦 Party member #7's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $7e3abd-$7e3ac8  ||  12 bytes  ||  📦 Party member #7's bag: Each byte is which item is in the slot
+|-
+!  colspan="4"  |  
+|-
+|  Stats  ||  $7e3ac9  ||  byte  ||  📈 Party member #8's level, top 7 bits are level, bottom bit unknown
+|-
+|  Stats  ||  $7e3aca-$7e3ac  ||  long  ||  📈 Party member #8's XP
+|-
+|  Stats  ||  $7e3acd-$7e3ace  ||  word  ||  📈 Party member #8's max HP
+|-
+|  Stats  ||  $7e3acf-$7e3ad0  ||  word  ||  📈 Party member #8's current HP
+|-
+|  Stats  ||  $7e3ad1-$7e3ad2  ||  word  ||  📈 Party member #8's max MP
+|-
+|  Stats  ||  $7e3ad3-$7e3ad4  ||  word  ||  📈 Party member #8's current MP
+|-
+|  Stats  ||  $7e3ad5  ||  byte  ||  📈 Party member #8's strength
+|-
+|  Stats  ||  $7e3ad6  ||  byte  ||  📈 Party member #8's agility
+|-
+|  Stats  ||  $7e3ad7  ||  byte  ||  📈 Party member #8's stamina
+|-
+|  Stats  ||  $7e3ad8  ||  byte  ||  📈 Party member #8's wisdom
+|-
+|  Stats  ||  $7e3ad9  ||  byte  ||  📈 Party member #8's luck, excluding equipment
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3ada-$7e3ade  ||  5 bytes   ||  ...
+|-
+|  Stats  ||  $7e3adf-$7e3ae3  ||  5 bytes  ||  🏷️ Party member #8's name, 4 characters max followed by $ac (end of string)
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3ae4-$7e3aec  ||  9 bytes   ||  ...
+|-
+|  Spells  ||  $7e3aed-$7e3af6  ||  10 bytes  ||  Party member #8's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
+|-
+|  Bag  ||  $7e3af7  ||  byte  ||  📦 Party member #8's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $7e3af8  ||  byte  ||  📦 Party member #8's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $7e3af9-$7e3b04  ||  12 bytes  ||  📦 Party member #8's bag: Each byte is which item is in the slot
+|-
+!  colspan="4"  |  
+|-
+|  Stats  ||  $7e3b05  ||  byte  ||  📈 Party member #9's level, top 7 bits are level, bottom bit unknown
+|-
+|  Stats  ||  $7e3b06-$7e3b08  ||  long  ||  📈 Party member #9's XP
+|-
+|  Stats  ||  $7e3b09-$7e3b0a  ||  word  ||  📈 Party member #9's max HP
+|-
+|  Stats  ||  $7e3b0b-$7e3b0c  ||  word  ||  📈 Party member #9's current HP
+|-
+|  Stats  ||  $7e3b0d-$7e3b0e  ||  word  ||  📈 Party member #9's max MP
+|-
+|  Stats  ||  $7e3b0f-$7e3b10  ||  word  ||  📈 Party member #9's current MP
+|-
+|  Stats  ||  $7e3b11  ||  byte  ||  📈 Party member #9's strength
+|-
+|  Stats  ||  $7e3b12  ||  byte  ||  📈 Party member #9's agility
+|-
+|  Stats  ||  $7e3b13  ||  byte  ||  📈 Party member #9's stamina
+|-
+|  Stats  ||  $7e3b14  ||  byte  ||  📈 Party member #9's wisdom
+|-
+|  Stats  ||  $7e3b15  ||  byte  ||  📈 Party member #9's luck, excluding equipment
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3b16-$7e3b1a  ||  5 bytes   ||  ...
+|-
+|  Stats  ||  $7e3b1b-$7e3b1f  ||  5 bytes  ||  🏷️ Party member #9's name, 4 characters max followed by $ac (end of string)
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3b20-$7e3b28  ||  9 bytes   ||  ...
+|-
+|  Spells  ||  $7e3b29-$7e3b32  ||  10 bytes  ||  Party member #9's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
+|-
+|  Bag  ||  $7e3b33  ||  byte  ||  📦 Party member #9's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $7e3b34  ||  byte  ||  📦 Party member #9's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $7e3b35-$7e3b40  ||  12 bytes  ||  📦 Party member #9's bag: Each byte is which item is in the slot
+|-
+!  colspan="4"  |  
+|-
+|  Stats  ||  $7e3b41  ||  byte  ||  📈 Party member #10's level, top 7 bits are level, bottom bit unknown
+|-
+|  Stats  ||  $7e3b42-$7e3b44  ||  long  ||  📈 Party member #10's XP
+|-
+|  Stats  ||  $7e3b45-$7e3b46  ||  word  ||  📈 Party member #10's max HP
+|-
+|  Stats  ||  $7e3b47-$7e3b48  ||  word  ||  📈 Party member #10's current HP
+|-
+|  Stats  ||  $7e3b49-$7e3b4a  ||  word  ||  📈 Party member #10's max MP
+|-
+|  Stats  ||  $7e3b4b-$7e3b4c  ||  word  ||  📈 Party member #10's current MP
+|-
+|  Stats  ||  $7e3b4d  ||  byte  ||  📈 Party member #10's strength
+|-
+|  Stats  ||  $7e3b4e  ||  byte  ||  📈 Party member #10's agility
+|-
+|  Stats  ||  $7e3b4f  ||  byte  ||  📈 Party member #10's stamina
+|-
+|  Stats  ||  $7e3b50  ||  byte  ||  📈 Party member #10's wisdom
+|-
+|  Stats  ||  $7e3b51  ||  byte  ||  📈 Party member #10's luck, excluding equipment
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3b52-$7e3b56  ||  5 bytes   ||  ...
+|-
+|  Stats  ||  $7e3b57-$7e3b5b  ||  5 bytes  ||  🏷️ Party member #10's name, 4 characters max followed by $ac (end of string)
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3b5c-$7e3b64  ||  9 bytes   ||  ...
+|-
+|  Spells  ||  $7e3b65-$7e3b6e  ||  10 bytes  ||  Party member #10's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
+|-
+|  Bag  ||  $7e3b6f  ||  byte  ||  📦 Party member #10's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $7e3b70  ||  byte  ||  📦 Party member #10's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $7e3b71-$7e3b7c  ||  12 bytes  ||  📦 Party member #10's bag: Each byte is which item is in the slot
+|-
+!  colspan="4"  |  
+|-
+|  Stats  ||  $7e3b7d  ||  byte  ||  📈 Party member #11's level, top 7 bits are level, bottom bit unknown
+|-
+|  Stats  ||  $7e3b7e-$7e3b80  ||  long  ||  📈 Party member #11's XP
+|-
+|  Stats  ||  $7e3b81-$7e3b82  ||  word  ||  📈 Party member #11's max HP
+|-
+|  Stats  ||  $7e3b83-$7e3b84  ||  word  ||  📈 Party member #11's current HP
+|-
+|  Stats  ||  $7e3b85-$7e3b86  ||  word  ||  📈 Party member #11's max MP
+|-
+|  Stats  ||  $7e3b87-$7e3b88  ||  word  ||  📈 Party member #11's current MP
+|-
+|  Stats  ||  $7e3b89  ||  byte  ||  📈 Party member #11's strength
+|-
+|  Stats  ||  $7e3b8a  ||  byte  ||  📈 Party member #11's agility
+|-
+|  Stats  ||  $7e3b8b  ||  byte  ||  📈 Party member #11's stamina
+|-
+|  Stats  ||  $7e3b8c  ||  byte  ||  📈 Party member #11's wisdom
+|-
+|  Stats  ||  $7e3b8d  ||  byte  ||  📈 Party member #11's luck, excluding equipment
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3b8e-$7e3b92  ||  5 bytes   ||  ...
+|-
+|  Stats  ||  $7e3b93-$7e3b97  ||  5 bytes  ||  🏷️ Party member #11's name, 4 characters max followed by $ac (end of string)
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3b98-$7e3ba0  ||  9 bytes   ||  ...
+|-
+|  Spells  ||  $7e3ba1-$7e3baa  ||  10 bytes  ||  Party member #11's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
+|-
+|  Bag  ||  $7e3bab  ||  byte  ||  📦 Party member #11's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $7e3bac  ||  byte  ||  📦 Party member #11's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $7e3bad-$7e3bb8  ||  12 bytes  ||  📦 Party member #11's bag: Each byte is which item is in the slot
+|-
+!  colspan="4"  |  
+|-
+|  Stats  ||  $7e3bb9  ||  byte  ||  📈 Party member #12's level, top 7 bits are level, bottom bit unknown
+|-
+|  Stats  ||  $7e3bba-$7e3bbc  ||  long  ||  📈 Party member #12's XP
+|-
+|  Stats  ||  $7e3bbd-$7e3bbe  ||  word  ||  📈 Party member #12's max HP
+|-
+|  Stats  ||  $7e3bbf-$7e3bc0  ||  word  ||  📈 Party member #12's current HP
+|-
+|  Stats  ||  $7e3bc1-$7e3bc2  ||  word  ||  📈 Party member #12's max MP
+|-
+|  Stats  ||  $7e3bc3-$7e3bc4  ||  word  ||  📈 Party member #12's current MP
+|-
+|  Stats  ||  $7e3bc5  ||  byte  ||  📈 Party member #12's strength
+|-
+|  Stats  ||  $7e3bc6  ||  byte  ||  📈 Party member #12's agility
+|-
+|  Stats  ||  $7e3bc7  ||  byte  ||  📈 Party member #12's stamina
+|-
+|  Stats  ||  $7e3bc8  ||  byte  ||  📈 Party member #12's wisdom
+|-
+|  Stats  ||  $7e3bc9  ||  byte  ||  📈 Party member #12's luck, excluding equipment
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3bca-$7e3bce  ||  5 bytes   ||  ...
+|-
+|  Stats  ||  $7e3bcf-$7e3bd3  ||  5 bytes  ||  🏷️ Party member #12's name, 4 characters max followed by $ac (end of string)
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3bd4-$7e3bdc  ||  9 bytes   ||  ...
+|-
+|  Spells  ||  $7e3bdd-$7e3be6  ||  10 bytes  ||  Party member #12's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
+|-
+|  Bag  ||  $7e3be7  ||  byte  ||  📦 Party member #12's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $7e3be8  ||  byte  ||  📦 Party member #12's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $7e3be9-$7e3bf4  ||  12 bytes  ||  📦 Party member #12's bag: Each byte is which item is in the slot
+|-
+!  colspan="4"  |  
+|-
+|  Stats  ||  $7e3bf5  ||  byte  ||  📈 Party member #13's level, top 7 bits are level, bottom bit unknown
+|-
+|  Stats  ||  $7e3bf6-$7e3bf8  ||  long  ||  📈 Party member #13's XP
+|-
+|  Stats  ||  $7e3bf9-$7e3bfa  ||  word  ||  📈 Party member #13's max HP
+|-
+|  Stats  ||  $7e3bfb-$7e3bfc  ||  word  ||  📈 Party member #13's current HP
+|-
+|  Stats  ||  $7e3bfd-$7e3bfe  ||  word  ||  📈 Party member #13's max MP
+|-
+|  Stats  ||  $7e3bff-$7e3c00  ||  word  ||  📈 Party member #13's current MP
+|-
+|  Stats  ||  $7e3c01  ||  byte  ||  📈 Party member #13's strength
+|-
+|  Stats  ||  $7e3c02  ||  byte  ||  📈 Party member #13's agility
+|-
+|  Stats  ||  $7e3c03  ||  byte  ||  📈 Party member #13's stamina
+|-
+|  Stats  ||  $7e3c04  ||  byte  ||  📈 Party member #13's wisdom
+|-
+|  Stats  ||  $7e3c05  ||  byte  ||  📈 Party member #13's luck, excluding equipment
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3c06-$7e3c0a  ||  5 bytes   ||  ...
+|-
+|  Stats  ||  $7e3c0b-$7e3c0f  ||  5 bytes  ||  🏷️ Party member #13's name, 4 characters max followed by $ac (end of string)
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3c10-$7e3c18  ||  9 bytes   ||  ...
+|-
+|  Spells  ||  $7e3c19-$7e3c22  ||  10 bytes  ||  Party member #13's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
+|-
+|  Bag  ||  $7e3c23  ||  byte  ||  📦 Party member #13's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $7e3c24  ||  byte  ||  📦 Party member #13's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $7e3c25-$7e3c30  ||  12 bytes  ||  📦 Party member #13's bag: Each byte is which item is in the slot
+|-
+!  colspan="4"  |  
+|-
+|  Stats  ||  $7e3c31  ||  byte  ||  📈 Party member #14's level, top 7 bits are level, bottom bit unknown
+|-
+|  Stats  ||  $7e3c32-$7e3c34  ||  long  ||  📈 Party member #14's XP
+|-
+|  Stats  ||  $7e3c35-$7e3c36  ||  word  ||  📈 Party member #14's max HP
+|-
+|  Stats  ||  $7e3c37-$7e3c38  ||  word  ||  📈 Party member #14's current HP
+|-
+|  Stats  ||  $7e3c39-$7e3c3a  ||  word  ||  📈 Party member #14's max MP
+|-
+|  Stats  ||  $7e3c3b-$7e3c3c  ||  word  ||  📈 Party member #14's current MP
+|-
+|  Stats  ||  $7e3c3d  ||  byte  ||  📈 Party member #14's strength
+|-
+|  Stats  ||  $7e3c3e  ||  byte  ||  📈 Party member #14's agility
+|-
+|  Stats  ||  $7e3c3f  ||  byte  ||  📈 Party member #14's stamina
+|-
+|  Stats  ||  $7e3c40  ||  byte  ||  📈 Party member #14's wisdom
+|-
+|  Stats  ||  $7e3c41  ||  byte  ||  📈 Party member #14's luck, excluding equipment
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3c42-$7e3c46  ||  5 bytes   ||  ...
+|-
+|  Stats  ||  $7e3c47-$7e3c4b  ||  5 bytes  ||  🏷️ Party member #14's name, 4 characters max followed by $ac (end of string)
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3c4c-$7e3c54  ||  9 bytes   ||  ...
+|-
+|  Spells  ||  $7e3c55-$7e3c5e  ||  10 bytes  ||  Party member #14's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
+|-
+|  Bag  ||  $7e3c5f  ||  byte  ||  📦 Party member #14's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $7e3c60  ||  byte  ||  📦 Party member #14's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $7e3c61-$7e3c6c  ||  12 bytes  ||  📦 Party member #14's bag: Each byte is which item is in the slot
+|-
+!  colspan="4"  |  
+|-
+|  Stats  ||  $7e3c6d  ||  byte  ||  📈 Party member #15's level, top 7 bits are level, bottom bit unknown
+|-
+|  Stats  ||  $7e3c6e-$7e3c70  ||  long  ||  📈 Party member #15's XP
+|-
+|  Stats  ||  $7e3c71-$7e3c72  ||  word  ||  📈 Party member #15's max HP
+|-
+|  Stats  ||  $7e3c73-$7e3c74  ||  word  ||  📈 Party member #15's current HP
+|-
+|  Stats  ||  $7e3c75-$7e3c76  ||  word  ||  📈 Party member #15's max MP
+|-
+|  Stats  ||  $7e3c77-$7e3c78  ||  word  ||  📈 Party member #15's current MP
+|-
+|  Stats  ||  $7e3c79  ||  byte  ||  📈 Party member #15's strength
+|-
+|  Stats  ||  $7e3c7a  ||  byte  ||  📈 Party member #15's agility
+|-
+|  Stats  ||  $7e3c7b  ||  byte  ||  📈 Party member #15's stamina
+|-
+|  Stats  ||  $7e3c7c  ||  byte  ||  📈 Party member #15's wisdom
+|-
+|  Stats  ||  $7e3c7d  ||  byte  ||  📈 Party member #15's luck, excluding equipment
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3c7e-$7e3c82  ||  5 bytes   ||  ...
+|-
+|  Stats  ||  $7e3c83-$7e3c87  ||  5 bytes  ||  🏷️ Party member #15's name, 4 characters max followed by $ac (end of string)
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3c88-$7e3c90  ||  9 bytes   ||  ...
+|-
+|  Spells  ||  $7e3c91-$7e3c9a  ||  10 bytes  ||  Party member #15's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
+|-
+|  Bag  ||  $7e3c9b  ||  byte  ||  📦 Party member #15's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $7e3c9c  ||  byte  ||  📦 Party member #15's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $7e3c9d-$7e3ca8  ||  12 bytes  ||  📦 Party member #15's bag: Each byte is which item is in the slot
+|-
+!  colspan="4"  |  
+|-
+|  Stats  ||  $7e3ca9  ||  byte  ||  📈 Party member #16's level, top 7 bits are level, bottom bit unknown
+|-
+|  Stats  ||  $7e3caa-$7e3cac  ||  long  ||  📈 Party member #16's XP
+|-
+|  Stats  ||  $7e3cad-$7e3cae  ||  word  ||  📈 Party member #16's max HP
+|-
+|  Stats  ||  $7e3caf-$7e3cb0  ||  word  ||  📈 Party member #16's current HP
+|-
+|  Stats  ||  $7e3cb1-$7e3cb2  ||  word  ||  📈 Party member #16's max MP
+|-
+|  Stats  ||  $7e3cb3-$7e3cb4  ||  word  ||  📈 Party member #16's current MP
+|-
+|  Stats  ||  $7e3cb5  ||  byte  ||  📈 Party member #16's strength
+|-
+|  Stats  ||  $7e3cb6  ||  byte  ||  📈 Party member #16's agility
+|-
+|  Stats  ||  $7e3cb7  ||  byte  ||  📈 Party member #16's stamina
+|-
+|  Stats  ||  $7e3cb8  ||  byte  ||  📈 Party member #16's wisdom
+|-
+|  Stats  ||  $7e3cb9  ||  byte  ||  📈 Party member #16's luck, excluding equipment
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3cba-$7e3cbe  ||  5 bytes   ||  ...
+|-
+|  Stats  ||  $7e3cbf-$7e3cc3  ||  5 bytes  ||  🏷️ Party member #16's name, 4 characters max followed by $ac (end of string)
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3cc4-$7e3ccc  ||  9 bytes   ||  ...
+|-
+|  Spells  ||  $7e3ccd-$7e3cd6  ||  10 bytes  ||  Party member #16's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
+|-
+|  Bag  ||  $7e3cd7  ||  byte  ||  📦 Party member #16's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $7e3cd8  ||  byte  ||  📦 Party member #16's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $7e3cd9-$7e3ce4  ||  12 bytes  ||  📦 Party member #16's bag: Each byte is which item is in the slot
+|-
+!  colspan="4"  |  
+|-
+|  Stats  ||  $7e3ce5  ||  byte  ||  📈 Party member #17's level, top 7 bits are level, bottom bit unknown
+|-
+|  Stats  ||  $7e3ce6-$7e3ce8  ||  long  ||  📈 Party member #17's XP
+|-
+|  Stats  ||  $7e3ce9-$7e3cea  ||  word  ||  📈 Party member #17's max HP
+|-
+|  Stats  ||  $7e3ceb-$7e3cec  ||  word  ||  📈 Party member #17's current HP
+|-
+|  Stats  ||  $7e3ced-$7e3cee  ||  word  ||  📈 Party member #17's max MP
+|-
+|  Stats  ||  $7e3cef-$7e3cf0  ||  word  ||  📈 Party member #17's current MP
+|-
+|  Stats  ||  $7e3cf1  ||  byte  ||  📈 Party member #17's strength
+|-
+|  Stats  ||  $7e3cf2  ||  byte  ||  📈 Party member #17's agility
+|-
+|  Stats  ||  $7e3cf3  ||  byte  ||  📈 Party member #17's stamina
+|-
+|  Stats  ||  $7e3cf4  ||  byte  ||  📈 Party member #17's wisdom
+|-
+|  Stats  ||  $7e3cf5  ||  byte  ||  📈 Party member #17's luck, excluding equipment
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3cf6-$7e3cfa  ||  5 bytes   ||  ...
+|-
+|  Stats  ||  $7e3cfb-$7e3cff  ||  5 bytes  ||  🏷️ Party member #17's name, 4 characters max followed by $ac (end of string)
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3d00-$7e3d08  ||  9 bytes   ||  ...
+|-
+|  Spells  ||  $7e3d09-$7e3d12  ||  10 bytes  ||  Party member #17's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
+|-
+|  Bag  ||  $7e3d13  ||  byte  ||  📦 Party member #17's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $7e3d14  ||  byte  ||  📦 Party member #17's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $7e3d15-$7e3d20  ||  12 bytes  ||  📦 Party member #17's bag: Each byte is which item is in the slot
+|-
+!  colspan="4"  |  
+|-
+|  Stats  ||  $7e3d21  ||  byte  ||  📈 Party member #18's level, top 7 bits are level, bottom bit unknown
+|-
+|  Stats  ||  $7e3d22-$7e3d24  ||  long  ||  📈 Party member #18's XP
+|-
+|  Stats  ||  $7e3d25-$7e3d26  ||  word  ||  📈 Party member #18's max HP
+|-
+|  Stats  ||  $7e3d27-$7e3d28  ||  word  ||  📈 Party member #18's current HP
+|-
+|  Stats  ||  $7e3d29-$7e3d2a  ||  word  ||  📈 Party member #18's max MP
+|-
+|  Stats  ||  $7e3d2b-$7e3d2c  ||  word  ||  📈 Party member #18's current MP
+|-
+|  Stats  ||  $7e3d2d  ||  byte  ||  📈 Party member #18's strength
+|-
+|  Stats  ||  $7e3d2e  ||  byte  ||  📈 Party member #18's agility
+|-
+|  Stats  ||  $7e3d2f  ||  byte  ||  📈 Party member #18's stamina
+|-
+|  Stats  ||  $7e3d30  ||  byte  ||  📈 Party member #18's wisdom
+|-
+|  Stats  ||  $7e3d31  ||  byte  ||  📈 Party member #18's luck, excluding equipment
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3d32-$7e3d36  ||  5 bytes   ||  ...
+|-
+|  Stats  ||  $7e3d37-$7e3d3b  ||  5 bytes  ||  🏷️ Party member #18's name, 4 characters max followed by $ac (end of string)
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3d3c-$7e3d44  ||  9 bytes   ||  ...
+|-
+|  Spells  ||  $7e3d45-$7e3d4e  ||  10 bytes  ||  Party member #18's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
+|-
+|  Bag  ||  $7e3d4f  ||  byte  ||  📦 Party member #18's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $7e3d50  ||  byte  ||  📦 Party member #18's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $7e3d51-$7e3d5c  ||  12 bytes  ||  📦 Party member #18's bag: Each byte is which item is in the slot
+|-
+!  colspan="4"  |  
+|-
+|  Stats  ||  $7e3d5d  ||  byte  ||  📈 Party member #19's level, top 7 bits are level, bottom bit unknown
+|-
+|  Stats  ||  $7e3d5e-$7e3d60  ||  long  ||  📈 Party member #19's XP
+|-
+|  Stats  ||  $7e3d61-$7e3d62  ||  word  ||  📈 Party member #19's max HP
+|-
+|  Stats  ||  $7e3d63-$7e3d64  ||  word  ||  📈 Party member #19's current HP
+|-
+|  Stats  ||  $7e3d65-$7e3d66  ||  word  ||  📈 Party member #19's max MP
+|-
+|  Stats  ||  $7e3d67-$7e3d68  ||  word  ||  📈 Party member #19's current MP
+|-
+|  Stats  ||  $7e3d69  ||  byte  ||  📈 Party member #19's strength
+|-
+|  Stats  ||  $7e3d6a  ||  byte  ||  📈 Party member #19's agility
+|-
+|  Stats  ||  $7e3d6b  ||  byte  ||  📈 Party member #19's stamina
+|-
+|  Stats  ||  $7e3d6c  ||  byte  ||  📈 Party member #19's wisdom
+|-
+|  Stats  ||  $7e3d6d  ||  byte  ||  📈 Party member #19's luck, excluding equipment
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3d6e-$7e3d72  ||  5 bytes   ||  ...
+|-
+|  Stats  ||  $7e3d73-$7e3d77  ||  5 bytes  ||  🏷️ Party member #19's name, 4 characters max followed by $ac (end of string)
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3d78-$7e3d80  ||  9 bytes   ||  ...
+|-
+|  Spells  ||  $7e3d81-$7e3d8a  ||  10 bytes  ||  Party member #19's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
+|-
+|  Bag  ||  $7e3d8b  ||  byte  ||  📦 Party member #19's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $7e3d8c  ||  byte  ||  📦 Party member #19's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $7e3d8d-$7e3d98  ||  12 bytes  ||  📦 Party member #19's bag: Each byte is which item is in the slot
+|-
+!  colspan="4"  |  
+|-
+|  Stats  ||  $7e3d99  ||  byte  ||  📈 Party member #20's level, top 7 bits are level, bottom bit unknown
+|-
+|  Stats  ||  $7e3d9a-$7e3d9c  ||  long  ||  📈 Party member #20's XP
+|-
+|  Stats  ||  $7e3d9d-$7e3d9e  ||  word  ||  📈 Party member #20's max HP
+|-
+|  Stats  ||  $7e3d9f-$7e3da0  ||  word  ||  📈 Party member #20's current HP
+|-
+|  Stats  ||  $7e3da1-$7e3da2  ||  word  ||  📈 Party member #20's max MP
+|-
+|  Stats  ||  $7e3da3-$7e3da4  ||  word  ||  📈 Party member #20's current MP
+|-
+|  Stats  ||  $7e3da5  ||  byte  ||  📈 Party member #20's strength
+|-
+|  Stats  ||  $7e3da6  ||  byte  ||  📈 Party member #20's agility
+|-
+|  Stats  ||  $7e3da7  ||  byte  ||  📈 Party member #20's stamina
+|-
+|  Stats  ||  $7e3da8  ||  byte  ||  📈 Party member #20's wisdom
+|-
+|  Stats  ||  $7e3da9  ||  byte  ||  📈 Party member #20's luck, excluding equipment
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3daa-$7e3dae  ||  5 bytes   ||  ...
+|-
+|  Stats  ||  $7e3daf-$7e3db3  ||  5 bytes  ||  🏷️ Party member #20's name, 4 characters max followed by $ac (end of string)
+|-  style="background-color: #eaecf0;"
+|  ...  ||  $7e3db4-$7e3dbc  ||  9 bytes   ||  ...
+|-
+|  Spells  ||  $7e3dbd-$7e3dc6  ||  10 bytes  ||  Party member #20's [[Dragon Quest III (SNES)/Values/Spells|Spells List]]
+|-
+|  Bag  ||  $7e3dc7  ||  byte  ||  📦 Party member #20's bag: Number of items equipped, equipped items are moved to the top of the bag so only the amount is needed to be saved
+|-
+|  Bag  ||  $7e3dc8  ||  byte  ||  📦 Party member #20's bag: Number of items carried, max is $0c
+|-
+|  Bag  ||  $7e3dc9-$7e3dd4  ||  12 bytes  ||  📦 Party member #20's bag: Each byte is which item is in the slot
+|}
+
+
+{{Internal Data|game=Dragon Quest III (SNES)}}

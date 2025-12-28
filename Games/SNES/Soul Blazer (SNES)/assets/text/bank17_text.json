@@ -1,0 +1,47 @@
+[
+	{
+		"file_offset": 754982,
+		"bank": 23,
+		"address": 34086,
+		"cpu_address": "$17:8526",
+		"length": 12,
+		"raw": "0443237384406e32682a5407",
+		"text": "{PAUSE}C#s!@n2h*T{NUM}"
+	},
+	{
+		"file_offset": 757685,
+		"bank": 23,
+		"address": 36789,
+		"cpu_address": "$17:8fb5",
+		"length": 15,
+		"raw": "844e60075021046253203a84424b28",
+		"text": "!N`{NUM}P!{PAUSE}bS :!BK("
+	},
+	{
+		"file_offset": 761592,
+		"bank": 23,
+		"address": 40696,
+		"cpu_address": "$17:9ef8",
+		"length": 10,
+		"raw": "61222b4249325b79336f",
+		"text": "a\"+BI2[y3o"
+	},
+	{
+		"file_offset": 772381,
+		"bank": 23,
+		"address": 51485,
+		"cpu_address": "$17:c91d",
+		"length": 11,
+		"raw": "335a772844533a77280473",
+		"text": "3Zw(DS:w({PAUSE}s"
+	},
+	{
+		"file_offset": 772739,
+		"bank": 23,
+		"address": 51843,
+		"cpu_address": "$17:ca83",
+		"length": 17,
+		"raw": "6840745f407501203c80504220332c7c7a",
+		"text": "h@t_@u{NL} <'PB 3,|z"
+	}
+]

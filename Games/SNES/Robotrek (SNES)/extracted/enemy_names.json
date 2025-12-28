@@ -1,0 +1,355 @@
+{
+	"name_table_start": "$01fdb6",
+	"name_table_end": "$01ff72",
+	"enemy_count": 58,
+	"enemies": [
+		{
+			"index": 0,
+			"name": "       ",
+			"file_offset": "$01fdb6",
+			"snes_addr": "$c3fdb6"
+		},
+		{
+			"index": 1,
+			"name": "Mine",
+			"file_offset": "$01fdbe",
+			"snes_addr": "$c3fdbe"
+		},
+		{
+			"index": 2,
+			"name": "Turbo",
+			"file_offset": "$01fdc3",
+			"snes_addr": "$c3fdc3"
+		},
+		{
+			"index": 3,
+			"name": "Mushroom",
+			"file_offset": "$01fdc9",
+			"snes_addr": "$c3fdc9"
+		},
+		{
+			"index": 4,
+			"name": "Poison",
+			"file_offset": "$01fdd2",
+			"snes_addr": "$c3fdd2"
+		},
+		{
+			"index": 5,
+			"name": "Spider",
+			"file_offset": "$01fdd9",
+			"snes_addr": "$c3fdd9"
+		},
+		{
+			"index": 6,
+			"name": "Spider",
+			"file_offset": "$01fde0",
+			"snes_addr": "$c3fde0"
+		},
+		{
+			"index": 7,
+			"name": "Gel",
+			"file_offset": "$01fde7",
+			"snes_addr": "$c3fde7"
+		},
+		{
+			"index": 8,
+			"name": "Gelgel",
+			"file_offset": "$01fdeb",
+			"snes_addr": "$c3fdeb"
+		},
+		{
+			"index": 9,
+			"name": "Bosstoad",
+			"file_offset": "$01fdf2",
+			"snes_addr": "$c3fdf2"
+		},
+		{
+			"index": 10,
+			"name": "Rushbird",
+			"file_offset": "$01fdfb",
+			"snes_addr": "$c3fdfb"
+		},
+		{
+			"index": 11,
+			"name": "Quickbird",
+			"file_offset": "$01fe04",
+			"snes_addr": "$c3fe04"
+		},
+		{
+			"index": 12,
+			"name": "Mole",
+			"file_offset": "$01fe0e",
+			"snes_addr": "$c3fe0e"
+		},
+		{
+			"index": 13,
+			"name": "Powermole",
+			"file_offset": "$01fe13",
+			"snes_addr": "$c3fe13"
+		},
+		{
+			"index": 14,
+			"name": "Tackler",
+			"file_offset": "$01fe1d",
+			"snes_addr": "$c3fe1d"
+		},
+		{
+			"index": 15,
+			"name": "Plasmoke",
+			"file_offset": "$01fe25",
+			"snes_addr": "$c3fe25"
+		},
+		{
+			"index": 16,
+			"name": "Elesmoke",
+			"file_offset": "$01fe2e",
+			"snes_addr": "$c3fe2e"
+		},
+		{
+			"index": 17,
+			"name": "Monk",
+			"file_offset": "$01fe37",
+			"snes_addr": "$c3fe37"
+		},
+		{
+			"index": 18,
+			"name": "Mummy",
+			"file_offset": "$01fe3c",
+			"snes_addr": "$c3fe3c"
+		},
+		{
+			"index": 19,
+			"name": "Franken",
+			"file_offset": "$01fe42",
+			"snes_addr": "$c3fe42"
+		},
+		{
+			"index": 20,
+			"name": "Ho Ho",
+			"file_offset": "$01fe4a",
+			"snes_addr": "$c3fe4a"
+		},
+		{
+			"index": 21,
+			"name": "Gator",
+			"file_offset": "$01fe50",
+			"snes_addr": "$c3fe50"
+		},
+		{
+			"index": 22,
+			"name": "Gunrobot",
+			"file_offset": "$01fe56",
+			"snes_addr": "$c3fe56"
+		},
+		{
+			"index": 23,
+			"name": "CannonX",
+			"file_offset": "$01fe5f",
+			"snes_addr": "$c3fe5f"
+		},
+		{
+			"index": 24,
+			"name": "Biolion",
+			"file_offset": "$01fe67",
+			"snes_addr": "$c3fe67"
+		},
+		{
+			"index": 25,
+			"name": "Shell",
+			"file_offset": "$01fe6f",
+			"snes_addr": "$c3fe6f"
+		},
+		{
+			"index": 26,
+			"name": "Urchin",
+			"file_offset": "$01fe75",
+			"snes_addr": "$c3fe75"
+		},
+		{
+			"index": 27,
+			"name": "Luckstar",
+			"file_offset": "$01fe7c",
+			"snes_addr": "$c3fe7c"
+		},
+		{
+			"index": 28,
+			"name": "Angler",
+			"file_offset": "$01fe85",
+			"snes_addr": "$c3fe85"
+		},
+		{
+			"index": 29,
+			"name": "Octopus",
+			"file_offset": "$01fe8c",
+			"snes_addr": "$c3fe8c"
+		},
+		{
+			"index": 30,
+			"name": "Pumpy",
+			"file_offset": "$01fe94",
+			"snes_addr": "$c3fe94"
+		},
+		{
+			"index": 31,
+			"name": "Bumpy",
+			"file_offset": "$01fe9a",
+			"snes_addr": "$c3fe9a"
+		},
+		{
+			"index": 32,
+			"name": "Faceman",
+			"file_offset": "$01fea0",
+			"snes_addr": "$c3fea0"
+		},
+		{
+			"index": 33,
+			"name": "Bigface",
+			"file_offset": "$01fea8",
+			"snes_addr": "$c3fea8"
+		},
+		{
+			"index": 34,
+			"name": "Redpixy",
+			"file_offset": "$01feb0",
+			"snes_addr": "$c3feb0"
+		},
+		{
+			"index": 35,
+			"name": "Whitepixy",
+			"file_offset": "$01feb8",
+			"snes_addr": "$c3feb8"
+		},
+		{
+			"index": 36,
+			"name": "Goldpixy",
+			"file_offset": "$01fec2",
+			"snes_addr": "$c3fec2"
+		},
+		{
+			"index": 37,
+			"name": "Knight",
+			"file_offset": "$01fecb",
+			"snes_addr": "$c3fecb"
+		},
+		{
+			"index": 38,
+			"name": "Master",
+			"file_offset": "$01fed2",
+			"snes_addr": "$c3fed2"
+		},
+		{
+			"index": 39,
+			"name": "Gagarian",
+			"file_offset": "$01fed9",
+			"snes_addr": "$c3fed9"
+		},
+		{
+			"index": 40,
+			"name": "Ninja",
+			"file_offset": "$01fee2",
+			"snes_addr": "$c3fee2"
+		},
+		{
+			"index": 41,
+			"name": "Beeper",
+			"file_offset": "$01fee8",
+			"snes_addr": "$c3fee8"
+		},
+		{
+			"index": 42,
+			"name": "Cmdr.",
+			"file_offset": "$01feef",
+			"snes_addr": "$c3feef"
+		},
+		{
+			"index": 43,
+			"name": "Masker",
+			"file_offset": "$01fef5",
+			"snes_addr": "$c3fef5"
+		},
+		{
+			"index": 44,
+			"name": "Beret",
+			"file_offset": "$01fefc",
+			"snes_addr": "$c3fefc"
+		},
+		{
+			"index": 45,
+			"name": "Meta Crab",
+			"file_offset": "$01ff02",
+			"snes_addr": "$c3ff02"
+		},
+		{
+			"index": 46,
+			"name": "Smallcrab",
+			"file_offset": "$01ff0c",
+			"snes_addr": "$c3ff0c"
+		},
+		{
+			"index": 47,
+			"name": "Mamurana",
+			"file_offset": "$01ff16",
+			"snes_addr": "$c3ff16"
+		},
+		{
+			"index": 48,
+			"name": "Big Eye",
+			"file_offset": "$01ff1f",
+			"snes_addr": "$c3ff1f"
+		},
+		{
+			"index": 49,
+			"name": "Blacktank",
+			"file_offset": "$01ff27",
+			"snes_addr": "$c3ff27"
+		},
+		{
+			"index": 50,
+			"name": "Gateau",
+			"file_offset": "$01ff31",
+			"snes_addr": "$c3ff31"
+		},
+		{
+			"index": 51,
+			"name": "Soldier",
+			"file_offset": "$01ff38",
+			"snes_addr": "$c3ff38"
+		},
+		{
+			"index": 52,
+			"name": "Gateau",
+			"file_offset": "$01ff40",
+			"snes_addr": "$c3ff40"
+		},
+		{
+			"index": 53,
+			"name": "De Rose",
+			"file_offset": "$01ff47",
+			"snes_addr": "$c3ff47"
+		},
+		{
+			"index": 54,
+			"name": "Papamecha",
+			"file_offset": "$01ff4f",
+			"snes_addr": "$c3ff4f"
+		},
+		{
+			"index": 55,
+			"name": "Bugbug",
+			"file_offset": "$01ff59",
+			"snes_addr": "$c3ff59"
+		},
+		{
+			"index": 56,
+			"name": "Cmdr.",
+			"file_offset": "$01ff60",
+			"snes_addr": "$c3ff60"
+		},
+		{
+			"index": 57,
+			"name": "Minicom",
+			"file_offset": "$01ff66",
+			"snes_addr": "$c3ff66"
+		}
+	]
+}

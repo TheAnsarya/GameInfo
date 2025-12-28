@@ -1,0 +1,123 @@
+{{Infobox game
+| title           = Dragon Quest III
+| title_jp        = ドラゴンクエストIII そして伝説へ…
+| title_jp_romaji = Doragon Kuesuto Surī: Soshite Densetsu e...
+| title_alt       = Dragon Quest III: The Seeds of Salvation
+
+| image           = Dq3remixts.png
+
+| developer       = Heartbeat
+| publisher_jp    = Enix
+
+| platform        = SNES
+| platforms       = Famicom, Game Boy Color, Mobile, Switch
+
+| release_jp      = December 6, 1996
+
+| genre           = RPG
+| players         = 1
+
+| mapper          = HiROM
+| rom_size        = 4 MB (32 Mbit)
+| sram            = 8 KB
+
+| series          = Dragon Quest
+| predecessor     = [[SNES/Dragon_Quest_I_II|Dragon Quest I & II]]
+| successor       = [[NES/Dragon_Warrior_IV|Dragon Quest IV]]
+}}
+
+{{platform
+| platform  = SNES
+| mapper    = HiROM
+| rom_size  = 4 MB
+| sram      = 8 KB
+}}
+
+'''Dragon Quest III: Soshite Densetsu e...''' (Dragon Quest III: And Thus Into Legend...) is the SNES remake of the original Famicom Dragon Quest III, developed by Heartbeat and published by Enix.
+
+==Documentation==
+
+{{navbox|SNES/Dragon_Quest_III|sram_map=no}}
+
+* [[Dragon Quest III:ROM_Map|ROM Map]] - Complete ROM layout
+* [[Dragon Quest III:RAM_Map|RAM Map]] - Runtime memory documentation
+* [[Dragon Quest III:TBL|Text Table]] - Character encoding
+* [[Dragon Quest III:Values|Values]] - Game constants and IDs
+
+==Utilities==
+* None Available
+
+==Hacks==
+* None known.
+
+==Translations==
+* [https://www.romhacking.net/translations/1323/ English translation] v1.1 by [http://www.romhacking.net/community/712/ DQ Translations] (2009-11-19)
+* [https://www.romhacking.net/translations/6944/ Portuguese translation] v1.0 by [http://www.romhacking.net/community/7941/ Dindo] (2023-05-27)
+* [https://www.romhacking.net/translations/6234/ Spanish translation] v1.1 by [http://www.romhacking.net/community/712/ Rod Merida] (2022-09-17)
+
+==Miscellaneous==
+* The [https://web.archive.org/web/20220115061924/https://www.romhacking.net/abandoned/ RHDN Abandoned Projects page] includes [https://web.archive.org/web/20211020093652/https://www.romhacking.net/abandoned/dq3r_toolsbyuu.zip byuu's Dragon Quest III translation tools] which contains useful tools and information.
+* A [https://github.com/TheAnsarya/GameInfo/raw/refs/heads/main/Dragon%20Quest%20III%20(SNES)/Debugging/Dragon%20Quest%20III%20(SNES)%20-%20Debugger%20Labels.mlb Mesen-S code-labels file] for debugging
+
+{{known_dumps
+| source     = TOSEC
+| source_url = https://www.tosecdev.org/
+| dumps      =
+{{dump
+| desc     = Dragon Quest III - The Seeds of Salvation (1996)(Enix)(JP)
+| size     = 4194304
+| size_hex = $400000
+| crc32    = 13836bd2
+| md5      = 7c7c7db73b0608a184cc5e1d73d7695b
+| sha1     = b711341e4b1022d7645c5313840874aebc01b7b7
+}}
+{{dump
+| desc     = Dragon Quest III - The Seeds of Salvation (1996)(Enix)(JP)[a]
+| size     = 4194304
+| size_hex = $400000
+| crc32    = b377006e
+| md5      = c4c95db734c159589e45b93bf397afd1
+| sha1     = 79e41f8a848c0698de1b061eafd2b8d09151a941
+}}
+{{dump
+| desc     = Dragon Quest III - The Seeds of Salvation (1996)(Enix)(JP)[a2]
+| size     = 4194304
+| size_hex = $400000
+| crc32    = 672606ec
+| md5      = 4d86aa18f6edbcdf685d7c3dab749af2
+| sha1     = 75dc5fbc9ba0550a15cb77b78e4ce8c650ee7c34
+}}
+{{dump
+| desc     = Dragon Quest III - The Seeds of Salvation (1996)(Enix)(JP)[a3]
+| size     = 4194304
+| size_hex = $400000
+| crc32    = 426334c3
+| md5      = 08c955eccda778fbc8cb7ba48079e359
+| sha1     = c25dc32d5093e06e6dafdb7ed259f182f2d9b3d4
+}}
+{{dump
+| desc     = Dragon Quest III - The Seeds of Salvation (1996)(Enix)(JP)[a4]
+| size     = 4194304
+| size_hex = $400000
+| crc32    = c2cedc01
+| md5      = 4ef1239a1c5249169045280d2f8e015b
+| sha1     = 3304f47d1bf07fd1b6651dc8b6b959ab6801ad70
+}}
+{{dump
+| desc     = Dragon Quest III - The Seeds of Salvation (1996)(Enix)(JP)[a5]
+| size     = 4194304
+| size_hex = $400000
+| crc32    = 3a2a466d
+| md5      = 00597e5b3e6eae5fb24b413e3b857363
+| sha1     = 58fbc9428e73e4834465cdf6784dff70d1503103
+}}
+}}
+
+==External Links==
+* [https://www.youtube.com/watch?v=aVboEF9zOqE Dragon Quest III intro video]
+* [https://github.com/TheAnsarya/GameInfo GameInfo Repository]
+
+[[Category:SNES Games]]
+[[Category:Dragon Quest Series]]
+[[Category:RPG]]
+[[Category:Enix]]

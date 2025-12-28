@@ -1,0 +1,236 @@
+@using DarkRepos.Core.Services
+@inject NavigationManager Navigation
+@inject ISearchService SearchService
+
+<div class="search-box @(Large ? "large" : "") @(Expanded ? "expanded" : "") @(_showSuggestions && _suggestions.Count > 0 ? "has-suggestions" : "")"
+	@onfocusout="HandleFocusOut">
+	<label class="visually-hidden" for="@InputId">@Placeholder</label>
+	<input type="search"
+		id="@InputId"
+		class="search-input"
+		placeholder="@Placeholder"
+		value="@Query"
+		@oninput="HandleInput"
+		@onkeydown="HandleKeyDown"
+		@onfocus="HandleFocus"
+		autocomplete="off"
+		aria-label="@Placeholder"
+		aria-expanded="@(_showSuggestions && _suggestions.Count > 0)"
+		aria-haspopup="listbox"
+		aria-controls="@SuggestionsId"
+		aria-activedescendant="@(_selectedIndex >= 0 ? $"{SuggestionsId}-{_selectedIndex}" : "")"
+		role="combobox" />
+	<button type="button" class="search-button" @onclick="ExecuteSearch" aria-label="Search">
+		<span class="search-icon">🔍</span>
+	</button>
+	@if (ShowShortcut && !string.IsNullOrEmpty(Shortcut))
+	{
+		<kbd class="search-shortcut">@Shortcut</kbd>
+	}
+
+	@if (_showSuggestions && _suggestions.Count > 0)
+	{
+		<ul id="@SuggestionsId" class="search-suggestions" role="listbox" aria-label="Search suggestions">
+			@for (var i = 0; i < _suggestions.Count; i++)
+			{
+				var index = i;
+				var suggestion = _suggestions[i];
+				<li id="@($"{SuggestionsId}-{index}")"
+					class="suggestion-item @(index == _selectedIndex ? "selected" : "")"
+					role="option"
+					aria-selected="@(index == _selectedIndex)"
+					@onclick="@(() => SelectSuggestion(suggestion))"
+					@onmouseenter="@(() => _selectedIndex = index)">
+					<span class="suggestion-icon">🔍</span>
+					<span class="suggestion-text">@suggestion</span>
+				</li>
+			}
+		</ul>
+	}
+</div>
+
+@code {
+	[Parameter]
+	public string Placeholder { get; set; } = "Search games, tools, documentation...";
+
+	[Parameter]
+	public string? Query { get; set; }
+
+	[Parameter]
+	public EventCallback<string> QueryChanged { get; set; }
+
+	[Parameter]
+	public EventCallback<string> OnSearch { get; set; }
+
+	[Parameter]
+	public bool Large { get; set; } = false;
+
+	[Parameter]
+	public bool Expanded { get; set; } = false;
+
+	[Parameter]
+	public bool ShowShortcut { get; set; } = false;
+
+	[Parameter]
+	public string Shortcut { get; set; } = "Ctrl+K";
+
+	[Parameter]
+	public string SearchUrl { get; set; } = "/search";
+
+	[Parameter]
+	public int MinCharsForSuggestions { get; set; } = 2;
+
+	[Parameter]
+	public int MaxSuggestions { get; set; } = 5;
+
+	[Parameter]
+	public int DebounceMs { get; set; } = 150;
+
+	private string InputId => $"search-{_uniqueId}"[..16];
+	private string SuggestionsId => $"suggestions-{_uniqueId}"[..20];
+
+	private readonly string _uniqueId = Guid.NewGuid().ToString("N");
+	private List<string> _suggestions = [];
+	private bool _showSuggestions = false;
+	private int _selectedIndex = -1;
+	private CancellationTokenSource? _debounceTokenSource;
+
+	private async Task HandleInput(ChangeEventArgs e)
+	{
+		Query = e.Value?.ToString() ?? "";
+		await QueryChanged.InvokeAsync(Query);
+
+		// Cancel previous debounce
+		_debounceTokenSource?.Cancel();
+		_debounceTokenSource = new CancellationTokenSource();
+
+		// Debounce the suggestion fetch
+		try
+		{
+			await Task.Delay(DebounceMs, _debounceTokenSource.Token);
+			await FetchSuggestions();
+		}
+		catch (TaskCanceledException)
+		{
+			// Expected when typing quickly
+		}
+	}
+
+	private async Task FetchSuggestions()
+	{
+		if (string.IsNullOrWhiteSpace(Query) || Query.Length < MinCharsForSuggestions)
+		{
+			_suggestions = [];
+			_showSuggestions = false;
+			return;
+		}
+
+		try
+		{
+			var suggestions = await SearchService.GetSuggestionsAsync(Query, MaxSuggestions);
+			_suggestions = suggestions.ToList();
+			_showSuggestions = _suggestions.Count > 0;
+			_selectedIndex = -1;
+			StateHasChanged();
+		}
+		catch
+		{
+			_suggestions = [];
+			_showSuggestions = false;
+		}
+	}
+
+	private async Task HandleKeyDown(KeyboardEventArgs e)
+	{
+		switch (e.Key)
+		{
+			case "ArrowDown":
+				if (_showSuggestions && _suggestions.Count > 0)
+				{
+					_selectedIndex = (_selectedIndex + 1) % _suggestions.Count;
+				}
+				else
+				{
+					await FetchSuggestions();
+				}
+				break;
+
+			case "ArrowUp":
+				if (_showSuggestions && _suggestions.Count > 0)
+				{
+					_selectedIndex = _selectedIndex <= 0 ? _suggestions.Count - 1 : _selectedIndex - 1;
+				}
+				break;
+
+			case "Enter":
+				if (_selectedIndex >= 0 && _selectedIndex < _suggestions.Count)
+				{
+					await SelectSuggestion(_suggestions[_selectedIndex]);
+				}
+				else
+				{
+					await ExecuteSearch();
+				}
+				break;
+
+			case "Escape":
+				_showSuggestions = false;
+				_selectedIndex = -1;
+				break;
+
+			case "Tab":
+				if (_showSuggestions && _selectedIndex >= 0 && _selectedIndex < _suggestions.Count)
+				{
+					Query = _suggestions[_selectedIndex];
+					await QueryChanged.InvokeAsync(Query);
+				}
+				_showSuggestions = false;
+				break;
+		}
+	}
+
+	private async Task SelectSuggestion(string suggestion)
+	{
+		Query = suggestion;
+		await QueryChanged.InvokeAsync(Query);
+		_showSuggestions = false;
+		_selectedIndex = -1;
+		await ExecuteSearch();
+	}
+
+	private void HandleFocus()
+	{
+		if (_suggestions.Count > 0)
+		{
+			_showSuggestions = true;
+		}
+	}
+
+	private async Task HandleFocusOut()
+	{
+		// Small delay to allow click events to process
+		await Task.Delay(150);
+		_showSuggestions = false;
+		_selectedIndex = -1;
+	}
+
+	private async Task ExecuteSearch()
+	{
+		_showSuggestions = false;
+
+		if (OnSearch.HasDelegate)
+		{
+			await OnSearch.InvokeAsync(Query);
+		}
+		else if (!string.IsNullOrWhiteSpace(Query))
+		{
+			Navigation.NavigateTo($"{SearchUrl}?q={Uri.EscapeDataString(Query)}");
+		}
+	}
+
+	public void Dispose()
+	{
+		_debounceTokenSource?.Cancel();
+		_debounceTokenSource?.Dispose();
+	}
+}

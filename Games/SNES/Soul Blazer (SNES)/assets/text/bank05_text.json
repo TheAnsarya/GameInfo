@@ -1,0 +1,110 @@
+[
+	{
+		"file_offset": 180235,
+		"bank": 5,
+		"address": 49163,
+		"cpu_address": "$05:c00b",
+		"length": 13,
+		"raw": "00217849583154015429566a56",
+		"text": ""
+	},
+	{
+		"file_offset": 183374,
+		"bank": 5,
+		"address": 52302,
+		"cpu_address": "$05:cc4e",
+		"length": 16,
+		"raw": "20555657705528552455527540772200",
+		"text": " UVWpU(U$URu@w\""
+	},
+	{
+		"file_offset": 183883,
+		"bank": 5,
+		"address": 52811,
+		"cpu_address": "$05:ce4b",
+		"length": 13,
+		"raw": "002a7758553257045528556855",
+		"text": ""
+	},
+	{
+		"file_offset": 184907,
+		"bank": 5,
+		"address": 53835,
+		"cpu_address": "$05:d24b",
+		"length": 13,
+		"raw": "002a7750553a57045528556855",
+		"text": ""
+	},
+	{
+		"file_offset": 185900,
+		"bank": 5,
+		"address": 54828,
+		"cpu_address": "$05:d62c",
+		"length": 11,
+		"raw": "030035485a3155032a4654",
+		"text": "{CLEAR}"
+	},
+	{
+		"file_offset": 187007,
+		"bank": 5,
+		"address": 55935,
+		"cpu_address": "$05:da7f",
+		"length": 17,
+		"raw": "007300710072007200720033006b45505f",
+		"text": ""
+	},
+	{
+		"file_offset": 187260,
+		"bank": 5,
+		"address": 56188,
+		"cpu_address": "$05:db7c",
+		"length": 16,
+		"raw": "01007b00770067006300610064006300",
+		"text": "{NL}"
+	},
+	{
+		"file_offset": 187510,
+		"bank": 5,
+		"address": 56438,
+		"cpu_address": "$05:dc76",
+		"length": 16,
+		"raw": "34664953754933002300230023000100",
+		"text": "4fISuI3"
+	},
+	{
+		"file_offset": 187919,
+		"bank": 5,
+		"address": 56847,
+		"cpu_address": "$05:de0f",
+		"length": 10,
+		"raw": "77335545332355235566",
+		"text": "w3UE3#U#Uf"
+	},
+	{
+		"file_offset": 191870,
+		"bank": 5,
+		"address": 60798,
+		"cpu_address": "$05:ed7e",
+		"length": 12,
+		"raw": "413e493e493e413e65024300",
+		"text": "A>I>I>A>e{WAIT}C"
+	},
+	{
+		"file_offset": 192069,
+		"bank": 5,
+		"address": 60997,
+		"cpu_address": "$05:ee45",
+		"length": 10,
+		"raw": "47680720073403534a4d",
+		"text": "Gh{NUM} {NUM}4{CLEAR}SJM"
+	},
+	{
+		"file_offset": 192763,
+		"bank": 5,
+		"address": 61691,
+		"cpu_address": "$05:f0fb",
+		"length": 18,
+		"raw": "002079207300302070207020702070007046",
+		"text": ""
+	}
+]

@@ -6,7 +6,6 @@ namespace GameInfoTools.Core.Build;
 /// </summary>
 public class SnesRomParser {
 	private readonly byte[] _romData;
-	private readonly SnesHeader _header;
 
 	/// <summary>
 	/// Standard SNES bank size (32KB for LoROM, 64KB for HiROM)
@@ -26,33 +25,33 @@ public class SnesRomParser {
 
 	public SnesRomParser(byte[] romData) {
 		_romData = romData ?? throw new ArgumentNullException(nameof(romData));
-		_header = ParseHeader();
+		Header = ParseHeader();
 	}
 
 	/// <summary>
 	/// Gets the parsed SNES header.
 	/// </summary>
-	public SnesHeader Header => _header;
+	public SnesHeader Header { get; }
 
 	/// <summary>
 	/// Gets the ROM mapping mode.
 	/// </summary>
-	public SnesMapping Mapping => _header.Mapping;
+	public SnesMapping Mapping => Header.Mapping;
 
 	/// <summary>
 	/// Gets whether ROM has a 512-byte copier header.
 	/// </summary>
-	public bool HasCopierHeader => _header.HasCopierHeader;
+	public bool HasCopierHeader => Header.HasCopierHeader;
 
 	/// <summary>
 	/// Gets the ROM size in bytes (excluding copier header).
 	/// </summary>
-	public int RomSize => _header.RomSize;
+	public int RomSize => Header.RomSize;
 
 	/// <summary>
 	/// Gets the number of banks.
 	/// </summary>
-	public int BankCount => _header.Mapping == SnesMapping.HiRom || _header.Mapping == SnesMapping.ExHiRom
+	public int BankCount => Header.Mapping == SnesMapping.HiRom || Header.Mapping == SnesMapping.ExHiRom
 		? RomSize / HiRomBankSize
 		: RomSize / LoRomBankSize;
 
@@ -112,8 +111,8 @@ public class SnesRomParser {
 		if (romType > 0x15) return false;
 
 		// Verify checksum complement
-		var checksum = (_romData[offset + 0x1e] | (_romData[offset + 0x1f] << 8));
-		var complement = (_romData[offset + 0x1c] | (_romData[offset + 0x1d] << 8));
+		var checksum = _romData[offset + 0x1e] | (_romData[offset + 0x1f] << 8);
+		var complement = _romData[offset + 0x1c] | (_romData[offset + 0x1d] << 8);
 
 		return (checksum ^ complement) == 0xffff;
 	}
@@ -290,6 +289,7 @@ public class SnesRomParser {
 		if (bank >= 0x40) {
 			bank -= 0x40;
 		}
+
 		return (bank * HiRomBankSize) + offset;
 	}
 
@@ -299,6 +299,7 @@ public class SnesRomParser {
 		if (bank >= 0x40) {
 			return ((bank) << 16) | addr;
 		}
+
 		return ((bank | 0xc0) << 16) | addr;
 	}
 
@@ -415,16 +416,16 @@ public class SnesRomParser {
 		// Extract header info
 		var infoPath = Path.Combine(outputDir, "rom_info.json");
 		var info = new {
-			title = _header.Title,
+			title = Header.Title,
 			mapping = Mapping.ToString(),
 			romSize = RomSize,
 			bankCount = BankCount,
-			sramSize = _header.SramSize,
-			region = _header.Region.ToString(),
-			enhancementChip = _header.EnhancementChip.ToString(),
-			fastRom = _header.FastRom,
-			checksum = $"0x{_header.Checksum:x4}",
-			version = _header.Version,
+			sramSize = Header.SramSize,
+			region = Header.Region.ToString(),
+			enhancementChip = Header.EnhancementChip.ToString(),
+			fastRom = Header.FastRom,
+			checksum = $"0x{Header.Checksum:x4}",
+			version = Header.Version,
 			hasCopierHeader = HasCopierHeader
 		};
 		var json = System.Text.Json.JsonSerializer.Serialize(info, new System.Text.Json.JsonSerializerOptions {

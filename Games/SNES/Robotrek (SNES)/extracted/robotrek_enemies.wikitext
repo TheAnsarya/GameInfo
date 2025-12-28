@@ -1,0 +1,124 @@
+== Enemy List ==
+
+Complete list of enemies in Robotrek (US).
+
+{| class="wikitable sortable"
+! ID !! Hex !! Name !! ROM Address
+|-
+| 0 || 0x00 || Mine || 0x1fdbe
+|-
+| 1 || 0x01 || Turbo || 0x1fdc3
+|-
+| 2 || 0x02 || Mushroom || 0x1fdc9
+|-
+| 3 || 0x03 || Poison || 0x1fdd2
+|-
+| 4 || 0x04 || Spider || 0x1fdd9
+|-
+| 5 || 0x05 || Spider || 0x1fde0
+|-
+| 6 || 0x06 || Gel || 0x1fde7
+|-
+| 7 || 0x07 || Gelgel || 0x1fdeb
+|-
+| 8 || 0x08 || Bosstoad || 0x1fdf2
+|-
+| 9 || 0x09 || Rushbird || 0x1fdfb
+|-
+| 10 || 0x0A || Quickbird || 0x1fe04
+|-
+| 11 || 0x0B || Mole || 0x1fe0e
+|-
+| 12 || 0x0C || Powermole || 0x1fe13
+|-
+| 13 || 0x0D || Tackler || 0x1fe1d
+|-
+| 14 || 0x0E || Plasmoke || 0x1fe25
+|-
+| 15 || 0x0F || Elesmoke || 0x1fe2e
+|-
+| 16 || 0x10 || Monk || 0x1fe37
+|-
+| 17 || 0x11 || Mummy || 0x1fe3c
+|-
+| 18 || 0x12 || Franken || 0x1fe42
+|-
+| 19 || 0x13 || Ho Ho || 0x1fe4a
+|-
+| 20 || 0x14 || Gator || 0x1fe50
+|-
+| 21 || 0x15 || Gunrobot || 0x1fe56
+|-
+| 22 || 0x16 || CannonX || 0x1fe5f
+|-
+| 23 || 0x17 || Biolion || 0x1fe67
+|-
+| 24 || 0x18 || Shell || 0x1fe6f
+|-
+| 25 || 0x19 || Urchin || 0x1fe75
+|-
+| 26 || 0x1A || Luckstar || 0x1fe7c
+|-
+| 27 || 0x1B || Angler || 0x1fe85
+|-
+| 28 || 0x1C || Octopus || 0x1fe8c
+|-
+| 29 || 0x1D || Pumpy || 0x1fe94
+|-
+| 30 || 0x1E || Bumpy || 0x1fe9a
+|-
+| 31 || 0x1F || Faceman || 0x1fea0
+|-
+| 32 || 0x20 || Bigface || 0x1fea8
+|-
+| 33 || 0x21 || Redpixy || 0x1feb0
+|-
+| 34 || 0x22 || Whitepixy || 0x1feb8
+|-
+| 35 || 0x23 || Goldpixy || 0x1fec2
+|-
+| 36 || 0x24 || Knight || 0x1fecb
+|-
+| 37 || 0x25 || Master || 0x1fed2
+|-
+| 38 || 0x26 || Gagarian || 0x1fed9
+|-
+| 39 || 0x27 || Ninja || 0x1fee2
+|-
+| 40 || 0x28 || Beeper || 0x1fee8
+|-
+| 41 || 0x29 || Cmdr. || 0x1feef
+|-
+| 42 || 0x2A || Masker || 0x1fef5
+|-
+| 43 || 0x2B || Beret || 0x1fefc
+|-
+| 44 || 0x2C || Meta Crab || 0x1ff02
+|-
+| 45 || 0x2D || Smallcrab || 0x1ff0c
+|-
+| 46 || 0x2E || Mamurana || 0x1ff16
+|-
+| 47 || 0x2F || Big Eye || 0x1ff1f
+|-
+| 48 || 0x30 || Blacktank || 0x1ff27
+|-
+| 49 || 0x31 || Gateau || 0x1ff31
+|-
+| 50 || 0x32 || Soldier || 0x1ff38
+|-
+| 51 || 0x33 || Gateau || 0x1ff40
+|-
+| 52 || 0x34 || De Rose || 0x1ff47
+|-
+| 53 || 0x35 || Papamecha || 0x1ff4f
+|-
+| 54 || 0x36 || Bugbug || 0x1ff59
+|-
+| 55 || 0x37 || Cmdr. || 0x1ff60
+|-
+| 56 || 0x38 || Minicom || 0x1ff66
+|-
+| 57 || 0x39 || Big Fan || 0x1ff6e
+|-
+|}

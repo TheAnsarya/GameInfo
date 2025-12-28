@@ -126,9 +126,9 @@ public class RomExpander {
 			return new ExpansionResult(false, romData.Length, 0, 0, $"Unsupported platform: {info.System}", null);
 		}
 
-		var validation = ValidateExpansion(romData, options.TargetSize);
-		if (!validation.IsValid) {
-			return new ExpansionResult(false, romData.Length, 0, 0, validation.Error, null);
+		var (IsValid, Error) = ValidateExpansion(romData, options.TargetSize);
+		if (!IsValid) {
+			return new ExpansionResult(false, romData.Length, 0, 0, Error, null);
 		}
 
 		return options.Mode switch {
@@ -216,7 +216,7 @@ public class RomExpander {
 			Success: true,
 			OldSize: romData.Length,
 			NewSize: newRom.Length,
-			BanksAdded: newDataSize / config.BankSize - oldDataSize / config.BankSize,
+			BanksAdded: (newDataSize / config.BankSize) - (oldDataSize / config.BankSize),
 			ErrorMessage: null,
 			ExpandedRom: newRom
 		);
@@ -332,6 +332,7 @@ public class RomExpander {
 				sizeByte++;
 				size *= 2;
 			}
+
 			rom[headerOffset + 0x17] = (byte)sizeByte;
 
 			// Update checksum complement and checksum at FFD4-FFD5 and FFDE-FFDF
@@ -355,6 +356,7 @@ public class RomExpander {
 				sizeByte++;
 				size *= 2;
 			}
+
 			rom[0x148] = (byte)sizeByte;
 
 			// Recalculate header checksum at $014D
@@ -362,6 +364,7 @@ public class RomExpander {
 			for (int i = 0x134; i <= 0x14c; i++) {
 				checksum = checksum - rom[i] - 1;
 			}
+
 			rom[0x14d] = (byte)checksum;
 		}
 
@@ -376,6 +379,7 @@ public class RomExpander {
 			for (int i = 0xa0; i < 0xbd; i++) {
 				check -= rom[i];
 			}
+
 			rom[0xbd] = (byte)((check - 0x19) & 0xff);
 		}
 

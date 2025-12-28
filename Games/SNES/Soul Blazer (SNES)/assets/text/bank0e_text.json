@@ -1,0 +1,20 @@
+[
+	{
+		"file_offset": 479042,
+		"bank": 14,
+		"address": 53058,
+		"cpu_address": "$0e:cf42",
+		"length": 13,
+		"raw": "53585d736b5a04802423008522",
+		"text": "SX]skZ{PAUSE}'$#"
+	},
+	{
+		"file_offset": 486384,
+		"bank": 14,
+		"address": 60400,
+		"cpu_address": "$0e:ebf0",
+		"length": 10,
+		"raw": "5058340602494448466c",
+		"text": "PX4{ITEM}{WAIT}IDHFl"
+	}
+]

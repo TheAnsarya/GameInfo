@@ -1,0 +1,251 @@
+{{Back|Soul Blazer (SNES)}}
+{{DISPLAYTITLE:Soul Blazer:ROM Map}}
+This is the '''ROM map''' for '''[[Soul Blazer]]''' (SNES).
+
+{{Main|/Technical Reference|Technical Reference}} contains additional ROM layout details.
+
+==Overview==
+Soul Blazer uses '''LoROM''' mapping. The ROM is 1MB (32 banks × 32KB).
+
+===Address Conversion===
+<pre>
+File Offset = (Bank × $8000) + (Address & $7fff)
+CPU Address = (Bank << 16) | $8000 | (File Offset & $7fff)
+</pre>
+
+==Interrupt Vectors==
+===Native Mode ($7fe0)===
+{| class="wikitable"
+! Vector !! Address !! Description
+|-
+| COP || $d61e || Coprocessor interrupt
+|-
+| BRK || $d5fc || Software break
+|-
+| ABORT || $0000 || Abort (unused)
+|-
+| NMI || $8342 || Non-maskable interrupt (VBlank)
+|-
+| RESET || $0000 || Reset (native, unused)
+|-
+| IRQ || $85a5 || Hardware interrupt
+|}
+
+===Emulation Mode ($7ff0)===
+{| class="wikitable"
+! Vector !! Address !! Description
+|-
+| COP || $0000 || Unused
+|-
+| ABORT || $0000 || Unused
+|-
+| NMI || $0015 || VBlank (emulation)
+|-
+| RESET || $8000 || Reset entry point
+|-
+| IRQ || $d011 || Hardware interrupt
+|}
+
+==Bank Layout==
+{| class="wikitable sortable"
+! Bank !! File Offset !! End !! Size !! Description
+|-
+| $00 || $000000 || $007fff || 32KB || Main program code
+|-
+| $01 || $008000 || $00ffff || 32KB || Game logic
+|-
+| $02 || $010000 || $017fff || 32KB || Text/dialogue
+|-
+| $03 || $018000 || $01ffff || 32KB || Text/dialogue
+|-
+| $04 || $020000 || $027fff || 32KB || Text/dialogue
+|-
+| $05 || $028000 || $02ffff || 32KB || Game data
+|-
+| $06 || $030000 || $037fff || 32KB || Enemy data
+|-
+| $07 || $038000 || $03ffff || 32KB || Item/equipment
+|-
+| $08 || $040000 || $047fff || 32KB || Map data
+|-
+| $09 || $048000 || $04ffff || 32KB || Map data
+|-
+| $0a || $050000 || $057fff || 32KB || Map data
+|-
+| $0b || $058000 || $05ffff || 32KB || Level data
+|-
+| $0c || $060000 || $067fff || 32KB || Level data
+|-
+| $0d || $068000 || $06ffff || 32KB || Graphics
+|-
+| $0e || $070000 || $077fff || 32KB || Graphics
+|-
+| $0f || $078000 || $07ffff || 32KB || Audio/SPC
+|-
+| $10 || $080000 || $087fff || 32KB || Act 1 Tileset (Grass Valley/Underground Castle)
+|-
+| $11 || $088000 || $08ffff || 32KB || Act 2 Tileset (GreenWood)
+|-
+| $12 || $090000 || $097fff || 32KB || Act 3 Tileset (St. Elles/Seabed)
+|-
+| $13 || $098000 || $09ffff || 32KB || Act 4 Tileset (Mountain of Souls)
+|-
+| $14 || $0a0000 || $0a7fff || 32KB || Act 5-6 Tileset (Leo's Lab/Magridd)
+|-
+| $15-$17 || $0a8000 || $0bffff || 96KB || Sprite graphics
+|-
+| $18-$1a || $0c0000 || $0dffff || 96KB || Tilemap data
+|-
+| $1b-$1f || $0d8000 || $0fffff || 160KB || Additional graphics/data
+|}
+
+==Tileset Banks==
+Each act uses a dedicated tileset bank containing 4BPP graphics tiles.
+
+{| class="wikitable"
+! Bank !! Area !! Tile Count !! Notes
+|-
+| $10 || Grass Valley, Underground Castle || 512 || Dungeon/castle theme
+|-
+| $11 || GreenWood, Shrines || 512 || Forest/nature theme
+|-
+| $12 || St. Elles, Seabed, Ghost Ship || 512 || Underwater/ocean theme
+|-
+| $13 || Mountain of Souls, Nome, Laynole, Lune || 512 || Mountain/ice theme
+|-
+| $14 || Leo's Lab, Magridd Castle, World of Evil || 512 || Mechanical/dark theme
+|}
+
+Tilesets use standard SNES 4BPP format:
+* 32 bytes per 8×8 tile
+* 512 tiles = 16,384 bytes ($4000)
+* Remaining space in each bank: palettes, attributes, metadata
+
+==Key Routines==
+{| class="wikitable"
+! Address !! Name !! Description
+|-
+| $00:8000 || Reset || Entry point after power-on/reset
+|-
+| $00:8342 || NMI_Handler || VBlank interrupt handler
+|-
+| $00:85a5 || IRQ_Handler || Hardware interrupt handler
+|-
+| $02:b9ac || InitHardware || Initialize SNES hardware registers
+|-
+| $02:ba80 || InitRAM || Clear and initialize RAM
+|-
+| $02:b856 || WaitVBlank || Wait for VBlank period
+|-
+| $02:b8a2 || EnableNMI || Enable NMI and set display
+|-
+| $02:b8b8 || DisableNMI || Disable NMI and blank screen
+|-
+| $04:8000 || GameLoop_Main || Main game loop entry
+|-
+| $04:8100 || GameLoop_Update || Update game state
+|-
+| $04:8200 || GameLoop_Render || Render current frame
+|-
+| $04:8500 || UpdatePlayer || Process player logic
+|-
+| $04:8800 || ReadJoypad || Read controller input
+|-
+| $04:8900 || ProcessInput || Process player input
+|-
+| $04:8c00 || UpdateSprites || Update OAM buffer
+|-
+| $04:8e00 || InitSprites || Initialize sprite system
+|-
+| $04:9000 || InitGraphics || Initialize PPU graphics
+|-
+| $04:9200 || LoadGraphics || Load tileset to VRAM
+|-
+| $04:9400 || UpdatePalette || Update color palette
+|-
+| $04:b000 || LoadMap || Load map data
+|-
+| $04:b200 || UpdateMap || Update map scrolling
+|-
+| $04:b400 || UpdateCamera || Update camera position
+|-
+| $04:c000 || UpdateEntities || Update all entities
+|-
+| $04:c200 || UpdateNPCs || Update NPC logic
+|-
+| $04:c400 || UpdateCollision || Check collisions
+|-
+| $04:e000 || ProcessEvents || Process game events
+|-
+| $04:e800 || UpdateAudio || Update sound/music
+|}
+
+==Data Locations==
+{| class="wikitable sortable"
+! File Offset !! Bank:Address !! Size !! Description
+|-
+| $004efa || $00:cefa || ~4KB || Opening dialogue
+|-
+| $0053c7 || $00:d3c7 || ~2KB || Ending dialogue
+|-
+| $010000 || $02:8000 || ~96KB || Main text data
+|-
+| $030000 || $06:8000 || 32KB || Enemy statistics
+|-
+| $038000 || $07:8000 || 32KB || Item/equipment data
+|-
+| $040000 || $08:8000 || 96KB || Map/tilemap data
+|-
+| $060000 || $0c:8000 || 64KB || Level/dungeon data
+|-
+| $078000 || $0f:8000 || 32KB || Audio driver and SPC data
+|-
+| $080000 || $10:8000 || 512KB || Graphics and sprite data
+|}
+
+==Pointer Tables==
+The ROM contains numerous pointer tables for maps, text, and data.
+Analysis has identified '''808 pointer tables''' throughout the ROM.
+
+{| class="wikitable"
+! Region !! Count !! Description
+|-
+| Bank $00 || ~200 || Core engine pointers
+|-
+| Bank $02-$04 || ~150 || Text and dialogue pointers
+|-
+| Bank $06-$07 || ~100 || Enemy/item data pointers
+|-
+| Bank $08-$0c || ~300 || Map and level pointers
+|-
+| Bank $10-$1f || ~58 || Graphics pointers
+|}
+
+==Soul Lairs==
+Soul Lairs are the enemy spawn points that release souls when cleared.
+Scan identified '''7,844 potential Soul Lair structures'''.
+
+===Soul Lair Structure (8 bytes)===
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Area ID
+|-
+| $01 || 1 || Enemy type
+|-
+| $02 || 1 || Enemy count
+|-
+| $03 || 1 || Release type (NPC, item, etc.)
+|-
+| $04 || 2 || X position
+|-
+| $06 || 2 || Y position
+|}
+
+==See Also==
+* [[/RAM Map|RAM Map]]
+* [[/Data Tables|Data Tables]]
+* [[/Enemies|Enemy Data]]
+
+[[Category:Soul Blazer]]
+[[Category:ROM maps]]

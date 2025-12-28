@@ -1,0 +1,434 @@
+.disassembly-viewer {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	background: #1e1e1e;
+	color: #d4d4d4;
+	font-family: 'Cascadia Code', 'Consolas', 'Courier New', monospace;
+	font-size: 13px;
+}
+
+/* Toolbar */
+.toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	padding: 8px 12px;
+	background: #252526;
+	border-bottom: 1px solid #3c3c3c;
+	align-items: center;
+}
+
+.toolbar-section {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.toolbar-section label {
+	color: #9cdcfe;
+	font-size: 12px;
+}
+
+.toolbar select,
+.toolbar input[type="text"],
+.toolbar input[type="number"] {
+	background: #3c3c3c;
+	border: 1px solid #555;
+	color: #d4d4d4;
+	padding: 4px 8px;
+	font-family: inherit;
+	font-size: 12px;
+}
+
+.address-input {
+	width: 80px;
+	font-family: monospace;
+}
+
+.lines-input {
+	width: 60px;
+}
+
+.toolbar button {
+	background: #0e639c;
+	border: none;
+	color: white;
+	padding: 4px 12px;
+	cursor: pointer;
+	font-size: 12px;
+}
+
+.toolbar button:hover {
+	background: #1177bb;
+}
+
+.toolbar input[type="checkbox"] {
+	margin-right: 4px;
+}
+
+.export-section {
+	margin-left: auto;
+}
+
+/* Main content layout */
+.main-content {
+	display: flex;
+	flex: 1;
+	overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+	width: 220px;
+	background: #252526;
+	border-right: 1px solid #3c3c3c;
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+}
+
+.sidebar-section {
+	padding: 8px;
+	border-bottom: 1px solid #3c3c3c;
+}
+
+.sidebar-section h3 {
+	margin: 0 0 8px 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #888;
+	letter-spacing: 0.5px;
+}
+
+.label-list,
+.bookmark-list {
+	max-height: 150px;
+	overflow-y: auto;
+}
+
+.label-item,
+.bookmark-item {
+	display: flex;
+	gap: 8px;
+	padding: 4px 6px;
+	cursor: pointer;
+	font-size: 12px;
+}
+
+.label-item:hover,
+.bookmark-item:hover {
+	background: #2a2d2e;
+}
+
+.label-item.visible {
+	background: #264f78;
+}
+
+.label-address,
+.bookmark-address {
+	color: #569cd6;
+	font-family: monospace;
+}
+
+.label-name {
+	color: #dcdcaa;
+	flex: 1;
+}
+
+.bookmark-note {
+	color: #9cdcfe;
+	flex: 1;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.remove-btn {
+	background: transparent;
+	border: none;
+	color: #888;
+	cursor: pointer;
+	padding: 0 4px;
+	font-size: 14px;
+}
+
+.remove-btn:hover {
+	color: #f48771;
+}
+
+/* Add label form */
+.add-label-form {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.add-label-form input,
+.add-label-form select {
+	background: #3c3c3c;
+	border: 1px solid #555;
+	color: #d4d4d4;
+	padding: 4px;
+	font-size: 11px;
+}
+
+.add-label-form button {
+	background: #0e639c;
+	border: none;
+	color: white;
+	padding: 4px;
+	cursor: pointer;
+	font-size: 11px;
+}
+
+.add-bookmark-btn {
+	width: 100%;
+	margin-top: 8px;
+	background: #3c3c3c;
+	border: 1px solid #555;
+	color: #d4d4d4;
+	padding: 4px;
+	cursor: pointer;
+	font-size: 11px;
+}
+
+.add-bookmark-btn:hover {
+	background: #4c4c4c;
+}
+
+/* Disassembly panel */
+.disassembly-panel {
+	flex: 1;
+	display: flex;
+	overflow: auto;
+	outline: none;
+}
+
+.line-numbers {
+	background: #1e1e1e;
+	border-right: 1px solid #3c3c3c;
+	padding: 4px 0;
+	user-select: none;
+}
+
+.line-number {
+	padding: 0 12px;
+	color: #858585;
+	text-align: right;
+	font-family: monospace;
+	line-height: 1.5;
+}
+
+.line-number.selected {
+	background: #264f78;
+	color: #d4d4d4;
+}
+
+.code-content {
+	flex: 1;
+	padding: 4px 0;
+}
+
+.code-line {
+	padding: 0 12px;
+	line-height: 1.5;
+	cursor: pointer;
+	white-space: pre;
+}
+
+.code-line:hover {
+	background: #2a2d2e;
+}
+
+.code-line.selected {
+	background: #264f78;
+}
+
+.code-line.has-label {
+	padding-top: 4px;
+}
+
+.code-line.branch {
+	border-left: 2px solid #569cd6;
+}
+
+.code-line.return {
+	border-left: 2px solid #c586c0;
+}
+
+.label-line {
+	color: #dcdcaa;
+	font-weight: bold;
+	margin-left: -8px;
+}
+
+.instruction-line {
+	display: flex;
+	gap: 8px;
+}
+
+.bytes {
+	color: #6a9955;
+	min-width: 80px;
+}
+
+.mnemonic {
+	color: #569cd6;
+	min-width: 40px;
+}
+
+.mnemonic.branch-mnemonic {
+	color: #4fc1ff;
+}
+
+.mnemonic.return-mnemonic {
+	color: #c586c0;
+}
+
+.mnemonic.load-mnemonic {
+	color: #9cdcfe;
+}
+
+.mnemonic.store-mnemonic {
+	color: #ce9178;
+}
+
+.mnemonic.unknown-mnemonic {
+	color: #f48771;
+}
+
+.operand {
+	color: #ce9178;
+}
+
+.comment {
+	color: #6a9955;
+	margin-left: 16px;
+}
+
+/* Info panel */
+.info-panel {
+	width: 250px;
+	background: #252526;
+	border-left: 1px solid #3c3c3c;
+	padding: 12px;
+	overflow-y: auto;
+}
+
+.info-panel h3 {
+	margin: 0 0 12px 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #888;
+	letter-spacing: 0.5px;
+}
+
+.info-panel h3:not(:first-child) {
+	margin-top: 16px;
+}
+
+.info-row {
+	display: flex;
+	margin-bottom: 6px;
+	font-size: 12px;
+}
+
+.info-row label {
+	color: #9cdcfe;
+	min-width: 80px;
+}
+
+.info-row span {
+	color: #d4d4d4;
+	word-break: break-all;
+}
+
+.xref-list {
+	max-height: 120px;
+	overflow-y: auto;
+}
+
+.xref-item {
+	padding: 4px 6px;
+	color: #569cd6;
+	font-family: monospace;
+	cursor: pointer;
+}
+
+.xref-item:hover {
+	background: #2a2d2e;
+}
+
+.xref-empty {
+	color: #666;
+	font-style: italic;
+	font-size: 11px;
+}
+
+/* Status bar */
+.status-bar {
+	display: flex;
+	gap: 24px;
+	padding: 4px 12px;
+	background: #007acc;
+	color: white;
+	font-size: 12px;
+}
+
+.status-item {
+	display: flex;
+	gap: 4px;
+}
+
+/* Scrollbar styling */
+.disassembly-viewer ::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+
+.disassembly-viewer ::-webkit-scrollbar-track {
+	background: #1e1e1e;
+}
+
+.disassembly-viewer ::-webkit-scrollbar-thumb {
+	background: #424242;
+	border-radius: 5px;
+}
+
+.disassembly-viewer ::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+	.sidebar {
+		width: 180px;
+	}
+
+	.info-panel {
+		width: 200px;
+	}
+}
+
+@media (max-width: 900px) {
+	.main-content {
+		flex-direction: column;
+	}
+
+	.sidebar {
+		width: 100%;
+		flex-direction: row;
+		max-height: 150px;
+	}
+
+	.sidebar-section {
+		flex: 1;
+		min-width: 150px;
+	}
+
+	.info-panel {
+		width: 100%;
+		max-height: 200px;
+	}
+}

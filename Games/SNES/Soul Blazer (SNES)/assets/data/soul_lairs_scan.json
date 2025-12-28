@@ -1,0 +1,1602 @@
+[
+	{
+		"offset": 769,
+		"bank": 0,
+		"area": 32,
+		"enemy_type": 41,
+		"count": 15,
+		"release_type": 0
+	},
+	{
+		"offset": 2929,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 41,
+		"count": 15,
+		"release_type": 0
+	},
+	{
+		"offset": 3135,
+		"bank": 0,
+		"area": 12,
+		"enemy_type": 50,
+		"count": 3,
+		"release_type": 0
+	},
+	{
+		"offset": 3373,
+		"bank": 0,
+		"area": 12,
+		"enemy_type": 50,
+		"count": 3,
+		"release_type": 0
+	},
+	{
+		"offset": 8083,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 38,
+		"count": 2,
+		"release_type": 0
+	},
+	{
+		"offset": 8552,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 38,
+		"count": 4,
+		"release_type": 0
+	},
+	{
+		"offset": 8568,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 38,
+		"count": 8,
+		"release_type": 0
+	},
+	{
+		"offset": 8584,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 38,
+		"count": 8,
+		"release_type": 0
+	},
+	{
+		"offset": 8613,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 38,
+		"count": 8,
+		"release_type": 0
+	},
+	{
+		"offset": 8645,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 38,
+		"count": 8,
+		"release_type": 0
+	},
+	{
+		"offset": 8971,
+		"bank": 0,
+		"area": 15,
+		"enemy_type": 2,
+		"count": 3,
+		"release_type": 5
+	},
+	{
+		"offset": 8972,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 3,
+		"count": 5,
+		"release_type": 2
+	},
+	{
+		"offset": 8988,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 8989,
+		"bank": 0,
+		"area": 4,
+		"enemy_type": 2,
+		"count": 3,
+		"release_type": 5
+	},
+	{
+		"offset": 8990,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 3,
+		"count": 5,
+		"release_type": 2
+	},
+	{
+		"offset": 9006,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 9007,
+		"bank": 0,
+		"area": 4,
+		"enemy_type": 2,
+		"count": 3,
+		"release_type": 5
+	},
+	{
+		"offset": 9008,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 3,
+		"count": 5,
+		"release_type": 2
+	},
+	{
+		"offset": 9198,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 38,
+		"count": 1,
+		"release_type": 0
+	},
+	{
+		"offset": 9281,
+		"bank": 0,
+		"area": 4,
+		"enemy_type": 2,
+		"count": 3,
+		"release_type": 4
+	},
+	{
+		"offset": 9282,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 3,
+		"count": 4,
+		"release_type": 2
+	},
+	{
+		"offset": 9367,
+		"bank": 0,
+		"area": 28,
+		"enemy_type": 42,
+		"count": 3,
+		"release_type": 2
+	},
+	{
+		"offset": 9381,
+		"bank": 0,
+		"area": 4,
+		"enemy_type": 2,
+		"count": 3,
+		"release_type": 4
+	},
+	{
+		"offset": 9382,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 3,
+		"count": 4,
+		"release_type": 2
+	},
+	{
+		"offset": 9458,
+		"bank": 0,
+		"area": 28,
+		"enemy_type": 42,
+		"count": 3,
+		"release_type": 2
+	},
+	{
+		"offset": 9533,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 41,
+		"count": 3,
+		"release_type": 0
+	},
+	{
+		"offset": 9668,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 41,
+		"count": 3,
+		"release_type": 0
+	},
+	{
+		"offset": 9706,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 41,
+		"count": 3,
+		"release_type": 0
+	},
+	{
+		"offset": 9747,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 41,
+		"count": 3,
+		"release_type": 0
+	},
+	{
+		"offset": 9788,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 41,
+		"count": 3,
+		"release_type": 0
+	},
+	{
+		"offset": 11211,
+		"bank": 0,
+		"area": 43,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 15949,
+		"bank": 0,
+		"area": 8,
+		"enemy_type": 2,
+		"count": 12,
+		"release_type": 0
+	},
+	{
+		"offset": 15991,
+		"bank": 0,
+		"area": 1,
+		"enemy_type": 2,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 15992,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 2,
+		"count": 3,
+		"release_type": 4
+	},
+	{
+		"offset": 15993,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 3,
+		"count": 4,
+		"release_type": 2
+	},
+	{
+		"offset": 16650,
+		"bank": 0,
+		"area": 8,
+		"enemy_type": 2,
+		"count": 12,
+		"release_type": 0
+	},
+	{
+		"offset": 16697,
+		"bank": 0,
+		"area": 8,
+		"enemy_type": 2,
+		"count": 12,
+		"release_type": 0
+	},
+	{
+		"offset": 17102,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 21,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 17103,
+		"bank": 0,
+		"area": 21,
+		"enemy_type": 2,
+		"count": 4,
+		"release_type": 2
+	},
+	{
+		"offset": 17118,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 21,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 17119,
+		"bank": 0,
+		"area": 21,
+		"enemy_type": 2,
+		"count": 4,
+		"release_type": 2
+	},
+	{
+		"offset": 17134,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 21,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 17135,
+		"bank": 0,
+		"area": 21,
+		"enemy_type": 2,
+		"count": 4,
+		"release_type": 2
+	},
+	{
+		"offset": 17181,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 31,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 17182,
+		"bank": 0,
+		"area": 31,
+		"enemy_type": 2,
+		"count": 4,
+		"release_type": 2
+	},
+	{
+		"offset": 17230,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 31,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 17231,
+		"bank": 0,
+		"area": 31,
+		"enemy_type": 2,
+		"count": 4,
+		"release_type": 2
+	},
+	{
+		"offset": 17325,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 41,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 17408,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 41,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 17443,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 48,
+		"count": 4,
+		"release_type": 2
+	},
+	{
+		"offset": 17909,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 3,
+		"count": 16,
+		"release_type": 2
+	},
+	{
+		"offset": 18051,
+		"bank": 0,
+		"area": 4,
+		"enemy_type": 2,
+		"count": 9,
+		"release_type": 0
+	},
+	{
+		"offset": 18087,
+		"bank": 0,
+		"area": 1,
+		"enemy_type": 2,
+		"count": 7,
+		"release_type": 1
+	},
+	{
+		"offset": 18121,
+		"bank": 0,
+		"area": 4,
+		"enemy_type": 2,
+		"count": 9,
+		"release_type": 0
+	},
+	{
+		"offset": 18186,
+		"bank": 0,
+		"area": 4,
+		"enemy_type": 2,
+		"count": 9,
+		"release_type": 0
+	},
+	{
+		"offset": 18251,
+		"bank": 0,
+		"area": 4,
+		"enemy_type": 2,
+		"count": 9,
+		"release_type": 0
+	},
+	{
+		"offset": 18308,
+		"bank": 0,
+		"area": 24,
+		"enemy_type": 2,
+		"count": 7,
+		"release_type": 0
+	},
+	{
+		"offset": 18379,
+		"bank": 0,
+		"area": 24,
+		"enemy_type": 2,
+		"count": 7,
+		"release_type": 0
+	},
+	{
+		"offset": 18497,
+		"bank": 0,
+		"area": 1,
+		"enemy_type": 2,
+		"count": 7,
+		"release_type": 0
+	},
+	{
+		"offset": 18569,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 3,
+		"count": 17,
+		"release_type": 2
+	},
+	{
+		"offset": 18570,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 17,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 18571,
+		"bank": 0,
+		"area": 17,
+		"enemy_type": 2,
+		"count": 4,
+		"release_type": 2
+	},
+	{
+		"offset": 18667,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 3,
+		"count": 17,
+		"release_type": 2
+	},
+	{
+		"offset": 18668,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 17,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 18669,
+		"bank": 0,
+		"area": 17,
+		"enemy_type": 2,
+		"count": 4,
+		"release_type": 2
+	},
+	{
+		"offset": 18765,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 3,
+		"count": 17,
+		"release_type": 2
+	},
+	{
+		"offset": 18766,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 17,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 18767,
+		"bank": 0,
+		"area": 17,
+		"enemy_type": 2,
+		"count": 4,
+		"release_type": 2
+	},
+	{
+		"offset": 18863,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 3,
+		"count": 17,
+		"release_type": 2
+	},
+	{
+		"offset": 18864,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 17,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 18865,
+		"bank": 0,
+		"area": 17,
+		"enemy_type": 2,
+		"count": 4,
+		"release_type": 2
+	},
+	{
+		"offset": 19013,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 61,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 19040,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 61,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 19086,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 9,
+		"count": 1,
+		"release_type": 0
+	},
+	{
+		"offset": 19152,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 9,
+		"count": 1,
+		"release_type": 0
+	},
+	{
+		"offset": 19276,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 3,
+		"count": 12,
+		"release_type": 0
+	},
+	{
+		"offset": 19498,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 41,
+		"count": 7,
+		"release_type": 0
+	},
+	{
+		"offset": 19901,
+		"bank": 0,
+		"area": 12,
+		"enemy_type": 38,
+		"count": 3,
+		"release_type": 0
+	},
+	{
+		"offset": 20294,
+		"bank": 0,
+		"area": 46,
+		"enemy_type": 32,
+		"count": 18,
+		"release_type": 8
+	},
+	{
+		"offset": 20295,
+		"bank": 0,
+		"area": 32,
+		"enemy_type": 18,
+		"count": 8,
+		"release_type": 8
+	},
+	{
+		"offset": 20296,
+		"bank": 0,
+		"area": 18,
+		"enemy_type": 8,
+		"count": 8,
+		"release_type": 4
+	},
+	{
+		"offset": 20371,
+		"bank": 0,
+		"area": 16,
+		"enemy_type": 21,
+		"count": 2,
+		"release_type": 1
+	},
+	{
+		"offset": 20540,
+		"bank": 0,
+		"area": 46,
+		"enemy_type": 32,
+		"count": 18,
+		"release_type": 8
+	},
+	{
+		"offset": 20541,
+		"bank": 0,
+		"area": 32,
+		"enemy_type": 18,
+		"count": 8,
+		"release_type": 8
+	},
+	{
+		"offset": 20542,
+		"bank": 0,
+		"area": 18,
+		"enemy_type": 8,
+		"count": 8,
+		"release_type": 4
+	},
+	{
+		"offset": 20612,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 61,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 20717,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 3,
+		"count": 4,
+		"release_type": 2
+	},
+	{
+		"offset": 20958,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 3,
+		"count": 3,
+		"release_type": 2
+	},
+	{
+		"offset": 21004,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 3,
+		"count": 3,
+		"release_type": 2
+	},
+	{
+		"offset": 21400,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 61,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 21402,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 1
+	},
+	{
+		"offset": 21416,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 9
+	},
+	{
+		"offset": 21417,
+		"bank": 0,
+		"area": 4,
+		"enemy_type": 2,
+		"count": 9,
+		"release_type": 2
+	},
+	{
+		"offset": 21433,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 2,
+		"count": 16,
+		"release_type": 0
+	},
+	{
+		"offset": 21454,
+		"bank": 0,
+		"area": 44,
+		"enemy_type": 32,
+		"count": 2,
+		"release_type": 2
+	},
+	{
+		"offset": 21513,
+		"bank": 0,
+		"area": 17,
+		"enemy_type": 12,
+		"count": 16,
+		"release_type": 2
+	},
+	{
+		"offset": 21514,
+		"bank": 0,
+		"area": 12,
+		"enemy_type": 16,
+		"count": 2,
+		"release_type": 2
+	},
+	{
+		"offset": 21887,
+		"bank": 0,
+		"area": 46,
+		"enemy_type": 32,
+		"count": 17,
+		"release_type": 2
+	},
+	{
+		"offset": 21888,
+		"bank": 0,
+		"area": 32,
+		"enemy_type": 17,
+		"count": 2,
+		"release_type": 2
+	},
+	{
+		"offset": 21900,
+		"bank": 0,
+		"area": 46,
+		"enemy_type": 32,
+		"count": 18,
+		"release_type": 8
+	},
+	{
+		"offset": 21901,
+		"bank": 0,
+		"area": 32,
+		"enemy_type": 18,
+		"count": 8,
+		"release_type": 8
+	},
+	{
+		"offset": 21902,
+		"bank": 0,
+		"area": 18,
+		"enemy_type": 8,
+		"count": 8,
+		"release_type": 4
+	},
+	{
+		"offset": 21938,
+		"bank": 0,
+		"area": 46,
+		"enemy_type": 32,
+		"count": 18,
+		"release_type": 8
+	},
+	{
+		"offset": 21939,
+		"bank": 0,
+		"area": 32,
+		"enemy_type": 18,
+		"count": 8,
+		"release_type": 8
+	},
+	{
+		"offset": 21940,
+		"bank": 0,
+		"area": 18,
+		"enemy_type": 8,
+		"count": 8,
+		"release_type": 4
+	},
+	{
+		"offset": 21942,
+		"bank": 0,
+		"area": 8,
+		"enemy_type": 4,
+		"count": 12,
+		"release_type": 2
+	},
+	{
+		"offset": 23299,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 41,
+		"count": 15,
+		"release_type": 0
+	},
+	{
+		"offset": 25878,
+		"bank": 0,
+		"area": 1,
+		"enemy_type": 2,
+		"count": 4,
+		"release_type": 8
+	},
+	{
+		"offset": 26351,
+		"bank": 0,
+		"area": 32,
+		"enemy_type": 2,
+		"count": 16,
+		"release_type": 0
+	},
+	{
+		"offset": 26451,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 31,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 26480,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 31,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 26499,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 31,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 26500,
+		"bank": 0,
+		"area": 31,
+		"enemy_type": 2,
+		"count": 4,
+		"release_type": 2
+	},
+	{
+		"offset": 26558,
+		"bank": 0,
+		"area": 28,
+		"enemy_type": 38,
+		"count": 3,
+		"release_type": 2
+	},
+	{
+		"offset": 26559,
+		"bank": 0,
+		"area": 38,
+		"enemy_type": 3,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 26564,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 26577,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 61,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 26610,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 26623,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 33,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 26648,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 26661,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 33,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 26686,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 26699,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 33,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 26724,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 26737,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 33,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 26762,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 26775,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 33,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 26800,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 26813,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 33,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 26838,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 26851,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 33,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 26876,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 26889,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 33,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 26914,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 26927,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 33,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 26952,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 26965,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 33,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 26990,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 27003,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 33,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 27028,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 27041,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 33,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 27066,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 27079,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 33,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 27104,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 27109,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 27122,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 33,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 27131,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 31,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 28223,
+		"bank": 0,
+		"area": 12,
+		"enemy_type": 38,
+		"count": 3,
+		"release_type": 2
+	},
+	{
+		"offset": 28916,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 20,
+		"count": 9,
+		"release_type": 0
+	},
+	{
+		"offset": 29287,
+		"bank": 0,
+		"area": 12,
+		"enemy_type": 38,
+		"count": 3,
+		"release_type": 2
+	},
+	{
+		"offset": 29312,
+		"bank": 0,
+		"area": 16,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 9
+	},
+	{
+		"offset": 29313,
+		"bank": 0,
+		"area": 4,
+		"enemy_type": 2,
+		"count": 9,
+		"release_type": 5
+	},
+	{
+		"offset": 29389,
+		"bank": 0,
+		"area": 12,
+		"enemy_type": 38,
+		"count": 3,
+		"release_type": 2
+	},
+	{
+		"offset": 30476,
+		"bank": 0,
+		"area": 12,
+		"enemy_type": 38,
+		"count": 3,
+		"release_type": 2
+	},
+	{
+		"offset": 30477,
+		"bank": 0,
+		"area": 38,
+		"enemy_type": 3,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 30480,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 61,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 30487,
+		"bank": 0,
+		"area": 28,
+		"enemy_type": 38,
+		"count": 3,
+		"release_type": 2
+	},
+	{
+		"offset": 30488,
+		"bank": 0,
+		"area": 38,
+		"enemy_type": 3,
+		"count": 2,
+		"release_type": 1
+	},
+	{
+		"offset": 30514,
+		"bank": 0,
+		"area": 12,
+		"enemy_type": 38,
+		"count": 3,
+		"release_type": 2
+	},
+	{
+		"offset": 30515,
+		"bank": 0,
+		"area": 38,
+		"enemy_type": 3,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 30518,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 31,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 30519,
+		"bank": 0,
+		"area": 31,
+		"enemy_type": 2,
+		"count": 4,
+		"release_type": 0
+	},
+	{
+		"offset": 30535,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 52,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 30538,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 61,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 30542,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 49,
+		"count": 19,
+		"release_type": 2
+	},
+	{
+		"offset": 30599,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 3,
+		"count": 3,
+		"release_type": 2
+	},
+	{
+		"offset": 30600,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 3,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 30601,
+		"bank": 0,
+		"area": 3,
+		"enemy_type": 2,
+		"count": 4,
+		"release_type": 2
+	},
+	{
+		"offset": 30602,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 9
+	},
+	{
+		"offset": 30603,
+		"bank": 0,
+		"area": 4,
+		"enemy_type": 2,
+		"count": 9,
+		"release_type": 2
+	},
+	{
+		"offset": 31119,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 58,
+		"count": 2,
+		"release_type": 1
+	},
+	{
+		"offset": 31314,
+		"bank": 0,
+		"area": 18,
+		"enemy_type": 8,
+		"count": 8,
+		"release_type": 4
+	},
+	{
+		"offset": 32725,
+		"bank": 0,
+		"area": 32,
+		"enemy_type": 2,
+		"count": 10,
+		"release_type": 3
+	},
+	{
+		"offset": 32726,
+		"bank": 0,
+		"area": 2,
+		"enemy_type": 10,
+		"count": 3,
+		"release_type": 1
+	},
+	{
+		"offset": 32782,
+		"bank": 1,
+		"area": 1,
+		"enemy_type": 2,
+		"count": 3,
+		"release_type": 5
+	},
+	{
+		"offset": 32783,
+		"bank": 1,
+		"area": 2,
+		"enemy_type": 3,
+		"count": 5,
+		"release_type": 0
+	},
+	{
+		"offset": 33243,
+		"bank": 1,
+		"area": 31,
+		"enemy_type": 1,
+		"count": 1,
+		"release_type": 4
+	},
+	{
+		"offset": 33244,
+		"bank": 1,
+		"area": 1,
+		"enemy_type": 1,
+		"count": 4,
+		"release_type": 2
+	},
+	{
+		"offset": 33245,
+		"bank": 1,
+		"area": 1,
+		"enemy_type": 4,
+		"count": 2,
+		"release_type": 0
+	},
+	{
+		"offset": 33257,
+		"bank": 1,
+		"area": 31,
+		"enemy_type": 1,
+		"count": 1,
+		"release_type": 3
+	},
+	{
+		"offset": 33258,
+		"bank": 1,
+		"area": 1,
+		"enemy_type": 1,
+		"count": 3,
+		"release_type": 1
+	},
+	{
+		"offset": 33259,
+		"bank": 1,
+		"area": 1,
+		"enemy_type": 3,
+		"count": 1,
+		"release_type": 0
+	},
+	{
+		"offset": 33425,
+		"bank": 1,
+		"area": 3,
+		"enemy_type": 3,
+		"count": 2,
+		"release_type": 4
+	},
+	{
+		"offset": 33426,
+		"bank": 1,
+		"area": 3,
+		"enemy_type": 2,
+		"count": 4,
+		"release_type": 3
+	},
+	{
+		"offset": 33427,
+		"bank": 1,
+		"area": 2,
+		"enemy_type": 4,
+		"count": 3,
+		"release_type": 0
+	},
+	{
+		"offset": 34111,
+		"bank": 1,
+		"area": 3,
+		"enemy_type": 1,
+		"count": 2,
+		"release_type": 3
+	},
+	{
+		"offset": 34112,
+		"bank": 1,
+		"area": 1,
+		"enemy_type": 2,
+		"count": 3,
+		"release_type": 5
+	},
+	{
+		"offset": 34113,
+		"bank": 1,
+		"area": 2,
+		"enemy_type": 3,
+		"count": 5,
+		"release_type": 0
+	},
+	{
+		"offset": 34196,
+		"bank": 1,
+		"area": 1,
+		"enemy_type": 2,
+		"count": 3,
+		"release_type": 0
+	},
+	{
+		"offset": 34729,
+		"bank": 1,
+		"area": 1,
+		"enemy_type": 10,
+		"count": 16,
+		"release_type": 0
+	},
+	{
+		"offset": 34771,
+		"bank": 1,
+		"area": 1,
+		"enemy_type": 13,
+		"count": 18,
+		"release_type": 0
+	},
+	{
+		"offset": 34783,
+		"bank": 1,
+		"area": 31,
+		"enemy_type": 4,
+		"count": 3,
+		"release_type": 3
+	},
+	{
+		"offset": 34784,
+		"bank": 1,
+		"area": 4,
+		"enemy_type": 3,
+		"count": 3,
+		"release_type": 6
+	},
+	{
+		"offset": 34785,
+		"bank": 1,
+		"area": 3,
+		"enemy_type": 3,
+		"count": 6,
+		"release_type": 0
+	},
+	{
+		"offset": 34802,
+		"bank": 1,
+		"area": 48,
+		"enemy_type": 40,
+		"count": 1,
+		"release_type": 0
+	},
+	{
+		"offset": 34839,
+		"bank": 1,
+		"area": 31,
+		"enemy_type": 1,
+		"count": 2,
+		"release_type": 5
+	},
+	{
+		"offset": 34840,
+		"bank": 1,
+		"area": 1,
+		"enemy_type": 2,
+		"count": 5,
+		"release_type": 0
+	},
+	{
+		"offset": 34853,
+		"bank": 1,
+		"area": 31,
+		"enemy_type": 4,
+		"count": 3,
+		"release_type": 8
+	},
+	{
+		"offset": 34867,
+		"bank": 1,
+		"area": 31,
+		"enemy_type": 1,
+		"count": 2,
+		"release_type": 5
+	},
+	{
+		"offset": 34868,
+		"bank": 1,
+		"area": 1,
+		"enemy_type": 2,
+		"count": 5,
+		"release_type": 0
+	}
+]

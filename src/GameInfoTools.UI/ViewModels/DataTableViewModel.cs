@@ -210,6 +210,7 @@ public partial class DataTableViewModel : ViewModelBase {
 				foreach (var field in Fields) {
 					sb.Append($" !! {field.Name}");
 				}
+
 				sb.AppendLine();
 
 				// Data rows
@@ -228,6 +229,7 @@ public partial class DataTableViewModel : ViewModelBase {
 							sb.Append(" || ");
 						}
 					}
+
 					sb.AppendLine();
 				}
 
@@ -240,6 +242,7 @@ public partial class DataTableViewModel : ViewModelBase {
 				for (int i = 0; i < Records.Count; i++) {
 					sb.AppendLine(string.Join(",", new[] { i.ToString() }.Concat(Records[i].Values.Select(v => $"\"{v}\""))));
 				}
+
 				content = sb.ToString();
 			} else {
 				// Export as JSON

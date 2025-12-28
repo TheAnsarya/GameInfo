@@ -191,6 +191,7 @@ public partial class PaletteEditorViewModel : ViewModelBase {
 		if (_currentPalette.SourceAddress.HasValue) {
 			RomOffset = _currentPalette.SourceAddress.Value;
 		}
+
 		RefreshColorDisplay();
 		StatusText = $"Loaded palette: {palette.Name}";
 	}

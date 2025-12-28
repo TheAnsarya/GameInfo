@@ -1,0 +1,1138 @@
+{
+	"metadata": {
+		"game": "Robotrek",
+		"platform": "SNES",
+		"region": "USA",
+		"extracted_date": "2025-12-23T17:23:47.168403",
+		"extractor_version": "1.0"
+	},
+	"rom_info": {
+		"internal_name": "ROBOTREK 1 USA",
+		"file_size": 1572864,
+		"file_size_hex": "$180000",
+		"mapper_byte": "$31",
+		"mapper_type": "HiROM + FastROM",
+		"rom_size_code": 11,
+		"sram_size_code": 3,
+		"crc32": "7ad4aadc",
+		"sha1": "e315830e71cc6da91234813f70835d26802c0ea1",
+		"md5": "e85702f5d32e03a7cbae1154ee5083ce"
+	},
+	"data_tables": {
+		"items": {
+			"name_table_start": "$01e413",
+			"count": 83,
+			"entries": [
+				{
+					"index": 0,
+					"hex_index": "$00",
+					"name_address": "$01e413",
+					"name": "Nothing"
+				},
+				{
+					"index": 1,
+					"hex_index": "$01",
+					"name_address": "$01e41b",
+					"name": "Sword 1"
+				},
+				{
+					"index": 2,
+					"hex_index": "$02",
+					"name_address": "$01e423",
+					"name": "Sword 2"
+				},
+				{
+					"index": 3,
+					"hex_index": "$03",
+					"name_address": "$01e42b",
+					"name": "Sword 3"
+				},
+				{
+					"index": 4,
+					"hex_index": "$04",
+					"name_address": "$01e433",
+					"name": "Sword 4"
+				},
+				{
+					"index": 5,
+					"hex_index": "$05",
+					"name_address": "$01e43b",
+					"name": "Axe 1"
+				},
+				{
+					"index": 6,
+					"hex_index": "$06",
+					"name_address": "$01e441",
+					"name": "Axe 2"
+				},
+				{
+					"index": 7,
+					"hex_index": "$07",
+					"name_address": "$01e447",
+					"name": "Axe 3"
+				},
+				{
+					"index": 8,
+					"hex_index": "$08",
+					"name_address": "$01e44d",
+					"name": "Blade 1"
+				},
+				{
+					"index": 9,
+					"hex_index": "$09",
+					"name_address": "$01e455",
+					"name": "Blade 2"
+				},
+				{
+					"index": 10,
+					"hex_index": "$0a",
+					"name_address": "$01e45d",
+					"name": "Blade 3"
+				},
+				{
+					"index": 11,
+					"hex_index": "$0b",
+					"name_address": "$01e465",
+					"name": "Blade 4"
+				},
+				{
+					"index": 12,
+					"hex_index": "$0c",
+					"name_address": "$01e46d",
+					"name": "Hammer 1"
+				},
+				{
+					"index": 13,
+					"hex_index": "$0d",
+					"name_address": "$01e476",
+					"name": "Hammer 2"
+				},
+				{
+					"index": 14,
+					"hex_index": "$0e",
+					"name_address": "$01e47f",
+					"name": "Hammer 3"
+				},
+				{
+					"index": 15,
+					"hex_index": "$0f",
+					"name_address": "$01e488",
+					"name": "Celtis 1"
+				},
+				{
+					"index": 16,
+					"hex_index": "$10",
+					"name_address": "$01e491",
+					"name": "Celtis 2"
+				},
+				{
+					"index": 17,
+					"hex_index": "$11",
+					"name_address": "$01e49a",
+					"name": "Celtis 3"
+				},
+				{
+					"index": 18,
+					"hex_index": "$12",
+					"name_address": "$01e4a3",
+					"name": "Punch 1"
+				},
+				{
+					"index": 19,
+					"hex_index": "$13",
+					"name_address": "$01e4ab",
+					"name": "Punch 2"
+				},
+				{
+					"index": 20,
+					"hex_index": "$14",
+					"name_address": "$01e4b3",
+					"name": "Punch 3"
+				},
+				{
+					"index": 21,
+					"hex_index": "$15",
+					"name_address": "$01e4bb",
+					"name": "Blow 1"
+				},
+				{
+					"index": 22,
+					"hex_index": "$16",
+					"name_address": "$01e4c2",
+					"name": "Blow 2"
+				},
+				{
+					"index": 23,
+					"hex_index": "$17",
+					"name_address": "$01e4c9",
+					"name": "Blow 3"
+				},
+				{
+					"index": 24,
+					"hex_index": "$18",
+					"name_address": "$01e4d0",
+					"name": "Shot 1"
+				},
+				{
+					"index": 25,
+					"hex_index": "$19",
+					"name_address": "$01e4d7",
+					"name": "Shot 2"
+				},
+				{
+					"index": 26,
+					"hex_index": "$1a",
+					"name_address": "$01e4de",
+					"name": "Shot 3"
+				},
+				{
+					"index": 27,
+					"hex_index": "$1b",
+					"name_address": "$01e4e5",
+					"name": "Laser 1"
+				},
+				{
+					"index": 28,
+					"hex_index": "$1c",
+					"name_address": "$01e4ed",
+					"name": "Laser 2"
+				},
+				{
+					"index": 29,
+					"hex_index": "$1d",
+					"name_address": "$01e4f5",
+					"name": "Laser 3"
+				},
+				{
+					"index": 30,
+					"hex_index": "$1e",
+					"name_address": "$01e4fd",
+					"name": "Bomb 1"
+				},
+				{
+					"index": 31,
+					"hex_index": "$1f",
+					"name_address": "$01e504",
+					"name": "Bomb 2"
+				},
+				{
+					"index": 32,
+					"hex_index": "$20",
+					"name_address": "$01e50b",
+					"name": "Bomb 3"
+				},
+				{
+					"index": 33,
+					"hex_index": "$21",
+					"name_address": "$01e512",
+					"name": "Bomb 4"
+				},
+				{
+					"index": 34,
+					"hex_index": "$22",
+					"name_address": "$01e519",
+					"name": "Shield 1"
+				},
+				{
+					"index": 35,
+					"hex_index": "$23",
+					"name_address": "$01e522",
+					"name": "Shield 2"
+				},
+				{
+					"index": 36,
+					"hex_index": "$24",
+					"name_address": "$01e52b",
+					"name": "Shield 3"
+				},
+				{
+					"index": 37,
+					"hex_index": "$25",
+					"name_address": "$01e534",
+					"name": "Shield 4"
+				},
+				{
+					"index": 38,
+					"hex_index": "$26",
+					"name_address": "$01e53d",
+					"name": "Shield 5"
+				},
+				{
+					"index": 39,
+					"hex_index": "$27",
+					"name_address": "$01e546",
+					"name": "Empty Pack"
+				},
+				{
+					"index": 40,
+					"hex_index": "$28",
+					"name_address": "$01e551",
+					"name": "Power Pack"
+				},
+				{
+					"index": 41,
+					"hex_index": "$29",
+					"name_address": "$01e55c",
+					"name": "Shield Pack"
+				},
+				{
+					"index": 42,
+					"hex_index": "$2a",
+					"name_address": "$01e568",
+					"name": "Turbo Pack"
+				},
+				{
+					"index": 43,
+					"hex_index": "$2b",
+					"name_address": "$01e573",
+					"name": "Solar Pack"
+				},
+				{
+					"index": 44,
+					"hex_index": "$2c",
+					"name_address": "$01e57e",
+					"name": "Quick Pack"
+				},
+				{
+					"index": 45,
+					"hex_index": "$2d",
+					"name_address": "$01e589",
+					"name": "Boots 1"
+				},
+				{
+					"index": 46,
+					"hex_index": "$2e",
+					"name_address": "$01e591",
+					"name": "Boots 2"
+				},
+				{
+					"index": 47,
+					"hex_index": "$2f",
+					"name_address": "$01e599",
+					"name": "Boots 3"
+				},
+				{
+					"index": 48,
+					"hex_index": "$30",
+					"name_address": "$01e5a1",
+					"name": "Boots 4"
+				},
+				{
+					"index": 49,
+					"hex_index": "$31",
+					"name_address": "$01e5a9",
+					"name": "Boots 5"
+				},
+				{
+					"index": 50,
+					"hex_index": "$32",
+					"name_address": "$01e5b1",
+					"name": "Boots 6"
+				},
+				{
+					"index": 51,
+					"hex_index": "$33",
+					"name_address": "$01e5b9",
+					"name": "Transiver"
+				},
+				{
+					"index": 52,
+					"hex_index": "$34",
+					"name_address": "$01e5c3",
+					"name": "Horn"
+				},
+				{
+					"index": 53,
+					"hex_index": "$35",
+					"name_address": "$01e5c8",
+					"name": "Drill"
+				},
+				{
+					"index": 54,
+					"hex_index": "$36",
+					"name_address": "$01e5ce",
+					"name": "Vanish"
+				},
+				{
+					"index": 55,
+					"hex_index": "$37",
+					"name_address": "$01e5d5",
+					"name": "Change"
+				},
+				{
+					"index": 56,
+					"hex_index": "$38",
+					"name_address": "$01e5dc",
+					"name": "Glasses"
+				},
+				{
+					"index": 57,
+					"hex_index": "$39",
+					"name_address": "$01e5e4",
+					"name": "Key"
+				},
+				{
+					"index": 58,
+					"hex_index": "$3a",
+					"name_address": "$01e5e8",
+					"name": "Little Robot"
+				},
+				{
+					"index": 59,
+					"hex_index": "$3b",
+					"name_address": "$01e5f5",
+					"name": "Light"
+				},
+				{
+					"index": 60,
+					"hex_index": "$3c",
+					"name_address": "$01e5fb",
+					"name": "Seed"
+				},
+				{
+					"index": 61,
+					"hex_index": "$3d",
+					"name_address": "$01e600",
+					"name": "Blimb"
+				},
+				{
+					"index": 62,
+					"hex_index": "$3e",
+					"name_address": "$01e606",
+					"name": "S/ship"
+				},
+				{
+					"index": 63,
+					"hex_index": "$3f",
+					"name_address": "$01e60d",
+					"name": "Warp System"
+				},
+				{
+					"index": 64,
+					"hex_index": "$40",
+					"name_address": "$01e619",
+					"name": "Relay"
+				},
+				{
+					"index": 65,
+					"hex_index": "$41",
+					"name_address": "$01e61f",
+					"name": "Cyber Jack"
+				},
+				{
+					"index": 66,
+					"hex_index": "$42",
+					"name_address": "$01e62a",
+					"name": "Red Jar"
+				},
+				{
+					"index": 67,
+					"hex_index": "$43",
+					"name_address": "$01e632",
+					"name": "Blue Jar"
+				},
+				{
+					"index": 68,
+					"hex_index": "$44",
+					"name_address": "$01e63b",
+					"name": "Yel Jar"
+				},
+				{
+					"index": 69,
+					"hex_index": "$45",
+					"name_address": "$01e643",
+					"name": "Jewel"
+				},
+				{
+					"index": 70,
+					"hex_index": "$46",
+					"name_address": "$01e649",
+					"name": "Letter"
+				},
+				{
+					"index": 71,
+					"hex_index": "$47",
+					"name_address": "$01e650",
+					"name": "Litho"
+				},
+				{
+					"index": 72,
+					"hex_index": "$48",
+					"name_address": "$01e656",
+					"name": "Leader`s Badge"
+				},
+				{
+					"index": 73,
+					"hex_index": "$49",
+					"name_address": "$01e665",
+					"name": "Badge 2"
+				},
+				{
+					"index": 74,
+					"hex_index": "$4a",
+					"name_address": "$01e66d",
+					"name": "Stone 1"
+				},
+				{
+					"index": 75,
+					"hex_index": "$4b",
+					"name_address": "$01e675",
+					"name": "Stone 2"
+				},
+				{
+					"index": 76,
+					"hex_index": "$4c",
+					"name_address": "$01e67d",
+					"name": "Stone 3"
+				},
+				{
+					"index": 77,
+					"hex_index": "$4d",
+					"name_address": "$01e685",
+					"name": "Red Flower"
+				},
+				{
+					"index": 78,
+					"hex_index": "$4e",
+					"name_address": "$01e690",
+					"name": "Sphere"
+				},
+				{
+					"index": 79,
+					"hex_index": "$4f",
+					"name_address": "$01e697",
+					"name": "Rusty Drill"
+				},
+				{
+					"index": 80,
+					"hex_index": "$50",
+					"name_address": "$01e6a3",
+					"name": "Scrap A"
+				},
+				{
+					"index": 81,
+					"hex_index": "$51",
+					"name_address": "$01e6ab",
+					"name": "Scrap B"
+				},
+				{
+					"index": 82,
+					"hex_index": "$52",
+					"name_address": "$01e6b3",
+					"name": "Scrap 1"
+				}
+			]
+		},
+		"enemies": {
+			"name_table_start": "$01fdbe",
+			"count": 56,
+			"entries": [
+				{
+					"index": 0,
+					"hex_index": "$00",
+					"name_address": "$01fdbe",
+					"name": "Mine",
+					"display_name": "Mine"
+				},
+				{
+					"index": 1,
+					"hex_index": "$01",
+					"name_address": "$01fdc3",
+					"name": "Turbo",
+					"display_name": "Turbo"
+				},
+				{
+					"index": 2,
+					"hex_index": "$02",
+					"name_address": "$01fdc9",
+					"name": "Mushroom",
+					"display_name": "Mushroom"
+				},
+				{
+					"index": 3,
+					"hex_index": "$03",
+					"name_address": "$01fdd2",
+					"name": "Poison",
+					"display_name": "Poison"
+				},
+				{
+					"index": 4,
+					"hex_index": "$04",
+					"name_address": "$01fdd9",
+					"name": "Spider",
+					"display_name": "Spider"
+				},
+				{
+					"index": 5,
+					"hex_index": "$05",
+					"name_address": "$01fde0",
+					"name": "Spider",
+					"display_name": "Spider (2)"
+				},
+				{
+					"index": 6,
+					"hex_index": "$06",
+					"name_address": "$01fde7",
+					"name": "Gel",
+					"display_name": "Gel"
+				},
+				{
+					"index": 7,
+					"hex_index": "$07",
+					"name_address": "$01fdeb",
+					"name": "Gelgel",
+					"display_name": "Gelgel"
+				},
+				{
+					"index": 8,
+					"hex_index": "$08",
+					"name_address": "$01fdf2",
+					"name": "Bosstoad",
+					"display_name": "Bosstoad"
+				},
+				{
+					"index": 9,
+					"hex_index": "$09",
+					"name_address": "$01fdfb",
+					"name": "Rushbird",
+					"display_name": "Rushbird"
+				},
+				{
+					"index": 10,
+					"hex_index": "$0a",
+					"name_address": "$01fe04",
+					"name": "Quickbird",
+					"display_name": "Quickbird"
+				},
+				{
+					"index": 11,
+					"hex_index": "$0b",
+					"name_address": "$01fe0e",
+					"name": "Mole",
+					"display_name": "Mole"
+				},
+				{
+					"index": 12,
+					"hex_index": "$0c",
+					"name_address": "$01fe13",
+					"name": "Powermole",
+					"display_name": "Powermole"
+				},
+				{
+					"index": 13,
+					"hex_index": "$0d",
+					"name_address": "$01fe1d",
+					"name": "Tackler",
+					"display_name": "Tackler"
+				},
+				{
+					"index": 14,
+					"hex_index": "$0e",
+					"name_address": "$01fe25",
+					"name": "Plasmoke",
+					"display_name": "Plasmoke"
+				},
+				{
+					"index": 15,
+					"hex_index": "$0f",
+					"name_address": "$01fe2e",
+					"name": "Elesmoke",
+					"display_name": "Elesmoke"
+				},
+				{
+					"index": 16,
+					"hex_index": "$10",
+					"name_address": "$01fe37",
+					"name": "Monk",
+					"display_name": "Monk"
+				},
+				{
+					"index": 17,
+					"hex_index": "$11",
+					"name_address": "$01fe3c",
+					"name": "Mummy",
+					"display_name": "Mummy"
+				},
+				{
+					"index": 18,
+					"hex_index": "$12",
+					"name_address": "$01fe42",
+					"name": "Franken",
+					"display_name": "Franken"
+				},
+				{
+					"index": 19,
+					"hex_index": "$13",
+					"name_address": "$01fe4a",
+					"name": "Ho Ho",
+					"display_name": "Ho Ho"
+				},
+				{
+					"index": 20,
+					"hex_index": "$14",
+					"name_address": "$01fe50",
+					"name": "Gator",
+					"display_name": "Gator"
+				},
+				{
+					"index": 21,
+					"hex_index": "$15",
+					"name_address": "$01fe56",
+					"name": "Gunrobot",
+					"display_name": "Gunrobot"
+				},
+				{
+					"index": 22,
+					"hex_index": "$16",
+					"name_address": "$01fe5f",
+					"name": "CannonX",
+					"display_name": "CannonX"
+				},
+				{
+					"index": 23,
+					"hex_index": "$17",
+					"name_address": "$01fe67",
+					"name": "Biolion",
+					"display_name": "Biolion"
+				},
+				{
+					"index": 24,
+					"hex_index": "$18",
+					"name_address": "$01fe6f",
+					"name": "Shell",
+					"display_name": "Shell"
+				},
+				{
+					"index": 25,
+					"hex_index": "$19",
+					"name_address": "$01fe75",
+					"name": "Urchin",
+					"display_name": "Urchin"
+				},
+				{
+					"index": 26,
+					"hex_index": "$1a",
+					"name_address": "$01fe7c",
+					"name": "Luckstar",
+					"display_name": "Luckstar"
+				},
+				{
+					"index": 27,
+					"hex_index": "$1b",
+					"name_address": "$01fe85",
+					"name": "Angler",
+					"display_name": "Angler"
+				},
+				{
+					"index": 28,
+					"hex_index": "$1c",
+					"name_address": "$01fe8c",
+					"name": "Octopus",
+					"display_name": "Octopus"
+				},
+				{
+					"index": 29,
+					"hex_index": "$1d",
+					"name_address": "$01fe94",
+					"name": "Pumpy",
+					"display_name": "Pumpy"
+				},
+				{
+					"index": 30,
+					"hex_index": "$1e",
+					"name_address": "$01fe9a",
+					"name": "Bumpy",
+					"display_name": "Bumpy"
+				},
+				{
+					"index": 31,
+					"hex_index": "$1f",
+					"name_address": "$01fea0",
+					"name": "Faceman",
+					"display_name": "Faceman"
+				},
+				{
+					"index": 32,
+					"hex_index": "$20",
+					"name_address": "$01fea8",
+					"name": "Bigface",
+					"display_name": "Bigface"
+				},
+				{
+					"index": 33,
+					"hex_index": "$21",
+					"name_address": "$01feb0",
+					"name": "Redpixy",
+					"display_name": "Redpixy"
+				},
+				{
+					"index": 34,
+					"hex_index": "$22",
+					"name_address": "$01feb8",
+					"name": "Whitepixy",
+					"display_name": "Whitepixy"
+				},
+				{
+					"index": 35,
+					"hex_index": "$23",
+					"name_address": "$01fec2",
+					"name": "Goldpixy",
+					"display_name": "Goldpixy"
+				},
+				{
+					"index": 36,
+					"hex_index": "$24",
+					"name_address": "$01fecb",
+					"name": "Knight",
+					"display_name": "Knight"
+				},
+				{
+					"index": 37,
+					"hex_index": "$25",
+					"name_address": "$01fed2",
+					"name": "Master",
+					"display_name": "Master"
+				},
+				{
+					"index": 38,
+					"hex_index": "$26",
+					"name_address": "$01fed9",
+					"name": "Gagarian",
+					"display_name": "Gagarian"
+				},
+				{
+					"index": 39,
+					"hex_index": "$27",
+					"name_address": "$01fee2",
+					"name": "Ninja",
+					"display_name": "Ninja"
+				},
+				{
+					"index": 40,
+					"hex_index": "$28",
+					"name_address": "$01fee8",
+					"name": "Beeper",
+					"display_name": "Beeper"
+				},
+				{
+					"index": 41,
+					"hex_index": "$29",
+					"name_address": "$01feef",
+					"name": "Cmdr.",
+					"display_name": "Cmdr."
+				},
+				{
+					"index": 42,
+					"hex_index": "$2a",
+					"name_address": "$01fef5",
+					"name": "Masker",
+					"display_name": "Masker"
+				},
+				{
+					"index": 43,
+					"hex_index": "$2b",
+					"name_address": "$01fefc",
+					"name": "Beret",
+					"display_name": "Beret"
+				},
+				{
+					"index": 44,
+					"hex_index": "$2c",
+					"name_address": "$01ff02",
+					"name": "Meta Crab",
+					"display_name": "Meta Crab"
+				},
+				{
+					"index": 45,
+					"hex_index": "$2d",
+					"name_address": "$01ff0c",
+					"name": "Smallcrab",
+					"display_name": "Smallcrab"
+				},
+				{
+					"index": 46,
+					"hex_index": "$2e",
+					"name_address": "$01ff16",
+					"name": "Mamurana",
+					"display_name": "Mamurana"
+				},
+				{
+					"index": 47,
+					"hex_index": "$2f",
+					"name_address": "$01ff1f",
+					"name": "Big Eye",
+					"display_name": "Big Eye"
+				},
+				{
+					"index": 48,
+					"hex_index": "$30",
+					"name_address": "$01ff27",
+					"name": "Blacktank",
+					"display_name": "Blacktank"
+				},
+				{
+					"index": 49,
+					"hex_index": "$31",
+					"name_address": "$01ff31",
+					"name": "Gateau",
+					"display_name": "Gateau"
+				},
+				{
+					"index": 50,
+					"hex_index": "$32",
+					"name_address": "$01ff38",
+					"name": "Soldier",
+					"display_name": "Soldier"
+				},
+				{
+					"index": 51,
+					"hex_index": "$33",
+					"name_address": "$01ff40",
+					"name": "Gateau",
+					"display_name": "Gateau (2)"
+				},
+				{
+					"index": 52,
+					"hex_index": "$34",
+					"name_address": "$01ff47",
+					"name": "De Rose",
+					"display_name": "De Rose"
+				},
+				{
+					"index": 53,
+					"hex_index": "$35",
+					"name_address": "$01ff4f",
+					"name": "Papamecha",
+					"display_name": "Papamecha"
+				},
+				{
+					"index": 54,
+					"hex_index": "$36",
+					"name_address": "$01ff59",
+					"name": "Bugbug",
+					"display_name": "Bugbug"
+				},
+				{
+					"index": 55,
+					"hex_index": "$37",
+					"name_address": "$01ff60",
+					"name": "Cmdr.",
+					"display_name": "Cmdr. (2)"
+				}
+			]
+		},
+		"recipes": {
+			"table_address": "$01c200",
+			"table_size": 512,
+			"format_notes": [
+				"Recipe table uses marker bytes $68-$79 for categories",
+				"$FF marks section boundaries",
+				"Same-item format: [A A B] means A + A = B",
+				"Chain format for upgrades: [05 05 06 06 07] = Sword 1->2->3"
+			],
+			"same_item_recipes": [
+				{
+					"item1": "Smoke",
+					"item2": "Smoke",
+					"result": "Cure"
+				},
+				{
+					"item1": "Sword 1",
+					"item2": "Sword 1",
+					"result": "Sword 2"
+				},
+				{
+					"item1": "Sword 2",
+					"item2": "Sword 2",
+					"result": "Sword 3"
+				},
+				{
+					"item1": "Sword 3",
+					"item2": "Sword 3",
+					"result": "Sword 4"
+				},
+				{
+					"item1": "Axe 1",
+					"item2": "Axe 1",
+					"result": "Axe 2"
+				},
+				{
+					"item1": "Axe 2",
+					"item2": "Axe 2",
+					"result": "Axe 3"
+				},
+				{
+					"item1": "Blade 1",
+					"item2": "Blade 1",
+					"result": "Blade 2"
+				},
+				{
+					"item1": "Blade 2",
+					"item2": "Blade 2",
+					"result": "Blade 3"
+				},
+				{
+					"item1": "Blade 3",
+					"item2": "Blade 3",
+					"result": "Blade 4"
+				},
+				{
+					"item1": "Hammer 1",
+					"item2": "Hammer 1",
+					"result": "Hammer 2"
+				},
+				{
+					"item1": "Hammer 2",
+					"item2": "Hammer 2",
+					"result": "Hammer 3"
+				},
+				{
+					"item1": "Hammer 3",
+					"item2": "Hammer 3",
+					"result": "Celtis 1"
+				},
+				{
+					"item1": "Celtis 1",
+					"item2": "Celtis 1",
+					"result": "Celtis 2"
+				},
+				{
+					"item1": "Celtis 2",
+					"item2": "Celtis 2",
+					"result": "Celtis 3"
+				},
+				{
+					"item1": "Punch 1",
+					"item2": "Punch 1",
+					"result": "Punch 2"
+				},
+				{
+					"item1": "Punch 2",
+					"item2": "Punch 2",
+					"result": "Punch 3"
+				},
+				{
+					"item1": "Punch 3",
+					"item2": "Punch 3",
+					"result": "Blow 1"
+				},
+				{
+					"item1": "Blow 1",
+					"item2": "Blow 1",
+					"result": "Blow 2"
+				},
+				{
+					"item1": "Blow 2",
+					"item2": "Blow 2",
+					"result": "Blow 3"
+				},
+				{
+					"item1": "Shot 1",
+					"item2": "Shot 1",
+					"result": "Shot 2"
+				},
+				{
+					"item1": "Shot 2",
+					"item2": "Shot 2",
+					"result": "Shot 3"
+				},
+				{
+					"item1": "Laser 1",
+					"item2": "Laser 1",
+					"result": "Laser 2"
+				},
+				{
+					"item1": "Laser 2",
+					"item2": "Laser 2",
+					"result": "Laser 3"
+				},
+				{
+					"item1": "Bomb 1",
+					"item2": "Bomb 1",
+					"result": "Bomb 2"
+				},
+				{
+					"item1": "Bomb 2",
+					"item2": "Bomb 2",
+					"result": "Bomb 3"
+				},
+				{
+					"item1": "Bomb 3",
+					"item2": "Bomb 3",
+					"result": "Bomb 4"
+				},
+				{
+					"item1": "Shield 1",
+					"item2": "Shield 1",
+					"result": "Shield 2"
+				},
+				{
+					"item1": "Shield 2",
+					"item2": "Shield 2",
+					"result": "Shield 3"
+				},
+				{
+					"item1": "Shield 3",
+					"item2": "Shield 3",
+					"result": "Shield 4"
+				},
+				{
+					"item1": "Shield 4",
+					"item2": "Shield 4",
+					"result": "Shield 5"
+				},
+				{
+					"item1": "Pack 1",
+					"item2": "Pack 1",
+					"result": "Pack 2"
+				},
+				{
+					"item1": "Pack 2",
+					"item2": "Pack 2",
+					"result": "Pack 3"
+				},
+				{
+					"item1": "Pack 3",
+					"item2": "Pack 3",
+					"result": "Pack 4"
+				},
+				{
+					"item1": "Pack 4",
+					"item2": "Pack 4",
+					"result": "Pack 5"
+				},
+				{
+					"item1": "Pack 5",
+					"item2": "Pack 5",
+					"result": "Pack 6"
+				},
+				{
+					"item1": "Boots 1",
+					"item2": "Boots 1",
+					"result": "Boots 2"
+				},
+				{
+					"item1": "Boots 2",
+					"item2": "Boots 2",
+					"result": "Boots 3"
+				},
+				{
+					"item1": "Boots 3",
+					"item2": "Boots 3",
+					"result": "Boots 4"
+				},
+				{
+					"item1": "Boots 4",
+					"item2": "Boots 4",
+					"result": "Boots 5"
+				},
+				{
+					"item1": "Boots 5",
+					"item2": "Boots 5",
+					"result": "Boots 6"
+				}
+			],
+			"total_recipes": 40
+		}
+	}
+}

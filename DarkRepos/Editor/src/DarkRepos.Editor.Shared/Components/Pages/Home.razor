@@ -1,0 +1,85 @@
+@page "/"
+
+<PageTitle>Dark Repos Editor</PageTitle>
+
+<div class="home">
+	<h1>Dark Repos Editor</h1>
+	<p class="subtitle">Web-based ROM editing suite for retro game systems</p>
+
+	<section class="quick-start">
+		<h2>Quick Start</h2>
+		<div class="actions">
+			<button class="btn btn-primary" @onclick="OpenRom">
+				<span class="icon">📂</span>
+				Open ROM
+			</button>
+			<button class="btn btn-secondary" @onclick="NewProject">
+				<span class="icon">➕</span>
+				New Project
+			</button>
+			<button class="btn btn-secondary" @onclick="OpenRecent">
+				<span class="icon">🕐</span>
+				Recent Projects
+			</button>
+		</div>
+	</section>
+
+	<section class="features">
+		<h2>Features</h2>
+		<div class="feature-grid">
+			<div class="feature-card">
+				<h3>📊 Hex Editor</h3>
+				<p>Full-featured hex editing with search, bookmarks, and undo/redo.</p>
+			</div>
+			<div class="feature-card">
+				<h3>🔧 Disassembler</h3>
+				<p>6502/65816 disassembly with label management and cross-references.</p>
+			</div>
+			<div class="feature-card">
+				<h3>🎨 CHR Editor</h3>
+				<p>Visual tile and sprite editing with palette support.</p>
+			</div>
+			<div class="feature-card">
+				<h3>📝 Text Editor</h3>
+				<p>Game text extraction and editing with TBL file support.</p>
+			</div>
+			<div class="feature-card">
+				<h3>🗺️ Map Editor</h3>
+				<p>Tilemap editing with layer and event support.</p>
+			</div>
+			<div class="feature-card">
+				<h3>📊 CDL Viewer</h3>
+				<p>Code/data coverage visualization from emulator logs.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="supported-systems">
+		<h2>Supported Systems</h2>
+		<div class="system-list">
+			<span class="system-badge">NES</span>
+			<span class="system-badge">SNES</span>
+			<span class="system-badge">Game Boy</span>
+			<span class="system-badge">GBA</span>
+			<span class="system-badge">Genesis</span>
+			<span class="system-badge">Master System</span>
+		</div>
+	</section>
+</div>
+
+@code {
+	private void OpenRom()
+	{
+		// TODO: Implement ROM file picker
+	}
+
+	private void NewProject()
+	{
+		// TODO: Navigate to new project wizard
+	}
+
+	private void OpenRecent()
+	{
+		// TODO: Show recent projects dialog
+	}
+}

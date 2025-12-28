@@ -1,0 +1,213 @@
+{
+	"map_metadata": {
+		"region": "$0d8000-$0d930f",
+		"size": 4879,
+		"sample_pointers": [
+			"$7fff",
+			"$0102",
+			"$cc00",
+			"$073c",
+			"$0102",
+			"$b701",
+			"$026d",
+			"$0102",
+			"$2102",
+			"$060d",
+			"$0102",
+			"$9003",
+			"$02c0",
+			"$0102",
+			"$ee04",
+			"$065f",
+			"$0102",
+			"$eb05",
+			"$05ae",
+			"$0102",
+			"$4e06",
+			"$0626",
+			"$0102",
+			"$c107",
+			"$02c8",
+			"$0102",
+			"$d208",
+			"$0326",
+			"$0102",
+			"$a009",
+			"$0337",
+			"$0102"
+		],
+		"unique_pointers": 44,
+		"common_4byte_patterns": {
+			"0008000c": 19,
+			"05021001": 15,
+			"20002000": 14,
+			"00110210": 13,
+			"07200020": 11,
+			"80001000": 10,
+			"00080000": 9,
+			"00200001": 8,
+			"40004010": 8,
+			"01021001": 8
+		}
+	},
+	"tileset_regions": [
+		{
+			"offset": "$000000",
+			"end": "$000622",
+			"size": 1570,
+			"description": "Map tileset 1",
+			"header_hex": "00 08 80 41 1d e9 01 93",
+			"potential_decomp_size_16": 2048
+		},
+		{
+			"offset": "$000623",
+			"end": "$000c3e",
+			"size": 1563,
+			"description": "Map tileset 2",
+			"header_hex": "00 08 80 41 9d e9 01 7b",
+			"potential_decomp_size_16": 2048
+		},
+		{
+			"offset": "$000c3f",
+			"end": "$00124d",
+			"size": 1550,
+			"description": "Map tileset 3",
+			"header_hex": "00 08 80 41 9d e9 01 7b",
+			"potential_decomp_size_16": 2048
+		},
+		{
+			"offset": "$00124e",
+			"end": "$001844",
+			"size": 1526,
+			"description": "Map tileset 4",
+			"header_hex": "00 08 80 41 1d e9 01 93",
+			"potential_decomp_size_16": 2048
+		},
+		{
+			"offset": "$001845",
+			"end": "$001e2e",
+			"size": 1513,
+			"description": "Map tileset 5",
+			"header_hex": "00 08 80 41 1d e9 01 83",
+			"potential_decomp_size_16": 2048
+		},
+		{
+			"offset": "$001e2f",
+			"end": "$0023e7",
+			"size": 1464,
+			"description": "Map tileset 6",
+			"header_hex": "00 08 80 41 9d e9 01 93",
+			"potential_decomp_size_16": 2048
+		},
+		{
+			"offset": "$0023e8",
+			"end": "$00296a",
+			"size": 1410,
+			"description": "Map arrangement 1",
+			"header_hex": "03 03 00 09 b9 dc ae 96",
+			"potential_decomp_size_16": 771
+		}
+	],
+	"potential_pointer_tables": [
+		{
+			"offset": "$00121c",
+			"bank": "$00",
+			"valid_pointers": 28
+		},
+		{
+			"offset": "$00121e",
+			"bank": "$00",
+			"valid_pointers": 28
+		},
+		{
+			"offset": "$001220",
+			"bank": "$00",
+			"valid_pointers": 28
+		},
+		{
+			"offset": "$001222",
+			"bank": "$00",
+			"valid_pointers": 28
+		},
+		{
+			"offset": "$001224",
+			"bank": "$00",
+			"valid_pointers": 28
+		},
+		{
+			"offset": "$010d24",
+			"bank": "$01",
+			"valid_pointers": 28
+		},
+		{
+			"offset": "$010d26",
+			"bank": "$01",
+			"valid_pointers": 28
+		},
+		{
+			"offset": "$010d28",
+			"bank": "$01",
+			"valid_pointers": 28
+		},
+		{
+			"offset": "$010d2a",
+			"bank": "$01",
+			"valid_pointers": 28
+		},
+		{
+			"offset": "$010d2c",
+			"bank": "$01",
+			"valid_pointers": 28
+		},
+		{
+			"offset": "$010d2e",
+			"bank": "$01",
+			"valid_pointers": 28
+		},
+		{
+			"offset": "$010d30",
+			"bank": "$01",
+			"valid_pointers": 28
+		},
+		{
+			"offset": "$010d32",
+			"bank": "$01",
+			"valid_pointers": 28
+		},
+		{
+			"offset": "$010d34",
+			"bank": "$01",
+			"valid_pointers": 28
+		},
+		{
+			"offset": "$010d36",
+			"bank": "$01",
+			"valid_pointers": 28
+		},
+		{
+			"offset": "$010d38",
+			"bank": "$01",
+			"valid_pointers": 28
+		},
+		{
+			"offset": "$010d3a",
+			"bank": "$01",
+			"valid_pointers": 28
+		},
+		{
+			"offset": "$010d3c",
+			"bank": "$01",
+			"valid_pointers": 28
+		},
+		{
+			"offset": "$010d3e",
+			"bank": "$01",
+			"valid_pointers": 28
+		},
+		{
+			"offset": "$010d56",
+			"bank": "$01",
+			"valid_pointers": 28
+		}
+	]
+}

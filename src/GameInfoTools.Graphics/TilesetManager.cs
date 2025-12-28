@@ -121,7 +121,6 @@ public class TilesetManager {
 
 	private readonly byte[] _data;
 	private readonly List<Tileset> _tilesets = [];
-	private TilesetSchema? _schema;
 
 	public TilesetManager(byte[] romData) {
 		_data = romData;
@@ -135,56 +134,56 @@ public class TilesetManager {
 	/// <summary>
 	/// Gets the current schema.
 	/// </summary>
-	public TilesetSchema? Schema => _schema;
+	public TilesetSchema? Schema { get; private set; }
 
 	/// <summary>
 	/// Sets the tileset schema.
 	/// </summary>
 	public void SetSchema(TilesetSchema schema) {
-		_schema = schema;
+		Schema = schema;
 	}
 
 	/// <summary>
 	/// Loads a tileset from ROM using the configured schema.
 	/// </summary>
 	public Tileset LoadTileset(int id = 0) {
-		if (_schema == null) {
+		if (Schema == null) {
 			throw new InvalidOperationException("Schema must be set before loading tileset");
 		}
 
 		var tileset = new Tileset {
 			Id = id,
-			Name = _schema.Name,
-			Format = _schema.Format,
-			TileWidth = _schema.TileWidth,
-			TileHeight = _schema.TileHeight,
-			BitsPerPixel = _schema.BitsPerPixel,
-			RomOffset = _schema.TileDataOffset
+			Name = Schema.Name,
+			Format = Schema.Format,
+			TileWidth = Schema.TileWidth,
+			TileHeight = Schema.TileHeight,
+			BitsPerPixel = Schema.BitsPerPixel,
+			RomOffset = Schema.TileDataOffset
 		};
 
 		// Calculate bytes per tile
-		int bytesPerTile = CalculateBytesPerTile(_schema.TileWidth, _schema.TileHeight, _schema.BitsPerPixel, _schema.Format);
-		tileset.DataSize = bytesPerTile * _schema.TileCount;
+		int bytesPerTile = CalculateBytesPerTile(Schema.TileWidth, Schema.TileHeight, Schema.BitsPerPixel, Schema.Format);
+		tileset.DataSize = bytesPerTile * Schema.TileCount;
 
 		// Load tiles
-		for (int i = 0; i < _schema.TileCount; i++) {
-			int offset = _schema.TileDataOffset + (i * bytesPerTile);
+		for (int i = 0; i < Schema.TileCount; i++) {
+			int offset = Schema.TileDataOffset + (i * bytesPerTile);
 			var tile = ReadTile(offset, i, bytesPerTile);
 			tileset.Tiles.Add(tile);
 		}
 
 		// Load palettes if present
-		if (_schema.PaletteOffset >= 0) {
+		if (Schema.PaletteOffset >= 0) {
 			LoadPalettes(tileset);
 		}
 
 		// Load metatiles if present
-		if (_schema.MetaTileOffset >= 0) {
+		if (Schema.MetaTileOffset >= 0) {
 			LoadMetaTiles(tileset);
 		}
 
 		// Load collision data if present
-		if (_schema.CollisionOffset >= 0) {
+		if (Schema.CollisionOffset >= 0) {
 			LoadCollisionData(tileset);
 		}
 
@@ -195,18 +194,18 @@ public class TilesetManager {
 	private int CalculateBytesPerTile(int width, int height, int bpp, TileFormat format) {
 		int pixelCount = width * height;
 		return format switch {
-			TileFormat.Planar2BPP => (pixelCount * 2) / 8,    // 16 bytes for 8x8
-			TileFormat.Planar4BPP => (pixelCount * 4) / 8,    // 32 bytes for 8x8
+			TileFormat.Planar2BPP => pixelCount * 2 / 8,    // 16 bytes for 8x8
+			TileFormat.Planar4BPP => pixelCount * 4 / 8,    // 32 bytes for 8x8
 			TileFormat.Planar8BPP => pixelCount,               // 64 bytes for 8x8
-			TileFormat.Linear4BPP => (pixelCount * 4) / 8,    // 32 bytes for 8x8
+			TileFormat.Linear4BPP => pixelCount * 4 / 8,    // 32 bytes for 8x8
 			TileFormat.Linear8BPP => pixelCount,               // 64 bytes for 8x8
-			TileFormat.Interleaved => (pixelCount * bpp) / 8,
-			_ => (pixelCount * bpp) / 8
+			TileFormat.Interleaved => pixelCount * bpp / 8,
+			_ => pixelCount * bpp / 8
 		};
 	}
 
 	private TileDefinition ReadTile(int offset, int id, int size) {
-		if (_schema == null) return new TileDefinition { Id = id };
+		if (Schema == null) return new TileDefinition { Id = id };
 
 		var tile = new TileDefinition {
 			Id = id,
@@ -214,7 +213,7 @@ public class TilesetManager {
 		};
 
 		if (offset + size > _data.Length) {
-			tile.PixelData = new byte[_schema.TileWidth * _schema.TileHeight];
+			tile.PixelData = new byte[Schema.TileWidth * Schema.TileHeight];
 			return tile;
 		}
 
@@ -223,7 +222,7 @@ public class TilesetManager {
 		Array.Copy(_data, offset, rawData, 0, size);
 
 		// Decode pixel data based on format
-		tile.PixelData = DecodeTile(rawData, _schema.TileWidth, _schema.TileHeight, _schema.Format);
+		tile.PixelData = DecodeTile(rawData, Schema.TileWidth, Schema.TileHeight, Schema.Format);
 
 		return tile;
 	}
@@ -268,13 +267,13 @@ public class TilesetManager {
 	private static void DecodePlanar2BPP(byte[] data, byte[] pixels, int width, int height) {
 		// NES/GB format: 2 bytes per row (bitplane 0, bitplane 1)
 		int rowBytes = 2;
-		for (int row = 0; row < height && row * rowBytes + 1 < data.Length; row++) {
+		for (int row = 0; row < height && (row * rowBytes) + 1 < data.Length; row++) {
 			byte plane0 = data[row * rowBytes];
-			byte plane1 = data[row * rowBytes + 1];
+			byte plane1 = data[(row * rowBytes) + 1];
 
 			for (int col = 0; col < width; col++) {
 				int bit = 7 - col;
-				int pixelIndex = row * width + col;
+				int pixelIndex = (row * width) + col;
 				if (pixelIndex < pixels.Length) {
 					int value = ((plane0 >> bit) & 1) | (((plane1 >> bit) & 1) << 1);
 					pixels[pixelIndex] = (byte)value;
@@ -290,14 +289,14 @@ public class TilesetManager {
 		int rowBytes = 2;
 		for (int row = 0; row < height; row++) {
 			byte plane0 = row * rowBytes < data.Length ? data[row * rowBytes] : (byte)0;
-			byte plane1 = row * rowBytes + 1 < data.Length ? data[row * rowBytes + 1] : (byte)0;
+			byte plane1 = (row * rowBytes) + 1 < data.Length ? data[(row * rowBytes) + 1] : (byte)0;
 			int offset2 = height * rowBytes;
-			byte plane2 = row * rowBytes + offset2 < data.Length ? data[row * rowBytes + offset2] : (byte)0;
-			byte plane3 = row * rowBytes + offset2 + 1 < data.Length ? data[row * rowBytes + offset2 + 1] : (byte)0;
+			byte plane2 = (row * rowBytes) + offset2 < data.Length ? data[(row * rowBytes) + offset2] : (byte)0;
+			byte plane3 = (row * rowBytes) + offset2 + 1 < data.Length ? data[(row * rowBytes) + offset2 + 1] : (byte)0;
 
 			for (int col = 0; col < width; col++) {
 				int bit = 7 - col;
-				int pixelIndex = row * width + col;
+				int pixelIndex = (row * width) + col;
 				if (pixelIndex < pixels.Length) {
 					int value = ((plane0 >> bit) & 1) |
 								(((plane1 >> bit) & 1) << 1) |
@@ -311,38 +310,38 @@ public class TilesetManager {
 
 	private static void DecodeLinear4BPP(byte[] data, byte[] pixels, int width, int height) {
 		// Linear 4BPP: 2 pixels per byte
-		for (int i = 0; i < data.Length && i * 2 + 1 < pixels.Length; i++) {
+		for (int i = 0; i < data.Length && (i * 2) + 1 < pixels.Length; i++) {
 			pixels[i * 2] = (byte)(data[i] & 0x0f);
-			pixels[i * 2 + 1] = (byte)((data[i] >> 4) & 0x0f);
+			pixels[(i * 2) + 1] = (byte)((data[i] >> 4) & 0x0f);
 		}
 	}
 
 	private static void DecodeInterleaved(byte[] data, byte[] pixels, int width, int height) {
 		// Genesis/Mega Drive: Linear 4BPP with different pixel order
-		for (int i = 0; i < data.Length && i * 2 + 1 < pixels.Length; i++) {
+		for (int i = 0; i < data.Length && (i * 2) + 1 < pixels.Length; i++) {
 			pixels[i * 2] = (byte)((data[i] >> 4) & 0x0f);      // High nibble first
-			pixels[i * 2 + 1] = (byte)(data[i] & 0x0f);
+			pixels[(i * 2) + 1] = (byte)(data[i] & 0x0f);
 		}
 	}
 
 	private void LoadPalettes(Tileset tileset) {
-		if (_schema == null || _schema.PaletteOffset < 0) return;
+		if (Schema == null || Schema.PaletteOffset < 0) return;
 
-		int bytesPerColor = _schema.Format == TileFormat.Linear8BPP ? 3 : 2;  // RGB or 15-bit color
-		int bytesPerPalette = _schema.ColorsPerPalette * bytesPerColor;
+		int bytesPerColor = Schema.Format == TileFormat.Linear8BPP ? 3 : 2;  // RGB or 15-bit color
+		int bytesPerPalette = Schema.ColorsPerPalette * bytesPerColor;
 
-		for (int p = 0; p < _schema.PaletteCount; p++) {
-			int offset = _schema.PaletteOffset + (p * bytesPerPalette);
+		for (int p = 0; p < Schema.PaletteCount; p++) {
+			int offset = Schema.PaletteOffset + (p * bytesPerPalette);
 			if (offset + bytesPerPalette > _data.Length) break;
 
 			var palette = new PaletteEntry {
 				Index = p,
-				ColorCount = _schema.ColorsPerPalette,
-				Colors = new byte[_schema.ColorsPerPalette * 4]  // RGBA
+				ColorCount = Schema.ColorsPerPalette,
+				Colors = new byte[Schema.ColorsPerPalette * 4]  // RGBA
 			};
 
 			// Read colors
-			for (int c = 0; c < _schema.ColorsPerPalette; c++) {
+			for (int c = 0; c < Schema.ColorsPerPalette; c++) {
 				int colorOffset = offset + (c * bytesPerColor);
 				if (colorOffset + bytesPerColor > _data.Length) break;
 
@@ -361,9 +360,9 @@ public class TilesetManager {
 				}
 
 				palette.Colors[c * 4] = r;
-				palette.Colors[c * 4 + 1] = g;
-				palette.Colors[c * 4 + 2] = b;
-				palette.Colors[c * 4 + 3] = (byte)(c == 0 ? 0 : 255);  // Index 0 transparent
+				palette.Colors[(c * 4) + 1] = g;
+				palette.Colors[(c * 4) + 2] = b;
+				palette.Colors[(c * 4) + 3] = (byte)(c == 0 ? 0 : 255);  // Index 0 transparent
 			}
 
 			tileset.Palettes.Add(palette);
@@ -371,11 +370,11 @@ public class TilesetManager {
 	}
 
 	private void LoadMetaTiles(Tileset tileset) {
-		if (_schema == null || _schema.MetaTileOffset < 0) return;
+		if (Schema == null || Schema.MetaTileOffset < 0) return;
 
-		for (int m = 0; m < _schema.MetaTileCount; m++) {
-			int offset = _schema.MetaTileOffset + (m * _schema.MetaTileSize);
-			if (offset + _schema.MetaTileSize > _data.Length) break;
+		for (int m = 0; m < Schema.MetaTileCount; m++) {
+			int offset = Schema.MetaTileOffset + (m * Schema.MetaTileSize);
+			if (offset + Schema.MetaTileSize > _data.Length) break;
 
 			var metaTile = new MetaTile {
 				Id = m,
@@ -389,12 +388,12 @@ public class TilesetManager {
 
 			// Read subtile indices
 			// Format varies by platform, assume simple 1-byte-per-subtile
-			for (int s = 0; s < Math.Min(_schema.MetaTileSize, 4); s++) {
+			for (int s = 0; s < Math.Min(Schema.MetaTileSize, 4); s++) {
 				int dataOffset = offset + s;
 				if (dataOffset < _data.Length) {
 					byte data = _data[dataOffset];
 
-					if (_schema.HasPriority) {
+					if (Schema.HasPriority) {
 						// Packed format: [priority][palette][flip][tile]
 						metaTile.TileIds[s] = data & 0x3f;
 						metaTile.TileFlips[s] = (data >> 6) & 0x03;
@@ -409,13 +408,13 @@ public class TilesetManager {
 	}
 
 	private void LoadCollisionData(Tileset tileset) {
-		if (_schema == null || _schema.CollisionOffset < 0) return;
+		if (Schema == null || Schema.CollisionOffset < 0) return;
 
 		// Collision data is usually 1 byte per metatile or tile
 		int count = tileset.MetaTiles.Count > 0 ? tileset.MetaTiles.Count : tileset.Tiles.Count;
 
 		for (int i = 0; i < count; i++) {
-			int offset = _schema.CollisionOffset + i;
+			int offset = Schema.CollisionOffset + i;
 			if (offset >= _data.Length) break;
 
 			byte collision = _data[offset];
@@ -457,14 +456,14 @@ public class TilesetManager {
 	public bool UpdateTile(int tilesetId, int tileId, byte[] newPixelData) {
 		var tile = GetTile(tilesetId, tileId);
 		if (tile == null) return false;
-		if (_schema == null) return false;
+		if (Schema == null) return false;
 
-		int expectedSize = _schema.TileWidth * _schema.TileHeight;
+		int expectedSize = Schema.TileWidth * Schema.TileHeight;
 		if (newPixelData.Length != expectedSize) return false;
 
 		// Encode and write back to ROM
-		int bytesPerTile = CalculateBytesPerTile(_schema.TileWidth, _schema.TileHeight, _schema.BitsPerPixel, _schema.Format);
-		byte[] encoded = EncodeTile(newPixelData, _schema.TileWidth, _schema.TileHeight, _schema.Format);
+		int bytesPerTile = CalculateBytesPerTile(Schema.TileWidth, Schema.TileHeight, Schema.BitsPerPixel, Schema.Format);
+		byte[] encoded = EncodeTile(newPixelData, Schema.TileWidth, Schema.TileHeight, Schema.Format);
 
 		if (tile.RomOffset + bytesPerTile > _data.Length) return false;
 
@@ -497,7 +496,7 @@ public class TilesetManager {
 			byte plane0 = 0, plane1 = 0;
 
 			for (int col = 0; col < width; col++) {
-				int pixelIndex = row * width + col;
+				int pixelIndex = (row * width) + col;
 				if (pixelIndex >= pixels.Length) continue;
 
 				int value = pixels[pixelIndex] & 0x03;
@@ -507,7 +506,7 @@ public class TilesetManager {
 			}
 
 			result[row * 2] = plane0;
-			result[row * 2 + 1] = plane1;
+			result[(row * 2) + 1] = plane1;
 		}
 
 		return result;
@@ -520,7 +519,7 @@ public class TilesetManager {
 			byte plane0 = 0, plane1 = 0, plane2 = 0, plane3 = 0;
 
 			for (int col = 0; col < width; col++) {
-				int pixelIndex = row * width + col;
+				int pixelIndex = (row * width) + col;
 				if (pixelIndex >= pixels.Length) continue;
 
 				int value = pixels[pixelIndex] & 0x0f;
@@ -532,31 +531,31 @@ public class TilesetManager {
 			}
 
 			result[row * 2] = plane0;
-			result[row * 2 + 1] = plane1;
-			result[height * 2 + row * 2] = plane2;
-			result[height * 2 + row * 2 + 1] = plane3;
+			result[(row * 2) + 1] = plane1;
+			result[(height * 2) + (row * 2)] = plane2;
+			result[(height * 2) + (row * 2) + 1] = plane3;
 		}
 
 		return result;
 	}
 
 	private static byte[] EncodeLinear4BPP(byte[] pixels, int width, int height) {
-		int resultSize = (width * height) / 2;
+		int resultSize = width * height / 2;
 		byte[] result = new byte[resultSize];
 
-		for (int i = 0; i < resultSize && i * 2 + 1 < pixels.Length; i++) {
-			result[i] = (byte)((pixels[i * 2] & 0x0f) | ((pixels[i * 2 + 1] & 0x0f) << 4));
+		for (int i = 0; i < resultSize && (i * 2) + 1 < pixels.Length; i++) {
+			result[i] = (byte)((pixels[i * 2] & 0x0f) | ((pixels[(i * 2) + 1] & 0x0f) << 4));
 		}
 
 		return result;
 	}
 
 	private static byte[] EncodeInterleaved(byte[] pixels, int width, int height) {
-		int resultSize = (width * height) / 2;
+		int resultSize = width * height / 2;
 		byte[] result = new byte[resultSize];
 
-		for (int i = 0; i < resultSize && i * 2 + 1 < pixels.Length; i++) {
-			result[i] = (byte)(((pixels[i * 2] & 0x0f) << 4) | (pixels[i * 2 + 1] & 0x0f));
+		for (int i = 0; i < resultSize && (i * 2) + 1 < pixels.Length; i++) {
+			result[i] = (byte)(((pixels[i * 2] & 0x0f) << 4) | (pixels[(i * 2) + 1] & 0x0f));
 		}
 
 		return result;
@@ -576,14 +575,15 @@ public class TilesetManager {
 		}
 
 		// Write back to ROM if schema supports it
-		if (_schema != null && _schema.MetaTileOffset >= 0) {
-			int offset = _schema.MetaTileOffset + (metaTileId * _schema.MetaTileSize);
-			for (int s = 0; s < Math.Min(_schema.MetaTileSize, tileIds.Length); s++) {
+		if (Schema != null && Schema.MetaTileOffset >= 0) {
+			int offset = Schema.MetaTileOffset + (metaTileId * Schema.MetaTileSize);
+			for (int s = 0; s < Math.Min(Schema.MetaTileSize, tileIds.Length); s++) {
 				if (offset + s < _data.Length) {
 					byte data = (byte)tileIds[s];
-					if (_schema.HasPriority && flips != null && s < flips.Length) {
+					if (Schema.HasPriority && flips != null && s < flips.Length) {
 						data = (byte)((data & 0x3f) | ((flips[s] & 0x03) << 6));
 					}
+
 					_data[offset + s] = data;
 				}
 			}
@@ -596,26 +596,26 @@ public class TilesetManager {
 	/// Renders a tile to RGBA pixel array.
 	/// </summary>
 	public byte[] RenderTile(TileDefinition tile, PaletteEntry palette, bool flipH = false, bool flipV = false) {
-		if (_schema == null) return [];
+		if (Schema == null) return [];
 
-		int width = _schema.TileWidth;
-		int height = _schema.TileHeight;
+		int width = Schema.TileWidth;
+		int height = Schema.TileHeight;
 		byte[] rgba = new byte[width * height * 4];
 
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
 				int srcX = flipH ? (width - 1 - x) : x;
 				int srcY = flipV ? (height - 1 - y) : y;
-				int srcIndex = srcY * width + srcX;
-				int dstIndex = (y * width + x) * 4;
+				int srcIndex = (srcY * width) + srcX;
+				int dstIndex = ((y * width) + x) * 4;
 
 				if (srcIndex < tile.PixelData.Length && dstIndex + 3 < rgba.Length) {
 					int colorIndex = tile.PixelData[srcIndex];
-					if (colorIndex * 4 + 3 < palette.Colors.Length) {
+					if ((colorIndex * 4) + 3 < palette.Colors.Length) {
 						rgba[dstIndex] = palette.Colors[colorIndex * 4];
-						rgba[dstIndex + 1] = palette.Colors[colorIndex * 4 + 1];
-						rgba[dstIndex + 2] = palette.Colors[colorIndex * 4 + 2];
-						rgba[dstIndex + 3] = palette.Colors[colorIndex * 4 + 3];
+						rgba[dstIndex + 1] = palette.Colors[(colorIndex * 4) + 1];
+						rgba[dstIndex + 2] = palette.Colors[(colorIndex * 4) + 2];
+						rgba[dstIndex + 3] = palette.Colors[(colorIndex * 4) + 3];
 					}
 				}
 			}
@@ -628,10 +628,10 @@ public class TilesetManager {
 	/// Renders a metatile to RGBA pixel array.
 	/// </summary>
 	public byte[] RenderMetaTile(MetaTile metaTile, Tileset tileset, int paletteIndex = 0) {
-		if (_schema == null) return [];
+		if (Schema == null) return [];
 
-		int tileWidth = _schema.TileWidth;
-		int tileHeight = _schema.TileHeight;
+		int tileWidth = Schema.TileWidth;
+		int tileHeight = Schema.TileHeight;
 		int metaWidth = metaTile.Width * tileWidth;
 		int metaHeight = metaTile.Height * tileHeight;
 		byte[] rgba = new byte[metaWidth * metaHeight * 4];
@@ -641,7 +641,7 @@ public class TilesetManager {
 
 		for (int subY = 0; subY < metaTile.Height; subY++) {
 			for (int subX = 0; subX < metaTile.Width; subX++) {
-				int subIndex = subY * metaTile.Width + subX;
+				int subIndex = (subY * metaTile.Width) + subX;
 				if (subIndex >= metaTile.TileIds.Length) continue;
 
 				int tileId = metaTile.TileIds[subIndex];
@@ -660,8 +660,8 @@ public class TilesetManager {
 
 				for (int y = 0; y < tileHeight; y++) {
 					for (int x = 0; x < tileWidth; x++) {
-						int srcIndex = (y * tileWidth + x) * 4;
-						int dstIndex = ((baseY + y) * metaWidth + (baseX + x)) * 4;
+						int srcIndex = ((y * tileWidth) + x) * 4;
+						int dstIndex = (((baseY + y) * metaWidth) + baseX + x) * 4;
 
 						if (srcIndex + 3 < tileRgba.Length && dstIndex + 3 < rgba.Length) {
 							rgba[dstIndex] = tileRgba[srcIndex];
@@ -712,6 +712,7 @@ public class TilesetManager {
 			if (!collisionCounts.ContainsKey(tile.Collision)) {
 				collisionCounts[tile.Collision] = 0;
 			}
+
 			collisionCounts[tile.Collision]++;
 		}
 

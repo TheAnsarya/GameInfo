@@ -1,0 +1,29 @@
+[
+	{
+		"file_offset": 821606,
+		"bank": 25,
+		"address": 35174,
+		"cpu_address": "$19:8966",
+		"length": 10,
+		"raw": "572d7a80404a4c212278",
+		"text": "W-z'@JL!\"x"
+	},
+	{
+		"file_offset": 823259,
+		"bank": 25,
+		"address": 36827,
+		"cpu_address": "$19:8fdb",
+		"length": 10,
+		"raw": "264c5605706106485605",
+		"text": "&LV{NAME}pa{ITEM}HV{NAME}"
+	},
+	{
+		"file_offset": 827961,
+		"bank": 25,
+		"address": 41529,
+		"cpu_address": "$19:a239",
+		"length": 10,
+		"raw": "38853b22637583504643",
+		"text": "8?;\"cu-PFC"
+	}
+]

@@ -1,0 +1,11 @@
+[
+	{
+		"file_offset": 383038,
+		"bank": 11,
+		"address": 55358,
+		"cpu_address": "$0b:d83e",
+		"length": 11,
+		"raw": "5a337a4801006364402204",
+		"text": "Z3zH{NL}"
+	}
+]

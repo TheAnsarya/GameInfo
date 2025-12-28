@@ -1,0 +1,82 @@
+<noinclude>
+'''rommap''' - Template for ROM map tables on games.darkrepos.com
+
+==Description==
+
+This template creates standardized ROM map tables documenting the memory layout of game ROMs. It supports both file offsets and CPU addresses, with optional bank information.
+
+==Usage==
+
+===Basic Usage===
+<pre>
+{{rommap}}
+</pre>
+
+===With Parameters===
+<pre>
+{{rommap
+| platform = NES
+| header_size = 16
+| bank_size = 16384
+| description = Custom description text
+}}
+</pre>
+
+==Parameters==
+
+{| class="wikitable"
+|-
+! Parameter !! Required !! Default !! Description
+|-
+| platform || No || — || Platform name (NES, SNES, GBA) - adds platform-specific column headers
+|-
+| header_size || No || — || ROM header size in bytes (e.g., 16 for iNES header)
+|-
+| bank_size || No || — || Bank size in bytes for calculating addresses
+|-
+| description || No || (standard text) || Custom description for the page
+|}
+
+==Table Columns==
+
+The generated table includes these columns:
+* '''Offset''' - File offset (hex)
+* '''Address''' - CPU/PRG address (platform-dependent)
+* '''Length''' - Data size in bytes
+* '''Bank''' - Bank number (if applicable)
+* '''Description''' - What the data contains
+
+==Example Output==
+
+{{rommap|platform=NES|header_size=16}}
+
+| $00010 || $8000 || $4000 || 00 || PRG Bank 0 - Game initialization
+|-
+| $04010 || $8000 || $4000 || 01 || PRG Bank 1 - Overworld code
+|-
+|}
+
+==Best Practices==
+
+* Always document both file offset and CPU address when possible
+* Note if offset includes header (file offset) vs excludes header (ROM offset)
+* Group related entries with comments
+* Link to sub-pages for large data structures
+
+[[Category:Templates]]
+</noinclude><includeonly>{{#if:{{{description|}}}|{{{description}}}|This page documents the ROM memory layout for this game. All addresses are in hexadecimal.}}
+{{#if:{{{header_size|}}}|
+
+'''Note:''' This ROM has a {{{header_size}}}-byte header. File offsets = ROM offset + {{{header_size}}}.
+}}
+{{#if:{{{bank_size|}}}|
+'''Bank Size:''' {{{bank_size}}} bytes (${{#expr:{{{bank_size}}} | hex}})
+}}
+
+{| class="wikitable sortable" style="width: 100%;"
+|-
+! style="width: 10%;" | Offset
+! style="width: 10%;" | Address
+! style="width: 8%;" | Length
+{{#ifeq:{{{platform|}}}|NES|! style="width: 6%;" {{!}} Bank
+}}! Description</includeonly>

@@ -79,6 +79,7 @@ public class GameBoyRomParserTests {
 		for (int i = 0x134; i <= 0x14C; i++) {
 			checksum = checksum - romData[i] - 1;
 		}
+
 		romData[0x14D] = (byte)(checksum & 0xff);
 
 		// Global checksum at $14E-$14F (calculated later if needed)

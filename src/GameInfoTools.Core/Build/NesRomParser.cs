@@ -6,7 +6,6 @@ namespace GameInfoTools.Core.Build;
 /// </summary>
 public class NesRomParser {
 	private readonly byte[] _romData;
-	private readonly InesHeader _header;
 
 	/// <summary>
 	/// Standard NES PRG bank size (16KB)
@@ -30,33 +29,33 @@ public class NesRomParser {
 
 	public NesRomParser(byte[] romData) {
 		_romData = romData ?? throw new ArgumentNullException(nameof(romData));
-		_header = ParseHeader();
+		Header = ParseHeader();
 	}
 
 	/// <summary>
 	/// Gets the parsed iNES header.
 	/// </summary>
-	public InesHeader Header => _header;
+	public InesHeader Header { get; }
 
 	/// <summary>
 	/// Gets the mapper number.
 	/// </summary>
-	public int Mapper => _header.Mapper;
+	public int Mapper => Header.Mapper;
 
 	/// <summary>
 	/// Gets the number of PRG banks.
 	/// </summary>
-	public int PrgBankCount => _header.PrgRomSize / PrgBankSize;
+	public int PrgBankCount => Header.PrgRomSize / PrgBankSize;
 
 	/// <summary>
 	/// Gets the number of CHR banks.
 	/// </summary>
-	public int ChrBankCount => _header.ChrRomSize / ChrBankSize;
+	public int ChrBankCount => Header.ChrRomSize / ChrBankSize;
 
 	/// <summary>
 	/// Whether this ROM uses CHR-RAM instead of CHR-ROM.
 	/// </summary>
-	public bool UsesChrRam => _header.ChrRomSize == 0;
+	public bool UsesChrRam => Header.ChrRomSize == 0;
 
 	/// <summary>
 	/// Parse the iNES/NES 2.0 header.
@@ -91,11 +90,12 @@ public class NesRomParser {
 			header.Mapper |= (_romData[8] & 0x0f) << 8;
 
 			// Extended PRG/CHR ROM sizes
-			var prgHi = (_romData[9] & 0x0f);
-			var chrHi = (_romData[9] >> 4);
+			var prgHi = _romData[9] & 0x0f;
+			var chrHi = _romData[9] >> 4;
 			if (prgHi < 0x0f) {
 				header.PrgRomSize = (_romData[4] | (prgHi << 8)) * PrgBankSize;
 			}
+
 			if (chrHi < 0x0f) {
 				header.ChrRomSize = (_romData[5] | (chrHi << 8)) * ChrBankSize;
 			}
@@ -123,8 +123,8 @@ public class NesRomParser {
 	/// Get PRG ROM data (all banks).
 	/// </summary>
 	public byte[] GetPrgRom() {
-		var prg = new byte[_header.PrgRomSize];
-		Array.Copy(_romData, _header.PrgRomOffset, prg, 0, _header.PrgRomSize);
+		var prg = new byte[Header.PrgRomSize];
+		Array.Copy(_romData, Header.PrgRomOffset, prg, 0, Header.PrgRomSize);
 		return prg;
 	}
 
@@ -138,7 +138,7 @@ public class NesRomParser {
 		}
 
 		var bank = new byte[PrgBankSize];
-		var offset = _header.PrgRomOffset + (bankIndex * PrgBankSize);
+		var offset = Header.PrgRomOffset + (bankIndex * PrgBankSize);
 		Array.Copy(_romData, offset, bank, 0, PrgBankSize);
 		return bank;
 	}
@@ -151,8 +151,8 @@ public class NesRomParser {
 			return [];
 		}
 
-		var chr = new byte[_header.ChrRomSize];
-		Array.Copy(_romData, _header.ChrRomOffset, chr, 0, _header.ChrRomSize);
+		var chr = new byte[Header.ChrRomSize];
+		Array.Copy(_romData, Header.ChrRomOffset, chr, 0, Header.ChrRomSize);
 		return chr;
 	}
 
@@ -170,7 +170,7 @@ public class NesRomParser {
 		}
 
 		var bank = new byte[ChrBankSize];
-		var offset = _header.ChrRomOffset + (bankIndex * ChrBankSize);
+		var offset = Header.ChrRomOffset + (bankIndex * ChrBankSize);
 		Array.Copy(_romData, offset, bank, 0, ChrBankSize);
 		return bank;
 	}
@@ -179,7 +179,7 @@ public class NesRomParser {
 	/// Get trainer data if present.
 	/// </summary>
 	public byte[]? GetTrainer() {
-		if (!_header.HasTrainer) {
+		if (!Header.HasTrainer) {
 			return null;
 		}
 
@@ -195,7 +195,7 @@ public class NesRomParser {
 		return Mapper switch {
 			0 => new MapperBankLayout { // NROM
 				Name = "NROM",
-				PrgBankSize = _header.PrgRomSize <= 0x4000 ? 0x4000 : 0x8000,
+				PrgBankSize = Header.PrgRomSize <= 0x4000 ? 0x4000 : 0x8000,
 				ChrBankSize = 0x2000,
 				MaxPrgBanks = 2,
 				MaxChrBanks = 1,
@@ -298,12 +298,12 @@ public class NesRomParser {
 			prgBanks = PrgBankCount,
 			chrBanks = ChrBankCount,
 			usesChrRam = UsesChrRam,
-			prgRomSize = _header.PrgRomSize,
-			chrRomSize = _header.ChrRomSize,
-			mirroring = _header.VerticalMirroring ? "vertical" : "horizontal",
-			hasBattery = _header.HasBattery,
-			hasTrainer = _header.HasTrainer,
-			isNes20 = _header.IsNes20
+			prgRomSize = Header.PrgRomSize,
+			chrRomSize = Header.ChrRomSize,
+			mirroring = Header.VerticalMirroring ? "vertical" : "horizontal",
+			hasBattery = Header.HasBattery,
+			hasTrainer = Header.HasTrainer,
+			isNes20 = Header.IsNes20
 		};
 		var json = System.Text.Json.JsonSerializer.Serialize(info, new System.Text.Json.JsonSerializerOptions {
 			WriteIndented = true
@@ -311,7 +311,7 @@ public class NesRomParser {
 		await File.WriteAllTextAsync(infoPath, json, cancellationToken);
 
 		// Extract trainer if present
-		if (_header.HasTrainer) {
+		if (Header.HasTrainer) {
 			var trainer = GetTrainer();
 			if (trainer != null) {
 				var trainerPath = Path.Combine(outputDir, "trainer.bin");

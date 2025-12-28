@@ -1,0 +1,67 @@
+'''SNES Games''' documented on the DarkRepos Game Documentation Wiki.
+
+==Overview==
+
+The Super Nintendo Entertainment System (SNES), known as the Super Famicom in Japan, was a 16-bit home video game console released in 1990 (JP) and 1991 (US).
+
+==Technical Specifications==
+
+{| class="wikitable"
+|-
+! Component !! Specification
+|-
+| CPU || Ricoh 5A22 (65c816) @ 3.58 MHz
+|-
+| RAM || 128 KB
+|-
+| VRAM || 64 KB
+|-
+| Resolution || 256×224 to 512×448
+|-
+| Colors || 32,768 colors, 256 on screen
+|-
+| Sprites || 128 sprites
+|-
+| Sound || Sony SPC700 @ 1.024 MHz
+|-
+| Audio RAM || 64 KB
+|}
+
+== Memory Mapping ==
+
+{| class="wikitable"
+|-
+! Mode !! ROM Location !! Description
+|-
+| LoROM || $00-$7d:$8000-$ffff || 32KB banks at upper half
+|-
+| HiROM || $c0-$ff:$0000-$ffff || 64KB contiguous banks
+|-
+| ExHiROM || $40-$7d, $c0-$ff || Extended HiROM for 48Mbit
+|}
+
+==Common Enhancement Chips==
+
+{| class="wikitable"
+|-
+! Chip !! Description !! Example Games
+|-
+| DSP-1 || Math coprocessor || Pilotwings, Mario Kart
+|-
+| Super FX || 3D graphics || Star Fox, Yoshi's Island
+|-
+| SA-1 || Enhanced 65c816 || Super Mario RPG
+|-
+| Cx4 || Wireframe graphics || Mega Man X2/X3
+|}
+
+==Games==
+
+* [[Chrono Trigger (SNES)]]
+* [[Dragon Quest I & II (SNES)]]
+* [[Dragon Quest III (SNES)]]
+* [[Final Fantasy IV (SNES)]]
+* [[Final Fantasy Mystic Quest (SNES)]]
+* [[The 7th Saga (SNES)]]
+
+[[Category:Platforms]]

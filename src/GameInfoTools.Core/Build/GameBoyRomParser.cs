@@ -6,7 +6,6 @@ namespace GameInfoTools.Core.Build;
 /// </summary>
 public class GameBoyRomParser {
 	private readonly byte[] _romData;
-	private readonly GameBoyHeader _header;
 
 	/// <summary>
 	/// Game Boy ROM bank size (16KB)
@@ -30,13 +29,13 @@ public class GameBoyRomParser {
 
 	public GameBoyRomParser(byte[] romData) {
 		_romData = romData ?? throw new ArgumentNullException(nameof(romData));
-		_header = ParseHeader();
+		Header = ParseHeader();
 	}
 
 	/// <summary>
 	/// Gets the parsed Game Boy header.
 	/// </summary>
-	public GameBoyHeader Header => _header;
+	public GameBoyHeader Header { get; }
 
 	/// <summary>
 	/// Gets the ROM size in bytes.
@@ -46,23 +45,23 @@ public class GameBoyRomParser {
 	/// <summary>
 	/// Gets whether this is a Game Boy Color ROM.
 	/// </summary>
-	public bool IsGameBoyColor => _header.CgbFlag == CgbSupport.CgbOnly ||
-								   _header.CgbFlag == CgbSupport.CgbEnhanced;
+	public bool IsGameBoyColor => Header.CgbFlag == CgbSupport.CgbOnly ||
+								   Header.CgbFlag == CgbSupport.CgbEnhanced;
 
 	/// <summary>
 	/// Gets whether this is a Super Game Boy enhanced ROM.
 	/// </summary>
-	public bool IsSuperGameBoy => _header.SgbFlag;
+	public bool IsSuperGameBoy => Header.SgbFlag;
 
 	/// <summary>
 	/// Gets the number of ROM banks.
 	/// </summary>
-	public int RomBankCount => _header.RomBanks;
+	public int RomBankCount => Header.RomBanks;
 
 	/// <summary>
 	/// Gets the number of RAM banks.
 	/// </summary>
-	public int RamBankCount => _header.RamBanks;
+	public int RamBankCount => Header.RamBanks;
 
 	/// <summary>
 	/// Parse the Game Boy ROM header.
@@ -176,6 +175,7 @@ public class GameBoyRomParser {
 		for (int i = 0x134; i <= 0x14c; i++) {
 			checksum = (byte)(checksum - _romData[i] - 1);
 		}
+
 		return checksum == _romData[0x14d];
 	}
 
@@ -187,6 +187,7 @@ public class GameBoyRomParser {
 		for (int i = 0x134; i <= 0x14c; i++) {
 			checksum = (byte)(checksum - _romData[i] - 1);
 		}
+
 		return checksum;
 	}
 
@@ -201,6 +202,7 @@ public class GameBoyRomParser {
 				sum += _romData[i];
 			}
 		}
+
 		return (ushort)(sum & 0xffff);
 	}
 
@@ -208,7 +210,7 @@ public class GameBoyRomParser {
 	/// Verify the global checksum.
 	/// </summary>
 	public bool VerifyGlobalChecksum() {
-		return _header.GlobalChecksum == CalculateGlobalChecksum();
+		return Header.GlobalChecksum == CalculateGlobalChecksum();
 	}
 
 	/// <summary>
@@ -375,21 +377,21 @@ public class GameBoyRomParser {
 	/// </summary>
 	public GameBoyRomInfo GetRomInfo() {
 		return new GameBoyRomInfo {
-			Title = _header.Title,
+			Title = Header.Title,
 			IsGameBoyColor = IsGameBoyColor,
 			IsSuperGameBoy = IsSuperGameBoy,
-			MBC = _header.MBC,
+			MBC = Header.MBC,
 			RomSize = RomSize,
 			RomBankCount = RomBankCount,
-			RamSize = _header.RamSize,
+			RamSize = Header.RamSize,
 			RamBankCount = RamBankCount,
-			HasBattery = _header.HasBattery,
-			HasTimer = _header.HasTimer,
-			HasRumble = _header.HasRumble,
-			Region = _header.Region,
-			HeaderChecksumValid = _header.HeaderChecksumValid,
+			HasBattery = Header.HasBattery,
+			HasTimer = Header.HasTimer,
+			HasRumble = Header.HasRumble,
+			Region = Header.Region,
+			HeaderChecksumValid = Header.HeaderChecksumValid,
 			GlobalChecksumValid = VerifyGlobalChecksum(),
-			LogoValid = _header.LogoValid
+			LogoValid = Header.LogoValid
 		};
 	}
 

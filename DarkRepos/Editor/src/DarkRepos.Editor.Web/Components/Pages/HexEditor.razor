@@ -1,0 +1,423 @@
+@page "/hex"
+@page "/hex/{RomId}"
+@using DarkRepos.Editor.Core.Interfaces
+@inject IHexEditorService HexService
+@inject IRomService RomService
+
+<PageTitle>Hex Editor - DarkRepos Editor</PageTitle>
+
+<div class="hex-editor">
+	<header class="editor-header">
+		<h1>Hex Editor</h1>
+		<div class="header-actions">
+			<div class="offset-input">
+				<label>Go to offset:</label>
+				<input type="text" @bind="_gotoOffset" @onkeyup="HandleGotoKeyup" placeholder="0x0000" />
+				<button @onclick="GotoOffset" class="btn btn-small">Go</button>
+			</div>
+			<div class="view-options">
+				<select @bind="_bytesPerRow">
+					<option value="8">8 bytes/row</option>
+					<option value="16">16 bytes/row</option>
+					<option value="32">32 bytes/row</option>
+				</select>
+			</div>
+		</div>
+	</header>
+
+	@if (_romData == null)
+	{
+		<div class="no-rom-message">
+			<p>No ROM loaded. Please load a ROM from the <a href="/">home page</a>.</p>
+		</div>
+	}
+	else
+	{
+		<div class="hex-container">
+			<div class="hex-toolbar">
+				<div class="tool-group">
+					<button @onclick="Undo" disabled="@(!CanUndo)" class="tool-btn" title="Undo">↶</button>
+					<button @onclick="Redo" disabled="@(!CanRedo)" class="tool-btn" title="Redo">↷</button>
+				</div>
+				<div class="tool-group">
+					<button @onclick="Copy" class="tool-btn" title="Copy">📋</button>
+					<button @onclick="Paste" class="tool-btn" title="Paste">📄</button>
+				</div>
+				<div class="tool-group">
+					<button @onclick="Find" class="tool-btn" title="Find">🔍</button>
+					<button @onclick="Replace" class="tool-btn" title="Replace">🔄</button>
+				</div>
+				<div class="selection-info">
+					@if (_selectionStart.HasValue)
+					{
+						<span>Selection: @FormatOffset(_selectionStart.Value) - @FormatOffset(_selectionEnd ?? _selectionStart.Value)</span>
+						<span class="selection-size">(@(_selectionEnd.HasValue ? _selectionEnd.Value - _selectionStart.Value + 1 : 1) bytes)</span>
+					}
+				</div>
+			</div>
+
+			<div class="hex-view" @onscroll="HandleScroll">
+				<div class="hex-header">
+					<div class="offset-column">Offset</div>
+					<div class="hex-columns">
+						@for (int i = 0; i < _bytesPerRow; i++)
+						{
+							<span class="hex-header-byte">@i.ToString("X2")</span>
+						}
+					</div>
+					<div class="ascii-column">ASCII</div>
+				</div>
+
+				<div class="hex-content" style="height: @(_visibleRows * 24)px;">
+					@for (int row = 0; row < _visibleRows && (_viewOffset + row * _bytesPerRow) < _romData.Length; row++)
+					{
+						var rowOffset = _viewOffset + row * _bytesPerRow;
+						<div class="hex-row @(IsRowSelected(rowOffset) ? "selected" : "")">
+							<div class="offset-column">@FormatOffset(rowOffset)</div>
+							<div class="hex-columns">
+								@for (int col = 0; col < _bytesPerRow; col++)
+								{
+									var byteOffset = rowOffset + col;
+									if (byteOffset < _romData.Length)
+									{
+										var byteValue = _romData[byteOffset];
+										var isSelected = IsByteSelected(byteOffset);
+										var isModified = IsModified(byteOffset);
+										<span class="hex-byte @(isSelected ? "selected" : "") @(isModified ? "modified" : "")"
+											  @onclick="@(() => SelectByte(byteOffset))"
+											  @ondblclick="@(() => EditByte(byteOffset))">
+											@byteValue.ToString("x2")
+										</span>
+									}
+									else
+									{
+										<span class="hex-byte empty">  </span>
+									}
+								}
+							</div>
+							<div class="ascii-column">
+								@for (int col = 0; col < _bytesPerRow; col++)
+								{
+									var byteOffset = rowOffset + col;
+									if (byteOffset < _romData.Length)
+									{
+										var byteValue = _romData[byteOffset];
+										var asciiChar = GetAsciiChar(byteValue);
+										var isSelected = IsByteSelected(byteOffset);
+										<span class="ascii-char @(isSelected ? "selected" : "")"
+											  @onclick="@(() => SelectByte(byteOffset))">@asciiChar</span>
+									}
+								}
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+
+			<div class="hex-footer">
+				<div class="status-left">
+					<span>File size: @FormatSize(_romData.Length)</span>
+				</div>
+				<div class="status-center">
+					@if (_selectedByte.HasValue)
+					{
+						<span>@FormatOffset(_selectedByte.Value): </span>
+						<span class="byte-value">@_romData[_selectedByte.Value].ToString("X2") (@_romData[_selectedByte.Value])</span>
+					}
+				</div>
+				<div class="status-right">
+					<span>@(_modifiedOffsets.Count) modification(s)</span>
+				</div>
+			</div>
+		</div>
+
+		@if (_showFindDialog)
+		{
+			<div class="dialog-overlay" @onclick="CloseFindDialog">
+				<div class="dialog" @onclick:stopPropagation="true">
+					<h3>Find</h3>
+					<div class="dialog-content">
+						<div class="form-group">
+							<label>Search for (hex):</label>
+							<input type="text" @bind="_searchHex" placeholder="00 11 22" />
+						</div>
+						<div class="form-group">
+							<label>
+								<input type="checkbox" @bind="_searchFromStart" />
+								Search from start
+							</label>
+						</div>
+					</div>
+					<div class="dialog-actions">
+						<button @onclick="ExecuteFind" class="btn btn-primary">Find Next</button>
+						<button @onclick="CloseFindDialog" class="btn btn-secondary">Cancel</button>
+					</div>
+				</div>
+			</div>
+		}
+
+		@if (_showEditDialog)
+		{
+			<div class="dialog-overlay" @onclick="CloseEditDialog">
+				<div class="dialog" @onclick:stopPropagation="true">
+					<h3>Edit Byte</h3>
+					<div class="dialog-content">
+						<div class="form-group">
+							<label>Offset: @FormatOffset(_editOffset)</label>
+						</div>
+						<div class="form-group">
+							<label>Value (hex):</label>
+							<input type="text" @bind="_editValue" maxlength="2" />
+						</div>
+					</div>
+					<div class="dialog-actions">
+						<button @onclick="SaveEdit" class="btn btn-primary">Save</button>
+						<button @onclick="CloseEditDialog" class="btn btn-secondary">Cancel</button>
+					</div>
+				</div>
+			</div>
+		}
+	}
+</div>
+
+@code {
+	[Parameter]
+	public string? RomId { get; set; }
+
+	private byte[]? _romData;
+	private int _viewOffset;
+	private int _bytesPerRow = 16;
+	private int _visibleRows = 32;
+	private string _gotoOffset = "";
+
+	private int? _selectedByte;
+	private int? _selectionStart;
+	private int? _selectionEnd;
+
+	private HashSet<int> _modifiedOffsets = [];
+	private Stack<EditOperation> _undoStack = new();
+	private Stack<EditOperation> _redoStack = new();
+
+	private bool _showFindDialog;
+	private string _searchHex = "";
+	private bool _searchFromStart = true;
+
+	private bool _showEditDialog;
+	private int _editOffset;
+	private string _editValue = "";
+
+	private bool CanUndo => _undoStack.Count > 0;
+	private bool CanRedo => _redoStack.Count > 0;
+
+	protected override void OnInitialized()
+	{
+		// Load ROM data from service based on RomId
+		LoadRomData();
+	}
+
+	private void LoadRomData()
+	{
+		// In a real implementation, this would load from the RomService
+		// For now, create placeholder data for testing
+		if (!string.IsNullOrEmpty(RomId))
+		{
+			// Load actual ROM
+		}
+		else
+		{
+			// Create test data for display
+			_romData = new byte[256 * 1024]; // 256 KB test data
+			new Random(42).NextBytes(_romData);
+		}
+	}
+
+	private void HandleScroll()
+	{
+		// Handle scroll events to update view offset
+	}
+
+	private void HandleGotoKeyup(KeyboardEventArgs e)
+	{
+		if (e.Key == "Enter")
+		{
+			GotoOffset();
+		}
+	}
+
+	private void GotoOffset()
+	{
+		if (TryParseHex(_gotoOffset, out var offset))
+		{
+			_viewOffset = (offset / _bytesPerRow) * _bytesPerRow;
+			_selectedByte = offset;
+			_selectionStart = offset;
+			_selectionEnd = null;
+		}
+	}
+
+	private static bool TryParseHex(string input, out int result)
+	{
+		input = input.Trim();
+		if (input.StartsWith("0x", StringComparison.OrdinalIgnoreCase))
+			input = input[2..];
+		if (input.StartsWith("$"))
+			input = input[1..];
+		return int.TryParse(input, System.Globalization.NumberStyles.HexNumber, null, out result);
+	}
+
+	private void SelectByte(int offset)
+	{
+		_selectedByte = offset;
+		_selectionStart = offset;
+		_selectionEnd = null;
+	}
+
+	private void EditByte(int offset)
+	{
+		if (_romData == null) return;
+		_editOffset = offset;
+		_editValue = _romData[offset].ToString("X2");
+		_showEditDialog = true;
+	}
+
+	private void SaveEdit()
+	{
+		if (_romData == null) return;
+		if (byte.TryParse(_editValue, System.Globalization.NumberStyles.HexNumber, null, out var newValue))
+		{
+			var oldValue = _romData[_editOffset];
+			_romData[_editOffset] = newValue;
+			_modifiedOffsets.Add(_editOffset);
+			_undoStack.Push(new EditOperation(_editOffset, oldValue, newValue));
+			_redoStack.Clear();
+		}
+		CloseEditDialog();
+	}
+
+	private void CloseEditDialog()
+	{
+		_showEditDialog = false;
+	}
+
+	private void Find()
+	{
+		_showFindDialog = true;
+	}
+
+	private void Replace()
+	{
+		// Show replace dialog - simplified for now
+		Find();
+	}
+
+	private void ExecuteFind()
+	{
+		if (_romData == null || string.IsNullOrEmpty(_searchHex)) return;
+
+		var searchBytes = ParseHexString(_searchHex);
+		if (searchBytes.Length == 0) return;
+
+		var startPos = _searchFromStart ? 0 : (_selectedByte ?? 0) + 1;
+		var results = HexService.Search(_romData, searchBytes, startPos);
+		var result = results.FirstOrDefault(-1);
+
+		if (result >= 0)
+		{
+			_viewOffset = (result / _bytesPerRow) * _bytesPerRow;
+			_selectedByte = result;
+			_selectionStart = result;
+			_selectionEnd = result + searchBytes.Length - 1;
+			_searchFromStart = false;
+		}
+
+		CloseFindDialog();
+	}
+
+	private void CloseFindDialog()
+	{
+		_showFindDialog = false;
+	}
+
+	private static byte[] ParseHexString(string hex)
+	{
+		hex = hex.Replace(" ", "").Replace("-", "");
+		if (hex.Length % 2 != 0) return [];
+
+		var bytes = new byte[hex.Length / 2];
+		for (int i = 0; i < bytes.Length; i++)
+		{
+			if (!byte.TryParse(hex.AsSpan(i * 2, 2), System.Globalization.NumberStyles.HexNumber, null, out bytes[i]))
+				return [];
+		}
+		return bytes;
+	}
+
+	private void Undo()
+	{
+		if (_romData == null || _undoStack.Count == 0) return;
+		var op = _undoStack.Pop();
+		_romData[op.Offset] = op.OldValue;
+		_redoStack.Push(op);
+		if (_romData[op.Offset] == op.OldValue)
+			_modifiedOffsets.Remove(op.Offset);
+	}
+
+	private void Redo()
+	{
+		if (_romData == null || _redoStack.Count == 0) return;
+		var op = _redoStack.Pop();
+		_romData[op.Offset] = op.NewValue;
+		_undoStack.Push(op);
+		_modifiedOffsets.Add(op.Offset);
+	}
+
+	private void Copy()
+	{
+		// Copy selected bytes to clipboard - would use JS interop
+	}
+
+	private void Paste()
+	{
+		// Paste from clipboard - would use JS interop
+	}
+
+	private bool IsByteSelected(int offset)
+	{
+		if (!_selectionStart.HasValue) return false;
+		var end = _selectionEnd ?? _selectionStart.Value;
+		return offset >= _selectionStart.Value && offset <= end;
+	}
+
+	private bool IsRowSelected(int rowOffset)
+	{
+		if (!_selectionStart.HasValue) return false;
+		var end = _selectionEnd ?? _selectionStart.Value;
+		return rowOffset + _bytesPerRow > _selectionStart.Value && rowOffset <= end;
+	}
+
+	private bool IsModified(int offset)
+	{
+		return _modifiedOffsets.Contains(offset);
+	}
+
+	private static char GetAsciiChar(byte b)
+	{
+		return b >= 0x20 && b < 0x7f ? (char)b : '.';
+	}
+
+	private static string FormatOffset(int offset)
+	{
+		return $"{offset:x6}";
+	}
+
+	private static string FormatSize(int bytes)
+	{
+		if (bytes < 1024)
+			return $"{bytes} bytes";
+		if (bytes < 1024 * 1024)
+			return $"{bytes / 1024.0:F1} KB";
+		return $"{bytes / (1024.0 * 1024.0):F1} MB";
+	}
+
+	private record EditOperation(int Offset, byte OldValue, byte NewValue);
+}

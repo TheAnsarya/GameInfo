@@ -16,11 +16,8 @@ namespace GameInfoTools.Wiki;
 /// </summary>
 public class MediaWikiClient : IDisposable {
 	private readonly HttpClient _httpClient;
-	private readonly MediaWikiConfig _config;
-	private readonly WikiContentPolicy _contentPolicy;
 	private readonly CookieContainer _cookies;
 	private string? _csrfToken;
-	private bool _isLoggedIn;
 	private bool _disposed;
 	private DateTime _lastEditTime = DateTime.MinValue;
 	private int _editsThisHour;
@@ -42,8 +39,8 @@ public class MediaWikiClient : IDisposable {
 	/// Creates a new MediaWiki client with the specified content policy.
 	/// </summary>
 	public MediaWikiClient(MediaWikiConfig config, WikiContentPolicy contentPolicy) {
-		_config = config ?? throw new ArgumentNullException(nameof(config));
-		_contentPolicy = contentPolicy ?? throw new ArgumentNullException(nameof(contentPolicy));
+		Config = config ?? throw new ArgumentNullException(nameof(config));
+		ContentPolicy = contentPolicy ?? throw new ArgumentNullException(nameof(contentPolicy));
 		_cookies = new CookieContainer();
 
 		var handler = new HttpClientHandler {
@@ -62,29 +59,29 @@ public class MediaWikiClient : IDisposable {
 	/// <summary>
 	/// Whether the client is currently logged in.
 	/// </summary>
-	public bool IsLoggedIn => _isLoggedIn;
+	public bool IsLoggedIn { get; private set; }
 
 	/// <summary>
 	/// The wiki configuration.
 	/// </summary>
-	public MediaWikiConfig Config => _config;
+	public MediaWikiConfig Config { get; }
 
 	/// <summary>
 	/// The content policy for this wiki.
 	/// </summary>
-	public WikiContentPolicy ContentPolicy => _contentPolicy;
+	public WikiContentPolicy ContentPolicy { get; }
 
 	/// <summary>
 	/// Whether this wiki allows AI-generated content.
 	/// </summary>
-	public bool AllowsAiContent => _contentPolicy.AllowsAiContent;
+	public bool AllowsAiContent => ContentPolicy.AllowsAiContent;
 
 	/// <summary>
 	/// Gets the AI content warning message for this wiki, if applicable.
 	/// </summary>
 	public string? AiContentWarning =>
-		!_contentPolicy.AllowsAiContent && !string.IsNullOrEmpty(_contentPolicy.AiContentWarning)
-			? _contentPolicy.AiContentWarning
+		!ContentPolicy.AllowsAiContent && !string.IsNullOrEmpty(ContentPolicy.AiContentWarning)
+			? ContentPolicy.AiContentWarning
 			: null;
 
 	#region Read Operations (Safe)
@@ -287,7 +284,7 @@ public class MediaWikiClient : IDisposable {
 	/// Logs in to the wiki using bot password authentication.
 	/// </summary>
 	public async Task<LoginResult> LoginAsync(CancellationToken cancellationToken = default) {
-		if (string.IsNullOrEmpty(_config.Username) || string.IsNullOrEmpty(_config.BotPassword)) {
+		if (string.IsNullOrEmpty(Config.Username) || string.IsNullOrEmpty(Config.BotPassword)) {
 			return new LoginResult {
 				Success = false,
 				Error = "Username and bot password are required"
@@ -313,8 +310,8 @@ public class MediaWikiClient : IDisposable {
 		// Step 2: Perform login
 		var loginParams = new Dictionary<string, string> {
 			["action"] = "login",
-			["lgname"] = _config.Username,
-			["lgpassword"] = _config.BotPassword,
+			["lgname"] = Config.Username,
+			["lgpassword"] = Config.BotPassword,
 			["lgtoken"] = loginToken!,
 			["format"] = "json",
 			["formatversion"] = "2"
@@ -325,7 +322,7 @@ public class MediaWikiClient : IDisposable {
 		var result = login.GetProperty("result").GetString();
 
 		if (result == "Success") {
-			_isLoggedIn = true;
+			IsLoggedIn = true;
 			// Get CSRF token for editing
 			await RefreshCsrfTokenAsync(cancellationToken);
 
@@ -345,7 +342,7 @@ public class MediaWikiClient : IDisposable {
 	/// Logs out from the wiki.
 	/// </summary>
 	public async Task LogoutAsync(CancellationToken cancellationToken = default) {
-		if (!_isLoggedIn) return;
+		if (!IsLoggedIn) return;
 
 		var parameters = new Dictionary<string, string> {
 			["action"] = "logout",
@@ -354,7 +351,7 @@ public class MediaWikiClient : IDisposable {
 		};
 
 		await PostAsync(parameters, cancellationToken);
-		_isLoggedIn = false;
+		IsLoggedIn = false;
 		_csrfToken = null;
 	}
 
@@ -399,19 +396,19 @@ public class MediaWikiClient : IDisposable {
 		CancellationToken cancellationToken = default) {
 
 		// Check content policy - if AI content not allowed, require review
-		if (!_contentPolicy.AllowsAiContent && !syncState.ReviewedForUpload) {
+		if (!ContentPolicy.AllowsAiContent && !syncState.ReviewedForUpload) {
 			return new EditResult {
 				Success = false,
 				ErrorCode = "NOT_REVIEWED",
-				ErrorMessage = _contentPolicy.AiContentWarning.Length > 0
-					? _contentPolicy.AiContentWarning
+				ErrorMessage = ContentPolicy.AiContentWarning.Length > 0
+					? ContentPolicy.AiContentWarning
 					: "Content has not been marked as reviewed. " +
 						"This wiki requires manual review before uploading."
 			};
 		}
 
 		// Check if review is required regardless of AI policy
-		if (_contentPolicy.RequireReviewBeforeUpload && !syncState.ReviewedForUpload) {
+		if (ContentPolicy.RequireReviewBeforeUpload && !syncState.ReviewedForUpload) {
 			return new EditResult {
 				Success = false,
 				ErrorCode = "NOT_REVIEWED",
@@ -435,7 +432,7 @@ public class MediaWikiClient : IDisposable {
 			};
 		}
 
-		if (!_isLoggedIn) {
+		if (!IsLoggedIn) {
 			return new EditResult {
 				Success = false,
 				ErrorCode = "NOT_LOGGED_IN",
@@ -448,8 +445,8 @@ public class MediaWikiClient : IDisposable {
 		}
 
 		// Apply required summary prefix if configured
-		var finalSummary = !string.IsNullOrEmpty(_contentPolicy.RequiredSummaryPrefix)
-			? $"{_contentPolicy.RequiredSummaryPrefix} {summary}"
+		var finalSummary = !string.IsNullOrEmpty(ContentPolicy.RequiredSummaryPrefix)
+			? $"{ContentPolicy.RequiredSummaryPrefix} {summary}"
 			: summary;
 
 		var parameters = new Dictionary<string, string> {
@@ -517,12 +514,12 @@ public class MediaWikiClient : IDisposable {
 		}
 
 		// Check max edits per hour
-		if (_contentPolicy.MaxEditsPerHour > 0 && _editsThisHour >= _contentPolicy.MaxEditsPerHour) {
+		if (ContentPolicy.MaxEditsPerHour > 0 && _editsThisHour >= ContentPolicy.MaxEditsPerHour) {
 			var resetTime = _editHourStart.AddHours(1);
 			return new EditResult {
 				Success = false,
 				ErrorCode = "RATE_LIMITED",
-				ErrorMessage = $"Rate limit reached ({_contentPolicy.MaxEditsPerHour} edits/hour). " +
+				ErrorMessage = $"Rate limit reached ({ContentPolicy.MaxEditsPerHour} edits/hour). " +
 					$"Try again after {resetTime:HH:mm:ss} UTC."
 			};
 		}
@@ -531,9 +528,9 @@ public class MediaWikiClient : IDisposable {
 	}
 
 	private async Task ApplyRateLimitDelayAsync(CancellationToken cancellationToken) {
-		if (_contentPolicy.MinEditDelaySeconds > 0) {
+		if (ContentPolicy.MinEditDelaySeconds > 0) {
 			var timeSinceLastEdit = DateTime.UtcNow - _lastEditTime;
-			var requiredDelay = TimeSpan.FromSeconds(_contentPolicy.MinEditDelaySeconds);
+			var requiredDelay = TimeSpan.FromSeconds(ContentPolicy.MinEditDelaySeconds);
 
 			if (timeSinceLastEdit < requiredDelay) {
 				var delay = requiredDelay - timeSinceLastEdit;
@@ -556,7 +553,7 @@ public class MediaWikiClient : IDisposable {
 		CancellationToken cancellationToken) {
 
 		var query = string.Join("&", parameters.Select(p => $"{Uri.EscapeDataString(p.Key)}={Uri.EscapeDataString(p.Value)}"));
-		var url = $"{_config.ApiUrl}?{query}";
+		var url = $"{Config.ApiUrl}?{query}";
 
 		var response = await _httpClient.GetAsync(url, cancellationToken);
 		response.EnsureSuccessStatusCode();
@@ -570,7 +567,7 @@ public class MediaWikiClient : IDisposable {
 		CancellationToken cancellationToken) {
 
 		var content = new FormUrlEncodedContent(parameters);
-		var response = await _httpClient.PostAsync(_config.ApiUrl, content, cancellationToken);
+		var response = await _httpClient.PostAsync(Config.ApiUrl, content, cancellationToken);
 		response.EnsureSuccessStatusCode();
 
 		var json = await response.Content.ReadAsStringAsync(cancellationToken);

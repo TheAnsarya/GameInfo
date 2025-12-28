@@ -113,6 +113,7 @@ public partial class SymbolManagerViewModel : ViewModelBase {
 		foreach (var symbol in _symbolManager.Symbols.OrderBy(s => s.Address)) {
 			Symbols.Add(symbol);
 		}
+
 		ApplyFilter();
 		UpdateStatistics();
 	}

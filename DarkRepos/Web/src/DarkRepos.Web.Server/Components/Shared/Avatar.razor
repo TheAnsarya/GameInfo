@@ -1,0 +1,67 @@
+@namespace DarkRepos.Web.Components.Shared
+
+<div class="avatar avatar--@Size.ToString().ToLower() @CssClass" title="@Name">
+	@if (!string.IsNullOrEmpty(ImageUrl)) {
+		<img src="@ImageUrl" alt="@(AltText ?? Name ?? "Avatar")" class="avatar-image" loading="lazy" />
+	} else if (!string.IsNullOrEmpty(Name)) {
+		<span class="avatar-initials">@GetInitials()</span>
+	} else {
+		<span class="avatar-placeholder">
+			<svg xmlns="http://www.w3.org/2000/svg" width="60%" height="60%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+				<circle cx="12" cy="7" r="4"></circle>
+			</svg>
+		</span>
+	}
+	@if (ShowStatus && Status != AvatarStatus.None) {
+		<span class="avatar-status avatar-status--@Status.ToString().ToLower()"></span>
+	}
+</div>
+
+@code {
+	[Parameter]
+	public string? ImageUrl { get; set; }
+
+	[Parameter]
+	public string? AltText { get; set; }
+
+	[Parameter]
+	public string? Name { get; set; }
+
+	[Parameter]
+	public AvatarSize Size { get; set; } = AvatarSize.Medium;
+
+	[Parameter]
+	public AvatarStatus Status { get; set; } = AvatarStatus.None;
+
+	[Parameter]
+	public bool ShowStatus { get; set; }
+
+	[Parameter]
+	public string? CssClass { get; set; }
+
+	private string GetInitials() {
+		if (string.IsNullOrEmpty(Name)) return "";
+
+		var parts = Name.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+		if (parts.Length >= 2) {
+			return $"{parts[0][0]}{parts[^1][0]}".ToUpper();
+		}
+		return parts[0][..Math.Min(2, parts[0].Length)].ToUpper();
+	}
+
+	public enum AvatarSize {
+		Small,
+		Medium,
+		Large,
+		XLarge
+	}
+
+	public enum AvatarStatus {
+		None,
+		Online,
+		Away,
+		Busy,
+		Offline
+	}
+}

@@ -1,0 +1,631 @@
+{
+	"driver_offset": "$07A7F6",
+	"driver_size": 12675,
+	"total_audio_size": 25286,
+	"music_tracks": [
+		{
+			"id": 0,
+			"name": "Silence",
+			"offset": "$07FE6C",
+			"size": 50,
+			"bank": "$0F"
+		},
+		{
+			"id": 1,
+			"name": "Title Screen",
+			"offset": "$07FE9E",
+			"size": 18,
+			"bank": "$0F"
+		},
+		{
+			"id": 2,
+			"name": "The Shrine",
+			"offset": "$07FEB0",
+			"size": 18,
+			"bank": "$0F"
+		},
+		{
+			"id": 3,
+			"name": "Grass Valley",
+			"offset": "$07FEC2",
+			"size": 50,
+			"bank": "$0F"
+		},
+		{
+			"id": 4,
+			"name": "Underground Castle",
+			"offset": "$07FEF4",
+			"size": 66,
+			"bank": "$0F"
+		},
+		{
+			"id": 5,
+			"name": "GreenWood",
+			"offset": "$07FF36",
+			"size": 26,
+			"bank": "$0F"
+		},
+		{
+			"id": 6,
+			"name": "Lost Marsh",
+			"offset": "$07FF50",
+			"size": 10,
+			"bank": "$0F"
+		},
+		{
+			"id": 7,
+			"name": "St. Elles",
+			"offset": "$07FF5A",
+			"size": 26,
+			"bank": "$0F"
+		},
+		{
+			"id": 8,
+			"name": "Seabed",
+			"offset": "$07FF74",
+			"size": 10,
+			"bank": "$0F"
+		},
+		{
+			"id": 9,
+			"name": "Ghost Ship",
+			"offset": "$07FF7E",
+			"size": 26,
+			"bank": "$0F"
+		},
+		{
+			"id": 10,
+			"name": "Mountain of Souls",
+			"offset": "$07FF98",
+			"size": 26,
+			"bank": "$0F"
+		},
+		{
+			"id": 11,
+			"name": "Laynole",
+			"offset": "$07FFB2",
+			"size": 26,
+			"bank": "$0F"
+		},
+		{
+			"id": 12,
+			"name": "Leo's Lab",
+			"offset": "$07FFCC",
+			"size": 26,
+			"bank": "$0F"
+		},
+		{
+			"id": 13,
+			"name": "Model Town",
+			"offset": "$07FFE6",
+			"size": 18,
+			"bank": "$0F"
+		},
+		{
+			"id": 14,
+			"name": "Magridd Castle",
+			"offset": "$07FFF8",
+			"size": 26,
+			"bank": "$0F"
+		},
+		{
+			"id": 15,
+			"name": "World of Evil",
+			"offset": "$080012",
+			"size": 34,
+			"bank": "$0F"
+		},
+		{
+			"id": 16,
+			"name": "Boss Battle",
+			"offset": "$080034",
+			"size": 34,
+			"bank": "$0F"
+		},
+		{
+			"id": 17,
+			"name": "Deathtoll",
+			"offset": "$080056",
+			"size": 34,
+			"bank": "$0F"
+		},
+		{
+			"id": 18,
+			"name": "Victory",
+			"offset": "$080078",
+			"size": 42,
+			"bank": "$0F"
+		},
+		{
+			"id": 19,
+			"name": "Soul Released",
+			"offset": "$0800A2",
+			"size": 50,
+			"bank": "$0F"
+		},
+		{
+			"id": 20,
+			"name": "NPC Theme",
+			"offset": "$0800D4",
+			"size": 18,
+			"bank": "$0F"
+		},
+		{
+			"id": 21,
+			"name": "Shop",
+			"offset": "$0800E6",
+			"size": 18,
+			"bank": "$0F"
+		},
+		{
+			"id": 22,
+			"name": "Inn",
+			"offset": "$0800F8",
+			"size": 18,
+			"bank": "$0F"
+		},
+		{
+			"id": 23,
+			"name": "Game Over",
+			"offset": "$08010A",
+			"size": 18,
+			"bank": "$0F"
+		},
+		{
+			"id": 24,
+			"name": "Ending",
+			"offset": "$08011C",
+			"size": 34,
+			"bank": "$0F"
+		},
+		{
+			"id": 25,
+			"name": "Credits",
+			"offset": "$08013E",
+			"size": 18,
+			"bank": "$0F"
+		},
+		{
+			"id": 26,
+			"name": "Track_1A",
+			"offset": "$080150",
+			"size": 34,
+			"bank": "$0F"
+		},
+		{
+			"id": 27,
+			"name": "Track_1B",
+			"offset": "$080172",
+			"size": 34,
+			"bank": "$0F"
+		},
+		{
+			"id": 28,
+			"name": "Track_1C",
+			"offset": "$080194",
+			"size": 34,
+			"bank": "$0F"
+		},
+		{
+			"id": 29,
+			"name": "Track_1D",
+			"offset": "$0801B6",
+			"size": 42,
+			"bank": "$0F"
+		},
+		{
+			"id": 30,
+			"name": "Track_1E",
+			"offset": "$0801E0",
+			"size": 66,
+			"bank": "$0F"
+		},
+		{
+			"id": 31,
+			"name": "Track_1F",
+			"offset": "$080222",
+			"size": 2048,
+			"bank": "$0F"
+		}
+	],
+	"sound_effects": [
+		{
+			"id": 0,
+			"name": "Menu Select",
+			"offset": "$07C000",
+			"size": 256
+		},
+		{
+			"id": 1,
+			"name": "Menu Cancel",
+			"offset": "$07C100",
+			"size": 256
+		},
+		{
+			"id": 2,
+			"name": "Sword Swing",
+			"offset": "$07C200",
+			"size": 256
+		},
+		{
+			"id": 3,
+			"name": "Sword Hit",
+			"offset": "$07C300",
+			"size": 256
+		},
+		{
+			"id": 4,
+			"name": "Enemy Hit",
+			"offset": "$07C400",
+			"size": 256
+		},
+		{
+			"id": 5,
+			"name": "Enemy Death",
+			"offset": "$07C500",
+			"size": 256
+		},
+		{
+			"id": 6,
+			"name": "Player Damage",
+			"offset": "$07C600",
+			"size": 256
+		},
+		{
+			"id": 7,
+			"name": "Level Up",
+			"offset": "$07C700",
+			"size": 256
+		},
+		{
+			"id": 8,
+			"name": "Item Get",
+			"offset": "$07C800",
+			"size": 256
+		},
+		{
+			"id": 9,
+			"name": "Soul Release",
+			"offset": "$07C900",
+			"size": 256
+		},
+		{
+			"id": 10,
+			"name": "Door Open",
+			"offset": "$07CA00",
+			"size": 256
+		},
+		{
+			"id": 11,
+			"name": "Chest Open",
+			"offset": "$07CB00",
+			"size": 256
+		},
+		{
+			"id": 12,
+			"name": "Magic Cast",
+			"offset": "$07CC00",
+			"size": 256
+		},
+		{
+			"id": 13,
+			"name": "Fireball",
+			"offset": "$07CD00",
+			"size": 256
+		},
+		{
+			"id": 14,
+			"name": "Warp",
+			"offset": "$07CE00",
+			"size": 256
+		},
+		{
+			"id": 15,
+			"name": "Save",
+			"offset": "$07CF00",
+			"size": 256
+		}
+	],
+	"brr_samples": [
+		{
+			"id": 0,
+			"offset": "$078000",
+			"size": 36,
+			"loop_point": 0
+		},
+		{
+			"id": 1,
+			"offset": "$078024",
+			"size": 207,
+			"loop_point": 0
+		},
+		{
+			"id": 2,
+			"offset": "$0780F4",
+			"size": 90,
+			"loop_point": 81
+		},
+		{
+			"id": 3,
+			"offset": "$078151",
+			"size": 54,
+			"loop_point": 0
+		},
+		{
+			"id": 4,
+			"offset": "$078187",
+			"size": 135,
+			"loop_point": 0
+		},
+		{
+			"id": 5,
+			"offset": "$07820F",
+			"size": 27,
+			"loop_point": 18
+		},
+		{
+			"id": 6,
+			"offset": "$07822B",
+			"size": 117,
+			"loop_point": 0
+		},
+		{
+			"id": 7,
+			"offset": "$0782A3",
+			"size": 63,
+			"loop_point": 0
+		},
+		{
+			"id": 8,
+			"offset": "$0782E7",
+			"size": 99,
+			"loop_point": 0
+		},
+		{
+			"id": 9,
+			"offset": "$07834C",
+			"size": 36,
+			"loop_point": 27
+		},
+		{
+			"id": 10,
+			"offset": "$078373",
+			"size": 72,
+			"loop_point": 0
+		},
+		{
+			"id": 11,
+			"offset": "$0783BB",
+			"size": 27,
+			"loop_point": 0
+		},
+		{
+			"id": 12,
+			"offset": "$0783D7",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 13,
+			"offset": "$0783ED",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 14,
+			"offset": "$0783FF",
+			"size": 18,
+			"loop_point": 9
+		},
+		{
+			"id": 15,
+			"offset": "$078419",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 16,
+			"offset": "$078431",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 17,
+			"offset": "$078449",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 18,
+			"offset": "$07845B",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 19,
+			"offset": "$078473",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 20,
+			"offset": "$078488",
+			"size": 27,
+			"loop_point": 0
+		},
+		{
+			"id": 21,
+			"offset": "$0784A3",
+			"size": 18,
+			"loop_point": 9
+		},
+		{
+			"id": 22,
+			"offset": "$0784B5",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 23,
+			"offset": "$0784CB",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 24,
+			"offset": "$0784DF",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 25,
+			"offset": "$0784F5",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 26,
+			"offset": "$078507",
+			"size": 18,
+			"loop_point": 9
+		},
+		{
+			"id": 27,
+			"offset": "$078519",
+			"size": 27,
+			"loop_point": 0
+		},
+		{
+			"id": 28,
+			"offset": "$078539",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 29,
+			"offset": "$07854B",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 30,
+			"offset": "$07855D",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 31,
+			"offset": "$078570",
+			"size": 27,
+			"loop_point": 18
+		},
+		{
+			"id": 32,
+			"offset": "$07858C",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 33,
+			"offset": "$0785A5",
+			"size": 81,
+			"loop_point": 0
+		},
+		{
+			"id": 34,
+			"offset": "$0785F9",
+			"size": 72,
+			"loop_point": 0
+		},
+		{
+			"id": 35,
+			"offset": "$078643",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 36,
+			"offset": "$078655",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 37,
+			"offset": "$07866B",
+			"size": 18,
+			"loop_point": 9
+		},
+		{
+			"id": 38,
+			"offset": "$07867D",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 39,
+			"offset": "$07868F",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 40,
+			"offset": "$0786A1",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 41,
+			"offset": "$0786B3",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 42,
+			"offset": "$0786C7",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 43,
+			"offset": "$0786D9",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 44,
+			"offset": "$0786EB",
+			"size": 36,
+			"loop_point": 0
+		},
+		{
+			"id": 45,
+			"offset": "$07870F",
+			"size": 18,
+			"loop_point": 9
+		},
+		{
+			"id": 46,
+			"offset": "$078721",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 47,
+			"offset": "$078733",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 48,
+			"offset": "$07874B",
+			"size": 18,
+			"loop_point": 0
+		},
+		{
+			"id": 49,
+			"offset": "$07875D",
+			"size": 18,
+			"loop_point": 0
+		}
+	]
+}

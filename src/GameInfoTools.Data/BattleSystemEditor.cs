@@ -9,7 +9,6 @@ namespace GameInfoTools.Data;
 /// </summary>
 public class BattleSystemEditor {
 	private readonly byte[] _data;
-	private BattleSchema? _schema;
 	private readonly List<DamageFormula> _damageFormulas = [];
 	private readonly List<BattleAction> _actions = [];
 	private readonly List<StatusEffect> _statusEffects = [];
@@ -26,7 +25,7 @@ public class BattleSystemEditor {
 	/// <summary>
 	/// Gets the current schema.
 	/// </summary>
-	public BattleSchema? Schema => _schema;
+	public BattleSchema? Schema { get; private set; }
 
 	/// <summary>
 	/// Gets the loaded damage formulas.
@@ -246,7 +245,7 @@ public class BattleSystemEditor {
 	/// Sets the schema for reading battle data.
 	/// </summary>
 	public void SetSchema(BattleSchema schema) {
-		_schema = schema ?? throw new ArgumentNullException(nameof(schema));
+		Schema = schema ?? throw new ArgumentNullException(nameof(schema));
 		_damageFormulas.Clear();
 		_actions.Clear();
 		_statusEffects.Clear();
@@ -339,16 +338,17 @@ public class BattleSystemEditor {
 	/// Loads all battle data from ROM.
 	/// </summary>
 	public void LoadAll() {
-		if (_schema == null) {
+		if (Schema == null) {
 			throw new InvalidOperationException("Schema must be set before loading data");
 		}
 
 		LoadDamageFormulas();
 		LoadActions();
-		if (_schema.HasStatusSystem) {
+		if (Schema.HasStatusSystem) {
 			LoadStatusEffects();
 		}
-		if (_schema.HasElementalSystem) {
+
+		if (Schema.HasElementalSystem) {
 			LoadElements();
 		}
 	}
@@ -357,13 +357,13 @@ public class BattleSystemEditor {
 	/// Loads damage formulas from ROM.
 	/// </summary>
 	public void LoadDamageFormulas() {
-		if (_schema == null || _schema.DamageFormulaTableOffset < 0) return;
+		if (Schema == null || Schema.DamageFormulaTableOffset < 0) return;
 
 		_damageFormulas.Clear();
-		int offset = _schema.DamageFormulaTableOffset;
+		int offset = Schema.DamageFormulaTableOffset;
 
-		for (int i = 0; i < _schema.DamageFormulaCount; i++) {
-			if (offset + _schema.DamageFormulaSize > _data.Length) break;
+		for (int i = 0; i < Schema.DamageFormulaCount; i++) {
+			if (offset + Schema.DamageFormulaSize > _data.Length) break;
 
 			var formula = new DamageFormula {
 				Id = i,
@@ -372,28 +372,33 @@ public class BattleSystemEditor {
 			};
 
 			// Read formula data based on size
-			if (_schema.DamageFormulaSize >= 1) {
+			if (Schema.DamageFormulaSize >= 1) {
 				formula.Type = (FormulaType)(_data[offset] & 0x07);
 				formula.Flags = _data[offset] >> 3;
 			}
-			if (_schema.DamageFormulaSize >= 2) {
+
+			if (Schema.DamageFormulaSize >= 2) {
 				formula.BaseMultiplier = _data[offset + 1];
 			}
-			if (_schema.DamageFormulaSize >= 3) {
+
+			if (Schema.DamageFormulaSize >= 3) {
 				formula.StatWeight = _data[offset + 2];
 			}
-			if (_schema.DamageFormulaSize >= 4) {
+
+			if (Schema.DamageFormulaSize >= 4) {
 				formula.DefenseWeight = _data[offset + 3];
 			}
-			if (_schema.DamageFormulaSize >= 5) {
+
+			if (Schema.DamageFormulaSize >= 5) {
 				formula.RandomVariance = _data[offset + 4];
 			}
-			if (_schema.DamageFormulaSize >= 6) {
+
+			if (Schema.DamageFormulaSize >= 6) {
 				formula.ElementId = _data[offset + 5];
 			}
 
 			_damageFormulas.Add(formula);
-			offset += _schema.DamageFormulaSize;
+			offset += Schema.DamageFormulaSize;
 		}
 	}
 
@@ -401,13 +406,13 @@ public class BattleSystemEditor {
 	/// Loads battle actions from ROM.
 	/// </summary>
 	public void LoadActions() {
-		if (_schema == null || _schema.ActionTableOffset < 0) return;
+		if (Schema == null || Schema.ActionTableOffset < 0) return;
 
 		_actions.Clear();
-		int offset = _schema.ActionTableOffset;
+		int offset = Schema.ActionTableOffset;
 
-		for (int i = 0; i < _schema.ActionCount; i++) {
-			if (offset + _schema.ActionSize > _data.Length) break;
+		for (int i = 0; i < Schema.ActionCount; i++) {
+			if (offset + Schema.ActionSize > _data.Length) break;
 
 			var action = new BattleAction {
 				Id = i,
@@ -416,34 +421,41 @@ public class BattleSystemEditor {
 			};
 
 			// Read action data based on size
-			if (_schema.ActionSize >= 1) {
+			if (Schema.ActionSize >= 1) {
 				action.Type = (ActionType)(_data[offset] & 0x07);
 				action.Target = (TargetType)((_data[offset] >> 3) & 0x07);
 			}
-			if (_schema.ActionSize >= 2) {
+
+			if (Schema.ActionSize >= 2) {
 				action.Power = _data[offset + 1];
 			}
-			if (_schema.ActionSize >= 3) {
+
+			if (Schema.ActionSize >= 3) {
 				action.Accuracy = _data[offset + 2];
 			}
-			if (_schema.ActionSize >= 4) {
+
+			if (Schema.ActionSize >= 4) {
 				action.MpCost = _data[offset + 3];
 			}
-			if (_schema.ActionSize >= 5) {
+
+			if (Schema.ActionSize >= 5) {
 				action.FormulaId = _data[offset + 4];
 			}
-			if (_schema.ActionSize >= 6) {
+
+			if (Schema.ActionSize >= 6) {
 				action.ElementId = _data[offset + 5];
 			}
-			if (_schema.ActionSize >= 7) {
+
+			if (Schema.ActionSize >= 7) {
 				action.StatusEffectId = _data[offset + 6];
 			}
-			if (_schema.ActionSize >= 8) {
+
+			if (Schema.ActionSize >= 8) {
 				action.StatusChance = _data[offset + 7];
 			}
 
 			_actions.Add(action);
-			offset += _schema.ActionSize;
+			offset += Schema.ActionSize;
 		}
 	}
 
@@ -451,13 +463,13 @@ public class BattleSystemEditor {
 	/// Loads status effects from ROM.
 	/// </summary>
 	public void LoadStatusEffects() {
-		if (_schema == null || _schema.StatusEffectTableOffset < 0) return;
+		if (Schema == null || Schema.StatusEffectTableOffset < 0) return;
 
 		_statusEffects.Clear();
-		int offset = _schema.StatusEffectTableOffset;
+		int offset = Schema.StatusEffectTableOffset;
 
-		for (int i = 0; i < _schema.StatusEffectCount; i++) {
-			if (offset + _schema.StatusEffectSize > _data.Length) break;
+		for (int i = 0; i < Schema.StatusEffectCount; i++) {
+			if (offset + Schema.StatusEffectSize > _data.Length) break;
 
 			var status = new StatusEffect {
 				Id = i,
@@ -466,22 +478,25 @@ public class BattleSystemEditor {
 			};
 
 			// Read status data based on size
-			if (_schema.StatusEffectSize >= 1) {
+			if (Schema.StatusEffectSize >= 1) {
 				status.Category = (StatusCategory)(_data[offset] & 0x07);
 				status.Flags = (StatusFlags)(_data[offset] & 0xf8);
 			}
-			if (_schema.StatusEffectSize >= 2) {
+
+			if (Schema.StatusEffectSize >= 2) {
 				status.Duration = _data[offset + 1];
 			}
-			if (_schema.StatusEffectSize >= 3) {
+
+			if (Schema.StatusEffectSize >= 3) {
 				status.TickDamage = _data[offset + 2];
 			}
-			if (_schema.StatusEffectSize >= 4) {
+
+			if (Schema.StatusEffectSize >= 4) {
 				status.StatModifier = _data[offset + 3];
 			}
 
 			_statusEffects.Add(status);
-			offset += _schema.StatusEffectSize;
+			offset += Schema.StatusEffectSize;
 		}
 	}
 
@@ -489,13 +504,13 @@ public class BattleSystemEditor {
 	/// Loads element types from ROM.
 	/// </summary>
 	public void LoadElements() {
-		if (_schema == null || _schema.ElementTableOffset < 0) return;
+		if (Schema == null || Schema.ElementTableOffset < 0) return;
 
 		_elements.Clear();
-		int offset = _schema.ElementTableOffset;
+		int offset = Schema.ElementTableOffset;
 
-		for (int i = 0; i < _schema.ElementCount; i++) {
-			if (offset + _schema.ElementSize > _data.Length) break;
+		for (int i = 0; i < Schema.ElementCount; i++) {
+			if (offset + Schema.ElementSize > _data.Length) break;
 
 			var element = new ElementType {
 				Id = i,
@@ -504,15 +519,16 @@ public class BattleSystemEditor {
 			};
 
 			// Read element data based on size
-			if (_schema.ElementSize >= 1) {
+			if (Schema.ElementSize >= 1) {
 				element.OpposingElementId = _data[offset] & 0x0f;
 			}
-			if (_schema.ElementSize >= 2) {
+
+			if (Schema.ElementSize >= 2) {
 				element.BonusDamagePercent = _data[offset + 1];
 			}
 
 			_elements.Add(element);
-			offset += _schema.ElementSize;
+			offset += Schema.ElementSize;
 		}
 	}
 
@@ -605,7 +621,7 @@ public class BattleSystemEditor {
 	/// Updates a damage formula.
 	/// </summary>
 	public bool UpdateFormula(DamageFormula formula) {
-		if (_schema == null) return false;
+		if (Schema == null) return false;
 
 		var existing = _damageFormulas.FirstOrDefault(f => f.Id == formula.Id);
 		if (existing == null) return false;
@@ -622,7 +638,7 @@ public class BattleSystemEditor {
 	/// Updates a battle action.
 	/// </summary>
 	public bool UpdateAction(BattleAction action) {
-		if (_schema == null) return false;
+		if (Schema == null) return false;
 
 		var existing = _actions.FirstOrDefault(a => a.Id == action.Id);
 		if (existing == null) return false;
@@ -638,7 +654,7 @@ public class BattleSystemEditor {
 	/// Updates a status effect.
 	/// </summary>
 	public bool UpdateStatusEffect(StatusEffect status) {
-		if (_schema == null) return false;
+		if (Schema == null) return false;
 
 		var existing = _statusEffects.FirstOrDefault(s => s.Id == status.Id);
 		if (existing == null) return false;
@@ -654,7 +670,7 @@ public class BattleSystemEditor {
 	/// Updates an element type.
 	/// </summary>
 	public bool UpdateElement(ElementType element) {
-		if (_schema == null) return false;
+		if (Schema == null) return false;
 
 		var existing = _elements.FirstOrDefault(e => e.Id == element.Id);
 		if (existing == null) return false;
@@ -686,100 +702,116 @@ public class BattleSystemEditor {
 	}
 
 	private void SaveDamageFormulas(byte[] output) {
-		if (_schema == null || _schema.DamageFormulaTableOffset < 0) return;
+		if (Schema == null || Schema.DamageFormulaTableOffset < 0) return;
 
 		foreach (var formula in _damageFormulas) {
 			int offset = formula.RomOffset;
-			if (offset < 0 || offset + _schema.DamageFormulaSize > output.Length) continue;
+			if (offset < 0 || offset + Schema.DamageFormulaSize > output.Length) continue;
 
-			if (_schema.DamageFormulaSize >= 1) {
+			if (Schema.DamageFormulaSize >= 1) {
 				output[offset] = (byte)(((int)formula.Type & 0x07) | (formula.Flags << 3));
 			}
-			if (_schema.DamageFormulaSize >= 2) {
+
+			if (Schema.DamageFormulaSize >= 2) {
 				output[offset + 1] = (byte)formula.BaseMultiplier;
 			}
-			if (_schema.DamageFormulaSize >= 3) {
+
+			if (Schema.DamageFormulaSize >= 3) {
 				output[offset + 2] = (byte)formula.StatWeight;
 			}
-			if (_schema.DamageFormulaSize >= 4) {
+
+			if (Schema.DamageFormulaSize >= 4) {
 				output[offset + 3] = (byte)formula.DefenseWeight;
 			}
-			if (_schema.DamageFormulaSize >= 5) {
+
+			if (Schema.DamageFormulaSize >= 5) {
 				output[offset + 4] = (byte)formula.RandomVariance;
 			}
-			if (_schema.DamageFormulaSize >= 6) {
+
+			if (Schema.DamageFormulaSize >= 6) {
 				output[offset + 5] = (byte)formula.ElementId;
 			}
 		}
 	}
 
 	private void SaveActions(byte[] output) {
-		if (_schema == null || _schema.ActionTableOffset < 0) return;
+		if (Schema == null || Schema.ActionTableOffset < 0) return;
 
 		foreach (var action in _actions) {
 			int offset = action.RomOffset;
-			if (offset < 0 || offset + _schema.ActionSize > output.Length) continue;
+			if (offset < 0 || offset + Schema.ActionSize > output.Length) continue;
 
-			if (_schema.ActionSize >= 1) {
+			if (Schema.ActionSize >= 1) {
 				output[offset] = (byte)((int)action.Type | ((int)action.Target << 3));
 			}
-			if (_schema.ActionSize >= 2) {
+
+			if (Schema.ActionSize >= 2) {
 				output[offset + 1] = (byte)action.Power;
 			}
-			if (_schema.ActionSize >= 3) {
+
+			if (Schema.ActionSize >= 3) {
 				output[offset + 2] = (byte)action.Accuracy;
 			}
-			if (_schema.ActionSize >= 4) {
+
+			if (Schema.ActionSize >= 4) {
 				output[offset + 3] = (byte)action.MpCost;
 			}
-			if (_schema.ActionSize >= 5) {
+
+			if (Schema.ActionSize >= 5) {
 				output[offset + 4] = (byte)action.FormulaId;
 			}
-			if (_schema.ActionSize >= 6) {
+
+			if (Schema.ActionSize >= 6) {
 				output[offset + 5] = (byte)action.ElementId;
 			}
-			if (_schema.ActionSize >= 7) {
+
+			if (Schema.ActionSize >= 7) {
 				output[offset + 6] = (byte)action.StatusEffectId;
 			}
-			if (_schema.ActionSize >= 8) {
+
+			if (Schema.ActionSize >= 8) {
 				output[offset + 7] = (byte)action.StatusChance;
 			}
 		}
 	}
 
 	private void SaveStatusEffects(byte[] output) {
-		if (_schema == null || _schema.StatusEffectTableOffset < 0) return;
+		if (Schema == null || Schema.StatusEffectTableOffset < 0) return;
 
 		foreach (var status in _statusEffects) {
 			int offset = status.RomOffset;
-			if (offset < 0 || offset + _schema.StatusEffectSize > output.Length) continue;
+			if (offset < 0 || offset + Schema.StatusEffectSize > output.Length) continue;
 
-			if (_schema.StatusEffectSize >= 1) {
+			if (Schema.StatusEffectSize >= 1) {
 				output[offset] = (byte)(((int)status.Category & 0x07) | ((int)status.Flags & 0xf8));
 			}
-			if (_schema.StatusEffectSize >= 2) {
+
+			if (Schema.StatusEffectSize >= 2) {
 				output[offset + 1] = (byte)status.Duration;
 			}
-			if (_schema.StatusEffectSize >= 3) {
+
+			if (Schema.StatusEffectSize >= 3) {
 				output[offset + 2] = (byte)status.TickDamage;
 			}
-			if (_schema.StatusEffectSize >= 4) {
+
+			if (Schema.StatusEffectSize >= 4) {
 				output[offset + 3] = (byte)status.StatModifier;
 			}
 		}
 	}
 
 	private void SaveElements(byte[] output) {
-		if (_schema == null || _schema.ElementTableOffset < 0) return;
+		if (Schema == null || Schema.ElementTableOffset < 0) return;
 
 		foreach (var element in _elements) {
 			int offset = element.RomOffset;
-			if (offset < 0 || offset + _schema.ElementSize > output.Length) continue;
+			if (offset < 0 || offset + Schema.ElementSize > output.Length) continue;
 
-			if (_schema.ElementSize >= 1) {
+			if (Schema.ElementSize >= 1) {
 				output[offset] = (byte)(element.OpposingElementId & 0x0f);
 			}
-			if (_schema.ElementSize >= 2) {
+
+			if (Schema.ElementSize >= 2) {
 				output[offset + 1] = (byte)element.BonusDamagePercent;
 			}
 		}
@@ -799,7 +831,7 @@ public class BattleSystemEditor {
 		var formula = GetFormula(action.FormulaId);
 		if (formula == null) {
 			// Simple fallback formula
-			return Math.Max(1, action.Power - defenseStat / 2);
+			return Math.Max(1, action.Power - (defenseStat / 2));
 		}
 
 		return formula.CalculateDamage(attackStat * action.Power / 100, defenseStat, level, randomValue);

@@ -1,0 +1,132 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "robotrek-inventions.schema.json",
+	"title": "Robotrek Inventions",
+	"description": "Schema for Robotrek invention recipe data",
+	"type": "object",
+	"required": [
+		"game",
+		"data_type",
+		"inventions"
+	],
+	"properties": {
+		"game": {
+			"type": "string",
+			"const": "Robotrek"
+		},
+		"data_type": {
+			"type": "string",
+			"const": "inventions"
+		},
+		"rom_location": {
+			"type": "object",
+			"properties": {
+				"bank": {
+					"type": "string"
+				},
+				"start": {
+					"type": "string"
+				},
+				"entry_size": {
+					"type": "integer"
+				},
+				"count": {
+					"type": "integer"
+				}
+			}
+		},
+		"materials": {
+			"type": "object",
+			"additionalProperties": {
+				"type": "string"
+			},
+			"description": "Material ID to name mapping"
+		},
+		"inventions": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": [
+					"id",
+					"result_item",
+					"material1_id",
+					"material1_qty",
+					"required_level"
+				],
+				"properties": {
+					"id": {
+						"type": "integer",
+						"minimum": 0,
+						"description": "Recipe index in table"
+					},
+					"result_item": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 255,
+						"description": "Item ID of the result"
+					},
+					"material1_id": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 255,
+						"description": "First material item ID"
+					},
+					"material1_qty": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 255,
+						"description": "First material quantity"
+					},
+					"material1_name": {
+						"type": "string",
+						"description": "Human-readable material name"
+					},
+					"material2_id": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 255,
+						"description": "Second material item ID (0 = none)"
+					},
+					"material2_qty": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 255,
+						"description": "Second material quantity"
+					},
+					"material2_name": {
+						"type": "string",
+						"description": "Human-readable material name"
+					},
+					"material3_id": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 255,
+						"description": "Third material item ID (0 = none)"
+					},
+					"material3_qty": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 255,
+						"description": "Third material quantity"
+					},
+					"material3_name": {
+						"type": "string",
+						"description": "Human-readable material name"
+					},
+					"required_level": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 63,
+						"description": "Minimum inventor level (0-63)"
+					},
+					"flags": {
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 3,
+						"description": "Recipe flags (2 bits)"
+					}
+				}
+			}
+		}
+	}
+}

@@ -241,6 +241,7 @@ public class SaveEditorTests {
 		for (int i = 0; i < 10; i++) {
 			Assert.Equal(0x00, save.Data[i]);
 		}
+
 		Assert.Equal(0xAA, save.Data[10]); // Slot 1 unchanged
 	}
 

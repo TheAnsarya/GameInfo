@@ -19,6 +19,7 @@ public class RomSplicerTests : IDisposable {
 		if (Directory.Exists(_tempDir)) {
 			Directory.Delete(_tempDir, true);
 		}
+
 		GC.SuppressFinalize(this);
 	}
 
@@ -33,6 +34,7 @@ public class RomSplicerTests : IDisposable {
 		for (var i = 0; i < size; i++) {
 			data[i] = pattern == 0 ? (byte)(i & 0xff) : pattern;
 		}
+
 		return data;
 	}
 
@@ -151,8 +153,9 @@ public class RomSplicerTests : IDisposable {
 		var romData = new byte[256];
 		for (var i = 0; i < 128; i++) {
 			romData[i * 2] = (byte)i;       // Even positions
-			romData[i * 2 + 1] = (byte)(i + 128); // Odd positions
+			romData[(i * 2) + 1] = (byte)(i + 128); // Odd positions
 		}
+
 		var romPath = CreateTempFile("interleaved.rom", romData);
 		var outputDir = Path.Combine(_tempDir, "split_interleave");
 		var config = new SplitConfig { Interleave = InterleaveMode.WordSwap };

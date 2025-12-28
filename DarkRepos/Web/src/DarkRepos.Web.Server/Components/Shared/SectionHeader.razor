@@ -1,0 +1,42 @@
+<div class="section-header">
+	<div class="section-header-content">
+		<h2 id="@Id" class="section-title @(Large ? "large" : "")">@Title</h2>
+		@if (!string.IsNullOrEmpty(Subtitle))
+		{
+			<p class="section-subtitle">@Subtitle</p>
+		}
+	</div>
+	@if (!string.IsNullOrEmpty(LinkHref))
+	{
+		<a href="@LinkHref" class="section-link">@LinkText</a>
+	}
+	@if (ActionContent != null)
+	{
+		<div class="section-actions">
+			@ActionContent
+		</div>
+	}
+</div>
+
+@code {
+	[Parameter, EditorRequired]
+	public string Title { get; set; } = default!;
+
+	[Parameter]
+	public string? Id { get; set; }
+
+	[Parameter]
+	public string? Subtitle { get; set; }
+
+	[Parameter]
+	public string? LinkHref { get; set; }
+
+	[Parameter]
+	public string LinkText { get; set; } = "View all →";
+
+	[Parameter]
+	public bool Large { get; set; } = false;
+
+	[Parameter]
+	public RenderFragment? ActionContent { get; set; }
+}
