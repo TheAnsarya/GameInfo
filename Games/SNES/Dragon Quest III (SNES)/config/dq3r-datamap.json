@@ -1,0 +1,197 @@
+{
+	"game": {
+		"title": "Dragon Quest III - Soshite Densetsu he...",
+		"platform": "SNES",
+		"region": "Japan",
+		"romMapping": "HiROM",
+		"romSize": 6291456,
+		"banks": 64,
+		"bankSize": 65536
+	},
+	"rom": {
+		"header": {
+			"title": "DRAGONQUEST3",
+			"address": "0xffc0",
+			"mapMode": "0x21",
+			"romType": "0x00",
+			"romSize": "0x0c",
+			"ramSize": "0x03",
+			"country": "0x00"
+		},
+		"vectors": {
+			"reset": "0xfffc",
+			"nmi": "0xffea",
+			"irq": "0xffee"
+		}
+	},
+	"text": {
+		"dialog": {
+			"encoding": "custom_huffman",
+			"table": {
+				"file": "dialog-table.tbl",
+				"entries": 250
+			},
+			"font": {
+				"address": "0xc1bbd5",
+				"metadataTable": {
+					"address": "0xc151aa",
+					"count": 50,
+					"entrySize": 5
+				},
+				"data": {
+					"address": "0xc10ed3",
+					"length": "0x42d7"
+				}
+			},
+			"script": {
+				"address": "0xfcc258",
+				"length": "0x20d5e"
+			}
+		},
+		"huffman": {
+			"leftTable": "0xc159d3",
+			"rightTable": "0xc161a7",
+			"entries": 1002
+		}
+	},
+	"data": {
+		"monsters": {
+			"address": "0xd10000",
+			"fileOffset": "0x510000",
+			"count": 384,
+			"entrySize": 32,
+			"description": "Monster stat table"
+		},
+		"monsterAi": {
+			"address": "0xd13000",
+			"fileOffset": "0x513000",
+			"count": 256,
+			"entrySize": 32,
+			"description": "Monster AI behavior patterns"
+		},
+		"items": {
+			"address": "0xd00000",
+			"fileOffset": "0x500000",
+			"count": 512,
+			"entrySize": 16,
+			"description": "General item data"
+		},
+		"weapons": {
+			"address": "0xd02000",
+			"fileOffset": "0x502000",
+			"count": 128,
+			"entrySize": 16,
+			"description": "Weapon data"
+		},
+		"armor": {
+			"address": "0xd04000",
+			"fileOffset": "0x504000",
+			"count": 128,
+			"entrySize": 16,
+			"description": "Armor data"
+		},
+		"spells": {
+			"address": "0xd20000",
+			"fileOffset": "0x520000",
+			"count": 341,
+			"entrySize": 12,
+			"description": "Spell data"
+		},
+		"classes": {
+			"address": "0xd21000",
+			"fileOffset": "0x521000",
+			"count": 128,
+			"entrySize": 16,
+			"description": "Character class data"
+		},
+		"expTable": {
+			"address": "0xd22000",
+			"fileOffset": "0x522000",
+			"count": 99,
+			"entrySize": 4,
+			"description": "Experience requirements per level"
+		}
+	},
+	"graphics": {
+		"characters": {
+			"address": "0xe00000",
+			"fileOffset": "0x200000",
+			"format": "snes_4bpp",
+			"tileCount": 2048,
+			"description": "Character sprites"
+		},
+		"monsters": {
+			"address": "0xe20000",
+			"fileOffset": "0x220000",
+			"format": "snes_4bpp",
+			"tileCount": 4096,
+			"description": "Monster graphics"
+		},
+		"worldMap": {
+			"address": "0xd80000",
+			"fileOffset": "0x180000",
+			"format": "snes_2bpp",
+			"tileCount": 2048,
+			"description": "World map tiles"
+		},
+		"ui": {
+			"address": "0xda0000",
+			"fileOffset": "0x1a0000",
+			"format": "snes_2bpp",
+			"tileCount": 1024,
+			"description": "UI graphics"
+		},
+		"font": {
+			"address": "0xdb0000",
+			"fileOffset": "0x1b0000",
+			"format": "snes_2bpp",
+			"tileCount": 512,
+			"description": "Font tiles"
+		}
+	},
+	"audio": {
+		"music": {
+			"bank1": {
+				"address": "0xf00000",
+				"fileOffset": "0x300000",
+				"size": 32768,
+				"format": "spc_sequence",
+				"tracks": 4
+			},
+			"bank2": {
+				"address": "0xf08000",
+				"fileOffset": "0x308000",
+				"size": 32768,
+				"format": "spc_sequence",
+				"tracks": 6
+			}
+		},
+		"soundEffects": {
+			"address": "0xf10000",
+			"fileOffset": "0x310000",
+			"size": 16384,
+			"format": "brr_samples"
+		},
+		"instruments": {
+			"address": "0xf20000",
+			"fileOffset": "0x320000",
+			"size": 32768,
+			"format": "brr_samples"
+		}
+	},
+	"compression": {
+		"type": "ring400_lz",
+		"ringSize": 1024,
+		"startWriteAddress": "0x3be",
+		"maxCopySize": 66,
+		"minCopySize": 3
+	},
+	"memory": {
+		"wram": {
+			"gameState": "0x7e0000",
+			"party": "0x7ee100",
+			"inventory": "0x7ee500",
+			"mapState": "0x7ee800"
+		}
+	}
+}
