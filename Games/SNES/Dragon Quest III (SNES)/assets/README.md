@@ -2,41 +2,51 @@
 
 This folder contains all extracted assets from the ROM.
 
-## Subfolders
+## Extracted Content
 
-### graphics/
-PNG graphics files:
-- `sprites/` - Character and NPC sprites
-- `tiles/` - Map tiles and tilesets
-- `monsters/` - Monster battle graphics
-- `ui/` - Menu and UI graphics
-- `fonts/` - Font graphics
+### dq3_extracted/
+Complete extraction from the ROM (migrated from dq3r-info):
 
-### audio/
-Music and sound data:
-- `music/` - Background music tracks
-- `sfx/` - Sound effects
+#### graphics/ (29 files)
+| File | Format | Description |
+|------|--------|-------------|
+| character_sprites | 4bpp + json | Player character sprites |
+| character_tiles_01-05 | 4bpp + json | Character tile sets |
+| monster_graphics | 4bpp + json | Battle monster sprites |
+| sprite_data_01-05 | bin + json | Sprite data |
+| ui_graphics | bin + json | Menu/UI graphics |
+| world_tiles | bin + json | Overworld map tiles |
+| font_data | bin + json | Dialog font data |
 
-### text/
-Dialog and string data (JSON):
-- `dialog.json` - Game dialog
-- `menus.json` - Menu text
-- `items.json` - Item names/descriptions
-- `spells.json` - Spell names/descriptions
+#### text/ (3 files)
+| File | Format | Description |
+|------|--------|-------------|
+| main_dialog | bin/json/txt | All game dialog text |
 
-### data/
-Game data tables (JSON):
-- `monsters.json` - Monster stats
-- `items.json` - Item properties
-- `spells.json` - Spell data
-- `classes.json` - Character class data
-- `shops.json` - Shop inventories
+#### data/ (24 files)
+| File | Format | Description |
+|------|--------|-------------|
+| monster_stats | bin/json/txt | Monster base stats |
+| monster_ai | bin/json/txt | Monster AI patterns |
+| spell_data | bin/json/txt | Spell definitions |
+| item_data | bin/json/txt | Item properties |
+| weapon_data | bin/json/txt | Weapon stats |
+| armor_data | bin/json/txt | Armor stats |
+| class_data | bin/json/txt | Character class data |
+| exp_tables | bin/json/txt | Experience tables |
+
+#### audio/ (8 files)
+| File | Format | Description |
+|------|--------|-------------|
+| music_bank_1-2 | bin + json | Music sequences |
+| sound_effects | brr + json | Sound effect samples |
+| instrument_samples | brr + json | SPC instrument data |
 
 ## Status
 
-🔴 **Not Started** - Assets will be extracted using tools from dq3r-info.
+✅ **Complete** - Assets extracted and migrated from dq3r-info repository.
 
-## Existing Analysis
+See [extraction_report.md](dq3_extracted/extraction_report.md) for details.
 
 From dq3r-info analysis:
 - 64,367 text strings identified

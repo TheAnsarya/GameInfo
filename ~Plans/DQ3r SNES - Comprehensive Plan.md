@@ -23,16 +23,16 @@ This document outlines the complete plan for integrating Dragon Quest III (SNES)
 ## 🎯 Project Goals
 
 ### Short Term (1-2 weeks)
-- [ ] Merge `dq3r-info` repository content into `GameInfo/Games/SNES/Dragon Quest III (SNES)/`
-- [ ] Set up proper folder structure following GameInfo conventions
+- [x] Merge `dq3r-info` repository content into `GameInfo/Games/SNES/Dragon Quest III (SNES)/`
+- [x] Set up proper folder structure following GameInfo conventions
+- [x] Create GitHub issues/epics for tracking
+- [x] Integrate C# libraries from logsmall
 - [ ] Convert existing Python tools to C# (.NET 10)
-- [ ] Create GitHub issues/epics for tracking
-- [ ] Integrate logsmall trace analysis tools
 
 ### Medium Term (1-2 months)
-- [ ] Complete ROM map documentation (all banks, regions)
-- [ ] Extract all graphics assets (sprites, tiles, backgrounds)
-- [ ] Document text encoding and dialog system
+- [x] Complete ROM map documentation (all banks, regions)
+- [x] Extract all graphics assets (sprites, tiles, backgrounds)
+- [x] Document text encoding and dialog system
 - [ ] Create basic DQ3r editors in DarkRepos/Editor
 - [ ] Generate DarkRepos wiki content
 
