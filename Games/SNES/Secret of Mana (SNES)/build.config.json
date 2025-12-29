@@ -1,0 +1,49 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"game": {
+		"name": "Secret of Mana",
+		"platform": "SNES",
+		"region": "US",
+		"developer": "Square",
+		"year": 1993
+	},
+	"rom": {
+		"filename": "Secret of Mana (U) [!].sfc",
+		"size": 2097152,
+		"sha256": "4c15013131351e694e05f22e38bb1b3e4031dedac77ec75abecebe8520d82d5f",
+		"mapping": "hirom",
+		"hasHeader": false
+	},
+	"build": {
+		"assembler": "asar",
+		"source": "disasm/main.asm",
+		"output": "build/rom/secret-of-mana.sfc",
+		"originalRom": "../../../~roms/SNES/GoodSNES/Secret of Mana (U) [!].sfc"
+	},
+	"assets": {
+		"graphics": {
+			"input": "assets/graphics",
+			"output": "build/assets/graphics",
+			"format": "png"
+		},
+		"audio": {
+			"input": "assets/audio",
+			"output": "build/assets/audio",
+			"format": "brr"
+		},
+		"text": {
+			"input": "assets/text",
+			"output": "build/assets/text",
+			"format": "json"
+		},
+		"maps": {
+			"input": "assets/maps",
+			"output": "build/assets/maps",
+			"format": "json"
+		}
+	},
+	"verification": {
+		"enabled": true,
+		"compareMethod": "sha256"
+	}
+}
