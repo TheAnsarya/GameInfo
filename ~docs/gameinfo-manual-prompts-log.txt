@@ -377,6 +377,45 @@ No, the game is still called `Dragon Quest III (SNES)`, `DQ3r` is an abbreviatio
 
 git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
 
+git commit and clean up
+
+use k&R braces, not allman
+
+no, but in the future make changes and commit forward rather than erasing old code
+
+work the DQ3r issues
+
+DQ3r, like the SNES game, we also have issues for the NES version, did you just close those? we want to work on the SNES version now
+
+git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
+
+git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
+
+&&&
+Audio extraction tools (BRR/SPC) - low priority
+Additional game support (Soul Blazer, Robotrek)
+Consider closing Epic #127 as substantially complete (~98%)
+&&&
+
+&&&
+Plan the following project and make documentation and github issues/subissues and todo-lists before starting work:
+
+Add the `SNES` game `Secret of Mana` to our set of disassemblies/analyses for games, starting with information in `Games/SNES/`, adding it the the DarkRepos wiki, analyzing the rom file that is  `~roms/SNES/GoodSNES/Secret of Mana (U) [!].sfc` like the other games;
+Use as references, and add to documentation: `https://datacrystal.tcrf.net/wiki/Secret_of_Evermore`, `https://gamefaqs.gamespot.com/snes/588646-secret-of-mana/faqs`, `https://tcrf.net/Secret_of_Mana_(SNES)`, `https://www.romhacking.net/games/799/`;
+Make a full disassembly, document everything, create wiki content, create asset extraction and editing and resertion tools, create an asset pipeline, and a build pipeline, verifying that the rebuilt rom matches the origianl reference rom; Make sure to create editors using our custom central library and then fold them into the darkrepos editor; we want independent, per-game editors, and the universal editor; all hexadecimal values should be lowercase!
+document everything, update the chat and sessions logs, update the todo-lists and github issues, git-commit regularly always linking issues to commits, document! we should have full markdown rom analysis documentation and links and descriptions of editors and pipelines, etc. in the game's subfolder in the `Games` folder; make sure the websites content gets updated after changes using the scripts;
+
+Make comprehensive plans and github issues/subissues and todo-lists for this work effort and a create a roadmap markdown file and lots of documentation.
+&&&
+
+continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
+
+
+
+
+
+
+
 
 
 
