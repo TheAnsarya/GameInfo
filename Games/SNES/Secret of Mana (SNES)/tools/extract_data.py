@@ -24,6 +24,31 @@ ENEMY_STATS_OFFSET = 0x102655  # Confirmed via pattern analysis
 ENEMY_COUNT = 83
 ENEMY_ENTRY_SIZE = 29  # 29 bytes per enemy
 
+# Known enemy names (from game guides, HP verified from extraction)
+ENEMY_NAMES = [
+    "Rabite",           # 0 - HP 20
+    "Buzz Bee",         # 1 - HP 30
+    "Mushboom",         # 2 - HP 32
+    "Chobin Hood",      # 3 - HP 39
+    "Werewolf",         # 4 - HP 64
+    "Lullabud",         # 5 - HP 36
+    "Kid Goblin",       # 6 - HP 45
+    "Green Drop",       # 7 - HP 45
+    "Crawler",          # 8 - HP 47
+    "Eye Spy",          # 9 - HP 48
+    "Blat",             # 10 - HP 27
+    "Polter Chair",     # 11 - HP 54
+    "Rabite (Blue)",    # 12 - HP 20
+    "Zombie",           # 13 - HP 37
+    "Chess Knight",     # 14 - HP 31
+    "Spiky Tiger",      # 15 - HP 55
+    "Goblin",           # 16 - HP 52
+    "Specter",          # 17 - HP 28
+    "Dark Funk",        # 18 - HP 62
+    "Kimono Bird",      # 19 - HP 61
+    # More names can be added as verified
+]
+
 CHARACTER_STATS_OFFSET = 0x104213
 CHARACTER_LEVEL_ENTRY_SIZE = 40
 MAX_LEVEL = 99
@@ -78,7 +103,7 @@ def extract_enemy(data: bytes, index: int) -> dict[str, Any]:
     entry = data[offset:offset + ENEMY_ENTRY_SIZE]
     
     hp = entry[0]
-    # MP is in various structures - entry[1] is duplicate HP
+    name = ENEMY_NAMES[index] if index < len(ENEMY_NAMES) else f"Enemy_{index:02d}"
     
     # Experience appears to be encoded differently
     # Looking at byte 20-21 as potential EXP values
@@ -86,6 +111,7 @@ def extract_enemy(data: bytes, index: int) -> dict[str, Any]:
     
     return {
         "id": index,
+        "name": name,
         "hp": hp,
         "hp_byte1": entry[1],
         "unknown_2": entry[2],
