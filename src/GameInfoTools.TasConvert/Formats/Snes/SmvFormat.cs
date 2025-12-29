@@ -238,23 +238,22 @@ public class SmvFormat : TasFormatBase {
 
 		var bytesPerFrame = controllerCount * 2; // 2 bytes per controller
 
-		// Calculate number of frames from remaining data
-		var dataLength = header.SavestateOffset > 0
-			? header.SavestateOffset - header.ControllerDataOffset
-			: stream.Length - header.ControllerDataOffset;
-
 		// Sanity check - avoid infinite loops on malformed data
 		if (header.ControllerDataOffset > stream.Length) {
 			return frames;
 		}
+
+		// Use frame count from header if available, otherwise calculate from data
+		var maxFrames = header.FrameCount > 0
+			? (int)header.FrameCount
+			: (int)((stream.Length - header.ControllerDataOffset) / bytesPerFrame);
 
 		stream.Position = header.ControllerDataOffset;
 
 		var buffer = new byte[bytesPerFrame];
 		var frameNumber = 0;
 
-		while (stream.Position < stream.Length &&
-			(header.SavestateOffset == 0 || stream.Position < header.SavestateOffset)) {
+		while (frameNumber < maxFrames && stream.Position + bytesPerFrame <= stream.Length) {
 			var bytesRead = await stream.ReadAsync(buffer, cancellationToken);
 			if (bytesRead < bytesPerFrame) break;
 
