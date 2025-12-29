@@ -508,9 +508,9 @@ public class SecretOfManaEditorTests {
 		var data = new byte[SecretOfManaData.RomSize];
 		// Set up enemy data at expected offset
 		int offset = SecretOfManaData.EnemyStatsOffset;
-		data[offset] = 0x64; // HP low = 100
-		data[offset + 1] = 0x00; // HP high
-		data[offset + 8] = 0x05; // Level = 5
+		data[offset] = 100; // HP = 100 (byte)
+		data[offset + 1] = 100; // Unknown1 (often duplicates HP)
+		data[offset + 10] = 50; // AttackMod
 
 		var editor = new SecretOfManaEditor(data);
 
@@ -519,7 +519,7 @@ public class SecretOfManaEditorTests {
 
 		// Assert
 		Assert.Equal(100, enemy.Hp);
-		Assert.Equal(5, enemy.Level);
+		Assert.Equal(50, enemy.AttackMod);
 	}
 
 	[Fact]
@@ -538,10 +538,13 @@ public class SecretOfManaEditorTests {
 		// Arrange
 		var data = new byte[SecretOfManaData.RomSize];
 		var editor = new SecretOfManaEditor(data);
+		var rawData = new byte[SecretOfManaData.EnemyStatsEntrySize];
 		var enemy = new SecretOfManaEnemy {
 			Id = 0,
-			Hp = 500,
-			Level = 10
+			Hp = 200,
+			Unknown1 = 200,
+			AttackMod = 75,
+			RawData = rawData
 		};
 
 		// Act
@@ -549,8 +552,8 @@ public class SecretOfManaEditorTests {
 
 		// Assert
 		int offset = SecretOfManaData.EnemyStatsOffset;
-		Assert.Equal(500, data[offset] | (data[offset + 1] << 8));
-		Assert.Equal(10, data[offset + 8]);
+		Assert.Equal(200, data[offset]);
+		Assert.Equal(75, data[offset + 10]);
 	}
 
 	[Fact]
