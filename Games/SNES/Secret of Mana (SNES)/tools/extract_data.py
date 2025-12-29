@@ -34,6 +34,21 @@ EXIT_ENTRY_SIZE = 4
 ITEM_PRICES_OFFSET = 0x18fb9c
 ITEM_COUNT = 96
 
+# Known item names from game
+ITEM_NAMES = [
+    "Candy", "Chocolate", "Royal Jam", "Faerie Walnut", "Medical Herb",
+    "Cup of Wishes", "Magic Rope", "Flammie Drum", "Moogle Belt", "Midge Mallet",
+    "Barrel", "", "", "", "", "", "", "", "", "",
+    "", "", "", "", "", "", "", "", "", "",
+    "", "", "", "", "", "", "", "", "", "",
+    "", "", "", "", "", "", "", "", "", "",
+    "", "", "", "", "", "", "", "", "", "",
+    "", "", "", "", "", "", "", "", "", "",
+    "", "", "", "", "", "", "", "", "", "",
+    "", "", "", "", "", "", "", "", "", "",
+    "", "", "", "", "", ""  # Fill to 96
+]
+
 
 def read_word(data: bytes, offset: int) -> int:
     """Read 16-bit little-endian word."""
@@ -96,6 +111,27 @@ def extract_all_enemies(data: bytes) -> list[dict[str, Any]]:
     for i in range(ENEMY_COUNT):
         enemies.append(extract_enemy(data, i))
     return enemies
+
+
+def extract_item(data: bytes, index: int) -> dict[str, Any]:
+    """Extract item data at given index."""
+    price = read_word(data, ITEM_PRICES_OFFSET + index * 2)
+    name = ITEM_NAMES[index] if index < len(ITEM_NAMES) else ""
+    
+    return {
+        "id": index,
+        "name": name,
+        "price": price,
+        "buyable": price != 0xffff
+    }
+
+
+def extract_all_items(data: bytes) -> list[dict[str, Any]]:
+    """Extract all item data."""
+    items = []
+    for i in range(ITEM_COUNT):
+        items.append(extract_item(data, i))
+    return items
 
 
 def extract_exit(data: bytes, index: int) -> dict[str, Any]:
@@ -176,13 +212,14 @@ def main():
     parser.add_argument("rom_path", help="Path to ROM file")
     parser.add_argument("--output", "-o", default=".", help="Output directory")
     parser.add_argument("--enemies", action="store_true", help="Extract enemy data")
+    parser.add_argument("--items", action="store_true", help="Extract item data")
     parser.add_argument("--exits", action="store_true", help="Extract exit data")
     parser.add_argument("--header", action="store_true", help="Analyze ROM header")
     parser.add_argument("--all", action="store_true", help="Extract all data")
     args = parser.parse_args()
     
     # Default to all if nothing specified
-    if not any([args.enemies, args.exits, args.header, args.all]):
+    if not any([args.enemies, args.items, args.exits, args.header, args.all]):
         args.all = True
     
     # Read ROM
@@ -227,6 +264,18 @@ def main():
         print(f"  First enemy (Rabite): HP={enemies[0]['hp']}")
         print(f"  Enemy 1 (Buzz Bee): HP={enemies[1]['hp']}")
         print(f"  Enemy 15 (Lullabud): HP={enemies[15]['hp']}")
+    
+    if args.items or args.all:
+        print(f"Extracting {ITEM_COUNT} items...")
+        items = extract_all_items(data)
+        
+        with open(output_dir / "items.json", "w") as f:
+            json.dump(items, f, indent=2)
+        
+        print(f"  Saved to items.json")
+        buyable = [i for i in items if i["buyable"]]
+        print(f"  Buyable items: {len(buyable)}")
+        print(f"  First item: {items[0]['name']} = {items[0]['price']} GP")
     
     if args.exits or args.all:
         print("Extracting exit data...")

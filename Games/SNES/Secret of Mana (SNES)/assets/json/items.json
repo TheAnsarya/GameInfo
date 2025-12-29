@@ -1,0 +1,578 @@
+[
+  {
+    "id": 0,
+    "name": "Candy",
+    "price": 10,
+    "buyable": true
+  },
+  {
+    "id": 1,
+    "name": "Chocolate",
+    "price": 30,
+    "buyable": true
+  },
+  {
+    "id": 2,
+    "name": "Royal Jam",
+    "price": 100,
+    "buyable": true
+  },
+  {
+    "id": 3,
+    "name": "Faerie Walnut",
+    "price": 500,
+    "buyable": true
+  },
+  {
+    "id": 4,
+    "name": "Medical Herb",
+    "price": 10,
+    "buyable": true
+  },
+  {
+    "id": 5,
+    "name": "Cup of Wishes",
+    "price": 150,
+    "buyable": true
+  },
+  {
+    "id": 6,
+    "name": "Magic Rope",
+    "price": 65535,
+    "buyable": false
+  },
+  {
+    "id": 7,
+    "name": "Flammie Drum",
+    "price": 65535,
+    "buyable": false
+  },
+  {
+    "id": 8,
+    "name": "Moogle Belt",
+    "price": 65535,
+    "buyable": false
+  },
+  {
+    "id": 9,
+    "name": "Midge Mallet",
+    "price": 65535,
+    "buyable": false
+  },
+  {
+    "id": 10,
+    "name": "Barrel",
+    "price": 450,
+    "buyable": true
+  },
+  {
+    "id": 11,
+    "name": "",
+    "price": 65535,
+    "buyable": false
+  },
+  {
+    "id": 12,
+    "name": "",
+    "price": 0,
+    "buyable": true
+  },
+  {
+    "id": 13,
+    "name": "",
+    "price": 50,
+    "buyable": true
+  },
+  {
+    "id": 14,
+    "name": "",
+    "price": 55,
+    "buyable": true
+  },
+  {
+    "id": 15,
+    "name": "",
+    "price": 45,
+    "buyable": true
+  },
+  {
+    "id": 16,
+    "name": "",
+    "price": 70,
+    "buyable": true
+  },
+  {
+    "id": 17,
+    "name": "",
+    "price": 110,
+    "buyable": true
+  },
+  {
+    "id": 18,
+    "name": "",
+    "price": 180,
+    "buyable": true
+  },
+  {
+    "id": 19,
+    "name": "",
+    "price": 350,
+    "buyable": true
+  },
+  {
+    "id": 20,
+    "name": "",
+    "price": 550,
+    "buyable": true
+  },
+  {
+    "id": 21,
+    "name": "",
+    "price": 700,
+    "buyable": true
+  },
+  {
+    "id": 22,
+    "name": "",
+    "price": 1100,
+    "buyable": true
+  },
+  {
+    "id": 23,
+    "name": "",
+    "price": 2300,
+    "buyable": true
+  },
+  {
+    "id": 24,
+    "name": "",
+    "price": 3400,
+    "buyable": true
+  },
+  {
+    "id": 25,
+    "name": "",
+    "price": 5625,
+    "buyable": true
+  },
+  {
+    "id": 26,
+    "name": "",
+    "price": 7500,
+    "buyable": true
+  },
+  {
+    "id": 27,
+    "name": "",
+    "price": 11250,
+    "buyable": true
+  },
+  {
+    "id": 28,
+    "name": "",
+    "price": 15000,
+    "buyable": true
+  },
+  {
+    "id": 29,
+    "name": "",
+    "price": 22500,
+    "buyable": true
+  },
+  {
+    "id": 30,
+    "name": "",
+    "price": 36000,
+    "buyable": true
+  },
+  {
+    "id": 31,
+    "name": "",
+    "price": 44500,
+    "buyable": true
+  },
+  {
+    "id": 32,
+    "name": "",
+    "price": 58000,
+    "buyable": true
+  },
+  {
+    "id": 33,
+    "name": "",
+    "price": 0,
+    "buyable": true
+  },
+  {
+    "id": 34,
+    "name": "",
+    "price": 20,
+    "buyable": true
+  },
+  {
+    "id": 35,
+    "name": "",
+    "price": 25,
+    "buyable": true
+  },
+  {
+    "id": 36,
+    "name": "",
+    "price": 22,
+    "buyable": true
+  },
+  {
+    "id": 37,
+    "name": "",
+    "price": 120,
+    "buyable": true
+  },
+  {
+    "id": 38,
+    "name": "",
+    "price": 260,
+    "buyable": true
+  },
+  {
+    "id": 39,
+    "name": "",
+    "price": 350,
+    "buyable": true
+  },
+  {
+    "id": 40,
+    "name": "",
+    "price": 675,
+    "buyable": true
+  },
+  {
+    "id": 41,
+    "name": "",
+    "price": 1000,
+    "buyable": true
+  },
+  {
+    "id": 42,
+    "name": "",
+    "price": 2250,
+    "buyable": true
+  },
+  {
+    "id": 43,
+    "name": "",
+    "price": 4500,
+    "buyable": true
+  },
+  {
+    "id": 44,
+    "name": "",
+    "price": 6375,
+    "buyable": true
+  },
+  {
+    "id": 45,
+    "name": "",
+    "price": 7100,
+    "buyable": true
+  },
+  {
+    "id": 46,
+    "name": "",
+    "price": 11500,
+    "buyable": true
+  },
+  {
+    "id": 47,
+    "name": "",
+    "price": 14850,
+    "buyable": true
+  },
+  {
+    "id": 48,
+    "name": "",
+    "price": 21000,
+    "buyable": true
+  },
+  {
+    "id": 49,
+    "name": "",
+    "price": 30000,
+    "buyable": true
+  },
+  {
+    "id": 50,
+    "name": "",
+    "price": 32750,
+    "buyable": true
+  },
+  {
+    "id": 51,
+    "name": "",
+    "price": 47000,
+    "buyable": true
+  },
+  {
+    "id": 52,
+    "name": "",
+    "price": 53000,
+    "buyable": true
+  },
+  {
+    "id": 53,
+    "name": "",
+    "price": 65000,
+    "buyable": true
+  },
+  {
+    "id": 54,
+    "name": "",
+    "price": 0,
+    "buyable": true
+  },
+  {
+    "id": 55,
+    "name": "",
+    "price": 55000,
+    "buyable": true
+  },
+  {
+    "id": 56,
+    "name": "",
+    "price": 90,
+    "buyable": true
+  },
+  {
+    "id": 57,
+    "name": "",
+    "price": 150,
+    "buyable": true
+  },
+  {
+    "id": 58,
+    "name": "",
+    "price": 280,
+    "buyable": true
+  },
+  {
+    "id": 59,
+    "name": "",
+    "price": 400,
+    "buyable": true
+  },
+  {
+    "id": 60,
+    "name": "",
+    "price": 525,
+    "buyable": true
+  },
+  {
+    "id": 61,
+    "name": "",
+    "price": 750,
+    "buyable": true
+  },
+  {
+    "id": 62,
+    "name": "",
+    "price": 1200,
+    "buyable": true
+  },
+  {
+    "id": 63,
+    "name": "",
+    "price": 1875,
+    "buyable": true
+  },
+  {
+    "id": 64,
+    "name": "",
+    "price": 3750,
+    "buyable": true
+  },
+  {
+    "id": 65,
+    "name": "",
+    "price": 5100,
+    "buyable": true
+  },
+  {
+    "id": 66,
+    "name": "",
+    "price": 8800,
+    "buyable": true
+  },
+  {
+    "id": 67,
+    "name": "",
+    "price": 12500,
+    "buyable": true
+  },
+  {
+    "id": 68,
+    "name": "",
+    "price": 18750,
+    "buyable": true
+  },
+  {
+    "id": 69,
+    "name": "",
+    "price": 24000,
+    "buyable": true
+  },
+  {
+    "id": 70,
+    "name": "",
+    "price": 31000,
+    "buyable": true
+  },
+  {
+    "id": 71,
+    "name": "",
+    "price": 37500,
+    "buyable": true
+  },
+  {
+    "id": 72,
+    "name": "",
+    "price": 42500,
+    "buyable": true
+  },
+  {
+    "id": 73,
+    "name": "",
+    "price": 48000,
+    "buyable": true
+  },
+  {
+    "id": 74,
+    "name": "",
+    "price": 45,
+    "buyable": true
+  },
+  {
+    "id": 75,
+    "name": "",
+    "price": 64594,
+    "buyable": true
+  },
+  {
+    "id": 76,
+    "name": "",
+    "price": 64600,
+    "buyable": true
+  },
+  {
+    "id": 77,
+    "name": "",
+    "price": 64612,
+    "buyable": true
+  },
+  {
+    "id": 78,
+    "name": "",
+    "price": 64619,
+    "buyable": true
+  },
+  {
+    "id": 79,
+    "name": "",
+    "price": 64627,
+    "buyable": true
+  },
+  {
+    "id": 80,
+    "name": "",
+    "price": 64639,
+    "buyable": true
+  },
+  {
+    "id": 81,
+    "name": "",
+    "price": 64649,
+    "buyable": true
+  },
+  {
+    "id": 82,
+    "name": "",
+    "price": 64661,
+    "buyable": true
+  },
+  {
+    "id": 83,
+    "name": "",
+    "price": 64671,
+    "buyable": true
+  },
+  {
+    "id": 84,
+    "name": "",
+    "price": 64681,
+    "buyable": true
+  },
+  {
+    "id": 85,
+    "name": "",
+    "price": 64691,
+    "buyable": true
+  },
+  {
+    "id": 86,
+    "name": "",
+    "price": 64705,
+    "buyable": true
+  },
+  {
+    "id": 87,
+    "name": "",
+    "price": 64718,
+    "buyable": true
+  },
+  {
+    "id": 88,
+    "name": "",
+    "price": 64727,
+    "buyable": true
+  },
+  {
+    "id": 89,
+    "name": "",
+    "price": 64739,
+    "buyable": true
+  },
+  {
+    "id": 90,
+    "name": "",
+    "price": 64752,
+    "buyable": true
+  },
+  {
+    "id": 91,
+    "name": "",
+    "price": 48826,
+    "buyable": true
+  },
+  {
+    "id": 92,
+    "name": "",
+    "price": 31935,
+    "buyable": true
+  },
+  {
+    "id": 93,
+    "name": "",
+    "price": 65425,
+    "buyable": true
+  },
+  {
+    "id": 94,
+    "name": "",
+    "price": 48058,
+    "buyable": true
+  },
+  {
+    "id": 95,
+    "name": "",
+    "price": 48572,
+    "buyable": true
+  }
+]
