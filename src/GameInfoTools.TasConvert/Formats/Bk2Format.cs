@@ -231,15 +231,31 @@ public class Bk2Format : TasFormatBase {
 			// Skip empty lines
 			if (string.IsNullOrEmpty(trimmed)) continue;
 
-			// Parse header line (starts with [)
-			if (trimmed.StartsWith('[')) {
+			// Parse header line - two formats:
+			// Older: [Input Log]\n[...|#|buttons|buttons|]
+			// Newer: LogKey:#Reset|Power|#P1 Up|P1 Down|...
+			if (trimmed.StartsWith('[') || trimmed.StartsWith("LogKey:")) {
 				inputFormat = trimmed;
 				headerParsed = true;
 
 				// Determine controller count from format
-				var portCount = trimmed.Count(c => c == '|') - 1;
-				for (var i = 0; i < portCount; i++) {
-					controllers.Add(new ControllerInfo { Port = i, Type = ControllerType.Gamepad });
+				// Count groups separated by #P or standalone port sections
+				if (trimmed.StartsWith("LogKey:")) {
+					// Newer format: count #P followed by number
+					var portMatches = System.Text.RegularExpressions.Regex.Matches(trimmed, @"#P(\d+)");
+					var portCount = portMatches.Cast<System.Text.RegularExpressions.Match>()
+						.Select(m => int.Parse(m.Groups[1].Value))
+						.Distinct()
+						.Count();
+					for (var i = 0; i < Math.Max(1, portCount); i++) {
+						controllers.Add(new ControllerInfo { Port = i, Type = ControllerType.Gamepad });
+					}
+				} else {
+					// Older format: count pipe-separated sections
+					var portCount = trimmed.Count(c => c == '|') - 1;
+					for (var i = 0; i < portCount; i++) {
+						controllers.Add(new ControllerInfo { Port = i, Type = ControllerType.Gamepad });
+					}
 				}
 				continue;
 			}
