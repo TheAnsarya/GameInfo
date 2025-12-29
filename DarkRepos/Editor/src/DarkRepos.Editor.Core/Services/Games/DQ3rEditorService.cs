@@ -166,6 +166,30 @@ public class DQ3rEditorService : IDQ3rEditorService {
 	}
 
 	/// <summary>
+	/// Save weapon data back to ROM.
+	/// </summary>
+	public void SaveWeapons(DataTable table) {
+		var exported = _dataEditor.ExportTable(table);
+		Array.Copy(exported, 0, _romData, Tables.Weapons.FileOffset, exported.Length);
+	}
+
+	/// <summary>
+	/// Save armor data back to ROM.
+	/// </summary>
+	public void SaveArmor(DataTable table) {
+		var exported = _dataEditor.ExportTable(table);
+		Array.Copy(exported, 0, _romData, Tables.Armor.FileOffset, exported.Length);
+	}
+
+	/// <summary>
+	/// Save monster AI data back to ROM.
+	/// </summary>
+	public void SaveMonsterAi(DataTable table) {
+		var exported = _dataEditor.ExportTable(table);
+		Array.Copy(exported, 0, _romData, Tables.MonsterAi.FileOffset, exported.Length);
+	}
+
+	/// <summary>
 	/// Get experience table data.
 	/// </summary>
 	public DataTable? LoadExpTable() {
@@ -268,6 +292,9 @@ public interface IDQ3rEditorService {
 	void SaveItems(DataTable table);
 	void SaveSpells(DataTable table);
 	void SaveClasses(DataTable table);
+	void SaveWeapons(DataTable table);
+	void SaveArmor(DataTable table);
+	void SaveMonsterAi(DataTable table);
 	void SaveExpTable(DataTable table);
 	byte[] GetRomData();
 }
