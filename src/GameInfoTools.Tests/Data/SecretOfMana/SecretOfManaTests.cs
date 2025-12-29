@@ -257,7 +257,7 @@ public class SecretOfManaStatsTests {
 		var rawData = new byte[29];
 		rawData[0] = 55;  // HP
 		rawData[1] = 55;  // Unknown1
-		
+
 		var enemy = new SecretOfManaEnemy {
 			Id = 15,
 			Hp = 55,
@@ -288,7 +288,7 @@ public class SecretOfManaStatsTests {
 		for (int i = 0; i < 29; i++) rawData[i] = (byte)i;
 		rawData[0] = 128; // HP
 		rawData[1] = 128; // Unknown1
-		
+
 		var original = new SecretOfManaEnemy {
 			Id = 0,
 			Hp = 128,

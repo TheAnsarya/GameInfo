@@ -75,38 +75,38 @@ public enum Elements : byte {
 public class SecretOfManaEnemy {
 	public int Id { get; set; }
 	public string Name { get; set; } = "";
-	
+
 	/// <summary>
 	/// Enemy HP (byte value 0-255).
 	/// </summary>
 	public byte Hp { get; set; }
-	
+
 	/// <summary>
 	/// Unknown byte at offset 1 (often duplicates HP).
 	/// </summary>
 	public byte Unknown1 { get; set; }
-	
+
 	/// <summary>
 	/// Combat attribute bytes 8-9.
 	/// </summary>
 	public byte Attribute8 { get; set; }
 	public byte Attribute9 { get; set; }
-	
+
 	/// <summary>
 	/// Attack modifier at offset 10.
 	/// </summary>
 	public byte AttackMod { get; set; }
-	
+
 	/// <summary>
 	/// Defense modifier at offset 11.
 	/// </summary>
 	public byte DefenseMod { get; set; }
-	
+
 	/// <summary>
 	/// Raw experience value from bytes 20-21.
 	/// </summary>
 	public ushort ExpRaw { get; set; }
-	
+
 	/// <summary>
 	/// Raw bytes for further analysis.
 	/// </summary>
@@ -121,7 +121,7 @@ public class SecretOfManaEnemy {
 		}
 
 		var rawData = data[..SecretOfManaData.EnemyStatsEntrySize].ToArray();
-		
+
 		return new SecretOfManaEnemy {
 			Id = id,
 			Hp = data[0],
