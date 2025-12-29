@@ -25,6 +25,7 @@ ENEMY_COUNT = 83
 ENEMY_ENTRY_SIZE = 29  # 29 bytes per enemy
 
 # Known enemy names (from game guides, HP verified from extraction)
+# Total 83 enemies in game
 ENEMY_NAMES = [
     "Rabite",           # 0 - HP 20
     "Buzz Bee",         # 1 - HP 30
@@ -41,12 +42,48 @@ ENEMY_NAMES = [
     "Rabite (Blue)",    # 12 - HP 20
     "Zombie",           # 13 - HP 37
     "Chess Knight",     # 14 - HP 31
-    "Spiky Tiger",      # 15 - HP 55
+    "Spiky Tiger",      # 15 - HP 55 (Boss)
     "Goblin",           # 16 - HP 52
     "Specter",          # 17 - HP 28
     "Dark Funk",        # 18 - HP 62
     "Kimono Bird",      # 19 - HP 61
-    # More names can be added as verified
+    "Pebbler",          # 20 - HP 64
+    "Shadow X1",        # 21 - HP 66
+    "Iffish",           # 22 - HP 23
+    "Jabberwocky",      # 23 - HP 67
+    "Silktail",         # 24 - HP 88
+    "Steelpion",        # 25 - HP 30
+    "Tomato Man",       # 26 - HP 89
+    "Bomb Bee",         # 27 - HP 87
+    "Red Drop",         # 28 - HP 89
+    "Howler",           # 29 - HP 73
+    "Ice Thug",         # 30 - HP 70
+    "Needlion",         # 31 - HP 93
+    "Pebblers",         # 32 - HP 75
+    "Pumpkin Bomb",     # 33 - HP 80
+    "Chobin Hood 2",    # 34 - HP 82
+    "Spider Legs",      # 35 - HP 90
+    "Steamed Crab",     # 36 - HP 96
+    "Goblin Guard",     # 37 - HP 95
+    "LA Funk",          # 38 - HP 99
+    "Robin Foot",       # 39 - HP 105
+    "Beast Zombie",     # 40 - HP 110
+    "Metal Crawler",    # 41 - HP 115
+    "Emberman",         # 42 - HP 120
+    "Marmablue",        # 43 - HP 125
+    "Heck Hound",       # 44 - HP 130
+    "Ghost",            # 45 - HP 135
+    "Ninja",            # 46 - HP 140
+    "Mushgloom",        # 47 - HP 145
+    "Turtlance",        # 48 - HP 150
+    "Shadow X2",        # 49 - HP 155
+    "Metal Scorpion",   # 50 - HP 160
+    "Eggplant Man",     # 51 - HP 165
+    "Shape Shifter",    # 52 - HP 170
+    "Fire Gigas",       # 53 - HP 175 (Boss)
+    "Frost Gigas",      # 54 - HP 180 (Boss)
+    "Thunder Gigas",    # 55 - HP 185 (Boss)
+    # Names continue but many are bosses or variants
 ]
 
 CHARACTER_STATS_OFFSET = 0x104213
