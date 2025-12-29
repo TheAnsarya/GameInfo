@@ -1,0 +1,159 @@
+{
+	"description": "TAS replay files downloaded from TASVideos.org for testing the TAS Converter library",
+	"downloadDate": "2024-12-29",
+	"source": "https://tasvideos.org/",
+	"formats": {
+		"smv": "Snes9x movie format",
+		"lsmv": "lsnes movie format",
+		"bk2": "BizHawk movie format (ZIP archive)",
+		"fm2": "FCEUX movie format (NES)",
+		"vbm": "VisualBoyAdvance movie format (Game Boy)"
+	},
+	"files": [
+		{
+			"game": "Secret of Mana",
+			"system": "SNES",
+			"format": "smv",
+			"version": "Secret of Mana (USA).sfc",
+			"file": "touchme1-secretofmana.smv",
+			"archive": "touchme1-secretofmana.smv.zip",
+			"link": "https://tasvideos.org/1918M",
+			"movieId": "1918M",
+			"author": "Touch-me"
+		},
+		{
+			"game": "Secret of Mana",
+			"system": "SNES",
+			"format": "bk2",
+			"version": "Secret of Mana (USA).sfc",
+			"file": "hhs-secretofmana-glitched.bk2",
+			"archive": "hhs-secretofmana-glitched.bk2.zip",
+			"link": "https://tasvideos.org/2739M",
+			"movieId": "2739M",
+			"author": "HHS"
+		},
+		{
+			"game": "Chrono Trigger",
+			"system": "SNES",
+			"format": "bk2",
+			"version": "Chrono Trigger (U) [!].smc",
+			"file": "arandomgametaser_keylie-chronotrigger.bk2",
+			"archive": "chrono-trigger-5232M.bk2",
+			"link": "https://tasvideos.org/5232M",
+			"movieId": "5232M",
+			"author": "arandomgameTASer & keylie",
+			"duration": "2:16:08.40"
+		},
+		{
+			"game": "Chrono Trigger",
+			"system": "SNES",
+			"format": "smv",
+			"version": "Chrono Trigger (U) [!].smc",
+			"file": "saturn-chorotrigger-alltechmaxequip.smv",
+			"archive": "chrono-trigger-completionist-2339M.smv",
+			"link": "https://tasvideos.org/2339M",
+			"movieId": "2339M",
+			"author": "Saturn",
+			"duration": "5:44:58.18",
+			"category": "completionist"
+		},
+		{
+			"game": "Disney's Aladdin",
+			"system": "SNES",
+			"format": "smv",
+			"version": "Aladdin (U) [!].smc",
+			"file": "jaysmad3-aladdin.smv",
+			"archive": "disneys-aladdin-1130M.smv",
+			"link": "https://tasvideos.org/1130M",
+			"movieId": "1130M",
+			"author": "jaysmad",
+			"duration": "15:28.72"
+		},
+		{
+			"game": "Donkey Kong Country",
+			"system": "SNES",
+			"format": "bk2",
+			"version": "Donkey Kong Country (U) (V1.0) [!].smc",
+			"file": "hidaigai,tompa-donkeykongcountry.bk2",
+			"archive": "donkey-kong-country-4119M.bk2",
+			"link": "https://tasvideos.org/4119M",
+			"movieId": "4119M",
+			"author": "hidaigai & Tompa",
+			"duration": "07:24.68"
+		},
+		{
+			"game": "Donkey Kong Country",
+			"system": "SNES",
+			"format": "bk2",
+			"version": "Donkey Kong Country (U) (V1.0) [!].smc",
+			"file": "tompa-donkeykongcountry-101p.bk2",
+			"archive": "donkey-kong-country-101-3415M.bk2",
+			"link": "https://tasvideos.org/3415M",
+			"movieId": "3415M",
+			"author": "Tompa",
+			"duration": "41:18.368",
+			"category": "101%"
+		},
+		{
+			"game": "Donkey Kong Country 3: Dixie Kong's Double Trouble!",
+			"system": "SNES",
+			"format": "bk2",
+			"version": "Donkey Kong Country 3 - Dixie Kong's Double Trouble (U) (M2) [!].smc",
+			"file": "doomsday31415,des-donkeykongcountry3dkdtj.bk2",
+			"archive": "donkey-kong-country-3-3975M.bk2",
+			"link": "https://tasvideos.org/3975M",
+			"movieId": "3975M",
+			"author": "Doomsday31415",
+			"duration": "42:33.73"
+		},
+		{
+			"game": "EarthBound",
+			"system": "SNES",
+			"format": "bk2",
+			"version": "EarthBound (USA).sfc",
+			"file": "illayaya-earthbound.bk2",
+			"archive": "earthbound-4361M.bk2",
+			"link": "https://tasvideos.org/4361M",
+			"movieId": "4361M",
+			"author": "0xwas",
+			"duration": "57:17.02"
+		},
+		{
+			"game": "Ardy Lightfoot",
+			"system": "SNES",
+			"format": "smv",
+			"version": "Ardy Lightfoot (U) [!].smc",
+			"file": "ferretwarlord-ardylightfoot.smv",
+			"archive": "ardy-lightfoot-1327M.smv",
+			"link": "https://tasvideos.org/1327M",
+			"movieId": "1327M",
+			"author": "Ferret_Warlord",
+			"duration": "19:56.93"
+		},
+		{
+			"game": "Bubsy in Claws Encounters of the Furred Kind",
+			"system": "SNES",
+			"format": "smv",
+			"version": "Bubsy in Claws Encounters of the Furred Kind (U) [!].smc",
+			"file": "bubsy2-acmlm.smv",
+			"archive": "bubsy-1574M.smv",
+			"link": "https://tasvideos.org/1574M",
+			"movieId": "1574M",
+			"author": "Acmlm",
+			"duration": "13:47.57"
+		},
+		{
+			"game": "Disney's Goof Troop",
+			"system": "SNES",
+			"format": "smv",
+			"version": "Goof Troop (U) [!].smc",
+			"file": "randil,mmbossman-gooftroop.smv",
+			"archive": "goof-troop-1038M.smv",
+			"link": "https://tasvideos.org/1038M",
+			"movieId": "1038M",
+			"author": "Randil & mmbossman",
+			"duration": "16:36.57",
+			"category": "2 players"
+		}
+	]
+}

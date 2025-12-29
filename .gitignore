@@ -4,6 +4,8 @@
 
 # Project-specific ignores
 ~Fonts/*
+~tas-files/compressed/
+~tas-files/uncompressed/
 
 #######################################
 # User-specific files
