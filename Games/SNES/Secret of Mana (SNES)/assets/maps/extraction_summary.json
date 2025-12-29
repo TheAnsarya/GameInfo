@@ -1,0 +1,15 @@
+{
+	"rom_file": "c:\\Users\\me\\source\\repos\\GameInfo\\~roms\\SNES\\GoodSNES\\Secret of Mana (U) [!].sfc",
+	"rom_size": 2097152,
+	"extraction_summary": {
+		"exits": 256,
+		"map_headers": 131,
+		"event_triggers": 256,
+		"unique_areas": 103
+	},
+	"offsets_used": {
+		"exit_data": "0x083000",
+		"map_header_pointers": "0x0d0000",
+		"event_triggers": "0x090000"
+	}
+}
