@@ -19,7 +19,9 @@ param(
 
 $ErrorActionPreference = "Stop"
 $ProjectRoot = $PSScriptRoot
-$RomPath = Join-Path $ProjectRoot "..\..\..\..\~roms\SNES\GoodSNES\Secret of Mana (U) [!].sfc"
+$GameInfoRoot = (Resolve-Path (Join-Path $ProjectRoot "..\..\..")).Path
+# Note: Use -LiteralPath with this path since it has brackets
+$RomPath = Join-Path $GameInfoRoot "~roms\SNES\GoodSNES\Secret of Mana (U) [!].sfc"
 $BuildDir = Join-Path $ProjectRoot "build"
 $AssetsDir = Join-Path $ProjectRoot "assets"
 $ToolsDir = Join-Path $ProjectRoot "tools"
@@ -53,11 +55,11 @@ function Write-Error {
 function Verify-Rom {
     param([string]$RomPath, [string]$ExpectedHash)
     
-    if (-not (Test-Path $RomPath)) {
+    if (-not (Test-Path -LiteralPath $RomPath)) {
         return $false
     }
     
-    $hash = (Get-FileHash -Path $RomPath -Algorithm SHA256).Hash.ToLower()
+    $hash = (Get-FileHash -LiteralPath $RomPath -Algorithm SHA256).Hash.ToLower()
     return $hash -eq $ExpectedHash.ToLower()
 }
 
@@ -67,7 +69,7 @@ Write-Host "  Project: $ProjectRoot"
 Write-Host "  ROM:     $RomPath"
 
 # Verify original ROM exists
-if (-not (Test-Path $RomPath)) {
+if (-not (Test-Path -LiteralPath $RomPath)) {
     Write-Error "Original ROM not found: $RomPath"
     Write-Host "  Please ensure the ROM file is in the expected location."
     exit 1
@@ -78,7 +80,7 @@ Write-Step "Verifying original ROM..."
 if (Verify-Rom -RomPath $RomPath -ExpectedHash $ExpectedSha256) {
     Write-Success "Original ROM verified (SHA256 matches)"
 } else {
-    $actualHash = (Get-FileHash -Path $RomPath -Algorithm SHA256).Hash.ToLower()
+    $actualHash = (Get-FileHash -LiteralPath $RomPath -Algorithm SHA256).Hash.ToLower()
     Write-Error "ROM hash mismatch!"
     Write-Host "    Expected: $ExpectedSha256"
     Write-Host "    Actual:   $actualHash"
@@ -131,11 +133,16 @@ if (-not $python) {
     exit 1
 }
 
+# Copy ROM to temp location (to avoid bracket issues with Python)
+$TempRomPath = Join-Path $BuildDir "temp_rom.sfc"
+Write-Step "Copying ROM for extraction..."
+Copy-Item -LiteralPath $RomPath -Destination $TempRomPath -Force
+
 # Extract data
 $extractDataScript = Join-Path $ToolsDir "extract_data.py"
 if (Test-Path $extractDataScript) {
     Write-Step "Extracting game data..."
-    & python $extractDataScript --rom "$RomPath" --output (Join-Path $AssetsDir "json")
+    & python $extractDataScript "$TempRomPath" --output (Join-Path $AssetsDir "json") --all
     if ($LASTEXITCODE -eq 0) {
         Write-Success "Game data extracted"
     } else {
@@ -147,7 +154,7 @@ if (Test-Path $extractDataScript) {
 $extractTextScript = Join-Path $ToolsDir "extract_text.py"
 if (Test-Path $extractTextScript) {
     Write-Step "Extracting text..."
-    & python $extractTextScript --rom "$RomPath" --output (Join-Path $AssetsDir "text") --export-table
+    & python $extractTextScript --rom "$TempRomPath" --output (Join-Path $AssetsDir "text") --export-table
     if ($LASTEXITCODE -eq 0) {
         Write-Success "Text data extracted"
     } else {
@@ -159,7 +166,7 @@ if (Test-Path $extractTextScript) {
 $extractGraphicsScript = Join-Path $ToolsDir "extract_graphics.py"
 if (Test-Path $extractGraphicsScript) {
     Write-Step "Extracting graphics..."
-    & python $extractGraphicsScript --rom "$RomPath" --output (Join-Path $AssetsDir "graphics")
+    & python $extractGraphicsScript --rom "$TempRomPath" --output (Join-Path $AssetsDir "graphics")
     if ($LASTEXITCODE -eq 0) {
         Write-Success "Graphics extracted"
     } else {
@@ -171,7 +178,7 @@ if (Test-Path $extractGraphicsScript) {
 $extractAudioScript = Join-Path $ToolsDir "extract_audio.py"
 if (Test-Path $extractAudioScript) {
     Write-Step "Extracting audio data..."
-    & python $extractAudioScript --rom "$RomPath" --output (Join-Path $AssetsDir "audio")
+    & python $extractAudioScript --rom "$TempRomPath" --output (Join-Path $AssetsDir "audio")
     if ($LASTEXITCODE -eq 0) {
         Write-Success "Audio data extracted"
     } else {

@@ -1,0 +1,89 @@
+{
+	"name": "Prophecy",
+	"offset": "0x05fc56",
+	"command_count": 16,
+	"commands": [
+		{
+			"pos": 0,
+			"type": "note",
+			"note": "C",
+			"value": 13
+		},
+		{
+			"pos": 1,
+			"type": "note",
+			"note": "C",
+			"value": 3
+		},
+		{
+			"pos": 2,
+			"type": "note",
+			"value": 108
+		},
+		{
+			"pos": 3,
+			"type": "unknown",
+			"value": 252
+		},
+		{
+			"pos": 4,
+			"type": "note",
+			"value": 108
+		},
+		{
+			"pos": 5,
+			"type": "unknown",
+			"value": 252
+		},
+		{
+			"pos": 6,
+			"type": "unknown",
+			"value": 239
+		},
+		{
+			"pos": 7,
+			"type": "unknown",
+			"value": 252
+		},
+		{
+			"pos": 8,
+			"type": "unknown",
+			"value": 216
+		},
+		{
+			"pos": 9,
+			"type": "unknown",
+			"value": 253
+		},
+		{
+			"pos": 10,
+			"type": "note",
+			"value": 75
+		},
+		{
+			"pos": 11,
+			"type": "unknown",
+			"value": 254
+		},
+		{
+			"pos": 12,
+			"type": "rest",
+			"value": 194
+		},
+		{
+			"pos": 13,
+			"type": "unknown",
+			"value": 254
+		},
+		{
+			"pos": 14,
+			"type": "note",
+			"note": "C",
+			"value": 9
+		},
+		{
+			"pos": 15,
+			"type": "end_sequence"
+		}
+	]
+}

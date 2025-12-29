@@ -1,0 +1,230 @@
+{
+	"name": "Flight into the Unknown",
+	"offset": "0x050f43",
+	"command_count": 42,
+	"commands": [
+		{
+			"pos": 0,
+			"type": "note",
+			"value": 122
+		},
+		{
+			"pos": 1,
+			"type": "note",
+			"note": "C#",
+			"value": 16
+		},
+		{
+			"pos": 2,
+			"type": "note",
+			"value": 89
+		},
+		{
+			"pos": 3,
+			"type": "note",
+			"note": "C#",
+			"value": 15
+		},
+		{
+			"pos": 4,
+			"type": "note",
+			"value": 89
+		},
+		{
+			"pos": 5,
+			"type": "note",
+			"note": "C#",
+			"value": 15
+		},
+		{
+			"pos": 6,
+			"type": "note",
+			"value": 93
+		},
+		{
+			"pos": 7,
+			"type": "note",
+			"note": "C#",
+			"value": 18
+		},
+		{
+			"pos": 8,
+			"type": "rest",
+			"value": 197
+		},
+		{
+			"pos": 9,
+			"type": "note",
+			"note": "C#",
+			"value": 19
+		},
+		{
+			"pos": 10,
+			"type": "note",
+			"note": "D",
+			"value": 31
+		},
+		{
+			"pos": 11,
+			"type": "note",
+			"note": "C#",
+			"value": 23
+		},
+		{
+			"pos": 12,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 13,
+			"type": "note",
+			"note": "C#",
+			"value": 25
+		},
+		{
+			"pos": 14,
+			"type": "note",
+			"value": 162
+		},
+		{
+			"pos": 15,
+			"type": "note",
+			"note": "C#",
+			"value": 26
+		},
+		{
+			"pos": 16,
+			"type": "note",
+			"value": 43
+		},
+		{
+			"pos": 17,
+			"type": "note",
+			"note": "D",
+			"value": 28
+		},
+		{
+			"pos": 18,
+			"type": "note",
+			"value": 154
+		},
+		{
+			"pos": 19,
+			"type": "note",
+			"note": "D",
+			"value": 29
+		},
+		{
+			"pos": 20,
+			"type": "note",
+			"value": 191
+		},
+		{
+			"pos": 21,
+			"type": "note",
+			"note": "D",
+			"value": 31
+		},
+		{
+			"pos": 22,
+			"type": "tempo",
+			"value": 120
+		},
+		{
+			"pos": 24,
+			"type": "global_volume",
+			"value": 165
+		},
+		{
+			"pos": 26,
+			"type": "unknown",
+			"value": 253
+		},
+		{
+			"pos": 27,
+			"type": "note",
+			"note": "D",
+			"value": 33
+		},
+		{
+			"pos": 28,
+			"type": "unknown",
+			"value": 209
+		},
+		{
+			"pos": 29,
+			"type": "pan",
+			"value": 128
+		},
+		{
+			"pos": 31,
+			"type": "rest",
+			"value": 196
+		},
+		{
+			"pos": 32,
+			"type": "pitch",
+			"value": 6
+		},
+		{
+			"pos": 34,
+			"type": "volume",
+			"value": 255
+		},
+		{
+			"pos": 36,
+			"type": "instrument",
+			"value": 33
+		},
+		{
+			"pos": 38,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 39,
+			"type": "pitch",
+			"value": 6
+		},
+		{
+			"pos": 41,
+			"type": "unknown",
+			"value": 240
+		},
+		{
+			"pos": 42,
+			"type": "note",
+			"note": "C",
+			"value": 1
+		},
+		{
+			"pos": 43,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 44,
+			"type": "volume",
+			"value": 160
+		},
+		{
+			"pos": 46,
+			"type": "instrument",
+			"value": 32
+		},
+		{
+			"pos": 48,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 49,
+			"type": "length",
+			"value": 210
+		},
+		{
+			"pos": 51,
+			"type": "end_sequence"
+		}
+	]
+}

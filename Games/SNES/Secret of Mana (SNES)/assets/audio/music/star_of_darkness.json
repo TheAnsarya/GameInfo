@@ -1,0 +1,4642 @@
+{
+	"name": "Star of Darkness",
+	"offset": "0x05963f",
+	"command_count": 903,
+	"commands": [
+		{
+			"pos": 0,
+			"type": "unknown",
+			"value": 253
+		},
+		{
+			"pos": 1,
+			"type": "note",
+			"note": "C",
+			"value": 4
+		},
+		{
+			"pos": 2,
+			"type": "note",
+			"value": 85
+		},
+		{
+			"pos": 3,
+			"type": "note",
+			"value": 150
+		},
+		{
+			"pos": 4,
+			"type": "note",
+			"value": 85
+		},
+		{
+			"pos": 5,
+			"type": "note",
+			"value": 150
+		},
+		{
+			"pos": 6,
+			"type": "note",
+			"value": 188
+		},
+		{
+			"pos": 7,
+			"type": "note",
+			"value": 150
+		},
+		{
+			"pos": 8,
+			"type": "note",
+			"note": "C",
+			"value": 12
+		},
+		{
+			"pos": 9,
+			"type": "note",
+			"value": 151
+		},
+		{
+			"pos": 10,
+			"type": "note",
+			"value": 96
+		},
+		{
+			"pos": 11,
+			"type": "note",
+			"value": 151
+		},
+		{
+			"pos": 12,
+			"type": "rest",
+			"value": 193
+		},
+		{
+			"pos": 13,
+			"type": "note",
+			"value": 151
+		},
+		{
+			"pos": 14,
+			"type": "note",
+			"value": 189
+		},
+		{
+			"pos": 15,
+			"type": "note",
+			"value": 152
+		},
+		{
+			"pos": 16,
+			"type": "rest",
+			"value": 193
+		},
+		{
+			"pos": 17,
+			"type": "note",
+			"value": 153
+		},
+		{
+			"pos": 18,
+			"type": "note",
+			"value": 156
+		},
+		{
+			"pos": 19,
+			"type": "note",
+			"value": 154
+		},
+		{
+			"pos": 20,
+			"type": "note",
+			"value": 62
+		},
+		{
+			"pos": 21,
+			"type": "note",
+			"value": 155
+		},
+		{
+			"pos": 22,
+			"type": "tempo",
+			"value": 150
+		},
+		{
+			"pos": 24,
+			"type": "global_volume",
+			"value": 125
+		},
+		{
+			"pos": 26,
+			"type": "unknown",
+			"value": 253
+		},
+		{
+			"pos": 27,
+			"type": "note",
+			"note": "D",
+			"value": 36
+		},
+		{
+			"pos": 28,
+			"type": "pan",
+			"value": 64
+		},
+		{
+			"pos": 30,
+			"type": "volume",
+			"value": 90
+		},
+		{
+			"pos": 32,
+			"type": "instrument",
+			"value": 32
+		},
+		{
+			"pos": 34,
+			"type": "unknown",
+			"value": 226
+		},
+		{
+			"pos": 35,
+			"type": "unknown",
+			"value": 208
+		},
+		{
+			"pos": 36,
+			"type": "rest",
+			"value": 195
+		},
+		{
+			"pos": 37,
+			"type": "pitch",
+			"value": 4
+		},
+		{
+			"pos": 39,
+			"type": "note",
+			"value": 60
+		},
+		{
+			"pos": 40,
+			"type": "note",
+			"value": 75
+		},
+		{
+			"pos": 41,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 42,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 43,
+			"type": "note",
+			"value": 150
+		},
+		{
+			"pos": 44,
+			"type": "length",
+			"value": 0
+		},
+		{
+			"pos": 46,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 47,
+			"type": "rest",
+			"value": 195
+		},
+		{
+			"pos": 48,
+			"type": "note",
+			"value": 60
+		},
+		{
+			"pos": 49,
+			"type": "note",
+			"value": 75
+		},
+		{
+			"pos": 50,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 51,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 52,
+			"type": "note",
+			"value": 150
+		},
+		{
+			"pos": 53,
+			"type": "length",
+			"value": 0
+		},
+		{
+			"pos": 55,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 56,
+			"type": "instrument",
+			"value": 32
+		},
+		{
+			"pos": 58,
+			"type": "pitch",
+			"value": 6
+		},
+		{
+			"pos": 60,
+			"type": "volume",
+			"value": 120
+		},
+		{
+			"pos": 62,
+			"type": "rest",
+			"value": 197
+		},
+		{
+			"pos": 63,
+			"type": "note",
+			"note": "D",
+			"value": 32
+		},
+		{
+			"pos": 64,
+			"type": "note",
+			"value": 62
+		},
+		{
+			"pos": 65,
+			"type": "note",
+			"note": "D",
+			"value": 32
+		},
+		{
+			"pos": 66,
+			"type": "rest",
+			"value": 197
+		},
+		{
+			"pos": 67,
+			"type": "note",
+			"note": "C",
+			"value": 2
+		},
+		{
+			"pos": 68,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 69,
+			"type": "rest",
+			"value": 197
+		},
+		{
+			"pos": 70,
+			"type": "note",
+			"note": "C",
+			"value": 2
+		},
+		{
+			"pos": 71,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 72,
+			"type": "note",
+			"value": 80
+		},
+		{
+			"pos": 73,
+			"type": "note",
+			"value": 65
+		},
+		{
+			"pos": 74,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 75,
+			"type": "rest",
+			"value": 197
+		},
+		{
+			"pos": 76,
+			"type": "note",
+			"note": "C",
+			"value": 2
+		},
+		{
+			"pos": 77,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 78,
+			"type": "rest",
+			"value": 197
+		},
+		{
+			"pos": 79,
+			"type": "note",
+			"note": "D",
+			"value": 32
+		},
+		{
+			"pos": 80,
+			"type": "note",
+			"value": 62
+		},
+		{
+			"pos": 81,
+			"type": "note",
+			"note": "D",
+			"value": 32
+		},
+		{
+			"pos": 82,
+			"type": "rest",
+			"value": 197
+		},
+		{
+			"pos": 83,
+			"type": "note",
+			"note": "C",
+			"value": 2
+		},
+		{
+			"pos": 84,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 85,
+			"type": "rest",
+			"value": 197
+		},
+		{
+			"pos": 86,
+			"type": "note",
+			"note": "C",
+			"value": 2
+		},
+		{
+			"pos": 87,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 88,
+			"type": "note",
+			"value": 80
+		},
+		{
+			"pos": 89,
+			"type": "note",
+			"value": 65
+		},
+		{
+			"pos": 90,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 91,
+			"type": "rest",
+			"value": 197
+		},
+		{
+			"pos": 92,
+			"type": "note",
+			"note": "C",
+			"value": 2
+		},
+		{
+			"pos": 93,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 94,
+			"type": "unknown",
+			"value": 235
+		},
+		{
+			"pos": 95,
+			"type": "note",
+			"note": "C",
+			"value": 5
+		},
+		{
+			"pos": 96,
+			"type": "volume",
+			"value": 80
+		},
+		{
+			"pos": 98,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 99,
+			"type": "note",
+			"value": 75
+		},
+		{
+			"pos": 100,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 101,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 102,
+			"type": "note",
+			"value": 62
+		},
+		{
+			"pos": 103,
+			"type": "note",
+			"value": 77
+		},
+		{
+			"pos": 104,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 105,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 106,
+			"type": "note",
+			"note": "C",
+			"value": 2
+		},
+		{
+			"pos": 107,
+			"type": "note",
+			"note": "D",
+			"value": 32
+		},
+		{
+			"pos": 108,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 109,
+			"type": "note",
+			"value": 75
+		},
+		{
+			"pos": 110,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 111,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 112,
+			"type": "note",
+			"value": 62
+		},
+		{
+			"pos": 113,
+			"type": "note",
+			"value": 77
+		},
+		{
+			"pos": 114,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 115,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 116,
+			"type": "note",
+			"note": "C",
+			"value": 2
+		},
+		{
+			"pos": 117,
+			"type": "note",
+			"note": "D",
+			"value": 32
+		},
+		{
+			"pos": 118,
+			"type": "note",
+			"value": 60
+		},
+		{
+			"pos": 119,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 120,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 121,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 122,
+			"type": "unknown",
+			"value": 250
+		},
+		{
+			"pos": 123,
+			"type": "note",
+			"value": 119
+		},
+		{
+			"pos": 124,
+			"type": "note",
+			"value": 150
+		},
+		{
+			"pos": 125,
+			"type": "pan",
+			"value": 74
+		},
+		{
+			"pos": 127,
+			"type": "volume",
+			"value": 80
+		},
+		{
+			"pos": 129,
+			"type": "instrument",
+			"value": 32
+		},
+		{
+			"pos": 131,
+			"type": "unknown",
+			"value": 226
+		},
+		{
+			"pos": 132,
+			"type": "unknown",
+			"value": 208
+		},
+		{
+			"pos": 133,
+			"type": "pitch",
+			"value": 4
+		},
+		{
+			"pos": 135,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 136,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 137,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 138,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 139,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 140,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 141,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 142,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 143,
+			"type": "length",
+			"value": 30
+		},
+		{
+			"pos": 145,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 146,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 147,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 148,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 149,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 150,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 151,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 152,
+			"type": "instrument",
+			"value": 32
+		},
+		{
+			"pos": 154,
+			"type": "pitch",
+			"value": 5
+		},
+		{
+			"pos": 156,
+			"type": "volume",
+			"value": 115
+		},
+		{
+			"pos": 158,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 159,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 160,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 161,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 162,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 163,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 164,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 165,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 166,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 167,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 168,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 169,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 170,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 171,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 172,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 173,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 174,
+			"type": "volume",
+			"value": 85
+		},
+		{
+			"pos": 176,
+			"type": "unknown",
+			"value": 235
+		},
+		{
+			"pos": 177,
+			"type": "note",
+			"note": "C",
+			"value": 5
+		},
+		{
+			"pos": 178,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 179,
+			"type": "note",
+			"value": 75
+		},
+		{
+			"pos": 180,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 181,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 182,
+			"type": "note",
+			"value": 62
+		},
+		{
+			"pos": 183,
+			"type": "note",
+			"value": 77
+		},
+		{
+			"pos": 184,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 185,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 186,
+			"type": "note",
+			"note": "C",
+			"value": 2
+		},
+		{
+			"pos": 187,
+			"type": "note",
+			"note": "D",
+			"value": 32
+		},
+		{
+			"pos": 188,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 189,
+			"type": "note",
+			"value": 75
+		},
+		{
+			"pos": 190,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 191,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 192,
+			"type": "note",
+			"value": 62
+		},
+		{
+			"pos": 193,
+			"type": "note",
+			"value": 77
+		},
+		{
+			"pos": 194,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 195,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 196,
+			"type": "note",
+			"note": "C",
+			"value": 2
+		},
+		{
+			"pos": 197,
+			"type": "note",
+			"note": "D",
+			"value": 32
+		},
+		{
+			"pos": 198,
+			"type": "note",
+			"value": 60
+		},
+		{
+			"pos": 199,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 200,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 201,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 202,
+			"type": "unknown",
+			"value": 250
+		},
+		{
+			"pos": 203,
+			"type": "vibrato",
+			"speed": 150,
+			"time": 212,
+			"depth": 84
+		},
+		{
+			"pos": 207,
+			"type": "volume",
+			"value": 80
+		},
+		{
+			"pos": 209,
+			"type": "instrument",
+			"value": 32
+		},
+		{
+			"pos": 211,
+			"type": "unknown",
+			"value": 226
+		},
+		{
+			"pos": 212,
+			"type": "unknown",
+			"value": 209
+		},
+		{
+			"pos": 213,
+			"type": "rest",
+			"value": 195
+		},
+		{
+			"pos": 214,
+			"type": "rest",
+			"value": 195
+		},
+		{
+			"pos": 215,
+			"type": "rest",
+			"value": 195
+		},
+		{
+			"pos": 216,
+			"type": "rest",
+			"value": 195
+		},
+		{
+			"pos": 217,
+			"type": "rest",
+			"value": 195
+		},
+		{
+			"pos": 218,
+			"type": "rest",
+			"value": 195
+		},
+		{
+			"pos": 219,
+			"type": "rest",
+			"value": 195
+		},
+		{
+			"pos": 220,
+			"type": "rest",
+			"value": 195
+		},
+		{
+			"pos": 221,
+			"type": "pitch",
+			"value": 4
+		},
+		{
+			"pos": 223,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 224,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 225,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 226,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 227,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 228,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 229,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 230,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 231,
+			"type": "instrument",
+			"value": 32
+		},
+		{
+			"pos": 233,
+			"type": "pitch",
+			"value": 5
+		},
+		{
+			"pos": 235,
+			"type": "volume",
+			"value": 115
+		},
+		{
+			"pos": 237,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 238,
+			"type": "note",
+			"value": 60
+		},
+		{
+			"pos": 239,
+			"type": "note",
+			"value": 75
+		},
+		{
+			"pos": 240,
+			"type": "note",
+			"value": 60
+		},
+		{
+			"pos": 241,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 242,
+			"type": "note",
+			"value": 60
+		},
+		{
+			"pos": 243,
+			"type": "note",
+			"value": 75
+		},
+		{
+			"pos": 244,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 245,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 246,
+			"type": "note",
+			"value": 60
+		},
+		{
+			"pos": 247,
+			"type": "note",
+			"value": 75
+		},
+		{
+			"pos": 248,
+			"type": "note",
+			"value": 60
+		},
+		{
+			"pos": 249,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 250,
+			"type": "note",
+			"value": 60
+		},
+		{
+			"pos": 251,
+			"type": "note",
+			"value": 75
+		},
+		{
+			"pos": 252,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 253,
+			"type": "unknown",
+			"value": 235
+		},
+		{
+			"pos": 254,
+			"type": "note",
+			"note": "C",
+			"value": 5
+		},
+		{
+			"pos": 255,
+			"type": "volume",
+			"value": 85
+		},
+		{
+			"pos": 257,
+			"type": "note",
+			"value": 75
+		},
+		{
+			"pos": 258,
+			"type": "note",
+			"value": 45
+		},
+		{
+			"pos": 259,
+			"type": "note",
+			"value": 75
+		},
+		{
+			"pos": 260,
+			"type": "note",
+			"note": "C",
+			"value": 0
+		},
+		{
+			"pos": 261,
+			"type": "note",
+			"note": "D",
+			"value": 32
+		},
+		{
+			"pos": 262,
+			"type": "note",
+			"value": 47
+		},
+		{
+			"pos": 263,
+			"type": "note",
+			"value": 75
+		},
+		{
+			"pos": 264,
+			"type": "note",
+			"note": "C",
+			"value": 0
+		},
+		{
+			"pos": 265,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 266,
+			"type": "note",
+			"value": 152
+		},
+		{
+			"pos": 267,
+			"type": "length",
+			"value": 2
+		},
+		{
+			"pos": 269,
+			"type": "note",
+			"value": 75
+		},
+		{
+			"pos": 270,
+			"type": "note",
+			"value": 45
+		},
+		{
+			"pos": 271,
+			"type": "note",
+			"value": 75
+		},
+		{
+			"pos": 272,
+			"type": "note",
+			"note": "C",
+			"value": 0
+		},
+		{
+			"pos": 273,
+			"type": "note",
+			"note": "D",
+			"value": 32
+		},
+		{
+			"pos": 274,
+			"type": "note",
+			"value": 47
+		},
+		{
+			"pos": 275,
+			"type": "note",
+			"value": 75
+		},
+		{
+			"pos": 276,
+			"type": "note",
+			"note": "C",
+			"value": 0
+		},
+		{
+			"pos": 277,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 278,
+			"type": "note",
+			"value": 152
+		},
+		{
+			"pos": 279,
+			"type": "length",
+			"value": 2
+		},
+		{
+			"pos": 281,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 282,
+			"type": "note",
+			"value": 165
+		},
+		{
+			"pos": 283,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 284,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 285,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 286,
+			"type": "unknown",
+			"value": 250
+		},
+		{
+			"pos": 287,
+			"type": "note",
+			"note": "D",
+			"value": 38
+		},
+		{
+			"pos": 288,
+			"type": "note",
+			"value": 151
+		},
+		{
+			"pos": 289,
+			"type": "pan",
+			"value": 94
+		},
+		{
+			"pos": 291,
+			"type": "volume",
+			"value": 90
+		},
+		{
+			"pos": 293,
+			"type": "instrument",
+			"value": 32
+		},
+		{
+			"pos": 295,
+			"type": "unknown",
+			"value": 226
+		},
+		{
+			"pos": 296,
+			"type": "unknown",
+			"value": 209
+		},
+		{
+			"pos": 297,
+			"type": "pitch",
+			"value": 3
+		},
+		{
+			"pos": 299,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 300,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 301,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 302,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 303,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 304,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 305,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 306,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 307,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 308,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 309,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 310,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 311,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 312,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 313,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 314,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 315,
+			"type": "pan",
+			"value": 192
+		},
+		{
+			"pos": 317,
+			"type": "volume",
+			"value": 80
+		},
+		{
+			"pos": 319,
+			"type": "instrument",
+			"value": 33
+		},
+		{
+			"pos": 321,
+			"type": "pitch",
+			"value": 4
+		},
+		{
+			"pos": 323,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 324,
+			"type": "note",
+			"value": 60
+		},
+		{
+			"pos": 325,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 326,
+			"type": "note",
+			"note": "C",
+			"value": 0
+		},
+		{
+			"pos": 327,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 328,
+			"type": "note",
+			"value": 60
+		},
+		{
+			"pos": 329,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 330,
+			"type": "note",
+			"note": "C",
+			"value": 0
+		},
+		{
+			"pos": 331,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 332,
+			"type": "note",
+			"value": 60
+		},
+		{
+			"pos": 333,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 334,
+			"type": "note",
+			"note": "C",
+			"value": 0
+		},
+		{
+			"pos": 335,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 336,
+			"type": "note",
+			"value": 60
+		},
+		{
+			"pos": 337,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 338,
+			"type": "note",
+			"note": "C",
+			"value": 0
+		},
+		{
+			"pos": 339,
+			"type": "pan",
+			"value": 94
+		},
+		{
+			"pos": 341,
+			"type": "volume",
+			"value": 85
+		},
+		{
+			"pos": 343,
+			"type": "instrument",
+			"value": 32
+		},
+		{
+			"pos": 345,
+			"type": "unknown",
+			"value": 235
+		},
+		{
+			"pos": 346,
+			"type": "note",
+			"note": "C",
+			"value": 5
+		},
+		{
+			"pos": 347,
+			"type": "length",
+			"value": 0
+		},
+		{
+			"pos": 349,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 350,
+			"type": "note",
+			"value": 150
+		},
+		{
+			"pos": 351,
+			"type": "length",
+			"value": 0
+		},
+		{
+			"pos": 353,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 354,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 355,
+			"type": "note",
+			"value": 137
+		},
+		{
+			"pos": 356,
+			"type": "note",
+			"value": 152
+		},
+		{
+			"pos": 357,
+			"type": "length",
+			"value": 0
+		},
+		{
+			"pos": 359,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 360,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 361,
+			"type": "note",
+			"value": 77
+		},
+		{
+			"pos": 362,
+			"type": "note",
+			"value": 107
+		},
+		{
+			"pos": 363,
+			"type": "length",
+			"value": 0
+		},
+		{
+			"pos": 365,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 366,
+			"type": "note",
+			"value": 150
+		},
+		{
+			"pos": 367,
+			"type": "length",
+			"value": 0
+		},
+		{
+			"pos": 369,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 370,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 371,
+			"type": "note",
+			"value": 137
+		},
+		{
+			"pos": 372,
+			"type": "note",
+			"value": 152
+		},
+		{
+			"pos": 373,
+			"type": "length",
+			"value": 0
+		},
+		{
+			"pos": 375,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 376,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 377,
+			"type": "note",
+			"value": 77
+		},
+		{
+			"pos": 378,
+			"type": "note",
+			"value": 107
+		},
+		{
+			"pos": 379,
+			"type": "note",
+			"value": 90
+		},
+		{
+			"pos": 380,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 381,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 382,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 383,
+			"type": "unknown",
+			"value": 250
+		},
+		{
+			"pos": 384,
+			"type": "note",
+			"value": 122
+		},
+		{
+			"pos": 385,
+			"type": "note",
+			"value": 151
+		},
+		{
+			"pos": 386,
+			"type": "pan",
+			"value": 192
+		},
+		{
+			"pos": 388,
+			"type": "volume",
+			"value": 70
+		},
+		{
+			"pos": 390,
+			"type": "instrument",
+			"value": 35
+		},
+		{
+			"pos": 392,
+			"type": "unknown",
+			"value": 226
+		},
+		{
+			"pos": 393,
+			"type": "unknown",
+			"value": 238
+		},
+		{
+			"pos": 394,
+			"type": "note",
+			"note": "C#",
+			"value": 20
+		},
+		{
+			"pos": 395,
+			"type": "unknown",
+			"value": 208
+		},
+		{
+			"pos": 396,
+			"type": "pitch",
+			"value": 6
+		},
+		{
+			"pos": 398,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 399,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 400,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 401,
+			"type": "note",
+			"value": 140
+		},
+		{
+			"pos": 402,
+			"type": "length",
+			"value": 35
+		},
+		{
+			"pos": 404,
+			"type": "note",
+			"value": 80
+		},
+		{
+			"pos": 405,
+			"type": "note",
+			"value": 65
+		},
+		{
+			"pos": 406,
+			"type": "note",
+			"note": "C",
+			"value": 5
+		},
+		{
+			"pos": 407,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 408,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 409,
+			"type": "note",
+			"value": 140
+		},
+		{
+			"pos": 410,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 411,
+			"type": "note",
+			"value": 65
+		},
+		{
+			"pos": 412,
+			"type": "note",
+			"value": 80
+		},
+		{
+			"pos": 413,
+			"type": "note",
+			"value": 113
+		},
+		{
+			"pos": 414,
+			"type": "note",
+			"value": 83
+		},
+		{
+			"pos": 415,
+			"type": "note",
+			"value": 65
+		},
+		{
+			"pos": 416,
+			"type": "rest",
+			"value": 200
+		},
+		{
+			"pos": 417,
+			"type": "note",
+			"note": "C",
+			"value": 5
+		},
+		{
+			"pos": 418,
+			"type": "length",
+			"value": 35
+		},
+		{
+			"pos": 420,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 421,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 422,
+			"type": "note",
+			"value": 140
+		},
+		{
+			"pos": 423,
+			"type": "length",
+			"value": 35
+		},
+		{
+			"pos": 425,
+			"type": "note",
+			"value": 80
+		},
+		{
+			"pos": 426,
+			"type": "note",
+			"value": 65
+		},
+		{
+			"pos": 427,
+			"type": "note",
+			"note": "C",
+			"value": 5
+		},
+		{
+			"pos": 428,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 429,
+			"type": "note",
+			"value": 80
+		},
+		{
+			"pos": 430,
+			"type": "note",
+			"value": 65
+		},
+		{
+			"pos": 431,
+			"type": "note",
+			"note": "C",
+			"value": 5
+		},
+		{
+			"pos": 432,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 433,
+			"type": "note",
+			"value": 83
+		},
+		{
+			"pos": 434,
+			"type": "note",
+			"value": 68
+		},
+		{
+			"pos": 435,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 436,
+			"type": "rest",
+			"value": 197
+		},
+		{
+			"pos": 437,
+			"type": "length",
+			"value": 210
+		},
+		{
+			"pos": 439,
+			"type": "note",
+			"value": 90
+		},
+		{
+			"pos": 440,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 441,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 442,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 443,
+			"type": "note",
+			"value": 140
+		},
+		{
+			"pos": 444,
+			"type": "length",
+			"value": 35
+		},
+		{
+			"pos": 446,
+			"type": "note",
+			"value": 80
+		},
+		{
+			"pos": 447,
+			"type": "note",
+			"value": 65
+		},
+		{
+			"pos": 448,
+			"type": "note",
+			"note": "C",
+			"value": 5
+		},
+		{
+			"pos": 449,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 450,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 451,
+			"type": "note",
+			"value": 140
+		},
+		{
+			"pos": 452,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 453,
+			"type": "note",
+			"value": 65
+		},
+		{
+			"pos": 454,
+			"type": "note",
+			"value": 80
+		},
+		{
+			"pos": 455,
+			"type": "note",
+			"value": 113
+		},
+		{
+			"pos": 456,
+			"type": "note",
+			"value": 83
+		},
+		{
+			"pos": 457,
+			"type": "note",
+			"value": 65
+		},
+		{
+			"pos": 458,
+			"type": "rest",
+			"value": 200
+		},
+		{
+			"pos": 459,
+			"type": "note",
+			"note": "C",
+			"value": 5
+		},
+		{
+			"pos": 460,
+			"type": "length",
+			"value": 35
+		},
+		{
+			"pos": 462,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 463,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 464,
+			"type": "note",
+			"value": 140
+		},
+		{
+			"pos": 465,
+			"type": "length",
+			"value": 35
+		},
+		{
+			"pos": 467,
+			"type": "note",
+			"value": 80
+		},
+		{
+			"pos": 468,
+			"type": "note",
+			"value": 65
+		},
+		{
+			"pos": 469,
+			"type": "note",
+			"note": "C",
+			"value": 5
+		},
+		{
+			"pos": 470,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 471,
+			"type": "note",
+			"value": 80
+		},
+		{
+			"pos": 472,
+			"type": "note",
+			"value": 65
+		},
+		{
+			"pos": 473,
+			"type": "note",
+			"note": "C",
+			"value": 5
+		},
+		{
+			"pos": 474,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 475,
+			"type": "note",
+			"value": 83
+		},
+		{
+			"pos": 476,
+			"type": "note",
+			"value": 68
+		},
+		{
+			"pos": 477,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 478,
+			"type": "rest",
+			"value": 197
+		},
+		{
+			"pos": 479,
+			"type": "pan",
+			"value": 182
+		},
+		{
+			"pos": 481,
+			"type": "volume",
+			"value": 60
+		},
+		{
+			"pos": 483,
+			"type": "instrument",
+			"value": 33
+		},
+		{
+			"pos": 485,
+			"type": "pitch",
+			"value": 3
+		},
+		{
+			"pos": 487,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 488,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 489,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 490,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 491,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 492,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 493,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 494,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 495,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 496,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 497,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 498,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 499,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 500,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 501,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 502,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 503,
+			"type": "pan",
+			"value": 192
+		},
+		{
+			"pos": 505,
+			"type": "volume",
+			"value": 100
+		},
+		{
+			"pos": 507,
+			"type": "instrument",
+			"value": 35
+		},
+		{
+			"pos": 509,
+			"type": "unknown",
+			"value": 238
+		},
+		{
+			"pos": 510,
+			"type": "note",
+			"note": "C#",
+			"value": 20
+		},
+		{
+			"pos": 511,
+			"type": "length",
+			"value": 229
+		},
+		{
+			"pos": 513,
+			"type": "length",
+			"value": 229
+		},
+		{
+			"pos": 515,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 516,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 517,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 518,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 519,
+			"type": "note",
+			"value": 140
+		},
+		{
+			"pos": 520,
+			"type": "length",
+			"value": 35
+		},
+		{
+			"pos": 522,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 523,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 524,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 525,
+			"type": "note",
+			"value": 140
+		},
+		{
+			"pos": 526,
+			"type": "length",
+			"value": 35
+		},
+		{
+			"pos": 528,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 529,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 530,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 531,
+			"type": "note",
+			"value": 140
+		},
+		{
+			"pos": 532,
+			"type": "length",
+			"value": 35
+		},
+		{
+			"pos": 534,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 535,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 536,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 537,
+			"type": "note",
+			"value": 140
+		},
+		{
+			"pos": 538,
+			"type": "length",
+			"value": 35
+		},
+		{
+			"pos": 540,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 541,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 542,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 543,
+			"type": "note",
+			"value": 140
+		},
+		{
+			"pos": 544,
+			"type": "length",
+			"value": 35
+		},
+		{
+			"pos": 546,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 547,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 548,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 549,
+			"type": "note",
+			"value": 140
+		},
+		{
+			"pos": 550,
+			"type": "length",
+			"value": 35
+		},
+		{
+			"pos": 552,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 553,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 554,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 555,
+			"type": "note",
+			"value": 140
+		},
+		{
+			"pos": 556,
+			"type": "length",
+			"value": 35
+		},
+		{
+			"pos": 558,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 559,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 560,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 561,
+			"type": "note",
+			"value": 140
+		},
+		{
+			"pos": 562,
+			"type": "length",
+			"value": 35
+		},
+		{
+			"pos": 564,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 565,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 566,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 567,
+			"type": "note",
+			"value": 140
+		},
+		{
+			"pos": 568,
+			"type": "length",
+			"value": 35
+		},
+		{
+			"pos": 570,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 571,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 572,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 573,
+			"type": "note",
+			"value": 140
+		},
+		{
+			"pos": 574,
+			"type": "length",
+			"value": 35
+		},
+		{
+			"pos": 576,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 577,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 578,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 579,
+			"type": "note",
+			"value": 140
+		},
+		{
+			"pos": 580,
+			"type": "length",
+			"value": 35
+		},
+		{
+			"pos": 582,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 583,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 584,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 585,
+			"type": "note",
+			"value": 140
+		},
+		{
+			"pos": 586,
+			"type": "length",
+			"value": 35
+		},
+		{
+			"pos": 588,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 589,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 590,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 591,
+			"type": "note",
+			"value": 140
+		},
+		{
+			"pos": 592,
+			"type": "length",
+			"value": 35
+		},
+		{
+			"pos": 594,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 595,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 596,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 597,
+			"type": "note",
+			"value": 140
+		},
+		{
+			"pos": 598,
+			"type": "length",
+			"value": 35
+		},
+		{
+			"pos": 600,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 601,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 602,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 603,
+			"type": "note",
+			"value": 140
+		},
+		{
+			"pos": 604,
+			"type": "length",
+			"value": 35
+		},
+		{
+			"pos": 606,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 607,
+			"type": "note",
+			"note": "D",
+			"value": 35
+		},
+		{
+			"pos": 608,
+			"type": "note",
+			"value": 110
+		},
+		{
+			"pos": 609,
+			"type": "note",
+			"value": 140
+		},
+		{
+			"pos": 610,
+			"type": "note",
+			"value": 170
+		},
+		{
+			"pos": 611,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 612,
+			"type": "note",
+			"value": 170
+		},
+		{
+			"pos": 613,
+			"type": "length",
+			"value": 65
+		},
+		{
+			"pos": 615,
+			"type": "note",
+			"value": 95
+		},
+		{
+			"pos": 616,
+			"type": "note",
+			"value": 170
+		},
+		{
+			"pos": 617,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 618,
+			"type": "note",
+			"value": 170
+		},
+		{
+			"pos": 619,
+			"type": "length",
+			"value": 65
+		},
+		{
+			"pos": 621,
+			"type": "note",
+			"value": 95
+		},
+		{
+			"pos": 622,
+			"type": "note",
+			"value": 170
+		},
+		{
+			"pos": 623,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 624,
+			"type": "note",
+			"value": 170
+		},
+		{
+			"pos": 625,
+			"type": "length",
+			"value": 65
+		},
+		{
+			"pos": 627,
+			"type": "note",
+			"value": 95
+		},
+		{
+			"pos": 628,
+			"type": "note",
+			"value": 170
+		},
+		{
+			"pos": 629,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 630,
+			"type": "note",
+			"value": 170
+		},
+		{
+			"pos": 631,
+			"type": "length",
+			"value": 65
+		},
+		{
+			"pos": 633,
+			"type": "note",
+			"value": 95
+		},
+		{
+			"pos": 634,
+			"type": "unknown",
+			"value": 220
+		},
+		{
+			"pos": 635,
+			"type": "unknown",
+			"value": 250
+		},
+		{
+			"pos": 636,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 637,
+			"type": "note",
+			"value": 152
+		},
+		{
+			"pos": 638,
+			"type": "pan",
+			"value": 160
+		},
+		{
+			"pos": 640,
+			"type": "volume",
+			"value": 40
+		},
+		{
+			"pos": 642,
+			"type": "instrument",
+			"value": 34
+		},
+		{
+			"pos": 644,
+			"type": "unknown",
+			"value": 226
+		},
+		{
+			"pos": 645,
+			"type": "vibrato",
+			"speed": 15,
+			"time": 17,
+			"depth": 196
+		},
+		{
+			"pos": 649,
+			"type": "unknown",
+			"value": 208
+		},
+		{
+			"pos": 650,
+			"type": "pitch",
+			"value": 4
+		},
+		{
+			"pos": 652,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 653,
+			"type": "note",
+			"value": 60
+		},
+		{
+			"pos": 654,
+			"type": "note",
+			"value": 75
+		},
+		{
+			"pos": 655,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 656,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 657,
+			"type": "note",
+			"value": 150
+		},
+		{
+			"pos": 658,
+			"type": "length",
+			"value": 0
+		},
+		{
+			"pos": 660,
+			"type": "volume",
+			"value": 65
+		},
+		{
+			"pos": 662,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 663,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 664,
+			"type": "note",
+			"value": 60
+		},
+		{
+			"pos": 665,
+			"type": "note",
+			"value": 75
+		},
+		{
+			"pos": 666,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 667,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 668,
+			"type": "note",
+			"value": 150
+		},
+		{
+			"pos": 669,
+			"type": "length",
+			"value": 0
+		},
+		{
+			"pos": 671,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 672,
+			"type": "volume",
+			"value": 80
+		},
+		{
+			"pos": 674,
+			"type": "pitch",
+			"value": 5
+		},
+		{
+			"pos": 676,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 677,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 678,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 679,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 680,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 681,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 682,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 683,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 684,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 685,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 686,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 687,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 688,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 689,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 690,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 691,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 692,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 693,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 694,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 695,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 696,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 697,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 698,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 699,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 700,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 701,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 702,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 703,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 704,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 705,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 706,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 707,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 708,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 709,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 710,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 711,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 712,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 713,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 714,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 715,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 716,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 717,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 718,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 719,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 720,
+			"type": "note",
+			"value": 144
+		},
+		{
+			"pos": 721,
+			"type": "note",
+			"value": 159
+		},
+		{
+			"pos": 722,
+			"type": "note",
+			"value": 144
+		},
+		{
+			"pos": 723,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 724,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 725,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 726,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 727,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 728,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 729,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 730,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 731,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 732,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 733,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 734,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 735,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 736,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 737,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 738,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 739,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 740,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 741,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 742,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 743,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 744,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 745,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 746,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 747,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 748,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 749,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 750,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 751,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 752,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 753,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 754,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 755,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 756,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 757,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 758,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 759,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 760,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 761,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 762,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 763,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 764,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 765,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 766,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 767,
+			"type": "note",
+			"value": 69
+		},
+		{
+			"pos": 768,
+			"type": "note",
+			"note": "D",
+			"value": 39
+		},
+		{
+			"pos": 769,
+			"type": "note",
+			"value": 69
+		},
+		{
+			"pos": 770,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 771,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 772,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 773,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 774,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 775,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 776,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 777,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 778,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 779,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 780,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 781,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 782,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 783,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 784,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 785,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 786,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 787,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 788,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 789,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 790,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 791,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 792,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 793,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 794,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 795,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 796,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 797,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 798,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 799,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 800,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 801,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 802,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 803,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 804,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 805,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 806,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 807,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 808,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 809,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 810,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 811,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 812,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 813,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 814,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 815,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 816,
+			"type": "note",
+			"value": 144
+		},
+		{
+			"pos": 817,
+			"type": "note",
+			"value": 159
+		},
+		{
+			"pos": 818,
+			"type": "note",
+			"value": 144
+		},
+		{
+			"pos": 819,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 820,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 821,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 822,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 823,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 824,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 825,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 826,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 827,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 828,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 829,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 830,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 831,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 832,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 833,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 834,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 835,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 836,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 837,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 838,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 839,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 840,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 841,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 842,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 843,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 844,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 845,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 846,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 847,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 848,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 849,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 850,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 851,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 852,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 853,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 854,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 855,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 856,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 857,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 858,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 859,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 860,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 861,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 862,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 863,
+			"type": "note",
+			"value": 69
+		},
+		{
+			"pos": 864,
+			"type": "note",
+			"note": "D",
+			"value": 39
+		},
+		{
+			"pos": 865,
+			"type": "note",
+			"value": 69
+		},
+		{
+			"pos": 866,
+			"type": "note",
+			"value": 84
+		},
+		{
+			"pos": 867,
+			"type": "note",
+			"value": 114
+		},
+		{
+			"pos": 868,
+			"type": "volume",
+			"value": 65
+		},
+		{
+			"pos": 870,
+			"type": "unknown",
+			"value": 230
+		},
+		{
+			"pos": 871,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 872,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 873,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 874,
+			"type": "note",
+			"value": 60
+		},
+		{
+			"pos": 875,
+			"type": "note",
+			"value": 92
+		},
+		{
+			"pos": 876,
+			"type": "note",
+			"value": 107
+		},
+		{
+			"pos": 877,
+			"type": "note",
+			"value": 150
+		},
+		{
+			"pos": 878,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 879,
+			"type": "note",
+			"value": 62
+		},
+		{
+			"pos": 880,
+			"type": "note",
+			"value": 77
+		},
+		{
+			"pos": 881,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 882,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 883,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 884,
+			"type": "note",
+			"value": 60
+		},
+		{
+			"pos": 885,
+			"type": "note",
+			"value": 92
+		},
+		{
+			"pos": 886,
+			"type": "note",
+			"value": 107
+		},
+		{
+			"pos": 887,
+			"type": "note",
+			"value": 150
+		},
+		{
+			"pos": 888,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 889,
+			"type": "note",
+			"value": 62
+		},
+		{
+			"pos": 890,
+			"type": "note",
+			"value": 77
+		},
+		{
+			"pos": 891,
+			"type": "note",
+			"value": 90
+		},
+		{
+			"pos": 892,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 893,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 894,
+			"type": "note",
+			"value": 180
+		},
+		{
+			"pos": 895,
+			"type": "unknown",
+			"value": 250
+		},
+		{
+			"pos": 896,
+			"type": "unknown",
+			"value": 223
+		},
+		{
+			"pos": 897,
+			"type": "note",
+			"value": 152
+		},
+		{
+			"pos": 898,
+			"type": "pan",
+			"value": 150
+		},
+		{
+			"pos": 900,
+			"type": "volume",
+			"value": 60
+		},
+		{
+			"pos": 902,
+			"type": "instrument",
+			"value": 34
+		},
+		{
+			"pos": 904,
+			"type": "unknown",
+			"value": 226
+		},
+		{
+			"pos": 905,
+			"type": "vibrato",
+			"speed": 13,
+			"time": 16,
+			"depth": 196
+		},
+		{
+			"pos": 909,
+			"type": "unknown",
+			"value": 209
+		},
+		{
+			"pos": 910,
+			"type": "pitch",
+			"value": 3
+		},
+		{
+			"pos": 912,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 913,
+			"type": "note",
+			"value": 165
+		},
+		{
+			"pos": 914,
+			"type": "length",
+			"value": 0
+		},
+		{
+			"pos": 916,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 917,
+			"type": "note",
+			"value": 60
+		},
+		{
+			"pos": 918,
+			"type": "note",
+			"value": 75
+		},
+		{
+			"pos": 919,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 920,
+			"type": "volume",
+			"value": 65
+		},
+		{
+			"pos": 922,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 923,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 924,
+			"type": "note",
+			"value": 165
+		},
+		{
+			"pos": 925,
+			"type": "length",
+			"value": 0
+		},
+		{
+			"pos": 927,
+			"type": "note",
+			"note": "D",
+			"value": 30
+		},
+		{
+			"pos": 928,
+			"type": "note",
+			"value": 60
+		},
+		{
+			"pos": 929,
+			"type": "note",
+			"value": 75
+		},
+		{
+			"pos": 930,
+			"type": "note",
+			"value": 105
+		},
+		{
+			"pos": 931,
+			"type": "note",
+			"value": 135
+		},
+		{
+			"pos": 932,
+			"type": "unknown",
+			"value": 216
+		},
+		{
+			"pos": 933,
+			"type": "pan",
+			"value": 128
+		},
+		{
+			"pos": 935,
+			"type": "volume",
+			"value": 250
+		},
+		{
+			"pos": 937,
+			"type": "instrument",
+			"value": 36
+		},
+		{
+			"pos": 939,
+			"type": "pitch",
+			"value": 5
+		},
+		{
+			"pos": 941,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 942,
+			"type": "rest",
+			"value": 199
+		},
+		{
+			"pos": 943,
+			"type": "volume",
+			"value": 170
+		},
+		{
+			"pos": 945,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 946,
+			"type": "rest",
+			"value": 203
+		},
+		{
+			"pos": 947,
+			"type": "note",
+			"value": 144
+		},
+		{
+			"pos": 948,
+			"type": "note",
+			"value": 144
+		},
+		{
+			"pos": 949,
+			"type": "note",
+			"value": 144
+		},
+		{
+			"pos": 950,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 951,
+			"type": "rest",
+			"value": 203
+		},
+		{
+			"pos": 952,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 953,
+			"type": "rest",
+			"value": 199
+		},
+		{
+			"pos": 954,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 955,
+			"type": "rest",
+			"value": 203
+		},
+		{
+			"pos": 956,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 957,
+			"type": "rest",
+			"value": 199
+		},
+		{
+			"pos": 958,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 959,
+			"type": "rest",
+			"value": 203
+		},
+		{
+			"pos": 960,
+			"type": "note",
+			"value": 144
+		},
+		{
+			"pos": 961,
+			"type": "note",
+			"value": 144
+		},
+		{
+			"pos": 962,
+			"type": "note",
+			"value": 144
+		},
+		{
+			"pos": 963,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 964,
+			"type": "rest",
+			"value": 203
+		},
+		{
+			"pos": 965,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 966,
+			"type": "rest",
+			"value": 199
+		},
+		{
+			"pos": 967,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 968,
+			"type": "rest",
+			"value": 203
+		},
+		{
+			"pos": 969,
+			"type": "volume",
+			"value": 220
+		},
+		{
+			"pos": 971,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 972,
+			"type": "rest",
+			"value": 199
+		},
+		{
+			"pos": 973,
+			"type": "volume",
+			"value": 170
+		},
+		{
+			"pos": 975,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 976,
+			"type": "rest",
+			"value": 203
+		},
+		{
+			"pos": 977,
+			"type": "note",
+			"value": 144
+		},
+		{
+			"pos": 978,
+			"type": "note",
+			"value": 144
+		},
+		{
+			"pos": 979,
+			"type": "note",
+			"value": 144
+		},
+		{
+			"pos": 980,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 981,
+			"type": "rest",
+			"value": 203
+		},
+		{
+			"pos": 982,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 983,
+			"type": "rest",
+			"value": 199
+		},
+		{
+			"pos": 984,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 985,
+			"type": "rest",
+			"value": 203
+		},
+		{
+			"pos": 986,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 987,
+			"type": "rest",
+			"value": 199
+		},
+		{
+			"pos": 988,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 989,
+			"type": "rest",
+			"value": 203
+		},
+		{
+			"pos": 990,
+			"type": "note",
+			"value": 144
+		},
+		{
+			"pos": 991,
+			"type": "note",
+			"value": 144
+		},
+		{
+			"pos": 992,
+			"type": "note",
+			"value": 144
+		},
+		{
+			"pos": 993,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 994,
+			"type": "rest",
+			"value": 203
+		},
+		{
+			"pos": 995,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 996,
+			"type": "rest",
+			"value": 199
+		},
+		{
+			"pos": 997,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 998,
+			"type": "rest",
+			"value": 203
+		},
+		{
+			"pos": 999,
+			"type": "volume",
+			"value": 220
+		},
+		{
+			"pos": 1001,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 1002,
+			"type": "rest",
+			"value": 199
+		},
+		{
+			"pos": 1003,
+			"type": "volume",
+			"value": 170
+		},
+		{
+			"pos": 1005,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 1006,
+			"type": "rest",
+			"value": 203
+		},
+		{
+			"pos": 1007,
+			"type": "note",
+			"value": 144
+		},
+		{
+			"pos": 1008,
+			"type": "note",
+			"value": 144
+		},
+		{
+			"pos": 1009,
+			"type": "note",
+			"value": 144
+		},
+		{
+			"pos": 1010,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 1011,
+			"type": "rest",
+			"value": 203
+		},
+		{
+			"pos": 1012,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 1013,
+			"type": "rest",
+			"value": 199
+		},
+		{
+			"pos": 1014,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 1015,
+			"type": "rest",
+			"value": 203
+		},
+		{
+			"pos": 1016,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 1017,
+			"type": "rest",
+			"value": 199
+		},
+		{
+			"pos": 1018,
+			"type": "note",
+			"value": 143
+		},
+		{
+			"pos": 1019,
+			"type": "rest",
+			"value": 203
+		},
+		{
+			"pos": 1020,
+			"type": "note",
+			"value": 144
+		},
+		{
+			"pos": 1021,
+			"type": "note",
+			"value": 144
+		},
+		{
+			"pos": 1022,
+			"type": "note",
+			"value": 144
+		},
+		{
+			"pos": 1023,
+			"type": "note",
+			"value": 143
+		}
+	]
+}

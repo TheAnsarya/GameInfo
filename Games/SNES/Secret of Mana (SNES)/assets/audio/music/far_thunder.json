@@ -1,0 +1,41 @@
+{
+	"name": "Far Thunder",
+	"offset": "0x04fde4",
+	"command_count": 7,
+	"commands": [
+		{
+			"pos": 0,
+			"type": "volume",
+			"value": 8
+		},
+		{
+			"pos": 2,
+			"type": "unknown",
+			"value": 250
+		},
+		{
+			"pos": 3,
+			"type": "unknown",
+			"value": 253
+		},
+		{
+			"pos": 4,
+			"type": "unknown",
+			"value": 250
+		},
+		{
+			"pos": 5,
+			"type": "unknown",
+			"value": 253
+		},
+		{
+			"pos": 6,
+			"type": "rest",
+			"value": 199
+		},
+		{
+			"pos": 7,
+			"type": "end_sequence"
+		}
+	]
+}

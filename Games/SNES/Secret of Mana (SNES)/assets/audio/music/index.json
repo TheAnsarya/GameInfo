@@ -1,0 +1,44 @@
+[
+	{
+		"id": "into_the_thick_of_it",
+		"name": "Into the Thick of It",
+		"offset": "0x04d33d",
+		"command_count": 871
+	},
+	{
+		"id": "flight_into_unknown",
+		"name": "Flight into the Unknown",
+		"offset": "0x050f43",
+		"command_count": 42
+	},
+	{
+		"id": "star_of_darkness",
+		"name": "Star of Darkness",
+		"offset": "0x05963f",
+		"command_count": 903
+	},
+	{
+		"id": "prophecy",
+		"name": "Prophecy",
+		"offset": "0x05fc56",
+		"command_count": 16
+	},
+	{
+		"id": "danger",
+		"name": "Danger",
+		"offset": "0x04f078",
+		"command_count": 735
+	},
+	{
+		"id": "far_thunder",
+		"name": "Far Thunder",
+		"offset": "0x04fde4",
+		"command_count": 7
+	},
+	{
+		"id": "wind_never_ceases",
+		"name": "The Wind Never Ceases",
+		"offset": "0x0506b8",
+		"command_count": 829
+	}
+]
