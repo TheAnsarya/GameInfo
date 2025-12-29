@@ -208,10 +208,101 @@ public class DQ3rEditorServiceTests {
 	}
 
 	[Fact]
+	public void DQ3rStructures_ClassJson_HasCorrectRecordSize() {
+		// Assert - recordSize must match Tables.Classes.EntrySize (16 bytes)
+		Assert.Contains("\"recordSize\": 16", DQ3rStructures.ClassJson);
+	}
+
+	[Fact]
 	public void DQ3rStructures_MonsterAiJson_ContainsRequiredFields() {
 		// Assert
 		Assert.Contains("ai_type", DQ3rStructures.MonsterAiJson);
 		Assert.Contains("action_1", DQ3rStructures.MonsterAiJson);
 		Assert.Contains("flee_rate", DQ3rStructures.MonsterAiJson);
+	}
+
+	[Fact]
+	public void DQ3rStructures_MonsterJson_HasCorrectRecordSize() {
+		// Assert - recordSize must match Tables.Monsters.EntrySize (32 bytes)
+		Assert.Contains("\"recordSize\": 32", DQ3rStructures.MonsterJson);
+	}
+
+	[Fact]
+	public void DQ3rStructures_ItemJson_HasCorrectRecordSize() {
+		// Assert - recordSize must match Tables.Items.EntrySize (16 bytes)
+		Assert.Contains("\"recordSize\": 16", DQ3rStructures.ItemJson);
+	}
+
+	[Fact]
+	public void DQ3rStructures_SpellJson_HasCorrectRecordSize() {
+		// Assert - recordSize must match Tables.Spells.EntrySize (12 bytes)
+		Assert.Contains("\"recordSize\": 12", DQ3rStructures.SpellJson);
+	}
+
+	[Fact]
+	public void DQ3rStructures_WeaponJson_HasCorrectRecordSize() {
+		// Assert - recordSize must match Tables.Weapons.EntrySize (16 bytes)
+		Assert.Contains("\"recordSize\": 16", DQ3rStructures.WeaponJson);
+	}
+
+	[Fact]
+	public void DQ3rStructures_ArmorJson_HasCorrectRecordSize() {
+		// Assert - recordSize must match Tables.Armor.EntrySize (16 bytes)
+		Assert.Contains("\"recordSize\": 16", DQ3rStructures.ArmorJson);
+	}
+
+	[Fact]
+	public void DQ3rStructures_MonsterAiJson_HasCorrectRecordSize() {
+		// Assert - recordSize must match Tables.MonsterAi.EntrySize (32 bytes)
+		Assert.Contains("\"recordSize\": 32", DQ3rStructures.MonsterAiJson);
+	}
+
+	[Fact]
+	public void Tables_AllDataBanksWithinRomBounds() {
+		// Arrange - DQ3r ROM is 6MB (0x600000)
+		const int romSize = 0x600000;
+
+		// Assert - All data tables should fit within ROM
+		Assert.True(DQ3rEditorService.Tables.Items.FileOffset < romSize);
+		Assert.True(DQ3rEditorService.Tables.Weapons.FileOffset < romSize);
+		Assert.True(DQ3rEditorService.Tables.Armor.FileOffset < romSize);
+		Assert.True(DQ3rEditorService.Tables.Monsters.FileOffset < romSize);
+		Assert.True(DQ3rEditorService.Tables.MonsterAi.FileOffset < romSize);
+		Assert.True(DQ3rEditorService.Tables.Spells.FileOffset < romSize);
+		Assert.True(DQ3rEditorService.Tables.Classes.FileOffset < romSize);
+		Assert.True(DQ3rEditorService.Tables.ExpTable.FileOffset < romSize);
+	}
+
+	[Fact]
+	public void Tables_AllDataTablesHavePositiveTotalSize() {
+		// Assert - All data tables should have valid total sizes
+		Assert.True(DQ3rEditorService.Tables.Items.TotalSize > 0);
+		Assert.True(DQ3rEditorService.Tables.Weapons.TotalSize > 0);
+		Assert.True(DQ3rEditorService.Tables.Armor.TotalSize > 0);
+		Assert.True(DQ3rEditorService.Tables.Monsters.TotalSize > 0);
+		Assert.True(DQ3rEditorService.Tables.MonsterAi.TotalSize > 0);
+		Assert.True(DQ3rEditorService.Tables.Spells.TotalSize > 0);
+		Assert.True(DQ3rEditorService.Tables.Classes.TotalSize > 0);
+		Assert.True(DQ3rEditorService.Tables.ExpTable.TotalSize > 0);
+	}
+
+	[Theory]
+	[InlineData(0x510000, 384, 32)] // Monsters
+	[InlineData(0x513000, 256, 32)] // Monster AI
+	[InlineData(0x500000, 512, 16)] // Items
+	[InlineData(0x502000, 128, 16)] // Weapons
+	[InlineData(0x504000, 128, 16)] // Armor
+	[InlineData(0x520000, 341, 12)] // Spells
+	[InlineData(0x521000, 128, 16)] // Classes
+	[InlineData(0x522000, 99, 4)]   // EXP Table
+	public void TableLocation_CanBeCreatedWithKnownValues(int offset, int count, int entrySize) {
+		// Arrange & Act
+		var location = new TableLocation(offset, count, entrySize, "Test");
+
+		// Assert
+		Assert.Equal(offset, location.FileOffset);
+		Assert.Equal(count, location.Count);
+		Assert.Equal(entrySize, location.EntrySize);
+		Assert.Equal(count * entrySize, location.TotalSize);
 	}
 }
