@@ -1,0 +1,16 @@
+{
+  "title": "Secret of MANA",
+  "rom_makeup": "0x21",
+  "rom_type": "0x02",
+  "rom_size_code": 11,
+  "rom_size_kb": 2048,
+  "sram_size_code": 3,
+  "sram_size_kb": 8,
+  "checksum": "0x51fc",
+  "checksum_complement": "0xae03",
+  "checksum_valid": true,
+  "reset_vector": "$8004",
+  "nmi_vector": "$0100",
+  "irq_vector": "$0104",
+  "mapping": "HiROM"
+}

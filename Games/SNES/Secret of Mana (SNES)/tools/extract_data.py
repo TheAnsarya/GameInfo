@@ -1,0 +1,220 @@
+#!/usr/bin/env python3
+"""
+Secret of Mana Data Extractor
+Extracts game data from Secret of Mana (SNES) ROM.
+
+Usage:
+    python extract_data.py <rom_path> [--output <dir>]
+"""
+
+import argparse
+import json
+import struct
+from pathlib import Path
+from typing import Any
+
+# ROM constants
+ROM_SIZE = 0x200000  # 2 MB
+EXPECTED_SHA256 = "4c15013131351e694e05f22e38bb1b3e4031dedac77ec75abecebe8520d82d5f"
+
+# Data addresses (file offsets)
+# Note: Enemy stats offset from Data Crystal may be incorrect or use different format
+# 0x101dfa is documented but actual structure unclear
+# 0x1142a3 appears to contain HP/EXP/Gold data with 16-byte entries
+ENEMY_STATS_OFFSET = 0x101dfa  # Data Crystal documented offset
+ENEMY_STATS_ALT_OFFSET = 0x1142a3  # Alternative location found via pattern search
+ENEMY_COUNT = 83
+ENEMY_ENTRY_SIZE = 16  # May be 16, 24, or 32 bytes
+
+CHARACTER_STATS_OFFSET = 0x104213
+CHARACTER_LEVEL_ENTRY_SIZE = 40
+MAX_LEVEL = 99
+
+EXIT_DATA_OFFSET = 0x083000
+EXIT_ENTRY_SIZE = 4
+
+ITEM_PRICES_OFFSET = 0x18fb9c
+ITEM_COUNT = 96
+
+
+def read_word(data: bytes, offset: int) -> int:
+    """Read 16-bit little-endian word."""
+    return struct.unpack_from("<H", data, offset)[0]
+
+
+def read_byte(data: bytes, offset: int) -> int:
+    """Read single byte."""
+    return data[offset]
+
+
+def extract_enemy(data: bytes, index: int) -> dict[str, Any]:
+    """Extract enemy data at given index."""
+    offset = ENEMY_STATS_OFFSET + (index * ENEMY_ENTRY_SIZE)
+    
+    return {
+        "id": index,
+        "hp": read_word(data, offset),
+        "mp": read_word(data, offset + 2),
+        "experience": read_word(data, offset + 4),
+        "gold": read_word(data, offset + 6),
+        "level": read_byte(data, offset + 8),
+        "weapon_power": read_byte(data, offset + 9),
+        "defense": read_byte(data, offset + 10),
+        "evade": read_byte(data, offset + 11),
+        "magic_defense": read_byte(data, offset + 12),
+        "weakness_flags": read_byte(data, offset + 13),
+        "raw_bytes": data[offset:offset + ENEMY_ENTRY_SIZE].hex()
+    }
+
+
+def extract_all_enemies(data: bytes) -> list[dict[str, Any]]:
+    """Extract all enemy data."""
+    enemies = []
+    for i in range(ENEMY_COUNT):
+        enemies.append(extract_enemy(data, i))
+    return enemies
+
+
+def extract_exit(data: bytes, index: int) -> dict[str, Any]:
+    """Extract exit data at given index."""
+    offset = EXIT_DATA_OFFSET + (index * EXIT_ENTRY_SIZE)
+    
+    return {
+        "id": index,
+        "destination_map": read_byte(data, offset),
+        "destination_x": read_byte(data, offset + 1),
+        "destination_y": read_byte(data, offset + 2),
+        "flags": read_byte(data, offset + 3)
+    }
+
+
+def extract_exits(data: bytes, count: int = 256) -> list[dict[str, Any]]:
+    """Extract exit data."""
+    exits = []
+    for i in range(count):
+        exit_data = extract_exit(data, i)
+        # Stop if we hit empty entries
+        if exit_data["destination_map"] == 0 and exit_data["flags"] == 0:
+            # Check if next few are also empty
+            if all(extract_exit(data, i + j)["destination_map"] == 0 
+                   for j in range(1, min(5, count - i))):
+                break
+        exits.append(exit_data)
+    return exits
+
+
+def file_offset_to_snes(offset: int) -> str:
+    """Convert file offset to SNES HiROM address string."""
+    bank = 0xc0 + (offset >> 16)
+    addr = offset & 0xffff
+    return f"${bank:02x}:{addr:04x}"
+
+
+def analyze_rom_header(data: bytes) -> dict[str, Any]:
+    """Analyze SNES ROM header."""
+    # HiROM header is at $ffc0
+    header_offset = 0x00ffc0
+    
+    # Read header fields
+    title = data[header_offset:header_offset + 21].decode('ascii', errors='replace').strip()
+    rom_makeup = data[header_offset + 0x15]
+    rom_type = data[header_offset + 0x16]
+    rom_size = data[header_offset + 0x17]
+    sram_size = data[header_offset + 0x18]
+    
+    checksum_complement = read_word(data, header_offset + 0x1c)
+    checksum = read_word(data, header_offset + 0x1e)
+    
+    # Interrupt vectors
+    reset_vector = read_word(data, 0x00fffc)
+    nmi_vector = read_word(data, 0x00ffea)
+    irq_vector = read_word(data, 0x00ffee)
+    
+    return {
+        "title": title,
+        "rom_makeup": f"0x{rom_makeup:02x}",
+        "rom_type": f"0x{rom_type:02x}",
+        "rom_size_code": rom_size,
+        "rom_size_kb": (1 << rom_size),
+        "sram_size_code": sram_size,
+        "sram_size_kb": (1 << sram_size) if sram_size > 0 else 0,
+        "checksum": f"0x{checksum:04x}",
+        "checksum_complement": f"0x{checksum_complement:04x}",
+        "checksum_valid": (checksum ^ checksum_complement) == 0xffff,
+        "reset_vector": f"${reset_vector:04x}",
+        "nmi_vector": f"${nmi_vector:04x}",
+        "irq_vector": f"${irq_vector:04x}",
+        "mapping": "HiROM" if (rom_makeup & 0x01) else "LoROM"
+    }
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Extract data from Secret of Mana ROM")
+    parser.add_argument("rom_path", help="Path to ROM file")
+    parser.add_argument("--output", "-o", default=".", help="Output directory")
+    parser.add_argument("--enemies", action="store_true", help="Extract enemy data")
+    parser.add_argument("--exits", action="store_true", help="Extract exit data")
+    parser.add_argument("--header", action="store_true", help="Analyze ROM header")
+    parser.add_argument("--all", action="store_true", help="Extract all data")
+    args = parser.parse_args()
+    
+    # Default to all if nothing specified
+    if not any([args.enemies, args.exits, args.header, args.all]):
+        args.all = True
+    
+    # Read ROM
+    rom_path = Path(args.rom_path)
+    if not rom_path.exists():
+        print(f"Error: ROM file not found: {rom_path}")
+        return 1
+    
+    with open(rom_path, "rb") as f:
+        data = f.read()
+    
+    if len(data) != ROM_SIZE:
+        print(f"Warning: ROM size is {len(data)} bytes, expected {ROM_SIZE}")
+    
+    # Create output directory
+    output_dir = Path(args.output)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Extract data
+    if args.header or args.all:
+        print("Analyzing ROM header...")
+        header_info = analyze_rom_header(data)
+        
+        with open(output_dir / "rom_header.json", "w") as f:
+            json.dump(header_info, f, indent=2)
+        
+        print(f"  Title: {header_info['title']}")
+        print(f"  Mapping: {header_info['mapping']}")
+        print(f"  ROM Size: {header_info['rom_size_kb']} KB")
+        print(f"  SRAM Size: {header_info['sram_size_kb']} KB")
+        print(f"  Checksum: {header_info['checksum']} (valid: {header_info['checksum_valid']})")
+        print(f"  Reset Vector: {header_info['reset_vector']}")
+    
+    if args.enemies or args.all:
+        print(f"Extracting {ENEMY_COUNT} enemies...")
+        enemies = extract_all_enemies(data)
+        
+        with open(output_dir / "enemies.json", "w") as f:
+            json.dump(enemies, f, indent=2)
+        
+        print(f"  Saved to enemies.json")
+        print(f"  First enemy (Rabite): HP={enemies[0]['hp']}, Level={enemies[0]['level']}")
+    
+    if args.exits or args.all:
+        print("Extracting exit data...")
+        exits = extract_exits(data)
+        
+        with open(output_dir / "exits.json", "w") as f:
+            json.dump(exits, f, indent=2)
+        
+        print(f"  Saved {len(exits)} exits to exits.json")
+    
+    print("\nExtraction complete!")
+    return 0
+
+
+if __name__ == "__main__":
+    exit(main())
