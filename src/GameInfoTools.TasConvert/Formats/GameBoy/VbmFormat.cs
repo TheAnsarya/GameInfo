@@ -55,10 +55,12 @@ public class VbmFormat : TasFormatBase {
 		var frames = await ReadFramesAsync(stream, header, cancellationToken);
 
 		// Read savestate if present
+		// Note: In VBM, savestate is BEFORE controller data when present
 		byte[]? savestateData = null;
-		if (header.SavestateOffset > 0 && stream.Length > header.SavestateOffset) {
+		if (header.SavestateOffset > 0 && header.SavestateOffset < header.ControllerDataOffset) {
+			var savestateSize = (int)(header.ControllerDataOffset - header.SavestateOffset);
 			stream.Position = header.SavestateOffset;
-			savestateData = new byte[header.ControllerDataOffset - header.SavestateOffset];
+			savestateData = new byte[savestateSize];
 			await stream.ReadExactlyAsync(savestateData, cancellationToken);
 		}
 

@@ -38,5 +38,6 @@
 		<ProjectReference Include="..\GameInfoTools.Data\GameInfoTools.Data.csproj" />
 		<ProjectReference Include="..\GameInfoTools.Disassembly\GameInfoTools.Disassembly.csproj" />
 		<ProjectReference Include="..\GameInfoTools.Wiki\GameInfoTools.Wiki.csproj" />
+		<ProjectReference Include="..\GameInfoTools.TasConvert\GameInfoTools.TasConvert.csproj" />
 	</ItemGroup>
 </Project>

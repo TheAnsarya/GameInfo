@@ -51,6 +51,7 @@ public partial class MainWindowViewModel : ViewModelBase {
 		new ToolCategory("📐", "Memory Layout", "memory"),
 		new ToolCategory("🎨", "Palette Editor", "palette"),
 		new ToolCategory("💽", "Save Editor", "saves"),
+		new ToolCategory("🎮", "TAS Converter", "tas"),
 	];
 
 	public MainWindowViewModel() {
@@ -81,6 +82,7 @@ public partial class MainWindowViewModel : ViewModelBase {
 			"memory" => new MemoryLayoutViewModel(_loadedRom),
 			"palette" => new PaletteEditorViewModel(_loadedRom),
 			"saves" => new SaveEditorViewModel(),
+			"tas" => new TasConverterViewModel(),
 			_ => new WelcomeViewModel()
 		};
 	}
@@ -205,6 +207,9 @@ public partial class MainWindowViewModel : ViewModelBase {
 
 	[RelayCommand]
 	private void ShowSaveEditor() => SelectedCategory = ToolCategories[18];
+
+	[RelayCommand]
+	private void ShowTasConverter() => SelectedCategory = ToolCategories[19];
 
 	[RelayCommand]
 	private void ShowAbout() {
