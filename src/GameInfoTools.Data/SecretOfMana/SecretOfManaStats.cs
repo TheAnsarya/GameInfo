@@ -70,22 +70,47 @@ public enum Elements : byte {
 
 /// <summary>
 /// Enemy data structure from ROM.
+/// 29-byte format with HP as single byte at offset 0.
 /// </summary>
 public class SecretOfManaEnemy {
 	public int Id { get; set; }
 	public string Name { get; set; } = "";
-	public ushort Hp { get; set; }
-	public ushort Mp { get; set; }
-	public ushort Experience { get; set; }
-	public ushort Gold { get; set; }
-	public byte Level { get; set; }
-	public byte WeaponPower { get; set; }
-	public byte Defense { get; set; }
-	public byte Evade { get; set; }
-	public byte MagicDefense { get; set; }
-	public Elements Weakness { get; set; }
-	public byte DropItemId { get; set; }
-	public byte DropChance { get; set; }
+	
+	/// <summary>
+	/// Enemy HP (byte value 0-255).
+	/// </summary>
+	public byte Hp { get; set; }
+	
+	/// <summary>
+	/// Unknown byte at offset 1 (often duplicates HP).
+	/// </summary>
+	public byte Unknown1 { get; set; }
+	
+	/// <summary>
+	/// Combat attribute bytes 8-9.
+	/// </summary>
+	public byte Attribute8 { get; set; }
+	public byte Attribute9 { get; set; }
+	
+	/// <summary>
+	/// Attack modifier at offset 10.
+	/// </summary>
+	public byte AttackMod { get; set; }
+	
+	/// <summary>
+	/// Defense modifier at offset 11.
+	/// </summary>
+	public byte DefenseMod { get; set; }
+	
+	/// <summary>
+	/// Raw experience value from bytes 20-21.
+	/// </summary>
+	public ushort ExpRaw { get; set; }
+	
+	/// <summary>
+	/// Raw bytes for further analysis.
+	/// </summary>
+	public byte[] RawData { get; set; } = [];
 
 	/// <summary>
 	/// Parse enemy from ROM bytes.
@@ -95,19 +120,18 @@ public class SecretOfManaEnemy {
 			throw new ArgumentException("Insufficient data for enemy");
 		}
 
+		var rawData = data[..SecretOfManaData.EnemyStatsEntrySize].ToArray();
+		
 		return new SecretOfManaEnemy {
 			Id = id,
-			Hp = SecretOfManaAddresses.ReadWord(data, 0),
-			Mp = SecretOfManaAddresses.ReadWord(data, 2),
-			Experience = SecretOfManaAddresses.ReadWord(data, 4),
-			Gold = SecretOfManaAddresses.ReadWord(data, 6),
-			Level = data[8],
-			WeaponPower = data[9],
-			Defense = data[10],
-			Evade = data[11],
-			MagicDefense = data[12],
-			Weakness = (Elements)data[13],
-			// Additional fields would be parsed here
+			Hp = data[0],
+			Unknown1 = data[1],
+			Attribute8 = data[8],
+			Attribute9 = data[9],
+			AttackMod = data[10],
+			DefenseMod = data[11],
+			ExpRaw = SecretOfManaAddresses.ReadWord(data, 20),
+			RawData = rawData
 		};
 	}
 
@@ -116,16 +140,16 @@ public class SecretOfManaEnemy {
 	/// </summary>
 	public byte[] ToBytes() {
 		var bytes = new byte[SecretOfManaData.EnemyStatsEntrySize];
-		SecretOfManaAddresses.WriteWord(bytes, 0, Hp);
-		SecretOfManaAddresses.WriteWord(bytes, 2, Mp);
-		SecretOfManaAddresses.WriteWord(bytes, 4, Experience);
-		SecretOfManaAddresses.WriteWord(bytes, 6, Gold);
-		bytes[8] = Level;
-		bytes[9] = WeaponPower;
-		bytes[10] = Defense;
-		bytes[11] = Evade;
-		bytes[12] = MagicDefense;
-		bytes[13] = (byte)Weakness;
+		if (RawData.Length >= SecretOfManaData.EnemyStatsEntrySize) {
+			Array.Copy(RawData, bytes, SecretOfManaData.EnemyStatsEntrySize);
+		}
+		bytes[0] = Hp;
+		bytes[1] = Unknown1;
+		bytes[8] = Attribute8;
+		bytes[9] = Attribute9;
+		bytes[10] = AttackMod;
+		bytes[11] = DefenseMod;
+		SecretOfManaAddresses.WriteWord(bytes, 20, ExpRaw);
 		return bytes;
 	}
 }

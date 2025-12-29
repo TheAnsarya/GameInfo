@@ -31,8 +31,9 @@ public static class SecretOfManaData {
 
 	/// <summary>
 	/// Enemy stats table (file offset). Rabite is first entry.
+	/// Confirmed via pattern analysis - HP values match expected game data.
 	/// </summary>
-	public const int EnemyStatsOffset = 0x101dfa;
+	public const int EnemyStatsOffset = 0x102655;
 
 	/// <summary>
 	/// Enemy movement and AI data (file offset).
@@ -46,8 +47,9 @@ public static class SecretOfManaData {
 
 	/// <summary>
 	/// Size of each enemy stats entry in bytes.
+	/// 29-byte structure with HP at byte 0.
 	/// </summary>
-	public const int EnemyStatsEntrySize = 32;
+	public const int EnemyStatsEntrySize = 29;
 
 	/// <summary>
 	/// Number of enemy types.

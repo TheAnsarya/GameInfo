@@ -410,6 +410,9 @@ Make comprehensive plans and github issues/subissues and todo-lists for this wor
 
 continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
 
+continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
+
+
 
 
 

@@ -186,7 +186,7 @@ public class SecretOfManaDataTests {
 	[Fact]
 	public void EnemyConstants_AreValid() {
 		Assert.Equal(83, SecretOfManaData.EnemyCount);
-		Assert.Equal(32, SecretOfManaData.EnemyStatsEntrySize);
+		Assert.Equal(29, SecretOfManaData.EnemyStatsEntrySize);
 		Assert.True(SecretOfManaData.EnemyStatsOffset > 0);
 	}
 
@@ -229,74 +229,76 @@ public class SecretOfManaStatsTests {
 
 	[Fact]
 	public void SecretOfManaEnemy_FromBytes_ParsesCorrectly() {
-		// Arrange - create mock enemy data
-		var data = new byte[32];
-		data[0] = 0x64; data[1] = 0x00; // HP = 100
-		data[2] = 0x0a; data[3] = 0x00; // MP = 10
-		data[4] = 0x14; data[5] = 0x00; // EXP = 20
-		data[6] = 0x05; data[7] = 0x00; // Gold = 5
-		data[8] = 0x01; // Level = 1
-		data[9] = 0x05; // Weapon Power = 5
-		data[10] = 0x02; // Defense = 2
-		data[11] = 0x01; // Evade = 1
-		data[12] = 0x00; // Magic Defense = 0
-		data[13] = 0x00; // No weakness
+		// Arrange - create mock enemy data (29-byte format)
+		// HP is byte at offset 0, not a word
+		var data = new byte[29];
+		data[0] = 20; // HP = 20 (Rabite)
+		data[1] = 20; // Unknown1 (often duplicates HP)
+		data[8] = 0x08; // Attribute8
+		data[9] = 0x08; // Attribute9
+		data[10] = 210; // AttackMod
+		data[11] = 0; // DefenseMod
+		data[20] = 0x02; data[21] = 0x20; // ExpRaw = 0x2002
 
 		// Act
 		var enemy = SecretOfManaEnemy.FromBytes(0, data);
 
 		// Assert
-		Assert.Equal(100, enemy.Hp);
-		Assert.Equal(10, enemy.Mp);
-		Assert.Equal(20, enemy.Experience);
-		Assert.Equal(5, enemy.Gold);
-		Assert.Equal(1, enemy.Level);
-		Assert.Equal(5, enemy.WeaponPower);
-		Assert.Equal(2, enemy.Defense);
+		Assert.Equal(20, enemy.Hp);
+		Assert.Equal(20, enemy.Unknown1);
+		Assert.Equal(0x08, enemy.Attribute8);
+		Assert.Equal(210, enemy.AttackMod);
+		Assert.Equal(0x2002, enemy.ExpRaw);
 	}
 
 	[Fact]
 	public void SecretOfManaEnemy_ToBytes_SerializesCorrectly() {
-		// Arrange
+		// Arrange - 29-byte format
+		var rawData = new byte[29];
+		rawData[0] = 55;  // HP
+		rawData[1] = 55;  // Unknown1
+		
 		var enemy = new SecretOfManaEnemy {
-			Id = 0,
-			Hp = 200,
-			Mp = 50,
-			Experience = 100,
-			Gold = 30,
-			Level = 5,
-			WeaponPower = 10,
-			Defense = 8,
-			Evade = 5,
-			MagicDefense = 3,
-			Weakness = Elements.Salamando
+			Id = 15,
+			Hp = 55,
+			Unknown1 = 55,
+			Attribute8 = 0x10,
+			Attribute9 = 0x04,
+			AttackMod = 64,
+			DefenseMod = 31,
+			ExpRaw = 0x0b25,
+			RawData = rawData
 		};
 
 		// Act
 		var bytes = enemy.ToBytes();
 
 		// Assert
-		Assert.Equal(200, bytes[0] | (bytes[1] << 8)); // HP
-		Assert.Equal(50, bytes[2] | (bytes[3] << 8)); // MP
-		Assert.Equal(5, bytes[8]); // Level
-		Assert.Equal((byte)Elements.Salamando, bytes[13]); // Weakness
+		Assert.Equal(55, bytes[0]); // HP
+		Assert.Equal(55, bytes[1]); // Unknown1
+		Assert.Equal(64, bytes[10]); // AttackMod
+		Assert.Equal(0x25, bytes[20]); // ExpRaw low byte
+		Assert.Equal(0x0b, bytes[21]); // ExpRaw high byte
 	}
 
 	[Fact]
 	public void SecretOfManaEnemy_RoundTrip_PreservesData() {
-		// Arrange
+		// Arrange - 29-byte format
+		var rawData = new byte[29];
+		for (int i = 0; i < 29; i++) rawData[i] = (byte)i;
+		rawData[0] = 128; // HP
+		rawData[1] = 128; // Unknown1
+		
 		var original = new SecretOfManaEnemy {
 			Id = 0,
-			Hp = 500,
-			Mp = 100,
-			Experience = 250,
-			Gold = 75,
-			Level = 10,
-			WeaponPower = 15,
-			Defense = 12,
-			Evade = 8,
-			MagicDefense = 10,
-			Weakness = Elements.Undine | Elements.Lumina
+			Hp = 128,
+			Unknown1 = 128,
+			Attribute8 = 8,
+			Attribute9 = 9,
+			AttackMod = 50,
+			DefenseMod = 25,
+			ExpRaw = 1000,
+			RawData = rawData
 		};
 
 		// Act
@@ -305,15 +307,12 @@ public class SecretOfManaStatsTests {
 
 		// Assert
 		Assert.Equal(original.Hp, restored.Hp);
-		Assert.Equal(original.Mp, restored.Mp);
-		Assert.Equal(original.Experience, restored.Experience);
-		Assert.Equal(original.Gold, restored.Gold);
-		Assert.Equal(original.Level, restored.Level);
-		Assert.Equal(original.WeaponPower, restored.WeaponPower);
-		Assert.Equal(original.Defense, restored.Defense);
-		Assert.Equal(original.Evade, restored.Evade);
-		Assert.Equal(original.MagicDefense, restored.MagicDefense);
-		Assert.Equal(original.Weakness, restored.Weakness);
+		Assert.Equal(original.Unknown1, restored.Unknown1);
+		Assert.Equal(original.Attribute8, restored.Attribute8);
+		Assert.Equal(original.Attribute9, restored.Attribute9);
+		Assert.Equal(original.AttackMod, restored.AttackMod);
+		Assert.Equal(original.DefenseMod, restored.DefenseMod);
+		Assert.Equal(original.ExpRaw, restored.ExpRaw);
 	}
 
 	[Fact]

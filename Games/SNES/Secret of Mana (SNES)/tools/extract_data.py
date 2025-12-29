@@ -18,13 +18,11 @@ ROM_SIZE = 0x200000  # 2 MB
 EXPECTED_SHA256 = "4c15013131351e694e05f22e38bb1b3e4031dedac77ec75abecebe8520d82d5f"
 
 # Data addresses (file offsets)
-# Note: Enemy stats offset from Data Crystal may be incorrect or use different format
-# 0x101dfa is documented but actual structure unclear
-# 0x1142a3 appears to contain HP/EXP/Gold data with 16-byte entries
-ENEMY_STATS_OFFSET = 0x101dfa  # Data Crystal documented offset
-ENEMY_STATS_ALT_OFFSET = 0x1142a3  # Alternative location found via pattern search
+# Enemy stats: 29 bytes per enemy at 0x102655
+# Structure: HP (byte), MP (byte), various attributes, EXP/Gold in later bytes
+ENEMY_STATS_OFFSET = 0x102655  # Confirmed via pattern analysis
 ENEMY_COUNT = 83
-ENEMY_ENTRY_SIZE = 16  # May be 16, 24, or 32 bytes
+ENEMY_ENTRY_SIZE = 29  # 29 bytes per enemy
 
 CHARACTER_STATS_OFFSET = 0x104213
 CHARACTER_LEVEL_ENTRY_SIZE = 40
@@ -48,22 +46,47 @@ def read_byte(data: bytes, offset: int) -> int:
 
 
 def extract_enemy(data: bytes, index: int) -> dict[str, Any]:
-    """Extract enemy data at given index."""
+    """Extract enemy data at given index.
+    
+    Enemy data structure (29 bytes):
+    - Byte 0-1: HP (byte repeated)
+    - Bytes 2-7: Unknown (flags, type data)
+    - Bytes 8-9: Combat attributes
+    - Bytes 10-11: Attack/Defense modifiers
+    - Bytes 12-13: Additional combat values
+    - Bytes 14-17: Reserved (0xfc 0x7f 0x00 0x00)
+    - Bytes 18-19: Unknown
+    - Bytes 20-21: Experience (little-endian, needs decoding)
+    - Bytes 22-28: Gold and other values
+    """
     offset = ENEMY_STATS_OFFSET + (index * ENEMY_ENTRY_SIZE)
+    entry = data[offset:offset + ENEMY_ENTRY_SIZE]
+    
+    hp = entry[0]
+    # MP is in various structures - entry[1] is duplicate HP
+    
+    # Experience appears to be encoded differently
+    # Looking at byte 20-21 as potential EXP values
+    exp_raw = read_word(data, offset + 20)
     
     return {
         "id": index,
-        "hp": read_word(data, offset),
-        "mp": read_word(data, offset + 2),
-        "experience": read_word(data, offset + 4),
-        "gold": read_word(data, offset + 6),
-        "level": read_byte(data, offset + 8),
-        "weapon_power": read_byte(data, offset + 9),
-        "defense": read_byte(data, offset + 10),
-        "evade": read_byte(data, offset + 11),
-        "magic_defense": read_byte(data, offset + 12),
-        "weakness_flags": read_byte(data, offset + 13),
-        "raw_bytes": data[offset:offset + ENEMY_ENTRY_SIZE].hex()
+        "hp": hp,
+        "hp_byte1": entry[1],
+        "unknown_2": entry[2],
+        "unknown_3": entry[3],
+        "unknown_4": entry[4],
+        "unknown_5": entry[5],
+        "unknown_6": entry[6],
+        "unknown_7": entry[7],
+        "attribute_8": entry[8],
+        "attribute_9": entry[9],
+        "attack_mod": entry[10],
+        "defense_mod": entry[11],
+        "combat_val_12": entry[12],
+        "combat_val_13": entry[13],
+        "exp_raw": exp_raw,
+        "raw_bytes": entry.hex()
     }
 
 
@@ -201,7 +224,9 @@ def main():
             json.dump(enemies, f, indent=2)
         
         print(f"  Saved to enemies.json")
-        print(f"  First enemy (Rabite): HP={enemies[0]['hp']}, Level={enemies[0]['level']}")
+        print(f"  First enemy (Rabite): HP={enemies[0]['hp']}")
+        print(f"  Enemy 1 (Buzz Bee): HP={enemies[1]['hp']}")
+        print(f"  Enemy 15 (Lullabud): HP={enemies[15]['hp']}")
     
     if args.exits or args.all:
         print("Extracting exit data...")
