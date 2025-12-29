@@ -209,3 +209,75 @@ public class SecretOfManaExit {
 		return [DestinationMap, DestinationX, DestinationY, Flags];
 	}
 }
+
+/// <summary>
+/// Magic spell data structure.
+/// </summary>
+public class SecretOfManaMagic {
+	public int Id { get; set; }
+	public string Name { get; set; } = "";
+	public ManaSpirit Spirit { get; set; }
+	public bool IsGirlSpell { get; set; }
+	public byte MpCost { get; set; }
+	public byte BasePower { get; set; }
+	public Elements Element { get; set; }
+
+	/// <summary>
+	/// Character that can use this spell.
+	/// </summary>
+	public string CasterName => IsGirlSpell ? "Girl" : "Sprite";
+}
+
+/// <summary>
+/// Weapon data structure.
+/// </summary>
+public class SecretOfManaWeapon {
+	public int Id { get; set; }
+	public string Name { get; set; } = "";
+	public WeaponType Type { get; set; }
+	public byte Level { get; set; }
+	public byte Attack { get; set; }
+	public byte HitRate { get; set; }
+	public byte CriticalRate { get; set; }
+	public byte ChargeSpeed { get; set; }
+	public byte OrbsRequired { get; set; }
+
+	/// <summary>
+	/// Weapon type name.
+	/// </summary>
+	public string TypeName => Type switch {
+		WeaponType.Sword => "Sword",
+		WeaponType.Spear => "Spear",
+		WeaponType.Bow => "Bow",
+		WeaponType.Axe => "Axe",
+		WeaponType.Boomerang => "Boomerang",
+		WeaponType.Glove => "Glove",
+		WeaponType.Whip => "Whip",
+		WeaponType.Javelin => "Javelin",
+		_ => "Unknown"
+	};
+}
+
+/// <summary>
+/// Armor data structure.
+/// </summary>
+public class SecretOfManaArmor {
+	public int Id { get; set; }
+	public string Name { get; set; } = "";
+	public byte ArmorType { get; set; }  // 0=Head, 1=Body, 2=Accessory
+	public ushort Price { get; set; }
+	public byte Defense { get; set; }
+	public byte MagicDefense { get; set; }
+	public byte Evade { get; set; }
+	public Elements Resistance { get; set; }
+
+	/// <summary>
+	/// Armor type name.
+	/// </summary>
+	public string ArmorTypeName => ArmorType switch {
+		0 => "Helmet",
+		1 => "Armor",
+		2 => "Accessory",
+		_ => "Unknown"
+	};
+}

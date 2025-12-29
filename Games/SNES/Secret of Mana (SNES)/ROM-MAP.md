@@ -6,10 +6,14 @@ This document contains a comprehensive map of the Secret of Mana ROM, documentin
 
 | Property | Value |
 |----------|-------|
-| **ROM Type** | HiROM |
+| **Title** | Secret of MANA |
+| **ROM Type** | HiROM, SlowROM (200ns) |
 | **ROM Size** | 2 MB (0x200000 bytes) |
 | **Bank Count** | 64 banks (32 KB each) |
 | **Header** | None (headerless ROM) |
+| **Checksum** | 0x51fc |
+| **SHA256** | 4c15013131351e694e05f22e38bb1b3e4031dedac77ec75abecebe8520d82d5f |
+| **SRAM** | 8 KB (battery-backed) |
 
 ## Address Conversion
 

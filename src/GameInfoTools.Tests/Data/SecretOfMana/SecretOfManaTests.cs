@@ -613,3 +613,83 @@ public class SecretOfManaEditorTests {
 		Assert.Equal(0x02, data[offset + 3]);
 	}
 }
+
+public class SecretOfManaMagicTests {
+	[Fact]
+	public void Magic_CasterName_ReturnsCorrectName() {
+		// Arrange
+		var girlSpell = new SecretOfManaMagic { IsGirlSpell = true };
+		var spriteSpell = new SecretOfManaMagic { IsGirlSpell = false };
+
+		// Assert
+		Assert.Equal("Girl", girlSpell.CasterName);
+		Assert.Equal("Sprite", spriteSpell.CasterName);
+	}
+
+	[Theory]
+	[InlineData(ManaSpirit.Undine, "Undine")]
+	[InlineData(ManaSpirit.Gnome, "Gnome")]
+	[InlineData(ManaSpirit.Sylphid, "Sylphid")]
+	[InlineData(ManaSpirit.Salamando, "Salamando")]
+	public void Magic_SpiritAssignment_Works(ManaSpirit spirit, string expectedName) {
+		// Arrange
+		var magic = new SecretOfManaMagic { Spirit = spirit };
+
+		// Assert
+		Assert.Equal(expectedName, magic.Spirit.ToString());
+	}
+}
+
+public class SecretOfManaWeaponTests {
+	[Fact]
+	public void Weapon_TypeName_ReturnsCorrectName() {
+		// Arrange & Act & Assert
+		Assert.Equal("Sword", new SecretOfManaWeapon { Type = WeaponType.Sword }.TypeName);
+		Assert.Equal("Spear", new SecretOfManaWeapon { Type = WeaponType.Spear }.TypeName);
+		Assert.Equal("Bow", new SecretOfManaWeapon { Type = WeaponType.Bow }.TypeName);
+		Assert.Equal("Axe", new SecretOfManaWeapon { Type = WeaponType.Axe }.TypeName);
+		Assert.Equal("Boomerang", new SecretOfManaWeapon { Type = WeaponType.Boomerang }.TypeName);
+		Assert.Equal("Glove", new SecretOfManaWeapon { Type = WeaponType.Glove }.TypeName);
+		Assert.Equal("Whip", new SecretOfManaWeapon { Type = WeaponType.Whip }.TypeName);
+		Assert.Equal("Javelin", new SecretOfManaWeapon { Type = WeaponType.Javelin }.TypeName);
+	}
+
+	[Fact]
+	public void Weapon_LevelProgression_IsValid() {
+		// Test weapon level from 0 to 8
+		for (byte level = 0; level <= 8; level++) {
+			var weapon = new SecretOfManaWeapon {
+				Level = level,
+				OrbsRequired = level
+			};
+
+			Assert.Equal(level, weapon.Level);
+			Assert.Equal(level, weapon.OrbsRequired);
+		}
+	}
+}
+
+public class SecretOfManaArmorTests {
+	[Fact]
+	public void Armor_ArmorTypeName_ReturnsCorrectName() {
+		// Arrange & Act & Assert
+		Assert.Equal("Helmet", new SecretOfManaArmor { ArmorType = 0 }.ArmorTypeName);
+		Assert.Equal("Armor", new SecretOfManaArmor { ArmorType = 1 }.ArmorTypeName);
+		Assert.Equal("Accessory", new SecretOfManaArmor { ArmorType = 2 }.ArmorTypeName);
+		Assert.Equal("Unknown", new SecretOfManaArmor { ArmorType = 99 }.ArmorTypeName);
+	}
+
+	[Fact]
+	public void Armor_ElementalResistance_CanBeCombined() {
+		// Arrange
+		var armor = new SecretOfManaArmor {
+			Resistance = Elements.Salamando | Elements.Undine
+		};
+
+		// Assert
+		Assert.True(armor.Resistance.HasFlag(Elements.Salamando));
+		Assert.True(armor.Resistance.HasFlag(Elements.Undine));
+		Assert.False(armor.Resistance.HasFlag(Elements.Gnome));
+	}
+}
+
