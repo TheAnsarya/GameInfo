@@ -1,6 +1,7 @@
 using System.CommandLine;
 using System.CommandLine.Builder;
 using System.CommandLine.Parsing;
+using System.IO.Compression;
 using GameInfoTools.TasConvert.Core;
 
 namespace GameInfoTools.TasConvert.Cli;
@@ -37,9 +38,11 @@ public static class Program {
 		var rootCommand = new RootCommand("TAS Replay File Format Converter");
 
 		rootCommand.AddCommand(BuildConvertCommand());
+		rootCommand.AddCommand(BuildBatchConvertCommand());
 		rootCommand.AddCommand(BuildInfoCommand());
 		rootCommand.AddCommand(BuildListCommand());
 		rootCommand.AddCommand(BuildValidateCommand());
+		rootCommand.AddCommand(BuildDownloadCommand());
 
 		return rootCommand;
 	}
@@ -76,6 +79,84 @@ public static class Program {
 		command.SetHandler(async (input, output, format, force, stripSavestate, stripSram) => {
 			await ConvertAsync(input, output, format, force, stripSavestate, stripSram);
 		}, inputArg, outputArg, formatOption, forceOption, stripSavestateOption, stripSramOption);
+
+		return command;
+	}
+
+	private static Command BuildBatchConvertCommand() {
+		var inputDirArg = new Argument<DirectoryInfo>("input-dir", "Input directory containing TAS files");
+		var outputDirArg = new Argument<DirectoryInfo>("output-dir", "Output directory for converted files");
+
+		var formatOption = new Option<string>(
+			["--format", "-f"],
+			"Target format (required)") { IsRequired = true };
+
+		var patternOption = new Option<string>(
+			["--pattern", "-p"],
+			() => "*.*",
+			"File pattern to match (e.g., *.smv, *.bk2)");
+
+		var recursiveOption = new Option<bool>(
+			["--recursive", "-r"],
+			"Include subdirectories");
+
+		var forceOption = new Option<bool>(
+			["--force", "-y"],
+			"Overwrite existing output files");
+
+		var continueOnErrorOption = new Option<bool>(
+			["--continue-on-error"],
+			"Continue processing remaining files if one fails");
+
+		var command = new Command("batch", "Batch convert multiple TAS files") {
+			inputDirArg,
+			outputDirArg,
+			formatOption,
+			patternOption,
+			recursiveOption,
+			forceOption,
+			continueOnErrorOption,
+		};
+
+		command.SetHandler(async (inputDir, outputDir, format, pattern, recursive, force, continueOnError) => {
+			await BatchConvertAsync(inputDir, outputDir, format, pattern, recursive, force, continueOnError);
+		}, inputDirArg, outputDirArg, formatOption, patternOption, recursiveOption, forceOption, continueOnErrorOption);
+
+		return command;
+	}
+
+	private static Command BuildDownloadCommand() {
+		var outputDirOption = new Option<DirectoryInfo?>(
+			["--output", "-o"],
+			"Output directory (defaults to ~tas-files in repo root)");
+
+		var formatOption = new Option<string?>(
+			["--format", "-f"],
+			"Only download files of this format (smv, bk2, lsmv, fm2, vbm)");
+
+		var gameOption = new Option<string?>(
+			["--game", "-g"],
+			"Only download files for games matching this string");
+
+		var forceOption = new Option<bool>(
+			["--force", "-y"],
+			"Re-download files even if they exist");
+
+		var dryRunOption = new Option<bool>(
+			["--dry-run", "-n"],
+			"Show what would be downloaded without downloading");
+
+		var command = new Command("download", "Download TAS test files from TASVideos.org") {
+			outputDirOption,
+			formatOption,
+			gameOption,
+			forceOption,
+			dryRunOption,
+		};
+
+		command.SetHandler(async (outputDir, format, game, force, dryRun) => {
+			await DownloadTasFilesAsync(outputDir, format, game, force, dryRun);
+		}, outputDirOption, formatOption, gameOption, forceOption, dryRunOption);
 
 		return command;
 	}
@@ -395,5 +476,336 @@ public static class Program {
 			Console.ResetColor();
 			Environment.ExitCode = 1;
 		}
+	}
+
+	private static async Task BatchConvertAsync(
+		DirectoryInfo inputDir,
+		DirectoryInfo outputDir,
+		string format,
+		string pattern,
+		bool recursive,
+		bool force,
+		bool continueOnError) {
+		// Validate input directory
+		if (!inputDir.Exists) {
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.Error.WriteLine($"Error: Input directory not found: {inputDir.FullName}");
+			Console.ResetColor();
+			Environment.ExitCode = 1;
+			return;
+		}
+
+		// Get target format
+		var targetFormat = TasFormatRegistry.Instance.GetByName(format);
+		if (targetFormat is null) {
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.Error.WriteLine($"Error: Unknown target format: {format}");
+			Console.ResetColor();
+			Environment.ExitCode = 1;
+			return;
+		}
+
+		// Create output directory
+		outputDir.Create();
+
+		// Find input files
+		var searchOption = recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
+		var inputFiles = inputDir.GetFiles(pattern, searchOption)
+			.Where(f => TasFormatRegistry.Instance.DetectFormat(f.FullName) is not null)
+			.ToList();
+
+		if (inputFiles.Count == 0) {
+			Console.ForegroundColor = ConsoleColor.Yellow;
+			Console.WriteLine($"No TAS files found matching pattern '{pattern}' in {inputDir.FullName}");
+			Console.ResetColor();
+			return;
+		}
+
+		Console.WriteLine($"Found {inputFiles.Count} TAS file(s) to convert");
+		Console.WriteLine($"Target format: {targetFormat.Name}");
+		Console.WriteLine();
+
+		var converter = new TasConverter();
+		var options = new ConversionOptions();
+		var targetExt = targetFormat.Extensions.First();
+
+		var converted = 0;
+		var skipped = 0;
+		var failed = 0;
+
+		foreach (var inputFile in inputFiles) {
+			var outputName = Path.ChangeExtension(inputFile.Name, targetExt);
+			var outputPath = Path.Combine(outputDir.FullName, outputName);
+
+			Console.Write($"Converting: {inputFile.Name} -> {outputName}... ");
+
+			// Check if output exists
+			if (!force && File.Exists(outputPath)) {
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine("SKIPPED (exists)");
+				Console.ResetColor();
+				skipped++;
+				continue;
+			}
+
+			try {
+				var result = await converter.ConvertAsync(
+					inputFile.FullName,
+					outputPath,
+					targetFormat,
+					options);
+
+				if (result.Success) {
+					Console.ForegroundColor = ConsoleColor.Green;
+					Console.WriteLine($"OK ({result.FrameCount:N0} frames)");
+					Console.ResetColor();
+					converted++;
+				} else {
+					Console.ForegroundColor = ConsoleColor.Red;
+					Console.WriteLine($"FAILED: {result.Error}");
+					Console.ResetColor();
+					failed++;
+
+					if (!continueOnError) {
+						Environment.ExitCode = 1;
+						break;
+					}
+				}
+			} catch (Exception ex) {
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.WriteLine($"ERROR: {ex.Message}");
+				Console.ResetColor();
+				failed++;
+
+				if (!continueOnError) {
+					Environment.ExitCode = 1;
+					break;
+				}
+			}
+		}
+
+		// Summary
+		Console.WriteLine();
+		Console.WriteLine("═══════════════════════════════════════════════════════════════");
+		Console.WriteLine($"Converted: {converted}");
+		Console.WriteLine($"Skipped:   {skipped}");
+		Console.WriteLine($"Failed:    {failed}");
+
+		if (failed > 0) {
+			Environment.ExitCode = 1;
+		}
+	}
+
+	private static async Task DownloadTasFilesAsync(
+		DirectoryInfo? outputDir,
+		string? format,
+		string? game,
+		bool force,
+		bool dryRun) {
+		// Find tas-info.json
+		var tasInfoPath = FindTasInfoPath();
+		if (tasInfoPath is null) {
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.Error.WriteLine("Error: Could not find tas-info.json");
+			Console.Error.WriteLine("Expected at: <repo>/~tas-files/tas-info.json");
+			Console.ResetColor();
+			Environment.ExitCode = 1;
+			return;
+		}
+
+		// Parse manifest
+		var tasInfo = await System.Text.Json.JsonSerializer.DeserializeAsync<TasInfoManifest>(
+			File.OpenRead(tasInfoPath),
+			new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+		if (tasInfo?.Files is null || tasInfo.Files.Count == 0) {
+			Console.ForegroundColor = ConsoleColor.Yellow;
+			Console.WriteLine("No files found in tas-info.json");
+			Console.ResetColor();
+			return;
+		}
+
+		// Set output directories
+		var tasDir = outputDir?.FullName ?? Path.GetDirectoryName(tasInfoPath)!;
+		var compressedDir = Path.Combine(tasDir, "compressed");
+		var uncompressedDir = Path.Combine(tasDir, "uncompressed");
+
+		if (!dryRun) {
+			Directory.CreateDirectory(compressedDir);
+			Directory.CreateDirectory(uncompressedDir);
+		}
+
+		Console.WriteLine($"TAS Files Directory: {tasDir}");
+		Console.WriteLine($"Total files in manifest: {tasInfo.Files.Count}");
+		Console.WriteLine();
+
+		// Filter files
+		var files = tasInfo.Files.AsEnumerable();
+
+		if (!string.IsNullOrEmpty(format)) {
+			files = files.Where(f => f.Format?.Equals(format, StringComparison.OrdinalIgnoreCase) == true);
+			Console.WriteLine($"Filtered to {format.ToUpper()} files");
+		}
+
+		if (!string.IsNullOrEmpty(game)) {
+			files = files.Where(f => f.Game?.Contains(game, StringComparison.OrdinalIgnoreCase) == true);
+			Console.WriteLine($"Filtered to files matching '{game}'");
+		}
+
+		var fileList = files.ToList();
+		if (fileList.Count == 0) {
+			Console.WriteLine("No files to download.");
+			return;
+		}
+
+		Console.WriteLine();
+
+		using var httpClient = new HttpClient();
+		httpClient.DefaultRequestHeaders.Add("User-Agent", "GameInfo-TAS-Downloader/1.0");
+
+		var downloaded = 0;
+		var skipped = 0;
+		var failed = 0;
+		var extracted = 0;
+
+		for (var i = 0; i < fileList.Count; i++) {
+			var file = fileList[i];
+			var fileName = file.File ?? "";
+			var movieId = file.MovieId ?? "";
+
+			if (string.IsNullOrEmpty(fileName) || string.IsNullOrEmpty(movieId)) {
+				skipped++;
+				continue;
+			}
+
+			Console.WriteLine($"[{i + 1}/{fileList.Count}] {file.Game} ({file.Format?.ToUpper()})");
+
+			var zipFileName = Path.ChangeExtension(fileName, ".zip");
+			var zipPath = Path.Combine(compressedDir, zipFileName);
+			var uncompressedPath = Path.Combine(uncompressedDir, fileName);
+
+			// Check if already exists
+			if (!force && File.Exists(uncompressedPath)) {
+				Console.WriteLine($"  Skipped: {fileName} already exists");
+				skipped++;
+				continue;
+			}
+
+			// Download URL
+			var downloadUrl = $"https://tasvideos.org/{movieId}?handler=Download";
+
+			if (dryRun) {
+				Console.WriteLine($"  [DRY RUN] Would download: {downloadUrl}");
+				downloaded++;
+				continue;
+			}
+
+			try {
+				Console.WriteLine($"  Downloading from {downloadUrl}");
+				var response = await httpClient.GetAsync(downloadUrl);
+
+				if (response.IsSuccessStatusCode) {
+					var data = await response.Content.ReadAsByteArrayAsync();
+					await File.WriteAllBytesAsync(zipPath, data);
+
+					// Extract ZIP
+					try {
+						using var archive = System.IO.Compression.ZipFile.OpenRead(zipPath);
+						foreach (var entry in archive.Entries) {
+							if (!string.IsNullOrEmpty(entry.Name) && !entry.FullName.EndsWith('/')) {
+								var destPath = Path.Combine(uncompressedDir, entry.Name);
+								entry.ExtractToFile(destPath, overwrite: true);
+								Console.WriteLine($"  Extracted: {entry.Name}");
+								extracted++;
+							}
+						}
+					} catch (Exception ex) {
+						Console.ForegroundColor = ConsoleColor.Yellow;
+						Console.WriteLine($"  Warning: Could not extract {zipFileName}: {ex.Message}");
+						Console.ResetColor();
+					}
+
+					downloaded++;
+				} else {
+					Console.ForegroundColor = ConsoleColor.Red;
+					Console.WriteLine($"  HTTP Error: {response.StatusCode}");
+					Console.ResetColor();
+					failed++;
+				}
+
+				// Rate limiting
+				if (i < fileList.Count - 1) {
+					await Task.Delay(500);
+				}
+			} catch (Exception ex) {
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.WriteLine($"  Error: {ex.Message}");
+				Console.ResetColor();
+				failed++;
+			}
+		}
+
+		// Summary
+		Console.WriteLine();
+		Console.WriteLine("═══════════════════════════════════════════════════════════════");
+		Console.WriteLine($"Downloaded: {downloaded}");
+		Console.WriteLine($"Extracted:  {extracted}");
+		Console.WriteLine($"Skipped:    {skipped}");
+		Console.WriteLine($"Failed:     {failed}");
+
+		if (failed > 0) {
+			Environment.ExitCode = 1;
+		}
+	}
+
+	private static string? FindTasInfoPath() {
+		// Search for tas-info.json in expected locations
+		var searchPaths = new[] {
+			"~tas-files/tas-info.json",
+			"../~tas-files/tas-info.json",
+			"../../~tas-files/tas-info.json",
+			"../../../~tas-files/tas-info.json",
+			"../../../../~tas-files/tas-info.json",
+		};
+
+		foreach (var relativePath in searchPaths) {
+			var fullPath = Path.GetFullPath(relativePath);
+			if (File.Exists(fullPath)) {
+				return fullPath;
+			}
+		}
+
+		// Also check from assembly location
+		var assemblyDir = Path.GetDirectoryName(typeof(Program).Assembly.Location) ?? ".";
+		for (var i = 0; i < 6; i++) {
+			var testPath = Path.Combine(assemblyDir, "~tas-files", "tas-info.json");
+			if (File.Exists(testPath)) {
+				return testPath;
+			}
+			assemblyDir = Path.GetDirectoryName(assemblyDir) ?? ".";
+		}
+
+		return null;
+	}
+
+	// Helper classes for JSON deserialization
+	private class TasInfoManifest {
+		public string? Description { get; set; }
+		public string? DownloadDate { get; set; }
+		public string? Source { get; set; }
+		public int TotalFiles { get; set; }
+		public List<TasFileEntry>? Files { get; set; }
+	}
+
+	private class TasFileEntry {
+		public string? Game { get; set; }
+		public string? System { get; set; }
+		public string? Format { get; set; }
+		public string? File { get; set; }
+		public string? Link { get; set; }
+		public string? MovieId { get; set; }
+		public string? Author { get; set; }
+		public string? Duration { get; set; }
+		public string? Category { get; set; }
 	}
 }

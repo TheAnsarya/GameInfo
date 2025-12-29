@@ -4,9 +4,10 @@ A quick guide to setting up and using the GameInfo ROM hacking toolkit.
 
 ## Prerequisites
 
-- [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) or later
+- [.NET 10.0 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) or later
 - A code editor (VS Code recommended)
 - ROM files to work with
+- Python 3.8+ (for TAS file download script)
 
 ## Installation
 
@@ -18,7 +19,7 @@ git clone https://github.com/TheAnsarya/GameInfo.git
 cd GameInfo
 
 # Build the solution
-dotnet build src/GameInfoTools.sln
+dotnet build GameInfoTools.sln
 
 # Run the CLI
 dotnet run --project src/GameInfoTools.Cli
@@ -28,7 +29,7 @@ dotnet run --project src/GameInfoTools.Cli
 
 ```bash
 # Build release configuration
-dotnet build src/GameInfoTools.sln -c Release
+dotnet build GameInfoTools.sln -c Release
 
 # Or publish as single file
 dotnet publish src/GameInfoTools.Cli -c Release -r win-x64 --self-contained
@@ -228,6 +229,65 @@ dotnet build src/GameInfoTools.sln
 - Read the [CLI Reference](cli-reference.md) for all commands
 - Check [format specifications](../formats/) for file formats
 - See [CDL Tools Guide](cdl-tools.md) for debugging workflows
+- Try the [TAS Converter](#tas-converter) for movie file conversion
+
+## TAS Converter
+
+The TAS Converter tool converts between different TAS (Tool-Assisted Speedrun) movie file formats.
+
+### Supported Formats
+
+| Format | Extension | Emulator | System |
+|--------|-----------|----------|--------|
+| SMV | `.smv` | Snes9x | SNES |
+| LSMV | `.lsmv` | lsnes | SNES |
+| BK2 | `.bk2` | BizHawk | Multi |
+| FM2 | `.fm2` | FCEUX | NES |
+| VBM | `.vbm` | VBA-RR | GB/GBA |
+
+### Getting Test Files
+
+TAS test files are not included in the repository. Download them using:
+
+**Python Script (Recommended):**
+```bash
+python tools/tas/download_tas_files.py
+```
+
+**CLI Tool:**
+```bash
+dotnet run --project src/GameInfoTools.TasConvert.Cli -- download
+```
+
+Files are downloaded to `~tas-files/` (gitignored).
+
+### CLI Usage
+
+```bash
+# Get info about a TAS file
+dotnet run --project src/GameInfoTools.TasConvert.Cli -- info movie.smv
+
+# Convert between formats
+dotnet run --project src/GameInfoTools.TasConvert.Cli -- convert input.smv output.bk2
+
+# Batch convert all SMV files
+dotnet run --project src/GameInfoTools.TasConvert.Cli -- batch ./movies ./output --format bk2 --pattern "*.smv"
+
+# Validate a TAS file
+dotnet run --project src/GameInfoTools.TasConvert.Cli -- validate movie.smv
+```
+
+### GUI Usage
+
+```bash
+# Run the Windows Forms GUI
+dotnet run --project src/GameInfoTools.TasConvert.WinForms
+```
+
+### More Information
+
+- [TAS Format Reference](../TasConverter/TAS-Format-Reference.md) - Detailed format specifications
+- [Manual Testing Guide](../TasConverter/Manual-Testing-Guide.md) - Testing procedures
 
 ## Getting Help
 

@@ -33,6 +33,13 @@ Project documentation organized by game and system.
 | [CDL Tools Guide](guides/cdl-tools.md) | Working with Code Data Logger files |
 | [Label Management](guides/label-management.md) | Managing debug labels and symbols |
 
+### TAS Converter Documentation
+
+| Document | Description |
+|----------|-------------|
+| [TAS Format Reference](TasConverter/TAS-Format-Reference.md) | Detailed TAS movie format specifications |
+| [Manual Testing Guide](TasConverter/Manual-Testing-Guide.md) | Manual testing procedures for TAS tools |
+
 ### Format Specifications
 
 | Format | Description |
