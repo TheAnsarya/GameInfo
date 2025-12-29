@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+	<RunConfiguration>
+		<!-- Test timeout in milliseconds (30 seconds per test) -->
+		<TestSessionTimeout>300000</TestSessionTimeout>
+	</RunConfiguration>
+	<xUnit>
+		<!-- Fail on hang after 30 seconds -->
+		<LongRunningTestSeconds>30</LongRunningTestSeconds>
+		<DiagnosticMessages>true</DiagnosticMessages>
+		<ParallelizeAssembly>false</ParallelizeAssembly>
+	</xUnit>
+</RunSettings>

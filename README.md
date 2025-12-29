@@ -109,6 +109,69 @@ dotnet test
 
 ---
 
+## 🎮 TAS Replay Converter
+
+A comprehensive TAS (Tool-Assisted Speedrun) replay file converter supporting all major emulator formats.
+
+### Supported Formats
+
+| System | Format | Extension | Emulator | Status |
+|--------|--------|-----------|----------|--------|
+| **SNES** | SMV | `.smv` | Snes9x | ✅ Read/Write |
+| **SNES** | LSMV | `.lsmv` | lsnes/bsnes | ✅ Read/Write |
+| **SNES** | BK2 | `.bk2` | BizHawk | ✅ Read/Write |
+| **NES** | FM2 | `.fm2` | FCEUX | ✅ Read/Write |
+| **NES** | BK2 | `.bk2` | BizHawk | ✅ Read/Write |
+| **Game Boy** | VBM | `.vbm` | VBA-RR | ✅ Read/Write |
+| **Game Boy** | BK2 | `.bk2` | BizHawk | ✅ Read/Write |
+| **Genesis** | GMV | `.gmv` | Gens-rr | 🔜 Planned |
+| **N64** | M64 | `.m64` | Mupen64 | 🔜 Planned |
+
+### Library Architecture
+
+```
+GameInfoTools.TasConvert/
+├── Core/
+│   ├── ITasMovie.cs              # Universal movie interface
+│   ├── ITasFormat.cs             # Format handler interface
+│   ├── TasConverter.cs           # Main conversion engine
+│   └── TasFormatRegistry.cs      # Format registration
+└── Formats/
+    ├── Snes/SmvFormat.cs         # Snes9x SMV
+    ├── Snes/LsmvFormat.cs        # lsnes LSMV
+    ├── Nes/Fm2Format.cs          # FCEUX FM2
+    ├── GameBoy/VbmFormat.cs      # VBA-RR VBM
+    └── Bk2Format.cs              # BizHawk BK2 (multi-system)
+```
+
+### Usage Example
+
+```csharp
+using GameInfoTools.TasConvert.Core;
+
+// Load and convert a TAS file
+var converter = new TasConverter();
+var movie = await converter.ReadAsync("speedrun.smv");
+await converter.WriteAsync(movie, "speedrun.fm2");
+
+// Get movie info
+Console.WriteLine($"Frames: {movie.Frames.Count}");
+Console.WriteLine($"System: {movie.System}");
+Console.WriteLine($"Rerecords: {movie.Metadata.RerecordCount}");
+```
+
+### Documentation
+
+- [TAS Format Reference](docs/TasConverter/TAS-Format-Reference.md) - Format specifications
+- [Project Roadmap](~Plans/TAS%20Converter%20-%20Project%20Roadmap.md) - Development plan
+
+### Related Issues
+
+- [Epic: TAS Converter](https://github.com/TheAnsarya/GameInfo/issues/155) - Main tracking issue
+- [All TAS Issues](https://github.com/TheAnsarya/GameInfo/labels/tas-converter) - Full issue list
+
+---
+
 ## 🐍 Python Tools
 
 A collection of Python tools for ROM hacking, game analysis, and reverse engineering.

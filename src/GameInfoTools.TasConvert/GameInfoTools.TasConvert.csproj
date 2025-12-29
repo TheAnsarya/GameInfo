@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<LangVersion>14</LangVersion>
+		<RootNamespace>GameInfoTools.TasConvert</RootNamespace>
+		<AssemblyName>GameInfoTools.TasConvert</AssemblyName>
+		<Version>1.0.0</Version>
+		<Authors>TheAnsarya</Authors>
+		<Description>TAS replay file format converter library supporting SMV, FM2, LSMV, BK2, VBM and more</Description>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	</PropertyGroup>
+
+</Project>
