@@ -165,9 +165,20 @@ Console.WriteLine($"Rerecords: {movie.Metadata.RerecordCount}");
 - [TAS Format Reference](docs/TasConverter/TAS-Format-Reference.md) - Format specifications
 - [Project Roadmap](~Plans/TAS%20Converter%20-%20Project%20Roadmap.md) - Development plan
 
+### Test Files
+
+54+ SNES TAS files from TASVideos.org for testing format parsers:
+
+- **SMV (Snes9x)**: 20 files including Chrono Trigger, Secret of Mana, Disney's Aladdin
+- **BK2 (BizHawk)**: 32 files including EarthBound, Donkey Kong Country, Super Metroid
+- **LSMV (lsnes)**: 2 files including EarthBound save glitch
+
+See [`~tas-files/tas-info.json`](~tas-files/tas-info.json) for full inventory.
+
 ### Related Issues
 
 - [Epic: TAS Converter](https://github.com/TheAnsarya/GameInfo/issues/155) - Main tracking issue
+- [TAS Test Files](https://github.com/TheAnsarya/GameInfo/issues/165) - Test file collection
 - [All TAS Issues](https://github.com/TheAnsarya/GameInfo/labels/tas-converter) - Full issue list
 
 ---
