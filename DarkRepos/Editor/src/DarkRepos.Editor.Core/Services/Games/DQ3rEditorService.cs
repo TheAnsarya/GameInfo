@@ -356,11 +356,11 @@ public static class DQ3rStructures {
 	public static readonly string ClassJson = """
 	{
 		"name": "Class",
-		"recordSize": 64,
+		"recordSize": 16,
 		"endianness": "little",
 		"fields": [
-			{ "name": "base_hp", "type": "uint16", "description": "Base HP" },
-			{ "name": "base_mp", "type": "uint16", "description": "Base MP" },
+			{ "name": "base_hp", "type": "uint8", "description": "Base HP Modifier" },
+			{ "name": "base_mp", "type": "uint8", "description": "Base MP Modifier" },
 			{ "name": "base_str", "type": "uint8", "description": "Base Strength" },
 			{ "name": "base_agi", "type": "uint8", "description": "Base Agility" },
 			{ "name": "base_vit", "type": "uint8", "description": "Base Vitality" },
@@ -373,9 +373,7 @@ public static class DQ3rStructures {
 			{ "name": "vit_growth", "type": "uint8", "description": "Vitality Growth" },
 			{ "name": "int_growth", "type": "uint8", "description": "Intelligence Growth" },
 			{ "name": "luck_growth", "type": "uint8", "description": "Luck Growth" },
-			{ "name": "equip_mask", "type": "uint16", "description": "Equipment Types Allowed" },
-			{ "name": "spell_table", "type": "uint16", "description": "Spell Learning Table Ptr" },
-			{ "name": "reserved", "type": "bytes", "size": 44 }
+			{ "name": "equip_mask", "type": "uint16", "description": "Equipment Types Allowed" }
 		]
 	}
 	""";
