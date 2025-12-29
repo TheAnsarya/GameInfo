@@ -41,8 +41,7 @@ public class ChangeTrackerTests {
 
 		Assert.Contains("@CHANGE_START:AiGenerated", block);
 		Assert.Contains("AI-GENERATED CONTENT", block);
-		Assert.Contains("MUST BE MANUALLY REVIEWED", block);
-		Assert.Contains("Data Crystal forbids AI-generated content", block);
+		Assert.Contains("Review before uploading", block);
 		Assert.Contains(content, block);
 		Assert.Contains("@CHANGE_END", block);
 	}
@@ -182,15 +181,13 @@ public class ChangeTrackerTests {
 	[Fact]
 	public void StripMarkers_RemovesAiWarnings() {
 		var content = """
-			<!-- ⚠️ AI-GENERATED CONTENT - MUST BE MANUALLY REVIEWED BEFORE UPLOADING TO DATA CRYSTAL ⚠️ -->
-			<!-- Data Crystal forbids AI-generated content. Review and edit this section before upload. -->
+			<!-- ⚠️ AI-GENERATED CONTENT - Review before uploading to wikis that prohibit AI content ⚠️ -->
 			Actual content here
 			""";
 
 		var stripped = ChangeTracker.StripMarkers(content);
 
 		Assert.DoesNotContain("AI-GENERATED", stripped);
-		Assert.DoesNotContain("Data Crystal forbids", stripped);
 		Assert.Contains("Actual content here", stripped);
 	}
 
