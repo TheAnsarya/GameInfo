@@ -96,6 +96,16 @@ EXIT_ENTRY_SIZE = 4
 ITEM_PRICES_OFFSET = 0x18fb9c
 ITEM_COUNT = 96
 
+# Character stat growth per level
+# Each character has stat values for each level (HP, MP, STR, AGI, CON, INT, WIS, LCK)
+CHARACTER_STATS_OFFSET = 0x104213
+CHARACTER_ENTRY_SIZE = 8  # 8 bytes per level per character
+CHARACTER_COUNT = 3  # Hero, Girl, Sprite
+MAX_LEVEL = 99
+
+# Character names
+CHARACTER_NAMES = ["Hero", "Girl", "Sprite"]
+
 # Known item names from game
 ITEM_NAMES = [
     "Candy", "Chocolate", "Royal Jam", "Faerie Walnut", "Medical Herb",
@@ -218,11 +228,58 @@ def extract_exits(data: bytes, count: int = 256) -> list[dict[str, Any]]:
         # Stop if we hit empty entries
         if exit_data["destination_map"] == 0 and exit_data["flags"] == 0:
             # Check if next few are also empty
-            if all(extract_exit(data, i + j)["destination_map"] == 0 
+            if all(extract_exit(data, i + j)["destination_map"] == 0
                    for j in range(1, min(5, count - i))):
                 break
         exits.append(exit_data)
     return exits
+
+
+def extract_character_level(data: bytes, char_index: int, level: int) -> dict[str, Any]:
+    """Extract character stat data for a specific level.
+
+    Character level stat structure (8 bytes):
+    - Byte 0: Base HP growth
+    - Byte 1: Base MP growth
+    - Byte 2: Strength
+    - Byte 3: Agility
+    - Byte 4: Constitution
+    - Byte 5: Intelligence
+    - Byte 6: Wisdom
+    - Byte 7: Luck
+    """
+    # Offset = base + (char * 99 levels * 8 bytes) + (level * 8)
+    offset = CHARACTER_STATS_OFFSET + (char_index * MAX_LEVEL * CHARACTER_ENTRY_SIZE) + (level * CHARACTER_ENTRY_SIZE)
+
+    entry = data[offset:offset + CHARACTER_ENTRY_SIZE]
+
+    return {
+        "character": CHARACTER_NAMES[char_index] if char_index < len(CHARACTER_NAMES) else f"Character_{char_index}",
+        "level": level + 1,  # Display as 1-based
+        "hp_growth": entry[0],
+        "mp_growth": entry[1],
+        "strength": entry[2],
+        "agility": entry[3],
+        "constitution": entry[4],
+        "intelligence": entry[5],
+        "wisdom": entry[6],
+        "luck": entry[7]
+    }
+
+
+def extract_all_character_stats(data: bytes) -> dict[str, list[dict[str, Any]]]:
+    """Extract all character stat data."""
+    stats = {}
+
+    for char_idx in range(CHARACTER_COUNT):
+        char_name = CHARACTER_NAMES[char_idx] if char_idx < len(CHARACTER_NAMES) else f"Character_{char_idx}"
+        stats[char_name] = []
+
+        for level in range(MAX_LEVEL):
+            level_stats = extract_character_level(data, char_idx, level)
+            stats[char_name].append(level_stats)
+
+    return stats
 
 
 def file_offset_to_snes(offset: int) -> str:
@@ -277,12 +334,13 @@ def main():
     parser.add_argument("--enemies", action="store_true", help="Extract enemy data")
     parser.add_argument("--items", action="store_true", help="Extract item data")
     parser.add_argument("--exits", action="store_true", help="Extract exit data")
+    parser.add_argument("--characters", action="store_true", help="Extract character stats")
     parser.add_argument("--header", action="store_true", help="Analyze ROM header")
     parser.add_argument("--all", action="store_true", help="Extract all data")
     args = parser.parse_args()
-    
+
     # Default to all if nothing specified
-    if not any([args.enemies, args.items, args.exits, args.header, args.all]):
+    if not any([args.enemies, args.items, args.exits, args.characters, args.header, args.all]):
         args.all = True
     
     # Read ROM
@@ -343,12 +401,24 @@ def main():
     if args.exits or args.all:
         print("Extracting exit data...")
         exits = extract_exits(data)
-        
+
         with open(output_dir / "exits.json", "w") as f:
             json.dump(exits, f, indent=2)
-        
+
         print(f"  Saved {len(exits)} exits to exits.json")
-    
+
+    if args.characters or args.all:
+        print(f"Extracting character stats for {CHARACTER_COUNT} characters (levels 1-{MAX_LEVEL})...")
+        char_stats = extract_all_character_stats(data)
+
+        with open(output_dir / "character_stats.json", "w") as f:
+            json.dump(char_stats, f, indent=2)
+
+        print(f"  Saved to character_stats.json")
+        for char_name in CHARACTER_NAMES:
+            level_1 = char_stats[char_name][0]
+            print(f"  {char_name} Level 1: HP={level_1['hp_growth']}, MP={level_1['mp_growth']}, STR={level_1['strength']}")
+
     print("\nExtraction complete!")
     return 0
 
