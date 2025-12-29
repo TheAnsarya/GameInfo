@@ -1,0 +1,103 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "SoM: Build (Extract Assets)",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}/Games/SNES/Secret of Mana (SNES)/build.ps1",
+				"-ExtractOnly"
+			],
+			"group": "build",
+			"problemMatcher": []
+		},
+		{
+			"label": "SoM: Build (Full)",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}/Games/SNES/Secret of Mana (SNES)/build.ps1"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "SoM: Build (Clean)",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}/Games/SNES/Secret of Mana (SNES)/build.ps1",
+				"-Clean",
+				"-ExtractOnly"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "SoM: Verify ROM",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}/Games/SNES/Secret of Mana (SNES)/build.ps1",
+				"-Verify"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "SoM: Extract Graphics Only",
+			"type": "shell",
+			"command": "python",
+			"args": [
+				"${workspaceFolder}/Games/SNES/Secret of Mana (SNES)/tools/extract_graphics.py",
+				"--rom",
+				"${workspaceFolder}/Games/SNES/Secret of Mana (SNES)/build/temp_rom.sfc",
+				"--output",
+				"${workspaceFolder}/Games/SNES/Secret of Mana (SNES)/assets/graphics"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "SoM: Extract Text Only",
+			"type": "shell",
+			"command": "python",
+			"args": [
+				"${workspaceFolder}/Games/SNES/Secret of Mana (SNES)/tools/extract_text.py",
+				"--rom",
+				"${workspaceFolder}/Games/SNES/Secret of Mana (SNES)/build/temp_rom.sfc",
+				"--output",
+				"${workspaceFolder}/Games/SNES/Secret of Mana (SNES)/assets/text",
+				"--export-table"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "SoM: Scan for Text",
+			"type": "shell",
+			"command": "python",
+			"args": [
+				"${workspaceFolder}/Games/SNES/Secret of Mana (SNES)/tools/extract_text.py",
+				"--rom",
+				"${workspaceFolder}/Games/SNES/Secret of Mana (SNES)/build/temp_rom.sfc",
+				"--output",
+				"${workspaceFolder}/Games/SNES/Secret of Mana (SNES)/assets/text",
+				"--scan"
+			],
+			"problemMatcher": []
+		}
+	]
+}
