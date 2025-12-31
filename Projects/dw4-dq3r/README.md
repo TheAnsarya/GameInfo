@@ -62,6 +62,7 @@ This project aims to recreate Dragon Warrior IV using the enhanced Dragon Quest 
 | [Chapter System Comparison](docs/chapter-system-comparison.md) | DW4's unique chapter structure |
 | [Wagon System Deep Dive](docs/wagon-system-deep-dive.md) | Detailed wagon implementation guide |
 | [Text System Comparison](docs/text-system-comparison.md) | Text encoding and dialog systems |
+| [Graphics System Comparison](docs/graphics-system-comparison.md) | Tile, sprite, and palette conversion |
 | [Converter Tools](docs/converter-tools.md) | C# tool specifications |
 | [GitHub Issues](docs/github-issues.md) | Issue templates and structure |
 | [Roadmap](docs/roadmap.md) | Project timeline and milestones |
