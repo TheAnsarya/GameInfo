@@ -57,6 +57,8 @@ This project aims to recreate Dragon Warrior IV using the enhanced Dragon Quest 
 |----------|-------------|
 | [Data Formats](docs/data-formats.md) | Format comparison between DW4 NES and DQ3r SNES |
 | [Technical Specs](docs/technical-specs.md) | Detailed technical specifications |
+| [AI Behavior Comparison](docs/ai-behavior-comparison.md) | AI and tactics system comparison |
+| [Battle System Comparison](docs/battle-system-comparison.md) | Combat mechanics comparison |
 | [Converter Tools](docs/converter-tools.md) | C# tool specifications |
 | [GitHub Issues](docs/github-issues.md) | Issue templates and structure |
 | [Roadmap](docs/roadmap.md) | Project timeline and milestones |
@@ -67,17 +69,19 @@ This project aims to recreate Dragon Warrior IV using the enhanced Dragon Quest 
 | Document | Description |
 |----------|-------------|
 | [Index](../../../dragon-warrior-4-info/docs/INDEX.md) | Master documentation index |
+| [Quick Reference](../../../dragon-warrior-4-info/docs/QUICK_REFERENCE.md) | One-page technical cheat sheet |
 | [Monster Format](../../../dragon-warrior-4-info/docs/formats/MONSTER_FORMAT.md) | 16-byte monster structure |
 | [Item Format](../../../dragon-warrior-4-info/docs/formats/ITEM_FORMAT.md) | Equipment and consumables |
 | [Spell Format](../../../dragon-warrior-4-info/docs/formats/SPELL_FORMAT.md) | Magic system |
-| [Chapter System](../../../dragon-warrior-4-info/docs/formats/CHAPTER_SYSTEM.md) | 5-chapter mechanics |
-| [AI System](../../../dragon-warrior-4-info/docs/formats/AI_SYSTEM.md) | Character AI profiles |
+| [Party System](../../../dragon-warrior-4-info/docs/formats/PARTY_SYSTEM.md) | 5-chapter party mechanics |
+| [AI Behavior](../../../dragon-warrior-4-info/docs/formats/AI_BEHAVIOR.md) | Character AI profiles |
+| [Tactics System](../../../dragon-warrior-4-info/docs/formats/TACTICS_SYSTEM.md) | 8 tactics modes |
 | [Wagon System](../../../dragon-warrior-4-info/docs/formats/WAGON_SYSTEM.md) | Party management |
 | [Battle System](../../../dragon-warrior-4-info/docs/formats/BATTLE_SYSTEM.md) | Battle mechanics |
 | [RAM Map](../../../dragon-warrior-4-info/docs/formats/RAM_MAP.md) | Memory layout |
 | [ROM Map](../../../dragon-warrior-4-info/docs/formats/ROM_MAP.md) | Bank structure |
 | [Text System](../../../dragon-warrior-4-info/docs/formats/TEXT_SYSTEM.md) | Text encoding |
-| [Save Data](../../../dragon-warrior-4-info/docs/formats/SAVE_DATA.md) | Save format |
+| [Save Data](../../../dragon-warrior-4-info/docs/formats/SAVE_FORMAT.md) | Save format |
 
 ## Repository Structure
 
@@ -187,7 +191,7 @@ See [Roadmap](docs/roadmap.md) for detailed timeline.
 
 | Phase | Duration | Status |
 |-------|----------|--------|
-| Research & Documentation | 6 months | 📋 Planning |
+| Research & Documentation | 6 months | � In Progress (65%) |
 | Conversion Tools | 6 months | Not started |
 | Engine Modifications | 3 months | Not started |
 | Content Porting | 3 months | Not started |

@@ -1,14 +1,14 @@
 # DW4→DQ3r Project Progress
 
-## Project Status: Planning Phase
+## Project Status: Documentation Phase
 
-**Last Updated:** 2025-12-30
+**Last Updated:** 2025-12-31
 
 ## Overview
 
 | Phase | Status | Progress |
 |-------|--------|----------|
-| Research | 📋 Planning | 15% |
+| Research | 🔄 In Progress | 65% |
 | Tools | ⬜ Not Started | 0% |
 | Engine Mods | ⬜ Not Started | 0% |
 | Content | ⬜ Not Started | 0% |
@@ -17,12 +17,22 @@
 ## Prerequisites
 
 ### DW4 NES Documentation
-- [x] ROM map started
-- [x] Initial disassembly structure
-- [ ] Complete disassembly
-- [ ] Monster stats extracted
-- [ ] Item data extracted
-- [ ] Map format documented
+- [x] ROM map complete (ROM_MAP.md)
+- [x] RAM map complete (RAM_MAP.md)
+- [x] Monster format documented (MONSTER_FORMAT.md)
+- [x] Item format documented (ITEM_FORMAT.md)
+- [x] Spell format documented (SPELL_FORMAT.md)
+- [x] Save format documented (SAVE_FORMAT.md)
+- [x] Text system documented (TEXT_SYSTEM.md)
+- [x] Battle system documented (BATTLE_SYSTEM.md)
+- [x] Tactics system documented (TACTICS_SYSTEM.md)
+- [x] Wagon system documented (WAGON_SYSTEM.md)
+- [x] Party system documented (PARTY_SYSTEM.md)
+- [x] AI behavior documented (AI_BEHAVIOR.md)
+- [x] Quick reference created (QUICK_REFERENCE.md)
+- [ ] Complete disassembly annotations
+- [ ] Monster stats extracted to JSON
+- [ ] Item data extracted to JSON
 
 ### DQ3r SNES Engine
 - [x] ROM map complete
