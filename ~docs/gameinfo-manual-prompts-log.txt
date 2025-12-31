@@ -502,6 +502,24 @@ yes! do all of that, all four: Verify extraction addresses - Monster table offse
 
 setup those work items in a todolist/github-issue; research and create docs/editors/wiki for the DQ3r monster battle animations; and the magic animations, and all other animations; find everything, extract all assets, integrate into pipelines, and then work these into the dw4->dq3r project;
 
+"Set up animation extraction breakpoint analysis for DQ3r" create manual testing documentation, also create a root level folder for manual testing and debugging steps docs and move them all there with a primary `readme.md` file describing and linking to them; tell me what I need to do to progress;
+
+yes, do that
+
+&&&
+Update dq3r-snes/README.md with discovered addresses
+Fill in TBD values in DQ3rAnimationMappings.cs
+Log session findings in session-logs
+&&&
+
+
+
+
+
+
+
+
+
 
 
 
