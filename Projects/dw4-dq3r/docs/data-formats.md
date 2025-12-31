@@ -2,27 +2,40 @@
 
 This document compares data formats between Dragon Warrior IV (NES) and Dragon Quest III Remake (SNES) to facilitate porting.
 
+**See Also:** [DW4 Format Documentation](../../../../dragon-warrior-4-info/docs/INDEX.md)
+
+## System Comparison
+
+| Feature | DW4 (NES) | DQ3r (SNES) |
+|---------|-----------|-------------|
+| CPU | 6502 (8-bit) | 65816 (16-bit) |
+| ROM Size | 512KB | 6MB |
+| RAM | 2KB + 8KB SRAM | 128KB + 8KB SRAM |
+| Graphics | 2bpp (4 colors) | 4bpp (16 colors) |
+| Max Party | 4 active + 4 wagon | 4 active |
+| Chapters | 5 | None |
+| AI Battle | Yes (Ch1-4) | No |
+
 ## Monster Data
 
 ### DW4 NES Monster Format (16 bytes)
 
+*Source: [MONSTER_FORMAT.md](../../../../dragon-warrior-4-info/docs/formats/MONSTER_FORMAT.md)*
+
 | Offset | Size | Field |
 |--------|------|-------|
-| 0x00 | 2 | HP |
-| 0x02 | 1 | Attack |
-| 0x03 | 1 | Defense |
-| 0x04 | 1 | Agility |
-| 0x05 | 1 | XP (low) |
-| 0x06 | 1 | XP (high) |
-| 0x07 | 1 | Gold (low) |
-| 0x08 | 1 | Gold (high) |
-| 0x09 | 1 | Action Pattern |
-| 0x0A | 1 | Spell/Skill 1 |
-| 0x0B | 1 | Spell/Skill 2 |
-| 0x0C | 1 | Resistances |
-| 0x0D | 1 | Item Drop |
-| 0x0E | 1 | Drop Rate |
-| 0x0F | 1 | Flags |
+| 0x00 | 2 | HP (0-999) |
+| 0x02 | 1 | MP (usually 0) |
+| 0x03 | 2 | Attack |
+| 0x05 | 1 | Defense |
+| 0x06 | 1 | Agility |
+| 0x07 | 2 | EXP reward |
+| 0x09 | 2 | Gold reward |
+| 0x0B | 1 | Drop item ID |
+| 0x0C | 1 | Drop rate (X/256) |
+| 0x0D | 1 | Action pattern |
+| 0x0E | 1 | Resistances |
+| 0x0F | 1 | Sprite info |
 
 ### DQ3r SNES Monster Format (24 bytes)
 
