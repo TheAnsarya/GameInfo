@@ -119,17 +119,80 @@ This document compares data formats between Dragon Warrior IV (NES) and Dragon Q
 
 ### DW4 NES Map Format
 
-- 1 byte per tile
-- RLE compressed
-- Separate tile property table
-- Max size: 64x64 tiles
+**ROM Layout:**
+- Banks $09-$0B: Map tile data
+- Bank $17, $B08D: Map pointer table (73 maps × 2 bytes)
+- Bank $17, $B121: Map info data (3 bytes per submap)
+- Bank $08, $8ADB: Tileset data (51 tilesets × 64 bytes)
+- Bank $0B, $8CEE: Main overworld data (RLE compressed)
+
+**Map Info (3 bytes per submap):**
+
+| Offset | Size | Field |
+|--------|------|-------|
+| 0x00 | 1 | Tileset number |
+| 0x01 | 2 | Map data pointer (little-endian) |
+
+**Tileset Entry (2 bytes per tile, 32 tiles per set):**
+
+| Bits | Field |
+|------|-------|
+| Byte 0 bits 5-7 | Smoothing flags |
+| Byte 0 bits 3-4 | Attribute/palette |
+| Byte 0 bits 0-2 | Tile number high |
+| Byte 1 | Tile number low |
+
+**Overworld RLE Compression:**
+- Bits 0-4: Length + 1 (1-32 tiles)
+- Bits 5-7: Tile type (0-7)
+- Special: If byte ≥ $E8, subtract $E0 for tile number
+
+**Total: 73 maps, 256+ submaps**
 
 ### DQ3r SNES Map Format
 
-- 2 bytes per tile (tile + attributes)
-- LZSS compressed
-- Properties embedded in tile data
-- Max size: 128x128 tiles
+**ROM Layout (HiROM 6MB):**
+- $e54f38: Metatile definitions (237 entries)
+- $ed8a00: World map layout (Ring400 compressed)
+- $eda49c-$ee3e2f: 16 tilemap chunk streams
+- $180000: World map tile graphics (32KB)
+
+**World Map Structure:**
+- 64×64 layout grid (4096 chunk indices)
+- Each chunk = 4×4 tiles (16 streams of data)
+- Full map = 256×256 tiles
+
+**Layout Entry (2 bytes):**
+
+| Byte | Field |
+|------|-------|
+| Low | Chunk index |
+| High | Flags/extended index |
+
+**Ring400/LZSS Compression:**
+- Command byte: 8 bits, processed right-to-left
+- Bit 1: Read literal byte to output
+- Bit 0: Read 2-byte reference (10-bit offset, 6-bit length+3)
+- Ring buffer: $400 bytes
+
+**Metatile (variable size):**
+- 4×4 8x8 tiles = 16x16 pixel metatile
+- Includes palette, flip, priority flags
+
+### Conversion Implementation
+
+Conversion code: `DW4Lib/Converters/`
+- `MapToDQ3r.cs` - Main conversion, 80-entry tile translation table
+- `WorldMapToDQ3r.cs` - Chunk generation, Ring400 compression
+- `EntranceToDQ3r.cs` - Entrance location database
+
+**Tile Translation (80 entries):**
+```csharp
+// DW4 tile → DQ3r tile mapping
+0x4b, 0x4b, 0x4b, 0x4b, 0x02, 0x4b, 0x4b, 0x4b, // $00-$07
+0x4b, 0x4b, 0x4b, 0x4a, 0x4b, 0xc9, 0x64, 0x4b, // $08-$0f
+// ... see MapToDQ3r.cs for complete table
+```
 
 ## Text Encoding
 
@@ -172,9 +235,52 @@ Modified Shift-JIS:
 
 | Tool | Purpose | Status |
 |------|---------|--------|
-| `monster_converter.py` | Convert monster data | Planned |
-| `item_converter.py` | Convert item data | Planned |
-| `spell_converter.py` | Convert spell data | Planned |
-| `map_converter.py` | Convert map format | Planned |
-| `text_converter.py` | Convert text/dialog | Planned |
-| `gfx_converter.py` | Convert graphics | Planned |
+| `MonsterToDQ3r.cs` | Convert monster data | ✅ Implemented |
+| `ItemToDQ3r.cs` | Convert item data | ✅ Implemented |
+| `SpellToDQ3r.cs` | Convert spell data | ✅ Implemented |
+| `MapToDQ3r.cs` | Convert map format | ✅ Implemented |
+| `WorldMapToDQ3r.cs` | Convert world map | ✅ Implemented |
+| `EntranceToDQ3r.cs` | Convert entrance locations | ✅ Implemented |
+| `text_converter` | Convert text/dialog | 🔲 Planned |
+| `gfx_converter` | Convert graphics | 🔲 Planned |
+| `script_converter` | Convert NPC scripts | 🔲 Planned |
+
+## Implementation Location
+
+All conversion tools are in `logsmall/DW4Lib/`:
+
+```
+DW4Lib/
+├── DataStructures/
+│   ├── Character.cs
+│   ├── ExperienceTable.cs
+│   ├── Item.cs
+│   ├── Monster.cs
+│   ├── Spell.cs
+│   └── Maps/
+│       ├── EncounterData.cs
+│       ├── MapEvents.cs
+│       ├── MapInfo.cs
+│       ├── OverworldMap.cs
+│       └── TileData.cs
+├── DQ3r/
+│   ├── DQ3rItem.cs
+│   ├── DQ3rMonster.cs
+│   ├── DQ3rSpell.cs
+│   ├── DQ3rAnimationMappings.cs
+│   └── Maps/
+│       ├── DQ3rMapData.cs
+│       └── DQ3rMapEvents.cs
+├── Converters/
+│   ├── ItemToDQ3r.cs
+│   ├── MonsterToDQ3r.cs
+│   ├── SpellToDQ3r.cs
+│   ├── MapToDQ3r.cs
+│   ├── WorldMapToDQ3r.cs
+│   ├── EntranceToDQ3r.cs
+│   └── README.md
+├── ROM/
+│   └── DW4Rom.cs
+└── Text/
+    └── ...
+```
