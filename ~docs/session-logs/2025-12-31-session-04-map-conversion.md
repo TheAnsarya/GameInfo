@@ -14,11 +14,11 @@ Created comprehensive data structures for DW4 NES map system:
 
 | File | Purpose |
 |------|---------|
-| [MapInfo.cs](../../logsmall/DW4Lib/DataStructures/Maps/MapInfo.cs) | Map metadata, pointers, 73 maps database |
-| [TileData.cs](../../logsmall/DW4Lib/DataStructures/Maps/TileData.cs) | Tiles, tilesets, increment patterns |
-| [OverworldMap.cs](../../logsmall/DW4Lib/DataStructures/Maps/OverworldMap.cs) | Overworld map, RLE compression |
-| [MapEvents.cs](../../logsmall/DW4Lib/DataStructures/Maps/MapEvents.cs) | NPCs, chests, warps, entrances |
-| [EncounterData.cs](../../logsmall/DW4Lib/DataStructures/Maps/EncounterData.cs) | Monster encounters, zones, shops |
+| [MapInfo.cs](../../../logsmall/DW4Lib/DataStructures/Maps/MapInfo.cs) | Map metadata, pointers, 73 maps database |
+| [TileData.cs](../../../logsmall/DW4Lib/DataStructures/Maps/TileData.cs) | Tiles, tilesets, increment patterns |
+| [OverworldMap.cs](../../../logsmall/DW4Lib/DataStructures/Maps/OverworldMap.cs) | Overworld map, RLE compression |
+| [MapEvents.cs](../../../logsmall/DW4Lib/DataStructures/Maps/MapEvents.cs) | NPCs, chests, warps, entrances |
+| [EncounterData.cs](../../../logsmall/DW4Lib/DataStructures/Maps/EncounterData.cs) | Monster encounters, zones, shops |
 
 ### 2. DQ3r Map Data Structures ✅
 
@@ -26,8 +26,8 @@ Created target format structures for DQ3r SNES:
 
 | File | Purpose |
 |------|---------|
-| [DQ3rMapData.cs](../../logsmall/DW4Lib/DQ3r/Maps/DQ3rMapData.cs) | Map constants, chunks, layouts, metatiles |
-| [DQ3rMapEvents.cs](../../logsmall/DW4Lib/DQ3r/Maps/DQ3rMapEvents.cs) | Events, NPCs, warps, encounters |
+| [DQ3rMapData.cs](../../../logsmall/DW4Lib/DQ3r/Maps/DQ3rMapData.cs) | Map constants, chunks, layouts, metatiles |
+| [DQ3rMapEvents.cs](../../../logsmall/DW4Lib/DQ3r/Maps/DQ3rMapEvents.cs) | Events, NPCs, warps, encounters |
 
 ### 3. Conversion Pipeline ✅
 
@@ -35,10 +35,21 @@ Created complete conversion code:
 
 | File | Purpose |
 |------|---------|
-| [MapToDQ3r.cs](../../logsmall/DW4Lib/Converters/MapToDQ3r.cs) | Main conversion logic, tile translation table |
-| [WorldMapToDQ3r.cs](../../logsmall/DW4Lib/Converters/WorldMapToDQ3r.cs) | World map chunk/layout generation, Ring400 compression |
-| [EntranceToDQ3r.cs](../../logsmall/DW4Lib/Converters/EntranceToDQ3r.cs) | Entrance location database and conversion |
-| [README.md](../../logsmall/DW4Lib/Converters/README.md) | Conversion pipeline documentation |
+| [MapToDQ3r.cs](../../../logsmall/DW4Lib/Converters/MapToDQ3r.cs) | Main conversion logic, tile translation table |
+| [WorldMapToDQ3r.cs](../../../logsmall/DW4Lib/Converters/WorldMapToDQ3r.cs) | World map chunk/layout generation, Ring400 compression |
+| [EntranceToDQ3r.cs](../../../logsmall/DW4Lib/Converters/EntranceToDQ3r.cs) | Entrance location database and conversion |
+| [README.md](../../../logsmall/DW4Lib/Converters/README.md) | Conversion pipeline documentation |
+
+### 4. ROM Reading Methods ✅
+
+Added to `DW4Rom.cs`:
+- `ReadMapPointerTable()` - Map info pointers
+- `ReadMapInfo(int mapId)` - Submap structures
+- `ReadMainOverworld()` - Main world map (256×256)
+- `ReadGottsideOverworld()` - Gottside map
+- `ReadUnderworld()` - Underworld map
+- `ReadAllTilesets()` - 51 tilesets
+- `DecompressOverworldRow()` - RLE decompression
 
 ## Key Technical Details
 
@@ -116,6 +127,18 @@ logsmall/DW4Lib/
    - 11 files, 2816 insertions
    - Commit: 8b6d565
 
+2. `feat: Add map reading methods to DW4Rom`
+   - 1 file, 182 insertions
+   - Commit: 0ca7294
+
+3. `docs: Update data-formats.md with detailed map format specifications`
+   - Updated tool status, added format details
+   - Commit: e95783d
+
+4. `docs: Add session 04 log - DW4 map conversion pipeline`
+   - Session documentation
+   - Commit: d9a0af9
+
 ## What's Next
 
 ### Immediate Tasks
@@ -132,15 +155,15 @@ logsmall/DW4Lib/
 
 ## Session Statistics
 
-- **Files created:** 11
-- **Lines of code:** ~2800
-- **Data structures:** 35+ classes/enums
-- **Conversion functions:** 25+
-- **Documentation pages:** 2
+- **Files created:** 12
+- **Lines of code:** ~3000
+- **Data structures:** 40+ classes/enums
+- **Conversion functions:** 30+
+- **Documentation pages:** 3
 
 ## Related Sessions
 
 - Session 01: Initial DW4Lib setup
 - Session 02: Implementation sprint
-- Session 03: DW4Lib monster/spell tools
+- Session 03: DW4Lib monster/spell tools + DQ3r animations
 - **Session 04:** Map conversion pipeline (this session)
