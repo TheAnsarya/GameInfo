@@ -131,9 +131,16 @@ You can add a VS Code task to run conversions:
   - `Header.txt` - Key-value metadata (Author, Platform, GameName, SHA1, etc.)
   - `Input Log.txt` - Text-based input log with LogKey header
   - `SyncSettings.json` - Emulator sync settings
-  - `Comments.txt` - Optional author comments
-  - `Subtitles.txt` - Optional subtitles
-- **Input format**: `|..|UDLR sS YB XA LR|` (12 characters per controller)
+  - `Comments.txt` - Author comments (may be empty)
+  - `Subtitles.txt` - Subtitles (may be empty)
+- **LogKey**: `#Reset|Power|#P1 Up|P1 Down|P1 Left|P1 Right|P1 Select|P1 Start|P1 Y|P1 B|P1 X|P1 A|P1 L|P1 R|`
+- **Input format**: `|..|UDLRsSYBXAlr|` (12 characters per controller)
+  - Positions 0-3: `U`, `D`, `L`, `R` (directions - uppercase)
+  - Position 4: `s` (Select - lowercase)
+  - Position 5: `S` (Start - uppercase)
+  - Positions 6-9: `Y`, `B`, `X`, `A` (face buttons - uppercase)
+  - Position 10: `l` (L shoulder - lowercase)
+  - Position 11: `r` (R shoulder - lowercase)
 
 ### LSMV (lsnes)
 

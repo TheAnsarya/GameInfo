@@ -14,6 +14,7 @@ Supported input formats:
 Supported output formats:
 - MMO (Mesen2) - ZIP archive containing Input.txt, GameSettings.txt, etc.
 - BK2 (BizHawk) - ZIP archive with Header.txt, Input Log.txt, etc.
+- BKM (BizHawk legacy) - Plain text format with header and input lines
 - SMV (Snes9x) - Binary format with header and controller data
 
 Author: GameInfo Project
@@ -542,8 +543,9 @@ def parse_lsmv(filepath: Path) -> MovieInfo:
 # =============================================================================
 
 # BK2 SNES LogKey: #Reset|Power|#P1 Up|P1 Down|P1 Left|P1 Right|P1 Select|P1 Start|P1 Y|P1 B|P1 X|P1 A|P1 L|P1 R|
-# Button order in input: U, D, L, R, s(Select), S(Start), Y, B, X, A, L, R
-BK2_SNES_BUTTONS = "UDLRsSYBXALR"
+# Button order in input: U, D, L, R, s(Select), S(Start), Y, B, X, A, l, r
+# Note: Select, L shoulder, R shoulder use lowercase letters
+BK2_SNES_BUTTONS = "UDLRsSYBXAlr"
 
 
 def parse_bk2(filepath: Path) -> MovieInfo:
@@ -642,23 +644,24 @@ def parse_bk2(filepath: Path) -> MovieInfo:
 def buttons_to_bk2_text(buttons: int) -> str:
 	"""Convert button bitmask to BK2 text format.
 
-	BK2 format for SNES: UDLR sS YB XA LR (12 characters)
+	BK2 format for SNES: UDLR sS YB XA lr (12 characters)
+	Note: Select, L shoulder, and R shoulder use lowercase letters.
 	"""
 	result = ""
-	# BK2 button order
+	# BK2 button order (matches LogKey from real BizHawk files)
 	button_order = [
 		(SnesButtons.UP, 'U'),
 		(SnesButtons.DOWN, 'D'),
 		(SnesButtons.LEFT, 'L'),
 		(SnesButtons.RIGHT, 'R'),
-		(SnesButtons.SELECT, 's'),
+		(SnesButtons.SELECT, 's'),  # lowercase
 		(SnesButtons.START, 'S'),
 		(SnesButtons.Y, 'Y'),
 		(SnesButtons.B, 'B'),
 		(SnesButtons.X, 'X'),
 		(SnesButtons.A, 'A'),
-		(SnesButtons.L, 'L'),
-		(SnesButtons.R, 'R'),
+		(SnesButtons.L, 'l'),  # lowercase
+		(SnesButtons.R, 'r'),  # lowercase
 	]
 
 	for btn, char in button_order:
@@ -719,9 +722,9 @@ def create_bk2_file(movie: MovieInfo, output_path: Path, rom_path: Optional[Path
 
 		zf.writestr("Input Log.txt", "\n".join(input_lines).encode('utf-8'))
 
-		# Comments.txt (optional)
-		if movie.description:
-			zf.writestr("Comments.txt", movie.description.encode('utf-8'))
+		# Comments.txt (always include, empty if no description)
+		comments = movie.description if movie.description else ""
+		zf.writestr("Comments.txt", comments.encode('utf-8'))
 
 		# Subtitles.txt (empty)
 		zf.writestr("Subtitles.txt", "".encode('utf-8'))
@@ -815,6 +818,94 @@ def create_smv_file(movie: MovieInfo, output_path: Path):
 
 	safe_output = str(output_path).encode('ascii', errors='replace').decode('ascii')
 	print(f"Created SMV: {safe_output}")
+	print(f"  Frames: {len(movie.frames)}")
+	print(f"  Controllers: {movie.controllers}")
+
+
+def buttons_to_bkm_text(buttons: int) -> str:
+	"""Convert button bitmask to BKM text format.
+
+	BKM format for SNES: UDLRsS BAXY LR (12 characters)
+	Position mapping:
+	  0=U, 1=D, 2=L, 3=R, 4=s(Select), 5=S(Start),
+	  6=B, 7=A, 8=X, 9=Y, 10=L, 11=R
+	"""
+	result = ""
+	# BKM button order (observed from actual files)
+	button_order = [
+		(SnesButtons.UP, 'U'),
+		(SnesButtons.DOWN, 'D'),
+		(SnesButtons.LEFT, 'L'),
+		(SnesButtons.RIGHT, 'R'),
+		(SnesButtons.SELECT, 's'),  # lowercase
+		(SnesButtons.START, 'S'),   # uppercase
+		(SnesButtons.B, 'B'),
+		(SnesButtons.A, 'A'),
+		(SnesButtons.X, 'X'),
+		(SnesButtons.Y, 'Y'),
+		(SnesButtons.L, 'L'),
+		(SnesButtons.R, 'R'),
+	]
+
+	for btn, char in button_order:
+		if buttons & btn:
+			result += char
+		else:
+			result += "."
+
+	return result
+
+
+def create_bkm_file(movie: MovieInfo, output_path: Path, rom_path: Optional[Path] = None):
+	"""Create a BizHawk legacy .bkm movie file from MovieInfo.
+
+	BKM is a plain text format (not ZIP) with header key-value pairs
+	followed by pipe-delimited input lines.
+	"""
+	import uuid
+
+	lines = []
+
+	# Header section
+	lines.append("emuVersion Version 1.11.9")
+	lines.append("MovieVersion BizHawk v0.0.1")
+	lines.append("Platform SNES")
+
+	if movie.rom_name:
+		lines.append(f"GameName {movie.rom_name}")
+
+	if movie.author:
+		safe_author = movie.author.encode('ascii', errors='replace').decode('ascii')
+		lines.append(f"Author {safe_author}")
+
+	lines.append(f"rerecordCount {movie.rerecord_count}")
+	lines.append(f"GUID {uuid.uuid4()}")
+
+	if movie.sha1:
+		lines.append(f"SHA1 {movie.sha1.upper()}")
+
+	lines.append("SGB False")
+
+	# Input lines
+	# Format: |P|ctrl1|ctrl2|ctrl3|ctrl4|
+	# P = power button (. for off)
+	for frame in movie.frames:
+		line = "|.|"  # Power off
+		for ctrl_idx in range(4):  # BKM always has 4 controller slots
+			if ctrl_idx < len(frame.controllers):
+				buttons = frame.controllers[ctrl_idx]
+				line += buttons_to_bkm_text(buttons)
+			else:
+				line += "............"  # 12 dots for no input
+			line += "|"
+		lines.append(line)
+
+	# Write file
+	with open(output_path, 'w', encoding='utf-8', newline='\n') as f:
+		f.write('\n'.join(lines))
+
+	safe_output = str(output_path).encode('ascii', errors='replace').decode('ascii')
+	print(f"Created BKM: {safe_output}")
 	print(f"  Frames: {len(movie.frames)}")
 	print(f"  Controllers: {movie.controllers}")
 
@@ -950,7 +1041,7 @@ def convert_file(input_path: Path, output_dir: Path, output_format: str = 'mmo',
 	Args:
 		input_path: Path to input TAS file
 		output_dir: Output directory for converted files
-		output_format: Target format ('mmo', 'bk2', 'smv')
+		output_format: Target format ('mmo', 'bk2', 'bkm', 'smv')
 		rom_path: Optional ROM file for SHA1 calculation
 		organize_by_game: If True, organize output into game-name subdirectories
 	"""
@@ -988,6 +1079,8 @@ def convert_file(input_path: Path, output_dir: Path, output_format: str = 'mmo',
 			create_mmo_file(movie, output_path, rom_path)
 		elif output_format == 'bk2':
 			create_bk2_file(movie, output_path, rom_path)
+		elif output_format == 'bkm':
+			create_bkm_file(movie, output_path, rom_path)
 		elif output_format == 'smv':
 			create_smv_file(movie, output_path)
 		else:
@@ -1037,7 +1130,7 @@ def main():
 		epilog="""
 Supported formats:
   Input:  SMV (Snes9x), BKM (BizHawk legacy), BK2 (BizHawk), LSMV (lsnes)
-  Output: MMO (Mesen2), BK2 (BizHawk), SMV (Snes9x)
+  Output: MMO (Mesen2), BK2 (BizHawk), BKM (BizHawk legacy), SMV (Snes9x)
 
 Examples:
   # Convert SMV to Mesen2 MMO format
@@ -1045,6 +1138,9 @@ Examples:
 
   # Convert SMV to BizHawk BK2 format
   %(prog)s --input movie.smv --output bizhawk/ --format bk2
+
+  # Convert SMV to BizHawk legacy BKM format
+  %(prog)s --input movie.smv --output bizhawk/ --format bkm
 
   # Convert BK2 back to SMV
   %(prog)s --input movie.bk2 --output snes9x/ --format smv
@@ -1064,7 +1160,7 @@ Examples:
 	parser.add_argument('-o', '--output', type=Path, required=True,
 						help='Output directory for converted files')
 	parser.add_argument('-f', '--format', type=str, default='mmo',
-						choices=['mmo', 'bk2', 'smv'],
+						choices=['mmo', 'bk2', 'bkm', 'smv'],
 						help='Output format (default: mmo)')
 	parser.add_argument('-r', '--recursive', action='store_true',
 						help='Recursively process subdirectories')
