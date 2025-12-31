@@ -1,8 +1,42 @@
 # GameInfo Documentation
 
-Project documentation organized by game and system.
+Comprehensive documentation for ROM hacking tools, game analysis, and wiki content.
 
-## Documentation Index
+## Quick Links
+
+| Category | Link |
+|----------|------|
+| **Tools** | [Python Tools Index](tools/README.md) |
+| **TAS Converter** | [TAS Documentation](tas-converter.md) |
+| **Formats** | [Format Specifications](#format-specifications) |
+| **Games** | [Game Documentation](#game-documentation) |
+
+---
+
+## Tool Documentation
+
+### Python Tools
+
+| Guide | Description |
+|-------|-------------|
+| [Tools Index](tools/README.md) | Complete tool listing and quick reference |
+| [CDL Tools](tools/cdl-tools.md) | Code Data Logger analysis and editing |
+| [Label Tools](tools/label-tools.md) | MLB/NL label management |
+| [Analysis Tools](tools/analysis-tools.md) | ROM analysis and reverse engineering |
+| [Graphics Tools](tools/graphics-tools.md) | Tile and sprite extraction |
+| [Text Tools](tools/text-tools.md) | Text extraction and TBL tools |
+
+### TAS Converter
+
+| Document | Description |
+|----------|-------------|
+| [TAS Converter](tas-converter.md) | Main TAS converter documentation |
+| [TAS Format Specs](tas-formats.md) | All 17 supported format specifications |
+| [Format Reference](TasConverter/TAS-Format-Reference.md) | Detailed technical reference |
+
+---
+
+## Game Documentation
 
 ### NES Games
 
@@ -22,29 +56,33 @@ Project documentation organized by game and system.
 | [Final Fantasy Mystic Quest](ffmq-snes/) | ROM Map, RAM Map, Data Structures |
 | [Soul Blazer](soul-blazer-snes/) | ROM Map, RAM Map, Text System |
 
-### Tool Documentation
+---
 
-| Guide | Description |
-|-------|-------------|
-| [Getting Started](guides/getting-started.md) | Quick setup and first steps |
-| [CLI Reference](guides/cli-reference.md) | Complete CLI command reference |
-| [API Reference](guides/api-reference.md) | Complete C# library API documentation |
-| [Tool Usage Guide](guides/tool-usage.md) | How to use the ROM hacking tools |
-| [CDL Tools Guide](guides/cdl-tools.md) | Working with Code Data Logger files |
-| [Label Management](guides/label-management.md) | Managing debug labels and symbols |
-
-### TAS Converter Documentation
-
-| Document | Description |
-|----------|-------------|
-| [TAS Format Reference](TasConverter/TAS-Format-Reference.md) | Detailed TAS movie format specifications |
-| [Manual Testing Guide](TasConverter/Manual-Testing-Guide.md) | Manual testing procedures for TAS tools |
-
-### Format Specifications
+## Format Specifications
 
 | Format | Description |
 |--------|-------------|
+| [TBL Format](formats/tbl-format.md) | Text encoding table format |
 | [CDL Format](formats/cdl-format.md) | Code Data Logger file format |
 | [MLB Format](formats/mlb-format.md) | Mesen label file format |
 | [NL Format](formats/nl-format.md) | FCEUX name list format |
-| [TBL Format](formats/tbl-format.md) | Text table file format |
+
+---
+
+## Project Plans
+
+| Project | Description |
+|---------|-------------|
+| [DW4→DQ3r Port](../Projects/dw4-dq3r/) | Port DW4 NES to DQ3r SNES engine |
+| [DQ3r Analysis](../~Plans/DQ3r%20SNES%20-%20Comprehensive%20Plan.md) | Dragon Quest III SNES analysis plan |
+
+---
+
+## Wiki Integration
+
+Documentation for [Dark Repos Games Wiki](https://games.darkrepos.com):
+
+| Guide | Description |
+|-------|-------------|
+| [Dark Repos Setup](darkrepos-wiki.md) | Wiki setup and configuration |
+| [Wiki Content Guide](darkrepos-wiki-setup.md) | Creating wiki content |
