@@ -183,9 +183,113 @@ def create_mmo_file(movie: MovieInfo, output_path: Path, rom_path: Optional[Path
 
 	# Safely print output path (avoid unicode issues on Windows console)
 	safe_output = str(output_path).encode('ascii', errors='replace').decode('ascii')
-	print(f"Created: {safe_output}")
+	print(f"Created MMO: {safe_output}")
 	print(f"  Frames: {len(movie.frames)}")
 	print(f"  Controllers: {movie.controllers}")
+
+
+def mesen_text_to_buttons(text: str) -> int:
+	"""Convert Mesen text format to button bitmask.
+
+	Mesen format: "ABXYLRSTUDLR" (12 characters)
+	"""
+	buttons = 0
+	# Map from Mesen key order to our button flags
+	button_map = [
+		SnesButtons.A,       # 0: A
+		SnesButtons.B,       # 1: B
+		SnesButtons.X,       # 2: X
+		SnesButtons.Y,       # 3: Y
+		SnesButtons.L,       # 4: L
+		SnesButtons.R,       # 5: R
+		SnesButtons.SELECT,  # 6: S (Select)
+		SnesButtons.START,   # 7: T (Start)
+		SnesButtons.UP,      # 8: U (Up)
+		SnesButtons.DOWN,    # 9: D (Down)
+		SnesButtons.LEFT,    # 10: L (Left)
+		SnesButtons.RIGHT,   # 11: R (Right)
+	]
+
+	for i, char in enumerate(text[:12]):
+		if char != '.' and i < len(button_map):
+			buttons |= button_map[i]
+
+	return buttons
+
+
+def parse_mmo(filepath: Path) -> MovieInfo:
+	"""Parse Mesen2 .mmo movie file."""
+	movie = MovieInfo()
+
+	with zipfile.ZipFile(filepath, 'r') as zf:
+		# Read GameSettings.txt
+		try:
+			settings_data = zf.read('GameSettings.txt').decode('utf-8')
+			for line in settings_data.split('\n'):
+				line = line.strip()
+				if ' ' in line:
+					key, value = line.split(' ', 1)
+					if key == 'GameFile':
+						movie.rom_name = value
+					elif key == 'SHA1':
+						movie.sha1 = value
+		except KeyError:
+			pass
+
+		# Read MovieInfo.txt
+		try:
+			info_data = zf.read('MovieInfo.txt').decode('utf-8')
+			for line in info_data.split('\n'):
+				line = line.strip()
+				if ' ' in line:
+					key, value = line.split(' ', 1)
+					if key == 'Author':
+						movie.author = value
+					elif key == 'Description':
+						movie.description = value
+					elif key == 'RerecordCount':
+						try:
+							movie.rerecord_count = int(value)
+						except ValueError:
+							pass
+		except KeyError:
+			pass
+
+		# Read Input.txt
+		try:
+			input_data = zf.read('Input.txt').decode('utf-8')
+		except KeyError:
+			raise ValueError("No Input.txt found in MMO file")
+
+		# Parse input frames
+		for line in input_data.split('\n'):
+			line = line.strip()
+			if not line or not line.startswith('|'):
+				continue
+
+			parts = line.split('|')
+			frame = FrameInput(controllers=[])
+
+			for part in parts[1:]:  # Skip first empty part
+				if not part:
+					continue
+				if len(part) >= 12:
+					buttons = mesen_text_to_buttons(part)
+					frame.controllers.append(buttons)
+
+			if frame.controllers:
+				movie.frames.append(frame)
+				movie.controllers = max(movie.controllers, len(frame.controllers))
+
+	movie.frame_count = len(movie.frames)
+
+	safe_name = filepath.name.encode('ascii', errors='replace').decode('ascii')
+	print(f"Parsed MMO: {safe_name}")
+	print(f"  Frames: {movie.frame_count}")
+	print(f"  Controllers: {movie.controllers}")
+	print(f"  Author: {movie.author}")
+
+	return movie
 
 
 # =============================================================================
@@ -536,6 +640,101 @@ def parse_lsmv(filepath: Path) -> MovieInfo:
 	print(f"  ROM: {safe_rom}")
 
 	return movie
+
+
+def buttons_to_lsmv_text(buttons: int) -> str:
+	"""Convert button bitmask to LSMV text format.
+
+	LSMV format for SNES: BYsSudlrAXLR.... (16 characters)
+	"""
+	result = ""
+	# LSMV button order
+	button_order = [
+		(SnesButtons.B, 'B'),
+		(SnesButtons.Y, 'Y'),
+		(SnesButtons.SELECT, 's'),
+		(SnesButtons.START, 'S'),
+		(SnesButtons.UP, 'u'),
+		(SnesButtons.DOWN, 'd'),
+		(SnesButtons.LEFT, 'l'),
+		(SnesButtons.RIGHT, 'r'),
+		(SnesButtons.A, 'A'),
+		(SnesButtons.X, 'X'),
+		(SnesButtons.L, 'L'),
+		(SnesButtons.R, 'R'),
+	]
+
+	for btn, char in button_order:
+		if buttons & btn:
+			result += char
+		else:
+			result += '.'
+
+	# Pad to 16 characters (4 more for turbo states)
+	result += '....'
+
+	return result
+
+
+def create_lsmv_file(movie: MovieInfo, output_path: Path, rom_path: Optional[Path] = None):
+	"""Create an lsnes .lsmv movie file from MovieInfo."""
+
+	with zipfile.ZipFile(output_path, 'w', zipfile.ZIP_DEFLATED) as zf:
+		# gamename
+		if movie.rom_name:
+			zf.writestr('gamename', movie.rom_name.encode('utf-8'))
+
+		# authors
+		if movie.author:
+			zf.writestr('authors', movie.author.encode('utf-8'))
+
+		# rerecords
+		zf.writestr('rerecords', str(movie.rerecord_count).encode('utf-8'))
+
+		# gametype (SNES, NTSC by default)
+		gametype = "snes_ntsc" if movie.region != "PAL" else "snes_pal"
+		zf.writestr('gametype', gametype.encode('utf-8'))
+
+		# coreversion
+		zf.writestr('coreversion', 'bsnes v085'.encode('utf-8'))
+
+		# systemid
+		zf.writestr('systemid', 'lsnes-rr1'.encode('utf-8'))
+
+		# controlsversion
+		zf.writestr('controlsversion', '0'.encode('utf-8'))
+
+		# projectid (generate a simple one)
+		import time
+		projectid = f"{int(time.time()):x}"
+		zf.writestr('projectid', projectid.encode('utf-8'))
+
+		# port1 and port2 configuration
+		zf.writestr('port1', 'gamepad'.encode('utf-8'))
+		if movie.controllers > 1:
+			zf.writestr('port2', 'gamepad'.encode('utf-8'))
+		else:
+			zf.writestr('port2', 'none'.encode('utf-8'))
+
+		# input file
+		input_lines = []
+		for frame in movie.frames:
+			# Format: F.|controller1|controller2|...
+			line = "F."
+			for ctrl_idx in range(max(1, movie.controllers)):
+				if ctrl_idx < len(frame.controllers):
+					buttons = frame.controllers[ctrl_idx]
+					line += "|" + buttons_to_lsmv_text(buttons)
+				else:
+					line += "|" + "." * 16
+			input_lines.append(line)
+
+		zf.writestr('input', '\n'.join(input_lines).encode('utf-8'))
+
+	safe_output = str(output_path).encode('ascii', errors='replace').decode('ascii')
+	print(f"Created LSMV: {safe_output}")
+	print(f"  Frames: {len(movie.frames)}")
+	print(f"  Controllers: {movie.controllers}")
 
 
 # =============================================================================
@@ -1041,7 +1240,7 @@ def convert_file(input_path: Path, output_dir: Path, output_format: str = 'mmo',
 	Args:
 		input_path: Path to input TAS file
 		output_dir: Output directory for converted files
-		output_format: Target format ('mmo', 'bk2', 'bkm', 'smv')
+		output_format: Target format ('mmo', 'bk2', 'bkm', 'smv', 'lsmv')
 		rom_path: Optional ROM file for SHA1 calculation
 		organize_by_game: If True, organize output into game-name subdirectories
 	"""
@@ -1059,6 +1258,8 @@ def convert_file(input_path: Path, output_dir: Path, output_format: str = 'mmo',
 			movie = parse_bk2(input_path)
 		elif fmt == 'lsmv':
 			movie = parse_lsmv(input_path)
+		elif fmt == 'mmo':
+			movie = parse_mmo(input_path)
 		else:
 			raise ValueError(f"Unsupported input format: {fmt}")
 
@@ -1083,6 +1284,8 @@ def convert_file(input_path: Path, output_dir: Path, output_format: str = 'mmo',
 			create_bkm_file(movie, output_path, rom_path)
 		elif output_format == 'smv':
 			create_smv_file(movie, output_path)
+		elif output_format == 'lsmv':
+			create_lsmv_file(movie, output_path, rom_path)
 		else:
 			raise ValueError(f"Unsupported output format: {output_format}")
 
@@ -1098,7 +1301,7 @@ def convert_file(input_path: Path, output_dir: Path, output_format: str = 'mmo',
 def convert_directory(input_dir: Path, output_dir: Path, output_format: str = 'mmo',
 					  recursive: bool = True, organize_by_game: bool = True):
 	"""Convert all TAS files in a directory."""
-	patterns = ['*.smv', '*.bkm', '*.bk2', '*.lsmv']
+	patterns = ['*.smv', '*.bkm', '*.bk2', '*.lsmv', '*.mmo']
 
 	files_found = []
 	for pattern in patterns:
@@ -1129,8 +1332,8 @@ def main():
 		formatter_class=argparse.RawDescriptionHelpFormatter,
 		epilog="""
 Supported formats:
-  Input:  SMV (Snes9x), BKM (BizHawk legacy), BK2 (BizHawk), LSMV (lsnes)
-  Output: MMO (Mesen2), BK2 (BizHawk), BKM (BizHawk legacy), SMV (Snes9x)
+  Input:  SMV (Snes9x), BKM (BizHawk legacy), BK2 (BizHawk), LSMV (lsnes), MMO (Mesen2)
+  Output: MMO (Mesen2), BK2 (BizHawk), BKM (BizHawk legacy), SMV (Snes9x), LSMV (lsnes)
 
 Examples:
   # Convert SMV to Mesen2 MMO format
@@ -1144,6 +1347,9 @@ Examples:
 
   # Convert BK2 back to SMV
   %(prog)s --input movie.bk2 --output snes9x/ --format smv
+
+  # Convert SMV to lsnes LSMV
+  %(prog)s --input movie.smv --output lsnes/ --format lsmv
 
   # Batch convert all SNES TAS files to MMO
   %(prog)s --input-dir ~/tas-files/SNES/ --output mesen-mmo/ --recursive
@@ -1160,7 +1366,7 @@ Examples:
 	parser.add_argument('-o', '--output', type=Path, required=True,
 						help='Output directory for converted files')
 	parser.add_argument('-f', '--format', type=str, default='mmo',
-						choices=['mmo', 'bk2', 'bkm', 'smv'],
+						choices=['mmo', 'bk2', 'bkm', 'smv', 'lsmv'],
 						help='Output format (default: mmo)')
 	parser.add_argument('-r', '--recursive', action='store_true',
 						help='Recursively process subdirectories')

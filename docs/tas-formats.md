@@ -7,22 +7,22 @@ This document provides comprehensive specifications for all TAS (Tool-Assisted S
 | Format | Extension | Emulator | System | Read | Write |
 |--------|-----------|----------|--------|------|-------|
 | BK2 | `.bk2` | BizHawk | Multi | ✅ | ✅ |
-| BKM | `.bkm` | BizHawk (legacy) | Multi | ✅ | ❌ |
+| BKM | `.bkm` | BizHawk (legacy) | Multi | ✅ | ✅ |
 | SMV | `.smv` | Snes9x | SNES | ✅ | ✅ |
-| LSMV | `.lsmv` | lsnes | SNES | ✅ | ❌ |
-| MMO | `.mmo` | Mesen2 | Multi | ❌ | ✅ |
+| LSMV | `.lsmv` | lsnes | SNES | ✅ | ✅ |
+| MMO | `.mmo` | Mesen2 | Multi | ✅ | ✅ |
 | FM2 | `.fm2` | FCEUX | NES | ✅ | ✅ |
-| FCM | `.fcm` | FCEU | NES | ✅ | ❌ |
-| FMV | `.fmv` | Famtasia | NES | ✅ | ❌ |
+| FCM | `.fcm` | FCEU | NES | ✅ | ✅ |
+| FMV | `.fmv` | Famtasia | NES | ✅ | ✅ |
 | VBM | `.vbm` | VisualBoyAdvance | GB/GBA | ✅ | ✅ |
 | GMV | `.gmv` | Gens | Genesis | ✅ | ✅ |
 | MMV | `.mmv` | Dega | SMS/GG | ✅ | ✅ |
-| DSM | `.dsm` | DeSmuME | NDS | ✅ | ❌ |
-| MC2 | `.mc2` | PCEjin/Mednafen | PCE | ✅ | ❌ |
-| PXM | `.pxm` | PCSX | PSX | ✅ | ❌ |
-| PJM | `.pjm` | PSXjin | PSX | ✅ | ❌ |
-| YMV | `.ymv` | Yabause | Saturn | ✅ | ❌ |
-| LMP | `.lmp` | Doom | DOS | ✅ | ❌ |
+| DSM | `.dsm` | DeSmuME | NDS | ✅ | ✅ |
+| MC2 | `.mc2` | PCEjin/Mednafen | PCE | ✅ | ✅ |
+| PXM | `.pxm` | PCSX | PSX | ✅ | ✅ |
+| PJM | `.pjm` | PSXjin | PSX | ✅ | ✅ |
+| YMV | `.ymv` | Yabause | Saturn | ✅ | ✅ |
+| LMP | `.lmp` | Doom | DOS | ✅ | ✅ |
 
 ---
 

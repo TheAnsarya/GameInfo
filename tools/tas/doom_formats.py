@@ -296,6 +296,112 @@ def doom_to_bk2_analog(frame: FrameInput) -> str:
 	return f"{frame.forward_move},{frame.side_move},{frame.turn}"
 
 
+def create_lmp_file(movie: MovieInfo, output_path: Path, game_type: str = 'doom'):
+	"""
+	Create a Doom/Heretic/Hexen .lmp demo file.
+
+	Args:
+		movie: MovieInfo with frame data
+		output_path: Path to output file
+		game_type: 'doom', 'heretic', or 'hexen'
+	"""
+	is_heretic = game_type == 'heretic'
+	is_hexen = game_type == 'hexen'
+
+	# Determine bytes per tic per player
+	if is_heretic:
+		bytes_per_player = 5
+	elif is_hexen:
+		bytes_per_player = 6
+	else:
+		bytes_per_player = 4
+
+	data = bytearray()
+
+	# Header (13 bytes for Doom 1.9+)
+	if movie.has_header:
+		data.append(109)  # Version (Doom 1.9)
+		data.append(movie.skill_level)
+		data.append(movie.episode)
+		data.append(movie.map_number)
+		data.append(movie.game_mode)
+		data.append(1 if movie.respawn else 0)
+		data.append(1 if movie.fast else 0)
+		data.append(1 if movie.nomonsters else 0)
+		data.append(0)  # Console player (POV)
+
+		# Players present (4 bytes)
+		for i in range(4):
+			data.append(1 if i < movie.controllers else 0)
+
+	# Frame data
+	for frame in movie.frames:
+		for player in range(movie.controllers):
+			buttons = frame.controllers[player] if player < len(frame.controllers) else 0
+
+			# Movement values (signed bytes)
+			data.append(frame.forward_move & 0xFF)
+			data.append(frame.side_move & 0xFF)
+			data.append(frame.turn & 0xFF)
+
+			# Buttons byte
+			btn_byte = 0
+			if buttons & DoomButtons.FIRE:
+				btn_byte |= 0x01
+			if buttons & DoomButtons.USE:
+				btn_byte |= 0x02
+
+			# Weapon selection
+			weapon = 0
+			if buttons & DoomButtons.WEAPON1:
+				weapon = 1
+			elif buttons & DoomButtons.WEAPON2:
+				weapon = 2
+			elif buttons & DoomButtons.WEAPON3:
+				weapon = 3
+			elif buttons & DoomButtons.WEAPON4:
+				weapon = 4
+			elif buttons & DoomButtons.WEAPON5:
+				weapon = 5
+			elif buttons & DoomButtons.WEAPON6:
+				weapon = 6
+			elif buttons & DoomButtons.WEAPON7:
+				weapon = 7
+
+			if weapon:
+				btn_byte |= 0x04 | (weapon << 3)
+
+			data.append(btn_byte)
+
+			# Heretic/Hexen extras
+			if is_heretic or is_hexen:
+				data.append(frame.use_artifact if hasattr(frame, 'use_artifact') else 0)
+
+			if is_hexen:
+				data.append(frame.fly_look if hasattr(frame, 'fly_look') else 0)
+
+	# End marker
+	data.append(0x80)
+
+	with open(output_path, 'wb') as f:
+		f.write(data)
+
+	game_name = 'Hexen' if is_hexen else 'Heretic' if is_heretic else 'Doom'
+	print(f"Created LMP ({game_name}): {output_path}")
+	print(f"  Frames (tics): {len(movie.frames)}")
+	print(f"  Players: {movie.controllers}")
+
+
+def create_heretic_lmp_file(movie: MovieInfo, output_path: Path):
+	"""Create a Heretic .lmp demo file."""
+	create_lmp_file(movie, output_path, 'heretic')
+
+
+def create_hexen_lmp_file(movie: MovieInfo, output_path: Path):
+	"""Create a Hexen .lmp demo file."""
+	create_lmp_file(movie, output_path, 'hexen')
+
+
 def detect_doom_format(filepath: Path) -> Optional[str]:
 	"""Detect Doom movie format from file."""
 	ext = filepath.suffix.lower()

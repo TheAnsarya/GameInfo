@@ -57,8 +57,8 @@ from typing import Optional, Tuple
 # Import existing SNES converter functionality
 from convert_tas_to_mmo import (
 	MovieInfo as SnesMovieInfo,
-	parse_smv, parse_bkm, parse_bk2, parse_lsmv,
-	create_mmo_file, create_bk2_file, create_bkm_file, create_smv_file,
+	parse_smv, parse_bkm, parse_bk2, parse_lsmv, parse_mmo,
+	create_mmo_file, create_bk2_file, create_bkm_file, create_smv_file, create_lsmv_file,
 	detect_format as detect_snes_format,
 	extract_game_name, sanitize_filename,
 )
@@ -69,7 +69,8 @@ from tas_formats import TASSystem, TAS_FORMATS
 try:
 	from nes_formats import (
 		parse_fm2, parse_fcm, parse_fmv,
-		create_fm2_file, detect_nes_format,
+		create_fm2_file, create_fcm_file, create_fmv_file,
+		detect_nes_format,
 	)
 	NES_AVAILABLE = True
 except ImportError:
@@ -102,6 +103,7 @@ except ImportError:
 try:
 	from psx_formats import (
 		parse_pxm, parse_pjm, detect_psx_format,
+		create_pxm_file, create_pjm_file,
 	)
 	PSX_AVAILABLE = True
 except ImportError:
@@ -110,6 +112,7 @@ except ImportError:
 try:
 	from misc_formats import (
 		parse_ymv, parse_mc2, parse_dsm, detect_misc_format,
+		create_ymv_file, create_mc2_file, create_dsm_file,
 	)
 	MISC_AVAILABLE = True
 except ImportError:
@@ -118,6 +121,7 @@ except ImportError:
 try:
 	from doom_formats import (
 		parse_lmp, parse_heretic_lmp, parse_hexen_lmp, detect_doom_format,
+		create_lmp_file, create_heretic_lmp_file, create_hexen_lmp_file,
 	)
 	DOOM_AVAILABLE = True
 except ImportError:
@@ -130,13 +134,13 @@ FORMAT_CAPABILITIES = {
 	'smv': {'read': True, 'write': True, 'system': TASSystem.SNES},
 	'bk2': {'read': True, 'write': True, 'system': 'multi'},
 	'bkm': {'read': True, 'write': True, 'system': TASSystem.SNES},
-	'lsmv': {'read': True, 'write': False, 'system': TASSystem.SNES},
-	'mmo': {'read': False, 'write': True, 'system': TASSystem.SNES},
+	'lsmv': {'read': True, 'write': True, 'system': TASSystem.SNES},
+	'mmo': {'read': True, 'write': True, 'system': TASSystem.SNES},
 
 	# NES formats
 	'fm2': {'read': NES_AVAILABLE, 'write': NES_AVAILABLE, 'system': TASSystem.NES},
-	'fcm': {'read': NES_AVAILABLE, 'write': False, 'system': TASSystem.NES},
-	'fmv': {'read': NES_AVAILABLE, 'write': False, 'system': TASSystem.NES},
+	'fcm': {'read': NES_AVAILABLE, 'write': NES_AVAILABLE, 'system': TASSystem.NES},
+	'fmv': {'read': NES_AVAILABLE, 'write': NES_AVAILABLE, 'system': TASSystem.NES},
 
 	# Genesis formats
 	'gmv': {'read': GENESIS_AVAILABLE, 'write': GENESIS_AVAILABLE, 'system': TASSystem.GENESIS},
@@ -148,20 +152,20 @@ FORMAT_CAPABILITIES = {
 	'mmv': {'read': SMS_AVAILABLE, 'write': SMS_AVAILABLE, 'system': TASSystem.SMS},
 
 	# PlayStation formats
-	'pxm': {'read': PSX_AVAILABLE, 'write': False, 'system': TASSystem.PSX},
-	'pjm': {'read': PSX_AVAILABLE, 'write': False, 'system': TASSystem.PSX},
+	'pxm': {'read': PSX_AVAILABLE, 'write': PSX_AVAILABLE, 'system': TASSystem.PSX},
+	'pjm': {'read': PSX_AVAILABLE, 'write': PSX_AVAILABLE, 'system': TASSystem.PSX},
 
 	# Saturn formats
-	'ymv': {'read': MISC_AVAILABLE, 'write': False, 'system': TASSystem.SATURN},
+	'ymv': {'read': MISC_AVAILABLE, 'write': MISC_AVAILABLE, 'system': TASSystem.SATURN},
 
 	# PC Engine formats
-	'mc2': {'read': MISC_AVAILABLE, 'write': False, 'system': TASSystem.PCE},
+	'mc2': {'read': MISC_AVAILABLE, 'write': MISC_AVAILABLE, 'system': TASSystem.PCE},
 
 	# NDS formats
-	'dsm': {'read': MISC_AVAILABLE, 'write': False, 'system': TASSystem.NDS},
+	'dsm': {'read': MISC_AVAILABLE, 'write': MISC_AVAILABLE, 'system': TASSystem.NDS},
 
 	# Doom formats
-	'lmp': {'read': DOOM_AVAILABLE, 'write': False, 'system': TASSystem.DOS},
+	'lmp': {'read': DOOM_AVAILABLE, 'write': DOOM_AVAILABLE, 'system': TASSystem.DOS},
 }
 
 
@@ -243,6 +247,8 @@ def parse_file(filepath: Path) -> Optional[object]:
 			return parse_bk2(filepath)
 		elif fmt == 'lsmv':
 			return parse_lsmv(filepath)
+		elif fmt == 'mmo':
+			return parse_mmo(filepath)
 
 		# NES formats
 		elif fmt == 'fm2' and NES_AVAILABLE:
@@ -423,10 +429,16 @@ def convert_file_universal(
 			create_bkm_file(movie, output_path, rom_path)
 		elif output_format_lower == 'smv':
 			create_smv_file(movie, output_path)
+		elif output_format_lower == 'lsmv':
+			create_lsmv_file(movie, output_path, rom_path)
 
 		# NES output formats
 		elif output_format_lower == 'fm2' and NES_AVAILABLE:
 			create_fm2_file(movie, output_path)
+		elif output_format_lower == 'fcm' and NES_AVAILABLE:
+			create_fcm_file(movie, output_path)
+		elif output_format_lower == 'fmv' and NES_AVAILABLE:
+			create_fmv_file(movie, output_path)
 
 		# Genesis output formats
 		elif output_format_lower == 'gmv' and GENESIS_AVAILABLE:
@@ -439,6 +451,28 @@ def convert_file_universal(
 		# SMS output formats
 		elif output_format_lower == 'mmv' and SMS_AVAILABLE:
 			create_mmv_file(movie, output_path)
+
+		# PlayStation output formats
+		elif output_format_lower == 'pxm' and PSX_AVAILABLE:
+			create_pxm_file(movie, output_path)
+		elif output_format_lower == 'pjm' and PSX_AVAILABLE:
+			create_pjm_file(movie, output_path)
+
+		# Saturn output formats
+		elif output_format_lower == 'ymv' and MISC_AVAILABLE:
+			create_ymv_file(movie, output_path)
+
+		# PC Engine output formats
+		elif output_format_lower == 'mc2' and MISC_AVAILABLE:
+			create_mc2_file(movie, output_path)
+
+		# NDS output formats
+		elif output_format_lower == 'dsm' and MISC_AVAILABLE:
+			create_dsm_file(movie, output_path)
+
+		# Doom output formats
+		elif output_format_lower == 'lmp' and DOOM_AVAILABLE:
+			create_lmp_file(movie, output_path)
 
 		else:
 			print(f"  Error: Output format '{output_format}' not implemented")

@@ -369,6 +369,214 @@ def parse_dsm(filepath: Path) -> MovieInfo:
 
 
 # =============================================================================
+# Write Functions
+# =============================================================================
+
+def create_ymv_file(movie: MovieInfo, output_path: Path):
+	"""Create a Yabause .ymv movie file (Sega Saturn)."""
+	header = bytearray(192)
+
+	# Signature
+	header[0:4] = YMV_SIGNATURE
+
+	# Version
+	struct.pack_into('<I', header, 4, 1)
+
+	# Frame count
+	struct.pack_into('<I', header, 8, len(movie.frames))
+
+	# Rerecord count
+	struct.pack_into('<I', header, 12, movie.rerecord_count)
+
+	# Flags
+	flags = 0
+	if movie.start_from_savestate:
+		flags |= 0x01
+	if movie.controllers > 1:
+		flags |= 0x02
+	struct.pack_into('<I', header, 16, flags)
+
+	# CD info (64 bytes)
+	cd_info = movie.rom_name[:63].encode('ascii', errors='replace')
+	header[20:84] = cd_info.ljust(64, b'\x00')
+
+	# Author (64 bytes)
+	author = movie.author[:63].encode('utf-8', errors='replace')
+	header[84:148] = author.ljust(64, b'\x00')
+
+	# Build frame data (4 bytes per controller)
+	frame_data = bytearray()
+	for frame in movie.frames:
+		for ctrl in range(movie.controllers):
+			buttons = frame.controllers[ctrl] if ctrl < len(frame.controllers) else 0
+
+			# Convert to YMV format
+			word = 0
+			if buttons & SaturnButtons.UP:
+				word |= 0x0001
+			if buttons & SaturnButtons.DOWN:
+				word |= 0x0002
+			if buttons & SaturnButtons.LEFT:
+				word |= 0x0004
+			if buttons & SaturnButtons.RIGHT:
+				word |= 0x0008
+			if buttons & SaturnButtons.A:
+				word |= 0x0010
+			if buttons & SaturnButtons.B:
+				word |= 0x0020
+			if buttons & SaturnButtons.C:
+				word |= 0x0040
+			if buttons & SaturnButtons.X:
+				word |= 0x0080
+			if buttons & SaturnButtons.Y:
+				word |= 0x0100
+			if buttons & SaturnButtons.Z:
+				word |= 0x0200
+			if buttons & SaturnButtons.L:
+				word |= 0x0400
+			if buttons & SaturnButtons.R:
+				word |= 0x0800
+			if buttons & SaturnButtons.START:
+				word |= 0x1000
+
+			frame_data.extend(struct.pack('<I', word))
+
+	with open(output_path, 'wb') as f:
+		f.write(header)
+		f.write(frame_data)
+
+	print(f"Created YMV: {output_path}")
+	print(f"  Frames: {len(movie.frames)}")
+	print(f"  Controllers: {movie.controllers}")
+
+
+def create_mc2_file(movie: MovieInfo, output_path: Path):
+	"""Create a PCEjin/Mednafen .mc2 movie file (PC Engine)."""
+	header = bytearray(192)
+
+	# Signature
+	header[0:4] = MC2_SIGNATURE
+
+	# Version
+	struct.pack_into('<I', header, 4, 1)
+
+	# Frame count
+	struct.pack_into('<I', header, 8, len(movie.frames))
+
+	# Rerecord count
+	struct.pack_into('<I', header, 12, movie.rerecord_count)
+
+	# Flags
+	flags = 0
+	if movie.start_from_savestate:
+		flags |= 0x01
+	struct.pack_into('<I', header, 16, flags)
+
+	# Controllers active bitmask
+	ctrl_mask = (1 << movie.controllers) - 1
+	struct.pack_into('<I', header, 20, ctrl_mask)
+
+	# ROM CRC (if available)
+	try:
+		crc = int(movie.rom_checksum, 16) if movie.rom_checksum else 0
+	except ValueError:
+		crc = 0
+	struct.pack_into('<I', header, 24, crc)
+
+	# ROM name (64 bytes)
+	rom_name = movie.rom_name[:63].encode('ascii', errors='replace')
+	header[28:92] = rom_name.ljust(64, b'\x00')
+
+	# Author (64 bytes)
+	author = movie.author[:63].encode('utf-8', errors='replace')
+	header[92:156] = author.ljust(64, b'\x00')
+
+	# Build frame data (2 bytes per controller)
+	frame_data = bytearray()
+	for frame in movie.frames:
+		for ctrl in range(movie.controllers):
+			buttons = frame.controllers[ctrl] if ctrl < len(frame.controllers) else 0
+
+			# Convert to MC2 format
+			word = 0
+			if buttons & PceButtons.I:
+				word |= 0x0001
+			if buttons & PceButtons.II:
+				word |= 0x0002
+			if buttons & PceButtons.SELECT:
+				word |= 0x0004
+			if buttons & PceButtons.RUN:
+				word |= 0x0008
+			if buttons & PceButtons.UP:
+				word |= 0x0010
+			if buttons & PceButtons.DOWN:
+				word |= 0x0020
+			if buttons & PceButtons.LEFT:
+				word |= 0x0040
+			if buttons & PceButtons.RIGHT:
+				word |= 0x0080
+
+			frame_data.extend(struct.pack('<H', word))
+
+	with open(output_path, 'wb') as f:
+		f.write(header)
+		f.write(frame_data)
+
+	print(f"Created MC2: {output_path}")
+	print(f"  Frames: {len(movie.frames)}")
+	print(f"  Controllers: {movie.controllers}")
+
+
+def create_dsm_file(movie: MovieInfo, output_path: Path):
+	"""Create a DeSmuME .dsm movie file (Nintendo DS)."""
+	lines = []
+
+	# Header
+	lines.append("DESMUME MOVIE")
+	lines.append(f"version 1")
+	lines.append(f"emuVersion 0.9.11")
+	lines.append(f"rerecordCount {movie.rerecord_count}")
+	if movie.rom_name:
+		lines.append(f"romFilename {movie.rom_name}")
+	if movie.rom_checksum:
+		lines.append(f"romChecksum {movie.rom_checksum}")
+	if movie.author:
+		lines.append(f"comment author {movie.author}")
+
+	# Frame data
+	for frame in movie.frames:
+		buttons = frame.controllers[0] if frame.controllers else 0
+
+		# Build button string
+		btn_str = ""
+		btn_str += 'U' if buttons & NdsButtons.UP else '.'
+		btn_str += 'D' if buttons & NdsButtons.DOWN else '.'
+		btn_str += 'L' if buttons & NdsButtons.LEFT else '.'
+		btn_str += 'R' if buttons & NdsButtons.RIGHT else '.'
+		btn_str += 'S' if buttons & NdsButtons.START else '.'
+		btn_str += 'E' if buttons & NdsButtons.SELECT else '.'
+		btn_str += 'B' if buttons & NdsButtons.B else '.'
+		btn_str += 'A' if buttons & NdsButtons.A else '.'
+		btn_str += 'Y' if buttons & NdsButtons.Y else '.'
+		btn_str += 'X' if buttons & NdsButtons.X else '.'
+		btn_str += 'W' if buttons & NdsButtons.L else '.'
+		btn_str += 'Q' if buttons & NdsButtons.R else '.'
+
+		# Touch screen
+		touch_str = "0 0 0"
+		if hasattr(frame, 'touch') and frame.touch and frame.touch_pressed:
+			touch_str = f"{frame.touch[0]} {frame.touch[1]} 1"
+
+		lines.append(f"|0|{btn_str}|{touch_str}|")
+
+	with open(output_path, 'w', encoding='utf-8') as f:
+		f.write('\n'.join(lines))
+
+	print(f"Created DSM: {output_path}")
+	print(f"  Frames: {len(movie.frames)}")
+
+
+# =============================================================================
 # Button Conversion Functions
 # =============================================================================
 

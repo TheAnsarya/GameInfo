@@ -352,6 +352,159 @@ def psx_to_bk2_text(buttons: int, has_analog: bool = False, analog_l: tuple = (1
 	return result
 
 
+def buttons_to_psx_word(buttons: int) -> int:
+	"""Convert PsxButtons to raw 16-bit word format."""
+	word = 0
+	if buttons & PsxButtons.SELECT:
+		word |= 0x0001
+	if buttons & PsxButtons.START:
+		word |= 0x0008
+	if buttons & PsxButtons.UP:
+		word |= 0x0010
+	if buttons & PsxButtons.RIGHT:
+		word |= 0x0020
+	if buttons & PsxButtons.DOWN:
+		word |= 0x0040
+	if buttons & PsxButtons.LEFT:
+		word |= 0x0080
+	if buttons & PsxButtons.L2:
+		word |= 0x0100
+	if buttons & PsxButtons.R2:
+		word |= 0x0200
+	if buttons & PsxButtons.L1:
+		word |= 0x0400
+	if buttons & PsxButtons.R1:
+		word |= 0x0800
+	if buttons & PsxButtons.TRIANGLE:
+		word |= 0x1000
+	if buttons & PsxButtons.CIRCLE:
+		word |= 0x2000
+	if buttons & PsxButtons.CROSS:
+		word |= 0x4000
+	if buttons & PsxButtons.SQUARE:
+		word |= 0x8000
+	return word
+
+
+def create_pxm_file(movie: MovieInfo, output_path: Path):
+	"""Create a PCSX .pxm movie file."""
+	header = bytearray(128)
+
+	# Signature
+	header[0:4] = PXM_SIGNATURE
+
+	# Version
+	struct.pack_into('<I', header, 4, 2)
+
+	# Flags
+	flags = 0
+	if movie.start_from_savestate:
+		flags |= 0x01
+	has_analog = movie.controller_type == "analog"
+	if has_analog:
+		flags |= 0x02
+	if movie.controllers > 1:
+		flags |= 0x04
+	struct.pack_into('<I', header, 8, flags)
+
+	# Frame count
+	struct.pack_into('<I', header, 12, len(movie.frames))
+
+	# Rerecord count
+	struct.pack_into('<I', header, 16, movie.rerecord_count)
+
+	# Reserved
+	header[20:32] = b'\x00' * 12
+
+	# CD ID (32 bytes)
+	cd_id = movie.rom_name[:31].encode('ascii', errors='replace')
+	header[32:64] = cd_id.ljust(32, b'\x00')
+
+	# Author (32 bytes)
+	author = movie.author[:31].encode('utf-8', errors='replace')
+	header[64:96] = author.ljust(32, b'\x00')
+
+	# Build frame data
+	bytes_per_controller = 6 if has_analog else 2
+	frame_data = bytearray()
+
+	for frame in movie.frames:
+		for ctrl in range(movie.controllers):
+			buttons = frame.controllers[ctrl] if ctrl < len(frame.controllers) else 0
+			word = buttons_to_psx_word(buttons)
+			frame_data.extend(struct.pack('<H', word))
+
+			if has_analog:
+				lx, ly = frame.analog_l if hasattr(frame, 'analog_l') else (128, 128)
+				rx, ry = frame.analog_r if hasattr(frame, 'analog_r') else (128, 128)
+				frame_data.extend(bytes([lx, ly, rx, ry]))
+
+	with open(output_path, 'wb') as f:
+		f.write(header)
+		f.write(frame_data)
+
+	print(f"Created PXM: {output_path}")
+	print(f"  Frames: {len(movie.frames)}")
+	print(f"  Controllers: {movie.controllers}")
+
+
+def create_pjm_file(movie: MovieInfo, output_path: Path):
+	"""Create a PSXjin .pjm movie file."""
+	header = bytearray(256)
+
+	# Signature
+	header[0:4] = PJM_SIGNATURE
+
+	# Version
+	struct.pack_into('<I', header, 4, 2)
+
+	# Flags
+	flags = 0
+	if movie.start_from_savestate:
+		flags |= 0x01
+	struct.pack_into('<I', header, 8, flags)
+
+	# Controller flags
+	has_analog = movie.controller_type == "analog"
+	ctrl_flags = 2 if has_analog else 1  # Port 1 type
+	if movie.controllers > 1:
+		ctrl_flags |= (2 if has_analog else 1) << 2  # Port 2 type
+	struct.pack_into('<I', header, 12, ctrl_flags)
+
+	# Frame count
+	struct.pack_into('<I', header, 16, len(movie.frames))
+
+	# Rerecord count
+	struct.pack_into('<I', header, 20, movie.rerecord_count)
+
+	# CD info (64 bytes)
+	cd_info = movie.rom_name[:63].encode('ascii', errors='replace')
+	header[24:88] = cd_info.ljust(64, b'\x00')
+
+	# Build frame data
+	bytes_per_controller = 6 if has_analog else 2
+	frame_data = bytearray()
+
+	for frame in movie.frames:
+		for ctrl in range(movie.controllers):
+			buttons = frame.controllers[ctrl] if ctrl < len(frame.controllers) else 0
+			word = buttons_to_psx_word(buttons)
+			frame_data.extend(struct.pack('<H', word))
+
+			if has_analog:
+				lx, ly = frame.analog_l if hasattr(frame, 'analog_l') else (128, 128)
+				rx, ry = frame.analog_r if hasattr(frame, 'analog_r') else (128, 128)
+				frame_data.extend(bytes([lx, ly, rx, ry]))
+
+	with open(output_path, 'wb') as f:
+		f.write(header)
+		f.write(frame_data)
+
+	print(f"Created PJM: {output_path}")
+	print(f"  Frames: {len(movie.frames)}")
+	print(f"  Controllers: {movie.controllers}")
+
+
 def detect_psx_format(filepath: Path) -> Optional[str]:
 	"""Detect PlayStation movie format from file extension or signature."""
 	ext = filepath.suffix.lower()

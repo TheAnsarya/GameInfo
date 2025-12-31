@@ -356,6 +356,145 @@ def parse_fmv(filepath: Path) -> MovieInfo:
 	return movie
 
 
+def create_fcm_file(movie: MovieInfo, output_path: Path):
+	"""Create an FCEU .fcm movie file (legacy binary format).
+
+	Note: FCM uses delta encoding which is complex. This creates a simplified
+	version that may not be fully compatible with all FCM readers.
+	"""
+	# FCM header structure
+	header = bytearray(56)
+
+	# Signature
+	header[0:4] = b'FCM\x1a'
+
+	# Version (2)
+	struct.pack_into('<I', header, 4, 2)
+
+	# Flags (0)
+	header[8] = 0
+
+	# Frame count
+	struct.pack_into('<I', header, 12, len(movie.frames))
+
+	# Rerecord count
+	struct.pack_into('<I', header, 16, movie.rerecord_count)
+
+	# Build movie data with simple delta encoding
+	movie_data = bytearray()
+	prev_state = [0, 0]
+
+	for frame in movie.frames:
+		# Convert buttons to FCM format
+		ctrl_bytes = []
+		for i in range(2):
+			buttons = frame.controllers[i] if i < len(frame.controllers) else 0
+			byte = 0
+			if buttons & NesButtons.A:
+				byte |= 0x01
+			if buttons & NesButtons.B:
+				byte |= 0x02
+			if buttons & NesButtons.SELECT:
+				byte |= 0x04
+			if buttons & NesButtons.START:
+				byte |= 0x08
+			if buttons & NesButtons.UP:
+				byte |= 0x10
+			if buttons & NesButtons.DOWN:
+				byte |= 0x20
+			if buttons & NesButtons.LEFT:
+				byte |= 0x40
+			if buttons & NesButtons.RIGHT:
+				byte |= 0x80
+			ctrl_bytes.append(byte)
+
+		# Simple encoding: 1 frame advance + controller update if changed
+		if ctrl_bytes != prev_state:
+			# Frame with controller update
+			if ctrl_bytes[0] != prev_state[0]:
+				movie_data.append(0x81)  # 1 frame + update ctrl0
+				movie_data.append(ctrl_bytes[0])
+			if ctrl_bytes[1] != prev_state[1]:
+				movie_data.append(0xC1)  # 1 frame + update ctrl1
+				movie_data.append(ctrl_bytes[1])
+			prev_state = list(ctrl_bytes)
+		else:
+			movie_data.append(0x01)  # Just 1 frame advance
+
+	# Movie data size
+	struct.pack_into('<I', header, 20, len(movie_data))
+
+	# Savestate offset (0 = no savestate)
+	struct.pack_into('<I', header, 24, 0)
+
+	# Movie data offset
+	struct.pack_into('<I', header, 28, 56)
+
+	# MD5 placeholder
+	header[32:48] = bytes.fromhex(movie.rom_checksum.ljust(32, '0')[:32]) if movie.rom_checksum else b'\x00' * 16
+
+	# Emu version
+	struct.pack_into('<I', header, 48, 9828)
+
+	with open(output_path, 'wb') as f:
+		f.write(header)
+		f.write(movie_data)
+
+	print(f"Created FCM: {output_path}")
+	print(f"  Frames: {len(movie.frames)}")
+
+
+def create_fmv_file(movie: MovieInfo, output_path: Path):
+	"""Create a Famtasia .fmv movie file."""
+	# FMV header
+	header = bytearray(13)
+
+	# Signature
+	header[0:4] = b'FMV\x1a'
+
+	# Flags
+	flags = 0x01  # Controller 1 active
+	if movie.controllers > 1:
+		flags |= 0x02
+	header[4] = flags
+
+	# Reserved (8 bytes)
+	header[5:13] = b'\x00' * 8
+
+	# Build frame data
+	frame_data = bytearray()
+	for frame in movie.frames:
+		for ctrl in range(movie.controllers):
+			buttons = frame.controllers[ctrl] if ctrl < len(frame.controllers) else 0
+			# FMV bit order: ABSTUDLR
+			byte = 0
+			if buttons & NesButtons.A:
+				byte |= 0x80
+			if buttons & NesButtons.B:
+				byte |= 0x40
+			if buttons & NesButtons.SELECT:
+				byte |= 0x20
+			if buttons & NesButtons.START:
+				byte |= 0x10
+			if buttons & NesButtons.UP:
+				byte |= 0x08
+			if buttons & NesButtons.DOWN:
+				byte |= 0x04
+			if buttons & NesButtons.LEFT:
+				byte |= 0x02
+			if buttons & NesButtons.RIGHT:
+				byte |= 0x01
+			frame_data.append(byte)
+
+	with open(output_path, 'wb') as f:
+		f.write(header)
+		f.write(frame_data)
+
+	print(f"Created FMV: {output_path}")
+	print(f"  Frames: {len(movie.frames)}")
+	print(f"  Controllers: {movie.controllers}")
+
+
 # =============================================================================
 # Utility Functions
 # =============================================================================
