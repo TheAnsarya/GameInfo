@@ -49,15 +49,29 @@ This project aims to recreate Dragon Warrior IV using the enhanced Dragon Quest 
 - [ ] Bug fixing
 - [ ] Documentation
 
+## Documentation
+
+| Document | Description |
+|----------|-------------|
+| [Data Formats](docs/data-formats.md) | Format comparison between DW4 NES and DQ3r SNES |
+| [Technical Specs](docs/technical-specs.md) | Detailed technical specifications |
+| [Converter Tools](docs/converter-tools.md) | C# tool specifications |
+| [GitHub Issues](docs/github-issues.md) | Issue templates and structure |
+| [Roadmap](docs/roadmap.md) | Project timeline and milestones |
+| [Progress](docs/progress.md) | Current progress tracking |
+
 ## Repository Structure
 
 ```
 Projects/dw4-dq3r/
 ├── README.md           # This file
 ├── docs/
-│   ├── data-formats.md # Format comparison
-│   ├── mapping.md      # Field mapping tables
-│   └── progress.md     # Progress tracking
+│   ├── data-formats.md   # Format comparison
+│   ├── technical-specs.md # Technical specifications
+│   ├── converter-tools.md # Tool specifications
+│   ├── github-issues.md   # Issue templates
+│   ├── roadmap.md         # Project roadmap
+│   └── progress.md        # Progress tracking
 ├── tools/
 │   ├── converters/     # Data conversion tools
 │   └── analysis/       # Analysis scripts
@@ -145,20 +159,22 @@ DW4's wagon allows large party management:
 ## Issue Tracking
 
 All work items tracked in [GameInfo Issues](https://github.com/TheAnsarya/GameInfo/issues):
-- Epic: TBD (to be created)
+- Epic: TBD (see [GitHub Issues Plan](docs/github-issues.md))
 - Label: `project:dw4-dq3r`
 
 ## Timeline
 
-| Phase | Estimated Duration | Status |
-|-------|-------------------|--------|
-| Research | 2-3 months | 📋 Planning |
-| Tools | 1-2 months | Not started |
-| Engine Mods | 2-4 months | Not started |
-| Content | 3-6 months | Not started |
-| Polish | 1-2 months | Not started |
+See [Roadmap](docs/roadmap.md) for detailed timeline.
 
-**Total Estimated:** 9-17 months
+| Phase | Duration | Status |
+|-------|----------|--------|
+| Research & Documentation | 6 months | 📋 Planning |
+| Conversion Tools | 6 months | Not started |
+| Engine Modifications | 3 months | Not started |
+| Content Porting | 3 months | Not started |
+| Polish & Testing | 3 months | Not started |
+
+**Total Estimated:** 18-21 months
 
 ## Contributing
 
