@@ -111,74 +111,39 @@ dotnet test
 
 ## 🎮 TAS Replay Converter
 
-A comprehensive TAS (Tool-Assisted Speedrun) replay file converter supporting all major emulator formats.
+A comprehensive TAS (Tool-Assisted Speedrun) replay file converter supporting all major SNES emulator formats.
 
 ### Supported Formats
 
-| System | Format | Extension | Emulator | Status |
-|--------|--------|-----------|----------|--------|
-| **SNES** | SMV | `.smv` | Snes9x | ✅ Read/Write |
-| **SNES** | LSMV | `.lsmv` | lsnes/bsnes | ✅ Read/Write |
-| **SNES** | BK2 | `.bk2` | BizHawk | ✅ Read/Write |
-| **NES** | FM2 | `.fm2` | FCEUX | ✅ Read/Write |
-| **NES** | BK2 | `.bk2` | BizHawk | ✅ Read/Write |
-| **Game Boy** | VBM | `.vbm` | VBA-RR | ✅ Read/Write |
-| **Game Boy** | BK2 | `.bk2` | BizHawk | ✅ Read/Write |
-| **Genesis** | GMV | `.gmv` | Gens-rr | 🔜 Planned |
-| **N64** | M64 | `.m64` | Mupen64 | 🔜 Planned |
+| Format | Extension | Emulator | Read | Write |
+|--------|-----------|----------|------|-------|
+| SMV | `.smv` | Snes9x | ✅ | ✅ |
+| BKM | `.bkm` | BizHawk (legacy) | ✅ | ❌ |
+| BK2 | `.bk2` | BizHawk | ✅ | ✅ |
+| LSMV | `.lsmv` | lsnes | ✅ | ❌ |
+| MMO | `.mmo` | Mesen2 | ❌ | ✅ |
 
-### Library Architecture
+### Quick Start
 
-```
-GameInfoTools.TasConvert/
-├── Core/
-│   ├── ITasMovie.cs              # Universal movie interface
-│   ├── ITasFormat.cs             # Format handler interface
-│   ├── TasConverter.cs           # Main conversion engine
-│   └── TasFormatRegistry.cs      # Format registration
-└── Formats/
-    ├── Snes/SmvFormat.cs         # Snes9x SMV
-    ├── Snes/LsmvFormat.cs        # lsnes LSMV
-    ├── Nes/Fm2Format.cs          # FCEUX FM2
-    ├── GameBoy/VbmFormat.cs      # VBA-RR VBM
-    └── Bk2Format.cs              # BizHawk BK2 (multi-system)
-```
+```bash
+# Convert SMV to Mesen2 MMO format
+python tools/tas/convert_tas_to_mmo.py -i movie.smv -o mesen-mmo/
 
-### Usage Example
+# Convert to BizHawk BK2 format
+python tools/tas/convert_tas_to_mmo.py -i movie.smv -o bizhawk/ --format bk2
 
-```csharp
-using GameInfoTools.TasConvert.Core;
-
-// Load and convert a TAS file
-var converter = new TasConverter();
-var movie = await converter.ReadAsync("speedrun.smv");
-await converter.WriteAsync(movie, "speedrun.fm2");
-
-// Get movie info
-Console.WriteLine($"Frames: {movie.Frames.Count}");
-Console.WriteLine($"System: {movie.System}");
-Console.WriteLine($"Rerecords: {movie.Metadata.RerecordCount}");
+# Batch convert all SNES TAS files
+python tools/tas/convert_tas_to_mmo.py -d ~/tas-files/SNES/ -o mesen-mmo/ -r
 ```
 
 ### Documentation
 
-- [TAS Format Reference](docs/TasConverter/TAS-Format-Reference.md) - Format specifications
-- [Project Roadmap](~Plans/TAS%20Converter%20-%20Project%20Roadmap.md) - Development plan
-
-### Test Files
-
-54+ SNES TAS files from TASVideos.org for testing format parsers:
-
-- **SMV (Snes9x)**: 20 files including Chrono Trigger, Secret of Mana, Disney's Aladdin
-- **BK2 (BizHawk)**: 32 files including EarthBound, Donkey Kong Country, Super Metroid
-- **LSMV (lsnes)**: 2 files including EarthBound save glitch
-
-See [`~tas-files/tas-info.json`](~tas-files/tas-info.json) for full inventory.
+- **[Full Documentation](docs/tas-converter.md)** - CLI usage, format specs, Python API
+- [TAS Format Reference](docs/TasConverter/TAS-Format-Reference.md) - Detailed format specifications
 
 ### Related Issues
 
 - [Epic: TAS Converter](https://github.com/TheAnsarya/GameInfo/issues/155) - Main tracking issue
-- [TAS Test Files](https://github.com/TheAnsarya/GameInfo/issues/165) - Test file collection
 - [All TAS Issues](https://github.com/TheAnsarya/GameInfo/labels/tas-converter) - Full issue list
 
 ---
