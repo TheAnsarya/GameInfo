@@ -412,6 +412,98 @@ continue, and **go as long as you can**, really complete as many tasks as you ca
 
 continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
 
+&&&
+Plan the following project and make documentation and github issues/subissues and todo-lists before starting work:
+
+In the `GameInfo` project, add C# CLI tool to convert all known SNES TAS replay file formats between each other, so snes9x, bizhawk, mesen, and bsnes, and others. Do the NES TAS replay file formats too, and other systems when available.
+Maake a code library, cli tool, and Avalon ui tool, and add to the universal editor as a tool.
+
+Make comprehensive plans and github issues/subissues and todo-lists for this work effort and a create a roadmap markdown file and lots of documentation.
+
+Implement after planning
+&&&
+
+current process was hung, stop it and continue;
+
+stop!
+
+add time limits to the tests because we keep getting hung up in the testing process, figure out why and fix it and then continue;
+
+Make sure you update the chat/session logs, the github issues, the todo lists, the documentation the project's main readme links to this effort, etc.
+
+git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; continue
+
+in order to have a good variety of testing files for the TAS replay convertor, update the `GameInfo/~tas-files` folder by downloading a bunch of snes tas replay files from `https://tasvideos.org/Games/List?SearchTerms=&System=SNES&StartsWith=&Genre=&Group=` and paginate through the collection downloading the tas replays for games we are working on and a random selection of a few other games; add `/GameInfo/~tas-files/compressed/` and `/GameInfo/~tas-files/uncompressed/` to `.gitignore`; download and uncompress these replays, updating the `tas-info.json` documenting each download; add a github issue and todolist for this effort, and update it at the end, git commit; then continue work: Implement CLI tool for format conversions (#160), Add system-specific BK2 handlers, Create Avalonia UI (#161), Add real TAS file integration tests
+
+Download a bunch more TAS files, like 100 or so, updating the `tas-info.json` file (and sort the file by `game`, etc); if you download one TAS from a game, download all TAS replays from that game, and apply that retroactively to the current TAS files/games; Make sure you update the chat/session logs, the github issues, the todo lists, the documentation the project's main readme links to this effort, etc.; git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; continue work and tests;
+
+Add integration tests for more of the new files; Implement FM2 (NES) and VBM (Game Boy) format tests; Continue with CLI tool implementation (#160); Consider adding format conversion tests between SMV ↔ BK2 ↔ LSMV; continue, starting with the gui and universal editor integration;
+
+add a tool that reads the `tas-info.json` file and populates the `/GameInfo/~tas-files/compressed/` and `/GameInfo/~tas-files/uncompressed/` folders since they are not in the git repos (they're in gitignore) and add documentation and link and integrate that documentation into the rest of the documentation, including the docs for cloning and setting up the GameInfo repos/project locally; c# and python; look at all TAS replay tasks, and create manual testing documentation for the things that need to be tested by hand; Add batch conversion support to CLI (#160); add more format tests (DTM, BSV, MCM); continue;
+
+Organize the TAS replay files into subfolder by platform/system and game in the `/GameInfo/~tas-files/compressed/` and `/GameInfo/~tas-files/uncompressed/` folders, update the tas download tool to reflect this; Download a bunch more TAS files, for all platforms not just snes using the new folder structure organizing them correctly, like 1000 or so, updating the `tas-info.json` file (and sort the file by `system`, `game`, etc); if you download one TAS from a game, download all TAS replays from that game; we want DTM/BSV/MCM files for testing so find them; update scripts and tests that use this folder; add TAS file format conversions when they are available; git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; continue;
+
+----- try again
+
+we're in the middle of downloading and organizing a 1000 TAS replay files, continue that work
+
+stop!
+
+I didn't mean to interupt, resume downloading TAS replay files
+
+don't limit it to 100, get all of them
+
+make sure all games and TAS replay files are listed in the `tas-info.json` file even if their download batch was stopped mid-work; document everything; also update session/chat logs, github issues, todo-lists, git commits, issue comments, documentation, and `README.md`s;
+
+resume downloading TAS replay files
+
+-----------------------------------------------------------------------------------------------
+
+run the `secret of evermore` TAS replay files to generate a cdl file we can use for the disassembly
+
+add the `*.mmo` TAS replay file format that Mesen uses to the convertor and add conversions and convert all known applicable files to an `mesen-mmo` sub-folder, organized by game, so we can test files;
+
+convert the tas replay file `saturn-secretofevermore.smv` into the bk2 format and test it by converting back into it's original format; and move the TAS convertor documentation from the main readme.md file and instead have iut's own documentation file that is referenced in the main readme with the other tools. Also add CLI and GUI usage instructions
+
+where's my bk2 version of saturn-secretofevermore.smv? I wanted an actual file
+
+oh, I was wrong, I want a `*.bkm` file, make sure that format is supported in the TAS convertor and then convert `saturn-secretofevermore.smv` in folder, but test and document this format
+
+bkm is the old format, focus on the `bk2` format which seems incorrect, use `bk2` files from inside `/GameInfo/~tas-files/uncompressed/` to test your understandinf of the format and then verify and fix the conversions and update the documentation
+
+continue, and verify the entire format and the smv format using real files, and convert that secretrofevermore tas movie to bk2
+
+make sure formats of TAS movie replay files convert to all others, Make sure to support all these file types, even if there is not two types for a system so no conversions are possible, make sure you have a fully documented format and code files to load it, BizHawk supports these formats: [ BizHawk (*.bkm), Dega (*.mmv), DeSmuME (*.dsm), Doom (*.lmp), Famtasia (*.fmv), FCEU (*.fcm), FCEUX (*.fm2), GENS (*.gmv), Heretic (*.hereticlmp), Hexen (*.hexenlmp), LSNES (*.lsmv), PCEjin/Mednafen (*.mc2), PCSX (*.pxm), PSXjin (*.pjm), Snes9x (*.smv), Visual Boy Advance (*.vbm), Yabause (*.ymv) ]
+
+make every formart of TAS movies bith read and write, even if it's just converting from a format to the same format, and we should verify that it creates the same file or a compatible version and that we understand these files and documentation is complete, and git commit everything
+
+************
+
+git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go; GOAL: Rewrite the main `readme.md` documentation and organize and fix the rest of the docs, including tool descriptions and usage docs and everything, all linked together through documentation md links; make and update guthub issues and plans and todo-lists; and then work on Dragon Quest III (SNES) disassembly and editors and tools and documentation and prepare plans for the DW4 (NES) -> DQ3r (SNES) project in a separate folder, maybe `/GameInfo/Projects/dw4-dq3r/` or something;
+
+you've been doing this forever, fix this problem and continue
+
+git commit everything in logical batches; Create all the plans and github issues and todo-lists and session/chatlogs, git commits, updates to github issues, etc, and plans plans, for the rom-hack of `Dragon Quest III (SNES)` where we convert/import/transform the NES game `Dragon Warrior 4 (NES)` into `DQ3r (SNES)` so we can play DW4 on the SNES, as I said before "prepare plans for the DW4 (NES) -> DQ3r (SNES) project in a separate folder, maybe `/GameInfo/Projects/dw4-dq3r/` or something;";
+
+git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues, update session and chat logs, document everything ina a massive `*.md` web; continue, and **go as long as you can**, DW4 needs to be fully understood and then used in the dw4->dq3r project; really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
+
+continue
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+Converter Tool Development - C# tools for format conversion
+Data Extraction - Extract DW4 monster/item/spell data to JSON
+GitHub Issues - Create issues for implementation tasks
+Phase 2 Planning - Begin tool architecture
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+remove temp files, then git commit everything in logical groups; and then yes! do all of that, all four: Converter Tool Development - C# tools for format conversion, Data Extraction - Extract DW4 monster/item/spell data to JSON, GitHub Issues - Create issues for implementation tasks, Phase 2 Planning - Begin tool architecture; continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
+
+yes! do all of that, all four: Verify extraction addresses - Monster table offset needs to be fixed to $A2A2 Bank 6, Add unit tests - Validate conversion accuracy, GitHub issues - Create tracking issues for remaining work, Experience table extraction - Add level/EXP curve extraction; continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
+
+setup those work items in a todolist/github-issue; research and create docs/editors/wiki for the DQ3r monster battle animations; and the magic animations, and all other animations; find everything, extract all assets, integrate into pipelines, and then work these into the dw4->dq3r project;
+
+
+
 
 
 
