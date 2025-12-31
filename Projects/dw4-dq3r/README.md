@@ -59,6 +59,7 @@ This project aims to recreate Dragon Warrior IV using the enhanced Dragon Quest 
 | [Technical Specs](docs/technical-specs.md) | Detailed technical specifications |
 | [AI Behavior Comparison](docs/ai-behavior-comparison.md) | AI and tactics system comparison |
 | [Battle System Comparison](docs/battle-system-comparison.md) | Combat mechanics comparison |
+| [Chapter System Comparison](docs/chapter-system-comparison.md) | DW4's unique chapter structure |
 | [Converter Tools](docs/converter-tools.md) | C# tool specifications |
 | [GitHub Issues](docs/github-issues.md) | Issue templates and structure |
 | [Roadmap](docs/roadmap.md) | Project timeline and milestones |
