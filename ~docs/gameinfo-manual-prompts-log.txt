@@ -512,9 +512,17 @@ Fill in TBD values in DQ3rAnimationMappings.cs
 Log session findings in session-logs
 &&&
 
+make sure DQ3r and DW4 have dungeon maps and enemy maps and item chests, and events all documented as data structures and documentation and code and create the conversion pipeline parts for the project to go from dw4 to dq3r; make sure the world map is converted as well, and the town/dungeon entrance locations, find those and convert as well; continue working on the conversion as long as you can; update session/chat logs, github issues, todolists, git commits, etc.;
 
+continue
 
+git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; continue, and **go as long as you can**, really complete as many tasks as you can; focus on the Chapter 1 data and story and make it playable; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
 
+git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; continue, and **go as long as you can**, really complete as many tasks as you can; do the recommended tasks: Create map data converter for overworld/dungeon tiles, Implement sprite/graphics extraction, Build comprehensive event scripting system, Add sound/music data structures, Test full Chapter 1 playthrough in DQ3r; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
+
+Make an English font patch (lowercase letters and uppercase letters and numbers and punctuation, etc) for `DQ3r (SNES)` for the DW4->DQ3r project in `logsmall`; Make script font changes and then also update the script table file and dialog system changes, etc; If we're converting DW4 (NES, in english) into the engine for `DQ3r (SNES, japanese)` then we have to change the language and font; extract script from DW4, convert to script for that works in the DQ3r conversion; update chat logs, and session logs, git commit everything;
+
+create **todo-lists** and **github issues** and **plans** and decide what everything needs to be done to progress and eventually complete the ([`Dragon Warrior IV (NES)`/`DW4`] migration into [`Dragon Quest III Remix (SNES)`/`DQ3r`]) project, for the entire project, we're calling this project `Dragon Quest IV Remix (SNES)` or `Dragon Quest 4 Remix (SNES)` or `DQ4r`, make as many plans and documents, todolists, and issues/sub-issues/epics as are need to describe the whole effort;
 
 
 
@@ -551,8 +559,14 @@ git commit everything in logical batches, update github issues, update todo-list
 
 
 
+&&&
+Please create plans and documentation and github issues for this future work effort:
 
-
+Fantasy feature: Edit SPC music files in Ableton Live;
+SNES Music -> Extract SPC -> Import to Ableton Live -> Edit & Save in Ableton Live -> Export to SPC-> reimport into game;
+So like export BRR samples and maybe convert them to `wav`, and extract SPC file and create `midi` version, and convert to ableton live, and create documentation for this process and editing, and conversion back to BRR samples and a new midi and new spc and import into game or assets folder, and make it easy and well documented;
+and create a zip bundle file of all of the different stages of the music file;
+&&&
 
 
 
