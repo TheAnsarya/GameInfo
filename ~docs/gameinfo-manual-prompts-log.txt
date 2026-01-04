@@ -522,13 +522,56 @@ git commit everything in logical batches, update github issues, update todo-list
 
 Make an English font patch (lowercase letters and uppercase letters and numbers and punctuation, etc) for `DQ3r (SNES)` for the DW4->DQ3r project in `logsmall`; Make script font changes and then also update the script table file and dialog system changes, etc; If we're converting DW4 (NES, in english) into the engine for `DQ3r (SNES, japanese)` then we have to change the language and font; extract script from DW4, convert to script for that works in the DQ3r conversion; update chat logs, and session logs, git commit everything;
 
+yes do all of that: Extract DW4 dialog text from ROM, Create batch script export tool, Test font rendering in emulator, Add support for more control codes;
+
 create **todo-lists** and **github issues** and **plans** and decide what everything needs to be done to progress and eventually complete the ([`Dragon Warrior IV (NES)`/`DW4`] migration into [`Dragon Quest III Remix (SNES)`/`DQ3r`]) project, for the entire project, we're calling this project `Dragon Quest IV Remix (SNES)` or `Dragon Quest 4 Remix (SNES)` or `DQ4r`, make as many plans and documents, todolists, and issues/sub-issues/epics as are need to describe the whole effort;
 
+Create GitHub Issues - Use the issue body templates to create actual issues in GitHub, Create dq4r-info Repository - New repo for SNES ROM project, Create DQ4rLib Project - C# library for SNES asset generation, Complete DW4 Analysis - Finish ROM map documentation; make as many plans and documents, todolists, and issues/sub-issues/epics as are need to describe the whole effort;
 
+continue
 
+continue
 
+Implement save/load with chapter state persistence; Create chapter transition cutscene system; Create event scripting engine for chapter progression; continue;
 
+update and create github issues and todo-lists to handle all of this recent and near future work; make sure you are updating the chat logs and session logs and documentation; continue;
 
+continue with the high priority tasks;
+
+document and extract the casino assets and document the casino games from DW4 and import them into the DQ4r project and make them work with asm patches to the code base; make the casino work, transform and convert it, casino games!; create github issues and todo-lists; make a plan for the casino; and then implement it!; continue this work until it is done;
+
+For `DW4 (NES)` make sure you are referencing `C:\Users\me\source\repos\GameInfo\Games\NES\Dragon Warrior 4 (NES)\Debugging\Dragon Warrior IV (1992-10)(Enix)(US).cdl`
+
+You are correct, it was for `DW4 (NES)`; use the cdl to verify DW4's Chapter 2; continue;
+
+Add `C:\Users\me\source\repos\GameInfo\~reference-files\` to the GameInfo gitignore file; git commit everything; There is a utility that merges cdl files  in our project, so try to merge `C:\Users\me\source\repos\GameInfo\Games\NES\Dragon Warrior 4 (NES)\Debugging\Dragon Warrior IV (1992-10)(Enix)(US).cdl` and `C:\Users\me\source\repos\GameInfo\Games\NES\Dragon Warrior 4 (NES)\Debugging\Dragon Warrior IV (1992-10)(Enix)(US) (2).cdl` into a single cdl and use that as a reference; verify DW4 research and code using the new merged cdl file; continue;
+
+Yes, do that "what's next": Verify remaining chapters (3, 4, 5) data structures against CDL; Cross-reference monster/item data addresses with DW4Lib; Continue implementing missing chapter code; continue, with git commits, github issues, and doicumentation and chat/session logs, etc;
+
+Yes, do those "what's next" tasks; plan, implement, and continue;
+
+There is a utility that merges cdl files in our project, so merge all the cdl file in `C:\Users\me\source\repos\GameInfo\Games\NES\Dragon Warrior 4 (NES)\Debugging\cdls\` into a single cdl file `C:\Users\me\source\repos\GameInfo\Games\NES\Dragon Warrior 4 (NES)\Debugging\Dragon Warrior IV (1992-10)(Enix)(US).cdl`; git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; Update the asset extraction and disassembly code files for `DW4` based on all our new research and `cdl` file correcting or adding code routines and data access references and update label names based on our new understanding; then git commit again, and then concentrate on the casino games, their code/rules/assets/etc so we can use that info when converting the casino code into the `DQ4r (SNES) project we're working on as well; continue, doing "what's next": Event Script Research - Document Chapter event scripts in disassembly, Map Pointer Tables - Research Bank 0x17 map data pointers, asset-map.json, Updates - Add new Monster/Item field mappings, GitHub Issues - Update issues #78 and #16 with progress, DTE Text Encoding - Continue text table documentation, make todolists and issues for all work;
+
+git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;; Do the "what's next" tasks: Update Disassembly Labels - Based on new research, update label names in source files, Create GitHub Issue for Label Updates - Track the label update work, Continue Bank Analysis - Analyze remaining banks with low CDL coverage, Cross-reference DW4Lib with asset-map.json - Ensure all documented structures have implementations;
+
+`cowness` files are supposed to be reference only, so move those values into the actual code and don't bother updating them; continue;
+
+git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;; Do the "what's next" tasks: Experience Table Research - Need gameplay CDL to locate actual ROM addresses; Unknown Monster Bytes - Bytes 20-21 and 25-26 still undocumented; Spell Table Verification - Confirm Bank 0x05 at $8000; Audio Bank Documentation - Banks 0x18-0x1B structure details
+
+This is an NES game, there aren't 32bit values, only 3 bytes, 24-bit; the c# code uses 32 bits, but SNES and NES code uses usually a max of 8, 16, or 24 bits; except duting multiplication on the SNES, which is really two 16-bit values; OK, do this "what's next" task: "Gameplay CDL Sessions: Cast spells to verify Bank 0x0D spell location, Level up characters to locate experience tables", document steps to accompish this and add a manual testing github issue; make a step-by-step simple-follow guide to complete this work, althoug hautomate everything that can be automated; document!
+
+&&&
+Please create plans and documentation and github issues for this future work effort:
+
+Fantasy feature: Edit SPC music files in Ableton Live;
+SNES Music -> Extract SPC -> Import to Ableton Live -> Edit & Save in Ableton Live -> Export to SPC-> reimport into game;
+So like export BRR samples and maybe convert them to `wav`, and extract SPC file and create `midi` version, and convert to ableton live, and create documentation for this process and editing, and conversion back to BRR samples and a new midi and new spc and import into game or assets folder, and make it easy and well documented;
+and create a zip bundle file of all of the different stages of the music file;
+&&&
+
+continue all that work, and research ableton live projects and files, and do as much work as you can;
+
+git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
 
 
 
@@ -559,22 +602,22 @@ git commit everything in logical batches, update github issues, update todo-list
 
 
 
-&&&
-Please create plans and documentation and github issues for this future work effort:
-
-Fantasy feature: Edit SPC music files in Ableton Live;
-SNES Music -> Extract SPC -> Import to Ableton Live -> Edit & Save in Ableton Live -> Export to SPC-> reimport into game;
-So like export BRR samples and maybe convert them to `wav`, and extract SPC file and create `midi` version, and convert to ableton live, and create documentation for this process and editing, and conversion back to BRR samples and a new midi and new spc and import into game or assets folder, and make it easy and well documented;
-and create a zip bundle file of all of the different stages of the music file;
-&&&
 
 
 
 
 
 
-
-
+High Priority
+Extract DW4 event scripts (#26) - Locate script pointers in NES ROM, document format, create extraction tool
+Character data serialization (#30) - Full character stat structure for SaveData
+Battle integration (#24) - Connect EventEngine with battle system
+Medium Priority
+SNES assembly modules (#28) - Create 65816 ASM interpreters for runtime
+Extract cutscene data (#25) - Pull cutscene sequences from NES ROM
+Chapter testing (#29) - Automated chapter milestone verification
+Lower Priority
+Save file editor (#27) - Blazor WebAssembly GUI tool
 
 
 
