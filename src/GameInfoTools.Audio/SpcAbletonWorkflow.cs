@@ -164,7 +164,8 @@ public class SpcAbletonWorkflow {
 			FadeLengthMs = spc.Header.FadeLengthMs,
 			SampleCount = spc.SampleDirectory.Count,
 			DirectoryAddress = spc.Dsp.DirectoryAddress,
-			Voices = spc.GetVoiceInfo()
+			Voices = spc.GetVoiceInfo(),
+			Echo = spc.GetEchoConfig()
 		};
 	}
 
@@ -193,4 +194,5 @@ public record SpcInfo {
 	public int SampleCount { get; init; }
 	public ushort DirectoryAddress { get; init; }
 	public VoiceInfo[] Voices { get; init; } = [];
+	public EchoConfig? Echo { get; init; }
 }

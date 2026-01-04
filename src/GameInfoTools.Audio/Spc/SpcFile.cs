@@ -185,6 +185,11 @@ public class SpcFile {
 	}
 
 	/// <summary>
+	/// Get echo and FIR filter configuration.
+	/// </summary>
+	public EchoConfig GetEchoConfig() => EchoConfig.FromDspRegisters(Dsp);
+
+	/// <summary>
 	/// Invalidate cached sample directory (call after modifying RAM).
 	/// </summary>
 	public void InvalidateSampleDirectory() {

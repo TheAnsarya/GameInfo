@@ -52,13 +52,29 @@ public class Program {
 				Console.WriteLine($"Dir Addr: ${info.DirectoryAddress:X4}");
 				Console.WriteLine();
 				Console.WriteLine("Voice Configuration:");
-				Console.WriteLine("  Ch  Vol L  Vol R  Pitch    Rate   Src  Echo  Noise");
-				Console.WriteLine("  --  -----  -----  ------  ------  ---  ----  -----");
+				Console.WriteLine("  Ch  Vol L  Vol R  Pitch    Rate   Src  Echo  Noise  ADSR");
+				Console.WriteLine("  --  -----  -----  ------  ------  ---  ----  -----  ----------------");
 
 				foreach (var voice in info.Voices) {
 					var rateStr = voice.SampleRate > 0 ? $"{voice.SampleRate / 1000.0:F1}kHz" : "  -  ";
-					Console.WriteLine($"  {voice.Index + 1}   {voice.VolumeLeft,5}  {voice.VolumeRight,5}  ${voice.Pitch:X4}  {rateStr,6}  {voice.SourceNumber,3}  {(voice.EchoEnabled ? "Yes" : "No"),4}  {(voice.NoiseEnabled ? "Yes" : "No"),5}");
+					var adsrStr = voice.AdsrEnvelope.Enabled
+						? $"A:{voice.AdsrEnvelope.AttackRate} D:{voice.AdsrEnvelope.DecayRate} S:{voice.AdsrEnvelope.SustainLevel} R:{voice.AdsrEnvelope.ReleaseRate}"
+						: "GAIN mode";
+					Console.WriteLine($"  {voice.Index + 1}   {voice.VolumeLeft,5}  {voice.VolumeRight,5}  ${voice.Pitch:X4}  {rateStr,6}  {voice.SourceNumber,3}  {(voice.EchoEnabled ? "Yes" : "No"),4}  {(voice.NoiseEnabled ? "Yes" : "No"),5}  {adsrStr}");
 				}
+
+				// Display echo configuration
+				if (info.Echo != null) {
+					Console.WriteLine();
+					Console.WriteLine("Echo Configuration:");
+					Console.WriteLine($"  Delay:    {info.Echo.DelayMs}ms ({info.Echo.DelaySamples} samples)");
+					Console.WriteLine($"  Volume:   L={info.Echo.VolumeLeft}, R={info.Echo.VolumeRight}");
+					Console.WriteLine($"  Feedback: {info.Echo.Feedback} ({info.Echo.FeedbackDescription})");
+					Console.WriteLine($"  Filter:   {info.Echo.FilterType}");
+					Console.WriteLine($"  Buffer:   ${info.Echo.BufferAddress:X4} ({info.Echo.BufferSize} bytes)");
+					Console.WriteLine($"  FIR:      [{string.Join(", ", info.Echo.FirCoefficients)}]");
+				}
+
 				return 0;
 			} catch (Exception ex) {
 				Console.Error.WriteLine($"Error reading SPC file: {ex.Message}");
