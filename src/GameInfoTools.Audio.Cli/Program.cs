@@ -19,6 +19,7 @@ public class Program {
 		rootCommand.Subcommands.Add(CreateBundleCommand());
 		rootCommand.Subcommands.Add(CreateBuildCommand());
 		rootCommand.Subcommands.Add(CreateAnalyzeCommand());
+		rootCommand.Subcommands.Add(CreateValidateCommand());
 
 		return rootCommand.Parse(args).Invoke();
 	}
@@ -838,6 +839,89 @@ public class Program {
 		});
 
 		return command;
+	}
+
+	private static Command CreateValidateCommand() {
+		var spcArg = new Argument<FileInfo>("spc-file") {
+			Description = "Path to the SPC file to validate"
+		};
+
+		var strictOption = new Option<bool>("--strict") {
+			Description = "Treat warnings as errors",
+			DefaultValueFactory = _ => false
+		};
+
+		var jsonOption = new Option<bool>("--json") {
+			Description = "Output results as JSON",
+			DefaultValueFactory = _ => false
+		};
+
+		var command = new Command("validate", "Validate an SPC file for correctness") {
+			spcArg,
+			strictOption,
+			jsonOption
+		};
+
+		command.SetAction((ParseResult parseResult) => {
+			var spcFile = parseResult.GetValue(spcArg)!;
+			var strict = parseResult.GetValue(strictOption);
+			var json = parseResult.GetValue(jsonOption);
+
+			if (!spcFile.Exists) {
+				Console.Error.WriteLine($"Error: File not found: {spcFile.FullName}");
+				return 1;
+			}
+
+			try {
+				var spc = SpcFile.Load(spcFile.FullName);
+				var validator = new SpcValidator(spc);
+				var report = validator.Validate();
+
+				if (json) {
+					OutputValidationJson(report, spcFile.Name);
+				} else {
+					Console.WriteLine($"Validating: {spcFile.Name}");
+					Console.WriteLine(new string('=', 50));
+					Console.WriteLine(report.ToString());
+				}
+
+				bool failed = !report.IsValid || (strict && report.WarningCount > 0);
+				return failed ? 1 : 0;
+			} catch (Exception ex) {
+				Console.Error.WriteLine($"Error validating SPC: {ex.Message}");
+				return 1;
+			}
+		});
+
+		return command;
+	}
+
+	private static void OutputValidationJson(SpcValidationReport report, string filename) {
+		Console.WriteLine("{");
+		Console.WriteLine($"  \"file\": \"{filename}\",");
+		Console.WriteLine($"  \"valid\": {report.IsValid.ToString().ToLowerInvariant()},");
+		Console.WriteLine($"  \"errors\": {report.ErrorCount},");
+		Console.WriteLine($"  \"warnings\": {report.WarningCount},");
+		Console.WriteLine($"  \"info\": {report.InfoCount},");
+		Console.WriteLine("  \"issues\": [");
+
+		var issues = report.Issues.ToList();
+		for (int i = 0; i < issues.Count; i++) {
+			var issue = issues[i];
+			var comma = i < issues.Count - 1 ? "," : "";
+			Console.WriteLine($"    {{\"severity\": \"{issue.Severity}\", \"code\": \"{issue.Code}\", \"message\": \"{EscapeJson(issue.Message)}\"}}{comma}");
+		}
+
+		Console.WriteLine("  ]");
+		Console.WriteLine("}");
+	}
+
+	private static string EscapeJson(string s) {
+		return s.Replace("\\", "\\\\")
+			.Replace("\"", "\\\"")
+			.Replace("\n", "\\n")
+			.Replace("\r", "\\r")
+			.Replace("\t", "\\t");
 	}
 
 	private static string SanitizeFilename(string name) {
