@@ -85,6 +85,11 @@ public class DspRegisters {
 	public ushort GetAdsr(int voice) => (ushort)(Data[voice * 0x10 + 0x05] | (Data[voice * 0x10 + 0x06] << 8));
 
 	/// <summary>
+	/// Get parsed ADSR envelope for a voice.
+	/// </summary>
+	public AdsrEnvelope GetAdsrEnvelope(int voice) => AdsrEnvelope.FromRaw(GetAdsr(voice));
+
+	/// <summary>
 	/// Get GAIN value for a voice.
 	/// </summary>
 	public byte GetGain(int voice) => Data[voice * 0x10 + 0x07];

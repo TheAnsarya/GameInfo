@@ -173,6 +173,7 @@ public class SpcFile {
 				Pitch = Dsp.GetPitch(i),
 				SourceNumber = Dsp.GetSourceNumber(i),
 				Adsr = Dsp.GetAdsr(i),
+				AdsrEnvelope = Dsp.GetAdsrEnvelope(i),
 				Gain = Dsp.GetGain(i),
 				EchoEnabled = (Dsp.EchoEnable & (1 << i)) != 0,
 				NoiseEnabled = (Dsp.NoiseEnable & (1 << i)) != 0,
@@ -257,6 +258,7 @@ public record VoiceInfo {
 	public ushort Pitch { get; init; }
 	public byte SourceNumber { get; init; }
 	public ushort Adsr { get; init; }
+	public AdsrEnvelope AdsrEnvelope { get; init; } = AdsrEnvelope.FromRaw(0);
 	public byte Gain { get; init; }
 	public bool EchoEnabled { get; init; }
 	public bool NoiseEnabled { get; init; }
