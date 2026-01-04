@@ -98,23 +98,48 @@ Test files were missing `using Xunit;` directive. Added to all 4 test files:
 ## What's Next
 
 ### Remaining Epic #170 Issues
-- #174 - WAV to BRR Encoder (refinement - basic implementation exists)
-- #176 - Sample Rate Detection
-- #177 - MIDI Note Generation
-- #178 - Multi-SPC Batch Processing
-- #179 - SNES Tracker Format Export
-- #180 - Real-time SPC Preview
+- #174 - SPC Sequence to MIDI Converter (complex, requires sound driver knowledge)
+- #177 - MIDI to SPC Sequence Compiler
+- #178 - SPC File Builder
+- #179 - Music Mod Bundle System
+- ✅ #176 - WAV to BRR Encoder (improvements committed)
+- ✅ #180 - SPC-Ableton CLI Tools (batch processing added)
 
-### Immediate Tasks
-- Continue Phase 3 development
-- Improve WAV to BRR encoding quality
-- Add sample rate detection from pitch registers
+### Completed After Initial Session
 
-## Session Statistics
-- Duration: ~1 hour
-- Files created: 17
-- Lines of code: ~2,951
-- Tests written: 53
-- Tests passing: 53
-- Commits: 3
-- Issues updated: 5
+#### 7. BRR Encoder Quality Improvements (commit 628a121)
+- Added pre-emphasis filter (0.95 coefficient) for high-frequency boost
+- Added SNR quality measurement in dB
+- Added `EncodeWithQuality()` returning BRR data and SNR
+- Updated CLI with `--pre-emphasis/-p` option
+- 4 new tests for quality features
+
+#### 8. Sample Rate Calculation (commit 5d83bda)
+- Added `GetSampleRate()` to DspRegisters: rate = (pitch × 32000) / 4096
+- Added static `SampleRateToPitch()` helper
+- Added `SampleRate` property to VoiceInfo record
+- Updated CLI info command to display sample rate per voice
+- 5 new tests for sample rate calculations
+
+#### 9. ADSR Envelope Parsing (commit 2d0ed5f)
+- Created `AdsrEnvelope` record with full SNES envelope parsing
+- Parse attack (0-15), decay (0-7), sustain level (0-7), release (0-31)
+- Calculate attack and decay times in milliseconds
+- Calculate sustain level as percentage (12.5%-100%)
+- Added `AdsrEnvelope` property to VoiceInfo record
+- 14 new tests for ADSR envelope
+
+#### 10. Batch Processing Commands (commit 3656da5)
+- Added `batch extract` command for bulk sample extraction
+- Added `batch info` command for bulk metadata (with CSV export)
+- Recursive directory search support
+- Per-file subdirectory organization
+
+## Session Statistics (Updated)
+- Duration: ~2 hours
+- Files created: 19
+- Lines of code: ~3,500
+- Tests written: 76
+- Tests passing: 76
+- Commits: 7
+- Issues updated: 6+
