@@ -167,18 +167,24 @@ public class Program {
 			Description = "Loop start sample (-1 for no loop)",
 			DefaultValueFactory = _ => -1
 		};
+		var preEmphasis = new Option<bool>("--pre-emphasis", "-p") {
+			Description = "Apply pre-emphasis filter for better quality",
+			DefaultValueFactory = _ => true
+		};
 
 		var wavToBrrCommand = new Command("wav-to-brr", "Convert WAV file to BRR");
 		wavToBrrCommand.Arguments.Add(wavInput);
 		wavToBrrCommand.Arguments.Add(wavOutput);
 		wavToBrrCommand.Options.Add(wavSampleRate);
 		wavToBrrCommand.Options.Add(loopStart);
+		wavToBrrCommand.Options.Add(preEmphasis);
 
 		wavToBrrCommand.SetAction((ParseResult parseResult) => {
 			var input = parseResult.GetValue(wavInput)!;
 			var output = parseResult.GetValue(wavOutput)!;
 			var sampleRate = parseResult.GetValue(wavSampleRate);
 			var loop = parseResult.GetValue(loopStart);
+			var usePreEmphasis = parseResult.GetValue(preEmphasis);
 
 			if (!input.Exists) {
 				Console.Error.WriteLine($"Error: File not found: {input.FullName}");
@@ -186,13 +192,16 @@ public class Program {
 			}
 
 			try {
-				SpcAbletonWorkflow.WavToBrr(input.FullName, output.FullName, sampleRate, loop);
+				SpcAbletonWorkflow.WavToBrr(input.FullName, output.FullName, sampleRate, loop, usePreEmphasis);
 				Console.WriteLine($"Converted: {input.Name} -> {output.Name}");
 
 				var brrSize = new FileInfo(output.FullName).Length;
 				var wavSize = input.Length;
 				var ratio = (double)wavSize / brrSize;
 				Console.WriteLine($"Compression: {wavSize} -> {brrSize} bytes ({ratio:F2}:1)");
+				if (usePreEmphasis) {
+					Console.WriteLine("Pre-emphasis: enabled (for better quality)");
+				}
 				return 0;
 			} catch (Exception ex) {
 				Console.Error.WriteLine($"Error converting: {ex.Message}");

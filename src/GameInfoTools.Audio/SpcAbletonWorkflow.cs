@@ -112,7 +112,8 @@ public class SpcAbletonWorkflow {
 	/// <param name="outputPath">Path for the output BRR file.</param>
 	/// <param name="targetSampleRate">Target sample rate (default: 16000).</param>
 	/// <param name="loopStart">Loop start sample (-1 for no loop).</param>
-	public static void WavToBrr(string wavPath, string outputPath, int targetSampleRate = 16000, int loopStart = -1) {
+	/// <param name="usePreEmphasis">Apply pre-emphasis filter for better quality (default: true).</param>
+	public static void WavToBrr(string wavPath, string outputPath, int targetSampleRate = 16000, int loopStart = -1, bool usePreEmphasis = true) {
 		var wav = WavFile.Load(wavPath);
 
 		// Convert to mono if stereo
@@ -131,8 +132,8 @@ public class SpcAbletonWorkflow {
 			alignedLoopStart = (loopStart / BrrCodec.SamplesPerBlock) * BrrCodec.SamplesPerBlock;
 		}
 
-		// Encode to BRR
-		var brrData = BrrCodec.Encode(wav.Samples, alignedLoopStart);
+		// Encode to BRR with optional pre-emphasis
+		var brrData = BrrCodec.Encode(wav.Samples, alignedLoopStart, usePreEmphasis);
 		File.WriteAllBytes(outputPath, brrData);
 	}
 

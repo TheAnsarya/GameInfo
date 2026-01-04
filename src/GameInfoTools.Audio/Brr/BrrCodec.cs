@@ -115,16 +115,25 @@ public static class BrrCodec {
 	}
 
 	/// <summary>
-	/// Encode 16-bit PCM samples to BRR format.
+	/// Encode 16-bit PCM samples to BRR format with optional pre-emphasis.
 	/// </summary>
 	/// <param name="samples">16-bit signed PCM samples.</param>
 	/// <param name="loopStart">Loop start sample index (-1 for no loop).</param>
+	/// <param name="usePreEmphasis">Apply pre-emphasis filter to improve quality.</param>
 	/// <returns>BRR encoded data.</returns>
-	public static byte[] Encode(ReadOnlySpan<short> samples, int loopStart = -1) {
+	public static byte[] Encode(ReadOnlySpan<short> samples, int loopStart = -1, bool usePreEmphasis = false) {
+		// Optionally apply pre-emphasis to improve encoding quality
+		short[] processedSamples;
+		if (usePreEmphasis && samples.Length > 0) {
+			processedSamples = ApplyPreEmphasis(samples);
+		} else {
+			processedSamples = samples.ToArray();
+		}
+
 		// Pad samples to multiple of 16
-		int paddedLength = ((samples.Length + SamplesPerBlock - 1) / SamplesPerBlock) * SamplesPerBlock;
+		int paddedLength = ((processedSamples.Length + SamplesPerBlock - 1) / SamplesPerBlock) * SamplesPerBlock;
 		var paddedSamples = new short[paddedLength];
-		samples.CopyTo(paddedSamples);
+		processedSamples.CopyTo(paddedSamples.AsSpan());
 
 		int blockCount = paddedLength / SamplesPerBlock;
 		var brrData = new byte[blockCount * BlockSize];
@@ -265,6 +274,58 @@ public static class BrrCodec {
 		old1 = decoded;
 
 		return nybble & 0x0f;
+	}
+
+	/// <summary>
+	/// Apply pre-emphasis filter to improve encoding quality.
+	/// Pre-emphasis boosts high frequencies which are often lost during compression.
+	/// </summary>
+	private static short[] ApplyPreEmphasis(ReadOnlySpan<short> samples, double coefficient = 0.95) {
+		var result = new short[samples.Length];
+		if (samples.Length == 0) return result;
+
+		result[0] = samples[0];
+		for (int i = 1; i < samples.Length; i++) {
+			double emphasized = samples[i] - coefficient * samples[i - 1];
+			result[i] = (short)Math.Clamp((int)emphasized, short.MinValue, short.MaxValue);
+		}
+		return result;
+	}
+
+	/// <summary>
+	/// Calculate Signal-to-Noise Ratio (SNR) in decibels for encoded BRR.
+	/// </summary>
+	/// <param name="original">Original PCM samples.</param>
+	/// <param name="decoded">Decoded samples from BRR.</param>
+	/// <returns>SNR in dB. Higher is better.</returns>
+	public static double CalculateSnr(ReadOnlySpan<short> original, ReadOnlySpan<short> decoded) {
+		if (original.Length == 0 || decoded.Length == 0) return 0;
+
+		int length = Math.Min(original.Length, decoded.Length);
+		double signalPower = 0;
+		double noisePower = 0;
+
+		for (int i = 0; i < length; i++) {
+			signalPower += (double)original[i] * original[i];
+			double error = original[i] - decoded[i];
+			noisePower += error * error;
+		}
+
+		if (noisePower < 0.001) return 100; // Essentially perfect
+		return 10 * Math.Log10(signalPower / noisePower);
+	}
+
+	/// <summary>
+	/// Encode with quality measurement. Returns BRR data and SNR in dB.
+	/// </summary>
+	public static (byte[] BrrData, double SnrDb) EncodeWithQuality(ReadOnlySpan<short> samples, int loopStart = -1, bool usePreEmphasis = true) {
+		var brrData = Encode(samples, loopStart, usePreEmphasis);
+		var decoded = Decode(brrData);
+
+		int compareLength = Math.Min(samples.Length, decoded.Length);
+		double snr = CalculateSnr(samples[..compareLength], decoded.AsSpan(0, compareLength));
+
+		return (brrData, snr);
 	}
 
 	/// <summary>

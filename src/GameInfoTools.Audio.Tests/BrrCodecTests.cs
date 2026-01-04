@@ -188,4 +188,50 @@ public class BrrCodecTests {
 
 		Assert.False(BrrCodec.IsLoopBlock(header));
 	}
+
+	[Fact]
+	public void EncodeWithQuality_ReturnsBrrDataAndSnr() {
+		// Create a simple sine wave
+		var samples = new short[256];
+		for (int i = 0; i < samples.Length; i++) {
+			samples[i] = (short)(Math.Sin(2 * Math.PI * i / 32) * 16000);
+		}
+
+		var (brrData, snrDb) = BrrCodec.EncodeWithQuality(samples);
+
+		Assert.NotNull(brrData);
+		Assert.True(brrData.Length > 0);
+		Assert.True(snrDb > 0, $"SNR should be positive, got {snrDb}");
+	}
+
+	[Fact]
+	public void CalculateSnr_IdenticalSamples_ReturnsHighValue() {
+		var samples = new short[] { 1000, 2000, 3000, 4000, 5000 };
+
+		double snr = BrrCodec.CalculateSnr(samples, samples);
+
+		Assert.True(snr >= 90, $"SNR for identical samples should be very high, got {snr}");
+	}
+
+	[Fact]
+	public void CalculateSnr_EmptySamples_ReturnsZero() {
+		double snr = BrrCodec.CalculateSnr([], []);
+
+		Assert.Equal(0, snr);
+	}
+
+	[Fact]
+	public void Encode_WithPreEmphasis_EncodesSuccessfully() {
+		var samples = new short[64];
+		for (int i = 0; i < samples.Length; i++) {
+			samples[i] = (short)(i * 100);
+		}
+
+		var brrWithPreEmphasis = BrrCodec.Encode(samples, -1, usePreEmphasis: true);
+		var brrWithoutPreEmphasis = BrrCodec.Encode(samples, -1, usePreEmphasis: false);
+
+		// Both should produce valid BRR data of the same length
+		Assert.Equal(brrWithPreEmphasis.Length, brrWithoutPreEmphasis.Length);
+		Assert.True(brrWithPreEmphasis.Length > 0);
+	}
 }
