@@ -22,6 +22,7 @@ public class Program {
 		rootCommand.Subcommands.Add(CreateValidateCommand());
 		rootCommand.Subcommands.Add(CreateRenderCommand());
 		rootCommand.Subcommands.Add(CreateMidiCommand());
+		rootCommand.Subcommands.Add(CreateImportMidiCommand());
 
 		return rootCommand.Parse(args).Invoke();
 	}
@@ -1173,6 +1174,131 @@ public class Program {
 				Console.WriteLine();
 				Console.WriteLine($"MIDI exported: {outputPath}");
 				Console.WriteLine($"Tracks: {midi.Tracks.Count}, Ticks/beat: {midi.TicksPerBeat}");
+
+				return 0;
+			} catch (Exception ex) {
+				Console.Error.WriteLine($"Error: {ex.Message}");
+				return 1;
+			}
+		});
+
+		return command;
+	}
+
+	private static Command CreateImportMidiCommand() {
+		var midiArg = new Argument<FileInfo>("midi-file") {
+			Description = "Path to the MIDI file"
+		};
+
+		var outputOption = new Option<FileInfo?>("--output", "-o") {
+			Description = "Output file path for N-SPC sequence data"
+		};
+
+		var baseAddressOption = new Option<string>("--base-address") {
+			Description = "Base address for sequence data in SPC RAM (hex, default: 1000)",
+			DefaultValueFactory = _ => "1000"
+		};
+
+		var analyzeOption = new Option<bool>("--analyze") {
+			Description = "Show MIDI analysis without compiling",
+			DefaultValueFactory = _ => false
+		};
+
+		var command = new Command("import-midi", "Compile MIDI file to N-SPC sequence format") {
+			midiArg,
+			outputOption,
+			baseAddressOption,
+			analyzeOption
+		};
+
+		command.SetAction((ParseResult parseResult) => {
+			var midiFile = parseResult.GetValue(midiArg)!;
+			var output = parseResult.GetValue(outputOption);
+			var baseAddressStr = parseResult.GetValue(baseAddressOption)!;
+			var analyze = parseResult.GetValue(analyzeOption);
+
+			if (!midiFile.Exists) {
+				Console.Error.WriteLine($"Error: File not found: {midiFile.FullName}");
+				return 1;
+			}
+
+			if (!int.TryParse(baseAddressStr, System.Globalization.NumberStyles.HexNumber, null, out int baseAddress)) {
+				Console.Error.WriteLine($"Error: Invalid hex address: {baseAddressStr}");
+				return 1;
+			}
+
+			try {
+				var reader = new MidiReader();
+				var midi = reader.Load(midiFile.FullName);
+
+				Console.WriteLine($"MIDI File: {midiFile.Name}");
+				Console.WriteLine(new string('=', 50));
+				Console.WriteLine($"Tracks:        {midi.Tracks.Count}");
+				Console.WriteLine($"Ticks/Beat:    {midi.TicksPerBeat}");
+
+				// Count events per track
+				int totalEvents = 0;
+				int noteCount = 0;
+
+				foreach (var track in midi.Tracks) {
+					Console.WriteLine($"  Track {track.ChannelNumber}: {track.Events.Count} events");
+					totalEvents += track.Events.Count;
+					noteCount += track.Events.Count(e => e.Type == MidiEventType.NoteOn && e.Velocity > 0);
+				}
+
+				Console.WriteLine();
+				Console.WriteLine($"Total Events:  {totalEvents}");
+				Console.WriteLine($"Note Events:   {noteCount}");
+
+				if (analyze) {
+					// Show detailed analysis
+					Console.WriteLine();
+					Console.WriteLine("Event Types:");
+
+					var eventTypes = midi.Tracks
+						.SelectMany(t => t.Events)
+						.GroupBy(e => e.Type)
+						.OrderByDescending(g => g.Count());
+
+					foreach (var group in eventTypes) {
+						Console.WriteLine($"  {group.Key}: {group.Count()}");
+					}
+
+					return 0;
+				}
+
+				// Compile to N-SPC
+				var options = new CompilerOptions {
+					SequenceBaseAddress = baseAddress
+				};
+
+				var compiler = new MidiToNSpcCompiler(options);
+				var nspcData = compiler.CompileToBytes(midi);
+
+				Console.WriteLine();
+				Console.WriteLine($"Compiled N-SPC data: {nspcData.Length} bytes");
+				Console.WriteLine($"Base address: ${baseAddress:X4}");
+
+				// Determine output path
+				var outputPath = output?.FullName ??
+					Path.Combine(
+						Path.GetDirectoryName(midiFile.FullName) ?? ".",
+						Path.GetFileNameWithoutExtension(midiFile.Name) + ".nspc"
+					);
+
+				File.WriteAllBytes(outputPath, nspcData);
+
+				Console.WriteLine($"N-SPC data saved: {outputPath}");
+
+				// Show first few bytes
+				Console.WriteLine();
+				Console.WriteLine("Track pointers:");
+				for (int i = 0; i < 8; i++) {
+					int ptr = nspcData[i * 2] | (nspcData[i * 2 + 1] << 8);
+					if (ptr != 0) {
+						Console.WriteLine($"  Channel {i}: ${ptr:X4}");
+					}
+				}
 
 				return 0;
 			} catch (Exception ex) {
