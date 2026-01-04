@@ -172,3 +172,121 @@ public class SpcRendererTests {
 		return spc;
 	}
 }
+
+/// <summary>
+/// Tests for echo simulation in the SPC renderer.
+/// </summary>
+public class SpcRendererEchoTests {
+	[Fact]
+	public void GetEchoInfo_ReturnsValidConfiguration() {
+		var spc = CreateSpcWithEcho();
+		var renderer = new SpcRenderer(spc);
+
+		var echoInfo = renderer.GetEchoInfo();
+
+		Assert.True(echoInfo.DelayMs >= 0);
+		Assert.Equal(8, echoInfo.FirCoefficients.Length);
+	}
+
+	[Fact]
+	public void EchoEnabled_DefaultTrue() {
+		var spc = CreateSpcWithEcho();
+		var renderer = new SpcRenderer(spc);
+
+		Assert.True(renderer.EchoEnabled);
+	}
+
+	[Fact]
+	public void EchoEnabled_CanBeDisabled() {
+		var spc = CreateSpcWithEcho();
+		var renderer = new SpcRenderer(spc);
+
+		renderer.EchoEnabled = false;
+
+		Assert.False(renderer.EchoEnabled);
+	}
+
+	[Fact]
+	public void RenderStatic_WithEcho_ProducesOutput() {
+		var spc = CreateSpcWithEcho();
+		var renderer = new SpcRenderer(spc);
+
+		var output = renderer.RenderStatic(0.1);
+
+		Assert.NotEmpty(output);
+		Assert.True(output.Length > 0);
+	}
+
+	[Fact]
+	public void RenderStatic_WithEchoDisabled_ProducesOutput() {
+		var spc = CreateSpcWithEcho();
+		var renderer = new SpcRenderer(spc);
+		renderer.EchoEnabled = false;
+
+		var output = renderer.RenderStatic(0.1);
+
+		Assert.NotEmpty(output);
+	}
+
+	[Fact]
+	public void GetEchoInfo_ReflectsDspSettings() {
+		var spc = CreateSpcWithEcho();
+		// Set specific echo configuration
+		spc.Dsp.Data[0x7d] = 0x04; // EDL = 4 (64ms delay)
+		spc.Dsp.Data[0x2c] = 64;   // Echo vol L
+		spc.Dsp.Data[0x3c] = 64;   // Echo vol R
+		spc.Dsp.Data[0x0d] = 32;   // Feedback
+		spc.Dsp.Data[0x4d] = 0x01; // Voice 0 echo enabled
+
+		var renderer = new SpcRenderer(spc);
+		var echoInfo = renderer.GetEchoInfo();
+
+		Assert.Equal(64, echoInfo.DelayMs); // 4 * 16ms
+		Assert.Equal(64, echoInfo.EchoVolumeLeft);
+		Assert.Equal(64, echoInfo.EchoVolumeRight);
+		Assert.Equal(32, echoInfo.Feedback);
+		Assert.Equal(0x01, echoInfo.EnabledVoices);
+	}
+
+	[Fact]
+	public void GetEchoInfo_BufferSizeScalesWithSampleRate() {
+		var spc = CreateSpcWithEcho();
+		spc.Dsp.Data[0x7d] = 0x02; // 32ms delay
+
+		var renderer32k = new SpcRenderer(spc, 32000);
+		var renderer44k = new SpcRenderer(spc, 44100);
+
+		var info32k = renderer32k.GetEchoInfo();
+		var info44k = renderer44k.GetEchoInfo();
+
+		// Higher sample rate should have larger buffer
+		Assert.True(info44k.BufferSizeAtRenderRate > info32k.BufferSizeAtRenderRate);
+	}
+
+	private static SpcFile CreateSpcWithEcho() {
+		var spc = new SpcFile();
+		spc.Header.HasId666 = true;
+		spc.Dsp.Data[0x5d] = 0x02; // Directory at $0200
+		spc.Dsp.Data[0x0c] = 127;  // Main volume L
+		spc.Dsp.Data[0x1c] = 127;  // Main volume R
+
+		// Echo configuration
+		spc.Dsp.Data[0x7d] = 0x02; // Echo delay (32ms)
+		spc.Dsp.Data[0x2c] = 40;   // Echo volume L
+		spc.Dsp.Data[0x3c] = 40;   // Echo volume R
+		spc.Dsp.Data[0x0d] = 60;   // Echo feedback
+		spc.Dsp.Data[0x4d] = 0xFF; // All voices echo enabled
+
+		// Default FIR coefficients (typical low-pass)
+		spc.Dsp.Data[0x0f] = 127;  // FIR 0
+		spc.Dsp.Data[0x1f] = 0;    // FIR 1
+		spc.Dsp.Data[0x2f] = 0;    // FIR 2
+		spc.Dsp.Data[0x3f] = 0;    // FIR 3
+		spc.Dsp.Data[0x4f] = 0;    // FIR 4
+		spc.Dsp.Data[0x5f] = 0;    // FIR 5
+		spc.Dsp.Data[0x6f] = 0;    // FIR 6
+		spc.Dsp.Data[0x7f] = 0;    // FIR 7
+
+		return spc;
+	}
+}

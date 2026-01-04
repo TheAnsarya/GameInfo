@@ -9,10 +9,24 @@ public class SpcRenderer {
 	private readonly int _sampleRate;
 	private readonly VoiceState[] _voices;
 
+	// Echo state
+	private short[] _echoBufferL = [];
+	private short[] _echoBufferR = [];
+	private int _echoPosition;
+	private bool _echoEnabled = true;
+
 	/// <summary>
 	/// Sample rate for rendered output (default 32000 Hz).
 	/// </summary>
 	public int SampleRate => _sampleRate;
+
+	/// <summary>
+	/// Enable or disable echo simulation.
+	/// </summary>
+	public bool EchoEnabled {
+		get => _echoEnabled;
+		set => _echoEnabled = value;
+	}
 
 	/// <summary>
 	/// Creates a renderer for the given SPC file.
@@ -24,6 +38,7 @@ public class SpcRenderer {
 		for (int i = 0; i < 8; i++) {
 			_voices[i] = new VoiceState(i);
 		}
+		InitializeEcho();
 	}
 
 	/// <summary>
@@ -42,9 +57,17 @@ public class SpcRenderer {
 		sbyte mainVolL = (sbyte)_spc.Dsp.Data[0x0c];
 		sbyte mainVolR = (sbyte)_spc.Dsp.Data[0x1c];
 
+		// Echo configuration
+		sbyte echoVolL = (sbyte)_spc.Dsp.Data[0x2c];
+		sbyte echoVolR = (sbyte)_spc.Dsp.Data[0x3c];
+		sbyte echoFeedback = (sbyte)_spc.Dsp.Data[0x0d];
+		byte echoEnable = _spc.Dsp.Data[0x4d];
+
 		for (int sample = 0; sample < totalSamples; sample++) {
 			int mixL = 0;
 			int mixR = 0;
+			int echoInputL = 0;
+			int echoInputR = 0;
 
 			for (int v = 0; v < 8; v++) {
 				if (!_voices[v].Active) continue;
@@ -55,8 +78,26 @@ public class SpcRenderer {
 				sbyte volL = (sbyte)_spc.Dsp.Data[v * 0x10];
 				sbyte volR = (sbyte)_spc.Dsp.Data[v * 0x10 + 1];
 
-				mixL += (voiceSample * volL) >> 7;
-				mixR += (voiceSample * volR) >> 7;
+				int voiceL = (voiceSample * volL) >> 7;
+				int voiceR = (voiceSample * volR) >> 7;
+
+				mixL += voiceL;
+				mixR += voiceR;
+
+				// Add to echo input if voice has echo enabled
+				if ((echoEnable & (1 << v)) != 0) {
+					echoInputL += voiceL;
+					echoInputR += voiceR;
+				}
+			}
+
+			// Process echo
+			if (_echoEnabled && _echoBufferL.Length > 0) {
+				var (echoOutL, echoOutR) = ProcessEcho(echoInputL, echoInputR, echoFeedback);
+
+				// Mix echo output with main
+				mixL += (echoOutL * echoVolL) >> 7;
+				mixR += (echoOutR * echoVolR) >> 7;
 			}
 
 			// Apply main volume
@@ -291,6 +332,115 @@ public class SpcRenderer {
 		return (short)value;
 	}
 
+	/// <summary>
+	/// Initialize echo buffer based on DSP settings.
+	/// </summary>
+	private void InitializeEcho() {
+		// Echo delay is in units of 16ms at 32kHz (512 samples)
+		byte edl = _spc.Dsp.Data[0x7d];
+		int delaySamples = (edl & 0x0f) * 512;
+
+		// Scale for our sample rate
+		int bufferSize = (int)(delaySamples * (_sampleRate / 32000.0));
+		if (bufferSize <= 0) bufferSize = 512; // Minimum buffer
+
+		_echoBufferL = new short[bufferSize];
+		_echoBufferR = new short[bufferSize];
+		_echoPosition = 0;
+	}
+
+	/// <summary>
+	/// Process echo with 8-tap FIR filter.
+	/// </summary>
+	private (int left, int right) ProcessEcho(int inputL, int inputR, sbyte feedback) {
+		if (_echoBufferL.Length == 0) return (0, 0);
+
+		// Read from echo buffer (delayed output)
+		int delayedL = _echoBufferL[_echoPosition];
+		int delayedR = _echoBufferR[_echoPosition];
+
+		// Apply 8-tap FIR filter
+		int filteredL = ApplyFirFilter(delayedL);
+		int filteredR = ApplyFirFilter(delayedR);
+
+		// Calculate new echo input (input + feedback * filtered output)
+		int newEchoL = inputL + ((filteredL * feedback) >> 7);
+		int newEchoR = inputR + ((filteredR * feedback) >> 7);
+
+		// Write to echo buffer
+		_echoBufferL[_echoPosition] = Clamp16(newEchoL);
+		_echoBufferR[_echoPosition] = Clamp16(newEchoR);
+
+		// Advance buffer position
+		_echoPosition = (_echoPosition + 1) % _echoBufferL.Length;
+
+		return (filteredL, filteredR);
+	}
+
+	/// <summary>
+	/// Apply the 8-tap FIR filter to echo output.
+	/// </summary>
+	private int ApplyFirFilter(int input) {
+		// FIR coefficients are in DSP registers 0x0F, 0x1F, 0x2F, 0x3F, 0x4F, 0x5F, 0x6F, 0x7F
+		// For a simplified implementation, we use the actual coefficients
+		sbyte[] fir = [
+			(sbyte)_spc.Dsp.Data[0x0f],
+			(sbyte)_spc.Dsp.Data[0x1f],
+			(sbyte)_spc.Dsp.Data[0x2f],
+			(sbyte)_spc.Dsp.Data[0x3f],
+			(sbyte)_spc.Dsp.Data[0x4f],
+			(sbyte)_spc.Dsp.Data[0x5f],
+			(sbyte)_spc.Dsp.Data[0x6f],
+			(sbyte)_spc.Dsp.Data[0x7f]
+		];
+
+		// The actual S-DSP uses a ring buffer of 8 samples for FIR
+		// For simplification, we just apply the first coefficient
+		// (a full implementation would track 8 previous echo samples)
+		int coeffSum = 0;
+		for (int i = 0; i < 8; i++) {
+			coeffSum += fir[i];
+		}
+
+		// Apply weighted average based on coefficient sum
+		if (coeffSum == 0) coeffSum = 127; // Prevent division by zero
+		int result = (input * coeffSum) >> 7;
+
+		return result;
+	}
+
+	/// <summary>
+	/// Gets the echo configuration for analysis.
+	/// </summary>
+	public EchoRenderInfo GetEchoInfo() {
+		byte edl = _spc.Dsp.Data[0x7d];
+		byte echoEnable = _spc.Dsp.Data[0x4d];
+		sbyte echoVolL = (sbyte)_spc.Dsp.Data[0x2c];
+		sbyte echoVolR = (sbyte)_spc.Dsp.Data[0x3c];
+		sbyte feedback = (sbyte)_spc.Dsp.Data[0x0d];
+
+		sbyte[] fir = [
+			(sbyte)_spc.Dsp.Data[0x0f],
+			(sbyte)_spc.Dsp.Data[0x1f],
+			(sbyte)_spc.Dsp.Data[0x2f],
+			(sbyte)_spc.Dsp.Data[0x3f],
+			(sbyte)_spc.Dsp.Data[0x4f],
+			(sbyte)_spc.Dsp.Data[0x5f],
+			(sbyte)_spc.Dsp.Data[0x6f],
+			(sbyte)_spc.Dsp.Data[0x7f]
+		];
+
+		return new EchoRenderInfo {
+			DelayMs = (edl & 0x0f) * 16,
+			EchoVolumeLeft = echoVolL,
+			EchoVolumeRight = echoVolR,
+			Feedback = feedback,
+			EnabledVoices = echoEnable,
+			FirCoefficients = fir,
+			BufferSizeAtRenderRate = _echoBufferL.Length
+		};
+	}
+
 	private class VoiceState(int index) {
 		public int Index { get; } = index;
 		public bool Active { get; set; }
@@ -309,4 +459,17 @@ public class RenderInfo {
 	public int SampleRate { get; init; }
 	public int ActiveVoices { get; init; }
 	public int TotalSampleDataBytes { get; init; }
+}
+
+/// <summary>
+/// Echo rendering configuration.
+/// </summary>
+public class EchoRenderInfo {
+	public int DelayMs { get; init; }
+	public int EchoVolumeLeft { get; init; }
+	public int EchoVolumeRight { get; init; }
+	public int Feedback { get; init; }
+	public byte EnabledVoices { get; init; }
+	public sbyte[] FirCoefficients { get; init; } = [];
+	public int BufferSizeAtRenderRate { get; init; }
 }
