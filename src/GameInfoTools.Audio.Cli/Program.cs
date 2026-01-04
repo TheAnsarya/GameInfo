@@ -21,6 +21,7 @@ public class Program {
 		rootCommand.Subcommands.Add(CreateAnalyzeCommand());
 		rootCommand.Subcommands.Add(CreateValidateCommand());
 		rootCommand.Subcommands.Add(CreateRenderCommand());
+		rootCommand.Subcommands.Add(CreateMidiCommand());
 
 		return rootCommand.Parse(args).Invoke();
 	}
@@ -1058,5 +1059,128 @@ public class Program {
 			name = name.Replace(c, '_');
 		}
 		return name;
+	}
+
+	private static Command CreateMidiCommand() {
+		var spcArg = new Argument<FileInfo>("spc-file") {
+			Description = "Path to the SPC file"
+		};
+
+		var outputOption = new Option<FileInfo?>("--output", "-o") {
+			Description = "Output MIDI file path (default: same name with .mid extension)"
+		};
+
+		var analyzeOption = new Option<bool>("--analyze") {
+			Description = "Show sequence analysis without exporting",
+			DefaultValueFactory = _ => false
+		};
+
+		var ticksOption = new Option<int>("--ticks") {
+			Description = "Ticks per beat in output MIDI",
+			DefaultValueFactory = _ => 48
+		};
+
+		var command = new Command("midi", "Export SPC sequence data to MIDI file") {
+			spcArg,
+			outputOption,
+			analyzeOption,
+			ticksOption
+		};
+
+		command.SetAction((ParseResult parseResult) => {
+			var spcFile = parseResult.GetValue(spcArg)!;
+			var output = parseResult.GetValue(outputOption);
+			var analyze = parseResult.GetValue(analyzeOption);
+			var ticks = parseResult.GetValue(ticksOption);
+
+			if (!spcFile.Exists) {
+				Console.Error.WriteLine($"Error: File not found: {spcFile.FullName}");
+				return 1;
+			}
+
+			try {
+				var spc = SpcFile.Load(spcFile.FullName);
+
+				Console.WriteLine($"SPC File: {spcFile.Name}");
+				Console.WriteLine(new string('=', 50));
+
+				// Detect driver
+				var driverInfo = SequenceDetector.DetectDriver(spc);
+				string driverName = driverInfo?.DetectedDriver?.Name ?? "Unknown";
+				double confidence = driverInfo?.Candidates.FirstOrDefault()?.Confidence ?? 0;
+
+				Console.WriteLine($"Driver:     {driverName}");
+				Console.WriteLine($"Confidence: {confidence:P0}");
+				Console.WriteLine();
+
+				if (analyze) {
+					// Show sequence analysis
+					var region = SequenceDetector.AnalyzeSequenceRegion(spc);
+					Console.WriteLine("Sequence Analysis:");
+					Console.WriteLine($"  Code region:     ${region.ProbableCodeRegion.Start:X4} - ${region.ProbableCodeRegion.End:X4}");
+					Console.WriteLine($"  Sample data end: ${region.SampleDataEnd:X4}");
+					Console.WriteLine($"  Patterns found:  {region.SequencePatterns.Count}");
+
+					foreach (var pattern in region.SequencePatterns.Take(10)) {
+						Console.WriteLine($"    ${pattern.Address:X4}: {pattern.Type} ({pattern.Length} bytes)");
+					}
+
+					if (region.SequencePatterns.Count > 10) {
+						Console.WriteLine($"    ... and {region.SequencePatterns.Count - 10} more");
+					}
+
+					return 0;
+				}
+
+				// Try to parse and export
+				NSpcSequence? sequence = null;
+
+				if (driverName == "N-SPC" || driverName == "Unknown") {
+					var parser = new NSpcParser(spc);
+					int headerAddr = parser.FindSequenceHeader();
+
+					if (headerAddr >= 0) {
+						Console.WriteLine($"Sequence header found at ${headerAddr:X4}");
+						sequence = parser.ParseSequence(headerAddr);
+					}
+				}
+
+				if (sequence == null || sequence.Tracks.Count == 0) {
+					Console.Error.WriteLine("Could not parse sequence data from this SPC file.");
+					Console.Error.WriteLine("The sequence format may not be supported yet.");
+					return 1;
+				}
+
+				Console.WriteLine($"Tracks parsed: {sequence.Tracks.Count}");
+				foreach (var track in sequence.Tracks) {
+					Console.WriteLine($"  Channel {track.ChannelNumber}: {track.Events.Count} events, {track.TotalTicks} ticks");
+				}
+
+				// Convert to MIDI
+				var parser2 = new NSpcParser(spc);
+				var midi = parser2.ToMidi(sequence, ticks);
+
+				// Determine output path
+				var outputPath = output?.FullName ??
+					Path.Combine(
+						Path.GetDirectoryName(spcFile.FullName) ?? ".",
+						Path.GetFileNameWithoutExtension(spcFile.Name) + ".mid"
+					);
+
+				var writer = new MidiWriter();
+				writer.ExportToFile(midi, outputPath);
+
+				Console.WriteLine();
+				Console.WriteLine($"MIDI exported: {outputPath}");
+				Console.WriteLine($"Tracks: {midi.Tracks.Count}, Ticks/beat: {midi.TicksPerBeat}");
+
+				return 0;
+			} catch (Exception ex) {
+				Console.Error.WriteLine($"Error: {ex.Message}");
+				return 1;
+			}
+		});
+
+		return command;
 	}
 }
