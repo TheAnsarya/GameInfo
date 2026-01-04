@@ -16,6 +16,9 @@ public class Program {
 		rootCommand.Subcommands.Add(CreateConvertCommand());
 		rootCommand.Subcommands.Add(CreateAbletonCommand());
 		rootCommand.Subcommands.Add(CreateBatchCommand());
+		rootCommand.Subcommands.Add(CreateBundleCommand());
+		rootCommand.Subcommands.Add(CreateBuildCommand());
+		rootCommand.Subcommands.Add(CreateAnalyzeCommand());
 
 		return rootCommand.Parse(args).Invoke();
 	}
@@ -447,5 +450,401 @@ public class Program {
 	private static string EscapeCsv(string value) {
 		if (string.IsNullOrEmpty(value)) return "";
 		return value.Replace("\"", "\"\"");
+	}
+
+	private static Command CreateBundleCommand() {
+		var command = new Command("bundle", "Create and manage music mod bundles");
+
+		// Create subcommand
+		var createTitleArg = new Argument<string>("title") {
+			Description = "Mod title"
+		};
+		var createAuthorArg = new Argument<string>("author") {
+			Description = "Mod author"
+		};
+		var createModifiedSpcOption = new Option<FileInfo>("--modified", "-m") {
+			Description = "Modified SPC file",
+			Required = true
+		};
+		var createOriginalSpcOption = new Option<FileInfo?>("--original", "-o") {
+			Description = "Original SPC file (for reference)"
+		};
+		var createAbletonOption = new Option<FileInfo?>("--ableton", "-a") {
+			Description = "Ableton project file"
+		};
+		var createOutputOption = new Option<FileInfo?>("--output") {
+			Description = "Output bundle path (default: title.spcmod)"
+		};
+		var createGameOption = new Option<string?>("--game", "-g") {
+			Description = "Game title"
+		};
+		var createTrackOption = new Option<string?>("--track", "-t") {
+			Description = "Original track name"
+		};
+		var createDescOption = new Option<string?>("--description", "-d") {
+			Description = "Mod description"
+		};
+
+		var createCommand = new Command("create", "Create a new music mod bundle");
+		createCommand.Arguments.Add(createTitleArg);
+		createCommand.Arguments.Add(createAuthorArg);
+		createCommand.Options.Add(createModifiedSpcOption);
+		createCommand.Options.Add(createOriginalSpcOption);
+		createCommand.Options.Add(createAbletonOption);
+		createCommand.Options.Add(createOutputOption);
+		createCommand.Options.Add(createGameOption);
+		createCommand.Options.Add(createTrackOption);
+		createCommand.Options.Add(createDescOption);
+
+		createCommand.SetAction((ParseResult parseResult) => {
+			var title = parseResult.GetValue(createTitleArg)!;
+			var author = parseResult.GetValue(createAuthorArg)!;
+			var modifiedSpc = parseResult.GetValue(createModifiedSpcOption)!;
+			var originalSpc = parseResult.GetValue(createOriginalSpcOption);
+			var ableton = parseResult.GetValue(createAbletonOption);
+			var output = parseResult.GetValue(createOutputOption);
+			var game = parseResult.GetValue(createGameOption);
+			var track = parseResult.GetValue(createTrackOption);
+			var desc = parseResult.GetValue(createDescOption);
+
+			if (!modifiedSpc.Exists) {
+				Console.Error.WriteLine($"Error: Modified SPC not found: {modifiedSpc.FullName}");
+				return 1;
+			}
+
+			try {
+				var bundle = MusicModBundle.Create(title, author);
+				bundle.SetModifiedSpc(modifiedSpc.FullName);
+
+				if (originalSpc?.Exists == true) {
+					bundle.SetOriginalSpc(originalSpc.FullName);
+				}
+
+				if (ableton?.Exists == true) {
+					bundle.SetAbletonProject(ableton.FullName);
+				}
+
+				if (game != null) bundle.Manifest.GameTitle = game;
+				if (track != null) bundle.Manifest.OriginalTrack = track;
+				if (desc != null) bundle.Manifest.Description = desc;
+
+				// Validate
+				var validation = bundle.Validate();
+				if (!validation.IsValid) {
+					Console.Error.WriteLine("Bundle validation failed:");
+					Console.Error.WriteLine(validation);
+					return 1;
+				}
+
+				// Save
+				var outputPath = output?.FullName ?? $"{SanitizeFilename(title)}.spcmod";
+				bundle.Save(outputPath);
+
+				Console.WriteLine($"Created bundle: {outputPath}");
+				Console.WriteLine(bundle.GetSummary());
+				return 0;
+			} catch (Exception ex) {
+				Console.Error.WriteLine($"Error creating bundle: {ex.Message}");
+				return 1;
+			}
+		});
+
+		// Info subcommand
+		var infoFileArg = new Argument<FileInfo>("bundle") {
+			Description = "Bundle file path"
+		};
+
+		var infoCommand = new Command("info", "Display bundle information");
+		infoCommand.Arguments.Add(infoFileArg);
+
+		infoCommand.SetAction((ParseResult parseResult) => {
+			var bundleFile = parseResult.GetValue(infoFileArg)!;
+
+			if (!bundleFile.Exists) {
+				Console.Error.WriteLine($"Error: Bundle not found: {bundleFile.FullName}");
+				return 1;
+			}
+
+			try {
+				var bundle = MusicModBundle.Load(bundleFile.FullName);
+				Console.WriteLine(bundle.GetSummary());
+
+				var validation = bundle.Validate();
+				Console.WriteLine();
+				Console.WriteLine("Validation:");
+				Console.WriteLine(validation);
+				return 0;
+			} catch (Exception ex) {
+				Console.Error.WriteLine($"Error reading bundle: {ex.Message}");
+				return 1;
+			}
+		});
+
+		// Extract subcommand
+		var extractFileArg = new Argument<FileInfo>("bundle") {
+			Description = "Bundle file path"
+		};
+		var extractOutputOption = new Option<DirectoryInfo>("--output", "-o") {
+			Description = "Output directory",
+			DefaultValueFactory = _ => new DirectoryInfo(".")
+		};
+
+		var extractCommand = new Command("extract", "Extract contents from a bundle");
+		extractCommand.Arguments.Add(extractFileArg);
+		extractCommand.Options.Add(extractOutputOption);
+
+		extractCommand.SetAction((ParseResult parseResult) => {
+			var bundleFile = parseResult.GetValue(extractFileArg)!;
+			var outputDir = parseResult.GetValue(extractOutputOption)!;
+
+			if (!bundleFile.Exists) {
+				Console.Error.WriteLine($"Error: Bundle not found: {bundleFile.FullName}");
+				return 1;
+			}
+
+			try {
+				var bundle = MusicModBundle.Load(bundleFile.FullName);
+				outputDir.Create();
+
+				int fileCount = 0;
+
+				if (bundle.ModifiedSpc != null) {
+					var path = Path.Combine(outputDir.FullName, "modified.spc");
+					File.WriteAllBytes(path, bundle.ModifiedSpc);
+					Console.WriteLine($"Extracted: modified.spc");
+					fileCount++;
+				}
+
+				if (bundle.OriginalSpc != null) {
+					var path = Path.Combine(outputDir.FullName, "original.spc");
+					File.WriteAllBytes(path, bundle.OriginalSpc);
+					Console.WriteLine($"Extracted: original.spc");
+					fileCount++;
+				}
+
+				if (bundle.AbletonProject != null) {
+					var path = Path.Combine(outputDir.FullName, "project.als");
+					File.WriteAllBytes(path, bundle.AbletonProject);
+					Console.WriteLine($"Extracted: project.als");
+					fileCount++;
+				}
+
+				foreach (var (name, data) in bundle.AdditionalFiles) {
+					var path = Path.Combine(outputDir.FullName, name);
+					Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+					File.WriteAllBytes(path, data);
+					Console.WriteLine($"Extracted: {name}");
+					fileCount++;
+				}
+
+				Console.WriteLine($"\nExtracted {fileCount} files to {outputDir.FullName}");
+				return 0;
+			} catch (Exception ex) {
+				Console.Error.WriteLine($"Error extracting bundle: {ex.Message}");
+				return 1;
+			}
+		});
+
+		command.Subcommands.Add(createCommand);
+		command.Subcommands.Add(infoCommand);
+		command.Subcommands.Add(extractCommand);
+
+		return command;
+	}
+
+	private static Command CreateBuildCommand() {
+		var command = new Command("build", "Build SPC files from components");
+
+		// Build from samples
+		var samplesArg = new Argument<DirectoryInfo>("samples-dir") {
+			Description = "Directory containing BRR or WAV sample files"
+		};
+		var outputOption = new Option<FileInfo>("--output", "-o") {
+			Description = "Output SPC file path",
+			Required = true
+		};
+		var titleOption = new Option<string?>("--title", "-t") {
+			Description = "Song title"
+		};
+		var gameOption = new Option<string?>("--game", "-g") {
+			Description = "Game title"
+		};
+		var artistOption = new Option<string?>("--artist", "-a") {
+			Description = "Artist name"
+		};
+
+		command.Arguments.Add(samplesArg);
+		command.Options.Add(outputOption);
+		command.Options.Add(titleOption);
+		command.Options.Add(gameOption);
+		command.Options.Add(artistOption);
+
+		command.SetAction((ParseResult parseResult) => {
+			var samplesDir = parseResult.GetValue(samplesArg)!;
+			var output = parseResult.GetValue(outputOption)!;
+			var title = parseResult.GetValue(titleOption);
+			var game = parseResult.GetValue(gameOption);
+			var artist = parseResult.GetValue(artistOption);
+
+			if (!samplesDir.Exists) {
+				Console.Error.WriteLine($"Error: Directory not found: {samplesDir.FullName}");
+				return 1;
+			}
+
+			try {
+				var builder = new SpcBuilder();
+
+				// Set metadata
+				builder.SetMetadata(
+					songTitle: title,
+					gameTitle: game,
+					artistName: artist
+				);
+
+				// Find and add samples
+				var brrFiles = Directory.GetFiles(samplesDir.FullName, "*.brr");
+				var wavFiles = Directory.GetFiles(samplesDir.FullName, "*.wav");
+
+				if (brrFiles.Length == 0 && wavFiles.Length == 0) {
+					Console.Error.WriteLine("Error: No sample files found (*.brr or *.wav)");
+					return 1;
+				}
+
+				Console.WriteLine($"Loading samples from: {samplesDir.FullName}");
+
+				// Add BRR files
+				foreach (var brrFile in brrFiles.OrderBy(f => f)) {
+					var name = Path.GetFileNameWithoutExtension(brrFile);
+					var data = File.ReadAllBytes(brrFile);
+					var index = builder.AddSample(data, name: name);
+					Console.WriteLine($"  [{index:D2}] {name} ({data.Length} bytes)");
+				}
+
+				// Add WAV files (encode to BRR)
+				foreach (var wavFile in wavFiles.OrderBy(f => f)) {
+					var name = Path.GetFileNameWithoutExtension(wavFile);
+					var data = File.ReadAllBytes(wavFile);
+					var (index, snr) = builder.AddWavSample(data, -1, true, name);
+					Console.WriteLine($"  [{index:D2}] {name} (WAV->BRR, SNR: {snr:F1} dB)");
+				}
+
+				// Show memory analysis
+				Console.WriteLine();
+				Console.WriteLine(builder.GetMemoryAnalysis());
+
+				// Validate
+				var validation = builder.Validate();
+				if (!validation.IsValid) {
+					Console.Error.WriteLine("Build validation failed:");
+					Console.Error.WriteLine(validation);
+					return 1;
+				}
+
+				// Build and save
+				var spc = builder.Build();
+				spc.Save(output.FullName);
+
+				Console.WriteLine($"Built SPC: {output.FullName}");
+				return 0;
+			} catch (Exception ex) {
+				Console.Error.WriteLine($"Error building SPC: {ex.Message}");
+				return 1;
+			}
+		});
+
+		return command;
+	}
+
+	private static Command CreateAnalyzeCommand() {
+		var command = new Command("analyze", "Analyze SPC file memory and structure");
+
+		var spcArg = new Argument<FileInfo>("spc-file") {
+			Description = "Path to the SPC file"
+		};
+
+		command.Arguments.Add(spcArg);
+
+		command.SetAction((ParseResult parseResult) => {
+			var spcFile = parseResult.GetValue(spcArg)!;
+
+			if (!spcFile.Exists) {
+				Console.Error.WriteLine($"Error: File not found: {spcFile.FullName}");
+				return 1;
+			}
+
+			try {
+				var spc = SpcFile.Load(spcFile.FullName);
+
+				Console.WriteLine($"=== SPC Analysis: {spcFile.Name} ===");
+				Console.WriteLine();
+
+				// Header info
+				Console.WriteLine("Header:");
+				Console.WriteLine($"  Song:   {spc.Header.SongTitle}");
+				Console.WriteLine($"  Game:   {spc.Header.GameTitle}");
+				Console.WriteLine($"  Artist: {spc.Header.Artist}");
+				Console.WriteLine();
+
+				// Sample directory analysis
+				Console.WriteLine("Sample Directory:");
+				Console.WriteLine($"  Address: ${spc.Dsp.DirectoryAddress:X4}");
+				Console.WriteLine($"  Count:   {spc.SampleDirectory.Count}");
+				Console.WriteLine();
+
+				Console.WriteLine("  Idx  Start   Loop    Size   Blocks   Samples  Flags");
+				Console.WriteLine("  ---  ------  ------  ------  ------  --------  -----");
+
+				var samples = spc.ExtractSamples();
+				int totalSize = 0;
+
+				foreach (var sample in samples) {
+					var flags = "";
+					if (sample.HasLoop) flags += "L";
+					if (sample.Data.Length > 0 && (sample.Data[^1] & 0x01) != 0) flags += "E";
+
+					Console.WriteLine($"  {sample.Index,3}  ${sample.StartAddress:X4}  ${sample.LoopAddress:X4}  {sample.Size,6}  {sample.BlockCount,6}  {sample.SampleCount,8}  {flags}");
+					totalSize += sample.Size;
+				}
+
+				Console.WriteLine();
+				Console.WriteLine($"  Total sample data: {totalSize:N0} bytes");
+				Console.WriteLine($"  Directory size:    {samples.Count * 4} bytes");
+				Console.WriteLine($"  RAM used:          {totalSize + samples.Count * 4:N0} bytes ({(totalSize + samples.Count * 4) * 100.0 / SpcFile.RamSize:F1}%)");
+				Console.WriteLine();
+
+				// DSP state analysis
+				Console.WriteLine("DSP State:");
+				Console.WriteLine($"  Main Volume: L={spc.Dsp.MainVolumeLeft}, R={spc.Dsp.MainVolumeRight}");
+				Console.WriteLine($"  Echo Volume: L={spc.Dsp.EchoVolumeLeft}, R={spc.Dsp.EchoVolumeRight}");
+				Console.WriteLine($"  Key On:      {Convert.ToString(spc.Dsp.KeyOn, 2).PadLeft(8, '0')}");
+				Console.WriteLine($"  Key Off:     {Convert.ToString(spc.Dsp.KeyOff, 2).PadLeft(8, '0')}");
+				Console.WriteLine($"  Echo Enable: {Convert.ToString(spc.Dsp.EchoEnable, 2).PadLeft(8, '0')}");
+				Console.WriteLine($"  Noise Enable:{Convert.ToString(spc.Dsp.NoiseEnable, 2).PadLeft(8, '0')}");
+				Console.WriteLine();
+
+				// Echo analysis
+				var echo = spc.GetEchoConfig();
+				Console.WriteLine("Echo Configuration:");
+				Console.WriteLine($"  Delay:    {echo.DelayMs}ms");
+				Console.WriteLine($"  Feedback: {echo.Feedback} ({echo.FeedbackDescription})");
+				Console.WriteLine($"  Buffer:   ${echo.BufferAddress:X4} ({echo.BufferSize} bytes)");
+				Console.WriteLine($"  Filter:   {echo.FilterType}");
+
+				return 0;
+			} catch (Exception ex) {
+				Console.Error.WriteLine($"Error analyzing SPC: {ex.Message}");
+				return 1;
+			}
+		});
+
+		return command;
+	}
+
+	private static string SanitizeFilename(string name) {
+		var invalid = Path.GetInvalidFileNameChars();
+		foreach (var c in invalid) {
+			name = name.Replace(c, '_');
+		}
+		return name;
 	}
 }
