@@ -20,6 +20,7 @@ public class Program {
 		rootCommand.Subcommands.Add(CreateBuildCommand());
 		rootCommand.Subcommands.Add(CreateAnalyzeCommand());
 		rootCommand.Subcommands.Add(CreateValidateCommand());
+		rootCommand.Subcommands.Add(CreateRenderCommand());
 
 		return rootCommand.Parse(args).Invoke();
 	}
@@ -922,6 +923,133 @@ public class Program {
 			.Replace("\n", "\\n")
 			.Replace("\r", "\\r")
 			.Replace("\t", "\\t");
+	}
+
+	private static Command CreateRenderCommand() {
+		var spcArg = new Argument<FileInfo>("spc-file") {
+			Description = "Path to the SPC file to render"
+		};
+
+		var outputOption = new Option<FileInfo>("--output", "-o") {
+			Description = "Output WAV file",
+			DefaultValueFactory = _ => new FileInfo("output.wav")
+		};
+
+		var durationOption = new Option<double>("--duration", "-d") {
+			Description = "Duration in seconds",
+			DefaultValueFactory = _ => 5.0
+		};
+
+		var sampleRateOption = new Option<int>("--rate", "-r") {
+			Description = "Output sample rate",
+			DefaultValueFactory = _ => 32000
+		};
+
+		var sampleOption = new Option<int?>("--sample", "-s") {
+			Description = "Render only this sample number"
+		};
+
+		var command = new Command("render", "Render SPC audio to WAV file") {
+			spcArg,
+			outputOption,
+			durationOption,
+			sampleRateOption,
+			sampleOption
+		};
+
+		command.SetAction((ParseResult parseResult) => {
+			var spcFile = parseResult.GetValue(spcArg)!;
+			var output = parseResult.GetValue(outputOption)!;
+			var duration = parseResult.GetValue(durationOption);
+			var sampleRate = parseResult.GetValue(sampleRateOption);
+			var sampleNumber = parseResult.GetValue(sampleOption);
+
+			if (!spcFile.Exists) {
+				Console.Error.WriteLine($"Error: File not found: {spcFile.FullName}");
+				return 1;
+			}
+
+			try {
+				var spc = SpcFile.Load(spcFile.FullName);
+				var renderer = new SpcRenderer(spc, sampleRate);
+
+				Console.WriteLine($"Rendering: {spcFile.Name}");
+
+				short[] samples;
+				int channels;
+
+				if (sampleNumber.HasValue) {
+					Console.WriteLine($"Sample: {sampleNumber.Value}");
+					samples = renderer.RenderSample(sampleNumber.Value, 4096, duration);
+					channels = 1;
+				} else {
+					var info = renderer.GetRenderInfo();
+					Console.WriteLine($"Active voices: {info.ActiveVoices}");
+					Console.WriteLine($"Sample data: {info.TotalSampleDataBytes} bytes");
+					samples = renderer.RenderStatic(duration);
+					channels = 2;
+				}
+
+				Console.WriteLine($"Duration: {duration}s");
+				Console.WriteLine($"Sample rate: {sampleRate} Hz");
+
+				// Convert to bytes and save as WAV
+				var wavData = new byte[44 + samples.Length * 2];
+				WriteWavHeader(wavData, samples.Length, sampleRate, channels);
+				for (int i = 0; i < samples.Length; i++) {
+					wavData[44 + i * 2] = (byte)(samples[i] & 0xff);
+					wavData[44 + i * 2 + 1] = (byte)((samples[i] >> 8) & 0xff);
+				}
+
+				File.WriteAllBytes(output.FullName, wavData);
+				Console.WriteLine($"Output: {output.FullName}");
+				Console.WriteLine($"Size: {wavData.Length:N0} bytes");
+
+				return 0;
+			} catch (Exception ex) {
+				Console.Error.WriteLine($"Error rendering SPC: {ex.Message}");
+				return 1;
+			}
+		});
+
+		return command;
+	}
+
+	private static void WriteWavHeader(byte[] data, int sampleCount, int sampleRate, int channels) {
+		int byteRate = sampleRate * channels * 2;
+		int dataSize = sampleCount * 2;
+		int fileSize = 36 + dataSize;
+
+		// RIFF header
+		data[0] = (byte)'R'; data[1] = (byte)'I'; data[2] = (byte)'F'; data[3] = (byte)'F';
+		WriteInt32LE(data, 4, fileSize);
+		data[8] = (byte)'W'; data[9] = (byte)'A'; data[10] = (byte)'V'; data[11] = (byte)'E';
+
+		// fmt chunk
+		data[12] = (byte)'f'; data[13] = (byte)'m'; data[14] = (byte)'t'; data[15] = (byte)' ';
+		WriteInt32LE(data, 16, 16); // chunk size
+		WriteInt16LE(data, 20, 1);  // audio format (PCM)
+		WriteInt16LE(data, 22, (short)channels);
+		WriteInt32LE(data, 24, sampleRate);
+		WriteInt32LE(data, 28, byteRate);
+		WriteInt16LE(data, 32, (short)(channels * 2)); // block align
+		WriteInt16LE(data, 34, 16); // bits per sample
+
+		// data chunk
+		data[36] = (byte)'d'; data[37] = (byte)'a'; data[38] = (byte)'t'; data[39] = (byte)'a';
+		WriteInt32LE(data, 40, dataSize);
+	}
+
+	private static void WriteInt16LE(byte[] data, int offset, short value) {
+		data[offset] = (byte)(value & 0xff);
+		data[offset + 1] = (byte)((value >> 8) & 0xff);
+	}
+
+	private static void WriteInt32LE(byte[] data, int offset, int value) {
+		data[offset] = (byte)(value & 0xff);
+		data[offset + 1] = (byte)((value >> 8) & 0xff);
+		data[offset + 2] = (byte)((value >> 16) & 0xff);
+		data[offset + 3] = (byte)((value >> 24) & 0xff);
 	}
 
 	private static string SanitizeFilename(string name) {
