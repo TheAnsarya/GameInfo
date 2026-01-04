@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<LangVersion>14</LangVersion>
+		<RootNamespace>GameInfoTools.Audio</RootNamespace>
+		<AssemblyName>GameInfoTools.Audio</AssemblyName>
+		<Version>1.0.0</Version>
+		<Authors>TheAnsarya</Authors>
+		<Description>SNES audio tools - SPC parsing, BRR codec, Ableton integration</Description>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\GameInfoTools.Core\GameInfoTools.Core.csproj" />
+	</ItemGroup>
+
+</Project>
