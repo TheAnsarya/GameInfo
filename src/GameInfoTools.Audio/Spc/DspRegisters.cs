@@ -53,6 +53,28 @@ public class DspRegisters {
 	}
 
 	/// <summary>
+	/// Calculate effective sample rate in Hz from pitch value.
+	/// SNES formula: rate = (pitch × 32000) / 4096
+	/// Where pitch $1000 (4096) = 32kHz.
+	/// </summary>
+	/// <param name="voice">Voice index (0-7).</param>
+	/// <returns>Sample rate in Hz.</returns>
+	public int GetSampleRate(int voice) {
+		var pitch = GetPitch(voice);
+		return (int)((long)pitch * 32000 / 4096);
+	}
+
+	/// <summary>
+	/// Calculate pitch value from desired sample rate.
+	/// </summary>
+	/// <param name="sampleRate">Desired sample rate in Hz.</param>
+	/// <returns>Pitch value to achieve that rate.</returns>
+	public static ushort SampleRateToPitch(int sampleRate) {
+		var pitch = (long)sampleRate * 4096 / 32000;
+		return (ushort)Math.Clamp(pitch, 0, 0x3FFF);
+	}
+
+	/// <summary>
 	/// Get source number (sample index from directory) for a voice.
 	/// </summary>
 	public byte GetSourceNumber(int voice) => Data[voice * 0x10 + 0x04];

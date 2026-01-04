@@ -141,4 +141,50 @@ public class DspRegistersTests {
 
 		Assert.Equal(0x03, dsp.DirectoryOffset);
 	}
+
+	[Fact]
+	public void GetSampleRate_Pitch1000_Returns32kHz() {
+		var data = new byte[128];
+		// Set pitch to $1000 (4096) = 32kHz base rate
+		data[0x02] = 0x00;
+		data[0x03] = 0x10;
+
+		var dsp = new DspRegisters(data);
+
+		Assert.Equal(32000, dsp.GetSampleRate(0));
+	}
+
+	[Fact]
+	public void GetSampleRate_Pitch0800_Returns16kHz() {
+		var data = new byte[128];
+		// Set pitch to $0800 (2048) = 16kHz (half of 32kHz)
+		data[0x02] = 0x00;
+		data[0x03] = 0x08;
+
+		var dsp = new DspRegisters(data);
+
+		Assert.Equal(16000, dsp.GetSampleRate(0));
+	}
+
+	[Fact]
+	public void SampleRateToPitch_32kHz_Returns1000() {
+		var pitch = DspRegisters.SampleRateToPitch(32000);
+
+		Assert.Equal(0x1000, pitch);
+	}
+
+	[Fact]
+	public void SampleRateToPitch_16kHz_Returns0800() {
+		var pitch = DspRegisters.SampleRateToPitch(16000);
+
+		Assert.Equal(0x0800, pitch);
+	}
+
+	[Fact]
+	public void SampleRateToPitch_TooHigh_ClampedToMax() {
+		// Request 200kHz, which would need pitch > 14-bit max
+		var pitch = DspRegisters.SampleRateToPitch(200000);
+
+		Assert.Equal(0x3FFF, pitch);
+	}
 }

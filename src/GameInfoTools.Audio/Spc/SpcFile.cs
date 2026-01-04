@@ -263,6 +263,12 @@ public record VoiceInfo {
 	public bool PitchModEnabled { get; init; }
 
 	/// <summary>
+	/// Calculate sample rate in Hz from pitch value.
+	/// SNES formula: rate = (pitch × 32000) / 4096.
+	/// </summary>
+	public int SampleRate => (int)((long)Pitch * 32000 / 4096);
+
+	/// <summary>
 	/// Calculate pan position (-1.0 = left, 0.0 = center, 1.0 = right).
 	/// </summary>
 	public double Pan {

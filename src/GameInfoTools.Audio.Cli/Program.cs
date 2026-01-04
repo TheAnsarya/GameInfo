@@ -51,11 +51,12 @@ public class Program {
 				Console.WriteLine($"Dir Addr: ${info.DirectoryAddress:X4}");
 				Console.WriteLine();
 				Console.WriteLine("Voice Configuration:");
-				Console.WriteLine("  Ch  Vol L  Vol R  Pitch   Src  Echo  Noise");
-				Console.WriteLine("  --  -----  -----  ------  ---  ----  -----");
+				Console.WriteLine("  Ch  Vol L  Vol R  Pitch    Rate   Src  Echo  Noise");
+				Console.WriteLine("  --  -----  -----  ------  ------  ---  ----  -----");
 
 				foreach (var voice in info.Voices) {
-					Console.WriteLine($"  {voice.Index + 1}   {voice.VolumeLeft,5}  {voice.VolumeRight,5}  ${voice.Pitch:X4}  {voice.SourceNumber,3}  {(voice.EchoEnabled ? "Yes" : "No"),4}  {(voice.NoiseEnabled ? "Yes" : "No"),5}");
+					var rateStr = voice.SampleRate > 0 ? $"{voice.SampleRate / 1000.0:F1}kHz" : "  -  ";
+					Console.WriteLine($"  {voice.Index + 1}   {voice.VolumeLeft,5}  {voice.VolumeRight,5}  ${voice.Pitch:X4}  {rateStr,6}  {voice.SourceNumber,3}  {(voice.EchoEnabled ? "Yes" : "No"),4}  {(voice.NoiseEnabled ? "Yes" : "No"),5}");
 				}
 				return 0;
 			} catch (Exception ex) {
