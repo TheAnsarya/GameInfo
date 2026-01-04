@@ -135,11 +135,25 @@ Test files were missing `using Xunit;` directive. Added to all 4 test files:
 - Recursive directory search support
 - Per-file subdirectory organization
 
-## Session Statistics (Updated)
-- Duration: ~2 hours
-- Files created: 19
-- Lines of code: ~3,500
-- Tests written: 76
-- Tests passing: 76
-- Commits: 7
-- Issues updated: 6+
+#### 11. Echo/FIR Filter Parsing (commit b347a9d)
+- Created `EchoConfig` class with full echo/reverb parsing
+- Parse 8-tap FIR filter coefficients
+- Calculate echo delay, feedback, buffer size
+- Analyze filter type (low-pass, high-pass, pass-through, etc.)
+- Added echo display to CLI info command
+- 15 new tests for echo configuration
+
+#### 12. Noise Clock and DSP Flags (commit f6b8eb7)
+- Added `NoiseClock` property (0-31)
+- Added `NoiseFrequencyHz` with frequency lookup table (0-32kHz)
+- Added `IsMuted`, `EchoWriteDisabled`, `IsReset` flag properties
+- 6 new tests for noise and flag parsing
+
+## Session Statistics (Final)
+- Duration: ~3 hours
+- Files created: 22
+- Lines of code: ~4,200
+- Tests written: 97
+- Tests passing: 97
+- Commits: 10
+- Issues updated: #170, #176, #180
