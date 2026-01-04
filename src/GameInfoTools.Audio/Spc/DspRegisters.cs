@@ -167,6 +167,45 @@ public class DspRegisters {
 	}
 
 	/// <summary>
+	/// Noise clock rate (0-31).
+	/// Controls the frequency of the pseudo-random noise generator.
+	/// </summary>
+	public int NoiseClock => Flags & 0x1F;
+
+	/// <summary>
+	/// Noise frequency in Hz (approximate).
+	/// Based on SNES DSP clock of 32kHz.
+	/// </summary>
+	public int NoiseFrequencyHz {
+		get {
+			// Noise frequencies are based on a lookup table
+			// Higher values = higher frequency noise
+			int[] frequencies = [
+				0, 16, 21, 25, 31, 42, 50, 63,
+				83, 100, 125, 167, 200, 250, 333, 400,
+				500, 667, 800, 1000, 1333, 1600, 2000, 2667,
+				3200, 4000, 5333, 6400, 8000, 10667, 16000, 32000
+			];
+			return frequencies[NoiseClock];
+		}
+	}
+
+	/// <summary>
+	/// Whether all sound is muted.
+	/// </summary>
+	public bool IsMuted => (Flags & 0x20) != 0;
+
+	/// <summary>
+	/// Whether echo buffer writing is disabled.
+	/// </summary>
+	public bool EchoWriteDisabled => (Flags & 0x40) != 0;
+
+	/// <summary>
+	/// Whether the DSP is in reset state.
+	/// </summary>
+	public bool IsReset => (Flags & 0x80) != 0;
+
+	/// <summary>
 	/// End flags - bits indicate which voices have reached end of sample.
 	/// </summary>
 	public byte EndFlags => Data[0x7c];

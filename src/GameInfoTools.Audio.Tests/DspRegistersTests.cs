@@ -187,4 +187,64 @@ public class DspRegistersTests {
 
 		Assert.Equal(0x3FFF, pitch);
 	}
+
+	[Fact]
+	public void NoiseClock_ExtractsFrom5Bits() {
+		var data = new byte[128];
+		data[0x6C] = 0x1F; // Max noise clock
+
+		var dsp = new DspRegisters(data);
+
+		Assert.Equal(31, dsp.NoiseClock);
+	}
+
+	[Fact]
+	public void NoiseFrequencyHz_Clock0_Returns0() {
+		var data = new byte[128];
+		data[0x6C] = 0x00;
+
+		var dsp = new DspRegisters(data);
+
+		Assert.Equal(0, dsp.NoiseFrequencyHz);
+	}
+
+	[Fact]
+	public void NoiseFrequencyHz_Clock31_Returns32kHz() {
+		var data = new byte[128];
+		data[0x6C] = 0x1F;
+
+		var dsp = new DspRegisters(data);
+
+		Assert.Equal(32000, dsp.NoiseFrequencyHz);
+	}
+
+	[Fact]
+	public void IsMuted_WhenBit5Set_ReturnsTrue() {
+		var data = new byte[128];
+		data[0x6C] = 0x20;
+
+		var dsp = new DspRegisters(data);
+
+		Assert.True(dsp.IsMuted);
+	}
+
+	[Fact]
+	public void EchoWriteDisabled_WhenBit6Set_ReturnsTrue() {
+		var data = new byte[128];
+		data[0x6C] = 0x40;
+
+		var dsp = new DspRegisters(data);
+
+		Assert.True(dsp.EchoWriteDisabled);
+	}
+
+	[Fact]
+	public void IsReset_WhenBit7Set_ReturnsTrue() {
+		var data = new byte[128];
+		data[0x6C] = 0x80;
+
+		var dsp = new DspRegisters(data);
+
+		Assert.True(dsp.IsReset);
+	}
 }
