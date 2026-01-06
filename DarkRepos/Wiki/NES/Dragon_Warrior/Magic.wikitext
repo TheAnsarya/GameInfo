@@ -1,0 +1,397 @@
+{{Back|Dragon Warrior (NES)}}
+__TOC__
+
+== Overview ==
+
+Dragon Warrior features 10 spells learned by the Hero as he levels up. This page documents all spells, their mechanics, and strategies.
+
+== Spell Data Structure ==
+
+Spell data in ROM:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Spell ID
+|-
+| $01 || 1 || MP cost
+|-
+| $02 || 1 || Effect type
+|-
+| $03 || 1 || Power value
+|}
+
+== All Spells ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Spell !! MP !! Level !! Type !! Target
+|-
+| $01 || Heal || 4 || 3 || Healing || Self
+|-
+| $02 || Hurt || 2 || 4 || Attack || Single enemy
+|-
+| $03 || Sleep || 2 || 7 || Status || Single enemy
+|-
+| $04 || Radiant || 2 || 9 || Field || N/A
+|-
+| $05 || Stopspell || 2 || 10 || Status || Single enemy
+|-
+| $06 || Outside || 6 || 12 || Field || N/A
+|-
+| $07 || Return || 8 || 13 || Field || N/A
+|-
+| $08 || Repel || 2 || 15 || Field || N/A
+|-
+| $09 || Healmore || 10 || 17 || Healing || Self
+|-
+| $0A || Hurtmore || 5 || 19 || Attack || Single enemy
+|}
+
+== Spell Details ==
+
+=== Heal ===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| MP Cost || 4
+|-
+| Learned || Level 3
+|-
+| Effect || Restore 10-17 HP
+|-
+| Use In Battle || Yes
+|-
+| Use In Field || Yes
+|-
+| Formula || 10 + Random(0-7)
+|}
+
+'''Notes:'''
+* Most cost-effective healing early game
+* Becomes less useful once Healmore is learned
+* HP restored does not depend on any stats
+
+=== Hurt ===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| MP Cost || 2
+|-
+| Learned || Level 4
+|-
+| Effect || Deal 3-10 damage
+|-
+| Use In Battle || Yes
+|-
+| Use In Field || No
+|-
+| Formula || 3 + Random(0-7)
+|}
+
+'''Notes:'''
+* Ignores enemy defense
+* Useful against high-defense enemies
+* The Flame Sword can cast this for free when used as an item
+
+=== Sleep ===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| MP Cost || 2
+|-
+| Learned || Level 7
+|-
+| Effect || Put enemy to sleep
+|-
+| Use In Battle || Yes
+|-
+| Use In Field || No
+|-
+| Success Rate || ~50% vs normal enemies
+|}
+
+'''Notes:'''
+* Sleeping enemies cannot act
+* Enemy wakes after 3-5 turns or if attacked
+* Many bosses and late-game enemies are immune
+* Cost-effective way to avoid damage early game
+
+=== Radiant ===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| MP Cost || 2
+|-
+| Learned || Level 9
+|-
+| Effect || Light surrounding area
+|-
+| Use In Battle || No
+|-
+| Use In Field || Yes
+|-
+| Radius || 3 tiles in all directions
+|}
+
+'''Notes:'''
+* Replaces need for Torches
+* Lasts until leaving dungeon
+* More cost-effective than Torches long-term
+
+=== Stopspell ===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| MP Cost || 2
+|-
+| Learned || Level 10
+|-
+| Effect || Seal enemy's magic
+|-
+| Use In Battle || Yes
+|-
+| Use In Field || No
+|-
+| Success Rate || ~50% vs normal enemies
+|}
+
+'''Notes:'''
+* Prevents enemy from casting spells
+* Essential for Dragonlord (human form)
+* Duration: rest of battle
+* Some enemies resist or are immune
+
+=== Outside ===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| MP Cost || 6
+|-
+| Learned || Level 12
+|-
+| Effect || Exit dungeon instantly
+|-
+| Use In Battle || No
+|-
+| Use In Field || Yes (dungeons only)
+|}
+
+'''Notes:'''
+* Only works inside dungeons
+* Teleports to dungeon entrance
+* Very useful for treasure hunting
+* Saves time and avoids battles
+
+=== Return ===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| MP Cost || 8
+|-
+| Learned || Level 13
+|-
+| Effect || Warp to Tantegel Castle
+|-
+| Use In Battle || No
+|-
+| Use In Field || Yes
+|}
+
+'''Notes:'''
+* Always teleports to Tantegel Castle
+* Replaces need for Wings item
+* Essential for efficient gold farming
+* Cannot be used in dungeons
+
+=== Repel ===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| MP Cost || 2
+|-
+| Learned || Level 15
+|-
+| Effect || Avoid weak encounters
+|-
+| Use In Battle || No
+|-
+| Use In Field || Yes
+|-
+| Duration || ~128 steps
+|}
+
+'''Notes:'''
+* Only repels monsters below Hero's level
+* Replaces need for Fairy Water
+* Very useful late game for travel
+* Does not work against bosses or fixed encounters
+
+=== Healmore ===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| MP Cost || 10
+|-
+| Learned || Level 17
+|-
+| Effect || Restore 80-100 HP
+|-
+| Use In Battle || Yes
+|-
+| Use In Field || Yes
+|-
+| Formula || 80 + Random(0-20)
+|}
+
+'''Notes:'''
+* Most efficient healing spell
+* Essential for late game and boss fights
+* HP restored does not depend on any stats
+
+=== Hurtmore ===
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| MP Cost || 5
+|-
+| Learned || Level 19
+|-
+| Effect || Deal 30-45 damage
+|-
+| Use In Battle || Yes
+|-
+| Use In Field || No
+|-
+| Formula || 30 + Random(0-15)
+|}
+
+'''Notes:'''
+* Ignores enemy defense
+* Most powerful attack spell
+* Very MP efficient for high-defense enemies
+* Essential for Dragonlord's true form
+
+== Enemy Spell Resistance ==
+
+{| class="wikitable"
+|-
+! Enemy Type !! Sleep !! Stopspell !! Notes
+|-
+| Regular monsters || ~50% || ~50% || Most are vulnerable
+|-
+| Warlocks || ~25% || Immune || Magic users resist
+|-
+| Wizards || ~25% || Immune || Magic users resist
+|-
+| Armored Knight || ~50% || N/A || Does not cast spells
+|-
+| Dragonlord (human) || Immune || ~50% || Stopspell recommended
+|-
+| Dragonlord (dragon) || Immune || N/A || Does not cast spells
+|}
+
+== MP Management ==
+
+=== MP per Level ===
+
+{| class="wikitable"
+|-
+! Level !! Max MP !! New Spells Available
+|-
+| 3 || 5 || Heal (4 MP)
+|-
+| 4 || 16 || Hurt (2 MP)
+|-
+| 7 || 24 || Sleep (2 MP)
+|-
+| 9 || 36 || Radiant (2 MP)
+|-
+| 10 || 40 || Stopspell (2 MP)
+|-
+| 12 || 48 || Outside (6 MP)
+|-
+| 13 || 52 || Return (8 MP)
+|-
+| 15 || 64 || Repel (2 MP)
+|-
+| 17 || 72 || Healmore (10 MP)
+|-
+| 19 || 90 || Hurtmore (5 MP)
+|}
+
+=== MP Restoration ===
+
+{| class="wikitable"
+|-
+! Method !! Cost !! Notes
+|-
+| Inn (Brecconary) || 6 Gold || Also restores HP
+|-
+| Inn (Garinham) || 25 Gold || Also restores HP
+|-
+| Inn (Kol) || 20 Gold || Also restores HP
+|-
+| Inn (Rimuldar) || 55 Gold || Also restores HP
+|-
+| Inn (Cantlin) || 100 Gold || Also restores HP
+|-
+| Level Up || — || Full MP restored
+|-
+| Death/Revive || — || Full MP restored (but lose half gold)
+|}
+
+== Spell Strategy ==
+
+=== Early Game (Levels 1-10) ===
+
+* Heal is essential for survival
+* Hurt saves HP vs high-defense enemies
+* Sleep provides free turns
+
+=== Mid Game (Levels 10-17) ===
+
+* Stopspell counters enemy casters
+* Outside saves time in dungeons
+* Return enables efficient farming
+
+=== Late Game (Levels 17-30) ===
+
+* Healmore is primary healing
+* Hurtmore damages any enemy efficiently
+* Repel speeds up travel
+
+=== Dragonlord Strategy ===
+
+# Human form: Cast Stopspell, attack
+# Dragon form: Alternate Hurtmore and Healmore
+
+== See Also ==
+
+* [[Characters]]
+* [[Monster Data]]
+* [[Battle System]]
+* [[ROM Map]]
+
+[[Category:Dragon Warrior (NES)]]

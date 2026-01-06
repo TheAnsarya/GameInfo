@@ -1,0 +1,308 @@
+{{Back|Dragon Warrior (NES)}}
+__TOC__
+
+== Overview ==
+
+Dragon Warrior features various items including weapons, armor, shields, and consumables. This page documents all items in the game.
+
+== Item Data Structure ==
+
+Item data is stored in ROM:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Item type
+|-
+| $01 || 1 || Effect value
+|-
+| $02-$03 || 2 || Buy price
+|-
+| $04-$05 || 2 || Sell price
+|}
+
+== Weapons ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Attack !! Buy !! Sell !! Location
+|-
+| $00 || — || +0 || — || — || Bare hands
+|-
+| $01 || Bamboo Pole || +2 || 10 || 5 || Tantegel, Brecconary
+|-
+| $02 || Club || +4 || 60 || 30 || Tantegel, Brecconary
+|-
+| $03 || Copper Sword || +10 || 180 || 90 || Brecconary, Garinham
+|-
+| $04 || Hand Axe || +15 || 560 || 280 || Garinham, Kol
+|-
+| $05 || Broad Sword || +20 || 1500 || 750 || Kol, Rimuldar
+|-
+| $06 || Flame Sword || +28 || 9800 || 4900 || Cantlin
+|-
+| $07 || Erdrick's Sword || +40 || — || — || Charlock Castle
+|}
+
+=== Weapon Notes ===
+
+{| class="wikitable"
+|-
+! Weapon !! Special Effect
+|-
+| Flame Sword || Can be used as item in battle to cast Hurt spell
+|-
+| Erdrick's Sword || Required to defeat Dragonlord's true form efficiently
+|}
+
+== Armor ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Defense !! Buy !! Sell !! Location
+|-
+| $00 || — || +0 || — || — || No armor
+|-
+| $01 || Clothes || +2 || 20 || 10 || Tantegel
+|-
+| $02 || Leather Armor || +4 || 70 || 35 || Brecconary
+|-
+| $03 || Chain Mail || +10 || 300 || 150 || Garinham
+|-
+| $04 || Half Plate || +16 || 1000 || 500 || Kol
+|-
+| $05 || Full Plate || +24 || 3000 || 1500 || Kol, Rimuldar
+|-
+| $06 || Magic Armor || +24 || 7700 || 3850 || Rimuldar
+|-
+| $07 || Erdrick's Armor || +28 || — || — || Hauksness
+|}
+
+=== Armor Notes ===
+
+{| class="wikitable"
+|-
+! Armor !! Special Effect
+|-
+| Magic Armor || Regenerate 1 HP per step while walking
+|-
+| Erdrick's Armor || Regenerate 1 HP per step + reduce damage from swamp/barriers
+|}
+
+== Shields ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Defense !! Buy !! Sell !! Location
+|-
+| $00 || — || +0 || — || — || No shield
+|-
+| $01 || Leather Shield || +4 || 90 || 45 || Brecconary
+|-
+| $02 || Iron Shield || +10 || 800 || 400 || Garinham, Kol
+|-
+| $03 || Silver Shield || +20 || 14800 || 7400 || Cantlin
+|}
+
+== Key Items ==
+
+{| class="wikitable"
+|-
+! ID !! Name !! Location !! Use
+|-
+| $10 || Dragon's Scale || Treasure || +2 Defense (accessory slot)
+|-
+| $11 || Fighter's Ring || Mountain Cave || +2 Attack (accessory slot)
+|-
+| $12 || Fairy Flute || Kol || Wake the sleeping Golem guarding Cantlin
+|-
+| $13 || Silver Harp || Garinham || Summons monsters when used (field)
+|-
+| $14 || Staff of Rain || Rain Shrine || Combine with Stones of Sunlight
+|-
+| $15 || Stones of Sunlight || Tantegel Basement || Combine with Staff of Rain
+|-
+| $16 || Erdrick's Token || Marsh Cave || Prove to guard you are Erdrick's descendant
+|-
+| $17 || Gwaelin's Love || Princess || Show distance to Tantegel (field)
+|-
+| $18 || Ball of Light || Dragonlord || Game completion item
+|-
+| $19 || Rainbow Drop || Create with Staff + Stones || Creates Rainbow Bridge to Charlock
+|}
+
+=== Key Item Combinations ===
+
+{| class="wikitable"
+|-
+! Items !! Result !! Use
+|-
+| Staff of Rain + Stones of Sunlight || Rainbow Drop || Use at shore south of Rimuldar
+|}
+
+== Consumable Items ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Effect !! Buy !! Sell
+|-
+| $20 || Herb || Restore 20-35 HP || 24 || 12
+|-
+| $21 || Torch || Light caves (3 tiles) || 8 || 4
+|-
+| $22 || Magic Key || Open one locked door || 32 || 16
+|-
+| $23 || Fairy Water || Repel weak monsters || 38 || 19
+|-
+| $24 || Wings || Return to Tantegel Castle || 70 || 35
+|}
+
+=== Consumable Notes ===
+
+{| class="wikitable"
+|-
+! Item !! Notes
+|-
+| Herb || Most cost-effective healing early game
+|-
+| Torch || Replaced by Radiant spell at level 9
+|-
+| Magic Key || Needed for many treasure chests and doors; buy in bulk
+|-
+| Fairy Water || Works on monsters below Hero's level
+|-
+| Wings || Replaced by Return spell at level 13
+|}
+
+== Shop Locations ==
+
+=== Brecconary ===
+
+{| class="wikitable"
+|-
+! Item !! Price
+|-
+| Bamboo Pole || 10
+|-
+| Club || 60
+|-
+| Copper Sword || 180
+|-
+| Clothes || 20
+|-
+| Leather Armor || 70
+|-
+| Leather Shield || 90
+|}
+
+=== Garinham ===
+
+{| class="wikitable"
+|-
+! Item !! Price
+|-
+| Copper Sword || 180
+|-
+| Hand Axe || 560
+|-
+| Chain Mail || 300
+|-
+| Half Plate || 1000
+|-
+| Iron Shield || 800
+|}
+
+=== Kol ===
+
+{| class="wikitable"
+|-
+! Item !! Price
+|-
+| Hand Axe || 560
+|-
+| Broad Sword || 1500
+|-
+| Half Plate || 1000
+|-
+| Full Plate || 3000
+|-
+| Iron Shield || 800
+|}
+
+=== Rimuldar ===
+
+{| class="wikitable"
+|-
+! Item !! Price
+|-
+| Broad Sword || 1500
+|-
+| Full Plate || 3000
+|-
+| Magic Armor || 7700
+|-
+| Iron Shield || 800
+|}
+
+=== Cantlin ===
+
+{| class="wikitable"
+|-
+! Item !! Price
+|-
+| Flame Sword || 9800
+|-
+| Silver Shield || 14800
+|}
+
+== Treasure Locations ==
+
+=== Tantegel Castle ===
+
+* Magic Key (basement)
+* Stones of Sunlight (basement, requires Magic Key)
+* 120 Gold (throne room, requires Magic Key)
+
+=== Tantegel Area Caves ===
+
+* Herb (multiple)
+* Torch
+* 120 Gold
+
+=== Erdrick's Cave ===
+
+* Erdrick's Tablet (information only)
+
+=== Garinham ===
+
+* 120 Gold (Inn basement)
+* Silver Harp (grave)
+
+=== Mountain Cave ===
+
+* Fighter's Ring
+* Herbs
+* 500+ Gold
+
+=== Marsh Cave ===
+
+* Erdrick's Token
+
+=== Hauksness ===
+
+* Erdrick's Armor
+
+=== Charlock Castle ===
+
+* Erdrick's Sword
+* Various gold chests
+
+== See Also ==
+
+* [[Characters]]
+* [[Monster Data]]
+* [[ROM Map]]
+* [[RAM Map]]
+
+[[Category:Dragon Warrior (NES)]]

@@ -1,0 +1,342 @@
+{{Back|Dragon Quest III (SNES)}}
+__TOC__
+
+== Overview ==
+
+Dragon Quest III features multiple magic systems: Hero spells, Mage spells, Priest spells, and Sage spells. This page documents all spells and their mechanics.
+
+== Spell Data Structure ==
+
+Each spell entry is 8 bytes:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Spell ID
+|-
+| $01 || 1 || MP cost
+|-
+| $02 || 1 || Effect type
+|-
+| $03 || 1 || Power value
+|-
+| $04 || 1 || Target type
+|-
+| $05 || 1 || Level learned (Hero)
+|-
+| $06 || 1 || Level learned (Mage/Priest)
+|-
+| $07 || 1 || Flags
+|}
+
+== Hero Spells ==
+
+Unique spells only the Hero learns:
+
+{| class="wikitable sortable"
+|-
+! ID !! Spell !! MP !! Level !! Effect !! Target
+|-
+| $01 || Heal || 2 || 1 || Restore ~30 HP || One ally
+|-
+| $02 || Sizz || 4 || 4 || Fire damage 15-25 || One group
+|-
+| $03 || Evac || 8 || 7 || Exit dungeon || Party
+|-
+| $04 || Zoom || 1 || 10 || Warp to town || Party
+|-
+| $05 || Sizzle || 6 || 12 || Fire damage 40-55 || One group
+|-
+| $06 || Kasizz || 10 || 15 || Fire damage 65-80 || One group
+|-
+| $07 || Fullheal || 7 || 18 || Full HP restore || One ally
+|-
+| $08 || Kasizzle || 15 || 21 || Fire damage 100-120 || All enemies
+|-
+| $09 || Omniheal || 36 || 24 || Full HP restore || All allies
+|-
+| $0A || Zap || 8 || 27 || Lightning 75-95 || All enemies
+|-
+| $0B || Kazap || 15 || 30 || Lightning 120-160 || All enemies
+|-
+| $0C || Kazing || 20 || 33 || Revive full HP || One ally
+|-
+| $0D || Kazapple || 30 || 35 || Lightning 180-220 || All enemies
+|}
+
+== Mage Spells ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Spell !! MP !! Level !! Effect !! Target
+|-
+| $10 || Frizz || 2 || 1 || Fire 10-20 || One enemy
+|-
+| $11 || Crack || 3 || 4 || Ice 15-25 || One group
+|-
+| $12 || Frizzle || 4 || 8 || Fire 35-50 || One enemy
+|-
+| $13 || Evac || 8 || 10 || Exit dungeon || Party
+|-
+| $14 || Bang || 5 || 12 || Explosion 20-35 || All enemies
+|-
+| $15 || Crackle || 5 || 14 || Ice 30-45 || One group
+|-
+| $16 || Sap || 3 || 16 || Lower defense || One enemy
+|-
+| $17 || Boom || 8 || 18 || Explosion 45-65 || All enemies
+|-
+| $18 || Kafrizz || 10 || 22 || Fire 80-100 || One enemy
+|-
+| $19 || Kacrackle || 12 || 26 || Ice 70-95 || One group
+|-
+| $1A || Kaboom || 15 || 30 || Explosion 100-140 || All enemies
+|-
+| $1B || Kafrizzle || 20 || 36 || Fire 160-200 || One enemy
+|-
+| $1C || Thwack || 7 || 20 || Instant death || One group
+|-
+| $1D || Kathwack || 15 || 34 || Instant death || All enemies
+|-
+| $1E || Kasap || 5 || 28 || Lower defense || All enemies
+|}
+
+== Priest Spells ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Spell !! MP !! Level !! Effect !! Target
+|-
+| $20 || Heal || 2 || 1 || Restore ~30 HP || One ally
+|-
+| $21 || Squelch || 2 || 3 || Cure poison || One ally
+|-
+| $22 || Snooze || 3 || 5 || Put to sleep || One group
+|-
+| $23 || Woosh || 4 || 7 || Wind 15-25 || One group
+|-
+| $24 || Buff || 2 || 9 || Raise defense || One ally
+|-
+| $25 || Midheal || 5 || 11 || Restore ~75 HP || One ally
+|-
+| $26 || Tingle || 3 || 13 || Cure paralysis || One ally
+|-
+| $27 || Swoosh || 6 || 15 || Wind 35-50 || One group
+|-
+| $28 || Zing || 8 || 17 || 50% revive || One ally
+|-
+| $29 || Insulatle || 6 || 19 || Fire/ice resist || Party
+|-
+| $2A || Fullheal || 7 || 22 || Full HP restore || One ally
+|-
+| $2B || Kaswoosh || 12 || 26 || Wind 70-95 || All enemies
+|-
+| $2C || Multiheal || 18 || 30 || Restore ~100 HP || All allies
+|-
+| $2D || Kazing || 20 || 34 || Revive full HP || One ally
+|-
+| $2E || Omniheal || 36 || 38 || Full HP restore || All allies
+|-
+| $2F || Whack || 4 || 7 || Instant death || One enemy
+|-
+| $30 || Kabuff || 6 || 20 || Raise defense || All allies
+|-
+| $31 || Magic Barrier || 8 || 24 || Magic resist || Party
+|-
+| $32 || Bazoom || 8 || 28 || Remove enemy || One enemy
+|}
+
+== Status Spells ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Spell !! MP !! Class !! Effect !! Success Rate
+|-
+| $40 || Snooze || 3 || Priest || Sleep one group || ~60%
+|-
+| $41 || Kasnooze || 5 || Sage || Sleep all || ~50%
+|-
+| $42 || Dazzle || 3 || Mage || Lower accuracy || ~65%
+|-
+| $43 || Kasap || 5 || Mage || Lower def (all) || ~55%
+|-
+| $44 || Sap || 3 || Mage || Lower def (one) || ~65%
+|-
+| $45 || Fuddle || 5 || Mage || Confuse group || ~45%
+|-
+| $46 || Kafuddle || 8 || Sage || Confuse all || ~35%
+|-
+| $47 || Fizzle || 3 || Priest || Seal magic || ~50%
+|-
+| $48 || Deceleratle || 5 || Mage || Lower agility || ~60%
+|-
+| $49 || Bounce || 4 || Sage || Reflect spells || 100%
+|}
+
+== Utility Spells ==
+
+{| class="wikitable}
+|-
+! Spell !! MP !! Class !! Effect !! Notes
+|-
+| Evac || 8 || Hero, Mage || Exit dungeon || Field only
+|-
+| Zoom || 1 || Hero, Sage || Warp to town || Field only
+|-
+| Holy Protection || 4 || Priest || Repel enemies || Field only
+|-
+| Padfoot || 2 || Thief || Avoid encounters || Field only
+|-
+| Peep || 2 || Thief || See chest contents || Field only
+|-
+| Nose for Treasure || 0 || Thief || Detect items || Field only
+|-
+| Dig || 2 || Merchant || Find buried items || Field only
+|}
+
+== Sage Spells ==
+
+Sages learn all Mage and Priest spells plus:
+
+{| class="wikitable"
+|-
+! Spell !! MP !! Level !! Effect
+|-
+| Kasnooze || 5 || 15 || Sleep all enemies
+|-
+| Kafuddle || 8 || 20 || Confuse all enemies
+|-
+| Bounce || 4 || 25 || Reflect spells
+|-
+| Kazapple || 30 || 45 || Ultimate lightning
+|}
+
+== Spell Categories ==
+
+=== Attack Spells by Element ===
+
+{| class="wikitable"
+|-
+! Element !! Tier 1 !! Tier 2 !! Tier 3 !! Tier 4
+|-
+| Fire || Frizz || Frizzle || Kafrizz || Kafrizzle
+|-
+| Ice || Crack || Crackle || Kacrackle || —
+|-
+| Wind || Woosh || Swoosh || Kaswoosh || —
+|-
+| Explosion || Bang || Boom || Kaboom || —
+|-
+| Lightning || — || Zap || Kazap || Kazapple
+|-
+| Hero Fire || Sizz || Sizzle || Kasizz || Kasizzle
+|}
+
+=== Healing Spells ===
+
+{| class="wikitable"
+|-
+! Spell !! MP !! Heal Amount !! Target !! Classes
+|-
+| Heal || 2 || ~30 HP || One || Hero, Priest, Sage
+|-
+| Midheal || 5 || ~75 HP || One || Priest, Sage
+|-
+| Fullheal || 7 || Full HP || One || Hero, Priest, Sage
+|-
+| Multiheal || 18 || ~100 HP || All || Priest, Sage
+|-
+| Omniheal || 36 || Full HP || All || Hero, Priest, Sage
+|}
+
+=== Revival Spells ===
+
+{| class="wikitable"
+|-
+! Spell !! MP !! Success Rate !! HP Restored !! Classes
+|-
+| Zing || 8 || 50% || 50% HP || Priest, Sage
+|-
+| Kazing || 20 || 100% || Full HP || Hero, Priest, Sage
+|}
+
+== MP by Class/Level ==
+
+=== Max MP at Key Levels ===
+
+{| class="wikitable"
+|-
+! Level !! Hero !! Mage !! Priest !! Sage
+|-
+| 1 || 5 || 8 || 5 || 8
+|-
+| 10 || 45 || 65 || 50 || 68
+|-
+| 20 || 95 || 135 || 100 || 140
+|-
+| 30 || 145 || 200 || 155 || 210
+|-
+| 40 || 195 || 255 || 200 || 260
+|-
+| 50 || 230 || 280 || 240 || 295
+|-
+| 99 || 300 || 350 || 320 || 380
+|}
+
+== Spell Resistance ==
+
+=== Enemy Resistance Types ===
+
+{| class="wikitable"
+|-
+! Resistance !! Resists !! Monster Types
+|-
+| Fire || Frizz, Sizz || Flame enemies
+|-
+| Ice || Crack || Ice enemies
+|-
+| Wind || Woosh || Birds (partial)
+|-
+| Explosion || Bang || Rock/metal types
+|-
+| Status || Sleep, Fuddle || Bosses, undead
+|-
+| Death || Whack, Thwack || Most bosses
+|}
+
+== Spell Strategy ==
+
+=== Early Game ===
+
+* Heal for survival
+* Crack/Sizz for groups
+* Snooze to control enemies
+
+=== Mid Game ===
+
+* Midheal/Fullheal for healing
+* Boom/Kasizz for AoE
+* Buff/Kabuff for bosses
+
+=== Late Game ===
+
+* Omniheal for emergencies
+* Kafrizzle for single targets
+* Kaboom/Kasizzle for groups
+
+=== Boss Fights ===
+
+* Kabuff party defense
+* Magic Barrier vs casters
+* Fullheal/Omniheal rotation
+* Avoid instant death spells
+
+== See Also ==
+
+* [[Characters]]
+* [[Class System]]
+* [[Monsters]]
+* [[ROM Map]]
+
+[[Category:Dragon Quest III (SNES)]]

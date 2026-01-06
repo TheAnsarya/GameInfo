@@ -1,0 +1,371 @@
+{{Back|Dragon Quest III (SNES)}}
+__TOC__
+
+== Overview ==
+
+Dragon Quest III for SNES features over 100 unique monsters across the overworld and dungeons. This page documents monster statistics and behaviors.
+
+== Monster Data Structure ==
+
+Each monster entry is 32 bytes:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00-$01 || 2 || HP
+|-
+| $02-$03 || 2 || MP
+|-
+| $04 || 1 || Attack
+|-
+| $05 || 1 || Defense
+|-
+| $06 || 1 || Agility
+|-
+| $07 || 1 || Intelligence
+|-
+| $08-$09 || 2 || Experience
+|-
+| $0A-$0B || 2 || Gold
+|-
+| $0C || 1 || Drop item ID
+|-
+| $0D || 1 || Drop rate
+|-
+| $0E || 1 || Elemental resistance
+|-
+| $0F || 1 || Status resistance
+|-
+| $10-$1F || 16 || AI patterns, abilities
+|}
+
+== Monsters by Area ==
+
+=== Aliahan Region ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Atk !! Def !! Agi !! EXP !! Gold
+|-
+| $01 || Slime || 8 || 9 || 5 || 4 || 4 || 3
+|-
+| $02 || Crow || 7 || 10 || 6 || 8 || 3 || 3
+|-
+| $03 || Babble || 9 || 12 || 8 || 6 || 5 || 5
+|-
+| $04 || Anteater || 12 || 14 || 10 || 5 || 6 || 6
+|-
+| $05 || Horned Rabbit || 10 || 13 || 7 || 10 || 5 || 5
+|}
+
+=== Romaly Region ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Atk !! Def !! Agi !! EXP !! Gold
+|-
+| $10 || Caterpillar || 18 || 18 || 12 || 8 || 10 || 8
+|-
+| $11 || Frog || 20 || 20 || 10 || 12 || 11 || 10
+|-
+| $12 || Healer || 15 || 15 || 8 || 14 || 12 || 12
+|-
+| $13 || Poison Toad || 28 || 26 || 16 || 14 || 18 || 15
+|-
+| $14 || Vampire Bat || 22 || 22 || 14 || 18 || 15 || 12
+|}
+
+=== Kanave Region ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Atk !! Def !! Agi !! EXP !! Gold
+|-
+| $20 || Cactus Ball || 35 || 32 || 22 || 15 || 25 || 20
+|-
+| $21 || Scorpion || 42 || 38 || 28 || 18 || 35 || 28
+|-
+| $22 || Mummy || 48 || 42 || 32 || 12 || 42 || 35
+|-
+| $23 || Mummy Man || 55 || 48 || 35 || 14 || 55 || 45
+|-
+| $24 || King Cobra || 38 || 35 || 25 || 25 || 38 || 32
+|}
+
+=== Portoga Region ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Atk !! Def !! Agi !! EXP !! Gold
+|-
+| $30 || Skeleton || 52 || 45 || 35 || 20 || 48 || 40
+|-
+| $31 || Magician || 45 || 35 || 25 || 28 || 52 || 48
+|-
+| $32 || Demon Spider || 65 || 55 || 42 || 22 || 65 || 55
+|-
+| $33 || Berserker || 78 || 68 || 48 || 18 || 85 || 72
+|-
+| $34 || Killer Bee || 35 || 40 || 30 || 35 || 45 || 38
+|}
+
+=== Samanao Region ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Atk !! Def !! Agi !! EXP !! Gold
+|-
+| $40 || Troll || 150 || 115 || 65 || 28 || 250 || 100
+|-
+| $41 || Man Eater || 120 || 95 || 55 || 35 || 180 || 85
+|-
+| $42 || Mimic || 110 || 85 || 120 || 50 || 220 || 150
+|-
+| $43 || Gold Man || 85 || 70 || 200 || 60 || 350 || 1023
+|-
+| $44 || Stone Man || 180 || 130 || 150 || 15 || 280 || 120
+|}
+
+=== Baramos Region ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Atk !! Def !! Agi !! EXP !! Gold
+|-
+| $50 || Boss Troll || 280 || 180 || 100 || 32 || 650 || 200
+|-
+| $51 || Demon || 220 || 150 || 90 || 45 || 520 || 180
+|-
+| $52 || Great Demon || 300 || 200 || 120 || 38 || 750 || 250
+|-
+| $53 || Salamander || 350 || 220 || 130 || 25 || 850 || 300
+|-
+| $54 || Archdemon || 400 || 250 || 150 || 42 || 1000 || 350
+|}
+
+=== Dark World ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Atk !! Def !! Agi !! EXP !! Gold
+|-
+| $60 || King Hydra || 450 || 280 || 160 || 48 || 1500 || 400
+|-
+| $61 || Metal Babble || 5 || 100 || 255 || 255 || 10050 || 10
+|-
+| $62 || Hellcloud || 380 || 260 || 140 || 55 || 1200 || 350
+|-
+| $63 || Skullgon || 420 || 290 || 170 || 35 || 1800 || 450
+|-
+| $64 || Bone Slave || 350 || 240 || 150 || 40 || 1100 || 320
+|}
+
+=== Final Dungeon ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Atk !! Def !! Agi !! EXP !! Gold
+|-
+| $70 || King Metal || 20 || 150 || 255 || 255 || 30010 || 20
+|-
+| $71 || Granite Titan || 600 || 350 || 200 || 30 || 2500 || 600
+|-
+| $72 || Demon Lord || 500 || 320 || 180 || 52 || 2200 || 550
+|-
+| $73 || Divinegon || 550 || 340 || 190 || 48 || 2800 || 650
+|-
+| $74 || Dark Dragon || 650 || 380 || 210 || 42 || 3200 || 750
+|}
+
+== Boss Monsters ==
+
+{| class="wikitable"
+|-
+! ID !! Name !! HP !! Location !! Notes
+|-
+| $80 || Robber Dhama || 850 || Cave of Enticement || First boss
+|-
+| $81 || Kandar || 500 || Tower of Shanpane || Thief boss
+|-
+| $82 || Kandar (2) || 1000 || Baharata || Rematch
+|-
+| $83 || Boss Troll || 800 || Various || Mini-boss
+|-
+| $84 || Orochi || 1500 || Jipang Cave || Eight-headed serpent
+|-
+| $85 || Samanao King || 1200 || Samanao Castle || Possessed king
+|-
+| $86 || Baramos || 3000 || Necrogond || Main boss (overworld)
+|-
+| $87 || Baramos Bomus || 2500 || Zoma Castle || Baramos transformed
+|-
+| $88 || Baramos Gonus || 2000 || Zoma Castle || Another form
+|-
+| $89 || King Hydra || 3500 || Zoma Castle || Guardian
+|-
+| $8A || Soul of Baramos || 2800 || Zoma Castle || Spirit form
+|-
+| $8B || Zoma || 4700 || Zoma Castle || Final boss
+|}
+
+=== Zoma Details ===
+
+{| class="wikitable"
+|-
+! Phase !! HP !! Defense !! Special
+|-
+| With Barrier || 4700 || 350 || Nearly invincible
+|-
+| After Light Orb || 4700 || 200 || Normal vulnerability
+|}
+
+== Special Monsters ==
+
+=== Metal Slime Family ===
+
+{| class="wikitable"
+|-
+! Name !! HP !! Defense !! Agility !! EXP !! Flee Rate
+|-
+| Metal Slime || 4 || 255 || 200 || 1350 || High
+|-
+| Metal Babble || 5 || 255 || 255 || 10050 || Very High
+|-
+| King Metal || 20 || 255 || 255 || 30010 || Very High
+|}
+
+=== Treasure Mimics ===
+
+{| class="wikitable"
+|-
+! Name !! HP !! Attack !! Notes
+|-
+| Mimic || 110 || 85 || Appears as chest
+|-
+| Man Eater || 120 || 95 || Chest trap
+|-
+| Cannibox || 180 || 145 || Dangerous chest
+|}
+
+== Monster Abilities ==
+
+{| class="wikitable"
+|-
+! ID !! Ability !! Effect
+|-
+| $01 || Attack || Physical damage
+|-
+| $02 || Sizz || Fire damage (group)
+|-
+| $03 || Sizzle || Strong fire (group)
+|-
+| $04 || Frizz || Fire damage (single)
+|-
+| $05 || Crack || Ice damage (group)
+|-
+| $06 || Crackle || Strong ice (group)
+|-
+| $07 || Zap || Lightning (all)
+|-
+| $08 || Bang || Explosion (all)
+|-
+| $09 || Boom || Strong explosion (all)
+|-
+| $0A || Heal || Restore HP
+|-
+| $0B || Midheal || Better healing
+|-
+| $0C || Fullheal || Full HP restore
+|-
+| $0D || Sleep || Put to sleep
+|-
+| $0E || Snooze || Group sleep
+|-
+| $0F || Dazzle || Lower accuracy
+|-
+| $10 || Fuddle || Confuse target
+|-
+| $11 || Whack || Instant death
+|-
+| $12 || Thwack || Group death
+|-
+| $13 || Fire Breath || Fire damage
+|-
+| $14 || Flame Breath || Strong fire breath
+|-
+| $15 || Inferno || Massive fire breath
+|-
+| $16 || Ice Breath || Ice damage
+|-
+| $17 || Freezing Blizzard || Strong ice breath
+|-
+| $18 || Sweet Breath || Group sleep
+|-
+| $19 || Poison Breath || Poison group
+|-
+| $1A || Call Allies || Summon monsters
+|}
+
+== Elemental Resistances ==
+
+{| class="wikitable"
+|-
+! Element !! Bit !! Strong Types
+|-
+| Fire || $01 || Salamander, Flame
+|-
+| Ice || $02 || Ice types
+|-
+| Lightning || $04 || Metal types
+|-
+| Wind || $08 || Bird types
+|-
+| Explosion || $10 || Rock types
+|-
+| Status || $20 || Bosses, undead
+|-
+| Death || $40 || Most bosses
+|-
+| Absorb || $80 || Undead (heal)
+|}
+
+== Encounter Zones ==
+
+{| class="wikitable"
+|-
+! Zone !! Level Range !! Notable Monsters
+|-
+| Aliahan || 1-5 || Slimes, basic enemies
+|-
+| Romaly || 5-10 || Poison Toads, Healers
+|-
+| Kanave || 10-15 || Mummies, Scorpions
+|-
+| Portoga || 15-20 || Skeletons, Magicians
+|-
+| Samanao || 20-28 || Trolls, Mimics
+|-
+| Baramos Area || 28-35 || Demons, Salamanders
+|-
+| Dark World || 35-45 || King Hydras, Metal Babbles
+|-
+| Final Dungeon || 45+ || King Metals, Dragons
+|}
+
+== SNES Changes ==
+
+* Monster graphics redrawn
+* Attack animations added
+* Some stats rebalanced
+* New monster variants
+* Metal King rare in overworld
+
+== See Also ==
+
+* [[Characters]]
+* [[Class System]]
+* [[ROM Map]]
+* [[RAM Map]]
+
+[[Category:Dragon Quest III (SNES)]]

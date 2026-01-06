@@ -1,0 +1,464 @@
+{{Back|Dragon Quest III (SNES)}}
+__TOC__
+
+== Overview ==
+
+Dragon Quest III for SNES features the Hero, three customizable party members, and temporary characters. This page documents all characters and their statistics.
+
+== Character Data Structure ==
+
+Each character is 64 bytes:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00-$07 || 8 || Name (6 characters + padding)
+|-
+| $08 || 1 || Class ID
+|-
+| $09 || 1 || Level
+|-
+| $0A-$0B || 2 || Current HP
+|-
+| $0C-$0D || 2 || Max HP
+|-
+| $0E-$0F || 2 || Current MP
+|-
+| $10-$11 || 2 || Max MP
+|-
+| $12 || 1 || Strength
+|-
+| $13 || 1 || Agility
+|-
+| $14 || 1 || Vitality
+|-
+| $15 || 1 || Intelligence
+|-
+| $16 || 1 || Luck
+|-
+| $17 || 1 || Attack
+|-
+| $18 || 1 || Defense
+|-
+| $19 || 1 || Personality ID
+|-
+| $1A-$1D || 4 || Experience
+|-
+| $1E-$3F || 34 || Equipment, spells, status
+|}
+
+== The Hero ==
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Class || Hero (fixed)
+|-
+| Gender || Player choice
+|-
+| Starting Level || 1
+|-
+| Equipment || Cypress Stick, Plain Clothes
+|-
+| Magic Type || Unique hero spells
+|-
+| Can Class Change || No
+|}
+
+=== Hero Base Stats ===
+
+{| class="wikitable"
+|-
+! Level !! HP !! MP !! STR !! AGI !! VIT !! INT !! LCK
+|-
+| 1 || 15 || 5 || 8 || 5 || 8 || 6 || 5
+|-
+| 10 || 85 || 45 || 45 || 35 || 45 || 38 || 30
+|-
+| 20 || 165 || 95 || 95 || 70 || 90 || 78 || 60
+|-
+| 30 || 255 || 145 || 145 || 105 || 135 || 118 || 90
+|-
+| 40 || 345 || 195 || 195 || 140 || 180 || 158 || 120
+|-
+| 50 || 420 || 230 || 230 || 165 || 215 || 188 || 145
+|-
+| 99 || 511 || 300 || 255 || 200 || 255 || 230 || 200
+|}
+
+=== Hero Spells ===
+
+{| class="wikitable"
+|-
+! Level !! Spell !! MP !! Effect
+|-
+| 1 || Heal || 2 || Restore ~30 HP
+|-
+| 4 || Sizz || 4 || Fire damage (one group)
+|-
+| 7 || Evac || 8 || Exit dungeon
+|-
+| 10 || Zoom || 1 || Warp to town
+|-
+| 12 || Sizzle || 6 || Strong fire (one group)
+|-
+| 15 || Kasizz || 10 || Strongest fire (one group)
+|-
+| 18 || Fullheal || 7 || Full HP restore (one)
+|-
+| 21 || Kasizzle || 15 || Massive fire (all)
+|-
+| 24 || Omniheal || 36 || Full HP (all)
+|-
+| 27 || Zap || 8 || Lightning damage
+|-
+| 30 || Kazap || 15 || Strong lightning
+|-
+| 33 || Kazing || 20 || Revive (full HP)
+|-
+| 35 || Kazapple || 30 || Ultimate lightning
+|}
+
+== Playable Classes ==
+
+=== Warrior ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Role || Physical attacker/tank
+|-
+| Equipment || Heavy armor, most weapons
+|-
+| Magic || None
+|-
+| HP Growth || Very High
+|-
+| MP Growth || None
+|-
+| STR Growth || Very High
+|}
+
+'''Base Stats (Level 1):'''
+{| class="wikitable"
+|-
+! STR !! AGI !! VIT !! INT !! LCK
+|-
+| 12 || 4 || 10 || 2 || 5
+|}
+
+=== Martial Artist ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Role || Fast physical attacker
+|-
+| Equipment || Light armor, claws
+|-
+| Magic || None
+|-
+| HP Growth || High
+|-
+| MP Growth || None
+|-
+| AGI Growth || Very High
+|}
+
+'''Base Stats (Level 1):'''
+{| class="wikitable"
+|-
+! STR !! AGI !! VIT !! INT !! LCK
+|-
+| 9 || 10 || 8 || 2 || 5
+|}
+
+=== Mage ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Role || Offensive magic
+|-
+| Equipment || Robes, staves
+|-
+| Magic || Attack spells
+|-
+| HP Growth || Low
+|-
+| MP Growth || Very High
+|-
+| INT Growth || Very High
+|}
+
+'''Base Stats (Level 1):'''
+{| class="wikitable"
+|-
+! STR !! AGI !! VIT !! INT !! LCK
+|-
+| 3 || 7 || 4 || 10 || 6
+|}
+
+=== Priest ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Role || Healer/support
+|-
+| Equipment || Robes, light armor, maces
+|-
+| Magic || Healing/support spells
+|-
+| HP Growth || Medium
+|-
+| MP Growth || High
+|-
+| INT Growth || Medium
+|}
+
+'''Base Stats (Level 1):'''
+{| class="wikitable"
+|-
+! STR !! AGI !! VIT !! INT !! LCK
+|-
+| 5 || 6 || 6 || 8 || 8
+|}
+
+=== Merchant ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Role || Gold finder
+|-
+| Equipment || Medium armor, various
+|-
+| Magic || Some utility
+|-
+| HP Growth || Medium
+|-
+| Special || Extra gold, Appraise
+|}
+
+'''Base Stats (Level 1):'''
+{| class="wikitable"
+|-
+! STR !! AGI !! VIT !! INT !! LCK
+|-
+| 7 || 5 || 7 || 5 || 9
+|}
+
+=== Gadabout ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Role || Random/luck based
+|-
+| Equipment || Limited
+|-
+| Magic || Limited
+|-
+| HP Growth || Low
+|-
+| Special || Random actions in battle
+|-
+| Note || Can become Sage at Dharma
+|}
+
+'''Base Stats (Level 1):'''
+{| class="wikitable"
+|-
+! STR !! AGI !! VIT !! INT !! LCK
+|-
+| 4 || 8 || 4 || 4 || 15
+|}
+
+=== Thief (SNES Only) ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Role || Speed/item stealer
+|-
+| Equipment || Light armor, daggers
+|-
+| Magic || Some support
+|-
+| HP Growth || Medium
+|-
+| Special || Steal, Padfoot
+|}
+
+'''Base Stats (Level 1):'''
+{| class="wikitable"
+|-
+! STR !! AGI !! VIT !! INT !! LCK
+|-
+| 6 || 12 || 5 || 5 || 10
+|}
+
+=== Sage ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Role || Best magic user
+|-
+| Equipment || Robes
+|-
+| Magic || All Mage + Priest spells
+|-
+| HP Growth || Medium
+|-
+| MP Growth || Very High
+|-
+| Requirement || Book of Satori, or Gadabout
+|}
+
+'''Base Stats (Level 1):'''
+{| class="wikitable"
+|-
+! STR !! AGI !! VIT !! INT !! LCK
+|-
+| 4 || 6 || 5 || 10 || 8
+|}
+
+== Class Change ==
+
+Available at Dharma Temple after Hero reaches level 20:
+
+{| class="wikitable"
+|-
+! Class !! Can Change To
+|-
+| Hero || Cannot change
+|-
+| Warrior || Any except Hero/Sage
+|-
+| Martial Artist || Any except Hero/Sage
+|-
+| Mage || Any except Hero, Sage with Book
+|-
+| Priest || Any except Hero, Sage with Book
+|-
+| Merchant || Any except Hero/Sage
+|-
+| Gadabout || Any including Sage (free)
+|-
+| Thief || Any except Hero/Sage
+|-
+| Sage || Any except Hero
+|}
+
+'''Class Change Effects:'''
+* Level resets to 1
+* Stats halved (rounded down)
+* Learned spells retained
+* Equipment slots change
+
+== Temporary Characters ==
+
+=== Ortega ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Role || Hero's father
+|-
+| Join || Brief scene at Dark World
+|-
+| Playable || Battle only
+|}
+
+=== Soldiers ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Role || Story NPCs
+|-
+| Join || Ship battles
+|-
+| Playable || No (AI controlled)
+|}
+
+== Experience Table ==
+
+{| class="wikitable"
+|-
+! Level !! EXP !! Level !! EXP !! Level !! EXP
+|-
+| 1 || 0 || 21 || 55000 || 41 || 580000
+|-
+| 5 || 260 || 25 || 100000 || 45 || 780000
+|-
+| 10 || 2800 || 30 || 190000 || 50 || 1000000
+|-
+| 15 || 12000 || 35 || 330000 || 99 || 9999999
+|-
+| 20 || 35000 || 40 || 500000 || — || —
+|}
+
+== Recommended Party ==
+
+=== Balanced Party ===
+
+{| class="wikitable"
+|-
+! Slot !! Class !! Role
+|-
+| 1 || Hero || Leader, mixed
+|-
+| 2 || Warrior || Tank, DPS
+|-
+| 3 || Priest || Healer
+|-
+| 4 || Mage → Sage || Magic DPS
+|}
+
+=== Speed Run Party ===
+
+{| class="wikitable"
+|-
+! Slot !! Class !! Role
+|-
+| 1 || Hero || Leader
+|-
+| 2 || Martial Artist || Fast DPS
+|-
+| 3 || Martial Artist || Fast DPS
+|-
+| 4 || Priest || Minimal healing
+|}
+
+== SNES Enhancements ==
+
+* Thief class added
+* Mini Medal system
+* Pachisi (board game)
+* Monster animations
+* Personality system expanded
+* Bag system for items
+
+== See Also ==
+
+* [[Class System]]
+* [[Personalities]]
+* [[ROM Map]]
+* [[RAM Map]]
+
+[[Category:Dragon Quest III (SNES)]]

@@ -1,0 +1,395 @@
+{{Back|Dragon Quest III (SNES)}}
+__TOC__
+
+== Overview ==
+
+Dragon Quest III for SNES features extensive item lists including weapons, armor, and consumables for all classes. This page documents all items.
+
+== Item Data Structure ==
+
+Each item entry is 12 bytes:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Item ID
+|-
+| $01 || 1 || Item type
+|-
+| $02 || 1 || Effect value
+|-
+| $03 || 1 || Equip flags (class mask)
+|-
+| $04-$05 || 2 || Buy price
+|-
+| $06-$07 || 2 || Sell price
+|-
+| $08-$0B || 4 || Special effects, description
+|}
+
+== Weapons ==
+
+=== Swords ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Atk !! Buy !! Sell !! Equip
+|-
+| $01 || Cypress Stick || +2 || 5 || 2 || All
+|-
+| $02 || Club || +7 || 30 || 15 || All except Mage
+|-
+| $03 || Copper Sword || +12 || 100 || 50 || Hero, War, Mer
+|-
+| $04 || Thorn Whip || +18 || 320 || 160 || All
+|-
+| $05 || Iron Axe || +30 || 550 || 275 || War, Mer
+|-
+| $06 || Iron Sword || +28 || 750 || 375 || Hero, War, Mer, Thi
+|-
+| $07 || Steel Sword || +40 || 1500 || 750 || Hero, War, Mer
+|-
+| $08 || Assassin's Dagger || +35 || 1500 || 750 || Thi, Gad
+|-
+| $09 || Zombieslayer || +65 || 9800 || 4900 || Hero, War, Mer
+|-
+| $0A || Headsman's Axe || +75 || 15000 || 7500 || War
+|-
+| $0B || Demon Axe || +85 || — || 5000 || War (cursed)
+|-
+| $0C || Sword of Kings || +120 || — || — || Hero only
+|-
+| $0D || Sword of Thunder || +95 || — || 16500 || Hero, War
+|-
+| $0E || Dragon Killer || +77 || 15000 || 7500 || Hero, War, Mer
+|-
+| $0F || Bastard Sword || +85 || 25000 || 12500 || Hero, War
+|-
+| $10 || Lightning Sword || +95 || — || 16500 || Hero, War
+|-
+| $11 || Sword of Destruction || +110 || — || 11000 || Hero, War (cursed)
+|-
+| $12 || Falcon Sword || +5x2 || 25000 || 12500 || Hero, War
+|-
+| $13 || Orochi's Sword || +63 || — || 7500 || Hero, War
+|}
+
+=== Staves ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Atk !! Buy !! Sell !! Special
+|-
+| $20 || Oak Staff || +9 || 100 || 50 || —
+|-
+| $21 || Thorn Whip || +18 || 320 || 160 || —
+|-
+| $22 || Magic Staff || +35 || 2500 || 1250 || Cast Sizz
+|-
+| $23 || Staff of Rain || +0 || — || — || Key item
+|-
+| $24 || Staff of Thunder || +65 || — || 8750 || Cast Zap
+|-
+| $25 || Sage's Staff || +55 || — || 7500 || Cast Heal
+|}
+
+=== Claws ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Atk !! Buy !! Sell
+|-
+| $30 || Iron Claws || +18 || 770 || 385
+|-
+| $31 || Giant Shears || +40 || 3700 || 1850
+|-
+| $32 || Dragon Claws || +50 || 7100 || 3550
+|-
+| $33 || Killer Claws || +55 || 9500 || 4750
+|-
+| $34 || Gringham Whip || +100 || — || 25000
+|}
+
+=== Boomerangs ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Atk !! Buy !! Sell !! Notes
+|-
+| $40 || Boomerang || +15 || 420 || 210 || Hits all enemies
+|-
+| $41 || Razor Wing || +30 || 1700 || 850 || Hits all enemies
+|-
+| $42 || Thor's Sword || +85 || — || 20000 || Casts Zap
+|}
+
+== Armor ==
+
+=== Body Armor ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Def !! Buy !! Sell !! Equip
+|-
+| $50 || Plain Clothes || +4 || 10 || 5 || All
+|-
+| $51 || Wayfarer's Clothes || +8 || 70 || 35 || All
+|-
+| $52 || Leather Armor || +12 || 150 || 75 || Most classes
+|-
+| $53 || Shell Armor || +16 || 300 || 150 || War, Mer, Thi
+|-
+| $54 || Chain Mail || +20 || 480 || 240 || War, Hero, Mer
+|-
+| $55 || Bronze Armor || +25 || 700 || 350 || War, Hero
+|-
+| $56 || Iron Armor || +30 || 1100 || 550 || War, Hero
+|-
+| $57 || Half Plate || +32 || 2300 || 1150 || War, Hero, Mer
+|-
+| $58 || Full Plate || +40 || 5800 || 2900 || War, Hero
+|-
+| $59 || Magic Armor || +40 || 5800 || 2900 || War, Hero
+|-
+| $5A || Swordsman's Armor || +45 || 8800 || 4400 || Hero, War
+|-
+| $5B || Dragon Mail || +50 || 12000 || 6000 || War, Hero
+|-
+| $5C || Silver Armor || +55 || 15000 || 7500 || War
+|-
+| $5D || Sacred Armor || +60 || — || 10000 || Hero only
+|-
+| $5E || Mirror Armor || +65 || — || 12500 || Hero, War
+|-
+| $5F || Light Armor || +82 || — || 15000 || Hero only
+|}
+
+=== Robes ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Def !! Buy !! Sell !! Equip
+|-
+| $60 || Silk Robe || +15 || 300 || 150 || Mage, Pri, Sage
+|-
+| $61 || Cloak of Evasion || +20 || 2900 || 1450 || Mage, Pri, Sage, Gad
+|-
+| $62 || Magic Robe || +30 || 4400 || 2200 || Mage, Pri, Sage
+|-
+| $63 || Black Robe || +35 || 2400 || 1200 || Mage, Sage
+|-
+| $64 || Sage's Robe || +50 || — || 7500 || Pri, Sage
+|-
+| $65 || Water Flying Clothes || +40 || — || 8750 || Mage, Pri, Sage
+|}
+
+=== Female Armor ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Def !! Buy !! Sell !! Notes
+|-
+| $70 || Silk Dress || +18 || 430 || 215 || Female only
+|-
+| $71 || Dancer's Clothes || +23 || 1300 || 650 || Female only
+|-
+| $72 || Magic Bikini || +35 || — || — || Female only
+|-
+| $73 || Angel's Robe || +55 || — || 12500 || Female only
+|-
+| $74 || Princess Robe || +85 || — || — || Female only
+|}
+
+== Shields ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Def !! Buy !! Sell !! Equip
+|-
+| $80 || Leather Shield || +4 || 90 || 45 || Most classes
+|-
+| $81 || Scale Shield || +7 || 180 || 90 || War, Hero, Mer
+|-
+| $82 || Bronze Shield || +11 || 370 || 185 || War, Hero, Mer
+|-
+| $83 || Iron Shield || +16 || 700 || 350 || War, Hero, Mer
+|-
+| $84 || Steel Shield || +25 || 2300 || 1150 || War, Hero
+|-
+| $85 || Magic Shield || +25 || 3400 || 1700 || War, Hero, Pri, Sage
+|-
+| $86 || Dragon Shield || +32 || 7100 || 3550 || War, Hero
+|-
+| $87 || Silver Shield || +40 || — || 8750 || War, Hero
+|-
+| $88 || Hero Shield || +50 || — || — || Hero only
+|-
+| $89 || Shield of Strength || +20 || — || 6750 || Most classes
+|}
+
+== Helmets ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Def !! Buy !! Sell !! Equip
+|-
+| $90 || Leather Hat || +2 || 65 || 32 || All
+|-
+| $91 || Hairband || +5 || 150 || 75 || Female
+|-
+| $92 || Hardwood Headwear || +6 || 140 || 70 || Most classes
+|-
+| $93 || Fur Hood || +10 || 440 || 220 || Mage, Pri, Mer
+|-
+| $94 || Iron Helmet || +16 || 1100 || 550 || War, Hero
+|-
+| $95 || Iron Mask || +25 || 3500 || 1750 || War, Hero
+|-
+| $96 || Mythril Helmet || +38 || 18000 || 9000 || War, Hero
+|-
+| $97 || Great Helmet || +45 || — || 17500 || War, Hero
+|-
+| $98 || Golden Tiara || +24 || — || 4000 || Female
+|-
+| $99 || Hat of Happiness || +0 || — || 7500 || All (special)
+|}
+
+== Accessories ==
+
+{| class="wikitable"
+|-
+! ID !! Name !! Effect !! Location
+|-
+| $A0 || Orb of Light || Weaken Zoma || Reward for sub-quest
+|-
+| $A1 || Yellow Orb || Access Necrogond || Tower of Arp
+|-
+| $A2 || Green Orb || Access Necrogond || Pirate Hideout
+|-
+| $A3 || Blue Orb || Access Necrogond || Underwater Shrine
+|-
+| $A4 || Red Orb || Access Necrogond || New Town
+|-
+| $A5 || Purple Orb || Access Necrogond || Near Samanao
+|-
+| $A6 || Silver Orb || Access Necrogond || Baramos Castle
+|-
+| $A7 || Garter || +15 Luck || Treasure
+|-
+| $A8 || Meteorite Armband || Double agility || Rare treasure
+|-
+| $A9 || Strength Ring || +7 Strength || Various
+|-
+| $AA || Book of Satori || Become Sage || Medal reward / rare
+|}
+
+== Key Items ==
+
+{| class="wikitable"
+|-
+! ID !! Name !! Location !! Use
+|-
+| $B0 || Thief's Key || Aliahan King || Open simple doors
+|-
+| $B1 || Magic Key || Tower of Najimi || Open red doors
+|-
+| $B2 || Final Key || Underwater Shrine || Open all doors
+|-
+| $B3 || Staff of Rain || Cave South || Create Rainbow Bridge
+|-
+| $B4 || Sun Stone || Mage Tower || Create Rainbow Bridge
+|-
+| $B5 || Rainbow Drop || Combine || Create Rainbow Bridge
+|-
+| $B6 || Ra's Mirror || Tower of Arp || Reveal illusions
+|-
+| $B7 || Dream Ruby || Norvik || Wake dreaming elf
+|-
+| $B8 || Black Pepper || Baharata || Trade for ship
+|-
+| $B9 || Royal Scroll || Portoga || Proof of quest
+|-
+| $BA || Magic Bomb || Jipang || Open passage
+|}
+
+== Consumables ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Effect !! Buy !! Sell
+|-
+| $C0 || Medicinal Herb || Restore ~30 HP || 8 || 4
+|-
+| $C1 || Antidote Herb || Cure poison || 10 || 5
+|-
+| $C2 || Holy Water || Repel weak enemies || 20 || 10
+|-
+| $C3 || Wing of Wyvern || Return to visited town || 25 || 12
+|-
+| $C4 || Moonwort Bulb || Cure paralysis || 30 || 15
+|-
+| $C5 || Full Moon Herb || Cure confusion || 30 || 15
+|-
+| $C6 || Yggdrasil Leaf || Revive ally || — || —
+|-
+| $C7 || Yggdrasil Dew || Full party heal || — || —
+|-
+| $C8 || Sage's Stone || Midheal all (unlimited) || — || —
+|-
+| $C9 || Acorns of Life || +3-4 HP permanently || — || —
+|-
+| $CA || Seeds of Wisdom || +3-4 INT permanently || — || —
+|-
+| $CB || Seeds of Strength || +3-4 STR permanently || — || —
+|-
+| $CC || Seeds of Agility || +3-4 AGI permanently || — || —
+|-
+| $CD || Seeds of Luck || +3-4 LCK permanently || — || —
+|}
+
+== Mini Medal Rewards ==
+
+{| class="wikitable"
+|-
+! Medals !! Reward
+|-
+| 5 || Strength Ring
+|-
+| 10 || Fur Hood
+|-
+| 15 || Cloak of Evasion
+|-
+| 20 || Shield of Strength
+|-
+| 25 || Sacred Armor
+|-
+| 30 || Dragon Claws
+|-
+| 35 || Sword of Thunder
+|-
+| 40 || Meteorite Armband
+|-
+| 45 || Sage's Stone
+|-
+| 50 || Gringham Whip
+|-
+| 60 || Book of Satori
+|-
+| 70 || Light Armor
+|-
+| 80 || Thor's Sword
+|-
+| 90 || Sword of Kings
+|-
+| 100 || Sailor's Thighbone (gag item)
+|}
+
+== See Also ==
+
+* [[Characters]]
+* [[Class System]]
+* [[Monsters]]
+* [[ROM Map]]
+
+[[Category:Dragon Quest III (SNES)]]
