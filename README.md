@@ -50,7 +50,9 @@ Guides for testing ROM hack editors, emulator debugging, and asset extraction.
 
 | Repository | Testing Docs |
 |------------|--------------|
-| [dragon-warrior-4-info](https://github.com/TheAnsarya/dragon-warrior-4-info) | [CDL Verification Quickstart](https://github.com/TheAnsarya/dragon-warrior-4-info/blob/main/~manual-testing/cdl-verification-quickstart.md) |
+| [dragon-warrior-4-info](https://github.com/TheAnsarya/dragon-warrior-4-info) | [CDL Verification](https://github.com/TheAnsarya/dragon-warrior-4-info/blob/main/~manual-testing/cdl-verification-quickstart.md) |
+| [ffmq-info](https://github.com/TheAnsarya/ffmq-info) | [ROM Verification](https://github.com/TheAnsarya/ffmq-info/blob/master/~manual-testing/rom-verification.md) • [Dialog](https://github.com/TheAnsarya/ffmq-info/blob/master/~manual-testing/dialog-testing.md) • [Editors](https://github.com/TheAnsarya/ffmq-info/blob/master/~manual-testing/editor-testing.md) |
+| [dq3r-info](https://github.com/TheAnsarya/dq3r-info) | [ROM Analysis](https://github.com/TheAnsarya/dq3r-info/blob/main/~manual-testing/rom-analysis.md) • [Graphics](https://github.com/TheAnsarya/dq3r-info/blob/main/~manual-testing/graphics-testing.md) • [Text](https://github.com/TheAnsarya/dq3r-info/blob/main/~manual-testing/text-testing.md) |
 
 ---
 
