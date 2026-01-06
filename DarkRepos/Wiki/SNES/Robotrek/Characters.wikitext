@@ -1,0 +1,156 @@
+{{Back|Robotrek}}
+
+= Characters =
+
+'''Robotrek''' features the Inventor protagonist and various NPCs throughout Quintenix.
+
+__TOC__
+
+== Main Character ==
+
+=== The Inventor ===
+
+{| class="wikitable"
+! Attribute !! Details
+|-
+| Role || Protagonist
+|-
+| Ability || Create and program robots
+|-
+| Combat || Commands robots (doesn't fight directly)
+|-
+| Skills || Invention, robot building
+|}
+
+The young Inventor follows in his father's footsteps, creating robots to fight against the Hackers.
+
+== Key NPCs ==
+
+=== Father ===
+
+{| class="wikitable"
+! Attribute !! Details
+|-
+| Role || Inventor's father
+|-
+| Profession || Famous inventor
+|-
+| Importance || Teaches basics, story catalyst
+|}
+
+=== Kotetsu ===
+
+{| class="wikitable"
+! Attribute !! Details
+|-
+| Role || Friend/rival
+|-
+| Skills || Also an inventor
+|-
+| Relationship || Competitive but friendly
+|}
+
+=== Mint ===
+
+{| class="wikitable"
+! Attribute !! Details
+|-
+| Role || Friend
+|-
+| Location || Rococo
+|-
+| Notes || Helps throughout story
+|}
+
+== Robots ==
+
+The Inventor can create multiple robots:
+
+=== Robot Naming ===
+
+{| class="wikitable"
+! Slot !! Notes
+|-
+| Robot 1 || First robot created
+|-
+| Robot 2 || Built later in game
+|-
+| Robot 3 || Third robot
+|}
+
+Each robot:
+* Has custom name (player chosen)
+* Independent stats and equipment
+* Can be specialized for different roles
+
+== Villains ==
+
+=== The Hackers ===
+
+Main antagonist organization:
+
+{| class="wikitable"
+! Character !! Role
+|-
+| Blackmore || Leader
+|-
+| Various Bosses || Chapter antagonists
+|}
+
+The Hackers:
+* Cause trouble across the world
+* Use stolen technology
+* Have their own robots
+
+=== Notable Enemies ===
+
+Boss characters encountered throughout:
+* Chapter bosses
+* Hacker agents
+* Monster creations
+
+== Town NPCs ==
+
+=== Rococo ===
+
+Starting town residents:
+
+{| class="wikitable"
+! NPC !! Function
+|-
+| Mayor || Town leadership
+|-
+| Shop Owners || Sell supplies
+|-
+| Citizens || Information, quests
+|}
+
+=== Other Towns ===
+
+Each town has:
+* Unique NPCs
+* Local problems to solve
+* Shops and services
+
+== Character Relationships ==
+
+{| class="wikitable"
+! Relationship !! Characters
+|-
+| Family || Father and Inventor
+|-
+| Friends || Mint, Kotetsu
+|-
+| Rivals || Kotetsu (friendly), Hackers (antagonistic)
+|-
+| Mentors || Various inventors
+|}
+
+== Related Pages ==
+
+* [[Robotrek:Story_Guide|Story Guide]]
+* [[Robotrek:Battle_System|Battle System]]
+* [[Robotrek:Locations|Locations]]
+
+[[Category:Robotrek]]
+[[Category:Characters]]

@@ -1,0 +1,219 @@
+{{Back|Soul_Blazer}}
+
+= Battle System =
+
+'''Soul Blazer''' uses real-time action RPG combat similar to other Quintet titles.
+
+__TOC__
+
+== Combat Overview ==
+
+The player controls a guardian angel sent to restore life to the world by defeating monsters in monster lairs.
+
+{| class="wikitable"
+! Aspect !! Description
+|-
+| Genre || Action RPG
+|-
+| Perspective || Top-down
+|-
+| Combat || Real-time
+|-
+| Control || Direct player control
+|}
+
+== Basic Controls ==
+
+{| class="wikitable"
+! Button !! Action
+|-
+| D-Pad || Move
+|-
+| A || Use magic
+|-
+| B || Sword attack
+|-
+| Start || Menu
+|-
+| Select || (varies)
+|}
+
+== Attack Types ==
+
+=== Sword Attack ===
+
+The primary attack method:
+* Forward thrust
+* Short range
+* Can hit enemies in front
+* Damage based on Sword equipped + Level
+
+=== Magic Attack ===
+
+Uses equipped Soul:
+* Consumes GEMs
+* Range and effect vary by spell
+* Can be changed via menu
+
+== Character Stats ==
+
+{| class="wikitable"
+! Stat !! Effect
+|-
+| Level || Overall power/HP
+|-
+| HP || Health points
+|-
+| Strength || Physical attack power
+|-
+| Defense || Damage reduction
+|-
+| GEMs || Magic points
+|-
+| EXP || Experience to next level
+|}
+
+== Equipment Effects ==
+
+=== Swords ===
+
+{| class="wikitable"
+! Weapon !! Effect
+|-
+| Sword || Standard attack
+|-
+| Critical Sword || Chance of critical hit
+|-
+| Various || Each has special properties
+|}
+
+=== Armor ===
+
+{| class="wikitable"
+! Armor !! Effect
+|-
+| Body Armor || Defense boost
+|-
+| Emblem || Various special effects
+|}
+
+== Monster Lairs ==
+
+Key mechanic unique to Soul Blazer:
+
+{| class="wikitable"
+! Element !! Function
+|-
+| Lair || Spawns monsters continuously
+|-
+| Defeat All || Seals the lair
+|-
+| Sealed Lair || Releases trapped soul
+|-
+| Soul || NPC/object returns to world
+|}
+
+When all monsters from a lair are defeated:
+# Lair seals permanently
+# Soul orb appears
+# Walk over orb to free soul
+# Associated NPC/object restored in town
+
+== Enemy Types ==
+
+=== Basic Enemies ===
+
+* Melee attackers
+* Projectile shooters
+* Aerial enemies
+* Ground crawlers
+
+=== Lair Guardians ===
+
+Some lairs contain stronger enemies or mini-bosses.
+
+=== Area Bosses ===
+
+Each major area has a boss fight:
+* Fixed HP
+* Attack patterns
+* Weak points
+
+== Damage Calculation ==
+
+Damage is based on:
+* Attacker's Strength (for player) or Attack (for enemy)
+* Defender's Defense
+* Equipment bonuses
+* Level difference
+
+== GEM System ==
+
+GEMs serve as magic points:
+
+{| class="wikitable"
+! Source !! Effect
+|-
+| Enemy drops || GEM items restore charges
+|-
+| Chests || May contain GEMs
+|-
+| Magic use || Consumes GEMs
+|}
+
+== Level Progression ==
+
+{| class="wikitable"
+! Level Range !! Notes
+|-
+| 1-10 || Early game
+|-
+| 11-20 || Mid game
+|-
+| 21-30 || Late game
+|-
+| 31+ || Post-game/max
+|}
+
+== Status Effects ==
+
+Limited status effects in Soul Blazer:
+
+{| class="wikitable"
+! Status !! Effect
+|-
+| Poison || Gradual HP loss (from specific enemies)
+|-
+| Paralysis || Cannot move briefly
+|}
+
+== Healing ==
+
+{| class="wikitable"
+! Method !! Effect
+|-
+| Medical Herb || Restore some HP
+|-
+| Strange Bottle || Restore more HP
+|-
+| Souls || Some restore HP when freed
+|-
+| Town Rest || Full HP/GEM recovery
+|}
+
+== Combat Tips ==
+
+* Clear all monster lairs to progress
+* Freed souls often give hints or items
+* Equipment upgrades significantly boost power
+* Magic is useful for crowd control
+
+== Related Pages ==
+
+* [[Soul_Blazer:Items|Items]]
+* [[Soul_Blazer:Magic|Magic]]
+* [[Soul_Blazer:Enemies|Enemies]]
+* [[Soul_Blazer:Progression|Progression]]
+
+[[Category:Soul Blazer]]
+[[Category:Battle System]]

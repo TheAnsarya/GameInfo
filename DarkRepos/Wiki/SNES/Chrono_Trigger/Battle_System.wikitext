@@ -1,0 +1,265 @@
+{{Back|Chrono_Trigger}}
+
+= Battle System =
+
+'''Chrono Trigger''' combines turn-based and real-time elements with its innovative combo tech system.
+
+__TOC__
+
+== Combat Overview ==
+
+Battles occur on the map without screen transitions, with the ATB (Active Time Battle) gauge determining turn order.
+
+{| class="wikitable"
+! Feature !! Description
+|-
+| Party Size || 3 characters
+|-
+| ATB System || Time-based turn order
+|-
+| Tech System || Special abilities
+|-
+| Combo Techs || Combined character attacks
+|-
+| Elements || 4 main types
+|}
+
+== ATB System ==
+
+Each character has a time gauge that fills based on Speed stat.
+
+{| class="wikitable"
+! Stat !! Effect
+|-
+| Speed || Determines gauge fill rate
+|-
+| Haste || Doubles fill rate
+|-
+| Slow || Halves fill rate
+|}
+
+== Commands ==
+
+=== Basic Commands ===
+
+{| class="wikitable"
+! Command !! Effect
+|-
+| Attack || Physical strike
+|-
+| Tech || Character-specific abilities
+|-
+| Item || Use inventory
+|-
+| Defend || Reduce damage taken
+|}
+
+== Tech System ==
+
+Each character has unique techs learned by gaining Tech Points (TP) in battle.
+
+=== Tech Categories ===
+
+{| class="wikitable"
+! Type !! Description
+|-
+| Single Tech || One character ability
+|-
+| Double Tech || Two character combo
+|-
+| Triple Tech || Three character combo
+|}
+
+=== Elements ===
+
+{| class="wikitable"
+! Element !! Characters
+|-
+| Lightning || Crono
+|-
+| Fire || Lucca
+|-
+| Water/Ice || Marle, Frog
+|-
+| Shadow || Magus
+|-
+| None || Robo, Ayla
+|}
+
+== Character Techs ==
+
+=== Crono ===
+
+{| class="wikitable"
+! Tech !! TP Cost !! Element !! Effect
+|-
+| Cyclone || 2 || Physical || Circle attack
+|-
+| Slash || 2 || Physical || Line attack
+|-
+| Lightning || 2 || Lightning || Single target
+|-
+| Spincut || 4 || Physical || Strong single
+|-
+| Lightning2 || 8 || Lightning || All enemies
+|-
+| Life || 10 || None || Revive ally
+|-
+| Confuse || 12 || Physical || All enemies
+|-
+| Luminaire || 20 || Lightning || Ultimate attack
+|}
+
+=== Marle ===
+
+{| class="wikitable"
+! Tech !! TP Cost !! Element !! Effect
+|-
+| Aura || 1 || None || Heal single
+|-
+| Provoke || 1 || None || Confuse enemy
+|-
+| Ice || 2 || Water || Single target
+|-
+| Cure || 2 || None || Strong heal single
+|-
+| Haste || 6 || None || Speed boost
+|-
+| Ice2 || 8 || Water || All enemies
+|-
+| Cure2 || 5 || None || Heal all
+|-
+| Life2 || 15 || None || Full revive
+|}
+
+=== Lucca ===
+
+{| class="wikitable"
+! Tech !! TP Cost !! Element !! Effect
+|-
+| Flame Toss || 1 || Fire || Line attack
+|-
+| Hypno Wave || 1 || None || Sleep enemies
+|-
+| Fire || 2 || Fire || Single target
+|-
+| Napalm || 3 || Fire || Circle attack
+|-
+| Protect || 6 || None || Defense boost
+|-
+| Fire2 || 8 || Fire || All enemies
+|-
+| Megabomb || 15 || Fire || High damage
+|-
+| Flare || 20 || Fire || Ultimate fire
+|}
+
+== Double Techs ==
+
+=== Crono + Marle ===
+
+{| class="wikitable"
+! Tech !! TP Cost !! Effect
+|-
+| Aura Whirl || 1+1 || Heal party
+|-
+| Ice Sword || 2+4 || Ice physical attack
+|-
+| Ice Sword2 || 8+8 || Stronger ice physical
+|}
+
+=== Crono + Lucca ===
+
+{| class="wikitable"
+! Tech !! TP Cost !! Effect
+|-
+| Fire Whirl || 2+1 || Fire circle attack
+|-
+| Fire Sword || 4+2 || Fire physical attack
+|-
+| Fire Sword2 || 8+8 || Stronger fire physical
+|}
+
+=== Crono + Frog ===
+
+{| class="wikitable"
+! Tech !! TP Cost !! Effect
+|-
+| X-Strike || 2+2 || Cross slash combo
+|-
+| Spire || 4+2 || Lightning stab
+|}
+
+== Triple Techs ==
+
+Examples of powerful three-character combinations:
+
+{| class="wikitable"
+! Tech !! Characters !! Effect
+|-
+| Delta Force || Crono+Marle+Lucca || Triangle attack
+|-
+| Lifeline || Marle+Lucca+Robo || Full party heal
+|-
+| Arc Impulse || Crono+Marle+Frog || Powerful combo
+|-
+| Final Kick || Crono+Marle+Ayla || Physical combo
+|}
+
+== Status Effects ==
+
+=== Negative ===
+
+{| class="wikitable"
+! Status !! Effect
+|-
+| Poison || HP drain over time
+|-
+| Sleep || Cannot act
+|-
+| Stop || Frozen in time
+|-
+| Confusion || Random actions
+|-
+| Blind || Reduced accuracy
+|-
+| Lock || Cannot use techs
+|}
+
+=== Positive ===
+
+{| class="wikitable"
+! Status !! Effect
+|-
+| Haste || Faster ATB
+|-
+| Protect || Reduced physical damage
+|-
+| Barrier || Reduced magic damage
+|-
+| Regen || HP recovery over time
+|}
+
+== Positioning ==
+
+Enemy and character positions affect area-of-effect attacks:
+
+{| class="wikitable"
+! Pattern !! Effect
+|-
+| Circle || Hits in radius
+|-
+| Line || Hits along path
+|-
+| All || Entire party/enemies
+|}
+
+== Related Pages ==
+
+* [[Chrono_Trigger:Characters|Characters]]
+* [[Chrono_Trigger:Techs|Techs]]
+* [[Chrono_Trigger:Enemies|Enemies]]
+* [[Chrono_Trigger:Time_Travel|Time Travel]]
+
+[[Category:Chrono Trigger]]
+[[Category:Battle System]]

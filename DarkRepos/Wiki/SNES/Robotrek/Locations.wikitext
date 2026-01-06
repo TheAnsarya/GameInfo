@@ -1,0 +1,170 @@
+{{Back|Robotrek}}
+
+= Locations =
+
+'''Robotrek''' takes place across multiple towns and dungeons in the world of Quintenix.
+
+__TOC__
+
+== World Overview ==
+
+{| class="wikitable"
+! Region !! Description
+|-
+| Starting Area || Rococo and surroundings
+|-
+| Mid-game || Expanded world access
+|-
+| Late-game || Advanced areas, Hacker bases
+|}
+
+== Towns ==
+
+=== Rococo ===
+
+Starting town and home base:
+
+{| class="wikitable"
+! Location !! Function
+|-
+| Home || Save, rest
+|-
+| R&D Lab || Build/upgrade robots
+|-
+| Shop || Buy items
+|-
+| Mayor's House || Story events
+|-
+| Library || Information
+|}
+
+=== Other Towns ===
+
+Towns visited throughout the game:
+
+{| class="wikitable"
+! Town !! Notable Features
+|-
+| Various || Shops, NPCs, story events
+|-
+| Port Towns || Access to other regions
+|-
+| Industrial Areas || Robot parts, invention items
+|}
+
+== Dungeons ==
+
+=== Early Dungeons ===
+
+{| class="wikitable"
+! Dungeon !! Notes
+|-
+| Forest Area || Tutorial battles
+|-
+| Cave Systems || First challenges
+|-
+| Ruins || Ancient technology
+|}
+
+=== Mid-Game Dungeons ===
+
+{| class="wikitable"
+! Dungeon !! Notes
+|-
+| Factories || Industrial areas
+|-
+| Mountains || Climbing challenges
+|-
+| Sewers || Underground paths
+|}
+
+=== Late-Game Dungeons ===
+
+{| class="wikitable"
+! Dungeon !! Notes
+|-
+| Hacker Bases || Enemy strongholds
+|-
+| Ancient Sites || Advanced tech
+|-
+| Final Dungeon || Endgame
+|}
+
+== Key Locations ==
+
+=== R&D Lab ===
+
+Most important location:
+
+{| class="wikitable"
+! Function !! Description
+|-
+| Build Robots || Create new robots
+|-
+| Upgrade || Improve existing robots
+|-
+| Program || Install/modify abilities
+|-
+| Research || Discover inventions
+|}
+
+=== Shops ===
+
+Found in most towns:
+
+{| class="wikitable"
+! Type !! Sells
+|-
+| Item Shop || Healing items, supplies
+|-
+| Parts Shop || Robot components
+|-
+| Specialty || Rare items (varies by town)
+|}
+
+== Navigation ==
+
+=== Overworld ===
+
+* Walk between locations
+* Encounter enemies in some areas
+* Shortcuts unlock as story progresses
+
+=== Transportation ===
+
+{| class="wikitable"
+! Method !! Notes
+|-
+| Walking || Default movement
+|-
+| Later Methods || Unlocked through story
+|}
+
+== Area Progression ==
+
+The game opens areas as story progresses:
+
+{| class="wikitable"
+! Chapter !! Areas Available
+|-
+| Early || Rococo, nearby dungeons
+|-
+| Mid || Additional towns, new regions
+|-
+| Late || Full world, all areas
+|}
+
+== Hidden Areas ==
+
+* Some areas require items
+* Story events unlock paths
+* Exploration rewarded with inventions
+
+== Related Pages ==
+
+* [[Robotrek:Story_Guide|Story Guide]]
+* [[Robotrek:Items|Items]]
+* [[Robotrek:Characters|Characters]]
+
+[[Category:Robotrek]]
+[[Category:Locations]]

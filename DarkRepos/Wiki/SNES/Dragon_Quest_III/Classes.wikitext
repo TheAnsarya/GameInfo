@@ -1,0 +1,318 @@
+{{Back|Dragon_Quest_III}}
+
+= Character Classes =
+
+'''Dragon Quest III''' (SNES) introduced the class/job system that became a series staple.
+
+__TOC__
+
+== Overview ==
+
+The Hero has a fixed class, but created party members can be any class and change classes at Dharma Temple.
+
+{| class="wikitable"
+! Aspect !! Details
+|-
+| Party Size || 4 characters
+|-
+| Hero Class || Fixed (Hero)
+|-
+| Other Members || Any class
+|-
+| Class Change || Available at Dharma Temple
+|}
+
+== Classes ==
+
+=== Hero (勇者) ===
+
+The protagonist's exclusive class.
+
+{| class="wikitable"
+! Attribute !! Rating
+|-
+| Strength || High
+|-
+| Agility || Medium
+|-
+| Vitality || High
+|-
+| Wisdom || Medium
+|-
+| Luck || High
+|-
+| MP || High
+|}
+
+'''Abilities:'''
+* All Zap spells
+* Healing magic
+* Unique Hero spells
+
+=== Warrior (戦士) ===
+
+Physical combat specialist.
+
+{| class="wikitable"
+! Attribute !! Rating
+|-
+| Strength || Very High
+|-
+| Agility || Low
+|-
+| Vitality || Very High
+|-
+| Wisdom || Very Low
+|-
+| Luck || Medium
+|-
+| MP || None
+|}
+
+'''Abilities:'''
+* Highest equipment options
+* No magic
+* Tank role
+
+=== Martial Artist (武闘家) ===
+
+Fast physical attacker.
+
+{| class="wikitable"
+! Attribute !! Rating
+|-
+| Strength || High
+|-
+| Agility || Very High
+|-
+| Vitality || Medium
+|-
+| Wisdom || Low
+|-
+| Luck || Medium
+|-
+| MP || None
+|}
+
+'''Abilities:'''
+* Critical hit rate bonus
+* Fast actions
+* Limited equipment
+
+=== Mage (魔法使い) ===
+
+Offensive magic user.
+
+{| class="wikitable"
+! Attribute !! Rating
+|-
+| Strength || Very Low
+|-
+| Agility || Medium
+|-
+| Vitality || Low
+|-
+| Wisdom || Very High
+|-
+| Luck || Medium
+|-
+| MP || Very High
+|}
+
+'''Abilities:'''
+* Bang, Frizz, Crack spell lines
+* Sizz spells
+* Support magic
+
+=== Priest (僧侶) ===
+
+Healing and support magic.
+
+{| class="wikitable"
+! Attribute !! Rating
+|-
+| Strength || Low
+|-
+| Agility || Low
+|-
+| Vitality || Medium
+|-
+| Wisdom || High
+|-
+| Luck || Very High
+|-
+| MP || High
+|}
+
+'''Abilities:'''
+* Heal spell line
+* Buff/debuff spells
+* Anti-undead magic
+
+=== Merchant (商人) ===
+
+Money-focused support class.
+
+{| class="wikitable"
+! Attribute !! Rating
+|-
+| Strength || Medium
+|-
+| Agility || Medium
+|-
+| Vitality || High
+|-
+| Wisdom || Medium
+|-
+| Luck || Very High
+|-
+| MP || Low
+|}
+
+'''Abilities:'''
+* Gold finder
+* Appraisal
+* Dig command
+
+=== Gadabout (遊び人) ===
+
+Random ability class.
+
+{| class="wikitable"
+! Attribute !! Rating
+|-
+| Strength || Low
+|-
+| Agility || Very High
+|-
+| Vitality || Low
+|-
+| Wisdom || Low
+|-
+| Luck || Very High
+|-
+| MP || Low
+|}
+
+'''Abilities:'''
+* Random actions in battle
+* Can become Sage
+* High luck for drops
+
+=== Sage (賢者) ===
+
+Master spellcaster (both types).
+
+{| class="wikitable"
+! Attribute !! Rating
+|-
+| Strength || Low
+|-
+| Agility || Medium
+|-
+| Vitality || Medium
+|-
+| Wisdom || Very High
+|-
+| Luck || High
+|-
+| MP || Very High
+|}
+
+'''Abilities:'''
+* All Mage spells
+* All Priest spells
+* Most versatile class
+
+=== Thief (盗賊) ===
+
+SNES-exclusive class.
+
+{| class="wikitable"
+! Attribute !! Rating
+|-
+| Strength || Medium
+|-
+| Agility || Very High
+|-
+| Vitality || Medium
+|-
+| Wisdom || Medium
+|-
+| Luck || Very High
+|-
+| MP || Low
+|}
+
+'''Abilities:'''
+* Steal command
+* Find treasure
+* Identify floor traps
+
+== Class Change System ==
+
+=== Requirements ===
+
+{| class="wikitable"
+! Requirement !! Details
+|-
+| Level || Must be level 20+
+|-
+| Location || Dharma Temple
+|-
+| Hero || Cannot change class
+|}
+
+=== Effects ===
+
+When changing class:
+* Level resets to 1
+* Stats halved
+* Keeps learned spells
+* Learns new class spells
+
+=== Optimal Paths ===
+
+{| class="wikitable"
+! Starting Class !! Recommended Change !! Reason
+|-
+| Gadabout || Sage || Direct promotion
+|-
+| Mage || Sage || Gain Priest spells
+|-
+| Priest || Sage || Gain Mage spells
+|-
+| Warrior || Martial Artist || Add speed to power
+|-
+| Martial Artist || Warrior || Add equipment options
+|}
+
+== Personality System ==
+
+SNES version adds personalities that affect stat growth.
+
+{| class="wikitable"
+! Personality Type !! Stat Bonus
+|-
+| Tough || Strength, Vitality
+|-
+| Smart || Wisdom
+|-
+| Lucky || Luck
+|-
+| etc. || Various combinations
+|}
+
+Personalities determined by:
+* Starting quiz (Hero)
+* Books/items
+* Events
+
+== Related Pages ==
+
+* [[Dragon_Quest_III:Battle_System|Battle System]]
+* [[Dragon_Quest_III:Spells|Spells]]
+* [[Dragon_Quest_III:Locations|Locations]]
+
+[[Category:Dragon Quest III]]
+[[Category:Classes]]

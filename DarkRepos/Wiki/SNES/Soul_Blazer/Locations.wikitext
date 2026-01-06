@@ -1,0 +1,213 @@
+{{Back|Soul_Blazer}}
+
+= Locations =
+
+'''Soul Blazer''' takes place across multiple regions, each with towns that must be restored by freeing souls.
+
+__TOC__
+
+== World Structure ==
+
+The world is divided into distinct areas, each with:
+* Monster-filled dungeons with lairs
+* A town/area to restore
+* A boss to defeat
+
+{| class="wikitable"
+! Area !! Town/Location !! Theme
+|-
+| 1 || Grass Valley || Grassland/village
+|-
+| 2 || GreenWood || Forest/nature
+|-
+| 3 || St. Elles || Ocean/underwater
+|-
+| 4 || Mountain of Souls || Mountain/caves
+|-
+| 5 || Leo's Paintings || Paintings/art
+|-
+| 6 || World of Evil || Final area
+|}
+
+== Grass Valley ==
+
+The first area introduces core mechanics.
+
+=== Hub ===
+
+* Starting village
+* Tutorial area
+* NPCs teach game basics
+
+=== Dungeon ===
+
+{| class="wikitable"
+! Section !! Features
+|-
+| Underground Castle || First dungeon
+|-
+| Lairs || Release village residents
+|}
+
+=== Boss ===
+
+Metal Mantis - First boss encounter
+
+== GreenWood ==
+
+A forest realm inhabited by plants and animals.
+
+=== Hub ===
+
+* Forest village
+* Talking plants and animals
+* Nature theme
+
+=== Dungeon ===
+
+{| class="wikitable"
+! Section !! Features
+|-
+| Lost Side || Forest maze
+|-
+| Water Shrine || Waterfall area
+|-
+| Fire Shrine || Hot area
+|-
+| Light Shrine || Illumination puzzle
+|}
+
+=== Boss ===
+
+Plant boss at shrine's heart
+
+== St. Elles ==
+
+An underwater kingdom.
+
+=== Hub ===
+
+* Mermaid town
+* Underwater setting
+* Can breathe underwater
+
+=== Dungeon ===
+
+{| class="wikitable"
+! Section !! Features
+|-
+| Seabed || Ocean floor
+|-
+| Ship Graveyard || Sunken vessels
+|-
+| Undersea Castle || Mermaid palace dungeon
+|}
+
+=== Boss ===
+
+Aquatic boss encounter
+
+== Mountain of Souls ==
+
+A mining community turned ghost town.
+
+=== Hub ===
+
+* Mining village
+* Mountain setting
+* Multiple levels
+
+=== Dungeon ===
+
+{| class="wikitable"
+! Section !! Features
+|-
+| Mines || Underground tunnels
+|-
+| Lune || Moon-themed area
+|-
+| Model Town || Diorama world
+|}
+
+=== Boss ===
+
+Mountain guardian
+
+== Leo's Paintings ==
+
+A world inside paintings created by the painter Leo.
+
+=== Hub ===
+
+* Art gallery
+* Multiple paintings to enter
+* Surreal environments
+
+=== Dungeon ===
+
+{| class="wikitable"
+! Section !! Features
+|-
+| Leo's Lab || Painter's workshop
+|-
+| Painting Worlds || Inside artworks
+|-
+| Model Towns || Miniature settings
+|}
+
+=== Boss ===
+
+Boss within paintings
+
+== World of Evil ==
+
+The final confrontation with Deathtoll.
+
+=== Structure ===
+
+{| class="wikitable"
+! Section !! Description
+|-
+| Deathtoll's Lair || Final dungeon
+|-
+| Boss Rush || Previous bosses return
+|-
+| Final Battle || Deathtoll
+|}
+
+== Hub Features ==
+
+Each restored town provides:
+
+{| class="wikitable"
+! Feature !! Description
+|-
+| Save Points || Record progress
+|-
+| Shops || Buy items/equipment
+|-
+| NPCs || Hints and story
+|-
+| Rest Areas || Full HP/GEM recovery
+|}
+
+== Progression ==
+
+Areas must be completed in order:
+# Grass Valley
+# GreenWood
+# St. Elles
+# Mountain of Souls
+# Leo's Paintings
+# World of Evil
+
+Each area unlocks after defeating the previous boss.
+
+== Related Pages ==
+
+* [[Soul_Blazer:Progression|Progression]]
+* [[Soul_Blazer:Items|Items]]
+* [[Soul_Blazer:Bosses|Bosses]]
+
+[[Category:Soul Blazer]]
+[[Category:Locations]]

@@ -1,0 +1,186 @@
+{{Back|Dragon_Warrior_IV}}
+
+= Chapter Guide =
+
+'''Dragon Warrior IV''' is structured into five chapters, each following different characters before they unite.
+
+__TOC__
+
+== Structure Overview ==
+
+{| class="wikitable"
+! Chapter !! Protagonist(s) !! Theme
+|-
+| 1 || Ragnar McRyan || Knight investigation
+|-
+| 2 || Princess Alena, Brey, Cristo || Princess adventure
+|-
+| 3 || Taloon (Torneko) || Merchant story
+|-
+| 4 || Mara and Nara || Sisters' revenge
+|-
+| 5 || Hero + All || Main quest
+|}
+
+== Chapter 1: Ragnar ==
+
+=== Overview ===
+
+Ragnar is a soldier of Burland sent to investigate missing children.
+
+'''Playable Characters:'''
+* Ragnar McRyan (soldier)
+* Healie (temporary NPC ally)
+
+'''Key Locations:'''
+* Burland Castle
+* Izmit
+* Loch Tower
+* Children's hideout
+
+=== Objectives ===
+
+# Speak with King of Burland
+# Travel to Izmit village
+# Investigate children disappearances
+# Find and rescue the children
+# Defeat chapter boss
+
+== Chapter 2: Alena ==
+
+=== Overview ===
+
+Princess Alena escapes her castle seeking adventure, accompanied by her tutor Brey and priest Cristo.
+
+'''Playable Characters:'''
+* Princess Alena (martial artist)
+* Brey (mage)
+* Cristo (priest)
+
+'''Key Locations:'''
+* Santeem Castle
+* Surene
+* Tempe
+* Frenor
+* Endor
+
+=== Objectives ===
+
+# Escape Santeem Castle
+# Visit villages for clues
+# Enter the tournament at Endor
+# Win the tournament
+# Return to discover castle empty
+
+== Chapter 3: Taloon ==
+
+=== Overview ===
+
+Taloon is a merchant with dreams of owning his own shop. This chapter focuses on earning money and business.
+
+'''Playable Characters:'''
+* Taloon (merchant)
+
+'''Key Locations:'''
+* Lakanaba
+* Bonmalmo (has weapon shop)
+* Endor
+* Cave to Endor
+
+=== Objectives ===
+
+# Work at Lakanaba weapon shop
+# Earn money through various means
+# Travel to Endor
+# Establish own shop
+# Fund tunnel construction
+
+=== Unique Mechanics ===
+
+* Work at shop counter for wages
+* Sell items for profit
+* Chapter focuses on gold acquisition
+
+== Chapter 4: Mara and Nara ==
+
+=== Overview ===
+
+Sisters seeking revenge for their father's murder by the alchemist Balzack.
+
+'''Playable Characters:'''
+* Mara (dancer/mage)
+* Nara (fortune teller/priest)
+* Orin (temporary ally)
+
+'''Key Locations:'''
+* Monbaraba
+* Haville
+* Keeleon Castle
+* Aktemto Mine
+
+=== Objectives ===
+
+# Learn about Balzack's location
+# Find ally Orin
+# Infiltrate Keeleon
+# Confront Balzack
+# Chapter ends with unfinished revenge
+
+== Chapter 5: The Hero ==
+
+=== Overview ===
+
+The main chapter where all characters unite to save the world.
+
+'''Starting Characters:'''
+* Hero (player-named protagonist)
+
+'''Recruited Characters:'''
+* Ragnar (Burland)
+* Alena, Brey, Cristo (Santeem)
+* Taloon (Endor/Lakanaba)
+* Mara and Nara (Monbaraba)
+
+=== Key Events ===
+
+# Hero's village destroyed
+# Travel the world recruiting allies
+# Collect Zenithian equipment
+# Confront Necrosaro
+# Final battle
+
+=== Wagon System ===
+
+Chapter 5 introduces the wagon:
+* Carry up to 8 characters
+* 4 active in battle
+* Swap characters during battle
+* Wagon characters gain partial EXP
+
+== Chapter Completion Items ==
+
+Each chapter provides items or story elements for Chapter 5:
+
+{| class="wikitable"
+! Chapter !! Contribution
+|-
+| 1 || Ragnar joins, plot info
+|-
+| 2 || Alena/Brey/Cristo join, Zenithian Helm location
+|-
+| 3 || Taloon joins, tunnel opened
+|-
+| 4 || Mara/Nara join, Balzack plot
+|-
+| 5 || Complete the story
+|}
+
+== Related Pages ==
+
+* [[Dragon_Warrior_IV:Characters|Characters]]
+* [[Dragon_Warrior_IV:Map_List|Map List]]
+* [[Dragon_Warrior_IV:Spells|Spells]]
+* [[Dragon_Warrior_IV:Items|Items]]
+
+[[Category:Dragon Warrior IV]]
+[[Category:Walkthrough]]

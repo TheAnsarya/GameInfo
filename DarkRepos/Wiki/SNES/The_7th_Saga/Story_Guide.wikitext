@@ -1,0 +1,191 @@
+{{Back|The_7th_Saga}}
+
+= Story Guide =
+
+'''The 7th Saga''' follows one of seven apprentices seeking ancient Runes.
+
+__TOC__
+
+== Premise ==
+
+King Domaric of Lemele sends seven apprentices on a quest to find the seven Runes scattered across the world. Each apprentice has their own reasons for seeking the Runes.
+
+== The Seven Apprentices ==
+
+{| class="wikitable"
+! Character !! Race !! Class !! Motivation
+|-
+| Wilme || Alien || Berserker || Seeks origin/meaning
+|-
+| Lux || Robot || Automaton || Programmed mission
+|-
+| Olvan || Dwarf || Warrior || Honor and glory
+|-
+| Kamil || Human || Knight || Serve the kingdom
+|-
+| Lejes || Demon || Dark Knight || Power and domination
+|-
+| Esuna || Human || Priest || Protect the innocent
+|-
+| Valsu || Human || Healer || Benevolent service
+|}
+
+== Early Game ==
+
+=== Lemele ===
+
+Starting location:
+* Receive quest from King Lemele
+* Each apprentice departs individually
+* Must find all seven Runes
+
+=== First Towns ===
+
+{| class="wikitable"
+! Town !! Notes
+|-
+| Rablesk || First town, basic supplies
+|-
+| Bonro || Mountain village
+|-
+| Zellis || Port town
+|}
+
+== Rune Locations ==
+
+The seven Runes are hidden across the world:
+
+{| class="wikitable"
+! Rune !! Location Area !! Notes
+|-
+| Rune 1 || Early dungeons || First quest target
+|-
+| Rune 2 || Cave system || Guarded by boss
+|-
+| Rune 3 || Tower || Puzzle dungeon
+|-
+| Rune 4 || Underwater || Requires item
+|-
+| Rune 5 || Volcano || Fire-themed
+|-
+| Rune 6 || Sky area || Late game
+|-
+| Rune 7 || Final dungeon || End game
+|}
+
+== Other Apprentices ==
+
+Throughout the game, you encounter the other six apprentices:
+
+=== Encounters ===
+
+{| class="wikitable"
+! Encounter Type !! Effect
+|-
+| Friendly || Can recruit to party
+|-
+| Neutral || Information exchange
+|-
+| Hostile || Must fight them
+|}
+
+=== Recruitment ===
+
+* Only one partner at a time
+* Compatibility varies by character
+* Some refuse to join
+* Partners level independently
+
+=== Rival Battles ===
+
+{| class="wikitable"
+! Situation !! Result
+|-
+| Apprentice has Rune || Must defeat to take it
+|-
+| Both want same Rune || Fight for possession
+|-
+| Late game || Former allies may turn hostile
+|}
+
+'''Warning:''' The 7th Saga is known for difficult rival battles, especially if underleveled.
+
+== Mid Game ==
+
+=== Key Events ===
+
+* Collect multiple Runes
+* Encounter rivals repeatedly
+* Navigate world politics
+* Discover Rune powers
+
+=== Dungeons ===
+
+Each Rune is protected by:
+* Multi-floor dungeon
+* Monsters appropriate to theme
+* Boss or guardian
+
+== Late Game ==
+
+=== Plot Developments ===
+
+Without revealing major spoilers:
+* The true purpose of the Runes revealed
+* Final villain appears
+* World at stake
+
+=== Final Area ===
+
+{| class="wikitable"
+! Stage !! Challenge
+|-
+| Dungeon || Toughest monsters
+|-
+| Boss Rush || Multiple bosses
+|-
+| Final Boss || Ultimate challenge
+|}
+
+== Gameplay Tips ==
+
+=== Grinding ===
+
+The 7th Saga requires significant grinding:
+* Random encounters are tough
+* Level difference matters greatly
+* Metal enemies give high EXP (but flee)
+
+=== Party Selection ===
+
+{| class="wikitable"
+! Strategy !! Recommended Partners
+|-
+| Balanced || Fighter + Healer
+|-
+| Offense || Two strong attackers
+|-
+| Magic || Spellcasters together
+|}
+
+=== Rival Preparation ===
+
+Before facing other apprentices:
+* Be well-leveled
+* Best available equipment
+* Full healing items
+* Know their patterns
+
+== Character Endings ==
+
+Each character has unique ending text based on their motivations.
+
+== Related Pages ==
+
+* [[The_7th_Saga:Characters|Characters]]
+* [[The_7th_Saga:Battle_System|Battle System]]
+* [[The_7th_Saga:Magic|Magic]]
+* [[The_7th_Saga:Locations|Locations]]
+
+[[Category:The 7th Saga]]
+[[Category:Story Guide]]

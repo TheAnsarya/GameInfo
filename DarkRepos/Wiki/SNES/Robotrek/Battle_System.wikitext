@@ -1,0 +1,215 @@
+{{Back|Robotrek}}
+
+= Battle System =
+
+'''Robotrek''' features unique robot-based combat where the player builds and commands robots.
+
+__TOC__
+
+== Combat Overview ==
+
+Battles use a strategy grid system where robots move and attack on a tactical field.
+
+{| class="wikitable"
+! Aspect !! Description
+|-
+| Party || Up to 3 robots
+|-
+| Field || Grid-based movement
+|-
+| Control || Direct robot commands
+|-
+| Enemies || Move on same grid
+|}
+
+== Robot Stats ==
+
+Each robot has stats determined by its build:
+
+{| class="wikitable"
+! Stat !! Effect
+|-
+| Level || Overall power
+|-
+| HP || Health points
+|-
+| Energy || Powers abilities
+|-
+| Power || Physical attack strength
+|-
+| Defense || Damage reduction
+|-
+| Speed || Turn order, movement
+|-
+| Charge || Attack recharge rate
+|}
+
+== Battle Commands ==
+
+=== Move ===
+
+* Robots move on grid
+* Speed determines distance
+* Position affects targeting
+
+=== Attack ===
+
+* Basic physical strike
+* Uses equipped weapon
+* Range varies by weapon type
+
+=== Run ===
+
+* Flee the battle
+* Success varies by speed
+
+=== Program ===
+
+* Use programmed abilities
+* Consumes energy
+* Various effects
+
+== Robot Construction ==
+
+=== Building Robots ===
+
+The Inventor creates robots at R&D:
+
+{| class="wikitable"
+! Component !! Effect
+|-
+| Body || Base HP, defense
+|-
+| Arm || Attack power
+|-
+| Leg || Speed, movement
+|}
+
+=== Upgrading ===
+
+Spend money and items to:
+* Increase base stats
+* Add new capabilities
+* Improve existing parts
+
+== Weapons ==
+
+Robots equip weapons for combat:
+
+{| class="wikitable"
+! Type !! Range !! Notes
+|-
+| Sword || Adjacent || Melee attack
+|-
+| Axe || Adjacent || High power, slow
+|-
+| Punch || Adjacent || Uses arm stats
+|-
+| Gun || Long || Ranged attack
+|-
+| Bomb || Area || Splash damage
+|}
+
+== Programs ==
+
+Programs are abilities robots can use:
+
+{| class="wikitable"
+! Category !! Examples
+|-
+| Attack || Damage programs
+|-
+| Heal || Recovery programs
+|-
+| Buff || Stat enhancement
+|-
+| Debuff || Status ailments
+|}
+
+Programs must be:
+# Invented (research)
+# Installed on robot
+# Charged with energy
+
+== Inventing ==
+
+The Inventor discovers new programs and items:
+
+{| class="wikitable"
+! Method !! Result
+|-
+| Combine Items || New inventions
+|-
+| Research || Programs
+|-
+| Story Events || Key inventions
+|}
+
+== Combat Strategy ==
+
+=== Positioning ===
+
+* Melee weapons need adjacency
+* Ranged attacks hit from distance
+* Multiple robots can surround enemies
+
+=== Team Composition ===
+
+{| class="wikitable"
+! Role !! Build Focus
+|-
+| Tank || High HP, Defense
+|-
+| Attacker || High Power, good weapon
+|-
+| Support || Speed, healing programs
+|}
+
+=== Energy Management ===
+
+* Programs consume energy
+* Energy regenerates slowly
+* Save energy for tough fights
+
+== Enemy Types ==
+
+{| class="wikitable"
+! Type !! Strategy
+|-
+| Melee || Keep distance, use ranged
+|-
+| Ranged || Close quickly, melee
+|-
+| Healer || Prioritize targeting
+|-
+| Boss || Learn patterns, conserve energy
+|}
+
+== Status Effects ==
+
+{| class="wikitable"
+! Status !! Effect
+|-
+| Paralysis || Cannot act
+|-
+| Rust || Speed reduced
+|-
+| Virus || Stats reduced
+|-
+| Overheat || Damage over time
+|}
+
+== Experience System ==
+
+* Robots gain EXP from battles
+* Level up increases stats
+* Higher levels unlock potential
+
+== Related Pages ==
+
+* [[Robotrek:Story_Guide|Story Guide]]
+* [[Robotrek:Items|Items]]
+* [[Robotrek:Enemies|Enemies]]
+
+[[Category:Robotrek]]
+[[Category:Battle System]]
