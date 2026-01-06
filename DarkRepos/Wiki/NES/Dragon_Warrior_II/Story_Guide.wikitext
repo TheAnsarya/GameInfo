@@ -1,0 +1,225 @@
+{{Back|Dragon_Warrior_II}}
+
+= Story Guide =
+
+'''Dragon Warrior II''' follows three descendants of Erdrick against the evil priest Hargon.
+
+__TOC__
+
+== Premise ==
+
+A hundred years after the events of Dragon Warrior, the kingdom of Moonbrooke is destroyed by the evil priest Hargon. The Prince of Midenhall sets out to find his cousins and stop Hargon's conquest.
+
+== Early Game ==
+
+=== Midenhall Castle ===
+
+Starting location:
+# Speak with the King
+# Learn of Moonbrooke's destruction
+# Set out to find the Prince of Cannock
+
+=== Finding the Prince of Cannock ===
+
+The prince travels between several towns:
+
+{| class="wikitable"
+! Location !! Status
+|-
+| Cannock Castle || Just left
+|-
+| Spring || Passed through
+|-
+| Various towns || Chase him down
+|}
+
+Eventually recruit him in one of the early towns.
+
+=== Party of Two ===
+
+With two members, explore the early world:
+* Visit Cannock region towns
+* Build up levels
+* Collect equipment
+
+== Finding the Princess of Moonbrooke ==
+
+=== The Curse ===
+
+The Princess of Moonbrooke was cursed into dog form when her kingdom fell.
+
+=== Ra's Mirror ===
+
+To restore her:
+# Find the Ra's Mirror (swamp cave or tower)
+# Travel to ruined Moonbrooke
+# Find the dog wandering the ruins
+# Use the Mirror on the dog
+# Princess restored and joins party
+
+=== Full Party ===
+
+Now with three members:
+* Prince of Midenhall (fighter)
+* Prince of Cannock (hybrid)
+* Princess of Moonbrooke (mage)
+
+== Mid Game ==
+
+=== Ship Quest ===
+
+To expand exploration:
+# Need to acquire a ship
+# Enables ocean travel
+# Opens most of the world map
+
+=== Collecting the Crests ===
+
+Five crests must be collected:
+
+{| class="wikitable"
+! Crest !! Location
+|-
+| Moon Crest || Tower location
+|-
+| Star Crest || Dungeon location
+|-
+| Sun Crest || Tower/Cave
+|-
+| Water Crest || Sea-related
+|-
+| Life Crest || Special quest
+|}
+
+The crests are used to access Hargon's fortress.
+
+=== Equipment Progression ===
+
+{| class="wikitable"
+! Stage !! Midenhall !! Cannock !! Moonbrooke
+|-
+| Early || Chain armor || Leather || Clothes
+|-
+| Mid || Steel armor || Chain || Magic robe
+|-
+| Late || Erdrick's Armor || Best available || Best robes
+|}
+
+== Key Items ==
+
+{| class="wikitable"
+! Item !! Purpose
+|-
+| Ra's Mirror || Restore princess
+|-
+| Ship || Ocean travel
+|-
+| Golden Key || Open gold doors
+|-
+| Jail Key || Open cells
+|-
+| Watergate Key || Dam control
+|-
+| Eye of Malroth || Reveal Rhone entrance
+|-
+| Five Crests || Access to Hargon
+|}
+
+== Late Game ==
+
+=== Road to Rhone ===
+
+The path to Hargon's castle in Rhone:
+* Difficult cave system
+* Strong monsters
+* Multiple sections
+
+=== Rhone Plateau ===
+
+Final area before Hargon:
+* Grinding location
+* Shrine for saving
+* Cave of strongest monsters
+
+=== Hargon's Castle ===
+
+{| class="wikitable"
+! Floor !! Features
+|-
+| Ground || Illusions, fake endings
+|-
+| Upper || Puzzles, teleporters
+|-
+| Throne || Hargon boss fight
+|-
+| Final || Malroth, true boss
+|}
+
+== Boss Battles ==
+
+=== Hargon ===
+
+The evil priest:
+* Multiple forms of magic
+* Healing capability
+* Defeat him to reveal true threat
+
+=== Malroth ===
+
+God of Destruction:
+* Summoned after Hargon's defeat
+* Extremely powerful
+* True final boss
+
+== Endings ==
+
+After defeating Malroth:
+* Peace restored
+* Return to Midenhall
+* Celebration of victory
+* Credits roll
+
+== Level Recommendations ==
+
+{| class="wikitable"
+! Stage !! Recommended Level
+|-
+| Early game || 5-10
+|-
+| Ship quest || 10-15
+|-
+| Crest hunting || 15-25
+|-
+| Road to Rhone || 25-30
+|-
+| Hargon/Malroth || 30+
+|}
+
+== Tips ==
+
+=== Grinding ===
+
+* Metal Slimes give great EXP
+* Midenhall area safe early
+* Rhone plateau for endgame
+
+=== Party Management ===
+
+* Keep Princess safe (low HP)
+* Cannock heals when needed
+* Midenhall is tank
+
+=== Spell Conservation ===
+
+* Use physical attacks when possible
+* Save Moonbrooke MP for bosses
+* Herbs supplement healing
+
+== Related Pages ==
+
+* [[Dragon_Warrior_II:Characters|Characters]]
+* [[Dragon_Warrior_II:Battle_System|Battle System]]
+* [[Dragon_Warrior_II:Locations|Locations]]
+
+[[Category:Dragon Warrior II]]
+[[Category:Story Guide]]

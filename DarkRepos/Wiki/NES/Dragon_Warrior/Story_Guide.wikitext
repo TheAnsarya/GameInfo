@@ -1,0 +1,243 @@
+{{Back|Dragon_Warrior}}
+
+= Story Guide =
+
+'''Dragon Warrior''' is the first game in the series, following a lone hero on a quest to defeat the Dragonlord.
+
+__TOC__
+
+== Premise ==
+
+The kingdom of Alefgard is terrorized by the Dragonlord, who has stolen the Ball of Light and kidnapped Princess Gwaelin. As a descendant of the legendary hero Erdrick, you must restore peace to the land.
+
+== Getting Started ==
+
+=== Tantegel Castle ===
+
+Starting location:
+# Speak with King Lorik to receive the quest
+# Receive starter gold
+# Exit to the world map
+
+=== First Steps ===
+
+{| class="wikitable"
+! Priority !! Action
+|-
+| 1 || Buy equipment in Tantegel
+|-
+| 2 || Grind levels near castle
+|-
+| 3 || Save frequently with King
+|}
+
+== Early Game (Levels 1-7) ==
+
+=== Equipment Goals ===
+
+{| class="wikitable"
+! Slot !! Target !! Location
+|-
+| Weapon || Copper Sword || Tantegel, Brecconary
+|-
+| Armor || Leather Armor || Tantegel
+|-
+| Shield || Small Shield || Tantegel
+|}
+
+=== Locations ===
+
+==== Brecconary ====
+
+First town to visit, south of Tantegel:
+* Additional shops
+* Keys sold here
+* Inn for healing
+
+==== Garinham ====
+
+Northwest town:
+* Better equipment
+* Erdrick's Armor clue
+* Garin's Tomb entrance
+
+=== Key Items ===
+
+{| class="wikitable"
+! Item !! Location !! Use
+|-
+| Magic Keys || Shops || Open doors
+|-
+| Torch || Shops || Light in caves
+|-
+| Fairy Flute || Kol || Wake sleeping enemies
+|}
+
+== Mid Game (Levels 8-15) ==
+
+=== Equipment Upgrades ===
+
+{| class="wikitable"
+! Slot !! Target !! Location
+|-
+| Weapon || Broad Sword || Kol, Rimuldar
+|-
+| Armor || Half Plate || Garinham, Kol
+|-
+| Shield || Large Shield || Garinham, Kol
+|}
+
+=== Rescuing Princess Gwaelin ===
+
+# Travel to the Swamp Cave (south of castle)
+# Navigate to the Dragon
+# Defeat the Dragon
+# Rescue Princess Gwaelin
+# Return her to Tantegel Castle
+# Receive Gwaelin's Love (tracks distance to castle)
+
+=== Collecting Erdrick's Equipment ===
+
+==== Erdrick's Armor ====
+
+Location: Hauksness (ruined town)
+* Located in the southern continent
+* Search the town for armor
+* Best armor in the game
+
+==== Erdrick's Token ====
+
+Location: Southern swamp (south of Cantlin)
+* Required for Rainbow Drop
+* Search the swamp tiles
+
+== Late Game (Levels 16-25) ==
+
+=== Equipment Goals ===
+
+{| class="wikitable"
+! Slot !! Target !! Location
+|-
+| Weapon || Flame Sword → Erdrick's Sword || Cantlin / Charlock
+|-
+| Armor || Erdrick's Armor || Hauksness
+|-
+| Shield || Silver Shield || Cantlin
+|}
+
+=== Obtaining the Rainbow Drop ===
+
+Requirements:
+# Erdrick's Token
+# Stones of Sunlight (Tantegel Castle treasure room)
+# Bring both to the old man south of Rimuldar
+
+The Rainbow Drop creates a bridge to Charlock Castle.
+
+== Charlock Castle ==
+
+The final dungeon:
+
+=== Navigation ===
+
+Multiple floors with:
+* Strong enemies
+* Hidden stairs
+* Treasure rooms
+
+=== Erdrick's Sword ===
+
+Located in basement area:
+* Required for endgame
+* Best weapon in game
+
+=== The Dragonlord ===
+
+Final boss battle:
+
+{| class="wikitable"
+! Phase !! Form !! Strategy
+|-
+| 1 || Human || Refuse his offer
+|-
+| 2 || Dragon || Full power attack
+|}
+
+'''Warning:''' If you accept the Dragonlord's offer, the game ends badly.
+
+== Endings ==
+
+=== Good Ending ===
+
+# Defeat the Dragonlord
+# Recover the Ball of Light
+# Return to Tantegel Castle
+# Choice: become king or travel to new lands
+
+=== Bad Ending ===
+
+Accepting the Dragonlord's bargain results in darkness.
+
+== Key Item Checklist ==
+
+{| class="wikitable"
+! Item !! Location !! Purpose
+|-
+| Magic Keys || Shops || Open doors
+|-
+| Erdrick's Token || Swamp || Rainbow Drop
+|-
+| Stones of Sunlight || Tantegel || Rainbow Drop
+|-
+| Fairy Flute || Kol || Wake Golem
+|-
+| Silver Harp || Garin's Tomb || Attract enemies
+|-
+| Staff of Rain || Rain Shrine || Rainbow Drop ingredient
+|-
+| Rainbow Drop || Old man || Bridge to Charlock
+|-
+| Erdrick's Armor || Hauksness || Best armor
+|-
+| Erdrick's Sword || Charlock || Best weapon
+|-
+| Ball of Light || Dragonlord || Win condition
+|}
+
+== Spell Learning ==
+
+Spells learned by level:
+
+{| class="wikitable"
+! Level !! Spell !! Use
+|-
+| 3 || Heal || Restore HP
+|-
+| 4 || Hurt || Damage enemy
+|-
+| 7 || Sleep || Put enemy to sleep
+|-
+| 9 || Radiant || Light in dark areas
+|-
+| 10 || Stopspell || Prevent enemy magic
+|-
+| 12 || Outside || Exit dungeon
+|-
+| 13 || Return || Warp to Tantegel
+|-
+| 15 || Repel || Avoid weak enemies
+|-
+| 17 || Healmore || Strong heal
+|-
+| 19 || Hurtmore || Strong damage
+|}
+
+== Related Pages ==
+
+* [[Dragon_Warrior:Equipment|Equipment]]
+* [[Dragon_Warrior:Battle_System|Battle System]]
+* [[Dragon_Warrior:Locations|Locations]]
+* [[Dragon_Warrior:Magic|Magic]]
+
+[[Category:Dragon Warrior]]
+[[Category:Story Guide]]

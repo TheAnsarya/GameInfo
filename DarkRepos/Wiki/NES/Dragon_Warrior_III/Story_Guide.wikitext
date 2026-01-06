@@ -1,0 +1,268 @@
+{{Back|Dragon_Warrior_III}}
+
+= Story Guide =
+
+'''Dragon Warrior III''' follows the child of the hero Ortega on a quest to defeat the Archfiend Baramos.
+
+__TOC__
+
+== Premise ==
+
+Ortega, the greatest warrior of Aliahan, fell in battle against Baramos the Archfiend. Now his child comes of age and must complete the quest to save the world.
+
+== Getting Started ==
+
+=== Aliahan ===
+
+Home kingdom:
+# Wake up on 16th birthday
+# Meet the King
+# Create party at Luisa's Place
+# Receive initial gold and equipment
+
+=== Party Creation ===
+
+At Luisa's Place, create up to 3 companions:
+
+{| class="wikitable"
+! Recommended !! Role
+|-
+| Warrior || Tank/damage
+|-
+| Priest || Healing
+|-
+| Mage || Offense magic
+|}
+
+Alternative parties possible with other classes.
+
+== Early Game ==
+
+=== First Quests ===
+
+{| class="wikitable"
+! Task !! Location
+|-
+| Explore Aliahan region || Surrounding towns
+|-
+| Find Thief's Key || Tower of Najima
+|-
+| Defeat Kandar || Tower
+|}
+
+=== Aliahan Region Towns ===
+
+* Reeve - North of castle
+* Najimi Tower - Thief's Key location
+* Cave nearby for grinding
+
+=== Reaching the Sea ===
+
+To leave Aliahan:
+# Navigate the cave system
+# Reach the port
+# Board ship to other continents
+
+== Mid Game ==
+
+=== World Exploration ===
+
+After leaving Aliahan, explore multiple continents:
+
+{| class="wikitable"
+! Region !! Notable Locations
+|-
+| Romaly || Castle and town
+|-
+| Kazave || Monster arena
+|-
+| Portoga || Ship acquisition
+|-
+| Baharata || Pepper quest
+|-
+| Dharma || Class change temple
+|}
+
+=== Ship Quest ===
+
+{| class="wikitable"
+! Step !! Action
+|-
+| 1 || Reach Portoga
+|-
+| 2 || Complete quest for king
+|-
+| 3 || Receive ship
+|}
+
+The ship opens up the entire world.
+
+=== Dharma Temple ===
+
+Class change location:
+* Requires level 20+
+* Resets level to 1
+* Keeps learned spells
+* Opens new spell learning
+
+=== Collecting the Orbs ===
+
+Six colored orbs are needed:
+
+{| class="wikitable"
+! Orb !! General Location
+|-
+| Red || Varies by version
+|-
+| Blue || Tower or dungeon
+|-
+| Green || Cave
+|-
+| Yellow || Side quest
+|-
+| Purple || Dungeon
+|-
+| Silver || Special location
+|}
+
+The orbs are used to revive Ramia, the sacred bird.
+
+== The Quest for Baramos ==
+
+=== Ramia ===
+
+With all six orbs:
+# Go to the Shrine
+# Revive the bird Ramia
+# Fly to Baramos's Castle
+
+=== Baramos's Castle ===
+
+The Archfiend's fortress:
+* Located on unreachable landmass
+* Requires Ramia to reach
+* Multiple dungeon floors
+
+=== Defeating Baramos ===
+
+The Archfiend awaits:
+* Powerful magic attacks
+* High HP
+* Bring plenty of healing
+
+After defeating Baramos, return victorious... but the story isn't over.
+
+== The Dark World ==
+
+=== The Twist ===
+
+After Baramos's defeat:
+# Return to Aliahan
+# Celebrate victory
+# Zoma appears - the true enemy
+# World pit opens
+# Descend to Alefgard
+
+=== Alefgard ===
+
+A dark version of Dragon Warrior I's world:
+* Tantegel Castle
+* Rimuldar
+* Hauksness
+* All familiar locations
+
+=== Equipment of Erdrick ===
+
+Collect the legendary equipment:
+
+{| class="wikitable"
+! Item !! Location
+|-
+| Sword of Kings || Zoma's Castle
+|-
+| Erdrick's Armor || Cave/dungeon
+|-
+| Erdrick's Shield || Town/chest
+|-
+| Erdrick's Helmet || Zoma's Castle
+|}
+
+These become "Erdrick's Equipment" after your victory.
+
+=== Sphere of Light ===
+
+Required to harm Zoma:
+* Removes Zoma's barrier
+* Found in special location
+* Must use in battle
+
+== Final Battle ==
+
+=== Zoma's Castle ===
+
+The ultimate dungeon:
+* Multiple floors
+* Boss gauntlet (Baramos Bomus, etc.)
+* Strongest enemies
+
+=== Defeating Zoma ===
+
+{| class="wikitable"
+! Phase !! Strategy
+|-
+| With Barrier || Use Sphere of Light first
+|-
+| Normal || Full offense with buffs
+|}
+
+Zoma is the strongest enemy:
+* Ice breath attacks
+* Physical strikes
+* Magic abilities
+
+== Ending ==
+
+After defeating Zoma:
+# Peace restored to Alefgard
+# Light returns
+# Reveal: YOU are the original Erdrick
+# The legend begins here
+# Connects to Dragon Warrior I/II
+
+== Bonus Content ==
+
+=== Pachisi Track ===
+
+Board game mini-game for prizes.
+
+=== Monster Medals ===
+
+Collectible system (some versions).
+
+=== Bonus Dungeon ===
+
+Post-game content in remakes.
+
+== Tips ==
+
+=== Grinding ===
+
+* Metal Slimes for fast EXP
+* Level 20 before class change
+* Alefgard has strong enemies
+
+=== Party Balance ===
+
+* Hero + Sage + Warrior + Sage (recommended)
+* Or Hero + Warrior + Priest + Mage
+* Sages are most versatile
+
+== Related Pages ==
+
+* [[Dragon_Warrior_III:Characters|Characters]]
+* [[Dragon_Warrior_III:Class_System|Class System]]
+* [[Dragon_Warrior_III:Battle_System|Battle System]]
+* [[Dragon_Warrior_III:Locations|Locations]]
+
+[[Category:Dragon Warrior III]]
+[[Category:Story Guide]]
