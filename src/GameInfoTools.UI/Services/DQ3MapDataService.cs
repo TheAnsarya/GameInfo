@@ -1,4 +1,5 @@
 using GameInfoTools.Core;
+using GameInfoTools.Core.Compression;
 
 namespace GameInfoTools.UI.Services;
 
@@ -73,14 +74,36 @@ public class DQ3MapDataService {
 	}
 
 	/// <summary>
-	/// Load the overworld layout data.
-	/// Returns 0x2000 bytes of layout indices.
+	/// Load the overworld layout data (compressed).
+	/// Returns 0x2000 bytes of layout indices after decompression.
 	/// </summary>
 	public byte[]? GetOverworldLayout() {
 		if (!_rom.IsLoaded) return null;
 
-		// In full implementation, would decompress using BasicRing400
-		// For now, return raw data - decompression requires DQ3Lib
+		try {
+			// Read compressed data (estimate ~0x1000 bytes compressed for 0x2000 decompressed)
+			var compressedSize = 0x1200; // Conservative estimate
+			var compressed = new byte[compressedSize];
+			var layoutAddress = Addresses.OverworldLayout;
+
+			for (int i = 0; i < compressedSize && layoutAddress + i < _rom.Length; i++) {
+				compressed[i] = _rom.ReadByte(layoutAddress + i);
+			}
+
+			// Decompress using BasicRing400
+			return BasicRing400.Decompress(compressed, 0x2000);
+		} catch {
+			return null;
+		}
+	}
+
+	/// <summary>
+	/// Load the overworld layout data (raw, uncompressed).
+	/// Use this if the ROM doesn't use compression at the layout address.
+	/// </summary>
+	public byte[]? GetOverworldLayoutRaw() {
+		if (!_rom.IsLoaded) return null;
+
 		var layoutAddress = Addresses.OverworldLayout;
 		var layoutData = new byte[0x2000];
 
