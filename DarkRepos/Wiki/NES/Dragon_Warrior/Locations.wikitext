@@ -1,0 +1,430 @@
+{{Back|Dragon Warrior}}
+__TOC__
+
+= Locations =
+
+This page documents all locations in Dragon Warrior for the NES.
+
+== Overview ==
+
+Dragon Warrior takes place in the kingdom of Alefgard, a land threatened by the Dragonlord. The hero must explore the overworld, towns, and dungeons to rescue Princess Gwaelin and defeat the Dragonlord.
+
+== Map Data Structure ==
+
+=== Overworld ===
+
+The overworld is stored as a 120×120 tile map:
+
+{| class="wikitable"
+! Offset !! Description
+|-
+| $1D6D0 || Map data start (compressed)
+|-
+| N/A || Decompressed size: 14,400 bytes
+|}
+
+=== Tile Types ===
+
+{| class="wikitable"
+! ID !! Terrain !! Movement Cost !! Encounter Rate
+|-
+| $00 || Grass || 1 || Normal
+|-
+| $01 || Desert || 1 || Normal
+|-
+| $02 || Hill || 1.5 || Higher
+|-
+| $03 || Mountain || Impassable || N/A
+|-
+| $04 || Water || Impassable* || N/A
+|-
+| $05 || Forest || 1.5 || Higher
+|-
+| $06 || Swamp || 1 + 2 HP damage || Lower
+|-
+| $07 || Town || 0 || None
+|-
+| $08 || Cave || 0 || None
+|-
+| $09 || Castle || 0 || None
+|-
+| $0A || Bridge || 1 || None
+|-
+| $0B || Barrier || 1 + 15 HP damage || None
+|}
+
+* Water becomes passable with Rainbow Drop
+
+== Towns ==
+
+=== Tantegel Castle ===
+
+The hero's starting location and home of King Lorik.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Coordinates || (45, 45)
+|-
+| Inn Cost || Free (throne room)
+|-
+| Weapon Shop || Bamboo Pole (10G), Club (60G), Copper Sword (180G)
+|-
+| Armor Shop || Clothes (20G), Leather Armor (70G)
+|-
+| Item Shop || Herb (24G), Torch (8G)
+|-
+| Key NPCs || King Lorik, Princess Gwaelin (rescued)
+|-
+| Notes || Save point at king
+|}
+
+'''Important Features:'''
+* Throne room heals HP/MP for free
+* King saves your game
+* Secret basement (requires keys)
+* Princess returns here after rescue
+
+=== Brecconary ===
+
+First accessible town, south of Tantegel.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Coordinates || (45, 47)
+|-
+| Inn Cost || 6 Gold
+|-
+| Weapon Shop || Club (60G), Copper Sword (180G)
+|-
+| Armor Shop || Clothes (20G), Leather Armor (70G), Chain Mail (300G)
+|-
+| Item Shop || Herb (24G), Torch (8G), Dragon's Scale (20G)
+|-
+| Notes || Cheapest inn in game
+|}
+
+'''Tips:'''
+* Good early grinding spot nearby
+* Dragon's Scale gives +2 defense
+* Stock up on herbs
+
+=== Garinham ===
+
+Northern town with first shop key items.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Coordinates || (6, 18)
+|-
+| Inn Cost || 25 Gold
+|-
+| Weapon Shop || Iron Axe (560G), Broad Sword (1500G)
+|-
+| Armor Shop || Chain Mail (300G), Half Plate (1000G), Full Plate (3000G)
+|-
+| Item Shop || Herb (24G), Torch (8G), Wings (70G)
+|-
+| Key Item || Magic Key (53G for 6 keys)
+|-
+| Notes || First magic key shop
+|}
+
+'''Important:'''
+* Magic Keys sold here first
+* Locked door contains treasure
+* Grave of Garin nearby
+
+=== Kol ===
+
+Western town with the fairy flute clue.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Coordinates || (105, 10)
+|-
+| Inn Cost || 20 Gold
+|-
+| Weapon Shop || Iron Axe (560G), Broad Sword (1500G)
+|-
+| Armor Shop || Half Plate (1000G), Full Plate (3000G)
+|-
+| Item Shop || Herb (24G), Wings (70G)
+|-
+| Key Item || Fairy Flute (location clue)
+|-
+| Notes || Hot spring heals HP
+|}
+
+'''Special Features:'''
+* Hot spring (free HP heal)
+* Locked house has item
+
+=== Rimuldar ===
+
+Town with best equipment shops.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Coordinates || (104, 80)
+|-
+| Inn Cost || 55 Gold
+|-
+| Weapon Shop || Broad Sword (1500G), Flame Sword (9800G)
+|-
+| Armor Shop || Full Plate (3000G), Silver Shield (14800G)
+|-
+| Item Shop || Herb (24G), Wings (70G), Magic Key
+|-
+| Notes || Late-game equipment
+|}
+
+'''Equipment:'''
+* Flame Sword is second-best weapon
+* Silver Shield is best shield
+* Stock up on keys
+
+=== Cantlin ===
+
+Southernmost town, near Dragonlord's castle.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Coordinates || (30, 100)
+|-
+| Inn Cost || 100 Gold
+|-
+| Armor Shop || Magic Armor (7700G)
+|-
+| Item Shop || Herbs, Wings, Keys
+|-
+| Notes || Erdrick's Armor clue
+|}
+
+'''Important:'''
+* Sealed in town until defeat Golem
+* Magic Armor reduces spell damage
+* Erdrick's Armor is nearby (south)
+
+=== Hauksness (Ruins) ===
+
+Destroyed city, now full of monsters.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Coordinates || (20, 15)
+|-
+| Inn Cost || None (ruins)
+|-
+| Shops || None
+|-
+| Key Item || Erdrick's Armor (hidden)
+|-
+| Notes || High encounter rate
+|}
+
+'''Warning:'''
+* Dangerous enemies (Axe Knight, etc.)
+* Search for armor at specific spot
+* No safe areas
+
+== Caves and Dungeons ==
+
+=== Swamp Cave (South) ===
+
+Connects Tantegel area to southern continent.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Entrance || (21, 58)
+|-
+| Exit || (24, 65)
+|-
+| Floors || 2
+|-
+| Difficulty || Easy
+|-
+| Treasure || Herb, 120G
+|}
+
+=== Swamp Cave (North) ===
+
+Northern swamp passage.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Entrance || (107, 53)
+|-
+| Floors || 1
+|-
+| Difficulty || Easy
+|-
+| Treasure || Torch, 6G
+|}
+
+=== Mountain Cave ===
+
+Cave in the mountains with important treasure.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Entrance || (96, 53)
+|-
+| Floors || 2
+|-
+| Difficulty || Medium
+|-
+| Treasure || Fighter's Ring, Torch, Gold
+|-
+| Boss || None
+|}
+
+'''Fighter's Ring:'''
+* Gives attack bonus
+* Essential equipment
+
+=== Grave of Garin ===
+
+Tomb of the legendary Garin.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Entrance || (6, 11) (behind Garinham)
+|-
+| Floors || 4
+|-
+| Difficulty || Medium-Hard
+|-
+| Key Item || Silver Harp
+|-
+| Boss || None (but strong enemies)
+|}
+
+'''Silver Harp:'''
+* Forces encounters
+* Used for grinding
+* Required story item? (No)
+
+=== Charlock Castle ===
+
+The Dragonlord's fortress - final dungeon.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Entrance || (53, 51) (requires Rainbow Drop)
+|-
+| Floors || 8 (7 down + throne)
+|-
+| Difficulty || Very Hard
+|-
+| Key Item || Erdrick's Sword (B7)
+|-
+| Boss || Dragonlord (2 forms)
+|}
+
+'''Layout:'''
+* B1-B3: Descending floors
+* B4-B6: Underground maze
+* B7: Erdrick's Sword location
+* B8: Dragonlord's throne
+
+'''Enemies:'''
+* Red Dragons, Stonemen, Axe Knights
+* Armored Knights, Demon Knights
+
+== Special Locations ==
+
+=== Rainbow Drop Location ===
+
+Where to use the Rainbow Drop:
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Coordinates || (66, 49)
+|-
+| Requirements || Rainbow Drop in inventory
+|-
+| Effect || Creates bridge to Charlock
+|}
+
+Stand between the islands to use.
+
+=== Erdrick's Token Location ===
+
+Hidden in swamp south of Cantlin:
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Coordinates || (75, 110)
+|-
+| Requirements || Search command
+|-
+| Notes || Required for Rainbow Drop
+|}
+
+=== Princess Location ===
+
+Princess Gwaelin's prison:
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Location || Swamp Cave (first one)
+|-
+| Floor || B1 (locked room)
+|-
+| Requirement || Magic Key, defeat Dragon
+|}
+
+After rescue, she provides love% tracking.
+
+== Encounter Zones ==
+
+{| class="wikitable"
+! Zone !! Level Range !! Example Enemies
+|-
+| Tantegel Area || 1-5 || Slime, Red Slime, Drakee
+|-
+| Garinham Area || 5-10 || Ghost, Magician, Scorpion
+|-
+| Kol/Rimuldar || 10-15 || Wolf, Wraith, Wyvern
+|-
+| Cantlin Area || 15-20 || Knight, Magiwyvern
+|-
+| Charlock || 18-25 || Red Dragon, Stoneman
+|}
+
+== Map Connectivity ==
+
+{| class="wikitable"
+! From !! To !! Via
+|-
+| Tantegel || Brecconary || Walk south
+|-
+| Brecconary || South continent || Swamp Cave
+|-
+| Tantegel || Garinham || Walk north, bridge
+|-
+| Kol || Rimuldar || Walk south
+|-
+| Rimuldar || Cantlin || Walk west, south
+|-
+| Mainland || Charlock || Rainbow Bridge
+|}
+
+[[Category:Dragon Warrior]]
+[[Category:Locations]]
+[[Category:NES Games]]

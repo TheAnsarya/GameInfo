@@ -1,0 +1,331 @@
+{{Back|Dragon Warrior II}}
+__TOC__
+
+= Magic =
+
+This page documents all magic spells in Dragon Warrior II for the NES.
+
+== Overview ==
+
+Dragon Warrior II introduced the first multi-character party with specialized magic users. The Prince of Cannock learns offensive and utility magic, while the Princess of Moonbrooke masters both healing and powerful attack spells.
+
+== Spell Data Structure ==
+
+Each spell uses 4 bytes:
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Spell ID
+|-
+| $01 || 1 || MP Cost
+|-
+| $02 || 1 || Base Power / Effect
+|-
+| $03 || 1 || Target Type / Flags
+|}
+
+== Healing Magic ==
+
+{| class="wikitable sortable"
+! Spell !! MP !! Effect !! Range !! Learned By !! Level
+|-
+| Heal || 3 || Restore 30-40 HP || Single || Cannock, Moonbrooke || 1, 1
+|-
+| Healmore || 8 || Restore 85-100 HP || Single || Cannock, Moonbrooke || 14, 13
+|-
+| Healall || 18 || Full HP restore || Single || Moonbrooke || 28
+|-
+| Antidote || 2 || Cure poison || Single || Cannock || 4
+|}
+
+=== Heal ===
+
+Basic healing spell:
+* Restores 30-40 HP (random)
+* Essential early game
+* Both spellcasters learn at level 1
+* Becomes obsolete after Healmore
+
+=== Healmore ===
+
+Improved healing:
+* Restores 85-100 HP (random)
+* Main healing spell mid-game
+* Cost-effective for the effect
+* Learn priority: keep Princess safe
+
+=== Healall ===
+
+Ultimate healing:
+* Fully restores HP
+* Moonbrooke exclusive
+* High MP cost, use wisely
+* Essential for boss fights
+
+== Offensive Magic ==
+
+{| class="wikitable sortable"
+! Spell !! MP !! Power !! Range !! Learned By !! Level
+|-
+| Hurt || 2 || 8-14 || Single || Moonbrooke || 2
+|-
+| Firebal || 5 || 20-30 || Single || Cannock || 12
+|-
+| Hurtmore || 5 || 30-50 || Single || Moonbrooke || 18
+|-
+| Infernos || 8 || 17-25 || Group || Cannock || 17
+|-
+| Firebane || 6 || 30-45 || All || Cannock || 23
+|-
+| Explodet || 15 || 55-75 || All || Moonbrooke || 30
+|-
+| Defeat || 7 || Instant KO || Single || Moonbrooke || 26
+|}
+
+=== Hurt ===
+
+Basic attack spell:
+* 8-14 damage (random)
+* Low MP cost
+* Princess learns early
+* Good for conserving MP
+
+=== Hurtmore ===
+
+Stronger magic attack:
+* 30-50 damage
+* Cost-effective damage
+* Moonbrooke exclusive
+* Main spell mid-game
+
+=== Firebal ===
+
+Fire elemental attack:
+* 20-30 fire damage
+* Prince of Cannock spell
+* Single target only
+* Decent power for cost
+
+=== Infernos ===
+
+Group fire attack:
+* 17-25 damage per enemy
+* Hits one enemy group
+* Cannock exclusive
+* Good for grinding
+
+=== Firebane ===
+
+All-enemy fire attack:
+* 30-45 damage to all
+* Cannock's best offensive
+* Hits all enemy groups
+* Excellent for random battles
+
+=== Explodet ===
+
+Ultimate offensive spell:
+* 55-75 damage to all enemies
+* Moonbrooke exclusive
+* Very high MP cost
+* Boss-killing power
+
+=== Defeat ===
+
+Instant death spell:
+* Chance to instantly kill
+* Doesn't work on bosses
+* Useful against tough regulars
+* Success rate varies
+
+== Support Magic ==
+
+{| class="wikitable sortable"
+! Spell !! MP !! Effect !! Learned By !! Level
+|-
+| Sleep || 3 || Put enemies to sleep || Moonbrooke || 5
+|-
+| Surround || 2 || Lower enemy accuracy || Moonbrooke || 8
+|-
+| Defense || 2 || Raise ally defense || Moonbrooke || 15
+|-
+| Increase || 4 || Raise party defense || Moonbrooke || 23
+|-
+| Repel || 4 || Reduce encounters || Cannock || 20
+|-
+| RobMagic || 0 || Steal enemy MP || Moonbrooke || 11
+|}
+
+=== Sleep ===
+
+Disable enemies:
+* Puts enemies to sleep
+* They can't act while asleep
+* Physical attack wakes them
+* Useful for crowd control
+
+=== Surround ===
+
+Evasion debuff:
+* Lowers enemy hit rate
+* Enemies miss more often
+* Stacks somewhat
+* Great for tough fights
+
+=== Defense ===
+
+Single ally buff:
+* Raises one ally's defense
+* Moderate improvement
+* Lasts entire battle
+* Use on vulnerable characters
+
+=== Increase ===
+
+Party defense buff:
+* Raises entire party's defense
+* More efficient than Defense
+* Essential for boss fights
+* Cast first turn
+
+=== Repel ===
+
+Encounter reduction:
+* Reduces random encounters
+* Based on party level vs enemy
+* Doesn't work on stronger foes
+* Useful for exploration
+
+=== RobMagic ===
+
+MP theft:
+* Steals enemy MP
+* Costs 0 MP to cast!
+* Amount varies by enemy
+* Essential for long dungeons
+
+== Utility Magic ==
+
+{| class="wikitable sortable"
+! Spell !! MP !! Effect !! Learned By !! Level
+|-
+| Return || 8 || Teleport to visited town || Cannock || 6
+|-
+| Outside || 8 || Exit dungeon || Cannock || 10
+|-
+| Sacrifice || All || KO self, revive/heal allies || Moonbrooke || 21
+|-
+| Revive || 15 || Revive fallen ally (50%) || Cannock || 26
+|}
+
+=== Return ===
+
+Town teleportation:
+* Instantly travel to visited town
+* Select from town list
+* Doesn't work in dungeons (some)
+* Essential for backtracking
+
+=== Outside ===
+
+Dungeon escape:
+* Instantly exit current dungeon
+* Appears at entrance
+* Use when low on resources
+* Cannock exclusive
+
+=== Sacrifice ===
+
+Desperate measure:
+* Kills the Princess
+* Fully revives and heals party
+* Last resort only
+* Can save from wipes
+
+=== Revive ===
+
+Resurrection spell:
+* 50% chance to revive ally
+* If fails, MP still spent
+* Only option mid-battle
+* Less reliable than items
+
+== Spell Progression ==
+
+=== Prince of Cannock ===
+
+{| class="wikitable"
+! Level Range !! Available Spells !! Role
+|-
+| 1-5 || Heal || Basic healing support
+|-
+| 6-11 || +Return, Outside || Travel utility
+|-
+| 12-16 || +Firebal, Healmore || Damage dealer
+|-
+| 17-22 || +Infernos, Repel || AoE damage
+|-
+| 23-26 || +Firebane, Revive || Party support
+|}
+
+=== Princess of Moonbrooke ===
+
+{| class="wikitable"
+! Level Range !! Available Spells !! Role
+|-
+| 1-4 || Heal, Hurt || Basic magic
+|-
+| 5-10 || +Sleep, Surround || Crowd control
+|-
+| 11-17 || +RobMagic, Healmore, Defense || Support
+|-
+| 18-22 || +Hurtmore, Sacrifice || Primary damage
+|-
+| 23-30 || +Increase, Defeat, Healall, Explodet || Full power
+|}
+
+== Spell Resistance ==
+
+Some enemies resist or are immune to certain spells:
+
+{| class="wikitable"
+! Spell Type !! Resistable By !! Notes
+|-
+| Fire (Firebal, etc.) || Fire enemies || Reduced damage
+|-
+| Sleep || High-level enemies || Lower success rate
+|-
+| Defeat || Bosses, machines || Usually immune
+|-
+| RobMagic || MP-less enemies || No effect
+|}
+
+== MP Management Tips ==
+
+1. **Use RobMagic often** - Free MP recovery
+2. **Save Explodet for bosses** - Too costly for trash
+3. **Heal outside battle** - Visit inns
+4. **Carry magic items** - Wizard's Ring restores MP
+5. **Know enemy weaknesses** - Physical may be better
+
+== Combat Strategies ==
+
+=== Random Encounters ===
+
+* Open with Surround or Sleep
+* Use Firebane/Explodet for groups
+* Save MP, use physical when possible
+* RobMagic from spellcaster enemies
+
+=== Boss Fights ===
+
+* Turn 1: Increase (defense buff)
+* Maintain healing (Princess priority)
+* Hero attacks physically
+* Cannock: Firebane or healing backup
+* Princess: Explodet + Healmore rotation
+
+[[Category:Dragon Warrior II]]
+[[Category:Magic]]
+[[Category:NES Games]]

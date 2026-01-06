@@ -1,0 +1,406 @@
+{{Back|Dragon Warrior III}}
+__TOC__
+
+= Characters =
+
+This page documents the playable characters and class system in Dragon Warrior III for the NES.
+
+== Overview ==
+
+Dragon Warrior III introduced the innovative class system that would become a staple of the series. The Hero is a fixed class, but players create party members by selecting from multiple classes.
+
+== Character Data Structure ==
+
+Each character uses 48 bytes in SRAM:
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 8 || Name (8 characters)
+|-
+| $08 || 2 || Current HP
+|-
+| $0A || 2 || Max HP
+|-
+| $0C || 1 || Current MP
+|-
+| $0D || 1 || Max MP
+|-
+| $0E || 1 || Strength
+|-
+| $0F || 1 || Agility
+|-
+| $10 || 1 || Vitality
+|-
+| $11 || 1 || Intelligence
+|-
+| $12 || 1 || Luck
+|-
+| $13 || 1 || Attack Power
+|-
+| $14 || 1 || Defense Power
+|-
+| $15 || 1 || Level
+|-
+| $16-$19 || 4 || Experience
+|-
+| $1A || 1 || Current Class
+|-
+| $1B || 1 || Gender
+|-
+| $1C-$1F || 4 || Equipment slots
+|-
+| $20-$2F || 16 || Spell flags, personality, status
+|}
+
+== The Hero ==
+
+The main protagonist is always the Hero class.
+
+=== Base Statistics ===
+
+{| class="wikitable"
+! Stat !! Base Value !! Growth Rate
+|-
+| HP || 15 || High
+|-
+| MP || 5 || Medium
+|-
+| Strength || 7 || High
+|-
+| Agility || 5 || Medium
+|-
+| Vitality || 6 || Medium
+|-
+| Intelligence || 4 || Medium
+|-
+| Luck || 5 || Medium
+|}
+
+=== Hero Level Progression ===
+
+{| class="wikitable sortable"
+! Level !! HP !! MP !! Str !! Agi !! Vit !! Int !! Exp Required
+|-
+| 1 || 15 || 5 || 7 || 5 || 6 || 4 || 0
+|-
+| 10 || 82 || 35 || 42 || 28 || 35 || 25 || 5,000
+|-
+| 20 || 155 || 75 || 88 || 55 || 70 || 52 || 30,000
+|-
+| 30 || 220 || 115 || 130 || 82 || 105 || 78 || 100,000
+|-
+| 40 || 270 || 155 || 168 || 108 || 138 || 102 || 250,000
+|-
+| 50 || 310 || 190 || 200 || 132 || 165 || 125 || 500,000
+|-
+| 99 || 400 || 255 || 255 || 180 || 220 || 175 || 9,999,999
+|}
+
+=== Hero Spells ===
+
+{| class="wikitable"
+! Level !! Spell !! MP Cost !! Effect
+|-
+| 1 || Heal || 3 || Restore 30-40 HP
+|-
+| 4 || Firebal || 4 || Fire damage (group)
+|-
+| 7 || Sleep || 3 || Sleep one enemy
+|-
+| 11 || Radiant || 2 || Light in dungeons
+|-
+| 13 || Return || 8 || Return to town
+|-
+| 16 || Outside || 8 || Exit dungeon
+|-
+| 19 || Healmore || 8 || Restore 85-100 HP
+|-
+| 23 || Firebane || 6 || Fire damage (all)
+|-
+| 28 || Healall || 18 || Full HP heal
+|-
+| 33 || Healus || 36 || Full party HP heal
+|-
+| 38 || Revive || 20 || Revive (50% chance)
+|-
+| 41 || Chance || 15 || Random effect
+|}
+
+== Character Classes ==
+
+=== Warrior ===
+
+Physical combat specialist.
+
+{| class="wikitable"
+! Stat !! Growth Rate !! Notes
+|-
+| HP || Very High || Best HP growth
+|-
+| MP || None || Cannot use magic
+|-
+| Strength || Very High || Best physical damage
+|-
+| Agility || Low || Acts last often
+|-
+| Vitality || Very High || High defense base
+|}
+
+'''Equipment:'''
+* Weapons: All swords, axes, clubs
+* Armor: All heavy armor, shields
+* Helmets: All helmets
+
+'''Role:''' Front-line tank and damage dealer
+
+=== Fighter ===
+
+Martial arts specialist.
+
+{| class="wikitable"
+! Stat !! Growth Rate !! Notes
+|-
+| HP || High || Good survivability
+|-
+| MP || None || Cannot use magic
+|-
+| Strength || High || Strong attacks
+|-
+| Agility || Very High || Often acts first
+|-
+| Vitality || Medium || Moderate defense
+|}
+
+'''Equipment:'''
+* Weapons: Claws, staves, limited swords
+* Armor: Light armor only
+* Helmets: Bandanas, caps
+
+'''Role:''' Fast physical attacker, critical hit specialist
+
+=== Mage ===
+
+Offensive magic specialist.
+
+{| class="wikitable"
+! Stat !! Growth Rate !! Notes
+|-
+| HP || Very Low || Very fragile
+|-
+| MP || Very High || Largest MP pool
+|-
+| Strength || Very Low || Poor physical
+|-
+| Agility || Medium || Average speed
+|-
+| Intelligence || Very High || Best spell power
+|}
+
+'''Equipment:'''
+* Weapons: Staves, knives
+* Armor: Robes only
+* Helmets: Hats, circlets
+
+'''Spells:''' Firebal, Icebolt, Infernos, Defeat, Explodet, etc.
+
+'''Role:''' AoE damage dealer, enemy elimination
+
+=== Cleric ===
+
+Healing and support magic.
+
+{| class="wikitable"
+! Stat !! Growth Rate !! Notes
+|-
+| HP || Medium || Moderate survival
+|-
+| MP || High || Good MP pool
+|-
+| Strength || Low || Weak physical
+|-
+| Agility || Medium || Average speed
+|-
+| Intelligence || High || Strong healing
+|}
+
+'''Equipment:'''
+* Weapons: Staves, maces, flails
+* Armor: Robes, some mail
+* Helmets: Hats, some helmets
+
+'''Spells:''' Heal, Healmore, Healall, Antidote, Revive, etc.
+
+'''Role:''' Primary healer, undead killer
+
+=== Merchant ===
+
+Money-focused class.
+
+{| class="wikitable"
+! Stat !! Growth Rate !! Notes
+|-
+| HP || High || Decent survival
+|-
+| MP || Low || Limited magic
+|-
+| Strength || Medium || Average damage
+|-
+| Agility || Low || Slower class
+|-
+| Luck || Very High || Better drops
+|}
+
+'''Special Abilities:'''
+* Extra gold from battles
+* Appraise items (tells sell price)
+* Dig (chance to find gold)
+
+'''Role:''' Money farming, early-mid game support
+
+=== Goof-off ===
+
+Unpredictable wild card.
+
+{| class="wikitable"
+! Stat !! Growth Rate !! Notes
+|-
+| HP || Low || Poor survival
+|-
+| MP || Low || Weak magic
+|-
+| Strength || Low || Weak attacks
+|-
+| Agility || High || Fast but useless
+|-
+| Luck || Very High || Very lucky
+|}
+
+'''Special Behaviors:'''
+* May not follow orders
+* Sometimes wastes turns
+* Can become Sage without book
+
+'''Role:''' Joke class, Sage prerequisite
+
+=== Sage ===
+
+Master of all magic.
+
+{| class="wikitable"
+! Stat !! Growth Rate !! Notes
+|-
+| HP || Medium || Balanced
+|-
+| MP || Very High || Massive pool
+|-
+| Strength || Low || Weak physical
+|-
+| Agility || Medium || Average
+|-
+| Intelligence || Very High || Top spell power
+|}
+
+'''Requirements:'''
+* Use Book of Satori (rare)
+* OR class change from Goof-off
+
+'''Spells:''' Learns both Mage AND Cleric spells
+
+'''Role:''' Ultimate support - healing and damage
+
+=== Thief (Unused) ===
+
+Data exists but not accessible in US release:
+
+{| class="wikitable"
+! Stat !! Growth Rate
+|-
+| HP || Medium
+|-
+| MP || Low
+|-
+| Agility || Very High
+|}
+
+Would have had steal abilities.
+
+== Class Change System ==
+
+=== Requirements ===
+
+* Must be Level 20 or higher
+* Visit Dharma Temple (Alltrades Abbey)
+* Lose half your stats (rounded down)
+* Reset to Level 1
+* Keep all learned spells
+
+=== Strategy ===
+
+'''Optimal Paths:'''
+1. Mage → Sage (if no Book of Satori)
+2. Cleric → Mage (rare magic-user)
+3. Warrior → Fighter (balanced physical)
+4. Any → Sage (ultimate goal)
+
+'''Tips:'''
+* Level to 20 minimum before change
+* Some players go to 30+ first
+* Keep equipment compatible
+* Plan spell lists
+
+== Stat Bonuses ==
+
+=== Seeds ===
+
+{| class="wikitable"
+! Item !! Effect !! Max Bonus
+|-
+| Strength Seed || +1-3 Strength || No limit
+|-
+| Agility Seed || +1-3 Agility || No limit
+|-
+| Vitality Seed || +1-3 Vitality || No limit
+|-
+| Intelligence Seed || +1-3 Intelligence || No limit
+|-
+| Luck Seed || +1-3 Luck || No limit
+|}
+
+=== Equipment Bonuses ===
+
+Some equipment provides permanent stat bonuses when used.
+
+== Recommended Party Compositions ==
+
+=== Balanced Party ===
+
+* Hero (all-around)
+* Warrior (tank)
+* Cleric (healing)
+* Mage (damage)
+
+=== Physical Party ===
+
+* Hero
+* Warrior
+* Warrior
+* Fighter
+
+=== Magic Party ===
+
+* Hero
+* Sage
+* Sage
+* Cleric
+
+=== Speed Run Party ===
+
+* Hero
+* Fighter (fast)
+* Fighter (fast)
+* Sage
+
+[[Category:Dragon Warrior III]]
+[[Category:Characters]]
+[[Category:NES Games]]

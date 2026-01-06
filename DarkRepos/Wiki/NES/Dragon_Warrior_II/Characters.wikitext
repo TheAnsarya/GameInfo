@@ -1,0 +1,355 @@
+{{Back|Dragon Warrior II}}
+__TOC__
+
+= Characters =
+
+This page documents the playable characters in Dragon Warrior II for the NES.
+
+== Overview ==
+
+Dragon Warrior II features three playable characters, all descendants of Erdrick (Loto). Unlike the first game's solo hero, DW2 introduced party-based combat to the series.
+
+== Character Data Structure ==
+
+Each character uses 32 bytes in RAM:
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 2 || Current HP
+|-
+| $02 || 2 || Max HP
+|-
+| $04 || 1 || Current MP
+|-
+| $05 || 1 || Max MP
+|-
+| $06 || 1 || Strength
+|-
+| $07 || 1 || Agility
+|-
+| $08 || 1 || Attack Power
+|-
+| $09 || 1 || Defense Power
+|-
+| $0A-$0D || 4 || Equipment slots
+|-
+| $0E || 1 || Level
+|-
+| $0F-$12 || 4 || Experience
+|-
+| $13-$1F || 13 || Spell flags, status
+|}
+
+== Prince of Midenhall ==
+
+The main protagonist and direct descendant of Erdrick.
+
+=== Base Statistics ===
+
+{| class="wikitable"
+! Stat !! Base Value !! Growth Rate
+|-
+| HP || 15 || High
+|-
+| MP || 0 || None
+|-
+| Strength || 4 || High
+|-
+| Agility || 4 || Medium
+|}
+
+=== Level Progression ===
+
+{| class="wikitable sortable"
+! Level !! HP !! MP !! Str !! Agi !! Exp Required
+|-
+| 1 || 15 || 0 || 4 || 4 || 0
+|-
+| 5 || 38 || 0 || 19 || 12 || 400
+|-
+| 10 || 70 || 0 || 42 || 22 || 2,800
+|-
+| 15 || 110 || 0 || 68 || 35 || 10,000
+|-
+| 20 || 150 || 0 || 95 || 50 || 28,000
+|-
+| 25 || 180 || 0 || 120 || 68 || 65,000
+|-
+| 30 || 205 || 0 || 145 || 88 || 150,000
+|-
+| 35 || 225 || 0 || 165 || 110 || 280,000
+|-
+| 40 || 240 || 0 || 180 || 130 || 500,000
+|-
+| 45 || 250 || 0 || 195 || 150 || 850,000
+|-
+| 50 || 255 || 0 || 205 || 170 || 1,500,000
+|}
+
+=== Equipment ===
+
+'''Weapons:'''
+* Copper Sword, Chain Sickle, Iron Spear
+* Broad Sword, Falcon Sword, Dragon Killer
+* Sword of Destruction, Thunder Sword
+
+'''Armor:'''
+* Leather Armor, Chain Mail, Iron Armor
+* Full Plate, Dragon Mail, Erdrick's Armor
+
+'''Shields:'''
+* Leather Shield, Iron Shield
+* Shield of Strength, Erdrick's Shield
+
+=== Combat Role ===
+
+* Primary physical attacker
+* No magic abilities
+* Highest HP and Strength
+* Should equip best armor/weapons
+
+== Prince of Cannock ==
+
+Second party member, cousin to the hero.
+
+=== Base Statistics ===
+
+{| class="wikitable"
+! Stat !! Base Value !! Growth Rate
+|-
+| HP || 12 || Medium
+|-
+| MP || 6 || Medium
+|-
+| Strength || 3 || Medium
+|-
+| Agility || 6 || Medium
+|}
+
+=== Level Progression ===
+
+{| class="wikitable sortable"
+! Level !! HP !! MP !! Str !! Agi !! Exp Required
+|-
+| 1 || 12 || 6 || 3 || 6 || 0
+|-
+| 5 || 28 || 18 || 14 || 18 || 320
+|-
+| 10 || 50 || 38 || 32 || 35 || 2,200
+|-
+| 15 || 78 || 60 || 52 || 55 || 8,000
+|-
+| 20 || 105 || 85 || 75 || 78 || 22,000
+|-
+| 25 || 130 || 105 || 98 || 100 || 52,000
+|-
+| 30 || 152 || 125 || 120 || 122 || 120,000
+|-
+| 35 || 172 || 140 || 138 || 142 || 220,000
+|-
+| 40 || 188 || 152 || 155 || 160 || 400,000
+|-
+| 45 || 200 || 162 || 168 || 175 || 680,000
+|-
+| 50 || 210 || 170 || 180 || 188 || 1,200,000
+|}
+
+=== Spells Learned ===
+
+{| class="wikitable"
+! Level !! Spell !! MP Cost !! Effect
+|-
+| 1 || Heal || 3 || Restore 30-40 HP
+|-
+| 4 || Antidote || 2 || Cure poison
+|-
+| 6 || Return || 8 || Teleport to visited town
+|-
+| 10 || Outside || 8 || Exit dungeon
+|-
+| 12 || Firebal || 5 || Fire damage (one enemy)
+|-
+| 14 || Healmore || 8 || Restore 85-100 HP
+|-
+| 17 || Infernos || 8 || Fire damage (group)
+|-
+| 20 || Repel || 4 || Reduce encounters
+|-
+| 23 || Firebane || 6 || Fire damage (all enemies)
+|-
+| 26 || Revive || 15 || Revive fallen ally (50% chance)
+|}
+
+=== Equipment ===
+
+'''Weapons:'''
+* Copper Sword, Chain Sickle, Iron Spear
+* Broad Sword, Falcon Sword, Light Sword
+* Staff of Thunder
+
+'''Armor:'''
+* Leather Armor, Chain Mail, Iron Armor
+* Full Plate, Magic Armor
+
+'''Shields:'''
+* Leather Shield, Iron Shield
+* Shield of Strength
+
+=== Combat Role ===
+
+* Balanced fighter/mage
+* Backup healer
+* Moderate physical attack
+* Useful support magic
+
+== Princess of Moonbrooke ==
+
+Third party member, the hero's cousin.
+
+=== Base Statistics ===
+
+{| class="wikitable"
+! Stat !! Base Value !! Growth Rate
+|-
+| HP || 10 || Low
+|-
+| MP || 10 || High
+|-
+| Strength || 2 || Low
+|-
+| Agility || 8 || High
+|}
+
+=== Level Progression ===
+
+{| class="wikitable sortable"
+! Level !! HP !! MP !! Str !! Agi !! Exp Required
+|-
+| 1 || 10 || 10 || 2 || 8 || 0
+|-
+| 5 || 22 || 30 || 9 || 25 || 250
+|-
+| 10 || 38 || 58 || 20 || 50 || 1,800
+|-
+| 15 || 55 || 90 || 33 || 78 || 6,500
+|-
+| 20 || 72 || 125 || 48 || 108 || 18,000
+|-
+| 25 || 88 || 155 || 64 || 138 || 43,000
+|-
+| 30 || 102 || 185 || 80 || 168 || 100,000
+|-
+| 35 || 115 || 210 || 95 || 195 || 180,000
+|-
+| 40 || 126 || 230 || 110 || 218 || 330,000
+|-
+| 45 || 135 || 245 || 122 || 238 || 560,000
+|-
+| 50 || 142 || 255 || 132 || 255 || 1,000,000
+|}
+
+=== Spells Learned ===
+
+{| class="wikitable"
+! Level !! Spell !! MP Cost !! Effect
+|-
+| 1 || Heal || 3 || Restore 30-40 HP
+|-
+| 2 || Hurt || 2 || Magic damage (one enemy)
+|-
+| 5 || Sleep || 3 || Put enemies to sleep
+|-
+| 8 || Surround || 2 || Lower enemy hit rate
+|-
+| 11 || RobMagic || 0 || Steal enemy MP
+|-
+| 13 || Healmore || 8 || Restore 85-100 HP
+|-
+| 15 || Defense || 2 || Raise ally defense
+|-
+| 18 || Hurtmore || 5 || Strong magic damage (one)
+|-
+| 21 || Sacrifice || All || KO self to revive allies
+|-
+| 23 || Increase || 4 || Raise party defense
+|-
+| 26 || Defeat || 7 || Instant kill (chance)
+|-
+| 28 || Healall || 18 || Full HP heal
+|-
+| 30 || Explodet || 15 || Strong damage (all enemies)
+|}
+
+=== Equipment ===
+
+'''Weapons:'''
+* Copper Sword (limited)
+* Staff of Thunder (best choice)
+
+'''Armor:'''
+* Clothes, Cloak of Wind
+* Water Flying Cloth, Magic Armor (limited)
+
+'''Shields:'''
+* None
+
+=== Combat Role ===
+
+* Primary magic user
+* Main healer
+* Powerful offensive spells
+* Fragile (lowest HP/defense)
+
+== Character Comparison ==
+
+{| class="wikitable"
+! Aspect !! Midenhall !! Cannock !! Moonbrooke
+|-
+| Physical Attack || ★★★★★ || ★★★☆☆ || ★☆☆☆☆
+|-
+| Physical Defense || ★★★★★ || ★★★☆☆ || ★★☆☆☆
+|-
+| Magic Attack || ☆☆☆☆☆ || ★★★☆☆ || ★★★★★
+|-
+| Healing || ☆☆☆☆☆ || ★★★☆☆ || ★★★★★
+|-
+| Support Magic || ☆☆☆☆☆ || ★★☆☆☆ || ★★★★☆
+|-
+| Survivability || ★★★★★ || ★★★☆☆ || ★★☆☆☆
+|}
+
+== Recruitment ==
+
+=== Finding the Prince of Cannock ===
+
+The Prince is not at Cannock Castle initially:
+1. Travel to Cannock Castle
+2. Learn he went to Midenhall
+3. Return to Midenhall
+4. Learn he went to Spring of Bravery
+5. Go to Spring of Bravery
+6. Finally meet at Cannock
+
+=== Finding the Princess of Moonbrooke ===
+
+The Princess was cursed into a dog:
+1. Find the Mirror of Ra (Swamp Cave)
+2. Use it on the dog in Moonbrooke
+3. She transforms back and joins
+
+== Party Formation ==
+
+Party order affects combat:
+* Position 1 (Hero): Targeted most often
+* Position 2 (Cannock): Moderate targeting
+* Position 3 (Moonbrooke): Targeted least
+
+Recommended formation:
+1. Prince of Midenhall (tank)
+2. Prince of Cannock (support)
+3. Princess of Moonbrooke (back line)
+
+[[Category:Dragon Warrior II]]
+[[Category:Characters]]
+[[Category:NES Games]]
