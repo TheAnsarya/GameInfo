@@ -1,0 +1,275 @@
+{{Back|Dragon_Quest_I_II}}
+
+= Story Guide =
+
+'''Dragon Quest I & II''' (SNES) combines both classic games with enhanced presentation.
+
+__TOC__
+
+== Part 1: Dragon Quest I ==
+
+=== Premise ===
+
+The Dragonlord has stolen the Ball of Light and kidnapped Princess Laura. As a descendant of Erdrick, you must save the kingdom of Alefgard.
+
+=== Getting Started ===
+
+==== Tantegel Castle ====
+
+Starting location:
+# Speak with King Lorik
+# Receive quest
+# Get initial gold
+# Exit to world
+
+==== First Steps ====
+
+{| class="wikitable"
+! Priority !! Action
+|-
+| 1 || Buy equipment
+|-
+| 2 || Level near castle
+|-
+| 3 || Save with King
+|}
+
+=== Early Game ===
+
+==== Explore Alefgard ====
+
+{| class="wikitable"
+! Town !! Features
+|-
+| Brecconary || First shop town
+|-
+| Garinham || Better equipment
+|-
+| Kol || Fairy Flute, good shops
+|}
+
+==== Key Items ====
+
+{| class="wikitable"
+! Item !! Purpose
+|-
+| Magic Keys || Open doors
+|-
+| Torch || Light caves
+|-
+| Fairy Flute || Wake Golem
+|}
+
+=== Mid Game ===
+
+==== Rescue Princess ====
+
+# Go to Swamp Cave
+# Defeat Dragon boss
+# Rescue Princess Laura
+# Return to castle
+
+==== Erdrick's Equipment ====
+
+{| class="wikitable"
+! Item !! Location
+|-
+| Erdrick's Armor || Hauksness
+|-
+| Erdrick's Token || Southern swamp
+|}
+
+=== End Game ===
+
+==== Rainbow Drop ====
+
+Requirements:
+* Erdrick's Token
+* Stones of Sunlight
+* Staff of Rain
+
+Creates bridge to Charlock Castle.
+
+==== Charlock Castle ====
+
+Final dungeon:
+* Multiple floors
+* Find Erdrick's Sword
+* Reach Dragonlord
+
+==== Dragonlord ====
+
+{| class="wikitable"
+! Phase !! Notes
+|-
+| Human || Refuse his offer!
+|-
+| Dragon || Full combat
+|}
+
+=== DQ1 Ending ===
+
+* Recover Ball of Light
+* Return to castle
+* Peace restored
+
+== Part 2: Dragon Quest II ==
+
+=== Premise ===
+
+A century later, Hargon the evil priest destroys Moonbrooke. Three descendants of Erdrick must unite to stop him.
+
+=== Getting Started ===
+
+==== Midenhall Castle ====
+
+Starting location:
+# Receive quest from King
+# Depart solo
+# Find your cousins
+
+==== Finding Companions ====
+
+===== Prince of Cannock =====
+
+First companion:
+* Chase him through towns
+* Eventually recruit him
+* Hybrid fighter/mage
+
+===== Princess of Moonbrooke =====
+
+Second companion:
+* Cursed into dog form
+* Need Ra's Mirror
+* Full mage class
+
+=== The Quest ===
+
+==== Ship ====
+
+Essential for exploration:
+* Enables sea travel
+* Opens world map
+* Quest to obtain
+
+==== Collecting Crests ====
+
+Five crests needed:
+
+{| class="wikitable"
+! Crest !! General Area
+|-
+| Moon || Tower
+|-
+| Star || Dungeon
+|-
+| Sun || Cave/Tower
+|-
+| Water || Sea area
+|-
+| Life || Quest
+|}
+
+Crests unlock Hargon's fortress.
+
+=== Late Game ===
+
+==== Road to Rhone ====
+
+Difficult path:
+* Challenging caves
+* Strong enemies
+* Grinding recommended
+
+==== Rhone Plateau ====
+
+Final area before fortress:
+* Save shrine
+* Tough enemies
+* Last preparations
+
+==== Hargon's Castle ====
+
+{| class="wikitable"
+! Floor !! Features
+|-
+| Ground || Illusions
+|-
+| Upper || Puzzles
+|-
+| Throne || Hargon
+|-
+| Final || Malroth
+|}
+
+=== Final Battles ===
+
+==== Hargon ====
+
+First final boss:
+* Magic user
+* Can heal
+* Tough fight
+
+==== Malroth ====
+
+True final boss:
+* God of Destruction
+* Extremely powerful
+* Ultimate challenge
+
+=== DQ2 Ending ===
+
+* Malroth defeated
+* World saved
+* Return home
+* Celebration
+
+== SNES Enhancements ==
+
+Compared to NES originals:
+
+{| class="wikitable"
+! Feature !! Enhancement
+|-
+| Graphics || 16-bit sprites
+|-
+| Music || Enhanced audio
+|-
+| Interface || Improved menus
+|-
+| Balance || Better difficulty curve
+|-
+| Saving || Bank system
+|}
+
+=== Quality of Life ===
+
+* Faster text
+* Better inventory
+* Save anywhere (some)
+* Reduced grinding need
+
+== Tips ==
+
+=== DQ1 ===
+
+* Stay near castle early
+* Level before venturing far
+* Save frequently
+
+=== DQ2 ===
+
+* Protect the Princess
+* Balance party levels
+* Grind in Rhone for endgame
+
+== Related Pages ==
+
+* [[Dragon_Quest_I_II:Battle_System|Battle System]]
+* [[Dragon_Quest_I_II:Characters|Characters]]
+* [[Dragon_Quest_I_II:Locations|Locations]]
+
+[[Category:Dragon Quest I & II]]
+[[Category:Story Guide]]

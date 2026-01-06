@@ -1,0 +1,283 @@
+{{Back|Dragon_Quest_III}}
+
+= Story Guide =
+
+'''Dragon Quest III''' (SNES) follows Ortega's child on a quest against Baramos.
+
+__TOC__
+
+== Premise ==
+
+The legendary warrior Ortega died fighting the Archfiend Baramos. Now his child comes of age and must complete the quest to save the world.
+
+== Prologue ==
+
+=== Aliahan ===
+
+Starting events:
+# Wake on 16th birthday
+# Meet King
+# Create party at Luisa's Place
+# Receive initial equipment
+
+=== Party Creation ===
+
+At Luisa's Place:
+
+{| class="wikitable"
+! Recommended !! Role
+|-
+| Warrior || Tank
+|-
+| Priest || Healer
+|-
+| Mage || Offense
+|}
+
+== SNES Additions ==
+
+The SNES version adds:
+* Thief class
+* Personality system
+* Pachisi minigame
+* Enhanced graphics/sound
+* Bonus dungeon
+
+=== Personality System ===
+
+Opening quiz determines Hero's personality:
+* Affects stat growth
+* Can be changed with items
+* Books modify personality
+
+== Chapter 1: Aliahan Region ==
+
+=== Early Tasks ===
+
+{| class="wikitable"
+! Task !! Location
+|-
+| Level up || Near Aliahan
+|-
+| Get Thief's Key || Najimi Tower
+|-
+| Progress story || Reeve
+|}
+
+=== Najimi Tower ===
+
+First dungeon:
+* Thief's Key at top
+* Essential for progress
+* Moderate difficulty
+
+== Chapter 2: World Exploration ==
+
+=== Leaving Aliahan ===
+
+To escape the island:
+# Use Traveler's Gate in cave
+# Reach other continents
+# Explore the world
+
+=== Key Locations ===
+
+{| class="wikitable"
+! Region !! Notable Places
+|-
+| Romaly || Castle, monster arena
+|-
+| Portoga || Ship quest
+|-
+| Dharma || Class change temple
+|}
+
+=== Ship Quest ===
+
+Requirements:
+# Reach Portoga
+# Help the King
+# Receive ship
+
+With ship, explore entire world.
+
+== Chapter 3: Dharma Temple ==
+
+=== Class Change ===
+
+At level 20+:
+* Change any character's class
+* Resets level to 1
+* Keeps learned spells
+
+=== Recommended Changes ===
+
+{| class="wikitable"
+! From !! To !! Benefit
+|-
+| Gadabout || Sage || Free Sage (no item)
+|-
+| Mage || Sage || Add healing
+|-
+| Priest || Sage || Add offense
+|}
+
+== Chapter 4: Orb Collection ==
+
+=== The Six Orbs ===
+
+Required to revive Ramia:
+
+{| class="wikitable"
+! Orb !! Location Type
+|-
+| Red || Quest/dungeon
+|-
+| Blue || Tower
+|-
+| Green || Cave
+|-
+| Yellow || Quest
+|-
+| Purple || Dungeon
+|-
+| Silver || Special
+|}
+
+=== Ramia the Bird ===
+
+With all orbs:
+* Go to special shrine
+* Revive Ramia
+* Fly anywhere
+
+== Chapter 5: Baramos ==
+
+=== Baramos's Castle ===
+
+Accessible only by Ramia:
+* Multi-floor dungeon
+* Strong enemies
+* Prepare well
+
+=== Boss: Baramos ===
+
+The Archfiend:
+* Powerful magic
+* High HP
+* Full buffs recommended
+
+=== Victory... Or Not ===
+
+After defeating Baramos:
+# Return to Aliahan
+# Celebrate
+# Zoma appears
+# True enemy revealed
+
+== Chapter 6: Alefgard ==
+
+=== The Dark World ===
+
+Descend into Alefgard:
+* Dragon Quest I's world
+* Shrouded in darkness
+* New adventure begins
+
+=== Familiar Locations ===
+
+{| class="wikitable"
+! Location !! Connection
+|-
+| Tantegel || DQ1 starting castle
+|-
+| Rimuldar || DQ1 town
+|-
+| Hauksness || Ruins
+|-
+| Charlock || Now accessible
+|}
+
+=== Sphere of Light ===
+
+Required to harm Zoma:
+* Removes barrier
+* Found in Alefgard
+* Use during final battle
+
+== Final Chapter: Zoma ==
+
+=== Charlock Castle ===
+
+Ultimate dungeon:
+* Boss gauntlet
+* Strongest enemies
+* Point of no return
+
+=== Equipment of Light ===
+
+Collect legendary gear:
+* Sword of Kings
+* Erdrick's Armor
+* Erdrick's Shield
+* Erdrick's Helmet
+
+=== Final Boss: Zoma ===
+
+{| class="wikitable"
+! Phase !! Notes
+|-
+| With Barrier || Use Sphere of Light
+|-
+| Vulnerable || Full offense
+|}
+
+== Ending ==
+
+After defeating Zoma:
+* Light restored
+* Alefgard saved
+* Reveal: YOU are Erdrick
+* Legend begins
+
+This connects directly to DQ1 and DQ2.
+
+== Post-Game (SNES) ==
+
+=== Bonus Dungeon ===
+
+New for SNES:
+* Hidden entrance
+* Super bosses
+* Ultimate challenges
+
+=== Pachisi ===
+
+Board game minigame:
+* Prizes and items
+* Multiple boards
+* Fun diversion
+
+== Tips ==
+
+=== Grinding ===
+
+* Metal enemies for EXP
+* Dharma before class change
+* Alefgard for final prep
+
+=== Party ===
+
+* Hero is mandatory
+* Sages are powerful
+* Balance physical/magic
+
+== Related Pages ==
+
+* [[Dragon_Quest_III:Classes|Classes]]
+* [[Dragon_Quest_III:Spells|Spells]]
+* [[Dragon_Quest_III:Battle_System|Battle System]]
+* [[Dragon_Quest_III:Locations|Locations]]
+
+[[Category:Dragon Quest III]]
+[[Category:Story Guide]]
