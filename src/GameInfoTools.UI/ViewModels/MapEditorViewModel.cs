@@ -119,6 +119,26 @@ public class TilesetData {
 }
 
 /// <summary>
+/// Game-specific map preset configuration.
+/// </summary>
+/// <param name="Name">Display name for the preset.</param>
+/// <param name="MapDataOffset">ROM offset for map data.</param>
+/// <param name="Width">Map width in tiles.</param>
+/// <param name="Height">Map height in tiles.</param>
+/// <param name="TileFormat">Tileset format (NES 2bpp, SNES 4bpp, etc.).</param>
+/// <param name="TilesetOffset">ROM offset for tileset graphics.</param>
+/// <param name="TileCount">Number of tiles in tileset.</param>
+public record GameMapPreset(
+	string Name,
+	int MapDataOffset,
+	int Width,
+	int Height,
+	string TileFormat,
+	int TilesetOffset,
+	int TileCount
+);
+
+/// <summary>
 /// View model for viewing and editing game maps.
 /// </summary>
 public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandler {
@@ -345,6 +365,71 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 
 	[ObservableProperty]
 	private string _selectedFormat = "Linear (tile index only)";
+
+	// === Dragon Quest Presets ===
+
+	/// <summary>
+	/// Game-specific map presets for Dragon Quest/Warrior series.
+	/// </summary>
+	public static GameMapPreset[] DQPresets { get; } = [
+		// Dragon Warrior IV (NES)
+		new("DW4 NES - Overworld", 0x1C010, 128, 128, "NES 2bpp", 0x20010, 256),
+		new("DW4 NES - Town Map", 0x1C010, 32, 32, "NES 2bpp", 0x20010, 256),
+		new("DW4 NES - Dungeon Map", 0x1C010, 16, 16, "NES 2bpp", 0x20010, 256),
+		// Dragon Quest III (SNES)
+		new("DQ3 SNES - Overworld Layout", 0x255000, 64, 64, "SNES 4bpp", 0x254F38, 237),
+		new("DQ3 SNES - Town Map", 0x260000, 32, 32, "SNES 4bpp", 0x254F38, 237),
+		new("DQ3 SNES - Dungeon Map", 0x260000, 24, 24, "SNES 4bpp", 0x254F38, 237),
+		// Dragon Quest IV Remake (SNES) - based on DQ3 engine
+		new("DQ4r SNES - Overworld", 0x255000, 64, 64, "SNES 4bpp", 0x254F38, 237),
+		new("DQ4r SNES - Chapter 1 Town", 0x260000, 32, 32, "SNES 4bpp", 0x254F38, 237),
+	];
+
+	/// <summary>
+	/// Currently selected DQ preset.
+	/// </summary>
+	[ObservableProperty]
+	private GameMapPreset? _selectedDQPreset;
+
+	/// <summary>
+	/// Apply a Dragon Quest map preset.
+	/// </summary>
+	[RelayCommand]
+	private void ApplyDQPreset(GameMapPreset? preset) {
+		if (preset is null) return;
+
+		SelectedDQPreset = preset;
+		MapDataOffset = preset.MapDataOffset;
+		MapWidth = preset.Width;
+		MapHeight = preset.Height;
+		TilesetFormat = preset.TileFormat;
+		TilesetOffset = preset.TilesetOffset;
+		TilesetTileCount = preset.TileCount;
+		MapName = preset.Name;
+
+		StatusText = $"Applied preset: {preset.Name}";
+
+		// Auto-load tileset and map if ROM is loaded
+		if (HasRomLoaded) {
+			LoadTileset();
+			LoadMap();
+		}
+	}
+
+	/// <summary>
+	/// Get chunk-based map data for DQ3 SNES overworld.
+	/// </summary>
+	[RelayCommand]
+	private void LoadDQ3Chunks() {
+		if (_rom is null || !_rom.IsLoaded) {
+			StatusText = "No ROM loaded";
+			return;
+		}
+
+		// DQ3 uses 4x4 metatile chunks
+		// Chunk layout at $255000, chunks are 16 bytes each
+		StatusText = "DQ3 chunk loading requires DQ3Lib - use logsmall/DQ3Lib for full support";
+	}
 
 	public MapEditorViewModel(RomFile? rom = null) {
 		_rom = rom;

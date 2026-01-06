@@ -6,7 +6,7 @@ Per-game documentation including manual testing, debugging findings, and extract
 
 | Game | Platform | Folder | Testing Docs |
 |------|----------|--------|--------------|
-| Dragon Quest III | SNES | [dq3r-snes/](dq3r-snes/) | Map Editor |
+| Dragon Quest III | SNES | [dq3r-snes/](dq3r-snes/) | Map, Monster, Item, Spell |
 | Dragon Warrior IV | NES | [dw4-nes/](dw4-nes/) | Map, Monster, Graphics, Spell, Item |
 | Dragon Quest IV Remake | SNES | [dq4r-snes/](dq4r-snes/) | Save, Cutscene, Event, Battle, Chapter |
 | Final Fantasy Mystic Quest | SNES | [ffmq-snes/](ffmq-snes/) | - |
@@ -26,6 +26,9 @@ Per-game documentation including manual testing, debugging findings, and extract
 | Document | Description | Test Cases |
 |----------|-------------|------------|
 | [map-editor-testing.md](dq3r-snes/map-editor-testing.md) | Chunk-based overworld, metatiles | 9 TC + 3 RT |
+| [monster-editor-testing.md](dq3r-snes/monster-editor-testing.md) | 155 monsters, resistances, types | 8 TC + 3 RT |
+| [item-editor-testing.md](dq3r-snes/item-editor-testing.md) | 228 items, 9 class equip flags | 8 TC + 3 RT |
+| [spell-editor-testing.md](dq3r-snes/spell-editor-testing.md) | ~70 spells, class learning tables | 8 TC + 3 RT |
 
 ### Dragon Quest IV Remake (SNES)
 | Document | Description | Test Cases |
