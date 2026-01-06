@@ -1,0 +1,283 @@
+{{Back|Final_Fantasy_IV}}
+
+= Summons =
+
+'''Final Fantasy IV''' features summon magic used by Rydia.
+
+__TOC__
+
+== Overview ==
+
+Rydia learns summon magic, calling Eidolons to aid in battle.
+
+{| class="wikitable"
+! Aspect !! Description
+|-
+| User || Rydia only
+|-
+| Command || Summon
+|-
+| Cost || MP varies per summon
+|-
+| Effect || Powerful attacks or support
+|}
+
+== Summons List ==
+
+=== Early Game ===
+
+==== Chocobo ====
+
+{| class="wikitable"
+! Attribute !! Value
+|-
+| MP Cost || 7
+|-
+| Element || None
+|-
+| Effect || Random - Kick or Escape
+|-
+| Obtained || Starting summon (child Rydia)
+|}
+
+==== Bomb ====
+
+{| class="wikitable"
+! Attribute !! Value
+|-
+| MP Cost || 10
+|-
+| Element || Fire
+|-
+| Effect || Fire damage to all enemies
+|-
+| Obtained || Early storyline
+|}
+
+==== Cockatrice ====
+
+{| class="wikitable"
+! Attribute !! Value
+|-
+| MP Cost || 15
+|-
+| Element || None
+|-
+| Effect || Petrify chance
+|-
+| Obtained || Early storyline
+|}
+
+=== Mid Game ===
+
+==== Shiva ====
+
+{| class="wikitable"
+! Attribute !! Value
+|-
+| MP Cost || 30
+|-
+| Element || Ice
+|-
+| Effect || Diamond Dust - Ice damage to all
+|-
+| Obtained || After Rydia returns (adult)
+|}
+
+==== Ramuh ====
+
+{| class="wikitable"
+! Attribute !! Value
+|-
+| MP Cost || 30
+|-
+| Element || Lightning
+|-
+| Effect || Judgment Bolt - Lightning to all
+|-
+| Obtained || After Rydia returns
+|}
+
+==== Ifrit ====
+
+{| class="wikitable"
+! Attribute !! Value
+|-
+| MP Cost || 30
+|-
+| Element || Fire
+|-
+| Effect || Hellfire - Fire damage to all
+|-
+| Obtained || After Rydia returns
+|}
+
+==== Titan ====
+
+{| class="wikitable"
+! Attribute !! Value
+|-
+| MP Cost || 40
+|-
+| Element || Earth
+|-
+| Effect || Earth Fury - Earth damage to all
+|-
+| Obtained || After Titan storyline
+|}
+
+=== Late Game ===
+
+==== Dragon ====
+
+{| class="wikitable"
+! Attribute !! Value
+|-
+| MP Cost || 20
+|-
+| Element || None
+|-
+| Effect || Thunder attack
+|-
+| Obtained || Late game
+|}
+
+==== Sylph ====
+
+{| class="wikitable"
+! Attribute !! Value
+|-
+| MP Cost || 25
+|-
+| Element || None
+|-
+| Effect || Drain HP from enemies to party
+|-
+| Obtained || Sylph Cave sidequest
+|}
+
+==== Odin ====
+
+{| class="wikitable"
+! Attribute !! Value
+|-
+| MP Cost || 45
+|-
+| Element || None
+|-
+| Effect || Instant death to all enemies or Gungnir damage
+|-
+| Obtained || Baron Castle sidequest
+|}
+
+==== Leviathan ====
+
+{| class="wikitable"
+! Attribute !! Value
+|-
+| MP Cost || 50
+|-
+| Element || Water
+|-
+| Effect || Tidal Wave - Water damage to all
+|-
+| Obtained || Defeat Leviathan
+|}
+
+==== Asura ====
+
+{| class="wikitable"
+! Attribute !! Value
+|-
+| MP Cost || 50
+|-
+| Element || None
+|-
+| Effect || Random: Protect, Cure, or Life
+|-
+| Obtained || Defeat Asura
+|}
+
+==== Bahamut ====
+
+{| class="wikitable"
+! Attribute !! Value
+|-
+| MP Cost || 60
+|-
+| Element || None (non-elemental)
+|-
+| Effect || Mega Flare - Heavy damage to all
+|-
+| Obtained || Lunar Subterrane
+|}
+
+== Elemental Weaknesses ==
+
+Using summons against weak enemies:
+
+{| class="wikitable"
+! Summon !! Element !! Strong Against
+|-
+| Ifrit || Fire || Ice enemies, plants
+|-
+| Shiva || Ice || Fire enemies, desert foes
+|-
+| Ramuh || Lightning || Water enemies, machines
+|-
+| Titan || Earth || Flying enemies immune
+|-
+| Leviathan || Water || Fire enemies
+|}
+
+== Summon Strategy ==
+
+=== Random Encounters ===
+
+{| class="wikitable"
+! Situation !! Recommended
+|-
+| Groups || Elemental summons
+|-
+| Single strong || Black magic more efficient
+|-
+| Weak groups || Regular attacks save MP
+|}
+
+=== Boss Battles ===
+
+{| class="wikitable"
+! Situation !! Recommended
+|-
+| Fire weakness || Shiva
+|-
+| Ice weakness || Ifrit
+|-
+| No weakness || Bahamut for raw damage
+|-
+| Need healing || Asura (chance based)
+|}
+
+== Land of Summoned Monsters ==
+
+Special dungeon where Rydia grew up:
+* Asura boss fight
+* Leviathan boss fight
+* Both become summons after defeat
+* Must speak to King/Queen after
+
+== Lunar Subterrane ==
+
+Bahamut is found here:
+* Requires defeating previous Bahamut encounter
+* Most powerful summon in the game
+* High MP cost
+
+== Related Pages ==
+
+* [[Final_Fantasy_IV:Characters|Characters]]
+* [[Final_Fantasy_IV:Battle_System|Battle System]]
+* [[Final_Fantasy_IV:Magic|Magic]]
+
+[[Category:Final Fantasy IV]]
+[[Category:Summons]]

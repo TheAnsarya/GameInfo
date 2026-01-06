@@ -1,0 +1,251 @@
+{{Back|Kirbys_Adventure}}
+
+= Boss Guide =
+
+'''Kirby's Adventure''' features bosses at the end of each world.
+
+__TOC__
+
+== Overview ==
+
+Each of the 7 main worlds ends with a boss fight.
+
+{| class="wikitable"
+! World !! Boss !! Notes
+|-
+| 1 - Vegetable Valley || Whispy Woods || Tree boss
+|-
+| 2 - Ice Cream Island || Paint Roller || Artist enemy
+|-
+| 3 - Butter Building || Mr. Shine & Mr. Bright || Sun and moon
+|-
+| 4 - Grape Garden || Kracko || Cloud boss
+|-
+| 5 - Yogurt Yard || Heavy Mole || Drill machine
+|-
+| 6 - Orange Ocean || Meta Knight || Sword fight
+|-
+| 7 - Rainbow Resort || King Dedede || Final (fake) boss
+|-
+| Final || Nightmare || True final boss
+|}
+
+== World 1 Boss: Whispy Woods ==
+
+A large tree that serves as the first boss in many Kirby games.
+
+=== Attack Pattern ===
+
+{| class="wikitable"
+! Attack !! Description !! Counter
+|-
+| Air Puff || Blows air to push Kirby || Jump over
+|-
+| Apples || Drops apples from branches || Inhale and spit back
+|}
+
+=== Strategy ===
+
+* Inhale falling apples
+* Spit them back at Whispy
+* Stay at ground level to catch apples
+* Simple pattern, easy boss
+
+== World 2 Boss: Paint Roller ==
+
+An artistic enemy who paints enemies into existence.
+
+=== Attack Pattern ===
+
+{| class="wikitable"
+! Attack !! Description !! Counter
+|-
+| Paint Enemies || Draws creatures that attack || Inhale and spit
+|-
+| Skate || Moves around the arena || Avoid collision
+|}
+
+=== Strategy ===
+
+* Wait for enemies to be painted
+* Inhale them
+* Spit at Paint Roller
+* Copy abilities may help
+
+== World 3 Boss: Mr. Shine & Mr. Bright ==
+
+A duo boss - the sun and moon fight together.
+
+=== Attack Pattern ===
+
+{| class="wikitable"
+! Attack !! Description !! Counter
+|-
+| Beam (Bright) || Moon fires star projectile || Jump/dodge
+|-
+| Fire Drop (Shine) || Sun rains fire || Move to safe spot
+|-
+| Tackle || Direct charge || Jump over
+|-
+| Eclipse || Combined attack || Run to edge
+|}
+
+=== Strategy ===
+
+* One is in the sky, one on the ground
+* Attack the grounded one
+* They swap positions periodically
+* Watch for eclipse attack when low HP
+
+== World 4 Boss: Kracko ==
+
+A recurring Kirby boss - a cloud with a single eye.
+
+=== Attack Pattern ===
+
+{| class="wikitable"
+! Attack !! Description !! Counter
+|-
+| Beam || Lightning bolt || Stay to the side
+|-
+| Rain || Drops across arena || Run under Kracko
+|-
+| Waddle Doos || Spawns minions || Inhale for Beam ability
+|-
+| Charge || Dashes at Kirby || Jump over
+|}
+
+=== Strategy ===
+
+* Use Beam from Waddle Doos
+* Attack when Kracko descends
+* Avoid staying directly below
+* Spark or Laser abilities work well
+
+== World 5 Boss: Heavy Mole ==
+
+A giant mechanical mole that digs through the stage.
+
+=== Attack Pattern ===
+
+{| class="wikitable"
+! Attack !! Description !! Counter
+|-
+| Dig || Moves through ground || Follow it
+|-
+| Eject Debris || Throws objects backward || Inhale and spit
+|-
+| Missiles || Fires projectiles || Dodge or inhale
+|}
+
+=== Strategy ===
+
+* Autoscrolling fight
+* Stay behind Heavy Mole
+* Inhale debris to attack
+* Keep up with the scrolling
+
+== World 6 Boss: Meta Knight ==
+
+A mysterious masked swordsman.
+
+=== Pre-Fight ===
+
+Meta Knight offers Kirby a sword - accepting gives you Sword ability.
+
+=== Attack Pattern ===
+
+{| class="wikitable"
+! Attack !! Description !! Counter
+|-
+| Sword Slash || Forward strike || Block or dodge
+|-
+| Dive || Aerial attack || Move aside
+|-
+| Multi-Slash || Rapid strikes || Keep distance
+|-
+| Tornado || Spinning attack || Jump over
+|}
+
+=== Strategy ===
+
+* Take the offered sword
+* It's a fair duel
+* Match his aggression
+* Watch for tells before attacks
+
+== World 7 Boss: King Dedede ==
+
+The king of Dream Land - but not the true final boss.
+
+=== Attack Pattern ===
+
+{| class="wikitable"
+! Attack !! Description !! Counter
+|-
+| Hammer Swing || Overhead slam || Dodge to side
+|-
+| Inhale || Sucks Kirby in || Escape button mash
+|-
+| Jump || Body slam || Run under
+|-
+| Super Inhale || Stronger suction || Stay far away
+|}
+
+=== Strategy ===
+
+* Dodge hammer attacks
+* Avoid being inhaled
+* Attack after missed swings
+* Prepare for true final boss after
+
+== Final Boss: Nightmare ==
+
+The true antagonist, revealed after defeating Dedede.
+
+=== Phase 1: Nightmare Power Orb ===
+
+{| class="wikitable"
+! Attack !! Description !! Counter
+|-
+| Stars || Projectile pattern || Dodge between
+|-
+| Approach || Closes in || Keep moving
+|}
+
+=== Phase 2: Nightmare Wizard ===
+
+{| class="wikitable"
+! Attack !! Description !! Counter
+|-
+| Star Projectiles || Multiple shots || Weave through
+|-
+| Spin || Tornado form || Stay away
+|-
+| Cape Sweep || Wide attack || Jump over
+|-
+| Invulnerability || Closes cape || Wait for opening
+|}
+
+=== Strategy ===
+
+* Star Rod is required weapon
+* Only attack when cape is open
+* Long fight with invulnerability phases
+* Most challenging boss in the game
+
+== Arena Mode ==
+
+After completing the game, Boss Endurance mode unlocks:
+* Fight all bosses consecutively
+* Limited healing between fights
+* Test of skill and endurance
+
+== Related Pages ==
+
+* [[Kirbys_Adventure:Copy_Abilities|Copy Abilities]]
+* [[Kirbys_Adventure:Worlds|Worlds]]
+* [[Kirbys_Adventure:Enemies|Enemies]]
+
+[[Category:Kirby's Adventure]]
+[[Category:Bosses]]

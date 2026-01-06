@@ -1,0 +1,214 @@
+{{Back|Dragon_Quest_III}}
+
+= Spells =
+
+'''Dragon Quest III''' (SNES) features magic spells learned by specific classes.
+
+__TOC__
+
+== Overview ==
+
+{| class="wikitable"
+! Aspect !! Details
+|-
+| MP System || Points consumed per cast
+|-
+| Learning || Automatic at certain levels
+|-
+| Users || Hero, Mage, Priest, Sage
+|}
+
+== Spell Categories ==
+
+=== Healing ===
+
+{| class="wikitable"
+! Spell !! MP !! Effect !! Learned By
+|-
+| Heal || 3 || Restore ~30 HP (one ally) || Hero, Priest, Sage
+|-
+| Healmore || 5 || Restore ~80 HP (one ally) || Hero, Priest, Sage
+|-
+| Healall || 7 || Full HP (one ally) || Priest, Sage
+|-
+| Healus || 18 || Heal all allies || Hero, Priest, Sage
+|-
+| Healusall || 36 || Full HP all allies || Sage
+|}
+
+=== Resurrection ===
+
+{| class="wikitable"
+! Spell !! MP !! Effect !! Learned By
+|-
+| Revive || 10 || Revive with half HP || Priest, Sage
+|-
+| Vivify || 20 || Revive with full HP || Sage
+|}
+
+=== Status Cure ===
+
+{| class="wikitable"
+! Spell !! MP !! Effect !! Learned By
+|-
+| Antidote || 2 || Cure poison || Priest, Sage
+|-
+| Awaken || 2 || Cure sleep || Priest, Sage
+|-
+| NumbOff || 2 || Cure paralysis || Priest, Sage
+|}
+
+=== Offensive (Mage Line) ===
+
+==== Fire Spells ====
+
+{| class="wikitable"
+! Spell !! MP !! Effect !! Learned By
+|-
+| Blaze || 2 || Fire damage (one enemy) || Mage, Sage
+|-
+| Blazemore || 4 || Stronger fire (one enemy) || Mage, Sage
+|-
+| Blazemost || 10 || Strongest fire (one enemy) || Mage, Sage
+|}
+
+==== Ice Spells ====
+
+{| class="wikitable"
+! Spell !! MP !! Effect !! Learned By
+|-
+| Icebolt || 3 || Ice damage (group) || Mage, Sage
+|-
+| Snowstorm || 5 || Stronger ice (group) || Mage, Sage
+|-
+| Blizzard || 12 || Strongest ice (group) || Mage, Sage
+|}
+
+==== Explosion Spells ====
+
+{| class="wikitable"
+! Spell !! MP !! Effect !! Learned By
+|-
+| Bang || 5 || Explosion (all enemies) || Mage, Sage
+|-
+| Boom || 9 || Stronger explosion (all) || Mage, Sage
+|-
+| Explodet || 15 || Strongest explosion (all) || Mage, Sage
+|}
+
+==== Lightning (Hero) ====
+
+{| class="wikitable"
+! Spell !! MP !! Effect !! Learned By
+|-
+| Zap || 8 || Lightning (all enemies) || Hero only
+|-
+| Zapmore || 15 || Stronger lightning (all) || Hero only
+|-
+| Zapmost || 25 || Strongest lightning (all) || Hero only
+|}
+
+=== Support (Buffs) ===
+
+{| class="wikitable"
+! Spell !! MP !! Effect !! Learned By
+|-
+| Upper || 3 || Raise defense (one ally) || Priest, Sage
+|-
+| Increase || 4 || Raise defense (all allies) || Priest, Sage
+|-
+| Bikill || 6 || Double attack (one ally) || Priest, Sage
+|-
+| SpeedUp || 3 || Raise agility (all allies) || Mage, Sage
+|}
+
+=== Debuffs ===
+
+{| class="wikitable"
+! Spell !! MP !! Effect !! Learned By
+|-
+| Sap || 3 || Lower defense (one enemy) || Mage, Sage
+|-
+| Defense || 4 || Lower defense (group) || Mage, Sage
+|-
+| Slow || 3 || Lower agility (group) || Mage, Sage
+|}
+
+=== Status Infliction ===
+
+{| class="wikitable"
+! Spell !! MP !! Effect !! Learned By
+|-
+| Sleep || 3 || Put enemies to sleep || Mage, Sage
+|-
+| Stopspell || 3 || Prevent enemy magic || Priest, Sage
+|-
+| Surround || 5 || Lower enemy accuracy || Mage, Sage
+|-
+| Chaos || 5 || Confuse enemies || Mage, Sage
+|-
+| Beat || 4 || Instant death (one) || Priest, Sage
+|-
+| Defeat || 7 || Instant death (group) || Priest, Sage
+|}
+
+=== Travel/Utility ===
+
+{| class="wikitable"
+! Spell !! MP !! Effect !! Learned By
+|-
+| Return || 8 || Teleport to visited town || Hero, Mage, Sage
+|-
+| Outside || 8 || Exit dungeon || Hero, Mage, Sage
+|-
+| Repel || 4 || Reduce random encounters || Hero, Mage, Sage
+|-
+| Stepguard || 4 || Prevent floor damage || Priest, Sage
+|-
+| X-Ray || 0 || See through chests || Priest, Sage
+|}
+
+== Class Spell Lists ==
+
+=== Hero Spells ===
+
+The Hero learns a mix of healing, lightning, and utility:
+* Healing line (Heal → Healmore → Healus)
+* Zap line (exclusive)
+* Travel spells (Return, Outside, Repel)
+
+=== Mage Spells ===
+
+Pure offensive magic:
+* Fire line (Blaze series)
+* Ice line (Icebolt series)
+* Explosion line (Bang series)
+* Debuffs and status
+
+=== Priest Spells ===
+
+Healing and support:
+* Full healing line
+* Resurrection
+* Buffs (Upper, Bikill)
+* Anti-undead (Beat, Defeat)
+
+=== Sage Spells ===
+
+The Sage learns BOTH Mage and Priest spells:
+* All Mage spells
+* All Priest spells
+* Most versatile caster
+
+== Spell Learning Levels ==
+
+Spells are learned at specific levels for each class. After class change, previous spells are retained while new class spells are learned fresh.
+
+== Related Pages ==
+
+* [[Dragon_Quest_III:Classes|Classes]]
+* [[Dragon_Quest_III:Battle_System|Battle System]]
+* [[Dragon_Quest_III:Characters|Characters]]
+
+[[Category:Dragon Quest III]]
+[[Category:Spells]]

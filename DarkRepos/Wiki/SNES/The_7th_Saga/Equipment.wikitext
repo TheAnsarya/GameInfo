@@ -1,0 +1,273 @@
+{{Back|The_7th_Saga}}
+
+= Equipment =
+
+'''The 7th Saga''' features weapons and armor that vary by character.
+
+__TOC__
+
+== Overview ==
+
+Each of the seven apprentices can equip different types of gear.
+
+{| class="wikitable"
+! Aspect !! Details
+|-
+| Equipment Slots || Weapon, Armor, Shield, Accessory
+|-
+| Character-specific || Many items restricted by class
+|-
+| Progression || Better gear in later towns
+|}
+
+== Equipment by Character ==
+
+=== Wilme (Alien) ===
+
+{| class="wikitable"
+! Slot !! Can Equip
+|-
+| Weapon || Claws only
+|-
+| Armor || Light armor, robes
+|-
+| Shield || None
+|-
+| Accessory || Standard
+|}
+
+=== Lux (Robot) ===
+
+{| class="wikitable"
+! Slot !! Can Equip
+|-
+| Weapon || Various (built-in upgrades)
+|-
+| Armor || Robot parts
+|-
+| Shield || Special shields
+|-
+| Accessory || Limited
+|}
+
+=== Olvan (Dwarf) ===
+
+{| class="wikitable"
+! Slot !! Can Equip
+|-
+| Weapon || Axes, some swords
+|-
+| Armor || Heavy armor
+|-
+| Shield || All shields
+|-
+| Accessory || Standard
+|}
+
+=== Kamil (Human Knight) ===
+
+{| class="wikitable"
+! Slot !! Can Equip
+|-
+| Weapon || Swords
+|-
+| Armor || Heavy armor
+|-
+| Shield || All shields
+|-
+| Accessory || Standard
+|}
+
+=== Lejes (Demon) ===
+
+{| class="wikitable"
+! Slot !! Can Equip
+|-
+| Weapon || Dark weapons
+|-
+| Armor || Dark armor
+|-
+| Shield || Some shields
+|-
+| Accessory || Standard
+|}
+
+=== Esuna (Human Priest) ===
+
+{| class="wikitable"
+! Slot !! Can Equip
+|-
+| Weapon || Staves, rods
+|-
+| Armor || Robes, light armor
+|-
+| Shield || Light shields
+|-
+| Accessory || Standard
+|}
+
+=== Valsu (Human Healer) ===
+
+{| class="wikitable"
+! Slot !! Can Equip
+|-
+| Weapon || Staves
+|-
+| Armor || Robes only
+|-
+| Shield || None
+|-
+| Accessory || Standard
+|}
+
+== Weapon Progression ==
+
+Weapons are found in shops or dungeons:
+
+{| class="wikitable"
+! Tier !! Power Range !! Availability
+|-
+| Starting || Low || Beginning shops
+|-
+| Basic || Low-Medium || Early towns
+|-
+| Intermediate || Medium || Mid-game
+|-
+| Advanced || Medium-High || Late-game shops
+|-
+| Legendary || Highest || Dungeons, special
+|}
+
+== Armor Progression ==
+
+{| class="wikitable"
+! Tier !! Defense Range !! Availability
+|-
+| Cloth/Robes || Low || Mages, start
+|-
+| Leather || Low-Medium || Light users
+|-
+| Chain || Medium || Mid-game
+|-
+| Plate || High || Heavy armor users
+|-
+| Legendary || Highest || Special finds
+|}
+
+== Shields ==
+
+{| class="wikitable"
+! Type !! Defense !! Users
+|-
+| Buckler || Low || Most characters
+|-
+| Round Shield || Medium || Fighters
+|-
+| Large Shield || High || Heavy armor users
+|-
+| Tower Shield || Highest || Limited characters
+|}
+
+== Accessories ==
+
+Accessories provide special bonuses:
+
+{| class="wikitable"
+! Type !! Effect
+|-
+| Rings || Various stat boosts
+|-
+| Amulets || Magic defense
+|-
+| Boots || Speed increase
+|-
+| Capes || Evasion bonus
+|}
+
+== Shop Progression ==
+
+=== Early Shops ===
+
+{| class="wikitable"
+! Town !! Notable Equipment
+|-
+| Lemele || Starting gear
+|-
+| Rablesk || Basic upgrades
+|-
+| Bonro || Standard progression
+|}
+
+=== Mid-Game Shops ===
+
+Better equipment becomes available as you explore further.
+
+=== Late-Game Shops ===
+
+{| class="wikitable"
+! Town !! Notable Equipment
+|-
+| Various || Advanced weapons
+|-
+| Pre-final || Best purchasable gear
+|}
+
+== Dungeon Equipment ==
+
+The best equipment is found in dungeons:
+
+{| class="wikitable"
+! Location Type !! Equipment Quality
+|-
+| Early dungeons || Slight upgrades
+|-
+| Mid dungeons || Competitive with shops
+|-
+| Late dungeons || Superior to shops
+|-
+| Final areas || Best in game
+|}
+
+== Equipment Strategy ==
+
+=== Budget Tips ===
+
+* Don't buy for both characters immediately
+* Prioritize main character
+* Partner may leave/change
+* Dungeon finds save money
+
+=== Character Builds ===
+
+{| class="wikitable"
+! Build Type !! Equipment Focus
+|-
+| Tank || Heavy armor, shield
+|-
+| Damage || Best weapon available
+|-
+| Mage || Magic-boosting gear
+|-
+| Balanced || Mix defense/offense
+|}
+
+== Rune Effects ==
+
+Some Runes provide equipment-like bonuses:
+
+{| class="wikitable"
+! Rune !! Effect
+|-
+| Various || Stat boosts
+|-
+| Story-related || Required for progress
+|}
+
+== Related Pages ==
+
+* [[The_7th_Saga:Characters|Characters]]
+* [[The_7th_Saga:Battle_System|Battle System]]
+* [[The_7th_Saga:Items|Items]]
+
+[[Category:The 7th Saga]]
+[[Category:Equipment]]
