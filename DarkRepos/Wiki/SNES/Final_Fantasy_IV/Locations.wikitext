@@ -1,0 +1,539 @@
+{{Back|Final Fantasy IV}}
+__TOC__
+
+= Locations =
+
+This page documents all locations in Final Fantasy IV (SNES version) for the Super Nintendo.
+
+== Overview ==
+
+Final Fantasy IV spans three worlds: the Overworld (surface), the Underworld (land of dwarves), and the Moon. The game features extensive dungeons and a world-spanning journey.
+
+== Location Data Structure ==
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Location ID
+|-
+| $01 || 1 || World (0=Surface, 1=Under, 2=Moon)
+|-
+| $02 || 2 || Tileset Pointer
+|-
+| $04 || 2 || Map Data Pointer
+|-
+| $06 || 1 || Music ID
+|-
+| $07 || 1 || Encounter Rate
+|}
+
+== Overworld (Surface) ==
+
+=== Baron Kingdom ===
+
+==== Town of Baron ====
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Inn || 100 Gil
+|-
+| Weapon Shop || Rods, Staves
+|-
+| Armor Shop || Robes, Hats
+|-
+| Item Shop || Potions, Tents
+|-
+| Events || Cecil starts here, returns for Airship
+|-
+| Notes || Red Wings HQ
+|}
+
+==== Castle Baron ====
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Floors || 4 (Main, East, West, Tower)
+|-
+| Boss || Cagnazzo (Water Fiend)
+|-
+| Events || Cecil becomes Paladin (return trip)
+|-
+| Notes || Home of King Baron (possessed)
+|}
+
+'''Key Events:'''
+* Opening sequence
+* Returns for Enterprise airship
+* Battle with Cagnazzo
+
+==== Old Waterway ====
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Floors || 3
+|-
+| Boss || None (random encounters)
+|-
+| Exit || Leads to Baron
+|-
+| Notes || Secret passage
+|}
+
+=== Kaipo Region ===
+
+==== Kaipo ====
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Inn || 50 Gil
+|-
+| Shops || Basic equipment
+|-
+| Events || Rosa healing, Tellah joins
+|-
+| Notes || Desert oasis town
+|}
+
+==== Watery Pass ====
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Floors || 3
+|-
+| Boss || Octomammoth
+|-
+| Events || First dungeon with Tellah
+|-
+| Notes || Leads to Damcyan
+|}
+
+=== Damcyan Region ===
+
+==== Castle Damcyan ====
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| State || Destroyed by Golbez
+|-
+| Events || Edward joins, Anna's death
+|-
+| Key Item || Hovercraft location
+|-
+| Notes || Ruins after bombing
+|}
+
+==== Antlion Cave ====
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Floors || 3
+|-
+| Boss || Antlion
+|-
+| Key Item || Sand Ruby
+|-
+| Notes || Required for Rosa's cure
+|}
+
+=== Fabul Region ===
+
+==== Mount Hobs ====
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Floors || 3
+|-
+| Boss || Mom Bomb
+|-
+| Events || Yang joins
+|-
+| Notes || Mountain path to Fabul
+|}
+
+==== Castle Fabul ====
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Events || Defense battle, Kain betrayal
+|-
+| Ruler || King of Fabul
+|-
+| Notes || Monk kingdom
+|}
+
+'''Battle Sequence:'''
+* Three waves of enemies
+* Kain turns against party
+* Rosa kidnapped
+
+=== Mysidia Region ===
+
+==== Mysidia ====
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Inn || 50 Gil (free after redemption)
+|-
+| Shops || Magic equipment, spells
+|-
+| Events || Twins join, Lunar Whale
+|-
+| Notes || Town of mages
+|}
+
+'''Spell Shops:'''
+* Black Magic shop
+* White Magic shop
+* Twin magic items
+
+==== Mount Ordeals ====
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Floors || 6
+|-
+| Boss || Milon, Milon Z (Earth Fiend), Dark Knight
+|-
+| Events || Cecil becomes Paladin
+|-
+| Notes || Critical story dungeon
+|}
+
+'''Key Moments:'''
+* Tellah learns Meteo
+* Cecil's class change
+* Palom and Porom's bravery
+
+=== Troia Region ===
+
+==== Troia ====
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Inn || 200 Gil
+|-
+| Shops || Women's equipment only
+|-
+| Events || Earth Crystal stolen
+|-
+| Notes || All-female kingdom
+|}
+
+==== Troia Castle ====
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Ruler || Eight Epopts
+|-
+| Events || Crystal quest
+|-
+| Treasure || Multiple hidden rooms
+|}
+
+==== Magnetic Cave ====
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Floors || 4
+|-
+| Boss || Dark Elf
+|-
+| Special || Metal equipment disabled
+|-
+| Key Item || Earth Crystal
+|}
+
+'''Strategy:'''
+* Unequip metal before entering
+* Edward's harp breaks curse
+* Re-equip after midpoint
+
+=== Eblan Region ===
+
+==== Eblan Cave ====
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Floors || 3
+|-
+| Events || Edge joins
+|-
+| Access || From Underworld
+|-
+| Notes || Hidden ninja kingdom
+|}
+
+==== Castle Eblan (Ruins) ====
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| State || Destroyed
+|-
+| Events || Edge's parents
+|-
+| Boss || King and Queen Eblan
+|-
+| Notes || Rubicante's cruelty
+|}
+
+=== Tower of Zot ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Floors || 5
+|-
+| Bosses || Magus Sisters, Valvalis (Wind Fiend)
+|-
+| Events || Rosa rescued
+|-
+| Notes || Floating tower
+|}
+
+'''Magus Sisters:'''
+* Sandy, Cindy, Mindy
+* Delta Attack combination
+
+=== Tower of Babil (Surface) ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Floors || 6
+|-
+| Access || Surface entrance
+|-
+| Events || Super Cannon plot
+|-
+| Notes || Connects to Underworld
+|}
+
+== Underworld ==
+
+=== Dwarf Castle ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Ruler || King Giott
+|-
+| Inn || 200 Gil
+|-
+| Shops || Dwarf equipment
+|-
+| Events || Multiple story sequences
+|-
+| Notes || Hub of Underworld
+|}
+
+'''Key Events:'''
+* First arrival via Falcon
+* Calca & Brina battle
+* Dark Crystal protection
+
+=== Tower of Babil (Under) ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Floors || 8
+|-
+| Boss || Lugae, Dark Imps
+|-
+| Events || Crystal theft prevention
+|-
+| Notes || Underworld section
+|}
+
+=== Sealed Cave ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Floors || 5
+|-
+| Boss || Demon Wall, Trap Doors
+|-
+| Key Item || Dark Crystal
+|-
+| Notes || Last Underworld crystal
+|}
+
+'''Trap Doors:'''
+* Random encounters from doors
+* High danger dungeon
+
+=== Sylph Cave ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Floors || 3
+|-
+| Events || Yang recovery
+|-
+| Summon || Sylph obtainable
+|-
+| Notes || Poison floors
+|}
+
+=== Land of Summons ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Access || Via Watery Pass
+|-
+| Events || Rydia returns
+|-
+| Summons || Asura, Leviathan
+|-
+| Notes || Summon monster kingdom
+|}
+
+=== Kokkol's Forge ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Resident || Kokkol the Smith
+|-
+| Events || Excalibur creation
+|-
+| Notes || Legendary weaponsmith
+|}
+
+== The Moon ==
+
+=== Lunar Surface ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Access || Big Whale (Lunar Whale)
+|-
+| Areas || Crystal Palace, Hummingway Cave
+|-
+| Encounters || Powerful monsters
+|-
+| Notes || Final world
+|}
+
+=== Crystal Palace ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Resident || FuSoYa
+|-
+| Events || Zemus revelation
+|-
+| Notes || Lunarian refuge
+|}
+
+=== Lunar Subterrane ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Floors || 12+
+|-
+| Bosses || Multiple (optional and required)
+|-
+| Events || Final dungeon
+|-
+| Notes || Longest dungeon
+|}
+
+'''Optional Bosses:'''
+* White Dragon (Murasame)
+* Dark Bahamut (Ragnarok)
+* Plague (optional)
+* Ogopogo (optional)
+
+=== Giant of Babil ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Access || During story event
+|-
+| Floors || 4 (Mouth→Chest→Stomach→Control)
+|-
+| Boss || Four Fiends (revived), CPU
+|-
+| Notes || Party reunites
+|}
+
+'''CPU Battle:'''
+* Attack orb first
+* Don't kill Attack orb before Defense orb depleted
+* Main body vulnerable after
+
+== Optional Locations ==
+
+=== Cave of Summons ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Boss || Asura, Leviathan
+|-
+| Rewards || Summon magic
+|-
+| Notes || Queen and King battles
+|}
+
+=== Hummingway Cave ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Access || Moon surface
+|-
+| Shop || Special items
+|-
+| Notes || Tail trade location
+|}
+
+'''Tail Trades:'''
+* Trade tails for Adamant Armor
+* Rare drops from monsters
+
+=== Lunar Ruins (GBA only) ===
+
+Not in SNES version.
+
+== Transportation ==
+
+{| class="wikitable"
+! Vehicle !! Access Point !! Capability
+|-
+| Hovercraft || Damcyan || Cross shallow water
+|-
+| Enterprise || Baron || Fly, can't go over mountains
+|-
+| Falcon || Dwarves || Underworld flying
+|-
+| Big Whale || Moon || Space travel, all worlds
+|}
+
+[[Category:Final Fantasy IV]]
+[[Category:Locations]]
+[[Category:SNES Games]]
