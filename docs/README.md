@@ -140,6 +140,16 @@ Documentation for [Dark Repos Games Wiki](https://games.darkrepos.com):
 
 ---
 
+## Additional Resources
+
+| Resource | Description |
+|----------|-------------|
+| [Games Folder](../Games/) | Per-game folders with Wiki, Docs, assets |
+| [Manual Testing](../~manual-testing/) | Manual testing guides |
+| [Python/C# Mapping](python-csharp-mapping.md) | Python to C# tool mapping |
+
+---
+
 ## Python/C# Mapping
 
 | Document | Description |
