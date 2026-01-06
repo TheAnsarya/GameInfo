@@ -1,0 +1,251 @@
+{{Back|Mappy-Land}}
+__TOC__
+
+= Game Mechanics =
+
+This page documents the game mechanics of Mappy-Land for the NES.
+
+== Overview ==
+
+Mappy-Land is a platformer featuring Mappy the police mouse collecting gifts for his girlfriend Mapico. Unlike the original Mappy arcade game, this features side-scrolling levels with various themes.
+
+== Basic Controls ==
+
+{| class="wikitable"
+! Button !! Action
+|-
+| D-Pad || Move Mappy left/right
+|-
+| A Button || Jump
+|-
+| B Button || Use item/Throw baseball
+|-
+| Start || Pause game
+|-
+| Select || No function
+|}
+
+== Gameplay Elements ==
+
+=== Collectible Items ===
+
+Each level requires collecting specific items:
+
+{| class="wikitable"
+! Item Type !! Points !! Description
+|-
+| Gift Items || 500 || Main collectibles (6 per level)
+|-
+| Cheese || 200 || Bonus food item
+|-
+| Fruit || 100 || Various fruits for points
+|-
+| Fish || 300 || Power-up for cats
+|}
+
+=== Power-Up Items ===
+
+{| class="wikitable"
+! Item !! Effect !! Duration
+|-
+| Baseball || Throw at cats || Single use
+|-
+| Trampoline || Bounce to high areas || Permanent in level
+|-
+| Balloon || Float upward || Limited time
+|-
+| Skateboard || Move faster || Until collision
+|-
+| Spring Shoes || Higher jumps || Limited time
+|}
+
+=== Enemies ===
+
+{| class="wikitable"
+! Enemy !! Behavior !! Defeat Method
+|-
+| Meowky (cats) || Chase Mappy || Baseball, traps
+|-
+| Goro (boss cat) || Faster pursuit || Baseball only
+|-
+| Birds || Fly in patterns || Avoid only
+|-
+| Bees || Guard honey || Avoid only
+|}
+
+== World Themes ==
+
+=== World 1: Birthday Land ===
+
+* Theme: Birthday party
+* Collectibles: Birthday presents
+* Background: Party decorations
+* Special: Cake platforms
+
+=== World 2: Western Land ===
+
+* Theme: Wild West
+* Collectibles: Western items
+* Background: Desert, cacti
+* Special: Mine cart sections
+
+=== World 3: Pirate Land ===
+
+* Theme: Pirates
+* Collectibles: Treasure
+* Background: Ships, islands
+* Special: Water hazards
+
+=== World 4: Jungle Land ===
+
+* Theme: Jungle/Safari
+* Collectibles: Safari gear
+* Background: Trees, vines
+* Special: Vine swinging
+
+=== World 5: Big City Land ===
+
+* Theme: Urban city
+* Collectibles: City items
+* Background: Buildings
+* Special: Elevator platforms
+
+=== World 6: Merry-Go-Round Land ===
+
+* Theme: Amusement park
+* Collectibles: Toys
+* Background: Carnival
+* Special: Rotating platforms
+
+=== World 7: Ghost House Land ===
+
+* Theme: Haunted house
+* Collectibles: Spooky items
+* Background: Ghosts, cobwebs
+* Special: Disappearing floors
+
+=== World 8: Jungle Land 2 ===
+
+* Theme: Advanced jungle
+* Collectibles: Rare items
+* Background: Dense jungle
+* Special: Harder enemies
+
+== Scoring System ==
+
+{| class="wikitable"
+! Action !! Points
+|-
+| Collect gift item || 500
+|-
+| Collect cheese || 200
+|-
+| Collect fruit || 100
+|-
+| Defeat cat (baseball) || 300
+|-
+| Defeat cat (trap) || 500
+|-
+| Complete level || 1000 × remaining time
+|-
+| All gifts collected || 2000 bonus
+|}
+
+== Lives and Game Over ==
+
+=== Starting Lives ===
+
+* Default: 3 lives
+* Extra life at: 20,000 points
+* Continue: From current world start
+
+=== Losing a Life ===
+
+Mappy loses a life when:
+* Touched by a cat
+* Time runs out
+* Falls off screen
+* Hit by obstacle
+
+== Level Structure ==
+
+Each level consists of:
+
+{| class="wikitable"
+! Element !! Description
+|-
+| Platforms || Multi-level scrolling terrain
+|-
+| Doors || Enter/exit buildings
+|-
+| Trampolines || Bounce to reach high areas
+|-
+| Ladders || Climb between platforms
+|-
+| Gift Items || 6 required to complete level
+|-
+| Exit || Available after all gifts collected
+|}
+
+== Tips and Strategies ==
+
+=== Collecting Efficiently ===
+
+* Plan routes to minimize backtracking
+* Use trampolines to reach high platforms
+* Time jumps to avoid cats
+* Collect fish to distract cats
+
+=== Dealing with Cats ===
+
+* Baseballs stun cats temporarily
+* Fish makes cats chase the fish instead
+* Trampolines can be used to jump over cats
+* Doors provide brief safety
+
+=== Time Management ===
+
+* Each level has a time limit
+* Remaining time converts to points
+* Don't rush - plan your route
+* Some items extend time
+
+== Data Structure ==
+
+=== Level Data ===
+
+Each level uses approximately 256 bytes:
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 || World ID
+|-
+| $01 || 1 || Level number
+|-
+| $02 || 1 || Time limit
+|-
+| $03 || 1 || Number of gift items
+|-
+| $04-$7F || 124 || Platform layout data
+|-
+| $80-$BF || 64 || Item placement data
+|-
+| $C0-$FF || 64 || Enemy spawn data
+|}
+
+=== Gift Item Locations ===
+
+Gift items stored as (X, Y) pairs:
+
+{| class="wikitable"
+! Byte !! Description
+|-
+| $00 || X position (tile)
+|-
+| $01 || Y position (tile)
+|}
+
+[[Category:Mappy-Land]]
+[[Category:Game Mechanics]]
+[[Category:NES Games]]

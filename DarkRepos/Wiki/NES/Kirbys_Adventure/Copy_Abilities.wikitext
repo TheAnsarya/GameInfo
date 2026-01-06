@@ -1,0 +1,388 @@
+{{Back|Kirby's Adventure}}
+__TOC__
+
+= Copy Abilities =
+
+This page documents all copy abilities in Kirby's Adventure for the NES.
+
+== Overview ==
+
+Kirby's Adventure introduced the Copy Ability system that would become a staple of the franchise. Kirby can inhale enemies and copy their powers by swallowing them.
+
+== Ability Data Structure ==
+
+Each ability is defined by:
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Ability ID
+|-
+| $01 || 1 || Sprite Set
+|-
+| $02 || 2 || Move List Pointer
+|-
+| $04 || 1 || Hat Sprite
+|-
+| $05 || 1 || Button Combo for Activation
+|}
+
+== Copy Abilities List ==
+
+{| class="wikitable sortable"
+! ID !! Ability !! Source Enemies !! Description !! Controls
+|-
+| $00 || (None) || - || Normal Kirby || -
+|-
+| $01 || Backdrop || Bugzzy || Grab and throw enemies || B near enemy
+|-
+| $02 || Ball || Bubbles || Roll as bouncing ball || B to transform
+|-
+| $03 || Beam || Waddle Doo || Whip beam attack || B for beam
+|-
+| $04 || Crash || Bomber || One-time screen clear || B (destroys ability)
+|-
+| $05 || Cutter || Sir Kibble || Throw boomerang blade || B to throw
+|-
+| $06 || Fire || Fire Lion, Hot Head || Breathe fire || B + direction
+|-
+| $07 || Fireball || Flamer || Dash as fireball || B to roll
+|-
+| $08 || Freeze || Chilly, Mr. Frosty || Freeze nearby enemies || B
+|-
+| $09 || Hammer || Bonkers || Powerful hammer swing || B to swing
+|-
+| $0A || Hi-Jump || Starman || High vertical jump || B to jump
+|-
+| $0B || Ice || Pengy || Ice breath || B + direction
+|-
+| $0C || Laser || Laser Ball || Reflect laser beam || B to fire
+|-
+| $0D || Light || Cool Spook || Light dark rooms || B (auto in dark)
+|-
+| $0E || Mike || Mr. Tick-Tock, Walky || Sound attack (3 uses) || B to sing
+|-
+| $0F || Needle || Togezo || Spike all directions || B to extend
+|-
+| $10 || Parasol || Parasol, Parasol Waddle Dee || Slow fall, attack || B to swing
+|-
+| $11 || Sleep || Noddy || Kirby falls asleep || (No control)
+|-
+| $12 || Spark || Sparky, Plasma Wisp || Electric field || B to spark
+|-
+| $13 || Star Rod || - || Final weapon || B to shoot
+|-
+| $14 || Stone || Rocky || Transform to stone || B in air
+|-
+| $15 || Sword || Blade Knight, Sword Knight || Sword attacks || B to slash
+|-
+| $16 || Throw || Rolling Turtle || Grab and throw || B near enemy
+|-
+| $17 || Tornado || Twister || Spin attack || B to spin
+|-
+| $18 || UFO || U.F.O. || Fly and shoot || B to fire
+|-
+| $19 || Wheel || Wheelie || Roll as wheel || B to roll
+|}
+
+== Detailed Ability Information ==
+
+=== Backdrop (ID: $01) ===
+
+A wrestling-style ability:
+* Grab enemies by pressing B next to them
+* Slam them into the ground
+* Can defeat multiple enemies at once
+
+'''Source Enemies:'''
+* Bugzzy (mini-boss)
+
+=== Ball (ID: $02) ===
+
+Transform into a bouncy ball:
+* Press B to transform
+* Bounces off walls and ceilings
+* Hard to control but invincible
+
+'''Source Enemies:'''
+* Bubbles
+
+=== Beam (ID: $03) ===
+
+Whip-like energy beam:
+* Press B for short-range beam whip
+* Can hit enemies through walls (sometimes)
+* Good all-around ability
+
+'''Source Enemies:'''
+* Waddle Doo
+
+=== Crash (ID: $04) ===
+
+Powerful one-time screen clear:
+* Press B to use
+* Destroys all enemies on screen
+* Ability is lost after use
+* Save for tough situations
+
+'''Source Enemies:'''
+* Bomber
+* Scarfy (when angry)
+
+=== Cutter (ID: $05) ===
+
+Boomerang blade attack:
+* Press B to throw blade
+* Returns to Kirby
+* Can hit enemies on return
+
+'''Source Enemies:'''
+* Sir Kibble
+
+=== Fire (ID: $06) ===
+
+Breathe fire continuously:
+* Hold B + direction to breathe fire
+* Limited horizontal range
+* Can light fuses
+
+'''Source Enemies:'''
+* Fire Lion (mini-boss)
+* Hot Head
+
+=== Fireball (ID: $07) ===
+
+Roll as a flaming ball:
+* Press B to dash forward
+* Invincible while rolling
+* Bounces off walls
+
+'''Source Enemies:'''
+* Flamer
+
+=== Freeze (ID: $08) ===
+
+Freeze enemies solid:
+* Press B to create ice aura
+* Frozen enemies can be kicked
+* Short range
+
+'''Source Enemies:'''
+* Chilly
+* Mr. Frosty (mini-boss)
+
+=== Hammer (ID: $09) ===
+
+Powerful hammer attacks:
+* Press B on ground to swing
+* Press B in air to slam down
+* Very high damage
+
+'''Source Enemies:'''
+* Bonkers (mini-boss)
+
+=== Hi-Jump (ID: $0A) ===
+
+Super high jump:
+* Press B to leap very high
+* Good for reaching secret areas
+* Damages enemies on contact
+
+'''Source Enemies:'''
+* Starman
+
+=== Ice (ID: $0B) ===
+
+Ice breath attack:
+* Hold B to breathe ice
+* Freezes enemies solid
+* Similar to Fire but ice element
+
+'''Source Enemies:'''
+* Pengy
+
+=== Laser (ID: $0C) ===
+
+Reflecting laser beam:
+* Press B to fire laser
+* Bounces off slopes at 45° angles
+* Can hit around corners
+
+'''Source Enemies:'''
+* Laser Ball
+
+=== Light (ID: $0D) ===
+
+Illuminate dark rooms:
+* Automatically lights dark areas
+* Press B for flash attack
+* Essential for certain levels
+
+'''Source Enemies:'''
+* Cool Spook
+
+=== Mike (ID: $0E) ===
+
+Sound-based attack (3 uses):
+* Press B to sing/yell
+* Damages all on-screen enemies
+* Only 3 uses total
+* Each use is more powerful
+
+'''Source Enemies:'''
+* Mr. Tick-Tock
+* Walky
+
+=== Needle (ID: $0F) ===
+
+Spike in all directions:
+* Press B to extend spikes
+* Damages enemies all around
+* Good defensive ability
+
+'''Source Enemies:'''
+* Togezo
+
+=== Parasol (ID: $10) ===
+
+Float down slowly:
+* Hold up while falling
+* Press B to swing parasol
+* Protects from attacks above
+
+'''Source Enemies:'''
+* Parasol
+* Parasol Waddle Dee
+
+=== Sleep (ID: $11) ===
+
+Kirby falls asleep:
+* Cannot control Kirby
+* Vulnerable to attacks
+* Avoid this ability!
+
+'''Source Enemies:'''
+* Noddy
+
+=== Spark (ID: $12) ===
+
+Electric field attack:
+* Press B to generate electricity
+* Hurts nearby enemies
+* Hold B for sustained field
+
+'''Source Enemies:'''
+* Sparky
+* Plasma Wisp
+
+=== Star Rod (ID: $13) ===
+
+The legendary Star Rod:
+* Only available in final battle
+* Press B to fire star shots
+* Required to defeat Nightmare
+
+=== Stone (ID: $14) ===
+
+Transform to invincible stone:
+* Press B in air to transform
+* Invincible while stone
+* Falls straight down
+
+'''Source Enemies:'''
+* Rocky
+
+=== Sword (ID: $15) ===
+
+Versatile sword attacks:
+* Press B for horizontal slash
+* Down+B for stab
+* Good damage and range
+
+'''Source Enemies:'''
+* Blade Knight
+* Sword Knight
+
+=== Throw (ID: $16) ===
+
+Grab and throw enemies:
+* Press B near enemy to grab
+* Press B again to throw
+* Can throw in any direction
+
+'''Source Enemies:'''
+* Rolling Turtle
+
+=== Tornado (ID: $17) ===
+
+Spin attack:
+* Press B to spin
+* Press B again to rise up
+* Invincible while spinning
+
+'''Source Enemies:'''
+* Twister
+
+=== UFO (ID: $18) ===
+
+Rare flying ability:
+* Can fly freely
+* Press B for star beam
+* Hold B for stronger beam
+* Lost when leaving level!
+
+'''Source Enemies:'''
+* U.F.O. (rare enemy)
+
+=== Wheel (ID: $19) ===
+
+Roll as a wheel:
+* Press B to start rolling
+* Very fast movement
+* Press B to stop
+* Invincible while rolling
+
+'''Source Enemies:'''
+* Wheelie
+
+== Ability Museums ==
+
+Each hub world contains an Ability Museum where abilities can be obtained:
+
+{| class="wikitable"
+! World !! Museum Abilities
+|-
+| Vegetable Valley || Beam, Cutter, Fire
+|-
+| Ice Cream Island || Freeze, Spark, Stone
+|-
+| Butter Building || Hi-Jump, Laser, Sword
+|-
+| Grape Garden || Tornado, UFO, Wheel
+|-
+| Yogurt Yard || Ball, Hammer, Needle
+|-
+| Orange Ocean || Fireball, Parasol, Throw
+|-
+| Rainbow Resort || All abilities available
+|}
+
+== Ability Priority ==
+
+When inhaling multiple enemies, this determines which ability you get:
+
+{| class="wikitable"
+! Priority !! Notes
+|-
+| Copy Abilities || Always prioritized
+|-
+| Mini-boss Abilities || Higher priority (Hammer, Backdrop)
+|-
+| Regular Abilities || Standard priority
+|-
+| Sleep || Lowest priority (if available)
+|}
+
+[[Category:Kirby's Adventure]]
+[[Category:Game Mechanics]]
+[[Category:NES Games]]

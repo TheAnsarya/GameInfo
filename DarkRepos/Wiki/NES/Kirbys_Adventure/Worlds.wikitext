@@ -1,0 +1,335 @@
+{{Back|Kirby's Adventure}}
+__TOC__
+
+= Worlds =
+
+This page documents all worlds and levels in Kirby's Adventure for the NES.
+
+== World Overview ==
+
+Kirby's Adventure features 7 main worlds plus the final area:
+
+{| class="wikitable"
+! # !! World !! Theme !! Levels !! Boss
+|-
+| 1 || Vegetable Valley || Grassland/Forest || 4 || Whispy Woods
+|-
+| 2 || Ice Cream Island || Beach/Ocean || 5 || Paint Roller
+|-
+| 3 || Butter Building || Tower/Sky || 5 || Mr. Shine & Mr. Bright
+|-
+| 4 || Grape Garden || Clouds/Sky Temple || 6 || Kracko
+|-
+| 5 || Yogurt Yard || Underground/Cave || 6 || Heavy Mole
+|-
+| 6 || Orange Ocean || Ocean/Ship || 6 || Meta Knight
+|-
+| 7 || Rainbow Resort || Ice/Rainbow || 6 || King Dedede
+|-
+| 8 || The Fountain of Dreams || Final || 1 || Nightmare
+|}
+
+== World 1: Vegetable Valley ==
+
+A lush green world perfect for beginners.
+
+=== Stages ===
+
+{| class="wikitable"
+! Stage !! Switches !! Abilities Available !! Notes
+|-
+| 1-1 || 1 || Beam, Fire || Tutorial level
+|-
+| 1-2 || 1 || Beam, Cutter, Stone || First vertical section
+|-
+| 1-3 || 2 || Fire, Sword, Hi-Jump || Water sections
+|-
+| 1-4 || 2 || Cutter, Fire, Hammer || Mini-boss: Poppy Bros. Sr.
+|}
+
+=== Boss: Whispy Woods ===
+
+A giant apple tree:
+* Blows air puffs
+* Drops apples (inhale and spit back)
+* Cannot move
+* 20 HP
+
+=== Museum Abilities ===
+
+* Beam
+* Cutter
+* Fire
+
+== World 2: Ice Cream Island ==
+
+Tropical island with underwater sections.
+
+=== Stages ===
+
+{| class="wikitable"
+! Stage !! Switches !! Abilities Available !! Notes
+|-
+| 2-1 || 1 || Parasol, Freeze || Beach stage
+|-
+| 2-2 || 2 || Backdrop, Needle || First underwater section
+|-
+| 2-3 || 2 || Ball, Stone || Cave and water
+|-
+| 2-4 || 1 || Spark, Wheel || Vertical climb
+|-
+| 2-5 || 2 || Ice, Fire || Mini-boss: Mr. Frosty
+|}
+
+=== Boss: Paint Roller ===
+
+An artist on roller skates:
+* Paints enemies that come to life
+* Fast movement
+* 15 HP
+
+=== Museum Abilities ===
+
+* Freeze
+* Spark
+* Stone
+
+== World 3: Butter Building ==
+
+A tall tower reaching into the clouds.
+
+=== Stages ===
+
+{| class="wikitable"
+! Stage !! Switches !! Abilities Available !! Notes
+|-
+| 3-1 || 2 || Sword, Hi-Jump || Tower exterior
+|-
+| 3-2 || 1 || Beam, Laser, Parasol || Dark rooms
+|-
+| 3-3 || 2 || Cutter, Stone || Vertical ascent
+|-
+| 3-4 || 2 || Fire, Freeze, Sword || Mini-boss: Meta Knight (first)
+|-
+| 3-5 || 1 || Hi-Jump, Laser || Tower top
+|}
+
+=== Boss: Mr. Shine & Mr. Bright ===
+
+The sun and moon work together:
+* One attacks from above, one on ground
+* They switch positions
+* Must defeat both (20 HP each)
+
+=== Museum Abilities ===
+
+* Hi-Jump
+* Laser
+* Sword
+
+== World 4: Grape Garden ==
+
+A sky kingdom among the clouds.
+
+=== Stages ===
+
+{| class="wikitable"
+! Stage !! Switches !! Abilities Available !! Notes
+|-
+| 4-1 || 1 || Tornado, UFO || Cloud platforms
+|-
+| 4-2 || 2 || Ball, Wheel || Racing section
+|-
+| 4-3 || 2 || Fire, Spark || Temple interior
+|-
+| 4-4 || 1 || Beam, Stone || Mini-boss: Bonkers
+|-
+| 4-5 || 2 || Tornado, Hi-Jump || Vertical climb
+|-
+| 4-6 || 2 || Light, Laser || Dark rooms
+|}
+
+=== Mini-Boss: Kracko Jr. ===
+
+Appears before the boss:
+* Cloud with one eye
+* Spawns enemies
+* Easier than full Kracko
+
+=== Boss: Kracko ===
+
+A thundercloud boss:
+* Lightning attacks
+* Spawns Waddle Doos
+* Fast movement
+* 20 HP
+
+=== Museum Abilities ===
+
+* Tornado
+* UFO
+* Wheel
+
+== World 5: Yogurt Yard ==
+
+Underground caves and mountain areas.
+
+=== Stages ===
+
+{| class="wikitable"
+! Stage !! Switches !! Abilities Available !! Notes
+|-
+| 5-1 || 2 || Hammer, Needle || Mountain exterior
+|-
+| 5-2 || 1 || Fire, Stone || Cave exploration
+|-
+| 5-3 || 2 || Ball, Fireball || Lava areas
+|-
+| 5-4 || 2 || Cutter, Backdrop || Mini-boss: Bugzzy
+|-
+| 5-5 || 1 || Needle, Stone || Crystal caves
+|-
+| 5-6 || 2 || Hammer, Spark || Deep underground
+|}
+
+=== Boss: Heavy Mole ===
+
+A giant mole machine:
+* Digs through terrain
+* Drops missiles with Ball/Hammer abilities
+* Chase level format
+* 25 HP
+
+=== Museum Abilities ===
+
+* Ball
+* Hammer
+* Needle
+
+== World 6: Orange Ocean ==
+
+Ocean voyage on a pirate ship.
+
+=== Stages ===
+
+{| class="wikitable"
+! Stage !! Switches !! Abilities Available !! Notes
+|-
+| 6-1 || 2 || Parasol, Throw || Beach and ocean
+|-
+| 6-2 || 1 || Wheel, Fireball || Ship deck
+|-
+| 6-3 || 2 || Beam, Freeze || Underwater maze
+|-
+| 6-4 || 2 || Sword, Backdrop || Mini-boss: Rolling Turtle
+|-
+| 6-5 || 1 || Fire, Spark || Ship interior
+|-
+| 6-6 || 2 || Throw, Cutter || Final ship battle
+|}
+
+=== Boss: Meta Knight ===
+
+The masked swordsman:
+* Gives you a sword at battle start
+* Fast sword combos
+* 30 HP
+* Optional to use sword
+
+=== Museum Abilities ===
+
+* Fireball
+* Parasol
+* Throw
+
+== World 7: Rainbow Resort ==
+
+Icy wonderland leading to the final battle.
+
+=== Stages ===
+
+{| class="wikitable"
+! Stage !! Switches !! Abilities Available !! Notes
+|-
+| 7-1 || 2 || Freeze, Ice || Snow area
+|-
+| 7-2 || 1 || Mike, Sleep || Music-themed
+|-
+| 7-3 || 2 || All abilities || Ability gauntlet
+|-
+| 7-4 || 2 || Stone, Hi-Jump || Ice caverns
+|-
+| 7-5 || 1 || Beam, Tornado || Mini-boss rush
+|-
+| 7-6 || 2 || Sword, Fire || Final regular stage
+|}
+
+=== Boss: King Dedede ===
+
+The penguin king:
+* Hammer attacks
+* Belly flop
+* Can inhale Kirby
+* 40 HP
+
+=== Museum ===
+
+All abilities available in Rainbow Resort museum.
+
+== World 8: The Fountain of Dreams ==
+
+The final confrontation with Nightmare.
+
+=== Final Boss: Nightmare ===
+
+'''Phase 1: Power Orb'''
+* Must use Star Rod
+* Fires star projectiles
+* 30 HP
+
+'''Phase 2: Wizard Form'''
+* Giant caped wizard
+* Multiple attack patterns
+* Star Rod is only weapon
+* 50 HP
+
+== Collectibles ==
+
+=== Switches ===
+
+Each level contains Big Switches that unlock:
+* Extra areas
+* Museum access
+* Bonus games
+
+Total switches in game: ~36
+
+=== 1-Ups ===
+
+Extra lives found in:
+* Hidden rooms
+* Above clouds
+* Underwater secrets
+* Behind breakable walls
+
+== Hub World Features ==
+
+Each hub world contains:
+
+{| class="wikitable"
+! Feature !! Description
+|-
+| Museum || Free abilities to copy
+|-
+| Arena || Fight mini-bosses for abilities
+|-
+| Crane Game || Win extra lives and items
+|-
+| Quick Draw || Timing minigame
+|-
+| Egg Catcher || Catch eggs from Dedede
+|}
+
+[[Category:Kirby's Adventure]]
+[[Category:Worlds]]
+[[Category:NES Games]]

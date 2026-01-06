@@ -76,7 +76,7 @@ Higher values act first. Ties are broken by:
 |-
 | 0 || Fire || Red magic, flame attacks
 |-
-| 1 || Ice || Blue magic, cold attacks  
+| 1 || Ice || Blue magic, cold attacks
 |-
 | 2 || Thunder || Yellow magic, electric
 |-

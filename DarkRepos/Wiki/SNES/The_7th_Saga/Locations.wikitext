@@ -1,0 +1,488 @@
+{{Back|The 7th Saga}}
+__TOC__
+
+= Locations =
+
+This page documents all locations in The 7th Saga for the SNES.
+
+== World Map ==
+
+The 7th Saga takes place on a world with multiple continents connected by various means of transportation.
+
+=== Travel Methods ===
+
+{| class="wikitable"
+! Method !! Availability !! Notes
+|-
+| Walking || Start || Standard overworld travel
+|-
+| Ship || After Bone || Ocean travel
+|-
+| Airship || Late game || Fly anywhere
+|-
+| Wind Rune || After Zellis || Teleport to visited towns
+|}
+
+== Towns ==
+
+=== Lemele ===
+
+Starting town and King Dosel's castle.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Population || Large
+|-
+| Inn || 5 Gold
+|-
+| Weapon Shop || Basic equipment
+|-
+| Armor Shop || Basic protection
+|-
+| Item Shop || Potions, status cures
+|-
+| Rune || Star Rune (given by King)
+|-
+| Key NPCs || King Dosel
+|}
+
+'''Important Locations:'''
+* Castle - King Dosel starts quest
+* Training Hall - Learn about combat
+* Starting equipment shops
+
+=== Rablisk ===
+
+Small village north of Lemele.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Population || Small
+|-
+| Inn || 10 Gold
+|-
+| Weapon Shop || Upgraded basic
+|-
+| Armor Shop || Iron equipment
+|-
+| Item Shop || Standard
+|-
+| Rune || None
+|-
+| Key NPCs || Villagers with hints
+|}
+
+=== Bonro ===
+
+Village near the Cave of Melenam.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Population || Small
+|-
+| Inn || 15 Gold
+|-
+| Weapon Shop || Steel weapons
+|-
+| Armor Shop || Steel armor
+|-
+| Item Shop || Better potions
+|-
+| Rune || None
+|-
+| Key NPCs || Cave information
+|}
+
+=== Bone ===
+
+Major port town with access to ships.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Population || Large
+|-
+| Inn || 20 Gold
+|-
+| Weapon Shop || Advanced weapons
+|-
+| Armor Shop || Advanced armor
+|-
+| Item Shop || Full inventory
+|-
+| Rune || Moon Rune (Bone Shrine)
+|-
+| Key NPCs || Ship captain
+|}
+
+'''Special Features:'''
+* Harbor for ship travel
+* Bone Shrine to the south
+
+=== Pell ===
+
+Religious town with the Sky Tower.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Population || Medium
+|-
+| Inn || 25 Gold
+|-
+| Weapon Shop || Magical weapons
+|-
+| Armor Shop || Blessed armor
+|-
+| Item Shop || Healing items
+|-
+| Rune || Light Rune (Sky Tower)
+|-
+| Key NPCs || Elder of Pell
+|}
+
+=== Zellis ===
+
+Prosperous town with ancient history.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Population || Large
+|-
+| Inn || 30 Gold
+|-
+| Weapon Shop || Premium weapons
+|-
+| Armor Shop || Premium armor
+|-
+| Item Shop || Rare items
+|-
+| Rune || Sky Rune (Seer's House)
+|-
+| Key NPCs || The Seer
+|}
+
+'''Special Features:'''
+* The Seer provides Wind Rune teleportation
+* Historical library
+
+=== Dowaine ===
+
+Coastal town affected by drought.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Population || Medium
+|-
+| Inn || 35 Gold
+|-
+| Weapon Shop || Water-blessed weapons
+|-
+| Armor Shop || Water armor
+|-
+| Item Shop || Standard
+|-
+| Rune || Water Rune (Guardian's quest)
+|-
+| Key NPCs || Town Guardian
+|}
+
+=== Guanta ===
+
+Mountain town near the Wind Cave.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Population || Small
+|-
+| Inn || 40 Gold
+|-
+| Weapon Shop || Thunder weapons
+|-
+| Armor Shop || Thunder armor
+|-
+| Item Shop || Advanced
+|-
+| Rune || Wind Rune (Wind Cave)
+|-
+| Key NPCs || Mountain guide
+|}
+
+=== Padal ===
+
+Northern town near Gariso's Castle.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Population || Medium
+|-
+| Inn || 50 Gold
+|-
+| Weapon Shop || Late-game weapons
+|-
+| Armor Shop || Late-game armor
+|-
+| Item Shop || Full inventory
+|-
+| Rune || From Gariso's Castle
+|-
+| Key NPCs || Town elder
+|}
+
+=== Patrof ===
+
+Final human settlement before Gorsia.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Population || Medium
+|-
+| Inn || 60 Gold
+|-
+| Weapon Shop || Ultimate weapons
+|-
+| Armor Shop || Ultimate armor
+|-
+| Item Shop || All items
+|-
+| Rune || Fire Rune (nearby dungeon)
+|-
+| Key NPCs || Ancient knowledge keeper
+|}
+
+== Dungeons ==
+
+=== Melenam Cave ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Location || Near Bonro
+|-
+| Levels || 3 floors
+|-
+| Boss || Cave Monster
+|-
+| Rune || None
+|-
+| Treasure || Early game equipment
+|}
+
+=== Bone Shrine ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Location || South of Bone
+|-
+| Levels || 2 floors
+|-
+| Boss || Undead Guardian
+|-
+| Rune || Moon Rune
+|-
+| Treasure || Healing equipment
+|}
+
+=== Sky Tower ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Location || East of Pell
+|-
+| Levels || 5 floors (vertical)
+|-
+| Boss || Sky Serpent
+|-
+| Rune || Light Rune
+|-
+| Treasure || Flying equipment
+|}
+
+=== Ghost Town ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Location || Island (requires ship)
+|-
+| Levels || 1 floor (large)
+|-
+| Boss || Ghost King
+|-
+| Rune || None
+|-
+| Treasure || Rare armor
+|}
+
+=== Wind Cave ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Location || Near Guanta
+|-
+| Levels || 4 floors
+|-
+| Boss || Wind Dragon
+|-
+| Rune || Wind Rune
+|-
+| Treasure || Speed equipment
+|}
+
+=== Gariso's Castle ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Location || North of Padal
+|-
+| Levels || 6 floors
+|-
+| Boss || Gariso
+|-
+| Rune || Varies
+|-
+| Treasure || Powerful equipment
+|}
+
+=== Gorfun's Castle ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Location || West of Patrof
+|-
+| Levels || 5 floors
+|-
+| Boss || Gorfun
+|-
+| Rune || Fire Rune
+|-
+| Treasure || Fire equipment
+|}
+
+=== Gorsia's Domain ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Location || Final area (airship required)
+|-
+| Levels || 8 floors
+|-
+| Boss || Gorsia (final boss)
+|-
+| Rune || All runes used
+|-
+| Treasure || Ultimate gear
+|}
+
+== Special Locations ==
+
+=== Crystal Palace ===
+
+Between worlds:
+* Accessible late game
+* Contains secrets about the runes
+* Key to understanding the plot
+
+=== Foma (Lost Town) ===
+
+Hidden location:
+* Requires special item
+* Ancient civilization
+* Unique equipment
+
+=== Teleport Shrine ===
+
+Quick travel:
+* Activated by Wind Rune
+* Links all visited towns
+* Requires MP to use
+
+== Enemy Encounter Zones ==
+
+{| class="wikitable"
+! Region !! Enemy Level Range !! Example Enemies
+|-
+| Lemele Plains || 1-5 || Slimes, Bats
+|-
+| Rablisk Forest || 5-10 || Wolves, Goblins
+|-
+| Bonro Mountains || 10-15 || Orcs, Elementals
+|-
+| Bone Coast || 15-20 || Sea creatures, Undead
+|-
+| Pell Highlands || 20-25 || Angels, Demons
+|-
+| Zellis Region || 25-30 || Magic beings
+|-
+| Northern Reaches || 30-40 || Powerful monsters
+|-
+| Final Areas || 40-50 || Gorsia's minions
+|}
+
+== Shop Progression ==
+
+=== Weapon Tiers ===
+
+{| class="wikitable"
+! Town !! Best Weapon !! Price
+|-
+| Lemele || Short Sword || 50
+|-
+| Rablisk || Iron Sword || 200
+|-
+| Bonro || Steel Sword || 600
+|-
+| Bone || Silver Sword || 1500
+|-
+| Pell || Light Blade || 3000
+|-
+| Zellis || Crystal Sword || 6000
+|-
+| Dowaine || Water Blade || 10000
+|-
+| Padal || Thunder Sword || 15000
+|-
+| Patrof || Flame Sword || 20000
+|}
+
+=== Armor Tiers ===
+
+{| class="wikitable"
+! Town !! Best Armor !! Price
+|-
+| Lemele || Leather || 30
+|-
+| Rablisk || Iron Mail || 150
+|-
+| Bonro || Steel Mail || 400
+|-
+| Bone || Silver Mail || 1000
+|-
+| Pell || Light Robe || 2500
+|-
+| Zellis || Crystal Mail || 5000
+|-
+| Dowaine || Water Mail || 8000
+|-
+| Padal || Thunder Mail || 12000
+|-
+| Patrof || Flame Mail || 18000
+|}
+
+[[Category:The 7th Saga]]
+[[Category:Locations]]
+[[Category:SNES Games]]

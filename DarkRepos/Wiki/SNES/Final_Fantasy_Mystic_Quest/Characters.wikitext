@@ -1,0 +1,392 @@
+{{Back|Final Fantasy Mystic Quest (SNES)}}
+__TOC__
+
+== Overview ==
+
+Final Fantasy Mystic Quest features the main hero Benjamin and four ally characters who join temporarily throughout the game. This page documents all characters and their statistics.
+
+== Character Data Structure ==
+
+Each character entry is 48 bytes:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Character ID
+|-
+| $01 || 1 || Level
+|-
+| $02-$03 || 2 || Current HP
+|-
+| $04-$05 || 2 || Max HP
+|-
+| $06 || 1 || Attack
+|-
+| $07 || 1 || Defense
+|-
+| $08 || 1 || Speed
+|-
+| $09 || 1 || Magic
+|-
+| $0A || 1 || Accuracy
+|-
+| $0B || 1 || Evade
+|-
+| $0C-$0F || 4 || Experience
+|-
+| $10-$2F || 32 || Equipment, spells, status
+|}
+
+== Benjamin (Hero) ==
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Role || Main protagonist
+|-
+| Join || Beginning
+|-
+| Leave || Never
+|-
+| Equipment || All weapons, all armor
+|-
+| Magic || White, Black, Wizard
+|}
+
+=== Benjamin Base Stats ===
+
+{| class="wikitable"
+|-
+! Level !! HP !! Attack !! Defense !! Speed !! Magic
+|-
+| 1 || 40 || 3 || 2 || 3 || 3
+|-
+| 10 || 200 || 30 || 20 || 25 || 25
+|-
+| 20 || 450 || 65 || 45 || 50 || 55
+|-
+| 30 || 750 || 100 || 75 || 80 || 85
+|-
+| 40 || 1100 || 140 || 105 || 110 || 120
+|-
+| 50 || 1500 || 180 || 140 || 145 || 155
+|-
+| 60 || 1900 || 220 || 175 || 180 || 190
+|-
+| 70 || 2350 || 260 || 210 || 215 || 230
+|-
+| 80 || 2800 || 300 || 250 || 255 || 270
+|-
+| 99 || 3500 || 350 || 300 || 300 || 320
+|}
+
+=== Benjamin's Equipment Progression ===
+
+{| class="wikitable"
+|-
+! Weapon Type !! Progression
+|-
+| Swords || Steel Sword → Knight Sword → Excalibur
+|-
+| Axes || Battle Axe → Giant's Axe → Demon Axe
+|-
+| Bombs || Bomb → Jumbo Bomb → Mega Grenade
+|-
+| Claws || Cat Claw → Charm Claw → Dragon Claw
+|}
+
+== Kaeli ==
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Role || First ally (forest)
+|-
+| Join || Level Forest
+|-
+| Leave || After Level Forest
+|-
+| Rejoin || Falls Basin
+|-
+| Final Leave || After Windia
+|-
+| Equipment || Axes only
+|-
+| Magic || White magic only
+|}
+
+=== Kaeli Stats ===
+
+{| class="wikitable"
+|-
+! Join Point !! Level !! HP !! Attack !! Defense !! Speed !! Magic
+|-
+| Level Forest || 3 || 80 || 12 || 8 || 10 || 15
+|-
+| Falls Basin || 24 || 580 || 85 || 55 || 65 || 90
+|-
+| Windia || 33 || 850 || 125 || 85 || 95 || 130
+|}
+
+=== Kaeli's Abilities ===
+
+{| class="wikitable"
+|-
+! Spell !! MP !! Effect
+|-
+| Cure || 1 || Restore ~100 HP
+|-
+| Heal || 2 || Restore ~250 HP
+|-
+| Life || 5 || Revive ally 50%
+|-
+| Refresh || 1 || Cure status
+|}
+
+== Tristam ==
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Role || Mercenary/ninja
+|-
+| Join || Bone Dungeon
+|-
+| Leave || After Sand Temple
+|-
+| Rejoin || Alive Forest
+|-
+| Final Leave || After Fireburg
+|-
+| Equipment || Claws, Ninja gear
+|-
+| Magic || Black magic
+|}
+
+=== Tristam Stats ===
+
+{| class="wikitable"
+|-
+! Join Point !! Level !! HP !! Attack !! Defense !! Speed !! Magic
+|-
+| Bone Dungeon || 8 || 180 || 35 || 22 || 40 || 28
+|-
+| Alive Forest || 28 || 700 || 110 || 72 || 95 || 85
+|}
+
+=== Tristam's Abilities ===
+
+{| class="wikitable"
+|-
+! Spell !! MP !! Effect
+|-
+| Fire || 1 || Fire damage (single)
+|-
+| Blizzard || 2 || Ice damage (single)
+|-
+| Thunder || 3 || Thunder damage (single)
+|-
+| Quake || 4 || Earth damage (all)
+|}
+
+'''Special:''' Throw ability - ninja stars for damage
+
+== Phoebe ==
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Role || Magic user
+|-
+| Join || Aquaria
+|-
+| Leave || After Wintry Cave
+|-
+| Rejoin || Spencer's Place
+|-
+| Final Leave || After Pazuzu's Tower
+|-
+| Equipment || Bombs, magic gear
+|-
+| Magic || White and Black
+|}
+
+=== Phoebe Stats ===
+
+{| class="wikitable"
+|-
+! Join Point !! Level !! HP !! Attack !! Defense !! Speed !! Magic
+|-
+| Aquaria || 12 || 280 || 40 || 28 || 35 || 55
+|-
+| Spencer's Place || 30 || 750 || 105 || 75 || 85 || 125
+|}
+
+=== Phoebe's Abilities ===
+
+{| class="wikitable"
+|-
+! Spell !! MP !! Effect
+|-
+| Cure || 1 || Restore HP
+|-
+| Life || 5 || Revive ally
+|-
+| Fire || 1 || Fire damage
+|-
+| Blizzard || 2 || Ice damage
+|-
+| Thunder || 3 || Thunder damage
+|-
+| White || 8 || Holy damage
+|}
+
+== Reuben ==
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Role || Warrior
+|-
+| Join || Mine
+|-
+| Leave || After Lava Dome
+|-
+| Rejoin || Focus Tower (final)
+|-
+| Final Leave || End of game
+|-
+| Equipment || Swords, heavy gear
+|-
+| Magic || White magic
+|}
+
+=== Reuben Stats ===
+
+{| class="wikitable"
+|-
+! Join Point !! Level !! HP !! Attack !! Defense !! Speed !! Magic
+|-
+| Mine || 18 || 420 || 65 || 50 || 45 || 40
+|-
+| Focus Tower || 38 || 1000 || 150 || 110 || 100 || 95
+|}
+
+=== Reuben's Abilities ===
+
+{| class="wikitable"
+|-
+! Spell !! MP !! Effect
+|-
+| Cure || 1 || Restore HP
+|-
+| Heal || 2 || Restore more HP
+|-
+| Life || 5 || Revive ally
+|}
+
+== Party Comparison ==
+
+=== At Similar Levels ===
+
+{| class="wikitable"
+|-
+! Character !! HP !! Attack !! Defense !! Speed !! Magic
+|-
+| Benjamin (30) || 750 || 100 || 75 || 80 || 85
+|-
+| Kaeli (33) || 850 || 125 || 85 || 95 || 130
+|-
+| Tristam (28) || 700 || 110 || 72 || 95 || 85
+|-
+| Phoebe (30) || 750 || 105 || 75 || 85 || 125
+|-
+| Reuben (38) || 1000 || 150 || 110 || 100 || 95
+|}
+
+=== Strengths by Character ===
+
+{| class="wikitable"
+|-
+! Character !! Primary Strength !! Secondary !! Best Magic
+|-
+| Benjamin || All-around || Equipment || All types
+|-
+| Kaeli || Healing || Axes || White
+|-
+| Tristam || Speed || Attack || Black (offensive)
+|-
+| Phoebe || Magic || Bombs || White + Black
+|-
+| Reuben || Attack/Defense || HP || White
+|}
+
+== Experience Table ==
+
+{| class="wikitable"
+|-
+! Level !! EXP !! Level !! EXP !! Level !! EXP
+|-
+| 1 || 0 || 35 || 62000 || 70 || 350000
+|-
+| 5 || 300 || 40 || 90000 || 75 || 420000
+|-
+| 10 || 1500 || 45 || 125000 || 80 || 500000
+|-
+| 15 || 5000 || 50 || 165000 || 85 || 590000
+|-
+| 20 || 12000 || 55 || 210000 || 90 || 700000
+|-
+| 25 || 25000 || 60 || 260000 || 95 || 830000
+|-
+| 30 || 42000 || 65 || 310000 || 99 || 999999
+|}
+
+== Equipment Restrictions ==
+
+{| class="wikitable"
+|-
+! Character !! Weapons !! Armor !! Shields
+|-
+| Benjamin || All 4 types || All || All
+|-
+| Kaeli || Axes only || Light || Light
+|-
+| Tristam || Claws only || Ninja || None
+|-
+| Phoebe || Bombs only || Magic || Magic
+|-
+| Reuben || Swords only || Heavy || Heavy
+|}
+
+== AI Behavior ==
+
+Ally AI in battle:
+
+{| class="wikitable"
+|-
+! Character !! AI Priority
+|-
+| Kaeli || Heal allies > Attack weak
+|-
+| Tristam || Attack strong > Magic
+|-
+| Phoebe || Magic attack > Heal if critical
+|-
+| Reuben || Attack > Heal if self low
+|}
+
+== See Also ==
+
+* [[Battle System]]
+* [[Items]]
+* [[Spells]]
+* [[Enemies]]
+
+[[Category:Final Fantasy Mystic Quest (SNES)]]

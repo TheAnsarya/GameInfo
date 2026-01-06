@@ -1,0 +1,327 @@
+{{Back|Kirby's Adventure}}
+__TOC__
+
+= Enemies =
+
+This page documents all regular enemies and mini-bosses in Kirby's Adventure for the NES.
+
+== Enemy Data Structure ==
+
+Each enemy entry uses 16 bytes:
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Enemy ID
+|-
+| $01 || 1 || HP
+|-
+| $02 || 1 || Damage
+|-
+| $03 || 1 || Movement Type
+|-
+| $04 || 1 || Copy Ability Given
+|-
+| $05 || 1 || AI Pattern
+|-
+| $06 || 2 || Sprite Pointer
+|-
+| $08-$0F || 8 || Animation/Behavior Data
+|}
+
+== Regular Enemies ==
+
+=== Common Enemies ===
+
+{| class="wikitable sortable"
+! ID !! Enemy !! HP !! Ability !! Behavior !! First World
+|-
+| $01 || Waddle Dee || 1 || None || Walks forward || Vegetable Valley
+|-
+| $02 || Waddle Doo || 2 || Beam || Walks, shoots beam || Vegetable Valley
+|-
+| $03 || Bronto Burt || 1 || None || Flies in pattern || Vegetable Valley
+|-
+| $04 || Hot Head || 2 || Fire || Walks, breathes fire || Vegetable Valley
+|-
+| $05 || Poppy Bros. Jr. || 1 || None || Hops, throws bombs || Vegetable Valley
+|-
+| $06 || Sparky || 2 || Spark || Hops, electrical field || Vegetable Valley
+|-
+| $07 || Sir Kibble || 2 || Cutter || Throws blade boomerang || Vegetable Valley
+|-
+| $08 || Blade Knight || 2 || Sword || Walks, slashes || Ice Cream Island
+|-
+| $09 || Sword Knight || 2 || Sword || Walks, sword attacks || Ice Cream Island
+|-
+| $0A || Chilly || 2 || Freeze || Walks, creates ice || Ice Cream Island
+|-
+| $0B || Pengy || 2 || Ice || Slides, ice breath || Ice Cream Island
+|-
+| $0C || Rocky || 3 || Stone || Walks, transforms || Butter Building
+|-
+| $0D || Twister || 2 || Tornado || Spins around || Grape Garden
+|-
+| $0E || Starman || 2 || Hi-Jump || Bounces, high jumps || Butter Building
+|-
+| $0F || Laser Ball || 2 || Laser || Floats, shoots laser || Butter Building
+|}
+
+=== More Enemies ===
+
+{| class="wikitable sortable"
+! ID !! Enemy !! HP !! Ability !! Behavior !! First World
+|-
+| $10 || Noddy || 1 || Sleep || Walks slowly || Ice Cream Island
+|-
+| $11 || Bubbles || 2 || Ball || Bounces around || Grape Garden
+|-
+| $12 || Wheelie || 2 || Wheel || Rolls fast || Grape Garden
+|-
+| $13 || Flamer || 2 || Fireball || Clings to walls, charges || Yogurt Yard
+|-
+| $14 || Togezo || 2 || Needle || Walks with spikes || Yogurt Yard
+|-
+| $15 || Parasol || 1 || Parasol || Floats down slowly || Butter Building
+|-
+| $16 || Parasol Waddle Dee || 1 || Parasol || Waddle Dee with parasol || Butter Building
+|-
+| $17 || Bomber || 2 || Crash || Walks, explodes on death || Various
+|-
+| $18 || Scarfy || 1 || (Crash*) || Transforms when attacked || Various
+|-
+| $19 || Cool Spook || 2 || Light || Floats in dark areas || Grape Garden
+|-
+| $1A || Plasma Wisp || 2 || Spark || Floats, electric field || Orange Ocean
+|-
+| $1B || U.F.O. || 3 || UFO || Flies, shoots beams || Rare, Various
+|-
+| $1C || Rolling Turtle || 2 || Throw || Rolls in shell || Orange Ocean
+|-
+| $1D || Mr. Tick-Tock || 2 || Mike || Walks, rings bell || Rainbow Resort
+|-
+| $1E || Walky || 2 || Mike || Walks, shoots sound || Rainbow Resort
+|}
+
+=== Aquatic Enemies ===
+
+{| class="wikitable sortable"
+! ID !! Enemy !! HP !! Ability !! Behavior
+|-
+| $20 || Squishy || 1 || None || Swims in water
+|-
+| $21 || Glunk || 2 || None || Stationary, shoots projectiles
+|-
+| $22 || Blipper || 1 || None || Fish, swims in patterns
+|-
+| $23 || Cappy || 1 || None || Mushroom, walks
+|-
+| $24 || Coconut || 1 || None || Falls from trees
+|}
+
+== Mini-Bosses ==
+
+Mini-bosses appear in mid-level arenas and give powerful abilities:
+
+{| class="wikitable sortable"
+! Enemy !! HP !! Ability !! Attack Pattern !! Worlds
+|-
+| Bonkers || 10 || Hammer || Throws coconuts, hammer swing || VV, BB, GG, YY
+|-
+| Bugzzy || 10 || Backdrop || Grabs, flying tackles || ICI, YY, OO
+|-
+| Fire Lion || 10 || Fire || Fire breath, charges || VV, GG, YY
+|-
+| Grand Wheelie || 10 || Wheel || Rolls, jumps || ICI, OO
+|-
+| Meta Knight || 8 || Sword* || Sword combos || BB, GG, OO
+|-
+| Mr. Frosty || 10 || Freeze || Throws ice blocks || ICI, BB, RR
+|-
+| Paint Roller || 8 || (Various) || Paints enemies that attack || Various
+|-
+| Poppy Bros. Sr. || 8 || Crash || Throws bombs, kicks apples || VV, BB
+|-
+| Rolling Turtle || 10 || Throw || Shell charge, grab || OO, RR
+|}
+
+''* Meta Knight doesn't give Sword, but throws a sword for you to use''
+
+'''World Abbreviations:'''
+* VV = Vegetable Valley
+* ICI = Ice Cream Island
+* BB = Butter Building
+* GG = Grape Garden
+* YY = Yogurt Yard
+* OO = Orange Ocean
+* RR = Rainbow Resort
+
+== World Bosses ==
+
+=== Whispy Woods ===
+
+{| class="wikitable"
+! Stat !! Value
+|-
+| Location || Vegetable Valley
+|-
+| HP || 20
+|-
+| Attacks || Air puffs, falling apples
+|-
+| Strategy || Inhale apples, spit back
+|}
+
+=== Paint Roller ===
+
+{| class="wikitable"
+! Stat !! Value
+|-
+| Location || Ice Cream Island
+|-
+| HP || 15
+|-
+| Attacks || Paints enemies that attack
+|-
+| Strategy || Inhale painted enemies, spit back
+|}
+
+=== Mr. Shine & Mr. Bright ===
+
+{| class="wikitable"
+! Stat !! Value
+|-
+| Location || Butter Building
+|-
+| HP || 20 (each)
+|-
+| Attacks || Sun beams, moon drops, projectiles
+|-
+| Strategy || Attack whoever is on ground
+|}
+
+=== Kracko Jr. / Kracko ===
+
+{| class="wikitable"
+! Stat !! Value
+|-
+| Location || Grape Garden
+|-
+| HP || 20 (full form)
+|-
+| Attacks || Lightning, beam shots, spawns enemies
+|-
+| Strategy || Use spawned Waddle Doos for Beam
+|}
+
+=== Heavy Mole ===
+
+{| class="wikitable"
+! Stat !! Value
+|-
+| Location || Yogurt Yard
+|-
+| HP || 25
+|-
+| Attacks || Drops missiles (Ball, Hammer abilities)
+|-
+| Strategy || Inhale dropped items, spit back
+|}
+
+=== Meta Knight ===
+
+{| class="wikitable"
+! Stat !! Value
+|-
+| Location || Orange Ocean
+|-
+| HP || 30
+|-
+| Attacks || Sword slashes, dive attacks
+|-
+| Strategy || Use provided sword, combo attacks
+|}
+
+=== King Dedede ===
+
+{| class="wikitable"
+! Stat !! Value
+|-
+| Location || Rainbow Resort (Fountain of Dreams)
+|-
+| HP || 40
+|-
+| Attacks || Hammer swing, belly flop, inhale
+|-
+| Strategy || Avoid attacks, inhale and spit stars
+|}
+
+== Final Boss ==
+
+=== Nightmare ===
+
+{| class="wikitable"
+! Form !! HP !! Attacks !! Strategy
+|-
+| Power Orb || 30 || Star projectiles || Use Star Rod, shoot continuously
+|-
+| Wizard Form || 50 || Tornadoes, stars, dive || Star Rod required, time shots
+|}
+
+The Star Rod is the only weapon that can damage Nightmare.
+
+== Enemy Behaviors ==
+
+=== Movement Types ===
+
+{| class="wikitable"
+! Type !! Behavior !! Examples
+|-
+| Walk || Walks forward, turns at edges || Waddle Dee, Sir Kibble
+|-
+| Hop || Bounces forward || Sparky, Poppy Bros. Jr.
+|-
+| Fly || Moves through air in patterns || Bronto Burt
+|-
+| Float || Drifts slowly || Parasol, Cool Spook
+|-
+| Charge || Rushes at Kirby || Fire Lion, Flamer
+|-
+| Stationary || Doesn't move || Glunk, Scarfy (until attacked)
+|}
+
+=== AI Patterns ===
+
+{| class="wikitable"
+! Pattern !! Description
+|-
+| Patrol || Walk back and forth
+|-
+| Chase || Follow Kirby's position
+|-
+| Random || Move in random directions
+|-
+| Guard || Stay in position, attack when Kirby approaches
+|-
+| Ambush || Hide until Kirby is close
+|}
+
+== Enemy Placement ==
+
+Enemies are placed using map data:
+
+{| class="wikitable"
+! Byte !! Description
+|-
+| $00 || Enemy ID
+|-
+| $01 || X Position (in tiles)
+|-
+| $02 || Y Position (in tiles)
+|-
+| $03 || Behavior flags
+|}
+
+[[Category:Kirby's Adventure]]
+[[Category:Enemies]]
+[[Category:NES Games]]

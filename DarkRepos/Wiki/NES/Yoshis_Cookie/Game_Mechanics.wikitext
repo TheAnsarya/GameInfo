@@ -1,0 +1,307 @@
+{{Back|Yoshi's Cookie}}
+__TOC__
+
+= Game Mechanics =
+
+This page documents the game mechanics of Yoshi's Cookie for the NES.
+
+== Overview ==
+
+Yoshi's Cookie is a puzzle game developed by Bullet-Proof Software (now Blue Planet Software) and published by Nintendo. Players must match rows and columns of cookies to clear them from the board.
+
+== Basic Controls ==
+
+{| class="wikitable"
+! Button !! Action
+|-
+| D-Pad Up/Down || Move cursor row
+|-
+| D-Pad Left/Right || Move cursor column
+|-
+| A Button || Shift row right
+|-
+| B Button || Shift column down
+|-
+| A + Direction || Shift row in direction
+|-
+| B + Direction || Shift column in direction
+|-
+| Start || Pause
+|-
+| Select || No function
+|}
+
+== Cookie Types ==
+
+There are 5 different cookie types:
+
+{| class="wikitable"
+! ID !! Cookie !! Appearance !! Notes
+|-
+| $00 || Heart Cookie || Pink heart shape || Common
+|-
+| $01 || Diamond Cookie || Yellow diamond || Common
+|-
+| $02 || Circle Cookie || Brown circle || Common
+|-
+| $03 || Square Cookie || Green square || Common
+|-
+| $04 || Flower Cookie || Orange flower || Common
+|-
+| $05 || Yoshi Cookie || Yoshi face || Special - clears rows/columns
+|}
+
+=== Yoshi Cookie Special ===
+
+The Yoshi Cookie is a wild card that:
+* Can complete any row or column
+* Appears rarely
+* Worth bonus points
+* Clears entire row AND column when matched
+
+== Game Modes ==
+
+=== Action Mode ===
+
+Standard puzzle mode:
+* Cookies fall from top and right
+* Clear cookies before board fills
+* Speed increases with level
+* Game over when board overflows
+
+'''Difficulty Settings:'''
+
+{| class="wikitable"
+! Setting !! Initial Speed !! Increase Rate
+|-
+| Easy || Slow || Gradual
+|-
+| Normal || Medium || Standard
+|-
+| Hard || Fast || Rapid
+|}
+
+=== VS Mode ===
+
+Two-player competitive mode:
+* Both players share screen
+* Clearing cookies sends garbage
+* First to fill board loses
+* Can play against CPU
+
+'''VS CPU Difficulty:'''
+
+{| class="wikitable"
+! Level !! CPU Behavior
+|-
+| 1-3 || Slow, makes mistakes
+|-
+| 4-6 || Moderate speed, smarter
+|-
+| 7-9 || Fast, optimal moves
+|-
+| 10 || Maximum speed, expert play
+|}
+
+=== Puzzle Mode ===
+
+Pre-set puzzles to solve:
+* Limited moves per puzzle
+* Specific solutions required
+* 100 puzzles total
+* Passwords to save progress
+
+== Scoring System ==
+
+=== Basic Scoring ===
+
+{| class="wikitable"
+! Action !! Points
+|-
+| Clear 1 row || 10 × Level
+|-
+| Clear 1 column || 10 × Level
+|-
+| Clear row + column || 30 × Level
+|-
+| Chain clear || Previous × 2
+|-
+| Yoshi Cookie bonus || 100 × Level
+|}
+
+=== Chain Bonuses ===
+
+Chains occur when clearing creates another clear:
+
+{| class="wikitable"
+! Chain !! Multiplier
+|-
+| 2-chain || 2×
+|-
+| 3-chain || 4×
+|-
+| 4-chain || 8×
+|-
+| 5+ chain || 16×
+|}
+
+== Game Board ==
+
+=== Board Dimensions ===
+
+{| class="wikitable"
+! Mode !! Width !! Height
+|-
+| Action || 5 || 5
+|-
+| VS || 5 || 5
+|-
+| Puzzle || Varies || Varies
+|}
+
+=== Board Data Structure ===
+
+Each board cell uses 1 byte:
+
+{| class="wikitable"
+! Value !! Meaning
+|-
+| $00-$04 || Cookie type
+|-
+| $05 || Yoshi Cookie
+|-
+| $FF || Empty cell
+|}
+
+== Level Progression ==
+
+=== Action Mode Levels ===
+
+{| class="wikitable"
+! Level !! Speed !! Required Clears !! Special
+|-
+| 1 || 60 frames || 10 rows || -
+|-
+| 2 || 55 frames || 15 rows || -
+|-
+| 3 || 50 frames || 20 rows || -
+|-
+| 4 || 45 frames || 25 rows || More cookie types
+|-
+| 5 || 40 frames || 30 rows || -
+|-
+| 6 || 35 frames || 35 rows || -
+|-
+| 7 || 30 frames || 40 rows || Maximum cookie types
+|-
+| 8 || 25 frames || 45 rows || -
+|-
+| 9 || 20 frames || 50 rows || -
+|-
+| 10+ || 15 frames || ∞ || Endless mode
+|}
+
+== Puzzle Mode Solutions ==
+
+=== Puzzle Format ===
+
+Puzzles are stored as:
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Puzzle number
+|-
+| $01 || 1 || Board width
+|-
+| $02 || 1 || Board height
+|-
+| $03 || 1 || Move limit
+|-
+| $04+ || Varies || Initial cookie positions
+|}
+
+=== Password System ===
+
+Puzzles use 4-character passwords:
+* Characters: A-Z, 0-9
+* Each puzzle has unique code
+* Entering valid code jumps to puzzle
+
+== Characters ==
+
+=== Playable ===
+
+{| class="wikitable"
+! Character !! Notes
+|-
+| Mario || Player 1 default
+|-
+| Yoshi || Player 2 default / CPU
+|}
+
+=== Animations ===
+
+Characters react to gameplay:
+* Happy when clearing
+* Worried when board fills
+* Celebrate on level clear
+* Sad on game over
+
+== Technical Details ==
+
+=== RNG Seed ===
+
+Random number generator for cookie spawns:
+* Initial seed from timer
+* Linear congruential generator
+* Period: 65536
+
+=== Cookie Spawn Algorithm ===
+
+New cookies spawn with weighted probability:
+
+{| class="wikitable"
+! Cookie !! Base Weight !! Notes
+|-
+| Heart || 20% || Equal weight
+|-
+| Diamond || 20% || Equal weight
+|-
+| Circle || 20% || Equal weight
+|-
+| Square || 20% || Equal weight
+|-
+| Flower || 18% || Slightly less
+|-
+| Yoshi || 2% || Rare
+|}
+
+Weights adjust based on board state to maintain fairness.
+
+== Strategies ==
+
+=== Basic Strategy ===
+
+* Focus on one row/column at a time
+* Set up chain reactions
+* Save Yoshi Cookies for emergencies
+* Watch incoming cookies
+
+=== Advanced Techniques ===
+
+* Stack matching cookies for chains
+* Use column shifts to set up row clears
+* Plan 2-3 moves ahead
+* Keep board balanced
+
+=== VS Mode Strategy ===
+
+* Clear multiple rows/columns quickly
+* Chains send more garbage
+* Watch opponent's board
+* Time clears to disrupt opponent
+
+[[Category:Yoshi's Cookie]]
+[[Category:Game Mechanics]]
+[[Category:NES Games]]

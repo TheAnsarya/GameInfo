@@ -1,0 +1,361 @@
+{{Back|The 7th Saga}}
+__TOC__
+
+= Battle System =
+
+This page documents the battle system mechanics in The 7th Saga for the SNES.
+
+== Overview ==
+
+The 7th Saga uses a turn-based battle system with unique features like rune-based magic and character-specific abilities. The game is notably difficult due to enemy stat scaling.
+
+== Battle Data Structures ==
+
+=== Combat Stats ===
+
+{| class="wikitable"
+! Stat !! Size !! Description
+|-
+| HP || 2 bytes || Hit Points (max 999)
+|-
+| MP || 2 bytes || Magic Points (max 999)
+|-
+| Power || 1 byte || Physical attack strength
+|-
+| Guard || 1 byte || Physical defense
+|-
+| Magic || 1 byte || Magical attack/defense
+|-
+| Speed || 1 byte || Turn order determination
+|}
+
+== Turn Order ==
+
+Turn order is determined by Speed stat:
+* Higher Speed acts first
+* Ties broken by character index
+* Status effects can modify effective Speed
+
+Formula:
+```
+Effective Speed = Base Speed × (1 + Equipment Bonus) - Status Penalty
+```
+
+== Attack Types ==
+
+=== Physical Attack ===
+
+Standard attack command:
+
+{| class="wikitable"
+! Element !! Formula
+|-
+| Base Damage || Power × 2 - Enemy Guard
+|-
+| Weapon Bonus || + Weapon Attack Value
+|-
+| Critical Hit || Damage × 2 (random chance)
+|-
+| Variance || ±12.5%
+|}
+
+'''Critical Hit Rate:'''
+* Base: 1/16 (6.25%)
+* Some weapons increase rate
+* Certain characters have higher base rate
+
+=== Magical Attack ===
+
+Spell-based attacks:
+
+{| class="wikitable"
+! Element !! Formula
+|-
+| Base Damage || Spell Power × Magic Stat / 16
+|-
+| Defense Reduction || - (Enemy Magic × 2)
+|-
+| Elemental Modifier || × Weakness/Resistance
+|-
+| Variance || ±6.25%
+|}
+
+== Defense ==
+
+=== Defend Command ===
+
+Using Defend:
+* Halves all incoming damage
+* Guarantees acting last that turn
+* Cannot be used with other commands
+
+=== Guard Stat Effect ===
+
+Physical damage reduction:
+```
+Damage = Attack - (Guard × 1.5)
+Minimum damage = 1
+```
+
+== Status Effects ==
+
+{| class="wikitable sortable"
+! Status !! Effect !! Duration !! Cure
+|-
+| Poison || Lose HP each turn || Until cured || Antidote, Heal spell
+|-
+| Paralysis || Cannot act || 2-4 turns || Heal spell
+|-
+| Sleep || Cannot act, wake on damage || 1-3 turns || Attack, Alarm spell
+|-
+| Confusion || Attack randomly || 2-3 turns || Heal spell
+|-
+| Petrify || Cannot act || Permanent in battle || Soft Stone
+|-
+| Defense Down || Guard reduced 50% || 4 turns || Ends naturally
+|-
+| Power Down || Power reduced 50% || 4 turns || Ends naturally
+|}
+
+== Elemental System ==
+
+=== Elements ===
+
+{| class="wikitable"
+! Element !! Strong Against !! Weak Against
+|-
+| Fire || Ice || Water
+|-
+| Ice || Thunder || Fire
+|-
+| Thunder || Water || Ice
+|-
+| Water || Fire || Thunder
+|}
+
+=== Elemental Multipliers ===
+
+{| class="wikitable"
+! Resistance Level !! Damage Multiplier
+|-
+| Weak || 200%
+|-
+| Normal || 100%
+|-
+| Resistant || 50%
+|-
+| Immune || 0%
+|-
+| Absorb || -100% (heals)
+|}
+
+== Magic System ==
+
+=== Rune Types ===
+
+Magic is powered by elemental runes:
+
+{| class="wikitable"
+! Rune !! Element !! Found In
+|-
+| Star Rune || Non-elemental || Lemele
+|-
+| Moon Rune || Healing || Bone
+|-
+| Light Rune || Holy || Pell
+|-
+| Sky Rune || Wind || Zellis
+|-
+| Water Rune || Water || Dowaine
+|-
+| Wind Rune || Thunder || Padal
+|-
+| Fire Rune || Fire || Patrof
+|}
+
+=== MP Costs ===
+
+{| class="wikitable"
+! Tier !! MP Cost !! Power Level
+|-
+| Level 1 || 2-4 MP || Basic
+|-
+| Level 2 || 6-10 MP || Moderate
+|-
+| Level 3 || 15-20 MP || Strong
+|-
+| Level 4 || 25-40 MP || Powerful
+|}
+
+== Experience and Leveling ==
+
+=== Experience Formula ===
+
+```
+EXP Gained = Base EXP × (1 + Level Difference Bonus)
+```
+
+Level difference affects EXP:
+* Fighting stronger enemies: Bonus EXP
+* Fighting weaker enemies: Reduced EXP
+
+=== Level Up Stats ===
+
+Each character gains different stats per level:
+
+{| class="wikitable"
+! Character !! HP !! MP !! Power !! Guard !! Magic !! Speed
+|-
+| Wilme || +15 || +2 || +3 || +3 || +1 || +2
+|-
+| Lux || +12 || +6 || +2 || +2 || +3 || +2
+|-
+| Olvan || +14 || +4 || +3 || +3 || +2 || +1
+|-
+| Lejes || +10 || +8 || +1 || +1 || +4 || +2
+|-
+| Esuna || +11 || +7 || +1 || +2 || +3 || +3
+|-
+| Valsu || +10 || +9 || +1 || +1 || +4 || +2
+|-
+| Kamil || +13 || +5 || +2 || +2 || +2 || +3
+|}
+
+== Enemy Scaling ==
+
+The 7th Saga is known for its rubber-banding enemy difficulty:
+
+=== Scaling Formula ===
+
+```
+Enemy Level = Player Level + Region Modifier
+Enemy Stats = Base Stats × (1 + (Enemy Level / 10))
+```
+
+This means enemies always stay challenging regardless of grinding.
+
+=== Region Modifiers ===
+
+{| class="wikitable"
+! Region !! Modifier
+|-
+| Lemele Area || +0
+|-
+| Bone Area || +2
+|-
+| Zellis Area || +4
+|-
+| Dowaine Area || +6
+|-
+| Padal Area || +8
+|-
+| Patrof Area || +10
+|-
+| Final Areas || +12
+|}
+
+== Apprentice Battles ==
+
+=== PvP Mechanics ===
+
+When fighting other apprentices:
+* Their level scales to yours
+* They use their character abilities
+* Defeating them takes their runes
+* Some will join as partners
+
+=== Apprentice AI ===
+
+{| class="wikitable"
+! Character !! AI Behavior
+|-
+| Wilme || Aggressive physical attacks
+|-
+| Lux || Balanced attacks and defense
+|-
+| Olvan || Defensive, occasional magic
+|-
+| Lejes || Heavy magic use
+|-
+| Esuna || Mix of attack and healing
+|-
+| Valsu || Healing focus, then attack
+|-
+| Kamil || Balanced, uses items
+|}
+
+== Escape Mechanics ==
+
+=== Escape Rate ===
+
+```
+Escape Chance = (Party Speed / Enemy Speed) × 50%
+Minimum: 10%
+Maximum: 90%
+```
+
+Failed escape wastes the turn.
+
+== Partner System ==
+
+=== Partner Benefits ===
+
+Having a partner provides:
+* Combined HP pool in battle
+* Shared turn (both can act)
+* Combined rune effects
+* Stat bonuses
+
+=== Partner Commands ===
+
+In two-character battles:
+* Each character has separate commands
+* Can coordinate attacks
+* Both must be defeated to lose
+
+== Item Usage ==
+
+=== Battle Items ===
+
+{| class="wikitable"
+! Item !! Effect !! Uses
+|-
+| Potion 1 || Heal 30 HP || Single
+|-
+| Potion 2 || Heal 100 HP || Single
+|-
+| Potion 3 || Heal 250 HP || Single
+|-
+| M. Water || Restore 20 MP || Single
+|-
+| Mirror || Reflect magic once || Single
+|-
+| B. Agate || Cure all status || Single
+|}
+
+== Battle Rewards ==
+
+=== Standard Rewards ===
+
+{| class="wikitable"
+! Drop Type !! Chance
+|-
+| Gold || 100% (variable amount)
+|-
+| Common Item || 25%
+|-
+| Rare Item || 5%
+|-
+| Equipment || 1-2%
+|}
+
+=== Boss Rewards ===
+
+Bosses give:
+* Guaranteed rune (story bosses)
+* High gold amount
+* Special equipment (some)
+
+[[Category:The 7th Saga]]
+[[Category:Battle System]]
+[[Category:SNES Games]]

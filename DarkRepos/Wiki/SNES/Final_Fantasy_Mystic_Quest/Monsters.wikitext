@@ -1,0 +1,302 @@
+{{Back|Final Fantasy Mystic Quest}}
+__TOC__
+
+= Monsters =
+
+This page documents all monsters in Final Fantasy Mystic Quest for the SNES.
+
+== Monster Statistics ==
+
+=== Data Structure ===
+
+Each monster entry uses 32 bytes:
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 2 || HP
+|-
+| $02 || 1 || Attack
+|-
+| $03 || 1 || Defense
+|-
+| $04 || 1 || Speed
+|-
+| $05 || 1 || Magic
+|-
+| $06 || 2 || Experience
+|-
+| $08 || 2 || GP
+|-
+| $0A || 1 || Elemental Weakness
+|-
+| $0B || 1 || Status Immunity
+|-
+| $0C-$0F || 4 || Attack Pattern
+|-
+| $10-$1F || 16 || Sprite/Animation Data
+|}
+
+== Foresta Region Monsters ==
+
+Monsters encountered in Level Forest, Sand Temple, and Bone Dungeon:
+
+{| class="wikitable sortable"
+! Monster !! HP !! Attack !! Defense !! Speed !! Exp !! GP !! Weakness
+|-
+| Brownie || 30 || 5 || 4 || 3 || 8 || 6 || Axe
+|-
+| Mad Plant || 35 || 7 || 3 || 2 || 9 || 8 || Axe
+|-
+| Poison Toad || 40 || 8 || 4 || 4 || 11 || 10 || None
+|-
+| Slime || 25 || 4 || 2 || 1 || 6 || 5 || Fire
+|-
+| Sand Worm || 50 || 10 || 5 || 3 || 15 || 12 || None
+|-
+| Skeleton || 55 || 12 || 6 || 4 || 18 || 14 || Holy
+|-
+| Mummy || 60 || 14 || 8 || 2 || 22 || 18 || Fire
+|}
+
+=== Foresta Bosses ===
+
+{| class="wikitable"
+! Boss !! HP !! Attack !! Defense !! Location !! Strategy
+|-
+| Minotaur || 200 || 25 || 15 || Bone Dungeon || Use Cure after heavy attacks, attack with sword
+|-
+| Flamerus Rex || 500 || 40 || 20 || Bone Dungeon B2 || Use Blizzard, heal with Cure
+|}
+
+== Aquaria Region Monsters ==
+
+Monsters encountered in Wintry Cave, Ice Pyramid, and surrounding areas:
+
+{| class="wikitable sortable"
+! Monster !! HP !! Attack !! Defense !! Speed !! Exp !! GP !! Weakness
+|-
+| Gather || 70 || 15 || 8 || 5 || 28 || 22 || Fire
+|-
+| Mint Mint || 65 || 14 || 7 || 6 || 25 || 20 || Fire
+|-
+| Scorpion || 80 || 18 || 10 || 4 || 32 || 26 || Water
+|-
+| Edgehog || 75 || 16 || 9 || 7 || 30 || 24 || None
+|-
+| Freezer Crab || 90 || 20 || 12 || 3 || 38 || 30 || Fire
+|-
+| Phanquid || 85 || 19 || 11 || 5 || 35 || 28 || Thunder
+|-
+| Snow Crab || 95 || 22 || 13 || 4 || 42 || 34 || Fire
+|}
+
+=== Aquaria Bosses ===
+
+{| class="wikitable"
+! Boss !! HP !! Attack !! Defense !! Location !! Strategy
+|-
+| Squidite || 400 || 35 || 18 || Wintry Cave || Use Thunder magic, watch for Ink attack
+|-
+| Ice Golem || 900 || 55 || 30 || Ice Pyramid || Fire magic is key, keep HP high
+|}
+
+== Fireburg Region Monsters ==
+
+Monsters encountered in Mine, Volcano, and Lava Dome:
+
+{| class="wikitable sortable"
+! Monster !! HP !! Attack !! Defense !! Speed !! Exp !! GP !! Weakness
+|-
+| Hot Wings || 100 || 24 || 14 || 8 || 48 || 38 || Water
+|-
+| Sting Rat || 95 || 22 || 13 || 6 || 45 || 36 || None
+|-
+| Red Cap || 110 || 26 || 15 || 5 || 52 || 42 || Water
+|-
+| Salamander || 120 || 28 || 16 || 7 || 58 || 46 || Water
+|-
+| Stheno || 130 || 30 || 18 || 4 || 65 || 52 || None
+|-
+| Gorgon || 140 || 32 || 19 || 5 || 72 || 58 || None
+|-
+| Ninja || 150 || 35 || 20 || 10 || 80 || 64 || None
+|}
+
+=== Fireburg Bosses ===
+
+{| class="wikitable"
+! Boss !! HP !! Attack !! Defense !! Location !! Strategy
+|-
+| Jinn || 600 || 45 || 25 || Sealed Temple || Use physical attacks, heal frequently
+|-
+| Dullahan || 1200 || 65 || 35 || Mine || Difficult boss, use best equipment
+|-
+| Medusa || 800 || 50 || 28 || Volcano || Kill quickly before petrification
+|}
+
+== Windia Region Monsters ==
+
+Monsters encountered in Alive Forest, Giant Tree, and Mount Gale:
+
+{| class="wikitable sortable"
+! Monster !! HP !! Attack !! Defense !! Speed !! Exp !! GP !! Weakness
+|-
+| Gargoyle || 160 || 38 || 22 || 6 || 90 || 72 || None
+|-
+| Minotaur Zombie || 180 || 42 || 25 || 4 || 100 || 80 || Holy
+|-
+| Chimera || 200 || 45 || 27 || 7 || 115 || 92 || None
+|-
+| Sphinx || 220 || 48 || 29 || 5 || 130 || 104 || None
+|-
+| Manticore || 240 || 52 || 31 || 8 || 150 || 120 || None
+|-
+| Live Oak || 180 || 40 || 24 || 2 || 105 || 84 || Axe/Fire
+|-
+| Mage || 170 || 36 || 20 || 9 || 95 || 76 || None
+|}
+
+=== Windia Bosses ===
+
+{| class="wikitable"
+! Boss !! HP !! Attack !! Defense !! Location !! Strategy
+|-
+| Gidrah || 1500 || 75 || 40 || Giant Tree || Three heads attack separately
+|-
+| Dullahan (2nd) || 2000 || 85 || 45 || Mount Gale || Upgraded version, very powerful
+|-
+| Pazuzu || 2500 || 95 || 50 || Pazuzu's Tower || Wind elemental, use Thunder
+|}
+
+== Doom Castle Monsters ==
+
+Final dungeon monsters:
+
+{| class="wikitable sortable"
+! Monster !! HP !! Attack !! Defense !! Speed !! Exp !! GP !! Weakness
+|-
+| Shadow || 300 || 60 || 35 || 10 || 200 || 160 || Holy
+|-
+| Vampire || 350 || 65 || 38 || 8 || 230 || 184 || Holy/Fire
+|-
+| Skullrus Rex || 400 || 70 || 40 || 6 || 260 || 208 || Holy
+|-
+| Thanatos || 450 || 75 || 42 || 7 || 300 || 240 || Holy
+|-
+| Lich || 500 || 80 || 45 || 5 || 350 || 280 || Holy
+|-
+| Behemoth || 600 || 90 || 50 || 4 || 420 || 336 || None
+|}
+
+=== Final Bosses ===
+
+{| class="wikitable"
+! Boss !! HP !! Attack !! Defense !! Notes
+|-
+| Dualhead Hydra || 3000 || 100 || 55 || First Doom Castle boss
+|-
+| Stone Golem || 3500 || 110 || 60 || Second Doom Castle boss
+|-
+| Twinhead Wyvern || 4000 || 120 || 65 || Third Doom Castle boss
+|-
+| Zuh || 5000 || 140 || 70 || Fourth Doom Castle boss
+|-
+| Dark King (Form 1) || 8000 || 150 || 75 || Spider form
+|-
+| Dark King (Form 2) || 10000 || 160 || 80 || Arms attack
+|-
+| Dark King (Form 3) || 12000 || 180 || 90 || Head attacks
+|-
+| Dark King (Form 4) || 15000 || 200 || 100 || Final form
+|}
+
+== Elemental Weaknesses ==
+
+{| class="wikitable"
+! Element !! Effective Against !! Spell/Weapon
+|-
+| Fire || Ice monsters, Undead, Plants || Fire spell, Flame
+|-
+| Water || Fire monsters || Blizzard spell, Ice weapons
+|-
+| Thunder || Flying, Water || Thunder spell, Thunder Axe
+|-
+| Holy || Undead, Dark creatures || White spell, Holy equipment
+|-
+| Axe || Plant monsters || Dragon Claw
+|-
+| None || No weakness || Physical attacks
+|}
+
+== Status Effects ==
+
+Monsters can inflict various status effects:
+
+{| class="wikitable"
+! Status !! Effect !! Cure
+|-
+| Poison || HP drains over time || Heal spell, item
+|-
+| Confusion || Random actions || Heal spell
+|-
+| Silence || Can't cast spells || Heal spell
+|-
+| Paralysis || Can't act || Heal spell, wears off
+|-
+| Petrify || Instant KO || Life spell only
+|-
+| Sleep || Can't act until hit || Attack or Heal
+|-
+| Blind || Reduced accuracy || Heal spell
+|}
+
+== Monster Transformations ==
+
+Some monsters change appearance when damaged:
+
+{| class="wikitable"
+! Monster !! Change Threshold !! Visual Change
+|-
+| Brownie || 50% HP || Angry expression
+|-
+| Skeleton || 50% HP || Damaged bones
+|-
+| Mummy || 50% HP || Unwrapping
+|-
+| All Bosses || Various || Multiple damage states
+|}
+
+This visual damage system is unique to FFMQ and doesn't affect monster statistics.
+
+== Battlefield Encounters ==
+
+Battlefields have 10 battles each with fixed enemy groups:
+
+{| class="wikitable"
+! Battlefield !! Region !! Enemies !! Reward
+|-
+| Level Forest || Foresta || Brownies, Mad Plants || Cure spell
+|-
+| Sand Temple || Foresta || Slimes, Poison Toads || 99 Seeds
+|-
+| Bone Dungeon || Foresta || Skeletons, Mummies || Exit spell
+|-
+| Wintry Cave || Aquaria || Gathers, Freezer Crabs || 99 Explosives
+|-
+| Ice Pyramid || Aquaria || Snow Crabs, Phanquids || Life spell
+|-
+| Mine || Fireburg || Hot Wings, Sting Rats || 99 Arrows
+|-
+| Volcano || Fireburg || Salamanders, Red Caps || Cure spell upgrade
+|-
+| Lava Dome || Fireburg || Gorgons, Sthenos || Meteor spell
+|-
+| Alive Forest || Windia || Live Oaks, Gargoyles || 99 Bombs
+|-
+| Giant Tree || Windia || Chimeras, Sphinxes || Flare spell
+|}
+
+[[Category:Final Fantasy Mystic Quest]]
+[[Category:Monsters]]
+[[Category:SNES Games]]
