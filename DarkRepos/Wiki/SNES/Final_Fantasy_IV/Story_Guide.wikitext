@@ -1,0 +1,210 @@
+{{Back|Final_Fantasy_IV}}
+
+= Story Guide =
+
+'''Final Fantasy IV''' tells the story of Cecil, a Dark Knight seeking redemption.
+
+__TOC__
+
+== Premise ==
+
+Cecil Harvey, captain of Baron's Red Wings airship fleet, questions his king's orders after attacking the innocent village of Mysidia to steal their Crystal. This begins his journey of redemption.
+
+== Part 1: Cecil's Doubts ==
+
+=== Baron Intro ===
+
+* Cecil returns from Mysidia with the Water Crystal
+* Questions his orders
+* King strips him of command
+* Sent to deliver a package to Mist Village
+
+=== Mist Destruction ===
+
+* Travel through Mist Cave (Mist Dragon boss)
+* Package contains Bomb Ring
+* Village destroyed
+* Rydia's mother dies
+* Cecil protects Rydia
+
+=== Desert Journey ===
+
+* Escape to Kaipo
+* Rosa is sick with desert fever
+* Need SandRuby from Antlion's Den
+* Edward joins party
+* Cure Rosa
+
+== Part 2: Gathering Allies ==
+
+=== Mt. Hobs ===
+
+* Reach Fabul through mountains
+* Yang joins after ice blocks
+* Mom Bomb boss
+
+=== Fabul Defense ===
+
+* Defend Fabul Castle
+* Kain has turned traitor
+* Golbez takes the Crystal
+* Rosa kidnapped
+* Party aboard ship, then attacked
+
+=== Mysidia ===
+
+* Wash ashore in Mysidia
+* Must atone for crimes
+* Elder sends Cecil to Mt. Ordeals
+* Palom and Porom join
+
+=== Mt. Ordeals ===
+
+* Climb the mountain
+* Face past as Dark Knight
+* Become a Paladin
+* Learn true history
+* Tellah recovers Meteo spell
+
+== Part 3: Rescue Rosa ==
+
+=== Magnetic Cave ===
+
+* Travel to Troia
+* Dark Elf has Earth Crystal
+* Edward's harp breaks spell
+* Recover Crystal
+
+=== Tower of Zot ===
+
+* Trade Crystal for Rosa
+* Climb the tower
+* Face the Magus Sisters
+* Golbez wounded by Tellah's Meteo
+* Tellah dies
+* Rescue Rosa
+* Kain breaks free temporarily
+
+=== Return to Baron ===
+
+* Retake Baron Castle
+* Defeat Cagnazzo (water fiend)
+* Palom and Porom petrify to save party
+* Gain Enterprise airship
+
+== Part 4: The Underworld ==
+
+=== Underground ===
+
+* Enter the Underworld via Agart
+* Meet Dwarven King Giott
+* Tower of Bab-il rises
+* Battles with Dr. Lugae and Rubicante
+
+=== Edge's Quest ===
+
+* Meet Edge in Eblan Cave
+* His parents transformed into monsters
+* Edge joins party
+
+=== The Crystals ===
+
+* Race for the remaining Crystals
+* Dark Crystals and Light Crystals
+* Golbez collecting them all
+
+=== Sealed Cave ===
+
+* Retrieve final Dark Crystal
+* Kain (controlled again) steals it
+* All eight Crystals taken
+
+== Part 5: The Moon ==
+
+=== Giant of Bab-il ===
+
+* Giant robot activated
+* Allies from throughout journey help
+* Board the Giant
+* Defeat elements inside
+* Golbez and Kain freed from control
+* Golbez is Cecil's brother
+
+=== Lunar Journey ===
+
+* Travel to the Moon via Big Whale
+* Meet FuSoYa
+* Learn of Zemus, true villain
+* Cecil is half-Lunarian
+
+=== Lunar Subterrane ===
+
+* Final dungeon
+* Boss gauntlet
+* Optional summons (Bahamut)
+* Reach Zemus's chamber
+
+=== Final Battle ===
+
+* Golbez and FuSoYa confront Zemus
+* Cast Twin Meteo
+* Zemus transforms to Zeromus
+* Golbez and FuSoYa defeated
+* Cecil's party takes over
+* Prayer from all allies enables Big Bang survival
+* Defeat Zeromus
+
+== Ending ==
+
+* Return to Earth
+* Multiple character epilogues
+* Cecil and Rosa marry
+* Crowned King and Queen of Baron
+* Peace restored
+
+== Key Events ==
+
+{| class="wikitable"
+! Event !! Chapter !! Significance
+|-
+| Mist Destruction || 1 || Sets Cecil's redemption path
+|-
+| Paladin Transformation || 2 || Cecil changes class
+|-
+| Palom/Porom Petrification || 3 || Sacrifice for party
+|-
+| Tellah's Death || 3 || Meteo's cost
+|-
+| Giant of Bab-il || 5 || All allies unite
+|-
+| Golbez Revealed || 5 || Brother revelation
+|}
+
+== Party Changes ==
+
+Characters join and leave frequently:
+
+{| class="wikitable"
+! Party Slot !! Early !! Mid !! Late
+|-
+| Cecil || Always || Always || Always
+|-
+| Slot 2 || Kain → Rydia || Various || Kain (final)
+|-
+| Slot 3 || Rosa → Edward || Various || Rosa (final)
+|-
+| Slot 4 || Twins → Tellah || Edge || Rydia (final)
+|-
+| Slot 5 || Yang → FuSoYa || Various || Edge (final)
+|}
+
+Final party: Cecil, Kain, Rosa, Rydia, Edge
+
+== Related Pages ==
+
+* [[Final_Fantasy_IV:Characters|Characters]]
+* [[Final_Fantasy_IV:Battle_System|Battle System]]
+* [[Final_Fantasy_IV:Summons|Summons]]
+
+[[Category:Final Fantasy IV]]
+[[Category:Story Guide]]

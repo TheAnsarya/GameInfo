@@ -1,0 +1,245 @@
+{{Back|Dragon_Quest_I_II}}
+
+= Battle System =
+
+'''Dragon Quest I & II''' (SNES) combines both games with enhanced combat.
+
+__TOC__
+
+== Dragon Quest I Combat ==
+
+=== Overview ===
+
+{| class="wikitable"
+! Aspect !! Description
+|-
+| Party Size || Solo hero
+|-
+| Encounters || Random, one-on-one
+|-
+| System || Turn-based
+|}
+
+=== Commands ===
+
+{| class="wikitable"
+! Command !! Effect
+|-
+| Fight || Physical attack
+|-
+| Spell || Cast magic
+|-
+| Item || Use inventory item
+|-
+| Run || Attempt to flee
+|}
+
+=== Statistics ===
+
+{| class="wikitable"
+! Stat !! Effect
+|-
+| HP || Health points
+|-
+| MP || Magic points
+|-
+| Strength || Attack damage
+|-
+| Agility || Speed, defense contribution
+|-
+| Level || Overall power
+|}
+
+== Dragon Quest II Combat ==
+
+=== Overview ===
+
+{| class="wikitable"
+! Aspect !! Description
+|-
+| Party Size || Up to 3 characters
+|-
+| Encounters || Multiple enemies
+|-
+| System || Turn-based
+|}
+
+=== Party Members ===
+
+{| class="wikitable"
+! Character !! Role !! Spells
+|-
+| Prince of Lorasia || Fighter || None
+|-
+| Prince of Samaltria || Hybrid || Some
+|-
+| Princess of Moonbrooke || Mage || Full list
+|}
+
+=== Commands ===
+
+Same as DQ1 but applied to multiple characters.
+
+=== Targeting ===
+
+{| class="wikitable"
+! Target Type !! Description
+|-
+| Single || One enemy
+|-
+| Group || Same enemy type
+|-
+| All || Every enemy
+|}
+
+== SNES Enhancements ==
+
+Compared to NES originals:
+
+{| class="wikitable"
+! Feature !! Enhancement
+|-
+| Graphics || 16-bit sprites and backgrounds
+|-
+| Music || Enhanced sound
+|-
+| Interface || Streamlined menus
+|-
+| Balance || Difficulty adjusted
+|-
+| Bank || Item storage system
+|}
+
+== Status Effects ==
+
+=== Negative ===
+
+{| class="wikitable"
+! Status !! Effect
+|-
+| Poison || HP drain per step
+|-
+| Sleep || Cannot act
+|-
+| Confusion || Random actions
+|-
+| Paralysis || Cannot act
+|-
+| Death || Knocked out
+|}
+
+=== Cures ===
+
+{| class="wikitable"
+! Status !! Cure
+|-
+| Poison || Antidote, spell
+|-
+| Sleep || Hit or time
+|-
+| Death || Church, spell
+|}
+
+== Magic System ==
+
+=== DQ1 Spells ===
+
+Hero learns limited spell set:
+* Heal line
+* Hurt line
+* Utility (Sleep, Return, etc.)
+
+=== DQ2 Spells ===
+
+{| class="wikitable"
+! Character !! Spell Types
+|-
+| Lorasia || None
+|-
+| Samaltria || Heal, some offense
+|-
+| Moonbrooke || Full Heal, full offense, support
+|}
+
+== Experience Points ==
+
+=== DQ1 ===
+
+All EXP goes to single hero.
+
+=== DQ2 ===
+
+EXP shared among living party members:
+* Dead characters get nothing
+* Level independently
+* Need varies by character
+
+== Gold ==
+
+{| class="wikitable"
+! Game !! Gold Notes
+|-
+| DQ1 || Hero carries all gold
+|-
+| DQ2 || Party shares gold pool
+|-
+| Both || Half lost on death
+|}
+
+== Combat Strategy ==
+
+=== DQ1 ===
+
+{| class="wikitable"
+! Situation !! Strategy
+|-
+| Weak enemies || Physical attacks
+|-
+| Strong enemies || Heal as needed
+|-
+| Dungeon crawl || Conserve MP
+|-
+| Boss || Full resources
+|}
+
+=== DQ2 ===
+
+{| class="wikitable"
+! Role !! Strategy
+|-
+| Lorasia || Always attack
+|-
+| Samaltria || Attack or emergency heal
+|-
+| Moonbrooke || Primary healer/nuker
+|}
+
+== Monster Groups ==
+
+DQ2 enemies appear in formations:
+
+{| class="wikitable"
+! Formation !! Tactical Note
+|-
+| Single || Focus fire
+|-
+| Group || Use group spells
+|-
+| Mixed || Prioritize dangerous enemies
+|}
+
+== Difficulty ==
+
+SNES version is more balanced than NES:
+* Less grinding required
+* Enemy stats adjusted
+* Quality of life improvements
+
+== Related Pages ==
+
+* [[Dragon_Quest_I_II:Characters|Characters]]
+* [[Dragon_Quest_I_II:Locations|Locations]]
+* [[Dragon_Quest_I_II:Spells|Spells]]
+
+[[Category:Dragon Quest I & II]]
+[[Category:Battle System]]
