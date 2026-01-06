@@ -15,6 +15,7 @@
 | [ROM Map](rom-map.md) | Complete ROM memory mapping |
 | [RAM Map](ram-map.md) | RAM addresses and variables |
 | [Data Structures](data-structures.md) | Table formats and layouts |
+| [Battle System](battle-system.md) | Combat mechanics and formulas |
 | [Text System](text-system.md) | Text encoding and dialog |
 
 ## Related Files

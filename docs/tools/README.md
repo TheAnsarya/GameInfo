@@ -12,6 +12,8 @@ This directory contains documentation for all Python tools in the GameInfo toolk
 | [Graphics Tools](graphics-tools.md) | Tile and sprite extraction | CHR, tiles, sprites |
 | [Text Tools](text-tools.md) | Text extraction and translation | TBL, pointers, strings |
 | [TAS Tools](../tas-converter.md) | TAS replay file conversion | Multi-format support |
+| [Emulator Tools](emulator-tools.md) | Emulator integration and debugging | Mesen, FCEUX, bsnes |
+| [Disassembly Guide](disassembly-guide.md) | Creating and maintaining disassemblies | Workflow, style guide |
 
 ## Quick Reference
 
