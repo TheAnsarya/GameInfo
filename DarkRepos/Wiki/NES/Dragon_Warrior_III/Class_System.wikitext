@@ -1,0 +1,295 @@
+{{Back|Dragon Warrior III}}
+__TOC__
+
+==Class System Overview==
+
+Dragon Warrior III introduced the class (vocation) system to the Dragon Quest series. Players can recruit party members of various classes at [[Luisa's Place|the tavern]], and characters can change classes at [[Dharma Temple]] after reaching level 20.
+
+==Class List==
+
+{| class="wikitable sortable"
+|-
+! ID !! Class !! HP !! MP !! STR !! AGI !! VIT !! INT !! LUCK !! Magic
+|-
+| $00 || Hero || High || High || High || High || High || High || High || Yes (unique)
+|-
+| $01 || Soldier || Very High || None || Very High || Medium || Very High || Low || Medium || No
+|-
+| $02 || Fighter || High || None || High || Very High || High || Medium || Medium || No
+|-
+| $03 || Pilgrim || Medium || High || Low || Medium || Medium || High || High || Healing
+|-
+| $04 || Wizard || Low || Very High || Very Low || Medium || Low || Very High || Medium || Offensive
+|-
+| $05 || Merchant || High || Low || Medium || Medium || High || Medium || High || Limited
+|-
+| $06 || Goof-off || Low || None || Low || Medium || Low || Low || Very High || No
+|-
+| $07 || Sage || Medium || Very High || Medium || Medium || Medium || Very High || High || All
+|}
+
+==Class Data Structure==
+
+Class stat growth data is stored in PRG bank 6.
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00 || 1 byte || Class ID
+|-
+| $01 || 1 byte || HP growth per level (base)
+|-
+| $02 || 1 byte || MP growth per level (base)
+|-
+| $03 || 1 byte || STR growth per level
+|-
+| $04 || 1 byte || AGI growth per level
+|-
+| $05 || 1 byte || VIT growth per level
+|-
+| $06 || 1 byte || INT growth per level
+|-
+| $07 || 1 byte || LUCK growth per level
+|-
+| $08 || 2 bytes || Equipment type flags
+|-
+| $0a || 2 bytes || Spell table pointer
+|}
+
+==Stat Retention==
+
+When changing class at Dharma Temple:
+* Level resets to 1
+* Stats are halved (rounded down)
+* All learned spells are retained
+
+{| class="wikitable"
+|-
+! Stat !! Retention Rate
+|-
+| HP || 50%
+|-
+| MP || 50%
+|-
+| STR || 50%
+|-
+| AGI || 50%
+|-
+| VIT || 50%
+|-
+| INT || 50%
+|-
+| LUCK || 50%
+|-
+| Spells || 100%
+|}
+
+==Class Abilities==
+
+===Hero===
+* Unique class - only the main character
+* Learns both offensive and healing magic
+* Cannot change class
+* Highest overall stat potential
+
+===Soldier===
+* Highest HP and physical defense
+* Equips heavy armor and shields
+* No magic capability
+* Best front-line fighter
+
+===Fighter===
+* High agility and critical hit rate
+* Cannot equip heavy armor
+* No magic capability
+* Excels at dealing damage quickly
+
+===Pilgrim===
+* Primary healing magic user
+* Medium HP and defense
+* Learns support and healing spells
+* Essential for party survival
+
+===Wizard===
+* Powerful offensive magic
+* Very low HP and defense
+* Highest MP growth
+* Glass cannon damage dealer
+
+===Merchant===
+* Bonus gold from battles
+* Can appraise items
+* Limited magic (some healing)
+* Useful for economy
+
+===Goof-off===
+* Random battle behavior
+* Highest luck growth
+* Can become Sage without Book of Satori
+* Generally weak until class change
+
+===Sage===
+* Advanced class, restricted access
+* Learns both Pilgrim and Wizard spells
+* Requires Book of Satori (except Goof-off)
+* Best magical class overall
+
+==Becoming a Sage==
+
+To change to the Sage class:
+# Reach level 20 in any class
+# Option A: Bring a Book of Satori to Dharma Temple
+# Option B: Be a level 20+ Goof-off (no item needed)
+
+The Book of Satori is found in:
+* [[Pyramid]] (single copy)
+* Monster drops (rare)
+
+==Spell Learning by Class==
+
+===Hero Spells===
+{| class="wikitable"
+|-
+! Level !! Spell !! Effect
+|-
+| 3 || Heal || Restore ~30 HP
+|-
+| 4 || Firebal || Fire damage to one
+|-
+| 7 || Return || Warp to towns
+|-
+| 12 || Healmore || Restore ~80 HP
+|-
+| 14 || Outside || Exit dungeons
+|-
+| 17 || Zap || Lightning damage
+|-
+| 19 || X-Ray || Reveal mimics
+|-
+| 26 || Ironize || Invincibility (temp)
+|-
+| 32 || Healusall || Heal party
+|-
+| 38 || Revive || Resurrect ally
+|}
+
+===Pilgrim Spells===
+{| class="wikitable"
+|-
+! Level !! Spell !! Effect
+|-
+| 1 || Heal || Restore HP
+|-
+| 3 || Surround || Lower accuracy
+|-
+| 5 || Upper || Raise defense
+|-
+| 7 || Antidote || Cure poison
+|-
+| 9 || Outside || Exit dungeons
+|-
+| 11 || Healmore || Restore more HP
+|-
+| 14 || Stepguard || Avoid damage floors
+|-
+| 17 || Vivify || 50% revive
+|-
+| 20 || Healall || Full HP to one
+|-
+| 24 || Barrier || Magic resistance
+|-
+| 30 || Revive || Full revive
+|-
+| 38 || Healusall || Full party heal
+|}
+
+===Wizard Spells===
+{| class="wikitable"
+|-
+! Level !! Spell !! Effect
+|-
+| 1 || Blaze || Fire damage
+|-
+| 3 || Sleep || Put enemy to sleep
+|-
+| 5 || Icebolt || Ice damage
+|-
+| 8 || Sap || Lower defense
+|-
+| 11 || Firebal || Fire to group
+|-
+| 14 || Snowblast || Ice to group
+|-
+| 17 || Infernos || Strong fire
+|-
+| 20 || Boom || Explosion damage
+|-
+| 23 || Firebane || Strong fire group
+|-
+| 26 || Bounce || Reflect spells
+|-
+| 30 || Blizzard || Strong ice group
+|-
+| 35 || Explodet || Strong explosion
+|}
+
+==Equipment Restrictions==
+
+{| class="wikitable"
+|-
+! Class !! Weapons !! Armor !! Shields
+|-
+| Hero || Swords, Axes || All || All
+|-
+| Soldier || Swords, Axes, Spears || Heavy || All
+|-
+| Fighter || Claws, Staves || Light || None
+|-
+| Pilgrim || Staves, Maces || Robes, Light || Small
+|-
+| Wizard || Staves, Knives || Robes || None
+|-
+| Merchant || Swords, Axes || Medium || Medium
+|-
+| Goof-off || Various (limited) || Light || Small
+|-
+| Sage || Staves, Swords || Robes, Medium || Small
+|}
+
+==RAM Addresses==
+
+{| class="wikitable"
+|-
+! Address !! Size !! Description
+|-
+| $6100 || 1 byte || Hero class (always $00)
+|-
+| $6140 || 1 byte || Party member 2 class
+|-
+| $6180 || 1 byte || Party member 3 class
+|-
+| $61c0 || 1 byte || Party member 4 class
+|}
+
+==Optimal Party Compositions==
+
+{| class="wikitable"
+|-
+! Strategy !! Party !! Notes
+|-
+| Balanced || Hero, Soldier, Pilgrim, Wizard || Traditional setup
+|-
+| Physical || Hero, Soldier, Soldier, Fighter || High damage, low magic
+|-
+| Magic || Hero, Pilgrim, Wizard, Sage || Spell-focused
+|-
+| Endgame || Hero, Sage, Sage, Sage || All magic coverage
+|}
+
+==See Also==
+* [[Dragon Warrior III:RAM_Map|RAM Map]] - Complete memory documentation
+* [[Dragon Warrior III:Values|Values]] - Game constants
+
+[[Category:Dragon Warrior III]]
+[[Category:Game Mechanics]]

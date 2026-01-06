@@ -63,10 +63,14 @@ Dragon Warrior III introduces the class system to the series, allowing players t
 
 ==Documentation==
 
+===Technical===
 * [[Dragon Warrior III:ROM_Map|ROM Map]] - Complete PRG ROM layout
 * [[Dragon Warrior III:RAM_Map|RAM Map]] - Runtime memory documentation
 * [[Dragon Warrior III:TBL|Text Table]] - Character encoding
 * [[Dragon Warrior III:Values|Values]] - Game constants
+
+===Game Systems===
+* [[Dragon Warrior III:Class_System|Class System]] - Vocations, stat growth, spell learning
 
 ==Known Dumps==
 

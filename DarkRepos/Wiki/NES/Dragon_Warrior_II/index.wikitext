@@ -53,9 +53,13 @@ Dragon Warrior II introduces multiple party members to the series, expanding on 
 
 ==Documentation==
 
+===Technical===
 * [[Dragon Warrior II:ROM_Map|ROM Map]] - Complete PRG ROM layout
 * [[Dragon Warrior II:RAM_Map|RAM Map]] - Runtime memory documentation
 * [[Dragon Warrior II:TBL|Text Table]] - Character encoding
+
+===Game Systems===
+* [[Dragon Warrior II:Party_System|Party System]] - Characters, stats, spell learning
 
 ==Known Dumps==
 

@@ -1,0 +1,302 @@
+{{Back|Dragon Warrior II}}
+__TOC__
+
+==Party System Overview==
+
+Dragon Warrior II was the first Dragon Quest game to feature a party of multiple characters. The Prince of Midenhall must find and recruit the other two descendants of Erdrick to defeat the evil sorcerer Hargon.
+
+==Party Members==
+
+===Prince of Midenhall===
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| Role || Warrior / Main Protagonist
+|-
+| Starting Level || 1
+|-
+| Magic || None
+|-
+| Strengths || Highest HP, Strength, Defense
+|-
+| Weaknesses || No magic capability
+|-
+| Join Location || Start of game (Midenhall Castle)
+|}
+
+The Prince of Midenhall is a pure warrior with no magical abilities. He compensates with the highest physical stats of the three heroes.
+
+'''Stat Growth:'''
+{| class="wikitable"
+|-
+! Stat !! Growth Rate !! Max Value
+|-
+| HP || Excellent || 255
+|-
+| MP || None || 0
+|-
+| STR || Excellent || 176
+|-
+| AGI || Good || 96
+|-
+| Defense || Excellent || 168
+|}
+
+===Prince of Cannock===
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| Role || Fighter/Mage Hybrid
+|-
+| Starting Level || 1 (when recruited)
+|-
+| Magic || Healing + Support
+|-
+| Strengths || Balanced stats, utility magic
+|-
+| Weaknesses || Jack of all trades
+|-
+| Join Location || Cannock Castle → Spring of Bravery
+|}
+
+The Prince of Cannock is a balanced character who can fight and use magic. He learns healing and support spells.
+
+'''Stat Growth:'''
+{| class="wikitable"
+|-
+! Stat !! Growth Rate !! Max Value
+|-
+| HP || Good || 130
+|-
+| MP || Moderate || 108
+|-
+| STR || Moderate || 123
+|-
+| AGI || Moderate || 108
+|-
+| Defense || Moderate || 105
+|}
+
+'''Spells Learned:'''
+{| class="wikitable"
+|-
+! Level !! Spell !! MP Cost !! Effect
+|-
+| 1 || Heal || 3 || Restore ~30 HP
+|-
+| 3 || Firebal || 4 || Fire damage to one enemy
+|-
+| 6 || Surround || 4 || Lower enemy accuracy
+|-
+| 10 || Outside || 6 || Exit dungeons
+|-
+| 12 || Healmore || 5 || Restore ~80 HP
+|-
+| 15 || Return || 8 || Warp to visited towns
+|-
+| 18 || Stepguard || 2 || Avoid damage tiles
+|-
+| 22 || Sacrifice || 1 || Trade life to defeat enemies
+|}
+
+===Princess of Moonbrooke===
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| Role || Mage / Primary Spellcaster
+|-
+| Starting Level || 1 (when recruited)
+|-
+| Magic || Offensive + Healing
+|-
+| Strengths || Highest MP, powerful spells
+|-
+| Weaknesses || Very low HP and defense
+|-
+| Join Location || Moonbrooke Castle (cursed)
+|}
+
+The Princess of Moonbrooke is the party's primary spellcaster. She was cursed and transformed into a dog by Hargon's forces; the [[Mirror of Ra]] removes this curse.
+
+'''Stat Growth:'''
+{| class="wikitable"
+|-
+! Stat !! Growth Rate !! Max Value
+|-
+| HP || Poor || 118
+|-
+| MP || Excellent || 201
+|-
+| STR || Poor || 73
+|-
+| AGI || Poor || 84
+|-
+| Defense || Poor || 56
+|}
+
+'''Spells Learned:'''
+{| class="wikitable"
+|-
+! Level !! Spell !! MP Cost !! Effect
+|-
+| 1 || Heal || 3 || Restore ~30 HP
+|-
+| 2 || Sleep || 3 || Put enemy to sleep
+|-
+| 4 || Antidote || 3 || Cure poison
+|-
+| 6 || Firebal || 4 || Fire damage to one
+|-
+| 8 || Infernos || 6 || Fire damage to group
+|-
+| 10 || Surround || 4 || Lower enemy accuracy
+|-
+| 12 || Healmore || 5 || Restore ~80 HP
+|-
+| 14 || Stopspell || 3 || Seal enemy magic
+|-
+| 16 || Defense || 2 || Lower enemy defense
+|-
+| 18 || Firebane || 6 || Strong fire to one
+|-
+| 20 || Defeat || 4 || Instant death (one)
+|-
+| 22 || Explodet || 8 || Explosion damage to all
+|-
+| 24 || Increase || 4 || Raise party defense
+|-
+| 26 || Healall || 8 || Full HP to one
+|-
+| 28 || Revive || 15 || 50% chance to revive
+|-
+| 30 || Chance || 15 || Random powerful effect
+|}
+
+==Recruitment Locations==
+
+{| class="wikitable"
+|-
+! Character !! Location !! Requirements
+|-
+| Prince of Midenhall || — || Starting character
+|-
+| Prince of Cannock || Spring of Bravery || Follow him from Cannock Castle
+|-
+| Princess of Moonbrooke || Moonbrooke Castle || Use [[Mirror of Ra]]
+|}
+
+==Party Data Structure==
+
+Character data is stored in RAM at fixed offsets:
+
+{| class="wikitable"
+|-
+! Address !! Size !! Description
+|-
+| $60-$6f || 16 bytes || Prince of Midenhall data
+|-
+| $70-$7f || 16 bytes || Prince of Cannock data
+|-
+| $80-$8f || 16 bytes || Princess of Moonbrooke data
+|}
+
+===Character Data Format===
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00 || 1 byte || Current HP (low)
+|-
+| $01 || 1 byte || Current HP (high)
+|-
+| $02 || 1 byte || Max HP (low)
+|-
+| $03 || 1 byte || Max HP (high)
+|-
+| $04 || 1 byte || Current MP
+|-
+| $05 || 1 byte || Max MP
+|-
+| $06 || 1 byte || Strength
+|-
+| $07 || 1 byte || Agility
+|-
+| $08 || 1 byte || Defense (base)
+|-
+| $09 || 1 byte || Experience (low)
+|-
+| $0a || 1 byte || Experience (mid)
+|-
+| $0b || 1 byte || Experience (high)
+|-
+| $0c || 1 byte || Level
+|-
+| $0d || 1 byte || Status flags
+|-
+| $0e || 1 byte || Weapon equipped
+|-
+| $0f || 1 byte || Armor equipped
+|}
+
+==Combat Roles==
+
+{| class="wikitable"
+|-
+! Character !! Primary Role !! Battle Strategy
+|-
+| Prince of Midenhall || Tank/Damage || Attack every turn, use items
+|-
+| Prince of Cannock || Support/Heal || Heal when needed, attack otherwise
+|-
+| Princess of Moonbrooke || Magic DPS/Heal || Cast offensive spells, emergency healing
+|}
+
+==Recommended Equipment==
+
+===Prince of Midenhall===
+{| class="wikitable"
+|-
+! Slot !! Best Equipment !! Location
+|-
+| Weapon || Sword of Destruction || Rhone Plateau
+|-
+| Armor || Armor of Erdrick || Cave to Rhone
+|-
+| Shield || Shield of Erdrick || Shrine
+|-
+| Helm || Helmet of Erdrick || Fire Shrine
+|}
+
+===Prince of Cannock===
+{| class="wikitable"
+|-
+! Slot !! Best Equipment !! Location
+|-
+| Weapon || Thunder Sword || Hargon's Castle
+|-
+| Armor || Magic Armor || Shop
+|-
+| Shield || Shield of Strength || Rhone
+|}
+
+===Princess of Moonbrooke===
+{| class="wikitable"
+|-
+! Slot !! Best Equipment !! Location
+|-
+| Weapon || Thunder Staff || Shop
+|-
+| Armor || Water Flying Cloth || Treasure
+|-
+| Shield || — || Cannot equip
+|}
+
+==See Also==
+* [[Dragon Warrior II:RAM_Map|RAM Map]] - Complete memory documentation
+* [[Dragon Warrior II:ROM_Map|ROM Map]] - ROM layout
+
+[[Category:Dragon Warrior II]]
+[[Category:Game Mechanics]]
