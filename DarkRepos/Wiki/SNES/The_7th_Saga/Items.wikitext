@@ -1,0 +1,318 @@
+{{Back|The 7th Saga (SNES)}}
+__TOC__
+
+== Overview ==
+
+Items in The 7th Saga include healing items, battle items, equipment, and the seven runes that form the game's main quest.
+
+== Healing Items ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Price !! Effect
+|-
+| $00 || Potion 1 || 8 || Restore 30 HP
+|-
+| $01 || Potion 2 || 40 || Restore 80 HP
+|-
+| $02 || Potion 3 || 200 || Restore 200 HP
+|-
+| $03 || M.Herb 1 || 20 || Restore 10 MP
+|-
+| $04 || M.Herb 2 || 100 || Restore 30 MP
+|-
+| $05 || M.Herb 3 || 400 || Restore 80 MP
+|-
+| $06 || Antidote || 12 || Cure poison
+|-
+| $07 || Mirror || 60 || Cure petrify
+|-
+| $08 || B.Agate || 300 || Revive (half HP)
+|-
+| $09 || B.Topaz || 2000 || Full revival
+|}
+
+== Battle Items ==
+
+{| class="wikitable"
+|-
+! ID !! Name !! Price !! Effect
+|-
+| $10 || FireStone || 150 || Fire 1 damage
+|-
+| $11 || IceStone || 150 || Ice 1 damage
+|-
+| $12 || WindBall || 200 || Wind damage to all
+|-
+| $13 || Bomb || 300 || Heavy damage (single)
+|-
+| $14 || Smoke || 100 || Escape battle
+|-
+| $15 || Paralyze || 120 || Paralyze enemy
+|-
+| $16 || SleepBall || 100 || Sleep effect
+|}
+
+== Field Items ==
+
+{| class="wikitable"
+|-
+! ID !! Name !! Price !! Effect
+|-
+| $20 || Wind || 20 || Return to entrance
+|-
+| $21 || Tent || 150 || Rest (restore some HP/MP)
+|-
+| $22 || Cabin || 500 || Rest (restore more HP/MP)
+|-
+| $23 || Opal || — || Save game anywhere
+|-
+| $24 || Crystal || — || Shows rune locations
+|}
+
+== The Seven Runes ==
+
+{| class="wikitable"
+|-
+! ID !! Name !! Location !! Guardian/Boss
+|-
+| $30 || Star Rune || Lemele Shrine || — (start)
+|-
+| $31 || Moon Rune || Baran Cave || Chimera
+|-
+| $32 || Wind Rune || Palsu Tower || Gariso
+|-
+| $33 || Water Rune || Pell Shrine || Serpent
+|-
+| $34 || Light Rune || Guanta Castle || Sorcerer
+|-
+| $35 || Sky Rune || Telaine || Dragon
+|-
+| $36 || Earth Rune || Gorsia's Castle || Gorsia
+|}
+
+== Rune Powers ==
+
+Collecting runes grants abilities:
+
+{| class="wikitable"
+|-
+! Rune !! Power
+|-
+| Star || None (starting rune)
+|-
+| Moon || +5 Magic stat
+|-
+| Wind || Cast Exit anywhere
+|-
+| Water || Walk on shallow water
+|-
+| Light || See hidden passages
+|-
+| Sky || Float over pits
+|-
+| Earth || Required for final boss
+|}
+
+== Weapons ==
+
+=== Swords (Kamil) ===
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Attack !! Price
+|-
+| $40 || Knife || 3 || 80
+|-
+| $41 || Short Sword || 8 || 300
+|-
+| $42 || Long Sword || 15 || 800
+|-
+| $43 || Steel Sword || 25 || 2000
+|-
+| $44 || Silver Sword || 35 || 5000
+|-
+| $45 || Crystal Sword || 50 || 15000
+|-
+| $46 || Hero Sword || 70 || —
+|-
+| $47 || Sword of Light || 99 || —
+|}
+
+=== Axes (Olvan) ===
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Attack !! Price
+|-
+| $50 || Hand Axe || 5 || 150
+|-
+| $51 || Battle Axe || 12 || 500
+|-
+| $52 || Great Axe || 22 || 1500
+|-
+| $53 || Giant Axe || 35 || 4000
+|-
+| $54 || Silver Axe || 48 || 10000
+|-
+| $55 || Crystal Axe || 65 || 25000
+|-
+| $56 || Doom Axe || 85 || —
+|}
+
+=== Staffs (Esuna, Valsu, Lejes) ===
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Attack !! Magic !! Price
+|-
+| $60 || Wood Staff || 2 || +2 || 50
+|-
+| $61 || Magic Staff || 5 || +5 || 400
+|-
+| $62 || Power Staff || 10 || +10 || 1500
+|-
+| $63 || Wizard Staff || 15 || +20 || 5000
+|-
+| $64 || Sage Staff || 25 || +30 || 15000
+|-
+| $65 || Star Staff || 35 || +50 || —
+|}
+
+=== Claws (Wilme) ===
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Attack !! Price
+|-
+| $70 || Claw 1 || 15 || —
+|-
+| $71 || Claw 2 || 30 || —
+|-
+| $72 || Claw 3 || 50 || —
+|-
+| $73 || Claw 4 || 75 || —
+|-
+| $74 || Claw 5 || 99 || —
+|}
+Note: Wilme's claws cannot be purchased; they upgrade at certain levels.
+
+=== Robot Parts (Lux) ===
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Attack !! Defense !! Price
+|-
+| $80 || Part 1 || 10 || 10 || —
+|-
+| $81 || Part 2 || 20 || 20 || —
+|-
+| $82 || Part 3 || 40 || 40 || —
+|-
+| $83 || Part 4 || 60 || 60 || —
+|-
+| $84 || Part 5 || 85 || 85 || —
+|}
+Note: Lux's parts are found/upgraded, not purchased.
+
+== Armor ==
+
+=== Heavy Armor (Kamil, Olvan) ===
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Defense !! Price
+|-
+| $90 || Leather || 4 || 100
+|-
+| $91 || Chain || 10 || 400
+|-
+| $92 || Plate || 18 || 1200
+|-
+| $93 || Silver || 28 || 4000
+|-
+| $94 || Crystal || 40 || 12000
+|-
+| $95 || Hero Armor || 60 || —
+|-
+| $96 || Light Armor || 80 || —
+|}
+
+=== Robes (Esuna, Valsu, Lejes) ===
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Defense !! Magic !! Price
+|-
+| $A0 || Cloth || 2 || +2 || 60
+|-
+| $A1 || Silk Robe || 6 || +5 || 300
+|-
+| $A2 || Magic Robe || 12 || +10 || 1000
+|-
+| $A3 || Wizard Robe || 20 || +15 || 3500
+|-
+| $A4 || Sage Robe || 30 || +25 || 10000
+|-
+| $A5 || Star Robe || 45 || +40 || —
+|}
+
+== Shields ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Defense !! Price !! Users
+|-
+| $B0 || Wood Shield || 2 || 50 || Kamil, Olvan
+|-
+| $B1 || Iron Shield || 6 || 250 || Kamil, Olvan
+|-
+| $B2 || Steel Shield || 12 || 800 || Kamil, Olvan
+|-
+| $B3 || Silver Shield || 20 || 3000 || Kamil, Olvan
+|-
+| $B4 || Crystal Shield || 32 || 8000 || Kamil, Olvan
+|-
+| $B5 || Hero Shield || 50 || — || Kamil only
+|}
+
+== Helmets ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Defense !! Price !! Users
+|-
+| $C0 || Leather Helm || 2 || 40 || All (except Wilme, Lux)
+|-
+| $C1 || Iron Helm || 5 || 200 || Kamil, Olvan
+|-
+| $C2 || Steel Helm || 10 || 600 || Kamil, Olvan
+|-
+| $C3 || Silver Helm || 16 || 2000 || Kamil, Olvan
+|-
+| $C4 || Crystal Helm || 25 || 6000 || Kamil, Olvan
+|-
+| $C5 || Hero Helm || 40 || — || Kamil only
+|}
+
+== Accessories ==
+
+{| class="wikitable"
+|-
+! ID !! Name !! Effect !! Price
+|-
+| $D0 || Power Ring || Attack +10 || 1000
+|-
+| $D1 || Protect Ring || Defense +10 || 1000
+|-
+| $D2 || Speed Ring || Speed +10 || 1000
+|-
+| $D3 || Magic Ring || Magic +10 || 1000
+|-
+| $D4 || Star Ring || All stats +5 || 5000
+|-
+| $D5 || Barrier Ring || Magic resist || 3000
+|-
+| $D6 || Life Ring || HP regen || 4000
+|}
+
+== See Also ==
+
+* [[Characters]]
+* [[Magic]]
+* [[ROM Map]]
+
+[[Category:The 7th Saga (SNES)]]

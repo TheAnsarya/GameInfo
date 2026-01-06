@@ -1,0 +1,273 @@
+{{Back|The 7th Saga (SNES)}}
+__TOC__
+
+== Overview ==
+
+Enemies in The 7th Saga are notable for their difficulty, particularly in the US version which has significantly buffed stats compared to the Japanese "Elnard" release.
+
+== Enemy Data Structure ==
+
+Each enemy entry is 24 bytes:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00-$01 || 2 || HP
+|-
+| $02-$03 || 2 || MP
+|-
+| $04 || 1 || Power
+|-
+| $05 || 1 || Guard
+|-
+| $06 || 1 || Magic
+|-
+| $07 || 1 || Speed
+|-
+| $08-$09 || 2 || Experience
+|-
+| $0A-$0B || 2 || Gold
+|-
+| $0C || 1 || Attack pattern
+|-
+| $0D || 1 || Magic pattern
+|-
+| $0E || 1 || Elemental weakness
+|-
+| $0F || 1 || Status immunity
+|-
+| $10-$17 || 8 || Reserved
+|}
+
+== Regular Enemies ==
+
+=== Early Game (Lemele Area) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Power !! Guard !! Speed !! EXP !! Gold
+|-
+| $00 || Wyvern || 20 || 8 || 6 || 5 || 4 || 5
+|-
+| $01 || G.Worm || 25 || 10 || 8 || 4 || 6 || 8
+|-
+| $02 || S.Tree || 30 || 12 || 10 || 3 || 8 || 12
+|-
+| $03 || R.Warrior || 35 || 14 || 12 || 6 || 12 || 15
+|-
+| $04 || Trick || 28 || 11 || 8 || 8 || 10 || 20
+|}
+
+=== Mid Game ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Power !! Guard !! Speed !! EXP !! Gold
+|-
+| $10 || Chimera || 150 || 45 || 35 || 20 || 120 || 180
+|-
+| $11 || D.Knight || 120 || 50 || 45 || 15 || 100 || 150
+|-
+| $12 || Mage || 80 || 30 || 20 || 25 || 80 || 100
+|-
+| $13 || G.Spider || 100 || 40 || 30 || 22 || 90 || 120
+|-
+| $14 || Demon || 180 || 55 || 40 || 18 || 150 || 200
+|}
+
+=== Late Game ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Power !! Guard !! Speed !! EXP !! Gold
+|-
+| $20 || S.Demon || 350 || 80 || 70 || 35 || 400 || 500
+|-
+| $21 || Dragon || 500 || 100 || 90 || 25 || 600 || 700
+|-
+| $22 || Wizard || 250 || 60 || 50 || 40 || 350 || 400
+|-
+| $23 || Dark Elf || 300 || 75 || 65 || 45 || 450 || 550
+|-
+| $24 || Golem || 600 || 120 || 150 || 10 || 700 || 800
+|}
+
+== Bosses ==
+
+{| class="wikitable"
+|-
+! ID !! Name !! Location !! HP !! Power !! Guard !! Special
+|-
+| $40 || Romus || Lemele Cave || 300 || 45 || 40 || Guards Star Rune
+|-
+| $41 || Chimera || Baran Cave || 800 || 70 || 55 || Fire breath
+|-
+| $42 || Gariso || Palsu Tower || 1200 || 85 || 70 || Magic attacks
+|-
+| $43 || Serpent || Pell Shrine || 1500 || 95 || 80 || Water attacks
+|-
+| $44 || Sorcerer || Guanta || 1800 || 80 || 65 || Heavy magic
+|-
+| $45 || Dragon || Telaine || 2500 || 130 || 110 || Breath attacks
+|-
+| $46 || Gorsia || Final Castle || 3500 || 150 || 130 || Multi-attack
+|}
+
+== Rival Apprentices ==
+
+AI rivals fight with player-equivalent stats. Their level scales with yours:
+
+{| class="wikitable"
+|-
+! Character !! Fighting Style !! Threat Level
+|-
+| Kamil || Balanced attacks || Medium
+|-
+| Olvan || Heavy physical || High (defense)
+|-
+| Esuna || Healing + attacks || Medium (heals self)
+|-
+| Wilme || Pure offense || Very High
+|-
+| Lux || Physical combo || High
+|-
+| Valsu || Defense + heals || Low (heals self)
+|-
+| Lejes || Magic spam || High (magic)
+|}
+
+'''Rival Level Formula (US):'''
+```
+Rival Level = (Player Level × 1.2) + Random(0-3)
+```
+
+'''Rival Level Formula (JP):'''
+```
+Rival Level = Player Level + Random(0-2)
+```
+
+This is why rivals feel much harder in the US version.
+
+== Enemy Attack Patterns ==
+
+{| class="wikitable"
+|-
+! Pattern ID !! Behavior
+|-
+| $00 || Attack only
+|-
+| $01 || Attack, can flee
+|-
+| $02 || Attack, call for help
+|-
+| $03 || Two attacks per turn
+|-
+| $04 || Attack + special move
+|-
+| $05 || Heavy attack (low accuracy)
+|-
+| $06 || Boss pattern (mix)
+|}
+
+== Magic Patterns ==
+
+{| class="wikitable"
+|-
+! Pattern ID !! Spells Used
+|-
+| $00 || None
+|-
+| $01 || Fire only
+|-
+| $02 || Ice only
+|-
+| $03 || Thunder only
+|-
+| $04 || Heal (self)
+|-
+| $05 || Status effects
+|-
+| $06 || Mixed attack magic
+|-
+| $07 || Boss magic (multiple)
+|}
+
+== Elemental Weaknesses ==
+
+{| class="wikitable"
+|-
+! Bit !! Element !! Enemies Weak
+|-
+| 0 || Fire || Ice creatures, plants
+|-
+| 1 || Ice || Fire creatures, demons
+|-
+| 2 || Thunder || Metal, machines
+|-
+| 3 || Vacuum || Flying creatures
+|-
+| 4 || Light || Undead, dark enemies
+|}
+
+== Status Immunities ==
+
+{| class="wikitable"
+|-
+! Bit !! Status !! Typically Immune
+|-
+| 0 || Poison || Undead, machines
+|-
+| 1 || Sleep || Bosses, undead
+|-
+| 2 || Paralysis || Bosses, large enemies
+|-
+| 3 || Confusion || Bosses, mindless
+|}
+
+== US vs JP Stat Differences ==
+
+The US version has significantly higher enemy stats:
+
+{| class="wikitable"
+|-
+! Stat !! JP Multiplier !! US Multiplier
+|-
+| HP || 1.0× || 1.5×
+|-
+| Power || 1.0× || 1.8×
+|-
+| Guard || 1.0× || 1.5×
+|-
+| EXP || 1.0× || 0.7×
+|-
+| Gold || 1.0× || 0.8×
+|}
+
+This results in a much more difficult game with slower progression.
+
+== Drop Items ==
+
+{| class="wikitable"
+|-
+! Enemy Type !! Common Drop !! Rare Drop !! Rate
+|-
+| Wyvern || Potion 1 || — || 1/8
+|-
+| R.Warrior || M.Herb 1 || Antidote || 1/6
+|-
+| Chimera || Potion 2 || B.Agate || 1/16
+|-
+| Dragon || Potion 3 || Crystal items || 1/32
+|-
+| Bosses || Key items || Equipment || Guaranteed
+|}
+
+== See Also ==
+
+* [[Characters]]
+* [[Magic]]
+* [[Items]]
+* [[ROM Map]]
+
+[[Category:The 7th Saga (SNES)]]

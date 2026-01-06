@@ -1,0 +1,176 @@
+{{Back|The 7th Saga (SNES)}}
+__TOC__
+
+== Overview ==
+
+The 7th Saga features seven playable characters, each with unique stats, abilities, and storylines. Players choose one protagonist at the beginning and compete against the other six (who become AI rivals) to collect the seven runes.
+
+== Character Selection ==
+
+{| class="wikitable"
+|-
+! ID !! Name !! Race !! Class !! Specialty
+|-
+| $00 || Kamil Dowonna || Human || Knight || Balanced fighter
+|-
+| $01 || Olvan Jaess || Dwarf || Warrior || High defense
+|-
+| $02 || Esuna Busy || Human || Healer || White magic
+|-
+| $03 || Wilme Pelin || Alien || Berserker || Raw power
+|-
+| $04 || Lux Tizer || Robot || Robot || Physical attacks
+|-
+| $05 || Valsu Saizer || Human || Priest || Support magic
+|-
+| $06 || Lejes Rimul || Demon || Sorcerer || Black magic
+|}
+
+== Base Statistics ==
+
+{| class="wikitable sortable"
+|-
+! Character !! HP !! MP !! Power !! Guard !! Magic !! Speed !! Will
+|-
+| Kamil || 45 || 10 || 12 || 10 || 10 || 10 || 8
+|-
+| Olvan || 60 || 0 || 14 || 14 || 4 || 6 || 10
+|-
+| Esuna || 35 || 20 || 6 || 6 || 14 || 8 || 12
+|-
+| Wilme || 70 || 0 || 16 || 8 || 2 || 12 || 6
+|-
+| Lux || 55 || 0 || 10 || 12 || 0 || 14 || 8
+|-
+| Valsu || 40 || 15 || 8 || 8 || 12 || 8 || 14
+|-
+| Lejes || 30 || 25 || 6 || 4 || 16 || 10 || 10
+|}
+
+== Stat Growth Per Level ==
+
+{| class="wikitable"
+|-
+! Character !! HP !! MP !! Power !! Guard !! Magic !! Speed
+|-
+| Kamil || +3-6 || +1-3 || +1-2 || +1-2 || +1-2 || +1-2
+|-
+| Olvan || +4-8 || +0 || +2-3 || +2-3 || +0-1 || +0-1
+|-
+| Esuna || +2-4 || +2-4 || +0-1 || +0-1 || +2-3 || +1-2
+|-
+| Wilme || +5-10 || +0 || +2-4 || +1-2 || +0 || +1-3
+|-
+| Lux || +4-6 || +0 || +1-2 || +2-3 || +0 || +2-3
+|-
+| Valsu || +2-5 || +2-3 || +1-2 || +1-2 || +2-3 || +1-2
+|-
+| Lejes || +1-3 || +3-5 || +0-1 || +0-1 || +2-4 || +1-2
+|}
+
+== Character Equipment ==
+
+=== Kamil Dowonna ===
+* Weapons: Swords, all types
+* Armor: Heavy armor, shields
+* Magic: Fire, Ice, Heal basics
+
+=== Olvan Jaess ===
+* Weapons: Axes, hammers
+* Armor: Heavy armor, shields
+* Magic: None
+
+=== Esuna Busy ===
+* Weapons: Staffs, whips
+* Armor: Robes, light armor
+* Magic: White magic (full)
+
+=== Wilme Pelin ===
+* Weapons: Claws (unique)
+* Armor: Cannot equip most
+* Magic: None
+
+=== Lux Tizer ===
+* Weapons: Guns, devices
+* Armor: Robot parts only
+* Magic: None
+
+=== Valsu Saizer ===
+* Weapons: Staffs, maces
+* Armor: Robes
+* Magic: Support/healing
+
+=== Lejes Rimul ===
+* Weapons: Wands, daggers
+* Armor: Robes
+* Magic: Black magic (full)
+
+== Apprentice Partners ==
+
+During the game, you can recruit one AI character as a partner:
+
+{| class="wikitable"
+|-
+! Protagonist !! Compatible Partners
+|-
+| Kamil || Olvan, Esuna, Valsu
+|-
+| Olvan || Kamil, Lux, Valsu
+|-
+| Esuna || Kamil, Valsu, Wilme
+|-
+| Wilme || Esuna, Lux, Lejes
+|-
+| Lux || Olvan, Wilme, Lejes
+|-
+| Valsu || Kamil, Olvan, Esuna
+|-
+| Lejes || Wilme, Lux (rarely others)
+|}
+
+Partners that refuse based on alignment:
+* Good characters won't join Lejes
+* Lejes won't join good characters
+* Lux is neutral (mechanical)
+
+== Rival Battles ==
+
+AI rivals level up alongside the player, often faster in the US version. When encountered in towns, they may:
+* Offer to join as partner
+* Challenge you to battle
+* Trade runes
+* Attack unprovoked
+
+'''Rival Difficulty Note:''' The US version has significantly buffed enemy/rival stats, making the game much harder than the Japanese "Elnard" version.
+
+== Character-Specific Endings ==
+
+Each character has a unique ending sequence based on their personality and goals:
+
+{| class="wikitable"
+|-
+! Character !! Ending Theme
+|-
+| Kamil || Becomes knight captain, rebuilds kingdom
+|-
+| Olvan || Returns to dwarven homeland
+|-
+| Esuna || Becomes high priestess
+|-
+| Wilme || Returns to space
+|-
+| Lux || Seeks his creator
+|-
+| Valsu || Spreads peace teachings
+|-
+| Lejes || Achieves dark ambitions
+|}
+
+== See Also ==
+
+* [[ROM Map]]
+* [[RAM Map]]
+* [[SRAM Map]]
+* [[Notes]]
+
+[[Category:The 7th Saga (SNES)]]

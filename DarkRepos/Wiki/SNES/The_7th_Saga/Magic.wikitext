@@ -1,0 +1,265 @@
+{{Back|The 7th Saga (SNES)}}
+__TOC__
+
+== Overview ==
+
+Magic in The 7th Saga is divided into attack, healing, and support categories. Not all characters can use magic - Olvan, Wilme, and Lux have no magical abilities.
+
+== Magic Users ==
+
+{| class="wikitable"
+|-
+! Character !! Magic Type !! Specialty
+|-
+| Kamil || Mixed || Basic attack and healing
+|-
+| Esuna || White || Full healing and support
+|-
+| Valsu || Support || Healing and buffs
+|-
+| Lejes || Black || Full attack magic
+|}
+
+== Attack Magic ==
+
+{| class="wikitable sortable"
+|-
+! Spell !! MP Cost !! Power !! Target !! Effect !! Users
+|-
+| Fire 1 || 2 || 15-25 || Single || Fire damage || Kamil, Lejes
+|-
+| Fire 2 || 6 || 40-60 || Single || Fire damage || Lejes
+|-
+| Ice 1 || 2 || 15-25 || Single || Ice damage || Kamil, Lejes
+|-
+| Ice 2 || 6 || 40-60 || Single || Ice damage || Lejes
+|-
+| Thunder 1 || 3 || 20-35 || All || Lightning || Lejes
+|-
+| Thunder 2 || 8 || 50-80 || All || Lightning || Lejes
+|-
+| Laser 1 || 4 || 25-40 || Single || Light damage || Lejes
+|-
+| Laser 2 || 12 || 80-120 || Single || Light damage || Lejes
+|-
+| Vacuum 1 || 5 || 30-50 || All || Wind damage || Lejes
+|-
+| Vacuum 2 || 15 || 100-150 || All || Wind damage || Lejes
+|}
+
+== Healing Magic ==
+
+{| class="wikitable sortable"
+|-
+! Spell !! MP Cost !! Power !! Target !! Effect !! Users
+|-
+| Heal 1 || 2 || 30-50 HP || Single || Restore HP || Kamil, Esuna, Valsu
+|-
+| Heal 2 || 6 || 80-120 HP || Single || Restore HP || Esuna, Valsu
+|-
+| Heal 3 || 12 || Full HP || Single || Restore HP || Esuna, Valsu
+|-
+| Heal 4 || 20 || Full HP || All || Restore HP || Esuna
+|-
+| Purify || 4 || — || Single || Cure poison || Esuna, Valsu
+|-
+| Revive || 30 || 50% HP || Single || Resurrect || Esuna
+|}
+
+== Support Magic ==
+
+{| class="wikitable sortable"
+|-
+! Spell !! MP Cost !! Target !! Duration !! Effect !! Users
+|-
+| Power || 4 || Single || Battle || Attack +25% || Kamil, Valsu
+|-
+| Protect || 4 || Single || Battle || Defense +25% || Valsu
+|-
+| Agility || 4 || Single || Battle || Speed +25% || Esuna
+|-
+| F.Shield || 8 || All || Battle || Fire resist || Esuna
+|-
+| I.Shield || 8 || All || Battle || Ice resist || Esuna
+|-
+| L.Shield || 8 || All || Battle || Light resist || Esuna
+|-
+| T.Shield || 8 || All || Battle || Thunder resist || Esuna
+|-
+| Elixir || 15 || Single || — || Cure all status || Valsu
+|}
+
+== Field Magic ==
+
+{| class="wikitable"
+|-
+! Spell !! MP Cost !! Effect !! Users
+|-
+| Exit || 8 || Leave dungeon || Esuna, Valsu
+|-
+| Return || 10 || Warp to town || Esuna, Valsu
+|-
+| Peep || 2 || Search for items || Esuna, Lejes
+|-
+| Defense || 6 || Reduce encounters || Valsu
+|}
+
+== Status Magic ==
+
+{| class="wikitable"
+|-
+! Spell !! MP Cost !! Target !! Effect !! Users
+|-
+| Sleep || 4 || All enemies || Inflict sleep || Lejes
+|-
+| Paralyze || 6 || Single || Inflict paralysis || Lejes
+|-
+| Poison || 3 || Single || Inflict poison || Lejes
+|-
+| Confuse || 5 || All enemies || Confuse enemies || Lejes
+|-
+| HPCatcher || 6 || Single || Drain HP || Lejes
+|-
+| MPCatcher || 8 || Single || Drain MP || Lejes
+|}
+
+== Spell Learning Levels ==
+
+=== Kamil ===
+{| class="wikitable"
+|-
+! Level !! Spell
+|-
+| 1 || Heal 1
+|-
+| 6 || Fire 1
+|-
+| 12 || Ice 1
+|-
+| 18 || Power
+|}
+
+=== Esuna ===
+{| class="wikitable"
+|-
+! Level !! Spell
+|-
+| 1 || Heal 1
+|-
+| 5 || Purify
+|-
+| 9 || Heal 2
+|-
+| 14 || Agility
+|-
+| 18 || Exit
+|-
+| 22 || Heal 3
+|-
+| 26 || Return
+|-
+| 32 || F.Shield
+|-
+| 36 || I.Shield
+|-
+| 40 || Heal 4
+|-
+| 45 || L.Shield, T.Shield
+|-
+| 50 || Revive
+|-
+| 55 || Peep
+|}
+
+=== Valsu ===
+{| class="wikitable"
+|-
+! Level !! Spell
+|-
+| 1 || Heal 1
+|-
+| 4 || Defense
+|-
+| 8 || Purify
+|-
+| 12 || Power
+|-
+| 16 || Protect
+|-
+| 20 || Heal 2
+|-
+| 26 || Exit
+|-
+| 30 || Heal 3
+|-
+| 36 || Return
+|-
+| 42 || Elixir
+|}
+
+=== Lejes ===
+{| class="wikitable"
+|-
+! Level !! Spell
+|-
+| 1 || Fire 1
+|-
+| 3 || Ice 1
+|-
+| 6 || Thunder 1
+|-
+| 10 || Poison
+|-
+| 14 || Sleep
+|-
+| 18 || Fire 2
+|-
+| 22 || Ice 2
+|-
+| 26 || Laser 1
+|-
+| 30 || Thunder 2
+|-
+| 34 || Paralyze
+|-
+| 38 || Confuse
+|-
+| 42 || Vacuum 1
+|-
+| 46 || HPCatcher
+|-
+| 50 || Laser 2
+|-
+| 54 || MPCatcher
+|-
+| 58 || Vacuum 2
+|-
+| 62 || Peep
+|}
+
+== Magic Resistance ==
+
+Some enemies resist certain magic types:
+
+{| class="wikitable"
+|-
+! Element !! Strong Against !! Weak Against
+|-
+| Fire || Ice enemies || Fire enemies
+|-
+| Ice || Fire enemies || Ice enemies
+|-
+| Thunder || Metal/machine || — 
+|-
+| Laser || Undead || — 
+|-
+| Vacuum || Flying enemies || — 
+|}
+
+== See Also ==
+
+* [[Characters]]
+* [[Items]]
+* [[ROM Map]]
+
+[[Category:The 7th Saga (SNES)]]
