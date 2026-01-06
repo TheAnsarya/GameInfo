@@ -1,0 +1,442 @@
+{{Back|Dragon_Warrior_II}}
+
+= Locations =
+
+'''Dragon Warrior II''' features an expanded world compared to the original, with multiple continents and islands to explore.
+
+__TOC__
+
+== World Overview ==
+
+The game spans two major regions:
+* '''Midenhall Region''' - Main continent with Midenhall, Cannock, and Moonbrooke
+* '''Greater World''' - Expanded area with Alefgard and new lands
+
+== Starting Region ==
+
+=== Midenhall Castle ===
+
+Home of the Prince of Midenhall.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Castle Town
+|-
+| Map ID || $00
+|-
+| Services || Inn (free), Save (King)
+|-
+| Events || Game start, final save point
+|-
+| NPCs || King, guards
+|}
+
+=== Lorasia Town ===
+
+Town near Midenhall.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Town
+|-
+| Map ID || $01
+|-
+| Services || Inn (4G), Weapon shop, Item shop
+|-
+| Notes || First shopping opportunity
+|}
+
+'''Shops:'''
+{| class="wikitable"
+! Type !! Items
+|-
+| Weapons || Copper Sword (100G), Chain Sickle (330G)
+|-
+| Armor || Leather Armor (70G), Chain Mail (390G)
+|-
+| Items || Herb (15G), Antidote (8G), Warp Wing (80G)
+|}
+
+== Cannock Region ==
+
+=== Cannock Castle ===
+
+Home of the Prince of Cannock.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Castle
+|-
+| Map ID || $02
+|-
+| Events || Recruit Prince of Cannock (eventually)
+|-
+| Notes || Prince has already left when you arrive
+|}
+
+=== Leftwyne ===
+
+Town where you find the Prince.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Town
+|-
+| Map ID || $03
+|-
+| Services || Inn (8G), Shops
+|-
+| Events || Catch up with Prince of Cannock
+|}
+
+== Moonbrooke Region ==
+
+=== Moonbrooke Castle ===
+
+Destroyed castle of the Princess.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Ruined Castle
+|-
+| Map ID || $04
+|-
+| Status || Destroyed by Hargon
+|-
+| Events || Find the Princess (as a dog)
+|}
+
+=== Lake Cave ===
+
+Cave with Moon Fragment.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Dungeon
+|-
+| Floors || 2
+|-
+| Treasure || Moon Fragment
+|-
+| Purpose || Find mirror location clue
+|}
+
+=== Tower South of Moonbrooke ===
+
+Tower with Ra's Mirror.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Tower
+|-
+| Floors || 4
+|-
+| Treasure || Ra's Mirror
+|-
+| Purpose || Restore Princess
+|}
+
+== Western Continent ==
+
+=== Hamlin ===
+
+Town with harbor access.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Town
+|-
+| Map ID || $05
+|-
+| Services || Inn (15G), Shops
+|-
+| Key Item || Ship ticket quest
+|}
+
+=== Lianport ===
+
+Major port town.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Port Town
+|-
+| Map ID || $06
+|-
+| Services || Inn (20G), Ship access
+|-
+| Events || Acquire ship
+|}
+
+== Southern Islands ==
+
+=== Zahan ===
+
+Small island town.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Island Town
+|-
+| Map ID || $07
+|-
+| Services || Basic amenities
+|-
+| Key Items || Golden Key hints
+|}
+
+=== Fire Shrine ===
+
+Shrine requiring Jailor's Key.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Shrine
+|-
+| Map ID || $08
+|-
+| Purpose || One of five Crests
+|-
+| Treasure || Fire Crest
+|}
+
+== Eastern Region ==
+
+=== Osterfair ===
+
+Town with casino-like features.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Town
+|-
+| Map ID || $09
+|-
+| Services || Inn, Shops, lottery
+|-
+| Events || Prize exchange
+|}
+
+=== Dragon's Horn Towers ===
+
+Twin towers on opposite shores.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Twin Towers
+|-
+| Floors || 3 each
+|-
+| Treasure || Wind Cloak (one tower)
+|-
+| Navigation || Requires ship
+|}
+
+== Alefgard Region ==
+
+The original Dragon Warrior world returns as a late-game area.
+
+=== Tantegel Castle ===
+
+King Lorik XVI's castle.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Castle
+|-
+| Map ID || $0A
+|-
+| Services || Save point, treasures
+|-
+| History || DW1 starting point
+|}
+
+=== Charlock Castle ===
+
+Former Dragonlord's castle.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Ruined Castle
+|-
+| Floors || Multiple
+|-
+| Events || Find Erdrick's sword and armor
+|-
+| History || DW1 final dungeon
+|}
+
+=== Brecconary ===
+
+Town south of Tantegel.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Town
+|-
+| Services || Shops, Inn
+|-
+| History || DW1 first town
+|}
+
+== Hargon's Region ==
+
+=== Rhone ===
+
+Dangerous mountain region.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Overworld region
+|-
+| Enemies || Strongest in game
+|-
+| Access || Cave of Rhone
+|}
+
+=== Cave of Rhone ===
+
+Massive maze leading to Hargon.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Dungeon
+|-
+| Floors || 6
+|-
+| Difficulty || Very hard
+|-
+| Hazards || Pits, damage floors
+|}
+
+=== Hargon's Castle ===
+
+Final dungeon.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Final Dungeon
+|-
+| Floors || 5
+|-
+| Bosses || Atlas, Bazuzu, Zarlox, Hargon, Malroth
+|-
+| Key Item || Eye of Malroth needed
+|}
+
+== Key Locations by Purpose ==
+
+=== Ship Acquisition ===
+
+{| class="wikitable"
+! Step !! Location !! Item/Event
+|-
+| 1 || Hamlin || Learn about ship
+|-
+| 2 || Lake Cave || Get Mirror clue
+|-
+| 3 || Tower || Get Ra's Mirror
+|-
+| 4 || Moonbrooke || Rescue Princess
+|-
+| 5 || Lianport || Get ship
+|}
+
+=== Five Crests ===
+
+{| class="wikitable"
+! Crest !! Location !! Key Required
+|-
+| Life Crest || Midenhall Shrine || None
+|-
+| Fire Crest || Fire Shrine || Jailor's Key
+|-
+| Water Crest || Water Shrine || Jailor's Key
+|-
+| Wind Crest || Tower near Beran || Magic Key
+|-
+| Thunder Crest || Sea Cave || Ship
+|}
+
+== Dungeon List ==
+
+{| class="wikitable sortable"
+! Dungeon !! Area !! Floors !! Key Treasure
+|-
+| Lake Cave || Moonbrooke || 2 || Moon Fragment
+|-
+| Tower South || Moonbrooke || 4 || Ra's Mirror
+|-
+| Dragon's Horn N || Eastern sea || 3 || Wind Cloak
+|-
+| Dragon's Horn S || Eastern sea || 3 || Items
+|-
+| Sea Cave || Ocean floor || 3 || Thunder Crest
+|-
+| Cave of Rhone || Rhone || 6 || Access to castle
+|-
+| Hargon's Castle || Rhone || 5 || Final boss
+|-
+| Charlock Castle || Alefgard || Multiple || Erdrick equipment
+|}
+
+== Map Coordinates ==
+
+{| class="wikitable"
+! Location !! X !! Y !! Notes
+|-
+| Midenhall || $38 || $68 || Start
+|-
+| Cannock || $50 || $30 || Prince location
+|-
+| Moonbrooke || $20 || $48 || Destroyed
+|-
+| Lianport || $30 || $98 || Ship
+|-
+| Tantegel || $58 || $48 || Alefgard
+|-
+| Hargon's Castle || $40 || $10 || Final
+|}
+
+== Travel Methods ==
+
+{| class="wikitable"
+! Method !! How to Get !! Enables
+|-
+| Walking || Default || Land travel
+|-
+| Ship || Lianport quest || Ocean travel
+|-
+| Return (spell) || Prince of Cannock || Town teleport
+|-
+| Warp Wing || Shop (80G) || Same as Return
+|}
+
+== Related Pages ==
+
+* [[Dragon_Warrior_II:Characters|Characters]]
+* [[Dragon_Warrior_II:Magic|Magic]]
+* [[Dragon_Warrior_II:Monsters|Monsters]]
+* [[Dragon_Warrior_II:Items|Items]]
+
+[[Category:Dragon Warrior II]]
+[[Category:Locations]]

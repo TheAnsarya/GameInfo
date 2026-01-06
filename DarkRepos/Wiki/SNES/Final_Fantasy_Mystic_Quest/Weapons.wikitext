@@ -1,0 +1,249 @@
+{{Back|Final_Fantasy_Mystic_Quest}}
+
+= Weapons =
+
+'''Final Fantasy Mystic Quest''' features a streamlined weapon system where Benjamin (the hero) equips different weapon types, each with unique properties.
+
+__TOC__
+
+== Weapon Overview ==
+
+Unlike traditional RPGs, FFMQ uses a fixed weapon progression system. Weapons cannot be bought or sold - they are found during the story.
+
+{| class="wikitable"
+! Category !! Count !! Usage
+|-
+| Swords || 4 || Main combat weapons
+|-
+| Axes || 4 || Combat + tree cutting
+|-
+| Claws || 4 || Combat + grappling
+|-
+| Bombs || 4 || Combat + wall breaking
+|}
+
+== Swords ==
+
+{| class="wikitable sortable"
+! Weapon !! Attack !! Location !! Notes
+|-
+| Steel Sword || 18 || Level Forest || Starting sword
+|-
+| Knight Sword || 32 || Bone Dungeon || After defeating Flamerous Rex
+|-
+| Excalibur || 67 || Fireburg || After volcano quest
+|-
+| Dragon Claw || 110 || Doom Castle || Final sword
+|}
+
+=== Sword Properties ===
+
+{| class="wikitable"
+! Sword !! Special Effect
+|-
+| Steel Sword || None
+|-
+| Knight Sword || None
+|-
+| Excalibur || Holy elemental
+|-
+| Dragon Claw || Strongest physical, can paralyze
+|}
+
+== Axes ==
+
+{| class="wikitable sortable"
+! Weapon !! Attack !! Location !! Notes
+|-
+| Axe || 22 || Foresta || After Level Forest
+|-
+| Battle Axe || 40 || Aquaria || After Wintry Cave
+|-
+| Giant's Axe || 75 || Fireburg || Volcano dungeon
+|-
+| Thunder Rock || 115 || Pazuzu's Tower || Near final
+|}
+
+=== Axe Properties ===
+
+{| class="wikitable"
+! Axe !! Special Effect
+|-
+| Axe || Can cut trees
+|-
+| Battle Axe || Can cut trees
+|-
+| Giant's Axe || Can cut trees
+|-
+| Thunder Rock || Lightning damage, can cut trees
+|}
+
+'''Field Use:''' All axes can cut down trees blocking paths.
+
+== Claws ==
+
+{| class="wikitable sortable"
+! Weapon !! Attack !! Location !! Notes
+|-
+| Cat Claw || 23 || Sand Temple || After bone dungeon
+|-
+| Charm Claw || 42 || Focus Tower (2nd) || After Ice Pyramid
+|-
+| Dragon Claw || 70 || Lava Dome || After Dualhead Hydra
+|-
+| Apollo Helmet || ?? || Special || Not standard progression
+|}
+
+=== Claw Properties ===
+
+{| class="wikitable"
+! Claw !! Special Effect
+|-
+| Cat Claw || Can grapple walls
+|-
+| Charm Claw || Can confuse enemies
+|-
+| Dragon Claw || Can poison, grapple
+|-
+| Apollo Helmet || Rare variant
+|}
+
+'''Field Use:''' Grapple onto wall hooks to cross gaps.
+
+== Bombs ==
+
+{| class="wikitable sortable"
+! Weapon !! Attack !! Location !! Notes
+|-
+| Bomb || 20 || Bone Dungeon || Early game
+|-
+| Jumbo Bomb || 38 || Falls Basin || After Aquaria events
+|-
+| Mega Grenade || 68 || Mine || After Fireburg
+|-
+| Thunder Rock || 115 || Pazuzu's Tower || Also counts as bomb
+|}
+
+=== Bomb Properties ===
+
+{| class="wikitable"
+! Bomb !! Special Effect
+|-
+| Bomb || Can break cracked walls
+|-
+| Jumbo Bomb || Fire damage, break walls
+|-
+| Mega Grenade || Fire damage, break walls
+|-
+| Thunder Rock || Multi-element, break walls
+|}
+
+'''Field Use:''' Break cracked walls and boulders.
+
+== Weapon Data Structure ==
+
+{| class="wikitable"
+! Offset !! Size !! Field
+|-
+| $00 || 1 || Weapon ID
+|-
+| $01 || 1 || Attack Power
+|-
+| $02 || 1 || Weapon Type (0=Sword, 1=Axe, 2=Claw, 3=Bomb)
+|-
+| $03 || 1 || Element
+|-
+| $04 || 1 || Special Effect
+|-
+| $05 || 1 || Field Action ID
+|-
+| $06 || 2 || Unused
+|}
+
+== Element Types ==
+
+{| class="wikitable"
+! ID !! Element !! Strong Against
+|-
+| 0 || None || --
+|-
+| 1 || Fire || Ice, Plant
+|-
+| 2 || Ice || Fire, Sand
+|-
+| 3 || Thunder || Water, Machine
+|-
+| 4 || Holy || Undead, Dark
+|-
+| 5 || Dark || Holy
+|}
+
+== Combat Strategies ==
+
+=== Boss Recommendations ===
+
+{| class="wikitable"
+! Boss !! Recommended Weapon !! Reason
+|-
+| Flamerous Rex || Steel Sword || Only weapon available
+|-
+| Squidite || Knight Sword + Bombs || Water weakness
+|-
+| Snow Crab || Battle Axe || Physical resistant
+|-
+| Ice Golem || Battle Axe || Physical weak
+|-
+| Dualhead Hydra || Mega Grenade || Fire weakness
+|-
+| Pazuzu || Thunder Rock || Best available
+|-
+| Dark King || Dragon Claw || Highest damage
+|}
+
+== Weapon Progression Chart ==
+
+```
+Level Forest: Steel Sword
+    ↓
+Bone Dungeon: Knight Sword, Bomb
+    ↓
+Sand Temple: Axe, Cat Claw
+    ↓
+Wintry Cave: Battle Axe
+    ↓
+Falls Basin: Jumbo Bomb
+    ↓
+Focus Tower 2: Charm Claw
+    ↓
+Volcano: Giant's Axe, Excalibur
+    ↓
+Mine: Mega Grenade
+    ↓
+Lava Dome: Dragon Claw
+    ↓
+Pazuzu's Tower: Thunder Rock
+    ↓
+Doom Castle: Dragon Claw (sword)
+```
+
+== ROM Addresses ==
+
+{| class="wikitable"
+! Data !! Address !! Bank
+|-
+| Weapon table || $01A000 || $03
+|-
+| Weapon names || $01A100 || $03
+|-
+| Weapon sprites || $078000 || $0F
+|}
+
+== Related Pages ==
+
+* [[Final_Fantasy_Mystic_Quest:Items|Items]]
+* [[Final_Fantasy_Mystic_Quest:Characters|Characters]]
+* [[Final_Fantasy_Mystic_Quest:Monsters|Monsters]]
+
+[[Category:Final Fantasy Mystic Quest]]
+[[Category:Items]]
+[[Category:Weapons]]

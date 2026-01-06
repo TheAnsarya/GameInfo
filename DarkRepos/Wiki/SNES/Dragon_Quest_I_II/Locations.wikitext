@@ -1,0 +1,350 @@
+{{Back|Dragon_Quest_I_II}}
+
+= Locations =
+
+'''Dragon Quest I & II''' for SNES includes all locations from both original games with enhanced graphics.
+
+__TOC__
+
+== Dragon Quest I Locations ==
+
+=== Alefgard Overview ===
+
+The kingdom of Alefgard, threatened by the Dragonlord.
+
+{| class="wikitable"
+! Region !! Major Locations
+|-
+| Central || Tantegel Castle, Brecconary
+|-
+| Western || Garinham, Mountain Cave
+|-
+| Southern || Kol, Northern Shrine
+|-
+| Eastern || Rimuldar, Charlock Castle
+|-
+| Southwestern || Cantlin (Mercado)
+|-
+| Ruins || Hauksness
+|}
+
+=== Tantegel Castle ===
+
+Starting location and home of King Lorik.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Services || Free rest (throne), Save (King)
+|-
+| Shops || Weapons, Armor, Items
+|-
+| Key NPCs || King Lorik, Princess Gwaelin
+|-
+| Secrets || Basement with Stones of Sunlight
+|}
+
+=== Brecconary ===
+
+First town, south of Tantegel.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Inn Cost || 6 Gold
+|-
+| Shops || Basic weapons, armor
+|-
+| Key Info || Clues about Erdrick
+|}
+
+=== Garinham ===
+
+Western town with cave access.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Inn Cost || 25 Gold
+|-
+| Shops || Intermediate equipment
+|-
+| Nearby || Garinham's Grave (cave)
+|}
+
+=== Kol ===
+
+Northern town near shrine.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Inn Cost || 20 Gold
+|-
+| Key Items || Fairy Flute (hidden)
+|-
+| Hot Spring || Restores HP
+|}
+
+=== Rimuldar ===
+
+Eastern trading town.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Inn Cost || 55 Gold
+|-
+| Shops || Keys sold here
+|-
+| Key Items || Purchase Magic Keys
+|}
+
+=== Cantlin (Mercado) ===
+
+Southern fortress town.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Guardian || Golem blocks entrance
+|-
+| Shops || Best equipment
+|-
+| Key Info || Final clues for ending
+|}
+
+=== Hauksness ===
+
+Destroyed city.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Status || Ruins, filled with enemies
+|-
+| Treasure || Armor of Erdrick
+|-
+| Enemies || Very strong monsters
+|}
+
+=== Charlock Castle ===
+
+The Dragonlord's fortress.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Final Dungeon
+|-
+| Floors || Multiple, maze-like
+|-
+| Boss || Dragonlord (2 forms)
+|-
+| Treasure || Sword of Erdrick (basement)
+|}
+
+== Dragon Quest I Dungeons ==
+
+{| class="wikitable sortable"
+! Dungeon !! Location !! Floors !! Key Items
+|-
+| Mountain Cave || West of Tantegel || 2 || None
+|-
+| Grave of Garinham || Near Garinham || 3 || Silver Harp
+|-
+| Swamp Cave || Southern swamp || 1 || Princess Gwaelin
+|-
+| Northern Shrine || North of Kol || 1 || Rain Staff
+|-
+| Southern Shrine || Island || 1 || Staff of Rain component
+|-
+| Charlock Castle || Dragonlord Island || 7 || Sword of Erdrick
+|}
+
+== Dragon Quest II Locations ==
+
+=== Midenhall Region ===
+
+{| class="wikitable"
+! Location !! Type !! Features
+|-
+| Midenhall Castle || Castle || Start point, save
+|-
+| Lorasia || Town || First shops
+|-
+| Spring of Bravery || Shrine || Heal point
+|}
+
+=== Cannock Region ===
+
+{| class="wikitable"
+! Location !! Type !! Features
+|-
+| Cannock Castle || Castle || Prince location hint
+|-
+| Leftwyne || Town || Find Prince of Cannock
+|-
+| Lake Cave || Dungeon || Moon Fragment
+|}
+
+=== Moonbrooke Region ===
+
+{| class="wikitable"
+! Location !! Type !! Features
+|-
+| Moonbrooke Castle || Ruins || Princess (as dog)
+|-
+| Tower South || Tower || Ra's Mirror
+|-
+| Moonbrooke || Town || Destroyed
+|}
+
+=== Western Lands ===
+
+{| class="wikitable"
+! Location !! Type !! Features
+|-
+| Hamlin || Town || Ship quest start
+|-
+| Lianport || Port || Obtain ship
+|-
+| Zahan || Island || Golden Key hints
+|}
+
+=== Eastern Regions ===
+
+{| class="wikitable"
+! Location !! Type !! Features
+|-
+| Osterfair || Town || Lottery, prizes
+|-
+| Dragon's Horn (N) || Tower || Wind Cloak
+|-
+| Dragon's Horn (S) || Tower || Treasures
+|-
+| Beran || Town || Magic Key shop
+|}
+
+=== Final Areas ===
+
+{| class="wikitable"
+! Location !! Type !! Features
+|-
+| Rhone || Overworld || Strongest enemies
+|-
+| Cave of Rhone || Dungeon || Maze to Hargon
+|-
+| Hargon's Castle || Dungeon || Final boss
+|}
+
+== Dragon Quest II Dungeons ==
+
+{| class="wikitable sortable"
+! Dungeon !! Region !! Floors !! Boss/Items
+|-
+| Lake Cave || Moonbrooke || 2 || Moon Fragment
+|-
+| Tower South || Moonbrooke || 4 || Ra's Mirror
+|-
+| Dragon's Horn North || Eastern Sea || 3 || Wind Cloak
+|-
+| Dragon's Horn South || Eastern Sea || 3 || None
+|-
+| Cave to Rhone || Rhone || 6 || Path to Hargon
+|-
+| Hargon's Castle || Rhone || 5 || Hargon, Malroth
+|}
+
+== Key Item Locations (DQ1) ==
+
+{| class="wikitable
+! Item !! Location !! Purpose
+|-
+| Stones of Sunlight || Tantegel Basement || Create Rainbow Bridge
+|-
+| Staff of Rain || Northern Shrine || Create Rainbow Bridge
+|-
+| Silver Harp || Grave of Garinham || Summon enemies
+|-
+| Erdrick's Tablet || Southern Shrine || Lore
+|-
+| Fairy Flute || Kol (hidden) || Wake Golem
+|-
+| Armor of Erdrick || Hauksness || Best armor
+|-
+| Sword of Erdrick || Charlock Castle || Best weapon
+|-
+| Princess Gwaelin || Swamp Cave || Rescue quest
+|}
+
+== Key Item Locations (DQ2) ==
+
+{| class="wikitable"
+! Item !! Location !! Purpose
+|-
+| Moon Fragment || Lake Cave || Mirror clue
+|-
+| Ra's Mirror || Tower South || Restore Princess
+|-
+| Ship || Lianport || Ocean travel
+|-
+| Golden Key || Ship wreck || Open gold doors
+|-
+| Jailor's Key || Buried treasure || Open jail doors
+|-
+| Life Crest || Shrine || Five Crests
+|-
+| Water Crest || Water Shrine || Five Crests
+|-
+| Eye of Malroth || Chest || Dispel illusion
+|}
+
+== Travel Methods ==
+
+=== Dragon Quest I ===
+
+{| class="wikitable"
+! Method !! Requirement !! Effect
+|-
+| Walk || Default || Land travel
+|-
+| Return || Level 13 || Teleport to Tantegel
+|-
+| Wings || Shop item || Same as Return
+|-
+| Rainbow Bridge || Stones + Staff || Cross to Charlock
+|}
+
+=== Dragon Quest II ===
+
+{| class="wikitable"
+! Method !! Requirement !! Effect
+|-
+| Walk || Default || Land travel
+|-
+| Ship || Lianport quest || Ocean travel
+|-
+| Return || Cannock spell || Teleport to towns
+|-
+| Wings || Shop item || Same as Return
+|}
+
+== World Map Differences ==
+
+The SNES version features:
+* Enhanced 16-bit graphics
+* Larger world maps
+* More detailed towns
+* Improved sprite work
+* Better color palettes
+
+== Related Pages ==
+
+* [[Dragon_Quest_I_II:Characters|Characters]]
+* [[Dragon_Quest_I_II:Items|Items]]
+* [[Dragon_Quest_I_II:Magic|Magic]]
+* [[Dragon_Quest_I_II:Monsters|Monsters]]
+
+[[Category:Dragon Quest I & II]]
+[[Category:Locations]]

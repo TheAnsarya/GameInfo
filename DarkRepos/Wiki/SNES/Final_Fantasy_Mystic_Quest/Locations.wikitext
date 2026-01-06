@@ -1,0 +1,420 @@
+{{Back|Final_Fantasy_Mystic_Quest}}
+
+= Locations =
+
+'''Final Fantasy Mystic Quest''' features a linear world structure with four main regions, each focused on a crystal element.
+
+__TOC__
+
+== World Overview ==
+
+The world is divided into four elemental regions:
+
+{| class="wikitable"
+! Region !! Element !! Crystal !! Main Town !! Boss
+|-
+| Foresta || Earth || Earth Crystal || Foresta || Flamerous Rex
+|-
+| Aquaria || Water || Water Crystal || Aquaria || Ice Golem
+|-
+| Fireburg || Fire || Fire Crystal || Fireburg || Dualhead Hydra
+|-
+| Windia || Wind || Wind Crystal || Windia || Pazuzu
+|}
+
+== Foresta Region ==
+
+=== Foresta ===
+
+Starting village, protected by Kaeli's mother.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Town
+|-
+| Services || Inn, Item shop (limited)
+|-
+| NPCs || Old Man (hints), Kaeli
+|-
+| Events || Meet Kaeli, begin quest
+|}
+
+=== Level Forest ===
+
+First dungeon, source of monsters.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Dungeon
+|-
+| Floors || 2
+|-
+| Puzzles || Tree cutting, switches
+|-
+| Treasures || Steel Sword, various items
+|-
+| Boss || Minotaur (mini-boss)
+|}
+
+=== Bone Dungeon ===
+
+Bone-themed dungeon with undead enemies.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Dungeon
+|-
+| Floors || 3
+|-
+| Enemy Types || Skeletons, ghosts
+|-
+| Treasures || Knight Sword, Bomb
+|-
+| Boss || Flamerous Rex
+|}
+
+=== Focus Tower (1st Visit) ===
+
+Central tower connecting regions.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Hub dungeon
+|-
+| Access || After Bone Dungeon
+|-
+| Destination || Sand Temple (Aquaria)
+|}
+
+== Aquaria Region ==
+
+=== Aquaria ===
+
+Water-themed town, under ice curse.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Town
+|-
+| Services || Inn, Weapon shop, Spell shop
+|-
+| NPCs || Captain Mac, Phoebe
+|-
+| Events || Frozen townspeople, ice quest
+|-
+| Partner || Phoebe joins
+|}
+
+=== Wintry Cave ===
+
+Ice cavern with water and ice puzzles.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Dungeon
+|-
+| Floors || 3
+|-
+| Enemy Types || Ice monsters
+|-
+| Treasures || Battle Axe, items
+|-
+| Boss || Squidite
+|}
+
+=== Ice Pyramid ===
+
+Pyramid dungeon with ice theme.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Dungeon
+|-
+| Floors || 4
+|-
+| Puzzles || Ice floor sliding
+|-
+| Boss || Ice Golem
+|-
+| Reward || Water Crystal restored
+|}
+
+=== Falls Basin ===
+
+Waterfall area with secrets.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Field area
+|-
+| Treasures || Jumbo Bomb
+|-
+| Puzzles || Bomb walls, hidden paths
+|}
+
+=== Focus Tower (2nd Visit) ===
+
+Return to tower for Fire region access.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| New Treasures || Charm Claw
+|-
+| Destination || Fireburg region
+|}
+
+== Fireburg Region ==
+
+=== Fireburg ===
+
+Fire-themed town near volcano.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Town
+|-
+| Services || Inn, shops
+|-
+| NPCs || Reuben, Arion, Tristam
+|-
+| Events || Volcano crisis
+|-
+| Partner || Reuben joins
+|}
+
+=== Mine ===
+
+Mining dungeon with fire hazards.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Dungeon
+|-
+| Floors || 2
+|-
+| Enemy Types || Fire monsters
+|-
+| Treasures || Mega Grenade
+|-
+| Boss || Jinn
+|}
+
+=== Sealed Temple ===
+
+Ancient temple with sealed passages.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Dungeon
+|-
+| Floors || 2
+|-
+| Puzzles || Switch puzzles
+|-
+| Boss || Medusa
+|}
+
+=== Volcano ===
+
+Active volcano dungeon.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Dungeon
+|-
+| Floors || 3
+|-
+| Hazards || Lava, eruptions
+|-
+| Treasures || Giant's Axe, Excalibur
+|-
+| Boss || Volcano eruption event
+|}
+
+=== Lava Dome ===
+
+Fire Crystal location.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Dungeon
+|-
+| Floors || 3
+|-
+| Enemy Types || Fire elementals
+|-
+| Boss || Dualhead Hydra
+|-
+| Reward || Fire Crystal restored
+|}
+
+== Windia Region ==
+
+=== Windia ===
+
+Wind-themed town in the sky.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Town
+|-
+| Services || Inn, best shops
+|-
+| NPCs || Kaeli returns, Otto, Norma
+|-
+| Events || Wind crisis, final quest
+|-
+| Partner || Kaeli rejoins (full strength)
+|}
+
+=== Mount Gale ===
+
+Mountain pass with wind currents.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Field dungeon
+|-
+| Hazards || Wind gusts
+|-
+| Puzzles || Grapple hook sections
+|}
+
+=== Pazuzu's Tower ===
+
+Tower of the wind fiend.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Dungeon
+|-
+| Floors || 7
+|-
+| Puzzles || Multi-floor switches
+|-
+| Treasures || Thunder Rock
+|-
+| Boss || Pazuzu
+|-
+| Reward || Wind Crystal restored
+|}
+
+=== Ship Dock ===
+
+Access to final dungeon.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Transition area
+|-
+| Event || Board ship to Focus Tower
+|}
+
+=== Focus Tower (Final) ===
+
+Complete tower for final boss.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Final hub
+|-
+| Access || All 4 crystals
+|-
+| Destination || Doom Castle
+|}
+
+== Doom Castle ==
+
+=== Doom Castle ===
+
+Final dungeon, Dark King's fortress.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Final dungeon
+|-
+| Floors || 5
+|-
+| Enemies || All types, strongest
+|-
+| Treasures || Dragon Claw (sword)
+|-
+| Boss || Dark King (4 forms)
+|}
+
+== Battlefield Locations ==
+
+Optional grinding areas on world map.
+
+{| class="wikitable sortable"
+! Battlefield !! Region !! Enemies !! Reward
+|-
+| Foresta Battlefield || Foresta || Brownies, Mad Plants || 54 EXP
+|-
+| Focus Tower BF || Focus || Various || 75 EXP
+|-
+| Aquaria Battlefield || Aquaria || Edgehogs, Mint Mints || 99 EXP
+|-
+| Fireburg Battlefield || Fireburg || Land Worms, Scorpions || 150 EXP
+|-
+| Windia Battlefield || Windia || Various wind types || 200 EXP
+|}
+
+== Location Data ==
+
+{| class="wikitable"
+! Location ID !! Name !! Region
+|-
+| $00 || Foresta || Earth
+|-
+| $01 || Level Forest || Earth
+|-
+| $02 || Bone Dungeon || Earth
+|-
+| $03 || Aquaria || Water
+|-
+| $04 || Wintry Cave || Water
+|-
+| $05 || Ice Pyramid || Water
+|-
+| $06 || Fireburg || Fire
+|-
+| $07 || Volcano || Fire
+|-
+| $08 || Lava Dome || Fire
+|-
+| $09 || Windia || Wind
+|-
+| $0A || Pazuzu's Tower || Wind
+|-
+| $0B || Doom Castle || Final
+|}
+
+== Related Pages ==
+
+* [[Final_Fantasy_Mystic_Quest:Characters|Characters]]
+* [[Final_Fantasy_Mystic_Quest:Weapons|Weapons]]
+* [[Final_Fantasy_Mystic_Quest:Monsters|Monsters]]
+
+[[Category:Final Fantasy Mystic Quest]]
+[[Category:Locations]]

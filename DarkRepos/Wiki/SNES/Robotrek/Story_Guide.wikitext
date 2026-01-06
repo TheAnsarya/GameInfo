@@ -1,0 +1,298 @@
+{{Back|Robotrek}}
+
+= Story Guide =
+
+'''Robotrek''' follows a young inventor who builds robots to save the world from the evil Hackers organization.
+
+__TOC__
+
+== Prologue ==
+
+=== Rococo Village ===
+
+The hero arrives in Rococo Village with his father, a famous inventor. The village is peaceful until the Hackers appear.
+
+'''Key Events:'''
+* Inherit father's lab
+* Build first robot
+* Meet village residents
+* Hackers kidnap villagers
+
+== Chapter 1: Rococo ===
+
+=== Lab Setup ===
+
+{| class="wikitable"
+! Objective !! Reward
+|-
+| Explore father's lab || Access to R&D room
+|-
+| Build first robot || Robot #1
+|-
+| Test robot in battle || Combat tutorial
+|}
+
+=== First Hacker Encounter ===
+
+{| class="wikitable"
+! Boss !! Location !! Reward
+|-
+| Hacker Grunt || Village outskirts || Rococo safe
+|-
+| Boss Robot || Hackers' base || Story progression
+|}
+
+== Chapter 2: Quintenix ===
+
+=== The Museum ===
+
+Travel to Quintenix to investigate stolen artifacts.
+
+'''Objectives:'''
+* Enter Quintenix
+* Investigate museum theft
+* Track Hackers to cave
+* Recover artifacts
+
+{| class="wikitable"
+! Location !! Events !! Boss
+|-
+| Quintenix Town || Meet curator || --
+|-
+| Museum || Discover theft || --
+|-
+| Cave || Fight Hackers || Cave Boss
+|}
+
+== Chapter 3: Forest ==
+
+=== Ancient Forest ===
+
+The Ancient Forest contains secrets from a lost civilization.
+
+'''Key Items:'''
+* Ancient documents
+* Forest map
+* Weather Machine part
+
+{| class="wikitable"
+! Area !! Enemies !! Treasure
+|-
+| Forest Entrance || Insects || Scrap 1
+|-
+| Deep Forest || Plant monsters || Bomb
+|-
+| Forest Shrine || Guardians || Ancient Scroll
+|}
+
+== Chapter 4: Volcano ==
+
+=== Mount Magma ===
+
+Hackers have established a base inside the volcano.
+
+'''Objectives:'''
+* Navigate lava areas
+* Disable Hacker machinery
+* Fight fire enemies
+* Defeat volcano boss
+
+{| class="wikitable"
+! Zone !! Hazards !! Notes
+|-
+| Base || None || Safe zone
+|-
+| Lower caves || Heat damage || Need Cooling Pack
+|-
+| Lava tunnels || Lava pits || Timed sections
+|-
+| Core || Boss arena || Final area
+|}
+
+== Chapter 5: Choco ==
+
+=== Choco Island ===
+
+A peaceful island with hidden Hacker activity.
+
+'''Features:'''
+* Beach resort area
+* Underground facility
+* Submarine base
+
+{| class="wikitable"
+! Location !! Key Items !! Events
+|-
+| Beach || Sunglasses || Meet ally
+|-
+| Resort || Key Card || Discover secret
+|-
+| Underwater || Submarine || Access new area
+|}
+
+== Chapter 6: Kirara ==
+
+=== Kirara Village ===
+
+A village with unique customs and problems.
+
+'''Objectives:'''
+* Help villagers
+* Solve mystery
+* Find village treasure
+* Defeat local boss
+
+== Chapter 7: Tower ==
+
+=== Hacker Tower ===
+
+Main Hacker headquarters.
+
+'''Structure:'''
+* Floor 1-5: Grunt areas
+* Floor 6-10: Lieutenant areas
+* Floor 11-15: Elite areas
+* Top floor: Commander
+
+{| class="wikitable"
+! Floor !! Boss !! Reward
+|-
+| 5 || Sub-boss 1 || Elevator Key
+|-
+| 10 || Sub-boss 2 || Access Card
+|-
+| 15 || Sub-boss 3 || Final Key
+|-
+| Top || Commander || Story completion
+|}
+
+== Chapter 8: Space ==
+
+=== Space Station ===
+
+The Hackers have a base in orbit.
+
+'''Requirements:'''
+* Complete Tower
+* Build space-worthy robot
+* Gather launch components
+
+{| class="wikitable"
+! Section !! Hazards !! Enemies
+|-
+| Launch Bay || None || Robots
+|-
+| Corridor || Vacuum areas || Space Hackers
+|-
+| Core || Zero gravity || Elite Guards
+|-
+| Command || Boss arena || Final Boss
+|}
+
+== Final Chapter ==
+
+=== Confrontation ===
+
+Face the true mastermind behind the Hackers.
+
+'''Final Sequence:'''
+1. Reach command center
+2. Defeat elite guards
+3. Fight penultimate boss
+4. True final boss appears
+5. Ending sequence
+
+== Side Quests ==
+
+=== Invention Contests ===
+
+{| class="wikitable"
+! Contest !! Location !! Reward
+|-
+| Rococo Contest || Town hall || 500G, Recipe
+|-
+| Regional || Quintenix || 1000G, Parts
+|-
+| National || Capital || 5000G, Secret Recipe
+|}
+
+=== Robot Customization ===
+
+{| class="wikitable"
+! Quest !! Requirement !! Reward
+|-
+| Speed Run || Beat boss in 2 min || Speed Part
+|-
+| Collection || Find all scraps || Super Bomb
+|-
+| No Damage || Beat area without damage || Defense Part
+|}
+
+== Boss List ==
+
+{| class="wikitable sortable"
+! Boss !! Chapter !! HP !! Weakness
+|-
+| Cave Guardian || 2 || 500 || Fire
+|-
+| Forest Spirit || 3 || 800 || Ice
+|-
+| Volcano Lord || 4 || 1200 || Water
+|-
+| Sea Monster || 5 || 1500 || Thunder
+|-
+| Tower Commander || 7 || 2000 || None
+|-
+| Space Tyrant || 8 || 3000 || Solar
+|-
+| Final Boss || 8 || 5000 || Varies
+|}
+
+== Story Branches ==
+
+Some choices affect the story:
+
+{| class="wikitable"
+! Choice !! Option A !! Option B
+|-
+| Help villager || Reward item || Miss item, harder boss
+|-
+| Robot design || Combat focus || Support focus
+|-
+| Final choice || Good ending || Alt ending
+|}
+
+== Key Characters ==
+
+{| class="wikitable"
+! Character !! Role !! Notes
+|-
+| Hero || Protagonist || Inventor, silent protagonist
+|-
+| Father || Mentor || Famous inventor, kidnapped
+|-
+| Nagisa || Ally || Helps in various chapters
+|-
+| Hacker Boss || Antagonist || True villain revealed late
+|-
+| Dr. Einst || NPC || Provides upgrades
+|}
+
+== Tips ==
+
+* Always upgrade robots between chapters
+* Save scrap for important recipes
+* Talk to all NPCs for hints
+* Revisit areas after events
+* Build multiple robot types
+
+== Related Pages ==
+
+* [[Robotrek:Inventions|Inventions]]
+* [[Robotrek:Recipes|Recipes]]
+* [[Robotrek:Enemies|Enemies]]
+* [[Robotrek:Maps|Maps]]
+
+[[Category:Robotrek]]
+[[Category:Walkthrough]]
+[[Category:Story]]
