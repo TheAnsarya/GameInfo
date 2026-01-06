@@ -1,0 +1,374 @@
+{{Back|Final_Fantasy_Mystic_Quest}}
+
+= Magic =
+
+'''Final Fantasy Mystic Quest''' features a streamlined magic system with three categories of spells.
+
+__TOC__
+
+== Magic Overview ==
+
+Magic is divided into three categories, each learned from spell books found during the adventure.
+
+{| class="wikitable"
+! Category !! Type !! User !! Notes
+|-
+| White Magic || Healing/Support || Benjamin, Allies || Defensive
+|-
+| Black Magic || Offensive || Benjamin, Allies || Attack spells
+|-
+| Wizard Magic || Powerful || Benjamin, Allies || Advanced spells
+|}
+
+== White Magic ==
+
+=== Cure ===
+
+{| class="wikitable"
+! Spell !! MP Cost !! Effect !! Target
+|-
+| Cure || 1 || Restore ~40 HP || Single
+|}
+
+'''Obtained:''' Level Forest (starting area)
+
+=== Heal ===
+
+{| class="wikitable"
+! Spell !! MP Cost !! Effect !! Target
+|-
+| Heal || 2 || Restore ~80 HP || Single
+|}
+
+'''Obtained:''' Bone Dungeon
+
+=== Life ===
+
+{| class="wikitable"
+! Spell !! MP Cost !! Effect !! Target
+|-
+| Life || 8 || Revive KO'd ally || Single
+|}
+
+'''Obtained:''' Ice Pyramid
+
+=== Exit ===
+
+{| class="wikitable"
+! Spell !! MP Cost !! Effect !! Target
+|-
+| Exit || 4 || Leave dungeon || Party
+|}
+
+'''Obtained:''' Focus Tower (first visit)
+
+== Black Magic ==
+
+=== Fire ===
+
+{| class="wikitable"
+! Spell !! MP Cost !! Damage !! Target
+|-
+| Fire || 1 || Fire ~30 || Single
+|}
+
+'''Obtained:''' Level Forest
+
+'''Strong Against:''' Ice enemies, plants
+
+=== Ice ===
+
+{| class="wikitable"
+! Spell !! MP Cost !! Damage !! Target
+|-
+| Ice || 1 || Ice ~30 || Single
+|}
+
+'''Obtained:''' Wintry Cave (through story)
+
+'''Strong Against:''' Fire enemies, desert creatures
+
+=== Thunder ===
+
+{| class="wikitable"
+! Spell !! MP Cost !! Damage !! Target
+|-
+| Thunder || 2 || Lightning ~40 || Single
+|}
+
+'''Obtained:''' Falls Basin area
+
+'''Strong Against:''' Water enemies, machines
+
+=== Quake ===
+
+{| class="wikitable"
+! Spell !! MP Cost !! Damage !! Target
+|-
+| Quake || 3 || Earth ~50 || All enemies
+|}
+
+'''Obtained:''' Fireburg area
+
+'''Notes:''' Hits all enemies, misses flying types
+
+== Wizard Magic ==
+
+=== Blizzard ===
+
+{| class="wikitable"
+! Spell !! MP Cost !! Damage !! Target
+|-
+| Blizzard || 4 || Ice ~80 || All enemies
+|}
+
+'''Obtained:''' Ice Pyramid
+
+'''Notes:''' Group ice attack
+
+=== Meteor ===
+
+{| class="wikitable"
+! Spell !! MP Cost !! Damage !! Target
+|-
+| Meteor || 6 || Non-elemental ~100 || All enemies
+|}
+
+'''Obtained:''' Pazuzu's Tower area
+
+'''Notes:''' Strongest offensive spell
+
+=== White ===
+
+{| class="wikitable"
+! Spell !! MP Cost !! Effect !! Target
+|-
+| White || 5 || Holy damage ~70 || All undead
+|}
+
+'''Obtained:''' Doom Castle area
+
+'''Strong Against:''' Undead, evil creatures
+
+=== Flare ===
+
+{| class="wikitable"
+! Spell !! MP Cost !! Damage !! Target
+|-
+| Flare || 8 || Fire ~120 || Single
+|}
+
+'''Obtained:''' Doom Castle
+
+'''Notes:''' Single-target devastation
+
+== Spell Progression ==
+
+{| class="wikitable"
+! Region !! White !! Black !! Wizard
+|-
+| Foresta || Cure || Fire || --
+|-
+| Aquaria || Heal || Ice || Blizzard
+|-
+| Fireburg || Life || Thunder, Quake || --
+|-
+| Windia || Exit || -- || Meteor
+|-
+| Doom Castle || -- || -- || White, Flare
+|}
+
+== MP System ==
+
+=== MP Recovery ===
+
+{| class="wikitable"
+! Method !! Effect
+|-
+| Inn || Full MP restore
+|-
+| Seed || Restore MP +20
+|-
+| Level Up || Full MP restore
+|-
+| Healing Spot || Variable restore
+|}
+
+=== Max MP by Character ===
+
+{| class="wikitable"
+! Character !! Starting MP !! Max MP (Lv 50)
+|-
+| Benjamin || 10 || 99
+|-
+| Kaeli || 15 || 80
+|-
+| Tristam || 8 || 60
+|-
+| Phoebe || 20 || 90
+|-
+| Reuben || 5 || 40
+|}
+
+== Elemental Effectiveness ==
+
+=== Elemental Triangle ===
+
+```
+Fire → Ice → Thunder → Fire
+         ↓
+       Earth (neutral)
+         ↓
+       Holy (special)
+```
+
+=== Boss Weaknesses ===
+
+{| class="wikitable sortable"
+! Boss !! Weakness !! Resist !! Notes
+|-
+| Flamerous Rex || Ice || Fire || First boss
+|-
+| Squidite || Thunder || Water || Water boss
+|-
+| Snow Crab || Fire || Ice || Ice boss
+|-
+| Ice Golem || Fire || Ice || Crystal boss
+|-
+| Jinn || Ice || Fire || Fire boss
+|-
+| Medusa || Thunder || -- || Stone gaze
+|-
+| Dualhead Hydra || Ice || Fire || Fire Crystal
+|-
+| Pazuzu || -- || -- || Wind boss
+|-
+| Dark King || White || -- || Final boss
+|}
+
+== Magic Data Structure ==
+
+{| class="wikitable"
+! Offset !! Size !! Field
+|-
+| $00 || 1 || Spell ID
+|-
+| $01 || 1 || MP Cost
+|-
+| $02 || 1 || Power
+|-
+| $03 || 1 || Element
+|-
+| $04 || 1 || Target Type
+|-
+| $05 || 1 || Effect Type
+|-
+| $06 || 1 || Animation ID
+|-
+| $07 || 1 || Sound ID
+|}
+
+=== Element IDs ===
+
+{| class="wikitable"
+! ID !! Element
+|-
+| 0 || None
+|-
+| 1 || Fire
+|-
+| 2 || Ice
+|-
+| 3 || Thunder
+|-
+| 4 || Earth
+|-
+| 5 || Holy
+|}
+
+=== Target Type IDs ===
+
+{| class="wikitable"
+! ID !! Target
+|-
+| 0 || Single enemy
+|-
+| 1 || All enemies
+|-
+| 2 || Single ally
+|-
+| 3 || All allies
+|-
+| 4 || Self
+|}
+
+== Spell Effectiveness ==
+
+=== Damage Formula ===
+
+```
+Base Damage = Spell Power + (Magic Stat / 4)
+Final Damage = Base × Elemental Modifier
+
+Elemental Modifier:
+  Weakness = 2.0
+  Normal = 1.0
+  Resist = 0.5
+  Immune = 0.0
+```
+
+=== Healing Formula ===
+
+```
+Heal Amount = Spell Power + (Magic Stat / 2)
+```
+
+== Battle Strategy ==
+
+=== Spell Priority ===
+
+'''Early Game (Foresta):'''
+1. Cure for healing
+2. Fire for damage
+3. Physical when MP low
+
+'''Mid Game (Aquaria-Fireburg):'''
+1. Blizzard for groups
+2. Thunder for water foes
+3. Heal for emergency
+
+'''Late Game (Windia-Doom):'''
+1. Meteor for groups
+2. Flare for bosses
+3. White for undead
+
+=== MP Conservation ===
+
+* Use physical attacks on weak enemies
+* Save powerful spells for bosses
+* Use weapon spell effects when available
+* Rest at inns before bosses
+
+== ROM Addresses ==
+
+{| class="wikitable"
+! Data !! Address !! Bank
+|-
+| Spell table || $01B000 || $03
+|-
+| Spell names || $01B100 || $03
+|-
+| Spell effects || $01B200 || $03
+|-
+| MP costs || $01B300 || $03
+|}
+
+== Related Pages ==
+
+* [[Final_Fantasy_Mystic_Quest:Characters|Characters]]
+* [[Final_Fantasy_Mystic_Quest:Weapons|Weapons]]
+* [[Final_Fantasy_Mystic_Quest:Monsters|Monsters]]
+* [[Final_Fantasy_Mystic_Quest:Locations|Locations]]
+
+[[Category:Final Fantasy Mystic Quest]]
+[[Category:Magic]]

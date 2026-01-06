@@ -1,0 +1,383 @@
+{{Back|Final_Fantasy_IV}}
+
+= Battle System =
+
+'''Final Fantasy IV''' introduced the Active Time Battle (ATB) system, revolutionizing JRPG combat.
+
+__TOC__
+
+== Active Time Battle ==
+
+=== ATB Overview ===
+
+The ATB system adds real-time elements to turn-based combat.
+
+{| class="wikitable"
+! Feature !! Description
+|-
+| ATB Gauge || Each character has a time bar
+|-
+| Fill Rate || Based on Agility stat
+|-
+| Action || Can act when gauge is full
+|-
+| Wait Mode || Game pauses in menus (optional)
+|-
+| Active Mode || Time flows continuously
+|}
+
+=== Gauge Mechanics ===
+
+```
+Fill Time = Base Time / (Agility + Equipment Bonuses)
+Base Time = 65535 (frames at 60 fps)
+```
+
+'''Speed Tiers:'''
+{| class="wikitable"
+! Agility !! Relative Speed
+|-
+| 1-20 || Very Slow
+|-
+| 21-40 || Slow
+|-
+| 41-60 || Normal
+|-
+| 61-80 || Fast
+|-
+| 81-99 || Very Fast
+|}
+
+== Commands ==
+
+=== Universal Commands ===
+
+{| class="wikitable"
+! Command !! Description !! Users
+|-
+| Fight || Basic attack || All
+|-
+| Item || Use inventory items || All
+|-
+| Row || Switch front/back || All
+|-
+| Defend || Reduce damage 50% || All
+|}
+
+=== Character-Specific Commands ===
+
+{| class="wikitable sortable"
+! Command !! Character(s) !! Effect
+|-
+| Jump || Kain || Leave battle, return with 2x damage
+|-
+| Summon || Rydia || Call Eidolons
+|-
+| White || Rosa, Porom || White magic
+|-
+| Black || Rydia, Palom, Tellah || Black magic
+|-
+| Sing || Edward || Various buff effects
+|-
+| Hide || Edward || Avoid all attacks
+|-
+| Pray || Cecil (Paladin) || Weak party heal
+|-
+| Cover || Cecil (Paladin) || Take hits for allies
+|-
+| Aim || Rosa || Never miss attack
+|-
+| Kick || Yang || Attack all enemies
+|-
+| Focus || Yang || Charged attack (2x)
+|-
+| Recall || Tellah || Random forgotten spell
+|-
+| Twin || Palom & Porom || Powerful combined magic
+|-
+| Peep || Cid || View enemy stats
+|-
+| Upgrade || Cid || Weapon modification
+|-
+| Dart || Edge || Throw weapons
+|-
+| Sneak || Edge || Steal items
+|-
+| Ninjutsu || Edge || Ninja magic
+|}
+
+== Damage Calculations ==
+
+=== Physical Damage ===
+
+```
+Base Damage = (Attack × 2) - Defense
+Damage = Base × Multiplier × Random(0.875-1.125)
+Multiplier = Level / 4 + Strength / 4
+
+Minimum Damage = 1
+Critical = Damage × 2
+```
+
+'''Attack Calculation:'''
+```
+Attack = Weapon Attack + Strength / 4 + Level / 4
+```
+
+=== Magical Damage ===
+
+```
+Base = Spell Power × (Intelligence / 2 + Level / 2)
+Damage = Base × Elemental Modifier × Random(0.75-1.25)
+
+Healing = Spell Power × Spirit / 4 + Level / 4
+```
+
+== Elements ==
+
+=== Element Types ===
+
+{| class="wikitable"
+! Element !! Strong Against !! Weak Against
+|-
+| Fire || Ice, Undead || Fire enemies
+|-
+| Ice || Fire, Desert || Ice enemies
+|-
+| Lightning || Water, Machine || Lightning enemies
+|-
+| Holy || Undead, Dark || Holy enemies
+|-
+| Dark || Holy || Dark enemies
+|-
+| Earth || Flying (immune) || Earth enemies
+|}
+
+=== Elemental Modifiers ===
+
+{| class="wikitable"
+! Modifier !! Effect
+|-
+| Weak || 2× damage
+|-
+| Normal || 1× damage
+|-
+| Resist || 0.5× damage
+|-
+| Immune || 0× damage
+|-
+| Absorb || Heals instead
+|}
+
+== Status Effects ==
+
+=== Negative Status ===
+
+{| class="wikitable sortable"
+! Status !! Effect !! Duration !! Cure
+|-
+| Poison || Lose HP each turn || Battle || Antidote, Esuna
+|-
+| Blind || Reduced accuracy || Battle || Eye Drops, Esuna
+|-
+| Silence || Cannot cast magic || Battle || Echo Herbs, Esuna
+|-
+| Sleep || Cannot act || 1-4 turns || Physical hit, Esuna
+|-
+| Confuse || Random actions || Until hit || Physical hit, Esuna
+|-
+| Paralyze || Cannot act || 1-3 turns || Esuna
+|-
+| Pig || Reduced stats, no magic || Until cured || Diet Food, Esuna
+|-
+| Mini || Severely reduced stats || Until cured || Mallet, Size
+|-
+| Toad || Cannot fight effectively || Until cured || Maiden's Kiss, Toad
+|-
+| Petrify || Out of battle || Permanent || Soft, Esuna
+|-
+| KO || Dead || Permanent || Life, Phoenix Down
+|}
+
+=== Positive Status ===
+
+{| class="wikitable"
+! Status !! Effect !! Duration
+|-
+| Protect || Reduce physical damage || Battle
+|-
+| Shell || Reduce magic damage || Battle
+|-
+| Haste || Double ATB speed || Battle
+|-
+| Blink || Avoid physical attacks || Battle
+|-
+| Reflect || Bounce spells || Battle
+|-
+| Regen || Recover HP over time || Battle
+|}
+
+== Enemy Targeting ==
+
+=== Target Types ===
+
+{| class="wikitable"
+! Type !! Description
+|-
+| Single || One target
+|-
+| All || All enemies/allies
+|-
+| Random || Random target
+|-
+| Self || Caster only
+|-
+| Row || Front or back row
+|}
+
+=== AI Behavior ===
+
+Enemies follow scripted patterns:
+
+{| class="wikitable"
+! Pattern Type !! Behavior
+|-
+| Sequential || Execute actions in order
+|-
+| Conditional || HP thresholds trigger actions
+|-
+| Reactive || Counter specific player actions
+|-
+| Random || Weighted random selection
+|}
+
+== Party Formation ==
+
+=== Row System ===
+
+{| class="wikitable"
+! Row !! Physical Damage !! Magic Damage !! Notes
+|-
+| Front || Full dealt/received || Full || Melee range
+|-
+| Back || Half dealt/received || Full || Ranged OK
+|}
+
+'''Row Effects:'''
+* Melee weapons from back row = half damage
+* Ranged weapons unaffected by row
+* Bows, thrown weapons = full damage from back
+
+=== Party Size ===
+
+{| class="wikitable"
+! Phase !! Max Party Size
+|-
+| Early game || 5
+|-
+| Mid game || 5
+|-
+| Late game || 5
+|-
+| Final party || 5 (fixed composition)
+|}
+
+== Experience & Rewards ==
+
+=== Experience Distribution ===
+
+```
+Total EXP = Sum of enemy EXP values
+Each living member = Total EXP / Living Members
+```
+
+'''Level Up:'''
+* Stat gains based on character class
+* HP/MP increases vary by level
+* Some abilities learned at specific levels
+
+=== Gil Distribution ===
+
+```
+Total Gil = Sum of enemy Gil values
+Party receives = Total Gil (shared)
+```
+
+== Boss Mechanics ==
+
+=== Boss Properties ===
+
+{| class="wikitable"
+! Property !! Effect
+|-
+| No Flee || Cannot escape
+|-
+| High HP || Much higher than normal
+|-
+| Phases || Attack patterns change
+|-
+| Counter || React to specific attacks
+|-
+| Immunity || Resist status effects
+|}
+
+=== Notable Bosses ===
+
+{| class="wikitable sortable"
+! Boss !! HP !! Weakness !! Strategy
+|-
+| Mist Dragon || 465 || -- || Don't attack mist form
+|-
+| Baigan || 4444 || -- || Kill arms first
+|-
+| Cagnazzo || 5312 || Lightning || Lit when shell up
+|-
+| Valvalis || 8636 || -- || Kain Jump interrupts
+|-
+| Rubicante || 34000 || Ice || Blizzara when cloak open
+|-
+| Golbez || 2943 || -- || Story battle
+|-
+| Zeromus || 72000 || Crystal || Use Crystal, then attack
+|}
+
+== Technical Data ==
+
+=== Battle RAM ===
+
+{| class="wikitable"
+! Address !! Size !! Description
+|-
+| $7E1000 || 256 || Party battle data
+|-
+| $7E1100 || 512 || Enemy battle data
+|-
+| $7E1300 || 64 || ATB gauges
+|-
+| $7E1340 || 32 || Status effects
+|-
+| $7E1400 || 128 || Command queue
+|}
+
+=== Damage Cap ===
+
+{| class="wikitable"
+! Type !! Cap
+|-
+| Single hit || 9999
+|-
+| Healing || 9999
+|-
+| Total HP || 9999
+|}
+
+== Related Pages ==
+
+* [[Final_Fantasy_IV:Characters|Characters]]
+* [[Final_Fantasy_IV:Magic|Magic]]
+* [[Final_Fantasy_IV:Enemies|Enemies]]
+* [[Final_Fantasy_IV:ATB_System|ATB System]]
+
+[[Category:Final Fantasy IV]]
+[[Category:Battle System]]
+[[Category:Game Mechanics]]

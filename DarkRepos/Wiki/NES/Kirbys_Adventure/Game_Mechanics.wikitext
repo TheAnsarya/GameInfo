@@ -1,0 +1,356 @@
+{{Back|Kirbys_Adventure}}
+
+= Game Mechanics =
+
+'''Kirby's Adventure''' features unique gameplay mechanics centered around Kirby's copy abilities and exploration.
+
+__TOC__
+
+== Core Mechanics ==
+
+=== Movement ===
+
+{| class="wikitable"
+! Action !! Input !! Notes
+|-
+| Walk || D-pad Left/Right || Basic movement
+|-
+| Run || -- || No run in this game
+|-
+| Crouch || D-pad Down || Dodge attacks, slide
+|-
+| Swim || D-pad in water || Automatic in water
+|-
+| Fly || A/B after inflating || Unlimited flight
+|}
+
+=== Inhale System ===
+
+Kirby's signature ability.
+
+{| class="wikitable"
+! Action !! Input !! Result
+|-
+| Inhale || B || Suck in enemies/items
+|-
+| Swallow || Down + B || Gain copy ability
+|-
+| Star Spit || B while full || Projectile attack
+|-
+| Air Puff || B while flying || Small projectile
+|}
+
+'''Inhale Properties:'''
+* Range: ~3 tiles in front
+* Can inhale multiple small enemies
+* Large enemies take multiple inhales
+* Some enemies cannot be inhaled
+
+=== Health System ===
+
+{| class="wikitable"
+! Stat !! Value !! Notes
+|-
+| Max HP || 6 bars || Standard health
+|-
+| Damage || 1-2 bars || Per hit usually
+|-
+| Recovery || Food items || Varies by item
+|}
+
+'''Health Items:'''
+{| class="wikitable"
+! Item !! Recovery
+|-
+| Pep Drink || 2 bars
+|-
+| Maxim Tomato || Full health
+|-
+| 1-Up || Extra life
+|}
+
+== Copy Abilities ==
+
+=== Ability System ===
+
+When Kirby swallows certain enemies, he gains their power.
+
+{| class="wikitable"
+! Action !! Input !! Effect
+|-
+| Use Ability || B || Depends on ability
+|-
+| Discard || Select || Lose current ability
+|-
+| Take Damage || Hit while using || May lose ability
+|}
+
+=== Ability Categories ===
+
+'''Attack Abilities:'''
+{| class="wikitable"
+! Ability !! Attack !! Range !! Source
+|-
+| Beam || Energy whip || Medium || Waddle Doo
+|-
+| Fire || Fire breath || Short || Burning Leo
+|-
+| Freeze || Ice crystal || Touch || Chilly
+|-
+| Spark || Electric shield || Touch || Sparky
+|-
+| Sword || Sword slash || Short || Blade Knight
+|-
+| Cutter || Boomerang || Long || Sir Kibble
+|}
+
+'''Utility Abilities:'''
+{| class="wikitable"
+! Ability !! Effect !! Notes
+|-
+| Ball || Transform into ball || Bouncy movement
+|-
+| Backdrop || Grab and throw || Touch enemies
+|-
+| Hi-Jump || Super jump || Vertical travel
+|-
+| Wheel || Rolling form || Fast horizontal
+|-
+| UFO || Flying saucer || Rare, powerful
+|}
+
+== Scoring System ==
+
+=== Points ===
+
+{| class="wikitable"
+! Action !! Points
+|-
+| Defeat enemy || 100-500
+|-
+| Inhale enemy || 200
+|-
+| Star bullet hit || 300
+|-
+| Ability defeat || 400
+|-
+| Boss damage || 1000
+|}
+
+=== Extra Lives ===
+
+{| class="wikitable"
+! Method !! Lives
+|-
+| 1-Up item || +1
+|-
+| 50,000 points || +1
+|-
+| 100% mini-game || +1
+|}
+
+== Stage Structure ==
+
+=== World Layout ===
+
+Each world contains:
+* 3-5 regular stages
+* 1 Museum (copy ability source)
+* 1 Arena (mini-boss battle)
+* 1 Boss stage
+
+=== Stage Elements ===
+
+{| class="wikitable"
+! Element !! Function
+|-
+| Door || Enter sub-areas
+|-
+| Switch || Activate platforms
+|-
+| Breakable Block || Destroy with abilities
+|-
+| Hidden Door || Secret areas
+|-
+| Warp Star || Stage transition
+|}
+
+=== Secrets ===
+
+'''Hidden Switches:'''
+* Each world has hidden switches
+* Unlock bonus stages
+* Reveal 100% completion items
+
+'''Big Switches:'''
+* Located in hidden rooms
+* Unlock new areas in all worlds
+* Required for 100%
+
+== Mini-Games ==
+
+=== Crane Game ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Cost || None (1 free play per hub visit)
+|-
+| Goal || Grab Kirby items
+|-
+| Prizes || 1-Ups, healing items
+|}
+
+=== Quick Draw ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Reaction time game
+|-
+| Goal || Draw faster than opponent
+|-
+| Reward || Points and items
+|}
+
+=== Egg Catcher ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Catching game
+|-
+| Goal || Catch falling eggs
+|-
+| Avoid || Bombs
+|}
+
+== Boss Battles ==
+
+=== Boss Patterns ===
+
+All bosses follow patterns:
+* Predictable attack sequences
+* Vulnerable periods
+* Multiple phases (some)
+
+=== World Bosses ===
+
+{| class="wikitable sortable"
+! Boss !! World !! HP !! Weakness
+|-
+| Whispy Woods || 1 || 6 hits || Any attack
+|-
+| Paint Roller || 2 || 8 hits || Own attacks
+|-
+| Mr. Shine & Mr. Bright || 3 || 12 hits || Any attack
+|-
+| Kracko || 4 || 8 hits || Any attack
+|-
+| Heavy Mole || 5 || 8 hits || Own missiles
+|-
+| Meta Knight || 6 || 10 hits || Sword only
+|-
+| King Dedede || 7 || 10 hits || Stars
+|-
+| Nightmare || 7 (Final) || Multiple || Star Rod
+|}
+
+== Power-Up Items ==
+
+=== Permanent Items ===
+
+{| class="wikitable"
+! Item !! Effect
+|-
+| Star Rod || Final boss weapon
+|-
+| Big Switches || Unlock areas
+|}
+
+=== Temporary Items ===
+
+{| class="wikitable"
+! Item !! Duration !! Effect
+|-
+| Invincibility Candy || ~8 seconds || Cannot take damage
+|-
+| Microphone || 3 uses || Kill all on screen
+|}
+
+== Technical Data ==
+
+=== Memory Layout ===
+
+{| class="wikitable"
+! Address !! Data
+|-
+| $0000-$07FF || RAM (2KB)
+|-
+| $0300 || Kirby HP
+|-
+| $0301 || Current ability
+|-
+| $0302-$0305 || Position
+|-
+| $0400 || Stage data
+|}
+
+=== Ability Values ===
+
+{| class="wikitable"
+! ID !! Ability
+|-
+| $00 || None
+|-
+| $01 || Fire
+|-
+| $02 || Ball
+|-
+| $03 || Beam
+|-
+| $04 || Sword
+|-
+| $05 || Cutter
+|-
+| ... || ...
+|}
+
+== Completion Tracking ==
+
+=== 100% Requirements ===
+
+{| class="wikitable"
+! Requirement !! Count
+|-
+| Stages cleared || 41
+|-
+| Big Switches || 7
+|-
+| Mini-games cleared || 3
+|-
+| All abilities used || 24
+|}
+
+=== Save Data ===
+
+{| class="wikitable"
+! Data !! Size
+|-
+| Stage completion || 8 bytes
+|-
+| Switch status || 1 byte
+|-
+| High scores || 12 bytes
+|-
+| Lives || 1 byte
+|}
+
+== Related Pages ==
+
+* [[Kirbys_Adventure:Copy_Abilities|Copy Abilities]]
+* [[Kirbys_Adventure:Enemies|Enemies]]
+* [[Kirbys_Adventure:Worlds|Worlds]]
+
+[[Category:Kirby's Adventure]]
+[[Category:Game Mechanics]]
