@@ -1,0 +1,209 @@
+{{Back|Dragon_Warrior_II}}
+
+= Battle System =
+
+'''Dragon Warrior II''' expands on the original with a three-character party.
+
+__TOC__
+
+== Combat Overview ==
+
+{| class="wikitable"
+! Aspect !! Description
+|-
+| Party Size || 3 characters
+|-
+| System || Turn-based
+|-
+| Encounter || Random battles
+|-
+| Enemies || Multiple per battle
+|}
+
+== Party Members ==
+
+=== Prince of Midenhall ===
+
+{| class="wikitable"
+! Attribute !! Rating
+|-
+| Role || Physical fighter
+|-
+| Weapons || Swords, axes
+|-
+| Armor || Heavy armor
+|-
+| Magic || None
+|}
+
+=== Prince of Cannock ===
+
+{| class="wikitable"
+! Attribute !! Rating
+|-
+| Role || Hybrid fighter/mage
+|-
+| Weapons || Swords
+|-
+| Armor || Medium armor
+|-
+| Magic || Heal, offensive
+|}
+
+=== Princess of Moonbrooke ===
+
+{| class="wikitable"
+! Attribute !! Rating
+|-
+| Role || Mage
+|-
+| Weapons || Limited
+|-
+| Armor || Light armor
+|-
+| Magic || Full spell list
+|}
+
+== Battle Commands ==
+
+=== Attack ===
+
+Physical strike with equipped weapon.
+* Damage based on Strength and weapon
+* Can target single enemy
+* Midenhall Prince's primary action
+
+=== Spell ===
+
+Cast learned magic:
+
+{| class="wikitable"
+! Category !! Examples
+|-
+| Heal || Restore HP
+|-
+| Hurt || Direct damage
+|-
+| Status || Buff/debuff
+|-
+| Travel || Warp, Return
+|}
+
+=== Item ===
+
+Use inventory item:
+* Medical Herb - Heal HP
+* Antidote - Cure poison
+* Wing of Wyvern - Escape dungeon
+
+=== Defend ===
+
+Take defensive stance:
+* Reduces damage taken
+* Useful when low on HP
+
+=== Flee ===
+
+Attempt to escape battle:
+* Success not guaranteed
+* Harder against tough enemies
+
+== Enemy Groups ==
+
+Unlike the first game, multiple enemies can appear:
+
+{| class="wikitable"
+! Formation !! Description
+|-
+| Single || One enemy
+|-
+| Group || Multiple same enemy
+|-
+| Mixed || Different enemy types
+|}
+
+== Targeting ==
+
+When enemies are in groups:
+* Can target entire group
+* Defeating all in group clears it
+* Some spells hit all enemies
+
+== Status Effects ==
+
+=== Negative ===
+
+{| class="wikitable"
+! Status !! Effect !! Cure
+|-
+| Poison || HP loss per step || Antidote, Heal
+|-
+| Sleep || Cannot act || Wears off, damage
+|-
+| Confusion || Random actions || Wears off
+|-
+| Death || Knocked out || Revive at church
+|}
+
+=== Positive (Buffs) ===
+
+{| class="wikitable"
+! Status !! Effect
+|-
+| Defense Up || Reduced damage
+|-
+| Attack Up || Increased damage
+|}
+
+== Experience Points ==
+
+* All living party members share EXP
+* Level ups increase stats
+* Each character levels independently
+
+== Gold ==
+
+* All enemies drop gold
+* Shared party gold pool
+* Used for equipment, items, church services
+
+== Death and Revival ==
+
+{| class="wikitable"
+! Service !! Effect
+|-
+| Church Revival || Restore dead party member
+|-
+| Full Party Death || Return to last save
+|-
+| Half Gold Lost || Penalty for full party death
+|}
+
+== Combat Strategy ==
+
+=== Party Roles ===
+
+{| class="wikitable"
+! Character !! Role
+|-
+| Midenhall || Primary damage dealer
+|-
+| Cannock || Backup fighter/healer
+|-
+| Moonbrooke || Healing, magic damage
+|}
+
+=== Resource Management ===
+
+* Moonbrooke has limited MP
+* Conserve magic for boss fights
+* Use herbs for minor healing
+
+== Related Pages ==
+
+* [[Dragon_Warrior_II:Spells|Spells]]
+* [[Dragon_Warrior_II:Characters|Characters]]
+* [[Dragon_Warrior_II:Locations|Locations]]
+
+[[Category:Dragon Warrior II]]
+[[Category:Battle System]]

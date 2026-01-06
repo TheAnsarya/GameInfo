@@ -1,0 +1,198 @@
+{{Back|Final_Fantasy_Mystic_Quest}}
+
+= Battlefields =
+
+'''Final Fantasy Mystic Quest''' uses numbered Battlefields for grinding EXP and GP.
+
+__TOC__
+
+== Overview ==
+
+Battlefields are fixed encounter locations on the world map. Each Battlefield:
+* Contains exactly 10 battles
+* Can be repeated after completion
+* Disappears from map when cleared (until reset)
+* Resets when entering/exiting certain areas
+
+{| class="wikitable"
+! Feature !! Description
+|-
+| Battles per field || 10
+|-
+| Enemies || Fixed types per field
+|-
+| Rewards || EXP, GP, sometimes items
+|-
+| Repeatable || Yes, infinitely
+|}
+
+== Battlefield List ==
+
+=== Level Hill Area ===
+
+==== Battlefield 1 ====
+
+{| class="wikitable"
+! Location !! Near Level Forest
+|-
+| Enemies || Basic enemies
+|-
+| Difficulty || Very Easy
+|-
+| Best For || Tutorial grinding
+|}
+
+==== Battlefield 2 ====
+
+{| class="wikitable"
+! Location !! East of Level Forest
+|-
+| Enemies || Slightly stronger
+|-
+| Difficulty || Easy
+|}
+
+=== Foresta Area ===
+
+==== Battlefield 3 ====
+
+{| class="wikitable"
+! Location !! Near Foresta
+|-
+| Enemies || Forest creatures
+|-
+| Difficulty || Easy
+|}
+
+==== Battlefield 4 ====
+
+{| class="wikitable"
+! Location !! South of Foresta
+|-
+| Enemies || Plant-type enemies
+|-
+| Difficulty || Easy
+|}
+
+=== Aquaria Area ===
+
+==== Battlefield 5 ====
+
+{| class="wikitable"
+! Location !! Aquaria region
+|-
+| Enemies || Ice/water creatures
+|-
+| Difficulty || Medium
+|}
+
+==== Battlefield 6 ====
+
+{| class="wikitable"
+! Location !! Frozen areas
+|-
+| Enemies || Ice enemies
+|-
+| Difficulty || Medium
+|}
+
+=== Fireburg Area ===
+
+==== Battlefield 7 ====
+
+{| class="wikitable"
+! Location !! Near Fireburg
+|-
+| Enemies || Fire-type enemies
+|-
+| Difficulty || Medium
+|}
+
+==== Battlefield 8 ====
+
+{| class="wikitable"
+! Location !! Volcano region
+|-
+| Enemies || Fire/lava creatures
+|-
+| Difficulty || Medium-Hard
+|}
+
+=== Windia Area ===
+
+==== Battlefield 9 ====
+
+{| class="wikitable"
+! Location !! Near Windia
+|-
+| Enemies || Flying enemies
+|-
+| Difficulty || Hard
+|}
+
+==== Battlefield 10 ====
+
+{| class="wikitable"
+! Location !! Mountain area
+|-
+| Enemies || Strong creatures
+|-
+| Difficulty || Hard
+|}
+
+== Grinding Strategy ==
+
+=== When to Grind ===
+
+{| class="wikitable"
+! Situation !! Action
+|-
+| Before boss || Clear local battlefields
+|-
+| New area || Grind until comfortable
+|-
+| Need GP || Repeat high-yield fields
+|}
+
+=== Efficiency Tips ===
+
+* Use high battlefields for more EXP
+* Match elemental weapons to enemy weaknesses
+* White magic can clear groups quickly
+
+== Rewards ==
+
+=== Experience ===
+
+Higher-numbered battlefields give more EXP:
+* Early fields: Lower EXP per battle
+* Late fields: Significant EXP gains
+
+=== Gold (GP) ===
+
+All enemies drop GP:
+* Use for inns, item purchases
+* Some fields more lucrative
+
+=== Items ===
+
+Some battlefield enemies drop:
+* Cure potions
+* Seeds
+* Consumables
+
+== Completion Bonus ==
+
+When all 10 battles in a battlefield are won:
+* Field temporarily disappears
+* Bonus rewards possible
+* Reset by entering/exiting regions
+
+== Related Pages ==
+
+* [[Final_Fantasy_Mystic_Quest:Battle_System|Battle System]]
+* [[Final_Fantasy_Mystic_Quest:Locations|Locations]]
+* [[Final_Fantasy_Mystic_Quest:Enemies|Enemies]]
+
+[[Category:Final Fantasy Mystic Quest]]
+[[Category:Battlefields]]

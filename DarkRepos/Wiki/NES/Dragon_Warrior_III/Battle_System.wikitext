@@ -1,0 +1,211 @@
+{{Back|Dragon_Warrior_III}}
+
+= Battle System =
+
+'''Dragon Warrior III''' features turn-based combat with a four-character party.
+
+__TOC__
+
+== Combat Overview ==
+
+{| class="wikitable"
+! Aspect !! Description
+|-
+| Party Size || 4 characters
+|-
+| System || Turn-based
+|-
+| Speed || Order by Agility
+|-
+| Enemies || Multiple groups
+|}
+
+== Turn Order ==
+
+* Based on Agility stat
+* Higher agility acts first
+* Enemies have own agility values
+* Random variance each turn
+
+== Commands ==
+
+=== Fight ===
+
+Physical attack with equipped weapon:
+* Damage = Strength + Weapon - Defense
+* Can miss based on target evasion
+* Critical hits possible (Martial Artists have higher rate)
+
+=== Spell ===
+
+Cast learned magic:
+
+{| class="wikitable"
+! Type !! Examples !! Users
+|-
+| Heal || Heal, Healmore, Healall || Hero, Priest, Sage
+|-
+| Offense || Blaze, Freeze, Bang || Mage, Sage
+|-
+| Support || Upper, Bikill || Priest, Sage
+|-
+| Travel || Return, Outside || Hero, Mage, Sage
+|}
+
+=== Item ===
+
+Use items from inventory:
+
+{| class="wikitable"
+! Item Type !! Effect
+|-
+| Herbs || Restore HP
+|-
+| Antidotes || Cure poison
+|-
+| Wings || Escape dungeons
+|-
+| Equipment || Use item abilities
+|}
+
+=== Defend ===
+
+Take defensive stance:
+* Reduces damage taken
+* Useful for vulnerable characters
+
+=== Run ===
+
+Attempt to flee:
+* Success based on party vs enemy levels
+* Boss battles may prevent running
+* All party members must survive turn
+
+=== Parry ===
+
+Protect another party member:
+* Hero takes attacks meant for target
+* Useful for protecting mages/priests
+
+== Enemy Groups ==
+
+Enemies appear in groups:
+
+{| class="wikitable"
+! Type !! Description
+|-
+| Single Group || One enemy type
+|-
+| Multiple Groups || Different enemy types in separate groups
+|-
+| Boss || Usually single powerful enemy
+|}
+
+== Targeting ==
+
+{| class="wikitable"
+! Attack Type !! Target
+|-
+| Physical || Single enemy (auto-retarget if defeated)
+|-
+| Group Spell || All enemies in one group
+|-
+| All Spell || All enemies
+|-
+| Heal || Single ally or all allies
+|}
+
+== Status Effects ==
+
+=== Negative ===
+
+{| class="wikitable"
+! Status !! Effect !! Cure
+|-
+| Poison || HP drain walking || Antidote, Antidote spell
+|-
+| Sleep || Cannot act || Damage, wears off
+|-
+| Paralysis || Cannot act || Wears off (may persist)
+|-
+| Confusion || Random actions || Wears off
+|-
+| Silence || Cannot cast spells || Wears off
+|}
+
+=== Positive ===
+
+{| class="wikitable"
+! Status !! Effect !! Spell
+|-
+| Defense Up || Reduce damage || Upper
+|-
+| Attack Up || Double attack || Bikill
+|-
+| Reflect || Return spells || Bounce
+|}
+
+== Experience and Levels ==
+
+* EXP divided among living party members
+* Each character levels independently
+* Level ups boost stats based on class
+
+== Gold ==
+
+* Enemies drop gold
+* Party shares gold pool
+* Lost gold on full party defeat
+
+== Death ==
+
+{| class="wikitable"
+! Situation !! Effect
+|-
+| One character KO || Continue with others
+|-
+| Full party KO || Return to save point
+|-
+| Gold penalty || Lose half gold
+|-
+| Revival || Church or spell
+|}
+
+== Day/Night System ==
+
+* Time passes while walking
+* Some monsters only at night
+* Towns have different activities
+* Affects some encounters
+
+== Combat Strategy ==
+
+=== Role Division ===
+
+{| class="wikitable"
+! Role !! Classes !! Focus
+|-
+| Damage || Hero, Warrior, Martial Artist || Physical attacks
+|-
+| Healing || Priest, Sage || Keep party alive
+|-
+| Magic Damage || Mage, Sage || Group damage spells
+|-
+| Support || Priest, Sage || Buffs/debuffs
+|}
+
+=== Resource Management ===
+
+* MP is limited
+* Use physical attacks when possible
+* Save spells for groups/bosses
+* Carry healing items as backup
+
+== Related Pages ==
+
+* [[Dragon_Warrior_III:Characters|Characters]]
+* [[Dragon_Warrior_III:Magic|Magic]]
+* [[Dragon_Warrior_III:Monsters|Monsters]]
+
+[[Category:Dragon Warrior III]]
+[[Category:Battle System]]

@@ -1,0 +1,232 @@
+{{Back|Dragon_Warrior}}
+
+= Equipment =
+
+'''Dragon Warrior''' features weapons and armor that improve the Hero's combat abilities.
+
+__TOC__
+
+== Weapons ==
+
+Weapons increase Attack power.
+
+{| class="wikitable"
+! Weapon !! Attack !! Price !! Location
+|-
+| Bamboo Pole || +2 || 10 G || Tantegel
+|-
+| Club || +4 || 60 G || Tantegel
+|-
+| Copper Sword || +10 || 180 G || Brecconary, Garinham
+|-
+| Hand Axe || +15 || 560 G || Garinham, Kol
+|-
+| Broad Sword || +20 || 1500 G || Kol, Rimuldar
+|-
+| Flame Sword || +28 || 9800 G || Cantlin
+|-
+| Erdrick's Sword || +40 || -- || Charlock Castle
+|}
+
+=== Weapon Notes ===
+
+* Bamboo Pole - Starting weapon (not always equipped)
+* Erdrick's Sword - Must be found in Charlock Castle, cannot be bought
+
+== Armor ==
+
+Armor increases Defense power.
+
+{| class="wikitable"
+! Armor !! Defense !! Price !! Location
+|-
+| Clothes || +2 || 20 G || Tantegel
+|-
+| Leather Armor || +4 || 70 G || Tantegel, Brecconary
+|-
+| Chain Mail || +10 || 300 G || Garinham
+|-
+| Half Plate || +16 || 1000 G || Garinham, Kol
+|-
+| Full Plate || +24 || 3000 G || Kol, Rimuldar
+|-
+| Magic Armor || +24 || 7700 G || Rimuldar, Cantlin
+|-
+| Erdrick's Armor || +28 || -- || Hauksness
+|}
+
+=== Armor Notes ===
+
+* Magic Armor - Restores 1 HP per step while walking
+* Erdrick's Armor - Also restores HP per step, best armor in game
+* Erdrick's Armor - Found in Hauksness ruins
+
+== Shields ==
+
+Shields increase Defense power.
+
+{| class="wikitable"
+! Shield !! Defense !! Price !! Location
+|-
+| Small Shield || +4 || 90 G || Tantegel, Brecconary
+|-
+| Large Shield || +10 || 800 G || Garinham, Kol
+|-
+| Silver Shield || +20 || 14800 G || Cantlin
+|}
+
+=== Shield Notes ===
+
+* Small Shield - Early game essential
+* Silver Shield - Very expensive, Cantlin only
+
+== Equipment Progression ==
+
+=== Early Game (Level 1-7) ===
+
+{| class="wikitable"
+! Slot !! Target Equipment
+|-
+| Weapon || Copper Sword
+|-
+| Armor || Leather Armor → Chain Mail
+|-
+| Shield || Small Shield
+|}
+
+=== Mid Game (Level 8-15) ===
+
+{| class="wikitable"
+! Slot !! Target Equipment
+|-
+| Weapon || Hand Axe → Broad Sword
+|-
+| Armor || Half Plate → Full Plate
+|-
+| Shield || Large Shield
+|}
+
+=== Late Game (Level 16+) ===
+
+{| class="wikitable"
+! Slot !! Target Equipment
+|-
+| Weapon || Flame Sword → Erdrick's Sword
+|-
+| Armor || Magic Armor → Erdrick's Armor
+|-
+| Shield || Silver Shield
+|}
+
+== Erdrick's Equipment ==
+
+The legendary equipment of Erdrick:
+
+{| class="wikitable"
+! Item !! Location !! Notes
+|-
+| Erdrick's Sword || Charlock Castle || Highest attack weapon
+|-
+| Erdrick's Armor || Hauksness || HP regeneration, best defense
+|-
+| Erdrick's Token || Swamp south of Cantlin || Required for Rainbow Drop
+|}
+
+Note: There is no Erdrick's Shield in Dragon Warrior 1.
+
+== Shop Locations ==
+
+=== Tantegel ===
+
+{| class="wikitable"
+! Weapons/Armor !! Price
+|-
+| Bamboo Pole || 10
+|-
+| Club || 60
+|-
+| Copper Sword || 180
+|-
+| Clothes || 20
+|-
+| Leather Armor || 70
+|-
+| Small Shield || 90
+|}
+
+=== Brecconary ===
+
+{| class="wikitable"
+! Weapons/Armor !! Price
+|-
+| Copper Sword || 180
+|-
+| Leather Armor || 70
+|-
+| Small Shield || 90
+|}
+
+=== Garinham ===
+
+{| class="wikitable"
+! Weapons/Armor !! Price
+|-
+| Copper Sword || 180
+|-
+| Hand Axe || 560
+|-
+| Chain Mail || 300
+|-
+| Half Plate || 1000
+|-
+| Large Shield || 800
+|}
+
+=== Kol ===
+
+{| class="wikitable"
+! Weapons/Armor !! Price
+|-
+| Hand Axe || 560
+|-
+| Broad Sword || 1500
+|-
+| Half Plate || 1000
+|-
+| Full Plate || 3000
+|-
+| Large Shield || 800
+|}
+
+=== Rimuldar ===
+
+{| class="wikitable"
+! Weapons/Armor !! Price
+|-
+| Broad Sword || 1500
+|-
+| Full Plate || 3000
+|-
+| Magic Armor || 7700
+|}
+
+=== Cantlin ===
+
+{| class="wikitable"
+! Weapons/Armor !! Price
+|-
+| Flame Sword || 9800
+|-
+| Magic Armor || 7700
+|-
+| Silver Shield || 14800
+|}
+
+== Related Pages ==
+
+* [[Dragon_Warrior:Items|Items]]
+* [[Dragon_Warrior:Battle_System|Battle System]]
+* [[Dragon_Warrior:Locations|Locations]]
+
+[[Category:Dragon Warrior]]
+[[Category:Equipment]]
