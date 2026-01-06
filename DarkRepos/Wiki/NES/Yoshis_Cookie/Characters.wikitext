@@ -1,0 +1,91 @@
+{{Back|Yoshi's Cookie}}
+
+'''Characters''' in Yoshi's Cookie are based on the Super Mario Bros. universe.
+
+== Playable Characters ==
+
+=== Yoshi ===
+The main protagonist in single-player modes.
+
+'''Role:'''
+* Controls the cookie puzzle field
+* Appears on the left side of the screen
+* Reacts to gameplay events
+
+'''Animations:'''
+* Happy expression when clearing cookies
+* Worried expression when screen fills up
+* Celebrates on level completion
+
+=== Mario ===
+Playable in multiplayer/VS modes.
+
+'''Role:'''
+* Player 1 character option
+* Classic Mario sprite design
+* Opponent to Yoshi in CPU battles
+
+== Non-Playable Characters ==
+
+=== Princess Peach ===
+Appears in cutscenes and as decoration.
+
+'''Appearances:'''
+* Title screen
+* Between-round animations
+* Victory celebrations
+
+=== Bowser ===
+The antagonist who appears in certain modes.
+
+'''Role:'''
+* Final opponent in Action mode
+* Harder AI difficulty
+* Appears in ending sequences
+
+== VS Mode Characters ==
+
+In VS mode, players face off against CPU or human opponents:
+
+{| class="wikitable"
+|-
+! Character !! Difficulty !! Behavior
+|-
+| Yoshi || Easy || Slower moves, fewer combos
+|-
+| Mario || Medium || Balanced playstyle
+|-
+| Princess || Medium || Focus on defensive play
+|-
+| Bowser || Hard || Aggressive combos, fast speed
+|}
+
+== Character Expressions ==
+
+Characters display emotions based on gameplay:
+
+=== Positive Events ===
+* Clearing lines: Happy/excited
+* Chain combos: Very happy
+* Winning: Celebration animation
+
+=== Negative Events ===
+* Screen filling up: Worried/nervous
+* Receiving garbage: Surprised
+* Losing: Sad/defeated
+
+== Story Context ==
+
+While Yoshi's Cookie has minimal story, the premise involves:
+* Yoshi organizing cookies in his kitchen
+* Mario and friends participating in cookie competitions
+* Bowser attempting to spoil the cookie party
+
+== Trivia ==
+* Yoshi's Cookie was originally an unrelated Japanese puzzle game called "Hermetica"
+* The Nintendo characters were added for the Western release
+* The game was developed by Bullet-Proof Software (later Blue Planet Software)
+* The SNES version features enhanced graphics and additional modes
+
+[[Category:Yoshi's Cookie]]
+[[Category:Characters]]

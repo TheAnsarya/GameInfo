@@ -1,0 +1,138 @@
+{{Back|Mappy-Land}}
+
+'''Items''' in Mappy-Land include collectible objects, weapons, and bonus items.
+
+== Collectible Items ==
+
+Each world has specific items that must be collected to complete stages.
+
+{| class="wikitable"
+|-
+! Item !! World !! Points
+|-
+| Cowboy Hat || Western Town || 100
+|-
+| Horseshoe || Western Town || 100
+|-
+| Fruit || Jungle || 100
+|-
+| Banana || Jungle || 100
+|-
+| Treasure Chest || Pirate Ship || 200
+|-
+| Anchor || Pirate Ship || 100
+|-
+| Pumpkin || Haunted House || 100
+|-
+| Candle || Haunted House || 100
+|-
+| Ticket || Train Station || 100
+|-
+| Clock || Train Station || 100
+|-
+| Balloon || Amusement Park || 100
+|-
+| Cotton Candy || Amusement Park || 100
+|-
+| Seashell || Tropical Island || 100
+|-
+| Starfish || Tropical Island || 100
+|-
+| Crown || Castle || 200
+|-
+| Gem || Castle || 200
+|}
+
+== Weapon Items ==
+
+Mappy can pick up and throw balls to stun enemies.
+
+=== Baseball ===
+Found primarily in Western Town stages.
+* Standard throwing arc
+* Stuns one enemy on contact
+
+=== Rugby Ball ===
+Found primarily in Jungle stages.
+* Bounces along the ground
+* Can hit multiple enemies
+
+=== Soccer Ball ===
+Found primarily in Pirate Ship and other stages.
+* Standard throwing arc
+* Stuns one enemy on contact
+
+== Power-Up Items ==
+
+=== Trampoline ===
+Not an item to collect, but essential for reaching high platforms.
+* Fixed positions in stages
+* Bounces Mappy higher with repeated jumps
+* Maximum height after several bounces
+
+=== Rail Car ===
+Found in Train Station world.
+* Mappy can ride along rails
+* Provides safe travel over gaps
+* Automatic movement
+
+== Bonus Items ==
+
+Special items that appear for limited times:
+
+=== Bonus Fruit ===
+* Appears randomly during stages
+* Worth 500-1000 points
+* Disappears quickly
+
+=== Special Letters ===
+* Spell "EXTRA" when collected
+* Award an extra life when complete
+* Appear in specific locations
+
+== Gift Items ==
+
+Items collected for Mapico at the end of each world:
+
+{| class="wikitable"
+|-
+! World !! Gift !! Description
+|-
+| 1 || Engagement Ring || A diamond ring for Mapico
+|-
+| 2 || Necklace || A beautiful pearl necklace
+|-
+| 3 || Cheese || A large wheel of cheese
+|-
+| 4 || Toy Ball || A colorful toy ball
+|-
+| 5 || Wedding Dress || A white wedding gown
+|-
+| 6 || Doll || A cute doll toy
+|-
+| 7 || Perfume || A bottle of perfume
+|-
+| 8 || Treasure || A chest of treasures
+|}
+
+== Point Values ==
+
+{| class="wikitable"
+|-
+! Action !! Points
+|-
+| Collect regular item || 100
+|-
+| Collect treasure item || 200
+|-
+| Stun Meowky || 200
+|-
+| Stun Nyamco || 500
+|-
+| Bonus fruit || 500-1000
+|-
+| Stage clear bonus || Varies by time remaining
+|}
+
+[[Category:Mappy-Land]]
+[[Category:Items]]

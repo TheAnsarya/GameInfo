@@ -1,0 +1,128 @@
+{{Back|Yoshi's Cookie}}
+
+'''Puzzle Types''' in Yoshi's Cookie explain the different game modes and puzzle mechanics.
+
+== Game Modes ==
+
+=== Action Mode ===
+The main single-player puzzle mode.
+
+'''Objective:'''
+* Clear all cookies from the screen by forming complete rows and columns of matching cookie types
+
+'''Mechanics:'''
+* Move cursor with D-pad
+* Press A to shift a row left/right or column up/down
+* Complete rows/columns disappear
+* New cookies fall from above
+* Game ends when cookies reach the top
+
+'''Speed Levels:'''
+* Speed increases as rounds progress
+* Higher rounds start with more cookies
+* Bonus points for clearing multiple lines simultaneously
+
+=== VS Mode ===
+Two-player competitive mode.
+
+'''Objective:'''
+* Force opponent's screen to fill with cookies
+
+'''Mechanics:'''
+* Clearing multiple lines sends "garbage" cookies to opponent
+* Yoshi cookies (special) can clear all of one type
+* First player whose screen fills loses
+
+=== Puzzle Mode ===
+Pre-set puzzle challenges.
+
+'''Objective:'''
+* Clear all cookies with limited moves
+
+'''Mechanics:'''
+* Fixed starting positions
+* Limited number of moves allowed
+* Must clear all cookies to complete puzzle
+* 100+ puzzles available
+
+== Cookie Types ==
+
+The game features 5 regular cookie types plus special Yoshi cookies:
+
+{| class="wikitable"
+|-
+! Cookie !! Appearance !! Notes
+|-
+| Heart || Pink heart shape || Standard cookie
+|-
+| Diamond || Blue diamond shape || Standard cookie
+|-
+| Flower || Yellow flower shape || Standard cookie
+|-
+| Check || Green checkmark || Standard cookie
+|-
+| Circle || Orange circle || Standard cookie
+|-
+| Yoshi || Yoshi face || Special - clears matching type
+|}
+
+== Clearing Mechanics ==
+
+=== Row Clears ===
+* Shift cookies in a row until all 5 match
+* Row disappears when complete
+* Points awarded based on cookie type and combo
+
+=== Column Clears ===
+* Shift cookies in a column until all match
+* Column disappears when complete
+* Adjacent clears trigger combos
+
+=== Chain Reactions ===
+* Clearing one line can cause falling cookies to form new matches
+* Chain reactions multiply points
+* Essential for high scores
+
+=== Yoshi Cookie ===
+* Special cookie appears periodically
+* When used in a complete line, clears ALL cookies of that type
+* Powerful for clearing screens quickly
+
+== Scoring ==
+
+{| class="wikitable"
+|-
+! Action !! Points
+|-
+| Single line clear || 10
+|-
+| Double line clear || 50
+|-
+| Triple line clear || 200
+|-
+| Quad line clear || 500
+|-
+| Yoshi clear || Varies by cookies cleared
+|-
+| Chain bonus || Multiplier per chain level
+|}
+
+== Strategy Tips ==
+
+'''Beginner:'''
+* Focus on completing one line at a time
+* Keep the screen as clear as possible
+* Use Yoshi cookies on the most common cookie type
+
+'''Intermediate:'''
+* Set up multiple lines to clear simultaneously
+* Plan two moves ahead
+* Save Yoshi cookies for emergencies
+
+'''Advanced:'''
+* Create chain reaction setups
+* Maximize combo potential before clearing
+* In VS mode, time attacks to overwhelm opponent
+
+[[Category:Yoshi's Cookie]]
+[[Category:Game Mechanics]]

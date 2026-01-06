@@ -1,0 +1,117 @@
+{{Back|Mappy-Land}}
+
+'''Worlds''' in Mappy-Land consist of themed areas, each containing multiple stages.
+
+== World Overview ==
+
+Mappy-Land features 8 unique themed worlds. Each world has 4 regular stages and specific items to collect for Mapico.
+
+{| class="wikitable"
+|-
+! World !! Theme !! Stages !! Gift Item
+|-
+| 1 || Western Town || 4 || Engagement Ring
+|-
+| 2 || Jungle || 4 || Necklace
+|-
+| 3 || Pirate Ship || 4 || Cheese
+|-
+| 4 || Haunted House || 4 || Toy Ball
+|-
+| 5 || Train Station || 4 || Wedding Dress
+|-
+| 6 || Amusement Park || 4 || Doll
+|-
+| 7 || Tropical Island || 4 || Perfume
+|-
+| 8 || Castle || 4 || Treasure
+|}
+
+== World 1: Western Town ==
+A Wild West themed world featuring wooden buildings, cacti, and saloon doors.
+
+'''Features:'''
+* Swinging saloon doors
+* Trampolines on building roofs
+* Cacti as obstacles
+* Baseball items
+
+== World 2: Jungle ==
+A tropical jungle with trees, vines, and exotic scenery.
+
+'''Features:'''
+* Vine ropes to climb
+* Tree platforms
+* Rugby balls as weapons
+* Dense vegetation
+
+== World 3: Pirate Ship ==
+Takes place aboard pirate vessels with nautical themes.
+
+'''Features:'''
+* Ship deck platforms
+* Rope rigging to climb
+* Cannon obstacles
+* Soccer balls as weapons
+
+== World 4: Haunted House ==
+A spooky mansion filled with Halloween-themed elements.
+
+'''Features:'''
+* Multiple floors
+* Ghostly decorations
+* Trap doors
+* Darker color palette
+
+== World 5: Train Station ==
+A railway-themed world with trains and station platforms.
+
+'''Features:'''
+* Rail cars to ride
+* Platform levels
+* Train tracks as obstacles
+* Station architecture
+
+== World 6: Amusement Park ==
+A carnival setting with rides and attractions.
+
+'''Features:'''
+* Ferris wheel elements
+* Roller coaster tracks
+* Carnival decorations
+* Balloon obstacles
+
+== World 7: Tropical Island ==
+A beach paradise with palm trees and ocean scenery.
+
+'''Features:'''
+* Palm tree platforms
+* Beach umbrellas
+* Sand and water elements
+* Tropical setting
+
+== World 8: Castle ==
+The final world set in a medieval castle.
+
+'''Features:'''
+* Stone walls and towers
+* Royal decorations
+* Most difficult stage layouts
+* Final challenge
+
+== Stage Structure ==
+
+Each stage within a world follows this pattern:
+# Collect all required items (varies per stage)
+# Avoid or stun Meowkies using available balls
+# Reach the goal within the time limit
+# Collect bonus items for extra points
+
+== Tips ==
+* Learn the item locations in each stage
+* Use trampolines effectively to reach high platforms
+* Stun enemies strategically rather than avoiding all of them
+* Practice timing for trampoline jumps
+
+[[Category:Mappy-Land]]
+[[Category:Locations]]

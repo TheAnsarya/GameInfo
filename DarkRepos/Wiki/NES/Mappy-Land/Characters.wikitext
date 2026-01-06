@@ -1,0 +1,65 @@
+{{Back|Mappy-Land}}
+
+'''Characters''' in Mappy-Land include the playable character and the antagonists.
+
+== Playable Character ==
+
+=== Mappy ===
+Mappy is a police mouse who serves as the protagonist. He must collect items throughout various themed worlds to give presents to his girlfriend Mapico.
+
+'''Abilities:'''
+* Walk left and right
+* Jump (short hop)
+* Bounce on trampolines
+* Collect items
+* Kick soccer balls, baseballs, and rugby balls at enemies
+* Ride rail cars in certain stages
+
+== Antagonists ==
+
+=== Meowkies (Mewkies) ===
+The standard cat enemies that chase Mappy throughout the game. They appear in large numbers in most stages.
+
+'''Behavior:'''
+* Follow Mappy's general position
+* Can climb ladders and ropes
+* Stunned temporarily when hit with a thrown ball
+* Cannot be permanently defeated
+
+=== Nyamco (Goro) ===
+The boss cat who leads the Meowkies. Nyamco is larger and more aggressive than regular Meowkies.
+
+'''Behavior:'''
+* Appears in later stages
+* Moves more aggressively than Meowkies
+* Worth more points when stunned
+* Can appear multiple times in a stage
+
+== NPCs ==
+
+=== Mapico ===
+Mappy's girlfriend who waits for him at the end of each world. She appears briefly in cutscenes between worlds.
+
+=== Baby Mappies ===
+Mappy's children who sometimes appear in bonus rounds or cutscenes.
+
+== Character Statistics ==
+
+{| class="wikitable"
+|-
+! Character !! Role !! Points When Stunned
+|-
+| Mappy || Player || N/A
+|-
+| Meowky || Enemy || 200
+|-
+| Nyamco || Boss Enemy || 500
+|}
+
+== Trivia ==
+* Mappy originally appeared in the 1983 arcade game "Mappy"
+* The name "Mappy" comes from "mappo," Japanese slang for police
+* Nyamco's name is a pun on Namco and "nyan" (Japanese cat sound)
+
+[[Category:Mappy-Land]]
+[[Category:Characters]]
