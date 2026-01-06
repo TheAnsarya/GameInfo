@@ -53,10 +53,8 @@ public sealed class DatMerger {
 
 		// Try to find existing by hashes (prefer SHA1 > MD5 > CRC32)
 		if (newInfo.Sha1 is not null && _romsBySha1.TryGetValue(newInfo.Sha1, out existing)) {
-		}
-		else if (newInfo.Md5 is not null && _romsByMd5.TryGetValue(newInfo.Md5, out existing)) {
-		}
-		else if (newInfo.Crc32 is not null && _romsByCrc.TryGetValue(newInfo.Crc32, out existing)) {
+		} else if (newInfo.Md5 is not null && _romsByMd5.TryGetValue(newInfo.Md5, out existing)) {
+		} else if (newInfo.Crc32 is not null && _romsByCrc.TryGetValue(newInfo.Crc32, out existing)) {
 			// Only match by CRC if size matches
 			if (existing.Size != newInfo.Size) {
 				existing = null;
@@ -96,8 +94,7 @@ public sealed class DatMerger {
 
 			// Re-index if we got new hashes
 			IndexRom(existing);
-		}
-		else {
+		} else {
 			// New ROM
 			IndexRom(newInfo);
 		}

@@ -18,8 +18,7 @@ public static partial class DatParser {
 		// Detect format by content
 		if (content.TrimStart().StartsWith('<')) {
 			return ParseLogiqxXml(content, sourceName);
-		}
-		else if (content.Contains("clrmamepro (")) {
+		} else if (content.Contains("clrmamepro (")) {
 			return ParseClrMamePro(content, sourceName);
 		}
 
@@ -185,8 +184,7 @@ public static partial class DatParser {
 					romMd5 = null;
 					romSha1 = null;
 					romFlags = RomFlags.None;
-				}
-				else if (inGame && currentGameName is not null) {
+				} else if (inGame && currentGameName is not null) {
 					var (region, languages) = ParseRegionLanguages(currentGameName);
 					var category = DetectCategory(currentGameName);
 
@@ -199,8 +197,7 @@ public static partial class DatParser {
 						Category = category
 					});
 					inGame = false;
-				}
-				else if (inHeader) {
+				} else if (inHeader) {
 					inHeader = false;
 				}
 				continue;
@@ -241,14 +238,12 @@ public static partial class DatParser {
 						case "version": version = value; break;
 						case "author": author = value; break;
 					}
-				}
-				else if (inGame && !inRom) {
+				} else if (inGame && !inRom) {
 					switch (key) {
 						case "name": currentGameName = value; break;
 						case "description": currentGameDesc = value; break;
 					}
-				}
-				else if (inRom) {
+				} else if (inRom) {
 					switch (key) {
 						case "name": romName = value; break;
 						case "size": romSize = long.TryParse(value, out var s) ? s : 0; break;

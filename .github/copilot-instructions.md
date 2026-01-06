@@ -156,6 +156,8 @@ Documentation about the project itself:
 
 ## Token Usage
 
+Maximize work per penny, save my money, that's what these polices are for: get as much as you can for as little as you can.
+
 - **Maximize token usage per session**
 - Continue implementing improvements until token limit
 - Don't waste allocated resources

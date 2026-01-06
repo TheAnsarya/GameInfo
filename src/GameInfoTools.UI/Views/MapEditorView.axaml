@@ -166,16 +166,16 @@
 									  SelectedItem="{Binding SelectedDQPreset}"
 									  PlaceholderText="Select a preset..."
 									  DisplayMemberBinding="{Binding Name}"/>
-							<Button Content="Apply Preset" 
-									Command="{Binding ApplyDQPresetCommand}" 
+							<Button Content="Apply Preset"
+									Command="{Binding ApplyDQPresetCommand}"
 									CommandParameter="{Binding SelectedDQPreset}"
 									IsEnabled="{Binding SelectedDQPreset, Converter={x:Static ObjectConverters.IsNotNull}}"
 									ToolTip.Tip="Load map settings from selected DQ preset"/>
 							<StackPanel Orientation="Horizontal" Spacing="4">
-								<Button Content="DQ3 Overworld" 
+								<Button Content="DQ3 Overworld"
 										Command="{Binding LoadDQ3OverworldCommand}"
 										ToolTip.Tip="Load full DQ3 SNES overworld (256×256 chunk map)"/>
-								<Button Content="Chunks" 
+								<Button Content="Chunks"
 										Command="{Binding LoadDQ3ChunksCommand}"
 										ToolTip.Tip="Load DQ3 chunk definitions"/>
 							</StackPanel>

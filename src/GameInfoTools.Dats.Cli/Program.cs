@@ -22,31 +22,31 @@ return command switch {
 static int ShowHelp() {
 	Console.WriteLine("""
 		GameInfo DAT and ROM Management Tools
-		
+
 		Usage: dattools <command> [options]
-		
+
 		Commands:
 		  hash <files...>                    Hash ROM files with multiple algorithms
 		    --no-snes                        Don't detect SNES headers
 		    --format <text|json|csv>         Output format (default: text)
-		
+
 		  verify <files...>                  Verify ROMs against a whitelist
 		    --whitelist <file>               JSON whitelist file (required)
 		    --strict                         Require exact SHA1 match
-		
+
 		  parse <dat-files...>               Parse DAT files (NoIntro, TOSEC, etc.)
 		    --output <file>                  Output file (JSON format)
 		    --stats                          Show statistics only
-		
+
 		  merge <dat-files...>               Merge multiple DAT files into whitelists
 		    --output <dir>                   Output directory (default: ./whitelists)
 		    --system <name>                  System name (default: SNES)
-		
+
 		  scan <directory>                   Scan directory for ROMs and identify them
 		    --whitelist <file>               Whitelist to identify against
 		    --extensions <ext1,ext2,...>     File extensions (default: .sfc,.smc,.nes,...)
 		    --no-recursive                   Don't scan subdirectories
-		
+
 		Examples:
 		  dattools hash "My Game.sfc"
 		  dattools verify *.sfc --whitelist snes-commercial.json
@@ -113,8 +113,7 @@ static int HashCommand(string[] args) {
 	if (format == "json") {
 		var json = JsonSerializer.Serialize(results, new JsonSerializerOptions { WriteIndented = true });
 		Console.WriteLine(json);
-	}
-	else if (format == "csv") {
+	} else if (format == "csv") {
 		Console.WriteLine("Name,FileSize,RomSize,HeaderSize,CRC32,MD5,SHA1,SHA256,SnesValid");
 		foreach (var h in results) {
 			Console.WriteLine($"{h.Name},{h.FileSize},{h.RomSize},{h.HeaderSize},{h.Crc32},{h.Md5},{h.Sha1},{h.Sha256},{h.SnesChecksum?.IsValid}");
@@ -186,11 +185,9 @@ static int VerifyCommand(string[] args) {
 		// Try SHA1 first (most reliable)
 		if (bySha1.TryGetValue(hashes.Sha1, out match)) {
 			matchType = "SHA1";
-		}
-		else if (!strict && byMd5.TryGetValue(hashes.Md5, out match)) {
+		} else if (!strict && byMd5.TryGetValue(hashes.Md5, out match)) {
 			matchType = "MD5";
-		}
-		else if (!strict && byCrc.TryGetValue(hashes.Crc32, out var crcMatches)) {
+		} else if (!strict && byCrc.TryGetValue(hashes.Crc32, out var crcMatches)) {
 			// Check size matches for CRC
 			match = crcMatches.FirstOrDefault(e => e.Size == hashes.RomSize);
 			if (match is not null) matchType = "CRC32+Size";
@@ -201,8 +198,7 @@ static int VerifyCommand(string[] args) {
 			Console.WriteLine($"  Matched: {match.GameName} ({matchType})");
 			Console.WriteLine($"  Category: {match.Category}, Region: {match.Region ?? "Unknown"}");
 			verified++;
-		}
-		else {
+		} else {
 			Console.WriteLine($"✗ {Path.GetFileName(filePath)}");
 			Console.WriteLine($"  SHA1: {hashes.Sha1}");
 			Console.WriteLine($"  Not found in whitelist");
@@ -400,8 +396,7 @@ static int ScanCommand(string[] args) {
 			Console.WriteLine($"✓ {relativePath}");
 			Console.WriteLine($"  → {match.GameName}");
 			identified++;
-		}
-		else {
+		} else {
 			Console.WriteLine($"? {relativePath}");
 			Console.WriteLine($"  SHA1: {hashes.Sha1}");
 			unknown++;

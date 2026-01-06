@@ -575,6 +575,73 @@ git commit everything in logical batches, update github issues, update todo-list
 
 continue;
 
+continue;
+
+Create user documentation/guides
+
+create a new github project named `ableton-snes-spc` and turn on the github issues and clone it locally and add it to this vscode workspace; make all the plans and documentation and github issues and todolists for this project: create a c# dotnet plugin for `Ableton Live` that edits and plays the `SNES` music file format `SPC` with the conditions and restrictions of the SPC format. Have it able to import and export `*.spc` files, but develop and use a custom `*.spcx` file format/type so you can store things logically and have plenty of metadata and things which can't be saved as SPC, but affect the output, like filter settings on base BRR samples; use all modern versions of everything and all modern practices; The purpose of the plugin component is to open, play, edit, and export/save the SNES's music format files, `*.spc` or `SPC` while limiting effects and controls that cannot be saved into the target format unless it affects output, like BRR samples, or something; plan! document! research! document! make todos and issues! document! git commit everything! session and chat logs!; if you have any steam left, start it, otherwise pause, and plan some more and then start it;
+
+try again in smaller batches so we don't hit the limit
+
+Add more unit tests for CPU opcodes; Implement remaining opcodes (bit operations, MUL, DIV, etc.); Add Gaussian interpolation for better audio quality; Implement echo/reverb effect; Set up VST3 SDK integration
+
+continue; document! make docs for references that were used to make an ableton plugin; continue coding, focus on ableton functionality and spc editability;
+
+continue; document! make docs for references that were used to make an ableton plugin; continue coding, focus on ableton functionality and spc editability;
+
+***Add UI/GUI components***; Add more sample filters and effects; Build Native AOT version for production use; Build VST3 wrapper with CMake; update and make issues and todolists; do more ableton plugin stuff! update chat and session logs, focus on the spc file format and save/load and editing and documentation; continue; 
+
+format everything in the `ableton-snes-spc` project using the `.editorconfig` and add rules to the `editorconfig` for `c` or `c++` based on the other languages, K&R braces and tabs everywhere, and lowercase hexadecimal, and empty newline at end of file and fix linting errors; continue ablelton development and funcionality and create documentation for start to finish `SPC` editing using ableton, from import to how to edit it to saving and export; continue;
+
+add `TABS not spaces` to the editorconfig for XML files; You need to create a whitelist for the original SNES roms. Combine the TOSEC dats https://www.tosecdev.org/downloads/category/59-2025-03-13 and the GoodTools (GoodSNES) available at OpenGood on github  https://github.com/SnowflakePowered/opengood/tree/master/dats and NoIntro available at https://github.com/libretro-mirrors/nointro-db/blob/master/Nintendo%20-%20Super%20Nintendo%20Entertainment%20System.dat and then just hash the rom with sha1 and sha256 and md5 and crc32 and maybe if you want run the snes crc check on the non-header portion of the rom to check against the header's crc; in the `GameInfo` project make a `dats` folder and make tools that create the dats for the systems we're working on, make lists of all the good commercial roms, and also the translations and hacks into a master list, and sublists; make some tools and documentation; and then return to finsishing off the ableton work; make sure there is a user guide for ableton spc editing; do the "what's next" tasks: Address build warnings - Clean up unused fields (_loopStartSample, _loopEndSample, _envStep), Sample relocation - Implement dynamic sample relocation in ReplaceSample for larger samples, More driver signatures - Add detection for more SNES sound drivers, UI integration - Connect ProjectManager to view models for visual undo/redo, VST3 wrapper - Continue integrating C++ wrapper with new .NET components;
+
+Session log; Start VST3 wrapper integration - Create the VST3 plugin wrapper layer; continue;
+
+Test VST3 C++ build - Requires VST3 SDK installation; Add pitch bend VST3 event - Currently only CC is handled; File drop support - Drag-and-drop SPC files onto plugin; GUI implementation - VSTGUI or Avalonia-based UI; Cross-platform builds - macOS/Linux support; continuel document!
+
+Do the "what's next": Wire controller to SpcEditor - Create editor instance in createView(); Test with VST3 SDK - Download SDK and build the C++ plugin; Add waveform display - Visualize samples; Preset browser - Load/save SPC presets; Real-time sample editing - Connect to RealtimeSampleEditor; continue; update documentation session/chat logs plans issues etc;
+
+do all of the "what's next" stuff and make sure the plugin works with the latest version of Ab;leton Live and also with my licensed version `Ableton Live Suite (10.1.43)`; document and continue;
+
+do the "what's next": Build VST3 plugin - Run CMake build to compile the C++ side; Test in Ableton - Load plugin in Live 10.1.43 to verify functionality (create manual testing documentation) (if you can automate any of this please do, like loading ableton with the plugin or running the plugin install, or load and test a file); Integrate spectrum analyzer - Add SpectrumView to main GUI layout; Sample editor GUI - Create panel for sample manipulation; Performance profiling - Optimize FFT and rendering; continue;
+
+implement the "What's Next" tasks, then come up with the next tasks and do those etc, documenting as you go and updating manual testing docs; continue for as long as you need to to complete the plugin;
+
+Add `ableton-snes-spc/~references/` to the `ableton-snes-spc` gitignore file and use it as a repository for files that aren't in the github repos but are used as references, which documentation and download scripts that run when the file isn't there, but add documentation and a download script to get the `/ableton-snes-spc/~references/GoodSPC v3.22.7z` file from `https://archive.org/download/GoodSPCV3.22/GoodSPC%20v3.22.7z` which is a giant collection of SNES SPC music files, use this as a reference (when the archive doesn't exist run the script to download it) and testing materials/resources and create analyzers to determine the SPC engine driver (is it N-SPC?) because we want to be able to edit all of the SPCs in the ableton plugin, so sample a wide selection from the reference collection of spcs and test with them; continue; and do the "what's next"; Set up VST3 SDK environment for build testing, Build and fix any remaining compilation errors, Create proper UI XML with ViewSwitcher integration, Wire MIDI CC events from processor to controller;
+
+Build Testing - Set up VST3 SDK environment, fix compilation errors; the vst3 sdk seems to be a problem, resolve it; and then the rest of the "what's next"; continue;
+
+Create an asset for the icon for the VST3 plugin icon, `a musical note surrounded by the four SNES buttons, ABXY from the right side of the snes controller, japanese controller so it's colorful`; make large versions for reference and make appropriately sized smaller versions for the `PlugIn.ico` file; and then the rest of the "what's next"; continue; update session/chat logs, todo-lists, github issues, roadmap, plans, documentation, etc.;
+
+install `cairo` and `libcairo-2` and then re-try and continue the last prompt;
+
+Oh, god, that is ugly. Make a new icon that is a black quarter-staff note in the middle, slightly left, with the four colored circles around it with gradients (use the more advanced svg generator with gradients), no letters, and replace all the files with the new icon, and no background circle, just a note and 4 buttons and a transparent background;
+
+make the musical note fancier and add two flags and a white outline; make a couple different varients in every size so I can review them;
+
+these are all ugly, make the curves smooth, with a transparent background, make the musical note more artistic or just better looking;
+
+varient-B is the best one you made, although it's not perfect, use that one;
+
+Do everything to finish off the map editors for `DW4 (NES)` and `DQ3r (SNES)` and the romhack we're making `DQ4r (SNES)` and create manual testing documentation for the map editor, the monster info editor, the monster graphics editor, the map graphics, towns/dungeons/overworld, and spells, etc; continue as long as there is work to do;
+
+DQ3r monster/item/spell editors - Create testing docs similar to DW4
+
+DQ3r monster/item/spell editors - Create testing docs similar to DW4; Blazor editor UI - The GameInfoTools.UI MapEditorViewModel is extensive (2311 lines) but could use more DQ-specific features; continue;
+
+DQ3r graphics editor testing - Add 4bpp tile testing docs; Wire up UI - Add preset dropdown to MapEditorView.axaml; Integrate DQ3Lib - Connect MapEditor to actual DQ3Lib chunk parsing; Create FFMQ testing docs - Round out the set with Final Fantasy Mystic Quest; continue;
+
+Add DQ3Lib compression support (BasicRing400 for proper decompression); Create FFMQ graphics editor testing docs; Add DQ4r SNES editor testing docs (monster, item, spell); Expand FFMQLib with actual data structures; continue;
+
+Add FFMQLib text decoding for monster/spell names; Create DQ4rLib data structures (mirror FFMQLib pattern); Add unit tests for FFMQLib readers; Test BasicRing400 against actual DQ3 compressed chunks; I've added the `ffmq-info` project to the workspace use that resource for any ffmq work;
+
+Add FFMQ ROM integration test with actual ROM file; Add DQ4rLib text decoding (similar to FFMQLib); Create character editor testing docs; Implement FFMQLib weapon/armor/item readers using text decoder; continue for a while doing more work, updating github issues and todolists and session/chat logs and documentation; 
+
+DW4 and DQ4r are different projects, don't confuse them; add a `manual testing` section to the top of the main gameinfo readme `/GameInfo/README.md` linking to all the manual testing documentation (from the other projects/repos as well) and clean up the main gameinfo readme file, moving and reorganizing content into a logical structure so that all of the `*.md` documentation files are in the link-web (able to be reached from the main readme file links eventually), and specifics are for their appropriate file, not in the general description readmes; clean up and verify documentation for a while;
+
+Push changes - The commit is ready but not pushed (git commit and push everything!!!! in every repos! all files!); Verify broken links - Some linked folders may not have their expected README files; Check Games/ folder coverage - The Games/SNES/* folders have extensive docs that could be better linked; Add ~manual-testing to other repos - ffmq-info and dq3r-info don't have dedicated testing folders yet; continue for a while doing more work, updating github issues and todolists and session/chat logs and documentation; 
+
+
 
 
 

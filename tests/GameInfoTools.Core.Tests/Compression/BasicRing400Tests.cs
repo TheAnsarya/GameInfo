@@ -66,7 +66,7 @@ public class BasicRing400Tests {
 		// Let me re-derive from the decompression logic:
 		// var address = d1 + ((d2 << 2) & 0x0300);
 		// var length = (d2 & 0x3f) + 3;
-		// 
+		//
 		// So: address = d1 + (d2 & 0xC0) << 2
 		// For address 0x3bf:
 		//   d1 = 0xBF
