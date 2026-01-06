@@ -1,0 +1,278 @@
+{{Back|Final Fantasy IV}}
+__TOC__
+
+==Magic System Overview==
+
+Final Fantasy IV features three types of magic: White Magic (healing/support), Black Magic (offensive), and Summon Magic (powerful creature attacks). Only characters with the appropriate class can use each type.
+
+==Magic Users==
+
+{| class="wikitable"
+|-
+! Character !! White !! Black !! Summon !! Notes
+|-
+| Cecil || — || — || — || No magic (Dark Knight), White (Paladin)
+|-
+| Rosa || Yes || — || — || Primary White Mage
+|-
+| Rydia || — || Yes || Yes || Primary Black/Summoner
+|-
+| Tellah || Yes || Yes || — || Sage class, knows both
+|-
+| Palom || — || Yes || — || Black Mage
+|-
+| Porom || Yes || — || — || White Mage
+|-
+| FuSoYa || Yes || Yes || — || Sage class, knows all
+|-
+| Edge || — || — || — || Ninjutsu (separate system)
+|}
+
+==White Magic==
+
+===Healing Spells===
+{| class="wikitable"
+|-
+! ID !! Spell !! MP !! Target !! Effect !! Learned By
+|-
+| $01 || Cure || 3 || One/All || Restores ~100 HP || Rosa L1, Porom L1, Tellah, FuSoYa
+|-
+| $02 || Cura || 9 || One/All || Restores ~400 HP || Rosa L15, Porom L13, Tellah, FuSoYa
+|-
+| $03 || Curaga || 18 || One/All || Restores ~1000 HP || Rosa L36, FuSoYa
+|-
+| $04 || Curaja || 40 || One || Full HP restore || Rosa L48, FuSoYa
+|}
+
+===Status Recovery===
+{| class="wikitable"
+|-
+! ID !! Spell !! MP !! Target !! Effect !! Learned By
+|-
+| $05 || Esuna || 15 || One || Removes status ailments || Rosa L18, Porom L15, Tellah, FuSoYa
+|-
+| $06 || Raise || 25 || One || Revive with 25% HP || Rosa L11, Porom L11, Tellah, FuSoYa
+|-
+| $07 || Arise || 52 || One || Revive with full HP || Rosa L45, FuSoYa
+|-
+| $08 || Basuna || 10 || One || Remove certain statuses || Rosa L13, Tellah, FuSoYa
+|}
+
+===Support Spells===
+{| class="wikitable"
+|-
+! ID !! Spell !! MP !! Target !! Effect !! Learned By
+|-
+| $09 || Protect || 8 || One || Raises physical defense || Rosa L8, Porom L8, Tellah, FuSoYa
+|-
+| $0a || Shell || 10 || One || Raises magic defense || Rosa L20, FuSoYa
+|-
+| $0b || Blink || 8 || One || Evade physical attacks || Rosa L23, FuSoYa
+|-
+| $0c || Float || 8 || Party || Avoid ground attacks || Rosa L29, FuSoYa
+|-
+| $0d || Reflect || 15 || One || Reflects magic || Rosa L32, FuSoYa
+|-
+| $0e || Haste || 25 || One || Doubles ATB speed || Rosa L25, FuSoYa
+|-
+| $0f || Slow || 14 || One || Halves ATB speed || Rosa L21, Tellah, FuSoYa
+|}
+
+===Offensive White===
+{| class="wikitable"
+|-
+! ID !! Spell !! MP !! Target !! Effect !! Learned By
+|-
+| $10 || Holy || 46 || One || Holy damage || Rosa L38, FuSoYa
+|-
+| $11 || Dispel || 12 || One || Removes buffs || Rosa L31, Tellah, FuSoYa
+|-
+| $12 || Silence || 6 || One || Prevents spellcasting || Rosa L10, Tellah, FuSoYa
+|-
+| $13 || Confuse || 10 || One || Causes confusion || Rosa L16, Tellah, FuSoYa
+|}
+
+==Black Magic==
+
+===Fire Element===
+{| class="wikitable"
+|-
+! ID !! Spell !! MP !! Target !! Effect !! Learned By
+|-
+| $20 || Fire || 5 || One || Fire damage ~150 || Rydia L1, Palom L1, Tellah, FuSoYa
+|-
+| $21 || Fira || 15 || One/All || Fire damage ~600 || Rydia L14, Palom L10, Tellah, FuSoYa
+|-
+| $22 || Firaga || 30 || One/All || Fire damage ~1600 || Rydia L32, Palom L29, Tellah, FuSoYa
+|}
+
+===Ice Element===
+{| class="wikitable"
+|-
+! ID !! Spell !! MP !! Target !! Effect !! Learned By
+|-
+| $23 || Blizzard || 5 || One || Ice damage ~150 || Rydia L3, Palom L3, Tellah, FuSoYa
+|-
+| $24 || Blizzara || 15 || One/All || Ice damage ~600 || Rydia L17, Palom L13, Tellah, FuSoYa
+|-
+| $25 || Blizzaga || 30 || One/All || Ice damage ~1600 || Rydia L35, Palom L32, Tellah, FuSoYa
+|}
+
+===Thunder Element===
+{| class="wikitable"
+|-
+! ID !! Spell !! MP !! Target !! Effect !! Learned By
+|-
+| $26 || Thunder || 5 || One || Thunder damage ~150 || Rydia L5, Palom L5, Tellah, FuSoYa
+|-
+| $27 || Thundara || 15 || One/All || Thunder damage ~600 || Rydia L20, Palom L16, Tellah, FuSoYa
+|-
+| $28 || Thundaga || 30 || One/All || Thunder damage ~1600 || Rydia L38, Palom L35, Tellah, FuSoYa
+|}
+
+===Non-Elemental===
+{| class="wikitable"
+|-
+! ID !! Spell !! MP !! Target !! Effect !! Learned By
+|-
+| $29 || Bio || 20 || One/All || Poison damage + status || Rydia L26, Tellah, FuSoYa
+|-
+| $2a || Quake || 25 || All || Earth damage (ground only) || Rydia L29, Tellah, FuSoYa
+|-
+| $2b || Flare || 50 || One || Massive non-elemental || Rydia L50, FuSoYa
+|-
+| $2c || Meteo || 99 || All || Ultimate non-elemental || Tellah (story), FuSoYa
+|}
+
+===Status Black===
+{| class="wikitable"
+|-
+! ID !! Spell !! MP !! Target !! Effect !! Learned By
+|-
+| $30 || Sleep || 12 || One/All || Inflicts Sleep || Rydia L10, Palom L7, Tellah, FuSoYa
+|-
+| $31 || Toad || 7 || One || Transforms to/from Toad || Rydia L7, Palom L6, Tellah, FuSoYa
+|-
+| $32 || Pig || 1 || One || Transforms to/from Pig || Rydia L8, Tellah, FuSoYa
+|-
+| $33 || Stop || 15 || One || Halts target completely || Rydia L23, Tellah, FuSoYa
+|-
+| $34 || Death || 35 || One || Instant death (low rate) || Rydia L44, FuSoYa
+|}
+
+==Summon Magic==
+
+Only Rydia can use Summon magic (after returning from Feymarch).
+
+===Low-Level Summons===
+{| class="wikitable"
+|-
+! ID !! Summon !! MP !! Target !! Element !! Effect !! Obtained
+|-
+| $40 || Chocobo || 7 || All || — || Kick attack || Rydia L1
+|-
+| $41 || Shiva || 20 || All || Ice || Diamond Dust || Feymarch
+|-
+| $42 || Ifrit || 20 || All || Fire || Hellfire || Feymarch
+|-
+| $43 || Ramuh || 20 || All || Thunder || Judgment Bolt || Feymarch
+|-
+| $44 || Titan || 30 || All || Earth || Gaia's Wrath || Feymarch
+|}
+
+===High-Level Summons===
+{| class="wikitable"
+|-
+! ID !! Summon !! MP !! Target !! Element !! Effect !! Obtained
+|-
+| $45 || Sylph || 25 || Party/Enemies || — || Drain HP from enemies || Sylph Cave
+|-
+| $46 || Odin || 45 || All || — || Zantetsuken (instant death) || Baron Castle
+|-
+| $47 || Leviathan || 50 || All || Water || Tidal Wave || Feymarch
+|-
+| $48 || Asura || 50 || Party || — || Random heal/protect/raise || Feymarch
+|-
+| $49 || Bahamut || 60 || All || — || Mega Flare || Lunar Subterrane
+|}
+
+==Damage Formulas==
+
+===Black Magic===
+<pre>
+Damage = (Base Power × (Intelligence / 4 + 1)) × (100 - Target MagDef) / 100
+</pre>
+
+===Elemental Weakness===
+<pre>
+If target weak to element: Damage × 2
+If target absorbs element: Damage heals instead
+If target nullifies element: Damage = 0
+</pre>
+
+===Summon Magic===
+<pre>
+Damage = (Summon Power × (Intelligence / 2 + 1)) × (100 - Target MagDef) / 100
+</pre>
+
+==Twin Magic (Palom & Porom)==
+
+When both twins are in the party, they can cast Twin magic:
+
+{| class="wikitable"
+|-
+! Spell !! Charge Time !! Effect
+|-
+| Pyro || Long || Fire damage to all (Palom leads)
+|-
+| Comet || Very Long || Non-elemental to all (Porom leads)
+|-
+| Flare || Extreme || Massive single-target (both)
+|}
+
+==Edge's Ninjutsu==
+
+Not technically magic, but Edge's special skills:
+
+{| class="wikitable"
+|-
+! ID !! Ninjutsu !! MP !! Target !! Effect
+|-
+| $50 || Flame || 5 || All || Fire damage
+|-
+| $51 || Flood || 10 || All || Water damage
+|-
+| $52 || Blitz || 15 || All || Thunder damage
+|-
+| $53 || Smoke || 10 || Party || Escape battle (guaranteed)
+|-
+| $54 || Image || 6 || Self || Creates decoys
+|}
+
+==RAM Addresses==
+
+{| class="wikitable"
+|-
+! Address !! Size !! Description
+|-
+| $7e:1808 || 2 bytes || Character 1 current MP
+|-
+| $7e:180a || 2 bytes || Character 1 max MP
+|-
+| $7e:1848 || 2 bytes || Character 2 current MP
+|-
+| $7e:184a || 2 bytes || Character 2 max MP
+|-
+| $7e:1888 || 2 bytes || Character 3 current MP
+|-
+| $7e:18c8 || 2 bytes || Character 4 current MP
+|-
+| $7e:1908 || 2 bytes || Character 5 current MP
+|}
+
+==See Also==
+* [[Final Fantasy IV:ATB_System|ATB System]] - Active Time Battle mechanics
+* [[Final Fantasy IV:RAM_Map|RAM Map]] - Complete memory documentation
+
+[[Category:Final Fantasy IV]]
+[[Category:Game Mechanics]]

@@ -108,9 +108,13 @@ Three-character combination attacks requiring specific party compositions.
 
 ==Documentation==
 
+===Technical===
 * [[Chrono Trigger:ROM_Map|ROM Map]] - Complete ROM layout
 * [[Chrono Trigger:RAM_Map|RAM Map]] - Runtime memory documentation
 * [[Chrono Trigger:TBL|Text Table]] - Character encoding
+
+===Game Systems===
+* [[Chrono Trigger:Techs|Tech System]] - Single, Double, and Triple Techs
 
 ==Known Dumps==
 

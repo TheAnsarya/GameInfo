@@ -1,0 +1,244 @@
+{{Back|Dragon Quest III}}
+__TOC__
+
+==Class System Overview==
+
+Dragon Quest III features a robust class (vocation) system that allows characters to change their profession at [[Dharma Temple|Alltrades Abbey]]. Characters must reach level 20 before changing classes. Upon class change, the character's level resets to 1, but they retain a portion of their stats and all learned spells.
+
+==Class List==
+
+{| class="wikitable sortable"
+|-
+! ID !! Class !! Description !! HP Growth !! MP Growth !! Str Growth !! Agi Growth !! Vit Growth !! Int Growth !! Luck Growth
+|-
+| $00 || Hero || The chosen one, balanced stats || High || High || High || High || High || High || High
+|-
+| $01 || Soldier || Physical fighter, high HP || Very High || None || Very High || Medium || Very High || Low || Medium
+|-
+| $02 || Fighter || Martial artist, high agility || High || None || High || Very High || High || Medium || Medium
+|-
+| $03 || Pilgrim || Healer, learns healing magic || Medium || High || Low || Medium || Medium || High || High
+|-
+| $04 || Wizard || Magic user, learns attack spells || Low || Very High || Very Low || Medium || Low || Very High || Medium
+|-
+| $05 || Merchant || Trader, earns bonus gold || High || Low || Medium || Medium || High || Medium || High
+|-
+| $06 || Goof-Off || Lazy joker, can become Sage || Medium || Medium || Medium || Medium || Medium || Medium || Very High
+|-
+| $07 || Sage || Master of all magic || Medium || Very High || Medium || Medium || Medium || Very High || Medium
+|-
+| $08 || Thief || Fast and lucky, finds items || Medium || Low || Medium || Very High || Medium || Medium || Very High
+|}
+
+==Class Data Structure==
+
+Class data is stored at bank $C2, starting at $C20000.
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00 || 1 byte || Class ID
+|-
+| $01 || 1 byte || Base HP growth rate
+|-
+| $02 || 1 byte || Base MP growth rate
+|-
+| $03 || 1 byte || Base Strength growth rate
+|-
+| $04 || 1 byte || Base Agility growth rate
+|-
+| $05 || 1 byte || Base Vitality growth rate
+|-
+| $06 || 1 byte || Base Intelligence growth rate
+|-
+| $07 || 1 byte || Base Luck growth rate
+|-
+| $08 || 2 bytes || Equipment flags (weapon types)
+|-
+| $0a || 2 bytes || Equipment flags (armor types)
+|-
+| $0c || 4 bytes || Spell learning table pointer
+|}
+
+==Stat Retention on Class Change==
+
+When a character changes class, they retain a percentage of their previous stats:
+
+{| class="wikitable"
+|-
+! Stat !! Retention Rate
+|-
+| HP || 50%
+|-
+| MP || 50%
+|-
+| Strength || 50%
+|-
+| Agility || 50%
+|-
+| Vitality || 50%
+|-
+| Intelligence || 50%
+|-
+| Luck || 50%
+|-
+| Spells || 100%
+|}
+
+==Spell Learning by Class==
+
+===Hero Spells===
+{| class="wikitable"
+|-
+! Level !! Spell !! MP Cost !! Effect
+|-
+| 1 || Heal || 3 || Restores ~30 HP
+|-
+| 4 || Sizz || 4 || Fire damage to group
+|-
+| 7 || Return || 8 || Warp to visited town
+|-
+| 12 || Sizzle || 6 || Medium fire to group
+|-
+| 15 || Outside || 8 || Exit dungeon
+|-
+| 17 || Zap || 8 || Lightning damage
+|-
+| 20 || Zoom || 1 || Warp on world map
+|-
+| 25 || Kasizzle || 10 || Strong fire to group
+|-
+| 30 || Kazap || 15 || Strong lightning
+|-
+| 35 || Heal Us || 18 || Heals entire party
+|-
+| 38 || Revive || 20 || Revive fallen ally
+|}
+
+===Soldier Spells===
+Soldiers cannot learn magic.
+
+===Fighter Spells===
+Fighters cannot learn magic.
+
+===Pilgrim Spells===
+{| class="wikitable"
+|-
+! Level !! Spell !! MP Cost !! Effect
+|-
+| 1 || Heal || 3 || Restores ~30 HP
+|-
+| 3 || Woosh || 4 || Wind damage to group
+|-
+| 5 || Buff || 2 || Raises defense
+|-
+| 7 || Upper || 3 || Raises attack
+|-
+| 9 || Midheal || 5 || Restores ~80 HP
+|-
+| 12 || Whack || 4 || Instant death chance
+|-
+| 15 || Swoosh || 8 || Medium wind to group
+|-
+| 18 || Vivify || 10 || 50% revive chance
+|-
+| 22 || Fullheal || 7 || Full HP restore
+|-
+| 26 || Thwack || 7 || Group instant death
+|-
+| 30 || Kaswoosh || 12 || Strong wind to group
+|-
+| 35 || Revive || 20 || Full revive
+|-
+| 40 || Omniheal || 36 || Full party heal
+|}
+
+===Wizard Spells===
+{| class="wikitable"
+|-
+! Level !! Spell !! MP Cost !! Effect
+|-
+| 1 || Frizz || 2 || Fire damage to one
+|-
+| 4 || Snooze || 3 || Sleep one enemy
+|-
+| 6 || Crack || 3 || Ice damage to one
+|-
+| 9 || Sap || 3 || Lowers defense
+|-
+| 11 || Frizzle || 4 || Medium fire to one
+|-
+| 14 || Crackle || 5 || Ice damage to group
+|-
+| 17 || Fizzle || 3 || Seals enemy spells
+|-
+| 20 || Bang || 5 || Explosion damage
+|-
+| 23 || Kacrackle || 9 || Strong ice to group
+|-
+| 27 || Kafrizz || 10 || Strong fire to one
+|-
+| 30 || Boom || 8 || Strong explosion
+|-
+| 35 || Kaboom || 15 || Massive explosion
+|}
+
+===Sage Spells===
+Sages learn both Pilgrim and Wizard spells at combined level progression.
+
+==Special Class: Sage==
+
+Sages can only be obtained by:
+# Bringing a Book of Satori to Dharma Temple with a level 20+ character
+# A Goof-Off at level 20+ will automatically be allowed to become a Sage
+
+The Book of Satori is consumed upon use.
+
+==Equipment Restrictions==
+
+{| class="wikitable"
+|-
+! Class !! Weapons !! Armor
+|-
+| Hero || Swords, Axes, Boomerangs || All types
+|-
+| Soldier || Swords, Axes, Spears || Heavy armor, shields
+|-
+| Fighter || Claws, Staves || Light armor
+|-
+| Pilgrim || Staves, Maces || Robes, light armor
+|-
+| Wizard || Staves, Knives || Robes only
+|-
+| Merchant || Swords, Axes || Medium armor
+|-
+| Goof-Off || Various || Various
+|-
+| Sage || Staves, Swords || Robes, medium armor
+|-
+| Thief || Knives, Whips || Light armor
+|}
+
+==RAM Addresses==
+
+{| class="wikitable"
+|-
+! Address !! Size !! Description
+|-
+| $7e:e102 || 1 byte || Character 1 class ID
+|-
+| $7e:e142 || 1 byte || Character 2 class ID
+|-
+| $7e:e182 || 1 byte || Character 3 class ID
+|-
+| $7e:e1c2 || 1 byte || Character 4 class ID
+|}
+
+==See Also==
+* [[Dragon Quest III:Personalities|Personalities]] - Stat modifiers from personality type
+* [[Dragon Quest III:RAM_Map|RAM Map]] - Complete memory documentation
+* [[Dragon Quest III:Values|Values]] - Class constants and IDs
+
+[[Category:Dragon Quest III]]
+[[Category:Game Mechanics]]

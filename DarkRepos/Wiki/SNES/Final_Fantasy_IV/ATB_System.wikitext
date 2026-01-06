@@ -1,0 +1,233 @@
+{{Back|Final Fantasy IV}}
+__TOC__
+
+==ATB System Overview==
+
+Final Fantasy IV introduced the Active Time Battle (ATB) system, which became a staple of the Final Fantasy series. Unlike traditional turn-based RPGs, characters and enemies can act when their time gauge fills, creating more dynamic battles.
+
+==Time Gauge Mechanics==
+
+===Gauge Fill Rate===
+
+The ATB gauge fill rate is calculated based on the character's Speed stat:
+
+<pre>
+Fill Time = (255 - Speed) / Battle Speed Setting
+</pre>
+
+At Speed 255, the gauge fills almost instantly.
+
+{| class="wikitable"
+|-
+! Speed !! Ticks to Fill (Normal)
+|-
+| 0 || 255
+|-
+| 50 || 205
+|-
+| 100 || 155
+|-
+| 150 || 105
+|-
+| 200 || 55
+|-
+| 255 || 0 (instant)
+|}
+
+===Battle Speed Settings===
+
+The player can adjust battle speed from the menu:
+
+{| class="wikitable"
+|-
+! Setting !! Speed Multiplier !! Description
+|-
+| 1 || 1.0x || Slowest
+|-
+| 2 || 1.5x || Slow
+|-
+| 3 || 2.0x || Normal
+|-
+| 4 || 2.5x || Fast
+|-
+| 5 || 3.0x || Fastest
+|-
+| 6 || 4.0x || Turbo
+|}
+
+==Active vs Wait Mode==
+
+===Active Mode===
+* Time continues during menu navigation
+* Enemy gauges fill while selecting spells/items
+* More challenging, faster-paced combat
+
+===Wait Mode===
+* Time pauses during menu navigation
+* Enemy gauges freeze while selecting spells/items
+* More strategic, thoughtful combat
+
+==Turn Order Queue==
+
+When multiple characters/enemies have full gauges simultaneously:
+
+<pre>
+1. Earlier position in battle queue takes priority
+2. For same position, Speed determines order
+3. Actions are queued and execute in order
+</pre>
+
+==Action Types==
+
+{| class="wikitable"
+|-
+! Type !! Charge Time !! Notes
+|-
+| Attack || None || Immediate execution
+|-
+| Item || None || Immediate execution
+|-
+| Magic || Spell-dependent || Longer spells have charge time
+|-
+| Jump || 2 turns || Dragoon leaves screen
+|-
+| Throw || None || Immediate execution
+|-
+| Summon || Long || Highest charge time
+|}
+
+==Spell Charge Times==
+
+{| class="wikitable"
+|-
+! Category !! Charge Time !! Examples
+|-
+| Instant || 0 frames || Item use, Attack
+|-
+| Quick || 30 frames || Cure, Fire
+|-
+| Normal || 60 frames || Cura, Fira
+|-
+| Long || 90 frames || Curaga, Firaga
+|-
+| Very Long || 120 frames || Meteo, Flare
+|-
+| Extreme || 150+ frames || Bahamut, Holy
+|}
+
+==Status Effects on ATB==
+
+{| class="wikitable"
+|-
+! Status !! Effect on ATB
+|-
+| Haste || Doubles gauge fill rate
+|-
+| Slow || Halves gauge fill rate
+|-
+| Stop || Gauge freezes completely
+|-
+| Paralysis || Cannot act when gauge fills
+|-
+| Sleep || Gauge pauses until damaged
+|-
+| Confuse || Acts randomly when gauge fills
+|-
+| Berserk || Auto-attacks when gauge fills
+|}
+
+==Jump Mechanics==
+
+Kain's Jump command has special ATB behavior:
+
+<pre>
+1. Select Jump → Kain leaves screen
+2. ATB gauge resets to 0
+3. After ~2 full gauge cycles, Kain descends
+4. Jump damage = Attack × 2 (ignores defense partially)
+5. Kain is immune to all attacks while airborne
+</pre>
+
+==Enemy ATB==
+
+Enemies use the same ATB system:
+
+{| class="wikitable"
+|-
+! Enemy Type !! Typical Speed
+|-
+| Slow enemies || 10-30
+|-
+| Normal enemies || 40-70
+|-
+| Fast enemies || 80-120
+|-
+| Bosses || Variable (often 50-80)
+|}
+
+Some bosses have conditional ATB behavior:
+* Counter-attacks don't use ATB (instant response)
+* Some boss phases change ATB speed
+* Weak states may slow ATB
+
+==RAM Addresses==
+
+{| class="wikitable"
+|-
+! Address !! Size !! Description
+|-
+| $7e:1800 || 2 bytes || Party member 1 ATB gauge
+|-
+| $7e:1840 || 2 bytes || Party member 2 ATB gauge
+|-
+| $7e:1880 || 2 bytes || Party member 3 ATB gauge
+|-
+| $7e:18c0 || 2 bytes || Party member 4 ATB gauge
+|-
+| $7e:1900 || 2 bytes || Party member 5 ATB gauge
+|-
+| $7e:1a00 || 2 bytes || Enemy 1 ATB gauge
+|-
+| $7e:1a40 || 2 bytes || Enemy 2 ATB gauge
+|-
+| $7e:0080 || 1 byte || Battle speed setting
+|-
+| $7e:0081 || 1 byte || Active/Wait mode flag
+|}
+
+==Tips for Optimization==
+
+===Speed Gear Priority===
+1. Rosa - Faster healing is critical
+2. Rydia - Summons have long charge times
+3. Edge - More Steal/Throw attempts
+4. Cecil - Moderate priority
+5. Kain - Jump resets gauge anyway
+
+===Haste Priority===
+Cast Haste in this order:
+1. Slowest character
+2. Primary healer
+3. Primary damage dealer
+
+==Data Structure==
+
+ATB data in ROM at bank $C1:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00 || 2 bytes || Base gauge maximum (255 typically)
+|-
+| $02 || 1 byte || Speed modifier per tick
+|-
+| $03 || 1 byte || Battle speed multiplier table index
+|}
+
+==See Also==
+* [[Final Fantasy IV:Magic|Magic System]] - Spell lists and MP costs
+* [[Final Fantasy IV:RAM_Map|RAM Map]] - Complete memory documentation
+
+[[Category:Final Fantasy IV]]
+[[Category:Game Mechanics]]

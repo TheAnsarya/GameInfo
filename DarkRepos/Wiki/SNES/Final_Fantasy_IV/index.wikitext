@@ -120,9 +120,14 @@ The Active Time Battle system:
 
 ==Documentation==
 
+===Technical===
 * [[Final Fantasy IV:ROM_Map|ROM Map]] - Complete ROM layout
 * [[Final Fantasy IV:RAM_Map|RAM Map]] - Runtime memory documentation
 * [[Final Fantasy IV:TBL|Text Table]] - Character encoding
+
+===Game Systems===
+* [[Final Fantasy IV:ATB_System|ATB System]] - Active Time Battle mechanics
+* [[Final Fantasy IV:Magic|Magic System]] - White, Black, Summon magic
 
 ==Known Dumps==
 

@@ -1,0 +1,433 @@
+{{Back|Chrono Trigger}}
+__TOC__
+
+==Tech System Overview==
+
+The Tech system in Chrono Trigger replaces traditional magic from other RPGs. Characters learn Techs by earning Tech Points (TP) in battle. Techs are divided into Single Techs, Double Techs (combining two characters), and Triple Techs (combining three characters).
+
+==Single Techs==
+
+===Crono's Techs (Lightning)===
+{| class="wikitable"
+|-
+! Tech !! TP Cost !! MP Cost !! Targets !! Effect !! Learn TP
+|-
+| Cyclone || — || 2 || Circle || Spin attack, hits nearby enemies || 5
+|-
+| Slash || — || 2 || Line || Horizontal slash, hits line of enemies || 90
+|-
+| Lightning || — || 2 || One || Lightning damage to single target || 10
+|-
+| Spincut || — || 4 || One || High damage single attack || 35
+|-
+| Lightning2 || — || 8 || All || Medium lightning damage to all enemies || 200
+|-
+| Life || — || 10 || One || Revive fallen ally, 50% HP || 400
+|-
+| Confuse || — || 12 || Circle || Strong spin attack || 600
+|-
+| Luminaire || — || 20 || All || Ultimate lightning attack || 1000
+|}
+
+===Marle's Techs (Ice/Healing)===
+{| class="wikitable"
+|-
+! Tech !! TP Cost !! MP Cost !! Targets !! Effect !! Learn TP
+|-
+| Aura || — || 1 || One || Heal single ally ~200 HP || 5
+|-
+| Provoke || — || 1 || One || Inflict Chaos status || 50
+|-
+| Ice || — || 2 || One || Ice damage to single target || 10
+|-
+| Cure || — || 2 || One || Heal single ally ~400 HP || 100
+|-
+| Haste || — || 6 || One || Doubles speed temporarily || 150
+|-
+| Ice2 || — || 8 || All || Medium ice damage to all || 250
+|-
+| Cure2 || — || 5 || All || Heal party ~600 HP || 400
+|-
+| Life2 || — || 15 || One || Revive with full HP || 900
+|}
+
+===Lucca's Techs (Fire)===
+{| class="wikitable"
+|-
+! Tech !! TP Cost !! MP Cost !! Targets !! Effect !! Learn TP
+|-
+| Flame Toss || — || 1 || Line || Fire damage in line || 10
+|-
+| Hypno Wave || — || 1 || All || Inflict Sleep on enemies || 60
+|-
+| Fire || — || 2 || One || Fire damage to single target || 5
+|-
+| Napalm || — || 3 || Circle || Fire explosion in area || 96
+|-
+| Protect || — || 6 || One || Raise physical defense || 150
+|-
+| Fire2 || — || 8 || All || Medium fire damage to all || 300
+|-
+| Mega Bomb || — || 15 || All || High fire damage to all || 600
+|-
+| Flare || — || 20 || All || Ultimate fire attack || 900
+|}
+
+===Robo's Techs (Shadow/Support)===
+{| class="wikitable"
+|-
+! Tech !! TP Cost !! MP Cost !! Targets !! Effect !! Learn TP
+|-
+| Rocket Punch || — || 1 || One || Ranged physical attack || 5
+|-
+| Cure Beam || — || 2 || One || Heal single ally ~300 HP || 10
+|-
+| Laser Spin || — || 3 || All || Shadow damage to all || 60
+|-
+| Robo Tackle || — || 4 || One || High physical damage || 150
+|-
+| Heal Beam || — || 3 || All || Heal party ~400 HP || 300
+|-
+| Uzzi Punch || — || 12 || One || Multi-hit attack || 600
+|-
+| Area Bomb || — || 14 || All || High shadow damage to all || 800
+|-
+| Shock || — || 17 || All || Ultimate electrical attack || 1000
+|}
+
+===Frog's Techs (Water)===
+{| class="wikitable"
+|-
+! Tech !! TP Cost !! MP Cost !! Targets !! Effect !! Learn TP
+|-
+| Slurp || — || 1 || One || Heal single ally ~200 HP || 5
+|-
+| Slurp Cut || — || 2 || One || Physical + absorb HP || 10
+|-
+| Water || — || 2 || One || Water damage to single target || 60
+|-
+| Heal || — || 2 || One || Heal ~400 HP || 100
+|-
+| Leap Slash || — || 4 || One || High jump attack || 250
+|-
+| Water2 || — || 8 || All || Medium water damage to all || 400
+|-
+| Cure2 || — || 5 || All || Heal party ~600 HP || 600
+|-
+| Frog Squash || — || 15 || All || Damage based on missing HP || 1000
+|}
+
+===Ayla's Techs (Physical)===
+{| class="wikitable"
+|-
+! Tech !! TP Cost !! MP Cost !! Targets !! Effect !! Learn TP
+|-
+| Kiss || — || 1 || One || Heal single ally + remove status || 10
+|-
+| Rollo Kick || — || 2 || One || Physical kick attack || 5
+|-
+| Cat Attack || — || 3 || One || High physical damage || 100
+|-
+| Rock Throw || — || 4 || One || Ranged physical attack || 200
+|-
+| Charm || — || 4 || One || Steal item from enemy || 400
+|-
+| Tail Spin || — || 10 || All || Physical damage to all || 600
+|-
+| Dino Tail || — || 15 || All || High physical damage to all || 800
+|-
+| Triple Kick || — || 20 || One || Ultimate multi-hit attack || 1000
+|}
+
+===Magus's Techs (Shadow)===
+{| class="wikitable"
+|-
+! Tech !! TP Cost !! MP Cost !! Targets !! Effect !! Learn TP
+|-
+| Lightning2 || — || 8 || All || Lightning damage to all || —
+|-
+| Ice2 || — || 8 || All || Ice damage to all || —
+|-
+| Fire2 || — || 8 || All || Fire damage to all || —
+|-
+| Dark Bomb || — || 8 || Circle || Shadow damage in area || —
+|-
+| Magic Wall || — || 8 || All || Raise magic defense || —
+|-
+| Dark Mist || — || 10 || All || Shadow damage to all || —
+|-
+| Black Hole || — || 15 || All || Instant death (low rate) || —
+|-
+| Dark Matter || — || 20 || All || Ultimate shadow attack || —
+|}
+Note: Magus joins with all techs already learned.
+
+==Double Techs==
+
+===Crono + Marle===
+{| class="wikitable"
+|-
+! Tech !! MP Cost !! Targets !! Effect
+|-
+| Aura Whirl || 1+1 || Party || Heal all party members
+|-
+| Ice Sword || 4+2 || Line || Ice damage in line
+|-
+| Ice Sword 2 || 4+8 || All || High ice damage to all
+|}
+
+===Crono + Lucca===
+{| class="wikitable"
+|-
+! Tech !! MP Cost !! Targets !! Effect
+|-
+| Fire Whirl || 2+1 || Circle || Fire spin attack
+|-
+| Fire Sword || 4+2 || Line || Fire damage in line
+|-
+| Fire Sword 2 || 4+8 || All || High fire damage to all
+|}
+
+===Crono + Robo===
+{| class="wikitable"
+|-
+! Tech !! MP Cost !! Targets !! Effect
+|-
+| Rocket Roll || 2+3 || All || Physical + lightning damage
+|-
+| Max Cyclone || 2+3 || Circle || High spin attack
+|-
+| Super Volt || 8+17 || All || Ultimate electrical combo
+|}
+
+===Crono + Frog===
+{| class="wikitable"
+|-
+! Tech !! MP Cost !! Targets !! Effect
+|-
+| X-Strike || 2+2 || One || High physical damage
+|-
+| Sword Stream || 4+8 || All || Water + lightning damage
+|-
+| Spire || 4+2 || One || High single-target damage
+|}
+
+===Crono + Ayla===
+{| class="wikitable"
+|-
+! Tech !! MP Cost !! Targets !! Effect
+|-
+| Drill Kick || 2+2 || One || High physical combo
+|-
+| Volt Bite || 2+3 || One || Lightning + physical damage
+|-
+| Falcon Hit || 4+4 || One || Ultimate physical combo
+|}
+
+===Marle + Lucca===
+{| class="wikitable"
+|-
+! Tech !! MP Cost !! Targets !! Effect
+|-
+| Antipode || 2+2 || All || Fire + ice damage
+|-
+| Antipode 2 || 8+8 || All || High fire + ice damage
+|-
+| Antipode 3 || 8+20 || All || Ultimate elemental combo
+|}
+
+===Marle + Robo===
+{| class="wikitable"
+|-
+! Tech !! MP Cost !! Targets !! Effect
+|-
+| Aura Beam || 1+2 || All || Heal party
+|-
+| Ice Tackle || 2+4 || One || Ice + physical damage
+|-
+| Cure Touch || 2+3 || All || Major party heal
+|}
+
+===Marle + Frog===
+{| class="wikitable"
+|-
+! Tech !! MP Cost !! Targets !! Effect
+|-
+| Ice Water || 2+2 || All || Water + ice damage
+|-
+| Glacier || 8+8 || All || High ice + water damage
+|-
+| Double Cure || 5+5 || All || Major party heal
+|}
+
+===Marle + Ayla===
+{| class="wikitable"
+|-
+! Tech !! MP Cost !! Targets !! Effect
+|-
+| Twin Charm || 1+4 || All || Steal from all enemies
+|-
+| Ice Toss || 2+4 || One || Ice + physical damage
+|-
+| Cube Toss || 8+4 || One || High ice + physical damage
+|}
+
+===Lucca + Robo===
+{| class="wikitable"
+|-
+! Tech !! MP Cost !! Targets !! Effect
+|-
+| Fire Punch || 2+1 || One || Fire + punch combo
+|-
+| Fire Tackle || 2+4 || One || Fire + physical damage
+|-
+| Double Bomb || 15+14 || All || Massive fire damage
+|}
+
+===Lucca + Frog===
+{| class="wikitable"
+|-
+! Tech !! MP Cost !! Targets !! Effect
+|-
+| Red Pin || 2+4 || One || Fire + physical damage
+|-
+| Line Bomb || 3+4 || Line || Fire bomb in line
+|-
+| Frog Flare || 2+15 || All || Fire + water combo
+|}
+
+===Lucca + Ayla===
+{| class="wikitable"
+|-
+! Tech !! MP Cost !! Targets !! Effect
+|-
+| Flame Kick || 2+2 || All || Fire + kick combo
+|-
+| Fire Whirl || 2+10 || All || Fire spin attack
+|-
+| Blaze Kick || 8+20 || One || Ultimate fire kick
+|}
+
+===Robo + Frog===
+{| class="wikitable"
+|-
+! Tech !! MP Cost !! Targets !! Effect
+|-
+| Blade Toss || 1+4 || All || Robo throws Frog at enemies
+|-
+| Bubble Snap || 4+2 || All || Water + electrical damage
+|-
+| Cure Wave || 3+5 || All || Major party heal
+|}
+
+===Robo + Ayla===
+{| class="wikitable"
+|-
+! Tech !! MP Cost !! Targets !! Effect
+|-
+| Boogie || 3+1 || All || Inflict Chaos on enemies
+|-
+| Spin Kick || 3+2 || One || Spin + kick combo
+|-
+| Beast Toss || 4+4 || One || Throw Ayla at enemy
+|}
+
+===Frog + Ayla===
+{| class="wikitable"
+|-
+! Tech !! MP Cost !! Targets !! Effect
+|-
+| Bubble Hit || 2+2 || One || Water + physical damage
+|-
+| Drop Kick || 4+20 || One || High single-target damage
+|-
+| Slurp Kiss || 1+1 || All || Minor party heal + status
+|}
+
+==Triple Techs==
+
+{| class="wikitable"
+|-
+! Tech !! Characters !! MP Cost !! Targets !! Effect !! Notes
+|-
+| Delta Force || Crono, Marle, Lucca || 2+2+2 || All || High elemental damage || Requires all three
+|-
+| Lifeline || Crono, Marle, Robo || 10+15+3 || All || Full party revive || Emergency heal
+|-
+| Arc Impulse || Crono, Marle, Frog || 4+8+4 || All || High ice + physical || Strong against fire
+|-
+| Final Kick || Crono, Marle, Ayla || 4+8+20 || One || Ultimate physical damage || Single target only
+|-
+| Fire Zone || Crono, Lucca, Robo || 2+2+3 || All || High fire damage || —
+|-
+| Delta Storm || Crono, Lucca, Frog || 2+2+2 || All || Elemental storm damage || —
+|-
+| Gatling Kick || Crono, Lucca, Ayla || 2+8+20 || One || Ultimate fire + physical || Single target
+|-
+| Triple Attack || Crono, Robo, Ayla || 2+1+2 || One || Triple physical damage || Early game strong
+|-
+| Twister || Crono, Robo, Frog || 2+3+2 || All || Wind damage to all || —
+|-
+| 3D Attack || Crono, Frog, Ayla || 2+2+2 || One || High physical damage || —
+|-
+| Frost Arc || Marle, Lucca, Frog || 8+8+8 || All || Ice + fire + water || Requires rock item
+|-
+| Poyozo Dance || Marle, Lucca, Ayla || 1+1+1 || All || Confusion + status || Unreliable
+|-
+| Spin Strike || Robo, Frog, Ayla || 4+4+10 || One || Spin combo attack || —
+|-
+| Grand Dream || Marle, Robo, Frog || 15+3+15 || All || Ultimate healing attack || With Frog's ultimate weapon
+|}
+
+==Tech Data Structure==
+
+Tech data is stored in ROM bank $C2.
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00 || 1 byte || Tech ID
+|-
+| $01 || 1 byte || MP cost
+|-
+| $02 || 1 byte || Target type ($00=one, $01=line, $02=all, etc.)
+|-
+| $03 || 1 byte || Element type ($00=none, $01=lightning, $02=fire, etc.)
+|-
+| $04 || 2 bytes || Base power
+|-
+| $06 || 1 byte || Hit rate %
+|-
+| $07 || 2 bytes || Animation pointer
+|-
+| $09 || 2 bytes || Effect routine pointer
+|}
+
+==RAM Addresses==
+
+{| class="wikitable"
+|-
+! Address !! Size !! Description
+|-
+| $7e:2980 || 8 bytes || Tech learned flags (Crono)
+|-
+| $7e:2988 || 8 bytes || Tech learned flags (Marle)
+|-
+| $7e:2990 || 8 bytes || Tech learned flags (Lucca)
+|-
+| $7e:2998 || 8 bytes || Tech learned flags (Robo)
+|-
+| $7e:29a0 || 8 bytes || Tech learned flags (Frog)
+|-
+| $7e:29a8 || 8 bytes || Tech learned flags (Ayla)
+|-
+| $7e:29b0 || 8 bytes || Tech learned flags (Magus)
+|}
+
+==See Also==
+* [[Chrono Trigger:ROM_Map|ROM Map]] - Complete ROM layout
+* [[Chrono Trigger:RAM_Map|RAM Map]] - Runtime memory documentation
+
+[[Category:Chrono Trigger]]
+[[Category:Game Mechanics]]

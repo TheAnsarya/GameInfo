@@ -39,10 +39,15 @@
 
 {{navbox|SNES/Dragon_Quest_III|sram_map=no}}
 
+===Technical===
 * [[Dragon Quest III:ROM_Map|ROM Map]] - Complete ROM layout
 * [[Dragon Quest III:RAM_Map|RAM Map]] - Runtime memory documentation
 * [[Dragon Quest III:TBL|Text Table]] - Character encoding
 * [[Dragon Quest III:Values|Values]] - Game constants and IDs
+
+===Game Systems===
+* [[Dragon Quest III:Class_System|Class System]] - Vocations, stat growth, spell learning
+* [[Dragon Quest III:Personalities|Personalities]] - Stat modifiers and personality effects
 
 ==Utilities==
 * None Available

@@ -1,0 +1,277 @@
+{{Back|Dragon Quest III}}
+__TOC__
+
+==Personality System Overview==
+
+Dragon Quest III features a unique personality system that affects stat growth. Each character has a personality determined at character creation (by answering questions for the Hero, or by selecting during party creation for others). Personalities can be changed by reading special books or equipping accessories.
+
+==Personality List==
+
+There are 46 different personalities in Dragon Quest III SNES:
+
+{| class="wikitable sortable"
+|-
+! ID !! Personality !! Str !! Agi !! Vit !! Int !! Luck !! Best For
+|-
+| $00 || Ordinary || 0 || 0 || 0 || 0 || 0 || Balanced
+|-
+| $01 || Lazy || -20% || -20% || +10% || 0 || +10% || None
+|-
+| $02 || Macho || +20% || -10% || +10% || -30% || 0 || Soldier/Fighter
+|-
+| $03 || Tough || +10% || 0 || +20% || -10% || -10% || Soldier
+|-
+| $04 || Tomboy || +10% || +10% || 0 || -10% || 0 || Fighter
+|-
+| $05 || Lone Wolf || +10% || +10% || 0 || -10% || -10% || Fighter
+|-
+| $06 || Vain || -10% || +10% || -10% || +20% || 0 || Wizard/Sage
+|-
+| $07 || Stubborn || +10% || -10% || +10% || 0 || -10% || Soldier
+|-
+| $08 || Romantic || 0 || 0 || -10% || +10% || +10% || Pilgrim/Sage
+|-
+| $09 || Kindly || -10% || 0 || 0 || +10% || +10% || Pilgrim
+|-
+| $0a || Timid || -20% || 0 || -10% || +20% || +10% || Wizard
+|-
+| $0b || Coward || -20% || +10% || -10% || 0 || +20% || Thief
+|-
+| $0c || Wimp || -20% || -10% || -20% || +10% || +30% || Merchant (luck)
+|-
+| $0d || Crafty || 0 || +10% || -10% || +10% || 0 || Thief/Merchant
+|-
+| $0e || Solitary || +10% || -10% || +10% || 0 || -10% || Soldier
+|-
+| $0f || Sharp || 0 || +20% || 0 || +10% || -10% || Thief/Fighter
+|-
+| $10 || Smart || 0 || 0 || -10% || +30% || 0 || Wizard/Sage
+|-
+| $11 || Alert || 0 || +20% || 0 || 0 || 0 || Thief
+|-
+| $12 || Logical || 0 || +10% || 0 || +20% || -10% || Wizard/Sage
+|-
+| $13 || Naive || 0 || -10% || +10% || -10% || +10% || Merchant
+|-
+| $14 || Defiant || +10% || +10% || 0 || -20% || 0 || Fighter
+|-
+| $15 || Fearless || +10% || 0 || +10% || 0 || 0 || Soldier/Fighter
+|-
+| $16 || Carefree || 0 || +10% || 0 || -10% || +10% || Goof-Off
+|-
+| $17 || Happy || 0 || +10% || -10% || 0 || +10% || Merchant
+|-
+| $18 || Weepy || -10% || 0 || +10% || 0 || +10% || Pilgrim
+|-
+| $19 || Quick || 0 || +30% || -10% || 0 || 0 || Thief/Fighter
+|-
+| $1a || Valiant || +20% || 0 || +10% || -10% || 0 || Soldier
+|-
+| $1b || Hotblooded || +20% || +10% || 0 || -20% || 0 || Fighter
+|-
+| $1c || Musclehead || +30% || 0 || +10% || -30% || 0 || Soldier
+|-
+| $1d || Ironman || +10% || -10% || +30% || -20% || 0 || Soldier
+|-
+| $1e || Paragon || +10% || +10% || +10% || +10% || +10% || Any
+|-
+| $1f || Jock || +20% || +20% || +10% || -40% || 0 || Fighter
+|-
+| $20 || Lewd || +10% || +10% || 0 || -20% || +10% || Fighter
+|-
+| $21 || Silly || -10% || 0 || 0 || -10% || +30% || Goof-Off
+|-
+| $22 || Lucky || 0 || 0 || 0 || 0 || +30% || Any (crit/drops)
+|-
+| $23 || Sexy || 0 || +10% || -10% || 0 || +20% || Merchant/Thief
+|-
+| $24 || Pureheart || 0 || 0 || +10% || +10% || 0 || Pilgrim/Sage
+|-
+| $25 || Amazon || +20% || +10% || 0 || -20% || 0 || Fighter
+|-
+| $26 || Seductive || 0 || +10% || -20% || +10% || +10% || Wizard/Sage
+|-
+| $27 || Bully || +10% || 0 || +10% || -20% || 0 || Soldier
+|-
+| $28 || Careless || -10% || 0 || +10% || -10% || 0 || None
+|-
+| $29 || Determined || +10% || 0 || +10% || 0 || -10% || Soldier
+|-
+| $2a || Mean || +10% || 0 || 0 || 0 || -20% || Soldier
+|-
+| $2b || Cool || 0 || +10% || 0 || +10% || 0 || Thief/Wizard
+|-
+| $2c || Dandy || 0 || +10% || -10% || +10% || +10% || Merchant
+|-
+| $2d || Natural || +10% || +10% || +10% || +10% || +10% || Any
+|}
+
+==Personality Data Structure==
+
+Personality modifiers are stored at bank $C4, starting at $C40000.
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00 || 1 byte || Personality ID
+|-
+| $01 || 1 byte || Strength modifier (signed)
+|-
+| $02 || 1 byte || Agility modifier (signed)
+|-
+| $03 || 1 byte || Vitality modifier (signed)
+|-
+| $04 || 1 byte || Intelligence modifier (signed)
+|-
+| $05 || 1 byte || Luck modifier (signed)
+|-
+| $06 || 2 bytes || Name pointer (Shift-JIS)
+|}
+
+==Stat Growth Calculation==
+
+The personality modifier is applied as a percentage to the base class growth rate:
+
+<pre>
+FinalGrowth = BaseClassGrowth * (100 + PersonalityModifier) / 100
+</pre>
+
+Example: A Soldier (high Str growth of ~3.5/level) with Macho personality (+20% Str):
+<pre>
+FinalStrGrowth = 3.5 * 120 / 100 = 4.2 per level
+</pre>
+
+==Obtaining Personalities==
+
+===Hero Personality===
+
+The Hero's personality is determined by answering questions at the start of the game. Different answer combinations lead to different personalities.
+
+{| class="wikitable"
+|-
+! Question Pattern !! Resulting Personality
+|-
+| Brave answers || Valiant, Fearless, Tough
+|-
+| Logical answers || Smart, Logical, Sharp
+|-
+| Selfish answers || Mean, Bully, Greedy
+|-
+| Lazy answers || Lazy, Carefree, Ordinary
+|-
+| Kind answers || Kindly, Romantic, Pureheart
+|}
+
+===Changing Personality===
+
+====Books====
+Special books can change personality:
+
+{| class="wikitable"
+|-
+! Book !! Changes To
+|-
+| Macho Manual || Macho
+|-
+| Fitness Manual || Tough
+|-
+| Vogue Magazine || Sexy
+|-
+| Playboy || Lewd
+|-
+| Strategy Guide || Smart
+|-
+| Zen Book || Pureheart
+|-
+| Hip Hop Book || Cool
+|-
+| Iron Stomach || Ironman
+|-
+| Joke Book || Silly
+|-
+| Bunny Book || Sexy
+|}
+
+====Accessories====
+Some accessories override personality while equipped:
+
+{| class="wikitable"
+|-
+! Accessory !! Personality While Equipped
+|-
+| Garter Belt || Sexy
+|-
+| Bunny Ears || Playful
+|-
+| Slime Earrings || Ordinary
+|-
+| Golden Tiara || Vain
+|-
+| Silver Barrette || Romantic
+|-
+| Tough Ring || Tough
+|}
+
+==Recommended Personalities==
+
+{| class="wikitable"
+|-
+! Class !! Recommended !! Reason
+|-
+| Soldier || Macho, Ironman, Valiant || Maximize Strength and Vitality
+|-
+| Fighter || Quick, Jock, Amazon || Maximize Agility and Strength
+|-
+| Pilgrim || Smart, Pureheart, Romantic || Balance Int for spells with other stats
+|-
+| Wizard || Smart, Logical, Timid || Maximize Intelligence
+|-
+| Merchant || Lucky, Sexy, Dandy || Luck for gold and drops
+|-
+| Sage || Smart, Paragon, Natural || High Int with balanced stats
+|-
+| Thief || Quick, Alert, Lucky || Agility and Luck priority
+|-
+| Goof-Off || Silly, Lucky, Carefree || Luck for Sage transformation
+|}
+
+==RAM Addresses==
+
+{| class="wikitable"
+|-
+! Address !! Size !! Description
+|-
+| $7e:e105 || 1 byte || Character 1 personality ID
+|-
+| $7e:e145 || 1 byte || Character 2 personality ID
+|-
+| $7e:e185 || 1 byte || Character 3 personality ID
+|-
+| $7e:e1c5 || 1 byte || Character 4 personality ID
+|}
+
+==Personality Combinations==
+
+Certain personality pairs work well together in parties:
+
+{| class="wikitable"
+|-
+! Strategy !! Personalities !! Party Composition
+|-
+| Physical Powerhouse || Macho + Ironman + Quick || Soldier, Soldier, Fighter
+|-
+| Magic Focus || Smart + Logical + Pureheart || Wizard, Wizard, Pilgrim
+|-
+| Balanced || Paragon + Natural + Ordinary || Any combination
+|-
+| Lucky Drops || Lucky + Sexy + Lucky || Thief, Merchant, Any
+|}
+
+==See Also==
+* [[Dragon Quest III:Class_System|Class System]] - Vocation system and spell learning
+* [[Dragon Quest III:RAM_Map|RAM Map]] - Complete memory documentation
+* [[Dragon Quest III:Values|Values]] - Personality constants
+
+[[Category:Dragon Quest III]]
+[[Category:Game Mechanics]]

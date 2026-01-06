@@ -146,6 +146,12 @@ Magic is divided into three categories:
 ===Sub-pages===
 * [[Final Fantasy Mystic Quest:Values/Window_Colors|Window Colors]]
 
+===Game Systems===
+* [[Final Fantasy Mystic Quest:Battle_System|Battle System]] - Combat mechanics, damage formulas, status effects
+* [[Final Fantasy Mystic Quest:Items|Items]] - Weapons, armor, consumables, key items
+* [[Final Fantasy Mystic Quest:Spells|Spells]] - White, Black, and Wizard magic
+* [[Final Fantasy Mystic Quest:Enemies|Enemies]] - Monster stats, AI patterns, boss data
+
 ==Known Dumps==
 
 {| class="wikitable sortable"
