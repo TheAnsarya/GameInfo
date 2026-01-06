@@ -8,26 +8,28 @@ __TOC__
 
 == Magic Overview ==
 
-Magic is divided into three categories, each learned from spell books found during the adventure.
+Magic is divided into three categories, each with its own charge pool. Each spell costs '''1 charge''' from its respective pool.
 
 {| class="wikitable"
-! Category !! Type !! User !! Notes
+! Category !! Charge Type !! Spells !! Notes
 |-
-| White Magic || Healing/Support || Benjamin, Allies || Defensive
+| White Magic || White charges || Cure, Heal, Life, Exit || Healing/Support
 |-
-| Black Magic || Offensive || Benjamin, Allies || Attack spells
+| Black Magic || Black charges || Fire, Ice, Thunder, Quake || Offensive elements
 |-
-| Wizard Magic || Powerful || Benjamin, Allies || Advanced spells
+| Wizard Magic || Wizard charges || Blizzard, Meteor, White, Flare || Advanced/powerful
 |}
+
+'''Note:''' All spells cost exactly 1 charge of their type. There are no variable MP costs.
 
 == White Magic ==
 
 === Cure ===
 
 {| class="wikitable"
-! Spell !! MP Cost !! Effect !! Target
+! Spell !! Cost !! Effect !! Target
 |-
-| Cure || 1 || Restore ~40 HP || Single
+| Cure || 1 White || Restore HP || Single
 |}
 
 '''Obtained:''' Level Forest (starting area)
@@ -35,9 +37,9 @@ Magic is divided into three categories, each learned from spell books found duri
 === Heal ===
 
 {| class="wikitable"
-! Spell !! MP Cost !! Effect !! Target
+! Spell !! Cost !! Effect !! Target
 |-
-| Heal || 2 || Restore ~80 HP || Single
+| Heal || 1 White || Restore more HP || Single
 |}
 
 '''Obtained:''' Bone Dungeon
@@ -45,9 +47,9 @@ Magic is divided into three categories, each learned from spell books found duri
 === Life ===
 
 {| class="wikitable"
-! Spell !! MP Cost !! Effect !! Target
+! Spell !! Cost !! Effect !! Target
 |-
-| Life || 8 || Revive KO'd ally || Single
+| Life || 1 White || Revive KO'd ally || Single
 |}
 
 '''Obtained:''' Ice Pyramid
@@ -55,9 +57,9 @@ Magic is divided into three categories, each learned from spell books found duri
 === Exit ===
 
 {| class="wikitable"
-! Spell !! MP Cost !! Effect !! Target
+! Spell !! Cost !! Effect !! Target
 |-
-| Exit || 4 || Leave dungeon || Party
+| Exit || 1 White || Leave dungeon || Party
 |}
 
 '''Obtained:''' Focus Tower (first visit)
@@ -67,9 +69,9 @@ Magic is divided into three categories, each learned from spell books found duri
 === Fire ===
 
 {| class="wikitable"
-! Spell !! MP Cost !! Damage !! Target
+! Spell !! Cost !! Effect !! Target
 |-
-| Fire || 1 || Fire ~30 || Single
+| Fire || 1 Black || Fire damage || Single
 |}
 
 '''Obtained:''' Level Forest
@@ -79,9 +81,9 @@ Magic is divided into three categories, each learned from spell books found duri
 === Ice ===
 
 {| class="wikitable"
-! Spell !! MP Cost !! Damage !! Target
+! Spell !! Cost !! Effect !! Target
 |-
-| Ice || 1 || Ice ~30 || Single
+| Ice || 1 Black || Ice damage || Single
 |}
 
 '''Obtained:''' Wintry Cave (through story)
@@ -91,9 +93,9 @@ Magic is divided into three categories, each learned from spell books found duri
 === Thunder ===
 
 {| class="wikitable"
-! Spell !! MP Cost !! Damage !! Target
+! Spell !! Cost !! Effect !! Target
 |-
-| Thunder || 2 || Lightning ~40 || Single
+| Thunder || 1 Black || Lightning damage || Single
 |}
 
 '''Obtained:''' Falls Basin area
@@ -103,9 +105,9 @@ Magic is divided into three categories, each learned from spell books found duri
 === Quake ===
 
 {| class="wikitable"
-! Spell !! MP Cost !! Damage !! Target
+! Spell !! Cost !! Effect !! Target
 |-
-| Quake || 3 || Earth ~50 || All enemies
+| Quake || 1 Black || Earth damage || All enemies
 |}
 
 '''Obtained:''' Fireburg area
@@ -117,9 +119,9 @@ Magic is divided into three categories, each learned from spell books found duri
 === Blizzard ===
 
 {| class="wikitable"
-! Spell !! MP Cost !! Damage !! Target
+! Spell !! Cost !! Effect !! Target
 |-
-| Blizzard || 4 || Ice ~80 || All enemies
+| Blizzard || 1 Wizard || Strong ice damage || All enemies
 |}
 
 '''Obtained:''' Ice Pyramid
@@ -129,9 +131,9 @@ Magic is divided into three categories, each learned from spell books found duri
 === Meteor ===
 
 {| class="wikitable"
-! Spell !! MP Cost !! Damage !! Target
+! Spell !! Cost !! Effect !! Target
 |-
-| Meteor || 6 || Non-elemental ~100 || All enemies
+| Meteor || 1 Wizard || Non-elemental damage || All enemies
 |}
 
 '''Obtained:''' Pazuzu's Tower area
@@ -141,9 +143,9 @@ Magic is divided into three categories, each learned from spell books found duri
 === White ===
 
 {| class="wikitable"
-! Spell !! MP Cost !! Effect !! Target
+! Spell !! Cost !! Effect !! Target
 |-
-| White || 5 || Holy damage ~70 || All undead
+| White || 1 Wizard || Holy damage || All undead
 |}
 
 '''Obtained:''' Doom Castle area
@@ -153,9 +155,9 @@ Magic is divided into three categories, each learned from spell books found duri
 === Flare ===
 
 {| class="wikitable"
-! Spell !! MP Cost !! Damage !! Target
+! Spell !! Cost !! Effect !! Target
 |-
-| Flare || 8 || Fire ~120 || Single
+| Flare || 1 Wizard || Massive fire damage || Single
 |}
 
 '''Obtained:''' Doom Castle
@@ -178,36 +180,34 @@ Magic is divided into three categories, each learned from spell books found duri
 | Doom Castle || -- || -- || White, Flare
 |}
 
-== MP System ==
+== Charge System ==
 
-=== MP Recovery ===
+FFMQ uses a unique charge-based magic system instead of traditional MP.
+
+=== Charge Types ===
+
+{| class="wikitable"
+! Type !! Color !! Spells
+|-
+| White || Green || Cure, Heal, Life, Exit
+|-
+| Black || Blue || Fire, Ice, Thunder, Quake
+|-
+| Wizard || Red || Blizzard, Meteor, White, Flare
+|}
+
+=== Charge Recovery ===
 
 {| class="wikitable"
 ! Method !! Effect
 |-
-| Inn || Full MP restore
+| Inn || Full charge restore (all types)
 |-
-| Seed || Restore MP +20
+| Seed || Restore charges
 |-
-| Level Up || Full MP restore
+| Level Up || Increase max charges
 |-
-| Healing Spot || Variable restore
-|}
-
-=== Max MP by Character ===
-
-{| class="wikitable"
-! Character !! Starting MP !! Max MP (Lv 50)
-|-
-| Benjamin || 10 || 99
-|-
-| Kaeli || 15 || 80
-|-
-| Tristam || 8 || 60
-|-
-| Phoebe || 20 || 90
-|-
-| Reuben || 5 || 40
+| Battlefield || Sometimes restore charges
 |}
 
 == Elemental Effectiveness ==
@@ -248,120 +248,76 @@ Fire → Ice → Thunder → Fire
 
 == Magic Data Structure ==
 
-{| class="wikitable"
-! Offset !! Size !! Field
-|-
-| $00 || 1 || Spell ID
-|-
-| $01 || 1 || MP Cost
-|-
-| $02 || 1 || Power
-|-
-| $03 || 1 || Element
-|-
-| $04 || 1 || Target Type
-|-
-| $05 || 1 || Effect Type
-|-
-| $06 || 1 || Animation ID
-|-
-| $07 || 1 || Sound ID
-|}
+''Note: Technical details require verification from ROM analysis.''
 
-=== Element IDs ===
+=== Spell Categories ===
 
 {| class="wikitable"
-! ID !! Element
+! ID !! Category
 |-
-| 0 || None
+| 0 || White Magic
 |-
-| 1 || Fire
+| 1 || Black Magic
 |-
-| 2 || Ice
-|-
-| 3 || Thunder
-|-
-| 4 || Earth
-|-
-| 5 || Holy
+| 2 || Wizard Magic
 |}
 
-=== Target Type IDs ===
+=== Element Types ===
 
 {| class="wikitable"
-! ID !! Target
+! Element !! Associated Spells
 |-
-| 0 || Single enemy
+| Fire || Fire, Flare
 |-
-| 1 || All enemies
+| Ice || Ice, Blizzard
 |-
-| 2 || Single ally
+| Thunder || Thunder
 |-
-| 3 || All allies
+| Earth || Quake
 |-
-| 4 || Self
+| Holy || White
+|-
+| Non-elemental || Meteor
 |}
 
-== Spell Effectiveness ==
+=== Target Types ===
 
-=== Damage Formula ===
-
-```
-Base Damage = Spell Power + (Magic Stat / 4)
-Final Damage = Base × Elemental Modifier
-
-Elemental Modifier:
-  Weakness = 2.0
-  Normal = 1.0
-  Resist = 0.5
-  Immune = 0.0
-```
-
-=== Healing Formula ===
-
-```
-Heal Amount = Spell Power + (Magic Stat / 2)
-```
+{| class="wikitable"
+! Target !! Spells
+|-
+| Single enemy || Fire, Ice, Thunder, Flare
+|-
+| All enemies || Quake, Blizzard, Meteor, White
+|-
+| Single ally || Cure, Heal, Life
+|-
+| Party || Exit
+|}
 
 == Battle Strategy ==
 
-=== Spell Priority ===
+=== Spell Usage ===
+
+Since all spells cost 1 charge, strategy focuses on choosing the right spell for the situation rather than conserving charges.
 
 '''Early Game (Foresta):'''
-1. Cure for healing
-2. Fire for damage
-3. Physical when MP low
+* Cure for healing
+* Fire for damage
 
 '''Mid Game (Aquaria-Fireburg):'''
-1. Blizzard for groups
-2. Thunder for water foes
-3. Heal for emergency
+* Blizzard for groups
+* Match elements to weaknesses
+* Heal for emergency
 
 '''Late Game (Windia-Doom):'''
-1. Meteor for groups
-2. Flare for bosses
-3. White for undead
+* Meteor for groups (non-elemental)
+* Flare for single targets
+* White for undead
 
-=== MP Conservation ===
+=== Elemental Matching ===
 
-* Use physical attacks on weak enemies
-* Save powerful spells for bosses
-* Use weapon spell effects when available
-* Rest at inns before bosses
-
-== ROM Addresses ==
-
-{| class="wikitable"
-! Data !! Address !! Bank
-|-
-| Spell table || $01B000 || $03
-|-
-| Spell names || $01B100 || $03
-|-
-| Spell effects || $01B200 || $03
-|-
-| MP costs || $01B300 || $03
-|}
+* Always match spell element to enemy weakness for maximum damage
+* Use non-elemental (Meteor) against enemies with no clear weakness
 
 == Related Pages ==
 
