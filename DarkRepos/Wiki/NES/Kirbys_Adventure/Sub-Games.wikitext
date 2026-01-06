@@ -1,0 +1,159 @@
+{{Back|Kirbys_Adventure}}
+
+= Sub-Games =
+
+'''Kirby's Adventure''' features mini-games accessed from the world map.
+
+__TOC__
+
+== Overview ==
+
+Sub-games provide break from main platforming and award extra lives.
+
+{| class="wikitable"
+! Game !! Type !! Reward
+|-
+| Crane Fever || Skill || Extra lives
+|-
+| Egg Catcher || Timing || Extra lives
+|-
+| Quick Draw || Reaction || Extra lives
+|}
+
+== Crane Fever ==
+
+A UFO catcher (crane game) mini-game.
+
+=== How to Play ===
+
+# Control crane position with D-Pad
+# Press A to drop the claw
+# Try to grab Kirby dolls
+# Each doll = 1 extra life
+
+=== Tips ===
+
+* Time the drop carefully
+* Aim for center of Kirby dolls
+* Some positions easier than others
+* Practice improves success rate
+
+== Egg Catcher ==
+
+Catch eggs thrown by King Dedede.
+
+=== How to Play ===
+
+# Dedede throws objects from above
+# Move Kirby left/right to catch
+# Catch eggs for points
+# Avoid bombs
+
+=== Scoring ===
+
+{| class="wikitable"
+! Item !! Effect
+|-
+| Egg || Points, life at threshold
+|-
+| Bomb || Game over
+|}
+
+=== Tips ===
+
+* Watch Dedede's throwing pattern
+* Bombs look different from eggs
+* Move quickly between catches
+* High scores earn more lives
+
+== Quick Draw ==
+
+Reaction-time shooting contest.
+
+=== How to Play ===
+
+# Face off against opponent
+# Wait for "FIRE!" signal
+# Press A as fast as possible
+# Faster draw wins
+
+=== Opponents ===
+
+Multiple opponents with varying difficulty:
+* Early rounds: Slow opponents
+* Later rounds: Faster opponents
+* Final round: Very challenging
+
+=== Tips ===
+
+* Don't press early (disqualification)
+* Watch for the exact signal
+* Stay focused
+* Practice improves reaction time
+
+== Accessing Sub-Games ==
+
+Sub-games are found on the world map:
+
+{| class="wikitable"
+! World !! Available Games
+|-
+| Vegetable Valley || Crane Fever
+|-
+| Ice Cream Island || Egg Catcher
+|-
+| Butter Building || Quick Draw
+|-
+| Later Worlds || All available
+|}
+
+== Rewards ==
+
+All sub-games award extra lives:
+
+{| class="wikitable"
+! Performance !! Reward
+|-
+| Poor || 0-1 lives
+|-
+| Average || 1-2 lives
+|-
+| Good || 2-3 lives
+|-
+| Perfect || Maximum lives
+|}
+
+== Museum ==
+
+After completing the game, the Museum opens:
+
+{| class="wikitable"
+! Feature !! Description
+|-
+| All Abilities || View and use any copy ability
+|-
+| Arena || Fight enemies freely
+|-
+| Practice || Test abilities
+|}
+
+== Sound Test ==
+
+Unlocked after 100% completion:
+
+{| class="wikitable"
+! Feature !! Description
+|-
+| Music Player || Listen to game soundtrack
+|-
+| Sound Effects || Hear game sounds
+|}
+
+== Related Pages ==
+
+* [[Kirbys_Adventure:Copy_Abilities|Copy Abilities]]
+* [[Kirbys_Adventure:Worlds|Worlds]]
+* [[Kirbys_Adventure:Bosses|Bosses]]
+
+[[Category:Kirby's Adventure]]
+[[Category:Mini-Games]]

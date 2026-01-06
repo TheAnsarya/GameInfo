@@ -1,0 +1,252 @@
+{{Back|Soul_Blazer}}
+
+= Story Guide =
+
+'''Soul Blazer''' follows a guardian angel restoring life to a world destroyed by Deathtoll.
+
+__TOC__
+
+== Premise ==
+
+The Master (God) sends a guardian angel to the world to free souls captured by Deathtoll. King Magridd made a deal with Deathtoll, trading all living souls for one piece of gold each, leaving the world empty.
+
+== The Master's Mission ==
+
+Your task:
+# Descend to the ruined world
+# Find and seal monster lairs
+# Free the souls trapped within
+# Restore life to each region
+# Ultimately defeat Deathtoll
+
+== Chapter 1: Grass Valley ==
+
+=== Setting ===
+
+A peaceful village region, now empty.
+
+=== Goals ===
+
+# Clear the Underground Castle
+# Seal all monster lairs
+# Free the village residents
+# Defeat the boss: Metal Mantis
+
+=== Key NPCs Restored ===
+
+* Village Elder
+* Tool shop keeper
+* Various villagers
+* Animals
+
+=== Boss: Metal Mantis ===
+
+First boss encounter. Introduces combat fundamentals.
+
+== Chapter 2: GreenWood ==
+
+=== Setting ===
+
+A forest realm inhabited by plants and animals.
+
+=== Goals ===
+
+# Navigate the Lost Side
+# Clear Water, Fire, and Light Shrines
+# Free the forest creatures
+# Defeat the area boss
+
+=== Key NPCs Restored ===
+
+* Talking plants
+* Forest animals
+* Turbo the dog (companion)
+
+=== Unique Features ===
+
+* Plants and animals as NPCs
+* Nature-themed puzzles
+* Turbo companion helps in dungeons
+
+== Chapter 3: St. Elles ==
+
+=== Setting ===
+
+An underwater mermaid kingdom.
+
+=== Goals ===
+
+# Explore the Seabed
+# Navigate the Ship Graveyard
+# Clear the Undersea Castle
+# Free the mermaids
+# Defeat the aquatic boss
+
+=== Key NPCs Restored ===
+
+* Mermaids
+* Sea creatures
+* Lue the mermaid (important character)
+
+=== Unique Features ===
+
+* Underwater exploration
+* Swimming mechanics
+* Dolphin transportation
+
+=== Story Element ===
+
+Lue the mermaid develops feelings for the hero, creating emotional conflict.
+
+== Chapter 4: Mountain of Souls ==
+
+=== Setting ===
+
+A mining village and mountain region.
+
+=== Goals ===
+
+# Explore the Mountain
+# Navigate the Mines
+# Visit Lune (the moon)
+# Clear the Model Towns
+# Defeat the mountain boss
+
+=== Key NPCs Restored ===
+
+* Mining villagers
+* Mountain dwellers
+* Grandpa (key NPC)
+
+=== Unique Features ===
+
+* Shrinking into Model Towns
+* Multiple scale dungeons
+* Time-related puzzles
+
+== Chapter 5: Leo's Paintings ==
+
+=== Setting ===
+
+The realm of Dr. Leo, an artist whose paintings have become real worlds.
+
+=== Goals ===
+
+# Enter Leo's Lab
+# Navigate through paintings
+# Free souls from artistic worlds
+# Discover Dr. Leo's fate
+# Defeat the painting boss
+
+=== Key NPCs Restored ===
+
+* Dr. Leo
+* Queen Magridd (imprisoned)
+* Art gallery visitors
+
+=== Unique Features ===
+
+* Entering paintings
+* Surreal art-world dungeons
+* Key plot revelations
+
+=== Story Element ===
+
+Dr. Leo created the paintings to escape Deathtoll's influence. Queen Magridd was imprisoned for opposing the king's deal.
+
+== Chapter 6: World of Evil ==
+
+=== Setting ===
+
+Deathtoll's realm - the final confrontation.
+
+=== Goals ===
+
+# Enter Deathtoll's castle
+# Face previous bosses again
+# Reach Deathtoll
+# Defeat the Lord of Evil
+
+=== Final Dungeon ===
+
+* Boss rush (rematch with all bosses)
+* Strongest enemies
+* No returning once entered
+
+=== Final Boss: Deathtoll ===
+
+Multiple forms:
+# Initial form
+# True form
+
+Victory restores all souls permanently.
+
+== Endings ==
+
+=== Standard Ending ===
+
+After defeating Deathtoll:
+* All souls freed
+* World fully restored
+* Hero returns to the Master
+* Emotional farewell with NPCs
+
+=== Themes ===
+
+The game explores:
+* Sacrifice and redemption
+* The value of all life
+* Greed and its consequences
+* Spiritual responsibility
+
+== Key Items ==
+
+{| class="wikitable"
+! Item !! Purpose
+|-
+| Soul Blades || Various swords for combat
+|-
+| Armor || Protection upgrades
+|-
+| Magic || Special abilities
+|-
+| Gems || Currency for magic
+|-
+| Emblems || Special equipment effects
+|}
+
+== Soul System ==
+
+The unique mechanic:
+
+{| class="wikitable"
+! Step !! Action
+|-
+| 1 || Find monster lair
+|-
+| 2 || Defeat all monsters from lair
+|-
+| 3 || Lair seals automatically
+|-
+| 4 || Soul orb appears
+|-
+| 5 || Touch orb to free soul
+|-
+| 6 || NPC/object appears in town
+|}
+
+== Tips ==
+
+* Clear all lairs in an area before moving on
+* Talk to restored NPCs for hints
+* Some souls give items or open paths
+* Explore towns after each dungeon section
+
+== Related Pages ==
+
+* [[Soul_Blazer:Battle_System|Battle System]]
+* [[Soul_Blazer:Locations|Locations]]
+* [[Soul_Blazer:Items|Items]]
+
+[[Category:Soul Blazer]]
+[[Category:Story Guide]]
