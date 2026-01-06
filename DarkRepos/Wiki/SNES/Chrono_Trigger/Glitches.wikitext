@@ -1,0 +1,126 @@
+{{Back|Chrono Trigger}}
+
+'''Glitches''' in Chrono Trigger include exploits and bugs discovered in various versions.
+
+== Known Glitches ==
+
+=== HP Overflow ===
+In some versions:
+* Healing past max HP
+* Damage calculation errors
+* Tab stat boosts
+
+=== Save Anywhere (New Game+) ===
+New Game+ preserves:
+* All items
+* Character stats
+* Enables some sequence breaks
+
+== Combat Glitches ==
+
+=== Damage Overflow ===
+Extremely high damage calculations:
+* Can wrap around to low damage
+* Affects certain boss strategies
+* Version dependent
+
+=== Status Effect Stacking ===
+Some status effects:
+* Stack unexpectedly
+* Cause unusual combat behavior
+
+== Item Duplication ==
+
+=== SNES Version ===
+Item duplication methods exist:
+* Specific menu manipulation
+* Allows duplicating rare items
+* Patched in some versions
+
+=== Equipment Swap ===
+During equipment changes:
+* Items may duplicate
+* Careful timing required
+
+== Sequence Breaking ==
+
+=== Bucket Skip ===
+The End of Time bucket:
+* Allows early Lavos access
+* Used in speedruns
+* Intentional design but enables sequence breaks
+
+=== Black Omen Multi-Clear ===
+Black Omen can be completed in each era:
+* Collect items multiple times
+* Not a glitch but exploitable
+* Intentional design
+
+== Version-Specific Glitches ==
+
+=== SNES Original ===
+* Item duplication
+* Certain overflow issues
+* Save corruption possible
+
+=== PlayStation (PS1) ===
+* Loading time issues (not glitches)
+* Some fixes from SNES version
+
+=== Nintendo DS ===
+* Most glitches patched
+* New content added
+* Some new minor issues
+
+=== PC/Mobile ===
+* Most issues fixed
+* Different input methods
+* Minor display issues
+
+== Speedrun Techniques ==
+
+=== Any% Routes ===
+* New Game+ with high stats
+* Direct Lavos fight
+* Minimal story progression
+
+=== 100% Routes ===
+* All endings
+* All items
+* Exploits for efficiency
+
+== Graphical Glitches ==
+
+=== Sprite Issues ===
+* Rare sprite corruption
+* Usually temporary
+
+=== Animation Errors ===
+* Tech animation glitches
+* Not game-breaking
+
+== Save File Issues ==
+
+=== Corruption ===
+* Rare save corruption
+* Battery backup failure (original cartridge)
+* Always backup saves
+
+=== Memory Card (PS1) ===
+* Standard PS1 save issues
+* Not CT-specific
+
+== Tips ==
+
+'''Safe Playing:'''
+* Save regularly
+* Multiple save slots
+* Don't rely on glitches
+
+'''Exploiting Responsibly:'''
+* Backup before attempting
+* Know your version
+* Some glitches are patched
+
+[[Category:Chrono Trigger]]
+[[Category:Glitches]]

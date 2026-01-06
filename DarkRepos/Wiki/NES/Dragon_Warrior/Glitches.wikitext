@@ -1,0 +1,105 @@
+{{Back|Dragon Warrior}}
+
+'''Glitches''' in Dragon Warrior (NES) include various exploits and bugs discovered over the years.
+
+== Known Glitches ==
+
+=== Name-Based Starting Gold ===
+Certain character names result in different starting gold amounts.
+
+'''How It Works:'''
+* The name is converted to numeric values
+* Calculation determines gold
+* Some names give bonus gold
+
+'''Example Names:'''
+* Various names result in 120+ gold instead of standard amount
+
+=== Save State Manipulation ===
+Using emulator save states:
+* Save before encounters
+* Reset if unfavorable
+* Not a true glitch but commonly used
+
+== Password Exploits ==
+
+=== Password Generation ===
+Passwords encode game state:
+* Experience
+* Gold
+* Items
+* Progress flags
+
+=== Invalid Passwords ===
+Entering manipulated passwords:
+* May give unusual starting conditions
+* Can corrupt save
+* Use with caution
+
+== Combat Glitches ==
+
+=== Sleep Lock ===
+In some cases:
+* Enemy under Sleep can be attacked indefinitely
+* Especially useful on bosses
+* Depends on RNG for maintaining sleep
+
+=== Critical Hit Rates ===
+Weapons have hidden critical rates:
+* Dragon Bane higher vs dragons
+* Affects combat optimization
+
+== Exploration Glitches ==
+
+=== Torch Light Persistence ===
+Light spells:
+* Radiant spell reveals map
+* Light persists through doors in some cases
+
+=== Key Usage ===
+* Keys are not consumed in all versions
+* Check version specifics
+
+== Known Issues ==
+
+=== Text Display ===
+* Some text wraps incorrectly
+* Minor display issues possible
+
+=== Enemy AI ===
+* Some enemies have predictable patterns
+* Can be exploited for easier fights
+
+== Version Differences ==
+
+Japanese original (Dragon Quest) vs US (Dragon Warrior):
+* Some bugs fixed in localization
+* Others introduced
+* Battery save vs password differences
+
+== Speedrun Techniques ==
+
+=== Route Optimization ===
+* Minimal equipment purchases
+* Experience routing
+* Boss skip attempts (not typically possible)
+
+=== RNG Manipulation ===
+* Frame-perfect inputs
+* Encounter avoidance
+* Battle outcome manipulation
+
+== Tips ==
+
+'''Avoiding Issues:'''
+* Save frequently
+* Don't rely on glitches for normal play
+* Check FAQ for version-specific information
+
+'''Exploiting Safely:'''
+* Backup save states
+* Test before committing
+* Some glitches may corrupt saves
+
+[[Category:Dragon Warrior]]
+[[Category:Glitches]]

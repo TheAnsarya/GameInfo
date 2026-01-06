@@ -1,0 +1,207 @@
+{{Back|Dragon Warrior II}}
+
+'''Equipment''' in Dragon Warrior II includes weapons, armor, shields, and helmets for the three party members.
+
+== Equipment by Character ==
+
+=== Prince of Lorasia ===
+The hero can use the widest variety of equipment:
+* Most weapons
+* Heavy armor
+* All shields
+* All helmets
+
+=== Prince of Cannock ===
+Balanced character with moderate equipment options:
+* Light-medium weapons
+* Light-medium armor
+* Most shields
+* Most helmets
+
+=== Princess of Moonbrooke ===
+Magic-focused with limited equipment:
+* Staffs and wands
+* Robes and light armor
+* Cannot use shields
+* Light helmets only
+
+== Weapons ==
+
+=== Lorasia Weapons ===
+{| class="wikitable"
+|-
+! Weapon !! Attack !! Location
+|-
+| Copper Sword || +10 || Starting/Shop
+|-
+| Broad Sword || +20 || Lianport shop
+|-
+| Iron Spear || +25 || Midenhall shop
+|-
+| Steel Sword || +30 || Tantegel shop
+|-
+| Giant Hammer || +35 || Osterfair shop
+|-
+| Falcon Sword || +7x2 || Sea Cave
+|-
+| Thunder Sword || +45 || Rubiss Tower area
+|-
+| Sword of Destruction || +70 || Cursed (Sea Cave)
+|-
+| Erdrick's Sword || +40 || Cave of Rendarak
+|}
+
+=== Cannock Weapons ===
+{| class="wikitable"
+|-
+! Weapon !! Attack !! Location
+|-
+| Copper Sword || +10 || Starting
+|-
+| Steel Sword || +30 || Shop
+|-
+| Falcon Sword || +7x2 || Rare find
+|-
+| Staff of Thunder || +40 || Special
+|}
+
+=== Moonbrooke Weapons ===
+{| class="wikitable"
+|-
+! Weapon !! Attack !! Location
+|-
+| Cypress Stick || +2 || Starting
+|-
+| Staff of Thunder || +40 || Lightning spell use
+|-
+| Wand of Power || +30 || Special find
+|}
+
+== Armor ==
+
+=== Heavy Armor (Lorasia) ===
+{| class="wikitable"
+|-
+! Armor !! Defense !! Location
+|-
+| Clothes || +2 || Starting
+|-
+| Leather Armor || +6 || Early shop
+|-
+| Chain Mail || +12 || Mid-game shop
+|-
+| Steel Armor || +20 || Tantegel shop
+|-
+| Dragon Mail || +30 || Rare find
+|-
+| Armor of Hades || +45 || Cursed
+|-
+| Erdrick's Armor || +35 || Hargon's Castle
+|}
+
+=== Medium Armor (Cannock) ===
+{| class="wikitable"
+|-
+! Armor !! Defense !! Location
+|-
+| Clothes || +2 || Starting
+|-
+| Leather Armor || +6 || Shop
+|-
+| Chain Mail || +12 || Shop
+|-
+| Steel Armor || +20 || Shop
+|-
+| Water Flying Cloth || +25 || Special
+|}
+
+=== Light Armor (Moonbrooke) ===
+{| class="wikitable"
+|-
+! Armor !! Defense !! Location
+|-
+| Clothes || +2 || Starting
+|-
+| Evade Clothes || +20 || Shop
+|-
+| Water Flying Cloth || +25 || Special
+|-
+| Princess Robe || +30 || Moonbrooke area
+|}
+
+== Shields ==
+
+{| class="wikitable"
+|-
+! Shield !! Defense !! Users !! Location
+|-
+| Leather Shield || +4 || Both princes || Early shop
+|-
+| Iron Shield || +10 || Both princes || Mid shop
+|-
+| Steel Shield || +18 || Lorasia only || Late shop
+|-
+| Shield of Strength || +20 || Lorasia only || Heals HP
+|-
+| Erdrick's Shield || +25 || Lorasia only || Wellgarth area
+|}
+
+'''Note:''' Princess of Moonbrooke cannot equip shields.
+
+== Helmets ==
+
+{| class="wikitable"
+|-
+! Helmet !! Defense !! Users !! Location
+|-
+| Leather Hat || +2 || All || Early shop
+|-
+| Iron Helmet || +6 || Princes || Mid shop
+|-
+| Mysterious Hat || +8 || Lorasia || Special
+|-
+| Erdrick's Helm || +20 || Lorasia only || Tower of Moon
+|}
+
+== Erdrick's Equipment ==
+
+The legendary equipment set from Dragon Quest I returns:
+* '''Erdrick's Sword''' - Cave of Rendarak (+40 Attack)
+* '''Erdrick's Armor''' - Hargon's Castle (+35 Defense)
+* '''Erdrick's Shield''' - Wellgarth region (+25 Defense)
+* '''Erdrick's Helm''' - Tower of the Moon (+20 Defense)
+
+== Cursed Equipment ==
+
+Be cautious of cursed items:
+* '''Sword of Destruction''' - High attack but cursed, cannot unequip
+* '''Armor of Hades''' - High defense but cursed
+* Visit a church to remove cursed items
+
+== Equipment Tips ==
+
+'''Lorasia:'''
+* Focus on heavy equipment
+* Erdrick's set is ultimate goal
+* Falcon Sword good for damage
+
+'''Cannock:'''
+* Balance between physical and magic support
+* Water Flying Cloth for mobility
+
+'''Moonbrooke:'''
+* Magic is primary offense
+* Equipment is support only
+* Focus gold on princes' equipment
+
+== Shop Locations ==
+
+=== Major Towns ===
+* '''Leftwyne''' - Starting equipment
+* '''Lianport''' - Early upgrades
+* '''Moonbrooke''' - Mid-game
+* '''Tantegel''' - Late-game base
+* '''Osterfair''' - High-end equipment
+
+[[Category:Dragon Warrior II]]
+[[Category:Equipment]]

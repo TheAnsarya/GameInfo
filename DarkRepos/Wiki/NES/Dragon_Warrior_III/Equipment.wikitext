@@ -1,0 +1,242 @@
+{{Back|Dragon Warrior III}}
+
+'''Equipment''' in Dragon Warrior III includes weapons, armor, shields, and helmets. Equipment availability depends on character class.
+
+== Equipment by Class ==
+
+=== Hero ===
+* Most weapons
+* Most armor
+* All shields
+* All helmets
+
+=== Soldier ===
+* Heavy weapons (swords, axes)
+* Heavy armor
+* All shields
+* All helmets
+
+=== Pilgrim ===
+* Maces, staffs
+* Medium armor
+* Some shields
+* Medium helmets
+
+=== Wizard ===
+* Staffs, daggers
+* Robes
+* No shields
+* Light helmets
+
+=== Fighter ===
+* Claws, chain weapons
+* Light armor
+* Limited shields
+* Light helmets
+
+=== Merchant ===
+* Various weapons
+* Medium armor
+* Most shields
+* Medium helmets
+
+=== Goof-off ===
+* Random equipment
+* Limited options
+* Some unique items
+
+== Weapons ==
+
+=== Swords ===
+{| class="wikitable"
+|-
+! Weapon !! Attack !! Who Can Use
+|-
+| Copper Sword || +12 || Hero, Soldier, Merchant
+|-
+| Steel Sword || +33 || Hero, Soldier, Merchant
+|-
+| Dragon Killer || +42 || Hero, Soldier
+|-
+| Zombie Slasher || +52 || Hero, Soldier
+|-
+| Sword of Gaia || +85 || Hero only
+|-
+| Sword of Kings || +120 || Hero only
+|}
+
+=== Axes ===
+{| class="wikitable"
+|-
+! Weapon !! Attack !! Who Can Use
+|-
+| Bronze Axe || +30 || Hero, Soldier
+|-
+| Battle Axe || +45 || Hero, Soldier
+|-
+| Great Axe || +65 || Soldier only
+|}
+
+=== Staffs ===
+{| class="wikitable"
+|-
+! Weapon !! Attack !! Who Can Use
+|-
+| Cypress Stick || +2 || All
+|-
+| Wizard Wand || +15 || Wizard, Pilgrim, Sage
+|-
+| Staff of Thunder || +65 || Casts Boom
+|-
+| Sage Staff || +55 || Pilgrim, Sage
+|}
+
+=== Claws ===
+{| class="wikitable"
+|-
+! Weapon !! Attack !! Who Can Use
+|-
+| Iron Claw || +20 || Fighter
+|-
+| Kaiser Claw || +55 || Fighter
+|}
+
+== Armor ==
+
+=== Heavy Armor ===
+{| class="wikitable"
+|-
+! Armor !! Defense !! Who Can Use
+|-
+| Leather Armor || +12 || Most classes
+|-
+| Chain Mail || +20 || Hero, Soldier
+|-
+| Half Plate || +25 || Hero, Soldier
+|-
+| Full Plate || +32 || Hero, Soldier
+|-
+| Dragon Armor || +45 || Hero, Soldier
+|-
+| Sacred Armor || +55 || Hero only
+|}
+
+=== Robes ===
+{| class="wikitable"
+|-
+! Armor !! Defense !! Who Can Use
+|-
+| Clothes || +4 || All
+|-
+| Magical Robe || +20 || Wizard, Pilgrim, Sage
+|-
+| Water Flying Cloth || +35 || Various
+|-
+| Angel's Robe || +45 || Female only
+|}
+
+== Shields ==
+
+{| class="wikitable"
+|-
+! Shield !! Defense !! Who Can Use
+|-
+| Leather Shield || +4 || Most
+|-
+| Iron Shield || +12 || Hero, Soldier
+|-
+| Steel Shield || +25 || Hero, Soldier
+|-
+| Dragon Shield || +32 || Hero, Soldier (Fire resist)
+|-
+| Hero's Shield || +50 || Hero only
+|}
+
+== Helmets ==
+
+{| class="wikitable"
+|-
+! Helmet !! Defense !! Who Can Use
+|-
+| Leather Hat || +2 || All
+|-
+| Turban || +8 || Various
+|-
+| Iron Helmet || +16 || Hero, Soldier
+|-
+| Mysterious Hat || +25 || Various
+|-
+| Great Helmet || +38 || Hero, Soldier
+|-
+| Ortega's Helmet || +45 || Hero only
+|}
+
+== Special Equipment ==
+
+=== Sword of Kings ===
+Ultimate weapon for the Hero:
+* Found in hidden shrine
+* Requires Final Key
+* +120 Attack power
+
+=== Ortega's Equipment ===
+Inherited from your father:
+* Ortega's Helmet (+45 Defense)
+* Available in Alefgard
+
+=== Sage's Equipment ===
+Items for the Sage class:
+* Sage Staff - Casts Heal
+* Various robes
+
+== Orochi Equipment ==
+
+Found in Orochi's Cave:
+* Orochi Sword - Powerful weapon
+* Dragon equipment pieces
+
+== Equipment Tips ==
+
+'''Hero:'''
+* Can use almost everything
+* Ultimate equipment makes strongest character
+* Sword of Kings is worth finding
+
+'''Soldier:'''
+* Heavy armor focus
+* Best shield users
+* Axes for high damage
+
+'''Fighter:'''
+* Claws are class-specific
+* Light armor limits defense
+* High agility compensates
+
+'''Wizard/Sage:'''
+* Staff of Thunder is excellent
+* Defense is secondary to magic
+* Magical Robe for protection
+
+'''Class Changes:'''
+* Equipment may need swapping after class change
+* Plan equipment before changing
+* Some items can't be re-equipped
+
+== Cursed Equipment ==
+
+Beware of cursed items:
+* Cannot be unequipped normally
+* Visit church to remove
+* Usually high stats as compensation
+
+== Shop Progression ==
+
+* '''Aliahan''' - Starting equipment
+* '''Reeve''' - Early upgrades
+* '''Romaly''' - Mid-game base
+* '''Isis''' - Good selection
+* '''Lancel''' - Late game
+* '''Alefgard towns''' - End-game
+
+[[Category:Dragon Warrior III]]
+[[Category:Equipment]]

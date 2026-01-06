@@ -1,0 +1,135 @@
+{{Back|Final Fantasy IV}}
+
+'''Glitches''' in Final Fantasy IV include exploits and bugs across various versions.
+
+== Known Glitches ==
+
+=== Item Duplication (SNES) ===
+The original SNES version has an item duplication glitch:
+
+'''Method:'''
+# Arrange inventory in specific way
+# Perform menu manipulation
+# Items get duplicated
+
+'''Notes:'''
+* Patched in later versions
+* Can duplicate rare items
+* Use at own risk
+
+=== MP Underflow ===
+In some versions:
+* Casting spells with low MP
+* Can cause MP to underflow
+* Results in max MP temporarily
+
+== Combat Glitches ==
+
+=== Damage Overflow ===
+Extremely high damage:
+* Can wrap around to 0
+* Affects some boss fights
+* More common with boosted stats
+
+=== Status Effect Bugs ===
+* Some status effects persist incorrectly
+* Stone status interactions
+* Party formation bugs
+
+== Equipment Glitches ==
+
+=== Equip Anything ===
+In some versions:
+* Certain characters can equip restricted items
+* Menu manipulation required
+* Not in all versions
+
+=== Duplicate Equipment ===
+* Part of item duplication glitch
+* Create multiple unique items
+
+== Version-Specific Issues ==
+
+=== SNES (FF2 US) ===
+* Item duplication present
+* Some translation errors
+* Original mechanics
+
+=== PlayStation ===
+* Most glitches fixed
+* Loading times (not glitches)
+* FMV additions
+
+=== Game Boy Advance ===
+* New content
+* Most original glitches patched
+* New minor issues possible
+
+=== PSP (Complete Collection) ===
+* Enhanced graphics
+* Most bugs fixed
+* 2D sprites on 3D backgrounds
+
+=== Nintendo DS ===
+* 3D remake
+* Different mechanics
+* Separate glitch set
+
+=== PC/Mobile ===
+* Based on 3D version or pixel remaster
+* Most issues resolved
+
+== Speedrun Techniques ==
+
+=== Any% Strategies ===
+* Item duplication (if version allows)
+* Optimal route planning
+* Battle avoidance
+
+=== Glitchless Runs ===
+* Pure skill-based
+* Route optimization
+* Equipment planning
+
+== Event Glitches ==
+
+=== Cutscene Issues ===
+* Rare sprite misplacements
+* Dialogue timing errors
+* Not game-breaking
+
+=== Story Flags ===
+* Some sequence breaks possible
+* Limited due to linear story
+
+== Save File ==
+
+=== SNES Battery ===
+* Battery backup can fail
+* Save corruption rare but possible
+* Backup important saves
+
+=== Memory Card (PS1/PSP) ===
+* Standard save issues
+* Not FF4-specific
+
+== Translation Errors ==
+
+Some items/spells mistranslated in US SNES version:
+* Affects understanding of mechanics
+* Corrected in later versions
+
+== Tips ==
+
+'''Safe Gaming:'''
+* Save frequently
+* Use multiple slots
+* Know your version's specifics
+
+'''Using Glitches:'''
+* Backup before attempting
+* Some patched in re-releases
+* May void achievements
+
+[[Category:Final Fantasy IV]]
+[[Category:Glitches]]
