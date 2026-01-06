@@ -1,0 +1,322 @@
+{{Back|Dragon Warrior III (NES)}}
+__TOC__
+
+== Overview ==
+
+Dragon Warrior III features an extensive item system including consumables, key items, and equipment for its multi-class party system.
+
+== Consumable Items ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Price !! Effect
+|-
+| $00 || Herb || 8 || Restore ~30 HP
+|-
+| $01 || Antidote || 10 || Cure poison
+|-
+| $02 || Fairy Water || 20 || Repel weak monsters
+|-
+| $03 || Wings || 25 || Return to last town
+|-
+| $04 || Medical Herb || 30 || Restore ~90 HP
+|-
+| $05 || Full Moon Herb || 30 || Cure paralysis
+|-
+| $06 || Wizard Ring || — || Restore MP (limited uses)
+|-
+| $07 || Leaf of World Tree || — || Revive one ally
+|}
+
+== Stat Seeds ==
+
+{| class="wikitable"
+|-
+! ID !! Name !! Effect
+|-
+| $10 || Strength Seed || Strength +1-3
+|-
+| $11 || Agility Seed || Agility +1-3
+|-
+| $12 || Vitality Seed || Vitality +1-3
+|-
+| $13 || Intelligence Seed || Intelligence +1-3
+|-
+| $14 || Luck Seed || Luck +1-3
+|-
+| $15 || Life Nut || Max HP +4-6
+|}
+
+== Key Items ==
+
+{| class="wikitable"
+|-
+! ID !! Name !! Location !! Purpose
+|-
+| $20 || Magic Ball || Aliahan Cave || Story progression
+|-
+| $21 || Thief's Key || Najimi Tower || Opens basic doors
+|-
+| $22 || Magic Key || Pyramid || Opens silver doors
+|-
+| $23 || Final Key || Necrogond || Opens all doors
+|-
+| $24 || Dream Ruby || Noaniels || Wake dreaming village
+|-
+| $25 || Wake-up Powder || Elf Village || Cure dream state
+|-
+| $26 || Ra's Mirror || Samanao || Reveal true forms
+|-
+| $27 || Echoing Flute || Lancel || Locate Rubiss
+|-
+| $28 || Sailor's Thigh Bone || Ghost Ship || Navigate seas
+|-
+| $29 || Locket of Love || — || Access Shrine Jail
+|-
+| $2A || Ship || Portoga || Sea travel
+|-
+| $2B || Black Pepper || Baharata || Trade for ship
+|-
+| $2C || King's Letter || Romaly || For Portoga king
+|}
+
+=== Orbs ===
+
+{| class="wikitable"
+|-
+! ID !! Name !! Location
+|-
+| $30 || Red Orb || Pirate Hideout
+|-
+| $31 || Blue Orb || Navel of the Earth
+|-
+| $32 || Green Orb || New Town event
+|-
+| $33 || Yellow Orb || Shoals
+|-
+| $34 || Purple Orb || Greenlad
+|-
+| $35 || Silver Orb || Baramos's Castle
+|}
+
+Collecting all 6 orbs allows access to the World of Darkness.
+
+== Weapons ==
+
+=== Swords (Hero, Soldier) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! ATK !! Price !! Special
+|-
+| $40 || Cypress Stick || 2 || 5 || —
+|-
+| $41 || Club || 7 || 30 || —
+|-
+| $42 || Copper Sword || 12 || 100 || —
+|-
+| $43 || Thorn Whip || 14 || 320 || —
+|-
+| $44 || Chain Sickle || 24 || 550 || —
+|-
+| $45 || Iron Axe || 28 || 900 || —
+|-
+| $46 || Steel Sword || 33 || 1500 || —
+|-
+| $47 || Battle Axe || 40 || 2500 || —
+|-
+| $48 || Sword of Gaia || 45 || — || Earth power
+|-
+| $49 || Zombie Slasher || 54 || — || +50% vs undead
+|-
+| $4A || Dragon Killer || 77 || — || +50% vs dragons
+|-
+| $4B || Thunder Sword || 82 || — || Cast thunder
+|-
+| $4C || Sword of Kings || 120 || — || Hero only
+|}
+
+=== Staves (Pilgrim, Wizard, Sage) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! ATK !! Price !! Special
+|-
+| $50 || Wood Staff || 5 || 15 || —
+|-
+| $51 || Thorn Staff || 12 || 400 || —
+|-
+| $52 || Iron Staff || 18 || 700 || —
+|-
+| $53 || Wizard Staff || 25 || 1500 || —
+|-
+| $54 || Staff of Thunder || 35 || — || Cast thunder
+|-
+| $55 || Staff of Rain || 0 || — || Key item
+|-
+| $56 || Staff of Change || 0 || — || Transform spell
+|}
+
+=== Claws (Fighter) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! ATK !! Price
+|-
+| $60 || Claw || 20 || 500
+|-
+| $61 || Iron Claw || 35 || 1500
+|-
+| $62 || Poison Needle || 1 || 10 (instant death chance)
+|-
+| $63 || Gringham Whip || 85 || — (hits all enemies)
+|}
+
+=== Boomerangs ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! ATK !! Price !! Notes
+|-
+| $70 || Boomerang || 18 || 350 || Hits all enemies
+|-
+| $71 || Stone Boomerang || 28 || 1200 || Hits all enemies
+|}
+
+== Armor ==
+
+=== Heavy Armor (Hero, Soldier) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! DEF !! Price !! Special
+|-
+| $80 || Cloth || 4 || 10 || —
+|-
+| $81 || Leather Armor || 12 || 150 || —
+|-
+| $82 || Chain Mail || 20 || 480 || —
+|-
+| $83 || Bronze Armor || 25 || 700 || —
+|-
+| $84 || Iron Armor || 32 || 1100 || —
+|-
+| $85 || Steel Armor || 40 || 2400 || —
+|-
+| $86 || Magic Armor || 50 || 5800 || Resist magic
+|-
+| $87 || Dragon Mail || 60 || 9800 || Fire resist
+|-
+| $88 || Armor of Radiance || 75 || — || Light damage reflect
+|-
+| $89 || Armor of Hades || 85 || — || Cursed
+|}
+
+=== Robes (Pilgrim, Wizard, Sage) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! DEF !! Price !! Special
+|-
+| $90 || Plain Clothes || 8 || 30 || —
+|-
+| $91 || Silk Robe || 16 || 300 || —
+|-
+| $92 || Magic Robe || 28 || 1200 || —
+|-
+| $93 || Cloak of Evasion || 22 || 2900 || Evade rate +
+|-
+| $94 || Sage Robe || 50 || — || +MP regen
+|-
+| $95 || Water Flying Cloth || 40 || — || Walk on water
+|}
+
+== Shields ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! DEF !! Price !! Users
+|-
+| $A0 || Leather Shield || 4 || 70 || All melee
+|-
+| $A1 || Bronze Shield || 11 || 370 || Hero, Soldier
+|-
+| $A2 || Iron Shield || 20 || 1200 || Hero, Soldier
+|-
+| $A3 || Steel Shield || 30 || 2500 || Hero, Soldier
+|-
+| $A4 || Dragon Shield || 40 || 7000 || Hero, Soldier
+|-
+| $A5 || Shield of Heroes || 55 || — || Hero only
+|}
+
+== Helmets ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! DEF !! Price !! Users
+|-
+| $B0 || Leather Helmet || 2 || 80 || Most classes
+|-
+| $B1 || Bronze Helmet || 8 || 380 || Hero, Soldier
+|-
+| $B2 || Iron Helmet || 16 || 1100 || Hero, Soldier
+|-
+| $B3 || Iron Mask || 25 || 3500 || Hero, Soldier
+|-
+| $B4 || Mythril Helmet || 38 || 18000 || Hero, Soldier
+|-
+| $B5 || Great Helmet || 45 || — || Hero, Soldier
+|-
+| $B6 || Noh Mask || 255 || — || Cursed (all stats to 0)
+|}
+
+== Accessories ==
+
+{| class="wikitable"
+|-
+! ID !! Name !! Effect !! Price
+|-
+| $C0 || Prayer Ring || MP +5 || 500
+|-
+| $C1 || Strength Ring || STR +7 || 800
+|-
+| $C2 || Dragon's Tail || AGI +10 || 1500
+|-
+| $C3 || Meteorite Armband || AGI ×2 || —
+|-
+| $C4 || Spider's Web || Prevent surprise || —
+|}
+
+== Class Equipment Restrictions ==
+
+{| class="wikitable"
+|-
+! Class !! Weapons !! Armor !! Shield
+|-
+| Hero || Swords, most || All heavy || Yes
+|-
+| Soldier || Axes, swords || All heavy || Yes
+|-
+| Pilgrim || Staves, maces || Robes, light || Light only
+|-
+| Wizard || Staves, knives || Robes only || No
+|-
+| Fighter || Claws, staves || Light armor || No
+|-
+| Merchant || Most basic || Medium || Yes
+|-
+| Goof-off || Limited || Limited || No
+|-
+| Sage || Staves, maces || Robes || Light only
+|-
+| Thief || Swords, boomerang || Light || Light only
+|}
+
+== See Also ==
+
+* [[Class System]]
+* [[Monsters]]
+* [[ROM Map]]
+
+[[Category:Dragon Warrior III (NES)]]

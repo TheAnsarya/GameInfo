@@ -1,0 +1,290 @@
+{{Back|Dragon Warrior III (NES)}}
+__TOC__
+
+== Overview ==
+
+Dragon Warrior III features 106 unique monsters across both the Light World and Dark World. This page documents monster stats and battle behaviors.
+
+== Monster Data Structure ==
+
+Each monster entry is 16 bytes:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Strength
+|-
+| $01 || 1 || Agility
+|-
+| $02-$03 || 2 || HP
+|-
+| $04 || 1 || Defense
+|-
+| $05 || 1 || Attack pattern
+|-
+| $06 || 1 || Spell pattern
+|-
+| $07 || 1 || Magic resistance
+|-
+| $08 || 1 || Sleep resistance
+|-
+| $09 || 1 || Stopspell resistance
+|-
+| $0A-$0B || 2 || Experience
+|-
+| $0C-$0D || 2 || Gold
+|-
+| $0E || 1 || Drop item ID
+|-
+| $0F || 1 || Drop rate (1/X)
+|}
+
+== Monster List ==
+
+=== Aliahan Area ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! STR !! AGI !! DEF !! EXP !! Gold
+|-
+| $00 || Slime || 8 || 9 || 4 || 5 || 4 || 3
+|-
+| $01 || Crow || 10 || 11 || 8 || 6 || 6 || 4
+|-
+| $02 || Froggore || 15 || 14 || 10 || 8 || 8 || 6
+|-
+| $03 || Anteater || 18 || 16 || 12 || 10 || 10 || 8
+|-
+| $04 || Horned Hare || 20 || 18 || 15 || 12 || 12 || 10
+|-
+| $05 || Healer || 15 || 12 || 20 || 8 || 18 || 15
+|}
+
+=== Romaly Region ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! STR !! AGI !! DEF !! EXP !! Gold
+|-
+| $10 || Babble || 35 || 32 || 25 || 20 || 40 || 28
+|-
+| $11 || Caterpillar || 42 || 38 || 22 || 28 || 55 || 35
+|-
+| $12 || Cactus Ball || 40 || 35 || 30 || 25 || 48 || 32
+|-
+| $13 || Man-Eater || 55 || 48 || 28 || 32 || 75 || 45
+|-
+| $14 || Magician || 38 || 30 || 40 || 22 || 65 || 42
+|-
+| $15 || Vampire Cat || 48 || 42 || 35 || 28 || 80 || 50
+|}
+
+=== Portoga/Baharata ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! STR !! AGI !! DEF !! EXP !! Gold
+|-
+| $20 || Goopi || 65 || 55 || 42 || 35 || 100 || 55
+|-
+| $21 || Mummy || 75 || 65 || 35 || 45 || 130 || 70
+|-
+| $22 || Killer Bee || 58 || 52 || 55 || 30 || 95 || 52
+|-
+| $23 || Gremlin || 70 || 60 || 48 || 40 || 120 || 65
+|-
+| $24 || Shadowman || 80 || 70 || 50 || 48 || 150 || 80
+|-
+| $25 || Metal Slime || 4 || 20 || 255 || 255 || 1350 || 30
+|}
+
+=== Dark World ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! STR !! AGI !! DEF !! EXP !! Gold
+|-
+| $50 || King Hydra || 350 || 180 || 110 || 150 || 4800 || 0
+|-
+| $51 || Demon Lord || 400 || 200 || 130 || 170 || 6500 || 0
+|-
+| $52 || Metal Babble || 8 || 50 || 255 || 255 || 40200 || 15
+|-
+| $53 || Dark Dragon || 300 || 175 || 100 || 145 || 4000 || 200
+|-
+| $54 || Granite Titan || 450 || 210 || 80 || 200 || 5500 || 180
+|}
+
+=== Boss Monsters ===
+
+{| class="wikitable"
+|-
+! ID !! Name !! HP !! STR !! DEF !! Location
+|-
+| $60 || Baramos || 1000 || 200 || 100 || Baramos's Castle
+|-
+| $61 || Boss Troll || 500 || 160 || 80 || Samanao Castle
+|-
+| $62 || Kandar || 400 || 140 || 70 || Multiple locations
+|-
+| $63 || Orochi || 600 || 180 || 90 || Jipang
+|-
+| $69 || Zoma || 1200 || 230 || 150 || Zoma's Castle
+|}
+
+== Special Monsters ==
+
+=== Metal Slime ===
+{| class="wikitable"
+|-
+! Stat !! Value
+|-
+| HP || 4
+|-
+| Defense || 255
+|-
+| Agility || 255
+|-
+| Experience || 1350
+|-
+| Flee Rate || Very High
+|}
+
+=== Metal Babble ===
+{| class="wikitable"
+|-
+! Stat !! Value
+|-
+| HP || 8
+|-
+| Defense || 255
+|-
+| Agility || 255
+|-
+| Experience || 40200
+|-
+| Flee Rate || Extremely High
+|}
+
+These metal monsters:
+* Immune to most magic
+* Immune to status effects
+* Only vulnerable to critical hits
+
+== Attack Patterns ==
+
+{| class="wikitable"
+|-
+! Value !! Pattern
+|-
+| $00 || Attack only
+|-
+| $01 || Attack + Flee
+|-
+| $02 || Attack + Call help
+|-
+| $03 || Two attacks/turn
+|-
+| $04 || Attack + Special
+|-
+| $05 || Boss pattern 1
+|-
+| $06 || Boss pattern 2
+|-
+| $07 || Final boss pattern
+|}
+
+== Spell Patterns ==
+
+{| class="wikitable"
+|-
+! Value !! Spells
+|-
+| $00 || None
+|-
+| $01 || Heal/Healmore
+|-
+| $02 || Hurt/Hurtmore
+|-
+| $03 || Blaze/Blazemore
+|-
+| $04 || Sleep
+|-
+| $05 || Stopspell
+|-
+| $06 || Defeat
+|-
+| $07 || Blazemost
+|-
+| $08 || Explodet
+|-
+| $09 || Fire breath
+|-
+| $0A || Ice breath
+|-
+| $0B || Sweet breath
+|-
+| $0C || Poison breath
+|-
+| $0D || Multiple (boss)
+|}
+
+== Monster Resistances ==
+
+=== Magic Resistance ===
+{| class="wikitable"
+|-
+! Value !! Resistance
+|-
+| $00 || None
+|-
+| $01 || 25% resist
+|-
+| $02 || 50% resist
+|-
+| $03 || 75% resist
+|-
+| $04 || Immune
+|}
+
+=== Status Resistances ===
+{| class="wikitable"
+|-
+! Bit !! Status
+|-
+| 0 || Sleep resist
+|-
+| 1 || Stopspell resist
+|-
+| 2 || Surround resist
+|-
+| 3 || Sap resist
+|}
+
+== Drop Items ==
+
+{| class="wikitable"
+|-
+! Monster !! Drop Item !! Rate
+|-
+| Slime || Herb || 1/8
+|-
+| Healer || Medical Herb || 1/4
+|-
+| Magician || Wizard Ring || 1/32
+|-
+| Metal Slime || Agility Seed || 1/256
+|-
+| Metal Babble || Small Medal || 1/64
+|-
+| Bosses || Key items || Guaranteed
+|}
+
+== See Also ==
+
+* [[Class System]]
+* [[Items]]
+* [[ROM Map]]
+
+[[Category:Dragon Warrior III (NES)]]

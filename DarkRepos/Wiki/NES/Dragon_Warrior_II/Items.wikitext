@@ -1,0 +1,239 @@
+{{Back|Dragon Warrior II (NES)}}
+__TOC__
+
+== Overview ==
+
+Dragon Warrior II expands on the original game's item system with more weapons, armor, and key items needed for the party of three heroes.
+
+== Consumable Items ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Price !! Effect
+|-
+| $00 || Herb || 15 || Restore ~35 HP
+|-
+| $01 || Antidote || 8 || Cure poison
+|-
+| $02 || Fairy Water || 40 || Repel weak monsters
+|-
+| $03 || Wings || 80 || Warp to last save location
+|-
+| $04 || Medical Herb || 30 || Restore ~70 HP
+|-
+| $05 || Poison Needle || 10 || 1 damage + instant death chance
+|-
+| $06 || Dragon's Bane || 640 || Use in battle for damage
+|-
+| $07 || Love Water || 120 || Remove curse
+|}
+
+== Key Items ==
+
+{| class="wikitable"
+|-
+! ID !! Name !! Location !! Purpose
+|-
+| $10 || Golden Key || Hamlin treasure || Opens gold doors
+|-
+| $11 || Silver Key || Lighthouse || Opens silver doors
+|-
+| $12 || Jail Key || Prison guard || Opens jail doors
+|-
+| $13 || Moon Fragment || Lake Cave || Part of the sigil
+|-
+| $14 || Eye of Malroth || Dragon's Horn tower || Opens sea cave
+|-
+| $15 || Sunstone || Tantegel Castle || Part of Rubiss Charm
+|-
+| $16 || Staff of Thunder || Tower of Wind || Opens sea cave
+|-
+| $17 || Rain Staff || Shrine || Part of Rubiss Charm
+|-
+| $18 || Rubiss Charm || Shrine combination || Defeats Malroth illusion
+|-
+| $19 || Water Crest || Sea Cave || Opens final area
+|-
+| $1A || Mirror of Ra || Dragon's Horn || Breaks Moonbrooke curse
+|-
+| $1B || Prince's Token || Quest item || Proves Cannock identity
+|}
+
+== Weapons ==
+
+=== Swords ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! ATK !! Price !! Users
+|-
+| $20 || Copper Sword || 10 || 100 || P1, P2
+|-
+| $21 || Chain Sickle || 15 || 390 || P1, P2
+|-
+| $22 || Iron Spear || 20 || 770 || P1 only
+|-
+| $23 || Steel Sword || 30 || 1500 || P1, P2
+|-
+| $24 || Giant Hammer || 35 || 4000 || P1 only
+|-
+| $25 || Dragon Killer || 50 || 8000 || P1 only
+|-
+| $26 || Light Sword || 65 || 16000 || P1 only
+|-
+| $27 || Thunder Sword || 95 || — || P1, P2 (treasure)
+|-
+| $28 || Falcon Sword || 5 || 25000 || P1 only (hits twice)
+|-
+| $29 || Sword of Destruction || 99 || — || P1 only (cursed)
+|}
+
+=== Staffs ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! ATK !! Price !! Users
+|-
+| $30 || Wizard Wand || 8 || 2500 || P2, P3
+|-
+| $31 || Staff of Thunder || 0 || — || Key item
+|}
+
+=== User Legend ===
+* P1 = Prince of Midenhall (fighter)
+* P2 = Prince of Cannock (fighter/mage)
+* P3 = Princess of Moonbrooke (mage)
+
+== Armor ==
+
+=== Body Armor ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! DEF !! Price !! Users
+|-
+| $40 || Clothes || 4 || 65 || All
+|-
+| $41 || Leather Armor || 8 || 350 || P1, P2
+|-
+| $42 || Chain Mail || 15 || 480 || P1, P2
+|-
+| $43 || Steel Armor || 25 || 1000 || P1 only
+|-
+| $44 || Magic Armor || 35 || 4300 || P1, P2
+|-
+| $45 || Cloak of Wind || 20 || 1250 || P3 only
+|-
+| $46 || Water Flying Cloth || 35 || 2500 || P3 only
+|-
+| $47 || Armor of Gaia || 55 || — || P1, P2 (treasure)
+|-
+| $48 || Erdrick's Armor || 40 || — || P1 only (treasure)
+|}
+
+'''Special Armor Effects:'''
+* Magic Armor: Reduces magic damage
+* Erdrick's Armor: HP regeneration, resist some spells
+* Water Flying Cloth: Walk on shallow water
+
+== Shields ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! DEF !! Price !! Users
+|-
+| $50 || Leather Shield || 4 || 90 || P1, P2
+|-
+| $51 || Iron Shield || 10 || 800 || P1, P2
+|-
+| $52 || Steel Shield || 20 || 2000 || P1 only
+|-
+| $53 || Shield of Strength || 35 || — || P1, P2 (treasure)
+|}
+
+'''Note:''' Princess of Moonbrooke cannot equip shields.
+
+== Helmets ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! DEF !! Price !! Users
+|-
+| $60 || Leather Helmet || 2 || 80 || All
+|-
+| $61 || Iron Helmet || 6 || 320 || P1, P2
+|-
+| $62 || Mysterious Hat || 15 || — || P3 only (treasure)
+|}
+
+== Shop Inventories ==
+
+=== Midenhall ===
+* Herb, Antidote
+* Copper Sword, Clothes, Leather Shield
+
+=== Cannock ===
+* Herb, Fairy Water, Wings
+* Chain Sickle, Leather Armor, Iron Shield
+
+=== Hamlin ===
+* Medical Herb, Fairy Water
+* Steel Sword, Chain Mail, Steel Shield
+
+=== Lianport ===
+* Dragon's Bane
+* Magic Armor, Cloak of Wind
+
+=== Wellgarth (Secret) ===
+* Falcon Sword
+* Light Sword
+
+== Equipment Restrictions ==
+
+{| class="wikitable"
+|-
+! Equipment Type !! Midenhall !! Cannock !! Moonbrooke
+|-
+| Swords || All || Most || None
+|-
+| Staffs || None || Yes || Yes
+|-
+| Heavy Armor || Yes || Yes || No
+|-
+| Robes/Cloaks || No || No || Yes
+|-
+| Shields || Yes || Yes || No
+|-
+| Helmets || All || Iron/Leather || Leather/Special
+|}
+
+== Item Effects in Battle ==
+
+{| class="wikitable"
+|-
+! Item !! Battle Effect
+|-
+| Herb || Heal user ~35 HP
+|-
+| Medical Herb || Heal user ~70 HP
+|-
+| Antidote || Cure poison status
+|-
+| Poison Needle || 1 damage + chance of instant kill
+|-
+| Dragon's Bane || Fire damage to one enemy
+|-
+| Wizard Wand || Cast Firebal
+|-
+| Staff of Thunder || Cast powerful thunder
+|-
+| Thunder Sword || Cast thunder attack
+|}
+
+== See Also ==
+
+* [[Party System]]
+* [[Monsters]]
+* [[ROM Map]]
+
+[[Category:Dragon Warrior II (NES)]]

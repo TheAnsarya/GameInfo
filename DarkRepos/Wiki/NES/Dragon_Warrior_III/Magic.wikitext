@@ -1,0 +1,273 @@
+{{Back|Dragon Warrior III (NES)}}
+__TOC__
+
+== Overview ==
+
+Dragon Warrior III features a comprehensive spell system where different classes learn different spells. Only magic-using classes (Pilgrim, Wizard, Sage, Hero) can cast spells.
+
+== Spell Learning by Class ==
+
+=== Hero ===
+{| class="wikitable"
+|-
+! Level !! Spell
+|-
+| 3 || Heal
+|-
+| 5 || Firebal
+|-
+| 8 || Icebolt
+|-
+| 12 || Return
+|-
+| 15 || Healmore
+|-
+| 18 || Outside
+|-
+| 22 || Repel
+|-
+| 26 || Healall
+|-
+| 30 || Zap
+|-
+| 36 || Healusall
+|-
+| 41 || Thordain
+|}
+
+=== Pilgrim ===
+{| class="wikitable"
+|-
+! Level !! Spell
+|-
+| 1 || Heal
+|-
+| 4 || Antidote
+|-
+| 6 || Expel
+|-
+| 8 || Infernos
+|-
+| 10 || Outside
+|-
+| 12 || Return
+|-
+| 15 || Healmore
+|-
+| 17 || Revive
+|-
+| 20 || Vivify
+|-
+| 24 || Healall
+|-
+| 28 || Increase
+|-
+| 32 || Ironize
+|-
+| 38 || Healusall
+|}
+
+=== Wizard ===
+{| class="wikitable"
+|-
+! Level !! Spell
+|-
+| 1 || Blaze
+|-
+| 4 || Sleep
+|-
+| 7 || Icebolt
+|-
+| 10 || Sap
+|-
+| 12 || Surround
+|-
+| 14 || Blazemore
+|-
+| 16 || Stopspell
+|-
+| 18 || Snowblast
+|-
+| 21 || Firebane
+|-
+| 24 || Boom
+|-
+| 27 || Bikill
+|-
+| 30 || Blazemost
+|-
+| 33 || Explodet
+|-
+| 38 || Chance
+|-
+| 42 || Thordain
+|}
+
+=== Sage ===
+Sages learn all Pilgrim AND Wizard spells, making them the most versatile spellcasters.
+
+== Attack Spells ==
+
+{| class="wikitable sortable"
+|-
+! Spell !! MP !! Target !! Power !! Learners
+|-
+| Blaze || 2 || One || ~10 || Wizard
+|-
+| Firebal || 4 || Group || ~25 || Hero
+|-
+| Blazemore || 6 || One || ~50 || Wizard
+|-
+| Firebane || 8 || Group || ~60 || Wizard
+|-
+| Blazemost || 15 || Group || ~120 || Wizard
+|-
+| Icebolt || 3 || One || ~30 || Hero, Wizard
+|-
+| Snowblast || 5 || Group || ~45 || Wizard
+|-
+| Infernos || 4 || Group || ~20 || Pilgrim
+|-
+| Boom || 8 || Group || ~80 || Wizard
+|-
+| Explodet || 18 || All || ~150 || Wizard
+|-
+| Zap || 8 || Group || ~80 || Hero
+|-
+| Thordain || 30 || All || ~200 || Hero, Wizard
+|}
+
+== Healing Spells ==
+
+{| class="wikitable sortable"
+|-
+! Spell !! MP !! Target !! Power !! Learners
+|-
+| Heal || 3 || One || ~30 HP || Hero, Pilgrim
+|-
+| Healmore || 5 || One || ~85 HP || Hero, Pilgrim
+|-
+| Healall || 7 || One || Full HP || Hero, Pilgrim
+|-
+| Healusall || 62 || All || Full HP || Hero, Pilgrim
+|-
+| Antidote || 2 || One || Cure poison || Pilgrim
+|-
+| Revive || 10 || One || Cure paralysis || Pilgrim
+|-
+| Vivify || 20 || One || Resurrect || Pilgrim
+|}
+
+== Support Spells ==
+
+{| class="wikitable sortable"
+|-
+! Spell !! MP !! Target !! Effect !! Learners
+|-
+| Sap || 3 || One || Lower defense || Wizard
+|-
+| Surround || 5 || Group || Lower accuracy || Wizard
+|-
+| Bikill || 6 || One || Double attack || Wizard
+|-
+| Increase || 4 || All allies || Raise defense || Pilgrim
+|-
+| Speedup || 4 || All allies || Raise speed || (item only)
+|-
+| Ironize || 6 || All allies || Invincible (1 turn) || Pilgrim
+|}
+
+== Status Spells ==
+
+{| class="wikitable sortable"
+|-
+! Spell !! MP !! Target !! Effect !! Learners
+|-
+| Sleep || 2 || Group || Put to sleep || Wizard
+|-
+| Stopspell || 3 || One || Block magic || Wizard
+|-
+| Expel || 4 || Group || Banish (instant kill) || Pilgrim
+|-
+| Chance || 20 || All || Random effect || Wizard
+|}
+
+== Field Spells ==
+
+{| class="wikitable sortable"
+|-
+! Spell !! MP !! Effect !! Learners
+|-
+| Radiant || 2 || Light in dungeons || (item only)
+|-
+| Outside || 6 || Exit dungeon || Hero, Pilgrim
+|-
+| Return || 8 || Warp to town || Hero, Pilgrim
+|-
+| Repel || 4 || Avoid weak monsters || Hero
+|-
+| X-Ray || 3 || Find hidden items || (item only)
+|}
+
+== Spell Resistance ==
+
+Monsters have different resistances:
+
+{| class="wikitable"
+|-
+! Resistance !! Affects
+|-
+| Magic Resist || Damage spells (reduced damage)
+|-
+| Sleep Resist || Sleep spell success rate
+|-
+| Stopspell Resist || Stopspell success rate
+|}
+
+== MP Costs Summary ==
+
+{| class="wikitable"
+|-
+! MP Range !! Spells
+|-
+| 2-4 MP || Heal, Blaze, Sleep, Antidote, Icebolt
+|-
+| 5-8 MP || Healmore, Outside, Return, Bikill, Boom, Zap
+|-
+| 10-20 MP || Healall, Revive, Explodet, Vivify, Chance
+|-
+| 30+ MP || Thordain, Healusall
+|}
+
+== Class Spell Totals ==
+
+{| class="wikitable"
+|-
+! Class !! Total Spells !! Notes
+|-
+| Hero || 11 || Mixed offensive/healing
+|-
+| Pilgrim || 13 || Healing specialist
+|-
+| Wizard || 14 || Offensive specialist
+|-
+| Sage || 27 || All Pilgrim + Wizard spells
+|-
+| Soldier || 0 || No magic
+|-
+| Fighter || 0 || No magic
+|-
+| Merchant || 0 || No magic
+|-
+| Goof-off || 0 || No magic
+|-
+| Thief || 0 || No magic
+|}
+
+== See Also ==
+
+* [[Class System]]
+* [[Items]]
+* [[ROM Map]]
+
+[[Category:Dragon Warrior III (NES)]]
