@@ -10,11 +10,47 @@
 
 | Section | Description |
 |---------|-------------|
+| [🧪 Manual Testing](#-manual-testing) | Editor testing, emulator setup, debugging |
 | [🛠️ Tools](#-tools) | .NET CLI and Python utilities |
-| [📚 Documentation](#-documentation) | Game docs, ROM/RAM maps |
+| [📚 Documentation](#-documentation) | Game docs, ROM/RAM maps, formats |
 | [🎮 Game Projects](#-game-projects) | Per-game disassembly and tools |
 | [📺 TAS Converter](#-tas-converter) | Multi-format TAS replay converter |
+| [📝 Development Docs](#-development-docs) | Session logs, plans, chat logs |
 | [🤝 Contributing](#-contributing) | Code style and workflow |
+
+---
+
+## 🧪 Manual Testing
+
+Guides for testing ROM hack editors, emulator debugging, and asset extraction.
+
+### Quick Start
+
+📖 **[Manual Testing Guide](~manual-testing/README.md)** - Complete testing documentation index
+
+### Testing Categories
+
+| Category | Description | Link |
+|----------|-------------|------|
+| **Emulator Setup** | Mesen-S configuration, debugger setup | [Setup Guide](~manual-testing/emulator-setup/) |
+| **Breakpoint Guides** | DMA tracing, VRAM analysis, debugging | [Breakpoints](~manual-testing/breakpoint-guides/) |
+| **Extraction Workflows** | Graphics, audio, compression analysis | [Extraction](~manual-testing/extraction-workflows/) |
+| **Game-Specific Testing** | Per-game editor testing docs | [Game Tests](~manual-testing/game-specific/) |
+
+### Per-Game Testing Documentation
+
+| Game | Platform | Testing Docs |
+|------|----------|--------------|
+| Dragon Quest III | SNES | [Monster](~manual-testing/game-specific/dq3r-snes/monster-editor-testing.md) • [Item](~manual-testing/game-specific/dq3r-snes/item-editor-testing.md) • [Spell](~manual-testing/game-specific/dq3r-snes/spell-editor-testing.md) • [Map](~manual-testing/game-specific/dq3r-snes/map-editor-testing.md) • [Graphics](~manual-testing/game-specific/dq3r-snes/graphics-editor-testing.md) |
+| Dragon Quest IV Remake | SNES | [System Testing](~manual-testing/game-specific/dq4r-snes/dq4r-system-testing.md) • [Monster](~manual-testing/game-specific/dq4r-snes/monster-editor-testing.md) • [Item](~manual-testing/game-specific/dq4r-snes/item-editor-testing.md) • [Spell](~manual-testing/game-specific/dq4r-snes/spell-editor-testing.md) |
+| Dragon Warrior IV | NES | [Monster](~manual-testing/game-specific/dw4-nes/monster-editor-testing.md) • [Item](~manual-testing/game-specific/dw4-nes/item-editor-testing.md) • [Spell](~manual-testing/game-specific/dw4-nes/spell-editor-testing.md) • [Map](~manual-testing/game-specific/dw4-nes/map-editor-testing.md) • [Graphics](~manual-testing/game-specific/dw4-nes/graphics-editor-testing.md) • [Character](~manual-testing/game-specific/dw4-nes/character-editor-testing.md) |
+| Final Fantasy Mystic Quest | SNES | [Monster](~manual-testing/game-specific/ffmq-snes/monster-editor-testing.md) • [Item](~manual-testing/game-specific/ffmq-snes/item-editor-testing.md) • [Spell](~manual-testing/game-specific/ffmq-snes/spell-editor-testing.md) • [Map](~manual-testing/game-specific/ffmq-snes/map-editor-testing.md) • [Graphics](~manual-testing/game-specific/ffmq-snes/graphics-editor-testing.md) |
+
+### Testing in Other Repos
+
+| Repository | Testing Docs |
+|------------|--------------|
+| [dragon-warrior-4-info](https://github.com/TheAnsarya/dragon-warrior-4-info) | [CDL Verification Quickstart](https://github.com/TheAnsarya/dragon-warrior-4-info/blob/main/~manual-testing/cdl-verification-quickstart.md) |
 
 ---
 
@@ -62,26 +98,39 @@ Specialized tools for analysis, debugging, and conversion.
 | **Text** | `text_extract.py`, `pointers.py`, `string_table.py` | [Text Tools Guide](docs/tools/text-tools.md) |
 | **TAS** | `convert_tas_to_mmo.py`, `tas_converter.py` | [TAS Converter](docs/tas-converter.md) |
 
-📖 **[Python Tools Index](docs/tools/README.md)**
+📖 **[Python Tools Index](docs/tools/README.md)** • **[Python-C# Mapping](docs/python-csharp-mapping.md)**
 
 ---
 
 ## 📚 Documentation
 
+📖 **[Documentation Index](docs/README.md)**
+
 ### Game Documentation
 
 | Game | Platform | Links |
 |------|----------|-------|
-| Dragon Warrior | NES | [ROM Map](docs/dragon-warrior-nes/) • [Wiki](Games/NES/Dragon%20Warrior/Wiki/) |
-| Dragon Warrior II | NES | [ROM Map](docs/dragon-warrior-2-nes/) • [Wiki](Games/NES/Dragon%20Warrior%202/Wiki/) |
-| Dragon Warrior III | NES | [ROM Map](docs/dragon-warrior-3-nes/) • [Wiki](Games/NES/Dragon%20Warrior%203/Wiki/) |
+| Dragon Warrior | NES | [ROM Map](docs/dragon-warrior-nes/) |
+| Dragon Warrior II | NES | [ROM Map](docs/dragon-warrior-2-nes/) |
+| Dragon Warrior III | NES | [ROM Map](docs/dragon-warrior-3-nes/) |
 | Dragon Warrior IV | NES | [ROM Map](docs/dragon-warrior-4-nes/) • [Disasm](https://github.com/TheAnsarya/dragon-warrior-4-info) |
-| Dragon Quest I & II | SNES | [ROM Map](docs/dragon-quest-1-2-snes/) • [Wiki](Games/SNES/Dragon%20Quest%20I%20&%20II/Wiki/) |
-| Dragon Quest III | SNES | [ROM Map](docs/dragon-quest-3-snes/) • [Wiki](Games/SNES/Dragon%20Quest%20III/Wiki/) |
+| Dragon Quest I & II | SNES | [ROM Map](docs/dragon-quest-1-2-snes/) |
+| Dragon Quest III | SNES | [ROM Map](docs/dragon-quest-3-snes/) • [Full Analysis](Games/SNES/Dragon%20Quest%20III%20(SNES)/) |
 | Final Fantasy Mystic Quest | SNES | [ROM Map](docs/ffmq-snes/) • [Disasm](https://github.com/TheAnsarya/ffmq-info) |
 | Robotrek | SNES | [Full Docs](Games/SNES/Robotrek%20(SNES)/) |
-| Soul Blazer | SNES | [Full Docs](Games/SNES/Soul%20Blazer%20(SNES)/) |
+| Soul Blazer | SNES | [Full Docs](docs/soul-blazer-snes/) • [Disasm](Games/SNES/Soul%20Blazer%20(SNES)/) |
 | Secret of Mana | SNES | [Project](Games/SNES/Secret%20of%20Mana%20(SNES)/) |
+
+### Tool Guides
+
+| Category | Documentation |
+|----------|---------------|
+| **Getting Started** | [Getting Started Guide](docs/guides/getting-started.md) |
+| **CLI Reference** | [Full CLI Reference](docs/guides/cli-reference.md) • [API Reference](docs/guides/api-reference.md) |
+| **CDL Tools** | [CDL Guide](docs/guides/cdl-tools.md) • [Format Spec](docs/formats/cdl-format.md) |
+| **Label Management** | [Label Guide](docs/guides/label-management.md) |
+| **ROM Catalog** | [ROM Catalog](docs/guides/rom-catalog.md) |
+| **Tool Usage** | [Tool Usage Guide](docs/guides/tool-usage.md) |
 
 ### Format References
 
@@ -93,6 +142,32 @@ Specialized tools for analysis, debugging, and conversion.
 | `.nl` | FCEUX name lists | [NL Format](docs/formats/nl-format.md) |
 | TAS | Movie replay formats | [TAS Formats](docs/tas-formats.md) |
 
+### SNES Audio Documentation
+
+| Topic | Documentation |
+|-------|---------------|
+| **Getting Started** | [SNES Music Editing Intro](docs/audio/getting-started-snes-music-editing.md) |
+| **Technical Reference** | [SNES Audio Reference](docs/audio/snes-audio-technical-reference.md) |
+| **Editing Guide** | [Music Editing Guide](docs/audio/snes-music-editing-guide.md) |
+| **BRR Encoding** | [BRR Encoding Guide](docs/audio/brr-encoding-guide.md) |
+| **SPC Format** | [SPC File Format](docs/audio/spc-file-format.md) |
+| **SPC Tool** | [CLI Reference](docs/audio/spc-tool-cli-reference.md) • [User Guide](docs/audio/spc-tool-user-guide.md) |
+
+📖 **[Audio Documentation Index](docs/audio/README.md)**
+
+### Build Pipeline Documentation
+
+| Platform | Documentation |
+|----------|---------------|
+| **Overview** | [Build Pipeline Index](docs/Build-Pipeline/README.md) |
+| **NES** | [NES Pipeline](docs/Build-Pipeline/NES-Pipeline.md) |
+| **SNES** | [SNES Pipeline](docs/Build-Pipeline/SNES-Pipeline.md) |
+| **GB** | [GB Pipeline](docs/Build-Pipeline/GB-Pipeline.md) |
+| **GBA** | [GBA Pipeline](docs/Build-Pipeline/GBA-Pipeline.md) |
+| **Genesis** | [Genesis Pipeline](docs/Build-Pipeline/Genesis-Pipeline.md) |
+| **Asset Formats** | [Asset Formats](docs/Build-Pipeline/Asset-Formats.md) |
+| **Configuration** | [Config Schema](docs/Build-Pipeline/Configuration-Schema.md) |
+
 ### Wiki Content
 
 MediaWiki wikitext for [Dark Repos Games Wiki](https://games.darkrepos.com):
@@ -101,7 +176,7 @@ MediaWiki wikitext for [Dark Repos Games Wiki](https://games.darkrepos.com):
 - RAM Maps - Variable and state tracking  
 - Data Structures - Table formats and layouts
 
-📖 **[Dark Repos Setup Guide](docs/darkrepos-wiki.md)**
+📖 **[Dark Repos Setup Guide](docs/darkrepos-wiki.md)** • **[Wiki Setup](docs/darkrepos-wiki-setup.md)**
 
 ---
 
@@ -161,7 +236,51 @@ python tools/tas/convert_tas_to_mmo.py -d tas-files/ -o output/ -r
 python tools/tas/tas_converter.py --list-formats
 ```
 
-📖 **[TAS Converter Documentation](docs/tas-converter.md)** • **[Format Specs](docs/tas-formats.md)**
+📖 **[TAS Converter Documentation](docs/tas-converter.md)** • **[Format Specs](docs/tas-formats.md)** • **[Manual Testing Guide](docs/TasConverter/Manual-Testing-Guide.md)**
+
+---
+
+## 📝 Development Docs
+
+Internal development documentation, session logs, and project planning.
+
+### Session Logs
+
+Development session documentation with notes, findings, and progress.
+
+📖 **[Session Logs](~docs/session-logs/)** - AI-assisted development session records
+
+### Chat Logs
+
+Conversation history for context preservation.
+
+📖 **[Chat Logs](~docs/chat-logs/)** - Session chat records
+
+### Project Plans
+
+| Plan | Description |
+|------|-------------|
+| [DQ3r SNES Comprehensive Plan](~Plans/DQ3r%20SNES%20-%20Comprehensive%20Plan.md) | Dragon Quest III remake disassembly |
+| [CDL Tools - GitHub Issues](~Plans/CDL%20Tools%20-%20GitHub%20Issues.md) | CDL tool development issues |
+| [TAS Converter - GitHub Issues](~Plans/TAS%20Converter%20-%20GitHub%20Issues.md) | TAS tool development issues |
+| [TAS Converter - Project Roadmap](~Plans/TAS%20Converter%20-%20Project%20Roadmap.md) | TAS tool roadmap |
+| [SPC-Ableton Workflow](~docs/plans/spc-ableton-workflow.md) | SNES audio Ableton integration |
+
+### Development Resources
+
+| Resource | Description |
+|----------|-------------|
+| [GitHub Setup](~docs/github-setup.md) | GitHub configuration notes |
+| [Robotrek Issues](~docs/robotrek-issues.md) | Robotrek project tracking |
+
+### User Manual Documentation
+
+| Category | Documentation |
+|----------|---------------|
+| **Manual Index** | [User Manual](~docs/manual/README.md) |
+| **CLI Tools** | [CLI Manual Index](~docs/manual/cli/README.md) |
+| **UI Tools** | [UI Manual Index](~docs/manual/ui/README.md) |
+| **Samples** | [Sample Files](~docs/manual/samples/README.md) |
 
 ---
 
@@ -198,9 +317,13 @@ GameInfo/
 ├── tools/              # Python tools
 ├── docs/               # Documentation
 ├── Games/              # Per-game folders (Wiki/, Docs/)
+├── Projects/           # Cross-game projects (DW4→DQ3r)
+├── DarkRepos/          # Wiki editor and web tools
 ├── Templates/          # Blank templates
-├── ~docs/              # Development docs (session logs)
-└── ~Plans/             # Project plans
+├── dats/               # ROM checksums and DAT files
+├── ~docs/              # Development docs (session/chat logs)
+├── ~Plans/             # Project plans
+└── ~manual-testing/    # Manual testing documentation
 ```
 
 📖 **[Contributing Guide](CONTRIBUTING.md)**
@@ -214,7 +337,30 @@ GameInfo/
 | [dragon-warrior-4-info](https://github.com/TheAnsarya/dragon-warrior-4-info) | DW4 NES disassembly |
 | [ffmq-info](https://github.com/TheAnsarya/ffmq-info) | FFMQ SNES disassembly |
 | [dq3r-info](https://github.com/TheAnsarya/dq3r-info) | DQ3 SNES analysis |
-| [logsmall](https://github.com/TheAnsarya/logsmall) | DQ3/FFMQ C# libraries |
+| [logsmall](https://github.com/TheAnsarya/logsmall) | DQ3/FFMQ/DW4 C# libraries |
+| [ableton-snes-spc](https://github.com/TheAnsarya/ableton-snes-spc) | SNES audio VST plugin |
+
+---
+
+## 📂 Additional Resources
+
+### DarkRepos Projects
+
+| Project | Description |
+|---------|-------------|
+| [Wiki Editor](DarkRepos/Editor/) | MediaWiki content editor |
+| [Wiki Web](DarkRepos/Web/) | Dark Repos website |
+| [Wiki Content](DarkRepos/Wiki/) | Wiki content files |
+
+### Cross-Game Projects
+
+| Project | Description |
+|---------|-------------|
+| [DW4→DQ3r Port](Projects/dw4-dq3r/) | Port Dragon Warrior IV to DQ3r SNES engine |
+
+### DAT Files
+
+📖 **[DAT Files](dats/README.md)** - ROM checksums and verification
 
 ---
 
