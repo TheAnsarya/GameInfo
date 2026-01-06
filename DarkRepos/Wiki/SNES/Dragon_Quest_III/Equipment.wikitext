@@ -1,0 +1,187 @@
+{{Back|Dragon Quest III}}
+
+'''Equipment''' in Dragon Quest III (SNES) includes weapons, armor, shields, and helmets for all classes.
+
+== Equipment by Class ==
+
+=== Hero ===
+Can equip most weapon and armor types:
+* Swords
+* Most armor types
+* All shields
+* All helmets
+
+=== Warrior (Soldier) ===
+* Heavy weapons
+* Heavy armor
+* All shields
+* All helmets
+
+=== Martial Artist (Fighter) ===
+* Claws
+* Light armor
+* Limited shields
+* Light helmets
+
+=== Mage (Wizard) ===
+* Staffs
+* Robes
+* No shields
+* Light helmets
+
+=== Priest (Pilgrim) ===
+* Staffs, maces
+* Light-medium armor
+* Some shields
+* Medium helmets
+
+=== Thief ===
+* Daggers
+* Light armor
+* Some shields
+* Light helmets
+
+=== Merchant (Dealer) ===
+* Various weapons
+* Medium armor
+* Some shields
+* Medium helmets
+
+=== Sage ===
+* Staffs
+* Robes and medium armor
+* Some shields
+* Various helmets
+
+=== Gadabout (Jester) ===
+* Limited weapons
+* Light armor
+* Limited shields
+* Various helmets
+
+== Ultimate Weapons ==
+
+{| class="wikitable"
+|-
+! Weapon !! Attack !! Who Can Use !! Location
+|-
+| Sword of Kings || Highest || Hero only || Hidden shrine
+|-
+| Gringham Whip || Very High || Hero, Sage, others || Post-game
+|-
+| Zombie Slayer || High vs Undead || Warrior, Hero || Dungeon
+|-
+| Dragon Killer || High vs Dragons || Multiple || Shop/Find
+|}
+
+== Ultimate Armor ==
+
+{| class="wikitable"
+|-
+! Armor !! Defense !! Who Can Use !! Location
+|-
+| Armor of Hades || Highest || Warrior || Cursed
+|-
+| Angel's Robe || High || Female || Rare find
+|-
+| Sacred Bikini || High || Female || Pachisi
+|-
+| Auroral Armor || Very High || Hero || Post-game
+|}
+
+== Shields ==
+
+{| class="wikitable"
+|-
+! Shield !! Defense !! Special
+|-
+| Leather Shield || +4 || Basic
+|-
+| Scale Shield || +7 || Early game
+|-
+| Iron Shield || +12 || Mid game
+|-
+| Steel Shield || +18 || Late game
+|-
+| Dragon Shield || +28 || Fire resist
+|-
+| Mirror Shield || +35 || Reflect
+|-
+| Hero's Shield || +45 || Hero only
+|}
+
+== Helmets ==
+
+{| class="wikitable"
+|-
+! Helmet !! Defense !! Special
+|-
+| Leather Hat || +2 || Basic
+|-
+| Hardened Hat || +6 || Early game
+|-
+| Iron Helmet || +12 || Mid game
+|-
+| Mysterious Hat || +20 || Magic boost
+|-
+| Ortega's Helm || +30 || Hero only
+|-
+| Great Helmet || +35 || Late game
+|}
+
+== Accessory Items ==
+
+{| class="wikitable"
+|-
+! Item !! Effect
+|-
+| Strength Ring || Boost attack
+|-
+| Speed Ring || Boost agility
+|-
+| Restless Heart || Personality item
+|-
+| Various Seeds || Permanent stat boost
+|}
+
+== Cursed Equipment ==
+
+Cursed items have high stats but negative effects:
+* Cannot be unequipped normally
+* Must visit church to remove
+* Examples: Armor of Hades, Sword of Destruction
+
+== Orochi Equipment ==
+
+Equipment from the Orochi dungeon:
+* Orochi Sword - Powerful weapon
+* Found in the snake demon's lair
+* Multiple pieces available
+
+== Shop Locations ==
+
+=== Major Equipment Shops ===
+* Aliahan - Starting equipment
+* Romaly - Mid-game gear
+* Isis/Samanao - Later equipment
+* Alefgard towns - End-game options
+
+== Equipment Tips ==
+
+'''Class Changing:'''
+* Equipment can be unequipped before class change
+* New class may not be able to re-equip old items
+* Plan equipment around class change strategy
+
+'''Gender Differences:'''
+* Some equipment female-only (Sacred Bikini)
+* Some equipment male-only
+* Consider party composition
+
+'''Personality Effects:'''
+* Some items affect personality when equipped
+* Personality changes stat growth
+* Books also change personality
+
+[[Category:Dragon Quest III]]
+[[Category:Equipment]]

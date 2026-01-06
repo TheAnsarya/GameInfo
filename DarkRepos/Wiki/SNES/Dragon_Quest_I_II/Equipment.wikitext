@@ -1,0 +1,171 @@
+{{Back|Dragon Quest I & II}}
+
+'''Equipment''' in Dragon Quest I & II (SNES) includes weapons, armor, shields, and helmets.
+
+== Dragon Quest I Equipment ==
+
+=== Weapons ===
+{| class="wikitable"
+|-
+! Weapon !! Attack !! Location
+|-
+| Bamboo Pole || +2 || Starting equipment
+|-
+| Club || +4 || Brecconary shop
+|-
+| Copper Sword || +10 || Garinham shop
+|-
+| Hand Axe || +15 || Rimuldar shop
+|-
+| Broad Sword || +20 || Cantlin shop
+|-
+| Flame Sword || +28 || Mercado shop
+|-
+| Erdrick's Sword || +40 || Charlock Castle
+|}
+
+=== Armor ===
+{| class="wikitable"
+|-
+! Armor !! Defense !! Location
+|-
+| Clothes || +2 || Starting equipment
+|-
+| Leather Armor || +4 || Brecconary shop
+|-
+| Chain Mail || +10 || Garinham shop
+|-
+| Half Plate || +16 || Cantlin shop
+|-
+| Full Plate || +24 || Cantlin shop
+|-
+| Magic Armor || +24 || Rimuldar shop (heals while walking)
+|-
+| Erdrick's Armor || +28 || Hauksness ruins
+|}
+
+=== Shields ===
+{| class="wikitable"
+|-
+! Shield !! Defense !! Location
+|-
+| Small Shield || +4 || Brecconary shop
+|-
+| Large Shield || +10 || Garinham shop
+|-
+| Silver Shield || +20 || Cantlin shop
+|}
+
+== Dragon Quest II Equipment ==
+
+=== Prince of Lorasia Weapons ===
+{| class="wikitable"
+|-
+! Weapon !! Attack !! Notes
+|-
+| Copper Sword || Low || Starting
+|-
+| Broad Sword || Medium || Early upgrade
+|-
+| Steel Sword || Medium || Mid-game
+|-
+| Sword of Destruction || High || Cursed
+|-
+| Falcon Sword || Medium || Attacks twice
+|-
+| Thunder Sword || High || Lightning effect
+|-
+| Erdrick's Sword || Highest || Ultimate weapon
+|}
+
+=== Prince of Cannock Equipment ===
+Can use most equipment but limited to lighter weapons:
+* Swords
+* Boomerangs
+* Staffs
+* Light armor
+
+=== Princess of Moonbrooke Equipment ===
+Limited to:
+* Staffs and wands
+* Robes and light armor
+* Magic-focused items
+
+== Shields (DQ2) ==
+
+{| class="wikitable"
+|-
+! Shield !! Defense !! Who Can Use
+|-
+| Leather Shield || +4 || Lorasia, Cannock
+|-
+| Iron Shield || +10 || Lorasia, Cannock
+|-
+| Steel Shield || +18 || Lorasia only
+|-
+| Shield of Strength || +20 || Lorasia only (heals)
+|-
+| Erdrick's Shield || +25 || Lorasia only
+|}
+
+== Helmets (DQ2) ==
+
+{| class="wikitable"
+|-
+! Helmet !! Defense !! Who Can Use
+|-
+| Leather Hat || +2 || All
+|-
+| Iron Helm || +6 || Lorasia, Cannock
+|-
+| Mysterious Hat || +8 || Lorasia only
+|-
+| Erdrick's Helm || +20 || Lorasia only
+|}
+
+== Cursed Equipment ==
+
+Some equipment is cursed:
+* Sword of Destruction - High attack but cursed
+* Mad Cap - Defense but cursed
+* Cursed items cannot be unequipped without church
+
+== Erdrick's Equipment ==
+
+=== Dragon Quest I ===
+The legendary equipment set:
+* Erdrick's Sword - Charlock Castle
+* Erdrick's Armor - Hauksness (search ruins)
+
+=== Dragon Quest II ===
+* Erdrick's Sword - Cave of Rendarak
+* Erdrick's Shield - Wellgarth area
+* Erdrick's Helm - Tower of the Moon
+* Erdrick's Armor - Hargon's Castle
+
+== Shop Locations ==
+
+=== DQ1 Major Shops ===
+* Brecconary - Basic equipment
+* Garinham - Medium equipment
+* Rimuldar - Magic Armor, advanced items
+* Cantlin - High-end equipment
+
+=== DQ2 Major Shops ===
+* Leftwyne - Starting area
+* Moonbrooke region - Mid-game
+* Rhone merchants - End-game
+
+== Equipment Tips ==
+
+'''Dragon Quest I:'''
+* Magic Armor heals HP while walking - very useful
+* Save for Erdrick's equipment over buying expensive alternatives
+
+'''Dragon Quest II:'''
+* Falcon Sword's double attack can be better than higher attack weapons
+* Princess has limited options - focus on magic items
+* Shield of Strength provides sustainability
+
+[[Category:Dragon Quest I & II]]
+[[Category:Equipment]]

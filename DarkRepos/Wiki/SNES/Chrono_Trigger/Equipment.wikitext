@@ -1,0 +1,220 @@
+{{Back|Chrono Trigger}}
+
+'''Equipment''' in Chrono Trigger includes weapons, armor, helmets, and accessories for all party members.
+
+== Equipment Types ==
+
+=== Weapons ===
+Each character has unique weapon types:
+* Crono - Katanas
+* Marle - Crossbows
+* Lucca - Guns
+* Robo - Arms
+* Frog - Swords (Broadswords)
+* Ayla - Fists (cannot equip weapons)
+* Magus - Scythes
+
+=== Armor ===
+Body protection equipment:
+* Available to all characters (gender restrictions on some)
+* Provides defense boost
+* Some provide elemental resistance
+
+=== Helmets ===
+Head protection:
+* Defense bonuses
+* Status protection on some
+* Some class-restricted
+
+=== Accessories ===
+Special items providing bonuses:
+* Each character can equip one
+* Varied effects (stats, protection, abilities)
+
+== Crono's Equipment ==
+
+=== Katanas ===
+{| class="wikitable"
+|-
+! Weapon !! Attack !! Notes
+|-
+| Wood Sword || Low || Starting weapon
+|-
+| Bronze Blade || Low || Early purchase
+|-
+| Steel Saber || Medium || Mid-game
+|-
+| Demon Edge || Medium-High || Special effects
+|-
+| Slasher || High || Critical bonus
+|-
+| Rainbow || Highest || Ultimate weapon
+|}
+
+=== Ultimate - Rainbow ===
+* Crafted from Rainbow Shell
+* Melchior at Guardia Castle
+* Highest critical rate
+
+== Marle's Equipment ==
+
+=== Crossbows ===
+{| class="wikitable"
+|-
+! Weapon !! Attack !! Notes
+|-
+| Bronze Bow || Low || Starting equipment
+|-
+| Lode Bow || Medium || Early upgrade
+|-
+| Siren || Medium || Status effect
+|-
+| Valkyrie || High || Late game
+|}
+
+== Lucca's Equipment ==
+
+=== Guns ===
+{| class="wikitable"
+|-
+! Weapon !! Attack !! Notes
+|-
+| Airgun || Low || Starting weapon
+|-
+| Dart Gun || Low || Early purchase
+|-
+| Plasma Gun || Medium || Mid-game
+|-
+| Wondershot || High || Varies by time
+|}
+
+=== Special - Wondershot ===
+* Damage varies based on last digit of game time
+* Can be very powerful or weak
+* Adds randomness
+
+== Robo's Equipment ==
+
+=== Arms ===
+{| class="wikitable"
+|-
+! Weapon !! Attack !! Notes
+|-
+| Tin Arm || Low || Starting
+|-
+| Bronze Fist || Medium || Early
+|-
+| Stone Arm || Medium || Mid-game
+|-
+| Terra Arm || High || Late game
+|-
+| Crisis Arm || Varies || HP-based damage
+|}
+
+=== Special - Crisis Arm ===
+* Damage increases at low HP
+* Strategic for high-risk play
+
+== Frog's Equipment ==
+
+=== Broadswords ===
+{| class="wikitable"
+|-
+! Weapon !! Attack !! Notes
+|-
+| Bronze Sword || Low || Starting
+|-
+| Masamune || High || Story weapon (2 forms)
+|-
+| Brave Sword || Highest || Ultimate weapon
+|}
+
+=== Masamune ===
+* Obtained through story events
+* Powered up version available
+* Essential to Frog's storyline
+
+== Ayla's Equipment ==
+
+=== Fists ===
+Ayla cannot equip weapons - her fists power up with level:
+* Iron Fist - Early levels
+* Bronze Fist - Mid levels
+* Fist - High levels
+* Critical rate increases with level
+
+== Magus' Equipment ==
+
+=== Scythes ===
+{| class="wikitable"
+|-
+! Weapon !! Attack !! Notes
+|-
+| Doom Scythe || High || Starting weapon
+|-
+| Hurricane || Higher || Late game
+|-
+| Dark Scythe || Highest || Ultimate
+|}
+
+== Ultimate Armor ==
+
+=== Prism Dress ===
+* Female-only
+* Highest defense
+* Crafted from Rainbow Shell
+
+=== Moon Armor ===
+* Male armor
+* High defense
+* Late game find
+
+=== Zodiac Cape ===
+* Accessory with high magic defense
+* Found in Black Omen
+
+== Notable Accessories ==
+
+{| class="wikitable"
+|-
+! Accessory !! Effect
+|-
+| Power Ring || Increase attack
+|-
+| Magic Ring || Increase magic
+|-
+| Silver Earring || Increase max HP
+|-
+| Gold Earring || Large HP increase
+|-
+| Prism Spectacles || Improve critical rate
+|-
+| Rainbow Helm || Status immunity
+|-
+| Amulet || Status protection
+|-
+| Charm Top || Prevent charm
+|}
+
+== Where to Find Equipment ==
+
+=== Shops ===
+Most towns have equipment shops with level-appropriate gear.
+
+=== Chests ===
+Dungeons contain stronger equipment in chests.
+
+=== Boss Drops ===
+Some bosses drop rare equipment.
+
+=== Crafting ===
+* Rainbow Shell items from Melchior
+* Prismatic equipment is end-game
+
+=== Black Omen ===
+* Can be completed in multiple eras
+* Contains best equipment
+* Repeatable for farming
+
+[[Category:Chrono Trigger]]
+[[Category:Equipment]]
