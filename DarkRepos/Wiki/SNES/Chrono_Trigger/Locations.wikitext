@@ -1,0 +1,690 @@
+{{Back|Chrono Trigger}}
+__TOC__
+
+= Locations =
+
+This page documents all locations organized by time period in Chrono Trigger for the SNES.
+
+== Overview ==
+
+Chrono Trigger features 7 distinct time periods, each with unique locations, inhabitants, and quests. Time travel via Gates and the Epoch connects these eras.
+
+== Location Data Structure ==
+
+Each location uses variable-length data:
+
+{| class="wikitable"
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Location ID
+|-
+| $01 || 1 || Time Period
+|-
+| $02 || 2 || Tileset Pointer
+|-
+| $04 || 2 || Map Layout Pointer
+|-
+| $06 || 2 || Event Pointer
+|-
+| $08 || 2 || NPC Data Pointer
+|-
+| $0A || 1 || Music ID
+|-
+| $0B || 1 || Encounter Rate
+|}
+
+== 65,000,000 B.C. (Prehistoric Era) ==
+
+The age of dinosaurs and early humans.
+
+=== Ioka Village ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Chief || Ayla
+|-
+| Inn || Trade for shelter
+|-
+| Shop || None (trade system)
+|-
+| Events || Ayla joins party
+|-
+| Notes || No money system - trade items
+|}
+
+'''Trading Post:'''
+* Trade items for equipment
+* Petals, Fangs, Horns, Feathers
+* Unique prehistoric equipment
+
+=== Laruba Village ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Chief || Elder
+|-
+| Inn || Trade for shelter
+|-
+| Shop || None
+|-
+| Events || Burned by Reptites
+|-
+| Notes || Destroyed later in story
+|}
+
+=== Hunting Range ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Encounters || Nu, Animals
+|-
+| Items || Trading materials
+|-
+| Mini-game || Hunting for items
+|-
+| Notes || Encounter Nu for rare items
+|}
+
+=== Dactyl Nest ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Boss || Nizbel
+|-
+| Event || Obtain Dactyls
+|-
+| Access || After Reptite invasion
+|-
+| Notes || Flying mount location
+|}
+
+=== Reptite Lair ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Floors || 4
+|-
+| Boss || Nizbel, Nizbel II
+|-
+| Key Item || Gate Key
+|-
+| Notes || Azala's fortress
+|}
+
+=== Tyrano Lair ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Floors || 5
+|-
+| Boss || Azala + Black Tyrano
+|-
+| Event || Lavos falls
+|-
+| Notes || Final prehistoric dungeon
+|}
+
+== 12,000 B.C. (Dark Ages/Antiquity) ==
+
+The age of Zeal and magic.
+
+=== Enhasa ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Residents || Enlightened Ones (sleepers)
+|-
+| Shop || None
+|-
+| Events || Book puzzles
+|-
+| Notes || Dreams and magic focus
+|}
+
+=== Kajar ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Residents || Enlightened Ones (researchers)
+|-
+| Shop || Magic equipment
+|-
+| Events || Learn about Mammon Machine
+|-
+| Notes || Research facility
+|}
+
+=== Zeal Palace ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Residents || Queen Zeal, Schala, Janus
+|-
+| Floors || Multiple wings
+|-
+| Events || Mammon Machine incident
+|-
+| Notes || Kingdom of Zeal throne
+|}
+
+=== Ocean Palace ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Floors || 7+
+|-
+| Boss || Golem Twins, Dalton
+|-
+| Event || Lavos awakens
+|-
+| Notes || Point of no return (story)
+|}
+
+=== Black Omen ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Access || After Ocean Palace event
+|-
+| Floors || Many
+|-
+| Bosses || Multiple (Mega Mutant, etc.)
+|-
+| Final Boss || Queen Zeal
+|-
+| Notes || Optional super-dungeon
+|}
+
+'''Black Omen Special:'''
+* Can be completed in multiple eras
+* Different rewards per era
+* Best equipment and items
+
+=== Commons (Earthbound Village) ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Residents || Earthbound Ones
+|-
+| Inn || Free
+|-
+| Events || Meet Algetty elder
+|-
+| Notes || Beneath Zeal
+|}
+
+=== Last Village ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Access || After Ocean Palace
+|-
+| Residents || Survivors
+|-
+| Events || Black Omen rises
+|-
+| Notes || Post-destruction
+|}
+
+== 600 A.D. (Middle Ages) ==
+
+The era of Guardia's war with Magus.
+
+=== Truce Village ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Inn || 10 G
+|-
+| Shop || Basic items
+|-
+| Events || Info about war
+|-
+| Notes || Peaceful village
+|}
+
+=== Guardia Castle ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Ruler || King Guardia XXI, Queen Leene
+|-
+| Events || Rescue Queen, Trial
+|-
+| Treasure || Castle vaults
+|-
+| Notes || Home of royal family
+|}
+
+=== Zenan Bridge ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Event || Battle with Ozzie's forces
+|-
+| Boss || Zombor
+|-
+| Access || Opens path to south
+|-
+| Notes || Key story battle
+|}
+
+=== Dorino Village ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Inn || 15 G
+|-
+| Shop || Better equipment
+|-
+| Events || Elder's house
+|-
+| Notes || Southern village
+|}
+
+=== Porre Village ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Inn || 20 G
+|-
+| Shop || Mid-tier items
+|-
+| Events || Tata's home
+|-
+| Notes || Town of the "legendary" hero
+|}
+
+=== Fiona's Villa ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Resident || Fiona
+|-
+| Events || Forest restoration sidequest
+|-
+| Notes || Desert area (becomes forest later)
+|}
+
+=== Denadoro Mountains ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Floors || 3 areas
+|-
+| Boss || Masa & Mune
+|-
+| Key Item || Masamune (broken)
+|-
+| Notes || Sword restoration quest
+|}
+
+=== Magic Cave ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Access || After Masamune forged
+|-
+| Event || Path to Magus's Lair
+|-
+| Notes || Sealed cave
+|}
+
+=== Fiendlord's Keep (Magus's Castle) ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Floors || 6+
+|-
+| Bosses || Ozzie, Slash, Flea, Magus
+|-
+| Events || Stop Lavos summoning
+|-
+| Notes || Major dungeon
+|}
+
+=== Cursed Woods ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Resident || Frog (Glenn)
+|-
+| Events || Frog joins party
+|-
+| Notes || Frog's hideout
+|}
+
+=== Giant's Claw ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Access || After Tyrano destruction
+|-
+| Boss || Rust Tyrano
+|-
+| Key Item || Rainbow Shell
+|-
+| Notes || Buried Tyrano Lair
+|}
+
+== 1000 A.D. (Present) ==
+
+The player's starting era.
+
+=== Truce Village ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Inn || 10 G
+|-
+| Shop || Basic items
+|-
+| Residents || Crono's home, Lucca's home
+|-
+| Notes || Starting location
+|}
+
+=== Leene Square / Millennial Fair ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Events || Meet Marle, time travel
+|-
+| Mini-games || Multiple games
+|-
+| Key || Telepod experiment
+|-
+| Notes || Game intro location
+|}
+
+=== Guardia Castle ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Ruler || King Guardia XXXIII
+|-
+| Events || Trial, Rainbow Shell quest
+|-
+| Boss || Yakra XIII (Rainbow Shell quest)
+|-
+| Notes || Future of 600 A.D. castle
+|}
+
+=== Guardia Forest ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Events || First Gate discovered
+|-
+| Encounters || Weak enemies
+|-
+| Notes || Tutorial area
+|}
+
+=== Medina Village ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Residents || Mystics (descendants of fiends)
+|-
+| Shop || Equipment
+|-
+| Events || Hate humans initially
+|-
+| Notes || Changes based on past actions
+|}
+
+=== Heckran Cave ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Boss || Heckran
+|-
+| Key Item || None
+|-
+| Exit || Leads to Lucca's house area
+|-
+| Notes || Optional dungeon
+|}
+
+=== Melchior's Hut ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Resident || Melchior (weapons master)
+|-
+| Shop || Best equipment
+|-
+| Events || Masamune forging, Sun Stone
+|-
+| Notes || Guru of Life
+|}
+
+=== Choras Village ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Inn || 10 G
+|-
+| Shop || Basic items
+|-
+| Events || Northern Ruins quest start
+|-
+| Notes || Small port town
+|}
+
+=== Sun Keep ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Event || Sun Stone charging (multi-era)
+|-
+| Notes || Need to visit multiple eras
+|}
+
+== 1999 A.D. (Day of Lavos) ==
+
+The apocalypse.
+
+=== Death Peak ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Access || From Future (2300 A.D.)
+|-
+| Enemies || Powerful monsters
+|-
+| Event || Chrono resurrection
+|-
+| Notes || Climb to summit
+|}
+
+== 2300 A.D. (Future/Apocalypse) ==
+
+Post-Lavos destruction.
+
+=== Trann Dome ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Residents || Survivors
+|-
+| Events || Learn about Lavos
+|-
+| Notes || First future location
+|}
+
+=== Arris Dome ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Residents || Survivors, Doan
+|-
+| Boss || Guardian
+|-
+| Key Item || Seed
+|-
+| Notes || Food storage location
+|}
+
+=== Proto Dome ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Resident || Robo
+|-
+| Events || Robo joins party, Gate access
+|-
+| Notes || Robot research facility
+|}
+
+=== Factory (Site 16) ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Floors || 3
+|-
+| Boss || R-Series
+|-
+| Events || Power for Proto Dome
+|-
+| Notes || Robot factory
+|}
+
+=== Sewer Access ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Boss || Krawlie
+|-
+| Path || Connects domes
+|-
+| Notes || Underground passage
+|}
+
+=== Keeper's Dome ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Resident || Belthasar (Guru of Reason)
+|-
+| Key Item || Epoch (Wings of Time)
+|-
+| Notes || Time machine location
+|}
+
+=== Geno Dome ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Floors || Multiple
+|-
+| Boss || Mother Brain
+|-
+| Event || Robo sidequest
+|-
+| Notes || Robo's origin
+|}
+
+=== Sun Palace ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Boss || Son of Sun
+|-
+| Key Item || Moon Stone (becomes Sun Stone)
+|-
+| Notes || Fire-themed dungeon
+|}
+
+== End of Time ==
+
+The hub outside of time.
+
+=== Spekkio's Room ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Resident || Spekkio
+|-
+| Event || Learn magic
+|-
+| Notes || Magic training
+|}
+
+=== Gates ===
+
+Access to all time periods from lamp posts.
+
+{| class="wikitable"
+! Gate !! Destination
+|-
+| Left 1 || 1000 A.D.
+|-
+| Left 2 || 600 A.D.
+|-
+| Left 3 || 2300 A.D.
+|-
+| Left 4 || 65,000,000 B.C.
+|-
+| Right || 12,000 B.C.
+|}
+
+=== Gaspar ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Resident || Gaspar (Guru of Time)
+|-
+| Events || Bucket to 1999, sidequest hints
+|-
+| Notes || Quest advisor
+|}
+
+[[Category:Chrono Trigger]]
+[[Category:Locations]]
+[[Category:SNES Games]]

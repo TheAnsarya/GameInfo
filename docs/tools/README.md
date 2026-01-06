@@ -11,9 +11,12 @@ This directory contains documentation for all Python tools in the GameInfo toolk
 | [Analysis Tools](analysis-tools.md) | ROM analysis and reverse engineering | Hex search, tracing, bank analysis |
 | [Graphics Tools](graphics-tools.md) | Tile and sprite extraction | CHR, tiles, sprites |
 | [Text Tools](text-tools.md) | Text extraction and translation | TBL, pointers, strings |
+| [Audio Tools](audio-tools.md) | Music and sound effect extraction | NSF, SPC, samples |
 | [TAS Tools](../tas-converter.md) | TAS replay file conversion | Multi-format support |
 | [Emulator Tools](emulator-tools.md) | Emulator integration and debugging | Mesen, FCEUX, bsnes |
 | [Disassembly Guide](disassembly-guide.md) | Creating and maintaining disassemblies | Workflow, style guide |
+| [Testing Procedures](testing-procedures.md) | ROM hacking test methodology | Unit tests, verification |
+| [Workflow Guide](workflow-guide.md) | Complete project workflows | Translation, hacking |
 
 ## Quick Reference
 
