@@ -1,0 +1,220 @@
+{{Back|Final Fantasy Mystic Quest (SNES)}}
+{{subpage}}
+{{DISPLAYTITLE:Final Fantasy Mystic Quest - Battle System}}
+
+= Final Fantasy Mystic Quest Battle System =
+
+This page documents the battle mechanics, damage formulas, and AI systems used in Final Fantasy Mystic Quest.
+
+== Overview ==
+
+FFMQ uses a simplified turn-based battle system with:
+* Maximum 2 party members (Benjamin + 1 partner)
+* Maximum 3 enemies on screen
+* Speed-based turn order
+* No random encounters (enemies visible on map)
+
+== Turn Order ==
+
+=== Initiative Calculation ===
+
+Turn order is determined by Speed stat:
+
+ Turn Priority = Speed + Random(0-15)
+
+Higher values act first. Ties are broken by:
+# Player characters before enemies
+# Benjamin before partner
+# Enemy slot order (1 → 2 → 3)
+
+== Damage Calculation ==
+
+=== Physical Damage ===
+
+{| class="wikitable"
+|-
+! Step !! Formula !! Notes
+|-
+| Base Damage || <code>(Attack × 2) - Defense</code> || Minimum 1
+|-
+| Variance || <code>Base × Random(0.9 - 1.1)</code> || ±10% variance
+|-
+| Critical || <code>Base × 1.5</code> || If critical hit
+|-
+| Final || <code>Variance × Element Modifier</code> || See elemental table
+|}
+
+=== Critical Hit Rate ===
+
+ Crit Chance = (Speed / 4) + Weapon Crit Rate
+
+=== Magical Damage ===
+
+{| class="wikitable"
+|-
+! Step !! Formula
+|-
+| Base Damage || <code>Power × (Magic / 4 + 8)</code>
+|-
+| Resistance || <code>1.0 - (Resistance / 100)</code>
+|-
+| Final || <code>Base × Resistance × Element</code>
+|}
+
+== Hit Accuracy ==
+
+ Hit Rate = Accuracy - Evasion + 80
+ Clamped to range [5, 100]
+
+== Elemental System ==
+
+=== Element Table ===
+
+{| class="wikitable"
+|-
+! Bit !! Element !! Effect
+|-
+| 0 || Fire || Red magic, flame attacks
+|-
+| 1 || Ice || Blue magic, cold attacks  
+|-
+| 2 || Thunder || Yellow magic, electric
+|-
+| 3 || Earth || Brown magic, quake
+|-
+| 4 || Holy || White magic, cure
+|-
+| 5 || Dark || Doom, instant death
+|-
+| 6 || Physical || Non-elemental physical
+|-
+| 7 || Magic || Non-elemental magical
+|}
+
+=== Elemental Modifiers ===
+
+{| class="wikitable"
+|-
+! Condition !! Modifier !! Effect
+|-
+| Weakness || ×2.0 || Double damage
+|-
+| Normal || ×1.0 || Standard damage
+|-
+| Resistance || ×0.5 || Half damage
+|-
+| Immunity || ×0.0 || No damage
+|-
+| Absorb || Heal || Recovers HP instead
+|}
+
+== Status Effects ==
+
+=== Combat Status ===
+
+{| class="wikitable"
+|-
+! Status !! Bit !! Effect !! Duration
+|-
+| Dead || 0 || Cannot act, 0 HP || Until revived
+|-
+| Poison || 1 || Lose HP each turn || Until cured
+|-
+| Paralysis || 2 || Cannot act || 3 turns
+|-
+| Blind || 3 || -50% accuracy || Until cured
+|-
+| Confuse || 4 || Random target || 3 turns
+|-
+| Silence || 5 || Cannot cast spells || Until cured
+|-
+| Petrify || 6 || Cannot act, 0 defense || Permanent
+|}
+
+== Enemy AI System ==
+
+=== AI Pattern Table ===
+
+Each monster has an AI pattern controlling behavior:
+
+{| class="wikitable"
+|-
+! Pattern !! Behavior
+|-
+| $00 || Basic attack only (80% attack, 20% idle)
+|-
+| $01 || Attack + weak spell
+|-
+| $02 || Offensive magic focus
+|-
+| $03 || Healing support
+|-
+| $04 || Status effects focus
+|-
+| $05 || Defensive + counter
+|-
+| $06 || Berserker (strong attacks)
+|-
+| $07 || Balanced mixed
+|-
+| $08+ || Boss-specific AI
+|}
+
+=== Action Selection ===
+
+<pre>
+1. Check HP threshold
+2. If HP < threshold, use alternate pattern
+3. Roll weighted random for action
+4. Validate action (has MP, target exists)
+5. Execute or fall back to basic attack
+</pre>
+
+== Weapon Leveling ==
+
+Weapons gain levels through use:
+
+{| class="wikitable"
+|-
+! Level !! EXP Required !! Bonus
+|-
+| 1 || 0 || Base stats
+|-
+| 2 || 100 || +25% damage
+|-
+| 3 || 300 || +50% damage + special effect
+|}
+
+ Weapon EXP = Enemy Level × 10
+
+== Battle Rewards ==
+
+=== Experience ===
+
+ Base EXP = Sum of all enemy EXP values
+ Bonus = Base × (1 + 0.1 × Turn Bonus)
+ Turn Bonus = max(0, 10 - Turns Taken)
+
+=== Gold ===
+
+ Gold = Sum of all enemy gold values
+
+No multipliers apply to gold rewards.
+
+== Level Up ==
+
+At level up:
+* HP/MP increase by class values
+* Stats increase (some randomness)
+* May learn new spells at specific levels
+
+== See Also ==
+
+* [[Final Fantasy Mystic Quest (SNES)/RAM Map|RAM Map]]
+* [[Final Fantasy Mystic Quest (SNES)/ROM Map|ROM Map]]
+
+== External Links ==
+
+* [https://github.com/TheAnsarya/ffmq-info ffmq-info repository] - Full disassembly and documentation
+
+{{footer nav}}

@@ -1,0 +1,229 @@
+{{Back|Final Fantasy Mystic Quest (SNES)}}
+{{subpage}}
+{{DISPLAYTITLE:Final Fantasy Mystic Quest - Spells}}
+
+= Final Fantasy Mystic Quest Spells =
+
+Complete spell listing for Final Fantasy Mystic Quest.
+
+== Spell Schools ==
+
+FFMQ has three schools of magic:
+* '''White Magic''' - Healing, buffs, holy damage
+* '''Black Magic''' - Offensive elemental damage
+* '''Wizard Magic''' - Mixed utility and power
+
+== White Magic ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! MP !! Power !! Target !! Effect
+|-
+| $00 || Cure || 2 || 30 || One ally || Restore HP
+|-
+| $01 || Heal || 4 || - || One ally || Cure status
+|-
+| $02 || Life || 10 || 50% || One ally || Revive
+|-
+| $03 || Exit || 3 || - || Party || Escape dungeon
+|-
+| $04 || White || 12 || 80 || All enemies || Holy damage
+|}
+
+=== White Magic Learning ===
+
+{| class="wikitable"
+|-
+! Spell !! Benjamin !! Kaeli !! Reuben
+|-
+| Cure || Lv 1 || Lv 1 || -
+|-
+| Heal || Lv 8 || Lv 5 || -
+|-
+| Life || Lv 15 || Lv 12 || -
+|-
+| Exit || Lv 5 || - || -
+|-
+| White || Lv 25 || - || -
+|}
+
+== Black Magic ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! MP !! Power !! Element !! Target
+|-
+| $10 || Fire || 3 || 40 || Fire || One enemy
+|-
+| $11 || Blizzard || 5 || 50 || Ice || One enemy
+|-
+| $12 || Thunder || 7 || 60 || Thunder || One enemy
+|-
+| $13 || Quake || 10 || 70 || Earth || All enemies
+|-
+| $14 || Aero || 8 || 55 || Wind || Enemy group
+|-
+| $15 || Firaga || 15 || 100 || Fire || All enemies
+|-
+| $16 || Blizzaga || 18 || 110 || Ice || All enemies
+|-
+| $17 || Thundaga || 20 || 120 || Thunder || All enemies
+|}
+
+=== Black Magic Learning ===
+
+{| class="wikitable"
+|-
+! Spell !! Benjamin !! Phoebe !! Tristam
+|-
+| Fire || Lv 1 || Lv 1 || -
+|-
+| Blizzard || Lv 6 || - || -
+|-
+| Thunder || Lv 10 || Lv 8 || -
+|-
+| Quake || Lv 14 || - || -
+|-
+| Aero || Lv 18 || Lv 15 || -
+|-
+| Firaga || Lv 22 || - || -
+|-
+| Blizzaga || Lv 28 || - || -
+|-
+| Thundaga || Lv 35 || - || -
+|}
+
+== Wizard Magic ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! MP !! Power !! Target !! Effect
+|-
+| $20 || Sleep || 4 || - || One enemy || Inflict sleep
+|-
+| $21 || Silence || 5 || - || One enemy || Inflict silence
+|-
+| $22 || Confuse || 6 || - || One enemy || Inflict confuse
+|-
+| $23 || Doom || 15 || - || One enemy || Instant death
+|-
+| $24 || Meteor || 30 || 150 || Random || Multi-hit
+|-
+| $25 || Flare || 50 || 200 || One enemy || Ultimate damage
+|}
+
+=== Wizard Magic Learning ===
+
+{| class="wikitable"
+|-
+! Spell !! Benjamin !! Notes
+|-
+| Sleep || Lv 3 || -
+|-
+| Silence || Lv 9 || -
+|-
+| Confuse || Lv 16 || -
+|-
+| Doom || Lv 30 || -
+|-
+| Meteor || Lv 40 || -
+|-
+| Flare || Lv 50 || Ultimate spell
+|}
+
+== Spell Mechanics ==
+
+=== Damage Formula ===
+
+<pre>
+Base Damage = Power × (Magic / 4 + 8)
+Resistance = 1.0 - (Target Resist / 100)
+Final = Base × Resistance × Element Modifier
+</pre>
+
+=== Success Rate (Status Spells) ===
+
+<pre>
+Hit Rate = Accuracy + (Caster Magic - Target Wisdom) / 2
+</pre>
+
+=== MP Costs ===
+
+All spells have fixed MP costs. No spell costs more than 50 MP.
+
+== Spell Data Structure ==
+
+Spells are stored in ROM at $15:8000:
+
+<pre>
+struct Spell {
+    uint8   mp_cost;        // $00: MP cost
+    uint8   power;          // $01: Base power
+    uint8   accuracy;       // $02: Hit rate
+    uint8   element;        // $03: Element type
+    uint8   target_type;    // $04: Target mode
+    uint8   effect_type;    // $05: Effect category
+    uint8   status_effect;  // $06: Status to apply
+    uint8   animation;      // $07: Animation ID
+    uint8   school;         // $08: White/Black/Wizard
+    uint8   level_req;      // $09: Required level
+    uint8   reserved[6];    // $0A-$0F: Reserved
+}
+</pre>
+
+=== Target Types ===
+
+{| class="wikitable"
+|-
+! ID !! Target
+|-
+| $00 || Self
+|-
+| $01 || Single ally
+|-
+| $02 || All allies
+|-
+| $03 || Single enemy
+|-
+| $04 || All enemies
+|-
+| $05 || Enemy group
+|-
+| $06 || Random enemies
+|}
+
+=== Effect Types ===
+
+{| class="wikitable"
+|-
+! ID !! Effect
+|-
+| $00 || HP Damage
+|-
+| $01 || HP Healing
+|-
+| $02 || MP Damage
+|-
+| $03 || MP Healing
+|-
+| $04 || Status Inflict
+|-
+| $05 || Status Cure
+|-
+| $06 || Stat Buff
+|-
+| $07 || Stat Debuff
+|-
+| $08 || Instant Death
+|-
+| $09 || Revive
+|-
+| $0A || Escape
+|}
+
+== See Also ==
+
+* [[Final Fantasy Mystic Quest (SNES)/Battle System|Battle System]]
+* [[Final Fantasy Mystic Quest (SNES)/Items|Items]]
+
+{{footer nav}}

@@ -1,0 +1,200 @@
+{{Back|Final Fantasy Mystic Quest (SNES)}}
+{{subpage}}
+{{DISPLAYTITLE:Final Fantasy Mystic Quest - Enemies}}
+
+= Final Fantasy Mystic Quest Enemies =
+
+Complete enemy listing for Final Fantasy Mystic Quest.
+
+== Enemy Categories ==
+
+Enemies are grouped by area:
+* '''Forest/Foresta''' - Early game
+* '''Aquaria/Ice''' - Mid game
+* '''Fireburg/Lava''' - Mid-late game
+* '''Windia/Sky''' - Late game
+* '''Doom Castle''' - Final area
+* '''Bosses''' - Chapter bosses
+
+== Forest Area ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Attack !! Defense !! EXP !! Gold !! Weakness
+|-
+| $01 || Brownie || 40 || 8 || 4 || 5 || 4 || Fire
+|-
+| $02 || Mad Plant || 60 || 12 || 3 || 8 || 6 || Fire
+|-
+| $03 || Poison Toad || 55 || 10 || 5 || 7 || 5 || Ice
+|-
+| $04 || Edgehog || 70 || 14 || 8 || 10 || 8 || -
+|-
+| $05 || Mage || 45 || 6 || 3 || 12 || 10 || -
+|-
+| $06 || Giant Toad || 120 || 18 || 6 || 15 || 12 || Ice
+|}
+
+== Aquaria/Ice Area ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Attack !! Defense !! EXP !! Gold !! Weakness
+|-
+| $10 || Ice Golem || 150 || 25 || 15 || 30 || 20 || Fire
+|-
+| $11 || Ninja || 100 || 30 || 10 || 25 || 25 || -
+|-
+| $12 || Scorpion || 120 || 22 || 12 || 22 || 18 || Ice
+|-
+| $13 || Phanquid || 180 || 20 || 18 || 35 || 30 || Thunder
+|-
+| $14 || Lamia || 140 || 28 || 8 || 28 || 22 || -
+|-
+| $15 || Flazzard || 160 || 32 || 14 || 40 || 35 || Ice
+|}
+
+== Fireburg/Lava Area ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Attack !! Defense !! EXP !! Gold !! Weakness
+|-
+| $20 || Red Bone || 200 || 35 || 20 || 50 || 40 || Holy
+|-
+| $21 || Salamander || 250 || 40 || 18 || 60 || 50 || Ice
+|-
+| $22 || Sphinx || 300 || 45 || 25 || 75 || 60 || -
+|-
+| $23 || Sand Worm || 350 || 50 || 22 || 80 || 70 || Ice
+|-
+| $24 || Mummy || 280 || 42 || 28 || 70 || 55 || Fire
+|}
+
+== Windia/Sky Area ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Attack !! Defense !! EXP !! Gold !! Weakness
+|-
+| $30 || Garuda || 400 || 55 || 30 || 100 || 80 || Thunder
+|-
+| $31 || Chimera || 500 || 60 || 35 || 120 || 100 || -
+|-
+| $32 || Thunder Bird || 450 || 65 || 28 || 110 || 90 || Earth
+|-
+| $33 || Pazuzu || 600 || 70 || 40 || 150 || 120 || -
+|-
+| $34 || Stheno || 550 || 62 || 38 || 130 || 110 || -
+|}
+
+== Doom Castle ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Attack !! Defense !! EXP !! Gold !! Weakness
+|-
+| $40 || Shadow || 700 || 75 || 45 || 180 || 150 || Holy
+|-
+| $41 || Minotaur || 800 || 85 || 50 || 200 || 180 || -
+|-
+| $42 || Skuldier || 650 || 72 || 42 || 170 || 140 || Holy
+|-
+| $43 || Behemoth || 1000 || 95 || 55 || 250 || 220 || Ice
+|-
+| $44 || Sorcerer || 600 || 60 || 35 || 200 || 200 || -
+|}
+
+== Bosses ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Location !! Weakness !! Notes
+|-
+| $50 || Minotaur || 250 || Level Forest || - || Chapter 1 boss
+|-
+| $51 || Squidite || 500 || Wintry Cave || Fire || Water boss
+|-
+| $52 || Snow Crab || 600 || Ice Pyramid || Fire || Ice boss
+|-
+| $53 || Jinn || 800 || Mine || Ice || Fire boss
+|-
+| $54 || Medusa || 900 || Lava Dome || - || Petrify attack
+|-
+| $55 || Dullahan || 1200 || Pazuzu's Tower || Holy || Armor boss
+|-
+| $56 || Pazuzu || 1500 || Focus Tower || Thunder || Wind boss
+|-
+| $57 || Zuh || 2000 || Mount Gale || - || Dragon boss
+|-
+| $58 || Dark King || 5000 || Doom Castle || - || Final boss
+|}
+
+== Boss AI Patterns ==
+
+=== Minotaur ===
+* 50% Attack
+* 30% Strong Attack (×1.5 damage)
+* 20% Defend (reduce damage next turn)
+
+=== Squidite ===
+* 40% Attack
+* 30% Ink (blind one target)
+* 30% Water (ice damage, all)
+
+=== Dark King ===
+The Dark King has 4 phases, each form destroyed reveals the next:
+# '''Spider''' - Physical attacks
+# '''Claw''' - Status attacks
+# '''Brain''' - Magic attacks
+# '''Core''' - All attacks
+
+== Enemy Data Structure ==
+
+Enemies are stored in ROM at $10:8000:
+
+<pre>
+struct Monster {
+    uint16  hp;             // $00-$01: Hit points
+    uint8   attack;         // $02: Attack power
+    uint8   defense;        // $03: Defense power
+    uint8   speed;          // $04: Speed stat
+    uint8   magic;          // $05: Magic power
+    uint8   exp;            // $06: Experience reward
+    uint8   gold;           // $07: Gold reward
+    uint8   resistance;     // $08: Element resistance
+    uint8   weakness;       // $09: Element weakness
+    uint8   status_immune;  // $0A: Status immunity
+    uint8   ai_pattern;     // $0B: AI behavior ID
+    uint8   graphics_id;    // $0C: Sprite index
+    uint8   palette;        // $0D: Color palette
+    uint8   formation_size; // $0E: Size in formation
+    uint8   flags;          // $0F: Monster flags
+}
+</pre>
+
+== Encounter Tables ==
+
+Encounters are determined by area. Each area has a table of possible formations:
+
+{| class="wikitable"
+|-
+! Area ID !! Name !! Rate !! Formations
+|-
+| $00 || Level Forest || Low || Brownie×2, Mad Plant×3
+|-
+| $01 || Wintry Cave || Med || Ice Golem×2, Ninja×3
+|-
+| $02 || Mine || Med || Red Bone×2, Salamander×1
+|-
+| $03 || Pazuzu's Tower || High || Garuda×3, Chimera×2
+|-
+| $04 || Doom Castle || High || Shadow×3, Behemoth×1
+|}
+
+== See Also ==
+
+* [[Final Fantasy Mystic Quest (SNES)/Battle System|Battle System]]
+* [[Final Fantasy Mystic Quest (SNES)/Items|Items]]
+
+{{footer nav}}

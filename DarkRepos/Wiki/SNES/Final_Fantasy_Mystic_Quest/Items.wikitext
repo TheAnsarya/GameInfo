@@ -1,0 +1,183 @@
+{{Back|Final Fantasy Mystic Quest (SNES)}}
+{{subpage}}
+{{DISPLAYTITLE:Final Fantasy Mystic Quest - Items}}
+
+= Final Fantasy Mystic Quest Items =
+
+Complete item listing for Final Fantasy Mystic Quest.
+
+== Item Categories ==
+
+=== Weapons ===
+
+Benjamin can use all weapon types. Partners have restrictions.
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Type !! Attack !! Element !! Notes
+|-
+| $00 || Steel Sword || Sword || 20 || - || Starting weapon
+|-
+| $01 || Knight Sword || Sword || 50 || - || Upgraded sword
+|-
+| $02 || Excalibur || Sword || 120 || Holy || Ultimate sword
+|-
+| $03 || Axe || Axe || 35 || - || Cuts trees
+|-
+| $04 || Battle Axe || Axe || 75 || - || Upgraded axe
+|-
+| $05 || Giant's Axe || Axe || 140 || - || Ultimate axe
+|-
+| $06 || Cat Claw || Claw || 25 || - || Fast attack
+|-
+| $07 || Charm Claw || Claw || 60 || - || May confuse
+|-
+| $08 || Dragon Claw || Claw || 100 || Fire || Fire element
+|-
+| $09 || Bomb || Bomb || 30 || Fire || Area damage
+|-
+| $0A || Jumbo Bomb || Bomb || 70 || Fire || Larger area
+|-
+| $0B || Mega Grenade || Bomb || 130 || Fire || Ultimate bomb
+|}
+
+=== Armor ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Defense !! M.Def !! Resist !! Notes
+|-
+| $00 || Steel Armor || 10 || 5 || - || Starting armor
+|-
+| $01 || Noble Armor || 30 || 15 || - || Mid-game
+|-
+| $02 || Replica Armor || 50 || 25 || Fire || Fire resistance
+|-
+| $03 || Mystic Armor || 80 || 40 || All || Best armor
+|}
+
+=== Shields ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Defense !! Evade !! Resist
+|-
+| $00 || Steel Shield || 5 || 5% || -
+|-
+| $01 || Venus Shield || 15 || 10% || Petrify
+|-
+| $02 || Aegis Shield || 25 || 15% || Status
+|}
+
+=== Helmets ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Defense !! M.Def !! Special
+|-
+| $00 || Steel Helm || 3 || 2 || -
+|-
+| $01 || Moon Helm || 10 || 8 || Sleep immunity
+|-
+| $02 || Apollo Helm || 20 || 15 || Status immunity
+|}
+
+=== Accessories ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Effect
+|-
+| $00 || Charm || +10 Evade
+|-
+| $01 || Magic Ring || +10 Magic
+|-
+| $02 || Cupid Locket || Auto-Life
+|}
+
+== Consumable Items ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Effect !! Target
+|-
+| $00 || Cure || Restore 100 HP || One ally
+|-
+| $01 || Heal || Cure all status || One ally
+|-
+| $02 || Refresh || Restore MP || One ally
+|-
+| $03 || Seed || Revive from KO || One ally
+|-
+| $04 || Bomb || 50 Fire damage || All enemies
+|-
+| $05 || Jumbo Bomb || 100 Fire damage || All enemies
+|-
+| $06 || Exit || Escape dungeon || Party
+|}
+
+== Key Items ==
+
+{| class="wikitable"
+|-
+! ID !! Name !! Use !! Location
+|-
+| $00 || Elixir || Story item || Foresta
+|-
+| $01 || Wakewater || Wake up Kaeli || Level Forest
+|-
+| $02 || Libra Crest || Open Libra Temple || Aquaria
+|-
+| $03 || Gemini Crest || Open Gemini Temple || Fireburg
+|-
+| $04 || Mobius Crest || Open Mobius Temple || Windia
+|-
+| $05 || Thunder Rock || Activate machine || Mine
+|-
+| $06 || Venus Key || Open Venus chest || Focus Tower
+|-
+| $07 || Multi-Key || Opens any lock || Pazuzu's Tower
+|-
+| $08 || Captain's Cap || Sail the ship || Spencer's Place
+|}
+
+== Item Data Structure ==
+
+Items are stored in ROM starting at $14:8000:
+
+<pre>
+struct Item {
+    uint8   type_flags;     // $00: Item type and flags
+    uint8   usable_flags;   // $01: Where usable
+    uint8   effect_id;      // $02: Effect when used
+    uint8   effect_power;   // $03: Effect strength
+    uint16  buy_price;      // $04-$05: Shop price
+    uint16  sell_price;     // $06-$07: Sell price (usually buy/2)
+}
+</pre>
+
+=== Type Flags ===
+
+{| class="wikitable"
+|-
+! Bit !! Meaning
+|-
+| 0-2 || Item category (0=consumable, 1=weapon, etc.)
+|-
+| 3 || Cursed item
+|-
+| 4 || Usable in battle
+|-
+| 5 || Usable in field
+|-
+| 6 || Breakable (one use)
+|-
+| 7 || Unique (quest item)
+|}
+
+== See Also ==
+
+* [[Final Fantasy Mystic Quest (SNES)/Battle System|Battle System]]
+* [[Final Fantasy Mystic Quest (SNES)/RAM Map|RAM Map]]
+
+{{footer nav}}
