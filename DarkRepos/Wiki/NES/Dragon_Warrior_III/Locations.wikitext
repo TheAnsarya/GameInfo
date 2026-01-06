@@ -1,0 +1,464 @@
+{{Back|Dragon_Warrior_III}}
+
+= Locations =
+
+'''Dragon Warrior III''' (NES) features a world based on real Earth geography, with locations across multiple continents.
+
+__TOC__
+
+== World Overview ==
+
+The game takes place in two worlds:
+* '''Upper World''' - Main world based on real Earth
+* '''Alefgard''' - Underground world (setting of DW1)
+
+== Starting Region ==
+
+=== Aliahan ===
+
+Hero's homeland, an isolated island kingdom.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Type || Castle Town
+|-
+| Map ID || $00
+|-
+| Services || Inn (2G), Shop, Church, Vault
+|-
+| Events || Game start, King's quest
+|-
+| Dungeon Access || Cave of Enticement nearby
+|}
+
+'''Shops:'''
+{| class="wikitable"
+! Type !! Items !! Prices
+|-
+| Weapons || Cypress Stick, Club, Copper Sword || 5G, 30G, 100G
+|-
+| Armor || Clothes, Leather Armor, Leather Shield || 10G, 70G, 90G
+|-
+| Items || Herb, Antidote, Wing of Wyvern || 8G, 10G, 25G
+|}
+
+=== Cave of Enticement ===
+
+First dungeon, tutorial area.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Floors || 2
+|-
+| Treasure || Magic Ball
+|-
+| Boss || None
+|-
+| Purpose || Obtain Magic Ball for king
+|}
+
+== Europe Region ==
+
+=== Reeve ===
+
+Small village west of Aliahan.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Map ID || $01
+|-
+| Services || Inn (4G), basic shop
+|-
+| Events || Thief's Key quest
+|}
+
+=== Romaly ===
+
+Major castle city, home of the colosseum.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Map ID || $02
+|-
+| Services || Inn (8G), Casino, Colosseum
+|-
+| Events || Fight in colosseum, become king
+|-
+| Special || Pachisi board game
+|}
+
+=== Kanave ===
+
+Town with weather anomaly.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Map ID || $03
+|-
+| Weather || Perpetual winter
+|-
+| Events || Villager kidnapping quest
+|}
+
+=== Noaniels ===
+
+Village under sleeping curse.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Map ID || $04
+|-
+| Status || Everyone asleep
+|-
+| Events || Wake village with elven help
+|-
+| Key Item || Dream Ruby required
+|}
+
+=== Assaram ===
+
+Desert trading town.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Map ID || $05
+|-
+| Region || Middle East (desert)
+|-
+| Services || Unique equipment
+|-
+| Events || Magic Carpet quest hints
+|}
+
+=== Isis ===
+
+Egyptian-style kingdom with pyramids.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Map ID || $06
+|-
+| Services || Inn, shops
+|-
+| Dungeon || Pyramid nearby
+|-
+| Key Items || Dry Vase, Button
+|}
+
+== Asia Region ==
+
+=== Portoga ===
+
+Port kingdom, source of the ship.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Map ID || $07
+|-
+| Services || Inn, shops
+|-
+| Events || King wants Black Pepper
+|-
+| Reward || Ship for exploration
+|}
+
+=== Baharata ===
+
+Eastern trading city.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Map ID || $08
+|-
+| Region || India
+|-
+| Services || Unique items
+|-
+| Events || Rescue Gupta and Tanaya
+|-
+| Key Items || Black Pepper
+|}
+
+=== Dharma Temple ===
+
+Sacred temple for class changes.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Map ID || $09
+|-
+| Function || Class change (Level 20+)
+|-
+| Requirement || Free from Baramos's seal
+|-
+| Notes || Central to party optimization
+|}
+
+=== Jipang ===
+
+Japan-inspired island nation.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Map ID || $0A
+|-
+| Region || Japanese archipelago
+|-
+| Services || Unique equipment
+|-
+| Events || Orochi serpent terrorizes
+|-
+| Boss || Orochi (8-headed serpent)
+|}
+
+=== Muor ===
+
+Small village on Jipang islands.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Map ID || $0B
+|-
+| Events || Orochi investigation
+|}
+
+== Americas Region ==
+
+=== Tedanki ===
+
+Village visible only at night.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Map ID || $0C
+|-
+| Region || North America
+|-
+| Special || Invisible during day
+|-
+| Key Items || Lamp of Darkness
+|}
+
+=== Lancel ===
+
+Southern American village.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Map ID || $0D
+|-
+| Region || Central America
+|-
+| Services || Standard amenities
+|}
+
+=== Soo ===
+
+Mountain village in Andes area.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Map ID || $0E
+|-
+| Region || South America
+|-
+| Key Items || Rain Staff
+|-
+| Purpose || Unlock path forward
+|}
+
+=== Samanao ===
+
+Castle with false king.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Map ID || $0F
+|-
+| Events || Expose fake king
+|-
+| Key Items || Mirror of Ra
+|}
+
+== Alefgard (Lower World) ==
+
+Accessed after defeating Baramos.
+
+=== Tantegel Castle ===
+
+Central Alefgard castle.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Map ID || $10
+|-
+| Services || Full amenities
+|-
+| Key Items || Stones of Sunlight nearby
+|}
+
+=== Hauksness ===
+
+Ruined city.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Map ID || $11
+|-
+| Status || Destroyed
+|-
+| Key Items || Erdrick's Sword
+|-
+| Boss || Boss Troll guards sword
+|}
+
+=== Rimuldar ===
+
+Trading town.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Map ID || $12
+|-
+| Services || Shops, inn
+|-
+| Key Items || Keys sold here
+|}
+
+=== Cantlin ===
+
+Southern fortress city.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Map ID || $13
+|-
+| Services || Best Alefgard equipment
+|-
+| Guardian || Golem blocks entrance
+|}
+
+=== Kol ===
+
+Northern village.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Map ID || $14
+|-
+| Services || Basic amenities
+|-
+| Key Items || Fairy Flute nearby
+|}
+
+=== Charlock Castle ===
+
+Final dungeon, Zoma's fortress.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Map ID || $15
+|-
+| Floors || 8
+|-
+| Boss || Zoma
+|-
+| Key Items || Sphere of Light needed
+|}
+
+== Dungeon List ==
+
+{| class="wikitable sortable"
+! Dungeon !! Map ID !! Floors !! Boss/Items
+|-
+| Cave of Enticement || $20 || 2 || Magic Ball
+|-
+| Tower of Najimi || $21 || 4 || Magic Key
+|-
+| Pyramid || $22 || 3 || Dry Vase, Yellow Orb
+|-
+| Cave of Navel || $23 || 2 || Blue Orb
+|-
+| Cave of Necrogond || $24 || 3 || Silver Orb
+|-
+| Tower of Arp || $25 || 4 || Green Orb
+|-
+| Orochi's Lair || $26 || 3 || Orochi, Purple Orb
+|-
+| Samanao Cave || $27 || 2 || Mirror of Ra
+|-
+| Baramos's Castle || $28 || 4 || Baramos
+|-
+| Charlock Castle || $29 || 8 || Zoma
+|}
+
+== Key Items by Location ==
+
+{| class="wikitable sortable"
+! Item !! Location !! Purpose
+|-
+| Thief's Key || Cave near Reeve || Open simple doors
+|-
+| Magic Key || Najimi Tower || Open magic doors
+|-
+| Final Key || Zoma's Castle || Open all doors
+|-
+| Ship || Portoga || Ocean travel
+|-
+| Orbs (6) || Various || Summon Ramia
+|-
+| Ramia || Orb shrine || Fly over terrain
+|-
+| Sphere of Light || Charlock || Weaken Zoma
+|}
+
+== Map Coordinates ==
+
+{| class="wikitable"
+! Location !! X !! Y !! World
+|-
+| Aliahan || $40 || $C0 || Upper
+|-
+| Romaly || $78 || $58 || Upper
+|-
+| Portoga || $20 || $60 || Upper
+|-
+| Jipang || $F0 || $50 || Upper
+|-
+| Tantegel || $60 || $60 || Alefgard
+|-
+| Charlock || $70 || $80 || Alefgard
+|}
+
+== Related Pages ==
+
+* [[Dragon_Warrior_III:Characters|Characters]]
+* [[Dragon_Warrior_III:Class_System|Class System]]
+* [[Dragon_Warrior_III:Monsters|Monsters]]
+* [[Dragon_Warrior_III:Items|Items]]
+
+[[Category:Dragon Warrior III]]
+[[Category:Locations]]

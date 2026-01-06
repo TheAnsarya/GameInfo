@@ -1,0 +1,307 @@
+{{Back|Chrono_Trigger}}
+
+= Time Travel =
+
+'''Chrono Trigger's''' time travel mechanics are central to both gameplay and story. This page documents the technical implementation and game mechanics.
+
+__TOC__
+
+== Time Periods ==
+
+{| class="wikitable sortable"
+! Era !! Year !! Description !! Access Method
+|-
+| Prehistory || 65,000,000 BC || Primitive era, Reptites vs Humans || Gate
+|-
+| Dark Ages || 12,000 BC || Magical Kingdom of Zeal || Gate
+|-
+| Middle Ages || 600 AD || Guardia Kingdom, Magus War || Gate
+|-
+| Present || 1000 AD || Starting era, peaceful times || Default
+|-
+| Future || 2300 AD || Post-apocalyptic ruins || Gate
+|-
+| End of Time || ??? || Hub area, temporal nexus || 4+ party gate
+|-
+| Day of Lavos || 1999 AD || Lavos emergence || Story event
+|}
+
+== Time Gates ==
+
+=== Gate Mechanics ===
+
+Time Gates are portals between eras:
+
+{| class="wikitable"
+! Property !! Value
+|-
+| Visual || Blue swirling portal
+|-
+| Sound || Distinct warping sound
+|-
+| Activation || Automatic or pendant
+|-
+| Destination || Fixed per gate
+|}
+
+=== Gate Locations ===
+
+{| class="wikitable sortable"
+! Era !! Location !! Destination Era !! Notes
+|-
+| Present || Leene Square (Fair) || End of Time || First gate
+|-
+| Present || Guardia Forest || Middle Ages || Sealed initially
+|-
+| Middle Ages || Guardia Forest || Present || Return gate
+|-
+| Present || Truce Canyon || Dark Ages || Proto Dome key
+|-
+| Future || Proto Dome || Present || Return gate
+|-
+| Future || Bangor Dome || Prehistory || Sealed
+|-
+| Prehistory || Mystic Mountain || Middle Ages || Return gate
+|}
+
+== End of Time ==
+
+The temporal nexus hub area.
+
+=== Features ===
+
+{| class="wikitable"
+! Feature !! Function
+|-
+| Time Pillars || Access all unlocked eras
+|-
+| Spekkio || Magic learning, battles
+|-
+| Old Man || Hints and guidance
+|-
+| Bucket || Direct Lavos access
+|-
+| Save Point || Full restoration
+|}
+
+=== Pillar Destinations ===
+
+Each pillar connects to a specific era once unlocked:
+
+{| class="wikitable"
+! Pillar # !! Destination !! Era
+|-
+| 1 || Prehistoric || 65,000,000 BC
+|-
+| 2 || Dark Ages || 12,000 BC
+|-
+| 3 || Middle Ages || 600 AD
+|-
+| 4 || Present || 1000 AD
+|-
+| 5 || Future || 2300 AD
+|-
+| 6 || Apocalypse || 1999 AD
+|-
+| 7 || Black Omen || Variable
+|}
+
+== Epoch (Wings of Time) ==
+
+Time-traveling vehicle obtained mid-game.
+
+=== Specifications ===
+
+{| class="wikitable"
+! Attribute !! Value
+|-
+| Capacity || 3 characters
+|-
+| Speed || Instant time travel
+|-
+| Flight || Yes (after upgrade)
+|-
+| Weapon || Epoch Cannon (optional)
+|-
+| Destination || Any unlocked era
+|}
+
+=== Epoch Events ===
+
+{| class="wikitable"
+! Event !! Effect
+|-
+| Dalton upgrade || Flight capability
+|-
+| Lavos ram || Destroys Epoch, skips shell battle
+|-
+| Landing || Any world map location
+|}
+
+== Paradox Prevention ==
+
+=== Entity Theory ===
+
+The "Entity" guides time travelers to prevent paradoxes:
+
+* Time Gates appear strategically
+* Changes propagate to future eras
+* Some events are fixed points
+
+=== Safe Changes ===
+
+Changes that don't create paradoxes:
+
+* Defeating bosses (Yakra, Magus)
+* Saving Frog/Glenn
+* Queen Leene rescue
+* Future events (already post-apocalypse)
+
+=== Dangerous Changes ===
+
+Changes handled specially:
+
+* Crono's death (creates branch)
+* Lavos defeat (multiple outcomes)
+* Schala's fate (unresolved in SNES)
+
+== Technical Implementation ==
+
+=== Era Flags ===
+
+{| class="wikitable"
+! Address !! Bits !! Meaning
+|-
+| $7E2900 || 0-6 || Current era ID
+|-
+| $7E2901 || 0-7 || Gate unlock flags
+|-
+| $7E2902 || 0-7 || Story progress flags
+|}
+
+Era IDs:
+{| class="wikitable"
+! ID !! Era
+|-
+| 0 || Present (1000 AD)
+|-
+| 1 || Middle Ages (600 AD)
+|-
+| 2 || Future (2300 AD)
+|-
+| 3 || Prehistory
+|-
+| 4 || Dark Ages
+|-
+| 5 || End of Time
+|-
+| 6 || Day of Lavos
+|}
+
+=== Time-Persistent Data ===
+
+Some data persists across time:
+
+{| class="wikitable"
+! Data Type !! Behavior
+|-
+| Party || Always persistent
+|-
+| Items || Always persistent
+|-
+| Gold || Always persistent
+|-
+| Equipment || Always persistent
+|-
+| Chests || Per-era state
+|-
+| NPCs || Per-era state
+|-
+| World state || Story-flag dependent
+|}
+
+=== Chest Temporal Mechanics ===
+
+Opening chests in earlier eras affects future:
+
+{| class="wikitable"
+! Action !! Past Chest !! Future Chest
+|-
+| Open in Past || Opened || Empty
+|-
+| Open in Future first || Unopened || Opened
+|-
+| Leave Past unopened || Unopened || Upgraded item
+|}
+
+'''Note:''' Some chests contain better items in 2300 AD if not opened in earlier eras.
+
+== Story Implications ==
+
+=== Timeline Branches ===
+
+Key story branches:
+
+{| class="wikitable"
+! Branch Point !! Outcome A !! Outcome B
+|-
+| Crono's Death || Dies at Ocean Palace || Revived via Clone
+|-
+| Magus Battle || Magus killed || Magus joins party
+|-
+| Frog's Revenge || Magus dies || Frog forgives
+|-
+| Lavos Defeat || Multiple endings || Based on timing
+|}
+
+=== Temporal Causality ===
+
+Events that affect other eras:
+
+{| class="wikitable"
+! Action !! Era !! Effect
+|-
+| Plant Jerky || Prehistory || Grows in Present
+|-
+| Fix Robo || Future || Robo functional in Present
+|-
+| Defeat Yakra || Middle Ages || Queen safe in Present
+|-
+| Kill Magus || Middle Ages || War ends differently
+|-
+| Sun Stone charge || All eras || 65M years of charging
+|}
+
+== Speedrun Techniques ==
+
+=== Gate Skips ===
+
+Some gates can be reached early:
+
+* Guardia Forest gate manipulation
+* Era flag modifications
+
+=== Epoch Routing ===
+
+Optimal Epoch usage:
+
+* Minimize era transitions
+* Strategic landing points
+* RAM watch for precise timing
+
+== Related Pages ==
+
+* [[Chrono_Trigger:Endings|Endings]]
+* [[Chrono_Trigger:Locations|Locations]]
+* [[Chrono_Trigger:Characters|Characters]]
+* [[Chrono_Trigger:Techs|Techs]]
+
+== References ==
+
+* Era transition routines
+* Gate activation flags
+* Epoch control code
+
+[[Category:Chrono Trigger]]
+[[Category:Game Mechanics]]
+[[Category:Time Travel]]

@@ -1,0 +1,525 @@
+{{Back|Dragon_Quest_III}}
+
+= Locations =
+
+'''Dragon Quest III''' (SNES) features a vast world map based on the real world, with locations spanning multiple continents.
+
+__TOC__
+
+== World Overview ==
+
+The game world is divided into:
+* '''Upper World''' - Main world based on real Earth geography
+* '''Alefgard''' - Underground world (connects to DQ1)
+* '''Dark World''' - Baramos and Zoma's domains
+
+== Starting Area (Europe) ==
+
+=== Aliahan ===
+
+The hero's homeland and starting location.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Region || Central island (Australia-like position)
+|-
+| Services || Inn, Shop, Church, Castle
+|-
+| Events || Beginning of journey, King's quest
+|-
+| Notes || Only accessible by ship initially
+|}
+
+'''Nearby Areas:'''
+* Reeve Cave (west)
+* Tower of Najima (requires Thief's Key)
+
+=== Reeve ===
+
+Small village west of Aliahan.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Services || Inn, basic shop
+|-
+| Key Items || Thief's Key location nearby
+|-
+| Notes || First dungeon area
+|}
+
+== Europe Region ==
+
+=== Romaly (Rome) ===
+
+Large castle town in southern Europe area.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Region || Mediterranean area
+|-
+| Services || Inn, shops, casino, arena
+|-
+| Events || King sidequest, fighting arena
+|-
+| Special || Pachisi track, class change access
+|}
+
+=== Kazave (Siberia) ===
+
+Northern frozen village.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Region || Far north
+|-
+| Weather || Permanent snow
+|-
+| Events || Kidnapped villagers quest
+|}
+
+=== Noaniels ===
+
+Village of eternal slumber.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Region || Northern Europe
+|-
+| Events || Wake sleeping villagers
+|-
+| Key Items || Dream Ruby required
+|}
+
+=== Ashalam (Islamic Region) ===
+
+Desert trading post.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Region || Middle East
+|-
+| Services || Unique equipment shop
+|-
+| Events || Magic Carpet quest
+|}
+
+=== Isis (Egypt) ===
+
+Pyramid kingdom.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Region || North Africa
+|-
+| Dungeon || Great Pyramid
+|-
+| Key Items || Dry Vase, Star Fragment
+|}
+
+== Asia Region ==
+
+=== Portoga (Portugal) ===
+
+Major port kingdom.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Region || Iberian Peninsula
+|-
+| Services || Ship acquisition
+|-
+| Events || King requests Black Pepper
+|-
+| Notes || Ship obtained after quest
+|}
+
+=== Baharata (India) ===
+
+Eastern trading city.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Region || Indian subcontinent
+|-
+| Services || Unique items, shops
+|-
+| Events || Rescue kidnapped couple
+|-
+| Key Items || Black Pepper
+|}
+
+=== Dharma Temple ===
+
+Sacred class change location.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Region || Tibet area
+|-
+| Function || Class change (level 20+)
+|-
+| Events || Temple sealed by Baramos
+|-
+| Notes || Critical for party optimization
+|}
+
+=== Jipang (Japan) ===
+
+Island nation based on feudal Japan.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Region || Japanese archipelago
+|-
+| Services || Unique equipment
+|-
+| Events || Orochi serpent boss
+|-
+| Key Items || Purple Orb obtained
+|}
+
+=== Muor ===
+
+Small village on Japanese islands.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Region || Northern Japan area
+|-
+| Events || Orochi investigation
+|}
+
+== Americas Region ==
+
+=== Tedanki (Native America) ===
+
+Hidden village requiring day/night mechanic.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Region || North America
+|-
+| Special || Only visible at night
+|-
+| Key Items || Lamp of Darkness
+|}
+
+=== Lancel (Mexico) ===
+
+Southern American village.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Region || Central America
+|-
+| Services || Standard amenities
+|}
+
+=== Soo (Incan) ===
+
+Hidden mountain village.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Region || South America (Andes)
+|-
+| Key Items || Rain Staff
+|-
+| Events || Unlock path to next area
+|}
+
+=== Samanao ===
+
+Kingdom with political intrigue.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Region || Eastern South America
+|-
+| Events || False king, Mirror of Ra
+|-
+| Key Items || Staff of Change
+|}
+
+== African Region ==
+
+=== Assaram ===
+
+Desert village.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Region || Central Africa
+|-
+| Events || Various side quests
+|}
+
+=== Eginbear ===
+
+Southern cape village.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Region || South Africa area
+|-
+| Services || Shops, inn
+|}
+
+== Special Locations ==
+
+=== Phantom Ship ===
+
+Ghost ship wandering the seas.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Location || Ocean (appears randomly)
+|-
+| Key Items || Locket of Love
+|-
+| Notes || Required for Olivia's Cape
+|}
+
+=== Shrine of Dhama ===
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Location || Isolated island
+|-
+| Function || Oracle hints
+|-
+| Events || Final key hints
+|}
+
+=== Baramos' Castle ===
+
+First major boss dungeon.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Location || Central continent
+|-
+| Boss || Baramos
+|-
+| Requirements || 6 Orbs collected
+|-
+| Notes || Opens path to Alefgard
+|}
+
+== Alefgard (Lower World) ==
+
+The underground world from Dragon Quest I.
+
+=== Tantegel Castle ===
+
+Central castle of Alefgard.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Services || Full amenities
+|-
+| Key Items || Stones of Sunlight location
+|-
+| Notes || King Lorik's domain
+|}
+
+=== Rimuldar ===
+
+Trading town south of Tantegel.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Services || Shops, inn
+|-
+| Key Items || Keys available
+|}
+
+=== Hauksness ===
+
+Destroyed city.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Status || Ruins
+|-
+| Key Items || Sword of Kings (Erdrick's Sword)
+|-
+| Boss || Troll guards sword
+|}
+
+=== Cantlin (Mercado) ===
+
+Southern fortress city.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Services || Best Alefgard shops
+|-
+| Defenses || Golem guards entrance
+|}
+
+=== Charlock Castle ===
+
+Final dungeon.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Boss || Zoma
+|-
+| Requirements || Sphere of Light
+|-
+| Floors || Multiple with strong enemies
+|}
+
+=== Domdora ===
+
+Village seeking protection.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Status || Under attack
+|-
+| Events || Villagers need help
+|}
+
+=== Kol ===
+
+Northern village.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Services || Basic amenities
+|-
+| Key Items || Fairy Flute location
+|}
+
+=== Garinham ===
+
+Small town with cave access.
+
+{| class="wikitable"
+! Feature !! Details
+|-
+| Services || Inn, shop
+|-
+| Cave || Garinham's Grave nearby
+|}
+
+== Dungeon List ==
+
+{| class="wikitable sortable"
+! Dungeon !! Location !! Notable Items/Bosses !! Difficulty
+|-
+| Reeve Cave || Near Aliahan || Thief's Key || Easy
+|-
+| Tower of Najima || Aliahan region || Magic Ball || Easy
+|-
+| Pyramid of Isis || Egypt area || Dry Vase || Medium
+|-
+| Dharma Temple Cave || Tibet || Class change access || Medium
+|-
+| Orochi's Cave || Jipang || Purple Orb, Orochi boss || Medium
+|-
+| Samanao Cave || South America || Mirror of Ra || Medium
+|-
+| Necrogond Cave || Dark mountain || Shield of Heroes || Hard
+|-
+| Baramos' Castle || Central || Baramos boss || Hard
+|-
+| Charlock Castle || Alefgard || Zoma boss || Very Hard
+|}
+
+== Travel Methods ==
+
+{| class="wikitable"
+! Method !! Unlock !! Notes
+|-
+| Walking || Start || Base movement
+|-
+| Ship || Portoga quest || Ocean travel
+|-
+| Ramia || 6 Orbs || Flying mount
+|-
+| Magic Carpet || Assaram || Flies over terrain
+|-
+| Return (spell) || Priest/Mage || Teleport to visited towns
+|-
+| Zoom (item) || Various || Alternative Return
+|}
+
+== World Map Coordinates ==
+
+{| class="wikitable"
+! Town !! X !! Y !! Region
+|-
+| Aliahan || 64 || 192 || Island
+|-
+| Romaly || 120 || 88 || Europe
+|-
+| Portoga || 32 || 96 || Iberia
+|-
+| Baharata || 208 || 104 || India
+|-
+| Jipang || 240 || 80 || Japan
+|-
+| Tantegel || 96 || 96 || Alefgard
+|-
+| Charlock || 112 || 128 || Alefgard
+|}
+
+== Day/Night Differences ==
+
+Some locations change based on time:
+
+{| class="wikitable"
+! Location !! Day !! Night
+|-
+| Tedanki || Invisible || Accessible
+|-
+| Noaniels || Sleeping || Sleeping
+|-
+| Towns || Shops open || Some shops closed
+|-
+| Dungeons || Normal || Same
+|-
+| Fields || Normal enemies || Stronger enemies
+|}
+
+== Related Pages ==
+
+* [[Dragon_Quest_III:Characters|Characters]]
+* [[Dragon_Quest_III:Monsters|Monsters]]
+* [[Dragon_Quest_III:Items|Items]]
+* [[Dragon_Quest_III:Class_System|Class System]]
+
+[[Category:Dragon Quest III]]
+[[Category:Locations]]
+[[Category:Maps]]

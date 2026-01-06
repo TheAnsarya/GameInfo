@@ -1,0 +1,258 @@
+{{Back|Chrono_Trigger}}
+
+= Endings =
+
+'''Chrono Trigger''' features multiple endings depending on when and how Lavos is defeated. The game has 13 distinct endings (14 in DS/PC versions), encouraging multiple playthroughs.
+
+__TOC__
+
+== Ending Requirements ==
+
+The ending you receive depends on:
+* When you defeat Lavos (point in story)
+* Whether Crono is alive
+* Which characters are in your party
+* Specific story flags
+
+== Main Endings ==
+
+=== Ending 1: Beyond Time ===
+
+'''Requirement:''' Defeat Lavos after reviving Crono at Death Peak
+
+The canonical "best" ending. Shows:
+* Crono's mother wakes him up
+* Festival day at Leene Square
+* Party says goodbye at the fair
+* Time Gate opens, party chases Crono's cat
+* Crono, Marle, and Lucca fly through time
+* Credits show characters in their eras
+* Epoch flies toward balloon in moonlight
+
+=== Ending 2: Reunion ===
+
+'''Requirement:''' Defeat Lavos without reviving Crono (after visiting Death Peak)
+
+* Similar to Beyond Time
+* Marle's pendant reacts at the telepod
+* Marle searches for Crono through time
+* Different credits sequence
+* "The search for Crono" theme
+
+=== Ending 3: The Dream Project ===
+
+'''Requirement:''' New Game+, defeat Lavos at beginning via telepod
+
+The developer room ending:
+* Access room with sprites of development team
+* Talk to "Square Soft" developers
+* Hidden messages and jokes
+* Credits play differently
+
+== New Game+ Endings ==
+
+=== Ending 4: The Successor of Guardia ===
+
+'''Requirement:''' Defeat Lavos after saving Leene but before trial
+
+* Frog is shown as legendary hero
+* Glenn receives recognition
+* Marriage-related scenes
+
+=== Ending 5: Good Night ===
+
+'''Requirement:''' Defeat Lavos after trial but before time travel begins
+
+* Nu and Ribbit discuss game
+* "Good night" message
+* Developer in-joke ending
+
+=== Ending 6: The Legendary Hero ===
+
+'''Requirement:''' Defeat Lavos after arriving in 600 A.D. first time, before Tata events
+
+* Tata is proclaimed hero
+* Frog remains in hiding
+* Alternate history plays out
+
+=== Ending 7: The Unknown Past ===
+
+'''Requirement:''' Defeat Lavos after meeting Frog but before getting Masamune
+
+* Robo takes over as ruler of future
+* Mankind never evolved
+* Dark comedy ending
+
+=== Ending 8: People of the Times ===
+
+'''Requirement:''' Defeat Lavos after getting Masamune but before Magus battle
+
+* Crono and Marle see old footage
+* Shows prehistoric humans
+* Reptites won instead
+
+=== Ending 9: The Oath ===
+
+'''Requirement:''' Defeat Lavos after defeating Magus (first time)
+
+* Frog confronts Magus
+* Dramatic battle scene
+* Resolution of their conflict
+
+=== Ending 10: Dino Age ===
+
+'''Requirement:''' Defeat Lavos after facing Azala
+
+* Reptites rule Earth
+* Human evolution never occurred
+* Reptite society flourishes
+
+=== Ending 11: What the Prophet Seeks ===
+
+'''Requirement:''' Defeat Lavos after arriving in Dark Ages
+
+* Magus scenes
+* His true motivations revealed
+* Schala subplot
+
+=== Ending 12: Memory Lane ===
+
+'''Requirement:''' Defeat Lavos after Crono dies at Ocean Palace
+
+* Slideshow of adventure
+* Memories of Crono
+* Bittersweet ending
+
+=== Ending 13: Dream's Epilogue ===
+
+'''Requirement:''' Defeat Dream Devourer (DS/PC only)
+
+* Magus confronts Dream Devourer
+* Schala-related content
+* Setup for Chrono Cross
+* DS/PC exclusive
+
+== Ending Comparison Table ==
+
+{| class="wikitable sortable"
+! # !! Name !! Point in Story !! Crono Alive !! Special Requirements
+|-
+| 1 || Beyond Time || Post-Death Peak || Yes || Revived Crono
+|-
+| 2 || Reunion || Post-Death Peak || No || Did not revive
+|-
+| 3 || Dream Project || Beginning || N/A || NG+ telepod
+|-
+| 4 || Successor of Guardia || Pre-Trial || N/A || NG+ only
+|-
+| 5 || Good Night || Post-Trial || N/A || NG+ only
+|-
+| 6 || Legendary Hero || 600 A.D. arrival || N/A || NG+ only
+|-
+| 7 || Unknown Past || Pre-Masamune || N/A || NG+ only
+|-
+| 8 || People of Times || Post-Masamune || N/A || NG+ only
+|-
+| 9 || The Oath || Post-Magus 1 || N/A || NG+ only
+|-
+| 10 || Dino Age || Post-Azala || N/A || NG+ only
+|-
+| 11 || Prophet Seeks || Dark Ages || N/A || NG+ only
+|-
+| 12 || Memory Lane || Post-Ocean Palace || No || NG+ only
+|-
+| 13 || Dream's Epilogue || Post-Game || N/A || DS/PC only
+|}
+
+== Methods to Fight Lavos ==
+
+=== Standard Method ===
+
+Enter the Black Omen and fight through to Lavos, or use the bucket at End of Time.
+
+=== Epoch Method ===
+
+Ram the Epoch into Lavos (destroys the Epoch). Skips outer shell battle.
+
+=== Ocean Palace ===
+
+Fight Lavos during the Ocean Palace sequence (scripted loss normally).
+
+=== Telepod Method ===
+
+New Game+ only: Use right telepod at beginning to fight Lavos immediately.
+
+== Ending Flags (Technical) ==
+
+{| class="wikitable"
+! Address !! Bit !! Flag Description
+|-
+| $7E0100 || 0 || Crono alive
+|-
+| $7E0100 || 1 || Visited Death Peak
+|-
+| $7E0100 || 2 || Magus defeated
+|-
+| $7E0101 || 0-7 || Story progress counter
+|-
+| $7E0102 || 0 || New Game+ flag
+|-
+| $7E0102 || 1 || Dream Devourer available
+|}
+
+== Ending Music ==
+
+{| class="wikitable"
+! Ending !! Music Track !! Notes
+|-
+| Beyond Time || To Far Away Times || Main ending theme
+|-
+| Reunion || Frog's Theme variant || Search theme
+|-
+| Dream Project || Developer theme || Unique music
+|-
+| Dino Age || Prehistoric theme || Reptite variant
+|-
+| The Oath || Battle theme || Intense variation
+|}
+
+== Tips for Ending Hunters ==
+
+=== Save Points ===
+
+Create saves at these points:
+* Before telepod (NG+) - Ending 3
+* After Leene rescue - Ending 4
+* After trial - Ending 5
+* 600 A.D. arrival - Ending 6
+* Before Masamune quest - Ending 7
+* After Masamune - Ending 8
+* After Magus fight - Ending 9
+* After Azala - Ending 10
+* Dark Ages arrival - Ending 11
+* After Ocean Palace - Ending 12, 1, 2
+
+=== Quick Lavos Strategies ===
+
+For NG+ ending runs:
+* Level 40+ characters trivialize Lavos
+* Luminaire + Flare combo
+* Triple Techs for quick damage
+* Epoch ram skips outer shell
+
+== Related Pages ==
+
+* [[Chrono_Trigger:Characters|Characters]]
+* [[Chrono_Trigger:Techs|Techs]]
+* [[Chrono_Trigger:Locations|Locations]]
+* [[Chrono_Trigger:Enemies|Enemies]]
+
+== References ==
+
+* Internal ending flag system
+* Story progression variables
+* New Game+ mechanics
+
+[[Category:Chrono Trigger]]
+[[Category:Game Mechanics]]
+[[Category:Endings]]
