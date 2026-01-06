@@ -417,6 +417,21 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 	}
 
 	/// <summary>
+	/// DQ3 map data service instance.
+	/// </summary>
+	private DQ3MapDataService? _dq3MapService;
+
+	/// <summary>
+	/// Loaded DQ3 chunks.
+	/// </summary>
+	public DQ3MapDataService.Chunk[]? DQ3Chunks { get; private set; }
+
+	/// <summary>
+	/// DQ3 metatile definitions.
+	/// </summary>
+	public DQ3MapDataService.MetaTileDefinition[]? DQ3MetaTiles { get; private set; }
+
+	/// <summary>
 	/// Get chunk-based map data for DQ3 SNES overworld.
 	/// </summary>
 	[RelayCommand]
@@ -426,9 +441,58 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 			return;
 		}
 
-		// DQ3 uses 4x4 metatile chunks
-		// Chunk layout at $255000, chunks are 16 bytes each
-		StatusText = "DQ3 chunk loading requires DQ3Lib - use logsmall/DQ3Lib for full support";
+		try {
+			_dq3MapService ??= new DQ3MapDataService(_rom);
+
+			// Load chunks from the 16 tilemap streams
+			DQ3Chunks = _dq3MapService.GetTilemapChunks();
+			DQ3MetaTiles = _dq3MapService.GetMetaTileDefinitions();
+
+			if (DQ3Chunks is not null) {
+				StatusText = $"Loaded {DQ3Chunks.Length} DQ3 chunks, {DQ3MetaTiles?.Length ?? 0} metatile definitions";
+			} else {
+				StatusText = "Failed to load DQ3 chunks";
+			}
+		} catch (Exception ex) {
+			StatusText = $"Error loading DQ3 chunks: {ex.Message}";
+		}
+	}
+
+	/// <summary>
+	/// Load full DQ3 overworld tilemap (256x256).
+	/// </summary>
+	[RelayCommand]
+	private void LoadDQ3Overworld() {
+		if (_rom is null || !_rom.IsLoaded) {
+			StatusText = "No ROM loaded";
+			return;
+		}
+
+		try {
+			_dq3MapService ??= new DQ3MapDataService(_rom);
+
+			var tilemap = _dq3MapService.GetFullOverworldTilemap();
+			if (tilemap is not null) {
+				MapWidth = 256;
+				MapHeight = 256;
+
+				// Convert 2D array to 1D for storage
+				var data = new byte[256 * 256];
+				for (int y = 0; y < 256; y++) {
+					for (int x = 0; x < 256; x++) {
+						data[y * 256 + x] = tilemap[y, x];
+					}
+				}
+				MapData = data;
+
+				StatusText = $"Loaded DQ3 overworld: 256x256 tiles";
+				RenderMap();
+			} else {
+				StatusText = "Failed to load DQ3 overworld tilemap";
+			}
+		} catch (Exception ex) {
+			StatusText = $"Error loading DQ3 overworld: {ex.Message}";
+		}
 	}
 
 	public MapEditorViewModel(RomFile? rom = null) {

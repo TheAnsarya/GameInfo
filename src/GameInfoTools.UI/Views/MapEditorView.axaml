@@ -159,15 +159,28 @@
 							<ComboBox ItemsSource="{Binding MapFormats}" SelectedItem="{Binding SelectedFormat}"/>
 						</StackPanel>
 
-						<Separator/>
-
-						<TextBlock Text="Selected Tile" FontWeight="SemiBold"/>
-
+						<!-- DQ Game Presets -->
 						<StackPanel Spacing="4">
-							<NumericUpDown Value="{Binding SelectedTile}" Minimum="0" Maximum="255" FormatString="X2"/>
+							<TextBlock Text="🐉 DQ Presets:"/>
+							<ComboBox ItemsSource="{Binding DQPresets}"
+									  SelectedItem="{Binding SelectedDQPreset}"
+									  PlaceholderText="Select a preset..."
+									  DisplayMemberBinding="{Binding Name}"/>
+							<Button Content="Apply Preset" 
+									Command="{Binding ApplyDQPresetCommand}" 
+									CommandParameter="{Binding SelectedDQPreset}"
+									IsEnabled="{Binding SelectedDQPreset, Converter={x:Static ObjectConverters.IsNotNull}}"
+									ToolTip.Tip="Load map settings from selected DQ preset"/>
+							<StackPanel Orientation="Horizontal" Spacing="4">
+								<Button Content="DQ3 Overworld" 
+										Command="{Binding LoadDQ3OverworldCommand}"
+										ToolTip.Tip="Load full DQ3 SNES overworld (256×256 chunk map)"/>
+								<Button Content="Chunks" 
+										Command="{Binding LoadDQ3ChunksCommand}"
+										ToolTip.Tip="Load DQ3 chunk definitions"/>
+							</StackPanel>
 						</StackPanel>
 
-						<!-- Tile Palette Grid -->
 						<Border Background="{DynamicResource SystemControlBackgroundChromeLowBrush}"
 								CornerRadius="4" Padding="4">
 							<ItemsControl ItemsSource="{Binding TilePalette}">
