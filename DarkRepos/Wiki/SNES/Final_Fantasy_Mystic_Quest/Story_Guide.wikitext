@@ -1,0 +1,254 @@
+{{Back|Final_Fantasy_Mystic_Quest}}
+
+= Story Guide =
+
+'''Final Fantasy Mystic Quest''' is a streamlined RPG following Benjamin's quest to restore the Crystals.
+
+__TOC__
+
+== Premise ==
+
+The Focus Tower connects four regions, each with a Crystal that has been stolen by a Vile Evil (boss). Benjamin, a young adventurer, must recover the Crystals and defeat the Dark King.
+
+== Prologue ==
+
+=== Hill of Destiny ===
+
+* Benjamin's village destroyed
+* Old man appears (later revealed as the Dark King)
+* Given quest to restore the Crystals
+* Initial equipment received
+
+== Level Forest ==
+
+=== First Quest ===
+
+* Meet Kaeli
+* She joins as first companion
+* Clear Level Forest
+* Kaeli poisoned by Minotaur
+* Need Elixir to cure her
+
+=== Foresta Region ===
+
+{| class="wikitable"
+! Location !! Purpose
+|-
+| Foresta || Town, cure Kaeli later
+|-
+| Level Forest || First dungeon
+|-
+| Sand Temple || Elixir quest
+|}
+
+=== Boss: Minotaur ===
+
+First boss battle. Introduces the multi-phase boss design.
+
+=== After Foresta ===
+
+* Kaeli cured (later)
+* Continue to Focus Tower
+* Open path to next region
+
+== Aquaria Region ==
+
+=== Frozen Town ===
+
+* Aquaria is frozen
+* Meet Phoebe (archer companion)
+* Need to restore warmth
+
+=== Key Dungeons ===
+
+{| class="wikitable"
+! Dungeon !! Purpose
+|-
+| Wintry Cave || Access to temple
+|-
+| Ice Pyramid || Boss dungeon
+|}
+
+=== Boss: Ice Golem ===
+
+Restoring the Water Crystal unfreezes Aquaria.
+
+=== Liberation ===
+
+* Town thaws
+* New equipment available
+* Progress to next region
+
+== Fireburg Region ==
+
+=== Volcanic Area ===
+
+* Meet Reuben
+* His father trapped in Mine
+* Fire-themed region
+
+=== Key Dungeons ===
+
+{| class="wikitable"
+! Dungeon !! Purpose
+|-
+| Mine || Rescue Spencer (Reuben's father)
+|-
+| Volcano || Fire Crystal dungeon
+|-
+| Lava Dome || Boss area
+|}
+
+=== Boss: Dualhead Hydra ===
+
+Recover the Fire Crystal.
+
+=== Aftermath ===
+
+* Spencer rescued
+* Reuben joins permanently for a time
+* Progress to final region
+
+== Windia Region ==
+
+=== Sky Region ===
+
+* Meet Kaeli again (fully recovered)
+* She rejoins as companion
+* Wind-themed area
+
+=== Key Dungeons ===
+
+{| class="wikitable"
+! Dungeon !! Purpose
+|-
+| Mount Gale || Access dungeon
+|-
+| Pazuzu's Tower || Main dungeon
+|-
+| Ship || Special dungeon
+|}
+
+=== Boss: Pazuzu ===
+
+Four-floor tower with Pazuzu waiting at top. Recover the Wind Crystal.
+
+== Focus Tower ==
+
+=== Final Area ===
+
+With all four Crystals:
+* Return to Focus Tower
+* Climb to the top
+* Face the Dark King
+
+=== Boss Rush ===
+
+Face previous bosses or new challenges on the way up.
+
+=== Final Boss: Dark King ===
+
+{| class="wikitable"
+! Phase !! Form
+|-
+| 1 || Human form (Old Man revealed)
+|-
+| 2 || Spider form
+|-
+| 3 || True form
+|}
+
+== Endings ==
+
+After defeating the Dark King:
+* World restored
+* Companions return to their homes
+* Benjamin's quest complete
+* Credits roll
+
+== Companion System ==
+
+Only one companion at a time:
+
+{| class="wikitable"
+! Companion !! Region !! Specialty
+|-
+| Kaeli || Foresta/Windia || Axe user, healing
+|-
+| Phoebe || Aquaria || Archer, magic
+|-
+| Reuben || Fireburg || Fighter, morning star
+|-
+| Tristam || Various || Ninja, treasure hunter
+|}
+
+=== Tristam ===
+
+Special companion who appears at various points:
+* Not tied to one region
+* Helps in specific dungeons
+* Treasure hunting focus
+
+== Key Items ==
+
+{| class="wikitable"
+! Item !! Purpose
+|-
+| Sword || Various upgrades
+|-
+| Axe || Tree cutting, combat
+|-
+| Bombs || Wall destruction
+|-
+| Claws || Wall climbing
+|-
+| Exit || Escape dungeons
+|-
+| Crystals || Story progression (4 total)
+|}
+
+== Spell Progression ==
+
+Magic unlocks as you progress:
+
+{| class="wikitable"
+! Spell Type !! Region Available
+|-
+| Cure || Start
+|-
+| White/Black basics || Early
+|-
+| Stronger spells || Mid-game
+|-
+| Wizard spells || Late-game
+|}
+
+== Tips ==
+
+=== Combat ===
+
+* Exploit elemental weaknesses
+* Use correct weapon for enemy
+* Check battlefields for grinding
+
+=== Exploration ===
+
+* Use tools on everything
+* Bomb suspicious walls
+* Claw climb surfaces
+
+=== Companions ===
+
+* They're AI-controlled
+* Can't control their actions
+* They're temporary (except for final)
+
+== Related Pages ==
+
+* [[Final_Fantasy_Mystic_Quest:Battle_System|Battle System]]
+* [[Final_Fantasy_Mystic_Quest:Characters|Characters]]
+* [[Final_Fantasy_Mystic_Quest:Weapons|Weapons]]
+* [[Final_Fantasy_Mystic_Quest:Magic|Magic]]
+
+[[Category:Final Fantasy Mystic Quest]]
+[[Category:Story Guide]]
