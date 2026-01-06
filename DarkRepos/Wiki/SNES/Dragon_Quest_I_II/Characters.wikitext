@@ -1,0 +1,385 @@
+{{Back|Dragon Quest I & II (SNES)}}
+__TOC__
+
+== Overview ==
+
+Dragon Quest I & II features the heroes of both games. DQ1 has a single hero while DQ2 features a party of three descendants.
+
+== Character Data Structure ==
+
+Character data is 32 bytes per character:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00 || 8 || Name (4 characters + padding)
+|-
+| $08-$09 || 2 || Current HP
+|-
+| $0A-$0B || 2 || Max HP
+|-
+| $0C-$0D || 2 || Current MP
+|-
+| $0E-$0F || 2 || Max MP
+|-
+| $10 || 1 || Strength
+|-
+| $11 || 1 || Agility
+|-
+| $12 || 1 || Vitality (SNES only)
+|-
+| $13 || 1 || Intelligence (SNES only)
+|-
+| $14 || 1 || Luck (SNES only)
+|-
+| $15 || 1 || Level
+|-
+| $16-$19 || 4 || Experience
+|-
+| $1A-$1D || 4 || Gold
+|-
+| $1E || 1 || Equipment slots
+|-
+| $1F || 1 || Status flags
+|}
+
+== Dragon Quest I ==
+
+=== The Hero ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Title || Descendant of Erdrick
+|-
+| Starting Level || 1
+|-
+| Starting HP || 15
+|-
+| Starting MP || 0
+|-
+| Starting STR || 4
+|-
+| Starting AGI || 4
+|-
+| Starting Equipment || Clothes
+|-
+| Combat Role || Solo fighter/mage
+|}
+
+'''Stat Growth:'''
+
+{| class="wikitable"
+|-
+! Level !! HP !! MP !! STR !! AGI !! New Spell
+|-
+| 1 || 15 || 0 || 4 || 4 || —
+|-
+| 2 || 22 || 0 || 5 || 4 || —
+|-
+| 3 || 24 || 5 || 7 || 6 || Heal
+|-
+| 4 || 31 || 16 || 7 || 8 || Hurt
+|-
+| 5 || 35 || 20 || 12 || 10 || —
+|-
+| 7 || 40 || 24 || 16 || 14 || Sleep
+|-
+| 9 || 54 || 36 || 18 || 18 || Radiant
+|-
+| 10 || 62 || 40 || 20 || 20 || Stopspell
+|-
+| 12 || 72 || 48 || 24 || 26 || Outside
+|-
+| 13 || 82 || 52 || 26 || 28 || Return
+|-
+| 15 || 92 || 64 || 30 || 32 || Repel
+|-
+| 17 || 100 || 72 || 35 || 39 || Healmore
+|-
+| 19 || 115 || 90 || 40 || 40 || Hurtmore
+|-
+| 20 || 130 || 98 || 47 || 40 || —
+|-
+| 25 || 165 || 110 || 80 || 60 || —
+|-
+| 30 || 210 || 150 || 125 || 80 || —
+|}
+
+'''Experience Table (DQ1):'''
+
+{| class="wikitable"
+|-
+! Level !! EXP !! Level !! EXP !! Level !! EXP
+|-
+| 1 || 0 || 11 || 2000 || 21 || 16000
+|-
+| 2 || 7 || 12 || 2900 || 22 || 18000
+|-
+| 3 || 23 || 13 || 4000 || 23 || 20000
+|-
+| 4 || 47 || 14 || 5500 || 24 || 22000
+|-
+| 5 || 110 || 15 || 7500 || 25 || 24000
+|-
+| 6 || 220 || 16 || 10000 || 26 || 26000
+|-
+| 7 || 450 || 17 || 11500 || 27 || 28000
+|-
+| 8 || 800 || 18 || 13000 || 28 || 30000
+|-
+| 9 || 1300 || 19 || 14500 || 29 || 32500
+|-
+| 10 || 2000 || 20 || 16000 || 30 || 35000
+|}
+
+== Dragon Quest II ==
+
+=== Prince of Midenhall ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Title || Prince of Midenhall
+|-
+| Relation || Great-great-grandson of DQ1 Hero
+|-
+| Starting Level || 1
+|-
+| Starting HP || 15
+|-
+| Starting MP || 0
+|-
+| Starting STR || 10
+|-
+| Starting AGI || 6
+|-
+| Starting Equipment || Copper Sword, Clothes
+|-
+| Combat Role || Physical fighter (no magic)
+|}
+
+'''Stat Growth:'''
+
+{| class="wikitable"
+|-
+! Level !! HP !! MP !! STR !! AGI
+|-
+| 1 || 35 || 0 || 10 || 6
+|-
+| 5 || 58 || 0 || 28 || 16
+|-
+| 10 || 98 || 0 || 52 || 34
+|-
+| 15 || 142 || 0 || 78 || 54
+|-
+| 20 || 178 || 0 || 100 || 75
+|-
+| 25 || 218 || 0 || 128 || 98
+|-
+| 30 || 255 || 0 || 155 || 120
+|-
+| 40 || 255 || 0 || 200 || 155
+|-
+| 50 || 255 || 0 || 235 || 200
+|}
+
+=== Prince of Cannock ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Title || Prince of Cannock
+|-
+| Relation || Cousin (same bloodline)
+|-
+| Join Level || Equal to Midenhall -1
+|-
+| Starting HP || Varies
+|-
+| Starting MP || Varies
+|-
+| Starting Equipment || Cypress Stick, Clothes
+|-
+| Combat Role || Balanced (attack magic + some healing)
+|}
+
+'''Stat Growth:'''
+
+{| class="wikitable"
+|-
+! Level !! HP !! MP !! STR !! AGI !! New Spell
+|-
+| 1 || 25 || 6 || 6 || 6 || Heal
+|-
+| 2 || 32 || 10 || 8 || 8 || Firebal
+|-
+| 5 || 45 || 20 || 18 || 18 || Antidote
+|-
+| 8 || 58 || 30 || 28 || 28 || Upper
+|-
+| 10 || 72 || 38 || 38 || 38 || Surround
+|-
+| 11 || 78 || 42 || 42 || 42 || Return
+|-
+| 12 || 84 || 46 || 46 || 46 || Outside
+|-
+| 14 || 94 || 55 || 55 || 55 || Infernos
+|-
+| 18 || 118 || 72 || 72 || 72 || Healmore
+|-
+| 20 || 130 || 82 || 82 || 82 || Repel
+|-
+| 24 || 155 || 100 || 100 || 100 || Firevolt
+|-
+| 30 || 180 || 130 || 130 || 130 || —
+|}
+
+=== Princess of Moonbrooke ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Title || Princess of Moonbrooke
+|-
+| Relation || Descendant of Erdrick
+|-
+| Join Level || Equal to Midenhall -2
+|-
+| Starting HP || Varies
+|-
+| Starting MP || Varies
+|-
+| Starting Equipment || Plain Clothes
+|-
+| Combat Role || Primary spellcaster (weak physical)
+|}
+
+'''Stat Growth:'''
+
+{| class="wikitable"
+|-
+! Level !! HP !! MP !! STR !! AGI !! New Spell
+|-
+| 1 || 20 || 8 || 4 || 8 || Heal, Infernos
+|-
+| 2 || 25 || 12 || 5 || 10 || Sleep
+|-
+| 5 || 38 || 24 || 10 || 18 || Surround
+|-
+| 6 || 42 || 28 || 12 || 20 || Return
+|-
+| 7 || 46 || 32 || 14 || 22 || Outside
+|-
+| 8 || 50 || 36 || 16 || 24 || Stepguard
+|-
+| 10 || 58 || 44 || 20 || 28 || Stopspell
+|-
+| 12 || 66 || 52 || 24 || 32 || Open
+|-
+| 14 || 74 || 60 || 28 || 36 || Firevolt
+|-
+| 16 || 82 || 68 || 32 || 40 || Healmore
+|-
+| 17 || 86 || 72 || 34 || 42 || Defeat
+|-
+| 20 || 98 || 84 || 40 || 48 || Increase
+|-
+| 23 || 110 || 96 || 46 || 54 || Explodet
+|-
+| 25 || 118 || 104 || 50 || 58 || Sacrifice
+|-
+| 27 || 126 || 112 || 54 || 62 || Healall
+|-
+| 28 || 130 || 116 || 56 || 64 || Revive
+|-
+| 35 || 155 || 155 || 70 || 78 || —
+|}
+
+== Party Statistics ==
+
+=== Comparison at Level 30 ===
+
+{| class="wikitable"
+|-
+! Character !! HP !! MP !! STR !! AGI !! Role
+|-
+| Midenhall || 255 || 0 || 155 || 120 || Tank/DPS
+|-
+| Cannock || 180 || 130 || 130 || 130 || Support/DPS
+|-
+| Moonbrooke || 126 || 112 || 54 || 62 || Magic DPS/Healer
+|}
+
+=== Equipment Capability ===
+
+{| class="wikitable"
+|-
+! Character !! Weapons !! Armor !! Shield !! Helmet
+|-
+| Midenhall || All swords || Heavy || All || All
+|-
+| Cannock || Staves, some swords || Light || Some || Some
+|-
+| Moonbrooke || Wands, staves || Robes || None || None
+|}
+
+== Experience Table (DQ2) ==
+
+{| class="wikitable"
+|-
+! Level !! EXP !! Level !! EXP !! Level !! EXP
+|-
+| 1 || 0 || 16 || 21000 || 31 || 300000
+|-
+| 2 || 17 || 17 || 26000 || 32 || 320000
+|-
+| 3 || 64 || 18 || 32000 || 33 || 340000
+|-
+| 4 || 143 || 19 || 40000 || 34 || 360000
+|-
+| 5 || 276 || 20 || 50000 || 35 || 380000
+|-
+| 6 || 494 || 21 || 62000 || 36 || 400000
+|-
+| 7 || 819 || 22 || 76000 || 37 || 420000
+|-
+| 8 || 1285 || 23 || 92000 || 38 || 440000
+|-
+| 9 || 1914 || 24 || 112000 || 39 || 460000
+|-
+| 10 || 2731 || 25 || 135000 || 40 || 500000
+|-
+| 11 || 3774 || 26 || 162000 || 45 || 650000
+|-
+| 12 || 5098 || 27 || 193000 || 50 || 1000000
+|-
+| 13 || 6713 || 28 || 229000 || — || —
+|-
+| 14 || 8693 || 29 || 260000 || — || —
+|-
+| 15 || 14000 || 30 || 280000 || — || —
+|}
+
+== SNES Enhancements ==
+
+Character changes from NES:
+* Additional stats (VIT, INT, LUK) tracked
+* Stat growth curves rebalanced
+* Princess learns Sacrifice spell
+* Better stat display in menus
+* Party auto-formation option
+
+== See Also ==
+
+* [[Monsters]]
+* [[Items]]
+* [[Magic]]
+* [[ROM Map]]
+
+[[Category:Dragon Quest I & II (SNES)]]

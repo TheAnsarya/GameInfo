@@ -1,0 +1,290 @@
+{{Back|Dragon Quest I & II (SNES)}}
+__TOC__
+
+== Overview ==
+
+Dragon Quest I & II features magic spells for the Hero (DQ1) and for the Prince of Cannock and Princess of Moonbrooke (DQ2). This page documents all spells and their mechanics.
+
+== Spell Data Structure ==
+
+Each spell entry is 6 bytes:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Spell ID
+|-
+| $01 || 1 || MP cost
+|-
+| $02 || 1 || Effect type
+|-
+| $03 || 1 || Power value
+|-
+| $04 || 1 || Target type
+|-
+| $05 || 1 || Flags (battle/field)
+|}
+
+== Dragon Quest I Spells ==
+
+The Hero learns all spells by leveling up.
+
+{| class="wikitable"
+|-
+! ID !! Name !! MP !! Level !! Effect
+|-
+| $01 || Heal || 4 || 3 || Restore 10-17 HP
+|-
+| $02 || Hurt || 2 || 4 || Deal 3-10 damage
+|-
+| $03 || Sleep || 2 || 7 || Put enemy to sleep
+|-
+| $04 || Radiant || 2 || 9 || Light area (field)
+|-
+| $05 || Stopspell || 2 || 10 || Seal enemy magic
+|-
+| $06 || Outside || 6 || 12 || Exit dungeon
+|-
+| $07 || Return || 8 || 13 || Warp to Tantegel
+|-
+| $08 || Repel || 2 || 15 || Avoid weak enemies
+|-
+| $09 || Healmore || 10 || 17 || Restore 80-100 HP
+|-
+| $0A || Hurtmore || 5 || 19 || Deal 30-45 damage
+|}
+
+=== DQ1 Spell Details ===
+
+{| class="wikitable"
+|-
+! Spell !! Battle !! Field !! Notes
+|-
+| Heal || Yes || Yes || Becomes less effective late game
+|-
+| Hurt || Yes || No || Enemy defense reduces damage
+|-
+| Sleep || Yes || No || ~50% success on most enemies
+|-
+| Radiant || No || Yes || Illuminates 3-tile radius
+|-
+| Stopspell || Yes || No || Prevents enemy spell casting
+|-
+| Outside || No || Yes || Only works in dungeons
+|-
+| Return || No || Yes || Instant return to castle
+|-
+| Repel || No || Yes || Prevents encounters below Hero level
+|-
+| Healmore || Yes || Yes || Most efficient healing
+|-
+| Hurtmore || Yes || No || Strong attack spell
+|}
+
+== Dragon Quest II Spells ==
+
+=== Prince of Cannock Spells ===
+
+{| class="wikitable"
+|-
+! ID !! Name !! MP !! Level !! Effect !! Target
+|-
+| $10 || Heal || 3 || 1 || Restore 30-40 HP || Single
+|-
+| $11 || Firebal || 4 || 2 || Fire damage 17-24 || All enemies
+|-
+| $12 || Antidote || 2 || 5 || Cure poison || Single
+|-
+| $13 || Upper || 2 || 8 || Raise defense || Single
+|-
+| $14 || Surround || 2 || 10 || Lower enemy accuracy || All enemies
+|-
+| $15 || Return || 8 || 11 || Warp to town || Party
+|-
+| $16 || Outside || 8 || 12 || Exit dungeon || Party
+|-
+| $17 || Infernos || 6 || 14 || Fire damage 30-45 || All enemies
+|-
+| $18 || Healmore || 8 || 18 || Restore 75-95 HP || Single
+|-
+| $19 || Repel || 4 || 20 || Avoid weak enemies || Party
+|-
+| $1A || Firevolt || 8 || 24 || Fire damage 50-65 || All enemies
+|}
+
+=== Princess of Moonbrooke Spells ===
+
+{| class="wikitable"
+|-
+! ID !! Name !! MP !! Level !! Effect !! Target
+|-
+| $20 || Heal || 3 || 1 || Restore 30-40 HP || Single
+|-
+| $21 || Infernos || 6 || 1 || Fire damage 30-45 || All enemies
+|-
+| $22 || Sleep || 3 || 2 || Put to sleep || Group
+|-
+| $23 || Surround || 2 || 5 || Lower enemy accuracy || All enemies
+|-
+| $24 || Return || 8 || 6 || Warp to town || Party
+|-
+| $25 || Outside || 8 || 7 || Exit dungeon || Party
+|-
+| $26 || Stepguard || 2 || 8 || Protect from damage floors || Party
+|-
+| $27 || Stopspell || 3 || 10 || Seal enemy magic || Single
+|-
+| $28 || Open || 2 || 12 || Open locked doors || N/A
+|-
+| $29 || Firevolt || 8 || 14 || Fire damage 50-65 || All enemies
+|-
+| $2A || Healmore || 8 || 16 || Restore 75-95 HP || Single
+|-
+| $2B || Defeat || 4 || 17 || Instant death || Group
+|-
+| $2C || Increase || 4 || 20 || Raise defense || Party
+|-
+| $2D || Explodet || 12 || 23 || Fire damage 55-75 || All enemies
+|-
+| $2E || Sacrifice || 1 || 25 || Kill caster, damage all || All enemies
+|-
+| $2F || Healall || 18 || 27 || Full HP recovery || Single
+|-
+| $30 || Revive || 20 || 28 || Revive KO'd ally || Single
+|}
+
+== Spell Categories ==
+
+=== Healing Spells ===
+
+{| class="wikitable"
+|-
+! Spell !! MP !! Min HP !! Max HP !! Available To
+|-
+| Heal || 3-4 || 30 || 40 || All casters
+|-
+| Healmore || 8-10 || 75 || 95 || All casters
+|-
+| Healall || 18 || Max HP || Max HP || Princess only
+|}
+
+=== Attack Spells ===
+
+{| class="wikitable"
+|-
+! Spell !! MP !! Min Damage !! Max Damage !! Target !! Element
+|-
+| Hurt (DQ1) || 2 || 3 || 10 || Single || —
+|-
+| Hurtmore (DQ1) || 5 || 30 || 45 || Single || —
+|-
+| Firebal || 4 || 17 || 24 || All || Fire
+|-
+| Infernos || 6 || 30 || 45 || All || Fire
+|-
+| Firevolt || 8 || 50 || 65 || All || Fire
+|-
+| Explodet || 12 || 55 || 75 || All || Fire
+|}
+
+=== Status Spells ===
+
+{| class="wikitable"
+|-
+! Spell !! MP !! Effect !! Success Rate
+|-
+| Sleep || 2-3 || Put enemy to sleep || ~50-70%
+|-
+| Stopspell || 2-3 || Seal magic || ~50%
+|-
+| Surround || 2 || Lower accuracy || ~65%
+|-
+| Defeat || 4 || Instant death || ~15-30%
+|}
+
+=== Buff Spells ===
+
+{| class="wikitable"
+|-
+! Spell !! MP !! Effect !! Duration
+|-
+| Upper || 2 || +25% defense || Until battle ends
+|-
+| Increase || 4 || +25% party defense || Until battle ends
+|}
+
+=== Utility Spells ===
+
+{| class="wikitable"
+|-
+! Spell !! MP !! Effect !! Where Usable
+|-
+| Radiant || 2 || Light caves || Field only
+|-
+| Return || 8 || Warp to town || Field only
+|-
+| Outside || 6-8 || Exit dungeon || Field only
+|-
+| Repel || 2-4 || Repel weak enemies || Field only
+|-
+| Stepguard || 2 || Block damage tiles || Field only
+|-
+| Open || 2 || Open doors || Field only
+|-
+| Antidote || 2 || Cure poison || Battle & field
+|-
+| Revive || 20 || Revive ally || Battle & field
+|-
+| Sacrifice || 1 || KO self, damage all || Battle only
+|}
+
+== Spell Resistance ==
+
+Certain enemies resist spells:
+
+{| class="wikitable"
+|-
+! Monster Type !! Resists
+|-
+| Undead || Sleep
+|-
+| Machines || Status spells
+|-
+| Bosses || Most status effects
+|-
+| Metal Slimes || All magic (255 M.Def)
+|}
+
+== MP Restoration ==
+
+{| class="wikitable"
+|-
+! Method !! Amount !! Notes
+|-
+| Inn || Full MP || Costs gold
+|-
+| Wizard's Ring || 2 MP/use || Limited uses, may break
+|-
+| Prayer Ring || 2 MP/use || Unlimited (DQ2)
+|-
+| Leveling up || Full MP || —
+|}
+
+== SNES Changes ==
+
+Spell changes from NES versions:
+* MP costs slightly adjusted
+* Some spell power values rebalanced
+* Spell animations added
+* Princess learns more spells
+* Sacrifice spell added to DQ2
+
+== See Also ==
+
+* [[Monsters]]
+* [[Items]]
+* [[Characters]]
+* [[ROM Map]]
+
+[[Category:Dragon Quest I & II (SNES)]]

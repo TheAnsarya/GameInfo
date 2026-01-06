@@ -1,0 +1,347 @@
+{{Back|Final Fantasy IV (SNES)}}
+__TOC__
+
+== Overview ==
+
+Final Fantasy IV features numerous enemies across different dungeons and areas. This page documents enemy statistics, abilities, and behaviors.
+
+== Enemy Data Structure ==
+
+Each enemy entry is 32 bytes:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00-$01 || 2 || HP
+|-
+| $02-$03 || 2 || MP
+|-
+| $04 || 1 || Level
+|-
+| $05 || 1 || Attack
+|-
+| $06 || 1 || Attack Multiplier
+|-
+| $07 || 1 || Defense
+|-
+| $08 || 1 || Defense Multiplier
+|-
+| $09 || 1 || Magic Defense
+|-
+| $0A || 1 || Magic Defense Multiplier
+|-
+| $0B || 1 || Agility
+|-
+| $0C-$0D || 2 || Experience
+|-
+| $0E-$0F || 2 || Gil
+|-
+| $10-$11 || 2 || Drop item ID
+|-
+| $12 || 1 || Drop rate
+|-
+| $13 || 1 || Elemental weakness
+|-
+| $14 || 1 || Elemental resistance
+|-
+| $15 || 1 || Status immunity
+|-
+| $16-$1F || 10 || AI script, attack patterns
+|}
+
+== Enemies by Area ==
+
+=== Overworld ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Atk !! Def !! EXP !! Gil
+|-
+| $01 || Goblin || 6 || 4 || 0 || 12 || 6
+|-
+| $02 || Floating Eye || 20 || 8 || 0 || 24 || 20
+|-
+| $03 || Sword Rat || 17 || 12 || 1 || 30 || 15
+|-
+| $04 || Insectus || 22 || 6 || 0 || 38 || 12
+|-
+| $05 || Larva || 28 || 10 || 0 || 42 || 24
+|}
+
+=== Mist Cave ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Atk !! Def !! EXP !! Gil
+|-
+| $10 || Larva || 28 || 10 || 0 || 42 || 24
+|-
+| $11 || Sand Worm || 75 || 16 || 0 || 91 || 55
+|-
+| $12 || Goblin || 6 || 4 || 0 || 12 || 6
+|-
+| $13 || Eyewing || 30 || 14 || 1 || 68 || 30
+|}
+
+=== Kaipo Desert ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Atk !! Def !! EXP !! Gil
+|-
+| $20 || Sand Worm || 140 || 22 || 0 || 200 || 100
+|-
+| $21 || Desert Sahagin || 47 || 18 || 1 || 95 || 42
+|-
+| $22 || Basilisk || 62 || 20 || 2 || 115 || 68
+|}
+
+=== Underground Waterway ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Atk !! Def !! EXP !! Gil
+|-
+| $30 || Tiny Mage || 55 || 8 || 0 || 82 || 44
+|-
+| $31 || Alligator || 78 || 24 || 3 || 120 || 55
+|-
+| $32 || Zombie || 59 || 18 || 1 || 98 || 36
+|-
+| $33 || Gigas Gator || 350 || 40 || 2 || 750 || 150
+|-
+| $34 || Water Hag || 95 || 20 || 1 || 145 || 70
+|}
+
+=== Mt. Hobs ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Atk !! Def !! EXP !! Gil
+|-
+| $40 || Spirit || 60 || 12 || 0 || 88 || 20
+|-
+| $41 || Skeleton || 70 || 16 || 2 || 90 || 45
+|-
+| $42 || Bomb || 55 || 14 || 0 || 115 || 80
+|-
+| $43 || Cockatrice || 120 || 26 || 1 || 195 || 65
+|-
+| $44 || Gargoyle || 140 || 28 || 4 || 245 || 90
+|}
+
+=== Tower of Zot ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Atk !! Def !! EXP !! Gil
+|-
+| $50 || Puppet || 350 || 44 || 3 || 800 || 250
+|-
+| $51 || Ice Lizard || 480 || 48 || 2 || 980 || 310
+|-
+| $52 || Gremlin || 400 || 42 || 1 || 850 || 220
+|-
+| $53 || Sorceress || 280 || 28 || 0 || 720 || 350
+|-
+| $54 || Centaur Knight || 520 || 52 || 5 || 1100 || 400
+|}
+
+=== Tower of Babil ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Atk !! Def !! EXP !! Gil
+|-
+| $60 || Flamehound || 620 || 55 || 3 || 1400 || 520
+|-
+| $61 || Security Eye || 800 || 60 || 4 || 1800 || 600
+|-
+| $62 || Mad Ogre || 900 || 68 || 6 || 2200 || 700
+|-
+| $63 || Mech Dragon || 1200 || 75 || 5 || 3500 || 1000
+|-
+| $64 || Stone Golem || 1500 || 80 || 8 || 4200 || 800
+|}
+
+=== Lunar Path ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Atk !! Def !! EXP !! Gil
+|-
+| $70 || Behemoth || 23000 || 162 || 6 || 65000 || 0
+|-
+| $71 || Mind Flayer || 14000 || 120 || 3 || 48000 || 0
+|-
+| $72 || Red Dragon || 18500 || 145 || 5 || 55000 || 0
+|-
+| $73 || Blue Dragon || 18500 || 140 || 5 || 55000 || 0
+|-
+| $74 || Lunar Virus || 3000 || 85 || 2 || 8000 || 0
+|}
+
+== Boss Monsters ==
+
+{| class="wikitable"
+|-
+! ID !! Name !! HP !! Location !! Notes
+|-
+| $80 || Mist Dragon || 465 || Mist Cave || Shifts to mist form
+|-
+| $81 || Octomammoth || 2350 || Underground Waterway || Tentacle attacks
+|-
+| $82 || Antlion || 1100 || Antlion Cave || Counter physical
+|-
+| $83 || MomBomb || 11000 || Mt. Hobs || Spawns Bombs
+|-
+| $84 || Milon || 3500 || Mt. Ordeals || Undead
+|-
+| $85 || Milon Z || 3523 || Mt. Ordeals || Second form
+|-
+| $86 || Dark Knight || ??? || Mt. Ordeals || Cecil vs. Cecil
+|-
+| $87 || Baigan || 4444 || Baron || Arms regenerate
+|-
+| $88 || Cagnazzo || 5312 || Baron || Water shield
+|-
+| $89 || Dark Elf || 23890 || Dark Elf Cave || Magnetic cave
+|-
+| $8A || Magus Sisters || 4599 || Tower of Zot || Three sisters
+|-
+| $8B || Barbariccia || 8636 || Tower of Zot || Tornado form
+|-
+| $8C || Calcabrina || 5315 || Dwarf Castle || Dolls combine
+|-
+| $8D || Golbez || ??? || Dwarf Castle || Story fight
+|-
+| $8E || Dr. Lugae || 8000 || Tower of Babil || Transform
+|-
+| $8F || King/Queen || 11000 || Sylph Cave || Drains HP
+|-
+| $90 || Rubicante || 34000 || Tower of Babil || Fire attacks
+|-
+| $91 || Evil Wall || 28000 || Sealed Cave || Time limit
+|-
+| $92 || CPU || 30000 || Giant of Babil || Heal globe
+|-
+| $93 || Odin || 20001 || Baron || Time limit
+|-
+| $94 || Asura || 31005 || Feymarch || Heal/attack
+|-
+| $95 || Leviathan || 50001 || Feymarch || Tidal Wave
+|-
+| $96 || Bahamut || 45001 || Lunar || Megaflare
+|-
+| $97 || Lunar Dragon || 23000 || Lunar Path || Unique
+|-
+| $98 || Plague || ??? || Lunar || Doom
+|-
+| $99 || Ogopogo || 50000 || Lunar || Hidden boss
+|-
+| $9A || Zeromus || 65534 || Moon Core || Final boss
+|}
+
+=== Four Elemental Lords ===
+
+{| class="wikitable"
+|-
+! Name !! HP !! Element !! Special Attack
+|-
+| Scarmiglione || 3500 || Earth || Gas (poison)
+|-
+| Cagnazzo || 5312 || Water || Tsunami
+|-
+| Barbariccia || 8636 || Wind || Maelstrom
+|-
+| Rubicante || 34000 || Fire || Inferno
+|}
+
+== Elemental Weaknesses ==
+
+{| class="wikitable"
+|-
+! Element !! Bit !! Weak Enemies
+|-
+| Fire || $01 || Ice, Plant, Undead
+|-
+| Ice || $02 || Fire, Desert
+|-
+| Thunder || $04 || Machine, Water
+|-
+| Water || $08 || Fire, Desert
+|-
+| Holy || $10 || Undead, Demon
+|-
+| Dark || $20 || Human
+|-
+| Drain || $40 || Living
+|-
+| Earth || $80 || Aerial (immune)
+|}
+
+== Enemy Abilities ==
+
+{| class="wikitable"
+|-
+! ID !! Ability !! Effect
+|-
+| $01 || Physical || Standard attack
+|-
+| $02 || Fire || Fire magic
+|-
+| $03 || Blizzard || Ice magic
+|-
+| $04 || Thunder || Lightning magic
+|-
+| $05 || Earthquake || Earth damage
+|-
+| $06 || Tidal Wave || Water damage
+|-
+| $07 || Tornado || Reduces HP to single digits
+|-
+| $08 || Megaflare || Non-elemental damage
+|-
+| $09 || Self-Destruct || Suicide attack
+|-
+| $0A || Berserk || Force attack
+|-
+| $0B || Slow || Reduce speed
+|-
+| $0C || Stop || Freeze target
+|-
+| $0D || Petrify || Turn to stone
+|-
+| $0E || Death || Instant kill
+|-
+| $0F || Doom || Countdown
+|}
+
+== Rare Drops ==
+
+{| class="wikitable"
+|-
+! Enemy !! Item !! Drop Rate !! Location
+|-
+| Pink Puff || Pink Tail || 1/64 || Lunar Subterrane
+|-
+| Behemoth || Giant's Gloves || 1/64 || Lunar Path
+|-
+| Mind Flayer || Soma Drop || 1/16 || Lunar Path
+|-
+| Red Dragon || Lunar Curtain || 1/16 || Lunar Path
+|-
+| Blue Dragon || Light Curtain || 1/16 || Lunar Path
+|-
+| Flan Princess || Protect Ring || 1/64 || Lunar Subterrane
+|}
+
+== See Also ==
+
+* [[Characters]]
+* [[Magic]]
+* [[Items]]
+* [[ROM Map]]
+
+[[Category:Final Fantasy IV (SNES)]]

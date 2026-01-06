@@ -1,0 +1,257 @@
+{{Back|Chrono Trigger (SNES)}}
+__TOC__
+
+== Overview ==
+
+Chrono Trigger features seven playable characters, each with unique abilities and Techs. Characters can be combined in parties of three for Double and Triple Techs.
+
+== Character Roster ==
+
+{| class="wikitable"
+|-
+! ID !! Name !! Element !! Role !! Join Location
+|-
+| $00 || Crono || Lightning || Attacker || Start
+|-
+| $01 || Marle || Ice || Healer || Guardia Forest
+|-
+| $02 || Lucca || Fire || Mage || Start (rejoins)
+|-
+| $03 || Robo || Shadow || Tank || Proto Dome
+|-
+| $04 || Frog || Water || Paladin || Cursed Woods
+|-
+| $05 || Ayla || — || Fighter || Ioka Village
+|-
+| $06 || Magus || Shadow || Mage || North Cape (optional)
+|}
+
+== Base Statistics ==
+
+{| class="wikitable sortable"
+|-
+! Character !! HP !! MP !! Power !! Stamina !! Speed !! Magic !! Hit !! Evade !! M.Def
+|-
+| Crono || 70 || 8 || 5 || 5 || 9 || 4 || 100 || 8 || 4
+|-
+| Marle || 55 || 12 || 2 || 3 || 8 || 8 || 100 || 12 || 8
+|-
+| Lucca || 60 || 15 || 3 || 4 || 6 || 10 || 100 || 6 || 10
+|-
+| Robo || 80 || 6 || 8 || 8 || 4 || 3 || 100 || 4 || 3
+|-
+| Frog || 65 || 10 || 4 || 6 || 8 || 5 || 100 || 8 || 7
+|-
+| Ayla || 85 || 0 || 10 || 7 || 10 || 1 || 100 || 10 || 1
+|-
+| Magus || 75 || 18 || 7 || 5 || 10 || 12 || 100 || 12 || 12
+|}
+
+Note: Ayla has no MP and cannot use magic-based Techs.
+
+== Stat Growth ==
+
+=== Level-Up Bonuses ===
+{| class="wikitable"
+|-
+! Character !! HP/Lvl !! MP/Lvl !! Power !! Stamina !! Speed !! Magic
+|-
+| Crono || +8 || +2 || +0.8 || +0.5 || +0.4 || +0.5
+|-
+| Marle || +6 || +4 || +0.4 || +0.3 || +0.4 || +0.8
+|-
+| Lucca || +6 || +5 || +0.4 || +0.4 || +0.3 || +0.9
+|-
+| Robo || +9 || +2 || +0.9 || +0.8 || +0.2 || +0.3
+|-
+| Frog || +7 || +3 || +0.6 || +0.6 || +0.4 || +0.6
+|-
+| Ayla || +10 || +0 || +1.0 || +0.7 || +0.5 || +0.1
+|-
+| Magus || +7 || +5 || +0.7 || +0.5 || +0.5 || +0.9
+|}
+
+== Equipment Types ==
+
+{| class="wikitable"
+|-
+! Character !! Weapon !! Armor !! Helmet !! Accessory
+|-
+| Crono || Katanas || Light || Helmets || Any
+|-
+| Marle || Crossbows || Light || Hats || Any
+|-
+| Lucca || Guns || Light || Hats || Any
+|-
+| Robo || Arms || Heavy || — || Any
+|-
+| Frog || Broadswords || Medium || Helmets || Any
+|-
+| Ayla || Fists || Light || Hats || Any
+|-
+| Magus || Scythes || Heavy || — || Any
+|}
+
+== Character Techs ==
+
+=== Crono's Techs (Lightning) ===
+{| class="wikitable"
+|-
+! Tech !! TP !! MP !! Effect !! Level
+|-
+| Cyclone || 10 || 2 || Circle attack || 1
+|-
+| Slash || 90 || 2 || Line attack || —
+|-
+| Lightning || 400 || 2 || Thunder magic || —
+|-
+| Spin Cut || 600 || 4 || Single + circle || —
+|-
+| Lightning 2 || 800 || 8 || Strong thunder || —
+|-
+| Life || 900 || 10 || Revive ally || —
+|-
+| Confuse || 1000 || 12 || 4 random hits || —
+|-
+| Luminaire || — || 20 || Ultimate lightning || Rainbow
+|}
+
+=== Marle's Techs (Ice) ===
+{| class="wikitable"
+|-
+! Tech !! TP !! MP !! Effect !! Level
+|-
+| Aura || 10 || 1 || Heal one || 1
+|-
+| Provoke || 50 || 1 || Lower defense || —
+|-
+| Ice || 150 || 2 || Ice magic || —
+|-
+| Cure || 400 || 2 || Better heal || —
+|-
+| Haste || 600 || 6 || Double speed || —
+|-
+| Ice 2 || 800 || 8 || Strong ice || —
+|-
+| Cure 2 || 1000 || 5 || Group heal || —
+|-
+| Life 2 || — || 15 || Full revive || Pendant
+|}
+
+=== Lucca's Techs (Fire) ===
+{| class="wikitable"
+|-
+! Tech !! TP !! MP !! Effect !! Level
+|-
+| Flame Toss || 10 || 1 || Line fire || 1
+|-
+| Hypno Wave || 60 || 1 || Sleep enemies || —
+|-
+| Fire || 150 || 2 || Fire magic || —
+|-
+| Napalm || 400 || 3 || Fire bombs || —
+|-
+| Protect || 600 || 6 || Raise defense || —
+|-
+| Fire 2 || 800 || 8 || Strong fire || —
+|-
+| Mega Bomb || 1000 || 15 || Massive fire || —
+|-
+| Flare || — || 20 || Ultimate fire || Sun Stone
+|}
+
+=== Robo's Techs (Shadow) ===
+{| class="wikitable"
+|-
+! Tech !! TP !! MP !! Effect !! Level
+|-
+| Rocket Punch || 10 || 1 || Ranged attack || 1
+|-
+| Cure Beam || 60 || 2 || Heal one || —
+|-
+| Laser Spin || 150 || 3 || Circle attack || —
+|-
+| Robo Tackle || 400 || 4 || Ram attack || —
+|-
+| Heal Beam || 600 || 3 || Better heal || —
+|-
+| Uzzi Punch || 800 || 12 || Rapid punches || —
+|-
+| Area Bomb || 1000 || 14 || Explosion || —
+|-
+| Shock || — || 17 || Electric burst || Crisis Arm
+|}
+
+=== Frog's Techs (Water) ===
+{| class="wikitable"
+|-
+! Tech !! TP !! MP !! Effect !! Level
+|-
+| Slurp || 10 || 1 || Heal one || 1
+|-
+| Slurp Cut || 60 || 2 || Drain attack || —
+|-
+| Water || 150 || 2 || Water magic || —
+|-
+| Heal || 400 || 2 || Better heal || —
+|-
+| Leap Slash || 600 || 4 || Jump attack || —
+|-
+| Water 2 || 800 || 8 || Strong water || —
+|-
+| Cure 2 || 1000 || 5 || Group heal || —
+|-
+| Frog Squash || — || 15 || HP-based damage || Hero Medal
+|}
+
+=== Ayla's Techs (Physical) ===
+{| class="wikitable"
+|-
+! Tech !! TP !! MP !! Effect !! Level
+|-
+| Kiss || 10 || 1 || Heal/status cure || 1
+|-
+| Rollo Kick || 60 || 2 || Spinning kick || —
+|-
+| Cat Attack || 150 || 3 || Rapid combo || —
+|-
+| Rock Throw || 400 || 4 || Throw boulder || —
+|-
+| Charm || 600 || 4 || Steal item || —
+|-
+| Tail Spin || 800 || 10 || Spin attack || —
+|-
+| Dino Tail || 1000 || 15 || Massive strike || —
+|-
+| Triple Kick || — || 20 || 3 kicks || Ultimate Fist
+|}
+
+=== Magus's Techs (Shadow) ===
+{| class="wikitable"
+|-
+! Tech !! TP !! MP !! Effect !! Level
+|-
+| Lightning 2 || — || 8 || Thunder magic || Join
+|-
+| Ice 2 || — || 8 || Ice magic || Join
+|-
+| Fire 2 || — || 8 || Fire magic || Join
+|-
+| Dark Bomb || — || 8 || Shadow magic || Join
+|-
+| Magic Wall || — || 8 || Barrier || Join
+|-
+| Dark Mist || — || 10 || Shadow AoE || Join
+|-
+| Black Hole || — || 15 || Instant death || Join
+|-
+| Dark Matter || — || 20 || Ultimate shadow || Join
+|}
+
+== See Also ==
+
+* [[Techs]] - Double and Triple Tech combinations
+* [[ROM Map]]
+* [[RAM Map]]
+
+[[Category:Chrono Trigger (SNES)]]

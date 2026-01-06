@@ -1,0 +1,454 @@
+{{Back|Final Fantasy IV (SNES)}}
+__TOC__
+
+== Overview ==
+
+Final Fantasy IV features numerous items including consumables, key items, and equipment. This page documents all items and their data.
+
+== Item Data Structure ==
+
+Item data is 16 bytes per entry:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Item type
+|-
+| $01 || 1 || Equip flags
+|-
+| $02 || 1 || Effect ID
+|-
+| $03 || 1 || Effect power
+|-
+| $04-$05 || 2 || Buy price
+|-
+| $06-$07 || 2 || Sell price
+|-
+| $08-$0F || 8 || Additional attributes
+|}
+
+== Consumable Items ==
+
+=== Healing Items ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Effect !! Buy !! Sell
+|-
+| $01 || Potion || Restore 100 HP || 30 || 15
+|-
+| $02 || Hi-Potion || Restore 500 HP || 150 || 75
+|-
+| $03 || X-Potion || Restore all HP || 3000 || 1500
+|-
+| $04 || Ether || Restore 50 MP || 10000 || 5000
+|-
+| $05 || Dry Ether || Restore all MP || — || —
+|-
+| $06 || Elixir || Restore HP/MP || — || —
+|-
+| $07 || Phoenix Down || Revive (25% HP) || 150 || 75
+|-
+| $08 || Antidote || Cure Poison || 40 || 20
+|-
+| $09 || Gold Needle || Cure Stone || 400 || 200
+|-
+| $0A || Maiden's Kiss || Cure Toad || 60 || 30
+|-
+| $0B || Diet Ration || Cure Pig || 80 || 40
+|-
+| $0C || Eye Drops || Cure Blind || 30 || 15
+|-
+| $0D || Echo Herbs || Cure Silence || 50 || 25
+|-
+| $0E || Alarm Clock || Cure Sleep || 15 || 7
+|-
+| $0F || Unicorn Horn || Cure status || 500 || 250
+|-
+| $10 || Remedy || Cure all status || 5000 || 2500
+|-
+| $11 || Cottage || Full restore (save) || 500 || 250
+|-
+| $12 || Tent || Restore (save) || 200 || 100
+|}
+
+=== Battle Items ===
+
+{| class="wikitable"
+|-
+! ID !! Name !! Effect !! Buy !! Sell
+|-
+| $20 || Bomb Fragment || Fire damage || 200 || 100
+|-
+| $21 || Bomb Crank || Fira damage || 600 || 300
+|-
+| $22 || Bomb Core || Firaga damage || — || —
+|-
+| $23 || Antarctic Wind || Blizzard damage || 200 || 100
+|-
+| $24 || Arctic Wind || Blizzara damage || 600 || 300
+|-
+| $25 || Ice Storm || Blizzaga damage || — || —
+|-
+| $26 || Zeus's Wrath || Thunder damage || 200 || 100
+|-
+| $27 || Heavenly Wrath || Thundara damage || 600 || 300
+|-
+| $28 || Wrath of Gods || Thundaga damage || — || —
+|-
+| $29 || Gaia Drum || Quake damage || — || —
+|-
+| $2A || Stardust || Comet damage || — || —
+|-
+| $2B || Lilith's Kiss || Drain MP || — || —
+|-
+| $2C || Vampire Fang || Drain HP || — || —
+|-
+| $2D || Spider Silk || Slow enemy || 300 || 150
+|-
+| $2E || Decoy || Spawn illusion || 400 || 200
+|-
+| $2F || Red Fang || Fire breath || 800 || 400
+|-
+| $30 || White Fang || Ice breath || 800 || 400
+|-
+| $31 || Blue Fang || Lightning breath || 800 || 400
+|-
+| $32 || Light Curtain || Reflect || 2000 || 1000
+|-
+| $33 || Lunar Curtain || Shell || 1000 || 500
+|-
+| $34 || Silent Bell || Silence enemy || 200 || 100
+|-
+| $35 || Bacchus's Wine || Berserk ally || 300 || 150
+|-
+| $36 || Hermes Shoes || Haste ally || 2000 || 1000
+|}
+
+== Key Items ==
+
+{| class="wikitable"
+|-
+! ID !! Name !! Location !! Use
+|-
+| $40 || Package || Baron || Deliver to Mist
+|-
+| $41 || Bomb Ring || Mist || Rydia's mother's gift
+|-
+| $42 || Baron Key || Baron Castle || Open castle doors
+|-
+| $43 || Sand Pearl || Antlion Cave || Cure Rosa
+|-
+| $44 || Earth Crystal || Fabul || Elemental crystal
+|-
+| $45 || Magma Rock || Agart || Access underworld
+|-
+| $46 || Hovercraft || Baron || Travel shallow water
+|-
+| $47 || Tower Key || Tower of Zot || Access inner tower
+|-
+| $48 || Luca's Necklace || Dwarf Castle || Prove identity
+|-
+| $49 || Dark Crystal || Dark Elf Cave || Elemental crystal
+|-
+| $4A || Hook || Underworld || Grappling hook
+|-
+| $4B || Lugae Key || Tower of Babil || Open tower
+|-
+| $4C || Darkness Sword || Giant || Cecil's dark blade
+|-
+| $4D || Rat Tail || Adamant Cave || Trade for Adamantite
+|-
+| $4E || Adamantite || Kokkol || Forge Excalibur
+|-
+| $4F || Pan || Yang's House || Wake Yang
+|-
+| $50 || Pink Tail || Rare drop || Trade for Adamant Armor
+|-
+| $51 || Crystal || Lunar core || Access Zeromus
+|}
+
+== Weapons ==
+
+=== Swords (Cecil, Kain) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Atk !! Hit !! Special !! Buy !! Equip
+|-
+| $60 || Shadow Blade || 35 || 35 || Dark || — || DK Cecil
+|-
+| $61 || Deathbringer || 45 || 35 || Dark || — || DK Cecil
+|-
+| $62 || Mythgraven Blade || 30 || 80 || Paladin || — || P Cecil
+|-
+| $63 || Ancient Sword || 40 || 45 || Curse || 700 || Cecil
+|-
+| $64 || Blood Sword || 33 || 20 || Drain || — || Cecil
+|-
+| $65 || Sleep Blade || 50 || 40 || Sleep || — || Cecil
+|-
+| $66 || Flame Sword || 55 || 50 || Fire || 6500 || Cecil
+|-
+| $67 || Icebrand || 55 || 50 || Ice || 6500 || Cecil
+|-
+| $68 || Stoneblade || 60 || 60 || Stone || — || Cecil
+|-
+| $69 || Defender || 105 || 85 || Defense || — || Cecil
+|-
+| $6A || Excalibur || 160 || 99 || Holy || — || Cecil
+|-
+| $6B || Ragnarok || 180 || 80 || — || — || Cecil
+|-
+| $6C || Crystal Sword || 200 || 99 || — || — || Cecil
+|}
+
+=== Spears (Kain) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Atk !! Hit !! Special !! Buy
+|-
+| $70 || Spear || 18 || 60 || — || 60
+|-
+| $71 || Javelin || 28 || 65 || — || 480
+|-
+| $72 || Wind Spear || 60 || 70 || Wind || —
+|-
+| $73 || Flame Lance || 80 || 75 || Fire || 11000
+|-
+| $74 || Ice Lance || 80 || 75 || Ice || 11000
+|-
+| $75 || Blood Lance || 88 || 60 || Drain || —
+|-
+| $76 || Gungnir || 92 || 80 || — || —
+|-
+| $77 || Dragon Lance || 99 || 85 || Dragon || —
+|-
+| $78 || Holy Lance || 109 || 90 || Holy || —
+|-
+| $79 || Wyvern Lance || 170 || 99 || — || —
+|}
+
+=== Staves (Rosa, Tellah, Porom, FuSoYa) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Atk !! Hit !! Special !! Buy
+|-
+| $80 || Staff || 5 || 50 || — || 60
+|-
+| $81 || Healing Staff || 10 || 50 || Cure || 480
+|-
+| $82 || Mythril Staff || 15 || 60 || — || 400
+|-
+| $83 || Power Staff || 35 || 70 || — || —
+|-
+| $84 || Sage's Staff || 50 || 75 || — || —
+|-
+| $85 || Rune Staff || 65 || 80 || — || —
+|-
+| $86 || Lunar Staff || 99 || 85 || — || —
+|-
+| $87 || Seraph's Staff || 20 || 50 || Heal all || —
+|}
+
+=== Rods (Rydia, Palom, Tellah) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Atk !! Hit !! Special !! Buy
+|-
+| $90 || Rod || 5 || 50 || — || 100
+|-
+| $91 || Flame Rod || 12 || 55 || Fire || 380
+|-
+| $92 || Ice Rod || 12 || 55 || Ice || 380
+|-
+| $93 || Thunder Rod || 12 || 55 || Thunder || 380
+|-
+| $94 || Polymorph Rod || 15 || 55 || Toad || —
+|-
+| $95 || Faerie Rod || 25 || 60 || Confuse || —
+|-
+| $96 || Stardust Rod || 44 || 70 || Comet || —
+|-
+| $97 || Lilith Rod || 55 || 75 || Drain MP || —
+|-
+| $98 || Asura's Rod || 66 || 80 || — || —
+|}
+
+=== Bows (Rosa) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Atk !! Hit !! Arrows !! Buy
+|-
+| $A0 || Bow || 10 || 30 || Iron Arrow || 220
+|-
+| $A1 || Crossbow || 20 || 50 || — || 700
+|-
+| $A2 || Great Bow || 30 || 55 || — || 2000
+|-
+| $A3 || Killer Bow || 35 || 55 || Death || 3000
+|-
+| $A4 || Elven Bow || 45 || 60 || — || 5000
+|-
+| $A5 || Yoichi Bow || 77 || 80 || — || —
+|-
+| $A6 || Artemis Bow || 99 || 90 || — || —
+|-
+| $A7 || Perseus Bow || 130 || 85 || Stone || —
+|}
+
+== Armor ==
+
+=== Body Armor ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Def !! M.Def !! Evasion !! Buy !! Equip
+|-
+| $B0 || Clothes || 1 || 0 || 0 || 50 || All
+|-
+| $B1 || Leather Armor || 3 || 0 || 0 || 200 || Light
+|-
+| $B2 || Iron Armor || 7 || 0 || 0 || 600 || Heavy
+|-
+| $B3 || Dark Armor || 10 || 3 || 0 || — || Cecil
+|-
+| $B4 || Hades Armor || 15 || 5 || 0 || — || Cecil
+|-
+| $B5 || Knight's Armor || 12 || 2 || 0 || 3000 || Cecil
+|-
+| $B6 || Mythril Armor || 14 || 4 || 0 || 5000 || Heavy
+|-
+| $B7 || Flame Mail || 18 || 5 || 0 || 30000 || Heavy
+|-
+| $B8 || Ice Armor || 18 || 5 || 0 || 30000 || Heavy
+|-
+| $B9 || Dragon Mail || 20 || 10 || 5 || — || Heavy
+|-
+| $BA || Diamond Armor || 22 || 8 || 0 || 40000 || Heavy
+|-
+| $BB || Genji Armor || 25 || 12 || 0 || — || Heavy
+|-
+| $BC || Crystal Mail || 28 || 15 || 0 || — || Heavy
+|-
+| $BD || Adamant Armor || 100 || 100 || 0 || — || Cecil
+|}
+
+=== Robes ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Def !! M.Def !! Special !! Buy !! Equip
+|-
+| $C0 || Gaia Gear || 3 || 5 || Earth || 500 || Mage
+|-
+| $C1 || Sage's Robe || 5 || 8 || — || — || Mage
+|-
+| $C2 || Black Robe || 7 || 10 || +5 INT || 10000 || Black
+|-
+| $C3 || White Robe || 7 || 10 || +5 SPI || 10000 || White
+|-
+| $C4 || Luminous Robe || 12 || 15 || — || — || Mage
+|-
+| $C5 || Minerva Bustier || 18 || 20 || — || — || Female
+|}
+
+== Helmets ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Def !! M.Def !! Buy !! Equip
+|-
+| $D0 || Leather Cap || 1 || 0 || 100 || All
+|-
+| $D1 || Headband || 2 || 0 || 450 || Light
+|-
+| $D2 || Iron Helm || 5 || 0 || 700 || Heavy
+|-
+| $D3 || Dark Helm || 7 || 2 || — || Cecil
+|-
+| $D4 || Hades Helm || 9 || 4 || — || Cecil
+|-
+| $D5 || Mythril Helm || 8 || 2 || 3000 || Heavy
+|-
+| $D6 || Diamond Helm || 10 || 5 || 10000 || Heavy
+|-
+| $D7 || Genji Helm || 13 || 8 || — || Heavy
+|-
+| $D8 || Dragon Helm || 15 || 10 || — || Heavy
+|-
+| $D9 || Crystal Helm || 18 || 12 || — || Heavy
+|-
+| $DA || Glass Mask || 20 || 15 || — || All
+|-
+| $DB || Ribbon || 5 || 20 || Block status || — || Female
+|}
+
+== Shields ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Def !! M.Def !! Eva !! Buy !! Equip
+|-
+| $E0 || Leather Shield || 1 || 0 || 5 || 40 || Light
+|-
+| $E1 || Iron Shield || 2 || 0 || 8 || 100 || Heavy
+|-
+| $E2 || Dark Shield || 3 || 2 || 10 || — || Cecil
+|-
+| $E3 || Hades Shield || 5 || 4 || 15 || — || Cecil
+|-
+| $E4 || Mythril Shield || 4 || 3 || 12 || 1000 || Heavy
+|-
+| $E5 || Flame Shield || 6 || 5 || 15 || — || Heavy
+|-
+| $E6 || Ice Shield || 6 || 5 || 15 || — || Heavy
+|-
+| $E7 || Diamond Shield || 7 || 6 || 18 || — || Heavy
+|-
+| $E8 || Aegis Shield || 8 || 10 || 30 || — || Heavy
+|-
+| $E9 || Dragon Shield || 9 || 8 || 25 || — || Heavy
+|-
+| $EA || Genji Shield || 10 || 9 || 28 || — || Heavy
+|-
+| $EB || Crystal Shield || 12 || 10 || 32 || — || Heavy
+|}
+
+== Accessories ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Effect !! Buy
+|-
+| $F0 || Silver Ring || +3 SPI || 300
+|-
+| $F1 || Ruby Ring || +3 STR || 300
+|-
+| $F2 || Power Armlet || +5 STR || —
+|-
+| $F3 || Rune Armlet || +5 INT || —
+|-
+| $F4 || Crystal Ring || +5 all || —
+|-
+| $F5 || Protect Ring || Regen || —
+|-
+| $F6 || Curse Ring || Death at 0 HP || —
+|-
+| $F7 || Cat-Ear Hood || Double Gil || —
+|-
+| $F8 || Reach Ring || Back row no penalty || —
+|}
+
+== See Also ==
+
+* [[Characters]]
+* [[Magic]]
+* [[ROM Map]]
+
+[[Category:Final Fantasy IV (SNES)]]

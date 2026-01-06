@@ -1,0 +1,422 @@
+{{Back|Chrono Trigger (SNES)}}
+__TOC__
+
+== Overview ==
+
+Chrono Trigger features numerous items including consumables, key items, weapons, armor, helmets, and accessories. This page documents item data and effects.
+
+== Item Data Structure ==
+
+Item entries are 8 bytes:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Item type
+|-
+| $01 || 1 || Effect value
+|-
+| $02 || 1 || Buy price (low)
+|-
+| $03 || 1 || Buy price (high)
+|-
+| $04 || 1 || Sell price (low)
+|-
+| $05 || 1 || Sell price (high)
+|-
+| $06 || 1 || Flags
+|-
+| $07 || 1 || Description ID
+|}
+
+== Consumable Items ==
+
+=== Healing Items ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Effect !! Buy !! Sell
+|-
+| $01 || Tonic || Restore 50 HP || 10 || 5
+|-
+| $02 || Mid Tonic || Restore 200 HP || 100 || 50
+|-
+| $03 || Full Tonic || Restore 500 HP || 700 || 350
+|-
+| $04 || Hyper Ether || Full HP || — || —
+|-
+| $05 || Ether || Restore 10 MP || 800 || 400
+|-
+| $06 || Mid Ether || Restore 30 MP || 2000 || 1000
+|-
+| $07 || Full Ether || Full MP || — || —
+|-
+| $08 || Elixir || Full HP/MP (one) || — || —
+|-
+| $09 || Megalixir || Full HP/MP (all) || — || —
+|-
+| $0A || Heal || Cure status || 10 || 5
+|-
+| $0B || Revive || Revive 50 HP || 200 || 100
+|-
+| $0C || Shelter || Restore at save || 150 || 75
+|}
+
+=== Battle Items ===
+
+{| class="wikitable"
+|-
+! ID !! Name !! Effect !! Buy !! Sell
+|-
+| $10 || Barrier || Magic Wall || — || —
+|-
+| $11 || Shield || Physical Wall || — || —
+|-
+| $12 || Power Tab || +1 Power || — || —
+|-
+| $13 || Magic Tab || +1 Magic || — || —
+|-
+| $14 || Speed Tab || +1 Speed || — || —
+|}
+
+== Key Items ==
+
+{| class="wikitable"
+|-
+! ID !! Name !! Location !! Use
+|-
+| $40 || Pendant || Marle's || Sealed doors
+|-
+| $41 || Gate Key || Lucca || Activate gates
+|-
+| $42 || Bike Key || Lab 32 || Johnny race
+|-
+| $43 || Prison Key || 1000 AD || Escape
+|-
+| $44 || Jerky || Snail Stop || Food for Cyrus
+|-
+| $45 || Dreamstone || Prehistory || Masamune repair
+|-
+| $46 || Bent Sword || Denadoro || Masamune piece
+|-
+| $47 || Bent Hilt || Denadoro || Masamune piece
+|-
+| $48 || Hero Medal || Tata || Prove hero
+|-
+| $49 || Ruby Knife || Zeal || Pierce Mammon
+|-
+| $4A || Moon Stone || Sun Keep || Power source
+|-
+| $4B || Sun Stone || Sun Keep || Evolved Moon Stone
+|-
+| $4C || Clone || Fair || Lavos fight
+|-
+| $4D || Toma's Pop || West Cape || Find grave
+|-
+| $4E || Golden Hammer || Giant's Claw || Open chest
+|-
+| $4F || Prism Shard || Rainbow Shell || Rainbow equip
+|-
+| $50 || C. Trigger || Death Peak || Revive Crono
+|}
+
+== Weapons ==
+
+=== Katanas (Crono) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Atk !! Special !! Buy
+|-
+| $60 || Wood Sword || 3 || — || 50
+|-
+| $61 || Iron Blade || 7 || — || 350
+|-
+| $62 || Steel Saber || 15 || — || 800
+|-
+| $63 || Lode Sword || 20 || — || 4000
+|-
+| $64 || Red Katana || 30 || — || 4500
+|-
+| $65 || Flint Edge || 40 || — || 6500
+|-
+| $66 || Aeon Blade || 70 || — || 9000
+|-
+| $67 || Demon Edge || 90 || 4x crit || 17000
+|-
+| $68 || Alloy Blade || 110 || — || 21000
+|-
+| $69 || Star Sword || 125 || — || 25000
+|-
+| $6A || Vedic Blade || 135 || — || 28000
+|-
+| $6B || Kali Blade || 150 || 1.5x crit || 42000
+|-
+| $6C || Shiva Edge || 170 || 2x crit || 65000
+|-
+| $6D || Swallow || 145 || +3 Speed || —
+|-
+| $6E || Slasher 2 || 155 || — || —
+|-
+| $6F || Rainbow || 220 || 70% crit || —
+|}
+
+=== Crossbows (Marle) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Atk !! Special !! Buy
+|-
+| $70 || Bronze Bow || 3 || — || 50
+|-
+| $71 || Iron Bow || 15 || — || 850
+|-
+| $72 || Lode Bow || 20 || — || 4500
+|-
+| $73 || Robin Bow || 25 || — || 5000
+|-
+| $74 || Sage Bow || 40 || — || 8500
+|-
+| $75 || Dream Bow || 60 || — || 12000
+|-
+| $76 || Comet Arrow || 80 || — || 18000
+|-
+| $77 || Sonic Arrow || 100 || — || 24000
+|-
+| $78 || Siren || 140 || Stop status || 38000
+|-
+| $79 || Valkyrie || 180 || — || —
+|}
+
+=== Guns (Lucca) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Atk !! Special !! Buy
+|-
+| $80 || Air Gun || 5 || — || 100
+|-
+| $81 || Dart Gun || 7 || — || 800
+|-
+| $82 || Auto Gun || 15 || — || 1200
+|-
+| $83 || Plasma Gun || 25 || — || 3200
+|-
+| $84 || Ruby Gun || 40 || — || 6000
+|-
+| $85 || Dream Gun || 60 || — || 11000
+|-
+| $86 || Megablast || 80 || — || 15000
+|-
+| $87 || Shockwave || 110 || — || 23000
+|-
+| $88 || Wondershot || ??? || Random dmg || —
+|}
+
+=== Arms (Robo) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Atk !! Special !! Buy
+|-
+| $90 || Tin Arm || 20 || — || —
+|-
+| $91 || Hammer Arm || 25 || — || 3500
+|-
+| $92 || Mirage Hand || 30 || — || 6000
+|-
+| $93 || Stone Arm || 40 || — || 8000
+|-
+| $94 || Doom Finger || 50 || — || 12000
+|-
+| $95 || Magma Hand || 70 || — || 18000
+|-
+| $96 || Megaton Arm || 90 || — || 28000
+|-
+| $97 || Big Hand || 105 || — || 38000
+|-
+| $98 || Kaiser Arm || 120 || — || 52000
+|-
+| $99 || Giga Arm || 135 || — || 68000
+|-
+| $9A || Terra Arm || 150 || — || —
+|-
+| $9B || Crisis Arm || ??? || HP-based || —
+|}
+
+=== Broadswords (Frog) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Atk !! Special !! Buy
+|-
+| $A0 || Bronze Edge || 6 || — || 120
+|-
+| $A1 || Iron Sword || 10 || — || 800
+|-
+| $A2 || Masamune || 75 || +4 Magic || —
+|-
+| $A3 || Flash Blade || 90 || — || 18000
+|-
+| $A4 || Pearl Edge || 105 || — || 26000
+|-
+| $A5 || Rune Blade || 120 || — || 38000
+|-
+| $A6 || Demon Hit || 120 || — || —
+|-
+| $A7 || Brave Sword || 135 || — || 65000
+|-
+| $A8 || Masamune 2 || 170 || 4x crit, +4 Magic || —
+|}
+
+=== Fists (Ayla) ===
+
+Ayla's weapon changes with level:
+
+{| class="wikitable"
+|-
+! Level !! Weapon !! Atk !! Special
+|-
+| 1-23 || Fist || 2 || —
+|-
+| 24-47 || Iron Fist || 28 || —
+|-
+| 48-71 || Bronze Fist || 72 || —
+|-
+| 72-95 || Silver Fist || 118 || —
+|-
+| 96+ || Iron Fist* || 168 || 9999 crit
+|}
+
+=== Scythes (Magus) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Atk !! Special !! Buy
+|-
+| $B0 || DarkScythe || 120 || +5 Magic || —
+|-
+| $B1 || Hurricane || 135 || +3 Speed || —
+|-
+| $B2 || StarScythe || 150 || +2 Speed || —
+|-
+| $B3 || DoomSickle || 160 || Dmg per dead ally || —
+|}
+
+== Armor ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Def !! Special !! Buy !! Equip
+|-
+| $C0 || Hide Tunic || 5 || — || 80 || All
+|-
+| $C1 || Karate Gi || 10 || — || 300 || All
+|-
+| $C2 || Bronze Mail || 16 || — || 520 || M/F/Robo
+|-
+| $C3 || Maiden Suit || 18 || — || 560 || F
+|-
+| $C4 || Iron Suit || 25 || — || 800 || M
+|-
+| $C5 || Titan Vest || 32 || — || 1200 || All
+|-
+| $C6 || Gold Suit || 39 || — || 1300 || All
+|-
+| $C7 || Ruby Vest || 45 || Fire absorb || 2500 || All
+|-
+| $C8 || Dark Mail || 53 || — || 8500 || M
+|-
+| $C9 || White Mail || 45 || Light absorb || — || All
+|-
+| $CA || Black Mail || 45 || Shadow absorb || — || All
+|-
+| $CB || Blue Mail || 39 || Water absorb || — || All
+|-
+| $CC || Red Mail || 39 || Fire absorb || — || All
+|-
+| $CD || Prism Dress || 99 || — || — || F
+|-
+| $CE || Moon Armor || 85 || — || 65000 || M
+|-
+| $CF || Nova Armor || 80 || +6 Speed || 40000 || M
+|-
+| $D0 || Zodiac Cape || 80 || — || 35000 || F
+|}
+
+== Helmets ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Def !! Special !! Buy !! Equip
+|-
+| $E0 || Hide Cap || 3 || — || 50 || All
+|-
+| $E1 || Bronze Helm || 8 || — || 200 || M
+|-
+| $E2 || Iron Helm || 14 || — || 500 || M
+|-
+| $E3 || Beret || 17 || — || 700 || F
+|-
+| $E4 || Gold Helm || 18 || — || 1500 || M
+|-
+| $E5 || Rock Helm || 20 || — || 2300 || M
+|-
+| $E6 || Cera Topper || 23 || — || 3500 || M
+|-
+| $E7 || Taban Helm || 24 || — || — || Lucca
+|-
+| $E8 || Aeon Helm || 33 || — || 7800 || M
+|-
+| $E9 || Prism Helm || 40 || — || — || All
+|-
+| $EA || Ozzie Pants || 45 || — || — || All
+|}
+
+== Accessories ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Effect !! Buy
+|-
+| $F0 || Bandana || +1 Speed || 50
+|-
+| $F1 || Ribbon || +2 Speed || 100
+|-
+| $F2 || Power Ring || +6 Power || 6000
+|-
+| $F3 || Magic Ring || +6 Magic || 6000
+|-
+| $F4 || Power Glove || +2 Power || 2000
+|-
+| $F5 || Defender || +2 Vigor || 5000
+|-
+| $F6 || Magic Scarf || +2 Magic || 2000
+|-
+| $F7 || Amulet || Block status || 10000
+|-
+| $F8 || Dash Ring || +3 Speed || 8000
+|-
+| $F9 || Hit Ring || +10 Hit || 3000
+|-
+| $FA || Berserker || Auto-attack || —
+|-
+| $FB || Power Seal || +10 Power || —
+|-
+| $FC || Magic Seal || +10 Magic || —
+|-
+| $FD || Gold Stud || 75% MP || —
+|-
+| $FE || Silver Stud || 50% MP || —
+|-
+| $FF || Prism Specs || +50% dmg || —
+|}
+
+== See Also ==
+
+* [[Characters]]
+* [[Techs]]
+* [[Enemies]]
+
+[[Category:Chrono Trigger (SNES)]]

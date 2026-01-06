@@ -1,0 +1,389 @@
+{{Back|Dragon Quest I & II (SNES)}}
+__TOC__
+
+== Overview ==
+
+Dragon Quest I & II for SNES contains items from both Dragon Quest I and Dragon Quest II. This page documents all items and equipment.
+
+== Item Data Structure ==
+
+Each item entry is 8 bytes:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Item ID
+|-
+| $01 || 1 || Item type
+|-
+| $02 || 1 || Effect value
+|-
+| $03 || 1 || Equip flags
+|-
+| $04-$05 || 2 || Buy price
+|-
+| $06-$07 || 2 || Sell price
+|}
+
+== Dragon Quest I Items ==
+
+=== DQ1 Weapons ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Attack !! Buy !! Sell !! Notes
+|-
+| $00 || — || 0 || — || — || Bare hands
+|-
+| $01 || Bamboo Pole || +2 || 10 || 5 || Starting option
+|-
+| $02 || Club || +4 || 60 || 30 || Cheap
+|-
+| $03 || Copper Sword || +10 || 180 || 90 || First good weapon
+|-
+| $04 || Hand Axe || +15 || 560 || 280 || —
+|-
+| $05 || Broad Sword || +20 || 1500 || 750 || —
+|-
+| $06 || Flame Sword || +28 || 9800 || 4900 || Fire damage in battle
+|-
+| $07 || Erdrick's Sword || +40 || — || — || Ultimate weapon
+|}
+
+=== DQ1 Armor ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Defense !! Buy !! Sell !! Notes
+|-
+| $10 || Clothes || +2 || 20 || 10 || Starting
+|-
+| $11 || Leather Armor || +4 || 70 || 35 || —
+|-
+| $12 || Chain Mail || +10 || 300 || 150 || —
+|-
+| $13 || Half Plate || +16 || 1000 || 500 || —
+|-
+| $14 || Full Plate || +24 || 3000 || 1500 || —
+|-
+| $15 || Magic Armor || +24 || 7700 || 3850 || Regen HP while walking
+|-
+| $16 || Erdrick's Armor || +28 || — || — || Regen + resist swamp
+|}
+
+=== DQ1 Shields ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Defense !! Buy !! Sell !! Notes
+|-
+| $20 || — || 0 || — || — || No shield
+|-
+| $21 || Leather Shield || +4 || 90 || 45 || —
+|-
+| $22 || Iron Shield || +10 || 800 || 400 || —
+|-
+| $23 || Silver Shield || +20 || 14800 || 7400 || Best purchasable
+|}
+
+=== DQ1 Key Items ===
+
+{| class="wikitable"
+|-
+! ID !! Name !! Location !! Use
+|-
+| $30 || Torch || Shop || Light caves
+|-
+| $31 || Fairy Water || Shop || Repel monsters
+|-
+| $32 || Wings || Shop || Return to castle
+|-
+| $33 || Dragon's Scale || Treasure || +2 Defense accessory
+|-
+| $34 || Fairy Flute || Kol || Wake Golem
+|-
+| $35 || Fighter's Ring || Cave || +2 Attack
+|-
+| $36 || Erdrick's Token || Marsh || Prove lineage
+|-
+| $37 || Gwaelin's Love || Princess || Locate position
+|-
+| $38 || Silver Harp || Grave || Summon monsters
+|-
+| $39 || Staff of Rain || Shrine || Make Rainbow Bridge
+|-
+| $3A || Stones of Sunlight || Tantegel || Make Rainbow Bridge
+|-
+| $3B || Rainbow Drop || Combine || Create bridge to Charlock
+|-
+| $3C || Ball of Light || Dragonlord || Peace to Alefgard
+|}
+
+=== DQ1 Consumables ===
+
+{| class="wikitable"
+|-
+! ID !! Name !! Effect !! Buy !! Sell
+|-
+| $40 || Herb || Restore 20-35 HP || 24 || 12
+|-
+| $41 || Magic Key || Open doors || 32 || 16
+|-
+| $42 || Torch || Light caves || 8 || 4
+|-
+| $43 || Fairy Water || Repel weak enemies || 38 || 19
+|-
+| $44 || Wings || Return to Tantegel || 70 || 35
+|}
+
+== Dragon Quest II Items ==
+
+=== DQ2 Weapons ===
+
+==== Swords (Midenhall) ====
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Attack !! Buy !! Sell
+|-
+| $50 || Copper Sword || +10 || 100 || 50
+|-
+| $51 || Chain Sickle || +15 || 390 || 195
+|-
+| $52 || Iron Spear || +20 || 770 || 385
+|-
+| $53 || Steel Sword || +30 || 1500 || 750
+|-
+| $54 || Giant Shears || +45 || 3700 || 1850
+|-
+| $55 || Sword of Destruction || +53 || — || 7500
+|-
+| $56 || Dragon Killer || +50 || 8000 || 4000
+|-
+| $57 || Falcon Sword || +5x2 || 25000 || 12500
+|-
+| $58 || Thunder Sword || +65 || — || —
+|-
+| $59 || Erdrick's Sword || +40 || — || —
+|}
+
+==== Staves (Cannock) ====
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Attack !! Buy !! Sell
+|-
+| $60 || Cypress Stick || +2 || 10 || 5
+|-
+| $61 || Thorn Whip || +8 || 200 || 100
+|-
+| $62 || Magic Knife || +12 || 200 || 100
+|-
+| $63 || Iron Spear || +20 || 770 || 385
+|-
+| $64 || Staff of Thunder || +30 || — || 5000
+|-
+| $65 || Dragon Killer || +50 || 8000 || 4000
+|-
+| $66 || Light Sword || +35 || — || —
+|}
+
+==== Wands (Moonbrooke) ====
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Attack !! Buy !! Sell !! Special
+|-
+| $70 || Cypress Stick || +2 || 10 || 5 || —
+|-
+| $71 || Thorn Whip || +8 || 200 || 100 || —
+|-
+| $72 || Magic Knife || +12 || 200 || 100 || —
+|-
+| $73 || Iron Spear || +20 || 770 || 385 || —
+|-
+| $74 || Staff of Thunder || +30 || — || 5000 || Cast Infernos
+|-
+| $75 || Staff of Judgment || +35 || — || — || Cast Firevolt
+|-
+| $76 || Staff of Rain || +0 || — || — || Key item
+|}
+
+=== DQ2 Armor ===
+
+==== Heavy Armor (Midenhall) ====
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Defense !! Buy !! Sell
+|-
+| $80 || Clothes || +4 || 30 || 15
+|-
+| $81 || Leather Armor || +6 || 150 || 75
+|-
+| $82 || Chain Mail || +12 || 480 || 240
+|-
+| $83 || Half Plate || +20 || 1000 || 500
+|-
+| $84 || Full Plate || +25 || 2300 || 1150
+|-
+| $85 || Steel Armor || +30 || 4300 || 2150
+|-
+| $86 || Magic Armor || +35 || 4300 || 2150
+|-
+| $87 || Erdrick's Armor || +40 || — || —
+|}
+
+==== Light Armor (Cannock) ====
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Defense !! Buy !! Sell
+|-
+| $90 || Clothes || +4 || 30 || 15
+|-
+| $91 || Leather Armor || +6 || 150 || 75
+|-
+| $92 || Chain Mail || +12 || 480 || 240
+|-
+| $93 || Magic Armor || +35 || 4300 || 2150
+|-
+| $94 || Cloak of Wind || +20 || 2600 || 1300
+|-
+| $95 || Water Flying Cloth || +35 || 12500 || 6250
+|}
+
+==== Robes (Moonbrooke) ====
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Defense !! Buy !! Sell
+|-
+| $A0 || Plain Clothes || +3 || 10 || 5
+|-
+| $A1 || Clothes || +4 || 30 || 15
+|-
+| $A2 || Leather Dress || +12 || 480 || 240
+|-
+| $A3 || Cloak of Evasion || +20 || 1250 || 625
+|-
+| $A4 || Mink Coat || +45 || 65000 || 32500
+|-
+| $A5 || Water Flying Cloth || +35 || 12500 || 6250
+|}
+
+=== DQ2 Shields ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Defense !! Buy !! Sell !! Equip
+|-
+| $B0 || Leather Shield || +4 || 90 || 45 || All
+|-
+| $B1 || Iron Shield || +10 || 800 || 400 || M, C
+|-
+| $B2 || Steel Shield || +20 || 2000 || 1000 || M
+|-
+| $B3 || Shield of Strength || +25 || — || 8000 || M
+|-
+| $B4 || Erdrick's Shield || +30 || — || — || M
+|}
+
+=== DQ2 Helmets ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Defense !! Buy !! Sell !! Equip
+|-
+| $C0 || Leather Helmet || +2 || 140 || 70 || All
+|-
+| $C1 || Iron Helmet || +6 || 2000 || 1000 || M
+|-
+| $C2 || Iron Mask || +12 || 3150 || 1575 || M
+|-
+| $C3 || Helmet of Erdrick || +20 || — || — || M
+|}
+
+=== DQ2 Key Items ===
+
+{| class="wikitable"
+|-
+! ID !! Name !! Location !! Use
+|-
+| $D0 || Golden Key || Midenhall Castle || Open gold doors
+|-
+| $D1 || Silver Key || Lake Cave || Open silver doors
+|-
+| $D2 || Jailor's Key || Tower of Wind || Open jail doors
+|-
+| $D3 || Magic Loom || Tuhn || Weave Water Flying Cloth
+|-
+| $D4 || Ship || Lianport || Ocean travel
+|-
+| $D5 || Moon Fragment || Tower of Moon || Access Rhone
+|-
+| $D6 || Eye of Malroth || Rhone Cave || Dispel Hargon's illusion
+|-
+| $D7 || Charm of Rubiss || Rubiss Tower || See through illusions
+|-
+| $D8 || Staff of Rain || World || Call rain at shrine
+|-
+| $D9 || Sun Crest || Fire Shrine || Place at shrine
+|-
+| $DA || Princess's Echoes || — || Shows princess location
+|}
+
+=== DQ2 Consumables ===
+
+{| class="wikitable"
+|-
+! ID !! Name !! Effect !! Buy !! Sell
+|-
+| $E0 || Medical Herb || Restore HP || 15 || 7
+|-
+| $E1 || Antidote Herb || Cure poison || 8 || 4
+|-
+| $E2 || Fairy Water || Repel enemies || 40 || 20
+|-
+| $E3 || Wings || Return to visited town || 80 || 40
+|-
+| $E4 || Wizard's Ring || Restore MP (limited) || — || 1500
+|-
+| $E5 || Prayer Ring || Restore MP || — || 15000
+|-
+| $E6 || Leaf of World Tree || Revive ally || — || —
+|-
+| $E7 || Lottery Ticket || Prize draw || 20 || 10
+|}
+
+== Equipment Restrictions ==
+
+=== By Character ===
+
+{| class="wikitable"
+|-
+! Character !! Weapons !! Armor !! Shields !! Helmets
+|-
+| Midenhall || Swords || Heavy || All || All
+|-
+| Cannock || Staves, Some swords || Light || Leather, Iron || Leather
+|-
+| Moonbrooke || Wands || Robes || — || —
+|}
+
+== SNES Changes ==
+
+Equipment changes from NES version:
+* Falcon Sword attack reduced from +7x2 to +5x2
+* Erdrick equipment stats adjusted
+* Some item prices changed
+* Bag system added (items stored)
+
+== See Also ==
+
+* [[Monsters]]
+* [[ROM Map]]
+* [[RAM Map]]
+
+[[Category:Dragon Quest I & II (SNES)]]

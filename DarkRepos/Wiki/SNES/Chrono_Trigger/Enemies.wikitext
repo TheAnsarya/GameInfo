@@ -1,0 +1,263 @@
+{{Back|Chrono Trigger (SNES)}}
+__TOC__
+
+== Overview ==
+
+Chrono Trigger features over 200 enemies across different eras. This page documents enemy statistics and behaviors.
+
+== Enemy Data Structure ==
+
+Each enemy entry is 32 bytes:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00-$01 || 2 || HP
+|-
+| $02-$03 || 2 || MP (unused for most)
+|-
+| $04 || 1 || Level
+|-
+| $05 || 1 || Power
+|-
+| $06 || 1 || Stamina
+|-
+| $07 || 1 || Speed
+|-
+| $08 || 1 || Magic
+|-
+| $09 || 1 || Magic Defense
+|-
+| $0A || 1 || Evade
+|-
+| $0B || 1 || Defense
+|-
+| $0C-$0D || 2 || Experience
+|-
+| $0E-$0F || 2 || Gold
+|-
+| $10 || 1 || Tech Points
+|-
+| $11 || 1 || Drop item ID
+|-
+| $12 || 1 || Drop rate
+|-
+| $13 || 1 || Charm item ID
+|-
+| $14-$1F || 12 || Attack patterns, resistances
+|}
+
+== Enemies by Era ==
+
+=== Present (1000 AD) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Pow !! Def !! Spd !! EXP !! Gold !! TP
+|-
+| $01 || Blue Imp || 13 || 6 || 127 || 8 || 5 || 10 || 1
+|-
+| $02 || Green Imp || 16 || 8 || 127 || 9 || 7 || 15 || 1
+|-
+| $03 || Roly || 24 || 6 || 127 || 8 || 8 || 20 || 1
+|-
+| $04 || Poly || 28 || 7 || 127 || 9 || 10 || 25 || 1
+|-
+| $05 || Rolypoly || 34 || 8 || 127 || 10 || 12 || 30 || 1
+|}
+
+=== Middle Ages (600 AD) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Pow !! Def !! Spd !! EXP !! Gold !! TP
+|-
+| $10 || Diablos || 50 || 12 || 127 || 10 || 20 || 40 || 1
+|-
+| $11 || Hench || 49 || 11 || 127 || 9 || 18 || 35 || 1
+|-
+| $12 || Grimalkin || 48 || 10 || 127 || 11 || 17 || 30 || 1
+|-
+| $13 || Deceased || 65 || 14 || 50 || 7 || 25 || 50 || 2
+|-
+| $14 || Gnasher || 90 || 18 || 127 || 8 || 35 || 80 || 2
+|-
+| $15 || Naga-ette || 60 || 13 || 127 || 12 || 22 || 45 || 2
+|}
+
+=== Prehistoric (65M BC) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Pow !! Def !! Spd !! EXP !! Gold !! TP
+|-
+| $30 || Nu || 1234 || 50 || 200 || 10 || 1000 || 0 || 30
+|-
+| $31 || Runner || 196 || 45 || 127 || 15 || 150 || 0 || 5
+|-
+| $32 || Kilwala || 160 || 35 || 127 || 12 || 100 || 0 || 4
+|-
+| $33 || Reptite || 336 || 55 || 127 || 10 || 180 || 0 || 6
+|-
+| $34 || Megasaur || 450 || 70 || 150 || 8 || 250 || 0 || 8
+|}
+
+=== Future (2300 AD) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Pow !! Def !! Spd !! EXP !! Gold !! TP
+|-
+| $40 || Rat || 45 || 8 || 127 || 12 || 12 || 0 || 1
+|-
+| $41 || Bug || 89 || 15 || 127 || 10 || 30 || 0 || 2
+|-
+| $42 || Debugger || 120 || 20 || 140 || 11 || 50 || 0 || 3
+|-
+| $43 || Proto 2 || 128 || 25 || 150 || 9 || 60 || 0 || 3
+|-
+| $44 || Proto 3 || 256 || 35 || 170 || 8 || 100 || 0 || 5
+|-
+| $45 || Acid || 80 || 12 || 127 || 14 || 35 || 0 || 2
+|}
+
+=== Dark Ages (12000 BC) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! HP !! Pow !! Def !! Spd !! EXP !! Gold !! TP
+|-
+| $50 || Scout || 300 || 40 || 127 || 13 || 200 || 300 || 5
+|-
+| $51 || Red Scout || 350 || 45 || 150 || 14 || 250 || 400 || 6
+|-
+| $52 || Blue Scout || 380 || 48 || 160 || 12 || 280 || 450 || 6
+|-
+| $53 || Jinn || 450 || 55 || 127 || 10 || 350 || 600 || 8
+|-
+| $54 || Barghest || 500 || 60 || 170 || 9 || 400 || 700 || 9
+|}
+
+== Boss Monsters ==
+
+{| class="wikitable"
+|-
+! ID !! Name !! HP !! Era !! Location
+|-
+| $80 || Yakra || 920 || 600 AD || Cathedral
+|-
+| $81 || Dragon Tank || 3000 || 1000 AD || Prison Tower
+|-
+| $82 || Guardian || 1200 || 2300 AD || Arris Dome
+|-
+| $83 || Heckran || 2100 || 1000 AD || Heckran Cave
+|-
+| $84 || Zombor || 960 || 600 AD || Zenan Bridge
+|-
+| $85 || Masa & Mune || 3600 || 600 AD || Denadoro Mts
+|-
+| $86 || Nizbel || 4200 || 65M BC || Reptite Lair
+|-
+| $87 || Azala || 2700 || 65M BC || Tyrano Lair
+|-
+| $88 || Black Tyrano || 10500 || 65M BC || Tyrano Lair
+|-
+| $89 || Dalton || 3500 || 12000 BC || Ocean Palace
+|-
+| $8A || Golem || 7000 || 12000 BC || Ocean Palace
+|-
+| $8B || Lavos Spawn || 4000 || Death Peak || Death Peak
+|-
+| $8C || Giga Gaia || 9500 || 12000 BC || Mt. Woe
+|-
+| $8D || Mega Mutant || 4600 || End || Black Omen
+|-
+| $8E || Zeal || 20000 || End || Black Omen
+|}
+
+=== Final Boss ===
+
+{| class="wikitable"
+|-
+! Phase !! Name !! HP !! Notes
+|-
+| 1 || Lavos Shell || 10000 || Outer defense
+|-
+| 2 || Lavos Core || 20000 || Inner body
+|-
+| 3 || Lavos Core (Inner) || 30000 || True form
+|}
+
+== Elemental Weaknesses ==
+
+{| class="wikitable"
+|-
+! Element !! Strong Against !! Weak Against
+|-
+| Lightning || Water, machine || Earth
+|-
+| Ice || Fire || Ice
+|-
+| Fire || Ice, plant || Fire, machine
+|-
+| Water || Fire || Water
+|-
+| Shadow || Light || Shadow
+|}
+
+== Enemy Abilities ==
+
+{| class="wikitable"
+|-
+! ID !! Ability !! Effect
+|-
+| $00 || Physical Attack || Standard damage
+|-
+| $01 || Fire || Fire magic
+|-
+| $02 || Ice || Ice magic
+|-
+| $03 || Lightning || Electric magic
+|-
+| $04 || Shadow || Dark magic
+|-
+| $05 || Heal || Restore HP
+|-
+| $06 || Slow || Reduce speed
+|-
+| $07 || Lock || Seal Techs
+|-
+| $08 || Counter || Counterattack
+|-
+| $09 || Absorb || Drain HP
+|}
+
+== Rare Drops ==
+
+{| class="wikitable"
+|-
+! Enemy !! Drop !! Rate !! Charm
+|-
+| Nu || — || — || Third Eye
+|-
+| Rubble || — || — || Mid Ether
+|-
+| Ozzie || — || — || Ozzie Pants
+|-
+| Flea || — || — || Flea Vest
+|-
+| Slash || — || — || Slasher
+|-
+| Giga Gaia || — || — || Speed Tab
+|-
+| Lavos || — || — || —
+|}
+
+== See Also ==
+
+* [[Characters]]
+* [[Techs]]
+* [[ROM Map]]
+
+[[Category:Chrono Trigger (SNES)]]

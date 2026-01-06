@@ -1,0 +1,520 @@
+{{Back|Final Fantasy IV (SNES)}}
+__TOC__
+
+== Overview ==
+
+Final Fantasy IV features 12 playable characters, each with unique abilities and growth patterns. Unlike other Final Fantasy games, party composition is determined by the story.
+
+== Character Data Structure ==
+
+Each character entry is 64 bytes:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Character ID
+|-
+| $01 || 1 || Current level
+|-
+| $02-$03 || 2 || Current HP
+|-
+| $04-$05 || 2 || Max HP
+|-
+| $06-$07 || 2 || Current MP
+|-
+| $08-$09 || 2 || Max MP
+|-
+| $0A || 1 || Strength
+|-
+| $0B || 1 || Agility
+|-
+| $0C || 1 || Vitality
+|-
+| $0D || 1 || Intellect
+|-
+| $0E || 1 || Spirit
+|-
+| $0F || 1 || Attack
+|-
+| $10 || 1 || Defense
+|-
+| $11 || 1 || Magic Defense
+|-
+| $12 || 1 || Evasion
+|-
+| $13 || 1 || Magic Evasion
+|-
+| $14-$1B || 8 || Equipment slots
+|-
+| $1C-$3F || 36 || Status, spell slots
+|}
+
+== Playable Characters ==
+
+=== Cecil Harvey ===
+
+{| class="wikitable"
+|-
+! Attribute !! Dark Knight !! Paladin
+|-
+| Class || Dark Knight || Paladin
+|-
+| Join Level || 1 || 1 (after Mt. Ordeals)
+|-
+| Initial HP || 200 || 600
+|-
+| Initial MP || 0 || 10
+|-
+| Weapon || Swords, Dark Blades || Swords, Holy Swords
+|-
+| Armor || Heavy armor || Heavy armor
+|-
+| Special || Darkness || Cover, White magic
+|}
+
+'''Base Stats (Paladin):'''
+{| class="wikitable"
+|-
+! STR !! AGI !! VIT !! INT !! SPI
+|-
+| 15 || 12 || 16 || 8 || 10
+|}
+
+=== Kain Highwind ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Class || Dragoon
+|-
+| Join Level || 10
+|-
+| Initial HP || 190
+|-
+| Initial MP || 0
+|-
+| Weapon || Spears
+|-
+| Armor || Heavy armor
+|-
+| Special || Jump
+|}
+
+'''Base Stats:'''
+{| class="wikitable"
+|-
+! STR !! AGI !! VIT !! INT !! SPI
+|-
+| 14 || 16 || 15 || 5 || 8
+|}
+
+=== Rosa Farrell ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Class || White Mage
+|-
+| Join Level || 10
+|-
+| Initial HP || 110
+|-
+| Initial MP || 45
+|-
+| Weapon || Bows, Arrows, Staves
+|-
+| Armor || Robes, Light armor
+|-
+| Special || White magic, Pray, Aim
+|}
+
+'''Base Stats:'''
+{| class="wikitable"
+|-
+! STR !! AGI !! VIT !! INT !! SPI
+|-
+| 6 || 12 || 8 || 14 || 19
+|}
+
+=== Rydia ===
+
+{| class="wikitable"
+|-
+! Attribute !! Child !! Adult
+|-
+| Class || Caller || Caller
+|-
+| Join Level || 1 || 20
+|-
+| Initial HP || 30 || 350
+|-
+| Initial MP || 20 || 80
+|-
+| Weapon || Rods, Whips
+|-
+| Armor || Robes
+|-
+| Special || Summon, Black magic || Summon, Black magic
+|}
+
+'''Base Stats (Adult):'''
+{| class="wikitable"
+|-
+! STR !! AGI !! VIT !! INT !! SPI
+|-
+| 5 || 15 || 6 || 20 || 17
+|}
+
+=== Cid Pollendina ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Class || Engineer
+|-
+| Join Level || 20
+|-
+| Initial HP || 400
+|-
+| Initial MP || 0
+|-
+| Weapon || Hammers
+|-
+| Armor || Heavy armor
+|-
+| Special || Peep, Upgrade
+|}
+
+'''Base Stats:'''
+{| class="wikitable"
+|-
+! STR !! AGI !! VIT !! INT !! SPI
+|-
+| 18 || 8 || 20 || 10 || 4
+|}
+
+=== Tellah ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Class || Sage
+|-
+| Join Level || 20
+|-
+| Initial HP || 220
+|-
+| Initial MP || 90
+|-
+| Weapon || Staves, Rods
+|-
+| Armor || Robes
+|-
+| Special || White/Black magic, Recall, Meteo
+|}
+
+'''Base Stats:'''
+{| class="wikitable"
+|-
+! STR !! AGI !! VIT !! INT !! SPI
+|-
+| 8 || 10 || 12 || 16 || 15
+|}
+
+'''Note:''' Tellah's stats decrease as he levels. MP caps at 90.
+
+=== Edward Chris von Muir ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Class || Bard
+|-
+| Join Level || 5
+|-
+| Initial HP || 60
+|-
+| Initial MP || 10
+|-
+| Weapon || Harps
+|-
+| Armor || Light armor
+|-
+| Special || Sing, Hide, Salve
+|}
+
+'''Base Stats:'''
+{| class="wikitable"
+|-
+! STR !! AGI !! VIT !! INT !! SPI
+|-
+| 6 || 14 || 5 || 12 || 10
+|}
+
+=== Yang Fang Leiden ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Class || Monk
+|-
+| Join Level || 10
+|-
+| Initial HP || 200
+|-
+| Initial MP || 0
+|-
+| Weapon || Claws, Fists
+|-
+| Armor || Light armor
+|-
+| Special || Kick, Focus
+|}
+
+'''Base Stats:'''
+{| class="wikitable"
+|-
+! STR !! AGI !! VIT !! INT !! SPI
+|-
+| 17 || 12 || 16 || 4 || 6
+|}
+
+=== Palom ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Class || Black Mage
+|-
+| Join Level || 10
+|-
+| Initial HP || 80
+|-
+| Initial MP || 40
+|-
+| Weapon || Rods
+|-
+| Armor || Robes
+|-
+| Special || Black magic, Bluff, Twincast
+|}
+
+'''Base Stats:'''
+{| class="wikitable"
+|-
+! STR !! AGI !! VIT !! INT !! SPI
+|-
+| 4 || 9 || 6 || 18 || 6
+|}
+
+=== Porom ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Class || White Mage
+|-
+| Join Level || 10
+|-
+| Initial HP || 70
+|-
+| Initial MP || 45
+|-
+| Weapon || Staves
+|-
+| Armor || Robes
+|-
+| Special || White magic, Cry, Twincast
+|}
+
+'''Base Stats:'''
+{| class="wikitable"
+|-
+! STR !! AGI !! VIT !! INT !! SPI
+|-
+| 3 || 10 || 5 || 10 || 19
+|}
+
+=== Edge ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Class || Ninja
+|-
+| Join Level || 25
+|-
+| Initial HP || 500
+|-
+| Initial MP || 30
+|-
+| Weapon || Katanas, Boomerangs
+|-
+| Armor || Light armor, Ninja gear
+|-
+| Special || Throw, Steal, Ninjutsu
+|}
+
+'''Base Stats:'''
+{| class="wikitable"
+|-
+! STR !! AGI !! VIT !! INT !! SPI
+|-
+| 15 || 20 || 10 || 12 || 8
+|}
+
+=== FuSoYa ===
+
+{| class="wikitable"
+|-
+! Attribute !! Value
+|-
+| Class || Lunarian
+|-
+| Join Level || 50
+|-
+| Initial HP || 1900
+|-
+| Initial MP || 190
+|-
+| Weapon || Staves
+|-
+| Armor || Robes
+|-
+| Special || White/Black magic, Regen
+|}
+
+'''Base Stats:'''
+{| class="wikitable"
+|-
+! STR !! AGI !! VIT !! INT !! SPI
+|-
+| 10 || 8 || 15 || 15 || 18
+|}
+
+'''Note:''' FuSoYa doesn't level. All magic available.
+
+== Party Composition ==
+
+Party members vary by story chapter:
+
+{| class="wikitable"
+|-
+! Chapter !! Location !! Party
+|-
+| Opening || Baron || Cecil, Kain
+|-
+| Desert || Kaipo || Cecil, Rydia
+|-
+| Waterway || Damcyan || Cecil, Edward, Rydia
+|-
+| Mt. Hobs || Fabul || Cecil, Rydia, Yang
+|-
+| Post-Betrayal || — || Cecil (solo)
+|-
+| After Mist || — || Cecil, Tellah
+|-
+| Mt. Ordeals || — || Cecil, Tellah, Palom, Porom
+|-
+| Baron || — || Cecil, Tellah, Yang
+|-
+| Post-Baron || — || Cecil, Tellah, Yang, Cid
+|-
+| Tower of Zot || — || Cecil, Kain, Rosa, Rydia, Yang
+|-
+| Tower of Babil || — || Cecil, Kain, Rosa, Rydia, Edge
+|-
+| Giant of Babil || — || Cecil, Kain, Rosa, Rydia, Edge
+|-
+| Lunar || Moon || Cecil, Kain, Rosa, Rydia, Edge, FuSoYa (choice of 5)
+|}
+
+== Special Abilities ==
+
+{| class="wikitable"
+|-
+! Character !! Ability !! Effect
+|-
+| Cecil (Dark) || Darkness || Damage all enemies, lose HP
+|-
+| Cecil (Pal) || Cover || Take damage for allies
+|-
+| Kain || Jump || High-power aerial attack
+|-
+| Rosa || Pray || Restore party HP (free)
+|-
+| Rosa || Aim || Guaranteed hit
+|-
+| Rydia || Call || Summon Eidolons
+|-
+| Cid || Peep || Scan enemy stats
+|-
+| Cid || Upgrade || Throw wrench item
+|-
+| Tellah || Recall || Random spell
+|-
+| Edward || Sing || Various buffs
+|-
+| Edward || Hide || Become untargetable
+|-
+| Edward || Salve || Use item on all
+|-
+| Yang || Kick || Hit all enemies
+|-
+| Yang || Focus || Charge next attack
+|-
+| Palom || Bluff || Boost magic power
+|-
+| Porom || Cry || Lower enemy stats
+|-
+| Palom/Porom || Twincast || Combined magic
+|-
+| Edge || Throw || Throw weapons/items
+|-
+| Edge || Steal || Take enemy item
+|-
+| Edge || Ninjutsu || Ninja magic
+|-
+| FuSoYa || Regen || Auto HP restore
+|}
+
+== Level Growth ==
+
+Experience required per level:
+
+{| class="wikitable"
+|-
+! Level !! EXP !! Level !! EXP !! Level !! EXP
+|-
+| 1 || 0 || 35 || 38,000 || 69 || 280,000
+|-
+| 5 || 150 || 40 || 55,000 || 70 || 310,000
+|-
+| 10 || 800 || 45 || 75,000 || 75 || 420,000
+|-
+| 15 || 2,200 || 50 || 100,000 || 80 || 580,000
+|-
+| 20 || 5,000 || 55 || 130,000 || 85 || 800,000
+|-
+| 25 || 10,000 || 60 || 170,000 || 90 || 1,100,000
+|-
+| 30 || 20,000 || 65 || 220,000 || 99 || 9,999,999
+|}
+
+== See Also ==
+
+* [[Magic]]
+* [[ATB System]]
+* [[ROM Map]]
+
+[[Category:Final Fantasy IV (SNES)]]
