@@ -1,0 +1,230 @@
+{{Back|Chrono Trigger}}
+__TOC__
+
+= Chrono Trigger - Dual and Triple Techs =
+
+This page documents all combination techs in Chrono Trigger, including the character combinations, MP costs, and damage formulas.
+
+== Overview ==
+
+Dual Techs combine the abilities of two characters, while Triple Techs use all three party members. Most combination techs deal more damage than the sum of their component techs.
+
+== Dual Tech Data Structure ==
+
+Each dual tech entry uses 16 bytes in ROM:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Character 1 ID
+|-
+| $01 || 1 || Character 2 ID
+|-
+| $02 || 1 || Tech 1 ID requirement
+|-
+| $03 || 1 || Tech 2 ID requirement
+|-
+| $04-$05 || 2 || Base power
+|-
+| $06 || 1 || Element type
+|-
+| $07 || 1 || Target type
+|-
+| $08-$09 || 2 || MP cost character 1
+|-
+| $0A-$0B || 2 || MP cost character 2
+|-
+| $0C-$0F || 4 || Animation data
+|}
+
+== Crono's Dual Techs ==
+
+=== With Marle ===
+
+{| class="wikitable"
+|-
+! Tech !! Components !! MP !! Element !! Targets !! Effect
+|-
+| Aura Whirl || Cyclone + Aura || 2+1 || Heal || Party || Heals party in range
+|-
+| Ice Sword || Spincut + Ice || 4+2 || Ice || One || Ice-element sword attack
+|-
+| Ice Sword 2 || Confuse + Ice2 || 12+8 || Ice || All || Ultimate ice sword
+|}
+
+=== With Lucca ===
+
+{| class="wikitable"
+|-
+! Tech !! Components !! MP !! Element !! Targets !! Effect
+|-
+| Fire Whirl || Cyclone + Flame Toss || 2+1 || Fire || Circle || Fire spin attack
+|-
+| Fire Sword || Spincut + Fire || 4+2 || Fire || One || Fire-element slash
+|-
+| Fire Sword 2 || Confuse + Fire2 || 12+8 || Fire || All || Ultimate fire sword
+|}
+
+=== With Robo ===
+
+{| class="wikitable"
+|-
+! Tech !! Components !! MP !! Element !! Targets !! Effect
+|-
+| Rocket Roll || Cyclone + Robo Tackle || 2+4 || None || Line || Combined rush attack
+|-
+| Max Cyclone || Confuse + Laser Spin || 12+3 || None || All || Devastating spin
+|-
+| Super Volt || Lightning2 + Area Bomb || 8+14 || Lightning || All || Thunder explosion
+|}
+
+=== With Frog ===
+
+{| class="wikitable"
+|-
+! Tech !! Components !! MP !! Element !! Targets !! Effect
+|-
+| X-Strike || Cyclone + Slurp Cut || 2+2 || None || One || Cross slash
+|-
+| Sword Stream || Slash + Water || 2+2 || Water || Line || Water blade attack
+|-
+| Spire || Lightning2 + Leap Slash || 8+4 || Lightning || One || Electric impale
+|}
+
+=== With Ayla ===
+
+{| class="wikitable"
+|-
+! Tech !! Components !! MP !! Element !! Targets !! Effect
+|-
+| Drill Kick || Cyclone + Rollo Kick || 2+2 || None || One || Spinning kick
+|-
+| Volt Bite || Lightning2 + Charm || 8+4 || Lightning || One || Electrified bite
+|-
+| Falcon Hit || Spincut + Rock Throw || 4+4 || None || One || Aerial strike
+|}
+
+=== With Magus ===
+
+{| class="wikitable"
+|-
+! Tech !! Components !! MP !! Element !! Targets !! Effect
+|-
+| Dark Matter || Lightning2 + Dark Bomb || 8+8 || Shadow || All || Devastating darkness
+|}
+
+== Marle's Dual Techs ==
+
+=== With Lucca ===
+
+{| class="wikitable"
+|-
+! Tech !! Components !! MP !! Element !! Targets !! Effect
+|-
+| Antipode || Ice + Fire || 2+2 || None || One || Fire and ice cancel
+|-
+| Antipode 2 || Ice2 + Fire2 || 8+8 || None || All || Party-wide version
+|-
+| Antipode 3 || Ice2 + Flare || 8+20 || None || All || Ultimate version
+|}
+
+=== With Frog ===
+
+{| class="wikitable"
+|-
+! Tech !! Components !! MP !! Element !! Targets !! Effect
+|-
+| Ice Water || Ice + Water || 2+2 || Water || All || Freezing wave
+|-
+| Glacier || Ice2 + Water2 || 8+8 || Water || All || Ultimate freeze
+|-
+| Double Cure || Cure2 + Heal || 5+2 || Heal || Party || Full party heal
+|}
+
+=== With Ayla ===
+
+{| class="wikitable"
+|-
+! Tech !! Components !! MP !! Element !! Targets !! Effect
+|-
+| Twin Charm || Allure + Charm || 4+4 || None || One || Double charm attempt
+|-
+| Iceberg Toss || Ice2 + Boulder Toss || 8+4 || Ice || All || Icy boulder attack
+|}
+
+== Triple Techs ==
+
+=== Standard Triple Techs ===
+
+{| class="wikitable"
+|-
+! Tech !! Characters !! Components !! MP !! Effect
+|-
+| Delta Force || Crono, Marle, Lucca || Lightning2+Ice2+Fire2 || 8+8+8 || Ultimate elemental triangle
+|-
+| Lifeline || Crono, Marle, Robo || Life+Cure2+Heal Beam || 10+5+3 || Full party revive/heal
+|-
+| Arc Impulse || Crono, Marle, Frog || Spincut+Ice2+Leap Slash || 4+8+4 || Triple strike
+|-
+| Final Kick || Crono, Marle, Ayla || Confuse+Ice2+Triple Kick || 12+8+20 || Devastating combo
+|-
+| Dark Eternal || Crono, Marle, Magus || Luminaire+Ice2+Dark Matter || 20+8+8 || Shadow devastation
+|}
+
+=== Rock-Enhanced Triple Techs ===
+
+Requires special accessories (Gold Rock, Silver Rock, etc.):
+
+{| class="wikitable"
+|-
+! Tech !! Rock !! Characters !! MP !! Effect
+|-
+| Spin Strike || Gold Rock || Crono, Robo, Frog || 3+3+3 || Ultimate spin combo
+|-
+| Grand Dream || Gold Rock || Crono, Marle, Frog || 15+1+15 || Frog's ultimate
+|-
+| Poyozo Dance || Gold Rock || Crono, Marle, Lucca || 1+1+1 || Random powerful effects
+|-
+| Omega Flare || Blue Rock || Lucca, Robo, Magus || 20+15+20 || Fire + Shadow devastation
+|}
+
+== Damage Formulas ==
+
+=== Dual Tech Damage ===
+
+ Base = (Tech1_Power × Char1_Stat + Tech2_Power × Char2_Stat) × 1.2
+ Final = Base × Element_Modifier × Random(0.9-1.1)
+
+Dual techs receive a 1.2x multiplier over using techs separately.
+
+=== Triple Tech Damage ===
+
+ Base = (Tech1_Power × Stat1 + Tech2_Power × Stat2 + Tech3_Power × Stat3) × 1.5
+ Final = Base × Element_Modifier × Random(0.9-1.1)
+
+Triple techs receive a 1.5x multiplier.
+
+== Best Combinations by Situation ==
+
+{| class="wikitable"
+|-
+! Situation !! Best Tech !! Why
+|-
+| Healing || Double Cure || Full party heal
+|-
+| Single target || X-Strike || High damage, low cost
+|-
+| All enemies || Delta Force || Triple element coverage
+|-
+| Fire weak || Fire Sword 2 || Highest fire damage
+|-
+| Boss battles || Luminaire combo || Consistent high damage
+|}
+
+== See Also ==
+* [[Chrono Trigger:Techs|Single Techs]]
+* [[Chrono Trigger:Characters|Character Stats]]
+* [[Chrono Trigger:Battle_System|Battle System]]
+
+[[Category:Chrono Trigger|Combo Techs]]

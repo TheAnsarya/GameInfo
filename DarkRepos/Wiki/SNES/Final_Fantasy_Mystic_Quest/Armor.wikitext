@@ -1,0 +1,207 @@
+{{Back|Final Fantasy Mystic Quest (SNES)}}
+__TOC__
+
+= Final Fantasy Mystic Quest - Armor =
+
+This page documents all defensive equipment in Final Fantasy: Mystic Quest, including armor, shields, helmets, and accessories.
+
+== Overview ==
+
+FFMQ has a simplified equipment system with three defensive slots:
+* '''Armor''' - Body protection
+* '''Shield''' - Blocking capability
+* '''Helmet''' - Head protection
+* '''Accessory''' - Special effects
+
+== Armor Data Structure ==
+
+Each armor entry uses 8 bytes at ROM offset $???:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Armor ID
+|-
+| $01 || 1 || Defense value
+|-
+| $02 || 1 || Magic Defense
+|-
+| $03 || 1 || Speed modifier
+|-
+| $04 || 1 || Resistances
+|-
+| $05 || 1 || Who can equip
+|-
+| $06-$07 || 2 || Buy price
+|}
+
+== Armor List ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Def !! MDef !! Special !! Location
+|-
+| $00 || Steel Armor || 10 || 5 || None || Starting
+|-
+| $01 || Noble Armor || 18 || 8 || None || Foresta
+|-
+| $02 || Replica Armor || 26 || 12 || None || Aquaria
+|-
+| $03 || Mystic Armor || 34 || 16 || Resist Status || Fireburg
+|-
+| $04 || Flame Armor || 42 || 20 || Fire Resist || Volcano
+|-
+| $05 || Black Armor || 50 || 24 || Dark Resist || Falls Basin
+|-
+| $06 || Venus Armor || 58 || 28 || Petrify Immune || Windia
+|-
+| $07 || Diamond Armor || 66 || 32 || All Resist +25% || Doom Castle
+|}
+
+== Shield List ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Def !! MDef !! Special !! Location
+|-
+| $00 || Steel Shield || 8 || 4 || None || Starting
+|-
+| $01 || Venus Shield || 16 || 8 || Status Resist || Aquaria
+|-
+| $02 || Ice Shield || 24 || 12 || Ice Resist || Ice Pyramid
+|-
+| $03 || Flame Shield || 32 || 16 || Fire Resist || Lava Dome
+|-
+| $04 || Ether Shield || 40 || 20 || Magic +10% || Windia
+|-
+| $05 || Aegis Shield || 48 || 24 || All Elements || Pazuzu's Tower
+|}
+
+== Helmet List ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Def !! MDef !! Special !! Location
+|-
+| $00 || Steel Helm || 6 || 3 || None || Starting
+|-
+| $01 || Moon Helm || 12 || 6 || Confuse Immune || Bone Dungeon
+|-
+| $02 || Apollo Helm || 18 || 9 || Blind Immune || Wintry Cave
+|-
+| $03 || Dragon Helm || 24 || 12 || Fire/Ice Resist || Mac Ship
+|-
+| $04 || Charm Helm || 30 || 15 || Charm Immune || Giant Tree
+|-
+| $05 || Night Helm || 36 || 18 || Sleep/Paralysis || Doom Castle
+|}
+
+== Accessory List ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Effect !! Special !! Location
+|-
+| $00 || Charm || Magic +5 || None || Various
+|-
+| $01 || Speed Ring || Speed +10 || None || Battlefields
+|-
+| $02 || Magic Ring || Magic +10 || None || Focus Tower
+|-
+| $03 || Cupid Locket || Charm attacks || Enemy confusion || Fireburg
+|-
+| $04 || Sword Emblem || Attack +5 || Critical +5% || Lava Dome
+|-
+| $05 || Protect Ring || Def +5 || None || Ship Dock
+|-
+| $06 || Dragon Claw || Attack +10 || Dragon damage || Pazuzu's Tower
+|}
+
+== Equipment by Character ==
+
+=== Benjamin ===
+Benjamin can equip all armor and accessories.
+
+=== Kaeli ===
+* Armor: Noble, Replica, Venus
+* Shield: Steel, Venus
+* Helmet: All
+* Accessory: All
+
+=== Tristam ===
+* Armor: All except Diamond
+* Shield: All
+* Helmet: All
+* Accessory: All
+
+=== Phoebe ===
+* Armor: Noble, Replica, Mystic, Venus
+* Shield: Steel, Venus, Ether
+* Helmet: Moon, Apollo, Charm
+* Accessory: All (prefers Magic Ring)
+
+=== Reuben ===
+* Armor: All
+* Shield: All
+* Helmet: All
+* Accessory: All
+
+== Defense Calculation ==
+
+Physical damage reduction:
+ Damage Reduction = (Armor_Def + Shield_Def + Helmet_Def) / 4
+
+Magical damage reduction:
+ Magic Reduction = (Armor_MDef + Shield_MDef + Helmet_MDef) / 6
+
+== Elemental Resistances ==
+
+{| class="wikitable"
+|-
+! Resistance !! Items !! Reduction
+|-
+| Fire || Flame Armor, Flame Shield || 50%
+|-
+| Ice || Ice Shield || 50%
+|-
+| Thunder || - || -
+|-
+| Status || Mystic Armor, Venus Shield, Venus Armor || Varies
+|-
+| All || Diamond Armor, Aegis Shield || 25% each
+|}
+
+== Progression Guide ==
+
+Recommended armor upgrades:
+
+{| class="wikitable"
+|-
+! Area !! Armor !! Shield !! Helmet
+|-
+| Level Forest || Steel || Steel || Steel
+|-
+| Bone Dungeon || Noble || Steel || Moon
+|-
+| Focus Tower || Replica || Venus || Apollo
+|-
+| Fireburg Area || Mystic || Venus || Apollo
+|-
+| Volcano || Flame || Ice || Dragon
+|-
+| Falls Basin || Black || Ice || Dragon
+|-
+| Windia || Venus || Flame || Charm
+|-
+| Pazuzu's Tower || Venus || Ether || Charm
+|-
+| Doom Castle || Diamond || Aegis || Night
+|}
+
+== See Also ==
+* [[Final Fantasy Mystic Quest:Weapons|Weapons]]
+* [[Final Fantasy Mystic Quest:Items|Items]]
+* [[Final Fantasy Mystic Quest:Characters|Characters]]
+
+[[Category:Final Fantasy Mystic Quest|Armor]]
