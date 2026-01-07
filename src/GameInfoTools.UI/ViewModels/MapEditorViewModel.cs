@@ -483,10 +483,10 @@ public partial class MapEditorViewModel : ViewModelBase, IKeyboardShortcutHandle
 						data[y * 256 + x] = tilemap[y, x];
 					}
 				}
-				MapData = data;
+				MapDataArray = data;
 
 				StatusText = $"Loaded DQ3 overworld: 256x256 tiles";
-				RenderMap();
+				UpdateMapDataArray();
 			} else {
 				StatusText = "Failed to load DQ3 overworld tilemap";
 			}

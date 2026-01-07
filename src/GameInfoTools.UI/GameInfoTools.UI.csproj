@@ -40,4 +40,13 @@
 		<ProjectReference Include="..\GameInfoTools.Wiki\GameInfoTools.Wiki.csproj" />
 		<ProjectReference Include="..\GameInfoTools.TasConvert\GameInfoTools.TasConvert.csproj" />
 	</ItemGroup>
+
+	<!-- Game-specific libraries from logsmall workspace -->
+	<!-- Note: Only include libraries that build successfully -->
+	<ItemGroup Condition="Exists('..\..\..\logsmall\DW4Lib\DW4Lib.csproj')">
+		<ProjectReference Include="..\..\..\logsmall\DW4Lib\DW4Lib.csproj" />
+		<!-- DQ3Lib excluded - has internal dependency issues -->
+		<!-- <ProjectReference Include="..\..\..\logsmall\DQ3Lib\DQ3Lib.csproj" /> -->
+		<ProjectReference Include="..\..\..\logsmall\FFMQLib\FFMQLib.csproj" />
+	</ItemGroup>
 </Project>
