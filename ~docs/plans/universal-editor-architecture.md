@@ -254,10 +254,75 @@ logsmall/
 ✅ **Do** share data models via records
 ✅ **Do** document which features are desktop-only vs web-only
 
+## Project File System (.giproj)
+
+Both UIs support the `.giproj` project file format for managing ROM hacking projects.
+
+### Project Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                          PROJECT LIFECYCLE                                   │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│   ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐  │
+│   │ Select Game │ -> │ Select ROM  │ -> │ Verify ROM  │ -> │  Extract    │  │
+│   └─────────────┘    └─────────────┘    └─────────────┘    │  Assets     │  │
+│                                                            └──────┬──────┘  │
+│                                                                   │         │
+│                                                                   ▼         │
+│   ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐  │
+│   │ Verify Match│ <- │ Build ROM   │ <- │ Edit Assets │ <- │ Create      │  │
+│   └─────────────┘    └─────────────┘    └─────────────┘    │ .giproj     │  │
+│                                                            └─────────────┘  │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### .giproj File Structure (ZIP Archive)
+
+```
+MyProject.giproj (ZIP)
+├── project.json          # Project metadata
+├── manifest.json         # Asset manifest with checksums
+├── assets/
+│   ├── graphics/         # PNG tiles, sprites, backgrounds
+│   ├── text/             # JSON dialog, menus
+│   ├── data/             # JSON tables (monsters, items, spells)
+│   ├── maps/             # JSON tilemaps + preview PNGs
+│   └── audio/            # Binary music/SFX + metadata
+├── source/
+│   ├── main.asm          # Assembly source files
+│   └── includes/         # Include files
+├── symbols/
+│   ├── labels.sym        # Symbol definitions
+│   └── addresses.json    # Address mappings
+├── patches/              # BPS/IPS patches for modifications
+└── build/
+    └── profiles/         # Build configuration profiles
+```
+
+### Key Services
+
+| Service | Purpose |
+|---------|---------|
+| `IProjectService` | Project lifecycle (create, open, save, close) |
+| `IAssetExtractor` | Game-specific asset extraction |
+| `IAssembler` | Build ROM from source (ca65, Ophis, bass) |
+| `IBuildVerifier` | Verify built ROM matches original |
+
+### Security Model
+
+- **No ROM distribution** - Projects store only extracted assets
+- **Reference checksums** - Original ROM verified by checksum
+- **Patch-based mods** - Modifications stored as patches, not full ROMs
+
+See [giproj-project-file-format.md](giproj-project-file-format.md) for full specification.
+
 ## Next Steps
 
-1. Create GitHub issues for missing components
-2. Add project references from GameInfoTools.UI to game libraries
+1. ~~Create GitHub issues for missing components~~ ✅
+2. ~~Add project references from GameInfoTools.UI to game libraries~~ ✅
 3. Implement Dragon Warrior editors in both UIs
-4. Create shared IEditorService interfaces
+4. ~~Create shared IEditorService interfaces~~ ✅
 5. Document feature matrix (what's in which UI)
+6. Implement .giproj project system (#191-197)
