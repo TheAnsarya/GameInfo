@@ -3,17 +3,17 @@
 
 ; Random number generation (calculation phase)
 rng_func_af3e:		; $af3e
-	sec                 
-	jsr $a5eb           
-	asl                 
-	jsr $9822           
-	clc                 
-	adc #$18            
-	clc                 
-	lsr                 
-	lsr                 
-	adc #$1c            
-	and #$c0            
-	sta $2a88           
-	rts                 
+	sec				 
+	jsr $a5eb		   
+	asl				 
+	jsr $9822		   
+	clc				 
+	adc #$18			
+	clc				 
+	lsr				 
+	lsr				 
+	adc #$1c			
+	and #$c0			
+	sta $2a88		   
+	rts				 
 

@@ -4,25 +4,25 @@
 
 ; Input handler 1
 input_handler_4017:		; $a7e1
-	phx                  ; Push X
-	db $12               ; Unknown opcode
-	sec                  ; Set carry flag
-	db $01               ; Unknown opcode
-	db $25               ; Unknown opcode
-	ora $7f1b            ; OR absolute
-	db $b1               ; Unknown opcode
-	ldy $b7bc            ; Load Y absolute
-	db $25               ; Unknown opcode
-	db $01               ; Unknown opcode
-	db $d7               ; Unknown opcode
-	db $13               ; Unknown opcode
-	bit #$0d             ; Test bits direct
-	db $12               ; Unknown opcode
-	sec                  ; Set carry flag
-	db $01               ; Unknown opcode
-	db $25               ; Unknown opcode
-	ora $7f1b            ; OR absolute
-	db $b1               ; Unknown opcode
-	ldy $b7bc            ; Load Y absolute
+	phx				  ; Push X
+	db $12			   ; Unknown opcode
+	sec				  ; Set carry flag
+	db $01			   ; Unknown opcode
+	db $25			   ; Unknown opcode
+	ora $7f1b			; OR absolute
+	db $b1			   ; Unknown opcode
+	ldy $b7bc			; Load Y absolute
+	db $25			   ; Unknown opcode
+	db $01			   ; Unknown opcode
+	db $d7			   ; Unknown opcode
+	db $13			   ; Unknown opcode
+	bit #$0d			 ; Test bits direct
+	db $12			   ; Unknown opcode
+	sec				  ; Set carry flag
+	db $01			   ; Unknown opcode
+	db $25			   ; Unknown opcode
+	ora $7f1b			; OR absolute
+	db $b1			   ; Unknown opcode
+	ldy $b7bc			; Load Y absolute
 	; ... (114 more instructions)
 
