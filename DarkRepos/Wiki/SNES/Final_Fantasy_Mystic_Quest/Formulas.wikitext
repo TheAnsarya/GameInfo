@@ -1,0 +1,359 @@
+{{Back|Final Fantasy Mystic Quest (SNES)}}
+{{DISPLAYTITLE:Final Fantasy Mystic Quest - Formulas}}
+__TOC__
+
+= Game Formulas =
+
+This page documents all mathematical formulas used in Final Fantasy Mystic Quest (SNES), including damage calculations, stat effects, and game mechanics.
+
+== Physical Combat ==
+
+=== Basic Attack Damage ===
+
+<nowiki>
+Step 1: Calculate Base Attack
+  Base_ATK = Weapon_Attack + (Strength × 2)
+
+Step 2: Calculate Defense
+  Base_DEF = Armor_DEF + (Agility / 2)
+
+Step 3: Raw Damage
+  Raw = Base_ATK - (Base_DEF / 2)
+  If Raw < 1, Raw = 1
+
+Step 4: Apply Variance (±12.5%)
+  Variance = random(-Raw/8, Raw/8)
+  Damage = Raw + Variance
+
+Step 5: Apply Weakness/Resistance
+  If target is weak: Damage × 2
+  If target resists: Damage × 0.5
+  If target absorbs: Damage becomes healing
+</nowiki>
+
+=== Critical Hits ===
+
+<nowiki>
+Critical Rate = Speed / 256
+
+With Charm of Valor: Critical Rate × 2
+
+Critical Damage = Base_Damage × 2
+</nowiki>
+
+=== Multi-Hit Weapons ===
+
+Some weapons attack multiple times:
+
+{| class="wikitable"
+|-
+! Weapon !! Hits !! Damage Per Hit
+|-
+| Cat Claw || 4 || ATK × 0.4
+|-
+| Ninja Star || 4 || ATK × 0.35
+|-
+| Dragon Claw || 4 || ATK × 0.5
+|}
+
+== Magic Damage ==
+
+=== Offensive Spell Damage ===
+
+<nowiki>
+Magic_Power = Magic_Stat × 2 + Weapon_Magic_Bonus
+Spell_Damage = Base_Power × (1 + Magic_Power / 64)
+</nowiki>
+
+=== Spell Base Power ===
+
+{| class="wikitable sortable"
+|-
+! Spell !! Base !! MP !! Element !! Target
+|-
+| Fire || 20 || 2 || Fire || Single
+|-
+| Firaga || 60 || 8 || Fire || All
+|-
+| Blizzard || 40 || 4 || Ice || Single
+|-
+| Blizzaga || 90 || 12 || Ice || All
+|-
+| Thunder || 30 || 3 || Thunder || Single
+|-
+| Aero || 35 || 5 || Wind || All
+|-
+| Quake || 100 || 15 || Earth || All
+|-
+| Flare || 150 || 20 || Non-elem || Single
+|-
+| White || 120 || 18 || Holy || All
+|}
+
+=== Healing Spells ===
+
+<nowiki>
+Cure:   HP = 50 + (Magic × 2)
+Heal:   HP = 200 + (Magic × 3)
+Life:   Revive with 50% HP
+Full:   Full HP restore
+</nowiki>
+
+== Elemental System ==
+
+FFMQ features a simple elemental rock-paper-scissors:
+
+{| class="wikitable"
+|-
+! Element !! Strong Against !! Weak To
+|-
+| Fire || Ice, Plant || Water
+|-
+| Ice || Fire, Thunder || Fire
+|-
+| Thunder || Water, Metal || Earth
+|-
+| Water || Fire, Earth || Thunder
+|-
+| Earth || Thunder || Water, Wind
+|-
+| Wind || Earth || Thunder
+|-
+| Holy || Undead, Dark || Dark
+|-
+| Axe || Stone || —
+|}
+
+=== Damage Multipliers ===
+
+{| class="wikitable"
+|-
+! Interaction !! Multiplier
+|-
+| Weakness || 2.0×
+|-
+| Neutral || 1.0×
+|-
+| Resistance || 0.5×
+|-
+| Immunity || 0×
+|-
+| Absorb || −1.0× (heals)
+|}
+
+== Status Effects ==
+
+=== Status Duration ===
+
+{| class="wikitable"
+|-
+! Status !! Duration !! Effect !! Cure
+|-
+| Poison || Permanent || Lose HP per step || Heal spell, Antidote
+|-
+| Petrify || Permanent || Cannot act || Soft, Esuna
+|-
+| Paralyze || 1-4 turns || Cannot act || Heal spell
+|-
+| Sleep || 1-3 turns || Cannot act || Physical hit
+|-
+| Confuse || Until cured || Random targeting || Heal spell
+|-
+| Blind || 3-5 turns || 50% miss rate || Eyedrop
+|-
+| Silence || Until cured || No magic || Echo, Esuna
+|}
+
+=== Poison Damage ===
+
+<nowiki>
+Damage_Per_Step = Max_HP / 8
+Minimum = 1
+Cannot kill (stops at 1 HP)
+</nowiki>
+
+== Experience & Levels ==
+
+=== EXP Gain ===
+
+<nowiki>
+Battle_EXP = Sum of defeated enemy EXP
+Benjamin_EXP = Battle_EXP
+Partner_EXP = 0 (partners don't level)
+</nowiki>
+
+=== Level Curve ===
+
+<nowiki>
+EXP for level N = (N^3 × 15) / 2
+
+Level 10:  7,500 total
+Level 20: 60,000 total
+Level 30: 202,500 total
+Level 41: 517,433 total (max)
+</nowiki>
+
+=== Stat Growth ===
+
+Benjamin's stats increase at level up:
+
+{| class="wikitable"
+|-
+! Level Range !! HP !! Attack !! Defense !! Speed !! Magic
+|-
+| 1-10 || +8-15 || +3-5 || +2-4 || +1-2 || +2-4
+|-
+| 11-20 || +10-18 || +4-6 || +3-5 || +1-3 || +3-5
+|-
+| 21-30 || +8-14 || +3-5 || +2-4 || +1-2 || +2-4
+|-
+| 31-41 || +5-10 || +2-3 || +1-3 || +0-1 || +1-3
+|}
+
+== Battlefield System ==
+
+=== Battle Count ===
+
+Each battlefield has 10 battles. After completion:
+- Battlefield treasure appears
+- Random encounters in area reduced by 50%
+
+=== Enemy Scaling ===
+
+<nowiki>
+Battlefield enemies do NOT scale with level.
+Fixed difficulty per battlefield.
+</nowiki>
+
+== Gold Mechanics ==
+
+=== Monster Gold Drops ===
+
+<nowiki>
+Gold = Base_Gold × random(0.8, 1.2)
+Rounded to nearest 10
+</nowiki>
+
+=== Shop Prices ===
+
+<nowiki>
+Buy_Price = Item_Base_Price
+Sell_Price = Item_Base_Price / 2
+
+All items can be sold at any shop.
+</nowiki>
+
+== Partner System ==
+
+=== Partner Stats ===
+
+Partners have fixed stats that don't change:
+
+{| class="wikitable"
+|-
+! Partner !! HP !! Attack !! Defense !! Magic !! Spells
+|-
+| Kaeli || 150 || 40 || 35 || 50 || Cure, Life
+|-
+| Tristam || 200 || 60 || 45 || 30 || None
+|-
+| Phoebe || 120 || 30 || 30 || 70 || Fire, Ice, Thunder
+|-
+| Reuben || 180 || 55 || 50 || 40 || Thunder
+|}
+
+=== Partner AI ===
+
+<nowiki>
+Partner actions are fixed per character:
+- Melee characters: Physical attack only
+- Magic users: Use spells when appropriate
+- Healing: Use when player HP < 50%
+</nowiki>
+
+== Weapon Type Bonuses ==
+
+=== Weapon Categories ===
+
+{| class="wikitable"
+|-
+! Category !! Attack Style !! Special Property
+|-
+| Sword || Normal || None
+|-
+| Axe || Heavy || Petrify enemies
+|-
+| Claw || Multi-hit || Speed bonus
+|-
+| Bomb || Area || Damage tiles
+|}
+
+=== Petrify Mechanic ===
+
+<nowiki>
+Axe attacks vs stone enemies:
+  If enemy is "Stoneable":
+    Instant kill if damage > 0
+  
+Petrifiable enemies: Golems, Statues
+</nowiki>
+
+== Escape Mechanics ==
+
+<nowiki>
+Escape is always 100% successful in FFMQ.
+No formula - instant escape when selected.
+Exception: Boss battles (cannot escape)
+</nowiki>
+
+== Boss Mechanics ==
+
+=== Boss HP Thresholds ===
+
+Bosses change behavior at HP thresholds:
+
+<nowiki>
+Phase 1: 100-66% HP (Normal attacks)
+Phase 2: 66-33% HP (Stronger attacks)
+Phase 3: 33-0% HP (Desperation moves)
+</nowiki>
+
+=== Final Boss (Dark King) ===
+
+<nowiki>
+Form 1 (Spider): 2000 HP, weak to Thunder
+Form 2 (Dragon): 2500 HP, weak to Ice
+Form 3 (Head): 3000 HP, no weakness
+Form 4 (Final): 4000 HP, weak to Flare
+</nowiki>
+
+== ROM Data Locations ==
+
+{| class="wikitable"
+|-
+! Formula Data !! Bank !! Address !! Notes
+|-
+| Damage tables || $01 || $8100 || Base damage calc
+|-
+| Spell power || $02 || $9000 || Per-spell values
+|-
+| EXP curve || $02 || $9200 || Level requirements
+|-
+| Stat growth || $02 || $9400 || Per-level gains
+|-
+| Enemy drops || $03 || $a000 || Gold and item tables
+|-
+| Elemental chart || $01 || $8200 || Weakness matrix
+|}
+
+== Related Pages ==
+
+* [[Final Fantasy Mystic Quest (SNES)/Battle_System|Battle System]] - Combat mechanics
+* [[Final Fantasy Mystic Quest (SNES)/Spells|Spells]] - Complete spell list
+* [[Final Fantasy Mystic Quest (SNES)/Enemies|Enemies]] - Monster data
+* [[Final Fantasy Mystic Quest (SNES)/Weapons|Weapons]] - Weapon stats
+* [[Final Fantasy Mystic Quest (SNES)/Armor|Armor]] - Armor stats
+
+[[Category:Final Fantasy Mystic Quest]]
+[[Category:SNES Games]]
+[[Category:Game Formulas]]
