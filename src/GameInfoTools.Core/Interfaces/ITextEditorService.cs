@@ -8,8 +8,7 @@ public record TextEntry(int Index, int Offset, string Text, int ByteLength, stri
 /// <summary>
 /// Interface for text editor services.
 /// </summary>
-public interface ITextEditorService
-{
+public interface ITextEditorService {
 	/// <summary>All extracted text entries.</summary>
 	IReadOnlyList<TextEntry> Entries { get; }
 

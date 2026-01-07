@@ -21,8 +21,7 @@ public record CrossReference(int FromAddress, int ToAddress, string Type);
 /// <summary>
 /// CPU architecture for disassembly.
 /// </summary>
-public enum CpuArchitecture
-{
+public enum CpuArchitecture {
 	Mos6502,      // NES, C64, etc.
 	Wdc65c816,    // SNES
 	Z80,          // Game Boy, Master System
@@ -33,8 +32,7 @@ public enum CpuArchitecture
 /// <summary>
 /// Interface for disassembler services.
 /// </summary>
-public interface IDisassemblerService
-{
+public interface IDisassemblerService {
 	/// <summary>CPU architecture being disassembled.</summary>
 	CpuArchitecture Architecture { get; set; }
 

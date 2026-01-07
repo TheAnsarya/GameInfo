@@ -13,8 +13,7 @@ public record Palette(int Index, uint[] Colors);
 /// <summary>
 /// Interface for CHR (character/tile) editor services.
 /// </summary>
-public interface IChrEditorService
-{
+public interface IChrEditorService {
 	/// <summary>Total number of tiles in the loaded CHR data.</summary>
 	int TileCount { get; }
 

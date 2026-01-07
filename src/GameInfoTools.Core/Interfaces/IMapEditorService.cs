@@ -18,8 +18,7 @@ public record MapLayer(string Name, int Width, int Height, MapTile[] Tiles, bool
 /// <summary>
 /// Interface for map editor services.
 /// </summary>
-public interface IMapEditorService
-{
+public interface IMapEditorService {
 	/// <summary>Map width in tiles.</summary>
 	int Width { get; }
 

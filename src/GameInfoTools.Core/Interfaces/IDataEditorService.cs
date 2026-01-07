@@ -24,8 +24,7 @@ public record DataTableDefinition(
 /// <summary>
 /// Interface for data table editor services.
 /// </summary>
-public interface IDataEditorService
-{
+public interface IDataEditorService {
 	/// <summary>All defined data tables.</summary>
 	IReadOnlyList<DataTableDefinition> Tables { get; }
 

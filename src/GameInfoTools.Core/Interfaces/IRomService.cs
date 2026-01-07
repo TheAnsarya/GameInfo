@@ -27,8 +27,7 @@ public record RomChecksums(
 /// <summary>
 /// Interface for ROM file services.
 /// </summary>
-public interface IRomService
-{
+public interface IRomService {
 	/// <summary>Whether a ROM is currently loaded.</summary>
 	bool IsLoaded { get; }
 

@@ -3,8 +3,7 @@ namespace GameInfoTools.Core.Interfaces;
 /// <summary>
 /// Event arguments for data change notifications.
 /// </summary>
-public class DataChangedEventArgs : EventArgs
-{
+public class DataChangedEventArgs : EventArgs {
 	/// <summary>Starting offset of the changed region.</summary>
 	public int Offset { get; init; }
 
@@ -26,8 +25,7 @@ public record SearchResult(int Offset, int Length, string? Context = null);
 /// <summary>
 /// Interface for hex editor services shared between Avalonia and Blazor UIs.
 /// </summary>
-public interface IHexEditorService
-{
+public interface IHexEditorService {
 	/// <summary>Total length of loaded data in bytes.</summary>
 	int Length { get; }
 
@@ -79,8 +77,7 @@ public interface IHexEditorService
 /// <summary>
 /// Interface for text table operations.
 /// </summary>
-public interface ITextTable
-{
+public interface ITextTable {
 	/// <summary>Encodes a string to bytes using the table.</summary>
 	byte[] Encode(string text);
 
