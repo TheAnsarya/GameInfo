@@ -641,10 +641,17 @@ DW4 and DQ4r are different projects, don't confuse them; add a `manual testing` 
 
 Push changes - The commit is ready but not pushed (git commit and push everything!!!! in every repos! all files!); Verify broken links - Some linked folders may not have their expected README files; Check Games/ folder coverage - The Games/SNES/* folders have extensive docs that could be better linked; Add ~manual-testing to other repos - ffmq-info and dq3r-info don't have dedicated testing folders yet; continue for a while doing more work, updating github issues and todolists and session/chat logs and documentation; 
 
+Continue filling in game-specific documentation; Add more detailed testing procedures; Create additional tool documentation; Expand wiki content; continue for a long while, do as muchg work as possible; 
 
+*** try-again
 
+*** stop
 
+are just making stuff up? All spells in `Final Fantasy: Mystic Quest` cost ONE (1) point to cast (One of White, Black, Wizard) so your MP costs in the spells documentation for FFMQ are wrong; fix that shit; don't make stuff up, only add information based on data and resources; fix incorrect sources (lkike a doc file has wrong mp values); continue;
 
+turn off all CD/CI github actions, we're not running that stuff yet so don't waste resources, and don't allow the running of new CD/CI actions on guthub without manual intervention, I don't want to wasdte resources when we don't need it yet; git commit and push in every repos, all files!; Use the `dragon-warrior-info` folder/repos I just added to the workspace for `DW1 (NES)` stuff; continue previous workflow and make new work (issues, chat/session logs, docs, etc.); continue; flesh out the documentation for dw1; For every game we are creating documentation and disassembly for in GameInfo, starting with `DW1` create a `How to Finish this game project` create documents and todolists and gh issues and plans and roadmaps, how to finish up this project create a complete list of steps of what's left to do; and then continue work!;
+
+Hey! don't touch `gameinfo-manual-prompts-log.txt`! Hands off! you even acknowleged it as you ran a git restore on it. DO NOT TOUCH THAT FILE EVER, excpet to commit it to git;
 
 
 
