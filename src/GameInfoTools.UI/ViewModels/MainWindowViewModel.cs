@@ -32,7 +32,8 @@ public partial class MainWindowViewModel : ViewModelBase {
 	private object? _currentView;
 
 	public ObservableCollection<ToolCategory> ToolCategories { get; } = [
-		new ToolCategory("📁", "ROM Info", "rominfo"),
+		new ToolCategory("�", "Project", "project"),
+		new ToolCategory("�📁", "ROM Info", "rominfo"),
 		new ToolCategory("🔢", "Checksum", "checksum"),
 		new ToolCategory("📝", "Text Extractor", "text"),
 		new ToolCategory("🎨", "CHR Editor", "chr"),
@@ -63,6 +64,7 @@ public partial class MainWindowViewModel : ViewModelBase {
 		if (value is null) return;
 
 		CurrentView = value.Id switch {
+			"project" => new WelcomeViewModel(), // TODO: Create ProjectViewModel
 			"rominfo" => new RomInfoViewModel(_loadedRom),
 			"checksum" => new ChecksumViewModel(_loadedRom),
 			"text" => new TextExtractorViewModel(_loadedRom),
@@ -161,55 +163,83 @@ public partial class MainWindowViewModel : ViewModelBase {
 	}
 
 	[RelayCommand]
-	private void ShowRomInfo() => SelectedCategory = ToolCategories[0];
+	private void ShowRomInfo() => SelectedCategory = ToolCategories[1];
 
 	[RelayCommand]
-	private void ShowChecksum() => SelectedCategory = ToolCategories[1];
+	private void ShowChecksum() => SelectedCategory = ToolCategories[2];
 
 	[RelayCommand]
-	private void ShowTextExtractor() => SelectedCategory = ToolCategories[2];
+	private void ShowTextExtractor() => SelectedCategory = ToolCategories[3];
 
 	[RelayCommand]
-	private void ShowChrEditor() => SelectedCategory = ToolCategories[3];
+	private void ShowChrEditor() => SelectedCategory = ToolCategories[4];
 
 	[RelayCommand]
-	private void ShowDisassembler() => SelectedCategory = ToolCategories[4];
+	private void ShowDisassembler() => SelectedCategory = ToolCategories[5];
 
 	[RelayCommand]
-	private void ShowDataEditor() => SelectedCategory = ToolCategories[5];
+	private void ShowDataEditor() => SelectedCategory = ToolCategories[6];
 
 	[RelayCommand]
-	private void ShowPointerScanner() => SelectedCategory = ToolCategories[6];
+	private void ShowPointerScanner() => SelectedCategory = ToolCategories[7];
 
 	[RelayCommand]
-	private void ShowHexEditor() => SelectedCategory = ToolCategories[7];
+	private void ShowHexEditor() => SelectedCategory = ToolCategories[8];
 
 	[RelayCommand]
-	private void ShowBankView() => SelectedCategory = ToolCategories[8];
+	private void ShowBankView() => SelectedCategory = ToolCategories[9];
 
 	[RelayCommand]
-	private void ShowCdlViewer() => SelectedCategory = ToolCategories[11];
+	private void ShowCdlViewer() => SelectedCategory = ToolCategories[12];
 
 	[RelayCommand]
-	private void ShowBuildPipeline() => SelectedCategory = ToolCategories[12];
+	private void ShowBuildPipeline() => SelectedCategory = ToolCategories[13];
 
 	[RelayCommand]
-	private void ShowWikiEditor() => SelectedCategory = ToolCategories[13];
+	private void ShowWikiEditor() => SelectedCategory = ToolCategories[14];
 
 	[RelayCommand]
-	private void ShowSymbolManager() => SelectedCategory = ToolCategories[15];
+	private void ShowSymbolManager() => SelectedCategory = ToolCategories[16];
 
 	[RelayCommand]
-	private void ShowMemoryLayout() => SelectedCategory = ToolCategories[16];
+	private void ShowMemoryLayout() => SelectedCategory = ToolCategories[17];
 
 	[RelayCommand]
-	private void ShowPaletteEditor() => SelectedCategory = ToolCategories[17];
+	private void ShowPaletteEditor() => SelectedCategory = ToolCategories[18];
 
 	[RelayCommand]
-	private void ShowSaveEditor() => SelectedCategory = ToolCategories[18];
+	private void ShowSaveEditor() => SelectedCategory = ToolCategories[19];
 
 	[RelayCommand]
-	private void ShowTasConverter() => SelectedCategory = ToolCategories[19];
+	private void ShowTasConverter() => SelectedCategory = ToolCategories[20];
+
+	[RelayCommand]
+	private async Task NewProject(Window window) {
+		// TODO: Show Create Project Wizard dialog
+		StatusText = "Create New Project wizard - Coming soon!";
+		await Task.CompletedTask;
+	}
+
+	[RelayCommand]
+	private async Task OpenProject(Window window) {
+		var topLevel = TopLevel.GetTopLevel(window);
+		if (topLevel is null) return;
+
+		var files = await topLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions {
+			Title = "Open Project",
+			AllowMultiple = false,
+			FileTypeFilter = [
+				new FilePickerFileType("GameInfo Project") { Patterns = ["*.giproj"] },
+				new FilePickerFileType("All Files") { Patterns = ["*.*"] }
+			]
+		});
+
+		if (files.Count > 0) {
+			var file = files[0];
+			// TODO: Actually open the project
+			StatusText = $"Opening project: {file.Path.LocalPath}";
+		}
+	}
 
 	[RelayCommand]
 	private void ShowAbout() {
