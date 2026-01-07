@@ -133,6 +133,7 @@ Temporary party members that join in specific chapters:
 * [[Dragon Warrior IV:Battle_System|Battle System]] - AI tactics and combat mechanics
 * [[Dragon Warrior IV:EXP_System|EXP System]] - Experience calculation formulas
 * [[Dragon Warrior IV:Spells|Spells]] - Magic system and spell tables
+* [[Dragon Warrior IV:Formulas|Formulas]] - All game mechanics calculations
 
 ===Game Data===
 * [[Dragon Warrior IV:Characters|Characters]] - Party members and companions

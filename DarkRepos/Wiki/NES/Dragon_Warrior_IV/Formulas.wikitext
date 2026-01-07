@@ -1,0 +1,422 @@
+{{Back|Dragon Warrior IV (NES)}}
+{{DISPLAYTITLE:Dragon Warrior IV - Formulas}}
+__TOC__
+
+= Game Formulas =
+
+This page documents all mathematical formulas used in Dragon Warrior IV (NES), including damage calculations, stat growth, and game mechanics.
+
+== Physical Combat ==
+
+=== Basic Attack Damage ===
+
+<nowiki>
+Step 1: Calculate Attack Power
+  ATK = Character_Strength + Weapon_Attack
+
+Step 2: Calculate Defense
+  DEF = Target_Vitality/4 + Target_Armor_DEF + Shield_DEF + Helmet_DEF
+
+Step 3: Base Damage
+  Base = ATK - DEF/2
+  If Base < 1, Base = 1
+
+Step 4: Apply Variance (±12.5%)
+  Variance = random(0, Base/4) - Base/8
+  Damage = Base + Variance
+
+Step 5: Final Damage
+  Final = max(1, Damage)
+</nowiki>
+
+=== Critical Hits ===
+
+<nowiki>
+Critical Chance = Luck / 256
+
+Critical Damage = Base_Damage × 2
+</nowiki>
+
+'''Notes:'''
+* Critical hits ignore some defense
+* Luck cap for critical rate effectively ~25%
+* Some weapons boost critical rate
+
+=== Metal Monster Damage ===
+
+<nowiki>
+Against Metal Slimes/Babbles:
+  Damage = random(0, 1)  (either 0 or 1)
+
+Metal Babble Sword:
+  Damage = 1  (always hits for 1)
+
+Poison Needle:
+  1/8 chance of instant kill
+</nowiki>
+
+=== Elemental Damage Modifiers ===
+
+{| class="wikitable"
+|-
+! Element !! Weak !! Neutral !! Resist !! Immune
+|-
+| Fire || 2.0× || 1.0× || 0.5× || 0×
+|-
+| Ice || 2.0× || 1.0× || 0.5× || 0×
+|-
+| Thunder || 2.0× || 1.0× || 0.5× || 0×
+|}
+
+== Magic Damage ==
+
+=== Offensive Spell Damage ===
+
+<nowiki>
+Damage = Base_Power × (1 + Intelligence/128)
+
+Where:
+  Base_Power = Spell's base damage value
+  Intelligence = Caster's INT stat
+</nowiki>
+
+=== Spell Power Table ===
+
+{| class="wikitable sortable"
+|-
+! Spell !! Base !! MP !! Type !! Target
+|-
+| Blaze || 8-16 || 2 || Fire || Single
+|-
+| Firebal || 16-24 || 4 || Fire || Group
+|-
+| Firevolt || 40-56 || 8 || Fire || Group
+|-
+| Blazemore || 60-80 || 10 || Fire || Single
+|-
+| Blazemost || 150-200 || 18 || Fire || Single
+|-
+| Icebolt || 30-45 || 5 || Ice || Group
+|-
+| Snowblast || 50-70 || 12 || Ice || All
+|-
+| Zap || 80-100 || 8 || Thunder || All
+|-
+| Lightning || 180-210 || 15 || Thunder || All
+|-
+| Bang || 15-25 || 5 || Explosion || All
+|-
+| Boom || 50-70 || 9 || Explosion || All
+|-
+| Explodet || 100-150 || 15 || Explosion || All
+|}
+
+=== Healing Spells ===
+
+<nowiki>
+Heal:     30-40 HP
+Healmore: 85-100 HP
+Healall:  Full HP
+Healus:   100-120 HP to party
+
+Healing is NOT affected by Intelligence.
+</nowiki>
+
+=== Buff/Debuff Effects ===
+
+{| class="wikitable"
+|-
+! Spell !! Effect !! Duration
+|-
+| Increase || +50% Defense || Battle
+|-
+| Bikill || 2× Attack || Battle
+|-
+| SpeedUp || 2× Agility || Battle
+|-
+| Decrease || -25% Defense || Battle
+|-
+| Slow || ÷2 Agility || Battle
+|}
+
+== Turn Order ==
+
+=== Speed Calculation ===
+
+<nowiki>
+Turn_Speed = Agility + random(0, Agility/4)
+
+Higher Turn_Speed acts first
+Ties broken by party position (earlier = first)
+</nowiki>
+
+=== Speed Modifiers ===
+
+{| class="wikitable"
+|-
+! Condition !! Modifier
+|-
+| Normal || 1.0×
+|-
+| SpeedUp || 2.0×
+|-
+| Slowed || 0.5×
+|-
+| Paralyzed || Cannot act
+|}
+
+== Experience & Leveling ==
+
+=== Experience Per Battle ===
+
+<nowiki>
+Total_EXP = Sum of all defeated monster EXP
+Party_EXP = Total_EXP / Living_Members
+</nowiki>
+
+=== Level Up Formula ===
+
+<nowiki>
+EXP for level N ≈ (N^3 × Base_Factor) / 4
+
+Base_Factor varies by character class
+</nowiki>
+
+=== Character Base Factors ===
+
+{| class="wikitable"
+|-
+! Character !! Factor !! Growth Type
+|-
+| Hero || 1.00 || Standard
+|-
+| Ragnar || 0.95 || Fast early
+|-
+| Alena || 0.90 || Very fast
+|-
+| Cristo || 1.10 || Slow
+|-
+| Brey || 1.15 || Very slow
+|-
+| Taloon || 1.05 || Medium
+|-
+| Mara || 1.10 || Slow
+|-
+| Nara || 1.10 || Slow
+|}
+
+== Stat Growth ==
+
+=== Level Up Stats ===
+
+<nowiki>
+Stat_Gain = Base_Growth + random(0, Variable_Growth)
+
+Where values come from character's growth table
+</nowiki>
+
+=== Growth Tables (Example: Hero) ===
+
+{| class="wikitable"
+|-
+! Level Range !! HP !! MP !! STR !! AGL !! INT !! LCK
+|-
+| 1-10 || 4-8 || 2-4 || 2-3 || 1-2 || 1-2 || 0-1
+|-
+| 11-20 || 5-10 || 3-5 || 2-4 || 1-3 || 1-2 || 0-1
+|-
+| 21-30 || 4-8 || 2-4 || 1-3 || 1-2 || 1-2 || 0-1
+|-
+| 31-40 || 3-6 || 2-3 || 1-2 || 0-1 || 0-1 || 0-1
+|-
+| 41-99 || 2-4 || 1-2 || 0-1 || 0-1 || 0-1 || 0
+|}
+
+== Gold & Items ==
+
+=== Monster Gold Drops ===
+
+<nowiki>
+Gold = Monster_Base_Gold × random(75%, 125%)
+</nowiki>
+
+=== Item Drop Chance ===
+
+<nowiki>
+Drop_Chance = 1 / (Drop_Rate + 1)
+
+Common rates:
+  Drop_Rate $00: 100% (always)
+  Drop_Rate $08: 12.5%
+  Drop_Rate $10: 6.25%
+  Drop_Rate $20: 3.125%
+  Drop_Rate $40: 1.5%
+</nowiki>
+
+=== Shop Prices ===
+
+<nowiki>
+Buy Price = Base_Price
+Sell Price = Base_Price / 2
+
+Casino prices use separate table
+</nowiki>
+
+== Escape Mechanics ==
+
+=== Flee Success Rate ===
+
+<nowiki>
+Flee_Chance = (Party_Avg_Agility / Enemy_Avg_Agility) × 0.5
+
+If Flee_Chance > random(0, 1):
+  Escape successful
+Else:
+  Lose turn, no escape
+</nowiki>
+
+=== Auto-Flee (Weak Enemies) ===
+
+<nowiki>
+If Hero_Level > (Strongest_Enemy_Level × 2):
+  50% chance enemies flee at battle start
+</nowiki>
+
+== Status Effects ==
+
+=== Sleep ===
+
+<nowiki>
+Sleep Duration = 2-5 turns
+Wake Chance per turn = 25%
+Wake on damage = 50%
+</nowiki>
+
+=== Poison ===
+
+<nowiki>
+Damage per step = Max_HP / 16 (minimum 1)
+Cannot kill (leaves 1 HP)
+</nowiki>
+
+=== Paralyze ===
+
+<nowiki>
+Duration = 1-4 turns
+Recovery chance per turn = 25%
+</nowiki>
+
+=== Confuse ===
+
+<nowiki>
+Duration = Until healed or random recovery
+May attack allies or self
+Recovery chance = 12.5% per turn
+</nowiki>
+
+== AI Formulas ==
+
+=== Enemy AI Selection ===
+
+<nowiki>
+1. Check HP threshold for flee/heal
+2. Roll random(0, 255)
+3. Compare against action weight table
+4. Select action based on threshold
+</nowiki>
+
+=== AI Action Weights ===
+
+{| class="wikitable"
+|-
+! Action !! Typical Weight !! Note
+|-
+| Attack || $40 (25%) || Default physical
+|-
+| Skill 1 || $30 (18%) || Primary skill
+|-
+| Skill 2 || $20 (12%) || Secondary skill
+|-
+| Heal || $10 (6%) || HP < 25%
+|-
+| Flee || $08 (3%) || HP < 10%
+|}
+
+=== Party AI (Tactics) ===
+
+{| class="wikitable"
+|-
+! Tactic !! Behavior
+|-
+| Normal || Balanced offense/defense
+|-
+| Offensive || Prioritize damage, ignore healing
+|-
+| Defensive || Prioritize healing, buff spells
+|-
+| Use No MP || Physical attacks only
+|-
+| Try Out || Random actions (testing)
+|}
+
+== Special Mechanics ==
+
+=== Taloon's Merchant Skills ===
+
+<nowiki>
+Call for Help:
+  Chance = Level / 32
+
+Get Lucky:
+  Chance = Level / 64
+
+Stumble (miss):
+  Chance = (100 - Level) / 100
+</nowiki>
+
+=== Alena's Critical Boost ===
+
+<nowiki>
+Alena_Critical = (Luck × 2) / 256
+
+Effectively double critical rate
+</nowiki>
+
+=== Hero's Zenithian Power ===
+
+<nowiki>
+With full Zenithian set equipped:
+  +20 to all resistances
+  Immune to all breath attacks
+</nowiki>
+
+== ROM Locations ==
+
+{| class="wikitable"
+|-
+! Formula Data !! Bank !! Address !! Notes
+|-
+| Damage tables || 19 || $bb99 || Base damage values
+|-
+| Spell power || 9 || $a200 || Per-spell base damage
+|-
+| EXP tables || 9 || $a400 || Per-character curves
+|-
+| Growth tables || 9 || $a600 || Stat gains per level
+|-
+| Drop rates || 6 || $8010+$17 || In monster data
+|-
+| AI weights || 19 || $b800 || Per-monster patterns
+|}
+
+== Related Pages ==
+
+* [[Dragon Warrior IV (NES)/Battle_System|Battle System]] - Combat mechanics
+* [[Dragon Warrior IV (NES)/Spells|Spells]] - Complete spell list
+* [[Dragon Warrior IV (NES)/Enemies|Enemies]] - Monster stats
+* [[Dragon Warrior IV (NES)/Characters|Characters]] - Party member stats
+* [[Dragon Warrior IV (NES)/Technical_Reference|Technical Reference]] - ROM structure
+
+[[Category:Dragon Warrior IV]]
+[[Category:NES Games]]
+[[Category:Game Formulas]]
