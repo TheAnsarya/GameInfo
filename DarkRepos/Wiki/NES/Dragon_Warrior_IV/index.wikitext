@@ -127,6 +127,7 @@ Temporary party members that join in specific chapters:
 * [[Dragon Warrior IV:TBL|Text Table]] - Character encoding
 * [[Dragon Warrior IV:Values|Values]] - Game constants and IDs
 * [[Dragon Warrior IV:Map_List|Map List]] - Location ID reference
+* [[Dragon Warrior IV:Technical_Reference|Technical Reference]] - ROM hacking guide
 
 ===Game Systems===
 * [[Dragon Warrior IV:Battle_System|Battle System]] - AI tactics and combat mechanics
@@ -135,7 +136,8 @@ Temporary party members that join in specific chapters:
 
 ===Game Data===
 * [[Dragon Warrior IV:Characters|Characters]] - Party members and companions
-* [[Dragon Warrior IV:Items|Items]] - Equipment and consumables
+* [[Dragon Warrior IV:Items|Items]] - Consumables and key items
+* [[Dragon Warrior IV:Equipment|Equipment]] - Weapons, armor, shields, helmets
 * [[Dragon Warrior IV:Enemies|Enemies]] - Monster data structure and categories
 
 ==Known Dumps==

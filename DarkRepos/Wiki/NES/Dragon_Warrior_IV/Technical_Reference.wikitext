@@ -1,0 +1,481 @@
+{{Back|Dragon Warrior IV (NES)}}
+{{DISPLAYTITLE:Dragon Warrior IV - Technical Reference}}
+__TOC__
+
+= Technical Reference =
+
+This page provides comprehensive technical information for Dragon Warrior IV (NES) ROM hacking, including memory maps, data formats, and system architecture.
+
+== ROM Information ==
+
+{| class="wikitable"
+|-
+! Property !! Value
+|-
+| System || Nintendo Entertainment System (NES)
+|-
+| Mapper || MMC3 (Mapper 4)
+|-
+| PRG ROM || 256 KB (16 × 16KB banks)
+|-
+| CHR ROM || 256 KB (32 × 8KB banks)
+|-
+| PRG RAM || 8 KB (battery-backed SRAM)
+|-
+| Mirroring || Vertical (mapper controlled)
+|-
+| Release || October 1992 (US)
+|-
+| Publisher || Enix
+|-
+| Developer || Chunsoft
+|}
+
+=== Known ROM Dumps ===
+
+{| class="wikitable"
+|-
+! Region !! CRC32 !! SHA-1 !! Status
+|-
+| US || $12BC3FF4 || ... || Verified clean
+|-
+| US (Rev A) || ... || ... || Minor text fixes
+|}
+
+== Memory Map ==
+
+=== CPU Address Space ===
+
+{| class="wikitable"
+|-
+! Range !! Size !! Description
+|-
+| $0000-$07FF || 2KB || Internal RAM
+|-
+| $0800-$1FFF || - || RAM mirrors
+|-
+| $2000-$2007 || 8 || PPU registers
+|-
+| $4000-$4017 || 24 || APU/IO registers
+|-
+| $6000-$7FFF || 8KB || SRAM (save data)
+|-
+| $8000-$9FFF || 8KB || PRG Bank (switchable)
+|-
+| $A000-$BFFF || 8KB || PRG Bank (switchable)
+|-
+| $C000-$DFFF || 8KB || PRG Bank (fixed -2)
+|-
+| $E000-$FFFF || 8KB || PRG Bank (fixed -1)
+|}
+
+=== PRG Bank Layout ===
+
+{| class="wikitable"
+|-
+! Bank !! File Offset !! Description !! Status
+|-
+| 00 || $00010-$04010 || Core engine, bank switching, NMI || Partial
+|-
+| 01 || $04010-$08010 || Chapter 1 (Ragnar) code || Needs work
+|-
+| 02 || $08010-$0C010 || Chapter 2 (Alena) code || Needs work
+|-
+| 03 || $0C010-$10010 || Chapter 3 (Taloon) code || Needs work
+|-
+| 04 || $10010-$14010 || Chapter 4 (Mara/Nara) code || Needs work
+|-
+| 05 || $14010-$18010 || Chapter 5 (Hero) code || Needs work
+|-
+| 06 || $18010-$1C010 || Monster data tables || Documented
+|-
+| 07 || $1C010-$20010 || Monster names, text || Documented
+|-
+| 08 || $20010-$24010 || Item/equipment data || Documented
+|-
+| 09 || $24010-$28010 || Spell data, character stats || Partial
+|-
+| 0A || $28010-$2C010 || Battle system || Partial
+|-
+| 0B || $2C010-$30010 || AI routines || Partial
+|-
+| 0C || $30010-$34010 || Map data || Partial
+|-
+| 0D || $34010-$38010 || Map data continued || Partial
+|-
+| 0E || $38010-$3C010 || Graphics pointers || Partial
+|-
+| 0F || $3C010-$40010 || Music/sound data || Partial
+|}
+
+=== CHR Bank Layout ===
+
+Dragon Warrior IV uses 32 × 8KB CHR banks for graphics:
+
+{| class="wikitable"
+|-
+! Banks !! Content
+|-
+| 00-03 || Font and UI tiles
+|-
+| 04-0B || Character sprites
+|-
+| 0C-13 || Monster sprites
+|-
+| 14-1B || Map tiles (overworld)
+|-
+| 1C-1F || Map tiles (dungeons/towns)
+|}
+
+== Data Structures ==
+
+=== Character Data (RAM $0400) ===
+
+Each party member has a 32-byte ($20) block:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| +$00 || 1 || Character ID
+|-
+| +$01 || 1 || Level
+|-
+| +$02-$03 || 2 || Current HP
+|-
+| +$04-$05 || 2 || Max HP
+|-
+| +$06-$07 || 2 || Current MP
+|-
+| +$08-$09 || 2 || Max MP
+|-
+| +$0A || 1 || Strength
+|-
+| +$0B || 1 || Agility
+|-
+| +$0C || 1 || Intelligence
+|-
+| +$0D || 1 || Luck
+|-
+| +$0E || 1 || Attack Power
+|-
+| +$0F || 1 || Defense Power
+|-
+| +$10-$13 || 4 || Experience (32-bit)
+|-
+| +$14 || 1 || Status flags
+|-
+| +$15 || 1 || Equipped weapon
+|-
+| +$16 || 1 || Equipped armor
+|-
+| +$17 || 1 || Equipped shield
+|-
+| +$18 || 1 || Equipped helmet
+|-
+| +$19-$1F || 7 || Reserved
+|}
+
+=== Monster Data (Bank 6, $8010) ===
+
+Each monster is 27 bytes ($1B):
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| +$00-$01 || 2 || Experience (16-bit LE)
+|-
+| +$02-$03 || 2 || Gold (16-bit LE)
+|-
+| +$04-$05 || 2 || HP (16-bit LE)
+|-
+| +$06 || 1 || Attack
+|-
+| +$07 || 1 || Defense
+|-
+| +$08 || 1 || Agility
+|-
+| +$09-$0E || 6 || Skills/abilities
+|-
+| +$0F-$12 || 4 || Behavior flags
+|-
+| +$13 || 1 || Drop item ID
+|-
+| +$14 || 1 || Unknown
+|-
+| +$15 || 1 || Sprite/palette
+|-
+| +$16 || 1 || Metal flags
+|-
+| +$17 || 1 || Drop rate
+|-
+| +$18 || 1 || Status vulnerability
+|-
+| +$19-$1A || 2 || Unknown
+|}
+
+Monster address formula: $18010 + (ID × $1B)
+
+=== Item Data (Bank 8) ===
+
+Equipment and items have varying structures:
+
+{| class="wikitable"
+|-
+! Data Type !! Address !! Size
+|-
+| Weapon attack values || $0a010 || 1 byte per weapon
+|-
+| Armor defense values || $0a034 || 1 byte per armor
+|-
+| Shield defense values || $0a04d || 1 byte per shield
+|-
+| Helmet defense values || $0a058 || 1 byte per helmet
+|-
+| Item prices || $08010 || 2 bytes per item (LE)
+|-
+| Equip restrictions || $0a100 || 1 byte bitmask per item
+|}
+
+== Battle System ==
+
+=== Damage Calculation ===
+
+<nowiki>
+Physical Damage:
+  Base = Attack - (Defense / 2)
+  Random = Base × (0.875 to 1.125)
+  Final = max(1, Random)
+
+Critical Hit:
+  Chance = Luck / 256
+  Damage = Base × 2
+
+Metal Monster:
+  Damage = 0 or 1 (random)
+  Metal Babble Sword: 1/2 damage always
+</nowiki>
+
+=== Turn Order ===
+
+Determined by Agility stat with randomization:
+
+<nowiki>
+Speed Value = Agility + random(0, Agility/4)
+Higher speed acts first
+Ties broken by position in party/enemy formation
+</nowiki>
+
+=== AI Behavior Flags ===
+
+Monster AI is controlled by behavior bytes at +$0F:
+
+{| class="wikitable"
+|-
+! Bit !! Effect
+|-
+| 0 || Physical attack
+|-
+| 1 || Use skill 1
+|-
+| 2 || Use skill 2
+|-
+| 3 || Use skill 3
+|-
+| 4 || Flee when HP low
+|-
+| 5 || Call for backup
+|-
+| 6 || High priority target selection
+|-
+| 7 || Boss flag (no flee)
+|}
+
+== Text System ==
+
+=== Dictionary Compression ===
+
+DW4 uses dictionary-based text compression:
+
+{| class="wikitable"
+|-
+! Range !! Function
+|-
+| $00-$5F || Direct character codes (A-Z, a-z, symbols)
+|-
+| $60-$DF || Dictionary entry indices
+|-
+| $E0-$EF || Control codes
+|-
+| $F0-$FE || Extended dictionary
+|-
+| $FF || End of string
+|}
+
+=== Control Codes ===
+
+{| class="wikitable"
+|-
+! Code !! Function
+|-
+| $E0 || Line break
+|-
+| $E1 || New text box
+|-
+| $E2 || Insert party member name
+|-
+| $E3 || Insert number
+|-
+| $E4 || Pause
+|-
+| $E5 || Item name
+|-
+| $E6 || Monster name
+|-
+| $E7 || Spell name
+|}
+
+== Save System ==
+
+=== SRAM Layout ($6000-$7FFF) ===
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Content
+|-
+| $6000 || $100 || Save slot 1 header
+|-
+| $6100 || $400 || Save slot 1 character data
+|-
+| $6500 || $100 || Save slot 1 inventory
+|-
+| $6600 || $200 || Save slot 1 flags
+|-
+| $6800 || ... || Save slot 2 (same structure)
+|-
+| $7000 || ... || Save slot 3 (same structure)
+|-
+| $7F00 || $100 || Checksum and backup data
+|}
+
+=== Checksum Calculation ===
+
+<nowiki>
+Sum all bytes in save slot
+XOR with $FF
+Store at end of slot
+</nowiki>
+
+== MMC3 Mapper ==
+
+=== Bank Switching ===
+
+MMC3 uses registers at $8000-$9FFF:
+
+{| class="wikitable"
+|-
+! Register !! Function
+|-
+| $8000 || Bank select (which register to configure)
+|-
+| $8001 || Bank data (which bank to map)
+|-
+| $A000 || Mirroring control
+|-
+| $A001 || PRG RAM protect
+|-
+| $C000 || IRQ latch
+|-
+| $C001 || IRQ reload
+|-
+| $E000 || IRQ disable
+|-
+| $E001 || IRQ enable
+|}
+
+=== Bank Select Values ($8000) ===
+
+{| class="wikitable"
+|-
+! Value !! Selects
+|-
+| $00 || 2KB CHR bank at $0000
+|-
+| $01 || 2KB CHR bank at $0800
+|-
+| $02 || 1KB CHR bank at $1000
+|-
+| $03 || 1KB CHR bank at $1400
+|-
+| $04 || 1KB CHR bank at $1800
+|-
+| $05 || 1KB CHR bank at $1C00
+|-
+| $06 || 8KB PRG bank at $8000
+|-
+| $07 || 8KB PRG bank at $A000
+|}
+
+== Debugging Tips ==
+
+=== Useful RAM Addresses ===
+
+{| class="wikitable"
+|-
+! Address !! Description
+|-
+| $0030 || Current chapter
+|-
+| $0031 || Game state
+|-
+| $0040-$004F || Button input
+|-
+| $0050 || Current map ID
+|-
+| $0051-$0052 || Player X/Y position
+|-
+| $0060 || Gold (low byte)
+|-
+| $0061 || Gold (mid byte)
+|-
+| $0062 || Gold (high byte)
+|-
+| $0400 || Party leader data
+|-
+| $0420 || Party member 2 data
+|-
+| $0440 || Party member 3 data
+|-
+| $0460 || Party member 4 data
+|}
+
+=== Emulator Breakpoints ===
+
+Common debugging breakpoints:
+
+{| class="wikitable"
+|-
+! Address !! Event
+|-
+| $8000 (Bank 0) || Bank switch routine
+|-
+| $C000 || Battle initiation
+|-
+| $C200 || Damage calculation
+|-
+| $C400 || Item use handler
+|-
+| $C600 || Spell cast handler
+|}
+
+== Related Pages ==
+
+* [[Dragon Warrior IV (NES)/ROM_Map|ROM Map]] - Detailed address breakdown
+* [[Dragon Warrior IV (NES)/RAM_Map|RAM Map]] - Runtime memory layout
+* [[Dragon Warrior IV (NES)/Enemies|Enemies]] - Monster data documentation
+* [[Dragon Warrior IV (NES)/Equipment|Equipment]] - Item statistics
+
+[[Category:Dragon Warrior IV]]
+[[Category:NES Games]]
+[[Category:Technical Reference]]
