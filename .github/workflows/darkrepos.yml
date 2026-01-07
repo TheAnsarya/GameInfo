@@ -1,15 +1,17 @@
 name: DarkRepos CI/CD
 
+# DISABLED: Automatic triggers disabled to save CI/CD resources
+# Re-enable when ready for production
 on:
-    push:
-        branches: [main, develop, feature/darkrepos-wiki]
-        paths:
-            - "DarkRepos/**"
-            - ".github/workflows/darkrepos.yml"
-    pull_request:
-        branches: [main]
-        paths:
-            - "DarkRepos/**"
+    # push:
+    #     branches: [main, develop, feature/darkrepos-wiki]
+    #     paths:
+    #         - "DarkRepos/**"
+    #         - ".github/workflows/darkrepos.yml"
+    # pull_request:
+    #     branches: [main]
+    #     paths:
+    #         - "DarkRepos/**"
     workflow_dispatch:
         inputs:
             deploy:

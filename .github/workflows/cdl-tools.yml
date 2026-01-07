@@ -1,17 +1,19 @@
 name: CDL Tools CI/CD
 
+# DISABLED: Automatic triggers disabled to save CI/CD resources
+# Re-enable when ready for production
 on:
-  push:
-    branches: [ main, develop ]
-    paths:
-      - 'tools/*.py'
-      - 'tests/*.py'
-      - '.github/workflows/cdl-tools.yml'
-  pull_request:
-    branches: [ main ]
-    paths:
-      - 'tools/*.py'
-      - 'tests/*.py'
+  # push:
+  #   branches: [ main, develop ]
+  #   paths:
+  #     - 'tools/*.py'
+  #     - 'tests/*.py'
+  #     - '.github/workflows/cdl-tools.yml'
+  # pull_request:
+  #   branches: [ main ]
+  #   paths:
+  #     - 'tools/*.py'
+  #     - 'tests/*.py'
   workflow_dispatch:
     inputs:
       run_coverage:
