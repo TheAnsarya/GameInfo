@@ -1,0 +1,592 @@
+{{Back|Final Fantasy IV (SNES)}}
+{{DISPLAYTITLE:Final Fantasy IV - Equipment}}
+__TOC__
+
+= Equipment System =
+
+Final Fantasy IV (SNES) features a robust equipment system with weapons, armor, shields, helmets, and accessories. Equipment is character-restricted based on job class.
+
+== ROM Data Locations ==
+
+{| class="wikitable"
+|-
+! Data Type !! ROM Address !! Size !! Format
+|-
+| Weapon Data || $1a6000 || $800 || 8 bytes per weapon
+|-
+| Armor Data || $1a6800 || $600 || 8 bytes per armor
+|-
+| Shield Data || $1a6e00 || $200 || 8 bytes per shield
+|-
+| Helmet Data || $1a7000 || $200 || 8 bytes per helmet
+|-
+| Accessory Data || $1a7200 || $400 || 8 bytes per accessory
+|-
+| Equipment Names || $1b0000 || Variable || Compressed text
+|-
+| Equip Restrictions || $1a8000 || $200 || Character bitmask
+|}
+
+== Equipment Data Structure ==
+
+Each equipment piece uses 8 bytes:
+
+{| class="wikitable"
+|-
+! Offset !! Size !! Description
+|-
+| $00 || 1 || Equipment type (weapon/armor/etc)
+|-
+| $01 || 1 || Character equip flags (bitmask)
+|-
+| $02 || 1 || Primary stat (ATK for weapons, DEF for armor)
+|-
+| $03 || 1 || Secondary stat (EVA%, Magic DEF, etc)
+|-
+| $04-$05 || 2 || Price (buy price)
+|-
+| $06 || 1 || Element/status flags
+|-
+| $07 || 1 || Special properties
+|}
+
+== Character Equipment Classes ==
+
+{| class="wikitable"
+|-
+! Character !! Weapons !! Armor !! Shields !! Helmets
+|-
+| Cecil (Dark) || Dark Swords || Heavy || Heavy || Heavy
+|-
+| Cecil (Paladin) || Holy Swords, Light Swords || Heavy || Heavy || Heavy
+|-
+| Kain || Spears || Heavy || None || Heavy
+|-
+| Rosa || Bows, Staves || Light || None || Light
+|-
+| Rydia (Child) || Rods, Whips || Light || None || Light
+|-
+| Rydia (Adult) || Rods, Whips || Light || None || Light
+|-
+| Edward || Harps || Light || None || Light
+|-
+| Yang || Claws || Light || None || Light
+|-
+| Palom || Rods || Light || None || Light
+|-
+| Porom || Staves || Light || None || Light
+|-
+| Tellah || Rods, Staves || Light || None || Light
+|-
+| Edge || Katanas, Boomerangs || Medium || None || Medium
+|-
+| FuSoYa || Rods, Staves || Light || None || Light
+|-
+| Cid || Hammers || Heavy || None || Heavy
+|}
+
+== Weapons ==
+
+=== Swords ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! ATK !! Price !! Users !! Special Effect
+|-
+| $00 || Shadow Blade || 10 || 150 || Cecil (Dark) || None
+|-
+| $01 || Deathbringer || 35 || 7800 || Cecil (Dark) || May cause Death
+|-
+| $02 || Darkness Sword || 55 || 16000 || Cecil (Dark) || Darkness element
+|-
+| $03 || Legend Sword || 15 || 750 || Cecil || None
+|-
+| $04 || Silver Sword || 30 || 4000 || Cecil || None
+|-
+| $05 || Ancient Sword || 35 || 2800 || Cecil || May cause Curse
+|-
+| $06 || Avenger || 70 || — || Cecil || Berserks wielder
+|-
+| $07 || Blood Sword || 75 || — || Cecil || Drains HP
+|-
+| $08 || Flame Sword || 55 || — || Cecil || Fire element
+|-
+| $09 || Ice Brand || 55 || — || Cecil || Ice element
+|-
+| $0a || Defender || 65 || — || Cecil || +15 Evasion
+|-
+| $0b || Excalibur || 110 || — || Cecil || Holy element
+|-
+| $0c || Ragnarok || 130 || — || Cecil || Strongest sword
+|-
+| $0d || Crystal Sword || 80 || — || Cecil || None
+|}
+
+=== Spears ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! ATK !! Price !! Users !! Special Effect
+|-
+| $20 || Spear || 18 || 60 || Kain || None
+|-
+| $21 || Wind Spear || 45 || 8000 || Kain || Wind element
+|-
+| $22 || Flame Spear || 55 || — || Kain || Fire element
+|-
+| $23 || Ice Lance || 55 || — || Kain || Ice element
+|-
+| $24 || Bolt Spear || 55 || — || Kain || Thunder element
+|-
+| $25 || Gungnir || 85 || — || Kain || None
+|-
+| $26 || Dragon Lance || 99 || — || Kain || Strong vs dragons
+|-
+| $27 || Holy Lance || 109 || — || Kain || Holy element
+|-
+| $28 || Crystal Spear || 80 || — || Kain || None
+|}
+
+=== Rods ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! ATK !! Price !! Users !! Special Effect
+|-
+| $30 || Rod || 5 || 100 || Mages || None
+|-
+| $31 || Flame Rod || 12 || 380 || Mages || Fire cast
+|-
+| $32 || Ice Rod || 12 || 380 || Mages || Ice cast
+|-
+| $33 || Thunder Rod || 12 || 380 || Mages || Thunder cast
+|-
+| $34 || Changing Rod || 20 || — || Mages || Casts Piggy
+|-
+| $35 || Faerie Rod || 32 || — || Mages || Casts Confuse
+|-
+| $36 || Poison Rod || 35 || — || Mages || May poison
+|-
+| $37 || Lilith Rod || 45 || — || Mages || Drains MP
+|-
+| $38 || Stardust Rod || 68 || — || Rydia || +5 to all magic
+|-
+| $39 || Crystal Rod || 80 || — || Mages || None
+|}
+
+=== Staves ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! ATK !! Price !! Users !! Special Effect
+|-
+| $40 || Staff || 4 || 160 || White Mages || None
+|-
+| $41 || Healing Staff || 15 || 480 || White Mages || Casts Cure
+|-
+| $42 || Mithril Staff || 22 || — || White Mages || None
+|-
+| $43 || Power Staff || 40 || — || White Mages || +5 Strength
+|-
+| $44 || Seraphim Staff || 50 || — || White Mages || Cast Raise
+|-
+| $45 || Lunar Staff || 60 || — || White Mages || Cast Silence
+|-
+| $46 || Crystal Staff || 70 || — || White Mages || None
+|}
+
+=== Claws ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! ATK !! Price !! Users !! Special Effect
+|-
+| $50 || Thunder Claw || 35 || — || Yang || Thunder element
+|-
+| $51 || Flame Claw || 35 || — || Yang || Fire element
+|-
+| $52 || Ice Claw || 35 || — || Yang || Ice element
+|-
+| $53 || Poison Claw || 40 || — || Yang || May poison
+|-
+| $54 || Cat Claw || 55 || — || Yang || May steal
+|-
+| $55 || Hell Claw || 65 || — || Yang || May Death
+|-
+| $56 || Dragon Claw || 90 || — || Yang || Strong vs dragons
+|-
+| $57 || Crystal Fist || 100 || — || Yang || None
+|}
+
+=== Katanas ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! ATK !! Price !! Users !! Special Effect
+|-
+| $60 || Knife || 5 || 50 || Edge, etc || None
+|-
+| $61 || Kunai || 20 || — || Edge || None
+|-
+| $62 || Ashura || 45 || — || Edge || None
+|-
+| $63 || Kotetsu || 55 || — || Edge || None
+|-
+| $64 || Kiku-ichimonji || 70 || — || Edge || None
+|-
+| $65 || Murasame || 90 || — || Edge || Casts Fog
+|-
+| $66 || Masamune || 99 || — || Edge || +3 Speed
+|}
+
+=== Bows ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! ATK !! Price !! Users !! Special Effect
+|-
+| $70 || Bow || 10 || 220 || Rosa || Requires arrows
+|-
+| $71 || Power Bow || 22 || 700 || Rosa || Requires arrows
+|-
+| $72 || Great Bow || 30 || 2000 || Rosa || Requires arrows
+|-
+| $73 || Killer Bow || 45 || — || Rosa || May Death
+|-
+| $74 || Elven Bow || 55 || — || Rosa || None
+|-
+| $75 || Artemis Bow || 90 || — || Rosa || Strong vs Magic
+|}
+
+=== Arrows (Ammunition) ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! ATK Bonus !! Price !! Special
+|-
+| $80 || Iron Arrow || +5 || 10 || None
+|-
+| $81 || Holy Arrow || +10 || 500 || Holy element
+|-
+| $82 || Fire Arrow || +15 || 30 || Fire element
+|-
+| $83 || Ice Arrow || +15 || 30 || Ice element
+|-
+| $84 || Lit Arrow || +15 || 30 || Thunder element
+|-
+| $85 || Poison Arrow || +20 || 70 || May poison
+|-
+| $86 || Mute Arrow || +25 || 100 || May silence
+|-
+| $87 || Artemis Arrow || +40 || — || Strong vs dragons
+|}
+
+=== Harps ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! ATK !! Price !! Users !! Special Effect
+|-
+| $90 || Harp || 10 || — || Edward || None
+|-
+| $91 || Dreamer Harp || 35 || — || Edward || May sleep
+|-
+| $92 || Lamia Harp || 50 || — || Edward || Charms enemies
+|}
+
+=== Whips ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! ATK !! Price !! Users !! Special Effect
+|-
+| $a0 || Whip || 15 || 3000 || Rydia || Back row OK
+|-
+| $a1 || Chain Whip || 25 || — || Rydia || Back row OK
+|-
+| $a2 || Blitz Whip || 45 || — || Rydia || Thunder element
+|-
+| $a3 || Flame Whip || 50 || — || Rydia || Fire element
+|-
+| $a4 || Dragon Whip || 80 || — || Rydia || Strong vs dragons
+|}
+
+=== Hammers ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! ATK !! Price !! Users !! Special Effect
+|-
+| $b0 || Wooden Hammer || 25 || — || Cid || None
+|-
+| $b1 || Mithril Hammer || 45 || — || Cid || None
+|-
+| $b2 || Earthen Hammer || 75 || — || Cid || Casts Quake
+|-
+| $b3 || Thor Hammer || 100 || — || Cid || Thunder element
+|}
+
+== Armor ==
+
+=== Body Armor ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! DEF !! M.DEF !! Price !! Users !! Special
+|-
+| $00 || Cloth || 1 || 0 || 50 || All || None
+|-
+| $01 || Leather || 3 || 0 || 200 || Most || None
+|-
+| $02 || Iron Armor || 8 || 0 || 600 || Heavy || None
+|-
+| $03 || Dark Armor || 15 || 3 || — || Cecil (Dark) || Resist Dark
+|-
+| $04 || Demon Armor || 20 || 5 || — || Heavy || May curse wearer
+|-
+| $05 || Flame Mail || 25 || 5 || — || Heavy || Fire resist
+|-
+| $06 || Ice Armor || 25 || 5 || — || Heavy || Ice resist
+|-
+| $07 || Bolt Armor || 25 || 5 || — || Heavy || Thunder resist
+|-
+| $08 || Diamond Armor || 30 || 7 || — || Heavy || None
+|-
+| $09 || Crystal Armor || 40 || 10 || — || Heavy || None
+|-
+| $0a || Dragon Armor || 45 || 15 || — || Cecil, Kain || All element resist
+|-
+| $0b || Paladin Armor || 55 || 12 || — || Cecil || Holy resist
+|-
+| $10 || Mage Robe || 5 || 5 || 400 || Mages || None
+|-
+| $11 || Sage Robe || 10 || 10 || — || Mages || None
+|-
+| $12 || Black Robe || 15 || 12 || — || Black Mages || +5 INT
+|-
+| $13 || White Robe || 15 || 12 || — || White Mages || +5 WIS
+|-
+| $14 || Power Robe || 20 || 8 || — || Mages || +10 STR
+|-
+| $15 || Ninja Gear || 25 || 5 || — || Edge || None
+|-
+| $16 || Adamant Armor || 100 || 30 || — || Cecil || Ultimate armor
+|}
+
+=== Shields ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! DEF !! EVA% !! Price !! Users !! Special
+|-
+| $00 || Leather Shield || 2 || 5 || 100 || Cecil || None
+|-
+| $01 || Iron Shield || 5 || 8 || 400 || Cecil || None
+|-
+| $02 || Dark Shield || 10 || 15 || — || Cecil (Dark) || Resist Dark
+|-
+| $03 || Demon Shield || 15 || 20 || — || Cecil || May curse
+|-
+| $04 || Flame Shield || 18 || 22 || — || Cecil || Fire absorb
+|-
+| $05 || Ice Shield || 18 || 22 || — || Cecil || Ice absorb
+|-
+| $06 || Diamond Shield || 20 || 25 || — || Cecil || None
+|-
+| $07 || Crystal Shield || 25 || 30 || — || Cecil || None
+|-
+| $08 || Aegis Shield || 30 || 40 || — || Cecil || Reflect some spells
+|-
+| $09 || Dragon Shield || 35 || 35 || — || Cecil || Element resist
+|-
+| $0a || Paladin Shield || 45 || 45 || — || Cecil || Holy resist
+|}
+
+=== Helmets ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! DEF !! M.DEF !! Price !! Users !! Special
+|-
+| $00 || Leather Cap || 1 || 0 || 100 || All || None
+|-
+| $01 || Iron Helm || 5 || 0 || 500 || Heavy || None
+|-
+| $02 || Dark Helm || 8 || 2 || — || Cecil (Dark) || Resist Dark
+|-
+| $03 || Demon Helm || 12 || 3 || — || Heavy || May curse
+|-
+| $04 || Diamond Helm || 15 || 5 || — || Heavy || None
+|-
+| $05 || Crystal Helm || 20 || 8 || — || Heavy || None
+|-
+| $06 || Dragon Helm || 25 || 10 || — || Cecil, Kain || Element resist
+|-
+| $07 || Paladin Helm || 30 || 8 || — || Cecil || Holy resist
+|-
+| $10 || Mage Hat || 3 || 5 || 250 || Mages || None
+|-
+| $11 || Wizard Hat || 8 || 10 || — || Mages || +5 INT
+|-
+| $12 || Ribbon || 12 || 15 || — || Female || Status immunity
+|-
+| $13 || Glass Mask || 15 || 12 || — || Edge || Back attack immunity
+|}
+
+== Accessories ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Effect !! Location
+|-
+| $00 || Silver Ring || +3 DEF || Various
+|-
+| $01 || Ruby Ring || Fire resist || Mt. Hobs
+|-
+| $02 || Sapphire Ring || Ice resist || Eblan Cave
+|-
+| $03 || Emerald Ring || Thunder resist || Tower of Zot
+|-
+| $04 || Diamond Ring || +10 DEF || Cave of Summons
+|-
+| $05 || Protect Ring || Wall status || Lunar Subterrane
+|-
+| $06 || Hermes Sandals || Haste status || Giant of Babel
+|-
+| $07 || Curse Ring || All stats +15, but cursed || Lunar Subterrane
+|-
+| $08 || Bomb Fragment || Fire element attacks || Baron
+|-
+| $09 || Ice Crystal || Ice element attacks || Fabul
+|-
+| $0a || Zeus Rage || Thunder element attacks || Troia
+|-
+| $0b || Bomb Core || Cast Blaze || Various
+|-
+| $0c || Stardust || +5 all magic stats || Lunar Subterrane
+|-
+| $0d || Crystal Ring || All stats +5 || Final dungeon
+|}
+
+== Legendary Equipment ==
+
+=== Dark Knight Set (Cecil) ===
+
+{| class="wikitable"
+|-
+! Slot !! Item !! Stats !! Note
+|-
+| Weapon || Deathbringer || 35 ATK || Instant death chance
+|-
+| Armor || Dark Armor || 15 DEF, 3 MDEF || Dark resist
+|-
+| Shield || Dark Shield || 10 DEF, 15% EVA || Dark resist
+|-
+| Helmet || Dark Helm || 8 DEF, 2 MDEF || Dark resist
+|}
+
+=== Paladin Set (Cecil) ===
+
+{| class="wikitable"
+|-
+! Slot !! Item !! Stats !! Location
+|-
+| Weapon || Excalibur || 110 ATK || Cave of Summons
+|-
+| Armor || Paladin Armor || 55 DEF, 12 MDEF || Lunar Subterrane
+|-
+| Shield || Paladin Shield || 45 DEF, 45% EVA || Lunar Subterrane
+|-
+| Helmet || Paladin Helm || 30 DEF, 8 MDEF || Lunar Subterrane
+|}
+
+=== Dragon Set (Kain) ===
+
+{| class="wikitable"
+|-
+! Slot !! Item !! Stats !! Location
+|-
+| Weapon || Holy Lance || 109 ATK || Lunar Subterrane
+|-
+| Armor || Dragon Armor || 45 DEF, 15 MDEF || Giant of Babel
+|-
+| Helmet || Dragon Helm || 25 DEF, 10 MDEF || Sealed Cave
+|}
+
+=== Ultimate Equipment ===
+
+{| class="wikitable"
+|-
+! Item !! Type !! Stats !! How to Obtain
+|-
+| Ragnarok || Sword || 130 ATK || Trade Rat Tail to Adamant Grotto
+|-
+| Masamune || Katana || 99 ATK, +3 SPD || Lunar Subterrane
+|-
+| Adamant Armor || Body || 100 DEF, 30 MDEF || Trade Pink Tail
+|-
+| Ribbon || Helmet || 12 DEF, status immunity || Lunar Subterrane
+|-
+| Crystal Ring || Accessory || All stats +5 || Zeromus drop
+|}
+
+== Equipment Acquisition ==
+
+=== By Chapter ===
+
+{| class="wikitable"
+|-
+! Chapter !! Best Weapons !! Best Armor
+|-
+| Baron || Shadow Blade, Bow || Dark Armor, Leather
+|-
+| Mist/Kaipo || Copper Sword || Chain Mail
+|-
+| Fabul || Iron equipment || Iron Armor
+|-
+| Mt. Hobs || Wind Spear || Flame Mail
+|-
+| Baron (Return) || Ancient Sword || Diamond equipment
+|-
+| Tower of Zot || Light swords || Crystal equipment
+|-
+| Underworld || Legendary spears || Dragon equipment
+|-
+| Moon || Ultimate equipment || Paladin set, Adamant
+|}
+
+== Damage Formula ==
+
+=== Physical Attack ===
+
+<nowiki>
+Damage = (ATK × 2) - (DEF × Modifier)
+Critical = 2× Base Damage
+Back Row = 50% Damage (except bows/whips)
+</nowiki>
+
+=== Elemental Modifiers ===
+
+{| class="wikitable"
+|-
+! Modifier !! Effect
+|-
+| Weakness || 2× damage
+|-
+| Neutral || 1× damage
+|-
+| Resist || 0.5× damage
+|-
+| Absorb || Heals target
+|}
+
+== Related Pages ==
+
+* [[Final Fantasy IV (SNES)/Items|Items]] - Consumables and key items
+* [[Final Fantasy IV (SNES)/Characters|Characters]] - Character stats
+* [[Final Fantasy IV (SNES)/Magic|Magic]] - Spell system
+* [[Final Fantasy IV (SNES)/Battle_System|Battle System]] - Combat mechanics
+
+[[Category:Final Fantasy IV]]
+[[Category:SNES Games]]
+[[Category:Equipment Data]]

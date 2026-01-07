@@ -1,0 +1,421 @@
+{{Back|Dragon Warrior IV (NES)}}
+{{DISPLAYTITLE:Dragon Warrior IV - Equipment}}
+__TOC__
+
+= Equipment System =
+
+This page provides detailed equipment statistics for Dragon Warrior IV (NES), including attack/defense values, prices, and character equip restrictions.
+
+== ROM Data Structure ==
+
+Equipment data is stored across multiple tables in the ROM:
+
+{| class="wikitable"
+|-
+! Data Type !! ROM Address !! Bank !! Size !! Format
+|-
+| Weapon Attack || $0a010 || 5 (PRG $02) || $24 bytes || 1 byte per weapon
+|-
+| Armor Defense || $0a034 || 5 (PRG $02) || $19 bytes || 1 byte per armor
+|-
+| Shield Defense || $0a04d || 5 (PRG $02) || $0b bytes || 1 byte per shield
+|-
+| Helmet Defense || $0a058 || 5 (PRG $02) || $09 bytes || 1 byte per helmet
+|-
+| Item Prices || $08010 || 4 (PRG $02) || $100 || 2 bytes per item (LE)
+|-
+| Equip Restrictions || $0a100 || 5 (PRG $02) || $80 || Bitmask per item
+|}
+
+== Equipment Categories ==
+
+{| class="wikitable"
+|-
+! Category !! ID Range !! Count !! Stat Type
+|-
+| Weapons || $00-$23 || 36 || Attack power
+|-
+| Armor || $24-$3c || 25 || Defense
+|-
+| Shields || $3d-$47 || 11 || Defense
+|-
+| Helmets || $48-$50 || 9 || Defense
+|-
+| Accessories || - || - || Special effects
+|}
+
+== Weapons ==
+
+=== Weapon Stats ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Attack !! Price !! Equip !! Special Effect
+|-
+| $00 || Cypress Stick || 2 || 5 || All || None
+|-
+| $01 || Club || 7 || 30 || HRCT || None
+|-
+| $02 || Copper Sword || 12 || 100 || HRT || None
+|-
+| $03 || Iron Claw || 18 || 210 || A || None
+|-
+| $04 || Chain Sickle || 16 || 350 || NM || None
+|-
+| $05 || Iron Spear || 28 || 880 || HRC || None
+|-
+| $06 || Broad Sword || 35 || 1500 || HRT || None
+|-
+| $07 || Battle Axe || 50 || 5500 || HRC || None
+|-
+| $08 || Silver Tarot Cards || 30 || 3500 || N || None
+|-
+| $09 || Thorn Whip || 25 || 1200 || M || None
+|-
+| $0a || Morning Star || 40 || 2500 || HRC || Groups
+|-
+| $0b || Boomerang || 25 || 1500 || HRCT || All enemies
+|-
+| $0c || Abacus of Virtue || 35 || Casino || T || None
+|-
+| $0d || Iron Fan || 22 || 620 || MANa || Female only
+|-
+| $0e || Metal Babble Sword || 50 || 15000 || HRT || High vs metal
+|-
+| $0f || Poison Needle || 1 || 1300 || All || 1/8 instant kill
+|-
+| $10 || Staff of Force || 45 || 3800 || BN || Cast Infernos
+|-
+| $11 || Staff of Thunder || 55 || 8000 || BN || Cast Zap
+|-
+| $12 || Demon Hammer || 70 || 6000 || HRC || Cursed
+|-
+| $13 || Multi-edge Sword || 55 || 3500 || HRT || Hits group
+|-
+| $14 || Zenithian Sword || 65 || - || H || Hero only, legendary
+|-
+| $15 || Dragon Killer || 55 || 15000 || HRT || 1.5x vs dragon
+|-
+| $16 || Stiletto Earrings || 40 || Casino || Female || Female accessory
+|-
+| $17 || Staff of Punishment || 60 || 8500 || BN || Critical boost
+|-
+| $18 || Sword of Lethargy || 60 || 6500 || HRT || May paralyze
+|-
+| $19 || Venomous Dagger || 24 || 750 || MAN || May poison
+|-
+| $1a || Fire Claw || 60 || 7500 || A || Fire element
+|-
+| $1b || Ice Blade || 75 || 12000 || HRT || Ice element
+|-
+| $1c || Sword of Miracles || 100 || - || HRT || Drains HP
+|-
+| $1d || Staff of Antimagic || 35 || 6200 || BN || Drains MP
+|-
+| $1e || Magma Staff || 63 || 9800 || BN || Cast Firebolt
+|-
+| $1f || Sword of Decimation || 95 || - || HR || Cursed
+|-
+| $20 || Staff of Healing || 20 || 2000 || BN || Cast Heal
+|-
+| $21 || Zenithian Sword (Final) || 85 || - || H || Powered up
+|-
+| $22 || Staff of Jubilation || 38 || 5000 || BN || MP recovery
+|-
+| $23 || Sword of Malice || 120 || - || HR || Cursed, highest attack
+|}
+
+'''Legend:''' H=Hero, R=Ragnar, C=Cristo, T=Taloon, A=Alena, B=Brey, N=Nara, M=Mara, Na=Nara
+
+=== Weapon Categories ===
+
+{| class="wikitable"
+|-
+! Type !! IDs !! Primary Users !! Characteristics
+|-
+| Swords || $00-$02,$06,$13-$1c || Hero, Ragnar, Taloon || Balanced, reliable damage
+|-
+| Claws || $03,$1a || Alena || High attack, fast
+|-
+| Sickles || $04 || Nara, Mara || Moderate damage
+|-
+| Spears || $05 || Hero, Ragnar, Cristo || Reach, decent power
+|-
+| Axes || $07 || Hero, Ragnar, Cristo || High damage, slow
+|-
+| Staves || $10,$11,$17,$1d,$1e,$20,$22 || Brey, Nara || Magic-based effects
+|-
+| Whips || $09 || Mara || Group targets
+|-
+| Boomerangs || $0b || All physical || Hits all enemies
+|-
+| Fans || $0d || Females || Light, fast
+|-
+| Special || $08,$0c,$0f,$16 || Various || Unique mechanics
+|}
+
+=== Cursed Weapons ===
+
+{| class="wikitable"
+|-
+! ID !! Name !! Attack !! Curse Effect
+|-
+| $12 || Demon Hammer || 70 || Cannot unequip, random paralysis
+|-
+| $1f || Sword of Decimation || 95 || Cannot unequip, self-damage
+|-
+| $23 || Sword of Malice || 120 || Cannot unequip, HP drain
+|}
+
+Cursed items can only be removed at a church for a gold fee.
+
+== Armor ==
+
+=== Armor Stats ===
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Defense !! Price !! Equip !! Special Effect
+|-
+| $24 || Basic Clothes || 4 || 10 || All || None
+|-
+| $25 || Wayfarer's Clothes || 7 || 70 || All || None
+|-
+| $26 || Leather Armor || 12 || 180 || HRCT || None
+|-
+| $27 || Chain Mail || 18 || 350 || HRCT || None
+|-
+| $28 || Half Plate Armor || 25 || 1200 || HRC || None
+|-
+| $29 || Iron Apron || 22 || 1500 || T || Taloon only
+|-
+| $2a || Full Plate Armor || 35 || 2300 || HRC || None
+|-
+| $2b || Silk Robe || 10 || 300 || BNM || Mage class
+|-
+| $2c || Dancer's Costume || 20 || 400 || M || Mara only
+|-
+| $2d || Bronze Armor || 21 || 700 || HRCT || None
+|-
+| $2e || Metal Babble Armor || 95 || Casino || HRCT || Highest defense
+|-
+| $2f || Fur Coat || 18 || 600 || All || Cold resist
+|-
+| $30 || Leather Dress || 14 || 250 || Female || Female only
+|-
+| $31 || Pink Leotard || 38 || 6300 || MANa || Female only
+|-
+| $32 || Dragon Mail || 45 || 5200 || HRC || Fire/Ice resist
+|-
+| $33 || Cloak of Evasion || 28 || 3000 || HRCTANM || Dodge +10%
+|-
+| $34 || Sacred Robe || 30 || 4400 || BN || MP regen
+|-
+| $35 || Water Flying Clothes || 40 || 14800 || All || Water resist
+|-
+| $36 || Mysterious Bolero || 37 || 4000 || MANa || Spell resist
+|-
+| $37 || Zenithian Armor || 70 || - || H || Hero only, legendary
+|-
+| $38 || Swordedge Armor || 50 || 9800 || HRC || Reflects damage
+|-
+| $39 || Robe of Serenity || 33 || 4500 || BNM || Confusion resist
+|}
+
+=== Armor Categories ===
+
+{| class="wikitable"
+|-
+! Type !! Users !! Defense Range !! Notes
+|-
+| Heavy Armor || Hero, Ragnar, Cristo || 25-50 || Highest defense
+|-
+| Medium Armor || Taloon, most || 12-35 || Balanced
+|-
+| Light Armor/Robes || Brey, Nara, Mara || 10-33 || Mage class
+|-
+| Female-only || Mara, Alena, Nara || 14-38 || Character restricted
+|-
+| Legendary || Hero || 70 || Story item
+|}
+
+== Shields ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Defense !! Price !! Equip !! Special Effect
+|-
+| $3d || Leather Shield || 4 || 90 || HRCT || None
+|-
+| $3e || Scale Shield || 7 || 180 || HRCT || None
+|-
+| $3f || Bronze Shield || 11 || 370 || HRC || None
+|-
+| $40 || Iron Shield || 16 || 650 || HRC || None
+|-
+| $41 || Magic Shield || 20 || 3400 || HRC || Spell resist
+|-
+| $42 || Silver Shield || 25 || 8800 || HRC || None
+|-
+| $43 || Dragon Shield || 30 || 7100 || HRC || Fire resist
+|-
+| $44 || Shield of Strength || 35 || 15000 || HRC || Cast Heal
+|-
+| $45 || Zenithian Shield || 40 || - || H || Hero only, legendary
+|-
+| $46 || Shield of Sorrow || 45 || Casino || HR || Cursed
+|-
+| $47 || Metal Babble Shield || 60 || Casino || HRC || Highest defense
+|}
+
+== Helmets ==
+
+{| class="wikitable sortable"
+|-
+! ID !! Name !! Defense !! Price !! Equip !! Special Effect
+|-
+| $48 || Leather Hat || 2 || 65 || All || None
+|-
+| $49 || Wooden Hat || 6 || 120 || HRCT || None
+|-
+| $4a || Iron Helmet || 16 || 1100 || HRC || None
+|-
+| $4b || Iron Mask || 25 || 3500 || HR || None
+|-
+| $4c || Helm of Radiance || 30 || 8000 || HRC || Illuminate spell
+|-
+| $4d || Mask of Corruption || 38 || - || HR || Cursed
+|-
+| $4e || Zenithian Helm || 50 || - || H || Hero only, legendary
+|-
+| $4f || Golden Hairband || 12 || 1200 || Female || Female only
+|-
+| $50 || Hat of Happiness || 15 || 8500 || All || EXP +25%
+|}
+
+== Character Equipment Restrictions ==
+
+=== Equipment by Character ===
+
+{| class="wikitable"
+|-
+! Character !! Weapons !! Armor !! Shield !! Helmet
+|-
+| Hero || Swords, Spears, Axes, Boomerangs || Heavy, Medium || Heavy || Heavy, Legendary
+|-
+| Ragnar || Swords, Spears, Axes || Heavy || Heavy || Heavy
+|-
+| Cristo || Spears, Axes, Morning Star || Heavy || Heavy || Heavy
+|-
+| Taloon || Swords, Clubs, Boomerangs || Medium, Iron Apron || Light || Light
+|-
+| Alena || Claws, Poison Needle || Light, Female || None || Light
+|-
+| Brey || Staves || Robes || None || Light
+|-
+| Nara || Staves, Sickles, Cards || Robes || None || Light
+|-
+| Mara || Whips, Sickles, Fans || Light, Female || None || Light
+|}
+
+=== Equip Flag Bitmask ===
+
+Equipment restriction flags at $0a100:
+
+{| class="wikitable"
+|-
+! Bit !! Character
+|-
+| 0 || Hero
+|-
+| 1 || Ragnar
+|-
+| 2 || Cristo
+|-
+| 3 || Taloon
+|-
+| 4 || Alena
+|-
+| 5 || Brey
+|-
+| 6 || Nara
+|-
+| 7 || Mara
+|}
+
+Example: $07 = Hero, Ragnar, Cristo can equip
+
+== Zenithian Equipment ==
+
+The legendary Zenithian set is required to complete the game:
+
+{| class="wikitable"
+|-
+! Item !! Type !! Stat !! Location !! Chapter
+|-
+| Zenithian Sword || Weapon || 65 ATK || Zenithia Castle || 5
+|-
+| Zenithian Armor || Armor || 70 DEF || Sea Cave || 5
+|-
+| Zenithian Shield || Shield || 40 DEF || Parthenium (Hideout) || 5
+|-
+| Zenithian Helm || Helmet || 50 DEF || Colossus Cave || 5
+|}
+
+When all four pieces are equipped:
+* Required to enter Zenithia throne room
+* Required to fight Necrosaro's final form
+* Provides combined 225 defense
+* Hero gains immunity to breath attacks
+
+== Casino Equipment ==
+
+Rare equipment available at Endor Casino:
+
+{| class="wikitable"
+|-
+! Item !! Type !! Stat !! Casino Cost !! Notes
+|-
+| Metal Babble Armor || Armor || 95 DEF || 50,000 coins || Best armor
+|-
+| Metal Babble Shield || Shield || 60 DEF || 35,000 coins || Best shield
+|-
+| Shield of Sorrow || Shield || 45 DEF || 10,000 coins || Cursed
+|-
+| Abacus of Virtue || Weapon || 35 ATK || 10,000 coins || Taloon only
+|-
+| Stiletto Earrings || Weapon || 40 ATK || 2,500 coins || Female only
+|}
+
+== Damage Formulas ==
+
+=== Physical Damage ===
+
+<nowiki>
+Base Damage = (Attack Power - Target Defense/2)
+Variation = ±12.5%
+Final Damage = Base Damage × Variation × Modifiers
+</nowiki>
+
+=== Attack Power Calculation ===
+
+<nowiki>
+Attack Power = Character Strength + Weapon Attack + Bonus Modifiers
+</nowiki>
+
+=== Defense Calculation ===
+
+<nowiki>
+Total Defense = Character Vitality + Armor DEF + Shield DEF + Helmet DEF
+</nowiki>
+
+== Related Pages ==
+
+* [[Dragon Warrior IV (NES)/Items|Items]] - Consumable items and key items
+* [[Dragon Warrior IV (NES)/Characters|Characters]] - Character stats and growth
+* [[Dragon Warrior IV (NES)/Battle_System|Battle System]] - Combat mechanics
+* [[Dragon Warrior IV (NES)/Secrets|Secrets]] - Hidden equipment locations
+
+[[Category:Dragon Warrior IV]]
+[[Category:NES Games]]
+[[Category:Equipment Data]]
