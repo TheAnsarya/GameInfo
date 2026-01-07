@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
 namespace GameInfoTools.Core.Project.ViewModels;
 
@@ -31,9 +32,24 @@ public class BuildPanelViewModel : INotifyPropertyChanged {
 		Errors = [];
 		Warnings = [];
 
+		// Initialize commands
+		BuildCommand = new AsyncRelayCommand(BuildAsync, () => CanBuild);
+		RebuildCommand = new AsyncRelayCommand(RebuildAsync, () => CanBuild);
+		CleanCommand = new RelayCommand(Clean);
+
 		_projectService.ProjectChanged += OnProjectChanged;
 		RefreshProfiles();
 	}
+
+	// Commands for UI binding
+	/// <summary>Command to start a build.</summary>
+	public ICommand BuildCommand { get; }
+
+	/// <summary>Command to rebuild (clean + build).</summary>
+	public ICommand RebuildCommand { get; }
+
+	/// <summary>Command to clean build outputs.</summary>
+	public ICommand CleanCommand { get; }
 
 	/// <summary>Available build profiles.</summary>
 	public ObservableCollection<string> Profiles { get; } = [];

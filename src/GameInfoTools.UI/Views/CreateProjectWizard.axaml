@@ -1,0 +1,284 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="using:GameInfoTools.Core.Project.ViewModels"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="500"
+			 x:Class="GameInfoTools.UI.Views.CreateProjectWizard"
+			 x:DataType="vm:CreateProjectWizardViewModel">
+
+	<Design.DataContext>
+		<vm:CreateProjectWizardViewModel/>
+	</Design.DataContext>
+
+	<Grid RowDefinitions="Auto,*,Auto">
+		<!-- Step Indicator -->
+		<Border Grid.Row="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}" Padding="16">
+			<StackPanel Spacing="12">
+				<TextBlock Text="Create New Project" FontSize="20" FontWeight="Bold"/>
+				<ItemsControl ItemsSource="{Binding StepNames}">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<StackPanel Orientation="Horizontal" Spacing="4"/>
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal" Spacing="4">
+								<Border Width="24" Height="24" CornerRadius="12"
+										Background="{DynamicResource SystemAccentColor}">
+									<TextBlock Text="{Binding Index}" HorizontalAlignment="Center"
+											   VerticalAlignment="Center" FontWeight="Bold"/>
+								</Border>
+								<TextBlock Text="{Binding Name}" VerticalAlignment="Center" Margin="4,0,16,0"/>
+								<TextBlock Text="→" VerticalAlignment="Center" Opacity="0.5"/>
+							</StackPanel>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</StackPanel>
+		</Border>
+
+		<!-- Step Content -->
+		<Border Grid.Row="1" Padding="24">
+			<Panel>
+				<!-- Step 1: Select Game -->
+				<Grid IsVisible="{Binding IsSelectGameStep}">
+					<StackPanel Spacing="16">
+						<TextBlock Text="Select Game" FontSize="18" FontWeight="SemiBold"/>
+						<TextBlock Text="Choose the game you want to create a project for:"
+								   Opacity="0.7" TextWrapping="Wrap"/>
+
+						<ListBox ItemsSource="{Binding AvailableGames}"
+								 SelectedItem="{Binding SelectedGame}"
+								 MaxHeight="300">
+							<ListBox.ItemTemplate>
+								<DataTemplate>
+									<Border Padding="12" Margin="2" CornerRadius="4">
+										<StackPanel Orientation="Horizontal" Spacing="12">
+											<Border Width="48" Height="48" CornerRadius="4"
+													Background="{DynamicResource SystemAccentColorLight3}">
+												<TextBlock Text="{Binding Platform}" HorizontalAlignment="Center"
+														   VerticalAlignment="Center" FontWeight="Bold"/>
+											</Border>
+											<StackPanel VerticalAlignment="Center">
+												<TextBlock Text="{Binding DisplayName}" FontWeight="SemiBold"/>
+												<TextBlock Text="{Binding Description}" Opacity="0.7" FontSize="12"/>
+											</StackPanel>
+										</StackPanel>
+									</Border>
+								</DataTemplate>
+							</ListBox.ItemTemplate>
+						</ListBox>
+
+						<TextBlock Text="{Binding ValidationMessage}" Foreground="Orange"
+								   IsVisible="{Binding HasValidationMessage}"/>
+					</StackPanel>
+				</Grid>
+
+				<!-- Step 2: Select ROM -->
+				<Grid IsVisible="{Binding IsSelectRomStep}">
+					<StackPanel Spacing="16">
+						<TextBlock Text="Select ROM File" FontSize="18" FontWeight="SemiBold"/>
+						<TextBlock Text="{Binding SelectedGame.DisplayName, StringFormat='Locate your {0} ROM file:'}"
+								   Opacity="0.7" TextWrapping="Wrap"/>
+
+						<Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+							<TextBox Grid.Row="0" Grid.Column="0" Text="{Binding RomPath}"
+									 Watermark="Path to ROM file..." Margin="0,0,8,0"/>
+							<Button Grid.Row="0" Grid.Column="1" Content="Browse..."
+									Command="{Binding BrowseForRomCommand}"/>
+
+							<TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+									   Text="{Binding RomFileInfo}" Opacity="0.7" Margin="0,8,0,0"/>
+						</Grid>
+
+						<Border Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+								Padding="12" CornerRadius="4" IsVisible="{Binding HasRomPath}">
+							<StackPanel Spacing="8">
+								<TextBlock Text="File Information" FontWeight="SemiBold"/>
+								<Grid ColumnDefinitions="120,*" RowDefinitions="Auto,Auto,Auto">
+									<TextBlock Grid.Row="0" Grid.Column="0" Text="Size:" Opacity="0.7"/>
+									<TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding RomSizeDisplay}"/>
+									<TextBlock Grid.Row="1" Grid.Column="0" Text="Format:" Opacity="0.7"/>
+									<TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding RomFormatDisplay}"/>
+									<TextBlock Grid.Row="2" Grid.Column="0" Text="Header:" Opacity="0.7"/>
+									<TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding RomHeaderDisplay}"/>
+								</Grid>
+							</StackPanel>
+						</Border>
+
+						<TextBlock Text="{Binding ValidationMessage}" Foreground="Orange"
+								   IsVisible="{Binding HasValidationMessage}"/>
+					</StackPanel>
+				</Grid>
+
+				<!-- Step 3: Verify ROM -->
+				<Grid IsVisible="{Binding IsVerifyRomStep}">
+					<StackPanel Spacing="16">
+						<TextBlock Text="Verify ROM" FontSize="18" FontWeight="SemiBold"/>
+						<TextBlock Text="Verifying your ROM against known good dumps..."
+								   Opacity="0.7" TextWrapping="Wrap"/>
+
+						<Border Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+								Padding="16" CornerRadius="4">
+							<StackPanel Spacing="12">
+								<!-- Progress -->
+								<StackPanel IsVisible="{Binding IsVerifying}" Spacing="8">
+									<ProgressBar IsIndeterminate="True"/>
+									<TextBlock Text="Computing checksums..." HorizontalAlignment="Center"/>
+								</StackPanel>
+
+								<!-- Verification Result -->
+								<StackPanel IsVisible="{Binding VerificationResult, Converter={x:Static ObjectConverters.IsNotNull}}" Spacing="8">
+									<StackPanel Orientation="Horizontal" Spacing="8">
+										<TextBlock Text="✓" FontSize="24" Foreground="Green"
+												   IsVisible="{Binding VerificationResult.IsVerified}"/>
+										<TextBlock Text="⚠" FontSize="24" Foreground="Orange"
+												   IsVisible="{Binding !VerificationResult.IsVerified}"/>
+										<TextBlock Text="{Binding VerificationStatusText}" FontSize="16"
+												   VerticalAlignment="Center" FontWeight="SemiBold"/>
+									</StackPanel>
+
+									<Grid ColumnDefinitions="100,*" RowDefinitions="Auto,Auto,Auto">
+										<TextBlock Grid.Row="0" Grid.Column="0" Text="CRC32:" Opacity="0.7"/>
+										<TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding VerificationResult.Crc32}"
+												   FontFamily="Consolas, Courier New, monospace"/>
+										<TextBlock Grid.Row="1" Grid.Column="0" Text="SHA1:" Opacity="0.7"/>
+										<TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding VerificationResult.Sha1}"
+												   FontFamily="Consolas, Courier New, monospace"/>
+										<TextBlock Grid.Row="2" Grid.Column="0" Text="Status:" Opacity="0.7"/>
+										<TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding VerificationResult.StatusMessage}"/>
+									</Grid>
+
+									<TextBlock Text="Note: Unverified ROMs may still work, but extraction results cannot be guaranteed."
+											   TextWrapping="Wrap" Opacity="0.7" FontSize="12"
+											   IsVisible="{Binding !VerificationResult.IsVerified}"/>
+								</StackPanel>
+							</StackPanel>
+						</Border>
+
+						<TextBlock Text="{Binding ValidationMessage}" Foreground="Orange"
+								   IsVisible="{Binding HasValidationMessage}"/>
+					</StackPanel>
+				</Grid>
+
+				<!-- Step 4: Configure -->
+				<Grid IsVisible="{Binding IsConfigureStep}">
+					<StackPanel Spacing="16">
+						<TextBlock Text="Configure Project" FontSize="18" FontWeight="SemiBold"/>
+						<TextBlock Text="Set project options and select assets to extract:"
+								   Opacity="0.7" TextWrapping="Wrap"/>
+
+						<!-- Project Location -->
+						<StackPanel Spacing="8">
+							<TextBlock Text="Project Location" FontWeight="SemiBold"/>
+							<Grid ColumnDefinitions="*,Auto">
+								<TextBox Grid.Column="0" Text="{Binding ProjectPath}"
+										 Watermark="Project save location..." Margin="0,0,8,0"/>
+								<Button Grid.Column="1" Content="Browse..."
+										Command="{Binding BrowseForProjectCommand}"/>
+							</Grid>
+						</StackPanel>
+
+						<Separator/>
+
+						<!-- Asset Selection -->
+						<StackPanel Spacing="8">
+							<TextBlock Text="Assets to Extract" FontWeight="SemiBold"/>
+							<TextBlock Text="Select which asset types to extract from the ROM:"
+									   Opacity="0.7" FontSize="12"/>
+
+							<StackPanel Spacing="4">
+								<CheckBox Content="Graphics (CHR tiles, sprites, backgrounds)"
+										  IsChecked="{Binding ExtractGraphics}"/>
+								<CheckBox Content="Text (dialogs, menus, item names)"
+										  IsChecked="{Binding ExtractText}"/>
+								<CheckBox Content="Data Tables (stats, parameters, configurations)"
+										  IsChecked="{Binding ExtractData}"/>
+								<CheckBox Content="Maps (world maps, dungeon layouts)"
+										  IsChecked="{Binding ExtractMaps}"/>
+								<CheckBox Content="Audio (music, sound effects)"
+										  IsChecked="{Binding ExtractAudio}"/>
+							</StackPanel>
+						</StackPanel>
+
+						<Separator/>
+
+						<!-- Build Options -->
+						<StackPanel Spacing="8">
+							<TextBlock Text="Build Configuration" FontWeight="SemiBold"/>
+							<Grid ColumnDefinitions="120,*" RowDefinitions="Auto,Auto">
+								<TextBlock Grid.Row="0" Grid.Column="0" Text="Assembler:" VerticalAlignment="Center"/>
+								<ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding AvailableAssemblers}"
+										  SelectedItem="{Binding SelectedAssembler}" Width="150"/>
+								<TextBlock Grid.Row="1" Grid.Column="0" Text="Profile:" VerticalAlignment="Center"/>
+								<ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding BuildProfiles}"
+										  SelectedItem="{Binding SelectedProfile}" Width="150"/>
+							</Grid>
+						</StackPanel>
+
+						<TextBlock Text="{Binding ValidationMessage}" Foreground="Orange"
+								   IsVisible="{Binding HasValidationMessage}"/>
+					</StackPanel>
+				</Grid>
+
+				<!-- Step 5: Extract -->
+				<Grid IsVisible="{Binding IsExtractStep}">
+					<StackPanel Spacing="16">
+						<TextBlock Text="Creating Project" FontSize="18" FontWeight="SemiBold"/>
+
+						<!-- Progress -->
+						<Border Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+								Padding="16" CornerRadius="4">
+							<StackPanel Spacing="12">
+								<ProgressBar Value="{Binding ExtractionProgress}" Maximum="100"/>
+								<TextBlock Text="{Binding ExtractionStatus}" HorizontalAlignment="Center"/>
+
+								<!-- Extraction Log -->
+								<ScrollViewer MaxHeight="200" IsVisible="{Binding HasExtractionLog}">
+									<ItemsControl ItemsSource="{Binding ExtractionLog}">
+										<ItemsControl.ItemTemplate>
+											<DataTemplate>
+												<TextBlock Text="{Binding}" FontSize="11"
+														   FontFamily="Consolas, Courier New, monospace"/>
+											</DataTemplate>
+										</ItemsControl.ItemTemplate>
+									</ItemsControl>
+								</ScrollViewer>
+							</StackPanel>
+						</Border>
+
+						<!-- Completion -->
+						<Border Background="{DynamicResource SystemControlBackgroundBaseLowBrush}"
+								Padding="16" CornerRadius="4" IsVisible="{Binding IsExtractionComplete}">
+							<StackPanel Spacing="8" HorizontalAlignment="Center">
+								<TextBlock Text="✓ Project Created Successfully!" FontSize="18"
+										   Foreground="Green" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+								<TextBlock Text="{Binding ProjectPath}" Opacity="0.7" HorizontalAlignment="Center"/>
+								<TextBlock Text="{Binding ExtractionSummary}" HorizontalAlignment="Center"/>
+							</StackPanel>
+						</Border>
+
+						<TextBlock Text="{Binding ValidationMessage}" Foreground="Red"
+								   IsVisible="{Binding HasValidationMessage}"/>
+					</StackPanel>
+				</Grid>
+			</Panel>
+		</Border>
+
+		<!-- Navigation Buttons -->
+		<Border Grid.Row="2" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}" Padding="16">
+			<Grid ColumnDefinitions="*,Auto,Auto,Auto">
+				<Button Grid.Column="0" Content="Cancel" Command="{Binding CancelCommand}"/>
+				<Button Grid.Column="1" Content="← Back" Command="{Binding GoBackCommand}"
+						IsVisible="{Binding CanGoBack}" Margin="0,0,8,0"/>
+				<Button Grid.Column="2" Content="Next →" Command="{Binding GoNextCommand}"
+						IsVisible="{Binding CanGoNext}" IsEnabled="{Binding CanAdvance}"/>
+				<Button Grid.Column="3" Content="Create Project" Command="{Binding CreateProjectCommand}"
+						IsVisible="{Binding IsConfigureStep}" IsEnabled="{Binding CanCreate}"
+						Classes="accent"/>
+			</Grid>
+		</Border>
+	</Grid>
+</UserControl>

@@ -10,6 +10,9 @@ public class GameDefinition {
 	/// <summary>Display name of the game.</summary>
 	public required string Name { get; init; }
 
+	/// <summary>Alias for Name for UI binding.</summary>
+	public string DisplayName => Name;
+
 	/// <summary>Platform/system (e.g., "NES", "SNES", "GB").</summary>
 	public required string Platform { get; init; }
 
@@ -132,4 +135,10 @@ public record RomVerificationResult(
 	long Size,
 	bool HasHeader,
 	string? DetectedGame
-);
+) {
+	/// <summary>Whether the ROM is verified against a known dump.</summary>
+	public bool IsVerified => Status == RomVerificationStatus.Verified;
+
+	/// <summary>Status message for display.</summary>
+	public string StatusMessage => Message;
+}
