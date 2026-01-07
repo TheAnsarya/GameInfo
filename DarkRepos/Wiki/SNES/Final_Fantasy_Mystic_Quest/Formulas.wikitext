@@ -67,37 +67,47 @@ Spell_Damage = Base_Power × (1 + Magic_Power / 64)
 
 === Spell Base Power ===
 
+'''Black Magic''' (offensive elemental):
 {| class="wikitable sortable"
 |-
-! Spell !! Base !! MP !! Element !! Target
+! Spell !! Base !! Charges !! Element !! Target
 |-
-| Fire || 20 || 2 || Fire || Single
+| Fire || 40 || 1 || Fire || Single
 |-
-| Firaga || 60 || 8 || Fire || All
+| Blizzard || 60 || 1 || Ice || Single
 |-
-| Blizzard || 40 || 4 || Ice || Single
+| Thunder || 80 || 1 || Thunder || Single
+|}
+
+'''Wizard Magic''' (powerful spells):
+{| class="wikitable sortable"
 |-
-| Blizzaga || 90 || 12 || Ice || All
+! Spell !! Base !! Charges !! Element !! Target
 |-
-| Thunder || 30 || 3 || Thunder || Single
+| Exit || — || 1 || — || Escape dungeon
 |-
-| Aero || 35 || 5 || Wind || All
+| Quake || 100 || 1 || Earth || All
 |-
-| Quake || 100 || 15 || Earth || All
+| Meteor || 150 || 1 || Non-elem || All
 |-
-| Flare || 150 || 20 || Non-elem || Single
+| Flare || 200 || 1 || Non-elem || Single
 |-
-| White || 120 || 18 || Holy || All
+| White || 120 || 1 || Holy || All
 |}
 
 === Healing Spells ===
 
-<nowiki>
-Cure:   HP = 50 + (Magic × 2)
-Heal:   HP = 200 + (Magic × 3)
-Life:   Revive with 50% HP
-Full:   Full HP restore
-</nowiki>
+'''White Magic''' (healing/support):
+{| class="wikitable"
+|-
+! Spell !! Effect !! Charges !! Target
+|-
+| Cure || Restore ~100 HP || 1 || Single
+|-
+| Heal || Cure status + restore HP || 1 || Single
+|-
+| Life || Revive with 50% HP || 1 || Single
+|}
 
 == Elemental System ==
 
@@ -294,7 +304,7 @@ Partner actions are fixed per character:
 Axe attacks vs stone enemies:
   If enemy is "Stoneable":
     Instant kill if damage > 0
-  
+
 Petrifiable enemies: Golems, Statues
 </nowiki>
 
