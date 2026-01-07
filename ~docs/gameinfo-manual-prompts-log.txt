@@ -657,11 +657,11 @@ No motherfucker! stop trying to change the `gameinfo-manual-prompts-log.txt` fil
 
 Start DW1 Label Renaming - Begin converting the 535 _L_XXXX labels to descriptive names (large task, would need multiple sessions); create github issues and todo-lists and chat/session logs, git commit and push, work for a long time on this, do a comprehensive relabelling, and document them all in `*.md` files and update the `mdl` file and wikitext;
 
+***4 space tabs, not 8***; continue: In all the assmembly language files, `*.asm`, `*.s`, `*.inc`, etc, indent EVERYTHING with tabs, not spaces, (***4 space tabs, not 8***)if you see two spaces in a row and not in a string literal, you're doing it wrong; code indentation should be in tabs, comments should be idented from the code in tabs, not spaces, and all of that; fix it!; for every project if you can; git commit and push; In the `DW1` project game disassembly files, find all the labels that are not ever referenced anywhere and delete them, we do not need a label if nothing uses it. The original disassembly had labels for every line, we don't need all of them; then do the "what's next: Create comprehensive label documentation (.md files), Update wiki/MDL files with new label information, Close GitHub issue #25, Begin next disassembly improvement task;
 
+Close GitHub issue #25 (just needs manual close via GitHub UI) --- you don't need manual interventention, you can close issues; Continue disassembly work - identify and rename remaining generic labels; Enhance documentation with function call graphs; Create wiki pages for Dark Repos; Start next disassembly improvement task (more code documentation, data table extraction);
 
-
-In all the assmembly language files, `*.asm`, `*.s`, `*.inc`, etc, indent EVERYTHING with tabs, not spaces, if you see two spaces in a row and not in a string literal, you're doing it wrong; code indentation should be in tabs, comments should be idented from the code in tabs, not spaces, and all of that; fix it!; for every project if you can; git commit and push; In the `DW1` project game disassembly files, find all the labels that are not ever referenced anywhere and delete them, we do not need a label if nothing uses it. The original disassembly had labels for every line, we don't need all of them; then do the "what's next: Create comprehensive label documentation (.md files), Update wiki/MDL files with new label information, Close GitHub issue #25, Begin next disassembly improvement task;
-
+you can always git-commit `gameinfo-manual-prompts-log.txt` you just can't change it/or edit it/or replace it, but it should be automatically commited with the changes THAT I MADE to it when you commit other code; do all of the "what's next" steps/tasks;
 
 
 
