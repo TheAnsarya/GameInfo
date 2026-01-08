@@ -663,9 +663,17 @@ Close GitHub issue #25 (just needs manual close via GitHub UI) --- you don't nee
 
 you can always git-commit `gameinfo-manual-prompts-log.txt` you just can't change it/or edit it/or replace it, but it should be automatically commited with the changes THAT I MADE to it when you commit other code; do all of the "what's next" steps/tasks;
 
+do all of the "what's next" steps/tasks: Verify spell/item ROM offsets - Current offsets may not point to actual stat tables; Add editor tabs - DamageFormulaEditorTab and SpellEffectsEditorTab for Universal Editor (make plans and issues and todo-lists for converting the python editor to the c# blazor universal editor in GameInfo); Fix build.ps1 - Unicode character encoding issue causing parser errors (why are we getting any unicode errors, it is the year 2026, there shouldn't be any problems using unicode, figure it out and fix it); Continue asset pipeline - Complete remaining extraction and validation tasks (with plentiful documentation!); continue;
 
+does avalonia and blazor not work together? the GameInfo universal editor is partially constructed with Avalonia and partly with Blazor we want a single universal editor, can you create documentation and plans and issues and start integrating them? use the most modern practices and standards, we want all of them in one editor easy to use and simple and intuitive and so do that; continue;
 
+if it doesn't make sense to blend them, use one or the other, so I guess keep Dark Repos pure Blazor and tools.UI using avalonia, only blend if it makes sense, we can keep two projects of editor components; continue;
 
+For the `GameInfo` universal editor, and for the other editors, for `Create New Project` you pick a game, and you pick the ROM file, it verifies the files, then extracts all the assets and collects all the disassembly source files, and meta game files, aetc, and create a `*.giproj` file that is a zip archive of the assets, code, and metadata that describes a build, but can be edited by the universal editor and other tools, and then can be built back into a rom, so that the brand new project file is built back into the reference rom, and is then used and updated from there; make issues and todolists, and plans, and update session/chat logs, and documentation; continue;
+
+git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go; do the "what's next" and then continue other work;
+
+git commit all files from every repos; do the "what's next" and then continue other work;
 
 
 
