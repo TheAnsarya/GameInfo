@@ -1,5 +1,7 @@
 using Avalonia.Input;
 using GameInfoTools.Core;
+using GameInfoTools.Core.Project;
+using GameInfoTools.Core.Project.Extractors;
 using GameInfoTools.UI.Services;
 using GameInfoTools.UI.ViewModels;
 
@@ -9,6 +11,108 @@ namespace GameInfoTools.Tests;
 /// Tests for UI ViewModels.
 /// </summary>
 public class ViewModelTests {
+	// Helper method to create MainWindowViewModel with mock services
+	private static MainWindowViewModel CreateMainWindowViewModel() =>
+		new(new MockProjectService(), new MockExtractorRegistry());
+
+	#region Mock Services for Testing
+
+	private sealed class MockProjectService : IProjectService {
+		public Project? CurrentProject { get; set; }
+		public bool HasOpenProject => CurrentProject is not null;
+
+		public event EventHandler<ProjectChangedEventArgs>? ProjectChanged;
+
+		public Task<Project> CreateProjectAsync(
+			GameDefinition game,
+			string romPath,
+			string projectPath,
+			ProjectCreationOptions? options = null,
+			IProgress<ExtractProgress>? progress = null,
+			CancellationToken cancellationToken = default
+		) {
+			var project = new Project { FilePath = projectPath, Metadata = new ProjectMetadata { Name = "Test" } };
+			CurrentProject = project;
+			ProjectChanged?.Invoke(this, new ProjectChangedEventArgs { ChangeType = ProjectChangeType.Opened });
+			return Task.FromResult(project);
+		}
+
+		public Task<Project> OpenProjectAsync(
+			string projectPath,
+			CancellationToken cancellationToken = default
+		) {
+			var project = new Project { FilePath = projectPath, Metadata = new ProjectMetadata { Name = "Test" } };
+			CurrentProject = project;
+			ProjectChanged?.Invoke(this, new ProjectChangedEventArgs { ChangeType = ProjectChangeType.Opened });
+			return Task.FromResult(project);
+		}
+
+		public Task SaveProjectAsync(
+			string? path = null,
+			CancellationToken cancellationToken = default
+		) => Task.CompletedTask;
+
+		public Task CloseProjectAsync(bool save = false) {
+			CurrentProject = null;
+			ProjectChanged?.Invoke(this, new ProjectChangedEventArgs { ChangeType = ProjectChangeType.Closed });
+			return Task.CompletedTask;
+		}
+
+		public Task ExtractAssetsAsync(
+			string romPath,
+			IEnumerable<string>? assetTypes = null,
+			IProgress<ExtractProgress>? progress = null,
+			CancellationToken cancellationToken = default
+		) => Task.CompletedTask;
+
+		public Task<BuildResult> BuildAsync(
+			string profile = "default",
+			IProgress<BuildProgress>? progress = null,
+			CancellationToken cancellationToken = default
+		) => Task.FromResult(new BuildResult(true, null, null, [], [], TimeSpan.Zero));
+
+		public Task<VerifyResult> VerifyAsync(byte[] romData) =>
+			Task.FromResult(new VerifyResult(true, 0, [], "", ""));
+
+		public IReadOnlyList<string> GetBuildProfiles() => ["default"];
+
+		public Task ExportAssetsAsync(
+			string outputPath,
+			IEnumerable<string>? assetTypes = null,
+			CancellationToken cancellationToken = default
+		) => Task.CompletedTask;
+
+		public Task ImportAssetsAsync(
+			string inputPath,
+			CancellationToken cancellationToken = default
+		) => Task.CompletedTask;
+	}
+
+	private sealed class MockExtractorRegistry : IAssetExtractorRegistry {
+		private readonly List<IAssetExtractor> _extractors = [new DragonWarrior4Extractor()];
+
+		public IReadOnlyList<IAssetExtractor> Extractors => _extractors;
+
+		public void Register(IAssetExtractor extractor) => _extractors.Add(extractor);
+
+		public IAssetExtractor? GetExtractor(string gameId) =>
+			_extractors.FirstOrDefault(e => e.GameId == gameId);
+
+		public IReadOnlyList<GameDefinition> GetGameDefinitions() =>
+			_extractors.Select(e => e.GetGameDefinition()).ToList();
+
+		public async Task<IAssetExtractor?> DetectExtractorAsync(byte[] romData) {
+			foreach (var extractor in _extractors) {
+				if (await extractor.CanExtractAsync(romData)) {
+					return extractor;
+				}
+			}
+			return null;
+		}
+	}
+
+	#endregion
+
 	#region WelcomeViewModel Tests
 
 	[Fact]
@@ -1166,7 +1270,7 @@ public class ViewModelTests {
 
 	[Fact]
 	public void MainWindowViewModel_InitializesWithWelcomeView() {
-		var vm = new MainWindowViewModel();
+		var vm = CreateMainWindowViewModel();
 
 		Assert.NotNull(vm.CurrentView);
 		Assert.IsType<WelcomeViewModel>(vm.CurrentView);
@@ -1174,7 +1278,7 @@ public class ViewModelTests {
 
 	[Fact]
 	public void MainWindowViewModel_HasToolCategories() {
-		var vm = new MainWindowViewModel();
+		var vm = CreateMainWindowViewModel();
 
 		Assert.NotEmpty(vm.ToolCategories);
 		Assert.True(vm.ToolCategories.Count >= 9);
@@ -1182,7 +1286,7 @@ public class ViewModelTests {
 
 	[Fact]
 	public void MainWindowViewModel_ToolCategoriesHaveRequiredProperties() {
-		var vm = new MainWindowViewModel();
+		var vm = CreateMainWindowViewModel();
 
 		foreach (var category in vm.ToolCategories) {
 			Assert.NotEmpty(category.Icon);
@@ -1193,25 +1297,25 @@ public class ViewModelTests {
 
 	[Fact]
 	public void MainWindowViewModel_DefaultStatusText_IsReady() {
-		var vm = new MainWindowViewModel();
+		var vm = CreateMainWindowViewModel();
 		Assert.Equal("Ready", vm.StatusText);
 	}
 
 	[Fact]
 	public void MainWindowViewModel_ShowRomInfoCommand_ChangesView() {
-		var vm = new MainWindowViewModel();
+		var vm = CreateMainWindowViewModel();
 
-		// First change to a different view, then back to ROM Info
-		vm.SelectedCategory = vm.ToolCategories[1]; // Checksum first
+		// First change to a different view (Checksum at index 2), then back to ROM Info (index 1)
+		vm.SelectedCategory = vm.ToolCategories[2]; // Checksum
 		Assert.IsType<ChecksumViewModel>(vm.CurrentView);
 
-		vm.SelectedCategory = vm.ToolCategories[0]; // ROM Info
+		vm.SelectedCategory = vm.ToolCategories[1]; // ROM Info
 		Assert.IsType<RomInfoViewModel>(vm.CurrentView);
 	}
 
 	[Fact]
 	public void MainWindowViewModel_ShowChecksumCommand_ChangesView() {
-		var vm = new MainWindowViewModel();
+		var vm = CreateMainWindowViewModel();
 
 		vm.ShowChecksumCommand.Execute(null);
 
@@ -1220,7 +1324,7 @@ public class ViewModelTests {
 
 	[Fact]
 	public void MainWindowViewModel_ShowTextExtractorCommand_ChangesView() {
-		var vm = new MainWindowViewModel();
+		var vm = CreateMainWindowViewModel();
 
 		vm.ShowTextExtractorCommand.Execute(null);
 
@@ -1229,7 +1333,7 @@ public class ViewModelTests {
 
 	[Fact]
 	public void MainWindowViewModel_ShowChrEditorCommand_ChangesView() {
-		var vm = new MainWindowViewModel();
+		var vm = CreateMainWindowViewModel();
 
 		vm.ShowChrEditorCommand.Execute(null);
 
@@ -1238,7 +1342,7 @@ public class ViewModelTests {
 
 	[Fact]
 	public void MainWindowViewModel_ShowDisassemblerCommand_ChangesView() {
-		var vm = new MainWindowViewModel();
+		var vm = CreateMainWindowViewModel();
 
 		vm.ShowDisassemblerCommand.Execute(null);
 
@@ -1247,7 +1351,7 @@ public class ViewModelTests {
 
 	[Fact]
 	public void MainWindowViewModel_ShowDataEditorCommand_ChangesView() {
-		var vm = new MainWindowViewModel();
+		var vm = CreateMainWindowViewModel();
 
 		vm.ShowDataEditorCommand.Execute(null);
 
@@ -1256,7 +1360,7 @@ public class ViewModelTests {
 
 	[Fact]
 	public void MainWindowViewModel_ShowPointerScannerCommand_ChangesView() {
-		var vm = new MainWindowViewModel();
+		var vm = CreateMainWindowViewModel();
 
 		vm.ShowPointerScannerCommand.Execute(null);
 
@@ -1265,7 +1369,7 @@ public class ViewModelTests {
 
 	[Fact]
 	public void MainWindowViewModel_ShowHexEditorCommand_ChangesView() {
-		var vm = new MainWindowViewModel();
+		var vm = CreateMainWindowViewModel();
 
 		vm.ShowHexEditorCommand.Execute(null);
 
@@ -1274,7 +1378,7 @@ public class ViewModelTests {
 
 	[Fact]
 	public void MainWindowViewModel_ShowBankViewCommand_ChangesView() {
-		var vm = new MainWindowViewModel();
+		var vm = CreateMainWindowViewModel();
 
 		vm.ShowBankViewCommand.Execute(null);
 
@@ -1283,7 +1387,7 @@ public class ViewModelTests {
 
 	[Fact]
 	public void MainWindowViewModel_ShowAboutCommand_UpdatesStatus() {
-		var vm = new MainWindowViewModel();
+		var vm = CreateMainWindowViewModel();
 
 		vm.ShowAboutCommand.Execute(null);
 
@@ -1292,9 +1396,9 @@ public class ViewModelTests {
 
 	[Fact]
 	public void MainWindowViewModel_SelectedCategory_ChangesCurrentView() {
-		var vm = new MainWindowViewModel();
+		var vm = CreateMainWindowViewModel();
 
-		vm.SelectedCategory = vm.ToolCategories[1]; // Checksum
+		vm.SelectedCategory = vm.ToolCategories[2]; // Checksum (index 2, after Project and ROM Info)
 
 		Assert.IsType<ChecksumViewModel>(vm.CurrentView);
 	}
