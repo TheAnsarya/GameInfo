@@ -4,6 +4,8 @@ using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GameInfoTools.Core;
+using GameInfoTools.Core.Project;
+using GameInfoTools.UI.Views;
 
 namespace GameInfoTools.UI.ViewModels;
 
@@ -11,6 +13,8 @@ namespace GameInfoTools.UI.ViewModels;
 /// Main window view model for the GameInfo Tools application.
 /// </summary>
 public partial class MainWindowViewModel : ViewModelBase {
+	private readonly IProjectService _projectService;
+	private readonly IAssetExtractorRegistry _extractorRegistry;
 	private RomFile? _loadedRom;
 
 	[ObservableProperty]
@@ -55,10 +59,25 @@ public partial class MainWindowViewModel : ViewModelBase {
 		new ToolCategory("🎮", "TAS Converter", "tas"),
 	];
 
-	public MainWindowViewModel() {
+	/// <summary>
+	/// Creates a new MainWindowViewModel with injected dependencies.
+	/// </summary>
+	public MainWindowViewModel(IProjectService projectService, IAssetExtractorRegistry extractorRegistry) {
+		_projectService = projectService;
+		_extractorRegistry = extractorRegistry;
 		SelectedCategory = ToolCategories[0];
 		CurrentView = new WelcomeViewModel();
 	}
+
+	/// <summary>
+	/// Design-time constructor. Not for production use.
+	/// </summary>
+	public MainWindowViewModel() : this(
+		App.Services?.GetService(typeof(IProjectService)) as IProjectService
+			?? throw new InvalidOperationException("ProjectService not available"),
+		App.Services?.GetService(typeof(IAssetExtractorRegistry)) as IAssetExtractorRegistry
+			?? throw new InvalidOperationException("ExtractorRegistry not available")
+	) { }
 
 	partial void OnSelectedCategoryChanged(ToolCategory? value) {
 		if (value is null) return;
@@ -215,9 +234,13 @@ public partial class MainWindowViewModel : ViewModelBase {
 
 	[RelayCommand]
 	private async Task NewProject(Window window) {
-		// TODO: Show Create Project Wizard dialog
-		StatusText = "Create New Project wizard - Coming soon!";
-		await Task.CompletedTask;
+		var wizard = new CreateProjectWizardWindow(_projectService, _extractorRegistry);
+		var result = await wizard.ShowDialog<Project?>(window);
+
+		if (result is not null) {
+			StatusText = $"Created project: {result.Metadata.Name}";
+			// TODO: Open the project in the editor
+		}
 	}
 
 	[RelayCommand]
