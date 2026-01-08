@@ -239,7 +239,7 @@ public partial class MainWindowViewModel : ViewModelBase {
 
 		if (result is not null) {
 			StatusText = $"Created project: {result.Metadata.Name}";
-			// TODO: Open the project in the editor
+			OnProjectOpened(result);
 		}
 	}
 
@@ -259,9 +259,24 @@ public partial class MainWindowViewModel : ViewModelBase {
 
 		if (files.Count > 0) {
 			var file = files[0];
-			// TODO: Actually open the project
-			StatusText = $"Opening project: {file.Path.LocalPath}";
+			try {
+				StatusText = $"Opening project: {file.Path.LocalPath}...";
+				var project = await _projectService.OpenProjectAsync(file.Path.LocalPath);
+				OnProjectOpened(project);
+				StatusText = $"Opened: {project.Metadata.Name}";
+			} catch (Exception ex) {
+				StatusText = $"Error opening project: {ex.Message}";
+			}
 		}
+	}
+
+	private void OnProjectOpened(Core.Project.Project project) {
+		// Update title to show project name
+		RomInfo = $"Project: {project.Metadata.Name} | {project.Metadata.Game.Platform}";
+		RomSize = $"{project.Metadata.ReferenceRom.Size:N0} bytes";
+
+		// TODO: Refresh views with project data
+		// TODO: Enable project-specific menu items
 	}
 
 	[RelayCommand]
