@@ -472,10 +472,19 @@ public class CreateProjectWizardViewModel : INotifyPropertyChanged {
 				Log.Add($"[{p.Percentage:F0}%] {p.CurrentOperation}");
 			});
 
+			// Build list of asset types to extract
+			var assetTypes = new List<string>();
+			if (ExtractGraphics) assetTypes.Add("graphics");
+			if (ExtractText) assetTypes.Add("text");
+			if (ExtractData) assetTypes.Add("data");
+			if (ExtractMaps) assetTypes.Add("maps");
+			if (ExtractAudio) assetTypes.Add("audio");
+
 			var options = new ProjectCreationOptions {
 				Name = ProjectName,
 				Description = Options.Description,
 				Authors = [.. Options.Authors.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)],
+				AssetTypes = assetTypes.Count > 0 ? assetTypes : null,
 				IncludeSource = Options.IncludeSource,
 				IncludeSymbols = Options.IncludeSymbols,
 				IncludeAnalysis = Options.IncludeAnalysis
