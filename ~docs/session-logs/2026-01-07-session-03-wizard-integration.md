@@ -67,6 +67,9 @@ Added asset extractor for Final Fantasy Mystic Quest (SNES):
 | `544cc13` | feat(ui): Implement Open Project command with ProjectService (#197) |
 | `1f887f4` | feat(extractors): Add FFMQ (SNES) asset extractor (#193) |
 | `e0b95b7` | test: Fix MainWindowViewModel tests with mock DI services |
+| `0778eac` | docs: Update session log with continuation work |
+| `4d3af2f` | feat(extractors): Add Dragon Quest III (SNES) extractor (#193) |
+| `9f9f932` | feat(extractors): Add Dragon Quest IV (SNES) extractor (#193) |
 
 ## Files Created/Modified
 
@@ -75,18 +78,32 @@ Added asset extractor for Final Fantasy Mystic Quest (SNES):
 - [CreateProjectWizardWindow.axaml.cs](../src/GameInfoTools.UI/Views/CreateProjectWizardWindow.axaml.cs) - Window code-behind
 - [RegistryTests.cs](../../tests/GameInfoTools.Core.Tests/Project/RegistryTests.cs) - Unit tests
 - [FfmqExtractor.cs](../src/GameInfoTools.Core/Project/Extractors/FfmqExtractor.cs) - FFMQ SNES extractor
+- [Dq3SnesExtractor.cs](../src/GameInfoTools.Core/Project/Extractors/Dq3SnesExtractor.cs) - DQ3 SNES extractor
+- [Dq4SnesExtractor.cs](../src/GameInfoTools.Core/Project/Extractors/Dq4SnesExtractor.cs) - DQ4 SNES extractor
 
 ### Modified
 - [App.axaml.cs](../src/GameInfoTools.UI/App.axaml.cs) - DI setup
 - [GameInfoTools.UI.csproj](../src/GameInfoTools.UI/GameInfoTools.UI.csproj) - Added DI package
 - [MainWindowViewModel.cs](../src/GameInfoTools.UI/ViewModels/MainWindowViewModel.cs) - DI constructor, project commands
 - [ViewModelTests.cs](../src/GameInfoTools.Tests/ViewModelTests.cs) - Mock services for testing
-- [DependencyInjection.cs](../src/GameInfoTools.Core/Project/DependencyInjection.cs) - Registered FFMQ extractor
+- [DependencyInjection.cs](../src/GameInfoTools.Core/Project/DependencyInjection.cs) - Registered all extractors
 - [CreateProjectWizardViewModel.cs](../src/GameInfoTools.Core/Project/ViewModels/CreateProjectWizardViewModel.cs) - Asset type selection
 
 ## Build Status
 
-✅ Build succeeds with 5 pre-existing warnings (nullable types in other modules)
+✅ Build succeeds with 1 pre-existing warning (nullable type in PatternDetector)
+✅ All 4352 tests pass
+
+## Supported Games
+
+The following games now have asset extractors:
+
+| Game | Platform | Region | Extractor |
+|------|----------|--------|-----------|
+| Dragon Warrior IV | NES | US | DragonWarrior4Extractor |
+| Final Fantasy Mystic Quest | SNES | US | FfmqExtractor |
+| Dragon Quest III | SNES | JP | Dq3SnesExtractor |
+| Dragon Quest IV | SNES | JP | Dq4SnesExtractor |
 
 ## GitHub Issues Updated
 
@@ -94,17 +111,19 @@ Added asset extractor for Final Fantasy Mystic Quest (SNES):
 
 ## What's Next
 
-1. **Add more game extractors** - DQ3, DQ4, Zelda, etc.
-2. **Test end-to-end flow** - Create project with actual ROM
-3. **Show project in explorer** - Display opened project in tree view
-4. **Enable project-specific views** - Refresh views with project data
-5. **Build and verify ROM** - Test full round-trip extraction and rebuild
+1. **Test end-to-end flow** - Create project with actual ROM
+2. **Show project in explorer** - Display opened project in tree view
+3. **Enable project-specific views** - Refresh views with project data
+4. **Build and verify ROM** - Test full round-trip extraction and rebuild
+5. **Add more extractors** - Zelda, other NES/SNES classics
 
 ## Completed Items from Previous "What's Next"
 
 - ✅ Wire actual project creation - CreateProjectCommand calls ProjectService
 - ✅ Implement Open Project - OpenProjectCommand loads .giproj files
 - ✅ Add FFMQ extractor - First SNES game support
+- ✅ Add DQ3 extractor - Dragon Quest III SNES
+- ✅ Add DQ4 extractor - Dragon Quest IV SNES
 
 ## Related Issues
 
