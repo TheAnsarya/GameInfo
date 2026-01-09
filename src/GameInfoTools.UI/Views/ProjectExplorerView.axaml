@@ -37,7 +37,7 @@
 		</Border>
 
 		<!-- Tree View -->
-		<Border Grid.Row="2" Padding="4">
+		<Border Grid.Row="2" Padding="4" IsVisible="{Binding HasProject}">
 			<TreeView ItemsSource="{Binding RootNodes}"
 					  SelectedItem="{Binding SelectedNode}">
 				<TreeView.ItemTemplate>

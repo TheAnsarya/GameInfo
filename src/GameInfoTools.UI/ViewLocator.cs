@@ -1,7 +1,9 @@
 using System;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
+using GameInfoTools.Core.Project.ViewModels;
 using GameInfoTools.UI.ViewModels;
 using GameInfoTools.UI.Views;
 
@@ -31,6 +33,7 @@ public class ViewLocator : IDataTemplate {
 		{ typeof(ScriptEditorViewModel), typeof(ScriptEditorView) },
 		{ typeof(CdlViewerViewModel), typeof(CdlViewerView) },
 		{ typeof(TasConverterViewModel), typeof(TasConverterView) },
+		{ typeof(ProjectExplorerViewModel), typeof(ProjectExplorerView) },
 	};
 
 	public Control? Build(object? param) {
@@ -58,6 +61,7 @@ public class ViewLocator : IDataTemplate {
 	}
 
 	public bool Match(object? data) {
-		return data is ViewModelBase;
+		// Match both ViewModelBase (UI project) and INotifyPropertyChanged (Core project ViewModels)
+		return data is ViewModelBase or INotifyPropertyChanged;
 	}
 }
