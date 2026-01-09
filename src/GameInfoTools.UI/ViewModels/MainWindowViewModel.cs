@@ -73,6 +73,11 @@ public partial class MainWindowViewModel : ViewModelBase {
 
 		// Subscribe to project service events
 		_projectService.ProjectChanged += OnProjectServiceChanged;
+
+		// Subscribe to project explorer events
+		_projectExplorer.OpenProjectRequested += OnProjectExplorerOpenRequested;
+		_projectExplorer.NewProjectRequested += OnProjectExplorerNewRequested;
+		_projectExplorer.OpenFileRequested += OnProjectExplorerOpenFile;
 	}
 
 	/// <summary>
@@ -122,6 +127,37 @@ public partial class MainWindowViewModel : ViewModelBase {
 			RomInfo = "No project open";
 			RomSize = "";
 			StatusText = "Project closed";
+		}
+	}
+
+	private void OnProjectExplorerOpenRequested(object? sender, EventArgs e) {
+		// This will be wired to OpenProject command when window reference is available
+		StatusText = "Use File → Open Project to open an existing project";
+	}
+
+	private void OnProjectExplorerNewRequested(object? sender, EventArgs e) {
+		// This will be wired to NewProject command when window reference is available
+		StatusText = "Use File → New Project to create a new project from ROM";
+	}
+
+	private void OnProjectExplorerOpenFile(object? sender, string path) {
+		// Open the selected asset file from the project
+		StatusText = $"Opening: {path}";
+
+		// Determine the appropriate view based on file extension
+		var extension = Path.GetExtension(path).ToLowerInvariant();
+		var category = extension switch {
+			".json" => ToolCategories.FirstOrDefault(c => c.Id == "data"),
+			".asm" or ".s" => ToolCategories.FirstOrDefault(c => c.Id == "disasm"),
+			".txt" => ToolCategories.FirstOrDefault(c => c.Id == "text"),
+			".png" or ".chr" => ToolCategories.FirstOrDefault(c => c.Id == "chr"),
+			".map" => ToolCategories.FirstOrDefault(c => c.Id == "maps"),
+			".script" => ToolCategories.FirstOrDefault(c => c.Id == "scripts"),
+			_ => null
+		};
+
+		if (category is not null) {
+			SelectedCategory = category;
 		}
 	}
 
