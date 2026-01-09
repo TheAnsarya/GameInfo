@@ -2,6 +2,7 @@ using Avalonia.Input;
 using GameInfoTools.Core;
 using GameInfoTools.Core.Project;
 using GameInfoTools.Core.Project.Extractors;
+using GameInfoTools.Core.Project.ViewModels;
 using GameInfoTools.UI.Services;
 using GameInfoTools.UI.ViewModels;
 
@@ -1269,11 +1270,11 @@ public class ViewModelTests {
 	#region MainWindowViewModel Tests
 
 	[Fact]
-	public void MainWindowViewModel_InitializesWithWelcomeView() {
+	public void MainWindowViewModel_InitializesWithProjectExplorerView() {
 		var vm = CreateMainWindowViewModel();
 
 		Assert.NotNull(vm.CurrentView);
-		Assert.IsType<WelcomeViewModel>(vm.CurrentView);
+		Assert.IsType<ProjectExplorerViewModel>(vm.CurrentView);
 	}
 
 	[Fact]

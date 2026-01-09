@@ -675,6 +675,8 @@ git commit everything in logical batches, update github issues, update todo-list
 
 git commit all files from every repos; do the "what's next" and then continue other work;
 
+do the "what's next" tasks; continue; update documentation everywhere you work;
+
 
 
 

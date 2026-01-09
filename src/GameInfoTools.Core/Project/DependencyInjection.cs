@@ -25,6 +25,7 @@ public static class ProjectServiceCollectionExtensions {
 		services.AddSingleton<IAssetExtractor, FfmqExtractor>();
 		services.AddSingleton<IAssetExtractor, Dq3SnesExtractor>();
 		services.AddSingleton<IAssetExtractor, Dq4SnesExtractor>();
+		services.AddSingleton<IAssetExtractor, ZeldaNesExtractor>();
 
 		// Register assemblers
 		services.AddSingleton<IAssembler, Ca65Assembler>();
