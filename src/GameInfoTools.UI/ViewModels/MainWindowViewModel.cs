@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GameInfoTools.Core;
 using GameInfoTools.Core.Project;
+using GameInfoTools.Core.Project.ViewModels;
 using GameInfoTools.UI.Views;
 
 namespace GameInfoTools.UI.ViewModels;
@@ -15,6 +16,7 @@ namespace GameInfoTools.UI.ViewModels;
 public partial class MainWindowViewModel : ViewModelBase {
 	private readonly IProjectService _projectService;
 	private readonly IAssetExtractorRegistry _extractorRegistry;
+	private readonly ProjectExplorerViewModel _projectExplorer;
 	private RomFile? _loadedRom;
 
 	[ObservableProperty]
@@ -65,8 +67,12 @@ public partial class MainWindowViewModel : ViewModelBase {
 	public MainWindowViewModel(IProjectService projectService, IAssetExtractorRegistry extractorRegistry) {
 		_projectService = projectService;
 		_extractorRegistry = extractorRegistry;
+		_projectExplorer = new ProjectExplorerViewModel(projectService);
 		SelectedCategory = ToolCategories[0];
-		CurrentView = new WelcomeViewModel();
+		CurrentView = _projectExplorer; // Start with project explorer
+
+		// Subscribe to project service events
+		_projectService.ProjectChanged += OnProjectServiceChanged;
 	}
 
 	/// <summary>
@@ -83,7 +89,7 @@ public partial class MainWindowViewModel : ViewModelBase {
 		if (value is null) return;
 
 		CurrentView = value.Id switch {
-			"project" => new WelcomeViewModel(), // TODO: Create ProjectViewModel
+			"project" => _projectExplorer,
 			"rominfo" => new RomInfoViewModel(_loadedRom),
 			"checksum" => new ChecksumViewModel(_loadedRom),
 			"text" => new TextExtractorViewModel(_loadedRom),
@@ -104,8 +110,19 @@ public partial class MainWindowViewModel : ViewModelBase {
 			"palette" => new PaletteEditorViewModel(_loadedRom),
 			"saves" => new SaveEditorViewModel(),
 			"tas" => new TasConverterViewModel(),
-			_ => new WelcomeViewModel()
+			_ => _projectExplorer
 		};
+	}
+
+	private void OnProjectServiceChanged(object? sender, ProjectChangedEventArgs e) {
+		// Update UI when project state changes
+		if (e.ChangeType == ProjectChangeType.Opened && e.Project is not null) {
+			OnProjectOpened(e.Project);
+		} else if (e.ChangeType == ProjectChangeType.Closed) {
+			RomInfo = "No project open";
+			RomSize = "";
+			StatusText = "Project closed";
+		}
 	}
 
 	[RelayCommand]
