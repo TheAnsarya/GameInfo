@@ -10,6 +10,7 @@ Per-game documentation including manual testing, debugging findings, and extract
 | Dragon Warrior IV | NES | [dw4-nes/](dw4-nes/) | Map, Monster, Graphics, Spell, Item |
 | Dragon Quest IV Remake | SNES | [dq4r-snes/](dq4r-snes/) | Save, Cutscene, Event, Battle, Chapter |
 | Final Fantasy Mystic Quest | SNES | [ffmq-snes/](ffmq-snes/) | Map, Monster, Item, Spell |
+| The Legend of Zelda | NES | [zelda-nes/](zelda-nes/) | Graphics, Palettes, Maps, Enemies, Items |
 
 ## 📋 Manual Testing Documentation
 
@@ -43,6 +44,11 @@ Per-game documentation including manual testing, debugging findings, and extract
 | [monster-editor-testing.md](ffmq-snes/monster-editor-testing.md) | 60 monsters, elements, AI | 8 TC + 3 RT |
 | [item-editor-testing.md](ffmq-snes/item-editor-testing.md) | Weapons, armor, consumables | 8 TC + 3 RT |
 | [spell-editor-testing.md](ffmq-snes/spell-editor-testing.md) | 16 spells, animations, effects | 8 TC + 3 RT |
+
+### The Legend of Zelda (NES)
+| Document | Description | Test Cases |
+|----------|-------------|------------|
+| [README.md](zelda-nes/README.md) | Full testing documentation | 7 TC + 3 RT |
 
 ## 📋 What Else Goes Here
 

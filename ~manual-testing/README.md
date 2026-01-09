@@ -25,8 +25,10 @@ This folder contains all manual testing procedures, debugging guides, and step-b
 └── game-specific/               # Per-game debugging notes
     ├── README.md
     ├── dq3r-snes/
+    ├── dq4r-snes/
     ├── dw4-nes/
-    └── ffmq-snes/
+    ├── ffmq-snes/
+    └── zelda-nes/
 ```
 
 ## 🎯 Purpose
@@ -69,6 +71,7 @@ Place original ROM files in your local `~roms/` folder (not tracked by git):
 - [VRAM Analysis](breakpoint-guides/vram-analysis.md) - Monitor graphics memory changes
 
 ### Extraction Workflows
+- [Project System](extraction-workflows/project-system-workflow.md) - Create and manage .giproj projects
 - [Graphics Extraction](extraction-workflows/graphics-extraction.md) - Extract and decode graphics
 - [Audio Extraction](extraction-workflows/audio-extraction.md) - Extract sound/music data
 - [Compression Analysis](extraction-workflows/compression-analysis.md) - Identify and decode compression
@@ -77,6 +80,7 @@ Place original ROM files in your local `~roms/` folder (not tracked by git):
 - [DQ3r SNES](game-specific/dq3r-snes/README.md) - Dragon Quest III debugging notes
 - [DW4 NES](game-specific/dw4-nes/README.md) - Dragon Warrior IV debugging notes
 - [FFMQ SNES](game-specific/ffmq-snes/README.md) - Final Fantasy Mystic Quest notes
+- [Zelda NES](game-specific/zelda-nes/README.md) - The Legend of Zelda testing docs
 
 ## 🔗 Related Resources
 

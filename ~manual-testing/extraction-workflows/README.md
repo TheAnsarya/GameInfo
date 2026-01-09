@@ -6,6 +6,7 @@ Step-by-step procedures for extracting different types of game assets.
 
 | Guide | Asset Type | Description |
 |-------|------------|-------------|
+| [Project System](project-system-workflow.md) | Projects | Create, open, manage .giproj projects |
 | [Graphics Extraction](graphics-extraction.md) | Graphics | Extract and decode tile graphics |
 | [Audio Extraction](audio-extraction.md) | Audio | Extract SPC music and sound effects |
 | [Compression Analysis](compression-analysis.md) | Compressed Data | Identify and decode compression |
