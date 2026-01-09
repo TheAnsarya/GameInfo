@@ -18,6 +18,7 @@ public partial class MainWindowViewModel : ViewModelBase {
 	private readonly IAssetExtractorRegistry _extractorRegistry;
 	private readonly ProjectExplorerViewModel _projectExplorer;
 	private RomFile? _loadedRom;
+	private IDataProvider _currentDataProvider = EmptyDataProvider.Instance;
 
 	[ObservableProperty]
 	private string _statusText = "Ready";
@@ -140,19 +141,32 @@ public partial class MainWindowViewModel : ViewModelBase {
 		StatusText = "Use File → New Project to create a new project from ROM";
 	}
 
-	private void OnProjectExplorerOpenFile(object? sender, string path) {
+	private async void OnProjectExplorerOpenFile(object? sender, string path) {
 		// Open the selected asset file from the project
 		StatusText = $"Opening: {path}";
+
+		// Load asset data from project if available
+		if (_projectService.CurrentProject is { } project) {
+			try {
+				var data = await project.ReadAssetAsync(path);
+				_currentDataProvider = new ProjectAssetDataProvider(data, path);
+				StatusText = $"Loaded asset: {path} ({data.Length:N0} bytes)";
+			} catch (Exception ex) {
+				StatusText = $"Error loading asset: {ex.Message}";
+				return;
+			}
+		}
 
 		// Determine the appropriate view based on file extension
 		var extension = Path.GetExtension(path).ToLowerInvariant();
 		var category = extension switch {
 			".json" => ToolCategories.FirstOrDefault(c => c.Id == "data"),
-			".asm" or ".s" => ToolCategories.FirstOrDefault(c => c.Id == "disasm"),
-			".txt" => ToolCategories.FirstOrDefault(c => c.Id == "text"),
+			".asm" or ".s" or ".inc" => ToolCategories.FirstOrDefault(c => c.Id == "disasm"),
+			".txt" or ".tbl" => ToolCategories.FirstOrDefault(c => c.Id == "text"),
 			".png" or ".chr" => ToolCategories.FirstOrDefault(c => c.Id == "chr"),
 			".map" => ToolCategories.FirstOrDefault(c => c.Id == "maps"),
 			".script" => ToolCategories.FirstOrDefault(c => c.Id == "scripts"),
+			".sym" => ToolCategories.FirstOrDefault(c => c.Id == "symbols"),
 			_ => null
 		};
 
@@ -186,6 +200,9 @@ public partial class MainWindowViewModel : ViewModelBase {
 			StatusText = $"Loading {Path.GetFileName(path)}...";
 			_loadedRom = new RomFile();
 			await _loadedRom.LoadAsync(path);
+
+			// Create data provider for views
+			_currentDataProvider = new RomDataProvider(_loadedRom);
 
 			var info = _loadedRom.GetInfo();
 			RomInfo = $"{info.System} | {info.Title ?? Path.GetFileName(path)}";
