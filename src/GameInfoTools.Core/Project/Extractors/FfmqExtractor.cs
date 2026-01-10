@@ -7,6 +7,15 @@ namespace GameInfoTools.Core.Project.Extractors;
 /// <summary>
 /// Asset extractor for Final Fantasy Mystic Quest (SNES).
 /// </summary>
+/// <remarks>
+/// Extracts the following asset types:
+/// - data: Monster stats, items, weapons, armor, spells
+/// - text: All game text (items, spells, monsters, locations, dialogs)
+/// - graphics: (planned) Tilesets, sprites, palettes
+/// - audio: (planned) SPC music and sound effects
+/// - source: Assembly source files
+/// - symbols: Debug symbol files
+/// </remarks>
 public class FfmqExtractor : IAssetExtractor {
 	private static readonly JsonSerializerOptions JsonOptions = new() {
 		WriteIndented = true,
@@ -39,6 +48,18 @@ public class FfmqExtractor : IAssetExtractor {
 	private const int WeaponTableAddress = 0x66000;   // 16 bytes per weapon
 	private const int ArmorTableAddress = 0x66100;    // 16 bytes per armor
 	private const int SpellTableAddress = 0x66F00;    // 16 bytes per spell
+
+	// Text table addresses (PC file offsets)
+	private const int ItemNamesAddress = 0x64120;      // 232 entries × 12 bytes
+	private const int SpellNamesAddress = 0x64210;     // 32 entries × 12 bytes
+	private const int WeaponNamesAddress = 0x642a0;    // 57 entries × 12 bytes
+	private const int HelmetNamesAddress = 0x64354;    // 10 entries × 12 bytes
+	private const int ArmorNamesAddress = 0x64378;     // 20 entries × 12 bytes
+	private const int ShieldNamesAddress = 0x643cc;    // 10 entries × 12 bytes
+	private const int AccessoryNamesAddress = 0x643fc; // 24 entries × 12 bytes
+	private const int AttackNamesAddress = 0x64420;    // 128 entries × 12 bytes
+	private const int MonsterNamesAddress = 0x64ba0;   // 256 entries × 16 bytes
+	private const int LocationNamesAddress = 0x63ed0;  // 37 entries × 16 bytes
 
 	private const int MonsterCount = 83;
 	private const int WeaponCount = 15;
@@ -116,26 +137,32 @@ public class FfmqExtractor : IAssetExtractor {
 		var rom = GetRomWithoutHeader(romData);
 		var collection = new AssetCollection();
 		var types = assetTypes?.ToHashSet(StringComparer.OrdinalIgnoreCase);
-		var totalSteps = 5;
+		var totalSteps = 7;
 
 		// Data extraction
 		if (types is null || types.Contains("data")) {
 			progress?.Report(new ExtractProgress("Extracting monster data", 0, totalSteps, 10));
 			ExtractMonsterData(rom, collection);
 
-			progress?.Report(new ExtractProgress("Extracting item data", 1, totalSteps, 30));
+			progress?.Report(new ExtractProgress("Extracting item data", 1, totalSteps, 25));
 			ExtractItemData(rom, collection);
 
-			progress?.Report(new ExtractProgress("Extracting spell data", 2, totalSteps, 50));
+			progress?.Report(new ExtractProgress("Extracting spell data", 2, totalSteps, 40));
 			ExtractSpellData(rom, collection);
 		}
 
+		// Text extraction
+		if (types is null || types.Contains("text")) {
+			progress?.Report(new ExtractProgress("Extracting text data", 3, totalSteps, 55));
+			ExtractTextData(rom, collection);
+		}
+
 		// Source extraction
-		progress?.Report(new ExtractProgress("Generating source files", 3, totalSteps, 70));
+		progress?.Report(new ExtractProgress("Generating source files", 4, totalSteps, 70));
 		GenerateSourceFiles(collection);
 
 		// Symbols
-		progress?.Report(new ExtractProgress("Generating symbol files", 4, totalSteps, 90));
+		progress?.Report(new ExtractProgress("Generating symbol files", 5, totalSteps, 85));
 		GenerateSymbolFiles(collection);
 
 		progress?.Report(new ExtractProgress("Complete", totalSteps, totalSteps, 100));
@@ -277,6 +304,109 @@ public class FfmqExtractor : IAssetExtractor {
 			Metadata = new Dictionary<string, object> {
 				["count"] = SpellCount,
 				["entrySize"] = 16
+			}
+		});
+	}
+
+	private void ExtractTextData(byte[] rom, AssetCollection collection) {
+		// Character encoding table (FFMQ-specific)
+		// 0x90-0x99 = digits, 0x9A-0xB3 = uppercase, 0xB4-0xCD = lowercase
+		// 0xFF = space, 0x00 = terminator
+
+		var textData = new Dictionary<string, object> {
+			["itemNames"] = ExtractTextTable(rom, ItemNamesAddress, 232, 12),
+			["spellNames"] = ExtractTextTable(rom, SpellNamesAddress, 32, 12),
+			["weaponNames"] = ExtractTextTable(rom, WeaponNamesAddress, 57, 12),
+			["helmetNames"] = ExtractTextTable(rom, HelmetNamesAddress, 10, 12),
+			["armorNames"] = ExtractTextTable(rom, ArmorNamesAddress, 20, 12),
+			["shieldNames"] = ExtractTextTable(rom, ShieldNamesAddress, 10, 12),
+			["accessoryNames"] = ExtractTextTable(rom, AccessoryNamesAddress, 24, 12),
+			["attackNames"] = ExtractTextTable(rom, AttackNamesAddress, 128, 12),
+			["monsterNames"] = ExtractTextTable(rom, MonsterNamesAddress, 256, 16),
+			["locationNames"] = ExtractTextTable(rom, LocationNamesAddress, 37, 16)
+		};
+
+		var json = JsonSerializer.Serialize(textData, JsonOptions);
+		collection.Add(new ExtractedAsset {
+			Path = "text/all_text.json",
+			Type = "text",
+			Name = "All Game Text",
+			Data = Encoding.UTF8.GetBytes(json),
+			Format = "json",
+			Metadata = new Dictionary<string, object> {
+				["encoding"] = "ffmq-simple",
+				["totalEntries"] = 232 + 32 + 57 + 10 + 20 + 10 + 24 + 128 + 256 + 37
+			}
+		});
+
+		// Also create individual text files for easier editing
+		CreateTextFile(collection, "text/items.txt", ExtractTextTable(rom, ItemNamesAddress, 232, 12), "Item Names");
+		CreateTextFile(collection, "text/spells.txt", ExtractTextTable(rom, SpellNamesAddress, 32, 12), "Spell Names");
+		CreateTextFile(collection, "text/weapons.txt", ExtractTextTable(rom, WeaponNamesAddress, 57, 12), "Weapon Names");
+		CreateTextFile(collection, "text/monsters.txt", ExtractTextTable(rom, MonsterNamesAddress, 256, 16), "Monster Names");
+		CreateTextFile(collection, "text/locations.txt", ExtractTextTable(rom, LocationNamesAddress, 37, 16), "Location Names");
+	}
+
+	private static string[] ExtractTextTable(byte[] rom, int address, int count, int entryLength) {
+		var entries = new string[count];
+
+		for (var i = 0; i < count; i++) {
+			var offset = address + (i * entryLength);
+			entries[i] = DecodeText(rom, offset, entryLength);
+		}
+
+		return entries;
+	}
+
+	private static string DecodeText(byte[] rom, int offset, int maxLength) {
+		var sb = new StringBuilder();
+
+		for (var i = 0; i < maxLength; i++) {
+			var b = rom[offset + i];
+
+			if (b == 0x00) break;  // Terminator
+			if (b == 0x03 || b == 0xFE) continue;  // Padding bytes
+
+			var c = b switch {
+				>= 0x90 and <= 0x99 => (char)('0' + (b - 0x90)),
+				>= 0x9A and <= 0xB3 => (char)('A' + (b - 0x9A)),
+				>= 0xB4 and <= 0xCD => (char)('a' + (b - 0xB4)),
+				0xFF => ' ',
+				0xCE => '\'',
+				0xD0 => '.',
+				0xD2 => ',',
+				0xDA => '-',
+				0xDB => '&',
+				0xDC => ':',
+				0xEB => '?',
+				0xF7 => '!',
+				_ => '?'  // Unknown character
+			};
+
+			sb.Append(c);
+		}
+
+		return sb.ToString().Trim();
+	}
+
+	private static void CreateTextFile(AssetCollection collection, string path, string[] entries, string name) {
+		var sb = new StringBuilder();
+		sb.AppendLine($"; {name}");
+		sb.AppendLine($"; {entries.Length} entries");
+		sb.AppendLine();
+
+		for (var i = 0; i < entries.Length; i++) {
+			sb.AppendLine($"{i:D3}: {entries[i]}");
+		}
+
+		collection.Add(new ExtractedAsset {
+			Path = path,
+			Type = "text",
+			Name = name,
+			Data = Encoding.UTF8.GetBytes(sb.ToString()),
+			Format = "txt",
+			Metadata = new Dictionary<string, object> {
+				["count"] = entries.Length
 			}
 		});
 	}
