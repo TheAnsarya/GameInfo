@@ -679,10 +679,35 @@ do the "what's next" tasks; continue; update documentation everywhere you work;
 
 Implement file browse dialogs in the project wizard; Enable views to display project asset content; update manual testing documentation and testing lists etc;
 
+evaluate and analyze the `dragon-warrior-4-info` repos and the `dragon warrior 4` GameInfo project, and analyze the plans and issues and todolists, and update and plan for doing everything to complete the dw4 tasks including finishing disassemblies and labels and documentation and editors and the new project stuff we're adding, and run through all the dw4 issues and todolists and the "how to finish" docs and update the manual testing docs;
+
+A CDL file containing just the battle win and levelup with experience tables etc for DW$ is at `C:\Users\me\source\repos\GameInfo\~reference-files\Dragon Warrior IV (1992-10)(Enix)(US) - level up.cdl` so use that file to research and document and disassemble the experience tables, etc; continue;
+
+is it computed? not stored as values?
+
+yes
+
+continue tracing the formula to extract the exact coefficients; do the "what's next": Complete formula extraction - Trace the exact computation to extract Alevel² + Blevel + C (or similar), Extract per-character coefficients from the parameter tables, Update DW4Lib to compute EXP instead of reading non-existent tables, Verify computed values against published game guides; continue and document and update guthub issues and todolists and plans;
+
+why are you creating temporary disassemblies in small little snippets? Use all the cdl files and all your research and disassemble the code into a single resource as we were doing (comment and format the code too) when doing this and use previously disassembled/documented code when try to figure out formulas and data structures and other code, etc.; continue;
+
+you're spending too much time and resources and money on the DW4 experience progression, put that effort on hold and make that effort super low priority; we want wide results, don't spin out on one issue; git commit everything, update chat/session logs, documentation, plans, roadmap, github issues, todo-lists, documentation! git commit again, link every commit to github issues; Add to the `.editorconfig` for `*.md` files add `markdownlint` formatting rules like `MD032/b1anks-around-lists: Lists should be surrounded by blank lines`and `MD040/fenced-code-language: Fenced code blocks should have a language specified` and `MD032/blanks-around-lists: Lists should be surrounded by blank lines`, these should all be enforced, make sure the "no hard tabs" rule is completely suppressed or given "false" status and always use TABS NOT SPACES even in markdown file code blocks, EVERYWHERE!; fix/format all the markdown files in the workspace, then git commit them; have a markdown formatting fixing github issue and todolist; do it all and continue;
 
 
 
 
+
+
+
+
+
+
+
+
+
+Add to the `.editorconfig` for `*.md` files add `markdownlint` formatting rules like `MD032/b1anks-around-lists: Lists should be surrounded by blank lines`and `MD040/fenced-code-language: Fenced code blocks should have a language specified` and `MD032/blanks-around-lists: Lists should be surrounded by blank lines`, these should all be enforced, make sure the "no hard tabs" rule is completely suppressed or given "false" status and always use TABS NOT SPACES even in markdown file code blocks, EVERYWHERE!; fix/format all the markdown files in the workspace, then git commit them; have a markdown formatting fixing github issue and todolist; do it all and continue;
+
+there is a lot of NES and SNES assembly code with uppercase operands and uppercase hexadecimal values, but we want all hexadecimal values to be lowercase unless they have to be uppercase for a particular format and all `asm`/`s`/`inc` disassembly code files and all the documentation with ASM code examples or descriptions, so all hexadecimal values and asm code operands (like lda, inc, tya, mult, jsr, etc.) should be lowercase as well; update all the documentation and todo lists and gh issues; fix all the files you can and continue;
 
 
 
