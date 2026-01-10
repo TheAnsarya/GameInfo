@@ -14,9 +14,7 @@
 		"br_spaces": 2,
 		"strict": false
 	},
-	"MD010": {
-		"code_blocks": false
-	},
+	"MD010": false,
 	"MD012": {
 		"maximum": 2
 	},
@@ -35,7 +33,7 @@
 		"style": "ordered"
 	},
 	"MD031": false,
-	"MD032": false,
+	"MD032": true,
 	"MD033": {
 		"allowed_elements": [
 			"details",
@@ -50,7 +48,7 @@
 	"MD035": {
 		"style": "---"
 	},
-	"MD040": false,
+	"MD040": true,
 	"MD041": true,
 	"MD046": {
 		"style": "fenced"
