@@ -2,6 +2,16 @@
 
 Planning documents and roadmaps for GameInfo projects.
 
+## Current Priorities (2026-01-10)
+
+| Priority | Project | Status |
+|----------|---------|--------|
+| HIGH | Markdown formatting standardization | In progress - Issue #198 |
+| HIGH | Cross-project documentation | Ongoing |
+| MEDIUM | DQ3r SNES analysis | Active |
+| MEDIUM | FFMQ dialog/text tools | Active |
+| LOW | DW4 EXP/stat formulas | Paused - deep dive complete |
+
 ## Active Plans
 
 | Plan | Description |
