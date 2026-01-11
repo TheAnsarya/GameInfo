@@ -691,7 +691,17 @@ continue tracing the formula to extract the exact coefficients; do the "what's n
 
 why are you creating temporary disassemblies in small little snippets? Use all the cdl files and all your research and disassemble the code into a single resource as we were doing (comment and format the code too) when doing this and use previously disassembled/documented code when try to figure out formulas and data structures and other code, etc.; continue;
 
-you're spending too much time and resources and money on the DW4 experience progression, put that effort on hold and make that effort super low priority; we want wide results, don't spin out on one issue; git commit everything, update chat/session logs, documentation, plans, roadmap, github issues, todo-lists, documentation! git commit again, link every commit to github issues; Add to the `.editorconfig` for `*.md` files add `markdownlint` formatting rules like `MD032/b1anks-around-lists: Lists should be surrounded by blank lines`and `MD040/fenced-code-language: Fenced code blocks should have a language specified` and `MD032/blanks-around-lists: Lists should be surrounded by blank lines`, these should all be enforced, make sure the "no hard tabs" rule is completely suppressed or given "false" status and always use TABS NOT SPACES even in markdown file code blocks, EVERYWHERE!; fix/format all the markdown files in the workspace, then git commit them; have a markdown formatting fixing github issue and todolist; do it all and continue;
+Do "What's Next" Now that the EXP formula is fully documented, next steps: Update DW4Lib to compute EXP programmatically, Create wikitext documentation for Dark Repos, Extract other stat formulas (HP, MP, stats per level), Cross-reference with the stat growth code in Bank 8; continue;
+
+you're spending too much time and resources and money on the DW4 experience progression, put that effort on hold and make that effort low priority; we want wide results, don't spin out on one issue; git commit everything, update chat/session logs, documentation, plans, roadmap, github issues, todo-lists, documentation! git commit again, link every commit to github issues; Add to the `.editorconfig` for `*.md` files add `markdownlint` formatting rules like `MD032/b1anks-around-lists: Lists should be surrounded by blank lines`and `MD040/fenced-code-language: Fenced code blocks should have a language specified` and `MD032/blanks-around-lists: Lists should be surrounded by blank lines`, these should all be enforced, make sure the "no hard tabs" rule is completely suppressed or given "false" status and always use TABS NOT SPACES even in markdown file code blocks, EVERYWHERE!; fix/format all the markdown files in the workspace, then git commit them; have a markdown formatting fixing github issue and todolist; do it all and continue; And then do the "what's next": Verify growth data pointers - The stat growth pointer table values need ROM verification; Extract actual growth data - Dump the signed growth bytes for all characters to create tables; Create StatGrowthCalculator in DW4Lib - Similar to ExperienceCalculator but for HP/MP/stats; Generate complete stat tables - Create JSON/CSV exports of all stat progression curves; Document the math subroutines - Bank $1F at $C813-$C850 has reusable 16-bit math functions;
+
+please don't spaz out like that and flood the queue, create structured prompts and events and tasks, don't waste the tokens and don't waste my money, don't spiral and obsess, make progress always; make github issues and plans and todolists for all the work and tasks from the last few prompts, and this one, and then work on those tasks and issues; continue; continue; continue; 
+
+Add to the `.editorconfig` for `*.md` files add `markdownlint` formatting rules like `MD032/b1anks-around-lists: Lists should be surrounded by blank lines`and `MD040/fenced-code-language: Fenced code blocks should have a language specified` and `MD032/blanks-around-lists: Lists should be surrounded by blank lines`, these should all be enforced, make sure the "no hard tabs" rule is completely suppressed or given "false" status and always use TABS NOT SPACES even in markdown file code blocks, EVERYWHERE!; fix/format all the markdown files in the workspace, then git commit them; have a markdown formatting fixing github issue and todolist; do it all and continue; there is a lot of NES and SNES assembly code with uppercase operands and uppercase hexadecimal values, but we want all hexadecimal values to be lowercase unless they have to be uppercase for a particular format and all `asm`/`s`/`inc` disassembly code files and all the documentation with ASM code examples or descriptions, so all hexadecimal values and asm code operands (like lda, inc, tya, mult, jsr, etc.) should be lowercase as well; update all the documentation and todo lists and gh issues; fix all the files you can and continue;
+
+evaluate and analyze the `ffmq-info` repos and the `final fantasy mystic quest` GameInfo project, and analyze the plans and issues and todolists, and update and plan for doing everything to complete the ffmq tasks including finishing disassemblies and labels and documentation and editors and the new project stuff we're adding, and run through all the ffmq issues and todolists and the "how to finish" docs and update the manual testing docs; continue and do everything to finish the ffmq disassembly, reasessembly projects and the "new project" stuff with a zip format project file, blah blah, update issues and todolists, and universal editor with the project files, and then focus on the universal editor and the project format and how you get new base project files from disassembly and asset extraction, etc.; continue;
+
+start doing our "what's next": Start implementing the .giproj format in C# (didn't we already do this in one of our repositories, find it in GameInfo and link to it)? Fix the build.ps1 to track honest progress? Work on completing the dialog CLI? Begin documenting bank 00 routines?; continue, and project file!; continue;
 
 
 
@@ -705,9 +715,41 @@ you're spending too much time and resources and money on the DW4 experience prog
 
 
 
-Add to the `.editorconfig` for `*.md` files add `markdownlint` formatting rules like `MD032/b1anks-around-lists: Lists should be surrounded by blank lines`and `MD040/fenced-code-language: Fenced code blocks should have a language specified` and `MD032/blanks-around-lists: Lists should be surrounded by blank lines`, these should all be enforced, make sure the "no hard tabs" rule is completely suppressed or given "false" status and always use TABS NOT SPACES even in markdown file code blocks, EVERYWHERE!; fix/format all the markdown files in the workspace, then git commit them; have a markdown formatting fixing github issue and todolist; do it all and continue;
 
-there is a lot of NES and SNES assembly code with uppercase operands and uppercase hexadecimal values, but we want all hexadecimal values to be lowercase unless they have to be uppercase for a particular format and all `asm`/`s`/`inc` disassembly code files and all the documentation with ASM code examples or descriptions, so all hexadecimal values and asm code operands (like lda, inc, tya, mult, jsr, etc.) should be lowercase as well; update all the documentation and todo lists and gh issues; fix all the files you can and continue;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
