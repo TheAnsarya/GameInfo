@@ -1,0 +1,19 @@
+{
+  "disassembly": {
+    "banking": "unknown",
+    "tool": "peony",
+    "verified": false
+  },
+  "source": {
+    "mainFile": "src/main.pasm",
+    "baseRom": "original.a26",
+    "assembler": "poppy",
+    "outputRom": "build/Freeway-1981-Activision.a26"
+  },
+  "project": {
+    "platform": "atari2600",
+    "name": "Freeway (1981) (Activision)",
+    "version": "1.0.0"
+  },
+  "$schema": "https://gameinfo.example.com/schemas/build-config.json"
+}
