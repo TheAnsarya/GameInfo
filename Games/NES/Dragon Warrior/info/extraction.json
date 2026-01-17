@@ -1,0 +1,92 @@
+{
+"game": "Dragon Warrior",
+"platform": "NES",
+"extractions": [
+{
+"name": "monster_stats",
+"description": "Monster statistics table",
+"bank": 0,
+"address": "0x5e5b",
+"file_offset": "0x5e6b",
+"count": 40,
+"entry_size": 16,
+"format": "binary",
+"fields": [
+{"name": "name_ptr_lo", "offset": 0, "size": 1},
+{"name": "name_ptr_hi", "offset": 1, "size": 1},
+{"name": "attack_power", "offset": 2, "size": 1},
+{"name": "defense_power", "offset": 3, "size": 1},
+{"name": "hp", "offset": 4, "size": 1},
+{"name": "spell_id", "offset": 5, "size": 1},
+{"name": "agility", "offset": 6, "size": 1},
+{"name": "magic_defense", "offset": 7, "size": 1},
+{"name": "experience_lo", "offset": 8, "size": 1},
+{"name": "experience_hi", "offset": 9, "size": 1},
+{"name": "gold_lo", "offset": 10, "size": 1},
+{"name": "gold_hi", "offset": 11, "size": 1},
+{"name": "pattern", "offset": 12, "size": 1},
+{"name": "resist_flags", "offset": 13, "size": 1},
+{"name": "ai_flags", "offset": 14, "size": 1},
+{"name": "unused", "offset": 15, "size": 1}
+]
+},
+{
+"name": "player_level_stats",
+"description": "Player stats per level",
+"bank": 0,
+"address": "0x????",
+"count": 30,
+"entry_size": 8,
+"fields": [
+{"name": "strength", "offset": 0, "size": 1},
+{"name": "agility", "offset": 1, "size": 1},
+{"name": "max_hp", "offset": 2, "size": 1},
+{"name": "max_mp", "offset": 3, "size": 1},
+{"name": "spell_learned", "offset": 4, "size": 1},
+{"name": "exp_needed_lo", "offset": 5, "size": 1},
+{"name": "exp_needed_hi", "offset": 6, "size": 2}
+]
+},
+{
+"name": "weapon_data",
+"description": "Weapon attack bonuses and prices",
+"bank": 0,
+"count": 8,
+"entry_size": 4
+},
+{
+"name": "armor_data",
+"description": "Armor defense bonuses and prices",
+"bank": 0,
+"count": 8,
+"entry_size": 4
+},
+{
+"name": "spell_data",
+"description": "Spell MP costs and effects",
+"bank": 0,
+"count": 10,
+"entry_size": 4
+},
+{
+"name": "chr_tiles",
+"description": "Character/sprite graphics",
+"type": "graphics",
+"format": "2bpp_nes",
+"file_offset": "0x10010",
+"size": "0x4000",
+"tile_size": [8, 8]
+}
+],
+"text_encoding": {
+"table_file": "text_table.tbl",
+"encoding": "dw1_custom",
+"control_codes": {
+"00": "[END]",
+"01": "[LINE]",
+"02": "[WAIT]",
+"03": "[NAME]",
+"04": "[ITEM]"
+}
+}
+}
