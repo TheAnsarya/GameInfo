@@ -703,6 +703,30 @@ evaluate and analyze the `ffmq-info` repos and the `final fantasy mystic quest` 
 
 start doing our "what's next": Start implementing the .giproj format in C# (didn't we already do this in one of our repositories, find it in GameInfo and link to it)? Fix the build.ps1 to track honest progress? Work on completing the dialog CLI? Begin documenting bank 00 routines?; continue, and project file!; continue;
 
+-------------------------------------------
+--- 2023-01-16
+
+convert all the build pipelines to use `poppy` as the compiler/assembler, remove `ophis` and other compilers; use `bps-patch` for patching; update all of the disassembly code to use `poppy` code, convert to `pasm`; create plans and todolists and github issues for cleaning up and updating all these repos and making gameinfo focus on games, while moving big tools outside of the the repos and  create a roadmap for outside tools, inside tools, games, other stuff, etc; come up with a bunch of tasks, including creating the anti-poppy, `peony`, a disassembler framework, and disassembling like 40 popular atari2600 games in the gameinfo framework using the reference roms in the un-tracked folder `C:\Users\me\source\repos\GameInfo\~roms\Good2600 v3.14\`; continue;
+
+&&&
+Create GitHub Issues: Use the master list templates
+Migrate a Project: .\Migrate-ToPoppy.ps1 -ProjectPath ... -SourceAssembler ophis -Platform nes
+Start Disassembly: .\Batch-Disassemble-Atari2600.ps1 -MaxGames 5
+&&&&
+
+stop
+
+I don't see peony in github, make sure peony is its own repos and and add these issues tio to it and continue;
+
+`peony` should use the icon `🌺` for all the graphics and and throughout the documentation, just like `poppy` is often styled as `🌸 Poppy` peony should be `🌺 Peony` in the docs and issues and todolists and everything and made as svg and such; continue;
+
+This is wrong: `C:\Users\me\source\repos\peony\assets\peony-icon.svg` use the actual `🌺` emoji for the icon; make a bunch of sub-issues (with an actual linked parent issue) in the github issues for the Peony repos and then implement them; continue;
+
+Add more Atari 2600 bank switching schemes (3F, E0, FE); Add NES Dot the "what's next": platform support; Add Poppy output formatter; Implement data/graphics detection; Add illegal opcode support; and then decompile 7 more atari 2600 games into pasm files and update poppy and peony to hqandle these games, then run Dragion Warrior 1 through peony and update the files and have it update through poppy and  updtae all the code, make it usable and editable;
+
+To fully disassemble all 4 banks of Dragon Warrior 1, you would need to add multi-bank support that either: Disassembles each bank separately with bank annotations; Follows BRK-based bank switch calls to other banks; continue
+
+work on everything like peony and the dw1 disassembly and asset extraction; continue;
 
 
 
@@ -714,29 +738,7 @@ start doing our "what's next": Start implementing the .giproj format in C# (didn
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+create
 
 
 

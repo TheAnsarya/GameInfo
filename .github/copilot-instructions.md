@@ -2,9 +2,11 @@
 
 ## Project Overview
 
-**Main Purpose:** Create Dark Repos `*.wikitext` files (ROM map, RAM map, data structures, systems descriptions) for SNES, NES, and other retro games, along with `*.md` documentation, disassemblies, and comprehensive ROM hacking tools.
+**Main Purpose:** ROM hacking toolkit with dual output targets:
+1. **Dark Repos Wiki** - `*.wikitext` files (ROM/RAM maps, data structures, system descriptions) for games.darkrepos.com
+2. **ROM Hacking Tools** - .NET 10 CLI + Python utilities + Blazor web editors
 
-**Note:** Data Crystal (datacrystal.tcrf.net) is used as a reference source, but our wiki content goes to Dark Repos.
+**Architecture:** Monorepo containing multiple tool categories, wiki content, and documentation for retro games (NES, SNES, GB, GBA).
 
 **Home Folder:** `C:\Users\me\source\repos\GameInfo`
 
@@ -14,6 +16,27 @@
 - `ffmq-info` - Final Fantasy Mystic Quest disassembly and documentation
 - `dw4-info` / `dragon-warrior-4-info` - Dragon Warrior IV NES disassembly
 - `dragon-warrior-info` - Dragon Warrior series documentation
+
+## Key Architecture Concepts
+
+### Dual Toolchain Strategy
+- **C# .NET 10 Tools** (`src/GameInfoTools.*`) - Primary, cross-platform, high-performance
+  - Modular library design: Core → Analysis/Graphics/Text/Rom → CLI
+  - 993+ xUnit tests for reliability
+  - Modern C# 14 features (pattern matching, spans, file-scoped namespaces)
+- **Python Tools** (`tools/`) - Specialized analysis, rapid prototyping, legacy support
+  - 148+ tools organized by category (analysis, graphics, text, data, etc.)
+  - Many being migrated to C# equivalents (see `docs/python-csharp-mapping.md`)
+
+### DarkRepos Integration
+Three interconnected systems stored in `DarkRepos/`:
+- **Wiki/** - MediaWiki `.wikitext` files for games.darkrepos.com
+  - Organized as `{Platform}/{Game}/{SubPage}.wikitext`
+  - Templates in `_meta/Templates/` (rommap, rammap, TBL, etc.)
+- **Editor/** - Blazor WebAssembly + .NET backend (local-first web app, similar to Plex)
+  - Runs as local service on `http://localhost:5280`
+  - Editors for hex, graphics, maps, data tables
+- **Web/** - Public documentation site
 
 ## Code Style & Formatting
 
@@ -40,10 +63,50 @@
 - All code must pass `dotnet format` with `.editorconfig`
 
 ### Technology Stack
-- C# .NET 10 for all tools (not Python)
-- Blazor WebAssembly for web UI
-- xUnit for testing
-- EF Core with SQLite when database needed
+- **C# .NET 10** for all production tools (not Python for new tools)
+  - Blazor WebAssembly for web UI
+  - xUnit for testing (993+ tests across solution)
+  - Spectre.Console for rich CLI output
+  - System.CommandLine for CLI argument parsing
+  - EF Core + SQLite for database when needed
+- **Python 3.11+** for specialized analysis tools and rapid prototyping
+  - Legacy tools being migrated to C# equivalents
+  - Use virtual environment (`.venv/`) for dependency isolation
+
+### .NET Solution Structure (`src/`)
+```
+GameInfoTools.sln          # Main solution with 15+ projects
+├── GameInfoTools.Core/    # Core types, RomFile, utilities
+├── GameInfoTools.Analysis/ # ROM analysis, cross-references
+├── GameInfoTools.Graphics/ # Tile graphics, CHR editing
+├── GameInfoTools.Text/    # Text extraction, script tools
+├── GameInfoTools.Rom/     # ROM manipulation, patching
+├── GameInfoTools.Data/    # Game data tables, JSON export
+├── GameInfoTools.Disassembly/ # CPU disassembly (6502/65816)
+├── GameInfoTools.Audio/   # NSF/SPC/audio extraction
+├── GameInfoTools.TasConvert/ # TAS replay converter (40+ formats)
+├── GameInfoTools.Wiki/    # Wikitext generation
+├── GameInfoTools.Cli/     # CLI entry point (git-style commands)
+├── GameInfoTools.UI/      # Blazor WebAssembly UI
+└── tests/                 # xUnit test projects
+```
+
+### Build & Test Commands
+```bash
+# Build entire solution
+dotnet build GameInfoTools.sln
+
+# Run all tests (993+ tests)
+dotnet test GameInfoTools.sln
+
+# Run CLI tool
+dotnet run --project src/GameInfoTools.Cli -- <command>
+# Examples:
+#   rom info game.nes
+#   text extract game.nes --tbl table.tbl
+#   graphics chr game.nes --offset 0x10010
+#   analysis map game.nes
+```
 
 ## Documentation Structure
 
@@ -133,6 +196,39 @@ Documentation about the project itself:
 - Support transformations: binary ↔ JSON/PNG/etc
 - Maintain bidirectional conversion capability
 - Document all data formats
+- See [Build Pipeline Documentation](../docs/Build-Pipeline/README.md)
+
+### Build Pipeline Flow
+```
+ROM File → Asset Extractor → Binary Assets
+                               ↓
+                           Converters
+                               ↓
+                    Editable Formats (JSON/PNG)
+                               ↓ (Edit)
+                           Converters
+                               ↓
+                        Binary Assets
+                               ↓
+   New ROM ← Assembler ← Source Code + Assets
+```
+
+## Python Tool Organization (`tools/`)
+
+148+ Python tools organized into 11 categories:
+- `analysis/` (22 tools) - ROM analysis, pattern detection, formula research
+- `graphics/` (19 tools) - Tiles, sprites, palettes, animation
+- `text/` (19 tools) - Text extraction, encoding, dialogue
+- `data/` (29 tools) - Game data editing (monsters, items, spells)
+- `rom/` (20 tools) - ROM operations (patches, checksums, headers)
+- `debug/` (12 tools) - CDL tools, debug labels, memory tracing
+- `assembly/` (12 tools) - Assembly formatting, labels, macros
+- `converters/` (11 tools) - Format conversion, batch processing
+- `maps/` (10 tools) - World maps, collision, warps
+- `editors/` (7 tools) - Specialized editors
+- `audio/` (6 tools) - Music extraction, NSF/SPC analysis
+
+**Migration Strategy:** Many Python tools have or will have C# equivalents. Check `docs/python-csharp-mapping.md` before creating new Python tools.
 
 ## Output Formats
 
