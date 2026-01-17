@@ -1,0 +1,112 @@
+{
+  "0": {
+    "id": 0,
+    "name": "HEAL",
+    "mp_cost": 4,
+    "effect_type": "heal",
+    "formula": "10-17 HP",
+    "target": "self",
+    "usable_in_battle": true,
+    "usable_in_field": true,
+    "description": "Restores 10-17 HP to the hero."
+  },
+  "1": {
+    "id": 1,
+    "name": "HURT",
+    "mp_cost": 2,
+    "effect_type": "damage",
+    "formula": "~5-12 HP",
+    "target": "enemy",
+    "usable_in_battle": true,
+    "usable_in_field": false,
+    "description": "Deals ~5-12 HP damage to one enemy."
+  },
+  "2": {
+    "id": 2,
+    "name": "SLEEP",
+    "mp_cost": 2,
+    "effect_type": "status",
+    "formula": "Sleep enemy",
+    "target": "enemy",
+    "usable_in_battle": true,
+    "usable_in_field": false,
+    "description": "Puts one enemy to sleep, preventing actions."
+  },
+  "3": {
+    "id": 3,
+    "name": "RADIANT",
+    "mp_cost": 3,
+    "effect_type": "damage",
+    "formula": "Group damage",
+    "target": "enemies",
+    "usable_in_battle": true,
+    "usable_in_field": false,
+    "description": "Damages all enemies in the group."
+  },
+  "4": {
+    "id": 4,
+    "name": "STOPSPELL",
+    "mp_cost": 2,
+    "effect_type": "status",
+    "formula": "Block enemy spells",
+    "target": "enemy",
+    "usable_in_battle": true,
+    "usable_in_field": false,
+    "description": "Prevents one enemy from casting spells."
+  },
+  "5": {
+    "id": 5,
+    "name": "OUTSIDE",
+    "mp_cost": 6,
+    "effect_type": "teleport",
+    "formula": "Exit dungeon",
+    "target": "party",
+    "usable_in_battle": false,
+    "usable_in_field": true,
+    "description": "Instantly teleports out of dungeons and caves."
+  },
+  "6": {
+    "id": 6,
+    "name": "RETURN",
+    "mp_cost": 8,
+    "effect_type": "teleport",
+    "formula": "Return to castle",
+    "target": "party",
+    "usable_in_battle": false,
+    "usable_in_field": true,
+    "description": "Teleports back to Tantegel Castle."
+  },
+  "7": {
+    "id": 7,
+    "name": "REPEL",
+    "mp_cost": 2,
+    "effect_type": "field",
+    "formula": "Reduce encounters",
+    "target": "party",
+    "usable_in_battle": false,
+    "usable_in_field": true,
+    "description": "Reduces random enemy encounters while walking."
+  },
+  "8": {
+    "id": 8,
+    "name": "HEALMORE",
+    "mp_cost": 10,
+    "effect_type": "heal",
+    "formula": "85-100 HP",
+    "target": "self",
+    "usable_in_battle": true,
+    "usable_in_field": true,
+    "description": "Restores 85-100 HP to the hero."
+  },
+  "9": {
+    "id": 9,
+    "name": "HURTMORE",
+    "mp_cost": 5,
+    "effect_type": "damage",
+    "formula": "~58-65 HP",
+    "target": "enemy",
+    "usable_in_battle": true,
+    "usable_in_field": false,
+    "description": "Deals ~58-65 HP damage to one enemy."
+  }
+}

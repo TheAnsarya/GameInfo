@@ -1,0 +1,28 @@
+{
+	"weapons": {
+		"0": {"name": "None", "bonus": 0},
+		"1": {"name": "Bamboo Pole", "bonus": 2},
+		"2": {"name": "Club", "bonus": 4},
+		"3": {"name": "Copper Sword", "bonus": 10},
+		"4": {"name": "Hand Axe", "bonus": 15},
+		"5": {"name": "Broad Sword", "bonus": 20},
+		"6": {"name": "Flame Sword", "bonus": 28},
+		"7": {"name": "Erdrick's Sword", "bonus": 40}
+	},
+	"armor": {
+		"0": {"name": "None", "bonus": 0},
+		"1": {"name": "Clothes", "bonus": 2},
+		"2": {"name": "Leather Armor", "bonus": 4},
+		"3": {"name": "Chain Mail", "bonus": 10},
+		"4": {"name": "Half Plate", "bonus": 16},
+		"5": {"name": "Full Plate", "bonus": 24},
+		"6": {"name": "Magic Armor", "bonus": 24},
+		"7": {"name": "Erdrick's Armor", "bonus": 28}
+	},
+	"shields": {
+		"0": {"name": "None", "bonus": 0},
+		"1": {"name": "Small Shield", "bonus": 4},
+		"2": {"name": "Large Shield", "bonus": 10},
+		"3": {"name": "Silver Shield", "bonus": 20}
+	}
+}

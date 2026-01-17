@@ -1,0 +1,287 @@
+{
+	"_comment": "Dragon Warrior experience requirements extracted from Bank03.asm LevelUpTbl ($F35B)",
+	"_note": "Edit these values to change experience curve",
+	"_generator": "tools/generate_experience_table.py",
+
+	"max_level": 30,
+	"max_experience": 65535,
+
+	"levels": {
+		"1": {
+			"experience_required": 0,
+			"experience_to_next": 7,
+			"strength": 4,
+			"agility": 4,
+			"max_hp": 15,
+			"max_mp": 0,
+			"spells_learned": []
+		},
+		"2": {
+			"experience_required": 7,
+			"experience_to_next": 16,
+			"strength": 5,
+			"agility": 4,
+			"max_hp": 22,
+			"max_mp": 0,
+			"spells_learned": []
+		},
+		"3": {
+			"experience_required": 23,
+			"experience_to_next": 24,
+			"strength": 7,
+			"agility": 6,
+			"max_hp": 24,
+			"max_mp": 5,
+			"spells_learned": ["HEAL"]
+		},
+		"4": {
+			"experience_required": 47,
+			"experience_to_next": 63,
+			"strength": 7,
+			"agility": 8,
+			"max_hp": 31,
+			"max_mp": 16,
+			"spells_learned": ["HURT"]
+		},
+		"5": {
+			"experience_required": 110,
+			"experience_to_next": 110,
+			"strength": 12,
+			"agility": 10,
+			"max_hp": 35,
+			"max_mp": 20,
+			"spells_learned": []
+		},
+		"6": {
+			"experience_required": 220,
+			"experience_to_next": 230,
+			"strength": 16,
+			"agility": 10,
+			"max_hp": 38,
+			"max_mp": 24,
+			"spells_learned": []
+		},
+		"7": {
+			"experience_required": 450,
+			"experience_to_next": 350,
+			"strength": 18,
+			"agility": 17,
+			"max_hp": 40,
+			"max_mp": 26,
+			"spells_learned": ["SLEEP"]
+		},
+		"8": {
+			"experience_required": 800,
+			"experience_to_next": 500,
+			"strength": 22,
+			"agility": 20,
+			"max_hp": 46,
+			"max_mp": 29,
+			"spells_learned": []
+		},
+		"9": {
+			"experience_required": 1300,
+			"experience_to_next": 700,
+			"strength": 30,
+			"agility": 22,
+			"max_hp": 50,
+			"max_mp": 36,
+			"spells_learned": ["RADIANT"]
+		},
+		"10": {
+			"experience_required": 2000,
+			"experience_to_next": 900,
+			"strength": 35,
+			"agility": 31,
+			"max_hp": 54,
+			"max_mp": 40,
+			"spells_learned": ["STOPSPELL"]
+		},
+		"11": {
+			"experience_required": 2900,
+			"experience_to_next": 1100,
+			"strength": 40,
+			"agility": 35,
+			"max_hp": 62,
+			"max_mp": 50,
+			"spells_learned": []
+		},
+		"12": {
+			"experience_required": 4000,
+			"experience_to_next": 1500,
+			"strength": 48,
+			"agility": 40,
+			"max_hp": 63,
+			"max_mp": 58,
+			"spells_learned": ["OUTSIDE"]
+		},
+		"13": {
+			"experience_required": 5500,
+			"experience_to_next": 2000,
+			"strength": 52,
+			"agility": 48,
+			"max_hp": 70,
+			"max_mp": 64,
+			"spells_learned": ["RETURN"]
+		},
+		"14": {
+			"experience_required": 7500,
+			"experience_to_next": 2500,
+			"strength": 60,
+			"agility": 55,
+			"max_hp": 78,
+			"max_mp": 70,
+			"spells_learned": []
+		},
+		"15": {
+			"experience_required": 10000,
+			"experience_to_next": 3000,
+			"strength": 68,
+			"agility": 64,
+			"max_hp": 86,
+			"max_mp": 72,
+			"spells_learned": ["REPEL"]
+		},
+		"16": {
+			"experience_required": 13000,
+			"experience_to_next": 3000,
+			"strength": 72,
+			"agility": 70,
+			"max_hp": 92,
+			"max_mp": 95,
+			"spells_learned": []
+		},
+		"17": {
+			"experience_required": 16000,
+			"experience_to_next": 3000,
+			"strength": 72,
+			"agility": 78,
+			"max_hp": 100,
+			"max_mp": 100,
+			"spells_learned": ["HEALMORE"]
+		},
+		"18": {
+			"experience_required": 19000,
+			"experience_to_next": 3000,
+			"strength": 85,
+			"agility": 84,
+			"max_hp": 115,
+			"max_mp": 108,
+			"spells_learned": []
+		},
+		"19": {
+			"experience_required": 22000,
+			"experience_to_next": 4000,
+			"strength": 87,
+			"agility": 86,
+			"max_hp": 130,
+			"max_mp": 115,
+			"spells_learned": ["HURTMORE"]
+		},
+		"20": {
+			"experience_required": 26000,
+			"experience_to_next": 4000,
+			"strength": 92,
+			"agility": 88,
+			"max_hp": 138,
+			"max_mp": 128,
+			"spells_learned": []
+		},
+		"21": {
+			"experience_required": 30000,
+			"experience_to_next": 4000,
+			"strength": 95,
+			"agility": 90,
+			"max_hp": 149,
+			"max_mp": 135,
+			"spells_learned": []
+		},
+		"22": {
+			"experience_required": 34000,
+			"experience_to_next": 4000,
+			"strength": 97,
+			"agility": 90,
+			"max_hp": 158,
+			"max_mp": 146,
+			"spells_learned": []
+		},
+		"23": {
+			"experience_required": 38000,
+			"experience_to_next": 4000,
+			"strength": 99,
+			"agility": 94,
+			"max_hp": 165,
+			"max_mp": 153,
+			"spells_learned": []
+		},
+		"24": {
+			"experience_required": 42000,
+			"experience_to_next": 4000,
+			"strength": 103,
+			"agility": 98,
+			"max_hp": 170,
+			"max_mp": 161,
+			"spells_learned": []
+		},
+		"25": {
+			"experience_required": 46000,
+			"experience_to_next": 4000,
+			"strength": 113,
+			"agility": 100,
+			"max_hp": 174,
+			"max_mp": 161,
+			"spells_learned": []
+		},
+		"26": {
+			"experience_required": 50000,
+			"experience_to_next": 4000,
+			"strength": 117,
+			"agility": 105,
+			"max_hp": 180,
+			"max_mp": 168,
+			"spells_learned": []
+		},
+		"27": {
+			"experience_required": 54000,
+			"experience_to_next": 4000,
+			"strength": 125,
+			"agility": 107,
+			"max_hp": 189,
+			"max_mp": 175,
+			"spells_learned": []
+		},
+		"28": {
+			"experience_required": 58000,
+			"experience_to_next": 4000,
+			"strength": 130,
+			"agility": 115,
+			"max_hp": 195,
+			"max_mp": 180,
+			"spells_learned": []
+		},
+		"29": {
+			"experience_required": 62000,
+			"experience_to_next": 3535,
+			"strength": 135,
+			"agility": 120,
+			"max_hp": 200,
+			"max_mp": 190,
+			"spells_learned": []
+		},
+		"30": {
+			"experience_required": 65535,
+			"experience_to_next": 0,
+			"strength": 140,
+			"agility": 130,
+			"max_hp": 210,
+			"max_mp": 200,
+			"spells_learned": []
+		}
+	},
+
+	"code_locations": {
+		"LevelUpTbl": "$F35B",
+		"BaseStatsTbl": "$A0CD",
+		"LoadStats": "$F050"
+	}
+}

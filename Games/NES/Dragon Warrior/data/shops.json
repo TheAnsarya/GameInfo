@@ -1,0 +1,327 @@
+{
+	"0": {
+		"id": 0,
+		"name": "Koll Weapons & Armor",
+		"location": "Koll",
+		"item_indices": [
+			2,
+			3,
+			10,
+			11,
+			14
+		],
+		"items": [
+			"Copper Sword",
+			"Hand Axe",
+			"Half Plate",
+			"Full Plate",
+			"Small Shield"
+		],
+		"weapons": [
+			2,
+			3
+		],
+		"armor": [
+			10,
+			11,
+			14
+		],
+		"tools": [],
+		"inn_price": null
+	},
+	"1": {
+		"id": 1,
+		"name": "Brecconary Weapons & Armor",
+		"location": "Brecconary",
+		"item_indices": [
+			0,
+			1,
+			2,
+			7,
+			8,
+			14
+		],
+		"items": [
+			"Bamboo Pole",
+			"Club",
+			"Copper Sword",
+			"Clothes",
+			"Leather Armor",
+			"Small Shield"
+		],
+		"weapons": [
+			0,
+			1,
+			2
+		],
+		"armor": [
+			7,
+			8,
+			14
+		],
+		"tools": [],
+		"inn_price": 6
+	},
+	"2": {
+		"id": 2,
+		"name": "Garinham Weapons & Armor",
+		"location": "Garinham",
+		"item_indices": [
+			1,
+			2,
+			3,
+			8,
+			9,
+			10,
+			15
+		],
+		"items": [
+			"Club",
+			"Copper Sword",
+			"Hand Axe",
+			"Leather Armor",
+			"Chain Mail",
+			"Half Plate",
+			"Large Shield"
+		],
+		"weapons": [
+			1,
+			2,
+			3
+		],
+		"armor": [
+			8,
+			9,
+			10,
+			15
+		],
+		"tools": [],
+		"inn_price": 25
+	},
+	"3": {
+		"id": 3,
+		"name": "Cantlin Weapons & Armor 1",
+		"location": "Cantlin",
+		"item_indices": [
+			0,
+			1,
+			2,
+			8,
+			9,
+			15
+		],
+		"items": [
+			"Bamboo Pole",
+			"Club",
+			"Copper Sword",
+			"Leather Armor",
+			"Chain Mail",
+			"Large Shield"
+		],
+		"weapons": [
+			0,
+			1,
+			2
+		],
+		"armor": [
+			8,
+			9,
+			15
+		],
+		"tools": [],
+		"inn_price": 100
+	},
+	"4": {
+		"id": 4,
+		"name": "Cantlin Weapons & Armor 2",
+		"location": "Cantlin",
+		"item_indices": [
+			3,
+			4,
+			11,
+			12
+		],
+		"items": [
+			"Hand Axe",
+			"Broad Sword",
+			"Full Plate",
+			"Magic Armor"
+		],
+		"weapons": [
+			3,
+			4
+		],
+		"armor": [
+			11,
+			12
+		],
+		"tools": [],
+		"inn_price": 100
+	},
+	"5": {
+		"id": 5,
+		"name": "Cantlin Weapons & Armor 3",
+		"location": "Cantlin",
+		"item_indices": [
+			5,
+			16
+		],
+		"items": [
+			"Flame Sword",
+			"Silver Shield"
+		],
+		"weapons": [
+			5
+		],
+		"armor": [
+			16
+		],
+		"tools": [],
+		"inn_price": 100
+	},
+	"6": {
+		"id": 6,
+		"name": "Rimuldar Weapons & Armor",
+		"location": "Rimuldar",
+		"item_indices": [
+			2,
+			3,
+			4,
+			10,
+			11,
+			12
+		],
+		"items": [
+			"Copper Sword",
+			"Hand Axe",
+			"Broad Sword",
+			"Half Plate",
+			"Full Plate",
+			"Magic Armor"
+		],
+		"weapons": [
+			2,
+			3,
+			4
+		],
+		"armor": [
+			10,
+			11,
+			12
+		],
+		"tools": [],
+		"inn_price": 55
+	},
+	"7": {
+		"id": 7,
+		"name": "Koll Item Shop",
+		"location": "Koll",
+		"item_indices": [
+			17,
+			19,
+			22,
+			21
+		],
+		"items": [
+			"Herb",
+			"Torch",
+			"Dragon's Scale",
+			"Wings"
+		],
+		"weapons": [],
+		"armor": [],
+		"tools": [
+			17,
+			19,
+			22,
+			21
+		],
+		"inn_price": null
+	},
+	"8": {
+		"id": 8,
+		"name": "Brecconary Item Shop",
+		"location": "Brecconary",
+		"item_indices": [
+			17,
+			19,
+			22
+		],
+		"items": [
+			"Herb",
+			"Torch",
+			"Dragon's Scale"
+		],
+		"weapons": [],
+		"armor": [],
+		"tools": [
+			17,
+			19,
+			22
+		],
+		"inn_price": null
+	},
+	"9": {
+		"id": 9,
+		"name": "Garinham Item Shop",
+		"location": "Garinham",
+		"item_indices": [
+			17,
+			19,
+			22
+		],
+		"items": [
+			"Herb",
+			"Torch",
+			"Dragon's Scale"
+		],
+		"weapons": [],
+		"armor": [],
+		"tools": [
+			17,
+			19,
+			22
+		],
+		"inn_price": null
+	},
+	"10": {
+		"id": 10,
+		"name": "Cantlin Item Shop 1",
+		"location": "Cantlin",
+		"item_indices": [
+			17,
+			19
+		],
+		"items": [
+			"Herb",
+			"Torch"
+		],
+		"weapons": [],
+		"armor": [],
+		"tools": [
+			17,
+			19
+		],
+		"inn_price": null
+	},
+	"11": {
+		"id": 11,
+		"name": "Cantlin Item Shop 2",
+		"location": "Cantlin",
+		"item_indices": [
+			22,
+			21
+		],
+		"items": [
+			"Dragon's Scale",
+			"Wings"
+		],
+		"weapons": [],
+		"armor": [],
+		"tools": [
+			22,
+			21
+		],
+		"inn_price": null
+	}
+}
