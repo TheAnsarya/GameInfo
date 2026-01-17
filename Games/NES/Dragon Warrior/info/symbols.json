@@ -316,6 +316,12 @@
 		"8000-bfff": "Switchable PRG bank (16K, banks 0-2)",
 		"c000-ffff": "Fixed PRG bank (16K, bank 3)"
 	},
+	"data": {
+		"_comment": "Data regions that should not be disassembled as code",
+		"8000": {"type": "word", "count": 9, "name": "bank_func_ptrs"},
+		"8012": {"type": "word", "count": 4, "name": "covered_data_ptrs"},
+		"801a": {"type": "byte", "count": 1126, "name": "map_data_tables"}
+	},
 	"data_tables": {
 		"5e5b": {
 			"name": "monster_stats_table",
