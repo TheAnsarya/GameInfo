@@ -22,37 +22,37 @@ Write-Host ""
 
 # Define ROM categories
 $categories = @{
-	"2K" = @()
-	"4K" = @()
-	"8K_F8" = @()
+	"2K"     = @()
+	"4K"     = @()
+	"8K_F8"  = @()
 	"16K_F6" = @()
 	"32K_F4" = @()
-	"DPC" = @()
-	"Other" = @()
+	"DPC"    = @()
+	"Other"  = @()
 }
 
 # Sample ROMs from each size category
 $testRoms = @(
 	# 2K ROMs (no banking)
 	@{ Name = "Air-Sea Battle*"; Category = "2K"; ExpectedSize = 2048 }
-	
+
 	# 4K ROMs (no banking)
 	@{ Name = "Adventure*"; Category = "4K"; ExpectedSize = 4096 }
 	@{ Name = "Asteroids*"; Category = "4K"; ExpectedSize = 4096 }
-	
+
 	# 8K F8 banking
 	@{ Name = "Ms. Pac-Man*"; Category = "8K_F8"; ExpectedSize = 8192; ExpectedBanks = 2 }
 	@{ Name = "Space Invaders*"; Category = "8K_F8"; ExpectedSize = 8192; ExpectedBanks = 2 }
 	@{ Name = "Asteroids*"; Category = "8K_F8"; ExpectedSize = 8192; ExpectedBanks = 2 }
 	@{ Name = "Centipede*"; Category = "8K_F8"; ExpectedSize = 8192; ExpectedBanks = 2 }
-	
+
 	# 16K F6 banking
 	@{ Name = "Crystal Castles*"; Category = "16K_F6"; ExpectedSize = 16384; ExpectedBanks = 4 }
 	@{ Name = "Jr. Pac-Man*"; Category = "16K_F6"; ExpectedSize = 16384; ExpectedBanks = 4 }
-	
+
 	# 32K F4 banking
 	@{ Name = "Fatal Run*"; Category = "32K_F4"; ExpectedSize = 32768; ExpectedBanks = 8 }
-	
+
 	# DPC (Pitfall II)
 	@{ Name = "Pitfall II*"; Category = "DPC"; ExpectedSize = 10495; ExpectedBanks = 2 }
 )
@@ -67,32 +67,32 @@ $skipped = 0
 foreach ($romSpec in $testRoms) {
 	$pattern = $romSpec.Name
 	$category = $romSpec.Category
-	
+
 	Write-Host "`n[$category] Testing: $pattern" -ForegroundColor Yellow
-	
+
 	# Find matching ROM
 	$rom = Get-ChildItem -Path $RomPath -Filter "$pattern.a26" -Recurse | Where-Object {
 		$_.Name -notmatch "Hack" -and $_.Name -match "\[!\]"
 	} | Select-Object -First 1
-	
+
 	if (-not $rom) {
 		Write-Host "  ⚠️  Not found, skipping" -ForegroundColor DarkYellow
 		$skipped++
 		continue
 	}
-	
+
 	Write-Host "  📁 Found: $($rom.Name)" -ForegroundColor Gray
-	
+
 	# Get ROM info
 	$infoOutput = & dotnet run --project "C:\Users\me\source\repos\peony\src\Peony.Cli" -- info "$($rom.FullName)" 2>&1
-	
+
 	# Parse size and mapper from output
 	$size = if ($infoOutput -match "Size\s+│\s+(\d+)\s+bytes") { [int]$Matches[1] } else { 0 }
 	$mapper = if ($infoOutput -match "Mapper\s+│\s+(\w+)") { $Matches[1] } else { "Unknown" }
 	$banks = if ($infoOutput -match "Banks\s+│\s+(\d+)") { [int]$Matches[1] } else { 1 }
-	
+
 	Write-Host "  📊 Size: $size bytes, Mapper: $mapper, Banks: $banks" -ForegroundColor Cyan
-	
+
 	# Validate expectations
 	$valid = $true
 	if ($romSpec.ExpectedSize -and $size -ne $romSpec.ExpectedSize) {
@@ -103,53 +103,56 @@ foreach ($romSpec in $testRoms) {
 		Write-Host "  ❌ Bank count mismatch: expected $($romSpec.ExpectedBanks), got $banks" -ForegroundColor Red
 		$valid = $false
 	}
-	
+
 	# Disassemble
 	$outputFile = Join-Path $OutputDir "$($rom.BaseName).asm"
 	Write-Host "  🔧 Disassembling..." -ForegroundColor Gray
-	
+
 	$disasmOutput = & dotnet run --project "C:\Users\me\source\repos\peony\src\Peony.Cli" -- disasm "$($rom.FullName)" -o "$outputFile" 2>&1
-	
+
 	# Check result
 	$blocksDisassembled = if ($disasmOutput -match "Disassembled (\d+) blocks") { [int]$Matches[1] } else { 0 }
-	
+
 	if ($blocksDisassembled -eq 0 -and $size -gt 0) {
 		Write-Host "  ❌ Disassembly failed: 0 blocks" -ForegroundColor Red
 		$valid = $false
-	} else {
+	}
+ else {
 		Write-Host "  ✅ Disassembled $blocksDisassembled blocks" -ForegroundColor Green
 	}
-	
+
 	# Verify output file
 	if (Test-Path $outputFile) {
 		$lines = (Get-Content $outputFile).Count
 		Write-Host "  📄 Output: $lines lines" -ForegroundColor Gray
-		
+
 		if ($lines -lt 10) {
 			Write-Host "  ⚠️  Output file too small" -ForegroundColor DarkYellow
 			$valid = $false
 		}
-	} else {
+	}
+ else {
 		Write-Host "  ❌ Output file not created" -ForegroundColor Red
 		$valid = $false
 	}
-	
+
 	# Record result
 	$result = [PSCustomObject]@{
-		ROM = $rom.Name
-		Category = $category
-		Size = $size
-		Mapper = $mapper
-		Banks = $banks
+		ROM                = $rom.Name
+		Category           = $category
+		Size               = $size
+		Mapper             = $mapper
+		Banks              = $banks
 		BlocksDisassembled = $blocksDisassembled
-		OutputLines = if (Test-Path $outputFile) { (Get-Content $outputFile).Count } else { 0 }
-		Status = if ($valid) { "PASS" } else { "FAIL" }
+		OutputLines        = if (Test-Path $outputFile) { (Get-Content $outputFile).Count } else { 0 }
+		Status             = if ($valid) { "PASS" } else { "FAIL" }
 	}
 	$results += $result
-	
+
 	if ($valid) {
 		$passed++
-	} else {
+	}
+ else {
 		$failed++
 	}
 }
@@ -183,7 +186,7 @@ $results | Group-Object -Property Category | ForEach-Object {
 	$categoryPassed = ($_.Group | Where-Object { $_.Status -eq "PASS" }).Count
 	$categoryTotal = $_.Count
 	$categoryPercent = [math]::Round($categoryPassed / $categoryTotal * 100, 1)
-	
+
 	Write-Host "  $($_.Name): $categoryPassed/$categoryTotal ($categoryPercent%)" -ForegroundColor $(if ($categoryPassed -eq $categoryTotal) { "Green" } else { "Yellow" })
 }
 
