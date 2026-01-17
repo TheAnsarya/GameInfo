@@ -1,0 +1,19 @@
+{
+  "disassembly": {
+    "banking": "unknown",
+    "tool": "peony",
+    "verified": false
+  },
+  "source": {
+    "mainFile": "src/main.pasm",
+    "baseRom": "original.a26",
+    "assembler": "poppy",
+    "outputRom": "build/Pac-Man-1981-Atari.a26"
+  },
+  "project": {
+    "platform": "atari2600",
+    "name": "Pac-Man (1981) (Atari)",
+    "version": "1.0.0"
+  },
+  "$schema": "https://gameinfo.example.com/schemas/build-config.json"
+}
