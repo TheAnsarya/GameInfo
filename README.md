@@ -157,6 +157,12 @@ Specialized tools for analysis, debugging, and conversion.
 
 📖 **[Audio Documentation Index](docs/audio/README.md)**
 
+### Platform Documentation
+
+| Platform | Documentation |
+|----------|---------------|
+| **Atari 2600** | [Atari 2600 Documentation](docs/Atari-2600/README.md) |
+
 ### Build Pipeline Documentation
 
 | Platform | Documentation |
