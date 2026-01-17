@@ -22,11 +22,11 @@ Atari 2600 adventure game - PAL version.
 ## Build Pipeline
 
 ```bash
-# Build ROM from source (future)
+# Build ROM from source (when Poppy Atari2600 support is complete)
 poppy build source/adventure.pasm -o builds/adventure.a26
 
 # Verify roundtrip
-peony verify builds/adventure.a26
+peony verify "C:\Users\me\source\repos\GameInfo\~roms\Good2600 v3.14\Adventure (1978) (Atari) (PAL) [!].a26" --reassembled builds/adventure.a26
 ```
 
 ## Documentation
