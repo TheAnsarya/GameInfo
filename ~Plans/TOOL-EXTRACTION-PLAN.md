@@ -14,13 +14,13 @@ GameInfo has grown to include significant tooling that should be extracted into 
 
 ## 🎯 Extraction Targets
 
-### 1. Peony (New Repository)
+### 1. 🌺 Peony (New Repository)
 
 **Purpose:** Multi-system disassembler framework
 
 **Source:** GameInfoTools.Disassembly + new development
 
-**Target Repository:** `github.com/TheAnsarya/peony`
+**Target Repository:** `github.com/TheAnsarya/🌺 Peony`
 
 | Component | Source | Action |
 |-----------|--------|--------|
@@ -68,10 +68,10 @@ GameInfo has grown to include significant tooling that should be extracted into 
 
 ## 📁 New Repository Structures
 
-### peony
+### 🌺 Peony
 
 ```
-peony/
+🌺 Peony/
 ├── .github/
 │   ├── copilot-instructions.md
 │   ├── workflows/
@@ -81,14 +81,14 @@ peony/
 │   ├── cpu-support.md
 │   └── platforms.md
 ├── src/
-│   └── Peony.sln
-│       ├── Peony.Core/
-│       ├── Peony.Cpu.6502/
-│       ├── Peony.Cpu.65816/
-│       ├── Peony.Platform.Atari2600/
-│       ├── Peony.Platform.NES/
-│       ├── Peony.Cli/
-│       └── Peony.Tests/
+│   └── 🌺 Peony.sln
+│       ├── 🌺 Peony.Core/
+│       ├── 🌺 Peony.Cpu.6502/
+│       ├── 🌺 Peony.Cpu.65816/
+│       ├── 🌺 Peony.Platform.Atari2600/
+│       ├── 🌺 Peony.Platform.NES/
+│       ├── 🌺 Peony.Cli/
+│       └── 🌺 Peony.Tests/
 ├── examples/
 ├── vscode-extension/
 ├── README.md
@@ -162,7 +162,7 @@ darkrepos-editor/
 
 ### Phase 2: Code Migration
 
-1. **Peony**
+1. **🌺 Peony**
    - Copy GameInfoTools.Disassembly core
    - Refactor into CPU-specific modules
    - Add platform support
@@ -205,7 +205,7 @@ darkrepos-editor/
    dotnet pack -c Release
    dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json
 
-   # For peony
+   # For 🌺 Peony
    dotnet pack -c Release
    dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json
    ```
@@ -214,7 +214,7 @@ darkrepos-editor/
    ```powershell
    # Global tool installation
    dotnet tool install -g gameinfo-tools
-   dotnet tool install -g peony
+   dotnet tool install -g 🌺 Peony
    ```
 
 ---
@@ -225,9 +225,9 @@ darkrepos-editor/
 
 | Package | Description |
 |---------|-------------|
-| `Peony.Core` | Core disassembly interfaces |
-| `Peony.Cpu.6502` | 6502 family support |
-| `Peony.Cpu.65816` | 65816 support |
+| `🌺 Peony.Core` | Core disassembly interfaces |
+| `🌺 Peony.Cpu.6502` | 6502 family support |
+| `🌺 Peony.Cpu.65816` | 65816 support |
 | `GameInfoTools.Core` | Core ROM utilities |
 | `GameInfoTools.Graphics` | Graphics processing |
 | `GameInfoTools.Text` | Text/script tools |
@@ -238,7 +238,7 @@ darkrepos-editor/
 | Tool | Command | Description |
 |------|---------|-------------|
 | gameinfo-tools | `gameinfo` | ROM analysis CLI |
-| peony | `peony` | Disassembler CLI |
+| 🌺 Peony | `🌺 Peony` | Disassembler CLI |
 | darkrepos | `darkrepos` | Wiki editor CLI |
 
 ---
@@ -296,7 +296,7 @@ darkrepos-editor/
               │              │              │
               ▼              ▼              ▼
     ┌─────────────┐  ┌─────────────┐  ┌─────────────┐
-    │   Peony     │  │  BPS-Patch  │  │ GameInfo-   │
+    │   🌺 Peony     │  │  BPS-Patch  │  │ GameInfo-   │
     │(Disassembler)│  │  (Patcher)  │  │   Tools     │
     └──────┬──────┘  └──────┬──────┘  └──────┬──────┘
            │                │                │
@@ -318,3 +318,4 @@ darkrepos-editor/
 ---
 
 *Last Updated: 2026-01-16*
+

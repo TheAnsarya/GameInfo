@@ -12,7 +12,7 @@
 | GameInfo | 5 | 25 | 5 | 35 |
 | Poppy | 2 | 10 | 3 | 15 |
 | BPS-Patch | 1 | 5 | 2 | 8 |
-| Peony (new) | 3 | 15 | 0 | 18 |
+| 🌺 Peony (new) | 3 | 15 | 0 | 18 |
 | dragon-warrior-4-info | 2 | 10 | 2 | 14 |
 | ffmq-info | 2 | 8 | 2 | 12 |
 | Other repos | 3 | 15 | 5 | 23 |
@@ -27,7 +27,7 @@
 #### [EPIC] Atari 2600 Disassembly Initiative
 ```markdown
 ## Description
-Disassemble 40+ classic Atari 2600 games using Peony and document them with Poppy-compatible source.
+Disassemble 40+ classic Atari 2600 games using 🌺 Peony and document them with Poppy-compatible source.
 
 ## Acceptance Criteria
 - [ ] 40 games fully disassembled
@@ -46,7 +46,7 @@ Disassemble 40+ classic Atari 2600 games using Peony and document them with Popp
 ```markdown
 ## Description
 Extract large tools into standalone repositories:
-- Peony (disassembler)
+- 🌺 Peony (disassembler)
 - GameInfo-Tools (CLI toolkit)
 - DarkRepos-Editor (wiki editor)
 
@@ -221,14 +221,14 @@ Create integration package for use in GameInfo build pipelines.
 
 ---
 
-## 🌼 Peony Repository Issues (New)
+## 🌼 🌺 Peony Repository Issues (New)
 
 ### Epics
 
 #### [EPIC] Core Framework
 ```markdown
 ## Description
-Build the core disassembly framework for Peony.
+Build the core disassembly framework for 🌺 Peony.
 
 ## Acceptance Criteria
 - [ ] CPU abstraction layer
@@ -271,7 +271,7 @@ Implement Atari 2600 platform-specific analysis.
 **Labels:** enhancement, infrastructure
 **Priority:** Critical
 
-Create the Peony repository with initial structure.
+Create the 🌺 Peony repository with initial structure.
 ```
 
 #### [Feature] Implement 6502 instruction decoder
@@ -615,3 +615,4 @@ foreach ($game in $games) {
 ---
 
 *Last Updated: 2026-01-16*
+

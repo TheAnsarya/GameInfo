@@ -31,7 +31,7 @@ Transform the GameInfo ecosystem from a monolithic toolkit into a focused collec
 2. **Standardize on BPS-Patch** - All patching uses `bps-patch`
 3. **Separate Tools** - Move large tools outside GameInfo
 4. **Focus GameInfo** - Make it a game documentation hub
-5. **Create Peony** - Build a disassembler framework (anti-poppy)
+5. **Create 🌺 Peony** - Build a disassembler framework (anti-poppy)
 6. **Atari 2600 Initiative** - Disassemble 40+ classic games
 
 ---
@@ -53,7 +53,7 @@ GameInfo/          - Monolithic: tools + games + wiki + docs
 EXTERNAL TOOLS (Standalone Repos)
 ├── poppy/              - Multi-system assembler ✅ EXISTS
 ├── bps-patch/          - Binary patch system ✅ EXISTS
-├── peony/              - Disassembler framework 🆕 CREATE
+├── 🌺 Peony/              - Disassembler framework 🆕 CREATE
 ├── gameinfo-tools/     - CLI toolkit (move from GameInfo) 🆕 CREATE
 └── darkrepos-editor/   - Wiki/data editor (Blazor) 🆕 CREATE
 
@@ -81,7 +81,7 @@ SUPPORTING REPOS
 |------|---------|--------|----------|
 | **Poppy** | Multi-system assembler | ✅ v1.0.0 Released | C# (.NET 10) |
 | **BPS-Patch** | Binary patching | ✅ Production Ready | C# (.NET 10) |
-| **Peony** | Disassembler framework | 🆕 Planned | C# (.NET 10) |
+| **🌺 Peony** | Disassembler framework | 🆕 Planned | C# (.NET 10) |
 
 ### Tier 2: GameInfo Tools (To Extract)
 
@@ -92,7 +92,7 @@ SUPPORTING REPOS
 | GameInfoTools.Graphics | CHR/tile editing | ✅ Exists | → `gameinfo-tools` |
 | GameInfoTools.Text | Script extraction | ✅ Exists | → `gameinfo-tools` |
 | GameInfoTools.Rom | ROM manipulation | ✅ Exists | → `gameinfo-tools` |
-| GameInfoTools.Disassembly | 6502/65816 disasm | ✅ Exists | → `peony` |
+| GameInfoTools.Disassembly | 6502/65816 disasm | ✅ Exists | → `🌺 Peony` |
 | GameInfoTools.Audio | NSF/SPC extraction | ✅ Exists | → `gameinfo-tools` |
 | GameInfoTools.TasConvert | TAS converter | ✅ Exists | → `gameinfo-tools` |
 | GameInfoTools.Wiki | Wikitext generation | ✅ Exists | → `darkrepos-editor` |
@@ -101,7 +101,7 @@ SUPPORTING REPOS
 
 Most Python tools should be migrated to C# equivalents in:
 - `gameinfo-tools` - General utilities
-- `peony` - Disassembly-related
+- `🌺 Peony` - Disassembly-related
 - Keep Python for rapid prototyping only
 
 ---
@@ -209,10 +209,10 @@ GameInfo/Games/Atari2600/{GameName}/
 
 | Task | Target | Dependencies |
 |------|--------|--------------|
-| Create `peony` repository | 2026-01-31 | None |
+| Create `🌺 Peony` repository | 2026-01-31 | None |
 | Extract tools to `gameinfo-tools` | 2026-02-28 | None |
 | Create `darkrepos-editor` repository | 2026-02-28 | None |
-| Add Atari 2600 support to `peony` | 2026-03-15 | `peony` exists |
+| Add Atari 2600 support to `🌺 Peony` | 2026-03-15 | `🌺 Peony` exists |
 
 ### Phase 2: Build System Migration (Q1-Q2 2026)
 
@@ -229,7 +229,7 @@ GameInfo/Games/Atari2600/{GameName}/
 
 | Task | Target | Dependencies |
 |------|--------|--------------|
-| Disassemble first 10 games | 2026-05-31 | Peony + Poppy |
+| Disassemble first 10 games | 2026-05-31 | 🌺 Peony + Poppy |
 | Disassemble games 11-20 | 2026-06-30 | Ongoing |
 | Disassemble games 21-30 | 2026-07-31 | Ongoing |
 | Disassemble games 31-40 | 2026-08-31 | Ongoing |
@@ -240,7 +240,7 @@ GameInfo/Games/Atari2600/{GameName}/
 | Task | Target | Dependencies |
 |------|--------|--------------|
 | Complete documentation | 2026-10-31 | All phases |
-| Release peony v1.0.0 | 2026-11-15 | Complete |
+| Release 🌺 Peony v1.0.0 | 2026-11-15 | Complete |
 | Release gameinfo-tools v1.0.0 | 2026-11-30 | Complete |
 | GameInfo 2.0.0 release | 2026-12-31 | All complete |
 
@@ -251,7 +251,7 @@ GameInfo/Games/Atari2600/{GameName}/
 ```
 2026
 ├── Jan ████████░░ Infrastructure & Planning
-├── Feb ████████░░ Tool Migration (gameinfo-tools, peony start)
+├── Feb ████████░░ Tool Migration (gameinfo-tools, 🌺 Peony start)
 ├── Mar ████████░░ Build System Migration (DW4, DW, FFMQ)
 ├── Apr ████████░░ Build System Migration (DQ3r, DQ4r)
 ├── May ████████░░ Atari 2600 Batch 1 (Games 1-10)
@@ -260,7 +260,7 @@ GameInfo/Games/Atari2600/{GameName}/
 ├── Aug ████████░░ Atari 2600 Batch 4 (Games 31-40)
 ├── Sep ████████░░ Wiki & Documentation
 ├── Oct ████████░░ Testing & Polish
-├── Nov ████████░░ Release peony, gameinfo-tools
+├── Nov ████████░░ Release 🌺 Peony, gameinfo-tools
 └── Dec ████████░░ GameInfo 2.0.0 Release
 ```
 
@@ -272,7 +272,7 @@ GameInfo/Games/Atari2600/{GameName}/
 |--------|--------|-------------|
 | Games converted to Poppy | 5 major projects | Count of repos |
 | Atari 2600 games disassembled | 40 games | Count in GameInfo |
-| Tools extracted | 3 new repos | peony, gameinfo-tools, darkrepos-editor |
+| Tools extracted | 3 new repos | 🌺 Peony, gameinfo-tools, darkrepos-editor |
 | Wiki pages created | 100+ | DarkRepos page count |
 | Build system standardization | 100% | All use build.config.json |
 
@@ -280,7 +280,7 @@ GameInfo/Games/Atari2600/{GameName}/
 
 ## 🔗 Related Documents
 
-- [Peony Disassembler Plan](PEONY-DISASSEMBLER-PLAN.md)
+- [🌺 Peony Disassembler Plan](PEONY-DISASSEMBLER-PLAN.md)
 - [Build System Migration Guide](BUILD-SYSTEM-MIGRATION.md)
 - [Atari 2600 Disassembly Guide](ATARI-2600-DISASSEMBLY.md)
 - [Tool Extraction Plan](TOOL-EXTRACTION-PLAN.md)
@@ -288,3 +288,4 @@ GameInfo/Games/Atari2600/{GameName}/
 ---
 
 *Last Updated: 2026-01-16*
+

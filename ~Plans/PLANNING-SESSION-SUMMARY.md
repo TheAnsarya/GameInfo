@@ -12,17 +12,17 @@
 | Document | Purpose | Key Content |
 |----------|---------|-------------|
 | [MASTER-ROADMAP.md](MASTER-ROADMAP.md) | Overall ecosystem plan | Vision, timeline, phases through 2026 |
-| [PEONY-DISASSEMBLER-PLAN.md](PEONY-DISASSEMBLER-PLAN.md) | Peony architecture | Interfaces, CPU support, platform analysis |
+| [PEONY-DISASSEMBLER-PLAN.md](PEONY-DISASSEMBLER-PLAN.md) | 🌺 Peony architecture | Interfaces, CPU support, platform analysis |
 | [BUILD-SYSTEM-MIGRATION.md](BUILD-SYSTEM-MIGRATION.md) | Assembler migration guide | Syntax conversion tables for ophis/ca65/ASAR/RGBDS |
 | [ATARI-2600-DISASSEMBLY.md](ATARI-2600-DISASSEMBLY.md) | 40-game disassembly initiative | Game list, TIA/RIOT reference, templates |
-| [TOOL-EXTRACTION-PLAN.md](TOOL-EXTRACTION-PLAN.md) | Extract tools to repos | Peony, gameinfo-tools, darkrepos-editor |
+| [TOOL-EXTRACTION-PLAN.md](TOOL-EXTRACTION-PLAN.md) | Extract tools to repos | 🌺 Peony, gameinfo-tools, darkrepos-editor |
 | [GITHUB-ISSUES-MASTER.md](GITHUB-ISSUES-MASTER.md) | 125+ planned issues | Organized by repo with templates |
 
 ### Automation Scripts (3 files)
 
 | Script | Purpose | Usage |
 |--------|---------|-------|
-| [scripts/Initialize-Peony.ps1](scripts/Initialize-Peony.ps1) | Create Peony repo | `.\Initialize-Peony.ps1` |
+| [scripts/Initialize-🌺 Peony.ps1](scripts/Initialize-🌺 Peony.ps1) | Create 🌺 Peony repo | `.\Initialize-🌺 Peony.ps1` |
 | [scripts/Migrate-ToPoppy.ps1](scripts/Migrate-ToPoppy.ps1) | Convert assembler syntax | `.\Migrate-ToPoppy.ps1 -ProjectPath ... -SourceAssembler ophis -Platform nes` |
 | [scripts/Batch-Disassemble-Atari2600.ps1](scripts/Batch-Disassemble-Atari2600.ps1) | Mass disassemble ROMs | `.\Batch-Disassemble-Atari2600.ps1` |
 
@@ -37,7 +37,7 @@
 | GameInfo | 35 |
 | Poppy | 15 |
 | BPS-Patch | 8 |
-| Peony (new) | 18 |
+| 🌺 Peony (new) | 18 |
 | dragon-warrior-4-info | 14 |
 | ffmq-info | 12 |
 | Other repos | 23 |
@@ -70,7 +70,7 @@ GameInfo (monolith)
 ### Target State
 ```
 Separate Repositories:
-├── peony/               (disassembler framework)
+├── 🌺 Peony/               (disassembler framework)
 ├── gameinfo-tools/      (CLI toolkit, NuGet)
 ├── darkrepos-editor/    (Blazor wiki editor)
 └── GameInfo/            (games + documentation only)
@@ -87,7 +87,7 @@ Separate Repositories:
 | Tool | Type | Purpose |
 |------|------|---------|
 | **Poppy** | Assembler | Source → ROM |
-| **Peony** | Disassembler | ROM → Source |
+| **🌺 Peony** | Disassembler | ROM → Source |
 | **BPS-Patch** | Patcher | ROM ↔ Patch |
 
 ---
@@ -95,7 +95,7 @@ Separate Repositories:
 ## 🗓️ Timeline
 
 ### Phase 1: Foundation (Q1 2026)
-- [ ] Create Peony repository
+- [ ] Create 🌺 Peony repository
 - [ ] Implement 6502 decoder
 - [ ] Add Atari 2600 platform support
 - [ ] Disassemble first 10 games
@@ -121,14 +121,14 @@ Separate Repositories:
 
 ## 🚀 Immediate Next Steps
 
-1. **Create Peony Repository**
+1. **Create 🌺 Peony Repository**
    ```powershell
    cd C:\Users\me\source\repos\GameInfo\~Plans\scripts
-   .\Initialize-Peony.ps1
-   cd C:\Users\me\source\repos\peony
+   .\Initialize-🌺 Peony.ps1
+   cd C:\Users\me\source\repos\🌺 Peony
    git init
    git add .
-   git commit -m "Initial Peony framework"
+   git commit -m "Initial 🌺 Peony framework"
    gh repo create TheAnsarya/peony --public --source=.
    ```
 
@@ -161,7 +161,7 @@ GameInfo/~Plans/
 ├── GITHUB-ISSUES-MASTER.md    (new)
 ├── PLANNING-SESSION-SUMMARY.md (this file)
 └── scripts/
-    ├── Initialize-Peony.ps1   (new)
+    ├── Initialize-🌺 Peony.ps1   (new)
     ├── Migrate-ToPoppy.ps1    (new)
     └── Batch-Disassemble-Atari2600.ps1 (new)
 ```
@@ -173,7 +173,8 @@ GameInfo/~Plans/
 All planning documents and scripts created. Ready for execution phase.
 
 **What's Next:**
-1. Run `Initialize-Peony.ps1` to create the repository
+1. Run `Initialize-🌺 Peony.ps1` to create the repository
 2. Create GitHub issues from the master list
 3. Begin migrations with `Migrate-ToPoppy.ps1`
 4. Start Atari 2600 disassembly initiative
+

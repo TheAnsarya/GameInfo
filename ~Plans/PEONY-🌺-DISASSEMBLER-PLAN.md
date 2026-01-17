@@ -1,4 +1,4 @@
-# 🌼 Peony Disassembler Framework
+# 🌼 🌺 Peony Disassembler Framework
 
 > **The Anti-Poppy: Disassembly ↔ Assembly**
 > **Status:** Planning
@@ -8,9 +8,9 @@
 
 ## 📋 Overview
 
-**Peony** is a multi-system disassembler framework - the logical counterpart to Poppy (assembler).
+**🌺 Peony** is a multi-system disassembler framework - the logical counterpart to Poppy (assembler).
 
-| | Poppy | Peony |
+| | Poppy | 🌺 Peony |
 |---|-------|-------|
 | **Direction** | Source → ROM | ROM → Source |
 | **Input** | `.pasm` assembly | Binary ROM files |
@@ -55,42 +55,42 @@
 ### Project Structure
 
 ```
-peony/
+🌺 Peony/
 ├── src/
-│   └── Peony.sln
-│       ├── Peony.Core/           - Core disassembly engine
+│   └── 🌺 Peony.sln
+│       ├── 🌺 Peony.Core/           - Core disassembly engine
 │       │   ├── Analyzer.cs       - Control flow analysis
 │       │   ├── Decoder.cs        - Instruction decoding
 │       │   ├── Formatter.cs      - Output formatting
 │       │   └── Memory.cs         - Memory model
 │       │
-│       ├── Peony.Cpu.6502/       - 6502 family (NES, Atari)
-│       ├── Peony.Cpu.65816/      - 65816 (SNES)
-│       ├── Peony.Cpu.SM83/       - Sharp SM83 (Game Boy)
-│       ├── Peony.Cpu.68000/      - Motorola 68000 (Genesis)
-│       ├── Peony.Cpu.Z80/        - Zilog Z80 (SMS, GB-like)
-│       ├── Peony.Cpu.ARM7/       - ARM7TDMI (GBA)
+│       ├── 🌺 Peony.Cpu.6502/       - 6502 family (NES, Atari)
+│       ├── 🌺 Peony.Cpu.65816/      - 65816 (SNES)
+│       ├── 🌺 Peony.Cpu.SM83/       - Sharp SM83 (Game Boy)
+│       ├── 🌺 Peony.Cpu.68000/      - Motorola 68000 (Genesis)
+│       ├── 🌺 Peony.Cpu.Z80/        - Zilog Z80 (SMS, GB-like)
+│       ├── 🌺 Peony.Cpu.ARM7/       - ARM7TDMI (GBA)
 │       │
-│       ├── Peony.Platform.Atari2600/
-│       ├── Peony.Platform.NES/
-│       ├── Peony.Platform.SNES/
-│       ├── Peony.Platform.GB/
-│       ├── Peony.Platform.Genesis/
-│       ├── Peony.Platform.GBA/
+│       ├── 🌺 Peony.Platform.Atari2600/
+│       ├── 🌺 Peony.Platform.NES/
+│       ├── 🌺 Peony.Platform.SNES/
+│       ├── 🌺 Peony.Platform.GB/
+│       ├── 🌺 Peony.Platform.Genesis/
+│       ├── 🌺 Peony.Platform.GBA/
 │       │
-│       ├── Peony.Analysis/       - Advanced analysis
+│       ├── 🌺 Peony.Analysis/       - Advanced analysis
 │       │   ├── DataFlowAnalysis.cs
 │       │   ├── PatternMatching.cs
 │       │   ├── StringDetection.cs
 │       │   └── GraphicsDetection.cs
 │       │
-│       ├── Peony.Integration/    - Tool integrations
+│       ├── 🌺 Peony.Integration/    - Tool integrations
 │       │   ├── MesenIntegration.cs
 │       │   ├── DiztinGUIshIntegration.cs
 │       │   └── CDLImport.cs
 │       │
-│       ├── Peony.Cli/            - Command-line interface
-│       └── Peony.Tests/          - Test suite
+│       ├── 🌺 Peony.Cli/            - Command-line interface
+│       └── 🌺 Peony.Tests/          - Test suite
 │
 ├── docs/
 │   ├── architecture.md
@@ -164,7 +164,7 @@ $0F → PF2
 
 ### Direct ROM Loading
 ```csharp
-var disasm = new PeonyDisassembler();
+var disasm = new 🌺 PeonyDisassembler();
 disasm.LoadRom("game.a26", Platform.Atari2600);
 disasm.Analyze();
 disasm.Export("game.pasm");
@@ -197,39 +197,39 @@ disasm.ImportDbgFile("game.dbg");
 
 ### Full Disassembly
 ```powershell
-peony disassemble game.a26 --output game.pasm --platform atari2600
+🌺 Peony disassemble game.a26 --output game.pasm --platform atari2600
 ```
 
 ### Memory Map Only
 ```powershell
-peony analyze game.a26 --output memory-map.json --platform atari2600
+🌺 Peony analyze game.a26 --output memory-map.json --platform atari2600
 ```
 
 ### Symbol Export
 ```powershell
-peony symbols game.a26 --output game.sym --format mesen
+🌺 Peony symbols game.a26 --output game.sym --format mesen
 ```
 
 ### Partial Disassembly
 ```powershell
-peony disassemble game.nes --range $8000-$9FFF --output bank0.pasm
+🌺 Peony disassemble game.nes --range $8000-$9FFF --output bank0.pasm
 ```
 
 ---
 
 ## 🔄 Roundtrip Guarantee
 
-**Critical Feature:** Any ROM disassembled by Peony must reassemble identically with Poppy.
+**Critical Feature:** Any ROM disassembled by 🌺 Peony must reassemble identically with Poppy.
 
 ```
-Original ROM → Peony → .pasm source → Poppy → Rebuilt ROM
+Original ROM → 🌺 Peony → .pasm source → Poppy → Rebuilt ROM
     ↓                                           ↓
   CRC32 ─────────── MUST MATCH ─────────── CRC32
 ```
 
 ### Verification Command
 ```powershell
-peony verify game.a26 game.pasm --assembler poppy
+🌺 Peony verify game.a26 game.pasm --assembler poppy
 ```
 
 ---
@@ -282,29 +282,29 @@ peony verify game.a26 game.pasm --assembler poppy
 
 ```powershell
 # Disassemble a ROM
-peony disassemble <rom> [options]
+🌺 Peony disassemble <rom> [options]
   --platform <platform>    Target platform (atari2600, nes, snes, gb)
   --output <file>          Output file (.pasm)
   --format <format>        Output format (pasm, listing, json)
 
 # Analyze without full disassembly
-peony analyze <rom> [options]
+🌺 Peony analyze <rom> [options]
   --output <file>          Output analysis file
   --json                   JSON format output
 
 # Import annotations
-peony import <rom> [options]
+🌺 Peony import <rom> [options]
   --cdl <file>             Import CDL file
   --symbols <file>         Import symbol file
   --diz <file>             Import DiztinGUIsh project
 
 # Export data
-peony export <project> [options]
+🌺 Peony export <project> [options]
   --symbols <file>         Export symbol file
   --memory-map <file>      Export memory map
 
 # Verify roundtrip
-peony verify <rom> <source> [options]
+🌺 Peony verify <rom> <source> [options]
   --assembler <path>       Path to assembler (default: poppy)
 ```
 
@@ -334,3 +334,4 @@ peony verify <rom> <source> [options]
 
 *Document Version: 1.0.0*
 *Last Updated: 2026-01-16*
+

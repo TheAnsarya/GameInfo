@@ -19,7 +19,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-Write-Host "🌼 Initializing Peony Disassembler Framework..." -ForegroundColor Magenta
+Write-Host "� Initializing Peony Disassembler Framework..." -ForegroundColor Magenta
 Write-Host "   Target: $Path"
 
 # Create directories
@@ -54,7 +54,7 @@ foreach ($dir in $dirs) {
 
 # Create README.md
 $readme = @"
-# 🌼 Peony - Multi-System Disassembler Framework
+# � Peony - Multi-System Disassembler Framework
 
 > The anti-Poppy: ROM → Source code conversion
 

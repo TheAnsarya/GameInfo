@@ -8,7 +8,7 @@
 
 ## 📋 Overview
 
-This initiative aims to create high-quality, well-documented disassemblies of 40+ classic Atari 2600 games using the **Peony** disassembler and **Poppy** assembler toolchain.
+This initiative aims to create high-quality, well-documented disassemblies of 40+ classic Atari 2600 games using the **🌺 Peony** disassembler and **Poppy** assembler toolchain.
 
 ### ROM Source
 - **Collection:** Good2600 v3.14
@@ -534,7 +534,7 @@ For each game, complete the following:
 
 ## 📊 Progress Tracking
 
-| Game | Peony | Labels | Docs | Wiki | Status |
+| Game | 🌺 Peony | Labels | Docs | Wiki | Status |
 |------|-------|--------|------|------|--------|
 | Adventure | ⬜ | ⬜ | ⬜ | ⬜ | Not Started |
 | Asteroids | ⬜ | ⬜ | ⬜ | ⬜ | Not Started |
@@ -546,3 +546,4 @@ Legend: ⬜ Not Started | 🔄 In Progress | ✅ Complete
 ---
 
 *Last Updated: 2026-01-16*
+
