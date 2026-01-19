@@ -728,6 +728,155 @@ To fully disassemble all 4 banks of Dragon Warrior 1, you would need to add mult
 
 work on everything like peony and the dw1 disassembly and asset extraction; continue;
 
+game specific information should not be in the poppy or peony repos, but instead in `GameInfo` repos in the `Games/<system>/<game name>/info/` folder for each game, continue; continue;
+
+--- try again
+
+git commit everything; Add `cdl` and `diz` output files when building with poppy and add `cdl` and `diz` useage as input references with peony. Add github issues for these work efforts, and todolists and implement; continue;
+
+do the `What's Next` tasks (adding/updating todolists and github issues): Wire CDL/DIZ generation into Poppy's main build pipeline (CLI options), Use CDL/DIZ data in Peony's DisassemblyEngine for smarter code/data separation, Add unit tests for CDL/DIZ parsing, Create example workflow documentation; implement; continue;
+
+make sure you've been updating the chat/session logs for each repos that we're working on; once again, run formatting on everything because you're still generating code and documentation that indents with spaces, don't do that, ***always use tabs!***, so fix the formatting again and try in the future to remember TABS NOT SPACES; do the `What's Next` tasks (adding/updating todolists and github issues): DiztinGUIsh integration - Export CDL/DIZ from DiztinGUIsh for Peony consumption; Enhanced label propagation - Use DIZ labels to name functions in disassembly output; GitHub issues - Create tracking issues if you want formal task management; continue; I don't like short or undescriptive names for things, so fix the command line options for poppy and peony and any other CLI programs we have (make them descriptive! but I guess also keep shortcut versions) so (example: `peony game.nes -c play.cdl -d build.diz -o disasm.pasm`, the `-c`, `-o`, `-d` commands) so I guess you can keep the short versions, but add longer versions like `-diz` and `-cdl` and `-output` and prefer them in documentation (add github issues, todolists, then update current documentation); continue;
+
+Do the "What's Next" tasks: #1: Test with real DiztinGUIsh project files - The label propagation logic is implemented but needs testing with actual .diz files (find a diz file and test it); #2 Create GitHub issues - For tracking remaining CDL/DIZ integration work: UI integration in DiztinGUIsh for export menu items, Unit tests for export/import roundtrip, Bank-specific label propagation; #3 Add unit tests - For the new label priority logic in DisassemblyEngine; make sure you've been updating the chat/session logs for each repos that we're working on; git commit everything; continue for a long time and finish issues ans decide on new work and make new issues them plement them; go, go, go!; continue;
+
+yes, you do have the FFMQ ROM file: `C:\Users\me\source\repos\ffmq-info\roms\Final Fantasy - Mystic Quest (U) (V1.1).sfc`; continue the previous work, but go back and include this rom file in your `diz` tests; continue;
+
+--- try again
+
+--- switch to claude sonnet 4.5
+
+--- try again
+
+do some of the "whats next": Implement Atari 2600 bank switching detection, Add another platform (GB/GBA); finish all the 2600 disassembly and asset extraction/re-insertion and documentation; work the poppy/peony back and forth pipeline with several atari 2600 games; continue;
+
+make sure you've been updating the chat/session logs for each repos that we're working on; git commit everything; continue for a long time and finish issues and decide on new work and make new issues then implement them; go, go, go!; continue;
+
+do the "what's next" and continue;
+
+All of the Atari 2600 roms are located at `C:\Users\me\source\repos\GameInfo\~roms\Good2600 v3.14` use them for projects and roundtrip poppy/peony testing and expand the `GameInfo` documentation for them; continue;
+
+peony is outputting `asm` files instead of `pasm` files with a system directive, fix that; poppy is using system directives like `.nes` but should be using `.system:nes` and so should peony; game source-code, assets, builds, wiki docs, documentation, and information should be in individual folders in `GameInfo/<system>/<game name and regions and versions>/` not in the compiler/decompiler projects; continue and update github issues and todolists and plans, etc; go!; continue;
+
+create github issues and todolists for all the "Next Steps" tasks, but use `*.a26` not `*.bin` for the atari 2600 compilation in poppy; plan everything and then imnplement it; continue;
+
+Create GitHub Issues and do "next steps" and continue working on all of the issues following the plan; go! continue;
+
+
+----------------------- rate limited, go `auto`
+
+create github issues and todolists and plans and documentation for the `dq4r-info` repos and do a bunch of work on the DQ4r (SNES) project (DW4 (NES) -> DQ3r (SNES) -> DQ4r (SNES) project); continue;
+
+NO! poppy "has" a vscode extension, but it is primarily a c# dotnet compiler with a CLI; continue;
+
+skip Mesen testing for now, do that later, and then create githubissues and plans and todolists, for DQ4r  and implement as much as you can; go!;
+
+--- Enable GPT 5
+
+use the `dragon-warrior-4-info` repos and `dq3r-info` repos as references and dq3r as the main engine and dw4 as the data and content and game; don't just make a new game, use DQ3r as your game base; continue;
+
+focus on DQ4r and make this project work and add as much DQ3r engine and as much DW4 data as you can; just do everything you can, for as long as you can, I expect this effort to last at least 15 minutes; go!; continue;
+
+no this is garbage, set up ppu? load all data to wram? is this amateur hour? what the fuck, no! If you're not going to take the DQ3r rom and update the data with DW4 rom data, then what are you doing? Should I just not use AI code generation when it's not Claude or can you actually create good code with other agents?
+
+DQ3r ROM location? `C:\Users\me\source\repos\GameInfo\~roms\SNES\GoodSNES\Dragon Quest III - Soshite Densetsu he... (J) [!].sfc` (and dragon warrior 4 rom: `C:\Users\me\source\repos\dragon-warrior-4-info\roms\Dragon Warrior IV (1992-10)(Enix)(US).nes`); Priority: which data first? monsters, maps, stores, items; Output target: Poppy rebuild;
+
+-------------------- opus
+
+work on peony and poppy, work through issues, and then assess the projects, make more issues, and then implement them; continue;
+
+do the "what's next" and complete issues and todolists; make sure you always update session/chat logs; research and create issues and todolists for poppy and peony for asset extraction and conversion and reinsertion, see the `GameInfo` repos and the `*-info` repositories for reference on how to do this; continue working for a while; continue;
+
+do the "what's next" implement and continue;
+
+do the "what's next" implement and continue;
+
+do the "what's next" implement and continue;
+
+do the "what's next" tasks, making/updating github issues and todo lists; continue;
+
+do the "what's next" tasks, making/updating github issues and todo lists; continue;
+
+do the "what's next" tasks, making/updating github issues and todo lists; continue;
+
+do the "what's next" tasks, making/updating github issues and todo lists; continue;
+
+do the "what's next" tasks, making/updating github issues and todo lists; continue;
+
+poppy does not make `*.asm` files, poppy makes `*.pasm` files that follow the pasm format, so fix those testing commands and code; make sure you always update session/chat logs; plans and documentation!; keep the `README.md` and other docs updated with the current status; there are lots of references to `npm` and `npx` in the documentation, but we use `yarn` exclusively so remove the npm and always reference and use yarn, not npm; do the "what's next" and complete issues and todolists; continue;
+
+add using `*.pasm` not `*.asm` to the copilot instructions for poppy and then contune working on previous prompt;
+
+do the "what's next" tasks, making/updating github issues and todo lists; continue;
+
+--- switch to claude sonnet 4.5
+--- try again
+
+do the "what's next" tasks, making/updating github issues and todo lists; continue;
+
+--- try again
+
+&&&
+make github issues, and an epic, and sub issues, all issues have a parent issue, make todolists, then implement, our goal: work on our own version of `*.diz` or `*.cdl` file that has more information and poppy creates it and peony consumes it, we need our own file format named `pansy`, and make it work for more systems; implement and continue;
+make github issues, and an epic, and sub issues, all issues have a parent issue, make todolists, then implement, our goal: create project converters from asar -> pasm/poppy, ca65 -> pasm/poppy, xkas -> pasm/poppy, etc.; implement and continue;
+&&&
+
+do the "what's next" tasks, making/updating github issues and todo lists; make sure you always update session/chat logs; always format using the editor configs (k&r braces and tabs not spaces); continue;
+
+do the "what's next" tasks, making/updating github issues and todo lists; make sure you always update session/chat logs; always format using the editor configs (k&r braces and tabs not spaces); continue;
+
+do the "what's next" tasks, making/updating github issues and todo lists; make sure you always update session/chat logs; always format using the editor configs (k&r braces and tabs not spaces); continue;
+
+do the "what's next" tasks, all 13 of them, make or update github issues and todolists for these work efforts; BUT of course move pansy as a file format, code library, and UI editor to it's own `pansy` new repos  with a copy of poppy's `editoconfig`, `gitignore`, chat/session logs, copilot instructions, github issues, tolists, and a kanban board,  move library code and format documentation and then change all references in popppy and peony to the new repos, and add C# UI for editing or viewing pansy files;
+
+`pansy` should use the icon `🌼` for all the graphics and and throughout the documentation, just like `poppy` is often styled as `🌸 Poppy` pansy should be `🌼 Pansy` in the docs and issues and todolists and everything and made as svg and such; continue the previous prompt and work effort, keep doing that; continue;
+
+make `pansy` use `The Unlicense` instead of `MIT` and make all the other repos use `The Unlicense` unless they are using the `The Fuckit License`; DO NOT turn on any CI/CD actions, we don't run those on github except manually until we have enough money to do so, this includes upcomming work, make it a policy; Do all 18 "what's next" tasks, make or update github issues and todolists for these work efforts and then implement them; continue;
+
+make sure that `pansy` has been pushed to a new repo on github;
+
+turn on github issues for pansy and make a kanban board; then add all the issues we've created to github;
+
+--- try again
+
+make sure all `pansy` documentation and creation/interation code has been moved from the `poppy` project -- delete it from poppy if it exists in full in the pansy repos, if not move it unless it is code that is poppy specific; the `pansy` repos should house all code that is pansy-only related, like a code library for creation and editing, file format documentation, with sub-documents for every system format, and the view/edit UI; continue all the tasks and issues, etc; continue;
+
+do those "what's next" tasks, update issues, and make sure the pansy UI editor is complete; continue;
+
+--- try again  /  stop
+
+for the `Mesen2` repos, since I've made a bunch of changes for a bunch of efforts, let's reset, create a git branch and move all of the changes we've made on my fork of Mesen2 to that branch so the `main/master` branch is fresh and the same as the original repos's most modern update, don't destroy code, just move it all to the other branch` and then start a new branch from the clean `main` branch and add `pansy` file output (by default, do it without asking, but don't slow down emulation); make documentation, issues, todolists, and roadmaps and plans; continue;
+
+try again, and always put timestamps on every chat, and add timestamps to chat/session logs when applicable;
+
+re-edit all documentation for `pansy` and use `🌼` for the icon and refernece pansy as `🌼 Pansy` like `🌼 Pansy File Format Specification` and use the old tagline from previously commited code and documentation `**Pansy** - Program ANalysis SYstem format for comprehensive assembly metadata exchange` and the backronym `Program ANalysis SYstem`;
+
+--- try again (switch to opus)
+
+Create a huge todo-list and a step-by-step-by-step set of tens of hundreds of instructions (*.md, and references and sub documents) for a complete testing of this huge codeset/multi-repos create that full project about manually testing everything that can't be tested automatically, and create a calendar schedule plan so I can see what I need to accomlish daily; don't just say "test this" instead give me full instructions, like: go to this website, download this tool, install with these options, run this tool in this folder, open this file, do these exact steps (open menu, open feature, edit field, click button); make documentation, issues, todolists, and roadmaps and plans; continue;
+
+git commit everything; Completely redo the `ansarya.com` website; use the triceritops logo from the `DarkRepos` wesite in `GameInfo` because that can be the ansarya logo; colors should be light-cream on brown, with a variety of greens, style = '70s/'80s tv retro and 3 years plant growth after apocalypse, vegatation styled decorations, and a hand-full of orange and pink and white elements, link and describe all of projects and documentation and also make an article about using poppy/peony/pansy and some "howto"s about using all the projects and tools; make documentation, issues, todolists, and roadmaps and plans; continue;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
