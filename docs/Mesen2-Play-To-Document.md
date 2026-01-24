@@ -60,15 +60,31 @@ Open the debugger (Debug → Debugger or F12):
 
 ### 5. Export to Pansy Format
 
-**Automatic Export (Recommended):**
-- Enable in Debug → Debugger Settings → Integration
-- Check "Automatically export .PANSY files"
-- Pansy file is updated when you close the debugger
+**Automatic Export (Default - Recommended):**
+- Pansy auto-export is **enabled by default** in the pansy-export branch
+- Pansy file is automatically updated when:
+  - You close the debugger
+  - The workspace auto-saves (every 60 seconds of activity)
+  - You manually save the workspace
+- Files are saved to `Documents\Mesen2\Debugger\{RomName}.pansy`
+
+**Check/Change Setting:**
+- Debug → Debugger Settings → Integration tab
+- "Automatically export .PANSY files" checkbox
 
 **Manual Export:**
 - Debug → Export Pansy metadata
 - Choose location and filename
 - Click Save
+
+## File Locations
+
+| Type | Windows | Linux/macOS |
+|------|---------|-------------|
+| **Pansy files** | `Documents\Mesen2\Debugger\` | `~/.config/Mesen2/Debugger/` |
+| **CDL files** | `Documents\Mesen2\Debugger\` | `~/.config/Mesen2/Debugger/` |
+| **Workspace** | `Documents\Mesen2\Debugger\` | `~/.config/Mesen2/Debugger/` |
+| **Save states** | `Documents\Mesen2\SaveStates\` | `~/.config/Mesen2/SaveStates/` |
 
 ## Exported Data
 
@@ -195,8 +211,9 @@ Load these to jumpstart your analysis:
 ## Troubleshooting
 
 ### No Pansy File Created
-- Check write permissions in ROM folder
-- Try manual export instead
+- Pansy files are saved to `Documents\Mesen2\Debugger\` (Windows) or `~/.config/Mesen2/Debugger/` (Linux)
+- Check that the setting is enabled: Debug → Debugger Settings → Integration → "Automatically export .PANSY files"
+- Try manual export instead: Debug → Export Pansy metadata
 - Look in debugger output for errors
 
 ### Labels Not Appearing
