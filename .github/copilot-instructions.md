@@ -210,8 +210,20 @@ ROM File → Asset Extractor → Binary Assets
                                ↓
                         Binary Assets
                                ↓
-   New ROM ← Assembler ← Source Code + Assets
+   New ROM ← 🌸 Poppy ← Source Code (.pasm) + Assets
 ```
+
+### 🌷 Flower Toolchain (Poppy-Only Policy)
+
+**All builds use 🌸 Poppy exclusively.** Legacy assemblers (ASAR, ca65, xkas, RGBDS) are **NOT** used in mainline pipelines.
+
+| Tool | Purpose |
+|------|---------|
+| 🌺 Peony | Disassembler - ROM → Source (.pasm) |
+| 🌼 Pansy | Metadata Format - Symbols, comments, cross-refs |
+| 🌸 Poppy | Assembler - Source (.pasm) → ROM |
+
+**Converters:** Edge utilities exist to convert FROM legacy formats (ASAR, ca65, xkas) TO Poppy format. These are migration tools, not build tools. See `poppy/tools/converters/`.
 
 ## Python Tool Organization (`tools/`)
 

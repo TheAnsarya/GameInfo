@@ -36,11 +36,13 @@ The GameInfo Build Pipeline provides a unified system for assembling retro game 
 
 | Platform | Assembler | Graphics | Status |
 |----------|-----------|----------|--------|
-| [NES](NES-Pipeline.md) | ca65/ld65 | 2bpp, 8x8 tiles | Planned |
-| [SNES](SNES-Pipeline.md) | asar | 2/4/8bpp tiles | Planned |
-| [Genesis](Genesis-Pipeline.md) | asm68k | 4bpp planar | Planned |
-| [Game Boy](GB-Pipeline.md) | RGBDS | 2bpp tiles | Planned |
-| [GBA](GBA-Pipeline.md) | devkitARM | 4/8bpp tiles | Planned |
+| [NES](NES-Pipeline.md) | 🌸 Poppy | 2bpp, 8x8 tiles | Planned |
+| [SNES](SNES-Pipeline.md) | 🌸 Poppy | 2/4/8bpp tiles | Planned |
+| [Genesis](Genesis-Pipeline.md) | 🌸 Poppy | 4bpp planar | Planned |
+| [Game Boy](GB-Pipeline.md) | 🌸 Poppy | 2bpp tiles | Planned |
+| [GBA](GBA-Pipeline.md) | 🌸 Poppy | 4/8bpp tiles | Planned |
+
+> **Note:** All platforms use **🌸 Poppy** as the assembler. Legacy assemblers (ASAR, ca65, xkas, RGBDS) are not used in mainline pipelines. Converters exist for migrating legacy projects.
 
 ## Quick Start
 
@@ -58,8 +60,8 @@ Create a `build.config.json` in your project root:
 	},
 	"source": {
 		"baseRom": "roms/original.nes",
-		"assembler": "ca65",
-		"mainFile": "src/main.asm",
+		"assembler": "poppy",
+		"mainFile": "src/main.pasm",
 		"includes": ["src/", "include/"],
 		"outputRom": "build/modified.nes"
 	},
