@@ -133,6 +133,7 @@ Specialized tools for analysis, debugging, and conversion.
 | **Label Management** | [Label Guide](docs/guides/label-management.md) |
 | **ROM Catalog** | [ROM Catalog](docs/guides/rom-catalog.md) |
 | **Tool Usage** | [Tool Usage Guide](docs/guides/tool-usage.md) |
+| **Mesen2 Integration** | [Play-to-Document Guide](docs/Mesen2-Play-To-Document.md) |
 
 ### Format References
 
@@ -142,6 +143,7 @@ Specialized tools for analysis, debugging, and conversion.
 | `.cdl` | Code Data Logger files | [CDL Format](docs/formats/cdl-format.md) |
 | `.mlb` | Mesen label files | [MLB Format](docs/formats/mlb-format.md) |
 | `.nl` | FCEUX name lists | [NL Format](docs/formats/nl-format.md) |
+| `.pansy` | Universal disassembly metadata | [Pansy Format](https://github.com/TheAnsarya/pansy) |
 | TAS | Movie replay formats | [TAS Formats](docs/tas-formats.md) |
 
 ### SNES Audio Documentation
