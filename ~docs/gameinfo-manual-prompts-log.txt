@@ -857,20 +857,61 @@ Create a huge todo-list and a step-by-step-by-step set of tens of hundreds of in
 
 git commit everything; Completely redo the `ansarya.com` website; use the triceritops logo from the `DarkRepos` wesite in `GameInfo` because that can be the ansarya logo; colors should be light-cream on brown, with a variety of greens, style = '70s/'80s tv retro and 3 years plant growth after apocalypse, vegatation styled decorations, and a hand-full of orange and pink and white elements, link and describe all of projects and documentation and also make an article about using poppy/peony/pansy and some "howto"s about using all the projects and tools; make documentation, issues, todolists, and roadmaps and plans; continue;
 
+--- stop
 
+In `GameInfo` the `DarkRepos` project uses a triceratops logo, use that; continue;
 
+use `🌼` for pansy: `🌼 Pansy`, `🌸` for poppy: `🌸 Poppy`, `🌺` for peony: `🌺 Peony`, and `🌷` for `The Flower Toolchain`: `🌷 The Flower Toolchain`; continue;
 
+you didn't fix the flowr emojis, the ansarya.com website has `?` instead of the emojis, and under `featured projects` the `poppy assembly` card, the icon emoji is wrong, fix all of them; continue;
 
+for `ansarya.com` the `index.html` section `Quick Start Guides` the links/cards they don't link to the the "howot.html" actual guides, but they should; do that;  could you add more plants or vines or leaves or someting to the website, it's fucking awesome right now, sdo please add a commit or commit label or something indicating this one is greatm then do the new changes and commit; continue;
 
+undo the following things: `Every section header has subtle 🌿 accents on both sides` and `Floating Leaves (6 gently drifting elements):` `Lush Vegetation Added 🌿` but I absolutely love, so leave it there: `Card Hover Effect: Cards sprout a rotating 🍃 leaf when hovered` although it doesn't rotate; continue;
 
+create a new repos push new github repos named `game-garden` with a copy of poppy's `editorconfig`, `gitignore`, empty/new header chat/session logs format, `docs`/`~docs`/`~plans`, copilot instructions, turn on and make github issues, todolists, and a kanban board, documentation; and plan for a comprehensive games disassembly/decompilation (peony), (pansy) asset extraction, editing phase, asset reinsertion/compilation phase (poppy), this is the proof of bidirectionality, the game garden should be filled with games, from to source and assets and back again in a different folder; make versions of the `gameinfo\games` folders  in the game garden but only more complete, from using a romfile (crc32/md5/sha256 verify the rom) to peony and outputting all the code, making pansy files, extracting all the assets converting assets setting assets up for editing, reconverting everything, putting assets in the build pipeline, building a rom and verifying that the built file matcvhes the original, unless ; The original rom, the reference file, will be somewhere in the folder `C:\~reference-roms\` based on system and name, maybe in a compressed folder-file, if you can't find the game you need, ask me and I will add it to the folder; continue;
 
+git commit everything; find the rom in an `c:\~reference-roms\roms\` archivel build the build pipeline and document everything and extract assets and make them editable, png, json, etc, go do that!; continue working on everything; continue;
 
+goodsnes roms are there now; retry and continue;
 
+use `GameInfo` and `ffmq-info` for information and code and editors and documentation and data structures and data tables and asset extraction for compilation, see `GameInfo` for that and know that `ffmq-info` has a ton of information for us; continue;
 
+make github issues, make sure github issues were turned on, then continue;
 
+make github issues, make sure github issues were turned on, then continue; do the "what's next" and build the pipe line and add automated tests to the pipeline; make assets! make documentation!; continue; 
 
+create tasks for the "what's next" and then for the ansrya.com pages  "js full page VHS effect"; continue;
 
+turn off vhs effect, it uses too much computation, make a simplier version; contine gamegarden issues; continue;
 
+--- try again
+
+`ffmq-info` has a lots of comments on the source code, don't delete that from the repos because of the poppy output and pansy, keep all of the old knowledge, go! continue!; continue;
+
+continue
+
+Extract assets (graphics, palettes, text) for DW1 and DW4; Test Peony disassembly with the new Pansy files loaded; Continue Poppy/Peony roundtrip testing; continue;
+
+Some cdl files are in `C:\~reference-roms\cdls\` particularly `Final Fantasy - Mystic Quest (U) (V1.1).cdl`, `Dragon Warrior IV (1992-10)(Enix)(US).cdl`, `Dragon Warrior (U) (PRG1) [!].cdl`; add this folder as a reference; use those in the build and disassembly and roundtrip; continue working on the garden;
+
+for game-garden don't use `Dragon Warrior (U) (PRG0) [!].nes` use the PRG1 version, all of our code and the `dragon-warrior-info` repos uses PRG1; continue working on getting ffmq (1.1) to decompile with peony into pansy files and asset extraction and poppy recompilation; and do the rest of the "what's next" tasks (continue to update/create github issues and plans, and epics and documentation); continue;
+
+we don't want asar builds, we want poppy builds; asar ca65 and xkas are legacy compilers, we only use our own compiler, poppy; put that in the documentation and enforce it in code; we do have a translator to those project types but those are edge utilities, not mainline and we use poppy in the pipelines;
+
+There is a line in the roadmap `  - **Note:** Legacy ffmq-info uses ASAR (not mainline)` but this is wrong, it should be converted to use poppy, so make issues and plans to fix that in the future, not right now; 
+
+git commit everything in logical batches all linked to github issues; update the ansarya.com website with new information and definitely update the issues lists and add the `subrom` project/repos, and the game-garden; then continue working; work on `mesen2` creating pansy files and cdl/diz files and symbol/label files so I can play the games while we document the rom structure, create plans and issues and documentation; update chat/session logs; implement and continue; continue;
+
+remove the `test-*` files from peony's working folder, and then git-commit all real files from every single repos, then continue working on mesen2 pansy export, turn on pansy export export by default, so we can document games as we play; make a build of mesen2 with the changes so it's easy to start it and start playing; continue;
+
+In our Mesen2 version implement two things: #1) If the "record/export pansy file" option is turned on, then it should be running from the time the rom is loaded regardless of whether the debugger is open or not, and it should save periodically. It should be basically automatic so you open Mesen, start playing a game, and it's already recording the debug information and saving in the background unless you turn off the option; #2) pansy file creation and updating and recording should make sure the "pansy" file it is updating is for this exact rom, like check the hashes, so that you're not corrupting the pansy for the real rom while playing a hacked or translated version of the rom; please make issues, todolists, documentation, plans, roadmap, etc. for these efforts and then work on them; continue;
+
+git commit everything with links to github issues, update the issues/epics and make sure sure we are updating the chat/session logs now and every prompt/work-effort;; continue work on the new stuff and work until it's finished; continue;
+
+yes! all three! ; Create a testing plan for manually validating the Phase 1.5 features? yes! ; Start Phase 2 by creating unit tests for the PansyExporter? yes! ; Continue with Phase 3 (Enhanced Data Export) to add more content types? yes! ; continue;
+
+I increased the budget, work on the last prompt: yes! all three! ; Create a testing plan for manually validating the Phase 1.5 features? yes! ; Start Phase 2 by creating unit tests for the PansyExporter? yes! ; Continue with Phase 3 (Enhanced Data Export) to add more content types? yes! ; continue; git commit everything in every repos including the manual prompt files, and update documentation and chat and session logs; continue;
 
 
 
