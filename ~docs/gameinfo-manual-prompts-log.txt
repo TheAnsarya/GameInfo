@@ -913,6 +913,194 @@ yes! all three! ; Create a testing plan for manually validating the Phase 1.5 fe
 
 I increased the budget, work on the last prompt: yes! all three! ; Create a testing plan for manually validating the Phase 1.5 features? yes! ; Start Phase 2 by creating unit tests for the PansyExporter? yes! ; Continue with Phase 3 (Enhanced Data Export) to add more content types? yes! ; continue; git commit everything in every repos including the manual prompt files, and update documentation and chat and session logs; continue;
 
+make a bookmark or whatever for this version of code so we can easily find this inflection point; create a release for the current version of Mesen, then branch from here into an modernization upgrade project (make a sub-branch of `pansy-export` and then stick to it until all of our updates are done and I say we're merging back down), then create epics and issues and todolists and plans for updating the project to the most modern versions (like dotnet 10, avalonia, and lua) and implementing comprehensive testing across the project and updating all the code to use modern standards and practices and libraries (so we don't have to make our own crc32 for exampe), and if `Sour` isn't going to update Mesen2 then we will damnit, give me a modern platform to enhance with pansy and other efforts; update logs and docs and plans and then implement everything; continue;
+
+Phase 6: Code Modernization (file-scoped namespaces, pattern matching); work for a long time; continue;
+
+For Mesen2: merge `C:\Users\me\source\repos\pansy\.editorconfig` into `C:\Users\me\source\repos\Mesen2\.editorconfig` use k&r braces, and TABS NOT SPACES, and `} else {`, and pattern matching, and crlf, and utf-8, and an empty line at the the end of the file, and format everything and modernize the code and json and everything; work/implement all the modernization issues (make sure all work has associated github issues and todolists), update documentation, plans, todolists, `readme.md`s; make sure everything has documentation (`*.md` files) and update all the documentation to reflect current functionality; implement!; continue;
+
+make sure every work effort we've done just now and in the past and will do are documented in guthub issues update everything, document, work on any unimplemented modernization and formatting efforts; analyze the project and come up with a list of stuff we need to make Mesen better so we can make plans and issues and epics and docs for those efforts; poop!; Make a plan for git branches and commits, for what work goes with which branches and when we create and merge branches, and finish off modernization and then make a label of (modernization) so we know where we are merge down, then continue work efforts; make sure to start with updating the lua version to the most modern version and api; continue and update all the docs and readmes; and go!; continue;
+
+update session/chat logs; make sure the current branch and the last branch are fully merged, and then work all of the issues for `pansy-export`  updating issues after you write all the code; 
+
+-- stop
+
+make sure every library and code is the most modern version and make sure the lua library is used with modern standards and practices and update all the integration code; and create/update the code with documentation with emojis and tables and colors for the entire project (issues, todolists, plans, docs) and manual testing docs and auto-testing docs; and in the `ansarya.com` page files create/update(Mesen2) a link to a full page about our Mesen2 version linking to the github and describing all the modified features and creating docs for: a build script and a todolist/description/ of downloading this release and running a rom and how a pansy file is auto generated, and our changes, and add the the `pansy` pages add documentation about our Mesen version; and go!; continue;
+
+update session/chat logs; make sure the current branch and the last branch are fully merged, and then work all of the issues for `pansy-export`  updating issues after you write all the code; 
+
+Phase 3: Implement Memory Regions and Cross-References export; Phase 4: Add compression and performance optimizations; continue;
+
+What does this mean? `Phase 7: Pansy ↔ Mesen format bidirectional sync`, shouldn't mesen format be pansy? or is this a different thing i am misunderstanding?
+
+make sure the `pansy-export` branch of Mesen2 has all the changes from and has been merged into from the `modernization` branch;
+
+Oh, ok, `Phase 7`, we want the Mesen files it creates and uses already to be kept as is but also be synced with the pansy file (does pansy have labels and all the info and data that are in the cdl, mlb, and dbg file types?); change (make issues and docs and plans and todos, etc, then implement) the way pansy files are auto-saved for a game by making individual folders for each pansy file and also export the other mesen files (mlb, dbg, cdl, etc.) and sync them; and also do the real phase 7 tasks; continue;
+
+make sure the issues.md file has been completely pushed to actual real github issues and link them to git commits, continue implementation of phase 7 additions, then do the orignal phase 7, and also phase 5 and 6 and 2; work for a long time; continue;
+
+continue and work and implement issues a long time; a looooooong time;
+
+analyze the mesen2 pansy export stuff for performance, add benchmark tests and create alternatives for intensive code paths and test them with benchmarks and the goal is "increase performance, don't interupt emulation"; continue;
+
+format everything in the Mesen project, then git commit (link to issues!), make sure all dotnet projects use dotnet 10 and modern most recent libraries, simplify collection inializations, (always `simplify collection inializations`, add it to the copilot instructions and editor config); what other optimizations can we make? continue;
+
+The benchmark stuff is obviously wrong, undo it, you're having a conflict of two things named `Benchmarks` but one is a benchmarking project (which should be in the solution) and one is a folder of tests in the Testing project (and should stay where it was), i don't know what the fuck you're doing beside randomly changing things to make errors go away but the goal isn't to make errors go away, it is to fix the code to work properly and do what ut's supposed to do, fix the naming problem (maybe rename the testing to `BenchmarkTests` instead of `Benchmarks` or qualify naqmespaces, just don't destroy the solution structure); fix it!; then continue;
+
+oh, sorry, move the benchmarks project outside of the tests projects, i told you wrong; then continue;
+
+during the recent shakeup, did the performance optimizations stick around? did our changes from yesterday and this morning stick?
+
+apply all optimizations and keep an eye out for other possible optimizations, update comments and documentation as you go; continue;
+
+format everything in the Mesen project, then git commit (link to issues!), make sure all dotnet projects use dotnet 10 and modern most recent libraries, simplify collection inializations, (always `simplify collection inializations`, add it to the copilot instructions and editor config); what other optimizations can we make? continue;
+
+Dock.Avalonia 11.3.9 upgrade would require implementing CanResize and ResizePreview interface members in MesenProportionalDockSplitter; continue;
+
+For the Mesen2 project, fix the one `CS8625` error, fix the `IL2075` errors, fix `MSB3270` error, fix: `IDE0161`, `IDE0044`, `IDE0330`, `IDE0090`, `IDE0025`, `IDE0022`, `IDE0007`, `SYSLIB1045`, `IDE0161`, `IDE0028`, and `CA1816`; update every solution and everything to use VS2026 instead of 2022; modernize everything!; make roadmaps and plans and documents and issues (epics and regluar and subissues) for modernizing the c++ code projects by using the most modern language and library versions and updating to use the most modern code standards and practices, and use modern libraries and code, and creating tests and benchmarks if that is possible, and optimizing the code if you see anything that could be tweeked; and also make sure all the c++ projects are well documented and commented; plan, make issues, then implement; continue;
+
+fix those last issues: `Additional Modernization - MSB3270 (platform mismatch) and CA1816 (IDisposable) if needed`; create a new branch for the c++ work so it is separated from the current branch work; `Create GitHub Issues - The documents are ready; you can manually create the GitHub issues from the tracking documents, or we can use the coding agent`; the issues should all be created, epics and their wsub-issues; and then after documentation keep the chat and session logs updated, for every work effort, make sure the copilot instructions include this; implement and work on (in the new branch) `Start C++ Implementation - Begin with Epic 8 (Build System) as it has no dependencies`; keep issues and todos up to date, and git commit, and work through all of the c++ epics and issues in the c++ code branches; continue;
+
+I do not see any issues for the c++ Mesen2 work at `https://github.com/TheAnsarya/Mesen2/issues`; Did you create the branch and create all the issues for the c++ work? epics and sub-issues;
+
+make sure all c++ code is formatted properly, use k&r braces, and tabs not spaces, utf-8, CRLF line endings, blank line at the end of the file, update the `.editorconfig` and also use modern standards and practices; Modernize this bitch!; make sure all the issues are made and then work on those issues; continue;
+
+make sure you made the gh issues for migration from c++17 to c++23 or whatever the most modern version is, snd then implement it, we want a slow structured update to c++23 (or the most recent version) do it!; continue;
+
+git commit everything then continue;
+
+stop flailing around, work the issues or don't, don't waste my time and tokens; continue;
+
+continue our 17 to 23 journey; continue for a long time; solve many issues; continue;
+
+continue working issues on the c++ modernization effort; update chat/session logs, documentation, issues, etc; continue;
+
+Do the "What's Next" tasks (making issues and todolists for all work, update documentation): Continue modernization on remaining files; Consider fixing C4244 warnings from ::tolower (use static_cast<char>); Look for ends_with() opportunities; Move to other C++ modernization issues (testing infrastructure, memory safety); continue;
+
+Do the "What's Next" tasks (making issues and todolists for all work, update documentation): Look for other C++23 features (std::views, std::format, etc.); Consider memory safety improvements (std::span, smart pointers); Review testing infrastructure modernization opportunities; continue;
+
+Do the "What's Next" tasks (making issues and todolists for all work, update documentation): Create [11.4] issue for [[likely]]/[[unlikely]] adoption (safest win); Implement [[likely]]/[[unlikely]] in error handling and rare-case branches; Profile any std::format usage before merging; Consider [[nodiscard]] sweep for important return values; continue;
+
+yes you can create github issues, you have before and you will now. Add this directive to the copilot instructions (that of always creating the issues on github directly, not just creating them in documentation); create those4 issues; continue;
+
+Update session log then do the what's next tasks, keeping everything documented and also do other issues and work for a while to modernize the c++ projects again always forcusing on performance; continue;
+
+do the what's next tasks, updating docs and issues, and work on more modernization issues, starting with testing and profiling/benchmarks; continue;
+
+I don't really care as much about the performance of a debug build, performance matters in the release build. So, if spans will increase performance or just moderninze the code without negative impact in release, implemenat the span changes; there's a unicode issue? there shouldn't be all text files should be utf-8 crlf with a blank line at the end and use tabs and k&r braces, so fix any issues about unicode, we should be able to use emojis etc everywhere; continue; and also make sure the Mesen2 c++ projects have tests and benchmarks/profiling and create issues for ensuring the entire solution is well commented and documented, and then implement them; continue;
+
+Update `cpp-modernization-opportunities.md` and other documentation with the current state of the project as it is out of date, like `[[likely]] / [[unlikely]] Attributes (C++20)` is listed as `Not used` when it has already been added to the code; so update docs and issues and todolists; do the benchmark/profiling and testing for the c++ projects issues; continue;
+
+Yes do that, those what's next tasks: Create Core.Tests Visual Studio project with initial ColorUtilities tests; Create Core.Benchmarks Visual Studio project with baseline measurements; Run initial benchmarks to validate zero-cost abstractions; Begin systematic code documentation (Epic #81); continue;
+
+Option B, then the rest of the what's next tasks; continue; go for a while;
+
+you're frozen, get back to work
+
+what's all this vcpkg crap? get rid of it if it's not needed or add it back as a library or something; continue with commenting all of the code; comment for as long as you can;
+
+If those vcpkg files are needed in the repos then add them, otherwise get rid of them, I don't like having over 100 untracked files in git; continue what you were doing;
+
+Continue documenting Core subsystems (interfaces, debugging, networking)
+
+make sure the c++ projects all compilke withwout problems, fix and problems, we want the whole solution to compile;
+
+Severity	Code	Description	Project	File	Line	Suppression State	Details
+Warning (active)	MSB3270	There was a mismatch between the processor architecture of the project being built "MSIL" and the processor architecture of the reference "C:\Users\me\source\repos\Mesen2\bin\win-x64\Debug\Mesen.dll", "AMD64". This mismatch may cause runtime failures. Please consider changing the targeted processor architecture of your project through the Configuration Manager so as to align the processor architectures between your project and references, or take a dependency on references with a processor architecture that matches the targeted processor architecture of your project.	Mesen.Benchmarks	C:\Program Files\Microsoft Visual Studio\18\Insiders\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets	2451		
+
+ Align by setting the benchmark project’s platform target to x64 (Configuration Manager)
+
+fix the vcpkg errors;
+
+&&&&&&&&&&&&&&&&&&&&&&
+The MSBuild pre-build script error for UI is a build order issue (native DLLs not copied before the script runs), but the project builds successfully with `dotnet build -r win-x64`.
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+fix the MSBuild pre-build script error for UI by commenting out the offending failing file copy; go through all the open Mesen issues and update them and close those whose work has been completed, update todolists and plans and roadmaps, then work on uncompleted issues with easy goals; continue;
+
+Fix the Benchmark and Test projects for the c++ projects so that they will build properly individually without being in the solution's context; we get this build problem all the time, fix it and fix it quickly! either that or just fix it so that they are _always_ built from the solution and you never try top build them individually ever again! document it!; continue;
+
+oh god, you're deleting a ton of work! please don't fuck up the giot cimmit tree, don't restore or revert or whatever without asking and fix this mess, get back to where we just were, fix it!;
+
+Should I commit these SolutionDir changes now and continue investigating the Core.pch error
+
+try a workaround for the pch error
+
+work on theses issues, updated documentation and todolists and the issues themselves as you go; #60 - `[10.1] Migrate Core/Shared to Smart Pointers`, #61 - `[10.2] Migrate NES Core to Smart Pointers` and #62 and 63 and 64, 65, 66, 67
+
+I have increased my budget, so stay on Opus 4.5; continue working; work on theses issues, updated documentation and todolists and the issues themselves as you go; #60 - `[10.1] Migrate Core/Shared to Smart Pointers`, #61 - `[10.2] Migrate NES Core to Smart Pointers` and #62 and 63 and 64, 65, 66, 67
+
+build from the solution not from the individual projects, always do this, stop flipping out on every build, you solved this problem, build the solution!
+
+continue;
+
+Do issues #64 and #65 and #66; continue;
+
+close any issues that have been completed, then do more Mesen code modernization issues; continue;
+
+work on issue #72 `[13.2] Apply clang-format Consistently` until it's done; update documentation and todos and issues and logs;
+
+work on issue #71 `[13.1] Set Up Doxygen Documentation` until it's done; update documentation and todos and issues and logs;
+
+did you install and run doxygen?
+
+work on issue #54 `[9.3] Create SNES CPU Instruction Tests` until it's done; update documentation and todos and issues and logs;
+
+update the `COMPILING.md` and `README.md` and other docs with the correct versioning and references, like using dotnet 10, not 8, c++ 23, not 17, etc. and migrate references from `Sour`s github to my github and update the license so all the Mesen code from before the fork are GPL like the original but all changes by me and you are under The Unlicense, especially the pansy stuff; usedate the documentation!; and then work on issues 53, 55, 56, and 57 until they are done; update documentation and todos and issues and logs; continue;
+
+`COMPILING.md` doesn't seem to reference that we build with MSVC and VS2026 when on windows, which don't we?; Work on this issue until it is done: #67 `[11.2] Migrate to std::format` making sure to ONLY update cold paths since `std::format` is slower, and review past changes to make sure we didn't slow down hot paths (undo those lines if they're in performance critcal code paths): we cannot slow emulation; update documentation and todos and issues and logs; continue;
+
+work on issues until they are done: #68 `[11.3] Use std::optional for Optional Values`, #66 `[11.1] Adopt std::ranges Algorithms`, #65 `[10.6] Replace C-Style Casts with C++ Casts`, #64 `[10.5] Adopt std::span for Buffer Parameters`; update documentation and todos and issues and logs; update the epics as well, and close them if done; continue;
+
+Since issue #68 `[11.3] Use std::optional for Optional Values` would require a lot of refactoring, table it and put in the plans as a far-future possible improvement; document it as such and add guardrails that we don't accidently work on it until we're ready to and change tge issue label to something like `possible future effort` instead of `medium priority`;
+
+Work on this epic: issue #79 `[Epic 12] C++ Unit Testing Infrastructure`, and sub issues #70 `[12.2] Create Performance Benchmarks` and #69 `[12.1] Set Up Profiling Infrastructure` until they are done; update documentation and todos and issues and logs; continue; make more issues for performance benchmarks of the c++ projects if some code is uncovered; and Epic #13/issue 80; continue;
+
+these issues seem like they're old fashioned, so make sure they've been completed and then close them: issues #41 `[Epic 9] C++ Testing Infrastructure` and #44 `[Epic 12] C++ Performance Optimization` and #45 `[Epic 13] C++ Documentation`; and work work on the modern version of these issues like: #86 `[13.5] Create PPU Rendering Benchmarks` and #84 `[13.3] Create Game Boy CPU Benchmarks` and #83 `[13.2] Create SNES CPU Benchmarks` until they are done; update documentation and todos and issues and logs; continue;
+
+Analyze the c++ projects for issue #79 `[Epic 12] C++ Unit Testing Infrastructure` to see what subissues and todolists need to be created or updated and make them and then work on them until they're done; update documentation and todos and issues and logs; continue; work these issues until they are done: #88 `[13.7] Create Audio DSP Benchmarks` and #87 `[13.6] Create Serialization Benchmarks` and #85 `[13.4] Create GBA ARM CPU Benchmarks`; update documentation and todos and issues and logs; continue; then create a bunch of sub-issues and todolists for issue/epic #81 `[Epic 14] Code Documentation and Comments`; continue;
+
+Ok, yes, continue this CD/CI work however we are meant not the old epic #12 but the new Epic #12 issue #79 `[Epic 12] C++ Unit Testing Infrastructure`; so work on that and make issues for it too; continue work on all of this; until the work is done;
+
+just continue where you where, but understand that epic #12 is issue #79 `[Epic 12] C++ Unit Testing Infrastructure`; continue; go; do it;
+
+for issues #79 plus for Mesen, renumber the Epics and the subissues so they don't conflict with old epic numbers and then go back to the big work effort and make new issues and finsish off as much of that work as you can; continue;
+
+^^^^^^^^^^^^^
+
+^^^^^^^^^^^^^
+
+work on issues until they are done: Remaining Open Issues: #94 `[17.4] Document SNES Emulation Core` and #95 `[17.5] Document Game Boy and GBA Cores` and #96 `[17.6] Document SMS, PC Engine, and WonderSwan Cores` and #97 `[17.7] Document Debugger Subsystem` and #81 `[Epic 17] (parent epic - 4 sub-issues remain)`; update documentation and todos and issues and logs; continue;
+
+these old issues are probably done, but finish their work if needed and then complete/close these previous issues: #59 `[9.8] Configure CI Test Execution` and #58 `[9.7] Create Save State Tests` and #50 `[8.5] Configure AddressSanitizer for Debug Builds`; finish off legacy issues; update documentation and todos and issues and logs; continue; work more documentation issues and also create more documentation issues that we can work on to cover everything and update all `*.md` and `*.txt` etc files with all the docs and so all readmes and instructions are accurate; continue; work on these issue until they are done: #97 `[17.7] Document Debugger Subsystem` and #96 `[17.6] Document SMS, PC Engine, and WonderSwan Cores` and #95 `[17.5] Document Game Boy and GBA Cores` and #94 `[17.4] Document SNES Emulation Core`; continue;
+
+add a special label to this commit for modernization so I can find it in the future;
+
+go through the entire solution and make sure everything has comments
+
+you got frozen, so continue documentations and commenting
+
+the budget has been increased, so continue documentations and commenting
+
+commit and then continue documentation and commenting, lots of it, work for long;
+
+just proceed and keep commenting and commenting and cover all files;
+
+stay on Claude Opus and get to work! and stay working for a long time! I don't want short sessions right now; continue;
+
+I see that you are not adding xml documentation commentas to the class and fields and methods and such. Please go back and fix this, properly document and comment everything with xml comments, and also inline comments in the code; continue;
+
+&&&&&&&&&&& https://copilot.microsoft.com/shares/HterzVHsPphyhF18xpV5C
+
+[Mesen] build the c++ projects for modernizations, commit everything; and then add a label so we can find this build, then merge the cpp modernization back into the pansy branch; then make a label from that commit; and merge into main; we previously tried to add DiztinGUIsh streaming functionality, remove that functionality and documentation and close those issues with "won't do", we don't want streaming to diztinguish we've moved beyond that to the direct creation of pansy which can be converted to diz, although we want to keep diz file creation from the pansy/cdl files, but we don't need to connect to the other program anymore or stream to a socket or have those diztinguish configurations and UI, remove all that crap; make an issue for this work effort and todolists and chat/session logs, and documentation etc; continue;
+
+did documentation trucate a ton of files?, don't lose code when documenting, compare to the baseline and make sure code wasn't inadvertantly discarded; make sure everything still works and compiles; don't discard the new changes, but properly integreate them instead; continue;
+
+you froze on build, try again;
+
+stop removing things and rebuild; continue;
+
+don't commit to upstream Mesen repos, only git commit and push to our repos for mesen, so fix those commits, we're merging to OUR main branch
 
 
 
@@ -925,11 +1113,7 @@ I increased the budget, work on the last prompt: yes! all three! ; Create a test
 
 
 
-
-
-
-create
-
+Next up: Remaining open epics: `[PANSY] Epic: Pansy Metadata Integration (#39)`, `[TAS] Full TAS Integration (#18)`, these are legacy, so make a ***new branch*** from the main pansy branch, for pansy/tas before making issues and todolists and 
 
 
 
@@ -939,7 +1123,7 @@ create
 
 
 
-
+[Mesen] Create a new sub-branch from the pansy branch for augmenting the basic save state infrastructure `save-state-rewrite` using the `F1` key so that if you type `SHIFT+F1` instead of saving in slot one, it saves a new save state named after the rom and a datetime stamp, so you don't have 10 slots you have infinite save states and when `F1` is pressed, instead of loading the save state in slot #1, it opens a window like the "pick a rom/savestate" window you get when you open mesen with a datetime, a screen shot, a title, for the past save states (start with most recent) and 
 
 
 
