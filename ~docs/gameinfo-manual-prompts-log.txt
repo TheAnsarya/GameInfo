@@ -1102,6 +1102,37 @@ stop removing things and rebuild; continue;
 
 don't commit to upstream Mesen repos, only git commit and push to our repos for mesen, so fix those commits, we're merging to OUR main branch
 
+Has all the DiztinGUIsh streaming stuff including the UI and configuration and documentation been removed?
+
+No I mean in `Mesen` has all the stuff of streaming to a socket to connect to DiztinGUIsh including configuration and UI been removed as I asked earlier? We added it, but we don't need it, and I don't want it adding cruft or somwing anything down or cluttering the UI; make sure it's been cleaned; continue;
+
+No! No1! No! We worked very hard on the pansy integration, pansy files should be created continuously as we implemented on the pansy branch, we just want to remove any diztinguish releated code, except for the pansy to diz conversion which also stays;; continue;
+
+As part of removing the Diztinguish socket stuff, close as "won't do" the related github issues like #1, #12, #13, 14, 15, and 17; then review all the `[PANSY]` issues for progress completion and relevancy and make plan to finish off the pansy stuff, which I thought was already done, and update/create issues and update documentation and make plans for future work; make a tag for this commit/release as a marker before our next work;
+
+Issue #16 should also be closed as "won't do"
+
+[Mesen] Create a new sub-branch from the master branch for augmenting the basic save state infrastructure (something like `save-state-rewrite`) using the `F1` key so that if you type `SHIFT+F1` instead of saving in slot one, it saves a new save state named after the rom and a datetime stamp, so you don't have 10 slots you have infinite save states and when `F1` is pressed, instead of loading the save state in slot #1, it opens a window like the "pick a rom/savestate" window you get when you open mesen with a datetime, a screen shot, a title, for the past save states (start with most recent) and update the menu items, and do not delete these saves automatically so that we have an inifite amount of save states instead of 10; make comprehensive plans and roadmaps and todolists and issues (epics and sub-issues) and chat/session logs and documentation;
+
+Okay, implement it, updating everything (docs, comments, issues, tests, todolists, logs) and giot commiting after each effort; continue;
+
+Okay, basic updates; for `Delete Save States` make sure you have a verification prompt before deleting (are you sure?); `Friendly Timestamps` Today and Yesterday is ok to show the date, but not "Yesterday" with no timestamp, always always always show time and date; make sure `F1` and `SHIFT+F1` are defaulted to the save/load for infinite save states; document everything, update all docs that are affected; did the menu items for slot one convert to the infinite save state? fix it!; update `README.md` and other docs; continue;
+
+do the "what's next": Merge to main - When ready, merge save-state-rewrite into master or cpp-modernization; Close GitHub issues - Mark #104-#109 as completed; mark this commit with a label because we're about to change the name;
+
+get rid of branches that don't have any new code or commits, like `Save-state-rewrite`
+
+double check and delete all branches that are already fully merged into master
+
+Ok, We've done enough work to properly distinguish ourselves from the Mesen2 repos we forked from so it is time for a rename. Make a new branch that updates all of the code and documentation, rename solutions projects, docs, files, everything, we are no longer "Mesen" or "Mesen2" we are now `Nexen`; rename our fork of Mesen to Nexen; our new branding (icon and logo) is at `C:\Users\me\source\repos\Mesen2\~assets\`; update everything (plans, docs, comments, issues, tests, todolists, logs) and git commiting after each effort; make issues for the renaming effort (an epic and some sub-issues, like update namespaces and projects and solutions and doumentation, only references to Mesen that should be left over are references to that we forked from Mesen and that part of the license (the gpl part) applies to Mesen code); Let's rename the repos, either do it automatically or give me instructions to do so (and then we want to rename the folder our local code is in, and update our workspace to point to the new folder name); continue;
+
+reformat all the files, tabs not spaces
+
+------- do the instructions in `~docs\plans\nexen-repo-rename-instructions.md` to rename to Nexen
+
+run the terminal as Admin for the following commands: cd "c:\Users\me\source\repos" ; Rename-Item "Mesen2" "Nexen"
+
+we've done steps 1-5 for `C:\Users\me\source\repos\Nexen\~docs\plans\nexen-repo-rename-instructions.md` so now do steps 6, 7, 8, and 9; continue; Make sure the Nexen rename is complete, what references to Mesen remain? should they be there? fix it; continue;
 
 
 
@@ -1113,19 +1144,17 @@ don't commit to upstream Mesen repos, only git commit and push to our repos for 
 
 
 
-Next up: Remaining open epics: `[PANSY] Epic: Pansy Metadata Integration (#39)`, `[TAS] Full TAS Integration (#18)`, these are legacy, so make a ***new branch*** from the main pansy branch, for pansy/tas before making issues and todolists and 
+
+
+
+[Ansarya.com] for the ansarya website do an update of all the content so update the issues list; I do not like the main page tagline "Where Code Takes Root in Ancient Ground" so come up with a new one; The line: "Assembly compilers, disassemblers, and ROM hacking tools for retro gaming platforms." needs a reference to the emulator and `a depth of documentation`; and reorganize the main pages cards: keep the `The Flower Toolchain` section as is, maybe update some text, but it's gorgeous so keep it; and for `Featured Projects` keep the three flowers as the first three cards, then do the programs/utilities (rewrite the text to be more descriptive of the project, not focusing on implementation details like `ArrayPool optimizations`), `BPS Patch Library`, `Mesen2 Fork` (emphasize pansy anintegration and modernization, also use new name and links to `Nexen`), `SNES SPC Workflow` (but rename to show it's an Ableton plugin for SPC), `Subrom ROM Manager`, and then create a new section for the `Game Garden` which contains the individual games we are/have disassembled/documented and then a new section for `Potted Plants` which is for our comprehensive game hacks like DQ4r, keep the current emojis attached to every project; create sub pages for every card on the main page so the is some descriptiopn and references and maybe images or something for every on before you link to the github project (which should be easy and prominent, big button; Add a couple `Quick Start Guides` just for fun, and update `Documentation & Resources`
 
 
 
 
 
 
-
-
-
-[Mesen] Create a new sub-branch from the pansy branch for augmenting the basic save state infrastructure `save-state-rewrite` using the `F1` key so that if you type `SHIFT+F1` instead of saving in slot one, it saves a new save state named after the rom and a datetime stamp, so you don't have 10 slots you have infinite save states and when `F1` is pressed, instead of loading the save state in slot #1, it opens a window like the "pick a rom/savestate" window you get when you open mesen with a datetime, a screen shot, a title, for the past save states (start with most recent) and 
-
-
+mesen-record-and-play
 
 
 

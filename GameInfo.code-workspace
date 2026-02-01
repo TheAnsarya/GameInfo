@@ -31,9 +31,6 @@
 			"path": "../logsmall"
 		},
 		{
-			"path": "../Mesen2"
-		},
-		{
 			"path": "../poppy"
 		},
 		{
@@ -53,6 +50,9 @@
 		},
 		{
 			"path": "../subrom"
+		},
+		{
+			"path": "../Nexen"
 		}
 	],
 	"settings": {
