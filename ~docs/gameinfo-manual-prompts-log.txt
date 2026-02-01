@@ -1134,6 +1134,25 @@ run the terminal as Admin for the following commands: cd "c:\Users\me\source\rep
 
 we've done steps 1-5 for `C:\Users\me\source\repos\Nexen\~docs\plans\nexen-repo-rename-instructions.md` so now do steps 6, 7, 8, and 9; continue; Make sure the Nexen rename is complete, what references to Mesen remain? should they be there? fix it; continue;
 
+close issues #111 to #115 if they've been completed, but add a bunch more sub-issues to epic issue #110 because the name `Mesen`, `Mesen2`, or `MESEN` is rampant throughout the code of our `Nexen` project and so we should fix all of these references and names to no longer be `Mesen` but now `Nexen` or `MESEN`/`NEXEN`, like examples of Mesen: `DEBUGFOLDER := bin/$(MESENPLATFORM)/Debug` or `bool MesenMovie::ApplySettings(istream& settingsData) {` or `xmlns:du="using:Mesen.Debugger.Utilities"` or `# Mesen2 clang-tidy Configuration` or whatever; continue;so make mesen->Nexen conversion issues and then implement them and then update and close them if applicable; continue;
+
+but add a bunch more sub-issues to epic issue #110 because the name `Mesen`, `Mesen2`, or `MESEN` is rampant throughout the code of our `Nexen` project and so we should fix all of these references and names to no longer be `Mesen` but now `Nexen` or `MESEN`/`NEXEN`, never `Nexen2`, and check every type of file; replace all the Mesen/Mesen2/MESEN with Nexen/NEXEN; continue;
+
+rerun doxygen, which should update a lot of the mesen references, then continue working;
+
+build the entire cpp and dotnet solution/projects, and fix the `NexenFont` error and all the other errors; continue;
+
+continue supporting the loading and export of Mesen label files (*.mlb) but also instead use Nexen native label format of `*.nexen-labels` and enhance the label system to work with the pansy format; do the same with the Mesen TAS movie format `*.msm` and continue to support it unless it's not in the upstream project and we just made it, either way make movies use the Nexen native format of `*.nexen-movie` and update issues and todolists and documentation; continue; and do the same, continue supporting the Mesen format `*.mss` for save files but prefer and use the Nexen native save state file format `.nexen-save` that is basically the mss format only with pansy extensions; update issues and todo and documentation and session/chat logs; continue;
+
+`DebugWorkspaceManager.cs` seems to have deleted some actual code 215-224 lines, so look at that and fix it, and don't do this code delketion crap in the future; continune;
+
+`DebugWorkspaceManager.cs` is still fucked up, where did the content of the Save() function go? add it back in and make sure you don't mangle code in the future; continue;
+
+you're making code about save slots, is this legacy save slots stuff or are you ruining infinite save states code?
+
+git commit everything; [Ansarya.com] for the ansarya website do an update of all the content so update the issues list; I do not like the main page tagline "Where Code Takes Root in Ancient Ground" so come up with a new one; The line: "Assembly compilers, disassemblers, and ROM hacking tools for retro gaming platforms." needs a reference to the emulator and `a depth of documentation`; and reorganize the main pages cards: keep the `The Flower Toolchain` section as is, maybe update some text, but it's gorgeous so keep it; and for `Featured Projects` keep the three flowers as the first three cards, then do the programs/utilities (rewrite the text to be more descriptive of the project, not focusing on implementation details like `ArrayPool optimizations`), `BPS Patch Library`, `Mesen2 Fork` (emphasize pansy anintegration and modernization, also use new name and links to `Nexen`), `SNES SPC Workflow` (but rename to show it's an Ableton plugin for SPC), `Subrom ROM Manager`, and then create a new section for the `Game Garden` which contains the individual games we are/have disassembled/documented and then a new section for `Potted Plants` which is for our comprehensive game hacks like DQ4r, keep the current emojis attached to every project; create sub pages for every card on the main page so the is some descriptiopn and references and maybe images or something for every on before you link to the github project (which should be easy and prominent, big button; Add a couple `Quick Start Guides` just for fun, and update `Documentation & Resources`
+
+[Nexen] Go through all the code files in Nexen's c# dotnet projects and make sure there are inline code comments and also xml documentation comments for all the classes, methods, properties, enums, etc; comment everything but ***make sure your comments to not mangle the code itself!*** (add this last thing to the copilot instructions: changes to comments must not change the code); make plans and issues and todos and update documentation and then implement; Next, analyze the dotnet projects in Nexen for performance improvements creating documentation and issues and create benchmark tests for these found possible improvements and create tests for any code you change to make sure we're still getting the results we want; keep an eye out for errors and vulnerabilities as you go; make plans and issues and todos and update documentation and then implement; continue;
 
 
 
@@ -1147,7 +1166,15 @@ we've done steps 1-5 for `C:\Users\me\source\repos\Nexen\~docs\plans\nexen-repo-
 
 
 
-[Ansarya.com] for the ansarya website do an update of all the content so update the issues list; I do not like the main page tagline "Where Code Takes Root in Ancient Ground" so come up with a new one; The line: "Assembly compilers, disassemblers, and ROM hacking tools for retro gaming platforms." needs a reference to the emulator and `a depth of documentation`; and reorganize the main pages cards: keep the `The Flower Toolchain` section as is, maybe update some text, but it's gorgeous so keep it; and for `Featured Projects` keep the three flowers as the first three cards, then do the programs/utilities (rewrite the text to be more descriptive of the project, not focusing on implementation details like `ArrayPool optimizations`), `BPS Patch Library`, `Mesen2 Fork` (emphasize pansy anintegration and modernization, also use new name and links to `Nexen`), `SNES SPC Workflow` (but rename to show it's an Ableton plugin for SPC), `Subrom ROM Manager`, and then create a new section for the `Game Garden` which contains the individual games we are/have disassembled/documented and then a new section for `Potted Plants` which is for our comprehensive game hacks like DQ4r, keep the current emojis attached to every project; create sub pages for every card on the main page so the is some descriptiopn and references and maybe images or something for every on before you link to the github project (which should be easy and prominent, big button; Add a couple `Quick Start Guides` just for fun, and update `Documentation & Resources`
+
+
+
+
+
+
+
+
+
 
 
 
