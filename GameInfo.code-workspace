@@ -100,7 +100,11 @@
 		},
 		"terminal.integrated.defaultProfile.windows": "PowerShell",
 		"cSpell.words": [
-			"Nexen"
-		]
+			"Avalonia",
+			"Greenzone",
+			"Nexen",
+			"savestate"
+		],
+		"powershell.cwd": "Nexen"
 	}
 }

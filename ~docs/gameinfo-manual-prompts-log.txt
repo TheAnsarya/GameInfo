@@ -1154,15 +1154,43 @@ git commit everything; [Ansarya.com] for the ansarya website do an update of all
 
 [Nexen] Go through all the code files in Nexen's c# dotnet projects and make sure there are inline code comments and also xml documentation comments for all the classes, methods, properties, enums, etc; comment everything but ***make sure your comments to not mangle the code itself!*** (add this last thing to the copilot instructions: changes to comments must not change the code); make plans and issues and todos and update documentation and then implement; Next, analyze the dotnet projects in Nexen for performance improvements creating documentation and issues and create benchmark tests for these found possible improvements and create tests for any code you change to make sure we're still getting the results we want; keep an eye out for errors and vulnerabilities as you go; make plans and issues and todos and update documentation and then implement; continue;
 
+[Nexen] go through the Nexen rename epic issue #110 and the associated sub issues: 122, 123, 124, 125, 126 and and fix any issues that are remaining and then close issues that are complete; continue;
 
+[Nexen] format all the dotnet projects, and make sure we're using file scoped namespaces so change `namespace Nexen.Debugger.ViewModels {` to `namespace Nexen.Debugger.ViewModels;\r\n\r\n` and remove the closing brace `}`;
 
+[Nexen] format all the dotnet projects, and make sure we're using file scoped namespaces so change lines like `namespace Nexen.Debugger.ViewModels {` to `namespace Nexen.Debugger.ViewModels;\r\n\r\n` and remove the closing brace `}`;
 
+Only one file? Nexen has tons of files using old-style namespaces, make a bulk action that fixes all of these errors; make namespaces in the editorconfig have to be file scoped or throw an error and then build and fix all those errors;
 
+[Nexen] analyze and document the possible performance improvements to the dotnet c# projects for Nexen and work through those issues; continue;
 
+[Nexen] Do the "What's Next?": Implement FormattedText caching in DisassemblyViewer (#131) if needed; Profile with benchmarks to measure actual impact; Consider additional optimizations for LabelManager and other hot paths; 
 
+Hey you said`Interesting - the Release configuration has <Optimize>false</Optimize> and <DefineConstants>DEBUG</DefineConstants>. This is unusual - it keeps the Release config as Debug. Let me update the benchmark config to allow this:` and we want the release config to use release configurations, don't just ignore it, fix it! fucking fix it!
 
+sorry, continue; 
 
+[Nexen] the `nexen-rename` branch has no changes, get rid of it; what the hell are these four branches?: `mesen-record-and-play-gameplay-tas`, `mesen-record-and-play-tas-gameplay`, `my-features-combined`, `mesen-record-and-play-gameplay` use them as a source of reference and code for all of the TAS/movie playback issues, analyze and document and plan for TAS and movie recording, editing, and playback (`*.nexen-movie`) and make it super simple and easy and update all the github issues, with a new epic issue and new other sub-issues all linked to the parent, and make todos, docs, plans, issues, logs, and implement the Tool Assited Speedrun stuff and regular movie record/edit/play with super simple easy UI; make the UI for TAS; make extra epics and issues and todos and plans and docs for the editing of movie files to satisfy the TAS community editing tools look at how other emulators that use movie files do it and other TAS utilties and editors, etc; before documenting, create a NEW branch for movie file/TAS efforts before you do the work and then after the work is done, if everything has been migrated you get rid of the other branches once you've got everything from them; continue;
 
+Continue working on TAS/movie but do not overwrite changes we made for pansy or modernization or whatever; merge the changes in, do not overwrite; or jusat don't even merge but instead make issues and re-implement everything using these branches as references only; that's probably better; make changes and make files only because you're making deliberate decisions and adding code and docs; continue;
+
+VSCode froze and died, so continue working on the last prompts: Continue working on TAS/movie but do not overwrite changes we made for pansy or modernization or whatever; merge the changes in, do not overwrite; or jusat don't even merge but instead make issues and re-implement everything using these branches as references only; that's probably better; make changes and make files only because you're making deliberate decisions and adding code and docs; continue;
+
+[Nexen] for reference, if you can't find our previous conversation (5 minutes ago) then use github issue #132 as a basis and continue;
+
+[Nexen] use the most modern dotnet 10 and most modern libraries, and standards, and practices, and make sure the input file holds and represents a good version of all the other emulator's movie file formats; continue;
+
+[Nexen] git commit everything!; the file `C:\Users\me\source\repos\Nexen\MovieConverter\README.md` says the license is GPL, but the license is not GPL, the code from the base project Mesen2 is GPL, all of my code is under the The Unlicense because I don't give a shit about copyright and public domain everything so update all spots that talk about licenses; continue TAS work, especially the editing UI; continue; and then work on performance of the dotnet projects and make benchmarks (and issues) and modernize this solution; continue; [Nexen] Do the "What's Next?" tasks: Add VBM converter (VisualBoyAdvance); Add GMV converter (Gens/Genesis); Add unit tests for converters; Integrate MovieConverter into main Nexen solution; continue; 
+
+Do the "what's next?" tasks, making and updating issues, todos, docs, plans, logs, gits, etc: Enhance functionality - Add playback controls, copy/paste frames, undo/redo; Multi-system support - SNES/GB controller layouts; Playback integration - Connect to emulation for frame advance/rewind; continue;
+
+[Nexen] work on issues 143-147 and try to finish them, and create and update documentation like crazy, we need by the end of this effort documentation that describes and outlines the steps (instruction manual!) to use TAS movie recording/editing/playback and link that into the main project `README.md`; continue;
+
+[Nexen] Add a bunch of Tests and preformance Benchmarks for the TAS movie effort, we want good code coverage for both (tests and benchmarks) and we want to especially test different code approaches in the hot paths; and make sure our movie editing tools are comparable to other emulators and TAS tools; continue;
+
+[Nexen] I am seeing the error/warning `MD010 - Hard tabs` where you can't have tabs, in markdown files, this is nonsense, so mark this rule as none and in fact ALWAYS USE TABS FOR INDENTATION NOT SPACES even in markdown files, don't yell at me about it, we use tabs, not spaces; continue; work on TAS movie stuff and clean everything up and update docs and issues and todos and chat/session logs, and continue implementing issues, including the TAS/LUA integration; continue; 
+
+[Nexen] Fix all the markdownlinter errors/warnings like MD032, MD060, etc. (although again MD010 is anathema to our philosophy, so ignore that one, in fact format space indentation as tabs indentation) format all the `*.md` files, just go methodically file by file to fix everything unless you can run tools to fix all these issues in batches, run clean up tools and formatting for the markdown files; and then continue;
 
 
 
