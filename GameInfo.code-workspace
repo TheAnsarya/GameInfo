@@ -53,6 +53,12 @@
 		},
 		{
 			"path": "../Nexen"
+		},
+		{
+			"path": "../HashNow"
+		},
+		{
+			"path": "../StreamHash"
 		}
 	],
 	"settings": {
