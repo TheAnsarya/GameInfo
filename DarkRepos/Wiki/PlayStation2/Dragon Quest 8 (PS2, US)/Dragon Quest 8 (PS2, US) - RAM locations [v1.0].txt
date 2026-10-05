@@ -1,0 +1,159 @@
+
+
+
+
+
+
++--------------------------------------------------------------------+
+
+$00409830 - $0040983f - 16 bytes ?????? - Hero's Name (one byte per letter, will be auto-capitalized, must end in $00)
+
+Roric = 52 6f 72 69 63 00 00 00 00 00 00...
+
+See text table.
+
+
+$00409840 - $00409843 - 4 bytes - Gold
+
+
+
++--------------------------------------------------------------------+
+
+
+$00409870 - $00409873 - 4 bytes - Hero - Max HP
+$00409874 - $00409877 - 4 bytes - Hero - Current HP
+$00409878 - $0040987b - 4 bytes - Hero - Max MP
+$0040987c - $0040987f - 4 bytes - Hero - Current MP
+
+$004098a0 - $004098a1 - 2 bytes - Hero - Strength
+$004098a2 - $004098a3 - 2 bytes - Hero - Agility
+$004098a4 - $004098a5 - 2 bytes - Hero - Resilience
+$004098a6 - $004098a7 - 2 bytes - Hero - Wisdom
+$00 - $00 - Hero - Attack
+$00 - $00 - Hero - Defense
+
+$00409888 - $0040988b - 4 bytes - Hero - Experience
+
+
+$004098aa - $004098ab - 2 bytes - Hero - Skills - Swords
+$004098ac - $004098ad - 2 bytes - Hero - Skills - Spears
+$004098ae - $004098af - 2 bytes - Hero - Skills - Boomerangs
+$004098b0 - $004098b1 - 2 bytes - Hero - Skills - Fisticuffs
+$004098b2 - $004098b3 - 2 bytes - Hero - Skills - Courage
+
+
++--------------------------------------------------------------------+
+
+
+$004098d8 - $004098db - 4 bytes - Yangus - Max HP
+$004098dc - $004098df - 4 bytes - Yangus - Current HP
+$004098e0 - $004098e3 - 4 bytes - Yangus - Max MP
+$004098e4 - $004098e7 - 4 bytes - Yangus - Current MP
+
+$00409908 - $00409909 - 2 bytes - Yangus - Strength
+$0040990a - $0040990b - 2 bytes - Yangus - Agility
+$0040990c - $0040990d - 2 bytes - Yangus - Resilience
+$0040990e - $0040990f - 2 bytes - Yangus - Wisdom
+$00 - $00 - Yangus - Attack
+$00 - $00 - Yangus - Defense
+
+$004098f0 - $004098f3 - 4 bytes - Yangus - Experience
+
+
+$00409912 - $00409913 - 2 bytes - Yangus - Skills - Axes
+$00409914 - $00409915 - 2 bytes - Yangus - Skills - Clubs
+$00409916 - $00409917 - 2 bytes - Yangus - Skills - Scythes
+$00409918 - $00409919 - 2 bytes - Yangus - Skills - Fisticuffs
+$0040991a - $0040991b - 2 bytes - Yangus - Skills - Humanity
+
+
++--------------------------------------------------------------------+
+
+
+$00409940 - $00409943 - 4 bytes - Jessica - Max HP
+$00409944 - $00409947 - 4 bytes - Jessica - Current HP
+$00409948 - $0040994b - 4 bytes - Jessica - Max MP
+$0040994c - $0040994f - 4 bytes - Jessica - Current MP
+
+$00409970 - $00409971 - 2 bytes - Jessica - Strength
+$00409972 - $00409973 - 2 bytes - Jessica - Agility
+$00409974 - $00409975 - 2 bytes - Jessica - Resilience
+$00409976 - $00409977 - 2 bytes - Jessica - Wisdom
+$00 - $00 - Jessica - Attack
+$00 - $00 - Jessica - Defense
+
+$00409958 - $0040995b - 4 bytes - Jessica - Experience
+
+
+$0040997a - $0040997b - 2 bytes - Jessica - Skills - Knives
+$0040997c - $0040997d - 2 bytes - Jessica - Skills - Whips
+$0040997e - $0040997f - 2 bytes - Jessica - Skills - Staves
+$00409980 - $00409981 - 2 bytes - Jessica - Skills - Fisticuffs
+$00409982 - $00409983 - 2 bytes - Jessica - Skills - Sex Appeal
+
+
++--------------------------------------------------------------------+
+
+
+$004099a8 - $004099ab - 4 bytes - Angelo - Max HP
+$004099ac - $004099af - 4 bytes - Angelo - Current HP
+$004099b0 - $004099b3 - 4 bytes - Angelo - Max MP
+$004099b4 - $004099b7 - 4 bytes - Angelo - Current MP
+
+$004099d8 - $004099d9 - 2 bytes - Angelo - Strength
+$004099da - $004099db - 2 bytes - Angelo - Agility
+$004099dc - $004099dd - 2 bytes - Angelo - Resilience
+$004099de - $004099df - 2 bytes - Angelo - Wisdom
+$00 - $00 - Angelo - Attack
+$00 - $00 - Angelo - Defense
+
+$004099c0 - $004099c3 - 4 bytes - Angelo - Experience
+
+
+$004099e2 - $004099e3 - 2 bytes - Angelo - Skills - Swords
+$004099e4 - $004099e5 - 2 bytes - Angelo - Skills - Bows
+$004099e6 - $004099e7 - 2 bytes - Angelo - Skills - Staves
+$004099e8 - $004099e9 - 2 bytes - Angelo - Skills - Fisticuffs
+$004099ea - $004099eb - 2 bytes - Angelo - Skills - Charisma
+
+
+
+
++--------------------------------------------------------------------+
+
++--------------------------------------------------------------------+
+
++--------------------------------------------------------------------+
+
++--------------------------------------------------------------------+
+
+
+
+
+
+
+
+01fe01b3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

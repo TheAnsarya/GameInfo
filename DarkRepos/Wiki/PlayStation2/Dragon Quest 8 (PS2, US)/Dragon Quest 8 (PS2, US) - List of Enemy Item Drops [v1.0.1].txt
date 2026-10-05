@@ -1,0 +1,1238 @@
+
++--------------------------------------------------------------------+
+|                                                                    |
+|                           Dragon Quest 8                           |
+|                         Playstation 2, US                          |
+|                          Code: SLUS-21207                          |
+|                           CRC: F4715852                            |
+|                                                                    |
+|                   List of Enemy Item Drops [v1.0.1]                |
+|                             2026-10-04                             |
+|                                                                    |
+|                by: Ansarya / Wayness / Andy Hubbard                |
+|                                                                    |
++--------------------------------------------------------------------+
+|                                                                    |
+| This is a list of all enemies according to the Battle Log's        |
+|  Defeated Monster List with every monster's number, name and       |
+|  common/rare item drops.                                           |
+|                                                                    |
+| Quest items are not included because they are not listed in the    |
+|  Battle Log's lists in-game.                                       |
+|                                                                    |
+| Most monsters have a common drop and a rare drop. Some have only   |
+|  one item drop (usually enemies you only fight once, like bosses). |
+|  And some late game monsters have no item drops at all, aside from |
+|  quest items.                                                      |
+|                                                                    |
+| Every search, guide, and AI answer was totally wrong so I made     |
+|  a handmade list by playing the game and defeating every enemy     |
+|  until I had both the rare and common drops. Values come from      |
+|  playthrough, not the data on the disc, yet.                       |
+|                                                                    |
++--------------------------------------------------------------------+
+|                                                                    |
+| Number of monsters: 295                                            |
+|                                                                    |
++--------------------------------------------------------------------+
+|                                                                    |
+| In order to expedite item drop collection, I used the PCSX2 cheat  |
+|  code file `\PCSX2\cheats\SLUS-21207_F4715852.pnach` that makes    |
+|  monsters always drop an item, 50% rare/50% common. This cheat     |
+|  didn't change the items or anything because all drops and enemies |
+|  match the info from `https://dragonquest.fandom.com/` and other   |
+|  sources.                                                          |
+|                                                                    |
+| The cheat file has the following contents:                         |
+|                                                                    |
++--------------------------------------------------------------------+
+```
+gametitle=Dragon Quest VIII: Journey of the Cursed King (USA) (Greatest Hits)
+
+[50/50 Chance Of Normal Or Rare Drop]
+author=Action Replay
+description=Always drops an item per group. 50% chance for Normal, 50% chance for Rare.
+patch=1,EE,20296FAC,extended,0C04D0FE
+patch=1,EE,20296FB0,extended,00000000
+patch=1,EE,20296FB4,extended,30420001
+patch=1,EE,20296FB8,extended,00021040
+patch=1,EE,20296FBC,extended,02221021
+patch=1,EE,20296FC0,extended,1000002A
+patch=1,EE,20296FC4,extended,94420048
+```
++--------------------------------------------------------------------+
+
+███    ███  ██████  ███    ██  ███████ ████████ ███████ ██████  ██████
+████  ████ ██    ██ ████   ██ ██          ██    ██      ██   ██ ██
+██ ████ ██ ██    ██ ██ ██  ██ ███████     ██    █████   ██████  ███████
+██  ██  ██ ██    ██ ██  ██ ██      ██     ██    ██      ██   ██      ██
+██      ██  ██████  ██   ████ ███████     ██    ███████ ██   ██ ███████
+
+   █
+   █
+███████
+   █
+   █
+
+██████  ████████ ███████ ███    ███  ██████
+  ██       ██    ██      ████  ████ ██
+  ██       ██    █████   ██ ████ ██ ███████
+  ██       ██    ██      ██  ██  ██      ██
+██████     ██    ███████ ██      ██ ███████
+
+
+Monsters and their dropped items:
+
++--------------------------------------------------------------------+
+
+#001 Slime
+Common Drop: Medicinal herb
+Rare Drop: Amor seco essence
+
+#002 Candy cat
+Common Drop: Medicinal herb
+Rare Drop: Bandit's grass skirt
+
+#003 Lips
+Common Drop: Medicinal herb
+Rare Drop: Moonwort bulb
+
+#004 Dracky
+Common Drop: Medicinal herb
+Rare Drop: Chimaera wing
+
+#005 Satyr
+Common Drop: Plain clothes
+Rare Drop: Wayfarer's clothes
+
+#006 Capsichum
+Common Drop: Cypress stick
+Rare Drop: Copper sword
+
+#007 Bunicorn
+Common Drop: Leather hat
+Rare Drop: Bunny tail
+
+#008 She-slime
+Common Drop: Medicinal herb
+Rare Drop: Slime earrings
+
+#009 Firespirit
+Common Drop: Holy water
+Rare Drop: Amor seco essence
+
+#010 Mischievous mole
+Common Drop: Medicinal herb
+Rare Drop: Oaken club
+
+#011 Mecha-mynah
+Common Drop: Pot lid
+Rare Drop: Chimaera wing
+
+#012 Bubble slime
+Common Drop: Antidotal herb
+Rare Drop: Moonwort bulb
+
+#013 Dancing devil
+Common Drop: Chimaera wing
+Rare Drop: Boxer shorts
+
+#014 Bodkin archer
+Common Drop: Bandana
+Rare Drop: Plain cheese
+
+#015 Skipper
+Common Drop: Medicinal herb
+Rare Drop: Bunny tail
+
+#016 Drackmage
+Common Drop: Medicinal herb
+Rare Drop: Chimaera wing
+
+#017 Beetleboy
+Common Drop: Medicinal herb
+Rare Drop: Leather hat
+
+#018 Imp
+Common Drop: Chimaera wing
+Rare Drop: Cool cheese
+
+#019 Funghoul
+Common Drop: Antidotal herb
+Rare Drop: Plain cheese
+
+#020 Fencing fox
+Common Drop: Wayfarer's clothes
+Rare Drop: Gold bracer
+
+#021 Healslime
+Common Drop: Medicinal herb
+Rare Drop: Amor seco essence
+
+#022 Hammerhood
+Common Drop: Oaken club
+Rare Drop: Giant mallet
+
+#023 Jailcat
+Common Drop: Bandana
+Rare Drop: Plain cheese
+
+#024 Frogface
+Common Drop: Medicinal herb
+Rare Drop: Amor seco essence
+
+#025 Lump mage
+Common Drop: Cypress stick
+Rare Drop: Wizard's staff
+
+#026 Winky
+Common Drop: Holy water
+Rare Drop: Magic water
+
+#027 Spiked hare
+Common Drop: Medicinal herb
+Rare Drop: Bunny tail
+
+#028 Chainine
+Common Drop: Medicinal herb
+Rare Drop: Gold bracer
+
+#029 Giant moth 
+Common Drop: Rennet powder
+Rare Drop: Red mould
+
+#030 Dingaling
+Common Drop: Hairband
+Rare Drop: Gold bracer
+
+#031 Jargon
+Common Drop: Rennet powder
+Rare Drop: Fresh milk
+
+#032 Drackyma
+Common Drop: Moonwort bulb
+Rare Drop: Wing of bat
+
+#033 Bullfinch
+Common Drop: Cowpat
+Rare Drop: Magic beast hide
+
+#034 Bag o' laughs
+Common Drop: Plain clothes
+Rare Drop: Hairband
+
+#035 Skeleton
+Common Drop: Soldier's sword
+Rare Drop: Templar's uniform
+
+#036 Metal slime
+Common Drop: Seed of defence
+Rare Drop: Seed of agility
+
+#037 Scorpion
+Common Drop: Antidotal herb
+Rare Drop: Iron lance
+
+#038 Morphean mushroom
+Common Drop: Red mould
+Rare Drop: Plain cheese
+
+#039 Brownie
+Common Drop: Medicinal herb
+Rare Drop: Giant mallet
+
+#040 Flyguy
+Common Drop: Cowpat
+Rare Drop: Plain cheese
+
+#041 Puppeteer
+Common Drop: Silk robe
+Rare Drop: Slime earrings
+
+#042 Bodkin bowyer
+Common Drop: Silk robe
+Rare Drop: Short bow
+
+#043 Night sneaker
+Common Drop: Moonwort bulb
+Rare Drop: Bunny tail
+
+#044 Mummy boy
+Common Drop: Bandana
+Rare Drop: Turban
+
+#045 Hell hornet
+Common Drop:  Moonwort bulb
+Rare Drop: Poison moth knife
+
+#046 Pan piper
+Common Drop: Medicinal herb
+Rare Drop: Leather kilt
+
+#047 Slime knight
+Common Drop: Slime earrings
+Rare Drop: Templar's shield
+
+#048 Clockwork cuckoo
+Common Drop: Iron nail
+Rare Drop: Dagger
+
+#049 Treeface
+Common Drop: Medicinal herb
+Rare Drop: Strong medicine
+
+#050 Kisser
+Common Drop: Waterweed mould
+Rare Drop: Red mould
+
+#051 Diemon
+Common Drop: Chimaera wing
+Rare Drop: Magic beast hide
+
+#052 Walking corpse
+Common Drop: Antidotal herb
+Rare Drop: Chain mail
+
+#053 Fat bat
+Common Drop: Wing of bat
+Rare Drop: Magic beast hide
+
+#054 Night fox
+Common Drop: Rapier
+Rare Drop: Feathered cap
+
+#055 Paprikan
+Common Drop: Red mould
+Rare Drop: Rapier
+
+#056 Chimaera
+Common Drop: Chimaera wing
+Rare Drop: Hairband
+
+#057 Hood
+Common Drop: Stone axe
+Rare Drop: Leather cape
+
+#058 Headhunter
+Common Drop: Medicinal herb
+Rare Drop: Scale shield
+
+#059 Minidemon
+Common Drop: Wing of bat
+Rare Drop: Rockbomb shard
+
+#060 Gorerilla
+Common Drop: Magic beast hide
+Rare Drop: Giant mallet
+
+#061 Mud mannequin
+Common Drop: Rock salt
+Rare Drop: Cypress stick
+
+#062 Cannibox
+Common Drop: Iron nail
+Rare Drop: Pot lid
+
+#063 Goodybag
+Common Drop: Gold bracer
+Rare Drop: Prayer ring
+
+#064 Witch
+Common Drop: Wizard's staff
+Rare Drop: Garter
+
+#065 Mummy
+Common Drop: Turban
+Rare Drop: Scholar's specs
+
+#066 Cureslime
+Common Drop: Medicinal herb
+Rare Drop: Moon's mercy
+
+#067 Restless armour
+Common Drop: Iron shield
+Rare Drop: Iron armour
+
+#068 Lost soul
+Common Drop: Holy water
+Rare Drop: Magic water
+
+#069 Phantom fencer
+Common Drop: Leather cape
+Rare Drop: Templar's sword
+
+#070 Hipster
+Common Drop: Red mould
+Rare Drop: Wing of bat
+
+#071 Rockbomb
+Common Drop: Rock salt
+Rare Drop: Rockbomb shard
+
+#072 Dieablo
+Common Drop: Gold bracer
+Rare Drop: Gold ring
+
+#073 Muddy hand
+Common Drop: Medicinal herb
+Rare Drop: Strength ring
+
+#074 Terror tabby
+Common Drop: Leather whip
+Rare Drop: Turban
+
+#075 Devilmoth
+Common Drop: Antidotal herb
+Rare Drop: Rennet powder
+
+#076 Buffalo wing
+Common Drop: Cowpat
+Rare Drop: Fresh milk
+
+#077 Mumboh-jumboe
+Common Drop: Plain cheese
+Rare Drop: Seed of life
+
+#078 Mum
+Common Drop: Plain cheese
+Rare Drop: Leather armour
+
+#079 Boh
+Common Drop: Plain cheese
+Rare Drop: Turtle shell
+
+#080 Jum
+Common Drop: Plain cheese
+Rare Drop: Copper sword
+
+#081 Boe
+Common Drop: Plain cheese
+Rare Drop: Steel broadsword
+
+#082 Hunter mech
+Common Drop: Hunter's bow
+Rare Drop: Steel broadsword
+
+#083 Pink pongo
+Common Drop: Giant mallet
+Rare Drop: Magic beast hide
+
+#084 Liquid metal slime
+Common Drop: Seed of agility
+Rare Drop: Elevating shoes
+
+#085 Mad mole
+Common Drop: Medicial herb
+Rare Drop: Stone hardhat
+
+#086 Wailin' weed
+Common Drop: Red mould
+Rare Drop: Coral hairpin
+
+#087 Garuda
+Common Drop: Hairband
+Rare Drop: Poison moth knife
+
+#088 Infernal armour
+Common Drop: Iron armour
+Rare Drop: Steel broadsword
+
+#089 Dragonthorn
+Common Drop: Medicinal herb
+Rare Drop: Thorn whip
+
+#090 Mars rover
+Common Drop: Iron cuirass
+Rare Drop: Chain whip
+
+#091 Peeper
+Common Drop: Holy water
+Rare Drop: Magic water
+
+#092 Cockateer
+Common Drop: Stone hardhat
+Rare Drop: Titan belt
+
+#093 Great sabrecat
+Common Drop: Medicinal herb
+Rare Drop: Magic beast hide
+
+#094 Metal Slime knight
+Common Drop: Slime earrings
+Rare Drop: Kitty shield
+
+#095 Puppet player
+Common Drop: Medicinal herb
+Rare Drop: Scholar's specs
+
+#096 Spitnik
+Common Drop: Boomerang
+Rare Drop: Moon's mercy
+
+#097 Bodkin fletcher
+Common Drop: Antidotal herb
+Rare Drop: Hunter's bow
+
+#098 Venom wasp
+Common Drop: Moonwort bulb
+Rare Drop: Poison needle
+
+#099 Orc
+Common Drop: Medicinal herb
+Rare Drop: Iron lance
+
+#100 Night emperor
+Common Drop: Wing of bat
+Rare Drop: Gold ring
+
+#101 Treevil
+Common Drop: Strong medicine
+Rare Drop: Yggdrasil leaf
+
+#102 Battle beetle
+Common Drop: Templar's shield
+Rare Drop: Iron helmet
+
+#103 Lump shaman
+Common Drop: Red mould
+Rare Drop: Wizard's staff
+
+#104 Skeleton soldier
+Common Drop: Titan belt
+Rare Drop: Steel broadsword
+
+#105 Hawk man
+Common Drop: Chimaera wing
+Rare Drop: Copper sword
+
+#106 Tap devil
+Common Drop: Leather cape
+Rare Drop: Devil's tail
+
+#107 Mushroom mage
+Common Drop: Red mould
+Rare Drop: Waterweed mould
+
+#108 Redtail hipster
+Common Drop: Wing of bat
+Rare Drop: Thorn whip
+
+#109 Jumping jackal
+Common Drop: Magic beast hide
+Rare Drop: Assassin's dagger
+
+#110 Gold golem
+Common Drop: Gold bracer
+Rare Drop: Gold ring
+
+#111 King slime
+Common Drop: Slime earrings
+Rare Drop: Slime crown
+
+#112 Iron scorpion
+Common Drop: Iron nail
+Rare Drop: Farmer's scythe
+
+#113 Toxic zombie
+Common Drop: Antidotal herb
+Rare Drop: Wayfarer's clothes
+
+#114 Lesser demon
+Common Drop: Red mould
+Rare Drop: Gold bracer
+
+#115 Volpone
+Common Drop: Leather cape
+Rare Drop: Templar's sword
+
+#116 Bomboulder
+Common Drop: Stone hardhat
+Rare Drop: Rockbomb shard
+
+#117 Skullrider
+Common Drop: Medicinal herb
+Rare Drop: Bandana
+
+#118 Hades condor
+Common Drop: Strong medicine
+Rare Drop: Eagle dagger
+
+#119 Frogman
+Common Drop: Waterweed mould
+Rare Drop: Cool cheese
+
+#120 Mimic
+Common Drop: Iron nail
+Rare Drop: Seed of strength
+
+#121 Magic dumbbell
+Common Drop: Red mould
+Rare Drop: Rapier
+
+#122 Gargoyle
+Common Drop: Strong medicine
+Rare Drop: Steel broadsword
+
+#123 Magic marionette
+Common Drop:  Iron nail
+Rare Drop: Slime earrings
+
+#124 Natso macho
+Common Drop: Medicinal herb
+Rare Drop: Gold bracer
+
+#125 Lump wizard
+Common Drop: Holy water
+Rare Drop: Wizard's staff
+
+#126 Berserker
+Common Drop: Kitty shield
+Rare Drop: Iron axe
+
+#127 Bulldozer
+Common Drop: Cowpat
+Rare Drop: Plain cheese
+
+#128 Ghoul
+Common Drop: Antidotal herb
+Rare Drop: Gold ring
+
+#129 Shade
+Common Drop: Rennet powder
+Rare Drop: Wing of bat
+
+#130 Lethal armour
+Common Drop: Soldier's sword
+Rare Drop: Heavy armour
+
+#131 King cureslime
+Common Drop: Amor seco essence
+Rare Drop: Yggdrasil dew
+
+#132 Hoodlum
+Common Drop: Tough guy tattoo
+Rare Drop: Iron axe
+
+#133 Hocus chimaera
+Common Drop: Chimaera wing
+Rare Drop: Magic water
+
+#134 Demonrider
+Common Drop: Copper sword
+Rare Drop: Cool cheese
+
+#135 Killer moth
+Common Drop: Rennet powder
+Rare Drop: Antidotal herb
+
+#136 Jabberwockee
+Common Drop: Special medicine
+Rare Drop: Steel broadsword
+
+#137 Jab
+Common Drop: Moonwort bulb
+Rare Drop: Iron helmet
+
+#138 Ber
+Common Drop: Rock salt
+Rare Drop: Iron armour
+
+#139 Kee
+Common Drop: Antidotal herb
+Rare Drop: Steel broadsword
+
+#140 Woc
+Common Drop: Medicinal herb
+Rare Drop: Iron shield
+
+#141 Silenus
+Common Drop: Magic beast hide
+Rare Drop: Fur hood
+
+#142 Robo-robin
+Common Drop: Iron nail
+Rare Drop: Iron cuirass
+
+#143 Puppet master
+Common Drop: Chimaera wing
+Rare Drop: Dancer's costume
+
+#144 Death scorpion
+Common Drop: Antidotal herb
+Rare Drop: Poison needle
+
+#145 Jackal ripper
+Common Drop: Titan belt
+Rare Drop: Assassin's dagger
+
+#146 Iron rhino
+Common Drop: Farmer's scythe
+Rare Drop: Iron helmet
+
+#147 Dancing flame
+Common Drop: Bandit's grass skirt
+Rare Drop: Spicy cheese
+
+#148 Blood mummy
+Common Drop: Bandana
+Rare Drop: Red mould
+
+#149 Phantom swordsman
+Common Drop: Amor seco essence
+Rare Drop: Magic water
+
+#150 Hacksaurus
+Common Drop: Dragon scale
+Rare Drop: Dragon dung
+
+#151 Bone baron
+Common Drop: Iron shield
+Rare Drop: Holy lance
+
+#152 Swingin' hipster
+Common Drop: Medicinal herb
+Rare Drop: Spangled dress
+
+#153 Orc king
+Common Drop: Magic beast hide
+Rare Drop: Long spear
+
+#154 Soulspawn
+Common Drop: Moonwort bulb
+Rare Drop: Elfin elixir
+
+#155 Gryphon
+Common Drop: Chimaera wing
+Rare Drop: Razor wing boomerang
+
+#156 Golem
+Common Drop: Rennet powder
+Rare Drop: Titan belt
+
+#157 Fallen priest
+Common Drop: Magic vestment
+Rare Drop: Steel scythe
+
+#158 Dead ringer
+Common Drop: Chilly cheese
+Rare Drop: Scholar's specs
+
+#159 Living statue
+Common Drop: Stone hardhat
+Rare Drop: Ruby of protection
+
+#160 Freeze fly
+Common Drop: Cowpat
+Rare Drop: Dragon dung
+
+#161 Dark slime
+Common Drop: Medicinal herb
+Rare Drop: Magical hat
+
+#162 Frostburn
+Common Drop: Magic water
+Rare Drop: Chilly cheese
+
+#163 Hellhound
+Common Drop: Medicinal herb
+Rare Drop: Magic beast hide
+
+#164 Troll
+Common Drop: Tough guy tattoo
+Rare Drop: Sledgehammer
+
+#165 Ice queen
+Common Drop: Fishnet stockings
+Rare Drop: Staff of divine wrath
+
+#166 Abominape
+Common Drop: Giant mallet
+Rare Drop: Chilly cheese
+
+#167 Beelzebuzz
+Common Drop: Cowpat
+Rare Drop: Dragon dung
+
+#168 Killing machine
+Common Drop: Iron cuirass
+Rare Drop: Steel broadsword
+
+#169 Icikiller
+Common Drop: Titan belt
+Rare Drop: Poison moth knife
+
+#170 Shadow
+Common Drop: Bronze knife
+Rare Drop: Iron mask
+
+#171 Metal king slimne
+Common Drop: Slime crown
+Rare Drop: Orichalcum
+
+#172 Frost wyvine
+Common Drop: Dragon scale
+Rare Drop: Chain whip
+
+#173 Elysium bird
+Common Drop: Eagle dagger
+Rare Drop: Ruby of protection
+
+#174 Dragurn
+Common Drop: Dragon dung
+Rare Drop: Dragon scale
+
+#175 Smacker
+Common Drop: Moonwort bulb
+Rare Drop: Waterweed mould
+
+#176 Zombie gladiator
+Common Drop: Battle-axe
+Rare Drop: Steel broadsword
+
+#177 Stone golem
+Common Drop: Strong medicine
+Rare Drop: Rockbomb shard
+
+#178 Dark condor
+Common Drop: Chimaera wing
+Rare Drop: Wing of bat
+
+#179 Mucho macho
+Common Drop: Strong medicine
+Rare Drop: Magical hat
+
+#180 Dark skeleton
+Common Drop: Moonwort bulb
+Rare Drop: Bronze shield
+
+#181 Dark macarbour
+Common Drop: Strong medicine
+Rare Drop: Yggdrasil leaf
+
+#182 Tyrantosaurus
+Common Drop: Dragon scale
+Rare Drop: Iron axe
+
+#183 Demon thunderer
+Common Drop: Devil's tail
+Rare Drop: Wizard's staff
+
+#184 Dark star
+Common Drop: Medicinal herb
+Rare Drop: Edged boomerang
+
+#185 Dark minister
+Common Drop: Leather cape
+Rare Drop: Saint's ashes
+
+#186 Grim rider
+Common Drop: Holy lance
+Rare Drop: Magical hat
+
+#187 Dark sea-diva
+Common Drop: Waterweed mould
+Rare Drop: Leather cape
+
+#188 War gryphon
+Common Drop: Chimaera wing
+Rare Drop: Spicy cheese
+
+#189 Dark turkey
+Common Drop: Garter
+Rare Drop: Dream blade
+
+#190 Heligator
+Common Drop: Hairband
+Rare Drop: Scale armour
+
+#191 Dark dullahan
+Common Drop: Antidotal herb
+Rare Drop: Zombie mail
+
+#192 Killer croaker
+Common Drop: Waterweed mould
+Rare Drop: Bandana
+
+#193 High roller
+Common Drop: Leather hat
+Rare Drop: Prayer ring
+
+#194 Darkodile
+Common Drop: Hairband
+Rare Drop: Scale armour
+
+#195 Cyclops
+Common Drop: Amor seco essence
+Rare Drop: Giant mallet
+
+#196 Bloody hand
+Common Drop: Medicinal herb
+Rare Drop: Gold ring
+
+#197 Snapdragon
+Common Drop: Thorn whip
+Rare Drop: Spiked steel whip
+
+#198 Buffalogre
+Common Drop: Red mould
+Rare Drop: Iron cuirass
+
+#199 Mohawker
+Common Drop: Waterweed mould
+Rare Drop: Iron shield
+
+#200 Archdemon
+Common Drop: Rockbomb shard
+Rare Drop: Battle fork
+
+#201 Bobonga
+Common Drop: Dragon dung
+Rare Drop: Fresh milk
+
+#202 Caped caperer
+Common Drop: Boxer shorts
+Rare Drop: Devil's tail
+
+#203 Claws
+Common Drop: Iron helmet
+Rare Drop: Assassin's dagger
+
+#204 Boss troll
+Common Drop: Special medicine
+Rare Drop: Premium mould
+
+#205 Mimic king
+Common Drop: Iron nail
+Rare Drop: Seed of wisdom
+
+#206 Fowlfighter
+Common Drop: Garter
+Rare Drop: Bastard sword
+
+#207 Dullahan
+Common Drop: Leather cape
+Rare Drop: Steel shield
+
+#208 Gigantes
+Common Drop: Amor seco essence
+Rare Drop: Elfin elixir
+
+#209 Frou-frou
+Common Drop: Magic beast hide
+Rare Drop: Dragon scale
+
+#210 Stone guardian
+Common Drop: Rock salt
+Rare Drop: Mighty armlet
+
+#211 Wight priest
+Common Drop: Magic vestment
+Rare Drop: Rune staff
+
+#212 Hell gladiator
+Common Drop: Hades' helm
+Rare Drop: Platinum sword
+
+#213 Dark moth
+Common Drop: Rennet powder
+Rare Drop: Saint's ashes
+
+#214 Dark gryphon
+Common Drop: Bunny tail
+Rare Drop: Saint's ashes
+
+#215 Dark sabrecat
+Common Drop: Leather hat
+Rare Drop: Saint's ashes
+
+#216 Hell hopper
+Common Drop: Moon's mercy
+Rare Drop: Elevating shoes
+
+#217 Dark devildog
+Common Drop: Iron headgear
+Rare Drop: Life bracer
+
+#218 Heavy hood
+Common Drop: Velvet cape
+Rare Drop: Pirate's hat
+
+#219 Hellstalker
+Common Drop: Magic water
+Rare Drop: Demon whip
+
+#220 Silhouette
+Common Drop: Rennet powder
+Rare Drop: Saint's ashes
+
+#221 Democrobot
+Common Drop: Seed of magic
+Rare Drop: Gold nugget
+
+#222 Head of state
+Common Drop: Soft cheese
+Rare Drop: Thinking cap
+
+#223 Body politic
+Common Drop: Hard cheese
+Rare Drop: Magic armour
+
+#224 Right wing
+Common Drop: Chunky cheese
+Rare Drop: Bastard sword
+
+#225 Left wing
+Common Drop: Highly-strung cheese
+Rare Drop: Power shield
+
+#226 Pandora's box
+Common Drop: Recovery ring
+Rare Drop: Orichalcum
+
+#227 Wight king
+Common Drop: Saint's ashes
+Rare Drop: Skull ring
+
+#228 Invisible swordsman
+Common Drop: Dark robe
+Rare Drop: Rusty old sword
+
+#229 Hellspawn
+Common Drop: Nook grass
+Rare Drop: Cloak of evasion
+
+#230 Belial
+Common Drop: Tough guy tattoo
+Rare Drop: Battle fork
+
+#231 Solaris
+Common Drop: Moonwort bulb
+Rare Drop: Seed of skill
+
+#232 Great troll
+Common Drop: Medicinal herb
+Rare Drop: Seed of skill
+
+#233 Unholy bishop
+Common Drop: Spangaled dress
+Rare Drop: Velvet cape
+
+#234 Hell's gatekeeper
+Common Drop: Platinum mail
+Rare Drop: Ruinous shield
+
+#235 Crocodog
+Common Drop: Leather shield
+Rare Drop: Seed of skill
+
+#236 Khalamari kid
+Common Drop: Waterweed mould
+Rare Drop: Oaken club
+
+#237 See urchin
+Common Drop: Medicinal herb
+Rare Drop: Bandit's grass skirt
+
+#238 Man o' war
+Common Drop: Moonwort bulb
+Rare Drop: Plain cheese
+
+#239 Yabby
+Common Drop: Boomerang
+Rare Drop: Scale shield
+
+#240 King kelp
+Common Drop: Waterweed mould
+Rare Drop: Coral hairpin
+
+#241 Wild boarfish
+Common Drop: Antidotal herb
+Rare Drop: Scale shield
+
+#242 Anchorman
+Common Drop: Tough guy tattoo
+Rare Drop: Assassin's dagger
+
+#243 See angel
+Common Drop: Armor seco essence
+Rare Drop: Bunny tail
+
+#244 Squid kid
+Common Drop: Pointy hat
+Rare Drop: Dancer's costume
+
+#245 Crayzee
+Common Drop: Edged boomerang
+Rare Drop: Turtle shell
+
+#246 Eveel
+Common Drop: Antidotal herb
+Rare Drop: Snakeskin whip
+
+#247 Merman
+Common Drop: Medicinal herb
+Rare Drop: Scale armour
+
+#248 King squid
+Common Drop: Leather whip
+Rare Drop: Strong medicine
+
+#249 Octavian sentry
+Common Drop: Iron helmet
+Rare Drop: Long spear
+
+#250 Pigmalion
+Common Drop: Antidotal herb
+Rare Drop: Waterweed mould
+
+#251 Sea dragon
+Common Drop: Dragon scale
+Rare Drop: Scholar's specs
+
+#252 Foul anchor
+Common Drop: Iron lance
+Rare Drop: Farmer's scythe
+
+#253 Poison eveel
+Common Drop: Medicinal herb
+Rare Drop: Snakeskin whip
+
+#254 Siren
+Common Drop: Coral hairpin
+Rare Drop: Wizard's staff
+
+#255 Merking
+Common Drop: Antidotal herb
+Rare Drop: Medicinal herb
+
+#256 Seasaur
+Common Drop: Dragon scale
+Rare Drop: Mecury's bandana
+
+#257 Octavian pirate
+Common Drop: Iron shield
+Rare Drop: Iron lance
+
+#258 Riptide
+Common Drop: Dagger
+Rare Drop: Scale armour
+
+#259 Tentacular
+Common Drop: Medicinal herb
+Rare Drop: Full moon ring
+
+#260 Abyss diver
+Common Drop: Waterweed mould
+Rare Drop: Spicy cheese
+
+#261 Geyzer
+Only Drop: Seed of strength
+
+#262 Khalamari
+Only Drop: Gold bracer
+
+#263 Tortured soul
+Only Drop: Gold rosary
+
+#264 Trap box
+Only Drop: Venus' tear
+
+#265 Don mole
+***No drops***
+
+#266 Soul mole
+***No drops***
+
+#267 Argon lizard
+Only Drop: Argon heart
+
+#268 Great Argon Lizard
+Only Drop: Great big Argon heart
+
+#269 Dhoulmagus
+***No drops***
+
+#270 Dhoulmagus
+***No drops***
+
+#271 Evil Jessica
+***No drops***
+
+#272 Captain Crow
+Only Drop: Pirate's hat
+
+#273 Red Horn
+Common Drop: Strong medicine
+Rare Drop: Seed of strength
+
+#274 Blue Fang
+Common Drop: Strong antidote
+Rare Drop: Seed of wisdom
+
+#275 Empyrea
+Only Drop: Seed of magic
+
+#276 Gemon
+Only Drop: Seed of skill
+
+#277 Evil Sir Leopold
+***No drops***
+
+#278 Marcello
+***No drops***
+
+#279 Servant of darkness
+Common Drop: Hades' helm
+Rare Drop: Mirror armour
+
+#280 Statue of Roric
+***No drops***
+
+#281 Statue of Yangus
+***No drops***
+
+#282 Statue of Jessica
+***No drops***
+
+#283 Statue of Angelo
+***No drops***
+
+#284 Megalodon
+Only Drop: Yggdrasil dew
+
+#285 Ruin
+Only Drop: Orichalcum
+
+#286 Rhapthorne
+***No drops***
+
+#287 Rhapthorne
+***No drops***
+
+#288 Lord of the Dragovians
+***No drops***
+
+#289 Vermillion dragon
+Only Drop: Seed of skill
+
+#290 Emerald dragon
+Only Drop: Seed of skill
+
+#291 Silver dragon
+Only Drop: Seed of skill
+
+#292 Golden dragon
+Only Drop: Seed of skill
+
+#293 Darksteel dragon
+Only Drop: Seed of skill
+
+#294 Divine dragon
+Only Drop: Seed of skill
+
+#295 Ultimate dragon
+Only Drop: Seed of skill
+
++--------------------------------------------------------------------+
+
+This document is public domain.

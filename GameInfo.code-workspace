@@ -107,10 +107,24 @@
 		"terminal.integrated.defaultProfile.windows": "PowerShell",
 		"cSpell.words": [
 			"Avalonia",
+			"DISPADR",
+			"DISPCTL",
 			"Greenzone",
+			"hashers",
+			"INTRST",
+			"INTSET",
+			"MATHA",
+			"MATHB",
+			"MATHC",
+			"MATHD",
+			"MATHK",
+			"MATHM",
 			"Nexen",
-			"savestate"
+			"savestate",
+			"SPRSYS",
+			"vblank"
 		],
-		"powershell.cwd": "Nexen"
+		"powershell.cwd": "Nexen",
+		"dotnet.defaultSolution": "GameInfo/GameInfoTools.sln"
 	}
 }

@@ -1,0 +1,277 @@
+unused?: ’
+
+00 | (end of string)
+01 | (nothing, covers some next part of string in space)
+02 | (nothing, covers some next part of string in space)
+03 | (nothing, covers some next part of string in space)
+04 | (nothing, covers some next part of string in space)
+05 | (nothing, covers some next part of string in space)
+06 | (nothing, covers some next part of string in space)
+07 | (nothing, covers some next part of string in space)
+08 | (nothing, covers some next part of string in space)
+09 | (nothing, covers some next part of string in space)
+0a | (newline)
+0b | (nothing, covers some next part of string in space)
+0c | (nothing, covers some next part of string in space)
+0d | (nothing, covers some next part of string in space)
+0e | (nothing, covers some next part of string in space)
+0f | (nothing, covers some next part of string in space)
+
+10 | (nothing, covers some next part of string in space)
+11 | (nothing, covers some next part of string in space)
+12 | (nothing, covers some next part of string in space)
+13 | (nothing, covers some next part of string in space)
+14 | (nothing, covers some next part of string in space)
+15 | (nothing, covers some next part of string in space)
+16 | (nothing, covers some next part of string in space)
+17 | (nothing, covers some next part of string in space)
+18 | (nothing, covers some next part of string in space)
+19 | (nothing, covers some next part of string in space)
+1a | (nothing, covers some next part of string in space)
+1b | (nothing, covers some next part of string in space)
+1c | (nothing, covers some next part of string in space)
+1d | (nothing, covers some next part of string in space)
+1e | (nothing, covers some next part of string in space)
+1f | (nothing, covers some next part of string in space)
+
+20 |  (space)
+21 | !
+22 | "
+23 | #
+24 | $
+25 | %
+26 | &
+27 | '
+28 | (
+29 | )
+2a | ✳
+2b | +
+2c | ,
+2d | -
+2e | .
+2f | /
+
+30 | 0
+31 | 1
+32 | 2
+33 | 3
+34 | 4
+35 | 5
+36 | 6
+37 | 7
+38 | 8
+39 | 9
+3a | :
+3b | ;
+3c | <
+3d | =
+3e | >
+3f | ?
+
+40 | (nothing, covers some next part of string in space)
+41 | A
+42 | B
+43 | C
+44 | D
+45 | E
+46 | F
+47 | G
+48 | H
+49 | I
+4a | J
+4b | K
+4c | L
+4d | M
+4e | N
+4f | O
+
+50 | P
+51 | Q
+52 | R
+53 | S
+54 | T
+55 | U
+56 | V
+57 | W
+58 | X
+59 | Y
+5a | Z
+5b | [
+5c | (nothing, covers some next part of string in space)
+5d | ]
+5e | (nothing, covers some next part of string in space)
+5f | _
+
+60 | (nothing, covers some next part of string in space)
+61 | a
+62 | b
+63 | c
+64 | d
+65 | e
+66 | f
+67 | g
+68 | h
+69 | i
+6a | j
+6b | k
+6c | l
+6d | m
+6e | n
+6f | o
+
+70 | p
+71 | q
+72 | r
+73 | s
+74 | t
+75 | u
+76 | v
+77 | w
+78 | x
+79 | y
+7a | z
+7b | {
+7c | (nothing, covers some next part of string in space)
+7d | }
+7e | (nothing)
+7f | (nothing)
+
+80 | (nothing, covers some next part of string in space)
+81 | (nothing, covers some next part of string in space)
+82 | (nothing, covers some next part of string in space)
+83 | (nothing, covers some next part of string in space)
+84 | ”
+85 | (nothing, covers some next part of string in space)
+86 | (nothing, covers some next part of string in space)
+87 | (nothing, covers some next part of string in space)
+88 | (nothing, covers some next part of string in space)
+89 | (nothing, covers some next part of string in space)
+8a | (nothing, covers some next part of string in space)
+8b | (nothing, covers some next part of string in space)
+8c | Œ
+8d | (nothing, covers some next part of string in space)
+8e | (nothing, covers some next part of string in space)
+8f | (nothing, covers some next part of string in space)
+
+90 | (nothing, covers some next part of string in space)
+91 | (nothing, covers some next part of string in space)
+92 | (nothing, covers some next part of string in space)
+93 | “
+94 | (nothing, covers some next part of string in space)
+95 | (nothing, covers some next part of string in space)
+96 | (nothing, covers some next part of string in space)
+97 | -
+98 | (nothing, covers some next part of string in space)
+99 | (nothing, covers some next part of string in space)
+9a | (nothing, covers some next part of string in space)
+9b | (nothing, covers some next part of string in space)
+9c | œ
+9d | (nothing, covers some next part of string in space)
+9e | (nothing, covers some next part of string in space)
+9f | (nothing, covers some next part of string in space)
+
+a0 | (nothing, covers some next part of string in space)
+a1 | ¡
+a2 | (nothing, covers some next part of string in space)
+a3 | (nothing, covers some next part of string in space)
+a4 | (nothing, covers some next part of string in space)
+a5 | (nothing, covers some next part of string in space)
+a6 | (nothing, covers some next part of string in space)
+a7 | (nothing, covers some next part of string in space)
+a8 | (nothing, covers some next part of string in space)
+a9 | (nothing, covers some next part of string in space)
+aa | (nothing, covers some next part of string in space)
+ab | «
+ac | (nothing, covers some next part of string in space)
+ad | (nothing, covers some next part of string in space)
+ae | (nothing, covers some next part of string in space)
+af | (nothing, covers some next part of string in space)
+
+b0 | °
+b1 | ±
+b2 | (nothing, covers some next part of string in space)
+b3 | (nothing, covers some next part of string in space)
+b4 | ‘
+b5 | (nothing, covers some next part of string in space)
+b6 | (nothing, covers some next part of string in space)
+b7 | (nothing, covers some next part of string in space)
+b8 | (nothing, covers some next part of string in space)
+b9 | (nothing, covers some next part of string in space)
+ba | (nothing, covers some next part of string in space)
+bb | »
+bc | (nothing, covers some next part of string in space)
+bd | (nothing, covers some next part of string in space)
+be | (nothing, covers some next part of string in space)
+bf | ¿
+
+c0 | À
+c1 | Á
+c2 | Â
+c3 | (nothing, covers some next part of string in space)
+c4 | Ä
+c5 | (nothing, covers some next part of string in space)
+c6 | (nothing, covers some next part of string in space)
+c7 | Ç
+c8 | È
+c9 | É
+ca | Ê
+cb | Ë
+cc | Ì
+cd | Í
+ce | Î
+cf | Ï
+
+d0 | (nothing, covers some next part of string in space)
+d1 | Ñ
+d2 | Ò
+d3 | Ó
+d4 | Ô
+d5 | Õ
+d6 | Ö
+d7 | (nothing, covers some next part of string in space)
+d8 | (nothing, covers some next part of string in space)
+d9 | Ù
+da | Ú
+db | Û
+dc | Ü
+dd | (nothing, covers some next part of string in space)
+de | (nothing, covers some next part of string in space)
+df | ß
+
+e0 | à
+e1 | á
+e2 | â
+e3 | (nothing, covers some next part of string in space)
+e4 | ä
+e5 | (nothing, covers some next part of string in space)
+e6 | (nothing, covers some next part of string in space)
+e7 | ç
+e8 | è
+e9 | é
+ea | ê
+eb | ë
+ec | ì
+ed | í
+ee | î
+ef | ï
+
+f0 | (nothing, covers some next part of string in space)
+f1 | ñ
+f2 | ò
+f3 | ó
+f4 | ô
+f5 | õ
+f6 | ö
+f7 | (nothing, covers some next part of string in space)
+f8 | (nothing, covers some next part of string in space)
+f9 | ù
+fa | ú
+fb | û
+fc | ü
+fd | (nothing, covers some next part of string in space)
+fe | (nothing, covers some next part of string in space)
+ff | (nothing, covers some next part of string in space)
+
+
+
+

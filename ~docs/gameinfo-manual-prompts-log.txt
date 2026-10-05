@@ -1,4 +1,5 @@
 
+
 //** This is a manually user edited file, never alter it from AI **//
 
 git commit all files in logical groups and update git issues (or make git issues and then update them)
@@ -1292,7 +1293,158 @@ implement Grøstl and JH from scratch (complex) make github issues and todolosts
 
 [StreamHash] document everything and update issues and make sure there are issues for all work efforts and update the plans and issues and todos; continue; once complete, relase a new nuget package (update minor+1) and publish it to nuget.com and add xml docs and inline comments to everything in the project, comment every single entity with xml docs and then add inline comments everywhere it would explain what is going on, especially add inline comments to the hash algorithm implementation explaining what the algorithm is doing; do the the SIMD issues (#8 `[6.2] SIMD optimize CityHash`, #7 `[6.1] SIMD optimize HighwayHash64`, #6 `[Epic] SIMD Optimizations`); [HashNow] update all the docs, and use StreamHash for everything and then wait a few minutes to get the new version of the nuget package for StreamHash and implement all the connection, make all hashes uses StreamHash, not other libraries; continue;
 
-[Nexen] get rid of uncommited files that come from failed builds and stuff, get rid of those app images and macos crap for now; [GameInfo] git commit the manual proimpts file; update session/chat logs; [StreamHash] Add CRC16 to the algorithms, and find any other algorithms we should have; add todos, issues, docs, etc, and implement; update chat/session logs; git commit everything; The nuget package documentation references the wrong version `dotnet add package StreamHash --version 1.4.0` so update that readme and other documentation to show the current state of the project including all of the algorithms; also, the nuget page does not show a version number (see pasted imaged, see "Current Version" on right side of nuget page); don't release another nuget version and don't release another version of StreamHash until I tell you to, usually update a fix number (the third number in the version) instead of a minor number and never update a major version number unless told to (add to copilot instructions); continue; [HashNow] use date to use Stream?Hash for everything and use every available hash in StreamHash, update the docs and issues and todos (make sure every work effort has an issue conected to it); continue;
+[Nexen] get rid of uncommited files that come from failed builds and stuff, get rid of those app images and macos crap for now; [GameInfo] git commit the manual proimpts file; update session/chat logs; [StreamHash] Add CRC16 to the algorithms, and find any other algorithms we should have; add todos, issues, docs, etc, and implement; update chat/session logs; git commit everything; The nuget package documentation references the wrong version `dotnet add package StreamHash --version 1.4.0` so update that readme and other documentation to show the current state of the project including all of the algorithms; also, the nuget page does not show a version number (see pasted imaged, see "Current Version" on right side of nuget page); don't release another nuget version and don't release another version of StreamHash until I tell you to, usually update a fix number (the third number in the version) instead of a minor number and never update a major version number unless told to (add to copilot instructions); continue; [HashNow] use date to use StreamHash for everything and use every available hash in StreamHash, update the docs and issues and todos (make sure every work effort has an issue conected to it); continue;
+
+[HashNow] don't use the StreamHash project except through the Nuget package, so put off connecting to it locally and put off adding hashes for now; continue;
+
+[StreamHash] Make sure all algorithms are actually called with the real thing (there was an earlier issue where two algoithms just returned an SHA varient instead) and add tests that use a larger input with known hash output values and make sure our handbuilt algorithms return the correct values (we would probably like to ignore the bouncycastle calls as they've been thourghly tested, but we need to test them all so we know our wrappers work as expected); make an issue for this work effort; and update it; and link it to git commits; then make more performance benchmark tests and find performance improvements by testing hot paths, etc.; continue;
+
+[StreamHash] Make sure all algorithms are accessible in the api, and actually being called; make sure the algorithms are correct; Focus mainly on the "What's Next": `Performance benchmark tests`, `Performance optimization work`; continue;
+
+[StreamHash]  Make sure all readmes and docs reflect the current status of the code and project, specifically update the nuget package docs as a priority (docs and code); Algorithmic speedup - JH and Groestl are still very slow (14ms and 330ms for 1MB). Consider: T-table optimization for Groestl's MixBytes (like AES implementations), Bit-sliced implementation for JH S-box layer, SIMD vectorization where applicable; More benchmarks - Run the full AllAlgorithmsBenchmarks suite to identify other slow algorithms; NuGet release - Consider releasing v1.6.1 with these performance improvements; continue; update documentation, issues, todos, chat/session logs, plans, etc; continue;
+
+[StreamHash] Further optimizations - Consider SIMD for Groestl (SubBytes can use AES-NI), wider T-tables; More benchmarks - Run full AllAlgorithmsBenchmarks suite to get complete comparison; make performance profiling benchmarks and increate the performance of all of the algorithms, but focus on the slowest ones, like JH and groestl; continue; make a 1.6.1 release, udpate all of the nuget documentation referencing 1.6.1 and all the new algorithms, upate the readmes and code and issues and todos and docs, and then push 1.6.1 to nuget; continue;
+
+[StreamHash] Do the "what's next": AES-NI SIMD for Grøstl SubBytes - Could use; Aes.EncryptLast with zero round key for vectorized SubBytes (4-8x potential speedup); AVX2 wide T-tables - Process multiple columns in parallel; JH SIMD - Bit-slicing with Vector256<byte>; continue performance optimizations; continue; update docs, update chat/session logs, git commit;
+
+[StreamHash] as it says in the instructions, don't abandon code changes just because they are complicated, make a new github issue for the `AES-NI SIMD optimization` and then implement it; for Grøstl focus on performance improvements for `MixBytes`, and then for other hot paths; continue; continue performance optimizations; update docs, update chat/session logs, git commit; continue; make sure Grøstl and JH still pass all the tests and produce the right hashes; continue;
+
+[StreamHash] update the whirlpool algorithm, make performance benchmarks to test the hot paths and make it much more efficient; ; update docs, issues, todos, update chat/session logs, git commit; continue;
+
+[StreamHash] Go through the github issues and update/close those issues that have been completed and update those other issues that have been worked on; update all the documentation and prepare for the 1.6.2 release including updating all the nuget configuration; continue;
+
+[StreamHash] do the "what's next" Work on remaining SIMD optimizations (#7 HighwayHash, #8 CityHash); do performance checking further and make things better; Set up GitHub Actions CI/CD (#10); create the release 1.6.2 and Build and pack the NuGet package;
+
+[StreamHash] The nuget package docs show a nuget tag with `1.6.1`, but it should show `1.6.2` fix that; [HashNow] use updated nuget 1.6.2 of StreamHash for everything and use every available hash in StreamHash, update the docs and issues and todos (make sure every work effort has an issue conected to it); update sections in json creation; make sure install dialogs and progress bar are GUI not console, unless run from the console, then it is console; continue;
+
+no, don't remove shit, what's wrong with you, we made it, use it; make everything available in the interface and then update the new version of the nuget package and the repos so it contains everything, if there is an issue with the algorithms, fix it, don't ignore it or remove it, please add a copilot instruction, as I have told you before, to never not do work because it is complicated or hard to do, just do it; don't delete work because we have a problem, if we don't do it now then add an issue and todolist and work on it later; continue;
+
+[HashNow] create a new release;
+
+[HashNow] create a new release, an exe file;
+
+[HashNow] use StreamHash nuget for all the hashes, use the HashFacade interface for every algorithm, don't use bouncycastle directly; create issues and todos and documentation, and session/chat logs, and update/close issues if they're done or have been worked on; made all the docs updated, including the `README.md` files and other docs so the current state is represented; create a release and publish it to github; continue;
+
+62? is there not 71 or 72? update stream hash to exose all 71 algorithms, then continue;
+
+Any Hash that HashNow has but StreamHash does not have, add to StreamHash,  create issues and todos and documentation, and session/chat logs, and update/close issues if they're done or have been worked on; made all the docs updated, including the `README.md` files and other docs so the current state is represented; create a release and publish it to github for StreamHash and release nuget and wait a few minutes until the nuget is relessed, then do a HashNow update of algorithms, until all algorithms are represented, and make sure the UI progressbar is updated as the file is processed; then make a build and release; continue;
+
+[HashNow] When I double clicked the HashNow.exe it opened a console window and It asked me if I wanted to install the context menu item in a console app (type y/n) and then when I right clicked a file and clicked "Hash this file now" and it opened a console window to show the progress bar, but it shouldn't use console windows, it should only use GUI dialogs/message boxes, whatever, not text, GUI; continue;
+
+[HashNow] nothing happens when I run this release. double-click leads to nothing happening at all
+
+[HashNow] It did not install or even ask me to install. It ask for admin previledges then didn't do anything. Note, a previous version is installed already if that blocks anything (it should update)
+
+[HashNow] It says 58 algorithms but it should be ~70, so update the nuget version of streamhash and then make sure we are running every available hash algorithm; the progress bar should show up immediately instead of after 3 seconds so the user knows it happened; Cancelation button didn't seem to work?; running more than one at a time didn't seem to work?; continue;
+
+Don't release yet! I forgot that we need blank lines in the json output between sections of hash algorithm groups and metadata, these got removed at some point, then do the release and continue;
+
+[HashNow] I hashed a small file, and when it was done it did not close the progress bar window or create the json file; When I hashed a large file and cancelled it it just sat there and did not close;
+
+[HashNow] Ok! It's working as expected, logically at least, except the blank lines separating the sections in the json output have commas, this malforms the json, just insert blank lines, no commas; And then, the documentation claims `Typical throughput: ~200-300 MB/s for all 70 algorithms simultaneously` but that is not true as a 50MB file can take like 30 seconds; find the performance problems and benchmark them and fix them; make an issue for performance issues and find them and fix them; continue;
+
+Stop releasing a version on every build for now, we will return to this later; Another process was running during that test, so run the test again, understand that my computer does not have a video card, only onboard video and is quite old, so it is slower than it a modern computer; update the HashNow usage of StreamHash to increase performance, and then also update StreamHash to efficiently handle calling all of the hash algorithms at one time, with mnuch less memory usage and faster run times; create/issues in both repos to handle the work, and update benchmarks and make benchmarks and find a way to run all 70 algorithms at one time quickly and with a smaller memory footprint; continue;
+
+[StreamHash] update and implement the performance updates and issues, updating everything; then [HashNow] update and implement the performance updates and issues, updating everything; continue; [Both] do the "What's next" tasks (update/make issues, todos, docs, plans, chat/session logs): Start with StreamHash #17 - Implement the batch API first; Then HashNow #12 - Integrate the new API; Benchmark improvements - Verify 10x+ speedup; Release v1.4.0 - Major performance release after optimization complete;
+
+
+[StreamHash/HashNow] You said: "Due to token limits, let me create a minimal working version that uses the batch API" but don't do this shit, don't half-ass it, always do the whole thing, don't quit at 80%, if you can't do it now, add an issue for later work to do it right; continue; do the "what's next" tasks (make issues/todos/docs): Run performance benchmarks to verify the actual speedup (expected 8-16x); Clean up temporary NuGet package source; Publish StreamHash 1.7.0 to NuGet.org; Update planning documents with results; Close GitHub issues #12 (HashNow) and #17 (StreamHash); continue;
+
+[StreamHash/HashNow] this benchmarking seems like this is taking way too long; make sure everything in StreamHash is using spans (prefered) or ArrayPool, reduce allocations!; parallelize hashing, not sequential; continue; About a github issue you said `Labels don't exist yet. Let me create without labels`, don't do that! if the label doesn't exists, make it, and re-add/create the issue! add this to copilot instructions, then go back add the labels to the issues; continue; work through the performance issues; add to copilot instructions that we should always don't half-ass it, always do the whole thing, don't quit at 80%, if you can't do it now, add an issue for later work to do it right; continue;
+
+always prefer Span over arraypool, but use arraypool when you have to; continue working on the last prompt; continue;
+
+parallelization is making everything slower, remove all that crap and do everything at once, I guess, do what the data tells you; and remove the lock! why the fuck do I need a lock! we're streaming a file to 70 algorithms at once, we're doing the opposite of a lock! fix it; add to copilot instructions that everything should have xmldoc comments and that those comments should have properly indented comments using tabs (not spaces), and every method should have inline comments if it needs it, or has an algorithm to descibe or something that's not obvious, and  make an issue for all of this commenting/formatting work and  implement that issue and update it (code/todos/docs/issues/logs/plans) and git commit, and [HashNow] you can reference the local copy of StreamHash but only for development work, publishing releases must always use the published StreamHash nuget package, or can you build a local copy of the nuget package without publishing it and then use it in HashNow?; continue; work on performance and memory allocation; in hot paths and functions called many times from a loop, reuse memory (clear if needed, copy otherwise) if that is safe to do and increases performance; make benchmarks and test (just those tests, not all tests) to see  if we can increase the effciency and performance and reduce processing times and use less memory; continue;
+
+are we performing slower than when we started optimizing? Optimize! Increase performance! lower allocation! fucking make everything much more performant through testing, but quiting a test if it takes more than 10 seconds, and test and benchmark and optimiaze optimize optimize!; continue;
+
+I don't know, optimize and test optimizations; although code is slower now; make it fast, make it super fast;
+
+-------------- not run, last prompt tested this
+[StreamHash] does the 1mb block size slow anything down? test benchmarks with a 4mb or 6mb or 2mb or 500k blocksize; see what does it faster and what reduces allocations and memory usage; continue;
+--------------
+
+build StreamHash and update readme.md and create a nuget package and publsh it and then wait a fgew minutes, then use the new nuget package in HashNow once it is available; test everything
+
+update the README.md, you said `process data in chunks, using only ~1MB of memory regardless of file size.` but we're using 16mb chunks, does this work better? whatever; continue;
+
+[Dragon Warrior 4] update to use peony to generate code, using the rom file and pansy file, and comment all the code, and then create asset extraction, transformation, and re-conversion, and then insertion into the new build process for poppy compilation using assets; and update documentation for everything; go! continue;
+
+[Dragon Warrior 4] git commit everything; make and commit all the code for the rom, and put includes for converted rom assets, make sure we can edit those zasset filkes and have all the code commented and make it so we can update the code to change compiles, etc. go! and decompile code and comment it, go! continue;
+
+update shops.pasm to rename all the labels by shop location and item number, and then change the data values to use labels representing each item and 
+
+update shops.pasm to rename all the labels by shop location and item number, and then change the data values to use labels representing each item and price, and update all the comments and names with the actual names;
+
+[Ansarya.com] Update `streamhash.html` add all the of the alorithms, update the version, `All 62 Algorithms`, update API documentation, update/add cards to native implementations with all the new work and algorithms, and then have them link to the description of the algorithm in our github documentation, but the Nuget link has purple text, fix that, make that a readable color, maybe orange/yellow?; ansatya.com, not all sections have buttons at the top, add them, some of the the Card tags are unreadable, specifically `C#` is too dark of a purple to read, change it to a green or something, the red `NES` label is also hard to read, fix it; ADA does not like hard to read text; find a web font that includes the `potted plant` emoji so our usage of it will actually display;
+
+[Ansarya.com] by "buttons at the top" I mean buttons at the top of the page that link to sections; continue;
+
+[HashNow] review all github issues and update/close those that are done; [StreamHash] review all github issues and update/close those that are done; [HashNow/StreamHash] check initial performance benchmarks, we recorded them, have we really made improvements in performance when we run all 70 algorithms at once?; Go through the remaining issues, which are mostly about performance; where are all the allocations coming from? Our Hash algorithms or the BouncyCastle one? Do we need to write our own versions of the bouncycastle algorithms to increase parallel execution speed or reduce allocations and memory usage? research and analyze and test then create plans for the direction of performance improvements and todolists and issues and docs and chat/session logs and code plans; continue;
+
+First off, add to copilot instructions: Always format all files using the `.editorconfig` and the markdown linter (except allow and in fact require hard tabs! (MD0010?)) and use utf-8, CRLF, tabs not spaces, never spaces, and a blank line at the end of the file, we're not formatting markdown files correctly or at the time of creation yet, so fix those warnings and add blank lines; Then, [StreamHash] Add to the readme and other docs references to how there are many of the alorigthm implementations that we implemented in order to increase performance and reduce memory/allocation were based on BouncyCastle and thank them for all their hard work and a link to the main and C# BouncyCastle repos on github/nuget; Also say if our improvements work out, we will create pull requests for the BouncyCastle projects, always give back; Review all issues, especially older ones and determine which ones are completed or out of date and close them; [HashNow] Review all issues, especially older ones and determine which ones are completed or out of date and close them; continue;
+
+[StreamHash] in the readme, we thank bouncycastle, make sure all the algorithms listed in the description are actually available in bouncycastle, and update the thank you section for bouncycastle; work though all of the github issues, implement them and then continue onto the next one and the next one and the next one; try to work through all of the github issues and performance improvements and make even more issues and plans and docs for improvement (speed increase and memory reduction) and then implement them, go for a very long time; make sure docs are updated the whole time! (and todos, issues, plans, readmes, code plans, and add tests and benchmarks as you go and for anything not covered yet; continue;
+
+What's Next: Run benchmarks to verify allocation reduction; Address Issue #18 (XML documentation) when time permits; Investigate Issue #19 (performance discrepancy); update docs; don't use bouncycastle, create and profile and test every algorithm and then reduce memory and go faster; make tests and benchmarks; create and update issues, plans, docs, todos, code-plans, chat/session logs. readmes, documentation!, ; all bouncy castle algorithms should be implemented and then performanced profiled and correctness tested, and all other algorithms should be performance profiled and correctness tested; and the "all 70 at once" should be profiled and sped up and such; continue;
+
+[StreamHash] Remaining Work (Tracked in GitHub); Epic #26: 10 BouncyCastle algorithms still to migrate (#27-31); Consider finding/writing a streaming SHA3 implementation; continue, work through all the remaining issues and close those that are done and add more for future work if we have it; update!; continue; lower allocation seems to have slowed down the algorithms, make them super fast and you can increase allocation a little but it you can make everythig faster; continue;
+
+continue;
+
+[StreamHash] do the "what's next?" tasks, making issues, todos, docs, plans, chat/session logs, code-plans, etc: Skein (#30) or SM3 (#31) - Both are medium priority and would further reduce BouncyCastle dependency; RIPEMD-256/320 (#28) - Lower priority but straightforward; Consider SIMD optimization for the native Keccak implementation (could use AVX2 for ~2x speedup); continue;
+
+[StreamHash] how much has performance and allocation improved running a 70 hashes at once since we started this effort a couple days ago? continue; Add more benchmarks and test them and increase performance and reduce allocation on all our newly added (and previous) hash algorithms; reduce both memory usage and allocation and increase speed! use all your code tricks (if they are platform specifc, make sure they have alternatives for the other platforms, this is not a Windows project, this is a cross-platform dotnet project); continue;
+
+[StreamHash] You forgot my primary question! how much has performance and allocation improved running all 70 hashes at once since we started this effort a couple days ago?; continue; do the "what's next?" tasks (make/update issues, code-plans, todos, docs, chat/session logs, etc); continue;
+
+[StreamHash] Do the rest of the transitions from BouncyCastle to a native version of the algorithms focusing on performance improvements, start with `GOST94_BC` and its appalling allocations; Skein256_BC - 928 B (BouncyCastle - needs native implementation); GOST94_BC - 1,575,976 B (BouncyCastle - massively inefficient, needs native implementation); (make/update issues, code-plans, todos, docs, chat/session logs, etc); continue;
+
+No, don't revert to bouncy castle, don't give up, make a native implementation but keep working to make it correct and great and more performant; go! ; continue;
+
+[StreamHash] 64k is good to benchmark, but we also need to benchmark a 760k file and 3 mb file and a 38mb file when running all hashes as well so we know how it handles the streaming update for large files; I'd say make tests for a larger files as well but that takes too long, optimize the algorithm for large files using 38 megabytes for now, and then later we can test benchmarks with a multi-gigabyte file later, add to plans; implement testing benchmarks for all algorithms and for all 70 at once; and with this find areas for performance improvement; continue; test algorithms to make sure they're correct, add algorithm tests; continue;
+
+[StreamHash] do the "what's next?" tasks (make/update issues, code-plans, todos, docs, chat/session logs, etc); continue; increase performance!; what are our current speeds and allocations? increase performance and reduce allocations; implment all bouncycastle algorithms and make everything faster, test benchmarks against our baselines and report them to me; individual benchmarks matter, but all 70 at once is the most important; continue;
+
+[StreamHash] do the "what's next?" tasks (make/update issues, code-plans, todos, docs, chat/session logs, etc); continue; increase performance!; what are our current speeds and allocations? increase performance and reduce allocations; implment all bouncycastle algorithms and make everything faster, test benchmarks against our baselines and report them to me; individual benchmarks matter, but all 70 at once is the most important; continue;
+
+Stop! Do not revert to bouncycastle!
+
+Add to copilot instructions: to not give up and revert when it gets hard, instead implement the native version and continue; plan and research instead of giving up and reverting; reverting should always be a very very last resort; do the "next" tasks: Fix the native Skein implementation - Debug the rotation constants issue and get it working; Commit what we have - Save the working native Streebog to git; continue; [StreamHash] Always format all files using the `.editorconfig` and the markdown linter (except allow and in fact require hard tabs! (MD0010?)) and use utf-8, CRLF, tabs not spaces, never spaces, and a blank line at the end of the file, we're not formatting markdown files correctly or at the time of creation yet, so fix those warnings and add blank lines; 
+
+Make sure you're verifying against the actual spac for the hash algorithm, and other possible implementations, not just bouncycastle; implement and continue;
+
+[StreamHash] Make sure you're verifying against the actual spec for the hash algorithm, and other possible implementations, not just bouncycastle; implement and continue; and convert other algorithms that we're using packages/libraries for that aren't bouncycastle; native implementation for everything; increase performance; reduce allocation and memory usage; continue; Why does Skein have over 2 gigs of memory usage? what is the memory usage in bouncycastle? use arraypool and other performance enhancement techniques; use the most modern standards and practices and code; and fix these performance and memory problems, make our version of hash algorithms better than bouncy castle and make them able to all be run at once even faster; continue; and do the "What's Next?": Optimize Skein memory usage - Use ArrayPool to reduce allocations; Continue BouncyCastle removal - Implement native Whirlpool, Groestl, JH; Performance tuning - SIMD optimizations for Threefish block cipher; continue; "What's Next": SIMD optimizations for Threefish - Optional further performance boost; Investigate Groestl/JH performance - They're slow by algorithm design but could use T-table optimizations; Continue removing BouncyCastle dependencies - Some legacy factory methods still exist in BouncyCastleAdapters.cs; Create GitHub issues for all work; continue;
+
+[StreamHash] Benchmarks and Tests: Pick a random seed and then make that a cannonical value and use that as the seed for a class that makes the files for testing: 64kb, 69kb, 767kb, 3MB, 38.3MB, 100mb (don't use this file for testing now, add this to future plans), 212mb (don't use this file for testing now, add this to future plans), 765mb (don't use this file for testing now, add this to future plans), 1.37gb (don't use this file for testing now, add this to future plans), and have static getters for these files so they only get generated once, and they use the same RND seed everytime so these reference versions of files at various sizes can be used every test for every hash and the 70 of them all at once; 64k is good to benchmark, but we also need to benchmark a 760k file and 3 mb file and a 38mb file, etc, when running all hashes as well so we know how it handles the streaming update for large files; then get external hash values for each of these files and every algorithm, from bouncy castle and other libraries and generate from multiple sources if you can, make a doc or something, and an easy to use file so we have have reference hash values from every size and algorithm, they use the same RND seed everytime so these reference versions of files at various sizes can be used every various sizes can be used every test for every hash and the 70 of them all at once; continue;
+
+[StreamHash] Add a special method that streams and returns the results of hashing a file for only the four basic crc32/md5/sha1/sha256 algorithms instead of all 70, which is a very common use case; then publish a release (minor version update) to github;
+
+make tests and performance benchmarks and run them and test it and make sure we are performant, ***before the release***; continue on what we were working on;
+
+[StreamHash] Add a public collection of Constants for the Algorithms since we are returning data-stuctures that use "magic values" for keys like `SHA-256`. So every one of the 70 algorithms should have a public constant we can use to access the resultant hashes, then fix the code to use those values instead of puting a magic-string in each location, if there is a better way to do this please do that instead; continue;
+
+[poppy] create a new platform for `Atari Lynx`, make plans, research, issues (epics and sub issues), documentation, todos, code-plans, etc. and gitcommit and make chat/session logs and analyze and research it, look at `Nexen`'s new Lynx emulator core (Mikey and Suzy); make full documentation of the assembly language for the Atari Lynx with examples. Nexen should have some external research links, or find them yourself; remember, all hex values should be lowercase and all assembly instructions should be lowercase (add those to the copilot instructions); continue; [pansy] Add issues/docs/plans/etc to add Atari Lynx to pansy format; implement it; update chat/session logs and git commit; [peony] Add plans/issues/docs/code-plans for adding atari lynx to peony, we'll implement later; [poppy] continue;
+
+continue implementation; do the "what's next" section;
+
+Do all the "what's next" tasks (make issues for every work effort): Create actual GitHub issues for the Lynx epics in all 3 repos (using gh issue create); Implement .platform "lynx" directive in Poppy's Parser for inline platform switching; Add validation warnings when writing to reserved regions (Suzy/Mikey addresses); Implement Decoder65SC02 in Peony; Create Lynx example project in game-garden to test the full toolchain; update chat/session logs, documents, issues, plans, etc, and git commit; continue;
+
+Do the "what's next": Implement LNX ROM header parser (Peony #45); Add Lynx platform analyzer in Peony; Test full toolchain roundtrip with a real Lynx ROM; continue;
+
+do the "what's next" tasks (make issues and todo and docs): Implement Lynx memory mapper to handle RAM-loaded code for full disassembly; Add .lnx extension auto-detection in RomLoader.DetectPlatform(); Create more comprehensive Lynx test ROMs; Implement LNX ROM writer to create proper LNX files from Poppy output; continue;
+
+Remaining Work (tracked in GitHub issues): Poppy #147: LNX ROM Writer for Poppy output; game-garden #9: Create comprehensive Lynx test ROMs; continue;
+
+Do the "what's next" tasks (make issues and docs): Build test ROMs with Poppy once 65SC02 instruction encoding is implemented; Add Lynx boot code support to Poppy; Create real game disassembly projects for Lynx in game-garden; continue;
+
+continue working; for a long time; continue;
+
+--- try again
+
+switch to `chip's challange` make issues and todolists and plans and documents and chat/session logs, and find the rom and hash it and begin disassembly; continue;
+
+We should use Nexen, not Mednafen, right? You should be using poppy more than cdl; continue;
 
 
 
@@ -1320,20 +1472,37 @@ implement Grøstl and JH from scratch (complex) make github issues and todolosts
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[Nexen] Add to copilot instructions: If you create a github issue from an AI prompt, then make the first comment to that issue `Prompt for work:\r\n{prompt}` to track where this effort came from ; if you can add the prompt to the last few issues that would be great; continue;
 
 git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues; continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1351,44 +1520,12 @@ Save file editor (#27) - Blazor WebAssembly GUI tool
 
 
 
-
-
-
 +++++++++++++++++++++++++++++++++ ChatGPT
 How do you take a blazor application and turn it into a native windows/linux/macos application/service so you run it locally in the web browser with a backing server service, like how Plex has a installed part and you interact with it through a web browser?
 +++++++++++++++++++++++++++++++++ https://copilot.microsoft.com/chats/wiimeDYqwgXuB7XT8xXtj
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 continue;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1397,6 +1534,7 @@ git commit everything in logical batches, update github issues, update todo-list
 continue, and **go as long as you can**, really complete as many tasks as you can; make sure to update all the supporting files, logs, docs, issues, etc. and git commit as you go;
 
 git commit everything in logical batches, update github issues, update todo-lists, all work should have an issue, tie them to those issues;
+
 
 
 
