@@ -1,4 +1,4 @@
-unused?: ’
+unused?: ’ (it is used! find it's value! ‘The Big Book of Barriers’ item #355)
 
 00 | (end of string)
 01 | (nothing, covers some next part of string in space)

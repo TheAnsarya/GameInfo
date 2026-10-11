@@ -1,19 +1,59 @@
 
 
+All values are little endian:
+byte => 1 byte
+word => 2 bytes
+dword => 4 bytes
+half-line => 8 bytes
+line => 16 bytes
+
+
+
+
+
+
 
 
 
 
 +--------------------------------------------------------------------+
 
++--------------------------------------------------------------------+
++--------------------------------------------------------------------+
+
++--------------------------------------------------------------------+
++--------------------------------------------------------------------+
+
+A7C550-A858B0 address of each string (items and such)
+A858B1-  strings! item names (and plurals) and then other stuff
+
+
+a8df60
+
+$00a66c00 - strings start, each one is 8 rows of 16 bytes. First 4 lines are the string. No idea what the 3 values in the last/second 4 16-byte lines are or where they come from.
+
+$00927918-$0092792a - 19 bytes - build time
+
+$009273f0-$009278ff - 1 line of some kind of values ($0-$3 unknown, $4-$7 address of start of string), then 1 to 6 lines of string, until $00
+
+
++--------------------------------------------------------------------+
+
 $00409830 - $0040983f - 16 bytes ?????? - Hero's Name (one byte per letter, will be auto-capitalized, must end in $00)
 
-Roric = 52 6f 72 69 63 00 00 00 00 00 00...
+Example name: "Roric" = 52 6f 72 69 63 00 00 00 00 00 00...
 
 See text table.
 
+Default value before you pick a name is "Eight"
+
+--------
 
 $00409840 - $00409843 - 4 bytes - Gold
+
+------------
+
+
 
 
 
@@ -117,13 +157,82 @@ $004099e8 - $004099e9 - 2 bytes - Angelo - Skills - Fisticuffs
 $004099ea - $004099eb - 2 bytes - Angelo - Skills - Charisma
 
 
++--------------------------------------------------------------------+
+
+$00409ad0 - $0040a0ff - 396 dwords (1584 bytes) - Item Bag
+	each entry is 2 words, first is item number, second is item count
+	Both values are little endian so,
+	Example:
+		If you have 999 ($3e7) "Seeds Of Strength" (item $11c), the value is:
+			$1c01e703
+	33 pages worth, 396 entries
+
+	The game will not display a 34th page of items even though there
+	is a bunch of $00 valued free space after the end of the bag data.
+
+	$00409ad0 - $00409aff - 12 dwords (48 bytes) - Item Bag page #1
+	$00409b00 - $00409b2f - 12 dwords (48 bytes) - Item Bag page #2
+	$00409b30 - $00409b5f - 12 dwords (48 bytes) - Item Bag page #3
+	$00409b60 - $00409b8f - 12 dwords (48 bytes) - Item Bag page #4
+	$00409b90 - $00409bbf - 12 dwords (48 bytes) - Item Bag page #5
+	$00409bc0 - $00409bef - 12 dwords (48 bytes) - Item Bag page #6
+	$00409bf0 - $00409c1f - 12 dwords (48 bytes) - Item Bag page #7
+	$00409c20 - $00409c4f - 12 dwords (48 bytes) - Item Bag page #8
+	$00409c50 - $00409c7f - 12 dwords (48 bytes) - Item Bag page #9
+	$00409c80 - $00409caf - 12 dwords (48 bytes) - Item Bag page #10
+	$00409cb0 - $00409cdf - 12 dwords (48 bytes) - Item Bag page #11
+	$00409ce0 - $00409d0f - 12 dwords (48 bytes) - Item Bag page #12
+	$00409d10 - $00409d3f - 12 dwords (48 bytes) - Item Bag page #13
+	$00409d40 - $00409d6f - 12 dwords (48 bytes) - Item Bag page #14
+	$00409d70 - $00409d9f - 12 dwords (48 bytes) - Item Bag page #15
+	$00409da0 - $00409dcf - 12 dwords (48 bytes) - Item Bag page #16
+	$00409dd0 - $00409dff - 12 dwords (48 bytes) - Item Bag page #17
+	$00409e00 - $00409e2f - 12 dwords (48 bytes) - Item Bag page #18
+	$00409e30 - $00409e5f - 12 dwords (48 bytes) - Item Bag page #19
+	$00409e60 - $00409e8f - 12 dwords (48 bytes) - Item Bag page #20
+	$00409e90 - $00409ebf - 12 dwords (48 bytes) - Item Bag page #21
+	$00409ec0 - $00409eef - 12 dwords (48 bytes) - Item Bag page #22
+	$00409ef0 - $00409f1f - 12 dwords (48 bytes) - Item Bag page #23
+	$00409f20 - $00409f4f - 12 dwords (48 bytes) - Item Bag page #24
+	$00409f50 - $00409f7f - 12 dwords (48 bytes) - Item Bag page #25
+	$00409f80 - $00409faf - 12 dwords (48 bytes) - Item Bag page #26
+	$00409fb0 - $00409fdf - 12 dwords (48 bytes) - Item Bag page #27
+	$00409fe0 - $0040a00f - 12 dwords (48 bytes) - Item Bag page #28
+	$0040a010 - $0040a03f - 12 dwords (48 bytes) - Item Bag page #29
+	$0040a040 - $0040a06f - 12 dwords (48 bytes) - Item Bag page #30
+	$0040a070 - $0040a09f - 12 dwords (48 bytes) - Item Bag page #31
+	$0040a0a0 - $0040a0cf - 12 dwords (48 bytes) - Item Bag page #32
+	$0040a0d0 - $0040a0ff - 12 dwords (48 bytes) - Item Bag page #33
 
 
 +--------------------------------------------------------------------+
 
+
+$0040a100
+
+
++--------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------+
+40a2a8 - 40a2d8 might be treasure chests and pots and wall bags and
+	dressers and bookshelves.
 +--------------------------------------------------------------------+
 
 +--------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------+
+
 
 +--------------------------------------------------------------------+
 

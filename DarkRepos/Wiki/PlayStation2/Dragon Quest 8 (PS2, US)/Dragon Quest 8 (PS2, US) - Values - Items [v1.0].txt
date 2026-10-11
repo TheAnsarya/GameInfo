@@ -1,0 +1,518 @@
+
+Items
+
+id   | #   | Name
+-----|-----------------------
+0001 | 001 | Cypress stick
+0002 | 002 | Soldier's sword
+0003 | 003 | Copper sword
+0004 | 004 | Steel broadsword
+0005 | 005 | Platinum sword
+0006 | 006 | Dream blade
+0007 | 007 | Falcon blade
+0008 | 008 | Über falcon blade
+0009 | 009 | Zombiesbane
+000a | 010 | Zombie slayer
+000b | 011 | Dragonsbane
+000c | 012 | Dragon slayer
+000d | 013 | Blizzard blade
+000e | 014 | Miracle sword
+000f | 015 | Über miracle sword
+0010 | 016 | Bastard sword
+0011 | 017 | Liquid metal sword
+0012 | 018 | Double-edged sword
+0013 | 019 | Über double-edge
+0014 | 020 | Rusty old sword
+0015 | 021 | Dragovian sword
+0016 | 022 | Dragovian king sword
+0017 | 023 | Rapier
+0018 | 024 | Templar's sword
+0019 | 025 | Hell sabre
+001a | 026 | Holy silver rapier
+001b | 027 | Fallen angel rapier
+001c | 028 | Shamshir of light
+001d | 029 | Mercury's rapier
+001e | 030 | Bronze knife
+001f | 031 | Dagger
+0020 | 032 | Poison moth knife
+0021 | 033 | Assassin's dagger
+0022 | 034 | Icicle dirk
+0023 | 035 | Poison needle
+0024 | 036 | Falcon knife
+0025 | 037 | Imp knife
+0026 | 038 | Sword breaker
+0027 | 039 | Eagle dagger
+0028 | 040 | Iron lance
+0029 | 041 | Holy lance
+002a | 042 | Long spear
+002b | 043 | Partisan
+002c | 044 | Battle fork
+002d | 045 | Sandstorm spear
+002e | 046 | Demon spear
+002f | 047 | Hero spear
+0030 | 048 | Metal king spear
+0031 | 049 | Boomerang
+0032 | 050 | Reinforced boomerang
+0033 | 051 | Edged boomerang
+0034 | 052 | Metal wing boomerang
+0035 | 053 | Razor wing boomerang
+0036 | 054 | Swallowtail
+0037 | 055 | Flametang boomerang
+0038 | 056 | Stone axe
+0039 | 057 | Iron axe
+003a | 058 | King axe
+003b | 059 | Moon axe
+003c | 060 | Bandit axe
+003d | 061 | Golden axe
+003e | 062 | Battle-axe
+003f | 063 | Conquerer's axe
+0040 | 064 | Oaken club
+0041 | 065 | Giant mallet
+0042 | 066 | Sledgehammer
+0043 | 067 | War hammer
+0044 | 068 | Über war hammer
+0045 | 069 | DUMMY HAMMER
+0046 | 070 | Megaton hammer
+0047 | 071 | Flail of fury
+0048 | 072 | Flail of destruction
+0049 | 073 | Thorn whip
+004a | 074 | Leather whip
+004b | 075 | Snakeskin whip
+004c | 076 | Chain whip
+004d | 077 | Dragontail whip
+004e | 078 | Spiked steel whip
+004f | 079 | Demon whip
+0050 | 080 | Scourge whip
+0051 | 081 | Gringham whip
+0052 | 082 | Farmer's scythe
+0053 | 083 | DUMMY SICKLE
+0054 | 084 | Heavy hatchet
+0055 | 085 | Bardiche of binding
+0056 | 086 | Hell scythe
+0057 | 087 | Steel scythe 
+0058 | 088 | Wizard's staff
+0059 | 089 | Lightning staff
+005a | 090 | Staff of divine wrath
+005b | 091 | Magma staff
+005c | 092 | DUMMY WAND
+005d | 093 | Staff of antimagic
+005e | 094 | Rune staff
+005f | 095 | Staff of resurrection
+0060 | 096 | Magical mace
+0061 | 097 | DUMMY STAFF
+0062 | 098 | Hunter's bow
+0063 | 099 | Great bow
+0064 | 100 | Short bow
+0065 | 101 | Odin's bow
+0066 | 102 | Cheiron's bow
+0067 | 103 | Eros' bow
+0068 | 104 | Plain clothes
+0069 | 105 | Bandit's grass skirt
+006a | 106 | Wayfarer's clothes
+006b | 107 | Boxer shorts
+006c | 108 | Dancer's costume
+006d | 109 | Leather kilt
+006e | 110 | Leather dress
+006f | 111 | Templar's uniform
+0070 | 112 | Fur poncho
+0071 | 113 | Cloak of evasion
+0072 | 114 | Bunny suit
+0073 | 115 | Silk bustier
+0074 | 116 | Magic bikini
+0075 | 117 | Spangled dress
+0076 | 118 | Posh waistcoat
+0077 | 119 | Magical skirt
+0078 | 120 | Shimmering dress
+0079 | 121 | Dark robe
+007a | 122 | DUMMY DRESS
+007b | 123 | Dangerous bustier
+007c | 124 | Divine bustier
+007d | 125 | Jessica's outfit
+007e | 126 | Leather armour
+007f | 127 | Scale Armour
+0080 | 128 | Chain Mail
+0081 | 129 | Bronze armour
+0082 | 130 | Iron cuirass
+0083 | 131 | Iron armour
+0084 | 132 | Turtle shell
+0085 | 133 | Full plate armour
+0086 | 134 | Silver cuirass
+0087 | 135 | Dancer's mail
+0088 | 136 | Silver mail
+0089 | 137 | Dragon mail
+008a | 138 | Magic armour
+008b | 139 | Zombie mail
+008c | 140 | Heavy armour
+008d | 141 | Spiked armour
+008e | 142 | Platinum mail
+008f | 143 | Bandit mail
+0090 | 144 | Sacred armour
+0091 | 145 | DUMMY ARMOUR
+0092 | 146 | Gigant armour
+0093 | 147 | Mirror armour
+0094 | 148 | Liquid metal armour
+0095 | 149 | Dragovian armour
+0096 | 150 | Metal king armour
+0097 | 151 | Silk robe
+0098 | 152 | Leather cape
+0099 | 153 | Robe of serenity
+009a | 154 | Magic vestment
+009b | 155 | Flowing dress
+009c | 156 | Sage's robe
+009d | 157 | Angel's robe
+009e | 158 | Velvet cape
+009f | 159 | Crimson robe
+00a0 | 160 | Princess' robe
+00a1 | 161 | Dragon robe
+00a2 | 162 | Pot lid
+00a3 | 163 | Leather shield
+00a4 | 164 | Scale shield
+00a5 | 165 | Silver platter
+00a6 | 166 | Kitty shield
+00a7 | 167 | Bronze shield
+00a8 | 168 | Templar's shield
+00a9 | 169 | Iron shield
+00aa | 170 | Light shield
+00ab | 171 | White shield
+00ac | 172 | Steel shield
+00ad | 173 | Magic shield
+00ae | 174 | Dragon shield
+00af | 175 | DUMMY SHIELD
+00b0 | 176 | Power shield
+00b1 | 177 | Saintess shield
+00b2 | 178 | Bone shield
+00b3 | 179 | Mirror shield
+00b4 | 180 | Ogre shield
+00b5 | 181 | Silver shield
+00b6 | 182 | Big boss shield
+00b7 | 183 | Ruinous shield
+00b8 | 184 | Thanatos' shield
+00b9 | 185 | Goddess shield
+00ba | 186 | Dragovian shield
+00bb | 187 | Metal king shield
+00bc | 188 | Bandana
+00bd | 189 | Leather hat
+00be | 190 | Hairband
+00bf | 191 | Pointy hat
+00c0 | 192 | Feathered cap
+00c1 | 193 | Turban
+00c2 | 194 | Silver tiara
+00c3 | 195 | Bunny ears
+00c4 | 196 | Stone hardhat
+00c5 | 197 | Iron helmet
+00c6 | 198 | Fur hood
+00c7 | 199 | Bronze helmet
+00c8 | 200 | Coral hairpin
+00c9 | 201 | Pirate's hat
+00ca | 202 | Iron mask
+00cb | 203 | Hermes' hat
+00cc | 204 | Platinum headgear
+00cd | 205 | Magical hat
+00ce | 206 | Happy hat
+00cf | 207 | Hades' helm
+00d0 | 208 | Slime crown
+00d1 | 209 | Mythril helm
+00d2 | 210 | Mercury's bandana
+00d3 | 211 | Scholar's cap
+00d4 | 212 | DUMMY CAP
+00d5 | 213 | Thinking cap
+00d6 | 214 | Iron headgear
+00d7 | 215 | Raging bull helm
+00d8 | 216 | Golden tiara
+00d9 | 217 | Great helm
+00da | 218 | Phantom mask
+00db | 219 | Skull helm
+00dc | 220 | Dragovian helm
+00dd | 221 | Sun crown
+00de | 222 | Metal king helm
+00df | 223 | DUMMY FLEE RING
+00e0 | 224 | Agility ring
+00e1 | 225 | Meteorite bracer
+00e2 | 226 | Strength ring
+00e3 | 227 | Gold ring
+00e4 | 228 | Prayer ring
+00e5 | 229 | Recovery ring
+00e6 | 230 | Goddess ring
+00e7 | 231 | Gospel ring
+00e8 | 232 | Life bracer
+00e9 | 233 | Mighty armlet
+00ea | 234 | Gold bracer
+00eb | 235 | DUMMY BRACELET
+00ec | 236 | DUMMY BRACER
+00ed | 237 | Ruby of protection
+00ee | 238 | Titan belt
+00ef | 239 | Scholar's specs
+00f0 | 240 | Tough guy tattoo
+00f1 | 241 | Slime earrings
+00f2 | 242 | Devil's tail
+00f3 | 243 | Fishnet stockings
+00f4 | 244 | Garter
+00f5 | 245 | Lady's ring
+00f6 | 246 | Gold rosary
+00f7 | 247 | DUMMY BOOTS
+00f8 | 248 | Sorcerer's ring
+00f9 | 249 | Skull ring
+00fa | 250 | Holy talisman
+00fb | 251 | Ring of awakening
+00fc | 252 | Full moon ring
+00fd | 253 | Ring of clarity
+00fe | 254 | Ring of truth
+00ff | 255 | Ring of immunity
+0100 | 256 | Catholicon ring
+0101 | 257 | DUMMY SANDGLASS
+0102 | 258 | DUMMY HOURGLASS
+0103 | 259 | Dragon scale
+0104 | 260 | Elevating shoes
+0105 | 261 | Medicinal herb
+0106 | 262 | Antidotal herb
+0107 | 263 | Moonwort bulb
+0108 | 264 | Strong medicine
+0109 | 265 | Special medicine
+010a | 266 | Lesser panacea
+010b | 267 | Greater panacea
+010c | 268 | Rose-root
+010d | 269 | Rose-wort
+010e | 270 | Strong antidote
+010f | 271 | Special antidote
+0110 | 272 | Moon's mercy
+0111 | 273 | Mystifying mixture
+0112 | 274 | Yggdrasil leaf
+0113 | 275 | Yggdrasil dew
+0114 | 276 | Amor seco essence
+0115 | 277 | Chimaera wing
+0116 | 278 | Holy water
+0117 | 279 | Magic water
+0118 | 280 | Elfin elixir
+0119 | 281 | Rockbomb shard
+011a | 282 | Sage's stone
+011b | 283 | DUMMY SAND OF TIME
+011c | 284 | Seed of strength
+011d | 285 | Seed of agility
+011e | 286 | Seed of defense
+011f | 287 | Seed of wisdom
+0120 | 288 | Seed of skill
+0121 | 289 | Seed of life
+0122 | 290 | Seed of magic
+0123 | 291 | Mini medal
+0124 | 292 | DUMMY BESTIARY
+0125 | 293 | Thief's key
+0126 | 294 | Magic key
+0127 | 295 | Ultimate key
+0128 | 296 | Orichalcum
+0129 | 297 | Bunny tail
+012a | 298 | Timbrel of tension
+012b | 299 | DUMMY CYMBAL
+012c | 300 | DUMMY CONCH
+012d | 301 | Baumren's bell
+012e | 302 | Gold nugget
+012f | 303 | Iron nail
+0130 | 304 | Cowpat
+0131 | 305 | Dragon dung
+0132 | 306 | Rock salt
+0133 | 307 | DUMMY LIZARD DUNG
+0134 | 308 | Saint's ashes
+0135 | 309 | Wing of bat
+0136 | 310 | Magic beast hide
+0137 | 311 | Fresh milk
+0138 | 312 | Rennet powder
+0139 | 313 | Red mould
+013a | 314 | Waterweed mould
+013b | 315 | Premium mould
+013c | 316 | Plain cheese
+013d | 317 | DUMMY CHEESE #1
+013e | 318 | Spicy cheese
+013f | 319 | Super spicy cheese
+0140 | 320 | Scorching cheese
+0141 | 321 | DUMMY CHEESE #2
+0142 | 322 | Cool cheese
+0143 | 323 | Chilly cheese
+0144 | 324 | Cold cheese
+0145 | 325 | C-c-cold cheese
+0146 | 326 | DUMMY CHEESE #3
+0147 | 327 | DUMMY CHEESE #4
+0148 | 328 | DUMMY CHEESE #5
+0149 | 329 | DUMMY CHEESE #6
+014a | 330 | DUMMY CHEESE #7
+014b | 331 | Mild cheese
+014c | 332 | Cured cheese
+014d | 333 | Angel cheese
+014e | 334 | Hard cheese
+014f | 335 | Soft cheese
+0150 | 336 | Chunky cheese
+0151 | 337 | Highly-strung cheese
+0152 | 338 | DUMMY CHEESE #8
+0153 | 339 | Crystal ball
+0154 | 340 | Tool bag
+0155 | 341 | Jessica's letter
+0156 | 342 | Templar's ring
+0157 | 343 | World map
+0158 | 344 | Venus' tear
+0159 | 345 | Moonshadow harp
+015a | 346 | Sand of serenity
+015b | 347 | Lizard humour
+015c | 348 | DUMMY BAG
+015d | 349 | Argon heart
+015e | 350 | Great big Argon heart
+015f | 351 | Magic mirror
+0160 | 352 | Sun mirror
+0161 | 353 | Stone sword
+0162 | 354 | Kran Spinels
+0163 | 355 | ‘The Big Book of Barriers’
+0164 | 356 | Marta's bag
+0165 | 357 | Illuminated sea chart
+0166 | 358 | Nook grass
+0167 | 359 | Godbird's soulstone
+0168 | 360 | Darktree leaf
+0169 | 361 | Templar Captain's ring
+016a | 362 | DUMMY RING
+016b | 363 | Argon ring
+016c | 364 | Echo flute
+016d | 365 | Eros' bow recipe
+016e | 366 | Imp knife recipe
+016f | 367 | Dragon slayer recipe
+0170 | 368 | Thief's key recipe
+0171 | 369 | Morrie's memo #1
+0172 | 370 | Morrie's memo #2
+0173 | 371 | Morrie's memo #3
+0174 | 372 | Monster Arena key
+0175 | 373 | Godbird Sceptre
+0176 | 374 | DUMMY CARD
+0177 | 375 | Gold orb
+0178 | 376 | Silver orb
+0179 | 377 | Red orb
+017a | 378 | Blue orb
+017b | 379 | Green orb
+017c | 380 | Yellow orb
+017d | 381 | Purple orb
+017e | 382 | Copper monster coin
+017f | 383 | Silver monster coin
+0180 | 384 | Gold monster coin
+0181 | 385 | Flame shield
+0182 | 386 | Ice shield
+0183 | 387 | MIMIC STONE
+0184 | 388 | BLARNEY STONE
+0185 | 389 | (garbage "")
+0186 | 390 | (garbage "Archdemon")
+0187 | 391 | (garbage "Slime")
+0188 | 392 | (garbage "Slime knight")
+0189 | 393 | (garbage "King slime")
+018a | 394 | (garbage "Chimaera")
+018b | 395 | (garbage "Killing machine")
+018c | 396 | (garbage "Rockbomb")
++-----------------End of 33rd page--------------------+
+
+018d | 397 | 
+018e | 398 | 
+018f | 399 | 
+0190 | 400 | 
+0191 | 401 | 
+0192 | 402 | 
+0193 | 403 | 
+0194 | 404 | 
+0195 | 405 | 
+0196 | 406 | 
+0197 | 407 | 
+0198 | 408 | 
+0199 | 409 | 
+019a | 410 | 
+019b | 411 | 
+019c | 412 | 
+019d | 413 | 
+019e | 414 | 
+019f | 415 | 
+01a0 | 416 | 
+01a1 | 417 | 
+01a2 | 418 | 
+01a3 | 419 | 
+01a4 | 420 | 
+01a5 | 421 | 
+01a6 | 422 | 
+01a7 | 423 | 
+01a8 | 424 | 
+01a9 | 425 | 
+01aa | 426 | 
+01ab | 427 | 
+01ac | 428 | 
+01ad | 429 | 
+01ae | 430 | 
+01af | 431 | 
+01b0 | 432 | 
+01b1 | 433 | 
+01b2 | 434 | 
+01b3 | 435 | 
+01b4 | 436 | 
+01b5 | 437 | 
+01b6 | 438 | 
+01b7 | 439 | 
+01b8 | 440 | 
+01b9 | 441 | 
+01ba | 442 | 
+01bb | 443 | 
+01bc | 444 | 
+01bd | 445 | 
+01be | 446 | 
+01bf | 447 | 
+01c0 | 448 | 
+01c1 | 449 | 
+01c2 | 450 | 
+01c3 | 451 | 
+01c4 | 452 | 
+01c5 | 453 | 
+01c6 | 454 | 
+01c7 | 455 | 
+01c8 | 456 | 
+01c9 | 457 | 
+01ca | 458 | 
+01cb | 459 | 
+01cc | 460 | 
+01cd | 461 | 
+01ce | 462 | 
+01cf | 463 | 
+01d0 | 464 | 
+01d1 | 465 | 
+01d2 | 466 | 
+01d3 | 467 | 
+01d4 | 468 | 
+01d5 | 469 | 
+01d6 | 470 | 
+01d7 | 471 | 
+01d8 | 472 | 
+01d9 | 473 | 
+01da | 474 | 
+01db | 475 | 
+01dc | 476 | 
+01dd | 477 | 
+01de | 478 | 
+01df | 479 | 
+01e0 | 480 | 
+01e1 | 481 | 
+01e2 | 482 | 
+01e3 | 483 | 
+01e4 | 484 | 
+01e5 | 485 | 
+01e6 | 486 | 
+01e7 | 487 | 
+01e8 | 488 | 
+01e9 | 489 | 
+01ea | 490 | 
+01eb | 491 | 
+01ec | 492 | 
+01ed | 493 | 
+01ee | 494 | 
+01ef | 495 | 
+01f0 | 496 | 
+01f1 | 497 | 
+01f2 | 498 | 
+01f3 | 499 | 
+01f4 | 500 | 
+01f5 | 501 | 
+01f6 | 502 | 
+01f7 | 503 | 
+01f8 | 504 | 
+01f9 | 505 | 
+01fa | 506 | 
+01fb | 507 | 
+01fc | 508 | 
+01fd | 509 | 
+01fe | 510 | 
+01ff | 511 | 
